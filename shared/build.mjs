@@ -1,3 +1,4 @@
+import {applyStage28RecordCourt} from '../tools/map-forge/stage28-record-court.mjs';
 import {applyStoryAnomalyEnvironment} from '../tools/map-forge/story-anomaly-revision.mjs';
 import {applyTacticalWaveWarnings} from '../tools/map-forge/tactical-wave-warnings.mjs';
 import {applyTacticalCityResponses} from '../tools/map-forge/tactical-city-responses.mjs';
@@ -43,6 +44,7 @@ export async function runtimeParts({vector=true,render=true,app=false}={}) {
   project=applyTacticalCityResponses(project);
   project=applyTacticalWaveWarnings(project);
   project=applyStoryAnomalyEnvironment(project);
+  project=applyStage28RecordCourt(project);
   parts.push('globalThis.HONRO_PROJECT=HonroStoryCanonV1.author(HonroBellAnomaly.author(HonroStage2Airborne.author(HonroNarrativeRevision.author(HonroObjectiveRevision.author(HonroAct1Roster.author('+JSON.stringify(project)+'))))));');
   if(vector){
     await buildParty();

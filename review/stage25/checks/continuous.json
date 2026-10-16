@@ -1,0 +1,298 @@
+[
+  {
+    "id": 25,
+    "strategy": "replace-home-stake",
+    "rounds": 12,
+    "fireCount": 9,
+    "simulationSeconds": 64.81666666666666,
+    "rows": [
+      {
+        "i": 1,
+        "round": 2,
+        "fireCount": 1,
+        "focus": 236,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 2177.567074512719,
+            "y": 4950
+          },
+          {
+            "cls": "mage",
+            "x": 2129.567074512719,
+            "y": 4950
+          }
+        ],
+        "index": 1
+      },
+      {
+        "i": 2,
+        "round": 4,
+        "fireCount": 3,
+        "focus": 196,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 3159.7787511049714,
+            "y": 4500
+          },
+          {
+            "cls": "mage",
+            "x": 3111.7787511049714,
+            "y": 4500
+          }
+        ],
+        "index": 2
+      },
+      {
+        "i": 3,
+        "round": 8,
+        "fireCount": 5,
+        "focus": 216,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 1655.1264600613424,
+            "y": 3600
+          },
+          {
+            "cls": "mage",
+            "x": 1607.1264600613424,
+            "y": 3600
+          }
+        ],
+        "index": 3
+      },
+      {
+        "i": 4,
+        "round": 10,
+        "fireCount": 7,
+        "focus": 176,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 3756.3870737927878,
+            "y": 3600
+          },
+          {
+            "cls": "mage",
+            "x": 3708.3870737927878,
+            "y": 3600
+          }
+        ],
+        "index": 4
+      },
+      {
+        "i": 5,
+        "round": 12,
+        "fireCount": 9,
+        "focus": 136,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 2790.618657523708,
+            "y": 3150
+          },
+          {
+            "cls": "mage",
+            "x": 2742.618657523708,
+            "y": 3150
+          }
+        ],
+        "index": 5
+      }
+    ],
+    "finalFocus": 136
+  },
+  {
+    "id": 27,
+    "strategy": "replace-home-stake",
+    "rounds": 13,
+    "fireCount": 7,
+    "simulationSeconds": 78.08333333333333,
+    "rows": [
+      {
+        "i": 1,
+        "round": 4,
+        "fireCount": 1,
+        "focus": 244,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 4906.866784083738,
+            "y": 4850
+          },
+          {
+            "cls": "mage",
+            "x": 4858.866784083738,
+            "y": 4850
+          }
+        ],
+        "index": 1
+      },
+      {
+        "i": 2,
+        "round": 6,
+        "fireCount": 3,
+        "focus": 204,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 6278.349458936253,
+            "y": 4400
+          },
+          {
+            "cls": "mage",
+            "x": 6230.349458936253,
+            "y": 4400
+          }
+        ],
+        "index": 2
+      },
+      {
+        "i": 3,
+        "round": 8,
+        "fireCount": 5,
+        "focus": 164,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 6438.37367406221,
+            "y": 3950
+          },
+          {
+            "cls": "mage",
+            "x": 6390.37367406221,
+            "y": 3950
+          }
+        ],
+        "index": 3
+      },
+      {
+        "i": 4,
+        "round": 11,
+        "fireCount": 7,
+        "focus": 172,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 4079.041132693809,
+            "y": 3050
+          },
+          {
+            "cls": "mage",
+            "x": 4031.041132693809,
+            "y": 3050
+          }
+        ],
+        "index": 4
+      }
+    ],
+    "finalFocus": 264
+  },
+  {
+    "id": 25,
+    "strategy": "wait-and-return-to-old-gate",
+    "rounds": 11,
+    "fireCount": 8,
+    "simulationSeconds": 62.96666666666667,
+    "rows": [
+      {
+        "i": 1,
+        "round": 2,
+        "fireCount": 1,
+        "focus": 236,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 2177.567074512719,
+            "y": 4950
+          },
+          {
+            "cls": "mage",
+            "x": 2129.567074512719,
+            "y": 4950
+          }
+        ],
+        "index": 1
+      },
+      {
+        "i": 2,
+        "round": 3,
+        "fireCount": 2,
+        "focus": 216,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 3062.2579455883074,
+            "y": 4500
+          },
+          {
+            "cls": "mage",
+            "x": 3014.2579455883074,
+            "y": 4500
+          }
+        ],
+        "index": 2
+      },
+      {
+        "i": 3,
+        "round": 7,
+        "fireCount": 4,
+        "focus": 216,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 1657.4214625697282,
+            "y": 3600
+          },
+          {
+            "cls": "mage",
+            "x": 1609.4214625697282,
+            "y": 3600
+          }
+        ],
+        "index": 3
+      },
+      {
+        "i": 4,
+        "round": 9,
+        "fireCount": 6,
+        "focus": 176,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 3615.546478550724,
+            "y": 3600
+          },
+          {
+            "cls": "mage",
+            "x": 3567.546478550724,
+            "y": 3600
+          }
+        ],
+        "index": 4
+      },
+      {
+        "i": 5,
+        "round": 11,
+        "fireCount": 8,
+        "focus": 136,
+        "positions": [
+          {
+            "cls": "archer",
+            "x": 3104.1157540752415,
+            "y": 3150
+          },
+          {
+            "cls": "mage",
+            "x": 3056.1157540752415,
+            "y": 3150
+          }
+        ],
+        "index": 5
+      }
+    ],
+    "finalFocus": 136
+  }
+]

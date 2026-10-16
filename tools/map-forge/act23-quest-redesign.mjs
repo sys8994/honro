@@ -101,7 +101,7 @@ export async function authorAct23QuestRedesign(project,{minStage=11,maxStage=30}
    s.anchors.spawn={x:6240,y:heightAt(s,'act2-floor',6240)};s.anchors.start=clone(s.anchors.spawn);s.anchors.exit={x:7340,y:heightAt(s,'act2-floor',7340)};
   }
   if(id===20){const lead=s.units.find(u=>u.id==='objective');for(const [id,label,dx]of [['convoy-gilchan','길찬',-100],['convoy-mason','석공',-220]])civilian(s,id,label,lead.x+dx,heightAt(s,'act2-floor',lead.x+dx),{honroConvoyMember:{target:'objective',dx}});}
-  if(id===29){
+  if(id===29&&!s.initialState?.honroRecordCourtRevision){
    const steps=act3[8].steps;stripSteps(s,steps);for(const event of s.events||[])if(event.id==='act3-response-29-2')event.when={after:'act3-response-29-1'};
    ribbon(s,'quest-upper-sluice-ascent',[[3370,2780],[3620,2585],[3900,2370],[4200,2140]],{material:'stone'});
    ribbon(s,'quest-upper-sluice-exit',[[5090,2140],[5400,2140]],{material:'stone'});

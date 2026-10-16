@@ -26,13 +26,23 @@ function prepare(t,b){let q=cache.get(t);if(q?.source===t.vertices&&q.version===
    ledges.push({lit,seam,x,y,w,depth,i});
   }
  }
- const masonry=[];if(/ferry-court|reflector/.test(t.id)){for(const [i,f]of [0,.38,.71].entries()){const top=t.y+t.h*f,hh=t.h*(i===2?.29:.34),cuts=i===0?[0,.28,.66,1]:i===1?[0,.17,.57,.84,1]:[0,.38,.72,1];for(let j=1;j<cuts.length;j++){const x=t.x+t.w*cuts[j-1],xx=t.x+t.w*cuts[j],pad=Math.min(12,(xx-x)*.07);masonry.push({body:P([[x+pad,top+8],[xx-8,top+3],[xx-4,top+hh-9],[x+8,top+hh-4]]),top:P([[x+pad,top+8],[xx-8,top+3],[xx-11,top+20],[x+pad,top+24]]),light:(i+j)%3});}}}
+ // The quay is a retained landing cut into bedrock, not a wall of giant bricks.
+ // Individually authored face stones sit only in the upper retaining course;
+ // below them the unbroken native rock planes remain visible.
+ const masonry=[];if(t.id==='sf-ferry-court'){
+  const stones=[[0,24,.12,99],[.125,19,.18,116],[.31,26,.15,102],[.466,20,.205,112],[.677,23,.16,95],[.843,19,.16,120],[.015,132,.19,119],[.213,145,.135,128],[.355,137,.22,114],[.582,143,.17,128],[.76,129,.245,116]];
+  for(const[i,[u,v,w,h]]of stones.entries()){const x=t.x+t.w*u,y=t.y+v,ww=t.w*w;
+   masonry.push({body:P([[x+13,y+9],[x+ww-20,y],[x+ww,y+26],[x+ww-12,y+h-9],[x+ww*.43,y+h],[x,y+h-19]]),top:P([[x+13,y+9],[x+ww-20,y],[x+ww-4,y+20],[x+ww*.46,y+28],[x+5,y+25]]),light:i%3});
+  }
+ }else if(/reflector/.test(t.id)){for(const[i,f]of [0,.38,.71].entries()){const top=t.y+t.h*f,hh=t.h*(i===2?.29:.34);for(const[u,w]of [[0,.43],[.46,.54]]){const x=t.x+t.w*u,ww=t.w*w;masonry.push({body:P([[x+7,top+6],[x+ww-5,top+3],[x+ww,top+hh-7],[x,top+hh-3]]),top:P([[x+7,top+6],[x+ww-5,top+3],[x+ww-10,top+20],[x+7,top+22]]),light:i});}}}
+
  q={source:t.vertices,version:b.sceneVersion,shape,edges,rim,caps,strata,joints,masonry,ledges,forms:ROCK_FORMS[hash(t.id)%3]};cache.set(t,q);return q;}
-function terrain(c,t,b,live=false){if(!active(b)||!t.id?.startsWith('sf-'))return false;if(t.id==='sf-settled-barge')return true;if(t.id==='sf-outbank-screen'&&state(b).status==='settling'&&!live)return true;const q=prepare(t,b),wood=t.mat==='wood',earth=t.mat==='earth',depth=Math.min(t.h,2600);c.save();c.clip(q.shape);
+function terrain(c,t,b,live=false){if(!active(b)||!t.id?.startsWith('sf-'))return false;if(t.id==='sf-settled-barge')return true;if(t.id==='sf-outbank-screen'&&state(b).status==='settling'&&!live)return true;const q=prepare(t,b),wood=t.mat==='wood',earth=t.mat==='earth',depth=Math.min(t.h,2600),roof=t.oneWay&&/^sf-quay-(west|east)-loft$/.test(t.id);c.save();c.clip(q.shape);
  c.fillStyle=gradient(c,t.x,t.y,t.x+t.w*.18,t.y+depth,wood?[[0,'#a1966b'],[.2,'#776c4d'],[.45,'#4d523e'],[1,'#263c38']]:earth?[[0,'#7e886d'],[.18,'#5b7264'],[.55,'#405c5b'],[1,'#1d3a49']]:[[0,'#93a18d'],[.24,'#748b82'],[.58,'#4b6b70'],[1,'#243f50']]);c.fill(q.shape);
- if(wood){c.strokeStyle='#253c34';c.lineWidth=5;c.stroke(q.joints);for(const[a,z]of q.edges){c.beginPath();c.moveTo(a.x,a.y+29);c.lineTo(z.x,z.y+29);c.stroke();}}
+ if(roof){c.fillStyle=gradient(c,t.x,t.y,t.x,t.y+t.h,[[0,'#89908a'],[.18,'#637571'],[.57,'#344b4b'],[1,'#1a3237']]);c.fill(q.shape);for(const[a,z]of q.edges){c.beginPath();c.moveTo(a.x,a.y+17);c.lineTo(z.x,z.y+17);c.strokeStyle='#9ca38b';c.lineWidth=6;c.stroke();c.beginPath();c.moveTo(a.x,a.y+38);c.lineTo(z.x,z.y+38);c.strokeStyle='#152d33';c.lineWidth=8;c.stroke();}c.strokeStyle='#293d3d';c.lineWidth=4;c.stroke(q.joints);}
+ else if(wood){c.strokeStyle='#253c34';c.lineWidth=5;c.stroke(q.joints);for(const[a,z]of q.edges){c.beginPath();c.moveTo(a.x,a.y+29);c.lineTo(z.x,z.y+29);c.stroke();}}
  else{c.save();c.translate(t.x,t.y);c.scale(t.w/1000,depth/1000);for(const[i,col]of ['#b9bca83d','#173847aa','#223e4f79','#c6c6a448','#19394588'].entries()){c.fillStyle=col;c.fill(q.forms[i]);}c.restore();for(const p of q.ledges){c.fillStyle=gradient(c,p.x,p.y,p.x+p.w*.45,p.y+p.depth,[[0,p.i%2?'#aeb6a529':'#bbc3a72e'],[.55,'#8da79419'],[1,'#172f404f']]);c.fill(p.lit);c.lineWidth=14;c.strokeStyle='#18384763';c.stroke(p.seam);c.save();c.translate(-7,-12);c.lineWidth=4;c.strokeStyle='#b5c0a533';c.stroke(p.seam);c.restore();}for(const p of q.strata){c.fillStyle=earth?'#a3a48237':'#b7bba749';c.fill(p);}for(const p of q.masonry){c.fillStyle=['#748b83','#586f70','#819289'][p.light];c.fill(p.body);c.fillStyle='#b7bba67a';c.fill(p.top);}}
- for(const p of q.caps){c.fillStyle=wood?'#c5b88988':earth?'#bac09869':'#d0d1b578';c.fill(p);}c.restore();return true;}
+ for(const p of q.caps){c.fillStyle=roof?'#afb6a36b':wood?'#c5b88988':earth?'#bac09869':'#d0d1b578';c.fill(p);}c.restore();return true;}
 const originalTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return originalTerrain.call(this,c,t);};
 function skyAsset(b){return b.honroMap?.ferryArt?.backdropAsset;}
 function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1050;const c=G.HonroVisualStyle?.context(cv.getContext('2d'),'SKY')||cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});q=cv;skyCache.set(asset,q);return q;}

@@ -1,0 +1,94 @@
+{
+  "passed": true,
+  "scope": "Actual fresh stage terrain; isolated single actor positioned on existing floor. Engine jump/drop/move, finite move budgets and projectile collision. No normal-clear claim.",
+  "rows": [
+    {
+      "cls": "mage",
+      "roof": "r29-record-vault",
+      "minimum": 2006.3849187047106,
+      "landedAt": 2020,
+      "droppedTo": 2220,
+      "approach": true,
+      "leave": true,
+      "upwardShot": "passes",
+      "downwardShot": "hits"
+    },
+    {
+      "cls": "mage",
+      "roof": "r29-inspection-roof",
+      "minimum": 2546.3849187047094,
+      "landedAt": 2560,
+      "droppedTo": 2760,
+      "approach": true,
+      "leave": true,
+      "upwardShot": "passes",
+      "downwardShot": "hits"
+    },
+    {
+      "cls": "archer",
+      "roof": "r29-record-vault",
+      "minimum": 2006.3849187047106,
+      "landedAt": 2020,
+      "droppedTo": 2220,
+      "approach": true,
+      "leave": true,
+      "upwardShot": "passes",
+      "downwardShot": "hits"
+    },
+    {
+      "cls": "archer",
+      "roof": "r29-inspection-roof",
+      "minimum": 2546.3849187047094,
+      "landedAt": 2560,
+      "droppedTo": 2760,
+      "approach": true,
+      "leave": true,
+      "upwardShot": "passes",
+      "downwardShot": "hits"
+    },
+    {
+      "cls": "knight",
+      "roof": "r29-record-vault",
+      "minimum": 2006.3849187047106,
+      "landedAt": 2020,
+      "droppedTo": 2220,
+      "approach": true,
+      "leave": true,
+      "upwardShot": "passes",
+      "downwardShot": "hits"
+    },
+    {
+      "cls": "knight",
+      "roof": "r29-inspection-roof",
+      "minimum": 2546.3849187047094,
+      "landedAt": 2560,
+      "droppedTo": 2760,
+      "approach": true,
+      "leave": true,
+      "upwardShot": "passes",
+      "downwardShot": "hits"
+    },
+    {
+      "cls": "occultist",
+      "roof": "r29-record-vault",
+      "minimum": 2006.3849187047106,
+      "landedAt": 2020,
+      "droppedTo": 2220,
+      "approach": true,
+      "leave": true,
+      "upwardShot": "passes",
+      "downwardShot": "hits"
+    },
+    {
+      "cls": "occultist",
+      "roof": "r29-inspection-roof",
+      "minimum": 2546.3849187047094,
+      "landedAt": 2560,
+      "droppedTo": 2760,
+      "approach": true,
+      "leave": true,
+      "upwardShot": "passes",
+      "downwardShot": "hits"
+    }
+  ]
+}

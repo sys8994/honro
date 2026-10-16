@@ -1,3 +1,4 @@
+import {refineMaintenance25} from './stage25-maintenance.mjs';
 /** V3: solid, finite maintenance galleries. Every lit sill is a real landing.
  * Projectile and body physics remain the shared runtime's unmodified rules. */
 import {P,R,line,asset,put,terrain,pool,marker,players,cityEnvironment,stairs,ramp} from './act3-map-kit.mjs';
@@ -91,5 +92,5 @@ export function buildVerticalWaterworks(g,p,id,k){const plan=VERTICAL_PLANS[id],
   ['inspection-stair-return',[[6660,3950],[6180,3950],[5080,3500],[4750,3500]]],
   ['manifest-stair',[[4100,3050],[3350,3050],[2250,2600],[1790,2600],[1260,2600]]]
  ];
- s.design.act3.walkingComponents=walks.map(([id,points])=>({id,points:points.map(([x,y])=>({x,y}))}));s.design.act3.requiredRoute=s.design.act3.walkingComponents.flatMap(q=>q.points);return s;
+ s.design.act3.walkingComponents=walks.map(([id,points])=>({id,points:points.map(([x,y])=>({x,y}))}));s.design.act3.requiredRoute=s.design.act3.walkingComponents.flatMap(q=>q.points);refineMaintenance25(p,s);return s;
 }

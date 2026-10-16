@@ -1,0 +1,6496 @@
+{
+  "definitions": {
+    "heroTurn": "A hero/round group. E is assigned to the marker used, because the objective may advance before its action record. Actor serials are retained.",
+    "movement": "Move segment or accepted basic jump/drop input, including combat-plus-movement turns. Straight-line displacement is a lower bound, not total path length or movement cost.",
+    "waiting": "Stationary defense without HP/MP recovery outside the active mage hold and descent opportunity is an observable waiting proxy. Defense may still provide a useful guard; this is not a proof of uselessness.",
+    "noDamage": "An accepted fire with no HP damage owned by that hero during its round. Terrain/shield contact may still be useful; this does not automatically mean a miss.",
+    "tail": "First observed <=10/5/3/1 alive enemies after the final actual spawn. Last-known positions come from the preceding round observation, with recorded deaths/subduals removed.",
+    "timing": "Engine simulation seconds, not human play duration. Bot planning and process wall time are separate result fields.",
+    "scope": "Read-only analysis of native production inputs; map fixtures, previous failed probes and human/browser claims are excluded."
+  },
+  "overall": {
+    "heroTurns": 44,
+    "firstRound": 1,
+    "lastRound": 11,
+    "roundSpan": 11,
+    "categories": {
+      "movement-only": 4,
+      "movement-and-combat": 28,
+      "combat": 12
+    },
+    "fires": 40,
+    "anchorFires": 0,
+    "interactions": 0,
+    "defends": 3,
+    "moveSegments": 32,
+    "microMoveSegments": 2,
+    "substantialMoveSegments": 30,
+    "jumps": 20,
+    "drops": 0,
+    "recoveryJumps": 0,
+    "straightDisplacementLowerBound": 36169.12221151443,
+    "hpDamage": 16967,
+    "kills": 8,
+    "subduals": 0,
+    "damageTaken": 1178,
+    "firesWithoutHeroHpDamage": 1,
+    "hpRecovery": 101,
+    "focusRecovery": 28.920000000000073,
+    "navigationFailures": 0
+  },
+  "phases": {
+    "ferry-hold": {
+      "heroTurns": 32,
+      "firstRound": 1,
+      "lastRound": 8,
+      "roundSpan": 8,
+      "categories": {
+        "movement-only": 1,
+        "movement-and-combat": 20,
+        "combat": 11
+      },
+      "fires": 31,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 1,
+      "moveSegments": 21,
+      "microMoveSegments": 2,
+      "substantialMoveSegments": 19,
+      "jumps": 8,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 21012.266474417873,
+      "hpDamage": 14274,
+      "kills": 7,
+      "subduals": 0,
+      "damageTaken": 972,
+      "firesWithoutHeroHpDamage": 1,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "heroes": {
+        "archer": {
+          "heroTurns": 8,
+          "firstRound": 1,
+          "lastRound": 8,
+          "roundSpan": 8,
+          "categories": {
+            "movement-only": 1,
+            "movement-and-combat": 5,
+            "combat": 2
+          },
+          "fires": 7,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 1,
+          "moveSegments": 6,
+          "microMoveSegments": 0,
+          "substantialMoveSegments": 6,
+          "jumps": 2,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 5536.946800367592,
+          "hpDamage": 2360,
+          "kills": 2,
+          "subduals": 0,
+          "damageTaken": 220,
+          "firesWithoutHeroHpDamage": 0,
+          "hpRecovery": 0,
+          "focusRecovery": 0,
+          "navigationFailures": 0
+        },
+        "mage": {
+          "heroTurns": 8,
+          "firstRound": 1,
+          "lastRound": 8,
+          "roundSpan": 8,
+          "categories": {
+            "movement-and-combat": 5,
+            "combat": 3
+          },
+          "fires": 8,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 0,
+          "moveSegments": 5,
+          "microMoveSegments": 1,
+          "substantialMoveSegments": 4,
+          "jumps": 2,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 5354.041687280135,
+          "hpDamage": 4052,
+          "kills": 0,
+          "subduals": 0,
+          "damageTaken": 453,
+          "firesWithoutHeroHpDamage": 0,
+          "hpRecovery": 0,
+          "focusRecovery": 0,
+          "navigationFailures": 0
+        },
+        "knight": {
+          "heroTurns": 8,
+          "firstRound": 1,
+          "lastRound": 8,
+          "roundSpan": 8,
+          "categories": {
+            "movement-and-combat": 6,
+            "combat": 2
+          },
+          "fires": 8,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 0,
+          "moveSegments": 6,
+          "microMoveSegments": 1,
+          "substantialMoveSegments": 5,
+          "jumps": 2,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 5430.512884423855,
+          "hpDamage": 5738,
+          "kills": 5,
+          "subduals": 0,
+          "damageTaken": 136,
+          "firesWithoutHeroHpDamage": 0,
+          "hpRecovery": 0,
+          "focusRecovery": 0,
+          "navigationFailures": 0
+        },
+        "occultist": {
+          "heroTurns": 8,
+          "firstRound": 1,
+          "lastRound": 8,
+          "roundSpan": 8,
+          "categories": {
+            "movement-and-combat": 4,
+            "combat": 4
+          },
+          "fires": 8,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 0,
+          "moveSegments": 4,
+          "microMoveSegments": 0,
+          "substantialMoveSegments": 4,
+          "jumps": 2,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 4690.765102346285,
+          "hpDamage": 2124,
+          "kills": 0,
+          "subduals": 0,
+          "damageTaken": 163,
+          "firesWithoutHeroHpDamage": 1,
+          "hpRecovery": 0,
+          "focusRecovery": 0,
+          "navigationFailures": 0
+        }
+      }
+    },
+    "old-road": {
+      "heroTurns": 11,
+      "firstRound": 9,
+      "lastRound": 11,
+      "roundSpan": 3,
+      "categories": {
+        "movement-only": 2,
+        "movement-and-combat": 8,
+        "combat": 1
+      },
+      "fires": 9,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 2,
+      "moveSegments": 10,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 10,
+      "jumps": 12,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 14532.069627649631,
+      "hpDamage": 2693,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 206,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 101,
+      "focusRecovery": 28.920000000000073,
+      "navigationFailures": 0,
+      "heroes": {
+        "archer": {
+          "heroTurns": 3,
+          "firstRound": 9,
+          "lastRound": 11,
+          "roundSpan": 3,
+          "categories": {
+            "movement-only": 1,
+            "movement-and-combat": 2
+          },
+          "fires": 2,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 1,
+          "moveSegments": 3,
+          "microMoveSegments": 0,
+          "substantialMoveSegments": 3,
+          "jumps": 3,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 3903.353614725217,
+          "hpDamage": 601,
+          "kills": 0,
+          "subduals": 0,
+          "damageTaken": 69,
+          "firesWithoutHeroHpDamage": 0,
+          "hpRecovery": 48,
+          "focusRecovery": 0,
+          "navigationFailures": 0
+        },
+        "mage": {
+          "heroTurns": 3,
+          "firstRound": 9,
+          "lastRound": 11,
+          "roundSpan": 3,
+          "categories": {
+            "movement-only": 1,
+            "movement-and-combat": 2
+          },
+          "fires": 2,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 1,
+          "moveSegments": 3,
+          "microMoveSegments": 0,
+          "substantialMoveSegments": 3,
+          "jumps": 3,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 3885.645097015577,
+          "hpDamage": 891,
+          "kills": 0,
+          "subduals": 0,
+          "damageTaken": 80,
+          "firesWithoutHeroHpDamage": 0,
+          "hpRecovery": 53,
+          "focusRecovery": 28.920000000000073,
+          "navigationFailures": 0
+        },
+        "knight": {
+          "heroTurns": 3,
+          "firstRound": 9,
+          "lastRound": 11,
+          "roundSpan": 3,
+          "categories": {
+            "movement-and-combat": 2,
+            "combat": 1
+          },
+          "fires": 3,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 0,
+          "moveSegments": 2,
+          "microMoveSegments": 0,
+          "substantialMoveSegments": 2,
+          "jumps": 3,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 3561.700905741947,
+          "hpDamage": 1051,
+          "kills": 0,
+          "subduals": 0,
+          "damageTaken": 57,
+          "firesWithoutHeroHpDamage": 0,
+          "hpRecovery": 0,
+          "focusRecovery": 0,
+          "navigationFailures": 0
+        },
+        "occultist": {
+          "heroTurns": 2,
+          "firstRound": 9,
+          "lastRound": 10,
+          "roundSpan": 2,
+          "categories": {
+            "movement-and-combat": 2
+          },
+          "fires": 2,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 0,
+          "moveSegments": 2,
+          "microMoveSegments": 0,
+          "substantialMoveSegments": 2,
+          "jumps": 3,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 3181.370010166889,
+          "hpDamage": 150,
+          "kills": 1,
+          "subduals": 0,
+          "damageTaken": 0,
+          "firesWithoutHeroHpDamage": 0,
+          "hpRecovery": 0,
+          "focusRecovery": 0,
+          "navigationFailures": 0
+        }
+      }
+    },
+    "unknown": {
+      "heroTurns": 1,
+      "firstRound": 11,
+      "lastRound": 11,
+      "roundSpan": 1,
+      "categories": {
+        "movement-only": 1
+      },
+      "fires": 0,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 624.7861094469201,
+      "hpDamage": 0,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "heroes": {
+        "archer": {
+          "heroTurns": 0,
+          "firstRound": null,
+          "lastRound": null,
+          "roundSpan": 0,
+          "categories": {},
+          "fires": 0,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 0,
+          "moveSegments": 0,
+          "microMoveSegments": 0,
+          "substantialMoveSegments": 0,
+          "jumps": 0,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 0,
+          "hpDamage": 0,
+          "kills": 0,
+          "subduals": 0,
+          "damageTaken": 0,
+          "firesWithoutHeroHpDamage": 0,
+          "hpRecovery": 0,
+          "focusRecovery": 0,
+          "navigationFailures": 0
+        },
+        "mage": {
+          "heroTurns": 0,
+          "firstRound": null,
+          "lastRound": null,
+          "roundSpan": 0,
+          "categories": {},
+          "fires": 0,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 0,
+          "moveSegments": 0,
+          "microMoveSegments": 0,
+          "substantialMoveSegments": 0,
+          "jumps": 0,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 0,
+          "hpDamage": 0,
+          "kills": 0,
+          "subduals": 0,
+          "damageTaken": 0,
+          "firesWithoutHeroHpDamage": 0,
+          "hpRecovery": 0,
+          "focusRecovery": 0,
+          "navigationFailures": 0
+        },
+        "knight": {
+          "heroTurns": 0,
+          "firstRound": null,
+          "lastRound": null,
+          "roundSpan": 0,
+          "categories": {},
+          "fires": 0,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 0,
+          "moveSegments": 0,
+          "microMoveSegments": 0,
+          "substantialMoveSegments": 0,
+          "jumps": 0,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 0,
+          "hpDamage": 0,
+          "kills": 0,
+          "subduals": 0,
+          "damageTaken": 0,
+          "firesWithoutHeroHpDamage": 0,
+          "hpRecovery": 0,
+          "focusRecovery": 0,
+          "navigationFailures": 0
+        },
+        "occultist": {
+          "heroTurns": 1,
+          "firstRound": 11,
+          "lastRound": 11,
+          "roundSpan": 1,
+          "categories": {
+            "movement-only": 1
+          },
+          "fires": 0,
+          "anchorFires": 0,
+          "interactions": 0,
+          "defends": 0,
+          "moveSegments": 1,
+          "microMoveSegments": 0,
+          "substantialMoveSegments": 1,
+          "jumps": 0,
+          "drops": 0,
+          "recoveryJumps": 0,
+          "straightDisplacementLowerBound": 624.7861094469201,
+          "hpDamage": 0,
+          "kills": 0,
+          "subduals": 0,
+          "damageTaken": 0,
+          "firesWithoutHeroHpDamage": 0,
+          "hpRecovery": 0,
+          "focusRecovery": 0,
+          "navigationFailures": 0
+        }
+      }
+    }
+  },
+  "heroes": {
+    "archer": {
+      "heroTurns": 11,
+      "firstRound": 1,
+      "lastRound": 11,
+      "roundSpan": 11,
+      "categories": {
+        "movement-only": 2,
+        "movement-and-combat": 7,
+        "combat": 2
+      },
+      "fires": 9,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 2,
+      "moveSegments": 9,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 9,
+      "jumps": 5,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 9440.30041509281,
+      "hpDamage": 2961,
+      "kills": 2,
+      "subduals": 0,
+      "damageTaken": 289,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 48,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "longestConsecutiveStationaryDefenseNoRecovery": {
+        "turns": 0,
+        "rounds": [],
+        "goals": []
+      }
+    },
+    "mage": {
+      "heroTurns": 11,
+      "firstRound": 1,
+      "lastRound": 11,
+      "roundSpan": 11,
+      "categories": {
+        "movement-and-combat": 7,
+        "combat": 3,
+        "movement-only": 1
+      },
+      "fires": 10,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 1,
+      "moveSegments": 8,
+      "microMoveSegments": 1,
+      "substantialMoveSegments": 7,
+      "jumps": 5,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 9239.686784295713,
+      "hpDamage": 4943,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 533,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 53,
+      "focusRecovery": 28.920000000000073,
+      "navigationFailures": 0,
+      "longestConsecutiveStationaryDefenseNoRecovery": {
+        "turns": 0,
+        "rounds": [],
+        "goals": []
+      }
+    },
+    "knight": {
+      "heroTurns": 11,
+      "firstRound": 1,
+      "lastRound": 11,
+      "roundSpan": 11,
+      "categories": {
+        "movement-and-combat": 8,
+        "combat": 3
+      },
+      "fires": 11,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 8,
+      "microMoveSegments": 1,
+      "substantialMoveSegments": 7,
+      "jumps": 5,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 8992.213790165802,
+      "hpDamage": 6789,
+      "kills": 5,
+      "subduals": 0,
+      "damageTaken": 193,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "longestConsecutiveStationaryDefenseNoRecovery": {
+        "turns": 0,
+        "rounds": [],
+        "goals": []
+      }
+    },
+    "occultist": {
+      "heroTurns": 11,
+      "firstRound": 1,
+      "lastRound": 11,
+      "roundSpan": 11,
+      "categories": {
+        "movement-and-combat": 6,
+        "combat": 4,
+        "movement-only": 1
+      },
+      "fires": 10,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 7,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 7,
+      "jumps": 5,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 8496.921221960094,
+      "hpDamage": 2274,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 163,
+      "firesWithoutHeroHpDamage": 1,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "longestConsecutiveStationaryDefenseNoRecovery": {
+        "turns": 0,
+        "rounds": [],
+        "goals": []
+      }
+    }
+  },
+  "tailThresholds": {
+    "1": {
+      "observed": false
+    },
+    "3": {
+      "observed": false
+    },
+    "5": {
+      "observed": false
+    },
+    "10": {
+      "observed": false
+    }
+  },
+  "globalAttacklessRounds": [],
+  "rounds": [
+    {
+      "round": 1,
+      "heroTurns": 4,
+      "firstRound": 1,
+      "lastRound": 1,
+      "roundSpan": 1,
+      "categories": {
+        "movement-only": 1,
+        "movement-and-combat": 3
+      },
+      "fires": 3,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 1,
+      "moveSegments": 4,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 4,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 7242.847482925948,
+      "hpDamage": 1739,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 191,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "actors": [
+        {
+          "hero": "archer",
+          "category": "movement-only",
+          "goal": "ferry-hold",
+          "hpDamage": 0
+        },
+        {
+          "hero": "mage",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 845
+        },
+        {
+          "hero": "knight",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 306
+        },
+        {
+          "hero": "occultist",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 588
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "heroTurns": 4,
+      "firstRound": 2,
+      "lastRound": 2,
+      "roundSpan": 1,
+      "categories": {
+        "movement-and-combat": 4
+      },
+      "fires": 4,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 4,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 4,
+      "jumps": 5,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 8544.905439111646,
+      "hpDamage": 2512,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 20,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "actors": [
+        {
+          "hero": "archer",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 282
+        },
+        {
+          "hero": "mage",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 684
+        },
+        {
+          "hero": "knight",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 1168
+        },
+        {
+          "hero": "occultist",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 378
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "heroTurns": 4,
+      "firstRound": 3,
+      "lastRound": 3,
+      "roundSpan": 1,
+      "categories": {
+        "movement-and-combat": 4
+      },
+      "fires": 4,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 4,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 4,
+      "jumps": 3,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 3231.2414690469923,
+      "hpDamage": 2379,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 163,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "actors": [
+        {
+          "hero": "archer",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 292
+        },
+        {
+          "hero": "mage",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 980
+        },
+        {
+          "hero": "knight",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 1015
+        },
+        {
+          "hero": "occultist",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 92
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "heroTurns": 4,
+      "firstRound": 4,
+      "lastRound": 4,
+      "roundSpan": 1,
+      "categories": {
+        "movement-and-combat": 4
+      },
+      "fires": 4,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 4,
+      "microMoveSegments": 1,
+      "substantialMoveSegments": 3,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 876.0033333333131,
+      "hpDamage": 2738,
+      "kills": 2,
+      "subduals": 0,
+      "damageTaken": 125,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "actors": [
+        {
+          "hero": "archer",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 220
+        },
+        {
+          "hero": "mage",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 429
+        },
+        {
+          "hero": "knight",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 1677
+        },
+        {
+          "hero": "occultist",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 412
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "heroTurns": 4,
+      "firstRound": 5,
+      "lastRound": 5,
+      "roundSpan": 1,
+      "categories": {
+        "movement-and-combat": 2,
+        "combat": 2
+      },
+      "fires": 4,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 2,
+      "microMoveSegments": 1,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 293.56666666666206,
+      "hpDamage": 715,
+      "kills": 2,
+      "subduals": 0,
+      "damageTaken": 387,
+      "firesWithoutHeroHpDamage": 1,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "actors": [
+        {
+          "hero": "archer",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 194
+        },
+        {
+          "hero": "mage",
+          "category": "combat",
+          "goal": "ferry-hold",
+          "hpDamage": 118
+        },
+        {
+          "hero": "knight",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 403
+        },
+        {
+          "hero": "occultist",
+          "category": "combat",
+          "goal": "ferry-hold",
+          "hpDamage": 0
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "heroTurns": 4,
+      "firstRound": 6,
+      "lastRound": 6,
+      "roundSpan": 1,
+      "categories": {
+        "movement-and-combat": 3,
+        "combat": 1
+      },
+      "fires": 4,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 3,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 3,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 823.7020833333072,
+      "hpDamage": 2259,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "actors": [
+        {
+          "hero": "archer",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 738
+        },
+        {
+          "hero": "mage",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 434
+        },
+        {
+          "hero": "knight",
+          "category": "movement-and-combat",
+          "goal": "ferry-hold",
+          "hpDamage": 861
+        },
+        {
+          "hero": "occultist",
+          "category": "combat",
+          "goal": "ferry-hold",
+          "hpDamage": 226
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "heroTurns": 4,
+      "firstRound": 7,
+      "lastRound": 7,
+      "roundSpan": 1,
+      "categories": {
+        "combat": 4
+      },
+      "fires": 4,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 1133,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 32,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "actors": [
+        {
+          "hero": "archer",
+          "category": "combat",
+          "goal": "ferry-hold",
+          "hpDamage": 283
+        },
+        {
+          "hero": "mage",
+          "category": "combat",
+          "goal": "ferry-hold",
+          "hpDamage": 281
+        },
+        {
+          "hero": "knight",
+          "category": "combat",
+          "goal": "ferry-hold",
+          "hpDamage": 280
+        },
+        {
+          "hero": "occultist",
+          "category": "combat",
+          "goal": "ferry-hold",
+          "hpDamage": 289
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "heroTurns": 4,
+      "firstRound": 8,
+      "lastRound": 8,
+      "roundSpan": 1,
+      "categories": {
+        "combat": 4
+      },
+      "fires": 4,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 799,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 54,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "actors": [
+        {
+          "hero": "archer",
+          "category": "combat",
+          "goal": "ferry-hold",
+          "hpDamage": 351
+        },
+        {
+          "hero": "mage",
+          "category": "combat",
+          "goal": "ferry-hold",
+          "hpDamage": 281
+        },
+        {
+          "hero": "knight",
+          "category": "combat",
+          "goal": "ferry-hold",
+          "hpDamage": 28
+        },
+        {
+          "hero": "occultist",
+          "category": "combat",
+          "goal": "ferry-hold",
+          "hpDamage": 139
+        }
+      ]
+    },
+    {
+      "round": 9,
+      "heroTurns": 4,
+      "firstRound": 9,
+      "lastRound": 9,
+      "roundSpan": 1,
+      "categories": {
+        "movement-only": 2,
+        "movement-and-combat": 2
+      },
+      "fires": 2,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 2,
+      "moveSegments": 4,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 4,
+      "jumps": 12,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 3995.836642127066,
+      "hpDamage": 331,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 57,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 101,
+      "focusRecovery": 28.920000000000073,
+      "navigationFailures": 0,
+      "actors": [
+        {
+          "hero": "archer",
+          "category": "movement-only",
+          "goal": "old-road",
+          "hpDamage": 0
+        },
+        {
+          "hero": "mage",
+          "category": "movement-only",
+          "goal": "old-road",
+          "hpDamage": 0
+        },
+        {
+          "hero": "knight",
+          "category": "movement-and-combat",
+          "goal": "old-road",
+          "hpDamage": 306
+        },
+        {
+          "hero": "occultist",
+          "category": "movement-and-combat",
+          "goal": "old-road",
+          "hpDamage": 25
+        }
+      ]
+    },
+    {
+      "round": 10,
+      "heroTurns": 4,
+      "firstRound": 10,
+      "lastRound": 10,
+      "roundSpan": 1,
+      "categories": {
+        "movement-and-combat": 4
+      },
+      "fires": 4,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 4,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 4,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 8632.255146010128,
+      "hpDamage": 1313,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 149,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "actors": [
+        {
+          "hero": "archer",
+          "category": "movement-and-combat",
+          "goal": "old-road",
+          "hpDamage": 292
+        },
+        {
+          "hero": "mage",
+          "category": "movement-and-combat",
+          "goal": "old-road",
+          "hpDamage": 431
+        },
+        {
+          "hero": "knight",
+          "category": "movement-and-combat",
+          "goal": "old-road",
+          "hpDamage": 465
+        },
+        {
+          "hero": "occultist",
+          "category": "movement-and-combat",
+          "goal": "old-road",
+          "hpDamage": 125
+        }
+      ]
+    },
+    {
+      "round": 11,
+      "heroTurns": 4,
+      "firstRound": 11,
+      "lastRound": 11,
+      "roundSpan": 1,
+      "categories": {
+        "movement-and-combat": 2,
+        "combat": 1,
+        "movement-only": 1
+      },
+      "fires": 3,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 3,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 3,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2528.763948959355,
+      "hpDamage": 1049,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "actors": [
+        {
+          "hero": "archer",
+          "category": "movement-and-combat",
+          "goal": "old-road",
+          "hpDamage": 309
+        },
+        {
+          "hero": "mage",
+          "category": "movement-and-combat",
+          "goal": "old-road",
+          "hpDamage": 460
+        },
+        {
+          "hero": "knight",
+          "category": "combat",
+          "goal": "old-road",
+          "hpDamage": 280
+        },
+        {
+          "hero": "occultist",
+          "category": "movement-only",
+          "goal": "unknown",
+          "hpDamage": 0
+        }
+      ]
+    }
+  ],
+  "heroTurns": [
+    {
+      "round": 1,
+      "hero": "archer",
+      "goal": "ferry-hold",
+      "firstFrame": 205,
+      "lastFrame": 205,
+      "serials": [
+        null
+      ],
+      "category": "movement-only",
+      "fires": 0,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 1,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 606.3072769226735,
+      "hpDamage": 0,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": []
+    },
+    {
+      "round": 1,
+      "hero": "mage",
+      "goal": "ferry-hold",
+      "firstFrame": 1095,
+      "lastFrame": 1095,
+      "serials": [
+        1
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2054.151049364418,
+      "hpDamage": 845,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 191,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "event-1"
+      ]
+    },
+    {
+      "round": 1,
+      "hero": "knight",
+      "goal": "ferry-hold",
+      "firstFrame": 2256,
+      "lastFrame": 2256,
+      "serials": [
+        2
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2431.2833534628817,
+      "hpDamage": 306,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "event-1"
+      ]
+    },
+    {
+      "round": 1,
+      "hero": "occultist",
+      "goal": "ferry-hold",
+      "firstFrame": 3181,
+      "lastFrame": 3181,
+      "serials": [
+        3
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2151.105803175974,
+      "hpDamage": 588,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-b3"
+      ]
+    },
+    {
+      "round": 2,
+      "hero": "archer",
+      "goal": "ferry-hold",
+      "firstFrame": 5466,
+      "lastFrame": 5466,
+      "serials": [
+        9
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2029.882225793249,
+      "hpDamage": 282,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "event-1"
+      ]
+    },
+    {
+      "round": 2,
+      "hero": "mage",
+      "goal": "ferry-hold",
+      "firstFrame": 6703,
+      "lastFrame": 7014,
+      "serials": [
+        10
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 1,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 1985.3493831870894,
+      "hpDamage": 684,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-de2"
+      ]
+    },
+    {
+      "round": 2,
+      "hero": "knight",
+      "goal": "ferry-hold",
+      "firstFrame": 7482,
+      "lastFrame": 8162,
+      "serials": [
+        11
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 2,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2364.7295309610067,
+      "hpDamage": 1168,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 20,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-de2"
+      ]
+    },
+    {
+      "round": 2,
+      "hero": "occultist",
+      "goal": "ferry-hold",
+      "firstFrame": 8658,
+      "lastFrame": 9209,
+      "serials": [
+        12
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 2,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2164.9442991703013,
+      "hpDamage": 378,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-de2"
+      ]
+    },
+    {
+      "round": 3,
+      "hero": "archer",
+      "goal": "ferry-hold",
+      "firstFrame": 10398,
+      "lastFrame": 10910,
+      "serials": [
+        18
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 2,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2039.6260476516943,
+      "hpDamage": 292,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 51,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw3"
+      ]
+    },
+    {
+      "round": 3,
+      "hero": "mage",
+      "goal": "ferry-hold",
+      "firstFrame": 11146,
+      "lastFrame": 11540,
+      "serials": [
+        19
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 1,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 963.5787547286354,
+      "hpDamage": 980,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 112,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw3"
+      ]
+    },
+    {
+      "round": 3,
+      "hero": "knight",
+      "goal": "ferry-hold",
+      "firstFrame": 11840,
+      "lastFrame": 11840,
+      "serials": [
+        20
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 116.1666666666606,
+      "hpDamage": 1015,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw3"
+      ]
+    },
+    {
+      "round": 3,
+      "hero": "occultist",
+      "goal": "ferry-hold",
+      "firstFrame": 12005,
+      "lastFrame": 12005,
+      "serials": [
+        21
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 111.87000000000171,
+      "hpDamage": 92,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-de3"
+      ]
+    },
+    {
+      "round": 4,
+      "hero": "archer",
+      "goal": "ferry-hold",
+      "firstFrame": 13453,
+      "lastFrame": 13453,
+      "serials": [
+        27
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 247.38749999999345,
+      "hpDamage": 220,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw3"
+      ]
+    },
+    {
+      "round": 4,
+      "hero": "mage",
+      "goal": "ferry-hold",
+      "firstFrame": 13666,
+      "lastFrame": 13666,
+      "serials": [
+        28
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 1,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 11.937499999998181,
+      "hpDamage": 429,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 37,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw5"
+      ]
+    },
+    {
+      "round": 4,
+      "hero": "knight",
+      "goal": "ferry-hold",
+      "firstFrame": 13932,
+      "lastFrame": 13932,
+      "serials": [
+        29
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 353.833333333313,
+      "hpDamage": 1677,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 54,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "event-22"
+      ]
+    },
+    {
+      "round": 4,
+      "hero": "occultist",
+      "goal": "ferry-hold",
+      "firstFrame": 14146,
+      "lastFrame": 14146,
+      "serials": [
+        30
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 262.84500000000844,
+      "hpDamage": 412,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 34,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "event-22"
+      ]
+    },
+    {
+      "round": 5,
+      "hero": "archer",
+      "goal": "ferry-hold",
+      "firstFrame": 14928,
+      "lastFrame": 14928,
+      "serials": [
+        36
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 261.8999999999942,
+      "hpDamage": 194,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 169,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "event-22"
+      ]
+    },
+    {
+      "round": 5,
+      "hero": "mage",
+      "goal": "ferry-hold",
+      "firstFrame": 15021,
+      "lastFrame": 15021,
+      "serials": [
+        37
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 118,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 113,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw6"
+      ]
+    },
+    {
+      "round": 5,
+      "hero": "knight",
+      "goal": "ferry-hold",
+      "firstFrame": 15238,
+      "lastFrame": 15238,
+      "serials": [
+        38
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 1,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 31.66666666666788,
+      "hpDamage": 403,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw6"
+      ]
+    },
+    {
+      "round": 5,
+      "hero": "occultist",
+      "goal": "ferry-hold",
+      "firstFrame": 15360,
+      "lastFrame": 15360,
+      "serials": [
+        39
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 0,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 105,
+      "firesWithoutHeroHpDamage": 1,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw5"
+      ]
+    },
+    {
+      "round": 6,
+      "hero": "archer",
+      "goal": "ferry-hold",
+      "firstFrame": 16145,
+      "lastFrame": 16145,
+      "serials": [
+        45
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 351.84374999998727,
+      "hpDamage": 738,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "event-16"
+      ]
+    },
+    {
+      "round": 6,
+      "hero": "mage",
+      "goal": "ferry-hold",
+      "firstFrame": 16477,
+      "lastFrame": 16477,
+      "serials": [
+        46
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 339.0249999999942,
+      "hpDamage": 434,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "event-16"
+      ]
+    },
+    {
+      "round": 6,
+      "hero": "knight",
+      "goal": "ferry-hold",
+      "firstFrame": 16797,
+      "lastFrame": 16797,
+      "serials": [
+        47
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 132.83333333332575,
+      "hpDamage": 861,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "event-16"
+      ]
+    },
+    {
+      "round": 6,
+      "hero": "occultist",
+      "goal": "ferry-hold",
+      "firstFrame": 16919,
+      "lastFrame": 16919,
+      "serials": [
+        48
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 226,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw5"
+      ]
+    },
+    {
+      "round": 7,
+      "hero": "archer",
+      "goal": "ferry-hold",
+      "firstFrame": 17222,
+      "lastFrame": 17222,
+      "serials": [
+        54
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 283,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-de1"
+      ]
+    },
+    {
+      "round": 7,
+      "hero": "mage",
+      "goal": "ferry-hold",
+      "firstFrame": 17315,
+      "lastFrame": 17315,
+      "serials": [
+        55
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 281,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-de1"
+      ]
+    },
+    {
+      "round": 7,
+      "hero": "knight",
+      "goal": "ferry-hold",
+      "firstFrame": 17432,
+      "lastFrame": 17432,
+      "serials": [
+        56
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 280,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 32,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-de1"
+      ]
+    },
+    {
+      "round": 7,
+      "hero": "occultist",
+      "goal": "ferry-hold",
+      "firstFrame": 17556,
+      "lastFrame": 17556,
+      "serials": [
+        57
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 289,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw5"
+      ]
+    },
+    {
+      "round": 8,
+      "hero": "archer",
+      "goal": "ferry-hold",
+      "firstFrame": 18277,
+      "lastFrame": 18277,
+      "serials": [
+        63
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 351,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-de1"
+      ]
+    },
+    {
+      "round": 8,
+      "hero": "mage",
+      "goal": "ferry-hold",
+      "firstFrame": 18370,
+      "lastFrame": 18370,
+      "serials": [
+        64
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 281,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-de1"
+      ]
+    },
+    {
+      "round": 8,
+      "hero": "knight",
+      "goal": "ferry-hold",
+      "firstFrame": 18487,
+      "lastFrame": 18487,
+      "serials": [
+        65
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 28,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 30,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-de1"
+      ]
+    },
+    {
+      "round": 8,
+      "hero": "occultist",
+      "goal": "ferry-hold",
+      "firstFrame": 18609,
+      "lastFrame": 18609,
+      "serials": [
+        66
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 139,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 24,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw5"
+      ]
+    },
+    {
+      "round": 9,
+      "hero": "archer",
+      "goal": "old-road",
+      "firstFrame": 19499,
+      "lastFrame": 20478,
+      "serials": [
+        72
+      ],
+      "category": "movement-only",
+      "fires": 0,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 1,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 3,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 896.1096288944118,
+      "hpDamage": 0,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 48,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": []
+    },
+    {
+      "round": 9,
+      "hero": "mage",
+      "goal": "old-road",
+      "firstFrame": 20556,
+      "lastFrame": 21578,
+      "serials": [
+        73
+      ],
+      "category": "movement-only",
+      "fires": 0,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 1,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 3,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 910.7558111910131,
+      "hpDamage": 0,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 53,
+      "focusRecovery": 28.920000000000073,
+      "navigationFailures": 0,
+      "targets": []
+    },
+    {
+      "round": 9,
+      "hero": "knight",
+      "goal": "old-road",
+      "firstFrame": 21734,
+      "lastFrame": 22800,
+      "serials": [
+        74
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 3,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 1190.1594259397575,
+      "hpDamage": 306,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 57,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "event-21"
+      ]
+    },
+    {
+      "round": 9,
+      "hero": "occultist",
+      "goal": "old-road",
+      "firstFrame": 23424,
+      "lastFrame": 24362,
+      "serials": [
+        75
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 3,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 998.8117761018838,
+      "hpDamage": 25,
+      "kills": 1,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-dw5"
+      ]
+    },
+    {
+      "round": 10,
+      "hero": "archer",
+      "goal": "old-road",
+      "firstFrame": 26330,
+      "lastFrame": 26330,
+      "serials": [
+        81
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2031.9985060596514,
+      "hpDamage": 292,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 69,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-e2"
+      ]
+    },
+    {
+      "round": 10,
+      "hero": "mage",
+      "goal": "old-road",
+      "firstFrame": 27486,
+      "lastFrame": 27486,
+      "serials": [
+        82
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2046.1569260832825,
+      "hpDamage": 431,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 80,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-e2"
+      ]
+    },
+    {
+      "round": 10,
+      "hero": "knight",
+      "goal": "old-road",
+      "firstFrame": 28966,
+      "lastFrame": 28966,
+      "serials": [
+        83
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2371.5414798021893,
+      "hpDamage": 465,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-e4"
+      ]
+    },
+    {
+      "round": 10,
+      "hero": "occultist",
+      "goal": "old-road",
+      "firstFrame": 30023,
+      "lastFrame": 30023,
+      "serials": [
+        84
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 2182.5582340650053,
+      "hpDamage": 125,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-e2"
+      ]
+    },
+    {
+      "round": 11,
+      "hero": "archer",
+      "goal": "old-road",
+      "firstFrame": 31794,
+      "lastFrame": 31794,
+      "serials": [
+        90
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 975.2454797711537,
+      "hpDamage": 309,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-fg6"
+      ]
+    },
+    {
+      "round": 11,
+      "hero": "mage",
+      "goal": "old-road",
+      "firstFrame": 32621,
+      "lastFrame": 32621,
+      "serials": [
+        91
+      ],
+      "category": "movement-and-combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 928.7323597412814,
+      "hpDamage": 460,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-fg3"
+      ]
+    },
+    {
+      "round": 11,
+      "hero": "knight",
+      "goal": "old-road",
+      "firstFrame": 33128,
+      "lastFrame": 33128,
+      "serials": [
+        92
+      ],
+      "category": "combat",
+      "fires": 1,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 0,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 0,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 0,
+      "hpDamage": 280,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": [
+        "sf-fg3"
+      ]
+    },
+    {
+      "round": 11,
+      "hero": "occultist",
+      "goal": "unknown",
+      "firstFrame": 33553,
+      "lastFrame": 33553,
+      "serials": [
+        93
+      ],
+      "category": "movement-only",
+      "fires": 0,
+      "anchorFires": 0,
+      "interactions": 0,
+      "defends": 0,
+      "moveSegments": 1,
+      "microMoveSegments": 0,
+      "substantialMoveSegments": 1,
+      "jumps": 0,
+      "drops": 0,
+      "recoveryJumps": 0,
+      "straightDisplacementLowerBound": 624.7861094469201,
+      "hpDamage": 0,
+      "kills": 0,
+      "subduals": 0,
+      "damageTaken": 0,
+      "firesWithoutHeroHpDamage": 0,
+      "hpRecovery": 0,
+      "focusRecovery": 0,
+      "navigationFailures": 0,
+      "targets": []
+    }
+  ],
+  "phaseCompletions": [
+    {
+      "round": 8,
+      "frame": 19478,
+      "turn": 71,
+      "text": "일행이 빠져나갈 나루 지키기 · 완료"
+    },
+    {
+      "round": 11,
+      "frame": 33552,
+      "turn": 93,
+      "text": "생존한 동행과 옛길 입구에 모이기 · 완료"
+    }
+  ],
+  "continues": [
+    {
+      "label": "warning-continue",
+      "round": 7,
+      "phase": "aim",
+      "statePreserved": true,
+      "method": "production export, profile load, App.continue; exact actors/terrain/items/turn/objectives/waves/progression"
+    },
+    {
+      "label": "post-hold-continue",
+      "round": 9,
+      "phase": "aim",
+      "statePreserved": true,
+      "method": "production export, profile load, App.continue; exact actors/terrain/items/turn/objectives/waves/progression"
+    }
+  ],
+  "navigationFailures": [],
+  "stage30": {
+    "routeMode": "auto",
+    "highRouteAnchors": [],
+    "highRouteProgress": {},
+    "objectiveStates": [
+      {
+        "round": 1,
+        "frame": 1,
+        "goal": "ferry-hold",
+        "hold": {},
+        "ferry": "moored"
+      },
+      {
+        "round": 1,
+        "frame": 2,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 0,
+          "spawned": 0,
+          "lastEnemyEnd": 0,
+          "continuous": false,
+          "contributionGuards": [],
+          "guarded": false,
+          "contested": true
+        },
+        "ferry": "moored"
+      },
+      {
+        "round": 1,
+        "frame": 4693,
+        "turn": 8,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 0,
+          "spawned": 0,
+          "lastEnemyEnd": 1,
+          "continuous": false,
+          "contributionGuards": [],
+          "guarded": false,
+          "contested": true
+        },
+        "ferry": "moored"
+      },
+      {
+        "round": 2,
+        "frame": 7978,
+        "turn": 11,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 0,
+          "spawned": 0,
+          "lastEnemyEnd": 1,
+          "continuous": false,
+          "contributionGuards": [],
+          "guarded": true,
+          "contested": true
+        },
+        "ferry": "moored"
+      },
+      {
+        "round": 2,
+        "frame": 9552,
+        "turn": 13,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 0,
+          "spawned": 3,
+          "lastEnemyEnd": 1,
+          "continuous": false,
+          "contributionGuards": [],
+          "guarded": true,
+          "contested": true
+        },
+        "ferry": "moored"
+      },
+      {
+        "round": 2,
+        "frame": 10023,
+        "turn": 17,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 0,
+          "spawned": 3,
+          "lastEnemyEnd": 2,
+          "continuous": false,
+          "contributionGuards": [],
+          "guarded": true,
+          "contested": true
+        },
+        "ferry": "moored"
+      },
+      {
+        "round": 3,
+        "frame": 13348,
+        "turn": 26,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 0,
+          "spawned": 3,
+          "lastEnemyEnd": 3,
+          "continuous": false,
+          "contributionGuards": [],
+          "guarded": true,
+          "contested": true
+        },
+        "ferry": "moored"
+      },
+      {
+        "round": 4,
+        "frame": 14820,
+        "turn": 35,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 0,
+          "spawned": 3,
+          "lastEnemyEnd": 4,
+          "continuous": false,
+          "contributionGuards": [],
+          "guarded": true,
+          "contested": true
+        },
+        "ferry": "moored"
+      },
+      {
+        "round": 5,
+        "frame": 15247,
+        "turn": 38,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 0,
+          "spawned": 3,
+          "lastEnemyEnd": 4,
+          "continuous": true,
+          "contributionGuards": [],
+          "guarded": true,
+          "contested": false
+        },
+        "ferry": "moored"
+      },
+      {
+        "round": 5,
+        "frame": 15618,
+        "turn": 41,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 0,
+          "spawned": 3,
+          "lastEnemyEnd": 4,
+          "continuous": false,
+          "contributionGuards": [],
+          "guarded": true,
+          "contested": true
+        },
+        "ferry": "moored"
+      },
+      {
+        "round": 5,
+        "frame": 15998,
+        "turn": 44,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 0,
+          "spawned": 3,
+          "lastEnemyEnd": 5,
+          "continuous": false,
+          "contributionGuards": [],
+          "guarded": true,
+          "contested": true
+        },
+        "ferry": "moored"
+      },
+      {
+        "round": 6,
+        "frame": 16806,
+        "turn": 47,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 0,
+          "spawned": 3,
+          "lastEnemyEnd": 5,
+          "continuous": true,
+          "contributionGuards": [],
+          "guarded": true,
+          "contested": false
+        },
+        "ferry": "moored"
+      },
+      {
+        "round": 6,
+        "frame": 17202,
+        "turn": 53,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 1,
+          "spawned": 3,
+          "lastEnemyEnd": 6,
+          "continuous": true,
+          "contributionGuards": [
+            "p-archer",
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "guarded": true,
+          "contested": false
+        },
+        "ferry": "warned"
+      },
+      {
+        "round": 7,
+        "frame": 17315,
+        "turn": 55,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 1,
+          "spawned": 3,
+          "lastEnemyEnd": 6,
+          "continuous": true,
+          "contributionGuards": [
+            "p-archer",
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "guarded": true,
+          "contested": false
+        },
+        "ferry": "waiting"
+      },
+      {
+        "round": 7,
+        "frame": 18160,
+        "turn": 62,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 2,
+          "spawned": 3,
+          "lastEnemyEnd": 7,
+          "continuous": true,
+          "contributionGuards": [
+            "p-archer",
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "guarded": true,
+          "contested": false
+        },
+        "ferry": "settling"
+      },
+      {
+        "round": 7,
+        "frame": 18257,
+        "turn": 62,
+        "goal": "ferry-hold",
+        "hold": {
+          "progress": 2,
+          "spawned": 3,
+          "lastEnemyEnd": 7,
+          "continuous": true,
+          "contributionGuards": [
+            "p-archer",
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "guarded": true,
+          "contested": false
+        },
+        "ferry": "settled"
+      },
+      {
+        "round": 8,
+        "frame": 19479,
+        "turn": 71,
+        "goal": "old-road",
+        "hold": {
+          "progress": 3,
+          "spawned": 3,
+          "lastEnemyEnd": 8,
+          "continuous": true,
+          "contributionGuards": [
+            "p-archer",
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "guarded": true,
+          "contested": false
+        },
+        "ferry": "settled"
+      },
+      {
+        "round": 11,
+        "frame": 33553,
+        "turn": 93,
+        "hold": {
+          "progress": 3,
+          "spawned": 3,
+          "lastEnemyEnd": 8,
+          "continuous": true,
+          "contributionGuards": [
+            "p-archer",
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "guarded": true,
+          "contested": false
+        },
+        "ferry": "settled"
+      }
+    ],
+    "projectileGeometry": [
+      {
+        "kind": "reflection",
+        "projectile": 49,
+        "round": 7,
+        "frame": 17325,
+        "shot": 36,
+        "owner": "p-mage",
+        "skill": "M11",
+        "from": {
+          "x": 5932.814992048858,
+          "y": 5403.139993657216,
+          "bounces": 0
+        },
+        "to": {
+          "x": 5927,
+          "y": 5403.136928338083
+        },
+        "bounces": 1
+      },
+      {
+        "kind": "reflection",
+        "projectile": 54,
+        "round": 8,
+        "frame": 18380,
+        "shot": 41,
+        "owner": "p-mage",
+        "skill": "M11",
+        "from": {
+          "x": 5932.978910346758,
+          "y": 5403.139993657216,
+          "bounces": 0
+        },
+        "to": {
+          "x": 5927,
+          "y": 5403.137419489113
+        },
+        "bounces": 1
+      },
+      {
+        "kind": "phase-inside-solid",
+        "round": 9,
+        "frame": 24393,
+        "shot": 46,
+        "owner": "p-occultist",
+        "skill": "O04",
+        "terrain": "sf-bank-inner",
+        "x": 6103.510241832523,
+        "y": 4860.382382853594
+      }
+    ],
+    "contestContacts": [
+      {
+        "id": "sf-de2",
+        "cell": "quay-east",
+        "firstRound": 1,
+        "firstFrame": 1,
+        "lastRound": 3,
+        "lastFrame": 11848,
+        "observedFrames": 11848
+      },
+      {
+        "id": "sf-de3",
+        "cell": "quay-east",
+        "firstRound": 1,
+        "firstFrame": 1,
+        "lastRound": 4,
+        "lastFrame": 13940,
+        "observedFrames": 13940
+      },
+      {
+        "id": "sf-dw3",
+        "cell": "quay-west",
+        "firstRound": 2,
+        "firstFrame": 9735,
+        "lastRound": 4,
+        "lastFrame": 13566,
+        "observedFrames": 3832
+      },
+      {
+        "id": "sf-dw6",
+        "cell": "quay-west",
+        "firstRound": 3,
+        "firstFrame": 12729,
+        "lastRound": 5,
+        "lastFrame": 15246,
+        "observedFrames": 2518
+      },
+      {
+        "id": "event-22",
+        "source": "act3-ferry-hold",
+        "firstRound": 3,
+        "firstFrame": 13199,
+        "lastRound": 5,
+        "lastFrame": 14928,
+        "observedFrames": 1730
+      },
+      {
+        "id": "event-16",
+        "source": "act3-response-30-1",
+        "firstRound": 5,
+        "firstFrame": 15618,
+        "lastRound": 6,
+        "lastFrame": 16805,
+        "observedFrames": 1188
+      }
+    ],
+    "holdEnemyEndBoundaries": 3,
+    "holdCompletion": {
+      "id": "ferry-hold",
+      "round": 8,
+      "enemyEnd": 8
+    },
+    "gatherCompletion": {
+      "id": "old-road",
+      "round": 11,
+      "enemyEnd": 10
+    },
+    "remainingEnemies": [
+      {
+        "id": "sf-b1",
+        "hp": 1374,
+        "x": 3500,
+        "y": 6195.294117647059
+      },
+      {
+        "id": "sf-b2",
+        "hp": 1374,
+        "x": 3610,
+        "y": 6172.64705882353
+      },
+      {
+        "id": "sf-b3",
+        "hp": 1956,
+        "x": 2980,
+        "y": 6252.5
+      },
+      {
+        "id": "sf-b4",
+        "hp": 873,
+        "x": 3100,
+        "y": 6214.25
+      },
+      {
+        "id": "sf-b5",
+        "hp": 1374,
+        "x": 3720,
+        "y": 6150
+      },
+      {
+        "id": "sf-b6",
+        "hp": 879,
+        "x": 2718.244787606426,
+        "y": 6255.648957521285
+      },
+      {
+        "id": "sf-c1",
+        "hp": 1374,
+        "x": 3130,
+        "y": 4619.2307692307695
+      },
+      {
+        "id": "sf-c2",
+        "hp": 1374,
+        "x": 3230,
+        "y": 4596.153846153846
+      },
+      {
+        "id": "sf-c3",
+        "hp": 2129,
+        "x": 4000,
+        "y": 4548
+      },
+      {
+        "id": "sf-c4",
+        "hp": 1374,
+        "x": 4110,
+        "y": 4526
+      },
+      {
+        "id": "sf-c5",
+        "hp": 1374,
+        "x": 3340,
+        "y": 4570.7692307692305
+      },
+      {
+        "id": "sf-c6",
+        "hp": 1099,
+        "x": 4230,
+        "y": 4487.032258064516
+      },
+      {
+        "id": "sf-dw1",
+        "hp": 1883,
+        "x": 4920,
+        "y": 5470
+      },
+      {
+        "id": "sf-dw2",
+        "hp": 1318,
+        "x": 5017.174269527084,
+        "y": 5470
+      },
+      {
+        "id": "sf-dw4",
+        "hp": 1099,
+        "x": 4890,
+        "y": 5208
+      },
+      {
+        "id": "sf-dw7",
+        "hp": 2005,
+        "x": 4770,
+        "y": 5670
+      },
+      {
+        "id": "sf-dw8",
+        "hp": 1374,
+        "x": 5100,
+        "y": 5240
+      },
+      {
+        "id": "sf-de8",
+        "hp": 1060,
+        "x": 4828.316581013475,
+        "y": 5670
+      },
+      {
+        "id": "sf-de4",
+        "hp": 2129,
+        "x": 6430,
+        "y": 5245.25
+      },
+      {
+        "id": "sf-de5",
+        "hp": 1374,
+        "x": 6320,
+        "y": 5253.5
+      },
+      {
+        "id": "sf-de6",
+        "hp": 1099,
+        "x": 6198.6617153841435,
+        "y": 5201.375
+      },
+      {
+        "id": "sf-de7",
+        "hp": 1374,
+        "x": 6150,
+        "y": 5470
+      },
+      {
+        "id": "sf-e1",
+        "hp": 2129,
+        "x": 7391.828067168742,
+        "y": 4915.389695425398
+      },
+      {
+        "id": "sf-e2",
+        "hp": 819,
+        "x": 6923.616814820105,
+        "y": 4877.598798941421
+      },
+      {
+        "id": "sf-e3",
+        "hp": 1081,
+        "x": 7119.978185164953,
+        "y": 4909.990304517757
+      },
+      {
+        "id": "sf-e4",
+        "hp": 2129,
+        "x": 7760,
+        "y": 4732.727272727273
+      },
+      {
+        "id": "sf-e5",
+        "hp": 1374,
+        "x": 8000,
+        "y": 4670
+      },
+      {
+        "id": "sf-e6",
+        "hp": 634,
+        "x": 8110,
+        "y": 4638
+      },
+      {
+        "id": "sf-fg1",
+        "hp": 2129,
+        "x": 8330,
+        "y": 5504.285714285715
+      },
+      {
+        "id": "sf-fg2",
+        "hp": 1374,
+        "x": 8240,
+        "y": 5507.5
+      },
+      {
+        "id": "sf-fg3",
+        "hp": 1525,
+        "x": 8560.50838850864,
+        "y": 4649.491611491359
+      },
+      {
+        "id": "sf-fg4",
+        "hp": 1374,
+        "x": 8730,
+        "y": 5202.5
+      },
+      {
+        "id": "sf-fg5",
+        "hp": 1374,
+        "x": 8420,
+        "y": 5501.071428571428
+      },
+      {
+        "id": "sf-fg6",
+        "hp": 929,
+        "x": 8517.769104767802,
+        "y": 4692.230895232198
+      },
+      {
+        "id": "event-1",
+        "hp": 954,
+        "x": 2167.918744161019,
+        "y": 5994.010102566054
+      },
+      {
+        "id": "event-2",
+        "hp": 1033,
+        "x": 2295.8403359755803,
+        "y": 6094.652553212924
+      },
+      {
+        "id": "event-3",
+        "hp": 1899,
+        "x": 2411.507070021019,
+        "y": 6179.178243476898
+      },
+      {
+        "id": "event-4",
+        "hp": 1238,
+        "x": 2314.583333333346,
+        "y": 6108.349358974368
+      },
+      {
+        "id": "event-15",
+        "hp": 1374,
+        "x": 5950,
+        "y": 5320
+      },
+      {
+        "id": "event-17",
+        "hp": 2129,
+        "x": 6270,
+        "y": 5470
+      },
+      {
+        "id": "event-18",
+        "hp": 1374,
+        "x": 6410,
+        "y": 5470
+      },
+      {
+        "id": "event-19",
+        "hp": 1374,
+        "x": 6560,
+        "y": 5470
+      },
+      {
+        "id": "event-21",
+        "hp": 932,
+        "x": 5200,
+        "y": 5233.793103448276
+      },
+      {
+        "id": "event-23",
+        "hp": 1374,
+        "x": 4782.416666666703,
+        "y": 5670
+      },
+      {
+        "id": "event-58",
+        "hp": 2129,
+        "x": 7128.626432491163,
+        "y": 5799.412070252652
+      },
+      {
+        "id": "event-59",
+        "hp": 1374,
+        "x": 7720,
+        "y": 5663.888888888889
+      },
+      {
+        "id": "event-60",
+        "hp": 1374,
+        "x": 7820,
+        "y": 5650
+      },
+      {
+        "id": "event-61",
+        "hp": 1374,
+        "x": 8145.416666666692,
+        "y": 5519.833333333323
+      }
+    ],
+    "holdDefenseActions": [],
+    "gatherWaitActions": [],
+    "postHoldMovement": [
+      {
+        "round": 9,
+        "frame": 19499,
+        "turn": 72,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "archer",
+        "from": {
+          "x": 5877.043350359531,
+          "y": 5470
+        },
+        "to": {
+          "kind": "jump",
+          "x": 5990,
+          "support": "sf-quay-reflector",
+          "speed": 0.3
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 19621,
+        "turn": 72,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "archer",
+        "x": 5987.4058503595115,
+        "y": 5320,
+        "support": "sf-quay-reflector",
+        "expected": "sf-quay-reflector",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 19621,
+        "turn": 72,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "archer",
+        "from": {
+          "x": 5987.4058503595115,
+          "y": 5320
+        },
+        "to": {
+          "kind": "jump",
+          "x": 6020,
+          "support": "sf-cape-east-descent",
+          "speed": 0.2
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 19752,
+        "turn": 72,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "archer",
+        "x": 6017.1058503595195,
+        "y": 5199.796039328302,
+        "support": "sf-cape-east-descent",
+        "expected": "sf-cape-east-descent",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 20002,
+        "turn": 72,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "archer",
+        "from": {
+          "x": 5413.165009178745,
+          "y": 4889.076352591723
+        },
+        "to": {
+          "kind": "jump",
+          "x": 5580,
+          "support": "sf-cape-bank-link",
+          "speed": 0.35
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 20158,
+        "turn": 72,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "archer",
+        "x": 5577.3587591786945,
+        "y": 4883.428745278196,
+        "support": "sf-cape-bank-link",
+        "expected": "sf-cape-bank-link",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 20478,
+        "turn": 72,
+        "goal": {
+          "id": "old-road",
+          "x": 9450,
+          "y": 4300
+        },
+        "op": "move",
+        "hero": "archer",
+        "from": {
+          "x": 5877.043350359531,
+          "y": 5470
+        },
+        "to": {
+          "x": 6510.180556403184,
+          "y": 4835.847222413622
+        },
+        "support": "sf-bank-inner",
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 20556,
+        "turn": 73,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "mage",
+        "from": {
+          "x": 5876.147643290295,
+          "y": 5470
+        },
+        "to": {
+          "kind": "jump",
+          "x": 5990,
+          "support": "sf-quay-reflector",
+          "speed": 0.3
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 20678,
+        "turn": 73,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "mage",
+        "x": 5987.882643290286,
+        "y": 5320,
+        "support": "sf-quay-reflector",
+        "expected": "sf-quay-reflector",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 20678,
+        "turn": 73,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "mage",
+        "from": {
+          "x": 5987.882643290286,
+          "y": 5320
+        },
+        "to": {
+          "kind": "jump",
+          "x": 6020,
+          "support": "sf-cape-east-descent",
+          "speed": 0.2
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 20809,
+        "turn": 73,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "mage",
+        "x": 6017.169309956937,
+        "y": 5199.873601058478,
+        "support": "sf-cape-east-descent",
+        "expected": "sf-cape-east-descent",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 21076,
+        "turn": 73,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "mage",
+        "from": {
+          "x": 5413.94273787354,
+          "y": 4889.1814510639915
+        },
+        "to": {
+          "kind": "jump",
+          "x": 5580,
+          "support": "sf-cape-bank-link",
+          "speed": 0.35
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 21232,
+        "turn": 73,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "mage",
+        "x": 5577.725237873483,
+        "y": 4883.412316922912,
+        "support": "sf-cape-bank-link",
+        "expected": "sf-cape-bank-link",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 21578,
+        "turn": 73,
+        "goal": {
+          "id": "old-road",
+          "x": 9450,
+          "y": 4300
+        },
+        "op": "move",
+        "hero": "mage",
+        "from": {
+          "x": 5876.147643290295,
+          "y": 5470
+        },
+        "to": {
+          "x": 6535.306183698282,
+          "y": 4841.520751157676
+        },
+        "support": "sf-bank-inner",
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 21734,
+        "turn": 74,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "knight",
+        "from": {
+          "x": 5856.112750899424,
+          "y": 5470
+        },
+        "to": {
+          "kind": "jump",
+          "x": 5990,
+          "support": "sf-quay-reflector",
+          "speed": 0.3
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 21856,
+        "turn": 74,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "knight",
+        "x": 5978.112750899424,
+        "y": 5320,
+        "support": "sf-quay-reflector",
+        "expected": "sf-quay-reflector",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 21856,
+        "turn": 74,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "knight",
+        "from": {
+          "x": 5978.112750899424,
+          "y": 5320
+        },
+        "to": {
+          "kind": "jump",
+          "x": 6020,
+          "support": "sf-cape-east-descent",
+          "speed": 0.2
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 21987,
+        "turn": 74,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "knight",
+        "x": 6017.446084232775,
+        "y": 5200.211880728947,
+        "support": "sf-cape-east-descent",
+        "expected": "sf-cape-east-descent",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 22252,
+        "turn": 74,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "knight",
+        "from": {
+          "x": 5413.629331183559,
+          "y": 4889.139098808589
+        },
+        "to": {
+          "kind": "jump",
+          "x": 5580,
+          "support": "sf-cape-bank-link",
+          "speed": 0.35
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 22408,
+        "turn": 74,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "knight",
+        "x": 5578.129331183602,
+        "y": 4883.394202395218,
+        "support": "sf-cape-bank-link",
+        "expected": "sf-cape-bank-link",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 22800,
+        "turn": 74,
+        "goal": {
+          "id": "old-road",
+          "x": 9450,
+          "y": 4300
+        },
+        "op": "move",
+        "hero": "knight",
+        "from": {
+          "x": 5679.946084232769,
+          "y": 5470
+        },
+        "to": {
+          "x": 6714.729896857731,
+          "y": 4882.035783161423
+        },
+        "support": "sf-bank-inner",
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 23424,
+        "turn": 75,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "occultist",
+        "from": {
+          "x": 5856.257498808029,
+          "y": 5470
+        },
+        "to": {
+          "kind": "jump",
+          "x": 5990,
+          "support": "sf-quay-reflector",
+          "speed": 0.3
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 23546,
+        "turn": 75,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "occultist",
+        "x": 5977.037498808002,
+        "y": 5320,
+        "support": "sf-quay-reflector",
+        "expected": "sf-quay-reflector",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 23546,
+        "turn": 75,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "occultist",
+        "from": {
+          "x": 5977.037498808002,
+          "y": 5320
+        },
+        "to": {
+          "kind": "jump",
+          "x": 6020,
+          "support": "sf-cape-east-descent",
+          "speed": 0.2
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 23677,
+        "turn": 75,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "occultist",
+        "x": 6017.297498807993,
+        "y": 5200.03027632088,
+        "support": "sf-cape-east-descent",
+        "expected": "sf-cape-east-descent",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 23952,
+        "turn": 75,
+        "goal": "old-road",
+        "op": "jump",
+        "hero": "occultist",
+        "from": {
+          "x": 5413.238242003292,
+          "y": 4889.086248919364
+        },
+        "to": {
+          "kind": "jump",
+          "x": 5580,
+          "support": "sf-cape-bank-link",
+          "speed": 0.35
+        },
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 24108,
+        "turn": 75,
+        "goal": "old-road",
+        "op": "land",
+        "hero": "occultist",
+        "x": 5577.248242003256,
+        "y": 4883.433699496406,
+        "support": "sf-cape-bank-link",
+        "expected": "sf-cape-bank-link",
+        "matched": true,
+        "objective": "old-road"
+      },
+      {
+        "round": 9,
+        "frame": 24362,
+        "turn": 75,
+        "goal": {
+          "id": "old-road",
+          "x": 9450,
+          "y": 4300
+        },
+        "op": "move",
+        "hero": "occultist",
+        "from": {
+          "x": 5534.67249880802,
+          "y": 5470
+        },
+        "to": {
+          "x": 6306.250831133656,
+          "y": 4835.735196337217
+        },
+        "support": "sf-bank-inner",
+        "objective": "old-road"
+      },
+      {
+        "round": 10,
+        "frame": 26330,
+        "turn": 81,
+        "goal": {
+          "id": "old-road",
+          "x": 9450,
+          "y": 4300
+        },
+        "op": "move",
+        "hero": "archer",
+        "from": {
+          "x": 6510.180556403184,
+          "y": 4835.847222413622
+        },
+        "to": {
+          "x": 8535.74375800331,
+          "y": 4674.256241996691
+        },
+        "support": "sf-old-road-west-rise",
+        "objective": "old-road"
+      },
+      {
+        "round": 10,
+        "frame": 27486,
+        "turn": 82,
+        "goal": {
+          "id": "old-road",
+          "x": 9450,
+          "y": 4300
+        },
+        "op": "move",
+        "hero": "mage",
+        "from": {
+          "x": 6535.306183698282,
+          "y": 4841.520751157676
+        },
+        "to": {
+          "x": 8571.378406838474,
+          "y": 4638.621593161526
+        },
+        "support": "sf-old-road-west-rise",
+        "objective": "old-road"
+      },
+      {
+        "round": 10,
+        "frame": 28966,
+        "turn": 83,
+        "goal": {
+          "id": "old-road",
+          "x": 9450,
+          "y": 4300
+        },
+        "op": "move",
+        "hero": "knight",
+        "from": {
+          "x": 6701.516541651996,
+          "y": 4879.052122308515
+        },
+        "to": {
+          "x": 9022.608281523528,
+          "y": 4392.49058917781
+        },
+        "support": "sf-old-road-west-rise",
+        "objective": "old-road"
+      },
+      {
+        "round": 10,
+        "frame": 30023,
+        "turn": 84,
+        "goal": {
+          "id": "old-road",
+          "x": 9450,
+          "y": 4300
+        },
+        "op": "move",
+        "hero": "occultist",
+        "from": {
+          "x": 6306.250831133656,
+          "y": 4835.735196337217
+        },
+        "to": {
+          "x": 8485.94964982898,
+          "y": 4724.050350171021
+        },
+        "support": "sf-old-road-west-rise",
+        "objective": "old-road"
+      },
+      {
+        "round": 11,
+        "frame": 31794,
+        "turn": 90,
+        "goal": {
+          "id": "old-road",
+          "x": 9450,
+          "y": 4300
+        },
+        "op": "move",
+        "hero": "archer",
+        "from": {
+          "x": 8535.74375800331,
+          "y": 4674.256241996691
+        },
+        "to": {
+          "x": 9436.319135826056,
+          "y": 4300
+        },
+        "support": "sf-old-road-gather",
+        "objective": "old-road"
+      },
+      {
+        "round": 11,
+        "frame": 32621,
+        "turn": 91,
+        "goal": {
+          "id": "old-road",
+          "x": 9450,
+          "y": 4300
+        },
+        "op": "move",
+        "hero": "mage",
+        "from": {
+          "x": 8571.378406838474,
+          "y": 4638.621593161526
+        },
+        "to": {
+          "x": 9436.178506673898,
+          "y": 4300
+        },
+        "support": "sf-old-road-gather",
+        "objective": "old-road"
+      }
+    ],
+    "usedSupports": [
+      "sf-map-rock",
+      "sf-west-ford",
+      "sf-landing-west-stairs",
+      "sf-landing-upper-step",
+      "sf-ferry-court",
+      "sf-quay-reflector",
+      "sf-cape-east-descent",
+      "sf-cape-bank-link",
+      "sf-bank-inner",
+      "sf-old-road-west-rise",
+      "sf-old-road-gather"
+    ],
+    "reinforcements": [
+      {
+        "id": "event-1",
+        "source": "act3-response-30-0",
+        "birth": {
+          "round": 1,
+          "frame": 283,
+          "turn": 1,
+          "id": "event-1",
+          "source": "act3-response-30-0",
+          "x": 2190,
+          "y": 6017.307692307692
+        },
+        "actions": [],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 420,
+        "contest": null,
+        "final": {
+          "x": 2167.918744161019,
+          "y": 5994.010102566054,
+          "hp": 954,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-2",
+        "source": "act3-response-30-0",
+        "birth": {
+          "round": 1,
+          "frame": 283,
+          "turn": 1,
+          "id": "event-2",
+          "source": "act3-response-30-0",
+          "x": 2300,
+          "y": 6097.692307692308
+        },
+        "actions": [],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 341,
+        "contest": null,
+        "final": {
+          "x": 2295.8403359755803,
+          "y": 6094.652553212924,
+          "hp": 1033,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-3",
+        "source": "act3-response-30-0",
+        "birth": {
+          "round": 1,
+          "frame": 283,
+          "turn": 1,
+          "id": "event-3",
+          "source": "act3-response-30-0",
+          "x": 2410,
+          "y": 6178.076923076923
+        },
+        "actions": [],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 230,
+        "contest": null,
+        "final": {
+          "x": 2411.507070021019,
+          "y": 6179.178243476898,
+          "hp": 1899,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-4",
+        "source": "act3-response-30-0",
+        "birth": {
+          "round": 1,
+          "frame": 283,
+          "turn": 1,
+          "id": "event-4",
+          "source": "act3-response-30-0",
+          "x": 2520,
+          "y": 6216
+        },
+        "actions": [
+          {
+            "round": 1,
+            "turn": 7,
+            "frame": 4692,
+            "id": "event-4",
+            "cohort": "reinforcement",
+            "intent": "고지 확보",
+            "from": {
+              "x": 2520,
+              "y": 6216,
+              "support": "sf-west-ford"
+            },
+            "to": {
+              "x": 2314.583333333346,
+              "y": 6108.349358974368
+            },
+            "support": "sf-west-ford",
+            "hp": 1238,
+            "focus": 198,
+            "moveLeft": 269.5833333333462,
+            "maxMove": 550,
+            "fired": true
+          }
+        ],
+        "fires": [
+          {
+            "round": 1,
+            "turn": 7,
+            "frame": 4519,
+            "id": "event-4",
+            "cohort": "reinforcement",
+            "skill": "LA01",
+            "angle": -9.919822893094679,
+            "power": 0.22562020300449695,
+            "shot": 6,
+            "from": {
+              "x": 2314.583333333346,
+              "y": 6108.349358974368
+            },
+            "support": "sf-west-ford",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          }
+        ],
+        "damageToHeroes": 70,
+        "damageFromHeroes": 136,
+        "contest": null,
+        "final": {
+          "x": 2314.583333333346,
+          "y": 6108.349358974368,
+          "hp": 1238,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-15",
+        "source": "act3-response-30-1",
+        "birth": {
+          "round": 2,
+          "frame": 8284,
+          "turn": 12,
+          "id": "event-15",
+          "source": "act3-response-30-1",
+          "x": 5950,
+          "y": 5320
+        },
+        "actions": [
+          {
+            "round": 4,
+            "turn": 34,
+            "frame": 14819,
+            "id": "event-15",
+            "cohort": "reinforcement",
+            "intent": "도약 준비",
+            "from": {
+              "x": 5950,
+              "y": 5320,
+              "support": "sf-quay-reflector"
+            },
+            "to": {
+              "x": 5950,
+              "y": 5320
+            },
+            "support": "sf-quay-reflector",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": true
+          }
+        ],
+        "fires": [
+          {
+            "round": 4,
+            "turn": 34,
+            "frame": 14672,
+            "id": "event-15",
+            "cohort": "reinforcement",
+            "skill": "HBR01",
+            "angle": 209.547036868452,
+            "power": 0.3466296095555959,
+            "shot": 25,
+            "from": {
+              "x": 5950,
+              "y": 5320
+            },
+            "support": "sf-quay-reflector",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          }
+        ],
+        "damageToHeroes": 20,
+        "damageFromHeroes": 0,
+        "contest": null,
+        "final": {
+          "x": 5950,
+          "y": 5320,
+          "hp": 1374,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-16",
+        "source": "act3-response-30-1",
+        "birth": {
+          "round": 2,
+          "frame": 8284,
+          "turn": 12,
+          "id": "event-16",
+          "source": "act3-response-30-1",
+          "x": 6040,
+          "y": 5320
+        },
+        "actions": [
+          {
+            "round": 5,
+            "turn": 41,
+            "frame": 15811,
+            "id": "event-16",
+            "cohort": "reinforcement",
+            "intent": "전진",
+            "from": {
+              "x": 6040,
+              "y": 5320,
+              "support": "sf-quay-reflector"
+            },
+            "to": {
+              "x": 5704.083333333291,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 214.0833333332912,
+            "maxMove": 550,
+            "fired": true
+          }
+        ],
+        "fires": [
+          {
+            "round": 5,
+            "turn": 41,
+            "frame": 15662,
+            "id": "event-16",
+            "cohort": "reinforcement",
+            "skill": "HBR01",
+            "angle": 177.01138156861492,
+            "power": 0.5649710334872516,
+            "shot": 30,
+            "from": {
+              "x": 5704.083333333291,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          }
+        ],
+        "damageToHeroes": 120,
+        "damageFromHeroes": 1374,
+        "contest": {
+          "id": "event-16",
+          "source": "act3-response-30-1",
+          "firstRound": 5,
+          "firstFrame": 15618,
+          "lastRound": 6,
+          "lastFrame": 16805,
+          "observedFrames": 1188
+        },
+        "final": {
+          "x": 5715.574259906472,
+          "y": 5470,
+          "hp": 0,
+          "dead": true
+        }
+      },
+      {
+        "id": "event-17",
+        "source": "act3-response-30-1",
+        "birth": {
+          "round": 2,
+          "frame": 8284,
+          "turn": 12,
+          "id": "event-17",
+          "source": "act3-response-30-1",
+          "x": 6270,
+          "y": 5470
+        },
+        "actions": [
+          {
+            "round": 6,
+            "turn": 50,
+            "frame": 17155,
+            "id": "event-17",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 6270,
+              "y": 5470,
+              "support": "sf-east-quay-entry"
+            },
+            "to": {
+              "x": 6270,
+              "y": 5470
+            },
+            "support": "sf-east-quay-entry",
+            "hp": 2129,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          }
+        ],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 0,
+        "contest": null,
+        "final": {
+          "x": 6270,
+          "y": 5470,
+          "hp": 2129,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-18",
+        "source": "act3-response-30-1",
+        "birth": {
+          "round": 2,
+          "frame": 8284,
+          "turn": 12,
+          "id": "event-18",
+          "source": "act3-response-30-1",
+          "x": 6410,
+          "y": 5470
+        },
+        "actions": [
+          {
+            "round": 6,
+            "turn": 52,
+            "frame": 17201,
+            "id": "event-18",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 6410,
+              "y": 5470,
+              "support": "sf-east-quay-entry"
+            },
+            "to": {
+              "x": 6410,
+              "y": 5470
+            },
+            "support": "sf-east-quay-entry",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          }
+        ],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 0,
+        "contest": null,
+        "final": {
+          "x": 6410,
+          "y": 5470,
+          "hp": 1374,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-19",
+        "source": "act3-response-30-1",
+        "birth": {
+          "round": 2,
+          "frame": 8284,
+          "turn": 12,
+          "id": "event-19",
+          "source": "act3-response-30-1",
+          "x": 6560,
+          "y": 5470
+        },
+        "actions": [
+          {
+            "round": 7,
+            "turn": 61,
+            "frame": 18159,
+            "id": "event-19",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 6560,
+              "y": 5470,
+              "support": "sf-east-quay-entry"
+            },
+            "to": {
+              "x": 6560,
+              "y": 5470
+            },
+            "support": "sf-east-quay-entry",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          }
+        ],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 0,
+        "contest": null,
+        "final": {
+          "x": 6560,
+          "y": 5470,
+          "hp": 1374,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-21",
+        "source": "act3-ferry-hold",
+        "birth": {
+          "round": 2,
+          "frame": 9552,
+          "turn": 13,
+          "id": "event-21",
+          "source": "act3-ferry-hold",
+          "x": 5200,
+          "y": 5233.793103448276
+        },
+        "actions": [
+          {
+            "round": 2,
+            "turn": 14,
+            "frame": 9650,
+            "id": "event-21",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 5200,
+              "y": 5233.793103448276,
+              "support": "sf-quay-west-loft"
+            },
+            "to": {
+              "x": 5200,
+              "y": 5233.793103448276
+            },
+            "support": "sf-quay-west-loft",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          }
+        ],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 442,
+        "contest": null,
+        "final": {
+          "x": 5200,
+          "y": 5233.793103448276,
+          "hp": 932,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-22",
+        "source": "act3-ferry-hold",
+        "birth": {
+          "round": 2,
+          "frame": 9552,
+          "turn": 13,
+          "id": "event-22",
+          "source": "act3-ferry-hold",
+          "x": 5290,
+          "y": 5227.586206896552
+        },
+        "actions": [
+          {
+            "round": 3,
+            "turn": 25,
+            "frame": 13347,
+            "id": "event-22",
+            "cohort": "reinforcement",
+            "intent": "전진",
+            "from": {
+              "x": 5290,
+              "y": 5227.586206896552,
+              "support": "sf-quay-west-loft"
+            },
+            "to": {
+              "x": 5550.738716971592,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "hp": 1238,
+            "focus": 198,
+            "moveLeft": 288.9999999999697,
+            "maxMove": 550,
+            "fired": true
+          }
+        ],
+        "fires": [
+          {
+            "round": 3,
+            "turn": 25,
+            "frame": 13254,
+            "id": "event-22",
+            "cohort": "reinforcement",
+            "skill": "LA01",
+            "angle": 188.5195358738434,
+            "power": 0.3754215211325295,
+            "shot": 18,
+            "from": {
+              "x": 5550.738716971592,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          }
+        ],
+        "damageToHeroes": 70,
+        "damageFromHeroes": 1326,
+        "contest": {
+          "id": "event-22",
+          "source": "act3-ferry-hold",
+          "firstRound": 3,
+          "firstFrame": 13199,
+          "lastRound": 5,
+          "lastFrame": 14928,
+          "observedFrames": 1730
+        },
+        "final": {
+          "x": 5558.84973894441,
+          "y": 5470,
+          "hp": 0,
+          "dead": true
+        }
+      },
+      {
+        "id": "event-23",
+        "source": "act3-ferry-hold",
+        "birth": {
+          "round": 2,
+          "frame": 9552,
+          "turn": 13,
+          "id": "event-23",
+          "source": "act3-ferry-hold",
+          "x": 4490,
+          "y": 5782.941176470588
+        },
+        "actions": [
+          {
+            "round": 8,
+            "turn": 70,
+            "frame": 19478,
+            "id": "event-23",
+            "cohort": "reinforcement",
+            "intent": "공격 보류 · 방어",
+            "from": {
+              "x": 4490,
+              "y": 5782.941176470588,
+              "support": "sf-landing-west-stairs"
+            },
+            "to": {
+              "x": 4782.416666666703,
+              "y": 5670
+            },
+            "support": "sf-return-tooth-1",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 105.24999999995362,
+            "maxMove": 550,
+            "fired": false
+          }
+        ],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 0,
+        "contest": null,
+        "final": {
+          "x": 4782.416666666703,
+          "y": 5670,
+          "hp": 1374,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-58",
+        "source": "act3-response-30-2",
+        "birth": {
+          "round": 9,
+          "frame": 20556,
+          "turn": 73,
+          "id": "event-58",
+          "source": "act3-response-30-2",
+          "x": 7620,
+          "y": 5677.777777777777
+        },
+        "actions": [
+          {
+            "round": 9,
+            "turn": 79,
+            "frame": 25540,
+            "id": "event-58",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 7620,
+              "y": 5677.777777777777,
+              "support": "sf-east-landing-planks"
+            },
+            "to": {
+              "x": 7128.626432491163,
+              "y": 5799.412070252652
+            },
+            "support": "sf-settled-barge",
+            "hp": 2129,
+            "focus": 198,
+            "moveLeft": 42.50000000000197,
+            "maxMove": 550,
+            "fired": false
+          }
+        ],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 0,
+        "contest": null,
+        "final": {
+          "x": 7128.626432491163,
+          "y": 5799.412070252652,
+          "hp": 2129,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-59",
+        "source": "act3-response-30-2",
+        "birth": {
+          "round": 9,
+          "frame": 20556,
+          "turn": 73,
+          "id": "event-59",
+          "source": "act3-response-30-2",
+          "x": 7720,
+          "y": 5663.888888888889
+        },
+        "actions": [],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 0,
+        "contest": null,
+        "final": {
+          "x": 7720,
+          "y": 5663.888888888889,
+          "hp": 1374,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-60",
+        "source": "act3-response-30-2",
+        "birth": {
+          "round": 9,
+          "frame": 20556,
+          "turn": 73,
+          "id": "event-60",
+          "source": "act3-response-30-2",
+          "x": 7820,
+          "y": 5650
+        },
+        "actions": [],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 0,
+        "contest": null,
+        "final": {
+          "x": 7820,
+          "y": 5650,
+          "hp": 1374,
+          "dead": false
+        }
+      },
+      {
+        "id": "event-61",
+        "source": "act3-response-30-2",
+        "birth": {
+          "round": 9,
+          "frame": 20556,
+          "turn": 73,
+          "id": "event-61",
+          "source": "act3-response-30-2",
+          "x": 7940,
+          "y": 5602
+        },
+        "actions": [
+          {
+            "round": 10,
+            "turn": 88,
+            "frame": 31384,
+            "id": "event-61",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 7940,
+              "y": 5602,
+              "support": "sf-east-landing-planks"
+            },
+            "to": {
+              "x": 8145.416666666692,
+              "y": 5519.833333333323
+            },
+            "support": "sf-east-landing-planks",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 269.58333333330756,
+            "maxMove": 550,
+            "fired": false
+          }
+        ],
+        "fires": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 0,
+        "contest": null,
+        "final": {
+          "x": 8145.416666666692,
+          "y": 5519.833333333323,
+          "hp": 1374,
+          "dead": false
+        }
+      }
+    ],
+    "manifestationFollowups": [
+      {
+        "round": 1,
+        "frame": 3740,
+        "owner": "p-occultist",
+        "skill": "O08",
+        "shot": 3,
+        "targets": [
+          {
+            "id": "sf-b3",
+            "before": {
+              "id": "sf-b3"
+            },
+            "manifested": true,
+            "revealSpiritToParty": true,
+            "until": 3,
+            "formDamageTakenBonus": 0.095
+          },
+          {
+            "id": "sf-b4",
+            "before": {
+              "id": "sf-b4"
+            },
+            "manifested": true,
+            "revealSpiritToParty": true,
+            "until": 3,
+            "formDamageTakenBonus": 0.095
+          }
+        ],
+        "otherHeroDamage": [],
+        "scope": "Observed ally HP damage in the actual manifested window; no counterfactual multiplier claim."
+      },
+      {
+        "round": 2,
+        "frame": 9459,
+        "owner": "p-occultist",
+        "skill": "O08",
+        "shot": 10,
+        "targets": [
+          {
+            "id": "sf-de2",
+            "before": {
+              "id": "sf-de2"
+            },
+            "manifested": true,
+            "revealSpiritToParty": true,
+            "until": 4,
+            "formDamageTakenBonus": 0.095
+          },
+          {
+            "id": "sf-de3",
+            "before": {
+              "id": "sf-de3"
+            },
+            "manifested": true,
+            "revealSpiritToParty": true,
+            "until": 4,
+            "formDamageTakenBonus": 0.095
+          }
+        ],
+        "otherHeroDamage": [
+          {
+            "round": 3,
+            "frame": 11663,
+            "owner": "p-mage",
+            "target": "sf-de2",
+            "skill": "M04",
+            "amount": 138
+          },
+          {
+            "round": 3,
+            "frame": 11848,
+            "owner": "p-knight",
+            "target": "sf-de2",
+            "skill": "S03",
+            "amount": 463
+          },
+          {
+            "round": 4,
+            "frame": 13940,
+            "owner": "p-knight",
+            "target": "sf-de3",
+            "skill": "S03",
+            "amount": 509
+          }
+        ],
+        "scope": "Observed ally HP damage in the actual manifested window; no counterfactual multiplier claim."
+      },
+      {
+        "round": 6,
+        "frame": 16964,
+        "owner": "p-occultist",
+        "skill": "O08",
+        "shot": 34,
+        "targets": [
+          {
+            "id": "sf-dw5",
+            "before": {
+              "id": "sf-dw5"
+            },
+            "manifested": true,
+            "revealSpiritToParty": true,
+            "until": 8,
+            "formDamageTakenBonus": 0.095
+          }
+        ],
+        "otherHeroDamage": [],
+        "scope": "Observed ally HP damage in the actual manifested window; no counterfactual multiplier claim."
+      }
+    ],
+    "cells": [
+      {
+        "cell": "ford-pocket",
+        "initial": 6,
+        "total": 6,
+        "remaining": 6,
+        "activated": [
+          {
+            "round": 1,
+            "frame": 669,
+            "id": "sf-b3",
+            "cohort": "ford-pocket",
+            "cell": "ford-pocket",
+            "x": 2980,
+            "y": 6252.5
+          },
+          {
+            "round": 1,
+            "frame": 669,
+            "id": "sf-b4",
+            "cohort": "ford-pocket",
+            "cell": "ford-pocket",
+            "x": 3100,
+            "y": 6214.25
+          },
+          {
+            "round": 1,
+            "frame": 669,
+            "id": "sf-b6",
+            "cohort": "ford-pocket",
+            "cell": "ford-pocket",
+            "x": 3210,
+            "y": 6235.9375
+          },
+          {
+            "round": 1,
+            "frame": 953,
+            "id": "sf-b1",
+            "cohort": "ford-pocket",
+            "cell": "ford-pocket",
+            "x": 3500,
+            "y": 6195.294117647059
+          },
+          {
+            "round": 1,
+            "frame": 953,
+            "id": "sf-b2",
+            "cohort": "ford-pocket",
+            "cell": "ford-pocket",
+            "x": 3610,
+            "y": 6172.64705882353
+          },
+          {
+            "round": 1,
+            "frame": 953,
+            "id": "sf-b5",
+            "cohort": "ford-pocket",
+            "cell": "ford-pocket",
+            "x": 3720,
+            "y": 6150
+          }
+        ],
+        "completedEnemyActions": [
+          {
+            "round": 1,
+            "turn": 5,
+            "frame": 4084,
+            "id": "sf-b4",
+            "cohort": "ford-pocket",
+            "cell": "ford-pocket",
+            "intent": "혼불과 혼무",
+            "from": {
+              "x": 3100,
+              "y": 6214.25
+            },
+            "to": {
+              "x": 3100,
+              "y": 6214.25
+            },
+            "hp": 873,
+            "focus": 198,
+            "moveLeft": 280,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 1,
+            "turn": 6,
+            "frame": 4383,
+            "id": "sf-b6",
+            "cohort": "ford-pocket",
+            "cell": "ford-pocket",
+            "intent": "거리 확보",
+            "from": {
+              "x": 3210,
+              "y": 6235.9375,
+              "support": "sf-west-ford"
+            },
+            "to": {
+              "x": 2718.244787606426,
+              "y": 6255.648957521285
+            },
+            "support": "sf-west-ford",
+            "hp": 879,
+            "focus": 198,
+            "moveLeft": 57.0000000000302,
+            "maxMove": 550,
+            "fired": true
+          }
+        ],
+        "enemyShots": [
+          {
+            "round": 1,
+            "turn": 5,
+            "frame": 3853,
+            "id": "sf-b4",
+            "cohort": "ford-pocket",
+            "cell": "ford-pocket",
+            "skill": "HLN02",
+            "angle": 164.07478596213818,
+            "power": 0.17249376171546513,
+            "shot": 4,
+            "from": {
+              "x": 3100,
+              "y": 6214.25
+            },
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          },
+          {
+            "round": 1,
+            "turn": 6,
+            "frame": 4290,
+            "id": "sf-b6",
+            "cohort": "ford-pocket",
+            "cell": "ford-pocket",
+            "skill": "LA01",
+            "angle": 169.99892848159652,
+            "power": 0.23857134734466673,
+            "shot": 5,
+            "from": {
+              "x": 2718.244787606426,
+              "y": 6255.648957521285
+            },
+            "support": "sf-west-ford",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          }
+        ],
+        "damageToHeroes": 121,
+        "damageFromHeroes": 894,
+        "targetedByPlayer": 1
+      },
+      {
+        "cell": "cape-watch",
+        "initial": 6,
+        "total": 6,
+        "remaining": 6,
+        "activated": [
+          {
+            "round": 9,
+            "frame": 19997,
+            "id": "sf-c3",
+            "cohort": "cape-watch",
+            "cell": "cape-watch",
+            "x": 4000,
+            "y": 4548
+          },
+          {
+            "round": 9,
+            "frame": 19997,
+            "id": "sf-c4",
+            "cohort": "cape-watch",
+            "cell": "cape-watch",
+            "x": 4110,
+            "y": 4526
+          },
+          {
+            "round": 9,
+            "frame": 19997,
+            "id": "sf-c6",
+            "cohort": "cape-watch",
+            "cell": "cape-watch",
+            "x": 4230,
+            "y": 4487.032258064516
+          }
+        ],
+        "completedEnemyActions": [],
+        "enemyShots": [],
+        "damageToHeroes": 0,
+        "damageFromHeroes": 0,
+        "targetedByPlayer": 0
+      },
+      {
+        "cell": "quay-west",
+        "initial": 9,
+        "total": 9,
+        "remaining": 6,
+        "activated": [
+          {
+            "round": 2,
+            "frame": 6734,
+            "id": "sf-dw1",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "x": 4920,
+            "y": 5470
+          },
+          {
+            "round": 2,
+            "frame": 6734,
+            "id": "sf-dw2",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "x": 5030,
+            "y": 5470
+          },
+          {
+            "round": 2,
+            "frame": 6734,
+            "id": "sf-dw3",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "x": 5120,
+            "y": 5470
+          },
+          {
+            "round": 2,
+            "frame": 6734,
+            "id": "sf-dw4",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "x": 4890,
+            "y": 5208
+          },
+          {
+            "round": 2,
+            "frame": 6734,
+            "id": "sf-dw5",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "x": 5360,
+            "y": 5190.758620689655
+          },
+          {
+            "round": 2,
+            "frame": 6734,
+            "id": "sf-dw6",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "x": 5240,
+            "y": 5470
+          },
+          {
+            "round": 2,
+            "frame": 6734,
+            "id": "sf-dw7",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "x": 4770,
+            "y": 5670
+          },
+          {
+            "round": 2,
+            "frame": 6734,
+            "id": "sf-dw8",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "x": 5100,
+            "y": 5240
+          },
+          {
+            "round": 2,
+            "frame": 6734,
+            "id": "sf-de8",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "x": 4790,
+            "y": 5507.5
+          }
+        ],
+        "completedEnemyActions": [
+          {
+            "round": 2,
+            "turn": 15,
+            "frame": 9999,
+            "id": "sf-dw3",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "intent": "거리 확보",
+            "from": {
+              "x": 5120,
+              "y": 5470,
+              "support": "sf-ferry-court"
+            },
+            "to": {
+              "x": 5451.083333333375,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 218.91666666662513,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 2,
+            "turn": 16,
+            "frame": 10022,
+            "id": "sf-dw8",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 5100,
+              "y": 5240,
+              "support": "sf-quay-west-loft"
+            },
+            "to": {
+              "x": 5100,
+              "y": 5240
+            },
+            "support": "sf-quay-west-loft",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          },
+          {
+            "round": 3,
+            "turn": 23,
+            "frame": 12693,
+            "id": "sf-dw2",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "intent": "도약 준비",
+            "from": {
+              "x": 5030,
+              "y": 5470,
+              "support": "sf-ferry-court"
+            },
+            "to": {
+              "x": 5017.174269527084,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "hp": 1318,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 3,
+            "turn": 24,
+            "frame": 13057,
+            "id": "sf-dw6",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "intent": "거리 확보",
+            "from": {
+              "x": 5240,
+              "y": 5470,
+              "support": "sf-ferry-court"
+            },
+            "to": {
+              "x": 5733.000000000062,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "hp": 1105,
+            "focus": 198,
+            "moveLeft": 56.999999999938154,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 4,
+            "turn": 32,
+            "frame": 14532,
+            "id": "sf-dw5",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "intent": "공중 사선 확보",
+            "from": {
+              "x": 5351.968879855827,
+              "y": 5185.358620689655
+            },
+            "to": {
+              "x": 5491.468879855827,
+              "y": 5185.358620689655
+            },
+            "hp": 679,
+            "focus": 198,
+            "moveLeft": 140.5,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 7,
+            "turn": 60,
+            "frame": 18136,
+            "id": "sf-dw1",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "intent": "도약 준비",
+            "from": {
+              "x": 4920,
+              "y": 5470,
+              "support": "sf-ferry-court"
+            },
+            "to": {
+              "x": 4920,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "hp": 1883,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 8,
+            "turn": 68,
+            "frame": 19112,
+            "id": "sf-dw4",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "intent": "범위 공격",
+            "from": {
+              "x": 4890,
+              "y": 5208
+            },
+            "to": {
+              "x": 4890,
+              "y": 5208
+            },
+            "hp": 1099,
+            "focus": 198,
+            "moveLeft": 280,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 8,
+            "turn": 69,
+            "frame": 19300,
+            "id": "sf-de8",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 4796.909740213329,
+              "y": 5503.181412366669,
+              "support": "sf-landing-upper-step"
+            },
+            "to": {
+              "x": 4828.316581013475,
+              "y": 5670
+            },
+            "support": "sf-return-tooth-1",
+            "hp": 1060,
+            "focus": 198,
+            "moveLeft": 412.24999999998386,
+            "maxMove": 550,
+            "fired": false
+          }
+        ],
+        "enemyShots": [
+          {
+            "round": 2,
+            "turn": 15,
+            "frame": 9789,
+            "id": "sf-dw3",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "skill": "HBR01",
+            "angle": 85.53542392025702,
+            "power": 0.26027790635731074,
+            "shot": 11,
+            "from": {
+              "x": 5451.083333333375,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          },
+          {
+            "round": 3,
+            "turn": 23,
+            "frame": 12555,
+            "id": "sf-dw2",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "skill": "HBR01",
+            "angle": 8.260365946334787,
+            "power": 0.2473057651668787,
+            "shot": 16,
+            "from": {
+              "x": 5030,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          },
+          {
+            "round": 3,
+            "turn": 24,
+            "frame": 12899,
+            "id": "sf-dw6",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "skill": "LS09",
+            "angle": 179.85954407213248,
+            "power": 0.6685610576627443,
+            "shot": 17,
+            "from": {
+              "x": 5733.000000000062,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          },
+          {
+            "round": 4,
+            "turn": 32,
+            "frame": 14352,
+            "id": "sf-dw5",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "skill": "HLN01",
+            "angle": -85,
+            "power": 0.1594715526147299,
+            "shot": 23,
+            "from": {
+              "x": 5491.468879855827,
+              "y": 5185.358620689655
+            },
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          },
+          {
+            "round": 7,
+            "turn": 60,
+            "frame": 17798,
+            "id": "sf-dw1",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "skill": "LS09",
+            "angle": 31.97358463620983,
+            "power": 0.35124561561749484,
+            "shot": 39,
+            "from": {
+              "x": 4920,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          },
+          {
+            "round": 8,
+            "turn": 68,
+            "frame": 18773,
+            "id": "sf-dw4",
+            "cohort": "quay-west",
+            "cell": "quay-west",
+            "skill": "HLN02",
+            "angle": 29.201477991569217,
+            "power": 0.25205384342000536,
+            "shot": 44,
+            "from": {
+              "x": 4890,
+              "y": 5208
+            },
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          }
+        ],
+        "damageToHeroes": 270,
+        "damageFromHeroes": 4531,
+        "targetedByPlayer": 12
+      },
+      {
+        "cell": "quay-east",
+        "initial": 7,
+        "total": 7,
+        "remaining": 4,
+        "activated": [
+          {
+            "round": 2,
+            "frame": 7923,
+            "id": "sf-de1",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "x": 5880,
+            "y": 5470
+          },
+          {
+            "round": 2,
+            "frame": 7923,
+            "id": "sf-de2",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "x": 5660,
+            "y": 5470
+          },
+          {
+            "round": 2,
+            "frame": 7923,
+            "id": "sf-de3",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "x": 5760,
+            "y": 5470
+          },
+          {
+            "round": 2,
+            "frame": 7923,
+            "id": "sf-de4",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "x": 6430,
+            "y": 5245.25
+          },
+          {
+            "round": 2,
+            "frame": 7923,
+            "id": "sf-de5",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "x": 6320,
+            "y": 5253.5
+          },
+          {
+            "round": 2,
+            "frame": 7923,
+            "id": "sf-de6",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "x": 6120,
+            "y": 5236.5
+          },
+          {
+            "round": 2,
+            "frame": 7923,
+            "id": "sf-de7",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "x": 6150,
+            "y": 5470
+          }
+        ],
+        "completedEnemyActions": [
+          {
+            "round": 4,
+            "turn": 33,
+            "frame": 14671,
+            "id": "sf-de1",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "intent": "도약 준비",
+            "from": {
+              "x": 5880,
+              "y": 5470,
+              "support": "sf-ferry-court"
+            },
+            "to": {
+              "x": 5880,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "hp": 2129,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 5,
+            "turn": 42,
+            "frame": 15974,
+            "id": "sf-de6",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 6120,
+              "y": 5236.5
+            },
+            "to": {
+              "x": 6198.6617153841435,
+              "y": 5201.375
+            },
+            "hp": 1099,
+            "focus": 198,
+            "moveLeft": 70.25000000000078,
+            "maxMove": 550,
+            "fired": false
+          },
+          {
+            "round": 5,
+            "turn": 43,
+            "frame": 15997,
+            "id": "sf-de7",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 6150,
+              "y": 5470,
+              "support": "sf-ferry-court"
+            },
+            "to": {
+              "x": 6150,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          },
+          {
+            "round": 6,
+            "turn": 51,
+            "frame": 17178,
+            "id": "sf-de5",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 6320,
+              "y": 5253.5,
+              "support": "sf-quay-east-loft"
+            },
+            "to": {
+              "x": 6320,
+              "y": 5253.5
+            },
+            "support": "sf-quay-east-loft",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          },
+          {
+            "round": 7,
+            "turn": 59,
+            "frame": 17797,
+            "id": "sf-de4",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 6430,
+              "y": 5245.25,
+              "support": "sf-quay-east-loft"
+            },
+            "to": {
+              "x": 6430,
+              "y": 5245.25
+            },
+            "support": "sf-quay-east-loft",
+            "hp": 2129,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          }
+        ],
+        "enemyShots": [
+          {
+            "round": 4,
+            "turn": 33,
+            "frame": 14533,
+            "id": "sf-de1",
+            "cohort": "quay-east",
+            "cell": "quay-east",
+            "skill": "LS09",
+            "angle": 189.1713556901941,
+            "power": 0.4632000378814616,
+            "shot": 24,
+            "from": {
+              "x": 5880,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          }
+        ],
+        "damageToHeroes": 34,
+        "damageFromHeroes": 4911,
+        "targetedByPlayer": 10
+      },
+      {
+        "cell": "bank-rearguard",
+        "initial": 6,
+        "total": 6,
+        "remaining": 6,
+        "activated": [
+          {
+            "round": 9,
+            "frame": 20159,
+            "id": "sf-e1",
+            "cohort": "bank-rearguard",
+            "cell": "bank-rearguard",
+            "x": 6900,
+            "y": 4879.285714285715
+          },
+          {
+            "round": 9,
+            "frame": 20159,
+            "id": "sf-e2",
+            "cohort": "bank-rearguard",
+            "cell": "bank-rearguard",
+            "x": 7000,
+            "y": 4872.142857142857
+          },
+          {
+            "round": 9,
+            "frame": 20159,
+            "id": "sf-e3",
+            "cohort": "bank-rearguard",
+            "cell": "bank-rearguard",
+            "x": 7100,
+            "y": 4901.111111111111
+          },
+          {
+            "round": 9,
+            "frame": 20339,
+            "id": "sf-e4",
+            "cohort": "bank-rearguard",
+            "cell": "bank-rearguard",
+            "x": 7760,
+            "y": 4732.727272727273
+          },
+          {
+            "round": 9,
+            "frame": 20339,
+            "id": "sf-e5",
+            "cohort": "bank-rearguard",
+            "cell": "bank-rearguard",
+            "x": 8000,
+            "y": 4670
+          },
+          {
+            "round": 9,
+            "frame": 20339,
+            "id": "sf-e6",
+            "cohort": "bank-rearguard",
+            "cell": "bank-rearguard",
+            "x": 8110,
+            "y": 4638
+          }
+        ],
+        "completedEnemyActions": [
+          {
+            "round": 9,
+            "turn": 77,
+            "frame": 25124,
+            "id": "sf-e1",
+            "cohort": "bank-rearguard",
+            "cell": "bank-rearguard",
+            "intent": "거리 확보",
+            "from": {
+              "x": 6900,
+              "y": 4879.285714285715,
+              "support": "sf-bank-inner"
+            },
+            "to": {
+              "x": 7391.828067168742,
+              "y": 4915.389695425398
+            },
+            "support": "sf-bank-inner",
+            "hp": 2129,
+            "focus": 198,
+            "moveLeft": 5.885298864160795,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 9,
+            "turn": 78,
+            "frame": 25306,
+            "id": "sf-e2",
+            "cohort": "bank-rearguard",
+            "cell": "bank-rearguard",
+            "intent": "전진",
+            "from": {
+              "x": 7000,
+              "y": 4872.142857142857,
+              "support": "sf-bank-inner"
+            },
+            "to": {
+              "x": 6918.042143497232,
+              "y": 4877.996989750198
+            },
+            "support": "sf-bank-inner",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 467.8333333333243,
+            "maxMove": 550,
+            "fired": true
+          }
+        ],
+        "enemyShots": [
+          {
+            "round": 9,
+            "turn": 77,
+            "frame": 24847,
+            "id": "sf-e1",
+            "cohort": "bank-rearguard",
+            "cell": "bank-rearguard",
+            "skill": "LS09",
+            "angle": 155.55091861125337,
+            "power": 0.4169497990022513,
+            "shot": 47,
+            "from": {
+              "x": 7391.828067168742,
+              "y": 4915.389695425398
+            },
+            "support": "sf-bank-inner",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          },
+          {
+            "round": 9,
+            "turn": 78,
+            "frame": 25160,
+            "id": "sf-e2",
+            "cohort": "bank-rearguard",
+            "cell": "bank-rearguard",
+            "skill": "HBR01",
+            "angle": 172.5827289366481,
+            "power": 0.6309932751026879,
+            "shot": 48,
+            "from": {
+              "x": 6918.042143497232,
+              "y": 4877.996989750198
+            },
+            "support": "sf-bank-inner",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          }
+        ],
+        "damageToHeroes": 57,
+        "damageFromHeroes": 1313,
+        "targetedByPlayer": 4
+      },
+      {
+        "cell": "escape-flank",
+        "initial": 6,
+        "total": 6,
+        "remaining": 6,
+        "activated": [
+          {
+            "round": 10,
+            "frame": 25840,
+            "id": "sf-fg3",
+            "cohort": "escape-flank",
+            "cell": "escape-flank",
+            "x": 8620,
+            "y": 4590
+          },
+          {
+            "round": 10,
+            "frame": 25840,
+            "id": "sf-fg6",
+            "cohort": "escape-flank",
+            "cell": "escape-flank",
+            "x": 8720,
+            "y": 4566.666666666667
+          }
+        ],
+        "completedEnemyActions": [
+          {
+            "round": 10,
+            "turn": 86,
+            "frame": 31016,
+            "id": "sf-fg3",
+            "cohort": "escape-flank",
+            "cell": "escape-flank",
+            "intent": "정밀 사격",
+            "from": {
+              "x": 8620,
+              "y": 4590,
+              "support": "sf-old-road-west-rise"
+            },
+            "to": {
+              "x": 8620,
+              "y": 4590
+            },
+            "support": "sf-old-road-west-rise",
+            "hp": 2129,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 10,
+            "turn": 87,
+            "frame": 31220,
+            "id": "sf-fg6",
+            "cohort": "escape-flank",
+            "cell": "escape-flank",
+            "intent": "거리 확보",
+            "from": {
+              "x": 8720,
+              "y": 4566.666666666667,
+              "support": "sf-old-road-west-rise"
+            },
+            "to": {
+              "x": 8517.769104767802,
+              "y": 4692.230895232198
+            },
+            "support": "sf-old-road-west-rise",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 286.58333333326163,
+            "maxMove": 550,
+            "fired": true
+          }
+        ],
+        "enemyShots": [
+          {
+            "round": 10,
+            "turn": 86,
+            "frame": 30923,
+            "id": "sf-fg3",
+            "cohort": "escape-flank",
+            "cell": "escape-flank",
+            "skill": "LA01",
+            "angle": 231.16589897616183,
+            "power": 0.4162788768896437,
+            "shot": 53,
+            "from": {
+              "x": 8620,
+              "y": 4590
+            },
+            "support": "sf-old-road-west-rise",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          },
+          {
+            "round": 10,
+            "turn": 87,
+            "frame": 31127,
+            "id": "sf-fg6",
+            "cohort": "escape-flank",
+            "cell": "escape-flank",
+            "skill": "LA01",
+            "angle": 10.454225795576349,
+            "power": 0.26278122629481365,
+            "shot": 54,
+            "from": {
+              "x": 8517.769104767802,
+              "y": 4692.230895232198
+            },
+            "support": "sf-old-road-west-rise",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          }
+        ],
+        "damageToHeroes": 149,
+        "damageFromHeroes": 1049,
+        "targetedByPlayer": 3
+      },
+      {
+        "cell": "reinforcement",
+        "initial": 0,
+        "total": 16,
+        "remaining": 14,
+        "activated": [
+          {
+            "round": 1,
+            "frame": 283,
+            "id": "event-1",
+            "cohort": "reinforcement",
+            "x": 2190,
+            "y": 6017.307692307692
+          },
+          {
+            "round": 1,
+            "frame": 283,
+            "id": "event-2",
+            "cohort": "reinforcement",
+            "x": 2300,
+            "y": 6097.692307692308
+          },
+          {
+            "round": 1,
+            "frame": 283,
+            "id": "event-3",
+            "cohort": "reinforcement",
+            "x": 2410,
+            "y": 6178.076923076923
+          },
+          {
+            "round": 1,
+            "frame": 283,
+            "id": "event-4",
+            "cohort": "reinforcement",
+            "x": 2520,
+            "y": 6216
+          },
+          {
+            "round": 2,
+            "frame": 8284,
+            "id": "event-15",
+            "cohort": "reinforcement",
+            "x": 5950,
+            "y": 5320
+          },
+          {
+            "round": 2,
+            "frame": 8284,
+            "id": "event-16",
+            "cohort": "reinforcement",
+            "x": 6040,
+            "y": 5320
+          },
+          {
+            "round": 2,
+            "frame": 8284,
+            "id": "event-17",
+            "cohort": "reinforcement",
+            "x": 6270,
+            "y": 5470
+          },
+          {
+            "round": 2,
+            "frame": 8284,
+            "id": "event-18",
+            "cohort": "reinforcement",
+            "x": 6410,
+            "y": 5470
+          },
+          {
+            "round": 2,
+            "frame": 8284,
+            "id": "event-19",
+            "cohort": "reinforcement",
+            "x": 6560,
+            "y": 5470
+          },
+          {
+            "round": 2,
+            "frame": 9552,
+            "id": "event-21",
+            "cohort": "reinforcement",
+            "x": 5200,
+            "y": 5233.793103448276
+          },
+          {
+            "round": 2,
+            "frame": 9552,
+            "id": "event-22",
+            "cohort": "reinforcement",
+            "x": 5290,
+            "y": 5227.586206896552
+          },
+          {
+            "round": 2,
+            "frame": 9552,
+            "id": "event-23",
+            "cohort": "reinforcement",
+            "x": 4490,
+            "y": 5782.941176470588
+          },
+          {
+            "round": 9,
+            "frame": 20556,
+            "id": "event-58",
+            "cohort": "reinforcement",
+            "x": 7620,
+            "y": 5677.777777777777
+          },
+          {
+            "round": 9,
+            "frame": 20556,
+            "id": "event-59",
+            "cohort": "reinforcement",
+            "x": 7720,
+            "y": 5663.888888888889
+          },
+          {
+            "round": 9,
+            "frame": 20556,
+            "id": "event-60",
+            "cohort": "reinforcement",
+            "x": 7820,
+            "y": 5650
+          },
+          {
+            "round": 9,
+            "frame": 20556,
+            "id": "event-61",
+            "cohort": "reinforcement",
+            "x": 7940,
+            "y": 5602
+          }
+        ],
+        "completedEnemyActions": [
+          {
+            "round": 1,
+            "turn": 7,
+            "frame": 4692,
+            "id": "event-4",
+            "cohort": "reinforcement",
+            "intent": "고지 확보",
+            "from": {
+              "x": 2520,
+              "y": 6216,
+              "support": "sf-west-ford"
+            },
+            "to": {
+              "x": 2314.583333333346,
+              "y": 6108.349358974368
+            },
+            "support": "sf-west-ford",
+            "hp": 1238,
+            "focus": 198,
+            "moveLeft": 269.5833333333462,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 2,
+            "turn": 14,
+            "frame": 9650,
+            "id": "event-21",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 5200,
+              "y": 5233.793103448276,
+              "support": "sf-quay-west-loft"
+            },
+            "to": {
+              "x": 5200,
+              "y": 5233.793103448276
+            },
+            "support": "sf-quay-west-loft",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          },
+          {
+            "round": 3,
+            "turn": 25,
+            "frame": 13347,
+            "id": "event-22",
+            "cohort": "reinforcement",
+            "intent": "전진",
+            "from": {
+              "x": 5290,
+              "y": 5227.586206896552,
+              "support": "sf-quay-west-loft"
+            },
+            "to": {
+              "x": 5550.738716971592,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "hp": 1238,
+            "focus": 198,
+            "moveLeft": 288.9999999999697,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 4,
+            "turn": 34,
+            "frame": 14819,
+            "id": "event-15",
+            "cohort": "reinforcement",
+            "intent": "도약 준비",
+            "from": {
+              "x": 5950,
+              "y": 5320,
+              "support": "sf-quay-reflector"
+            },
+            "to": {
+              "x": 5950,
+              "y": 5320
+            },
+            "support": "sf-quay-reflector",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 5,
+            "turn": 41,
+            "frame": 15811,
+            "id": "event-16",
+            "cohort": "reinforcement",
+            "intent": "전진",
+            "from": {
+              "x": 6040,
+              "y": 5320,
+              "support": "sf-quay-reflector"
+            },
+            "to": {
+              "x": 5704.083333333291,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 214.0833333332912,
+            "maxMove": 550,
+            "fired": true
+          },
+          {
+            "round": 6,
+            "turn": 50,
+            "frame": 17155,
+            "id": "event-17",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 6270,
+              "y": 5470,
+              "support": "sf-east-quay-entry"
+            },
+            "to": {
+              "x": 6270,
+              "y": 5470
+            },
+            "support": "sf-east-quay-entry",
+            "hp": 2129,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          },
+          {
+            "round": 6,
+            "turn": 52,
+            "frame": 17201,
+            "id": "event-18",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 6410,
+              "y": 5470,
+              "support": "sf-east-quay-entry"
+            },
+            "to": {
+              "x": 6410,
+              "y": 5470
+            },
+            "support": "sf-east-quay-entry",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          },
+          {
+            "round": 7,
+            "turn": 61,
+            "frame": 18159,
+            "id": "event-19",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 6560,
+              "y": 5470,
+              "support": "sf-east-quay-entry"
+            },
+            "to": {
+              "x": 6560,
+              "y": 5470
+            },
+            "support": "sf-east-quay-entry",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "fired": false
+          },
+          {
+            "round": 8,
+            "turn": 70,
+            "frame": 19478,
+            "id": "event-23",
+            "cohort": "reinforcement",
+            "intent": "공격 보류 · 방어",
+            "from": {
+              "x": 4490,
+              "y": 5782.941176470588,
+              "support": "sf-landing-west-stairs"
+            },
+            "to": {
+              "x": 4782.416666666703,
+              "y": 5670
+            },
+            "support": "sf-return-tooth-1",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 105.24999999995362,
+            "maxMove": 550,
+            "fired": false
+          },
+          {
+            "round": 9,
+            "turn": 79,
+            "frame": 25540,
+            "id": "event-58",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 7620,
+              "y": 5677.777777777777,
+              "support": "sf-east-landing-planks"
+            },
+            "to": {
+              "x": 7128.626432491163,
+              "y": 5799.412070252652
+            },
+            "support": "sf-settled-barge",
+            "hp": 2129,
+            "focus": 198,
+            "moveLeft": 42.50000000000197,
+            "maxMove": 550,
+            "fired": false
+          },
+          {
+            "round": 10,
+            "turn": 88,
+            "frame": 31384,
+            "id": "event-61",
+            "cohort": "reinforcement",
+            "intent": "사선 없음 · 방어",
+            "from": {
+              "x": 7940,
+              "y": 5602,
+              "support": "sf-east-landing-planks"
+            },
+            "to": {
+              "x": 8145.416666666692,
+              "y": 5519.833333333323
+            },
+            "support": "sf-east-landing-planks",
+            "hp": 1374,
+            "focus": 198,
+            "moveLeft": 269.58333333330756,
+            "maxMove": 550,
+            "fired": false
+          }
+        ],
+        "enemyShots": [
+          {
+            "round": 1,
+            "turn": 7,
+            "frame": 4519,
+            "id": "event-4",
+            "cohort": "reinforcement",
+            "skill": "LA01",
+            "angle": -9.919822893094679,
+            "power": 0.22562020300449695,
+            "shot": 6,
+            "from": {
+              "x": 2314.583333333346,
+              "y": 6108.349358974368
+            },
+            "support": "sf-west-ford",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          },
+          {
+            "round": 3,
+            "turn": 25,
+            "frame": 13254,
+            "id": "event-22",
+            "cohort": "reinforcement",
+            "skill": "LA01",
+            "angle": 188.5195358738434,
+            "power": 0.3754215211325295,
+            "shot": 18,
+            "from": {
+              "x": 5550.738716971592,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          },
+          {
+            "round": 4,
+            "turn": 34,
+            "frame": 14672,
+            "id": "event-15",
+            "cohort": "reinforcement",
+            "skill": "HBR01",
+            "angle": 209.547036868452,
+            "power": 0.3466296095555959,
+            "shot": 25,
+            "from": {
+              "x": 5950,
+              "y": 5320
+            },
+            "support": "sf-quay-reflector",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          },
+          {
+            "round": 5,
+            "turn": 41,
+            "frame": 15662,
+            "id": "event-16",
+            "cohort": "reinforcement",
+            "skill": "HBR01",
+            "angle": 177.01138156861492,
+            "power": 0.5649710334872516,
+            "shot": 30,
+            "from": {
+              "x": 5704.083333333291,
+              "y": 5470
+            },
+            "support": "sf-ferry-court",
+            "before": 198,
+            "after": 198,
+            "cost": 0
+          }
+        ],
+        "damageToHeroes": 280,
+        "damageFromHeroes": 4269,
+        "targetedByPlayer": 10
+      }
+    ]
+  }
+}

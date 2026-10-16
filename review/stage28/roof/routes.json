@@ -1,0 +1,3510 @@
+{
+  "passed": true,
+  "scope": "All four bodies, real finite move/jump/drop on authored roof collision; enemy-free geometry fixture, no skill or pose override",
+  "rows": [
+    {
+      "cls": "knight",
+      "roof": "west-clerks-wing",
+      "label": "west-clerks-wing",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 1115.7880535552824,
+        "y": 2658.897513608518,
+        "hp": 1522,
+        "round": 1
+      },
+      "end": {
+        "x": 1155.8760333821544,
+        "y": 2651.2617079272086,
+        "support": "a3-foundation",
+        "round": 2,
+        "moveLeft": 786.1249999999993
+      },
+      "counts": {
+        "ticks": 897,
+        "jumps": 2,
+        "waits": 0,
+        "walkCost": 957.8750000000007,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 1107.8750000000007,
+      "turnEquivalent": 0.5849392819429782,
+      "events": [
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 1115.7880535552824,
+          "y": 2658.897513608518,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1074.3322999511854
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 1115.7880535552824,
+          "y": 2658.897513608518,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1074.3322999511854
+        },
+        {
+          "op": "jump",
+          "x": 787.2093667154874,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1242.958333333328
+        },
+        {
+          "op": "jump",
+          "x": 780.6260333821541,
+          "y": 2515,
+          "support": "s28-roof-access-west",
+          "round": 2,
+          "moveLeft": 1161.374999999995
+        },
+        {
+          "op": "drop",
+          "x": 1155.8760333821544,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 2,
+          "moveLeft": 786.1249999999993
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 900,
+            "y": 2700
+          },
+          "x": 905.6085311144708,
+          "y": 2698.9317083591486,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1680.0416666666617
+        },
+        {
+          "goal": {
+            "x": 1030,
+            "y": 2675.2380952380954
+          },
+          "x": 1025.249182350008,
+          "y": 2676.143012885713,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1558.2499999999923
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2515
+          },
+          "x": 780.6260333821541,
+          "y": 2515,
+          "support": "s28-roof-access-west",
+          "round": 2,
+          "moveLeft": 1236.374999999995
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0"
+          },
+          "x": 780.6260333821541,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 2,
+          "moveLeft": 1161.374999999995
+        },
+        {
+          "goal": {
+            "x": 1030,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0"
+          },
+          "x": 1024.2093667154847,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 2,
+          "moveLeft": 917.791666666669
+        },
+        {
+          "goal": {
+            "x": 1160,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0",
+            "drop": true
+          },
+          "x": 1155.8760333821544,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 2,
+          "moveLeft": 786.1249999999993
+        },
+        {
+          "goal": {
+            "x": 1160,
+            "y": 2650.4761904761904
+          },
+          "x": 1155.8760333821544,
+          "y": 2651.2617079272086,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 786.1249999999993
+        }
+      ]
+    },
+    {
+      "cls": "knight",
+      "roof": "raised-open-record-hall",
+      "label": "raised-open-record-hall",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 1155.8760333821544,
+        "y": 2651.2617079272086,
+        "hp": 1522,
+        "round": 2
+      },
+      "end": {
+        "x": 3886.04166666664,
+        "y": 2380,
+        "support": "a3-foundation",
+        "round": 4,
+        "moveLeft": 675.094776444317
+      },
+      "counts": {
+        "ticks": 2291,
+        "jumps": 3,
+        "waits": 2,
+        "walkCost": 3657.021164695129,
+        "jumpCost": 225,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 3882.021164695129,
+      "turnEquivalent": 2.049641586428262,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1929.7585871839071,
+          "y": 2620,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.291666666646279
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 1929.7585871839071,
+          "y": 2620,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.291666666646279
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 1929.7585871839071,
+          "y": 2620,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.291666666646279
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 1929.7585871839071,
+          "y": 2620,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.291666666646279
+        },
+        {
+          "op": "wait",
+          "x": 3724.5667319693616,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.717392193900309
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 3724.5667319693616,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.717392193900309
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 3724.5667319693616,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.717392193900309
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 3724.5667319693616,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.717392193900309
+        },
+        {
+          "op": "jump",
+          "x": 3319.696890222395,
+          "y": 2403.245637040886,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1410.833333333352
+        },
+        {
+          "op": "jump",
+          "x": 3402.1666666666624,
+          "y": 2220,
+          "support": "s28-roof-access-court-lower",
+          "round": 4,
+          "moveLeft": 1233.9697764442947
+        },
+        {
+          "op": "jump",
+          "x": 3408.7499999999955,
+          "y": 2050,
+          "support": "s28-roof-access-court-upper",
+          "round": 4,
+          "moveLeft": 1152.3864431109616
+        },
+        {
+          "op": "drop",
+          "x": 3886.04166666664,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 4,
+          "moveLeft": 675.094776444317
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 3630,
+            "y": 2380
+          },
+          "x": 3625.816731969366,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 165.71739219389303
+        },
+        {
+          "goal": {
+            "x": 3760,
+            "y": 2380
+          },
+          "x": 3754.1917319693603,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 37.342392193898945
+        },
+        {
+          "goal": {
+            "x": 3310,
+            "y": 2220
+          },
+          "x": 3310,
+          "y": 2220,
+          "support": "s28-roof-access-court-lower",
+          "round": 4,
+          "moveLeft": 1401.136443110957
+        },
+        {
+          "goal": {
+            "x": 3410,
+            "y": 2050
+          },
+          "x": 3408.7499999999955,
+          "y": 2050,
+          "support": "s28-roof-access-court-upper",
+          "round": 4,
+          "moveLeft": 1227.3864431109616
+        },
+        {
+          "goal": {
+            "x": 3410,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0"
+          },
+          "x": 3408.7499999999955,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 4,
+          "moveLeft": 1152.3864431109616
+        },
+        {
+          "goal": {
+            "x": 3760,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0"
+          },
+          "x": 3754.3749999999795,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 4,
+          "moveLeft": 806.7614431109776
+        },
+        {
+          "goal": {
+            "x": 3890,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0",
+            "drop": true
+          },
+          "x": 3886.04166666664,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 4,
+          "moveLeft": 675.094776444317
+        },
+        {
+          "goal": {
+            "x": 3890,
+            "y": 2380
+          },
+          "x": 3886.04166666664,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 675.094776444317
+        }
+      ]
+    },
+    {
+      "cls": "knight",
+      "roof": "east-record-annex",
+      "label": "east-record-annex",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 3886.04166666664,
+        "y": 2380,
+        "hp": 1522,
+        "round": 4
+      },
+      "end": {
+        "x": 4879.000000000007,
+        "y": 2490,
+        "support": "a3-foundation",
+        "round": 5,
+        "moveLeft": 987.5074106538411
+      },
+      "counts": {
+        "ticks": 2083,
+        "jumps": 6,
+        "waits": 1,
+        "walkCost": 1124.8055156479365,
+        "jumpCost": 450,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 1574.8055156479365,
+      "turnEquivalent": 0.8314707051995441,
+      "events": [
+        {
+          "op": "wait",
+          "x": 4530.943886120837,
+          "y": 2438.131092572347,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 6.781850142537291
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 4530.943886120837,
+          "y": 2438.131092572347,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 6.781850142537291
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 4530.943886120837,
+          "y": 2438.131092572347,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 6.781850142537291
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 4530.943886120837,
+          "y": 2438.131092572347,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 6.781850142537291
+        },
+        {
+          "op": "drop",
+          "x": 4613.42407732053,
+          "y": 2383.830258696029,
+          "support": "s28-east-loading-veranda",
+          "round": 5,
+          "moveLeft": 1795.2499999999934
+        },
+        {
+          "op": "jump",
+          "x": 4791.1740773205465,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1542.499999999977
+        },
+        {
+          "op": "jump",
+          "x": 4800,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 5,
+          "moveLeft": 1458.6740773205236
+        },
+        {
+          "op": "jump",
+          "x": 4800,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 5,
+          "moveLeft": 1383.6740773205236
+        },
+        {
+          "op": "drop",
+          "x": 4875.70833333334,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 5,
+          "moveLeft": 1215.799077320508
+        },
+        {
+          "op": "drop",
+          "x": 4879.000000000007,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 5,
+          "moveLeft": 1212.5074106538411
+        },
+        {
+          "op": "jump",
+          "x": 4879.000000000007,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 5,
+          "moveLeft": 1137.5074106538411
+        },
+        {
+          "op": "drop",
+          "x": 4879.000000000007,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 5,
+          "moveLeft": 1137.5074106538411
+        },
+        {
+          "op": "jump",
+          "x": 4879.000000000007,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 5,
+          "moveLeft": 1062.5074106538411
+        },
+        {
+          "op": "drop",
+          "x": 4879.000000000007,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 5,
+          "moveLeft": 1062.5074106538411
+        },
+        {
+          "op": "jump",
+          "x": 4879.000000000007,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 5,
+          "moveLeft": 987.5074106538411
+        },
+        {
+          "op": "drop",
+          "x": 4879.000000000007,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 5,
+          "moveLeft": 987.5074106538411
+        },
+        {
+          "op": "drop",
+          "x": 4879.000000000007,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 5,
+          "moveLeft": 987.5074106538411
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 4620,
+            "y": 2490
+          },
+          "x": 4616.715743987197,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1791.9583333333264
+        },
+        {
+          "goal": {
+            "x": 4750,
+            "y": 2490
+          },
+          "x": 4745.090743987209,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1663.5833333333146
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2340
+          },
+          "x": 4800,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 5,
+          "moveLeft": 1533.6740773205236
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2240
+          },
+          "x": 4800,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 5,
+          "moveLeft": 1458.6740773205236
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0"
+          },
+          "x": 4800,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 5,
+          "moveLeft": 1383.6740773205236
+        },
+        {
+          "goal": {
+            "x": 4750,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0"
+          },
+          "x": 4753.916666666662,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 5,
+          "moveLeft": 1337.590743987186
+        },
+        {
+          "goal": {
+            "x": 4880,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0",
+            "drop": true
+          },
+          "x": 4875.70833333334,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 5,
+          "moveLeft": 1215.799077320508
+        },
+        {
+          "goal": {
+            "x": 4880,
+            "y": 2490
+          },
+          "x": 4879.000000000007,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 987.5074106538411
+        }
+      ]
+    },
+    {
+      "cls": "knight",
+      "roof": "water-yard-shed",
+      "label": "water-yard-shed",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 4879.000000000007,
+        "y": 2490,
+        "hp": 1522,
+        "round": 5
+      },
+      "end": {
+        "x": 6464.045798603086,
+        "y": 2590,
+        "support": "a3-foundation",
+        "round": 6,
+        "moveLeft": 756.499999999909
+      },
+      "counts": {
+        "ticks": 1295,
+        "jumps": 2,
+        "waits": 1,
+        "walkCost": 1965.1872663626636,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 2115.1872663626636,
+      "turnEquivalent": 1.11678313957902,
+      "events": [
+        {
+          "op": "wait",
+          "x": 5845.212465269696,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 9.820144291271504
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 5845.212465269696,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 9.820144291271504
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 5845.212465269696,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 9.820144291271504
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 5845.212465269696,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 9.820144291271504
+        },
+        {
+          "op": "jump",
+          "x": 6157.920798603058,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1150.7916666666051
+        },
+        {
+          "op": "jump",
+          "x": 6151.337465269724,
+          "y": 2420,
+          "support": "s28-roof-access-water",
+          "round": 6,
+          "moveLeft": 1069.2083333332712
+        },
+        {
+          "op": "drop",
+          "x": 6464.045798603086,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 6,
+          "moveLeft": 756.499999999909
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 6210,
+            "y": 2590
+          },
+          "x": 6204.004131936395,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1535.2083333333003
+        },
+        {
+          "goal": {
+            "x": 6340,
+            "y": 2590
+          },
+          "x": 6335.670798603074,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1403.5416666666215
+        },
+        {
+          "goal": {
+            "x": 6150,
+            "y": 2420
+          },
+          "x": 6151.337465269724,
+          "y": 2420,
+          "support": "s28-roof-access-water",
+          "round": 6,
+          "moveLeft": 1144.2083333332712
+        },
+        {
+          "goal": {
+            "x": 6150,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0"
+          },
+          "x": 6151.337465269724,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 6,
+          "moveLeft": 1069.2083333332712
+        },
+        {
+          "goal": {
+            "x": 6340,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0"
+          },
+          "x": 6335.670798603074,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 6,
+          "moveLeft": 884.8749999999209
+        },
+        {
+          "goal": {
+            "x": 6470,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0",
+            "drop": true
+          },
+          "x": 6464.045798603086,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 6,
+          "moveLeft": 756.499999999909
+        },
+        {
+          "goal": {
+            "x": 6470,
+            "y": 2590
+          },
+          "x": 6464.045798603086,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 756.499999999909
+        }
+      ]
+    },
+    {
+      "cls": "occultist",
+      "roof": "west-clerks-wing",
+      "label": "west-clerks-wing",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 460,
+        "y": 2700,
+        "hp": 1144,
+        "round": 1
+      },
+      "end": {
+        "x": 1154.7083333333371,
+        "y": 2651.4841269841263,
+        "support": "a3-foundation",
+        "round": 1,
+        "moveLeft": 495.2789984676874
+      },
+      "counts": {
+        "ticks": 775,
+        "jumps": 2,
+        "waits": 0,
+        "walkCost": 1188.7210015323114,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 1338.7210015323114,
+      "turnEquivalent": 0.7299460204647281,
+      "events": [
+        {
+          "op": "jump",
+          "x": 789.1480007661653,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 954.1353325671898
+        },
+        {
+          "op": "jump",
+          "x": 780,
+          "y": 2515,
+          "support": "s28-roof-access-west",
+          "round": 1,
+          "moveLeft": 869.9873318010245
+        },
+        {
+          "op": "drop",
+          "x": 1154.7083333333371,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 1,
+          "moveLeft": 495.2789984676874
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 900,
+            "y": 2700
+          },
+          "x": 896.6166666666657,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1397.3833333333496
+        },
+        {
+          "goal": {
+            "x": 1030,
+            "y": 2675.2380952380954
+          },
+          "x": 1024.7632201658741,
+          "y": 2676.235577111262,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1266.9936659005182
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2515
+          },
+          "x": 780,
+          "y": 2515,
+          "support": "s28-roof-access-west",
+          "round": 1,
+          "moveLeft": 944.9873318010245
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0"
+          },
+          "x": 780,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 1,
+          "moveLeft": 869.9873318010245
+        },
+        {
+          "goal": {
+            "x": 1030,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0"
+          },
+          "x": 1024.3749999999995,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 1,
+          "moveLeft": 625.612331801025
+        },
+        {
+          "goal": {
+            "x": 1160,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0",
+            "drop": true
+          },
+          "x": 1154.7083333333371,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 1,
+          "moveLeft": 495.2789984676874
+        },
+        {
+          "goal": {
+            "x": 1160,
+            "y": 2650.4761904761904
+          },
+          "x": 1154.7083333333371,
+          "y": 2651.4841269841263,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 495.2789984676874
+        }
+      ]
+    },
+    {
+      "cls": "occultist",
+      "roof": "raised-open-record-hall",
+      "label": "raised-open-record-hall",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 1154.7083333333371,
+        "y": 2651.4841269841263,
+        "hp": 1144,
+        "round": 1
+      },
+      "end": {
+        "x": 3885.716666666649,
+        "y": 2380,
+        "support": "a3-foundation",
+        "round": 3,
+        "moveLeft": 258.51048755003535
+      },
+      "counts": {
+        "ticks": 2147,
+        "jumps": 3,
+        "waits": 2,
+        "walkCost": 3660.7608077897485,
+        "jumpCost": 225,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 3885.7608077897485,
+      "turnEquivalent": 2.118735445904988,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1637.2282264266944,
+          "y": 2620,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 9.78733180100511
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 1637.2282264266944,
+          "y": 2620,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 9.78733180100511
+        },
+        {
+          "op": "wait",
+          "x": 3429.7833920791572,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.220371326900732
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 3429.7833920791572,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.220371326900732
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 3429.7833920791572,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.220371326900732
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 3429.7833920791572,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 9.220371326900732
+        },
+        {
+          "op": "jump",
+          "x": 3319.064512450005,
+          "y": 2403.428693764472,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 993.2916666666895
+        },
+        {
+          "op": "jump",
+          "x": 3401.23333333333,
+          "y": 2220,
+          "support": "s28-roof-access-court-lower",
+          "round": 3,
+          "moveLeft": 817.9938208833544
+        },
+        {
+          "op": "jump",
+          "x": 3410,
+          "y": 2050,
+          "support": "s28-roof-access-court-upper",
+          "round": 3,
+          "moveLeft": 734.2271542166843
+        },
+        {
+          "op": "drop",
+          "x": 3885.716666666649,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 3,
+          "moveLeft": 258.51048755003535
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 3630,
+            "y": 2380
+          },
+          "x": 3625.28339207915,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1638.5000000000073
+        },
+        {
+          "goal": {
+            "x": 3760,
+            "y": 2380
+          },
+          "x": 3755.6167254124784,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1508.1666666666788
+        },
+        {
+          "goal": {
+            "x": 3310,
+            "y": 2220
+          },
+          "x": 3310,
+          "y": 2220,
+          "support": "s28-roof-access-court-lower",
+          "round": 3,
+          "moveLeft": 984.2271542166843
+        },
+        {
+          "goal": {
+            "x": 3410,
+            "y": 2050
+          },
+          "x": 3410,
+          "y": 2050,
+          "support": "s28-roof-access-court-upper",
+          "round": 3,
+          "moveLeft": 809.2271542166843
+        },
+        {
+          "goal": {
+            "x": 3410,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0"
+          },
+          "x": 3410,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 3,
+          "moveLeft": 734.2271542166843
+        },
+        {
+          "goal": {
+            "x": 3760,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0"
+          },
+          "x": 3755.3833333333205,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 3,
+          "moveLeft": 388.84382088336383
+        },
+        {
+          "goal": {
+            "x": 3890,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0",
+            "drop": true
+          },
+          "x": 3885.716666666649,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 3,
+          "moveLeft": 258.51048755003535
+        },
+        {
+          "goal": {
+            "x": 3890,
+            "y": 2380
+          },
+          "x": 3885.716666666649,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 258.51048755003535
+        }
+      ]
+    },
+    {
+      "cls": "occultist",
+      "roof": "east-record-annex",
+      "label": "east-record-annex",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 3885.716666666649,
+        "y": 2380,
+        "hp": 1144,
+        "round": 3
+      },
+      "end": {
+        "x": 4878.199999999997,
+        "y": 2490,
+        "support": "a3-foundation",
+        "round": 5,
+        "moveLeft": 1684
+      },
+      "counts": {
+        "ticks": 2437,
+        "jumps": 6,
+        "waits": 2,
+        "walkCost": 1123.1387056693277,
+        "jumpCost": 450,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 1573.1387056693277,
+      "turnEquivalent": 0.8577637435492518,
+      "events": [
+        {
+          "op": "wait",
+          "x": 4136.608333333306,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.618820883378021
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 4136.608333333306,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.618820883378021
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 4136.608333333306,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.618820883378021
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 4136.608333333306,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.618820883378021
+        },
+        {
+          "op": "drop",
+          "x": 4612.104511261193,
+          "y": 2384.698995011194,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 1319.0817830694639
+        },
+        {
+          "op": "jump",
+          "x": 4791.312844594519,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1064.8734497361372
+        },
+        {
+          "op": "jump",
+          "x": 4800,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 981.1862943306567
+        },
+        {
+          "op": "jump",
+          "x": 4800,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 4,
+          "moveLeft": 906.1862943306567
+        },
+        {
+          "op": "drop",
+          "x": 4874.941666666664,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 4,
+          "moveLeft": 740.0112943306628
+        },
+        {
+          "op": "drop",
+          "x": 4878.199999999997,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 4,
+          "moveLeft": 736.7529609973296
+        },
+        {
+          "op": "jump",
+          "x": 4878.199999999997,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 661.7529609973296
+        },
+        {
+          "op": "drop",
+          "x": 4878.199999999997,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 4,
+          "moveLeft": 661.7529609973296
+        },
+        {
+          "op": "wait",
+          "x": 4878.199999999997,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 661.7529609973296
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 4878.199999999997,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 661.7529609973296
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 4878.199999999997,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 661.7529609973296
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 4878.199999999997,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 661.7529609973296
+        },
+        {
+          "op": "jump",
+          "x": 4878.199999999997,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 5,
+          "moveLeft": 1759
+        },
+        {
+          "op": "drop",
+          "x": 4878.199999999997,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 5,
+          "moveLeft": 1759
+        },
+        {
+          "op": "jump",
+          "x": 4878.199999999997,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 5,
+          "moveLeft": 1684
+        },
+        {
+          "op": "drop",
+          "x": 4878.199999999997,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 5,
+          "moveLeft": 1684
+        },
+        {
+          "op": "drop",
+          "x": 4878.199999999997,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 5,
+          "moveLeft": 1684
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 4620,
+            "y": 2490
+          },
+          "x": 4615.362844594526,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1315.8234497361307
+        },
+        {
+          "goal": {
+            "x": 4750,
+            "y": 2490
+          },
+          "x": 4745.6961779278545,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1185.4901164028022
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2340
+          },
+          "x": 4800,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 4,
+          "moveLeft": 1056.1862943306567
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2240
+          },
+          "x": 4800,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 4,
+          "moveLeft": 981.1862943306567
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0"
+          },
+          "x": 4800,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 4,
+          "moveLeft": 906.1862943306567
+        },
+        {
+          "goal": {
+            "x": 4750,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0"
+          },
+          "x": 4754.383333333335,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 4,
+          "moveLeft": 860.5696276639917
+        },
+        {
+          "goal": {
+            "x": 4880,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0",
+            "drop": true
+          },
+          "x": 4874.941666666664,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 4,
+          "moveLeft": 740.0112943306628
+        },
+        {
+          "goal": {
+            "x": 4880,
+            "y": 2490
+          },
+          "x": 4878.199999999997,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1684
+        }
+      ]
+    },
+    {
+      "cls": "occultist",
+      "roof": "water-yard-shed",
+      "label": "water-yard-shed",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 4878.199999999997,
+        "y": 2490,
+        "hp": 1144,
+        "round": 5
+      },
+      "end": {
+        "x": 6466.623572439633,
+        "y": 2590,
+        "support": "a3-foundation",
+        "round": 6,
+        "moveLeft": 1361.425000000012
+      },
+      "counts": {
+        "ticks": 1303,
+        "jumps": 2,
+        "waits": 1,
+        "walkCost": 1971.3483735325103,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 2121.3483735325103,
+      "turnEquivalent": 1.1566785024713797,
+      "events": [
+        {
+          "op": "wait",
+          "x": 6157.081905772978,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 35.226626467477786
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 6157.081905772978,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 35.226626467477786
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 6157.081905772978,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 35.226626467477786
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 6157.081905772978,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 35.226626467477786
+        },
+        {
+          "op": "jump",
+          "x": 6157.081905772978,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1759
+        },
+        {
+          "op": "jump",
+          "x": 6150.565239106311,
+          "y": 2420,
+          "support": "s28-roof-access-water",
+          "round": 6,
+          "moveLeft": 1677.4833333333336
+        },
+        {
+          "op": "drop",
+          "x": 6466.623572439633,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 6,
+          "moveLeft": 1361.425000000012
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 6210,
+            "y": 2590
+          },
+          "x": 6205.956905772976,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 344.76829313413293
+        },
+        {
+          "goal": {
+            "x": 6340,
+            "y": 2590
+          },
+          "x": 6336.290239106304,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 214.43495980080445
+        },
+        {
+          "goal": {
+            "x": 6150,
+            "y": 2420
+          },
+          "x": 6150.565239106311,
+          "y": 2420,
+          "support": "s28-roof-access-water",
+          "round": 6,
+          "moveLeft": 1752.4833333333336
+        },
+        {
+          "goal": {
+            "x": 6150,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0"
+          },
+          "x": 6150.565239106311,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 6,
+          "moveLeft": 1677.4833333333336
+        },
+        {
+          "goal": {
+            "x": 6340,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0"
+          },
+          "x": 6336.290239106304,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 6,
+          "moveLeft": 1491.7583333333405
+        },
+        {
+          "goal": {
+            "x": 6470,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0",
+            "drop": true
+          },
+          "x": 6466.623572439633,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 6,
+          "moveLeft": 1361.425000000012
+        },
+        {
+          "goal": {
+            "x": 6470,
+            "y": 2590
+          },
+          "x": 6466.623572439633,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1361.425000000012
+        }
+      ]
+    },
+    {
+      "cls": "archer",
+      "roof": "west-clerks-wing",
+      "label": "west-clerks-wing",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 6043.333333333393,
+        "y": 2590,
+        "hp": 935,
+        "round": 1
+      },
+      "end": {
+        "x": 1154.2413392769242,
+        "y": 2651.573078232967,
+        "support": "a3-foundation",
+        "round": 5,
+        "moveLeft": 1013.9999999999898
+      },
+      "counts": {
+        "ticks": 3448,
+        "jumps": 2,
+        "waits": 3,
+        "walkCost": 5950.269364628349,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 6100.269364628349,
+      "turnEquivalent": 3.4194335003522136,
+      "events": [
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 6043.333333333393,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1127.333333333393
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 6043.333333333393,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1127.333333333393
+        },
+        {
+          "op": "wait",
+          "x": 4289.571181298742,
+          "y": 2413.4800831746156,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 7.333333333379329
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 4289.571181298742,
+          "y": 2413.4800831746156,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 7.333333333379329
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 4289.571181298742,
+          "y": 2413.4800831746156,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 7.333333333379329
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 4289.571181298742,
+          "y": 2413.4800831746156,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 7.333333333379329
+        },
+        {
+          "op": "wait",
+          "x": 2533.7151682237104,
+          "y": 2491.634056261835,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.333333333288507
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 2533.7151682237104,
+          "y": 2491.634056261835,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.333333333288507
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 2533.7151682237104,
+          "y": 2491.634056261835,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.333333333288507
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 2533.7151682237104,
+          "y": 2491.634056261835,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 7.333333333288507
+        },
+        {
+          "op": "wait",
+          "x": 1025.3215210037793,
+          "y": 2676.1292340945183,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 7.06396870491423
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 1025.3215210037793,
+          "y": 2676.1292340945183,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 7.06396870491423
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 1025.3215210037793,
+          "y": 2676.1292340945183,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 7.06396870491423
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 1025.3215210037793,
+          "y": 2676.1292340945183,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 7.06396870491423
+        },
+        {
+          "op": "jump",
+          "x": 787.5746726102578,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1468.9999999999982
+        },
+        {
+          "op": "jump",
+          "x": 780.9080059435911,
+          "y": 2515,
+          "support": "s28-roof-access-west",
+          "round": 5,
+          "moveLeft": 1387.3333333333312
+        },
+        {
+          "op": "drop",
+          "x": 1154.2413392769242,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 5,
+          "moveLeft": 1013.9999999999898
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 900,
+            "y": 2700
+          },
+          "x": 904.1664311450065,
+          "y": 2699.206394067618,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 130.3973020382485
+        },
+        {
+          "goal": {
+            "x": 1030,
+            "y": 2675.2380952380954
+          },
+          "x": 1025.3215210037793,
+          "y": 2676.1292340945183,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 7.06396870491423
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2515
+          },
+          "x": 780.9080059435911,
+          "y": 2515,
+          "support": "s28-roof-access-west",
+          "round": 5,
+          "moveLeft": 1462.3333333333312
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0"
+          },
+          "x": 780.9080059435911,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 5,
+          "moveLeft": 1387.3333333333312
+        },
+        {
+          "goal": {
+            "x": 1030,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0"
+          },
+          "x": 1024.2413392769272,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 5,
+          "moveLeft": 1143.9999999999868
+        },
+        {
+          "goal": {
+            "x": 1160,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0",
+            "drop": true
+          },
+          "x": 1154.2413392769242,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 5,
+          "moveLeft": 1013.9999999999898
+        },
+        {
+          "goal": {
+            "x": 1160,
+            "y": 2650.4761904761904
+          },
+          "x": 1154.2413392769242,
+          "y": 2651.573078232967,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 1013.9999999999898
+        }
+      ]
+    },
+    {
+      "cls": "archer",
+      "roof": "raised-open-record-hall",
+      "label": "raised-open-record-hall",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 1154.2413392769242,
+        "y": 2651.573078232967,
+        "hp": 935,
+        "round": 5
+      },
+      "end": {
+        "x": 3886.6666666666883,
+        "y": 2380,
+        "support": "a3-foundation",
+        "round": 7,
+        "moveLeft": 679.8789653604406
+      },
+      "counts": {
+        "ticks": 2278,
+        "jumps": 3,
+        "waits": 2,
+        "walkCost": 3662.551562801395,
+        "jumpCost": 225,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 3887.551562801395,
+      "turnEquivalent": 2.1791208311667014,
+      "events": [
+        {
+          "op": "wait",
+          "x": 2154.173795424381,
+          "y": 2590.314813189661,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 7.291402837824806
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 2154.173795424381,
+          "y": 2590.314813189661,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 7.291402837824806
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 2154.173795424381,
+          "y": 2590.314813189661,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 7.291402837824806
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 2154.173795424381,
+          "y": 2590.314813189661,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 7.291402837824806
+        },
+        {
+          "op": "wait",
+          "x": 3609.133901440294,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 7.278069000330106
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 3609.133901440294,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 7.278069000330106
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 3609.133901440294,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 7.278069000330106
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 3609.133901440294,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 7.278069000330106
+        },
+        {
+          "op": "jump",
+          "x": 3319.12103463953,
+          "y": 2403.412332078031,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1415.666666666659
+        },
+        {
+          "op": "jump",
+          "x": 3400.000000000004,
+          "y": 2220,
+          "support": "s28-roof-access-court-lower",
+          "round": 7,
+          "moveLeft": 1241.5456320271248
+        },
+        {
+          "op": "jump",
+          "x": 3410,
+          "y": 2050,
+          "support": "s28-roof-access-court-upper",
+          "round": 7,
+          "moveLeft": 1156.545632027129
+        },
+        {
+          "op": "drop",
+          "x": 3886.6666666666883,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 7,
+          "moveLeft": 679.8789653604406
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 3630,
+            "y": 2380
+          },
+          "x": 3625.8005681069612,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 283.94473566700935
+        },
+        {
+          "goal": {
+            "x": 3760,
+            "y": 2380
+          },
+          "x": 3755.800568106967,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 153.94473566700344
+        },
+        {
+          "goal": {
+            "x": 3310,
+            "y": 2220
+          },
+          "x": 3310,
+          "y": 2220,
+          "support": "s28-roof-access-court-lower",
+          "round": 7,
+          "moveLeft": 1406.545632027129
+        },
+        {
+          "goal": {
+            "x": 3410,
+            "y": 2050
+          },
+          "x": 3410,
+          "y": 2050,
+          "support": "s28-roof-access-court-upper",
+          "round": 7,
+          "moveLeft": 1231.545632027129
+        },
+        {
+          "goal": {
+            "x": 3410,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0"
+          },
+          "x": 3410,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 7,
+          "moveLeft": 1156.545632027129
+        },
+        {
+          "goal": {
+            "x": 3760,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0"
+          },
+          "x": 3756.6666666666824,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 7,
+          "moveLeft": 809.8789653604465
+        },
+        {
+          "goal": {
+            "x": 3890,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0",
+            "drop": true
+          },
+          "x": 3886.6666666666883,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 7,
+          "moveLeft": 679.8789653604406
+        },
+        {
+          "goal": {
+            "x": 3890,
+            "y": 2380
+          },
+          "x": 3886.6666666666883,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 679.8789653604406
+        }
+      ]
+    },
+    {
+      "cls": "archer",
+      "roof": "east-record-annex",
+      "label": "east-record-annex",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 3756.6666666666824,
+        "y": 2380,
+        "hp": 935,
+        "round": 8
+      },
+      "end": {
+        "x": 4879.999999999993,
+        "y": 2490,
+        "support": "a3-foundation",
+        "round": 9,
+        "moveLeft": 1151.0548640657544
+      },
+      "counts": {
+        "ticks": 2037,
+        "jumps": 6,
+        "waits": 1,
+        "walkCost": 1233.097271161007,
+        "jumpCost": 450,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 1683.097271161007,
+      "turnEquivalent": 0.9434401744176049,
+      "events": [
+        {
+          "op": "wait",
+          "x": 4790.388197399072,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 52.22822014110113
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 4790.388197399072,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 52.22822014110113
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 4790.388197399072,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 52.22822014110113
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 4790.388197399072,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 52.22822014110113
+        },
+        {
+          "op": "jump",
+          "x": 4790.388197399072,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 9,
+          "moveLeft": 1709
+        },
+        {
+          "op": "jump",
+          "x": 4800,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 9,
+          "moveLeft": 1624.388197399072
+        },
+        {
+          "op": "jump",
+          "x": 4800,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 9,
+          "moveLeft": 1549.388197399072
+        },
+        {
+          "op": "drop",
+          "x": 4876.66666666666,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 9,
+          "moveLeft": 1379.3881973990874
+        },
+        {
+          "op": "drop",
+          "x": 4879.999999999993,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 9,
+          "moveLeft": 1376.0548640657544
+        },
+        {
+          "op": "jump",
+          "x": 4879.999999999993,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 9,
+          "moveLeft": 1301.0548640657544
+        },
+        {
+          "op": "drop",
+          "x": 4879.999999999993,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 9,
+          "moveLeft": 1301.0548640657544
+        },
+        {
+          "op": "jump",
+          "x": 4879.999999999993,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 9,
+          "moveLeft": 1226.0548640657544
+        },
+        {
+          "op": "drop",
+          "x": 4879.999999999993,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 9,
+          "moveLeft": 1226.0548640657544
+        },
+        {
+          "op": "jump",
+          "x": 4879.999999999993,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 9,
+          "moveLeft": 1151.0548640657544
+        },
+        {
+          "op": "drop",
+          "x": 4879.999999999993,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 9,
+          "moveLeft": 1151.0548640657544
+        },
+        {
+          "op": "drop",
+          "x": 4879.999999999993,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 9,
+          "moveLeft": 1151.0548640657544
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 4620,
+            "y": 2490
+          },
+          "x": 4617.054864065754,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 225.5615534744187
+        },
+        {
+          "goal": {
+            "x": 4750,
+            "y": 2490
+          },
+          "x": 4747.054864065743,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 95.56155347443053
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2340
+          },
+          "x": 4800,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 9,
+          "moveLeft": 1699.388197399072
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2240
+          },
+          "x": 4800,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 9,
+          "moveLeft": 1624.388197399072
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0"
+          },
+          "x": 4800,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 9,
+          "moveLeft": 1549.388197399072
+        },
+        {
+          "goal": {
+            "x": 4750,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0"
+          },
+          "x": 4753.333333333338,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 9,
+          "moveLeft": 1502.7215307324095
+        },
+        {
+          "goal": {
+            "x": 4880,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0",
+            "drop": true
+          },
+          "x": 4876.66666666666,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 9,
+          "moveLeft": 1379.3881973990874
+        },
+        {
+          "goal": {
+            "x": 4880,
+            "y": 2490
+          },
+          "x": 4879.999999999993,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 9,
+          "moveLeft": 1151.0548640657544
+        }
+      ]
+    },
+    {
+      "cls": "archer",
+      "roof": "water-yard-shed",
+      "label": "water-yard-shed",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 4879.999999999993,
+        "y": 2490,
+        "hp": 935,
+        "round": 9
+      },
+      "end": {
+        "x": 6465.191865573725,
+        "y": 2590,
+        "support": "a3-foundation",
+        "round": 10,
+        "moveLeft": 814.0000000000746
+      },
+      "counts": {
+        "ticks": 1287,
+        "jumps": 2,
+        "waits": 1,
+        "walkCost": 1963.333333333256,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 2113.3333333332557,
+      "turnEquivalent": 1.184603886397565,
+      "events": [
+        {
+          "op": "wait",
+          "x": 6011.858532240433,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 9,
+          "moveLeft": 7.7215307324228775
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-mage",
+          "x": 6011.858532240433,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 9,
+          "moveLeft": 7.7215307324228775
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 6011.858532240433,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 9,
+          "moveLeft": 7.7215307324228775
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 6011.858532240433,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 9,
+          "moveLeft": 7.7215307324228775
+        },
+        {
+          "op": "jump",
+          "x": 6158.525198907087,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 10,
+          "moveLeft": 1209.0000000000455
+        },
+        {
+          "op": "jump",
+          "x": 6151.858532240421,
+          "y": 2420,
+          "support": "s28-roof-access-water",
+          "round": 10,
+          "moveLeft": 1127.3333333333794
+        },
+        {
+          "op": "drop",
+          "x": 6465.191865573725,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 10,
+          "moveLeft": 814.0000000000746
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 6210,
+            "y": 2590
+          },
+          "x": 6205.191865573749,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 10,
+          "moveLeft": 1590.6666666666843
+        },
+        {
+          "goal": {
+            "x": 6340,
+            "y": 2590
+          },
+          "x": 6335.191865573737,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 10,
+          "moveLeft": 1460.666666666696
+        },
+        {
+          "goal": {
+            "x": 6150,
+            "y": 2420
+          },
+          "x": 6151.858532240421,
+          "y": 2420,
+          "support": "s28-roof-access-water",
+          "round": 10,
+          "moveLeft": 1202.3333333333794
+        },
+        {
+          "goal": {
+            "x": 6150,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0"
+          },
+          "x": 6151.858532240421,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 10,
+          "moveLeft": 1127.3333333333794
+        },
+        {
+          "goal": {
+            "x": 6340,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0"
+          },
+          "x": 6335.191865573737,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 10,
+          "moveLeft": 944.0000000000628
+        },
+        {
+          "goal": {
+            "x": 6470,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0",
+            "drop": true
+          },
+          "x": 6465.191865573725,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 10,
+          "moveLeft": 814.0000000000746
+        },
+        {
+          "goal": {
+            "x": 6470,
+            "y": 2590
+          },
+          "x": 6465.191865573725,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 10,
+          "moveLeft": 814.0000000000746
+        }
+      ]
+    },
+    {
+      "cls": "mage",
+      "roof": "west-clerks-wing",
+      "label": "west-clerks-wing",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 6540,
+        "y": 2590,
+        "hp": 998,
+        "round": 1
+      },
+      "end": {
+        "x": 1154.3179240342033,
+        "y": 2651.5584906601516,
+        "support": "a3-foundation",
+        "round": 4,
+        "moveLeft": 592.1166666666718
+      },
+      "counts": {
+        "ticks": 3364,
+        "jumps": 2,
+        "waits": 3,
+        "walkCost": 6453.009281976059,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 6603.009281976059,
+      "turnEquivalent": 3.660204701760565,
+      "events": [
+        {
+          "op": "wait",
+          "x": 4754.441467759716,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 6.966666666835977
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 4754.441467759716,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 6.966666666835977
+        },
+        {
+          "op": "wait",
+          "x": 2989.4395478177803,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 6.966666666633721
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 2989.4395478177803,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 6.966666666633721
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 2989.4395478177803,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 6.966666666633721
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 2989.4395478177803,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 6.966666666633721
+        },
+        {
+          "op": "wait",
+          "x": 1211.5499115015143,
+          "y": 2640.6571597139973,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 6.940718023605918
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 1211.5499115015143,
+          "y": 2640.6571597139973,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 6.940718023605918
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 1211.5499115015143,
+          "y": 2640.6571597139973,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 6.940718023605918
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 1211.5499115015143,
+          "y": 2640.6571597139973,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 6.940718023605918
+        },
+        {
+          "op": "jump",
+          "x": 789.8845907008717,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1050.4000000000033
+        },
+        {
+          "op": "jump",
+          "x": 780.4595907008718,
+          "y": 2515,
+          "support": "s28-roof-access-west",
+          "round": 4,
+          "moveLeft": 965.9750000000033
+        },
+        {
+          "op": "drop",
+          "x": 1154.3179240342033,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 4,
+          "moveLeft": 592.1166666666718
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 900,
+            "y": 2700
+          },
+          "x": 902.9318785504518,
+          "y": 2699.4415469427713,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1489.8333333333348
+        },
+        {
+          "goal": {
+            "x": 1030,
+            "y": 2675.2380952380954
+          },
+          "x": 1026.3790917308768,
+          "y": 2675.9277920512613,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1364.1666666666688
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2515
+          },
+          "x": 780.4595907008718,
+          "y": 2515,
+          "support": "s28-roof-access-west",
+          "round": 4,
+          "moveLeft": 1040.9750000000033
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0"
+          },
+          "x": 780.4595907008718,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 4,
+          "moveLeft": 965.9750000000033
+        },
+        {
+          "goal": {
+            "x": 1030,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0"
+          },
+          "x": 1025.5095907008706,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 4,
+          "moveLeft": 720.9250000000045
+        },
+        {
+          "goal": {
+            "x": 1160,
+            "y": 2343,
+            "support": "s28-west-clerks-wing-roof:collision:0",
+            "drop": true
+          },
+          "x": 1154.3179240342033,
+          "y": 2343,
+          "support": "s28-west-clerks-wing-roof:collision:0",
+          "round": 4,
+          "moveLeft": 592.1166666666718
+        },
+        {
+          "goal": {
+            "x": 1160,
+            "y": 2650.4761904761904
+          },
+          "x": 1154.3179240342033,
+          "y": 2651.5584906601516,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 592.1166666666718
+        }
+      ]
+    },
+    {
+      "cls": "mage",
+      "roof": "raised-open-record-hall",
+      "label": "raised-open-record-hall",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 1154.3179240342033,
+        "y": 2651.5584906601516,
+        "hp": 998,
+        "round": 4
+      },
+      "end": {
+        "x": 3884.3916666666987,
+        "y": 2380,
+        "support": "a3-foundation",
+        "round": 6,
+        "moveLeft": 298.54513900376355
+      },
+      "counts": {
+        "ticks": 2344,
+        "jumps": 3,
+        "waits": 2,
+        "walkCost": 3658.828737913653,
+        "jumpCost": 225,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 3883.828737913653,
+      "turnEquivalent": 2.1528984134776348,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1735.689131304611,
+          "y": 2620,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 7.7666666666724495
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 1735.689131304611,
+          "y": 2620,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 7.7666666666724495
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 1735.689131304611,
+          "y": 2620,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 7.7666666666724495
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 1735.689131304611,
+          "y": 2620,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 7.7666666666724495
+        },
+        {
+          "op": "wait",
+          "x": 3497.4885452014155,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 9.9761230825723
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 3497.4885452014155,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 9.9761230825723
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 3497.4885452014155,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 9.9761230825723
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 3497.4885452014155,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 5,
+          "moveLeft": 9.9761230825723
+        },
+        {
+          "op": "jump",
+          "x": 3318.6131943295004,
+          "y": 2403.5593384835656,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1031.5499999999627
+        },
+        {
+          "op": "jump",
+          "x": 3401.1083333333395,
+          "y": 2220,
+          "support": "s28-roof-access-court-lower",
+          "round": 6,
+          "moveLeft": 856.8284723371228
+        },
+        {
+          "op": "jump",
+          "x": 3410,
+          "y": 2050,
+          "support": "s28-roof-access-court-upper",
+          "round": 6,
+          "moveLeft": 772.9368056704623
+        },
+        {
+          "op": "drop",
+          "x": 3884.3916666666987,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 6,
+          "moveLeft": 298.54513900376355
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 3630,
+            "y": 2380
+          },
+          "x": 3626.2968785347575,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1675.191666666658
+        },
+        {
+          "goal": {
+            "x": 3760,
+            "y": 2380
+          },
+          "x": 3755.1052118680996,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 1546.383333333316
+        },
+        {
+          "goal": {
+            "x": 3310,
+            "y": 2220
+          },
+          "x": 3310,
+          "y": 2220,
+          "support": "s28-roof-access-court-lower",
+          "round": 6,
+          "moveLeft": 1022.9368056704623
+        },
+        {
+          "goal": {
+            "x": 3410,
+            "y": 2050
+          },
+          "x": 3410,
+          "y": 2050,
+          "support": "s28-roof-access-court-upper",
+          "round": 6,
+          "moveLeft": 847.9368056704623
+        },
+        {
+          "goal": {
+            "x": 3410,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0"
+          },
+          "x": 3410,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 6,
+          "moveLeft": 772.9368056704623
+        },
+        {
+          "goal": {
+            "x": 3760,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0"
+          },
+          "x": 3755.5833333333567,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 6,
+          "moveLeft": 427.3534723371056
+        },
+        {
+          "goal": {
+            "x": 3890,
+            "y": 1905,
+            "support": "s28-raised-open-record-hall-roof:collision:0",
+            "drop": true
+          },
+          "x": 3884.3916666666987,
+          "y": 1905,
+          "support": "s28-raised-open-record-hall-roof:collision:0",
+          "round": 6,
+          "moveLeft": 298.54513900376355
+        },
+        {
+          "goal": {
+            "x": 3890,
+            "y": 2380
+          },
+          "x": 3884.3916666666987,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 298.54513900376355
+        }
+      ]
+    },
+    {
+      "cls": "mage",
+      "roof": "east-record-annex",
+      "label": "east-record-annex",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 3884.3916666666987,
+        "y": 2380,
+        "hp": 998,
+        "round": 6
+      },
+      "end": {
+        "x": 4879.7789888838815,
+        "y": 2490,
+        "support": "a3-foundation",
+        "round": 8,
+        "moveLeft": 1729
+      },
+      "counts": {
+        "ticks": 2370,
+        "jumps": 6,
+        "waits": 2,
+        "walkCost": 1099.8435154929755,
+        "jumpCost": 450,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 1549.8435154929755,
+      "turnEquivalent": 0.8591150307610729,
+      "events": [
+        {
+          "op": "wait",
+          "x": 4173.42500000004,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 9.511805670422063
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 4173.42500000004,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 9.511805670422063
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 4173.42500000004,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 9.511805670422063
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 4173.42500000004,
+          "y": 2380,
+          "support": "a3-foundation",
+          "round": 6,
+          "moveLeft": 9.511805670422063
+        },
+        {
+          "op": "jump",
+          "x": 4791.812322217222,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1094.1231511736858
+        },
+        {
+          "op": "jump",
+          "x": 4798.0956555505545,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 7,
+          "moveLeft": 1012.8398178403529
+        },
+        {
+          "op": "jump",
+          "x": 4798.0956555505545,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 7,
+          "moveLeft": 937.8398178403529
+        },
+        {
+          "op": "drop",
+          "x": 4876.637322217215,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 7,
+          "moveLeft": 771.3314845070324
+        },
+        {
+          "op": "drop",
+          "x": 4879.7789888838815,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 7,
+          "moveLeft": 768.189817840366
+        },
+        {
+          "op": "jump",
+          "x": 4879.7789888838815,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 7,
+          "moveLeft": 693.189817840366
+        },
+        {
+          "op": "drop",
+          "x": 4879.7789888838815,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 7,
+          "moveLeft": 693.189817840366
+        },
+        {
+          "op": "jump",
+          "x": 4879.7789888838815,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 7,
+          "moveLeft": 618.189817840366
+        },
+        {
+          "op": "drop",
+          "x": 4879.7789888838815,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 7,
+          "moveLeft": 618.189817840366
+        },
+        {
+          "op": "wait",
+          "x": 4879.7789888838815,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 7,
+          "moveLeft": 618.189817840366
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 4879.7789888838815,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 7,
+          "moveLeft": 618.189817840366
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 4879.7789888838815,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 7,
+          "moveLeft": 618.189817840366
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 4879.7789888838815,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 7,
+          "moveLeft": 618.189817840366
+        },
+        {
+          "op": "jump",
+          "x": 4879.7789888838815,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 8,
+          "moveLeft": 1729
+        },
+        {
+          "op": "drop",
+          "x": 4879.7789888838815,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 8,
+          "moveLeft": 1729
+        },
+        {
+          "op": "drop",
+          "x": 4879.7789888838815,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 8,
+          "moveLeft": 1729
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 4620,
+            "y": 2490
+          },
+          "x": 4615.878988883902,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1345.0564845070055
+        },
+        {
+          "goal": {
+            "x": 4750,
+            "y": 2490
+          },
+          "x": 4744.687322217225,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 7,
+          "moveLeft": 1216.2481511736821
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2340
+          },
+          "x": 4798.0956555505545,
+          "y": 2340,
+          "support": "s28-east-loading-veranda",
+          "round": 7,
+          "moveLeft": 1087.839817840353
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2240
+          },
+          "x": 4798.0956555505545,
+          "y": 2240,
+          "support": "s28-roof-access-annex",
+          "round": 7,
+          "moveLeft": 1012.8398178403529
+        },
+        {
+          "goal": {
+            "x": 4800,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0"
+          },
+          "x": 4798.0956555505545,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 7,
+          "moveLeft": 937.8398178403529
+        },
+        {
+          "goal": {
+            "x": 4750,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0"
+          },
+          "x": 4754.112322217225,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 7,
+          "moveLeft": 893.856484507023
+        },
+        {
+          "goal": {
+            "x": 4880,
+            "y": 2118,
+            "support": "s28-east-record-annex-roof:collision:0",
+            "drop": true
+          },
+          "x": 4876.637322217215,
+          "y": 2118,
+          "support": "s28-east-record-annex-roof:collision:0",
+          "round": 7,
+          "moveLeft": 771.3314845070324
+        },
+        {
+          "goal": {
+            "x": 4880,
+            "y": 2490
+          },
+          "x": 4879.7789888838815,
+          "y": 2490,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 1729
+        }
+      ]
+    },
+    {
+      "cls": "mage",
+      "roof": "water-yard-shed",
+      "label": "water-yard-shed",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 4879.7789888838815,
+        "y": 2490,
+        "hp": 998,
+        "round": 8
+      },
+      "end": {
+        "x": 6464.285193214642,
+        "y": 2590,
+        "support": "a3-foundation",
+        "round": 9,
+        "moveLeft": 1330.4083333333583
+      },
+      "counts": {
+        "ticks": 1323,
+        "jumps": 2,
+        "waits": 1,
+        "walkCost": 1966.6976720902778,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 2116.6976720902776,
+      "turnEquivalent": 1.1733357384092449,
+      "events": [
+        {
+          "op": "wait",
+          "x": 6159.543526547999,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 85.89399457636387
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-archer",
+          "x": 6159.543526547999,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 85.89399457636387
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-knight",
+          "x": 6159.543526547999,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 85.89399457636387
+        },
+        {
+          "op": "party-wait",
+          "actor": "p-occultist",
+          "x": 6159.543526547999,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 85.89399457636387
+        },
+        {
+          "op": "jump",
+          "x": 6159.543526547999,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 9,
+          "moveLeft": 1729
+        },
+        {
+          "op": "jump",
+          "x": 6150.118526548,
+          "y": 2420,
+          "support": "s28-roof-access-water",
+          "round": 9,
+          "moveLeft": 1644.5750000000007
+        },
+        {
+          "op": "drop",
+          "x": 6464.285193214642,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 9,
+          "moveLeft": 1330.4083333333583
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 6210,
+            "y": 2590
+          },
+          "x": 6206.6685265479955,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 390.635661243007
+        },
+        {
+          "goal": {
+            "x": 6340,
+            "y": 2590
+          },
+          "x": 6335.476859881319,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 8,
+          "moveLeft": 261.8273279096836
+        },
+        {
+          "goal": {
+            "x": 6150,
+            "y": 2420
+          },
+          "x": 6150.118526548,
+          "y": 2420,
+          "support": "s28-roof-access-water",
+          "round": 9,
+          "moveLeft": 1719.5750000000007
+        },
+        {
+          "goal": {
+            "x": 6150,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0"
+          },
+          "x": 6150.118526548,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 9,
+          "moveLeft": 1644.5750000000007
+        },
+        {
+          "goal": {
+            "x": 6340,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0"
+          },
+          "x": 6335.476859881319,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 9,
+          "moveLeft": 1459.2166666666817
+        },
+        {
+          "goal": {
+            "x": 6470,
+            "y": 2258,
+            "support": "s28-water-yard-shed-roof:collision:0",
+            "drop": true
+          },
+          "x": 6464.285193214642,
+          "y": 2258,
+          "support": "s28-water-yard-shed-roof:collision:0",
+          "round": 9,
+          "moveLeft": 1330.4083333333583
+        },
+        {
+          "goal": {
+            "x": 6470,
+            "y": 2590
+          },
+          "x": 6464.285193214642,
+          "y": 2590,
+          "support": "a3-foundation",
+          "round": 9,
+          "moveLeft": 1330.4083333333583
+        }
+      ]
+    }
+  ]
+}

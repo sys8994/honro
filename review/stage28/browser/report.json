@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "entry": {
+        "id": 28,
+        "revision": 1,
+        "heroes": [
+          {
+            "cls": "archer",
+            "x": 6700,
+            "y": 2590
+          },
+          {
+            "cls": "mage",
+            "x": 6540,
+            "y": 2590
+          },
+          {
+            "cls": "knight",
+            "x": 300,
+            "y": 2700
+          },
+          {
+            "cls": "occultist",
+            "x": 460,
+            "y": 2700
+          }
+        ]
+      },
+      "finiteLiveMovement": {
+        "before": {
+          "x": 6700,
+          "move": 1784
+        },
+        "after": {
+          "x": 6299.999999999982,
+          "move": 1383.9999999999818
+        },
+        "hp": 935,
+        "phase": "aim"
+      },
+      "normalScene": "native normal battle R5 snapshot replayed in browser",
+      "evidenceScene": "isolated dispersed-reunion fixture; four laid items",
+      "roofScene": "enemy-free finite move/jump/drop fixture; roof landing"
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "entry": {
+        "id": 28,
+        "revision": 1,
+        "heroes": [
+          {
+            "cls": "archer",
+            "x": 6700,
+            "y": 2590
+          },
+          {
+            "cls": "mage",
+            "x": 6540,
+            "y": 2590
+          },
+          {
+            "cls": "knight",
+            "x": 300,
+            "y": 2700
+          },
+          {
+            "cls": "occultist",
+            "x": 460,
+            "y": 2700
+          }
+        ]
+      },
+      "finiteLiveMovement": {
+        "before": {
+          "x": 6700,
+          "move": 1784
+        },
+        "after": {
+          "x": 6299.999999999982,
+          "move": 1383.9999999999818
+        },
+        "hp": 935,
+        "phase": "aim"
+      },
+      "normalScene": "native normal battle R5 snapshot replayed in browser",
+      "evidenceScene": "isolated dispersed-reunion fixture; four laid items",
+      "roofScene": "enemy-free finite move/jump/drop fixture; roof landing"
+    },
+    {
+      "shell": "Workshop",
+      "stageView": true
+    }
+  ],
+  "errors": [],
+  "scope": "Real browser Canvas/HUD and finite Engine input; screenshots of declared native and noncombat snapshots are replay, not browser normal fullplay."
+}

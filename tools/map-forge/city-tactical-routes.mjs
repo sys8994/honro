@@ -54,7 +54,7 @@ function rearSupports(p,s,n){
 }
 export function applyCityTacticalRoutes(project){
  const p=clone(project);
- for(const s of p.stages){const n=s.metadata?.stageId,rows=CITY_TACTICAL_SURFACES[n];if(!rows||!s.metadata.campaign)continue;
+ for(const s of p.stages){const n=s.metadata?.stageId,rows=CITY_TACTICAL_SURFACES[n];if(!rows||!s.metadata.campaign||s.initialState?.honroRecordCourtRevision===1)continue;
   s.terrains=s.terrains.filter(t=>!t.properties?.honroCityTactical);
   s.terrains.push(...rows.filter(r=>!(r[4]>=250)).map(([id,top,oneWay,material,thickness])=>surface(n,id,top,oneWay,material,thickness)));
   // Low masonry is a real rise in the one canonical ground polygon, not a

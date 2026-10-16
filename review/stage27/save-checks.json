@@ -1,0 +1,9 @@
+{
+  "scope": "Production App export/import/Continue/retry with DOM and storage doubles",
+  "baseline": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+  "checks": [
+    "Old serialized terrain, enemies, objectives, void event, round and session retained",
+    "Explicit retry receives new cargo incline",
+    "New terrain survives subsequent Continue"
+  ]
+}

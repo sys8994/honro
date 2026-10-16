@@ -383,22 +383,22 @@
       "top": [
         [
           4830,
-          5240
+          5280
         ],
         [
           5110,
-          5240
+          5280
         ],
         [
           5400,
-          5220
+          5260
         ]
       ],
       "role": "oneWay-wood-deck",
       "state": "both",
       "oneWay": true,
       "depth": 58,
-      "note": "등불 지원용 작은 적재누마루. 밑면은 반사벽이 아니다."
+      "note": "기본 도약으로 선창에서 오르는 낮은 하역정자 지붕. 기존 oneWay와 탄 통과 규칙을 유지한다."
     },
     {
       "id": "sf-quay-east-loft",
@@ -1232,7 +1232,7 @@
           "id": "dw4",
           "kind": "lantern",
           "x": 4980,
-          "y": 5208.0,
+          "y": 5248.0,
           "support": "sf-quay-west-loft",
           "elite": false,
           "role": "rear-support",
@@ -1242,7 +1242,7 @@
           "id": "dw5",
           "kind": "lantern",
           "x": 5360,
-          "y": 5190.759,
+          "y": 5230.759,
           "support": "sf-quay-west-loft",
           "elite": false,
           "role": "rear-support",

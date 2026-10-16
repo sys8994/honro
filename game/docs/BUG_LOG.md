@@ -2993,3 +2993,75 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 집중 검사: 219/220/240/260px 경계 및 초과, 높이 150 경계 및 초과, 다른 층, 실제 확보자, 26장 주민 장부 인계, 반복 클릭, 확보 실패 시 완료 차단, 누락된 JSON 저장 복구, 실제 desktop/mobile reload/Continue 두 번, 정상 두 기록함 확보 후 대조, 기존 물증 회귀와 실제 22장 이동 경로. 전체 verify는 사용자 요청에 따라 재실행하지 않는다. 검수 이미지는 외부 전송하지 않는다.
 
 최종 집중 결과: 48개 경계/획득/복구 사례, 비필드 구 저장 불변, desktop/mobile 실제 Continue 복구와 재저장, 기존 물증 회귀, 실제 22장 CE→EF→FG 이동 경로 통과. 정확한 3개 런타임 소스 변경은 `evidence-pickup-p0-delta.json`으로 고정했으며 168 소스/9 빌드/두 HTML 계약 및 17개 신규 변조 거부 검사를 통과했다. 이전 먹귀·인양·필드 이야기 fixture는 변경하지 않았다.
+
+
+## 2026-10-15 — Stage23 집하장 미술 검수 후보 (branch only)
+- 기준 d7c1f84의 호송/화물/증원/필수 증언/물증 계약을 그대로 둔 `apply-stage23-refinement.mjs` overlay. 큰 사각 층단 대신 뒤 흙비탈과 낮은 기단, 열린 운반 레일/비탈 받침, 계량대와 선별대·지게를 편집 가능한 벡터로 작성.
+- `stage23-refinement`는 지형/적/초기상태/목표/다른29장 보존·idempotence 통과. 실제 Chromium PC/모바일 전후 및 Continue 증거는 사용자 요청에 따라 review/stage23에 보존.
+- 오래된 fullplay 정책이 옛 장부석에 머무는 문제를 최신 target NPC 위치를 따라가게 수정(게임 퀘스트 복원 없음). 정상 자원 검사는 진행 중이며 완주 아님.
+- 전체 verify의 역사 exact JSON 해시, 기존 cargo/bridge fixture 핀, runtime/tactics 실패는 미해결. old-save death-retry ledger 실패는 기준 캠페인 재주입에서도 재현. 공식 참고사진 실제 픽셀 접근403. 상세 제한 review/stage23/README.md. master/Pages 배포 없음.
+
+## 2026-10-16 — Stage23 지붕 접근 후보 (branch only)
+- 실제 기와 상면8개와 접근 발판8개를 기존 oneWay로 추가. 건물 내부, 기존 도로/호송/화물/적/목표는 보존. 새 물리 루프나 투사체 예외 없음.
+- 네 동행×여덟 지붕32개 유한 이동/기본점프/착지/drop 및 NPC 낮은 길 보행 통과. 실제 Chromium PC/모바일 비교와 Continue를 재캡처. Native 정상자원 관측은 지붕 추가 전 R40/160행동 제한 종료로 미완주. 기존 verify/acceptance 제한은 review/stage23/README.md 유지.
+
+
+## 2026-10-15 · 25장 수문 정비축 검수안
+
+수문 목재문짝/철제 가이드, 후면 하중 아치, 정비 권양기와 낮은 왕복 보행 석대를 추가했다. 다섯 진목 연결·현장 조사·적·목표 및 다른29장/기존자산은 exact 검사로 보존한다. 배면 암부와 정적 상향 수로 왜곡은 비충돌 배경이다. 검수PNG와 집중 회귀 결과는 review/stage25에 보존했다. 정상 진행 자동화는40행동 첫 연결에서 정체하여 완주로 인정하지 않는다. 공식사진 픽셀/Library 네트워크 차단과 승인 exact pin/정식 encounter gate는 남아 있으며 master/Pages 반영하지 않는다.
+
+### 2026-10-16 · 25장 최종 접근/정상 진행 보완
+
+삼각 받침 반복을 제거하고 석재면/장부보로 교체. 너무 높은 지붕에 접근계단을 붙이면 필수진목 우회가 가능하여 세 작업실 처마를 바닥위180으로 낮추고 기존단방향 규칙을 유지했다. 6기본접근·점프·하강·이탈 및2우회금지 검사, 기존M09실탄, 옛Continue/새Retry 통과. 최종맵 정상자원15라운드77입력 완주,세군집실효대응 원본은 review/stage25/resume-normal. 이미지승인대기해제·master부모조율대기. 공식사진403/Library네트워크제한과포괄encounter 증거미연결은구분해기록했다.
+
+
+## 2026-10-15 · 27장 수몰 집하장 검수 브랜치
+
+`terrain/stage27-depot`는 d7c1f84 기준의27장만 저작한다. 수몰 하역 구획·목재 맞춤·석재 부두와 실제100 높이 적재 경사면으로25장 수문축과 구분한다. 네 진목 연결과 관찰창, 목표 revision, 적 수/종류/증원, gallery-6 심부 사건·물방울·벽 함몰·2.8/1.8/.4 연출은 불변이다. 석재 배면기둥을 낙하 seam3850에서 옮겨 화면에서 기둥을 뚫고 내려가는 인상을 피했다.
+
+`review/stage27/README.md`에 Native 전체도와 실제 Game PC/mobile 검수 카메라, 전후 PNG 및 정확한 한계를 보존했다. 진목27사례·신규4보행·2실탄·낙하복구28·필수조우 runtime/browser·새/옛 App Continue 집중 검사는 통과했다. 기존 `act3-save-boundaries.mjs:73`의0!=1은 정확한 깨끗한 d7c1f84에도 재현된다. 공식 참고 픽셀 다운로드는 접근 차단, 정상 자원 전투 완주/성능/최종 encounter gate/전체 verify는 미실행이다. 사용자 미술 승인과 master/Pages 반영은 하지 않았으며 다른 장을 바꾸지 않았다.
+
+### 27장 심부 배경 후속
+
+사용자15:17 방향에 따라 기존 배면을 어둡게 낮추고, 심부 정상배율에 크게 보이는 어긋난 회랑·반복 하역구·틈 건너 기둥·옆/위로 굽는 정적 물띠·불일치 반사를 추가했다. `stage27-background-distortion` exact 검사에서 배경포인터와 collision빈 새자산 이외의 변경이 없다. 게임필드·중력·4진목·3050y trigger/support·2.8/1.8/.4 연출과 UI/audio 코드는 모두 동일하다. RAF고정·요청카메라assertion을 둔 실제PC/mobile 심부 PNG와 Native전체도를 `review/stage27/distortion-*`에 보존했다. 정상플레이 완주·유체애니메이션·사용자미술승인으로 보고하지 않는다.
+
+
+### 2026-10-15 · 28장 관아 기록 마당 검수 후보
+
+새 28장의 U자 지형을 중앙 대청·서쪽 서리길·동쪽 수방으로 재구성했다. 기존 양측 출발, 두 제어와 12턴 화재, 실물 증거/후속 자동 목표, 초기11/정예3/무증원 계약을 보존했다. 다른29장 및 진행 저장 지형은 바꾸지 않는다.
+
+합류 범위440에서 받아들인 물증 소유자가 별도260 검사로 누락되는 문제를 새 개편 맵에 한해 동일 sameFloor 판정으로 교정했다. 기존 영수증과 실제 걷기·전개·재포장을 사용한다. 정상 자원 Native R8/36행동 완주, 분산 물증 fixture, 새/구 Continue, PC/모바일 Canvas, 기존 P0/field evidence/fire-sites, 빌드/환경 검증 통과. 자세한 범위·PNG·원본 로그는 사용자 요청 경로 review/stage28/README.md에 있다. 브라우저 수동 완주/Workshop Playtest/전체 verify는 미실행, encounter gate와 미술 승인은 대기. 공식 이미지 픽셀 조사는 네트워크403/timeout으로 미충족이며 master/Pages에 배포하지 않았다.
+
+소유자 순서 반전 후속: 첫 물증 소유자+440/마지막-430이면 배치 목적지까지505/530px로 기존450 이동 한도에 걸려 실제 전개가 실패했다. 수정 전 실패를 재현하고 새 개편28장의 party-reunion만 maxDistance600으로 조정했다. 다른 장/구 저장/다른 연출450 유지. mirrored-owner-boundary 실제 걷기·전개·재포장 및 새/구 Continue, 기존 field-evidence/P0 48사례와 재빌드 통과.
+
+2026-10-16 지붕 후속: 기존 네 지붕의 oneWay를 켜고 실제 기본점프 범위에 맞춘 측면 점검발판5개를 추가했다. 건물 지상 통로/물리/탄 코드는 유지. 네 동행×네 지붕16개의 유한 이동/위통과/착지/능선이동/아래점프 퇴로 및 실제PC모바일PNG 확인. 최신 정상자원28장은 R12/56행동 성공(네명생존), 기존12턴 경계/물증 mirrored/Continue/탄플랫폼6그룹/빌드/환경30맵 통과. review/stage28/README.md와 roof/routes.json에 fixture 및 정상전투 범위 구분. 부모 통합대기, master/Pages 쓰기 없음.
+
+
+## 2026-10-15 · Stage29 record-court candidate, user image approval pending
+
+Stage29-only author `tools/map-forge/stage29-record-court.mjs` replaces the old warehouse with a retaining-wall record antechamber, one upper archive, exposed upper water-control road and covered lower inspection bridge. Existing two-turn seal → automatic letter → either exit contract, 22/5 roster, finite7 + hold2, four protagonists and P0 engine remain intact. Old saves own their complete serialized world. The current quest author gets only a Stage29 revision guard so it cannot reinsert obsolete diagonal exit geometry. Production regeneration reapplies the opted-in29 author after preserving its latest stage source.
+
+Actual basic round trips initially exposed automatic selection of the high ramp by the intended low route. Separating the high entry by a short basic-jump gap resolves all four-body/eight round trips; no skill requirement was introduced. Source isolation/idempotence/initial grounding, full old/fresh App Continue, automatic-evidence/single-arrival fixtures and5 basic projectile groups pass. A no-hidden-item ordinary-resource Native input run won at13 rounds/55 actions, four surviving heroes, all3 finite responses committed; no HP/position/objective/AI/win-loss overrides. This is not a browser/human difficulty verdict. Two HTML builds and30-map environment validation pass. Actual isolated-browser Game/mobile/Workshop screenshots are in `review/stage29` per explicit user delivery request. Automatic camera drift in the first capture was corrected by freezing frame and explicitly rendering the chosen camera.
+
+Official architecture image pixels remain unavailable after supported download CONNECT403; no bypass or pixel-observation claim. Formal encounter effect evidence, user art approval, full campaign/performance and public deployment remain separate. No master/Pages operation is authorized on this branch. See `review/stage29/README.md` for precise fixtures and evidence.
+
+## 29장 지붕 통과와 수문 구조 보완 · 2026-10-16
+
+- 원인: 서고·점검통로 지붕이 고체 지형이어서 아래 점프를 막았으며 높이430–440px로 기본 도약 약214px보다 높았다.
+- 변경: 해당 두 지붕만 기존 oneWay 발판으로 바꾸고 바닥 위200px로 낮췄다. 전실 목구조·서가·작업상, 수문 들문·문틀·받침돌, 아치 받침·큰 맞춤돌을 보완했다. 핵심 길/적/목표/저장/공통 엔진은 보존한다.
+- 집중 검증: 4체형×2지붕 아래 점프통과/상부착지/아래하강/접근이탈/상하투사체8사례, A/B8왕복, 자동 증거와1인탈출,5군집 기본탄,옛·새 Continue,환경30맵 통과. 실제 Chromium9캡처 오류0. 전체검사·성능·Pages는 반복하지 않았다. 정상자원 후보 재실행과 미술 최종 검수는 후속 증거로 기록한다.
+
+- 29장 후속: 낮은 용마루·들린 처마와 바닥까지 연결한 석재 아치 받침을 보완했다. 최종 지붕에서 정상자원/no-items Native App 입력43행동·10라운드 B탈출, 네 동행 생존,3유한증원 확인. 마지막 받침 SVG 연장만 이 실행 이후이며 비충돌 그림 변경이다. 로그 fingerprint는 실행 시점 그대로 보존했다.
+
+
+## 2026-10-15 · Stage30 선창·강둑 검수 브랜치 후보
+
+기준 d7c1f84의 30장 기존 고지/여울/선창 및 정착 뒤 낮은 퇴로/높은 철수로의 물리·목표·적·저장 계약을 보존하고, 선창 돌쌓기/목구조/호롱·짐배 갑판용도·실제 해안에 이어지는 후퇴 암면을 보강했다. runtime 물리나 정착 규칙은 변경하지 않았다. 사용자 이미지 승인이 아직 없으므로 master/Pages 반영 대상이 아니다. 독립 검수의 큰 부유 암반 지적 뒤 후면 지지면을 재작성했다. 실제 Chromium PC/모바일 캡처, source boundary, 정상자원 native R11 전원 생존/방어3/정착1/Continue2와 기준에서도 재현되는 오래된 fixture 실패를 `review/stage30/README.md`에 구분했다. 공식 참고 사진 픽셀 접근 실패와 encounter gate pending은 미충족으로 남긴다.
+후속 고지철수 검수: 최종 미술본 정상자원 high 경로 R11 전원 생존, 실제 cape/bank 고지 통과, 피해1015/소모품0/Continue2. 방어 후 원본 저장을 실제 Chromium에서 복구한 PC/모바일 HUD PNG도 보존했다. cape-watch는 auto/high 두 실행 모두 무행동으로 선택 고지 군집의 실효성 입증이 남아 있으며 전체 교전 완료로 보고하지 않는다.
+
+
+## 2026-10-16 · Stage30 선창 지붕 기본 진입
+
+서쪽 oneWay 지붕과 지면 사이230~250 간격이 기본 점프217.8을 넘었다. 새 맵의 지붕과 정확히 그 지붕을 지지면으로 쓰는 초기 적/증원만40 낮췄다. 기존 목재 발판 탄 규칙·oneWay·내려오기와 선박/목표/탈출 계약은 유지한다. 구조물 내부 solid 충돌은 추가하지 않았다. 저작 보정은 runtime에 로드하지 않으며 PC/모바일 실제 Continue에서 옛5220 지붕 저장의 전체 지형 보존을 확인했다.
+
+네 주인공×두 지붕8개 실제 물리 사례와 Chromium8프레임, Workshop PC/모바일, 보존 경계 및 build 통과. 지붕 변경 후 정상자원1회 검사도R15 전원 생존/피해2011/소모품0/방어3/정착1/Continue2로 완료했다. 보정 전R11/1178과 차이가 있으며 동일 난도 승인을 주장하지 않는다. 앞선 cape 접근 원본 실행은R17 승리/3생존, cape-watch 행동3/피해109로 선택경로 실효 교전 확인; 궁수 사망은 소단 아군 오사577이며 전원생존으로 보고하지 않는다. 사용자 개별 이미지 대기는 해제됐으나 master/Pages는 부모 단일 조정 대상이다. 공식 사진 픽셀·encounter gate pending 제약은 유지한다. 상세 증거 `review/stage30/README.md`.

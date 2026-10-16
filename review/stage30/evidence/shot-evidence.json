@@ -1,0 +1,2246 @@
+[
+  {
+    "round": 1,
+    "frame": 1095,
+    "turn": 1,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "mage",
+    "skill": "M04",
+    "target": "event-1",
+    "hpBefore": 1374,
+    "angle": 140.53169809090508,
+    "power": 0.49314532780320697,
+    "from": {
+      "x": 2710.5129279446596,
+      "y": 6254.102585588932
+    },
+    "tacticalReason": "equipped area reaches multiple bodies",
+    "predictedTargets": [
+      "event-1",
+      "event-2",
+      "event-3",
+      "event-4"
+    ],
+    "shot": 1,
+    "support": "sf-west-ford",
+    "predictedEnemyDamage": 383.0971161599999,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 2338,
+      "y": 6067.199462641712,
+      "unit": "event-2"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "event-2",
+        "side": 1,
+        "amount": 203,
+        "dead": false
+      },
+      {
+        "target": "event-3",
+        "side": 1,
+        "amount": 106,
+        "dead": false
+      },
+      {
+        "target": "event-1",
+        "side": 1,
+        "amount": 138,
+        "dead": false
+      },
+      {
+        "target": "event-2",
+        "side": 1,
+        "amount": 138,
+        "dead": false
+      },
+      {
+        "target": "event-3",
+        "side": 1,
+        "amount": 124,
+        "dead": false
+      },
+      {
+        "target": "event-4",
+        "side": 1,
+        "amount": 136,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 1,
+        "frame": 1223,
+        "shot": 1,
+        "owner": "p-mage",
+        "skill": "M04",
+        "x": 2338,
+        "y": 6067.199462641712,
+        "unit": "event-2"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 1,
+    "frame": 2256,
+    "turn": 2,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "knight",
+    "skill": "S09",
+    "target": "event-1",
+    "hpBefore": 1236,
+    "angle": 155.09882492476657,
+    "power": 0.9189825074332137,
+    "from": {
+      "x": 3296.9560195059153,
+      "y": 6227.78537317132
+    },
+    "tacticalReason": "equipped ranged blade after basic sword cannot reach",
+    "predictedTargets": [
+      "sf-b6"
+    ],
+    "shot": 2,
+    "support": "sf-west-ford",
+    "predictedEnemyDamage": 306,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "Exact-state isolated production S09 fire/stepProjectile; actual resources and geometry preserved in the live battle",
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-b6",
+        "side": 1,
+        "amount": 306,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [],
+    "actualGeometry": []
+  },
+  {
+    "round": 1,
+    "frame": 3181,
+    "turn": 3,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "occultist",
+    "skill": "O08",
+    "target": "sf-b3",
+    "hpBefore": 2129,
+    "angle": 92,
+    "power": 1,
+    "from": {
+      "x": 3139.358254011155,
+      "y": 6242.560163686454
+    },
+    "tacticalReason": "equipped manifestation for nearby companions",
+    "predictedTargets": [
+      "sf-b3",
+      "sf-b4"
+    ],
+    "shot": 3,
+    "support": "sf-west-ford",
+    "predictedEnemyDamage": 187.9385341381177,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 3032.9138633590096,
+      "y": 6244.843512797437,
+      "terrain": "sf-west-ford"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-b3",
+        "side": 1,
+        "amount": 173,
+        "dead": false
+      },
+      {
+        "target": "sf-b4",
+        "side": 1,
+        "amount": 226,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 1,
+        "frame": 3740,
+        "shot": 3,
+        "owner": "p-occultist",
+        "skill": "O08",
+        "x": 3032.9138316745666,
+        "y": 6244.843513787576,
+        "terrain": "sf-west-ford"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 2,
+    "frame": 5466,
+    "turn": 9,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "archer",
+    "skill": "A05",
+    "target": "event-1",
+    "hpBefore": 1236,
+    "angle": 109,
+    "power": 0.8800000000000001,
+    "from": {
+      "x": 3153.631321923646,
+      "y": 6241.2220635696585
+    },
+    "tacticalReason": "equipped archer technique has the stronger safe predicted shot",
+    "predictedTargets": [
+      "event-1"
+    ],
+    "shot": 7,
+    "support": "sf-west-ford",
+    "predictedEnemyDamage": 258.8544,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 2225,
+      "y": 6019.842096593595,
+      "unit": "event-1"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "event-1",
+        "side": 1,
+        "amount": 282,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 2,
+        "frame": 6027,
+        "shot": 7,
+        "owner": "p-archer",
+        "skill": "A05",
+        "x": 2225,
+        "y": 6019.842096593595,
+        "unit": "event-1"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 2,
+    "frame": 7014,
+    "turn": 10,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "mage",
+    "skill": "M04",
+    "target": "sf-de2",
+    "hpBefore": 1374,
+    "angle": 33.57617056516331,
+    "power": 0.7385163048496842,
+    "from": {
+      "x": 4596.77490006957,
+      "y": 5682.4471528756985
+    },
+    "tacticalReason": "equipped area reaches multiple bodies",
+    "predictedTargets": [
+      "sf-dw1",
+      "sf-dw7",
+      "sf-de8"
+    ],
+    "shot": 8,
+    "support": "sf-landing-west-stairs",
+    "predictedEnemyDamage": 276.60441599999996,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 4784.778491096879,
+      "y": 5513.5,
+      "unit": "sf-de8"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-de8",
+        "side": 1,
+        "amount": 178,
+        "dead": false
+      },
+      {
+        "target": "sf-dw1",
+        "side": 1,
+        "amount": 246,
+        "dead": false
+      },
+      {
+        "target": "sf-dw7",
+        "side": 1,
+        "amount": 124,
+        "dead": false
+      },
+      {
+        "target": "sf-de8",
+        "side": 1,
+        "amount": 136,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 2,
+        "frame": 7047,
+        "shot": 8,
+        "owner": "p-mage",
+        "skill": "M04",
+        "x": 4784.778491096879,
+        "y": 5513.5,
+        "unit": "sf-de8"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 2,
+    "frame": 8162,
+    "turn": 11,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "knight",
+    "skill": "S03",
+    "target": "sf-de2",
+    "hpBefore": 1374,
+    "angle": -2.0297912874797084,
+    "power": 1,
+    "from": {
+      "x": 5536.979921790591,
+      "y": 5470
+    },
+    "shot": 9,
+    "predictedTargets": [
+      "sf-de2",
+      "sf-de3"
+    ],
+    "predictedEnemyDamage": 862.42,
+    "predictionMethod": "shared representativeMelee gross sector estimate before armor/shield/crit",
+    "support": "sf-ferry-court",
+    "tacticalReason": "equipped broad sword sector reaches multiple bodies",
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-de2",
+        "side": 1,
+        "amount": 584,
+        "dead": false
+      },
+      {
+        "target": "sf-de3",
+        "side": 1,
+        "amount": 584,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [],
+    "actualGeometry": []
+  },
+  {
+    "round": 2,
+    "frame": 9209,
+    "turn": 12,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "occultist",
+    "skill": "O08",
+    "target": "sf-de2",
+    "hpBefore": 790,
+    "angle": 53,
+    "power": 0.54,
+    "from": {
+      "x": 5161.766376026775,
+      "y": 5470
+    },
+    "tacticalReason": "equipped manifestation for nearby companions",
+    "predictedTargets": [
+      "sf-de2",
+      "sf-de3"
+    ],
+    "shot": 10,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 304.5955376209878,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5729,
+      "y": 5406.212147765629,
+      "unit": "sf-de3"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-de2",
+        "side": 1,
+        "amount": 189,
+        "dead": false
+      },
+      {
+        "target": "sf-de3",
+        "side": 1,
+        "amount": 189,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 2,
+        "frame": 9459,
+        "shot": 10,
+        "owner": "p-occultist",
+        "skill": "O08",
+        "x": 5729,
+        "y": 5406.208412753354,
+        "unit": "sf-de3"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 3,
+    "frame": 10910,
+    "turn": 18,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "archer",
+    "skill": "A01",
+    "target": "sf-dw3",
+    "hpBefore": 1374,
+    "angle": 26,
+    "power": 0.28500000000000003,
+    "from": {
+      "x": 5041.829124835891,
+      "y": 5470
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-dw3"
+    ],
+    "shot": 12,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 309.18719999999996,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5416.083333333375,
+      "y": 5445.927559464895,
+      "unit": "sf-dw3"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-dw3",
+        "side": 1,
+        "amount": 292,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 3,
+        "frame": 11053,
+        "shot": 12,
+        "owner": "p-archer",
+        "skill": "A01",
+        "x": 5416.083333333375,
+        "y": 5445.927559464895,
+        "unit": "sf-dw3"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 3,
+    "frame": 11540,
+    "turn": 19,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "mage",
+    "skill": "M04",
+    "target": "sf-dw3",
+    "hpBefore": 1082,
+    "angle": 111,
+    "power": 0.2,
+    "from": {
+      "x": 5536.642030997872,
+      "y": 5470
+    },
+    "tacticalReason": "equipped area reaches multiple bodies",
+    "predictedTargets": [
+      "sf-dw3",
+      "sf-dw5",
+      "sf-dw6",
+      "sf-de2",
+      "event-22"
+    ],
+    "shot": 13,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 276.60441599999996,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5445.371830550403,
+      "y": 5376,
+      "unit": "sf-dw3"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-dw3",
+        "side": 1,
+        "amount": 172,
+        "dead": false
+      },
+      {
+        "target": "sf-dw3",
+        "side": 1,
+        "amount": 138,
+        "dead": false
+      },
+      {
+        "target": "sf-dw5",
+        "side": 1,
+        "amount": 127,
+        "dead": false
+      },
+      {
+        "target": "sf-dw6",
+        "side": 1,
+        "amount": 269,
+        "dead": false
+      },
+      {
+        "target": "sf-de2",
+        "side": 1,
+        "amount": 138,
+        "dead": false
+      },
+      {
+        "target": "event-22",
+        "side": 1,
+        "amount": 136,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 3,
+        "frame": 11663,
+        "shot": 13,
+        "owner": "p-mage",
+        "skill": "M04",
+        "x": 5445.371830550403,
+        "y": 5376,
+        "unit": "sf-dw3"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 3,
+    "frame": 11840,
+    "turn": 20,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "knight",
+    "skill": "S03",
+    "target": "sf-dw3",
+    "hpBefore": 772,
+    "angle": -13.331732037299522,
+    "power": 1,
+    "from": {
+      "x": 5423.064550260375,
+      "y": 5470
+    },
+    "shot": 14,
+    "predictedTargets": [
+      "sf-dw3",
+      "sf-de2"
+    ],
+    "predictedEnemyDamage": 862.42,
+    "predictionMethod": "shared representativeMelee gross sector estimate before armor/shield/crit",
+    "support": "sf-ferry-court",
+    "tacticalReason": "equipped broad sword sector reaches multiple bodies",
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-dw3",
+        "side": 1,
+        "amount": 552,
+        "dead": false
+      },
+      {
+        "target": "sf-de2",
+        "side": 1,
+        "amount": 463,
+        "dead": true
+      }
+    ],
+    "actualImpacts": [],
+    "actualGeometry": []
+  },
+  {
+    "round": 3,
+    "frame": 12005,
+    "turn": 21,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "occultist",
+    "skill": "O01",
+    "target": "sf-de3",
+    "hpBefore": 601,
+    "angle": 36,
+    "power": 0.23500000000000001,
+    "from": {
+      "x": 5273.636376026777,
+      "y": 5470
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-de3"
+    ],
+    "shot": 15,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 244.2640869599529,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5783.01732318346,
+      "y": 5366,
+      "unit": "sf-de3"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-de3",
+        "side": 1,
+        "amount": 92,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 3,
+        "frame": 12416,
+        "shot": 15,
+        "owner": "p-occultist",
+        "skill": "O01",
+        "x": 5783.01874869794,
+        "y": 5366,
+        "unit": "sf-de3"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 4,
+    "frame": 13453,
+    "turn": 27,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "archer",
+    "skill": "A01",
+    "target": "sf-dw3",
+    "hpBefore": 220,
+    "angle": 42,
+    "power": 0.2,
+    "from": {
+      "x": 5274.279748619342,
+      "y": 5470
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-dw3"
+    ],
+    "shot": 19,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 220,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5476.369056734265,
+      "y": 5379,
+      "unit": "sf-dw3"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-dw3",
+        "side": 1,
+        "amount": 220,
+        "dead": true
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 4,
+        "frame": 13566,
+        "shot": 19,
+        "owner": "p-archer",
+        "skill": "A01",
+        "x": 5476.369056734265,
+        "y": 5379,
+        "unit": "sf-dw3"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 4,
+    "frame": 13666,
+    "turn": 28,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "mage",
+    "skill": "M04",
+    "target": "sf-dw5",
+    "hpBefore": 972,
+    "angle": 120.66913973192402,
+    "power": 0.7128872393552423,
+    "from": {
+      "x": 5536.686092797352,
+      "y": 5470
+    },
+    "tacticalReason": "equipped area reaches multiple bodies",
+    "predictedTargets": [
+      "sf-dw5",
+      "event-21"
+    ],
+    "shot": 20,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 276.60441599999996,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5391,
+      "y": 5189.179852027599,
+      "unit": "sf-dw5"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-dw5",
+        "side": 1,
+        "amount": 166,
+        "dead": false
+      },
+      {
+        "target": "sf-dw5",
+        "side": 1,
+        "amount": 127,
+        "dead": false
+      },
+      {
+        "target": "event-21",
+        "side": 1,
+        "amount": 136,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 4,
+        "frame": 13714,
+        "shot": 20,
+        "owner": "p-mage",
+        "skill": "M04",
+        "x": 5391,
+        "y": 5189.179852027599,
+        "unit": "sf-dw5"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 4,
+    "frame": 13932,
+    "turn": 29,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "knight",
+    "skill": "S03",
+    "target": "event-22",
+    "hpBefore": 1238,
+    "angle": 181.35766284520548,
+    "power": 1,
+    "from": {
+      "x": 5776.897883593688,
+      "y": 5470
+    },
+    "shot": 21,
+    "predictedTargets": [
+      "sf-dw6",
+      "sf-de3",
+      "event-22"
+    ],
+    "predictedEnemyDamage": 1293.6299999999999,
+    "predictionMethod": "shared representativeMelee gross sector estimate before armor/shield/crit",
+    "support": "sf-ferry-court",
+    "tacticalReason": "equipped broad sword sector reaches multiple bodies",
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-dw6",
+        "side": 1,
+        "amount": 584,
+        "dead": false
+      },
+      {
+        "target": "sf-de3",
+        "side": 1,
+        "amount": 509,
+        "dead": true
+      },
+      {
+        "target": "event-22",
+        "side": 1,
+        "amount": 584,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [],
+    "actualGeometry": []
+  },
+  {
+    "round": 4,
+    "frame": 14146,
+    "turn": 30,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "occultist",
+    "skill": "O04",
+    "target": "event-22",
+    "hpBefore": 654,
+    "angle": 34,
+    "power": 0.2,
+    "from": {
+      "x": 5536.481376026785,
+      "y": 5470
+    },
+    "tacticalReason": "equipped terrain phase after basic line is blocked",
+    "predictedTargets": [
+      "event-22"
+    ],
+    "shot": 22,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 449.25184241321966,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5569.642878928987,
+      "y": 5389.67228386117,
+      "unit": "event-22"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "event-22",
+        "side": 1,
+        "amount": 412,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 4,
+        "frame": 14146,
+        "shot": 22,
+        "owner": "p-occultist",
+        "skill": "O04",
+        "x": 5569.642878928987,
+        "y": 5389.67228386117,
+        "unit": "event-22"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 5,
+    "frame": 14928,
+    "turn": 36,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "archer",
+    "skill": "A01",
+    "target": "event-22",
+    "hpBefore": 194,
+    "angle": 10,
+    "power": 0.2,
+    "from": {
+      "x": 5536.179748619336,
+      "y": 5470
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "event-22"
+    ],
+    "shot": 26,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 194,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5577.541674245849,
+      "y": 5404.746776537989,
+      "unit": "event-22"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "event-22",
+        "side": 1,
+        "amount": 194,
+        "dead": true
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 5,
+        "frame": 14928,
+        "shot": 26,
+        "owner": "p-archer",
+        "skill": "A01",
+        "x": 5577.541674245849,
+        "y": 5404.746776537989,
+        "unit": "event-22"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 5,
+    "frame": 15021,
+    "turn": 37,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "mage",
+    "skill": "M01",
+    "target": "sf-dw6",
+    "hpBefore": 521,
+    "angle": 4.661604325745457,
+    "power": 0.16975517121852676,
+    "from": {
+      "x": 5545.719287551117,
+      "y": 5470
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-dw6"
+    ],
+    "shot": 27,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 117.82190301979695,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5677.521387748508,
+      "y": 5464,
+      "terrain": "sf-ferry-court"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-dw6",
+        "side": 1,
+        "amount": 118,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 5,
+        "frame": 15096,
+        "shot": 27,
+        "owner": "p-mage",
+        "skill": "M01",
+        "x": 5677.521387748508,
+        "y": 5464,
+        "terrain": "sf-ferry-court"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 5,
+    "frame": 15238,
+    "turn": 38,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "knight",
+    "skill": "S00",
+    "target": "sf-dw6",
+    "hpBefore": 403,
+    "angle": 184.33161573212203,
+    "power": 1,
+    "from": {
+      "x": 5796.082479760638,
+      "y": 5470
+    },
+    "shot": 28,
+    "predictedTargets": [
+      "sf-dw6"
+    ],
+    "predictedEnemyDamage": 344.96799999999996,
+    "predictionMethod": "shared representativeMelee gross sector estimate before armor/shield/crit",
+    "support": "sf-ferry-court",
+    "tacticalReason": "ordinary basic sword",
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-dw6",
+        "side": 1,
+        "amount": 403,
+        "dead": true
+      }
+    ],
+    "actualImpacts": [],
+    "actualGeometry": []
+  },
+  {
+    "round": 5,
+    "frame": 15360,
+    "turn": 39,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "occultist",
+    "skill": "O01",
+    "target": "sf-dw5",
+    "hpBefore": 679,
+    "angle": 100.7286876908687,
+    "power": 0.5915778425926468,
+    "from": {
+      "x": 5545.532157399579,
+      "y": 5470
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-dw5"
+    ],
+    "shot": 29,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 244.2640869599529,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5502.758385278988,
+      "y": 5191.358620689655,
+      "unit": "sf-dw5"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "p-archer",
+        "side": 0,
+        "amount": 138,
+        "dead": false
+      },
+      {
+        "target": "p-mage",
+        "side": 0,
+        "amount": 67,
+        "dead": false
+      },
+      {
+        "target": "p-occultist",
+        "side": 0,
+        "amount": 62,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 5,
+        "frame": 15360,
+        "shot": 29,
+        "owner": "p-occultist",
+        "skill": "O01",
+        "x": 5538.085814156671,
+        "y": 5372.739211556143,
+        "unit": "p-archer"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 6,
+    "frame": 16145,
+    "turn": 45,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "archer",
+    "skill": "A01",
+    "target": "event-16",
+    "hpBefore": 1374,
+    "angle": 138,
+    "power": 0.2,
+    "from": {
+      "x": 5877.043350359531,
+      "y": 5470
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "event-16"
+    ],
+    "shot": 31,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 309.18719999999996,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5697.808371621476,
+      "y": 5379,
+      "unit": "event-16"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "event-16",
+        "side": 1,
+        "amount": 738,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 6,
+        "frame": 16258,
+        "shot": 31,
+        "owner": "p-archer",
+        "skill": "A01",
+        "x": 5697.808371621476,
+        "y": 5379,
+        "unit": "event-16"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 6,
+    "frame": 16477,
+    "turn": 46,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "mage",
+    "skill": "M04",
+    "target": "event-16",
+    "hpBefore": 636,
+    "angle": 130,
+    "power": 0.28500000000000003,
+    "from": {
+      "x": 5876.147643290295,
+      "y": 5470
+    },
+    "tacticalReason": "equipped area reaches multiple bodies",
+    "predictedTargets": [
+      "sf-de1",
+      "event-16"
+    ],
+    "shot": 32,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 276.60441599999996,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5698.9249409477925,
+      "y": 5376,
+      "unit": "event-16"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "event-16",
+        "side": 1,
+        "amount": 172,
+        "dead": false
+      },
+      {
+        "target": "sf-de1",
+        "side": 1,
+        "amount": 124,
+        "dead": false
+      },
+      {
+        "target": "event-16",
+        "side": 1,
+        "amount": 138,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 6,
+        "frame": 16615,
+        "shot": 32,
+        "owner": "p-mage",
+        "skill": "M04",
+        "x": 5698.9249409477925,
+        "y": 5376,
+        "unit": "event-16"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 6,
+    "frame": 16797,
+    "turn": 47,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "knight",
+    "skill": "S03",
+    "target": "event-16",
+    "hpBefore": 326,
+    "angle": -10.14189304225522,
+    "power": 1,
+    "from": {
+      "x": 5663.249146427313,
+      "y": 5470
+    },
+    "shot": 33,
+    "predictedTargets": [
+      "sf-de1",
+      "event-16"
+    ],
+    "predictedEnemyDamage": 757.21,
+    "predictionMethod": "shared representativeMelee gross sector estimate before armor/shield/crit",
+    "support": "sf-ferry-court",
+    "tacticalReason": "equipped broad sword sector reaches multiple bodies",
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-de1",
+        "side": 1,
+        "amount": 535,
+        "dead": false
+      },
+      {
+        "target": "event-16",
+        "side": 1,
+        "amount": 326,
+        "dead": true
+      }
+    ],
+    "actualImpacts": [],
+    "actualGeometry": []
+  },
+  {
+    "round": 6,
+    "frame": 16919,
+    "turn": 48,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "occultist",
+    "skill": "O08",
+    "target": "sf-dw5",
+    "hpBefore": 679,
+    "angle": 98.86318895357533,
+    "power": 0.7216783642638817,
+    "from": {
+      "x": 5537.002133687548,
+      "y": 5470
+    },
+    "tacticalReason": "equipped manifestation for nearby companions",
+    "predictedTargets": [
+      "sf-dw5"
+    ],
+    "shot": 34,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 199.46310912,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5501.167004526688,
+      "y": 5191.358620689655,
+      "unit": "sf-dw5"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-dw5",
+        "side": 1,
+        "amount": 226,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 6,
+        "frame": 16964,
+        "shot": 34,
+        "owner": "p-occultist",
+        "skill": "O08",
+        "x": 5501.167241083859,
+        "y": 5191.358620689655,
+        "unit": "sf-dw5"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 7,
+    "frame": 17222,
+    "turn": 54,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "archer",
+    "skill": "A01",
+    "target": "sf-de1",
+    "hpBefore": 1470,
+    "angle": 42,
+    "power": 0.2,
+    "from": {
+      "x": 5877.043350359531,
+      "y": 5470
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-de1"
+    ],
+    "shot": 35,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 283.4216,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5908.255433029582,
+      "y": 5383.9365145329275,
+      "unit": "sf-de1"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-de1",
+        "side": 1,
+        "amount": 283,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 7,
+        "frame": 17222,
+        "shot": 35,
+        "owner": "p-archer",
+        "skill": "A01",
+        "x": 5908.255433029582,
+        "y": 5383.9365145329275,
+        "unit": "sf-de1"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 7,
+    "frame": 17315,
+    "turn": 55,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "mage",
+    "skill": "M11",
+    "target": "sf-de1",
+    "hpBefore": 1187,
+    "angle": 10,
+    "power": 0.2,
+    "from": {
+      "x": 5876.147643290295,
+      "y": 5470
+    },
+    "tacticalReason": "equipped actual-reflection line is safely predicted to improve the shot",
+    "predictedTargets": [
+      "sf-de1"
+    ],
+    "shot": 36,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 343.043712,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5912,
+      "y": 5405.23682425423,
+      "unit": "sf-de1"
+    },
+    "predictedReflections": 1,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-de1",
+        "side": 1,
+        "amount": 281,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 7,
+        "frame": 17325,
+        "shot": 36,
+        "owner": "p-mage",
+        "skill": "M11",
+        "x": 5934,
+        "y": 5403.136928338083,
+        "terrain": "sf-quay-reflector"
+      },
+      {
+        "round": 7,
+        "frame": 17339,
+        "shot": 36,
+        "owner": "p-mage",
+        "skill": "M11",
+        "x": 5912,
+        "y": 5405.23682425423,
+        "unit": "sf-de1"
+      }
+    ],
+    "actualGeometry": [
+      {
+        "kind": "reflection",
+        "projectile": 49,
+        "round": 7,
+        "frame": 17325,
+        "shot": 36,
+        "owner": "p-mage",
+        "skill": "M11",
+        "from": {
+          "x": 5932.814992048858,
+          "y": 5403.139993657216,
+          "bounces": 0
+        },
+        "to": {
+          "x": 5927,
+          "y": 5403.136928338083
+        },
+        "bounces": 1
+      }
+    ]
+  },
+  {
+    "round": 7,
+    "frame": 17432,
+    "turn": 56,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "knight",
+    "skill": "S09",
+    "target": "sf-de1",
+    "hpBefore": 906,
+    "angle": 1.78665130283813,
+    "power": 0.6364964381528909,
+    "from": {
+      "x": 5663.249146427313,
+      "y": 5470
+    },
+    "tacticalReason": "equipped ranged blade after basic sword cannot reach",
+    "predictedTargets": [
+      "sf-de1"
+    ],
+    "shot": 37,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 280,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "Exact-state isolated production S09 fire/stepProjectile; actual resources and geometry preserved in the live battle",
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-de1",
+        "side": 1,
+        "amount": 280,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [],
+    "actualGeometry": []
+  },
+  {
+    "round": 7,
+    "frame": 17556,
+    "turn": 57,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "occultist",
+    "skill": "O01",
+    "target": "sf-dw5",
+    "hpBefore": 453,
+    "angle": 98.96913855609623,
+    "power": 0.5899800878041329,
+    "from": {
+      "x": 5537.002133687548,
+      "y": 5470
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-dw5"
+    ],
+    "shot": 38,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 244.2640869599529,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5501.086381313415,
+      "y": 5191.358620689655,
+      "unit": "sf-dw5"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-dw5",
+        "side": 1,
+        "amount": 289,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 7,
+        "frame": 17606,
+        "shot": 38,
+        "owner": "p-occultist",
+        "skill": "O01",
+        "x": 5501.086571025026,
+        "y": 5191.358620689655,
+        "unit": "sf-dw5"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 8,
+    "frame": 18277,
+    "turn": 63,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "archer",
+    "skill": "A01",
+    "target": "sf-de1",
+    "hpBefore": 626,
+    "angle": 42,
+    "power": 0.2,
+    "from": {
+      "x": 5877.043350359531,
+      "y": 5470
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-de1"
+    ],
+    "shot": 40,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 283.4216,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5908.255433029582,
+      "y": 5383.9365145329275,
+      "unit": "sf-de1"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-de1",
+        "side": 1,
+        "amount": 317,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 8,
+        "frame": 18277,
+        "shot": 40,
+        "owner": "p-archer",
+        "skill": "A01",
+        "x": 5908.255433029582,
+        "y": 5383.9365145329275,
+        "unit": "sf-de1"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 8,
+    "frame": 18370,
+    "turn": 64,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "mage",
+    "skill": "M11",
+    "target": "sf-de1",
+    "hpBefore": 309,
+    "angle": 10,
+    "power": 0.2,
+    "from": {
+      "x": 5876.147643290295,
+      "y": 5470
+    },
+    "tacticalReason": "equipped actual-reflection line is safely predicted to improve the shot",
+    "predictedTargets": [
+      "sf-de1"
+    ],
+    "shot": 41,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 309,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5912,
+      "y": 5405.2075886809935,
+      "unit": "sf-de1"
+    },
+    "predictedReflections": 1,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-de1",
+        "side": 1,
+        "amount": 281,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 8,
+        "frame": 18380,
+        "shot": 41,
+        "owner": "p-mage",
+        "skill": "M11",
+        "x": 5934,
+        "y": 5403.137419489113,
+        "terrain": "sf-quay-reflector"
+      },
+      {
+        "round": 8,
+        "frame": 18394,
+        "shot": 41,
+        "owner": "p-mage",
+        "skill": "M11",
+        "x": 5912,
+        "y": 5405.2075886809935,
+        "unit": "sf-de1"
+      }
+    ],
+    "actualGeometry": [
+      {
+        "kind": "reflection",
+        "projectile": 54,
+        "round": 8,
+        "frame": 18380,
+        "shot": 41,
+        "owner": "p-mage",
+        "skill": "M11",
+        "from": {
+          "x": 5932.978910346758,
+          "y": 5403.139993657216,
+          "bounces": 0
+        },
+        "to": {
+          "x": 5927,
+          "y": 5403.137419489113
+        },
+        "bounces": 1
+      }
+    ]
+  },
+  {
+    "round": 8,
+    "frame": 18487,
+    "turn": 65,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "knight",
+    "skill": "S00",
+    "target": "sf-de1",
+    "hpBefore": 28,
+    "angle": -0.647310331131747,
+    "power": 1,
+    "from": {
+      "x": 5671.116748621721,
+      "y": 5470
+    },
+    "shot": 42,
+    "predictedTargets": [
+      "sf-de1"
+    ],
+    "predictedEnemyDamage": 28,
+    "predictionMethod": "shared representativeMelee gross sector estimate before armor/shield/crit",
+    "support": "sf-ferry-court",
+    "tacticalReason": "ordinary basic sword",
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-de1",
+        "side": 1,
+        "amount": 28,
+        "dead": true
+      }
+    ],
+    "actualImpacts": [],
+    "actualGeometry": []
+  },
+  {
+    "round": 8,
+    "frame": 18609,
+    "turn": 66,
+    "goal": "ferry-hold",
+    "op": "fire",
+    "hero": "occultist",
+    "skill": "O01",
+    "target": "sf-dw5",
+    "hpBefore": 164,
+    "angle": 99.97104389813184,
+    "power": 0.5957320408194258,
+    "from": {
+      "x": 5537.002133687548,
+      "y": 5470
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-dw5"
+    ],
+    "shot": 43,
+    "support": "sf-ferry-court",
+    "predictedEnemyDamage": 164,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5496.556698896842,
+      "y": 5185.958620689656,
+      "unit": "sf-dw5"
+    },
+    "predictedReflections": 0,
+    "objective": "ferry-hold",
+    "actualDamage": [
+      {
+        "target": "sf-dw5",
+        "side": 1,
+        "amount": 139,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 8,
+        "frame": 18660,
+        "shot": 43,
+        "owner": "p-occultist",
+        "skill": "O01",
+        "x": 5496.5567508596505,
+        "y": 5185.958620689656,
+        "unit": "sf-dw5"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 9,
+    "frame": 22800,
+    "turn": 74,
+    "goal": "old-road",
+    "op": "fire",
+    "hero": "knight",
+    "skill": "S09",
+    "target": "event-21",
+    "hpBefore": 1238,
+    "angle": 135,
+    "power": 0.71,
+    "from": {
+      "x": 6714.729896857731,
+      "y": 4882.035783161423
+    },
+    "tacticalReason": "equipped ranged blade after basic sword cannot reach",
+    "predictedTargets": [
+      "event-21"
+    ],
+    "shot": 45,
+    "support": "sf-bank-inner",
+    "predictedEnemyDamage": 306,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "Exact-state isolated production S09 fire/stepProjectile; actual resources and geometry preserved in the live battle",
+    "predictedReflections": 0,
+    "objective": "old-road",
+    "actualDamage": [
+      {
+        "target": "event-21",
+        "side": 1,
+        "amount": 306,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [],
+    "actualGeometry": []
+  },
+  {
+    "round": 9,
+    "frame": 24362,
+    "turn": 75,
+    "goal": "old-road",
+    "op": "fire",
+    "hero": "occultist",
+    "skill": "O04",
+    "target": "sf-dw5",
+    "hpBefore": 25,
+    "angle": 201.94767199044492,
+    "power": 0.7300328825905688,
+    "from": {
+      "x": 6306.250831133656,
+      "y": 4835.735196337217
+    },
+    "tacticalReason": "equipped terrain phase after basic line is blocked",
+    "predictedTargets": [
+      "sf-dw5"
+    ],
+    "shot": 46,
+    "support": "sf-bank-inner",
+    "predictedEnemyDamage": 25,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 5511.709682866862,
+      "y": 5117.011939692721,
+      "unit": "sf-dw5"
+    },
+    "predictedReflections": 0,
+    "objective": "old-road",
+    "actualDamage": [
+      {
+        "target": "sf-dw5",
+        "side": 1,
+        "amount": 25,
+        "dead": true
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 9,
+        "frame": 24508,
+        "shot": 46,
+        "owner": "p-occultist",
+        "skill": "O04",
+        "x": 5511.709682866862,
+        "y": 5117.011735187064,
+        "unit": "sf-dw5"
+      }
+    ],
+    "actualGeometry": [
+      {
+        "kind": "phase-inside-solid",
+        "round": 9,
+        "frame": 24393,
+        "shot": 46,
+        "owner": "p-occultist",
+        "skill": "O04",
+        "terrain": "sf-bank-inner",
+        "x": 6103.510241832523,
+        "y": 4860.382382853594
+      }
+    ]
+  },
+  {
+    "round": 10,
+    "frame": 26330,
+    "turn": 81,
+    "goal": "old-road",
+    "op": "fire",
+    "hero": "archer",
+    "skill": "A01",
+    "target": "sf-e2",
+    "hpBefore": 1374,
+    "angle": 165,
+    "power": 0.71,
+    "from": {
+      "x": 8535.74375800331,
+      "y": 4674.256241996691
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-e2"
+    ],
+    "shot": 49,
+    "support": "sf-old-road-west-rise",
+    "predictedEnemyDamage": 309.18719999999996,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 6953.042143497232,
+      "y": 4841.623896848052,
+      "unit": "sf-e2"
+    },
+    "predictedReflections": 0,
+    "objective": "old-road",
+    "actualDamage": [
+      {
+        "target": "sf-e2",
+        "side": 1,
+        "amount": 292,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 10,
+        "frame": 26578,
+        "shot": 49,
+        "owner": "p-archer",
+        "skill": "A01",
+        "x": 6953.042143497232,
+        "y": 4841.623896848052,
+        "unit": "sf-e2"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 10,
+    "frame": 27486,
+    "turn": 82,
+    "goal": "old-road",
+    "op": "fire",
+    "hero": "mage",
+    "skill": "M04",
+    "target": "sf-e2",
+    "hpBefore": 1082,
+    "angle": 143.31275674890412,
+    "power": 0.8463840986782318,
+    "from": {
+      "x": 8571.378406838474,
+      "y": 4638.621593161526
+    },
+    "tacticalReason": "equipped area reaches multiple bodies",
+    "predictedTargets": [
+      "sf-e2",
+      "sf-e3"
+    ],
+    "shot": 50,
+    "support": "sf-old-road-west-rise",
+    "predictedEnemyDamage": 276.60441599999996,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 7088.0821036855305,
+      "y": 4797.111111111111,
+      "unit": "sf-e3"
+    },
+    "predictedReflections": 0,
+    "objective": "old-road",
+    "actualDamage": [
+      {
+        "target": "sf-e3",
+        "side": 1,
+        "amount": 157,
+        "dead": false
+      },
+      {
+        "target": "sf-e2",
+        "side": 1,
+        "amount": 138,
+        "dead": false
+      },
+      {
+        "target": "sf-e3",
+        "side": 1,
+        "amount": 136,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 10,
+        "frame": 27864,
+        "shot": 50,
+        "owner": "p-mage",
+        "skill": "M04",
+        "x": 7088.0821036855305,
+        "y": 4797.111111111111,
+        "unit": "sf-e3"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 10,
+    "frame": 28966,
+    "turn": 83,
+    "goal": "old-road",
+    "op": "fire",
+    "hero": "knight",
+    "skill": "S09",
+    "target": "sf-e4",
+    "hpBefore": 2129,
+    "angle": 176.7189343869178,
+    "power": 0.8225969503476854,
+    "from": {
+      "x": 9022.608281523528,
+      "y": 4392.49058917781
+    },
+    "tacticalReason": "equipped ranged blade after basic sword cannot reach",
+    "predictedTargets": [
+      "sf-e6"
+    ],
+    "shot": 51,
+    "support": "sf-old-road-west-rise",
+    "predictedEnemyDamage": 465,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "Exact-state isolated production S09 fire/stepProjectile; actual resources and geometry preserved in the live battle",
+    "predictedReflections": 0,
+    "objective": "old-road",
+    "actualDamage": [
+      {
+        "target": "sf-e6",
+        "side": 1,
+        "amount": 465,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [],
+    "actualGeometry": []
+  },
+  {
+    "round": 10,
+    "frame": 30023,
+    "turn": 84,
+    "goal": "old-road",
+    "op": "fire",
+    "hero": "occultist",
+    "skill": "O01",
+    "target": "sf-e2",
+    "hpBefore": 944,
+    "angle": 149,
+    "power": 0.405,
+    "from": {
+      "x": 8485.94964982898,
+      "y": 4724.050350171021
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-e2"
+    ],
+    "shot": 52,
+    "support": "sf-old-road-west-rise",
+    "predictedEnemyDamage": 244.2640869599529,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 6895.365732793132,
+      "y": 4783.996989750198,
+      "unit": "sf-e2"
+    },
+    "predictedReflections": 0,
+    "objective": "old-road",
+    "actualDamage": [
+      {
+        "target": "sf-e2",
+        "side": 1,
+        "amount": 125,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 10,
+        "frame": 30777,
+        "shot": 52,
+        "owner": "p-occultist",
+        "skill": "O01",
+        "x": 6895.364886252759,
+        "y": 4783.996989750198,
+        "unit": "sf-e2"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 11,
+    "frame": 31794,
+    "turn": 90,
+    "goal": "old-road",
+    "op": "fire",
+    "hero": "archer",
+    "skill": "A01",
+    "target": "sf-fg6",
+    "hpBefore": 1374,
+    "angle": 133,
+    "power": 0.37,
+    "from": {
+      "x": 9436.319135826056,
+      "y": 4300
+    },
+    "tacticalReason": "free-basic",
+    "predictedTargets": [
+      "sf-fg6"
+    ],
+    "shot": 55,
+    "support": "sf-old-road-gather",
+    "predictedEnemyDamage": 309.18719999999996,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 8516.191047782311,
+      "y": 4593.230895232198,
+      "unit": "sf-fg6"
+    },
+    "predictedReflections": 0,
+    "objective": "old-road",
+    "actualDamage": [
+      {
+        "target": "sf-fg6",
+        "side": 1,
+        "amount": 309,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 11,
+        "frame": 32133,
+        "shot": 55,
+        "owner": "p-archer",
+        "skill": "A01",
+        "x": 8516.191047782311,
+        "y": 4593.230895232198,
+        "unit": "sf-fg6"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 11,
+    "frame": 32621,
+    "turn": 91,
+    "goal": "old-road",
+    "op": "fire",
+    "hero": "mage",
+    "skill": "M04",
+    "target": "sf-fg3",
+    "hpBefore": 2129,
+    "angle": 146,
+    "power": 0.455,
+    "from": {
+      "x": 9436.178506673898,
+      "y": 4300
+    },
+    "tacticalReason": "equipped area reaches multiple bodies",
+    "predictedTargets": [
+      "sf-fg3",
+      "sf-fg6"
+    ],
+    "shot": 56,
+    "support": "sf-old-road-gather",
+    "predictedEnemyDamage": 253.554048,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "production shotViable geometry and damage estimate",
+    "predictedHit": {
+      "x": 8650,
+      "y": 4545.416086785608,
+      "unit": "sf-fg3"
+    },
+    "predictedReflections": 0,
+    "objective": "old-road",
+    "actualDamage": [
+      {
+        "target": "sf-fg3",
+        "side": 1,
+        "amount": 200,
+        "dead": false
+      },
+      {
+        "target": "sf-fg3",
+        "side": 1,
+        "amount": 124,
+        "dead": false
+      },
+      {
+        "target": "sf-fg6",
+        "side": 1,
+        "amount": 136,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [
+      {
+        "round": 11,
+        "frame": 32896,
+        "shot": 56,
+        "owner": "p-mage",
+        "skill": "M04",
+        "x": 8650,
+        "y": 4545.416086785608,
+        "unit": "sf-fg3"
+      }
+    ],
+    "actualGeometry": []
+  },
+  {
+    "round": 11,
+    "frame": 33128,
+    "turn": 92,
+    "goal": "old-road",
+    "op": "fire",
+    "hero": "knight",
+    "skill": "S09",
+    "target": "sf-fg3",
+    "hpBefore": 1805,
+    "angle": 205.03527869750064,
+    "power": 0.8930327392339894,
+    "from": {
+      "x": 9022.608281523528,
+      "y": 4392.49058917781
+    },
+    "tacticalReason": "equipped ranged blade after basic sword cannot reach",
+    "predictedTargets": [
+      "sf-fg3"
+    ],
+    "shot": 57,
+    "support": "sf-old-road-west-rise",
+    "predictedEnemyDamage": 280,
+    "predictedFriendlyDamage": 0,
+    "predictionMethod": "Exact-state isolated production S09 fire/stepProjectile; actual resources and geometry preserved in the live battle",
+    "predictedReflections": 0,
+    "objective": "old-road",
+    "actualDamage": [
+      {
+        "target": "sf-fg3",
+        "side": 1,
+        "amount": 280,
+        "dead": false
+      }
+    ],
+    "actualImpacts": [],
+    "actualGeometry": []
+  }
+]

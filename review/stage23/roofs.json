@@ -1,0 +1,5254 @@
+{
+  "passed": true,
+  "scope": "Authored geometry fixtures, ordinary finite hero inputs and production NPC low-road walker. No combat/browser claim; NPC budget explicitly 20000 for geometry.",
+  "rows": [
+    {
+      "cls": "knight",
+      "id": "sy-roof-granary",
+      "result": {
+        "label": "sy-roof-granary",
+        "cls": "knight",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 1330,
+          "round": 1
+        },
+        "end": {
+          "x": 2230.981991959134,
+          "y": 4057,
+          "support": "sy-roof-granary",
+          "round": 1,
+          "moveLeft": 465.96245880782044
+        },
+        "counts": {
+          "ticks": 489,
+          "jumps": 1,
+          "waits": 0,
+          "walkCost": 1209.0375411921818,
+          "jumpCost": 75,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 1284.0375411921818,
+        "turnEquivalent": 0.733735737824104,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1230.8895826039734,
+            "y": 4342.089242052932,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1528.1249999999993
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1750
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1240,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1519.0145826039727
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.375,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1434.6395826039727
+          },
+          {
+            "goal": {
+              "x": 1760,
+              "y": 4020
+            },
+            "x": 1754.8304723464753,
+            "y": 4021.635013397394,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 975.370935115176
+          },
+          {
+            "goal": {
+              "x": 2250,
+              "y": 4057
+            },
+            "x": 2246.606991959134,
+            "y": 4057,
+            "support": "sy-roof-granary",
+            "round": 1,
+            "moveLeft": 481.58745880782044
+          },
+          {
+            "goal": {
+              "x": 2225.275,
+              "y": 4057,
+              "support": "sy-roof-granary"
+            },
+            "x": 2230.981991959134,
+            "y": 4057,
+            "support": "sy-roof-granary",
+            "round": 1,
+            "moveLeft": 465.96245880782044
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 65,
+      "before": {
+        "x": 2230.981991959134,
+        "y": 4057,
+        "hp": 1330
+      },
+      "landed": {
+        "x": 2230.981991959134,
+        "y": 4064.8554278056317,
+        "support": "sy-west-upper",
+        "hp": 1330
+      },
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "id": "sy-roof-west-wing",
+      "result": {
+        "label": "sy-roof-west-wing",
+        "cls": "knight",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 1330,
+          "round": 1
+        },
+        "end": {
+          "x": 1551.2774503339904,
+          "y": 4070.272727272727,
+          "support": "sy-roof-west-wing",
+          "round": 1,
+          "moveLeft": 1118.7135282302133
+        },
+        "counts": {
+          "ticks": 425,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 481.28647176978666,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 631.2864717697867,
+        "turnEquivalent": 0.3607351267255924,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1230.8895826039734,
+            "y": 4342.089242052932,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1528.1249999999993
+          },
+          {
+            "op": "jump",
+            "x": 1551.2774503339904,
+            "y": 4086.014573847854,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1118.7135282302133
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1750
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1240,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1519.0145826039727
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.375,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1434.6395826039727
+          },
+          {
+            "goal": {
+              "x": 1456.2,
+              "y": 4110.272727272727
+            },
+            "x": 1452.9530710907288,
+            "y": 4117.112517050374,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1296.838528230215
+          },
+          {
+            "goal": {
+              "x": 1551.675,
+              "y": 4070.272727272727,
+              "support": "sy-roof-west-wing"
+            },
+            "x": 1551.2774503339904,
+            "y": 4070.272727272727,
+            "support": "sy-roof-west-wing",
+            "round": 1,
+            "moveLeft": 1118.7135282302133
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 71,
+      "before": {
+        "x": 1551.2774503339904,
+        "y": 4070.272727272727,
+        "hp": 1330
+      },
+      "landed": {
+        "x": 1551.2774503339904,
+        "y": 4086.014573847854,
+        "support": "sy-west-upper",
+        "hp": 1330
+      },
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "id": "sy-roof-east-wing",
+      "result": {
+        "label": "sy-roof-east-wing",
+        "cls": "knight",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 2480,
+          "y": 4700,
+          "hp": 1330,
+          "round": 1
+        },
+        "end": {
+          "x": 3006.25,
+          "y": 4449,
+          "support": "sy-roof-east-wing",
+          "round": 1,
+          "moveLeft": 1055.3786020816199
+        },
+        "counts": {
+          "ticks": 427,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 544.6213979183801,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 694.6213979183801,
+        "turnEquivalent": 0.39692651309621724,
+        "events": [
+          {
+            "op": "jump",
+            "x": 2480,
+            "y": 4700,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1675
+          },
+          {
+            "op": "jump",
+            "x": 2906.652604683896,
+            "y": 4493.054726306572,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1154.975997397724
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 2480,
+              "y": 4700
+            },
+            "x": 2480,
+            "y": 4700,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1750
+          },
+          {
+            "goal": {
+              "x": 2480,
+              "y": 4590
+            },
+            "x": 2480,
+            "y": 4590,
+            "support": "sy-roof-east-wing-stair",
+            "round": 1,
+            "moveLeft": 1675
+          },
+          {
+            "goal": {
+              "x": 2767.5,
+              "y": 4537
+            },
+            "x": 2762.7358729466614,
+            "y": 4537.878256465485,
+            "support": "sy-roof-east-wing-stair",
+            "round": 1,
+            "moveLeft": 1387.500000000026
+          },
+          {
+            "goal": {
+              "x": 2877.5,
+              "y": 4523
+            },
+            "x": 2874.294127350678,
+            "y": 4523.408020155368,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1275.0000000000293
+          },
+          {
+            "goal": {
+              "x": 2910.6,
+              "y": 4489,
+              "jumpTo": {
+                "x": 3000,
+                "support": "sy-roof-east-wing"
+              }
+            },
+            "x": 2906.652604683896,
+            "y": 4493.054726306572,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1229.975997397724
+          },
+          {
+            "jump": {
+              "x": 3000,
+              "support": "sy-roof-east-wing"
+            },
+            "x": 3000,
+            "y": 4449,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1061.6286020816199
+          },
+          {
+            "goal": {
+              "x": 3011.775,
+              "y": 4449,
+              "support": "sy-roof-east-wing"
+            },
+            "x": 3006.25,
+            "y": 4449,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1055.3786020816199
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 164,
+      "before": {
+        "x": 3006.25,
+        "y": 4449,
+        "hp": 1330
+      },
+      "landed": {
+        "x": 3006.25,
+        "y": 4903.125,
+        "support": "sy-ground",
+        "hp": 1330
+      },
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "id": "sy-roof-upper-store",
+      "result": {
+        "label": "sy-roof-upper-store",
+        "cls": "knight",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 1330,
+          "round": 1
+        },
+        "end": {
+          "x": 3898.228889145383,
+          "y": 3207,
+          "support": "sy-roof-upper-store",
+          "round": 2,
+          "moveLeft": 187.35738137604625
+        },
+        "counts": {
+          "ticks": 1374,
+          "jumps": 2,
+          "waits": 1,
+          "walkCost": 3153.1728763234696,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 3303.1728763234696,
+        "turnEquivalent": 1.8875273578991254,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1230.8895826039734,
+            "y": 4342.089242052932,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1528.1249999999993
+          },
+          {
+            "op": "wait",
+            "x": 2696.9887703438167,
+            "y": 4042.688453887745,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 9.469742300483563
+          },
+          {
+            "op": "jump",
+            "x": 2990.2418690168233,
+            "y": 3869.4025319446046,
+            "support": "sy-west-upper",
+            "round": 2,
+            "moveLeft": 1334.3750000000034
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1750
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1240,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1519.0145826039727
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.375,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1434.6395826039727
+          },
+          {
+            "goal": {
+              "x": 1760,
+              "y": 4020
+            },
+            "x": 1754.8304723464753,
+            "y": 4021.635013397394,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 975.370935115176
+          },
+          {
+            "goal": {
+              "x": 2600,
+              "y": 4100
+            },
+            "x": 2597.0236125678484,
+            "y": 4099.716534530271,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 125.11586637633184
+          },
+          {
+            "goal": {
+              "x": 2900,
+              "y": 3922.7272727272725
+            },
+            "x": 2896.078029993381,
+            "y": 3925.044800458457,
+            "support": "sy-west-upper",
+            "round": 2,
+            "moveLeft": 1518.7500000000023
+          },
+          {
+            "goal": {
+              "x": 3000,
+              "y": 3822.1779497098646
+            },
+            "x": 2999.6168690168233,
+            "y": 3822.5631853197183,
+            "support": "sy-roof-upper-store-stair",
+            "round": 2,
+            "moveLeft": 1325.0000000000034
+          },
+          {
+            "goal": {
+              "x": 3487.5,
+              "y": 3332
+            },
+            "x": 3482.2157436931393,
+            "y": 3337.313283943053,
+            "support": "sy-roof-upper-store-stair",
+            "round": 2,
+            "moveLeft": 640.6250000000628
+          },
+          {
+            "goal": {
+              "x": 3903.475,
+              "y": 3207,
+              "support": "sy-roof-upper-store"
+            },
+            "x": 3898.228889145383,
+            "y": 3207,
+            "support": "sy-roof-upper-store",
+            "round": 2,
+            "moveLeft": 187.35738137604625
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 162,
+      "before": {
+        "x": 3898.228889145383,
+        "y": 3207,
+        "hp": 1330
+      },
+      "landed": {
+        "x": 3898.228889145383,
+        "y": 3650,
+        "support": "sy-west-upper",
+        "hp": 1330
+      },
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "id": "sy-roof-sorting-west",
+      "result": {
+        "label": "sy-roof-sorting-west",
+        "cls": "knight",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 6060,
+          "y": 4399.5,
+          "hp": 1330,
+          "round": 1
+        },
+        "end": {
+          "x": 7337.387427171788,
+          "y": 2902.714285714286,
+          "support": "sy-roof-sorting-west",
+          "round": 2,
+          "moveLeft": 971.5848696359694
+        },
+        "counts": {
+          "ticks": 1255,
+          "jumps": 5,
+          "waits": 1,
+          "walkCost": 1637.9620443388865,
+          "jumpCost": 375,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 2012.9620443388865,
+        "turnEquivalent": 1.1502640253365066,
+        "events": [
+          {
+            "op": "jump",
+            "x": 6191.088716368924,
+            "y": 4458.489922366016,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1531.2499999999968
+          },
+          {
+            "op": "wait",
+            "x": 6896.970805450164,
+            "y": 3575.9551750334062,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 515.4530860251443
+          },
+          {
+            "op": "jump",
+            "x": 6896.970805450164,
+            "y": 3575.9551750334062,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1675
+          },
+          {
+            "op": "jump",
+            "x": 7000,
+            "y": 3458.4375,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1496.9708054501643
+          },
+          {
+            "op": "jump",
+            "x": 7053.125,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1368.8458054501643
+          },
+          {
+            "op": "jump",
+            "x": 7109.375,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1237.5958054501643
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 6060,
+              "y": 4399.5
+            },
+            "x": 6060,
+            "y": 4399.5,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1750
+          },
+          {
+            "goal": {
+              "x": 6200,
+              "y": 4267.5
+            },
+            "x": 6200,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1522.3387163689208
+          },
+          {
+            "goal": {
+              "x": 6280,
+              "y": 4267.5
+            },
+            "x": 6275,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1447.3387163689208
+          },
+          {
+            "goal": {
+              "x": 6420,
+              "y": 4120
+            },
+            "x": 6414.632597568547,
+            "y": 4125.654941847424,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1246.7729810000587
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3572.5
+            },
+            "x": 6894.910700639666,
+            "y": 3578.304982082881,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 518.5780860251441
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3420
+            },
+            "x": 6900,
+            "y": 3420,
+            "support": "sy-roof-sorting-step-1",
+            "round": 2,
+            "moveLeft": 1671.9708054501643
+          },
+          {
+            "goal": {
+              "x": 7000,
+              "y": 3250
+            },
+            "x": 7000,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1496.9708054501643
+          },
+          {
+            "goal": {
+              "x": 7060,
+              "y": 3090
+            },
+            "x": 7059.375,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1362.5958054501643
+          },
+          {
+            "goal": {
+              "x": 7117.5,
+              "y": 3003.714285714286
+            },
+            "x": 7115.625,
+            "y": 3003.952922077922,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1231.3458054501643
+          },
+          {
+            "goal": {
+              "x": 7342.675,
+              "y": 2902.714285714286,
+              "support": "sy-roof-sorting-west"
+            },
+            "x": 7337.387427171788,
+            "y": 2902.714285714286,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 971.5848696359694
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 163,
+      "before": {
+        "x": 7337.387427171788,
+        "y": 2902.714285714286,
+        "hp": 1330
+      },
+      "landed": {
+        "x": 7337.387427171788,
+        "y": 3350.373224689745,
+        "support": "sy-east-upper",
+        "hp": 1330
+      },
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "id": "sy-roof-sorting-east",
+      "result": {
+        "label": "sy-roof-sorting-east",
+        "cls": "knight",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 6060,
+          "y": 4399.5,
+          "hp": 1330,
+          "round": 1
+        },
+        "end": {
+          "x": 8043.846275078805,
+          "y": 2989.4545454545455,
+          "support": "sy-roof-sorting-east",
+          "round": 2,
+          "moveLeft": 156.93349016897065
+        },
+        "counts": {
+          "ticks": 1515,
+          "jumps": 5,
+          "waits": 1,
+          "walkCost": 2452.61342380589,
+          "jumpCost": 375,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 2827.61342380589,
+        "turnEquivalent": 1.6157790993176513,
+        "events": [
+          {
+            "op": "jump",
+            "x": 6191.088716368924,
+            "y": 4458.489922366016,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1531.2499999999968
+          },
+          {
+            "op": "wait",
+            "x": 6896.970805450164,
+            "y": 3575.9551750334062,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 515.4530860251443
+          },
+          {
+            "op": "jump",
+            "x": 6896.970805450164,
+            "y": 3575.9551750334062,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1675
+          },
+          {
+            "op": "jump",
+            "x": 7000,
+            "y": 3458.4375,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1496.9708054501643
+          },
+          {
+            "op": "jump",
+            "x": 7053.125,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1368.8458054501643
+          },
+          {
+            "op": "jump",
+            "x": 7109.375,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1237.5958054501643
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 6060,
+              "y": 4399.5
+            },
+            "x": 6060,
+            "y": 4399.5,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1750
+          },
+          {
+            "goal": {
+              "x": 6200,
+              "y": 4267.5
+            },
+            "x": 6200,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1522.3387163689208
+          },
+          {
+            "goal": {
+              "x": 6280,
+              "y": 4267.5
+            },
+            "x": 6275,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1447.3387163689208
+          },
+          {
+            "goal": {
+              "x": 6420,
+              "y": 4120
+            },
+            "x": 6414.632597568547,
+            "y": 4125.654941847424,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1246.7729810000587
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3572.5
+            },
+            "x": 6894.910700639666,
+            "y": 3578.304982082881,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 518.5780860251441
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3420
+            },
+            "x": 6900,
+            "y": 3420,
+            "support": "sy-roof-sorting-step-1",
+            "round": 2,
+            "moveLeft": 1671.9708054501643
+          },
+          {
+            "goal": {
+              "x": 7000,
+              "y": 3250
+            },
+            "x": 7000,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1496.9708054501643
+          },
+          {
+            "goal": {
+              "x": 7060,
+              "y": 3090
+            },
+            "x": 7059.375,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1362.5958054501643
+          },
+          {
+            "goal": {
+              "x": 7117.5,
+              "y": 3003.714285714286
+            },
+            "x": 7115.625,
+            "y": 3003.952922077922,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1231.3458054501643
+          },
+          {
+            "goal": {
+              "x": 7190.2,
+              "y": 2942.714285714286
+            },
+            "x": 7185.755036841491,
+            "y": 2946.44389716778,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1140.3565926377805
+          },
+          {
+            "goal": {
+              "x": 7233,
+              "y": 2902.714285714286
+            },
+            "x": 7227.072946305178,
+            "y": 2908.2535882328107,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1084.0848696359683
+          },
+          {
+            "goal": {
+              "x": 7452.35,
+              "y": 2902.714285714286
+            },
+            "x": 7446.762427171788,
+            "y": 2902.714285714286,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 862.2098696359694
+          },
+          {
+            "goal": {
+              "x": 7673.5,
+              "y": 3012.714285714286
+            },
+            "x": 7669.96591597995,
+            "y": 3012.8192585069605,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 593.0454139471102
+          },
+          {
+            "goal": {
+              "x": 7777.5,
+              "y": 3087.4545454545455
+            },
+            "x": 7772.644266050285,
+            "y": 3083.9649414484757,
+            "support": "sy-roof-sorting-link",
+            "round": 2,
+            "moveLeft": 467.4186518817735
+          },
+          {
+            "goal": {
+              "x": 8047.025,
+              "y": 2989.4545454545455,
+              "support": "sy-roof-sorting-east"
+            },
+            "x": 8043.846275078805,
+            "y": 2989.4545454545455,
+            "support": "sy-roof-sorting-east",
+            "round": 2,
+            "moveLeft": 156.93349016897065
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 162,
+      "before": {
+        "x": 8043.846275078805,
+        "y": 2989.4545454545455,
+        "hp": 1330
+      },
+      "landed": {
+        "x": 8043.846275078805,
+        "y": 3428.671372755929,
+        "support": "sy-east-upper",
+        "hp": 1330
+      },
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "id": "sy-roof-west-gate",
+      "result": {
+        "label": "sy-roof-west-gate",
+        "cls": "knight",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 100,
+          "y": 4250,
+          "hp": 1330,
+          "round": 1
+        },
+        "end": {
+          "x": 818.1340188733813,
+          "y": 3786,
+          "support": "sy-roof-west-gate",
+          "round": 1,
+          "moveLeft": 836.994735524404
+        },
+        "counts": {
+          "ticks": 402,
+          "jumps": 1,
+          "waits": 0,
+          "walkCost": 838.005264475596,
+          "jumpCost": 75,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 913.005264475596,
+        "turnEquivalent": 0.5217172939860549,
+        "events": [
+          {
+            "op": "jump",
+            "x": 100,
+            "y": 4250,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1675
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 100,
+              "y": 4250
+            },
+            "x": 100,
+            "y": 4250,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1750
+          },
+          {
+            "goal": {
+              "x": 100,
+              "y": 4140
+            },
+            "x": 100,
+            "y": 4140,
+            "support": "sy-roof-west-gate-stair",
+            "round": 1,
+            "moveLeft": 1675
+          },
+          {
+            "goal": {
+              "x": 395,
+              "y": 3876
+            },
+            "x": 391.0840799948727,
+            "y": 3879.5044165469612,
+            "support": "sy-roof-west-gate-stair",
+            "round": 1,
+            "moveLeft": 1284.3749999999984
+          },
+          {
+            "goal": {
+              "x": 823.6,
+              "y": 3786,
+              "support": "sy-roof-west-gate"
+            },
+            "x": 818.1340188733813,
+            "y": 3786,
+            "support": "sy-roof-west-gate",
+            "round": 1,
+            "moveLeft": 836.994735524404
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 165,
+      "before": {
+        "x": 818.1340188733813,
+        "y": 3786,
+        "hp": 1330
+      },
+      "landed": {
+        "x": 818.1340188733813,
+        "y": 4250,
+        "support": "sy-ground",
+        "hp": 1330
+      },
+      "passed": true
+    },
+    {
+      "cls": "knight",
+      "id": "sy-roof-east-gate",
+      "result": {
+        "label": "sy-roof-east-gate",
+        "cls": "knight",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 9060,
+          "y": 4170,
+          "hp": 1330,
+          "round": 1
+        },
+        "end": {
+          "x": 9249.142401788731,
+          "y": 3706,
+          "support": "sy-roof-east-gate",
+          "round": 1,
+          "moveLeft": 356.6766993223737
+        },
+        "counts": {
+          "ticks": 615,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 1243.3233006776254,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 1393.3233006776254,
+        "turnEquivalent": 0.7961847432443574,
+        "events": [
+          {
+            "op": "jump",
+            "x": 8928.75,
+            "y": 4170,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1543.75
+          },
+          {
+            "op": "jump",
+            "x": 8797.521232343372,
+            "y": 3995.0101106397005,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 825.6250000000563
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 9060,
+              "y": 4170
+            },
+            "x": 9060,
+            "y": 4170,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1750
+          },
+          {
+            "goal": {
+              "x": 8920,
+              "y": 4020
+            },
+            "x": 8920,
+            "y": 4020,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1535
+          },
+          {
+            "goal": {
+              "x": 8850,
+              "y": 4020
+            },
+            "x": 8854.375,
+            "y": 4020,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1469.375
+          },
+          {
+            "goal": {
+              "x": 8640,
+              "y": 3920
+            },
+            "x": 8645.163519791866,
+            "y": 3922.4588189485075,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1238.1250000000475
+          },
+          {
+            "goal": {
+              "x": 8580,
+              "y": 3857
+            },
+            "x": 8585.754528960206,
+            "y": 3863.042255408216,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1153.7500000000348
+          },
+          {
+            "goal": {
+              "x": 8805,
+              "y": 3796
+            },
+            "x": 8803.771232343372,
+            "y": 3796.333132564686,
+            "support": "sy-roof-east-gate-stair",
+            "round": 1,
+            "moveLeft": 819.3750000000563
+          },
+          {
+            "goal": {
+              "x": 9253.8,
+              "y": 3706,
+              "support": "sy-roof-east-gate"
+            },
+            "x": 9249.142401788731,
+            "y": 3706,
+            "support": "sy-roof-east-gate",
+            "round": 1,
+            "moveLeft": 356.6766993223737
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 165,
+      "before": {
+        "x": 9249.142401788731,
+        "y": 3706,
+        "hp": 1330
+      },
+      "landed": {
+        "x": 9249.142401788731,
+        "y": 4170,
+        "support": "sy-ground",
+        "hp": 1330
+      },
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "id": "sy-roof-granary",
+      "result": {
+        "label": "sy-roof-granary",
+        "cls": "archer",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 815,
+          "round": 1
+        },
+        "end": {
+          "x": 2228.242893333768,
+          "y": 4057,
+          "support": "sy-roof-granary",
+          "round": 1,
+          "moveLeft": 358.9416081552138
+        },
+        "counts": {
+          "ticks": 484,
+          "jumps": 1,
+          "waits": 0,
+          "walkCost": 1206.0583918447858,
+          "jumpCost": 75,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 1281.0583918447858,
+        "turnEquivalent": 0.7811331657590157,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1232.6347770386842,
+            "y": 4342.977704674239,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1416.1666666666704
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1640
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1238.9681103720177,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1409.833333333337
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.4681103720197,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1324.3333333333348
+          },
+          {
+            "goal": {
+              "x": 1760,
+              "y": 4020
+            },
+            "x": 1755.1950412964998,
+            "y": 4021.519707869014,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 865.6465274537032
+          },
+          {
+            "goal": {
+              "x": 2250,
+              "y": 4057
+            },
+            "x": 2244.0762266671004,
+            "y": 4057,
+            "support": "sy-roof-granary",
+            "round": 1,
+            "moveLeft": 374.7749414885464
+          },
+          {
+            "goal": {
+              "x": 2225.275,
+              "y": 4057,
+              "support": "sy-roof-granary"
+            },
+            "x": 2228.242893333768,
+            "y": 4057,
+            "support": "sy-roof-granary",
+            "round": 1,
+            "moveLeft": 358.9416081552138
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 64,
+      "before": {
+        "x": 2228.242893333768,
+        "y": 4057,
+        "hp": 815
+      },
+      "landed": {
+        "x": 2228.242893333768,
+        "y": 4064.5945612698824,
+        "support": "sy-west-upper",
+        "hp": 815
+      },
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "id": "sy-roof-west-wing",
+      "result": {
+        "label": "sy-roof-west-wing",
+        "cls": "archer",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 815,
+          "round": 1
+        },
+        "end": {
+          "x": 1551.544237786447,
+          "y": 4070.272727272727,
+          "support": "sy-roof-west-wing",
+          "round": 1,
+          "moveLeft": 1008.1992711547266
+        },
+        "counts": {
+          "ticks": 424,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 481.8007288452734,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 631.8007288452734,
+        "turnEquivalent": 0.38524434685687403,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1232.6347770386842,
+            "y": 4342.977704674239,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1416.1666666666704
+          },
+          {
+            "op": "jump",
+            "x": 1551.544237786447,
+            "y": 4085.9301945605657,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1008.1992711547266
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1640
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1238.9681103720177,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1409.833333333337
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.4681103720197,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1324.3333333333348
+          },
+          {
+            "goal": {
+              "x": 1456.2,
+              "y": 4110.272727272727
+            },
+            "x": 1452.2499015369262,
+            "y": 4117.334914862739,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1187.34158565028
+          },
+          {
+            "goal": {
+              "x": 1551.675,
+              "y": 4070.272727272727,
+              "support": "sy-roof-west-wing"
+            },
+            "x": 1551.544237786447,
+            "y": 4070.272727272727,
+            "support": "sy-roof-west-wing",
+            "round": 1,
+            "moveLeft": 1008.1992711547266
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 71,
+      "before": {
+        "x": 1551.544237786447,
+        "y": 4070.272727272727,
+        "hp": 815
+      },
+      "landed": {
+        "x": 1551.544237786447,
+        "y": 4085.9301945605657,
+        "support": "sy-west-upper",
+        "hp": 815
+      },
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "id": "sy-roof-east-wing",
+      "result": {
+        "label": "sy-roof-east-wing",
+        "cls": "archer",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 2480,
+          "y": 4700,
+          "hp": 815,
+          "round": 1
+        },
+        "end": {
+          "x": 3006.333333333333,
+          "y": 4449,
+          "support": "sy-roof-east-wing",
+          "round": 1,
+          "moveLeft": 945.5383065027204
+        },
+        "counts": {
+          "ticks": 425,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 544.4616934972796,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 694.4616934972796,
+        "turnEquivalent": 0.42345225213248755,
+        "events": [
+          {
+            "op": "jump",
+            "x": 2480,
+            "y": 4700,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1565
+          },
+          {
+            "op": "jump",
+            "x": 2906.092053136645,
+            "y": 4493.630519436679,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1045.7795866994084
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 2480,
+              "y": 4700
+            },
+            "x": 2480,
+            "y": 4700,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1640
+          },
+          {
+            "goal": {
+              "x": 2480,
+              "y": 4590
+            },
+            "x": 2480,
+            "y": 4590,
+            "support": "sy-roof-east-wing-stair",
+            "round": 1,
+            "moveLeft": 1565
+          },
+          {
+            "goal": {
+              "x": 2767.5,
+              "y": 4537
+            },
+            "x": 2763.3914923622247,
+            "y": 4537.757394451485,
+            "support": "sy-roof-east-wing-stair",
+            "round": 1,
+            "moveLeft": 1276.8333333333119
+          },
+          {
+            "goal": {
+              "x": 2877.5,
+              "y": 4523
+            },
+            "x": 2873.302129438988,
+            "y": 4523.534274435038,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1165.9999999999834
+          },
+          {
+            "goal": {
+              "x": 2910.6,
+              "y": 4489,
+              "jumpTo": {
+                "x": 3000,
+                "support": "sy-roof-east-wing"
+              }
+            },
+            "x": 2906.092053136645,
+            "y": 4493.630519436679,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1120.7795866994084
+          },
+          {
+            "jump": {
+              "x": 3000,
+              "support": "sy-roof-east-wing"
+            },
+            "x": 3000,
+            "y": 4449,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 951.8716398360534
+          },
+          {
+            "goal": {
+              "x": 3011.775,
+              "y": 4449,
+              "support": "sy-roof-east-wing"
+            },
+            "x": 3006.333333333333,
+            "y": 4449,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 945.5383065027204
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 164,
+      "before": {
+        "x": 3006.333333333333,
+        "y": 4449,
+        "hp": 815
+      },
+      "landed": {
+        "x": 3006.333333333333,
+        "y": 4903.166666666666,
+        "support": "sy-ground",
+        "hp": 815
+      },
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "id": "sy-roof-upper-store",
+      "result": {
+        "label": "sy-roof-upper-store",
+        "cls": "archer",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 815,
+          "round": 1
+        },
+        "end": {
+          "x": 3899.032644737337,
+          "y": 3207,
+          "support": "sy-roof-upper-store",
+          "round": 3,
+          "moveLeft": 1602.0000000000018
+        },
+        "counts": {
+          "ticks": 1482,
+          "jumps": 2,
+          "waits": 2,
+          "walkCost": 3154.0920568338965,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 3304.0920568338965,
+        "turnEquivalent": 2.014690278557254,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1232.6347770386842,
+            "y": 4342.977704674239,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1416.1666666666704
+          },
+          {
+            "op": "wait",
+            "x": 2605.04373240399,
+            "y": 4097.0196126703695,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 6.928186567196793
+          },
+          {
+            "op": "jump",
+            "x": 2992.17369459101,
+            "y": 3868.260998650767,
+            "support": "sy-west-upper",
+            "round": 2,
+            "moveLeft": 1115.3333333333403
+          },
+          {
+            "op": "wait",
+            "x": 3861.0326447373386,
+            "y": 3207,
+            "support": "sy-roof-upper-store",
+            "round": 2,
+            "moveLeft": 6.979756598892635
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1640
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1238.9681103720177,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1409.833333333337
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.4681103720197,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1324.3333333333348
+          },
+          {
+            "goal": {
+              "x": 1760,
+              "y": 4020
+            },
+            "x": 1755.1950412964998,
+            "y": 4021.519707869014,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 865.6465274537032
+          },
+          {
+            "goal": {
+              "x": 2600,
+              "y": 4100
+            },
+            "x": 2596.0126604048833,
+            "y": 4099.620253371893,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 16.792061938952394
+          },
+          {
+            "goal": {
+              "x": 2900,
+              "y": 3922.7272727272725
+            },
+            "x": 2894.0280703745825,
+            "y": 3926.256140233201,
+            "support": "sy-west-upper",
+            "round": 2,
+            "moveLeft": 1304.3333333333385
+          },
+          {
+            "goal": {
+              "x": 3000,
+              "y": 3822.1779497098646
+            },
+            "x": 2998.507027924343,
+            "y": 3823.6791230247763,
+            "support": "sy-roof-upper-store-stair",
+            "round": 2,
+            "moveLeft": 1109.0000000000073
+          },
+          {
+            "goal": {
+              "x": 3487.5,
+              "y": 3332
+            },
+            "x": 3483.0744946617424,
+            "y": 3336.4498156577174,
+            "support": "sy-roof-upper-store-stair",
+            "round": 2,
+            "moveLeft": 421.8333333334019
+          },
+          {
+            "goal": {
+              "x": 3903.475,
+              "y": 3207,
+              "support": "sy-roof-upper-store"
+            },
+            "x": 3899.032644737337,
+            "y": 3207,
+            "support": "sy-roof-upper-store",
+            "round": 3,
+            "moveLeft": 1602.0000000000018
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 162,
+      "before": {
+        "x": 3899.032644737337,
+        "y": 3207,
+        "hp": 815
+      },
+      "landed": {
+        "x": 3899.032644737337,
+        "y": 3650,
+        "support": "sy-west-upper",
+        "hp": 815
+      },
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "id": "sy-roof-sorting-west",
+      "result": {
+        "label": "sy-roof-sorting-west",
+        "cls": "archer",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 6060,
+          "y": 4399.5,
+          "hp": 815,
+          "round": 1
+        },
+        "end": {
+          "x": 7337.000697774254,
+          "y": 2902.714285714286,
+          "support": "sy-roof-sorting-west",
+          "round": 2,
+          "moveLeft": 862.0068320344953
+        },
+        "counts": {
+          "ticks": 1247,
+          "jumps": 5,
+          "waits": 1,
+          "walkCost": 1637.7394012267014,
+          "jumpCost": 375,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 2012.7394012267014,
+        "turnEquivalent": 1.227280122699208,
+        "events": [
+          {
+            "op": "jump",
+            "x": 6192.836565920497,
+            "y": 4459.276454664224,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1419.3333333333455
+          },
+          {
+            "op": "wait",
+            "x": 6896.990913504484,
+            "y": 3575.9322392839485,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 405.2537667388036
+          },
+          {
+            "op": "jump",
+            "x": 6896.990913504484,
+            "y": 3575.9322392839485,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1565
+          },
+          {
+            "op": "jump",
+            "x": 6998.166666666676,
+            "y": 3460.5286458333226,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1388.8242468378076
+          },
+          {
+            "op": "jump",
+            "x": 7052.000000000015,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1259.990913504469
+          },
+          {
+            "op": "jump",
+            "x": 7109.00000000002,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1127.9909135044636
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 6060,
+              "y": 4399.5
+            },
+            "x": 6060,
+            "y": 4399.5,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1640
+          },
+          {
+            "goal": {
+              "x": 6200,
+              "y": 4267.5
+            },
+            "x": 6199.169899253831,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1413.0000000000116
+          },
+          {
+            "goal": {
+              "x": 6280,
+              "y": 4267.5
+            },
+            "x": 6275.169899253839,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1337.0000000000043
+          },
+          {
+            "goal": {
+              "x": 6420,
+              "y": 4120
+            },
+            "x": 6414.484248141566,
+            "y": 4125.811238565136,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1136.8196545262088
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3572.5
+            },
+            "x": 6894.903340629845,
+            "y": 3578.313377094083,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 408.42043340547053
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3420
+            },
+            "x": 6900,
+            "y": 3420,
+            "support": "sy-roof-sorting-step-1",
+            "round": 2,
+            "moveLeft": 1561.9909135044836
+          },
+          {
+            "goal": {
+              "x": 7000,
+              "y": 3250
+            },
+            "x": 6998.166666666676,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1388.8242468378076
+          },
+          {
+            "goal": {
+              "x": 7060,
+              "y": 3090
+            },
+            "x": 7058.3333333333485,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1253.6575801711351
+          },
+          {
+            "goal": {
+              "x": 7117.5,
+              "y": 3003.714285714286
+            },
+            "x": 7117.5,
+            "y": 3003.714285714286,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1119.4909135044836
+          },
+          {
+            "goal": {
+              "x": 7342.675,
+              "y": 2902.714285714286,
+              "support": "sy-roof-sorting-west"
+            },
+            "x": 7337.000697774254,
+            "y": 2902.714285714286,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 862.0068320344953
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 163,
+      "before": {
+        "x": 7337.000697774254,
+        "y": 2902.714285714286,
+        "hp": 815
+      },
+      "landed": {
+        "x": 7337.000697774254,
+        "y": 3350.4284717465353,
+        "support": "sy-east-upper",
+        "hp": 815
+      },
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "id": "sy-roof-sorting-east",
+      "result": {
+        "label": "sy-roof-sorting-east",
+        "cls": "archer",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 6060,
+          "y": 4399.5,
+          "hp": 815,
+          "round": 1
+        },
+        "end": {
+          "x": 8041.632643270411,
+          "y": 2989.4545454545455,
+          "support": "sy-roof-sorting-east",
+          "round": 2,
+          "moveLeft": 49.18235497836115
+        },
+        "counts": {
+          "ticks": 1503,
+          "jumps": 5,
+          "waits": 1,
+          "walkCost": 2450.563878282841,
+          "jumpCost": 375,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 2825.563878282841,
+        "turnEquivalent": 1.7229048038310006,
+        "events": [
+          {
+            "op": "jump",
+            "x": 6192.836565920497,
+            "y": 4459.276454664224,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1419.3333333333455
+          },
+          {
+            "op": "wait",
+            "x": 6896.990913504484,
+            "y": 3575.9322392839485,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 405.2537667388036
+          },
+          {
+            "op": "jump",
+            "x": 6896.990913504484,
+            "y": 3575.9322392839485,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1565
+          },
+          {
+            "op": "jump",
+            "x": 6998.166666666676,
+            "y": 3460.5286458333226,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1388.8242468378076
+          },
+          {
+            "op": "jump",
+            "x": 7052.000000000015,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1259.990913504469
+          },
+          {
+            "op": "jump",
+            "x": 7109.00000000002,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1127.9909135044636
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 6060,
+              "y": 4399.5
+            },
+            "x": 6060,
+            "y": 4399.5,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1640
+          },
+          {
+            "goal": {
+              "x": 6200,
+              "y": 4267.5
+            },
+            "x": 6199.169899253831,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1413.0000000000116
+          },
+          {
+            "goal": {
+              "x": 6280,
+              "y": 4267.5
+            },
+            "x": 6275.169899253839,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1337.0000000000043
+          },
+          {
+            "goal": {
+              "x": 6420,
+              "y": 4120
+            },
+            "x": 6414.484248141566,
+            "y": 4125.811238565136,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1136.8196545262088
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3572.5
+            },
+            "x": 6894.903340629845,
+            "y": 3578.313377094083,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 408.42043340547053
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3420
+            },
+            "x": 6900,
+            "y": 3420,
+            "support": "sy-roof-sorting-step-1",
+            "round": 2,
+            "moveLeft": 1561.9909135044836
+          },
+          {
+            "goal": {
+              "x": 7000,
+              "y": 3250
+            },
+            "x": 6998.166666666676,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1388.8242468378076
+          },
+          {
+            "goal": {
+              "x": 7060,
+              "y": 3090
+            },
+            "x": 7058.3333333333485,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1253.6575801711351
+          },
+          {
+            "goal": {
+              "x": 7117.5,
+              "y": 3003.714285714286
+            },
+            "x": 7117.5,
+            "y": 3003.714285714286,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1119.4909135044836
+          },
+          {
+            "goal": {
+              "x": 7190.2,
+              "y": 2942.714285714286
+            },
+            "x": 7186.139254810849,
+            "y": 2946.121513452088,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1029.8902733402845
+          },
+          {
+            "goal": {
+              "x": 7233,
+              "y": 2902.714285714286
+            },
+            "x": 7228.008069734051,
+            "y": 2907.3796411030235,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 972.840165367838
+          },
+          {
+            "goal": {
+              "x": 7452.35,
+              "y": 2902.714285714286
+            },
+            "x": 7447.834031107598,
+            "y": 2902.714285714286,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 751.1734987011514
+          },
+          {
+            "goal": {
+              "x": 7673.5,
+              "y": 3012.714285714286
+            },
+            "x": 7669.0105419451465,
+            "y": 3012.847635953539,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 484.03644233722133
+          },
+          {
+            "goal": {
+              "x": 7777.5,
+              "y": 3087.4545454545455
+            },
+            "x": 7773.057936683073,
+            "y": 3084.262228472913,
+            "support": "sy-roof-sorting-link",
+            "round": 2,
+            "moveLeft": 356.94447054519287
+          },
+          {
+            "goal": {
+              "x": 8047.025,
+              "y": 2989.4545454545455,
+              "support": "sy-roof-sorting-east"
+            },
+            "x": 8041.632643270411,
+            "y": 2989.4545454545455,
+            "support": "sy-roof-sorting-east",
+            "round": 2,
+            "moveLeft": 49.18235497836115
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 162,
+      "before": {
+        "x": 8041.632643270411,
+        "y": 2989.4545454545455,
+        "hp": 815
+      },
+      "landed": {
+        "x": 8041.632643270411,
+        "y": 3427.866415734695,
+        "support": "sy-east-upper",
+        "hp": 815
+      },
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "id": "sy-roof-west-gate",
+      "result": {
+        "label": "sy-roof-west-gate",
+        "cls": "archer",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 100,
+          "y": 4250,
+          "hp": 815,
+          "round": 1
+        },
+        "end": {
+          "x": 819.641918470998,
+          "y": 3786,
+          "support": "sy-roof-west-gate",
+          "round": 1,
+          "moveLeft": 725.486835926788
+        },
+        "counts": {
+          "ticks": 399,
+          "jumps": 1,
+          "waits": 0,
+          "walkCost": 839.513164073212,
+          "jumpCost": 75,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 914.513164073212,
+        "turnEquivalent": 0.557629978093422,
+        "events": [
+          {
+            "op": "jump",
+            "x": 100,
+            "y": 4250,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1565
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 100,
+              "y": 4250
+            },
+            "x": 100,
+            "y": 4250,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1640
+          },
+          {
+            "goal": {
+              "x": 100,
+              "y": 4140
+            },
+            "x": 100,
+            "y": 4140,
+            "support": "sy-roof-west-gate-stair",
+            "round": 1,
+            "moveLeft": 1565
+          },
+          {
+            "goal": {
+              "x": 395,
+              "y": 3876
+            },
+            "x": 390.24575784448746,
+            "y": 3880.254643827306,
+            "support": "sy-roof-west-gate-stair",
+            "round": 1,
+            "moveLeft": 1175.5000000000007
+          },
+          {
+            "goal": {
+              "x": 823.6,
+              "y": 3786,
+              "support": "sy-roof-west-gate"
+            },
+            "x": 819.641918470998,
+            "y": 3786,
+            "support": "sy-roof-west-gate",
+            "round": 1,
+            "moveLeft": 725.486835926788
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 165,
+      "before": {
+        "x": 819.641918470998,
+        "y": 3786,
+        "hp": 815
+      },
+      "landed": {
+        "x": 819.641918470998,
+        "y": 4250,
+        "support": "sy-ground",
+        "hp": 815
+      },
+      "passed": true
+    },
+    {
+      "cls": "archer",
+      "id": "sy-roof-east-gate",
+      "result": {
+        "label": "sy-roof-east-gate",
+        "cls": "archer",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 9060,
+          "y": 4170,
+          "hp": 815,
+          "round": 1
+        },
+        "end": {
+          "x": 9250.50205345031,
+          "y": 3706,
+          "support": "sy-roof-east-gate",
+          "round": 1,
+          "moveLeft": 242.96259196145053
+        },
+        "counts": {
+          "ticks": 611,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 1247.0374080385482,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 1397.0374080385482,
+        "turnEquivalent": 0.8518520780722855,
+        "events": [
+          {
+            "op": "jump",
+            "x": 8927.000000000025,
+            "y": 4170,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1432.0000000000255
+          },
+          {
+            "op": "jump",
+            "x": 8796.5807526363,
+            "y": 3994.562263160143,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 714.1666666667675
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 9060,
+              "y": 4170
+            },
+            "x": 9060,
+            "y": 4170,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1640
+          },
+          {
+            "goal": {
+              "x": 8920,
+              "y": 4020
+            },
+            "x": 8920.666666666693,
+            "y": 4020,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1425.6666666666933
+          },
+          {
+            "goal": {
+              "x": 8850,
+              "y": 4020
+            },
+            "x": 8854.166666666706,
+            "y": 4020,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1359.166666666706
+          },
+          {
+            "goal": {
+              "x": 8640,
+              "y": 3920
+            },
+            "x": 8645.050662227057,
+            "y": 3922.4050772509795,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1128.0000000000996
+          },
+          {
+            "goal": {
+              "x": 8580,
+              "y": 3857
+            },
+            "x": 8584.892459994715,
+            "y": 3862.137082994451,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1042.500000000079
+          },
+          {
+            "goal": {
+              "x": 8805,
+              "y": 3796
+            },
+            "x": 8805,
+            "y": 3796,
+            "support": "sy-roof-east-gate",
+            "round": 1,
+            "moveLeft": 705.747419303068
+          },
+          {
+            "goal": {
+              "x": 9253.8,
+              "y": 3706,
+              "support": "sy-roof-east-gate"
+            },
+            "x": 9250.50205345031,
+            "y": 3706,
+            "support": "sy-roof-east-gate",
+            "round": 1,
+            "moveLeft": 242.96259196145053
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 165,
+      "before": {
+        "x": 9250.50205345031,
+        "y": 3706,
+        "hp": 815
+      },
+      "landed": {
+        "x": 9250.50205345031,
+        "y": 4170,
+        "support": "sy-ground",
+        "hp": 815
+      },
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "id": "sy-roof-granary",
+      "result": {
+        "label": "sy-roof-granary",
+        "cls": "mage",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 870,
+          "round": 1
+        },
+        "end": {
+          "x": 2228.8233820981172,
+          "y": 4057,
+          "support": "sy-roof-granary",
+          "round": 1,
+          "moveLeft": 373.9183169474986
+        },
+        "counts": {
+          "ticks": 510,
+          "jumps": 1,
+          "waits": 0,
+          "walkCost": 1211.0816830525016,
+          "jumpCost": 75,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 1286.0816830525016,
+        "turnEquivalent": 0.7747480018388564,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1232.5605134457192,
+            "y": 4342.939897754184,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1436.2500000000016
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1660
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1238.510513445719,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1430.3000000000018
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.7855134457163,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1344.0250000000044
+          },
+          {
+            "goal": {
+              "x": 1760,
+              "y": 4020
+            },
+            "x": 1754.7950463442367,
+            "y": 4021.6462179004275,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 885.6587012292806
+          },
+          {
+            "goal": {
+              "x": 2250,
+              "y": 4057
+            },
+            "x": 2246.6733820981167,
+            "y": 4057,
+            "support": "sy-roof-granary",
+            "round": 1,
+            "moveLeft": 391.7683169474981
+          },
+          {
+            "goal": {
+              "x": 2225.275,
+              "y": 4057,
+              "support": "sy-roof-granary"
+            },
+            "x": 2228.8233820981172,
+            "y": 4057,
+            "support": "sy-roof-granary",
+            "round": 1,
+            "moveLeft": 373.9183169474986
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 64,
+      "before": {
+        "x": 2228.8233820981172,
+        "y": 4057,
+        "hp": 870
+      },
+      "landed": {
+        "x": 2228.8233820981172,
+        "y": 4064.649845914106,
+        "support": "sy-west-upper",
+        "hp": 870
+      },
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "id": "sy-roof-west-wing",
+      "result": {
+        "label": "sy-roof-west-wing",
+        "cls": "mage",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 870,
+          "round": 1
+        },
+        "end": {
+          "x": 1551.5783896204723,
+          "y": 4070.272727272727,
+          "support": "sy-roof-west-wing",
+          "round": 1,
+          "moveLeft": 1028.2136283869395
+        },
+        "counts": {
+          "ticks": 434,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 481.7863716130605,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 631.7863716130605,
+        "turnEquivalent": 0.3805941997669039,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1232.5605134457192,
+            "y": 4342.939897754184,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1436.2500000000016
+          },
+          {
+            "op": "jump",
+            "x": 1551.5783896204723,
+            "y": 4085.9193930502693,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1028.2136283869395
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1660
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1238.510513445719,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1430.3000000000018
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.7855134457163,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1344.0250000000044
+          },
+          {
+            "goal": {
+              "x": 1456.2,
+              "y": 4110.272727272727
+            },
+            "x": 1450.321827000695,
+            "y": 4117.944724483501,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1209.4139736169857
+          },
+          {
+            "goal": {
+              "x": 1551.675,
+              "y": 4070.272727272727,
+              "support": "sy-roof-west-wing"
+            },
+            "x": 1551.5783896204723,
+            "y": 4070.272727272727,
+            "support": "sy-roof-west-wing",
+            "round": 1,
+            "moveLeft": 1028.2136283869395
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 71,
+      "before": {
+        "x": 1551.5783896204723,
+        "y": 4070.272727272727,
+        "hp": 870
+      },
+      "landed": {
+        "x": 1551.5783896204723,
+        "y": 4085.9193930502693,
+        "support": "sy-west-upper",
+        "hp": 870
+      },
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "id": "sy-roof-east-wing",
+      "result": {
+        "label": "sy-roof-east-wing",
+        "cls": "mage",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 2480,
+          "y": 4700,
+          "hp": 870,
+          "round": 1
+        },
+        "end": {
+          "x": 3006.98544082828,
+          "y": 4449,
+          "support": "sy-roof-east-wing",
+          "round": 1,
+          "moveLeft": 964.9974581408496
+        },
+        "counts": {
+          "ticks": 435,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 545.0025418591504,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 695.0025418591504,
+        "turnEquivalent": 0.41867623003563276,
+        "events": [
+          {
+            "op": "jump",
+            "x": 2480,
+            "y": 4700,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1585
+          },
+          {
+            "op": "jump",
+            "x": 2905.835440828283,
+            "y": 4493.8941091189845,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1066.1474581408465
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 2480,
+              "y": 4700
+            },
+            "x": 2480,
+            "y": 4700,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1660
+          },
+          {
+            "goal": {
+              "x": 2480,
+              "y": 4590
+            },
+            "x": 2480,
+            "y": 4590,
+            "support": "sy-roof-east-wing-stair",
+            "round": 1,
+            "moveLeft": 1585
+          },
+          {
+            "goal": {
+              "x": 2767.5,
+              "y": 4537
+            },
+            "x": 2763.793059254209,
+            "y": 4537.68336646792,
+            "support": "sy-roof-east-wing-stair",
+            "round": 1,
+            "moveLeft": 1296.4250000000118
+          },
+          {
+            "goal": {
+              "x": 2877.5,
+              "y": 4523
+            },
+            "x": 2872.954930169857,
+            "y": 4523.5784634329275,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1186.350000000016
+          },
+          {
+            "goal": {
+              "x": 2910.6,
+              "y": 4489,
+              "jumpTo": {
+                "x": 3000,
+                "support": "sy-roof-east-wing"
+              }
+            },
+            "x": 2905.835440828283,
+            "y": 4493.8941091189845,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1141.1474581408465
+          },
+          {
+            "jump": {
+              "x": 3000,
+              "support": "sy-roof-east-wing"
+            },
+            "x": 2998.06044082828,
+            "y": 4449,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 973.9224581408494
+          },
+          {
+            "goal": {
+              "x": 3011.775,
+              "y": 4449,
+              "support": "sy-roof-east-wing"
+            },
+            "x": 3006.98544082828,
+            "y": 4449,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 964.9974581408496
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 164,
+      "before": {
+        "x": 3006.98544082828,
+        "y": 4449,
+        "hp": 870
+      },
+      "landed": {
+        "x": 3006.98544082828,
+        "y": 4903.4927204141395,
+        "support": "sy-ground",
+        "hp": 870
+      },
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "id": "sy-roof-upper-store",
+      "result": {
+        "label": "sy-roof-upper-store",
+        "cls": "mage",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 870,
+          "round": 1
+        },
+        "end": {
+          "x": 3899.7735312184495,
+          "y": 3207,
+          "support": "sy-roof-upper-store",
+          "round": 2,
+          "moveLeft": 7.692384722361652
+        },
+        "counts": {
+          "ticks": 1426,
+          "jumps": 2,
+          "waits": 1,
+          "walkCost": 3154.6842453579097,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 3304.6842453579097,
+        "turnEquivalent": 1.9907736417818733,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1232.5605134457192,
+            "y": 4342.939897754184,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1436.2500000000016
+          },
+          {
+            "op": "wait",
+            "x": 2621.3100862832925,
+            "y": 4087.4076762871455,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 7.623369919722554
+          },
+          {
+            "op": "jump",
+            "x": 2990.1310109702954,
+            "y": 3869.4680389720984,
+            "support": "sy-west-upper",
+            "round": 2,
+            "moveLeft": 1156.6000000000265
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1660
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1238.510513445719,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1430.3000000000018
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.7855134457163,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1344.0250000000044
+          },
+          {
+            "goal": {
+              "x": 1760,
+              "y": 4020
+            },
+            "x": 1754.7950463442367,
+            "y": 4021.6462179004275,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 885.6587012292806
+          },
+          {
+            "goal": {
+              "x": 2600,
+              "y": 4100
+            },
+            "x": 2594.896836849858,
+            "y": 4099.513984461892,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 37.50212720410728
+          },
+          {
+            "goal": {
+              "x": 2900,
+              "y": 3922.7272727272725
+            },
+            "x": 2895.364523377107,
+            "y": 3925.4664180044365,
+            "support": "sy-west-upper",
+            "round": 2,
+            "moveLeft": 1341.6750000000195
+          },
+          {
+            "goal": {
+              "x": 3000,
+              "y": 3822.1779497098646
+            },
+            "x": 2999.056010970295,
+            "y": 3823.127124288591,
+            "support": "sy-roof-upper-store-stair",
+            "round": 2,
+            "moveLeft": 1147.6750000000268
+          },
+          {
+            "goal": {
+              "x": 3487.5,
+              "y": 3332
+            },
+            "x": 3481.566739733454,
+            "y": 3337.9658530308725,
+            "support": "sy-roof-upper-store-stair",
+            "round": 2,
+            "moveLeft": 463.42500000006186
+          },
+          {
+            "goal": {
+              "x": 3903.475,
+              "y": 3207,
+              "support": "sy-roof-upper-store"
+            },
+            "x": 3899.7735312184495,
+            "y": 3207,
+            "support": "sy-roof-upper-store",
+            "round": 2,
+            "moveLeft": 7.692384722361652
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 162,
+      "before": {
+        "x": 3899.7735312184495,
+        "y": 3207,
+        "hp": 870
+      },
+      "landed": {
+        "x": 3899.7735312184495,
+        "y": 3650,
+        "support": "sy-west-upper",
+        "hp": 870
+      },
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "id": "sy-roof-sorting-west",
+      "result": {
+        "label": "sy-roof-sorting-west",
+        "cls": "mage",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 6060,
+          "y": 4399.5,
+          "hp": 870,
+          "round": 1
+        },
+        "end": {
+          "x": 7337.401623796258,
+          "y": 2902.714285714286,
+          "support": "sy-roof-sorting-west",
+          "round": 2,
+          "moveLeft": 880.9343143367216
+        },
+        "counts": {
+          "ticks": 1279,
+          "jumps": 5,
+          "waits": 1,
+          "walkCost": 1637.558729694359,
+          "jumpCost": 375,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 2012.558729694359,
+        "turnEquivalent": 1.2123847769243126,
+        "events": [
+          {
+            "op": "jump",
+            "x": 6190.222390939001,
+            "y": 4458.100075922551,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1442.200000000006
+          },
+          {
+            "op": "wait",
+            "x": 6896.331220120096,
+            "y": 3576.6847020505156,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 426.50695596891734
+          },
+          {
+            "op": "jump",
+            "x": 6896.331220120096,
+            "y": 3576.6847020505156,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1585
+          },
+          {
+            "op": "jump",
+            "x": 7000,
+            "y": 3458.4375,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1406.331220120096
+          },
+          {
+            "op": "jump",
+            "x": 7050.575000000006,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1280.75622012009
+          },
+          {
+            "op": "jump",
+            "x": 7110.0750000000135,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1146.2562201200826
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 6060,
+              "y": 4399.5
+            },
+            "x": 6060,
+            "y": 4399.5,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1660
+          },
+          {
+            "goal": {
+              "x": 6200,
+              "y": 4267.5
+            },
+            "x": 6199.147390939002,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1433.2750000000049
+          },
+          {
+            "goal": {
+              "x": 6280,
+              "y": 4267.5
+            },
+            "x": 6276.497390939012,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1355.9249999999954
+          },
+          {
+            "goal": {
+              "x": 6420,
+              "y": 4120
+            },
+            "x": 6415.571828641294,
+            "y": 4124.665394824351,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1155.4923395074757
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3572.5
+            },
+            "x": 6894.370000340502,
+            "y": 3578.9217183616147,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 429.4819559689164
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3420
+            },
+            "x": 6899.306220120096,
+            "y": 3420,
+            "support": "sy-roof-sorting-step-1",
+            "round": 2,
+            "moveLeft": 1582.0249999999996
+          },
+          {
+            "goal": {
+              "x": 7000,
+              "y": 3250
+            },
+            "x": 7000,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1406.331220120096
+          },
+          {
+            "goal": {
+              "x": 7060,
+              "y": 3090
+            },
+            "x": 7059.500000000007,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1271.8312201200888
+          },
+          {
+            "goal": {
+              "x": 7117.5,
+              "y": 3003.714285714286
+            },
+            "x": 7116.025000000014,
+            "y": 3003.902012987011,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1140.306220120082
+          },
+          {
+            "goal": {
+              "x": 7342.675,
+              "y": 2902.714285714286,
+              "support": "sy-roof-sorting-west"
+            },
+            "x": 7337.401623796258,
+            "y": 2902.714285714286,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 880.9343143367216
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 163,
+      "before": {
+        "x": 7337.401623796258,
+        "y": 2902.714285714286,
+        "hp": 870
+      },
+      "landed": {
+        "x": 7337.401623796258,
+        "y": 3350.3711966005344,
+        "support": "sy-east-upper",
+        "hp": 870
+      },
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "id": "sy-roof-sorting-east",
+      "result": {
+        "label": "sy-roof-sorting-east",
+        "cls": "mage",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 6060,
+          "y": 4399.5,
+          "hp": 870,
+          "round": 1
+        },
+        "end": {
+          "x": 8043.7724791885585,
+          "y": 2989.4545454545455,
+          "support": "sy-roof-sorting-east",
+          "round": 2,
+          "moveLeft": 66.37092738444355
+        },
+        "counts": {
+          "ticks": 1552,
+          "jumps": 5,
+          "waits": 1,
+          "walkCost": 2452.1221166466403,
+          "jumpCost": 375,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 2827.1221166466403,
+        "turnEquivalent": 1.7030856124377352,
+        "events": [
+          {
+            "op": "jump",
+            "x": 6190.222390939001,
+            "y": 4458.100075922551,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1442.200000000006
+          },
+          {
+            "op": "wait",
+            "x": 6896.331220120096,
+            "y": 3576.6847020505156,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 426.50695596891734
+          },
+          {
+            "op": "jump",
+            "x": 6896.331220120096,
+            "y": 3576.6847020505156,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1585
+          },
+          {
+            "op": "jump",
+            "x": 7000,
+            "y": 3458.4375,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1406.331220120096
+          },
+          {
+            "op": "jump",
+            "x": 7050.575000000006,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1280.75622012009
+          },
+          {
+            "op": "jump",
+            "x": 7110.0750000000135,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1146.2562201200826
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 6060,
+              "y": 4399.5
+            },
+            "x": 6060,
+            "y": 4399.5,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1660
+          },
+          {
+            "goal": {
+              "x": 6200,
+              "y": 4267.5
+            },
+            "x": 6199.147390939002,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1433.2750000000049
+          },
+          {
+            "goal": {
+              "x": 6280,
+              "y": 4267.5
+            },
+            "x": 6276.497390939012,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1355.9249999999954
+          },
+          {
+            "goal": {
+              "x": 6420,
+              "y": 4120
+            },
+            "x": 6415.571828641294,
+            "y": 4124.665394824351,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1155.4923395074757
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3572.5
+            },
+            "x": 6894.370000340502,
+            "y": 3578.9217183616147,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 429.4819559689164
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3420
+            },
+            "x": 6899.306220120096,
+            "y": 3420,
+            "support": "sy-roof-sorting-step-1",
+            "round": 2,
+            "moveLeft": 1582.0249999999996
+          },
+          {
+            "goal": {
+              "x": 7000,
+              "y": 3250
+            },
+            "x": 7000,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1406.331220120096
+          },
+          {
+            "goal": {
+              "x": 7060,
+              "y": 3090
+            },
+            "x": 7059.500000000007,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1271.8312201200888
+          },
+          {
+            "goal": {
+              "x": 7117.5,
+              "y": 3003.714285714286
+            },
+            "x": 7116.025000000014,
+            "y": 3003.902012987011,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1140.306220120082
+          },
+          {
+            "goal": {
+              "x": 7190.2,
+              "y": 2942.714285714286
+            },
+            "x": 7185.067816547603,
+            "y": 2947.020519422624,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1050.6173208914083
+          },
+          {
+            "goal": {
+              "x": 7233,
+              "y": 2902.714285714286
+            },
+            "x": 7228.855025760306,
+            "y": 2906.588093414935,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 991.009314336735
+          },
+          {
+            "goal": {
+              "x": 7452.35,
+              "y": 2902.714285714286
+            },
+            "x": 7447.476623796271,
+            "y": 2902.714285714286,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 770.8593143367082
+          },
+          {
+            "goal": {
+              "x": 7673.5,
+              "y": 3012.714285714286
+            },
+            "x": 7669.9392715564445,
+            "y": 3012.8200499254804,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 502.43571144698967
+          },
+          {
+            "goal": {
+              "x": 7777.5,
+              "y": 3087.4545454545455
+            },
+            "x": 7772.52076673257,
+            "y": 3083.8761878803625,
+            "support": "sy-roof-sorting-link",
+            "round": 2,
+            "moveLeft": 376.9343763333772
+          },
+          {
+            "goal": {
+              "x": 8047.025,
+              "y": 2989.4545454545455,
+              "support": "sy-roof-sorting-east"
+            },
+            "x": 8043.7724791885585,
+            "y": 2989.4545454545455,
+            "support": "sy-roof-sorting-east",
+            "round": 2,
+            "moveLeft": 66.37092738444355
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 162,
+      "before": {
+        "x": 8043.7724791885585,
+        "y": 2989.4545454545455,
+        "hp": 870
+      },
+      "landed": {
+        "x": 8043.7724791885585,
+        "y": 3428.6445378867484,
+        "support": "sy-east-upper",
+        "hp": 870
+      },
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "id": "sy-roof-west-gate",
+      "result": {
+        "label": "sy-roof-west-gate",
+        "cls": "mage",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 100,
+          "y": 4250,
+          "hp": 870,
+          "round": 1
+        },
+        "end": {
+          "x": 819.4890926004148,
+          "y": 3786,
+          "support": "sy-roof-west-gate",
+          "round": 1,
+          "moveLeft": 745.6396617973685
+        },
+        "counts": {
+          "ticks": 416,
+          "jumps": 1,
+          "waits": 0,
+          "walkCost": 839.3603382026315,
+          "jumpCost": 75,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 914.3603382026315,
+        "turnEquivalent": 0.5508194808449587,
+        "events": [
+          {
+            "op": "jump",
+            "x": 100,
+            "y": 4250,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1585
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 100,
+              "y": 4250
+            },
+            "x": 100,
+            "y": 4250,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1660
+          },
+          {
+            "goal": {
+              "x": 100,
+              "y": 4140
+            },
+            "x": 100,
+            "y": 4140,
+            "support": "sy-roof-west-gate-stair",
+            "round": 1,
+            "moveLeft": 1585
+          },
+          {
+            "goal": {
+              "x": 395,
+              "y": 3876
+            },
+            "x": 390.41342227456323,
+            "y": 3880.1045983712384,
+            "support": "sy-roof-west-gate-stair",
+            "round": 1,
+            "moveLeft": 1195.2749999999978
+          },
+          {
+            "goal": {
+              "x": 823.6,
+              "y": 3786,
+              "support": "sy-roof-west-gate"
+            },
+            "x": 819.4890926004148,
+            "y": 3786,
+            "support": "sy-roof-west-gate",
+            "round": 1,
+            "moveLeft": 745.6396617973685
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 165,
+      "before": {
+        "x": 819.4890926004148,
+        "y": 3786,
+        "hp": 870
+      },
+      "landed": {
+        "x": 819.4890926004148,
+        "y": 4250,
+        "support": "sy-ground",
+        "hp": 870
+      },
+      "passed": true
+    },
+    {
+      "cls": "mage",
+      "id": "sy-roof-east-gate",
+      "result": {
+        "label": "sy-roof-east-gate",
+        "cls": "mage",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 9060,
+          "y": 4170,
+          "hp": 870,
+          "round": 1
+        },
+        "end": {
+          "x": 9248.251715286573,
+          "y": 3706,
+          "support": "sy-roof-east-gate",
+          "round": 1,
+          "moveLeft": 263.1317731750004
+        },
+        "counts": {
+          "ticks": 635,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 1246.8682268249981,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 1396.8682268249981,
+        "turnEquivalent": 0.841486883629517,
+        "events": [
+          {
+            "op": "jump",
+            "x": 8929.099999999984,
+            "y": 4170,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1454.099999999984
+          },
+          {
+            "op": "jump",
+            "x": 8795.173794994404,
+            "y": 3993.8922833306683,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 733.5250000000585
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 9060,
+              "y": 4170
+            },
+            "x": 9060,
+            "y": 4170,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1660
+          },
+          {
+            "goal": {
+              "x": 8920,
+              "y": 4020
+            },
+            "x": 8920.174999999983,
+            "y": 4020,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1445.174999999983
+          },
+          {
+            "goal": {
+              "x": 8850,
+              "y": 4020
+            },
+            "x": 8854.724999999975,
+            "y": 4020,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1379.724999999975
+          },
+          {
+            "goal": {
+              "x": 8640,
+              "y": 3920
+            },
+            "x": 8644.757232558373,
+            "y": 3922.2653488373207,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1147.6750000000284
+          },
+          {
+            "goal": {
+              "x": 8580,
+              "y": 3857
+            },
+            "x": 8584.133839305021,
+            "y": 3861.340531270272,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1061.4000000000217
+          },
+          {
+            "goal": {
+              "x": 8805,
+              "y": 3796
+            },
+            "x": 8804.098794994405,
+            "y": 3796.2443266904056,
+            "support": "sy-roof-east-gate-stair",
+            "round": 1,
+            "moveLeft": 724.6000000000574
+          },
+          {
+            "goal": {
+              "x": 9253.8,
+              "y": 3706,
+              "support": "sy-roof-east-gate"
+            },
+            "x": 9248.251715286573,
+            "y": 3706,
+            "support": "sy-roof-east-gate",
+            "round": 1,
+            "moveLeft": 263.1317731750004
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 165,
+      "before": {
+        "x": 9248.251715286573,
+        "y": 3706,
+        "hp": 870
+      },
+      "landed": {
+        "x": 9248.251715286573,
+        "y": 4170,
+        "support": "sy-ground",
+        "hp": 870
+      },
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "id": "sy-roof-granary",
+      "result": {
+        "label": "sy-roof-granary",
+        "cls": "occultist",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 1000,
+          "round": 1
+        },
+        "end": {
+          "x": 2230.8232505950323,
+          "y": 4057,
+          "support": "sy-roof-granary",
+          "round": 1,
+          "moveLeft": 406.4320231866992
+        },
+        "counts": {
+          "ticks": 494,
+          "jumps": 1,
+          "waits": 0,
+          "walkCost": 1208.5679768133011,
+          "jumpCost": 75,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 1283.5679768133011,
+        "turnEquivalent": 0.7595076785877521,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1232.2486063552642,
+            "y": 4342.781108689953,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1466.5999999999917
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1690
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1238.4319396885976,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1460.4166666666583
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.998606355265,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1373.8499999999908
+          },
+          {
+            "goal": {
+              "x": 1760,
+              "y": 4020
+            },
+            "x": 1756.5841104033793,
+            "y": 4021.0803743840474,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 913.5092697552151
+          },
+          {
+            "goal": {
+              "x": 2250,
+              "y": 4057
+            },
+            "x": 2246.2815839283658,
+            "y": 4057,
+            "support": "sy-roof-granary",
+            "round": 1,
+            "moveLeft": 421.8903565200327
+          },
+          {
+            "goal": {
+              "x": 2225.275,
+              "y": 4057,
+              "support": "sy-roof-granary"
+            },
+            "x": 2230.8232505950323,
+            "y": 4057,
+            "support": "sy-roof-granary",
+            "round": 1,
+            "moveLeft": 406.4320231866992
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 65,
+      "before": {
+        "x": 2230.8232505950323,
+        "y": 4057,
+        "hp": 1000
+      },
+      "landed": {
+        "x": 2230.8232505950323,
+        "y": 4064.8403095804792,
+        "support": "sy-west-upper",
+        "hp": 1000
+      },
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "id": "sy-roof-west-wing",
+      "result": {
+        "label": "sy-roof-west-wing",
+        "cls": "occultist",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 1000,
+          "round": 1
+        },
+        "end": {
+          "x": 1551.5635434516626,
+          "y": 4070.272727272727,
+          "support": "sy-roof-west-wing",
+          "round": 1,
+          "moveLeft": 1058.2320984759795
+        },
+        "counts": {
+          "ticks": 428,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 481.76790152402054,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 631.7679015240205,
+        "turnEquivalent": 0.3738271606651009,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1232.2486063552642,
+            "y": 4342.781108689953,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1466.5999999999917
+          },
+          {
+            "op": "jump",
+            "x": 1551.5635434516626,
+            "y": 4085.92408858273,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1058.2320984759795
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1690
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1238.4319396885976,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1460.4166666666583
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.998606355265,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1373.8499999999908
+          },
+          {
+            "goal": {
+              "x": 1456.2,
+              "y": 4110.272727272727
+            },
+            "x": 1452.0051494912968,
+            "y": 4117.412324812055,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1237.6513631200153
+          },
+          {
+            "goal": {
+              "x": 1551.675,
+              "y": 4070.272727272727,
+              "support": "sy-roof-west-wing"
+            },
+            "x": 1551.5635434516626,
+            "y": 4070.272727272727,
+            "support": "sy-roof-west-wing",
+            "round": 1,
+            "moveLeft": 1058.2320984759795
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 71,
+      "before": {
+        "x": 1551.5635434516626,
+        "y": 4070.272727272727,
+        "hp": 1000
+      },
+      "landed": {
+        "x": 1551.5635434516626,
+        "y": 4085.92408858273,
+        "support": "sy-west-upper",
+        "hp": 1000
+      },
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "id": "sy-roof-east-wing",
+      "result": {
+        "label": "sy-roof-east-wing",
+        "cls": "occultist",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 2480,
+          "y": 4700,
+          "hp": 1000,
+          "round": 1
+        },
+        "end": {
+          "x": 3006.1833333333334,
+          "y": 4449,
+          "support": "sy-roof-east-wing",
+          "round": 1,
+          "moveLeft": 996.1002850737018
+        },
+        "counts": {
+          "ticks": 427,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 543.8997149262982,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 693.8997149262982,
+        "turnEquivalent": 0.4105915472936676,
+        "events": [
+          {
+            "op": "jump",
+            "x": 2480,
+            "y": 4700,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1615
+          },
+          {
+            "op": "jump",
+            "x": 2905.1418500461095,
+            "y": 4494.6065588650235,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1097.1417683609257
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 2480,
+              "y": 4700
+            },
+            "x": 2480,
+            "y": 4700,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1690
+          },
+          {
+            "goal": {
+              "x": 2480,
+              "y": 4590
+            },
+            "x": 2480,
+            "y": 4590,
+            "support": "sy-roof-east-wing-stair",
+            "round": 1,
+            "moveLeft": 1615
+          },
+          {
+            "goal": {
+              "x": 2767.5,
+              "y": 4537
+            },
+            "x": 2762.760458674783,
+            "y": 4537.873724139953,
+            "support": "sy-roof-east-wing-stair",
+            "round": 1,
+            "moveLeft": 1327.4749999999813
+          },
+          {
+            "goal": {
+              "x": 2877.5,
+              "y": 4523
+            },
+            "x": 2873.1285298044477,
+            "y": 4523.55636893398,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1216.17499999998
+          },
+          {
+            "goal": {
+              "x": 2910.6,
+              "y": 4489,
+              "jumpTo": {
+                "x": 3000,
+                "support": "sy-roof-east-wing"
+              }
+            },
+            "x": 2905.1418500461095,
+            "y": 4494.6065588650235,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1172.1417683609257
+          },
+          {
+            "jump": {
+              "x": 3000,
+              "support": "sy-roof-east-wing"
+            },
+            "x": 3000,
+            "y": 4449,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 1002.2836184070352
+          },
+          {
+            "goal": {
+              "x": 3011.775,
+              "y": 4449,
+              "support": "sy-roof-east-wing"
+            },
+            "x": 3006.1833333333334,
+            "y": 4449,
+            "support": "sy-roof-east-wing",
+            "round": 1,
+            "moveLeft": 996.1002850737018
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 164,
+      "before": {
+        "x": 3006.1833333333334,
+        "y": 4449,
+        "hp": 1000
+      },
+      "landed": {
+        "x": 3006.1833333333334,
+        "y": 4903.091666666667,
+        "support": "sy-ground",
+        "hp": 1000
+      },
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "id": "sy-roof-upper-store",
+      "result": {
+        "label": "sy-roof-upper-store",
+        "cls": "occultist",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 1100,
+          "y": 4275.454545454545,
+          "hp": 1000,
+          "round": 1
+        },
+        "end": {
+          "x": 3899.242731549238,
+          "y": 3207,
+          "support": "sy-roof-upper-store",
+          "round": 2,
+          "moveLeft": 68.87731255177437
+        },
+        "counts": {
+          "ticks": 1386,
+          "jumps": 2,
+          "waits": 1,
+          "walkCost": 3154.1372414047055,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 3304.1372414047055,
+        "turnEquivalent": 1.955110793730595,
+        "events": [
+          {
+            "op": "jump",
+            "x": 1232.2486063552642,
+            "y": 4342.781108689953,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1466.5999999999917
+          },
+          {
+            "op": "wait",
+            "x": 2647.4564316979995,
+            "y": 4071.9575630875456,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 6.985446043507425
+          },
+          {
+            "op": "jump",
+            "x": 2990.815454313051,
+            "y": 3869.0635951786517,
+            "support": "sy-west-upper",
+            "round": 2,
+            "moveLeft": 1216.175000000016
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 1100,
+              "y": 4275.454545454545
+            },
+            "x": 1100,
+            "y": 4275.454545454545,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1690
+          },
+          {
+            "goal": {
+              "x": 1240,
+              "y": 4156
+            },
+            "x": 1238.4319396885976,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1460.4166666666583
+          },
+          {
+            "goal": {
+              "x": 1330,
+              "y": 4156
+            },
+            "x": 1324.998606355265,
+            "y": 4156,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 1373.8499999999908
+          },
+          {
+            "goal": {
+              "x": 1760,
+              "y": 4020
+            },
+            "x": 1756.5841104033793,
+            "y": 4021.0803743840474,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 913.5092697552151
+          },
+          {
+            "goal": {
+              "x": 2600,
+              "y": 4100
+            },
+            "x": 2596.0520879137325,
+            "y": 4099.624008372736,
+            "support": "sy-west-upper",
+            "round": 1,
+            "moveLeft": 66.0737327006284
+          },
+          {
+            "goal": {
+              "x": 2900,
+              "y": 3922.7272727272725
+            },
+            "x": 2894.994331722804,
+            "y": 3925.6851676183433,
+            "support": "sy-west-upper",
+            "round": 2,
+            "moveLeft": 1402.4750000000117
+          },
+          {
+            "goal": {
+              "x": 3000,
+              "y": 3822.1779497098646
+            },
+            "x": 3000,
+            "y": 3822.177949709864,
+            "support": "sy-roof-upper-store-stair",
+            "round": 2,
+            "moveLeft": 1206.990454313067
+          },
+          {
+            "goal": {
+              "x": 3487.5,
+              "y": 3332
+            },
+            "x": 3481.8114378519435,
+            "y": 3337.719810729295,
+            "support": "sy-roof-upper-store-stair",
+            "round": 2,
+            "moveLeft": 523.7321209797086
+          },
+          {
+            "goal": {
+              "x": 3903.475,
+              "y": 3207,
+              "support": "sy-roof-upper-store"
+            },
+            "x": 3899.242731549238,
+            "y": 3207,
+            "support": "sy-roof-upper-store",
+            "round": 2,
+            "moveLeft": 68.87731255177437
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 162,
+      "before": {
+        "x": 3899.242731549238,
+        "y": 3207,
+        "hp": 1000
+      },
+      "landed": {
+        "x": 3899.242731549238,
+        "y": 3650,
+        "support": "sy-west-upper",
+        "hp": 1000
+      },
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "id": "sy-roof-sorting-west",
+      "result": {
+        "label": "sy-roof-sorting-west",
+        "cls": "occultist",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 6060,
+          "y": 4399.5,
+          "hp": 1000,
+          "round": 1
+        },
+        "end": {
+          "x": 7337.8362297292915,
+          "y": 2902.714285714286,
+          "support": "sy-roof-sorting-west",
+          "round": 2,
+          "moveLeft": 911.6010986117823
+        },
+        "counts": {
+          "ticks": 1260,
+          "jumps": 5,
+          "waits": 1,
+          "walkCost": 1638.7881775383441,
+          "jumpCost": 375,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 2013.7881775383441,
+        "turnEquivalent": 1.1915906375966534,
+        "events": [
+          {
+            "op": "jump",
+            "x": 6192.509794047806,
+            "y": 4459.129407321513,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1469.6916666666843
+          },
+          {
+            "op": "wait",
+            "x": 6897.435635317524,
+            "y": 3575.4249784659487,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 454.61072384987614
+          },
+          {
+            "op": "jump",
+            "x": 6897.435635317524,
+            "y": 3575.4249784659487,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1615
+          },
+          {
+            "op": "jump",
+            "x": 6998.93333333332,
+            "y": 3459.654166666682,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1438.5023019842047
+          },
+          {
+            "op": "jump",
+            "x": 7051.491666666646,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1310.9439686508786
+          },
+          {
+            "op": "jump",
+            "x": 7109.46666666666,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1177.9689686508646
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 6060,
+              "y": 4399.5
+            },
+            "x": 6060,
+            "y": 4399.5,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1690
+          },
+          {
+            "goal": {
+              "x": 6200,
+              "y": 4267.5
+            },
+            "x": 6198.693127381139,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1463.5083333333519
+          },
+          {
+            "goal": {
+              "x": 6280,
+              "y": 4267.5
+            },
+            "x": 6275.984794047795,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1386.2166666666958
+          },
+          {
+            "goal": {
+              "x": 6420,
+              "y": 4120
+            },
+            "x": 6414.127977242307,
+            "y": 4126.1865954054265,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1187.3687309250083
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3572.5
+            },
+            "x": 6895.397504958338,
+            "y": 3577.749720906896,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 457.70239051654323
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3420
+            },
+            "x": 6900,
+            "y": 3420,
+            "support": "sy-roof-sorting-step-1",
+            "round": 2,
+            "moveLeft": 1612.4356353175244
+          },
+          {
+            "goal": {
+              "x": 7000,
+              "y": 3250
+            },
+            "x": 6998.93333333332,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1438.5023019842047
+          },
+          {
+            "goal": {
+              "x": 7060,
+              "y": 3090
+            },
+            "x": 7060,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1302.4356353175244
+          },
+          {
+            "goal": {
+              "x": 7117.5,
+              "y": 3003.714285714286
+            },
+            "x": 7115.649999999992,
+            "y": 3003.9497402597412,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1171.785635317532
+          },
+          {
+            "goal": {
+              "x": 7342.675,
+              "y": 2902.714285714286,
+              "support": "sy-roof-sorting-west"
+            },
+            "x": 7337.8362297292915,
+            "y": 2902.714285714286,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 911.6010986117823
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 163,
+      "before": {
+        "x": 7337.8362297292915,
+        "y": 2902.714285714286,
+        "hp": 1000
+      },
+      "landed": {
+        "x": 7337.8362297292915,
+        "y": 3350.3091100386728,
+        "support": "sy-east-upper",
+        "hp": 1000
+      },
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "id": "sy-roof-sorting-east",
+      "result": {
+        "label": "sy-roof-sorting-east",
+        "cls": "occultist",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 6060,
+          "y": 4399.5,
+          "hp": 1000,
+          "round": 1
+        },
+        "end": {
+          "x": 8042.813977011778,
+          "y": 2989.4545454545455,
+          "support": "sy-roof-sorting-east",
+          "round": 2,
+          "moveLeft": 98.43081976931717
+        },
+        "counts": {
+          "ticks": 1522,
+          "jumps": 5,
+          "waits": 1,
+          "walkCost": 2451.958456380803,
+          "jumpCost": 375,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 2826.958456380803,
+        "turnEquivalent": 1.672756483065564,
+        "events": [
+          {
+            "op": "jump",
+            "x": 6192.509794047806,
+            "y": 4459.129407321513,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1469.6916666666843
+          },
+          {
+            "op": "wait",
+            "x": 6897.435635317524,
+            "y": 3575.4249784659487,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 454.61072384987614
+          },
+          {
+            "op": "jump",
+            "x": 6897.435635317524,
+            "y": 3575.4249784659487,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1615
+          },
+          {
+            "op": "jump",
+            "x": 6998.93333333332,
+            "y": 3459.654166666682,
+            "support": "sy-east-upper",
+            "round": 2,
+            "moveLeft": 1438.5023019842047
+          },
+          {
+            "op": "jump",
+            "x": 7051.491666666646,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1310.9439686508786
+          },
+          {
+            "op": "jump",
+            "x": 7109.46666666666,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1177.9689686508646
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 6060,
+              "y": 4399.5
+            },
+            "x": 6060,
+            "y": 4399.5,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1690
+          },
+          {
+            "goal": {
+              "x": 6200,
+              "y": 4267.5
+            },
+            "x": 6198.693127381139,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1463.5083333333519
+          },
+          {
+            "goal": {
+              "x": 6280,
+              "y": 4267.5
+            },
+            "x": 6275.984794047795,
+            "y": 4267.5,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1386.2166666666958
+          },
+          {
+            "goal": {
+              "x": 6420,
+              "y": 4120
+            },
+            "x": 6414.127977242307,
+            "y": 4126.1865954054265,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1187.3687309250083
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3572.5
+            },
+            "x": 6895.397504958338,
+            "y": 3577.749720906896,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 457.70239051654323
+          },
+          {
+            "goal": {
+              "x": 6900,
+              "y": 3420
+            },
+            "x": 6900,
+            "y": 3420,
+            "support": "sy-roof-sorting-step-1",
+            "round": 2,
+            "moveLeft": 1612.4356353175244
+          },
+          {
+            "goal": {
+              "x": 7000,
+              "y": 3250
+            },
+            "x": 6998.93333333332,
+            "y": 3250,
+            "support": "sy-roof-sorting-step-2",
+            "round": 2,
+            "moveLeft": 1438.5023019842047
+          },
+          {
+            "goal": {
+              "x": 7060,
+              "y": 3090
+            },
+            "x": 7060,
+            "y": 3090,
+            "support": "sy-roof-sorting-step-3",
+            "round": 2,
+            "moveLeft": 1302.4356353175244
+          },
+          {
+            "goal": {
+              "x": 7117.5,
+              "y": 3003.714285714286
+            },
+            "x": 7115.649999999992,
+            "y": 3003.9497402597412,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1171.785635317532
+          },
+          {
+            "goal": {
+              "x": 7190.2,
+              "y": 2942.714285714286
+            },
+            "x": 7185.0319831151655,
+            "y": 2947.0505859890436,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1081.7654875176681
+          },
+          {
+            "goal": {
+              "x": 7233,
+              "y": 2902.714285714286
+            },
+            "x": 7228.2775630768865,
+            "y": 2907.1277781657936,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 1022.9010986117675
+          },
+          {
+            "goal": {
+              "x": 7452.35,
+              "y": 2902.714285714286
+            },
+            "x": 7449.136229729276,
+            "y": 2902.714285714286,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 800.3010986117976
+          },
+          {
+            "goal": {
+              "x": 7673.5,
+              "y": 3012.714285714286
+            },
+            "x": 7667.8258169464525,
+            "y": 3012.8828258049853,
+            "support": "sy-roof-sorting-west",
+            "round": 2,
+            "moveLeft": 535.6514883745722
+          },
+          {
+            "goal": {
+              "x": 7777.5,
+              "y": 3087.4545454545455
+            },
+            "x": 7771.919523568828,
+            "y": 3083.444100666659,
+            "support": "sy-roof-sorting-link",
+            "round": 2,
+            "moveLeft": 408.7761669076207
+          },
+          {
+            "goal": {
+              "x": 8047.025,
+              "y": 2989.4545454545455,
+              "support": "sy-roof-sorting-east"
+            },
+            "x": 8042.813977011778,
+            "y": 2989.4545454545455,
+            "support": "sy-roof-sorting-east",
+            "round": 2,
+            "moveLeft": 98.43081976931717
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 162,
+      "before": {
+        "x": 8042.813977011778,
+        "y": 2989.4545454545455,
+        "hp": 1000
+      },
+      "landed": {
+        "x": 8042.813977011778,
+        "y": 3428.295991640646,
+        "support": "sy-east-upper",
+        "hp": 1000
+      },
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "id": "sy-roof-west-gate",
+      "result": {
+        "label": "sy-roof-west-gate",
+        "cls": "occultist",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 100,
+          "y": 4250,
+          "hp": 1000,
+          "round": 1
+        },
+        "end": {
+          "x": 818.2819821175585,
+          "y": 3786,
+          "support": "sy-roof-west-gate",
+          "round": 1,
+          "moveLeft": 776.8467722802204
+        },
+        "counts": {
+          "ticks": 405,
+          "jumps": 1,
+          "waits": 0,
+          "walkCost": 838.1532277197796,
+          "jumpCost": 75,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 913.1532277197796,
+        "turnEquivalent": 0.5403273536803429,
+        "events": [
+          {
+            "op": "jump",
+            "x": 100,
+            "y": 4250,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1615
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 100,
+              "y": 4250
+            },
+            "x": 100,
+            "y": 4250,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1690
+          },
+          {
+            "goal": {
+              "x": 100,
+              "y": 4140
+            },
+            "x": 100,
+            "y": 4140,
+            "support": "sy-roof-west-gate-stair",
+            "round": 1,
+            "moveLeft": 1615
+          },
+          {
+            "goal": {
+              "x": 395,
+              "y": 3876
+            },
+            "x": 390.2830166067271,
+            "y": 3880.221300392624,
+            "support": "sy-roof-west-gate-stair",
+            "round": 1,
+            "moveLeft": 1225.4499999999932
+          },
+          {
+            "goal": {
+              "x": 823.6,
+              "y": 3786,
+              "support": "sy-roof-west-gate"
+            },
+            "x": 818.2819821175585,
+            "y": 3786,
+            "support": "sy-roof-west-gate",
+            "round": 1,
+            "moveLeft": 776.8467722802204
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 165,
+      "before": {
+        "x": 818.2819821175585,
+        "y": 3786,
+        "hp": 1000
+      },
+      "landed": {
+        "x": 818.2819821175585,
+        "y": 4250,
+        "support": "sy-ground",
+        "hp": 1000
+      },
+      "passed": true
+    },
+    {
+      "cls": "occultist",
+      "id": "sy-roof-east-gate",
+      "result": {
+        "label": "sy-roof-east-gate",
+        "cls": "occultist",
+        "passed": true,
+        "failure": null,
+        "start": {
+          "x": 9060,
+          "y": 4170,
+          "hp": 1000,
+          "round": 1
+        },
+        "end": {
+          "x": 9248.445536552746,
+          "y": 3706,
+          "support": "sy-roof-east-gate",
+          "round": 1,
+          "moveLeft": 295.0171571248384
+        },
+        "counts": {
+          "ticks": 620,
+          "jumps": 2,
+          "waits": 0,
+          "walkCost": 1244.9828428751634,
+          "jumpCost": 150,
+          "damage": 0,
+          "invalid": 0
+        },
+        "movementCost": 1394.9828428751634,
+        "turnEquivalent": 0.8254336348373749,
+        "events": [
+          {
+            "op": "jump",
+            "x": 8927.058333333312,
+            "y": 4170,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1482.0583333333125
+          },
+          {
+            "op": "jump",
+            "x": 8796.753800902326,
+            "y": 3994.644667096346,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 763.9916666665665
+          }
+        ],
+        "poses": [
+          {
+            "goal": {
+              "x": 9060,
+              "y": 4170
+            },
+            "x": 9060,
+            "y": 4170,
+            "support": "sy-ground",
+            "round": 1,
+            "moveLeft": 1690
+          },
+          {
+            "goal": {
+              "x": 8920,
+              "y": 4020
+            },
+            "x": 8920.874999999978,
+            "y": 4020,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1475.8749999999782
+          },
+          {
+            "goal": {
+              "x": 8850,
+              "y": 4020
+            },
+            "x": 8855.949999999968,
+            "y": 4020,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1410.949999999968
+          },
+          {
+            "goal": {
+              "x": 8640,
+              "y": 3920
+            },
+            "x": 8643.229893513964,
+            "y": 3921.538044530459,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1175.9833333332815
+          },
+          {
+            "goal": {
+              "x": 8580,
+              "y": 3857
+            },
+            "x": 8584.898207121054,
+            "y": 3862.1431174771064,
+            "support": "sy-east-upper",
+            "round": 1,
+            "moveLeft": 1092.5083333332616
+          },
+          {
+            "goal": {
+              "x": 8805,
+              "y": 3796
+            },
+            "x": 8805,
+            "y": 3796,
+            "support": "sy-roof-east-gate",
+            "round": 1,
+            "moveLeft": 755.745467568893
+          },
+          {
+            "goal": {
+              "x": 9253.8,
+              "y": 3706,
+              "support": "sy-roof-east-gate"
+            },
+            "x": 9248.445536552746,
+            "y": 3706,
+            "support": "sy-roof-east-gate",
+            "round": 1,
+            "moveLeft": 295.0171571248384
+          }
+        ]
+      },
+      "drop": true,
+      "ticks": 165,
+      "before": {
+        "x": 9248.445536552746,
+        "y": 3706,
+        "hp": 1000
+      },
+      "landed": {
+        "x": 9248.445536552746,
+        "y": 4170,
+        "support": "sy-ground",
+        "hp": 1000
+      },
+      "passed": true
+    }
+  ],
+  "npc": {
+    "passed": true,
+    "start": {
+      "x": 2280,
+      "y": 4700,
+      "hp": 1450
+    },
+    "end": {
+      "x": 9151.36868058827,
+      "y": 4170,
+      "hp": 1450
+    },
+    "ticks": 3368,
+    "cost": 7298.11891232587,
+    "supports": [
+      "sy-ground",
+      "sy-stone-bridge"
+    ]
+  },
+  "lowRoadAndSpecUnchanged": true
+}

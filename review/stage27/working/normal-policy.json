@@ -1,0 +1,4011 @@
+{
+  "scope": "Prepared chapter-entry at actual progression budget; legal autoTrain; production temporary M09. Real App movement, basic jump, skills, defend, interactions and gates. No consumables, state edits or end-condition overrides. DOM/audio/render doubles.",
+  "status": "passed",
+  "failure": null,
+  "phase": "won",
+  "round": 34,
+  "frames": 18857,
+  "retries": 0,
+  "actions": [
+    {
+      "action": "fire",
+      "round": 1,
+      "phase": "flight",
+      "goal": "depot-route-ledger",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 300,
+          "y": 4700,
+          "hp": 905,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 400,
+          "y": 4700,
+          "hp": 966,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-entry-hauling-remnants-0",
+      "skill": "M03",
+      "angle": 10.751065508614786,
+      "power": 0.7568018449109497
+    },
+    {
+      "action": "fire",
+      "round": 2,
+      "phase": "flight",
+      "goal": "depot-route-ledger",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 300,
+          "y": 4700,
+          "hp": 905,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 358.97510710796075,
+          "y": 4700,
+          "hp": 918,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-entry-hauling-remnants-0",
+      "skill": "M03",
+      "angle": 2.8560656122469603,
+      "power": 0.5811228194298201
+    },
+    {
+      "action": "fire",
+      "round": 3,
+      "phase": "flight",
+      "goal": "depot-route-ledger",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 291.6043227483952,
+          "y": 4700,
+          "hp": 905,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 326.23029246906367,
+          "y": 4700,
+          "hp": 838,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-entry-hauling-remnants-0",
+      "skill": "M03",
+      "angle": 0.902175349561202,
+      "power": 0.5551715417600392
+    },
+    {
+      "action": "fire",
+      "round": 4,
+      "phase": "flight",
+      "goal": "depot-route-ledger",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 272.2215661267922,
+          "y": 4700,
+          "hp": 905,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 284.33676978252157,
+          "y": 4700,
+          "hp": 745,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-entry-hauling-remnants-0",
+      "skill": "A01",
+      "angle": -0.6754812280718352,
+      "power": 0.5928604669738874
+    },
+    {
+      "action": "defend",
+      "round": 4,
+      "phase": "aim",
+      "goal": "depot-route-ledger",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 272.2215661267922,
+          "y": 4700,
+          "hp": 905,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 284.33676978252157,
+          "y": 4700,
+          "hp": 745,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "defend",
+      "round": 4,
+      "phase": "review",
+      "goal": "depot-route-ledger",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 272.2215661267922,
+          "y": 4700,
+          "hp": 905,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 284.33676978252157,
+          "y": 4700,
+          "hp": 745,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage"
+    },
+    {
+      "action": "walk",
+      "round": 5,
+      "phase": "aim",
+      "goal": "depot-route-ledger",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1022.1957555915312,
+          "y": 4700,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 984.3333333333252
+        },
+        {
+          "cls": "mage",
+          "x": 269.60472837840155,
+          "y": 4700,
+          "hp": 745,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        1035,
+        4700
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 5,
+      "phase": "aim",
+      "goal": "depot-route-ledger",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1022.1957555915312,
+          "y": 4700,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 984.3333333333252
+        },
+        {
+          "cls": "mage",
+          "x": 1069.404728378405,
+          "y": 4700,
+          "hp": 745,
+          "focus": 272,
+          "moveLeft": 968.1999999999942
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        1080,
+        4700
+      ]
+    },
+    {
+      "action": "M09",
+      "round": 5,
+      "phase": "flight",
+      "goal": "depot-route-ledger",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1022.1957555915312,
+          "y": 4700,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 984.3333333333252
+        },
+        {
+          "cls": "mage",
+          "x": 1069.404728378405,
+          "y": 4700,
+          "hp": 745,
+          "focus": 228,
+          "moveLeft": 968.1999999999942
+        }
+      ],
+      "angle": -75,
+      "power": 0
+    },
+    {
+      "action": "walk",
+      "round": 5,
+      "phase": "aim",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1594.9457555915246,
+          "y": 4700,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 411.5833333333318
+        },
+        {
+          "cls": "mage",
+          "x": 1069.404728378405,
+          "y": 4700,
+          "hp": 745,
+          "focus": 228,
+          "moveLeft": 968.1999999999942
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        1605,
+        4700
+      ]
+    },
+    {
+      "action": "defend",
+      "round": 5,
+      "phase": "review",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1594.9457555915246,
+          "y": 4700,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 411.5833333333318
+        },
+        {
+          "cls": "mage",
+          "x": 1069.404728378405,
+          "y": 4700,
+          "hp": 745,
+          "focus": 228,
+          "moveLeft": 968.1999999999942
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "walk",
+      "round": 6,
+      "phase": "aim",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1594.9457555915246,
+          "y": 4700,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 1639.8047283784092,
+          "y": 4700,
+          "hp": 745,
+          "focus": 253.86,
+          "moveLeft": 1197.5999999999958
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        1650,
+        4700
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 6,
+      "phase": "aim",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 2394.185524903014,
+          "y": 4281.395642242054,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 839.1063656538646
+        },
+        {
+          "cls": "mage",
+          "x": 1639.8047283784092,
+          "y": 4700,
+          "hp": 745,
+          "focus": 253.86,
+          "moveLeft": 1197.5999999999958
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        2405,
+        4250
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 6,
+      "phase": "aim",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 2394.185524903014,
+          "y": 4281.395642242054,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 839.1063656538646
+        },
+        {
+          "cls": "mage",
+          "x": 2435.7511362533746,
+          "y": 4258.014985857477,
+          "hp": 745,
+          "focus": 253.86,
+          "moveLeft": 285.8751388196188
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        2450,
+        4250
+      ]
+    },
+    {
+      "action": "defend",
+      "round": 6,
+      "phase": "review",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 3222.04473573672,
+          "y": 4250,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 3.023032320513721
+        },
+        {
+          "cls": "mage",
+          "x": 2435.7511362533746,
+          "y": 4258.014985857477,
+          "hp": 745,
+          "focus": 253.86,
+          "moveLeft": 285.8751388196188
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "fire",
+      "round": 6,
+      "phase": "flight",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 3222.04473573672,
+          "y": 4250,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 3.023032320513721
+        },
+        {
+          "cls": "mage",
+          "x": 2435.7511362533746,
+          "y": 4258.014985857477,
+          "hp": 745,
+          "focus": 242.86,
+          "moveLeft": 285.8751388196188
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-entry-hauling-remnants-1",
+      "skill": "M03",
+      "angle": 148.20928296505448,
+      "power": 0.9749843076981757
+    },
+    {
+      "action": "walk",
+      "round": 7,
+      "phase": "aim",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 3294.4614024033885,
+          "y": 4250,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 1675.5833333333317
+        },
+        {
+          "cls": "mage",
+          "x": 2441.8599393092018,
+          "y": 4254.578784138574,
+          "hp": 737,
+          "focus": 268.72,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        3305,
+        4250
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 7,
+      "phase": "aim",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 3294.4614024033885,
+          "y": 4250,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 1675.5833333333317
+        },
+        {
+          "cls": "mage",
+          "x": 3339.660521843378,
+          "y": 4250,
+          "hp": 737,
+          "focus": 268.72,
+          "moveLeft": 869.0000000000264
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        3350,
+        4250
+      ]
+    },
+    {
+      "action": "M09",
+      "round": 7,
+      "phase": "flight",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 3294.4614024033885,
+          "y": 4250,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 1675.5833333333317
+        },
+        {
+          "cls": "mage",
+          "x": 3339.660521843378,
+          "y": 4250,
+          "hp": 737,
+          "focus": 224.72000000000003,
+          "moveLeft": 869.0000000000264
+        }
+      ],
+      "angle": -75,
+      "power": 0
+    },
+    {
+      "action": "defend",
+      "round": 7,
+      "phase": "review",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 3294.4614024033885,
+          "y": 4250,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 1675.5833333333317
+        },
+        {
+          "cls": "mage",
+          "x": 3339.660521843378,
+          "y": 4250,
+          "hp": 737,
+          "focus": 224.72000000000003,
+          "moveLeft": 869.0000000000264
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "M09",
+      "round": 8,
+      "phase": "flight",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 3294.4614024033885,
+          "y": 4250,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 3339.660521843378,
+          "y": 4250,
+          "hp": 737,
+          "focus": 206.58000000000004,
+          "moveLeft": 1768
+        }
+      ],
+      "angle": 26,
+      "power": 0.8750000000000001
+    },
+    {
+      "action": "walk",
+      "round": 8,
+      "phase": "aim",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 3340.544735736723,
+          "y": 4250,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 1701.9166666666656
+        },
+        {
+          "cls": "mage",
+          "x": 3339.660521843378,
+          "y": 4250,
+          "hp": 737,
+          "focus": 206.58000000000004,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        3350.2492520500323,
+        4250
+      ]
+    },
+    {
+      "action": "gate",
+      "round": 8,
+      "phase": "aim",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4849.488660966067,
+          "y": 4850,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 1701.9166666666656
+        },
+        {
+          "cls": "mage",
+          "x": 3339.660521843378,
+          "y": 4250,
+          "hp": 737,
+          "focus": 206.58000000000004,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "crossing": 1
+    },
+    {
+      "action": "fire",
+      "round": 8,
+      "phase": "flight",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4849.488660966067,
+          "y": 4850,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 1701.9166666666656
+        },
+        {
+          "cls": "mage",
+          "x": 3339.660521843378,
+          "y": 4250,
+          "hp": 737,
+          "focus": 206.58000000000004,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-lower-loading-store-0",
+      "skill": "A01",
+      "angle": 17.545913915524256,
+      "power": 0.639688155950331
+    },
+    {
+      "action": "defend",
+      "round": 8,
+      "phase": "transition",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4849.488660966067,
+          "y": 4850,
+          "hp": 869,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 3339.660521843378,
+          "y": 4250,
+          "hp": 737,
+          "focus": 206.58000000000004,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "walk",
+      "round": 9,
+      "phase": "aim",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4835.2958744809075,
+          "y": 4850,
+          "hp": 829,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 3335.903433420972,
+          "y": 4250,
+          "hp": 708,
+          "focus": 232.44000000000005,
+          "moveLeft": 1761.8000000000002
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        3350.2492520500323,
+        4250
+      ]
+    },
+    {
+      "action": "gate",
+      "round": 9,
+      "phase": "aim",
+      "goal": "stake-arrival-1",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4835.2958744809075,
+          "y": 4850,
+          "hp": 829,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 4897.488660966067,
+          "y": 4850,
+          "hp": 708,
+          "focus": 232.44000000000005,
+          "moveLeft": 1761.8000000000002
+        }
+      ],
+      "actor": "mage",
+      "crossing": 1
+    },
+    {
+      "action": "walk",
+      "round": 9,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4618.0458744809175,
+          "y": 4850,
+          "hp": 829,
+          "focus": 204,
+          "moveLeft": 1530.75000000001
+        },
+        {
+          "cls": "mage",
+          "x": 4897.488660966067,
+          "y": 4850,
+          "hp": 708,
+          "focus": 232.44000000000005,
+          "moveLeft": 1761.8000000000002
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        4605,
+        4850
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 9,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4618.0458744809175,
+          "y": 4850,
+          "hp": 829,
+          "focus": 204,
+          "moveLeft": 1530.75000000001
+        },
+        {
+          "cls": "mage",
+          "x": 4661.888660966074,
+          "y": 4850,
+          "hp": 708,
+          "focus": 232.44000000000005,
+          "moveLeft": 1526.200000000007
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        4650,
+        4850
+      ]
+    },
+    {
+      "action": "crossed",
+      "round": 9,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4618.0458744809175,
+          "y": 4850,
+          "hp": 829,
+          "focus": 204,
+          "moveLeft": 1530.75000000001
+        },
+        {
+          "cls": "mage",
+          "x": 4661.888660966074,
+          "y": 4850,
+          "hp": 708,
+          "focus": 232.44000000000005,
+          "moveLeft": 1526.200000000007
+        }
+      ],
+      "crossing": 1
+    },
+    {
+      "action": "fire",
+      "round": 9,
+      "phase": "flight",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4618.0458744809175,
+          "y": 4850,
+          "hp": 829,
+          "focus": 204,
+          "moveLeft": 1530.75000000001
+        },
+        {
+          "cls": "mage",
+          "x": 4661.888660966074,
+          "y": 4850,
+          "hp": 708,
+          "focus": 210.44000000000005,
+          "moveLeft": 1526.200000000007
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-lower-loading-store-0",
+      "skill": "M03",
+      "angle": 20.507776041517996,
+      "power": 0.7516401041139318
+    },
+    {
+      "action": "fire",
+      "round": 10,
+      "phase": "flight",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4618.0458744809175,
+          "y": 4850,
+          "hp": 829,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 4643.986877389576,
+          "y": 4850,
+          "hp": 660,
+          "focus": 225.30000000000007,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-lower-loading-store-0",
+      "skill": "M03",
+      "angle": 2.227561556521151,
+      "power": 0.5658297309764264
+    },
+    {
+      "action": "fire",
+      "round": 11,
+      "phase": "flight",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4610.611448124167,
+          "y": 4850,
+          "hp": 829,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 4620.924290116346,
+          "y": 4850,
+          "hp": 586,
+          "focus": 251.16000000000008,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-lower-loading-store-0",
+      "skill": "A01",
+      "angle": -0.4351569236439517,
+      "power": 0.6080326278439847
+    },
+    {
+      "action": "fire",
+      "round": 11,
+      "phase": "flight",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4610.611448124167,
+          "y": 4850,
+          "hp": 829,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 4620.924290116346,
+          "y": 4850,
+          "hp": 586,
+          "focus": 229.16000000000008,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-lower-loading-store-0",
+      "skill": "M03",
+      "angle": 3.0099325098753584,
+      "power": 0.6159529138125939
+    },
+    {
+      "action": "fire",
+      "round": 12,
+      "phase": "flight",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4594.661589365731,
+          "y": 4850,
+          "hp": 803,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 4596.797727610393,
+          "y": 4850,
+          "hp": 507,
+          "focus": 255.0200000000001,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-lower-loading-store-0",
+      "skill": "A01",
+      "angle": -0.12578890496668932,
+      "power": 0.6110931121233517
+    },
+    {
+      "action": "fire",
+      "round": 12,
+      "phase": "flight",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4594.661589365731,
+          "y": 4850,
+          "hp": 803,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 4596.797727610393,
+          "y": 4850,
+          "hp": 507,
+          "focus": 233.0200000000001,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-lower-loading-store-1",
+      "skill": "M03",
+      "angle": 20.664834976801462,
+      "power": 0.7859478105971114
+    },
+    {
+      "action": "fire",
+      "round": 13,
+      "phase": "flight",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4584.96197249115,
+          "y": 4850,
+          "hp": 775,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 4585.428851208458,
+          "y": 4850,
+          "hp": 507,
+          "focus": 258.8800000000001,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-lower-loading-store-1",
+      "skill": "A01",
+      "angle": 13.34464287359109,
+      "power": 0.7242029096643551
+    },
+    {
+      "action": "fire",
+      "round": 13,
+      "phase": "flight",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4584.96197249115,
+          "y": 4850,
+          "hp": 775,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 4585.428851208458,
+          "y": 4850,
+          "hp": 507,
+          "focus": 236.8800000000001,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-lower-loading-store-1",
+      "skill": "M03",
+      "angle": 20.455978805343168,
+      "power": 0.807817781918218
+    },
+    {
+      "action": "fire",
+      "round": 14,
+      "phase": "flight",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4584.343699007646,
+          "y": 4850,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 4584.634985669749,
+          "y": 4850,
+          "hp": 507,
+          "focus": 262.7400000000001,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-lower-loading-store-1",
+      "skill": "A01",
+      "angle": 13.468788838674321,
+      "power": 0.7120261359558171
+    },
+    {
+      "action": "defend",
+      "round": 14,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4584.343699007646,
+          "y": 4850,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 4584.634985669749,
+          "y": 4850,
+          "hp": 507,
+          "focus": 262.7400000000001,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "defend",
+      "round": 14,
+      "phase": "review",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4584.343699007646,
+          "y": 4850,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 4584.634985669749,
+          "y": 4850,
+          "hp": 623,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage"
+    },
+    {
+      "action": "walk",
+      "round": 15,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4841.093699007634,
+          "y": 4850,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 1491.2500000000118
+        },
+        {
+          "cls": "mage",
+          "x": 4584.634985669749,
+          "y": 4850,
+          "hp": 623,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        4855,
+        4850
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 15,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4841.093699007634,
+          "y": 4850,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 1491.2500000000118
+        },
+        {
+          "cls": "mage",
+          "x": 4888.43498566974,
+          "y": 4850,
+          "hp": 623,
+          "focus": 272,
+          "moveLeft": 1464.200000000009
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        4900,
+        4850
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 15,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 5641.123549600336,
+          "y": 4850,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 641.8403099936461
+        },
+        {
+          "cls": "mage",
+          "x": 4888.43498566974,
+          "y": 4850,
+          "hp": 623,
+          "focus": 272,
+          "moveLeft": 1464.200000000009
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        5655,
+        4850
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 15,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 5641.123549600336,
+          "y": 4850,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 641.8403099936461
+        },
+        {
+          "cls": "mage",
+          "x": 5688.525362750855,
+          "y": 4850,
+          "hp": 623,
+          "focus": 272,
+          "moveLeft": 614.7565360511514
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        5700,
+        4850
+      ]
+    },
+    {
+      "action": "M09",
+      "round": 15,
+      "phase": "flight",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 5641.123549600336,
+          "y": 4850,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 641.8403099936461
+        },
+        {
+          "cls": "mage",
+          "x": 5688.525362750855,
+          "y": 4850,
+          "hp": 623,
+          "focus": 228,
+          "moveLeft": 614.7565360511514
+        }
+      ],
+      "angle": 52,
+      "power": 0.9750000000000002
+    },
+    {
+      "action": "walk",
+      "round": 15,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 5674.040216267002,
+          "y": 4850,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 608.9236433269809
+        },
+        {
+          "cls": "mage",
+          "x": 5688.525362750855,
+          "y": 4850,
+          "hp": 623,
+          "focus": 228,
+          "moveLeft": 614.7565360511514
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        5688.525362750855,
+        4850
+      ]
+    },
+    {
+      "action": "gate",
+      "round": 15,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6298.446268367924,
+          "y": 4400,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 608.9236433269809
+        },
+        {
+          "cls": "mage",
+          "x": 5688.525362750855,
+          "y": 4850,
+          "hp": 623,
+          "focus": 228,
+          "moveLeft": 614.7565360511514
+        }
+      ],
+      "actor": "archer",
+      "crossing": 2
+    },
+    {
+      "action": "fire",
+      "round": 15,
+      "phase": "flight",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6298.446268367924,
+          "y": 4400,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 608.9236433269809
+        },
+        {
+          "cls": "mage",
+          "x": 5688.525362750855,
+          "y": 4850,
+          "hp": 623,
+          "focus": 228,
+          "moveLeft": 614.7565360511514
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-sealed-manifest-store-0",
+      "skill": "A01",
+      "angle": 8.552645947543718,
+      "power": 0.7881995641291291
+    },
+    {
+      "action": "defend",
+      "round": 15,
+      "phase": "transition",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6298.446268367924,
+          "y": 4400,
+          "hp": 747,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 5688.525362750855,
+          "y": 4850,
+          "hp": 623,
+          "focus": 228,
+          "moveLeft": 614.7565360511514
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "walk",
+      "round": 16,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6260.171056618252,
+          "y": 4400,
+          "hp": 656,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 5688.525362750855,
+          "y": 4850,
+          "hp": 623,
+          "focus": 253.86,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        5688.525362750855,
+        4850
+      ]
+    },
+    {
+      "action": "gate",
+      "round": 16,
+      "phase": "aim",
+      "goal": "stake-arrival-2",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6260.171056618252,
+          "y": 4400,
+          "hp": 656,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 6322.446268367924,
+          "y": 4400,
+          "hp": 623,
+          "focus": 253.86,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "crossing": 2
+    },
+    {
+      "action": "walk",
+      "round": 16,
+      "phase": "aim",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6260.171056618252,
+          "y": 4400,
+          "hp": 656,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 6322.446268367924,
+          "y": 4400,
+          "hp": 623,
+          "focus": 253.86,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        6255,
+        4400
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 16,
+      "phase": "aim",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6260.171056618252,
+          "y": 4400,
+          "hp": 656,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 6310.046268367924,
+          "y": 4400,
+          "hp": 623,
+          "focus": 253.86,
+          "moveLeft": 1755.6000000000004
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        6300,
+        4400
+      ]
+    },
+    {
+      "action": "crossed",
+      "round": 16,
+      "phase": "aim",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6260.171056618252,
+          "y": 4400,
+          "hp": 656,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 6310.046268367924,
+          "y": 4400,
+          "hp": 623,
+          "focus": 253.86,
+          "moveLeft": 1755.6000000000004
+        }
+      ],
+      "crossing": 2
+    },
+    {
+      "action": "fire",
+      "round": 16,
+      "phase": "flight",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6260.171056618252,
+          "y": 4400,
+          "hp": 656,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 6310.046268367924,
+          "y": 4400,
+          "hp": 623,
+          "focus": 242.86,
+          "moveLeft": 1755.6000000000004
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-sealed-manifest-store-0",
+      "skill": "M03",
+      "angle": 28.466965437399775,
+      "power": 0.8755387596405545
+    },
+    {
+      "action": "fire",
+      "round": 17,
+      "phase": "flight",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6250.176262457182,
+          "y": 4400,
+          "hp": 656,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 6279.097746192558,
+          "y": 4400,
+          "hp": 583,
+          "focus": 246.72000000000003,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-sealed-manifest-store-0",
+      "skill": "M03",
+      "angle": 28.024630779253645,
+      "power": 0.9060722758571255
+    },
+    {
+      "action": "fire",
+      "round": 18,
+      "phase": "flight",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6236.390145447678,
+          "y": 4400,
+          "hp": 656,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 6249.641834649005,
+          "y": 4400,
+          "hp": 544,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-sealed-manifest-store-0",
+      "skill": "A01",
+      "angle": 19.65040626674933,
+      "power": 0.7605991120343084
+    },
+    {
+      "action": "fire",
+      "round": 18,
+      "phase": "flight",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6236.390145447678,
+          "y": 4400,
+          "hp": 656,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 6249.641834649005,
+          "y": 4400,
+          "hp": 544,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-sealed-manifest-store-0",
+      "skill": "M03",
+      "angle": 28.979518385586054,
+      "power": 0.8714710011507318
+    },
+    {
+      "action": "fire",
+      "round": 19,
+      "phase": "flight",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6213.271481635905,
+          "y": 4400,
+          "hp": 579,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 6219.709530737787,
+          "y": 4400,
+          "hp": 503,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-sealed-manifest-store-0",
+      "skill": "A01",
+      "angle": 19.07338824695525,
+      "power": 0.7905710017093601
+    },
+    {
+      "action": "defend",
+      "round": 19,
+      "phase": "aim",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6213.271481635905,
+          "y": 4400,
+          "hp": 579,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 6219.709530737787,
+          "y": 4400,
+          "hp": 503,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "defend",
+      "round": 19,
+      "phase": "review",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6213.271481635905,
+          "y": 4400,
+          "hp": 579,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 6219.709530737787,
+          "y": 4400,
+          "hp": 503,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage"
+    },
+    {
+      "action": "walk",
+      "round": 20,
+      "phase": "aim",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 7040.237222019894,
+          "y": 4400,
+          "hp": 532,
+          "focus": 204,
+          "moveLeft": 898.7500000000391
+        },
+        {
+          "cls": "mage",
+          "x": 6195.231789045588,
+          "y": 4400,
+          "hp": 503,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        7055,
+        4400
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 20,
+      "phase": "aim",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 7040.237222019894,
+          "y": 4400,
+          "hp": 532,
+          "focus": 204,
+          "moveLeft": 898.7500000000391
+        },
+        {
+          "cls": "mage",
+          "x": 7088.031789045562,
+          "y": 4400,
+          "hp": 503,
+          "focus": 272,
+          "moveLeft": 875.2000000000262
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        7100,
+        4400
+      ]
+    },
+    {
+      "action": "fire",
+      "round": 20,
+      "phase": "flight",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 7040.237222019894,
+          "y": 4400,
+          "hp": 532,
+          "focus": 204,
+          "moveLeft": 898.7500000000391
+        },
+        {
+          "cls": "mage",
+          "x": 7088.031789045562,
+          "y": 4400,
+          "hp": 503,
+          "focus": 250,
+          "moveLeft": 875.2000000000262
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-sealed-manifest-store-1",
+      "skill": "M03",
+      "angle": 13.70573222645444,
+      "power": 0.738617564120482
+    },
+    {
+      "action": "fire",
+      "round": 21,
+      "phase": "flight",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 7032.640816040435,
+          "y": 4400,
+          "hp": 532,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 7066.282066059021,
+          "y": 4400,
+          "hp": 499,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-sealed-manifest-store-1",
+      "skill": "M03",
+      "angle": 13.887785059075485,
+      "power": 0.7636508582527778
+    },
+    {
+      "action": "fire",
+      "round": 22,
+      "phase": "flight",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 7019.834507915674,
+          "y": 4400,
+          "hp": 532,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 7042.711891054702,
+          "y": 4400,
+          "hp": 493,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-sealed-manifest-store-1",
+      "skill": "M03",
+      "angle": 14.653914595077874,
+      "power": 0.7373952312447141
+    },
+    {
+      "action": "M09",
+      "round": 23,
+      "phase": "flight",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 7019.834507915674,
+          "y": 4400,
+          "hp": 532,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 7042.711891054702,
+          "y": 4400,
+          "hp": 493,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "angle": 106,
+      "power": 0.8500000000000001
+    },
+    {
+      "action": "walk",
+      "round": 23,
+      "phase": "aim",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 7033.00117458234,
+          "y": 4400,
+          "hp": 532,
+          "focus": 204,
+          "moveLeft": 1734.833333333334
+        },
+        {
+          "cls": "mage",
+          "x": 7042.711891054702,
+          "y": 4400,
+          "hp": 493,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        7042.711891054702,
+        4421
+      ]
+    },
+    {
+      "action": "gate",
+      "round": 23,
+      "phase": "aim",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6660.445326569081,
+          "y": 3950,
+          "hp": 532,
+          "focus": 204,
+          "moveLeft": 1734.833333333334
+        },
+        {
+          "cls": "mage",
+          "x": 7042.711891054702,
+          "y": 4400,
+          "hp": 493,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "crossing": 3
+    },
+    {
+      "action": "defend",
+      "round": 23,
+      "phase": "review",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6660.445326569081,
+          "y": 3950,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 1734.833333333334
+        },
+        {
+          "cls": "mage",
+          "x": 7042.711891054702,
+          "y": 4400,
+          "hp": 493,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "walk",
+      "round": 24,
+      "phase": "aim",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6660.445326569081,
+          "y": 3950,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 7042.711891054702,
+          "y": 4400,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        7042.711891054702,
+        4421
+      ]
+    },
+    {
+      "action": "gate",
+      "round": 24,
+      "phase": "aim",
+      "goal": "stake-arrival-3",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6660.445326569081,
+          "y": 3950,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 6612.445326569081,
+          "y": 3950,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "crossing": 3
+    },
+    {
+      "action": "walk",
+      "round": 24,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6627.528659902416,
+          "y": 3950,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 1715.0833333333348
+        },
+        {
+          "cls": "mage",
+          "x": 6612.445326569081,
+          "y": 3950,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        6615,
+        3950
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 24,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6627.528659902416,
+          "y": 3950,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 1715.0833333333348
+        },
+        {
+          "cls": "mage",
+          "x": 6649.64532656908,
+          "y": 3950,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 1730.800000000001
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        6660,
+        3950
+      ]
+    },
+    {
+      "action": "crossed",
+      "round": 24,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6627.528659902416,
+          "y": 3950,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 1715.0833333333348
+        },
+        {
+          "cls": "mage",
+          "x": 6649.64532656908,
+          "y": 3950,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 1730.800000000001
+        }
+      ],
+      "crossing": 3
+    },
+    {
+      "action": "walk",
+      "round": 24,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6627.528659902416,
+          "y": 3950,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 1715.0833333333348
+        },
+        {
+          "cls": "mage",
+          "x": 6649.64532656908,
+          "y": 3950,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 1730.800000000001
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        6615,
+        3950
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 24,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6627.528659902416,
+          "y": 3950,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 1715.0833333333348
+        },
+        {
+          "cls": "mage",
+          "x": 6649.64532656908,
+          "y": 3950,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 1730.800000000001
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        6660,
+        3950
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 24,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6149.396072593997,
+          "y": 3937.480211515726,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 1234.4888984307338
+        },
+        {
+          "cls": "mage",
+          "x": 6649.64532656908,
+          "y": 3950,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 1730.800000000001
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        6135,
+        3950
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 24,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 6149.396072593997,
+          "y": 3937.480211515726,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 1234.4888984307338
+        },
+        {
+          "cls": "mage",
+          "x": 6190.845326569093,
+          "y": 3950,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 1272.0000000000146
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        6180,
+        3950
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 24,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 5050.42065740019,
+          "y": 3500,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 49.488898430641186
+        },
+        {
+          "cls": "mage",
+          "x": 6190.845326569093,
+          "y": 3950,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 1272.0000000000146
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        5035,
+        3500
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 24,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 5050.42065740019,
+          "y": 3500,
+          "hp": 641,
+          "focus": 204,
+          "moveLeft": 49.488898430641186
+        },
+        {
+          "cls": "mage",
+          "x": 5093.889403287302,
+          "y": 3505.6820286175325,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 87.67493863144811
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        5080,
+        3500
+      ]
+    },
+    {
+      "action": "defend",
+      "round": 24,
+      "phase": "review",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 5004.337324066859,
+          "y": 3500,
+          "hp": 750,
+          "focus": 204,
+          "moveLeft": 3.4055650973099745
+        },
+        {
+          "cls": "mage",
+          "x": 5093.889403287302,
+          "y": 3505.6820286175325,
+          "hp": 493,
+          "focus": 272,
+          "moveLeft": 87.67493863144811
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "defend",
+      "round": 24,
+      "phase": "review",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 5004.337324066859,
+          "y": 3500,
+          "hp": 750,
+          "focus": 204,
+          "moveLeft": 3.4055650973099745
+        },
+        {
+          "cls": "mage",
+          "x": 5093.889403287302,
+          "y": 3505.6820286175325,
+          "hp": 609,
+          "focus": 272,
+          "moveLeft": 87.67493863144811
+        }
+      ],
+      "actor": "mage"
+    },
+    {
+      "action": "walk",
+      "round": 25,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4714.6706574002055,
+          "y": 3500,
+          "hp": 750,
+          "focus": 204,
+          "moveLeft": 1458.3333333333467
+        },
+        {
+          "cls": "mage",
+          "x": 5093.889403287302,
+          "y": 3505.6820286175325,
+          "hp": 609,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        4705,
+        3500
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 25,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4714.6706574002055,
+          "y": 3500,
+          "hp": 750,
+          "focus": 204,
+          "moveLeft": 1458.3333333333467
+        },
+        {
+          "cls": "mage",
+          "x": 4760.206697601007,
+          "y": 3500,
+          "hp": 609,
+          "focus": 272,
+          "moveLeft": 1433.20000000001
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        4750,
+        3500
+      ]
+    },
+    {
+      "action": "M09",
+      "round": 25,
+      "phase": "flight",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4714.6706574002055,
+          "y": 3500,
+          "hp": 750,
+          "focus": 204,
+          "moveLeft": 1458.3333333333467
+        },
+        {
+          "cls": "mage",
+          "x": 4760.206697601007,
+          "y": 3500,
+          "hp": 609,
+          "focus": 228,
+          "moveLeft": 1433.20000000001
+        }
+      ],
+      "angle": -75,
+      "power": 0
+    },
+    {
+      "action": "defend",
+      "round": 25,
+      "phase": "review",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4714.6706574002055,
+          "y": 3500,
+          "hp": 750,
+          "focus": 204,
+          "moveLeft": 1458.3333333333467
+        },
+        {
+          "cls": "mage",
+          "x": 4760.206697601007,
+          "y": 3500,
+          "hp": 609,
+          "focus": 228,
+          "moveLeft": 1433.20000000001
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "M09",
+      "round": 26,
+      "phase": "flight",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4738.649042999585,
+          "y": 3500,
+          "hp": 750,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 4769.386346222576,
+          "y": 3500,
+          "hp": 578,
+          "focus": 209.86,
+          "moveLeft": 1768
+        }
+      ],
+      "angle": 122,
+      "power": 0.9500000000000002
+    },
+    {
+      "action": "walk",
+      "round": 26,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4758.399042999584,
+          "y": 3500,
+          "hp": 750,
+          "focus": 204,
+          "moveLeft": 1728.250000000001
+        },
+        {
+          "cls": "mage",
+          "x": 4769.386346222576,
+          "y": 3500,
+          "hp": 578,
+          "focus": 209.86,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        4771.594735585519,
+        3500
+      ]
+    },
+    {
+      "action": "gate",
+      "round": 26,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4195.3268185580855,
+          "y": 3050,
+          "hp": 750,
+          "focus": 204,
+          "moveLeft": 1728.250000000001
+        },
+        {
+          "cls": "mage",
+          "x": 4769.386346222576,
+          "y": 3500,
+          "hp": 578,
+          "focus": 209.86,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "crossing": 4
+    },
+    {
+      "action": "defend",
+      "round": 26,
+      "phase": "review",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4195.3268185580855,
+          "y": 3050,
+          "hp": 750,
+          "focus": 204,
+          "moveLeft": 1728.250000000001
+        },
+        {
+          "cls": "mage",
+          "x": 4769.386346222576,
+          "y": 3500,
+          "hp": 578,
+          "focus": 209.86,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "walk",
+      "round": 27,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4223.556188046449,
+          "y": 3050,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 4769.386346222576,
+          "y": 3500,
+          "hp": 578,
+          "focus": 235.72000000000003,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        4771.594735585519,
+        3500
+      ]
+    },
+    {
+      "action": "gate",
+      "round": 27,
+      "phase": "aim",
+      "goal": "stake-arrival-4",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4223.556188046449,
+          "y": 3050,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 4171.3268185580855,
+          "y": 3050,
+          "hp": 578,
+          "focus": 235.72000000000003,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "crossing": 4
+    },
+    {
+      "action": "walk",
+      "round": 27,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4065.5561880464543,
+          "y": 3050,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 1590.000000000005
+        },
+        {
+          "cls": "mage",
+          "x": 4171.3268185580855,
+          "y": 3050,
+          "hp": 578,
+          "focus": 235.72000000000003,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        4055,
+        3050
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 27,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4065.5561880464543,
+          "y": 3050,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 1590.000000000005
+        },
+        {
+          "cls": "mage",
+          "x": 4115.526818558087,
+          "y": 3050,
+          "hp": 578,
+          "focus": 235.72000000000003,
+          "moveLeft": 1712.2000000000016
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        4100,
+        3050
+      ]
+    },
+    {
+      "action": "crossed",
+      "round": 27,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4065.5561880464543,
+          "y": 3050,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 1590.000000000005
+        },
+        {
+          "cls": "mage",
+          "x": 4115.526818558087,
+          "y": 3050,
+          "hp": 578,
+          "focus": 235.72000000000003,
+          "moveLeft": 1712.2000000000016
+        }
+      ],
+      "crossing": 4
+    },
+    {
+      "action": "walk",
+      "round": 27,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4065.5561880464543,
+          "y": 3050,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 1590.000000000005
+        },
+        {
+          "cls": "mage",
+          "x": 4115.526818558087,
+          "y": 3050,
+          "hp": 578,
+          "focus": 235.72000000000003,
+          "moveLeft": 1712.2000000000016
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        4055,
+        3050
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 27,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 4065.5561880464543,
+          "y": 3050,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 1590.000000000005
+        },
+        {
+          "cls": "mage",
+          "x": 4115.526818558087,
+          "y": 3050,
+          "hp": 578,
+          "focus": 235.72000000000003,
+          "moveLeft": 1712.2000000000016
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        4100,
+        3050
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 27,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 3317.506934071334,
+          "y": 3036.707382120091,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 839.3369319505382
+        },
+        {
+          "cls": "mage",
+          "x": 4115.526818558087,
+          "y": 3050,
+          "hp": 578,
+          "focus": 235.72000000000003,
+          "moveLeft": 1712.2000000000016
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        3305,
+        3050
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 27,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 3317.506934071334,
+          "y": 3036.707382120091,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 839.3369319505382
+        },
+        {
+          "cls": "mage",
+          "x": 3365.326818558109,
+          "y": 3050,
+          "hp": 578,
+          "focus": 235.72000000000003,
+          "moveLeft": 962.0000000000236
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        3350,
+        3050
+      ]
+    },
+    {
+      "action": "fire",
+      "round": 27,
+      "phase": "flight",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 2543.6725497703637,
+          "y": 2720.1387703606033,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 3.2535986171964715
+        },
+        {
+          "cls": "mage",
+          "x": 3365.326818558109,
+          "y": 3050,
+          "hp": 578,
+          "focus": 235.72000000000003,
+          "moveLeft": 962.0000000000236
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-high-numbered-store-1",
+      "skill": "A01",
+      "angle": 11.980589959486315,
+      "power": 0.7693281975377181
+    },
+    {
+      "action": "defend",
+      "round": 27,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 2543.6725497703637,
+          "y": 2720.1387703606033,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 3365.326818558109,
+          "y": 3050,
+          "hp": 578,
+          "focus": 235.72000000000003,
+          "moveLeft": 962.0000000000236
+        }
+      ],
+      "actor": "archer"
+    },
+    {
+      "action": "defend",
+      "round": 27,
+      "phase": "review",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 2543.6725497703637,
+          "y": 2720.1387703606033,
+          "hp": 670,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 3365.326818558109,
+          "y": 3050,
+          "hp": 578,
+          "focus": 261.58000000000004,
+          "moveLeft": 962.0000000000236
+        }
+      ],
+      "actor": "mage"
+    },
+    {
+      "action": "walk",
+      "round": 28,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 2220.546025347779,
+          "y": 2600,
+          "hp": 595,
+          "focus": 204,
+          "moveLeft": 1366.166666666663
+        },
+        {
+          "cls": "mage",
+          "x": 3365.326818558109,
+          "y": 3050,
+          "hp": 578,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        2205,
+        2600
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 28,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 2220.546025347779,
+          "y": 2600,
+          "hp": 595,
+          "focus": 204,
+          "moveLeft": 1366.166666666663
+        },
+        {
+          "cls": "mage",
+          "x": 2262.170895276316,
+          "y": 2604.9790026130386,
+          "hp": 578,
+          "focus": 272,
+          "moveLeft": 577.3366980469305
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        2250,
+        2600
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 28,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1759.712692014445,
+          "y": 2600,
+          "hp": 595,
+          "focus": 204,
+          "moveLeft": 905.3333333333292
+        },
+        {
+          "cls": "mage",
+          "x": 2262.170895276316,
+          "y": 2604.9790026130386,
+          "hp": 578,
+          "focus": 272,
+          "moveLeft": 577.3366980469305
+        }
+      ],
+      "actor": "archer",
+      "target": [
+        1745,
+        2600
+      ]
+    },
+    {
+      "action": "walk",
+      "round": 28,
+      "phase": "aim",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1759.712692014445,
+          "y": 2600,
+          "hp": 595,
+          "focus": 204,
+          "moveLeft": 905.3333333333292
+        },
+        {
+          "cls": "mage",
+          "x": 1804.349949005521,
+          "y": 2600,
+          "hp": 578,
+          "focus": 272,
+          "moveLeft": 118.53669804693436
+        }
+      ],
+      "actor": "mage",
+      "target": [
+        1790,
+        2600
+      ]
+    },
+    {
+      "action": "fire",
+      "round": 28,
+      "phase": "flight",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1759.712692014445,
+          "y": 2600,
+          "hp": 595,
+          "focus": 204,
+          "moveLeft": 905.3333333333292
+        },
+        {
+          "cls": "mage",
+          "x": 1804.349949005521,
+          "y": 2600,
+          "hp": 578,
+          "focus": 250,
+          "moveLeft": 118.53669804693436
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-high-numbered-store-0",
+      "skill": "M03",
+      "angle": 7.185927070638835,
+      "power": 0.6844949079734973
+    },
+    {
+      "action": "fire",
+      "round": 29,
+      "phase": "flight",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1754.2344093545694,
+          "y": 2600,
+          "hp": 595,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 1788.5261003568392,
+          "y": 2600,
+          "hp": 538,
+          "focus": 261,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-high-numbered-store-0",
+      "skill": "M03",
+      "angle": 7.53240932093143,
+      "power": 0.7057143651128633
+    },
+    {
+      "action": "fire",
+      "round": 30,
+      "phase": "flight",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1754.2344093545694,
+          "y": 2600,
+          "hp": 595,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 1777.1596073999003,
+          "y": 2600,
+          "hp": 505,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-high-numbered-store-0",
+      "skill": "M03",
+      "angle": 8.003420401798712,
+      "power": 0.6817937003808334
+    },
+    {
+      "action": "fire",
+      "round": 31,
+      "phase": "flight",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1737.481196874962,
+          "y": 2600,
+          "hp": 595,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 1752.657704622132,
+          "y": 2600,
+          "hp": 454,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-high-numbered-store-0",
+      "skill": "A01",
+      "angle": 2.4091104598811213,
+      "power": 0.6964360130111086
+    },
+    {
+      "action": "fire",
+      "round": 31,
+      "phase": "flight",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1737.481196874962,
+          "y": 2600,
+          "hp": 595,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 1752.657704622132,
+          "y": 2600,
+          "hp": 454,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-high-numbered-store-0",
+      "skill": "M03",
+      "angle": 8.331665653191829,
+      "power": 0.7422208883169987
+    },
+    {
+      "action": "fire",
+      "round": 32,
+      "phase": "flight",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1737.481196874962,
+          "y": 2600,
+          "hp": 595,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 1746.4126432976727,
+          "y": 2600,
+          "hp": 421,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "archer",
+      "target": "a3-27-high-numbered-store-0",
+      "skill": "A01",
+      "angle": 2.431777888225189,
+      "power": 0.6840512025467334
+    },
+    {
+      "action": "fire",
+      "round": 32,
+      "phase": "flight",
+      "goal": "family-manifest",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1737.481196874962,
+          "y": 2600,
+          "hp": 595,
+          "focus": 204,
+          "moveLeft": 209.76
+        },
+        {
+          "cls": "mage",
+          "x": 1746.4126432976727,
+          "y": 2600,
+          "hp": 421,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-high-numbered-store-1",
+      "skill": "M03",
+      "angle": 18.996625670474632,
+      "power": 0.86221495342155
+    },
+    {
+      "action": "interact",
+      "round": 33,
+      "phase": "review",
+      "goal": "deep-depot-exit",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1703.7363126523749,
+          "y": 2600,
+          "hp": 515,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 1708.674857551831,
+          "y": 2600,
+          "hp": 378,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ],
+      "id": "family-manifest"
+    },
+    {
+      "action": "fire",
+      "round": 33,
+      "phase": "flight",
+      "goal": "deep-depot-exit",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1703.7363126523749,
+          "y": 2600,
+          "hp": 515,
+          "focus": 204,
+          "moveLeft": 1748
+        },
+        {
+          "cls": "mage",
+          "x": 1708.674857551831,
+          "y": 2600,
+          "hp": 378,
+          "focus": 250,
+          "moveLeft": 1768
+        }
+      ],
+      "actor": "mage",
+      "target": "a3-27-high-numbered-store-1",
+      "skill": "M03",
+      "angle": 29.931877062446212,
+      "power": 0.9804182085366715
+    },
+    {
+      "action": "won",
+      "round": 34,
+      "phase": "won",
+      "positions": [
+        {
+          "cls": "archer",
+          "x": 1433.5001751500167,
+          "y": 2600,
+          "hp": 420,
+          "focus": 204,
+          "moveLeft": 1524.1666666666692
+        },
+        {
+          "cls": "mage",
+          "x": 1659.4677148498465,
+          "y": 2600,
+          "hp": 319,
+          "focus": 272,
+          "moveLeft": 1768
+        }
+      ]
+    }
+  ],
+  "damage": [
+    {
+      "round": 1,
+      "frame": 92,
+      "id": "a3-27-entry-hauling-remnants-0",
+      "side": 1,
+      "delta": -397,
+      "hp": 829
+    },
+    {
+      "round": 1,
+      "frame": 218,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -1,
+      "hp": 965
+    },
+    {
+      "round": 1,
+      "frame": 439,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -47,
+      "hp": 918
+    },
+    {
+      "round": 2,
+      "frame": 588,
+      "id": "a3-27-entry-hauling-remnants-0",
+      "side": 1,
+      "delta": -397,
+      "hp": 432
+    },
+    {
+      "round": 2,
+      "frame": 668,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -42,
+      "hp": 876
+    },
+    {
+      "round": 2,
+      "frame": 848,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -38,
+      "hp": 838
+    },
+    {
+      "round": 3,
+      "frame": 988,
+      "id": "a3-27-entry-hauling-remnants-0",
+      "side": 1,
+      "delta": -397,
+      "hp": 35
+    },
+    {
+      "round": 3,
+      "frame": 1055,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -43,
+      "hp": 795
+    },
+    {
+      "round": 3,
+      "frame": 1191,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -50,
+      "hp": 745
+    },
+    {
+      "round": 4,
+      "frame": 1293,
+      "id": "a3-27-entry-hauling-remnants-0",
+      "side": 1,
+      "delta": -35,
+      "hp": 0
+    },
+    {
+      "round": 4,
+      "frame": 1496,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -36,
+      "hp": 869
+    },
+    {
+      "round": 6,
+      "frame": 2934,
+      "id": "a3-27-entry-hauling-remnants-1",
+      "side": 1,
+      "delta": -704,
+      "hp": 276
+    },
+    {
+      "round": 6,
+      "frame": 3146,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -8,
+      "hp": 737
+    },
+    {
+      "round": 8,
+      "frame": 4074,
+      "id": "a3-27-lower-loading-store-0",
+      "side": 1,
+      "delta": -188,
+      "hp": 1712
+    },
+    {
+      "round": 8,
+      "frame": 4103,
+      "id": "a3-27-lower-loading-store-0",
+      "side": 1,
+      "delta": -79,
+      "hp": 1633
+    },
+    {
+      "round": 8,
+      "frame": 4188,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -40,
+      "hp": 829
+    },
+    {
+      "round": 8,
+      "frame": 4485,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -29,
+      "hp": 708
+    },
+    {
+      "round": 9,
+      "frame": 4800,
+      "id": "a3-27-lower-loading-store-0",
+      "side": 1,
+      "delta": -364,
+      "hp": 1269
+    },
+    {
+      "round": 9,
+      "frame": 5053,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -48,
+      "hp": 660
+    },
+    {
+      "round": 10,
+      "frame": 5199,
+      "id": "a3-27-lower-loading-store-0",
+      "side": 1,
+      "delta": -378,
+      "hp": 891
+    },
+    {
+      "round": 10,
+      "frame": 5301,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -29,
+      "hp": 631
+    },
+    {
+      "round": 10,
+      "frame": 5382,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -45,
+      "hp": 586
+    },
+    {
+      "round": 11,
+      "frame": 5482,
+      "id": "a3-27-lower-loading-store-0",
+      "side": 1,
+      "delta": -188,
+      "hp": 703
+    },
+    {
+      "round": 11,
+      "frame": 5511,
+      "id": "a3-27-lower-loading-store-0",
+      "side": 1,
+      "delta": -79,
+      "hp": 624
+    },
+    {
+      "round": 11,
+      "frame": 5582,
+      "id": "a3-27-lower-loading-store-0",
+      "side": 1,
+      "delta": -364,
+      "hp": 260
+    },
+    {
+      "round": 11,
+      "frame": 5652,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -50,
+      "hp": 536
+    },
+    {
+      "round": 11,
+      "frame": 5756,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -26,
+      "hp": 803
+    },
+    {
+      "round": 11,
+      "frame": 5756,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -29,
+      "hp": 507
+    },
+    {
+      "round": 12,
+      "frame": 5851,
+      "id": "a3-27-lower-loading-store-0",
+      "side": 1,
+      "delta": -211,
+      "hp": 49
+    },
+    {
+      "round": 12,
+      "frame": 5880,
+      "id": "a3-27-lower-loading-store-0",
+      "side": 1,
+      "delta": -49,
+      "hp": 0
+    },
+    {
+      "round": 12,
+      "frame": 5981,
+      "id": "a3-27-lower-loading-store-1",
+      "side": 1,
+      "delta": -397,
+      "hp": 829
+    },
+    {
+      "round": 12,
+      "frame": 6067,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -28,
+      "hp": 775
+    },
+    {
+      "round": 13,
+      "frame": 6185,
+      "id": "a3-27-lower-loading-store-1",
+      "side": 1,
+      "delta": -206,
+      "hp": 623
+    },
+    {
+      "round": 13,
+      "frame": 6214,
+      "id": "a3-27-lower-loading-store-1",
+      "side": 1,
+      "delta": -86,
+      "hp": 537
+    },
+    {
+      "round": 13,
+      "frame": 6316,
+      "id": "a3-27-lower-loading-store-1",
+      "side": 1,
+      "delta": -397,
+      "hp": 140
+    },
+    {
+      "round": 13,
+      "frame": 6403,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -28,
+      "hp": 747
+    },
+    {
+      "round": 14,
+      "frame": 6512,
+      "id": "a3-27-lower-loading-store-1",
+      "side": 1,
+      "delta": -140,
+      "hp": 0
+    },
+    {
+      "round": 15,
+      "frame": 7273,
+      "id": "a3-27-sealed-manifest-store-0",
+      "side": 1,
+      "delta": -189,
+      "hp": 1711
+    },
+    {
+      "round": 15,
+      "frame": 7303,
+      "id": "a3-27-sealed-manifest-store-0",
+      "side": 1,
+      "delta": -79,
+      "hp": 1632
+    },
+    {
+      "round": 15,
+      "frame": 7484,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -46,
+      "hp": 701
+    },
+    {
+      "round": 15,
+      "frame": 7641,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -45,
+      "hp": 656
+    },
+    {
+      "round": 16,
+      "frame": 7916,
+      "id": "a3-27-sealed-manifest-store-0",
+      "side": 1,
+      "delta": -395,
+      "hp": 1237
+    },
+    {
+      "round": 16,
+      "frame": 8185,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -40,
+      "hp": 583
+    },
+    {
+      "round": 17,
+      "frame": 8379,
+      "id": "a3-27-sealed-manifest-store-0",
+      "side": 1,
+      "delta": -380,
+      "hp": 857
+    },
+    {
+      "round": 17,
+      "frame": 8491,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -2,
+      "hp": 581
+    },
+    {
+      "round": 17,
+      "frame": 8650,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -37,
+      "hp": 544
+    },
+    {
+      "round": 18,
+      "frame": 8781,
+      "id": "a3-27-sealed-manifest-store-0",
+      "side": 1,
+      "delta": -189,
+      "hp": 668
+    },
+    {
+      "round": 18,
+      "frame": 8811,
+      "id": "a3-27-sealed-manifest-store-0",
+      "side": 1,
+      "delta": -167,
+      "hp": 501
+    },
+    {
+      "round": 18,
+      "frame": 8930,
+      "id": "a3-27-sealed-manifest-store-0",
+      "side": 1,
+      "delta": -380,
+      "hp": 121
+    },
+    {
+      "round": 18,
+      "frame": 9043,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -32,
+      "hp": 624
+    },
+    {
+      "round": 18,
+      "frame": 9195,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -45,
+      "hp": 579
+    },
+    {
+      "round": 18,
+      "frame": 9195,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -41,
+      "hp": 503
+    },
+    {
+      "round": 19,
+      "frame": 9331,
+      "id": "a3-27-sealed-manifest-store-0",
+      "side": 1,
+      "delta": -121,
+      "hp": 0
+    },
+    {
+      "round": 19,
+      "frame": 9583,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -47,
+      "hp": 532
+    },
+    {
+      "round": 20,
+      "frame": 9993,
+      "id": "a3-27-sealed-manifest-store-1",
+      "side": 1,
+      "delta": -403,
+      "hp": 577
+    },
+    {
+      "round": 20,
+      "frame": 10120,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -4,
+      "hp": 499
+    },
+    {
+      "round": 21,
+      "frame": 10297,
+      "id": "a3-27-sealed-manifest-store-1",
+      "side": 1,
+      "delta": -403,
+      "hp": 174
+    },
+    {
+      "round": 21,
+      "frame": 10386,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -6,
+      "hp": 493
+    },
+    {
+      "round": 22,
+      "frame": 10567,
+      "id": "a3-27-sealed-manifest-store-1",
+      "side": 1,
+      "delta": -174,
+      "hp": 0
+    },
+    {
+      "round": 25,
+      "frame": 12110,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -31,
+      "hp": 578
+    },
+    {
+      "round": 26,
+      "frame": 13840,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -32,
+      "hp": 718
+    },
+    {
+      "round": 26,
+      "frame": 14063,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -48,
+      "hp": 670
+    },
+    {
+      "round": 27,
+      "frame": 14714,
+      "id": "a3-27-high-numbered-store-1",
+      "side": 1,
+      "delta": -94,
+      "hp": 886
+    },
+    {
+      "round": 27,
+      "frame": 14743,
+      "id": "a3-27-high-numbered-store-1",
+      "side": 1,
+      "delta": -19,
+      "hp": 867
+    },
+    {
+      "round": 27,
+      "frame": 15039,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -43,
+      "hp": 627
+    },
+    {
+      "round": 27,
+      "frame": 15039,
+      "id": "a3-27-high-numbered-store-0",
+      "side": 1,
+      "delta": -34,
+      "hp": 1866
+    },
+    {
+      "round": 27,
+      "frame": 15224,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -32,
+      "hp": 595
+    },
+    {
+      "round": 28,
+      "frame": 15738,
+      "id": "a3-27-high-numbered-store-0",
+      "side": 1,
+      "delta": -364,
+      "hp": 1502
+    },
+    {
+      "round": 28,
+      "frame": 16021,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -40,
+      "hp": 538
+    },
+    {
+      "round": 29,
+      "frame": 16293,
+      "id": "a3-27-high-numbered-store-0",
+      "side": 1,
+      "delta": -378,
+      "hp": 1124
+    },
+    {
+      "round": 29,
+      "frame": 16372,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -33,
+      "hp": 505
+    },
+    {
+      "round": 30,
+      "frame": 16596,
+      "id": "a3-27-high-numbered-store-0",
+      "side": 1,
+      "delta": -364,
+      "hp": 760
+    },
+    {
+      "round": 30,
+      "frame": 16838,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -51,
+      "hp": 454
+    },
+    {
+      "round": 31,
+      "frame": 17061,
+      "id": "a3-27-high-numbered-store-0",
+      "side": 1,
+      "delta": -188,
+      "hp": 572
+    },
+    {
+      "round": 31,
+      "frame": 17090,
+      "id": "a3-27-high-numbered-store-0",
+      "side": 1,
+      "delta": -79,
+      "hp": 493
+    },
+    {
+      "round": 31,
+      "frame": 17183,
+      "id": "a3-27-high-numbered-store-0",
+      "side": 1,
+      "delta": -364,
+      "hp": 129
+    },
+    {
+      "round": 31,
+      "frame": 17264,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -33,
+      "hp": 421
+    },
+    {
+      "round": 32,
+      "frame": 17480,
+      "id": "a3-27-high-numbered-store-0",
+      "side": 1,
+      "delta": -129,
+      "hp": 0
+    },
+    {
+      "round": 32,
+      "frame": 17738,
+      "id": "a3-27-high-numbered-store-1",
+      "side": 1,
+      "delta": -403,
+      "hp": 464
+    },
+    {
+      "round": 32,
+      "frame": 17944,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -34,
+      "hp": 561
+    },
+    {
+      "round": 32,
+      "frame": 18194,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -46,
+      "hp": 515
+    },
+    {
+      "round": 32,
+      "frame": 18194,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -43,
+      "hp": 378
+    },
+    {
+      "round": 33,
+      "frame": 18405,
+      "id": "a3-27-high-numbered-store-1",
+      "side": 1,
+      "delta": -403,
+      "hp": 61
+    },
+    {
+      "round": 33,
+      "frame": 18601,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -47,
+      "hp": 468
+    },
+    {
+      "round": 33,
+      "frame": 18601,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -8,
+      "hp": 370
+    },
+    {
+      "round": 33,
+      "frame": 18737,
+      "id": "p-archer",
+      "side": 0,
+      "delta": -48,
+      "hp": 420
+    },
+    {
+      "round": 33,
+      "frame": 18737,
+      "id": "p-mage",
+      "side": 0,
+      "delta": -51,
+      "hp": 319
+    }
+  ],
+  "void": {
+    "revision": 1,
+    "state": "RESOLVED",
+    "reason": "approach",
+    "completed": true
+  },
+  "events": {},
+  "heroes": [
+    {
+      "cls": "archer",
+      "hp": 420,
+      "maxHp": 905,
+      "focus": 204
+    },
+    {
+      "cls": "mage",
+      "hp": 319,
+      "maxHp": 966,
+      "focus": 272
+    }
+  ],
+  "startUnits": 10,
+  "endUnits": 10
+}

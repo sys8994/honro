@@ -1,0 +1,137 @@
+{
+  "baseline": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+  "status": "six-stage-preparation; awaiting final 21/22/24/26 and parent release instruction",
+  "sources": [
+    {
+      "stage": 23,
+      "source": "d292248e15b44b9f0cf467da7993bb0cfad39003",
+      "changedAssetIds": [
+        "stage23:yard-grounded-rear-plinths",
+        "stage23:yard-granary-halls",
+        "stage23:yard-terrace-faces-chute",
+        "stage23:yard-stone-bridge-reflector",
+        "stage23:yard-gates-record-life",
+        "stage23:yard-life-goods-cargo",
+        "stage23:yard-far-mountain"
+      ],
+      "stageSha256": "bd970c60b2a340d65697b6fc6ee8f3a0ea16ce9979823d313f8f4fcbeb48bb6d"
+    },
+    {
+      "stage": 25,
+      "source": "5d39d651cdc0d94473dfac72273d01c4f29ed7e2",
+      "changedAssetIds": [
+        "a3-maintenance25:shaft-bearing-masonry",
+        "a3-maintenance25:sluice-leaf-and-guides",
+        "a3-maintenance25:maintenance-winding-drum",
+        "a3-maintenance25:west-stoplog-workbench",
+        "a3-maintenance25:stoplog-storage",
+        "a3-maintenance25:rising-rear-watercourse",
+        "a3-maintenance25:dark-shell",
+        "a3-maintenance25:gallery-0",
+        "a3-maintenance25:gallery-1",
+        "a3-maintenance25:gallery-2",
+        "a3-maintenance25:gallery-3",
+        "a3-maintenance25:gallery-4",
+        "a3-maintenance25:gallery-5",
+        "a3-maintenance25:gallery-6",
+        "a3-roof-access25:inspection-room-roof",
+        "a3-roof-access25:inspection-room-east-wall",
+        "a3-roof-access25:west-lookout-roof",
+        "a3-roof-access25:west-lookout-wall",
+        "a3-roof-access25:upper-checkpoint-roof",
+        "a3-roof-access25:upper-checkpoint-east-wall",
+        "a3-roof-access25:maintenance-recess",
+        "a3-roof-access25:upper-checkpoint"
+      ],
+      "stageSha256": "1441f550a75e5e76c8a78079ba83670df2d916df1df5144de91b9a6bc54caa38"
+    },
+    {
+      "stage": 27,
+      "source": "e88ea30461d8722c9f0ca4955ba5143b152e559a",
+      "changedAssetIds": [
+        "stage27-depot-r1:rear-haulage-hall",
+        "stage27-depot-r1:quay-face-1",
+        "stage27-depot-r1:quay-face-3",
+        "stage27-depot-r1:quay-face-7",
+        "stage27-depot-r1:cargo-incline",
+        "stage27-depot-r1:loading-hoist",
+        "stage27-depot-r2:misconnected-rear",
+        "stage27-depot-r3:gallery-0",
+        "stage27-depot-r3:gallery-1",
+        "stage27-depot-r3:gallery-2",
+        "stage27-depot-r3:gallery-3",
+        "stage27-depot-r3:gallery-4",
+        "stage27-depot-r3:gallery-5",
+        "stage27-depot-r3:gallery-6",
+        "stage27-depot-r3:gallery-7",
+        "stage27-depot-r3:loading-office-roof",
+        "stage27-depot-r3:far-passage-roof",
+        "stage27-depot-r3:ledger-room-roof",
+        "stage27-depot-r3:far-sealed-store",
+        "stage27-depot-r3:ledger-vault",
+        "stage27-depot-r3:rear-drainage"
+      ],
+      "stageSha256": "db61cf477999cdd12bcd7e29237934cd0fd86b40b7c091c6fd90d1b1739d903e"
+    },
+    {
+      "stage": 28,
+      "source": "d1a71814074da48abd0d5abdea2cd794f8617e5a",
+      "changedAssetIds": [
+        "stage28:record-court:boundary-walls",
+        "stage28:record-court:west-clerks-wing-rear",
+        "stage28:record-court:west-clerks-wing-roof",
+        "stage28:record-court:raised-open-record-hall-rear",
+        "stage28:record-court:raised-open-record-hall-roof",
+        "stage28:record-court:east-record-annex-rear",
+        "stage28:record-court:east-record-annex-roof",
+        "stage28:record-court:water-yard-shed-rear",
+        "stage28:record-court:water-yard-shed-roof",
+        "stage28:record-court:roof-access-support-west",
+        "stage28:record-court:roof-access-support-court-lower",
+        "stage28:record-court:roof-access-support-court-upper",
+        "stage28:record-court:roof-access-support-annex",
+        "stage28:record-court:roof-access-support-water",
+        "stage28:record-court:court-plinth",
+        "stage28:record-court:veranda-supports",
+        "stage28:record-court:fire-water-basin",
+        "stage28:record-court:charred-west-fittings",
+        "stage28:record-court:mound-stone-shoulders",
+        "stage28:record-court:petition-worktable",
+        "stage28:record-court:approval-worktable",
+        "stage28:record-court:suppression-worktable"
+      ],
+      "stageSha256": "13cd400f3bf27bdbef2c3f9e007c32d24454bc2794bfe0ad33f368ac9509eb00"
+    },
+    {
+      "stage": 29,
+      "source": "58b3f6e6ced75f815cff9e29874b4d92ff044224",
+      "changedAssetIds": [
+        "stage29:record-rear-retaining-work",
+        "stage29:record-letter-room",
+        "stage29:record-sluice-bearing",
+        "stage29:record-archive-eaves",
+        "stage29:record-keeper-hut",
+        "stage29:record-upper-rear-rail",
+        "stage29:record-actual-stone-faces",
+        "stage29:record-inspection-eaves"
+      ],
+      "stageSha256": "1e7c997cdd48afc556f3866c01b067e5c1a9ff0783133c84b1ca1450adc96217"
+    },
+    {
+      "stage": 30,
+      "source": "f529e1538658c856ce0e18b837f42353c07113e6",
+      "changedAssetIds": [
+        "stage30:ferry-settled-barge",
+        "stage30:ferry-timber-bearing-frames",
+        "stage30:ferry-recessed-grounded-supports",
+        "stage30:ferry-landing-frame"
+      ],
+      "stageSha256": "26f2e2b0a658e3d2e0dc89b2add7d946e3660f5b9113eb23de5405dccf2cf95e"
+    }
+  ],
+  "excluded": [
+    "recovery dialogue/VFX",
+    "general airborne enemy AI/repositioning"
+  ],
+  "generatedHTML": "not rebuilt yet"
+}

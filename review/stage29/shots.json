@@ -1,0 +1,95 @@
+{
+  "scope": "One actual projectile hit from a supported nearby attack position per authored group, after opening mission gates. Synthetic positions, not a traversal, all-target reachability or player input claim.",
+  "rows": [
+    {
+      "stage": 29,
+      "group": "sealed-store-response",
+      "target": "a3-29-sealed-store-response-0",
+      "from": {
+        "x": 1130,
+        "y": 2700
+      },
+      "to": {
+        "x": 1390,
+        "y": 2633.5384615384614
+      },
+      "aim": {
+        "angle": 15.171750229933297,
+        "power": 0.5969184687030004
+      },
+      "damage": 196
+    },
+    {
+      "stage": 29,
+      "group": "letter-store-guard",
+      "target": "a3-29-letter-store-guard-0",
+      "from": {
+        "x": 2370,
+        "y": 2338.867924528302
+      },
+      "to": {
+        "x": 2630,
+        "y": 2220
+      },
+      "aim": {
+        "angle": 25.62614724943844,
+        "power": 0.6155222170786767
+      },
+      "damage": 196
+    },
+    {
+      "stage": 29,
+      "group": "underwater-bridge-watch",
+      "target": "a3-29-underwater-bridge-watch-0",
+      "from": {
+        "x": 4030,
+        "y": 2630.4
+      },
+      "to": {
+        "x": 4290,
+        "y": 2760
+      },
+      "aim": {
+        "angle": -25.598316491633174,
+        "power": 0.5957470126886654
+      },
+      "damage": 213
+    },
+    {
+      "stage": 29,
+      "group": "dark-lock-approach",
+      "target": "a3-29-dark-lock-approach-0",
+      "from": {
+        "x": 4460,
+        "y": 1840
+      },
+      "to": {
+        "x": 4720,
+        "y": 1840
+      },
+      "aim": {
+        "angle": 0.6387608517326366,
+        "power": 0.5851876534451791
+      },
+      "damage": 196
+    },
+    {
+      "stage": 29,
+      "group": "moonlit-exit-watch",
+      "target": "a3-29-moonlit-exit-watch-0",
+      "from": {
+        "x": 6250,
+        "y": 2760
+      },
+      "to": {
+        "x": 5990,
+        "y": 2760
+      },
+      "aim": {
+        "angle": 179.36123914826743,
+        "power": 0.5851876534451791
+      },
+      "damage": 196
+    }
+  ]
+}

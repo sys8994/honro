@@ -1,0 +1,87 @@
+{
+  "rows": [
+    {
+      "mobile": false,
+      "phase": "under",
+      "x": 5320,
+      "y": 5470,
+      "support": "sf-ferry-court",
+      "jumping": null
+    },
+    {
+      "mobile": false,
+      "phase": "rising",
+      "x": 5320,
+      "y": 5337.571983236833,
+      "support": null,
+      "jumping": true
+    },
+    {
+      "mobile": false,
+      "phase": "landed",
+      "x": 5320,
+      "y": 5265.517241379311,
+      "support": "sf-quay-west-loft",
+      "jumping": false
+    },
+    {
+      "mobile": false,
+      "phase": "drop-return",
+      "x": 5320,
+      "y": 5470,
+      "support": "sf-ferry-court",
+      "jumping": false
+    },
+    {
+      "mobile": false,
+      "oldSave": {
+        "exact": true,
+        "roofY": 5220
+      }
+    },
+    {
+      "mobile": true,
+      "phase": "under",
+      "x": 5320,
+      "y": 5470,
+      "support": "sf-ferry-court",
+      "jumping": null
+    },
+    {
+      "mobile": true,
+      "phase": "rising",
+      "x": 5320,
+      "y": 5337.571983236833,
+      "support": null,
+      "jumping": true
+    },
+    {
+      "mobile": true,
+      "phase": "landed",
+      "x": 5320,
+      "y": 5265.517241379311,
+      "support": "sf-quay-west-loft",
+      "jumping": false
+    },
+    {
+      "mobile": true,
+      "phase": "drop-return",
+      "x": 5320,
+      "y": 5470,
+      "support": "sf-ferry-court",
+      "jumping": false
+    },
+    {
+      "mobile": true,
+      "oldSave": {
+        "exact": true,
+        "roofY": 5220
+      }
+    }
+  ],
+  "limits": [
+    "Initial actor fixture at the actual landing floor, original enemies retained. Ordinary jump/integrateBody/drop only after setup.",
+    "These are actual browser renderer frames, not normal combat completion.",
+    "Old-save check uses untouched native normal-run saved battle from before the roof-height correction."
+  ]
+}

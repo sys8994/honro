@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFile,mkdir,writeFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {applyStage23Refinement} from '../tools/map-forge/apply-stage23-refinement.mjs';
+const before=JSON.parse(execFileSync('git',['show','d7c1f84:shared/data/campaign.json'],{encoding:'utf8',maxBuffer:100*1024*1024})),after=JSON.parse(await readFile('shared/data/campaign.json','utf8')),a=before.stages[22],z=after.stages[22];
+for(const key of Object.keys(a).filter(k=>!['elements','design','terrains'].includes(k)))assert.deepEqual(z[key],a[key],key+' exact preservation');
+for(const key of Object.keys(a.design).filter(k=>!['escortYardArt','escortYardRoofProfiles','escortYardRoofs'].includes(k)))assert.deepEqual(z.design[key],a.design[key],key+' design preservation');
+assert.deepEqual(z.terrains.filter(t=>!t.id.startsWith('sy-roof-')),a.terrains,'Original escort and cargo geometry exact');
+assert(z.terrains.filter(t=>t.id.startsWith('sy-roof-')).every(t=>t.oneWay===true),'Added roofs/access use existing oneWay');
+assert.deepEqual(after.stages.filter((s,i)=>i!==22),before.stages.filter((s,i)=>i!==22));
+assert.deepEqual(after.library.filter(v=>!v.id.startsWith('stage23:yard-')),before.library.filter(v=>!v.id.startsWith('stage23:yard-')));
+assert.deepEqual(JSON.parse(JSON.stringify(await applyStage23Refinement(after))),after,'Idempotent fresh-map overlay');
+assert.equal(z.design.escortYardArt.revision,3);
+assert.deepEqual(z.elements.filter(e=>!e.id.startsWith('sy-art-')),a.elements.filter(e=>!e.id.startsWith('sy-art-')),'Later narrative dressing preserved');
+const rear=after.library.find(a=>a.id==='stage23:yard-grounded-rear-plinths');assert(rear.params.earthBanks);assert.equal(rear.params.terraceCount,0);assert(!rear.vector.source.includes('stroke='));
+await mkdir('review/stage23',{recursive:true});await writeFile('review/stage23/preservation.json',JSON.stringify({baseline:'d7c1f8457dd33decda5481c7c3b57d8505f6f157',terrain:'original exact; oneWay roofs/access added',objectives:'exact',units:'exact',initialState:'exact',other29:'exact',freshOverlay:'idempotent',scope:'Source equality; not normal play or human approval.'},null,2)+'\n');console.log('PASS Stage23 exact gameplay/story preservation,29 stages,overlay idempotence');

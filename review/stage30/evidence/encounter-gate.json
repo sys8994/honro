@@ -1,0 +1,51 @@
+
+> encounter:review
+> node tools/testing/encounter-evidence-gate.mjs check _local/reports/stage30-review-manifest.json
+
+{
+  "schema": "honro-encounter-evidence/v1",
+  "status": "blocked",
+  "quality": "not-automatically-assessed",
+  "sourceDigest": "edce102aab896e85be0c2ba850ab702cb4e93bc2ff3ae7e3ca86f2d05f7ae3e3",
+  "targetDigest": "00fbe3b8a104b0c552701312fa88d6880f2e53cbf7f5d68555367e4417a3bdc2",
+  "reviewDigest": "4d7f13ff9e3cb1bab85405b54f80ce17ce189fbea8b9b5de522b3e63e11e8d6f",
+  "errors": [
+    "authors: Implementation authors required for independent review",
+    "current target: Stale source or built targets",
+    "stage 30 cluster ford-front: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster ford-rear: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster cape-front: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster cape-support: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster quay-west-front: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster quay-west-support: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster quay-east-front: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster quay-east-support: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster quay-east-flank: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster bank-front: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster bank-support: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster escape-low: Unverified cluster or mismatched source member IDs",
+    "stage 30 cluster escape-high: Unverified cluster or mismatched source member IDs",
+    "stage 30 wave act3-response-30-0: Unverified wave",
+    "stage 30 wave act3-response-30-1: Unverified wave",
+    "stage 30 wave act3-response-30-2: Unverified wave",
+    "stage 30 wave objective:ferry-hold: Unverified wave",
+    "stage 30 same-camera: Missing, blocked or unverified required check",
+    "stage 30 terrain-and-roles: Missing, blocked or unverified required check",
+    "stage 30 activation-and-action-cap: Missing, blocked or unverified required check",
+    "stage 30 normal-resource-play: Missing, blocked or unverified required check",
+    "stage 30 warning-opportunity-and-occupancy: Missing, blocked or unverified required check",
+    "stage 30 continue-death-and-old-save: Missing, blocked or unverified required check",
+    "stage 30 objectives-and-growth: Missing, blocked or unverified required check",
+    "stage 30 game-workshop-playtest: Missing, blocked or unverified required check",
+    "stage 30 visual-quality: Missing, blocked or unverified required check",
+    "stage 30 tactical-quality: Missing, blocked or unverified required check",
+    "stage 30 runtime-wave-inventory: Missing, blocked or unverified required check",
+    "stage 30 build-and-regressions: Missing, blocked or unverified required check",
+    "independent review: Different reviewer and actual review time required"
+  ],
+  "limits": [
+    "File hashes and schemas do not prove truthful observations, reviewer identity or design quality.",
+    "Runtime-only wave/phase completeness, recorded spawnedIds versus raw births, and actual tactical/visual quality require independent source and evidence review.",
+    "This gate does not replace verify, browser/performance checks, final approval or Pages verification."
+  ]
+}

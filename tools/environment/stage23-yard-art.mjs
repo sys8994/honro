@@ -1,18 +1,25 @@
 /** Stage-local editable Korean granary art. Rear façades are explicitly non-collision. */
 import {readFileSync} from 'node:fs';
 import {compileSVG} from './build-act2-art.mjs';
+let roofProfiles=[];
 const PREFIX='stage23:yard-',N=v=>Math.round(v*100)/100;
 const path=(d,fill,stroke='',width=1,id='')=>`<path${id?` id="${id}"`:''} d="${d}" fill="${fill}"${stroke?` stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round"`:''}/>`;
 const poly=(p,c,stroke='',w=1,id='')=>path('M'+p.map(p=>p.map(N).join(' ')).join('L')+'Z',c,stroke,w,id);
 const line=(p,c,w=1)=>path('M'+p.map(p=>p.map(N).join(' ')).join('L'),'none',c,w);
 const rect=(x,y,w,h,c)=>path(`M${x} ${y}h${w}v${h}h${-w}Z`,c);
-function asset(key,name,body,bounds,extra={}){const v=compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${bounds.join(' ')}">${body}</svg>`),[x,y,w,h]=bounds;return{id:PREFIX+key,name,category:'architecture',environmentRole:'architecture',visual:[],vector:v,collision:[],anchor:{x:0,y:0},sockets:[],tags:['stage23-yard','visual-only','editable-native-vector'],params:{artRevision:2,rearOnly:true,collisionSource:'none',...extra},bounds:{x,y,w,h},reference:{heightM:h/60,bounds:{x,y,w,h},foot:{x:0,y:0},scaleRange:[.35,4],backgroundRange:[.35,4]}};}
+function asset(key,name,body,bounds,extra={}){if(extra.rearOnly!==false)body=body.replace(/(<path[^>]*fill="(?!none)[^"]*"[^>]*?) stroke="[^"]*"/g,'$1');const v=compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${bounds.join(' ')}">${body}</svg>`),[x,y,w,h]=bounds;return{id:PREFIX+key,name,category:'architecture',environmentRole:'architecture',visual:[],vector:v,collision:[],anchor:{x:0,y:0},sockets:[],tags:['stage23-yard','visual-only','editable-native-vector'],params:{artRevision:3,rearOnly:true,collisionSource:'none',...extra},bounds:{x,y,w,h},reference:{heightM:h/60,bounds:{x,y,w,h},foot:{x:0,y:0},scaleRange:[.35,4],backgroundRange:[.35,4]}};}
 function register(p,a){const i=p.library.findIndex(v=>v.id===a.id);if(i<0)p.library.push(a);else p.library[i]=a;return a;}
 function add(p,s,a,id,extra={}){register(p,a);s.elements.push({id:'sy-art-'+id,assetId:a.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',...extra});}
 function yAt(q,x){for(let i=1;i<q.length;i++){const a=q[i-1],z=q[i];if(x>=a[0]&&x<=z[0])return a[1]+(z[1]-a[1])*(x-a[0])/(z[0]-a[0]);}throw Error('Art foot outside profile '+x);}
 const points=t=>t.points.map(p=>[p.x,p.y]);
-function roof(x,y,w,rise=150){const l=x-w/2,r=x+w/2,top=y-rise;let b=path(`M${l-65} ${y-20}Q${l+45} ${y-18} ${l+160} ${top+40}L${x-w*.20} ${top}Q${x} ${top+16} ${x+w*.21} ${top}L${r-145} ${top+48}Q${r-35} ${y-12} ${r+66} ${y-25}L${r+59} ${y+10}Q${x} ${y+37} ${l-61} ${y+10}Z`,'#273f43','#193138',6,'korean-hipped-tile-roof');
- b+=path(`M${l+4} ${y-29}L${l+170} ${top+55}L${x-w*.18} ${top+19}Q${x} ${top+34} ${x+w*.18} ${top+21}L${r-135} ${top+65}L${r+6} ${y-33}Q${x} ${y-6} ${l+4} ${y-29}Z`,'#657971');b+=path(`M${l-64} ${y+6}Q${x} ${y+31} ${r+64} ${y+2}L${r+55} ${y+21}Q${x} ${y+51} ${l-55} ${y+25}Z`,'#1b3439');b+=path(`M${x-w*.23} ${top-5}Q${x} ${top+8} ${x+w*.24} ${top-5}`,'none','#b0b298',8);let ribs='';for(let i=1;i<15;i++){const xx=l+w*i/15,ty=top+22+Math.abs(xx-x)/(w/2)*(rise-39);ribs+=`M${N(xx)} ${N(ty)}L${N(xx+(xx-x)*.07)} ${y+6}`;}b+=path(ribs,'none','#415851',4);return b;}
+function roof(x,y,w,rise=150){const l=x-w/2,r=x+w/2,top=y-rise;
+ const q=[[l-65,y-20],[l+45,y-34],[l+Math.min(160,w*.22),top+40],[x-w*.20,top],[x+w*.21,top],[r-Math.min(145,w*.22),top+48],[r-35,y-22],[r+66,y-25]].sort((a,b)=>a[0]-b[0]);
+ roofProfiles.push({x,y,w,rise,top:q});
+ let b=poly([...q,...q.slice().reverse().map(([x,y])=>[x,y+22])],'#30444a','#182e35',5,'walkable-korean-tile-roof');
+ b+=poly([[l-61,y+5],[x,y+32],[r+59,y-3],[r+55,y+21],[x,y+51],[l-55,y+25]],'#1b3439');
+ b+=poly([[x-w*.23,top-5],[x+w*.24,top-5],[x+w*.24,top+5],[x-w*.23,top+5]],'#9da28b');
+ return b;
+}
 function masonry(q,bottom,{tone='#566658',light='#818b70',courses=3,key='masonry'}={}){
  const low=q.slice().reverse().map(([x])=>[x,typeof bottom==='function'?bottom(x):bottom]);let b=poly([...q,...low],tone,'#30453b',5,key);
  const left=q[0][0],right=q.at(-1)[0],topAt=x=>yAt(q,x),bottomAt=x=>typeof bottom==='function'?bottom(x):bottom;
@@ -21,31 +28,29 @@ function masonry(q,bottom,{tone='#566658',light='#818b70',courses=3,key='masonry
  for(let row=1;row<=courses;row++){const f=row/(courses+1),yy=x=>topAt(x)+(bottomAt(x)-topAt(x))*f;b+=line([[left,yy(left)],[right,yy(right)]],'#354b40',8);const cuts=row%2?[.19,.48,.77]:[.32,.66,.91];for(const u of cuts){const x=left+(right-left)*u,y=yy(x),h=Math.max(30,(bottomAt(x)-topAt(x))/(courses+1));b+=line([[x,y-h+8],[x-5,y-3]],'#34493e',6);}}
  b+=poly([[right-70,topAt(right-70)+22],[right,topAt(right)+22],[right,bottomAt(right)],[right-55,bottomAt(right-55)]],'#354a40');return b;
 }
-function rearMass(s){const main=s.design.act3.primaryContour,ground=x=>yAt(main,x)+10;let b='',feet=[],rearMasonryFaces=[];
- // Separate short terraces carry the warehouse court. Their tops are rear
- // scenery; only the pale narrow foreground edges are playable sy surfaces.
- const tier=(id,q,lower,options={})=>{const xs=[...new Set([...q.map(p=>p[0]),...main.map(p=>p[0]).filter(x=>x>q[0][0]&&x<q.at(-1)[0])])].sort((a,z)=>a-z),top=xs.map(x=>[x,yAt(q,x)]);q=top;const foot=q.map(([x])=>[x,typeof lower==='function'?lower(x):lower]);rearMasonryFaces.push({id,top:q,foot,polygon:[...q,...foot.slice().reverse()]});b+=masonry(q,lower,{...options,key:id});for(const[x]of q){const y=ground(x);feet.push({x,y:y-10,terrainId:x>=5260&&x<=6020?'sy-stone-bridge':'sy-ground',rearOnly:true,structure:id});}};
- tier('B-low-foundation',[[1510,4520],[1950,4520],[2670,4560],[2940,4640]],ground,{tone:'#66745f',courses:2});
- tier('B-granary-rear-enclosure',[[1450,4210],[1760,4044],[2600,4124],[2840,4124]],x=>Math.max(4560,ground(x)),{tone:'#566b5b',courses:3});
- tier('D-bottom-stone-terrace',[[3070,4750],[3650,4740],[4070,4740],[4570,4610],[4750,4540]],ground,{tone:'#536856',courses:2});
- tier('D-middle-stone-terrace',[[3090,4350],[3930,4330],[4490,4330],[4660,4410],[4750,4410],[5000,4380]],x=>x>=4750?ground(x):x<4070?4800:4800-(x-4070)*.28,{tone:'#5e705b',courses:3});
- tier('D-upper-stone-terrace',[[3420,3980],[4090,3960],[4810,3960],[5000,3990]],4450,{tone:'#6a775f',courses:3});
- tier('D-supported-top-court',[[3500,3700],[3560,3674],[5000,3674]],4010,{tone:'#76806a',courses:2});
- // Real terrain carries the bottom of each retaining terrace, not a thin
- // triangular silhouette with a house pasted into its middle.
- tier('F-bottom-store-yard',[[6390,4430],[6970,4410],[7760,4320],[8490,4250]],ground,{tone:'#526655',courses:2});
- tier('F-middle-retaining-wall',[[6710,4090],[7440,4040],[8220,4040],[8660,4060]],x=>Math.min(ground(x),4430),{tone:'#5e6f5a',courses:3});
- tier('F-upper-retaining-wall',[[6930,3690],[7620,3650],[8270,3700],[8470,3880]],4110,{tone:'#6b785f',courses:3});
- tier('F-warehouse-court',[[7060,3414],[7690,3324],[8240,3524]],3720,{tone:'#7a8369',courses:2});
- // Isolated rear stone piers support the approach flights between the short
- // terraces. Each timber brace above is under 230 high, at human scale.
- tier('west-flight-lower-pier',[[2700,4200],[2910,4200]],ground,{tone:'#61745d',courses:4});
- tier('west-flight-upper-pier',[[3090,3970],[3300,3970]],4390,{tone:'#63755d',courses:3});
- tier('east-flight-lower-pier',[[6460,4200],[6670,4200]],4460,{tone:'#5c7058',courses:2});
- tier('east-flight-upper-pier',[[6740,3860],[6930,3860]],4130,{tone:'#61745c',courses:2});
- tier('east-return-pier',[[8460,4015],[8640,4015]],ground,{tone:'#5d725b',courses:2});
- tier('gate-return-pier',[[8770,4100],[8940,4100]],ground,{tone:'#687961',courses:1});
- return{asset:asset('grounded-rear-plinths','짧은 석축 층들이 아래뜰까지 이어지는 관창 기단',b,[1390,3280,7540,1900],{groundedSupports:feet,noProjectileCover:true,terraceCount:9,rearMasonryFaces}),feet};}
+function rearMass(s){
+ const main=s.design.act3.primaryContour,ground=x=>yAt(main,x)+10;let b='',feet=[];
+ // These recessed earth banks are scenery behind the outlined walkway. Their
+ // feet follow the real lower road, never a screen-space pedestal or dummy body.
+ const bank=(id,q,shade)=>{const xs=[...new Set([...q.map(p=>p[0]),...main.map(p=>p[0]).filter(x=>x>q[0][0]&&x<q.at(-1)[0])])].sort((a,z)=>a-z),top=xs.map(x=>[x,yAt(q,x)]),foot=xs.map(x=>[x,ground(x)]);b+=poly([...top,...foot.slice().reverse()],shade,'',0,id);for(const[x,y]of foot)feet.push({x,y:y-10,terrainId:'sy-ground',rearOnly:true,structure:id});return foot;};
+ bank('west-weathered-bank',[[1390,4280],[1780,4100],[2560,4180],[3050,3970],[3570,3740],[4100,3755],[4680,3810],[5030,4080]],'#626c5e');
+ b+=poly([[1740,4140],[2510,4220],[2920,4120],[2690,4490],[2330,4680],[1920,4680]],'#747a64');
+ b+=poly([[3040,4010],[3580,3780],[3970,3810],[3760,4190],[3340,4480],[3070,4760]],'#7c806a');
+ b+=poly([[4050,3850],[4510,3900],[4890,4150],[4550,4460],[4160,4690],[3670,5030],[3880,4540]],'#505f52');
+ // One cut face, with large bedding planes instead of stacked rectangular tiers.
+ b+=poly([[3220,4440],[3520,4250],[3890,4170],[3700,4550],[3350,4850]],'#626d59');
+ b+=poly([[3270,4440],[3520,4250],[3790,4200],[3550,4380]],'#8c8e72');
+ bank('east-weathered-bank',[[6360,4350],[6670,4080],[7100,3490],[7640,3400],[8170,3590],[8540,4010],[8880,4110]],'#5c685a');
+ b+=poly([[6720,4090],[7130,3550],[7580,3480],[7390,3880],[7060,4210],[6600,4590]],'#79816a');
+ b+=poly([[7650,3450],[8130,3630],[8440,4040],[8240,4370],[7840,4450],[7610,4100]],'#475b50');
+ b+=poly([[7000,4320],[7370,3950],[7640,3850],[7510,4180],[7230,4530],[6830,4600]],'#68745e');
+ // Low rubble plinths carry the human-scale halls, distinct from the raw banks.
+ for(const [id,q]of [['granary-foot',[[1720,4720],[2600,4720]]],['upper-store-foot',[[3560,3674],[4240,3674]]],['sorting-foot',[[7060,3414],[7690,3324],[8240,3524]]]]){
+  b+=poly([...q,...q.slice().reverse().map(([x,y])=>[x,y+100])],'#85866d','',0,id);
+  b+=poly(q.flatMap(([x,y])=>[[x,y],[x,y+12]]),'#b1aa87');
+ }
+ return{asset:asset('grounded-rear-plinths','관창 뒤의 흙비탈·노출 암면과 낮은 창고 기단',b,[1390,3280,7540,1900],{groundedSupports:feet,noProjectileCover:true,terraceCount:0,rearMasonryFaces:[],earthBanks:true}),feet};
+}
 function humanStore(x1,x2,floor,{height=330,rise=145,light=false,kind='granary',key='store'}={}){
  const xs=[x1,...floor.map(p=>p[0]).filter(x=>x>x1&&x<x2),x2],q=xs.map(x=>[x,yAt(floor,x)]),base=x=>yAt(floor,x),top=Math.min(...q.map(p=>p[1]))-height,w=x2-x1,center=(x1+x2)/2;
  let b=poly([[x1,top],[x2,top],...q.slice().reverse()],light?'#93937a':'#7b8068','#35473a',5,key+'-wall');
@@ -82,20 +87,40 @@ function terraceFaces(s){let b='',walkEdges=[];for(const id of ['sy-west-upper',
   const t=s.terrains.find(t=>t.id===id),q=t.points.slice(0,t.properties.honroWalkEdges.length+1).map(p=>[p.x,p.y]),y=yAt(q,x)+24;
   b+=poly([[x-18,y],[x+20,y],[x+27,foot],[x-24,foot]],'#5e5134');b+=line([[x-8,y+7],[x-10,foot-10]],'#b19b66',7);b+=line([[x-82,foot-13],[x+4,y+24]],'#6b5b39',20);b+=line([[x-48,y+3],[x+61,y+3]],'#8f7d50',20);
  }
+ // Roof access scaffolding bears on the existing upper court, with open
+ // interiors and no added collision. Each horizontal tread has a real frame.
+ const eastCourt=s.terrains.find(t=>t.id==='sy-east-upper'),eq=eastCourt.points.slice(0,eastCourt.properties.honroWalkEdges.length+1).map(p=>[p.x,p.y]);
+ for(const [l,r,y]of[[6810,6970,3420],[6920,7080,3250],[6980,7140,3090]]){
+  for(const x of[l+13,r-13]){const f=yAt(eq,x);b+=poly([[x-7,y+18],[x+8,y+18],[x+8,f],[x-7,f]],'#62563e');b+=poly([[x-13,f-8],[x+14,f-8],[x+14,f],[x-13,f]],'#96967a');}
+  b+=line([[l+13,yAt(eq,l+13)-12],[r-13,y+23]],'#88744d',12);
+ }
  // Every runner follows the actual cargo presentation path. Three long
  // descending sections rest on short terrace-supported posts; no giant slide.
  const ps=s.initialState.honroEscortYardSpec.cargo.path.map(p=>[p.x,p.y+70]);
  for(let i=1;i<ps.length;i++){const a=ps[i-1],z=ps[i],left=[a[0]-242,a[1]],right=[a[0]+242,a[1]],zl=[z[0]-242,z[1]],zr=[z[0]+242,z[1]];
-  b+=poly([left,right,zr,zl],'#343b2b','#253b2d',8,'cargo-empty-rear-trough-'+i);b+=poly([[left[0]+34,left[1]],[right[0]-34,right[1]],[zr[0]-34,zr[1]],[zl[0]+34,zl[1]]],'#655e40');
+  b+=poly([[left[0],left[1]],[left[0]+48,left[1]],[zl[0]+48,zl[1]],zl],'#453f30','',0,'cargo-open-runner-'+i);b+=poly([[right[0]-48,right[1]],right,zr,[zr[0]-48,zr[1]]],'#453f30');
   const length=Math.hypot(z[0]-a[0],z[1]-a[1]),n=Math.max(1,Math.ceil(length/200));for(let j=0;j<=n;j++){const u=j/n,x=a[0]+(z[0]-a[0])*u,y=a[1]+(z[1]-a[1])*u;b+=poly([[x-255,y+10],[x+255,y+10],[x+255,y+28],[x-255,y+28]],'#4d4430');b+=line([[x-248,y+11],[x+248,y+11]],'#927d52',7);}
   for(const side of[-1,1]){const x=side*215;b+=poly([[a[0]+x-14,a[1]-8],[a[0]+x+18,a[1]-8],[z[0]+x+18,z[1]-8],[z[0]+x-14,z[1]-8]],'#ad9964');b+=line([[a[0]+x+14,a[1]],[z[0]+x+14,z[1]]],'#51492e',10);}
  }
  // Short load-bearing frames meet known rear terrace tops rather than becoming
  // thousand-unit columns. They are scenery behind the playable ledges.
- for(const[x,y,end]of[[4470,4015,4330],[4230,4480,4740],[3820,4815,5080]]){b+=poly([[x-28,y],[x+28,y],[x+48,end],[x-38,end]],'#534b34');b+=line([[x-13,y+10],[x-15,end-13]],'#a18b57',9);b+=line([[x-125,end-15],[x+8,y+45]],'#766640',22);b+=poly([[x-67,end-16],[x+69,end-16],[x+81,end],[x-76,end]],'#7c896d');}
+ // Short wall-mounted triangular corbels are sunk into the rear cut bank;
+ // no bright foot or freestanding pillar ends in mid-air.
+ for(const[x,y]of[[4470,4015],[4230,4480],[3820,4815]]){
+  b+=poly([[x-22,y],[x+135,y+24],[x+135,y+56],[x-22,y+32]],'#99855b');
+  b+=poly([[x-16,y+26],[x+117,y+160],[x+140,y+144],[x+20,y+28]],'#65583d');
+  b+=poly([[x+116,y+14],[x+145,y+18],[x+145,y+172],[x+116,y+163]],'#4a4936');
+ }
+
  // The exposed solid corner belongs to a larger recessed stone buttress.
  b+=masonry([[4730,3750],[5150,3840]],x=>yAt(s.design.act3.primaryContour,x)+8,{tone:'#4e604c',light:'#81886b',courses:3,key:'rear-warehouse-buttress'});
  b+=line([[4680,3810],[5160,3915]],'#685936',42)+line([[4730,3800],[5100,3880]],'#a68c56',10);
+ // The capstan and two short supports explain how the loaded runner is held.
+ b+=poly([[4320,3650],[4332,3490],[4370,3490],[4390,3650]],'#544a34');
+ b+=poly([[4460,3650],[4450,3490],[4484,3490],[4510,3650]],'#544a34');
+ b+=poly([[4290,3498],[4510,3498],[4510,3522],[4290,3522]],'#b09a68');
+ b+=poly([[4392,3470],[4408,3470],[4408,3550],[4392,3550]],'#453c2c')+poly([[4355,3502],[4445,3502],[4445,3518],[4355,3518]],'#453c2c');
+ b+=path('M4440 3506Q4500 3466 4560 3516L4560 3524Q4500 3474 4440 3514Z','#c3af7f');
  return asset('terrace-faces-chute','실제 보행앞선과 맞는 목재 경사대·석축마루·분절된 운반목',b,[1100,3270,8000,1870],{noProjectileCover:true,porchThickness:24,walkEdges,cargoRunnerPath:ps,rearHardwareOnly:true});}
 function bridge(s){let b='';
  // The far channel bank closes the false sky hole. Its dark plane is recessed
@@ -122,6 +147,23 @@ function smallPlaces(s){const main=s.design.act3.primaryContour;let b='';const g
  b+=path('M1840 4690L1950 4694M2330 4692L2500 4692M2460 4681L2560 4685M3500 5091L3590 5094M3800 5090L3890 5092','none','#a39c79',9);
  b+=path('M3400 5070L3520 5070 3540 5082H3420Z M3430 5053L3550 5053 3570 5065H3450Z','#716d4c');
  b+=path('M9160 4142Q9195 4115 9223 4141Q9233 4165 9196 4164Q9167 4163 9178 4142Q9197 4128 9210 4142','none','#a49b71',7);
+ // B: weighing station at the carrier's real lower-court elevation. A hanging
+ // pan, beam and grounded tripod identify handling work without a new quest prop.
+ b+=poly([[1830,4698],[1870,4490],[1893,4490],[1922,4698],[1898,4698],[1880,4540],[1854,4698]],'#665b43');
+ b+=poly([[1780,4508],[1985,4482],[1988,4498],[1782,4524]],'#b4a17a');
+ b+=poly([[1785,4520],[1791,4520],[1791,4596],[1785,4596]],'#9d936f');
+ b+=path('M1742 4593H1837Q1822 4634 1788 4635Q1753 4634 1742 4593Z','#8f987c');
+ b+=poly([[1960,4497],[1976,4495],[1980,4553],[1955,4556]],'#4b5348');
+ b+=poly([[1746,4592],[1834,4592],[1828,4600],[1752,4600]],'#c8bd93');
+ // F: a low sorting bench separates broad bowls/iron fittings from grain sacks.
+ const fy=yAt(main,7030);b+=rect(6810,fy-90,300,23,'#a09065')+rect(6825,fy-67,23,67,'#5c543c')+rect(7073,fy-67,23,67,'#5c543c');
+ b+=path(`M6830 ${fy-124}H6920Q6905 ${fy-91} 6875 ${fy-91}Q6843 ${fy-91} 6830 ${fy-124}Z`,'#9b9a76');
+ b+=poly([[6960,fy-93],[6951,fy-145],[7010,fy-153],[7036,fy-93]],'#4d6259');
+ b+=poly([[6965,fy-108],[6975,fy-140],[6998,fy-143],[7015,fy-108]],'#94a38b');
+ b+=sack(7160,yAt(main,7160),100);
+ // A resting pack-frame leans beside the grain pile, showing the human load scale.
+ b+=poly([[7270,4610],[7244,4420],[7258,4418],[7284,4610]],'#b09a6a')+poly([[7340,4580],[7314,4410],[7328,4408],[7354,4580]],'#8e7e55');
+ b+=poly([[7255,4470],[7325,4460],[7328,4478],[7258,4488]],'#b5a179')+poly([[7265,4540],[7335,4530],[7338,4548],[7268,4558]],'#b5a179');
  return asset('gates-record-life','반출문과 장부석·곡식자루·옹기·빈 마당 흔적',b,[390,3570,9300,1550],{noProjectileCover:true,smallYardProps:true});}
-export async function applyStage23YardArt(p){const s=p.stages.find(s=>s.metadata?.stageId===23);if(s?.initialState?.honroEscortYardRevision!==1)throw Error('Stage23 art requires fresh yard');s.elements=s.elements.filter(e=>!e.id.startsWith('sy-art-'));const rear=rearMass(s);add(p,s,rear.asset,'rear-plinths');add(p,s,granaries(s),'granaries');add(p,s,terraceFaces(s),'terraces-chute');add(p,s,bridge(s),'stone-bridge');add(p,s,smallPlaces(s),'gates-life');add(p,s,cargo(),'cargo',{layer:'mid',honroEscortYardCargo:true});s.design.act3.mainBuildings=['sy-art-granaries'];const farSource=readFileSync(new URL('../../shared/assets/environment/stage23-yard-far.svg',import.meta.url),'utf8'),farVector=compileSVG(farSource),far=asset('far-mountain','관창 너머 한 겹 먹산과 저녁 안개','',[0,0,1800,1050],{skyOnly:true});far.vector=farVector;register(p,far);s.design.escortYardArt={revision:2,backdropAsset:far,assetIds:s.elements.map(e=>e.assetId),groundedSupports:rear.feet,singleCargoElementId:'sy-art-cargo',scope:'Grounded rear façades are scenery. Only named authored stone piers/corner/cargo are solid cover.'};
+export async function applyStage23YardArt(p){roofProfiles=[];const s=p.stages.find(s=>s.metadata?.stageId===23);if(s?.initialState?.honroEscortYardRevision!==1)throw Error('Stage23 art requires fresh yard');s.elements=s.elements.filter(e=>!e.id.startsWith('sy-art-'));const rear=rearMass(s);add(p,s,rear.asset,'rear-plinths');add(p,s,granaries(s),'granaries');add(p,s,terraceFaces(s),'terraces-chute');add(p,s,bridge(s),'stone-bridge');add(p,s,smallPlaces(s),'gates-life');add(p,s,cargo(),'cargo',{layer:'mid',honroEscortYardCargo:true});s.design.act3.mainBuildings=['sy-art-granaries'];s.design.escortYardRoofProfiles=structuredClone(roofProfiles);const farSource=readFileSync(new URL('../../shared/assets/environment/stage23-yard-far.svg',import.meta.url),'utf8'),farVector=compileSVG(farSource),far=asset('far-mountain','관창 너머 한 겹 먹산과 저녁 안개','',[0,0,1800,1050],{skyOnly:true});far.vector=farVector;register(p,far);s.design.escortYardArt={revision:3,backdropAsset:far,assetIds:s.elements.map(e=>e.assetId),groundedSupports:rear.feet,singleCargoElementId:'sy-art-cargo',scope:'Grounded rear façades are scenery. Only named authored stone piers/corner/cargo are solid cover.'};
  s.environment.groups=[];s.environment.surfaces=[];s.environment.placements=[];s.environment.skyVisible=true;s.environment.atmosphere={preset:'forest',overrides:{skyTop:'#41545c',skyBottom:'#a5a887',hazeStrength:.20,mistStrength:.035,lightStrength:.08,waterBaseColor:'#36575c',waterHighlightColor:'#93a99c'}};return p;}

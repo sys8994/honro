@@ -1,0 +1,26 @@
+PASS continuous movement/turn/resource/gate fixture, no enemy combat [
+  {
+    id: 25,
+    strategy: 'replace-home-stake',
+    rounds: 12,
+    fireCount: 9,
+    simulationSeconds: 64.81666666666666,
+    finalFocus: 136
+  },
+  {
+    id: 27,
+    strategy: 'replace-home-stake',
+    rounds: 13,
+    fireCount: 7,
+    simulationSeconds: 78.08333333333333,
+    finalFocus: 264
+  },
+  {
+    id: 25,
+    strategy: 'wait-and-return-to-old-gate',
+    rounds: 11,
+    fireCount: 8,
+    simulationSeconds: 62.96666666666667,
+    finalFocus: 136
+  }
+]

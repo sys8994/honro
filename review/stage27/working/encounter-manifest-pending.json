@@ -1,0 +1,127 @@
+{
+  "schema": "honro-encounter-evidence/v1",
+  "stageIds": [
+    27
+  ],
+  "implementationAuthors": [],
+  "sourceDigest": "4a589c4afd0fd9b41fec9d38e9196927ef6628f55687eace239b383ead50760b",
+  "targetDigest": "022673e7cce7119741cc4b9fbe6d27dec72a028d22703b0d873c2b023ecd1522",
+  "evidence": [],
+  "knownFailures": [],
+  "stages": [
+    {
+      "stageId": 27,
+      "clusters": [
+        {
+          "id": "entry-hauling-remnants",
+          "memberIds": [
+            "a3-27-entry-hauling-remnants-0",
+            "a3-27-entry-hauling-remnants-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "lower-loading-store",
+          "memberIds": [
+            "a3-27-lower-loading-store-0",
+            "a3-27-lower-loading-store-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "sealed-manifest-store",
+          "memberIds": [
+            "a3-27-sealed-manifest-store-0",
+            "a3-27-sealed-manifest-store-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "high-numbered-store",
+          "memberIds": [
+            "a3-27-high-numbered-store-0",
+            "a3-27-high-numbered-store-1"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "conclusion": "unverified",
+    "reviewer": null,
+    "reviewedAt": null,
+    "reviewDigest": null,
+    "reportPaths": [],
+    "unresolvedFindings": []
+  }
+}
