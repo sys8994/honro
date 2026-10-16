@@ -38,6 +38,11 @@ export function applyStage28RecordCourt(input){
  // Idempotent final author runs after existing quest and city route authors.
  const gateSource=id=>clone(s.terrains.find(t=>t.id===id));const gates=[gateSource('fire-door'),gateSource('water-gate')];
  s.terrains=[{id:'a3-foundation',name:'Raised record court / service lanes',type:'solid',points:[[-9000,2700],...COURT28_PROFILE,[16200,2590],[16200,9000],[-9000,9000]].map(([x,y])=>({x,y})),baseMaterial:'earth',oneWay:false,breakable:false,layer:'terrain',properties:{honroCourt28:true,honroWalkEdges:Array.from({length:COURT28_PROFILE.length+1},(_,i)=>i)},detail:{spacing:24,roughness:0,seed:28,optimizeEpsilon:0}}];
+ // Preserve the authored world polygon while projecting collision to Play Bounds.
+ // This final pass replaces an already-domain-authored foundation, so it must
+ // carry its own projection and contain its existing outer vertices explicitly.
+ s.terrainBounds={...s.terrainBounds,left:Math.min(s.terrainBounds?.left??0,-9000),right:Math.max(s.terrainBounds?.right??s.width,16200)};
+ s.terrains[0].playProjection={bounds:{left:0,top:0,right:s.width,bottom:9000},start:{x:0,y:2700}};
  for(const [i,t]of gates.entries()){const x=i?5370:1860,y=court28Ground(x);t.points=[{x:x-65,y:y-290},{x:x+65,y:y-290},{x:x+65,y},{x:x-65,y}];s.terrains.push(t);}
  // Both paths are short, grounded alternatives to the open central approach.
  s.terrains.push(surface('s28-west-veranda',[[2200,2578.4],[2450,2380],[2750,2380],[2980,2490]]),surface('s28-east-loading-veranda',[[4480,2471.67],[4680,2340],[4950,2340],[5140,2490]]));
