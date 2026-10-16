@@ -1,6 +1,6 @@
 /** Stage27 artwork-only refinement of existing collidable structural assets.
- * Every polygon, one-way flag, element transform, objective and save contract
- * is retained. New asset IDs leave serialized older scenes self-contained. */
+ * Gallery polygons, one-way flags, objectives and save contracts are retained;
+ * three roof polygons are translated to reachable eaves. New asset IDs leave serialized older scenes self-contained. */
 import {readFile,writeFile} from 'node:fs/promises';import{fileURLToPath}from'node:url';
 import {P,R,line,asset} from './act3-map-kit.mjs';
 const prefix='stage27-depot-r3:';
@@ -25,7 +25,8 @@ export function applyStage27WorkingArchitecture(input){const p=structuredClone(i
  }
  // Roofs remain exactly the original one-way surfaces, with compact eaves and
  // wood bearing rather than generic rectangular ledges. No decorative tall finials.
- for(const id of['loading-office-roof','far-passage-roof','ledger-room-roof']){const e=s.elements.find(e=>e.id===id),old=p.library.find(a=>a.id===e.assetId),original=old.collision[0],floor={'loading-office-roof':4250,'far-passage-roof':4400,'ledger-room-roof':2600}[id],dy=floor-180-original[0].y,q=original.map(v=>({x:v.x,y:v.y+dy})),l=q[0].x,r=q[1].x,y=q[0].y,b=q[2].y;let a=P(q.map(q=>[q.x,q.y]),'#4d5144','#182d2b',5)+P([[l,y],[r,y],[r,y+15],[l,y+18]],'#929781')+R(l+6,y+22,r-l-12,21,'#6d705d')+R(l+10,b-34,r-l-20,27,'#574936');for(let x=l+35;x<r-20;x+=110)a+=P([[x,y+18],[x+58,y+16],[x+69,y+43],[x-8,y+44]],'#687461')+R(x+6,b-31,33,22,'#9b835a');replace(e,a,[l-6,y-6,r-l+12,b-y+12]);p.library.at(-1).collision=[q];}
+ for(const id of['loading-office-roof','far-passage-roof','ledger-room-roof']){const e=s.elements.find(e=>e.id===id),old=p.library.find(a=>a.id===e.assetId),original=old.collision[0],floor={'loading-office-roof':4250,'far-passage-roof':4400,'ledger-room-roof':2600}[id],dy=floor-180-original[0].y,q=original.map(v=>({x:v.x,y:v.y+dy})),l=q[0].x,r=q[1].x,y=q[0].y,b=q[2].y;let a=P(q.map(q=>[q.x,q.y]),'#4d5144','#182d2b',5)+P([[l,y],[r,y],[r,y+15],[l,y+18]],'#929781')+R(l+6,y+22,r-l-12,21,'#6d705d')+R(l+10,b-34,r-l-20,27,'#574936');for(let x=l+35;x<r-20;x+=110)a+=P([[x,y+18],[x+58,y+16],[x+69,y+43],[x-8,y+44]],'#687461')+R(x+6,b-31,33,22,'#9b835a');// Bearing posts and stone feet are visual only, allowing below-jump/drop.
+ const posts=[l+42,r-70];let bearing=R(l+34,b-5,r-l-68,15,'#564936');for(const x of posts)bearing+=R(x-9,b+5,35,floor-b-24,'#443e2f')+R(x-5,b+7,10,floor-b-28,'#827050')+P([[x-19,floor-23],[x+34,floor-23],[x+42,floor],[x-27,floor]],'#667268')+R(x-14,b+10,45,13,'#907950');a=bearing+a;replace(e,a,[l-6,y-6,r-l+12,floor-y+12]);p.library.at(-1).collision=[q];}
  for(const [id,x,y,w]of[['far-sealed-store',7490,4400,420],['ledger-vault',1530,2600,330]]){const e=s.elements.find(e=>e.id===id),l=x-w/2;let v=R(l-22,y-174,w+44,174,'#40574e')+R(l,y-164,w,164,'#172d27')+R(l+18,y-156,w-36,156,'#55563d');for(let j=0;j<6;j++)v+=R(l+25+j*(w-50)/6,y-148,12,143,'#93815a');v+=R(l+8,y-129,w-16,15,'#8b7853')+R(l+8,y-48,w-16,17,'#a18b5e')+R(x-10,y-110,20,52,'#b3a27b');replace(e,v,[l-24,y-178,w+48,182]);}
  // Tall rear columns and beams are scenery. Replace free-floating decorative
  // water ribbons with water clinging to a contradictory rear drainage channel.
