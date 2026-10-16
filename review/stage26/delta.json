@@ -1,0 +1,58 @@
+{
+  "baseline": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+  "status": "draft-not-approved-history-layer",
+  "files": [
+    {
+      "path": "shared/data/campaign.json",
+      "before": {
+        "bytes": 13724176,
+        "sha256": "2a0dd3e11d61e05ca0f112e8450dedc1037ae1f25b0e8b0299eedf76719e4abc"
+      },
+      "after": {
+        "bytes": 13802125,
+        "sha256": "8c546da652375f20f7631dca6f89b1ded89d677baec5f83f3920ad7e7d1af27f"
+      }
+    },
+    {
+      "path": "tools/map-forge/act3-hidden-waterworks.mjs",
+      "before": {
+        "bytes": 34180,
+        "sha256": "ee2fa00e9b9b5d44acdf0be2e256b6b23b90091b556525e03f52b4d9f88a7f76"
+      },
+      "after": {
+        "bytes": 34270,
+        "sha256": "f1d37b75ccffa57a3595af8d6cc63e2daf08920531268b6c844d2495724fb600"
+      }
+    },
+    {
+      "path": "tools/map-forge/stage26-witness-place.mjs",
+      "before": null,
+      "after": {
+        "bytes": 9763,
+        "sha256": "07c1394d19915cad6c84ec16fa9365425da27fe2076d3c2f5ac048e42c55175e"
+      }
+    },
+    {
+      "path": "HONRO.html",
+      "before": {
+        "bytes": 14435938,
+        "sha256": "99e35c7bc1020fd5e506b63cb99194ed260e109f5a82bb7323d0d3b2f92775d5"
+      },
+      "after": {
+        "bytes": 14486167,
+        "sha256": "6e7f0e24fbea4ef0c1a443498a421cd7f3d53442f2a6b053ac6b815842d901a0"
+      }
+    },
+    {
+      "path": "HONRO_WORKSHOP.html",
+      "before": {
+        "bytes": 14546712,
+        "sha256": "3259f508e04f50e2fae0cbc6d1e0826e68b8654e30a9c2c5faf41b995ee9b94c"
+      },
+      "after": {
+        "bytes": 14596941,
+        "sha256": "df0b059dfdb836d0ee19f39cceed92378b2c7d38da6ff010eb48e1bfea4eb0a1"
+      }
+    }
+  ]
+}
