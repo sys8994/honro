@@ -28,7 +28,15 @@
       "implementation": "complete",
       "localVisualReview": "passed",
       "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
-      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json",
+      "latestVisualRevision": {
+        "date": "2026-10-16",
+        "baseline": "1cc2eb9e59194d9d0a9433315dadccd7d533dfe4",
+        "sourceUnitCommit": "aad24c3",
+        "evidence": "_local/reports/character-trio/before-after.png",
+        "review": "구현자 국소 비교 완료 · 사용자 미술 승인과 구별",
+        "scope": "실제 활성 기본 자산과 이를 공유하는 변형만; 별도 소환 자산·미사용 legacy 재작성 없음"
+      }
     },
     {
       "id": "lantern",
@@ -37,7 +45,15 @@
       "implementation": "complete",
       "localVisualReview": "passed",
       "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
-      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json",
+      "latestVisualRevision": {
+        "date": "2026-10-16",
+        "baseline": "1cc2eb9e59194d9d0a9433315dadccd7d533dfe4",
+        "sourceUnitCommit": "6a95045",
+        "evidence": "_local/reports/character-trio/before-after.png",
+        "review": "구현자 국소 비교 완료 · 사용자 미술 승인과 구별",
+        "scope": "실제 활성 기본 자산과 이를 공유하는 변형만; 별도 소환 자산·미사용 legacy 재작성 없음"
+      }
     },
     {
       "id": "summon_charger",
@@ -91,7 +107,15 @@
       "implementation": "complete",
       "localVisualReview": "passed",
       "sourceCommit": "2d6e64661bc44088b1c2b48eca95d175d82eeddb",
-      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json"
+      "evidence": "_local/reports/character-redesign/phase1-qa/visual-review.json",
+      "latestVisualRevision": {
+        "date": "2026-10-16",
+        "baseline": "1cc2eb9e59194d9d0a9433315dadccd7d533dfe4",
+        "sourceUnitCommit": "d3909e7",
+        "evidence": "_local/reports/character-trio/before-after.png",
+        "review": "구현자 국소 비교 완료 · 사용자 미술 승인과 구별",
+        "scope": "실제 활성 기본 자산과 이를 공유하는 변형만; 별도 소환 자산·미사용 legacy 재작성 없음"
+      }
     },
     {
       "id": "legacy_mourner",

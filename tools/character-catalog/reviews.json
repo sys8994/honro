@@ -103,8 +103,8 @@
   },
   "warden": {
     "verdict": "유지",
-    "note": "검은 안와와 목재 절단면·갈라진 심재를 보강. 한국 장승의 수호 역할 자체를 악으로 해석하지 않는다.",
-    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "note": "기존 긴 목주·뿌리·비대칭 가지·금줄 보존. 눈썹→깊은 안와→쐐기 코→입홈의 절삭면과 관모·심재의 연속 갈라짐을 보강. 장승의 본래 수호 의미는 악과 구별한다.",
+    "evidence": "2026-10-16: 원격 master 1cc2eb9 대비 실제 Scene 280/90px 전후 비교 1회·3종 idle/move/attack/hit/jump_fall 양방향 표본 직접 관찰. before-after.png / motions.png: _local/reports/character-trio/. 빌드·기본 실행만 확인; 사용자 미술 승인·정상 전투 완주·공개 사이트 직접 검수와 구별. 참고 원본 이미지 접근 제한은 CHARACTER_TRIO_ART.md에 기록.",
     "previousVerdict": "우선 개편",
     "previousReview": {
       "verdict": "유지",
@@ -120,8 +120,8 @@
   },
   "lantern": {
     "verdict": "유지",
-    "note": "목틀 결구·한지 찢긴 창의 안쪽과 어두운 측면을 분리했다.",
-    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "note": "기존 비대칭 초롱·고리·꼬리를 보존. 휜 살·상하테 결구와 두께, 뒤쪽 틀·어두운 내부·혼불·앞으로 말린 한지 찢김의 겹침을 분리했다.",
+    "evidence": "2026-10-16: 원격 master 1cc2eb9 대비 실제 Scene 280/90px 전후 비교 1회·3종 idle/move/attack/hit/jump_fall 양방향 표본 직접 관찰. before-after.png / motions.png: _local/reports/character-trio/. 빌드·기본 실행만 확인; 사용자 미술 승인·정상 전투 완주·공개 사이트 직접 검수와 구별. 참고 원본 이미지 접근 제한은 CHARACTER_TRIO_ART.md에 기록.",
     "previousVerdict": "우선 개편",
     "previousReview": {
       "verdict": "유지",
@@ -433,8 +433,8 @@
   },
   "keeper": {
     "verdict": "유지",
-    "note": "목과 소매 압박, 가죽 앞치마와 종 주조면을 보강했다.",
-    "evidence": "2026-10-15 ea1c43e: 구현자 실제 Scene 전후180/90/35px·5모션·양방향 픽셀 검토. 유지11종/주인공4인 픽셀 동일. 공식 참고 Library 다운로드 실패로 원본 사진 픽셀 검수 미완료. 정상 캠페인 완주와 분리.",
+    "note": "기존 교차 깃·작업 앞치마·긴 다리를 보존. 낮은 머리싸개 아래 관자·코·목을 나누고, 종 고리의 지지 손과 외부 타종봉을 쥔 손·굽힌 팔꿈치·복식 겹침으로 하중을 연결했다.",
+    "evidence": "2026-10-16: 원격 master 1cc2eb9 대비 실제 Scene 280/90px 전후 비교 1회·3종 idle/move/attack/hit/jump_fall 양방향 표본 직접 관찰. before-after.png / motions.png: _local/reports/character-trio/. 빌드·기본 실행만 확인; 사용자 미술 승인·정상 전투 완주·공개 사이트 직접 검수와 구별. 참고 원본 이미지 접근 제한은 CHARACTER_TRIO_ART.md에 기록.",
     "previousVerdict": "우선 개편",
     "previousReview": {
       "verdict": "유지",
