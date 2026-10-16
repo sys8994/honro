@@ -1,3 +1,11 @@
+## ghost·shade 겹옷과 결박 조형 · 2026-10-16
+
+- 원인: ghost는 맞깃·소매·몸통이 평평한 면으로 이어지고 shade의 두 결박은 몸과 무관한 직선 띠처럼 보였다. `material-depth.mjs`의 두 종만 다시 칠해 겹깃의 말림/안쪽 그늘, 소매의 빈 공간/접힌 안감, 겉옷 아래 드러나는 속옷과 돌아간 밑단을 분리했다. shade는 띠 옆 천의 팽창과 접촉부의 눌림, 몸을 돌아가는 결박 면과 당겨지는 매듭을 그렸다. 임의 흠집·노드 할당량을 위한 증량은 사용하지 않았다.
+- 실제 참고: [이화여대박물관 침선 전시](https://awcms.ewha.ac.kr/eng_musem/exhibition/pstExhibitions.do?article.offset=0&articleLimit=8&articleNo=14549&mode=view)의 20세기 모시 두루마기 [원본 사진](https://awcms.ewha.ac.kr/app/board/attach/image/12304-1691375991000.do)을 직접 관찰해 포개진 앞섶·겹깃·접어 박은 소매와 밑단의 두께를 참고했다. 이 유물은 수의라고 단정하지 않는다. [국사편찬위원회 우리역사넷 수의 일습 설명](https://contents.history.go.kr/front/km/print.do?levelId=km_005_0050_0010_0010_0050&whereStr=)에서 넉넉한 겹옷·포갠 소매·소렴의 속포를 대조했다. 그 수의 복원 사진은 cache miss/다운로드 접근 제한으로 직접 관찰하지 못했다. 게임의 붉은 결박은 창작이며 장례 문화 자체를 악역화하는 고증 주장이 아니다. 참고 사진은 배포 자산으로 복제하지 않았다.
+- 보존: 두 종의 파트 계층·피벗·모든 클립/시간·baseHeight·viewBox를 기준 `48fc1ed`와 일치 확인했다. 그 외 모든 몬스터 자산은 기준과 완전히 동일하며 네 동행·keeper·전투 수치·AI·회복 효과는 변경하지 않았다. 공통 legacy dispatch를 유지해 새 그림이 공유되고, direct/legacy/일반/side2/side0의 두 종 출력이 같은 픽셀이며 상태를 수정하지 않는지 확인했다.
+- 최소 검사: 동일 배율 370/83px 전후 PNG 한 장, idle/move/공격 두 시점/hit/왼쪽 공격 표본 직접 관찰, Native Canvas의 실제 Stage1 Scene 기본 렌더, 두 HTML 빌드 통과. 이전 keeper/warden/lantern의 현재 Scene 그림도 한 장으로 전달한다. 결과는 `_local/reports/ghost-shade/after.png`, `motion.png`, `current-trio.png`, `report.json`, `build.log`다. 전체 verify·전30장·무관한 전투/스킬 검사는 실행하지 않았다.
+- 한계: 현재 환경의 Chromium 시작은 socket EPERM, 승격 실행은 bwrap read-only 오류로 막혔다. Native Canvas의 실제 공통 렌더러 확인을 브라우저 Game/Workshop 기본 실행 통과로 표현하지 않는다. 원격 발행과 Pages 확인은 단일 발행자인 부모 작업에서 별도로 기록한다.
+
 ## 종지기·장승·등불 국소 조형 보완 · 2026-10-16
 
 - 원인: 현재 도감의 세 자산은 이전 유지 판정에도 종지기 손/도구의 하중, 장승의 눈코 절삭 깊이, 등불의 앞뒤 겹침이 부족했다. 기존 실루엣/복식/금줄/꼬리를 보존하고 해당 구조만 보강했다. 제작 원본과 고증/접근 구분은 [현재 조형 기준](CHARACTER_TRIO_ART.md)을 따른다.
