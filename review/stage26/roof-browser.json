@@ -1,0 +1,214 @@
+{
+  "scope": "Controlled current-game UI roof jump/drop, desktop and mobile. One initial actor pose per case; not normal combat.",
+  "rows": [
+    {
+      "device": "desktop",
+      "cls": "knight",
+      "place": "workshop",
+      "start": {
+        "hp": 850,
+        "move": 1390,
+        "x": 2500,
+        "y": 2700
+      },
+      "roof": {
+        "x": 2500,
+        "y": 2488.477019090909,
+        "hp": 850,
+        "canDrop": true
+      },
+      "end": {
+        "x": 2500,
+        "y": 2700,
+        "hp": 850
+      },
+      "inputs": [
+        "jump button",
+        "drop button"
+      ]
+    },
+    {
+      "device": "desktop",
+      "cls": "knight",
+      "place": "refuge",
+      "start": {
+        "hp": 850,
+        "move": 1390,
+        "x": 4580,
+        "y": 2150
+      },
+      "roof": {
+        "x": 4580,
+        "y": 1962.1738304134878,
+        "hp": 850,
+        "canDrop": true
+      },
+      "end": {
+        "x": 4580,
+        "y": 2150,
+        "hp": 850
+      },
+      "inputs": [
+        "jump button",
+        "drop button"
+      ]
+    },
+    {
+      "device": "desktop",
+      "cls": "occultist",
+      "place": "workshop",
+      "start": {
+        "hp": 460,
+        "move": 1150,
+        "x": 2500,
+        "y": 2700
+      },
+      "roof": {
+        "x": 2500,
+        "y": 2488.477019090909,
+        "hp": 460,
+        "canDrop": true
+      },
+      "end": {
+        "x": 2500,
+        "y": 2700,
+        "hp": 460
+      },
+      "inputs": [
+        "jump button",
+        "drop button"
+      ]
+    },
+    {
+      "device": "desktop",
+      "cls": "occultist",
+      "place": "refuge",
+      "start": {
+        "hp": 460,
+        "move": 1150,
+        "x": 4580,
+        "y": 2150
+      },
+      "roof": {
+        "x": 4580,
+        "y": 1962.1738304134878,
+        "hp": 460,
+        "canDrop": true
+      },
+      "end": {
+        "x": 4580,
+        "y": 2150,
+        "hp": 460
+      },
+      "inputs": [
+        "jump button",
+        "drop button"
+      ]
+    },
+    {
+      "device": "mobile",
+      "cls": "knight",
+      "place": "workshop",
+      "start": {
+        "hp": 850,
+        "move": 1390,
+        "x": 2500,
+        "y": 2700
+      },
+      "roof": {
+        "x": 2500,
+        "y": 2488.477019090909,
+        "hp": 850,
+        "canDrop": true
+      },
+      "end": {
+        "x": 2500,
+        "y": 2700,
+        "hp": 850
+      },
+      "inputs": [
+        "jump button",
+        "drop button"
+      ]
+    },
+    {
+      "device": "mobile",
+      "cls": "knight",
+      "place": "refuge",
+      "start": {
+        "hp": 850,
+        "move": 1390,
+        "x": 4580,
+        "y": 2150
+      },
+      "roof": {
+        "x": 4580,
+        "y": 1962.1738304134878,
+        "hp": 850,
+        "canDrop": true
+      },
+      "end": {
+        "x": 4580,
+        "y": 2150,
+        "hp": 850
+      },
+      "inputs": [
+        "jump button",
+        "drop button"
+      ]
+    },
+    {
+      "device": "mobile",
+      "cls": "occultist",
+      "place": "workshop",
+      "start": {
+        "hp": 460,
+        "move": 1150,
+        "x": 2500,
+        "y": 2700
+      },
+      "roof": {
+        "x": 2500,
+        "y": 2488.477019090909,
+        "hp": 460,
+        "canDrop": true
+      },
+      "end": {
+        "x": 2500,
+        "y": 2700,
+        "hp": 460
+      },
+      "inputs": [
+        "jump button",
+        "drop button"
+      ]
+    },
+    {
+      "device": "mobile",
+      "cls": "occultist",
+      "place": "refuge",
+      "start": {
+        "hp": 460,
+        "move": 1150,
+        "x": 4580,
+        "y": 2150
+      },
+      "roof": {
+        "x": 4580,
+        "y": 1962.1738304134878,
+        "hp": 460,
+        "canDrop": true
+      },
+      "end": {
+        "x": 4580,
+        "y": 2150,
+        "hp": 460
+      },
+      "inputs": [
+        "jump button",
+        "drop button"
+      ]
+    }
+  ],
+  "errors": []
+}

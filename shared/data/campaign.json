@@ -156924,6 +156924,2360 @@
           ]
         }
       }
+    },
+    {
+      "id": "stage26-witness:record-room-rear",
+      "name": "record-room-rear",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          780,
+          2140,
+          1110,
+          270
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#354744",
+              "d": "M800 2150 L1750 2150 L1870 2310 L1750 2400 L800 2400 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#596052",
+              "d": "M910 2160 L1640 2160 L1640 2400 L910 2400 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#303e36",
+              "d": "M960 2170 L985 2170 L985 2400 L960 2400 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#303e36",
+              "d": "M1630 2160 L1659 2160 L1659 2400 L1630 2400 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#817960",
+              "d": "M950 2150 L1670 2150 L1670 2173 L950 2173 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#273c35",
+              "d": "M990 2181 L1600 2181 L1600 2194 L990 2194 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3d4b40",
+              "d": "M1190 2255 L1410 2255 L1410 2400 L1190 2400 Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"780 2140 1110 270\"><path d=\"M800 2150 L1750 2150 L1870 2310 L1750 2400 L800 2400 Z\" fill=\"#354744\"/><path d=\"M910 2160 L1640 2160 L1640 2400 L910 2400 Z\" fill=\"#596052\"/><path d=\"M960 2170 L985 2170 L985 2400 L960 2400 Z\" fill=\"#303e36\"/><path d=\"M1630 2160 L1659 2160 L1659 2400 L1630 2400 Z\" fill=\"#303e36\"/><path d=\"M950 2150 L1670 2150 L1670 2173 L950 2173 Z\" fill=\"#817960\"/><path d=\"M990 2181 L1600 2181 L1600 2194 L990 2194 Z\" fill=\"#273c35\"/><path d=\"M1190 2255 L1410 2255 L1410 2400 L1190 2400 Z\" fill=\"#3d4b40\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 780,
+        "y": 2140,
+        "w": 1110,
+        "h": 270
+      },
+      "reference": {
+        "heightM": 4.5,
+        "bounds": {
+          "x": 780,
+          "y": 2140,
+          "w": 1110,
+          "h": 270
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage26-witness:record-cabinet",
+      "name": "포갑과 목궤를 둔 서가",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          0,
+          0,
+          190,
+          150
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#544633",
+              "d": "M0 0h190v150h-190Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#293e34",
+              "d": "M10 10h170v130h-170Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#c8ba91",
+              "d": "M22 18h57.36v4h-57.36Z M18 31h59.36v4h-59.36Z M25 44h52.36v4h-52.36Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#7b6948",
+              "d": "M18 15L78.36 13L84.36 17H18Z M19 22h63.36v3h-63.36Z M14 28L76.36 26L82.36 30H14Z M15 35h65.36v3h-65.36Z M21 41L76.36 39L82.36 43H21Z M22 48h58.36v3h-58.36Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4f6148",
+              "d": "M29.1376 16h4v9h-4Z M30.0328 29h4v9h-4Z M31.337600000000002 42h4v9h-4Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#e1cfa2",
+              "d": "M57.5996 45h12.8392v4h-12.8392Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#c8ba91",
+              "d": "M102.56 18h57.36v4h-57.36Z M98.56 31h59.36v4h-59.36Z M105.56 44h52.36v4h-52.36Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#546e63",
+              "d": "M98.56 15L158.92000000000002 13L164.92000000000002 17H98.56Z M99.56 22h63.36v3h-63.36Z M94.56 28L156.92000000000002 26L162.92000000000002 30H94.56Z M95.56 35h65.36v3h-65.36Z M101.56 41L156.92000000000002 39L162.92000000000002 43H101.56Z M102.56 48h58.36v3h-58.36Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4f6148",
+              "d": "M109.69760000000001 16h4v9h-4Z M110.5928 29h4v9h-4Z M111.8976 42h4v9h-4Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#e1cfa2",
+              "d": "M138.1596 45h12.8392v4h-12.8392Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#9e8758",
+              "d": "M7 51h176v10h-176Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4a4932",
+              "d": "M9 58h172v4h-172Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#c8ba91",
+              "d": "M29 68h54.35v4h-54.35Z M25 81h56.35v4h-56.35Z M32 94h49.35v4h-49.35Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#546e63",
+              "d": "M25 65L82.35 63L88.35 67H25Z M26 72h60.35v3h-60.35Z M21 78L80.35 76L86.35 80H21Z M22 85h62.35v3h-62.35Z M28 91L80.35 89L86.35 93H28Z M29 98h55.35v3h-55.35Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4f6148",
+              "d": "M35.656 66h4v9h-4Z M36.3405 79h4v9h-4Z M37.856 92h4v9h-4Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#e1cfa2",
+              "d": "M62.7635 95h12.177v4h-12.177Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#c8ba91",
+              "d": "M105.85000000000001 68h54.35v4h-54.35Z M101.85000000000001 81h56.35v4h-56.35Z M108.85000000000001 94h49.35v4h-49.35Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#7b6948",
+              "d": "M101.85000000000001 65L159.20000000000002 63L165.20000000000002 67H101.85000000000001Z M102.85000000000001 72h60.35v3h-60.35Z M97.85000000000001 78L157.20000000000002 76L163.20000000000002 80H97.85000000000001Z M98.85000000000001 85h62.35v3h-62.35Z M104.85000000000001 91L157.20000000000002 89L163.20000000000002 93H104.85000000000001Z M105.85000000000001 98h55.35v3h-55.35Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4f6148",
+              "d": "M112.50600000000001 66h4v9h-4Z M113.19050000000001 79h4v9h-4Z M114.706 92h4v9h-4Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#e1cfa2",
+              "d": "M139.61350000000002 95h12.177v4h-12.177Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#9e8758",
+              "d": "M7 101h176v10h-176Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4a4932",
+              "d": "M9 108h172v4h-172Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#857148",
+              "d": "M18 118h152v12h-152Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#ae9968",
+              "d": "M15 114h158v9h-158Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#514e34",
+              "d": "M97.04 121h6v9h-6Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#b8aa7c",
+              "d": "M84.88 121.2h11v16h-11Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#9e8758",
+              "d": "M7 140h176v10h-176Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4a4932",
+              "d": "M9 147h172v4h-172Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#947d50",
+              "d": "M0 0h12v150h-12Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#67533a",
+              "d": "M178 0h12v150h-12Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#b69c66",
+              "d": "M0 0h190v11h-190Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 190 150\"><title>Horizontal bound records and wooden archival chests</title><path fill=\"#544633\" d=\"M0 0h190v150h-190Z\"/><path fill=\"#293e34\" d=\"M10 10h170v130h-170Z\"/><path fill=\"#c8ba91\" d=\"M22 18h57.36v4h-57.36Z M18 31h59.36v4h-59.36Z M25 44h52.36v4h-52.36Z\"/><path fill=\"#7b6948\" d=\"M18 15L78.36 13L84.36 17H18Z M19 22h63.36v3h-63.36Z M14 28L76.36 26L82.36 30H14Z M15 35h65.36v3h-65.36Z M21 41L76.36 39L82.36 43H21Z M22 48h58.36v3h-58.36Z\"/><path fill=\"#4f6148\" d=\"M29.1376 16h4v9h-4Z M30.0328 29h4v9h-4Z M31.337600000000002 42h4v9h-4Z\"/><path fill=\"#e1cfa2\" d=\"M57.5996 45h12.8392v4h-12.8392Z\"/><path fill=\"#c8ba91\" d=\"M102.56 18h57.36v4h-57.36Z M98.56 31h59.36v4h-59.36Z M105.56 44h52.36v4h-52.36Z\"/><path fill=\"#546e63\" d=\"M98.56 15L158.92000000000002 13L164.92000000000002 17H98.56Z M99.56 22h63.36v3h-63.36Z M94.56 28L156.92000000000002 26L162.92000000000002 30H94.56Z M95.56 35h65.36v3h-65.36Z M101.56 41L156.92000000000002 39L162.92000000000002 43H101.56Z M102.56 48h58.36v3h-58.36Z\"/><path fill=\"#4f6148\" d=\"M109.69760000000001 16h4v9h-4Z M110.5928 29h4v9h-4Z M111.8976 42h4v9h-4Z\"/><path fill=\"#e1cfa2\" d=\"M138.1596 45h12.8392v4h-12.8392Z\"/><path fill=\"#9e8758\" d=\"M7 51h176v10h-176Z\"/><path fill=\"#4a4932\" d=\"M9 58h172v4h-172Z\"/><path fill=\"#c8ba91\" d=\"M29 68h54.35v4h-54.35Z M25 81h56.35v4h-56.35Z M32 94h49.35v4h-49.35Z\"/><path fill=\"#546e63\" d=\"M25 65L82.35 63L88.35 67H25Z M26 72h60.35v3h-60.35Z M21 78L80.35 76L86.35 80H21Z M22 85h62.35v3h-62.35Z M28 91L80.35 89L86.35 93H28Z M29 98h55.35v3h-55.35Z\"/><path fill=\"#4f6148\" d=\"M35.656 66h4v9h-4Z M36.3405 79h4v9h-4Z M37.856 92h4v9h-4Z\"/><path fill=\"#e1cfa2\" d=\"M62.7635 95h12.177v4h-12.177Z\"/><path fill=\"#c8ba91\" d=\"M105.85000000000001 68h54.35v4h-54.35Z M101.85000000000001 81h56.35v4h-56.35Z M108.85000000000001 94h49.35v4h-49.35Z\"/><path fill=\"#7b6948\" d=\"M101.85000000000001 65L159.20000000000002 63L165.20000000000002 67H101.85000000000001Z M102.85000000000001 72h60.35v3h-60.35Z M97.85000000000001 78L157.20000000000002 76L163.20000000000002 80H97.85000000000001Z M98.85000000000001 85h62.35v3h-62.35Z M104.85000000000001 91L157.20000000000002 89L163.20000000000002 93H104.85000000000001Z M105.85000000000001 98h55.35v3h-55.35Z\"/><path fill=\"#4f6148\" d=\"M112.50600000000001 66h4v9h-4Z M113.19050000000001 79h4v9h-4Z M114.706 92h4v9h-4Z\"/><path fill=\"#e1cfa2\" d=\"M139.61350000000002 95h12.177v4h-12.177Z\"/><path fill=\"#9e8758\" d=\"M7 101h176v10h-176Z\"/><path fill=\"#4a4932\" d=\"M9 108h172v4h-172Z\"/><path fill=\"#857148\" d=\"M18 118h152v12h-152Z\"/><path fill=\"#ae9968\" d=\"M15 114h158v9h-158Z\"/><path fill=\"#514e34\" d=\"M97.04 121h6v9h-6Z\"/><path fill=\"#b8aa7c\" d=\"M84.88 121.2h11v16h-11Z\"/><path fill=\"#9e8758\" d=\"M7 140h176v10h-176Z\"/><path fill=\"#4a4932\" d=\"M9 147h172v4h-172Z\"/><path fill=\"#947d50\" d=\"M0 0h12v150h-12Z\"/><path fill=\"#67533a\" d=\"M178 0h12v150h-12Z\"/><path fill=\"#b69c66\" d=\"M0 0h190v11h-190Z\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production",
+        "korean-archive"
+      ],
+      "params": {
+        "rearOnly": true,
+        "storage": "horizontal-bound-books-and-chests"
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "w": 190,
+        "h": 150
+      },
+      "reference": {
+        "heightM": 2.5,
+        "bounds": {
+          "x": 0,
+          "y": 0,
+          "w": 190,
+          "h": 150
+        },
+        "foot": {
+          "x": 95,
+          "y": 150
+        },
+        "scaleRange": [
+          0.7,
+          1.5
+        ],
+        "backgroundRange": [
+          0.7,
+          1.2
+        ]
+      }
+    },
+    {
+      "id": "stage26-witness:west-work-ramp",
+      "name": "west-work-ramp",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          2045,
+          2295,
+          380,
+          132
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#6a7162",
+              "stroke": "#172d30",
+              "lineWidth": 5,
+              "d": "M2050 2400 L2420 2300 L2420 2322 L2050 2422 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#a2a68c",
+              "lineWidth": 5,
+              "d": "M2050 2400 L2420 2300"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"2045 2295 380 132\"><path d=\"M2050 2400 L2420 2300 L2420 2322 L2050 2422 Z\" fill=\"#6a7162\" stroke=\"#172d30\" stroke-width=\"5\"/><path d=\"M2050 2400 L2420 2300\" fill=\"none\" stroke=\"#a2a68c\" stroke-width=\"5\"/></svg>"
+      },
+      "collision": [
+        [
+          {
+            "x": 2050,
+            "y": 2400
+          },
+          {
+            "x": 2420,
+            "y": 2300
+          },
+          {
+            "x": 2420,
+            "y": 2322
+          },
+          {
+            "x": 2050,
+            "y": 2422
+          }
+        ]
+      ],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": false
+      },
+      "material": "stone",
+      "breakable": false,
+      "oneWay": true,
+      "bounds": {
+        "x": 2045,
+        "y": 2295,
+        "w": 380,
+        "h": 132
+      },
+      "reference": {
+        "heightM": 2.2,
+        "bounds": {
+          "x": 2045,
+          "y": 2295,
+          "w": 380,
+          "h": 132
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage26-witness:work-loft",
+      "name": "work-loft",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          2415,
+          2295,
+          1020,
+          32
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#675e47",
+              "stroke": "#172d30",
+              "lineWidth": 5,
+              "d": "M2420 2300 L3430 2300 L3430 2322 L2420 2322 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#a2a68c",
+              "lineWidth": 5,
+              "d": "M2420 2300 L3430 2300"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"2415 2295 1020 32\"><path d=\"M2420 2300 L3430 2300 L3430 2322 L2420 2322 Z\" fill=\"#675e47\" stroke=\"#172d30\" stroke-width=\"5\"/><path d=\"M2420 2300 L3430 2300\" fill=\"none\" stroke=\"#a2a68c\" stroke-width=\"5\"/></svg>"
+      },
+      "collision": [
+        [
+          {
+            "x": 2420,
+            "y": 2300
+          },
+          {
+            "x": 3430,
+            "y": 2300
+          },
+          {
+            "x": 3430,
+            "y": 2322
+          },
+          {
+            "x": 2420,
+            "y": 2322
+          }
+        ]
+      ],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": false
+      },
+      "material": "stone",
+      "breakable": false,
+      "oneWay": true,
+      "bounds": {
+        "x": 2415,
+        "y": 2295,
+        "w": 1020,
+        "h": 32
+      },
+      "reference": {
+        "heightM": 0.5333333333333333,
+        "bounds": {
+          "x": 2415,
+          "y": 2295,
+          "w": 1020,
+          "h": 32
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage26-witness:east-work-ramp",
+      "name": "east-work-ramp",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          3425,
+          2295,
+          330,
+          92
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#6a7162",
+              "stroke": "#172d30",
+              "lineWidth": 5,
+              "d": "M3430 2300 L3750 2360 L3750 2382 L3430 2322 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#a2a68c",
+              "lineWidth": 5,
+              "d": "M3430 2300 L3750 2360"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"3425 2295 330 92\"><path d=\"M3430 2300 L3750 2360 L3750 2382 L3430 2322 Z\" fill=\"#6a7162\" stroke=\"#172d30\" stroke-width=\"5\"/><path d=\"M3430 2300 L3750 2360\" fill=\"none\" stroke=\"#a2a68c\" stroke-width=\"5\"/></svg>"
+      },
+      "collision": [
+        [
+          {
+            "x": 3430,
+            "y": 2300
+          },
+          {
+            "x": 3750,
+            "y": 2360
+          },
+          {
+            "x": 3750,
+            "y": 2382
+          },
+          {
+            "x": 3430,
+            "y": 2322
+          }
+        ]
+      ],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": false
+      },
+      "material": "stone",
+      "breakable": false,
+      "oneWay": true,
+      "bounds": {
+        "x": 3425,
+        "y": 2295,
+        "w": 330,
+        "h": 92
+      },
+      "reference": {
+        "heightM": 1.5333333333333334,
+        "bounds": {
+          "x": 3425,
+          "y": 2295,
+          "w": 330,
+          "h": 92
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage26-witness:burnt-workshop-frame",
+      "name": "burnt-workshop-frame",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          2360,
+          2180,
+          1200,
+          540
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#383b32",
+              "d": "M2480 2340 L2507 2340 L2507 2700 L2480 2700 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#343b33",
+              "d": "M3340 2340 L3369 2340 L3369 2700 L3340 2700 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#615a43",
+              "d": "M2480 2470 L2507 2445 L2680 2690 L2660 2700 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#5f5b45",
+              "d": "M3170 2700 L3190 2690 L3369 2440 L3369 2480 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#877b59",
+              "lineWidth": 7,
+              "d": "M2507 2345 L3340 2345"
+            },
+            {
+              "tag": "path",
+              "fill": "#6c6550",
+              "d": "M2520 2660 L2650 2660 L2650 2700 L2520 2700 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#b2a583",
+              "d": "M2528 2650 L2642 2650 L2642 2662 L2528 2662 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#5e604e",
+              "d": "M3190 2620 L3288 2620 L3288 2700 L3190 2700 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#776d58",
+              "stroke": "#263932",
+              "lineWidth": 5,
+              "d": "M2780 2700 L2760 2600 L2795 2500 L2860 2475 L2935 2520 L2970 2700 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#293a35",
+              "d": "M2780 2700 L2800 2600 L2850 2580 L2900 2600 L2920 2700 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#9c8b6a",
+              "d": "M2795 2500 L2860 2475 L2935 2520 L2870 2540 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4b615c",
+              "d": "M3000 2670 L3135 2670 L3135 2700 L3000 2700 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#809388",
+              "lineWidth": 6,
+              "d": "M3030 2672 L3105 2672"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#a09370",
+              "lineWidth": 3,
+              "d": "M2425 2310 L3425 2310"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#393d32",
+              "lineWidth": 3,
+              "d": "M2470 2303 L2473 2318"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#393d32",
+              "lineWidth": 3,
+              "d": "M2580 2303 L2583 2318"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#393d32",
+              "lineWidth": 3,
+              "d": "M2700 2303 L2703 2318"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#393d32",
+              "lineWidth": 3,
+              "d": "M2790 2303 L2793 2318"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#393d32",
+              "lineWidth": 3,
+              "d": "M2925 2303 L2928 2318"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#393d32",
+              "lineWidth": 3,
+              "d": "M3040 2303 L3043 2318"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#393d32",
+              "lineWidth": 3,
+              "d": "M3160 2303 L3163 2318"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#393d32",
+              "lineWidth": 3,
+              "d": "M3280 2303 L3283 2318"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#393d32",
+              "lineWidth": 3,
+              "d": "M3370 2303 L3373 2318"
+            },
+            {
+              "tag": "path",
+              "fill": "#6c6146",
+              "d": "M2460 2195 L2472 2195 L2472 2300 L2460 2300 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#5a513d",
+              "d": "M2600 2200 L2612 2200 L2612 2300 L2600 2300 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#8f8162",
+              "lineWidth": 8,
+              "d": "M2462 2210 L2605 2220 L2700 2250"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"2360 2180 1200 540\"><path d=\"M2480 2340 L2507 2340 L2507 2700 L2480 2700 Z\" fill=\"#383b32\"/><path d=\"M3340 2340 L3369 2340 L3369 2700 L3340 2700 Z\" fill=\"#343b33\"/><path d=\"M2480 2470 L2507 2445 L2680 2690 L2660 2700 Z\" fill=\"#615a43\"/><path d=\"M3170 2700 L3190 2690 L3369 2440 L3369 2480 Z\" fill=\"#5f5b45\"/><path d=\"M2507 2345 L3340 2345\" fill=\"none\" stroke=\"#877b59\" stroke-width=\"7\"/><path d=\"M2520 2660 L2650 2660 L2650 2700 L2520 2700 Z\" fill=\"#6c6550\"/><path d=\"M2528 2650 L2642 2650 L2642 2662 L2528 2662 Z\" fill=\"#b2a583\"/><path d=\"M3190 2620 L3288 2620 L3288 2700 L3190 2700 Z\" fill=\"#5e604e\"/><path d=\"M2780 2700 L2760 2600 L2795 2500 L2860 2475 L2935 2520 L2970 2700 Z\" fill=\"#776d58\" stroke=\"#263932\" stroke-width=\"5\"/><path d=\"M2780 2700 L2800 2600 L2850 2580 L2900 2600 L2920 2700 Z\" fill=\"#293a35\"/><path d=\"M2795 2500 L2860 2475 L2935 2520 L2870 2540 Z\" fill=\"#9c8b6a\"/><path d=\"M3000 2670 L3135 2670 L3135 2700 L3000 2700 Z\" fill=\"#4b615c\"/><path d=\"M3030 2672 L3105 2672\" fill=\"none\" stroke=\"#809388\" stroke-width=\"6\"/><path d=\"M2425 2310 L3425 2310\" fill=\"none\" stroke=\"#a09370\" stroke-width=\"3\"/><path d=\"M2470 2303 L2473 2318\" fill=\"none\" stroke=\"#393d32\" stroke-width=\"3\"/><path d=\"M2580 2303 L2583 2318\" fill=\"none\" stroke=\"#393d32\" stroke-width=\"3\"/><path d=\"M2700 2303 L2703 2318\" fill=\"none\" stroke=\"#393d32\" stroke-width=\"3\"/><path d=\"M2790 2303 L2793 2318\" fill=\"none\" stroke=\"#393d32\" stroke-width=\"3\"/><path d=\"M2925 2303 L2928 2318\" fill=\"none\" stroke=\"#393d32\" stroke-width=\"3\"/><path d=\"M3040 2303 L3043 2318\" fill=\"none\" stroke=\"#393d32\" stroke-width=\"3\"/><path d=\"M3160 2303 L3163 2318\" fill=\"none\" stroke=\"#393d32\" stroke-width=\"3\"/><path d=\"M3280 2303 L3283 2318\" fill=\"none\" stroke=\"#393d32\" stroke-width=\"3\"/><path d=\"M3370 2303 L3373 2318\" fill=\"none\" stroke=\"#393d32\" stroke-width=\"3\"/><path d=\"M2460 2195 L2472 2195 L2472 2300 L2460 2300 Z\" fill=\"#6c6146\"/><path d=\"M2600 2200 L2612 2200 L2612 2300 L2600 2300 Z\" fill=\"#5a513d\"/><path d=\"M2462 2210 L2605 2220 L2700 2250\" fill=\"none\" stroke=\"#8f8162\" stroke-width=\"8\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 2360,
+        "y": 2180,
+        "w": 1200,
+        "h": 540
+      },
+      "reference": {
+        "heightM": 9,
+        "bounds": {
+          "x": 2360,
+          "y": 2180,
+          "w": 1200,
+          "h": 540
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage26-witness:work-hollow-forge",
+      "name": "기와가 무너진 주조 공방과 흙가마",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -415,
+          -325,
+          830,
+          345
+        ],
+        "gradients": {
+          "tile": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#626860",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#293b3d",
+                "opacity": 1
+              }
+            ],
+            "x1": 0,
+            "y1": -288,
+            "x2": 0,
+            "y2": -205
+          },
+          "straw": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#8d8260",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#534e3b",
+                "opacity": 1
+              }
+            ],
+            "x1": 0,
+            "y1": -288,
+            "x2": 0,
+            "y2": -205
+          },
+          "plaster": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#928975",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#666950",
+                "opacity": 1
+              }
+            ],
+            "x1": 0,
+            "y1": -205,
+            "x2": 0,
+            "y2": 0
+          }
+        },
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "g",
+              "id": "low-stone-foundation",
+              "children": [
+                {
+                  "tag": "path",
+                  "fill": "#727c68",
+                  "d": "M-372 -9 L-339 -18 L345 -16 L372 -5 L375 0 L-375 0 Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#aaa68c",
+                  "d": "M-370-9L-339-18H345L370-5H-372Z"
+                }
+              ]
+            },
+            {
+              "tag": "path",
+              "fill": "#a58d61",
+              "d": "M-340 -22h200v8h-200Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#8d7751",
+              "d": "M-347 -58h214v7h-214Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#796448",
+              "d": "M-340 -51h5v29h-5Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#796448",
+              "d": "M-145 -51h5v29h-5Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a58d61",
+              "d": "M-100 -22h200v8h-200Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#8d7751",
+              "d": "M-107 -58h214v7h-214Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#796448",
+              "d": "M-100 -51h5v29h-5Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#796448",
+              "d": "M95 -51h5v29h-5Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a58d61",
+              "d": "M140 -22h200v8h-200Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#8d7751",
+              "d": "M133 -58h214v7h-214Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#796448",
+              "d": "M140 -51h5v29h-5Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#796448",
+              "d": "M335 -51h5v29h-5Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#514738",
+              "d": "M-367 -187h19L-346-16H-369Z M-127 -187h19L-106-16H-129Z M113 -187h19L134-16H111Z M353 -187h19L374-16H351Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a17b52",
+              "d": "M-365 -178h4v155h-4Z M-125 -178h4v155h-4Z M115 -178h4v155h-4Z M355 -178h4v155h-4Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#858976",
+              "d": "M-372-17h30l2 17H-375Z M-132-17h30l2 17H-135Z M108-17h30l2 17H105Z M348-17h30l2 17H345Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#514738",
+              "d": "M-369 -189h738v12h-738Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#416353",
+              "d": "M-366 -178h732v7h-732Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#293f34",
+              "d": "M-350 -170h700v5h-700Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#3f4939",
+              "d": "M-351 -178L-309 -167L-151.20000000000002 -14H-347Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#45594f",
+              "d": "M-397 -214 L-384.971 -211.551 L-373.457 -211.061 L-362.457 -212.531 L-351.971 -215.959 L-342 -221.347 L-332.543 -228.694 L-323.6 -238 L-309.6 -276 L86.39999999999999 -276 L86.39999999999999 -194.80590035667865 L66.167 -194.035 L0 -192.25 L-66.167 -191.201 L-132.333 -190.889 L-198.5 -191.313 L-264.667 -192.472 L-330.833 -194.368 L-397 -197 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M-334 -219.56207877762503 L-331 -199.49397736031557"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M-298 -268 L-295 -198.42716380013906"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M-262 -268 L-259 -197.4252840690979"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M-226 -268 L-223 -196.79469782519988"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M-190 -268 L-187 -196.25853176054528"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M-154 -268 L-151 -196.02784274638415"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M-118 -268 L-115 -195.95658601094217"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M-82 -268 L-79 -196.1263408699332"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M-46 -268 L-43 -196.52072407695678"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M-10 -268 L-7 -197.09146175586017"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M26 -268 L29 -197.95140704580834"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#718071",
+              "lineWidth": 3,
+              "d": "M62 -268 L65 -198.92258603231218"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#979780",
+              "lineWidth": 7,
+              "d": "M-317.6 -288 L78.39999999999999 -288 L86.39999999999999 -280"
+            },
+            {
+              "tag": "path",
+              "fill": "#695b42",
+              "d": "M-302.79999999999995 0 L-287.79999999999995 -155 L-245.79999999999998 -181 L-178.79999999999998 -160 L-130.79999999999998 0 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#91815a",
+              "d": "M-279.79999999999995 0 L-267.79999999999995 -143 L-230.79999999999998 -159 L-227.79999999999998 0 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#333d32",
+              "d": "M-236.79999999999998 0 L-233.79999999999998 -66 L-214.79999999999998 -85 L-193.79999999999998 -73 L-184.79999999999998 0 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#ad7444",
+              "d": "M-221.79999999999998 -54 L-196.79999999999998 -54 L-196.79999999999998 -32 L-221.79999999999998 -32 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4d5545",
+              "d": "M180 -12 L172.79999999999998 -270 L216 -309 L244.8 -292 L273.6 -307 L288 -10 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#76735a",
+              "d": "M183.6 -23 L185.04 -271 L216 -289 L223.2 -23 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#65513a",
+              "lineWidth": 13,
+              "d": "M91.39999999999999 -275 L251.99999999999997 -219 L352.8 -183"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#9a7b50",
+              "lineWidth": 6,
+              "d": "M266.4 -226 L302.4 -200 L352.8 -207"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-415 -325 830 345\"><title>Korean pavilion: low gable roof and 3 structural bays</title><defs><linearGradient id=\"tile\" x1=\"0\" y1=\"-288\" x2=\"0\" y2=\"-205\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#626860\"/><stop offset=\"1\" stop-color=\"#293b3d\"/></linearGradient><linearGradient id=\"straw\" x1=\"0\" y1=\"-288\" x2=\"0\" y2=\"-205\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#8d8260\"/><stop offset=\"1\" stop-color=\"#534e3b\"/></linearGradient><linearGradient id=\"plaster\" x1=\"0\" y1=\"-205\" x2=\"0\" y2=\"0\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#928975\"/><stop offset=\"1\" stop-color=\"#666950\"/></linearGradient></defs><g id=\"low-stone-foundation\"><path fill=\"#727c68\" d=\"M-372 -9 L-339 -18 L345 -16 L372 -5 L375 0 L-375 0 Z\"/><path fill=\"#aaa68c\" d=\"M-370-9L-339-18H345L370-5H-372Z\"/></g><path fill=\"#a58d61\" d=\"M-340 -22h200v8h-200Z\"/><path fill=\"#8d7751\" d=\"M-347 -58h214v7h-214Z\"/><path fill=\"#796448\" d=\"M-340 -51h5v29h-5Z\"/><path fill=\"#796448\" d=\"M-145 -51h5v29h-5Z\"/><path fill=\"#a58d61\" d=\"M-100 -22h200v8h-200Z\"/><path fill=\"#8d7751\" d=\"M-107 -58h214v7h-214Z\"/><path fill=\"#796448\" d=\"M-100 -51h5v29h-5Z\"/><path fill=\"#796448\" d=\"M95 -51h5v29h-5Z\"/><path fill=\"#a58d61\" d=\"M140 -22h200v8h-200Z\"/><path fill=\"#8d7751\" d=\"M133 -58h214v7h-214Z\"/><path fill=\"#796448\" d=\"M140 -51h5v29h-5Z\"/><path fill=\"#796448\" d=\"M335 -51h5v29h-5Z\"/><path fill=\"#514738\" d=\"M-367 -187h19L-346-16H-369Z M-127 -187h19L-106-16H-129Z M113 -187h19L134-16H111Z M353 -187h19L374-16H351Z\"/><path fill=\"#a17b52\" d=\"M-365 -178h4v155h-4Z M-125 -178h4v155h-4Z M115 -178h4v155h-4Z M355 -178h4v155h-4Z\"/><path fill=\"#858976\" d=\"M-372-17h30l2 17H-375Z M-132-17h30l2 17H-135Z M108-17h30l2 17H105Z M348-17h30l2 17H345Z\"/><path fill=\"#514738\" d=\"M-369 -189h738v12h-738Z\"/><path fill=\"#416353\" d=\"M-366 -178h732v7h-732Z\"/><path fill=\"#293f34\" d=\"M-350 -170h700v5h-700Z\"/><path fill=\"#3f4939\" d=\"M-351 -178L-309 -167L-151.20000000000002 -14H-347Z\"/><path d=\"M-397 -214 L-384.971 -211.551 L-373.457 -211.061 L-362.457 -212.531 L-351.971 -215.959 L-342 -221.347 L-332.543 -228.694 L-323.6 -238 L-309.6 -276 L86.39999999999999 -276 L86.39999999999999 -194.80590035667865 L66.167 -194.035 L0 -192.25 L-66.167 -191.201 L-132.333 -190.889 L-198.5 -191.313 L-264.667 -192.472 L-330.833 -194.368 L-397 -197 Z\" fill=\"#45594f\"/><path d=\"M-334 -219.56207877762503 L-331 -199.49397736031557\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M-298 -268 L-295 -198.42716380013906\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M-262 -268 L-259 -197.4252840690979\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M-226 -268 L-223 -196.79469782519988\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M-190 -268 L-187 -196.25853176054528\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M-154 -268 L-151 -196.02784274638415\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M-118 -268 L-115 -195.95658601094217\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M-82 -268 L-79 -196.1263408699332\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M-46 -268 L-43 -196.52072407695678\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M-10 -268 L-7 -197.09146175586017\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M26 -268 L29 -197.95140704580834\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M62 -268 L65 -198.92258603231218\" fill=\"none\" stroke=\"#718071\" stroke-width=\"3\"/><path d=\"M-317.6 -288 L78.39999999999999 -288 L86.39999999999999 -280\" fill=\"none\" stroke=\"#979780\" stroke-width=\"7\"/><path d=\"M-302.79999999999995 0 L-287.79999999999995 -155 L-245.79999999999998 -181 L-178.79999999999998 -160 L-130.79999999999998 0 Z\" fill=\"#695b42\"/><path d=\"M-279.79999999999995 0 L-267.79999999999995 -143 L-230.79999999999998 -159 L-227.79999999999998 0 Z\" fill=\"#91815a\"/><path d=\"M-236.79999999999998 0 L-233.79999999999998 -66 L-214.79999999999998 -85 L-193.79999999999998 -73 L-184.79999999999998 0 Z\" fill=\"#333d32\"/><path d=\"M-221.79999999999998 -54 L-196.79999999999998 -54 L-196.79999999999998 -32 L-221.79999999999998 -32 Z\" fill=\"#ad7444\"/><path d=\"M180 -12 L172.79999999999998 -270 L216 -309 L244.8 -292 L273.6 -307 L288 -10 Z\" fill=\"#4d5545\"/><path d=\"M183.6 -23 L185.04 -271 L216 -289 L223.2 -23 Z\" fill=\"#76735a\"/><path d=\"M91.39999999999999 -275 L251.99999999999997 -219 L352.8 -183\" fill=\"none\" stroke=\"#65513a\" stroke-width=\"13\"/><path d=\"M266.4 -226 L302.4 -200 L352.8 -207\" fill=\"none\" stroke=\"#9a7b50\" stroke-width=\"6\"/></svg>"
+      },
+      "collision": [
+        [
+          {
+            "x": -397,
+            "y": -214
+          },
+          {
+            "x": -384.971,
+            "y": -211.551
+          },
+          {
+            "x": -373.457,
+            "y": -211.061
+          },
+          {
+            "x": -362.457,
+            "y": -212.531
+          },
+          {
+            "x": -351.971,
+            "y": -215.959
+          },
+          {
+            "x": -342,
+            "y": -221.347
+          },
+          {
+            "x": -332.543,
+            "y": -228.694
+          },
+          {
+            "x": -323.6,
+            "y": -238
+          },
+          {
+            "x": -309.6,
+            "y": -276
+          },
+          {
+            "x": 86.39999999999999,
+            "y": -276
+          },
+          {
+            "x": 86.39999999999999,
+            "y": -194.80590035667865
+          },
+          {
+            "x": 66.167,
+            "y": -194.035
+          },
+          {
+            "x": 0,
+            "y": -192.25
+          },
+          {
+            "x": -66.167,
+            "y": -191.201
+          },
+          {
+            "x": -132.333,
+            "y": -190.889
+          },
+          {
+            "x": -198.5,
+            "y": -191.313
+          },
+          {
+            "x": -264.667,
+            "y": -192.472
+          },
+          {
+            "x": -330.833,
+            "y": -194.368
+          },
+          {
+            "x": -397,
+            "y": -197
+          }
+        ]
+      ],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "sampled-drawn-roof",
+        "koreanType": "ruined-casting-workshop",
+        "structuralSupports": [],
+        "brokenRoof": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": true,
+      "bounds": {
+        "x": -415,
+        "y": -325,
+        "w": 830,
+        "h": 345
+      },
+      "reference": {
+        "heightM": 5.75,
+        "bounds": {
+          "x": -415,
+          "y": -325,
+          "w": 830,
+          "h": 345
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage26-witness:refuge-house",
+      "name": "낮은 민가",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          -373,
+          -250,
+          746,
+          255
+        ],
+        "gradients": {
+          "tile": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#68776e",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#293b3d",
+                "opacity": 1
+              }
+            ],
+            "x1": 0,
+            "y1": -241,
+            "x2": 0,
+            "y2": -158
+          },
+          "straw": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#aa9a72",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#7e7351",
+                "opacity": 1
+              }
+            ],
+            "x1": 0,
+            "y1": -241,
+            "x2": 0,
+            "y2": -158
+          },
+          "plaster": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#b9ac89",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#938d6c",
+                "opacity": 1
+              }
+            ],
+            "x1": 0,
+            "y1": -158,
+            "x2": 0,
+            "y2": 0
+          }
+        },
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "g",
+              "id": "low-stone-foundation",
+              "children": [
+                {
+                  "tag": "path",
+                  "fill": "#727c68",
+                  "d": "M-337 -9 L-304 -18 L310 -16 L337 -5 L340 0 L-340 0 Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#aaa68c",
+                  "d": "M-335-9L-304-18H310L335-5H-337Z"
+                }
+              ]
+            },
+            {
+              "tag": "path",
+              "fill": "url(#plaster)",
+              "d": "M-325 -143h650v129h-650Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#655e43",
+              "d": "M-319 -137h638v19h-638Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#423e2f",
+              "d": "M-306 -108h92v88h-92Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#796345",
+              "d": "M-301 -103h82v78h-82Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#857e5e",
+              "d": "M-301 -103h82v8h-82Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4b4833",
+              "d": "M-260.92 -103h5v78h-5Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a38c61",
+              "d": "M-298 -82.48h76v6h-76Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a38c61",
+              "d": "M-298 -39.36h76v6h-76Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#484532",
+              "d": "M-223 -100h4v73h-4Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#68513a",
+              "d": "M-307 -15h94v10h-94Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#423e2f",
+              "d": "M-176 -108h92v88h-92Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#c2b793",
+              "d": "M-171 -103h82v78h-82Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#857e5e",
+              "d": "M-171 -103h82v8h-82Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#706b4e",
+              "lineWidth": 2.3,
+              "lineCap": "round",
+              "d": "M-153 -101v74 M-130 -101v74 M-107 -101v74 M-169 -71.03999999999999h78 M-169 -42.879999999999995h78"
+            },
+            {
+              "tag": "path",
+              "fill": "#484532",
+              "d": "M-93 -100h4v73h-4Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#68513a",
+              "d": "M-177 -15h94v10h-94Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#35483c",
+              "d": "M-52 -118h104v103h-104Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a58d61",
+              "d": "M-45 -22h90v8h-90Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#423e2f",
+              "d": "M84 -108h92v88h-92Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#c2b793",
+              "d": "M89 -103h82v78h-82Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#857e5e",
+              "d": "M89 -103h82v8h-82Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#706b4e",
+              "lineWidth": 2.3,
+              "lineCap": "round",
+              "d": "M107 -101v74 M130 -101v74 M153 -101v74 M91 -71.03999999999999h78 M91 -42.879999999999995h78"
+            },
+            {
+              "tag": "path",
+              "fill": "#484532",
+              "d": "M167 -100h4v73h-4Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#68513a",
+              "d": "M83 -15h94v10h-94Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#423e2f",
+              "d": "M214 -108h92v88h-92Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#796345",
+              "d": "M219 -103h82v78h-82Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#857e5e",
+              "d": "M219 -103h82v8h-82Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4b4833",
+              "d": "M259.08 -103h5v78h-5Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a38c61",
+              "d": "M222 -82.48h76v6h-76Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a38c61",
+              "d": "M222 -39.36h76v6h-76Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#484532",
+              "d": "M297 -100h4v73h-4Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#68513a",
+              "d": "M213 -15h94v10h-94Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#68513a",
+              "d": "M-332 -140h14L-316-16H-334Z M-202 -140h14L-186-16H-204Z M-72 -140h14L-56-16H-74Z M58 -140h14L74-16H56Z M188 -140h14L204-16H186Z M318 -140h14L334-16H316Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#9a8059",
+              "d": "M-330 -131h4v108h-4Z M-200 -131h4v108h-4Z M-70 -131h4v108h-4Z M60 -131h4v108h-4Z M190 -131h4v108h-4Z M320 -131h4v108h-4Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#858976",
+              "d": "M-337-17h25l2 17H-340Z M-207-17h25l2 17H-210Z M-77-17h25l2 17H-80Z M53-17h25l2 17H50Z M183-17h25l2 17H180Z M313-17h25l2 17H310Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#68513a",
+              "d": "M-334 -142h668v12h-668Z"
+            },
+            {
+              "tag": "g",
+              "id": "onggi-at-courtyard-edge",
+              "children": [
+                {
+                  "tag": "path",
+                  "fill": "#5d4b38",
+                  "d": "M263 -2Q248 -27 260 -45L263 -51H290L293 -44Q305 -20 290 -2Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#8a785c",
+                  "d": "M260 -54h34v6h-34Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#827359",
+                  "d": "M262 -37Q256 -20 267 -8L271 -11Q265 -26 269 -38Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#756043",
+                  "d": "M303 -2Q293 -21 303 -33H325Q336 -17 325 -2Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#9c8862",
+                  "d": "M301 -37h28v5h-28Z"
+                }
+              ]
+            },
+            {
+              "tag": "g",
+              "id": "korean-thatch-roof",
+              "children": [
+                {
+                  "tag": "path",
+                  "fill": "url(#straw)",
+                  "d": "M-355 -157 L-353.724 -169.327 L-342.469 -181.163 L-321.235 -192.51 L-290.02 -203.367 L-248.827 -213.735 L-197.653 -223.612 L-136.5 -233 L-96.837 -236.673 L-55.847 -239.122 L-13.531 -240.347 L30.112 -240.347 L75.082 -239.122 L121.378 -236.673 L169 -233 L220.571 -223.102 L263.857 -212.837 L298.857 -202.204 L325.571 -191.204 L344 -179.837 L354.143 -168.102 L356 -156 L296.674 -150.458 L237.361 -145.833 L178.063 -142.125 L118.778 -139.333 L59.507 -137.458 L0.25 -136.5 L-58.993 -136.458 L-118.222 -137.333 L-177.438 -139.125 L-236.639 -141.833 L-295.826 -145.458 L-355 -150 Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#6c6043",
+                  "d": "M-352 -161Q0 -140 353 -161L350 -149Q0 -131 -349 -150Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "#b4a479",
+                  "d": "M-310 -198Q-238 -228 0 -225Q237 -231 317 -198Q0 -216 -310 -198Z"
+                },
+                {
+                  "tag": "path",
+                  "fill": "none",
+                  "stroke": "#7a7556",
+                  "lineWidth": 3,
+                  "lineCap": "round",
+                  "d": "M-110.565 -226Q-156.195 -197 -175.5 -151 M0 -226Q0 -197 0 -151 M110.565 -226Q156.195 -197 175.5 -151"
+                },
+                {
+                  "tag": "path",
+                  "fill": "none",
+                  "stroke": "#8c855f",
+                  "lineWidth": 3,
+                  "lineCap": "round",
+                  "d": "M-320 -173Q0 -156 323 -172"
+                }
+              ]
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-373 -250 746 255\"><title>Korean house: low thatch roof and 5 structural bays</title><defs><linearGradient id=\"tile\" x1=\"0\" y1=\"-241\" x2=\"0\" y2=\"-158\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#68776e\"/><stop offset=\"1\" stop-color=\"#293b3d\"/></linearGradient><linearGradient id=\"straw\" x1=\"0\" y1=\"-241\" x2=\"0\" y2=\"-158\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#aa9a72\"/><stop offset=\"1\" stop-color=\"#7e7351\"/></linearGradient><linearGradient id=\"plaster\" x1=\"0\" y1=\"-158\" x2=\"0\" y2=\"0\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#b9ac89\"/><stop offset=\"1\" stop-color=\"#938d6c\"/></linearGradient></defs><g id=\"low-stone-foundation\"><path fill=\"#727c68\" d=\"M-337 -9 L-304 -18 L310 -16 L337 -5 L340 0 L-340 0 Z\"/><path fill=\"#aaa68c\" d=\"M-335-9L-304-18H310L335-5H-337Z\"/></g><path fill=\"url(#plaster)\" d=\"M-325 -143h650v129h-650Z\"/><path fill=\"#655e43\" d=\"M-319 -137h638v19h-638Z\"/><path fill=\"#423e2f\" d=\"M-306 -108h92v88h-92Z\"/><path fill=\"#796345\" d=\"M-301 -103h82v78h-82Z\"/><path fill=\"#857e5e\" d=\"M-301 -103h82v8h-82Z\"/><path fill=\"#4b4833\" d=\"M-260.92 -103h5v78h-5Z\"/><path fill=\"#a38c61\" d=\"M-298 -82.48h76v6h-76Z\"/><path fill=\"#a38c61\" d=\"M-298 -39.36h76v6h-76Z\"/><path fill=\"#484532\" d=\"M-223 -100h4v73h-4Z\"/><path fill=\"#68513a\" d=\"M-307 -15h94v10h-94Z\"/><path fill=\"#423e2f\" d=\"M-176 -108h92v88h-92Z\"/><path fill=\"#c2b793\" d=\"M-171 -103h82v78h-82Z\"/><path fill=\"#857e5e\" d=\"M-171 -103h82v8h-82Z\"/><path fill=\"none\" stroke=\"#706b4e\" stroke-width=\"2.3\" stroke-linecap=\"round\" d=\"M-153 -101v74 M-130 -101v74 M-107 -101v74 M-169 -71.03999999999999h78 M-169 -42.879999999999995h78\"/><path fill=\"#484532\" d=\"M-93 -100h4v73h-4Z\"/><path fill=\"#68513a\" d=\"M-177 -15h94v10h-94Z\"/><path fill=\"#35483c\" d=\"M-52 -118h104v103h-104Z\"/><path fill=\"#a58d61\" d=\"M-45 -22h90v8h-90Z\"/><path fill=\"#423e2f\" d=\"M84 -108h92v88h-92Z\"/><path fill=\"#c2b793\" d=\"M89 -103h82v78h-82Z\"/><path fill=\"#857e5e\" d=\"M89 -103h82v8h-82Z\"/><path fill=\"none\" stroke=\"#706b4e\" stroke-width=\"2.3\" stroke-linecap=\"round\" d=\"M107 -101v74 M130 -101v74 M153 -101v74 M91 -71.03999999999999h78 M91 -42.879999999999995h78\"/><path fill=\"#484532\" d=\"M167 -100h4v73h-4Z\"/><path fill=\"#68513a\" d=\"M83 -15h94v10h-94Z\"/><path fill=\"#423e2f\" d=\"M214 -108h92v88h-92Z\"/><path fill=\"#796345\" d=\"M219 -103h82v78h-82Z\"/><path fill=\"#857e5e\" d=\"M219 -103h82v8h-82Z\"/><path fill=\"#4b4833\" d=\"M259.08 -103h5v78h-5Z\"/><path fill=\"#a38c61\" d=\"M222 -82.48h76v6h-76Z\"/><path fill=\"#a38c61\" d=\"M222 -39.36h76v6h-76Z\"/><path fill=\"#484532\" d=\"M297 -100h4v73h-4Z\"/><path fill=\"#68513a\" d=\"M213 -15h94v10h-94Z\"/><path fill=\"#68513a\" d=\"M-332 -140h14L-316-16H-334Z M-202 -140h14L-186-16H-204Z M-72 -140h14L-56-16H-74Z M58 -140h14L74-16H56Z M188 -140h14L204-16H186Z M318 -140h14L334-16H316Z\"/><path fill=\"#9a8059\" d=\"M-330 -131h4v108h-4Z M-200 -131h4v108h-4Z M-70 -131h4v108h-4Z M60 -131h4v108h-4Z M190 -131h4v108h-4Z M320 -131h4v108h-4Z\"/><path fill=\"#858976\" d=\"M-337-17h25l2 17H-340Z M-207-17h25l2 17H-210Z M-77-17h25l2 17H-80Z M53-17h25l2 17H50Z M183-17h25l2 17H180Z M313-17h25l2 17H310Z\"/><path fill=\"#68513a\" d=\"M-334 -142h668v12h-668Z\"/><g id=\"onggi-at-courtyard-edge\"><path fill=\"#5d4b38\" d=\"M263 -2Q248 -27 260 -45L263 -51H290L293 -44Q305 -20 290 -2Z\"/><path fill=\"#8a785c\" d=\"M260 -54h34v6h-34Z\"/><path fill=\"#827359\" d=\"M262 -37Q256 -20 267 -8L271 -11Q265 -26 269 -38Z\"/><path fill=\"#756043\" d=\"M303 -2Q293 -21 303 -33H325Q336 -17 325 -2Z\"/><path fill=\"#9c8862\" d=\"M301 -37h28v5h-28Z\"/></g><g id=\"korean-thatch-roof\"><path fill=\"url(#straw)\" d=\"M-355 -157 L-353.724 -169.327 L-342.469 -181.163 L-321.235 -192.51 L-290.02 -203.367 L-248.827 -213.735 L-197.653 -223.612 L-136.5 -233 L-96.837 -236.673 L-55.847 -239.122 L-13.531 -240.347 L30.112 -240.347 L75.082 -239.122 L121.378 -236.673 L169 -233 L220.571 -223.102 L263.857 -212.837 L298.857 -202.204 L325.571 -191.204 L344 -179.837 L354.143 -168.102 L356 -156 L296.674 -150.458 L237.361 -145.833 L178.063 -142.125 L118.778 -139.333 L59.507 -137.458 L0.25 -136.5 L-58.993 -136.458 L-118.222 -137.333 L-177.438 -139.125 L-236.639 -141.833 L-295.826 -145.458 L-355 -150 Z\"/><path fill=\"#6c6043\" d=\"M-352 -161Q0 -140 353 -161L350 -149Q0 -131 -349 -150Z\"/><path fill=\"#b4a479\" d=\"M-310 -198Q-238 -228 0 -225Q237 -231 317 -198Q0 -216 -310 -198Z\"/><path fill=\"none\" stroke=\"#7a7556\" stroke-width=\"3\" stroke-linecap=\"round\" d=\"M-110.565 -226Q-156.195 -197 -175.5 -151 M0 -226Q0 -197 0 -151 M110.565 -226Q156.195 -197 175.5 -151\"/><path fill=\"none\" stroke=\"#8c855f\" stroke-width=\"3\" stroke-linecap=\"round\" d=\"M-320 -173Q0 -156 323 -172\"/></g></svg>"
+      },
+      "collision": [
+        [
+          {
+            "x": -355,
+            "y": -157
+          },
+          {
+            "x": -353.724,
+            "y": -169.327
+          },
+          {
+            "x": -342.469,
+            "y": -181.163
+          },
+          {
+            "x": -321.235,
+            "y": -192.51
+          },
+          {
+            "x": -290.02,
+            "y": -203.367
+          },
+          {
+            "x": -248.827,
+            "y": -213.735
+          },
+          {
+            "x": -197.653,
+            "y": -223.612
+          },
+          {
+            "x": -136.5,
+            "y": -233
+          },
+          {
+            "x": -96.837,
+            "y": -236.673
+          },
+          {
+            "x": -55.847,
+            "y": -239.122
+          },
+          {
+            "x": -13.531,
+            "y": -240.347
+          },
+          {
+            "x": 30.112,
+            "y": -240.347
+          },
+          {
+            "x": 75.082,
+            "y": -239.122
+          },
+          {
+            "x": 121.378,
+            "y": -236.673
+          },
+          {
+            "x": 169,
+            "y": -233
+          },
+          {
+            "x": 220.571,
+            "y": -223.102
+          },
+          {
+            "x": 263.857,
+            "y": -212.837
+          },
+          {
+            "x": 298.857,
+            "y": -202.204
+          },
+          {
+            "x": 325.571,
+            "y": -191.204
+          },
+          {
+            "x": 344,
+            "y": -179.837
+          },
+          {
+            "x": 354.143,
+            "y": -168.102
+          },
+          {
+            "x": 356,
+            "y": -156
+          },
+          {
+            "x": 296.674,
+            "y": -150.458
+          },
+          {
+            "x": 237.361,
+            "y": -145.833
+          },
+          {
+            "x": 178.063,
+            "y": -142.125
+          },
+          {
+            "x": 118.778,
+            "y": -139.333
+          },
+          {
+            "x": 59.507,
+            "y": -137.458
+          },
+          {
+            "x": 0.25,
+            "y": -136.5
+          },
+          {
+            "x": -58.993,
+            "y": -136.458
+          },
+          {
+            "x": -118.222,
+            "y": -137.333
+          },
+          {
+            "x": -177.438,
+            "y": -139.125
+          },
+          {
+            "x": -236.639,
+            "y": -141.833
+          },
+          {
+            "x": -295.826,
+            "y": -145.458
+          },
+          {
+            "x": -355,
+            "y": -150
+          }
+        ]
+      ],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production",
+        "korean-town"
+      ],
+      "params": {
+        "style": "house",
+        "koreanType": "house",
+        "roofType": "thatch",
+        "eaveHeight": 158,
+        "bayCount": 5,
+        "collisionSource": "sampled-drawn-roof"
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": true,
+      "bounds": {
+        "x": -373,
+        "y": -250,
+        "w": 746,
+        "h": 255
+      },
+      "reference": {
+        "heightM": 4.25,
+        "bounds": {
+          "x": -373,
+          "y": -250,
+          "w": 746,
+          "h": 255
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.7,
+          1.4
+        ],
+        "backgroundRange": [
+          0.7,
+          1.2
+        ]
+      }
+    },
+    {
+      "id": "stage26-witness:refuge-yard",
+      "name": "refuge-yard",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          4440,
+          2020,
+          970,
+          145
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#676959",
+              "stroke": "#263932",
+              "lineWidth": 4,
+              "d": "M4460 2150 L4510 2040 L4560 2035 L4610 2150 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#636758",
+              "stroke": "#263932",
+              "lineWidth": 4,
+              "d": "M5160 2150 L5160 2060 L5350 2075 L5380 2150 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#706248",
+              "d": "M4590 2090 L4695 2090 L4695 2150 L4590 2150 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a59670",
+              "d": "M4585 2080 L4700 2080 L4700 2093 L4585 2093 Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"4440 2020 970 145\"><path d=\"M4460 2150 L4510 2040 L4560 2035 L4610 2150 Z\" fill=\"#676959\" stroke=\"#263932\" stroke-width=\"4\"/><path d=\"M5160 2150 L5160 2060 L5350 2075 L5380 2150 Z\" fill=\"#636758\" stroke=\"#263932\" stroke-width=\"4\"/><path d=\"M4590 2090 L4695 2090 L4695 2150 L4590 2150 Z\" fill=\"#706248\"/><path d=\"M4585 2080 L4700 2080 L4700 2093 L4585 2093 Z\" fill=\"#a59670\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 4440,
+        "y": 2020,
+        "w": 970,
+        "h": 145
+      },
+      "reference": {
+        "heightM": 2.4166666666666665,
+        "bounds": {
+          "x": 4440,
+          "y": 2020,
+          "w": 970,
+          "h": 145
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage26-witness:return-bank-stones",
+      "name": "return-bank-stones",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          5720,
+          2190,
+          850,
+          240
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#5b6b62",
+              "stroke": "#263b38",
+              "lineWidth": 4,
+              "d": "M5740 2410 L5770 2320 L5850 2300 L5935 2340 L5960 2410 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#839184",
+              "d": "M5770 2320 L5850 2300 L5905 2330 L5820 2370 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#647363",
+              "stroke": "#263b38",
+              "lineWidth": 4,
+              "d": "M6350 2321 L6400 2220 L6500 2200 L6545 2252 Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"5720 2190 850 240\"><path d=\"M5740 2410 L5770 2320 L5850 2300 L5935 2340 L5960 2410 Z\" fill=\"#5b6b62\" stroke=\"#263b38\" stroke-width=\"4\"/><path d=\"M5770 2320 L5850 2300 L5905 2330 L5820 2370 Z\" fill=\"#839184\"/><path d=\"M6350 2321 L6400 2220 L6500 2200 L6545 2252 Z\" fill=\"#647363\" stroke=\"#263b38\" stroke-width=\"4\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 5720,
+        "y": 2190,
+        "w": 850,
+        "h": 240
+      },
+      "reference": {
+        "heightM": 4,
+        "bounds": {
+          "x": 5720,
+          "y": 2190,
+          "w": 850,
+          "h": 240
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage26-witness:earth-and-footing-planes",
+      "name": "earth-and-footing-planes",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          0,
+          1900,
+          7000,
+          1100
+        ],
+        "gradients": {
+          "witness-earth": {
+            "type": "linear",
+            "stops": [
+              {
+                "offset": 0,
+                "color": "#667164",
+                "opacity": 1
+              },
+              {
+                "offset": 0.55,
+                "color": "#3c504a",
+                "opacity": 1
+              },
+              {
+                "offset": 1,
+                "color": "#1b3032",
+                "opacity": 1
+              }
+            ],
+            "x1": 0,
+            "y1": 2300,
+            "x2": 0,
+            "y2": 3100
+          }
+        },
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "url(#witness-earth)",
+              "d": "M0 2300 L520 2300 L800 2400 L1750 2400 L2250 2700 L3370 2700 L3700 2580 L4020 2340 L4580 2150 L5260 2150 L5620 2410 L6100 2410 L6550 2250 L7000 2250 L7000 2460 L6550 2460 L6100 2620 L5620 2620 L5260 2360 L4580 2360 L4020 2550 L3700 2790 L3370 2910 L2250 2910 L1750 2610 L800 2610 L520 2510 L0 2510 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4d6058",
+              "d": "M40 2307 L480 2308 L435 2378 L260 2420 L85 2354 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#788174",
+              "d": "M40 2307 L260 2315 L235 2378 L85 2354 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4d6058",
+              "d": "M1810 2443 L2260 2708 L2215 2823.5 L2035 2758 L1855 2521.5 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#788174",
+              "d": "M1810 2443 L2035 2583 L2010 2691.5 L1855 2521.5 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4d6058",
+              "d": "M3530 2648.818181818182 L4020 2348 L3975 2476.5 L3775 2700.909090909091 L3575 2736.318181818182 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#788174",
+              "d": "M3530 2648.818181818182 L3775 2505.909090909091 L3750 2627.409090909091 L3575 2736.318181818182 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4d6058",
+              "d": "M4130 2309.6785714285716 L4520 2178.3571428571427 L4475 2280.8571428571427 L4325 2406.517857142857 L4175 2379.1785714285716 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#788174",
+              "d": "M4130 2309.6785714285716 L4325 2251.517857142857 L4300 2347.017857142857 L4175 2379.1785714285716 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4d6058",
+              "d": "M5340 2214.777777777778 L5630 2418 L5585 2540 L5485 2508.8888888888887 L5385 2297.777777777778 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#788174",
+              "d": "M5340 2214.777777777778 L5485 2323.8888888888887 L5460 2438.8888888888887 L5385 2297.777777777778 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#4d6058",
+              "d": "M6200 2381.4444444444443 L6490 2279.3333333333335 L6445 2378.5833333333335 L6345 2487.8888888888887 L6245 2448.6944444444443 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#788174",
+              "d": "M6200 2381.4444444444443 L6345 2337.8888888888887 L6320 2430.1388888888887 L6245 2448.6944444444443 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#a2a18a",
+              "d": "M910 2400 L1700 2400 L1700 2409 L910 2409 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#263c38",
+              "d": "M910 2409 L1700 2409 L1700 2424 L910 2424 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#687566",
+              "d": "M912 2428 L1085 2424 L1079 2493 L920 2488 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#919982",
+              "lineWidth": 3,
+              "d": "M917 2430 L1079 2428"
+            },
+            {
+              "tag": "path",
+              "fill": "#687566",
+              "d": "M1092 2428 L1300 2424 L1294 2493 L1100 2488 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#919982",
+              "lineWidth": 3,
+              "d": "M1097 2430 L1294 2428"
+            },
+            {
+              "tag": "path",
+              "fill": "#687566",
+              "d": "M1307 2428 L1457 2424 L1451 2493 L1315 2488 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#919982",
+              "lineWidth": 3,
+              "d": "M1312 2430 L1451 2428"
+            },
+            {
+              "tag": "path",
+              "fill": "#687566",
+              "d": "M1464 2428 L1695 2424 L1689 2493 L1472 2488 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#919982",
+              "lineWidth": 3,
+              "d": "M1469 2430 L1689 2428"
+            },
+            {
+              "tag": "path",
+              "fill": "#a2a18a",
+              "d": "M4580 2150 L5260 2150 L5260 2159 L4580 2159 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#263c38",
+              "d": "M4580 2159 L5260 2159 L5260 2174 L4580 2174 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#687566",
+              "d": "M4582 2178 L4755 2174 L4749 2243 L4590 2238 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#919982",
+              "lineWidth": 3,
+              "d": "M4587 2180 L4749 2178"
+            },
+            {
+              "tag": "path",
+              "fill": "#687566",
+              "d": "M4762 2178 L4970 2174 L4964 2243 L4770 2238 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#919982",
+              "lineWidth": 3,
+              "d": "M4767 2180 L4964 2178"
+            },
+            {
+              "tag": "path",
+              "fill": "#687566",
+              "d": "M4977 2178 L5127 2174 L5121 2243 L4985 2238 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#919982",
+              "lineWidth": 3,
+              "d": "M4982 2180 L5121 2178"
+            },
+            {
+              "tag": "path",
+              "fill": "#687566",
+              "d": "M5134 2178 L5255 2174 L5249 2243 L5142 2238 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#919982",
+              "lineWidth": 3,
+              "d": "M5139 2180 L5249 2178"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 1900 7000 1100\"><defs><linearGradient id=\"witness-earth\" x1=\"0\" y1=\"2300\" x2=\"0\" y2=\"3100\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0\" stop-color=\"#667164\"/><stop offset=\".55\" stop-color=\"#3c504a\"/><stop offset=\"1\" stop-color=\"#1b3032\"/></linearGradient></defs><path d=\"M0 2300 L520 2300 L800 2400 L1750 2400 L2250 2700 L3370 2700 L3700 2580 L4020 2340 L4580 2150 L5260 2150 L5620 2410 L6100 2410 L6550 2250 L7000 2250 L7000 2460 L6550 2460 L6100 2620 L5620 2620 L5260 2360 L4580 2360 L4020 2550 L3700 2790 L3370 2910 L2250 2910 L1750 2610 L800 2610 L520 2510 L0 2510 Z\" fill=\"url(#witness-earth)\"/><path d=\"M40 2307 L480 2308 L435 2378 L260 2420 L85 2354 Z\" fill=\"#4d6058\"/><path d=\"M40 2307 L260 2315 L235 2378 L85 2354 Z\" fill=\"#788174\"/><path d=\"M1810 2443 L2260 2708 L2215 2823.5 L2035 2758 L1855 2521.5 Z\" fill=\"#4d6058\"/><path d=\"M1810 2443 L2035 2583 L2010 2691.5 L1855 2521.5 Z\" fill=\"#788174\"/><path d=\"M3530 2648.818181818182 L4020 2348 L3975 2476.5 L3775 2700.909090909091 L3575 2736.318181818182 Z\" fill=\"#4d6058\"/><path d=\"M3530 2648.818181818182 L3775 2505.909090909091 L3750 2627.409090909091 L3575 2736.318181818182 Z\" fill=\"#788174\"/><path d=\"M4130 2309.6785714285716 L4520 2178.3571428571427 L4475 2280.8571428571427 L4325 2406.517857142857 L4175 2379.1785714285716 Z\" fill=\"#4d6058\"/><path d=\"M4130 2309.6785714285716 L4325 2251.517857142857 L4300 2347.017857142857 L4175 2379.1785714285716 Z\" fill=\"#788174\"/><path d=\"M5340 2214.777777777778 L5630 2418 L5585 2540 L5485 2508.8888888888887 L5385 2297.777777777778 Z\" fill=\"#4d6058\"/><path d=\"M5340 2214.777777777778 L5485 2323.8888888888887 L5460 2438.8888888888887 L5385 2297.777777777778 Z\" fill=\"#788174\"/><path d=\"M6200 2381.4444444444443 L6490 2279.3333333333335 L6445 2378.5833333333335 L6345 2487.8888888888887 L6245 2448.6944444444443 Z\" fill=\"#4d6058\"/><path d=\"M6200 2381.4444444444443 L6345 2337.8888888888887 L6320 2430.1388888888887 L6245 2448.6944444444443 Z\" fill=\"#788174\"/><path d=\"M910 2400 L1700 2400 L1700 2409 L910 2409 Z\" fill=\"#a2a18a\"/><path d=\"M910 2409 L1700 2409 L1700 2424 L910 2424 Z\" fill=\"#263c38\"/><path d=\"M912 2428 L1085 2424 L1079 2493 L920 2488 Z\" fill=\"#687566\"/><path d=\"M917 2430 L1079 2428\" fill=\"none\" stroke=\"#919982\" stroke-width=\"3\"/><path d=\"M1092 2428 L1300 2424 L1294 2493 L1100 2488 Z\" fill=\"#687566\"/><path d=\"M1097 2430 L1294 2428\" fill=\"none\" stroke=\"#919982\" stroke-width=\"3\"/><path d=\"M1307 2428 L1457 2424 L1451 2493 L1315 2488 Z\" fill=\"#687566\"/><path d=\"M1312 2430 L1451 2428\" fill=\"none\" stroke=\"#919982\" stroke-width=\"3\"/><path d=\"M1464 2428 L1695 2424 L1689 2493 L1472 2488 Z\" fill=\"#687566\"/><path d=\"M1469 2430 L1689 2428\" fill=\"none\" stroke=\"#919982\" stroke-width=\"3\"/><path d=\"M4580 2150 L5260 2150 L5260 2159 L4580 2159 Z\" fill=\"#a2a18a\"/><path d=\"M4580 2159 L5260 2159 L5260 2174 L4580 2174 Z\" fill=\"#263c38\"/><path d=\"M4582 2178 L4755 2174 L4749 2243 L4590 2238 Z\" fill=\"#687566\"/><path d=\"M4587 2180 L4749 2178\" fill=\"none\" stroke=\"#919982\" stroke-width=\"3\"/><path d=\"M4762 2178 L4970 2174 L4964 2243 L4770 2238 Z\" fill=\"#687566\"/><path d=\"M4767 2180 L4964 2178\" fill=\"none\" stroke=\"#919982\" stroke-width=\"3\"/><path d=\"M4977 2178 L5127 2174 L5121 2243 L4985 2238 Z\" fill=\"#687566\"/><path d=\"M4982 2180 L5121 2178\" fill=\"none\" stroke=\"#919982\" stroke-width=\"3\"/><path d=\"M5134 2178 L5255 2174 L5249 2243 L5142 2238 Z\" fill=\"#687566\"/><path d=\"M5139 2180 L5249 2178\" fill=\"none\" stroke=\"#919982\" stroke-width=\"3\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 0,
+        "y": 1900,
+        "w": 7000,
+        "h": 1100
+      },
+      "reference": {
+        "heightM": 18.333333333333332,
+        "bounds": {
+          "x": 0,
+          "y": 1900,
+          "w": 7000,
+          "h": 1100
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage26-witness:burial-roof-earth-planes",
+      "name": "burial-roof-earth-planes",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          700,
+          1880,
+          1280,
+          350
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#667465",
+              "d": "M720 2090 L960 1955 L1320 1900 L1630 1970 L1810 2120 L1750 2100 L1450 2030 L1130 1995 L910 2055 L720 2145 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#8a8f76",
+              "d": "M960 1955 L1320 1900 L1520 1945 L1270 1965 L1110 2015 L910 2055 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#42594f",
+              "d": "M1530 2000 L1630 1970 L1810 2120 L1960 2210 L1750 2150 Z"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"700 1880 1280 350\"><path d=\"M720 2090 L960 1955 L1320 1900 L1630 1970 L1810 2120 L1750 2100 L1450 2030 L1130 1995 L910 2055 L720 2145 Z\" fill=\"#667465\"/><path d=\"M960 1955 L1320 1900 L1520 1945 L1270 1965 L1110 2015 L910 2055 Z\" fill=\"#8a8f76\"/><path d=\"M1530 2000 L1630 1970 L1810 2120 L1960 2210 L1750 2150 Z\" fill=\"#42594f\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 700,
+        "y": 1880,
+        "w": 1280,
+        "h": 350
+      },
+      "reference": {
+        "heightM": 5.833333333333333,
+        "bounds": {
+          "x": 700,
+          "y": 1880,
+          "w": 1280,
+          "h": 350
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
     }
   ],
   "stages": [
@@ -393392,199 +395746,107 @@
           "points": [
             {
               "x": 0,
-              "y": 2550
+              "y": 2300
             },
             {
-              "x": 140,
-              "y": 2550
+              "x": 520,
+              "y": 2300
             },
             {
-              "x": 212.5,
-              "y": 2552.9289321881347
+              "x": 800,
+              "y": 2400
             },
             {
-              "x": 285,
-              "y": 2560
+              "x": 1750,
+              "y": 2400
             },
             {
-              "x": 357.5,
-              "y": 2567.0710678118653
+              "x": 2250,
+              "y": 2700
             },
             {
-              "x": 430,
-              "y": 2570
+              "x": 3370,
+              "y": 2700
             },
             {
-              "x": 502.5,
-              "y": 2567.0710678118653
+              "x": 3700,
+              "y": 2580
             },
             {
-              "x": 575,
-              "y": 2560
+              "x": 4020,
+              "y": 2340
             },
             {
-              "x": 647.5,
-              "y": 2552.9289321881347
+              "x": 4580,
+              "y": 2150
             },
             {
-              "x": 720,
-              "y": 2550
+              "x": 5260,
+              "y": 2150
             },
             {
-              "x": 1710,
-              "y": 2550
+              "x": 5620,
+              "y": 2410
             },
             {
-              "x": 1960,
-              "y": 2592.2535211267605
+              "x": 6100,
+              "y": 2410
             },
             {
-              "x": 2005,
-              "y": 2602.788087117712
-            },
-            {
-              "x": 2050,
-              "y": 2617.4647887323945
-            },
-            {
-              "x": 2095,
-              "y": 2632.1414903470763
-            },
-            {
-              "x": 2140,
-              "y": 2642.676056338028
-            },
-            {
-              "x": 2185,
-              "y": 2647.3527579527104
-            },
-            {
-              "x": 2230,
-              "y": 2647.887323943662
-            },
-            {
-              "x": 2275,
-              "y": 2648.421889934614
-            },
-            {
-              "x": 2320,
-              "y": 2653.0985915492956
-            },
-            {
-              "x": 2420,
-              "y": 2670
-            },
-            {
-              "x": 3740,
-              "y": 2670
-            },
-            {
-              "x": 4430,
-              "y": 2520
-            },
-            {
-              "x": 5120,
-              "y": 2520
-            },
-            {
-              "x": 5310,
-              "y": 2890
-            },
-            {
-              "x": 5810,
-              "y": 2890
-            },
-            {
-              "x": 6030,
-              "y": 2650
-            },
-            {
-              "x": 6070,
-              "y": 2650
-            },
-            {
-              "x": 6140,
-              "y": 2646.338834764832
-            },
-            {
-              "x": 6210,
-              "y": 2637.5
-            },
-            {
-              "x": 6280,
-              "y": 2628.661165235168
-            },
-            {
-              "x": 6350,
-              "y": 2625
-            },
-            {
-              "x": 6420,
-              "y": 2628.661165235168
-            },
-            {
-              "x": 6490,
-              "y": 2637.5
-            },
-            {
-              "x": 6560,
-              "y": 2646.338834764832
-            },
-            {
-              "x": 6630,
-              "y": 2650
+              "x": 6550,
+              "y": 2250
             },
             {
               "x": 7000,
-              "y": 2650
+              "y": 2250
             },
             {
               "x": 7500,
-              "y": 2718.359375
+              "y": 2318.359375
             },
             {
               "x": 8000,
-              "y": 2732.5066666666667
+              "y": 2332.5066666666667
             },
             {
               "x": 8500,
-              "y": 2587.9733333333334
+              "y": 2187.9733333333334
             },
             {
               "x": 9000,
-              "y": 2427.44
+              "y": 2027.44
             },
             {
               "x": 9500,
-              "y": 2396.1728395061727
+              "y": 1996.1728395061727
             },
             {
               "x": 10000,
-              "y": 2450.4938271604938
+              "y": 2050.4938271604938
             },
             {
               "x": 10500,
-              "y": 2523.3333333333335
+              "y": 2123.3333333333335
             },
             {
               "x": 11000,
-              "y": 2568.395061728395
+              "y": 2168.395061728395
             },
             {
               "x": 11500,
-              "y": 2535.709287068086
+              "y": 2135.709287068086
             },
             {
               "x": 12000,
-              "y": 2431.8311707245953
+              "y": 2031.8311707245955
             },
             {
               "x": 12500,
-              "y": 2321.392331243622
+              "y": 1921.3923312436216
             },
             {
               "x": 13000,
-              "y": 2270
+              "y": 1870
             },
             {
               "x": 13000,
@@ -393596,51 +395858,51 @@
             },
             {
               "x": -6000,
-              "y": 2230
+              "y": 1980
             },
             {
               "x": -5500,
-              "y": 2291.6707974923456
+              "y": 2041.6707974923459
             },
             {
               "x": -5000,
-              "y": 2424.1974048695147
+              "y": 2174.1974048695147
             },
             {
               "x": -4500,
-              "y": 2548.8511444817027
+              "y": 2298.8511444817027
             },
             {
               "x": -4000,
-              "y": 2591.783264746228
+              "y": 2341.783264746228
             },
             {
               "x": -3500,
-              "y": 2641.8518518518517
+              "y": 2391.8518518518517
             },
             {
               "x": -3000,
-              "y": 2722.7846364883403
+              "y": 2472.7846364883403
             },
             {
               "x": -2500,
-              "y": 2783.141289437586
+              "y": 2533.141289437586
             },
             {
               "x": -2000,
-              "y": 2756.7200000000003
+              "y": 2506.7200000000003
             },
             {
               "x": -1500,
-              "y": 2614.0237037037036
+              "y": 2364.0237037037036
             },
             {
               "x": -1000,
-              "y": 2485.5496296296296
+              "y": 2235.5496296296296
             },
             {
               "x": -500,
-              "y": 2495.3125
+              "y": 2245.3125
             }
           ],
           "baseMaterial": "earth",
@@ -393657,7 +395919,7 @@
             },
             "start": {
               "x": 0,
-              "y": 2550
+              "y": 2300
             }
           },
           "detail": {
@@ -393673,48 +395935,40 @@
           "type": "solid",
           "points": [
             {
-              "x": 630,
-              "y": 2240
+              "x": 720,
+              "y": 2090
             },
             {
-              "x": 910,
-              "y": 2100
+              "x": 960,
+              "y": 1955
             },
             {
-              "x": 1210,
-              "y": 2010
+              "x": 1320,
+              "y": 1900
             },
             {
-              "x": 1440,
-              "y": 2040
+              "x": 1630,
+              "y": 1970
             },
             {
-              "x": 1710,
-              "y": 2160
+              "x": 1810,
+              "y": 2120
             },
             {
-              "x": 1980,
-              "y": 2310
+              "x": 1960,
+              "y": 2210
             },
             {
-              "x": 2060,
-              "y": 2350
+              "x": 1750,
+              "y": 2150
             },
             {
-              "x": 1900,
-              "y": 2290
+              "x": 850,
+              "y": 2150
             },
             {
-              "x": 1720,
-              "y": 2250
-            },
-            {
-              "x": 870,
-              "y": 2250
-            },
-            {
-              "x": 630,
-              "y": 2300
+              "x": 720,
+              "y": 2190
             }
           ],
           "baseMaterial": "earth",
@@ -393735,20 +395989,20 @@
           "type": "solid",
           "points": [
             {
-              "x": 898,
-              "y": 2260
+              "x": 918,
+              "y": 2150
             },
             {
-              "x": 942,
-              "y": 2260
+              "x": 962,
+              "y": 2150
             },
             {
-              "x": 942,
-              "y": 2550
+              "x": 962,
+              "y": 2400
             },
             {
-              "x": 898,
-              "y": 2550
+              "x": 918,
+              "y": 2400
             }
           ],
           "baseMaterial": "wood",
@@ -393768,281 +396022,11 @@
           }
         }
       ],
-      "materials": [
-        {
-          "id": "foundry-water-channel",
-          "kind": "water-pool",
-          "conductive": true,
-          "points": [
-            [
-              5232.972972972973,
-              2740
-            ],
-            [
-              5947.5,
-              2740
-            ],
-            [
-              5947.5,
-              2740
-            ],
-            [
-              5810,
-              2890
-            ],
-            [
-              5310,
-              2890
-            ],
-            [
-              5232.972972972973,
-              2740
-            ]
-          ],
-          "surface": [
-            [
-              5232.972972972973,
-              2740
-            ],
-            [
-              5947.5,
-              2740
-            ]
-          ],
-          "bottom": [
-            [
-              5232.972972972973,
-              2740
-            ],
-            [
-              5310,
-              2890
-            ],
-            [
-              5810,
-              2890
-            ],
-            [
-              5947.5,
-              2740
-            ]
-          ],
-          "attached": true
-        }
-      ],
+      "materials": [],
       "elements": [
         {
-          "id": "foundry-kiln-cooling-and-metal-zones",
-          "assetId": "a3-location:26:foundry-kiln-cooling-and-metal-zones",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "drying-gallery-timber-supports",
-          "assetId": "a3-location:26:drying-gallery-timber-supports",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "open-air-casting-tools",
-          "assetId": "a3-location:26:open-air-casting-tools",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "water-work-bridge",
-          "assetId": "a3-location:26:water-work-bridge",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "burnt-casting-house",
-          "assetId": "a3-location:26:burnt-casting-house",
-          "x": 3080,
-          "y": 2670,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "tool-shed",
-          "assetId": "a3-location:26:tool-shed",
-          "x": 4700,
-          "y": 2520,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "landscape-pine-0",
-          "assetId": "act1-scene:rooted-pine",
-          "x": 680,
-          "y": 2550,
-          "scale": 0.6,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "landscape-pine-1",
-          "assetId": "act1-scene:rooted-pine",
-          "x": 6150,
-          "y": 2650,
-          "scale": 0.77,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "optional-shooting-bank",
-          "assetId": "a3-location:26:optional-shooting-bank",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "a3-refine:26:weathered-ground-washes",
-          "assetId": "a3-refine:26:weathered-ground-washes",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "prop"
-        },
-        {
-          "id": "a3-refine:26:ground-vignette-0",
-          "assetId": "a3-refine:26:ground-vignette-0",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "a3-refine:26:ground-vignette-1",
-          "assetId": "a3-refine:26:ground-vignette-1",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "a3-refine:26:ground-vignette-2",
-          "assetId": "a3-refine:26:ground-vignette-2",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "a3-refine:26:ground-vignette-3",
-          "assetId": "a3-refine:26:ground-vignette-3",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "a3-refine:26:ground-vignette-4",
-          "assetId": "a3-refine:26:ground-vignette-4",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "a3-refine:26:burnt-trunk-0",
-          "assetId": "a3-refine:26:burnt-trunk-0",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "a3-refine:26:burnt-trunk-1",
-          "assetId": "a3-refine:26:burnt-trunk-1",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "a3-refine:26:burnt-trunk-2",
-          "assetId": "a3-refine:26:burnt-trunk-2",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "a3-refine:26:burnt-trunk-3",
-          "assetId": "a3-refine:26:burnt-trunk-3",
-          "x": 0,
-          "y": 0,
-          "scale": 1,
-          "rotation": 0,
-          "snap": false,
-          "depthLayer": "L1",
-          "layer": "back"
-        },
-        {
-          "id": "burial-record-room-rear",
-          "assetId": "a3-waterworks:26:burial-record-room-rear",
+          "id": "record-room-rear",
+          "assetId": "stage26-witness:record-room-rear",
           "x": 0,
           "y": 0,
           "scale": 1,
@@ -394053,9 +396037,9 @@
         },
         {
           "id": "ancestor-record-cabinet",
-          "assetId": "a3-waterworks:26:ancestor-records",
-          "x": 1350,
-          "y": 2376,
+          "assetId": "stage26-witness:record-cabinet",
+          "x": 1380,
+          "y": 2250,
           "scale": 1,
           "rotation": 0,
           "snap": false,
@@ -394063,8 +396047,8 @@
           "layer": "back"
         },
         {
-          "id": "record-room-lamp",
-          "assetId": "a3-waterworks:26:record-room-lamp",
+          "id": "west-work-ramp",
+          "assetId": "stage26-witness:west-work-ramp",
           "x": 0,
           "y": 0,
           "scale": 1,
@@ -394072,6 +396056,149 @@
           "snap": false,
           "depthLayer": "L1",
           "layer": "back"
+        },
+        {
+          "id": "work-loft",
+          "assetId": "stage26-witness:work-loft",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "east-work-ramp",
+          "assetId": "stage26-witness:east-work-ramp",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "burnt-workshop-frame",
+          "assetId": "stage26-witness:burnt-workshop-frame",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "work-hollow-forge",
+          "assetId": "stage26-witness:work-hollow-forge",
+          "x": 2870,
+          "y": 2700,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "artisan-refuge-house",
+          "assetId": "stage26-witness:refuge-house",
+          "x": 4910,
+          "y": 2150,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "refuge-yard",
+          "assetId": "stage26-witness:refuge-yard",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "return-bank-stones",
+          "assetId": "stage26-witness:return-bank-stones",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "witness-pine-0",
+          "assetId": "act1-scene:rooted-pine",
+          "x": 100,
+          "y": 2300,
+          "scale": 0.58,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "witness-pine-1",
+          "assetId": "act1-scene:rooted-pine",
+          "x": 590,
+          "y": 2325,
+          "scale": 0.4,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "witness-pine-2",
+          "assetId": "act1-scene:rooted-pine",
+          "x": 4300,
+          "y": 2245,
+          "scale": 0.5,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "witness-pine-3",
+          "assetId": "act1-scene:rooted-pine",
+          "x": 6820,
+          "y": 2250,
+          "scale": 0.62,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "earth-and-footing-planes",
+          "assetId": "stage26-witness:earth-and-footing-planes",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "front"
+        },
+        {
+          "id": "burial-roof-earth-planes",
+          "assetId": "stage26-witness:burial-roof-earth-planes",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "front"
         }
       ],
       "units": [
@@ -394080,7 +396207,7 @@
           "kind": "knight",
           "team": "player",
           "x": 260,
-          "y": 2557.5617007545293,
+          "y": 2300,
           "facing": 1
         },
         {
@@ -394088,15 +396215,15 @@
           "kind": "occultist",
           "team": "player",
           "x": 400,
-          "y": 2568.788028060082,
+          "y": 2300,
           "facing": 1
         },
         {
           "id": "act3-resident",
           "kind": "object:civilian",
           "team": "npc",
-          "x": 2050,
-          "y": 2617.4647887323945,
+          "x": 4760,
+          "y": 2150,
           "facing": 1,
           "label": "주민",
           "stageOverrides": {
@@ -394107,8 +396234,8 @@
           "id": "a3-26-record-room-remnants-0",
           "kind": "possessedGuard",
           "team": "enemy",
-          "x": 1270,
-          "y": 2550,
+          "x": 1210,
+          "y": 2400,
           "facing": -1,
           "spawnIndex": 0,
           "behavior": "patrol",
@@ -394125,8 +396252,8 @@
           "id": "a3-26-record-room-remnants-1",
           "kind": "possessedArcher",
           "team": "enemy",
-          "x": 1540,
-          "y": 2550,
+          "x": 1610,
+          "y": 2400,
           "facing": -1,
           "spawnIndex": 1,
           "behavior": "patrol",
@@ -394143,8 +396270,8 @@
           "id": "a3-26-casting-yard-tools-0",
           "kind": "picks",
           "team": "enemy",
-          "x": 2580,
-          "y": 2670,
+          "x": 2540,
+          "y": 2700,
           "facing": -1,
           "spawnIndex": 2,
           "behavior": "patrol",
@@ -394161,8 +396288,8 @@
           "id": "a3-26-casting-yard-tools-1",
           "kind": "minecart",
           "team": "enemy",
-          "x": 2780,
-          "y": 2670,
+          "x": 3050,
+          "y": 2700,
           "facing": -1,
           "spawnIndex": 3,
           "behavior": "patrol",
@@ -394179,8 +396306,8 @@
           "id": "a3-26-casting-yard-tools-2",
           "kind": "lantern",
           "team": "enemy",
-          "x": 3380,
-          "y": 2638,
+          "x": 3290,
+          "y": 2268,
           "facing": -1,
           "spawnIndex": 4,
           "behavior": "patrol",
@@ -394190,15 +396317,15 @@
             "honroAct3Encounter": 1,
             "honroAct3Elite": true,
             "honroEncounterRole": "ranged",
-            "honroEncounterSupport": "a3-foundation"
+            "honroEncounterSupport": "work-loft:collision:0"
           }
         },
         {
           "id": "a3-26-tally-store-remnants-0",
           "kind": "picks",
           "team": "enemy",
-          "x": 4470,
-          "y": 2520,
+          "x": 4090,
+          "y": 2316.25,
           "facing": -1,
           "spawnIndex": 5,
           "behavior": "patrol",
@@ -394215,8 +396342,8 @@
           "id": "a3-26-tally-store-remnants-1",
           "kind": "lantern",
           "team": "enemy",
-          "x": 4770,
-          "y": 2197,
+          "x": 4380,
+          "y": 2185.8571428571427,
           "facing": -1,
           "spawnIndex": 6,
           "behavior": "patrol",
@@ -394226,15 +396353,15 @@
             "honroAct3Encounter": 1,
             "honroAct3Elite": false,
             "honroEncounterRole": "ranged",
-            "honroEncounterSupport": "tool-shed:collision:0"
+            "honroEncounterSupport": "a3-foundation"
           }
         },
         {
           "id": "a3-26-tally-store-remnants-2",
           "kind": "minecart",
           "team": "enemy",
-          "x": 4960,
-          "y": 2520,
+          "x": 5220,
+          "y": 2150,
           "facing": -1,
           "spawnIndex": 7,
           "behavior": "patrol",
@@ -394251,8 +396378,8 @@
           "id": "a3-26-surface-exit-remnants-0",
           "kind": "picks",
           "team": "enemy",
-          "x": 6170,
-          "y": 2642.550762722761,
+          "x": 5810,
+          "y": 2410,
           "facing": -1,
           "spawnIndex": 8,
           "behavior": "patrol",
@@ -394269,8 +396396,8 @@
           "id": "a3-26-surface-exit-remnants-1",
           "kind": "lantern",
           "team": "enemy",
-          "x": 6410,
-          "y": 2596.138141630144,
+          "x": 6250,
+          "y": 2324.6666666666665,
           "facing": -1,
           "spawnIndex": 9,
           "behavior": "patrol",
@@ -394337,8 +396464,8 @@
         {
           "id": "hidden-latch",
           "type": "act3",
-          "x": 760,
-          "y": 2550,
+          "x": 780,
+          "y": 2392.8571428571427,
           "label": "휘겸으로 기록실 열기",
           "action": "act3",
           "requiredClass": "knight"
@@ -394346,16 +396473,16 @@
         {
           "id": "investigation-record",
           "type": "act3",
-          "x": 1470,
-          "y": 2550,
+          "x": 1440,
+          "y": 2400,
           "label": "선조의 조사 기록 확보",
           "action": "act3"
         },
         {
           "id": "artisan-resident",
           "type": "act3",
-          "x": 2020,
-          "y": 2607.680320989273,
+          "x": 4760,
+          "y": 2150,
           "label": "작업기록을 지킨 주민 구조",
           "action": "act3",
           "target": "act3-resident"
@@ -394363,16 +396490,16 @@
         {
           "id": "casting-tally",
           "type": "act3",
-          "x": 4800,
-          "y": 2520,
+          "x": 4860,
+          "y": 2150,
           "label": "수거량과 주조량 대조",
           "action": "act3"
         },
         {
           "id": "workshop-exit",
           "type": "exit",
-          "x": 6750,
-          "y": 2650,
+          "x": 6680,
+          "y": 2250,
           "label": "관아 뒤뜰로 돌아가기"
         }
       ],
@@ -394513,7 +396640,8 @@
           }
         ],
         "honroNarrativeRevision": 1,
-        "honroStoryCanonRevision": 1
+        "honroStoryCanonRevision": 1,
+        "honroStage26PlaceRevision": 2
       },
       "environment": {
         "version": 4,
@@ -394546,210 +396674,209 @@
       "design": {
         "act3": {
           "version": 1,
-          "kind": "burial-records-and-surface-workshop",
+          "kind": "burial-room-work-hollow-refuge",
           "mainBuildings": [
-            "burnt-casting-house",
-            "tool-shed"
+            "ancestor-record-cabinet",
+            "burnt-workshop-frame",
+            "artisan-refuge-house"
           ],
           "bridges": [
-            "water-work-bridge",
-            "optional-shooting-bank"
+            "work-loft"
           ],
           "requiredRoute": [
             {
               "x": 260,
-              "y": 2557.5617007545293,
+              "y": 2300,
               "support": "a3-foundation"
             },
             {
-              "x": 760,
-              "y": 2550,
+              "x": 780,
+              "y": 2392.8571428571427,
               "support": "a3-foundation"
             },
             {
-              "x": 1470,
-              "y": 2550,
+              "x": 1050,
+              "y": 2400,
+              "support": "a3-foundation"
+            },
+            {
+              "x": 1440,
+              "y": 2400,
+              "support": "a3-foundation"
+            },
+            {
+              "x": 1770,
+              "y": 2412,
               "support": "a3-foundation"
             },
             {
               "x": 2020,
-              "y": 2607.680320989273,
+              "y": 2562,
               "support": "a3-foundation"
             },
             {
-              "x": 2420,
-              "y": 2670,
+              "x": 2250,
+              "y": 2700,
               "support": "a3-foundation"
             },
             {
-              "x": 3740,
-              "y": 2670,
+              "x": 2540,
+              "y": 2700,
               "support": "a3-foundation"
             },
             {
-              "x": 4430,
-              "y": 2520,
+              "x": 3050,
+              "y": 2700,
               "support": "a3-foundation"
             },
             {
-              "x": 4800,
-              "y": 2520,
+              "x": 3370,
+              "y": 2700,
               "support": "a3-foundation"
             },
             {
-              "x": 5120,
-              "y": 2520,
+              "x": 3700,
+              "y": 2580,
               "support": "a3-foundation"
             },
             {
-              "x": 5250,
-              "y": 2520,
-              "support": "water-work-bridge:collision:0"
-            },
-            {
-              "x": 5830,
-              "y": 2650,
-              "support": "water-work-bridge:collision:0"
-            },
-            {
-              "x": 6030,
-              "y": 2650,
+              "x": 4020,
+              "y": 2340,
               "support": "a3-foundation"
             },
             {
-              "x": 6750,
-              "y": 2650,
+              "x": 4500,
+              "y": 2177.1428571428573,
+              "support": "a3-foundation"
+            },
+            {
+              "x": 4760,
+              "y": 2150,
+              "support": "a3-foundation"
+            },
+            {
+              "x": 5260,
+              "y": 2150,
+              "support": "a3-foundation"
+            },
+            {
+              "x": 5620,
+              "y": 2410,
+              "support": "a3-foundation"
+            },
+            {
+              "x": 6100,
+              "y": 2410,
+              "support": "a3-foundation"
+            },
+            {
+              "x": 6500,
+              "y": 2267.777777777778,
+              "support": "a3-foundation"
+            },
+            {
+              "x": 6680,
+              "y": 2250,
               "support": "a3-foundation"
             }
           ],
           "optionalRoutes": [
             {
-              "id": "foundry-shooting-bank",
+              "id": "open-work-loft-loop",
               "points": [
                 {
-                  "x": 3810,
-                  "y": 2654.782608695652,
-                  "jumpTo": {
-                    "x": 3950
-                  },
-                  "support": "a3-foundation"
+                  "x": 2050,
+                  "y": 2400,
+                  "support": "west-work-ramp:collision:0"
                 },
                 {
-                  "x": 3950,
-                  "y": 2446.6666666666665,
-                  "support": "optional-shooting-bank:collision:0"
+                  "x": 2420,
+                  "y": 2300,
+                  "support": "west-work-ramp:collision:0"
                 },
                 {
-                  "x": 4200,
-                  "y": 2330,
-                  "support": "optional-shooting-bank:collision:0"
+                  "x": 2800,
+                  "y": 2300,
+                  "support": "work-loft:collision:0"
                 },
                 {
-                  "x": 4870,
-                  "y": 2229,
-                  "support": "tool-shed:collision:0"
+                  "x": 3430,
+                  "y": 2300,
+                  "support": "work-loft:collision:0"
+                },
+                {
+                  "x": 3750,
+                  "y": 2360,
+                  "support": "east-work-ramp:collision:0"
                 }
               ]
             }
           ],
           "shotSamples": [],
-          "scope": "Approved 23–30 location rebuild. Source geometry; normal campaign and split continuity verified separately.",
+          "scope": "Stage26 only. Finite normal-resource combat remains a separate acceptance check.",
           "locationRevision": 1,
-          "koreanTown": {
-            "revision": 2,
-            "late": true,
-            "scope": "riverbank-burnt-foundry",
-            "requiredContourUnchanged": false,
-            "mainStructures": []
-          },
           "primaryContour": [
             [
               0,
-              2550
+              2300
             ],
             [
-              1710,
-              2550
+              520,
+              2300
             ],
             [
-              2420,
-              2670
+              800,
+              2400
             ],
             [
-              3740,
-              2670
+              1750,
+              2400
             ],
             [
-              4430,
-              2520
+              2250,
+              2700
             ],
             [
-              5250,
-              2520
+              3370,
+              2700
             ],
             [
-              5830,
-              2650
+              3700,
+              2580
+            ],
+            [
+              4020,
+              2340
+            ],
+            [
+              4580,
+              2150
+            ],
+            [
+              5260,
+              2150
+            ],
+            [
+              5620,
+              2410
+            ],
+            [
+              6100,
+              2410
+            ],
+            [
+              6550,
+              2250
             ],
             [
               7000,
-              2650
+              2250
             ]
           ],
           "party": [
             "knight",
             "occultist"
           ],
-          "refinement": {
-            "version": 1,
-            "panorama": "act3-far.svg",
-            "vignettes": 5,
-            "groundedTrees": 4,
-            "baseFloor": [
-              [
-                0,
-                2550
-              ],
-              [
-                1710,
-                2550
-              ],
-              [
-                2420,
-                2670
-              ],
-              [
-                3740,
-                2670
-              ],
-              [
-                4430,
-                2520
-              ],
-              [
-                5120,
-                2520
-              ],
-              [
-                5310,
-                2890
-              ],
-              [
-                5810,
-                2890
-              ],
-              [
-                6030,
-                2650
-              ],
-              [
-                7000,
-                2650
-              ]
-            ],
-            "shoulders": 3,
-            "scope": "Editable grounded SVG art; small sampled real terrain shoulders with work/bridge levels preserved."
-          },
           "waterworksRevision": 1,
           "encounterPlan": {
             "version": 2,
@@ -394761,15 +396888,15 @@
                 "members": [
                   {
                     "kind": "possessedGuard",
-                    "x": 1270,
-                    "y": 2550,
+                    "x": 1210,
+                    "y": 2400,
                     "elite": true,
                     "role": "frontline"
                   },
                   {
                     "kind": "possessedArcher",
-                    "x": 1540,
-                    "y": 2550,
+                    "x": 1610,
+                    "y": 2400,
                     "elite": false,
                     "role": "ranged"
                   }
@@ -394782,22 +396909,22 @@
                 "members": [
                   {
                     "kind": "picks",
-                    "x": 2580,
-                    "y": 2670,
+                    "x": 2540,
+                    "y": 2700,
                     "elite": false,
                     "role": "frontline"
                   },
                   {
                     "kind": "minecart",
-                    "x": 2780,
-                    "y": 2670,
+                    "x": 3050,
+                    "y": 2700,
                     "elite": false,
                     "role": "frontline"
                   },
                   {
                     "kind": "lantern",
-                    "x": 3380,
-                    "y": 2670,
+                    "x": 3290,
+                    "y": 2300,
                     "elite": true,
                     "role": "ranged"
                   }
@@ -394810,22 +396937,22 @@
                 "members": [
                   {
                     "kind": "picks",
-                    "x": 4470,
-                    "y": 2520,
+                    "x": 4090,
+                    "y": 2316,
                     "elite": true,
                     "role": "frontline"
                   },
                   {
                     "kind": "lantern",
-                    "x": 4770,
-                    "y": 2330,
+                    "x": 4380,
+                    "y": 2218,
                     "elite": false,
                     "role": "ranged"
                   },
                   {
                     "kind": "minecart",
-                    "x": 4960,
-                    "y": 2520,
+                    "x": 5220,
+                    "y": 2150,
                     "elite": false,
                     "role": "frontline"
                   }
@@ -394838,15 +396965,15 @@
                 "members": [
                   {
                     "kind": "picks",
-                    "x": 6170,
-                    "y": 2650,
+                    "x": 5810,
+                    "y": 2410,
                     "elite": false,
                     "role": "frontline"
                   },
                   {
                     "kind": "lantern",
-                    "x": 6410,
-                    "y": 2650,
+                    "x": 6250,
+                    "y": 2356,
                     "elite": false,
                     "role": "ranged"
                   }
@@ -394856,75 +396983,112 @@
             "activeLimit": 2,
             "initial": 10,
             "elites": 3
+          },
+          "placeRevision": 1,
+          "artContract": {
+            "setting": "묘역 기록실과 주민의 불탄 공방",
+            "forms": [
+              "묘역 비탈",
+              "낮은 기록실",
+              "열린 작업마당",
+              "불탄 골조",
+              "작은 화덕",
+              "초가 퇴칸"
+            ],
+            "not": "무명사의 대종 주조 현장 또는 종 거푸집"
           }
         }
       },
       "routes": [
         {
           "x": 260,
-          "y": 2557.5617007545293
+          "y": 2300
         },
         {
-          "x": 760,
-          "y": 2550
+          "x": 780,
+          "y": 2392.8571428571427
         },
         {
-          "x": 1470,
-          "y": 2550
+          "x": 1050,
+          "y": 2400
+        },
+        {
+          "x": 1440,
+          "y": 2400
+        },
+        {
+          "x": 1770,
+          "y": 2412
         },
         {
           "x": 2020,
-          "y": 2607.680320989273
+          "y": 2562
         },
         {
-          "x": 2420,
-          "y": 2670
+          "x": 2250,
+          "y": 2700
         },
         {
-          "x": 3740,
-          "y": 2670
+          "x": 2540,
+          "y": 2700
         },
         {
-          "x": 4430,
-          "y": 2520
+          "x": 3050,
+          "y": 2700
         },
         {
-          "x": 4800,
-          "y": 2520
+          "x": 3370,
+          "y": 2700
         },
         {
-          "x": 5120,
-          "y": 2520
+          "x": 3700,
+          "y": 2580
         },
         {
-          "x": 5250,
-          "y": 2520
+          "x": 4020,
+          "y": 2340
         },
         {
-          "x": 5830,
-          "y": 2650
+          "x": 4500,
+          "y": 2177.1428571428573
         },
         {
-          "x": 6030,
-          "y": 2650
+          "x": 4760,
+          "y": 2150
         },
         {
-          "x": 6750,
-          "y": 2650
+          "x": 5260,
+          "y": 2150
+        },
+        {
+          "x": 5620,
+          "y": 2410
+        },
+        {
+          "x": 6100,
+          "y": 2410
+        },
+        {
+          "x": 6500,
+          "y": 2267.777777777778
+        },
+        {
+          "x": 6680,
+          "y": 2250
         }
       ],
       "anchors": {
         "spawn": {
           "x": 260,
-          "y": 2557.5617007545293
+          "y": 2300
         },
         "start": {
-          "x": 240,
-          "y": 2550
+          "x": 260,
+          "y": 2300
         },
         "exit": {
-          "x": 6750,
-          "y": 2650
+          "x": 6680,
+          "y": 2250
         }
       },
       "playBounds": {
@@ -394933,13 +397097,13 @@
         "right": 7000,
         "bottom": 3300
       },
+      "terrainDomainVersion": 1,
       "terrainBounds": {
         "left": -6000,
         "top": -24000,
         "right": 13000,
         "bottom": 27300
-      },
-      "terrainDomainVersion": 1
+      }
     },
     {
       "id": "stage-27",
