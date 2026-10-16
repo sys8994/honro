@@ -1,0 +1,1063 @@
+{
+  "scope": "Independent extraction from final-art-fullplay/trace.json. Not digest-bound encounter manifest.",
+  "source": {
+    "commit": "eb373e44e424c3786ed1d0179d47d5894b54747d",
+    "campaign": "5b4babf76a7f11db9267c455f582191dd4d12dfcc943941aec01486036cebde3",
+    "runtime": "0f7ff80f6314b9c52e72b87bf326055c46df15dc976fb4e959443a355dfa611e",
+    "controller": "559120b214e99f92a15c6ba5b4aa9e99e2c3cc020b1700a7a988caa13384fb19"
+  },
+  "currentHashesMatch": {
+    "campaign": true,
+    "runtime": true,
+    "controller": true
+  },
+  "completed": true,
+  "round": 8,
+  "frame": 8193,
+  "heroes": [
+    {
+      "id": "p-archer",
+      "hp": 717,
+      "dead": false
+    },
+    {
+      "id": "p-mage",
+      "hp": 858,
+      "dead": false
+    },
+    {
+      "id": "p-knight",
+      "hp": 1346,
+      "dead": false
+    },
+    {
+      "id": "p-occultist",
+      "hp": 794,
+      "dead": false
+    }
+  ],
+  "continues": [
+    {
+      "frame": 2316,
+      "round": 3,
+      "exact": true
+    }
+  ],
+  "externalWrites": [],
+  "groups": [
+    {
+      "id": "wagon-cordon",
+      "memberIds": [
+        "a3-21-wagon-cordon-0",
+        "a3-21-wagon-cordon-1",
+        "a3-21-wagon-cordon-2",
+        "a3-21-wagon-cordon-3"
+      ],
+      "enemyActions": [
+        {
+          "round": 1,
+          "frame": 983,
+          "id": "a3-21-wagon-cordon-3",
+          "x": 1880,
+          "y": 2573.217391304348,
+          "intent": "혼불과 혼무"
+        },
+        {
+          "round": 1,
+          "frame": 1124,
+          "id": "a3-21-wagon-cordon-2",
+          "x": 2003.083333333342,
+          "y": 2370,
+          "intent": "고지 확보"
+        },
+        {
+          "round": 4,
+          "frame": 4134,
+          "id": "a3-21-wagon-cordon-1",
+          "x": 1675.1666666666756,
+          "y": 2640,
+          "intent": "사선 없음 · 방어"
+        }
+      ],
+      "hits": [
+        {
+          "frame": 927,
+          "round": 1,
+          "target": "p-archer",
+          "side": 0,
+          "owner": "a3-21-wagon-cordon-3",
+          "hpLoss": 32,
+          "shieldLoss": 0,
+          "hp": 824,
+          "x": 823.5554404790088,
+          "y": 2755.718549205598
+        },
+        {
+          "frame": 927,
+          "round": 1,
+          "target": "p-mage",
+          "side": 0,
+          "owner": "a3-21-wagon-cordon-3",
+          "hpLoss": 32,
+          "shieldLoss": 0,
+          "hp": 894,
+          "x": 820.0002409314546,
+          "y": 2756.6666024182787
+        },
+        {
+          "frame": 927,
+          "round": 1,
+          "target": "p-occultist",
+          "side": 0,
+          "owner": "a3-21-wagon-cordon-3",
+          "hpLoss": 31,
+          "shieldLoss": 0,
+          "hp": 1049,
+          "x": 825.6941430390789,
+          "y": 2755.148228522912
+        },
+        {
+          "frame": 1074,
+          "round": 1,
+          "target": "p-knight",
+          "side": 0,
+          "owner": "a3-21-wagon-cordon-2",
+          "hpLoss": 17,
+          "shieldLoss": 0,
+          "hp": 1477,
+          "x": 1871.1021302522072,
+          "y": 2531.1207828053152
+        }
+      ],
+      "responses": [
+        {
+          "kind": "fire-input",
+          "frame": 187,
+          "round": 1,
+          "serial": 0,
+          "objective": "gate-resident",
+          "actorId": "p-archer",
+          "targetId": "a3-21-wagon-cordon-0",
+          "chargeStartFrame": 81,
+          "chargeStartSerial": 0,
+          "angle": 13.510486369582821,
+          "power": 0.6915809802181717,
+          "shot": 1,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 367,
+          "round": 1,
+          "serial": 1,
+          "objective": "gate-resident",
+          "actorId": "p-mage",
+          "targetId": "a3-21-wagon-cordon-0",
+          "chargeStartFrame": 297,
+          "chargeStartSerial": 1,
+          "angle": 19.45535467561407,
+          "power": 0.7561436672968,
+          "shot": 2,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 600,
+          "round": 1,
+          "serial": 2,
+          "objective": "gate-resident",
+          "actorId": "p-knight",
+          "targetId": "a3-21-wagon-cordon-0",
+          "chargeStartFrame": 501,
+          "chargeStartSerial": 2,
+          "angle": 25,
+          "power": 1,
+          "shot": 3,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 781,
+          "round": 1,
+          "serial": 3,
+          "objective": "gate-resident",
+          "actorId": "p-occultist",
+          "targetId": "a3-21-wagon-cordon-0",
+          "chargeStartFrame": 704,
+          "chargeStartSerial": 3,
+          "angle": 10.425288451840792,
+          "power": 0.6712433257055439,
+          "shot": 4,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 1438,
+          "round": 2,
+          "serial": 9,
+          "objective": "gate-resident",
+          "actorId": "p-archer",
+          "targetId": "a3-21-wagon-cordon-0",
+          "chargeStartFrame": 1338,
+          "chargeStartSerial": 9,
+          "angle": 13.859597991381989,
+          "power": 0.6789566303722409,
+          "shot": 8,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 1583,
+          "round": 2,
+          "serial": 10,
+          "objective": "gate-resident",
+          "actorId": "p-mage",
+          "targetId": "a3-21-wagon-cordon-1",
+          "chargeStartFrame": 1510,
+          "chargeStartSerial": 10,
+          "angle": 17.617110007058546,
+          "power": 0.7112410181464407,
+          "shot": 9,
+          "reason": "Safe available technique against current nearby pressure"
+        }
+      ]
+    },
+    {
+      "id": "gate-watch",
+      "memberIds": [
+        "a3-21-gate-watch-0",
+        "a3-21-gate-watch-1",
+        "a3-21-gate-watch-2",
+        "a3-21-gate-watch-3"
+      ],
+      "enemyActions": [
+        {
+          "round": 1,
+          "frame": 1309,
+          "id": "a3-21-gate-watch-2",
+          "x": 2320.810543827923,
+          "y": 2138.250000000003,
+          "intent": "공중 사선 확보"
+        },
+        {
+          "round": 2,
+          "frame": 2095,
+          "id": "a3-21-gate-watch-0",
+          "x": 2187.0000000000127,
+          "y": 2560,
+          "intent": "거리 확보"
+        },
+        {
+          "round": 2,
+          "frame": 2146,
+          "id": "a3-21-gate-watch-1",
+          "x": 2700,
+          "y": 2560,
+          "intent": "도약 준비"
+        },
+        {
+          "round": 2,
+          "frame": 2292,
+          "id": "a3-21-gate-watch-3",
+          "x": 3022.487113059629,
+          "y": 2300.000000000008,
+          "intent": "공중 사선 확보"
+        }
+      ],
+      "hits": [
+        {
+          "frame": 1251,
+          "round": 1,
+          "target": "p-archer",
+          "side": 0,
+          "owner": "a3-21-gate-watch-2",
+          "hpLoss": 36,
+          "shieldLoss": 0,
+          "hp": 788,
+          "x": 796.1166721985655,
+          "y": 2763.0355540803826
+        },
+        {
+          "frame": 1251,
+          "round": 1,
+          "target": "p-mage",
+          "side": 0,
+          "owner": "a3-21-gate-watch-2",
+          "hpLoss": 36,
+          "shieldLoss": 0,
+          "hp": 858,
+          "x": 793.7805880988127,
+          "y": 2763.6585098403166
+        },
+        {
+          "frame": 1251,
+          "round": 1,
+          "target": "p-occultist",
+          "side": 0,
+          "owner": "a3-21-gate-watch-2",
+          "hpLoss": 35,
+          "shieldLoss": 0,
+          "hp": 1014,
+          "x": 797.6112801384361,
+          "y": 2762.636991963084
+        },
+        {
+          "frame": 2101,
+          "round": 2,
+          "target": "p-occultist",
+          "side": 0,
+          "owner": "a3-21-gate-watch-1",
+          "hpLoss": 31,
+          "shieldLoss": 0,
+          "hp": 983,
+          "x": 2527.1086388095578,
+          "y": 2560
+        },
+        {
+          "frame": 2246,
+          "round": 2,
+          "target": "p-occultist",
+          "side": 0,
+          "owner": "a3-21-gate-watch-3",
+          "hpLoss": 33,
+          "shieldLoss": 0,
+          "hp": 950,
+          "x": 2514.6541400149013,
+          "y": 2560
+        }
+      ],
+      "responses": [
+        {
+          "kind": "fire-input",
+          "frame": 1929,
+          "round": 2,
+          "serial": 12,
+          "objective": "refuge-hold",
+          "actorId": "p-occultist",
+          "targetId": "a3-21-gate-watch-0",
+          "chargeStartFrame": 1880,
+          "chargeStartSerial": 12,
+          "angle": 188.26757512404888,
+          "power": 0.42715484363084727,
+          "shot": 10,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 2504,
+          "round": 3,
+          "serial": 18,
+          "objective": "refuge-hold",
+          "actorId": "p-archer",
+          "targetId": "a3-21-gate-watch-0",
+          "chargeStartFrame": 2473,
+          "chargeStartSerial": 18,
+          "angle": 10,
+          "power": 0.20225481496943662,
+          "shot": 14,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 2800,
+          "round": 3,
+          "serial": 19,
+          "objective": "refuge-hold",
+          "actorId": "p-mage",
+          "targetId": "a3-21-gate-watch-1",
+          "chargeStartFrame": 2747,
+          "chargeStartSerial": 19,
+          "angle": -0.7063021348559104,
+          "power": 0.5163804652294949,
+          "shot": 15,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 3009,
+          "round": 3,
+          "serial": 20,
+          "objective": "refuge-hold",
+          "actorId": "p-knight",
+          "targetId": "a3-21-gate-watch-1",
+          "chargeStartFrame": 2949,
+          "chargeStartSerial": 20,
+          "angle": 110,
+          "power": 0.6084421346177338,
+          "shot": 16,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 3182,
+          "round": 3,
+          "serial": 21,
+          "objective": "refuge-hold",
+          "actorId": "p-occultist",
+          "targetId": "a3-21-gate-watch-1",
+          "chargeStartFrame": 3136,
+          "chargeStartSerial": 21,
+          "angle": 187.32205976434116,
+          "power": 0.40100250626560585,
+          "shot": 17,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 3628,
+          "round": 4,
+          "serial": 27,
+          "objective": "refuge-hold",
+          "actorId": "p-archer",
+          "targetId": "a3-21-gate-watch-0",
+          "chargeStartFrame": 3597,
+          "chargeStartSerial": 27,
+          "angle": 10,
+          "power": 0.20225481496943662,
+          "shot": 21,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 3742,
+          "round": 4,
+          "serial": 28,
+          "objective": "refuge-hold",
+          "actorId": "p-mage",
+          "targetId": "a3-21-gate-watch-1",
+          "chargeStartFrame": 3690,
+          "chargeStartSerial": 28,
+          "angle": -0.7261018492217247,
+          "power": 0.5066374375836554,
+          "shot": 22,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 3883,
+          "round": 4,
+          "serial": 29,
+          "objective": "refuge-hold",
+          "actorId": "p-knight",
+          "targetId": "a3-21-gate-watch-1",
+          "chargeStartFrame": 3823,
+          "chargeStartSerial": 29,
+          "angle": 130,
+          "power": 0.6084421346177338,
+          "shot": 23,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 4024,
+          "round": 4,
+          "serial": 30,
+          "objective": "refuge-hold",
+          "actorId": "p-occultist",
+          "targetId": "a3-21-gate-watch-1",
+          "chargeStartFrame": 3977,
+          "chargeStartSerial": 30,
+          "angle": 186.93124573917933,
+          "power": 0.4097199520541675,
+          "shot": 24,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 4422,
+          "round": 5,
+          "serial": 36,
+          "objective": "refuge-hold",
+          "actorId": "p-archer",
+          "targetId": "a3-21-gate-watch-0",
+          "chargeStartFrame": 4391,
+          "chargeStartSerial": 36,
+          "angle": 10,
+          "power": 0.20225481496952494,
+          "shot": 27,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 4551,
+          "round": 5,
+          "serial": 37,
+          "objective": "refuge-hold",
+          "actorId": "p-mage",
+          "targetId": "a3-21-gate-watch-0",
+          "chargeStartFrame": 4485,
+          "chargeStartSerial": 37,
+          "angle": 177.12551411395168,
+          "power": 0.6430398246256894,
+          "shot": 28,
+          "reason": "Safe available technique against current nearby pressure"
+        }
+      ]
+    },
+    {
+      "id": "market-pack",
+      "memberIds": [
+        "a3-21-market-pack-0",
+        "a3-21-market-pack-1",
+        "a3-21-market-pack-2"
+      ],
+      "enemyActions": [
+        {
+          "round": 5,
+          "frame": 5015,
+          "id": "a3-21-market-pack-0",
+          "x": 3478.5599304972566,
+          "y": 2759.567979149177,
+          "intent": "전진"
+        },
+        {
+          "round": 5,
+          "frame": 5158,
+          "id": "a3-21-market-pack-1",
+          "x": 3633.229949498076,
+          "y": 2760,
+          "intent": "전진"
+        },
+        {
+          "round": 5,
+          "frame": 5293,
+          "id": "a3-21-market-pack-2",
+          "x": 4040.5,
+          "y": 2388,
+          "intent": "공중 사선 확보"
+        }
+      ],
+      "hits": [
+        {
+          "frame": 4973,
+          "round": 5,
+          "target": "p-knight",
+          "side": 0,
+          "owner": "a3-21-market-pack-0",
+          "hpLoss": 27,
+          "shieldLoss": 0,
+          "hp": 1450,
+          "x": 3095.165774473105,
+          "y": 2637.821500662212
+        },
+        {
+          "frame": 5116,
+          "round": 5,
+          "target": "p-knight",
+          "side": 0,
+          "owner": "a3-21-market-pack-1",
+          "hpLoss": 19,
+          "shieldLoss": 0,
+          "hp": 1431,
+          "x": 3085.210043147362,
+          "y": 2634.0451887800336
+        },
+        {
+          "frame": 5250,
+          "round": 5,
+          "target": "p-knight",
+          "side": 0,
+          "owner": "a3-21-market-pack-2",
+          "hpLoss": 27,
+          "shieldLoss": 0,
+          "hp": 1404,
+          "x": 3078.1658069318696,
+          "y": 2631.3732371120886
+        }
+      ],
+      "responses": [
+        {
+          "kind": "fire-input",
+          "frame": 5572,
+          "round": 6,
+          "serial": 45,
+          "objective": "city-exit",
+          "actorId": "p-archer",
+          "targetId": "a3-21-market-pack-1",
+          "chargeStartFrame": 5501,
+          "chargeStartSerial": 45,
+          "angle": 188.9963454067701,
+          "power": 0.4632287697689119,
+          "shot": 34,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 5890,
+          "round": 6,
+          "serial": 46,
+          "objective": "city-exit",
+          "actorId": "p-mage",
+          "targetId": "a3-21-market-pack-2",
+          "chargeStartFrame": 5816,
+          "chargeStartSerial": 46,
+          "angle": 119.38221890867239,
+          "power": 0.7209840457924397,
+          "shot": 35,
+          "reason": "Safe available technique against current nearby pressure"
+        }
+      ]
+    },
+    {
+      "id": "stable-tools",
+      "memberIds": [
+        "a3-21-stable-tools-0",
+        "a3-21-stable-tools-1",
+        "a3-21-stable-tools-2"
+      ],
+      "enemyActions": [
+        {
+          "round": 6,
+          "frame": 6759,
+          "id": "a3-21-stable-tools-0",
+          "x": 4208.131640371838,
+          "y": 2660,
+          "intent": "거리 확보"
+        },
+        {
+          "round": 7,
+          "frame": 7985,
+          "id": "a3-21-stable-tools-2",
+          "x": 5276.083333333375,
+          "y": 2370,
+          "intent": "고지 확보"
+        }
+      ],
+      "hits": [
+        {
+          "frame": 7928,
+          "round": 7,
+          "target": "p-archer",
+          "side": 0,
+          "owner": "a3-21-stable-tools-2",
+          "hpLoss": 21,
+          "shieldLoss": 0,
+          "hp": 717,
+          "x": 5188.663943908535,
+          "y": 2395.4375729793633
+        }
+      ],
+      "responses": [
+        {
+          "kind": "fire-input",
+          "frame": 6207,
+          "round": 6,
+          "serial": 47,
+          "objective": "city-exit",
+          "actorId": "p-knight",
+          "targetId": "a3-21-stable-tools-2",
+          "chargeStartFrame": 6147,
+          "chargeStartSerial": 47,
+          "angle": 40,
+          "power": 0.6084421346179995,
+          "shot": 36,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 6510,
+          "round": 6,
+          "serial": 48,
+          "objective": "city-exit",
+          "actorId": "p-occultist",
+          "targetId": "a3-21-stable-tools-0",
+          "chargeStartFrame": 6465,
+          "chargeStartSerial": 48,
+          "angle": 21.938101681240088,
+          "power": 0.39228506047739437,
+          "shot": 37,
+          "reason": "Safe available technique against current nearby pressure"
+        }
+      ]
+    },
+    {
+      "id": "office-rearguard",
+      "memberIds": [
+        "a3-21-office-rearguard-0",
+        "a3-21-office-rearguard-1",
+        "a3-21-office-rearguard-2",
+        "a3-21-office-rearguard-3"
+      ],
+      "enemyActions": [
+        {
+          "round": 6,
+          "frame": 6891,
+          "id": "a3-21-office-rearguard-0",
+          "x": 5602.416666666703,
+          "y": 2240,
+          "intent": "거리 확보"
+        },
+        {
+          "round": 7,
+          "frame": 8080,
+          "id": "a3-21-office-rearguard-2",
+          "x": 5359.189456172061,
+          "y": 2028.249999999994,
+          "intent": "공중 사선 확보"
+        }
+      ],
+      "hits": [
+        {
+          "frame": 6840,
+          "round": 6,
+          "target": "p-knight",
+          "side": 0,
+          "owner": "a3-21-office-rearguard-0",
+          "hpLoss": 19,
+          "shieldLoss": 0,
+          "hp": 1346,
+          "x": 5221.182002166901,
+          "y": 2375.426460204984
+        },
+        {
+          "frame": 8044,
+          "round": 7,
+          "target": "p-occultist",
+          "side": 0,
+          "owner": "a3-21-office-rearguard-2",
+          "hpLoss": 18,
+          "shieldLoss": 0,
+          "hp": 794,
+          "x": 5064.8491456466945,
+          "y": 2471.6312949866497
+        }
+      ],
+      "responses": [
+        {
+          "kind": "fire-input",
+          "frame": 7369,
+          "round": 7,
+          "serial": 55,
+          "objective": "city-exit",
+          "actorId": "p-mage",
+          "targetId": "a3-21-office-rearguard-1",
+          "chargeStartFrame": 7331,
+          "chargeStartSerial": 55,
+          "angle": 25,
+          "power": 0.41047799081837494,
+          "shot": 42,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 7519,
+          "round": 7,
+          "serial": 56,
+          "objective": "city-exit",
+          "actorId": "p-knight",
+          "targetId": "a3-21-office-rearguard-1",
+          "chargeStartFrame": 7459,
+          "chargeStartSerial": 56,
+          "angle": 25,
+          "power": 0.6084421346179995,
+          "shot": 43,
+          "reason": "Safe available technique against current nearby pressure"
+        }
+      ]
+    }
+  ],
+  "waves": [
+    {
+      "source": "act3-response-21-0",
+      "births": [
+        {
+          "frame": 1967,
+          "round": 2,
+          "serial": 13,
+          "id": "event-11",
+          "source": "act3-response-21-0",
+          "contribution": "wave:act3-response-21-0:0",
+          "x": 3390,
+          "y": 2733
+        },
+        {
+          "frame": 1967,
+          "round": 2,
+          "serial": 13,
+          "id": "event-12",
+          "source": "act3-response-21-0",
+          "contribution": "wave:act3-response-21-0:1",
+          "x": 3510,
+          "y": 2760
+        },
+        {
+          "frame": 1967,
+          "round": 2,
+          "serial": 13,
+          "id": "event-13",
+          "source": "act3-response-21-0",
+          "contribution": "wave:act3-response-21-0:2",
+          "x": 3620,
+          "y": 2760
+        }
+      ],
+      "enemyActions": [
+        {
+          "round": 3,
+          "frame": 3431,
+          "id": "event-11",
+          "x": 3464.916666666662,
+          "y": 2534.9784096007224,
+          "intent": "고지 확보"
+        },
+        {
+          "round": 3,
+          "frame": 3573,
+          "id": "event-12",
+          "x": 3304.583333333346,
+          "y": 2707.3750000000036,
+          "intent": "고지 확보"
+        },
+        {
+          "round": 4,
+          "frame": 4240,
+          "id": "event-13",
+          "x": 3537.8333333333385,
+          "y": 2760,
+          "intent": "전진"
+        }
+      ],
+      "hits": [
+        {
+          "frame": 3388,
+          "round": 3,
+          "target": "p-occultist",
+          "side": 0,
+          "owner": "event-11",
+          "hpLoss": 21,
+          "shieldLoss": 0,
+          "hp": 897,
+          "x": 2815.363034933643,
+          "y": 2560
+        },
+        {
+          "frame": 3529,
+          "round": 3,
+          "target": "p-occultist",
+          "side": 0,
+          "owner": "event-12",
+          "hpLoss": 29,
+          "shieldLoss": 0,
+          "hp": 868,
+          "x": 2807.863268057659,
+          "y": 2560
+        },
+        {
+          "frame": 4200,
+          "round": 4,
+          "target": "p-occultist",
+          "side": 0,
+          "owner": "event-13",
+          "hpLoss": 29,
+          "shieldLoss": 0,
+          "hp": 839,
+          "x": 2832.302080265534,
+          "y": 2560
+        }
+      ],
+      "responses": []
+    },
+    {
+      "source": "act3-refuge-hold",
+      "births": [
+        {
+          "frame": 2566,
+          "round": 3,
+          "serial": 19,
+          "id": "event-18",
+          "source": "act3-refuge-hold",
+          "contribution": "wave:act3-refuge-hold:0",
+          "x": 3309.5,
+          "y": 2708.85
+        },
+        {
+          "frame": 2566,
+          "round": 3,
+          "serial": 19,
+          "id": "event-19",
+          "source": "act3-refuge-hold",
+          "contribution": "wave:act3-refuge-hold:1",
+          "x": 3710.5,
+          "y": 2760
+        }
+      ],
+      "enemyActions": [
+        {
+          "round": 3,
+          "frame": 3322,
+          "id": "event-18",
+          "x": 2976.942535868412,
+          "y": 2592.978203260432,
+          "intent": "고지 확보"
+        },
+        {
+          "round": 4,
+          "frame": 4368,
+          "id": "event-19",
+          "x": 3207.7378784259217,
+          "y": 2678.3213635277766,
+          "intent": "사선 변경"
+        }
+      ],
+      "hits": [
+        {
+          "frame": 3276,
+          "round": 3,
+          "target": "p-occultist",
+          "side": 0,
+          "owner": "event-18",
+          "hpLoss": 32,
+          "shieldLoss": 0,
+          "hp": 918,
+          "x": 2828.699491148507,
+          "y": 2560
+        },
+        {
+          "frame": 4333,
+          "round": 4,
+          "target": "p-occultist",
+          "side": 0,
+          "owner": "event-19",
+          "hpLoss": 27,
+          "shieldLoss": 0,
+          "hp": 812,
+          "x": 2824.8410282824243,
+          "y": 2554.537559357861
+        }
+      ],
+      "responses": [
+        {
+          "kind": "fire-input",
+          "frame": 4716,
+          "round": 5,
+          "serial": 38,
+          "objective": "refuge-hold",
+          "actorId": "p-knight",
+          "targetId": "event-18",
+          "chargeStartFrame": 4656,
+          "chargeStartSerial": 38,
+          "angle": -15,
+          "power": 0.6084421346179995,
+          "shot": 29,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 4837,
+          "round": 5,
+          "serial": 39,
+          "objective": "refuge-hold",
+          "actorId": "p-occultist",
+          "targetId": "event-18",
+          "chargeStartFrame": 4780,
+          "chargeStartSerial": 39,
+          "angle": -19.889669246740628,
+          "power": 0.4968944099380329,
+          "shot": 30,
+          "reason": "Safe available technique against current nearby pressure"
+        }
+      ]
+    },
+    {
+      "source": "act3-response-21-1",
+      "births": [
+        {
+          "frame": 5617,
+          "round": 6,
+          "serial": 46,
+          "id": "event-40",
+          "source": "act3-response-21-1",
+          "contribution": "wave:act3-response-21-1:0",
+          "x": 5030,
+          "y": 2493.076923076923
+        },
+        {
+          "frame": 5617,
+          "round": 6,
+          "serial": 46,
+          "id": "event-41",
+          "source": "act3-response-21-1",
+          "contribution": "wave:act3-response-21-1:1",
+          "x": 5170,
+          "y": 2406.923076923077
+        }
+      ],
+      "enemyActions": [
+        {
+          "round": 6,
+          "frame": 6675,
+          "id": "event-41",
+          "x": 4787.210062053377,
+          "y": 2301.2507000925343,
+          "intent": "고지 확보"
+        },
+        {
+          "round": 7,
+          "frame": 7879,
+          "id": "event-40",
+          "x": 4696.9088221532675,
+          "y": 2568.007412480301,
+          "intent": "거리 확보"
+        }
+      ],
+      "hits": [
+        {
+          "frame": 6645,
+          "round": 6,
+          "target": "p-knight",
+          "side": 0,
+          "owner": "event-41",
+          "hpLoss": 39,
+          "shieldLoss": 0,
+          "hp": 1365,
+          "x": 5221.182002166901,
+          "y": 2375.426460204984
+        },
+        {
+          "frame": 7848,
+          "round": 7,
+          "target": "p-archer",
+          "side": 0,
+          "owner": "event-40",
+          "hpLoss": 50,
+          "shieldLoss": 0,
+          "hp": 738,
+          "x": 5188.663943908535,
+          "y": 2395.4375729793633
+        }
+      ],
+      "responses": [
+        {
+          "kind": "fire-input",
+          "frame": 7151,
+          "round": 7,
+          "serial": 54,
+          "objective": "city-exit",
+          "actorId": "p-archer",
+          "targetId": "event-40",
+          "chargeStartFrame": 7072,
+          "chargeStartSerial": 54,
+          "angle": 213.4229637960412,
+          "power": 0.5154235607287894,
+          "shot": 41,
+          "reason": "Safe available technique against current nearby pressure"
+        },
+        {
+          "kind": "fire-input",
+          "frame": 7652,
+          "round": 7,
+          "serial": 57,
+          "objective": "city-exit",
+          "actorId": "p-occultist",
+          "targetId": "event-40",
+          "chargeStartFrame": 7629,
+          "chargeStartSerial": 57,
+          "angle": 140,
+          "power": 0.20050125313289044,
+          "shot": 44,
+          "reason": "Safe available technique against current nearby pressure"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1149 @@
+{
+  "scope": "Explicit stakes/objective/party-position fixtures; initial enemies/events/checkEnd retained. Not normal-resource completion.",
+  "commit": "b2c7d20ef796761d09f78e10371c21ff244e2ace",
+  "campaignSHA": "5d139eacb3f3c8209fb6aff325b88a349abebac0e88b1fe82de0f03a84c43196",
+  "cases": [
+    {
+      "id": "act3-response-21-0",
+      "initialRetained": 18,
+      "choices": [
+        [
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3390,
+            "y": 2733,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3510,
+            "y": 2760,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3620,
+            "y": 2760,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          }
+        ],
+        [
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3270,
+            "y": 2697,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3400,
+            "y": 2736,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3530,
+            "y": 2760,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          }
+        ]
+      ],
+      "trace": [
+        {
+          "continue": "warning-before-player-opportunity",
+          "warning": {
+            "serial": 0,
+            "round": 1,
+            "offered": {
+              "p-archer": {
+                "round": 1,
+                "serial": 0
+              }
+            }
+          }
+        },
+        {
+          "wait": "p-archer",
+          "round": 1
+        },
+        {
+          "continue": "occupied-atomic-wait",
+          "warning": {
+            "serial": 0,
+            "round": 1,
+            "offered": {
+              "p-archer": {
+                "round": 1,
+                "serial": 0
+              }
+            },
+            "opportunity": {
+              "id": "p-archer",
+              "round": 1,
+              "serial": 1
+            },
+            "status": "blocked"
+          }
+        },
+        {
+          "wait": "p-mage",
+          "round": 1,
+          "serial": 1
+        }
+      ],
+      "entry": {
+        "round": 1,
+        "serial": 2,
+        "choice": 0,
+        "ids": [
+          "event-1",
+          "event-2",
+          "event-3"
+        ]
+      },
+      "ids": [
+        "event-1",
+        "event-2",
+        "event-3"
+      ],
+      "contrib": [
+        "wave:act3-response-21-0:0",
+        "wave:act3-response-21-0:1",
+        "wave:act3-response-21-0:2"
+      ]
+    },
+    {
+      "id": "act3-response-21-0",
+      "terminalFixture": "won",
+      "cancelled": true
+    },
+    {
+      "id": "act3-response-21-0",
+      "terminalFixture": "lost",
+      "cancelled": true
+    },
+    {
+      "id": "act3-response-21-1",
+      "initialRetained": 18,
+      "choices": [
+        [
+          {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 1,
+            "x": 5030,
+            "y": 2493.076923076923,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-1",
+            "honroDensityElite": false,
+            "honroDensityRole": "exit-cover"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 1,
+            "x": 5170,
+            "y": 2406.923076923077,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-1",
+            "honroDensityElite": false,
+            "honroDensityRole": "exit-cover"
+          }
+        ],
+        [
+          {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 1,
+            "x": 5060,
+            "y": 2474.6153846153848,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-1",
+            "honroDensityElite": false,
+            "honroDensityRole": "exit-cover"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 1,
+            "x": 5230,
+            "y": 2370,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-1",
+            "honroDensityElite": false,
+            "honroDensityRole": "exit-cover"
+          }
+        ]
+      ],
+      "trace": [
+        {
+          "continue": "warning-before-player-opportunity",
+          "warning": {
+            "serial": 0,
+            "round": 1,
+            "offered": {
+              "p-archer": {
+                "round": 1,
+                "serial": 0
+              }
+            }
+          }
+        },
+        {
+          "wait": "p-archer",
+          "round": 1
+        },
+        {
+          "continue": "occupied-atomic-wait",
+          "warning": {
+            "serial": 0,
+            "round": 1,
+            "offered": {
+              "p-archer": {
+                "round": 1,
+                "serial": 0
+              }
+            },
+            "opportunity": {
+              "id": "p-archer",
+              "round": 1,
+              "serial": 1
+            },
+            "status": "blocked"
+          }
+        },
+        {
+          "wait": "p-mage",
+          "round": 1,
+          "serial": 1
+        }
+      ],
+      "entry": {
+        "round": 1,
+        "serial": 2,
+        "choice": 0,
+        "ids": [
+          "event-1",
+          "event-2"
+        ]
+      },
+      "ids": [
+        "event-1",
+        "event-2"
+      ],
+      "contrib": [
+        "wave:act3-response-21-1:0",
+        "wave:act3-response-21-1:1"
+      ]
+    },
+    {
+      "id": "act3-response-21-1",
+      "terminalFixture": "won",
+      "cancelled": true
+    },
+    {
+      "id": "act3-response-21-1",
+      "terminalFixture": "lost",
+      "cancelled": true
+    },
+    {
+      "id": "act3-response-21-1",
+      "primaryOccupiedAlternateAdmitted": {
+        "round": 1,
+        "serial": 1,
+        "choice": 1,
+        "ids": [
+          "event-1",
+          "event-2"
+        ]
+      },
+      "trace": [
+        {
+          "wait": "p-archer",
+          "round": 1
+        }
+      ]
+    },
+    {
+      "id": "act3-response-21-1",
+      "livingActorOccupancy": [
+        {
+          "id": "p-archer",
+          "x": 5170,
+          "y": 2406.923076923077,
+          "hp": 815
+        },
+        {
+          "id": "p-mage",
+          "x": 5230,
+          "y": 2370,
+          "hp": 870
+        }
+      ],
+      "entry": {
+        "round": 1,
+        "serial": 2,
+        "choice": 0,
+        "ids": [
+          "event-1",
+          "event-2"
+        ]
+      },
+      "trace": [
+        {
+          "wait": "p-archer",
+          "round": 1
+        },
+        {
+          "wait": "p-mage",
+          "round": 1,
+          "serial": 1
+        }
+      ]
+    },
+    {
+      "id": "act3-refuge-hold",
+      "placement": "Legacy nearest-valid within580; exhaustive occupancy NOT tested",
+      "ids": [
+        "event-1",
+        "event-2"
+      ],
+      "warning": {
+        "serial": 1,
+        "round": 1,
+        "offered": {
+          "p-mage": {
+            "round": 1,
+            "serial": 1
+          }
+        },
+        "opportunity": {
+          "id": "p-mage",
+          "round": 1,
+          "serial": 2
+        }
+      },
+      "trace": [
+        {
+          "wait": "p-archer",
+          "round": 1
+        },
+        {
+          "continue": "hold-warning-before-opportunity",
+          "warning": {
+            "serial": 0,
+            "round": 1,
+            "offered": {
+              "p-mage": {
+                "round": 1,
+                "serial": 1
+              }
+            }
+          }
+        },
+        {
+          "wait": "p-mage",
+          "round": 1,
+          "serial": 1
+        }
+      ]
+    },
+    {
+      "id": "act3-refuge-hold",
+      "exhaustiveCandidateGrid": [
+        {
+          "x": 3437.5,
+          "y": 2747.25
+        },
+        {
+          "x": 3469.5,
+          "y": 2756.85
+        },
+        {
+          "x": 3405.5,
+          "y": 2737.65
+        },
+        {
+          "x": 3501.5,
+          "y": 2760
+        },
+        {
+          "x": 3373.5,
+          "y": 2728.05
+        },
+        {
+          "x": 3533.5,
+          "y": 2760
+        },
+        {
+          "x": 3341.5,
+          "y": 2718.45
+        },
+        {
+          "x": 3565.5,
+          "y": 2760
+        },
+        {
+          "x": 3309.5,
+          "y": 2708.85
+        },
+        {
+          "x": 3597.5,
+          "y": 2760
+        },
+        {
+          "x": 3277.5,
+          "y": 2699.25
+        },
+        {
+          "x": 3629.5,
+          "y": 2760
+        },
+        {
+          "x": 3245.5,
+          "y": 2689.65
+        },
+        {
+          "x": 3661.5,
+          "y": 2760
+        },
+        {
+          "x": 3213.5,
+          "y": 2680.05
+        },
+        {
+          "x": 3693.5,
+          "y": 2760
+        },
+        {
+          "x": 3181.5,
+          "y": 2670.45
+        },
+        {
+          "x": 3725.5,
+          "y": 2760
+        },
+        {
+          "x": 3149.5,
+          "y": 2658.4310344827586
+        },
+        {
+          "x": 3757.5,
+          "y": 2757.5806451612902
+        },
+        {
+          "x": 3117.5,
+          "y": 2646.293103448276
+        },
+        {
+          "x": 3789.5,
+          "y": 2747.2580645161293
+        },
+        {
+          "x": 3085.5,
+          "y": 2634.155172413793
+        },
+        {
+          "x": 3821.5,
+          "y": 2736.935483870968
+        },
+        {
+          "x": 3053.5,
+          "y": 2622.0172413793102
+        },
+        {
+          "x": 3853.5,
+          "y": 2726.6129032258063
+        },
+        {
+          "x": 3021.5,
+          "y": 2609.8793103448274
+        },
+        {
+          "x": 3885.5,
+          "y": 2716.2903225806454
+        },
+        {
+          "x": 2989.5,
+          "y": 2597.7413793103447
+        },
+        {
+          "x": 3917.5,
+          "y": 2705.967741935484
+        },
+        {
+          "x": 2957.5,
+          "y": 2585.603448275862
+        },
+        {
+          "x": 3949.5,
+          "y": 2695.6451612903224
+        },
+        {
+          "x": 2925.5,
+          "y": 2573.4655172413795
+        },
+        {
+          "x": 3981.5,
+          "y": 2685.3225806451615
+        },
+        {
+          "x": 2893.5,
+          "y": 2561.3275862068967
+        },
+        {
+          "x": 4013.5,
+          "y": 2675
+        },
+        {
+          "x": 3582.5,
+          "y": 2760
+        },
+        {
+          "x": 3614.5,
+          "y": 2760
+        },
+        {
+          "x": 3550.5,
+          "y": 2760
+        },
+        {
+          "x": 3646.5,
+          "y": 2760
+        },
+        {
+          "x": 3518.5,
+          "y": 2760
+        },
+        {
+          "x": 3678.5,
+          "y": 2760
+        },
+        {
+          "x": 3486.5,
+          "y": 2760
+        },
+        {
+          "x": 3710.5,
+          "y": 2760
+        },
+        {
+          "x": 3454.5,
+          "y": 2752.35
+        },
+        {
+          "x": 3742.5,
+          "y": 2760
+        },
+        {
+          "x": 3422.5,
+          "y": 2742.75
+        },
+        {
+          "x": 3774.5,
+          "y": 2752.0967741935483
+        },
+        {
+          "x": 3390.5,
+          "y": 2733.15
+        },
+        {
+          "x": 3806.5,
+          "y": 2741.7741935483873
+        },
+        {
+          "x": 3358.5,
+          "y": 2723.55
+        },
+        {
+          "x": 3838.5,
+          "y": 2731.451612903226
+        },
+        {
+          "x": 3326.5,
+          "y": 2713.95
+        },
+        {
+          "x": 3870.5,
+          "y": 2721.1290322580644
+        },
+        {
+          "x": 3294.5,
+          "y": 2704.35
+        },
+        {
+          "x": 3902.5,
+          "y": 2710.8064516129034
+        },
+        {
+          "x": 3262.5,
+          "y": 2694.75
+        },
+        {
+          "x": 3934.5,
+          "y": 2700.483870967742
+        },
+        {
+          "x": 3230.5,
+          "y": 2685.15
+        },
+        {
+          "x": 3966.5,
+          "y": 2690.1612903225805
+        },
+        {
+          "x": 3198.5,
+          "y": 2675.55
+        },
+        {
+          "x": 3998.5,
+          "y": 2679.8387096774195
+        },
+        {
+          "x": 3166.5,
+          "y": 2664.8793103448274
+        },
+        {
+          "x": 4030.5,
+          "y": 2669.516129032258
+        },
+        {
+          "x": 3134.5,
+          "y": 2652.7413793103447
+        },
+        {
+          "x": 4062.5,
+          "y": 2660
+        },
+        {
+          "x": 3102.5,
+          "y": 2640.603448275862
+        },
+        {
+          "x": 4094.5,
+          "y": 2660
+        },
+        {
+          "x": 3070.5,
+          "y": 2628.4655172413795
+        },
+        {
+          "x": 4126.5,
+          "y": 2660
+        },
+        {
+          "x": 3038.5,
+          "y": 2616.3275862068967
+        }
+      ],
+      "temporaryLivingBodies": [
+        {
+          "id": "fixture-hold-body-0",
+          "x": 3437.5,
+          "y": 2747.25,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-1",
+          "x": 3469.5,
+          "y": 2756.85,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-2",
+          "x": 3405.5,
+          "y": 2737.65,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-3",
+          "x": 3501.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-4",
+          "x": 3373.5,
+          "y": 2728.05,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-5",
+          "x": 3533.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-6",
+          "x": 3341.5,
+          "y": 2718.45,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-7",
+          "x": 3565.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-8",
+          "x": 3309.5,
+          "y": 2708.85,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-9",
+          "x": 3597.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-10",
+          "x": 3277.5,
+          "y": 2699.25,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-11",
+          "x": 3629.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-12",
+          "x": 3245.5,
+          "y": 2689.65,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-13",
+          "x": 3661.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-14",
+          "x": 3213.5,
+          "y": 2680.05,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-15",
+          "x": 3693.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-16",
+          "x": 3181.5,
+          "y": 2670.45,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-17",
+          "x": 3725.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-18",
+          "x": 3149.5,
+          "y": 2658.4310344827586,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-19",
+          "x": 3757.5,
+          "y": 2757.5806451612902,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-20",
+          "x": 3117.5,
+          "y": 2646.293103448276,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-21",
+          "x": 3789.5,
+          "y": 2747.2580645161293,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-22",
+          "x": 3085.5,
+          "y": 2634.155172413793,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-23",
+          "x": 3821.5,
+          "y": 2736.935483870968,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-24",
+          "x": 3053.5,
+          "y": 2622.0172413793102,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-25",
+          "x": 3853.5,
+          "y": 2726.6129032258063,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-26",
+          "x": 3021.5,
+          "y": 2609.8793103448274,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-27",
+          "x": 3885.5,
+          "y": 2716.2903225806454,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-28",
+          "x": 2989.5,
+          "y": 2597.7413793103447,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-29",
+          "x": 3917.5,
+          "y": 2705.967741935484,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-30",
+          "x": 2957.5,
+          "y": 2585.603448275862,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-31",
+          "x": 3949.5,
+          "y": 2695.6451612903224,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-32",
+          "x": 2925.5,
+          "y": 2573.4655172413795,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-33",
+          "x": 3981.5,
+          "y": 2685.3225806451615,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-34",
+          "x": 2893.5,
+          "y": 2561.3275862068967,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-35",
+          "x": 4013.5,
+          "y": 2675,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-36",
+          "x": 3582.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-37",
+          "x": 3614.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-38",
+          "x": 3550.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-39",
+          "x": 3646.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-40",
+          "x": 3518.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-41",
+          "x": 3678.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-42",
+          "x": 3486.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-43",
+          "x": 3710.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-44",
+          "x": 3454.5,
+          "y": 2752.35,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-45",
+          "x": 3742.5,
+          "y": 2760,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-46",
+          "x": 3422.5,
+          "y": 2742.75,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-47",
+          "x": 3774.5,
+          "y": 2752.0967741935483,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-48",
+          "x": 3390.5,
+          "y": 2733.15,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-49",
+          "x": 3806.5,
+          "y": 2741.7741935483873,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-50",
+          "x": 3358.5,
+          "y": 2723.55,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-51",
+          "x": 3838.5,
+          "y": 2731.451612903226,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-52",
+          "x": 3326.5,
+          "y": 2713.95,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-53",
+          "x": 3870.5,
+          "y": 2721.1290322580644,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-54",
+          "x": 3294.5,
+          "y": 2704.35,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-55",
+          "x": 3902.5,
+          "y": 2710.8064516129034,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-56",
+          "x": 3262.5,
+          "y": 2694.75,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-57",
+          "x": 3934.5,
+          "y": 2700.483870967742,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-58",
+          "x": 3230.5,
+          "y": 2685.15,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-59",
+          "x": 3966.5,
+          "y": 2690.1612903225805,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-60",
+          "x": 3198.5,
+          "y": 2675.55,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-61",
+          "x": 3998.5,
+          "y": 2679.8387096774195,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-62",
+          "x": 3166.5,
+          "y": 2664.8793103448274,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-63",
+          "x": 4030.5,
+          "y": 2669.516129032258,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-64",
+          "x": 3134.5,
+          "y": 2652.7413793103447,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-65",
+          "x": 4062.5,
+          "y": 2660,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-66",
+          "x": 3102.5,
+          "y": 2640.603448275862,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-67",
+          "x": 4094.5,
+          "y": 2660,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-68",
+          "x": 3070.5,
+          "y": 2628.4655172413795,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-69",
+          "x": 4126.5,
+          "y": 2660,
+          "hp": 1
+        },
+        {
+          "id": "fixture-hold-body-70",
+          "x": 3038.5,
+          "y": 2616.3275862068967,
+          "hp": 1
+        }
+      ],
+      "initialRetained": 18,
+      "ids": [
+        "event-1",
+        "event-2"
+      ],
+      "trace": [
+        {
+          "wait": "p-archer",
+          "round": 1
+        },
+        {
+          "wait": "p-mage",
+          "round": 1,
+          "serial": 1
+        },
+        {
+          "continue": "legacy-hold-full-candidate-occupancy",
+          "warning": {
+            "serial": 0,
+            "round": 1,
+            "offered": {
+              "p-mage": {
+                "round": 1,
+                "serial": 1
+              }
+            },
+            "opportunity": {
+              "id": "p-mage",
+              "round": 1,
+              "serial": 2
+            },
+            "status": "blocked"
+          }
+        },
+        {
+          "wait": "p-knight",
+          "round": 1,
+          "serial": 2
+        }
+      ]
+    }
+  ]
+}

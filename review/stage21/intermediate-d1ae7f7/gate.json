@@ -1,0 +1,26 @@
+{
+  "schema": "honro-encounter-evidence/v1",
+  "status": "blocked",
+  "quality": "not-automatically-assessed",
+  "sourceDigest": "f2e6417dd430e62ba1b7eeaa2d4b3776de4f4f758499b0590d199f17288b3fad",
+  "targetDigest": "7aa2096ccdc85245788a2e4fa8204a8834768d6d43a9fbf1b08c81907aadf767",
+  "reviewDigest": "23a099c64f642210a34177ef38b348f3fa38cf0af99ce125d2e7d3c31fd35ef4",
+  "errors": [
+    "stage 21 cluster wagon-cordon: Unverified cluster or mismatched source member IDs",
+    "stage 21 cluster market-pack: Unverified cluster or mismatched source member IDs",
+    "stage 21 cluster stable-tools: Unverified cluster or mismatched source member IDs",
+    "stage 21 cluster office-rearguard: Unverified cluster or mismatched source member IDs",
+    "stage 21 terrain-and-roles: Missing, blocked or unverified required check",
+    "stage 21 normal-resource-play: Missing, blocked or unverified required check",
+    "stage 21 warning-opportunity-and-occupancy: Missing, blocked or unverified required check",
+    "stage 21 visual-quality: Missing, blocked or unverified required check",
+    "stage 21 tactical-quality: Missing, blocked or unverified required check",
+    "stage 21 build-and-regressions: Missing, blocked or unverified required check",
+    "independent review: Different reviewer and actual review time required"
+  ],
+  "limits": [
+    "File hashes and schemas do not prove truthful observations, reviewer identity or design quality.",
+    "Runtime-only wave/phase completeness, recorded spawnedIds versus raw births, and actual tactical/visual quality require independent source and evidence review.",
+    "This gate does not replace verify, browser/performance checks, final approval or Pages verification."
+  ]
+}

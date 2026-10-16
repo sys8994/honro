@@ -1,0 +1,77 @@
+{
+  "passed": true,
+  "sourceCommit": "2314ee6a2ad53606c2e150b2c8c087f54de1af32",
+  "baseCurrentCommit": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+  "fixture": {
+    "path": "tests/fixtures/act3-place-integration-delta.json",
+    "bytes": 8246476,
+    "sha256": "585d31af4eaf97e7cbacafedc975714203923645f7c421148b749adb2a2c4a63"
+  },
+  "checkedAtUTC": "2026-10-16T01:16:57.657602+00:00",
+  "checks": [
+    {
+      "command": "node --max-old-space-size=768 tests/act3-place-regeneration.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node --max-old-space-size=768 tests/current-runtime-contracts.mjs",
+      "exitCode": 0
+    },
+    {
+      "command": "node --max-old-space-size=768 tests/current-campaign-contracts.mjs",
+      "exitCode": 0
+    }
+  ],
+  "diagnosticPreloadUsedForFinalChecks": false,
+  "frozenFixturesChanged": false,
+  "html": [
+    {
+      "path": "HONRO.html",
+      "bytes": 14512348,
+      "sha256": "8dfa33c75cd843286e98ea075d65ca79ea7c570f464730b556a2744bff9e722a"
+    },
+    {
+      "path": "HONRO_WORKSHOP.html",
+      "bytes": 14623122,
+      "sha256": "caf7e8d66f91139a43cd24c548180785612b28da3da414112b03dd7aec076265"
+    }
+  ],
+  "newNegativeControls": {
+    "runtime": 25,
+    "campaign": 30
+  },
+  "currentAssets": 667,
+  "priorAssets": 640,
+  "otherStagesExact": 27,
+  "limits": [
+    "Exact source/build/campaign validation and generator replay only; not art approval or normal combat/wave effectiveness.",
+    "Historical binding-detail/migration/integration baseline failures not rerun or relaxed.",
+    "No master/Pages write performed by this worker."
+  ],
+  "evidence": [
+    {
+      "path": "runtime-contracts.json",
+      "sha256": "fcfb835fc76bda95b47b71ded552f5893def7a55f00f555612beaf791561c8f4"
+    },
+    {
+      "path": "campaign-contracts.json",
+      "sha256": "312606d305bd7562518fdebc1841ffc5e176716eb07aa1956e0ab19589495044"
+    },
+    {
+      "path": "author-regeneration.json",
+      "sha256": "fa1a0608b772162488889e7f1890a5bf7c243e03a38923710e4de8acb229f272"
+    },
+    {
+      "path": "runtime-contracts.log",
+      "sha256": "55066f07774206d63d91c822ce3c6eb9170149be375fa5e7b3fcb045bc9beae1"
+    },
+    {
+      "path": "campaign-contracts.log",
+      "sha256": "5d54f0e2509f4182477a22d2b3acbbf98fc5b299b8576bf4ef7d46366daa2b2e"
+    },
+    {
+      "path": "author-regeneration.log",
+      "sha256": "1fb1ac765e741715595e176f24b0753e15dfdffa75aa9d97b2361ee3544af295"
+    }
+  ]
+}

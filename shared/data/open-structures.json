@@ -764,6 +764,66 @@
         }
       },
       "reason": "Native Scene shows an independent building roof with open sky above and a room below"
+    },
+    {
+      "stage": 22,
+      "kind": "asset",
+      "id": "stage22:vertical-main-document-archive",
+      "elementId": "v22-art-main-document-archive",
+      "before": {
+        "oneWay": false
+      },
+      "reason": "Actual archive tiled roof; jump through from below and existing platform drop to court"
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "stage26-witness:work-hollow-forge",
+      "elementId": "work-hollow-forge",
+      "before": {
+        "oneWay": false
+      },
+      "reason": "Stage26 open workshop/refuge roof and work gallery; existing jump-through/land/drop policy, no indoor wall solids"
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "stage26-witness:refuge-house",
+      "elementId": "artisan-refuge-house",
+      "before": {
+        "oneWay": false
+      },
+      "reason": "Stage26 open workshop/refuge roof and work gallery; existing jump-through/land/drop policy, no indoor wall solids"
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "stage26-witness:west-work-ramp",
+      "elementId": "west-work-ramp",
+      "before": {
+        "oneWay": false
+      },
+      "reason": "Stage26 open workshop/refuge roof and work gallery; existing jump-through/land/drop policy, no indoor wall solids"
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "stage26-witness:work-loft",
+      "elementId": "work-loft",
+      "before": {
+        "oneWay": false
+      },
+      "reason": "Stage26 open workshop/refuge roof and work gallery; existing jump-through/land/drop policy, no indoor wall solids"
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "stage26-witness:east-work-ramp",
+      "elementId": "east-work-ramp",
+      "before": {
+        "oneWay": false
+      },
+      "reason": "Stage26 open workshop/refuge roof and work gallery; existing jump-through/land/drop policy, no indoor wall solids"
     }
   ]
 }

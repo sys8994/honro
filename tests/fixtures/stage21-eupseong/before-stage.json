@@ -1,0 +1,2890 @@
+{
+  "id": "stage-21",
+  "name": "성문 아래",
+  "width": 6400,
+  "height": 3200,
+  "backdrop": "gate",
+  "metadata": {
+    "stageId": 21,
+    "act": 3,
+    "actStage": 1,
+    "campaign": true
+  },
+  "terrains": [
+    {
+      "id": "a3-foundation",
+      "name": "a3-foundation",
+      "type": "solid",
+      "points": [
+        {
+          "x": 0,
+          "y": 2640
+        },
+        {
+          "x": 1400,
+          "y": 2640
+        },
+        {
+          "x": 2200,
+          "y": 2500
+        },
+        {
+          "x": 3650,
+          "y": 2500
+        },
+        {
+          "x": 3760,
+          "y": 2380
+        },
+        {
+          "x": 3820,
+          "y": 2380
+        },
+        {
+          "x": 3920,
+          "y": 2500
+        },
+        {
+          "x": 6400,
+          "y": 2500
+        },
+        {
+          "x": 6900,
+          "y": 2568.359375
+        },
+        {
+          "x": 7400,
+          "y": 2582.5066666666667
+        },
+        {
+          "x": 7900,
+          "y": 2437.9733333333334
+        },
+        {
+          "x": 8400,
+          "y": 2277.44
+        },
+        {
+          "x": 8900,
+          "y": 2246.1728395061727
+        },
+        {
+          "x": 9400,
+          "y": 2300.4938271604938
+        },
+        {
+          "x": 9900,
+          "y": 2373.3333333333335
+        },
+        {
+          "x": 10400,
+          "y": 2418.395061728395
+        },
+        {
+          "x": 10900,
+          "y": 2385.709287068086
+        },
+        {
+          "x": 11400,
+          "y": 2281.8311707245953
+        },
+        {
+          "x": 11900,
+          "y": 2171.392331243622
+        },
+        {
+          "x": 12400,
+          "y": 2120
+        },
+        {
+          "x": 12400,
+          "y": 27200
+        },
+        {
+          "x": -6000,
+          "y": 27200
+        },
+        {
+          "x": -6000,
+          "y": 2320
+        },
+        {
+          "x": -5500,
+          "y": 2381.6707974923456
+        },
+        {
+          "x": -5000,
+          "y": 2514.1974048695147
+        },
+        {
+          "x": -4500,
+          "y": 2638.8511444817027
+        },
+        {
+          "x": -4000,
+          "y": 2681.783264746228
+        },
+        {
+          "x": -3500,
+          "y": 2731.8518518518517
+        },
+        {
+          "x": -3000,
+          "y": 2812.7846364883403
+        },
+        {
+          "x": -2500,
+          "y": 2873.141289437586
+        },
+        {
+          "x": -2000,
+          "y": 2846.7200000000003
+        },
+        {
+          "x": -1500,
+          "y": 2704.0237037037036
+        },
+        {
+          "x": -1000,
+          "y": 2575.5496296296296
+        },
+        {
+          "x": -500,
+          "y": 2585.3125
+        }
+      ],
+      "baseMaterial": "stone",
+      "oneWay": false,
+      "breakable": false,
+      "layer": "terrain",
+      "properties": {},
+      "playProjection": {
+        "bounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6400,
+          "bottom": 3200
+        },
+        "start": {
+          "x": 0,
+          "y": 2640
+        }
+      },
+      "detail": {
+        "spacing": 18,
+        "roughness": 0,
+        "seed": 1,
+        "optimizeEpsilon": 0
+      }
+    },
+    {
+      "id": "ct21-wall-west-toe",
+      "name": "wall-west-toe",
+      "type": "solid",
+      "points": [
+        {
+          "x": 1500,
+          "y": 2622.5
+        },
+        {
+          "x": 1730,
+          "y": 2440
+        },
+        {
+          "x": 1730,
+          "y": 2476
+        },
+        {
+          "x": 1500,
+          "y": 2658.5
+        }
+      ],
+      "baseMaterial": "stone",
+      "oneWay": true,
+      "breakable": false,
+      "layer": "terrain",
+      "properties": {
+        "honroCityTactical": true,
+        "honroSpaceSurfaceId": "ct21-wall-west-toe",
+        "honroWalkEdges": [
+          0
+        ],
+        "honroSurfaceRole": "access-ramp",
+        "surfaceKind": "granite"
+      },
+      "detail": {
+        "spacing": 18,
+        "roughness": 0,
+        "seed": 21,
+        "optimizeEpsilon": 0
+      }
+    },
+    {
+      "id": "ct21-wall-east-return",
+      "name": "wall-east-return",
+      "type": "solid",
+      "points": [
+        {
+          "x": 3540,
+          "y": 1960
+        },
+        {
+          "x": 3720,
+          "y": 2110
+        },
+        {
+          "x": 3820,
+          "y": 2110
+        },
+        {
+          "x": 3990,
+          "y": 2280
+        },
+        {
+          "x": 4080,
+          "y": 2280
+        },
+        {
+          "x": 4080,
+          "y": 2335
+        },
+        {
+          "x": 3990,
+          "y": 2335
+        },
+        {
+          "x": 3820,
+          "y": 2165
+        },
+        {
+          "x": 3720,
+          "y": 2165
+        },
+        {
+          "x": 3540,
+          "y": 2015
+        }
+      ],
+      "baseMaterial": "stone",
+      "oneWay": false,
+      "breakable": false,
+      "layer": "terrain",
+      "properties": {
+        "honroCityTactical": true,
+        "honroSpaceSurfaceId": "ct21-wall-east-return",
+        "honroWalkEdges": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "honroSurfaceRole": "cover-gallery",
+        "surfaceKind": "granite"
+      },
+      "detail": {
+        "spacing": 18,
+        "roughness": 0,
+        "seed": 21,
+        "optimizeEpsilon": 0
+      }
+    },
+    {
+      "id": "ct21-wall-east-toe",
+      "name": "wall-east-toe",
+      "type": "solid",
+      "points": [
+        {
+          "x": 4080,
+          "y": 2280
+        },
+        {
+          "x": 4290,
+          "y": 2500
+        },
+        {
+          "x": 4290,
+          "y": 2536
+        },
+        {
+          "x": 4080,
+          "y": 2316
+        }
+      ],
+      "baseMaterial": "wood",
+      "oneWay": true,
+      "breakable": false,
+      "layer": "terrain",
+      "properties": {
+        "honroCityTactical": true,
+        "honroSpaceSurfaceId": "ct21-wall-east-toe",
+        "honroWalkEdges": [
+          0
+        ],
+        "honroSurfaceRole": "access-ramp",
+        "surfaceKind": "wood"
+      },
+      "detail": {
+        "spacing": 18,
+        "roughness": 0,
+        "seed": 21,
+        "optimizeEpsilon": 0
+      }
+    },
+    {
+      "id": "ct21-market-west-rise",
+      "name": "market-west-rise",
+      "type": "solid",
+      "points": [
+        {
+          "x": 4090,
+          "y": 2500
+        },
+        {
+          "x": 4310,
+          "y": 2270
+        },
+        {
+          "x": 4310,
+          "y": 2306
+        },
+        {
+          "x": 4090,
+          "y": 2536
+        }
+      ],
+      "baseMaterial": "wood",
+      "oneWay": true,
+      "breakable": false,
+      "layer": "terrain",
+      "properties": {
+        "honroCityTactical": true,
+        "honroSpaceSurfaceId": "ct21-market-west-rise",
+        "honroWalkEdges": [
+          0
+        ],
+        "honroSurfaceRole": "access-ramp",
+        "surfaceKind": "wood"
+      },
+      "detail": {
+        "spacing": 18,
+        "roughness": 0,
+        "seed": 21,
+        "optimizeEpsilon": 0
+      }
+    },
+    {
+      "id": "ct21-market-side-gallery",
+      "name": "market-side-gallery",
+      "type": "solid",
+      "points": [
+        {
+          "x": 4310,
+          "y": 2270
+        },
+        {
+          "x": 4620,
+          "y": 2260
+        },
+        {
+          "x": 4840,
+          "y": 2280
+        },
+        {
+          "x": 4840,
+          "y": 2350
+        },
+        {
+          "x": 4620,
+          "y": 2330
+        },
+        {
+          "x": 4310,
+          "y": 2340
+        }
+      ],
+      "baseMaterial": "stone",
+      "oneWay": false,
+      "breakable": false,
+      "layer": "terrain",
+      "properties": {
+        "honroCityTactical": true,
+        "honroSpaceSurfaceId": "ct21-market-side-gallery",
+        "honroWalkEdges": [
+          0,
+          1
+        ],
+        "honroSurfaceRole": "cover-gallery",
+        "surfaceKind": "granite"
+      },
+      "detail": {
+        "spacing": 18,
+        "roughness": 0,
+        "seed": 21,
+        "optimizeEpsilon": 0
+      }
+    },
+    {
+      "id": "ct21-market-east-return",
+      "name": "market-east-return",
+      "type": "solid",
+      "points": [
+        {
+          "x": 4840,
+          "y": 2280
+        },
+        {
+          "x": 5150,
+          "y": 2500
+        },
+        {
+          "x": 5150,
+          "y": 2536
+        },
+        {
+          "x": 4840,
+          "y": 2316
+        }
+      ],
+      "baseMaterial": "wood",
+      "oneWay": true,
+      "breakable": false,
+      "layer": "terrain",
+      "properties": {
+        "honroCityTactical": true,
+        "honroSpaceSurfaceId": "ct21-market-east-return",
+        "honroWalkEdges": [
+          0
+        ],
+        "honroSurfaceRole": "access-ramp",
+        "surfaceKind": "wood"
+      },
+      "detail": {
+        "spacing": 18,
+        "roughness": 0,
+        "seed": 21,
+        "optimizeEpsilon": 0
+      }
+    }
+  ],
+  "materials": [],
+  "elements": [
+    {
+      "id": "korean-gate-retaining-wall",
+      "assetId": "a3-korean:21:stair-retaining-wall",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "entry-shop",
+      "assetId": "a3-korean:21:entry-shop",
+      "x": 650,
+      "y": 2640,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "cloth-yard",
+      "assetId": "a3-korean:21:cloth-yard",
+      "x": 1240,
+      "y": 2640,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "west-gate-wing",
+      "assetId": "a3-korean:21:west-gate-wing",
+      "x": 2120,
+      "y": 2514,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "gate-tower",
+      "assetId": "a3-korean:21:gate-tower",
+      "x": 2710,
+      "y": 2500,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "east-gate-wing",
+      "assetId": "a3-korean:21:east-gate-wing",
+      "x": 3310,
+      "y": 2500,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "tea-market",
+      "assetId": "a3-korean:21:tea-market",
+      "x": 3980,
+      "y": 2500,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "east-stables",
+      "assetId": "a3-korean:21:east-stables",
+      "x": 4650,
+      "y": 2500,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "office-porch",
+      "assetId": "a3-korean:21:office-porch",
+      "x": 5220,
+      "y": 2500,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "east-watch",
+      "assetId": "a3-korean:21:east-watch",
+      "x": 5920,
+      "y": 2500,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "wall-stair",
+      "assetId": "a3-21:wall-stair",
+      "x": 1730,
+      "y": 2440,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "gate-wall-walk",
+      "assetId": "a3-21:gate-wall-walk",
+      "x": 2510,
+      "y": 1960,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "market-roof-stair",
+      "assetId": "a3-korean:21:market-roof-stair",
+      "x": 130,
+      "y": 2495,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "korean-street-wall-0",
+      "assetId": "a3-korean:21:korean-street-wall-0",
+      "x": 920,
+      "y": 2640,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "korean-street-wall-1",
+      "assetId": "a3-korean:21:korean-street-wall-1",
+      "x": 3700,
+      "y": 2500,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "korean-street-wall-2",
+      "assetId": "a3-korean:21:korean-street-wall-2",
+      "x": 5630,
+      "y": 2500,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a3-refine:21:weathered-ground-washes",
+      "assetId": "a3-refine:21:weathered-ground-washes",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "prop"
+    },
+    {
+      "id": "a3-refine:21:ground-vignette-0",
+      "assetId": "a3-refine:21:ground-vignette-0",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a3-refine:21:ground-vignette-1",
+      "assetId": "a3-refine:21:ground-vignette-1",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a3-refine:21:ground-vignette-2",
+      "assetId": "a3-refine:21:ground-vignette-2",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a3-refine:21:rooted-pine-0",
+      "assetId": "a3-refine:21:pine-art-0",
+      "x": 80,
+      "y": 2640,
+      "scale": 0.57,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a3-refine:21:rooted-pine-1",
+      "assetId": "a3-refine:21:pine-art-1",
+      "x": 3740,
+      "y": 2500,
+      "scale": 0.65,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "a3-refine:21:rooted-pine-2",
+      "assetId": "a3-refine:21:pine-art-2",
+      "x": 6080,
+      "y": 2500,
+      "scale": 0.72,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back"
+    },
+    {
+      "id": "city-tactical:21:recessed-supports",
+      "assetId": "city-tactical:21:recessed-supports",
+      "x": 0,
+      "y": 0,
+      "scale": 1,
+      "rotation": 0,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back",
+      "cityTacticalRearOnly": true
+    }
+  ],
+  "units": [
+    {
+      "id": "p-archer",
+      "kind": "archer",
+      "team": "player",
+      "x": 240,
+      "y": 2640,
+      "facing": 1
+    },
+    {
+      "id": "p-mage",
+      "kind": "mage",
+      "team": "player",
+      "x": 340,
+      "y": 2640,
+      "facing": 1
+    },
+    {
+      "id": "p-knight",
+      "kind": "knight",
+      "team": "player",
+      "x": 440,
+      "y": 2640,
+      "facing": 1
+    },
+    {
+      "id": "p-occultist",
+      "kind": "occultist",
+      "team": "player",
+      "x": 540,
+      "y": 2640,
+      "facing": 1
+    },
+    {
+      "id": "act3-resident",
+      "kind": "object:civilian",
+      "team": "npc",
+      "x": 1620,
+      "y": 2601.5,
+      "facing": 1,
+      "label": "주민",
+      "stageOverrides": {
+        "honroProtected": true
+      }
+    },
+    {
+      "id": "a3-21-wagon-cordon-0",
+      "kind": "hound",
+      "team": "enemy",
+      "x": 1260,
+      "y": 2640,
+      "facing": -1,
+      "spawnIndex": 0,
+      "behavior": "patrol",
+      "encounterGroup": "wagon-cordon",
+      "stageOverrides": {
+        "honroCohort": "wagon-cordon",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-wagon-cordon-1",
+      "kind": "picks",
+      "team": "enemy",
+      "x": 1390,
+      "y": 2640,
+      "facing": -1,
+      "spawnIndex": 1,
+      "behavior": "patrol",
+      "encounterGroup": "wagon-cordon",
+      "stageOverrides": {
+        "honroCohort": "wagon-cordon",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": true,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-wagon-cordon-2",
+      "kind": "hound",
+      "team": "enemy",
+      "x": 1730,
+      "y": 2582.25,
+      "facing": -1,
+      "spawnIndex": 2,
+      "behavior": "patrol",
+      "encounterGroup": "wagon-cordon",
+      "stageOverrides": {
+        "honroCohort": "wagon-cordon",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-wagon-cordon-3",
+      "kind": "lantern",
+      "team": "enemy",
+      "x": 1880,
+      "y": 2524,
+      "facing": -1,
+      "spawnIndex": 3,
+      "behavior": "patrol",
+      "encounterGroup": "wagon-cordon",
+      "stageOverrides": {
+        "honroCohort": "wagon-cordon",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "ranged",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-gate-watch-0",
+      "kind": "picks",
+      "team": "enemy",
+      "x": 2390,
+      "y": 2500,
+      "facing": -1,
+      "spawnIndex": 4,
+      "behavior": "patrol",
+      "encounterGroup": "gate-watch",
+      "stageOverrides": {
+        "honroCohort": "gate-watch",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": true,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-gate-watch-1",
+      "kind": "hound",
+      "team": "enemy",
+      "x": 2700,
+      "y": 2500,
+      "facing": -1,
+      "spawnIndex": 5,
+      "behavior": "patrol",
+      "encounterGroup": "gate-watch",
+      "stageOverrides": {
+        "honroCohort": "gate-watch",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-gate-watch-2",
+      "kind": "lantern",
+      "team": "enemy",
+      "x": 2750,
+      "y": 1928,
+      "facing": -1,
+      "spawnIndex": 6,
+      "behavior": "patrol",
+      "encounterGroup": "gate-watch",
+      "stageOverrides": {
+        "honroCohort": "gate-watch",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "ranged",
+        "honroEncounterSupport": "gate-wall-walk:collision:0"
+      }
+    },
+    {
+      "id": "a3-21-gate-watch-3",
+      "kind": "lantern",
+      "team": "enemy",
+      "x": 3240,
+      "y": 1928,
+      "facing": -1,
+      "spawnIndex": 7,
+      "behavior": "patrol",
+      "encounterGroup": "gate-watch",
+      "stageOverrides": {
+        "honroCohort": "gate-watch",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "ranged",
+        "honroEncounterSupport": "gate-wall-walk:collision:0"
+      }
+    },
+    {
+      "id": "a3-21-market-pack-0",
+      "kind": "hound",
+      "team": "enemy",
+      "x": 3970,
+      "y": 2500,
+      "facing": -1,
+      "spawnIndex": 8,
+      "behavior": "patrol",
+      "encounterGroup": "market-pack",
+      "stageOverrides": {
+        "honroCohort": "market-pack",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": true,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-market-pack-1",
+      "kind": "hound",
+      "team": "enemy",
+      "x": 4125,
+      "y": 2500,
+      "facing": -1,
+      "spawnIndex": 9,
+      "behavior": "patrol",
+      "encounterGroup": "market-pack",
+      "stageOverrides": {
+        "honroCohort": "market-pack",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-market-pack-2",
+      "kind": "lantern",
+      "team": "enemy",
+      "x": 4350,
+      "y": 2468,
+      "facing": -1,
+      "spawnIndex": 10,
+      "behavior": "patrol",
+      "encounterGroup": "market-pack",
+      "stageOverrides": {
+        "honroCohort": "market-pack",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "ranged",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-stable-tools-0",
+      "kind": "picks",
+      "team": "enemy",
+      "x": 4700,
+      "y": 2500,
+      "facing": -1,
+      "spawnIndex": 11,
+      "behavior": "patrol",
+      "encounterGroup": "stable-tools",
+      "stageOverrides": {
+        "honroCohort": "stable-tools",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-stable-tools-1",
+      "kind": "hound",
+      "team": "enemy",
+      "x": 4820,
+      "y": 2500,
+      "facing": -1,
+      "spawnIndex": 12,
+      "behavior": "patrol",
+      "encounterGroup": "stable-tools",
+      "stageOverrides": {
+        "honroCohort": "stable-tools",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-stable-tools-2",
+      "kind": "picks",
+      "team": "enemy",
+      "x": 4945,
+      "y": 2500,
+      "facing": -1,
+      "spawnIndex": 13,
+      "behavior": "patrol",
+      "encounterGroup": "stable-tools",
+      "stageOverrides": {
+        "honroCohort": "stable-tools",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-office-rearguard-0",
+      "kind": "picks",
+      "team": "enemy",
+      "x": 5330,
+      "y": 2500,
+      "facing": -1,
+      "spawnIndex": 14,
+      "behavior": "patrol",
+      "encounterGroup": "office-rearguard",
+      "stageOverrides": {
+        "honroCohort": "office-rearguard",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": true,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-office-rearguard-1",
+      "kind": "hound",
+      "team": "enemy",
+      "x": 5465,
+      "y": 2500,
+      "facing": -1,
+      "spawnIndex": 15,
+      "behavior": "patrol",
+      "encounterGroup": "office-rearguard",
+      "stageOverrides": {
+        "honroCohort": "office-rearguard",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "frontline",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-office-rearguard-2",
+      "kind": "lantern",
+      "team": "enemy",
+      "x": 5685,
+      "y": 2468,
+      "facing": -1,
+      "spawnIndex": 16,
+      "behavior": "patrol",
+      "encounterGroup": "office-rearguard",
+      "stageOverrides": {
+        "honroCohort": "office-rearguard",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "ranged",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    },
+    {
+      "id": "a3-21-office-rearguard-3",
+      "kind": "lantern",
+      "team": "enemy",
+      "x": 5800,
+      "y": 2468,
+      "facing": -1,
+      "spawnIndex": 17,
+      "behavior": "patrol",
+      "encounterGroup": "office-rearguard",
+      "stageOverrides": {
+        "honroCohort": "office-rearguard",
+        "honroAct3Encounter": 1,
+        "honroAct3Elite": false,
+        "honroEncounterRole": "ranged",
+        "honroEncounterSupport": "a3-foundation"
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "act3-response-21-0",
+      "once": true,
+      "when": {
+        "after": "density-gate-act3-response-21-0"
+      },
+      "warning": "성문 동쪽에서 군화 소리가 들립니다. 다음 행동 동안 성문 아래 진입로를 살피세요.",
+      "text": "증원 진입 · 성문 동쪽에서 군화 소리가 들립니다. 다음 행동 동안 성문 아래 진입로를 살피세요.",
+      "entry": {
+        "x": 3390,
+        "y": 2500
+      },
+      "action": {
+        "type": "multi",
+        "honroDensityResponse": 1,
+        "act3Authored": true,
+        "source": "act3-response-21-0",
+        "actions": [
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3390,
+            "y": 2500,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3510,
+            "y": 2500,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3620,
+            "y": 2500,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          }
+        ]
+      },
+      "honroDensityResponse": 1,
+      "honroDensityTrigger": {
+        "objectiveDone": "gate-resident"
+      },
+      "honroDensityAlternatives": [
+        [
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3270,
+            "y": 2500,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3400,
+            "y": 2500,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedGuard",
+            "n": 1,
+            "x": 3530,
+            "y": 2500,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-0",
+            "honroDensityElite": false,
+            "honroDensityRole": "entry-guard"
+          }
+        ]
+      ]
+    },
+    {
+      "id": "act3-response-21-1",
+      "once": true,
+      "when": {
+        "after": "density-gate-act3-response-21-1"
+      },
+      "warning": "시장 동쪽 관아 진입로에서 활시위가 울립니다. 다음 행동 동안 높은 회랑과 낮은 퇴로를 살피세요.",
+      "text": "증원 진입 · 시장 동쪽 관아 진입로에서 활시위가 울립니다. 다음 행동 동안 높은 회랑과 낮은 퇴로를 살피세요.",
+      "entry": {
+        "x": 5030,
+        "y": 2500
+      },
+      "action": {
+        "type": "multi",
+        "honroDensityResponse": 1,
+        "act3Authored": true,
+        "source": "act3-response-21-1",
+        "actions": [
+          {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 1,
+            "x": 5030,
+            "y": 2500,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-1",
+            "honroDensityElite": false,
+            "honroDensityRole": "exit-cover"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 1,
+            "x": 5170,
+            "y": 2500,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-1",
+            "honroDensityElite": false,
+            "honroDensityRole": "exit-cover"
+          }
+        ]
+      },
+      "honroDensityResponse": 1,
+      "honroDensityTrigger": {
+        "objectiveDone": "refuge-hold"
+      },
+      "honroDensityAlternatives": [
+        [
+          {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 1,
+            "x": 5060,
+            "y": 2500,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-1",
+            "honroDensityElite": false,
+            "honroDensityRole": "exit-cover"
+          },
+          {
+            "type": "spawn",
+            "kind": "possessedArcher",
+            "n": 1,
+            "x": 5230,
+            "y": 2500,
+            "support": "a3-foundation",
+            "maxDistance": 0,
+            "source": "act3-response-21-1",
+            "honroDensityElite": false,
+            "honroDensityRole": "exit-cover"
+          }
+        ]
+      ]
+    }
+  ],
+  "encounters": [
+    {
+      "id": "wagon-cordon",
+      "key": "wagon-cordon",
+      "behavior": "patrol",
+      "unitIds": [
+        "a3-21-wagon-cordon-0",
+        "a3-21-wagon-cordon-1",
+        "a3-21-wagon-cordon-2",
+        "a3-21-wagon-cordon-3"
+      ]
+    },
+    {
+      "id": "gate-watch",
+      "key": "gate-watch",
+      "behavior": "patrol",
+      "unitIds": [
+        "a3-21-gate-watch-0",
+        "a3-21-gate-watch-1",
+        "a3-21-gate-watch-2",
+        "a3-21-gate-watch-3"
+      ]
+    },
+    {
+      "id": "market-pack",
+      "key": "market-pack",
+      "behavior": "patrol",
+      "unitIds": [
+        "a3-21-market-pack-0",
+        "a3-21-market-pack-1",
+        "a3-21-market-pack-2"
+      ]
+    },
+    {
+      "id": "stable-tools",
+      "key": "stable-tools",
+      "behavior": "patrol",
+      "unitIds": [
+        "a3-21-stable-tools-0",
+        "a3-21-stable-tools-1",
+        "a3-21-stable-tools-2"
+      ]
+    },
+    {
+      "id": "office-rearguard",
+      "key": "office-rearguard",
+      "behavior": "patrol",
+      "unitIds": [
+        "a3-21-office-rearguard-0",
+        "a3-21-office-rearguard-1",
+        "a3-21-office-rearguard-2",
+        "a3-21-office-rearguard-3"
+      ]
+    }
+  ],
+  "objectives": [],
+  "markers": [
+    {
+      "id": "gate-resident",
+      "type": "act3",
+      "x": 1580,
+      "y": 2608.5,
+      "label": "수레 아래 주민 구하기",
+      "action": "act3",
+      "target": "act3-resident"
+    },
+    {
+      "id": "refuge-hold",
+      "type": "act3",
+      "x": 2600,
+      "y": 2500,
+      "label": "주민이 물러날 동안 길목 지키기"
+    },
+    {
+      "id": "wave-refuge-hold",
+      "type": "act3-wave",
+      "x": 3510,
+      "y": 2500,
+      "label": "증원 진입"
+    },
+    {
+      "id": "city-exit",
+      "type": "exit",
+      "x": 6140,
+      "y": 2500,
+      "label": "읍성 안으로 진입"
+    }
+  ],
+  "layers": [
+    {
+      "id": "far",
+      "name": "far",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "mid",
+      "name": "mid",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "back",
+      "name": "back",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "structural-back",
+      "name": "structural-back",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "terrain",
+      "name": "terrain",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "interactive",
+      "name": "interactive",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "prop",
+      "name": "prop",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "units",
+      "name": "units",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "events",
+      "name": "events",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "front",
+      "name": "front",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L2",
+      "name": "L2",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L3",
+      "name": "L3",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L4",
+      "name": "L4",
+      "visible": true,
+      "locked": false
+    },
+    {
+      "id": "L5",
+      "name": "L5",
+      "visible": true,
+      "locked": false
+    }
+  ],
+  "meta": {
+    "notes": "3-1 성문 아래 · production architecture, ordinary movement",
+    "seed": 3021
+  },
+  "initialState": {
+    "honroAct3Revision": 1,
+    "honroActiveLimit": 3,
+    "honroState": {
+      "flags": {},
+      "collected": [],
+      "hold": 0,
+      "lastRound": 1,
+      "rescued": false,
+      "combatLog": []
+    },
+    "honroAct3EncounterRevision": 1,
+    "honroObjectiveRevision": 2,
+    "honroAct3Steps": [
+      {
+        "id": "gate-resident",
+        "label": "수레 아래 주민 구하기",
+        "kind": "rescue",
+        "target": "act3-resident"
+      },
+      {
+        "id": "refuge-hold",
+        "label": "주민이 물러날 동안 길목 지키기",
+        "kind": "hold",
+        "rounds": 2,
+        "wave": {
+          "kind": "hound",
+          "count": 2
+        },
+        "radius": 520,
+        "contestRadius": 230
+      },
+      {
+        "id": "city-exit",
+        "label": "읍성 안으로 진입",
+        "kind": "reach"
+      }
+    ],
+    "honroAct3ResponseRevision": 1,
+    "honroAct3SceneryRevision": 1,
+    "honroNarrativeRevision": 1,
+    "honroCityTacticalRevision": 1,
+    "honroEncounterDensityRevision": 1,
+    "honroStoryCanonRevision": 1
+  },
+  "environment": {
+    "version": 4,
+    "preset": "forest",
+    "skyVisible": true,
+    "atmosphere": {
+      "preset": "temple",
+      "overrides": {
+        "skyTop": "#526f7e",
+        "skyBottom": "#c0c2a2",
+        "hazeStrength": 0.27,
+        "mistStrength": 0.07,
+        "lightStrength": 0.12,
+        "waterBaseColor": "#426d73",
+        "waterHighlightColor": "#bdc5a4"
+      }
+    },
+    "zones": [
+      {
+        "id": "act3-world",
+        "from": 0,
+        "to": 3200,
+        "blend": 200
+      }
+    ],
+    "groups": [
+      {
+        "id": "a3-korean-town-21-L3",
+        "depthLayer": "L3",
+        "verticalMode": "WORLD",
+        "zoneId": "act3-world",
+        "x": 0,
+        "y": 2415
+      },
+      {
+        "id": "a3-korean-town-21-L2",
+        "depthLayer": "L2",
+        "verticalMode": "WORLD",
+        "zoneId": "act3-world",
+        "x": 0,
+        "y": 2518
+      }
+    ],
+    "surfaces": [
+      {
+        "id": "a3-korean-town-21-L3-ground",
+        "groupId": "a3-korean-town-21-L3",
+        "kind": "rear-ground",
+        "points": [
+          {
+            "x": -18000,
+            "y": 0
+          },
+          {
+            "x": 24400,
+            "y": 0
+          }
+        ],
+        "bottom": 18000
+      },
+      {
+        "id": "a3-korean-town-21-L2-ground",
+        "groupId": "a3-korean-town-21-L2",
+        "kind": "rear-ground",
+        "points": [
+          {
+            "x": -18000,
+            "y": 0
+          },
+          {
+            "x": 24400,
+            "y": 0
+          }
+        ],
+        "bottom": 18000
+      }
+    ],
+    "placements": [
+      {
+        "id": "a3-korean-town-21-L3-bank-0",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -18000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-1",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -15000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-2",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -12000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-3",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -9000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-4",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -6000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-5",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -3000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-6",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-7",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 3000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-8",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 6000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-9",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 9000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-10",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 12000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-11",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 15000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-12",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 18000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-13",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 21000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-bank-14",
+        "assetId": "a3-korean-town-21-L3-bank",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 24000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-0",
+        "assetId": "a3-korean-town-21-L3-house-0",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -2143,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-wall-0",
+        "assetId": "a3-korean-town-21-L3-wall-0",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -2207,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-1",
+        "assetId": "a3-korean-town-21-L3-house-1",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -1385,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-2",
+        "assetId": "a3-korean-town-21-L3-house-2",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -627,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-wall-2",
+        "assetId": "a3-korean-town-21-L3-wall-2",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -691,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-3",
+        "assetId": "a3-korean-town-21-L3-house-3",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -58,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-wall-3",
+        "assetId": "a3-korean-town-21-L3-wall-3",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": -122,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-4",
+        "assetId": "a3-korean-town-21-L3-house-4",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 700,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-5",
+        "assetId": "a3-korean-town-21-L3-house-5",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 1458,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-wall-5",
+        "assetId": "a3-korean-town-21-L3-wall-5",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 1394,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-6",
+        "assetId": "a3-korean-town-21-L3-house-6",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 2027,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-wall-6",
+        "assetId": "a3-korean-town-21-L3-wall-6",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 1963,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-7",
+        "assetId": "a3-korean-town-21-L3-house-7",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 2785,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-8",
+        "assetId": "a3-korean-town-21-L3-house-8",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 3543,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-wall-8",
+        "assetId": "a3-korean-town-21-L3-wall-8",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 3479,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-9",
+        "assetId": "a3-korean-town-21-L3-house-9",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 4112,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-wall-9",
+        "assetId": "a3-korean-town-21-L3-wall-9",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 4048,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-10",
+        "assetId": "a3-korean-town-21-L3-house-10",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 4870,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-11",
+        "assetId": "a3-korean-town-21-L3-house-11",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 5628,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-wall-11",
+        "assetId": "a3-korean-town-21-L3-wall-11",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 5564,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-12",
+        "assetId": "a3-korean-town-21-L3-house-12",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 6197,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-wall-12",
+        "assetId": "a3-korean-town-21-L3-wall-12",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 6133,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-13",
+        "assetId": "a3-korean-town-21-L3-house-13",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 6955,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-14",
+        "assetId": "a3-korean-town-21-L3-house-14",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 7713,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-wall-14",
+        "assetId": "a3-korean-town-21-L3-wall-14",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 7649,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-house-15",
+        "assetId": "a3-korean-town-21-L3-house-15",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 8282,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L3-wall-15",
+        "assetId": "a3-korean-town-21-L3-wall-15",
+        "depthLayer": "L3",
+        "groupId": "a3-korean-town-21-L3",
+        "supportId": "a3-korean-town-21-L3-ground",
+        "x": 8218,
+        "y": 0,
+        "scale": 0.84,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-0",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": -18000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-1",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": -15000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-2",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": -12000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-3",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": -9000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-4",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": -6000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-5",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": -3000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-6",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 0,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-7",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 3000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-8",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 6000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-9",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 9000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-10",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 12000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-11",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 15000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-12",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 18000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-13",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 21000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-bank-14",
+        "assetId": "a3-korean-town-21-L2-bank",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 24000,
+        "y": 0,
+        "scale": 1,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-0",
+        "assetId": "a3-korean-town-21-L2-house-0",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": -1843,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-wall-0",
+        "assetId": "a3-korean-town-21-L2-wall-0",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": -1907,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-1",
+        "assetId": "a3-korean-town-21-L2-house-1",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": -915,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-2",
+        "assetId": "a3-korean-town-21-L2-house-2",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 13,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-wall-2",
+        "assetId": "a3-korean-town-21-L2-wall-2",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": -51,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-3",
+        "assetId": "a3-korean-town-21-L2-house-3",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 752,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-wall-3",
+        "assetId": "a3-korean-town-21-L2-wall-3",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 688,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-4",
+        "assetId": "a3-korean-town-21-L2-house-4",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 1680,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-5",
+        "assetId": "a3-korean-town-21-L2-house-5",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 2608,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-wall-5",
+        "assetId": "a3-korean-town-21-L2-wall-5",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 2544,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-6",
+        "assetId": "a3-korean-town-21-L2-house-6",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 3347,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-wall-6",
+        "assetId": "a3-korean-town-21-L2-wall-6",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 3283,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-7",
+        "assetId": "a3-korean-town-21-L2-house-7",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 4275,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-8",
+        "assetId": "a3-korean-town-21-L2-house-8",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 5203,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-wall-8",
+        "assetId": "a3-korean-town-21-L2-wall-8",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 5139,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-9",
+        "assetId": "a3-korean-town-21-L2-house-9",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 5942,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-wall-9",
+        "assetId": "a3-korean-town-21-L2-wall-9",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 5878,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-10",
+        "assetId": "a3-korean-town-21-L2-house-10",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 6870,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-11",
+        "assetId": "a3-korean-town-21-L2-house-11",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 7798,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-wall-11",
+        "assetId": "a3-korean-town-21-L2-wall-11",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 7734,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-house-12",
+        "assetId": "a3-korean-town-21-L2-house-12",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 8537,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      },
+      {
+        "id": "a3-korean-town-21-L2-wall-12",
+        "assetId": "a3-korean-town-21-L2-wall-12",
+        "depthLayer": "L2",
+        "groupId": "a3-korean-town-21-L2",
+        "supportId": "a3-korean-town-21-L2-ground",
+        "x": 8473,
+        "y": 0,
+        "scale": 0.94,
+        "rotation": 0
+      }
+    ]
+  },
+  "design": {
+    "act3": {
+      "version": 1,
+      "kind": "gate-market",
+      "mainBuildings": [
+        "entry-shop",
+        "cloth-yard",
+        "west-gate-wing",
+        "gate-tower",
+        "east-gate-wing",
+        "tea-market",
+        "east-stables",
+        "office-porch",
+        "east-watch"
+      ],
+      "bridges": [
+        "gate-wall-walk"
+      ],
+      "requiredRoute": [
+        {
+          "x": 240,
+          "y": 2640,
+          "support": "a3-foundation"
+        },
+        {
+          "x": 790,
+          "y": 2640,
+          "support": "a3-foundation"
+        },
+        {
+          "x": 1400,
+          "y": 2640,
+          "support": "a3-foundation"
+        },
+        {
+          "x": 1580,
+          "y": 2608.5,
+          "support": "a3-foundation"
+        },
+        {
+          "x": 2200,
+          "y": 2500,
+          "support": "a3-foundation"
+        },
+        {
+          "x": 2600,
+          "y": 2500,
+          "support": "a3-foundation"
+        },
+        {
+          "x": 3600,
+          "y": 2500,
+          "support": "a3-foundation"
+        },
+        {
+          "x": 4400,
+          "y": 2500,
+          "support": "a3-foundation"
+        },
+        {
+          "x": 5200,
+          "y": 2500,
+          "support": "a3-foundation"
+        },
+        {
+          "x": 6140,
+          "y": 2500,
+          "support": "a3-foundation"
+        }
+      ],
+      "optionalRoutes": [
+        {
+          "id": "gate-battlement",
+          "points": [
+            {
+              "x": 1660,
+              "y": 2594.5,
+              "jumpTo": {
+                "x": 1760
+              },
+              "support": "a3-foundation"
+            },
+            {
+              "x": 1780,
+              "y": 2409.230769230769,
+              "support": "wall-stair:collision:0"
+            },
+            {
+              "x": 2100,
+              "y": 2212.3076923076924,
+              "support": "wall-stair:collision:0"
+            },
+            {
+              "x": 2520,
+              "y": 1960,
+              "support": "gate-wall-walk:collision:0"
+            },
+            {
+              "x": 3480,
+              "y": 1960,
+              "support": "gate-wall-walk:collision:0"
+            }
+          ]
+        }
+      ],
+      "shotSamples": [
+        {
+          "id": "market-open",
+          "from": [
+            3700,
+            2500
+          ],
+          "to": [
+            3950,
+            2500
+          ]
+        },
+        {
+          "id": "gate-eave-block",
+          "from": [
+            2710,
+            2500
+          ],
+          "angle": 85,
+          "power": 0.8
+        }
+      ],
+      "scope": "Canonical geometry; normal combat and mission completion require separate runtime verification.",
+      "koreanTown": {
+        "revision": 1,
+        "scope": "Gate masonry, low everyday street and courtyard hierarchy",
+        "roofChanges": [
+          "entry-shop",
+          "cloth-yard",
+          "west-gate-wing",
+          "east-gate-wing",
+          "tea-market",
+          "east-stables",
+          "office-porch",
+          "east-watch",
+          "gate-tower",
+          "market-roof-stair"
+        ],
+        "rearOnly": [
+          "west-gate-wing",
+          "east-gate-wing"
+        ]
+      },
+      "encounterPlan": {
+        "version": 1,
+        "groups": [
+          {
+            "id": "wagon-cordon",
+            "purpose": "수레 동쪽 들림을 먼저 밀어 주민에게 접근한다. 서쪽 구조 진입면은 비운다.",
+            "anchor": "gate-resident"
+          },
+          {
+            "id": "gate-watch",
+            "purpose": "성문 하부 문지기와 계단으로 접근 가능한 성벽 사격조를 분리한다.",
+            "anchor": "refuge-hold"
+          },
+          {
+            "id": "market-pack",
+            "purpose": "성문 뒤 빈 구간을 건넌 뒤 찻집 앞 군집과 교전한다.",
+            "anchor": "tea-market"
+          },
+          {
+            "id": "stable-tools",
+            "purpose": "마구간 출입구의 들린 도구와 측면 짐승을 함께 상대한다.",
+            "anchor": "east-stables"
+          },
+          {
+            "id": "office-rearguard",
+            "purpose": "관아 진입부 문지기 뒤에 사격 지원을 놓고 마지막 이동 구간은 비운다.",
+            "anchor": "office-porch"
+          }
+        ],
+        "initial": 18,
+        "elites": 4,
+        "activeLimit": 3,
+        "scope": "Four-person baseline. Re-author these spaces if approved team split or terrain changes. Existing objectives, wave counts and live saves remain unchanged."
+      },
+      "responses": {
+        "version": 1,
+        "count": 2,
+        "enemies": 5,
+        "scope": "Finite objective-linked entries. Warning when queued; one group per safe actor boundary; population and XP caps retained."
+      },
+      "refinement": {
+        "version": 1,
+        "panorama": "act3-far.svg",
+        "vignettes": 3,
+        "groundedTrees": 3,
+        "baseFloor": [
+          [
+            0,
+            2640
+          ],
+          [
+            1400,
+            2640
+          ],
+          [
+            2200,
+            2500
+          ],
+          [
+            6400,
+            2500
+          ]
+        ],
+        "shoulders": 0,
+        "scope": "Editable grounded SVG art; small sampled real terrain shoulders with work/bridge levels preserved."
+      }
+    },
+    "cityTactical": {
+      "revision": 1,
+      "scope": "Optional basic movement circuits; original objectives, gates, split teams, resources, counts and dimensions retained. Route metadata is not traversal proof.",
+      "surfaces": [
+        [
+          "wall-west-toe",
+          [
+            [
+              1500,
+              2622.5
+            ],
+            [
+              1730,
+              2440
+            ]
+          ],
+          true,
+          "stone"
+        ],
+        [
+          "wall-east-return",
+          [
+            [
+              3540,
+              1960
+            ],
+            [
+              3720,
+              2110
+            ],
+            [
+              3820,
+              2110
+            ],
+            [
+              3990,
+              2280
+            ],
+            [
+              4080,
+              2280
+            ]
+          ],
+          false,
+          "stone",
+          55
+        ],
+        [
+          "wall-east-toe",
+          [
+            [
+              4080,
+              2280
+            ],
+            [
+              4290,
+              2500
+            ]
+          ],
+          true,
+          "wood"
+        ],
+        [
+          "wall-buttress-plinth",
+          [
+            [
+              3650,
+              2500
+            ],
+            [
+              3760,
+              2380
+            ],
+            [
+              3820,
+              2380
+            ],
+            [
+              3920,
+              2500
+            ]
+          ],
+          false,
+          "stone",
+          300
+        ],
+        [
+          "market-west-rise",
+          [
+            [
+              4090,
+              2500
+            ],
+            [
+              4310,
+              2270
+            ]
+          ],
+          true,
+          "wood"
+        ],
+        [
+          "market-side-gallery",
+          [
+            [
+              4310,
+              2270
+            ],
+            [
+              4620,
+              2260
+            ],
+            [
+              4840,
+              2280
+            ]
+          ],
+          false,
+          "stone"
+        ],
+        [
+          "market-east-return",
+          [
+            [
+              4840,
+              2280
+            ],
+            [
+              5150,
+              2500
+            ]
+          ],
+          true,
+          "wood"
+        ]
+      ],
+      "roles": [
+        "west battlement rescue approach",
+        "east battlement return to defence",
+        "market high gallery / sheltered low street"
+      ],
+      "verification": "pending actual four-body round trips, objective-state and normal-resource checks"
+    },
+    "tacticalCityResponses": {
+      "revision": 1,
+      "scope": "Existing finite responses, stable contribution IDs and counts. Real player action after warning; exact supported atomic entries or same-side alternatives/wait. No action-cap reservation."
+    }
+  },
+  "routes": [
+    {
+      "x": 240,
+      "y": 2640
+    },
+    {
+      "x": 790,
+      "y": 2640
+    },
+    {
+      "x": 1400,
+      "y": 2640
+    },
+    {
+      "x": 1580,
+      "y": 2608.5
+    },
+    {
+      "x": 2200,
+      "y": 2500
+    },
+    {
+      "x": 2600,
+      "y": 2500
+    },
+    {
+      "x": 3600,
+      "y": 2500
+    },
+    {
+      "x": 4400,
+      "y": 2500
+    },
+    {
+      "x": 5200,
+      "y": 2500
+    },
+    {
+      "x": 6140,
+      "y": 2500
+    }
+  ],
+  "anchors": {
+    "spawn": {
+      "x": 240,
+      "y": 2640
+    },
+    "start": {
+      "x": 240,
+      "y": 2640
+    },
+    "exit": {
+      "x": 6140,
+      "y": 2500
+    }
+  },
+  "playBounds": {
+    "left": 0,
+    "top": 0,
+    "right": 6400,
+    "bottom": 3200
+  },
+  "terrainBounds": {
+    "left": -6000,
+    "top": -24000,
+    "right": 12400,
+    "bottom": 27200
+  },
+  "terrainDomainVersion": 1
+}

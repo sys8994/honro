@@ -1,0 +1,34 @@
+{
+  "sourceCommit": "2314ee6a2ad53606c2e150b2c8c087f54de1af32",
+  "masterObserved": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+  "masterMerged": false,
+  "pagesDeployed": false,
+  "previousPagesRun": {
+    "id": 38713643508,
+    "headSha": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+    "status": "completed",
+    "conclusion": "success",
+    "evidenceRecordedAt": "2026-10-15",
+    "freshRead": "403; no alternate retry"
+  },
+  "files": {
+    "HONRO.html": {
+      "bytes": 14512348,
+      "sha256": "8dfa33c75cd843286e98ea075d65ca79ea7c570f464730b556a2744bff9e722a"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 14623122,
+      "sha256": "caf7e8d66f91139a43cd24c548180785612b28da3da414112b03dd7aec076265"
+    },
+    "tools/character-catalog.html": {
+      "bytes": 11864191,
+      "sha256": "aeac3443d8917c6e8ea71dfcc49b7bedc4717a8fd25298a3852f6842c02faa2b"
+    }
+  },
+  "userSaveChanged": false,
+  "blockingReview": [
+    "stage24 final response tactical effect unverified",
+    "stage22 ledger/lantern explicit player-response evidence incomplete",
+    "parent master integration coordination pending"
+  ]
+}

@@ -1,0 +1,1206 @@
+{
+  "passed": true,
+  "scope": "Four bodies; original jump/move/wait/drop inputs, jump through actual roof underside then land on roof, both side entries/returns, drop to intermediate eave then ground; finite resources, no post-start pose writes. Enemy-free geometry isolation, not combat.",
+  "rows": [
+    {
+      "cls": "archer",
+      "results": [
+        {
+          "passed": true,
+          "failed": null,
+          "damage": 0,
+          "netHpChange": 0,
+          "recoveries": 0,
+          "contacts": [],
+          "ticks": 772,
+          "waits": 0,
+          "jumps": 4,
+          "walkCost": 910,
+          "jumpCost": 300,
+          "movementCost": 1210,
+          "turnEquivalent": 0.7219570405727923,
+          "maxMove": 1676,
+          "rows": [
+            {
+              "goal": {
+                "x": 1690,
+                "y": 2474.5454545454545,
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2350,
+                  "support": "family24-hall-west-step"
+                }
+              },
+              "x": 1740,
+              "y": 2350,
+              "support": "family24-hall-west-step",
+              "round": 1,
+              "moveLeft": 1551
+            },
+            {
+              "goal": {
+                "x": 1740,
+                "y": 2350,
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1740,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 1476
+            },
+            {
+              "goal": {
+                "x": 1740,
+                "y": 2215.5953288295623,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 1840,
+                  "y": 2104,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1840,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 1301
+            },
+            {
+              "goal": {
+                "x": 2500,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0"
+              },
+              "x": 2500,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 641
+            },
+            {
+              "goal": {
+                "x": 2500,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 2600,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2600,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 466
+            }
+          ],
+          "commands": [
+            {
+              "op": "jump",
+              "x": 1690,
+              "y": 2474.5454545454545,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 1740,
+              "y": 2350,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 1740,
+              "y": 2215.595328829562,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2500,
+              "y": 2104,
+              "round": 1
+            }
+          ]
+        },
+        {
+          "drop": "family24-hall-east-step",
+          "x": 2600,
+          "y": 2325,
+          "resourceStable": true
+        },
+        {
+          "drop": "a3-foundation",
+          "x": 2600,
+          "y": 2460,
+          "resourceStable": true
+        },
+        {
+          "passed": true,
+          "failed": null,
+          "damage": 0,
+          "netHpChange": 0,
+          "recoveries": 0,
+          "contacts": [],
+          "ticks": 921,
+          "waits": 1,
+          "jumps": 4,
+          "walkCost": 1062.1743893029334,
+          "jumpCost": 300,
+          "movementCost": 1362.1743893029334,
+          "turnEquivalent": 0.8127532155745426,
+          "maxMove": 1676,
+          "rows": [
+            {
+              "goal": {
+                "x": 2700,
+                "y": 2474.5714285714284,
+                "jumpTo": {
+                  "x": 2670,
+                  "y": 2325,
+                  "support": "family24-hall-east-step"
+                }
+              },
+              "x": 2670.246720087649,
+              "y": 2325,
+              "support": "family24-hall-east-step",
+              "round": 1,
+              "moveLeft": 259.0723307847156
+            },
+            {
+              "goal": {
+                "x": 2670,
+                "y": 2325,
+                "jumpTo": {
+                  "x": 2600,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2600,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 113.82561069706657
+            },
+            {
+              "goal": {
+                "x": 2600,
+                "y": 2215.5953288295623,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 2500,
+                  "y": 2104,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2500,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 1501
+            },
+            {
+              "goal": {
+                "x": 1840,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0"
+              },
+              "x": 1840,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 841
+            },
+            {
+              "goal": {
+                "x": 1840,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1740,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 666
+            }
+          ],
+          "commands": [
+            {
+              "op": "jump",
+              "x": 2699.442553420984,
+              "y": 2474.300668804478,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2670.246720087649,
+              "y": 2325,
+              "round": 1
+            },
+            {
+              "op": "wait",
+              "x": 2600,
+              "y": 2215.595328829562,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2600,
+              "y": 2215.5953288295623,
+              "round": 2
+            },
+            {
+              "op": "jump",
+              "x": 1840,
+              "y": 2104,
+              "round": 2
+            }
+          ]
+        },
+        {
+          "drop": "family24-hall-west-step",
+          "x": 1740,
+          "y": 2350,
+          "resourceStable": true
+        },
+        {
+          "drop": "a3-foundation",
+          "x": 1740,
+          "y": 2460,
+          "resourceStable": true
+        }
+      ],
+      "allFiveRoofsOneWay": true
+    },
+    {
+      "cls": "mage",
+      "results": [
+        {
+          "passed": true,
+          "failed": null,
+          "damage": 0,
+          "netHpChange": 0,
+          "recoveries": 0,
+          "contacts": [],
+          "ticks": 785,
+          "waits": 0,
+          "jumps": 4,
+          "walkCost": 910,
+          "jumpCost": 300,
+          "movementCost": 1210,
+          "turnEquivalent": 0.7134433962264151,
+          "maxMove": 1696,
+          "rows": [
+            {
+              "goal": {
+                "x": 1690,
+                "y": 2474.5454545454545,
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2350,
+                  "support": "family24-hall-west-step"
+                }
+              },
+              "x": 1740,
+              "y": 2350,
+              "support": "family24-hall-west-step",
+              "round": 1,
+              "moveLeft": 1571
+            },
+            {
+              "goal": {
+                "x": 1740,
+                "y": 2350,
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1740,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 1496
+            },
+            {
+              "goal": {
+                "x": 1740,
+                "y": 2215.5953288295623,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 1840,
+                  "y": 2104,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1840,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 1321
+            },
+            {
+              "goal": {
+                "x": 2500,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0"
+              },
+              "x": 2500,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 661
+            },
+            {
+              "goal": {
+                "x": 2500,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 2600,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2600,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 486
+            }
+          ],
+          "commands": [
+            {
+              "op": "jump",
+              "x": 1690,
+              "y": 2474.5454545454545,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 1740,
+              "y": 2350,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 1740,
+              "y": 2215.595328829562,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2500,
+              "y": 2104,
+              "round": 1
+            }
+          ]
+        },
+        {
+          "drop": "family24-hall-east-step",
+          "x": 2600,
+          "y": 2325,
+          "resourceStable": true
+        },
+        {
+          "drop": "a3-foundation",
+          "x": 2600,
+          "y": 2460,
+          "resourceStable": true
+        },
+        {
+          "passed": true,
+          "failed": null,
+          "damage": 0,
+          "netHpChange": 0,
+          "recoveries": 0,
+          "contacts": [],
+          "ticks": 936,
+          "waits": 1,
+          "jumps": 4,
+          "walkCost": 1062.3699542218208,
+          "jumpCost": 300,
+          "movementCost": 1362.3699542218208,
+          "turnEquivalent": 0.8032841711213565,
+          "maxMove": 1696,
+          "rows": [
+            {
+              "goal": {
+                "x": 2700,
+                "y": 2474.5714285714284,
+                "jumpTo": {
+                  "x": 2670,
+                  "y": 2325,
+                  "support": "family24-hall-east-step"
+                }
+              },
+              "x": 2670.122662783713,
+              "y": 2325,
+              "support": "family24-hall-east-step",
+              "round": 1,
+              "moveLeft": 278.75270856189235
+            },
+            {
+              "goal": {
+                "x": 2670,
+                "y": 2325,
+                "jumpTo": {
+                  "x": 2600,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2600,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 133.63004577817918
+            },
+            {
+              "goal": {
+                "x": 2600,
+                "y": 2215.5953288295623,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 2500,
+                  "y": 2104,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2500,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 1521
+            },
+            {
+              "goal": {
+                "x": 1840,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0"
+              },
+              "x": 1840,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 861
+            },
+            {
+              "goal": {
+                "x": 1840,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1740,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 686
+            }
+          ],
+          "commands": [
+            {
+              "op": "jump",
+              "x": 2699.5351627837163,
+              "y": 2474.3456504949477,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2670.122662783713,
+              "y": 2325,
+              "round": 1
+            },
+            {
+              "op": "wait",
+              "x": 2600,
+              "y": 2215.595328829562,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2600,
+              "y": 2215.5953288295623,
+              "round": 2
+            },
+            {
+              "op": "jump",
+              "x": 1840,
+              "y": 2104,
+              "round": 2
+            }
+          ]
+        },
+        {
+          "drop": "family24-hall-west-step",
+          "x": 1740,
+          "y": 2350,
+          "resourceStable": true
+        },
+        {
+          "drop": "a3-foundation",
+          "x": 1740,
+          "y": 2460,
+          "resourceStable": true
+        }
+      ],
+      "allFiveRoofsOneWay": true
+    },
+    {
+      "cls": "knight",
+      "results": [
+        {
+          "passed": true,
+          "failed": null,
+          "damage": 0,
+          "netHpChange": 0,
+          "recoveries": 0,
+          "contacts": [],
+          "ticks": 775,
+          "waits": 0,
+          "jumps": 4,
+          "walkCost": 910,
+          "jumpCost": 300,
+          "movementCost": 1210,
+          "turnEquivalent": 0.6774916013437849,
+          "maxMove": 1786,
+          "rows": [
+            {
+              "goal": {
+                "x": 1690,
+                "y": 2474.5454545454545,
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2350,
+                  "support": "family24-hall-west-step"
+                }
+              },
+              "x": 1740,
+              "y": 2350,
+              "support": "family24-hall-west-step",
+              "round": 1,
+              "moveLeft": 1661
+            },
+            {
+              "goal": {
+                "x": 1740,
+                "y": 2350,
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1740,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 1586
+            },
+            {
+              "goal": {
+                "x": 1740,
+                "y": 2215.5953288295623,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 1840,
+                  "y": 2104,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1840,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 1411
+            },
+            {
+              "goal": {
+                "x": 2500,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0"
+              },
+              "x": 2500,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 751
+            },
+            {
+              "goal": {
+                "x": 2500,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 2600,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2600,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 576
+            }
+          ],
+          "commands": [
+            {
+              "op": "jump",
+              "x": 1690,
+              "y": 2474.5454545454545,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 1740,
+              "y": 2350,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 1740,
+              "y": 2215.595328829562,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2500,
+              "y": 2104,
+              "round": 1
+            }
+          ]
+        },
+        {
+          "drop": "family24-hall-east-step",
+          "x": 2600,
+          "y": 2325,
+          "resourceStable": true
+        },
+        {
+          "drop": "a3-foundation",
+          "x": 2600,
+          "y": 2460,
+          "resourceStable": true
+        },
+        {
+          "passed": true,
+          "failed": null,
+          "damage": 0,
+          "netHpChange": 0,
+          "recoveries": 0,
+          "contacts": [],
+          "ticks": 925,
+          "waits": 1,
+          "jumps": 4,
+          "walkCost": 1063.0267324004817,
+          "jumpCost": 300,
+          "movementCost": 1363.0267324004817,
+          "turnEquivalent": 0.7631728624862719,
+          "maxMove": 1786,
+          "rows": [
+            {
+              "goal": {
+                "x": 2700,
+                "y": 2474.5714285714284,
+                "jumpTo": {
+                  "x": 2670,
+                  "y": 2325,
+                  "support": "family24-hall-east-step"
+                }
+              },
+              "x": 2670,
+              "y": 2325,
+              "support": "family24-hall-east-step",
+              "round": 1,
+              "moveLeft": 367.9732675995183
+            },
+            {
+              "goal": {
+                "x": 2670,
+                "y": 2325,
+                "jumpTo": {
+                  "x": 2600,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2600.0166666666646,
+              "y": 2215.602637961907,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 222.9899342661829
+            },
+            {
+              "goal": {
+                "x": 2600,
+                "y": 2215.5953288295623,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 2500,
+                  "y": 2104,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2500,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 1610.9833333333354
+            },
+            {
+              "goal": {
+                "x": 1840,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0"
+              },
+              "x": 1840,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 950.9833333333354
+            },
+            {
+              "goal": {
+                "x": 1840,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1740,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 775.9833333333354
+            }
+          ],
+          "commands": [
+            {
+              "op": "jump",
+              "x": 2699.846178731404,
+              "y": 2474.4967153838247,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2670,
+              "y": 2325,
+              "round": 1
+            },
+            {
+              "op": "wait",
+              "x": 2600.0166666666646,
+              "y": 2215.602637961907,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2600.0166666666646,
+              "y": 2215.602637961907,
+              "round": 2
+            },
+            {
+              "op": "jump",
+              "x": 1840,
+              "y": 2104,
+              "round": 2
+            }
+          ]
+        },
+        {
+          "drop": "family24-hall-west-step",
+          "x": 1740,
+          "y": 2350,
+          "resourceStable": true
+        },
+        {
+          "drop": "a3-foundation",
+          "x": 1740,
+          "y": 2460,
+          "resourceStable": true
+        }
+      ],
+      "allFiveRoofsOneWay": true
+    },
+    {
+      "cls": "occultist",
+      "results": [
+        {
+          "passed": true,
+          "failed": null,
+          "damage": 0,
+          "netHpChange": 0,
+          "recoveries": 0,
+          "contacts": [],
+          "ticks": 777,
+          "waits": 0,
+          "jumps": 4,
+          "walkCost": 909.7966666666762,
+          "jumpCost": 300,
+          "movementCost": 1209.7966666666762,
+          "turnEquivalent": 0.700925067593671,
+          "maxMove": 1726,
+          "rows": [
+            {
+              "goal": {
+                "x": 1690,
+                "y": 2474.5454545454545,
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2350,
+                  "support": "family24-hall-west-step"
+                }
+              },
+              "x": 1740,
+              "y": 2350,
+              "support": "family24-hall-west-step",
+              "round": 1,
+              "moveLeft": 1601
+            },
+            {
+              "goal": {
+                "x": 1740,
+                "y": 2350,
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1740,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 1526
+            },
+            {
+              "goal": {
+                "x": 1740,
+                "y": 2215.5953288295623,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 1840,
+                  "y": 2104,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1839.796666666665,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 1351.203333333335
+            },
+            {
+              "goal": {
+                "x": 2500,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0"
+              },
+              "x": 2500,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 691
+            },
+            {
+              "goal": {
+                "x": 2500,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 2600,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2599.796666666676,
+              "y": 2215.506157414948,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 516.2033333333238
+            }
+          ],
+          "commands": [
+            {
+              "op": "jump",
+              "x": 1690,
+              "y": 2474.5454545454545,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 1740,
+              "y": 2350,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 1740,
+              "y": 2215.595328829562,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2500,
+              "y": 2104,
+              "round": 1
+            }
+          ]
+        },
+        {
+          "drop": "family24-hall-east-step",
+          "x": 2599.796666666676,
+          "y": 2325,
+          "resourceStable": true
+        },
+        {
+          "drop": "a3-foundation",
+          "x": 2599.796666666676,
+          "y": 2460,
+          "resourceStable": true
+        },
+        {
+          "passed": true,
+          "failed": null,
+          "damage": 0,
+          "netHpChange": 0,
+          "recoveries": 0,
+          "contacts": [],
+          "ticks": 927,
+          "waits": 1,
+          "jumps": 4,
+          "walkCost": 1062.763622697375,
+          "jumpCost": 300,
+          "movementCost": 1362.763622697375,
+          "turnEquivalent": 0.789550186962558,
+          "maxMove": 1726,
+          "rows": [
+            {
+              "goal": {
+                "x": 2700,
+                "y": 2474.5714285714284,
+                "jumpTo": {
+                  "x": 2670,
+                  "y": 2325,
+                  "support": "family24-hall-east-step"
+                }
+              },
+              "x": 2670,
+              "y": 2325,
+              "support": "family24-hall-east-step",
+              "round": 1,
+              "moveLeft": 308.2363773026139
+            },
+            {
+              "goal": {
+                "x": 2670,
+                "y": 2325,
+                "jumpTo": {
+                  "x": 2600,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2600,
+              "y": 2215.595328829562,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 1,
+              "moveLeft": 163.2363773026139
+            },
+            {
+              "goal": {
+                "x": 2600,
+                "y": 2215.5953288295623,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 2500,
+                  "y": 2104,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 2500.203333333324,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 1551.2033333333238
+            },
+            {
+              "goal": {
+                "x": 1840,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0"
+              },
+              "x": 1840,
+              "y": 2104,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 891
+            },
+            {
+              "goal": {
+                "x": 1840,
+                "y": 2104,
+                "support": "ancestral-family-hall:collision:0",
+                "jumpTo": {
+                  "x": 1740,
+                  "y": 2215.5953288295623,
+                  "support": "ancestral-family-hall:collision:0"
+                }
+              },
+              "x": 1740.203333333335,
+              "y": 2215.506157414943,
+              "support": "ancestral-family-hall:collision:0",
+              "round": 2,
+              "moveLeft": 716.203333333335
+            }
+          ],
+          "commands": [
+            {
+              "op": "jump",
+              "x": 2699.721583675854,
+              "y": 2474.436197785415,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2670,
+              "y": 2325,
+              "round": 1
+            },
+            {
+              "op": "wait",
+              "x": 2600,
+              "y": 2215.595328829562,
+              "round": 1
+            },
+            {
+              "op": "jump",
+              "x": 2600,
+              "y": 2215.5953288295623,
+              "round": 2
+            },
+            {
+              "op": "jump",
+              "x": 1840,
+              "y": 2104,
+              "round": 2
+            }
+          ]
+        },
+        {
+          "drop": "family24-hall-west-step",
+          "x": 1740.203333333335,
+          "y": 2350,
+          "resourceStable": true
+        },
+        {
+          "drop": "a3-foundation",
+          "x": 1740.203333333335,
+          "y": 2460,
+          "resourceStable": true
+        }
+      ],
+      "allFiveRoofsOneWay": true
+    },
+    {
+      "cls": "archer",
+      "roof": "outer-servant-wing",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "archer",
+      "roof": "garden-study",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "archer",
+      "roof": "family-ancestral-shrine",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "archer",
+      "roof": "ground-record-entry",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "mage",
+      "roof": "outer-servant-wing",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "mage",
+      "roof": "garden-study",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "mage",
+      "roof": "family-ancestral-shrine",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "mage",
+      "roof": "ground-record-entry",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "knight",
+      "roof": "outer-servant-wing",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "knight",
+      "roof": "garden-study",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "knight",
+      "roof": "family-ancestral-shrine",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "knight",
+      "roof": "ground-record-entry",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "occultist",
+      "roof": "outer-servant-wing",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "occultist",
+      "roof": "garden-study",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "occultist",
+      "roof": "family-ancestral-shrine",
+      "jumpThroughAndDrop": true
+    },
+    {
+      "cls": "occultist",
+      "roof": "ground-record-entry",
+      "jumpThroughAndDrop": true
+    }
+  ]
+}

@@ -1,0 +1,1407 @@
+{
+  "scope": "Native isolated traversal, enemies and other actors removed; finite move/wait; controlled pose goal/cargo fixtures, not normal combat.",
+  "routes": [
+    {
+      "cls": "knight",
+      "direction": "west-upper",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 856,
+      "waits": 1,
+      "jumps": 1,
+      "walkCost": 1896.7089506792818,
+      "jumpCost": 75,
+      "movementCost": 1971.7089506792818,
+      "turnEquivalent": 1.0821673713936784,
+      "maxMove": 1822,
+      "rows": [
+        {
+          "goal": {
+            "x": 1970,
+            "y": 2532,
+            "jumpTo": {
+              "x": 2110,
+              "y": 2383.7837837837837,
+              "support": "west-work-ramp:collision:0",
+              "speed": 0.65
+            }
+          },
+          "x": 2109.722916666666,
+          "y": 2383.858671171171,
+          "support": "west-work-ramp:collision:0",
+          "round": 1,
+          "moveLeft": 1607.2770833333338
+        },
+        {
+          "goal": {
+            "x": 2420,
+            "y": 2300
+          },
+          "x": 2419.4436719299088,
+          "y": 2300.1503589378626,
+          "support": "west-work-ramp:collision:0",
+          "round": 1,
+          "moveLeft": 1286.443749999996
+        },
+        {
+          "goal": {
+            "x": 3000,
+            "y": 2300
+          },
+          "x": 3000,
+          "y": 2300,
+          "support": "work-loft:collision:0",
+          "round": 1,
+          "moveLeft": 705.8674612427167
+        },
+        {
+          "goal": {
+            "x": 3430,
+            "y": 2300
+          },
+          "x": 3429.916666666687,
+          "y": 2300,
+          "support": "work-loft:collision:0",
+          "round": 1,
+          "moveLeft": 275.9507945760297
+        },
+        {
+          "goal": {
+            "x": 3690,
+            "y": 2348.75,
+            "dropTo": {
+              "x": 3850,
+              "y": 2467.5,
+              "stepOffX": 3785,
+              "support": "a3-foundation"
+            }
+          },
+          "x": 3850,
+          "y": 2467.5,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1660.9291356461245
+        }
+      ],
+      "commands": [
+        {
+          "op": "jump",
+          "x": 1970,
+          "y": 2532,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 3689.975145994538,
+          "y": 2348.745339873976,
+          "round": 1
+        }
+      ]
+    },
+    {
+      "cls": "knight",
+      "direction": "east-upper",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 880,
+      "waits": 1,
+      "jumps": 1,
+      "walkCost": 1877.8061926213586,
+      "jumpCost": 75,
+      "movementCost": 1952.8061926213586,
+      "turnEquivalent": 1.0717926413948182,
+      "maxMove": 1822,
+      "rows": [
+        {
+          "goal": {
+            "x": 3850,
+            "y": 2467.5,
+            "jumpTo": {
+              "x": 3690,
+              "y": 2348.75,
+              "support": "east-work-ramp:collision:0",
+              "speed": 0.65
+            }
+          },
+          "x": 3690,
+          "y": 2348.75,
+          "support": "east-work-ramp:collision:0",
+          "round": 1,
+          "moveLeft": 1587
+        },
+        {
+          "goal": {
+            "x": 3430,
+            "y": 2300
+          },
+          "x": 3430.0243678907277,
+          "y": 2300.0045689795115,
+          "support": "east-work-ramp:collision:0",
+          "round": 1,
+          "moveLeft": 1322.493957845967
+        },
+        {
+          "goal": {
+            "x": 3000,
+            "y": 2300
+          },
+          "x": 3000.1081258659046,
+          "y": 2300,
+          "support": "work-loft:collision:0",
+          "round": 1,
+          "moveLeft": 892.5772911792803
+        },
+        {
+          "goal": {
+            "x": 2420,
+            "y": 2300
+          },
+          "x": 2420,
+          "y": 2300,
+          "support": "west-work-ramp:collision:0",
+          "round": 1,
+          "moveLeft": 312.4691653133757
+        },
+        {
+          "goal": {
+            "x": 2110,
+            "y": 2383.7837837837837,
+            "dropTo": {
+              "x": 1990,
+              "y": 2544,
+              "stepOffX": 2015,
+              "support": "a3-foundation"
+            }
+          },
+          "x": 1990,
+          "y": 2544,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1680.307975398605
+        }
+      ],
+      "commands": [
+        {
+          "op": "jump",
+          "x": 3850,
+          "y": 2467.5,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 2128.862490052552,
+          "y": 2378.6858134993104,
+          "round": 1
+        }
+      ]
+    },
+    {
+      "cls": "occultist",
+      "direction": "west-upper",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 861,
+      "waits": 1,
+      "jumps": 1,
+      "walkCost": 1896.6279256506236,
+      "jumpCost": 75,
+      "movementCost": 1971.6279256506236,
+      "turnEquivalent": 1.1189715809594913,
+      "maxMove": 1762,
+      "rows": [
+        {
+          "goal": {
+            "x": 1970,
+            "y": 2532,
+            "jumpTo": {
+              "x": 2110,
+              "y": 2383.7837837837837,
+              "support": "west-work-ramp:collision:0",
+              "speed": 0.65
+            }
+          },
+          "x": 2110,
+          "y": 2383.7837837837837,
+          "support": "west-work-ramp:collision:0",
+          "round": 1,
+          "moveLeft": 1547
+        },
+        {
+          "goal": {
+            "x": 2420,
+            "y": 2300
+          },
+          "x": 2419.5679060593584,
+          "y": 2300.1167821461195,
+          "support": "west-work-ramp:collision:0",
+          "round": 1,
+          "moveLeft": 1226.3249999999816
+        },
+        {
+          "goal": {
+            "x": 3000,
+            "y": 2300
+          },
+          "x": 3000,
+          "y": 2300,
+          "support": "work-loft:collision:0",
+          "round": 1,
+          "moveLeft": 645.8774028114387
+        },
+        {
+          "goal": {
+            "x": 3430,
+            "y": 2300
+          },
+          "x": 3430,
+          "y": 2300,
+          "support": "work-loft:collision:0",
+          "round": 1,
+          "moveLeft": 215.87740281143874
+        },
+        {
+          "goal": {
+            "x": 3690,
+            "y": 2348.75,
+            "dropTo": {
+              "x": 3850,
+              "y": 2467.5,
+              "stepOffX": 3785,
+              "support": "a3-foundation"
+            }
+          },
+          "x": 3849.9289165400664,
+          "y": 2467.55331259495,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1542.924999999988
+        }
+      ],
+      "commands": [
+        {
+          "op": "jump",
+          "x": 1970,
+          "y": 2532,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 3632.8946283850646,
+          "y": 2338.0427428221997,
+          "round": 1
+        }
+      ]
+    },
+    {
+      "cls": "occultist",
+      "direction": "east-upper",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 885,
+      "waits": 1,
+      "jumps": 1,
+      "walkCost": 1877.806192621356,
+      "jumpCost": 75,
+      "movementCost": 1952.806192621356,
+      "turnEquivalent": 1.1082895531335732,
+      "maxMove": 1762,
+      "rows": [
+        {
+          "goal": {
+            "x": 3850,
+            "y": 2467.5,
+            "jumpTo": {
+              "x": 3690,
+              "y": 2348.75,
+              "support": "east-work-ramp:collision:0",
+              "speed": 0.65
+            }
+          },
+          "x": 3690,
+          "y": 2348.75,
+          "support": "east-work-ramp:collision:0",
+          "round": 1,
+          "moveLeft": 1527
+        },
+        {
+          "goal": {
+            "x": 3430,
+            "y": 2300
+          },
+          "x": 3430.9886069381196,
+          "y": 2300.1853638008974,
+          "support": "east-work-ramp:collision:0",
+          "round": 1,
+          "moveLeft": 1263.474999999985
+        },
+        {
+          "goal": {
+            "x": 3000,
+            "y": 2300
+          },
+          "x": 3000,
+          "y": 2300,
+          "support": "work-loft:collision:0",
+          "round": 1,
+          "moveLeft": 832.4691653133782
+        },
+        {
+          "goal": {
+            "x": 2420,
+            "y": 2300
+          },
+          "x": 2420,
+          "y": 2300,
+          "support": "west-work-ramp:collision:0",
+          "round": 1,
+          "moveLeft": 252.4691653133782
+        },
+        {
+          "goal": {
+            "x": 2110,
+            "y": 2383.7837837837837,
+            "dropTo": {
+              "x": 1990,
+              "y": 2544,
+              "stepOffX": 2015,
+              "support": "a3-foundation"
+            }
+          },
+          "x": 1990,
+          "y": 2544,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1560.0246420652795
+        }
+      ],
+      "commands": [
+        {
+          "op": "jump",
+          "x": 3850,
+          "y": 2467.5,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 2187.057813262265,
+          "y": 2362.9573477669555,
+          "round": 1
+        }
+      ]
+    },
+    {
+      "cls": "knight",
+      "direction": "forward",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 2467,
+      "waits": 3,
+      "jumps": 0,
+      "walkCost": 6764.582163105286,
+      "jumpCost": 0,
+      "movementCost": 6764.582163105286,
+      "turnEquivalent": 3.712723470420025,
+      "maxMove": 1822,
+      "rows": [
+        {
+          "goal": {
+            "x": 260,
+            "y": 2300
+          },
+          "x": 260,
+          "y": 2300,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1822
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2392.8571428571427
+          },
+          "x": 779.818396634749,
+          "y": 2392.7922845124103,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1286.108703843552
+        },
+        {
+          "goal": {
+            "x": 1050,
+            "y": 2400
+          },
+          "x": 1050,
+          "y": 2400,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1014.6786250536197
+        },
+        {
+          "goal": {
+            "x": 1440,
+            "y": 2400
+          },
+          "x": 1440,
+          "y": 2400,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 624.6786250536197
+        },
+        {
+          "goal": {
+            "x": 1770,
+            "y": 2412
+          },
+          "x": 1769.6743816176079,
+          "y": 2411.804628970565,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 291.7345504989996
+        },
+        {
+          "goal": {
+            "x": 2020,
+            "y": 2562
+          },
+          "x": 2019.6117343340368,
+          "y": 2561.767040600422,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1812.858797250443
+        },
+        {
+          "goal": {
+            "x": 2250,
+            "y": 2700
+          },
+          "x": 2249.708566574221,
+          "y": 2699.8251399445326,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1544.5220852606753
+        },
+        {
+          "goal": {
+            "x": 2540,
+            "y": 2700
+          },
+          "x": 2540,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1254.182218403422
+        },
+        {
+          "goal": {
+            "x": 3050,
+            "y": 2700
+          },
+          "x": 3050,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 744.182218403422
+        },
+        {
+          "goal": {
+            "x": 3370,
+            "y": 2700
+          },
+          "x": 3370,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 424.182218403422
+        },
+        {
+          "goal": {
+            "x": 3700,
+            "y": 2580
+          },
+          "x": 3699.930567040908,
+          "y": 2580.0252483487607,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 73.11510216820439
+        },
+        {
+          "goal": {
+            "x": 4020,
+            "y": 2340
+          },
+          "x": 4019.729147521585,
+          "y": 2340.2031393588113,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1483.7707376079343
+        },
+        {
+          "goal": {
+            "x": 4500,
+            "y": 2177.1428571428573
+          },
+          "x": 4499.718671758124,
+          "y": 2177.2383077963505,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 976.8540709412101
+        },
+        {
+          "goal": {
+            "x": 4760,
+            "y": 2150
+          },
+          "x": 4760,
+          "y": 2150,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 712.0777943310145
+        },
+        {
+          "goal": {
+            "x": 5260,
+            "y": 2150
+          },
+          "x": 5260,
+          "y": 2150,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 212.0777943310145
+        },
+        {
+          "goal": {
+            "x": 5620,
+            "y": 2410
+          },
+          "x": 5619.419675668325,
+          "y": 2409.580876871568,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1581.51803665846
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2410
+          },
+          "x": 6100,
+          "y": 2410,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1100.8021871444414
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2267.777777777778
+          },
+          "x": 6499.213315868568,
+          "y": 2268.0574876911755,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 677.1054225033598
+        },
+        {
+          "goal": {
+            "x": 6680,
+            "y": 2250
+          },
+          "x": 6680,
+          "y": 2250,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 493.20402969405643
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 2011.7732176437878,
+          "y": 2557.063930586273,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 3749.1457376079325,
+          "y": 2543.1406967940507,
+          "round": 2
+        },
+        {
+          "op": "wait",
+          "x": 5424.465943182521,
+          "y": 2268.7809589651542,
+          "round": 3
+        }
+      ]
+    },
+    {
+      "cls": "knight",
+      "direction": "backward",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 2468,
+      "waits": 3,
+      "jumps": 0,
+      "walkCost": 6764.188487549429,
+      "jumpCost": 0,
+      "movementCost": 6764.188487549429,
+      "turnEquivalent": 3.712507402606712,
+      "maxMove": 1822,
+      "rows": [
+        {
+          "goal": {
+            "x": 6680,
+            "y": 2250
+          },
+          "x": 6680,
+          "y": 2250,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1822
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2267.777777777778
+          },
+          "x": 6500.185105823544,
+          "y": 2267.711962373851,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1639.1299962838652
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2410
+          },
+          "x": 6100.066868264178,
+          "y": 2409.9762246171813,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1214.4728117935451
+        },
+        {
+          "goal": {
+            "x": 5620,
+            "y": 2410
+          },
+          "x": 5620,
+          "y": 2410,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 734.4018425496265
+        },
+        {
+          "goal": {
+            "x": 5260,
+            "y": 2150
+          },
+          "x": 5260.202908631213,
+          "y": 2150.1465451225426,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 290.58007092368683
+        },
+        {
+          "goal": {
+            "x": 4760,
+            "y": 2150
+          },
+          "x": 4760,
+          "y": 2150,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1600.8747054024261
+        },
+        {
+          "goal": {
+            "x": 4500,
+            "y": 2177.1428571428573
+          },
+          "x": 4500.070086363106,
+          "y": 2177.1190778410887,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1336.4695190869372
+        },
+        {
+          "goal": {
+            "x": 4020,
+            "y": 2340
+          },
+          "x": 4020.1627236160684,
+          "y": 2339.944790201691,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 829.692162228371
+        },
+        {
+          "goal": {
+            "x": 3700,
+            "y": 2580
+          },
+          "x": 3700.3741601874435,
+          "y": 2579.719379859417,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 429.98802795782933
+        },
+        {
+          "goal": {
+            "x": 3370,
+            "y": 2700
+          },
+          "x": 3370.1075259231943,
+          "y": 2699.960899664293,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 78.49374482590069
+        },
+        {
+          "goal": {
+            "x": 3050,
+            "y": 2700
+          },
+          "x": 3050,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1569.260585576038
+        },
+        {
+          "goal": {
+            "x": 2540,
+            "y": 2700
+          },
+          "x": 2540,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1059.260585576038
+        },
+        {
+          "goal": {
+            "x": 2250,
+            "y": 2700
+          },
+          "x": 2250,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 769.260585576038
+        },
+        {
+          "goal": {
+            "x": 2020,
+            "y": 2562
+          },
+          "x": 2020.236102821676,
+          "y": 2562.1416616930055,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 501.31213925224245
+        },
+        {
+          "goal": {
+            "x": 1770,
+            "y": 2412
+          },
+          "x": 1770.3755090653024,
+          "y": 2412.2253054391813,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 209.92711873006476
+        },
+        {
+          "goal": {
+            "x": 1440,
+            "y": 2400
+          },
+          "x": 1440.0950559718926,
+          "y": 2400,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1687.2500000000032
+        },
+        {
+          "goal": {
+            "x": 1050,
+            "y": 2400
+          },
+          "x": 1050,
+          "y": 2400,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1297.1549440281105
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2392.8571428571427
+          },
+          "x": 780.0953121390626,
+          "y": 2392.891182906808,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1026.0189113042013
+        },
+        {
+          "goal": {
+            "x": 260,
+            "y": 2300
+          },
+          "x": 260.39367555580117,
+          "y": 2300,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 490.22724463753894
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 4981.125294597574,
+          "y": 2150,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 3302.739414423962,
+          "y": 2700,
+          "round": 2
+        },
+        {
+          "op": "wait",
+          "x": 1574.8450559718895,
+          "y": 2400,
+          "round": 3
+        }
+      ]
+    },
+    {
+      "cls": "occultist",
+      "direction": "forward",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 2490,
+      "waits": 3,
+      "jumps": 0,
+      "walkCost": 6764.582163105256,
+      "jumpCost": 0,
+      "movementCost": 6764.582163105256,
+      "turnEquivalent": 3.8391499223071825,
+      "maxMove": 1762,
+      "rows": [
+        {
+          "goal": {
+            "x": 260,
+            "y": 2300
+          },
+          "x": 260,
+          "y": 2300,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1762
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2392.8571428571427
+          },
+          "x": 779.8539253563437,
+          "y": 2392.8049733415514,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1226.0709772422954
+        },
+        {
+          "goal": {
+            "x": 1050,
+            "y": 2400
+          },
+          "x": 1050,
+          "y": 2400,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 954.6786250536381
+        },
+        {
+          "goal": {
+            "x": 1440,
+            "y": 2400
+          },
+          "x": 1440,
+          "y": 2400,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 564.6786250536381
+        },
+        {
+          "goal": {
+            "x": 1770,
+            "y": 2412
+          },
+          "x": 1769.6416289433284,
+          "y": 2411.7849773659973,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 231.7727463526482
+        },
+        {
+          "goal": {
+            "x": 2020,
+            "y": 2562
+          },
+          "x": 2019.6284516376613,
+          "y": 2561.777070982597,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1692.7177725048255
+        },
+        {
+          "goal": {
+            "x": 2250,
+            "y": 2700
+          },
+          "x": 2249.760846754875,
+          "y": 2699.8565080529247,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1424.3395874300204
+        },
+        {
+          "goal": {
+            "x": 2540,
+            "y": 2700
+          },
+          "x": 2540,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1134.060689216456
+        },
+        {
+          "goal": {
+            "x": 3050,
+            "y": 2700
+          },
+          "x": 3050,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 624.060689216456
+        },
+        {
+          "goal": {
+            "x": 3370,
+            "y": 2700
+          },
+          "x": 3370,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 304.060689216456
+        },
+        {
+          "goal": {
+            "x": 3700,
+            "y": 2580
+          },
+          "x": 3699.904512913544,
+          "y": 2580.0347225768933,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1703.26400903375
+        },
+        {
+          "goal": {
+            "x": 4020,
+            "y": 2340
+          },
+          "x": 4019.569671406623,
+          "y": 2340.322746445033,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1303.700315439806
+        },
+        {
+          "goal": {
+            "x": 4500,
+            "y": 2177.1428571428573
+          },
+          "x": 4499.870051812979,
+          "y": 2177.1869467063107,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 796.4244478112864
+        },
+        {
+          "goal": {
+            "x": 4760,
+            "y": 2150
+          },
+          "x": 4760,
+          "y": 2150,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 531.8080270191814
+        },
+        {
+          "goal": {
+            "x": 5260,
+            "y": 2150
+          },
+          "x": 5260,
+          "y": 2150,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 31.808027019181395
+        },
+        {
+          "goal": {
+            "x": 5620,
+            "y": 2410
+          },
+          "x": 5619.69218410023,
+          "y": 2409.777688516833,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1341.2741039234186
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2410
+          },
+          "x": 6099.0452987705075,
+          "y": 2410,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 861.8491039233913
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2267.777777777778
+          },
+          "x": 6499.832565647408,
+          "y": 2267.8373099920327,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 436.54041015642764
+        },
+        {
+          "goal": {
+            "x": 6680,
+            "y": 2250
+          },
+          "x": 6680,
+          "y": 2250,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 253.29624524351465
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 1960.2194316829434,
+          "y": 2526.1316590097663,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 3644.704814881387,
+          "y": 2600.107340043132,
+          "round": 2
+        },
+        {
+          "op": "wait",
+          "x": 5278.618439301016,
+          "y": 2163.4466506062895,
+          "round": 3
+        }
+      ]
+    },
+    {
+      "cls": "occultist",
+      "direction": "backward",
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 2489,
+      "waits": 3,
+      "jumps": 0,
+      "walkCost": 6764.582163105358,
+      "jumpCost": 0,
+      "movementCost": 6764.582163105358,
+      "turnEquivalent": 3.8391499223072403,
+      "maxMove": 1762,
+      "rows": [
+        {
+          "goal": {
+            "x": 6680,
+            "y": 2250
+          },
+          "x": 6680,
+          "y": 2250,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1762
+        },
+        {
+          "goal": {
+            "x": 6500,
+            "y": 2267.777777777778
+          },
+          "x": 6500.113872087468,
+          "y": 2267.737289924456,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1579.0543938369797
+        },
+        {
+          "goal": {
+            "x": 6100,
+            "y": 2410
+          },
+          "x": 6100.129448556109,
+          "y": 2409.9539738467165,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 1154.539230087141
+        },
+        {
+          "goal": {
+            "x": 5620,
+            "y": 2410
+          },
+          "x": 5620.712387537489,
+          "y": 2410,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 675.1142300871136
+        },
+        {
+          "goal": {
+            "x": 5260,
+            "y": 2150
+          },
+          "x": 5260.530951487069,
+          "y": 2150.383464962883,
+          "support": "a3-foundation",
+          "round": 1,
+          "moveLeft": 230.98472278148785
+        },
+        {
+          "goal": {
+            "x": 4760,
+            "y": 2150
+          },
+          "x": 4760,
+          "y": 2150,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1480.4200535446598
+        },
+        {
+          "goal": {
+            "x": 4500,
+            "y": 2177.1428571428573
+          },
+          "x": 4500.903604056176,
+          "y": 2176.836277195226,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 1216.895053544653
+        },
+        {
+          "goal": {
+            "x": 4020,
+            "y": 2340
+          },
+          "x": 4020.150849927834,
+          "y": 2339.948818774485,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 709.2249718750371
+        },
+        {
+          "goal": {
+            "x": 3700,
+            "y": 2580
+          },
+          "x": 3700.525487361486,
+          "y": 2579.605884478886,
+          "support": "a3-foundation",
+          "round": 2,
+          "moveLeft": 309.72253506761376
+        },
+        {
+          "goal": {
+            "x": 3370,
+            "y": 2700
+          },
+          "x": 3370.144162167231,
+          "y": 2699.9475773937343,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1708.805541195262
+        },
+        {
+          "goal": {
+            "x": 3050,
+            "y": 2700
+          },
+          "x": 3050,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 1388.6521434765423
+        },
+        {
+          "goal": {
+            "x": 2540,
+            "y": 2700
+          },
+          "x": 2540,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 878.6521434765423
+        },
+        {
+          "goal": {
+            "x": 2250,
+            "y": 2700
+          },
+          "x": 2250,
+          "y": 2700,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 588.6521434765423
+        },
+        {
+          "goal": {
+            "x": 2020,
+            "y": 2562
+          },
+          "x": 2020.1862049750519,
+          "y": 2562.111722985031,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 320.645506764079
+        },
+        {
+          "goal": {
+            "x": 1770,
+            "y": 2412
+          },
+          "x": 1770.3470134777556,
+          "y": 2412.2082080866535,
+          "support": "a3-foundation",
+          "round": 3,
+          "moveLeft": 29.285445350523275
+        },
+        {
+          "goal": {
+            "x": 1440,
+            "y": 2400
+          },
+          "x": 1440.3534913585165,
+          "y": 2400,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1447.6750000000045
+        },
+        {
+          "goal": {
+            "x": 1050,
+            "y": 2400
+          },
+          "x": 1050,
+          "y": 2400,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 1057.321508641488
+        },
+        {
+          "goal": {
+            "x": 780,
+            "y": 2392.8571428571427
+          },
+          "x": 780.0747381077352,
+          "y": 2392.8838350384767,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 786.1636291344353
+        },
+        {
+          "goal": {
+            "x": 260,
+            "y": 2300
+          },
+          "x": 260,
+          "y": 2300,
+          "support": "a3-foundation",
+          "round": 4,
+          "moveLeft": 250.00013369511407
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "x": 5041.57994645534,
+          "y": 2150,
+          "round": 1
+        },
+        {
+          "op": "wait",
+          "x": 3420.1359647179493,
+          "y": 2681.7687401025637,
+          "round": 2
+        },
+        {
+          "op": "wait",
+          "x": 1754.0117732429314,
+          "y": 2402.4070639457586,
+          "round": 3
+        }
+      ]
+    }
+  ],
+  "pickup": true,
+  "other29StagesUnchanged": true
+}

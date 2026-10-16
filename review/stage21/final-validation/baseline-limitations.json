@@ -1,0 +1,16 @@
+{
+  "baseline": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+  "stage1Through20Unchanged": true,
+  "entryFixtureFailure": {
+    "helper": "tests/stage18-bell-fullplay-helper.mjs:campaignEntryReadiness(through=20)",
+    "actualXP": 60437,
+    "assertedXP": 61569,
+    "basis": "Original helper failed this execution; all prior20 map inputs identical to baseline, runtime/progression sources unchanged. Not claiming a separate baseline execution."
+  },
+  "environmentFixture": {
+    "path": "tests/environment-composition.mjs:44",
+    "baselineEnvRock": 0,
+    "currentEnvRock": 0
+  },
+  "historicalGitObject": "25ae85c unavailable; standalone Stage21 lifecycle replaces no historical result"
+}

@@ -1,0 +1,87 @@
+{
+  "passed": true,
+  "historicalCommit": "1973f07c76f89992348bbc763dc35c7a2b259d4b",
+  "historicalSha256": "4e6862fce73a458b6ca04566d898fb0531822a95934059eb981585eaf2469722",
+  "currentSha256": "b086ff20952603c8a0160bc7a00674808e31626c4a48c53f4ed43d9b9705ab5c",
+  "priorPlaceSha256": "67f6dd302f3a82541b0b4777a1d5c8c5e1489687f8938161d340540d8f0f09c3",
+  "chapters": 30,
+  "assets": 667,
+  "priorPlaceAssets": 640,
+  "added": 81,
+  "priorPlaceAdded": 54,
+  "removed": 0,
+  "changedOriginalAssets": [
+    "stage18:bell-hollow-body"
+  ],
+  "changedStageIds": [
+    5,
+    9,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "retainedAssets": [
+    {
+      "id": "stage14:vertical-home-family",
+      "sourceCommit": "6ce25ff6d8d5d03d2142f494ad79e925490469f7",
+      "sha256": "2411b7c3135f6eced9ee4675bb11601c676b6f2c028fa632fbf083af73bade71"
+    },
+    {
+      "id": "stage14:vertical-home-river",
+      "sourceCommit": "6ce25ff6d8d5d03d2142f494ad79e925490469f7",
+      "sha256": "0b179627b715b5d3e6a4ccd349963f74d109f329ab3b59901642ce841696c0d3"
+    },
+    {
+      "id": "stage14:vertical-household-rock-market",
+      "sourceCommit": "2b8af00dd1fe016d4494581d245c00b74b792976",
+      "sha256": "f27c60bdfe02e89a56e16912411009480ec8361e2c61e553cb8c07e6c77d875f"
+    },
+    {
+      "id": "quest-redesign:hammer",
+      "sourceCommit": "2d7bcbf8245ee34bad067b79d082c31ca388da59",
+      "sha256": "76216bbb67cb8601cce29c6b2ab9440fa6bc737df1e192be689a79c37044a8a5"
+    },
+    {
+      "id": "quest-redesign:bowl",
+      "sourceCommit": "2d7bcbf8245ee34bad067b79d082c31ca388da59",
+      "sha256": "e02eda71b4f10218b066fabf9995049a3598b213753ae14d5404755c75b5de67"
+    }
+  ],
+  "reproducedStages": 30,
+  "negativeControls": [
+    "remove-original-asset",
+    "remove-added-asset",
+    "change-original-asset",
+    "change-added-asset",
+    "change-bell",
+    "reorder-assets",
+    "duplicate-asset",
+    "change-untouched-stage",
+    "change-approved-stage",
+    "remove-chapter",
+    "reorder-chapters",
+    "change-global"
+  ],
+  "storyJsonNegatives": 282,
+  "evidenceCampaignNegatives": 117,
+  "templeCampaignNegatives": 9,
+  "fieldCampaignNegatives": 109,
+  "scope": "Current outer exact manifest plus prior whole-map/source replay and unchanged historical data boundaries; current three-author replay is checked separately by act3-place-regeneration.mjs. Runtime-source/fingerprint validators remain independent and unchanged; no browser or normal-play acceptance."
+}

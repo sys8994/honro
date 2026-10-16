@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": [
+    "old geometry/actors/waves/partial objective exact Continue",
+    "old exact imported Continue",
+    "Retry opts into new ground",
+    "new exact Continue"
+  ],
+  "scope": "Explicit partial-progress fixture; actual App serialization, DOM/storage doubles; isolated storage"
+}

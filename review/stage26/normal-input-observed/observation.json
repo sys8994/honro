@@ -1,0 +1,244 @@
+{
+  "schema": "honro-encounter-observation/v1",
+  "stageId": 26,
+  "sourceDigest": "1a9fbb160e6baab44b8f2334e7a7ab7b2bf48b5d4184511c7f79ebe68c5e6d24",
+  "targetDigest": "ff8e3d8a109a648836b0f6879e02238fbca848280a2c1bfed14f14e970739f65",
+  "observer": "stage26_design",
+  "observedAt": "2026-10-16T01:07:49.700606+00:00",
+  "method": "native-input",
+  "rawEvidencePaths": [
+    "review/stage26/normal-input-observed/trace.json",
+    "review/stage26/normal-input-observed/stage-26.json"
+  ],
+  "clusters": [
+    {
+      "id": "record-room-remnants",
+      "kind": "cluster",
+      "status": "observed",
+      "memberIds": [
+        "a3-26-record-room-remnants-0",
+        "a3-26-record-room-remnants-1"
+      ],
+      "purpose": "기록을 지우라는 사념이 남은 죽은 육신. 기록실 접근면을 분리한다.",
+      "roleRelations": "Authored roles: frontline, ranged; observed damage below, tactical relationship not independently approved.",
+      "emptySpacePurpose": "Existing route between objective anchors preserved; observed movement crosses this group toward the next required objective. No comparative route-choice claim.",
+      "supportIds": [
+        "a3-foundation"
+      ],
+      "actions": [
+        {
+          "actorId": "a3-26-record-room-remnants-0",
+          "round": 1,
+          "kind": "damage",
+          "x": 1412.9999999999968,
+          "y": 2400,
+          "targetId": "p-knight",
+          "detail": "trace.damage[2] frame939 actual HP -37"
+        },
+        {
+          "actorId": "a3-26-record-room-remnants-1",
+          "round": 1,
+          "kind": "damage",
+          "x": 1610,
+          "y": 2400,
+          "targetId": "p-knight",
+          "detail": "trace.damage[3] frame1075 actual HP -50"
+        }
+      ],
+      "playerResponses": [
+        {
+          "actorId": "p-occultist",
+          "round": 1,
+          "kind": "fire",
+          "detail": "result.actions[1] O03 targeted a3-26-record-room-remnants-0 from (747.8923232678342,2381.390115452798); target-directed input, not proven reactive intent"
+        }
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "detail": "Actual enemy-to-party HP reduction 87 across 2 rows; not predicted damage.",
+          "actionIndexes": [
+            0,
+            1
+          ],
+          "responseIndexes": []
+        }
+      ]
+    },
+    {
+      "id": "casting-yard-tools",
+      "kind": "cluster",
+      "status": "observed",
+      "memberIds": [
+        "a3-26-casting-yard-tools-0",
+        "a3-26-casting-yard-tools-1",
+        "a3-26-casting-yard-tools-2"
+      ],
+      "purpose": "구조 대상 동쪽 공방에 들린 도구. 주민 접근면은 비운다.",
+      "roleRelations": "Authored roles: frontline, frontline, ranged; observed damage below, tactical relationship not independently approved.",
+      "emptySpacePurpose": "Existing route between objective anchors preserved; observed movement crosses this group toward the next required objective. No comparative route-choice claim.",
+      "supportIds": [
+        "a3-foundation",
+        "work-loft:collision:0"
+      ],
+      "actions": [
+        {
+          "actorId": "a3-26-casting-yard-tools-0",
+          "round": 2,
+          "kind": "damage",
+          "x": 2740.6004275495075,
+          "y": 2700,
+          "targetId": "p-occultist",
+          "detail": "trace.damage[6] frame1702 actual HP -26"
+        },
+        {
+          "actorId": "a3-26-casting-yard-tools-1",
+          "round": 2,
+          "kind": "damage",
+          "x": 2554.166666666654,
+          "y": 2700,
+          "targetId": "p-occultist",
+          "detail": "trace.damage[7] frame1866 actual HP -38"
+        },
+        {
+          "actorId": "a3-26-casting-yard-tools-2",
+          "round": 3,
+          "kind": "damage",
+          "x": 3429.999999999999,
+          "y": 2025.512886940359,
+          "targetId": "p-occultist",
+          "detail": "trace.damage[11] frame2985 actual HP -48"
+        }
+      ],
+      "playerResponses": [
+        {
+          "actorId": "p-occultist",
+          "round": 2,
+          "kind": "fire",
+          "detail": "result.actions[3] O02 targeted a3-26-casting-yard-tools-0 from (2412.825801928115,2700); target-directed input, not proven reactive intent"
+        },
+        {
+          "actorId": "p-knight",
+          "round": 3,
+          "kind": "fire",
+          "detail": "result.actions[4] S01 targeted a3-26-casting-yard-tools-2 from (3187.450069841791,2700); target-directed input, not proven reactive intent"
+        }
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "detail": "Actual enemy-to-party HP reduction 112 across 3 rows; not predicted damage.",
+          "actionIndexes": [
+            0,
+            1,
+            2
+          ],
+          "responseIndexes": []
+        }
+      ]
+    },
+    {
+      "id": "tally-store-remnants",
+      "kind": "cluster",
+      "status": "observed",
+      "memberIds": [
+        "a3-26-tally-store-remnants-0",
+        "a3-26-tally-store-remnants-1",
+        "a3-26-tally-store-remnants-2"
+      ],
+      "purpose": "수거량 기록 주변 무리와 상부 별도 사선.",
+      "roleRelations": "Authored roles: frontline, ranged, frontline; observed damage below, tactical relationship not independently approved.",
+      "emptySpacePurpose": "Existing route between objective anchors preserved; observed movement crosses this group toward the next required objective. No comparative route-choice claim.",
+      "supportIds": [
+        "a3-foundation"
+      ],
+      "actions": [
+        {
+          "actorId": "a3-26-tally-store-remnants-0",
+          "round": 3,
+          "kind": "damage",
+          "x": 4095.1007370053107,
+          "y": 2314.5193928017698,
+          "targetId": "p-occultist",
+          "detail": "trace.damage[13] frame3052 actual HP -29"
+        },
+        {
+          "actorId": "a3-26-tally-store-remnants-1",
+          "round": 4,
+          "kind": "damage",
+          "x": 4137.5128869403725,
+          "y": 2045.8571428571518,
+          "targetId": "p-knight",
+          "detail": "trace.damage[18] frame4102 actual HP -34"
+        }
+      ],
+      "playerResponses": [
+        {
+          "actorId": "p-occultist",
+          "round": 3,
+          "kind": "fire",
+          "detail": "result.actions[5] O02 targeted a3-26-tally-store-remnants-0 from (4036.101805034117,2334.5368875777103); target-directed input, not proven reactive intent"
+        }
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "detail": "Actual enemy-to-party HP reduction 63 across 2 rows; not predicted damage.",
+          "actionIndexes": [
+            0,
+            1
+          ],
+          "responseIndexes": []
+        }
+      ]
+    },
+    {
+      "id": "surface-exit-remnants",
+      "kind": "cluster",
+      "status": "observed",
+      "memberIds": [
+        "a3-26-surface-exit-remnants-0",
+        "a3-26-surface-exit-remnants-1"
+      ],
+      "purpose": "강변 복귀길에 남은 두 도구.",
+      "roleRelations": "Authored roles: frontline, ranged; observed damage below, tactical relationship not independently approved.",
+      "emptySpacePurpose": "Existing route between objective anchors preserved; observed movement crosses this group toward the next required objective. No comparative route-choice claim.",
+      "supportIds": [
+        "a3-foundation"
+      ],
+      "actions": [
+        {
+          "actorId": "a3-26-surface-exit-remnants-0",
+          "round": 4,
+          "kind": "damage",
+          "x": 6010.908834055682,
+          "y": 2410,
+          "targetId": "p-occultist",
+          "detail": "trace.damage[17] frame3899 actual HP -26"
+        }
+      ],
+      "playerResponses": [
+        {
+          "actorId": "p-occultist",
+          "round": 4,
+          "kind": "fire",
+          "detail": "result.actions[7] O02 targeted a3-26-surface-exit-remnants-0 from (5679.006880280895,2410); target-directed input, not proven reactive intent"
+        }
+      ],
+      "effects": [
+        {
+          "type": "damage",
+          "detail": "Actual enemy-to-party HP reduction 26 across 1 rows; not predicted damage.",
+          "actionIndexes": [
+            0
+          ],
+          "responseIndexes": []
+        }
+      ]
+    }
+  ],
+  "waves": [],
+  "limits": [
+    "Observed input and HP deltas only; no independent tactical approval. finishAction rows may repeat; not used as enemy action count. No claim of causally reactive player choice."
+  ]
+}

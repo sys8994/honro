@@ -1,0 +1,835 @@
+{
+  "scope": "Compiled campaign roof. Four-body isolated finite-input traversal, bidirectional projectile policy, interior walking, and App export/import/Continue with DOM/storage doubles. Enemies removed; setup poses; not browser or normal combat.",
+  "rows": [
+    {
+      "cls": "archer",
+      "route": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 635,
+        "waits": 0,
+        "jumps": 3,
+        "walkCost": 1042.0100000000002,
+        "jumpCost": 225,
+        "movementCost": 1267.0100000000002,
+        "turnEquivalent": 0.7725670731707318,
+        "maxMove": 1640,
+        "rows": [
+          {
+            "goal": {
+              "x": 2170,
+              "y": 2705,
+              "surfaceId": "v22-east-register-rise",
+              "jumpTo": {
+                "x": 2387.99,
+                "y": 2608.94,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1347.0100000000002
+          },
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2608.94,
+              "surfaceId": "v22-art-main-document-archive:collision:0",
+              "jumpTo": {
+                "x": 2500,
+                "y": 2491,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2500,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1160
+          },
+          {
+            "goal": {
+              "x": 2500,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2500,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1160
+          },
+          {
+            "goal": {
+              "x": 2800,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2800,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 860
+          },
+          {
+            "goal": {
+              "x": 2500,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0",
+              "jumpTo": {
+                "x": 2387.99,
+                "y": 2608.94,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 372.9899999999998
+          },
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2608.94,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 372.9899999999998
+          }
+        ],
+        "commands": [
+          {
+            "op": "jump",
+            "x": 2170,
+            "y": 2705,
+            "round": 1
+          },
+          {
+            "op": "jump",
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "round": 1
+          },
+          {
+            "op": "jump",
+            "x": 2500,
+            "y": 2491,
+            "round": 1
+          }
+        ]
+      },
+      "interior": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 454,
+        "waits": 1,
+        "jumps": 0,
+        "walkCost": 1061.9899999999489,
+        "jumpCost": 0,
+        "movementCost": 1061.9899999999489,
+        "turnEquivalent": 0.6475548780487493,
+        "maxMove": 1640,
+        "rows": [
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2387.99,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 1,
+            "moveLeft": 372.9899999999998
+          },
+          {
+            "goal": {
+              "x": 2920,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2919.9899999999743,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 2,
+            "moveLeft": 1469.0000000000082
+          },
+          {
+            "goal": {
+              "x": 2390,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2390,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 2,
+            "moveLeft": 939.0100000000339
+          }
+        ],
+        "commands": [
+          {
+            "op": "wait",
+            "x": 2748.9899999999825,
+            "y": 2850,
+            "round": 1
+          }
+        ]
+      },
+      "drop": true,
+      "projectileBothDirections": true
+    },
+    {
+      "cls": "mage",
+      "route": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 647,
+        "waits": 0,
+        "jumps": 3,
+        "walkCost": 1042.0100000000002,
+        "jumpCost": 225,
+        "movementCost": 1267.0100000000002,
+        "turnEquivalent": 0.7632590361445785,
+        "maxMove": 1660,
+        "rows": [
+          {
+            "goal": {
+              "x": 2170,
+              "y": 2705,
+              "surfaceId": "v22-east-register-rise",
+              "jumpTo": {
+                "x": 2387.99,
+                "y": 2608.94,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1367.0100000000002
+          },
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2608.94,
+              "surfaceId": "v22-art-main-document-archive:collision:0",
+              "jumpTo": {
+                "x": 2500,
+                "y": 2491,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2500,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1180
+          },
+          {
+            "goal": {
+              "x": 2500,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2500,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1180
+          },
+          {
+            "goal": {
+              "x": 2800,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2800,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 880
+          },
+          {
+            "goal": {
+              "x": 2500,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0",
+              "jumpTo": {
+                "x": 2387.99,
+                "y": 2608.94,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 392.9899999999998
+          },
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2608.94,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 392.9899999999998
+          }
+        ],
+        "commands": [
+          {
+            "op": "jump",
+            "x": 2170,
+            "y": 2705,
+            "round": 1
+          },
+          {
+            "op": "jump",
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "round": 1
+          },
+          {
+            "op": "jump",
+            "x": 2500,
+            "y": 2491,
+            "round": 1
+          }
+        ]
+      },
+      "interior": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 475,
+        "waits": 1,
+        "jumps": 0,
+        "walkCost": 1061.559999999984,
+        "jumpCost": 0,
+        "movementCost": 1061.559999999984,
+        "turnEquivalent": 0.6394939759036048,
+        "maxMove": 1660,
+        "rows": [
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2387.99,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 1,
+            "moveLeft": 392.9899999999998
+          },
+          {
+            "goal": {
+              "x": 2920,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2920,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 2,
+            "moveLeft": 1511.764999999988
+          },
+          {
+            "goal": {
+              "x": 2390,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2390.450000000016,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 2,
+            "moveLeft": 982.2150000000042
+          }
+        ],
+        "commands": [
+          {
+            "op": "wait",
+            "x": 2771.764999999988,
+            "y": 2850,
+            "round": 1
+          }
+        ]
+      },
+      "drop": true,
+      "projectileBothDirections": true
+    },
+    {
+      "cls": "knight",
+      "route": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 637,
+        "waits": 0,
+        "jumps": 3,
+        "walkCost": 1042.0100000000002,
+        "jumpCost": 225,
+        "movementCost": 1267.0100000000002,
+        "turnEquivalent": 0.7240057142857144,
+        "maxMove": 1750,
+        "rows": [
+          {
+            "goal": {
+              "x": 2170,
+              "y": 2705,
+              "surfaceId": "v22-east-register-rise",
+              "jumpTo": {
+                "x": 2387.99,
+                "y": 2608.94,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1457.0100000000002
+          },
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2608.94,
+              "surfaceId": "v22-art-main-document-archive:collision:0",
+              "jumpTo": {
+                "x": 2500,
+                "y": 2491,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2500,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1270
+          },
+          {
+            "goal": {
+              "x": 2500,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2500,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1270
+          },
+          {
+            "goal": {
+              "x": 2800,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2800,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 970
+          },
+          {
+            "goal": {
+              "x": 2500,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0",
+              "jumpTo": {
+                "x": 2387.99,
+                "y": 2608.94,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 482.9899999999998
+          },
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2608.94,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 482.9899999999998
+          }
+        ],
+        "commands": [
+          {
+            "op": "jump",
+            "x": 2170,
+            "y": 2705,
+            "round": 1
+          },
+          {
+            "op": "jump",
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "round": 1
+          },
+          {
+            "op": "jump",
+            "x": 2500,
+            "y": 2491,
+            "round": 1
+          }
+        ]
+      },
+      "interior": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 458,
+        "waits": 1,
+        "jumps": 0,
+        "walkCost": 1060.4899999999998,
+        "jumpCost": 0,
+        "movementCost": 1060.4899999999998,
+        "turnEquivalent": 0.6059942857142856,
+        "maxMove": 1750,
+        "rows": [
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2387.99,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 1,
+            "moveLeft": 482.9899999999998
+          },
+          {
+            "goal": {
+              "x": 2920,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2919.24,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 2,
+            "moveLeft": 1690.625
+          },
+          {
+            "goal": {
+              "x": 2390,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2390,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 2,
+            "moveLeft": 1161.3850000000002
+          }
+        ],
+        "commands": [
+          {
+            "op": "wait",
+            "x": 2859.865,
+            "y": 2850,
+            "round": 1
+          }
+        ]
+      },
+      "drop": true,
+      "projectileBothDirections": true
+    },
+    {
+      "cls": "occultist",
+      "route": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 639,
+        "waits": 0,
+        "jumps": 3,
+        "walkCost": 1041.7933333333394,
+        "jumpCost": 225,
+        "movementCost": 1266.7933333333394,
+        "turnEquivalent": 0.7495818540433962,
+        "maxMove": 1690,
+        "rows": [
+          {
+            "goal": {
+              "x": 2170,
+              "y": 2705,
+              "surfaceId": "v22-east-register-rise",
+              "jumpTo": {
+                "x": 2387.99,
+                "y": 2608.94,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1397.0100000000002
+          },
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2608.94,
+              "surfaceId": "v22-art-main-document-archive:collision:0",
+              "jumpTo": {
+                "x": 2500,
+                "y": 2491,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2500,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1210
+          },
+          {
+            "goal": {
+              "x": 2500,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2500,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 1210
+          },
+          {
+            "goal": {
+              "x": 2800,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2799.8916666666696,
+            "y": 2491,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 910.1083333333304
+          },
+          {
+            "goal": {
+              "x": 2500,
+              "y": 2491,
+              "surfaceId": "v22-art-main-document-archive:collision:0",
+              "jumpTo": {
+                "x": 2387.99,
+                "y": 2608.94,
+                "support": "v22-art-main-document-archive:collision:0",
+                "speed": 1
+              }
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 423.20666666666057
+          },
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2608.94,
+              "surfaceId": "v22-art-main-document-archive:collision:0"
+            },
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "support": "v22-art-main-document-archive:collision:0",
+            "round": 1,
+            "moveLeft": 423.20666666666057
+          }
+        ],
+        "commands": [
+          {
+            "op": "jump",
+            "x": 2170,
+            "y": 2705,
+            "round": 1
+          },
+          {
+            "op": "jump",
+            "x": 2387.99,
+            "y": 2608.938392436454,
+            "round": 1
+          },
+          {
+            "op": "jump",
+            "x": 2500,
+            "y": 2491,
+            "round": 1
+          }
+        ]
+      },
+      "interior": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 462,
+        "waits": 1,
+        "jumps": 0,
+        "walkCost": 1061.5233333333435,
+        "jumpCost": 0,
+        "movementCost": 1061.5233333333435,
+        "turnEquivalent": 0.6281203155818601,
+        "maxMove": 1690,
+        "rows": [
+          {
+            "goal": {
+              "x": 2387.99,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2387.99,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 1,
+            "moveLeft": 423.20666666666057
+          },
+          {
+            "goal": {
+              "x": 2920,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2919.7566666666717,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 2,
+            "moveLeft": 1572.5166666666655
+          },
+          {
+            "goal": {
+              "x": 2390,
+              "y": 2850,
+              "surfaceId": "v22-report-crossing"
+            },
+            "x": 2390,
+            "y": 2850,
+            "support": "v22-report-crossing",
+            "round": 2,
+            "moveLeft": 1042.7599999999939
+          }
+        ],
+        "commands": [
+          {
+            "op": "wait",
+            "x": 2802.273333333337,
+            "y": 2850,
+            "round": 1
+          }
+        ]
+      },
+      "drop": true,
+      "projectileBothDirections": true
+    }
+  ],
+  "saveRows": [
+    {
+      "cls": "archer",
+      "phase": "prepare",
+      "terrainPreserved": true,
+      "landingY": 2850
+    },
+    {
+      "cls": "archer",
+      "phase": "fall",
+      "terrainPreserved": true,
+      "landingY": 2850
+    },
+    {
+      "cls": "mage",
+      "phase": "prepare",
+      "terrainPreserved": true,
+      "landingY": 2850
+    },
+    {
+      "cls": "mage",
+      "phase": "fall",
+      "terrainPreserved": true,
+      "landingY": 2850
+    },
+    {
+      "cls": "knight",
+      "phase": "prepare",
+      "terrainPreserved": true,
+      "landingY": 2850
+    },
+    {
+      "cls": "knight",
+      "phase": "fall",
+      "terrainPreserved": true,
+      "landingY": 2850
+    },
+    {
+      "cls": "occultist",
+      "phase": "prepare",
+      "terrainPreserved": true,
+      "landingY": 2850
+    },
+    {
+      "cls": "occultist",
+      "phase": "fall",
+      "terrainPreserved": true,
+      "landingY": 2850
+    }
+  ]
+}

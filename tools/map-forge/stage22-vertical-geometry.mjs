@@ -20,11 +20,11 @@ export const V22_LAYOUT = { width: 4800, height: 6600, surfaces: [
     top:[[1810,2345],[1860,2345],[2140,2705],[2200,2705]],
     bottom:[[2200,2755],[2090,2820],[1860,2780],[1810,2520]] },
   { id:'v22-register-mass', zone:'F', role:'register-court-with-west-return',
-    top:[[570,2605],[600,2605],[1130,1900],[1310,1900],[1560,2200],[1700,2200]],
-    bottom:[[1700,2250],[1520,2500],[1240,2730],[890,2920],[570,2690]] },
+    top:[[440,2605],[480,2605],[800,2200],[900,2200],[1130,1900],[1310,1900],[1560,2200],[1700,2200]],
+    bottom:[[1700,2250],[1640,2340],[1530,2390],[1490,2510],[1360,2550],[1290,2710],[1120,2735],[1010,2830],[890,2825],[740,2740],[610,2700],[570,2690],[440,2660]] },
   { id:'v22-comparison-mass', zone:'G', role:'comparison-court-and-granary-exit',
     top:[[1500,1755],[1560,1755],[1990,1200],[2960,1200]],
-    bottom:[[2960,1620],[2520,1760],[2100,1960],[1750,1960],[1500,1825]] }
+    bottom:[[2960,1620],[2840,1660],[2720,1645],[2590,1740],[2440,1755],[2350,1840],[2190,1865],[2110,1930],[1860,1910],[1750,1960],[1500,1825]] }
 ] };
 
 export function v22Y(id,x) {
@@ -83,8 +83,8 @@ export function v22Routes() {
     route('DC',join(walk('v22-west-gallery',280,1600),[jump('v22-west-gallery',1600,'v22-report-crossing',1820)],walk('v22-report-crossing',1820,1450)),{kind:'return',requires:upper}),
     route('DE',join(walk('v22-west-gallery',280,1600),[jump('v22-west-gallery',1600,'v22-report-crossing',1820)],walk('v22-report-crossing',1820,2390)),{kind:'optional-jump',requires:upper}),
     route('ED',join(walk('v22-report-crossing',2390,1820),[jump('v22-report-crossing',1820,'v22-west-gallery',1600)],walk('v22-west-gallery',1600,280)),{kind:'optional-jump',requires:upper}),
-    route('DF',join(walk('v22-west-gallery',280,350),[jump('v22-west-gallery',350,'v22-register-mass',600)],walk('v22-register-mass',600,1270)),{kind:'optional-jump'}),
-    route('FD',join(walk('v22-register-mass',1270,600),[jump('v22-register-mass',600,'v22-west-gallery',350)],walk('v22-west-gallery',350,280)),{kind:'return'}),
+    route('DF',join(walk('v22-west-gallery',280,350),[jump('v22-west-gallery',350,'v22-register-mass',470)],walk('v22-register-mass',470,1270)),{kind:'optional-jump'}),
+    route('FD',join(walk('v22-register-mass',1270,470),[jump('v22-register-mass',470,'v22-west-gallery',350)],walk('v22-west-gallery',350,280)),{kind:'return'}),
     route('FG',join(walk('v22-register-mass',1270,1310),[jump('v22-register-mass',1310,'v22-comparison-mass',1530)],walk('v22-comparison-mass',1530,2475))),
     route('GF',join(walk('v22-comparison-mass',2475,1530),[jump('v22-comparison-mass',1530,'v22-register-mass',1290)],walk('v22-register-mass',1290,1270)),{kind:'return'}),
     route('GH',walk('v22-comparison-mass',2475,2715)),

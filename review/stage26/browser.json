@@ -1,0 +1,327 @@
+{
+  "scope": "Actual Game desktop/mobile screenshots; prepared stage entry, camera-only inspection, not normal combat completion.",
+  "rows": [
+    {
+      "version": "before",
+      "device": "desktop",
+      "place": "entry",
+      "requestedCamera": {
+        "x": 600,
+        "y": 2220,
+        "zoom": 0.6
+      },
+      "actualCamera": {
+        "x": 600,
+        "y": 2220,
+        "zoom": 0.6
+      },
+      "file": "before-desktop-entry.png"
+    },
+    {
+      "version": "before",
+      "device": "desktop",
+      "place": "record-room",
+      "requestedCamera": {
+        "x": 1370,
+        "y": 2220,
+        "zoom": 0.66
+      },
+      "actualCamera": {
+        "x": 1370,
+        "y": 2220,
+        "zoom": 0.66
+      },
+      "file": "before-desktop-record-room.png"
+    },
+    {
+      "version": "before",
+      "device": "desktop",
+      "place": "workshop",
+      "requestedCamera": {
+        "x": 3200,
+        "y": 2370,
+        "zoom": 0.66
+      },
+      "actualCamera": {
+        "x": 3200,
+        "y": 2370,
+        "zoom": 0.66
+      },
+      "file": "before-desktop-workshop.png"
+    },
+    {
+      "version": "before",
+      "device": "desktop",
+      "place": "refuge",
+      "requestedCamera": {
+        "x": 4900,
+        "y": 2120,
+        "zoom": 0.66
+      },
+      "actualCamera": {
+        "x": 4900,
+        "y": 2120,
+        "zoom": 0.66
+      },
+      "file": "before-desktop-refuge.png"
+    },
+    {
+      "version": "before",
+      "device": "desktop",
+      "place": "overview",
+      "requestedCamera": {
+        "x": 3500,
+        "y": 2050,
+        "zoom": 0.2
+      },
+      "actualCamera": {
+        "x": 3500,
+        "y": 2050,
+        "zoom": 0.2
+      },
+      "file": "before-desktop-overview.png"
+    },
+    {
+      "version": "after",
+      "device": "desktop",
+      "place": "entry",
+      "requestedCamera": {
+        "x": 600,
+        "y": 2220,
+        "zoom": 0.6
+      },
+      "actualCamera": {
+        "x": 600,
+        "y": 2220,
+        "zoom": 0.6
+      },
+      "file": "after-desktop-entry.png"
+    },
+    {
+      "version": "after",
+      "device": "desktop",
+      "place": "record-room",
+      "requestedCamera": {
+        "x": 1370,
+        "y": 2220,
+        "zoom": 0.66
+      },
+      "actualCamera": {
+        "x": 1370,
+        "y": 2220,
+        "zoom": 0.66
+      },
+      "file": "after-desktop-record-room.png"
+    },
+    {
+      "version": "after",
+      "device": "desktop",
+      "place": "workshop",
+      "requestedCamera": {
+        "x": 3200,
+        "y": 2370,
+        "zoom": 0.66
+      },
+      "actualCamera": {
+        "x": 3200,
+        "y": 2370,
+        "zoom": 0.66
+      },
+      "file": "after-desktop-workshop.png"
+    },
+    {
+      "version": "after",
+      "device": "desktop",
+      "place": "refuge",
+      "requestedCamera": {
+        "x": 4900,
+        "y": 2120,
+        "zoom": 0.66
+      },
+      "actualCamera": {
+        "x": 4900,
+        "y": 2120,
+        "zoom": 0.66
+      },
+      "file": "after-desktop-refuge.png"
+    },
+    {
+      "version": "after",
+      "device": "desktop",
+      "place": "overview",
+      "requestedCamera": {
+        "x": 3500,
+        "y": 2050,
+        "zoom": 0.2
+      },
+      "actualCamera": {
+        "x": 3500,
+        "y": 2050,
+        "zoom": 0.2
+      },
+      "file": "after-desktop-overview.png"
+    },
+    {
+      "version": "before",
+      "device": "mobile",
+      "place": "entry",
+      "requestedCamera": {
+        "x": 600,
+        "y": 2220,
+        "zoom": 0.32
+      },
+      "actualCamera": {
+        "x": 600,
+        "y": 2220,
+        "zoom": 0.32
+      },
+      "file": "before-mobile-entry.png"
+    },
+    {
+      "version": "before",
+      "device": "mobile",
+      "place": "record-room",
+      "requestedCamera": {
+        "x": 1370,
+        "y": 2220,
+        "zoom": 0.32
+      },
+      "actualCamera": {
+        "x": 1370,
+        "y": 2220,
+        "zoom": 0.32
+      },
+      "file": "before-mobile-record-room.png"
+    },
+    {
+      "version": "before",
+      "device": "mobile",
+      "place": "workshop",
+      "requestedCamera": {
+        "x": 3200,
+        "y": 2370,
+        "zoom": 0.32
+      },
+      "actualCamera": {
+        "x": 3200,
+        "y": 2370,
+        "zoom": 0.32
+      },
+      "file": "before-mobile-workshop.png"
+    },
+    {
+      "version": "before",
+      "device": "mobile",
+      "place": "refuge",
+      "requestedCamera": {
+        "x": 4900,
+        "y": 2120,
+        "zoom": 0.32
+      },
+      "actualCamera": {
+        "x": 4900,
+        "y": 2120,
+        "zoom": 0.32
+      },
+      "file": "before-mobile-refuge.png"
+    },
+    {
+      "version": "before",
+      "device": "mobile",
+      "place": "overview",
+      "requestedCamera": {
+        "x": 3500,
+        "y": 2050,
+        "zoom": 0.2
+      },
+      "actualCamera": {
+        "x": 3500,
+        "y": 2050,
+        "zoom": 0.2
+      },
+      "file": "before-mobile-overview.png"
+    },
+    {
+      "version": "after",
+      "device": "mobile",
+      "place": "entry",
+      "requestedCamera": {
+        "x": 600,
+        "y": 2220,
+        "zoom": 0.32
+      },
+      "actualCamera": {
+        "x": 600,
+        "y": 2220,
+        "zoom": 0.32
+      },
+      "file": "after-mobile-entry.png"
+    },
+    {
+      "version": "after",
+      "device": "mobile",
+      "place": "record-room",
+      "requestedCamera": {
+        "x": 1370,
+        "y": 2220,
+        "zoom": 0.32
+      },
+      "actualCamera": {
+        "x": 1370,
+        "y": 2220,
+        "zoom": 0.32
+      },
+      "file": "after-mobile-record-room.png"
+    },
+    {
+      "version": "after",
+      "device": "mobile",
+      "place": "workshop",
+      "requestedCamera": {
+        "x": 3200,
+        "y": 2370,
+        "zoom": 0.32
+      },
+      "actualCamera": {
+        "x": 3200,
+        "y": 2370,
+        "zoom": 0.32
+      },
+      "file": "after-mobile-workshop.png"
+    },
+    {
+      "version": "after",
+      "device": "mobile",
+      "place": "refuge",
+      "requestedCamera": {
+        "x": 4900,
+        "y": 2120,
+        "zoom": 0.32
+      },
+      "actualCamera": {
+        "x": 4900,
+        "y": 2120,
+        "zoom": 0.32
+      },
+      "file": "after-mobile-refuge.png"
+    },
+    {
+      "version": "after",
+      "device": "mobile",
+      "place": "overview",
+      "requestedCamera": {
+        "x": 3500,
+        "y": 2050,
+        "zoom": 0.2
+      },
+      "actualCamera": {
+        "x": 3500,
+        "y": 2050,
+        "zoom": 0.2
+      },
+      "file": "after-mobile-overview.png"
+    }
+  ],
+  "continueStable": true,
+  "errors": []
+}

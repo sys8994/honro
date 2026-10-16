@@ -1,0 +1,30 @@
+{
+  "rolePolicy": "objective-local-roles",
+  "routeMode": "authored-main-ascent",
+  "controllerPolicyRevision": "vertical22-objective-local-roles-v1",
+  "basicOnly": false,
+  "attackPolicy": "representative-equipped",
+  "mode": "representative-fullplay",
+  "budget": {
+    "initial": 26,
+    "elites": 6,
+    "finite": 7,
+    "defense": 2,
+    "cap": 35,
+    "activeLimit": 3,
+    "combatXP": 2890
+  },
+  "sourceHash": "94e9902a3432bad90845209232b1c042e373da1a732689159e2fc203e6b4665e",
+  "runtimeSha256": "d6bf358d2c7e2016b55b4543ab58d8f236013d4d54a4fe55b81f674bcbfe87b1",
+  "gameplayProjectSha256": "734679a6a0cb79c47667eee851a3e55ee6cb81e3dfca74358e3bb7d3aafdc6cc",
+  "gameplayRuntimeSha256": "f25ecf3dada67cc34beb8f48f180d64c054e77638550f113422ed79f6407c22b",
+  "stageSha256": "7ed8e96555a33d4bcfa9d700411fa73f10848bba840ceb2eb89d173802db6ad7",
+  "controllerSha256": "7624f9e5a2b24186d6f4f26fadbb53f227fece34dd476b33e4a66b83bd3117eb",
+  "helperSha256": "d4c8da9c9e7ff2c20ce7e40f95d1fd180cf6058dca64c2019a4283c0ff9a9f14",
+  "verticalFullplayHelperSha256": "9863a63f57301f79ef567e47b4db1c479aebacd230dc522b1c06c105b71d11c5",
+  "entryHelperSha256": "0333cff84bc5ee9f3e0c5b6e26b3a2aa573e35b98b347d98165f5809ac46365c",
+  "checkoutCommit": "8d2ddfb57a9a32238d2f866ea9ce7684111495be",
+  "checkoutProvenance": {
+    "kind": "local-git-worktree"
+  }
+}

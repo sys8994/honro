@@ -1,0 +1,445 @@
+{
+  "scope": "Whole-map geometry only. One initial pose, one level16 hero with SP03 absent, finite Engine move/jump/wait/tick. Other actors removed. Individual routes open declared gates as fixture preconditions; objectiveGateRun instead uses the original ordered E interactions without direct gate writes. No subsequent resource/pose/terrain repair. Not normal combat, art, browser, or old-save certification.",
+  "sources": {
+    "tools/map-forge/stage22-vertical-geometry.mjs": "ae4a75cc946515a72140b34e0061a54961a4d405204ba3e8be7dc57d43f85867",
+    "tests/stage22-vertical-traversal.mjs": "ac5347c30bd45b006ac5f6cd91f68b90c111d3a1adbfbcd6935120ff0e72f476",
+    "tests/vertical-route-helpers.mjs": "df2084b0a305c77072d0bbe038834ac0d20938f3af4ef091406901ce4775c3e3",
+    "tests/fixtures/vertical-stages/before-stages.json": "2f4848558f10acc12db539fcb8c8177b9104d3c571afa4ece897bb396c43df9a"
+  },
+  "stageDigest": "1701a04dfaa94424e304a907902ffbd252376a6ea2ddcdc98f605512cdf1d728",
+  "otherStagesDigest": "f3443843529373cefb3b4397cb569b6a1d6a8cc79d9a5ad629f72530bf301f5d",
+  "geometricMain": [
+    {
+      "route": "AB",
+      "walk": 1040.4686356149273,
+      "walkHorizontal": 680,
+      "walkRise": 750,
+      "jumps": 0,
+      "jumpHorizontal": 0,
+      "jumpRise": 0,
+      "baseJumpCost": 0,
+      "estimatedMove": 1040.4686356149273
+    },
+    {
+      "route": "BC",
+      "walk": 856.0453243241542,
+      "walkHorizontal": 580,
+      "walkRise": 560,
+      "jumps": 2,
+      "jumpHorizontal": 440,
+      "jumpRise": 290,
+      "baseJumpCost": 150,
+      "estimatedMove": 1446.045324324154
+    },
+    {
+      "route": "CE",
+      "walk": 1349.611636857911,
+      "walkHorizontal": 940,
+      "walkRise": 850,
+      "jumps": 0,
+      "jumpHorizontal": 0,
+      "jumpRise": 0,
+      "baseJumpCost": 0,
+      "estimatedMove": 1349.611636857911
+    },
+    {
+      "route": "EF",
+      "walk": 996.5826538349879,
+      "walkHorizontal": 680,
+      "walkRise": 660,
+      "jumps": 2,
+      "jumpHorizontal": 440,
+      "jumpRise": 290,
+      "baseJumpCost": 150,
+      "estimatedMove": 1586.582653834988
+    },
+    {
+      "route": "FG",
+      "walk": 1257.0861770466645,
+      "walkHorizontal": 985,
+      "walkRise": 555,
+      "jumps": 1,
+      "jumpHorizontal": 220,
+      "jumpRise": 145,
+      "baseJumpCost": 75,
+      "estimatedMove": 1552.0861770466645
+    },
+    {
+      "route": "GH",
+      "walk": 240,
+      "walkHorizontal": 240,
+      "walkRise": 0,
+      "jumps": 0,
+      "jumpHorizontal": 0,
+      "jumpRise": 0,
+      "baseJumpCost": 0,
+      "estimatedMove": 240
+    }
+  ],
+  "estimatedMain": 7214.794427678645,
+  "measuredMain": {},
+  "passed": true,
+  "gateRows": [
+    {
+      "gateId": "archive-door",
+      "cls": "knight",
+      "blocked": true,
+      "final": {
+        "x": 1311.75,
+        "y": 5264.336059661678
+      },
+      "movementCost": 143.75
+    },
+    {
+      "gateId": "upper-door",
+      "cls": "knight",
+      "blocked": true,
+      "final": {
+        "x": 1531.75,
+        "y": 3664.3360596616817
+      },
+      "movementCost": 143.75
+    }
+  ],
+  "objectiveGateRun": [],
+  "headroom": [
+    {
+      "route": "AB",
+      "minimum": 257.5,
+      "required": 172,
+      "worst": {
+        "x": 1770,
+        "y": 4712.5,
+        "ceiling": 4455,
+        "support": "v22-lower-court",
+        "overhead": "v22-report-approach"
+      }
+    },
+    {
+      "route": "BA",
+      "minimum": 257.5,
+      "required": 172,
+      "worst": {
+        "x": 1770,
+        "y": 4712.5,
+        "ceiling": 4455,
+        "support": "v22-lower-court",
+        "overhead": "v22-report-approach"
+      }
+    },
+    {
+      "route": "BC",
+      "minimum": 270.3488372093025,
+      "required": 172,
+      "worst": {
+        "x": 1370,
+        "y": 4040.3488372093025,
+        "ceiling": 3770,
+        "support": "v22-report-approach",
+        "overhead": "v22-report-crossing"
+      }
+    },
+    {
+      "route": "CB",
+      "minimum": 270.3488372093025,
+      "required": 172,
+      "worst": {
+        "x": 1370,
+        "y": 4040.3488372093025,
+        "ceiling": 3770,
+        "support": "v22-report-approach",
+        "overhead": "v22-report-crossing"
+      }
+    },
+    {
+      "route": "CE",
+      "minimum": 228.33333333333348,
+      "required": 172,
+      "worst": {
+        "x": 1660,
+        "y": 3533.3333333333335,
+        "ceiling": 3305,
+        "support": "v22-report-crossing",
+        "overhead": "v22-west-gallery"
+      }
+    },
+    {
+      "route": "EC",
+      "minimum": 228.33333333333348,
+      "required": 172,
+      "worst": {
+        "x": 1660,
+        "y": 3533.3333333333335,
+        "ceiling": 3305,
+        "support": "v22-report-crossing",
+        "overhead": "v22-west-gallery"
+      }
+    },
+    {
+      "route": "EF",
+      "minimum": 303,
+      "required": 172,
+      "worst": {
+        "x": 1500,
+        "y": 2128,
+        "ceiling": 1825,
+        "support": "v22-register-mass",
+        "overhead": "v22-comparison-mass"
+      }
+    },
+    {
+      "route": "FE",
+      "minimum": 283.20000000000005,
+      "required": 172,
+      "worst": {
+        "x": 1670,
+        "y": 2200,
+        "ceiling": 1916.8,
+        "support": "v22-register-mass",
+        "overhead": "v22-comparison-mass"
+      }
+    },
+    {
+      "route": "CD",
+      "minimum": 190.28571428571422,
+      "required": 172,
+      "worst": {
+        "x": 440,
+        "y": 2850.285714285714,
+        "ceiling": 2660,
+        "support": "v22-west-gallery",
+        "overhead": "v22-register-mass"
+      }
+    },
+    {
+      "route": "DC",
+      "minimum": 190.28571428571422,
+      "required": 172,
+      "worst": {
+        "x": 440,
+        "y": 2850.285714285714,
+        "ceiling": 2660,
+        "support": "v22-west-gallery",
+        "overhead": "v22-register-mass"
+      }
+    },
+    {
+      "route": "DE",
+      "minimum": 190.28571428571422,
+      "required": 172,
+      "worst": {
+        "x": 440,
+        "y": 2850.285714285714,
+        "ceiling": 2660,
+        "support": "v22-west-gallery",
+        "overhead": "v22-register-mass"
+      }
+    },
+    {
+      "route": "ED",
+      "minimum": 190.28571428571422,
+      "required": 172,
+      "worst": {
+        "x": 440,
+        "y": 2850.285714285714,
+        "ceiling": 2660,
+        "support": "v22-west-gallery",
+        "overhead": "v22-register-mass"
+      }
+    },
+    {
+      "route": "DF",
+      "minimum": null,
+      "required": 172,
+      "worst": null
+    },
+    {
+      "route": "FD",
+      "minimum": null,
+      "required": 172,
+      "worst": null
+    },
+    {
+      "route": "FG",
+      "minimum": null,
+      "required": 172,
+      "worst": null
+    },
+    {
+      "route": "GF",
+      "minimum": null,
+      "required": 172,
+      "worst": null
+    },
+    {
+      "route": "GH",
+      "minimum": null,
+      "required": 172,
+      "worst": null
+    },
+    {
+      "route": "HG",
+      "minimum": null,
+      "required": 172,
+      "worst": null
+    },
+    {
+      "route": "FE-walkoff",
+      "minimum": 283.20000000000005,
+      "required": 172,
+      "worst": {
+        "x": 1670,
+        "y": 2200,
+        "ceiling": 1916.8,
+        "support": "v22-register-mass",
+        "overhead": "v22-comparison-mass"
+      }
+    }
+  ],
+  "rows": [
+    {
+      "route": "DF",
+      "cls": "knight",
+      "level": 16,
+      "gatePreconditions": [],
+      "passed": true,
+      "failed": null,
+      "damage": 0,
+      "netHpChange": 0,
+      "recoveries": 0,
+      "contacts": [],
+      "ticks": 512,
+      "waits": 0,
+      "jumps": 1,
+      "walkCost": 1333.1907591007043,
+      "jumpCost": 75,
+      "movementCost": 1408.1907591007043,
+      "turnEquivalent": 0.8046804337718311,
+      "maxMove": 1750,
+      "rows": [
+        {
+          "goal": {
+            "x": 280,
+            "y": 2750,
+            "surfaceId": "v22-west-gallery"
+          },
+          "x": 280,
+          "y": 2750,
+          "support": "v22-west-gallery",
+          "round": 1,
+          "moveLeft": 1750
+        },
+        {
+          "goal": {
+            "x": 350,
+            "y": 2750,
+            "surfaceId": "v22-west-gallery"
+          },
+          "x": 350,
+          "y": 2750,
+          "support": "v22-west-gallery",
+          "round": 1,
+          "moveLeft": 1680
+        },
+        {
+          "goal": {
+            "x": 350,
+            "y": 2750,
+            "surfaceId": "v22-west-gallery",
+            "jumpTo": {
+              "x": 470,
+              "y": 2605,
+              "support": "v22-register-mass",
+              "speed": 1
+            }
+          },
+          "x": 470,
+          "y": 2605,
+          "support": "v22-register-mass",
+          "round": 1,
+          "moveLeft": 1485
+        },
+        {
+          "goal": {
+            "x": 470,
+            "y": 2605,
+            "surfaceId": "v22-register-mass"
+          },
+          "x": 470,
+          "y": 2605,
+          "support": "v22-register-mass",
+          "round": 1,
+          "moveLeft": 1485
+        },
+        {
+          "goal": {
+            "x": 480,
+            "y": 2605,
+            "surfaceId": "v22-register-mass"
+          },
+          "x": 479.375,
+          "y": 2605,
+          "support": "v22-register-mass",
+          "round": 1,
+          "moveLeft": 1475.625
+        },
+        {
+          "goal": {
+            "x": 800,
+            "y": 2200,
+            "surfaceId": "v22-register-mass"
+          },
+          "x": 799.3506106420936,
+          "y": 2200.8218834061004,
+          "support": "v22-register-mass",
+          "round": 1,
+          "moveLeft": 959.8837388988153
+        },
+        {
+          "goal": {
+            "x": 900,
+            "y": 2200,
+            "surfaceId": "v22-register-mass"
+          },
+          "x": 900,
+          "y": 2200,
+          "support": "v22-register-mass",
+          "round": 1,
+          "moveLeft": 858.8362662875336
+        },
+        {
+          "goal": {
+            "x": 1130,
+            "y": 1900,
+            "surfaceId": "v22-register-mass"
+          },
+          "x": 1129.0148653426356,
+          "y": 1901.284958248736,
+          "support": "v22-register-mass",
+          "round": 1,
+          "moveLeft": 482.4342408992946
+        },
+        {
+          "goal": {
+            "x": 1270,
+            "y": 1900,
+            "surfaceId": "v22-register-mass"
+          },
+          "x": 1269.0058619595181,
+          "y": 1900,
+          "support": "v22-register-mass",
+          "round": 1,
+          "moveLeft": 341.80924089929465
+        }
+      ],
+      "commands": [
+        {
+          "op": "jump",
+          "x": 350,
+          "y": 2750,
+          "round": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,317 @@
+{
+  "scope": "Both heroes on current Stage26 production terrain. One initial pose; other actors removed, win check disabled to isolate geometry. No later position/resources writes. Jump through, land, roof walk, existing drop to indoor ground, directional projectile collision.",
+  "rows": [
+    {
+      "cls": "knight",
+      "place": "workshop",
+      "groundStart": {
+        "x": 2500,
+        "y": 2700
+      },
+      "roofY": 2488.477019090909,
+      "highest": 2486.3849187047094,
+      "gallery": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 106,
+        "waits": 0,
+        "jumps": 1,
+        "walkCost": 200,
+        "jumpCost": 75,
+        "movementCost": 275,
+        "turnEquivalent": 0.1509330406147091,
+        "maxMove": 1822,
+        "rows": [
+          {
+            "goal": {
+              "x": 2500,
+              "y": 2488.477019090909,
+              "jumpTo": {
+                "x": 2700,
+                "y": 2300,
+                "support": "work-loft:collision:0",
+                "speed": 0.65
+              }
+            },
+            "x": 2700,
+            "y": 2300,
+            "support": "work-loft:collision:0",
+            "round": 1,
+            "moveLeft": 1472
+          }
+        ],
+        "commands": [
+          {
+            "op": "jump",
+            "x": 2500,
+            "y": 2488.477019090909,
+            "round": 1
+          }
+        ]
+      },
+      "walk": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 47,
+        "waits": 0,
+        "jumps": 0,
+        "walkCost": 150,
+        "jumpCost": 0,
+        "movementCost": 150,
+        "turnEquivalent": 0.08232711306256861,
+        "maxMove": 1822,
+        "rows": [
+          {
+            "goal": {
+              "x": 2850,
+              "y": 2424
+            },
+            "x": 2850,
+            "y": 2424,
+            "support": "work-hollow-forge:collision:0",
+            "round": 1,
+            "moveLeft": 1322
+          }
+        ],
+        "commands": []
+      },
+      "drop": {
+        "from": {
+          "x": 2850,
+          "y": 2424,
+          "move": 1322,
+          "hp": 1426,
+          "focus": 223,
+          "round": 1
+        },
+        "to": {
+          "x": 2850,
+          "y": 2700
+        },
+        "sameResources": true
+      },
+      "projectilePolicy": "existing directional one-way"
+    },
+    {
+      "cls": "knight",
+      "place": "refuge",
+      "groundStart": {
+        "x": 4580,
+        "y": 2150
+      },
+      "roofY": 1962.1738304134878,
+      "highest": 1936.3849187047108,
+      "gallery": null,
+      "walk": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 99,
+        "waits": 0,
+        "jumps": 0,
+        "walkCost": 316.2098742078358,
+        "jumpCost": 0,
+        "movementCost": 316.2098742078358,
+        "turnEquivalent": 0.17355097376939396,
+        "maxMove": 1822,
+        "rows": [
+          {
+            "goal": {
+              "x": 4890,
+              "y": 1909.8402701814916
+            },
+            "x": 4889.999249085206,
+            "y": 1909.8402919196196,
+            "support": "artisan-refuge-house:collision:0",
+            "round": 1,
+            "moveLeft": 1430.7901257921642
+          }
+        ],
+        "commands": []
+      },
+      "drop": {
+        "from": {
+          "x": 4889.999249085206,
+          "y": 1909.8402919196196,
+          "move": 1430.7901257921642,
+          "hp": 1426,
+          "focus": 223,
+          "round": 1
+        },
+        "to": {
+          "x": 4889.999249085206,
+          "y": 2150
+        },
+        "sameResources": true
+      },
+      "projectilePolicy": "existing directional one-way"
+    },
+    {
+      "cls": "occultist",
+      "place": "workshop",
+      "groundStart": {
+        "x": 2500,
+        "y": 2700
+      },
+      "roofY": 2488.477019090909,
+      "highest": 2486.3849187047094,
+      "gallery": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 106,
+        "waits": 0,
+        "jumps": 1,
+        "walkCost": 200,
+        "jumpCost": 75,
+        "movementCost": 275,
+        "turnEquivalent": 0.15607264472190693,
+        "maxMove": 1762,
+        "rows": [
+          {
+            "goal": {
+              "x": 2500,
+              "y": 2488.477019090909,
+              "jumpTo": {
+                "x": 2700,
+                "y": 2300,
+                "support": "work-loft:collision:0",
+                "speed": 0.65
+              }
+            },
+            "x": 2700,
+            "y": 2300,
+            "support": "work-loft:collision:0",
+            "round": 1,
+            "moveLeft": 1412
+          }
+        ],
+        "commands": [
+          {
+            "op": "jump",
+            "x": 2500,
+            "y": 2488.477019090909,
+            "round": 1
+          }
+        ]
+      },
+      "walk": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 47,
+        "waits": 0,
+        "jumps": 0,
+        "walkCost": 149.22500000000855,
+        "jumpCost": 0,
+        "movementCost": 149.22500000000855,
+        "turnEquivalent": 0.08469069239501052,
+        "maxMove": 1762,
+        "rows": [
+          {
+            "goal": {
+              "x": 2850,
+              "y": 2424
+            },
+            "x": 2849.2250000000085,
+            "y": 2424,
+            "support": "work-hollow-forge:collision:0",
+            "round": 1,
+            "moveLeft": 1262.7749999999915
+          }
+        ],
+        "commands": []
+      },
+      "drop": {
+        "from": {
+          "x": 2849.2250000000085,
+          "y": 2424,
+          "move": 1262.7749999999915,
+          "hp": 1072,
+          "focus": 306,
+          "round": 1
+        },
+        "to": {
+          "x": 2849.2250000000085,
+          "y": 2700
+        },
+        "sameResources": true
+      },
+      "projectilePolicy": "existing directional one-way"
+    },
+    {
+      "cls": "occultist",
+      "place": "refuge",
+      "groundStart": {
+        "x": 4580,
+        "y": 2150
+      },
+      "roofY": 1962.1738304134878,
+      "highest": 1936.3849187047108,
+      "gallery": null,
+      "walk": {
+        "passed": true,
+        "failed": null,
+        "damage": 0,
+        "netHpChange": 0,
+        "recoveries": 0,
+        "contacts": [],
+        "ticks": 100,
+        "waits": 0,
+        "jumps": 0,
+        "walkCost": 316.2098358219546,
+        "jumpCost": 0,
+        "movementCost": 316.2098358219546,
+        "turnEquivalent": 0.17946074677749976,
+        "maxMove": 1762,
+        "rows": [
+          {
+            "goal": {
+              "x": 4890,
+              "y": 1909.8402701814916
+            },
+            "x": 4889.999210715398,
+            "y": 1909.8402930303819,
+            "support": "artisan-refuge-house:collision:0",
+            "round": 1,
+            "moveLeft": 1370.7901641780454
+          }
+        ],
+        "commands": []
+      },
+      "drop": {
+        "from": {
+          "x": 4889.999210715398,
+          "y": 1909.8402930303819,
+          "move": 1370.7901641780454,
+          "hp": 1072,
+          "focus": 306,
+          "round": 1
+        },
+        "to": {
+          "x": 4889.999210715398,
+          "y": 2150
+        },
+        "sameResources": true
+      },
+      "projectilePolicy": "existing directional one-way"
+    }
+  ]
+}

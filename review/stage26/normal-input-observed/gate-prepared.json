@@ -1,0 +1,158 @@
+{
+  "schema": "honro-encounter-evidence/v1",
+  "stageIds": [
+    26
+  ],
+  "implementationAuthors": [
+    "stage26_design"
+  ],
+  "sourceDigest": "1a9fbb160e6baab44b8f2334e7a7ab7b2bf48b5d4184511c7f79ebe68c5e6d24",
+  "targetDigest": "ff8e3d8a109a648836b0f6879e02238fbca848280a2c1bfed14f14e970739f65",
+  "evidence": [
+    {
+      "path": "review/stage26/normal-input-observed/trace.json",
+      "sha256": "e7eb690fd3e4082543a7a0ca35d3e9e9f3f459978aedd24aa266e95c757fb7f3"
+    },
+    {
+      "path": "review/stage26/normal-input-observed/stage-26.json",
+      "sha256": "f8be67602beb3d58d7a43ed9f2c02d0a0af412b0a315fc45ea590dc52b35786f"
+    },
+    {
+      "path": "review/stage26/normal-input-observed/observation.json",
+      "sha256": "3af922a77b09dc7338f2e43ff50efc189b3c1e55bc1b78b554b5fc22af9b32ea"
+    }
+  ],
+  "knownFailures": [],
+  "stages": [
+    {
+      "stageId": 26,
+      "clusters": [
+        {
+          "id": "record-room-remnants",
+          "memberIds": [
+            "a3-26-record-room-remnants-0",
+            "a3-26-record-room-remnants-1"
+          ],
+          "status": "observed",
+          "observation": {
+            "path": "review/stage26/normal-input-observed/observation.json",
+            "pointer": "/clusters/0"
+          }
+        },
+        {
+          "id": "casting-yard-tools",
+          "memberIds": [
+            "a3-26-casting-yard-tools-0",
+            "a3-26-casting-yard-tools-1",
+            "a3-26-casting-yard-tools-2"
+          ],
+          "status": "observed",
+          "observation": {
+            "path": "review/stage26/normal-input-observed/observation.json",
+            "pointer": "/clusters/1"
+          }
+        },
+        {
+          "id": "tally-store-remnants",
+          "memberIds": [
+            "a3-26-tally-store-remnants-0",
+            "a3-26-tally-store-remnants-1",
+            "a3-26-tally-store-remnants-2"
+          ],
+          "status": "observed",
+          "observation": {
+            "path": "review/stage26/normal-input-observed/observation.json",
+            "pointer": "/clusters/2"
+          }
+        },
+        {
+          "id": "surface-exit-remnants",
+          "memberIds": [
+            "a3-26-surface-exit-remnants-0",
+            "a3-26-surface-exit-remnants-1"
+          ],
+          "status": "observed",
+          "observation": {
+            "path": "review/stage26/normal-input-observed/observation.json",
+            "pointer": "/clusters/3"
+          }
+        }
+      ],
+      "waves": [],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "conclusion": "unverified",
+    "reviewer": null,
+    "reviewedAt": null,
+    "reviewDigest": null,
+    "reportPaths": [],
+    "unresolvedFindings": [
+      "Independent raw review and other mandatory checks pending."
+    ]
+  }
+}

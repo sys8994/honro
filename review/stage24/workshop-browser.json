@@ -1,0 +1,45 @@
+{
+  "scope": "Actual Stage View/Playtest parity and roof drop UI. Controlled starting roof pose, not combat completion.",
+  "passed": true,
+  "rows": [
+    {
+      "device": "desktop",
+      "fiveRoofsOneWay": true,
+      "stageViewPlaytestExactTerrainMarkers": true,
+      "actualDropButtonsRoofEaveGround": true,
+      "stopRestoresProject": true,
+      "roofIds": [
+        "outer-servant-wing:collision:0",
+        "ancestral-family-hall:collision:0",
+        "garden-study:collision:0",
+        "family-ancestral-shrine:collision:0",
+        "ground-record-entry:collision:0"
+      ]
+    },
+    {
+      "device": "mobile",
+      "fiveRoofsOneWay": true,
+      "stageViewPlaytestExactTerrainMarkers": true,
+      "actualDropButtonsRoofEaveGround": true,
+      "stopRestoresProject": true,
+      "roofIds": [
+        "outer-servant-wing:collision:0",
+        "ancestral-family-hall:collision:0",
+        "garden-study:collision:0",
+        "family-ancestral-shrine:collision:0",
+        "ground-record-entry:collision:0"
+      ]
+    }
+  ],
+  "errors": [],
+  "html": {
+    "HONRO.html": {
+      "bytes": 14381140,
+      "sha256": "bb771fbafd11c84970f7a1445421c3f773fbc2b9da5e4bb2641bc96e193775fc"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 14491914,
+      "sha256": "843f27e8b0548e843bffbcbb8aca3041254c503c0eb7dde574835612c65abf12"
+    }
+  }
+}

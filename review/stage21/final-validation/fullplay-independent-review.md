@@ -1,0 +1,13 @@
+# Stage21 normal-resource policy independent review
+
+Reviewed tests/stage21-eupseong-fullplay.mjs and raw fullplay/trace.json, including final office-response policy. Final controller SHA256559120b214e99f92a15c6ba5b4aa9e99e2c3cc020b1700a7a988caa13384fb19 matches the file. Trace source commitb2c7d20, campaign5d139eacb3f3c8209fb6aff325b88a349abebac0e88b1fe82de0f03a84c43196, runtime8528560f47dad9d01835cd899c9aaf4e5721caee148cdb534ff3d387b7732a32.
+
+Result: actual Stage21 App.frame policy wins round9/frame9048 with all4 heroes alive. Initial18 enemies and all events are retained; no checkEnd override, live actor/resource top-up, objective completion write, or enemy removal found in controller. Five-field actor write audit reports externalWrites0. Audit is useful scoped instrumentation, not universal proof: it watches x/y/hp/focus/moveLeft, permits actual production calls and is supplemented here by controller inspection.
+
+Inputs are production movement keys, jump, angle selection/charge/release, objective use and defend, with finite movement/focus and legal trained loadouts. DOM, renderer, clock and storage are doubles. A bounded shotViable planner selects safe shots using simulation knowledge, so this demonstrates a scripted normal-resource completion; it is not human skill/aim difficulty or browser-input coverage. The office policy now intentionally spends ordinary movement/actions near office until at least2 enemy actions occur before exiting. No enemy or geometry edits produce that response.
+
+Entry is a declared isolated through20 reward/recruit fixture, with actual production reward outputs60437XP per hero and no XP top-up. It does not claim actual prior20 chapter play. Legal talent prerequisites/points and six stat investments are checked. The earlier hardcoded61569 expectation failure must stay a separate exploratory regression limitation, not be rewritten as a prior pass.
+
+Raw observed initial-group enemy actions/hit records: wagon3/5, gate4/6, market3/3, stable3/4, office4/7. Recorded player shot targets also cover all5 groups. All3 finite waves appear with correct stable contributions3guards/2hounds/2archers; their enemy actions/hits are respectively3/3,2/2,2/2. Hit counts include recorded damage/shield events and are not unique attacks or exclusively hero damage counts. Actual Continue at round3 compares entire battle exact. These close the previous missing normal-resource and four-group effect-evidence gaps for this policy only.
+
+This review does not grant visual/reference-photo acceptance, user image approval, master/Pages permission, or broad browser/performance/regression acceptance. Independent encounter gate needs refreshed final evidence bindings before any final acceptance claim.

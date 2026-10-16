@@ -1,0 +1,531 @@
+{
+  "source": {
+    "commit": "b2c7d20ef796761d09f78e10371c21ff244e2ace",
+    "campaign": "5d139eacb3f3c8209fb6aff325b88a349abebac0e88b1fe82de0f03a84c43196",
+    "runtime": "8528560f47dad9d01835cd899c9aaf4e5721caee148cdb534ff3d387b7732a32",
+    "controller": "559120b214e99f92a15c6ba5b4aa9e99e2c3cc020b1700a7a988caa13384fb19"
+  },
+  "scope": "Actual Chromium normal Game/iframe HUD, restored observed snapshots, no actor modifications; not full browser input replay or HUD pixel identity",
+  "results": [
+    {
+      "goal": "rescue",
+      "form": "pc",
+      "sourceSnapshot": "round:1",
+      "frame": 18,
+      "result": {
+        "goal": "수레 아래 주민 구하기 · 구조",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "gate-resident",
+            "kind": "interact",
+            "x": 1620,
+            "y": 2530,
+            "label": "수레 아래 주민 구하기",
+            "unitId": "act3-resident"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "rescue",
+      "form": "mobile",
+      "sourceSnapshot": "round:1",
+      "frame": 18,
+      "result": {
+        "goal": "수레 아래 주민 구하기 · 구조",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "gate-resident",
+            "kind": "interact",
+            "x": 1620,
+            "y": 2530,
+            "label": "수레 아래 주민 구하기",
+            "unitId": "act3-resident"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "rescue",
+      "form": "portrait",
+      "sourceSnapshot": "round:1",
+      "frame": 18,
+      "result": {
+        "goal": "수레 아래 주민 구하기 · 구조",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "gate-resident",
+            "kind": "interact",
+            "x": 1620,
+            "y": 2530,
+            "label": "수레 아래 주민 구하기",
+            "unitId": "act3-resident"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "hold",
+      "form": "pc",
+      "sourceSnapshot": "round:3",
+      "frame": 2334,
+      "result": {
+        "goal": "표시된 원 안의 적을 처치하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "refuge-hold",
+            "kind": "interact",
+            "x": 2600,
+            "y": 2560,
+            "label": "주민이 물러날 동안 길목 지키기"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "hold",
+      "form": "mobile",
+      "sourceSnapshot": "round:3",
+      "frame": 2334,
+      "result": {
+        "goal": "표시된 원 안의 적을 처치하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "refuge-hold",
+            "kind": "interact",
+            "x": 2600,
+            "y": 2560,
+            "label": "주민이 물러날 동안 길목 지키기"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "hold",
+      "form": "portrait",
+      "sourceSnapshot": "round:3",
+      "frame": 2334,
+      "result": {
+        "goal": "표시된 원 안의 적을 처치하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "refuge-hold",
+            "kind": "interact",
+            "x": 2600,
+            "y": 2560,
+            "label": "주민이 물러날 동안 길목 지키기"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "exit",
+      "form": "pc",
+      "sourceSnapshot": "round:6",
+      "frame": 5765,
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "exit",
+      "form": "mobile",
+      "sourceSnapshot": "round:6",
+      "frame": 5765,
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "exit",
+      "form": "portrait",
+      "sourceSnapshot": "round:6",
+      "frame": 5765,
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "market",
+      "form": "pc",
+      "sourceSnapshot": "round:7",
+      "frame": 7135,
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "market",
+      "form": "mobile",
+      "sourceSnapshot": "round:7",
+      "frame": 7135,
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "market",
+      "form": "portrait",
+      "sourceSnapshot": "round:7",
+      "frame": 7135,
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "office",
+      "form": "pc",
+      "sourceSnapshot": "round:9",
+      "frame": 8962,
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "office",
+      "form": "mobile",
+      "sourceSnapshot": "round:9",
+      "frame": 8962,
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "office",
+      "form": "portrait",
+      "sourceSnapshot": "round:9",
+      "frame": 8962,
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      }
+    },
+    {
+      "goal": "rescue",
+      "form": "iframe",
+      "result": {
+        "goal": "수레 아래 주민 구하기 · 구조",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "gate-resident",
+            "kind": "interact",
+            "x": 1620,
+            "y": 2530,
+            "label": "수레 아래 주민 구하기",
+            "unitId": "act3-resident"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      },
+      "goalAndPartyEqualGame": true
+    },
+    {
+      "goal": "hold",
+      "form": "iframe",
+      "result": {
+        "goal": "표시된 원 안의 적을 처치하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "refuge-hold",
+            "kind": "interact",
+            "x": 2600,
+            "y": 2560,
+            "label": "주민이 물러날 동안 길목 지키기"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      },
+      "goalAndPartyEqualGame": true
+    },
+    {
+      "goal": "exit",
+      "form": "iframe",
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      },
+      "goalAndPartyEqualGame": true
+    },
+    {
+      "goal": "market",
+      "form": "iframe",
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      },
+      "goalAndPartyEqualGame": true
+    },
+    {
+      "goal": "office",
+      "form": "iframe",
+      "result": {
+        "goal": "표시된 도착 지점으로 이동하세요",
+        "party": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "targets": [
+          {
+            "id": "city-exit",
+            "kind": "exit",
+            "x": 6140,
+            "y": 2220,
+            "label": "읍성 안으로 진입"
+          }
+        ],
+        "debug": false,
+        "stage": 21
+      },
+      "goalAndPartyEqualGame": true
+    }
+  ],
+  "errors": []
+}
