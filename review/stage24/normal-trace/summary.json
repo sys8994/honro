@@ -1,0 +1,77 @@
+{
+  "sourceCommit": "2314ee6a2ad53606c2e150b2c8c087f54de1af32",
+  "inputPolicy": "Identical stage24-normal-play input decisions; observer wrappers only, no item commands or runtime state injections",
+  "groups": {
+    "empty-court-watch": {
+      "hits": 5,
+      "hpDamage": 182,
+      "enemyFires": 3,
+      "targets": [
+        "p-mage",
+        "p-occultist"
+      ]
+    },
+    "crest-room-watch": {
+      "hits": 10,
+      "hpDamage": 371,
+      "enemyFires": 5,
+      "targets": [
+        "p-archer",
+        "p-knight",
+        "p-mage",
+        "p-occultist"
+      ]
+    },
+    "abandoned-garden-watch": {
+      "hits": 4,
+      "hpDamage": 153,
+      "enemyFires": 3,
+      "targets": [
+        "p-archer",
+        "p-mage",
+        "p-occultist"
+      ]
+    },
+    "shrine-approach": {
+      "hits": 4,
+      "hpDamage": 105,
+      "enemyFires": 2,
+      "targets": [
+        "p-archer",
+        "p-mage",
+        "p-occultist"
+      ]
+    },
+    "land-register-watch": {
+      "hits": 1,
+      "hpDamage": 28,
+      "enemyFires": 2,
+      "targets": [
+        "p-archer"
+      ]
+    },
+    "act3-response-24-0": {
+      "hits": 1,
+      "hpDamage": 39,
+      "enemyFires": 1,
+      "targets": [
+        "p-archer"
+      ]
+    },
+    "act3-response-24-1": {
+      "hits": 3,
+      "hpDamage": 95,
+      "enemyFires": 3,
+      "targets": [
+        "p-knight"
+      ]
+    },
+    "act3-response-24-2": {
+      "hits": 0,
+      "hpDamage": 0,
+      "enemyFires": 2,
+      "targets": []
+    }
+  },
+  "gate": "response-24-2 has two actual fires but no observed hero HP damage; meaningful pressure/evasion is not established"
+}
