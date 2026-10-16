@@ -1,3 +1,5 @@
+import {beforeAct3Campaign} from './act3-environment-final-history.mjs';
+import {beforeStage5Lake} from './stage5-lake-history-helpers.mjs';
 import {beforeStoryCampaign} from './act23-story-revision-history.mjs';
 import {beforeQuestProjectProse} from './quest-project-prose-history.mjs';
 import {beforeApprovedWaterfall} from './approved-waterfall-contract-helpers.mjs';
@@ -15,7 +17,7 @@ const g=await runtime({legacyMaps:false});
 const f=JSON.parse(bytes),current=JSON.parse(readFileSync('shared/data/campaign.json','utf8'));
 // The immutable metadata receipt predates the separately approved story leaves.
 // Reverse that exact, hash-pinned delta; never refresh this historical fixture.
-const p=beforeStoryCampaign(beforeQuestProjectProse(current)),before=plain(p),beforeCurrent=plain(current);
+const p=beforeStoryCampaign(beforeAct3Campaign(beforeQuestProjectProse(beforeStage5Lake(current)))),before=plain(p),beforeCurrent=plain(current);
 assert.equal(f.sourceCommit,'5ca1830');
 for(const[n,space]of Object.entries(f.spaces)){before.stages[n-1].design.space=plain(space);beforeCurrent.stages[n-1].design.space=plain(space);}
 assert.equal(hash(beforeApprovedWaterfall(before,g)),f.projectSha256,'Everything except the two explicitly reviewed metadata objects stays exact');
@@ -50,7 +52,7 @@ const storyNegatives=[];for(const[id,mutate]of[
  ['unapproved-story-revision',q=>q.stages[26].initialState.honroStoryCanonRevision++],
  ['unapproved-story-adjacent-hp',q=>q.stages[26].units[0].hp++],
  ['unapproved-current-space',q=>q.stages[14].design.space.routes[0].anchors[21].x++]
-]){const q=plain(current);mutate(q);assert.throws(()=>beforeStoryCampaign(beforeQuestProjectProse(q)),id);storyNegatives.push(id);}
+]){const q=plain(current);mutate(q);assert.throws(()=>beforeStoryCampaign(beforeAct3Campaign(beforeQuestProjectProse(beforeStage5Lake(q)))),id);storyNegatives.push(id);}
 const profile=g.HONRO_CORE.defaults();profile.recruited=['archer','mage','knight','occultist'];const battles=[];
 for(let n=1;n<=30;n++){
  const a=plain(g.HonroMaps.createBattle(beforeCurrent.stages[n-1],beforeCurrent,plain(profile),{origin:'campaign'}));
