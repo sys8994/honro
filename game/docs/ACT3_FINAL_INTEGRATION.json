@@ -408,7 +408,7 @@
         "stage28:record-court:approval-worktable",
         "stage28:record-court:suppression-worktable"
       ],
-      "stageSha256": "a609e9c1024fa540102615be94e77ab83e81f194001eebdb9c5bba27b32b9160",
+      "stageSha256": "ef97079331dba2ed1875353d008dc997a10bcc510d3d84766ba5ee459cedd8a9",
       "assetSha256": {
         "stage28:record-court:boundary-walls": "3224b50219a2cfb8667bfcc799d13af7280693b335b155c19b5d5b8806330add",
         "stage28:record-court:west-clerks-wing-rear": "a3ecbc30967e1067fd160adbf88ba1943a76f54c9275e0f73ab9dfacc1fa7179",
@@ -432,7 +432,10 @@
         "stage28:record-court:petition-worktable": "ca6f2cf7ec4be09b5f286ac4e4a1894677dc4e76ac7eb32c8a62a99e5aa70e52",
         "stage28:record-court:approval-worktable": "ef2208dcff517347a68b76b66a2adf15aee8ccbbdb93a855e74b5a48bc2b6938",
         "stage28:record-court:suppression-worktable": "5e88abf777d98c9650db6684f01107e9453a1de23e3e897586b275dd324bf5d0"
-      }
+      },
+      "reviewedStageSha256": "a609e9c1024fa540102615be94e77ab83e81f194001eebdb9c5bba27b32b9160",
+      "finalSource": "b4a1ade02aa97b99efdc3ac85137ec299feedde3",
+      "integrationFix": "Explicit Stage28 world boundary and playProjection for new-game schema validation; authored vertices/other data preserved"
     },
     {
       "stage": 29,
