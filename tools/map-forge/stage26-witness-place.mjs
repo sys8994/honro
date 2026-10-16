@@ -68,7 +68,7 @@ export function rebuildWitnessPlace(g,p,input){
  s.design.act3.mainBuildings=['ancestor-record-cabinet','burnt-workshop-frame','artisan-refuge-house'];s.design.act3.bridges=['work-loft'];
  delete s.design.act3.refinement;delete s.design.act3.koreanTown;
  s.design.act3.artContract={setting:'묘역 기록실과 주민의 불탄 공방',forms:['묘역 비탈','낮은 기록실','열린 작업마당','불탄 골조','작은 화덕','초가 퇴칸'],not:'무명사의 대종 주조 현장 또는 종 거푸집'};
- s.anchors.start={x:260,y:2300};settle(g,p,s);s.initialState.honroStage26PlaceRevision=1;authorEncounters(g,p,s);
+ s.anchors.start={x:260,y:2300};settle(g,p,s);s.initialState.honroStage26PlaceRevision=2;authorEncounters(g,p,s);
  return s;
 }
 export function applyWitnessPlace(g,input){const p=clone(input),i=p.stages.findIndex(s=>s.id==='stage-26');p.library=p.library.filter(a=>!a.id.startsWith(PREFIX));p.stages[i]=rebuildWitnessPlace(g,p,p.stages[i]);const one=g.HonroTerrainDomain.author({...p,stages:[p.stages[i]]});p.stages[i]=one.stages[0];return g.HonroMaps.finalize(p);}

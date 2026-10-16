@@ -157285,7 +157285,7 @@
       },
       "material": "stone",
       "breakable": false,
-      "oneWay": false,
+      "oneWay": true,
       "bounds": {
         "x": 2045,
         "y": 2295,
@@ -157383,7 +157383,7 @@
       },
       "material": "stone",
       "breakable": false,
-      "oneWay": false,
+      "oneWay": true,
       "bounds": {
         "x": 2415,
         "y": 2295,
@@ -157481,7 +157481,7 @@
       },
       "material": "stone",
       "breakable": false,
-      "oneWay": false,
+      "oneWay": true,
       "bounds": {
         "x": 3425,
         "y": 2295,
@@ -158159,7 +158159,7 @@
       },
       "material": "wood",
       "breakable": false,
-      "oneWay": false,
+      "oneWay": true,
       "bounds": {
         "x": -415,
         "y": -325,
@@ -158696,7 +158696,7 @@
       },
       "material": "wood",
       "breakable": false,
-      "oneWay": false,
+      "oneWay": true,
       "bounds": {
         "x": -373,
         "y": -250,
@@ -405234,7 +405234,7 @@
         ],
         "honroNarrativeRevision": 1,
         "honroStoryCanonRevision": 1,
-        "honroStage26PlaceRevision": 1
+        "honroStage26PlaceRevision": 2
       },
       "environment": {
         "version": 4,

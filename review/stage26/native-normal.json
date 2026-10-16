@@ -1,10 +1,10 @@
 {
   "stage": 26,
   "phase": "won",
-  "round": 5,
+  "round": 8,
   "reason": "휘겸과 소단이 선조의 조사문서와 공방 기록을 확보했다. 저항하지 않은 주민들을 대도사가 현장에서 학살했고, 이후 무명사에서 대종을 주조했다. 생활 금속량은 수거량과 거의 일치하며 유골·재 처리도 비정상적이다. 정확한 공정과 목적은 미상이다.",
-  "seconds": 2.5383279920000006,
-  "fingerprint": "75222108febe4149c2ba12582dc7a29ec1131f88ffbe6165fa1be51f81631554",
+  "seconds": 4.293843245,
+  "fingerprint": "a6671a6604c3eba0aa8192a9eae14209f303a2476d4bd16b88d8fde065f4277b",
   "source": {
     "game/config/balance.json": "e92d629134795dbbb8c754db19e7d423cb70c77047fb33e4fea4726caf4886e1",
     "shared/build.mjs": "e974bace1ec287ae68daaddc9b6624c950eff60f1f26cbcae176d1a56c15ae22",
@@ -178,71 +178,125 @@
       "goal": "hidden-latch",
       "x": 911.9,
       "y": 2400,
-      "action": "interact",
-      "target": "hidden-latch"
+      "action": "defend"
     },
     {
       "round": 1,
       "actor": "occultist",
-      "goal": "investigation-record",
+      "goal": "hidden-latch",
       "x": 747.8923232678342,
       "y": 2381.390115452798,
       "action": "fire",
-      "skill": "O03",
+      "skill": "O02",
       "target": "a3-26-record-room-remnants-0"
     },
     {
       "round": 2,
       "actor": "knight",
-      "goal": "investigation-record",
-      "x": 1274.9619259929946,
+      "goal": "hidden-latch",
+      "x": 801.1356466435857,
       "y": 2400,
-      "action": "defend"
+      "action": "interact",
+      "target": "hidden-latch"
     },
     {
       "round": 2,
       "actor": "occultist",
-      "goal": "artisan-resident",
-      "x": 2412.825801928115,
-      "y": 2700,
+      "goal": "investigation-record",
+      "x": 947.8688353883272,
+      "y": 2400,
       "action": "fire",
-      "skill": "O02",
-      "target": "a3-26-casting-yard-tools-0"
+      "skill": "O03",
+      "target": "a3-26-record-room-remnants-0"
     },
     {
       "round": 3,
       "actor": "knight",
-      "goal": "artisan-resident",
-      "x": 3187.450069841791,
-      "y": 2700,
-      "action": "fire",
-      "skill": "S01",
-      "target": "a3-26-casting-yard-tools-0"
+      "goal": "investigation-record",
+      "x": 1134.8023133102524,
+      "y": 2400,
+      "action": "defend"
     },
     {
       "round": 3,
       "actor": "occultist",
+      "goal": "investigation-record",
+      "x": 856.840593518662,
+      "y": 2400,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-26-record-room-remnants-1"
+    },
+    {
+      "round": 4,
+      "actor": "knight",
+      "goal": "investigation-record",
+      "x": 1134.8023133102524,
+      "y": 2400,
+      "action": "defend"
+    },
+    {
+      "round": 4,
+      "actor": "occultist",
+      "goal": "investigation-record",
+      "x": 840.3203910705246,
+      "y": 2400,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-26-record-room-remnants-1"
+    },
+    {
+      "round": 5,
+      "actor": "knight",
+      "goal": "investigation-record",
+      "x": 1333.7189799769214,
+      "y": 2400,
+      "action": "defend"
+    },
+    {
+      "round": 5,
+      "actor": "occultist",
       "goal": "artisan-resident",
-      "x": 4036.101805034117,
-      "y": 2334.5368875777103,
+      "x": 2509.825201585987,
+      "y": 2700,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-26-casting-yard-tools-1"
+    },
+    {
+      "round": 6,
+      "actor": "knight",
+      "goal": "artisan-resident",
+      "x": 3240.9128156069974,
+      "y": 2700,
+      "action": "fire",
+      "skill": "S01",
+      "target": "a3-26-casting-yard-tools-2"
+    },
+    {
+      "round": 6,
+      "actor": "occultist",
+      "goal": "artisan-resident",
+      "x": 4135.902513947818,
+      "y": 2300.6759327677046,
       "action": "fire",
       "skill": "O02",
       "target": "a3-26-tally-store-remnants-0"
     },
     {
-      "round": 4,
+      "round": 7,
       "actor": "knight",
       "goal": "artisan-resident",
-      "x": 4677.761256105198,
+      "x": 4736.985600499664,
       "y": 2150,
       "action": "interact",
       "target": "artisan-resident"
     },
     {
-      "round": 4,
+      "round": 7,
       "actor": "occultist",
       "goal": "workshop-exit",
-      "x": 5676.841594164841,
+      "x": 5765.515531538425,
       "y": 2410,
       "action": "fire",
       "skill": "O02",
@@ -316,16 +370,16 @@
   "heroes": [
     {
       "cls": "knight",
-      "hp": 1242,
+      "hp": 1497,
       "maxHp": 1497,
-      "x": 6503.609033082566,
-      "y": 2266.4945660150875
+      "x": 6502.844282314908,
+      "y": 2266.7664773991437
     },
     {
       "cls": "occultist",
-      "hp": 836,
+      "hp": 790,
       "maxHp": 1072,
-      "x": 5665.860722632929,
+      "x": 5787.769900452472,
       "y": 2410
     }
   ],

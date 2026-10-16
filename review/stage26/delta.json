@@ -1,6 +1,64 @@
 {
   "baseline": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
-  "status": "draft-not-approved-history-layer",
+  "preservationCommit": "53844a40769c25641b7e2df85a054ad6e73acacf",
+  "status": "stage26-only-bounded-delta-not-approved-history-layer",
+  "changedStages": [
+    26
+  ],
+  "other29StagesExact": true,
+  "allExistingLibraryAssetsExact": true,
+  "appendedOneWayPolicyRows": [
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "stage26-witness:work-hollow-forge",
+      "elementId": "work-hollow-forge",
+      "before": {
+        "oneWay": false
+      },
+      "reason": "Stage26 open workshop/refuge roof and work gallery; existing jump-through/land/drop policy, no indoor wall solids"
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "stage26-witness:refuge-house",
+      "elementId": "artisan-refuge-house",
+      "before": {
+        "oneWay": false
+      },
+      "reason": "Stage26 open workshop/refuge roof and work gallery; existing jump-through/land/drop policy, no indoor wall solids"
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "stage26-witness:west-work-ramp",
+      "elementId": "west-work-ramp",
+      "before": {
+        "oneWay": false
+      },
+      "reason": "Stage26 open workshop/refuge roof and work gallery; existing jump-through/land/drop policy, no indoor wall solids"
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "stage26-witness:work-loft",
+      "elementId": "work-loft",
+      "before": {
+        "oneWay": false
+      },
+      "reason": "Stage26 open workshop/refuge roof and work gallery; existing jump-through/land/drop policy, no indoor wall solids"
+    },
+    {
+      "stage": 26,
+      "kind": "asset",
+      "id": "stage26-witness:east-work-ramp",
+      "elementId": "east-work-ramp",
+      "before": {
+        "oneWay": false
+      },
+      "reason": "Stage26 open workshop/refuge roof and work gallery; existing jump-through/land/drop policy, no indoor wall solids"
+    }
+  ],
   "files": [
     {
       "path": "shared/data/campaign.json",
@@ -9,8 +67,19 @@
         "sha256": "2a0dd3e11d61e05ca0f112e8450dedc1037ae1f25b0e8b0299eedf76719e4abc"
       },
       "after": {
-        "bytes": 13802125,
-        "sha256": "8c546da652375f20f7631dca6f89b1ded89d677baec5f83f3920ad7e7d1af27f"
+        "bytes": 13802120,
+        "sha256": "784eb62a2e4c857d9fd81004e19bac544b61c4a515257c62f09c44ba4c8b8f78"
+      }
+    },
+    {
+      "path": "shared/data/open-structures.json",
+      "before": {
+        "bytes": 18982,
+        "sha256": "51f962fb771db81ce3ec271ee404cb269be2e0f6117ff1dcb6a1f4e2517ea629"
+      },
+      "after": {
+        "bytes": 20587,
+        "sha256": "e49fc370697c933fa08c2b9a2edb3ecf99e5378ef9660b1126416299c2f30ad2"
       }
     },
     {
@@ -29,7 +98,7 @@
       "before": null,
       "after": {
         "bytes": 9763,
-        "sha256": "07c1394d19915cad6c84ec16fa9365425da27fe2076d3c2f5ac048e42c55175e"
+        "sha256": "96da4f683dff9158684884b369878d8e2a997fdb37ea836daff5e09206a5803c"
       }
     },
     {
@@ -39,8 +108,8 @@
         "sha256": "99e35c7bc1020fd5e506b63cb99194ed260e109f5a82bb7323d0d3b2f92775d5"
       },
       "after": {
-        "bytes": 14486167,
-        "sha256": "6e7f0e24fbea4ef0c1a443498a421cd7f3d53442f2a6b053ac6b815842d901a0"
+        "bytes": 14487767,
+        "sha256": "8837ebde079989abd1abe8b851d10e934bb7dd1db92febeb1c11830ab1fd8f09"
       }
     },
     {
@@ -50,9 +119,161 @@
         "sha256": "3259f508e04f50e2fae0cbc6d1e0826e68b8654e30a9c2c5faf41b995ee9b94c"
       },
       "after": {
-        "bytes": 14596941,
-        "sha256": "df0b059dfdb836d0ee19f39cceed92378b2c7d38da6ff010eb48e1bfea4eb0a1"
+        "bytes": 14598541,
+        "sha256": "6a5a1a3dcad07f76ff3f5439365278959c61508a282a81325eda33beb609a179"
       }
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "review/stage26/after-desktop-entry.png",
+      "bytes": 194904,
+      "sha256": "1935dc2d710884c0d5ee7a0dc937faf348885d5362a3b206cc45c4f155857be8"
+    },
+    {
+      "path": "review/stage26/after-desktop-overview.png",
+      "bytes": 187307,
+      "sha256": "ee4b950e11d5498f9e812d931a5751f102e630f0795b78ae79cc758b0d590c0f"
+    },
+    {
+      "path": "review/stage26/after-desktop-record-room.png",
+      "bytes": 196602,
+      "sha256": "5fb3707ceed1f180ce012cd67dc438d9dbcd3d95bbc49ec1876e0fe2a6cd8555"
+    },
+    {
+      "path": "review/stage26/after-desktop-refuge.png",
+      "bytes": 203857,
+      "sha256": "f5840a6e766d6a43da741c7a2e9532d4b6f0b82aff87ce6b8606ca31f4518fd8"
+    },
+    {
+      "path": "review/stage26/after-desktop-workshop.png",
+      "bytes": 207639,
+      "sha256": "7de672505e1ead781e06b39821298b68aeb0540cddc5e6fff0e5c97edfa63d22"
+    },
+    {
+      "path": "review/stage26/after-mobile-entry.png",
+      "bytes": 99501,
+      "sha256": "d8491bd699782f7890325d6f65e031062a3bb0fef5bef6e7d4539abb5c06bb7b"
+    },
+    {
+      "path": "review/stage26/after-mobile-overview.png",
+      "bytes": 98344,
+      "sha256": "0868c27b26633f2bb3532f2ee51464b7b13d1fdcef66f04eb537d1deebbacea5"
+    },
+    {
+      "path": "review/stage26/after-mobile-record-room.png",
+      "bytes": 95239,
+      "sha256": "c25dbb43da98383a355bf5a38a686436b3a5343b55876a59f1d6e69aa471caa1"
+    },
+    {
+      "path": "review/stage26/after-mobile-refuge.png",
+      "bytes": 98979,
+      "sha256": "7001459e6037600b65e96187f86a8b66050589f0fed89b703293791b4f2d3b32"
+    },
+    {
+      "path": "review/stage26/after-mobile-workshop.png",
+      "bytes": 97769,
+      "sha256": "edbd1dc388e0edebf1ffea3f500dc3d177e233cca8a75e9c90c9e2e7a95c09eb"
+    },
+    {
+      "path": "review/stage26/after-workshop-playtest.png",
+      "bytes": 254830,
+      "sha256": "c4c248b7324fa044949a92719cdd015dfb1ad5211d52a375c74453198ddb1c73"
+    },
+    {
+      "path": "review/stage26/after-workshop-stage-view.png",
+      "bytes": 199644,
+      "sha256": "252c80ef5e10bdf737a02d90de5c7d15304e980ffc12e354aeaaac94f7e51cfe"
+    },
+    {
+      "path": "review/stage26/before-desktop-entry.png",
+      "bytes": 211694,
+      "sha256": "8247a70049fd53a37016c9c1e55aefe3b01bd9a6e99d59af6513fda3ca42869e"
+    },
+    {
+      "path": "review/stage26/before-desktop-overview.png",
+      "bytes": 196292,
+      "sha256": "3d70ad6ca2d97519d9a74809e8c5becd23b7b37df8c7622e3265f277df762233"
+    },
+    {
+      "path": "review/stage26/before-desktop-record-room.png",
+      "bytes": 229003,
+      "sha256": "7752a46ff02b911a5373c2d965968e323ccc8f540531924663abdb9de681f1f8"
+    },
+    {
+      "path": "review/stage26/before-desktop-refuge.png",
+      "bytes": 215785,
+      "sha256": "248036cff7c58293b23e845364bfe21ec8177524e4ef0d4f62ddac7d17b2a968"
+    },
+    {
+      "path": "review/stage26/before-desktop-workshop.png",
+      "bytes": 210260,
+      "sha256": "232a249c4fb28c72a90e86397f81fb90fe6018ff11f434ec6c0be00987f53427"
+    },
+    {
+      "path": "review/stage26/before-mobile-entry.png",
+      "bytes": 103105,
+      "sha256": "2d71b3ae335c570c525629d85de07b0b103931c879a1b482f9a923f0418127d6"
+    },
+    {
+      "path": "review/stage26/before-mobile-overview.png",
+      "bytes": 97497,
+      "sha256": "4cc56b624358f4d2f71fea46087fa93a6a9de5b2dd58757dc9da938ea6f22f05"
+    },
+    {
+      "path": "review/stage26/before-mobile-record-room.png",
+      "bytes": 101804,
+      "sha256": "659cf417bc2bc7c1007d998521497e82d5513cb031c568431cb10a9f0d1559ce"
+    },
+    {
+      "path": "review/stage26/before-mobile-refuge.png",
+      "bytes": 104449,
+      "sha256": "a5f316fea59dee7522e2fb3a1757d4fca9eade247ec05378db06df6543e3be91"
+    },
+    {
+      "path": "review/stage26/before-mobile-workshop.png",
+      "bytes": 96160,
+      "sha256": "03d1c1629435217a50016841f9beb481b0a6812a79b233a630e970341fe312bd"
+    },
+    {
+      "path": "review/stage26/roof-desktop-knight-refuge.png",
+      "bytes": 243027,
+      "sha256": "b94060050a631fd9f1e439e716dcee6f740530dcc568aae69a761ac45a076fe8"
+    },
+    {
+      "path": "review/stage26/roof-desktop-knight-workshop.png",
+      "bytes": 210312,
+      "sha256": "1b4543ced8262a0940757fa7fee397f2d78c7337c175c26a34cc44823fb1ad54"
+    },
+    {
+      "path": "review/stage26/roof-desktop-occultist-refuge.png",
+      "bytes": 246892,
+      "sha256": "902ff9783ac98f912310863c57440f68ec860551de6d914ec3e724113c0293f5"
+    },
+    {
+      "path": "review/stage26/roof-desktop-occultist-workshop.png",
+      "bytes": 213614,
+      "sha256": "8c17bf842a706b86ebae75311bd90d1b8da41e230aee128a8f48336b910e5862"
+    },
+    {
+      "path": "review/stage26/roof-mobile-knight-refuge.png",
+      "bytes": 112452,
+      "sha256": "1ce4cd5412afc0cb3fce498bfb6f880b4ac78ee525f4e6e4f0d6bb48b23788c0"
+    },
+    {
+      "path": "review/stage26/roof-mobile-knight-workshop.png",
+      "bytes": 96009,
+      "sha256": "d8604db95abc64d7fa708c4f42d2e60ae4f9d855fc7870a38686a4b6a2a742bd"
+    },
+    {
+      "path": "review/stage26/roof-mobile-occultist-refuge.png",
+      "bytes": 115008,
+      "sha256": "341eaac2c31528ad8f025001cf05ca9b9ff889ca6adc601a0494b414688301c8"
+    },
+    {
+      "path": "review/stage26/roof-mobile-occultist-workshop.png",
+      "bytes": 98548,
+      "sha256": "b6e13233e40200f24414353868a7c8c17adaf5998d9d6a1823a6283029a21549"
     }
   ]
 }
