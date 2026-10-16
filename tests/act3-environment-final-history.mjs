@@ -7,7 +7,7 @@ import {fileURLToPath,pathToFileURL} from 'node:url';
 import {tmpdir} from 'node:os';
 import {storyDeltaHash as hash,applyExactStoryJsonDelta} from './exact-story-revision-delta.mjs';
 import {assertExactFollowupDelta} from './ui-followup-source-delta.mjs';
-export const ACT3_FINAL_FIXTURE_SHA256='UNPINNED_FINAL_TEN_STAGES';
+export const ACT3_FINAL_FIXTURE_SHA256='c6fdc749d16aa3d46642c036e466506b4602961d9d2fbb2e03b895f119aee671';
 let cached;
 export function act3FinalDelta(){
  if(cached)return cached;
