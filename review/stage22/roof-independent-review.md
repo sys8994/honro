@@ -77,3 +77,36 @@
 - `browser/roof-controls.json`: `a6674de62044794a8630f71ab377ed71e97f7e755e97ea421b84e1131625b6c2`
 - `browser/roof-contact-desktop.png`: `f05423c309ee71e0859576757b2e20d235570fb3de8a8cff39c396a074b8a5ce`
 - `browser/roof-contact-mobile.png`: `e4e156899a8097a141fac25b3bd9886a64b502ccf347691937e67e8b1673eb1d`
+
+## 최신 지붕 변경 후 정상 입력 후속 검토
+
+원본 `_local/reports/stage22-review/roof-normal-input/{result,trace,provenance}.json`을 직접 읽었다. 보존 대상 경로는 `review/stage22/normal-input-roof/`이다. sourceHash `94e9902a3432bad90845209232b1c042e373da1a732689159e2fc203e6b4665e`, runtimeSha256 `d6bf358d2c7e2016b55b4543ab58d8f236013d4d54a4fe55b81f674bcbfe87b1`에만 유효하며 통합 checkout의 결과가 아니다.
+
+39라운드 won, 22처치, 네 명 생존, validationFailure 없음, qualityBlockers=[]이다. 다섯 Continue는 각 시점 배우/지형/아이템/턴/목표/파동 상태 보존을 기록한다. Native 입력 결과이며 실제 브라우저 정상 전투 완료로 확대하지 않는다.
+
+아래도 원본 damage의 적 owner→side0/amount>0만 직접 집계했다.
+
+| 군집/파동 | 아군 실제 피해 건수 / 합 | 첫 피해 round / frame | 명시 대응 수 |
+|---|---:|---:|---:|
+| seal-porch | 8 / 273 | 1 / 1568 | 38 |
+| lower-ramp | 16 / 613 | 2 / 4715 | 38 |
+| ledger-front | 4 / 135 | 7 / 17008 | 27 |
+| near-gallery | 9 / 401 | 11 / 27285 | 29 |
+| register-rise | 4 / 132 | 11 / 27025 | 2 |
+| register-court | 10 / 393 | 20 / 47991 | 9 |
+| comparison-court | 14 / 521 | 25 / 61631 | 31 |
+| act3-response-22-0 | 10 / 330 | 5 / 11929 | 28 |
+| act3-response-22-1 | 1 / 35 | 11 / 27728 | 0 |
+| act3-response-22-2 | 4 / 190 | 25 / 60917 | 15 |
+| act3-compare-ledgers | 5 / 128 | 34 / 79745 | 0 |
+
+모든 군집/파동의 실피해는 다시 관측됐다. 기존 두 대응 누락은 **해소되지 않았다**. ledger-response는 frame23471 예고→23729 출생→27728 첫 피해35이고 playerResponses=[]이다. 등불은 round26/frame62732 예고→round34/frame79385 출생→79745 첫 피해33, 총128 피해이나 playerResponses=[]이다. 이 결과는 ‘공격이 효과가 없다’는 주장을 반박하지만 파동별 의식적인 회피/제압/위치 선택을 입증하지 않는다. 일반 defend/목표 이동을 그 파동 때문에 선택한 반응으로 새로 채우지 않았다.
+
+E register-rise의 첫 대응은 표적명이 v22-f2라 요약만 보면 잘못 연결된 것처럼 보인다. 원본을 대조하면 frame49625 shot127의 predictedTargets=[v22-e2]이고 실제 damage[151] frame49985에 knight→v22-e2 224가 있다. 두 번째는 frame64222 shot155 occultist→v22-e3 291이다. 따라서 해당 두 입력의 실제 군집 영향은 확인되며 예측만으로 인정한 것은 아니다.
+
+actions의 support에서 archive 지붕을 사용한 정상 전투 행동은 찾지 못했다. 따라서 최신 native 완주는 지붕을 선택한 전투/퇴로의 유용성 승인으로 확대하지 않는다. 궁수 처마 접촉 UI와 4체형 격리 경로 증거는 별개로 유효하다. 전체 디자인/encounter 승인에는 독립 gate 묶음과 미검증 범위의 최종 판단이 남는다.
+
+최신 원본 SHA256:
+- `result.json`: `e26d282e0f4a545190d634653ca0d40668cf2b7699dfb0a33c714161959f2248`
+- `trace.json`: `1443424029734274a413403d8e3f01eb3dc8e6d405b2561f0d5c1bfd35778872`
+- `provenance.json`: `1f43958bcd5cb5e08f3e0a8114fa1edecca348132c88a22e5d0377bad1de229e`
