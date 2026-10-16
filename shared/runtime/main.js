@@ -61,7 +61,7 @@
     // story, growth, allocations and a suspended battle use normal semantics.
     // This clone is session-only; only the normal profile is ever exported/saved.
     function debugProfile(normal) { return clone(normal); }
-    function save(p) { try {
+    function save(p) { if(G.HONRO_EMBEDDED)return false; try {
         localStorage.setItem(KEY, JSON.stringify(p));
         return true;
     }

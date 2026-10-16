@@ -1,3 +1,5 @@
+**실행 파일 분리(2026-10-16):** `shared/build.mjs`의 `runtimeEntries`가 공통 목록이며 `runtimeParts`는 native 검사용이다. `shared/web-build.mjs`가 기존 두 HTML과 `web/` 콘텐츠 해시 모듈·CSS·JSON·그래픽을 생성한다. Playtest는 Game 문서를 `?embedded=1`로 직접 불러오고 `HONRO_READY` 후 launchMap을 호출한다. HTTP와 `web/` 전체가 필수다. 원경 SVG의 동기 쉼터 합성은 로더가 채운 `HONRO_SVG_SOURCES`를 사용한다. 변경·복구 한계·최소 확인은 BUG_LOG의 파일 분리 항목을 본다.
+
 **검술 범위 접촉·응수세 최신 기준(2026-10-13):** 평참·횡참·회신참·사생참의 기존 다중 타격을 유지하고, 몸통 세 표본이 놓치던 실제 hurtbox/부채꼴 접촉을 보완한다. 응수세는 한 번 발동해 기존 전방 범위의 적 모두를 친다. 연참만 단일 대상 연속 타격이며 회신참은 전후 각 한 타다. 벽 차폐·아군 보호·포획 제외·기존 수치는 보존한다. `test:hwigyeom-area`는 native/shared 및 두 HTML의 공통 사례와 실입력을 구분한다. 브라우저 환경 제한과 정확한 사용자 배치 미재현은 BUG_LOG를 본다.
 
 ## 1막 영체 피해 반응 · 2026-10-13

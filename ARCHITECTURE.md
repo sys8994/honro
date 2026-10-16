@@ -19,7 +19,11 @@ flowchart TD
 
 ## 빌드 경계
 
-`shared/build.mjs`의 `runtimeParts()`가 유일한 번들 목록입니다. 게임은 여기에 실제 UI·스토리·입력·앱을 추가합니다. Workshop Stage View는 같은 런타임을 쓰고, Playtest는 같은 빌드에서 생성한 **게임 HTML 전체**를 iframe에 넣습니다. 독립 실행을 위해 두 HTML에 코드가 포함되지만 유지보수할 구현은 하나입니다.
+`shared/build.mjs`의 `runtimeEntries()`가 유일한 실행 목록이며 `runtimeParts()`는 native 소비자에게 같은 실행 순서의 문자열을 제공합니다. `shared/web-build.mjs`는 이 목록을 공통 ES 모듈, CSS, 캠페인 기본 정보/30장/공용 그림 라이브러리 JSON과 그래픽 자산으로 내보냅니다. Game과 Workshop Stage View는 같은 모듈 URL을 사용하고, Playtest는 콘텐츠 해시 Game 문서를 `?embedded=1`로 iframe에 직접 불러옵니다. 공개 진입 주소는 `HONRO.html`·`HONRO_WORKSHOP.html` 그대로입니다.
+
+`web/manifest.json`이 생성 파일을 기록합니다. HTML만 복사하면 실행되지 않으므로 `web/` 전체와 기존 BGM을 같은 HTTP 경로로 배포합니다. 파일명은 콘텐츠 해시를 포함하고 빌드는 이전 manifest가 소유한 낡은 생성물만 정리합니다. 그림 라이브러리의 편집용 SVG 원문과 Canvas 벡터 트리는 JSON 안에서 함께 보존하며, 원경 SVG·타이틀 이미지는 외부 파일입니다.
+
+모듈 로드는 `HONRO_READY` Promise로 완료를 알립니다. Workshop은 DOM 준비 후 초기화하고, iframe load 뒤 Game 준비를 기다린 후 기존 `launchMap`을 호출합니다. 원경 SVG 원문은 로더가 미리 보관하여 쉼터의 동기 SVG 합성도 같은 경로를 사용합니다. embedded에서는 기존 캠페인 load/persist 차단에 더해 직접 save 경로도 차단합니다.
 
 ## 작성 상태와 실행 상태
 

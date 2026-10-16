@@ -1,0 +1,325 @@
+/* Active battle controls. Fixed skill tiles, flexible space on both sides. */
+.honro .debug-badge{display:inline-flex;align-items:center;flex:none;border:1px solid #d7aa69a8;border-radius:5px;background:#413121d9;color:#f5d6a5;padding:3px 7px;font:700 10px/1.2 system-ui,sans-serif;letter-spacing:.02em;white-space:nowrap}
+.honro .debug-help{margin:5px 0 0;color:#d5b98d;font-size:11px;line-height:1.5}
+.honro .debug-setting label{font-weight:650;color:#f1d6aa}
+.honro .debug-map .map-node.open:not(.selected) .atlas-pin{border-color:#d7aa69;color:#e9c995}
+@media(max-width:620px){.honro .debug-badge{font-size:9px;padding:2px 5px}.honro .battle-title-row .debug-badge{max-width:130px;overflow:hidden;text-overflow:ellipsis}}
+.honro #app .battle-screen .minimap-dock{position:absolute;top:10px;right:12px;z-index:5;display:flex;flex-direction:column;align-items:flex-end;max-width:35vw}
+.honro #app .battle-screen .minimap-dock #minimap{position:static!important;inset:auto!important;min-width:0!important;max-width:100%!important;max-height:min(132px,calc(100dvh - 290px))!important;box-sizing:border-box}
+.honro #app .battle-screen .minimap-dock[hidden]{display:none}
+.honro #app .battle-title-row{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
+.honro #app .battle-title-row b{margin:0}
+.honro #app #turn-text{white-space:nowrap;color:#d9c28c;font-size:10px;font-weight:650}
+.honro #app .honro-compact-hud .joystick .wind-gauge{position:absolute;top:calc(100% + 2px);left:50%;transform:translateX(-50%);width:var(--joystick-size);z-index:4;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:1px}
+.honro #app .wind-gauge-track{display:block;position:relative;width:100%;height:7px;border:1px solid #9aa59177;border-radius:5px;background:#172a2e;box-shadow:inset 0 1px 3px #071315}
+.honro #app .wind-gauge-track b{position:absolute;left:50%;top:-2px;bottom:-2px;width:2px;background:#e2d5b2;transform:translateX(-50%)}
+.honro #app .wind-gauge-track i{position:absolute;top:0;height:100%;background:linear-gradient(90deg,#95b7b5,#e0d4a9)}
+.honro #app #wind-left{right:50%;border-radius:4px 0 0 4px}
+.honro #app #wind-right{left:50%;border-radius:0 4px 4px 0}
+.honro #app .wind-gauge small{font-size:8px;line-height:1;color:#d7cbaa;text-shadow:0 1px 2px #061115}
+.honro #app .honro-compact-hud #joystick{transform:none!important}
+@media(max-width:620px){.honro #app .battle-screen .minimap-dock{top:8px;right:8px;max-width:31vw}.honro #app .battle-screen .minimap-dock #minimap{max-height:min(108px,calc(100dvh - 290px))!important}.honro #app .battle-title-row{gap:5px}.honro #app #turn-text{font-size:9px}.honro #app .honro-compact-hud .joystick .wind-gauge{width:var(--joystick-size)}}
+.honro #app .honro-compact-hud .combat-status{min-height:16px;margin-top:3px;color:#a5b7b0;font-size:11px;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere}
+.honro #app .honro-compact-hud .combat-status[data-limited=true]{color:#ead09c}
+.honro #app .honro-compact-hud .player-chip.status-impaired small{color:#edbb85!important}
+.honro #app .battle-info .mission-help{display:block;max-width:100%;padding:2px 0;margin:0;border:0;background:none;color:#dcc998;font:inherit;font-size:11px;text-align:left;line-height:1.4;min-height:0;cursor:pointer;white-space:normal}
+.honro #app .battle-info .mission-help:hover{text-decoration:underline}
+.honro #app .battle-info .mission-help{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;max-height:2.8em}
+.honro #app .honro-compact-hud .hud-vitals{grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:var(--hud-vitals-height)!important;gap:5px 7px!important;min-height:0!important;height:auto!important}
+.honro #app .honro-compact-hud .hpmp{grid-template-columns:minmax(0,1fr)!important}
+.honro #app .honro-compact-hud .hpmp>.meter{grid-column:1!important;grid-row:1!important;width:100%!important}
+.honro #app .honro-compact-hud .meter label{display:flex!important;align-items:center!important;justify-content:center!important;gap:4px!important;white-space:nowrap!important}
+.honro #app .honro-compact-hud .meter label>span{flex:none}
+.honro #app .honro-compact-hud .meter .vital-name{font-size:8px!important;font-weight:400;opacity:.9}
+.honro #app .honro-compact-hud .meter.movement>i{background:#b8a574!important}
+.honro #app .honro-compact-hud .hud-vitals>[data-vital=hp]{grid-column:1!important;grid-row:1!important}
+.honro #app .honro-compact-hud .hud-vitals>[data-vital=mp]{grid-column:2!important;grid-row:1!important}
+.honro #app .honro-compact-hud .hud-vitals>[data-vital=move]{grid-column:3!important;grid-row:1!important}
+/* All three secondary actions orbit the fire center at one radius.
+   CSS angles run clockwise from 3 o'clock: 240/195/150 = 11/9:30/8.
+   Restore the original secondary/primary size hierarchy; the visible circle is
+   also the complete hit area, with no oversized invisible targets. */
+.honro #app .battle{
+  --action-size:38px;--fire-size:68px;--action-radius:calc((var(--fire-size) + var(--action-size)) / 2 + 5px);--fire-face-inset:12%;
+  --joystick-size:72px;--hud-inline:20px;--hud-skill-wrap:0px;
+  --action-height:max(calc(var(--action-radius) * (sin(60deg) + sin(30deg)) + var(--action-size)),calc(var(--action-radius) * sin(60deg) + var(--action-size) / 2 + var(--fire-size) / 2 + 12px));
+  --hud-roster-height:66px;--hud-vitals-height:20px;
+  --hud-block-start:7px;--hud-block-end:max(18px,calc(env(safe-area-inset-bottom) + 10px));
+  --hud-height:calc(var(--hud-roster-height) + var(--hud-vitals-height) + var(--action-height) + var(--hud-skill-wrap) + 10px + var(--hud-block-start) + var(--hud-block-end) + 1px)!important;
+}
+.honro #app .battle-bottom.honro-compact-hud{
+  --jump-angle:240deg;--drop-angle:150deg;--defend-angle:195deg;
+  --action-width:calc(var(--action-radius) * cos(15deg) + var(--action-size) / 2 + var(--fire-size) / 2);
+  --fire-center-x:calc(var(--action-width) - var(--fire-size) / 2);
+  --fire-center-y:calc(var(--action-radius) * sin(60deg) + var(--action-size) / 2);
+}
+.honro #app .honro-compact-hud .hud-controls-row{grid-template-columns:var(--joystick-size) minmax(8px,1fr) auto minmax(8px,1fr) var(--action-width)!important;grid-template-rows:var(--action-height)!important;height:var(--action-height)!important}
+.honro #app .honro-compact-hud .hud-controls-row>#joystick{grid-column:1!important;grid-row:1!important;align-self:center!important}
+.honro #app .honro-compact-hud .hud-controls-row>#combat-skills{grid-column:3!important;grid-row:1!important}
+.honro #app .honro-compact-hud .hud-controls-row>.radial-actions{grid-column:5!important;grid-row:1!important}
+.honro #app .honro-compact-hud .radial-actions{
+  position:relative!important;width:var(--action-width)!important;height:var(--action-height)!important;align-self:center!important;
+}
+.honro #app .honro-compact-hud .radial-actions .shot-readout{position:absolute!important;right:4px!important;top:calc(var(--fire-center-y) + var(--fire-size) / 2 + 1px)!important;width:calc(var(--fire-size) - 8px)!important;height:11px!important;font-size:9px!important;line-height:11px!important;text-align:center!important;color:#c9b98f!important}
+.honro #app .honro-compact-hud .radial-actions .honro-defend,
+.honro #app .honro-compact-hud .radial-actions #drop,
+.honro #app .honro-compact-hud .radial-actions #jump{
+  position:absolute!important;
+  left:calc(var(--fire-center-x) + var(--action-radius) * cos(var(--action-angle)) - var(--action-size) / 2)!important;
+  top:calc(var(--fire-center-y) + var(--action-radius) * sin(var(--action-angle)) - var(--action-size) / 2)!important;
+  right:auto!important;bottom:auto!important;transform:none!important;
+  width:var(--action-size)!important;height:var(--action-size)!important;min-height:0!important;
+  display:grid!important;place-items:center!important;border-radius:50%!important;padding:0!important;margin:0!important;
+  background:#254149!important;border:1px solid #789b9180!important;box-shadow:none!important;
+}
+.honro #app .honro-compact-hud .radial-actions #jump{--action-angle:var(--jump-angle)}
+.honro #app .honro-compact-hud .radial-actions #drop{--action-angle:var(--drop-angle)}
+.honro #app .honro-compact-hud .radial-actions .honro-defend{--action-angle:var(--defend-angle)}
+.honro #app .honro-compact-hud .radial-actions .drop-arrow{transform:rotate(180deg)}
+.honro #app .honro-compact-hud .radial-actions .movement-button:disabled{opacity:.35;cursor:default}
+.honro #app .honro-compact-hud .radial-actions .movement-button:not(:disabled):hover{filter:brightness(1.12)}
+.honro #app .honro-compact-hud .radial-actions .movement-button:not(:disabled):active{filter:brightness(.9)}
+.honro #app .honro-compact-hud .radial-actions .honro-defend span,
+.honro #app .honro-compact-hud .radial-actions .movement-button .fire-inner>span{display:none!important}
+.honro #app .honro-compact-hud .radial-actions .movement-button .fire-inner{position:absolute!important;inset:2px!important;width:auto!important;height:auto!important;margin:0!important;border:0!important}
+.honro #app .honro-compact-hud .radial-actions #fire{
+  position:absolute!important;right:0!important;left:auto!important;top:var(--fire-center-y)!important;bottom:auto!important;
+  transform:translateY(-50%)!important;width:var(--fire-size)!important;height:var(--fire-size)!important;min-height:0!important;
+  display:grid!important;place-items:center!important;padding:0!important;margin:0!important;border:0!important;border-radius:50%!important;
+  box-shadow:none!important;isolation:isolate;
+}
+.honro #app .honro-compact-hud .radial-actions #fire::before,
+.honro #app .honro-compact-hud .radial-actions #fire::after{display:none!important}
+.honro #app .honro-compact-hud .radial-actions #fire .fire-inner{
+  position:absolute!important;inset:var(--fire-face-inset)!important;width:auto!important;height:auto!important;margin:0!important;
+  transform:none!important;font-size:11px!important;gap:1px!important;border:1px solid #ecd49d80!important;
+}
+.honro #app .honro-compact-hud .radial-actions #fire .fire-inner svg{width:20px!important;height:20px!important;margin:0!important}
+.honro #app .honro-compact-hud .radial-actions #fire .fire-label{margin:0!important}
+#minimap{touch-action:none;user-select:none;cursor:grab}#minimap:active{cursor:grabbing}
+.honro .dialog .close{display:grid;place-items:center;padding:0}
+.honro .pause-dialog h2{padding-right:30px}
+.honro .pause-menu{display:grid;grid-template-columns:1fr;gap:10px;align-items:stretch}
+.honro .pause-menu>button{display:flex;align-items:center;justify-content:flex-start;gap:9px;width:100%;min-height:48px;margin:0;padding:11px 18px;border:0;border-radius:6px;background:linear-gradient(135deg,#293e43,#1d3036);box-shadow:inset 0 1px #b9c2ae20}
+.honro .pause-menu>button.primary{background:linear-gradient(135deg,#c5b487,#9f8a5c);color:#15272b}
+.honro .pause-menu>button:hover{filter:brightness(1.15)}
+@media(max-width:560px){
+  .honro #app .battle{--action-size:34px;--fire-size:62px;--joystick-size:72px}
+  .honro #app .honro-compact-hud .hud-controls-row{grid-template-columns:var(--joystick-size) minmax(4px,1fr) auto minmax(4px,1fr) var(--action-width)!important}
+
+  .honro #app .honro-compact-hud .skill-strip{grid-template-columns:repeat(2,52px)!important;gap:6px!important}
+  .honro #app .honro-compact-hud .skill-button{width:52px!important;height:45px!important;padding:3px 2px 5px!important}
+  .honro #app .honro-compact-hud .skill-button svg{width:19px!important;height:19px!important}
+  .honro #app .honro-compact-hud .hud-vitals{gap:5px!important}
+  .honro #app .honro-compact-hud .meter label{font-size:8px!important;white-space:nowrap!important}
+  .honro #app .honro-compact-hud .meter .vital-name{font-size:7px!important}
+  .honro .pause-dialog{width:min(360px,100%);padding:24px}
+  .honro .pause-menu{display:grid;grid-template-columns:1fr;gap:10px}
+  .honro .pause-menu>button{width:100%;min-height:48px;justify-content:flex-start;padding-inline:20px;font-size:14px}
+}
+@media(max-width:380px){
+  .honro #app .battle{--joystick-size:68px;--hud-inline:16px}
+  .honro #app .honro-compact-hud .skill-strip{grid-template-columns:repeat(2,44px)!important;gap:4px!important}
+  .honro #app .honro-compact-hud .skill-button{width:44px!important}
+}
+/* RC5 local-map node numbering. */
+.honro .map-node .stage-index{position:absolute;left:-10px;top:-10px;min-width:20px;height:18px;padding:0 4px;display:grid;place-items:center;border-radius:9px;background:#0d1b20;border:1px solid #9d9173;color:#d8c7a4;font:600 9px/1 monospace;z-index:3}.honro .map-node.selected .stage-index{background:#d0b88b;color:#132329}
+
+/* RC18.1 — wide landscape combat HUD.
+   Keep portrait/mobile narrow layout unchanged. In landscape with enough width,
+   collapse the three stacked HUD bands into one horizontal control rail:
+   joystick | 2x2 party | stacked vitals | skills | actions. */
+@media (orientation:landscape) and (min-width:900px){
+  .honro #app .battle{--action-size:35px;--fire-size:66px;--hud-block-start:7px;--hud-block-end:max(12px,calc(env(safe-area-inset-bottom) + 8px));--hud-height:calc(var(--action-height) + var(--hud-block-start) + var(--hud-block-end) + 1px)!important}
+  .honro #app .battle-bottom.honro-compact-hud{
+    display:grid!important;
+    grid-template-columns:var(--joystick-size) clamp(176px,20vw,220px) clamp(165px,20vw,235px) minmax(220px,1fr) var(--action-width)!important;
+    grid-template-rows:var(--action-height)!important;
+    gap:0 clamp(6px,1vw,10px)!important;
+    align-items:center!important;
+    padding:var(--hud-block-start) max(var(--hud-inline),env(safe-area-inset-right)) var(--hud-block-end) max(var(--hud-inline),env(safe-area-inset-left))!important;
+    background:linear-gradient(180deg,rgba(6,19,27,.25),rgba(6,19,27,.94) 18%,rgba(5,16,24,.99))!important;
+  }
+  .honro #app .honro-compact-hud .hud-roster{
+    grid-column:2!important;grid-row:1!important;align-self:center!important;min-width:0!important;width:100%!important;
+  }
+  .honro #app .honro-compact-hud .hero-switches{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    grid-template-rows:repeat(2,34px)!important;
+    gap:4px 6px!important;
+    width:100%!important;
+    overflow:visible!important;
+    align-items:stretch!important;
+    justify-content:stretch!important;
+  }
+  .honro #app .honro-compact-hud .ally-chip,
+  .honro #app .honro-compact-hud .ally-chip.player-chip{
+    width:100%!important;min-width:0!important;max-width:none!important;
+    height:34px!important;min-height:34px!important;flex:none!important;
+    padding:1px 5px 1px 2px!important;border-radius:7px!important;
+  }
+  .honro #app .honro-compact-hud .ally-chip img,
+  .honro #app .honro-compact-hud .ally-chip canvas.portrait{width:24px!important;height:30px!important}
+  .honro #app .honro-compact-hud .ally-chip strong{font-size:9px!important}
+  .honro #app .honro-compact-hud .ally-chip small{font-size:7px!important}
+  .honro #app .honro-compact-hud .combat-status{display:none!important}
+
+  .honro #app .honro-compact-hud .hud-vitals{
+    grid-column:3!important;grid-row:1!important;
+    display:grid!important;grid-template-columns:1fr!important;grid-template-rows:repeat(3,18px)!important;
+    gap:5px!important;width:100%!important;height:auto!important;min-height:0!important;align-self:center!important;
+  }
+  .honro #app .honro-compact-hud .hud-vitals>[data-vital]{grid-column:1!important}
+  .honro #app .honro-compact-hud .hud-vitals>[data-vital=hp]{grid-row:1!important}
+  .honro #app .honro-compact-hud .hud-vitals>[data-vital=mp]{grid-row:2!important}
+  .honro #app .honro-compact-hud .hud-vitals>[data-vital=move]{grid-row:3!important}
+  .honro #app .honro-compact-hud .hpmp{
+    display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-template-rows:1fr!important;
+    width:100%!important;height:18px!important;min-height:18px!important;gap:5px!important;margin:0!important;
+  }
+  .honro #app .honro-compact-hud .hpmp>.meter{
+    grid-column:1!important;grid-row:1!important;width:100%!important;height:18px!important;border-radius:4px!important;
+  }
+  .honro #app .honro-compact-hud .meter label{font-size:9px!important;line-height:16px!important}
+
+  .honro #app .honro-compact-hud .hud-controls-row{display:contents!important}
+  .honro #app .honro-compact-hud .hud-controls-row>#joystick{
+    grid-column:1!important;grid-row:1!important;justify-self:center!important;align-self:center!important;
+    width:var(--joystick-size)!important;height:var(--joystick-size)!important;min-height:var(--joystick-size)!important;
+  }
+  .honro #app .honro-compact-hud .joystick-ring{width:var(--joystick-size)!important;height:var(--joystick-size)!important;inset:0!important}
+  .honro #app .honro-compact-hud .hud-controls-row>#combat-skills{
+    grid-column:4!important;grid-row:1!important;justify-self:center!important;align-self:center!important;
+    display:grid!important;grid-template-columns:repeat(4,clamp(50px,6.2vw,62px))!important;gap:clamp(4px,.7vw,7px)!important;
+    width:max-content!important;
+  }
+  .honro #app .honro-compact-hud .skill-button{
+    width:clamp(50px,6.2vw,62px)!important;height:54px!important;padding:3px 2px 6px!important;
+  }
+  .honro #app .honro-compact-hud .skill-button svg{width:21px!important;height:21px!important}
+  .honro #app .honro-compact-hud .hud-controls-row>.radial-actions{
+    grid-column:5!important;grid-row:1!important;justify-self:end!important;align-self:center!important;
+  }
+  .honro #app .honro-compact-hud .radial-actions .shot-readout{font-size:8px!important}
+  .honro #app .honro-compact-hud .radial-actions #fire .fire-inner{font-size:10px!important}
+  .honro #app .honro-compact-hud .radial-actions #fire .fire-inner svg{width:20px!important;height:20px!important}
+}
+
+/* Learned combat passives use static SVG geometry and update only when state changes. */
+.hud-vitals{position:relative}.combat-passives{position:static;display:inline-flex;align-items:center;font-size:10px;line-height:16px;color:#c7d6cd;pointer-events:none}.combat-passives[hidden]{display:none}.jucheon-state,.sword-chain{display:flex;align-items:center;gap:5px;background:#102328d9;border-radius:4px;padding:0 5px}.jucheon-state svg{width:16px;height:16px;fill:none;stroke:#cbd9d0;stroke-width:1.5;transform:rotate(-90deg)}.passive-short{display:none}.jucheon-state .track{stroke:#53655c;stroke-width:1}.jucheon-state.ready{color:#eee3bd}.sword-chain i{font-style:normal;opacity:.4;border-bottom:1px solid #5b6960}.sword-chain i.linked{opacity:1;border-color:#d8cfb1}.sword-chain b{color:#ebd7a5}.skill-button:disabled{opacity:.32;filter:none;cursor:default}
+
+/* Four party controls must remain reachable on narrow portrait phones. */
+@media (orientation:portrait) and (max-width:420px){
+  .honro #app .honro-compact-hud .hero-switches{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;overflow:visible!important}
+  .honro #app .honro-compact-hud .ally-chip,
+  .honro #app .honro-compact-hud .ally-chip.player-chip{width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;padding-right:2px!important}
+}
+@media (orientation:portrait) and (max-width:380px){
+  .honro #app .honro-compact-hud .joystick .wind-gauge{width:64px!important}
+}
+
+/* Compact landscape phones use a two-band rail; the desktop rail starts at 900px. */
+@media (orientation:landscape) and (min-width:560px) and (max-width:899px) and (max-height:550px){
+  .honro #app .battle{--action-size:31px;--fire-size:56px;--hud-block-start:5px;--hud-block-end:max(10px,calc(env(safe-area-inset-bottom) + 6px));--hud-height:calc(40px + 4px + var(--action-height) + var(--hud-block-start) + var(--hud-block-end) + 1px)!important}
+  .honro #app .battle-bottom.honro-compact-hud{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)!important;grid-template-rows:40px var(--action-height)!important;gap:4px 8px!important;padding:var(--hud-block-start) max(var(--hud-inline),env(safe-area-inset-right)) var(--hud-block-end) max(var(--hud-inline),env(safe-area-inset-left))!important}
+  .honro #app .honro-compact-hud .hud-roster{grid-column:1!important;grid-row:1!important;min-width:0!important}
+  .honro #app .honro-compact-hud .hero-switches{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:3px!important;height:40px!important;overflow:visible!important}
+  .honro #app .honro-compact-hud .ally-chip,
+  .honro #app .honro-compact-hud .ally-chip.player-chip{width:100%!important;min-width:0!important;max-width:none!important;height:40px!important;padding-right:2px!important}
+  .honro #app .honro-compact-hud .hud-vitals{grid-column:2!important;grid-row:1!important;min-width:0!important;align-self:center!important}
+  .honro #app .honro-compact-hud .hud-controls-row{grid-column:1/3!important;grid-row:2!important;display:grid!important;grid-template-columns:var(--joystick-size) minmax(0,1fr) var(--action-width)!important;grid-template-rows:var(--action-height)!important;height:var(--action-height)!important;align-items:center!important}
+  .honro #app .honro-compact-hud .hud-controls-row>#joystick{grid-column:1!important;grid-row:1!important;align-self:center!important;width:var(--joystick-size)!important;height:var(--joystick-size)!important;min-height:var(--joystick-size)!important;transform:none!important}
+  .honro #app .honro-compact-hud .joystick-ring{width:var(--joystick-size)!important;height:var(--joystick-size)!important}
+  .honro #app .honro-compact-hud .joystick-ring i{width:32px!important;height:32px!important;margin:-16px!important}
+  .honro #app .honro-compact-hud .hud-controls-row>#combat-skills{grid-column:2!important;grid-row:1!important;justify-self:center!important;display:grid!important;grid-template-columns:repeat(4,50px)!important;gap:4px!important;width:max-content!important}
+  .honro #app .honro-compact-hud .skill-button{width:50px!important;height:50px!important}
+  .honro #app .honro-compact-hud .hud-controls-row>.radial-actions{grid-column:3!important;grid-row:1!important}
+  .honro #app .honro-compact-hud .radial-actions .shot-readout{font-size:8px!important}
+}
+
+@media (orientation:landscape) and (max-height:550px){
+  .honro #app .honro-compact-hud .joystick .wind-gauge{top:auto!important;bottom:2px!important;width:64px!important;padding:1px 3px;border-radius:5px;background:#10242ad9}
+  .honro #app .honro-compact-hud .wind-gauge small{font-size:7px!important}
+}
+
+/* Re-openable help stays in the existing modal; no automatic tutorial overlay. */
+.honro .battle-help-dialog{width:min(630px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain;text-align:left}
+.honro .battle-help-dialog section+section{margin-top:18px}
+.honro .battle-help-dialog h3{margin:0 0 6px;font-size:14px;color:#dfcda7}
+.honro .battle-help-dialog p{margin:0;font-size:13px;line-height:1.65;overflow-wrap:anywhere}
+.honro .battle-help-dialog .battle-help-current{margin-bottom:8px;color:#f0ddb4;font-weight:650}
+.honro .battle-help-dialog .actions{display:flex;flex-wrap:wrap;margin-top:20px}
+.honro .battle-help-dialog .actions button{min-height:44px}
+.honro #app .battle-info .mission-help:focus-visible{outline:2px solid #dfcda7;outline-offset:3px}
+@media(max-width:420px){.honro .battle-help-dialog{padding:20px 16px}.honro .battle-help-dialog .actions button{flex:1;min-width:100px}}
+
+/* Role-based action rows: shared geometry, with existing semantic colors intact.
+   World pins, hero/skill cards and radial combat controls keep their own sizes. */
+.honro{--ui-action-height:44px;--ui-action-gap:8px}
+.honro :is(.actions,.dialog-actions,.stat-invest-actions,.title-actions){gap:var(--ui-action-gap);align-items:stretch}
+.honro :is(.actions,.dialog-actions,.stat-invest-actions,.title-actions)>button{display:inline-flex;align-items:center;justify-content:center;gap:var(--ui-action-gap);min-height:var(--ui-action-height);line-height:1.3;margin:0}
+.honro .title-actions{display:flex;flex-wrap:wrap;margin-left:0}
+.honro .title-actions>button{min-height:48px}
+.honro .dialog .dialog-actions>.btn{min-height:var(--ui-action-height)}
+.honro .top>button.icon,.honro .battle-head>button.icon{width:44px;height:44px;min-height:44px;flex:none;padding:0}
+.honro .dialog>.close{width:44px;height:44px;min-height:44px;padding:0}
+.honro .dialog>h2{margin-right:44px}
+.honro .settings-dialog .setting{min-height:56px}
+.honro .settings-dialog .setting>label{display:flex;align-items:center;align-self:stretch;min-height:44px;flex:1}
+.honro .settings-dialog .setting input[type=checkbox]{width:24px;height:24px;flex:none;margin:0}
+.honro .settings-dialog :is(select,[data-action=sound-test]){min-height:44px}
+.honro .settings-dialog .fullscreen-setting{justify-content:flex-start;gap:var(--ui-action-gap);min-height:48px}
+.honro .settings-dialog .fullscreen-setting b{margin-left:auto}
+.honro .settings-dialog .setting select{min-width:0}
+@media(orientation:landscape) and (max-height:550px){.honro .top{height:56px;min-height:56px;padding-block:6px}}
+
+/* The current task and the actual finish condition are separate, always visible. */
+.honro #app .battle-info .mission-end{display:block;color:#b7c7bc;font-size:10px;line-height:1.35;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.honro .battle-help-dialog .mission-checklist{margin:0;padding-left:22px;font-size:13px;line-height:1.7}
+.honro .battle-help-dialog .mission-checklist .complete{color:#99b4a6}
+
+/* A field tool is separate from the four equipped skills: it never replaces a slot. */
+
+/* Leave contextual interaction above the taller arc instead of over the HUD.
+   Match the existing three-band / two-band rails and preserve safe-area space. */
+@media(max-width:899px){
+  .honro #app .battle .context-interact{bottom:calc(var(--hud-height) + 10px)}
+}
+
+/* Reserve space instead of shrinking the joystick below a useful thumb target.
+   A 320px phone keeps one control row; only sub-300px viewports wrap skills. */
+.honro #app .honro-compact-hud .joystick,.honro #app .honro-compact-hud .joystick-ring{width:var(--joystick-size)!important;height:var(--joystick-size)!important;min-height:var(--joystick-size)!important}
+.honro #app .honro-compact-hud .joystick-ring{inset:0!important}
+.honro #app .honro-compact-hud .joystick-ring i{width:32px!important;height:32px!important;margin:-16px!important}
+@media(orientation:portrait) and (max-width:299px){
+  .honro #app .battle{--joystick-size:72px;--hud-skill-wrap:60px}
+  .honro #app .honro-compact-hud .hud-controls-row{grid-template-columns:var(--joystick-size) minmax(8px,1fr) var(--action-width)!important;grid-template-rows:52px var(--action-height)!important;row-gap:8px!important;height:calc(var(--action-height) + var(--hud-skill-wrap))!important}
+  .honro #app .honro-compact-hud .hud-controls-row>#combat-skills{grid-column:1/4!important;grid-row:1!important;justify-self:center!important;grid-template-columns:repeat(4,44px)!important;gap:6px!important}
+  .honro #app .honro-compact-hud .hud-controls-row>#joystick{grid-column:1!important;grid-row:2!important}
+  .honro #app .honro-compact-hud .hud-controls-row>.radial-actions{grid-column:3!important;grid-row:2!important;justify-self:end!important}
+}
+
+/* A fixed two-line stage card shares the pause-button height. The ally row
+   starts below that common edge, including narrow phones and short landscape. */
+.honro #app .battle-screen{--battle-head-top:10px;--battle-head-inset:12px;--battle-head-height:44px;--battle-map-reserve:min(152px,35vw)}
+.honro #app .battle-screen .battle-head{top:var(--battle-head-top)!important;left:var(--battle-head-inset)!important;right:calc(var(--battle-map-reserve) + var(--battle-head-inset) + 8px)!important;height:var(--battle-head-height);gap:8px;align-items:stretch}
+.honro #app .battle-screen .battle-head>.icon{width:var(--battle-head-height);height:var(--battle-head-height);min-height:var(--battle-head-height);flex:none}
+.honro #app .battle-screen .battle-info{flex:1;min-width:0;max-width:620px;height:var(--battle-head-height);box-sizing:border-box;padding:4px 7px!important;display:grid;grid-template-rows:16px 16px;row-gap:2px;overflow:hidden}
+.honro #app .battle-screen .battle-title-row,.honro #app .battle-screen .battle-objective-row{display:flex;align-items:center;gap:6px;min-width:0;min-height:0;flex-wrap:nowrap;line-height:16px}
+.honro #app .battle-screen .battle-title-row .debug-badge{max-width:40%;overflow:hidden;text-overflow:ellipsis;box-sizing:border-box;padding:0 3px;font-size:8px;line-height:14px}
+.honro #app .battle-stage-heading{display:flex;align-items:baseline;gap:6px;flex:1;min-width:0;max-width:100%;white-space:nowrap;line-height:16px}
+.honro #app .battle-stage-heading b{min-width:0;margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:16px}
+.honro #app .battle-chapter{flex:none;white-space:nowrap;font-size:10px;line-height:16px;color:#c6b78f;font-weight:400}
+.honro #app .battle-screen #turn-text{flex:none;white-space:nowrap;font-size:9px;line-height:16px}
+.honro #app .battle-screen .battle-info .mission-help{display:block;flex:1;min-width:0;max-width:100%;height:16px;min-height:0;max-height:16px;padding:0;line-height:16px;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;-webkit-line-clamp:unset}
+.honro #app .battle-screen .battle-info .mission-end{display:none}
+.honro #app .battle-screen .allied-roster{top:calc(var(--battle-head-top) + var(--battle-head-height) + 6px)!important;left:var(--battle-head-inset)!important;right:calc(var(--battle-map-reserve) + var(--battle-head-inset) + 8px);max-width:none!important;margin:0}
+@media(max-width:620px){
+ .honro #app .battle-screen{--battle-head-top:8px;--battle-head-inset:8px;--battle-map-reserve:min(118px,31vw)}
+ .honro #app .battle-stage-heading{gap:4px}
+ .honro #app .battle-chapter{font-size:9px}
+ .honro #app .battle-screen .battle-title-row,.honro #app .battle-screen .battle-objective-row{gap:4px}
+ .honro #app .battle-screen .battle-info .mission-help{font-size:9px}
+}
+@media(orientation:landscape) and (max-height:540px){.honro #app .battle-screen{--battle-head-top:6px;--battle-head-inset:10px}}

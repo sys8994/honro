@@ -1,0 +1,15 @@
+/* The encounter hides game chrome while retaining an accessible pause layer. */
+.honro-void-active #bgm-now-playing,.honro-void-active #notice,.honro-void-active #turn-banner{opacity:var(--void-hud-opacity,1)!important}
+.honro-void-active #app .battle>:not(.battle-view){opacity:var(--void-hud-opacity,1)!important}
+.honro-void-dark #bgm-now-playing,.honro-void-dark #notice,.honro-void-dark #turn-banner,.honro-void-dark #app .battle>:not(.battle-view){visibility:hidden!important}
+.honro-void-active #modal{z-index:2200!important}
+.honro-void-scene{position:fixed;inset:0;z-index:2000;isolation:isolate;overflow:hidden;touch-action:manipulation;color:#dddcd5;outline:0;background:rgb(1 2 3 / var(--void-dark,1));}
+.honro-void-actor{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.honro-void-text{position:absolute;z-index:1;left:12%;right:12%;top:32%;margin:0;text-align:center;font:400 clamp(18px,2vw,24px)/1.8 Batang,'Noto Serif KR',serif;letter-spacing:.08em;word-break:keep-all;pointer-events:none}
+.honro-void-text[data-align=near]{top:67%;left:18%;right:18%;font-size:clamp(17px,1.65vw,21px);color:#c6c6bf}
+.honro-void-surface{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;padding:0!important;margin:0!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;cursor:pointer;outline:0!important}
+.honro-void-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.honro-void-access{position:absolute;z-index:3;top:max(16px,env(safe-area-inset-top));padding:10px 16px;min-height:44px;opacity:0;pointer-events:none;background:#111!important;border:1px solid #aaa!important;color:#eee!important}
+.honro-void-pause{left:18px}.honro-void-skip{right:18px}
+.honro-void-access:focus-visible{opacity:1;pointer-events:auto;outline:2px solid #eee}
+@media(max-height:420px){.honro-void-text{top:18%;font-size:17px}.honro-void-text[data-align=near]{top:74%;font-size:16px}}

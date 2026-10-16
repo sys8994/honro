@@ -4,10 +4,10 @@
 
 본게임 RC21과 Map Workshop을 하나의 엔진·Scene·맵 모델로 통합한 정적 웹 프로젝트입니다.
 
-- 게임: 루트 `HONRO.html`을 브라우저에서 엽니다.
+- 게임: 기존 Pages 또는 로컬 HTTP 서버에서 루트 `HONRO.html`을 엽니다.
 - 캐릭터 도감: [혼로의 얼굴들](tools/character-catalog.html)에서 실제 렌더러의 인물·동작·등장 근거와 검수 의견을 봅니다. [수집/검증 범위](game/docs/CHARACTER_CATALOG.md).
 - 편집기: 루트 `HONRO_WORKSHOP.html`을 엽니다. 기본 프로젝트는 Stage 1~30(1막·2막·3막)이며, 1·2는 목업을 반영한 숲길·분지 개편판입니다.
-- 실행 자산: `assets/bgm/`을 HTML과 함께 같은 디렉터리 구조로 배포합니다. MP3는 HTML에 포함되지 않습니다.
+- 실행 자산: `web/` 전체와 `assets/bgm/`을 HTML과 함께 같은 디렉터리 구조로 배포합니다. HTML·CSS·실행 모듈·캠페인 JSON·그래픽은 역할별 파일로 분리됩니다.
 - 편집한 맵 실행: Workshop의 Project JSON을 내보낸 뒤 게임 타이틀의 `Workshop Map`으로 가져옵니다. 캠페인 저장과 분리해 실행합니다.
 - Playtest: 실제 게임 HUD와 조작을 사용합니다. 시작 위치·선택 유닛·현재 카메라에서 시작하고 Stop으로 편집에 복귀합니다.
 - 길 위의 쉼터: 일반 여정은 지역별 쉼터에서 이어집니다. 모닥불로 모든 동행의 능력치·기예를 준비하고, 동행을 눌러 선택 대화를 나누며, 오른쪽 이정표로 다음 장소에 진입합니다. 장면 설명은 쉼터의 필수 대화로 전달합니다. 여정첩은 지상·지하 지리와 지난 전투 다시 걷기를 위한 보조 메뉴입니다. [화면·대사·저장 계약](game/docs/REST_JOURNEY.md).
@@ -23,7 +23,7 @@
 
 3–6스테이지의 지형·건축물 접지·물길·한국 산지 분위기 개편은 [장소 설계 기록](game/docs/STAGE36_PLACE_DESIGN.md)을 참고합니다. `npm.cmd run test:stage36`으로 레시피 재현, 지형 접지, Game/Stage View/Playtest 화면을 검사합니다.
 
-`file://`로 실행하거나, 저장소 루트에서 `python -m http.server 8000`을 실행하고 `http://localhost:8000/HONRO_WORKSHOP.html`을 엽니다.
+ES 모듈과 JSON을 불러오므로 로컬에서도 HTTP를 사용합니다. 저장소 루트에서 `python -m http.server 8000`을 실행하고 `http://localhost:8000/HONRO_WORKSHOP.html`을 엽니다.
 
 ## GitHub Pages 배포
 
@@ -34,7 +34,7 @@
 - 기본 주소 `https://<사용자>.github.io/<저장소>/`는 `index.html`을 통해 게임으로 이동합니다. 쿼리와 `#` 뒤의 진입 옵션도 유지합니다.
 - 게임 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO.html`
 - 편집기 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO_WORKSHOP.html`
-- 배포 필수 파일은 `index.html`, `HONRO.html`, `assets/bgm/`의 MP3 5개입니다. 편집기도 공개하려면 `HONRO_WORKSHOP.html`을 함께 포함합니다. 두 HTML은 `npm run build`로 최신화합니다.
+- 배포 필수 파일은 `index.html`, `HONRO.html`, `web/` 전체와 `assets/bgm/`의 MP3 5개입니다. 편집기도 공개하려면 `HONRO_WORKSHOP.html`을 함께 포함합니다. `npm run build`가 두 HTML과 콘텐츠 해시 자산을 함께 최신화합니다. Playtest는 `web/entries/game.<hash>.html?embedded=1`을 직접 열며 기존 공개 주소와 저장키는 유지합니다.
 
 Pages는 파일명의 대소문자를 구분합니다. [GitHub 공식 안내](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)를 참고합니다.
 
@@ -59,7 +59,7 @@ npm.cmd run build
 
 브라우저 검사는 Chrome/Edge 또는 Playwright Chromium을 찾습니다. 다른 실행 파일은 `HONRO_BROWSER` 환경 변수로 지정합니다. 성능 검사는 다른 브라우저 부하와 겹치지 않게 순차 실행합니다.
 
-`npm run build`는 게임과 Workshop을 함께 생성합니다. 기존 `python workshop/build.py`도 같은 빌더에 위임합니다. 생성 HTML을 직접 수정하지 않습니다.
+`npm run build`는 게임과 Workshop을 함께 생성합니다. `shared/build.mjs`의 단일 목록을 `shared/web-build.mjs`가 `web/runtime/`, `web/styles/`, `web/data/`, `web/graphics/`, `web/entries/`로 내보냅니다. `web/manifest.json`은 현재 자산 그래프이며 HTML이나 `web/` 생성물을 직접 수정하지 않습니다. 파일 분리 연결만 확인할 때는 `node tests/web-split.mjs`로 데이터 재조립·자산 해시·native 기본 진입·embedded 저장 보호를 확인합니다. 기존 HTML 안의 script 추출을 전제한 과거 검사는 새 모듈 빌드에 그대로 적용되지 않을 수 있습니다. 기존 `python workshop/build.py`도 같은 빌더에 위임합니다. 생성 HTML을 직접 수정하지 않습니다.
 
 이야기 런타임·기록·저장/재개를 바꿨다면 필요에 따라 빌드 후 기존 `npm run test:story`를 사용합니다. 문구·문서만 바꾸면 이 검사를 실행하지 않습니다. 이 검사는 전체 `verify`에도 포함됩니다.
 
@@ -88,6 +88,7 @@ npm.cmd run build
 | `shared/map/` | schema, geometry, compiler, unit factory, commands |
 | `shared/data/campaign.json` | Stage 1~30과 요소 라이브러리의 활성 데이터 |
 | `shared/assets/` | 실제 캐릭터 벡터 에셋 |
+| `web/` | 생성된 공통 ES 모듈·CSS·장별 JSON·공용 그림 JSON·SVG/이미지·Playtest 문서 |
 | `workshop/src/` | 편집 UI·오버레이·히스토리·Playtest 호스트 |
 | `game/config/`, `game/src/`, `game/vendor/` | 기존 설정, 게임 CSS, UI 자산 |
 | `migration/legacy/` | 이전·비교 검사 전용 원본 정의 |

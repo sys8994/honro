@@ -185,16 +185,18 @@
         `<circle cx="1377" cy="616" r="2.5" fill="#292c26"/><circle cx="1376" cy="638" r="2.5" fill="#292c26"/>` +
         path('M1354 773L1362 749 1367 765 1387 745 1380 770 1399 761 1394 775Z', '#26352c'));
   }
-  // Reuse the exact embedded battlefield SVG and shared act-one palette pass.
-  // These are retained images, never rebuilt paths or external asset requests.
+  // Reuse the exact battlefield SVG and shared act-one palette pass.
+  // Web loading retains external SVG text before the synchronous scene render.
   function campaignBackdrop(stage, id) {
     const mood=G.HonroEnvironment?.act1Mood(stage),finish=G.HonroEnvironment?.ACT1_FAR;
     const uri=mood&&G.HONRO_ACT1_FAR_DATA?.[mood.variant];
-    if(!uri||!finish||!G.atob)return '';
+    if(!uri||!finish)return '';
+    const source=G.HONRO_SVG_SOURCES?.[uri]||(/^data:image\/svg\+xml;base64,/.test(uri)&&G.atob?G.atob(uri.slice(uri.indexOf(',')+1)):'');
+    if(!source)return '';
     // Inline the vector markup rather than nesting an SVG data-image: retained
     // SVG-in-SVG images are inconsistently decoded by screenshot renderers.
     // All artwork paths are unchanged; only document-local IDs are namespaced.
-    const vector=G.atob(uri.slice(uri.indexOf(',')+1)).replace(/<title\b[^>]*>[\s\S]*?<\/title>|<desc\b[^>]*>[\s\S]*?<\/desc>/g,'').replace(/<svg\b[^>]*>/,'<g>').replace(/<\/svg>/,'</g>').replace(/id="([^"]+)"/g,(_,key)=>`id="${id}-far-${key}"`).replace(/url\(#([^\)]+)\)/g,(_,key)=>`url(#${id}-far-${key})`);
+    const vector=source.replace(/<title\b[^>]*>[\s\S]*?<\/title>|<desc\b[^>]*>[\s\S]*?<\/desc>/g,'').replace(/<svg\b[^>]*>/,'<g>').replace(/<\/svg>/,'</g>').replace(/id="([^"]+)"/g,(_,key)=>`id="${id}-far-${key}"`).replace(/url\(#([^\)]+)\)/g,(_,key)=>`url(#${id}-far-${key})`);
     const brightness=finish.brightness[mood.variant];
     return `<defs><filter id="${id}-distance" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values="${finish.saturation}"/><feComponentTransfer><feFuncR type="linear" slope="${brightness}"/><feFuncG type="linear" slope="${brightness}"/><feFuncB type="linear" slope="${brightness}"/></feComponentTransfer></filter></defs>`+
       group('campaign-distant-landscape',`<g filter="url(#${id}-distance)">${vector}</g><path d="M0 0H1600V900H0Z" fill="${finish.veil}" opacity="${finish.veilOpacity}"/><path d="M0 0H1600V900H0Z" fill="${mood.tint}" opacity="${mood.opacity}"/>`,`data-rest-backdrop="${mood.variant}"`);

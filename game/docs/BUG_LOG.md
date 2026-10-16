@@ -1,3 +1,11 @@
+## 배포 파일 역할 분리 재구성 · 2026-10-16
+
+- 복구: 이전 `/workspace/scratch/fff510b4df37/honro-direct-20261016`와 로컬 커밋 `6b5fcf7c9d1accf257bb290232cb5e3fe329c7f5`는 새 환경·미참조 Git 객체·원격에 없어 복원하지 못했다. `77bf4d8`의 최소 검증 문서를 유지하고 `4bca43a2`의 ghost/shade 소스 변경만 통합하여 현재 소스에서 재구성했다.
+- 변경: 공통 `runtimeEntries` 목록을 그대로 사용해 Game HTML 1,711B·Workshop 3,947B와 `web/`의 콘텐츠 해시 자산 225개(공통/앱 ES 모듈·CSS·장별/공용 그림 JSON·원경 SVG·타이틀 이미지·Game 직접 진입 문서)로 분리했다. 기존 공개 주소·저장키·캠페인 저작 순서·게임 로직은 유지한다. 편집용 vector.source는 공용 JSON에 보존한다. 실행에는 `web/` 전체와 기존 BGM 및 HTTP가 필요하다.
+- 연결 보완: Workshop은 DOM 준비 후 초기화하고 Playtest는 `web/entries/game.<hash>.html?embedded=1`과 `HONRO_READY`를 기다린 후 기존 launchMap을 호출한다. embedded의 직접 save도 차단한다. 쉼터의 원경 합성은 외부 SVG 원문 캐시와 기존 data URI를 모두 지원하여 base64 해석 오류를 해결했다.
+- 확인: `npm run build`, `node tests/web-split.mjs`의 자산 해시·native 캠페인 입력/30장/라이브러리 재조립 일치·native Game/embedded 기본 진입 통과. Chromium HTTP에서 타이틀 이미지·첫 쉼터·Workshop·Playtest 직접 iframe·캠페인 저장 불변·Stop 뒤 프로젝트/편집 복귀를 확인했고 pageerror/HTTP 실패 0이다. `_local/reports/web-split/`에 결과와 화면을 보관한다. 전체 verify·전장 순회·성능/전투 검사는 수행하지 않았다.
+- 배포 한계: 공개 Pages 직접 연결은 환경의 CONNECT 403으로 차단된다. master 원격 반영과 Pages workflow 성공 여부는 발행 시 별도로 확인하며 로컬 브라우저 통과를 공개 화면 검수로 기록하지 않는다.
+
 ## ghost·shade 겹옷과 결박 조형 · 2026-10-16
 
 - 원인: ghost는 맞깃·소매·몸통이 평평한 면으로 이어지고 shade의 두 결박은 몸과 무관한 직선 띠처럼 보였다. `material-depth.mjs`의 두 종만 다시 칠해 겹깃의 말림/안쪽 그늘, 소매의 빈 공간/접힌 안감, 겉옷 아래 드러나는 속옷과 돌아간 밑단을 분리했다. shade는 띠 옆 천의 팽창과 접촉부의 눌림, 몸을 돌아가는 결박 면과 당겨지는 매듭을 그렸다. 임의 흠집·노드 할당량을 위한 증량은 사용하지 않았다.
