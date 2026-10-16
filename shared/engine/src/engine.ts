@@ -2208,7 +2208,7 @@ export class Engine {
             // One bounded second reposition attempt is allowed after discovering a bad firing lane.
             if(u.lureRound!==b.round&&(flyingEnemy(u)||!u.fixed&&this.grounded(u))&&u.moveLeft>90&&(u as any).honroRepositionRound!==b.round){
                 (u as any).honroRepositionRound=b.round;
-                const retry=yield* planEnemyMoveSteps(this,u,target);
+                const retry=yield* planEnemyMoveSteps(this,u,target,true);
                 if(retry){u.aiMove=retry;u.intent=viable.reason==='blocked'?'사선 변경':'사거리 확보';this.emit('change');return;}
             }
             u.shield=Math.max(u.shield,Math.round(u.maxHp*.08));u.shieldUntil=b.teamEnds[0]+1;u.intent=viable.reason==='blocked'?'사선 없음 · 방어':'공격 보류 · 방어';this.finishAction();return;

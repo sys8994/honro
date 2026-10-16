@@ -1,10 +1,10 @@
 /** Bounded tactical movement. Every candidate is tested with the same locomotion/contact code
  * as a real unit. Planning cannot damage, teleport, change RNG, or mutate the live roster. */
 import type {Engine} from './engine';
-import type {Unit,Skill,Vec,AIMovePlan} from './types';
+import type {Unit,Skill,Vec,Terrain,AIMovePlan} from './types';
 import {SKILLS} from './data';
 import {lureStakeFor,stakeBoost,stakeContact} from './totemBehavior';
-import {clamp,topAt,terrainRectIntersects,STEP,AIM_MIN,AIM_MAX} from './math';
+import {clamp,topAt,poly,polygonArea,terrainRectIntersects,STEP,AIM_MIN,AIM_MAX} from './math';
 const HEAVY=new Set(['guard','leaper']);
 interface Stance extends Vec {cost:number;path:{x:number;y:number;jump:boolean;jumpX?:number}[];score:number;}
 export function finishPlanning<T>(steps:Generator<void,T,unknown>):T{let next=steps.next();while(!next.done)next=steps.next();return next.value;}
@@ -20,11 +20,55 @@ export function routeGuardAllows(e:Engine,u:Unit,p:Vec){
  return distance<=guard.radius||distance<now;
 }
 /** Full body clearance, including slopes and thin ceilings. Used by both planning and motion. */
-export function flightClear(e:Engine,u:Unit,p:Vec){
+function flightSpaceClear(e:Engine,u:Unit,p:Vec){
  const pad=8,left=p.x-u.r-pad,right=p.x+u.r+pad,head=p.y-u.h-pad,feet=p.y+pad;
  if(left<0||right>e.b.width||head<12||feet>e.b.height)return false;
- if(e.b.terrain.some(t=>!t.broken&&terrainRectIntersects(t,left,head,right-left,feet-head,0)))return false;
  return e.b.units.every(v=>v.id===u.id||v.dead||v.honroObjectiveTarget||!!v.eaterCapturedBy||Math.abs(v.x-p.x)>=u.r+v.r+10||feet<=v.y-v.h-4||head>=v.y+4);
+}
+export function flightClear(e:Engine,u:Unit,p:Vec){
+ return flightSpaceClear(e,u,p)&&!e.b.terrain.some(t=>!t.broken&&terrainRectIntersects(t,p.x-u.r-8,p.y-u.h-8,2*u.r+16,u.h+16,0));
+}
+/** Exact clipped overlap area, used only to leave an already invalid terrain pose.
+ * Each short step must reduce every existing overlap and enter no new solid. */
+function flightOverlap(u:Unit,p:Vec,t:Terrain){
+ if(p.x+u.r+8<=t.x||p.x-u.r-8>=t.x+t.w||p.y+8<=t.y||p.y-u.h-8>=t.y+t.h)return 0;
+ let points=poly(t);
+ for(const [axis,edge,sign] of [['x',p.x-u.r-8,1],['x',p.x+u.r+8,-1],['y',p.y-u.h-8,1],['y',p.y+8,-1]] as const){
+  const clipped:Vec[]=[];
+  for(let i=0;i<points.length;i++){
+   const a=points[i],b=points[(i+1)%points.length],da=(a[axis]-edge)*sign,db=(b[axis]-edge)*sign;
+   if(da>=0)clipped.push(a);
+   if((da>=0)!==(db>=0)){const f=da/(da-db);clipped.push({x:a.x+(b.x-a.x)*f,y:a.y+(b.y-a.y)*f});}
+  }
+  points=clipped;
+ }
+ return Math.abs(polygonArea(points));
+}
+function flightEscapeStep(e:Engine,u:Unit,from:Vec,to:Vec){
+ if(!flightSpaceClear(e,u,to))return false;
+ for(const t of e.b.terrain){
+  if(t.broken)continue;
+  const before=flightOverlap(u,from,t),after=flightOverlap(u,to,t);
+  if(after>1e-6&&(before<1e-6||after>=before-1e-6))return false;
+ }
+ return true;
+}
+function* planFlightEscape(e:Engine,u:Unit,target:Unit,budget:number,lured=false):Generator<void,AIMovePlan|undefined,unknown>{
+ if(flightClear(e,u,u))return;
+ let best:Vec|undefined,bestCost=Infinity;
+ // Recovery is a small, paid motion, never a load-time relocation. Prefer the
+ // nearest exit on the body's current side of a deck rather than crossing it.
+ for(let i=0;i<16;i++){
+  const angle=i*Math.PI/8;let from:Vec=u;
+  for(let cost=2;cost<=Math.min(96,budget,bestCost);cost+=2){
+   const to={x:u.x+Math.cos(angle)*cost,y:u.y+Math.sin(angle)*cost};
+   if(!lured&&!routeGuardAllows(e,u,to)||!flightEscapeStep(e,u,from,to))break;
+   if(flightClear(e,u,to)){if(cost<bestCost){best=to;bestCost=cost;}break;}
+   from=to;
+  }
+  yield;
+ }
+ if(best)return {round:e.b.round,targetId:target.id,path:[{...best,jump:false}],flightEscape:true,index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:'공중 끼임 해소'};
 }
 /** Flying fixed bodies absorb most of an impulse, but retain a small positional recoil.
  * Sweep the whole body in short steps so thin walls, ceilings and other actors stop it.
@@ -50,18 +94,29 @@ function flightLeg(e:Engine,u:Unit,to:Vec){
  for(let i=1;i<=steps;i++)if(!flightClear(e,u,{x:u.x+(to.x-u.x)*i/steps,y:u.y+(to.y-u.y)*i/steps}))return false;
  return true;
 }
-function* planFlight(e:Engine,u:Unit,target:Unit):Generator<void,AIMovePlan|undefined,unknown>{
- const budget=Math.min(FLY_MOVE_BUDGET,u.moveLeft);if(budget<24)return;
+function* planFlight(e:Engine,u:Unit,target:Unit,attackFailed=false):Generator<void,AIMovePlan|undefined,unknown>{
+ const budget=Math.min(FLY_MOVE_BUDGET,u.moveLeft);if(budget<2)return;
+ if(!flightClear(e,u,u))return yield* planFlightEscape(e,u,target,budget);
+ if(budget<24)return;
  const poses:Stance[]=[],start={x:u.x,y:u.y};
- for(const distance of [budget*.5,budget])for(let i=0;i<12;i++){
+ for(const distance of [Math.min(48,budget),budget*.5,budget])for(let i=0;i<12;i++){
   const angle=i*Math.PI/6,p={x:u.x+Math.cos(angle)*distance,y:u.y+Math.sin(angle)*distance};
   if(routeGuardAllows(e,u,p)&&flightLeg(e,u,p))poses.push({...p,cost:distance,path:[{...p,jump:false}],score:positionScore(e,u,target,p)-distance*.015});yield;
  }
  if(!poses.length)return;
- const stay=positionScore(e,u,target,start)+(yield* shotOpportunity(e,u,target,start));
+ const stayShot=yield* shotOpportunity(e,u,target,start),stay=positionScore(e,u,target,start)+stayShot;
  const top=poses.sort((a,b)=>b.score-a.score).slice(0,5);
  for(const p of top)p.score+=yield* shotOpportunity(e,u,target,p);
- const best=top.sort((a,b)=>b.score-a.score)[0];if(best.score<stay+3)return;
+ let best=top.sort((a,b)=>b.score-a.score)[0];
+ if(best.score<stay+3){
+  if(!attackFailed)return;
+  // After a real failed shot, ordinary range preferences must not veto a
+  // safe small approach. Keep hazard and territory rules, and the same budget.
+  const before=Math.hypot(u.x-target.x,u.y-target.y),danger=dangerAt(e,u,start);
+  const approach=poses.filter(p=>dangerAt(e,u,p)<=danger&&Math.hypot(p.x-target.x,p.y-target.y)<before-4);
+  if(!approach.length)return;
+  best=approach.sort((a,b)=>Math.hypot(a.x-target.x,a.y-target.y)-Math.hypot(b.x-target.x,b.y-target.y)||a.cost-b.cost)[0];
+ }
  return {round:e.b.round,targetId:target.id,path:best.path,index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:'공중 사선 확보'};
 }
 function advanceFlight(e:Engine,u:Unit,dt:number){
@@ -72,7 +127,7 @@ function advanceFlight(e:Engine,u:Unit,dt:number){
  if(d<1){stop();return;}
  let left=Math.min(d,180*dt,u.moveLeft);
  while(left>1e-6){const step=Math.min(4,left),at={x:u.x+dx/d*step,y:u.y+dy/d*step};
-  if((p.lureStakeId===undefined&&!routeGuardAllows(e,u,at))||!flightClear(e,u,at)){stop();return;}
+  if((p.lureStakeId===undefined&&!routeGuardAllows(e,u,at))||!(p.flightEscape?flightEscapeStep(e,u,u,at):flightClear(e,u,at))){stop();return;}
   u.x=at.x;u.y=at.y;u.moveLeft=Math.max(0,u.moveLeft-step);left-=step;
  }
  u.moving=.12;if(Math.abs(dx)>1)u.facing=Math.sign(dx);u.vx=u.vy=0;
@@ -265,6 +320,7 @@ function* planLuredMove(e:Engine,u:Unit,target:Unit,z:NonNullable<ReturnType<typ
  const flying=flyingEnemy(u);if(!flying&&(u.fixed||!e.grounded(u)))return;
  const budget=Math.min(u.moveLeft,(130+15*(z.rank-1))*boost,flying?FLY_MOVE_BUDGET:610);
  const goal={x:z.x,y:flying?z.y-10:z.y},dx=goal.x-u.x,dy=goal.y-u.y,d=Math.hypot(dx,dy);
+ if(flying&&!flightClear(e,u,u)){const escape=yield* planFlightEscape(e,u,target,budget,true);if(escape)escape.lureStakeId=z.id;return escape;}
  const travel=Math.min(d,budget);
  for(const fraction of [1,.75,.5,.25]){
   const distance=travel*fraction;if(distance<5)continue;
@@ -293,9 +349,9 @@ export function* planEnemyLuresSteps(e:Engine):Generator<void,boolean,unknown>{
  return plans.some(v=>!!v.plan);
 }
 export function planEnemyMove(e:Engine,u:Unit,target:Unit){return finishPlanning(planEnemyMoveSteps(e,u,target));}
-export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit):Generator<void,AIMovePlan|undefined,unknown>{
+export function* planEnemyMoveSteps(e:Engine,u:Unit,target:Unit,attackFailed=false):Generator<void,AIMovePlan|undefined,unknown>{
  const lure=lureStakeFor(e,u);if(lure)return yield* planLuredMove(e,u,target,lure);
- if(flyingEnemy(u))return yield* planFlight(e,u,target);
+ if(flyingEnemy(u))return yield* planFlight(e,u,target,attackFailed);
  if(u.fixed||u.dead||u.moveLeft<35||!e.grounded(u))return;
  const budget=Math.min(u.moveLeft,610),start={x:u.x,y:u.y},poses=candidates(e,u,target);
  const reachable:Stance[]=[];

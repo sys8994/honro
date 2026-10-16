@@ -115,6 +115,7 @@ export interface ForceField {
     strength: number;
 }
 export interface AIMovePlan {
+    flightEscape?: boolean;
     /** Forced M08 movement may run outside the attack queue; saved across Continue. */
     lureStakeId?:number;
     round:number;
