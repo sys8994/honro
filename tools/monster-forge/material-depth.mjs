@@ -17,12 +17,10 @@ export function materialDepth(a){
   if(a.id==='shade'){add('bindings','M-20 -89 Q-4 -79 18 -81 M-15 -57 Q2 -60 15 -68',null,'clothDark',1.6);add('head','M-10 -120 L-5 -117 -5 -109',null,'clothLight',1.1);}
  }else if(a.id==='warden'){
   Object.assign(a.palette,{wood:'#70513a',woodLight:'#ad8c5f',woodDark:'#382b24',boneShade:'#8f8066'});
-  add('face','M-18 -130 L-9 -128 -3 -122 -8 -115 -17 -119Z M8 -124 L18 -130 16 -118 9 -115Z','ink');
-  add('face','M-11 -119 L-6 -115 -8 -107 -14 -109Z M11 -115 L16 -117 14 -107 8 -105Z','wood');
-  add('face','M-13 -100 L-10 -97 -7 -100 M0 -100 L2 -97 5 -100',null,'boneShade',1.3);
-  add('trunk','M-4 -87 L2 -79 -3 -63 3 -48 -2 -23 -7 -17 -5 -42 -9 -57Z','woodDark');
-  add('trunk','M-17 -136 Q-13 -113 -18 -91 M14 -84 Q8 -63 14 -43',null,'woodLight',1.2);
-  add('left-arm','M-24 -79 L-38 -65 -52 -65',null,'woodLight',1.4);
+  // Branch break exposes end grain; the light ridge follows the existing fork.
+  add('right-arm','M49 -125 L54 -132 58 -134 57 -128 53 -122Z','woodLight','woodDark',.6);
+  add('left-arm','M-77 -73 L-82 -73 -81 -67 -77 -65Z','woodLight','woodDark',.6);
+  add('left-arm','M-24 -79 Q-35 -74 -38 -65 L-44 -59',null,'woodLight',1.2);
  }else if(a.id==='lantern'){
   Object.assign(a.palette,{paper:'#c1a67a',boneShade:'#84745b',wood:'#6f4931',woodLight:'#b18a56'});
   add('shell','M-22 -94 L-13 -97 -13 -56 -21 -51Z','boneShade');
