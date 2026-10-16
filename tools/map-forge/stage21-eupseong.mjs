@@ -2,30 +2,22 @@
 import {readFile,writeFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 import {asset,put,P,R,line,terrain} from './act3-map-kit.mjs';
+import {gateArt,houseArt,officeArt,foundationArt,tiledRoof,timberBay} from './stage21-eupseong-art.mjs';
 const clone=x=>JSON.parse(JSON.stringify(x));
 export const contour=[[0,2810],[620,2810],[920,2730],[1120,2730],[1320,2640],[1780,2640],[2010,2560],[2890,2560],[3180,2670],[3480,2760],[3750,2760],[4060,2660],[4520,2660],[4770,2530],[4970,2530],[5230,2370],[5500,2370],[5740,2220],[6400,2220]];
 export function ground(x){for(let i=1;i<contour.length;i++){const a=contour[i-1],b=contour[i];if(x>=a[0]&&x<=b[0])return a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]);}return x<0?2810:2220;}
-function hut(p,s,id,x,w,h,{tile=false,wall='#9a9777'}={}){
- const y=ground(x),l=-w/2,r=w/2,e=-h,open=id==='stable',awn=id==='outside-stall';
- let art=R(l,-h,w,h,wall)+P([[r-65,e+15],[r,e+24],[r,0],[r-65,-8]],'#68715b')+R(l,-18,w,18,'#667668')+R(l-9,-14,w+18,10,'#a1a28a');
- art+=P([[l+22,e+35],[l+w*.48,e+41],[l+w*.39,e+76],[l+29,e+63]],'#b3ad87')+P([[r-97,-71],[r-20,-80],[r-20,-24],[r-83,-24]],'#8a8a6c');
- if(open){art+=R(l+19,e+22,w-60,h-41,'#344a43')+R(l+32,e+30,w-81,24,'#52634e');for(const xx of [l+18,l+w*.48,r-40])art+=R(xx,e+17,15,h-24,'#695c43')+R(xx+3,e+22,4,h-32,'#a18e63');art+=R(l+40,-62,84,44,'#88774f')+R(l+35,-70,95,9,'#b7a273')+R(r-130,-98,68,80,'#786747')+R(r-135,-107,78,10,'#aa9468');}
- else {const door=tile?-w*.19:-26;art+=R(door-9,-148,89,132,'#4a5142')+R(door,-141,71,122,'#706448')+R(door+4,-136,6,112,'#9a8560')+R(door+34,-138,5,117,'#484f3d')+R(door-12,-151,96,10,'#a3946b');
- for(const xx of [l+40,r-111]){if(xx+70>door-5&&xx<door+80)continue;art+=R(xx-6,-137,78,88,'#605e47')+R(xx,-131,66,76,'#bcb592')+R(xx-9,-48,84,8,'#655e45');for(let j=1;j<4;j++)art+=R(xx+j*15,-127,3,69,'#74735a');art+=R(xx+3,-98,59,4,'#74735a');}}
- const roof=tile?`M${l-29} ${e+5} Q${l+25} ${e+12} ${-w*.23} ${e-60} L${w*.2} ${e-62} Q${r-26} ${e+5} ${r+29} ${e+3} L${r+18} ${e+19} Q0 ${e+11} ${l-18} ${e+21}Z`:`M${l-24} ${e+13} Q${l-8} ${e-49} ${-w*.2} ${e-75} Q${w*.05} ${e-97} ${w*.27} ${e-65} Q${r+8} ${e-36} ${r+26} ${e+16} Q${w*.15} ${e+31} ${l-24} ${e+13}Z`;
- art+=`<path d="${roof}" fill="${tile?'#425e5d':'#9a8c65'}"/>`;
- art+=tile?P([[l-12,e+4],[-w*.22,e-47],[w*.21,e-47],[r+13,e+4],[r-8,e+10],[l+9,e+11]],'#71837b'):P([[l-7,e+1],[-w*.2,e-62],[w*.23,e-53],[r+7,e+5],[r-20,e+13],[l+14,e+11]],'#b7a477');
- if(tile){for(let xx=l+16;xx<r-10;xx+=31){const yy=e-47+Math.abs(xx)/(w/2)*47;art+=P([[xx,yy],[xx+4,yy+1],[xx+13,e+8],[xx+9,e+8]],'#415b58');}art+=R(l-18,e+16,w+36,9,'#8b967d')+R(l+5,e+25,w-10,9,'#465d4a');}
- else {for(let xx=l+10;xx<r;xx+=29){const yy=e-58+Math.abs(xx)/(w/2)*48;art+=P([[xx,yy],[xx+3,yy],[xx-6,e+15],[xx-9,e+14]],'#827853');}art+=P([[l-10,e+14],[0,e+24],[r+13,e+15],[r+7,e+24],[0,e+33],[l-8,e+24]],'#756d50');}
- if(awn){art+=P([[l-18,-114],[r+26,-109],[r+69,-66],[l-40,-77]],'#797d5b')+R(l-32,-77,8,77,'#645c43')+R(r+51,-67,8,67,'#645c43')+R(-73,-49,146,36,'#8e7851')+R(-79,-54,159,8,'#b5a174');}
- const a=asset('eup21:'+id,id,art,[],[l-46,e-105,w+125,h+111],'wood');a.params.rearOnly=true;put(p,s,a,id,x,y);return{x,y};
-}
+// Sample the same quadratic silhouette as the editable roof art (world collision).
+function roofTop(x,y,w,rise,tile=false){const l=x-w/2,r=x+w/2,points=[];let a=tile?[l-35,y-17]:[l-23,y];points.push(a);const curves=tile?[[[l+30,y-10],[x-w*.22,y-rise+9]],[[x,y-rise-4],[x+w*.22,y-rise+9]],[[r-18,y-8],[r+35,y-17]]]:[[[l-12,y-rise*.75],[x-w*.18,y-rise]],[[x+w*.08,y-rise-21],[x+w*.27,y-rise*.76]],[[r+10,y-39],[r+25,y+2]]];for(const [c,b]of curves){for(let i=1;i<=8;i++){const t=i/8;points.push([a[0]*(1-t)**2+2*c[0]*t*(1-t)+b[0]*t*t,a[1]*(1-t)**2+2*c[1]*t*(1-t)+b[1]*t*t]);}a=b;}return points;}
+function roof(p,s,id,x,y,w,rise,tile=false){const top=roofTop(x,y,w,rise,tile);terrain(s,'eup21-'+id+'-roof',[...top,...top.slice().reverse().map(([x,y])=>[x,y+15])],'wood');s.terrains.at(-1).oneWay=true;}
+function hut(p,s,id,x,w,h,{kind='home',y=ground(x)}={}){const a=asset('eup21:'+id,id,houseArt(w,h,kind),[],[-w/2-60,-h-110,w+130,h+155],'wood');a.params.rearOnly=true;put(p,s,a,id,x,y);roof(p,s,id,x,y-h,w,kind==='stable'?65:85);}
+
 function prop(p,s,id,x,kind='pots'){
  const y=ground(x);let art='';if(kind==='wood'){for(let i=0;i<5;i++)art+=R(-50+i*12,-15-i%2*19,65,13,i%2?'#8b7954':'#665d45');}else for(const [xx,sz]of [[-35,30],[8,42],[53,23]])art+=`<path d="M${xx-sz*.5} -${sz*1.4} Q${xx-sz} -${sz} ${xx-sz*.8} -8 Q${xx} 8 ${xx+sz*.8} -8 Q${xx+sz} -${sz} ${xx+sz*.5} -${sz*1.4} Z" fill="#675849" stroke="#253b3a" stroke-width="3"/>`+R(xx-sz*.55,-sz*1.47,sz*1.1,6,'#90806a');
  put(p,s,asset('eup21:'+id,id,art,[],[-100,-100,210,105]),id,x,y,1,'prop');
 }
 export function authorStage21Eupseong(project,g){
  const p=clone(project),s=p.stages[20],old=clone(s);if(s.metadata.stageId!==21)throw Error('Stage21 required');
+ for(const e of s.environment.placements)if(e.assetId.startsWith('eup21:backdrop:'))e.assetId=e.assetId.slice('eup21:backdrop:'.length);
  p.library=p.library.filter(a=>!a.id.startsWith('eup21:'));s.elements=[];s.terrains=[];s.materials=[];
  terrain(s,'a3-foundation',[...contour,[6400,3200],[0,3200]],'earth');
  // The actual cutaway gate crown is solid. Its visible underside leaves a 195-unit passage.
@@ -34,30 +26,48 @@ export function authorStage21Eupseong(project,g){
  const walks=[['west-wall-step',[[1770,2640],[1900,2500],[1980,2500]],true],['west-wall-stair',[[1980,2370],[2040,2370]],true],['east-wall-return',[[2460,2240],[2580,2380],[2660,2380],[2830,2560]],true]];
  for(const[id,top,oneWay]of walks){const poly=[...top,...top.slice().reverse().map(([x,y])=>[x,y+22])];terrain(s,'eup21-'+id,poly,'stone');s.terrains.at(-1).oneWay=oneWay;}
  // Drawn rear-plane masonry is explicitly behind the open traversable arch section.
- let gate=P([[1890,2500],[1980,2500],[1980,2370],[2040,2370],[2040,2560],[1890,2602]],'#687260')+P([[2040,2560],[2040,2250],[2090,2240],[2460,2240],[2510,2250],[2510,2560],[2420,2560],[2420,2440],[2370,2375],[2190,2375],[2130,2440],[2130,2560]],'#7b8170','#263c3c',5);
- gate+=P([[2040,2250],[2090,2240],[2460,2240],[2510,2250],[2485,2270],[2070,2270]],'#aaa88a')+R(2040,2538,90,22,'#606f63')+R(2420,2538,90,22,'#606f63');
- for(let yy=2300;yy<2550;yy+=72){gate+=line([[2045,yy],[2120,yy]],'#515f55',3)+line([[2430,yy],[2505,yy]],'#515f55',3);}
- for(const [xx,yy,ww]of [[2051,2290,65],[2050,2370,59],[2050,2450,65],[2434,2290,60],[2440,2374,58],[2430,2450,66],[2130,2285,93],[2240,2285,105],[2354,2285,79]])gate+=P([[xx,yy],[xx+ww,yy-3],[xx+ww-4,yy+55],[xx+3,yy+60]],'#8c907b')+R(xx+6,yy+5,ww-13,5,'#a3a58b');
- gate+=R(2100,2050,350,190,'#6b7359')+R(2115,2060,320,18,'#a39d77');for(const x of [2115,2220,2330,2430])gate+=R(x,2068,12,172,'#604f3d');
- gate+=P([[2055,2055],[2120,2023],[2220,1980],[2340,1980],[2440,2023],[2490,2055],[2465,2070],[2078,2070]],'#425c5b','#263c3c',4)+P([[2090,2044],[2225,1993],[2337,1993],[2460,2044]],'#75837b')+R(2250,2087,48,30,'#344d48');
- put(p,s,asset('eup21:gate','두꺼운 석축과 낮은 단층 문루',gate,[crown],[2010,1960,530,610],'stone'),'gate',0,0);
+ const gate=gateArt();put(p,s,asset('eup21:gate','쐐기돌 홍예·두꺼운 석축·삼칸 목조 문루',gate,[crown],[1750,1940,820,640],'stone'),'gate',0,0);
+ roof(p,s,'gate',2277,2049,411,78,true);
  // Grounded rear embankment ends beside the gate, never an endless elevated highway.
  let earth=P([[2490,2270],[2630,2350],[2780,2460],[2910,2565],[2490,2560]],'#68725b')+line([[2490,2270],[2630,2350],[2780,2460],[2910,2565]],'#a09f7a',5);
  put(p,s,asset('eup21:inner-earth','성벽 뒤 흙비탈',earth,[],[2490,2270,430,310],'earth'),'inner-earth',0,0);
- for(const row of [['outside-stall',440,390,155,{}],['cloth-shelter',1550,400,170,{}],['inner-home',3615,270,165,{}],['potter-home',4250,380,190,{}],['stable',4870,200,170,{}],['office-entry',5365,270,230,{tile:true}],['office-watch',5970,350,190,{tile:true}]])hut(p,s,...row);
- for(const [id,x,kind]of [['entry-jars',990,'pots'],['shelter-wood',1830,'wood'],['inner-jars',3650,'pots'],['market-wood',4270,'wood'],['office-jars',5650,'pots']])prop(p,s,id,x,kind);
- // Low rear courtyard walls sit behind actors; tactical cover is the continuous ground contour.
- for(const [id,x,w,h]of [['rescue-yard-wall',1135,110,65],['street-yard-wall',4240,120,65],['office-yard-wall',5050,95,65]]){const y=ground(x),poly=[[x-w,y],[x-w/2,y-h],[x+w/2,y-h],[x+w,y]];put(p,s,asset('eup21:'+id,id,P(poly,'#847e60','#293f3c',3)+R(x-w/2-5,y-h-7,w+10,12,'#aaa17b'),[],[x-w/2-6,y-h-8,w+12,h+10]),id,0,0);}
+ // Two disconnected upper sites: the lower street remains open below their real slabs.
+ const localSteps=[['gate-roof-step',[[2025,2130],[2110,2130]]],['market-west-step',[[3960,2550],[4040,2550]]],['market-east-step',[[4490,2540],[4560,2540]]],['office-roof-step',[[5135,2020],[5205,2020]]],['office-west-step',[[5070,2295],[5140,2295]]],['office-east-step',[[5580,2240],[5640,2240]]]];
+ for(const[id,top]of localSteps){terrain(s,'eup21-'+id,[...top,...top.slice().reverse().map(([x,y])=>[x,y+22])],'stone');s.terrains.at(-1).oneWay=true;
+ const [a,b]=top,foot=id==='gate-roof-step'?2240:id==='office-roof-step'?2130:Math.max(ground(a[0]),ground(b[0]));const art=P([[a[0],a[1]],[b[0],b[1]],[b[0],b[1]+22],[a[0],a[1]+22]],'#8d9176')+R(a[0]+9,a[1]+22,15,foot-a[1]-22,'#4b6355')+R(b[0]-24,b[1]+22,15,foot-b[1]-22,'#4b6355')+line([a,b],'#b7b696',5);put(p,s,asset('eup21:'+id,id,art,[],[a[0],a[1],b[0]-a[0],foot-a[1]+10]),id,0,0);}
+ const marketTop=[[4050,2420],[4490,2420],[4490,2464],[4050,2464]];
+ let loading=P(marketTop,'#75694c')+R(4050,2420,440,9,'#b4a276')+R(4050,2452,440,12,'#4a5340');for(const x of [4105,4220,4335,4425])loading+=R(x,2464,17,196,'#655f45')+line([[x+8,2471],[x+77,2538]],'#8c7854',11)+R(x-6,2650,30,10,'#9e9c7f');
+ loading+=R(4102,2530,333,13,'#56634b');for(let x=4110;x<4490;x+=72)loading+=line([[x,2430],[x,2451]],'#413f32',3);
+ put(p,s,asset('eup21:loading-deck','시장 하역 마루와 아래 통로',loading,[marketTop],[4040,2420,470,255],'wood'),'loading-deck',0,0);
+ const officeTop=[[5190,2130],[5550,2130],[5550,2174],[5190,2174]];let plinth=P(officeTop,'#7d8b79')+R(5184,2130,372,11,'#b7b79a')+R(5190,2163,360,11,'#445d50');
+ // A broad rear retaining face puts the ordinary lane beside the raised office terrace.
+ plinth+=P([[5190,2174],[5550,2174],[5550,ground(5550)],[5190,ground(5190)]],'#657963')+P([[5520,2174],[5550,2174],[5572,ground(5550)-16],[5550,ground(5550)]],'#445e4c');
+ for(let row=0;row<4;row++)for(let j=0;j<4;j++){const x=5197+j*86+(row%2?7:0),y=2181+row*43;plinth+=P([[x,y],[x+75,y-2],[x+79,y+32],[x+3,y+37]],row%2?'#7a886d':'#879177')+line([[x+5,y+4],[x+67,y+2]],'#a1a68a',3);}
+ plinth+=R(5189,2172,362,10,'#465e4c');put(p,s,asset('eup21:office-plinth','관아 석조 기단·앞쪽 낮은 통과 길',plinth,[officeTop],[5180,2130,400,310],'stone'),'office-plinth',0,0);
+ const crate=[[4290,2340],[4360,2340],[4360,2420],[4290,2420]];put(p,s,asset('eup21:deck-crate','마루 위 실제 화물 엄폐',P(crate,'#756747','#3d4a3c',3)+R(4286,2337,78,10,'#a49467')+line([[4295,2353],[4355,2409]],'#b0a070',7)+R(4290,2380,70,7,'#46503b'),[crate],[4285,2335,82,88]),'deck-crate',0,0,1,'prop');
+ for(const row of [['outside-stall',440,390,175,{kind:'shop'}],['cloth-shelter',1550,400,190,{}],['inner-home',3590,250,180,{}],['potter-home',4260,340,155,{kind:'workshop',y:2420}],['stable',4870,200,180,{kind:'stable'}],['office-store',5990,350,160,{kind:'workshop'}]])hut(p,s,...row);
+ put(p,s,asset('eup21:office-hall','관아 삼칸 집무당·목조 창호',officeArt(),[],[-240,-320,500,335],'wood'),'office-hall',5369,2130);
+ roof(p,s,'office-hall',5369,1917,412,84,true);
+ // Broad market yard and office courtyard walls have clear rear-plane returns.
+ for(const [id,x1,x2]of [['market-yard',3290,3420],['office-court',5630,5900]]){const y1=ground(x1),y2=ground(x2),poly=[[x1,y1],[x1,y1-90],[x2,y2-90],[x2,y2]];let art=P(poly,'#78856a')+line([[x1-7,y1-92],[x2+7,y2-92]],'#a4aa88',11)+line([[x1,y1-62],[x2,y2-62]],'#4e6755',4);for(let xx=x1+28;xx<x2;xx+=61){const yy=y1+(y2-y1)*(xx-x1)/(x2-x1);art+=R(xx,yy-83,10,79,'#63785e');}put(p,s,asset('eup21:'+id,id,art,[],[x1-9,Math.min(y1,y2)-105,x2-x1+18,Math.abs(y1-y2)+115]),id,0,0);}
+ for(const [id,x,kind]of [['entry-jars',990,'pots'],['shelter-wood',1830,'wood'],['inner-jars',3650,'pots'],['office-jars',5650,'pots']])prop(p,s,id,x,kind);
+ put(p,s,asset('eup21:foundations','지반 단면·석축 받침·시장 배수로',foundationArt(contour,ground),[],[0,2220,6400,1000],'earth'),'foundations',0,0,1,'front');
  for(const u of s.units){u.y=ground(u.x)-(u.kind==='lantern'?32:0);if(u.stageOverrides)u.stageOverrides.honroEncounterSupport='a3-foundation';}
  const air=s.units.filter(u=>u.encounterGroup==='gate-watch'&&u.kind==='lantern');Object.assign(air[0],{x:2200,y:2208});Object.assign(air[1],{x:2780,y:2440});air[0].stageOverrides.honroEncounterSupport='gate:collision:0';air[1].stageOverrides.honroEncounterSupport='eup21-east-wall-return';
+ for(const [id,x,y,support]of [['a3-21-market-pack-2',4180,2388,'loading-deck:collision:0'],['a3-21-office-rearguard-0',5310,2130,'office-plinth:collision:0'],['a3-21-office-rearguard-2',5480,2098,'office-plinth:collision:0']]){const u=s.units.find(v=>v.id===id);Object.assign(u,{x,y});u.stageOverrides.honroEncounterSupport=support;}
  // Keep stable IDs, counts, warning text and trigger/XP contracts; only entry poses follow the new contour.
  for(const ev of s.events){for(const a of [...(ev.action.actions||[]),...(ev.honroDensityAlternatives||[]).flat()]){a.y=ground(a.x);a.support='a3-foundation';}ev.entry.y=ground(ev.entry.x);}
  for(const m of s.markers)m.y=ground(m.x);s.anchors={spawn:{x:240,y:ground(240)},start:{x:240,y:ground(240)},exit:{x:6140,y:ground(6140)}};
  s.initialState.honroStage21EupseongRevision=1;
  let cart=R(-115,-78,210,17,'#8f7955')+line([[-110,-140],[-100,-75],[90,-75],[106,-134]],'#655b45',10)+line([[80,-80],[195,-24]],'#746244',9);for(const x of [-74,62])cart+=P(Array.from({length:12},(_,i)=>[x+31*Math.cos(i*Math.PI/6),-31+31*Math.sin(i*Math.PI/6)]),'#575847','#263c3c',5)+P(Array.from({length:12},(_,i)=>[x+18*Math.cos(i*Math.PI/6),-31+18*Math.sin(i*Math.PI/6)]),'#81765b');put(p,s,asset('eup21:cart','기울어진 장터 수레',cart,[],[-130,-155,340,160]),'rescue-cart',1550,ground(1550),1,'back');
  const main=contour.filter(([x])=>x>240&&x<6140).map(([x,y])=>({x,y,support:'a3-foundation'}));s.design.act3.requiredRoute=[s.anchors.start,...main,s.anchors.exit];s.design.act3.mainBuildings=s.elements.filter(e=>/home|shelter|stable|office|gate$/.test(e.id)).map(e=>e.id);s.design.act3.bridges=[];s.design.act3.optionalRoutes=[{id:'short-wall-cover',points:[{x:1770,y:2640},{x:1900,y:2500},{x:1940,y:2500,jumpTo:{x:2000,support:'eup21-west-wall-stair',speed:.3}},{x:2000,y:2370,jumpTo:{x:2110,support:'gate:collision:0',speed:.3}},{x:2110,y:2240},{x:2400,y:2240},{x:2580,y:2380},{x:2660,y:2380},{x:2830,y:2560}]}];delete s.design.cityTactical;
- s.design.eupseong={revision:1,places:['outer-market-rescue','thick-gate-and-defence','low-living-lanes','ascending-office'],scope:'Stage21 fresh entries only; existing live snapshots retain their own map. Story, objectives, initial budget and finite contribution IDs unchanged.'};
+ s.design.act3.optionalRoutes.push({id:'market-loading-choice',points:[{x:3910,y:ground(3910),jumpTo:{x:3990,support:'eup21-market-west-step',speed:.35}},{x:4020,y:2550,jumpTo:{x:4120,support:'loading-deck:collision:0',speed:.35}},{x:4180,y:2420}]},{id:'office-side-choice',points:[{x:5030,y:ground(5030),jumpTo:{x:5100,support:'eup21-office-west-step',speed:.35}},{x:5130,y:2295,jumpTo:{x:5220,support:'office-plinth:collision:0',speed:.35}},{x:5500,y:2130}]});
+ s.design.eupseong={revision:2,places:['outer-market-rescue','thick-gate-and-defence','low-living-lanes','ascending-office'],scope:'Stage21 fresh entries only; existing live snapshots retain their own map. Story, objectives, initial budget and finite contribution IDs unchanged.'};
  s.environment.placements=s.environment.placements.filter(e=>!e.id.includes('rear-city-gate')); // remove the misleading second monumental gate
+ // Stage-owned cloned scenic colors reduce rear architecture contrast without altering any other chapter.
+ const mix=c=>{if(!/^#[0-9a-f]{6}$/i.test(c||''))return c;const t='#68766b';return '#'+[1,3,5].map(i=>Math.round(parseInt(c.slice(i,i+2),16)*.38+parseInt(t.slice(i,i+2),16)*.62).toString(16).padStart(2,'0')).join('');};
+ const recolor=n=>{if(!n||typeof n!=='object')return;for(const k of ['fill','stroke'])if(typeof n[k]==='string')n[k]=mix(n[k]);for(const v of Object.values(n))if(v&&typeof v==='object')Array.isArray(v)?v.forEach(recolor):recolor(v);};
+ const scenic=new Map();for(const e of s.environment.placements){if(e.assetId.includes('bank'))continue;let a=scenic.get(e.assetId);if(!a){const original=p.library.find(a=>a.id===e.assetId);if(!original)continue;a=clone(original);a.id='eup21:backdrop:'+original.id;recolor(a.vector);p.library.push(a);scenic.set(original.id,a);}e.assetId=a.id;}
  delete s.terrainBounds;delete s.terrainDomainVersion;
  const authored=g.HonroTerrainDomain.author(p);if(JSON.stringify(authored.stages.filter(v=>v.id!=='stage-21'))!==JSON.stringify(project.stages.filter(v=>v.id!=='stage-21')))throw Error('Unrelated stage changed');return authored;
 }
