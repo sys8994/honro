@@ -5,9 +5,9 @@
 import {readFile,writeFile,mkdir,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {appHarness,plain} from './app-regression-helpers.mjs';
-const h=await appHarness(),{g,C,load,profileThrough}=h,A=g.HonroAct3,ids=process.argv.slice(2).map(Number),rows=[];if(!ids.length)ids.push(...Array.from({length:10},(_,i)=>21+i));
+const h=await appHarness(),{g,C,load,profileThrough}=h,A=g.HonroAct3,ids=process.argv.slice(2).map(Number),rows=[];if(!ids.length)ids.push(28);if(ids.some(id=>id!==28))throw Error('Stage28-only probe');
 const out='review/stage28/normal-play';await mkdir(out,{recursive:true});
-const sourceFiles=['shared/build.mjs','game/config/balance.json','tests/act3-playthrough.mjs','tests/app-regression-helpers.mjs'];
+const sourceFiles=['shared/build.mjs','game/config/balance.json','tests/stage28-record-court-fullplay.mjs','tests/app-regression-helpers.mjs'];
 for(const dir of ['shared/runtime','shared/engine/src','shared/map'])for(const file of await readdir(dir))if(/\.(js|ts)$/.test(file))sourceFiles.push(dir+'/'+file);sourceFiles.sort();
 const source=Object.fromEntries(await Promise.all(sourceFiles.map(async f=>[f,createHash('sha256').update(await readFile(f)).digest('hex')])));
 for(const id of ids){const profile=profileThrough(id-1),st=g.HONRO_CONTENT.stages[id-1],map=g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===id);if(!map)throw Error('Unimplemented map '+id);

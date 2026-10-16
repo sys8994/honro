@@ -3001,3 +3001,5 @@ Focused route/shot/wave/authoring/story/save checks pass; current merged-master 
 합류 범위440에서 받아들인 물증 소유자가 별도260 검사로 누락되는 문제를 새 개편 맵에 한해 동일 sameFloor 판정으로 교정했다. 기존 영수증과 실제 걷기·전개·재포장을 사용한다. 정상 자원 Native R8/36행동 완주, 분산 물증 fixture, 새/구 Continue, PC/모바일 Canvas, 기존 P0/field evidence/fire-sites, 빌드/환경 검증 통과. 자세한 범위·PNG·원본 로그는 사용자 요청 경로 review/stage28/README.md에 있다. 브라우저 수동 완주/Workshop Playtest/전체 verify는 미실행, encounter gate와 미술 승인은 대기. 공식 이미지 픽셀 조사는 네트워크403/timeout으로 미충족이며 master/Pages에 배포하지 않았다.
 
 소유자 순서 반전 후속: 첫 물증 소유자+440/마지막-430이면 배치 목적지까지505/530px로 기존450 이동 한도에 걸려 실제 전개가 실패했다. 수정 전 실패를 재현하고 새 개편28장의 party-reunion만 maxDistance600으로 조정했다. 다른 장/구 저장/다른 연출450 유지. mirrored-owner-boundary 실제 걷기·전개·재포장 및 새/구 Continue, 기존 field-evidence/P0 48사례와 재빌드 통과.
+
+2026-10-16 지붕 후속: 기존 네 지붕의 oneWay를 켜고 실제 기본점프 범위에 맞춘 측면 점검발판5개를 추가했다. 건물 지상 통로/물리/탄 코드는 유지. 네 동행×네 지붕16개의 유한 이동/위통과/착지/능선이동/아래점프 퇴로 및 실제PC모바일PNG 확인. 최신 정상자원28장은 R12/56행동 성공(네명생존), 기존12턴 경계/물증 mirrored/Continue/탄플랫폼6그룹/빌드/환경30맵 통과. review/stage28/README.md와 roof/routes.json에 fixture 및 정상전투 범위 구분. 부모 통합대기, master/Pages 쓰기 없음.

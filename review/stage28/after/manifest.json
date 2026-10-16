@@ -2,10 +2,10 @@
   "source": "Production HonroMaps.createBattle + HONRO_CORE.Engine + HonroScene",
   "projectFile": "/workspace/honro-stage28/shared/data/campaign.json",
   "runtimeFile": "/workspace/honro-stage28/shared/build.mjs",
-  "runtimeSha256": "71af181adbc541ada9730b6e2996eaf8b8f5c421027c01235a5c9701cc6be7c9",
-  "runtimeGitHead": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
+  "runtimeSha256": "932209f9f83d71ba46ff1fec5277629a8d77b53c1dc0f84cb2e5cc533b67842c",
+  "runtimeGitHead": "ceaf419dc011f7c551a06109a32297bbd285ca38",
   "artOverride": null,
-  "projectSha256": "1099149f39ac70c4c3154f818e829726df2a2f92df811f942522ac1dd66917e6",
+  "projectSha256": "d687cea4cfc9b8a30e2daaab36b6930e9151b079ba4eb48570662e36856e08e4",
   "scope": "Canonical campaign metadata and geometry in Native Canvas. No browser, HUD/input, performance or campaign-completion claim.",
   "results": [
     {
@@ -31,7 +31,7 @@
       "renderStateChanges": [],
       "cache": {
         "worldBuilds": 1,
-        "worldBuildMs": 15.968748999999661,
+        "worldBuildMs": 23.236194999999952,
         "bgBuilds": 0,
         "bgBuildMs": 0,
         "worldHits": 1,
@@ -103,7 +103,7 @@
       "renderStateChanges": [],
       "cache": {
         "worldBuilds": 1,
-        "worldBuildMs": 8.061373999999887,
+        "worldBuildMs": 7.70225500000015,
         "bgBuilds": 0,
         "bgBuildMs": 0,
         "worldHits": 1,
@@ -175,7 +175,7 @@
       "renderStateChanges": [],
       "cache": {
         "worldBuilds": 1,
-        "worldBuildMs": 9.173213999999462,
+        "worldBuildMs": 7.310874000000695,
         "bgBuilds": 0,
         "bgBuildMs": 0,
         "worldHits": 1,
@@ -222,6 +222,78 @@
           "h": 92,
           "presentationHeight": 101.78566416040101,
           "presentationHeightPixels": 61.071398496240604
+        }
+      ]
+    },
+    {
+      "stageId": 28,
+      "name": "지운 이름과 남은 명령",
+      "file": "stage-28-mobile-landscape.png",
+      "view": {
+        "name": "mobile-landscape",
+        "w": 844,
+        "h": 390,
+        "x": 6990,
+        "y": 2485,
+        "scale": 0.62
+      },
+      "actualCamera": {
+        "x": 6990,
+        "y": 2485,
+        "scale": 0.62,
+        "manual": true
+      },
+      "renderPure": true,
+      "renderStateChanges": [],
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 6.91030899999987,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 1,
+        "bgHits": 0,
+        "screenWorldBytes": 0,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 12010044,
+        "worldScale": 0.35007002100700246,
+        "backgroundBytes": 0
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 6700,
+          "y": 2590,
+          "h": 92,
+          "presentationHeight": 106.61536385542168,
+          "presentationHeightPixels": 66.10152559036143
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 6540,
+          "y": 2590,
+          "h": 92,
+          "presentationHeight": 100.56597590361447,
+          "presentationHeightPixels": 62.35090506024097
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 300,
+          "y": 2700,
+          "h": 92,
+          "presentationHeight": 116.21781816834915,
+          "presentationHeightPixels": 72.05504726437647
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "x": 460,
+          "y": 2700,
+          "h": 92,
+          "presentationHeight": 101.78566416040101,
+          "presentationHeightPixels": 63.10711177944863
         }
       ]
     }

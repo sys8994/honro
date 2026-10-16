@@ -28,7 +28,8 @@ function house(p,s,{id,x,y,w,h,open=false,burnt=false,low=false}){
  for(const t of [.45,.78]){const yy=peak+(eave-peak)*t;roofArt+=line([[left+28-40*t,yy],[right-28+40*t,yy]],'#435754',3);}
  roofArt+=line([[left+33,peak+2],[right-33,peak+2]],'#a09f86',5)+R(left-22,eave+29,w+44,9,'#263532');
  if(burnt)roofArt+=P([[x+75,peak+17],[x+157,peak+17],[x+138,peak+43],[x+191,eave+12],[x+92,eave+13],[x+111,peak+65]],'#273432')+line([[x+122,peak+33],[x+145,eave+8]],'#796b4f',8);
- art(p,s,id+'-roof',roofArt,[left-40,peak-5,w+80,h+135],[roof]);
+ // Existing platform rules: pass upward, land from above and drop back into the hall.
+ const roofAsset=art(p,s,id+'-roof',roofArt,[left-40,peak-5,w+80,h+135],[roof]);roofAsset.oneWay=true;
  return id;
 }
 export function applyStage28RecordCourt(input){
@@ -49,6 +50,14 @@ export function applyStage28RecordCourt(input){
  house(p,s,{id:'raised-open-record-hall',x:3760,y:2380,w:1040,h:350,open:true,burnt:true});
  house(p,s,{id:'east-record-annex',x:4750,y:2490,w:560,h:300,open:true,low:true});
  house(p,s,{id:'water-yard-shed',x:6340,y:2590,w:650,h:260,open:true,low:true});
+ // Fire-watch maintenance landings attach to side bays. Every beam is an existing
+ // one-way platform; the hall below remains open and no invisible stair is added.
+ const roofAccess=[['west',780,2515,220],['court-lower',3310,2220,200],['court-upper',3410,2050,200],['annex',4800,2240,180],['water',6150,2420,200]];
+ for(const [id,x,y,w] of roofAccess){
+  s.terrains.push(surface('s28-roof-access-'+id,[[x-w/2,y],[x+w/2,y]],{depth:16,role:'roof-access'}));
+  const foot=court28Ground(x),brace=R(x-w/2+16,y+16,12,foot-y-16,'#574a35')+R(x+w/2-28,y+16,12,foot-y-16,'#574a35')+line([[x-w/2+22,y+83],[x+w/2-22,y+18]],'#81704d',9);
+  art(p,s,'roof-access-support-'+id,brace,[x-w/2,y,w,foot-y]);
+ }
  // A single pine roots the deserted civic precinct in a real hillside.
  const pine=p.library.find(a=>a.id==='act1-scene:rooted-pine');if(pine)put(p,s,pine,'s28-court-pine',2940,court28Ground(2940),.57);
  // Low masonry retaining face belongs to the mound; it is neither a floating tier nor a new collider.

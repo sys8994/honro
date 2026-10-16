@@ -157562,7 +157562,7 @@
       },
       "material": "wood",
       "breakable": false,
-      "oneWay": false,
+      "oneWay": true,
       "bounds": {
         "x": 600,
         "y": 2338,
@@ -158075,7 +158075,7 @@
       },
       "material": "wood",
       "breakable": false,
-      "oneWay": false,
+      "oneWay": true,
       "bounds": {
         "x": 3200,
         "y": 1900,
@@ -158503,7 +158503,7 @@
       },
       "material": "wood",
       "breakable": false,
-      "oneWay": false,
+      "oneWay": true,
       "bounds": {
         "x": 4430,
         "y": 2113,
@@ -158945,7 +158945,7 @@
       },
       "material": "wood",
       "breakable": false,
-      "oneWay": false,
+      "oneWay": true,
       "bounds": {
         "x": 5975,
         "y": 2253,
@@ -158959,6 +158959,421 @@
           "y": 2253,
           "w": 730,
           "h": 395
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage28:record-court:roof-access-support-west",
+      "name": "roof-access-support-west",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          670,
+          2515,
+          220,
+          185
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#574a35",
+              "d": "M686 2531 L698 2531 L698 2700 L686 2700 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#574a35",
+              "d": "M862 2531 L874 2531 L874 2700 L862 2700 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#81704d",
+              "lineWidth": 9,
+              "d": "M692 2598 L868 2533"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"670 2515 220 185\"><path d=\"M686 2531 L698 2531 L698 2700 L686 2700 Z\" fill=\"#574a35\"/><path d=\"M862 2531 L874 2531 L874 2700 L862 2700 Z\" fill=\"#574a35\"/><path d=\"M692 2598 L868 2533\" fill=\"none\" stroke=\"#81704d\" stroke-width=\"9\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production",
+        "stage28-record-court"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 670,
+        "y": 2515,
+        "w": 220,
+        "h": 185
+      },
+      "reference": {
+        "heightM": 3.0833333333333335,
+        "bounds": {
+          "x": 670,
+          "y": 2515,
+          "w": 220,
+          "h": 185
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage28:record-court:roof-access-support-court-lower",
+      "name": "roof-access-support-court-lower",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          3210,
+          2220,
+          200,
+          186.0526315789475
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#574a35",
+              "d": "M3226 2236 L3238 2236 L3238 2406.0526315789475 L3226 2406.0526315789475 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#574a35",
+              "d": "M3382 2236 L3394 2236 L3394 2406.0526315789475 L3382 2406.0526315789475 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#81704d",
+              "lineWidth": 9,
+              "d": "M3232 2303 L3388 2238"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"3210 2220 200 186.0526315789475\"><path d=\"M3226 2236 L3238 2236 L3238 2406.0526315789475 L3226 2406.0526315789475 Z\" fill=\"#574a35\"/><path d=\"M3382 2236 L3394 2236 L3394 2406.0526315789475 L3382 2406.0526315789475 Z\" fill=\"#574a35\"/><path d=\"M3232 2303 L3388 2238\" fill=\"none\" stroke=\"#81704d\" stroke-width=\"9\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production",
+        "stage28-record-court"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 3210,
+        "y": 2220,
+        "w": 200,
+        "h": 186.0526315789475
+      },
+      "reference": {
+        "heightM": 3.1008771929824586,
+        "bounds": {
+          "x": 3210,
+          "y": 2220,
+          "w": 200,
+          "h": 186.0526315789475
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage28:record-court:roof-access-support-court-upper",
+      "name": "roof-access-support-court-upper",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          3310,
+          2050,
+          200,
+          330
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#574a35",
+              "d": "M3326 2066 L3338 2066 L3338 2380 L3326 2380 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#574a35",
+              "d": "M3482 2066 L3494 2066 L3494 2380 L3482 2380 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#81704d",
+              "lineWidth": 9,
+              "d": "M3332 2133 L3488 2068"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"3310 2050 200 330\"><path d=\"M3326 2066 L3338 2066 L3338 2380 L3326 2380 Z\" fill=\"#574a35\"/><path d=\"M3482 2066 L3494 2066 L3494 2380 L3482 2380 Z\" fill=\"#574a35\"/><path d=\"M3332 2133 L3488 2068\" fill=\"none\" stroke=\"#81704d\" stroke-width=\"9\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production",
+        "stage28-record-court"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 3310,
+        "y": 2050,
+        "w": 200,
+        "h": 330
+      },
+      "reference": {
+        "heightM": 5.5,
+        "bounds": {
+          "x": 3310,
+          "y": 2050,
+          "w": 200,
+          "h": 330
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage28:record-court:roof-access-support-annex",
+      "name": "roof-access-support-annex",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          4710,
+          2240,
+          180,
+          250
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#574a35",
+              "d": "M4726 2256 L4738 2256 L4738 2490 L4726 2490 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#574a35",
+              "d": "M4862 2256 L4874 2256 L4874 2490 L4862 2490 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#81704d",
+              "lineWidth": 9,
+              "d": "M4732 2323 L4868 2258"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"4710 2240 180 250\"><path d=\"M4726 2256 L4738 2256 L4738 2490 L4726 2490 Z\" fill=\"#574a35\"/><path d=\"M4862 2256 L4874 2256 L4874 2490 L4862 2490 Z\" fill=\"#574a35\"/><path d=\"M4732 2323 L4868 2258\" fill=\"none\" stroke=\"#81704d\" stroke-width=\"9\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production",
+        "stage28-record-court"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 4710,
+        "y": 2240,
+        "w": 180,
+        "h": 250
+      },
+      "reference": {
+        "heightM": 4.166666666666667,
+        "bounds": {
+          "x": 4710,
+          "y": 2240,
+          "w": 180,
+          "h": 250
+        },
+        "foot": {
+          "x": 0,
+          "y": 0
+        },
+        "scaleRange": [
+          0.35,
+          2
+        ],
+        "backgroundRange": [
+          0.35,
+          2
+        ]
+      }
+    },
+    {
+      "id": "stage28:record-court:roof-access-support-water",
+      "name": "roof-access-support-water",
+      "category": "architecture",
+      "visual": [],
+      "vector": {
+        "version": 1,
+        "viewBox": [
+          6050,
+          2420,
+          200,
+          170
+        ],
+        "gradients": {},
+        "root": {
+          "tag": "g",
+          "children": [
+            {
+              "tag": "path",
+              "fill": "#574a35",
+              "d": "M6066 2436 L6078 2436 L6078 2590 L6066 2590 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "#574a35",
+              "d": "M6222 2436 L6234 2436 L6234 2590 L6222 2590 Z"
+            },
+            {
+              "tag": "path",
+              "fill": "none",
+              "stroke": "#81704d",
+              "lineWidth": 9,
+              "d": "M6072 2503 L6228 2438"
+            }
+          ]
+        },
+        "source": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"6050 2420 200 170\"><path d=\"M6066 2436 L6078 2436 L6078 2590 L6066 2590 Z\" fill=\"#574a35\"/><path d=\"M6222 2436 L6234 2436 L6234 2590 L6222 2590 Z\" fill=\"#574a35\"/><path d=\"M6072 2503 L6228 2438\" fill=\"none\" stroke=\"#81704d\" stroke-width=\"9\"/></svg>"
+      },
+      "collision": [],
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "sockets": [],
+      "tags": [
+        "act3-production",
+        "stage28-record-court"
+      ],
+      "params": {
+        "collisionSource": "drawn-structural-polygons",
+        "rearOnly": true
+      },
+      "material": "wood",
+      "breakable": false,
+      "oneWay": false,
+      "bounds": {
+        "x": 6050,
+        "y": 2420,
+        "w": 200,
+        "h": 170
+      },
+      "reference": {
+        "heightM": 2.8333333333333335,
+        "bounds": {
+          "x": 6050,
+          "y": 2420,
+          "w": 200,
+          "h": 170
         },
         "foot": {
           "x": 0,
@@ -408321,6 +408736,216 @@
             "seed": 28,
             "optimizeEpsilon": 0
           }
+        },
+        {
+          "id": "s28-roof-access-west",
+          "name": "s28-roof-access-west",
+          "type": "solid",
+          "points": [
+            {
+              "x": 670,
+              "y": 2515
+            },
+            {
+              "x": 890,
+              "y": 2515
+            },
+            {
+              "x": 890,
+              "y": 2531
+            },
+            {
+              "x": 670,
+              "y": 2531
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCourt28": true,
+            "honroSpaceSurfaceId": "s28-roof-access-west",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "roof-access",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 28,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "s28-roof-access-court-lower",
+          "name": "s28-roof-access-court-lower",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3210,
+              "y": 2220
+            },
+            {
+              "x": 3410,
+              "y": 2220
+            },
+            {
+              "x": 3410,
+              "y": 2236
+            },
+            {
+              "x": 3210,
+              "y": 2236
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCourt28": true,
+            "honroSpaceSurfaceId": "s28-roof-access-court-lower",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "roof-access",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 28,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "s28-roof-access-court-upper",
+          "name": "s28-roof-access-court-upper",
+          "type": "solid",
+          "points": [
+            {
+              "x": 3310,
+              "y": 2050
+            },
+            {
+              "x": 3510,
+              "y": 2050
+            },
+            {
+              "x": 3510,
+              "y": 2066
+            },
+            {
+              "x": 3310,
+              "y": 2066
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCourt28": true,
+            "honroSpaceSurfaceId": "s28-roof-access-court-upper",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "roof-access",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 28,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "s28-roof-access-annex",
+          "name": "s28-roof-access-annex",
+          "type": "solid",
+          "points": [
+            {
+              "x": 4710,
+              "y": 2240
+            },
+            {
+              "x": 4890,
+              "y": 2240
+            },
+            {
+              "x": 4890,
+              "y": 2256
+            },
+            {
+              "x": 4710,
+              "y": 2256
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCourt28": true,
+            "honroSpaceSurfaceId": "s28-roof-access-annex",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "roof-access",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 28,
+            "optimizeEpsilon": 0
+          }
+        },
+        {
+          "id": "s28-roof-access-water",
+          "name": "s28-roof-access-water",
+          "type": "solid",
+          "points": [
+            {
+              "x": 6050,
+              "y": 2420
+            },
+            {
+              "x": 6250,
+              "y": 2420
+            },
+            {
+              "x": 6250,
+              "y": 2436
+            },
+            {
+              "x": 6050,
+              "y": 2436
+            }
+          ],
+          "baseMaterial": "wood",
+          "oneWay": true,
+          "breakable": false,
+          "layer": "terrain",
+          "properties": {
+            "honroCourt28": true,
+            "honroSpaceSurfaceId": "s28-roof-access-water",
+            "honroWalkEdges": [
+              0
+            ],
+            "honroSurfaceRole": "roof-access",
+            "surfaceKind": "wood"
+          },
+          "detail": {
+            "spacing": 18,
+            "roughness": 0,
+            "seed": 28,
+            "optimizeEpsilon": 0
+          }
         }
       ],
       "materials": [],
@@ -408416,6 +409041,61 @@
         {
           "id": "s28-water-yard-shed-roof",
           "assetId": "stage28:record-court:water-yard-shed-roof",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "s28-roof-access-support-west",
+          "assetId": "stage28:record-court:roof-access-support-west",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "s28-roof-access-support-court-lower",
+          "assetId": "stage28:record-court:roof-access-support-court-lower",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "s28-roof-access-support-court-upper",
+          "assetId": "stage28:record-court:roof-access-support-court-upper",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "s28-roof-access-support-annex",
+          "assetId": "stage28:record-court:roof-access-support-annex",
+          "x": 0,
+          "y": 0,
+          "scale": 1,
+          "rotation": 0,
+          "snap": false,
+          "depthLayer": "L1",
+          "layer": "back"
+        },
+        {
+          "id": "s28-roof-access-support-water",
+          "assetId": "stage28:record-court:roof-access-support-water",
           "x": 0,
           "y": 0,
           "scale": 1,

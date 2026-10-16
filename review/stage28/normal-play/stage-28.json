@@ -1,10 +1,10 @@
 {
   "stage": 28,
   "phase": "won",
-  "round": 8,
+  "round": 12,
   "reason": "두 팀이 합류해 지하 가족 번호와 지상 희생자 명단을 대조했다. 휘겸 선조의 조사 청원 뒤 가문 탄압이 이어졌다. 왕실 특정 고위 관리의 폐쇄·제압 승인, 대도사의 현장 학살, 사후 은폐의 책임은 구별된다. 왕의 직접 학살 명령이나 왕실 전체의 공모로 단순화하지 않는다.",
-  "seconds": 9.638907215,
-  "fingerprint": "3afe24b57b999224d2737cc4b8cc3885209a11e14c77c5df7d078f5be9782ada",
+  "seconds": 10.241014454,
+  "fingerprint": "70ac4cb7e87fc46c4085213adff90594ee68e536306038ac3c08bc34d5058325",
   "source": {
     "game/config/balance.json": "e92d629134795dbbb8c754db19e7d423cb70c77047fb33e4fea4726caf4886e1",
     "shared/build.mjs": "3942fa9bdacce8b434e3847ccfd68a88c4f6bac8dfa5c193ea974aff6a1e0a68",
@@ -101,7 +101,7 @@
     "shared/runtime/encounters.js": "efe7a71e302f6853a2d30a45d3d07178ea800da3943926f2182912e33c91983f",
     "shared/runtime/environment-art.js": "48f0758425ec8e721902d2cdef321a87118c1b3b2863a089b97c4e20a85d58a1",
     "shared/runtime/environment-renderer.js": "8986523dc3f60d7d12672530ae5f073e27676f7bb5b5b8d6470c614f27d0cadc",
-    "shared/runtime/evidence-quests.js": "8b8e3d484ed99ce786c3e7a373040305c1446177a39616adac3463f02ce2df3b",
+    "shared/runtime/evidence-quests.js": "6995a2241d1d0d55f3aba59d76b01f74d86586de0017cd2424e4a7cedf967c23",
     "shared/runtime/fullscreen-input.js": "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62",
     "shared/runtime/interactions.js": "302435cb8e327ad88b0751fec8487cc57dcd20b0a229ddba7128e01e4560e418",
     "shared/runtime/journey-art.js": "e4d85661b74b903ee51667928e17c2ad65cf7316c4a9699e3e2c6b84cf284c9d",
@@ -168,8 +168,8 @@
     "shared/runtime/unit-info.js": "abcf990c19dae5b811f8b744de939f825868dd38a37fb594a5d22bef636748d3",
     "shared/runtime/visual-hierarchy.js": "150285df2c0d6ec6dd8c14967c32a048da882324cf655be8c781ab6f490255ad",
     "shared/runtime/world.js": "9587b1782c02cb54ec30d446bc8edd775304b183fd84bfbaa0c0a8197917a350",
-    "tests/act3-playthrough.mjs": "5adadef3637a12ed0d8e8d32bb002799b4a8a33cc5eb8b3923b885e968d281eb",
-    "tests/app-regression-helpers.mjs": "ad4a16b6692f9c9b59824afca022856a91bae2f671c63e1f1c87e465baddbbac"
+    "tests/app-regression-helpers.mjs": "ad4a16b6692f9c9b59824afca022856a91bae2f671c63e1f1c87e465baddbbac",
+    "tests/stage28-record-court-fullplay.mjs": "0407996fa59a03cdc45e7166d94cd4d787db1a1ca35b061bbb74609465304f97"
   },
   "actions": [
     {
@@ -229,29 +229,29 @@
       "round": 2,
       "actor": "archer",
       "goal": "water-release",
-      "x": 5441.05,
-      "y": 2560.0116279069766,
+      "x": 5564.418635403295,
+      "y": 2588.7020082333242,
       "action": "fire",
-      "skill": "A02",
+      "skill": "A01",
       "target": "a3-28-east-water-0"
     },
     {
       "round": 2,
       "actor": "archer",
       "goal": "water-release",
-      "x": 5441.05,
-      "y": 2560.0116279069766,
+      "x": 5447.710951978332,
+      "y": 2561.560686506589,
       "action": "defend"
     },
     {
       "round": 2,
       "actor": "mage",
       "goal": "water-release",
-      "x": 5441.05,
-      "y": 2560.0116279069766,
+      "x": 5567.841854942749,
+      "y": 2589.498105800639,
       "action": "fire",
       "skill": "M03",
-      "target": "a3-28-east-water-1"
+      "target": "a3-28-east-water-0"
     },
     {
       "round": 2,
@@ -265,17 +265,17 @@
       "round": 3,
       "actor": "archer",
       "goal": "water-release",
-      "x": 5441.05,
-      "y": 2560.0116279069766,
+      "x": 6017.780930656134,
+      "y": 2590,
       "action": "fire",
       "skill": "A02",
-      "target": "a3-28-east-water-0"
+      "target": "a3-28-east-water-1"
     },
     {
       "round": 3,
       "actor": "archer",
       "goal": "water-release",
-      "x": 5644.275560618002,
+      "x": 5811.114263989458,
       "y": 2590,
       "action": "defend"
     },
@@ -283,11 +283,11 @@
       "round": 3,
       "actor": "mage",
       "goal": "water-release",
-      "x": 6021.958893951363,
+      "x": 5590.888500649117,
       "y": 2590,
       "action": "fire",
-      "skill": "M06",
-      "target": "a3-28-decision-suppression-3"
+      "skill": "M03",
+      "target": "a3-28-east-water-1"
     },
     {
       "round": 3,
@@ -309,17 +309,17 @@
       "round": 4,
       "actor": "archer",
       "goal": "water-release",
-      "x": 5944.275560618015,
+      "x": 5631.11426398945,
       "y": 2590,
       "action": "fire",
       "skill": "A02",
-      "target": "a3-28-east-water-1"
+      "target": "a3-28-decision-suppression-2"
     },
     {
       "round": 4,
       "actor": "archer",
       "goal": "water-release",
-      "x": 5837.608893951344,
+      "x": 5571.114263989447,
       "y": 2590,
       "action": "defend"
     },
@@ -327,175 +327,361 @@
       "round": 4,
       "actor": "mage",
       "goal": "water-release",
-      "x": 5839.742227284684,
-      "y": 2590,
+      "x": 5565.865498892134,
+      "y": 2589.03848811445,
       "action": "fire",
       "skill": "M03",
-      "target": "a3-28-decision-suppression-3"
-    },
-    {
-      "round": 4,
-      "actor": "knight",
-      "goal": "water-release",
-      "x": 5298.211936291591,
-      "y": 2526.793473556184,
-      "action": "defend"
-    },
-    {
-      "round": 4,
-      "actor": "occultist",
-      "goal": "water-release",
-      "x": 5296.357362983133,
-      "y": 2526.3621774379376,
-      "action": "fire",
-      "skill": "O02",
-      "target": "a3-28-decision-suppression-3"
-    },
-    {
-      "round": 5,
-      "actor": "archer",
-      "goal": "water-release",
-      "x": 5944.275560618015,
-      "y": 2590,
-      "action": "interact",
-      "target": "water-release"
-    },
-    {
-      "round": 5,
-      "actor": "mage",
-      "goal": "party-reunion",
-      "x": 4070.6142995385258,
-      "y": 2380,
-      "action": "fire",
-      "skill": "M06",
-      "target": "a3-28-court-petition-0"
-    },
-    {
-      "round": 5,
-      "actor": "knight",
-      "goal": "party-reunion",
-      "x": 3521.614518691723,
-      "y": 2380,
-      "action": "defend"
-    },
-    {
-      "round": 5,
-      "actor": "occultist",
-      "goal": "party-reunion",
-      "x": 3518.360455011561,
-      "y": 2380,
-      "action": "fire",
-      "skill": "O03",
-      "target": "a3-28-court-petition-0"
-    },
-    {
-      "round": 6,
-      "actor": "archer",
-      "goal": "party-reunion",
-      "x": 4191.649286167293,
-      "y": 2383.559504106673,
-      "action": "fire",
-      "skill": "A02",
-      "target": "a3-28-court-petition-0"
-    },
-    {
-      "round": 6,
-      "actor": "archer",
-      "goal": "party-reunion",
-      "x": 3985.51429953856,
-      "y": 2380,
-      "action": "defend"
-    },
-    {
-      "round": 6,
-      "actor": "mage",
-      "goal": "party-reunion",
-      "x": 3522.3860602066384,
-      "y": 2380,
-      "action": "defend"
-    },
-    {
-      "round": 6,
-      "actor": "knight",
-      "goal": "party-reunion",
-      "x": 3521.001534034887,
-      "y": 2380,
-      "action": "defend"
-    },
-    {
-      "round": 6,
-      "actor": "occultist",
-      "goal": "party-reunion",
-      "x": 3519.7362181987237,
-      "y": 2380,
-      "action": "fire",
-      "skill": "O03",
-      "target": "a3-28-court-petition-0"
-    },
-    {
-      "round": 7,
-      "actor": "archer",
-      "goal": "party-reunion",
-      "x": 3519.4452404360636,
-      "y": 2380,
-      "action": "fire",
-      "skill": "A01",
-      "target": "a3-28-court-petition-0"
-    },
-    {
-      "round": 7,
-      "actor": "archer",
-      "goal": "party-reunion",
-      "x": 3519.4452404360636,
-      "y": 2380,
-      "action": "defend"
-    },
-    {
-      "round": 7,
-      "actor": "mage",
-      "goal": "petition-record",
-      "x": 3811.4193935399703,
-      "y": 2380,
-      "action": "interact",
-      "target": "petition-record"
-    },
-    {
-      "round": 7,
-      "actor": "knight",
-      "goal": "office-exit",
-      "x": 5567.02741728902,
-      "y": 2589.308701695121,
-      "action": "fire",
-      "skill": "S01",
       "target": "a3-28-east-water-1"
     },
     {
-      "round": 7,
+      "round": 4,
+      "actor": "knight",
+      "goal": "water-release",
+      "x": 5296.838309278905,
+      "y": 2526.4740254136987,
+      "action": "defend"
+    },
+    {
+      "round": 4,
       "actor": "occultist",
-      "goal": "office-exit",
-      "x": 5238.19972354452,
-      "y": 2512.837145010353,
+      "goal": "water-release",
+      "x": 5298.606833060415,
+      "y": 2526.88531001405,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-28-east-water-1"
+    },
+    {
+      "round": 5,
+      "actor": "archer",
+      "goal": "water-release",
+      "x": 5564.591915223034,
+      "y": 2588.742305865822,
+      "action": "fire",
+      "skill": "A01",
+      "target": "a3-28-east-water-1"
+    },
+    {
+      "round": 5,
+      "actor": "archer",
+      "goal": "water-release",
+      "x": 5571.114263989447,
+      "y": 2590,
+      "action": "defend"
+    },
+    {
+      "round": 5,
+      "actor": "mage",
+      "goal": "water-release",
+      "x": 5565.865498892134,
+      "y": 2589.03848811445,
+      "action": "fire",
+      "skill": "M03",
+      "target": "a3-28-east-water-1"
+    },
+    {
+      "round": 5,
+      "actor": "knight",
+      "goal": "water-release",
+      "x": 5296.838309278905,
+      "y": 2526.4740254136987,
+      "action": "fire",
+      "skill": "S01",
+      "target": "a3-28-decision-suppression-1"
+    },
+    {
+      "round": 5,
+      "actor": "occultist",
+      "goal": "water-release",
+      "x": 5298.606833060415,
+      "y": 2526.88531001405,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-28-decision-suppression-0"
+    },
+    {
+      "round": 6,
+      "actor": "archer",
+      "goal": "water-release",
+      "x": 5576.218907568811,
+      "y": 2590,
+      "action": "fire",
+      "skill": "A01",
+      "target": "a3-28-decision-suppression-3"
+    },
+    {
+      "round": 6,
+      "actor": "archer",
+      "goal": "water-release",
+      "x": 5569.563879044509,
+      "y": 2589.898576521979,
+      "action": "defend"
+    },
+    {
+      "round": 6,
+      "actor": "mage",
+      "goal": "water-release",
+      "x": 5565.618418051552,
+      "y": 2588.9810274538495,
+      "action": "fire",
+      "skill": "M03",
+      "target": "a3-28-east-water-0"
+    },
+    {
+      "round": 6,
+      "actor": "knight",
+      "goal": "water-release",
+      "x": 5297.811234141891,
+      "y": 2526.700287009742,
+      "action": "fire",
+      "skill": "S01",
+      "target": "a3-28-decision-suppression-1"
+    },
+    {
+      "round": 6,
+      "actor": "occultist",
+      "goal": "water-release",
+      "x": 5298.606833060415,
+      "y": 2526.88531001405,
       "action": "fire",
       "skill": "O02",
       "target": "a3-28-decision-suppression-1"
     },
     {
+      "round": 7,
+      "actor": "archer",
+      "goal": "water-release",
+      "x": 5576.218907568811,
+      "y": 2590,
+      "action": "fire",
+      "skill": "A01",
+      "target": "a3-28-decision-suppression-3"
+    },
+    {
+      "round": 7,
+      "actor": "archer",
+      "goal": "water-release",
+      "x": 5569.563879044509,
+      "y": 2589.898576521979,
+      "action": "defend"
+    },
+    {
+      "round": 7,
+      "actor": "mage",
+      "goal": "water-release",
+      "x": 5565.618418051552,
+      "y": 2588.9810274538495,
+      "action": "fire",
+      "skill": "M03",
+      "target": "a3-28-decision-suppression-3"
+    },
+    {
+      "round": 7,
+      "actor": "knight",
+      "goal": "water-release",
+      "x": 5296.620642619775,
+      "y": 2526.423405260413,
+      "action": "defend"
+    },
+    {
+      "round": 7,
+      "actor": "occultist",
+      "goal": "water-release",
+      "x": 5298.606833060415,
+      "y": 2526.88531001405,
+      "action": "defend"
+    },
+    {
       "round": 8,
       "actor": "archer",
-      "goal": "office-exit",
-      "x": 5279.375759727197,
-      "y": 2522.4129673784178,
+      "goal": "water-release",
+      "x": 5572.894069464945,
+      "y": 2590,
       "action": "defend"
     },
     {
       "round": 8,
       "actor": "mage",
-      "goal": "office-exit",
-      "x": 5562.012912354607,
-      "y": 2588.1425377568853,
+      "goal": "water-release",
+      "x": 5575.2426584340155,
+      "y": 2590,
       "action": "fire",
       "skill": "M03",
-      "target": "a3-28-decision-suppression-3"
+      "target": "a3-28-east-water-0"
+    },
+    {
+      "round": 8,
+      "actor": "knight",
+      "goal": "water-release",
+      "x": 5298.95,
+      "y": 2526.9651162790697,
+      "action": "fire",
+      "skill": "S01",
+      "target": "a3-28-decision-suppression-0"
+    },
+    {
+      "round": 8,
+      "actor": "occultist",
+      "goal": "water-release",
+      "x": 5298.95,
+      "y": 2526.9651162790697,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-28-court-petition-2"
+    },
+    {
+      "round": 9,
+      "actor": "archer",
+      "goal": "water-release",
+      "x": 6019.5607361316315,
+      "y": 2590,
+      "action": "interact",
+      "target": "water-release"
+    },
+    {
+      "round": 9,
+      "actor": "mage",
+      "goal": "party-reunion",
+      "x": 3806.114730687876,
+      "y": 2380,
+      "action": "fire",
+      "skill": "M03",
+      "target": "a3-28-court-petition-0"
+    },
+    {
+      "round": 9,
+      "actor": "knight",
+      "goal": "party-reunion",
+      "x": 3523.449790403353,
+      "y": 2380,
+      "action": "fire",
+      "skill": "S01",
+      "target": "a3-28-court-petition-0"
+    },
+    {
+      "round": 9,
+      "actor": "occultist",
+      "goal": "party-reunion",
+      "x": 3521.02227806116,
+      "y": 2380,
+      "action": "defend"
+    },
+    {
+      "round": 10,
+      "actor": "archer",
+      "goal": "party-reunion",
+      "x": 4263.648382046613,
+      "y": 2405.559227847576,
+      "action": "fire",
+      "skill": "A02",
+      "target": "a3-28-court-petition-0"
+    },
+    {
+      "round": 10,
+      "actor": "archer",
+      "goal": "party-reunion",
+      "x": 4060.799475052171,
+      "y": 2380,
+      "action": "defend"
+    },
+    {
+      "round": 10,
+      "actor": "mage",
+      "goal": "party-reunion",
+      "x": 3518.5482731133043,
+      "y": 2380,
+      "action": "defend"
+    },
+    {
+      "round": 10,
+      "actor": "knight",
+      "goal": "party-reunion",
+      "x": 3522.916666666661,
+      "y": 2380,
+      "action": "defend"
+    },
+    {
+      "round": 10,
+      "actor": "occultist",
+      "goal": "party-reunion",
+      "x": 3518.0588420269773,
+      "y": 2380,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-28-court-petition-1"
+    },
+    {
+      "round": 11,
+      "actor": "archer",
+      "goal": "party-reunion",
+      "x": 4081.118933948977,
+      "y": 2380,
+      "action": "fire",
+      "skill": "A02",
+      "target": "a3-28-court-petition-0"
+    },
+    {
+      "round": 11,
+      "actor": "archer",
+      "goal": "party-reunion",
+      "x": 3874.452267282315,
+      "y": 2380,
+      "action": "defend"
+    },
+    {
+      "round": 11,
+      "actor": "mage",
+      "goal": "petition-record",
+      "x": 3841.8393074685455,
+      "y": 2380,
+      "action": "interact",
+      "target": "petition-record"
+    },
+    {
+      "round": 11,
+      "actor": "knight",
+      "goal": "office-exit",
+      "x": 5560.679477184376,
+      "y": 2587.832436554506,
+      "action": "fire",
+      "skill": "S01",
+      "target": "a3-28-decision-suppression-0"
+    },
+    {
+      "round": 11,
+      "actor": "occultist",
+      "goal": "office-exit",
+      "x": 5306.118897967615,
+      "y": 2528.632301852934,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-28-court-petition-2"
+    },
+    {
+      "round": 12,
+      "actor": "archer",
+      "goal": "office-exit",
+      "x": 5627.704146368042,
+      "y": 2590,
+      "action": "fire",
+      "skill": "A01",
+      "target": "a3-28-decision-suppression-0"
+    },
+    {
+      "round": 12,
+      "actor": "archer",
+      "goal": "office-exit",
+      "x": 5834.370813034718,
+      "y": 2590,
+      "action": "defend"
+    },
+    {
+      "round": 12,
+      "actor": "mage",
+      "goal": "office-exit",
+      "x": 5539.354114978953,
+      "y": 2582.8730499951052,
+      "action": "defend"
     }
   ],
   "dialogue": [
@@ -653,26 +839,6 @@
     {
       "kind": "fire",
       "round": 1,
-      "actor": "a3-28-decision-suppression-2",
-      "side": 1,
-      "x": 5560,
-      "y": 2587.6744186046512,
-      "skill": "LS09",
-      "angle": 170.57232309980455,
-      "power": 0.4654236472764701
-    },
-    {
-      "kind": "damage",
-      "round": 1,
-      "actor": "a3-28-decision-suppression-2",
-      "target": "p-archer",
-      "x": 5443.378956484856,
-      "y": 2560.5532456941523,
-      "damage": 51
-    },
-    {
-      "kind": "fire",
-      "round": 1,
       "actor": "a3-28-west-fire-0",
       "side": 1,
       "x": 1765.6916655926639,
@@ -686,58 +852,22 @@
       "round": 1,
       "actor": "a3-28-decision-suppression-3",
       "side": 1,
-      "x": 6232.999999999969,
-      "y": 2590,
+      "x": 6073.499999999979,
+      "y": 2420,
       "skill": "LA01",
-      "angle": 157.72941837762772,
-      "power": 0.3909112669420142
-    },
-    {
-      "kind": "damage",
-      "round": 1,
-      "actor": "a3-28-decision-suppression-3",
-      "target": "p-archer",
-      "x": 5441.05,
-      "y": 2560.0116279069766,
-      "damage": 71
+      "angle": 185.6277662094677,
+      "power": 0.6841344948570115
     },
     {
       "kind": "fire",
       "round": 2,
       "actor": "p-archer",
       "side": 0,
-      "x": 5441.05,
-      "y": 2560.0116279069766,
-      "skill": "A02",
-      "angle": -0.6135090005357344,
-      "power": 0.4535999676957319
-    },
-    {
-      "kind": "damage",
-      "round": 2,
-      "actor": "p-archer",
-      "target": "a3-28-decision-suppression-2",
-      "x": 5560,
-      "y": 2587.6744186046512,
-      "damage": 45
-    },
-    {
-      "kind": "damage",
-      "round": 2,
-      "actor": "p-archer",
-      "target": "a3-28-decision-suppression-2",
-      "x": 5560,
-      "y": 2587.6744186046512,
-      "damage": 424
-    },
-    {
-      "kind": "damage",
-      "round": 2,
-      "actor": "p-archer",
-      "target": "a3-28-decision-suppression-2",
-      "x": 5560,
-      "y": 2587.6744186046512,
-      "damage": 159
+      "x": 5564.418635403295,
+      "y": 2588.7020082333242,
+      "skill": "A01",
+      "angle": 0.6206064373696588,
+      "power": 0.5913470419583521
     },
     {
       "kind": "damage",
@@ -746,7 +876,7 @@
       "target": "a3-28-east-water-0",
       "x": 5840,
       "y": 2590,
-      "damage": 395
+      "damage": 213
     },
     {
       "kind": "damage",
@@ -755,18 +885,18 @@
       "target": "a3-28-east-water-0",
       "x": 5840,
       "y": 2590,
-      "damage": 351
+      "damage": 90
     },
     {
       "kind": "fire",
       "round": 2,
       "actor": "p-mage",
       "side": 0,
-      "x": 5441.05,
-      "y": 2560.0116279069766,
+      "x": 5567.841854942749,
+      "y": 2589.498105800639,
       "skill": "M03",
-      "angle": 14.82736912450792,
-      "power": 0.5288783479130125
+      "angle": 4.436302203100557,
+      "power": 0.5863670083313577
     },
     {
       "kind": "damage",
@@ -785,8 +915,8 @@
       "x": 1974.7952739445814,
       "y": 2620,
       "skill": "LA01",
-      "angle": 162.66589585788583,
-      "power": 0.38355302863630386
+      "angle": 162.45084984231775,
+      "power": 0.3779757041618406
     },
     {
       "kind": "damage",
@@ -802,125 +932,89 @@
       "round": 2,
       "actor": "a3-28-east-water-0",
       "side": 1,
-      "x": 5840,
-      "y": 2590,
+      "x": 6212.166666666643,
+      "y": 2420,
       "skill": "LS09",
-      "angle": 149.59274310644162,
-      "power": 0.15135830741550516
+      "angle": 145.33216042397294,
+      "power": 0.21699648452489323
     },
     {
       "kind": "damage",
       "round": 2,
       "actor": "a3-28-east-water-0",
       "target": "p-mage",
-      "x": 5441.05,
-      "y": 2560.0116279069766,
-      "damage": 40
+      "x": 5567.841854942749,
+      "y": 2589.498105800639,
+      "damage": 30
     },
     {
       "kind": "fire",
-      "round": 3,
-      "actor": "p-archer",
-      "side": 0,
-      "x": 5441.05,
-      "y": 2560.0116279069766,
-      "skill": "A02",
-      "angle": -0.6015210810264866,
-      "power": 0.47253091205844044
-    },
-    {
-      "kind": "damage",
-      "round": 3,
-      "actor": "p-archer",
-      "target": "a3-28-decision-suppression-2",
-      "x": 5560,
-      "y": 2587.6744186046512,
-      "damage": 45
-    },
-    {
-      "kind": "damage",
-      "round": 3,
-      "actor": "p-archer",
-      "target": "a3-28-decision-suppression-2",
-      "x": 5560,
-      "y": 2587.6744186046512,
-      "damage": 846
-    },
-    {
-      "kind": "damage",
-      "round": 3,
-      "actor": "p-archer",
-      "target": "a3-28-decision-suppression-2",
-      "x": 5560,
-      "y": 2587.6744186046512,
-      "damage": 31
-    },
-    {
-      "kind": "damage",
-      "round": 3,
-      "actor": "p-archer",
-      "target": "a3-28-east-water-0",
-      "x": 5840,
-      "y": 2590,
-      "damage": 113
-    },
-    {
-      "kind": "fire",
-      "round": 3,
-      "actor": "p-mage",
-      "side": 0,
-      "x": 6021.958893951363,
-      "y": 2590,
-      "skill": "M06",
-      "angle": 2.546337646281182,
-      "power": 0.5460049609808992
-    },
-    {
-      "kind": "damage",
-      "round": 3,
-      "actor": "p-mage",
-      "target": "a3-28-decision-suppression-3",
-      "x": 6232.999999999969,
-      "y": 2590,
-      "damage": 341
-    },
-    {
-      "kind": "damage",
-      "round": 3,
-      "actor": "p-mage",
-      "target": "a3-28-decision-suppression-3",
-      "x": 6234.210408947069,
-      "y": 2589.3390763888888,
-      "damage": 87
-    },
-    {
-      "kind": "damage",
-      "round": 3,
-      "actor": "p-mage",
-      "target": "a3-28-decision-suppression-3",
-      "x": 6234.210408947069,
-      "y": 2589.3390763888888,
-      "damage": 87
-    },
-    {
-      "kind": "fire",
-      "round": 3,
+      "round": 2,
       "actor": "a3-28-east-water-1",
       "side": 1,
-      "x": 5528.11765483734,
-      "y": 2580.259919729614,
+      "x": 6222.999999999987,
+      "y": 2590,
       "skill": "LA01",
-      "angle": -12.109352504091556,
-      "power": 0.3477222884970339
+      "angle": 155.12365075677334,
+      "power": 0.2636732848222855
+    },
+    {
+      "kind": "damage",
+      "round": 2,
+      "actor": "a3-28-east-water-1",
+      "target": "p-mage",
+      "x": 5565.865498892134,
+      "y": 2589.03848811445,
+      "damage": 72
+    },
+    {
+      "kind": "fire",
+      "round": 3,
+      "actor": "p-archer",
+      "side": 0,
+      "x": 6017.780930656134,
+      "y": 2590,
+      "skill": "A02",
+      "angle": 1.2432762529061623,
+      "power": 0.19007363613278563
     },
     {
       "kind": "damage",
       "round": 3,
-      "actor": "a3-28-east-water-1",
-      "target": "p-archer",
-      "x": 5644.275560618002,
+      "actor": "p-archer",
+      "target": "a3-28-decision-suppression-2",
+      "x": 6052.733144160601,
       "y": 2590,
-      "damage": 71
+      "damage": 373
+    },
+    {
+      "kind": "damage",
+      "round": 3,
+      "actor": "p-archer",
+      "target": "a3-28-decision-suppression-2",
+      "x": 6052.733144160601,
+      "y": 2590,
+      "damage": 331
+    },
+    {
+      "kind": "fire",
+      "round": 3,
+      "actor": "p-mage",
+      "side": 0,
+      "x": 5590.888500649117,
+      "y": 2590,
+      "skill": "M03",
+      "angle": 18.000803571212018,
+      "power": 0.6435905308388915
+    },
+    {
+      "kind": "damage",
+      "round": 3,
+      "actor": "p-mage",
+      "target": "a3-28-decision-suppression-2",
+      "x": 6052.733144160601,
+      "y": 2590,
+      "damage": 394
     },
     {
       "kind": "fire",
@@ -930,8 +1024,19 @@
       "x": 4250,
       "y": 2401.3888888888887,
       "skill": "LS09",
-      "angle": -16.72431482290257,
-      "power": 0.6180448565357897
+      "angle": -17.21324822396845,
+      "power": 0.6166567099337067
+    },
+    {
+      "kind": "fire",
+      "round": 3,
+      "actor": "a3-28-court-petition-0",
+      "side": 1,
+      "x": 3822.1666666666692,
+      "y": 2380,
+      "skill": "LS09",
+      "angle": 175.97891902363406,
+      "power": 0.7123935360278166
     },
     {
       "kind": "fire",
@@ -941,55 +1046,46 @@
       "x": 4902.999999999987,
       "y": 2490,
       "skill": "LS09",
-      "angle": 168.4597227685143,
-      "power": 0.7287693220318231
+      "angle": 171.15989266386984,
+      "power": 0.7196914606684987
     },
     {
       "kind": "fire",
       "round": 4,
       "actor": "p-archer",
       "side": 0,
-      "x": 5944.275560618015,
+      "x": 5631.11426398945,
       "y": 2590,
       "skill": "A02",
-      "angle": 174.9108214148773,
-      "power": 0.4826760612361109
+      "angle": 4.0209738080990665,
+      "power": 0.470906948805627
     },
     {
       "kind": "damage",
       "round": 4,
       "actor": "p-archer",
-      "target": "a3-28-east-water-1",
-      "x": 5528.11765483734,
-      "y": 2580.259919729614,
-      "damage": 452
-    },
-    {
-      "kind": "damage",
-      "round": 4,
-      "actor": "p-archer",
-      "target": "a3-28-east-water-1",
-      "x": 5528.11765483734,
-      "y": 2580.259919729614,
-      "damage": 190
+      "target": "a3-28-decision-suppression-2",
+      "x": 6052.733144160601,
+      "y": 2590,
+      "damage": 362
     },
     {
       "kind": "fire",
       "round": 4,
       "actor": "p-mage",
       "side": 0,
-      "x": 5839.742227284684,
-      "y": 2590,
+      "x": 5565.865498892134,
+      "y": 2589.03848811445,
       "skill": "M03",
-      "angle": 8.202195891642742,
-      "power": 0.6860970276927948
+      "angle": 9.698608512353326,
+      "power": 0.9737342030973746
     },
     {
       "kind": "damage",
       "round": 4,
       "actor": "p-mage",
-      "target": "a3-28-decision-suppression-3",
-      "x": 6258.643188836641,
+      "target": "a3-28-east-water-1",
+      "x": 6222.999999999987,
       "y": 2590,
       "damage": 430
     },
@@ -998,36 +1094,18 @@
       "round": 4,
       "actor": "p-occultist",
       "side": 0,
-      "x": 5296.357362983133,
-      "y": 2526.3621774379376,
+      "x": 5298.606833060415,
+      "y": 2526.88531001405,
       "skill": "O02",
-      "angle": -0.6674391062401654,
-      "power": 0.7290197887384995
+      "angle": -0.9521956649474399,
+      "power": 0.7268815416129464
     },
     {
       "kind": "damage",
       "round": 4,
       "actor": "p-occultist",
-      "target": "p-archer",
-      "x": 5837.608893951344,
-      "y": 2590,
-      "damage": 57
-    },
-    {
-      "kind": "damage",
-      "round": 4,
-      "actor": "p-occultist",
-      "target": "p-mage",
-      "x": 5839.742227284684,
-      "y": 2590,
-      "damage": 102
-    },
-    {
-      "kind": "damage",
-      "round": 4,
-      "actor": "p-occultist",
-      "target": "a3-28-decision-suppression-3",
-      "x": 6258.643188836641,
+      "target": "a3-28-east-water-1",
+      "x": 6222.999999999987,
       "y": 2590,
       "damage": 124
     },
@@ -1035,467 +1113,982 @@
       "kind": "damage",
       "round": 4,
       "actor": "p-occultist",
-      "target": "a3-28-decision-suppression-3",
-      "x": 6258.643188836641,
+      "target": "a3-28-east-water-1",
+      "x": 6222.999999999987,
       "y": 2590,
-      "damage": 115
+      "damage": 84
     },
     {
       "kind": "fire",
       "round": 4,
-      "actor": "a3-28-decision-suppression-3",
+      "actor": "a3-28-decision-suppression-1",
       "side": 1,
-      "x": 6449.02469318341,
-      "y": 2590,
+      "x": 4866.166666666669,
+      "y": 2240,
       "skill": "LA01",
-      "angle": 174.98605681040289,
-      "power": 0.7400996923195234
+      "angle": -28.79290610715566,
+      "power": 0.6218046353242466
     },
     {
-      "kind": "damage",
+      "kind": "fire",
       "round": 4,
-      "actor": "a3-28-decision-suppression-3",
-      "target": "p-mage",
-      "x": 5839.742227284684,
-      "y": 2590,
-      "damage": 72
-    },
-    {
-      "kind": "fire",
-      "round": 5,
-      "actor": "p-mage",
-      "side": 0,
-      "x": 4070.6142995385258,
-      "y": 2380,
-      "skill": "M06",
-      "angle": -3.596226818160665,
-      "power": 0.29385195669347236
-    },
-    {
-      "kind": "damage",
-      "round": 5,
-      "actor": "p-mage",
-      "target": "a3-28-court-petition-0",
-      "x": 4235.3089991924735,
-      "y": 2396.899971975478,
-      "damage": 149
-    },
-    {
-      "kind": "damage",
-      "round": 5,
-      "actor": "p-mage",
-      "target": "a3-28-court-petition-2",
-      "x": 4250,
-      "y": 2401.3888888888887,
-      "damage": 305
-    },
-    {
-      "kind": "damage",
-      "round": 5,
-      "actor": "p-mage",
-      "target": "a3-28-court-petition-0",
-      "x": 4236.49982703332,
-      "y": 2396.2390483643667,
-      "damage": 80
-    },
-    {
-      "kind": "damage",
-      "round": 5,
-      "actor": "p-mage",
-      "target": "a3-28-court-petition-0",
-      "x": 4236.49982703332,
-      "y": 2396.2390483643667,
-      "damage": 80
-    },
-    {
-      "kind": "fire",
-      "round": 5,
-      "actor": "p-occultist",
-      "side": 0,
-      "x": 3518.360455011561,
-      "y": 2380,
-      "skill": "O03",
-      "angle": -10.876074230632181,
-      "power": 0.9659986139590888
-    },
-    {
-      "kind": "damage",
-      "round": 5,
-      "actor": "p-occultist",
-      "target": "p-mage",
-      "x": 4070.6142995385258,
-      "y": 2380,
-      "damage": 132
-    },
-    {
-      "kind": "fire",
-      "round": 5,
-      "actor": "a3-28-west-fire-0",
-      "side": 1,
-      "x": 2222.992037653052,
-      "y": 2560.153518918538,
-      "skill": "LS09",
-      "angle": 32.69758294286437,
-      "power": 0.7771241597566999
-    },
-    {
-      "kind": "damage",
-      "round": 5,
-      "actor": "a3-28-west-fire-0",
-      "target": "p-occultist",
-      "x": 3518.360455011561,
-      "y": 2380,
-      "damage": 36
-    },
-    {
-      "kind": "fire",
-      "round": 5,
-      "actor": "a3-28-west-fire-1",
-      "side": 1,
-      "x": 2226.128607277919,
-      "y": 2557.6643372642434,
-      "skill": "LA01",
-      "angle": 35.64674699562238,
-      "power": 0.5747457915319679
-    },
-    {
-      "kind": "fire",
-      "round": 5,
-      "actor": "a3-28-decision-suppression-1",
-      "side": 1,
-      "x": 4818.701239478974,
-      "y": 2340,
-      "skill": "LA01",
-      "angle": 175.07840307073792,
-      "power": 0.7350554297689155
-    },
-    {
-      "kind": "damage",
-      "round": 5,
-      "actor": "a3-28-decision-suppression-1",
-      "target": "p-mage",
-      "x": 4094.169393539969,
-      "y": 2380,
-      "damage": 72
-    },
-    {
-      "kind": "fire",
-      "round": 6,
-      "actor": "p-archer",
-      "side": 0,
-      "x": 4191.649286167293,
-      "y": 2383.559504106673,
-      "skill": "A02",
-      "angle": -39.04802998089212,
-      "power": 0.08385968657933882
-    },
-    {
-      "kind": "damage",
-      "round": 6,
-      "actor": "p-archer",
-      "target": "a3-28-court-petition-0",
-      "x": 4271.775336225835,
-      "y": 2408.042463846783,
-      "damage": 794
-    },
-    {
-      "kind": "damage",
-      "round": 6,
-      "actor": "p-archer",
-      "target": "a3-28-court-petition-2",
-      "x": 4279.686904616825,
-      "y": 2410.4598875218076,
-      "damage": 764
-    },
-    {
-      "kind": "damage",
-      "round": 6,
-      "actor": "p-archer",
-      "target": "a3-28-court-petition-0",
-      "x": 4271.775336225835,
-      "y": 2408.042463846783,
-      "damage": 158
-    },
-    {
-      "kind": "damage",
-      "round": 6,
-      "actor": "p-archer",
-      "target": "a3-28-court-petition-2",
-      "x": 4279.686904616825,
-      "y": 2410.4598875218076,
-      "damage": 152
-    },
-    {
-      "kind": "fire",
-      "round": 6,
-      "actor": "p-occultist",
-      "side": 0,
-      "x": 3519.7362181987237,
-      "y": 2380,
-      "skill": "O03",
-      "angle": -14.084709294030276,
-      "power": 0.745171043205475
-    },
-    {
-      "kind": "damage",
-      "round": 6,
-      "actor": "p-occultist",
-      "target": "p-archer",
-      "x": 3985.51429953856,
-      "y": 2380,
-      "damage": 172
-    },
-    {
-      "kind": "fire",
-      "round": 6,
-      "actor": "a3-28-court-petition-2",
-      "side": 1,
-      "x": 4612.188494900443,
-      "y": 2384.643704382293,
-      "skill": "LS09",
-      "angle": 172.01409195364394,
-      "power": 0.7926756834869704
-    },
-    {
-      "kind": "damage",
-      "round": 6,
-      "actor": "a3-28-court-petition-2",
-      "target": "p-archer",
-      "x": 4008.9379352853407,
-      "y": 2380,
-      "damage": 44
-    },
-    {
-      "kind": "fire",
-      "round": 6,
-      "actor": "a3-28-decision-suppression-0",
-      "side": 1,
-      "x": 4700,
-      "y": 2340,
-      "skill": "LS09",
-      "angle": 174.00535186407106,
-      "power": 0.7990526547027776
-    },
-    {
-      "kind": "damage",
-      "round": 6,
-      "actor": "a3-28-decision-suppression-0",
-      "target": "p-archer",
-      "x": 3990.88133543833,
-      "y": 2380,
-      "damage": 50
-    },
-    {
-      "kind": "fire",
-      "round": 7,
-      "actor": "p-archer",
-      "side": 0,
-      "x": 3519.4452404360636,
-      "y": 2380,
-      "skill": "A01",
-      "angle": 3.9585248749732385,
-      "power": 0.7458052210822683
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "p-archer",
-      "target": "a3-28-court-petition-0",
-      "x": 4271.775336225835,
-      "y": 2408.042463846783,
-      "damage": 95
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "p-archer",
-      "target": "a3-28-court-petition-0",
-      "x": 4271.775336225835,
-      "y": 2408.042463846783,
-      "damage": 291
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "p-archer",
-      "target": "a3-28-court-petition-0",
-      "x": 4271.775336225835,
-      "y": 2408.042463846783,
-      "damage": 82
-    },
-    {
-      "kind": "fire",
-      "round": 7,
-      "actor": "p-knight",
-      "side": 0,
-      "x": 5567.02741728902,
-      "y": 2589.308701695121,
-      "skill": "S01",
-      "angle": 162.75755668596608,
-      "power": 0.9871367240075903
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "p-knight",
-      "target": "a3-28-east-water-1",
-      "x": 5065.5751588499625,
-      "y": 2490,
-      "damage": 462
-    },
-    {
-      "kind": "fire",
-      "round": 7,
-      "actor": "p-occultist",
-      "side": 0,
-      "x": 5238.19972354452,
-      "y": 2512.837145010353,
-      "skill": "O02",
-      "angle": 156.19538932547962,
-      "power": 0.4857583303490624
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "p-occultist",
-      "target": "p-knight",
-      "x": 5174.047585528879,
-      "y": 2497.918043146251,
-      "damage": 77
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "p-occultist",
-      "target": "a3-28-east-water-1",
-      "x": 5065.5751588499625,
-      "y": 2490,
-      "damage": 185
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "p-occultist",
-      "target": "a3-28-decision-suppression-1",
-      "x": 4818.701239478974,
-      "y": 2340,
-      "damage": 124
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "p-occultist",
-      "target": "a3-28-decision-suppression-0",
-      "x": 4700,
-      "y": 2340,
-      "damage": 114
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "p-occultist",
-      "target": "a3-28-court-petition-2",
-      "x": 4612.188494900443,
-      "y": 2384.643704382293,
-      "damage": 68
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "p-occultist",
-      "target": "a3-28-decision-suppression-0",
-      "x": 4700,
-      "y": 2340,
-      "damage": 167
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "p-occultist",
-      "target": "a3-28-decision-suppression-1",
-      "x": 4818.701239478974,
-      "y": 2340,
-      "damage": 85
-    },
-    {
-      "kind": "fire",
-      "round": 7,
-      "actor": "a3-28-court-petition-0",
-      "side": 1,
-      "x": 4271.775336225835,
-      "y": 2408.042463846783,
-      "skill": "LS09",
-      "angle": 173.4039933747268,
-      "power": 0.7337625056175355
-    },
-    {
-      "kind": "damage",
-      "round": 7,
-      "actor": "a3-28-court-petition-0",
-      "target": "p-mage",
-      "x": 3811.4193935399703,
-      "y": 2380,
-      "damage": 53
-    },
-    {
-      "kind": "fire",
-      "round": 7,
       "actor": "a3-28-court-petition-1",
       "side": 1,
       "x": 4464.6309881982925,
       "y": 2466.970579727256,
       "skill": "LA01",
-      "angle": 134.3503031284243,
-      "power": 0.2027950651468277
+      "angle": 28.644253401055035,
+      "power": 0.24147847726861832
+    },
+    {
+      "kind": "fire",
+      "round": 4,
+      "actor": "a3-28-decision-suppression-3",
+      "side": 1,
+      "x": 6073.499999999979,
+      "y": 2258,
+      "skill": "LA01",
+      "angle": 209.64093393104008,
+      "power": 0.6420767915200392
     },
     {
       "kind": "damage",
-      "round": 7,
-      "actor": "a3-28-court-petition-1",
-      "target": "p-mage",
-      "x": 3792.4965721921585,
+      "round": 4,
+      "actor": "a3-28-decision-suppression-3",
+      "target": "p-archer",
+      "x": 5571.114263989447,
+      "y": 2590,
+      "damage": 71
+    },
+    {
+      "kind": "fire",
+      "round": 5,
+      "actor": "p-archer",
+      "side": 0,
+      "x": 5564.591915223034,
+      "y": 2588.742305865822,
+      "skill": "A01",
+      "angle": 4.969438242517123,
+      "power": 0.7245936773598952
+    },
+    {
+      "kind": "damage",
+      "round": 5,
+      "actor": "p-archer",
+      "target": "a3-28-east-water-1",
+      "x": 6219.07468870274,
+      "y": 2590,
+      "damage": 213
+    },
+    {
+      "kind": "damage",
+      "round": 5,
+      "actor": "p-archer",
+      "target": "a3-28-east-water-1",
+      "x": 6219.07468870274,
+      "y": 2590,
+      "damage": 90
+    },
+    {
+      "kind": "fire",
+      "round": 5,
+      "actor": "p-mage",
+      "side": 0,
+      "x": 5565.865498892134,
+      "y": 2589.03848811445,
+      "skill": "M03",
+      "angle": 9.524466639846214,
+      "power": 0.9905016282073099
+    },
+    {
+      "kind": "damage",
+      "round": 5,
+      "actor": "p-mage",
+      "target": "a3-28-east-water-1",
+      "x": 6219.07468870274,
+      "y": 2590,
+      "damage": 348
+    },
+    {
+      "kind": "fire",
+      "round": 5,
+      "actor": "p-knight",
+      "side": 0,
+      "x": 5296.838309278905,
+      "y": 2526.4740254136987,
+      "skill": "S01",
+      "angle": 139.5244606783412,
+      "power": 0.8696140058275239
+    },
+    {
+      "kind": "damage",
+      "round": 5,
+      "actor": "p-knight",
+      "target": "a3-28-decision-suppression-1",
+      "x": 4866.166666666669,
+      "y": 2240,
+      "damage": 565
+    },
+    {
+      "kind": "fire",
+      "round": 5,
+      "actor": "p-occultist",
+      "side": 0,
+      "x": 5298.606833060415,
+      "y": 2526.88531001405,
+      "skill": "O02",
+      "angle": 172.3829101239631,
+      "power": 0.27616234206662055
+    },
+    {
+      "kind": "damage",
+      "round": 5,
+      "actor": "p-occultist",
+      "target": "a3-28-decision-suppression-0",
+      "x": 4902.999999999987,
+      "y": 2490,
+      "damage": 77
+    },
+    {
+      "kind": "fire",
+      "round": 5,
+      "actor": "a3-28-east-water-0",
+      "side": 1,
+      "x": 6212.166666666643,
+      "y": 2420,
+      "skill": "LS09",
+      "angle": 188.0359064179741,
+      "power": 0.7083874535419982
+    },
+    {
+      "kind": "damage",
+      "round": 5,
+      "actor": "a3-28-east-water-0",
+      "target": "p-archer",
+      "x": 5571.114263989447,
+      "y": 2590,
+      "damage": 45
+    },
+    {
+      "kind": "fire",
+      "round": 5,
+      "actor": "a3-28-court-petition-2",
+      "side": 1,
+      "x": 4250,
+      "y": 2401.3888888888887,
+      "skill": "LS09",
+      "angle": 14.12351849943452,
+      "power": 0.7970823193421307
+    },
+    {
+      "kind": "damage",
+      "round": 5,
+      "actor": "a3-28-court-petition-2",
+      "target": "p-knight",
+      "x": 4925.166666666669,
+      "y": 2340,
+      "damage": 34
+    },
+    {
+      "kind": "fire",
+      "round": 5,
+      "actor": "a3-28-decision-suppression-0",
+      "side": 1,
+      "x": 4520.0037486261845,
+      "y": 2445.3335320919514,
+      "skill": "LS09",
+      "angle": 23.0549281286877,
+      "power": 0.5677064301361049
+    },
+    {
+      "kind": "damage",
+      "round": 5,
+      "actor": "a3-28-decision-suppression-0",
+      "target": "p-knight",
+      "x": 4933.5633890214385,
+      "y": 2340,
+      "damage": 36
+    },
+    {
+      "kind": "fire",
+      "round": 6,
+      "actor": "p-archer",
+      "side": 0,
+      "x": 5576.218907568811,
+      "y": 2590,
+      "skill": "A01",
+      "angle": 37.67316949318145,
+      "power": 0.7603814158577848
+    },
+    {
+      "kind": "damage",
+      "round": 6,
+      "actor": "p-archer",
+      "target": "a3-28-decision-suppression-3",
+      "x": 6073.499999999979,
+      "y": 2258,
+      "damage": 213
+    },
+    {
+      "kind": "damage",
+      "round": 6,
+      "actor": "p-archer",
+      "target": "a3-28-decision-suppression-3",
+      "x": 6073.499999999979,
+      "y": 2258,
+      "damage": 90
+    },
+    {
+      "kind": "fire",
+      "round": 6,
+      "actor": "p-mage",
+      "side": 0,
+      "x": 5565.618418051552,
+      "y": 2588.9810274538495,
+      "skill": "M03",
+      "angle": 28.05575345539011,
+      "power": 0.8393984888541295
+    },
+    {
+      "kind": "damage",
+      "round": 6,
+      "actor": "p-mage",
+      "target": "a3-28-east-water-0",
+      "x": 6212.166666666643,
+      "y": 2420,
+      "damage": 430
+    },
+    {
+      "kind": "fire",
+      "round": 6,
+      "actor": "p-knight",
+      "side": 0,
+      "x": 5297.811234141891,
+      "y": 2526.700287009742,
+      "skill": "S01",
+      "angle": 140.16654440552304,
+      "power": 0.8886521945966923
+    },
+    {
+      "kind": "damage",
+      "round": 6,
+      "actor": "p-knight",
+      "target": "a3-28-decision-suppression-1",
+      "x": 4866.166666666669,
+      "y": 2240,
+      "damage": 565
+    },
+    {
+      "kind": "fire",
+      "round": 6,
+      "actor": "p-occultist",
+      "side": 0,
+      "x": 5298.606833060415,
+      "y": 2526.88531001405,
+      "skill": "O02",
+      "angle": 145.13019272504573,
+      "power": 0.5191724009227086
+    },
+    {
+      "kind": "damage",
+      "round": 6,
+      "actor": "p-occultist",
+      "target": "p-knight",
+      "x": 4925.166666666669,
+      "y": 2340,
+      "damage": 77
+    },
+    {
+      "kind": "damage",
+      "round": 6,
+      "actor": "p-occultist",
+      "target": "a3-28-decision-suppression-1",
+      "x": 4866.166666666669,
+      "y": 2240,
+      "damage": 124
+    },
+    {
+      "kind": "damage",
+      "round": 6,
+      "actor": "p-occultist",
+      "target": "a3-28-decision-suppression-1",
+      "x": 4866.166666666669,
+      "y": 2240,
+      "damage": 35
+    },
+    {
+      "kind": "fire",
+      "round": 6,
+      "actor": "a3-28-court-petition-0",
+      "side": 1,
+      "x": 4155.666666666674,
       "y": 2380,
-      "damage": 72
+      "skill": "LS09",
+      "angle": 19,
+      "power": 0.5
+    },
+    {
+      "kind": "damage",
+      "round": 6,
+      "actor": "a3-28-court-petition-0",
+      "target": "p-knight",
+      "x": 4925.166666666669,
+      "y": 2340,
+      "damage": 38
+    },
+    {
+      "kind": "fire",
+      "round": 6,
+      "actor": "a3-28-court-petition-1",
+      "side": 1,
+      "x": 4381.428401516829,
+      "y": 2441.547567130142,
+      "skill": "LA01",
+      "angle": 25.658142712469104,
+      "power": 0.3591314563317674
+    },
+    {
+      "kind": "damage",
+      "round": 6,
+      "actor": "a3-28-court-petition-1",
+      "target": "p-knight",
+      "x": 4933.291047632523,
+      "y": 2340,
+      "damage": 55
+    },
+    {
+      "kind": "fire",
+      "round": 6,
+      "actor": "a3-28-decision-suppression-3",
+      "side": 1,
+      "x": 6073.499999999979,
+      "y": 2258,
+      "skill": "LA01",
+      "angle": 208.2992148861013,
+      "power": 0.6628843287409524
+    },
+    {
+      "kind": "damage",
+      "round": 6,
+      "actor": "a3-28-decision-suppression-3",
+      "target": "p-archer",
+      "x": 5569.563879044509,
+      "y": 2589.898576521979,
+      "damage": 71
     },
     {
       "kind": "fire",
       "round": 7,
-      "actor": "a3-28-decision-suppression-3",
-      "side": 1,
-      "x": 5956.024693183441,
+      "actor": "p-archer",
+      "side": 0,
+      "x": 5576.218907568811,
       "y": 2590,
-      "skill": "LA01",
-      "angle": 163.1769957118614,
-      "power": 0.7582160337199738
+      "skill": "A01",
+      "angle": 37.12174997986103,
+      "power": 0.777561005173049
     },
     {
       "kind": "damage",
       "round": 7,
-      "actor": "a3-28-decision-suppression-3",
-      "target": "p-occultist",
-      "x": 5238.19972354452,
-      "y": 2512.837145010353,
-      "damage": 68
+      "actor": "p-archer",
+      "target": "a3-28-decision-suppression-3",
+      "x": 6073.499999999979,
+      "y": 2258,
+      "damage": 26
+    },
+    {
+      "kind": "damage",
+      "round": 7,
+      "actor": "p-archer",
+      "target": "a3-28-decision-suppression-3",
+      "x": 6073.499999999979,
+      "y": 2258,
+      "damage": 477
+    },
+    {
+      "kind": "damage",
+      "round": 7,
+      "actor": "p-archer",
+      "target": "a3-28-decision-suppression-3",
+      "x": 6073.499999999979,
+      "y": 2258,
+      "damage": 90
+    },
+    {
+      "kind": "fire",
+      "round": 7,
+      "actor": "p-mage",
+      "side": 0,
+      "x": 5565.618418051552,
+      "y": 2588.9810274538495,
+      "skill": "M03",
+      "angle": 41.763268834038506,
+      "power": 0.9459453400957833
+    },
+    {
+      "kind": "damage",
+      "round": 7,
+      "actor": "p-mage",
+      "target": "a3-28-decision-suppression-3",
+      "x": 6073.499999999979,
+      "y": 2258,
+      "damage": 419
+    },
+    {
+      "kind": "fire",
+      "round": 7,
+      "actor": "a3-28-east-water-0",
+      "side": 1,
+      "x": 6212.166666666643,
+      "y": 2258,
+      "skill": "LS09",
+      "angle": 191.91742198896688,
+      "power": 0.44646796388333
+    },
+    {
+      "kind": "damage",
+      "round": 7,
+      "actor": "a3-28-east-water-0",
+      "target": "p-archer",
+      "x": 5569.563879044509,
+      "y": 2589.898576521979,
+      "damage": 30
+    },
+    {
+      "kind": "fire",
+      "round": 7,
+      "actor": "a3-28-court-petition-2",
+      "side": 1,
+      "x": 4589.67614201859,
+      "y": 2490,
+      "skill": "LS09",
+      "angle": 5.684916214145804,
+      "power": 0.7875265181077773
+    },
+    {
+      "kind": "fire",
+      "round": 7,
+      "actor": "a3-28-decision-suppression-0",
+      "side": 1,
+      "x": 4732.670415292838,
+      "y": 2240,
+      "skill": "LS09",
+      "angle": -13.852373163688512,
+      "power": 0.49767091091789484
     },
     {
       "kind": "fire",
       "round": 8,
       "actor": "p-mage",
       "side": 0,
-      "x": 5562.012912354607,
-      "y": 2588.1425377568853,
+      "x": 5575.2426584340155,
+      "y": 2590,
       "skill": "M03",
-      "angle": 7.3169695977857,
-      "power": 0.6733341137905103
+      "angle": 39.90493898885502,
+      "power": 0.9500388501722712
     },
     {
       "kind": "damage",
       "round": 8,
       "actor": "p-mage",
-      "target": "a3-28-decision-suppression-3",
-      "x": 5956.024693183441,
+      "target": "a3-28-east-water-0",
+      "x": 6212.166666666643,
+      "y": 2258,
+      "damage": 126
+    },
+    {
+      "kind": "fire",
+      "round": 8,
+      "actor": "p-knight",
+      "side": 0,
+      "x": 5298.95,
+      "y": 2526.9651162790697,
+      "skill": "S01",
+      "angle": 144.19294277887695,
+      "power": 0.9149260296867798
+    },
+    {
+      "kind": "damage",
+      "round": 8,
+      "actor": "p-knight",
+      "target": "a3-28-decision-suppression-0",
+      "x": 4732.670415292838,
+      "y": 2240,
+      "damage": 518
+    },
+    {
+      "kind": "fire",
+      "round": 8,
+      "actor": "p-occultist",
+      "side": 0,
+      "x": 5298.95,
+      "y": 2526.9651162790697,
+      "skill": "O02",
+      "angle": 173.8189256356937,
+      "power": 0.5256341112393593
+    },
+    {
+      "kind": "damage",
+      "round": 8,
+      "actor": "p-occultist",
+      "target": "a3-28-court-petition-2",
+      "x": 4589.67614201859,
+      "y": 2490,
+      "damage": 118
+    },
+    {
+      "kind": "fire",
+      "round": 8,
+      "actor": "a3-28-court-petition-1",
+      "side": 1,
+      "x": 4381.428401516829,
+      "y": 2441.547567130142,
+      "skill": "LA01",
+      "angle": 17.27683017419559,
+      "power": 0.6833215410071067
+    },
+    {
+      "kind": "damage",
+      "round": 8,
+      "actor": "a3-28-court-petition-1",
+      "target": "p-knight",
+      "x": 4792.670415292838,
+      "y": 2340,
+      "damage": 55
+    },
+    {
+      "kind": "fire",
+      "round": 8,
+      "actor": "a3-28-court-petition-0",
+      "side": 1,
+      "x": 4155.666666666674,
+      "y": 2380,
+      "skill": "LS09",
+      "angle": 12.495446869412582,
+      "power": 0.7729035615410699
+    },
+    {
+      "kind": "damage",
+      "round": 8,
+      "actor": "a3-28-court-petition-0",
+      "target": "p-knight",
+      "x": 4792.670415292838,
+      "y": 2340,
+      "damage": 37
+    },
+    {
+      "kind": "fire",
+      "round": 8,
+      "actor": "a3-28-decision-suppression-0",
+      "side": 1,
+      "x": 4732.670415292838,
+      "y": 2240,
+      "skill": "LS09",
+      "angle": -33.154426966328174,
+      "power": 0.25534750062925743
+    },
+    {
+      "kind": "damage",
+      "round": 8,
+      "actor": "a3-28-decision-suppression-0",
+      "target": "p-knight",
+      "x": 4800.469192922478,
+      "y": 2340,
+      "damage": 27
+    },
+    {
+      "kind": "fire",
+      "round": 9,
+      "actor": "p-mage",
+      "side": 0,
+      "x": 3806.114730687876,
+      "y": 2380,
+      "skill": "M03",
+      "angle": 6.562585819648492,
+      "power": 0.6618904091067823
+    },
+    {
+      "kind": "damage",
+      "round": 9,
+      "actor": "p-mage",
+      "target": "a3-28-court-petition-0",
+      "x": 4155.666666666674,
+      "y": 2380,
+      "damage": 394
+    },
+    {
+      "kind": "fire",
+      "round": 9,
+      "actor": "p-knight",
+      "side": 0,
+      "x": 3523.449790403353,
+      "y": 2380,
+      "skill": "S01",
+      "angle": 8.016985501784156,
+      "power": 0.9970794437696476
+    },
+    {
+      "kind": "damage",
+      "round": 9,
+      "actor": "p-knight",
+      "target": "a3-28-court-petition-0",
+      "x": 4155.666666666674,
+      "y": 2380,
+      "damage": 518
+    },
+    {
+      "kind": "fire",
+      "round": 9,
+      "actor": "a3-28-west-fire-0",
+      "side": 1,
+      "x": 2222.992037653052,
+      "y": 2560.153518918538,
+      "skill": "LS09",
+      "angle": 31.800085721512737,
+      "power": 0.7862008720399599
+    },
+    {
+      "kind": "fire",
+      "round": 9,
+      "actor": "a3-28-west-fire-1",
+      "side": 1,
+      "x": 2226.128607277919,
+      "y": 2557.6643372642434,
+      "skill": "LA01",
+      "angle": 40,
+      "power": 0.75
+    },
+    {
+      "kind": "damage",
+      "round": 9,
+      "actor": "a3-28-west-fire-1",
+      "target": "p-knight",
+      "x": 4095.6666666666742,
+      "y": 2380,
+      "damage": 55
+    },
+    {
+      "kind": "fire",
+      "round": 9,
+      "actor": "a3-28-court-petition-2",
+      "side": 1,
+      "x": 4576.3555597782615,
+      "y": 2408.2343172199817,
+      "skill": "LS09",
+      "angle": 153.073958219029,
+      "power": 0.4914248905070126
+    },
+    {
+      "kind": "fire",
+      "round": 10,
+      "actor": "p-archer",
+      "side": 0,
+      "x": 4263.648382046613,
+      "y": 2405.559227847576,
+      "skill": "A02",
+      "angle": 171.16573348709653,
+      "power": 0.1960316966396879
+    },
+    {
+      "kind": "damage",
+      "round": 10,
+      "actor": "p-archer",
+      "target": "a3-28-court-petition-0",
+      "x": 4155.666666666674,
+      "y": 2380,
+      "damage": 378
+    },
+    {
+      "kind": "damage",
+      "round": 10,
+      "actor": "p-archer",
+      "target": "p-knight",
+      "x": 4095.6666666666742,
+      "y": 2380,
+      "damage": 230
+    },
+    {
+      "kind": "damage",
+      "round": 10,
+      "actor": "p-archer",
+      "target": "a3-28-court-petition-0",
+      "x": 4155.666666666674,
+      "y": 2380,
+      "damage": 159
+    },
+    {
+      "kind": "fire",
+      "round": 10,
+      "actor": "p-occultist",
+      "side": 0,
+      "x": 3518.0588420269773,
+      "y": 2380,
+      "skill": "O02",
+      "angle": -1.3954611395191447,
+      "power": 0.7171800082112252
+    },
+    {
+      "kind": "damage",
+      "round": 10,
+      "actor": "p-occultist",
+      "target": "p-archer",
+      "x": 4060.799475052171,
+      "y": 2380,
+      "damage": 99
+    },
+    {
+      "kind": "damage",
+      "round": 10,
+      "actor": "p-occultist",
+      "target": "a3-28-court-petition-0",
+      "x": 4155.666666666674,
+      "y": 2380,
+      "damage": 114
+    },
+    {
+      "kind": "damage",
+      "round": 10,
+      "actor": "p-occultist",
+      "target": "a3-28-court-petition-1",
+      "x": 4381.428401516829,
+      "y": 2441.547567130142,
+      "damage": 124
+    },
+    {
+      "kind": "damage",
+      "round": 10,
+      "actor": "p-occultist",
+      "target": "a3-28-court-petition-2",
+      "x": 4576.3555597782615,
+      "y": 2408.2343172199817,
+      "damage": 117
+    },
+    {
+      "kind": "fire",
+      "round": 10,
+      "actor": "a3-28-court-petition-0",
+      "side": 1,
+      "x": 3662.6666666666642,
+      "y": 2380,
+      "skill": "LS09",
+      "angle": 183.22673106753587,
+      "power": 0.5533662794378572
+    },
+    {
+      "kind": "damage",
+      "round": 10,
+      "actor": "a3-28-court-petition-0",
+      "target": "p-occultist",
+      "x": 3518.0588420269773,
+      "y": 2380,
+      "damage": 44
+    },
+    {
+      "kind": "fire",
+      "round": 10,
+      "actor": "a3-28-court-petition-1",
+      "side": 1,
+      "x": 4464.6309881982925,
+      "y": 2466.970579727256,
+      "skill": "LA01",
+      "angle": 164.59942672260885,
+      "power": 0.6993423964540025
+    },
+    {
+      "kind": "damage",
+      "round": 10,
+      "actor": "a3-28-court-petition-1",
+      "target": "p-archer",
+      "x": 4060.799475052171,
+      "y": 2380,
+      "damage": 71
+    },
+    {
+      "kind": "fire",
+      "round": 10,
+      "actor": "a3-28-decision-suppression-0",
+      "side": 1,
+      "x": 4732.670415292838,
+      "y": 2240,
+      "skill": "LS09",
+      "angle": 181.76958095498895,
+      "power": 0.7746024230557639
+    },
+    {
+      "kind": "damage",
+      "round": 10,
+      "actor": "a3-28-decision-suppression-0",
+      "target": "p-archer",
+      "x": 4060.799475052171,
+      "y": 2380,
+      "damage": 40
+    },
+    {
+      "kind": "fire",
+      "round": 11,
+      "actor": "p-archer",
+      "side": 0,
+      "x": 4081.118933948977,
+      "y": 2380,
+      "skill": "A02",
+      "angle": 176.01702060624402,
+      "power": 0.4680378837826198
+    },
+    {
+      "kind": "damage",
+      "round": 11,
+      "actor": "p-archer",
+      "target": "a3-28-court-petition-0",
+      "x": 3662.6666666666642,
+      "y": 2380,
+      "damage": 21
+    },
+    {
+      "kind": "damage",
+      "round": 11,
+      "actor": "p-archer",
+      "target": "a3-28-court-petition-0",
+      "x": 3662.6666666666642,
+      "y": 2380,
+      "damage": 435
+    },
+    {
+      "kind": "fire",
+      "round": 11,
+      "actor": "p-knight",
+      "side": 0,
+      "x": 5560.679477184376,
+      "y": 2587.832436554506,
+      "skill": "S01",
+      "angle": 143.1375091280005,
+      "power": 0.963309114242229
+    },
+    {
+      "kind": "damage",
+      "round": 11,
+      "actor": "p-knight",
+      "target": "a3-28-decision-suppression-0",
+      "x": 4732.670415292838,
+      "y": 2240,
+      "damage": 518
+    },
+    {
+      "kind": "fire",
+      "round": 11,
+      "actor": "p-occultist",
+      "side": 0,
+      "x": 5306.118897967615,
+      "y": 2528.632301852934,
+      "skill": "O02",
+      "angle": 166.8446780344305,
+      "power": 0.5218006988499206
+    },
+    {
+      "kind": "damage",
+      "round": 11,
+      "actor": "p-occultist",
+      "target": "a3-28-court-petition-2",
+      "x": 4582.332709555662,
+      "y": 2404.2992606640296,
+      "damage": 88
+    },
+    {
+      "kind": "fire",
+      "round": 11,
+      "actor": "a3-28-court-petition-2",
+      "side": 1,
+      "x": 4240.44251964406,
+      "y": 2398.4685476690183,
+      "skill": "LS09",
+      "angle": 10.47888471666359,
+      "power": 0.7842466777594413
+    },
+    {
+      "kind": "damage",
+      "round": 11,
+      "actor": "a3-28-court-petition-2",
+      "target": "p-knight",
+      "x": 4792.670415292838,
+      "y": 2340,
+      "damage": 34
+    },
+    {
+      "kind": "fire",
+      "round": 11,
+      "actor": "a3-28-west-fire-0",
+      "side": 1,
+      "x": 2585.4920376530636,
+      "y": 2380,
+      "skill": "LS09",
+      "angle": 23.92088841155286,
+      "power": 0.74975694367481
+    },
+    {
+      "kind": "damage",
+      "round": 11,
+      "actor": "a3-28-west-fire-0",
+      "target": "p-archer",
+      "x": 3874.452267282315,
+      "y": 2380,
+      "damage": 30
+    },
+    {
+      "kind": "damage",
+      "round": 11,
+      "actor": "a3-28-west-fire-0",
+      "target": "p-mage",
+      "x": 3841.8393074685455,
+      "y": 2380,
+      "damage": 39
+    },
+    {
+      "kind": "fire",
+      "round": 11,
+      "actor": "a3-28-west-fire-1",
+      "side": 1,
+      "x": 2583.795273944597,
+      "y": 2380,
+      "skill": "LA01",
+      "angle": 16.533875219847694,
+      "power": 0.86275312866013
+    },
+    {
+      "kind": "damage",
+      "round": 11,
+      "actor": "a3-28-west-fire-1",
+      "target": "p-archer",
+      "x": 3875.5101985884794,
+      "y": 2380,
+      "damage": 71
+    },
+    {
+      "kind": "fire",
+      "round": 12,
+      "actor": "p-archer",
+      "side": 0,
+      "x": 5627.704146368042,
       "y": 2590,
-      "damage": 105
+      "skill": "A01",
+      "angle": 151.73170594741947,
+      "power": 0.8402311514503823
+    },
+    {
+      "kind": "damage",
+      "round": 12,
+      "actor": "p-archer",
+      "target": "a3-28-decision-suppression-0",
+      "x": 4732.670415292838,
+      "y": 2240,
+      "damage": 196
+    },
+    {
+      "kind": "damage",
+      "round": 12,
+      "actor": "p-archer",
+      "target": "a3-28-decision-suppression-0",
+      "x": 4732.670415292838,
+      "y": 2240,
+      "damage": 174
     }
   ],
   "startingResources": {
@@ -1702,31 +2295,31 @@
   "heroes": [
     {
       "cls": "archer",
-      "hp": 965,
-      "maxHp": 965,
-      "x": 5279.375759727197,
-      "y": 2522.4129673784178
+      "hp": 407,
+      "maxHp": 935,
+      "x": 5834.370813034718,
+      "y": 2590
     },
     {
       "cls": "mage",
-      "hp": 455,
+      "hp": 857,
       "maxHp": 998,
-      "x": 5562.012912354607,
-      "y": 2588.1425377568853
+      "x": 5539.354114978953,
+      "y": 2582.8730499951052
     },
     {
       "cls": "knight",
-      "hp": 1466,
+      "hp": 865,
       "maxHp": 1598,
-      "x": 6743.481364137424,
+      "x": 6746.10612351291,
       "y": 2590
     },
     {
       "cls": "occultist",
-      "hp": 1040,
+      "hp": 1100,
       "maxHp": 1144,
-      "x": 5238.19972354452,
-      "y": 2512.837145010353
+      "x": 5306.118897967615,
+      "y": 2528.632301852934
     }
   ],
   "items": {
