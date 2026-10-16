@@ -2,9 +2,10 @@
   "pass": true,
   "base": "d7c1f8457dd33decda5481c7c3b57d8505f6f157",
   "other29Exact": true,
-  "stage30GameplayExact": true,
+  "stage30GameplayExactExceptWestRoof40": true,
+  "westRoofDelta": 40,
   "oldSaveNoMigration": true,
-  "physicalStageSha256": "75b45257ae483b36ac1d359d7fc8c5134e5fb3341fcd014ea28932389a766351",
+  "physicalStageSha256": "96ca1afd96378ba9dea01573054fcba6d3a00a66b96e174db7ba89cc915ef523",
   "initialEnemies": 40,
   "elites": 10,
   "steps": [

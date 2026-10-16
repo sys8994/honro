@@ -1,0 +1,150 @@
+{
+  "pass": true,
+  "scope": "Initial supported pose fixtures on existing floor/reflector/descent; isolated actor and checkEnd disabled. Ordinary move/jump/drop physics without skills or terrain edits. Not a normal-resource combat playthrough.",
+  "rows": [
+    {
+      "cls": "archer",
+      "side": "west",
+      "headPassed": true,
+      "directFloorJumpLands": true,
+      "approach": "court + untrained basic jump",
+      "top": {
+        "x": 5120,
+        "y": 5279.310344827586
+      },
+      "returned": {
+        "x": 4924.25,
+        "y": 5470,
+        "support": "sf-ferry-court"
+      },
+      "hpPreserved": true,
+      "oneWay": true
+    },
+    {
+      "cls": "archer",
+      "side": "east",
+      "headPassed": true,
+      "directFloorJumpLands": true,
+      "approach": "existing reflector + jump",
+      "top": {
+        "x": 6202.375,
+        "y": 5262.321875
+      },
+      "returned": {
+        "x": 6202.375,
+        "y": 5470,
+        "support": "sf-ferry-court"
+      },
+      "hpPreserved": true,
+      "oneWay": true
+    },
+    {
+      "cls": "mage",
+      "side": "west",
+      "headPassed": true,
+      "directFloorJumpLands": true,
+      "approach": "court + untrained basic jump",
+      "top": {
+        "x": 5120,
+        "y": 5279.310344827586
+      },
+      "returned": {
+        "x": 4922.63333333333,
+        "y": 5470,
+        "support": "sf-ferry-court"
+      },
+      "hpPreserved": true,
+      "oneWay": true
+    },
+    {
+      "cls": "mage",
+      "side": "east",
+      "headPassed": true,
+      "directFloorJumpLands": true,
+      "approach": "existing reflector + jump",
+      "top": {
+        "x": 6201.000000000004,
+        "y": 5262.424999999999
+      },
+      "returned": {
+        "x": 6201.000000000004,
+        "y": 5470,
+        "support": "sf-ferry-court"
+      },
+      "hpPreserved": true,
+      "oneWay": true
+    },
+    {
+      "cls": "knight",
+      "side": "west",
+      "headPassed": true,
+      "directFloorJumpLands": true,
+      "approach": "court + untrained basic jump",
+      "top": {
+        "x": 5120,
+        "y": 5279.310344827586
+      },
+      "returned": {
+        "x": 4923.333333333351,
+        "y": 5470,
+        "support": "sf-ferry-court"
+      },
+      "hpPreserved": true,
+      "oneWay": true
+    },
+    {
+      "cls": "knight",
+      "side": "east",
+      "headPassed": true,
+      "directFloorJumpLands": true,
+      "approach": "existing reflector + jump",
+      "top": {
+        "x": 6203.333333333316,
+        "y": 5262.250000000001
+      },
+      "returned": {
+        "x": 6203.333333333316,
+        "y": 5470,
+        "support": "sf-ferry-court"
+      },
+      "hpPreserved": true,
+      "oneWay": true
+    },
+    {
+      "cls": "occultist",
+      "side": "west",
+      "headPassed": true,
+      "directFloorJumpLands": true,
+      "approach": "court + untrained basic jump",
+      "top": {
+        "x": 5120,
+        "y": 5279.310344827586
+      },
+      "returned": {
+        "x": 4921.999999999989,
+        "y": 5470,
+        "support": "sf-ferry-court"
+      },
+      "hpPreserved": true,
+      "oneWay": true
+    },
+    {
+      "cls": "occultist",
+      "side": "east",
+      "headPassed": true,
+      "directFloorJumpLands": true,
+      "approach": "existing reflector + jump",
+      "top": {
+        "x": 6201.400000000011,
+        "y": 5262.394999999999
+      },
+      "returned": {
+        "x": 6201.400000000011,
+        "y": 5470,
+        "support": "sf-ferry-court"
+      },
+      "hpPreserved": true,
+      "oneWay": true
+    }
+  ]
+}

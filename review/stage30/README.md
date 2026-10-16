@@ -1,6 +1,6 @@
 # 30장 「남겨진 길」 검수 브랜치 후보
 
-기준: d7c1f8457dd33decda5481c7c3b57d8505f6f157. master 병합·Pages 배포 금지, 사용자 장별 이미지 승인 대기.
+기준: d7c1f8457dd33decda5481c7c3b57d8505f6f157. 장별 검수 브랜치. 사용자 개별 이미지 승인 대기는 해제됐으며 master 통합·Pages는 부모의 단일 조정 대상이다.
 
 ## 변경
 
@@ -22,7 +22,7 @@
 
 ## 보존 및 검사
 
-`preservation.json`: 다른 29장과 공유 자산 불변. 30장의 요소/미술 metadata 외 전 필드(물리 지형, 적, 목표, 사건, 경로, 시작 상태) 기준 커밋과 동일. 물리 stage SHA-256 `75b45257ae483b36ac1d359d7fc8c5134e5fb3341fcd014ea28932389a766351`.
+`preservation.json`: 다른 29장과 공유 자산 불변. 30장은 서쪽 지붕과 그 지붕에 지지되는 초기 적/증원 y의 +40 보정을 제외한 모든 물리·목표·적·사건·경로 필드가 기준과 동일하다. 현재 물리 stage SHA-256 `96ca1afd96378ba9dea01573054fcba6d3a00a66b96e174db7ba89cc915ef523`. 이전 미술 전용 커밋의 해시는 `75b45257ae483b36ac1d359d7fc8c5134e5fb3341fcd014ea28932389a766351`였다.
 
 - 첫 목표는 현장 대조 reach/radius260. 옛 종이 클릭을 되살리지 않았다.
 - 초기 적40/정예10, 사건 증원4/5/4와 방어 산개3, 방어3회/540/contest230, 생존한 동행 전원 same-floor 옛길 집결440 유지.
@@ -30,7 +30,7 @@
 - 두 HTML 최신 빌드 성공. `stage30-ferry-art.mjs` 통과: 다른 장/물리 불변, 재생성 반복 일치, 실제 지지면·선체 일치, cache 재사용·렌더 순수성.
 - `stage30-ferry-traversal.mjs` 48 조건(4명×12경로) 통과. 이 검사는 지형/경로 fixture이며 정상 전투와 구분한다.
 - `stage30-review-browser.py`: Chromium PC1440×900/모바일390×844 별도 프로필, 실제 App.launch/Continue 지형·유닛·목표·상태 보존 및 페이지 오류0. 이미지 renderer 캡처는 HUD 캡처와 구분한다.
-- 정상 자원 native App/Engine 입력: conservative-rank1 합법 배분·실제 비용·소모품0, R11 승리, 전원 생존, 피해1178, 방어3/정착1, Continue2. `evidence/result.json`, `trace.json`, `wait-analysis.json`, `shot-evidence.json`. 이전1–29장은 보상 원장 fixture이며 플레이 완료를 주장하지 않는다. 브라우저/사람 플레이 완주도 아니다. 최종 후면 암반 변경 전 실행이나 이후 미술만 바뀌고 gameplay boundary는 동일하다.
+- 정상 자원 native App/Engine 입력: conservative-rank1 합법 배분·실제 비용·소모품0, R11 승리, 전원 생존, 피해1178, 방어3/정착1, Continue2. `evidence/result.json`, `trace.json`, `wait-analysis.json`, `shot-evidence.json`. 이전1–29장은 보상 원장 fixture이며 플레이 완료를 주장하지 않는다. 브라우저/사람 플레이 완주도 아니다. 서쪽 지붕 보정 전의 역사적 실행이다. 변경 후 정상자원 검사는 아래 별도로 구분한다.
 
 ## 미해결·범위
 
@@ -52,3 +52,11 @@
 기존에 시작해 둔 `HONRO_FULLPLAY_APPROACH=cape` 실행은 완료되어 있었으며 재시작하지 않았다. R17 승리, 생존3명 집결, 방어3/정착1/Continue2. cape-watch는 실제 행동3/발사3, 아군에게 피해109, 아군에게 받은 피해1560, 플레이어 표적 사격4회로 선택 접근 경로에서 실효 교전했다. 다른 두 경로의 행동0은 우회 결과이며 군집 자체의 불능을 재현하지 않았다. 설오는 R10에 소단 O04의 아군 오사577로 사망했다. 이 실행은 전원 생존 성공으로 보고하지 않는다. 원본은 `evidence/cape/`에 보존한다.
 
 실제 Workshop PC/모바일 Stage View→Playtest iframe→Stop 검사도 완료했다. 지형·미술 요소 동일, 현장 대조 reach260 유지, Stop 뒤 프로젝트 원본 보존, 페이지 오류0. `workshop-results.json`과 `tests/stage30-review-workshop.py`를 본다. 정상 전투 완주 검사는 아니다.
+
+## 기본 점프 가능한 선창 지붕
+
+서쪽 기존 oneWay 목재 지붕은 지면보다230~250 높아 미훈련 기본 점프217.8로 올라갈 수 없었다. 지붕을40 낮춰190~210 간격으로 만들고, 해당 지붕 지지 초기 적과 이름이 일치하는 증원 좌표만40 내렸다. 동쪽 지붕·선박·목표·기존 발판 탄 판정과 물리 엔진은 변경하지 않았다. 지붕은 충돌 윗면 그대로 회색 지붕결을 입혔으며 목구조/내부에는 solid 충돌을 넣지 않았다.
+
+`stage30-roof-access.mjs`의 네 주인공×양쪽 지붕8사례에서 아래에서 머리 관통, 기본 점프 착지, 아래점프와 지상 복귀, 서쪽 하부 보행을 확인했다. 초기 위치와 고립된 배우를 사용하는 지형 fixture이며 정상 전투 완주가 아니다. `roof-access.json`과 `roof/`의 실제 Chromium PC/모바일 under/rising/landed/drop-return8PNG가 증거다. `roof/browser.json`에는 옛 정상실행R9 저장의 지붕5220과 전체 지형을 그대로 Continue한 대조도 있다. 저작 도구는 새 맵만 수정하며 runtime/Continue에서는 호출하지 않는다.
+
+`desktop-normal-play-hold-replay.png`와 모바일 동명 그림은 **보정 전 저장의 옛 지형**에 현재 지붕 미술을 적용한 복구 화면이다. 다른 신규 시작/지붕 PNG와 혼동하지 않는다. 최신 build, 미술 순수성/재생성, 물리 변경 경계, Workshop PC/모바일 재검사 통과. 변경 후 정상자원1회 실행은 진행 중이며 완료 결과를 별도 보존한다.
