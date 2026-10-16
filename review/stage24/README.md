@@ -31,3 +31,7 @@
 - `stage24-normal-play.mjs` / `normal-play/stage-24.json`: 준비 진입 프로필 + 합법 자동수련, production App/Engine의 이동/점프/발사/상호작용/대기 입력. 현재 UI에 없는 소모품 명령을 제거했다. 전투 HP·좌표·목표·적·지형 주입 없음. 9라운드41행동, 네 명 생존, 유한 증원3/3·7명 진입으로 완료. **Canvas/메뉴/저장이 대역인 Native이며 실제 브라우저 전투나 이전 장부터 연속 캠페인이 아니다.**
 
 처음 정상 진단에서 사당 파동은 기존 이동 등불의 진입점 점유로 끝까지 대기했다. 같은 사당 평탄부의 안전한 저작좌표로 재배치한 최종 소스에서3/3 진입을 확인했다. 점유대기/대체 입구/취소 정책 자체는 변경하지 않았다. 모든 군집/각 파동의 첫 실효 행동·플레이어 대응, 지붕 사선의 최종 교전 승인, Workshop 직접 Playtest 및 부모의 active exact-contract 통합은 아직 남았다. 이전 independent-review.md는 최초 후보 스냅샷에 대한 독립 검토이며 지붕 후속을 승인한 문서가 아니다. master 병합과 원격 발행은 부모가 조율한다.
+
+## Workshop 직접 후속 검수
+
+`python tests/stage24-workshop-browser.py`가 실제 desktop/mobile Workshop Stage View 및 Playtest에서5개 실제 지붕 oneWay, 전체 terrain/marker exact 일치, Playtest 실제 내려가기 버튼으로 지붕→처마→지면 복귀, Stop 후 원본 프로젝트 보존을 통과했다. `workshop-browser.json`에 검수한 두 HTML 바이트 SHA256, `workshop-*-stage-view.png`와 `workshop-*-playtest-roof.png` 네 장을 보존한다. 초기 지붕 위치를 둔 UI 격리 검수이며 정상 전투 완주를 의미하지 않는다. HTML/런타임은 지붕 후속 `f1ed731`과 동일하다.
