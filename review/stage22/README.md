@@ -20,7 +20,7 @@
 - 빌드 성공. 실제 desktop/mobile 전후12장, Native 전후16장 생성.
 - evidence-pickup-p0:48행 통과. field-evidence 통과.
 - 서측 접근/귀환 및 headroom: 국소 경로 검사. 최신 결과는 route-df/route-fd 및 독립 검토 참조.
-- 지붕 전 버전 Native App 정상 자원 진단은36라운드,18처치,네 명 생존으로 완료했습니다(normal-input-before-roof). 최신 지붕 버전은 별도 재검증 중입니다. 브라우저 정상 완주·모든 파동 실효·전체 계약 통합은 미완료입니다. 완료 판정이나 배포용 승인본이 아닙니다.
+- 지붕 전 버전 Native App 정상 자원 진단은36라운드,18처치,네 명 생존으로 완료했습니다(normal-input-before-roof). 최신 지붕 버전도39라운드,22처치,네 명 생존으로 완료했습니다(normal-input-roof). 두 결과는 각각의 기록된 source/runtime 해시에만 유효합니다. 브라우저 정상 완주·모든 파동 실효·전체 계약 통합은 미완료입니다. 완료 판정이나 배포용 승인본이 아닙니다.
 - 기존 동결 fixture는 완화하지 않았습니다. 변경 파일 바이트와 정확 campaign delta 목록은 delta.json. 기존 history 계약 체인에 새 미술을 승인본으로 등록하는 것은 아직 하지 않았습니다.
 - 실제 사용자 저장은 사용/변경하지 않았습니다. 캡처는 독립 브라우저 fixture profile입니다.
 
@@ -33,3 +33,5 @@ Library 준비 요청은 로컬 경로를 직접 수신하지 못했고, 현재 
 ## 실제 지붕 후속
 
 E 큰 서고의 기존 기와 외곽을 그대로 oneWay 충돌면으로 연결했습니다. 동측 경사에서 기본 점프로 진입하고 지붕을 횡단한 뒤 기존 내려가기 기능으로 마당에 돌아옵니다. 실내/지상 통로는 솔리드로 막지 않습니다. Game desktop/mobile 및 Workshop Stage View/Playtest 화면은 browser/*archive-roof.png와 *workshop*.png. 이전/신규 HTML 저장 모두 실제 Continue 후 지형·맵·목표·내장 에셋 exact 보존 확인(browser/save.json). 미술 개별 승인 대기는 해제됐고 master 통합은 부모 조율을 기다립니다.
+
+지붕 실제 버튼 검사: browser/roof-contact-desktop.png와 roof-contact-mobile.png. 한 궁수의 최초 위치만 준비한 적 없는 격리 실험으로, 수평 접근은 키보드 D, mobile 점프/하강은 터치를 사용했습니다. 전체 모바일 조이스틱 완주 증거가 아닙니다. 네 체형의 전체 왕복·실내 보행·투사체 양방향·App저장8경계는 roof-routes.json.
