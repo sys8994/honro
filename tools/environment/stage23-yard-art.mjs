@@ -1,6 +1,7 @@
 /** Stage-local editable Korean granary art. Rear façades are explicitly non-collision. */
 import {readFileSync} from 'node:fs';
 import {compileSVG} from './build-act2-art.mjs';
+let roofProfiles=[];
 const PREFIX='stage23:yard-',N=v=>Math.round(v*100)/100;
 const path=(d,fill,stroke='',width=1,id='')=>`<path${id?` id="${id}"`:''} d="${d}" fill="${fill}"${stroke?` stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round"`:''}/>`;
 const poly=(p,c,stroke='',w=1,id='')=>path('M'+p.map(p=>p.map(N).join(' ')).join('L')+'Z',c,stroke,w,id);
@@ -11,8 +12,14 @@ function register(p,a){const i=p.library.findIndex(v=>v.id===a.id);if(i<0)p.libr
 function add(p,s,a,id,extra={}){register(p,a);s.elements.push({id:'sy-art-'+id,assetId:a.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',...extra});}
 function yAt(q,x){for(let i=1;i<q.length;i++){const a=q[i-1],z=q[i];if(x>=a[0]&&x<=z[0])return a[1]+(z[1]-a[1])*(x-a[0])/(z[0]-a[0]);}throw Error('Art foot outside profile '+x);}
 const points=t=>t.points.map(p=>[p.x,p.y]);
-function roof(x,y,w,rise=150){const l=x-w/2,r=x+w/2,top=y-rise;let b=path(`M${l-65} ${y-20}Q${l+45} ${y-18} ${l+160} ${top+40}L${x-w*.20} ${top}Q${x} ${top+16} ${x+w*.21} ${top}L${r-145} ${top+48}Q${r-35} ${y-12} ${r+66} ${y-25}L${r+59} ${y+10}Q${x} ${y+37} ${l-61} ${y+10}Z`,'#273f43','#193138',6,'korean-hipped-tile-roof');
- b+=path(`M${l+4} ${y-29}L${l+170} ${top+55}L${x-w*.18} ${top+19}Q${x} ${top+34} ${x+w*.18} ${top+21}L${r-135} ${top+65}L${r+6} ${y-33}Q${x} ${y-6} ${l+4} ${y-29}Z`,'#657971');b+=path(`M${l-64} ${y+6}Q${x} ${y+31} ${r+64} ${y+2}L${r+55} ${y+21}Q${x} ${y+51} ${l-55} ${y+25}Z`,'#1b3439');b+=path(`M${x-w*.23} ${top-5}Q${x} ${top+8} ${x+w*.24} ${top-5}`,'none','#b0b298',8);let ribs='';for(let i=1;i<15;i++){const xx=l+w*i/15,ty=top+22+Math.abs(xx-x)/(w/2)*(rise-39);ribs+=`M${N(xx)} ${N(ty)}L${N(xx+(xx-x)*.07)} ${y+6}`;}b+=path(ribs,'none','#415851',4);return b;}
+function roof(x,y,w,rise=150){const l=x-w/2,r=x+w/2,top=y-rise;
+ const q=[[l-65,y-20],[l+45,y-34],[l+Math.min(160,w*.22),top+40],[x-w*.20,top],[x+w*.21,top],[r-Math.min(145,w*.22),top+48],[r-35,y-22],[r+66,y-25]].sort((a,b)=>a[0]-b[0]);
+ roofProfiles.push({x,y,w,rise,top:q});
+ let b=poly([...q,...q.slice().reverse().map(([x,y])=>[x,y+22])],'#30444a','#182e35',5,'walkable-korean-tile-roof');
+ b+=poly([[l-61,y+5],[x,y+32],[r+59,y-3],[r+55,y+21],[x,y+51],[l-55,y+25]],'#1b3439');
+ b+=poly([[x-w*.23,top-5],[x+w*.24,top-5],[x+w*.24,top+5],[x-w*.23,top+5]],'#9da28b');
+ return b;
+}
 function masonry(q,bottom,{tone='#566658',light='#818b70',courses=3,key='masonry'}={}){
  const low=q.slice().reverse().map(([x])=>[x,typeof bottom==='function'?bottom(x):bottom]);let b=poly([...q,...low],tone,'#30453b',5,key);
  const left=q[0][0],right=q.at(-1)[0],topAt=x=>yAt(q,x),bottomAt=x=>typeof bottom==='function'?bottom(x):bottom;
@@ -151,5 +158,5 @@ function smallPlaces(s){const main=s.design.act3.primaryContour;let b='';const g
  b+=poly([[7270,4610],[7244,4420],[7258,4418],[7284,4610]],'#b09a6a')+poly([[7340,4580],[7314,4410],[7328,4408],[7354,4580]],'#8e7e55');
  b+=poly([[7255,4470],[7325,4460],[7328,4478],[7258,4488]],'#b5a179')+poly([[7265,4540],[7335,4530],[7338,4548],[7268,4558]],'#b5a179');
  return asset('gates-record-life','반출문과 장부석·곡식자루·옹기·빈 마당 흔적',b,[390,3570,9300,1550],{noProjectileCover:true,smallYardProps:true});}
-export async function applyStage23YardArt(p){const s=p.stages.find(s=>s.metadata?.stageId===23);if(s?.initialState?.honroEscortYardRevision!==1)throw Error('Stage23 art requires fresh yard');s.elements=s.elements.filter(e=>!e.id.startsWith('sy-art-'));const rear=rearMass(s);add(p,s,rear.asset,'rear-plinths');add(p,s,granaries(s),'granaries');add(p,s,terraceFaces(s),'terraces-chute');add(p,s,bridge(s),'stone-bridge');add(p,s,smallPlaces(s),'gates-life');add(p,s,cargo(),'cargo',{layer:'mid',honroEscortYardCargo:true});s.design.act3.mainBuildings=['sy-art-granaries'];const farSource=readFileSync(new URL('../../shared/assets/environment/stage23-yard-far.svg',import.meta.url),'utf8'),farVector=compileSVG(farSource),far=asset('far-mountain','관창 너머 한 겹 먹산과 저녁 안개','',[0,0,1800,1050],{skyOnly:true});far.vector=farVector;register(p,far);s.design.escortYardArt={revision:3,backdropAsset:far,assetIds:s.elements.map(e=>e.assetId),groundedSupports:rear.feet,singleCargoElementId:'sy-art-cargo',scope:'Grounded rear façades are scenery. Only named authored stone piers/corner/cargo are solid cover.'};
+export async function applyStage23YardArt(p){roofProfiles=[];const s=p.stages.find(s=>s.metadata?.stageId===23);if(s?.initialState?.honroEscortYardRevision!==1)throw Error('Stage23 art requires fresh yard');s.elements=s.elements.filter(e=>!e.id.startsWith('sy-art-'));const rear=rearMass(s);add(p,s,rear.asset,'rear-plinths');add(p,s,granaries(s),'granaries');add(p,s,terraceFaces(s),'terraces-chute');add(p,s,bridge(s),'stone-bridge');add(p,s,smallPlaces(s),'gates-life');add(p,s,cargo(),'cargo',{layer:'mid',honroEscortYardCargo:true});s.design.act3.mainBuildings=['sy-art-granaries'];s.design.escortYardRoofProfiles=structuredClone(roofProfiles);const farSource=readFileSync(new URL('../../shared/assets/environment/stage23-yard-far.svg',import.meta.url),'utf8'),farVector=compileSVG(farSource),far=asset('far-mountain','관창 너머 한 겹 먹산과 저녁 안개','',[0,0,1800,1050],{skyOnly:true});far.vector=farVector;register(p,far);s.design.escortYardArt={revision:3,backdropAsset:far,assetIds:s.elements.map(e=>e.assetId),groundedSupports:rear.feet,singleCargoElementId:'sy-art-cargo',scope:'Grounded rear façades are scenery. Only named authored stone piers/corner/cargo are solid cover.'};
  s.environment.groups=[];s.environment.surfaces=[];s.environment.placements=[];s.environment.skyVisible=true;s.environment.atmosphere={preset:'forest',overrides:{skyTop:'#41545c',skyBottom:'#a5a887',hazeStrength:.20,mistStrength:.035,lightStrength:.08,waterBaseColor:'#36575c',waterHighlightColor:'#93a99c'}};return p;}

@@ -55,9 +55,9 @@ const originalLandmark=S.landmark;S.landmark=function(c,l){if(!active(this.battl
 function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('sy-'))return false;
  // The bound bundle asset is the visible body of both collision poses.
  if(t.id==='sy-cargo-stored'||t.id==='sy-cargo-settled')return true;
- const q=shape(t,b),earth=t.id==='sy-ground',wood=t.mat==='wood',stone=/bridge|pier|corner/.test(t.id),top=earth?4100:t.y,depth=earth?2200:Math.max(24,Math.min(850,t.h));
+ const q=shape(t,b),earth=t.id==='sy-ground',wood=t.mat==='wood',roof=!!t.honroRoof,stone=/bridge|pier|corner/.test(t.id),top=earth?4100:t.y,depth=earth?2200:Math.max(24,Math.min(850,t.h));
  // Local vertical values, never the huge v6 world-bound width/height, own tone.
- const g=c.createLinearGradient(0,top,0,top+depth);g.addColorStop(0,wood?'#ab9868':earth?'#727e65':'#88937a');g.addColorStop(.38,wood?'#7b6c48':earth?'#54674f':'#667d62');g.addColorStop(1,earth?'#304c40':'#3f5948');
+ const g=c.createLinearGradient(0,top,0,top+depth);g.addColorStop(0,roof?'#597077':wood?'#ab9868':earth?'#727e65':'#88937a');g.addColorStop(.38,roof?'#334c53':wood?'#7b6c48':earth?'#54674f':'#667d62');g.addColorStop(1,roof?'#1d343c':earth?'#304c40':'#3f5948');
  c.save();c.clip(q.body);c.fillStyle=g;c.fill(q.body);
  if(earth){
   // A broad worn road and its compacted earth shoulder follow every true
@@ -68,7 +68,7 @@ function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('sy-'))return false;
   drawMasonryDetail(c,masonryDetail(t,C.poly(t)));
   if(t.id==='sy-stone-corner'){c.fillStyle='#9ca183';c.fill(path([[t.x,t.y],[t.x+24,t.y],[t.x+24,t.y+t.h],[t.x,t.y+t.h]]));c.fillStyle='#314a3c66';c.fill(path([[t.x+t.w-30,t.y],[t.x+t.w,t.y],[t.x+t.w,t.y+t.h],[t.x+t.w-30,t.y+t.h]]));}
  }
- c.strokeStyle=wood?'#c9b88b99':earth?'#c3bea078':'#bdc0a278';c.lineWidth=earth?9:7;c.stroke(q.rim);c.restore();return true;
+ c.strokeStyle=wood?'#c9b88b99':earth?'#c3bea078':'#bdc0a278';c.lineWidth=roof?3:earth?9:7;c.stroke(q.rim);c.restore();return true;
 }
 const originalTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return originalTerrain.call(this,c,t);};
 const skyAsset=b=>b.honroMap?.escortYardArt?.backdropAsset;

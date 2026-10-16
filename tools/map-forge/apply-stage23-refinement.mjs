@@ -1,10 +1,12 @@
-/** Art-only fresh-map overlay. Never rerun the historical objective author. */
+/** Art and one-way roof fresh-map overlay. Never rerun the historical objective author. */
 import {readFile,writeFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
+import {applyStage23Roofs} from './stage23-roofs.mjs';
 import {applyStage23YardArt} from '../environment/stage23-yard-art.mjs';
 export async function applyStage23Refinement(project){
  const p=structuredClone(project),s=p.stages.find(s=>s.metadata.stageId===23),elements=s.elements.filter(e=>!e.id.startsWith('sy-art-')),environment=structuredClone(s.environment);
  await applyStage23YardArt(p);
+ applyStage23Roofs(s);
  // Keep later story set dressing and environment contracts as authored.
  s.environment=environment;
  if(!elements.every(e=>s.elements.some(v=>JSON.stringify(v)===JSON.stringify(e))))throw Error('Story set dressing lost');

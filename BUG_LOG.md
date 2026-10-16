@@ -4,3 +4,7 @@
 - `stage23-refinement`는 지형/적/초기상태/목표/다른29장 보존·idempotence 통과. 실제 Chromium PC/모바일 전후 및 Continue 증거는 사용자 요청에 따라 review/stage23에 보존.
 - 오래된 fullplay 정책이 옛 장부석에 머무는 문제를 최신 target NPC 위치를 따라가게 수정(게임 퀘스트 복원 없음). 정상 자원 검사는 진행 중이며 완주 아님.
 - 전체 verify의 역사 exact JSON 해시, 기존 cargo/bridge fixture 핀, runtime/tactics 실패는 미해결. old-save death-retry ledger 실패는 기준 캠페인 재주입에서도 재현. 공식 참고사진 실제 픽셀 접근403. 상세 제한 review/stage23/README.md. master/Pages 배포 없음.
+
+## 2026-10-16 — Stage23 지붕 접근 후보 (branch only)
+- 실제 기와 상면8개와 접근 발판8개를 기존 oneWay로 추가. 건물 내부, 기존 도로/호송/화물/적/목표는 보존. 새 물리 루프나 투사체 예외 없음.
+- 네 동행×여덟 지붕32개 유한 이동/기본점프/착지/drop 및 NPC 낮은 길 보행 통과. 실제 Chromium PC/모바일 비교와 Continue를 재캡처. Native 정상자원 관측은 지붕 추가 전 R40/160행동 제한 종료로 미완주. 기존 verify/acceptance 제한은 review/stage23/README.md 유지.
