@@ -87,6 +87,13 @@ function terraceFaces(s){let b='',walkEdges=[];for(const id of ['sy-west-upper',
   const t=s.terrains.find(t=>t.id===id),q=t.points.slice(0,t.properties.honroWalkEdges.length+1).map(p=>[p.x,p.y]),y=yAt(q,x)+24;
   b+=poly([[x-18,y],[x+20,y],[x+27,foot],[x-24,foot]],'#5e5134');b+=line([[x-8,y+7],[x-10,foot-10]],'#b19b66',7);b+=line([[x-82,foot-13],[x+4,y+24]],'#6b5b39',20);b+=line([[x-48,y+3],[x+61,y+3]],'#8f7d50',20);
  }
+ // Roof access scaffolding bears on the existing upper court, with open
+ // interiors and no added collision. Each horizontal tread has a real frame.
+ const eastCourt=s.terrains.find(t=>t.id==='sy-east-upper'),eq=eastCourt.points.slice(0,eastCourt.properties.honroWalkEdges.length+1).map(p=>[p.x,p.y]);
+ for(const [l,r,y]of[[6810,6970,3420],[6920,7080,3250],[6980,7140,3090]]){
+  for(const x of[l+13,r-13]){const f=yAt(eq,x);b+=poly([[x-7,y+18],[x+8,y+18],[x+8,f],[x-7,f]],'#62563e');b+=poly([[x-13,f-8],[x+14,f-8],[x+14,f],[x-13,f]],'#96967a');}
+  b+=line([[l+13,yAt(eq,l+13)-12],[r-13,y+23]],'#88744d',12);
+ }
  // Every runner follows the actual cargo presentation path. Three long
  // descending sections rest on short terrace-supported posts; no giant slide.
  const ps=s.initialState.honroEscortYardSpec.cargo.path.map(p=>[p.x,p.y+70]);
