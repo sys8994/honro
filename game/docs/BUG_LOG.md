@@ -3001,3 +3001,9 @@ Stage29-only author `tools/map-forge/stage29-record-court.mjs` replaces the old 
 Actual basic round trips initially exposed automatic selection of the high ramp by the intended low route. Separating the high entry by a short basic-jump gap resolves all four-body/eight round trips; no skill requirement was introduced. Source isolation/idempotence/initial grounding, full old/fresh App Continue, automatic-evidence/single-arrival fixtures and5 basic projectile groups pass. A no-hidden-item ordinary-resource Native input run won at13 rounds/55 actions, four surviving heroes, all3 finite responses committed; no HP/position/objective/AI/win-loss overrides. This is not a browser/human difficulty verdict. Two HTML builds and30-map environment validation pass. Actual isolated-browser Game/mobile/Workshop screenshots are in `review/stage29` per explicit user delivery request. Automatic camera drift in the first capture was corrected by freezing frame and explicitly rendering the chosen camera.
 
 Official architecture image pixels remain unavailable after supported download CONNECT403; no bypass or pixel-observation claim. Formal encounter effect evidence, user art approval, full campaign/performance and public deployment remain separate. No master/Pages operation is authorized on this branch. See `review/stage29/README.md` for precise fixtures and evidence.
+
+## 29장 지붕 통과와 수문 구조 보완 · 2026-10-16
+
+- 원인: 서고·점검통로 지붕이 고체 지형이어서 아래 점프를 막았으며 높이430–440px로 기본 도약 약214px보다 높았다.
+- 변경: 해당 두 지붕만 기존 oneWay 발판으로 바꾸고 바닥 위200px로 낮췄다. 전실 목구조·서가·작업상, 수문 들문·문틀·받침돌, 아치 받침·큰 맞춤돌을 보완했다. 핵심 길/적/목표/저장/공통 엔진은 보존한다.
+- 집중 검증: 4체형×2지붕 아래 점프통과/상부착지/아래하강/접근이탈/상하투사체8사례, A/B8왕복, 자동 증거와1인탈출,5군집 기본탄,옛·새 Continue,환경30맵 통과. 실제 Chromium9캡처 오류0. 전체검사·성능·Pages는 반복하지 않았다. 정상자원 후보 재실행과 미술 최종 검수는 후속 증거로 기록한다.
