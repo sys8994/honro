@@ -111,3 +111,10 @@
  .honro #app .honro-compact-hud #joystick{top:calc(0px - var(--joystick-lift))!important}
  .honro #app .honro-compact-hud .joystick .wind-gauge{top:calc(100% + 2px + var(--joystick-lift))!important}
 }
+
+/* Detail owns vertical scrolling; legacy panel clipping must not trap wheel input. */
+.honro #modal .dialog.talent-dialog,.honro #modal .dialog.ultimate-dialog{height:auto!important;max-height:92dvh!important;overflow-x:hidden!important;overflow-y:auto!important;touch-action:pan-y}
+.honro #modal .talent-detail,.honro #modal .skill-modal-grid,.honro #modal .skill-modal-summary,.honro #modal .skill-modal-stats,.honro #modal .effect-compare{height:auto;max-height:none;overflow:visible}
+.honro .skill-detail-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;margin:12px 0}
+.honro .talent-heading{padding-right:28px}
+.honro .skill-detail-actions button{min-height:38px;white-space:normal}

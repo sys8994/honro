@@ -2959,17 +2959,18 @@ function talentView(p, id, closeButton) {
         const s = data_1.SKILLS[id];
         return `${closeButton}<h2>${s.name}</h2><p class="skill-desc">${s.desc}</p><p class="skill-mechanics">${(0, math_1.escapeHTML)((0, skillNotes_1.skillPlayNotes)(id))}</p>${existenceAttackView(s)}<p>기본 공격 · SP 투자 없음 · 항상 사용 가능</p><canvas aria-label="${(0, math_1.escapeHTML)(s.name)} 시연" id="skill-preview" width="720" height="360"></canvas>`;
     }
-    const n = progression_2.TALENT_MAP[id], s = data_1.SKILLS[id], h = p.heroes[n.cls], rank = h.ranks[id] || 0, reason = (0, progression_2.trainReason)(h, id), br = progression_2.BRANCHES[n.cls][n.branch], equipped = p.loadouts[n.cls].includes(id), next = Math.min(8, rank + 1);
+    const n = progression_2.TALENT_MAP[id], s = data_1.SKILLS[id], h = p.heroes[n.cls], rank = h.ranks[id] || 0, reason = (0, progression_2.trainReason)(h, id), refundReason = (0, progression_2.untrainReason)(h, id), br = progression_2.BRANCHES[n.cls][n.branch], equipped = p.loadouts[n.cls].includes(id), next = Math.min(8, rank + 1);
     const before = (0, progression_1.skillGrowthRows)(id, rank), after = (0, progression_1.skillGrowthRows)(id, next);
-    const preview = !s.passive ? `<section class="skill-preview-shell"><canvas aria-label="${(0, math_1.escapeHTML)(s.name)} 시연" id="skill-preview" data-skill="${id}" width="720" height="360"></canvas></section>` : '';
-    const summary = `<section class="skill-modal-summary"><div class="talent-heading">${skillStamp(id, 35)}<div><div class="micro-label">${br.name} · ${tier(id)}단계</div><h2>${n.name}</h2><span class="ability-type">${s.passive ? '패시브 · 습득 시 자동 적용' : equipped ? '액티브 · 장착 중' : '액티브'}</span></div></div><div class="rank-banner"><strong>Lv.${rank}<small> / 8</small></strong>${pip(rank)}<span>${(0, progression_2.pointsLeft)(h, n.cls)} SP</span></div><p class="skill-desc">${(0, math_1.escapeHTML)(n.desc)}</p><p class="skill-mechanics">${(0, math_1.escapeHTML)((0, skillNotes_1.skillPlayNotes)(id))}</p>${!s.passive ? existenceAttackView(s) : ''}</section>`;
-    const stats = `<section class="skill-modal-stats"><div class="effect-compare ${rank >= 8 ? 'at-max' : ''}"><div class="effect-heading"><span>효과</span><span>${rank ? '현재' : '미습득'}</span><span>${rank < 8 ? `Lv.${next}` : '최대'}</span></div>${after.map((row, i) => `<div class="effect-row"><span>${row.label}</span><span>${rank ? before[i]?.value || '—' : '—'}</span><strong>${row.value}</strong></div>`).join('')}</div>${rank < 8 ? `<div class="upgrade-requirement">${reason || `강화 가능 · 용병 Lv.${(0, progression_2.requiredRankLevel)(n, next)}`}<span>${rank ? '강화' : '습득'} 1 SP</span></div>` : '<div class="upgrade-requirement">최고 레벨에 도달했습니다.</div>'}<div class="dialog-actions">${!s.passive && rank > 0 && id !== (0, progression_2.baseSkill)(n.cls) ? `<button class="btn" data-action="equip-prompt" data-skill="${id}">${equipped ? '슬롯 변경' : '장착'}</button>` : ''}<button class="btn primary" data-action="train" data-talent="${id}" ${reason ? 'disabled' : ''}>${rank >= 8 ? '최대 레벨' : rank ? '강화 · 1 SP' : '습득 · 1 SP'}</button></div></section>`;
+    const preview = !s.passive ? `<section class="skill-preview-shell"><canvas aria-label="${(0, math_1.escapeHTML)(s.name)} 시연" id="skill-preview" data-skill="${id}" width="720" height="360"></canvas><p class="preview-context">기본기와 선택 기예만 사용하는 격리 시연입니다. 실제 동행의 전체 기예 조합과 피해량은 다를 수 있습니다.</p></section>` : '';
+    const actions = `<div class="dialog-actions skill-detail-actions" aria-label="기예 수련과 장착">${!s.passive && rank > 0 && id !== (0, progression_2.baseSkill)(n.cls) ? `<button class="btn" data-action="equip-prompt" data-skill="${id}">${equipped ? '슬롯 변경' : '장착'}</button>` : ''}<button class="btn" data-action="rank-minus-detail" data-talent="${id}" ${refundReason ? 'disabled' : ''} title="${(0, math_1.escapeHTML)(refundReason || '1 SP 회수')}">−1 SP 회수</button><button class="btn primary" data-action="train" data-talent="${id}" ${reason ? 'disabled' : ''} title="${(0, math_1.escapeHTML)(reason || '1 SP 투자')}">${rank >= 8 ? '최대 레벨' : rank ? '+1 강화' : '+1 습득'}</button></div>`;
+    const summary = `<section class="skill-modal-summary"><div class="talent-heading">${skillStamp(id, 35)}<div><div class="micro-label">${br.name} · ${tier(id)}단계</div><h2>${n.name}</h2><span class="ability-type">${s.passive ? '패시브 · 습득 시 자동 적용' : equipped ? '액티브 · 장착 중' : '액티브'}</span></div></div>${actions}<div class="rank-banner"><strong>Lv.${rank}<small> / 8</small></strong>${pip(rank)}<span>${(0, progression_2.pointsLeft)(h, n.cls)} SP</span></div><p class="skill-desc">${(0, math_1.escapeHTML)(n.desc)}</p><p class="skill-mechanics">${(0, math_1.escapeHTML)((0, skillNotes_1.skillPlayNotes)(id))}</p>${!s.passive ? existenceAttackView(s) : ''}</section>`;
+    const stats = `<section class="skill-modal-stats"><div class="effect-compare ${rank >= 8 ? 'at-max' : ''}"><div class="effect-heading"><span>효과</span><span>${rank ? '현재' : '미습득'}</span><span>${rank < 8 ? `Lv.${next}` : '최대'}</span></div>${after.map((row, i) => `<div class="effect-row"><span>${row.label}</span><span>${rank ? before[i]?.value || '—' : '—'}</span><strong>${row.value}</strong></div>`).join('')}</div>${rank < 8 ? `<div class="upgrade-requirement">${reason || `강화 가능 · 용병 Lv.${(0, progression_2.requiredRankLevel)(n, next)}`}<span>${rank ? '강화' : '습득'} 1 SP</span></div>` : '<div class="upgrade-requirement">최고 레벨에 도달했습니다.</div>'}</section>`;
     return `${closeButton}<div class="talent-detail talent-v5 ${s.passive ? 'passive-detail' : ''}" style="--branch:${br.color}"><div class="skill-modal-grid">${summary}${!s.passive ? `<section class="skill-modal-preview">${preview}</section>` : ''}${stats}</div></div>`;
 }
 function ultimateView(p, cls, close) {
     const h = p.heroes[cls], id = (0, progression_2.ultimateSkill)(cls), s = data_1.SKILLS[id], prog = (0, progression_2.ultimateProgress)(h, cls), unlocked = (0, progression_2.ultimateUnlocked)(h, cls), equipped = p.loadouts[cls].includes(id), cost = Math.round(s.cost * balance_1.MANA_COST_MULTIPLIER);
     const summary = `<section class="skill-modal-summary"><div class="talent-heading">${skillStamp(id, 42)}<div><div class="micro-label">CLASS ULTIMATE · ${prog.learned}/${prog.total}</div><h2>${s.name}</h2><span class="ability-type">${unlocked ? '해금됨 · 기력이 있으면 사용 가능' : '세 액티브 계열 완성 필요'}</span></div></div><p class="skill-desc">${(0, math_1.escapeHTML)(s.desc)}</p><p class="skill-mechanics">${(0, math_1.escapeHTML)((0, skillNotes_1.skillPlayNotes)(id))}</p>${existenceAttackView(s)}<div class="ultimate-progress big"><i style="width:${prog.learned / prog.total * 100}%"></i></div></section>`;
-    const preview = `<section class="skill-preview-shell ultimate-preview"><canvas aria-label="${(0, math_1.escapeHTML)(s.name)} 시연" id="skill-preview" data-skill="${id}" width="720" height="360"></canvas></section>`;
+    const preview = `<section class="skill-preview-shell ultimate-preview"><canvas aria-label="${(0, math_1.escapeHTML)(s.name)} 시연" id="skill-preview" data-skill="${id}" width="720" height="360"></canvas><p class="preview-context">기본기와 선택 기예만 사용하는 격리 시연입니다. 실제 동행의 전체 기예 조합과 피해량은 다를 수 있습니다.</p></section>`;
     const stats = `<section class="skill-modal-stats"><div class="ultimate-stat-grid"><div><small>기본 피해</small><strong>${s.damage}</strong></div><div><small>효과 반경</small><strong>${s.radius || '직격'}</strong></div><div><small>MP</small><strong>${cost}</strong></div><div><small>재사용</small><strong>제한 없음</strong></div></div><div class="upgrade-requirement">${unlocked ? '모든 액티브 기술을 최소 Lv.1 습득했습니다.' : `액티브 기술 ${prog.total - prog.learned}개를 더 습득하세요.`}<span>${prog.learned} / ${prog.total}</span></div>${unlocked ? `<div class="dialog-actions"><button class="btn primary" data-action="equip-prompt" data-skill="${id}">${equipped ? '슬롯 변경' : '궁극기 장착'}</button></div>` : ''}</section>`;
     return `${close}<div class="talent-detail ultimate-detail" style="--branch:${s.color}"><div class="skill-modal-grid">${summary}<section class="skill-modal-preview">${preview}</section>${stats}</div></div>`;
 }
@@ -3413,7 +3414,7 @@ for (const s of [
     { ...skill('O02', '투과령', '유령 · 시간 기폭', '지형과 생명체를 통과한다. 통과한 적에게 영체 피해를 남기며, 충전량이 길수록 더 오래 비행한 뒤 그 자리에서 폭발한다.', 24, 55, 94, 'phaseWraith', 'resonance', '#b98be8', .96, .15, .2), gravity: .18, phase: 'all', fuse: 1.35 },
     { ...skill('O03', '역천령', '유령 · 역중력', '중력이 반대로 작용해 하늘로 치솟는다. 상공 경계에 닿으면 원혼비로 갈라져 아래를 덮친다.', 28, 62, 105, 'reverseGhost', 'vortex', '#a985e8', .88, .20, .35), gravity: -.62 },
     { ...skill('O04', '황천창', '유령 · 지형 투과', '벽과 지형을 무시하지만 첫 생명체에는 실체화해 강하게 꽂힌다.', 30, 76, 28, 'spiritLance', 'pierce', '#d6b9ff', 1.14, .10, .15), gravity: .08, phase: 'terrain' },
-    { ...skill('O05', '회귀망령', '유령 · 왕복', '모든 것을 투과하며 날아가 접촉한 적에게 피해를 남긴다. 되돌아오는 길에도 다시 적을 관통해 더 큰 영체 피해를 준다.', 38, 50, 118, 'wraithReturn', 'return', '#c2a1ef', .91, .18, .25), gravity: .14, phase: 'all', fuse: 1.45 },
+    { ...skill('O05', '회귀망령', '유령 · 왕복', '적을 관통해 작은 흔적을 남긴 뒤 지형에서 멈춘다. 망령이 실제 궤적을 되짚고 첫 적에 닿아 폭발하며, 흔적을 남긴 적에게 더 큰 피해를 준다.', 38, 50, 118, 'wraithReturn', 'return', '#c2a1ef', .91, .18, .25), gravity: .14, phase: undefined, fuse: undefined },
     { ...skill('O06', '쇠망부', '저주 · 쇠약', '낮은 피해와 함께 공격력과 방어력을 낮추는 쇠약을 3라운드 남긴다.', 24, 24, 18, 'curseWeak', 'rune', '#aa7bc8', 1.06, .55, .35) },
     { ...skill('O07', '증오부', '저주 · 적대 전이', '부적에 맞은 적은 2라운드 동안 주변 아군의 적의에 노출되어 같은 편에게도 표적이 된다.', 28, 18, 34, 'curseBetray', 'target', '#d078ae', 1.03, .55, .25) },
     { ...skill('O08', '악령진', '저주 · 5라운드', '넓은 범위에 악령의 낙인을 새긴다. 피해는 작지만 5라운드 동안 지속 피해를 준다.', 34, 18, 156, 'curseDot', 'rune', '#8d62b7', .95, .65, .3) },
@@ -4330,6 +4331,7 @@ function* chooseEnemyShotSteps(e, u, target, skills) {
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Engine = void 0;
+const returningWraith_1 = require("./returningWraith");
 const eaterMechanics_1 = require("./eaterMechanics");
 const waterfallPhysics_1 = require("./waterfallPhysics");
 const passiveBalance_1 = require("./passiveBalance");
@@ -4712,7 +4714,7 @@ class Engine {
             age += dt;
             // Match live pre-motion triggers, including reverseGhost's timed airburst.
             const fuse = (skill.fuse ?? 0) * (skill.mode === 'phaseWraith' ? (.55 + power * 1.05) : 1);
-            if ((fuse > 0 && age >= fuse) || (skill.mode === 'reverseGhost' && (y < -420 || age > 2.55))) {
+            if ((skill.id === 'O05' && age >= 3.4) || (fuse > 0 && age >= fuse) || (skill.mode === 'reverseGhost' && (y < -420 || age > 2.55))) {
                 if (collect)
                     points.push({ x, y });
                 return { points, x, y, closest, apex: ap };
@@ -4747,7 +4749,7 @@ class Engine {
             if (target)
                 closest = Math.min(closest, Math.hypot(nx - target.x, ny - (target.y - target.h * .5)));
             const phase = skill.phase;
-            let h = phase === 'all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits && !SUMMONS.has(skill.mode) && skill.mode !== 'charge' && skill.mode !== 'spin', skips, !body && phase !== 'terrain', !body);
+            let h = phase === 'all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits && skill.id !== 'O05' && !SUMMONS.has(skill.mode) && skill.mode !== 'charge' && skill.mode !== 'spin', skips, !body && phase !== 'terrain', !body);
             if (body && phase !== 'all' && phase !== 'terrain') {
                 const bodyHit = this.bodyFlightCollision(u, { x, y }, { x: nx, y: ny });
                 if (bodyHit && (!h || bodyHit.t < h.t))
@@ -4935,7 +4937,8 @@ class Engine {
         b.reviewFocus = undefined;
         b.shots += u.side === 0 ? 1 : 0;
         const origin = this.projectileOrigin(u, s, u.angle);
-        const make = (a, damage = e.damage, child = false) => { const origin = this.projectileOrigin(u, s, a), v = this.velocity(u, s, a, u.lastPower); const p = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX: origin.x, launchY: origin.y, repeatIndex: 0, carry: [], skillRank: s.ultimate ? 1 : (u.ranks[s.id] || 1), drag: (0, physics_1.dragFor)(s), gravityScale: s.gravity ?? 1, phaseMode: s.phase, fuseAt: s.fuse ? s.fuse * (s.mode === 'phaseWraith' ? (.55 + u.lastPower * 1.05) : 1) : undefined }; (0, contribution_1.projectileCredit)(b, p, u); b.projectiles.push(p); return p; };
+        const make = (a, damage = e.damage, child = false) => { const origin = this.projectileOrigin(u, s, a), v = this.velocity(u, s, a, u.lastPower); const p = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX: origin.x, launchY: origin.y, repeatIndex: 0, carry: [], skillRank: s.ultimate ? 1 : (u.ranks[s.id] || 1), drag: (0, physics_1.dragFor)(s), gravityScale: s.gravity ?? 1, phaseMode: s.phase, fuseAt: s.fuse ? s.fuse * (s.mode === 'phaseWraith' ? (.55 + u.lastPower * 1.05) : 1) : undefined }; if (s.id === 'O05')
+            (0, returningWraith_1.initializeReturningWraith)(p); (0, contribution_1.projectileCredit)(b, p, u); b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
             const plan = (0, projectileGrowth_1.multishotProfile)(s, u.ranks[s.id] || 1);
             for (const angle of (0, projectileGrowth_1.volleyAngles)(s, plan.rank, u.angle))
@@ -5369,6 +5372,8 @@ class Engine {
             return;
         const rawSrc = this.unit(owner), src = this.creditUnit(rawSrc);
         let dmg = amount;
+        if (p?.wraithBurst && p.wraithMarked?.includes(u.id) && this.guidanceTarget(rawSrc, u))
+            dmg *= 1.30;
         const canCritical = damageSource === 'normal' && !!src && src.side !== 1 && !rawSrc?.summoned && (!!p || direct);
         const crit = canCritical ? (0, skillMechanics_1.critProfile)(p || { skill: '', skillRank: 1 }, src) : undefined;
         const critical = canCritical && this.random() < crit.chance;
@@ -5455,6 +5460,8 @@ class Engine {
             dmg = Math.min(dmg, u.hp);
             u.shield = 0;
         }
+        if (u.martialGuard?.counter && u.martialGuard.round >= this.b.round && rawSrc && this.guidanceTarget(u, rawSrc))
+            u.martialGuard.attacker = rawSrc.id;
         const absorbed = damageSource === 'eaterTransfer' ? 0 : Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
@@ -6145,6 +6152,15 @@ class Engine {
                     if (Math.hypot(ally.x - center.x, ally.y - ally.h * .5 - center.y) > cfg.reach)
                         continue;
                     const shieldBefore = ally.shield;
+                    if (!ally.summoned && !ally.enthrall && ally.wardenRecoveryRound !== b.round) {
+                        ally.wardenRecoveryRound = b.round;
+                        const before = ally.hp, r = Math.max(1, Math.min(8, u.summonRank || 1));
+                        ally.hp = Math.min(ally.maxHp, ally.hp + Math.round(ally.maxHp * (.025 + .005 * (r - 1))));
+                        ally.focus = Math.min(ally.maxFocus, ally.focus + Math.round(ally.maxFocus * (.035 + .005 * (r - 1))));
+                        (0, contribution_1.healed)(b, ally, u.summonOwner || u.id, before);
+                        if (ally.hp > before)
+                            this.fx('text', ally.x, ally.y - ally.h - 10, '#b8d7bc', 12, '+' + (ally.hp - before));
+                    }
                     ally.shield = Math.max(ally.shield, Math.round(22 + u.attack * 10));
                     (0, contribution_1.shielded)(b, ally, u.summonOwner || u.id, shieldBefore);
                     ally.honroSoulAffinityOwner = u.summonOwner || u.id;
@@ -6742,6 +6758,8 @@ class Engine {
             this.remove(p);
             return;
         }
+        if ((0, returningWraith_1.stepReturningWraith)(this, p, dt))
+            return;
         if (p.fuseAt !== undefined && p.age >= p.fuseAt) {
             if (p.mode === 'phaseWraith') {
                 this.blast(p.x, p.y, p.blast, p.damage, p.owner, false, p);
@@ -10279,7 +10297,7 @@ function installOccultRedesign(skills) {
     update('O10', { name: '지박부', tag: '주박 비기 · 지박', desc: '넓은 곳에 지박주를 남긴다. 저주받은 적이 쓰러지면 그 자리에 지박령이 머문다.', cost: 68, damage: 22, radius: 150, mode: 'curseEarth', icon: 'rune', color: '#b6a788', wind: .42, capstone: true });
     update('O11', { name: '배회령', tag: '초혼 · 추적', desc: '혼매듭이 지형에 닿으면 배회령을 부른다. 적은 통과하며, 소단의 행동이 끝나면 가까운 적을 쫓아 공격한다.', damage: 0, radius: 0, fuse: undefined, color: '#a9bab4' });
     update('O12', { name: '등불귀', tag: '초혼 · 원거리', desc: '허공의 혼매듭에서 등불귀를 부른다. 소단의 행동 뒤 먼 적에게 혼령탄을 보낸다.', damage: 0, radius: 0, color: '#b6c8b2' });
-    update('O13', { name: '호혼령', tag: '초혼 · 수호', desc: '혼매듭에서 동료를 지키는 호혼령을 부른다. 가까운 아군에게 방호를 준다.', cost: 36, damage: 0, radius: 0, mode: 'summonWarden', icon: 'shield', color: '#9eafa6', fuse: undefined });
+    update('O13', { name: '호혼령', tag: '초혼 · 수호', desc: '혼매듭에서 동료를 지키는 호혼령을 부른다. 가까운 아군에게 방호를 주고 동행의 체력과 기력을 회복한다.', cost: 36, damage: 0, radius: 0, mode: 'summonWarden', icon: 'shield', color: '#9eafa6', fuse: undefined });
     update('O14', { name: '먹귀', tag: '초혼 · 적 포획', desc: '지형에 닿으면 주변의 보스가 아닌 적을 한 번 삼킨다. 2~4턴 동안 먹귀가 아군에게 잃은 HP를 포획한 적 모두에게 똑같이 전달한다. 수명이 다하거나 쓰러지면 생존자를 방출한다.', cost: 43, damage: 0, radius: 0, mode: 'summonEater', icon: 'vortex', color: '#aaa79d', gravity: .55, fuse: undefined });
     update('O15', { name: '반향령', tag: '초혼 비기 · 반향', desc: '소단의 혼행을 되비추는 영체를 묶어둔다. 소단이 혼을 쏘면 반향령들도 각자의 자리에서 같은 목표를 향해 혼행을 펼친다.', cost: 78, damage: 0, radius: 0, mode: 'summonEcho', icon: 'resonance', color: '#bec3b2', gravity: .18, capstone: true, fuse: 1.45 });
     skills.O16 = { id: 'O16', cls: 'occultist', name: '만혼귀결', tag: '혼행 비기 · 귀결', desc: '흩어진 수많은 혼을 한 점으로 이끈다. 혼령들은 세상의 벽을 넘어 귀결점을 향해 모여든다.', cost: 74, damage: 76, radius: 0, speed: 1.55, wind: .10, mode: 'spiritConverge', color: '#c4c8b6', icon: 'resonance', terrain: .2, gravity: .20, capstone: true, fuse: 2.25 };
@@ -10308,6 +10326,7 @@ exports.convergenceCurve = convergenceCurve;
 exports.convergencePoint = convergencePoint;
 exports.convergeAt = convergeAt;
 exports.stepConvergingSpirit = stepConvergingSpirit;
+const returningWraith_1 = require("./returningWraith");
 const passiveBalance_1 = require("./passiveBalance");
 const math_1 = require("./math");
 const occultData_1 = require("./occultData");
@@ -10358,6 +10377,8 @@ function beginOccultCast(e, u, s, roots) {
         const rank = (0, math_1.clamp)(echo.summonRank || 1, 1, 8), aim = echoAim(e, echo, s, point, u.lastPower), o = e.origin(echo, aim.angle), v = e.velocity(echo, s, aim.angle, aim.power);
         for (const root of roots) {
             const copy = { ...root, id: e.b.nextId++, x: o.x, y: o.y, vx: v.vx, vy: v.vy, prevVy: v.vy, launchX: o.x, launchY: o.y, returnX: echo.x, returnY: echo.y, damage: root.damage * occultData_1.ECHO_POWER[rank - 1], age: 0, hit: [...root.hit, echo.id], trail: [o], child: false, echoUsed: true, echoSource: echo.id, autonomous: true, echoDelay: .075 * (i + 1), targetPoint: { ...point }, targetId: prediction.unit, shot: root.shot };
+            if (s.id === 'O05')
+                (0, returningWraith_1.initializeReturningWraith)(copy);
             e.b.projectiles.push(copy);
         }
     }
@@ -10709,7 +10730,7 @@ function skillEffectRows(id, rank) {
             const melee = s.branch === 'sword', extra = {
                 S05: [row('공격 방향', '전방 1회 · 후방 1회'), row('근접 중복', '아주 가까운 적 최대 2회')],
                 S07: [row('연속 베기', `${warriorData_1.COMBO_HITS[rr - 1]}회`), row('타격 대상', '한 명 · 쓰러지면 가까운 적에게 이어짐')],
-                S08: [row('시전 시 체력 회복', pct(.02 + .005 * (rr - 1))), row('받는 피해 감소', pct(mix(.20, .30))), row('반격', '전방 범위의 적 모두 · 1회'), row('반격 피해', num(52 * mix(1.10, 1.30)))],
+                S08: [row('시전 시 체력 회복', pct(.02 + .005 * (rr - 1))), row('받는 피해 감소', pct(mix(.25, .35))), row('반격', '전방 범위의 적 모두 · 1회'), row('반격 피해', num(52 * mix(1.10, 1.30))), row('피격 후 반격', '전방 사거리 +72 · 전체 각도 +20° · 1회')],
                 S02: [row('체력 비용', '현재 체력 약 ⅓ · 먼저 소모'), row('소모 체력당 추가 피해', String(+mix(1.08, 1.485).toFixed(3))), row('방어 무시', '35%'), row('치명타', '캐릭터 치명 능력 적용')],
                 S01: [row('착지', '해당 위치에 남음 · 한 대상 중심 타격')], S06: [row('경로 명중', '각 적 1회 · 관통')],
                 S04: [row('급강하', '비행 중 발사 버튼 · E · 1회'), row('급강하 위력', '135~165% · 외곽으로 감소'), row('재입력 없음', '일반 비행·착지 · 75% 피해')],
@@ -10717,7 +10738,7 @@ function skillEffectRows(id, rank) {
                 S13: [row('착지 후', '평참 또는 검술 한 번'), row('후속 행동', '이동·돌격·검기 불가 · 검술 후 턴 종료')],
                 S10: [row('적', '검기 피해 · 끌기 · 근접 도달 시 베기'), row('아군', '피해 없이 이동'), row('지형', '벽·절벽 앞에서 멈춤')],
                 S11: [row('관통', '경로의 모든 적 · 대상당 1회')],
-                S14: [row('투사체 피해 감소', pct(mix(.50, .70))), row('최대 반응', `${3 + Math.floor(rr / 2)}회`), row('저장 검세 상한', pct(mix(.35, .45))), row('다음 검기', '피해·크기·속도 증가 · 1회 소모')],
+                S14: [row('검압 전체 길이', num(mix(220, 340))), row('검압 두께', '48'), row('기동', '첫 적·지형 접촉 1회'), row('차폐', '벽 너머 피해 없음')],
                 S12: [row('공전 검기', `${warriorData_1.ORBIT_BLADES[rr - 1]}개`), row('검기별 대상 명중', '최대 2회'), row('예상 표시', '중심 포물선 하나')]
             };
             return [row(s.id === 'S02' ? '기초 피해' : s.id === 'S07' ? '한 번의 베기 피해' : '기본 피해', num(dmg)), row('기력', num(mp)), ...(melee && !['S08', 'S02'].includes(s.id) ? [row('속발 / 최대 축세 피해', '88% / 135%'), row('최대 축세 사거리', '123%'), row('속발 비용', '75%'), row('속발 수세', '최대 12% 피해 감소 · 다음 내 턴까지')] : []), ...(melee ? [row('근접 사거리', num(s.radius)), row('기본 전체 각도', `${(s.mode === 'meleeWide' ? 48 : s.mode === 'counterStance' ? 40 : s.mode === 'meleeCombo' ? 22 : 25) + (rr - 1) * 1.5}°`), row('조준', '선택 각도를 중심으로 베기'), row('축세 각도 확대', '최대 +10° · 검세 경지당 +0.5°')] : []), ...(extra[id] || []), ...(s.cooldown ? [row('재사용 대기', `${s.cooldown}턴`)] : [])];
@@ -10752,11 +10773,12 @@ function skillEffectRows(id, rank) {
             M08: [row('기동 거리', '45 · 적이 접근하면 발동'), row('끌어당김', '벽에 가로막힘')],
             M09: [row('첫 설치', '발밑·착탄점에 한 쌍'), row('동시 설치', '2개 · 초과 시 오래된 진목 교체'), row('이동', '진목 위에서 E · 턴당 1회'), row('도착 기력 회복', rr < 2 ? '없음' : rr === 2 ? '8%' : '10%'), row('도착 체력 회복', rr < 4 ? '없음' : rr === 4 ? '6%' : '8%'), row('도착 이동력 회복', rr < 6 ? '없음' : rr === 6 ? '16%' : '24%'), row('도착 방호', rr === 8 ? '적 행동 종료까지' : '없음')],
             M99: [row('봉쇄 유지', `${stakeDuration(id, rr)}턴`), row('경계 피해', num(dmg * 22 / 35) + ' · 턴당 1회'), row('내부 감속', '45%'), row('내부 이동력 감소', '35%')],
+            O05: [row('나가는 피해', '28%'), row('귀환 폭발', '95% · 첫 유효 적 1회'), row('흔적 보너스', '폭발 피해 +30%'), row('회귀', '실제 발사 궤적 역순'), row('지형 미접촉', '최대 3.4초 뒤 소멸')],
             O06: [row('쇠약 유지', `${occultData_1.WEAK_TURNS[rr - 1]}턴`)], O07: [row('증오 유지', `${occultData_1.BETRAY_TURNS[rr - 1]}턴`)],
             O08: [row('현형 유지', `${occultData_1.MANIFEST_TURNS[rr - 1]}턴`)], O09: [row('섭혼 행동', `${occultData_1.ENTHRALL_ACTIONS[rr - 1]}회`), row('섭혼 전투력', pct(occultData_1.ENTHRALL_POWER[rr - 1]))],
             O10: [row('지박 유지', `${3 + Math.floor((rr - 1) * 4 / 7)}턴`), row('지박령 동시 수', '최대 4')],
             O11: [row('배회령 유지', `${occultData_1.SPIRIT_TURNS[rr - 1]}턴`)], O12: [row('등불귀 유지', `${occultData_1.SPIRIT_TURNS[rr - 1]}턴`), row('대상 수', rr < 4 ? '1명' : '최대 2명')],
-            O13: [row('호혼령 유지', `${occultData_1.SPIRIT_TURNS[rr - 1]}턴`)], O14: [row('포획 유지', `${[2, 2, 2, 3, 3, 3, 4, 4][rr - 1]}턴`), row('포획 반경', `${200 + rr * 15}`), row('기초 HP', `${Math.round(205 * (1 + .07 * (rr - 1)))} × 경지 보정`), row('피해 전달', '포획 적 각각 · 남은 먹귀 HP까지')],
+            O13: [row('호혼령 유지', `${occultData_1.SPIRIT_TURNS[rr - 1]}턴`), row('체력 회복', pct(.025 + .005 * (rr - 1))), row('기력 회복', pct(.035 + .005 * (rr - 1))), row('회복 상한', '동행마다 턴당 1회 · 중첩 불가')], O14: [row('포획 유지', `${[2, 2, 2, 3, 3, 3, 4, 4][rr - 1]}턴`), row('포획 반경', `${200 + rr * 15}`), row('기초 HP', `${Math.round(205 * (1 + .07 * (rr - 1)))} × 경지 보정`), row('피해 전달', '포획 적 각각 · 남은 먹귀 HP까지')],
             O15: [row('반향령 유지', `${occultData_1.ECHO_TURNS[rr - 1]}턴`), row('반향 피해', pct(occultData_1.ECHO_POWER[rr - 1])), row('동시 설치', `${occultData_1.ECHO_LIMIT[rr - 1]}개`)],
             O16: [row('귀결 혼령', `${10 + Math.floor(rr / 2)}기`)],
         };
@@ -11011,6 +11033,105 @@ function volleyAngles(skill, rank, angle) { const m = multishotProfile(skill, ra
     return [angle]; return Array.from({ length: m.count }, (_, i) => angle - m.halfAngle + 2 * m.halfAngle * i / (m.count - 1)); }
 function waveCount(skill, rank, wave) { const p = multishotProfile(skill, rank); if (!p)
     return 0; return Math.floor(p.count * (wave + 1) / p.waves) - Math.floor(p.count * wave / p.waves); }
+
+},
+"returningWraith": function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.initializeReturningWraith = initializeReturningWraith;
+exports.stepReturningWraith = stepReturningWraith;
+const math_1 = require("./math");
+function initializeReturningWraith(p) {
+    p.wraithVersion = 1;
+    p.wraithState = 'outbound';
+    p.wraithPath = [{ x: p.x, y: p.y }];
+    p.wraithMarked = [];
+    p.wraithCursor = 0;
+    p.wraithPause = 0;
+    p.fuseAt = undefined;
+}
+function append(p, point, force = false) { const path = p.wraithPath, last = path[path.length - 1]; if (force || Math.hypot(point.x - last.x, point.y - last.y) >= 20)
+    path.push({ ...point }); }
+function trail(p) { p.trail.push({ x: p.x, y: p.y }); if (p.trail.length > 32)
+    p.trail.shift(); }
+/** A versioned, per-shot bounded path. Old in-flight saves retain their old motion. */
+function stepReturningWraith(e, p, dt) {
+    if (p.wraithVersion !== 1)
+        return false;
+    const path = p.wraithPath, owner = e.unit(p.owner);
+    if (!owner || p.age > 10) {
+        e.remove(p);
+        return true;
+    }
+    if (p.wraithState === 'manifest') {
+        p.wraithPause = (p.wraithPause || 0) + dt;
+        if (p.wraithPause >= .32) {
+            p.wraithState = 'return';
+            p.wraithCursor = path.length - 2;
+            p.hit = [];
+            p.autonomous = true;
+        }
+        return true;
+    }
+    if (p.wraithState === 'outbound') {
+        const a = { x: p.x, y: p.y }, motion = e.advanceProjectile(p, dt), hit = e.projectileCollision(a, motion, p.radius, p.owner, [], false), end = hit || motion;
+        for (const u of e.b.units) {
+            if (!e.guidanceTarget(owner, u) || p.hit.includes(u.id))
+                continue;
+            const h = (0, math_1.segRect)(a, end, u.x - u.r, u.y - u.h, u.r * 2, u.h, p.radius + 2);
+            if (!h)
+                continue;
+            const at = { x: a.x + (end.x - a.x) * h.t, y: a.y + (end.y - a.y) * h.t };
+            e.hurt(u, p.damage * .28, p.owner, true, { ...p, autonomous: true }, at);
+            p.hit.push(u.id);
+            p.wraithMarked.push(u.id);
+            e.fx('rune', at.x, at.y, p.color, 20);
+        }
+        Object.assign(p, { x: end.x, y: end.y, vx: motion.vx, vy: motion.vy });
+        append(p, end);
+        trail(p);
+        if (hit) {
+            p.x += hit.n.x * (p.radius + 2);
+            p.y += hit.n.y * (p.radius + 2);
+            append(p, p, true);
+            p.wraithState = 'manifest';
+            p.wraithPause = 0;
+            p.vx = p.vy = 0;
+            e.fx('rune', p.x, p.y, p.color, 58);
+            e.emit('sound', { name: 'spiritSummon' });
+        }
+        else if (p.age >= 3.4 || path.length >= 255 || p.x < 0 || p.x > e.b.width || p.y < -700 || p.y > e.b.height + 60)
+            e.remove(p);
+        return true;
+    }
+    let remaining = 1100 * dt;
+    while (remaining > 0 && p.wraithCursor >= 0) {
+        const a = { x: p.x, y: p.y }, to = path[p.wraithCursor], distance = Math.hypot(to.x - a.x, to.y - a.y), ratio = distance > 0 ? Math.min(1, remaining / distance) : 1, end = { x: a.x + (to.x - a.x) * ratio, y: a.y + (to.y - a.y) * ratio };
+        const first = e.b.units.filter(u => e.guidanceTarget(owner, u)).map(u => ({ u, h: (0, math_1.segRect)(a, end, u.x - u.r, u.y - u.h, u.r * 2, u.h, p.radius + 2) })).filter(v => v.h).sort((a, b) => a.h.t - b.h.t)[0];
+        if (first) {
+            p.x = a.x + (end.x - a.x) * first.h.t;
+            p.y = a.y + (end.y - a.y) * first.h.t;
+            p.wraithBurst = true;
+            p.directId = first.u.id;
+            e.blast(p.x, p.y, p.blast, p.damage * .95, p.owner, false, p);
+            e.remove(p);
+            return true;
+        }
+        p.vx = distance ? (to.x - a.x) / distance * 1100 : 0;
+        p.vy = distance ? (to.y - a.y) / distance * 1100 : 0;
+        p.x = end.x;
+        p.y = end.y;
+        remaining -= distance * ratio;
+        if (ratio >= 1)
+            p.wraithCursor--;
+        else
+            break;
+    }
+    trail(p);
+    if (p.wraithCursor < 0)
+        e.remove(p);
+    return true;
+}
 
 },
 "skillLore": function(module,exports,require){
@@ -11606,6 +11727,21 @@ function placeStake(e, p, h) {
     e.remove(p);
     e.emit('sound', { name: 'ceramic' });
 }
+/** One shared enemy-only hop for body and first ground contacts. */
+function chainArrowHop(e, p, r) {
+    if ((p.chain || 0) >= Math.round(lerpRank(1, 5, r)))
+        return false;
+    const next = e.b.units.filter(t => e.guidanceTarget(e.unit(p.owner), t) && !p.hit.includes(t.id) && Math.hypot(t.x - p.x, t.y - t.h * .5 - p.y) <= 260 && !e.projectileCollision(p, { x: t.x, y: t.y - t.h * .5 }, 1, p.owner, [], false)).sort((a, b) => Math.hypot(a.x - p.x, a.y - a.h * .5 - p.y) - Math.hypot(b.x - p.x, b.y - b.h * .5 - p.y))[0];
+    if (!next)
+        return false;
+    const dx = next.x - p.x, dy = next.y - next.h * .5 - p.y, d = Math.max(.001, Math.hypot(dx, dy));
+    p.vx = dx / d * 900;
+    p.vy = dy / d * 900;
+    p.damage *= .72;
+    p.chain = (p.chain || 0) + 1;
+    p.autonomous = true;
+    return true;
+}
 /** Hook only redesigned impacts; collision detection and integration remain in Engine. */
 function redesignImpact(e, p, h) {
     if (!(0, exports.newSkill)(p))
@@ -11719,22 +11855,18 @@ function redesignImpact(e, p, h) {
         }
         if (p.mode === 'return' && p.hit.length <= 1)
             return true;
-        if (p.mode === 'chainArrow' && (p.chain || 0) < Math.round(lerpRank(1, 5, r))) {
-            const next = e.b.units.filter(t => e.guidanceTarget(e.unit(p.owner), t) && !p.hit.includes(t.id) && Math.hypot(t.x - p.x, t.y - t.h * .5 - p.y) <= 260).sort((a, b) => Math.hypot(a.x - p.x, a.y - a.h * .5 - p.y) - Math.hypot(b.x - p.x, b.y - b.h * .5 - p.y))[0];
-            if (next) {
-                const dx = next.x - p.x, dy = next.y - next.h * .5 - p.y, d = Math.hypot(dx, dy);
-                p.vx = dx / d * 900;
-                p.vy = dy / d * 900;
-                p.damage *= .72;
-                p.chain = (p.chain || 0) + 1;
-                p.autonomous = true;
-                return true;
-            }
-        }
+        if (p.mode === 'chainArrow' && chainArrowHop(e, p, r))
+            return true;
     }
     if (h.terrain) {
         e.damageTerrain(h.terrain, p.damage * s.terrain, 0, p.owner, p);
         e.emit('sound', { name: 'arrowhit' });
+        if (p.mode === 'chainArrow' && !p.chain) {
+            p.x += h.n.x * (p.radius + 2);
+            p.y += h.n.y * (p.radius + 2);
+            if (chainArrowHop(e, p, r))
+                return true;
+        }
         if (p.mode === 'pierce' && h.terrain.mat === 'wood' && h.terrain.w <= 90 && p.pierces < [1, 1, 2, 2, 3, 3, 4, 5][r - 1]) {
             p.pierces++;
             p.damage *= .88;
@@ -12210,15 +12342,15 @@ const notes = {
     M99: '진 안의 적을 느리게 하고 이동력을 줄입니다. 경계를 넘는 적에게 한 턴에 한 번 피해를 주며 안으로 밀어냅니다.',
     MP01: '호리병의 후속 효과와 파문·진목의 효력을 높입니다.', MP02: '담을 수 있는 기력과 매 턴 회복량을 늘립니다.', MP03: '공격 도술이 모든 적을 빗나가면 쓴 기력 일부를 돌려받습니다. 진목 설치는 제외합니다.', MP04: '도술이 적에게 명중하면 가까운 동행 한 명에게 방호를 줍니다. 가까운 동행이 없으면 자신에게 적용되며, 한 행동에 한 번 발동합니다.', MP05: '기력을 쓰는 도술로 주천을 채웁니다. 완성 후 다음 도술 한 번의 비용은 줄고 효과는 강해집니다. 무료 도술은 주천을 채우지 않습니다.',
     S00: '선택한 방향을 좁게 벱니다. 빠르게 놓으면 기력을 아끼고 수세를 취하며, 오래 모으면 더 멀고 강하게 벱니다.', S03: '전방을 넓게 벱니다. 오래 힘을 모으면 사거리와 피해가 증가합니다.',
-    S05: '앞과 뒤를 한 번씩 벱니다. 아주 가까운 적은 두 번 맞을 수 있습니다.', S07: '한 적을 연속으로 벱니다. 도중에 쓰러뜨리면 가까운 다른 적에게 이어갑니다.', S08: '자세를 잡으며 최대 체력의 2~5.5%를 회복하고 받는 피해를 줄입니다. 적의 차례에 적이 가까이 들어오면 전방 범위의 적들을 한 번 반격합니다.',
+    S05: '앞과 뒤를 한 번씩 벱니다. 아주 가까운 적은 두 번 맞을 수 있습니다.', S07: '한 적을 연속으로 벱니다. 도중에 쓰러뜨리면 가까운 다른 적에게 이어갑니다.', S08: '자세를 잡으며 최대 체력의 2~5.5%를 회복하고 받는 피해를 25~35% 줄입니다. 적의 차례에 전방의 적들을 한 번 반격하며, 피격 뒤에는 반격 사거리와 각도가 조금 넓어집니다.',
     S02: '현재 체력의 약 ⅓을 먼저 쓰고 그 힘을 일격에 더합니다. 적 방어의 35%를 무시합니다.', S01: '몸을 날려 적을 베고 착지한 자리에 남습니다.', S06: '비행 경로의 적을 한 번씩 베며 통과합니다.',
     S04: '비행 중 발사를 다시 누르면 급강하합니다. 높이 떨어질수록 충격이 강하며 재입력하지 않으면 약한 착지 공격이 됩니다.', S15: '지상의 적을 함께 밀며 전진합니다. 공중의 적은 베고 지나갑니다.',
     S13: '돌파하고 착지한 뒤 평참이나 검술을 한 번 더 씁니다. 후속 검술 전에는 이동할 수 없습니다.', S09: '전방으로 반달 모양의 검기를 날립니다.', S10: '맞은 자를 앞으로 끌어옵니다. 적은 가까이 오면 다시 베고, 아군은 피해 없이 옮깁니다. 벽과 절벽 앞에서는 멈춥니다.',
-    S11: '지나가는 모든 적을 한 번씩 관통합니다.', S14: '전방의 적 투사체를 약화하고 그 힘을 모읍니다. 모은 검세는 다음 검기 한 번의 피해·크기·속도를 높입니다.', S12: '공전하는 여러 검기를 함께 날립니다. 각 검기는 같은 적을 최대 두 번 맞힙니다.',
+    S11: '지나가는 모든 적을 한 번씩 관통합니다.', S14: '첫 적이나 지형에 닿으면 진행 방향과 수직인 짧은 검압이 펼쳐집니다. 가까운 군집을 한 번 베며 벽에 가로막힙니다.', S12: '공전하는 여러 검기를 함께 날립니다. 각 검기는 같은 적을 최대 두 번 맞힙니다.',
     SP01: '검술의 각도와 축세, 돌격 피해, 검기의 크기·속도를 강화합니다.', SP02: '최대 체력과 방어를 높이고 밀림을 줄입니다.', SP03: '이동과 도약을 강화하고 점프의 이동력 소모를 줄입니다.', SP04: '검술·돌격·검기를 이어 쓰면 합세가 완성됩니다. 기력을 회복하고 다음 기예의 비용·피해와 잠시 받는 피해를 랭크에 따라 강화합니다.', SP05: '전투마다 한 번 치명적인 피해를 버팁니다. 직후에는 잠시 받는 피해가 줄어듭니다.',
-    O01: '중력과 바람의 영향을 적게 받는 혼령탄을 날립니다.', O02: '지형과 적을 통과하며 피해를 남긴 뒤 폭발합니다. 오래 충전할수록 더 늦게 터집니다.', O03: '거꾸로 솟아오른 혼이 원혼비로 갈라져 아래를 덮칩니다.', O04: '벽을 통과하고 처음 닿은 적에게 강한 피해를 줍니다.', O05: '왕복하며 적을 관통합니다. 돌아오는 길에는 더 강한 피해를 줍니다.',
+    O01: '중력과 바람의 영향을 적게 받는 혼령탄을 날립니다.', O02: '지형과 적을 통과하며 피해를 남긴 뒤 폭발합니다. 오래 충전할수록 더 늦게 터집니다.', O03: '거꾸로 솟아오른 혼이 원혼비로 갈라져 아래를 덮칩니다.', O04: '벽을 통과하고 처음 닿은 적에게 강한 피해를 줍니다.', O05: '나갈 때 적을 관통해 28% 피해를 남기고 지형에서 멈춥니다. 실제 궤적을 거꾸로 따라 첫 적에 닿으면 95% 위력으로 폭발하며, 나갈 때 맞힌 적은 폭발 피해가 30% 증가합니다. 지형에 닿지 않으면 최대 3.4초 뒤 사라집니다.',
     O06: '공격력과 방어력을 낮추는 부적입니다. 경지가 높을수록 오래 갑니다.', O07: '맞은 적이 같은 편에게도 공격 대상으로 보입니다. 경지가 높을수록 오래 갑니다.', O08: '작은 범위의 적을 현형합니다. 숨은 혼령도 다른 동료에게 보입니다.', O09: '보스가 아닌 적을 잠시 동맹으로 돌립니다. 직접 행동한 횟수만큼 효력이 소모됩니다.', O10: '넓은 범위에 지박주를 남깁니다. 저주받은 적이 죽으면 그 자리에 지박령이 생깁니다.',
-    O11: '배회령이 소단의 행동 직후 가까운 적을 쫓아 공격합니다.', O12: '등불귀가 소단의 행동 직후 먼 적에게 추적탄을 보냅니다. 높은 경지에서는 최대 두 적을 노립니다.', O13: '호혼령이 소단의 행동 직후 가까운 아군을 보호합니다.', O14: '지형에 닿으면 주변 일반·정예 적을 한 번 삼킵니다. 2~4턴 동안 아군이 먹귀에 가한 HP 피해를 포획 적 각각에 전달합니다. 남은 먹귀 HP를 넘는 피해는 전달하지 않으며, 죽거나 만료되면 생존자를 방출합니다.', O15: '소단이 지정한 목표를 각자의 자리에서 함께 겨눕니다. 부적과 초혼은 반향하지 않습니다.', O16: '대표 혼령이 닿은 곳을 귀결점으로 삼습니다. 흩어져 돌아온 혼령이 경로와 귀결점에 피해를 줍니다.',
+    O11: '배회령이 소단의 행동 직후 가까운 적을 쫓아 공격합니다.', O12: '등불귀가 소단의 행동 직후 먼 적에게 추적탄을 보냅니다. 높은 경지에서는 최대 두 적을 노립니다.', O13: '호혼령이 소단의 행동 직후 범위 안 동행을 방호하고 체력·기력을 회복합니다. 여러 호혼령이 있어도 회복은 동행마다 턴당 한 번이며, 실제 적 피해로 잃은 체력의 회복만 기여 경험치에 반영됩니다.', O14: '지형에 닿으면 주변 일반·정예 적을 한 번 삼킵니다. 2~4턴 동안 아군이 먹귀에 가한 HP 피해를 포획 적 각각에 전달합니다. 남은 먹귀 HP를 넘는 피해는 전달하지 않으며, 죽거나 만료되면 생존자를 방출합니다.', O15: '소단이 지정한 목표를 각자의 자리에서 함께 겨눕니다. 부적과 초혼은 반향하지 않습니다.', O16: '대표 혼령이 닿은 곳을 귀결점으로 삼습니다. 흩어져 돌아온 혼령이 경로와 귀결점에 피해를 줍니다.',
     OP01: '빗나간 부적은 잠시 함정으로 남습니다. 섭혼부와 지박부에는 적용되지 않습니다.', OP02: '자신의 주박·지박이 남은 적을 소환령과 섭혼한 적이 우선 찾고 더 강하게 공격합니다.', OP03: '방호 뒤 남은 피해의 일부를 가까운 소환령과 나눕니다. 한 공격에서 나눌 수 있는 피해에는 한도가 있습니다.', OP04: '수명이 끝난 소환령에게서 기력을 돌려받고 다음 초혼 비용을 줄입니다.', OP05: '영향 아래 쓰러진 적의 잔혼 셋을 모아 다음 기예 하나를 강화합니다.'
 };
 function skillPlayNotes(id) { const s = data_1.SKILLS[id]; if (!s)
@@ -12712,6 +12844,38 @@ function drawIronFlower(c, p) {
     c.restore();
 }
 function drawRedesignProjectile(c, p) {
+    if (p.wraithVersion === 1) {
+        c.save();
+        c.strokeStyle = p.color;
+        c.fillStyle = p.color;
+        c.lineWidth = 1.5;
+        if (p.trail.length > 1) {
+            c.globalAlpha = .32;
+            c.beginPath();
+            p.trail.forEach((v, i) => i ? c.lineTo(v.x, v.y) : c.moveTo(v.x, v.y));
+            c.lineTo(p.x, p.y);
+            c.stroke();
+        }
+        c.translate(p.x, p.y);
+        const raised = p.wraithState === 'manifest', size = raised ? 30 : 17;
+        c.globalAlpha = raised ? .85 : .65;
+        c.beginPath();
+        c.moveTo(-size * .5, size * .6);
+        c.bezierCurveTo(-size, -size * .6, -size * .4, -size, 0, -size);
+        c.bezierCurveTo(size * .7, -size, size * .9, 0, size * .45, size * .65);
+        c.lineTo(0, size * .35);
+        c.closePath();
+        c.fill();
+        c.stroke();
+        c.fillStyle = '#eef0dd';
+        for (const x of [-5, 5]) {
+            c.beginPath();
+            c.arc(x, -size * .4, 2, 0, Math.PI * 2);
+            c.fill();
+        }
+        c.restore();
+        return true;
+    }
     if ((0, warriorVisuals_1.drawWarriorProjectile)(c, p))
         return true;
     const s = data_1.SKILLS[p.skill];
@@ -14114,6 +14278,8 @@ function validBattle(raw, legacyXp = false, oldXp = false) {
             return fail();
         if (u.meleeFollow !== undefined && !['landing', 'ready', 'spent'].includes(u.meleeFollow))
             return fail();
+        if (u.wardenRecoveryRound !== undefined && (!Number.isInteger(u.wardenRecoveryRound) || u.wardenRecoveryRound < 0))
+            return fail();
         if (u.martialGuard && (!nums(u.martialGuard, ['round', 'reduction']) || u.martialGuard.reduction < 0 || u.martialGuard.reduction > .425001 || u.martialGuard.counter !== undefined && typeof u.martialGuard.counter !== 'boolean' || !optionalNumber(u.martialGuard.rank, 1, 8)))
             return fail();
         if (u.bladeScreen && (!nums(u.bladeScreen, ['round', 'rank', 'hits', 'facing']) || u.bladeScreen.rank < 1 || u.bladeScreen.rank > 8 || u.bladeScreen.hits < 0 || u.bladeScreen.hits > 7 || ![-1, 1].includes(u.bladeScreen.facing)))
@@ -14175,6 +14341,10 @@ function validBattle(raw, legacyXp = false, oldXp = false) {
             return fail();
         if (q.emissions !== undefined && (!finite(q.emissions) || q.emissions < 0 || q.emissions > 100))
             return fail();
+        if (q.wraithVersion !== undefined) {
+            if (q.wraithVersion !== 1 || q.skill !== 'O05' || !['outbound', 'manifest', 'return'].includes(q.wraithState || '') || !Array.isArray(q.wraithPath) || q.wraithPath.length < 1 || q.wraithPath.length > 256 || q.wraithPath.some(v => !nums(v, ['x', 'y'])) || !Array.isArray(q.wraithMarked) || q.wraithMarked.length > 100 || q.wraithMarked.some(id => !ids.has(id)) || !Number.isInteger(q.wraithCursor) || (q.wraithCursor ?? -2) < -1 || (q.wraithCursor ?? -2) >= q.wraithPath.length || !finite(q.wraithPause) || (q.wraithPause ?? -1) < 0 || (q.wraithPause ?? -1) > 1 || q.wraithBurst !== undefined && typeof q.wraithBurst !== 'boolean')
+                return fail();
+        }
         if (q.reflectionVersion !== undefined && (q.reflectionVersion !== 1 || q.mode !== 'waveBounce' || !Number.isInteger(q.bounces) || q.bounces < 0 || q.bounces > 3))
             return fail();
         if (q.targetId !== undefined && (!safe(q.targetId) || !ids.has(q.targetId)))
@@ -14591,7 +14761,7 @@ function installWarriorSkills(skills) {
         ['S09', '월영참', 'blade', 'bladeMoon', 48, 22, 0, '검을 휘둘러 날카로운 검기를 멀리 날린다.'],
         ['S10', '견인참', 'blade', 'bladePull', 43, 32, 0, '검기에 닿은 자를 자신 앞으로 끌어온다. 적은 끌어온 뒤 다시 한 번 베어낸다.'],
         ['S11', '관통참', 'blade', 'bladePierce', 47, 34, 0, '검기가 적을 꿰뚫으며 계속 날아간다. 지나친 모든 적에게 피해를 준다.'],
-        ['S14', '검막', 'blade', 'bladeScreen', 0, 28, 175, '검압을 남겨 날아오는 공격을 받아낸다. 막아낸 힘은 다음 검기에 실린다.'],
+        ['S14', '파열참', 'blade', 'bladeBurst', 54, 36, 140, '검기가 처음 닿은 적이나 지형에서 가로 검압을 펼친다. 가까이 모인 적을 베지만 벽 너머로 퍼지지 않는다.'],
         ['S12', '회륜검기', 'blade', 'bladeOrbit', 36, 70, 0, '여러 검기를 하나의 궤도에 실어 날린다. 서로 다른 궤도로 공전하는 검기들이 적을 연이어 꿰뚫는다.']
     ];
     for (const [id, name, branch, mode, damage, cost, radius, desc] of rows) {
@@ -14749,7 +14919,7 @@ function startWarriorCast(e, s, u) {
             (0, contribution_1.healed)(e.b, u, u.id, before);
             if (u.hp > before)
                 e.fx('ring', u.x, u.y - u.h * .5, '#b8d2bc', 28);
-            u.martialGuard = { round: e.b.round, reduction: .20 + .10 * (rank - 1) / 7, counter: true, rank, angle: -(0, math_1.rad)(u.angle), span: meleeSpan(u, s, power) };
+            u.martialGuard = { round: e.b.round, reduction: .25 + .10 * (rank - 1) / 7, counter: true, rank, angle: -(0, math_1.rad)(u.angle), span: meleeSpan(u, s, power) };
             stroke(e, u, 45);
             return;
         }
@@ -14842,7 +15012,7 @@ function tickWarrior(e, dt) {
         }
         const guard = u.martialGuard;
         if (guard?.counter && e.b.side !== u.side) {
-            const range = data_1.SKILLS.S08.radius, span = guard.span ?? meleeSpan(u, data_1.SKILLS.S08), angle = guard.angle ?? -(0, math_1.rad)(u.angle);
+            const range = data_1.SKILLS.S08.radius + (guard.attacker ? 72 : 0), span = (guard.span ?? meleeSpan(u, data_1.SKILLS.S08)) + (guard.attacker ? (0, math_1.rad)(20) : 0), angle = guard.angle ?? -(0, math_1.rad)(u.angle);
             const targets = e.b.units.filter(t => foe(u, t) && e.attackAllows(t, u.id, { autonomous: true }) && meleeContains(e, u, t, range, angle, span));
             if (targets.length) {
                 guard.counter = false;
@@ -14934,6 +15104,26 @@ function land(e, p, h) {
         u.meleeFollow = 'landing';
     e.remove(p);
 }
+/** First contact releases one short, transverse, cover-aware pressure cut. */
+function burstBlade(e, p, point) {
+    const rank = p.skillRank || 1, half = 110 + (rank - 1) * 60 / 7, speed = Math.max(1, Math.hypot(p.vx, p.vy)), normal = { x: -p.vy / speed, y: p.vx / speed };
+    const a = { x: point.x - normal.x * half, y: point.y - normal.y * half }, b = { x: point.x + normal.x * half, y: point.y + normal.y * half }, attack = { ...p, autonomous: true };
+    for (const t of e.b.units) {
+        if (!e.guidanceTarget(e.unit(p.owner), t) || !e.attackAllows(t, p.owner, attack))
+            continue;
+        const hit = (0, math_1.segRect)(a, b, t.x - t.r, t.y - t.h, t.r * 2, t.h, 24);
+        if (!hit)
+            continue;
+        const contact = { x: a.x + (b.x - a.x) * hit.t, y: a.y + (b.y - a.y) * hit.t };
+        if (e.projectileCollision(point, contact, 1, p.owner, [], false))
+            continue;
+        e.hurt(t, p.damage, p.owner, true, attack, point);
+    }
+    e.emit('fx', { name: 'inkLine', x: a.x, y: a.y, x2: b.x, y2: b.y, color: '#dae1d3', size: 7 });
+    e.fx('inkImpact', point.x, point.y, '#d8e2d9', half);
+    e.emit('sound', { name: 'sword' });
+    e.remove(p);
+}
 function stepWarrior(e, p, dt) {
     if (!data_1.SKILLS[p.skill]?.martial)
         return false;
@@ -14989,6 +15179,10 @@ function stepWarrior(e, p, dt) {
                     e.impulse(t, Math.sign(p.vx || u.facing) * 300, 0);
             }
             else {
+                if (p.mode === 'bladeBurst') {
+                    burstBlade(e, p, { x: a.x + (end.x - a.x) * h.t, y: a.y + (end.y - a.y) * h.t });
+                    return true;
+                }
                 bladeHit(e, p, t);
                 if (p.mode !== 'bladePierce') {
                     e.remove(p);
@@ -15007,6 +15201,8 @@ function stepWarrior(e, p, dt) {
     if (wall) {
         if (rush)
             land(e, p, wall);
+        else if (p.mode === 'bladeBurst')
+            burstBlade(e, p, { x: wall.x + wall.n.x * (p.radius + 2), y: wall.y + wall.n.y * (p.radius + 2) });
         else {
             e.fx('spark', p.x, p.y, '#b5c6c3', 18);
             e.remove(p);

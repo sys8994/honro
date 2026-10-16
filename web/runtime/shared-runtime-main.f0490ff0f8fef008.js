@@ -334,21 +334,25 @@
 
         sig(id){return C.icon('skill:'+id,'',28);}
 
-        open(html, kind = '') { this.cancelInput(); if(!this.modal.classList.contains('open')){const active=document.activeElement;this.modalReturnFocus=active?.matches?.('button,input,select,textarea,a[href],[tabindex]')?active:this.root?.querySelector('button');} this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"><button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>${html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); this.modal.querySelector('[data-action="close"]')?.focus({preventScroll:true}); }
-        close() { this.pendingJourneyLaunch=null;const wasOpen=this.modal.classList.contains('open'),previous=this.modalReturnFocus;this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now();this.modalReturnFocus=null;if(wasOpen)(previous?.isConnected?previous:this.root?.querySelector('[data-action="pause"],button'))?.focus?.({preventScroll:true}); if(this.engine)this.updateAudio(); }
+        open(html, kind = '') { this.modalKind=kind;this.cancelInput(); if(!this.modal.classList.contains('open')){const active=document.activeElement;this.modalReturnFocus=active?.matches?.('button,input,select,textarea,a[href],[tabindex]')?active:this.root?.querySelector('button');} this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"><button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>${html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); this.modal.querySelector('[data-action="close"]')?.focus({preventScroll:true}); }
+        close() { this.modalKind='';this.pendingJourneyLaunch=null;const wasOpen=this.modal.classList.contains('open'),previous=this.modalReturnFocus;this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now();this.modalReturnFocus=null;if(wasOpen)(previous?.isConnected?previous:this.root?.querySelector('[data-action="pause"],button'))?.focus?.({preventScroll:true}); if(this.engine)this.updateAudio(); }
+        dismissModal(){if(this.modalKind==='result')this.resultContinue();else if(this.equipReturn){const context=this.equipReturn;this.equipReturn=null;this.restoreTalent(context);}else this.close();}
+        resultContinue(){if(this.resultDismissed||!this.modal.classList.contains('open'))return;this.resultDismissed=true;this.close();if(this.customMap)this.showRest();else G.HonroRestJourney.resultContinue(this);}
+        talentContext(id){const dialog=this.modal.querySelector('.dialog');return {id,scroll:dialog?.scrollTop||0,armory:$('armory')?.scrollTop||0,canvas:$('previewcanvas'),preview:this.preview,action:document.activeElement?.dataset?.action};}
+        restoreTalent(context){this.talent(context.id);const canvas=$('previewcanvas');if(context.preview&&context.canvas&&canvas){canvas.replaceWith(context.canvas);this.preview=context.preview;this.preview.h=clone(this.profile.heroes[S[context.id].cls]);}const dialog=this.modal.querySelector('.dialog');if(dialog)dialog.scrollTop=context.scroll;if($('armory'))$('armory').scrollTop=context.armory;if(context.action)this.modal.querySelector(`[data-action="${context.action}"]`)?.focus({preventScroll:true});}
         talent(id){const sk=S[id];if(!sk)return;const cls=sk.cls;this.cls=cls;const roster=this.training&&this.engine?{...this.profile,heroes:this.engine.b.heroes}:this.profile;const h=roster.heroes[cls],r=h.ranks[id]||0;this.open(G.HonroUI.talent(roster,id),'detail '+(sk.ultimate?'ultimate-dialog':'talent-dialog'));
-            this.preview=sk.passive?null:G.HonroSkillPreview.setup(this,id,h,$('previewcanvas'));
+            this.detailSkill=id;this.preview=sk.passive?null:G.HonroSkillPreview.setup(this,id,h,$('previewcanvas'));
         }
-        equip(id) { this.equipIncoming = id; this.open(`<h2>갖출 자리</h2><div class="slots">${[1, 2, 3].map(i => `<button class="slot filled" data-action="equip-confirm" data-slot="${i}"><div><strong>${S[this.profile.loadouts[this.cls][i]]?.name || '빈 자리'}</strong><small class="muted">${i + 1}번 자리</small></div></button>`).join('')}</div>`); }
+        equip(id) { this.equipReturn=this.modal.querySelector('.talent-dialog,.ultimate-dialog')?this.talentContext(id):null; this.equipIncoming = id; this.open(`<h2>갖출 자리</h2><div class="slots">${[1, 2, 3].map(i => `<button class="slot filled" data-action="equip-confirm" data-slot="${i}"><div><strong>${S[this.profile.loadouts[this.cls][i]]?.name || '빈 자리'}</strong><small class="muted">${i + 1}번 자리</small></div></button>`).join('')}</div>`); }
         changeRank(id, delta, detail) { let h = this.profile.heroes[S[id].cls]; if (delta > 0) {
             if (!C.train(h, id))
                 return;
         }
         else if (!C.untrain?.(h, id))
             return; C.sanitizeLoadout(this.profile, S[id].cls); this.saveCampAllocation(S[id].cls); if (detail) {
-            this.cls = S[id].cls;
+            const context=this.talentContext(id);this.cls = S[id].cls;
             this.showCamp(this.cls);
-            this.talent(id);
+            this.restoreTalent(context);
         }
         else {
             let y = $('armory')?.scrollTop || 0;
@@ -554,7 +558,7 @@
             if(!afterStory&&this.engine?.b.phase==='won'&&!this.dialogue){this.cancelInput();if(G.HonroStory.start(this,(G.HonroObjectiveRevision?.contentFor(this.engine.b,this.stage)||this.stage).outro,{title:this.stage.name,after:'outcome'}))return;}
             if (this.done || !this.engine)
                 return;
-            this.done = true;
+            this.done = true;this.resultDismissed=false;
             this.cancelInput();
             const b = this.engine.b, won = b.phase === 'won', st = G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage;
             if(won)G.HonroProgression.complete(b);
@@ -801,7 +805,7 @@
                 return; if (e.code === 'Escape') {
                 e.preventDefault();
                 if(this.scene?.inspectUnitId){G.HonroUnitInfo.close(this);return;}
-                this.modal.classList.contains('open') ? this.close() : this.pause();
+                this.modal.classList.contains('open') ? this.dismissModal() : this.pause();
                 return;
             } if(this.modal.classList.contains('open')){
                 // Let focused dialog controls receive Space/Enter and scrolling
@@ -841,7 +845,7 @@
                 this.dirty = true;
             } });
             window.addEventListener('blur', () => { this.cancelInput(); });
-            document.addEventListener('click', e => { let el = e.target.closest('[data-action]'); if (!el || el.disabled)
+            document.addEventListener('click', e => { if(e.target===this.modal){this.dismissModal();return;} let el = e.target.closest('[data-action]'); if (!el || el.disabled)
                 return; if(this.dialogue&&!['dialogue-prev','dialogue-next','dialogue-skip'].includes(el.dataset.action))return; const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill;  switch (a) {
                 case 'title':
                     this.showTitle();
@@ -875,7 +879,7 @@
                     this.pendingJourneyLaunch=null;this.close();
                     break;
                 case 'result-continue':
-                    if(this.customMap)this.showRest();else G.HonroRestJourney.resultContinue(this);
+                    this.resultContinue();
                     break;
                 case 'map':
                     this.showMap();
@@ -954,7 +958,7 @@
                     this.equipConfirm(+el.dataset.slot);
                     break;
                 case 'close':
-                    this.close();
+                    this.dismissModal();
                     break;
                 case 'battle-help':
                     this.battleHelp();
@@ -1126,7 +1130,7 @@
                 l[j] = old;
             else
                 l.splice(j, 1);
-        } C.sanitizeLoadout(this.profile, this.cls); this.saveCampAllocation(); this.showCamp(); }
+        } C.sanitizeLoadout(this.profile, this.cls); this.saveCampAllocation(); const context=this.equipReturn;this.equipReturn=null;this.showCamp();if(context)this.restoreTalent(context); }
         nextDialogue(){G.HonroStory.next(this);}
         export() { if (this.engine && !this.training && !this.debugMode && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
