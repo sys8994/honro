@@ -31,7 +31,7 @@ export function installWarriorSkills(skills:Record<string,Skill>){
   ['S09','월영참','blade','bladeMoon',48,22,0,'검을 휘둘러 날카로운 검기를 멀리 날린다.'],
   ['S10','견인참','blade','bladePull',43,32,0,'검기에 닿은 자를 자신 앞으로 끌어온다. 적은 끌어온 뒤 다시 한 번 베어낸다.'],
   ['S11','관통참','blade','bladePierce',47,34,0,'검기가 적을 꿰뚫으며 계속 날아간다. 지나친 모든 적에게 피해를 준다.'],
-  ['S14','검막','blade','bladeScreen',0,28,175,'검압을 남겨 날아오는 공격을 받아낸다. 막아낸 힘은 다음 검기에 실린다.'],
+  ['S14','파열참','blade','bladeBurst',54,36,140,'검기가 처음 닿은 적이나 지형에서 가로 검압을 펼친다. 가까이 모인 적을 베지만 벽 너머로 퍼지지 않는다.'],
   ['S12','회륜검기','blade','bladeOrbit',36,70,0,'여러 검기를 하나의 궤도에 실어 날린다. 서로 다른 궤도로 공전하는 검기들이 적을 연이어 꿰뚫는다.']
  ];
  for(const [id,name,branch,mode,damage,cost,radius,desc] of rows){const old=skills[id]||skills.S01,capstone=['S02','S13','S12'].includes(id);

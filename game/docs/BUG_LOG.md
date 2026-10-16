@@ -3136,3 +3136,34 @@ Official architecture image pixels remain unavailable after supported download C
 ## 2026-10-16 final Act3 integration
 
 Integrated reviewed21–30 over d7 with exact stage/source provenance and immutable prior approval/P0 contracts. Actual browser validation caught28 extended foundation lacking playProjection; added explicit projection and containing world bounds, preserving vertices/other29/library. Retained interim fixture and explicit v2 supersession. Final40 entry/browser,28 save/reunion,atomic pickup,source/9build contracts and10 authors pass. Binding/migration/environment historical fixtures,Stage8 generic pixel parity and formal encounter gaps remain explicitly incomplete; see ACT3_FINAL_VALIDATION.md and review/act3-final. User authorizes safety-checked master/Pages handoff without new features or repeated full campaign.
+
+## 2026-10-17 결과 닫기와 수련 상세 유지
+- 원인: 결과 X/Escape가 완료 전투로 돌아갔고, 수련/장착은 상세 DOM을 새로 만들며 위치와 시연을 잃었다.
+- 변경: 결과 계속/X/Escape를 중복 방지 단일 경로로 통합. 상세 상단 장착/+1/−1 SP 회수, dialog·모닥불 위치/포커스/시연 canvas 보존, 단일 세로 scroll 명시.
+- 확인: 관련 App 흐름/기본 빌드와 휠/모바일 실제 화면은 최종 최소 확인에서 구분 기록한다. 보상 지급은 기존 outcome 한 곳을 유지한다.
+
+## 2026-10-17 연환시와 조사팀 출구·소규모 편성
+- 연환시 첫 지면 접촉은 공통 적 탐색/차폐와 같은 도약 예산·72% 피해를 사용한다. 무대상/후속 지형은 종료한다.
+- 25/26/27 최종 출구는 저장된 완료 목표를 유지하며 살아 있는 현재 분할 roster 전원의 동시 도착을 요구한다. 새 입장 생산 원본/캠페인에 각각 +3/+3/+2명, 초기·생존 상한10/13/10명(행동2 유지)을 반영한다. 도착/주민 공간은 비운다.
+- 관련 핵심 확인은 최종 빌드 후 실행한다. 전 장 완주/난이도 승인과 구분한다.
+
+## 2026-10-17 담허 대사 주체
+- 9장 받이진·2막 쉼터 천뢰·3막 진목 준비/회수 문구에서 담허 자신의 시전·유지를 명시한다. scene/event ID와 대화 index, 기존 완료 상태는 보존한다. 휘겸/소단 조건문과 옛 폭포 override는 건드리지 않는다.
+
+## 2026-10-17 응수세·파열참·호혼령
+- S08 감소25–35%, 실제 피격 뒤 전방 반격 기회(+72 거리/+20°)를 보완하되1회 유지. S14는 같은 ID의 첫 접촉 횡검압 공격 파열참으로 대체하고 차폐·아군 보호를 유지한다.
+- O13은 방호에 동행 HP2.5–6%/기력3.5–7% 회복을 추가한다. 전체 호혼령을 합쳐 동행당 턴1회, 최대치 제한·기존 상처 기반 HP회복 기여XP를 사용한다. 비용/3·8·12턴 상한 근거는 SKILL_FOLLOWUPS_20261017.md.
+
+## 2026-10-17 회귀망령 역경로
+- 새 O05는 적 관통28%→지형 swept 정지→망령 출현→발사별 유한 궤적 역순으로 귀환한다. 첫 유효 적에서95% 폭발1회, 나갈 때 맞힌 현재 적은30% 추가. 반향령은 경로/표식을 새로 만들고 옛 비행탄은 기존 방식을 보존한다.
+- 경로/단계/cursor/표식 저장 검증, 지형 미접촉3.4초/총10초 종료. Native 핵심 확인: 관통/벽/역경로 폭발·표식77→100·미접촉 종료 통과. 브라우저와 저장 왕복은 별도 최소 확인에서 구분한다.
+
+## 2026-10-17 격리 기예 시연
+- 현재 액티브64개에 공용/특수 시나리오를 지정했다. 부족한 자원·파괴 지형·원거리/공중/숨은 표적·반사면·적 턴 접근/공격·전향/증오·지박 사망·먹귀 전달을 실제 Engine으로 시연한다. 고정7/11초 리셋 대신 핵심 동작 종료+여백,22초 안전 상한을 쓴다. 자탄·진목·필드와 geometry를 카메라에 포함하고 격리 조건을 표기한다.
+- Native 특수 표본22개에서 실제 발동/피해·지원/후속 행동·프로필 불변을 확인했다.64개 모두를 브라우저에서 재생한 결과는 아니다. 실제 휠/모바일/시각 확인은 Chromium socket 제한과 지원 실행 환경 시작 실패로 미실행이다.
+- 모달 종류는 명시 상태로 판별해 결과 닫기와 일반/커스텀 설정 닫기를 구분한다. SP 변경 시 현재 시연은 유지하고 다음 반복에는 새 경지를 적용한다. 장착 취소도 원래 상세로 돌아간다.
+- 추가 공중 위협은 실제 비행종(까마귀·등불)을 사용하며 생산 author의 명시 공중 pose를 보존/교차검사한다. 세 장 실제 컴파일의 추가 개체 몸통/지지와1명·2명·사망 동행 출구 판정은 통과했다.
+
+### 2026-10-17 최종 최소 확인
+- 통과: TypeScript, 분리 빌드225개 파일의 해시/재조립·Game/embedded 기본 타이틀, 모달 키보드, 커스텀맵 반환18사례, 승/패 X·Escape 중복 이동/보상 방지, 세 장 추가 편성의 원본 재현/신체·지지/1명·2명·사망 출구, O05 검증된 저장 왕복·손상 cursor 거절/반향 독립, O13 실제 회복·최대치·중첩 제한.
+- 미실행: 실제 브라우저 휠/모바일/시각, 공개 Pages 직접 확인, 정상 연속 캠페인. 로컬 Chromium은 socket 제한, 지원 확장 실행은 시작 전 파일시스템 오류로 종료됐다. 로컬 커밋과 원격/Pages 발행 결과는 별도 보고한다.

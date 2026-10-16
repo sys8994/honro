@@ -145,7 +145,7 @@ export interface Unit {
     jucheonReady?: boolean;
     swordChain?: string[];
     harmony?: boolean;
-    martialGuard?: {round:number;reduction:number;counter?:boolean;rank?:number;angle?:number;span?:number};
+    martialGuard?: {round:number;reduction:number;counter?:boolean;rank?:number;angle?:number;span?:number;attacker?:string};
     bladeScreen?: {round:number;rank:number;hits:number;facing:number};
     bladeStored?: number;
     meleeFollow?: 'landing'|'ready'|'spent';
@@ -160,6 +160,7 @@ export interface Unit {
     elite?: boolean;
     summoned?: boolean;
     summonOwner?: string;
+    wardenRecoveryRound?: number;
     summonKind?: 'stalker' | 'lantern' | 'charger' | 'warden' | 'host' | 'eater' | 'echo' | 'earthbound';
     summonExpires?: number;
     summonRank?: number;
@@ -296,6 +297,13 @@ export interface Projectile {
     turned?: boolean;
     returning?: boolean;
     outboundHits?: string[];
+    wraithVersion?: 1;
+    wraithState?: 'outbound' | 'manifest' | 'return';
+    wraithPath?: Vec[];
+    wraithMarked?: string[];
+    wraithCursor?: number;
+    wraithPause?: number;
+    wraithBurst?: boolean;
     contacts?: Vec[];
     targetPoint?: Vec;
     plannedTime?: number;

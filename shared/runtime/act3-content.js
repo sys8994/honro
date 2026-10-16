@@ -436,7 +436,8 @@ const chapters=[
    {
     "id": "waterworks-exit",
     "label": "안쪽 집하장 입구로 이동",
-    "kind": "reach"
+    "kind": "reach",
+    "allHeroes": true
    }
   ],
   "beats": {
@@ -518,7 +519,8 @@ const chapters=[
    {
     "id": "workshop-exit",
     "label": "관아 뒤뜰로 돌아가기",
-    "kind": "reach"
+    "kind": "reach",
+    "allHeroes": true
    }
   ],
   "beats": {
@@ -635,7 +637,8 @@ const chapters=[
    {
     "id": "deep-depot-exit",
     "label": "합류할 출구로 이동",
-    "kind": "reach"
+    "kind": "reach",
+    "allHeroes": true
    }
   ],
   "beats": {
@@ -672,7 +675,7 @@ const chapters=[
    ],
    [
     "담허",
-    "진목을 함부로 거두지 말게. 돌아갈 길을 확인하고 올라가세."
+    "돌아갈 길을 확인할 때까지 진목은 내가 남겨 두겠네. 위쪽 길부터 살피세."
    ]
   ],
   "summary": "거대한 인공 지하 집하장을 축지진목으로 건넜다. 가족별 이름표와 숟가락·농기구를 같은 번호로 다룬 적재 명세를 확보했다. 지상 희생자 명단과의 대조를 위해 두 기록을 합류 지점으로 가져간다.",

@@ -114,6 +114,11 @@ function drawIronFlower(c:C,p:Projectile){
  c.restore();
 }
 export function drawRedesignProjectile(c:C,p:Projectile){
+ if(p.wraithVersion===1){
+  c.save();c.strokeStyle=p.color;c.fillStyle=p.color;c.lineWidth=1.5;
+  if(p.trail.length>1){c.globalAlpha=.32;c.beginPath();p.trail.forEach((v,i)=>i?c.lineTo(v.x,v.y):c.moveTo(v.x,v.y));c.lineTo(p.x,p.y);c.stroke();}
+  c.translate(p.x,p.y);const raised=p.wraithState==='manifest',size=raised?30:17;c.globalAlpha=raised?.85:.65;c.beginPath();c.moveTo(-size*.5,size*.6);c.bezierCurveTo(-size,-size*.6,-size*.4,-size,0,-size);c.bezierCurveTo(size*.7,-size,size*.9,0,size*.45,size*.65);c.lineTo(0,size*.35);c.closePath();c.fill();c.stroke();c.fillStyle='#eef0dd';for(const x of [-5,5]){c.beginPath();c.arc(x,-size*.4,2,0,Math.PI*2);c.fill();}c.restore();return true;
+ }
  if(drawWarriorProjectile(c,p))return true;
  const s=SKILLS[p.skill];if(!s?.redesigned)return false;
  if(p.mode==='ironEmitter'){drawIronFlower(c,p);return true;}

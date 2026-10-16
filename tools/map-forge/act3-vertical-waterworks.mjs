@@ -1,3 +1,4 @@
+import {appendFollowupEncounters} from './followup-encounters-20261017.mjs';
 import {refineMaintenance25} from './stage25-maintenance.mjs';
 /** V3: solid, finite maintenance galleries. Every lit sill is a real landing.
  * Projectile and body physics remain the shared runtime's unmodified rules. */
@@ -75,7 +76,7 @@ export function buildVerticalWaterworks(g,p,id,k){const plan=VERTICAL_PLANS[id],
  }
  const bx=id===25?2610:3440,by=id===25?3600:4250;
  const broken=[[bx,by-12],[bx+48,by-12],[bx+90,by+16],[bx+69,by+40],[bx+39,by+10],[bx,by+10]];k.decor(p,s,'broken-haul-bridge',P(broken,'#887553')+line([[bx+6,by-9],[bx+43,by-9],[bx+77,by+13]],'#b39c6c',4)+P([[bx+56,by+36],[bx+142,by+106],[bx+122,by+124],[bx+49,by+59]],'#4b5043'),[bx-4,by-18,155,150],[broken]);
- s.design.act3.optionalRoutes=[{id:'observation-return',description:'낮은 천장의 전망자리에서 수직 구조를 살핀 뒤 열린 사격창으로 돌아온다.',points:(id===25?[[2110,4950],[2780,4950],[3550,4950]]:[[2510,4250],[2780,4250],[3350,4250]]).map(([x,y])=>({x,y}))}];s.design.act3.artContract={setting:'인공 지하 은폐 집하장',not:'자연동굴 또는 무명사 주조소',forms:id===25?['수직 수문축','정비창','상층 검문회랑','봉인문']:['수몰 하역장','맞은편 봉인통로','층별 회수회랑','명세 보관실'],deep:id===27};k.finish(g,p,s);
+ s.design.act3.optionalRoutes=[{id:'observation-return',description:'낮은 천장의 전망자리에서 수직 구조를 살핀 뒤 열린 사격창으로 돌아온다.',points:(id===25?[[2110,4950],[2780,4950],[3550,4950]]:[[2510,4250],[2780,4250],[3350,4250]]).map(([x,y])=>({x,y}))}];s.design.act3.artContract={setting:'인공 지하 은폐 집하장',not:'자연동굴 또는 무명사 주조소',forms:id===25?['수직 수문축','정비창','상층 검문회랑','봉인문']:['수몰 하역장','맞은편 봉인통로','층별 회수회랑','명세 보관실'],deep:id===27};k.finish(g,p,s);appendFollowupEncounters(s);
  // Disconnected crossings are graph edges; ordinary routes are the connected
  // walking components between those edges, never x-sorted marker positions.
  const walks=id===25?[

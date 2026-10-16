@@ -1,3 +1,4 @@
+import {initializeReturningWraith} from './returningWraith';
 import {passiveTuning} from './passiveBalance';
 import type {Engine} from './engine';
 import type {Projectile,Skill,Unit,Vec} from './types';
@@ -34,7 +35,7 @@ export function beginOccultCast(e:Engine,u:Unit,s:Skill,roots:Projectile[]){
  const echoes=e.b.units.filter(v=>!v.dead&&v.summonKind==='echo'&&v.summonOwner===u.id&&(v.summonExpires??0)>=e.b.round);
  for(const [i,echo] of echoes.entries()){
   const rank=clamp(echo.summonRank||1,1,8),aim=echoAim(e,echo,s,point,u.lastPower),o=e.origin(echo,aim.angle),v=e.velocity(echo,s,aim.angle,aim.power);
-  for(const root of roots){const copy:Projectile={...root,id:e.b.nextId++,x:o.x,y:o.y,vx:v.vx,vy:v.vy,prevVy:v.vy,launchX:o.x,launchY:o.y,returnX:echo.x,returnY:echo.y,damage:root.damage*ECHO_POWER[rank-1],age:0,hit:[...root.hit,echo.id],trail:[o],child:false,echoUsed:true,echoSource:echo.id,autonomous:true,echoDelay:.075*(i+1),targetPoint:{...point},targetId:prediction.unit,shot:root.shot};e.b.projectiles.push(copy);}
+  for(const root of roots){const copy:Projectile={...root,id:e.b.nextId++,x:o.x,y:o.y,vx:v.vx,vy:v.vy,prevVy:v.vy,launchX:o.x,launchY:o.y,returnX:echo.x,returnY:echo.y,damage:root.damage*ECHO_POWER[rank-1],age:0,hit:[...root.hit,echo.id],trail:[o],child:false,echoUsed:true,echoSource:echo.id,autonomous:true,echoDelay:.075*(i+1),targetPoint:{...point},targetId:prediction.unit,shot:root.shot};if(s.id==='O05')initializeReturningWraith(copy);e.b.projectiles.push(copy);}
  }
 }
 

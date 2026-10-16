@@ -239,6 +239,12 @@ function placeStake(e:Engine,p:Projectile,h:Collision){
  e.emit('sound',{name:'ceramic'});
 }
 
+/** One shared enemy-only hop for body and first ground contacts. */
+function chainArrowHop(e:Engine,p:Projectile,r:number){
+ if((p.chain||0)>=Math.round(lerpRank(1,5,r)))return false;
+ const next=e.b.units.filter(t=>e.guidanceTarget(e.unit(p.owner),t)&&!p.hit.includes(t.id)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260&&!e.projectileCollision(p,{x:t.x,y:t.y-t.h*.5},1,p.owner,[],false)).sort((a,b)=>Math.hypot(a.x-p.x,a.y-a.h*.5-p.y)-Math.hypot(b.x-p.x,b.y-b.h*.5-p.y))[0];
+ if(!next)return false;const dx=next.x-p.x,dy=next.y-next.h*.5-p.y,d=Math.max(.001,Math.hypot(dx,dy));p.vx=dx/d*900;p.vy=dy/d*900;p.damage*=.72;p.chain=(p.chain||0)+1;p.autonomous=true;return true;
+}
 /** Hook only redesigned impacts; collision detection and integration remain in Engine. */
 export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  if(!newSkill(p))return false;
@@ -288,13 +294,11 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
   if(p.mode==='push'){e.impulse(target,Math.sign(p.vx)*280,-130);target.shove={autonomous:e.autonomousAttack(p.owner,p),owner:p.owner,damage:(before-target.hp)*.18,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
   if(p.mode==='pierce'&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=.88;return true;}
   if(p.mode==='return'&&p.hit.length<=1)return true;
-  if(p.mode==='chainArrow'&&(p.chain||0)<Math.round(lerpRank(1,5,r))){
-   const next=e.b.units.filter(t=>e.guidanceTarget(e.unit(p.owner),t)&&!p.hit.includes(t.id)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260).sort((a,b)=>Math.hypot(a.x-p.x,a.y-a.h*.5-p.y)-Math.hypot(b.x-p.x,b.y-b.h*.5-p.y))[0];
-   if(next){const dx=next.x-p.x,dy=next.y-next.h*.5-p.y,d=Math.hypot(dx,dy);p.vx=dx/d*900;p.vy=dy/d*900;p.damage*=.72;p.chain=(p.chain||0)+1;p.autonomous=true;return true;}
-  }
+  if(p.mode==='chainArrow'&&chainArrowHop(e,p,r))return true;
  }
  if(h.terrain){e.damageTerrain(h.terrain,p.damage*s.terrain,0,p.owner,p);
   e.emit('sound',{name:'arrowhit'});
+  if(p.mode==='chainArrow'&&!p.chain){p.x+=h.n.x*(p.radius+2);p.y+=h.n.y*(p.radius+2);if(chainArrowHop(e,p,r))return true;}
   if(p.mode==='pierce'&&h.terrain.mat==='wood'&&h.terrain.w<=90&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=.88;p.x+=Math.sign(p.vx)*(h.terrain.w+8);return true;}
  }
  if(p.mode==='breakArrow'){

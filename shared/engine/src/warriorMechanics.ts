@@ -77,7 +77,7 @@ export function startWarriorCast(e:Engine,s:Skill,u:Unit){
    const rank=u.ranks[s.id]||1,before=u.hp;
    u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*(.02+.005*(rank-1))));
    healed(e.b,u,u.id,before);if(u.hp>before)e.fx('ring',u.x,u.y-u.h*.5,'#b8d2bc',28);
-   u.martialGuard={round:e.b.round,reduction:.20+.10*(rank-1)/7,counter:true,rank,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;
+   u.martialGuard={round:e.b.round,reduction:.25+.10*(rank-1)/7,counter:true,rank,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;
   }
   if(s.mode==='bladeScreen'){u.bladeScreen={round:e.b.round,rank:u.ranks[s.id]||1,hits:0,facing:u.facing};stroke(e,u,110);return;}
   const lifeCost=s.mode==='lifeSlash'?Math.floor(u.hp/3):0;
@@ -122,7 +122,7 @@ export function tickWarrior(e:Engine,dt:number){
   }
   const guard=u.martialGuard;
   if(guard?.counter&&e.b.side!==u.side){
-   const range=SKILLS.S08.radius,span=guard.span??meleeSpan(u,SKILLS.S08),angle=guard.angle??-rad(u.angle);
+   const range=SKILLS.S08.radius+(guard.attacker?72:0),span=(guard.span??meleeSpan(u,SKILLS.S08))+(guard.attacker?rad(20):0),angle=guard.angle??-rad(u.angle);
    const targets=e.b.units.filter(t=>foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,range,angle,span));
    if(targets.length){guard.counter=false;for(const t of targets)strike(e,u,t,52*u.attack*(1.10+.20*((guard.rank||1)-1)/7),SKILLS.S08,e.b.shot,true);stroke(e,u,range,Math.cos(angle)<0?-1:1,'#dbe2dd',0,angle,span);}
   }
@@ -173,6 +173,18 @@ function land(e:Engine,p:Projectile,h?:Collision){
  if(s.id==='S13')u.meleeFollow='landing';
  e.remove(p);
 }
+/** First contact releases one short, transverse, cover-aware pressure cut. */
+function burstBlade(e:Engine,p:Projectile,point:Vec){
+ const rank=p.skillRank||1,half=110+(rank-1)*60/7,speed=Math.max(1,Math.hypot(p.vx,p.vy)),normal={x:-p.vy/speed,y:p.vx/speed};
+ const a={x:point.x-normal.x*half,y:point.y-normal.y*half},b={x:point.x+normal.x*half,y:point.y+normal.y*half},attack={...p,autonomous:true};
+ for(const t of e.b.units){if(!e.guidanceTarget(e.unit(p.owner),t)||!e.attackAllows(t,p.owner,attack))continue;
+  const hit=segRect(a,b,t.x-t.r,t.y-t.h,t.r*2,t.h,24);if(!hit)continue;
+  const contact={x:a.x+(b.x-a.x)*hit.t,y:a.y+(b.y-a.y)*hit.t};
+  if(e.projectileCollision(point,contact,1,p.owner,[],false))continue;
+  e.hurt(t,p.damage,p.owner,true,attack,point);
+ }
+ e.emit('fx',{name:'inkLine',x:a.x,y:a.y,x2:b.x,y2:b.y,color:'#dae1d3',size:7});e.fx('inkImpact',point.x,point.y,'#d8e2d9',half);e.emit('sound',{name:'sword'});e.remove(p);
+}
 export function stepWarrior(e:Engine,p:Projectile,dt:number){
  if(!SKILLS[p.skill]?.martial)return false;
  const u=e.unit(p.owner);if(!u||u.dead){if(u)u.airborne=false;e.remove(p);return true;}
@@ -193,12 +205,12 @@ export function stepWarrior(e:Engine,p:Projectile,dt:number){
    if(rush){if(p.mode==='warriorDive')continue;if(p.mode==='warriorLeap'){p.x=a.x+(end.x-a.x)*h!.t;p.y=a.y+(end.y-a.y)*h!.t;land(e,p,{...h!,x:p.x,y:p.y,unit:t});return true;}
     e.hurt(t,p.damage,p.owner,true,p,end);stroke(e,{...u,x:end.x,y:end.y+u.h*.5},70);
     if(p.mode==='warriorDrive'&&!t.fixed&&!t.airborne&&!t.jumping&&e.surface(t.x,t.y-5,t.y+5))e.impulse(t,Math.sign(p.vx||u.facing)*300,0);
-   }else {bladeHit(e,p,t);if(p.mode!=='bladePierce'){e.remove(p);return true;}}
+   }else {if(p.mode==='bladeBurst'){burstBlade(e,p,{x:a.x+(end.x-a.x)*h!.t,y:a.y+(end.y-a.y)*h!.t});return true;}bladeHit(e,p,t);if(p.mode!=='bladePierce'){e.remove(p);return true;}}
   }
  }
  p.x=end.x;p.y=end.y;
  if(rush){u.x=p.x;u.y=p.y+u.h*.5;u.facing=p.vx>=0?1:-1;}
- if(wall){if(rush)land(e,p,wall);else {e.fx('spark',p.x,p.y,'#b5c6c3',18);e.remove(p);}return true;}
+ if(wall){if(rush)land(e,p,wall);else if(p.mode==='bladeBurst')burstBlade(e,p,{x:wall.x+wall.n.x*(p.radius+2),y:wall.y+wall.n.y*(p.radius+2)});else {e.fx('spark',p.x,p.y,'#b5c6c3',18);e.remove(p);}return true;}
  p.trail.push({x:p.x,y:p.y});if(p.trail.length>(rush?26:18))p.trail.shift();
  if(p.age>10||p.y>e.b.height+80||p.x< -150||p.x>e.b.width+150||p.y< -1700){if(rush){u.airborne=false;e.recover(u);}e.remove(p);}
  return true;

@@ -1,3 +1,4 @@
+import {initializeReturningWraith,stepReturningWraith} from './returningWraith';
 import {captureEater,releaseEater,migrateEaters,eaterTuning} from './eaterMechanics';
 import {waterfallSheet,insideWater,advanceWaterfall,ensureWaterfallBody} from './waterfallPhysics';
 import {HERO_ARMOR_CAP,passiveTuning} from './passiveBalance';
@@ -309,7 +310,7 @@ export class Engine {
             age+=dt;
             // Match live pre-motion triggers, including reverseGhost's timed airburst.
             const fuse=(skill.fuse??0)*(skill.mode==='phaseWraith'?(.55+power*1.05):1);
-            if((fuse>0&&age>=fuse)||(skill.mode==='reverseGhost'&&(y<-420||age>2.55))){if(collect)points.push({x,y});return {points,x,y,closest,apex:ap};}
+            if((skill.id==='O05'&&age>=3.4)||(fuse>0&&age>=fuse)||(skill.mode==='reverseGhost'&&(y<-420||age>2.55))){if(collect)points.push({x,y});return {points,x,y,closest,apex:ap};}
             if(skill.mode==='homing'&&i*dt>.12&&!this.inWaterfall({x,y})){const v=this.steer(x,y,vx,vy,u,dt,ignored);vx=v.vx;vy=v.vy;}
             const gravity=skill.gravity??1;
             const motion = this.advanceProjectile({ x, y, vx,vy,wind: meteor ? 0 : skill.wind, gravityScale:gravity,drag:dragFor(skill,meteor?'meteor':skill.mode),skill:skill.id,mode:skill.mode },dt);
@@ -334,7 +335,7 @@ export class Engine {
             if (target)
                 closest = Math.min(closest, Math.hypot(nx - target.x, ny - (target.y - target.h * .5)));
             const phase=skill.phase;
-            let h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, !body&&phase!=='terrain', !body);
+            let h = phase==='all' ? null : this.collision({ x, y }, { x: nx, y: ny }, meteor ? 22 : r, u.id, ignored, !ignoreUnits&&skill.id!=='O05'&&!SUMMONS.has(skill.mode)&&skill.mode!=='charge'&&skill.mode!=='spin', skips, !body&&phase!=='terrain', !body);
             if(body&&phase!=='all'&&phase!=='terrain'){const bodyHit=this.bodyFlightCollision(u,{x,y},{x:nx,y:ny});if(bodyHit&&(!h||bodyHit.t<h.t))h=bodyHit;}
             if (h) {
                 if ((skill.mode === 'bounce' || skill.mode === 'ricochet' || skill.mode === 'shieldthrow') && h.terrain && bounce === 0) {
@@ -493,7 +494,7 @@ export class Engine {
         b.shotDamage = {}; b.reviewDamage={}; b.reviewFocus=undefined;
         b.shots += u.side === 0 ? 1 : 0;
         const origin = this.projectileOrigin(u, s, u.angle);
-        const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; projectileCredit(b,p,u);b.projectiles.push(p); return p; };
+        const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; if(s.id==='O05')initializeReturningWraith(p);projectileCredit(b,p,u);b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
             const plan=multishotProfile(s,u.ranks[s.id]||1)!;
             for(const angle of volleyAngles(s,plan.rank,u.angle))make(angle,e.damage*plan.damageScale);
@@ -735,7 +736,7 @@ export class Engine {
         if (u.dead || amount <= 0 || (damageSource!=='eaterTransfer'&&!this.attackAllows(u,owner,p||provenance)))
             return;
         const rawSrc = this.unit(owner), src = this.creditUnit(rawSrc);
-        let dmg = amount;
+        let dmg = amount;if(p?.wraithBurst&&p.wraithMarked?.includes(u.id)&&this.guidanceTarget(rawSrc,u))dmg*=1.30;
         const canCritical=damageSource==='normal'&&!!src&&src.side!==1&&!rawSrc?.summoned&&(!!p||direct);
         const crit=canCritical?critProfile(p||{skill:'',skillRank:1} as Projectile,src!):undefined;
         const critical=canCritical&&this.random()<crit!.chance;
@@ -801,6 +802,7 @@ export class Engine {
         if(debug.HONRO_DEBUG_DAMAGE){const traces=debug.HONRO_DAMAGE_TRACE??=[];traces.push({skill:p?.skill||damageSkill||'(direct)',source:owner,target:u.id,...layers,finalDamage:dmg});if(traces.length>100)traces.shift();debug.HONRO_DAMAGE_TRACE=traces;}
         const contribution=beginHit(this.b,u,rawSrc,src,p,attack,owner,layers.finalDamage,dmg,defenseMultiplier,armor,armorWithoutSupport,contributionDamageLimit,damageSource==='normal');
         if(u.summonKind==='eater'){dmg=Math.min(dmg,u.hp);u.shield=0;}
+        if(u.martialGuard?.counter&&u.martialGuard.round>=this.b.round&&rawSrc&&this.guidanceTarget(u,rawSrc))u.martialGuard.attacker=rawSrc.id;
         const absorbed = damageSource==='eaterTransfer'?0:Math.min(u.shield, dmg);
         u.shield -= absorbed;
         dmg -= absorbed;
@@ -1200,7 +1202,7 @@ export class Engine {
         }
         if(t.stage==='attack'){
             const center={x:u.x,y:u.y-u.h*.5};
-            if(kind==='warden'){let n=0;for(const ally of this.actors(0)){if(Math.hypot(ally.x-center.x,ally.y-ally.h*.5-center.y)>cfg.reach)continue;const shieldBefore=ally.shield;ally.shield=Math.max(ally.shield,Math.round(22+u.attack*10));shielded(b,ally,u.summonOwner||u.id,shieldBefore);(ally as any).honroSoulAffinityOwner=u.summonOwner||u.id;(ally as any).honroSoulDefenseOwner=u.summonOwner||u.id;ally.shieldUntil=b.teamEnds[1]+1;ally.soulAffinityBonus=Math.max(ally.soulAffinityBonus||0,.06+.01*(u.summonRank||1));ally.soulDefenseBonus=Math.max(ally.soulDefenseBonus||0,.06+.01*(u.summonRank||1));ally.soulBonusUntil=b.round+1;n++;}this.fx('ring',center.x,center.y,'#9ccfd7',220);this.emit('sound',{name:'spiritSummon'});this.message(`${u.name} · ${n}명 방호`);}
+            if(kind==='warden'){let n=0;for(const ally of this.actors(0)){if(Math.hypot(ally.x-center.x,ally.y-ally.h*.5-center.y)>cfg.reach)continue;const shieldBefore=ally.shield;if(!ally.summoned&&!ally.enthrall&&ally.wardenRecoveryRound!==b.round){ally.wardenRecoveryRound=b.round;const before=ally.hp,r=Math.max(1,Math.min(8,u.summonRank||1));ally.hp=Math.min(ally.maxHp,ally.hp+Math.round(ally.maxHp*(.025+.005*(r-1))));ally.focus=Math.min(ally.maxFocus,ally.focus+Math.round(ally.maxFocus*(.035+.005*(r-1))));healed(b,ally,u.summonOwner||u.id,before);if(ally.hp>before)this.fx('text',ally.x,ally.y-ally.h-10,'#b8d7bc',12,'+'+(ally.hp-before));}ally.shield=Math.max(ally.shield,Math.round(22+u.attack*10));shielded(b,ally,u.summonOwner||u.id,shieldBefore);(ally as any).honroSoulAffinityOwner=u.summonOwner||u.id;(ally as any).honroSoulDefenseOwner=u.summonOwner||u.id;ally.shieldUntil=b.teamEnds[1]+1;ally.soulAffinityBonus=Math.max(ally.soulAffinityBonus||0,.06+.01*(u.summonRank||1));ally.soulDefenseBonus=Math.max(ally.soulDefenseBonus||0,.06+.01*(u.summonRank||1));ally.soulBonusUntil=b.round+1;n++;}this.fx('ring',center.x,center.y,'#9ccfd7',220);this.emit('sound',{name:'spiritSummon'});this.message(`${u.name} · ${n}명 방호`);}
             else if(kind==='lantern'){
                 const targets=this.actors(1).filter(e=>this.attackAllows(e,u.id)&&Math.hypot(e.x-center.x,e.y-e.h*.5-center.y)<=cfg.reach+e.r).sort((a,c)=>(c.curseOwner===u.summonOwner?1:0)-(a.curseOwner===u.summonOwner?1:0)).slice(0,(u.summonRank||1)<4?1:2);
                 for(const target of targets)this.launchSummonBolt(u,target);
@@ -1569,6 +1571,7 @@ export class Engine {
             if(u)u.airborne=false;this.remove(p);
             return;
         }
+        if(stepReturningWraith(this,p,dt))return;
         if(p.fuseAt!==undefined&&p.age>=p.fuseAt){
             if(p.mode==='phaseWraith'){this.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);this.remove(p);return;}
             if(SUMMONS.has(p.mode)){this.occultImpact(p);return;}

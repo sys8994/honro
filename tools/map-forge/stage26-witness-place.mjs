@@ -1,3 +1,4 @@
+import {appendFollowupEncounters} from './followup-encounters-20261017.mjs';
 /** Stage 26: one open work hollow, an earth-covered record room and an inhabited refuge.
  * Existing testimony and physical cargo ownership remain runtime policy. */
 import {readFile,writeFile} from 'node:fs/promises';
@@ -61,14 +62,14 @@ export function rebuildWitnessPlace(g,p,input){
  'casting-yard-tools':[[2540,2700],[3050,2700],[3290,2300]],
  'tally-store-remnants':[[4090,2316],[4380,2218],[5220,2150]],
  'surface-exit-remnants':[[5810,2410],[6250,2356]]};
- for(const group of s.design.act3.encounterPlan.groups){group.members.forEach((m,i)=>{[m.x,m.y]=positions[group.id][i];});}
- const count={};for(const u of s.units.filter(u=>u.team==='enemy')){const id=u.encounterGroup,i=count[id]||0;count[id]=i+1;[u.x,u.y]=positions[id][i];delete u.stageOverrides.honroEncounterSupport;}
+ for(const group of s.design.act3.encounterPlan.groups){if(positions[group.id])group.members.forEach((m,i)=>{[m.x,m.y]=positions[group.id][i];});}
+ const count={};for(const u of s.units.filter(u=>u.team==='enemy')){const id=u.encounterGroup,i=count[id]||0;count[id]=i+1;if(positions[id])[u.x,u.y]=positions[id][i];delete u.stageOverrides.honroEncounterSupport;}
  s.design.act3.requiredRoute=[260,780,1050,1440,1770,2020,2250,2540,3050,3370,3700,4020,4500,4760,5260,5620,6100,6500,6680].map(x=>({x,y:floorY(x)}));
  s.design.act3.optionalRoutes=[{id:'open-work-loft-loop',points:[[2050,2400],[2420,2300],[2800,2300],[3430,2300],[3750,2360]].map(([x,y])=>({x,y}))}];
  s.design.act3.mainBuildings=['ancestor-record-cabinet','burnt-workshop-frame','artisan-refuge-house'];s.design.act3.bridges=['work-loft'];
  delete s.design.act3.refinement;delete s.design.act3.koreanTown;
  s.design.act3.artContract={setting:'묘역 기록실과 주민의 불탄 공방',forms:['묘역 비탈','낮은 기록실','열린 작업마당','불탄 골조','작은 화덕','초가 퇴칸'],not:'무명사의 대종 주조 현장 또는 종 거푸집'};
- s.anchors.start={x:260,y:2300};settle(g,p,s);s.initialState.honroStage26PlaceRevision=2;authorEncounters(g,p,s);
+ s.anchors.start={x:260,y:2300};settle(g,p,s);appendFollowupEncounters(s);s.initialState.honroStage26PlaceRevision=2;authorEncounters(g,p,s);
  return s;
 }
 export function applyWitnessPlace(g,input){const p=clone(input),i=p.stages.findIndex(s=>s.id==='stage-26');p.library=p.library.filter(a=>!a.id.startsWith(PREFIX));p.stages[i]=rebuildWitnessPlace(g,p,p.stages[i]);const one=g.HonroTerrainDomain.author({...p,stages:[p.stages[i]]});p.stages[i]=one.stages[0];return g.HonroMaps.finalize(p);}

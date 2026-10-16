@@ -167,6 +167,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
         for(const key of ['jucheonReady','harmony'] as const)if(u[key]!==undefined&&typeof u[key]!=='boolean')return fail();
         if(u.swordChain&&(!Array.isArray(u.swordChain)||u.swordChain.length>2||new Set(u.swordChain).size!==u.swordChain.length||u.swordChain.some(v=>!['sword','rush','blade'].includes(v))))return fail();
         if(u.meleeFollow!==undefined&&!['landing','ready','spent'].includes(u.meleeFollow))return fail();
+        if(u.wardenRecoveryRound!==undefined&&(!Number.isInteger(u.wardenRecoveryRound)||u.wardenRecoveryRound<0))return fail();
         if(u.martialGuard&&(!nums(u.martialGuard,['round','reduction'])||u.martialGuard.reduction<0||u.martialGuard.reduction>.425001||u.martialGuard.counter!==undefined&&typeof u.martialGuard.counter!=='boolean'||!optionalNumber(u.martialGuard.rank,1,8)))return fail();
         if(u.bladeScreen&&(!nums(u.bladeScreen,['round','rank','hits','facing'])||u.bladeScreen.rank<1||u.bladeScreen.rank>8||u.bladeScreen.hits<0||u.bladeScreen.hits>7||![-1,1].includes(u.bladeScreen.facing)))return fail();
         if(u.meleeAction){const a=u.meleeAction;if(!SKILLS[a.skill]?.martial||!nums(a,['elapsed','index','damage','range','power','shot'])||a.elapsed<0||a.elapsed>5||a.index<0||a.index>8||a.damage<0||a.range<0||a.power<0||a.power>1||a.target!==undefined&&!ids.has(a.target)||!optionalNumber(a.lifeCost,0,50000))return fail();}
@@ -200,6 +201,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
             return fail();
         if (q.emissions !== undefined && (!finite(q.emissions) || q.emissions < 0 || q.emissions > 100))
             return fail();
+        if(q.wraithVersion!==undefined){if(q.wraithVersion!==1||q.skill!=='O05'||!['outbound','manifest','return'].includes(q.wraithState||'')||!Array.isArray(q.wraithPath)||q.wraithPath.length<1||q.wraithPath.length>256||q.wraithPath.some(v=>!nums(v,['x','y']))||!Array.isArray(q.wraithMarked)||q.wraithMarked.length>100||q.wraithMarked.some(id=>!ids.has(id))||!Number.isInteger(q.wraithCursor)||(q.wraithCursor??-2)< -1||(q.wraithCursor??-2)>=q.wraithPath.length||!finite(q.wraithPause)||(q.wraithPause??-1)<0||(q.wraithPause??-1)>1||q.wraithBurst!==undefined&&typeof q.wraithBurst!=='boolean')return fail();}
         if(q.reflectionVersion!==undefined&&(q.reflectionVersion!==1||q.mode!=='waveBounce'||!Number.isInteger(q.bounces)||q.bounces<0||q.bounces>3))return fail();
         if(q.targetId!==undefined&&(!safe(q.targetId)||!ids.has(q.targetId)))return fail();
         if(q.drag!==undefined&&(!finite(q.drag)||q.drag<0||q.drag>5)||q.gravityScale!==undefined&&(!finite(q.gravityScale)||Math.abs(q.gravityScale)>10)||q.skillRank!==undefined&&(!Number.isInteger(q.skillRank)||q.skillRank<1||q.skillRank>8))return fail();
