@@ -1,0 +1,43 @@
+
+> encounter:review
+> node tools/testing/encounter-evidence-gate.mjs check _local/reports/stage27-final-encounter.json
+
+{
+  "schema": "honro-encounter-evidence/v1",
+  "status": "blocked",
+  "quality": "not-automatically-assessed",
+  "sourceDigest": "da46f3719e4921675be972b8ebf1e5ca8bcb1b088e32d15b2071bece542ed110",
+  "targetDigest": "022673e7cce7119741cc4b9fbe6d27dec72a028d22703b0d873c2b023ecd1522",
+  "reviewDigest": "3c2a478c21a2e9cdf57981a5137ea0b57730c4207715ed07d8b7b7e7e08d8e9c",
+  "errors": [
+    "authors: Implementation authors required for independent review",
+    "current target: Stale source or built targets",
+    "stage 27 cluster entry-hauling-remnants: Unverified cluster or mismatched source member IDs",
+    "stage 27 cluster lower-loading-store: Unverified cluster or mismatched source member IDs",
+    "stage 27 cluster sealed-manifest-store: Unverified cluster or mismatched source member IDs",
+    "stage 27 cluster high-numbered-store: Unverified cluster or mismatched source member IDs",
+    "stage 27 same-camera: Missing, blocked or unverified required check",
+    "stage 27 terrain-and-roles: Missing, blocked or unverified required check",
+    "stage 27 activation-and-action-cap: Missing, blocked or unverified required check",
+    "stage 27 normal-resource-play: Missing, blocked or unverified required check",
+    "stage 27 warning-opportunity-and-occupancy: Missing, blocked or unverified required check",
+    "stage 27 continue-death-and-old-save: Missing, blocked or unverified required check",
+    "stage 27 objectives-and-growth: Missing, blocked or unverified required check",
+    "stage 27 game-workshop-playtest: Missing, blocked or unverified required check",
+    "stage 27 visual-quality: Missing, blocked or unverified required check",
+    "stage 27 tactical-quality: Missing, blocked or unverified required check",
+    "stage 27 runtime-wave-inventory: Missing, blocked or unverified required check",
+    "stage 27 build-and-regressions: Missing, blocked or unverified required check",
+    "independent review: Different reviewer and actual review time required"
+  ],
+  "limits": [
+    "File hashes and schemas do not prove truthful observations, reviewer identity or design quality.",
+    "Runtime-only wave/phase completeness, recorded spawnedIds versus raw births, and actual tactical/visual quality require independent source and evidence review.",
+    "This gate does not replace verify, browser/performance checks, final approval or Pages verification."
+  ]
+}
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
