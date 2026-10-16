@@ -158794,7 +158794,7 @@
       },
       "material": "wood",
       "breakable": false,
-      "oneWay": false,
+      "oneWay": true,
       "bounds": {
         "x": 4040,
         "y": 2420,
@@ -159099,7 +159099,7 @@
       },
       "material": "stone",
       "breakable": false,
-      "oneWay": false,
+      "oneWay": true,
       "bounds": {
         "x": 5180,
         "y": 2130,

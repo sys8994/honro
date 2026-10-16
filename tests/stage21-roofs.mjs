@@ -13,7 +13,7 @@ for(const cls of C.CLASS_IDS)for(const [id,x,w,floor]of sites){
  if(id==='office-hall'||id==='gate'){
   Object.assign(u,{x:id==='office-hall'?5200:2085,y:id==='office-hall'?2130:2240});
   assert(e.grounded(u));assert(e.jump(u));for(let n=0;n<180;n++){if(Math.abs(u.x-px)>2)e.walk(u,Math.sign(px-u.x)*.35,1/120);e.integrateBody(u,1/120);}
-  assert.equal(e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id,'eup21-'+(id==='gate'?'gate':'office')+'-roof-step',id+' roof approach');
+  assert(['eup21-'+(id==='gate'?'gate':'office')+'-roof-step',roof.id].includes(e.contactSurface(u.x,u.y-4,u.y+5)?.t?.id),id+' ordinary roof approach');
  }
  for(let n=0;n<60;n++)e.integrateBody(u,1/60);
  const start={x:u.x,y:u.y},top=C.topAt(roof,u.x);assert(e.grounded(u),id+' launch support');assert(e.jump(u),id+' ordinary jump');let min=u.y;

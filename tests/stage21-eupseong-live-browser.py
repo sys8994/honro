@@ -1,13 +1,13 @@
 """Actual Game and Workshop iframe HUD from observed normal-input snapshots.
 No actor edits. Restored snapshots are render evidence, not browser playthrough.
 """
-import json,hashlib
+import json,hashlib,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch
 from story_browser_server import story_base_url
-out=ROOT/'_local/reports/stage21-eupseong/live-browser';out.mkdir(parents=True,exist_ok=True)
-trace=json.loads((ROOT/'_local/reports/stage21-eupseong/fullplay/trace.json').read_text())
+out=ROOT/os.environ.get('HONRO_STAGE21_BROWSER_OUT','_local/reports/stage21-eupseong/live-browser');out.mkdir(parents=True,exist_ok=True)
+trace=json.loads((ROOT/os.environ.get('HONRO_STAGE21_TRACE','_local/reports/stage21-eupseong/fullplay/trace.json')).read_text())
 assert hashlib.sha256((ROOT/'shared/data/campaign.json').read_bytes()).hexdigest()==trace['source']['campaign']
 select={}
 for row in trace['snapshots']:
@@ -16,7 +16,7 @@ for row in trace['snapshots']:
  if goal not in select:select[goal]=row
 assert len(select)==3
 select["market"]=next(r for r in trace["snapshots"] if r["label"]=="round:7")
-select["office"]=next(r for r in trace["snapshots"] if r["label"]=="round:9")
+select["office"]=next(r for r in trace["snapshots"] if r["label"]=="round:"+str(trace["final"]["round"]))
 setup='''p=>{const a=HonroApp;a.frame=()=>{};a.profile={...HONRO_TOOLS.fresh(),...p};a.continue();a.turnNotice=null;a.updateHUD(true);const before=JSON.stringify(a.engine.b.units.map(u=>[u.id,u.x,u.y,u.hp]));for(let i=0;i<120;i++)a.scene.render(a.engine,1/60,a.selected,.6,false,0);if(before!==JSON.stringify(a.engine.b.units.map(u=>[u.id,u.x,u.y,u.hp])))throw Error('Render changed actor state');return{goal:document.querySelector('#objective-text').textContent,party:a.engine.heroesAlive().map(u=>u.id),targets:a.scene.missionTargets,debug:a.debugMode,stage:a.engine.b.honroStage};}'''
 results=[];errors=[]
 with sync_playwright() as p:

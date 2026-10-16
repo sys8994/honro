@@ -44,6 +44,7 @@ export function authorStage21Eupseong(project,g){
  plinth+=P([[5190,2174],[5550,2174],[5550,ground(5550)],[5190,ground(5190)]],'#657963')+P([[5520,2174],[5550,2174],[5572,ground(5550)-16],[5550,ground(5550)]],'#445e4c');
  for(let row=0;row<4;row++)for(let j=0;j<4;j++){const x=5197+j*86+(row%2?7:0),y=2181+row*43;plinth+=P([[x,y],[x+75,y-2],[x+79,y+32],[x+3,y+37]],row%2?'#7a886d':'#879177')+line([[x+5,y+4],[x+67,y+2]],'#a1a68a',3);}
  plinth+=R(5189,2172,362,10,'#465e4c');put(p,s,asset('eup21:office-plinth','관아 석조 기단·앞쪽 낮은 통과 길',plinth,[officeTop],[5180,2130,400,310],'stone'),'office-plinth',0,0);
+ for(const id of ['eup21:loading-deck','eup21:office-plinth'])p.library.find(a=>a.id===id).oneWay=true;
  const crate=[[4290,2340],[4360,2340],[4360,2420],[4290,2420]];put(p,s,asset('eup21:deck-crate','마루 위 실제 화물 엄폐',P(crate,'#756747','#3d4a3c',3)+R(4286,2337,78,10,'#a49467')+line([[4295,2353],[4355,2409]],'#b0a070',7)+R(4290,2380,70,7,'#46503b'),[crate],[4285,2335,82,88]),'deck-crate',0,0,1,'prop');
  for(const row of [['outside-stall',440,390,175,{kind:'shop'}],['cloth-shelter',1550,400,190,{}],['inner-home',3590,250,180,{}],['potter-home',4260,340,155,{kind:'workshop',y:2420}],['stable',4870,200,180,{kind:'stable'}],['office-store',5990,350,160,{kind:'workshop'}]])hut(p,s,...row);
  put(p,s,asset('eup21:office-hall','관아 삼칸 집무당·목조 창호',officeArt(),[],[-240,-320,500,335],'wood'),'office-hall',5369,2130);
