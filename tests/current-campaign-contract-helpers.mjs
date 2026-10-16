@@ -1,3 +1,4 @@
+import {applyAct3CampaignManifest} from './act3-environment-final-history.mjs';
 import {applyFieldCampaignManifest} from './field-story-history.mjs';
 import {beforeStage5Lake} from './stage5-lake-history-helpers.mjs';
 import {applyTempleCampaignManifest} from './temple-testimony-history.mjs';
@@ -11,7 +12,8 @@ import {createHash} from 'node:crypto';
 export const campaignHash=v=>createHash('sha256').update(typeof v==='string'||Buffer.isBuffer(v)?v:JSON.stringify(v)).digest('hex');
 const bytes=readFileSync(new URL('./fixtures/campaign-contracts/current-manifest.json',import.meta.url));
 assert.equal(campaignHash(bytes),'fb85e9889b9598992b153c55a1044c09d6cf747ab805800bc823bc5cc5562e43','Reviewed current manifest; not automatically refreshed');
-export const currentCampaignManifest=applyFieldCampaignManifest(applyTempleCampaignManifest(applyEvidenceCampaignManifest(applyStoryCampaignManifest(JSON.parse(bytes)))));
+export const priorAct3CampaignManifest=applyFieldCampaignManifest(applyTempleCampaignManifest(applyEvidenceCampaignManifest(applyStoryCampaignManifest(JSON.parse(bytes)))));
+export const currentCampaignManifest=applyAct3CampaignManifest(priorAct3CampaignManifest);
 export function campaignScope(scope){assert(['full','act12'].includes(scope),'Explicit full or act12 scope required');return scope;}
 export function scopeCampaign(p,scope){campaignScope(scope);const q=structuredClone(p);if(scope==='act12'){q.stages=q.stages.slice(0,20);q.library=q.library.filter(a=>!a.id.startsWith('a3-'));}return q;}
 function rows(view,scope){return{stages:scope==='full'?view.stages:view.stages.slice(0,20),library:scope==='full'?view.library:view.library.filter(a=>!a.id.startsWith('a3-'))};}

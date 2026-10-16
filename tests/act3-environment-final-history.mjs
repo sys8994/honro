@@ -46,6 +46,7 @@ export function beforeAct3ProjectPart(part){const d=act3FinalDelta().project;ass
 export function assertAct3FinalNegatives({sources,raw,runtime,manifest}){
  beforeAct3RuntimeManifest(manifest);beforeAct3Campaign(raw);beforeAct3Campaign(runtime,{variant:'runtime'});let count=0;
  for(const c of act3FinalDelta().sourceChanges){assert.throws(()=>beforeAct3Source(c.path,sources[c.path]+' '));count++;if(!c.added){const bad=structuredClone(c);bad.exactEdits[0].afterLine++;assert.throws(()=>assertExactFollowupDelta(sources[c.path],bad));count++;}}
+ for(const [p,variant]of[[raw,'raw'],[runtime,'runtime']]){for(const row of act3FinalDelta().campaign.views[variant].stages){const bad=structuredClone(p.stages[row.stageId-1]);bad.units[0].hp=(bad.units[0].hp||0)+1;assert.throws(()=>applyExactStoryJsonDelta(bad,{...row,afterSha256:hash(bad)},{reverse:true}),'Repinning cannot hide unrelated HP');count++;}}
  for(const [p,variant]of[[raw,'raw'],[runtime,'runtime']])for(const edit of[q=>q.stages[0].width++,q=>q.stages[26].units[0].hp=(q.stages[26].units[0].hp||0)+1,q=>q.library.reverse(),q=>q.library.pop(),q=>q.stages.reverse()]){const bad=structuredClone(p);edit(bad);assert.throws(()=>beforeAct3Campaign(bad,{variant}));count++;}
  for(const edit of[m=>m.coreSha256='0'.repeat(64),m=>m.variants.v1r1a1.parts.reverse(),m=>m.sourceRows.pop()]){const bad=structuredClone(manifest);edit(bad);assert.throws(()=>beforeAct3RuntimeManifest(bad));count++;}return count;
 }
