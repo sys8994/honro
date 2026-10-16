@@ -4,8 +4,9 @@ const path=(d,fill,stroke='',w=2)=>`<path d="${d}" fill="${fill}"${stroke?` stro
 export function tiledRoof(x,y,w,rise=80){const l=x-w/2,r=x+w/2,peak=y-rise;let a=path(`M${l-35} ${y-17} Q${l+30} ${y-10} ${x-w*.22} ${peak+9} Q${x} ${peak-4} ${x+w*.22} ${peak+9} Q${r-18} ${y-8} ${r+35} ${y-17} L${r+25} ${y+12} Q${x} ${y+29} ${l-25} ${y+12}Z`,'#354c4c','#233c3c',3);
  a+=path(`M${l-25} ${y-18} Q${l+50} ${y-15} ${x-w*.2} ${peak+14} L${x+w*.21} ${peak+14} Q${r-44} ${y-18} ${r+24} ${y-18} Q${x} ${y+6} ${l-25} ${y-18}Z`,'#74857e');
  a+=path(`M${x-w*.2} ${peak+14} L${x+w*.21} ${peak+14} Q${r-44} ${y-18} ${r+24} ${y-18} Q${x+w*.09} ${y-3} ${x-w*.2} ${peak+14}Z`,'#526e69');
- for(let j=1;j<4;j++){const yy=y-rise+j*rise/4;const half=w*.2+j*w*.085;a+=path(`M${x-half} ${yy} Q${x} ${yy+16} ${x+half} ${yy}`,'none','#425e5b',3);}
- for(let i=0;i<=14;i++){const xx=l+i*w/14,top=peak+16+Math.abs(xx-x)/(w/2)*(rise-18);a+=path(`M${xx} ${top} Q${xx+(xx-x)*.04} ${y-25} ${xx+(xx-x)*.10} ${y+6}`,'none',i%3?'#4b6661':'#8c9987',3);}
+ // Broad filled tile courses survive the common rear-art stroke suppression.
+ for(let j=1;j<4;j++){const yy=y-rise+j*rise/4,half=w*.2+j*w*.085;a+=path(`M${x-half} ${yy} Q${x} ${yy+16} ${x+half} ${yy} L${x+half+4} ${yy+5} Q${x} ${yy+23} ${x-half-4} ${yy+5}Z`,'#425e5b');}
+ for(let i=1;i<12;i++){const xx=l+i*w/12,top=peak+16+Math.abs(xx-x)/(w/2)*(rise-18),end=xx+(xx-x)*.10;a+=path(`M${xx} ${top} Q${xx+(xx-x)*.04} ${y-25} ${end} ${y+6} L${end+3} ${y+6} Q${xx+3+(xx-x)*.04} ${y-25} ${xx+3} ${top}Z`,i%3?'#4b6661':'#8c9987');}
  a+=path(`M${l-26} ${y+9} Q${x} ${y+30} ${r+26} ${y+9} L${r+23} ${y+20} Q${x} ${y+41} ${l-23} ${y+20}Z`,'#46574e')+path(`M${l-23} ${y+9} Q${x} ${y+28} ${r+23} ${y+9}`,'none','#adb195',5);
  a+=P([[x-w*.22-10,peak+9],[x-w*.22,peak-2],[x+w*.22,peak-2],[x+w*.22+10,peak+9]],'#8d9984')+line([[x-w*.22,peak+1],[x+w*.22,peak+1]],'#b9b99c',4);return a;}
 export function timberBay(x,y,w,h,{open=false,door=false}={}){let a=R(x,y,w,h,'#374c42')+R(x+9,y+12,w-18,h-18,open?'#3e5144':'#b1ac88');if(!open){for(let xx=x+17;xx<x+w-10;xx+=18)a+=R(xx,y+18,4,h-32,'#6c7158');for(let yy=y+26;yy<y+h-15;yy+=23)a+=R(x+12,yy,w-24,3,'#73765b');if(door)a+=R(x+w/2-3,y+9,6,h-12,'#655a43')+R(x+w/2+8,y+h*.6,7,12,'#3a4c40');}return a+R(x-4,y-5,w+8,9,'#a0946c')+R(x-6,y+h-4,w+12,12,'#625c44');}
@@ -38,7 +39,8 @@ export function thatch(x,y,w,rise=88){const l=x-w/2,r=x+w/2;let a=path(`M${l-23}
  a+=path(`M${l-20} ${y} Q${l+7} ${y-rise*.76} ${x-w*.18} ${y-rise+3} Q${x+w*.12} ${y-rise-7} ${x+w*.29} ${y-rise*.69} Q${r+9} ${y-27} ${r+20} ${y+2} Q${x} ${y+25} ${l-20} ${y}Z`,'#b5a57a');
  a+=path(`M${l-7} ${y-19} Q${x-w*.21} ${y-8} ${x+w*.1} ${y-13} Q${r-38} ${y-7} ${r+12} ${y-14} L${r+20} ${y+6} Q${x+w*.12} ${y+21} ${l-19} ${y+3}Z`,'#a4956c');
  a+=path(`M${l+16} ${y-42} Q${x-w*.13} ${y-38} ${x+w*.16} ${y-45} Q${r-40} ${y-30} ${r-4} ${y-22}`,'none','#97865e',5);
- for(let i=0;i<19;i++){const xx=l+9+i*(w-18)/18,hh=rise*(.16+.60*(1-Math.abs(xx-x)/(w/2))),shift=(i%3-1)*5;a+=path(`M${xx+shift} ${y-hh} Q${xx-3} ${y-hh*.4} ${xx-10} ${y+9+(i%3)*3}`,'none',i%3?'#95845c':'#c1b087',2.6);}
+ // Six broad tied thatch bundles, filled rather than fine line texture.
+ for(let i=0;i<6;i++){const xx=l+25+i*(w-50)/5,hh=rise*(.25+.60*(1-Math.abs(xx-x)/(w/2)));a+=path(`M${xx} ${y-hh} Q${xx-3} ${y-hh*.4} ${xx-10} ${y+9} L${xx-4} ${y+10} Q${xx+5} ${y-hh*.4} ${xx+5} ${y-hh}Z`,i%2?'#a19168':'#96855d');}
  a+=path(`M${l-15} ${y+21} Q${x-w*.15} ${y+34} ${x+w*.1} ${y+28} Q${r-23} ${y+34} ${r+16} ${y+21}`,'none','#645f45',9);return a;}
 export function houseArt(w,h,kind='home'){const l=-w/2,r=w/2;let a=R(l,-h,w,h,'#9a9b7c')+P([[r-52,-h],[r,-h+12],[r,0],[r-52,-12]],'#6c785e')+R(l,-20,w,20,'#65786a');
  a+=P([[l+16,-h+35],[l+w*.47,-h+42],[l+w*.37,-h+90],[l+21,-h+79]],'#b8b18b')+P([[r-123,-89],[r-21,-103],[r-25,-22],[r-99,-22]],'#858b6a');
