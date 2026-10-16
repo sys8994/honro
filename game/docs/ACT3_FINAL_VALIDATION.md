@@ -15,4 +15,17 @@ Formal encounter evidence/quality acceptance remains incomplete. The parent expl
 
 ## Final execution
 
-Pending final contract/build/browser results. This document will be updated before publication. Historical exact-fixture failures must remain distinguishable from new regressions.
+Final build and essential checks completed. Detailed receipts and 40 actual screenshots are preserved in `review/act3-final/`.
+
+Passed: source scope, final raw/runtime identity and exact inverse to prior 640 assets, 43 new mutation controls, ten independent authors; runtime standard 168 sources/nine builds/two HTML with preserved P0 and atomic-pickup controls; metadata correction and 30 whole compiled battles; release guard; title; migration ledger/current metadata; current story display; 184 common body/contact cases and 88 production slope probes; 28 fall/checkpoint cases; 48 atomic evidence cases; environment validator30/0; 40 PC/mobile Game/Workshop Playtest entries with zero JS errors and direct pixel review; Stage28 actual staged reunion/new and old Continue; desktop/mobile evidence pickup and two real reload/Continue cycles.
+
+Fixed during final validation: missing Stage28 foundation playProjection/world extent blocked all fresh project launches. Only the projection and encompassing terrainBounds changed; all authored vertices, other29 maps and library bytes/order were preserved. The initial final fixture remains immutable; v2 explicitly supersedes it with this reason. Test adapters now restore exact object insertion order and include the outer Act3 delta. Production slope count now explicitly expects the added two Stage27 slopes; the P0 test creates its report directory.
+
+Remaining failures, not relabeled as passes:
+- binding-detail historical whole-project hash fails on both this tree and separately executed exact d7 baseline.
+- migration Stage1 lossless round-trip reports added default terrain detail; same historical failure class is documented in BUG_LOG. Exact d7 migration was not repeated; no aggregate migration pass is claimed.
+- environment composition fixture dereferences absent `env:rock` at line44. Both baseline and current Stage1 lack that placement; the 30-map validator separately passes. Downstream environment-chain tests were not run.
+- generic browser integration passes rendering equivalence for1–7 then stops at existing Stage8 pixel mismatch (679 pixels, ratio0.0013098). Later checks in that script did not execute. This is distinct from the final Act3 40-entry check, which passes.
+- formal encounter gate remains blocked/pending; no overall encounter-quality approval, Stage23 full completion, continuous campaign completion, or performance qualification is claimed.
+
+The full npm verify/whole campaign/performance suites were not rerun. The requested essential checks were run once, with narrow reruns only after concrete fixes. Original failed attempts and corrected results are retained separately.

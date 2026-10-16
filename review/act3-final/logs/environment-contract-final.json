@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "sourceCommit": "d8870dc546f4288e7651c442644f4f455a5a0db3",
+  "supersedes": {
+    "file": "tests/fixtures/act3-environment-final-delta.json",
+    "sha256": "c6fdc749d16aa3d46642c036e466506b4602961d9d2fbb2e03b895f119aee671",
+    "sourceCommit": "997b14a4c1ec4b6a15a3f3a18075f56cf8ad7b8e",
+    "reason": "Interim candidate failed actual App.launchMap validation: Stage28 foundation lacked playProjection and terrain bounds omitted authored vertices. Explicit narrow launch-validation correction; prior approval files remain immutable."
+  },
+  "rawSha256": "d9c29ca2aeff05dd7d3799f10f1b09453f81e860111aa376c2c29e50b492145a",
+  "runtimeSha256": "97f68c623e7a64b5d72571b13cdf2ac12de427dde4fedbe3a35b496d2fd5fd02",
+  "negativeControls": 43,
+  "previousAssets": 640,
+  "finalAssets": 816,
+  "independentlyRegeneratedStages": 10,
+  "scope": "Latest raw/runtime exact identity, preserved d7 inverse, mutation negatives and final ten authors. Prior640 independent recipe passed before the narrow v2 correction; browser remains separate."
+}

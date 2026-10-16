@@ -1,0 +1,1508 @@
+{
+  "schema": "honro-encounter-evidence/v1",
+  "stageIds": [
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "implementationAuthors": [],
+  "sourceDigest": "1ae779e4bd928471d72b45ec1209cb6f37a360d3522308043bff008120a6dcda",
+  "targetDigest": "9b247b74a84eac955ba86a12c7bab7e69f6e17b7381d2a4cdd74538ef8b76f88",
+  "evidence": [],
+  "knownFailures": [],
+  "stages": [
+    {
+      "stageId": 21,
+      "clusters": [
+        {
+          "id": "wagon-cordon",
+          "memberIds": [
+            "a3-21-wagon-cordon-0",
+            "a3-21-wagon-cordon-1",
+            "a3-21-wagon-cordon-2",
+            "a3-21-wagon-cordon-3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "gate-watch",
+          "memberIds": [
+            "a3-21-gate-watch-0",
+            "a3-21-gate-watch-1",
+            "a3-21-gate-watch-2",
+            "a3-21-gate-watch-3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "market-pack",
+          "memberIds": [
+            "a3-21-market-pack-0",
+            "a3-21-market-pack-1",
+            "a3-21-market-pack-2"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "stable-tools",
+          "memberIds": [
+            "a3-21-stable-tools-0",
+            "a3-21-stable-tools-1",
+            "a3-21-stable-tools-2"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "office-rearguard",
+          "memberIds": [
+            "a3-21-office-rearguard-0",
+            "a3-21-office-rearguard-1",
+            "a3-21-office-rearguard-2",
+            "a3-21-office-rearguard-3"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [
+        {
+          "id": "act3-response-21-0",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-21-1",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "objective:refuge-hold",
+          "source": "honroAct3Steps",
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    },
+    {
+      "stageId": 22,
+      "clusters": [
+        {
+          "id": "v22-group-seal-porch",
+          "memberIds": [
+            "v22-a1",
+            "v22-a2",
+            "v22-a3",
+            "v22-a4"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "v22-group-lower-ramp",
+          "memberIds": [
+            "v22-b1",
+            "v22-b2",
+            "v22-b3",
+            "v22-b4"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "v22-group-ledger-front",
+          "memberIds": [
+            "v22-c1",
+            "v22-c2",
+            "v22-c3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "v22-group-near-gallery",
+          "memberIds": [
+            "v22-d1",
+            "v22-d2",
+            "v22-d3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "v22-group-register-rise",
+          "memberIds": [
+            "v22-e1",
+            "v22-e2",
+            "v22-e3",
+            "v22-e4"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "v22-group-register-court",
+          "memberIds": [
+            "v22-f1",
+            "v22-f2",
+            "v22-f3",
+            "v22-f4"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "v22-group-comparison-court",
+          "memberIds": [
+            "v22-g1",
+            "v22-g2",
+            "v22-g3",
+            "v22-g4"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [
+        {
+          "id": "act3-response-22-0",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-22-1",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-22-2",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "objective:compare-ledgers",
+          "source": "honroAct3Steps",
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    },
+    {
+      "stageId": 23,
+      "clusters": [
+        {
+          "id": "A-front",
+          "memberIds": [
+            "s23-A-0",
+            "s23-A-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "A-support",
+          "memberIds": [
+            "s23-A-2",
+            "s23-A-3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "B-front",
+          "memberIds": [
+            "s23-B-0",
+            "s23-B-1",
+            "s23-B-5",
+            "s23-B-6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "B-flank",
+          "memberIds": [
+            "s23-B-2"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "B-support",
+          "memberIds": [
+            "s23-B-3",
+            "s23-B-4"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "C-front",
+          "memberIds": [
+            "s23-C-0",
+            "s23-C-1",
+            "s23-C-2",
+            "s23-C-5"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "C-support",
+          "memberIds": [
+            "s23-C-3",
+            "s23-C-4",
+            "s23-C-6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "D-support",
+          "memberIds": [
+            "s23-D-0",
+            "s23-D-1",
+            "s23-D-4"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "D-rear",
+          "memberIds": [
+            "s23-D-2",
+            "s23-D-3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "E-front",
+          "memberIds": [
+            "s23-E-0",
+            "s23-E-1",
+            "s23-E-2"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "E-support",
+          "memberIds": [
+            "s23-E-3",
+            "s23-E-4"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "E-flank",
+          "memberIds": [
+            "s23-E-5",
+            "s23-E-6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "F-front",
+          "memberIds": [
+            "s23-F-0",
+            "s23-F-1",
+            "s23-F-2",
+            "s23-F-5"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "F-support",
+          "memberIds": [
+            "s23-F-3",
+            "s23-F-4",
+            "s23-F-6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "G-front",
+          "memberIds": [
+            "s23-G-0",
+            "s23-G-1",
+            "s23-G-2"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [
+        {
+          "id": "act3-response-23-0",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-23-1",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-23-2",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    },
+    {
+      "stageId": 24,
+      "clusters": [
+        {
+          "id": "empty-court-watch",
+          "memberIds": [
+            "a3-24-empty-court-watch-0",
+            "a3-24-empty-court-watch-1",
+            "a3-24-empty-court-watch-2",
+            "a3-24-empty-court-watch-3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "crest-room-watch",
+          "memberIds": [
+            "a3-24-crest-room-watch-0",
+            "a3-24-crest-room-watch-1",
+            "a3-24-crest-room-watch-2",
+            "a3-24-crest-room-watch-3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "abandoned-garden-watch",
+          "memberIds": [
+            "a3-24-abandoned-garden-watch-0",
+            "a3-24-abandoned-garden-watch-1",
+            "a3-24-abandoned-garden-watch-2"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "shrine-approach",
+          "memberIds": [
+            "a3-24-shrine-approach-0",
+            "a3-24-shrine-approach-1",
+            "a3-24-shrine-approach-2"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "land-register-watch",
+          "memberIds": [
+            "a3-24-land-register-watch-0",
+            "a3-24-land-register-watch-1",
+            "a3-24-land-register-watch-2",
+            "a3-24-land-register-watch-3"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [
+        {
+          "id": "act3-response-24-0",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-24-1",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-24-2",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    },
+    {
+      "stageId": 25,
+      "clusters": [
+        {
+          "id": "seal-approach",
+          "memberIds": [
+            "a3-25-seal-approach-0",
+            "a3-25-seal-approach-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "numbered-goods",
+          "memberIds": [
+            "a3-25-numbered-goods-0",
+            "a3-25-numbered-goods-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "inner-store",
+          "memberIds": [
+            "a3-25-inner-store-0",
+            "a3-25-inner-store-1",
+            "a3-25-inner-store-2"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    },
+    {
+      "stageId": 26,
+      "clusters": [
+        {
+          "id": "record-room-remnants",
+          "memberIds": [
+            "a3-26-record-room-remnants-0",
+            "a3-26-record-room-remnants-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "casting-yard-tools",
+          "memberIds": [
+            "a3-26-casting-yard-tools-0",
+            "a3-26-casting-yard-tools-1",
+            "a3-26-casting-yard-tools-2"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "tally-store-remnants",
+          "memberIds": [
+            "a3-26-tally-store-remnants-0",
+            "a3-26-tally-store-remnants-1",
+            "a3-26-tally-store-remnants-2"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "surface-exit-remnants",
+          "memberIds": [
+            "a3-26-surface-exit-remnants-0",
+            "a3-26-surface-exit-remnants-1"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    },
+    {
+      "stageId": 27,
+      "clusters": [
+        {
+          "id": "entry-hauling-remnants",
+          "memberIds": [
+            "a3-27-entry-hauling-remnants-0",
+            "a3-27-entry-hauling-remnants-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "lower-loading-store",
+          "memberIds": [
+            "a3-27-lower-loading-store-0",
+            "a3-27-lower-loading-store-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "sealed-manifest-store",
+          "memberIds": [
+            "a3-27-sealed-manifest-store-0",
+            "a3-27-sealed-manifest-store-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "high-numbered-store",
+          "memberIds": [
+            "a3-27-high-numbered-store-0",
+            "a3-27-high-numbered-store-1"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    },
+    {
+      "stageId": 28,
+      "clusters": [
+        {
+          "id": "west-fire",
+          "memberIds": [
+            "a3-28-west-fire-0",
+            "a3-28-west-fire-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "east-water",
+          "memberIds": [
+            "a3-28-east-water-0",
+            "a3-28-east-water-1"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "court-petition",
+          "memberIds": [
+            "a3-28-court-petition-0",
+            "a3-28-court-petition-1",
+            "a3-28-court-petition-2"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "decision-suppression",
+          "memberIds": [
+            "a3-28-decision-suppression-0",
+            "a3-28-decision-suppression-1",
+            "a3-28-decision-suppression-2",
+            "a3-28-decision-suppression-3"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    },
+    {
+      "stageId": 29,
+      "clusters": [
+        {
+          "id": "sealed-store-response",
+          "memberIds": [
+            "a3-29-sealed-store-response-0",
+            "a3-29-sealed-store-response-1",
+            "a3-29-sealed-store-response-2",
+            "a3-29-sealed-store-response-3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "letter-store-guard",
+          "memberIds": [
+            "a3-29-letter-store-guard-0",
+            "a3-29-letter-store-guard-1",
+            "a3-29-letter-store-guard-2",
+            "a3-29-letter-store-guard-3",
+            "a3-29-letter-store-guard-4"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "underwater-bridge-watch",
+          "memberIds": [
+            "a3-29-underwater-bridge-watch-0",
+            "a3-29-underwater-bridge-watch-1",
+            "a3-29-underwater-bridge-watch-2",
+            "a3-29-underwater-bridge-watch-3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "dark-lock-approach",
+          "memberIds": [
+            "a3-29-dark-lock-approach-0",
+            "a3-29-dark-lock-approach-1",
+            "a3-29-dark-lock-approach-2",
+            "a3-29-dark-lock-approach-3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "moonlit-exit-watch",
+          "memberIds": [
+            "a3-29-moonlit-exit-watch-0",
+            "a3-29-moonlit-exit-watch-1",
+            "a3-29-moonlit-exit-watch-2",
+            "a3-29-moonlit-exit-watch-3",
+            "a3-29-moonlit-exit-watch-4"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [
+        {
+          "id": "act3-response-29-0",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-29-1",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-29-2",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "objective:old-seal",
+          "source": "honroAct3Steps",
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    },
+    {
+      "stageId": 30,
+      "clusters": [
+        {
+          "id": "ford-front",
+          "memberIds": [
+            "sf-b1",
+            "sf-b2",
+            "sf-b5"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "ford-rear",
+          "memberIds": [
+            "sf-b3",
+            "sf-b4",
+            "sf-b6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "cape-front",
+          "memberIds": [
+            "sf-c1",
+            "sf-c2",
+            "sf-c5"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "cape-support",
+          "memberIds": [
+            "sf-c3",
+            "sf-c4",
+            "sf-c6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "quay-west-front",
+          "memberIds": [
+            "sf-dw1",
+            "sf-dw2",
+            "sf-dw3",
+            "sf-dw6",
+            "sf-de8"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "quay-west-support",
+          "memberIds": [
+            "sf-dw4",
+            "sf-dw5",
+            "sf-dw7",
+            "sf-dw8"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "quay-east-front",
+          "memberIds": [
+            "sf-de1",
+            "sf-de2",
+            "sf-de3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "quay-east-support",
+          "memberIds": [
+            "sf-de4",
+            "sf-de5",
+            "sf-de6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "quay-east-flank",
+          "memberIds": [
+            "sf-de7"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "bank-front",
+          "memberIds": [
+            "sf-e1",
+            "sf-e2",
+            "sf-e3"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "bank-support",
+          "memberIds": [
+            "sf-e4",
+            "sf-e5",
+            "sf-e6"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "escape-low",
+          "memberIds": [
+            "sf-fg1",
+            "sf-fg2",
+            "sf-fg4",
+            "sf-fg5"
+          ],
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "escape-high",
+          "memberIds": [
+            "sf-fg3",
+            "sf-fg6"
+          ],
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "waves": [
+        {
+          "id": "act3-response-30-0",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-30-1",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "act3-response-30-2",
+          "source": "event",
+          "status": "pending",
+          "observation": null
+        },
+        {
+          "id": "objective:ferry-hold",
+          "source": "honroAct3Steps",
+          "status": "pending",
+          "observation": null
+        }
+      ],
+      "runtimeWaves": [],
+      "checks": {
+        "same-camera": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "terrain-and-roles": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "activation-and-action-cap": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "normal-resource-play": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "warning-opportunity-and-occupancy": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "continue-death-and-old-save": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "objectives-and-growth": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "game-workshop-playtest": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "visual-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "tactical-quality": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "runtime-wave-inventory": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        },
+        "build-and-regressions": {
+          "status": "pending",
+          "detail": "Not observed yet",
+          "evidencePaths": []
+        }
+      }
+    }
+  ],
+  "review": {
+    "status": "pending",
+    "conclusion": "unverified",
+    "reviewer": null,
+    "reviewedAt": null,
+    "reviewDigest": null,
+    "reportPaths": [],
+    "unresolvedFindings": []
+  }
+}

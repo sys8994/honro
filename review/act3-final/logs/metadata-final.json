@@ -1,0 +1,295 @@
+{
+  "passed": true,
+  "sourceCommit": "5ca1830",
+  "beforeProjectSha256": "5365701b2f63d26510bfb0b9a2d77c7103fb4d5517c24e33f10b89279a7021fe",
+  "afterProjectSha256": "fecb34052b35eb607d60b7d770ed5a686b9e7c695147ad8990d71a25f542121d",
+  "currentStoryProjectSha256": "8f0a1155749bebe57a9fad221ecb0301cf8c7b00f24d7f1a6f833dd315746258",
+  "storyNegatives": [
+    "unapproved-story-revision",
+    "unapproved-story-adjacent-hp",
+    "unapproved-current-space"
+  ],
+  "oldErrors": [
+    {
+      "level": "err",
+      "text": "stage-15: Missing terrain fc15-west-descent"
+    },
+    {
+      "level": "err",
+      "text": "stage-15: Missing room terrain fc15-west-descent"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-0"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-1"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-2"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-3"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-4"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-5"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-6"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-7"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-8"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-9"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-10"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-11"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-12"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-13"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-14"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-15"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-16"
+    },
+    {
+      "level": "err",
+      "text": "stage-19: Missing encounter unit a2-enemy-17"
+    }
+  ],
+  "allowedChanges": [
+    "15: remove open-shaft obsolete terrain membership",
+    "15: add existing dry-basin-rim to carved-groove",
+    "15: replace obsolete surface by exact existing rim edges0–3",
+    "15: preserve route x5450, correct support and y4270.789473684211",
+    "19: remove18 metadata sites of already-removed enemies"
+  ],
+  "negativeControls": [
+    "restore-deleted-room-reference",
+    "remove-live-room-reference",
+    "restore-deleted-enemy-reference",
+    "remove-valid-surface",
+    "change-route-x",
+    "change-route-y",
+    "change-physical-terrain",
+    "change-actor-stat",
+    "remove-other-stage"
+  ],
+  "battles": [
+    {
+      "stage": 1,
+      "compiledSha256": "7cd5b3995fcae383cebe786698237db1dbce93c26d1de40c686ff6ca28c4cfc6",
+      "actors": 9,
+      "terrain": 7
+    },
+    {
+      "stage": 2,
+      "compiledSha256": "81fe80b0e8273c60ddbd5ca48d2313e980bec1decab5e92c3c568a78ab4048bf",
+      "actors": 18,
+      "terrain": 19
+    },
+    {
+      "stage": 3,
+      "compiledSha256": "78207a9b844573e74c60ef580aad0ea73afb4e16acfdbbe00defe8a4447fe725",
+      "actors": 15,
+      "terrain": 11
+    },
+    {
+      "stage": 4,
+      "compiledSha256": "0047ebd469285f8b677bb0030dbdef5be19e0f6b5ab65ee3376469ef9782b884",
+      "actors": 18,
+      "terrain": 10
+    },
+    {
+      "stage": 5,
+      "compiledSha256": "35a5d7fa1f0cfd27a67c0aaa880d25ece321087d83e00434d6199418b5955282",
+      "actors": 23,
+      "terrain": 5
+    },
+    {
+      "stage": 6,
+      "compiledSha256": "18f3394200a7ea11a734ac5062ccc86e0fc5541ede5b09f5de99f064998c344c",
+      "actors": 26,
+      "terrain": 13
+    },
+    {
+      "stage": 7,
+      "compiledSha256": "e090e5ec36f048f1dd7c026296d22c83016773764cfa87130df1f16b294989dd",
+      "actors": 28,
+      "terrain": 15
+    },
+    {
+      "stage": 8,
+      "compiledSha256": "34c2bb6549a853c461ed2a02af73a3cb6c4a58009e33ad7bfd2cf08c7cf060ab",
+      "actors": 42,
+      "terrain": 20
+    },
+    {
+      "stage": 9,
+      "compiledSha256": "2631f5b93ade5a900691b5b61227fdd35470f700f6b96c5a1192f8c19bf9edf7",
+      "actors": 27,
+      "terrain": 7
+    },
+    {
+      "stage": 10,
+      "compiledSha256": "197af7bbe0c6994f874ed9ca3c389ce661c19b963ae52bf7d828b5608d4a1a0f",
+      "actors": 20,
+      "terrain": 11
+    },
+    {
+      "stage": 11,
+      "compiledSha256": "5271c32fbf60b763ec9386c6f226aeb8f2c1104d9052218d98e0f3c3e555c54c",
+      "actors": 58,
+      "terrain": 31
+    },
+    {
+      "stage": 12,
+      "compiledSha256": "dd7bfcd8d596c2cc3fbb8c2c90733ad5720976a72b77fe5ed497708dcb7190db",
+      "actors": 42,
+      "terrain": 12
+    },
+    {
+      "stage": 13,
+      "compiledSha256": "41f614beca6589e7e8f12691019674922efaa59573cc81b859bef4b3a6734851",
+      "actors": 28,
+      "terrain": 10
+    },
+    {
+      "stage": 14,
+      "compiledSha256": "94f8deaf621a58db9c9b30ed9252560db9baa3abbe08587be66c6d0aa1b4758a",
+      "actors": 51,
+      "terrain": 14
+    },
+    {
+      "stage": 15,
+      "compiledSha256": "e3fc413c46749f22c4b88d0201534f0d2a0c3c5406595a5c71120643850f4198",
+      "actors": 26,
+      "terrain": 12
+    },
+    {
+      "stage": 16,
+      "compiledSha256": "b13c5f35ab152baa6fcf66123e07e35e38e275ae9b4a8ff2125b1e0b2a9d7d38",
+      "actors": 55,
+      "terrain": 26
+    },
+    {
+      "stage": 17,
+      "compiledSha256": "c2b6c080f536f7b7886712c9345dad4cceb114748c660029cec2411f89a68a65",
+      "actors": 54,
+      "terrain": 41
+    },
+    {
+      "stage": 18,
+      "compiledSha256": "9b2717c3c977eb1f349d96db967fbcf63c0d5f2ff3dcaea4d64e5dcd4459181c",
+      "actors": 60,
+      "terrain": 64
+    },
+    {
+      "stage": 19,
+      "compiledSha256": "3a0ab719f78030e1b3cc045df4bdb3fcc74e2525ab058ab191de8698a4baa465",
+      "actors": 7,
+      "terrain": 64
+    },
+    {
+      "stage": 20,
+      "compiledSha256": "4b58a0486e3e763a0cb403cc756103913c604107d9a281cc5a48f2ee669e2f26",
+      "actors": 23,
+      "terrain": 4
+    },
+    {
+      "stage": 21,
+      "compiledSha256": "c819eb21ca9dd2a81c3ebca3632b78baf344f99d52b69d531ed346c6b7fc36e6",
+      "actors": 23,
+      "terrain": 22
+    },
+    {
+      "stage": 22,
+      "compiledSha256": "afbf03e5cf6fe6e3acce990852c91201a3fbf64da79a760b5ee951e910a173dc",
+      "actors": 30,
+      "terrain": 10
+    },
+    {
+      "stage": 23,
+      "compiledSha256": "586c16b9e5b37f1c2a1ff2ecb9e3cc9a0c0bb2482f4f2daee93db5da05da7982",
+      "actors": 45,
+      "terrain": 26
+    },
+    {
+      "stage": 24,
+      "compiledSha256": "c07f0cc42788fcb8e41544d018762305596dcf1c5a4ef620169b1ddf26d497a8",
+      "actors": 22,
+      "terrain": 10
+    },
+    {
+      "stage": 25,
+      "compiledSha256": "fb24a391e5bf4ce391ba4e38c3f823af8139ccce9398ddb4f437cfe30e0d7940",
+      "actors": 9,
+      "terrain": 21
+    },
+    {
+      "stage": 26,
+      "compiledSha256": "f3b034ce705fdefa4f0a73fabf7f4b10b5de3857d2afc39a6ca01c115d1c9767",
+      "actors": 13,
+      "terrain": 8
+    },
+    {
+      "stage": 27,
+      "compiledSha256": "bbfe7590cfa56795d2966d7cc20bcfc7e8b075f2cc406a0ad44f77ce2a2bca2a",
+      "actors": 10,
+      "terrain": 25
+    },
+    {
+      "stage": 28,
+      "compiledSha256": "42cc62535a8439396a13e1847522e03453fd8e2092613db9bb110d0a1fc0fb49",
+      "actors": 15,
+      "terrain": 14
+    },
+    {
+      "stage": 29,
+      "compiledSha256": "6affb2d0653438809ed00d67689cd46a557933ecfbe36f0fd2e0ccaad294a2a6",
+      "actors": 26,
+      "terrain": 8
+    },
+    {
+      "stage": 30,
+      "compiledSha256": "c4c0a305139106bcfb51b20a67099102ad5f3917490386a4eb64715fdc4294bd",
+      "actors": 44,
+      "terrain": 29
+    }
+  ],
+  "scope": "Complete raw canonical and compiled battle equality except enumerated honroMap.space metadata; no browser/play-quality claim."
+}

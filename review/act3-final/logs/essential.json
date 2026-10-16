@@ -1,0 +1,152 @@
+[
+  {
+    "name": "release-guard",
+    "command": [
+      "npm",
+      "run",
+      "test:release-guard"
+    ],
+    "exitCode": 0,
+    "seconds": 0.93,
+    "log": "_local/reports/act3-final/release-guard.log"
+  },
+  {
+    "name": "title",
+    "command": [
+      "npm",
+      "run",
+      "test:title"
+    ],
+    "exitCode": 0,
+    "seconds": 5.78,
+    "log": "_local/reports/act3-final/title.log"
+  },
+  {
+    "name": "campaign-metadata",
+    "command": [
+      "npm",
+      "run",
+      "test:campaign-metadata"
+    ],
+    "exitCode": 1,
+    "seconds": 6.08,
+    "log": "_local/reports/act3-final/campaign-metadata.log"
+  },
+  {
+    "name": "migration-ledger",
+    "command": [
+      "npm",
+      "run",
+      "test:migration-ledger"
+    ],
+    "exitCode": 0,
+    "seconds": 10.59,
+    "log": "_local/reports/act3-final/migration-ledger.log"
+  },
+  {
+    "name": "migration-current-meta",
+    "command": [
+      "npm",
+      "run",
+      "test:migration-current-meta"
+    ],
+    "exitCode": 0,
+    "seconds": 10.95,
+    "log": "_local/reports/act3-final/migration-current-meta.log"
+  },
+  {
+    "name": "current-story-display",
+    "command": [
+      "npm",
+      "run",
+      "test:current-story-display"
+    ],
+    "exitCode": 0,
+    "seconds": 10.27,
+    "log": "_local/reports/act3-final/current-story-display.log"
+  },
+  {
+    "name": "binding-detail",
+    "command": [
+      "npm",
+      "run",
+      "test:binding-detail"
+    ],
+    "exitCode": 1,
+    "seconds": 6.99,
+    "log": "_local/reports/act3-final/binding-detail.log"
+  },
+  {
+    "name": "body-sweep",
+    "command": [
+      "npm",
+      "run",
+      "test:body-sweep"
+    ],
+    "exitCode": 1,
+    "seconds": 26.13,
+    "log": "_local/reports/act3-final/body-sweep.log"
+  },
+  {
+    "name": "waterworks-fall",
+    "command": [
+      "npm",
+      "run",
+      "test:waterworks-fall"
+    ],
+    "exitCode": 0,
+    "seconds": 4.17,
+    "log": "_local/reports/act3-final/waterworks-fall.log"
+  },
+  {
+    "name": "pickup-p0",
+    "command": [
+      "node",
+      "tests/evidence-pickup-p0.mjs"
+    ],
+    "exitCode": 1,
+    "seconds": 8.8,
+    "log": "_local/reports/act3-final/pickup-p0.log"
+  },
+  {
+    "name": "migration",
+    "command": [
+      "node",
+      "tests/migration.mjs"
+    ],
+    "exitCode": 1,
+    "seconds": 165.05,
+    "log": "_local/reports/act3-final/migration.log"
+  },
+  {
+    "name": "environment",
+    "command": [
+      "npm",
+      "run",
+      "test:environment"
+    ],
+    "exitCode": 1,
+    "seconds": 1.24,
+    "log": "_local/reports/act3-final/environment.log"
+  },
+  {
+    "name": "browser-integration",
+    "command": [
+      "python",
+      "tests/integration.py"
+    ],
+    "exitCode": 1,
+    "seconds": 21.14,
+    "log": "_local/reports/act3-final/browser-integration.log"
+  },
+  {
+    "name": "act3-browser",
+    "command": [
+      "python",
+      "tests/act3-final-browser.py"
+    ],
+    "exitCode": 1,
+    "seconds": 2.37,
+    "log": "_local/reports/act3-final/act3-browser.log"
+  }
+]
