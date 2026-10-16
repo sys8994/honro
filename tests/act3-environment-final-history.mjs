@@ -1,7 +1,7 @@
 /** Exact outer approval layer. Missing final pin is an error, never a bypass.
  * Inverses are historical evidence only; live gameplay retains current identity. */
 import assert from 'node:assert/strict';
-import {readFileSync,writeFileSync,mkdtempSync,cpSync,symlinkSync,rmSync} from 'node:fs';
+import {readFileSync,writeFileSync,mkdtempSync,cpSync,symlinkSync,rmSync,mkdirSync,readdirSync} from 'node:fs';
 import path from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {tmpdir} from 'node:os';
@@ -59,7 +59,9 @@ export function assertAct3FinalNegatives({sources,raw,runtime,manifest}){
 export async function previousAct3Authors(paths){
  const root=fileURLToPath(new URL('../',import.meta.url)),dir=mkdtempSync(path.join(tmpdir(),'honro-previous-act3-authors-'));
  cpSync(path.join(root,'tools'),path.join(dir,'tools'),{recursive:true});
- for(const name of ['shared','game','tests','assets','migration','node_modules'])symlinkSync(path.join(root,name),path.join(dir,name),'dir');
+ mkdirSync(path.join(dir,'shared'));for(const name of readdirSync(path.join(root,'shared'))){if(name==='data')cpSync(path.join(root,'shared',name),path.join(dir,'shared',name),{recursive:true});else symlinkSync(path.join(root,'shared',name),path.join(dir,'shared',name));}
+ for(const c of act3FinalDelta().sourceChanges.filter(c=>c.path.startsWith('shared/data/'))){const file=path.join(dir,c.path);writeFileSync(file,beforeAct3Source(c.path,readFileSync(file,'utf8')));}
+ for(const name of ['game','tests','assets','migration','node_modules'])symlinkSync(path.join(root,name),path.join(dir,name),'dir');
  writeFileSync(path.join(dir,'package.json'),' {"type":"module"} ');
  for(const c of act3FinalDelta().packagingChanges.filter(c=>c.path.startsWith('tools/'))){const file=path.join(dir,c.path);if(c.added)rmSync(file);else writeFileSync(file,beforeAct3Source(c.path,readFileSync(file,'utf8')));}
  const dispose=()=>rmSync(dir,{recursive:true,force:true});process.once('exit',dispose);
