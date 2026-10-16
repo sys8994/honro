@@ -1,0 +1,23 @@
+{
+  "executionCheckout": "2314ee6a2ad53606c2e150b2c8c087f54de1af32",
+  "command": "HONRO_BOT_ACTION_LIMIT=100 node tests/stage26-normal-trace.mjs",
+  "controllerBase": "tests/act3-playthrough.mjs in Stage26 branch d3e3f60ad560c4cd7e97444a7fd74ede60337449",
+  "scope": "Identical decision loop and prepared profile policy, observational instance wrappers only. No runtime/source/budget modifications. Integrated campaign differs from prior standalone stage26 run. No uninstrumented same-build control run performed.",
+  "hashes": {
+    "tests/stage26-normal-trace.mjs": "8d0f0f9d969dae6a99dd2db7cd29a3f3896d1c2def5f5746d6e743e636a77d22",
+    "review/stage26/normal-input-observed/stage-26.json": "f8be67602beb3d58d7a43ed9f2c02d0a0af412b0a315fc45ea590dc52b35786f",
+    "review/stage26/normal-input-observed/trace.json": "e7eb690fd3e4082543a7a0ca35d3e9e9f3f459978aedd24aa266e95c757fb7f3",
+    "HONRO.html": {
+      "bytes": 14512348,
+      "sha256": "8dfa33c75cd843286e98ea075d65ca79ea7c570f464730b556a2744bff9e722a"
+    },
+    "HONRO_WORKSHOP.html": {
+      "bytes": 14623122,
+      "sha256": "caf7e8d66f91139a43cd24c548180785612b28da3da414112b03dd7aec076265"
+    },
+    "shared/data/campaign.json": {
+      "bytes": 13721513,
+      "sha256": "3164eb64f928a488c364acaf1e05a56e36a839300d35fd7ca79d75e047a6cbc9"
+    }
+  }
+}
