@@ -1,0 +1,44 @@
+{
+  "scope": "Actual jump/drop controls at the roof, isolated archer and one initial pose. Horizontal steering uses keyboard in both viewport sizes; mobile jump/drop use touch. Not combat.",
+  "rows": [
+    {
+      "device": "desktop",
+      "start": {
+        "hp": 365,
+        "move": 1100
+      },
+      "roof": {
+        "x": 2391.124999999987,
+        "y": 2608.4622145071316,
+        "hp": 365,
+        "drop": true,
+        "support": "v22-art-main-document-archive:collision:0"
+      },
+      "end": {
+        "x": 2391.124999999987,
+        "y": 2850,
+        "hp": 365
+      }
+    },
+    {
+      "device": "mobile",
+      "start": {
+        "hp": 365,
+        "move": 1100
+      },
+      "roof": {
+        "x": 2391.124999999987,
+        "y": 2608.4622145071316,
+        "hp": 365,
+        "drop": true,
+        "support": "v22-art-main-document-archive:collision:0"
+      },
+      "end": {
+        "x": 2391.124999999987,
+        "y": 2850,
+        "hp": 365
+      }
+    }
+  ],
+  "errors": []
+}
