@@ -1,0 +1,7 @@
+# Stage24 observation-only normal replay
+
+One run on integrated source `2314ee6`, using the same Stage24 input decisions as the earlier normal run. Production App/Engine; legal prepared entry and automatic training; Canvas/menu/storage doubles. No runtime source changes, hidden items, combat state writes or fixture relaxation. 9 rounds / 41 actions / four survivors / 3 responses committed, 7 spawned. This is not browser combat.
+
+`trace.json` records 81 HP-damage observations, 48 enemy action finishes (not necessarily distinct attacks), 40 successful fires, 25 initial/enemy activation observations and 42 player movement segments. Damage includes owner and target IDs, before/after HP, coordinates, round/frame and spawn-source. `summary.json` aggregates only actual enemy-owned hero HP damage; it does not count friendly fire, shields or inferred misses.
+
+All five initial groups and responses 0/1 inflicted hero HP damage. Response 2 fired LS09 twice in round 8 (event-44 shot38, event-45 shot39), with zero observed hero HP damage. The player's existing objective movement cannot be labeled deliberate evasion from this trace. Thus response 2 tactical effectiveness remains pending, despite all spawns and stage completion. No runtime change is proposed on the basis of this single run. The earlier evidence audit describes the older trace's limits; this added trace closes attribution for seven of eight groups only.
