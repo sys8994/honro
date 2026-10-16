@@ -1,34 +1,34 @@
 {
   "combatEnd": {
     "phase": "won",
-    "round": 13,
+    "round": 10,
     "heroes": [
       {
         "cls": "archer",
-        "hp": 437,
+        "hp": 615,
         "maxHp": 935,
-        "x": 5957.28603185219,
+        "x": 6323.952698518873,
         "y": 2760
       },
       {
         "cls": "mage",
-        "hp": 448,
+        "hp": 917,
         "maxHp": 998,
-        "x": 6018.489870617532,
+        "x": 4362.452698518798,
         "y": 2760
       },
       {
         "cls": "knight",
-        "hp": 1550,
+        "hp": 1598,
         "maxHp": 1598,
-        "x": 6323.202698518668,
+        "x": 4626.990250759055,
         "y": 2760
       },
       {
         "cls": "occultist",
-        "hp": 554,
+        "hp": 709,
         "maxHp": 1144,
-        "x": 4410.4860318521005,
+        "x": 4390.936031852101,
         "y": 2760
       }
     ],
@@ -41,11 +41,11 @@
     "route": {
       "revision": 1,
       "selectedRoute": "B",
-      "sourceRun": "honro-map-stage-29-1792077885634",
+      "sourceRun": "honro-map-stage-29-1792112120150",
       "fromStage": 29,
       "toStage": 30,
       "exitId": "route-lower-exit",
-      "round": 13
+      "round": 10
     }
   },
   "normalResources": true,
@@ -55,10 +55,10 @@
   "entryLevel": 20.7,
   "stage": 29,
   "phase": "won",
-  "round": 13,
+  "round": 10,
   "reason": "현묵의 글은 스승께 들린 혼이 없었고, 종을 울린 뒤 무명사의 이치가 어그러졌다고 전한다. 증언자의 현재 상태와 저편의 뜻은 미상이다.",
-  "seconds": 22.997731314999996,
-  "fingerprint": "aa090e26f690da637b841856b376d02d77b087c3e021de7978eabbd6ed84642b",
+  "seconds": 32.311721576000004,
+  "fingerprint": "b25626a1fb9aeaee75c18c20c743466e6f36ba8d65de951d801d3ad2d36c361d",
   "source": {
     "game/config/balance.json": "e92d629134795dbbb8c754db19e7d423cb70c77047fb33e4fea4726caf4886e1",
     "shared/build.mjs": "e974bace1ec287ae68daaddc9b6624c950eff60f1f26cbcae176d1a56c15ae22",
@@ -225,7 +225,7 @@
     "tests/app-regression-helpers.mjs": "ad4a16b6692f9c9b59824afca022856a91bae2f671c63e1f1c87e465baddbbac",
     "tests/stage29-record-normal.mjs": "cfcb5d829c9349aaec48b80a74d4dc4520588d0bb11e9b63a59e44f83a671b0a",
     "tools/map-forge/act23-quest-redesign.mjs": "cfd042ff7ac6221e94e4256540a0e6a208a6831c0f6e498dd8aa5c3a7ec018da",
-    "tools/map-forge/stage29-record-court.mjs": "8c0c519101235384d1910a311411a901bc9e0623cf60d88e854a9bc215e2eef5"
+    "tools/map-forge/stage29-record-court.mjs": "43e685ed1d3ae4e2e7f3f725117eaeee91c8b7cc686bbd7fbd7602ee6dd4049e"
   },
   "actions": [
     {
@@ -278,13 +278,23 @@
       "goal": "old-seal",
       "x": 2760.1835583587167,
       "y": 2220,
+      "action": "fire",
+      "skill": "A02",
+      "target": "a3-29-letter-store-guard-0"
+    },
+    {
+      "round": 2,
+      "actor": "archer",
+      "goal": "old-seal",
+      "x": 2760.1835583587167,
+      "y": 2220,
       "action": "defend"
     },
     {
       "round": 2,
       "actor": "knight",
       "goal": "old-seal",
-      "x": 2758.2739496883546,
+      "x": 2758.6474347834405,
       "y": 2220,
       "action": "defend"
     },
@@ -318,7 +328,7 @@
       "round": 3,
       "actor": "knight",
       "goal": "old-seal",
-      "x": 2762.046451220725,
+      "x": 2762.4049798336073,
       "y": 2220,
       "action": "defend"
     },
@@ -336,7 +346,7 @@
       "round": 4,
       "actor": "mage",
       "goal": "old-seal",
-      "x": 2756.3462143021466,
+      "x": 2756.1554744299497,
       "y": 2220,
       "action": "defend"
     },
@@ -344,111 +354,121 @@
       "round": 4,
       "actor": "archer",
       "goal": "old-seal",
-      "x": 2759.985550507258,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 4,
-      "actor": "knight",
-      "goal": "old-seal",
-      "x": 2762.046451220725,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 4,
-      "actor": "occultist",
-      "goal": "old-seal",
-      "x": 2758.3340717127658,
+      "x": 2759.0355500229784,
       "y": 2220,
       "action": "fire",
-      "skill": "O02",
-      "target": "a3-29-letter-store-guard-1"
-    },
-    {
-      "round": 5,
-      "actor": "mage",
-      "goal": "old-seal",
-      "x": 2756.3462143021466,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 5,
-      "actor": "archer",
-      "goal": "old-seal",
-      "x": 2759.985550507258,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 5,
-      "actor": "knight",
-      "goal": "old-seal",
-      "x": 2762.046451220725,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 5,
-      "actor": "occultist",
-      "goal": "old-seal",
-      "x": 2758.3340717127658,
-      "y": 2220,
-      "action": "fire",
-      "skill": "O02",
-      "target": "a3-29-letter-store-guard-1"
-    },
-    {
-      "round": 6,
-      "actor": "mage",
-      "goal": "old-seal",
-      "x": 2772.897560704807,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 6,
-      "actor": "archer",
-      "goal": "old-seal",
-      "x": 2775.249059984333,
-      "y": 2220,
-      "action": "fire",
-      "skill": "A01",
+      "skill": "A02",
       "target": "a3-29-letter-store-guard-0"
     },
     {
-      "round": 6,
+      "round": 4,
       "actor": "archer",
       "goal": "old-seal",
-      "x": 2775.249059984333,
+      "x": 2759.0355500229784,
       "y": 2220,
       "action": "defend"
     },
     {
-      "round": 6,
+      "round": 4,
       "actor": "knight",
       "goal": "old-seal",
-      "x": 2768.6854810772365,
+      "x": 2761.834804933358,
       "y": 2220,
       "action": "defend"
     },
     {
-      "round": 6,
+      "round": 4,
       "actor": "occultist",
       "goal": "old-seal",
-      "x": 2774.19452787505,
+      "x": 2757.727144325508,
       "y": 2220,
       "action": "fire",
       "skill": "O02",
       "target": "a3-29-letter-store-guard-0"
     },
     {
+      "round": 5,
+      "actor": "mage",
+      "goal": "old-seal",
+      "x": 2766.887584105353,
+      "y": 2220,
+      "action": "defend"
+    },
+    {
+      "round": 5,
+      "actor": "archer",
+      "goal": "old-seal",
+      "x": 2768.808336400957,
+      "y": 2220,
+      "action": "fire",
+      "skill": "A02",
+      "target": "a3-29-letter-store-guard-0"
+    },
+    {
+      "round": 5,
+      "actor": "archer",
+      "goal": "old-seal",
+      "x": 2768.808336400957,
+      "y": 2220,
+      "action": "defend"
+    },
+    {
+      "round": 5,
+      "actor": "knight",
+      "goal": "old-seal",
+      "x": 2765.73516258714,
+      "y": 2220,
+      "action": "defend"
+    },
+    {
+      "round": 5,
+      "actor": "occultist",
+      "goal": "old-seal",
+      "x": 2767.917865661053,
+      "y": 2220,
+      "action": "fire",
+      "skill": "O02",
+      "target": "event-6"
+    },
+    {
+      "round": 6,
+      "actor": "mage",
+      "goal": "old-seal",
+      "x": 2785.5300069627087,
+      "y": 2220,
+      "action": "defend"
+    },
+    {
+      "round": 6,
+      "actor": "archer",
+      "goal": "old-seal",
+      "x": 2786.4614574221787,
+      "y": 2220,
+      "action": "defend"
+    },
+    {
+      "round": 6,
+      "actor": "knight",
+      "goal": "old-seal",
+      "x": 2774.7415890458697,
+      "y": 2220,
+      "action": "defend"
+    },
+    {
+      "round": 6,
+      "actor": "occultist",
+      "goal": "old-seal",
+      "x": 2786.029661303466,
+      "y": 2220,
+      "action": "fire",
+      "skill": "O02",
+      "target": "event-6"
+    },
+    {
       "round": 7,
       "actor": "mage",
       "goal": "old-seal",
-      "x": 2757.231843158065,
+      "x": 2797.893171879634,
       "y": 2220,
       "action": "defend"
     },
@@ -456,7 +476,17 @@
       "round": 7,
       "actor": "archer",
       "goal": "old-seal",
-      "x": 2759.608826519001,
+      "x": 2798.213589690845,
+      "y": 2220,
+      "action": "fire",
+      "skill": "A02",
+      "target": "event-6"
+    },
+    {
+      "round": 7,
+      "actor": "archer",
+      "goal": "old-seal",
+      "x": 2798.213589690845,
       "y": 2220,
       "action": "defend"
     },
@@ -464,7 +494,7 @@
       "round": 7,
       "actor": "knight",
       "goal": "old-seal",
-      "x": 2758.8877904944698,
+      "x": 2784.2622336286854,
       "y": 2220,
       "action": "defend"
     },
@@ -472,241 +502,111 @@
       "round": 7,
       "actor": "occultist",
       "goal": "old-seal",
-      "x": 2758.5747138778142,
+      "x": 2798.03881560778,
       "y": 2220,
       "action": "fire",
       "skill": "O02",
-      "target": "a3-29-letter-store-guard-1"
+      "target": "event-6"
     },
     {
       "round": 8,
       "actor": "mage",
       "goal": "old-seal",
-      "x": 2757.231843158065,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 8,
-      "actor": "archer",
-      "goal": "old-seal",
-      "x": 2759.608826519001,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 8,
-      "actor": "knight",
-      "goal": "old-seal",
-      "x": 2758.8877904944698,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 8,
-      "actor": "occultist",
-      "goal": "old-seal",
-      "x": 2758.5747138778142,
-      "y": 2220,
-      "action": "fire",
-      "skill": "O02",
-      "target": "a3-29-letter-store-guard-1"
-    },
-    {
-      "round": 9,
-      "actor": "mage",
-      "goal": "old-seal",
-      "x": 2757.231843158065,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 9,
-      "actor": "archer",
-      "goal": "old-seal",
-      "x": 2759.608826519001,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 9,
-      "actor": "knight",
-      "goal": "old-seal",
-      "x": 2758.8877904944698,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 9,
-      "actor": "occultist",
-      "goal": "old-seal",
-      "x": 2758.5747138778142,
-      "y": 2220,
-      "action": "fire",
-      "skill": "O02",
-      "target": "a3-29-letter-store-guard-1"
-    },
-    {
-      "round": 10,
-      "actor": "mage",
-      "goal": "old-seal",
-      "x": 2776.485330144231,
+      "x": 2780.642617036891,
       "y": 2220,
       "action": "fire",
       "skill": "M03",
-      "target": "a3-29-letter-store-guard-0"
+      "target": "event-6"
     },
     {
-      "round": 10,
+      "round": 8,
       "actor": "archer",
       "goal": "old-seal",
-      "x": 2777.6367987261206,
+      "x": 2780.8926272957733,
       "y": 2220,
       "action": "fire",
       "skill": "A01",
-      "target": "a3-29-letter-store-guard-0"
-    },
-    {
-      "round": 10,
-      "actor": "archer",
-      "goal": "old-seal",
-      "x": 2777.6367987261206,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 10,
-      "actor": "knight",
-      "goal": "old-seal",
-      "x": 2767.4388226938677,
-      "y": 2220,
-      "action": "defend"
-    },
-    {
-      "round": 10,
-      "actor": "occultist",
-      "goal": "old-seal",
-      "x": 2777.1358704618146,
-      "y": 2220,
-      "action": "fire",
-      "skill": "O02",
       "target": "a3-29-letter-store-guard-2"
     },
     {
-      "round": 11,
-      "actor": "mage",
-      "goal": "old-seal",
-      "x": 2791.0155108008707,
-      "y": 2220,
-      "action": "fire",
-      "skill": "M03",
-      "target": "a3-29-sealed-store-response-3"
-    },
-    {
-      "round": 11,
+      "round": 8,
       "actor": "archer",
       "goal": "old-seal",
-      "x": 2791.5882358629997,
-      "y": 2220,
-      "action": "fire",
-      "skill": "A01",
-      "target": "a3-29-sealed-store-response-3"
-    },
-    {
-      "round": 11,
-      "actor": "archer",
-      "goal": "old-seal",
-      "x": 2791.5882358629997,
+      "x": 2780.8926272957733,
       "y": 2220,
       "action": "defend"
     },
     {
-      "round": 11,
+      "round": 8,
       "actor": "knight",
       "goal": "old-seal",
-      "x": 2776.459549404381,
+      "x": 2777.9261923788254,
       "y": 2220,
       "action": "defend"
     },
     {
-      "round": 11,
+      "round": 8,
       "actor": "occultist",
       "goal": "old-seal",
-      "x": 2791.3390812286634,
+      "x": 2780.756195595253,
       "y": 2220,
       "action": "fire",
-      "skill": "O03",
-      "target": "a3-29-sealed-store-response-3"
+      "skill": "O02",
+      "target": "event-6"
     },
     {
-      "round": 12,
+      "round": 9,
       "actor": "archer",
       "goal": "route-exit",
-      "x": 4359.952698518784,
+      "x": 4339.952698518783,
       "y": 2760,
       "action": "fire",
       "skill": "A02",
-      "target": "a3-29-underwater-bridge-watch-2"
+      "target": "a3-29-underwater-bridge-watch-1"
     },
     {
-      "round": 12,
+      "round": 9,
       "actor": "archer",
       "goal": "route-exit",
-      "x": 4566.61936518546,
+      "x": 4546.619365185459,
       "y": 2760,
       "action": "defend"
     },
     {
-      "round": 12,
+      "round": 9,
       "actor": "mage",
       "goal": "route-exit",
-      "x": 4383.1065372840885,
+      "x": 4362.452698518798,
       "y": 2760,
       "action": "fire",
       "skill": "M06",
-      "target": "a3-29-underwater-bridge-watch-2"
+      "target": "a3-29-underwater-bridge-watch-1"
     },
     {
-      "round": 12,
+      "round": 9,
       "actor": "knight",
       "goal": "route-exit",
-      "x": 4637.869365185412,
+      "x": 4626.990250759055,
       "y": 2760,
       "action": "defend"
     },
     {
-      "round": 12,
+      "round": 9,
       "actor": "occultist",
       "goal": "route-exit",
-      "x": 4410.4860318521005,
+      "x": 4390.936031852101,
       "y": 2760,
       "action": "defend"
     },
     {
-      "round": 13,
+      "round": 10,
       "actor": "archer",
       "goal": "route-exit",
-      "x": 6163.952698518866,
+      "x": 6143.952698518865,
       "y": 2760,
       "action": "fire",
       "skill": "A02",
       "target": "a3-29-moonlit-exit-watch-4"
-    },
-    {
-      "round": 13,
-      "actor": "archer",
-      "goal": "route-exit",
-      "x": 5957.28603185219,
-      "y": 2760,
-      "action": "defend"
-    },
-    {
-      "round": 13,
-      "actor": "mage",
-      "goal": "route-exit",
-      "x": 6018.489870617532,
-      "y": 2760,
-      "action": "defend"
     }
   ],
   "dialogue": [
@@ -786,28 +686,28 @@
       "cls": "archer",
       "hp": 965,
       "maxHp": 965,
-      "x": 5957.28603185219,
+      "x": 6323.952698518873,
       "y": 2760
     },
     {
       "cls": "mage",
       "hp": 1030,
       "maxHp": 1030,
-      "x": 6018.489870617532,
+      "x": 4362.452698518798,
       "y": 2760
     },
     {
       "cls": "knight",
-      "hp": 1649,
-      "maxHp": 1649,
-      "x": 6323.202698518668,
+      "hp": 1598,
+      "maxHp": 1598,
+      "x": 4626.990250759055,
       "y": 2760
     },
     {
       "cls": "occultist",
       "hp": 1180,
       "maxHp": 1180,
-      "x": 4410.4860318521005,
+      "x": 4390.936031852101,
       "y": 2760
     }
   ],
