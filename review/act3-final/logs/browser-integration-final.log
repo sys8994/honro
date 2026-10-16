@@ -1,0 +1,16 @@
+PASS Canonical Stage 1–30 loaded 
+PASS Edit mode has no audio engine 
+PASS Rendering equivalence Stage 1 {'differentPixels': 0, 'ratio': 0.0, 'bbox': None}
+PASS Rendering equivalence Stage 2 {'differentPixels': 0, 'ratio': 0.0, 'bbox': None}
+PASS Rendering equivalence Stage 3 {'differentPixels': 0, 'ratio': 0.0, 'bbox': None}
+PASS Rendering equivalence Stage 4 {'differentPixels': 0, 'ratio': 0.0, 'bbox': None}
+PASS Rendering equivalence Stage 5 {'differentPixels': 0, 'ratio': 0.0, 'bbox': None}
+PASS Rendering equivalence Stage 6 {'differentPixels': 0, 'ratio': 0.0, 'bbox': None}
+PASS Rendering equivalence Stage 7 {'differentPixels': 0, 'ratio': 0.0, 'bbox': None}
+Traceback (most recent call last):
+  File "/workspace/honro-act3-final/tests/integration.py", line 58, in <module>
+    check(f'Rendering equivalence Stage {sid}',ratio<.0001,{'differentPixels':changed,'ratio':ratio,'bbox':diff.getbbox()})
+  File "/workspace/honro-act3-final/tests/integration.py", line 14, in check
+    assert condition, f'{name}: {detail}'
+           ^^^^^^^^^
+AssertionError: Rendering equivalence Stage 8: {'differentPixels': 679, 'ratio': 0.0013097993827160493, 'bbox': (0, 397, 52, 424)}

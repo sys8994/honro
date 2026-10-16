@@ -1,0 +1,32 @@
+
+> test:campaign-metadata
+> node tests/quest-space-reference-repair.mjs
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Exact after JSON identity
++ actual - expected
+
++ '808f52cbc81665b0f198e58e08311cda559c78eba66038815dbf50714cdd357b'
+- '59786eb1c6ad8d2fe9301db347878bd4fb2e3608e488d198a027c9b878093c3d'
+
+    at applyExactStoryJsonDelta (file:///workspace/honro-act3-final/tests/exact-story-revision-delta.mjs:19:9)
+    at reverseExactStoryStages (file:///workspace/honro-act3-final/tests/exact-story-revision-delta.mjs:66:24)
+    at beforeStoryCampaign (file:///workspace/honro-act3-final/tests/act23-story-revision-history.mjs:58:53)
+    at file:///workspace/honro-act3-final/tests/quest-space-reference-repair.mjs:18:9 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '808f52cbc81665b0f198e58e08311cda559c78eba66038815dbf50714cdd357b',
+  expected: '59786eb1c6ad8d2fe9301db347878bd4fb2e3608e488d198a027c9b878093c3d',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

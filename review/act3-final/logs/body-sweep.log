@@ -1,0 +1,36 @@
+
+> test:body-sweep
+> node tests/body-sweep.mjs && node tests/body-sweep-production.mjs
+
+PASS 160 slope/body skill/dt/direction combinations 160
+PASS shared body sweep and connected gate clearance 165
+PASS legacy body skills and first-contact landing 184
+stage 1 slopes 4
+stage 3 slopes 4
+stage 5 slopes 4
+stage 11 slopes 4
+stage 18 slopes 4
+stage 27 slopes 2
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Exact current production sample coverage
+
+88 !== 80
+
+    at file:///workspace/honro-act3-final/tests/body-sweep-production.mjs:35:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 88,
+  expected: 80,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

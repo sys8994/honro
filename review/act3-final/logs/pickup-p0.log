@@ -1,0 +1,14 @@
+node:fs:2483
+    return binding.writeFileUtf8(
+                   ^
+
+Error: ENOENT: no such file or directory, open '_local/reports/evidence-pickup-p0/native.json'
+    at Object.writeFileSync (node:fs:2483:20)
+    at file:///workspace/honro-act3-final/tests/evidence-pickup-p0.mjs:16:4 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '_local/reports/evidence-pickup-p0/native.json'
+}
+
+Node.js v24.19.0

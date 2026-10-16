@@ -1,0 +1,13 @@
+
+> test:runtime-contracts
+> node tests/current-runtime-contracts.mjs
+
+PASS current168 provenance/9 builds/twoHTML, immutable133→130 and old fingerprints; 938 source negatives, 48 current part negatives; 650 exact edit negatives; 19 character-art approval negatives; 26 P0 approval negatives; 19 document presentation negatives
+PASS 49 eater/Sodan revision negative controls after lake and hoist
+PASS 46 exact field-story integration negative controls
+PASS 17 atomic pickup exact-delta negative controls
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

@@ -1,0 +1,20 @@
+
+> test:environment
+> node tests/environment-depth.mjs && node tests/environment-composition.mjs && node tools/environment/validate.mjs && node tools/environment/inventory.mjs --check && python -X utf8 tests/environment-browser.py && python -X utf8 tests/environment-composition-browser.py
+
+PASS environment projection and classification: 30 maps, 152 placements
+file:///workspace/honro-act3-final/tests/environment-composition.mjs:44
+checkInvalid(e=>delete e.placements.find(x=>x.assetId==='env:rock').supportId,'rooted object without support');
+                                    ^
+
+TypeError: Cannot convert undefined or null to object
+    at file:///workspace/honro-act3-final/tests/environment-composition.mjs:44:37
+    at checkInvalid (file:///workspace/honro-act3-final/tests/environment-composition.mjs:43:62)
+    at file:///workspace/honro-act3-final/tests/environment-composition.mjs:44:1
+
+Node.js v24.19.0
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
