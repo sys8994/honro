@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "mode": "Enemy-free exact geometry fixture; finite jump/drop input; no normal campaign completion claim",
+  "rows": [
+    {
+      "cls": "archer",
+      "roof": "inspection-room-roof",
+      "apex": 4739.120362515147,
+      "land": 4770,
+      "returnY": 4950,
+      "totalMovementCost": 465
+    },
+    {
+      "cls": "archer",
+      "roof": "west-lookout-roof",
+      "apex": 3839.120362515146,
+      "land": 3870,
+      "returnY": 4050,
+      "totalMovementCost": 465
+    },
+    {
+      "cls": "archer",
+      "roof": "upper-checkpoint-roof",
+      "apex": 3389.120362515146,
+      "land": 3420,
+      "returnY": 3600,
+      "totalMovementCost": 465
+    },
+    {
+      "cls": "mage",
+      "roof": "inspection-room-roof",
+      "apex": 4739.120362515147,
+      "land": 4770,
+      "returnY": 4950,
+      "totalMovementCost": 442.0000000000073
+    },
+    {
+      "cls": "mage",
+      "roof": "west-lookout-roof",
+      "apex": 3839.120362515146,
+      "land": 3870,
+      "returnY": 4050,
+      "totalMovementCost": 442.0000000000073
+    },
+    {
+      "cls": "mage",
+      "roof": "upper-checkpoint-roof",
+      "apex": 3389.120362515146,
+      "land": 3420,
+      "returnY": 3600,
+      "totalMovementCost": 442.0000000000073
+    },
+    {
+      "cls": "archer",
+      "requiredGalleryY": 4500,
+      "apex": 4559.120362515147,
+      "land": 4770
+    },
+    {
+      "cls": "mage",
+      "requiredGalleryY": 4500,
+      "apex": 4559.120362515147,
+      "land": 4770
+    }
+  ]
+}

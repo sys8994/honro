@@ -1,0 +1,31 @@
+
+> encounter:review
+> node tools/testing/encounter-evidence-gate.mjs check _local/reports/stage25/encounter-review.json
+
+{
+  "schema": "honro-encounter-evidence/v1",
+  "status": "blocked",
+  "quality": "not-automatically-assessed",
+  "sourceDigest": "6dac726c5bfdf960725bb4c165ea11e0655660a4e8a933e24961435d39112cdd",
+  "targetDigest": "84f13ddc1e717e57dc2efd20cf41d5b00edc0dba2a7437476ba409ac901b389f",
+  "reviewDigest": "80e75ad42fcd34604f84d567cb4281cf02d3c054e5c4b78edf07dc95c59caed9",
+  "errors": [
+    "stage 25 same-camera: Missing, blocked or unverified required check",
+    "stage 25 terrain-and-roles: Missing, blocked or unverified required check",
+    "stage 25 activation-and-action-cap: Missing, blocked or unverified required check",
+    "stage 25 warning-opportunity-and-occupancy: Missing, blocked or unverified required check",
+    "stage 25 continue-death-and-old-save: Missing, blocked or unverified required check",
+    "stage 25 objectives-and-growth: Missing, blocked or unverified required check",
+    "stage 25 game-workshop-playtest: Missing, blocked or unverified required check",
+    "stage 25 visual-quality: Missing, blocked or unverified required check",
+    "stage 25 tactical-quality: Missing, blocked or unverified required check",
+    "stage 25 runtime-wave-inventory: Missing, blocked or unverified required check",
+    "stage 25 build-and-regressions: Missing, blocked or unverified required check",
+    "independent review: Different reviewer and actual review time required"
+  ],
+  "limits": [
+    "File hashes and schemas do not prove truthful observations, reviewer identity or design quality.",
+    "Runtime-only wave/phase completeness, recorded spawnedIds versus raw births, and actual tactical/visual quality require independent source and evidence review.",
+    "This gate does not replace verify, browser/performance checks, final approval or Pages verification."
+  ]
+}
