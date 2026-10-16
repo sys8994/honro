@@ -4,7 +4,7 @@ import {P,R,line,asset,put} from './act3-map-kit.mjs';
 export function refineMaintenance25(p,s){
  if(s.metadata.stageId!==25)return;
  const prefix='a3-maintenance25:';
- const originalElements=s.elements.filter(e=>!e.assetId.startsWith(prefix)||e.id==='vertical-depot-shell').map(e=>e.id==='vertical-depot-shell'?{...e,assetId:'a3-waterworks-v3:25:vertical-depot-shell'}:e);s.elements=[...originalElements];
+ const originalElements=s.elements.filter(e=>!e.assetId.startsWith(prefix)||e.id==='vertical-depot-shell'||/^gallery-\d+$/.test(e.id)).map(e=>e.id==='vertical-depot-shell'?{...e,assetId:'a3-waterworks-v3:25:vertical-depot-shell'}:/^gallery-\d+$/.test(e.id)?{...e,assetId:'a3-waterworks-v3:25:'+e.id}:e);s.elements=[...originalElements];
  s.design.act3.optionalRoutes=s.design.act3.optionalRoutes.filter(r=>r.id!=='west-stoplog-crest');
  const add=(id,svg,bounds,solids=[])=>{const a=asset(prefix+id,id,svg,solids,bounds,'stone');a.params.rearOnly=!solids.length;put(p,s,a,id,0,0);};
  // Recessed wall has no outline: the playable sill remains in front of it.
@@ -66,6 +66,27 @@ export function refineMaintenance25(p,s){
  const old=originalElements.filter(e=>!e.assetId.startsWith(prefix));const split=old.findIndex(e=>e.id==='vertical-depot-shell')+1;
  s.elements=[...old.slice(0,split),...added.filter(e=>e.id!=='west-stoplog-workbench'),...old.slice(split),...added.filter(e=>e.id==='west-stoplog-workbench')];
  s.elements.find(e=>e.id==='vertical-depot-shell').assetId=dark.id;
- s.design.act3.maintenanceRevision=2;
+ // Replace repetitive triangular corbels with dressed sill stones and recessed
+ // mortised joists. Contact polygons/one-way flags are copied exactly.
+ for(const e of s.elements.filter(e=>/^gallery-\d+$/.test(e.id))){
+  const src=p.library.find(a=>a.id===e.assetId),poly=src.collision[0].map(q=>[q.x,q.y]);
+  const xs=poly.map(q=>q[0]),ys=poly.map(q=>q[1]),l=Math.min(...xs),r=Math.max(...xs),y=Math.min(...ys),d=Math.max(...ys)-y;
+  let face=P(poly,'#384b49')+P([[l,y],[r,y],[r-6,y+20],[l+5,y+22]],'#a9aa91');
+  if(d<200){
+   face+=R(l+8,y+25,r-l-16,28,'#72674e')+R(l+16,y+56,r-l-32,38,'#413d30');
+   for(const f of [.12,.43,.79]){const x=l+(r-l)*f;face+=R(x,y+25,54,69,'#887451')+R(x+8,y+34,35,9,'#a18e66')+R(x+17,y+63,18,17,'#2d3029');}
+   face+=line([[l+19,y+94],[r-24,y+94]],'#222f2c',9);
+  }else{
+   for(let row=0;row<Math.min(8,Math.floor(d/190));row++){
+    const yy=y+38+row*190;let x=l+12;
+    for(let j=0;x<r-30;j++){const w=Math.min([280,370,230,330][(j+row)%4],r-x-8);face+=P([[x,yy+8],[x+w-9,yy],[x+w-3,yy+150],[x+12,yy+168]],['#51605a','#46564f','#5d6557'][(j+row)%3])+line([[x+13,yy+16],[x+w-19,yy+9]],'#7b8070',5);x+=w;}
+   }
+  }
+  const replacement=asset(prefix+e.id,'수문 정비 회랑의 맞춤보와 석재 디딤면',face,[],[src.bounds.x,src.bounds.y,src.bounds.w,src.bounds.h],'stone');
+  replacement.collision=structuredClone(src.collision);replacement.oneWay=src.oneWay;
+  p.library.push(replacement);e.assetId=replacement.id;
+ }
+
+ s.design.act3.maintenanceRevision=3;
  s.design.act3.optionalRoutes.push({id:'west-stoplog-crest',description:'낮은 직사선을 끊는 정비 석대. 양쪽 경사로를 기본 보행으로 오르고 돌아올 수 있다.',points:[{x:670,y:4050},{x:790,y:3965},{x:900,y:4050}]});
 }
