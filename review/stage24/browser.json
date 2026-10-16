@@ -1,0 +1,291 @@
+{
+  "passed": true,
+  "scope": "Actual App desktop/mobile visual and controlled entrance/Continue contract checks; not combat completion.",
+  "results": [
+    {
+      "entrances": {
+        "water": true,
+        "archive": true
+      },
+      "done": true,
+      "goalsUnchanged": true,
+      "device": "desktop",
+      "actualDropButtonRoofToEaveToGround": true,
+      "continueTerrainPreserved": true
+    },
+    {
+      "entrances": {
+        "water": true,
+        "archive": true
+      },
+      "done": true,
+      "goalsUnchanged": true,
+      "device": "mobile",
+      "actualDropButtonRoofToEaveToGround": true,
+      "continueTerrainPreserved": true
+    }
+  ],
+  "errors": [],
+  "views": [
+    {
+      "device": "desktop",
+      "view": "overview",
+      "phase": "before",
+      "camera": {
+        "x": 3500,
+        "y": 2400,
+        "zoom": 0.21,
+        "width": 1440,
+        "height": 900,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "desktop",
+      "view": "family-hall",
+      "phase": "before",
+      "camera": {
+        "x": 2200,
+        "y": 2370,
+        "zoom": 0.7,
+        "width": 1440,
+        "height": 900,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "desktop",
+      "view": "rear-garden",
+      "phase": "before",
+      "camera": {
+        "x": 3550,
+        "y": 2580,
+        "zoom": 0.7,
+        "width": 1440,
+        "height": 900,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "desktop",
+      "view": "shrine",
+      "phase": "before",
+      "camera": {
+        "x": 4900,
+        "y": 2180,
+        "zoom": 0.7,
+        "width": 1440,
+        "height": 900,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "desktop",
+      "view": "two-entries",
+      "phase": "before",
+      "camera": {
+        "x": 6130,
+        "y": 2490,
+        "zoom": 0.43,
+        "width": 1440,
+        "height": 900,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "desktop",
+      "view": "overview",
+      "phase": "after",
+      "camera": {
+        "x": 3500,
+        "y": 2400,
+        "zoom": 0.21,
+        "width": 1440,
+        "height": 900,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "desktop",
+      "view": "family-hall",
+      "phase": "after",
+      "camera": {
+        "x": 2200,
+        "y": 2370,
+        "zoom": 0.7,
+        "width": 1440,
+        "height": 900,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "desktop",
+      "view": "rear-garden",
+      "phase": "after",
+      "camera": {
+        "x": 3550,
+        "y": 2580,
+        "zoom": 0.7,
+        "width": 1440,
+        "height": 900,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "desktop",
+      "view": "shrine",
+      "phase": "after",
+      "camera": {
+        "x": 4900,
+        "y": 2180,
+        "zoom": 0.7,
+        "width": 1440,
+        "height": 900,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "desktop",
+      "view": "two-entries",
+      "phase": "after",
+      "camera": {
+        "x": 6130,
+        "y": 2490,
+        "zoom": 0.43,
+        "width": 1440,
+        "height": 900,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "mobile",
+      "view": "overview",
+      "phase": "before",
+      "camera": {
+        "x": 3500,
+        "y": 2400,
+        "zoom": 0.18,
+        "width": 390,
+        "height": 844,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "mobile",
+      "view": "family-hall",
+      "phase": "before",
+      "camera": {
+        "x": 2200,
+        "y": 2370,
+        "zoom": 0.7,
+        "width": 390,
+        "height": 844,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "mobile",
+      "view": "rear-garden",
+      "phase": "before",
+      "camera": {
+        "x": 3550,
+        "y": 2580,
+        "zoom": 0.7,
+        "width": 390,
+        "height": 844,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "mobile",
+      "view": "shrine",
+      "phase": "before",
+      "camera": {
+        "x": 4900,
+        "y": 2180,
+        "zoom": 0.7,
+        "width": 390,
+        "height": 844,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "mobile",
+      "view": "two-entries",
+      "phase": "before",
+      "camera": {
+        "x": 6130,
+        "y": 2490,
+        "zoom": 0.43,
+        "width": 390,
+        "height": 844,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "mobile",
+      "view": "overview",
+      "phase": "after",
+      "camera": {
+        "x": 3500,
+        "y": 2400,
+        "zoom": 0.18,
+        "width": 390,
+        "height": 844,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "mobile",
+      "view": "family-hall",
+      "phase": "after",
+      "camera": {
+        "x": 2200,
+        "y": 2370,
+        "zoom": 0.7,
+        "width": 390,
+        "height": 844,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "mobile",
+      "view": "rear-garden",
+      "phase": "after",
+      "camera": {
+        "x": 3550,
+        "y": 2580,
+        "zoom": 0.7,
+        "width": 390,
+        "height": 844,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "mobile",
+      "view": "shrine",
+      "phase": "after",
+      "camera": {
+        "x": 4900,
+        "y": 2180,
+        "zoom": 0.7,
+        "width": 390,
+        "height": 844,
+        "storyTween": null
+      }
+    },
+    {
+      "device": "mobile",
+      "view": "two-entries",
+      "phase": "after",
+      "camera": {
+        "x": 6130,
+        "y": 2490,
+        "zoom": 0.43,
+        "width": 390,
+        "height": 844,
+        "storyTween": null
+      }
+    }
+  ]
+}
