@@ -1,0 +1,652 @@
+{
+  "stage": 24,
+  "phase": "won",
+  "round": 9,
+  "reason": "저문골은 휘겸 선조인 왕실 방계와 관계가 깊었다. 휘겸은 가문의 몰락과 저문골을 함께 추적한다.",
+  "seconds": 12.787012927000001,
+  "fingerprint": "885566a9204ceea203137848027f29e68547b676b34fe1747bc705bbc407ffe7",
+  "source": {
+    "game/config/balance.json": "e92d629134795dbbb8c754db19e7d423cb70c77047fb33e4fea4726caf4886e1",
+    "shared/build.mjs": "e974bace1ec287ae68daaddc9b6624c950eff60f1f26cbcae176d1a56c15ae22",
+    "shared/engine/src/art.ts": "078b58bef9afe800865dbb599917d47795d7321a330647740b3c8609c18ed426",
+    "shared/engine/src/atlasControls.ts": "448468a248322ca5c2a0538100ae90acc73c3b0e5c080c3a73b3396853431dce",
+    "shared/engine/src/atlasLayout.ts": "722a5d2b91e8329bf3ce51260a425ca0134ecba36da19208ffa229671ca4f05a",
+    "shared/engine/src/audio.ts": "86395e0849ce47a6e6ff3d2b10f4c3e231da788fb0ebfd0c8ad8993caed254a4",
+    "shared/engine/src/balance.ts": "65ac75b8a07363f8a6d2d3a053e622c786b8f56498b54fb0894ca753b6e56d11",
+    "shared/engine/src/balanceModel.ts": "afcb34d9bf641080b50fcc25b619cce241ce27c3b11172f62e0c36d11d656770",
+    "shared/engine/src/bgm.ts": "d9a81bb13f549b7f0b83eb6518046c155253dce9c2c451e38a8e30fd00d3fb4f",
+    "shared/engine/src/campUI.ts": "109fd6df2a3ac1a7bb8e4490ec6a8526a9a2c06a166f01a4186079c649cc7fe7",
+    "shared/engine/src/combatPassives.ts": "b13dcedb947da9e5d748c801b3be2bdaf02a0c83450b83ffbfa763d017a0699a",
+    "shared/engine/src/contribution.ts": "1046677d6b5165e7e670c727453c2aff1b3f6f10bdc9be14cbaf641769fda81b",
+    "shared/engine/src/data.ts": "c1692ff28002b3950e4c3793891e1053889ffa333fabdfa643e325b5be7f0bf2",
+    "shared/engine/src/eaterMechanics.ts": "1106026a31c42c74480adbae44e52972d3e635a68696370b4153d8cc5e9baba2",
+    "shared/engine/src/enemyAI.ts": "b1b800e51228db7988295c4e54501b155c2fbcbd6b2fcc6a2a3a6eb411ef35ae",
+    "shared/engine/src/engine.ts": "0f0b81a59c87d2ac357bac6a9b2220c8c20a88cc5010ed73fac293b474685cee",
+    "shared/engine/src/existence.ts": "552ee229fde9160d72c546923afdbf38ad2d81b9f81ed056a3a282aba8169be9",
+    "shared/engine/src/icons.ts": "be98668f30a2ee30d9e26c0385ca3beabd4648b5f7e502e80b17c0264620eb6a",
+    "shared/engine/src/locomotion.ts": "c2861a2d9c1edf87da715c750ee067d099b32eb5a62786fec1c706bb80675805",
+    "shared/engine/src/main.ts": "691409b747b47f6248b5a8b60d9c6ff8b88c35871a8601f381e8d8a809f4be3e",
+    "shared/engine/src/mapArt.ts": "5646326c72332dc8c5dfa4f25e462ac6f95161fdbd271687a490c45ad5ef697b",
+    "shared/engine/src/math.ts": "893e67a4235f5e2d9126754476eb9d6e0d2d3dccf189c4b0ce38f7cc2e197038",
+    "shared/engine/src/occultData.ts": "ba719ffe05a69ed91b4b7cfb2bb7821ed009e5ae8b87f623c09660b87407c772",
+    "shared/engine/src/occultMechanics.ts": "ff60c2645af9223beb81e341245bf0fb23670641aff9c383f3069a9c8b9e9e81",
+    "shared/engine/src/passiveBalance.ts": "80a7619d200826aa38b152d6ebe4f6e3c6b75507410c38c8186a53beb325666a",
+    "shared/engine/src/physics.ts": "b50804ddad3ef8004c0587026586b6125525e9cab28d6001b23b985e4c1407f3",
+    "shared/engine/src/progression.ts": "46cb42f71e444127ec36ad7b8e87afe1cc67c15fcd117e5ad34eb2860a62e019",
+    "shared/engine/src/projectileGrowth.ts": "869bfb5b3491eb886a036d5fb52939042469cfe918ba21069b0474e7025ae07a",
+    "shared/engine/src/skillLore.ts": "7e1164b1bf577b662fd8106e2f231d5d09ad95e50ed77165595fc9a6920b1329",
+    "shared/engine/src/skillMechanics.ts": "3d435d6f26161d64321eb9cb82a95804e5f00a85b0e09218f75a65df1ae3eb2c",
+    "shared/engine/src/skillNotes.ts": "0e2a1640cf95de0cee2c48a25e9c3e311c490907f61c461673df056711f155f2",
+    "shared/engine/src/skillRedesignData.ts": "9c0b9e23af05acbdeeb3e9f9c190a6e4ca112b3bafedbb0cff713fa2a553a452",
+    "shared/engine/src/skillVisuals.ts": "7b290710b7fa07766be8e123416c38bd078d2a2d78a98c12c5528577945d6333",
+    "shared/engine/src/sound-design.ts": "deac6caeaa88d984854b6db9c97025ece38e5d3a5fab0d27eb06bfef7216c50b",
+    "shared/engine/src/spBalanceModel.ts": "438c748299b9296d1944215c5f0f13aba920dd2bc81a614e7fc84e09b239a9ed",
+    "shared/engine/src/stageRules.ts": "788b454b4687c5bb94d8e570a208b5206c25ee7c69083fd7fc2ed1c3ecfe6525",
+    "shared/engine/src/store.ts": "ef52b906bb0ef1e0e5bb9058c83833e56af89d0c1da18e951e85b66d753c778d",
+    "shared/engine/src/summons.ts": "c62a208f3ab0822a9e8b6a95c91a788b56b126be900d85b5bb5dccb0b9f973a2",
+    "shared/engine/src/totemBehavior.ts": "93506bc2d6766e7f3a34f28bf4fd9888a38378c7a78a7b9feaec60c8bc9290f7",
+    "shared/engine/src/types.ts": "79a295dff448bb80d8d3e1078732fb6c79366908299522bd47699bc907b7348d",
+    "shared/engine/src/warriorData.ts": "45a0410455533cd6df38cc33c78b2c21b4d1f09588802759310e9100ccbbfe89",
+    "shared/engine/src/warriorMechanics.ts": "c7d30fd545cde41952606af57eac2143e78318a89d728efc7e1abf3afcc964f5",
+    "shared/engine/src/warriorVisuals.ts": "ab67f607e122045d7de524ac2691fbd5bd3bd05733d09f594dff7f47c2ea02ce",
+    "shared/engine/src/waterfallPhysics.ts": "960113d8d84aeb398df79f0484b4292b19d511ee89e61b258c06e35a7323bdd9",
+    "shared/engine/src/waveReflection.ts": "9c79df5ba8373dc6717983f47df8d58806ff1340854a0202aaf09fe31b0ad2bd",
+    "shared/engine/src/world.ts": "3aec129853b8f21006d20af55e9baad3a890603cfbe403a0b33d152f155e12ae",
+    "shared/map/bounds.js": "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
+    "shared/map/commands.js": "28d29bb43a3aeb23166f0151d2fdd8b3dd916db02c63ed9fac320e2fd7a8b658",
+    "shared/map/compiler.js": "e8c51e45cb6866977b1f193789aab6478d45abb4f0ea91164d5bad76bccc4991",
+    "shared/map/environment.js": "3db902d59075cc65c1ed35c93c0e93d17c29bc050eee4fed8e18c1d207cab456",
+    "shared/map/geometry.js": "42f8157a668b7d92b07c211a741030b18cffef762310438078b442aaa71b76d1",
+    "shared/map/open-structures.js": "995df813bdde6b8404a6b083edf29a998764bdac6efc1548ed491be4a53a5936",
+    "shared/map/platform-passages.js": "d8f168c6d985bc4d33b881455c08b47dd07fffca139516f8ef17cd38e32c9cca",
+    "shared/map/projectile-targets.js": "56da042d35c89b7c6cdcac1942290f6f59f18640a49f43800fd95817def94895",
+    "shared/map/schema.js": "2525a69822be2e115b0c91812bbdac377c45ea390f9dafa7a4039590f7dfba6f",
+    "shared/map/space-layout.js": "8fd724221d6e31308aadce10e41fc96ad55aa717ff3ec28116e7a175153f9e16",
+    "shared/map/stage7-reentry.js": "87b963b5ac290b8dd2318423ef9bf6a9394c0ae19db259cca76fd90c9302dc56",
+    "shared/map/terrain-domain.js": "174b6137b4200d941a9c545308992d9916f259aec5c335d256bcd1ea46f85c7c",
+    "shared/map/units.js": "fd869d495655d0488c2c3d648100ed2658b38115d6a6055f1ee70d3252559c8a",
+    "shared/map/vector-art.js": "c2a8200b80b6519a91689898931a35f8c927381fd8fabed994d30f7cfda421e6",
+    "shared/map/visual-style.js": "b3d1fe996205ca5a935ed3ec16c5a377d314d9737094bbff92afd769b6045dfb",
+    "shared/runtime/act1-roster.js": "ceeb10a02706336734b9ed571f84584a3124a503d6a1b0ea176c213533ab8d16",
+    "shared/runtime/act1-spatial-art.js": "1670f5aa7f88d2e3756b1b724f94c78d8f2118624f7101e6cfd5d353418e09fc",
+    "shared/runtime/act2-art.js": "b3286bfe669809b5289e57197ea82c024005b3781f6da5b8440cf2d16fe66d2f",
+    "shared/runtime/act2-content.js": "b34d417d55b230c10bea8e7ecf461e85500f530f3748d43fda9fe5687659f3c2",
+    "shared/runtime/act2-drama.js": "69c13bfeabede7cf2eca8ee0eee3049b76b701d87f7b28c00ed9b37429f842c3",
+    "shared/runtime/act2-plan.js": "8ba1899a6df0c9cf99b04030ef4575d0cc75282029e23395e4c7bb5847b728a9",
+    "shared/runtime/act2-spatial-art.js": "deecb16aac810bcb7dba1e37cd0008fb9c3e3647b617292c86502c410b5ec2e0",
+    "shared/runtime/act2.js": "3ae8e494700b5442113c6fa195025cec2d1f44296a19c2c1b7a945fa6b2028f5",
+    "shared/runtime/act3-art.js": "14ef1006e045036e0dfca0f20c263fb4fe3a2ae7864a27a64a9db732e83d7ca8",
+    "shared/runtime/act3-content.js": "c364fd4c63c5765faedecd48d6a5e3e29101ed931beefc721e584b222f4541da",
+    "shared/runtime/act3-encounters.js": "d1103f3e16ba67cd32912ec480f0b88b0d77936076c28be1dfaee77f19a1c283",
+    "shared/runtime/act3-journey.js": "db1e15c82820edc2b6541760c766e8d970afbdf1e2782179befe24199ff3249e",
+    "shared/runtime/act3-objectives.js": "b92205754cb74ad1dfb21feaac46fd58610653997891f98c73b6011071ccbfd3",
+    "shared/runtime/act3-void.js": "bdc61dd4b2da4c1b2859ec58339bf8bdf943390d5ee6db55172b301a0c243b41",
+    "shared/runtime/action-prompts.js": "04ae58f62f96900936a1f203303353d393064445a63c85a4127f1b11bfac4cd7",
+    "shared/runtime/actor-vector.js": "3b414d9a5eacda05ba0f1c794403170e94fa64b4bdfcd6d197aa3168375afe86",
+    "shared/runtime/allies.js": "1543f8c4e8382f9561aeaaf44ff1a0772ace3f6b647df3ff90fcad05f5c184ea",
+    "shared/runtime/art-dark.js": "45649951480f30cff1c28d409463f57555107fbdc471abae4a325d307f0a4588",
+    "shared/runtime/audio.js": "17766ff2d11115a59b6e5b1a4b1188d718a3ad21e663c236f673f364faffe6fa",
+    "shared/runtime/authored.js": "192f254fc1009c8d707edcbb1cc24c7669d95dd5e85a2129436c3626866da7b0",
+    "shared/runtime/battlefield-layouts.js": "597e37bde592a3cc3aca252443096ac88832f3e29aaf67aac3360cbb8fbfb781",
+    "shared/runtime/bell-anomaly.js": "48a232302f7c309a59a5b1078d6aa0c48d9809f02e798a152d56ef673d17117e",
+    "shared/runtime/camera.js": "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
+    "shared/runtime/cave-enclosure.js": "55e5e9481c95ddb3d70bb6916ef958f05048561c44a7893aa3cf854a404c2f19",
+    "shared/runtime/combat-feedback.js": "36032e6c86ee942ad2954f135d24cac5ca748322188f3f285321bc1a6e785b67",
+    "shared/runtime/combat-status.js": "5a9346993bb3074f0ad0a5b172dbfbe1026a8d10f0791eb660116e644f057b70",
+    "shared/runtime/content.js": "d751757170508f1fad0e0bed7ba62defc0692ea3ffebc20e4e8b59d21ba97c01",
+    "shared/runtime/contribution-xp.js": "7d9c6626f92f02752034b3bb39caa03575f21c939ce2d12a1789ad3250050355",
+    "shared/runtime/difficulty.js": "5c9059dc850cb54f014c71974df711ecdbe3671c017c92ff830bdc06223dbe5e",
+    "shared/runtime/elements.js": "f358fa709a47343dd0e1474fddf3ba793b6b0618fc9b31fbf38fb5dcdba7f38b",
+    "shared/runtime/encounter-density.js": "91fcc8cc0d3f55244e035950adeda190a0958a0eb3b4a05b2d0d4a069be598e3",
+    "shared/runtime/encounters.js": "efe7a71e302f6853a2d30a45d3d07178ea800da3943926f2182912e33c91983f",
+    "shared/runtime/environment-art.js": "48f0758425ec8e721902d2cdef321a87118c1b3b2863a089b97c4e20a85d58a1",
+    "shared/runtime/environment-renderer.js": "8986523dc3f60d7d12672530ae5f073e27676f7bb5b5b8d6470c614f27d0cadc",
+    "shared/runtime/evidence-quests.js": "f6f14b80bda8044e5a5e712994aa771ad054fc00ea434005bcba7e7bf0a5c47d",
+    "shared/runtime/fullscreen-input.js": "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62",
+    "shared/runtime/interactions.js": "302435cb8e327ad88b0751fec8487cc57dcd20b0a229ddba7128e01e4560e418",
+    "shared/runtime/journey-art.js": "e4d85661b74b903ee51667928e17c2ad65cf7316c4a9699e3e2c6b84cf284c9d",
+    "shared/runtime/journey-content.js": "030b2919f18d8cf0684b794a7d681903feffbaa1d7f409d9ddb66dbdf8034c37",
+    "shared/runtime/main.js": "2d509e28aba63c1af99905bca2370c1e576ba1b5d9471760879f326afdcb5d14",
+    "shared/runtime/map-art-polish.js": "0ec708027c11c5730d9da8c1fe2d5e0f796a1ec9c2812897cff161b331e737f7",
+    "shared/runtime/map-engine.js": "255779df783a56416b8765ed52b63d9e7ceb5396272aef5b096270aa5da609af",
+    "shared/runtime/mission.js": "6ba0453a228eaae30b94407050bcd3d2c3c9ac948a3c0648e37c80653dd4f7c6",
+    "shared/runtime/monster-vector.js": "c7e9f739aa44ca8c2a42d0cede3613c7231700220ca08df8f070d4787f42875b",
+    "shared/runtime/narrative-art.js": "3965ddc80da6901c38f95ed16c40e86f06de890f795b4dc29524264708153a17",
+    "shared/runtime/narrative-revision.js": "8e9c0f786afb58556122ae78360a66f35e5af5ff6572a05555c2f7301ac22207",
+    "shared/runtime/object-damage.js": "9cf9ff3277bd87e0edd2baa2f9aa94f63970788c731387db9cfcc317623f4a48",
+    "shared/runtime/objective-contributions.js": "4d7ee345a5fda1d0c9e3d71dce8036db476f5cc0d12391188985d38d273f2b47",
+    "shared/runtime/objective-guidance.js": "b44f3e9cfe49991370a0d016cb956c2f997c5c55ce485909ac4f4b5aa33d8d2a",
+    "shared/runtime/objective-revision.js": "bb4df0cce7e199ed6d52b3a24abd70156fbc087e4395b65c21d5f1bd22a233d5",
+    "shared/runtime/objectives.js": "85bc0fee3070eeef8efec6516328acf9c898f915526b89d175a08bdee0e0557f",
+    "shared/runtime/party-rig.js": "8ae6a0d5e5ffdd53bf57a1e9c1f43ba9ab2f59ac3c254275d4594a2d9ffbe405",
+    "shared/runtime/portraits.js": "7a0d74a889e458341ac005aa8bc8ef65c9c8bba30fec0f6c60080ac3f18fa798",
+    "shared/runtime/progression.js": "558a50d34799799d17df5c713d01c8ad4d79286bb97721fc0d5e3f69865376c8",
+    "shared/runtime/quest-target-art.js": "b5dc73a386531756561f8825945352de274447cef5cada5e35e29c3b9776f13b",
+    "shared/runtime/quest-targets.js": "5306b3cdce1ea97efcc5f22bc054abe0a826a13a72f4a7919b03cfe3b5f15560",
+    "shared/runtime/renderer.js": "54705bf50384edacc6069b4c5fc6cd869c354cbb61d4c4449570ff3bc2215db9",
+    "shared/runtime/rest-journey.js": "0a6956f52d2b03fff94f97e3efd0dfb6efc3f97fc96ea2453df43addbbc45dc6",
+    "shared/runtime/route-branches.js": "541a5de814beef1a0571eea4c1e9dc96c30488ce89f1cdeb0f4b320007da06e3",
+    "shared/runtime/skill-preview.js": "bc2f50200d44fc547b7b739f58ede9d98bc9666bb234ffae8aaeb871ea056c10",
+    "shared/runtime/split-campaign.js": "28a7789aa268c8c4de27429b044d62bea7d8dde553e062fbea1dcfe0f6372ac8",
+    "shared/runtime/stage-rules.js": "a75740288bbb017cfde16ed87d2e066c71e41e3cffa5ade8ec68d8061d8bf5d5",
+    "shared/runtime/stage11-landscape-art.js": "a24bf2dbb1f5e12a7646a8246d235b5b2a04fd47b5c805e91105661ef6bfbc66",
+    "shared/runtime/stage11-ravine-encounters.js": "e796e590d893393d6d7880bf0c84ad01a834bd604737748ca45b5eb8ad0b311f",
+    "shared/runtime/stage11-trace-exit.js": "c7829053c84e3b5fe308a6f04e1eb8cdb7b683022a5acbca4e9112f1f0eda298",
+    "shared/runtime/stage12-quarry-art.js": "1c193e0f01ba1f8d67e5e3d0872b967d12ebb5d3cbe8e279acd7f4cb8d5162cb",
+    "shared/runtime/stage12-quarry.js": "8473f28be6b8188556642ce01f88c804688f3793116a65a553bfc9b63fe8d387",
+    "shared/runtime/stage14-vertical.js": "bde2c80dd823dcf7b866f7af07baaaca5e593e82e9af5ef70fcb7fdd2df03bac",
+    "shared/runtime/stage16-temple.js": "efb1ae64fb1e7e3d90e080abc4268c4600d815935aa716ab8e27ed374c672b25",
+    "shared/runtime/stage17-worksite.js": "4f7fdae5d199de958bdddcf728b596d2f8bcd44d26fe3966487b43918f55567b",
+    "shared/runtime/stage18-bell-art.js": "ca2810c911a943a7569c65b97d308a8824d7ddef5eb464f7fa2db97eecaebae6",
+    "shared/runtime/stage18-bell.js": "ce9fd77d196cfd5f844703d2a02e39f791fbd5486c4d6b4b5f4d69168db86f65",
+    "shared/runtime/stage2-airborne.js": "43b9704b6659795571f24a0a47412c145d7792553ab756167629724767f1bd7f",
+    "shared/runtime/stage22-vertical.js": "201715a538abca1452bd3e9141e7085fe7cbdc2a62bebab2a91a06ad902ea530",
+    "shared/runtime/stage23-escort-art.js": "04559c7793ea19cf46a16650946ee4cfa65b2cf80fe53eff607faa9b157622bc",
+    "shared/runtime/stage23-escort.js": "ed45d9b05a3108d97684df34ade1c3a6fb6d4f30b943e14b11a1e1151b6bcd8e",
+    "shared/runtime/stage30-ferry-art.js": "3c01ebf93f7d43b190b3b0309b2bb652e194353aee6fbfedcbb3a7027bf396ce",
+    "shared/runtime/stage30-ferry.js": "7de14655855058c994cdaea3c62fcfb66b3ee87e257ade179f33e780d7901514",
+    "shared/runtime/stage5-waterfall-art.js": "6248f34e689be659a1a1c591529808b860387d02725314199e0ddae3dffa54c4",
+    "shared/runtime/stage5-waterfall-geometry.js": "b6a68f9f91e5ccc83e8e9a995330e1b535d499e55ffc122ea73eb4ed91d31d58",
+    "shared/runtime/stage5-waterfall.js": "73521648526d77f57bbb7b24409eb78d62de8bef11ec8db9e1c5413536e13719",
+    "shared/runtime/stage8-bier-art.js": "8296e33904c244e5958b927028c2f9b78d7676970e534994df4d6763bd4be0f2",
+    "shared/runtime/stage8-bier.js": "4d8133a1f8e4ef17df02f67b1d1154632fb0ae92b76d276f8ba9a781f7b3eee7",
+    "shared/runtime/stake-crossing.js": "92fc37df186cdc77ca8a83aed79234d1116473eed4313a91b208b188f422ad82",
+    "shared/runtime/story-act1-art.js": "9811717fb698d0aecb61ad9c8cf8f39e00e5c90b4495b443105ef759e85ef858",
+    "shared/runtime/story-act23-art.js": "a2719be3ad63b88c73390c3e0b6e88c1de801fed71d43d926e6e4a16f32b1d02",
+    "shared/runtime/story-anomaly-art.js": "f22797b90d9d19d42d0e9df2a7744acb0bcd3ebc9729f9e233a31d87b474d053",
+    "shared/runtime/story-canon-v1.js": "7c479c773e9a697fbb307b7ae2eacdd9973cf918e9d4845463e4c52cc1b1854d",
+    "shared/runtime/story-content-v0.js": "ff020be5ee8c48656d658ceacb2bc16c65cadae6cf1514e4a893c4a6988d8103",
+    "shared/runtime/story-content.js": "f2547b133cc28b9b02cdd9a60e9d458db6edd0da92bb4b1926750e45473d9bdb",
+    "shared/runtime/story-direction.js": "8e5ec01229e75a81def27132149ab4bcb6df5c42b958dc0206628720b7246fa7",
+    "shared/runtime/story-staging.js": "29e3dd8e057ba43a07f087b7e620a2e2d1c35e80372ee9d6a49f90386c9ff012",
+    "shared/runtime/story.js": "9c606cad8feb86ca73b87c4822a0bcb0247981e14dc04b9d6395d0aaebcd3693",
+    "shared/runtime/terrain-readability.js": "640d1559a73d3490506525e40fe0b1dc98719570db2d90d44adf61dacba7c3a7",
+    "shared/runtime/terrain-skirt.js": "b85570692e019d3eda81cace46c4fd6b660206f3aa72d356bb2cc9e9ad2afa50",
+    "shared/runtime/terrain-space.js": "3fc3be5bc6f2b93b1b462865e6d8623e5571e9d68e76b2badb825dbe9e801a54",
+    "shared/runtime/training.js": "e5610d9a36656f9f080ca11a78edd9f9c2fd6c4561ce7c1d10b16526040388db",
+    "shared/runtime/ui-bridge.js": "dc62501dd2031175614bdf75a7e10270a3c822511e5f3cd504f71a533e9e1150",
+    "shared/runtime/unit-info.js": "abcf990c19dae5b811f8b744de939f825868dd38a37fb594a5d22bef636748d3",
+    "shared/runtime/visual-hierarchy.js": "150285df2c0d6ec6dd8c14967c32a048da882324cf655be8c781ab6f490255ad",
+    "shared/runtime/world.js": "9587b1782c02cb54ec30d446bc8edd775304b183fd84bfbaa0c0a8197917a350",
+    "tests/act3-playthrough.mjs": "5adadef3637a12ed0d8e8d32bb002799b4a8a33cc5eb8b3923b885e968d281eb",
+    "tests/app-regression-helpers.mjs": "ad4a16b6692f9c9b59824afca022856a91bae2f671c63e1f1c87e465baddbbac"
+  },
+  "actions": [
+    {
+      "round": 1,
+      "actor": "knight",
+      "goal": "family-crest",
+      "x": 2046.265891983798,
+      "y": 2460,
+      "action": "defend"
+    },
+    {
+      "round": 1,
+      "actor": "archer",
+      "goal": "family-crest",
+      "x": 1048.499999999998,
+      "y": 2700,
+      "action": "fire",
+      "skill": "A02",
+      "target": "a3-24-empty-court-watch-3"
+    },
+    {
+      "round": 1,
+      "actor": "archer",
+      "goal": "family-crest",
+      "x": 1235.9226791517117,
+      "y": 2656.2534872584206,
+      "action": "defend"
+    },
+    {
+      "round": 1,
+      "actor": "mage",
+      "goal": "family-crest",
+      "x": 1983.57422531777,
+      "y": 2460,
+      "action": "defend"
+    },
+    {
+      "round": 1,
+      "actor": "occultist",
+      "goal": "family-crest",
+      "x": 2048.211526918932,
+      "y": 2460,
+      "action": "fire",
+      "skill": "O03",
+      "target": "a3-24-crest-room-watch-1"
+    },
+    {
+      "round": 2,
+      "actor": "knight",
+      "goal": "family-crest",
+      "x": 2115.8893123197718,
+      "y": 2460,
+      "action": "fire",
+      "skill": "S01",
+      "target": "a3-24-empty-court-watch-3"
+    },
+    {
+      "round": 2,
+      "actor": "archer",
+      "goal": "family-crest",
+      "x": 1160.969557190026,
+      "y": 2673.889515955288,
+      "action": "fire",
+      "skill": "A02",
+      "target": "a3-24-empty-court-watch-3"
+    },
+    {
+      "round": 2,
+      "actor": "archer",
+      "goal": "family-crest",
+      "x": 1348.35236209424,
+      "y": 2629.79944421312,
+      "action": "defend"
+    },
+    {
+      "round": 2,
+      "actor": "mage",
+      "goal": "family-crest",
+      "x": 1835.9280234742384,
+      "y": 2460,
+      "action": "defend"
+    },
+    {
+      "round": 2,
+      "actor": "occultist",
+      "goal": "family-crest",
+      "x": 1834.5484573860529,
+      "y": 2460,
+      "action": "fire",
+      "skill": "O03",
+      "target": "a3-24-crest-room-watch-1"
+    },
+    {
+      "round": 3,
+      "actor": "knight",
+      "goal": "family-crest",
+      "x": 1898.1167133425188,
+      "y": 2460,
+      "action": "interact",
+      "target": "family-crest"
+    },
+    {
+      "round": 3,
+      "actor": "mage",
+      "goal": "shrine-seal",
+      "x": 3408.282537379915,
+      "y": 2850,
+      "action": "fire",
+      "skill": "M03",
+      "target": "a3-24-shrine-approach-0"
+    },
+    {
+      "round": 3,
+      "actor": "archer",
+      "goal": "shrine-seal",
+      "x": 2948.0288133680456,
+      "y": 2595.042566493051,
+      "action": "fire",
+      "skill": "A02",
+      "target": "a3-24-shrine-approach-0"
+    },
+    {
+      "round": 3,
+      "actor": "archer",
+      "goal": "shrine-seal",
+      "x": 3108.8370110558076,
+      "y": 2699.800508686706,
+      "action": "defend"
+    },
+    {
+      "round": 3,
+      "actor": "occultist",
+      "goal": "shrine-seal",
+      "x": 3435.6508919529756,
+      "y": 2850,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-24-shrine-approach-0"
+    },
+    {
+      "round": 4,
+      "actor": "mage",
+      "goal": "shrine-seal",
+      "x": 4349.907438196259,
+      "y": 2561.4685948865545,
+      "action": "defend"
+    },
+    {
+      "round": 4,
+      "actor": "archer",
+      "goal": "shrine-seal",
+      "x": 4349.219669440498,
+      "y": 2562.060840204015,
+      "action": "fire",
+      "skill": "A02",
+      "target": "a3-24-shrine-approach-1"
+    },
+    {
+      "round": 4,
+      "actor": "archer",
+      "goal": "shrine-seal",
+      "x": 4339.437724910458,
+      "y": 2570.3578114206175,
+      "action": "defend"
+    },
+    {
+      "round": 4,
+      "actor": "knight",
+      "goal": "shrine-seal",
+      "x": 3740.152586784428,
+      "y": 2850,
+      "action": "defend"
+    },
+    {
+      "round": 4,
+      "actor": "occultist",
+      "goal": "shrine-seal",
+      "x": 4348.123330445676,
+      "y": 2563.004909894001,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-24-shrine-approach-1"
+    },
+    {
+      "round": 5,
+      "actor": "mage",
+      "goal": "shrine-seal",
+      "x": 4338.484487148606,
+      "y": 2570.964417269069,
+      "action": "fire",
+      "skill": "M03",
+      "target": "a3-24-abandoned-garden-watch-2"
+    },
+    {
+      "round": 5,
+      "actor": "archer",
+      "goal": "shrine-seal",
+      "x": 4335.895357578774,
+      "y": 2572.612045177144,
+      "action": "fire",
+      "skill": "A02",
+      "target": "a3-24-abandoned-garden-watch-2"
+    },
+    {
+      "round": 5,
+      "actor": "archer",
+      "goal": "shrine-seal",
+      "x": 4470.761022527094,
+      "y": 2457.400230601669,
+      "action": "defend"
+    },
+    {
+      "round": 5,
+      "actor": "knight",
+      "goal": "shrine-seal",
+      "x": 4346.6970309097405,
+      "y": 2564.233112272168,
+      "action": "defend"
+    },
+    {
+      "round": 5,
+      "actor": "occultist",
+      "goal": "shrine-seal",
+      "x": 4338.733435339447,
+      "y": 2570.8059956930792,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-24-abandoned-garden-watch-2"
+    },
+    {
+      "round": 6,
+      "actor": "mage",
+      "goal": "shrine-seal",
+      "x": 4343.80002612539,
+      "y": 2566.7277552809137,
+      "action": "fire",
+      "skill": "M03",
+      "target": "a3-24-abandoned-garden-watch-2"
+    },
+    {
+      "round": 6,
+      "actor": "archer",
+      "goal": "shrine-seal",
+      "x": 4342.560418018815,
+      "y": 2567.7951955949097,
+      "action": "fire",
+      "skill": "A02",
+      "target": "a3-24-abandoned-garden-watch-2"
+    },
+    {
+      "round": 6,
+      "actor": "archer",
+      "goal": "shrine-seal",
+      "x": 4347.422767833916,
+      "y": 2563.608172143017,
+      "action": "defend"
+    },
+    {
+      "round": 6,
+      "actor": "knight",
+      "goal": "shrine-seal",
+      "x": 4349.239609502016,
+      "y": 2562.0436695954863,
+      "action": "defend"
+    },
+    {
+      "round": 6,
+      "actor": "occultist",
+      "goal": "shrine-seal",
+      "x": 4347.823743632205,
+      "y": 2563.2628874278234,
+      "action": "fire",
+      "skill": "O02",
+      "target": "a3-24-shrine-approach-1"
+    },
+    {
+      "round": 7,
+      "actor": "mage",
+      "goal": "shrine-seal",
+      "x": 4347.485511741603,
+      "y": 2563.5541426669533,
+      "action": "interact",
+      "target": "shrine-seal"
+    },
+    {
+      "round": 7,
+      "actor": "archer",
+      "goal": "land-register",
+      "x": 5688.229444443842,
+      "y": 2720,
+      "action": "defend"
+    },
+    {
+      "round": 7,
+      "actor": "knight",
+      "goal": "land-register",
+      "x": 5978.34901769108,
+      "y": 2720,
+      "action": "fire",
+      "skill": "S01",
+      "target": "event-42"
+    },
+    {
+      "round": 7,
+      "actor": "occultist",
+      "goal": "land-register",
+      "x": 5738.943629658932,
+      "y": 2720,
+      "action": "defend"
+    },
+    {
+      "round": 8,
+      "actor": "archer",
+      "goal": "land-register",
+      "x": 5758.812777777179,
+      "y": 2720,
+      "action": "defend"
+    },
+    {
+      "round": 8,
+      "actor": "mage",
+      "goal": "land-register",
+      "x": 5705.909822948737,
+      "y": 2720,
+      "action": "defend"
+    },
+    {
+      "round": 8,
+      "actor": "knight",
+      "goal": "land-register",
+      "x": 6529.785969861848,
+      "y": 2440,
+      "action": "fire",
+      "skill": "S01",
+      "target": "event-42"
+    },
+    {
+      "round": 8,
+      "actor": "occultist",
+      "goal": "land-register",
+      "x": 6528.539319334095,
+      "y": 2440,
+      "action": "defend"
+    },
+    {
+      "round": 9,
+      "actor": "archer",
+      "goal": "land-register",
+      "x": 5760.895505923705,
+      "y": 2720,
+      "action": "defend"
+    },
+    {
+      "round": 9,
+      "actor": "mage",
+      "goal": "land-register",
+      "x": 5758.523086130288,
+      "y": 2720,
+      "action": "defend"
+    },
+    {
+      "round": 9,
+      "actor": "knight",
+      "goal": "land-register",
+      "x": 6527.345285822816,
+      "y": 2440,
+      "action": "fire",
+      "skill": "S01",
+      "target": "event-42"
+    }
+  ],
+  "dialogue": [
+    {
+      "index": 0,
+      "text": "담장 안의 빈 저택에 같은 문장이 남아 있다. 휘겸이 무너진 문간에서 걸음을 멈춘다."
+    },
+    {
+      "index": 1,
+      "text": "짐꾼 말대로라면 윗길로 돌아가야겠군. 수로에 내려가기 전에 축지진목을 챙겨 두세."
+    },
+    {
+      "index": 2,
+      "text": "운송 표찰 끝과 같은 문장이오. 우리 집안의 문장인데, 왜 이곳에 남았지?"
+    },
+    {
+      "index": 3,
+      "text": "사당 안쪽 봉인이 남아 있네. 문서를 지키던 봉인인지 살펴보세."
+    },
+    {
+      "index": 4,
+      "text": "휘겸으로 가문 출입문의 문장 확인"
+    },
+    {
+      "index": 0,
+      "text": "내 선조가 왕실 방계였다는 것은 알았소. 저문골과의 관계는 듣지 못했소."
+    },
+    {
+      "index": 0,
+      "text": "증원 진입 · 폐가 서재에서 지워진 이름들이 웅성거립니다. 다음 행동 동안 후원 진입로를 살피세요."
+    },
+    {
+      "index": 0,
+      "text": "담허로 사당 출입로 개방 · 완료"
+    },
+    {
+      "index": 0,
+      "text": "증원 진입 · 봉인이 풀린 사당 뒤로 장부귀가 모입니다. 다음 행동 동안 봉인 앞 퇴로를 살피세요."
+    },
+    {
+      "index": 0,
+      "text": "증원 진입 · 사당 동쪽 갈림마당에서 경비가 일어납니다. 다음 행동 동안 물길 입구와 지상 기록실 사이의 퇴로를 살피세요."
+    },
+    {
+      "index": 0,
+      "text": "약도에는 저문골 보호지의 묘역 기록실과 공방이 표시돼 있다. 아래 물길은 관아 뒤뜰로 이어진다."
+    },
+    {
+      "index": 1,
+      "text": "선조의 기록실은 묘역 아래군. 소단, 묘역 쪽 기록실과 공방은 우리가 살핍시다."
+    },
+    {
+      "index": 0,
+      "text": "지상과 지하 두 조사길로 출발 · 완료"
+    },
+    {
+      "index": 1,
+      "text": "설오는 나와 약도의 지하 물길에서 운송 표찰의 원본을 찾세. 휘겸과 소단은 지상 기록을 찾고, 관아 뒤뜰에서 만나자고."
+    },
+    {
+      "index": 2,
+      "text": "찾은 기록은 가져가서 함께 맞춰 보겠습니다."
+    },
+    {
+      "index": 3
+    }
+  ],
+  "reinforcements": {
+    "authored": 3,
+    "committed": 3,
+    "units": 7,
+    "pending": []
+  },
+  "heroes": [
+    {
+      "cls": "archer",
+      "hp": 875,
+      "maxHp": 875,
+      "x": 5780,
+      "y": 2720
+    },
+    {
+      "cls": "mage",
+      "hp": 408,
+      "maxHp": 902,
+      "x": 5780,
+      "y": 2720
+    },
+    {
+      "cls": "knight",
+      "hp": 973,
+      "maxHp": 1447,
+      "x": 5263.336560453422,
+      "y": 2313.8778859691192
+    },
+    {
+      "cls": "occultist",
+      "hp": 589,
+      "maxHp": 1036,
+      "x": 6603.582716872024,
+      "y": 2440
+    }
+  ],
+  "items": {
+    "heal": 3,
+    "focus": 3,
+    "cleanse": 2,
+    "ward": 2
+  },
+  "scope": "Native production App/engine input bot with menu, Canvas and storage doubles. Prepared entry save. No hidden item commands: current move/jump/fire/interact/wait inputs only. Stage24 land-register uses actual two-team entrance markers. Not browser play or a human difficulty verdict."
+}

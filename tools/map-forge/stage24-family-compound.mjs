@@ -15,10 +15,16 @@ export function authorFamily24(project,g){
  p.library=p.library.filter(a=>!a.id.startsWith(prefix));
  terrain(s,'a3-foundation',[...PROFILE,[7000,3300],[0,3300]],'earth');
  const rear=(id,svg,bounds)=>{const a=asset(prefix+id,id,svg,[],bounds);a.params.rearOnly=true;put(p,s,a,id,0,0);};
- const building=(id,x,w,role='house')=>{const a=koreanTownBuilding(prefix+id,{width:w,role,roofType:'gable',variant:1});put(p,s,a,id,x,ground(x));};
- building('outer-servant-wing',680,490);building('ancestral-family-hall',2170,900,'office');building('garden-study',3580,480);building('family-ancestral-shrine',4920,470);building('ground-record-entry',6610,430,'storehouse');
+ const building=(id,x,w,role='house')=>{const a=koreanTownBuilding(prefix+id,{width:w,role,roofType:'gable',variant:1});a.oneWay=true;put(p,s,a,id,x,ground(x));};
+ building('outer-servant-wing',680,490);building('ancestral-family-hall',2170,900,'office');building('garden-study',3580,480);building('family-ancestral-shrine',4920,470,'storehouse');building('ground-record-entry',6610,430,'storehouse');
  // Restrained rear walls frame the courts. Actual traversable earth is never covered by a fake building base.
  for(const [id,x,w]of [['outer-wall',900,230],['inner-wall',2570,160],['shrine-enclosure',5110,180]])put(p,s,koreanCourtyardWall(prefix+id,{width:w,height:100,cap:'tile'}),id,x,ground(x));
+ // Low side eaves give the broad hall roof two ordinary-jump access/return points.
+ // The roof itself uses the exact sampled Korean roof silhouette, one-way like existing buildings.
+ for(const [id,x1,x2,y]of [['hall-west-step',1615,1780,2350],['hall-east-step',2590,2760,2325]]){
+  const slab=[[x1,y],[x2,y],[x2,y+24],[x1,y+24]];terrain(s,'family24-'+id,slab,'wood');s.terrains.at(-1).oneWay=true;
+  rear(id+'-bearing',P(slab,'#675840','#1d302d',3)+line([[x1,y],[x2,y]],'#b19e76',5)+R(x1+18,y+24,16,Math.max(0,ground(x1+18)-y-24),'#4f4b38')+R(x2-30,y+24,16,Math.max(0,ground(x2-30)-y-24),'#4f4b38'),[x1,y,x2-x1,240]);
+ }
  // One short garden flank route. Both ends return to the courtyard with ordinary movement.
  const gallery=[[2860,2440],[3120,2510],[3960,2510],[4210,2540]],solid=[...gallery,...gallery.slice().reverse().map(([x,y])=>[x,y+30])];
  terrain(s,'family24-garden-gallery',solid,'wood');s.terrains.at(-1).oneWay=true;
@@ -52,10 +58,11 @@ export function authorFamily24(project,g){
  const poses={'family-crest':[2070,2460],'shrine-seal':[4370,ground(4370)],'land-register':[4920,2260],'split-route-a':[5780,2720],'split-route-b':[6550,2440],'garden-exit':[6810,2440]};
  for(const m of s.markers)if(poses[m.id])Object.assign(m,{x:poses[m.id][0],y:poses[m.id][1]});
  const door=clone(original.terrains.find(t=>t.id==='shrine-door')),x=4500,y=ground(x);door.points=[{x:x-22,y:y-350},{x:x+22,y:y-350},{x:x+22,y},{x:x-22,y}];s.terrains.push(door);
+ rear('shrine-gate-frame',R(x-43,y-362,16,362,'#66513d')+R(x+28,y-362,16,362,'#66513d')+R(x-39,y-354,4,346,'#a18d62')+P([[x-70,y-357],[x-42,y-381],[x+40,y-381],[x+70,y-357],[x+61,y-343],[x-62,y-343]],'#35453e')+line([[x-65,y-358],[x+65,y-358]],'#9a9d81',5),[x-75,y-390,150,395]);
  const groupPos={'empty-court-watch':[1430,1580,1770,1850],'crest-room-watch':[2040,2230,2450,2580],'abandoned-garden-watch':[3300,3590,3800],'shrine-approach':[4470,4630,4800],'land-register-watch':[6010,6240,6430,6650]};
  const count={};for(const u of s.units){if(u.team==='player'){u.y=ground(u.x);continue;}const q=groupPos[u.encounterGroup];if(q){const i=count[u.encounterGroup]||0;count[u.encounterGroup]=i+1;u.x=q[i];u.y=ground(u.x)-(u.kind==='lantern'?32:0);u.stageOverrides.honroEncounterSupport='a3-foundation';}}
  // Preserve response IDs, counts, trigger sequence and the existing warning/opportunity runtime.
- const spawnRows=[[['act3-response-24-0'],[3100,3250],[3060,3210]],[['act3-response-24-1'],[4800,4950,5100],[4770,4920,5070]],[['act3-response-24-2'],[6200,6350],[6160,6310]]];
+ const spawnRows=[[['act3-response-24-0'],[3100,3250],[3060,3210]],[['act3-response-24-1'],[5020,5105,5190],[4720,5040,5170]],[['act3-response-24-2'],[6200,6350],[6160,6310]]];
  for(const [[id],xs,alt]of spawnRows){const ev=s.events.find(e=>e.id===id);if(!ev)throw Error('Missing response '+id);const rewrite=(old,xx)=>old.map((a,i)=>({...a,x:xx[i],y:ground(xx[i]),support:'a3-foundation'}));ev.action.actions=rewrite(ev.action.actions,xs);ev.honroDensityAlternatives=[rewrite(ev.action.actions,alt)];ev.entry={...ev.entry,x:xs[0],y:ground(xs[0])};if(ev.honroDensityTrigger.region)ev.honroDensityTrigger.region={x:5450,y:2300,width:1400,height:750};}
  s.events.find(e=>e.id==='act3-response-24-2').warning='사당 동쪽 갈림마당에서 경비가 일어납니다. 다음 행동 동안 물길 입구와 지상 기록실 사이의 퇴로를 살피세요.';
  s.events.find(e=>e.id==='act3-response-24-2').text='증원 진입 · '+s.events.find(e=>e.id==='act3-response-24-2').warning;

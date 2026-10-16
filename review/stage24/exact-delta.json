@@ -15,18 +15,21 @@
     "family24:outer-wall",
     "family24:inner-wall",
     "family24:shrine-enclosure",
+    "family24:hall-west-step-bearing",
+    "family24:hall-east-step-bearing",
     "family24:garden-gallery-bearing",
     "family24:retaining-earth-faces",
     "family24:terrain-material",
-    "family24:water-route-mouth"
+    "family24:water-route-mouth",
+    "family24:shrine-gate-frame"
   ],
   "files": [
     {
       "path": "tools/map-forge/stage24-family-compound.mjs",
       "before": null,
       "after": {
-        "bytes": 10254,
-        "sha256": "31a4f5f49de16a0fefd848fd5181fc4f5475461ae96486873407abe73e81ba11"
+        "bytes": 11184,
+        "sha256": "b792c80ff1cee889601cdb9c8977371294a524960315ee8b043d3ad9e18b6294"
       }
     },
     {
@@ -58,8 +61,8 @@
         "sha256": "2a0dd3e11d61e05ca0f112e8450dedc1037ae1f25b0e8b0299eedf76719e4abc"
       },
       "after": {
-        "bytes": 13632892,
-        "sha256": "156910ac7567370e39bb7f2fd767a2ef94a0ea238d7a1ad120888ef2442421cc"
+        "bytes": 13645962,
+        "sha256": "2a3f1b1e2306396cdd0f187455f89853b05e6a22863ec7a1b51cc6f89c18b3a7"
       }
     },
     {
@@ -69,8 +72,8 @@
         "sha256": "99e35c7bc1020fd5e506b63cb99194ed260e109f5a82bb7323d0d3b2f92775d5"
       },
       "after": {
-        "bytes": 14373458,
-        "sha256": "c2234e5c38c30a6c6b583e34a66f64b08d15e5bd232b3c39e493fe3e75748812"
+        "bytes": 14381140,
+        "sha256": "bb771fbafd11c84970f7a1445421c3f773fbc2b9da5e4bb2641bc96e193775fc"
       }
     },
     {
@@ -80,8 +83,8 @@
         "sha256": "3259f508e04f50e2fae0cbc6d1e0826e68b8654e30a9c2c5faf41b995ee9b94c"
       },
       "after": {
-        "bytes": 14484232,
-        "sha256": "2655c6e3eaa686215554a4b90e5fe57f157559ff75c7a01d4defa89930e7d460"
+        "bytes": 14491914,
+        "sha256": "843f27e8b0548e843bffbcbb8aca3041254c503c0eb7dde574835612c65abf12"
       }
     }
   ]
