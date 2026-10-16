@@ -1,3 +1,10 @@
+## 불씨 회복 알림 대화 제거 · 2026-10-16
+
+- 원인: rest marker 회복이 `campfire-kept` 이벤트를 storyQueue에 넣고 종료 때 pending/deferred 대화와 병합했다. 모든 자원이 가득 찬 대상에게도 ring을 보냈다.
+- 변경: 회복 이벤트 생성을 없애고 HP 또는 focus가 실제 증가한 생존 대상에게만 기존 작은 ring을 보낸다. 30%HP/40%focus·민간인 기력 제외·recordHeal·marker 1회·회복음은 유지한다. 저장된 eventSource=`campfire-kept`만 큐/지연/옛 banter/재개 대화에서 제외하고 읽던 인덱스를 보정한다. 끝의 알림만 지워지면 앞 대사를 재생하지 않고 정상 완료한다. 같은 문구라도 다른 출처와 다른 종료 대사는 보존한다.
+- 검사: `tests/campfire-feedback.mjs`에서 실제 App/mission/story의 HP만/기력만/가득참, 회복 기록, marker 1회, 혼합 큐·지연 대사와 재개 인덱스, 알림뿐인 저장 종료, 정상 종료 대사·보상·다음 쉼터/9장 전환을 확인했다. 합성 자원/종료 fixture이며 정상 캠페인 완주 주장이 아니다. 두 HTML 빌드 통과. 실제 Chromium Game의 Continue→기력 회복 ring1→팝업 없이 종료 대사→완료도 확인했고 두 HTML 공통3장 탈출 재확인·pageerror0이다.
+- 기존 실패: `tests/stage8-density-ember-recovery.mjs`는 입력 전 Continue의 `honroQuestTargets` 등 현대화로 전체 snapshot 동일성 검사에서 실패한다. 별도 원격 기준 `cabe31a` worktree에서도 똑같이 실패하며 경로 정규화한 오류 로그 전체가 일치했다. 이 무관한 fixture/저장 현대화는 수정하지 않았다. 전체 verify·전30장·전체기예 검사는 사용자 지정 최소 범위에 따라 생략했다. 실행 및 기준 실패 로그는 `_local/reports/airborne-campfire/`에 보관한다. master/Pages 결과는 최종 보고와 발행 저널에 기록한다.
+
 ## 공중 적 목교 끼임·공격 불가 접근 · 2026-10-16
 
 - 기준: 최신 원격 master `cabe31a`. 3장 실제 초기 목교에서 박쥐/등불귀 네 몸의 clearance 실패를 재현했다. 비행은 시작 겹침 때문에 모든 후보를 거절했고, 실패한 공격의 재계획도 일반 사거리 점수 문턱에서 포기했다.
