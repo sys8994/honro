@@ -1,3 +1,9 @@
+## 25·27장 천장 vault의 사각형 끝 제거 · 2026-10-17
+
+- 원인: `masonry-vault`는 실제 천장 충돌 아래 윤곽과 함께 유한한 상단/측면 미술을 가져 overview에서 푸른 판으로 떠 보였다.
+- 변경: 공통 terrain material projection에서 이 두 장의 vault만 후면 암반에 묻힌 전체 천장 덩어리로 그린다. 월드 고정의 큰 명암면과 불규칙 접합을 이어 붙이며 원래 underside 모든 점·asset collision·통로·플랫폼과 캠페인 데이터는 그대로다. 전투 revision 변경은 없다.
+- 확인: 25·27장 production renderer overview/상단 네 화면과 파생 미술의 collision 일치·전투 상태 불변을 확인했다. 빌드와 Chromium의 25·27장 기본 진입/파생 충돌 일치가 통과했고 pageerror는0이다. 기존 rollout guard로 직전 실제 배포53b984d/397fc01 두 세대의 immutable 자산을 유지했다. master/Pages는 발행 결과로 기록한다. 다른 장·기예·전체 검사는 반복하지 않았다. 증거는 `_local/reports/act3-vault/`, 기존 Library overview는 같은 ID의 새 버전으로 교체한다.
+
 ## 3막 장소 군집·지형 재질·구전투 재시작 · 2026-10-17
 
 - 원인: 길 전체에 흩어진 초기 적과 먼 지원조, 플레이 범위까지만 그린 전경 지반이 확장 지형과 다른 색면을 만들었다. 전역 물리 revision만 확인해 옛 지형/분할 v1 전투가 새 제작 데이터를 가렸다.

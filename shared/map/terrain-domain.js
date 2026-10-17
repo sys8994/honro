@@ -67,6 +67,8 @@ const materialSpecs={
  'stage26-witness:earth-and-footing-planes':{terrain:'a3-foundation',deep:3100},
  'stage29:record-actual-stone-faces':{terrain:'a3-foundation',deep:7000},
  'stage29:record-far-river-bank':{panorama:true},
+ 'a3-waterworks-v3:25:masonry-vault':{vault:true},
+ 'a3-waterworks-v3:27:masonry-vault':{vault:true},
  'a3-maintenance25:dark-shell':{rear:true},
  'stage27-depot-r4:misconnected-rear':{rear:true}
 };
@@ -74,12 +76,33 @@ const pathString=ps=>'M'+ps.map(p=>p.x+' '+p.y).join('L')+'Z';
 // All extended polygon nodes were authored with absolute M/L commands. Curved
 // architectural paths remain byte-for-byte unchanged.
 function paintPolygon(d){if(!d||/[^MLZ0-9.eE+\-,\s]/.test(d))return null;const ns=d.match(/[-+]?(?:\d*\.)?\d+(?:e[-+]?\d+)?/gi)?.map(Number);return ns&&ns.length>=6&&ns.length%2===0?Array.from({length:ns.length/2},(_,i)=>({x:ns[i*2],y:ns[i*2+1]})):null;}
+function buriedVault(l,b){
+ const asset=clone(l.asset),vector=asset.vector,original=paintPolygon(vector.root.children[0]?.d);
+ if(!original||original.length!==7)return l;
+ const {left,right,top}=b.honroTerrainBounds,w=b.width;
+ // Keep every underside vertex, including the two end vertices, unchanged.
+ // Only the formerly exposed top/side faces merge into the surrounding rock.
+ const lower=[{x:right,y:1470},{x:w+3800,y:1640},{x:w+1800,y:1430},{x:w+600,y:1690},...original.slice(2),{x:-500,y:1830},{x:-1900,y:1490},{x:-3500,y:1680},{x:left,y:1550}];
+ const full=[{x:left,y:top},{x:right,y:top},...lower];
+ const node=(points,fill)=>({tag:'path',d:pathString(points),fill});
+ vector.gradients={
+  'buried-vault-rock':{type:'linear',x1:0,y1:-3800,x2:0,y2:1900,stops:[{offset:0,color:'#081b23',opacity:1},{offset:.64,color:'#12292f',opacity:1},{offset:1,color:'#263c3d',opacity:1}]},
+  'buried-vault-west':{type:'linear',x1:0,y1:-2100,x2:0,y2:1800,stops:[{offset:0,color:'#0b2027',opacity:1},{offset:1,color:'#304740',opacity:1}]}
+ };
+ vector.root.children=[node(full,'url(#buried-vault-rock)'),
+  node([{x:left,y:-3100},{x:w*.12,y:-2400},{x:w*.39,y:280},{x:w*.17,y:1740},...lower.slice(lower.findIndex(p=>p.x===0))],'url(#buried-vault-west)'),
+  node([{x:w*.46,y:-2500},{x:right,y:-3800},...lower.slice(0,lower.findIndex(p=>p.x===w*.45)+1),{x:w*.61,y:410}],'#142b30'),
+  node([{x:left,y:1150},{x:-3000,y:800},{x:-1200,y:1080},{x:0,y:1320},{x:w*.17,y:1400},{x:w*.45,y:1260},{x:w*.78,y:1390},{x:w,y:1280},{x:w+600,y:1480},{x:w+1800,y:1100},{x:right,y:1200},...lower],'#2d4443')];
+ asset.bounds={x:left,y:top,w:right-left,h:1900-top};vector.viewBox=[left,top,right-left,1900-top];
+ return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(full))};
+}
 function materialLandmarks(b){
  if(!active(b)||b.honroCustom||b.honroStage<21||b.honroStage>30)return b.honroLandmarks||[];
  const source=b.honroLandmarks||[],terrain=render(b),old=materialViews.get(b);
  if(old?.source===source&&old.terrain===terrain&&old.version===b.sceneVersion)return old.landmarks;
  const bounds=b.honroTerrainBounds,landmarks=source.map(l=>{
   const spec=materialSpecs[l.asset?.id];if(!spec||!l.asset.vector||l.x||l.y||(l.scale??1)!==1||l.rotation)return l;
+  if(spec.vault)return buriedVault(l,b);
   const mass=terrain.find(t=>t.id===spec.terrain&&!t.broken);if(!spec.rear&&!spec.panorama&&!mass)return l;
   const asset=clone(l.asset),vector=asset.vector,children=vector.root.children;
   if(spec.panorama){
