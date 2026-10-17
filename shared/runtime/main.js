@@ -320,7 +320,8 @@
             }
         }
 
-        showCamp(cls=this.cls){if(G.HonroSplitCampaign?.redirectRest(this))return;const y=$('armory')?.scrollTop||0;this.stopBattle();this.close();this.screen='camp';this.prepareDebugCamp();if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;this.root.innerHTML=G.HonroUI.camp(this.profile,cls,this.top('모닥불 · 동행의 준비','rest'),this.branch).replace('id="camp-scroll"','id="armory"');if(this.debugMode)this.root.innerHTML=this.root.innerHTML.replace('</nav>','</nav>'+this.debugLevelMarkup(cls));$('armory').scrollTop=y;}
+        showCamp(cls=this.cls){if(G.HonroSplitCampaign?.redirectRest(this))return;const y=$('armory')?.scrollTop||0,details=this.root.querySelector('[data-camp-details="training"]')?.open;this.stopBattle();this.close();this.screen='camp';this.prepareDebugCamp();if(!this.profile.recruited.includes(cls))cls=this.profile.recruited[0];this.cls=cls;this.root.innerHTML=G.HonroUI.camp(this.profile,cls,this.top('모닥불','rest'),this.branch).replace('id="camp-scroll"','id="armory"');if(this.debugMode)this.root.innerHTML=this.root.innerHTML.replace('</nav>','</nav>'+this.debugLevelMarkup(cls));$('armory').scrollTop=y;const training=this.root.querySelector('[data-camp-details="training"]');if(training)training.open=!!details;}
+
 
         debugLevelMarkup(cls){const level=C.levelOf(this.profile.heroes[cls]);return `<div class="camp-resume-note debug-level-control"><label for="debug-hero-level">디버그 · ${esc(H.hero[cls].name)} 경지</label> <select id="debug-hero-level" data-debug-level="${cls}">${Array.from({length:C.levelOf(Number.MAX_SAFE_INTEGER)},(_,i)=>`<option value="${i+1}" ${level===i+1?'selected':''}>경지 ${i+1}</option>`).join('')}</select><p>기예는 자유롭게 선택합니다. 경지를 낮추면 능력치 수련을 해당 경지의 수련점 한도로 맞춥니다. 준비는 새 진입·다시 걷기에 적용됩니다.</p></div>`;}
         setDebugLevel(cls,value){
@@ -343,7 +344,10 @@
         talent(id){const sk=S[id];if(!sk)return;const cls=sk.cls;this.cls=cls;const roster=this.training&&this.engine?{...this.profile,heroes:this.engine.b.heroes}:this.profile;const h=roster.heroes[cls],r=h.ranks[id]||0;this.open(G.HonroUI.talent(roster,id),'detail '+(sk.ultimate?'ultimate-dialog':'talent-dialog'));
             this.detailSkill=id;this.preview=sk.passive?null:G.HonroSkillPreview.setup(this,id,h,$('previewcanvas'));
         }
-        equip(id) { this.equipReturn=this.modal.querySelector('.talent-dialog,.ultimate-dialog')?this.talentContext(id):null; this.equipIncoming = id; this.open(`<h2>갖출 자리</h2><div class="slots">${[1, 2, 3].map(i => `<button class="slot filled" data-action="equip-confirm" data-slot="${i}"><div><strong>${S[this.profile.loadouts[this.cls][i]]?.name || '빈 자리'}</strong><small class="muted">${i + 1}번 자리</small></div></button>`).join('')}</div>`); }
+        canEquip(id){const s=S[id];return !!s&&s.cls===this.cls&&!s.passive&&!s.basic&&!s.enemyOnly&&C.knownSkills(this.profile.heroes[this.cls],this.cls).includes(id);}
+        equip(id,slot){if(!this.canEquip(id))return;if(!this.equipReturn)this.equipReturn=this.modal.querySelector('.talent-dialog,.ultimate-dialog')?this.talentContext(id):null;this.equipIncoming=id;this.slotIndex=Number.isInteger(slot)&&slot>0&&slot<4?slot:Math.max(1,this.profile.loadouts[this.cls].indexOf(id));this.open(G.HonroUI.equipChoice(this.profile,this.cls,id,this.slotIndex),'equip-dialog');}
+        chooseSlot(i,selected=''){if(!Number.isInteger(i)||i<0||i>3)return;if(i===0){this.talent(C.baseSkill(this.cls));return;}this.slotIndex=i;this.open(G.HonroUI.slotLibrary(this.profile,this.cls,i,selected),'equip-dialog');}
+        unequip(i){if(!Number.isInteger(i)||i<1||i>3||!this.profile.loadouts[this.cls][i])return;const id=this.profile.loadouts[this.cls][i],context=this.equipReturn||(this.modal.querySelector('.talent-dialog,.ultimate-dialog')?this.talentContext(id):null);this.profile.loadouts[this.cls][i]='';C.sanitizeLoadout(this.profile,this.cls);this.saveCampAllocation();this.equipReturn=null;this.showCamp();if(context)this.restoreTalent(context);}
         changeRank(id, delta, detail) { let h = this.profile.heroes[S[id].cls]; if (delta > 0) {
             if (!C.train(h, id))
                 return;
@@ -944,18 +948,29 @@
                     this.showCamp();
                     break;
                 case 'slot':
-                    this.slotIndex = +el.dataset.slot;
-                    this.open(`<h2>갖출 기예</h2><div class="slots">${C.knownSkills(this.profile.heroes[this.cls], this.cls).filter(id => !S[id].passive && id !== C.baseSkill(this.cls)).map(id => `<button class="slot filled" data-action="slot-choose" data-skill="${id}"><span class="sigil" style="--skill:${S[id].color}">${this.sig(id)}</span><div><strong>${S[id].name}</strong><small class="muted">기예</small></div></button>`).join('')}</div>`);
+                    this.equipReturn=null;this.chooseSlot(+el.dataset.slot);
                     break;
                 case 'slot-choose':
-                    this.equipIncoming = sk;
-                    this.equipConfirm(this.slotIndex);
+                case 'equip-select-skill':
+                    this.chooseSlot(+(el.dataset.slot??this.slotIndex),sk);
                     break;
                 case 'equip':
                     this.equip(sk);
                     break;
+                case 'equip-select-slot':
+                    this.equip(sk,+el.dataset.slot);
+                    break;
+                case 'equip-apply':
+                    if(this.canEquip(sk)){this.equipIncoming=sk;this.equipConfirm(+el.dataset.slot);}
+                    break;
                 case 'equip-confirm':
                     this.equipConfirm(+el.dataset.slot);
+                    break;
+                case 'unequip-slot':
+                    this.unequip(+el.dataset.slot);
+                    break;
+                case 'unequip-skill':
+                    this.unequip(this.profile.loadouts[this.cls].indexOf(sk));
                     break;
                 case 'close':
                     this.dismissModal();
@@ -1125,12 +1140,7 @@
             this.scene.manual = false;
             this.updateHUD(true);
         } }
-        equipConfirm(i) { const incoming=S[this.equipIncoming];if(this.debugMode&&incoming?.cls===this.cls&&!incoming.passive&&!incoming.enemyOnly)this.profile.heroes[this.cls].ranks[this.equipIncoming]=Math.max(1,this.profile.heroes[this.cls].ranks[this.equipIncoming]||0); let id = this.equipIncoming, l = this.profile.loadouts[this.cls], j = l.indexOf(id), old = l[i]; l[i] = id; if (j >= 0 && j !== i) {
-            if (old)
-                l[j] = old;
-            else
-                l.splice(j, 1);
-        } C.sanitizeLoadout(this.profile, this.cls); this.saveCampAllocation(); const context=this.equipReturn;this.equipReturn=null;this.showCamp();if(context)this.restoreTalent(context); }
+        equipConfirm(i) {const id=this.equipIncoming;if(!Number.isInteger(i)||i<1||i>3||!this.canEquip(id))return;const l=this.profile.loadouts[this.cls],j=l.indexOf(id),old=l[i];if(j===i)return;l[i]=id;if(j>0)l[j]=old||'';C.sanitizeLoadout(this.profile,this.cls);this.saveCampAllocation();const context=this.equipReturn;this.equipReturn=null;this.showCamp();if(context)this.restoreTalent(context);}
         nextDialogue(){G.HonroStory.next(this);}
         export() { if (this.engine && !this.training && !this.debugMode && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);

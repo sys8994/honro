@@ -2729,6 +2729,11 @@ class BgmPlayer {
         this.restartRequested = false;
         this.requested = false;
         this.firstPlay = true;
+        this.settingsConfigured = false;
+        this.startupAttempted = false;
+        this.startupFade = false;
+        this.gestureUnlocked = false;
+        this.playSerial = 0;
         this.fadeMs = 25;
         this.preloadFailed = false;
         this.battleSelected = false;
@@ -2736,18 +2741,28 @@ class BgmPlayer {
     configure(enabled, volume) {
         this.enabled = enabled;
         this.volume = Math.max(0, Math.min(1, volume));
+        this.settingsConfigured = true;
         // Prepare only the current title song after applying the saved music settings.
-        // Fetching is allowed before a gesture; playback still requires unlock().
+        // Try audible title playback once. The browser may still require unlock()
+        // from the existing trusted-input handlers before allowing this stream.
         if (!this.current && this.state === 'main' && this.enabled && this.volume > 0)
             this.select('main');
+        this.tryStartup();
         this.applyPause();
         this.tick();
+    }
+    tryStartup() {
+        if (this.settingsConfigured && !this.startupAttempted && !this.unlocked && this.current && this.state === 'main' && this.enabled && this.volume > 0 && !this.paused && (typeof document === 'undefined' || !document.hidden)) {
+            this.startupAttempted = true;
+            this.startupFade = true;
+            this.unlocked = true;
+        }
     }
     unlock() { if (this.preloadFailed) {
         this.failed.delete(0);
         this.silence();
         this.preloadFailed = false;
-    } this.unlocked = true; this.requested = false; this.select(this.state); this.applyPause(); }
+    } this.gestureUnlocked = true; this.unlocked = true; this.requested = false; this.select(this.state); this.applyPause(); }
     select(state, battleSession) {
         // Different playlists start at their first song and zero seconds.
         // Repeated updates, pauses and unlocks in the same playlist never seek.
@@ -2786,6 +2801,8 @@ class BgmPlayer {
             if (this.restartRequested)
                 this.current.currentTime = 0;
             this.restartRequested = false;
+            this.tryStartup();
+            this.applyPause();
             return;
         }
         if (this.outgoing) {
@@ -2802,6 +2819,7 @@ class BgmPlayer {
         audio.preload = prepareTitle ? 'auto' : 'metadata';
         audio.src = this.tracks[track];
         this.firstPlay = true;
+        this.startupFade = false;
         audio.loop = state !== 'battle';
         audio.volume = 0;
         this.requested = false;
@@ -2813,13 +2831,14 @@ class BgmPlayer {
                 return;
             this.errors.push(`BGM ${track + 1}: ${audio.error?.code || 'media error'}`);
             this.failed.add(track);
-            this.preloadFailed = track === 0 && !this.unlocked;
+            this.preloadFailed = track === 0 && !this.gestureUnlocked;
             this.requested = false;
             if (this.state === 'battle' && [1, 2, 3].some(i => !this.failed.has(i))) {
                 this.battleIndex = (this.battleIndex + 1) % 3;
                 this.select('battle');
             }
         });
+        this.tryStartup();
         this.applyPause();
     }
     setPaused(paused) { if (this.paused === paused)
@@ -2833,7 +2852,7 @@ class BgmPlayer {
             return;
         }
         if (this.current?.paused && !this.requested && !this.failed.has(this.track)) {
-            const audio = this.current;
+            const audio = this.current, serial = ++this.playSerial;
             this.requested = true;
             // A prepared stream may have waited on the title for seconds. Fade from
             // the actual play request, not from creation of the silent media element.
@@ -2845,27 +2864,40 @@ class BgmPlayer {
                 this.firstPlay = false;
                 this.tick(this.transitionStart);
             }
+            const rejected = (error) => {
+                if (this.current !== audio || serial !== this.playSerial)
+                    return;
+                this.errors.push(String(error?.name || error));
+                // Autoplay rejection waits for another real gesture. No per-frame retries.
+                if (error?.name === 'NotAllowedError') {
+                    this.unlocked = false;
+                    this.firstPlay = true;
+                    this.startupFade = false;
+                    this.applyPause();
+                    this.tick();
+                }
+            };
             try {
                 const promise = audio.play();
                 this.starts++;
-                promise?.catch(error => {
-                    if (this.current !== audio)
-                        return;
-                    this.errors.push(String(error?.name || error));
-                    // Autoplay rejection waits for another real gesture. No per-frame retries.
-                    if (error?.name === 'NotAllowedError') {
-                        this.unlocked = false;
-                        this.firstPlay = true;
-                    }
-                });
+                promise?.catch(rejected);
             }
             catch (error) {
-                this.errors.push(String(error));
+                rejected(error);
             }
         }
     }
     tick(now = performance.now()) {
-        const mix = Math.max(0, Math.min(1, (now - this.transitionStart) / this.fadeMs)), volume = this.enabled && this.unlocked ? this.volume : 0;
+        let mix = Math.max(0, Math.min(1, (now - this.transitionStart) / this.fadeMs));
+        // The startup request must already be audible when play() checks policy.
+        // Keep the short ramp, but never qualify as muted/zero-volume autoplay.
+        if (this.startupFade) {
+            if (mix >= 1)
+                this.startupFade = false;
+            else
+                mix = Math.max(1 / 25, mix);
+        }
+        const volume = this.enabled && this.unlocked ? this.volume : 0;
         if (this.current)
             this.current.volume = volume * mix;
         if (this.outgoing) {
@@ -2900,11 +2932,14 @@ exports.skillPlayNotes = void 0;
 exports.existenceAttackView = existenceAttackView;
 exports.existenceDefenseView = existenceDefenseView;
 exports.skillStamp = skillStamp;
+exports.skillBrief = skillBrief;
+exports.loadoutCompareCard = loadoutCompareCard;
 exports.slotCard = slotCard;
 exports.campView = campView;
 exports.talentView = talentView;
 exports.ultimateView = ultimateView;
 exports.slotLibrary = slotLibrary;
+exports.equipChoiceView = equipChoiceView;
 const data_1 = require("./data");
 const icons_1 = require("./icons");
 const math_1 = require("./math");
@@ -2928,6 +2963,20 @@ function existenceAttackView(skill) { if (skill.id === 'O15')
     return ''; return existenceBars(['O11', 'O12', 'O14'].includes(skill.id) ? '소환령 공격 속성' : '공격 속성', (0, existence_1.normalizedAttack)(skill.existenceAttack || (0, existence_1.attackForSkill)(skill)), 1, '형 · 기 · 혼'); }
 function existenceDefenseView(unit) { return existenceBars('피해 반응', (0, existence_1.effectiveDefenseForUnit)(unit), 1.5, '100% = 보통 피해'); }
 function skillStamp(id, size = 28) { const s = data_1.SKILLS[id]; return `<span class="skill-stamp ${s?.ultimate ? 'ultimate-stamp' : ''}" style="--branch:${color(id)}">${s ? (0, icons_1.icon)('skill:' + id, '', size) : (0, icons_1.icon)('plus', '', size)}${s ? `<b>${tier(id)}</b>` : ''}</span>`; }
+/** Compact decisions use the same ranked costs/effects as the detail and combat formulas. */
+function skillBrief(p, cls, id) {
+    const s = data_1.SKILLS[id];
+    if (!s)
+        return { effect: '빈 슬롯', cost: '', rank: '' };
+    const rank = p.heroes[cls].ranks[id] || 0, rows = (0, progression_1.skillEffectRows)(id, s.basic || s.ultimate ? 1 : Math.max(1, rank));
+    const mp = rows.find(row => row.label === 'MP' || row.label === '기력');
+    const effect = (s.desc || (0, skillNotes_1.skillPlayNotes)(id)).split(/\.(?:\s|$)|。/)[0];
+    return { effect, cost: s.passive ? '자동 적용' : `기력 ${mp?.value ?? Math.round(s.cost * balance_1.MANA_COST_MULTIPLIER)}`, rank: s.basic ? '고정 기본기' : s.ultimate ? '비기' : rank ? `Lv.${rank} / 8` : '미습득' };
+}
+function loadoutCompareCard(p, cls, id, label) {
+    const s = id ? data_1.SKILLS[id] : undefined, b = skillBrief(p, cls, id || '');
+    return `<section class="loadout-compare-card"><small>${label}</small><div class="compare-skill-name">${s ? skillStamp(id, 28) : ''}<strong>${s?.name || '빈 슬롯'}</strong></div>${s ? `<p>${(0, math_1.escapeHTML)(b.effect)}</p><span>${b.rank} · ${b.cost}</span>` : '<p>장착된 기예가 없습니다.</p>'}</section>`;
+}
 function slotMeta(p, cls, id) { const s = id ? data_1.SKILLS[id] : undefined; if (!s)
     return { branch: '배운 액티브 선택', tier: '', rank: '', color: '#80949e' }; if (s.basic)
     return { branch: '기본 공격 · SP 불필요', tier: '', rank: '항상 사용 가능', color: s.color }; if (s.ultimate)
@@ -2940,17 +2989,18 @@ function campView(p, cls, portraits, header, branch = 0) {
     const h = p.heroes[cls], lv = (0, progression_2.levelOf)(h), stats = (0, progression_2.heroStats)(h, cls), pts = (0, progression_2.pointsLeft)(h, cls), ult = (0, progression_2.ultimateSkill)(cls), up = (0, progression_2.ultimateProgress)(h, cls), unlocked = (0, progression_2.ultimateUnlocked)(h, cls), equipped = p.loadouts[cls].includes(ult);
     const passives = progression_2.TALENTS.filter(n => n.cls === cls && n.passive && (h.ranks[n.id] || 0) > 0);
     return `<main class="screen camp-screen camp-v5">${header}<div class="camp-scroll" id="camp-scroll"><div class="armory-shell">
- <nav class="hero-tabs" aria-label="용병 선택">${progression_2.CLASS_IDS.map(c => `<button class="hero-tab ${c === cls ? 'active' : ''}" data-action="hero" data-class="${c}" aria-pressed="${c === cls}"><img src="${portraits[c]}" alt=""><span><strong>${data_1.CLASSES[c].person}</strong><small>${clsName(c)} · Lv.${(0, progression_2.levelOf)(p.heroes[c])}</small></span>${(0, progression_2.pointsLeft)(p.heroes[c], c) > 0 ? `<span class="point-dot">${(0, progression_2.pointsLeft)(p.heroes[c], c)} SP</span>` : ''}</button>`).join('')}</nav>
-  <section class="hero-summary"><div class="summary-identity"><img src="${portraits[cls]}" alt=""><div><div class="micro-label">${clsName(cls)} / 원정 용병</div><h2>${data_1.CLASSES[cls].person}<span>Lv.${lv}</span></h2><div class="xp-meter"><i style="width:${(0, progression_2.xpFraction)(h) * 100}%"></i></div><div class="xp-text">${lv === progression_2.MAX_LEVEL ? '최대 레벨' : `${(h.xp - (0, progression_2.xpAtLevel)(lv)).toLocaleString()} / ${(0, progression_2.xpToNext)(lv).toLocaleString()} XP`}</div></div></div><div class="stat-row">${[['HP', stats.hp], ['MP', stats.mp], ['공격', `${stats.attack.toFixed(2)}×`], ['방어', `${Math.round(stats.armor * 100)}%`], ['치명 확률', `${(stats.critChance * 100).toFixed(1)}%`], ['치명 배율', `${stats.critMultiplier.toFixed(2)}×`], ['이동', stats.move], ['MP 회복', Math.round(stats.regen * 100) / 100]].map(([a, b]) => `<div class="stat"><small>${a}</small><strong>${b}</strong></div>`).join('')}</div><button class="btn ghost small summary-tune" data-action="tuning">조율</button></section>
-  <section class="stat-invest-panel"><div class="stat-invest-head"><h3>기초 단련 <span>${(0, progression_2.statTrainingRank)(h)}회</span></h3><small>기예 대신 1 SP로 모든 기본 능력 강화</small></div><p class="stat-invest-character">${{ mage: '담허는 기력과 술법에 무게를 둔다.', archer: '설오는 공격과 치명에 무게를 둔다.', knight: '휘겸은 체력, 방어와 이동에 무게를 둔다.', occultist: '소단은 기력과 혼술에 무게를 둔다.' }[cls]}</p><div class="stat-invest-gains">${progression_2.STAT_KEYS.map(key => `<span>${progression_2.STAT_LABELS[key]} <b>${(0, progression_2.statGainLabel)(cls, key)}</b></span>`).join('')}</div><div class="stat-invest-actions"><span>남은 ${pts} SP</span><button type="button" class="btn ghost small" data-action="refund-stat" ${(0, progression_2.statTrainingRank)(h) ? '' : 'disabled'}>1회 되돌리기</button><button type="button" class="btn primary small" data-action="invest-stat" ${pts > 0 && (0, progression_2.statTrainingRank)(h) < 60 ? '' : 'disabled'}>기초 단련 · 1 SP</button></div></section>
- <section class="equipped-panel"><div class="section-caption"><h3>출전 기술 <span>4 SLOT</span></h3><small>기본기 + 선택 액티브 3개</small></div><div class="loadout-cards">${[0, 1, 2, 3].map(i => slotCard(p, cls, i)).join('')}</div></section>
+ <nav class="hero-tabs" aria-label="용병 선택">${progression_2.CLASS_IDS.map(c => `<button class="hero-tab ${c === cls ? 'active' : ''}" data-action="hero" data-class="${c}" aria-pressed="${c === cls}"><img src="${portraits[c]}" alt=""><span><strong>${data_1.CLASSES[c].person}</strong><small>${clsName(c)} · Lv.${(0, progression_2.levelOf)(p.heroes[c])}</small></span><span class="point-dot">${(0, progression_2.pointsLeft)(p.heroes[c], c)} SP</span></button>`).join('')}</nav>
+ <section class="equipped-panel"><div class="section-caption"><h3>출전 기술</h3><span class="camp-points"><b>${pts}</b> SP 남음</span></div><div class="loadout-cards">${[0, 1, 2, 3].map(i => slotCard(p, cls, i)).join('')}</div></section>
+ <details class="camp-training" data-camp-details="training"><summary>능력치·단련 <span>Lv.${lv} · ${pts} SP</span></summary>  <section class="hero-summary"><div class="summary-identity"><img src="${portraits[cls]}" alt=""><div><div class="micro-label">${clsName(cls)} / 원정 용병</div><h2>${data_1.CLASSES[cls].person}<span>Lv.${lv}</span></h2><div class="xp-meter"><i style="width:${(0, progression_2.xpFraction)(h) * 100}%"></i></div><div class="xp-text">${lv === progression_2.MAX_LEVEL ? '최대 레벨' : `${(h.xp - (0, progression_2.xpAtLevel)(lv)).toLocaleString()} / ${(0, progression_2.xpToNext)(lv).toLocaleString()} XP`}</div></div></div><div class="stat-row">${[['HP', stats.hp], ['MP', stats.mp], ['공격', `${stats.attack.toFixed(2)}×`], ['방어', `${Math.round(stats.armor * 100)}%`], ['치명 확률', `${(stats.critChance * 100).toFixed(1)}%`], ['치명 배율', `${stats.critMultiplier.toFixed(2)}×`], ['이동', stats.move], ['MP 회복', Math.round(stats.regen * 100) / 100]].map(([a, b]) => `<div class="stat"><small>${a}</small><strong>${b}</strong></div>`).join('')}</div><button class="btn ghost small summary-tune" data-action="tuning">조율</button></section>
+  <section class="stat-invest-panel"><div class="stat-invest-head"><h3>기초 단련 <span>${(0, progression_2.statTrainingRank)(h)}회</span></h3><small>기예 대신 1 SP로 모든 기본 능력 강화</small></div><div class="stat-invest-gains">${progression_2.STAT_KEYS.map(key => `<span>${progression_2.STAT_LABELS[key]} <b>${(0, progression_2.statGainLabel)(cls, key)}</b></span>`).join('')}</div><div class="stat-invest-actions"><span>남은 ${pts} SP</span><button type="button" class="btn ghost small" data-action="refund-stat" ${(0, progression_2.statTrainingRank)(h) ? '' : 'disabled'}>1회 되돌리기</button><button type="button" class="btn primary small" data-action="invest-stat" ${pts > 0 && (0, progression_2.statTrainingRank)(h) < 60 ? '' : 'disabled'}>기초 단련 · 1 SP</button></div></section>
+</details>
  ${data_1.SKILLS[ult].ultimate ? `<section class="ultimate-panel ${unlocked ? 'unlocked' : 'locked'}" style="--branch:${data_1.SKILLS[ult].color}"><div class="ultimate-core">${skillStamp(ult, 35)}<div><div class="micro-label">ULTIMATE · ${up.learned} / ${up.total}</div><h3>${data_1.SKILLS[ult].name}</h3><p>${unlocked ? '세 액티브 계열 완성 · 전투에서 장착 가능' : '세 액티브 계열의 모든 기술을 Lv.1 이상 습득하면 해금'}</p></div></div><div class="ultimate-progress"><i style="width:${up.learned / up.total * 100}%"></i></div><div class="ultimate-actions"><button class="btn ${unlocked ? 'primary' : 'ghost'} small" data-action="ultimate-detail" data-skill="${ult}">${unlocked ? '궁극기 보기' : '해금 조건 보기'}</button>${unlocked && !equipped ? `<button class="btn small" data-action="equip-prompt" data-skill="${ult}">장착</button>` : equipped ? '<span class="ultimate-equipped">장착 중</span>' : ''}</div></section>` : ''}
  <section class="passive-summary"><div class="passive-caption">${(0, icons_1.icon)('rune', '', 16)}<strong>패시브</strong><span>습득 즉시 자동 적용</span></div><div class="passive-pills">${passives.map(n => `<button class="passive-chip" style="--branch:${color(n.id)}" data-action="talent" data-talent="${n.id}">${(0, icons_1.icon)(n.icon, '', 17)}<span>${n.name}</span><b>Lv.${h.ranks[n.id]}</b></button>`).join('') || '<span class="no-passives">아직 배운 패시브가 없습니다.</span>'}</div></section>
  <div class="tree-tools"><h3>스킬트리 <span class="sp-counter">${pts}<small> SP</small></span></h3><span class="spacer"></span><button class="btn ghost small" data-action="auto-train">추천 분배</button><button class="btn ghost small" data-action="reset-talents">초기화</button></div>
  <nav class="branch-tabs" aria-label="스킬 계열">${progression_2.BRANCHES[cls].map((br, b) => `<button data-action="camp-branch" data-branch="${b}" aria-pressed="${b === branch}" class="${b === branch ? 'active' : ''}" style="--branch:${br.color}">${br.name}</button>`).join('')}</nav>
  <div class="tree-grid">${progression_2.BRANCHES[cls].map((br, b) => `<section class="branch ${b === branch ? 'mobile-current' : ''}" data-branch-panel="${b}" style="--branch:${br.color}"><div class="branch-head"><h3><i></i>${br.name}</h3><span>${b === 3 ? '습득 즉시 적용' : '액티브'}</span></div><div class="branch-nodes">${progression_2.TALENTS.filter(n => n.cls === cls && n.branch === b).map(n => {
         const rank = h.ranks[n.id] || 0, reason = (0, progression_2.trainReason)(h, n.id), refundReason = (0, progression_2.untrainReason)(h, n.id), equipped = !n.passive && p.loadouts[cls].includes(n.id), locked = !rank && !!reason;
-        return `<div class="tree-node-wrap ${n.passive ? 'passive-node-wrap' : ''}"><button class="tree-node ${n.passive ? 'passive-node' : ''} ${rank ? 'learned' : locked ? 'locked' : 'available'} ${equipped ? 'equipped' : ''}" data-action="talent" data-talent="${n.id}" aria-label="${n.name}, ${n.row + 1}단계, 기술 레벨 ${rank} / 8${equipped ? ', 장착 중' : ''}"><span class="node-tier">${n.row + 1}<small>단계</small></span>${skillStamp(n.id, 23)}<span class="node-body"><span class="node-name">${n.name}</span><span class="node-sub">${rank ? `<b>Lv.${rank}</b><span>/8</span>` : `용병 Lv.${n.required}`}${equipped ? '<em>장착</em>' : n.passive && rank ? '<em>적용 중</em>' : ''}</span>${pip(rank)}</span></button><div class="node-stepper" aria-label="${n.name} 빠른 강화"><button type="button" class="rank-step minus" data-action="talent-minus" data-talent="${n.id}" ${refundReason ? 'disabled' : ''} title="${refundReason || '1 SP 회수'}" aria-label="${n.name} 1포인트 회수">−</button><span>${rank}<small>/8</small></span><button type="button" class="rank-step plus" data-action="talent-plus" data-talent="${n.id}" ${reason ? 'disabled' : ''} title="${reason || '1 SP 투자'}" aria-label="${n.name} 1포인트 투자">+</button></div></div>`;
+        return `<div class="tree-node-wrap ${n.passive ? 'passive-node-wrap' : ''}"><button class="tree-node ${n.passive ? 'passive-node' : ''} ${rank ? 'learned' : locked ? 'locked' : 'available'} ${equipped ? 'equipped' : ''}" data-action="talent" data-talent="${n.id}" aria-label="${n.name}, ${n.row + 1}단계, 기술 레벨 ${rank} / 8${equipped ? ', 장착 중' : ''}"><span class="node-tier">${n.row + 1}<small>단계</small></span>${skillStamp(n.id, 23)}<span class="node-body"><span class="node-name">${n.name}</span><span class="node-effect">${(0, math_1.escapeHTML)(skillBrief(p, cls, n.id).effect)}</span><span class="node-sub">${rank ? `<b>Lv.${rank}</b><span>/8</span>` : `용병 Lv.${n.required}`}${equipped ? '<em>장착</em>' : n.passive && rank ? '<em>적용 중</em>' : ''}</span><span class="node-cost">${skillBrief(p, cls, n.id).cost}</span></span></button><div class="node-stepper" aria-label="${n.name} 빠른 강화"><button type="button" class="rank-step minus" data-action="talent-minus" data-talent="${n.id}" ${refundReason ? 'disabled' : ''} title="${refundReason || '1 SP 회수'}" aria-label="${n.name} 1포인트 회수">−</button><span>${rank}<small>/8</small></span><button type="button" class="rank-step plus" data-action="talent-plus" data-talent="${n.id}" ${reason ? 'disabled' : ''} title="${reason || '1 SP 투자'}" aria-label="${n.name} 1포인트 투자">+</button></div></div>`;
     }).join('')}</div></section>`).join('')}</div>
  </div></div></main>`;
 }
@@ -2962,24 +3012,30 @@ function talentView(p, id, closeButton) {
     const n = progression_2.TALENT_MAP[id], s = data_1.SKILLS[id], h = p.heroes[n.cls], rank = h.ranks[id] || 0, reason = (0, progression_2.trainReason)(h, id), refundReason = (0, progression_2.untrainReason)(h, id), br = progression_2.BRANCHES[n.cls][n.branch], equipped = p.loadouts[n.cls].includes(id), next = Math.min(8, rank + 1);
     const before = (0, progression_1.skillGrowthRows)(id, rank), after = (0, progression_1.skillGrowthRows)(id, next);
     const preview = !s.passive ? `<section class="skill-preview-shell"><canvas aria-label="${(0, math_1.escapeHTML)(s.name)} 시연" id="skill-preview" data-skill="${id}" width="720" height="360"></canvas><p class="preview-context">기본기와 선택 기예만 사용하는 격리 시연입니다. 실제 동행의 전체 기예 조합과 피해량은 다를 수 있습니다.</p></section>` : '';
-    const actions = `<div class="dialog-actions skill-detail-actions" aria-label="기예 수련과 장착">${!s.passive && rank > 0 && id !== (0, progression_2.baseSkill)(n.cls) ? `<button class="btn" data-action="equip-prompt" data-skill="${id}">${equipped ? '슬롯 변경' : '장착'}</button>` : ''}<button class="btn" data-action="rank-minus-detail" data-talent="${id}" ${refundReason ? 'disabled' : ''} title="${(0, math_1.escapeHTML)(refundReason || '1 SP 회수')}">−1 SP 회수</button><button class="btn primary" data-action="train" data-talent="${id}" ${reason ? 'disabled' : ''} title="${(0, math_1.escapeHTML)(reason || '1 SP 투자')}">${rank >= 8 ? '최대 레벨' : rank ? '+1 강화' : '+1 습득'}</button></div>`;
-    const summary = `<section class="skill-modal-summary"><div class="talent-heading">${skillStamp(id, 35)}<div><div class="micro-label">${br.name} · ${tier(id)}단계</div><h2>${n.name}</h2><span class="ability-type">${s.passive ? '패시브 · 습득 시 자동 적용' : equipped ? '액티브 · 장착 중' : '액티브'}</span></div></div>${actions}<div class="rank-banner"><strong>Lv.${rank}<small> / 8</small></strong>${pip(rank)}<span>${(0, progression_2.pointsLeft)(h, n.cls)} SP</span></div><p class="skill-desc">${(0, math_1.escapeHTML)(n.desc)}</p><p class="skill-mechanics">${(0, math_1.escapeHTML)((0, skillNotes_1.skillPlayNotes)(id))}</p>${!s.passive ? existenceAttackView(s) : ''}</section>`;
+    const actions = `<div class="dialog-actions skill-detail-actions" aria-label="기예 수련과 장착">${!s.passive && rank > 0 && id !== (0, progression_2.baseSkill)(n.cls) ? `<button class="btn" data-action="equip-prompt" data-skill="${id}">${equipped ? '슬롯 변경' : '장착'}</button>${equipped ? `<button class="btn ghost" data-action="unequip-skill" data-skill="${id}">장착 해제</button>` : ''}` : ''}<button class="btn" data-action="rank-minus-detail" data-talent="${id}" ${refundReason ? 'disabled' : ''} title="${(0, math_1.escapeHTML)(refundReason || '1 SP 회수')}">−1 SP 회수</button><button class="btn primary" data-action="train" data-talent="${id}" ${reason ? 'disabled' : ''} title="${(0, math_1.escapeHTML)(reason || '1 SP 투자')}">${rank >= 8 ? '최대 레벨' : rank ? '+1 SP 강화' : '+1 SP 습득'}</button></div>`;
+    const controls = `<div class="skill-detail-controls"><div class="talent-heading">${skillStamp(id, 35)}<div><div class="micro-label">${br.name} · ${tier(id)}단계</div><h2>${n.name}</h2><span class="ability-type">${s.passive ? '패시브 · 습득 시 자동 적용' : equipped ? '액티브 · 장착 중' : '액티브'}</span></div></div>${actions}</div>`;
+    const summary = `<section class="skill-modal-summary"><div class="rank-banner"><strong>Lv.${rank}<small> / 8</small></strong>${pip(rank)}<span>${(0, progression_2.pointsLeft)(h, n.cls)} SP</span></div><p class="skill-desc">${(0, math_1.escapeHTML)(n.desc)}</p><p class="skill-mechanics">${(0, math_1.escapeHTML)((0, skillNotes_1.skillPlayNotes)(id))}</p>${!s.passive ? existenceAttackView(s) : ''}</section>`;
     const stats = `<section class="skill-modal-stats"><div class="effect-compare ${rank >= 8 ? 'at-max' : ''}"><div class="effect-heading"><span>효과</span><span>${rank ? '현재' : '미습득'}</span><span>${rank < 8 ? `Lv.${next}` : '최대'}</span></div>${after.map((row, i) => `<div class="effect-row"><span>${row.label}</span><span>${rank ? before[i]?.value || '—' : '—'}</span><strong>${row.value}</strong></div>`).join('')}</div>${rank < 8 ? `<div class="upgrade-requirement">${reason || `강화 가능 · 용병 Lv.${(0, progression_2.requiredRankLevel)(n, next)}`}<span>${rank ? '강화' : '습득'} 1 SP</span></div>` : '<div class="upgrade-requirement">최고 레벨에 도달했습니다.</div>'}</section>`;
-    return `${closeButton}<div class="talent-detail talent-v5 ${s.passive ? 'passive-detail' : ''}" style="--branch:${br.color}"><div class="skill-modal-grid">${summary}${!s.passive ? `<section class="skill-modal-preview">${preview}</section>` : ''}${stats}</div></div>`;
+    return `${closeButton}<div class="talent-detail talent-v5 ${s.passive ? 'passive-detail' : ''}" style="--branch:${br.color}">${controls}<div class="skill-modal-grid">${summary}${!s.passive ? `<section class="skill-modal-preview">${preview}</section>` : ''}${stats}</div></div>`;
 }
 function ultimateView(p, cls, close) {
     const h = p.heroes[cls], id = (0, progression_2.ultimateSkill)(cls), s = data_1.SKILLS[id], prog = (0, progression_2.ultimateProgress)(h, cls), unlocked = (0, progression_2.ultimateUnlocked)(h, cls), equipped = p.loadouts[cls].includes(id), cost = Math.round(s.cost * balance_1.MANA_COST_MULTIPLIER);
-    const summary = `<section class="skill-modal-summary"><div class="talent-heading">${skillStamp(id, 42)}<div><div class="micro-label">CLASS ULTIMATE · ${prog.learned}/${prog.total}</div><h2>${s.name}</h2><span class="ability-type">${unlocked ? '해금됨 · 기력이 있으면 사용 가능' : '세 액티브 계열 완성 필요'}</span></div></div><p class="skill-desc">${(0, math_1.escapeHTML)(s.desc)}</p><p class="skill-mechanics">${(0, math_1.escapeHTML)((0, skillNotes_1.skillPlayNotes)(id))}</p>${existenceAttackView(s)}<div class="ultimate-progress big"><i style="width:${prog.learned / prog.total * 100}%"></i></div></section>`;
+    const controls = `<div class="skill-detail-controls"><div class="talent-heading">${skillStamp(id, 42)}<div><div class="micro-label">CLASS ULTIMATE · ${prog.learned}/${prog.total}</div><h2>${s.name}</h2><span class="ability-type">${unlocked ? '해금됨 · 기력이 있으면 사용 가능' : '세 액티브 계열 완성 필요'}</span></div></div><div class="dialog-actions skill-detail-actions">${unlocked ? `<button class="btn primary" data-action="equip-prompt" data-skill="${id}">${equipped ? '슬롯 변경' : '비기 장착'}</button>${equipped ? `<button class="btn ghost" data-action="unequip-skill" data-skill="${id}">장착 해제</button>` : ''}` : '<span>세 액티브 계열 완성 필요</span>'}</div></div>`;
+    const summary = `<section class="skill-modal-summary"><p class="skill-desc">${(0, math_1.escapeHTML)(s.desc)}</p><p class="skill-mechanics">${(0, math_1.escapeHTML)((0, skillNotes_1.skillPlayNotes)(id))}</p>${existenceAttackView(s)}<div class="ultimate-progress big"><i style="width:${prog.learned / prog.total * 100}%"></i></div></section>`;
     const preview = `<section class="skill-preview-shell ultimate-preview"><canvas aria-label="${(0, math_1.escapeHTML)(s.name)} 시연" id="skill-preview" data-skill="${id}" width="720" height="360"></canvas><p class="preview-context">기본기와 선택 기예만 사용하는 격리 시연입니다. 실제 동행의 전체 기예 조합과 피해량은 다를 수 있습니다.</p></section>`;
-    const stats = `<section class="skill-modal-stats"><div class="ultimate-stat-grid"><div><small>기본 피해</small><strong>${s.damage}</strong></div><div><small>효과 반경</small><strong>${s.radius || '직격'}</strong></div><div><small>MP</small><strong>${cost}</strong></div><div><small>재사용</small><strong>제한 없음</strong></div></div><div class="upgrade-requirement">${unlocked ? '모든 액티브 기술을 최소 Lv.1 습득했습니다.' : `액티브 기술 ${prog.total - prog.learned}개를 더 습득하세요.`}<span>${prog.learned} / ${prog.total}</span></div>${unlocked ? `<div class="dialog-actions"><button class="btn primary" data-action="equip-prompt" data-skill="${id}">${equipped ? '슬롯 변경' : '궁극기 장착'}</button></div>` : ''}</section>`;
-    return `${close}<div class="talent-detail ultimate-detail" style="--branch:${s.color}"><div class="skill-modal-grid">${summary}<section class="skill-modal-preview">${preview}</section>${stats}</div></div>`;
+    const stats = `<section class="skill-modal-stats"><div class="ultimate-stat-grid"><div><small>기본 피해</small><strong>${s.damage}</strong></div><div><small>효과 반경</small><strong>${s.radius || '직격'}</strong></div><div><small>MP</small><strong>${cost}</strong></div><div><small>재사용</small><strong>제한 없음</strong></div></div><div class="upgrade-requirement">${unlocked ? '모든 액티브 기술을 최소 Lv.1 습득했습니다.' : `액티브 기술 ${prog.total - prog.learned}개를 더 습득하세요.`}<span>${prog.learned} / ${prog.total}</span></div></section>`;
+    return `${close}<div class="talent-detail ultimate-detail" style="--branch:${s.color}">${controls}<div class="skill-modal-grid">${summary}<section class="skill-modal-preview">${preview}</section>${stats}</div></div>`;
 }
-function slotLibrary(p, cls, slot, close) {
-    const h = p.heroes[cls], current = p.loadouts[cls][slot], ult = (0, progression_2.ultimateSkill)(cls), ultUnlocked = (0, progression_2.ultimateUnlocked)(h, cls);
-    const sections = progression_2.BRANCHES[cls].slice(0, 3).map((br, b) => { const skills = progression_2.TALENTS.filter(n => n.cls === cls && n.branch === b && n.id !== (0, progression_2.baseSkill)(cls) && h.ranks[n.id] > 0); if (!skills.length)
-        return ''; return `<section style="--branch:${br.color}"><h3>${br.name}</h3>${skills.map(n => `<button data-action="equip-slot" data-skill="${n.id}" class="equip-option ${current === n.id ? 'current' : ''}">${skillStamp(n.id, 25)}<span><strong>${n.name}</strong><small>${tier(n.id)}단계 · Lv.${h.ranks[n.id]}/8</small></span><em>${current === n.id ? '현재' : p.loadouts[cls].includes(n.id) ? '교환' : '장착'}</em></button>`).join('')}</section>`; }).join('');
-    const ultimate = ultUnlocked ? `<section class="equip-ultimate" style="--branch:${data_1.SKILLS[ult].color}"><h3>궁극기</h3><button data-action="equip-slot" data-skill="${ult}" class="equip-option ultimate-option ${current === ult ? 'current' : ''}">${skillStamp(ult, 28)}<span><strong>${data_1.SKILLS[ult].name}</strong><small>세 액티브 계열 완성 · 기력 소모</small></span><em>${current === ult ? '현재' : p.loadouts[cls].includes(ult) ? '교환' : '장착'}</em></button></section>` : '';
-    return `${close}<div class="equip-v5"><div class="micro-label">ACTIVE LOADOUT</div><h2>슬롯 ${slot + 1} 변경</h2><div class="equip-library">${sections}${ultimate || ''}${!sections && !ultimate ? '<p>스킬트리에서 액티브를 먼저 배우세요.</p>' : ''}</div></div>`;
+function slotLibrary(p, cls, slot, close, selected = '') {
+    const current = p.loadouts[cls][slot], skills = (0, progression_1.knownSkills)(p.heroes[cls], cls).filter(id => !data_1.SKILLS[id].passive && !data_1.SKILLS[id].basic);
+    const valid = skills.includes(selected), incoming = valid ? selected : '', other = p.loadouts[cls].indexOf(incoming);
+    const sections = progression_2.BRANCHES[cls].slice(0, 3).map((br, b) => { const ids = skills.filter(id => progression_2.TALENT_MAP[id]?.branch === b); return ids.length ? `<section style="--branch:${br.color}"><h3>${br.name}</h3>${ids.map(id => option(id)).join('')}</section>` : ''; }).join('');
+    function option(id) { const s = data_1.SKILLS[id], b = skillBrief(p, cls, id); return `<button data-action="equip-select-skill" data-skill="${id}" data-slot="${slot}" class="equip-option ${incoming === id ? 'selected' : ''} ${current === id ? 'current' : ''}" aria-pressed="${incoming === id}">${skillStamp(id, 25)}<span><strong>${s.name}</strong><small>${(0, math_1.escapeHTML)(b.effect)}</small><small>${b.rank} · ${b.cost}</small></span><em>${current === id ? '현재' : p.loadouts[cls].includes(id) ? '다른 슬롯' : '선택'}</em></button>`; }
+    return `${close}<div class="equip-v5"><h2>슬롯 ${slot + 1} 기예 선택</h2><div class="equip-comparison"><div class="loadout-compare">${loadoutCompareCard(p, cls, current, '현재 장착')}${incoming ? loadoutCompareCard(p, cls, incoming, '선택한 기예') : ''}</div>${incoming ? `<p class="equip-swap-note">${other > 0 && other !== slot ? `슬롯 ${other + 1}의 기예와 자리를 바꿉니다.` : current === incoming ? '이미 이 슬롯에 장착 중입니다.' : ''}</p><button class="btn primary" data-action="equip-apply" data-skill="${incoming}" data-slot="${slot}" ${current === incoming ? 'disabled' : ''}>슬롯 ${slot + 1}에 장착</button>` : ''}${current ? `<button class="btn ghost" data-action="unequip-slot" data-slot="${slot}">슬롯 ${slot + 1} 장착 해제</button>` : ''}</div><div class="equip-library">${sections}${skills.filter(id => data_1.SKILLS[id].ultimate).map(option).join('')}${!skills.length ? '<p>스킬트리에서 액티브를 먼저 배우세요.</p>' : ''}</div></div>`;
+}
+function equipChoiceView(p, cls, id, close, slot = 1) {
+    const current = p.loadouts[cls][slot], other = p.loadouts[cls].indexOf(id);
+    return `${close}<div class="equip-v5"><h2>장착할 슬롯</h2><div class="swap-cards">${[1, 2, 3].map(i => `<div class="swap-choice ${slot === i ? 'selected' : ''}">${slotCard(p, cls, i, 'equip-select-slot', id)}</div>`).join('')}</div><div class="loadout-compare">${loadoutCompareCard(p, cls, current, '현재 장착')}${loadoutCompareCard(p, cls, id, '장착할 기예')}</div><p class="equip-swap-note">${other > 0 && other !== slot ? `슬롯 ${other + 1}의 기예와 자리를 바꿉니다.` : current === id ? '이미 이 슬롯에 장착 중입니다.' : ''}</p><button class="btn primary" data-action="equip-apply" data-skill="${id}" data-slot="${slot}" ${current === id ? 'disabled' : ''}>슬롯 ${slot + 1}에 장착</button></div>`;
 }
 
 },
@@ -8659,7 +8715,7 @@ class App {
         return; this.previewSkillId = id; this.previewStarted = performance.now(); if (s.ultimate) {
         this.modal((0, campUI_1.ultimateView)(this.profile, this.viewClass, this.closeButton()), 'ultimate');
         return;
-    } const n = progression_1.TALENT_MAP[id]; if (!n)
+    } const n = progression_1.TALENT_MAP[id]; if (!n && !s.basic)
         return; this.modal((0, campUI_1.talentView)(this.profile, id, this.closeButton()), 'talent'); }
     spend(id, reopen = true) {
         const cls = this.viewClass;
@@ -8692,29 +8748,18 @@ class App {
         this.slot = slot;
         this.modal((0, campUI_1.slotLibrary)(this.profile, this.viewClass, slot, this.closeButton()), 'equip');
     }
-    equipPrompt(id) {
+    equipPrompt(id, slot = 1) {
         const skill = data_1.SKILLS[id], h = this.profile.heroes[this.viewClass];
-        if (!skill || skill.passive || skill.cls !== this.viewClass || (skill.ultimate && !(0, progression_1.ultimateUnlocked)(h, this.viewClass)))
+        if (!skill || skill.passive || skill.basic || skill.cls !== this.viewClass || !Progress.knownSkills(h, this.viewClass).includes(id))
             return;
-        this.modal(`${this.closeButton()}<div class="equip-v5"><div class="micro-label">${data_1.SKILLS[id].name}</div><h2>교체할 슬롯</h2><div class="swap-cards">${[1, 2, 3].map(i => (0, campUI_1.slotCard)(this.profile, this.viewClass, i, 'equip-direct', id)).join('')}</div></div>`, 'equip');
+        this.modal((0, campUI_1.equipChoiceView)(this.profile, this.viewClass, id, this.closeButton(), slot), 'equip');
     }
-    equip(id, slot = this.slot) {
-        const cls = this.viewClass, l = this.profile.loadouts[cls], skill = data_1.SKILLS[id], known = Progress.knownSkills(this.profile.heroes[cls], cls).includes(id);
-        if (slot < 1 || slot > 3 || !skill || skill.passive || skill.cls !== cls || !known || id === (0, progression_1.baseSkill)(cls))
-            return;
-        const existing = l.indexOf(id), old = l[slot];
-        if (existing > 0) {
-            if (old)
-                l[existing] = old;
-            else
-                l.splice(existing, 1);
-        }
-        l[slot] = id;
-        this.profile.loadouts[cls] = l.filter(Boolean);
-        this.save();
-        this.closeModal();
-        this.renderCamp();
-    }
+    equip(id, slot = this.slot) { const cls = this.viewClass, l = this.profile.loadouts[cls], s = data_1.SKILLS[id]; if (!Number.isInteger(slot) || slot < 1 || slot > 3 || !s || s.basic || s.passive || s.cls !== cls || !Progress.knownSkills(this.profile.heroes[cls], cls).includes(id))
+        return; const other = l.indexOf(id), old = l[slot]; if (other === slot)
+        return; l[slot] = id; if (other > 0)
+        l[other] = old || ''; (0, progression_1.sanitizeLoadout)(this.profile, cls); this.save(); this.closeModal(); this.renderCamp(); }
+    unequip(slot) { if (!Number.isInteger(slot) || slot < 1 || slot > 3)
+        return; this.profile.loadouts[this.viewClass][slot] = ''; (0, progression_1.sanitizeLoadout)(this.profile, this.viewClass); this.save(); this.closeModal(); this.renderCamp(); }
     launch(id = this.stageId, mode = 'campaign', opts = {}) {
         if (mode === 'campaign' && !(0, progression_1.isOpen)(this.profile, id)) {
             this.toast('아직 열리지 않은 전장입니다.');
@@ -9381,11 +9426,25 @@ class App {
                 case 'equip-prompt':
                     this.equipPrompt(id);
                     break;
-                case 'equip-direct':
+                case 'equip-select-slot':
+                    this.equipPrompt(id, Number(el.dataset.slot));
+                    break;
+                case 'equip-select-skill':
+                    this.slot = Number(el.dataset.slot);
+                    this.modal((0, campUI_1.slotLibrary)(this.profile, this.viewClass, this.slot, this.closeButton(), id), 'equip');
+                    break;
+                case 'equip-apply':
                     this.equip(id, Number(el.dataset.slot));
                     break;
-                case 'equip-slot':
-                    this.equip(id);
+                case 'unequip-slot':
+                    this.unequip(Number(el.dataset.slot));
+                    break;
+                case 'unequip-skill':
+                    this.unequip(this.profile.loadouts[this.viewClass].indexOf(id));
+                    break;
+                case 'rank-minus-detail':
+                    this.refund(el.dataset.talent);
+                    this.showTalent(el.dataset.talent);
                     break;
                 case 'auto-train':
                     (0, progression_1.autoTrain)(this.profile.heroes[this.viewClass], this.viewClass);
@@ -10937,13 +10996,31 @@ function autoTrain(h, cls) {
 function knownSkills(h, cls) { const out = Object.values(data_1.SKILLS).filter(s => s.cls === cls && !s.enemyOnly && !s.ultimate && (s.basic || (h.honroDebugSkills && !!exports.TALENT_MAP[s.id]) || (h.ranks[s.id] || 0) > 0)).map(s => s.id); if (ultimateUnlocked(h, cls) && data_1.SKILLS[exports.ULTIMATES[cls]])
     out.push(exports.ULTIMATES[cls]); return out; }
 function sanitizeLoadout(p, cls) {
-    const known = (0, exports.activeSkills)(knownSkills(p.heroes[cls], cls)), base = (0, exports.baseSkill)(cls);
-    const list = [base, ...p.loadouts[cls].filter(s => s !== base && known.includes(s))];
-    for (const s of known)
-        if (list.length < 4 && !list.includes(s))
-            list.push(s);
-    p.loadouts[cls] = [...new Set(list)].slice(0, 4);
-    return p.loadouts[cls];
+    const known = (0, exports.activeSkills)(knownSkills(p.heroes[cls], cls)), base = (0, exports.baseSkill)(cls), old = p.loadouts[cls], list = [base], used = new Set([base]);
+    // An explicit blank is a saved user choice. Missing/invalid old entries still auto-fill.
+    for (let i = 1; i < 4; i++) {
+        const id = old[i];
+        if (id === '' || known.includes(id) && !used.has(id)) {
+            list[i] = id;
+            if (id)
+                used.add(id);
+        }
+    }
+    for (let i = 1; i < 4; i++)
+        if (list[i] === undefined) {
+            const id = known.find(id => !used.has(id));
+            if (id) {
+                list[i] = id;
+                used.add(id);
+            }
+        }
+    while (list.length > 1 && list[list.length - 1] === undefined)
+        list.pop();
+    for (let i = 1; i < list.length; i++)
+        if (list[i] === undefined)
+            list[i] = '';
+    p.loadouts[cls] = list;
+    return list;
 }
 // Retained no-op for older callers; concrete learned-passive effects use passivePower.
 function passiveBonus(h, cls, kind, branch, loadout = []) { return 0; }
@@ -14486,7 +14563,7 @@ function validate(input) {
     }
     for (const cls of progression_1.CLASS_IDS) {
         if (Array.isArray(raw.loadouts?.[cls]))
-            p.loadouts[cls] = raw.loadouts[cls].filter((id) => typeof id === 'string' && Object.prototype.hasOwnProperty.call(data_1.SKILLS, id) && data_1.SKILLS[id].cls === cls).slice(0, 4);
+            p.loadouts[cls] = raw.loadouts[cls].filter((id) => typeof id === 'string' && (id === '' || Object.prototype.hasOwnProperty.call(data_1.SKILLS, id) && data_1.SKILLS[id].cls === cls)).slice(0, 4);
         if (finite(raw.tuning?.[cls]))
             p.tuning[cls] = Math.max(0, Math.min(1, raw.tuning[cls]));
         (0, progression_1.sanitizeLoadout)(p, cls);
@@ -15858,7 +15935,7 @@ function groundY(terrain, x, prefer = 1800) {
 let unitSequence = 0;
 function makeUnit(cls, side, x, y, options = {}) {
     const c = data_1.CLASSES[cls];
-    return { id: 'u' + (++unitSequence), name: c.person, role: cls, cls, side, x, y, vx: 0, vy: 0, hp: 390, maxHp: 390, r: 21, h: 72, focus: 100, maxFocus: 100, regen: 14, level: 1, attack: 1.75, armor: cls === 'knight' ? .15 : .06, shield: 0, bound: 0, mark: 0, breaks: 0, acted: false, moveLeft: 900, maxMove: 900, walkSpeed: 260, angle: side === 1 ? 136 : 44, lastPower: .55, loadout: [side !== 0 && cls === 'knight' ? 'S01' : (0, progression_1.baseSkill)(cls)], tune: .5, facing: side === 1 ? -1 : 1, hurt: 0, anim: 0, airborne: false, fixed: false, spawnX: x, spawnY: y, intent: '', dead: false, ...(side === 0 && cls === 'occultist' ? { spiritSight: true } : {}), ranks: {}, group: 0, awake: side !== 1, lastAct: 0, aggroUntil: 0, xpBudget: 0, xpGranted: 0, killRewarded: false, damageBy: {}, ...options };
+    return { id: 'u' + (++unitSequence), name: c.person, role: cls, cls, side, x, y, vx: 0, vy: 0, hp: 390, maxHp: 390, r: 21, h: 72, focus: 100, maxFocus: 100, regen: 14, level: 1, attack: 1.75, armor: cls === 'knight' ? .15 : .06, shield: 0, bound: 0, mark: 0, breaks: 0, acted: false, moveLeft: 900, maxMove: 900, walkSpeed: 260, angle: side === 1 ? 136 : 44, lastPower: .55, loadout: [side !== 0 && cls === 'knight' ? 'S01' : (0, progression_1.baseSkill)(cls)], tune: .5, facing: side === 1 ? -1 : 1, hurt: 0, anim: 0, airborne: false, fixed: false, spawnX: x, spawnY: y, intent: '', dead: false, ...(side === 0 && cls === 'occultist' ? { spiritSight: true } : {}), ranks: {}, group: 0, awake: side !== 1, lastAct: 0, aggroUntil: 0, xpBudget: 0, xpGranted: 0, killRewarded: false, damageBy: {}, ...options, ...(options.loadout ? { loadout: options.loadout.filter(id => !!data_2.SKILLS[id]) } : {}) };
 }
 function makeEnemy(spec, terrain, stage, index) {
     const e = data_1.ENEMIES[spec.role] || data_1.ENEMIES.bow, level = (0, progression_1.recommendedLevel)(stage.id), hp = Math.round((spec.hp || e.hp * (1.30 + level * .09)) * (0, balance_1.stageStrength)(stage.id).hp * balance_1.ENEMY_GLOBAL_STAT);

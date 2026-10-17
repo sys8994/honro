@@ -3,7 +3,7 @@ const modules=[new URL("../runtime/game-art.908f3691c1b7c392.js",import.meta.url
 new URL("../runtime/title-scene.37a35dad86e4fed5.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.c5e0589639564156.js",import.meta.url).href,
-new URL("../runtime/engine-core.4a8c36bf4005939f.js",import.meta.url).href,
+new URL("../runtime/engine-core.764c98578c2a9dcc.js",import.meta.url).href,
 new URL("../runtime/HONRO_BALANCE.3004fd3d1a9e90d1.js",import.meta.url).href,
 new URL("../runtime/HONRO_NARRATIVE_V0.d6ce83da8b892dc2.js",import.meta.url).href,
 new URL("../runtime/HONRO_SPLIT_V1.d5aee6be4874dac0.js",import.meta.url).href,
@@ -19,7 +19,7 @@ new URL("../runtime/shared-runtime-battlefield-layouts.ab57c6e52e8553d8.js",impo
 new URL("../runtime/shared-runtime-split-campaign.a2ccbdf6b673a779.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stake-crossing.856b1d39148283c3.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-contribution-xp.a4c4466ca62fa342.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-progression.48e416a21534793e.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-progression.653664f006c3f018.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-encounters.c62d9a361092bdd3.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-world.38d0560a390088c5.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-act1-roster.2068f9db335145a6.js",import.meta.url).href,
@@ -121,7 +121,7 @@ new URL("../runtime/shared-runtime-story-anomaly-art.6a2e4dc023c2ca6c.js",import
 new URL("../runtime/shared-runtime-visual-hierarchy.c8d029c9d563969d.js",import.meta.url).href,
 new URL("../runtime/game-vendor-ui-fa.641030aa7e374b4b.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-portraits.a4e6f99d2b96ea84.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-ui-bridge.b1dd52c40a67edf8.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-ui-bridge.75c810ce9fdb7e83.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage-rules.425c10ceb6d4b5ec.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-audio.33a52f6b215f4e5d.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-story.dde7de6e8140d9a3.js",import.meta.url).href,
@@ -131,7 +131,7 @@ new URL("../runtime/shared-runtime-training.3a315db50d1e4073.js",import.meta.url
 new URL("../runtime/shared-runtime-skill-preview.d6f92d54c62d72b0.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-journey-art.c2577c69a87f4b04.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-rest-journey.de85171653871778.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-main.f0490ff0f8fef008.js",import.meta.url).href];
+new URL("../runtime/shared-runtime-main.15a48011eecebb8c.js",import.meta.url).href];
 for(const href of modules){const link=document.createElement('link');link.rel='modulepreload';link.href=href;document.head.append(link);}
 globalThis.HONRO_READY=(async()=>{try{for(const file of modules)await import(file);
 if(location.hash==='#autostage2')HonroApp.launch(2);}

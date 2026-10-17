@@ -217,9 +217,15 @@ export function autoTrain(h:HeroProgress,cls:ClassId){
  }
 }
 export function knownSkills(h: HeroProgress, cls: ClassId) { const out=Object.values(SKILLS).filter(s => s.cls === cls && !s.enemyOnly && !s.ultimate && (s.basic || (h.honroDebugSkills && !!TALENT_MAP[s.id]) || (h.ranks[s.id] || 0) > 0)).map(s => s.id); if(ultimateUnlocked(h,cls)&&SKILLS[ULTIMATES[cls]])out.push(ULTIMATES[cls]); return out; }
-export function sanitizeLoadout(p: Profile, cls: ClassId) { const known = activeSkills(knownSkills(p.heroes[cls], cls)), base = baseSkill(cls); const list = [base, ...p.loadouts[cls].filter(s => s !== base && known.includes(s))]; for (const s of known)
-    if (list.length < 4 && !list.includes(s))
-        list.push(s); p.loadouts[cls] = [...new Set(list)].slice(0, 4); return p.loadouts[cls]; }
+export function sanitizeLoadout(p: Profile, cls: ClassId) {
+ const known=activeSkills(knownSkills(p.heroes[cls],cls)),base=baseSkill(cls),old=p.loadouts[cls],list=[base],used=new Set([base]);
+ // An explicit blank is a saved user choice. Missing/invalid old entries still auto-fill.
+ for(let i=1;i<4;i++){const id=old[i];if(id===''||known.includes(id)&&!used.has(id)){list[i]=id;if(id)used.add(id);}}
+ for(let i=1;i<4;i++)if(list[i]===undefined){const id=known.find(id=>!used.has(id));if(id){list[i]=id;used.add(id);}}
+ while(list.length>1&&list[list.length-1]===undefined)list.pop();
+ for(let i=1;i<list.length;i++)if(list[i]===undefined)list[i]='';
+ p.loadouts[cls]=list;return list;
+}
 // Retained no-op for older callers; concrete learned-passive effects use passivePower.
 export function passiveBonus(h:HeroProgress,cls:ClassId,kind:Talent['passive'],branch?:number,loadout:string[]=[]){return 0;}
 export function criticalStats(cls:ClassId,level=1,ranks:Record<string,number>={}){

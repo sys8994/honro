@@ -18,7 +18,7 @@ function recruit(profile,st,b){
   // Stage 5 remains the legacy XP/recruitment anchor. New journeys meet him at stage 6.
   if(!st.recruit||(st.id===5&&st.recruit==='knight'))return;const first=!profile.recruited.includes(st.recruit);if(first)profile.recruited.push(st.recruit);
   alignRecruit(profile,st,b);profile.party=[...profile.recruited];
-  if(first){const cls=st.recruit,h=profile.heroes[cls];C.autoTrain(h,cls);C.sanitizeLoadout(profile,cls);if(b?.heroes){b.heroes[cls]=clone(h);for(const u of b.units||[])if(u.side===0&&!u.summoned&&u.cls===cls){u.loadout=[...profile.loadouts[cls]];C.applyHero(u,h);}}}
+  if(first){const cls=st.recruit,h=profile.heroes[cls];C.autoTrain(h,cls);C.sanitizeLoadout(profile,cls);if(b?.heroes){b.heroes[cls]=clone(h);for(const u of b.units||[])if(u.side===0&&!u.summoned&&u.cls===cls){u.loadout=profile.loadouts[cls].filter(Boolean);C.applyHero(u,h);}}}
 }
 function recruitAtEntry(profile,stageId){
  if(Number(stageId)<6||!profile.cleared?.[5]||profile.recruited.includes('knight'))return;

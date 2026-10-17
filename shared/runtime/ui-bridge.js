@@ -37,5 +37,5 @@ function bottom(){
  <button id="fire" class="fire-button" aria-label="누른 채 충전, 손을 떼어 발사"><svg class="charge-dial" viewBox="0 0 100 100" aria-hidden="true"><circle class="charge-track" cx="50" cy="50" r="46"/><circle class="charge-history" cx="50" cy="50" r="37" pathLength="100"/><circle class="charge-live" cx="50" cy="50" r="46" pathLength="100"/></svg><span class="fire-inner">${I('crosshairs','',19)}<span class="fire-label">발사</span></span></button>
  </div></div></footer>`;
 }
-G.HonroUI={camp,talent,bottom,portraits,localize};
+G.HonroUI={camp,talent,bottom,portraits,localize,slotLibrary:(p,c,i,selected='')=>localize(C.slotLibrary(p,c,i,'',selected),p),equipChoice:(p,c,id,i)=>localize(C.equipChoiceView(p,c,id,'',i),p)};
 })(globalThis);

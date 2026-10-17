@@ -284,7 +284,7 @@ export function validate(input: unknown): Profile {
     }
     for (const cls of CLASS_IDS) {
         if (Array.isArray(raw.loadouts?.[cls]))
-            p.loadouts[cls] = raw.loadouts[cls].filter((id: unknown) => typeof id === 'string' && Object.prototype.hasOwnProperty.call(SKILLS, id) && SKILLS[id].cls === cls).slice(0, 4);
+            p.loadouts[cls] = raw.loadouts[cls].filter((id: unknown) => typeof id === 'string' && (id === '' || Object.prototype.hasOwnProperty.call(SKILLS, id) && SKILLS[id].cls === cls)).slice(0, 4);
         if (finite(raw.tuning?.[cls]))
             p.tuning[cls] = Math.max(0, Math.min(1, raw.tuning[cls]));
         sanitizeLoadout(p, cls);

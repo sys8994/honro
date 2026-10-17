@@ -1,7 +1,7 @@
-globalThis.HONRO_PLAYTEST_URL="web/entries/game.cf5baa67bb7ef1c2.html?embedded=1";
+globalThis.HONRO_PLAYTEST_URL="web/entries/game.2dbb88b0a1eecb41.html?embedded=1";
 const modules=[new URL("../runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.c5e0589639564156.js",import.meta.url).href,
-new URL("../runtime/engine-core.4a8c36bf4005939f.js",import.meta.url).href,
+new URL("../runtime/engine-core.764c98578c2a9dcc.js",import.meta.url).href,
 new URL("../runtime/HONRO_BALANCE.3004fd3d1a9e90d1.js",import.meta.url).href,
 new URL("../runtime/HONRO_NARRATIVE_V0.d6ce83da8b892dc2.js",import.meta.url).href,
 new URL("../runtime/HONRO_SPLIT_V1.d5aee6be4874dac0.js",import.meta.url).href,
@@ -17,7 +17,7 @@ new URL("../runtime/shared-runtime-battlefield-layouts.ab57c6e52e8553d8.js",impo
 new URL("../runtime/shared-runtime-split-campaign.a2ccbdf6b673a779.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stake-crossing.856b1d39148283c3.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-contribution-xp.a4c4466ca62fa342.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-progression.48e416a21534793e.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-progression.653664f006c3f018.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-encounters.c62d9a361092bdd3.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-world.38d0560a390088c5.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-act1-roster.2068f9db335145a6.js",import.meta.url).href,

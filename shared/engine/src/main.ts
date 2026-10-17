@@ -13,7 +13,7 @@ import { icon, crest } from './icons';
 import * as Progress from './progression';
 import { CLASS_IDS, levelOf, xpFraction, xpAtLevel, xpToNext, pointsLeft, heroStats, TALENTS, TALENT_MAP, BRANCHES, train, trainReason, untrain, untrainReason, resetTalents, autoTrain, sanitizeLoadout, baseSkill, MAP_NODES, isOpen, mapPath, nextStage, recommendedLevel, ultimateUnlocked, ultimateProgress, ULTIMATES } from './progression';
 import { worldMapSVG } from './mapArt';
-import { campView, talentView, ultimateView, slotLibrary, slotCard, skillStamp } from './campUI';
+import { campView, talentView, ultimateView, slotLibrary, slotCard, skillStamp, equipChoiceView } from './campUI';
 const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id) as T;
 const esc = escapeHTML, copy = <T>(o: T): T => JSON.parse(JSON.stringify(o));
 const n2 = (n: number) => String(n).padStart(2, '0');
@@ -187,7 +187,7 @@ class App {
         this.root.innerHTML=campView(this.profile,this.viewClass,this.portraits,nav('용병 성장','map'),this.campBranch);
         const sc=$('camp-scroll');sc.scrollTop=y;sc.scrollLeft=x;
     }
-    showTalent(id:string){const s=SKILLS[id];if(!s||s.cls!==this.viewClass)return;this.previewSkillId=id;this.previewStarted=performance.now();if(s.ultimate){this.modal(ultimateView(this.profile,this.viewClass,this.closeButton()),'ultimate');return;}const n=TALENT_MAP[id];if(!n)return;this.modal(talentView(this.profile,id,this.closeButton()),'talent');}
+    showTalent(id:string){const s=SKILLS[id];if(!s||s.cls!==this.viewClass)return;this.previewSkillId=id;this.previewStarted=performance.now();if(s.ultimate){this.modal(ultimateView(this.profile,this.viewClass,this.closeButton()),'ultimate');return;}const n=TALENT_MAP[id];if(!n&&!s.basic)return;this.modal(talentView(this.profile,id,this.closeButton()),'talent');}
     spend(id: string, reopen=true) { const cls = this.viewClass; if (!train(this.profile.heroes[cls], id))
         return; sanitizeLoadout(this.profile, cls); this.save(); const y = $('camp-scroll')?.scrollTop || 0; this.renderCamp(); const sc=$('camp-scroll'); if(sc)sc.scrollTop=y; if(reopen)this.showTalent(id); this.audio.play('heal'); }
     refund(id:string){ const cls=this.viewClass,h=this.profile.heroes[cls],reason=untrainReason(h,id); if(reason){this.toast(reason);return;} const y=$('camp-scroll')?.scrollTop||0; if(!untrain(h,id))return; sanitizeLoadout(this.profile,cls); this.save(); this.renderCamp(); const sc=$('camp-scroll'); if(sc)sc.scrollTop=y; this.audio.play('click'); }
@@ -195,18 +195,13 @@ class App {
         if(slot===0){this.showTalent(baseSkill(this.viewClass));return;}
         if(slot<1||slot>3)return;this.slot=slot;this.modal(slotLibrary(this.profile,this.viewClass,slot,this.closeButton()),'equip');
     }
-    equipPrompt(id:string){
+    equipPrompt(id:string,slot=1){
         const skill=SKILLS[id],h=this.profile.heroes[this.viewClass];
-        if(!skill||skill.passive||skill.cls!==this.viewClass||(skill.ultimate&&!ultimateUnlocked(h,this.viewClass)))return;
-        this.modal(`${this.closeButton()}<div class="equip-v5"><div class="micro-label">${SKILLS[id].name}</div><h2>교체할 슬롯</h2><div class="swap-cards">${[1,2,3].map(i=>slotCard(this.profile,this.viewClass,i,'equip-direct',id)).join('')}</div></div>`,'equip');
+        if(!skill||skill.passive||skill.basic||skill.cls!==this.viewClass||!Progress.knownSkills(h,this.viewClass).includes(id))return;
+        this.modal(equipChoiceView(this.profile,this.viewClass,id,this.closeButton(),slot),'equip');
     }
-    equip(id: string, slot = this.slot) { const cls = this.viewClass, l = this.profile.loadouts[cls],skill=SKILLS[id],known=Progress.knownSkills(this.profile.heroes[cls],cls).includes(id); if (slot<1||slot>3||!skill||skill.passive||skill.cls!==cls||!known || id === baseSkill(cls))
-        return; const existing = l.indexOf(id), old = l[slot]; if (existing > 0) {
-        if (old)
-            l[existing] = old;
-        else
-            l.splice(existing, 1);
-    } l[slot] = id; this.profile.loadouts[cls] = l.filter(Boolean); this.save(); this.closeModal(); this.renderCamp(); }
+    equip(id:string,slot=this.slot){const cls=this.viewClass,l=this.profile.loadouts[cls],s=SKILLS[id];if(!Number.isInteger(slot)||slot<1||slot>3||!s||s.basic||s.passive||s.cls!==cls||!Progress.knownSkills(this.profile.heroes[cls],cls).includes(id))return;const other=l.indexOf(id),old=l[slot];if(other===slot)return;l[slot]=id;if(other>0)l[other]=old||'';sanitizeLoadout(this.profile,cls);this.save();this.closeModal();this.renderCamp();}
+    unequip(slot:number){if(!Number.isInteger(slot)||slot<1||slot>3)return;this.profile.loadouts[this.viewClass][slot]='';sanitizeLoadout(this.profile,this.viewClass);this.save();this.closeModal();this.renderCamp();}
     launch(id = this.stageId, mode: Battle['mode'] = 'campaign', opts: Parameters<typeof createBattle>[3] = {}) { if (mode === 'campaign' && !isOpen(this.profile, id)) {
         this.toast('아직 열리지 않은 전장입니다.');
         return;
@@ -625,11 +620,23 @@ class App {
                 case 'equip-prompt':
                     this.equipPrompt(id);
                     break;
-                case 'equip-direct':
-                    this.equip(id, Number(el.dataset.slot));
+                case 'equip-select-slot':
+                    this.equipPrompt(id,Number(el.dataset.slot));
                     break;
-                case 'equip-slot':
-                    this.equip(id);
+                case 'equip-select-skill':
+                    this.slot=Number(el.dataset.slot);this.modal(slotLibrary(this.profile,this.viewClass,this.slot,this.closeButton(),id),'equip');
+                    break;
+                case 'equip-apply':
+                    this.equip(id,Number(el.dataset.slot));
+                    break;
+                case 'unequip-slot':
+                    this.unequip(Number(el.dataset.slot));
+                    break;
+                case 'unequip-skill':
+                    this.unequip(this.profile.loadouts[this.viewClass].indexOf(id));
+                    break;
+                case 'rank-minus-detail':
+                    this.refund(el.dataset.talent!);this.showTalent(el.dataset.talent!);
                     break;
                 case 'auto-train':
                     autoTrain(this.profile.heroes[this.viewClass], this.viewClass);
