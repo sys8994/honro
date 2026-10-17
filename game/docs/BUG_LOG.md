@@ -3167,3 +3167,7 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 ### 2026-10-17 최종 최소 확인
 - 통과: TypeScript, 분리 빌드225개 파일의 해시/재조립·Game/embedded 기본 타이틀, 모달 키보드, 커스텀맵 반환18사례, 승/패 X·Escape 중복 이동/보상 방지, 세 장 추가 편성의 원본 재현/신체·지지/1명·2명·사망 출구, O05 검증된 저장 왕복·손상 cursor 거절/반향 독립, O13 실제 회복·최대치·중첩 제한.
 - 미실행: 실제 브라우저 휠/모바일/시각, 공개 Pages 직접 확인, 정상 연속 캠페인. 로컬 Chromium은 socket 제한, 지원 확장 실행은 시작 전 파일시스템 오류로 종료됐다. 로컬 커밋과 원격/Pages 발행 결과는 별도 보고한다.
+
+## 2026-10-17 휘겸 NPC의 분리 모듈 인물 식별
+- 분리 ES 모듈에서 어댑터의 지역 함수가 전역에 노출되지 않아 3·4장 동맹 휘겸이 일반 수비병으로 덮어 그려졌다. 공통 빌드 경계에서 기존 `resolveRebuildCharacter`를 명시 공개해 전장·초상 모두 같은 인물 판별을 사용한다. 동행 미술·전투·저장·일반 동맹·소환수 판별은 변경하지 않는다.
+- 통과: 빌드, 실제 생성 ES 모듈 import를 쓰는 `node tests/hwigyeom-visual-identity.mjs`의 여섯 작성 등장·이름 있는 런타임 인물·일반 수비병/소환수 배제, Native Canvas 3장 전신·초상 전후 캡처. 실제 Pages 화면은 발행 후 별도 확인한다.

@@ -58,7 +58,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
     await file('shared/runtime/party-rig.js');
     await file('shared/assets/party/party.runtime.js');
     code('shared/assets/rebuild-game-adapter.mjs',(await read('shared/assets/rebuild-game-adapter.mjs')).replace(/^export /gm,'')+
-      '\nglobalThis.HonroArcherVisual=HonroArcherVisual;globalThis.HonroPartyVisual=HonroPartyVisual;');
+      '\nglobalThis.resolveRebuildCharacter=resolveRebuildCharacter;globalThis.HonroArcherVisual=HonroArcherVisual;globalThis.HonroPartyVisual=HonroPartyVisual;');
   }
   if(render){
     await buildMonsters();

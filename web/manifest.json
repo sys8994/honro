@@ -2,10 +2,10 @@
   "version": 1,
   "game": "HONRO.html",
   "workshop": "HONRO_WORKSHOP.html",
-  "playtest": "web/entries/game.3676ae926eebeb14.html?embedded=1",
+  "playtest": "web/entries/game.cf5baa67bb7ef1c2.html?embedded=1",
   "project": "web/data/campaign.9bbc021744639cd7.json",
-  "gameEntry": "web/entries/game.308ffbd022f8352b.js",
-  "workshopEntry": "web/entries/workshop.b438bd245b8e1815.js",
+  "gameEntry": "web/entries/game.a3723715fd2a96f1.js",
+  "workshopEntry": "web/entries/workshop.77574b4ece9f05d8.js",
   "common": [
     "web/runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",
     "web/runtime/HONRO_BGM_TRACKS.c5e0589639564156.js",
@@ -90,7 +90,7 @@
     "web/runtime/campaign.b8e6838e9c4f5414.js",
     "web/runtime/shared-runtime-party-rig.51f29b73aad09a0e.js",
     "web/runtime/party-alias.dd433f93c412ef75.js",
-    "web/runtime/shared-assets-rebuild-game-adapter.34155535c7c891ad.js",
+    "web/runtime/shared-assets-rebuild-game-adapter.7584136339439b5b.js",
     "web/runtime/HONRO_ACT1_FAR_DATA.71d946edec3f3caf.js",
     "web/runtime/HONRO_ACT2_FAR_DATA.cb83bfe1d99c6ee2.js",
     "web/runtime/shared-assets-monsters-monsters-runtime.0c258e1887e54bf1.js",
@@ -399,19 +399,19 @@
       "sha256": "7d653f087d5ae12f19ef78cd7356daff1c92be83786ace356b5f118eb8011f6c"
     },
     {
-      "path": "web/entries/game.308ffbd022f8352b.js",
+      "path": "web/entries/game.a3723715fd2a96f1.js",
       "bytes": 12668,
-      "sha256": "308ffbd022f8352b5184baeca59f59c47261aa6b5b0b667d8d8b012fa0ecb052"
+      "sha256": "a3723715fd2a96f1356716288556fc66c6e8a6dba7d1b5a0adac2d2bbbc845cb"
     },
     {
-      "path": "web/entries/game.3676ae926eebeb14.html",
+      "path": "web/entries/game.cf5baa67bb7ef1c2.html",
       "bytes": 1731,
-      "sha256": "3676ae926eebeb14ec3a3fd51732c97cd2ba03dfab8dec6697bcd82b02df2fbe"
+      "sha256": "cf5baa67bb7ef1c2f21d90ffeee6e1fe9e95cd5257e06c2e357d2c6992b7ed62"
     },
     {
-      "path": "web/entries/workshop.b438bd245b8e1815.js",
+      "path": "web/entries/workshop.77574b4ece9f05d8.js",
       "bytes": 11481,
-      "sha256": "b438bd245b8e1815cdd9aa60de7aeddad28c4dc6d35256975f14ac0a28f197af"
+      "sha256": "77574b4ece9f05d8d5b59fb896e33ee2abe0da03f1755676873b81118cd505de"
     },
     {
       "path": "web/graphics/honro_act1_far_data-act3.9814017ddf006228.svg",
@@ -619,9 +619,9 @@
       "sha256": "0961acc6057399d8b96030beef455ad6ed5ea5c2ba560772f4a1912f6de5831f"
     },
     {
-      "path": "web/runtime/shared-assets-rebuild-game-adapter.34155535c7c891ad.js",
-      "bytes": 25522,
-      "sha256": "34155535c7c891ad50ae9fbb9a4fd1a17b123e91d697795047801f11d56f3cb8"
+      "path": "web/runtime/shared-assets-rebuild-game-adapter.7584136339439b5b.js",
+      "bytes": 25581,
+      "sha256": "7584136339439b5bd39f1328816d62197daa05ac421ded90ac7276071669bd55"
     },
     {
       "path": "web/runtime/shared-map-bounds.8e0a3a66fcc64fb7.js",
