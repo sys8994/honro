@@ -16,6 +16,20 @@ const scriptTag=file=>`<script type="module" src="${file}"></script>`;
 const relative=(from,to)=>{const p=path.posix.relative(path.posix.dirname(from),to);return p.startsWith('.')?p:'./'+p;};
 const urlExpression=(from,to)=>`new URL(${quote(relative(from,to))},import.meta.url).href`;
 
+// Keep two distinct releases for cached entrypoints; identical builds do not rotate them.
+export function planWebAssetRetention(previous,currentFiles){
+  const current=new Set(currentFiles.map(file=>file.path));
+  const safe=file=>/^web\/(runtime|entries|data|styles|graphics)\/[\w.-]+$/.test(file.path);
+  const last=previous?.files||[],older=previous?.previousFiles||[];
+  const unchanged=last.length===current.size&&last.every(file=>current.has(file.path));
+  const generations=previous?.previousGenerations||(older.length?[older]:[]);
+  const previousGenerations=(unchanged||!last.length?generations:[last,...generations]).slice(0,2).map(files=>files.filter(file=>safe(file)&&!current.has(file.path)));
+  const previousFiles=[...new Map(previousGenerations.flat().map(file=>[file.path,file])).values()];
+  const retained=new Set(previousFiles.map(file=>file.path));
+  const obsoleteFiles=[...new Map([...last,...older,...generations.flat()].filter(file=>safe(file)&&!current.has(file.path)&&!retained.has(file.path)).map(file=>[file.path,file])).values()];
+  return {previousFiles,previousGenerations,obsoleteFiles};
+}
+
 // Generated files are immutable by content. Stable HTML names remain the public entrypoints.
 export async function buildWeb({vector=true,destination=path.join(root,'HONRO.html')}={}) {
   let previous;try{previous=JSON.parse(await read('web/manifest.json'));}catch(e){if(e.code!=='ENOENT')throw e;}
@@ -117,9 +131,11 @@ catch(error){const host=document.getElementById('app');if(host)host.textContent=
   await writeGenerated(destination,gameHtml());
   await writeGenerated(path.join(root,'HONRO_WORKSHOP.html'),workshopHtml);
   await writeGenerated(path.join(root,'workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
-  const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,styles,workshopStyle,files:[...files.values()].sort((a,b)=>a.path.localeCompare(b.path))};
+  const currentFiles=[...files.values()].sort((a,b)=>a.path.localeCompare(b.path));
+  const {previousFiles,previousGenerations,obsoleteFiles}=planWebAssetRetention(previous,currentFiles);
+  const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations};
   await writeGenerated(path.join(root,'web/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
-  for(const file of previous?.files||[])if(!files.has(file.path)&&/^web\/(runtime|entries|data|styles|graphics)\/[\w.-]+$/.test(file.path))try{await unlink(path.join(root,file.path));}catch(e){if(e.code!=='ENOENT')throw e;}
+  for(const file of obsoleteFiles)try{await unlink(path.join(root,file.path));}catch(e){if(e.code!=='ENOENT')throw e;}
   await mkdir(path.join(root,'_local/reports/web-split'),{recursive:true});
   const summary={gameBytes:Buffer.byteLength(gameHtml()),workshopBytes:Buffer.byteLength(workshopHtml),files:files.size,playtest:manifest.playtest};
   await writeGenerated(path.join(root,'_local/reports/web-split/build.json'),JSON.stringify(summary,null,2)+'\n');

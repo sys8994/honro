@@ -3,9 +3,12 @@ import assert from 'node:assert/strict';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 import {traverse} from './act1-spatial-test-helpers.mjs';
+import {applyCityTacticalRoutes} from '../tools/map-forge/city-tactical-routes.mjs';
 import {authorStage21Eupseong,ground} from '../tools/map-forge/stage21-eupseong.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;
 const input=JSON.parse(await readFile('shared/data/campaign.json','utf8')),p=JSON.parse(JSON.stringify(authorStage21Eupseong(input,g))),s=p.stages[20],old=input.stages[20],rows=[];
+// The build pipeline must not resurrect the pre-eupseong ct21 solid galleries.
+assert.deepEqual(applyCityTacticalRoutes(p).stages[20],s,'Build preserves revision 2 eupseong geometry');
 g.HONRO_PROJECT=p;
 for(const k of ['events','markers','units','encounters','objectives'])assert.deepEqual(s[k],old[k],k+' unchanged');
 assert.deepEqual(s.initialState.honroAct3Steps,old.initialState.honroAct3Steps);
