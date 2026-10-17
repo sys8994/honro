@@ -6,34 +6,44 @@ export function refineMaintenance25(p,s){
  if(s.metadata.stageId!==25)return;
  const prefix='a3-maintenance25:';
  const originalElements=s.elements.filter(e=>!e.assetId.startsWith(prefix)||e.id==='vertical-depot-shell'||/^gallery-\d+$/.test(e.id)).map(e=>e.id==='vertical-depot-shell'?{...e,assetId:'a3-waterworks-v3:25:vertical-depot-shell'}:/^gallery-\d+$/.test(e.id)?{...e,assetId:'a3-waterworks-v3:25:'+e.id}:e);s.elements=[...originalElements];
+ // Replace this authored revision rather than accumulating duplicate assets.
+ p.library=p.library.filter(a=>!a.id.startsWith(prefix));
  s.design.act3.optionalRoutes=s.design.act3.optionalRoutes.filter(r=>r.id!=='west-stoplog-crest');
  const add=(id,svg,bounds,solids=[])=>{const a=asset(prefix+id,id,svg,solids,bounds,'stone');a.params.rearOnly=!solids.length;put(p,s,a,id,0,0);};
  // Recessed wall has no outline: the playable sill remains in front of it.
  let wall='';
- for(const [x,y,w,h] of [[100,4050,1080,650],[1950,4950,1800,420],[3350,3600,1980,650],[1300,3150,1940,500]]){
-  wall+=R(x,y-h,w,h,'#263d42')+R(x+35,y-h+32,w-70,h-32,'#172c33');
-  for(const [a,b]of [[x,x+70],[x+w-90,x+w]]) wall+=P([[a,y-h],[b,y-h],[b+12,y],[a-20,y]],'#3c5354')+R(a+8,y-h+24,14,h-32,'#566863');
-  wall+=R(x+38,y-h+36,w-80,36,'#354b4b');
+ // Irregular arch rings are broad bearing planes, not framed rectangles.
+ // Each dark inner face falls back into the shaft behind the actual galleries.
+ for(const [x,y,w,h,crown]of [[110,4080,1080,1660,245],[1940,4980,1800,1780,350],[3340,3630,1990,2370,420],[1290,3180,1950,1120,300]]){
+  const l=x+150,r=x+w-170,b=y+h,top=y+100;
+  wall+=`<path d="M${x-20} ${b}L${x} ${top+90}Q${x+w*.24} ${top-crown-95} ${x+w*.59} ${top-crown+30}Q${x+w*.88} ${top-crown+10} ${x+w+35} ${top+120}L${x+w+5} ${b}L${r} ${b}L${r} ${top+180}Q${x+w*.68} ${top-crown+155} ${x+w*.45} ${top-crown+160}Q${x+w*.26} ${top-crown+110} ${l} ${top+150}L${l+20} ${b}Z" fill="#2e4447"/>`;
+  wall+=`<path d="M${x+22} ${b}L${x+33} ${top+112}Q${x+w*.25} ${top-crown-45} ${x+w*.59} ${top-crown+76}L${x+w*.57} ${top-crown+127}Q${x+w*.28} ${top-crown+28} ${l} ${top+159}L${l+20} ${b}Z" fill="#435650"/>`;
+  wall+=`<path d="M${r} ${b}L${r} ${top+180}Q${x+w*.72} ${top-crown+169} ${x+w*.59} ${top-crown+160}L${x+w*.62} ${top-crown+100}Q${x+w*.89} ${top-crown+80} ${x+w-12} ${top+150}L${x+w+5} ${b}Z" fill="#172e35"/>`;
+  // Just three crown blocks and a sunken vertical seam describe the load.
+  for(const [f,dy]of [[.26,18],[.48,-20],[.70,28]]){const xx=x+w*f,yy=top-crown+dy;wall+=P([[xx-55,yy],[xx+89,yy+15],[xx+65,yy+100],[xx-61,yy+76]],'#3d514b');}
+  wall+=P([[x+21,b-470],[l+10,b-410],[l+19,b-220],[x+14,b-252]],'#233f42')+P([[r+9,b-810],[x+w-8,b-760],[x+w-3,b-350],[r+7,b-365]],'#1a353c');
  }
- // Heavy abutments and recessed masonry arches explain the otherwise floating
- // galleries. They are rear-wall masonry, never a false foreground landing.
- for(const [x,y,w,h] of [[130,4150,1000,690],[1960,5050,1770,870],[3370,3700,1910,1600],[1310,3250,1900,310]]){
-  const l=x+130,r=x+w-130,top=y+100,bottom=y+h;
-  const inner=Array.from({length:13},(_,i)=>{const t=Math.PI*i/12;return[r-(r-l)*i/12,top+160-200*Math.sin(t)];});
-  wall+=P([[x,y],[x+w,y],[x+w,bottom],[r,bottom],...inner,[l,bottom],[x,bottom]],'#344d51');
-  wall+=line(inner,'#536663',32);
-  // Broad dressed-stone courses at the loaded crown, recessed joints below.
-  for(const [f,width]of [[.03,.22],[.27,.3],[.59,.19],[.8,.17]])wall+=P([[x+w*f,y+12],[x+w*(f+width),y+8],[x+w*(f+width)-7,y+64],[x+w*f+5,y+70]],'#425955');
-  wall+=P([[r-5,top+164],[r+34,top+170],[r+34,bottom],[r-5,bottom]],'#233c43');
-  wall+=P([[x,y+20],[x+36,y+20],[x+44,bottom],[x,bottom]],'#64736a');
- }
- add('shaft-bearing-masonry',wall,[80,2600,5300,3300]);
+ // Silt-darkened abutment toes and the old high-water level attach the whole
+ // facility to one drowned shaft rather than leaving freestanding scaffold legs.
+ wall+=P([[30,5510],[1420,5530],[1760,5485],[1760,5980],[0,5980]],'#233c40')
+  +P([[3320,5500],[4180,5460],[5340,5505],[5340,5980],[3270,5980]],'#183339')
+  +P([[0,5500],[1090,5520],[1090,5542],[0,5522]],'#51605a')
+  +P([[3350,5494],[4140,5460],[5325,5500],[5325,5521],[4145,5482],[3350,5515]],'#40564f');
+ add('shaft-bearing-masonry',wall,[0,2700,5380,3290]);
  // Closed vertical timber gate and iron runners are in the rear shaft.
- let gate=R(2480,1740,450,4080,'#10252d');
+ let gate=P([[2290,1530],[2500,1660],[2380,5980],[2110,5980]],'#253e43')
+  +P([[2940,1650],[3200,1510],[3460,5980],[3070,5980]],'#132b33')
+  +P([[2415,1660],[2960,1660],[3090,5980],[2270,5980]],'#081c24');
  for(let i=0;i<7;i++){const x=2500+i*58;gate+=R(x,1840,48,3780,i%3===0?'#4b4b3b':'#3b4136')+R(x+5,1850,5,3750,'#665f46');}
  for(const y of [2220,3010,3860,4640,5420])gate+=R(2490,y,430,48,'#242f30')+R(2500,y+4,410,7,'#697064');
- gate+=R(2467,1740,24,4070,'#4c5d5b')+R(2910,1740,24,4070,'#263e44');
- add('sluice-leaf-and-guides',gate,[2460,1730,490,4100]);
+ gate+=P([[2355,1680],[2420,1710],[2310,5800],[2230,5800]],'#41534f')
+  +P([[2970,1690],[3010,1660],[3190,5800],[3080,5800]],'#2b4141')
+  +R(2467,1740,24,4070,'#4c5d5b')+R(2910,1740,24,4070,'#263e44');
+ // The black throat and mineral-soaked mouth are exposed below the leaf.
+ gate+=P([[2400,5620],[3010,5620],[3070,5980],[2310,5980]],'#071b23')
+  +P([[2410,5630],[2470,5630],[2410,5930],[2335,5980]],'#344d4c')
+  +P([[2960,5630],[3000,5630],[3060,5980],[2985,5980]],'#1d3b41');
+ add('sluice-leaf-and-guides',gate,[2110,1510,1350,4470]);
  // A grounded winding drum, bearings and paired hemp lines. No animated,
  // interactable control is invented: these explain the old maintenance use.
  let winding=R(1680,2855,400,32,'#67583e')+R(1710,2885,30,265,'#716044')+R(2010,2885,30,265,'#554b38');
@@ -54,15 +64,23 @@ export function refineMaintenance25(p,s){
  }add('stoplog-storage',racks,[2110,3350,2180,1610]);
  // A restrained first inconsistency precedes the stronger depot encounter.
  // This is rear scenery only: no material pool, collider, gravity or gate edit.
- let anomaly=P([[690,4390],[990,4344],[1410,4308],[1830,4185],[2120,4160],[2120,4190],[1850,4218],[1430,4337],[1010,4372],[690,4420]],'#3c5559')
-  +P([[700,4390],[1000,4344],[1420,4310],[1840,4187],[2110,4162],[2110,4170],[1840,4196],[1420,4320],[1000,4354],[700,4400]],'#60706d')
-  +P([[720,4450],[1280,4430],[1550,4360],[1580,4395],[1290,4470],[720,4490]],'#21373e')
-  +P([[1680,4330],[2110,4215],[2120,4250],[1690,4365]],'#233b42');
- add('rising-rear-watercourse',anomaly,[680,4150,1460,350]);
+ let anomaly=`<path d="M680 4408C1090 4405 1310 4320 1570 4280C1800 4242 1950 4140 2160 4090L2192 4130C1985 4210 1830 4300 1590 4322C1310 4365 1110 4440 680 4445Z" fill="#334e51"/>`
+  +`<path d="M700 4410C1100 4410 1320 4325 1570 4285C1805 4252 1960 4150 2157 4095L2167 4110C1975 4177 1810 4272 1580 4300C1320 4340 1100 4426 700 4425Z" fill="#63736d"/>`
+  +P([[720,4470],[1260,4435],[1540,4370],[1570,4400],[1280,4475],[720,4500]],'#18343c');
+ add('rising-rear-watercourse',anomaly,[680,4080,1520,430]);
  const source=p.library.find(a=>a.id==='a3-waterworks-v3:25:vertical-depot-shell');
  const dark=JSON.parse(JSON.stringify(source));dark.id=prefix+'dark-shell';
- const shade=v=>{if(Array.isArray(v))return v.map(shade);if(v&&typeof v==='object')return Object.fromEntries(Object.entries(v).map(([k,x])=>[k,shade(x)]));if(typeof v==='string'&&/^#[0-9a-f]{6}$/i.test(v))return '#'+[1,3,5].map(i=>Math.round(parseInt(v.slice(i,i+2),16)*.64).toString(16).padStart(2,'0')).join('');return v;};
- dark.vector=shade(dark.vector);p.library.push(dark);
+ // A fresh shell is authored once from the canonical footprint. Large ink
+ // planes and two recesses replace the original evenly coursed rear pillars.
+ dark.vector=asset(prefix+'shell-source','수문 뒤 깊은 수직 물길',
+  R(-16000,-10000,37600,29800,'#081b23')
+  +`<defs><linearGradient id="maintenance-depth" x1="0" y1="1500" x2="4600" y2="5980" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#162b31"/><stop offset=".55" stop-color="#1d353b"/><stop offset="1" stop-color="#0a2029"/></linearGradient></defs>`
+  +P([[-300,1450],[2100,1300],[2280,5980],[-300,5980]],'url(#maintenance-depth)')
+  +P([[3160,1400],[5900,1500],[5900,5980],[3250,5980]],'#132a31')
+  +`<path d="M210 5480V3280Q240 2670 850 2620Q1390 2710 1410 3330V5480Z" fill="#0b2028"/><path d="M4090 5620V2460Q4520 1890 5130 2410L5260 5620Z" fill="#0a2028"/>`
+  +P([[300,1870],[1490,1710],[1840,1725],[1570,2440],[400,2770]],'#1b3238')
+  +R(-300,5980,6200,2800,'#0b2531')+line([[-300,5996],[5900,5996]],'#567a78',9),[],[-16000,-10000,37600,29800],'stone').vector;
+ p.library.push(dark);
  const added=s.elements.filter(e=>e.assetId.startsWith(prefix));
  const old=originalElements.filter(e=>!e.assetId.startsWith(prefix));const split=old.findIndex(e=>e.id==='vertical-depot-shell')+1;
  s.elements=[...old.slice(0,split),...added.filter(e=>e.id!=='west-stoplog-workbench'),...old.slice(split),...added.filter(e=>e.id==='west-stoplog-workbench')];
@@ -78,9 +96,10 @@ export function refineMaintenance25(p,s){
    for(const f of [.12,.43,.79]){const x=l+(r-l)*f;face+=R(x,y+25,54,69,'#887451')+R(x+8,y+34,35,9,'#a18e66')+R(x+17,y+63,18,17,'#2d3029');}
    face+=line([[l+19,y+94],[r-24,y+94]],'#222f2c',9);
   }else{
-   for(let row=0;row<Math.min(8,Math.floor(d/190));row++){
-    const yy=y+38+row*190;let x=l+12;
-    for(let j=0;x<r-30;j++){const w=Math.min([280,370,230,330][(j+row)%4],r-x-8);face+=P([[x,yy+8],[x+w-9,yy],[x+w-3,yy+150],[x+12,yy+168]],['#51605a','#46564f','#5d6557'][(j+row)%3])+line([[x+13,yy+16],[x+w-19,yy+9]],'#7b8070',5);x+=w;}
+   face+=P([[l+24,y+66],[l+(r-l)*.38,y+80],[l+(r-l)*.31,y+d],[l+12,y+d]],'#4c5b51')+P([[l+(r-l)*.76,y+78],[r-15,y+65],[r-15,y+d],[l+(r-l)*.69,y+d]],'#263e3f');
+   for(let row=0;row<Math.min(5,Math.floor(d/310));row++){
+    const yy=y+38+row*310;let x=l+12;
+    for(let j=0;x<r-30;j++){const w=Math.min([430,590,370,510][(j+row)%4],r-x-8);face+=P([[x,yy+8],[x+w-9,yy],[x+w-3,yy+251],[x+12,yy+268]],['#51605a','#46564f','#5d6557'][(j+row)%3])+line([[x+13,yy+16],[x+w-19,yy+9]],'#7b8070',5);x+=w;}
    }
   }
   const replacement=asset(prefix+e.id,'수문 정비 회랑의 맞춤보와 석재 디딤면',face,[],[src.bounds.x,src.bounds.y,src.bounds.w,src.bounds.h],'stone');
@@ -89,6 +108,6 @@ export function refineMaintenance25(p,s){
  }
 
  refineRoofAccess25(p,s);
- s.design.act3.maintenanceRevision=3;
+ s.design.act3.maintenanceRevision=4;
  s.design.act3.optionalRoutes.push({id:'west-stoplog-crest',description:'낮은 직사선을 끊는 정비 석대. 양쪽 경사로를 기본 보행으로 오르고 돌아올 수 있다.',points:[{x:670,y:4050},{x:790,y:3965},{x:900,y:4050}]});
 }
