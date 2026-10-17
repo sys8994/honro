@@ -1,3 +1,4 @@
+import {authorPlaceEncounters} from './act3-place-encounters-20261017.mjs';
 /** Stage21 only. Fresh canonical authoring; no live-battle upgrade. */
 import {readFile,writeFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
@@ -73,6 +74,7 @@ export function authorStage21Eupseong(project,g){
  const recolor=n=>{if(!n||typeof n!=='object')return;for(const k of ['fill','stroke'])if(typeof n[k]==='string')n[k]=mix(n[k]);for(const v of Object.values(n))if(v&&typeof v==='object')Array.isArray(v)?v.forEach(recolor):recolor(v);};
  const scenic=new Map();for(const e of s.environment.placements){if(e.assetId.includes('bank'))continue;let a=scenic.get(e.assetId);if(!a){const original=p.library.find(a=>a.id===e.assetId);if(!original)continue;a=clone(original);a.id='eup21:backdrop:'+original.id;recolor(a.vector);p.library.push(a);scenic.set(original.id,a);}e.assetId=a.id;}
  delete s.terrainBounds;delete s.terrainDomainVersion;
+ authorPlaceEncounters(p,s);
  const authored=g.HonroTerrainDomain.author(p);if(JSON.stringify(authored.stages.filter(v=>v.id!=='stage-21'))!==JSON.stringify(project.stages.filter(v=>v.id!=='stage-21')))throw Error('Unrelated stage changed');return authored;
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const {runtime}=await import('../../game/tests/helpers.mjs');const g=await runtime({legacyMaps:false}),p=authorStage21Eupseong(JSON.parse(await readFile('shared/data/campaign.json','utf8')),g);await writeFile('shared/data/campaign.json',JSON.stringify(p,null,2)+'\n');console.log('Authored only Stage21 eupseong');}

@@ -1,3 +1,4 @@
+import {authorPlaceEncounters} from './act3-place-encounters-20261017.mjs';
 /** Fresh Stage 28 only. Raised county record court, west service lane and east
  * water yard. Serialized battles never pass through this source author. */
 import {readFile,writeFile} from 'node:fs/promises';
@@ -120,6 +121,7 @@ export function applyStage28RecordCourt(input){
  s.design.act3.mainBuildings=['west-clerks-wing','raised-open-record-hall','east-record-annex','water-yard-shed'];s.design.act3.bridges=[];s.design.act3.splitRoutes={A:[300,1120,1860,2540,3020,3500].map(x=>[x,court28Ground(x)]),B:[6700,6040,5370,4540,4180,3500].map(x=>[x,court28Ground(x)])};s.design.act3.departureGathering={x:3500,y:2380,radius:440};s.design.act3.recordCourt={revision:2,source:'tools/map-forge/stage28-record-court.mjs',scope:'Fresh entry only. User art approval pending. Existing objective IDs, fire limit, evidence and split party unchanged.'};
  delete s.design.cityTactical;delete s.design.space;delete s.design.act3.refinement;
  // Old a3 art remains available for serialized projects; unused source assets need not be deleted.
+ authorPlaceEncounters(p,s);
  return p;
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const file=process.argv[2]||'shared/data/campaign.json';await writeFile(file,JSON.stringify(applyStage28RecordCourt(JSON.parse(await readFile(file,'utf8'))),null,2)+'\n');}

@@ -1,10 +1,11 @@
+import {authorPlaceEncounters} from './act3-place-encounters-20261017.mjs';
 /** Stage27 artwork-only refinement of existing collidable structural assets.
  * Gallery polygons, one-way flags, objectives and save contracts are retained;
  * three roof polygons are translated to reachable eaves. New asset IDs leave serialized older scenes self-contained. */
 import {readFile,writeFile} from 'node:fs/promises';import{fileURLToPath}from'node:url';
 import {P,R,line,asset} from './act3-map-kit.mjs';
 const prefix='stage27-depot-r3:';
-export function applyStage27WorkingArchitecture(input){const p=structuredClone(input),s=p.stages[26];if(s.elements.some(e=>e.assetId===prefix+'gallery-0'))return p;
+export function applyStage27WorkingArchitecture(input){const p=structuredClone(input),s=p.stages[26];if(s.elements.some(e=>e.assetId===prefix+'gallery-0')){authorPlaceEncounters(p,s);return p;}
  const replace=(e,svg,bounds)=>{const old=p.library.find(a=>a.id===e.assetId),a=asset(prefix+e.id,old.name,svg,[],bounds||[old.bounds.x,old.bounds.y,old.bounds.w,old.bounds.h],old.material);a.collision=structuredClone(old.collision);a.oneWay=old.oneWay;a.tags=[...old.tags];a.params={...old.params};p.library.push(a);e.assetId=a.id;};
  for(let i=0;i<8;i++){const e=s.elements.find(e=>e.id==='gallery-'+i),old=p.library.find(a=>a.id===e.assetId),q=old.collision[0],l=Math.min(...q.map(q=>q.x)),r=Math.max(...q.map(q=>q.x)),y=Math.min(...q.map(q=>q.y)),bottom=Math.max(...q.map(q=>q.y)),w=r-l,h=bottom-y,poly=q.map(q=>[q.x,q.y]),wood=[4,6,7].includes(i);
  let art=P(poly,wood?'#554a37':'#465951','#142b2b',5)+P([[l,y],[r,y],[r-8,y+17],[l+12,y+23]],wood?'#a8976e':'#a3a58a')+P([[l+8,y+24],[r-12,y+19],[r-20,y+48],[l+12,y+57]],wood?'#72634a':'#788778');
@@ -40,5 +41,5 @@ export function applyStage27WorkingArchitecture(input){const p=structuredClone(i
  art+=P([[4320,3100],[4760,3160],[4780,3190],[4315,3134]],'#415249')+P([[4370,2850],[4660,2888],[4660,3135],[4370,3095]],'#182b23');
  for(let j=0;j<5;j++){const x=4376+j*54;art+=P([[x,2860+j*7],[x+39,2865+j*7],[x+39,3103+j*7],[x,3097+j*7]],j%2?'#344133':'#2b3b2d');}art+=P([[4355,2934],[4680,2975],[4680,3000],[4355,2959]],'#4a503d');
  const extra=asset(prefix+'water','연결 모순 배수면',art,[],[2600,2500,2500,900]);a.vector.root.children.push(...extra.vector.root.children);p.library.push(a);rear.assetId=a.id;
- return p;}
+ authorPlaceEncounters(p,s);return p;}
 if(process.argv[1]===fileURLToPath(import.meta.url)){const file=process.argv[2]||'shared/data/campaign.json';await writeFile(file,JSON.stringify(applyStage27WorkingArchitecture(JSON.parse(await readFile(file,'utf8'))),null,2)+'\n');}

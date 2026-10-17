@@ -54,5 +54,97 @@ function render(b){if(!active(b))return b.terrain||[];let q=renders.get(b);if(q?
   terrain.push({...world,...t,vertices:shape.vertices,x:shape.x,y:shape.y,w:shape.w,h:shape.h,honroDomain:true});live.delete(world.id);
  }terrain.push(...live.values());q={version:b.sceneVersion,source:b.honroWorldTerrain,count:b.terrain.length,terrain};renders.set(b,q);return terrain;
 }
-G.HonroTerrainDomain={VERSION:1,render,active,author,projection,clip,extend,worldBounds,validate};
+// Material artwork is a view of the canonical mass, just as collision is a
+// projection of it. Keep the authored local detail; replace only the old solid
+// underpaint and continue large strata in world coordinates. Never write these
+// derived vectors into battle/save state or invent a second terrain silhouette.
+const materialViews=new WeakMap();
+const materialSpecs={
+ 'eup21:foundations':{terrain:'a3-foundation',deep:3650},
+ 'family24:terrain-material':{terrain:'a3-foundation',deep:3300},
+ 'family24:deep-foundation-masonry':{terrain:'a3-foundation',detail:true},
+ 'family24:retaining-earth-faces':{terrain:'a3-foundation',detail:true},
+ 'stage26-witness:earth-and-footing-planes':{terrain:'a3-foundation',deep:3100},
+ 'stage29:record-actual-stone-faces':{terrain:'a3-foundation',deep:7000},
+ 'stage29:record-far-river-bank':{panorama:true},
+ 'a3-maintenance25:dark-shell':{rear:true},
+ 'stage27-depot-r4:misconnected-rear':{rear:true}
+};
+const pathString=ps=>'M'+ps.map(p=>p.x+' '+p.y).join('L')+'Z';
+// All extended polygon nodes were authored with absolute M/L commands. Curved
+// architectural paths remain byte-for-byte unchanged.
+function paintPolygon(d){if(!d||/[^MLZ0-9.eE+\-,\s]/.test(d))return null;const ns=d.match(/[-+]?(?:\d*\.)?\d+(?:e[-+]?\d+)?/gi)?.map(Number);return ns&&ns.length>=6&&ns.length%2===0?Array.from({length:ns.length/2},(_,i)=>({x:ns[i*2],y:ns[i*2+1]})):null;}
+function materialLandmarks(b){
+ if(!active(b)||b.honroCustom||b.honroStage<21||b.honroStage>30)return b.honroLandmarks||[];
+ const source=b.honroLandmarks||[],terrain=render(b),old=materialViews.get(b);
+ if(old?.source===source&&old.terrain===terrain&&old.version===b.sceneVersion)return old.landmarks;
+ const bounds=b.honroTerrainBounds,landmarks=source.map(l=>{
+  const spec=materialSpecs[l.asset?.id];if(!spec||!l.asset.vector||l.x||l.y||(l.scale??1)!==1||l.rotation)return l;
+  const mass=terrain.find(t=>t.id===spec.terrain&&!t.broken);if(!spec.rear&&!spec.panorama&&!mass)return l;
+  const asset=clone(l.asset),vector=asset.vector,children=vector.root.children;
+  if(spec.panorama){
+   const sides=[[[2430,3200],[2110,3200]],[[2540,3040],[2320,3040]],[[2670,3070],[2590,3070]]];
+   for(let i=0;i<3;i++)for(const [j,edge]of [-1800,9000].entries()){const [top,bottom]=sides[i][j],outer=j?bounds.right:bounds.left,dy=j?-100:140;children[i].d+=' '+pathString([{x:edge,y:top},{x:outer,y:top+dy},{x:outer,y:bottom},{x:edge,y:bottom}]);}
+   asset.bounds={x:bounds.left,y:1660,w:bounds.right-bounds.left,h:1540};vector.viewBox=[asset.bounds.x,1660,asset.bounds.w,1540];return{...l,asset};
+  }
+  const full=spec.rear?[{x:bounds.left,y:bounds.top},{x:bounds.right,y:bounds.top},{x:bounds.right,y:bounds.bottom},{x:bounds.left,y:bounds.bottom}]:mass.vertices;
+  const clipPath=new Path2D(pathString(full));
+  // The record-court artwork also dresses its actual upper stone roads.
+  if(b.honroStage===29)for(const t of terrain)if(t!==mass&&!t.broken&&t.mat!=='wood')clipPath.addPath(new Path2D(pathString(t.vertices)));
+  if(!spec.detail)children[0]={...children[0],d:pathString(full)};
+  if(spec.deep===7000){const key='domain-deep-base';vector.gradients[key]={type:'linear',x1:0,y1:7000,x2:0,y2:13200,stops:[{offset:0,color:children[0].fill,opacity:1},{offset:1,color:'#14272b',opacity:1}]};children[0].fill='url(#'+key+')';}
+  for(let i=spec.detail?0:1;i<children.length;i++){
+   const node=children[i],ps=paintPolygon(node.d);if(!ps){
+    // One broad curved soil bed reaches Stage21's eastern contour. Continue
+    // its terminal face without flattening or stretching its approved curve.
+    if(b.honroStage===21&&node.fill==='#314d41'){
+     const edge=b.width,strip=[{x:edge-1,y:2860},{x:edge,y:2860},{x:edge,y:3200},{x:edge-1,y:3200}],continued=extend(strip,{width:b.width,height:3650,terrainBounds:bounds,metadata:{stageId:21}});
+     node.d+=' '+pathString(continued);
+    }
+    continue;
+   }
+   if(spec.rear){
+    // The shaft's broad rear rock wash continues out of the authored building
+    // footprint. Its inner throat, arch voids, posts and waterline stay local.
+    if((b.honroStage===25&&[1,2,6].includes(i))||(b.honroStage===27&&i===1)){
+     const xs=ps.map(p=>p.x),ys=ps.map(p=>p.y),left=Math.min(...xs),right=Math.max(...xs),bottom=Math.max(...ys);
+     for(const p of ps){if(p.x===left&&left===-300)p.x=bounds.left;if(p.x===right&&right>5000)p.x=bounds.right;if(p.y===bottom)p.y=bounds.bottom;}
+     node.d=pathString(ps);
+    }
+    continue;
+   }
+   // Extend only strata which actually cross a material/domain edge. Local
+   // outcrops, masonry blocks and all architectural openings stay authored.
+   if(spec.deep===7000){for(const p of ps)if(p.y>=7000-EPS)p.y=bounds.bottom;}
+   const field=spec.deep===7000&&i>=2&&i<=4,origin=field?-2000:0,width=field&&i<4?11200:b.width-origin;
+   const shifted=ps.map(p=>({x:p.x-origin,y:p.y})),next=extend(shifted,{width,height:spec.deep||b.height,terrainBounds:{...bounds,left:bounds.left-origin,right:bounds.right-origin},metadata:{stageId:b.honroStage}}).map(p=>({x:p.x+origin,y:p.y}));
+   if(JSON.stringify(next)!==JSON.stringify(ps)||spec.deep===7000)node.d=pathString(next);
+   if(spec.deep===7000&&i<=3&&/^#[0-9a-f]{6}$/i.test(node.fill)){
+    const key='domain-deep-'+i;vector.gradients[key]={type:'linear',x1:0,y1:7000,x2:0,y2:13200,stops:[{offset:0,color:node.fill,opacity:1},{offset:1,color:'#14272b',opacity:1}]};node.fill='url(#'+key+')';
+   }
+  }
+  // Preserve every old gradient sample, then gently bury the same material
+  // into deeper shadow. The field never restarts at a polygon or play edge.
+  for(const [name,gradient] of Object.entries(vector.gradients||{}))if(!name.startsWith('domain-deep-')&&!spec.rear&&gradient.type==='linear'&&gradient.x1===gradient.x2&&gradient.y2>gradient.y1){
+   const start=gradient.y1,end=gradient.y2,deep=end+5200;
+   gradient.stops=gradient.stops.map(s=>({...s,offset:s.offset*(end-start)/(deep-start)}));
+   gradient.stops.push({offset:1,color:b.honroStage===21?'#192f2b':'#14272b',opacity:1});gradient.y2=deep;
+  }
+  asset.bounds={x:bounds.left,y:bounds.top,w:bounds.right-bounds.left,h:bounds.bottom-bounds.top};vector.viewBox=[asset.bounds.x,asset.bounds.y,asset.bounds.w,asset.bounds.h];
+  return{...l,asset,honroTerrainMaterialClip:clipPath};
+ });
+ materialViews.set(b,{source,terrain,version:b.sceneVersion,landmarks});return landmarks;
+}
+// Visual water coverage is independent of the conductive/contact polygon.
+// The same pool surface continues outside the stable simulation rectangle;
+// its old bottom is a color/depth sample, never a visible rectangular edge.
+const waterViews=new WeakMap();
+function materialWaterZone(b,z){
+ if(!active(b)||b.honroCustom||![25,27].includes(b.honroStage)||z.id!=='deep-basin-water')return z;
+ let views=waterViews.get(b);if(!views){views=new WeakMap();waterViews.set(b,views);}let prior=views.get(z);if(prior?.bounds===b.honroTerrainBounds)return prior.zone;
+ const bounds=b.honroTerrainBounds,top=z.surface[0][1],bottom=Math.max(...z.points.map(p=>p[1]));
+ const zone={...z,points:[[bounds.left,top],[bounds.right,top],[bounds.right,bounds.bottom],[bounds.left,bounds.bottom]],surface:[[bounds.left,top],[bounds.right,top]],bottom:[[bounds.left,bounds.bottom],[bounds.right,bounds.bottom]],honroWaterPaintBottom:bottom,honroWaterPaintLeft:Math.min(...z.points.map(p=>p[0])),honroWaterPaintRight:Math.max(...z.points.map(p=>p[0])),honroCarvedBasin:true};
+ views.set(z,{bounds,zone});return zone;
+}
+G.HonroTerrainDomain={VERSION:1,render,active,author,projection,clip,extend,worldBounds,validate,materialLandmarks,materialWaterZone};
 })(globalThis);

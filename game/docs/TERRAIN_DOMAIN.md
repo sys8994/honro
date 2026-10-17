@@ -20,7 +20,7 @@
 
 ## 공통 renderer와 cache
 
-Game·Stage View·Playtest는 동일한 전체 terrain 경로·재질·큰 암면·rim을 쓴다. 새 전투는 generic skirt, legacy cave enclosure, ACT2 enclosure를 호출하지 않는다. 옛 진행 저장만 원래 renderer를 유지한다.
+Game·Stage View·Playtest는 동일한 전체 terrain 경로·재질·큰 암면·rim을 쓴다. 새 전투는 generic skirt, legacy cave enclosure, ACT2 enclosure를 호출하지 않는다. 같은 map revision의 진행 저장만 원래 renderer를 유지한다.
 
 정적 미술은 Play Bounds와 무관한 월드 고정 tile에 캐시한다. 내부 512px와 2px gutter를 사용하며 화면의 실제 정수 픽셀에 맞춘 clip으로 gutter를 정확히 한 번 합성한다. 분수 줌에서도 틈과 중복 alpha를 동시에 방지한다. raster scale은 줌별로 양자화하고 모바일 최대 12개, 데스크톱 24개 tile만 보관한다. 큰 나무·건물은 실제 asset bounds를 scale/rotation/anchor로 변환해 판정한다.
 
@@ -28,7 +28,7 @@ Game·Stage View·Playtest는 동일한 전체 terrain 경로·재질·큰 암�
 
 ## 이관·편집·저장
 
-기존 진행 전투를 자동 교체하지 않는다. **이어하기는 옛 지형을 유지하고 새 진입/재시도부터 v6가 적용된다.** 기존 저장을 이어 한 화면은 새 지형의 검증 자료가 아니다. 새 battle의 world 스냅샷은 저장/불러오기에서 유지한다. 프로필 schema는 4 그대로다.
+캠페인은 `HonroCampaignMapRevision`의 장별 revision을 새 battle에 기록한다. **현재 장의 revision이 다르면 전투 스냅샷만 폐기하고 같은 장 입구부터 새 지형으로 다시 시작한다.** 이번 21–30장은 revision 미표기도 폐기 대상이다. 성장·SP·장착·모집·완료·설정과 XP 지급 장부는 유지하며 자동 완료/이동은 없다. 분할 v1은 같은 장의 v2 팀으로 전환하고, v2는 `starts[id]`의 장 시작 자원을 복원한다. 같은 revision의 world 스냅샷은 정상 이어하기로 유지한다. Workshop 사용자 프로젝트·구버전 비교 자료는 교체하지 않으며 프로필 schema는 4 그대로다.
 
 옛 v1–v5 Workshop 프로젝트도 자동 확장하지 않는다. v5 이하 클라이언트는 v6를 거절해 확대 polygon을 gameplay collision으로 오인하지 않도록 한다. null/잘못된 projection뿐 아니라 확장 고체에서 projection을 제거한 경우도 거절한다.
 

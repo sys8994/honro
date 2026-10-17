@@ -1,3 +1,11 @@
+## 3막 장소 군집·지형 재질·구전투 재시작 · 2026-10-17
+
+- 원인: 길 전체에 흩어진 초기 적과 먼 지원조, 플레이 범위까지만 그린 전경 지반이 확장 지형과 다른 색면을 만들었다. 전역 물리 revision만 확인해 옛 지형/분할 v1 전투가 새 제작 데이터를 가렸다.
+- 변경: 21–30장의 활성 저작기에 장소별 전위·다른 높이 지원·정예와 빈 연결 구간을 적용했다. 초기 수를 늘린 장은 기존 HP·공격·XP 총예산과 동시 행동 상한을 유지하며 유한 증원 인원만큼 수용 공간을 남긴다. 공통 빌드의 마지막 적 저작 단계를 canonical 데이터와 일치시킨다. 지반/큰 지층은 실제 전체 terrain polygon에 연장하고 건축 세부·동굴/수로 개구·충돌은 보존한다.
+- 저장: `HonroCampaignMapRevision`이 새 캠페인 전투에 장별 revision을 기록한다. 다른 revision(이번 21–30장의 미표기 포함)은 전투만 폐기해 같은 장에서 다시 시작한다. 성장·SP·장착·모집·완료·설정과 지급 장부를 보존한다. 분할 v1은 현행 v2의 같은 장/팀으로, v2는 `starts[id]`의 자원으로 재시작한다. 동일 revision은 정상 이어하기, Workshop 자료는 제외한다. Continue의 옛 지형 부분 덧대기 호출은 제거하고 비교용 도구는 보존한다.
+- 확인: 구버전/동버전 load·Continue·import와 분할 25/26/27, DOM/storage double을 사용한 생산 App 사례가 통과했다. 10장 production renderer의 overview/좌·우·하단과 몸체·지지면·필수 작업면을 확인했다. 26장 18명 유지·작업다락 위치 fixture에서 실제 AI 6발, 보호막 피해100을 확인했다. 빌드와 canonical/실제 chapter JSON 일치, Chromium Game/Workshop 기본 진입·26장 구분할 저장 재시작·성장/장착/완료 보존이 통과했고 pageerror/HTTP 실패는0이다. 원격/Pages 결과는 발행 보고에 별도 기록한다. 전체 verify·30장 완주·기예 검사는 실행하지 않는다.
+- 증거/한계: `_local/reports/act3-revision/`, `_local/reports/campaign-map-revision/`, `_local/reports/act3-terrain-material/`. Native Canvas와 명시적 전투 fixture는 정상 자원 캠페인 완주나 최종 미술/난이도 승인을 뜻하지 않는다.
+
 ## 배포 파일 역할 분리 재구성 · 2026-10-16
 
 - 복구: 이전 `/workspace/scratch/fff510b4df37/honro-direct-20261016`와 로컬 커밋 `6b5fcf7c9d1accf257bb290232cb5e3fe329c7f5`는 새 환경·미참조 Git 객체·원격에 없어 복원하지 못했다. `77bf4d8`의 최소 검증 문서를 유지하고 `4bca43a2`의 ghost/shade 소스 변경만 통합하여 현재 소스에서 재구성했다.

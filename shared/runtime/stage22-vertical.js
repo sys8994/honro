@@ -11,7 +11,7 @@ const ended=app=>app.done||['won','lost'].includes(app.engine.b.phase);
 const paused=app=>!!app.dialogue||!!app.charging||!!app.modal?.classList.contains('open')||!!app.storyHistoryOpen||!!G.document?.hidden||!!G.HonroStory?.turnPaused?.(app);
 const safe=app=>!ended(app)&&!paused(app)&&!!app.actorBoundary&&!['flight','review','summon','ally'].includes(app.engine.b.phase)&&!(app.engine.b.projectiles||[]).length&&!app.engine.b.volley&&!app.engine.b.summonTurn&&!app.engine.b.units.some(u=>alive(u)&&(u.meleeAction||u.meleeFollow==='ready'))&&!app.engine.settleBusy();
 const boundary=app=>[serial(app.engine.b),app.engine.b.round,...app.engine.b.teamEnds,app.actorBoundary].join(':');
-const cap=E.populationCap;E.populationCap=function(b){return active(b)&&b.honroVerticalStage22PopulationCap===35?35:cap(b);};
+const cap=E.populationCap;E.populationCap=function(b){return active(b)&&[35,39].includes(b.honroVerticalStage22PopulationCap)?b.honroVerticalStage22PopulationCap:cap(b);};
 
 const supportOf=(e,u)=>e.contactSurface(u.x,u.y-8,u.y+10)?.t.id;
 const inRange=(u,h,spec)=>Math.abs(h.y-u.y)<(spec.maxHeight??650)&&Math.hypot(h.x-u.x,h.y-u.y)<spec.radius;

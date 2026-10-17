@@ -1,3 +1,4 @@
+import {authorPlaceEncounters} from './act3-place-encounters-20261017.mjs';
 /** Fresh Stage24 only. Ancestral compound with a sunken garden and two real departure courts. */
 import {readFile,writeFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
@@ -92,7 +93,7 @@ export function authorFamily24(project,g){
  const door=clone(original.terrains.find(t=>t.id==='shrine-door')),x=4500,y=ground(x);door.points=[{x:x-22,y:y-350},{x:x+22,y:y-350},{x:x+22,y},{x:x-22,y}];s.terrains.push(door);
  rear('shrine-gate-frame',R(x-43,y-362,16,362,'#66513d')+R(x+28,y-362,16,362,'#66513d')+R(x-39,y-354,4,346,'#a18d62')+P([[x-70,y-357],[x-42,y-381],[x+40,y-381],[x+70,y-357],[x+61,y-343],[x-62,y-343]],'#35453e')+line([[x-65,y-358],[x+65,y-358]],'#9a9d81',5),[x-75,y-390,150,395]);
  const groupPos={'empty-court-watch':[1430,1580,1770,1850],'crest-room-watch':[2040,2230,2450,2580],'abandoned-garden-watch':[3300,3590,3800],'shrine-approach':[4470,4630,4800],'land-register-watch':[6010,6240,6430,6650]};
- const count={};for(const u of s.units){if(u.team==='player'){u.y=ground(u.x);continue;}const q=groupPos[u.encounterGroup];if(q){const i=count[u.encounterGroup]||0;count[u.encounterGroup]=i+1;u.x=q[i];u.y=ground(u.x)-(u.kind==='lantern'?32:0);u.stageOverrides.honroEncounterSupport='a3-foundation';}}
+ const count={};for(const u of s.units){if(u.team==='player'){u.y=ground(u.x);continue;}const q=groupPos[u.encounterGroup];if(q){const i=count[u.encounterGroup]||0;count[u.encounterGroup]=i+1;if(q[i]===undefined)continue;u.x=q[i];u.y=ground(u.x)-(u.kind==='lantern'?32:0);u.stageOverrides.honroEncounterSupport='a3-foundation';}}
  // Preserve response IDs, counts, trigger sequence and the existing warning/opportunity runtime.
  const spawnRows=[[['act3-response-24-0'],[3100,3250],[3060,3210]],[['act3-response-24-1'],[5020,5105,5190],[4720,5040,5170]],[['act3-response-24-2'],[6200,6350],[6160,6310]]];
  for(const [[id],xs,alt]of spawnRows){const ev=s.events.find(e=>e.id===id);if(!ev)throw Error('Missing response '+id);const rewrite=(old,xx)=>old.map((a,i)=>({...a,x:xx[i],y:ground(xx[i]),support:'a3-foundation'}));ev.action.actions=rewrite(ev.action.actions,xs);ev.honroDensityAlternatives=[rewrite(ev.action.actions,alt)];ev.entry={...ev.entry,x:xs[0],y:ground(xs[0])};if(ev.honroDensityTrigger.region)ev.honroDensityTrigger.region={x:5450,y:2300,width:1400,height:750};}
@@ -105,6 +106,7 @@ export function authorFamily24(project,g){
  // Keep the existing unoutlined far landscape; replace only local, grounded scenery.
  s.environment.placements=s.environment.placements.filter(e=>e.depthLayer!=='L1');
  const used=new Set(p.stages.flatMap(t=>[...t.elements.map(e=>e.assetId),...t.environment.placements.map(e=>e.assetId)]));p.library=p.library.filter(a=>!oldAssets.has(a.id)||used.has(a.id));
+ authorPlaceEncounters(p,s);
  const authored=g.HonroMaps.finalize(g.HonroTerrainDomain.author({...p,activeStageId:s.id,stages:[s]}));
  const final={...p,library:authored.library,stages:p.stages.map(t=>t.metadata.stageId===24?authored.stages[0]:t)};
  if(JSON.stringify(final.stages.filter(t=>t.metadata.stageId!==24))!==JSON.stringify(project.stages.filter(t=>t.metadata.stageId!==24)))throw Error('Other stage changed');

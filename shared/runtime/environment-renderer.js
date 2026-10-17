@@ -153,7 +153,7 @@ Scene.prototype.background=function(c,w,h,b){if(G.HonroAct2SpatialArt?.active(b)
 Scene.prototype.liveWater=function(c,b){const st={backdrop:b.honroBackdrop,environment:ensureBattle(b)},a=E.atmosphereAt(st,this.y),time=A.time(this),halfW=this.canvas.clientWidth/this.scale/2,halfH=this.canvas.clientHeight/this.scale/2;
  const visible=(x,y,w,h)=>x+w>this.x-halfW&&x<this.x+halfW&&y+h>this.y-halfH&&y<this.y+halfH;
  let pools=0,falls=0;
- for(const z of b.honroSurfaceZones||[])if(['water-pool','shallow-water'].includes(z.kind)&&z.points?.length){const q=A.poolData(z);if(!visible(q.left,q.top,q.right-q.left,q.bottom-q.top))continue;A.pool(c,z,a,time);pools++;
+ for(const z of b.honroSurfaceZones||[])if(['water-pool','shallow-water'].includes(z.kind)&&z.points?.length){const paint=G.HonroTerrainDomain?.materialWaterZone(b,z)||z,q=A.poolData(z),view=A.poolData(paint);if(!visible(view.left,view.top,view.right-view.left,view.bottom-view.top))continue;A.pool(c,paint,a,time);pools++;
   const key=b.session+':'+z.id;if(!this._waterContacts||this._waterContactSession!==b.session){this._waterContacts=new Map();this._waterRipples=[];this._waterContactSession=b.session;}
   for(const u of b.units||[]){if(u.dead)continue;const id=key+':'+u.id,touch=u.x>=q.left&&u.x<=q.right&&u.y>=q.top-3&&u.y<q.top+85;if(this._waterContacts.get(id)===false&&touch)this._waterRipples.push({x:u.x,y:q.top,born:time});this._waterContacts.set(id,touch);}
  }

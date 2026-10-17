@@ -1,3 +1,4 @@
+import {authorPlaceEncounters} from './act3-place-encounters-20261017.mjs';
 /** Stage29-only fresh author. Saves retain serialized terrain and story state. */
 import {readFile,writeFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
@@ -29,13 +30,14 @@ export function authorStage29Record(g,input){
  'underwater-bridge-watch':[[4290,'r29-inspection-deck'],[4450,'r29-inspection-deck'],[4900,'r29-inspection-deck'],[5120,'r29-inspection-deck']],
  'dark-lock-approach':[[4720,'r29-high-road'],[4870,'r29-high-road'],[5260,'r29-high-road'],[5430,'r29-high-road']],
  'moonlit-exit-watch':[[5990,'a3-foundation'],[6120,'a3-foundation'],[5980,'r29-high-road'],[6150,'r29-high-road'],[6290,'a3-foundation']]};
- const n={};for(const u of s.units){if(u.team==='player'){u.x=250+(['archer','mage','knight','occultist'].indexOf(u.kind))*110;u.y=2700;continue;}const group=u.encounterGroup,[x,support]=roster[group][n[group]||0];n[group]=(n[group]||0)+1;Object.assign(u,{x,y:record29Y(support,x)});u.stageOverrides.honroEncounterSupport=support;}
+ const n={};for(const u of s.units){if(u.team==='player'){u.x=250+(['archer','mage','knight','occultist'].indexOf(u.kind))*110;u.y=2700;continue;}const group=u.encounterGroup,pose=roster[group]?.[n[group]||0];if(!pose)continue;const [x,support]=pose;n[group]=(n[group]||0)+1;Object.assign(u,{x,y:record29Y(support,x)});u.stageOverrides.honroEncounterSupport=support;}
  const entries=[[2350,record29Y('a3-foundation',2350)],[4710,1840],[6100,2760]];
  s.events.forEach((ev,i)=>{Object.assign(ev.entry,pt(...entries[i]));Object.assign(ev.action,pt(...entries[i]));});
  s.anchors={...s.anchors,spawn:pt(250,2700),start:pt(250,2700),exit:pt(6500,2760)};
  const a=[[3650,2220],[3850,2082.857142857143],[4250,1840],[4550,1840],[5550,1840],[6100,2190],[6350,2190]],b=[[3650,2220],[4150,2760],[5590,2760],[5700,2760],[5810,2650],[5940,2760],[6500,2760]],common=[[250,2700],[1150,2700],[1800,2520],[2050,2520],[2580,2220],poses['old-seal'],[3220,2220],[3650,2220]];
  s.design.act3={...s.design.act3,kind:'retaining-wall-record-court',mainBuildings:['r29-letter-room'],bridges:['r29-high-road','r29-inspection-roof'],primaryContour:clone(RECORD29_TOP),requiredRoute:common.map(([x,y])=>pt(x,y)),optionalRoutes:[],refinement:undefined,koreanTown:undefined,recordCourt:{revision:1,scope:'Fresh Stage29 only; exact existing goal/roster/finite wave identities preserved; image approval pending.',places:['western approach','sealed document chamber','exposed upper sluice road','covered lower maintenance passage'],routeA:a,routeB:b}};
  s.design.questRoutes.traversal={A:a.map(([x,y])=>pt(x,y)),B:b.map(([x,y])=>pt(x,y))};s.design.questRoutes.traversal.A[0].jumpTo={x:3850,support:'r29-upper-ascent'};s.routes=[...common,...b].map(([x,y])=>pt(x,y));
+ authorPlaceEncounters(p,s);
  applyStage29RecordArt(g,p);
  const out=g.HonroTerrainDomain.author(p);if(JSON.stringify(out.stages.filter(t=>t.metadata?.stageId!==29))!==before)throw Error('Other stages changed');return out;
 }

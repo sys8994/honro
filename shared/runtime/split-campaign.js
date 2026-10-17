@@ -42,6 +42,21 @@ function prepare(profile,id){
  if([1,VERSION].includes(old?.version)&&!old.finished&&(old.nextStage===id||old.stage===id))return clone(old);
  return {version:VERSION,mode:id===24?'continuous':'replay',stage:id,activeRoster:roster(id),vitals:{},starts:{},completed:{},items:null,nextStage:null,finished:false};
 }
+// Terrain replacement is a same-chapter retry, never an expedition advance.
+// V1 used different teams/content. Its battle vitals cannot seed a V2 party.
+function restartForMap(profile,id,battleSplit){
+ if(id<24||id>28)return;
+ const old=profile.honroSplitCampaign||battleSplit;
+ if(!old)return;
+ const s=old.version===VERSION?clone(old):{version:VERSION,mode:old.mode||'continuous',vitals:{},starts:{},completed:clone(old.completed||{}),items:null};
+ s.stage=id;s.nextStage=id;s.finished=false;s.activeRoster=roster(id);
+ s.starts??={};s.completed??={};
+ if(!s.starts[id]&&battleSplit?.version===VERSION&&battleSplit.starts?.[id])s.starts[id]=clone(battleSplit.starts[id]);
+ const start=s.starts[id];
+ s.vitals=clone(start?.vitals||{});s.items=start?.items?clone(start.items):null;
+ // The current battle's death, curse and spent items never replace starts[id].
+ profile.honroSplitCampaign=s;
+}
 function initialize(b,profile){
  if(b.honroCustom||b.honroStage<24||b.honroStage>28)return;
  if(b.honroStage===28&&profile.honroSplitCampaign?.version===1&&profile.honroSplitCampaign.finished)return;
@@ -104,5 +119,5 @@ function allowLaunch(app,id,training){if(app.debugMode)return true;const owner=a
 function prepareLaunch(app,id,training){const s=app.profile.honroSplitCampaign;if(app.debugMode&&!training&&locked(app.profile)&&id!==s.stage&&id!==s.nextStage)delete app.profile.honroSplitCampaign;}
 function resultLabel(app){const b=app.engine?.b;if(!active(b)||b.honroSplit.finished)return null;return b.phase==='lost'?'현재 조사 다시 걷기':b.honroStage===24?'지하 수로로':b.honroStage===25?'공방 조사 이어가기':b.honroStage===26?'수로 심부로':'두 조사팀 합류하기';}
 function resultContinue(app){const b=app.engine?.b;if(!app.done||!active(b)||b.honroSplit.finished)return false;const id=b.honroSplit.nextStage||b.honroStage;app.engine=null;app.profile.honroBattle=null;app.close();app.launch(id);return true;}
-G.HonroSplitCampaign={version:VERSION,roster,hero,active,prepare,initialize,attach,capture,persist,outcome,allPresent,failure,locked,redirectRest,allowLaunch,prepareLaunch,resultLabel,resultContinue,snapshot,restore,legacy,content};
+G.HonroSplitCampaign={version:VERSION,roster,hero,active,prepare,initialize,attach,capture,persist,outcome,allPresent,failure,locked,redirectRest,allowLaunch,prepareLaunch,resultLabel,resultContinue,snapshot,restore,legacy,content,restartForMap};
 })(globalThis);
