@@ -57,13 +57,38 @@ export function officeArt(){let a=R(-179,-186,358,186,'#979d80')+R(-173,-177,346
  a+=R(-28,-168,56,21,'#304b42')+R(-17,-162,35,3,'#b4ac7c')+R(-188,-4,376,9,'#a8aa90');
  // Flanking courtyard screens and a deep side store form an office precinct.
  return a;}
-export function foundationArt(contour,ground){let a='';
- // Connected load-bearing strata fade into the deep cutaway instead of hanging polygons.
- for(const [left,right,depth]of [[0,620,230],[1320,1780,250],[2010,2890,350],[3480,3750,260],[4060,4520,290],[5230,5500,330],[5740,6400,300]]){const y=ground((left+right)/2),id='soil-'+left;a+=`<defs><linearGradient id="${id}" x1="0" y1="${y}" x2="0" y2="${y+depth}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#536553"/><stop offset="0.45" stop-color="#354e43"/><stop offset="1" stop-color="#253e38" stop-opacity="0"/></linearGradient></defs>`;
- a+=P([[left,y+4],[right,y+4],[right+40,y+depth],[left-30,y+depth]],`url(#${id})`);
- const count=Math.max(2,Math.floor((right-left)/115));for(let row=0;row<(left===2010?3:2);row++){const yy=y+13+row*47,step=(right-left)/count;for(let j=0;j<count;j++){const x=left+j*step+(row%2?15:0),ww=Math.min(step-6,right-x-5);if(ww<10)continue;a+=P([[x+4,yy],[x+ww,yy-3],[x+ww-3,yy+32],[x+7,yy+40],[x,yy+30]],row===0?(j%2?'#69755f':'#5e705b'):'#475f4e')+line([[x+9,yy+4],[x+ww-9,yy+1]],row===0?'#849079':'#60725b',2);}}
- a+=path(`M${left+24} ${y+142} Q${left+(right-left)*.4} ${y+167} ${right-44} ${y+145}`,'none','#28473e',7);}
- // Large natural rock bedding through the connecting slopes, tied to the actual surface.
- for(const [l,r]of [[620,1320],[2890,3480],[3750,4060],[4520,5230],[5500,5740]]){const yl=ground(l),yr=ground(r);a+=P([[l,yl+10],[r,yr+10],[r-25,yr+68],[l+24,yl+80]],'#3c5547');a+=line([[l+35,yl+96],[l+(r-l)*.42,yl+(yr-yl)*.42+115],[r-30,yr+85]],'#304b40',12);}
- a+=path('M3462 2775 L3480 2775 L3480 2945 Q3508 2967 3553 2952 L3553 2967 Q3500 2985 3462 2952Z','#263f38')+line([[3470,2790],[3470,2944],[3505,2962],[3552,2959]],'#5e7158',5);
- a+=P([[3800,2835],[3895,2770],[4030,2760],[4100,2830],[4062,2916],[3958,2943],[3860,2913]],'#354f43')+P([[3800,2835],[3895,2770],[4030,2760],[3960,2830],[3860,2913]],'#465d4b')+line([[3910,2833],[4017,2805],[4060,2825]],'#5e7058',4);return a;}
+// Low rear walls, occupation-specific awnings and broad bedding are scenery;
+// their walkable tops are authored separately as thin one-way terrain.
+export function supportedAwningArt(top,ground,{cloth=false,tone='#879276'}={}){
+ const [[l,y],[r,z]]=top;let a='';
+ // Two short masonry feet and diagonal knee braces explain every landing.
+ for(const x of [l+17,r-25]){const yy=y+(z-y)*(x-l)/(r-l),g=ground(x);a+=P([[x-11,g],[x-8,g-19],[x+21,g-20],[x+26,g]],'#7a856b')+R(x,yy+13,11,g-yy-26,'#635e46')+R(x+2,yy+20,3,g-yy-43,'#958363');}
+ a+=P([[l+20,y+29],[l+29,y+22],[l+68,y+66],[l+61,y+73]],'#74684c')+P([[r-22,z+29],[r-31,z+22],[r-71,z+66],[r-63,z+73]],'#74684c');
+ if(cloth)a+=P([[l+9,y-27],[r-31,z-48],[r,z],[l,y]],tone)+P([[l,y],[r,z],[r-1,z+16],[l-3,y+13]],'#626e55')+P([[l+20,y-22],[l+67,y-27],[l+87,y+3],[l+41,y+3]],'#a5a180');
+ else a+=P([[l+6,y-12],[r-7,z-12],[r,z],[l,y]],tone);
+ a+=P([[l,y],[r,z],[r,z+17],[l,y+17]],'#70654b')+P([[l,y],[r,z],[r,z+5],[l,y+5]],'#b0a17a')+P([[l,y+17],[r,z+17],[r,z+23],[l,y+23]],'#4e5944');
+ return a;
+}
+export function alleyArt(ground){let a='';
+ // Joined back-of-lot walls follow the same lane; open gates interrupt the run.
+ for(const [l,r,h]of [[3260,3460,87],[3740,4050,106],[4450,4700,74],[4960,5150,88],[5550,5890,82]]){const yl=ground(l),yr=ground(r);a+=P([[l,yl],[l,yl-h],[r,yr-h],[r,yr],[r-25,yr-13],[l+20,yl-12]],'#7e886e')+P([[l,yl-h],[r,yr-h],[r+8,yr-h+13],[l-7,yl-h+14]],'#a3a587')+P([[r-24,yr-h+13],[r,yr-h+13],[r,yr],[r-24,yr-11]],'#647960');}
+ // A potter's open side bay binds the home and loading terrace together.
+ a+=P([[3763,ground(3763)-185],[3910,ground(3910)-178],[3910,ground(3910)],[3763,ground(3763)]],'#8b9072')+P([[3780,ground(3780)-155],[3895,ground(3895)-145],[3895,ground(3895)-18],[3780,ground(3780)-18]],'#51604a');
+ a+=R(3791,ground(3791)-65,92,13,'#9e8c62')+P([[3805,ground(3805)-67],[3814,ground(3814)-98],[3837,ground(3837)-95],[3845,ground(3845)-67]],'#ae9f79');
+ // Rear foundations are broad, irregular plinths rather than tiny brick rows.
+ for(const [l,r]of [[3405,3773],[4040,4495],[5175,5580]]){const yl=ground(l),yr=ground(r);a+=P([[l-11,yl],[l,yl-30],[l+(r-l)*.35,yl-24],[r-8,yr-28],[r+13,yr],[r,yr+16],[l+12,yl+13]],'#697b65')+P([[l,yl-30],[l+(r-l)*.35,yl-24],[r-8,yr-28],[r,yr-17],[l+4,yl-17]],'#a0a38a');}
+ return a;
+}
+export function foundationArt(contour,ground){let a='<defs><linearGradient id="deep-soil" x1="0" y1="2400" x2="0" y2="3650" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4b6250"/><stop offset="1" stop-color="#29463b"/></linearGradient></defs>'+P([...contour,[6400,3650],[0,3650]],'url(#deep-soil)');
+ const profile=(l,r,offset)=>[[l,ground(l)+offset],...contour.filter(([x])=>x>l&&x<r).map(([x,y])=>[x,y+offset]),[r,ground(r)+offset]];
+ // Large geological lenses attach to the real contour, with unequal depth.
+ const beds=[{l:0,r:1170,d:240,c:'#4f6350',b:[[1140,3020],[850,3080],[470,3025],[80,3115]]},{l:1080,r:3020,d:370,c:'#465f4e',b:[[2960,2880],[2570,3070],[2120,2980],[1650,3110],[1145,3030]]},{l:2940,r:4680,d:410,c:'#50644e',b:[[4610,3015],[4260,3100],[3870,3025],[3540,3185],[3000,2990]]},{l:4660,r:6400,d:530,c:'#465e4d',b:[[6400,2775],[6050,2720],[5650,2830],[5240,2915],[4710,2870]]}];
+ for(const [i,b]of beds.entries()){const top=profile(b.l,b.r,8);a+=P([...top,...b.b],b.c);const inner=profile(b.l+35,b.r-40,65+i*7);a+=P([...inner,...b.b.slice(1).map(([x,y])=>[x,y-44])],'#3c5647');}
+ // Distinct outcrops: broad light plane, folded dark side and buried foot.
+ for(const [l,r,d]of [[650,1265,180],[1820,2370,245],[3100,3540,190],[3770,4120,265],[4630,5100,230],[5520,5880,350]]){const m=l+(r-l)*.47,yl=ground(l),ym=ground(m),yr=ground(r);a+=P([[l,yl+43],[m,ym+24],[r,yr+62],[r-33,yr+d*.7],[m+37,ym+d],[l+53,yl+d*.82]],'#405c4b')+P([[l,yl+43],[m,ym+24],[m+37,ym+d],[l+53,yl+d*.82]],'#60715a')+P([[m,ym+24],[r,yr+62],[r-33,yr+d*.7],[m+37,ym+d],[m-14,ym+d*.46]],'#4c6551');}
+ // Connected roadside drain, stepped stone lip and a single deeper outlet.
+ const drain=profile(3265,4615,17);a+=P([...drain,...profile(3265,4615,38).reverse()],'#293f37')+P([...profile(3270,4610,13),...profile(3270,4610,20).reverse()],'#8a9478');
+ a+=path('M3855 2730 L3873 2724 L3873 2855 Q3898 2884 3968 2868 L3973 2885 Q3897 2910 3855 2871Z','#2c453a')+path('M3861 2736 L3861 2862 Q3895 2894 3966 2878','none','#75866a',7);
+ // Soft buried lower planes vary the relief without noise or isolated wedges.
+ a+=path('M60 3060 Q700 2980 1150 3115 T2340 3110 L2590 3200 H0Z','#334e42')+path('M2840 3130 Q3330 3010 3710 3160 Q4180 3030 4600 3175 L4730 3200 H2840Z','#344f42')+path('M4760 2940 Q5220 2790 5550 2935 Q6050 2800 6400 2860 V3200 H4760Z','#314d41');
+ return a;}

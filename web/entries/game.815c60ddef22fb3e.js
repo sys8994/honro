@@ -1,5 +1,7 @@
-globalThis.HONRO_PLAYTEST_URL="web/entries/game.423915f0d2148d7f.html?embedded=1";
-const modules=[new URL("../runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",import.meta.url).href,
+globalThis.HONRO_EMBEDDED=new URLSearchParams(location.search).get('embedded')==='1';
+const modules=[new URL("../runtime/game-art.908f3691c1b7c392.js",import.meta.url).href,
+new URL("../runtime/title-scene.37a35dad86e4fed5.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.c5e0589639564156.js",import.meta.url).href,
 new URL("../runtime/engine-core.e798a3b4e89840c3.js",import.meta.url).href,
 new URL("../runtime/HONRO_BALANCE.3004fd3d1a9e90d1.js",import.meta.url).href,
@@ -79,7 +81,7 @@ new URL("../runtime/shared-map-schema.0f2a75802167de22.js",import.meta.url).href
 new URL("../runtime/shared-map-units.a7664cecc78a0f8f.js",import.meta.url).href,
 new URL("../runtime/shared-map-compiler.adf0398d700d91f0.js",import.meta.url).href,
 new URL("../runtime/shared-map-commands.0bfc0d1f5891d562.js",import.meta.url).href,
-new URL("../runtime/campaign.b8e6838e9c4f5414.js",import.meta.url).href,
+new URL("../runtime/campaign.b241667356a3eaf4.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-party-rig.51f29b73aad09a0e.js",import.meta.url).href,
 new URL("../runtime/party-alias.dd433f93c412ef75.js",import.meta.url).href,
 new URL("../runtime/shared-assets-rebuild-game-adapter.7584136339439b5b.js",import.meta.url).href,
@@ -117,8 +119,20 @@ new URL("../runtime/shared-runtime-narrative-art.cca882ffc6f9a81b.js",import.met
 new URL("../runtime/shared-runtime-quest-target-art.3230368af6e8b076.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-story-anomaly-art.6a2e4dc023c2ca6c.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-visual-hierarchy.c8d029c9d563969d.js",import.meta.url).href,
+new URL("../runtime/game-vendor-ui-fa.641030aa7e374b4b.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-portraits.a4e6f99d2b96ea84.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-ui-bridge.75c810ce9fdb7e83.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage-rules.425c10ceb6d4b5ec.js",import.meta.url).href,
-new URL("../runtime/workshop-app.3dcb579d65e74da0.js",import.meta.url).href];
+new URL("../runtime/shared-runtime-audio.33a52f6b215f4e5d.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-story.dde7de6e8140d9a3.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-interactions.c0688558aab3d18b.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-unit-info.578a02d8ebd7c8bd.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-training.3a315db50d1e4073.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-skill-preview.d6f92d54c62d72b0.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-journey-art.c2577c69a87f4b04.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-rest-journey.de85171653871778.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-main.15a48011eecebb8c.js",import.meta.url).href];
 for(const href of modules){const link=document.createElement('link');link.rel='modulepreload';link.href=href;document.head.append(link);}
-globalThis.HONRO_READY=(async()=>{try{for(const file of modules)await import(file);}
+globalThis.HONRO_READY=(async()=>{try{for(const file of modules)await import(file);
+if(location.hash==='#autostage2')HonroApp.launch(2);}
 catch(error){const host=document.getElementById('app');if(host)host.textContent='불러오지 못했습니다. 새로고침해 주세요.';throw error;}})();

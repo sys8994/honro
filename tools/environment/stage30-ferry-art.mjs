@@ -75,19 +75,66 @@ function groundedRearSupports(st){let b='',feet=[];const get=id=>st.terrains.fin
  return{asset:asset('recessed-grounded-supports','실제 여울·강둑에 이어지는 후퇴한 선창 암반',b,[2400,4250,6500,2350],{category:'terrain',role:'rock',extra:{rearOnly:true,collisionSource:'none',supports:feet,noWalkRim:true,depthRelationship:'recessed-behind-all-authored-L1-solids'}}),feet};}
 
 function riverDepth(st){const water=st.materials.find(z=>z.id==='sf-main-river'||z.kind==='water-pool');if(!water?.surface?.length)return null;const xs=water.surface.map(p=>p[0]),top=Math.min(...water.surface.map(p=>p[1])),bottom=Math.max(...(water.bottom||water.points).map(p=>p[1])),left=Math.min(...xs)-1200,right=Math.max(...xs)+1200,end=st.terrainBounds?.bottom||st.height+6000;let b=`<defs><linearGradient id="ink-river-depth" x1="0" y1="${top}" x2="0" y2="${bottom}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2f4c5a"/><stop offset="0.24" stop-color="#142f40"/><stop offset="1" stop-color="#1b303c"/></linearGradient></defs>`;b+=poly([[left,top],[right,top],[right,end],[left,end]],'url(#ink-river-depth)');return asset('deep-river-underlay','실제 강수면 아래로 이어지는 먹빛 깊이',b,[left,top,right-left,end-top],{category:'terrain',role:'water',extra:{rearOnly:true,collisionSource:'none',surfaceY:top,sourceWaterId:water.id,depthOnly:true,noExtraWaterMotion:true}});}
+// Riverbank material planes are derived from the existing polygon, never a
+// scenic skirt or a replacement collision surface. Cross-sections keep every
+// weathered layer inside even the narrow undercut ledges.
+function shoreMaterials(st){
+ const ids=['sf-map-rock','sf-west-ford','sf-granite-cape','sf-cape-west-buttress','sf-bank-inner','sf-east-recovery-shore','sf-outbank-screen'];let b='';
+ for(const id of ids){const t=st.terrains.find(t=>t.id===id);if(!t)continue;const q=box(t),xs=[...new Set(t.points.map(p=>p.x))].sort((a,z)=>a-z),section=x=>{const hits=[];for(let i=0;i<t.points.length;i++){const a=t.points[i],z=t.points[(i+1)%t.points.length];if(Math.abs(a.x-z.x)<.001){if(Math.abs(x-a.x)<.001)hits.push(a.y,z.y);continue;}if(x>=Math.min(a.x,z.x)-.001&&x<=Math.max(a.x,z.x)+.001)hits.push(a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x));}return[Math.min(...hits),Math.max(...hits)];};
+  const sampled=[...new Set(xs.flatMap((x,i)=>i?[xs[i-1]+(x-xs[i-1])*.45,x]:[x]))].sort((a,z)=>a-z);
+  const band=(from,to,color,phase=0)=>{const at=(x,d)=>{const[hi,lo]=section(x),variation=d?Math.sin(x*.0023+phase)*Math.min(d*.12,31):0;return[x,Math.min(lo,hi+d+variation)];};b+=poly([...sampled.map(x=>at(x,from)),...sampled.slice().reverse().map(x=>at(x,to))],color);};
+  if(['sf-map-rock','sf-west-ford','sf-east-recovery-shore'].includes(id))b+=poly(t.points.map(p=>[p.x,p.y]),id==='sf-map-rock'?'#374e4e':'#2c4449');
+  // A quiet wet margin follows the collision contour. Its irregular underside
+  // grades into broad rock faces, rather than tracing several parallel ribbons.
+  band(11,75,'#566557',.2);
+  const walk=stage30SurfaceEdges(st,t).flat().map(v=>v.x),materialX=walk.length?Math.min(...walk):q.x,materialW=walk.length?Math.max(...walk)-materialX:q.w;
+  const plane=(us,ds,color)=>{const ps=us.map((u,i)=>{const x=materialX+materialW*u,[hi,lo]=section(x);return[x,Math.min(lo,hi+ds[i])];});b+=poly(ps,color);};
+  if(q.w>1200&&!['sf-granite-cape','sf-bank-inner'].includes(id)){plane([.015,.17,.31,.42,.34,.22,.06],[135,195,100,370,650,570,425],'#40564f');plane([.37,.54,.67,.94,.81,.61,.45],[210,100,235,190,590,710,480],'#344d4d');}
+  if(id==='sf-granite-cape'){
+   b+=poly([[3050,4725],[3440,4630],[3735,4690],[4180,4605],[4460,4665],[4620,4780],[4360,4835],[3920,4820],[3590,4900],[3270,4870]],'#647064');
+   b+=poly([[3050,4890],[3470,4805],[3680,4940],[3900,5030],[4350,4940],[4780,4950],[4940,5010],[4750,5050],[4350,5460],[3900,5500],[3450,5240],[3040,5000]],'#304a4d');
+   b+=poly([[3450,4960],[3680,4940],[3900,5030],[4350,4940],[4200,5180],[3900,5360],[3650,5190]],'#3b5551');
+  }
+  if(id==='sf-bank-inner'){
+   b+=poly([[6120,4950],[6450,4910],[6750,4990],[7020,4950],[7300,5085],[7450,4950],[7785,4810],[8130,4885],[8380,4850],[8240,4990],[7860,5015],[7490,5180],[7070,5130],[6760,5090]],'#5b695b');
+   b+=poly([[6270,5080],[6750,5040],[7070,5130],[7370,5380],[6870,5230]],'#2b4449');
+  }
+  if(id==='sf-outbank-screen'){
+   b+=poly([[6720,5330],[6830,5150],[6860,5450],[7050,5840],[7130,6210],[7070,6440],[6900,6120],[6810,5760]],'#526657');
+   b+=poly([[6860,5450],[6990,5490],[7350,6120],[7130,6210],[7050,5840]],'#273f46');
+  }
+
+ }
+ b+=poly([[1840,5680],[2170,6110],[2490,6320],[2760,6490],[3210,6440],[3590,6400],[4050,6320],[4430,6290],[4860,6420],[5360,6410],[5710,6340],[6030,6330],[6320,6540],[6380,6710],[5790,6530],[5360,6590],[4830,6600],[4370,6470],[3990,6500],[3570,6580],[3170,6630],[2750,6710],[2390,6510],[2110,6270]],'#354d4b');
+ // Unequal gravel shelves lie below the real ford contour, not above its route.
+ b+=poly([[2470,6330],[2760,6360],[3090,6340],[3370,6310],[3650,6250],[3910,6250],[3730,6330],[3400,6390],[3110,6410],[2770,6445],[2520,6410]],'#526255');
+ b+=poly([[4030,6255],[4410,6220],[4710,6310],[5070,6320],[5290,6280],[5480,6305],[5180,6395],[4720,6390],[4430,6305]],'#40574e');
+ return asset('weathered-shore-planes','실제 지형 안에서 이어지는 젖은 모래·풍화암의 넓은 층',b,[-6000,4200,22000,28000],{category:'terrain',role:'rock',extra:{collisionSource:'none',authoredTerrainIds:ids,insideTerrainOnly:true,noWalkRim:true}});
+}
+function distantRiver(){let b='<defs><linearGradient id="ferry-rear-channel" x1="0" y1="5000" x2="0" y2="6700" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#3b555d"/><stop offset="0.45" stop-color="#344d56"/><stop offset="1" stop-color="#2b444e"/></linearGradient></defs>';
+ b+=path('M-6000 5080Q-2600 5240-700 5150L900 5220 1930 5170 3100 5290 4470 5210 5810 5340 7190 5240 8680 5320 11000 5180 17200 5310V7100H-6000Z','url(#ferry-rear-channel)');
+ b+=path('M-6000 5050L-2700 4910-1200 5060 160 4980 790 5110 1310 5070 1860 5150 2390 5060 2910 5150 3380 5040 4030 5140 4660 5090 5210 5200 5740 5160 6310 5070 6930 5130 7560 5020 8230 5140 8710 5050 9370 5170 11000 5060 17200 5140V5400Q10300 5320 7770 5410Q5030 5330 2630 5380Q-1000 5280-6000 5390Z','#3b5056');
+ b+=path('M-6000 5620Q-2300 5520 500 5620Q2980 5490 4470 5600L3790 5670Q1320 5600-1500 5720Z M5700 5740Q7660 5600 10600 5730L13500 5720 14000 5800Q9380 5740 7300 5820Z','#405b62');
+ return asset('distant-channel','나루 뒤로 넓게 이어지는 낮은 대비의 강과 건너편 둑',b,[-6000,4800,23200,2300],{category:'terrain',role:'water',extra:{rearOnly:true,collisionSource:'none',scenicWaterOnly:true,noExtraWaterMotion:true,noWalkRim:true}});
+}
+function bankRoots(){let b=path('M-170 5Q-84-31-17-18L71-30 155 8 60 17-29 9Z','#334b43');b+=path('M-18-4Q-42-71-19-128Q-11-90 4-55L68-13 113 4 61-4 6-23 17 5Z','#606447');b+=path('M-15-32L-69-44-118-16M-4-16L-50-9-96 8M6-15L63-54 94-51','none','#7b7a56',7);return asset('bank-roots','물가의 낮은 뿌리와 젖은 흙덩이',b,[-180,-140,350,165],{category:'tree',role:'tree'});}
 function quayBacking(st){let b='',feet=[];for(const id of ['sf-quay-west-loft','sf-quay-east-loft','sf-east-landing-planks','sf-cape-bank-link','sf-old-road-west-bridge']){const t=st.terrains.find(t=>t.id===id);if(!t)continue;const q=box(t),edges=stage30SurfaceEdges(st,t);for(const[a,z]of edges){b+=poly([[a.x,a.y+7],[z.x,z.y+7],[z.x,z.y+46],[a.x,a.y+46]],'#34483c');b+=line([[a.x,a.y+9],[z.x,z.y+9]],'#a3966e',6);}
+ for(const[a,z]of edges){const length=z.x-a.x;for(const u of [.19,.53,.83]){const x=a.x+length*u,y=a.y+(z.y-a.y)*u;b+=poly([[x-5,y+17],[x+3,y+17],[x+1,y+42],[x-6,y+42]],'#253b33');b+=poly([[x-22,y+25],[x+20,y+23],[x+21,y+31],[x-21,y+32]],'#827953');}}
  for(const u of [.13,.78]){const x=q.x+q.w*u,y=stage30SurfaceAt(st,t,x);if(y===null)continue;const below=st.terrains.filter(v=>v!==t&&!v.oneWay&&v.id!=='sf-settled-barge'&&v.id!=='sf-outbank-screen').map(v=>({terrainId:v.id,y:stage30SurfaceAt(st,v,x)})).filter(v=>v.y!==null&&v.y>y+60&&v.y-y<1100).sort((a,z)=>a.y-z.y)[0];if(!below)continue;const ground=below.y;b+=poly([[x-16,y+28],[x+17,y+28],[x+25,ground],[x-22,ground]],'#2a443f');b+=line([[x-9,y+36],[x-13,ground-5]],'#6b7656',6);b+=poly([[x-40,ground],[x-23,ground-24],[x+31,ground-18],[x+47,ground]],'#758578');feet.push({deckId:id,x,top:y,...below});}}
  const q={x:0,y:3500,w:11200,h:3300};return{asset:asset('timber-bearing-frames','나루 널판 아래 실제 돌해안에 닿는 뒤받침',b,[q.x,q.y,q.w,q.h],{extra:{rearOnly:true,supports:feet}}),feet};}
 export function applyStage30FerryArt(project){const st=project.stages.find(s=>s.metadata?.stageId===30);if(st?.design?.ferry?.version!==1)throw Error('Stage 30 ferry art requires authored ferry version 1');const spec=st.design.ferry.art||{};st.elements=st.elements.filter(e=>!e.id.startsWith('sf-art-'));const local=st.terrains.filter(t=>t.id.startsWith('sf-'));if(!local.length)throw Error('Stage 30 ferry art requires authored sf terrain');
  const backdrop=register(project,asset('far-river','멀어진 단 하나의 먹산과 넓은 강굽이',readFileSync(new URL('../../shared/assets/environment/stage30-ferry-far.svg',import.meta.url),'utf8'),null,{category:'terrain',role:'mountain',source:true,extra:{skyOnly:true,collisionSource:'none'}}));
+ add(project,st,distantRiver(),'distant-channel');
  const deep=riverDepth(st);if(deep)add(project,st,deep,'deep-river-underlay');const rear=groundedRearSupports(st);add(project,st,rear.asset,'recessed-grounded-supports',0,0,{stage30Supports:rear.feet});
  const has=id=>local.some(t=>t.id===id),place=(a,key,s)=>has(s.terrainId)?on(project,st,a,key,s):null;
  place(hut(),'abandoned-hut',spec.hut||{terrainId:'sf-map-rock',x:760,scale:.8});const map=st.markers.find(m=>/transport-map/.test(m.id));if(map&&has('sf-map-rock'))place(recordStone(),'map-stone',{terrainId:'sf-map-rock',x:map.x});
  for(const s of spec.pines||[{key:'cape-pine',terrainId:'sf-granite-cape',u:.26,height:1060,variant:3},{key:'east-pine',terrainId:'sf-bank-inner',u:.84,height:870,variant:2},{key:'old-road-pine',terrainId:'sf-old-road-gather',u:.5,height:900,variant:1}])place(pine(s.key,s.height||1000,s.variant||0),s.key,s);
  for(const[i,s]of(spec.reeds||[{terrainId:'sf-west-ford',u:.21,scale:.75},{terrainId:'sf-west-ford',u:.68,scale:1.15},{terrainId:'sf-west-ford',u:.89,scale:.75},{terrainId:'sf-east-recovery-shore',u:.26,scale:.9}]).entries())place(reeds(i%2),'reeds-'+i,s);
  place(oldSign(),'old-road-sign',spec.sign||{terrainId:'sf-old-road-gather',u:.16,scale:.86});place(cargo(),'quay-cargo',spec.cargo||{terrainId:'sf-ferry-court',u:.18,scale:.8});place(mooringPost(),'mooring-post',{terrainId:'sf-ferry-court',u:.88,scale:.7});
+ for(const [i,s]of [{terrainId:'sf-west-ford',x:2160,scale:1.15},{terrainId:'sf-west-ford',x:3730,scale:.8},{terrainId:'sf-west-ford',x:5710,scale:1.1},{terrainId:'sf-east-recovery-shore',x:7880,scale:.9},{terrainId:'sf-map-rock',x:1590,scale:.8}].entries())place(bankRoots(),'bank-roots-'+i,s);
+ add(project,st,shoreMaterials(st),'weathered-shore-planes',0,0,{layer:'front'});
  const t=local.find(t=>t.id==='sf-settled-barge');if(t)add(project,st,createStage30BargeAsset(st,t),'settled-barge',0,0,{layer:'mid',stage30FerryBody:true});const frames=quayBacking(st);add(project,st,frames.asset,'timber-bearing-frames');add(project,st,loadingFrame(st),'landing-frame');
  if(st.environment){st.environment.placements=[];st.environment.groups=[];st.environment.surfaces=[];st.environment.skyVisible=true;st.environment.atmosphere={preset:'valley',overrides:{skyTop:'#182d3a',skyBottom:'#657a78',waterBaseColor:'#142f40',waterHighlightColor:'#75979c',hazeStrength:.18,mistStrength:.035,lightStrength:.055}};}
- st.design.ferryArt={revision:1,source:'stage30-authored-terrain',nativeVectorOnly:true,backdropAsset:backdrop,bargeElementId:'sf-art-settled-barge',supports:[...frames.feet,...rear.feet],artAssetIds:st.elements.filter(e=>e.id.startsWith('sf-art-')).map(e=>e.assetId),budgets:{maxNodesPerAsset:240,maxSkyRasterPixels:1890000}};
+ st.design.ferryArt={revision:2,source:'stage30-authored-terrain',nativeVectorOnly:true,backdropAsset:backdrop,bargeElementId:'sf-art-settled-barge',supports:[...frames.feet,...rear.feet],artAssetIds:st.elements.filter(e=>e.id.startsWith('sf-art-')).map(e=>e.assetId),budgets:{maxNodesPerAsset:240,maxSkyRasterPixels:1890000}};
  return project;
 }
