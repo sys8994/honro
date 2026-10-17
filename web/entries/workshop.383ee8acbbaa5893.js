@@ -1,4 +1,4 @@
-globalThis.HONRO_PLAYTEST_URL="web/entries/game.4d3cd8ab6c55675c.html?embedded=1";
+globalThis.HONRO_PLAYTEST_URL="web/entries/game.423915f0d2148d7f.html?embedded=1";
 const modules=[new URL("../runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.c5e0589639564156.js",import.meta.url).href,
 new URL("../runtime/engine-core.e798a3b4e89840c3.js",import.meta.url).href,

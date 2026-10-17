@@ -242,3 +242,5 @@
  .honro .skill-detail-controls .talent-heading h2{font-size:20px}
  .honro .skill-detail-controls .skill-detail-actions{margin-top:6px}
 }
+/* Keep the icon compact; only the explanatory text takes the available row width. */
+.honro .equip-dialog .equip-option>.skill-stamp{flex:0 0 36px;width:36px;min-width:36px;height:36px}
