@@ -59,13 +59,53 @@ function connectedRetainingWalls(stage){
  const left=foot('v22-lower-court',550),right=foot('v22-lower-court',3070);
  for(const id of ['v22-west-gallery','v22-report-approach','v22-report-crossing','v22-register-mass','v22-east-register-rise','v22-comparison-mass'])undert(id);
  let b=path(`M550 ${left.y} Q458 4790 470 4510 L620 4010 Q485 3710 520 3490 Q590 3100 710 2940 L925 2700 Q1020 2510 1100 2440 L1470 2350 Q1590 2180 1770 2030 L2110 1870 Q2530 1530 2900 1540 Q2980 1770 3010 2310 L2910 2830 Q3130 3170 3190 3410 L3070 3900 L3070 ${right.y} Z`,'#2d4549','mountain-bearing-silhouette');
- b+=poly([[620,4010],[710,2940],[925,2700],[1100,2440],[1470,2350],[1260,3100],[1120,3480],[890,4050],[1020,4890],[550,left.y]],'#3c5352','western-broad-lit-rock-face');
- b+=poly([[1470,2350],[1770,2030],[2110,1870],[2450,1665],[2900,1540],[2660,2280],[2700,2710],[2460,3130],[2240,3600],[2020,4490],[1710,4620],[1860,3740],[1580,3190]],'#354d4d','central-long-rock-shoulder');
+ b+=poly([[620,4010],[710,2940],[925,2700],[1100,2440],[1470,2350],[1260,3100],[1120,3480],[890,4050],[1020,4890],[550,left.y]],'#344b4c','western-broad-lit-rock-face');
+ b+=poly([[1470,2350],[1770,2030],[2110,1870],[2450,1665],[2900,1540],[2660,2280],[2700,2710],[2460,3130],[2240,3600],[2020,4490],[1710,4620],[1860,3740],[1580,3190]],'#304849','central-long-rock-shoulder');
  b+=poly([[2900,1540],[3010,2310],[2910,2830],[3190,3410],[3070,3900],[3070,right.y],[2640,4540],[2780,3890],[2570,3440],[2750,2870],[2670,2390]],'#233d43','receding-east-shoulder');
  b+=poly([[860,3490],[1120,3160],[1290,2890],[1210,3440],[1360,3820],[1240,4050],[1130,3670]],'#294449','western-fold-shadow');
  b+=poly([[2110,1870],[2230,2060],[2100,2520],[2230,2880],[1990,3250],[2060,2780],[1930,2490]],'#294346','central-fold-shadow');
 
- return{asset:pack('connected-retaining-walls','기록고의 층대를 받치는 뒤쪽 암산',b,[450,1530,2760,3800],{kind:'rear-masonry',extra:{groundedSupports:feet,terrainAttachments:attachments,noWalkRim:true,noProjectileCover:true,structuralMasses:1}}),feet,attachments};
+ // Stone-bearing archive precinct. Each broad buttress descends from an
+ // existing terrace underside to a verified lower court, with no cap outside
+ // the real walk edge. The dark recesses leave every jump throat readable.
+ const bearingMasses=[];
+ const bearing=(key,upper,lower,x1,x2,{tone='#485951',side='#2b4240'}={})=>{
+  const xs=[x1,(x1+x2)/2,x2],heads=xs.map(x=>[x,actualUnderside(stage,upper,x)-6]),bases=xs.map(x=>[x,actualY(stage,lower,x)]);
+  for(const [x,y]of bases)foot(lower,x);
+  const face=[...heads,...bases.slice().reverse()];
+  b+=poly(face,tone,key+'-bearing-masonry');
+  b+=poly([[x2-72,heads[2][1]],[x2,heads[2][1]],[x2,bases[2][1]],[x2-72,actualY(stage,lower,x2-72)]],side,key+'-east-return');
+  // Uneven broad weathered planes and only two flush mortar beds. These are
+  // material faces, not a repeated stone grid or added platform silhouette.
+  const hy=Math.max(...heads.map(p=>p[1])),fy=Math.min(...bases.map(p=>p[1]));
+  const w=x2-x1,h=fy-hy,y1=hy+h*.31,y2=hy+h*.65;
+  // Three large imperfect bearing courses, with a dark offset shoulder at
+  // each joint. Lower masonry disappears gradually into the native rock.
+  b+=poly([[x1+13,heads[0][1]+12],[x1+w*.56,hy+34],[x1+w*.51,y1-14],[x1+21,y1+9]],'#566557',key+'-upper-weathered-course');
+  b+=poly([[x1+25,y1+24],[x1+w*.50,y1+5],[x1+w*.57,y2-17],[x1+14,y2+7]],'#4b5d4e',key+'-middle-bearing-course');
+  b+=poly([[x1+17,y2+21],[x1+w*.56,y2+2],[x1+w*.65,fy-48],[x1+27,bases[0][1]]],'#3c5348',key+'-lower-rock-course');
+  b+=poly([[x1+w*.56,hy+34],[x1+w*.66,hy+51],[x1+w*.63,y1-4],[x1+w*.50,y1+5]],'#2d453d',key+'-upper-recessed-corner');
+  b+=poly([[x1+w*.57,y1+6],[x1+w*.69,y1+27],[x1+w*.64,y2+18],[x1+w*.57,y2-17]],'#30483e',key+'-middle-bevel-shadow');
+  b+=poly([[x1,fy-h*.23],[x1+w*.26,fy-h*.30],[x1+w*.43,fy-h*.17],[x1+w*.64,fy-h*.22],[x2-71,fy-h*.10],[x2,bases[2][1]],[x1,bases[0][1]]],'#304a42',key+'-lower-masonry-in-rock');
+  for(const [j,y]of [y1,y2].entries()){b+=line([[x1+14,y+10],[x1+w*.45,y-3],[x2-81,y+7]],'#2e473e',9,key+'-recessed-course-joint-'+j)+line([[x1+23,y+18],[x1+w*.45,y+5],[x2-93,y+15]],j?'#4b6050':'#61705d',4);}
+  if(fy-hy>440){const cx=(x1+x2)/2-33,yy=hy+(fy-hy)*.44;b+=rect(cx-8,yy-9,83,163,'#2a403b',key+'-closed-record-recess')+rect(cx,yy,65,145,'#60664e')+rect(cx+28,yy+4,6,137,'#344735')+rect(cx+4,yy+37,57,7,'#858569')+rect(cx+4,yy+108,57,6,'#7c7b5e');}
+  bearingMasses.push({key,upperTerrainId:upper,lowerTerrainId:lower,headPoints:heads,footPoints:bases,noDeck:true});
+ };
+ bearing('lower-gallery-buttress','v22-west-gallery','v22-lower-court',740,1040,{tone:'#3e534a'});
+ bearing('west-register-buttress','v22-register-mass','v22-west-gallery',680,970,{tone:'#46594f'});
+ bearing('comparison-east-buttress','v22-comparison-mass','v22-report-crossing',2450,2920,{tone:'#40544d'});
+ bearing('report-east-buttress','v22-report-crossing','v22-lower-court',2510,2955,{tone:'#4b5c50'});
+ // A recessed timber archive gallery occupies the lower rear wall. Its
+ // vertically proportioned closed doors are deliberately unequal and sparse.
+ const gx=1980,gy=3705,gw=505,gh=700;
+ b+=rect(gx,gy,gw,gh,'#354b42','lower-recessed-record-gallery');
+ for(const [i,x]of [1990,2205,2468].entries())b+=rect(x,gy,17,gh,'#544e39','lower-gallery-post-'+i)+rect(x+3,gy+14,4,gh-29,'#858363');
+ for(const [i,y]of [3730,4045,4373].entries())b+=rect(gx+7,y,gw-14,16,'#5c5940','lower-gallery-flush-beam-'+i)+rect(gx+10,y+2,gw-20,3,'#8b8663');
+ for(const [i,x,y,h]of [[0,2035,3795,190],[1,2260,4125,184]])b+=rect(x-9,y-9,125,h+18,'#233d37','lower-gallery-door-recess-'+i)+rect(x,y,107,h,'#6b6a4f')+rect(x+48,y+4,7,h-8,'#3c4b37')+rect(x+5,y+43,97,6,'#9a9067')+rect(x+5,y+h-40,97,6,'#8f8864');
+ // Two small lamps sit inside the architecture, never on a path or opening.
+ for(const [i,x,y]of [[0,2420,3900],[1,2150,4240]])b+=rect(x-14,y-25,28,43,'#293d34','recessed-lamp-niche-'+i)+rect(x-8,y-18,16,26,'#bcaa72')+rect(x-2,y-21,4,33,'#675b3e');
+
+ return{asset:pack('connected-retaining-walls','기록고의 층대를 받치는 뒤쪽 암산',b,[450,1530,2760,3800],{kind:'rear-masonry',extra:{groundedSupports:feet,terrainAttachments:attachments,noWalkRim:true,noProjectileCover:true,structuralMasses:1,bearingMasses}}),feet,attachments};
 }
 
 function masonryPlanes(stage){
@@ -317,22 +357,28 @@ function linkedTerraceFrames(stage){
  * and a broad foundation reaching the existing D surface. No windows are
  * painted into the triangular foreground collision. */
 function registerRearPavilions(stage){
- const specs=[{key:'west-register-wing',x:792,baseY:2570,width:370,role:'archive',variant:1},{key:'middle-register-wing',x:1005,baseY:2205,width:330,role:'archive',variant:2},{key:'east-register-wing',x:1495,baseY:2410,width:288,role:'storehouse',variant:1}],out=[];
- for(const q of specs){const support='v22-west-gallery',left=q.x-q.width/2-17,right=q.x+q.width/2+17,footXs=[left,(left+right)/2,right],feet=footXs.map(x=>({terrainId:support,x,y:actualY(stage,support,x)})),a=koreanTownBuilding(PREFIX+q.key+'-upper',{width:q.width,role:q.role,roofType:'gable',variant:q.variant,collision:false});
-  const ground=feet.map(p=>[p.x,p.y]),foundation=[[left,q.baseY-7],[right,q.baseY-7],...ground.slice().reverse()],courses=registerMasonryCourses(Math.max(...feet.map(p=>p.y))),masonry=registerMasonryPieces(clipMasonryBox(foundation,left,q.baseY-7,right,q.baseY+135),courses,{rear:true});let b=poly(foundation,'#2c4747','grounded-rock-shoulder')+poly([[left,q.baseY+100],[left+(right-left)*.55,q.baseY+155],[left+(right-left)*.36,actualY(stage,support,left+(right-left)*.36)],[left,actualY(stage,support,left)]],'#3c5350','quiet-upper-left-rock-face');
-  // Merge same-paint polygons into editable compound paths, rather than
-  // hundreds of SVG nodes. The stone dimensions remain human-scale.
-  const byPaint=new Map();for(const p of masonry.pieces){const d='M'+p.points.map(p=>p.map(N).join(' ')).join('L')+'Z';byPaint.set(p.fill,(byPaint.get(p.fill)||'')+d);}for(const [fill,d]of byPaint)b+=path(d,fill,'foundation-courses-'+fill.slice(1));
-  // The existing rear wall continues below the real F underside. This broad
-  // recessed contact shadow separates depths without inventing a walk rim.
-  const contourXs=[left,...V22_LAYOUT.surfaces.find(s=>s.id==='v22-register-mass').bottom.map(p=>p[0]).filter(x=>x>left&&x<right),right].sort((a,b)=>a-b),contacts=contourXs.map(x=>({terrainId:'v22-register-mass',x,y:actualUnderside(stage,'v22-register-mass',x)})),shadow=clipMasonryBox([...contacts.map(p=>[p.x,p.y-6]),...contacts.slice().reverse().map(p=>[p.x,p.y+26])],left,q.baseY-7,right,Math.max(...feet.map(p=>p.y)));
-  if(shadow.length)b+=poly(shadow,'#253f38','actual-underside-recess-shadow');
-  b+=poly([[right-32,q.baseY],[right,q.baseY],[right,actualY(stage,support,right)],[right-32,actualY(stage,support,right-32)]],'#30483d','foundation-east-return');
-  b+=rect(left+7,q.baseY+15,right-left-45,14,'#737c60','level-plinth-bearing-course');
-  const upper=muted(body(a.vector.source)).replace(/#93947c/g,'#7c856b').replace(/#b0aa87/g,'#969b79').replace(/#73827d/g,'#667b70').replace(/#aa936b/g,'#8f9069');b+=group('level-korean-rear-building',upper,q.x,q.baseY);
-  if(q.role==='archive'){const c=koreanArchiveCabinet(PREFIX+q.key+'-records',{width:90,height:113,variant:q.variant});b+=group('closed-record-cabinet',body(c.vector.source),q.x-q.width/2+25,q.baseY-125);}
-  const top=q.baseY+a.bounds.y-8,bottom=Math.max(...feet.map(p=>p.y))+4,asset=pack(q.key,'외부 비탈 뒤에 층차를 둔 직교 한옥 기록동',b,[q.x+a.bounds.x-4,top,a.bounds.w+8,bottom-top],{kind:'rear-masonry',extra:{kind:'orthogonal-register-building',roofY:q.baseY-a.params.eaveHeight,floorY:q.baseY,wallOrientation:'vertical',roofOrientation:'horizontal',buildingSource:'koreanTownBuilding gable unchanged',groundedSupports:feet,foundationWidth:right-left,closedStorage:true,noDeck:true,noProjectileCover:true}});
-  out.push({asset,feet,record:{key:q.key,x:q.x,floorY:q.baseY,width:q.width,foundationWidth:right-left,footSupport:support,feet,roofOrientation:'horizontal',wallOrientation:'vertical',frontRampTerrain:'v22-register-mass',foundationMasonry:{courseAxis:'horizontal',courseHeightRange:[42,58],cellCount:masonry.cells.length,recessed:true,undersideContacts:contacts,contactShadowDepth:26},collision:false}});
+ const specs=[{key:'west-register-wing',x:792,baseY:2570,width:370,height:382,variant:1},{key:'middle-register-wing',x:1005,baseY:2205,width:330,height:425,variant:2},{key:'east-register-wing',x:1495,baseY:2410,width:288,height:350,variant:1}],out=[];
+ for(const q of specs){const support='v22-west-gallery',left=q.x-q.width/2-17,right=q.x+q.width/2+17,footXs=[left,(left+right)/2,right],feet=footXs.map(x=>({terrainId:support,x,y:actualY(stage,support,x)})),a=koreanTownBuilding(PREFIX+q.key+'-upper',{width:q.width,role:'archive',roofType:'gable',variant:q.variant,collision:false});
+  const ground=feet.map(p=>[p.x,p.y]),foundation=[[left,q.baseY-7],[right,q.baseY-7],...ground.slice().reverse()];
+  let b=poly(foundation,'#344c45','grounded-masonry-body')+poly([[right-54,q.baseY],[right,q.baseY],[right,actualY(stage,support,right)],[right-54,actualY(stage,support,right-54)]],'#263f3b','foundation-east-return');
+  const bottom=Math.min(...feet.map(p=>p.y));
+  for(const [i,f]of [.31,.67].entries()){const y=q.baseY+(bottom-q.baseY)*f;b+=line([[left+10,y],[q.x-21,y+8],[right-59,y+3]],'#293f38',8,'foundation-weathered-bed-'+i);}
+  b+=poly([[left+9,q.baseY+29],[q.x+9,q.baseY+60],[q.x-35,bottom-35],[left+18,actualY(stage,support,left+18)]],'#465a4b','foundation-broad-left-plane');
+  const original=muted(body(a.vector.source)),roofSVG=original.match(/<g id="korean-gable-roof">[\s\S]*?<\/g>/)?.[0],defs=original.match(/<defs>[\s\S]*?<\/defs>/)?.[0]||'';
+  const top=q.baseY-q.height,l=q.x-q.width/2,r=q.x+q.width/2;
+  b+=rect(l,top,q.width,q.height,'#56624f','tall-closed-record-wall')+rect(r-48,top,48,q.height,'#30483d','record-east-cheek');
+  // A single tall closed storage pair under a receding timber gallery. Larger
+  // quiet panels replace the small-house window pattern on the steep precinct.
+  b+=rect(l+28,top+72,q.width-99,q.height-104,'#263e35','deep-record-door-recess');
+  b+=rect(l+39,top+86,q.width-121,q.height-125,'#737257','closed-tall-record-pair');
+  b+=rect(q.x-13,top+91,8,q.height-134,'#394a36');
+  for(const y of [top+138,q.baseY-73])b+=rect(l+43,y,q.width-129,8,'#9c9067');
+  for(const [i,x]of [l+4,r-19].entries())b+=rect(x,top-7,16,q.height+7,'#5c523b','tall-archive-post-'+i)+rect(x+3,top+4,4,q.height-15,'#938662');
+  b+=rect(l-5,top+37,q.width+10,19,'#424a35','closed-gallery-timber-header')+rect(l-3,top+39,q.width+6,4,'#8b8764');
+  b+=rect(l-5,q.baseY-15,q.width+10,15,'#3a4c3e','level-archive-sill');
+  if(roofSVG)b+=defs+group('approved-gable-roof',roofSVG,q.x,top+235);
+  const minY=top-154,asset=pack(q.key,'실제 아래 회랑에 닿는 높은 폐쇄 기록칸과 목조 서고',b,[l-65,minY,q.width+130,Math.max(...feet.map(p=>p.y))-minY+6],{kind:'rear-masonry',extra:{kind:'orthogonal-register-building',roofY:top-40,floorY:q.baseY,wallOrientation:'vertical',roofOrientation:'horizontal',buildingSource:'koreanTownBuilding unchanged gable roof; tall closed record bays',groundedSupports:feet,foundationWidth:right-left,closedStorage:true,noDeck:true,noProjectileCover:true}});
+  out.push({asset,feet,record:{key:q.key,x:q.x,floorY:q.baseY,width:q.width,storeyHeight:q.height,foundationWidth:right-left,footSupport:support,feet,roofOrientation:'horizontal',wallOrientation:'vertical',frontRampTerrain:'v22-register-mass',collision:false}});
  }
  return out;
 }
@@ -363,6 +409,6 @@ export function applyStage22VerticalArt(project){
  for(const [key,support,x,zone]of [['seal-lamp','v22-lower-court',1010,'A'],['record-lamp','v22-report-crossing',2335,'E'],['gallery-lamp','v22-west-gallery',1048,'D'],['exit-lamp','v22-comparison-mass',2890,'H']]){const a=lantern(),e=place(project,stage,a,key,support,x,{zone,purpose:'Sparse low lamp, smaller than an actor and behind every combat element.'});stage.design.space.lights.push({id:e.id+'-light',x:e.x,y:e.y-96,roomId:'v22-'+zone,kind:'oil',radius:91,color:'#c2ad78',visualOnly:true});}
  for(const [support,xs,key]of [['v22-report-approach',[1167,1220,1435,1650,1743],'lower-return-rail'],['v22-east-register-rise',[1815,1860,2010,2140,2187],'register-rise-rail'],['v22-register-mass',[458,480,800,900,1040,1130],'optional-west-rail'],['v22-west-gallery',[95,350,530,700,1010],'west-gallery-return-rail'],['v22-comparison-mass',[1514,1560,1740,1880,1990],'comparison-ascent-rail'],['v22-report-crossing',[1510,1640,1780,1835,1890,2030,2160,2300],'continuous-report-passage-rail']]){const r=rearRail(stage,support,xs,key);register(project,r.asset);stage.elements.push({id:ELEMENT+key,assetId:r.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage22Supports:r.feet});}
  stage.environment.placements=[];stage.environment.groups=[];stage.environment.surfaces=[];stage.environment.skyVisible=true;stage.environment.atmosphere={preset:'valley',overrides:{skyTop:'#172f39',skyBottom:'#435b5c',hazeStrength:.30,mistStrength:.045,lightStrength:.055}};
- stage.design.vertical22Art={revision:1,iteration:8,upperTerraceFinish:built.upperFinish,registerArchitecture:{foreground:'continuous-external-passage-over-short-masonry-cap-and-rock',masonry:built.registerMasonry,frontWindows:0,rearBuildings:registerBuildings.map(r=>r.record),thinRegisterFrameRemoved:true,noNewCollision:true},wholeArchitecture:{regions:['A','B','C','D','E','F','G','H'],rampProfiles:built.rampProfiles,columns:linked.flatMap(r=>r.columns),closedRoomSections:built.records,drawnStepCount:0},reportArchitecture:{closedStorageStoreys:2,storyHeight:222,stoneCourseHeight:[32,46],maxStoneWidth:187,rampJoints:section.joints,columns:frame.columns,undersideContacts:frame.heads,noNewCollision:true},status:'authored-awaiting-native-and-independent-review',source:'tools/environment/stage22-vertical-art.mjs',geometrySource:'tools/map-forge/stage22-vertical-geometry.mjs',nativeVectorOnly:true,style:'Korean administrative terraces: cut granite blocks, subdued gable and hip tile roofs, horizontal bound folios, square timber recesses. Upper-left key light, broad rear support shadows.',referenceSources:['tools/environment/korean-town-art.mjs: existing21/22/24 office/archive/cabinet assets','tools/environment/stage16-temple-art.mjs: broad plinth upper/side/shadow planes'],collisionPolicy:'Only the main archive sampled tiled roof is oneWay; house interiors and ground stay open. Foreground paint clips to the geometry source. Separate geometry revision adds a west-route pause court; objectives, east required path and gates remain unchanged.',rearPolicy:'One receding rock shoulder joins verified lower supports. Overlong timber frames removed; existing houses retain shallow plinths. No scenic collision or new walk rim.',terrainAttachments:wall.attachments,namedStoneMasses:materials.records,artAssetIds:[...new Set(stage.elements.filter(e=>e.id.startsWith(ELEMENT)).map(e=>e.assetId))],supports:stage.elements.filter(e=>e.id.startsWith(ELEMENT)).flatMap(e=>(e.stage22Supports||[]).map(p=>({elementId:e.id,...p}))),buildingElements:placed.map(e=>e.id),budgets:{maxNodesPerAsset:180,repeatedNoisePaths:0,decorativeCollisionBodies:0,functionalRoofBodies:1},views:[{id:'report-cross-cover',x:1740,y:3320,z:.55,w:1440,h:960},{id:'lower-seal-court',x:1270,y:5100,z:.57,w:1440,h:960},{id:'register-ascent',x:1580,y:2300,z:.55,w:1440,h:960},{id:'comparison-exit',x:2420,y:1180,z:.65,w:1440,h:960}]};
+ stage.design.vertical22Art={revision:1,iteration:10,upperTerraceFinish:built.upperFinish,registerArchitecture:{foreground:'continuous-external-passage-over-short-masonry-cap-and-rock',masonry:built.registerMasonry,frontWindows:0,rearBuildings:registerBuildings.map(r=>r.record),thinRegisterFrameRemoved:true,noNewCollision:true},wholeArchitecture:{regions:['A','B','C','D','E','F','G','H'],rampProfiles:built.rampProfiles,columns:linked.flatMap(r=>r.columns),closedRoomSections:built.records,drawnStepCount:0},reportArchitecture:{closedStorageStoreys:2,storyHeight:222,stoneCourseHeight:[32,46],maxStoneWidth:187,rampJoints:section.joints,columns:frame.columns,undersideContacts:frame.heads,noNewCollision:true},status:'native-art-refinement',source:'tools/environment/stage22-vertical-art.mjs',geometrySource:'tools/map-forge/stage22-vertical-geometry.mjs',nativeVectorOnly:true,style:'Korean administrative terraces: cut granite blocks, subdued gable and hip tile roofs, horizontal bound folios, square timber recesses. Upper-left key light, broad rear support shadows.',referenceSources:['tools/environment/korean-town-art.mjs: existing21/22/24 office/archive/cabinet assets','tools/environment/stage16-temple-art.mjs: broad plinth upper/side/shadow planes'],collisionPolicy:'Only the main archive sampled tiled roof is oneWay; house interiors and ground stay open. Foreground paint clips to the geometry source. Separate geometry revision adds a west-route pause court; objectives, east required path and gates remain unchanged.',rearPolicy:'One receding rock shoulder joins verified lower supports. Overlong timber frames removed; existing houses retain shallow plinths. No scenic collision or new walk rim.',terrainAttachments:wall.attachments,namedStoneMasses:materials.records,artAssetIds:[...new Set(stage.elements.filter(e=>e.id.startsWith(ELEMENT)).map(e=>e.assetId))],supports:stage.elements.filter(e=>e.id.startsWith(ELEMENT)).flatMap(e=>(e.stage22Supports||[]).map(p=>({elementId:e.id,...p}))),buildingElements:placed.map(e=>e.id),budgets:{maxNodesPerAsset:180,repeatedNoisePaths:0,decorativeCollisionBodies:0,functionalRoofBodies:1},views:[{id:'report-cross-cover',x:1740,y:3320,z:.55,w:1440,h:960},{id:'lower-seal-court',x:1270,y:5100,z:.57,w:1440,h:960},{id:'register-ascent',x:1580,y:2300,z:.55,w:1440,h:960},{id:'comparison-exit',x:2420,y:1180,z:.65,w:1440,h:960}]};
  if(gameplay(stage)!==unchanged||JSON.stringify(project.stages.filter(s=>s!==stage))!==others)throw Error('Stage22 visual author changed gameplay or another stage');return project;
 }

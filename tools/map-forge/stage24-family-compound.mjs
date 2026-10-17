@@ -1,7 +1,7 @@
 /** Fresh Stage24 only. Ancestral compound with a sunken garden and two real departure courts. */
 import {readFile,writeFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
-import {asset,put,P,R,line,terrain} from './act3-map-kit.mjs';
+import {asset,put,P,R,line,terrain,pool} from './act3-map-kit.mjs';
 import {koreanTownBuilding,koreanCourtyardWall} from '../environment/korean-town-art.mjs';
 const clone=x=>JSON.parse(JSON.stringify(x));
 export const PROFILE=[[0,2700],[1050,2700],[1390,2620],[1720,2460],[2670,2460],[3020,2630],[3300,2850],[3900,2850],[4340,2570],[4700,2260],[5220,2260],[5590,2720],[6040,2720],[6410,2440],[7000,2440]];
@@ -15,8 +15,16 @@ export function authorFamily24(project,g){
  p.library=p.library.filter(a=>!a.id.startsWith(prefix));
  terrain(s,'a3-foundation',[...PROFILE,[7000,3300],[0,3300]],'earth');
  const rear=(id,svg,bounds)=>{const a=asset(prefix+id,id,svg,[],bounds);a.params.rearOnly=true;put(p,s,a,id,0,0);};
- const building=(id,x,w,role='house')=>{const a=koreanTownBuilding(prefix+id,{width:w,role,roofType:'gable',variant:1});a.oneWay=true;put(p,s,a,id,x,ground(x));};
- building('outer-servant-wing',680,490);building('ancestral-family-hall',2170,900,'office');building('garden-study',3580,480);building('family-ancestral-shrine',4920,470,'storehouse');building('ground-record-entry',6610,430,'storehouse');
+ const building=(id,x,w,role='house',roofType='gable',variant=1)=>{const a=koreanTownBuilding(prefix+id,{width:w,role,roofType,variant});a.oneWay=true;put(p,s,a,id,x,ground(x));};
+ building('outer-servant-wing',680,600,'house','gable',2);
+ building('ancestral-family-hall',2170,900,'office','hip');
+ building('garden-study',3580,480,'pavilion','hip');
+ building('family-ancestral-shrine',4920,600,'archive','hip');
+ building('ground-record-entry',6610,430,'storehouse');
+ // Low side wings make a compound rather than a row of unrelated houses. Their
+ // pitched roofs join the hall's local approach, with open earth between courts.
+ building('hall-west-side-wing',1450,360,'house','gable',2);
+ building('hall-east-side-wing',2690,240,'house','gable',3);
  // Restrained rear walls frame the courts. Actual traversable earth is never covered by a fake building base.
  for(const [id,x,w]of [['outer-wall',900,230],['inner-wall',2570,160],['shrine-enclosure',5110,180]])put(p,s,koreanCourtyardWall(prefix+id,{width:w,height:100,cap:'tile'}),id,x,ground(x));
  // Low side eaves give the broad hall roof two ordinary-jump access/return points.
@@ -25,12 +33,36 @@ export function authorFamily24(project,g){
   const slab=[[x1,y],[x2,y],[x2,y+24],[x1,y+24]];terrain(s,'family24-'+id,slab,'wood');s.terrains.at(-1).oneWay=true;
   rear(id+'-bearing',P(slab,'#675840','#1d302d',3)+line([[x1,y],[x2,y]],'#b19e76',5)+R(x1+18,y+24,16,Math.max(0,ground(x1+18)-y-24),'#4f4b38')+R(x2-30,y+24,16,Math.max(0,ground(x2-30)-y-24),'#4f4b38'),[x1,y,x2-x1,240]);
  }
+ // Shrine porches are deliberately east of the sealed doorway. Both are real
+ // one-way awnings, borne by posts; the original gate and ground approach stay open.
+ for(const [id,x1,x2,y]of [['shrine-west-porch',4520,4690,2205],['shrine-east-porch',5190,5350,2175]]){
+  const slab=[[x1,y],[x2,y],[x2,y+20],[x1,y+20]];
+  terrain(s,'family24-'+id,slab,'wood');s.terrains.at(-1).oneWay=true;
+  rear(id+'-bearing',P(slab,'#63583f')+line([[x1,y],[x2,y]],'#a69672',4)+R(x1+22,y+20,15,Math.max(0,ground(x1+22)-y-20),'#594c36')+R(x2-32,y+20,15,Math.max(0,ground(x2-32)-y-20),'#594c36')+line([[x1+28,y+76],[x1+86,y+23]],'#8e7a53',8),[x1,y,x2-x1,Math.max(260,ground(x2)-y)]);
+ }
  // One short garden flank route. Both ends return to the courtyard with ordinary movement.
  const gallery=[[2860,2440],[3120,2510],[3960,2510],[4210,2540]],solid=[...gallery,...gallery.slice().reverse().map(([x,y])=>[x,y+30])];
  terrain(s,'family24-garden-gallery',solid,'wood');s.terrains.at(-1).oneWay=true;
  let structure=P(solid,'#665943','#1d302d',4)+line(gallery,'#b7a381',6);
  for(const [x,top]of [[2890,2478],[3135,2540],[3940,2540],[4190,2568]])structure+=R(x-11,top,22,ground(x)-top,'#514c3b')+R(x-6,top,4,ground(x)-top,'#968164');
  rear('garden-gallery-bearing',structure,[2820,2480,1450,400]);
+ // The sunken garden is framed by a rear wall and crooked pine, leaving a broad
+ // unoccupied centre beneath the gallery. Basin water uses the common live-water
+ // material; stone rims and planting remain rear scenery, never fake walk ledges.
+ let garden=R(3220,2695,735,155,'#606c58')+P([[3220,2695],[3955,2695],[3970,2711],[3210,2711]],'#354d47')+R(3236,2718,704,85,'#82846b')+P([[3236,2803],[3420,2787],[3660,2800],[3940,2778],[3940,2850],[3236,2850]],'#465c48');
+ garden+=P([[3260,2828],[3300,2789],[3380,2784],[3440,2804],[3430,2850],[3268,2850]],'#7b8270')+P([[3270,2821],[3300,2793],[3363,2790],[3338,2816]],'#a1a18a')+P([[3800,2830],[3840,2782],[3914,2772],[3960,2808],[3955,2850],[3805,2850]],'#687763')+P([[3840,2782],[3914,2772],[3945,2805],[3898,2798]],'#969c82');
+ garden+=P([[3310,2834],[3370,2810],[3440,2817],[3443,2850],[3300,2850]],'#4f6358')+P([[3720,2820],[3808,2805],[3880,2829],[3880,2850],[3715,2850]],'#647466')+line([[3310,2834],[3370,2810],[3440,2817]],'#a5a18a',7)+line([[3720,2820],[3808,2805],[3880,2829]],'#9d9e85',7);
+ rear('recessed-garden-wall-and-stones',garden,[3200,2680,800,180]);
+ pool(s,'family24-garden-water-west',3334,3422,2820,2847);s.materials.at(-1).conductive=false;
+ pool(s,'family24-garden-water-east',3735,3830,2820,2847);s.materials.at(-1).conductive=false;
+ const gardenWall=s.elements.splice(s.elements.findIndex(e=>e.id==='recessed-garden-wall-and-stones'),1)[0];s.elements.unshift(gardenWall);
+ // Broad foundation shadows and irregular masonry faces express weight under
+ // the compound terraces, all wholly below the existing collision contour.
+ let masonry='';for(const [x1,x2,deep]of [[1720,2670,180],[4700,5220,225],[6410,7000,170]]){
+  const y=ground(x1);masonry+=P([[x1,y+16],[x2,y+16],[x2-20,y+deep],[x1+32,y+deep-15]],'#3b5148');
+  for(const [a,b,d,c]of [[0,.28,.62,'#7a7e68'],[.29,.63,.86,'#5d6c59'],[.64,1,.72,'#68745f']])masonry+=P([[x1+(x2-x1)*a+12,y+25],[x1+(x2-x1)*b-8,y+23],[x1+(x2-x1)*b-22,y+deep*d],[x1+(x2-x1)*a+25,y+deep*(d+.06)]],c);
+ }
+ rear('deep-foundation-masonry',masonry,[1700,2260,5300,550]);
  // Large earthen and stone faces distinguish the retaining terraces without repeated horizontal masonry bands.
  let faces='';for(const [x,y,w,h]of [[1720,2460,950,155],[4700,2260,520,210],[6410,2440,590,150]]){
  faces+=P([[x,y+12],[x+w,y+12],[x+w-23,y+h],[x+43,y+h-18]],'#5b6756')+P([[x+18,y+21],[x+w*.57,y+21],[x+w*.41,y+h-27],[x+53,y+h-23]],'#7c8069')+line([[x,y+4],[x+w,y+4]],'#afa68a',7);
@@ -51,10 +83,10 @@ export function authorFamily24(project,g){
  earth+=P([[3990,2820],[4110,2725],[4270,2640],[4220,2820],[4120,2980],[3980,3060]],'#586754')+P([[4110,2725],[4270,2640],[4220,2820],[4130,2870]],'#78816a');
  const earthAsset=asset(prefix+'terrain-material','후원 흙과 암반의 큰 명암면',earth,[],[0,2260,7000,1040],'earth');put(p,s,earthAsset,'terrain-material',0,0,1,'front');
  // Place shallow plinth faces above soil treatment; all their tops remain below feet.
- const face=s.elements.find(e=>e.id==='retaining-earth-faces');s.elements=s.elements.filter(e=>e!==face);s.elements.push(face);
+ const face=s.elements.find(e=>e.id==='retaining-earth-faces');s.elements=s.elements.filter(e=>e!==face);s.elements.push(face,s.elements.splice(s.elements.findIndex(e=>e.id==='deep-foundation-masonry'),1)[0]);
  // Distinct human-scale entries: a dark water stair mouth and a boarded ground records doorway.
  rear('water-route-mouth',P([[5625,2720],[5650,2585],[5700,2545],[5890,2545],[5940,2585],[5960,2720]],'#566655')+P([[5670,2720],[5670,2600],[5720,2575],[5870,2575],[5910,2600],[5910,2720]],'#1a3030')+line([[5650,2585],[5700,2545],[5890,2545],[5940,2585]],'#9a9b80',9),[5600,2530,380,200]);
- const pine=p.library.find(a=>a.id==='act1-scene:rooted-pine');if(pine)for(const [i,x,sc]of [[0,1110,.7],[1,3910,.62],[2,5390,.5],[3,6940,.64]])put(p,s,pine,'family24-pine-'+i,x,ground(x),sc);
+ const pine=p.library.find(a=>a.id==='act1-scene:rooted-pine');if(pine)for(const [i,x,sc]of [[0,1110,.7],[1,3275,.62],[2,5390,.5],[3,6940,.64]])put(p,s,pine,'family24-pine-'+i,x,ground(x),sc);
  const poses={'family-crest':[2070,2460],'shrine-seal':[4370,ground(4370)],'land-register':[4920,2260],'split-route-a':[5780,2720],'split-route-b':[6550,2440],'garden-exit':[6810,2440]};
  for(const m of s.markers)if(poses[m.id])Object.assign(m,{x:poses[m.id][0],y:poses[m.id][1]});
  const door=clone(original.terrains.find(t=>t.id==='shrine-door')),x=4500,y=ground(x);door.points=[{x:x-22,y:y-350},{x:x+22,y:y-350},{x:x+22,y},{x:x-22,y}];s.terrains.push(door);
@@ -68,12 +100,13 @@ export function authorFamily24(project,g){
  s.events.find(e=>e.id==='act3-response-24-2').text='증원 진입 · '+s.events.find(e=>e.id==='act3-response-24-2').warning;
  s.routes=PROFILE.map(([x,y])=>({x,y}));s.anchors.exit={x:6810,y:2440};s.design.act3.kind='ancestral-family-compound';delete s.design.act3.refinement;s.design.act3.koreanTown.mainStructures=['outer-servant-wing','ancestral-family-hall','family-ancestral-shrine','ground-record-entry'];
  s.design.act3.primaryContour=clone(PROFILE);s.design.act3.requiredRoute=PROFILE.map(([x,y])=>({x,y,support:'a3-foundation'}));s.design.act3.optionalRoutes=[{id:'garden-flank-return',points:gallery.map(([x,y])=>({x,y,support:'family24-garden-gallery'}))}];s.design.act3.mainBuildings=['outer-servant-wing','ancestral-family-hall','garden-study','family-ancestral-shrine','ground-record-entry'];
- s.design.family24={revision:1,status:'art-review-candidate',identity:'Korean ancestral compound; outer court, family hall, recessed garden, rear shrine and two separate exit courts',entranceClearance:{water:[5590,6040,2720],ground:[6410,7000,2440]},source:'tools/map-forge/stage24-family-compound.mjs',scope:'Stage24 fresh maps only. Goals, flags, party split, resource policy, population and finite response counts preserved. Normal combat approval pending.'};
+ s.design.family24={revision:2,status:'art-review-candidate',identity:'Korean ancestral compound; outer court, family hall, recessed garden, rear shrine and two separate exit courts',entranceClearance:{water:[5590,6040,2720],ground:[6410,7000,2440]},source:'tools/map-forge/stage24-family-compound.mjs',scope:'Stage24 fresh maps only. Goals, flags, party split, resource policy, population and finite response counts preserved. Normal combat approval pending.'};
  s.initialState.honroFamilyCompound24Revision=1;
  // Keep the existing unoutlined far landscape; replace only local, grounded scenery.
  s.environment.placements=s.environment.placements.filter(e=>e.depthLayer!=='L1');
  const used=new Set(p.stages.flatMap(t=>[...t.elements.map(e=>e.assetId),...t.environment.placements.map(e=>e.assetId)]));p.library=p.library.filter(a=>!oldAssets.has(a.id)||used.has(a.id));
- const final=g.HonroMaps.finalize(g.HonroTerrainDomain.author(p));
+ const authored=g.HonroMaps.finalize(g.HonroTerrainDomain.author({...p,activeStageId:s.id,stages:[s]}));
+ const final={...p,library:authored.library,stages:p.stages.map(t=>t.metadata.stageId===24?authored.stages[0]:t)};
  if(JSON.stringify(final.stages.filter(t=>t.metadata.stageId!==24))!==JSON.stringify(project.stages.filter(t=>t.metadata.stageId!==24)))throw Error('Other stage changed');
  if(JSON.stringify(final.stages.find(t=>t.metadata.stageId===24).initialState.honroAct3Steps)!==JSON.stringify(original.initialState.honroAct3Steps))throw Error('Goal contract changed');return final;
 }
