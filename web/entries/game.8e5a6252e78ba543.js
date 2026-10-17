@@ -3,7 +3,7 @@ const modules=[new URL("../runtime/game-art.908f3691c1b7c392.js",import.meta.url
 new URL("../runtime/title-scene.37a35dad86e4fed5.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.c5e0589639564156.js",import.meta.url).href,
-new URL("../runtime/engine-core.764c98578c2a9dcc.js",import.meta.url).href,
+new URL("../runtime/engine-core.e798a3b4e89840c3.js",import.meta.url).href,
 new URL("../runtime/HONRO_BALANCE.3004fd3d1a9e90d1.js",import.meta.url).href,
 new URL("../runtime/HONRO_NARRATIVE_V0.d6ce83da8b892dc2.js",import.meta.url).href,
 new URL("../runtime/HONRO_SPLIT_V1.d5aee6be4874dac0.js",import.meta.url).href,
