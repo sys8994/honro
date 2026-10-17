@@ -9,24 +9,29 @@ export class BgmPlayer {
     private restartRequested=false;
     private requested=false;
     private firstPlay=true;
+    private settingsConfigured=false;
     private startupAttempted=false;
     private startupFade=false;
     private gestureUnlocked=false;
+    private playSerial=0;
     private fadeMs=25;
     private preloadFailed=false;
     private battleSession:string|undefined; private battleSelected=false;
     constructor(public tracks:string[]=(globalThis as any).HONRO_BGM_TRACKS||[],
       private makeAudio:()=>HTMLAudioElement=()=>new Audio()){}
     configure(enabled:boolean,volume:number){
-        this.enabled=enabled;this.volume=Math.max(0,Math.min(1,volume));
+        this.enabled=enabled;this.volume=Math.max(0,Math.min(1,volume));this.settingsConfigured=true;
         // Prepare only the current title song after applying the saved music settings.
         // Try audible title playback once. The browser may still require unlock()
         // from the existing trusted-input handlers before allowing this stream.
         if(!this.current&&this.state==='main'&&this.enabled&&this.volume>0)this.select('main');
-        if(!this.startupAttempted&&!this.unlocked&&this.current&&this.state==='main'&&this.enabled&&this.volume>0&&!this.paused&&(typeof document==='undefined'||!document.hidden)){
+        this.tryStartup();
+        this.applyPause();this.tick();
+    }
+    private tryStartup(){
+        if(this.settingsConfigured&&!this.startupAttempted&&!this.unlocked&&this.current&&this.state==='main'&&this.enabled&&this.volume>0&&!this.paused&&(typeof document==='undefined'||!document.hidden)){
             this.startupAttempted=true;this.startupFade=true;this.unlocked=true;
         }
-        this.applyPause();this.tick();
     }
     unlock(){if(this.preloadFailed){this.failed.delete(0);this.silence();this.preloadFailed=false;}this.gestureUnlocked=true;this.unlocked=true;this.requested=false;this.select(this.state);this.applyPause();}
     select(state:MusicState,battleSession?:string){
@@ -49,7 +54,7 @@ export class BgmPlayer {
         const prepareTitle=state==='main'&&this.enabled&&this.volume>0&&!this.paused&&(typeof document==='undefined'||!document.hidden);
         if(!this.current&&(!this.enabled||this.volume<=0))return;
         if((!this.unlocked&&!prepareTitle)||!this.tracks[track]||this.failed.has(track))return;
-        if(track===this.track&&this.current){if(this.restartRequested)this.current.currentTime=0;this.restartRequested=false;return;}
+        if(track===this.track&&this.current){if(this.restartRequested)this.current.currentTime=0;this.restartRequested=false;this.tryStartup();this.applyPause();return;}
         if(this.outgoing){this.outgoing.pause();this.outgoing.removeAttribute('src');this.outgoing.load();this.outgoing=null;}
         if(this.current)this.outgoing=this.current;
         this.restartRequested=false;this.track=track;const audio=this.current=this.makeAudio();audio.preload=prepareTitle?'auto':'metadata';audio.src=this.tracks[track];
@@ -58,20 +63,20 @@ export class BgmPlayer {
         audio.addEventListener('ended',()=>{if(audio!==this.current||this.state!=='battle')return;this.battleIndex=(this.battleIndex+1)%3;this.select('battle');});
         audio.addEventListener('error',()=>{if(audio!==this.current)return;this.errors.push(`BGM ${track+1}: ${audio.error?.code||'media error'}`);this.failed.add(track);this.preloadFailed=track===0&&!this.gestureUnlocked;this.requested=false;
             if(this.state==='battle'&&[1,2,3].some(i=>!this.failed.has(i))){this.battleIndex=(this.battleIndex+1)%3;this.select('battle');}});
-        this.applyPause();
+        this.tryStartup();this.applyPause();
     }
     setPaused(paused:boolean){if(this.paused===paused)return;this.paused=paused;this.applyPause();}
     private applyPause(){
         const stop=this.paused||!this.enabled||this.volume<=0||!this.unlocked;
         if(stop){this.current?.pause();this.outgoing?.pause();this.requested=false;return;}
         if(this.current?.paused&&!this.requested&&!this.failed.has(this.track)){
-            const audio=this.current;this.requested=true;
+            const audio=this.current,serial=++this.playSerial;this.requested=true;
             // A prepared stream may have waited on the title for seconds. Fade from
             // the actual play request, not from creation of the silent media element.
             // Initial playback only needs a short anti-click ramp; retain the full
             // 420 ms crossfade when replacing an existing stream.
             if(this.firstPlay){this.transitionStart=performance.now();this.fadeMs=this.outgoing?this.transitionMs:25;this.firstPlay=false;this.tick(this.transitionStart);}
-            const rejected=(error:any)=>{if(this.current!==audio)return;this.errors.push(String(error?.name||error));
+            const rejected=(error:any)=>{if(this.current!==audio||serial!==this.playSerial)return;this.errors.push(String(error?.name||error));
                 // Autoplay rejection waits for another real gesture. No per-frame retries.
                 if(error?.name==='NotAllowedError'){this.unlocked=false;this.firstPlay=true;this.startupFade=false;this.applyPause();this.tick();}
             };
