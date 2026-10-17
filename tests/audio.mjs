@@ -1,23 +1,29 @@
 import assert from 'node:assert/strict';
-import {writeFile} from 'node:fs/promises';
-import {runtime} from '../game/tests/helpers.mjs';
-const g=await runtime(),checks=[];
+import {readFile,mkdir,writeFile} from 'node:fs/promises';
+import vm from 'node:vm';
+import ts from '../game/node_modules/typescript/lib/typescript.js';
+// Focus on the streaming channel directly; do not build unrelated runtime/assets.
+const g=vm.createContext({performance:{now:()=>0},exports:{}}),checks=[];
+const source=await readFile(new URL('../shared/engine/src/bgm.ts',import.meta.url),'utf8');
+vm.runInContext(ts.transpileModule(source,{compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.CommonJS}}).outputText,g);
+g.HONRO_CORE={BgmPlayer:g.exports.BgmPlayer};
 class AudioStub {
- paused=true;time=0;duration=100;volume=1;src='';listeners={};plays=0;seeks=0;loop=false;
+ paused=true;muted=false;time=0;duration=100;volume=1;src='';listeners={};playVolumes=[];plays=0;seeks=0;loop=false;
  get currentTime(){return this.time;} set currentTime(value){this.time=value;this.seeks++;}
  addEventListener(name,fn){this.listeners[name]=fn;}
- play(){this.paused=false;this.plays++;return Promise.resolve();}
+ play(){this.playVolumes.push(this.volume);this.paused=false;this.plays++;return Promise.resolve();}
  pause(){this.paused=true;} removeAttribute(name){if(name==='src')this.src='';} load(){} emit(name){this.listeners[name]?.();}
 }
 const audios=[],music=new g.HONRO_CORE.BgmPlayer(['01','02','03','04','05'],()=>{const a=new AudioStub();audios.push(a);return a;});
 const check=(name,fn)=>{const detail=fn();checks.push({name,...(detail?{detail}:{})});console.log('PASS',name);};
 const sessionMusic=()=>new g.HONRO_CORE.BgmPlayer(['01','02','03','04','05'],()=>new AudioStub());
-check('Only the title stream is prepared without playback before input',()=>{music.configure(true,.35);assert.equal(audios.length,1);assert.equal(music.current.src,'01');assert.equal(music.current.preload,'auto');assert.equal(music.current.paused,true);assert.equal(music.starts,0);assert.equal(music.unlocked,false);music.tick(music.transitionStart+1000);assert.equal(music.current.volume,0);});
+check('Title tries audible streaming startup once with saved volume and the short ramp',()=>{music.configure(true,.35);assert.equal(audios.length,1);assert.equal(music.current.src,'01');assert.equal(music.current.preload,'auto');assert.equal(music.current.paused,false);assert.equal(music.starts,1);assert.equal(music.unlocked,true);assert.equal(music.current.muted,false);assert.equal(music.current.playVolumes[0],.35/25);music.tick(music.transitionStart);assert.equal(music.current.volume,.35/25);music.tick(music.transitionStart+12.5);assert.equal(music.current.volume,.175);music.tick(music.transitionStart+25);assert.equal(music.current.volume,.35);for(let i=0;i<50;i++){music.configure(true,.35);music.select('main');music.tick();}assert.equal(music.current.plays,1);});
 check('Saved music mute and zero volume do not preload',()=>{for(const [enabled,volume] of [[false,.35],[true,0]]){const all=[],m=new g.HONRO_CORE.BgmPlayer(['01','02'],()=>{const a=new AudioStub();all.push(a);return a;});m.configure(enabled,volume);m.select('main');m.unlock();assert.equal(all.length,0);assert.equal(m.starts,0);}});
-check('Locked title preparation does not preload battle or boss songs',()=>{const m=sessionMusic();m.configure(true,.35);const a=m.current;m.select('battle','one');m.select('boss','one');assert.equal(m.current,a);assert.equal(m.starts,0);m.dispose();});
-check('Hidden title defers preparation until it becomes visible',()=>{g.document={hidden:true};try{const m=sessionMusic();m.configure(true,.35);m.select('main');assert.equal(m.current,null);g.document.hidden=false;m.select('main');assert.equal(m.current.src,'01');assert.equal(m.starts,0);m.dispose();}finally{delete g.document;}});
+check('Locked title preparation does not preload battle or boss songs',()=>{const m=sessionMusic();m.select('main');const a=m.current;m.select('battle','one');m.select('boss','one');assert.equal(m.current,a);assert.equal(m.starts,0);m.dispose();});
+check('Hidden title defers preparation until it becomes visible',()=>{g.document={hidden:true};try{const m=sessionMusic();m.configure(true,.35);m.select('main');assert.equal(m.current,null);for(let i=0;i<5;i++){m.configure(true,.35);m.select('main');m.tick();}assert.equal(m.starts,0);g.document.hidden=false;m.select('main');assert.equal(m.current.src,'01');assert.equal(m.starts,0);m.configure(true,.35);assert.equal(m.starts,1);m.dispose();}finally{delete g.document;}});
+check('Paused title makes no startup attempt until resumed and configured',()=>{const m=sessionMusic();m.setPaused(true);m.configure(true,.35);m.select('main');assert.equal(m.current,null);assert.equal(m.starts,0);m.setPaused(false);m.configure(true,.35);assert.equal(m.starts,1);m.dispose();});
 check('Preload failure retries once on input, not each frame',()=>{const all=[],m=new g.HONRO_CORE.BgmPlayer(['01'],()=>{const a=new AudioStub();all.push(a);return a;});m.configure(true,.35);m.current.error={code:2};m.current.emit('error');for(let i=0;i<50;i++)m.select('main');assert.equal(all.length,1);m.unlock();assert.equal(all.length,2);assert.equal(m.current.plays,1);m.current.error={code:2};m.current.emit('error');m.unlock();assert.equal(all.length,2);m.dispose();});
-check('First input unlocks Main Theme',()=>{music.unlock();assert.equal(music.current.src,'01');assert.equal(music.current.plays,1);assert.equal(music.current.loop,true);assert.equal(audios.length,1);assert.equal(music.current.volume,0);music.tick(music.transitionStart+12.5);assert.equal(music.current.volume,.175);music.tick(music.transitionStart+25);assert.equal(music.current.volume,.35);});
+check('First input preserves an already playing Main Theme without a second start',()=>{music.unlock();assert.equal(music.current.src,'01');assert.equal(music.current.plays,1);assert.equal(music.current.loop,true);assert.equal(audios.length,1);music.tick(music.transitionStart+25);assert.equal(music.current.volume,.35);});
 check('Touch release/touchend/click unlock burst preserves one initial play and its short ramp',()=>{const m=sessionMusic();m.configure(true,.35);m.unlock();const a=m.current,start=m.transitionStart;a.time=.01;for(let i=0;i<3;i++)m.unlock();assert.equal(a.plays,1);assert.equal(a.seeks,0);assert.equal(m.transitionStart,start);m.tick(start+25);assert.equal(a.volume,.35);m.dispose();});
 check('A real track replacement keeps the full 420 ms crossfade',()=>{const m=sessionMusic();m.configure(true,.35);m.unlock();m.tick(m.transitionStart+25);m.select('battle','first');m.tick(m.transitionStart+210);assert.equal(m.current.volume,.175);assert.equal(m.outgoing.volume,.175);m.tick(m.transitionStart+420);assert.equal(m.current.volume,.35);assert.equal(m.outgoing,null);m.dispose();});
 check('Noncombat refresh does not restart Main Theme',()=>{const a=music.current;a.time=17;for(let i=0;i<50;i++){music.select('main');music.tick();}assert.equal(music.current,a);assert.equal(a.currentTime,17);assert.equal(a.plays,1);assert.equal(a.seeks,0);});
@@ -63,7 +69,13 @@ check('Rapid switches release stale streams and cannot restore metadata offsets'
  m.tick(m.transitionStart+500);assert.equal(all.filter(a=>!a.paused).length,1);m.dispose();assert.equal(all.filter(a=>!a.paused).length,0);
 });
 {
- const m=new g.HONRO_CORE.BgmPlayer(['01'],()=>{const a=new AudioStub();a.play=()=>{a.plays++;return Promise.reject({name:'NotAllowedError'});};return a;});m.configure(true,.35);m.unlock();await Promise.resolve();
- check('Autoplay rejection waits for another gesture and preserves the prepared stream',()=>{const a=m.current;assert.equal(m.unlocked,false);for(let i=0;i<50;i++){m.select('main');m.configure(true,.35);m.tick();}assert.equal(a.plays,1);a.play=()=>{a.paused=false;a.plays++;return Promise.resolve();};m.unlock();assert.equal(m.current,a);assert.equal(a.plays,2);assert.equal(a.volume,0);m.dispose();});
+ const m=new g.HONRO_CORE.BgmPlayer(['01'],()=>{const a=new AudioStub();a.play=()=>{a.plays++;return Promise.reject({name:'NotAllowedError'});};return a;});m.configure(true,.35);await Promise.resolve();
+ check('Autoplay rejection waits for another gesture and preserves the prepared stream',()=>{const a=m.current;assert.equal(m.unlocked,false);assert.equal(a.volume,0);assert.equal(a.paused,true);for(let i=0;i<50;i++){m.select('main');m.configure(true,.35);m.tick();}assert.equal(a.plays,1);a.play=()=>{a.paused=false;a.plays++;return Promise.resolve();};m.unlock();assert.equal(m.current,a);assert.equal(a.plays,2);assert.equal(a.volume,0);m.tick(m.transitionStart+25);assert.equal(a.volume,.35);m.dispose();});
 }
+{
+ const m=new g.HONRO_CORE.BgmPlayer(['01'],()=>{const a=new AudioStub();a.play=()=>{a.plays++;throw {name:'NotAllowedError'};};return a;});
+ m.configure(true,.35);
+ check('A synchronous policy rejection is handled and waits for input',()=>{assert.equal(m.unlocked,false);assert.equal(m.current.plays,1);for(let i=0;i<10;i++)m.configure(true,.35);assert.equal(m.current.plays,1);m.dispose();});
+}
+await mkdir('_local/reports',{recursive:true});
 await writeFile('_local/reports/audio-unit.json',JSON.stringify({passed:checks.length,checks},null,2)+'\n');
