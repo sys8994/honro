@@ -41,7 +41,7 @@
 ## Library 실제 화면
 
 - stage8-battle-overview.png: `libfile_d5b4dfb590b881918ad0ab0b60562a6d`, version2
-- stage8-funeral-store.png: `libfile_7cf90e1d70008191ad411926c31b58c6`, version2
+- stage8-funeral-store.png: `libfile_7cf90e1d70008191ad411926c31b58c6`, version3
 - stage8-mobile.png: `libfile_b5f5971448508191a4f9c9f9d2b50b21`, version0
 
 ## 부모 검토 후 underside·표시 보정
@@ -69,3 +69,10 @@ v1의 얇아진 위쪽 암반과 고목 아래가 공중 아치로 읽힌다는 
 ## v2 승인 배포
 
 부모가 v2 실제2뷰의 암굴 연결/전경 통행면 구별을 승인했다. `6b3a970bfafc6be8047b84b94d20c97018eb6621`을 master `967bf02273f7991510df8d065ca8a00ecf804b3f`에 병합·push했고 승인 tree와 동일하다. [Pages39165814713](https://github.com/sys8994/honro/actions/runs/39165814713)은 해당 SHA/completed/success. build/전투 검사를 반복하지 않았으며 공개 실제 화면은 부모 확인이다.
+
+
+## 공개 확인 뒤 창고 기초 픽셀 접점
+
+부모가21:14 UTC 공개8장 전투·쉼터를 확인했다. 전투 서쪽 창고 기초 아래의 얇은 청록색 alpha 틈만 추가 지적받아, 원래 창고 이미지/지붕 위치·비율을 바꾸지 않고 기초 뒤23~27world 높이의 작은 기존 earth 재질 접점을 넣었다. 앞쪽 기존 지면이 하단을 가리며 새 보행면/충돌/그림 속 큰 기둥은 없다. 지형/collision/상여 경로/배우·목표/map revision은 불변이다.
+
+별도 `art/stage8-store-contact-20261018`에서 build와 해당 창고 위치 실제1뷰(pageerror0)만 확인했다. 추가 이동/전투 검사는 실행하지 않았다. 기존 확대 Library `libfile_7cf90e1d70008191ad411926c31b58c6`의v3를 접점이 보이는 가까운 카메라로 교체했고 전체v2는 그대로다. 증거 `_local/reports/stage8-store-contact/{build.log,render-checks.json,library.json}`.9장 검토 브랜치와 분리한 작은8장 미술 보정이다.
