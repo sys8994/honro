@@ -95,7 +95,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/stage3-location-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
-    for(const name of ['portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])
+    for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])
       await file(`shared/runtime/${name}.js`);
   }else await file('shared/runtime/stage-rules.js');
   return parts;

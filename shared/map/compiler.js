@@ -3,6 +3,7 @@ const C=G.HONRO_CORE,M=G.HonroMaps,Q=G.HonroGeometry,clone=M.clone;
 const renderLayer=layer=>({far:'back',interactive:'prop',terrain:'prop',units:'front',events:'front'})[layer]||layer||'back';
 function profileFor(st){const p=C.defaults(),sid=st.metadata?.stageId||1;p.recruited=[...new Set(st.units.filter(u=>u.team==='player').map(u=>G.HONRO_CONTENT.hero[u.kind]?u.kind:u.cls).filter(Boolean))];if(!p.recruited.length)p.recruited=['archer'];for(const c of p.recruited)p.heroes[c].xp=G.HonroProgression.xpAt(G.HonroProgression.plan(sid).entryLevel);return p;}
 function compile(st,project){
+ if(st.pending)throw Error('Chapter data is not prepared: '+st.id);
  const terrain=st.terrains.map(t=>Q.terrain(t,st.height)),elements=[],landmarks=[];
  for(const instance of st.elements){
   const asset=project.library.find(a=>a.id===instance.assetId);if(!asset)throw Error('Missing element '+instance.assetId);

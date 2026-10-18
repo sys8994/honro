@@ -1,3 +1,9 @@
+## 실제 진입 장과 의존 에셋 우선 준비 · 2026-10-18
+
+- 원인: 첫 타이틀은 빨리 보여도 전체30장과6.36MB library·author를 기다려야 시작할 수 있었다. Game을 공통/장별 의존 묶음으로 나누고 실제 저장 전투·재입장·다음 장만 준비한다. 얇은 전체 메타와 기존 author 순서, Workshop/embedded 전체 경로, 저장/성장 이전 경로를 유지했다.
+- 진입 API는 동기로 두고 준비 게이트가 화면/저장을 변경하기 전에 합쳐진 비동기 요청을 기다린다. 실패 재시도·취소·최신 화면 소유권을 검사하고 ready 뒤 다음 한 장만 낮은 우선순위로 예열한다. 승인 미술/지형/전투 규칙은 미수정이다.
+- 필요한 build·첫/21장 이어하기·장 이동/재시도/여정첩 확인·직결 다음·실패 보존/재시도·stale 취소·1/21장 author parity·embedded를 확인했다. CPU4 cold에서 ready9.34→5.05s(desktop)/9.24→4.42s(모바일 viewport), ready 전 chapter30→1·전체 library 요청0. 전체 verify/전 장 순회는 미실행이다. 단일 실측의 조건·잔여 비용·증거는 `STARTUP_LOADING.md`를 따른다.
+
 ## 3장 소굴 표시·처마 끝·창고 받침 마감 · 2026-10-18
 
 - 청록색 선 집의 원인은 renderer의 기본 marker fallback이었다. 해당2개 `hauntHabitat`(habitat-3-0 창고 뒤 갈대밭/서식 hound, habitat-3-1 갯벌 갈대숲/crow)는 mission.reinforceHold가 실제 출현에 사용하므로 ID·위치·support·기능은 보존하고3장 marker 그림만 작은 식생 흔적으로 교체했다. 다른 marker와 공용 renderer는 미수정이다.

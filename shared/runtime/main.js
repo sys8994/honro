@@ -288,7 +288,7 @@
     }
     function makeWorld(st,p,training=false,cls='archer',skill){return G.HonroWorld.build(st,p,training,cls,skill,makeLegacyWorld);}
     class App {
-        constructor() { this.root = $('app'); this.modal = $('modal'); this.normalProfile = load(); this.debugMode = !!this.normalProfile.settings.debugMode && !G.HONRO_EMBEDDED; this.profile = this.debugMode ? debugProfile(this.normalProfile) : this.normalProfile; this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.trainingRanks = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); this.showTitle(); requestAnimationFrame(t => this.frame(t)); }
+        constructor() { this.root = $('app'); this.modal = $('modal'); this.normalProfile = load(); this.debugMode = !!this.normalProfile.settings.debugMode && !G.HONRO_EMBEDDED; this.profile = this.debugMode ? debugProfile(this.normalProfile) : this.normalProfile; this.engine = null; this.scene = null; this.screen = 'title'; this.stageId = this.profile.lastStage || 1; this.cls = this.profile.recruited[0]; this.branch = 0; this.selectedByUnit = {}; this.selected = 'A01'; this.charging = false; this.power = .58; this.keys = new Set(); this.stick = { x: 0, y: 0 }; this.contacts = new Map(); this.audio = C.AudioEngine ? new G.HonroAudio() : null; this.audio?.configure(this.profile.settings); this.prev = performance.now(); this.acc = 0; this.uiAge = 0; this.dirty = false; this.dialogue = null; this.preview = null; this.trainingClass = 'archer'; this.trainingSkill = 'A01'; this.trainingPassives = {}; this.trainingRanks = {}; this.eventText = ''; this.eventUntil = 0; this.banterQueue=[]; this.banterCurrent=null; this.banterUntil=0; this.bind(); }
         persist() { if(G.HONRO_EMBEDDED||this.customMap)return; G.HonroProgression.persist(this); G.HonroSplitCampaign?.persist(this); this.profile.party = [...this.profile.recruited]; if(this.debugMode)return; this.normalProfile=this.profile; if (!save(this.profile) && !this.storageWarned) {
             this.storageWarned = true;
             this.notify('이 환경에서는 자동 기록이 제한돼. 설정에서 기록 파일을 보관해줘.');
@@ -298,7 +298,7 @@
         portrait(cls, size = 1) { return `<canvas class="portrait" data-portrait="${cls}" width="88" height="108"></canvas>`; }
         drawPortraits() { for (const cv of document.querySelectorAll('canvas[data-portrait]')) G.HonroPortraits.draw(cv,null,cv.dataset.portrait); }
         showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; G.HonroTitleMarkup.mount(this.root,{scene:G.HONRO_TITLE_SCENE,logo:G.HONRO_TITLE_LOGO,hanja:G.HONRO_TITLE_HANJA,profile:this.profile,debugMode:this.debugMode,splitLocked:G.HonroSplitCampaign.locked(this.profile),settingsIcon:fa('gear',19)}); }
-        stopBattle() { G.HonroAct3Void?.abort(this); G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
+        stopBattle() { G.HonroCampaignEntry?.cancel(this); G.HonroAct3Void?.abort(this); G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
             this.persist();
@@ -335,10 +335,10 @@
 
         sig(id){return C.icon('skill:'+id,'',28);}
 
-        open(html, kind = '') { this.modalKind=kind;this.cancelInput(); if(!this.modal.classList.contains('open')){const active=document.activeElement;this.modalReturnFocus=active?.matches?.('button,input,select,textarea,a[href],[tabindex]')?active:this.root?.querySelector('button');} this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"><button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>${html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); this.modal.querySelector('[data-action="close"]')?.focus({preventScroll:true}); }
-        close() { this.modalKind='';this.pendingJourneyLaunch=null;const wasOpen=this.modal.classList.contains('open'),previous=this.modalReturnFocus;this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now();this.modalReturnFocus=null;if(wasOpen)(previous?.isConnected?previous:this.root?.querySelector('[data-action="pause"],button'))?.focus?.({preventScroll:true}); if(this.engine)this.updateAudio(); }
+        open(html, kind = '') { G.HonroCampaignEntry?.cancel(this);this.modalKind=kind;this.cancelInput(); if(!this.modal.classList.contains('open')){const active=document.activeElement;this.modalReturnFocus=active?.matches?.('button,input,select,textarea,a[href],[tabindex]')?active:this.root?.querySelector('button');} this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"><button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>${html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); this.modal.querySelector('[data-action="close"]')?.focus({preventScroll:true}); }
+        close() { G.HonroCampaignEntry?.cancel(this);this.modalKind='';this.pendingJourneyLaunch=null;const wasOpen=this.modal.classList.contains('open'),previous=this.modalReturnFocus;this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now();this.modalReturnFocus=null;if(wasOpen)(previous?.isConnected?previous:this.root?.querySelector('[data-action="pause"],button'))?.focus?.({preventScroll:true}); if(this.engine)this.updateAudio(); }
         dismissModal(){if(this.modalKind==='result')this.resultContinue();else if(this.equipReturn){const context=this.equipReturn;this.equipReturn=null;this.restoreTalent(context);}else this.close();}
-        resultContinue(){if(this.resultDismissed||!this.modal.classList.contains('open'))return;this.resultDismissed=true;this.close();if(this.customMap)this.showRest();else G.HonroRestJourney.resultContinue(this);}
+        resultContinue(){if(this.resultDismissed||!this.modal.classList.contains('open'))return;if(G.HonroCampaignEntry?.defer(this,G.HonroCampaignEntry.next(this),()=>this.resultContinue()))return;this.resultDismissed=true;this.close();if(this.customMap)this.showRest();else G.HonroRestJourney.resultContinue(this);}
         talentContext(id){const dialog=this.modal.querySelector('.dialog');return {id,scroll:dialog?.scrollTop||0,armory:$('armory')?.scrollTop||0,canvas:$('previewcanvas'),preview:this.preview,action:document.activeElement?.dataset?.action};}
         restoreTalent(context){this.talent(context.id);const canvas=$('previewcanvas');if(context.preview&&context.canvas&&canvas){canvas.replaceWith(context.canvas);this.preview=context.preview;this.preview.h=clone(this.profile.heroes[S[context.id].cls]);}const dialog=this.modal.querySelector('.dialog');if(dialog)dialog.scrollTop=context.scroll;if($('armory'))$('armory').scrollTop=context.armory;if(context.action)this.modal.querySelector(`[data-action="${context.action}"]`)?.focus({preventScroll:true});}
         talent(id){const sk=S[id];if(!sk)return;const cls=sk.cls;this.cls=cls;const roster=this.training&&this.engine?{...this.profile,heroes:this.engine.b.heroes}:this.profile;const h=roster.heroes[cls],r=h.ranks[id]||0;this.open(G.HonroUI.talent(roster,id),'detail '+(sk.ultimate?'ultimate-dialog':'talent-dialog'));
@@ -446,6 +446,7 @@
             const trainingMusic=training&&this.training&&this.engine&&this.screen==='battle'?(this.trainingMusicSession||this.engine.b.session):null;
             const st = G.HonroSplitCampaign.content(this.profile,id)||H.stages[id - 1];
             if(!st||!training&&!G.HONRO_PROJECT.stages.some(m=>m.metadata?.stageId===st.id)){this.notify('아직 준비되지 않은 길입니다.');return;}
+            if(!training&&G.HonroCampaignEntry?.defer(this,id,()=>this.launch(id,training,skill)))return;
             if (this.engine || this.customMap)
                 this.stopBattle();
             this.close();
@@ -508,7 +509,24 @@
                 if(u.hp<before&&!u.eaterCapturedBy)this.scene?.focusUnit?.(u.id,720,false); return out;
             };
         } G.HonroNarrativeRevision?.attach(this,e); G.HonroAct3Void?.attach(this,e); this.selected = e.active&&G.HonroStakeCrossing.skills(b,e.active).includes(this.selectedByUnit[e.active.id]) ? this.selectedByUnit[e.active.id] : e.active?.loadout?.find(id => !S[id]?.passive) || 'A01'; if(e.active)this.selectedByUnit[e.active.id]=this.selected; this.power = e.active?.lastPower || .58; this.done = false; this.minimapVisible=this.profile.settings.minimapVisible!==false; this.root.innerHTML = `<main class="battle battle-screen" data-vertical="${b.height>b.width*1.08}"><div class="battle-view"><canvas id="battlecanvas"></canvas></div><header class="battle-head"><button class="icon" data-action="pause" aria-label="잠시 멈춤">${fa('pause',18)}</button><div class="battle-info"><div class="battle-title-row">${this.battleTitleMarkup()}${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}</div><div class="battle-objective-row"><span id="turn-text"></span><button type="button" id="objective-text" class="mission-help" data-action="battle-help" aria-haspopup="dialog" title="눌러서 목표·조작 안내">${this.training ? '적은 반격합니다 · 아군은 쓰러지지 않습니다' : this.stage.goal}</button></div><span id="objective-end-text" class="mission-end"></span></div></header><div class="minimap-dock" id="minimap-dock" ${this.minimapVisible?'':'hidden'}><canvas class="mini" id="minimap" aria-label="전장 미니맵"></canvas></div><div class="allied-roster" id="allied-roster" aria-label="동맹"></div><div class="banter" id="banter" hidden></div>${this.training ? G.HonroTraining.toolbar(this) : ''}${G.HonroUI.bottom()}<div id="dialogue-root"></div></main>`; this.scene = new G.HonroScene($('battlecanvas')); const u = e.active; this.scene.x = u?.x || 400; this.scene.y = (u?.y || 1000) - 170; this.scene.scale = innerWidth < 600 ? .82 : .94; if(b.height>b.width*1.08)this.scene.scale=Math.min(this.scene.scale,innerWidth<760?.68:.82); G.HonroAct3Void?.restoreRecoveredCamera(this); this.inputs(); G.HonroInteractions?.mount(this); this.updateAudio(); this.updateHUD(true); if(b.honroStory){G.HonroStory.start(this,b.honroStory.lines,b.honroStory);} }
+        routeContinue() {
+            const target=G.HonroRouteBranches?.handoff(this.engine?.b)?.toStage;
+            if(!this.done||!target)return;
+            if(G.HonroCampaignEntry?.defer(this,target,()=>this.routeContinue()))return;
+            if(G.HonroRouteBranches?.continueFrom(this,{replay:true})){const next=this.engine.b.honroRouteSpec.toStage;this.engine=null;this.profile.honroBattle=null;this.launch(next);}
+        }
+        retry() {
+            if(!this.training&&G.HonroCampaignEntry?.defer(this,this.stageId,()=>this.retry()))return;
+            if(!this.training)G.HonroRouteBranches?.retry(this);
+            if(this.engine&&!this.training&&!this.done){G.HonroProgression.syncRoster(this.profile,this.engine.b);this.persist();}
+            // Practice owns no campaign snapshot; restarting it keeps the suspended journey.
+            if(!this.training)this.profile.honroBattle=null;
+            this.engine=null;
+            this.launch(this.stageId,this.training,this.trainingSkill);
+        }
         continue() {
+            const target=G.HonroCampaignLoader?.destination(this.profile);
+            if(target&&G.HonroCampaignEntry?.defer(this,target,()=>this.continue()))return;
             G.HonroCampaignMapRevision.discard(this.profile);
             const restart=this.profile.honroMapRestart;
             if(restart){this.engine=null;this.persist();this.launch(restart);this.notify('지형이 개편되어 현재 장 입구에서 다시 시작합니다. 성장과 장착은 유지됩니다.');return;}
@@ -1017,15 +1035,10 @@
                 case 'stake-retry':
                     G.HonroStakeCrossing.retry(this,'출발 상태로 다시 준비합니다.');break;
                 case 'retry':
-                    if(!this.training)G.HonroRouteBranches?.retry(this);
-                    if(this.engine&&!this.training&&!this.done){G.HonroProgression.syncRoster(this.profile,this.engine.b);this.persist();}
-                    // Practice owns no campaign snapshot; restarting it must keep the suspended journey.
-                    if(!this.training)this.profile.honroBattle = null;
-                    this.engine = null;
-                    this.launch(this.stageId, this.training, this.trainingSkill);
+                    this.retry();
                     break;
                 case 'route-continue':
-                    if(this.done&&G.HonroRouteBranches?.continueFrom(this,{replay:true})){const next=this.engine.b.honroRouteSpec.toStage;this.engine=null;this.profile.honroBattle=null;this.launch(next);}
+                    this.routeContinue();
                     break;
                 case 'result-map':
                     this.engine = null;
@@ -1241,6 +1254,10 @@
             requestAnimationFrame(t => this.frame(t));
         }
     }
-    G.HonroApp = new App();
+    const app=new App(),loader=G.HonroCampaignLoader,target=loader?.destination(app.profile);
+    const finish=()=>{app.showTitle();G.HonroApp=app;requestAnimationFrame(t=>app.frame(t));loader?.prewarmNext(target);};
+    // App.load/migrations above are authoritative; a read-only startup hint may
+    // have selected a different chapter. Never enable the title until it agrees.
+    G.HONRO_APP_READY=loader&&!loader.has(target)?loader.ensureStage(target).then(finish):Promise.resolve(finish());
     G.HONRO_TOOLS = { makeWorld, fresh, content: H, core: C };
 })(globalThis);

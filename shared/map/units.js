@@ -20,7 +20,7 @@ function create(record,b,profile,st){
  }else if(G.HonroWorld.archetypes[record.kind])u=G.HonroWorld.createEnemy(b,st,record.x,record.kind,record.spawnIndex??0,record.y,true);
  else if(record.kind.startsWith('ally:'))u=G.HonroWorld.ally(b,st,record.id,record.kind.slice(5),record.x,record.y);
  else if(record.kind.startsWith('boss:')){
-  const source=G.HONRO_PROJECT?.stages.flatMap(s=>s.units).find(u=>u.kind===record.kind);if(!source)throw Error('Missing boss definition');u=clone(source);delete u.runtimeTemplate;
+  const source=(G.HONRO_PROJECT?.unitTemplates||G.HONRO_PROJECT?.stages.flatMap(s=>s.units||[]))?.find(u=>u.kind===record.kind);if(!source)throw Error('Missing boss definition');u=clone(source);delete u.runtimeTemplate;
  }else u=C.makeUnit('knight',side,record.x,record.y,{id:record.id,name:record.kind.slice(7),honroType:record.kind.slice(7),fixed:true,loadout:[],hp:1450,maxHp:1450,r:50,h:110,honroCivilian:true});
  Object.assign(u,{id:record.id,x:record.x,y:record.y,side,spawnX:record.x,spawnY:record.y});
  if(!record.runtimeTemplate||side!==record.side){

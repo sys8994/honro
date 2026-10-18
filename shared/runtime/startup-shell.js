@@ -3,6 +3,7 @@
 let ready=false;
 const host=document.getElementById('app');
 G.HonroStartup={
+ progress(label,done,total){if(ready)return;const actions=host.querySelector('.title-actions');if(!actions)return;let status=actions.querySelector('[data-startup-progress]');if(!status){status=document.createElement('small');status.dataset.startupProgress='';status.setAttribute('role','status');actions.append(status);}status.textContent=label+(total?' '+done+'/'+total:'');},
  ready(){ready=true;document.documentElement.dataset.honroReady='true';},
  failed(){const title=host.querySelector('.honro-title');if(!title)return;title.removeAttribute('aria-busy');title.querySelector('.title-actions').innerHTML='<button type="button" class="primary" data-startup-retry>다시 시도</button>';},
  async firstPaint(){if(G.HONRO_EMBEDDED)return;const images=[...host.querySelectorAll('.title-painting img,.honro-logo')];await Promise.race([Promise.all(images.map(img=>img.complete?Promise.resolve():new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});}))),new Promise(resolve=>setTimeout(resolve,1200))]);await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));}

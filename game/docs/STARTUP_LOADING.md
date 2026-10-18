@@ -1,6 +1,6 @@
 # 첫 타이틀 표시와 초기화 비용 — 2026-10-18
 
-기준 master는 `a25675f`다. 묵종/후경 미배포 브랜치는 포함하지 않는다. 이번 변경은 기존 타이틀을 전체 게임 초기화와 분리하고 데이터 복원 비용을 낮춘다. 30장을 장별로 지연 생성하는 구조 변경은 하지 않는다.
+기준 master는 `a25675f`다. 묵종/후경 미배포 브랜치는 포함하지 않는다. 이번 변경은 기존 타이틀을 전체 게임 초기화와 분리하고 데이터 복원 비용을 낮춘다. 이 절은 첫 단계의 기록이며, 아래 두 번째 단계에서 선택 장 우선 준비를 추가했다.
 
 ## 원인과 변경
 
@@ -33,3 +33,31 @@
 `tools/testing/startup-browser.py` 하나를 before/after/checks/mobile 모드로 사용한다. Game/Workshop 빌드, desktop와 portrait 실제 화면, 조기 클릭 중복/자동 실행 없음, 배경·로고 DOM 동일 인계, 새 시작·정확한 계속 버튼·성장/장착/완료 보존·디버그 분리, trusted click의 audio wake/context running, embedded Playtest/복귀·프로젝트 보존, 실패 시 그림 유지/재시도 성공을 확인했다. 4배 CPU의 시작 클릭→화면 상태 확인은 Playwright 대기 포함 약1.13초였으며 데이터 로딩을 클릭 후로 미루지 않는다. 전체 verify·기예/맵 전수 검사는 실행하지 않는다.
 
 캠페인 base/library/30개 chapter의 콘텐츠 해시 경로는 기준 master와 동일하다. 렌더/미술 WIP의 코드나 자산을 가져오지 않았고 이전 두 distinct 배포 세대의 immutable 자산을 보존했다. 증거 JSON과 내부 비교 화면은 `_local/reports/startup/`에 있다. 공개 Pages 직접 접근이 CONNECT403이면 로컬 결과와 배포 run 성공을 구분해 보고한다.
+
+
+## 두 번째 단계: 선택 장과 의존 에셋 우선 준비
+
+기준 master `2d678f6`의 승인 1–3장 미술과 공통 모듈 목록을 보존했다. 엔진·미술을 교체하지 않고 Game의 캠페인 준비 단위만 나눴다.
+
+- 빌드는 장의 모든 필드(요소·environment placement 포함)에서 library ID를 찾고, 참조 에셋 안의 ID까지 재귀로 닫는다. 두 장 이상 사용하는 에셋은 공통133,295바이트, 나머지는 장별 한 묶음이다. 1장은 별도2,085바이트와 chapter51,267바이트다. 사용하지 않는 전체 library6,361,595바이트는 Game의 초기 요청에 없다. compiler가 재사용하는 boss 원형은 작은 공통 메타로 보존한다. Workshop/embedded는 기존 전체 프로젝트 경로를 쓴다.
+- 전체30장 이름·ID·크기·연결/열림 정보는 catalog와 기존 `H.stages`/journey 메타에 남는다. pending catalog는 실제 stage로 취급하지 않는다. loader는 실제 장 하나와 완전한 의존 library만 기존6개 author에 기존 순서로 전달한다. compiler도 pending 입력을 거부한다. 전체 프로젝트를 받은 뒤 filter하는 방식이 아니다.
+- 초기 저장 읽기는 game/schema/기본 roster를 확인하는 읽기 전용 힌트다. 유효한 전투의 honroStage, 지형 재입장 장, 다음 미완료 장을 고르고 lastStage만 신뢰하지 않는다. 기존 App.load·growth/skill migration·map revision·저장 경로는 하나로 유지한다. 최종 profile 목적지가 힌트와 다르면 그 장을 준비한 뒤에만 기존 타이틀 버튼을 켠다. 배경·로고·태그라인은 기존 첫 표시를 유지하고 준비 안내는 실제 완료 모듈/데이터 묶음 수로 표시한다. 준비 완료 뒤 자동 실행하지 않는다.
+- launch/continue/retry/결과 다음/여정첩 진입은 동기 API를 유지한다. 필요한 장이 없으면 현재 화면·전투·저장 변경 전에 준비하고, 한 요청으로 합친 뒤 한 번 재진입한다. profile/화면 소유권과 pending token을 확인하고 화면 이동·모달 열기/닫기 시 취소한다. 늦은 요청이 새 화면을 덮지 않는다. 실패는 현재 화면에서 다시 시도/취소할 수 있고 실패 fetch를 cache에서 제거한다. 이어하기는 기존 전투 snapshot을 계속 사용한다.
+- ready 이후 다음 한 장의 JSON 두 묶음만 idle/low priority로 순서대로 예열한다. 이때 author/compile은 하지 않는다. 숨김·절약 모드·2G·전투 화면에서는 시작하지 않으며 나머지는 필요할 때 준비한다. 모든 장을 백그라운드에서 몰아 받지 않는다. 기존 worker parse·16항목 회수·시간 budget yield·외부 해시와 이전 두 distinct 배포 세대 보존은 유지한다.
+
+### 한정 실측과 기능 확인
+
+앞 절과 같은 로컬 Chromium/new context/cache disabled/CPU4배/RTT40ms/2MiB/s 조건에서 각각 한 번 비교했다. 실제 모바일 기기나 공개 Pages 실측이 아니다. 총 요청/전송은 ready+500ms 관측 창이며, 이후 값에는 다음 장 idle 예열이 일부 포함될 수 있다.
+
+| 항목 | Desktop 이전 → 이후 | 모바일 viewport 이전 → 이후 |
+|---|---:|---:|
+| 실제 시작 준비 |9.339s →5.046s|9.239s →4.416s|
+| 타이틀 그림 표시 |0.480s →0.480s|0.441s →0.393s|
+| 관측 창 전송 |13,871,120 →5,219,026B|13,863,258 →5,211,164B|
+| 요청 수 |228 →203|228 →203|
+| 긴 작업 합/최대 |1248/609 →327/111ms|922/480 →128/68ms|
+| ready 전 chapter 요청 |30 →1|30 →1|
+
+이후 ready 전 완료 resource body는 desktop5,091,692B/모바일5,083,830B였다. 두 경우 모두 chapter01 하나만 요청하고 전체 campaign-library 요청은 없었다. 초기화가 완전 무정지라는 뜻은 아니며 공통 런타임·캐릭터·서사/구 저장 호환 데이터는 여전히 공통 준비에 포함된다.
+
+`tools/testing/startup-browser.py` 하나를 재사용했다. fresh는 실제 stage1만 준비·library38개/catalog30개, 21장 저장은 잘못된 lastStage1을 무시하고 실제21장만 준비한 뒤 HP/round/성장/장착/완료를 보존했다. 준비 실패→동일 전투/저장 유지→재시도12장, 취소된21장 요청의 늦은 완료가 타이틀을 덮지 않음, 이동/재시도, 실제 여정첩 확인 진입/직결 다음 장, 기존 동기 반환, full editor/embedded, Game/Workshop의 실제1·21장 author 결과 일치를 확인했다. 초기 타이틀 DOM 인계·조기 클릭 자동 실행 없음·trusted click audio·debug 분리·초기 오류 재시도도 통과했다. 전체 verify·30장 실행·무관한 기예 검사는 하지 않았다. 증거는 `_local/reports/startup/phase2-before.json`, `phase2-after.json`, `stage-checks.json`, `entry-checks.json`, `checks.json`이다.

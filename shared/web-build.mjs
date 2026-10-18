@@ -80,10 +80,21 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     if(entry.project){
       const {library,stages,...base}=entry.project;
       const externalLibrary=await externalize(library,'library');
-      const manifest={base:await json('campaign-base',base),library:await json('campaign-library',externalLibrary),stages:[],assetPaths:{base:assetPaths(base),library:assetPaths(externalLibrary),stages:[]}};
-      for(let n=0;n<stages.length;n++){const stage=await externalize(stages[n],`chapter-${n+1}`);manifest.stages.push(await json('chapter-'+String(n+1).padStart(2,'0'),stage));manifest.assetPaths.stages.push(assetPaths(stage));}
+      // Dependency closure includes placements and asset references nested inside assets.
+      // Shared assets are one bounded bundle; each chapter owns its remaining closure.
+      const byId=new Map(externalLibrary.map(asset=>[asset.id,asset]));
+      function dependencies(value,found=new Set()){
+        if(typeof value==='string'&&byId.has(value)&&!found.has(value)){
+          found.add(value);for(const [key,child]of Object.entries(byId.get(value)))if(key!=='id')dependencies(child,found);
+        }else if(value&&typeof value==='object')for(const child of Object.values(value))dependencies(child,found);
+        return found;
+      }
+      const needed=stages.map(stage=>dependencies(stage)),shared=new Set(externalLibrary.filter(asset=>needed.filter(ids=>ids.has(asset.id)).length>=2).map(asset=>asset.id));
+      const sharedAssets=externalLibrary.filter(asset=>shared.has(asset.id));
+      const manifest={base:await json('campaign-base',base),library:await json('campaign-library',externalLibrary),stages:[],unitTemplates:stages.flatMap(stage=>stage.units.filter(unit=>unit.kind?.startsWith('boss:'))).filter((unit,index,all)=>all.findIndex(other=>other.kind===unit.kind)===index),catalog:stages.map(stage=>({id:stage.id,name:stage.name,width:stage.width,height:stage.height,backdrop:stage.backdrop,metadata:stage.metadata,pending:true})),shared:await json('campaign-shared',sharedAssets),stageLibraries:[],assetPaths:{base:assetPaths(base),library:assetPaths(externalLibrary),stages:[],shared:assetPaths(sharedAssets),stageLibraries:[]}};
+      for(let n=0;n<stages.length;n++){const stage=await externalize(stages[n],`chapter-${n+1}`);manifest.stages.push(await json('chapter-'+String(n+1).padStart(2,'0'),stage));manifest.assetPaths.stages.push(assetPaths(stage));const assets=externalLibrary.filter(asset=>needed[n].has(asset.id)&&!shared.has(asset.id));manifest.stageLibraries.push(await json('chapter-'+String(n+1).padStart(2,'0')+'-assets',assets));manifest.assetPaths.stageLibraries.push(assetPaths(assets));}
       projectManifest=await json('campaign',manifest);
-      file=await emit('runtime','campaign','js',`import {loadProject,yieldIfNeeded} from ${quote('./'+path.posix.basename(loader))};\nlet project=await loadProject(${quote(projectManifest)});\nfor(const author of [${projectAuthors.join(',')}]){project=author.author(project);await yieldIfNeeded();}\nglobalThis.HONRO_PROJECT=project;\n`);
+      file=await emit('runtime','campaign','js',`import {loadCampaign} from ${quote('./'+path.posix.basename(loader))};\nglobalThis.HONRO_PROJECT=await loadCampaign(${quote(projectManifest)},[${projectAuthors.join(',')}],{full:globalThis.HONRO_PROJECT_MODE==='full'||globalThis.HONRO_EMBEDDED});\n`);
     }else if(entry.global){
       file=await dataModule(entry.name,{[entry.global]:entry.data});
     }else if(vectorGlobals.has(entry.name)){
@@ -118,17 +129,17 @@ globalThis.HONRO_TITLE_SCENE=globalThis.HonroTitleMarkup.scene(art);
   async function bootstrap(name,modules,{game=false,playtest}={}){
     const placeholder=`web/entries/${name}.js`;
     const urls=modules.map(file=>urlExpression(placeholder,file));
-    return emit('entries',name,'js',`import {prefetchProject,yieldIfNeeded} from ${quote(relative(placeholder,loader))};\n${game?"globalThis.HONRO_EMBEDDED=new URLSearchParams(location.search).get('embedded')==='1';\n":''}${playtest?'globalThis.HONRO_PLAYTEST_URL='+quote(playtest)+';\n':''}const modules=[${urls.join(',\n')}];
+    return emit('entries',name,'js',`import {prefetchProject,yieldIfNeeded} from ${quote(relative(placeholder,loader))};\n${game?"globalThis.HONRO_EMBEDDED=new URLSearchParams(location.search).get('embedded')==='1';\n":''}${playtest?'globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL='+quote(playtest)+';\n':''}const modules=[${urls.join(',\n')}];
 globalThis.HONRO_READY=(async()=>{try{
 ${game?`await globalThis.HonroStartup?.firstPaint();\nlet styleError;const stylesReady=Promise.all(${quote(styles)}.map(file=>new Promise((resolve,reject)=>{const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('../../'+file,import.meta.url).href;link.onload=resolve;link.onerror=()=>reject(Error('Style load failed: '+file));document.head.append(link);}))).catch(error=>{styleError=error;});`:''}
 const preloaded=new Set();
 for(let i=0;i<modules.length;i++){
- if(i===2)prefetchProject(${quote(projectManifest)});
+ if(i===2&&!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject(${quote(projectManifest)});
  for(let n=i;n<Math.min(modules.length,i+12);n++){const href=modules[n];if(preloaded.has(href))continue;preloaded.add(href);const link=document.createElement('link');link.rel='modulepreload';link.href=href;link.fetchPriority='low';document.head.append(link);}
  ${game?'if(i===modules.length-1){await stylesReady;if(styleError)throw styleError;}':''}
- const file=modules[i];await import(file);await yieldIfNeeded();
+ const file=modules[i];await import(file);globalThis.HonroStartup?.progress('공통 준비',i+1,modules.length);await yieldIfNeeded();
 }
-${game?"globalThis.HonroStartup?.ready();\nif(location.hash==='#autostage2')HonroApp.launch(2);":''}}
+${game?"await globalThis.HONRO_APP_READY;globalThis.HonroStartup?.ready();\nif(location.hash==='#autostage2')HonroApp.launch(2);":''}}
 catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);else{const host=document.getElementById('app');if(host)host.textContent='불러오지 못했습니다. 새로고침해 주세요.';}throw error;}})();
 `);
   }
