@@ -12,12 +12,22 @@ function matches(items,compiled=false){return Object.entries(BASE).every(([id,ba
  const source=items?.find(t=>t.id===id),t=!compiled&&source&&G.HonroTerrainDomain?G.HonroTerrainDomain.projection(source):source,ps=compiled?t?.vertices:t?.points;
  return t&&!t.broken&&(compiled?t.indestructible:!t.breakable)&&(compiled?t.mat:t.baseMaterial)===base.mat&&t.oneWay===base.oneWay&&ps?.length===base.points.length&&ps.every((p,i)=>p.x===base.points[i][0]&&p.y===base.points[i][1]);
 });}
+function villageTerrains(st){return st?.design?.stage7Village?.version===1?(st.design.stage7Village.reentry||[]).map(t=>JSON.parse(JSON.stringify(t))):[];}
 function applyProject(project){
  const st=project.stages?.find(s=>s.id==='stage-7'&&s.metadata?.stageId===7&&s.metadata?.campaign===true);
+ const roots=villageTerrains(st);if(roots.length){for(const t of roots)if(!st.terrains.some(q=>q.id===t.id))st.terrains.push(t);return project;}
  if(st?.width===3600&&st.height===5000&&matches(st.terrains)&&!st.terrains.some(t=>t.id===ID))st.terrains.push(terrain());
  return project;
 }
 function upgradeBattle(b){
+ // The redesigned village owns an explicit two-root recipe. Restore only a
+ // missing authored reentry on an otherwise exact current campaign snapshot.
+ if(b?.honroStage===7&&b.honroStage7VillageRevision===1&&b.mode==='campaign'&&b.honroMapOrigin==='campaign'&&b.honroCanonical===true&&!b.honroCustom){
+  const st=G.HONRO_PROJECT?.stages?.find(s=>s.id==='stage-7'),roots=villageTerrains(st),ids=new Set(roots.map(t=>t.id)),missing=roots.filter(t=>!b.terrain.some(q=>q.id===t.id));if(!missing.length||JSON.stringify(b.honroMap)!==JSON.stringify(st?.design)||JSON.stringify(b.honroMapAnchors)!==JSON.stringify(st?.anchors))return false;
+  const full=G.HonroMaps.compile(st,G.HONRO_PROJECT).terrain,sig=ts=>JSON.stringify(ts.filter(t=>!ids.has(t.id)).map(t=>({id:t.id,vertices:t.vertices,mat:t.mat,oneWay:!!t.oneWay,indestructible:!!t.indestructible})));
+  if(sig(b.terrain)!==sig(full))return false;for(const root of missing)b.terrain.push(JSON.parse(JSON.stringify(full.find(t=>t.id===root.id))));b.honroStage7ReentryRevision=2;b.sceneVersion=(b.sceneVersion||0)+1;return true;
+ }
+
  // Historical/imported/custom layouts keep their saved map. Only the current
  // canonical scene with exact lower-ground signatures accepts this additive fix.
  if(b?.mode!=='campaign'||b.honroMapOrigin!=='campaign'||b.honroStage!==7||b.honroCanonical!==true||b.honroCustom!==false||b.honroAuthoredId!=='stage-7'||b.width!==3600||b.height!==5000||b.honroMap?.act1Scene?.version!==1||!matches(b.terrain,true)||b.terrain.some(t=>t.id===ID))return false;
@@ -32,5 +42,5 @@ function upgradeBattle(b){
  b.honroStage7ReentryRevision=REVISION;b.sceneVersion=(b.sceneVersion||0)+1;
  return true;
 }
-G.HonroStage7Reentry={id:ID,revision:REVISION,terrain,matches,applyProject,upgradeBattle};
+G.HonroStage7Reentry={id:ID,revision:REVISION,terrain,matches,villageTerrains,villageRevision:2,applyProject,upgradeBattle};
 })(globalThis);
