@@ -22,5 +22,6 @@ for key,source,file,size in [('forestFar',ROOT/'shared/assets/environment/locati
 # Cleaned isolated trees keep the approved shapes without atlas neighbors or clipped limbs.
 for key in ['pineA','pineB','dead']:
  im=Image.open(src/('stage1-'+key+'-clean.png')).convert('RGBA');im.thumbnail((1152,1152),Image.Resampling.LANCZOS);file='stage1-'+key+'-clean.webp';im.save(base/file,quality=90,method=6);images[key]=file
+im=Image.open(src/'stage1-pass-gate.png').convert('RGBA');im.thumbnail((640,640),Image.Resampling.LANCZOS);im.save(base/'stage1-pass-gate.webp',quality=90,method=6);images['passGate']='stage1-pass-gate.webp'
 manifest={'revision':2,'images':images,'forestCrops':crops,'stages':{'1':{'rear':'forestFar','kind':'sky','rockOrigin':1200},'18':{'rear':'bellRear','kind':'world','rect':[-1400,1800,16400,6560],'rockOrigin':4500},'27':{'rear':'depotRear','kind':'world','rect':[-1600,700,11400,5700],'rockOrigin':2400}}}
 (base/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print('Prepared',len(images),'runtime images;',sum((base/f).stat().st_size for f in images.values()),'bytes')

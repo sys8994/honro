@@ -21,7 +21,7 @@ function soilPattern(c){
 function cards(){
  if(rockCards)return rockCards;rockCards=[];
  for(const rect of [[0,0,1100,900],[320,80,1216,944],[80,280,1400,744]]){
-  const cv=document.createElement('canvas');cv.width=768;cv.height=640;const c=cv.getContext('2d');c.drawImage(P.images.forestRock,...rect,0,0,768,640);c.globalCompositeOperation='destination-in';const g=c.createLinearGradient(0,0,768,0);g.addColorStop(0,'#0000');g.addColorStop(.2,'#000');g.addColorStop(.8,'#000');g.addColorStop(1,'#0000');c.fillStyle=g;c.fillRect(0,0,768,640);rockCards.push(cv);
+  const cv=document.createElement('canvas');cv.width=768;cv.height=640;const c=cv.getContext('2d');c.drawImage(P.images.forestRock,...rect,0,0,768,640);c.globalCompositeOperation='destination-in';const g=c.createLinearGradient(0,0,768,0);g.addColorStop(0,'#0000');g.addColorStop(.2,'#000');g.addColorStop(.8,'#000');g.addColorStop(1,'#0000');c.fillStyle=g;c.fillRect(0,0,768,640);const v=c.createLinearGradient(0,0,0,640);v.addColorStop(0,'#0000');v.addColorStop(.08,'#000');v.addColorStop(.72,'#000');v.addColorStop(1,'#0000');c.fillStyle=v;c.fillRect(0,0,768,640);rockCards.push(cv);
  }return rockCards;
 }
 const random=n=>{const v=Math.sin(n*12.9898+78.233)*43758.5453;return v-Math.floor(v);};

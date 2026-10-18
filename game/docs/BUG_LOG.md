@@ -1,3 +1,9 @@
+## 1장 승인 장소 회화 · 2026-10-18
+
+- 변경: 1장만 mountain-dusk 원경과 실제 polygon clip 암반/젖은 흙/얇은 이끼, 독립 목재 가지로 정리했다. 나무 6그루·소수 풀 군락·한국식 작은 출구 목문을 사용하며 atlas 잔가지/잘린 가장자리를 정리했다. 원경 보정은 한 번 캐시하고 공용 SKY/world tile 계약을 따른다.
+- 보존: 지형·collision·경로·HP/XP·적·목표·스토리·mapRevision·성장/저장·캐릭터·기존 물/날씨 불변. 다른 장과 독립 모션 데모는 미수정. 최신 startup master b8a1127 병합 뒤 Stage1은 공용 bedrock 없이 요구 시 로딩하며 다른 장 선로드를 복구하지 않는다.
+- 확인: Game/Workshop 빌드, Chromium 기본/고목·개울/줌아웃/출구/모바일, 작은 엔진 보행·낮은 뿌리 점프/착지, 렌더 상태 불변·정적24프레임 filter0/캐시 안정·SKY coverage24조건·debug 유지·pageerror0. 정상 전투 완주/다른 장 순회/기예/전체 verify는 미실행. 상세는 `STAGE1_LOCATION_PAINT.md`, 증거는 `_local/reports/stage1-location-paint/`. master 미병합·미배포이며 작업 브랜치 push 후 부모 화면 확인을 기다린다.
+
 ## 첫 접속 타이틀의 빈 화면과 초기화 비용 · 2026-10-18
 
 - 원인: 빈 app이 전체 모듈·캠페인 로딩을 기다렸고, hydrate가 primitive마다 Promise와 새 객체를 만들었다. 타이틀 이미지는 App 생성 뒤 요청해 표시를 더 늦췄다.

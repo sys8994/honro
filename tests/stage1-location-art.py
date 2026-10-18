@@ -16,10 +16,12 @@ with sync_playwright() as p:
     page.goto(URL)
     page.wait_for_function('window.HonroApp')
     page.evaluate('''()=>{const a=HonroApp;a.frame=()=>{};a.profile=HONRO_TOOLS.fresh();a.launch(1);while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;a.banterCurrent=null;a.modal.classList.remove('open');const s=a.scene;s.storyTween=null;s.goalFocus=null;s.cinematic=null;s.manual=true;HonroStory.tick(a,performance.now()+10000);document.getElementById('turn-banner')?.remove();a.updateHUD(true);s.render(a.engine,0);}''')
-    page.wait_for_function('HonroStage1LocationArt.ready() && ["forestFar","pineA","pineB","dead","roots"].every(HonroPaintedPilots.ready)')
-    initial=page.evaluate('''()=>{const a=HonroApp;window.artBattleBefore=JSON.stringify(a.engine.b);return{camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},mapRevision:a.engine.b.honroCampaignMapRevision,water:JSON.stringify(a.engine.b.honroSurfaceZones?.filter(z=>/water|current/.test(z.kind))),exit:a.engine.b.honroMapAnchors?.exit,assets:Object.keys(HonroPaintedPilots.images)}}''')
+    page.wait_for_function('HonroStage1LocationArt.ready() && ["forestFar","pineA","pineB","dead","roots","passGate"].every(HonroPaintedPilots.ready)')
+    initial=page.evaluate('''()=>{const a=HonroApp;window.artBattleBefore=JSON.stringify(a.engine.b);return{camera:{x:a.scene.x,y:a.scene.y,scale:a.scene.scale},mapRevision:a.engine.b.honroCampaignMapRevision,water:JSON.stringify(a.engine.b.honroSurfaceZones?.filter(z=>/water|current/.test(z.kind))),exit:a.engine.b.honroMapAnchors?.exit,assets:Object.keys(HonroPaintedPilots.images),stage21Assets:Object.keys(HonroStage21Painted.images)}}''')
+    captures=[]
     def capture(name,view=None):
-        page.evaluate('''v=>{const a=HonroApp,s=a.scene;if(v)Object.assign(s,{x:v[0],y:v[1],scale:v[2]});s.render(a.engine,0);s.render(a.engine,0);}''',view)
+        camera=page.evaluate('''v=>{const a=HonroApp,s=a.scene;s.render(a.engine,0);if(v)Object.assign(s,{x:v[0],y:v[1],scale:v[2]});s.render(a.engine,0);s.render(a.engine,0);return{x:s.x,y:s.y,scale:s.scale,width:innerWidth,height:innerHeight};}''',view)
+        captures.append({'name':name,**camera})
         page.screenshot(path=str(OUT/(name+'.png')))
     capture('stage1-default')
     capture('stage1-great-pine-creek',[2350,1250,.68])
@@ -34,6 +36,7 @@ with sync_playwright() as p:
     assert cache['backgroundReused'] and cache['worldReused'],cache
     assert cache['tilesBefore']==cache['tilesAfter']<=48,cache
     assert cache['before']['worldBuilds']==cache['after']['worldBuilds'],cache
+    assert initial['stage21Assets']==[],initial
     assert not any(n in initial['assets'] for n in ['bellRear','depotRear','underground']),initial
     # Exact SKY coverage including far pans and zoom extremes; no world rectangle.
     sky=page.evaluate('''()=>{const b=HonroApp.engine.b,rows=[];for(const [w,h] of [[1440,900],[480,900],[844,390]])for(const x of [-2000,0,b.width,b.width+2000])for(const y of [-1200,b.height+2000]){const q=HonroEnvironment.act1BackdropFrame({x,y,scale:.25},w,h,b,2048,1024);if(q.x>0||q.y>0||q.x+q.w<w||q.y+q.h<h)throw Error('Uncovered sky');rows.push([w,h,x,y]);}return rows.length;}''')
@@ -45,7 +48,7 @@ with sync_playwright() as p:
     # Debug overlay is still a separate production switch; presentation does
     # not replace its source or store the setting in a battle.
     debug=page.evaluate('''()=>{const a=HonroApp;const before={...a.scene.viewOptions},key=a.scene._worldCacheKey(a.engine.b,innerWidth);a.scene.viewOptions={...before,debugTerrainOutline:true};a.scene.render(a.engine,0);a.scene.viewOptions=before;return typeof a.scene.collisionTerrainOutline==='function'&&key===a.scene._worldCacheKey(a.engine.b,innerWidth);}''')
-    report={'scope':'Stage1 Chromium screenshots and small Engine fixtures only; no full combat, other chapters or skill suite.','initial':initial,'cache':cache,'skyCoverageCases':sky,'movement':movement,'debugTogglePreserved':debug,'errors':errors,'screenshots':['stage1-default.png','stage1-great-pine-creek.png','stage1-zoom-out.png','stage1-east-pass.png','stage1-mobile.png']}
+    report={'scope':'Stage1 Chromium screenshots and small Engine fixtures only; no full combat, other chapters or skill suite.','initial':initial,'cameras':captures,'cache':cache,'skyCoverageCases':sky,'movement':movement,'debugTogglePreserved':debug,'errors':errors,'screenshots':['stage1-default.png','stage1-great-pine-creek.png','stage1-zoom-out.png','stage1-east-pass.png','stage1-mobile.png']}
     (OUT/'checks.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     assert debug
     assert not errors,errors

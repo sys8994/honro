@@ -2,7 +2,7 @@
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,manifest=G.HONRO_PAINTED_PILOTS,images={},tones=new Map(),forestTones=new Map(),patterns=new WeakMap(),shapes=new WeakMap(),structures=new WeakMap();let generation=0;
 const stage=b=>manifest?.stages[b?.honroStage],ready=id=>!!(images[id]?.complete&&images[id].naturalWidth);
 const active=b=>!!stage(b)&&(b.honroStage===1?b.honroMap?.act1Scene?.version===1:b.honroStage===18?b.honroBellRevision===1:b.honroLandmarks?.some(l=>l.asset?.id?.startsWith('stage27-depot-')));
-const dependencies={1:['forestFar','forestRock','forestSoil','pineA','pineB','dead','roots','bark'],18:['bellRear','stone','beam','underground'],27:['depotRear','stone','beam','underground']};
+const dependencies={1:['forestFar','forestRock','forestSoil','pineA','pineB','dead','roots','bark','passGate'],18:['bellRear','stone','beam','underground'],27:['depotRear','stone','beam','underground']};
 function ensure(b){if(typeof Image==='undefined')return;for(const id of dependencies[b.honroStage]||[]){if(images[id])continue;const img=images[id]=new Image();img.decoding='async';img.onload=()=>generation++;img.src=manifest.images[id];}}
 function path(points){const p=new Path2D();points.forEach((v,i)=>i?p.lineTo(v.x,v.y):p.moveTo(v.x,v.y));p.closePath();return p;}
 function shape(t){let q=shapes.get(t);if(q?.vertices===t.vertices)return q.path;const p=path(C.poly(t));shapes.set(t,{vertices:t.vertices,path:p});return p;}
@@ -36,7 +36,7 @@ function background(c,w,h,b,scene){if(active(b))ensure(b);if(!active(b)||!ready(
 function localSprite(c,l,id,height,b){if(!ready(id))return false;const ref=forestReference[id],img=forestImage(id);if(ref)height=(l.id.includes('-entry-grove-')?ref.heightM:(l.id.includes('-great-pine-')?12.2:l.asset.reference.heightM))*E.WORLD_UNITS_PER_METER;const width=height*img.width/img.height,foot=ref?.foot||[.5,1],placement=ref&&b.honroMap.act1Scene.scenery.find(p=>p.id===l.id),support=placement&&b.terrain.find(t=>t.id===placement.supportId&&!t.broken),y=support?C.topAt(support,l.x,l.y)+4:l.y;c.save();c.translate(l.x,y);c.rotate(l.rotation||0);c.scale(l.scale??1,l.scale??1);c.drawImage(img,-width*foot[0],-height*foot[1],width,height);c.restore();return true;}
 const forestTrees=new Set(['a1-scene-1-entry-grove-west','a1-scene-1-entry-grove-center','a1-scene-1-great-pine-center','a1-scene-1-east-grove-sacred','a1-scene-1-east-grove-pine','a1-scene-1-last-grove-center']);
 const forestPlants=new Set(['flora-1','flora-2','flora-10','flora-11','flora-14','flora-15','flora-23']);
-function forestLandmark(c,l,b){const id=l.asset?.id;if(/^mockup-granite/.test(id||''))return false; // The Stage1 material module paints the exact colliders once ready.
+function forestLandmark(c,l,b){if(l.id==='old-pass-gate')return localSprite(c,l,'passGate',225*(l.size||1),b);const id=l.asset?.id;if(/^mockup-granite/.test(id||''))return false; // The Stage1 material module paints the exact colliders once ready.
 
  if(id==='act1-scene:rooted-pine'||id==='act1-scene:rooted-sacred'){if(!forestTrees.has(l.id))return true;return localSprite(c,l,id.endsWith('sacred')?'dead':/center|east-grove-pine/.test(l.id)?'pineB':'pineA',795,b);}
  if(l.id.startsWith('flora-')){if(!forestPlants.has(l.id))return true;return localSprite(c,l,'roots',/10|14/.test(l.id)?34:25,b);}
