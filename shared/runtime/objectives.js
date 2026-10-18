@@ -101,6 +101,9 @@ function draw(scene,e){
    const pulse=22+3*Math.sin(performance.now()*.008);
    c.strokeStyle='#f2d58e';c.globalAlpha=.85;c.lineWidth=2;c.beginPath();c.arc(x,y,pulse,0,Math.PI*2);c.stroke();c.globalAlpha=1;
   }
+  // Painted Stage8 bindings already carry their live name/HP in the unit
+  // layer. Keep focus rings and offscreen guidance; omit the duplicate tag.
+  if(visible&&e.b.honroStage===8&&!e.b.honroCustom&&e.b.honroMap?.stage8LocationPaint?.revision===1&&['bier-knot-0','bier-knot-1'].includes(t.id)&&e.unit(t.id)?.honroObjectiveTarget)continue;
   // The arrow is a canvas vector; its tip tracks the true target when the label is clamped to the HUD edge.
   const direction=Math.atan2(y-py,x-px)-Math.PI/2;
   c.save();c.translate(px,py);c.rotate(direction);c.fillStyle='#e5c57e';

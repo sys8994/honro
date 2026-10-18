@@ -40,6 +40,18 @@
 
 ## Library 실제 화면
 
-- stage8-battle-overview.png: `libfile_d5b4dfb590b881918ad0ab0b60562a6d`, version0
-- stage8-funeral-store.png: `libfile_7cf90e1d70008191ad411926c31b58c6`, version0
+- stage8-battle-overview.png: `libfile_d5b4dfb590b881918ad0ab0b60562a6d`, version1
+- stage8-funeral-store.png: `libfile_7cf90e1d70008191ad411926c31b58c6`, version1
 - stage8-mobile.png: `libfile_b5f5971448508191a4f9c9f9d2b50b21`, version0
+
+## 부모 검토 후 underside·표시 보정
+
+62dd32c의 실제3뷰 검토에서 두 큰 어깨 아래의 긴 칼날 꼬리와 삼각 절단면을 지적받아 이 부분만 수정했다. 보행 상면/뿌리 양쪽 기반은 그대로 두고 몇 개의 큰2차 곡선 암면으로 actual underside를 재저작했다. 서쪽 최하단은4530→3659, 동쪽은4250→3499.6875로 줄었다. 원래 solid 내부의 점/선분과 하부7곳의 몸체 여유를 확인했고 다른 terrain, unit, route/spec/anchor 데이터는 변경하지 않았다. 통행로에 새 암반 기둥이나 장애물처럼 보이는 가짜 받침을 그리지 않았다.
+
+겹쳐 칠하던28-world 재질 스트립은 한 번 준비하는 연속 depth mask와 하나의 흙 band로 바꿨다. 따라서 반복 세로 이음이 없고 둥근 실제 경계 근처에서 암면의 깊이가 조용해진다. mask는 immutable terrain의 WeakMap에 저장하고 최대1024×384이며 카메라/frame별로 늘지 않는다. 사진/필터 준비4회 및 depth mask7개가 고정12frame 동안 불변이다. 나무/원경/건축 그림은 변경하지 않았다.
+
+목재 받침은12개에서9개로 줄이고 긴 통로의 가새만 남겼다. 창고의 기둥 이미지에서 가져온 세로 목재 재질을 받침에 적용하고 실제 땅에 닿게 했다. 새 collider나 통행 방해 장식은 추가하지 않았다.
+
+화면 안의 두 결박은 실제 questTarget unit의 이름/체력 표시를 사용하고, 같은8장 대상에 뜨던 별도 상단 안내만 생략한다. 목표 focus ring과 화면 밖 안내, 실제 공격 가능한 대상·480/480 체력은 유지한다. 다른 장/사용자 정의 맵에는 이 생략을 적용하지 않는다. 실제 전체 frame에서 각 결박 이름 fillText가1회, 확대 frame에서는 결박1 이름1회와 화면 밖 결박2 안내1회임을 확인했다.
+
+보정 검증은 subset/상면·나머지 데이터 불변/하부7곳/저작 동일성, build와 실제 전체·확대2뷰에 한정했다. 기존6경로·상여 이벤트·증원·저장 검사를 반복하지 않았다. 상세 `_local/reports/stage8-bier-location-paint/underside-finish/{checks.json,render-checks.json,build.log,library.json}`. 전체·확대 Library는 같은 ID의v1로 교체하며, 모바일v0는 보정 전 참고본이다. 부모 검토 전 master 미반영이다.
