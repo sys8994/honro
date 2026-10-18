@@ -38,11 +38,15 @@ const REST_MIN_ZOOM=.9,REST_MAX_ZOOM=1.35;
 function restGeometry(viewWidth,viewHeight){const height=viewHeight/REST_MIN_ZOOM,artHeight=Math.max(1,height-140),width=Math.max(viewWidth/REST_MIN_ZOOM,artHeight*1600/900),scale=width/1600,dy=artHeight-900*scale;return{width,height,artHeight,scale,dy,ground:765*scale+dy,campWidth:viewWidth/REST_MIN_ZOOM};}
 function layoutRest(){const scene=document.querySelector('.rest-landscape'),box=scene?.getBoundingClientRect?.();if(!box)return;const g=restGeometry(box.width,box.height);for(const [key,value]of Object.entries({width:g.width,height:g.height,ground:g.ground,'camp-width':g.campWidth}))scene.style.setProperty(`--rest-${key}`,`${value}px`);scene._restCamera?.resize(box,g.width,g.height);}
 function mountRestCamera(app,scene){const world=scene?.querySelector?.('.rest-world'),far=scene?.querySelector?.('[data-rest-backdrop]'),center=scene?.querySelector?.('[data-rest-center]');if(!world||!scene.addEventListener)return;
- const contacts=new Map();let moved=false,zoom=1,x=0,y=0,box,width,height;
+ const contacts=new Map();let moved=false,zoom=1,x=0,y=0,box,width,height,initial=true;
  const blocked=()=>app.screen!=='rest'||!!app.dialogue||!!app.modal?.classList.contains('open');
  const apply=()=>{const mx=Math.max(0,(width*zoom-box.width)/2),my=Math.max(0,(height*zoom-box.height)/2);x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y));world.style.transform=`translate(${x}px,${y}px) scale(${zoom})`;if(center)center.hidden=Math.abs(x)<box.width*.3&&Math.abs(y)<box.height*.2;if(far){const depth=G.HonroEnvironment.ACT1_FAR,unit=1600/(width*zoom);far.setAttribute('transform',`translate(${-x*unit*(1-depth.panX)} ${-y*unit*(1-depth.panY)})`);}};
  const cancel=()=>{if(contacts.size)moved=true;contacts.clear();scene.classList.remove('dragging');};
- scene._restCamera={resize(rect,w,h){box=rect;width=w;height=h;cancel();apply();},cancel};
+ scene._restCamera={resize(rect,w,h){box=rect;width=w;height=h;
+  // First framing only: keep the small inn, Seol-o and fire together on phones.
+  // Later resize/pan/zoom keeps the existing camera state and full bounds.
+  if(initial){initial=false;if(box.width<=700&&scene.querySelector('[data-journey-art="stage1-painted"]')){zoom=1.12;x=Math.max(0,Math.min(112,box.width*.28,(box.width-126*zoom)/2-12));y=-Math.min(90,Math.max(0,(height*zoom-box.height)/2));}}
+  cancel();apply();},cancel};
  layoutRest();
  const pinch=()=>{const [a,b]=contacts.values();return b?{x:(a.x+b.x)/2,y:(a.y+b.y)/2,gap:Math.hypot(a.x-b.x,a.y-b.y)}:null;};
  const transform=(value,toX,toY,fromX=toX,fromY=toY)=>{const next=Math.max(REST_MIN_ZOOM,Math.min(REST_MAX_ZOOM,value)),cx=box.left+box.width/2,cy=box.top+box.height/2;x=toX-cx-(fromX-cx-x)*next/zoom;y=toY-cy-(fromY-cy-y)*next/zoom;zoom=next;apply();};

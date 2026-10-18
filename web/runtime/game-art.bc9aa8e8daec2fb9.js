@@ -1,4 +1,0 @@
-import {loadData,loadProject} from "./load-data.9de2b3eabae7de5b.js";
-globalThis.HONRO_TITLE_ART=await loadData("web/data/HONRO_TITLE_ART.bac34e5d294496b2.json",[["landscape"],["portrait"],["landscapeFallback"],["portraitFallback"],["logo"],["hanja"]]);
-globalThis.HONRO_STAGE_INTRO_ART=await loadData("web/data/HONRO_STAGE_INTRO_ART.2fd23f2b329a0e27.json",[["1"],["2"],["3"],["4"],["5"],["6"],["7"],["8"],["9"],["10"]]);
-globalThis.HONRO_STORY_PORTRAITS=await loadData("web/data/HONRO_STORY_PORTRAITS.159ad9f6f88f53a2.json",[]);
