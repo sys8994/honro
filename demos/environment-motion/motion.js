@@ -48,40 +48,67 @@ function prepareArt() {
   region('water', water.x, water.y, water.width, water.height, (c, t) => {
     c.save(); c.clip(waterMask);
     for (let y = 0; y < water.height; y += 3) {
-      const shift = Math.sin(y * 0.13 + t * 1.5) * (0.65 + y / 150) + sharedWind(t) * 0.25;
+      const shift = Math.sin(y * 0.13 + t * 2.7) * (2.2 + y / 100)
+        + Math.sin(y * 0.053 - t * 1.85) * 1.3 + sharedWind(t) * 0.3;
       c.drawImage(reflection, 0, y, water.width, 3, shift, y, water.width, 3);
     }
-    c.strokeStyle = '#bbc9c7'; c.lineWidth = 0.7;
-    for (let i = 0; i < 8; i++) {
-      const x = 155 + i * 105 + Math.sin(t * 0.6 + i) * 5;
-      const y = 45 + (i * 31 % 102);
-      c.globalAlpha = 0.035 + 0.05 * (0.5 + 0.5 * Math.sin(t * 1.3 + i * 2));
-      c.beginPath(); c.ellipse(x, y, 9 + i % 3 * 5, 0.65, 0, 0, TAU); c.stroke();
+    c.strokeStyle = '#c6d3cf';
+    for (let i = 0; i < 14; i++) {
+      const phase = (t * (0.23 + i % 3 * 0.025) + i * 0.618) % 1;
+      const x = 100 + (i * 151 % 820) + phase * 70;
+      const y = 38 + (i * 29 % 112) + Math.sin(t * 2.2 + i) * 1.5;
+      const length = 18 + i % 4 * 8;
+      c.globalAlpha = (0.22 + i % 3 * 0.08) * Math.sin(phase * Math.PI);
+      c.lineWidth = 1.4 + i % 3 * 0.35;
+      c.beginPath(); c.moveTo(x, y);
+      c.bezierCurveTo(x + length * 0.3, y + 1.4, x + length * 0.65, y - 1.2, x + length, y);
+      c.stroke();
     }
     c.restore();
   });
 
-  const ribbon = cache(64, 192, c => {
+  const ribbonTile = cache(64, 192, c => {
     for (let i = 0; i < 50; i++) {
-      c.strokeStyle = `rgba(207,221,218,${0.025 + random() * 0.1})`;
-      c.lineWidth = 0.5 + random() * 1.3;
+      // Keep the same four random draws, preserving the other effects' baked art.
+      const opacity = random(), width = random();
       const x = random() * 64, y = random() * 192;
-      c.beginPath(); c.moveTo(x, y); c.bezierCurveTo(x - 3, y + 10, x + 2, y + 22, x, y + 34); c.stroke();
+      const length = 16 + i % 5 * 7;
+      for (const wrap of [-192, 0, 192]) {
+        c.strokeStyle = `rgba(12,26,32,${0.16 + opacity * 0.22})`;
+        c.lineWidth = 3 + width * 3;
+        c.beginPath(); c.moveTo(x + 3, y + wrap);
+        c.bezierCurveTo(x, y + wrap + length * 0.3, x + 5, y + wrap + length * 0.7, x + 3, y + wrap + length); c.stroke();
+        c.strokeStyle = `rgba(211,230,227,${0.22 + opacity * 0.42})`;
+        c.lineWidth = 1.2 + width * 2.2;
+        c.beginPath(); c.moveTo(x, y + wrap);
+        c.bezierCurveTo(x - 3, y + wrap + length * 0.3, x + 2, y + wrap + length * 0.7, x, y + wrap + length); c.stroke();
+      }
     }
+  });
+  // A repeated atlas lets the sampling window cross a tile seam without a draw edge.
+  const ribbon = cache(64, 576, c => {
+    for (let y = 0; y < 576; y += 192) c.drawImage(ribbonTile, 0, y);
   });
   const fallMask = new Path2D('M 42 10 L 67 9 L 65 24 L 56 29 L 56 58 L 55 105 L 52 143 L 60 173 L 78 197 Q 47 204 16 198 L 31 176 L 38 142 L 41 98 L 41 56 L 46 31 L 39 29 Z');
   region('fall', 1138, 433, 104, 218, (c, t) => {
     c.save(); c.clip(fallMask);
-    const offset = (t * 61) % 192;
-    c.globalAlpha = 0.8;
-    c.drawImage(ribbon, 20 + sharedWind(t) * 0.3, offset - 192, 64, 192);
-    c.drawImage(ribbon, 20 + sharedWind(t) * 0.3, offset, 64, 192);
+    c.globalAlpha = 0.95;
+    c.drawImage(ribbon, 0, 192 - (t * 125) % 192, 64, 218, 20 + sharedWind(t) * 0.3, 0, 64, 218);
+    c.globalAlpha = 0.32;
+    c.drawImage(ribbon, 0, 192 - (t * 103 + 73) % 192, 64, 218, 22 + sharedWind(t) * 0.3, 0, 64, 218);
     c.restore();
-    for (let i = 0; i < 7; i++) {
-      const phase = (t * 0.65 + i / 7) % 1;
-      c.strokeStyle = `rgba(178,198,199,${(1 - phase) * 0.09})`;
-      c.beginPath(); c.ellipse(50 + Math.sin(i * 7) * 24, 205 - Math.sin(phase * Math.PI) * 8, 2 + phase * 7, 0.6 + phase * 1.4, 0, 0, TAU); c.stroke();
+    c.strokeStyle = '#b6c9ca'; c.fillStyle = '#c5d6d4'; c.lineWidth = 1.2;
+    for (let i = 0; i < 10; i++) {
+      const phase = (t * (0.9 + i % 2 * 0.12) + i * 0.13) % 1;
+      c.globalAlpha = Math.sin(phase * Math.PI) * 0.28;
+      c.beginPath();
+      if (i < 6) {
+        c.ellipse(50 + Math.sin(i * 7) * 11, 205 + phase, 4 + phase * (10 + i % 3 * 5), 0.8 + phase * 3.1, 0, 0, TAU); c.stroke();
+      } else {
+        c.ellipse(50 + (i % 2 ? -1 : 1) * (5 + phase * 19), 202 - Math.sin(phase * Math.PI) * 15, 0.9, 1.8, phase * 0.4, 0, TAU); c.fill();
+      }
     }
+    c.globalAlpha = 1;
   });
 
   const glow = cache(140, 140, c => {
