@@ -1,3 +1,8 @@
+## 1장 큰 소나무의 상부 좌표 보존 · 2026-10-18
+
+- 부모의 실제 화면 검토에서 뿌리 팬을 접지하려고 나무 전체를 내린 결과 윗 가지 발판과 몸통의 접합이 벌어진 것을 확인했다. 큰 소나무1그루만 기존 `C.topAt(center)+4` 시각 anchor로 복원하고, source .8553 아래의 밑동·뿌리만 여러 접점에 맞춰 세로로 늘인다. 위 몸통·수관·가지 접합과 실제 발판 충돌은 그대로 유지한다. 앞서 개선된 시작 나무 등 다른 나무는 되돌리지 않는다.
+- 필요한 build와 같은 중앙 큰 소나무 카메라1440×900/.68 한 화면만 확인했다. pageerror0·렌더 전후 전투 JSON 동일. 증거는 `_local/reports/stage1-root-grounding/stage1-great-pine-creek.png`, `great-pine-collar-checks.json`이다. 기존 Library `libfile_1adcf3a4f15081919cb0fe53d3c5a5b5`를 v1로 replace했다. 다른 화면/전체 검사는 미실행이며 master/Pages 미반영이다.
+
 ## 2장 흙길 앞층과 좌우 암괴의 중첩 · 2026-10-18
 
 - 사용자 최신 구성을 반영해 canyon-ground의 큰 암반 wallpaper를 연속 흙·자갈층으로 바꿨다. 좌우 cliff는 별개의 큰 광물 면과 어두운 측면을 가지며 canonical canyon 표면 아래에서 흙 앞층에 묻히는 유한한 밑동으로 마감한다. 화면 외곽도 collision 투영의 x 한계 대신 원본 terrain-domain 윤곽을 샘플링해 같은 흙층으로 잇는다.
