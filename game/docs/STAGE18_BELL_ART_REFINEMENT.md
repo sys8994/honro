@@ -1,49 +1,28 @@
-# 묵종 청동 주조 미술 정리
+# 묵종 — 비극적 청동 주조 미술 검토본
 
-## 적용 범위
+2026-10-18 사용자 승인 방향은 대도사의 야욕이 만든 기괴하고 비극적인 의식물이다. 18·19장의 같은 `stage18:bell-hollow-body`에 적용한다. 검토 브랜치에서 보존하며 master/Pages에는 반영하지 않는다. 기준 master는 수레 삭제까지 배포한 `a25675f`다. 별도 후경 보정 `802aa7e`는 병합하지 않았다.
 
-- 원본 기준: `8dc6a24`, `stage18:bell-hollow-body` 하나.
-- 활성 18·19장은 `sb-bell-body`가 같은 순수 SVG 벡터를 사용한다. 19장의 앵커는 18장의 200 하강 후 위치다.
-- `act2:bell` / `act2-wedged-bell.svg`는 과거 지도·저장의 별도 에셋이다. 이번에는 바꾸지 않는다.
-- 지형, 사격창의 opening/reveal, 지지귀, 앵커, 충돌, 스테이지·사건·목표·서사·성장·전투 수치는 변경하지 않는다. 신규 에셋이나 래스터를 추가하지 않는다.
+## 조형과 구현
 
-## 조형과 원인
+한국 대종의 둥근 어깨·용뉴·음통·연속된 무거운 입술을 유지한다. 검푸른 산화 청동과 그을린 갈흑, 제한된 무광 황동 마모를 사용한다. 얼굴·손·어깨의 불완전한 인상이 주조 주름으로 이어지며, 생활 금속의 흔적은 끊어진 식기 테두리와 묻힌 고리로 제한한다. 반복 인물·눈/이빨 달린 보스·핏빛/네온은 사용하지 않는다. 게임 대사나 설명을 추가하여 후반 진실을 누설하지 않는다.
 
-기존 비천상은 작은 화면에서 사람 모양의 평평한 장식으로 읽혔다. 종구는 서로 다른 곡률의 뒤쪽 띠, 양쪽 네모 조각, 일자 앞띠가 겹쳐 주조된 한 덩어리로 보이지 않았다. 몸통의 각진 고대비 명암 패치는 금속의 곡면보다 다면체를 강조했다.
+- `shared/assets/environment/stage18-hollow-bell.svg`: 편집 가능한100노드 벡터. 실제 외곽과 crown·mouth·측면창·지지귀의 마스크 및 로딩 전 fallback을 제공한다. 예전의 `No anthropomorphic relief` 설명은 폐기했다.
+- `shared/assets/environment/mukjong/source/mukjong-bronze.png`: SVG 구도를 기준으로 생성한 보존 회화 원본. `tools/environment/mukjong-painted-assets.mjs`는 이 파일을 WebP로 인코딩하고 manifest를 만든다. 원본을 다시 생성하지 않는다.
+- `mukjong-bronze.webp`: 약457KiB의 외부 재질. `shared/build.mjs`가 Game/Workshop 공통 manifest를 연결하고 웹 빌드는 콘텐츠 해시 이미지로 분리한다. HTML 이미지 인라인은 없다.
+- `tools/environment/stage18-bell-art.mjs`: artRevision/paintedRevision4와 혼합 미술 기법을 명시한다. 전체 환경을 순수 벡터로 설명하던 `nativeVectorOnly` 대신 `bodyTechnique`를 기록한다.
 
-- 어깨를 둥근 곡면으로 연결하고 청동의 넓은 명암을 연속시킨다.
-- 당좌는 몸통과 같은 금속의 낮은 양각·동심 주조면으로 만든다.
-- 비천상 대신 읽히지 않는 얕은 음각과 닫히지 않은 인장을 쓴다. 새 서사 문구를 추가하지 않는다.
-- 곡선의 넓고 낮은 대비 녹청·주조 얼룩 세 군데만 둔다. 반복 노이즈·미세 균열은 쓰지 않는다.
-- 종구의 앞면을 한 면으로 연결하고, 뒤쪽 주조 두께 → 안쪽벽 → 어둠의 관계를 정리한다.
-- 실제 사격창의 투명 마스크와 경로 좌표는 그대로이며, 사각 테두리의 색 대비만 낮춘다. 오른쪽 지지귀와 실제 내부 발판을 가리지 않는다.
+실제 본체를 그릴 때만 이미지를 로드한다. 로딩 전 SVG, 완료 후 generation에 따른 월드 캐시 갱신을 사용한다. 원본 색조 보정과 SVG 외곽 clip은1139×1381의 정적 canvas 한 장으로 준비하며, canvas는 약6.3MB다. 원본 이미지도 하나를 공유한다. 매 프레임 필터·노이즈 생성·decode를 하지 않는다. 정적 타일과 0.9초 하강 live pass 모두 같은 raster를 사용한다. 새 revision에는 Stage18 전용 옛 palette 덮어쓰기를 적용하지 않아 18·19장이 같은 재질을 쓴다.
 
-일반 범종의 용뉴·음통, 9유두 유곽, 당좌와 넓은 종신 비례를 참고했다. 직접 만든 벡터이며 사진을 내장하거나 트레이싱하지 않았다.
-참고: [한국민족문화대백과사전, 상원사 동종](https://encykorea.aks.ac.kr/Article/E0027239).
+## 보존 계약
 
-## 재현과 통합
+viewBox `-1610 -4420 3670 4450`, lipY0과 기존 앵커·이동200을 유지한다. `soundWindow.shellOpening`, `interiorReveal`, `cast-sound-window-frame`, `single-east-cast-bearing-ear`와 해당 하단 SVG path 좌표를 유지한다. 실제 reveal 마스크를 뚫고 두 overlay만 다시 그려 내부 통로·발판·캐릭터 순서를 보존한다. 지형·충돌·퀘스트/하강 ID·초기 상태·성장·전투 규칙은 바꾸지 않는다. 이전 저장의 구 에셋은 강제로 교체하지 않는다.
 
-`node tools/environment/refine-stage18-bell-art.mjs`는 활성 campaign의 해당 asset.vector와 params.nodeCount만 다시 컴파일한다. `applyStage18BellArt`나 Stage18 전체 저작기를 실행하지 않는다. 별도 파일은 첫 인자로 지정할 수 있다.
+## 한정 확인과 검토 화면
 
-- `node tests/stage18-bell-refinement.mjs`: 전후 단일 에셋 경계, 모든30맵·다른 에셋 불변, 전체 compiled18/19 비아트 상태,200하강과19정착 일치.
-- `node --expose-gc tests/stage18-bell-refinement-native.mjs before`
-- `node --expose-gc tests/stage18-bell-refinement-native.mjs final`
+Game/Workshop 빌드, 실제 Stage18 전체(.155 진단 카메라)와 기본 플레이 배율(.94)의 본체 근접을 확인했다. 실제 엔진의 한 하강 fixture에서 0.45초 offset100,0.9초 offset200/settled/횟수1을 확인했고 같은 raster와 하강 중 sceneVersion이 유지됐다. 18·19장 source의 지형·유닛·이벤트·목표·marker·initialState와 개구부 계약은 이전 master와 동일하다. 같은 본체가19에서도 같은 raster를 사용함을 확인했다. 전체 verify·무관한 전투·정상 캠페인 완주는 실행하지 않았다.
 
-Native 캡처는 `_local/reports/bell-refinement/{before,final}/`에 남긴다. 같은 전체/하단 카메라를 사용하며 원본은 immutable before-asset fixture에서 가져온다. Native는 실제 공유 Scene/VectorArt를 실행하지만 브라우저 입력·정상 전투·브라우저 성능 검수를 대신하지 않는다.
+- 전체 실제 게임 화면: `libfile_ae4ae1c1068c8191a58f19bcfe3d08b6` (v0)
+- 기본 배율 근접: `libfile_933030c1a1848191ad2ab1ead43b9e9a` (v0)
+- 로컬 증거: `_local/reports/mukjong-redesign/checks.json`과 두 PNG.
 
-이전 전역 역사 exact-hash 검사는 지도 아트 변경 전부터 알려진 불일치가 있다. 원래 fixture/hash/assert를 갱신하거나 느슨하게 만들지 않는다. 단일 에셋 계약과 기존 동작 회귀 결과를 구분하고 최종 통합 이후 Pages18/19 및 Workshop을 직접 확인해야 한다.
-
-## 이번 후보의 검수 결과
-
-- 최종 SVG SHA256: `1530ed9d5a674541f11479f7980faca4f4dfc2bdb9180bc829ba5588248e4a81`, native node61/상한240.
-- 아트 단일 경계,30맵·나머지 library 불변,18/19 compiled 전체 비아트 상태,200하강·19정착 일치 통과.
-- `tests/stage18-bell-refinement-resume.mjs`: 이전 그림/새 그림 각각 실제 App export/import/Continue에서 하강 중57.872 위치와 그림을 보존하고200에서 한 번 정착. 기존 저장 그림은 새 canonical 그림으로 강제교체하지 않는다. 하강 전제조건만 합성fixture이며 정상 완주가 아니다.
-- `npm run build` 통과. Game/Workshop 두HTML에 최종 원본 SVG 문자열이 정확히 같은 것을 검사했다.
-- 기존 `stage18-bell-runtime`, `stage18-bell-release-guidance` 통과.
-- 다음4개 기존 실패는 수정 전 campaign을8dc6a24와 byte-exact하게 복원한 대조에서도 실패로그가 바이트 동일했다. 관련 fixture/assert를 바꾸지 않았다.
-  - `stage18-bell-app-resume`: 과거 목표 안내문 기대값.
-  - `stage18-bell-tactics`: 기존 대표 사격의 아군피해 검사.
-  - `stage19-bell-authoring-preservation`: 기존 engine/build 소스hash 기대값.
-  - `stage19-bell-marker-traversal`: 기존 투어가 요청하는 marker 부재.
-- `_local/reports/bell-refinement/preexisting-failures.json`에 전후로그hash, `bundle-parity.json`에 HTMLhash, `before/final/report.json`에 동일카메라·SVGhash를 남겼다.
-- 전체 verify·브라우저·정상 완주는 별도 검수 범위다. 기존 위 실패를 통과했다고 주장하지 않는다. Pages 최종 검수는 통합 담당자가 수행한다.
+과거 `8dc6a24` 기반의 순수 SVG 정리 및 당시 검증은 역사 기록이다. 이 검토본의 미술 승인이나 추가 배포를 의미하지 않는다.

@@ -36,15 +36,24 @@ const terrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(active(b)
 };
 // The 0.9-second safe descent reuses the still cavern tiles. Only this one
 // retained SVG is drawn live, with the position already moved by the runtime.
-const bellPaintCache=new WeakMap();
-function bellPaint(asset,b){const pilot=b?.honroStage===18&&G.HonroPaintedPilots?.active(b);let rows=bellPaintCache.get(asset);if(!rows){rows=new Map();bellPaintCache.set(asset,rows);}if(rows.has(!!pilot))return rows.get(!!pilot);const spec=asset.params?.soundWindow;if(!spec)return null;const box=asset.bounds,clip=new Path2D(`M${box.x-20} ${box.y-20}h${box.w+40}v${box.h+40}h${-box.w-40}Z ${spec.interiorReveal}`);let paint=asset;
+const bellPaintCache=new WeakMap(),painted=G.HONRO_MUKJONG_PAINTED;let bronzeImage=null,bronzeGeneration=0;
+function ensureBronze(){if(bronzeImage||!painted?.image||typeof Image==='undefined')return;bronzeImage=new Image();bronzeImage.decoding='async';bronzeImage.onload=()=>bronzeGeneration++;bronzeImage.src=painted.image;}
+function paintedReady(){return !!bronzeImage?.complete&&bronzeImage.naturalWidth>0;}
+function silhouette(nodes){const path=new Path2D();function add(node,m=new DOMMatrix(),fill='#000000'){m=node.transform?m.multiply(new DOMMatrix(node.transform)):m;fill=node.fill??fill;if(node.tag==='path'&&fill!=='none')path.addPath(new Path2D(node.d),m);for(const child of node.children||[])add(child,m,fill);}for(const node of nodes)add(node);return path;}
+function prepareBronze(q,asset){if(asset.params?.paintedRevision!==painted?.revision)return;ensureBronze();if(!paintedReady()||q.surface)return;const cv=document.createElement('canvas');cv.width=bronzeImage.naturalWidth;cv.height=bronzeImage.naturalHeight;const c=cv.getContext('2d'),box=asset.bounds;
+ // One bounded material raster, shared by the static tiles and the live 0.9s descent. No per-frame filters or decoding.
+ c.scale(cv.width/box.w,cv.height/box.h);c.translate(-box.x,-box.y);c.clip(q.silhouette);c.filter='saturate(.72) brightness(.80)';c.drawImage(bronzeImage,box.x,box.y,box.w,box.h);c.filter='none';q.surface=cv;
+}
+const previousWorldKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return previousWorldKey.call(this,b,w)+(active(b)?':mukjong:'+bronzeGeneration:'');};
+function bellPaint(asset,b){const pilot=(asset.params?.artRevision||0)<4&&b?.honroStage===18&&G.HonroPaintedPilots?.active(b);let rows=bellPaintCache.get(asset);if(!rows){rows=new Map();bellPaintCache.set(asset,rows);}if(rows.has(!!pilot)){const q=rows.get(!!pilot);prepareBronze(q,asset);return q;}const spec=asset.params?.soundWindow;if(!spec)return null;const box=asset.bounds,clip=new Path2D(`M${box.x-20} ${box.y-20}h${box.w+40}v${box.h+40}h${-box.w-40}Z ${spec.interiorReveal}`);let paint=asset;
  if(pilot){paint={...asset,vector:{...asset.vector,gradients:JSON.parse(JSON.stringify(asset.vector.gradients))}};const colors={bronze:['#3c382d','#8f7855','#767057','#485447','#31453d','#182c2b'],'bell-lip':['#b6a075','#897550','#4e5645','#203936'],'aged-crown':['#9e875c','#77694c','#425846','#223c35']};for(const [id,values]of Object.entries(colors))paint.vector.gradients[id].stops.forEach((s,i)=>s.color=values[i]);}
- const overlays={...paint,vector:{...paint.vector,root:{...paint.vector.root,children:paint.vector.root.children.filter(node=>spec.overlays.includes(node.id))}}},q={clip,overlays,paint};rows.set(!!pilot,q);return q;}
+ const overlays={...paint,vector:{...paint.vector,root:{...paint.vector.root,children:paint.vector.root.children.filter(node=>spec.overlays.includes(node.id))}}},q={clip,overlays,paint};const root=asset.vector.root.children,body=root.find(n=>n.id==='unbroken-round-bronze-body')?.children.find(n=>n.id==='complete-cast-body'),crown=root.find(n=>n.id==='crown-yongnyu-and-sound-pipe');q.silhouette=silhouette([body,crown,...overlays.vector.root.children].filter(Boolean));q.overlaySilhouette=silhouette(overlays.vector.root.children);rows.set(!!pilot,q);prepareBronze(q,asset);return q;}
 function drawBell(c,body,b){const q=bellPaint(body.asset,b);if(!q)return G.HonroVectorArt.draw(c,body.asset,body);
  // The cast side aperture is transparent to the actual gallery and actors.
  // Its physical outer opening is authored in soundWindow.shellOpening; the
  // leftward reveal is the already-empty bell interior viewed through it.
- c.save();c.translate(body.x||0,body.y||0);c.rotate(body.rotation||0);c.scale(body.scale??1,body.scale??1);c.clip(q.clip,'evenodd');G.HonroVectorArt.draw(c,q.paint,{x:0,y:0,scale:1,rotation:0});c.restore();G.HonroVectorArt.draw(c,q.overlays,body);return true;
+ c.save();c.translate(body.x||0,body.y||0);c.rotate(body.rotation||0);c.scale(body.scale??1,body.scale??1);c.clip(q.clip,'evenodd');if(q.surface){c.fillStyle='#102129';c.fill(q.silhouette);const box=body.asset.bounds;c.drawImage(q.surface,box.x,box.y,box.w,box.h);}else G.HonroVectorArt.draw(c,q.paint,{x:0,y:0,scale:1,rotation:0});c.restore();
+ if(q.surface){const box=body.asset.bounds;c.save();c.translate(body.x||0,body.y||0);c.rotate(body.rotation||0);c.scale(body.scale??1,body.scale??1);c.clip(q.overlaySilhouette);c.drawImage(q.surface,box.x,box.y,box.w,box.h);c.restore();}else G.HonroVectorArt.draw(c,q.overlays,body);return true;
 }
 const landmarks=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){const b=this.battle;if(!active(b))return landmarks.call(this,c,list,layer);const body=list.find(l=>l.id==='sb-bell-body');const result=landmarks.call(this,c,list.filter(l=>l.id!=='sb-bell-body'),layer);if(body&&!lowering(b)&&(body.layer||'back')===layer)drawBell(c,body,b);return result;};
 function movingBody(c,b){if(!lowering(b))return false;const body=b.honroLandmarks?.find(l=>l.id==='sb-bell-body');if(!body?.asset)return false;return drawBell(c,body,b);}
@@ -73,5 +82,5 @@ function descentGuide(c,b,scene){if(!active(b)||b.honroStage!==18)return false;c
  c.restore();return true;
 }
 const water=S.liveWater;S.liveWater=function(c,b){const result=water?.call(this,c,b);movingBody(c,b);interiorStones(c,b,this);descentGuide(c,b,this);return result;};
-G.HonroStage18BellArt={active,lowering,prepare,shell,rock,omitReadability,bellPaint,drawBell,movingBody,interiorStones,sweepArt,descentGuide};
+G.HonroStage18BellArt={paintedReady,active,lowering,prepare,shell,rock,omitReadability,bellPaint,drawBell,movingBody,interiorStones,sweepArt,descentGuide};
 })(globalThis);

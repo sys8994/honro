@@ -1,7 +1,7 @@
 import {readFileSync} from 'node:fs';
 import {compileSVG} from './build-act2-art.mjs';
 
-// Original stage-local vectors. Reference for the rounded body, nine bosses,
+// Editable cast-bronze body with incomplete human impressions. Reference for the rounded body,
 // dragon crown and sound pipe: https://encykorea.aks.ac.kr/Article/E0027239
 // The official photograph informs form; no photograph is embedded or traced.
 export const STAGE18_ART_PREFIX='stage18:bell-';
@@ -15,7 +15,7 @@ function asset(key,name,source,{role='architecture',category='architecture',extr
 }
 const svg=(body,bounds)=>`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${bounds.map(round).join(' ')}">${body}</svg>`;
 const source=name=>readFileSync(new URL('../../shared/assets/environment/'+name,import.meta.url),'utf8');
-export function createStage18HollowBell(){return asset('hollow-body','묵종: 둥근 청동 외피와 깊고 넓은 아랫입',source('stage18-hollow-bell.svg'),{extra:{koreanType:'beomjong-yongnyu-sound-pipe',monumental:true,continuousShell:true,view:'below-the-lip',localLipY:0,descentDistance:200,soundWindow:{localTop:-610,localBottom:-320,shellOpening:[[1016.372549,-610],[1308.969697,-610],[1444,-320],[1056.078431,-320]],interiorReveal:'M620-590Q620-610 660-610H1308.969697L1444-320H670Q620-320 620-360Z',overlays:['cast-sound-window-frame','single-east-cast-bearing-ear']}}});}
+export function createStage18HollowBell(){return asset('hollow-body','묵종: 삶의 흔적을 삼킨 검푸른 청동 대종',source('stage18-hollow-bell.svg'),{extra:{artRevision:4,bodyTechnique:'painted-bronze-with-editable-svg-mask',paintedRevision:4,koreanType:'beomjong-yongnyu-sound-pipe',monumental:true,continuousShell:true,view:'below-the-lip',localLipY:0,descentDistance:200,soundWindow:{localTop:-610,localBottom:-320,shellOpening:[[1016.372549,-610],[1308.969697,-610],[1444,-320],[1056.078431,-320]],interiorReveal:'M620-590Q620-610 660-610H1308.969697L1444-320H670Q620-320 620-360Z',overlays:['cast-sound-window-frame','single-east-cast-bearing-ear']}}});}
 export function createStage18BellCavern(){return asset('rear-cavern','묵종 뒤의 깊은 공동과 비대칭 암벽',source('stage18-bell-rear-cavern.svg'),{role:'mountain',category:'terrain',extra:{rearOnly:true,collisionSource:'none'}});}
 function surface(st,t,x){const es=t.properties?.honroWalkEdges||st.design.space.surfaces.find(s=>s.terrainId===t.id)?.edgeIndices||[];for(const i of es){const a=t.points[i],z=t.points[(i+1)%t.points.length];if(Math.abs(z.x-a.x)>.01&&x>=Math.min(a.x,z.x)-.001&&x<=Math.max(a.x,z.x)+.001)return a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x);}throw Error(`Stage 18 art support ${t.id} misses ${x}`);}
 function add(project,st,a,id,x=0,y=0,{layer='back',...extra}={}){const index=project.library.findIndex(v=>v.id===a.id);if(index<0)project.library.push(a);else project.library[index]=a;const e={id,assetId:a.id,x,y,scale:1,rotation:0,snap:false,depthLayer:'L1',layer,...extra};st.elements.push(e);return e;}
@@ -64,11 +64,11 @@ export function applyStage18BellArt(project){
   // The new canonical back scene replaces legacy generic cave props only here.
   if(st.environment)st.environment.placements=(st.environment.placements||[]).filter(e=>!['env:cliff','env:rock'].includes(e.assetId));
   stonePlanes(st);add(project,st,rear,'sb-art-rear-cavern');add(project,st,cavernRockRoots(st),'sb-art-rear-rock-roots');add(project,st,saddleRear(st),'sb-art-rear-corbels');
-  const body=add(project,st,bell,'sb-bell-body',spec.bell.x,spec.bell.y,{layer:'mid',stage18Bell:{terrainIds:[...spec.bell.terrainIds],lipY:spec.bell.y,sourceRevision:3}});
+  const body=add(project,st,bell,'sb-bell-body',spec.bell.x,spec.bell.y,{layer:'mid',stage18Bell:{terrainIds:[...spec.bell.terrainIds],lipY:spec.bell.y,sourceRevision:4}});
   // Resting saddles use the exact clipped terrain material pass. A separate
   // rectangular decorative cap would obscure their new sloped stone profile.
   st.design.space.lights=(st.design.space.lights||[]).filter(p=>!p.stage18Art);for(const s of spec.lamps||[]){const t=st.terrains.find(t=>t.id===s.terrainId);if(!t)throw Error('Missing bell lamp support '+s.terrainId);const y=surface(st,t,s.x);add(project,st,lamp,'sb-art-lamp-'+s.key,s.x,y,{scale:.82,stage18Support:{terrainId:t.id,x:s.x,y}});st.design.space.lights.push({id:'sb-art-light-'+s.key,stage18Art:true,kind:'oil',x:s.x,y:y-219,radius:330,color:'#c5ac7b'});}
-  st.design.bellArt={revision:3,nativeVectorOnly:true,source:'stage18-local-authored-terrain',bodyElementId:body.id,lipY:body.y,visualTopY:body.y-4320,artAssetIds:[...new Set(st.elements.filter(e=>e.id==='sb-bell-body'||e.id.startsWith('sb-art-')).map(e=>e.assetId))],budgets:{maxNodesPerAsset:240},reference:'https://encykorea.aks.ac.kr/Article/E0027239'};
+  st.design.bellArt={revision:4,bodyTechnique:'painted-bronze-with-editable-svg-mask',source:'stage18-local-authored-terrain',bodyElementId:body.id,lipY:body.y,visualTopY:body.y-4320,artAssetIds:[...new Set(st.elements.filter(e=>e.id==='sb-bell-body'||e.id.startsWith('sb-art-')).map(e=>e.assetId))],budgets:{maxNodesPerAsset:240},reference:'https://encykorea.aks.ac.kr/Article/E0027239'};
  }
  return project;
 }
