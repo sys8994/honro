@@ -255,11 +255,47 @@
     const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="stage1-painted" data-journey-layer="surface">${defs}${far}${trees}${ground}${inn}${stones}${fireLight}${props}</svg>`;
     cache.set(key,svg);return svg;
   }
+  function paintedRest2(){
+    const a=G.HONRO_PAINTED_PILOTS,id='honro-rest2-painted',key=`rest2-painted:${a.revision}`;
+    if(cache.has(key))return cache.get(key);
+    const image=(name,x,y,w,h,extra='')=>`<image href="${a.images[name]}" x="${x}" y="${y}" width="${w}" height="${h}" ${extra}/>`;
+    // A single sheltered ridge shoulder overlooks open valley. Its finite face
+    // is separate from the broad, soil-covered gathering ledge in front.
+    const mass='M-70 266L8 226Q62 223 88 267L116 295Q145 313 166 344L219 351L267 343L308 356L353 380L387 428L432 469L452 528L507 551L527 600L577 634L614 706L560 741L-70 764Z';
+    const land='M-40 726C190 710 360 688 520 698C655 708 787 706 922 710S1135 697 1280 705Q1450 711 1640 730V930H-40Z';
+    const rim='M-40 829C160 808 282 830 412 849L510 837 633 860 751 854 874 867 991 846 1118 852 1260 818 1390 810 1510 796 1640 812V930H-40Z';
+    const defs=`<defs>
+      <clipPath id="${id}-mass"><path d="${mass}"/></clipPath><clipPath id="${id}-land"><path d="${land}"/></clipPath><clipPath id="${id}-rim"><path d="${rim}"/></clipPath>
+      <filter id="${id}-far" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values=".48"/><feComponentTransfer><feFuncR type="linear" slope=".67" intercept=".055"/><feFuncG type="linear" slope=".67" intercept=".055"/><feFuncB type="linear" slope=".67" intercept=".055"/></feComponentTransfer></filter>
+      <filter id="${id}-near" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values=".63"/><feComponentTransfer><feFuncR type="linear" slope=".83" intercept=".025"/><feFuncG type="linear" slope=".83" intercept=".025"/><feFuncB type="linear" slope=".83" intercept=".025"/></feComponentTransfer></filter>
+      <pattern id="${id}-soil" width="670" height="670" patternUnits="userSpaceOnUse">${image('forestSoil',0,0,670,670)}</pattern>
+      <pattern id="${id}-stone" width="384" height="256" patternUnits="userSpaceOnUse">${image('forestRock',0,0,384,256)}</pattern>
+      <linearGradient id="${id}-far-fade" x2="0" y2="1"><stop stop-color="#293b44" stop-opacity="0"/><stop offset="1" stop-color="#293b44"/></linearGradient>
+      <linearGradient id="${id}-earth" x2="0" y2="1"><stop stop-color="#6b66542b"/><stop offset=".45" stop-color="#38413655"/><stop offset="1" stop-color="#111d22"/></linearGradient>
+      <linearGradient id="${id}-rim-shade" x2="0" y2="1"><stop stop-color="#28383277"/><stop offset="1" stop-color="#111d22"/></linearGradient>
+      <radialGradient id="${id}-fire-ground"><stop stop-color="#c29659" stop-opacity=".3"/><stop offset=".5" stop-color="#b17d43" stop-opacity=".13"/><stop offset="1" stop-color="#ab703d" stop-opacity="0"/></radialGradient>
+      <radialGradient id="${id}-fire-halo"><stop stop-color="#edb65c" stop-opacity=".3"/><stop offset=".35" stop-color="#d29748" stop-opacity=".11"/><stop offset="1" stop-color="#d29748" stop-opacity="0"/></radialGradient>
+    </defs>`;
+    const far=group('stage2-valley-overlook',`<rect x="-1600" y="-900" width="4800" height="2700" fill="#293b44"/>`+image('valleyFar',-800,-155,3200,1067,`filter="url(#${id}-far)"`)+`<rect x="-800" y="-155" width="3200" height="1067" fill="#344b55" opacity=".12"/><rect x="-800" y="410" width="3200" height="350" fill="url(#${id}-far-fade)"/>`,'data-rest-backdrop="stage2-painted"');
+    // The root fan is buried by the rocky shoulder; the pine has no motion hook.
+    const pine=group('one-static-ridge-pine',image('pineA',-23,-70,321,450,`filter="url(#${id}-near)"`));
+    const shoulder=group('finite-windbreak-rock',`<g clip-path="url(#${id}-mass)">${image('forestRock',-100,180,900,600,`filter="url(#${id}-near)"`)}<path d="M267 343L353 380 387 428 432 469 452 528 507 551 527 600 577 634 614 706 515 720 410 650 375 550 350 470 305 400Z" fill="#152e35" opacity=".28"/></g>`);
+    const stone=group('one-small-ledge-stone',image('granite',1180,645,210,100,`filter="url(#${id}-near)"`));
+    const ground=group('continuous-ridge-gathering-ledge',`<path d="${land}" fill="#44463a"/><g clip-path="url(#${id}-land)"><rect x="-40" y="680" width="1680" height="250" fill="url(#${id}-soil)"/><path d="M440 714C594 721 696 730 809 725S1018 716 1140 733L1190 842C995 858 671 843 438 819Z" fill="#91836a" opacity=".14"/><rect x="-40" y="680" width="1680" height="250" fill="url(#${id}-earth)"/><g clip-path="url(#${id}-rim)">${image('forestRock',-80,480,1800,1200)}<rect x="-40" y="790" width="1680" height="140" fill="url(#${id}-rim-shade)"/></g></g>`);
+    // Keep the exact retained flame/ember paths and fire hit target contract.
+    // The exposed ledge has no inn, signpost or invented buildings/benches.
+    let props=campProps(id).replace(/^<g data-art-layer="resting-circle"[^>]*>[\s\S]*?(?=<ellipse cx="800")/,'<g data-art-layer="resting-circle">').replace(/<g data-art-layer="wayfinding-signpost"[^>]*>[\s\S]*$/,'');
+    props=props.replaceAll('fill="#5c5a4b"',`fill="url(#${id}-stone)"`).replace('fill="#0c171a" opacity=".7"','fill="#0c171a" opacity=".42"');
+    const light=group('fire-ground-light',glow(800,758,300,103,`${id}-fire-ground`),'data-rest-motion="fire-ground"');
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="stage2-painted" data-journey-layer="surface">${defs}${far}${pine}${shoulder}${stone}${ground}${light}${props}</svg>`;
+    cache.set(key,svg);return svg;
+  }
   function scene(variant, layer = 'surface', stage = 0) {
     variant = variants.includes(variant) ? variant : 'forest';
     layer = variant === 'cave' || layer === 'underground' ? 'underground' : 'surface';
     const underground = layer === 'underground';
     if(stage===1&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.rest1Inn)return paintedRest1();
+    if(stage===2&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.valleyFar)return paintedRest2();
     const key = `scene:${variant}:${layer}:${stage}:${!!G.HONRO_ACT1_FAR_DATA}`;
     if (cache.has(key)) return cache.get(key);
     const p = underground ? {...palettes[variant], sky:'#101f28', horizon:'#38565d', ridge:'#223d48', mist:'#83a4a5'} : palettes[variant];
