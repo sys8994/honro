@@ -1,5 +1,5 @@
 import {prefetchProject,yieldIfNeeded} from "../runtime/load-data.fb768c8f80789aa0.js";
-globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL="web/entries/game.3a85f647647d7689.html?embedded=1";
+globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL="web/entries/game.c2d52f6bf8108bf3.html?embedded=1";
 const modules=[new URL("../runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-title-markup.3976b37b0afc8917.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.e05556f1dfcacaa2.js",import.meta.url).href,
@@ -17,7 +17,7 @@ new URL("../runtime/shared-runtime-terrain-space.db1be023752f8050.js",import.met
 new URL("../runtime/shared-runtime-map-engine.7d9366336b5cc0e5.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-battlefield-layouts.ab57c6e52e8553d8.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-split-campaign.ca8d4aab54cbd13c.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-campaign-map-revision.0499d6c2a1778363.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-campaign-map-revision.e5ecf2a34c8d2e52.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stake-crossing.856b1d39148283c3.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-contribution-xp.a4c4466ca62fa342.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-progression.653664f006c3f018.js",import.meta.url).href,
@@ -82,14 +82,14 @@ new URL("../runtime/shared-map-schema.0f2a75802167de22.js",import.meta.url).href
 new URL("../runtime/shared-map-units.3823d4dde2d7a3ea.js",import.meta.url).href,
 new URL("../runtime/shared-map-compiler.39e2ee6ada55ff61.js",import.meta.url).href,
 new URL("../runtime/shared-map-commands.0bfc0d1f5891d562.js",import.meta.url).href,
-new URL("../runtime/campaign.2b77a5e6913fdc71.js",import.meta.url).href,
+new URL("../runtime/campaign.54a6d8d42bae92e7.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-party-rig.51f29b73aad09a0e.js",import.meta.url).href,
 new URL("../runtime/party-alias.766fe2b8e383d5c4.js",import.meta.url).href,
 new URL("../runtime/shared-assets-rebuild-game-adapter.7584136339439b5b.js",import.meta.url).href,
 new URL("../runtime/HONRO_ACT1_FAR_DATA.06faf0ab5dbfc8a1.js",import.meta.url).href,
 new URL("../runtime/HONRO_ACT2_FAR_DATA.0de09acbad7a7af8.js",import.meta.url).href,
 new URL("../runtime/HONRO_STAGE21_PAINTED.48a558c3fa9b5fab.js",import.meta.url).href,
-new URL("../runtime/HONRO_PAINTED_PILOTS.918c43008cea6279.js",import.meta.url).href,
+new URL("../runtime/HONRO_PAINTED_PILOTS.5e3dea61c74d8f70.js",import.meta.url).href,
 new URL("../runtime/shared-assets-monsters-monsters-runtime.368b4c6c02e79e1f.js",import.meta.url).href,
 new URL("../runtime/shared-assets-actors-actors-runtime.71936d333b9319d2.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-renderer.27c174d4bbdba94c.js",import.meta.url).href,
@@ -106,7 +106,7 @@ new URL("../runtime/shared-runtime-act2-spatial-art.c4d9cc0730becf34.js",import.
 new URL("../runtime/shared-runtime-stage11-landscape-art.c6bc706dada62434.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-act2-art.4d86d0275acae712.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-act3-art.bd2ae3e2b88a25c2.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-act1-spatial-art.11f2ca885c32e6fa.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-act1-spatial-art.30ed66deeb63ace1.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-terrain-readability.c526ad54f2df1070.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage18-bell-art.f7ee92193c95088e.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage30-ferry-art.8980a66f8a3f4d36.js",import.meta.url).href,
@@ -127,13 +127,14 @@ new URL("../runtime/shared-runtime-painted-pilots-art.be9a15dd180a1766.js",impor
 new URL("../runtime/shared-runtime-stage1-location-art.2018fedd2168740f.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage2-location-art.538e075b73b8087a.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage3-location-art.9a9d6470edbd5a81.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-stage4-location-art.e8db3bec6c82081f.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage-rules.425c10ceb6d4b5ec.js",import.meta.url).href,
 new URL("../runtime/workshop-app.3dcb579d65e74da0.js",import.meta.url).href];
 globalThis.HONRO_READY=(async()=>{try{
 
 const preloaded=new Set();
 for(let i=0;i<modules.length;i++){
- if(i===2&&!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject("web/data/campaign.2f539301c6543925.json");
+ if(i===2&&!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject("web/data/campaign.c7df41847b4d1c09.json");
  for(let n=i;n<Math.min(modules.length,i+12);n++){const href=modules[n];if(preloaded.has(href))continue;preloaded.add(href);const link=document.createElement('link');link.rel='modulepreload';link.href=href;link.fetchPriority='low';document.head.append(link);}
  
  const file=modules[i];await import(file);globalThis.HonroStartup?.progress('공통 준비',i+1,modules.length);await yieldIfNeeded();
