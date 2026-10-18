@@ -1,9 +1,9 @@
 (function(G){'use strict';
 // Stage1 presentation only. Every painted edge comes from the live solid;
 // no scenery silhouette, collision, save revision or gameplay state is authored here.
-let earthCard,rockCards;
+let earthCard,rockCards,branchBark;
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,P=G.HonroPaintedPilots,geometry=new WeakMap(),fields=new WeakMap();
-const active=b=>b?.honroStage===1&&P.active(b),ready=()=>P.ready('forestRock')&&P.ready('forestSoil')&&P.ready('bark');
+const active=b=>b?.honroStage===1&&P.active(b),ready=()=>P.ready('forestRock')&&P.ready('forestSoil')&&P.ready('bark')&&P.ready('pineA');
 function closed(points){const p=new Path2D();points.forEach((v,i)=>i?p.lineTo(v.x,v.y):p.moveTo(v.x,v.y));p.closePath();return p;}
 function prepare(t){let q=geometry.get(t);if(q?.source===t.vertices)return q;const points=C.poly(t),edges=[];
  for(let i=0;i<points.length;i++){const a=points[i],z=points[(i+1)%points.length];if(z.x>a.x+.01)edges.push([a,z]);}
@@ -28,7 +28,14 @@ const random=n=>{const v=Math.sin(n*12.9898+78.233)*43758.5453;return v-Math.flo
 function geologyTop(b,x){const ground=G.HonroTerrainDomain.render(b).filter(t=>!t.oneWay&&!t.honroElementCollision&&!t.broken&&x>=t.x&&x<=t.x+t.w);return ground.length?Math.min(...ground.map(t=>prepare(t).top(x))):1200;}
 function rock(c,t,b){const q=prepare(t),m=c.getTransform(),left=Math.max(t.x,-m.e/m.a-4),right=Math.min(t.x+t.w,(c.canvas.width-m.e)/m.a+4),small=t.honroElementCollision;
  c.save();c.clip(q.path);c.fillStyle='#303633';c.fill(q.path);
- if(small){const img=P.images.forestRock;c.drawImage(img,t.id.includes('boulder-b')?400:0,80,1000,840,t.x,t.y,t.w,t.h);}
+ if(small){
+  // A single mineral face, not the earth/moss ledge above it. Cover-crop keeps
+  // the source proportions; this solid never enters the ground's strip fade.
+  const img=P.images.forestRock,rect=t.id.includes('boulder-b')?[1160,610,280,330]:[440,570,480,300];let [sx,sy,sw,sh]=rect;const aspect=t.w/t.h;
+  if(sw/sh>aspect){const w=sh*aspect;sx+=(sw-w)/2;sw=w;}else{const h=sw/aspect;sy+=(sh-h)/2;sh=h;}
+  c.drawImage(img,sx,sy,sw,sh,t.x,t.y,t.w,t.h);
+  const shade=c.createLinearGradient(t.x,t.y,t.x+t.w*.8,t.y+t.h);shade.addColorStop(0,'#c8b9970c');shade.addColorStop(.45,'#20241f00');shade.addColorStop(1,'#18201e48');c.fillStyle=shade;c.fill(q.path);c.restore();return true;
+ }
  else {
   // Unequal local outcrops overlap with soft material joins. Every world tile
   // visits the same cards in the same order; the two soil terrains share one
@@ -40,7 +47,7 @@ function rock(c,t,b){const q=prepare(t),m=c.getTransform(),left=Math.max(t.x,-m.
  }
  const step=96;
  for(let x=Math.floor(left/step)*step;x<right;x+=step){const x0=Math.max(x,t.x),x1=Math.min(x+step,t.x+t.w);if(x1<=x0)continue;
-  const y0=q.top(x0),y1=q.top(x1),slope=(y1-y0)/(x1-x0),depth=small?Math.max(180,t.h):810;
+  const y0=q.top(x0),y1=q.top(x1),slope=(y1-y0)/(x1-x0),depth=810;
   c.save();c.transform(1,slope,0,1,x0,y0);if(!small){const d=earthDepth((x0+x1)/2),soil=soilPattern(c);soil.setTransform(new DOMMatrix([.57,0,0,d/320,-x0,0]));c.fillStyle=soil;c.fillRect(0,0,x1-x0+.3,d);}const fade=c.createLinearGradient(0,0,0,depth);fade.addColorStop(0,'#19242800');fade.addColorStop(.28,'#19242826');fade.addColorStop(.68,'#1b272ad8');fade.addColorStop(1,'#20292a');c.fillStyle=fade;c.fillRect(0,-32,x1-x0+.3,Math.max(depth+32,t.y+t.h-y0));c.restore();
  }
  if(!small)for(const [a,z]of q.edges){
@@ -51,11 +58,33 @@ function rock(c,t,b){const q=prepare(t),m=c.getTransform(),left=Math.max(t.x,-m.
  }
  c.restore();return true;
 }
-function branch(c,t){const q=prepare(t);c.save();c.clip(q.path);const texture=field(c,'bark');texture.setTransform(new DOMMatrix([1.2,0,0,1.15,t.x,t.y]));c.fillStyle=texture;c.fill(q.path);
- const g=c.createLinearGradient(0,t.y,0,t.y+t.h);g.addColorStop(0,'#b1a17b44');g.addColorStop(.32,'#594a3420');g.addColorStop(1,'#101c22cf');c.fillStyle=g;c.fill(q.path);
- // A narrow warm upper plane identifies the actual solid bough separately
- // from the subdued decorative tree. It never extends outside collision.
- for(const [a,z]of q.edges)band(c,a,z,()=>0,()=>4,'#b5a17b70');c.restore();return true;
+function prepareBark(){
+ if(!branchBark){
+  // Sample clean trunk bark already loaded for Stage1. Rotate its lengthwise
+  // grain onto the bough axis; the old roots/moss atlas strip read as planking.
+  const img=P.images.pineA,cv=branchBark=document.createElement('canvas');cv.width=288;cv.height=72;const cc=cv.getContext('2d');cc.translate(0,72);cc.rotate(-Math.PI/2);cc.drawImage(img,img.naturalWidth*.34,img.naturalHeight*.45,img.naturalWidth*.13,img.naturalHeight*.16,0,0,72,288);
+ }
+ return branchBark;
+}
+function branchSection(t,q){if(q.branch)return q.branch;const ps=C.poly(t),underside=[];
+ for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(z.x<a.x)underside.push([z,a]);}
+ const bottom=x=>{const edge=underside.find(([a,z])=>x>=a.x&&x<=z.x);return edge?edge[0].y+(edge[1].y-edge[0].y)*(x-edge[0].x)/(edge[1].x-edge[0].x):q.top(x)+8;},west=t.id==='pine-branch-west',baseX=west?t.x+t.w-10:t.x+10,baseY=(q.top(baseX)+bottom(baseX))/2,grain=[];
+ for(const f of [.18,.38,.61,.81]){const p=new Path2D();for(let i=0;i<=12;i++){const u=i/12,x=t.x+8+(t.w-16)*u,top=q.top(x),thickness=Math.max(4,bottom(x)-top),taper=west?u:1-u,y=top+thickness*(.48+(f-.5)*(.46+.54*taper));i?p.lineTo(x,y):p.moveTo(x,y);}grain.push(p);}
+ return q.branch={bottom,west,baseX,baseY,grain};
+}
+function branch(c,t){const q=prepare(t),section=branchSection(t,q),dir=section.west?1:-1;c.save();
+ // A short descending attachment sits inside the tree silhouette. Its upper
+ // edge is curved and below the real top, so it never suggests another step.
+ c.beginPath();c.moveTo(section.baseX+dir*35,section.baseY+17);c.quadraticCurveTo(section.baseX+dir*10,section.baseY+11,section.baseX-dir*12,section.baseY+3);const join=c.createLinearGradient(section.baseX+dir*35,section.baseY+17,section.baseX-dir*12,section.baseY+3);join.addColorStop(0,'#394b5200');join.addColorStop(.45,'#394b5244');join.addColorStop(1,'#282b24c0');c.strokeStyle=join;c.lineWidth=10;c.lineCap='round';c.stroke();
+ c.clip(q.path);c.fillStyle='#3c3529';c.fill(q.path);prepareBark();const m=c.getTransform(),left=Math.max(t.x,-m.e/m.a-4),right=Math.min(t.x+t.w,(c.canvas.width-m.e)/m.a+4);
+ // The texture and round lower volume follow the actual bough contour. Every
+ // span samples one continuous bough-length image, with no repeated end seam.
+ for(let x=Math.floor(left/64)*64;x<right;x+=64){const x0=Math.max(x,t.x),x1=Math.min(x+64,t.x+t.w);if(x1<=x0)continue;const y0=q.top(x0),y1=q.top(x1),thickness=Math.max(10,(section.bottom((x0+x1)/2)-q.top((x0+x1)/2)));
+  c.save();c.transform(1,(y1-y0)/(x1-x0),0,1,x0,y0);const sx=(x0-t.x)/t.w*branchBark.width,sw=(x1-x0)/t.w*branchBark.width;c.drawImage(branchBark,sx,0,sw,branchBark.height,0,0,x1-x0+.3,thickness+4);
+  const g=c.createLinearGradient(0,0,0,thickness);g.addColorStop(0,'#a48e6522');g.addColorStop(.28,'#6c533522');g.addColorStop(.7,'#251e1ba0');g.addColorStop(1,'#151e22df');c.fillStyle=g;c.fillRect(0,-8,x1-x0+.3,thickness+40);c.restore();
+ }
+ for(const [i,p]of section.grain.entries()){c.strokeStyle=i===1?'#a28d644a':'#191b18a0';c.lineWidth=i===1?1.2:1.6;c.lineCap='round';c.stroke(p);}
+ for(const [a,z]of q.edges)band(c,a,z,()=>0,()=>1.5,'#b3a27c45');c.restore();return true;
 }
 function terrain(c,t,b){if(!active(b)||!ready()||t.broken||t.honroSeal)return false;if(t.honroElementCollision)return false;if(t.mat==='wood')return branch(c,t);if(['earth','soil','rock','stone'].includes(t.mat))return rock(c,t,b);return false;}
 const oldTerrain=S.terrain;S.terrain=function(c,t){if(!terrain(c,t,this.battle))return oldTerrain.call(this,c,t);};
