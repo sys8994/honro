@@ -497,6 +497,39 @@
     const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="stage8-painted" data-journey-layer="surface">${defs}${far}${slope}${lowWall}${home}${ground}${light}${props}</svg>`;
     cache.set(key,svg);return svg;
   }
+  function paintedRest9(){
+    const a=G.HONRO_PAINTED_PILOTS,id='honro-rest9-painted',key=`rest9-painted:${a.revision}`;
+    if(cache.has(key))return cache.get(key);
+    const image=(name,x,y,w,h,extra='')=>`<image href="${a.images[name]}" x="${x}" y="${y}" width="${w}" height="${h}" ${extra}/>`;
+    const land='M-70 729Q106 709 271 718T533 725Q675 735 814 728T1090 724Q1235 711 1370 686T1660 647V950H-70Z';
+    const hill='M1100 728Q1180 701 1250 697T1390 664Q1530 626 1660 645V950H1100Z';
+    const wall='M-70 685Q47 678 139 690L263 699 294 722Q171 728 53 730L-70 737Z';
+    const defs=`<defs>
+      <clipPath id="${id}-land"><path d="${land}"/></clipPath><clipPath id="${id}-hill"><path d="${hill}"/></clipPath><clipPath id="${id}-wall"><path d="${wall}"/></clipPath>
+      <filter id="${id}-far" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values=".39"/><feComponentTransfer><feFuncR type="linear" slope=".62" intercept=".063"/><feFuncG type="linear" slope=".62" intercept=".063"/><feFuncB type="linear" slope=".62" intercept=".063"/></feComponentTransfer></filter>
+      <filter id="${id}-near" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values=".69"/><feComponentTransfer><feFuncR type="linear" slope=".87" intercept=".02"/><feFuncG type="linear" slope=".87" intercept=".02"/><feFuncB type="linear" slope=".87" intercept=".02"/></feComponentTransfer></filter>
+      <pattern id="${id}-soil" width="580" height="580" patternUnits="userSpaceOnUse">${image('forestSoil',0,0,580,580,'opacity=".64"')}</pattern>
+      <pattern id="${id}-stone" width="384" height="256" patternUnits="userSpaceOnUse">${image('forestRock',0,0,384,256)}</pattern>
+      <linearGradient id="${id}-far-fade" x2="0" y2="1"><stop stop-color="#2d4149" stop-opacity="0"/><stop offset="1" stop-color="#2d4149"/></linearGradient>
+      <linearGradient id="${id}-earth" x2="0" y2="1"><stop stop-color="#716146" stop-opacity=".08"/><stop offset=".5" stop-color="#444135" stop-opacity=".25"/><stop offset="1" stop-color="#18282b"/></linearGradient>
+      <linearGradient id="${id}-hill-depth" x2="0" y2="1"><stop stop-color="#343e35" stop-opacity="0"/><stop offset=".5" stop-color="#273833" stop-opacity=".16"/><stop offset="1" stop-color="#203035"/></linearGradient>
+      <radialGradient id="${id}-fire-ground"><stop stop-color="#c29659" stop-opacity=".3"/><stop offset=".5" stop-color="#b17d43" stop-opacity=".13"/><stop offset="1" stop-color="#ab703d" stop-opacity="0"/></radialGradient>
+      <radialGradient id="${id}-fire-halo"><stop stop-color="#edb65c" stop-opacity=".3"/><stop offset=".35" stop-color="#d29748" stop-opacity=".11"/><stop offset="1" stop-color="#d29748" stop-opacity="0"/></radialGradient>
+    </defs>`;
+    const far=group('stage9-quiet-lower-courtyard',`<rect x="-1600" y="-900" width="4800" height="2700" fill="#2d4149"/>`+image('forestFar',-800,-155,3200,1067,`filter="url(#${id}-far)"`)+`<rect x="-800" y="-155" width="3200" height="1067" fill="#354b52" opacity=".13"/><rect x="-800" y="410" width="3200" height="600" fill="url(#${id}-far-fade)"/>`,'data-rest-backdrop="stage9-painted"');
+    const slope=group('low-rock-ledge-opposite-warehouse',`<path d="${hill}" fill="#344038"/><g clip-path="url(#${id}-hill)">${image('forestRock',1050,598,850,566,`filter="url(#${id}-near)" opacity=".75"`)}<path d="M1100 730Q1180 704 1250 700T1390 667Q1530 629 1660 648" fill="none" stroke="url(#${id}-soil)" stroke-width="32"/><rect x="1030" y="610" width="700" height="340" fill="url(#${id}-hill-depth)"/></g>`);
+    // A complete corridor cutout keeps its own aspect. Only the broken end
+    // and last post enter the frame; their feet start buried in the earth.
+    const home=group('partial-ruined-gallery',image('ritualCorridor9',-900,760-1550*486/1536,1550,1550*486/1536,`filter="url(#${id}-near)"`));
+    const lowWall=group('low-gallery-wall-trace',`<g clip-path="url(#${id}-wall)">${image('forestRock',-70,440,760,507,`filter="url(#${id}-near)"`)}<path d="${wall}" fill="#25332d" opacity=".12"/></g>`);
+    const well=group('dry-well-at-path-edge',image('rest9Well',1140,730-180*0.3125,180,180*0.3125,`filter="url(#${id}-near)"`));
+    const ground=group('low-earth-courtyard',`<path d="${land}" fill="#4b4838"/><g clip-path="url(#${id}-land)"><rect x="-70" y="610" width="1740" height="340" fill="url(#${id}-soil)"/><path d="M106 733Q354 711 555 743T947 756Q1124 737 1289 707L1519 829Q1222 811 1006 845T536 824Q288 787 106 791Z" fill="#a18a63" opacity=".13"/><rect x="-70" y="610" width="1740" height="340" fill="url(#${id}-earth)"/></g>`);
+    let props=campProps(id).replace(/^<g data-art-layer="resting-circle"[^>]*>[\s\S]*?(?=<ellipse cx="800")/,'<g data-art-layer="resting-circle">').replace(/<g data-art-layer="wayfinding-signpost"[^>]*>[\s\S]*$/,'');
+    props=props.replaceAll('fill="#5c5a4b"',`fill="url(#${id}-stone)"`).replace('fill="#0c171a" opacity=".7"','fill="#0c171a" opacity=".42"');
+    const light=group('fire-ground-light',glow(800,758,300,103,`${id}-fire-ground`),'data-rest-motion="fire-ground"');
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="stage9-painted" data-journey-layer="surface">${defs}${far}${slope}${lowWall}${home}${well}${ground}${light}${props}</svg>`;
+    cache.set(key,svg);return svg;
+  }
   function scene(variant, layer = 'surface', stage = 0) {
     variant = variants.includes(variant) ? variant : 'forest';
     layer = variant === 'cave' || layer === 'underground' ? 'underground' : 'surface';
@@ -509,6 +542,7 @@
     if(stage===6&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.bridge6)return paintedRest6();
     if(stage===7&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.villageHome7)return paintedRest7();
     if(stage===8&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.bierStore8)return paintedRest8();
+    if(stage===9&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.ritualCorridor9)return paintedRest9();
     const key = `scene:${variant}:${layer}:${stage}:${!!G.HONRO_ACT1_FAR_DATA}`;
     if (cache.has(key)) return cache.get(key);
     const p = underground ? {...palettes[variant], sky:'#101f28', horizon:'#38565d', ridge:'#223d48', mist:'#83a4a5'} : palettes[variant];

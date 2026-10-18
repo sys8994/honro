@@ -43,3 +43,8 @@ build, JS 구문/소스 공백, 실제 Chromium1440×900 전체/동쪽 문간·�
 91a26a5의 실제 화면에서 두 긴 목재 띠/상단 사각 암판/녹색 접합부를 지적받았다. 이 부분만 별도 완성형 root-fork 자산으로 바꿨다. 원본 PNG를 보존하고 같은 trim/원비율 외부WebP pipeline에 추가했다. 암괴를 둘러싼 여러 뿌리가 고목 줄기에 닿아 양쪽 흙으로 내려가는 연속된 입체 형태다. 실제 노출 상면에 한 번 투영한 한 개 cache를 사용하며 각 경사 edge에 bark strip을 늘여 칠하지 않는다. 아래 통행의 투명한 틈과 앞쪽 배우 가독성을 남기고 기존 지면이 발끝을 묻는다.
 
 실제 상면뿐 아니라 canonical terrain/author/routes/markers/anchors/units/events/story/save revision 전체가91a26a5와 동일하다. 따라서 소단·성장·4경로 검사를 반복하지 않고 build·실제 전체/동쪽 확대2뷰만 확인했다. pageerror0, picture4/far1/rootFork1/beam1/filter5가 정적3frame 동안 불변이다. 모바일v0는 이전 회랑 참고본 그대로 두고 전체/동쪽의 같은 Library ID만v1로 교체했다. 증거 `_local/reports/stage9-location-paint/root-finish/{build.log,render-checks.json,library.json,scope.json}`. 부모 미술 확인 전 master 미반영이다.
+
+
+## v1 승인 배포
+
+부모가 뿌리 연결/재질을 포함한 v1 실제2뷰를 승인했다. a5a6668090c1f75ff446568cf341235c6a476a3d를 master9e1fd5290b0bf77052405a9aa3b0b9c12af79666에 병합·push했다. 최신8장 접지 소스는 보존하고 충돌한 생성물만 재빌드했으며9장 승인 소스·지형·자산은 불변이다. 전투/연출/성장 검사는 반복하지 않았다. Pages39168421755의 해당 SHA/completed/success 확인, 공개 실제 화면은 부모 확인이다.
