@@ -1,4 +1,4 @@
-globalThis.HONRO_PLAYTEST_URL="web/entries/game.56fd56759e532b00.html?embedded=1";
+globalThis.HONRO_PLAYTEST_URL="web/entries/game.d2fa993a3aba686e.html?embedded=1";
 const modules=[new URL("../runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.c5e0589639564156.js",import.meta.url).href,
 new URL("../runtime/engine-core.e798a3b4e89840c3.js",import.meta.url).href,
@@ -80,7 +80,7 @@ new URL("../runtime/shared-map-schema.0f2a75802167de22.js",import.meta.url).href
 new URL("../runtime/shared-map-units.a7664cecc78a0f8f.js",import.meta.url).href,
 new URL("../runtime/shared-map-compiler.4d83af18db9b83d6.js",import.meta.url).href,
 new URL("../runtime/shared-map-commands.0bfc0d1f5891d562.js",import.meta.url).href,
-new URL("../runtime/campaign.fc465cf7487cbdfb.js",import.meta.url).href,
+new URL("../runtime/campaign.4abd1de7f4c722c2.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-party-rig.51f29b73aad09a0e.js",import.meta.url).href,
 new URL("../runtime/party-alias.dd433f93c412ef75.js",import.meta.url).href,
 new URL("../runtime/shared-assets-rebuild-game-adapter.7584136339439b5b.js",import.meta.url).href,
@@ -88,6 +88,7 @@ new URL("../runtime/HONRO_ACT1_FAR_DATA.71d946edec3f3caf.js",import.meta.url).hr
 new URL("../runtime/HONRO_ACT2_FAR_DATA.cb83bfe1d99c6ee2.js",import.meta.url).href,
 new URL("../runtime/HONRO_STAGE21_PAINTED.91045daa398b5477.js",import.meta.url).href,
 new URL("../runtime/HONRO_PAINTED_PILOTS.b0a0d44bb73f1b67.js",import.meta.url).href,
+new URL("../runtime/HONRO_MUKJONG_PAINTED.ae777969572983c1.js",import.meta.url).href,
 new URL("../runtime/shared-assets-monsters-monsters-runtime.0c258e1887e54bf1.js",import.meta.url).href,
 new URL("../runtime/shared-assets-actors-actors-runtime.c12c31416fcd7bfc.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-renderer.27c174d4bbdba94c.js",import.meta.url).href,
@@ -106,7 +107,7 @@ new URL("../runtime/shared-runtime-act2-art.4d86d0275acae712.js",import.meta.url
 new URL("../runtime/shared-runtime-act3-art.bd2ae3e2b88a25c2.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-act1-spatial-art.7324b9379a819d08.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-terrain-readability.c526ad54f2df1070.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-stage18-bell-art.f7ee92193c95088e.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-stage18-bell-art.42e8b74ff246b0a3.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage30-ferry-art.8980a66f8a3f4d36.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage12-quarry-art.668817c853f56c53.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage23-escort-art.44e63545f6aa892b.js",import.meta.url).href,
