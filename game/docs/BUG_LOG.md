@@ -1,3 +1,10 @@
+## 2026-10-18 — 승인9장 쉼터 배포·10장 당산나무/의식 마당
+
+- 승인9장 쉼터를 master8b660c821ef7034a0cd9c2f76cd41da33bcc2918로 병합·push, 승인 tree 동일/검증 반복 없음. Pages39169269197 해당 SHA 성공, 부모21:55 UTC 공개9장 실제 전투/쉼터 확인 완료.
+- 별도10장 author/renderer에서 새 당산나무의 실제 네 가지를 같은 원화 좌표의 one-way로 저작하고 넓은 능선/의식 자리/양쪽 서로 다른 열린 회랑·실제 지붕을 연결했다. 그림을 띠로 잘라 붙이거나 옛 바위판 glyph를 중복하지 않는다. 새 나무/온전한 회랑 WebP2점, 조용한 원경과 기존 날씨·배우·붉은 실 연출 유지, 새 모션/RAF 없음.
+- 기존 설치된 두 진·본체 보호·주박58%→offering/accepted→side2 channeler→6적턴 조건·wave/cap/HP/XP/AI를 보존했다. 주박은 아래 통행 여유를 위해 새 의식 자리 위로 배치한다. 처마와 겹친 새10장 crow만 기존288범위 placement의 requireFlightClearance를 사용한다.10장 revision1/옛10장만 성장·SP·장착·진척을 보존해 입구330 재시작.
+- build·실제3뷰·기본 아래길/양쪽 회랑/4가지 점프·초기/초기wave/finale 몸체·비살상/대화/6경계 조건·옛 저장1건을 국소 확인했다. 정상 전체 전투·모든 기예·전체verify 미실행. 통과한 로그는 반복하지 않았다. feature commit/push 후 부모 미술 확인 대기,10장 쉼터/11장 미착수. 상세 STAGE10_GUARDIAN_LOCATION_PAINT.md.
+
 ## 2026-10-18 — 승인9장 전투 배포·아랫마당 길목 쉼터
 
 - 승인9장 v1을 master9e1fd5290b0bf77052405a9aa3b0b9c12af79666에 병합·push했다. 최신8장 접지와 생성물 rename 충돌은 두 소스를 보존해 패키지만 재빌드했고9장 승인 소스/terrain은 같다. Pages39168421755 해당 SHA/completed/success, 전투 검사 반복 없음.

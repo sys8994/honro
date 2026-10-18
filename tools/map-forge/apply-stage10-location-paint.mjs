@@ -1,0 +1,1 @@
+import {readFile,writeFile}from'node:fs/promises';import{applyStage10LocationPaint}from'./stage10-location-paint.mjs';const f='shared/data/campaign.json',p=JSON.parse(await readFile(f,'utf8'));applyStage10LocationPaint(p);await writeFile(f,JSON.stringify(p)+'\n');console.log('Authored Stage10 tree boughs, shrine yards and support poses only');
