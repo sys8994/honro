@@ -45,7 +45,7 @@ function mountRestCamera(app,scene){const world=scene?.querySelector?.('.rest-wo
  scene._restCamera={resize(rect,w,h){box=rect;width=w;height=h;
   // First framing only: keep the small inn, Seol-o and fire together on phones.
   // Later resize/pan/zoom keeps the existing camera state and full bounds.
-  if(initial){initial=false;if(box.width<=700&&scene.querySelector('[data-journey-art="stage1-painted"]')){zoom=1.12;x=Math.max(0,Math.min(112,box.width*.28,(box.width-126*zoom)/2-12));y=-Math.min(90,Math.max(0,(height*zoom-box.height)/2));}}
+  if(initial){initial=false;if(box.width<=700&&scene.querySelector('[data-journey-art="stage1-painted"]')){zoom=1.12;x=Math.max(0,Math.min(112,box.width*.28,(box.width-126*zoom)/2-12));y=-Math.min(90,Math.max(0,(height*zoom-box.height)/2));}else if(box.width<=700&&scene.querySelector('[data-journey-art="stage2-painted"]')){zoom=1.08;x=Math.min(42,box.width*.1);y=-Math.min(65,Math.max(0,(height*zoom-box.height)/2));}}
   cancel();apply();},cancel};
  layoutRest();
  const pinch=()=>{const [a,b]=contacts.values();return b?{x:(a.x+b.x)/2,y:(a.y+b.y)/2,gap:Math.hypot(a.x-b.x,a.y-b.y)}:null;};
