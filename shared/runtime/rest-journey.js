@@ -43,9 +43,9 @@ function mountRestCamera(app,scene){const world=scene?.querySelector?.('.rest-wo
  const apply=()=>{const mx=Math.max(0,(width*zoom-box.width)/2),my=Math.max(0,(height*zoom-box.height)/2);x=Math.max(-mx,Math.min(mx,x));y=Math.max(-my,Math.min(my,y));world.style.transform=`translate(${x}px,${y}px) scale(${zoom})`;if(center)center.hidden=Math.abs(x)<box.width*.3&&Math.abs(y)<box.height*.2;if(far){const depth=G.HonroEnvironment.ACT1_FAR,unit=1600/(width*zoom);far.setAttribute('transform',`translate(${-x*unit*(1-depth.panX)} ${-y*unit*(1-depth.panY)})`);}};
  const cancel=()=>{if(contacts.size)moved=true;contacts.clear();scene.classList.remove('dragging');};
  scene._restCamera={resize(rect,w,h){box=rect;width=w;height=h;
-  // First framing only: keep the small inn, Seol-o and fire together on phones.
+  // First framing only: keep each place's landmarks, party and fire on phones.
   // Later resize/pan/zoom keeps the existing camera state and full bounds.
-  if(initial){initial=false;if(box.width<=700&&scene.querySelector('[data-journey-art="stage1-painted"]')){zoom=1.12;x=Math.max(0,Math.min(112,box.width*.28,(box.width-126*zoom)/2-12));y=-Math.min(90,Math.max(0,(height*zoom-box.height)/2));}else if(box.width<=700&&scene.querySelector('[data-journey-art="stage2-painted"]')){zoom=1.08;x=Math.min(42,box.width*.1);y=-Math.min(65,Math.max(0,(height*zoom-box.height)/2));}}
+  if(initial){initial=false;if(box.width<=700&&scene.querySelector('[data-journey-art="stage1-painted"]')){zoom=1.12;x=Math.max(0,Math.min(112,box.width*.28,(box.width-126*zoom)/2-12));y=-Math.min(90,Math.max(0,(height*zoom-box.height)/2));}else if(box.width<=700&&scene.querySelector('[data-journey-art="stage2-painted"]')){zoom=1.08;x=Math.min(42,box.width*.1);y=-Math.min(65,Math.max(0,(height*zoom-box.height)/2));}else if(box.width<=700&&scene.querySelector('[data-journey-art="stage3-painted"]')){zoom=1.04;y=-Math.min(60,Math.max(0,(height*zoom-box.height)/2));}}
   cancel();apply();},cancel};
  layoutRest();
  const pinch=()=>{const [a,b]=contacts.values();return b?{x:(a.x+b.x)/2,y:(a.y+b.y)/2,gap:Math.hypot(a.x-b.x,a.y-b.y)}:null;};
