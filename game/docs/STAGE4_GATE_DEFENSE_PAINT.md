@@ -1,6 +1,6 @@
 # 4장 피란문 방어 지형·회화 — 2026-10-18
 
-기준 master는 승인 3장 쉼터까지 배포한 `8b7892c99a6208486b5596c4c20cd23b309ab69d`이다. 작업 브랜치는 `art/stage4-gate-defense-paint-20261018`이며 부모 미술 검토 전 master/Pages에 반영하지 않는다. 4장 휴식터와 5장 이후는 미착수다. 실행 환경의 일시적인 exec-server 연결 장애 뒤 실제 shell/파일 접근을 확인했고, 재생성 없이 보존 커밋 `c1e134b`를 먼저 push한 뒤 검증·마감을 이어갔다.
+기준 master는 승인 3장 쉼터까지 배포한 `8b7892c99a6208486b5596c4c20cd23b309ab69d`이다. 부모가 최종 전체 화면v1을 확인한 뒤 `f0583964`를 master `ce39ef227c645d5a55b41340d5feb8347ebd5afe`에 병합·push했고 [Pages run39150691558](https://github.com/sys8994/honro/actions/runs/39150691558)의 completed/success를 확인했다. 병합 tree가 승인 브랜치와 같아 재빌드/기존 검증을 반복하지 않았다. 후속4장 쉼터는 별도 단위이며5장은 미착수다. 실행 환경의 일시적인 exec-server 연결 장애 뒤 실제 shell/파일 접근을 확인했고, 재생성 없이 보존 커밋 `c1e134b`를 먼저 push한 뒤 검증·마감을 이어갔다.
 
 ## 장소와 실제 지형
 
