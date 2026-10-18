@@ -41,3 +41,7 @@ build·소스 구문/공백과 실제 Chromium1440×900 전체/나무·의식 �
 - stage10-overview.png: `libfile_2ea4b6609c88819195c37c34ec986ed7`, version0
 - stage10-tree-ritual.png: `libfile_85db8352b36081919d7fa05ea683b311`, version0
 - stage10-mobile-tree.png: `libfile_1ac95892ebe4819185ffc23f91685bf2`, version0
+
+## 승인 후 표시 마감
+
+화면 안 바깥 주박의 중복 노란 목표 안내만 숨기고 실제 이름/3366 체력, focus ring, 화면 밖 방향 안내는 유지한다. 대상 좌표/기능은 불변이다. build·해당 제단 실제1뷰 pageerror0, 이름1회/HP 및 화면 밖 안내를 확인했다. 이동/협력/저장 재검사 없음. 고목/제단 Library `libfile_85db8352b36081919d7fa05ea683b311` v1.

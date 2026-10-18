@@ -104,6 +104,8 @@ function draw(scene,e){
   // Painted Stage8 bindings already carry their live name/HP in the unit
   // layer. Keep focus rings and offscreen guidance; omit the duplicate tag.
   if(visible&&e.b.honroStage===8&&!e.b.honroCustom&&e.b.honroMap?.stage8LocationPaint?.revision===1&&['bier-knot-0','bier-knot-1'].includes(t.id)&&e.unit(t.id)?.honroObjectiveTarget)continue;
+  // The painted guardian's outer binding has the same live target panel.
+  if(visible&&e.b.honroStage===10&&!e.b.honroCustom&&e.b.honroMap?.stage10LocationPaint?.revision===1&&t.id==='sodan-binding'&&e.unit(t.id)?.honroObjectiveTarget)continue;
   // The arrow is a canvas vector; its tip tracks the true target when the label is clamped to the HUD edge.
   const direction=Math.atan2(y-py,x-px)-Math.PI/2;
   c.save();c.translate(px,py);c.rotate(direction);c.fillStyle='#e5c57e';
