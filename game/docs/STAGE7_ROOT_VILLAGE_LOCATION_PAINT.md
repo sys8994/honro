@@ -45,3 +45,7 @@
 가운데 발판은x1710~1855, 위 당집 발판은x3060~3212의 짧은 작업대로 바꿨다. 각각 집 모서리에 닿고 두 기둥과 사재가 실제 산비탈에 내려앉는다. 지붕/작업대만 one-way이며 기둥은 뒤쪽 장식으로 길을 막지 않는다. 고목에 닿지 않는 긴 공중 통나무를 남기지 않았다. 새 그림/모션은 추가하지 않았다.
 
 보정 후 `npm run build`, 변경 소스 구문·공백 검사, 전체 화면과 두 경사/작업대가 보이는 확대 화면2뷰를 확인했다. 국소 fixture는 바뀐 두 경사의 기본 보행, 각 작업대 아래 양방향 통과, 작업대 접근과 one-way 지붕 도약만 반복해 통과했다. 기존 주민 구조·성장 저장·전체 검사는 반복하지 않았다. 증거는 `_local/reports/stage7-root-village/{finish-build.log,finish-access-checks.json,finish-render-checks.json}`이다. 전체/가운데 화면은 기존 Library ID를 교체하며, 이전 모바일v0는 이번 보정의 최신 증거로 사용하지 않는다. 이번 보정도 부모 승인 전 master 미반영이다.
+
+## 전투 승인·배포 완료
+
+부모가v1 전체/확대 화면을 승인해058ad2d17c556002c285e9088c49239968b4c29a를 최신 master58c92eab04abc0bdeccd1398fdd9ea653a36a743에 병합·push했다. 승인 tree와 병합 tree의 동일성을 확인했으며 기존 전투 검증/빌드를 반복하지 않았다. [Pages run39159726357](https://github.com/sys8994/honro/actions/runs/39159726357)의 해당 SHA/completed/success를 확인했다. 공개 실제 화면 확인은 부모 담당이다. 이후7장 쉼터는 별도 브랜치/검토 단위로 작성한다.
