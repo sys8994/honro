@@ -1,8 +1,9 @@
-/** Fresh lake-layout Stage5 only. East fluid/target/lake coordinates stay exact. */
+/** Fresh lake-layout Stage5 only. Shared fluid/target/lake coordinates stay exact. */
 const copy=x=>structuredClone(x),ps=a=>a.map(([x,y])=>({x,y}));
-export const STAGE5_PAINT={version:1,cliff:{image:'cliff5',x:3730,y:1080,width:2500,height:3750},cave:[[3970,2140],[4440,2100],[4560,2240],[4530,2405],[3960,2405]],tree:{x:660,height:630,foot:.54},westBranch:'west-overlook',receiverRock:'ritual-overlook',flowOffset:900};
+export const STAGE5_PAINT={version:1,cliff:{image:'cliff5',x:3730,y:1080,width:2500,height:3750},cave:[[3970,2140],[4025,2123],[4080,2116],[4120,2103],[4180,2095],[4240,2102],[4310,2081],[4375,2096],[4428,2127],[4460,2163],[4490,2188],[4505,2230],[4493,2268],[4500,2300],[4478,2336],[4440,2374],[4400,2395],[4350,2407],[4300,2416],[4250,2408],[4190,2410],[4130,2414],[4055,2408],[3960,2405]],tree:{x:660,height:630,foot:.54},westBranch:'west-overlook',receiverRock:'ritual-overlook',flowOffset:900};
 const top=(t,x)=>{for(let i=0;i<t.points.length;i++){const a=t.points[i],b=t.points[(i+1)%t.points.length];if(b.x>a.x&&x>=a.x&&x<=b.x)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}throw Error('Stage5 missing surface '+t.id+'/'+x);};
 export function applyStage5WaterfallPaint(project){const s=project.stages.find(s=>s.metadata?.stageId===5);if(!s||s.initialState?.honroStage5LakeRevision!==1)return project;
+ const cliff=s.terrains.find(t=>t.id==='waterfall-cliff'),lower=cliff.points.findIndex(p=>p.x===3960&&p.y===2405),upper=cliff.points.findIndex(p=>p.x===3970&&p.y===2140);if(lower<0||upper<lower)throw Error('Stage5 missing cave boundary');cliff.points.splice(lower,upper-lower+1,...ps(STAGE5_PAINT.cave.slice().reverse()));
  const floor=s.terrains.find(t=>t.id==='valley-floor'),branch=s.terrains.find(t=>t.id==='west-overlook'),rock=s.terrains.find(t=>t.id==='ritual-overlook');
  Object.assign(branch,{baseMaterial:'wood',oneWay:true,points:ps([[640,2438],[700,2428],[790,2424],[890,2430],[990,2444],[991,2459],[889,2454],[787,2456],[699,2460],[639,2471]])});branch.properties={...branch.properties,surfaceKind:'branch'};
  Object.assign(rock,{baseMaterial:'rock',oneWay:false,points:ps([[1330,2640],[1400,2615],[1440,2545],[1530,2525],[1690,2520],[1775,2585],[1840,2646],[1840,2725],[1330,2725]])});

@@ -1,5 +1,5 @@
 import {prefetchProject,yieldIfNeeded} from "../runtime/load-data.fb768c8f80789aa0.js";
-globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL="web/entries/game.a5f956efb486eb15.html?embedded=1";
+globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL="web/entries/game.3e6323f2a45326b3.html?embedded=1";
 const modules=[new URL("../runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-title-markup.3976b37b0afc8917.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.e05556f1dfcacaa2.js",import.meta.url).href,
@@ -82,7 +82,7 @@ new URL("../runtime/shared-map-schema.0f2a75802167de22.js",import.meta.url).href
 new URL("../runtime/shared-map-units.3823d4dde2d7a3ea.js",import.meta.url).href,
 new URL("../runtime/shared-map-compiler.39e2ee6ada55ff61.js",import.meta.url).href,
 new URL("../runtime/shared-map-commands.0bfc0d1f5891d562.js",import.meta.url).href,
-new URL("../runtime/campaign.c1c4a15e723c8d14.js",import.meta.url).href,
+new URL("../runtime/campaign.810fe7eef46cf455.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-party-rig.51f29b73aad09a0e.js",import.meta.url).href,
 new URL("../runtime/party-alias.766fe2b8e383d5c4.js",import.meta.url).href,
 new URL("../runtime/shared-assets-rebuild-game-adapter.7584136339439b5b.js",import.meta.url).href,
@@ -128,14 +128,14 @@ new URL("../runtime/shared-runtime-stage1-location-art.2018fedd2168740f.js",impo
 new URL("../runtime/shared-runtime-stage2-location-art.538e075b73b8087a.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage3-location-art.9a9d6470edbd5a81.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage4-location-art.e8db3bec6c82081f.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-stage5-location-art.c406b1f218a204ac.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-stage5-location-art.3dbf77eead6be9d8.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage-rules.425c10ceb6d4b5ec.js",import.meta.url).href,
 new URL("../runtime/workshop-app.3dcb579d65e74da0.js",import.meta.url).href];
 globalThis.HONRO_READY=(async()=>{try{
 
 const preloaded=new Set();
 for(let i=0;i<modules.length;i++){
- if(i===2&&!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject("web/data/campaign.d1b4a41da5a8ebdc.json");
+ if(i===2&&!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject("web/data/campaign.5c5cf14f9f1c57ff.json");
  for(let n=i;n<Math.min(modules.length,i+12);n++){const href=modules[n];if(preloaded.has(href))continue;preloaded.add(href);const link=document.createElement('link');link.rel='modulepreload';link.href=href;link.fetchPriority='low';document.head.append(link);}
  
  const file=modules[i];await import(file);globalThis.HonroStartup?.progress('공통 준비',i+1,modules.length);await yieldIfNeeded();
