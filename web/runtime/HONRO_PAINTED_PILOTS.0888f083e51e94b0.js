@@ -1,0 +1,2 @@
+import {loadData,loadProject} from "./load-data.9de2b3eabae7de5b.js";
+globalThis.HONRO_PAINTED_PILOTS=await loadData("web/data/HONRO_PAINTED_PILOTS.9529270bb56a1a7a.json",[["images","forestFar"],["images","bellRear"],["images","depotRear"],["images","pineA"],["images","pineB"],["images","dead"],["images","granite"],["images","log"],["images","roots"],["images","underground"],["images","stone"],["images","beam"],["images","bark"]]);

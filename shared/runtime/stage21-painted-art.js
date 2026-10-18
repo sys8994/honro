@@ -3,12 +3,9 @@
 // authored terrain, battle snapshot, actor or mission state is written.
 const S=G.HonroScene.prototype,manifest=G.HONRO_STAGE21_PAINTED||{},images={},patterns=new WeakMap(),woodPatterns=new WeakMap(),sprites=new WeakMap(),materialPaths=new WeakMap();
 let generation=0,rockCards,skyCanvas;
-const ready=id=>!!(images[id]?.complete&&images[id].naturalWidth);
+const ready=id=>{ensure(id);return !!(images[id]?.complete&&images[id].naturalWidth);};
 const active=b=>b?.honroStage===21&&(b.honroLandmarks||[]).some(l=>l.asset?.id?.startsWith('eup21:'));
-if(typeof Image!=='undefined')for(const [id,src]of Object.entries(manifest.images||{})){
- const img=images[id]=new Image();img.decoding='async';
- img.onload=()=>{generation++;};img.src=src;
-}
+function ensure(id){if(images[id]||typeof Image==='undefined'||!manifest.images?.[id])return;const img=images[id]=new Image();img.decoding='async';img.onload=()=>generation++;img.src=manifest.images[id];}
 function imagePart(c,part){if(!ready(part.image))return false;const img=images[part.image],s=part.source||[0,0,img.naturalWidth,img.naturalHeight];
  if(part.roof&&part.sourceTop){
   const [sx,sy,sw,sh]=s,[x,y,w,h]=part.target,top=part.roof;
