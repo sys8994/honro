@@ -1,12 +1,14 @@
-globalThis.HONRO_PLAYTEST_URL="web/entries/game.e9360d1383879a01.html?embedded=1";
+import {prefetchProject,yieldIfNeeded} from "../runtime/load-data.9de2b3eabae7de5b.js";
+globalThis.HONRO_PLAYTEST_URL="web/entries/game.a2fddeaf40707631.html?embedded=1";
 const modules=[new URL("../runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",import.meta.url).href,
-new URL("../runtime/HONRO_BGM_TRACKS.c5e0589639564156.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-title-markup.3976b37b0afc8917.js",import.meta.url).href,
+new URL("../runtime/HONRO_BGM_TRACKS.0371680661346870.js",import.meta.url).href,
 new URL("../runtime/engine-core.e798a3b4e89840c3.js",import.meta.url).href,
-new URL("../runtime/HONRO_BALANCE.3004fd3d1a9e90d1.js",import.meta.url).href,
-new URL("../runtime/HONRO_NARRATIVE_V0.d6ce83da8b892dc2.js",import.meta.url).href,
-new URL("../runtime/HONRO_SPLIT_V1.d5aee6be4874dac0.js",import.meta.url).href,
-new URL("../runtime/HONRO_OPEN_STRUCTURES.02acc1ac61ac2db0.js",import.meta.url).href,
-new URL("../runtime/HONRO_WATERWORKS_V2.f32e5a35657546bc.js",import.meta.url).href,
+new URL("../runtime/HONRO_BALANCE.0b83b8b686265b33.js",import.meta.url).href,
+new URL("../runtime/HONRO_NARRATIVE_V0.273376c681fd41ba.js",import.meta.url).href,
+new URL("../runtime/HONRO_SPLIT_V1.e608fed652fa69ba.js",import.meta.url).href,
+new URL("../runtime/HONRO_OPEN_STRUCTURES.0d04a542a9d85075.js",import.meta.url).href,
+new URL("../runtime/HONRO_WATERWORKS_V2.cbe72efdf1f68d9d.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-action-prompts.e8b8d3ad370b193c.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-content.cc3691be8c42e821.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-story-content-v0.0dc4dbd288e1ebfd.js",import.meta.url).href,
@@ -80,16 +82,16 @@ new URL("../runtime/shared-map-schema.0f2a75802167de22.js",import.meta.url).href
 new URL("../runtime/shared-map-units.a7664cecc78a0f8f.js",import.meta.url).href,
 new URL("../runtime/shared-map-compiler.4d83af18db9b83d6.js",import.meta.url).href,
 new URL("../runtime/shared-map-commands.0bfc0d1f5891d562.js",import.meta.url).href,
-new URL("../runtime/campaign.c5eafe3be4446bdc.js",import.meta.url).href,
+new URL("../runtime/campaign.c2f48152027a69ae.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-party-rig.51f29b73aad09a0e.js",import.meta.url).href,
-new URL("../runtime/party-alias.dd433f93c412ef75.js",import.meta.url).href,
+new URL("../runtime/party-alias.0826aa2eaab27e9f.js",import.meta.url).href,
 new URL("../runtime/shared-assets-rebuild-game-adapter.7584136339439b5b.js",import.meta.url).href,
-new URL("../runtime/HONRO_ACT1_FAR_DATA.71d946edec3f3caf.js",import.meta.url).href,
-new URL("../runtime/HONRO_ACT2_FAR_DATA.cb83bfe1d99c6ee2.js",import.meta.url).href,
-new URL("../runtime/HONRO_STAGE21_PAINTED.91045daa398b5477.js",import.meta.url).href,
-new URL("../runtime/HONRO_PAINTED_PILOTS.b0a0d44bb73f1b67.js",import.meta.url).href,
-new URL("../runtime/shared-assets-monsters-monsters-runtime.0c258e1887e54bf1.js",import.meta.url).href,
-new URL("../runtime/shared-assets-actors-actors-runtime.c12c31416fcd7bfc.js",import.meta.url).href,
+new URL("../runtime/HONRO_ACT1_FAR_DATA.ba5e3d0dc63dfcfb.js",import.meta.url).href,
+new URL("../runtime/HONRO_ACT2_FAR_DATA.24c544411178203d.js",import.meta.url).href,
+new URL("../runtime/HONRO_STAGE21_PAINTED.6f8262bc6958113b.js",import.meta.url).href,
+new URL("../runtime/HONRO_PAINTED_PILOTS.92fb50e56facd460.js",import.meta.url).href,
+new URL("../runtime/shared-assets-monsters-monsters-runtime.47cfa9e9910c85e0.js",import.meta.url).href,
+new URL("../runtime/shared-assets-actors-actors-runtime.e5fe9e84464ad8ed.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-renderer.27c174d4bbdba94c.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-art-dark.b915274cd70afff7.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-terrain-skirt.1557aad8e2c590b5.js",import.meta.url).href,
@@ -120,10 +122,19 @@ new URL("../runtime/shared-runtime-narrative-art.cca882ffc6f9a81b.js",import.met
 new URL("../runtime/shared-runtime-quest-target-art.3230368af6e8b076.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-story-anomaly-art.6a2e4dc023c2ca6c.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-visual-hierarchy.c8d029c9d563969d.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-stage21-painted-art.1a2ae9f560952b88.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-painted-pilots-art.9feea7a7a91c37d7.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-stage21-painted-art.002ffd7e47ce7e0b.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-painted-pilots-art.b85054775c0c2f34.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-stage1-location-art.2c762cee40267417.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage-rules.425c10ceb6d4b5ec.js",import.meta.url).href,
 new URL("../runtime/workshop-app.3dcb579d65e74da0.js",import.meta.url).href];
-for(const href of modules){const link=document.createElement('link');link.rel='modulepreload';link.href=href;document.head.append(link);}
-globalThis.HONRO_READY=(async()=>{try{for(const file of modules)await import(file);}
-catch(error){const host=document.getElementById('app');if(host)host.textContent='불러오지 못했습니다. 새로고침해 주세요.';throw error;}})();
+globalThis.HONRO_READY=(async()=>{try{
+
+const preloaded=new Set();
+for(let i=0;i<modules.length;i++){
+ if(i===2)prefetchProject("web/data/campaign.c3f5178fcc145236.json");
+ for(let n=i;n<Math.min(modules.length,i+12);n++){const href=modules[n];if(preloaded.has(href))continue;preloaded.add(href);const link=document.createElement('link');link.rel='modulepreload';link.href=href;link.fetchPriority='low';document.head.append(link);}
+ 
+ const file=modules[i];await import(file);await yieldIfNeeded();
+}
+}
+catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);else{const host=document.getElementById('app');if(host)host.textContent='불러오지 못했습니다. 새로고침해 주세요.';}throw error;}})();
