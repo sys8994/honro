@@ -1,3 +1,9 @@
+## 1장 휴식터 ‘고개 아래 주막’ 회화 · 2026-10-18
+
+- 승인3장 배포 master2d678f6 위에서1장 휴식터만 opt-in했다. mountain-dusk/1장 흙·돌·소나무와3장 판재를 공유하고, workbay 화풍을 참고한 작은 두 칸 주막 WebP를 추가했다. 나무2그루는 정적으로 접지하고 흙마당/독립 돌/주막을 분리해 중앙 모닥불·인물 여백을 보존한다. 옛 vector pine/rock/building은 해당 휴식터에 함께 남기지 않는다.
+-1600×900 SVG와 기존 restGeometry·.9~1.35 카메라·data-rest-backdrop 시차를 유지한다. 새 그림은 해당 쉼터 진입 때만 요청되며 정적 문자열 캐시와 기존 불/인물 motionFrame·App RAF를 사용한다. restMarkup 재생성/카메라 리셋·별도 RAF는 추가하지 않는다. 버튼·새SP·대화/진행/저장 및 전투1·2·3장/startup은 미수정이다.
+- 필요한 build와 실제 데스크톱/모바일2화면, 모바일 패닝 양끝/중앙 복귀, 설오 대화 및 모닥불 클릭만 확인했다. pageerror0·정적 profile 불변·기존 불 모션 활성·진입 전 주막 이미지 요청0이다. SVG/DOM 앵커 오차는 최대 .009px다. 전체 전투/기예 검사는 미실행. Library2개v0·상세ID는 REST_STAGE1_LOCATION_PAINT.md, 실제 증거는 `_local/reports/rest-stage1-location-paint/`에 있다. 부모 검토 전 휴식터 master/Pages 미반영·다른 휴식터/4장 미착수다.
+
 ## 3장 소굴 표시·처마 끝·창고 받침 마감 · 2026-10-18
 
 - 청록색 선 집의 원인은 renderer의 기본 marker fallback이었다. 해당2개 `hauntHabitat`(habitat-3-0 창고 뒤 갈대밭/서식 hound, habitat-3-1 갯벌 갈대숲/crow)는 mission.reinforceHold가 실제 출현에 사용하므로 ID·위치·support·기능은 보존하고3장 marker 그림만 작은 식생 흔적으로 교체했다. 다른 marker와 공용 renderer는 미수정이다.

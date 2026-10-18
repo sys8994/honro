@@ -218,10 +218,46 @@
       path('M325 688L536 674 650 687 643 700 327 704Z','#58604f')+
       rock(604,704,.28,p));
   }
+  // Stage1 rest alone opts into the approved location paintings. These URLs
+  // are inserted only when this rest is shown; no image request or app rerender
+  // is needed to prepare the retained static SVG and existing fire transforms.
+  function paintedRest1(){
+    const a=G.HONRO_PAINTED_PILOTS,id='honro-rest1-painted',key=`rest1-painted:${a.revision}`;
+    if(cache.has(key))return cache.get(key);
+    const image=(name,x,y,w,h,extra='')=>`<image href="${a.images[name]}" x="${x}" y="${y}" width="${w}" height="${h}" ${extra}/>`;
+    const land='M-40 708C76 676 126 685 195 692C325 696 520 689 656 696S878 704 1020 706 1294 680 1450 685L1640 709V930H-40Z';
+    const defs=`<defs>
+      <clipPath id="${id}-land"><path d="${land}"/></clipPath>
+      <filter id="${id}-far" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values=".52"/><feComponentTransfer><feFuncR type="linear" slope=".694" intercept=".055"/><feFuncG type="linear" slope=".694" intercept=".055"/><feFuncB type="linear" slope=".694" intercept=".055"/></feComponentTransfer></filter>
+      <filter id="${id}-near" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values=".65"/><feComponentTransfer><feFuncR type="linear" slope=".82" intercept=".025"/><feFuncG type="linear" slope=".82" intercept=".025"/><feFuncB type="linear" slope=".82" intercept=".025"/></feComponentTransfer></filter>
+      <pattern id="${id}-soil" width="670" height="670" patternUnits="userSpaceOnUse">${image('forestSoil',0,0,670,670)}</pattern>
+      <pattern id="${id}-stone" width="384" height="256" patternUnits="userSpaceOnUse">${image('forestRock',0,0,384,256)}</pattern>
+      <pattern id="${id}-bark" width="190" height="48" patternUnits="userSpaceOnUse"><svg width="190" height="48" viewBox="250 270 260 90" preserveAspectRatio="none">${image('ferryHall',0,0,1536,409)}</svg></pattern>
+      <linearGradient id="${id}-far-fade" x2="0" y2="1"><stop offset="0" stop-color="#293b44" stop-opacity="0"/><stop offset="1" stop-color="#293b44"/></linearGradient>
+      <linearGradient id="${id}-earth" x2="0" y2="1"><stop stop-color="#5a564422"/><stop offset=".40" stop-color="#30392e55"/><stop offset="1" stop-color="#111d22"/></linearGradient>
+      <radialGradient id="${id}-fire-ground"><stop stop-color="#c29659" stop-opacity=".3"/><stop offset=".5" stop-color="#b17d43" stop-opacity=".13"/><stop offset="1" stop-color="#ab703d" stop-opacity="0"/></radialGradient>
+      <radialGradient id="${id}-fire-halo"><stop stop-color="#edb65c" stop-opacity=".3"/><stop offset=".35" stop-color="#d29748" stop-opacity=".11"/><stop offset="1" stop-color="#d29748" stop-opacity="0"/></radialGradient>
+    </defs>`;
+    const far=group('stage1-mountain-dusk',`<rect x="-1600" y="-900" width="4800" height="2700" fill="#293b44"/>`+image('forestFar',-800,-155,3200,1067,`filter="url(#${id}-far)"`)+`<rect x="-800" y="-155" width="3200" height="1067" fill="#344655" opacity=".14"/><rect x="-800" y="410" width="3200" height="330" fill="url(#${id}-far-fade)"/>`,'data-rest-backdrop="stage1-painted"');
+    // Root fans sit behind the exact courtyard silhouette and are naturally
+    // buried by the foreground. No pine-crown motion hook is attached.
+    const trees=group('two-grounded-static-pines',image('pineA',-105,18,490,688)+`<g transform="translate(3000 0) scale(-1 1)">${image('pineA',1260,112,450,632)}</g>`,`filter="url(#${id}-near)"`);
+    const ground=group('earth-courtyard',`<path d="${land}" fill="#3d3f32"/><g clip-path="url(#${id}-land)"><rect x="-40" y="650" width="1680" height="280" fill="url(#${id}-soil)"/><path d="M370 707C536 703 652 724 805 720S1032 717 1160 734L1200 850C960 860 640 845 408 819Z" fill="#817052" opacity=".15"/><rect x="-40" y="650" width="1680" height="280" fill="url(#${id}-earth)"/></g>`);
+    const inn=group('small-mountain-inn',image('rest1Inn',178,457,485,236,`filter="url(#${id}-near)"`));
+    const stones=group('separate-low-stones',image('granite',42,654,154,73,`filter="url(#${id}-near)"`)+image('granite',1460,684,130,62,`filter="url(#${id}-near)"`));
+    const fireLight=group('fire-ground-light',glow(800,758,300,103,`${id}-fire-ground`),'data-rest-motion="fire-ground"');
+    // Retain the exact fire/motion markup and anchors. Only static bench,
+    // hearth and signpost fills acquire the same painted timber/mineral finish.
+    let props=campProps(id);for(const color of ['#302d24','#352c25','#473e2c','#473d2e','#3c2d23','#3b3226','#3d382b','#665a40'])props=props.replaceAll(`fill="${color}"`,`fill="url(#${id}-bark)"`);
+    props=props.replaceAll('fill="#5c5a4b"',`fill="url(#${id}-stone)"`).replace('fill="#0b171b" opacity=".6"','fill="#0b171b" opacity=".38"').replace('fill="#0c171a" opacity=".7"','fill="#0c171a" opacity=".42"');
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="stage1-painted" data-journey-layer="surface">${defs}${far}${trees}${ground}${inn}${stones}${fireLight}${props}</svg>`;
+    cache.set(key,svg);return svg;
+  }
   function scene(variant, layer = 'surface', stage = 0) {
     variant = variants.includes(variant) ? variant : 'forest';
     layer = variant === 'cave' || layer === 'underground' ? 'underground' : 'surface';
     const underground = layer === 'underground';
+    if(stage===1&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.rest1Inn)return paintedRest1();
     const key = `scene:${variant}:${layer}:${stage}:${!!G.HONRO_ACT1_FAR_DATA}`;
     if (cache.has(key)) return cache.get(key);
     const p = underground ? {...palettes[variant], sky:'#101f28', horizon:'#38565d', ridge:'#223d48', mist:'#83a4a5'} : palettes[variant];
