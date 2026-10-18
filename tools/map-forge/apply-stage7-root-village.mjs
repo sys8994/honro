@@ -1,0 +1,1 @@
+import {readFile,writeFile} from 'node:fs/promises';import {applyStage7RootVillage} from './stage7-root-village.mjs';const file='shared/data/campaign.json',p=JSON.parse(await readFile(file,'utf8'));applyStage7RootVillage(p);await writeFile(file,JSON.stringify(p)+'\n');console.log('Authored Stage7 grounded village and reentry roots only');
