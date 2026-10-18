@@ -80,11 +80,15 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
       painted21.images[key]='data:image/'+mime+';base64,'+(await readFile(path.join(root,'shared/assets/environment/stage21',file))).toString('base64');
     }
     data('HONRO_STAGE21_PAINTED',painted21);
+    const pilots=JSON.parse(await read('shared/assets/environment/painted-pilots/manifest.json'));
+    for(const [key,file] of Object.entries(pilots.images))pilots.images[key]='data:image/webp;base64,'+(await readFile(path.join(root,'shared/assets/environment/painted-pilots',file))).toString('base64');
+    data('HONRO_PAINTED_PILOTS',pilots);
     await file('shared/assets/monsters/monsters.runtime.js');
     await file('shared/assets/actors/actors.runtime.js');
     for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','story-act23-art','narrative-art','quest-target-art','story-anomaly-art','visual-hierarchy'])await file(`shared/runtime/${name}.js`);
   }
   if(render)await file('shared/runtime/stage21-painted-art.js');
+  if(render)await file('shared/runtime/painted-pilots-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
     for(const name of ['portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])

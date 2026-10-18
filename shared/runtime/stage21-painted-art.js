@@ -82,14 +82,15 @@ function prepareRockCards(){if(rockCards)return rockCards;const img=images[manif
  for(let i=0;i<3;i++){const cv=document.createElement('canvas');cv.width=1024;cv.height=704;const c=cv.getContext('2d'),x=i===1?190:0,y=i===2?155:0;c.drawImage(img,x,y,img.naturalWidth-x-(i===2?130:0),img.naturalHeight-y,0,0,1024,704);c.globalCompositeOperation='destination-in';const a=c.createLinearGradient(0,0,1024,0);a.addColorStop(0,'#0000');a.addColorStop(.17,'#000');a.addColorStop(.83,'#000');a.addColorStop(1,'#0000');c.fillStyle=a;c.fillRect(0,0,1024,704);const z=c.createLinearGradient(0,0,0,704);z.addColorStop(0,'#0000');z.addColorStop(.18,'#000');z.addColorStop(.82,'#000');z.addColorStop(1,'#0000');c.fillStyle=z;c.fillRect(0,0,1024,704);rockCards.push(cv);}
  return rockCards;
 }
-function paintRock(c,path){
+function paintRock(c,path,options={}){
+ const origin=options.originY??2220;
  c.fillStyle='#343a36';c.fill(path);const cards=prepareRockCards(),m=c.getTransform(),left=-m.e/m.a,top=-m.f/m.d,right=(c.canvas.width-m.e)/m.a,bottom=(c.canvas.height-m.f)/m.d;
  // Seeded, overlapping world cards have no bilateral mirror axis. Every tile
  // visits the same cards in the same order, independent of camera and zoom.
- for(let iy=Math.floor((top-2220)/780)-2;iy<=Math.floor((bottom-2220)/780)+1;iy++)for(let ix=Math.floor(left/1050)-2;ix<=Math.floor(right/1050)+1;ix++){
-  const seed=ix*137+iy*971,x=ix*1050+(random(seed)-.5)*380,y=2220+iy*780+(random(seed+1)-.5)*270,w=1850+random(seed+2)*450,h=1200+random(seed+3)*310;c.save();c.translate(x+w/2,y+h/2);c.rotate((random(seed+4)-.5)*.19);c.globalAlpha=.67+random(seed+5)*.26;c.drawImage(cards[Math.floor(random(seed+6)*3)],-w/2,-h/2,w,h);c.restore();
+ for(let iy=Math.floor((top-origin)/780)-2;iy<=Math.floor((bottom-origin)/780)+1;iy++)for(let ix=Math.floor(left/1050)-2;ix<=Math.floor(right/1050)+1;ix++){
+  const seed=ix*137+iy*971,x=ix*1050+(random(seed)-.5)*380,y=origin+iy*780+(random(seed+1)-.5)*270,w=1850+random(seed+2)*450,h=1200+random(seed+3)*310;c.save();c.translate(x+w/2,y+h/2);c.rotate((random(seed+4)-.5)*.19);c.globalAlpha=.67+random(seed+5)*.26;c.drawImage(cards[Math.floor(random(seed+6)*3)],-w/2,-h/2,w,h);c.restore();
  }
- const depth=c.createLinearGradient(0,2520,0,4050);depth.addColorStop(0,'#0f1b2100');depth.addColorStop(.45,'#101e2866');depth.addColorStop(1,'#101d26f5');c.fillStyle=depth;c.fill(path);
+ if(options.depth!==false){const depth=c.createLinearGradient(0,origin+300,0,origin+1830);depth.addColorStop(0,'#0f1b2100');depth.addColorStop(.45,'#101e2866');depth.addColorStop(1,'#101d26f5');c.fillStyle=depth;c.fill(path);}
 }
 function terrain(c,t,b){
  if(!active(b)||!ready(manifest.rock))return false;
@@ -115,6 +116,6 @@ const oldLandmark=S.landmark;S.landmark=function(c,l){
  return oldLandmark.call(this,c,l);
 };
 const oldTerrain=S.terrain;S.terrain=function(c,t){if(!terrain(c,t,this.battle))return oldTerrain.call(this,c,t);};
-G.HonroStage21Painted={active,ready,background,images,manifest,appearanceKey:()=>manifest.revision+':'+generation};
+G.HonroStage21Painted={active,ready,background,images,manifest,paintRock,woodPattern,appearanceKey:()=>manifest.revision+':'+generation};
 G.HonroPaintedPresentation.register({id:'stage21',active,naturalEdges:true,cachedWorld:true});
 })(globalThis);

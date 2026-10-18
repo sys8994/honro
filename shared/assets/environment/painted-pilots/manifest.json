@@ -1,0 +1,109 @@
+{
+  "revision": 1,
+  "images": {
+    "forestFar": "stage1-far.webp",
+    "bellRear": "stage18-rear.webp",
+    "depotRear": "stage27-rear.webp",
+    "pineA": "forest-pineA.webp",
+    "pineB": "forest-pineB.webp",
+    "dead": "forest-dead.webp",
+    "granite": "forest-granite.webp",
+    "log": "forest-log.webp",
+    "roots": "forest-roots.webp",
+    "underground": "underground.webp",
+    "stone": "stone.webp",
+    "beam": "beam.webp",
+    "bark": "bark.webp"
+  },
+  "forestCrops": {
+    "pineA": {
+      "sourceBounds": [
+        30,
+        51,
+        518,
+        736
+      ],
+      "width": 488,
+      "height": 685
+    },
+    "pineB": {
+      "sourceBounds": [
+        459,
+        124,
+        1106,
+        738
+      ],
+      "width": 647,
+      "height": 614
+    },
+    "dead": {
+      "sourceBounds": [
+        1105,
+        100,
+        1534,
+        743
+      ],
+      "width": 429,
+      "height": 643
+    },
+    "granite": {
+      "sourceBounds": [
+        22,
+        746,
+        519,
+        982
+      ],
+      "width": 497,
+      "height": 236
+    },
+    "log": {
+      "sourceBounds": [
+        544,
+        772,
+        1106,
+        986
+      ],
+      "width": 562,
+      "height": 214
+    },
+    "roots": {
+      "sourceBounds": [
+        1107,
+        810,
+        1519,
+        989
+      ],
+      "width": 412,
+      "height": 179
+    }
+  },
+  "stages": {
+    "1": {
+      "rear": "forestFar",
+      "kind": "sky",
+      "rockOrigin": 1200
+    },
+    "18": {
+      "rear": "bellRear",
+      "kind": "world",
+      "rect": [
+        -1400,
+        1800,
+        16400,
+        6560
+      ],
+      "rockOrigin": 4500
+    },
+    "27": {
+      "rear": "depotRear",
+      "kind": "world",
+      "rect": [
+        -1600,
+        700,
+        11400,
+        5700
+      ],
+      "rockOrigin": 2400
+    }
+  }
+}

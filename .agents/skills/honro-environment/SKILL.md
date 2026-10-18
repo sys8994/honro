@@ -23,7 +23,7 @@ description: HONRO에서 사용자가 준 일러스트를 SVG 배경으로 재�
 
 ### Stage21 승인 회화·벡터 혼합 시범 예외 (2026-10-18)
 
-사용자가 승인한 Stage21 회화(`libfile_2af54b6333c88191913f28c61eb1800e`)에 한해서 순수 SVG·외부 파일 요청 금지 원칙을 적용하지 않는다. 후경 파노라마, 접지된 투명 건축 스프라이트, 실제 단일 지형 polygon에 clipped되는 암반/흙 재질을 분리해 공통 렌더러로 그린다. 외부 해시 이미지와 로딩 완료 시 갱신하는 월드 좌표 캐시를 사용하며 기존 두 세대 자산 보존 정책을 유지한다. 스크린 고정 그림으로 실제 땅을 대체하거나 dummy/skirt를 더하지 않는다. 기존 이동면·oneWay·목표·적·저장 이벤트·캐릭터/HUD와 다른 장 승인 원경을 유지한다.
+사용자가 승인한 Stage21 회화(`libfile_2af54b6333c88191913f28c61eb1800e`)에 한해서 순수 SVG·외부 파일 요청 금지 원칙을 적용하지 않는다. 후경 파노라마, 접지된 투명 건축 스프라이트, 실제 단일 지형 polygon에 clipped되는 암반/흙 재질을 분리해 공통 렌더러로 그린다. 외부 해시 이미지와 로딩 완료 시 갱신하는 월드 좌표 캐시를 사용하며 기존 두 세대 자산 보존 정책을 유지한다. 스크린 고정 그림으로 실제 땅을 대체하거나 dummy/skirt를 더하지 않는다. 기존 이동면·oneWay·목표·적·저장 이벤트·캐릭터/HUD를 유지한다. 후속 사용자 승인은 Stage1 숲·Stage18 범종 동굴·Stage27 깊은 집하장으로 한정한다. 이 세 장은 제공된 분리 이미지와 실제 polygon에 clipped되는 재질을 같은 공통 경로로 사용하며, Stage18의 실제 SVG 종·측면 개구·내부 발판·하강 모션을 유지한다. 나머지 장의 승인 원경에는 적용하지 않는다.
 
 - 맵 v6는 **하나의 충분히 큰 지리 설계 → 내부 Play Bounds → Camera Focus와 전술 줌 → 시각 coverage 확인** 순서다. `shared/map/terrain-domain.js`와 `game/docs/TERRAIN_DOMAIN.md`를 따른다.
 - `stage.terrains` 전체 polygon이 유일한 원본이다. 공통 compiler는 기존 시뮬레이션 범위로 collision을 투영하고 Scene은 전체 형상을 같은 재질/미술로 렌더링한다. 새 맵에 별도 dummybody나 skirt를 만들지 않는다. 옛 live save만 원래 renderer를 호환 유지한다.

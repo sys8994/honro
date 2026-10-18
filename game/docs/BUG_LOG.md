@@ -1,3 +1,9 @@
+## 승인 회화 환경 시범 1·18·27장 · 2026-10-18
+
+- 변경: 승인된 분리 이미지로 숲·범종 동굴·깊은 집하장을 공통 Game/Workshop 경로에 적용했다. 실제 polygon clip 재질과 접지 사물을 사용하며 기존 단일 지형·목표·적·저장 revision·캐릭터/HUD를 보존한다. Stage18 실제 종 SVG·측면 개구·내부 발판과 0.9초 하강을 유지한다.
+- 로딩/성능: 해당 장 이미지만 지연 로드하고 준비 전 기존 미술, 완료 시 generation 캐시 갱신을 사용한다. 후경 보정과 정적 지형은 캐시하며 자연스러운 가장자리/Stage21 LOD 풀 정책을 opt-in한다. 외부 콘텐츠 해시 이미지와 두 이전 distinct 배포 세대 보존을 유지한다.
+- 확인/한계: 두 HTML 빌드, 세 장 Chromium 기본 화면·데이터 동일 비교, 27장 Workshop 기본 실행, 18장 실제 engine.tick의 하강 fixture에서 offset/정착·개구/SVG·캐시 보존을 확인했다. 정상 캠페인 완주·전체 verify는 실행하지 않았다. 상세와 화면은 `game/docs/PAINTED_ENVIRONMENT_PILOTS.md`, `_local/reports/painted-pilots/`. 공개 Pages 직접 접근은 CONNECT403이며 배포 run 결과와 구분한다.
+
 ## 25·27장 천장 vault의 사각형 끝 제거 · 2026-10-17
 
 - 원인: `masonry-vault`는 실제 천장 충돌 아래 윤곽과 함께 유한한 상단/측면 미술을 가져 overview에서 푸른 판으로 떠 보였다.
