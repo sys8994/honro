@@ -63,7 +63,7 @@ export async function applyAct1SceneComposition(project){
    r('mudflat-bank',3160,2440,1480,610,'ferry-ground');r('warehouse-shoulder',5910,1580,1300,860,'ferry-ground');
   }
   if(n===4){
-   suppress(st,e=>pine(e)||['builtin:villageWall','builtin:oldGate','builtin:burnedHouses','builtin:watchtower','builtin:cliffFace'].includes(e.assetId));add('north-gate','refuge-gate',1030,2270,1.04,'gate-basin');add('burned-courtyard','refuge-courtyard',2200,2705,1.22,'gate-basin');add('east-watch-court','ruined-court',3870,1768,.80,'east-watch');add('gate-grove','pine-grove',530,2290,.68,'gate-basin');add('east-grove','pine-grove',3010,2316,.87,'gate-basin');
+   suppress(st,e=>pine(e)||['builtin:villageWall','builtin:oldGate','builtin:burnedHouses','builtin:watchtower','builtin:cliffFace'].includes(e.assetId));add('north-gate','refuge-gate',1030,2270,1.04,'gate-basin');add('burned-courtyard','refuge-courtyard',2200,2705,1.22,'gate-basin');add('east-watch-court','ruined-court',st.design.stage4Gate?3500:3870,1768,.80,st.design.stage4Gate?'gate-basin':'east-watch');add('gate-grove','pine-grove',530,2290,.68,'gate-basin');add('east-grove','pine-grove',3010,2316,.87,'gate-basin');
    add('left-scarp-granite','valley-granite',1540,2500,1.60,'gate-basin');r('east-scarp',3650,1765,1400,840,'east-watch');
   }
   if(n===5){
