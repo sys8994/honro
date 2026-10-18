@@ -1,6 +1,6 @@
 # 5장 폭포 틈의 한 발 — 지형·회화, 2026-10-18
 
-부모가 승인한 4장 쉼터 `272f3c4d`를 master `ecd7c5454e5fdd5bde54d17fece2c48703d0ee00`에 병합·push했다. [Pages run39151682699](https://github.com/sys8994/honro/actions/runs/39151682699)의 completed/success를 확인했다. 승인 tree와 병합 tree가 같아 그 단위의 빌드·검증을 반복하지 않았다. 이 문서의 5장 전투는 해당 master에서 분기한 `art/stage5-waterfall-location-paint-20261018`의 별도 검토 단위다. 아직 master 병합·배포하지 않았으며 5장 쉼터와 6장은 작업하지 않았다.
+부모가 승인한 4장 쉼터 `272f3c4d`를 master `ecd7c5454e5fdd5bde54d17fece2c48703d0ee00`에 병합·push했다. [Pages run39151682699](https://github.com/sys8994/honro/actions/runs/39151682699)의 completed/success를 확인했다. 승인 tree와 병합 tree가 같아 그 단위의 빌드·검증을 반복하지 않았다. 이 문서의 5장 전투는 해당 master에서 분기한 `art/stage5-waterfall-location-paint-20261018`의 별도 검토 단위다. 부모 최종 화면 승인 후 최종본 `84084768`을 master `a6dabf9875ae8feddadd6975c7f7e8ad4e4b3a76`에 병합·push했고 Pages run39154407739의 completed/success를 확인했다. 승인 tree와 같아 기존 검증은 반복하지 않았다. 후속 5장 쉼터는 별도 작업 단위이며 6장은 미착수다.
 
 ## 실제 장소와 지형
 
@@ -53,4 +53,4 @@ Native production App/Engine 제한 확인:
 | 서쪽 소나무 가지·물길진·사격 진입 v1 | `libfile_b0ac10cb82f081918e9dd8fed2c65a19` |
 | 모바일 열린 물길 fixture, 이전 후보 v0 | `libfile_cbb0a85ed3148191b8418467417b7dfa` |
 
-부모의 실제 화면 검토 후 배포 결정을 기다린다.
+부모의 전체/서쪽 v1 승인 후 위 master/Pages에 반영했다. 후속 5장 쉼터는 별도로 검토한다.
