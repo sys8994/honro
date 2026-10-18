@@ -1,3 +1,9 @@
+## 1장 정상 진입의 회화 장식 과대 표시 · 2026-10-18
+
+- 원인: 진단 overview만 보고 큰 배경 암반의 폭을 래스터 바위 높이로도 환산했고, 나무의 넓은 뿌리 매트 끝을 발로 사용해 정상 진입에서 캐릭터 주변을 덮었다.
+- 변경: 시작 소나무는 기준8.4m×기존 instance scale로, 장식 바위는1.3–1.8m로 조정한다. 그 밖의 나무는 기존 heightM 기준을 사용한다. 줄기 foot를 원래 terrain support에 맞추고 뿌리 매트를 뒤로 묻으며 낮은 대비 색조/뿌리 alpha를 한 번 캐시한다. 실제 충돌 바위의 polygon·지형·카메라·이벤트는 보존한다.
+- 확인: Stage1 정상 캠페인 진입 기본 카메라(.94)와 기존 overview(.46)만 직접 비교했다. 렌더 전후 terrain/units/state 동일, pageerror0, Game/Workshop 빌드. 실제 화면은 기존 Stage1 Library ID를 교체하고 기본 진입 화면도 보존한다. 증거는 `_local/reports/painted-pilots/stage1-scale-check.json`과 두 PNG.
+
 ## 승인 회화 환경 시범 1·18·27장 · 2026-10-18
 
 - 변경: 승인된 분리 이미지로 숲·범종 동굴·깊은 집하장을 공통 Game/Workshop 경로에 적용했다. 실제 polygon clip 재질과 접지 사물을 사용하며 기존 단일 지형·목표·적·저장 revision·캐릭터/HUD를 보존한다. Stage18 실제 종 SVG·측면 개구·내부 발판과 0.9초 하강을 유지한다.

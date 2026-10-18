@@ -22,8 +22,10 @@
 
 ## 실제 화면 Library
 
-- 1장 숲: `libfile_5c9cb517509081918d8978e0e67279c5` (v0)
+- 1장 숲: `libfile_5c9cb517509081918d8978e0e67279c5` (v1)
 - 18장 범종 동굴: `libfile_4308fd694a5081918183484de78fa8e4` (v0)
 - 27장 깊은 집하장: `libfile_d9da2a3e0fb48191b6ab84025abb752e` (v0)
 
 세 화면은 실제 Chromium/Game 렌더의 진단 카메라 화면이다. 원화 합성이나 정상 캠페인 완주 증거가 아니다. Stage18 정착 fixture/Workshop 추가 화면은 로컬 보고서에 둔다.
+
+1장 정상 진입 과대 장식 수정: 시작 소나무8.4m 기준, 바위1.3–1.8m, 기존 support의 줄기 foot와 뿌리 alpha/저대비 캐시를 사용한다. 기본 카메라(.94)는 변경하지 않았다. 기본 진입 실제 화면: `libfile_f438b00677a48191b967ef5f4dccca21` (v0). 기존 overview ID는 v1로 교체했다.
