@@ -7,7 +7,7 @@
 - 3600×5000 월드에서 옛 공중 목재 tier/zigzag ramp를 실제 하나의 산비탈 `village-hill`로 바꿨다. 낮은 흙마당 y4300, 가운데 암반 마당 y3500, 위 당집 마당 y2650이 기본 보행 경사로 연결된다. 아래 y4650 `root-floor`는 낙하를 받으며 두 정적 one-way 뿌리로 원래 길에 돌아올 수 있다. 실제 polygon과 렌더 clip이 같고 그림 전체를 레벨 바닥으로 쓰지 않는다.
 - 연결된 밑동·뿌리·갈라진 큰 줄기를 가진 느티 고목 한 점과 온전한 한옥 한 점을 새로 제작했다. source PNG를 보존하고 `tools/environment/stage7-assets.py`로 투명 여백만 잘라 비율을 유지한 외부 WebP로 준비한다. 고목1073×1427/812178 bytes, 아래 집1200×672/299164 bytes. 7장 진입 때만 요청한다. 가운데는 기존 온전한 나루 작업채, 위는 기존 한국식 당집 그림을 재사용한다.
 - 아래 집/가운데 작업채/위 당집은 각 실제 평탄부에 기초를 붙인다. 건물 몸체는 장식이며 벽 collider가 아니다. 원래 그림의 지붕 실루엣을 읽은 별도 one-way 상면만 밟는다. 서쪽 뿌리/가운데 갈래/위 처마 곁 lookout도 실제 one-way이며 같은 고목 몸통에서 준비한 bark 소재로 그린다.
-- 산비탈 표면은 얇은 흙·이끼, 서로 다른 크기의 암면 네 군락, 어두운 깊이로 이어진다. 밝은 외곽선 대신 실제 상면의 흙과 암반 명암으로 경계를 읽는다. 저채도·저대비 공유 산 원경은 `act1BackdropFrame`을 사용해1회 준비한다. 고목 전체·원경·집에 새 흔들림은 없다. 기존 날씨/물 구현을 보존한다.
+- 산비탈 표면은 얇은 흙·이끼, 서로 다른 크기의 암면 다섯 군락, 어두운 깊이로 이어진다. 밝은 외곽선 대신 실제 상면의 흙과 암반 명암으로 경계를 읽는다. 저채도·저대비 공유 산 원경은 `act1BackdropFrame`을 사용해1회 준비한다. 고목 전체·원경·집에 새 흔들림은 없다. 기존 날씨/물 구현을 보존한다.
 - 옛 rootHut/hollowRoot/rootShrine 등 중복 장식 그림과 주민/서식지의 fallback 집 glyph만 숨긴다. 실제 주민 몸체·이름표·상호작용 marker는 남긴다. 기존 element ID와 퀘스트 참조는 보존하며 장식 collision이 추가되지 않는다.
 
 ## 게임 규칙과 저장
@@ -26,12 +26,22 @@
 
 상세 증거는 `_local/reports/stage7-root-village/{build.log,local-checks.json,render-checks.json,library.json}`과 실제 PNG3장이다. Library 신원은 아래에 기록한다.
 
-## 6장 쉼터 공개 화면 차이 확인
+## 6장 공개 화면 확인 완료
 
-부모가 공개 Pages에서 옛6장 쉼터를 봤다고 알려, 배포 성공 외에 `517da2e`의 실제 산출물을 검사했다. `HONRO.html` → `web/entries/game.86b211186bc25929.js` → `shared-runtime-journey-art.cc603a73d9655606.js` / `shared-runtime-rest-journey.f98246a19878a958.js`가 직접 연결된다. 해당 art에는 `paintedRest6`, stage6 dispatch와 `bridge-approach-end-and-abutment`가 포함되고 rest는 실제 place.stageId를 넘긴다. 배포 후 이 쉼터 소스는 변경되지 않았다. 실제 로컬 디버그 지도에서6장 선택을 클릭한 결과 `debugRestStage:6`, 제목 ‘나무다리 위 길목’, `data-journey-art:stage6-painted`, bridge manifest 존재를 확인했다. `_local/reports/rest-stage6-location-paint/deploy-artifact-check.json`에 기록했다. 이 실행 환경의 공개 Pages HTTP 요청은 tunnel403으로 차단되므로 공개 UI를 재확인했다고 주장하지 않는다. 공개 화면 차이의 원인은 아직 확정하지 못했으며 부모의 URL/진입 파일 확인이 남는다.
+부모가2026-10-18 19:30 UTC 동일 공개 HONRO.html 새 탭에서 game.86b211186bc25929.js, DOM `data-journey-art=stage6-painted`, bridge6 이미지 URL 및 실제 목교 진입부·산 원경 픽셀을 확인했다고 전달했다. 6장 전투와 쉼터 모두 공개 실제 화면 확인 완료다. 앞선 화면 차이 원인은 더 조사하지 않으며 추가 재배포도 하지 않는다.
 
 ## Library 실제 화면
 
-- stage7-village-overview.png: `libfile_a5069b9cf1a481918641db5352559ab5`, version0
-- stage7-middle-court.png: `libfile_272400538ad08191a2ebfad26cf9fff2`, version0
+- stage7-village-overview.png: `libfile_a5069b9cf1a481918641db5352559ab5`, version1
+- stage7-middle-court.png: `libfile_272400538ad08191a2ebfad26cf9fff2`, version1
 - stage7-mobile.png: `libfile_8de07ff28f40819188097b85e8b9ad69`, version0
+
+## 부모 화면 검토 후 지형·구조 보정
+
+첫 전체 화면의 ‘세 평탄부와 두 긴 직선’ 문제를 수정했다. 집 그림과 그 앞 마당, 전체 높이/동선은 유지하며 아래 집 끝x950부터 가운데 마당x1825, 가운데 끝x2295부터 위 마당x3120까지 실제 지형을 재저작했다. 넓은 ridge knot 사이를2차 곡선으로 둥글게 연결해 짧은 흙길·암반 어깨·완만한 사격 자리로 기울기가 바뀐다. 아래 중턱x1475~1570, 위 중턱x2760~2830에 완만한 어깨가 있다. 도함수가 인접 authored secant 범위를 넘지 않는 fillet이므로 최대경사1.346143을 유지하며 작은 지그재그 노이즈를 더하지 않았다.
+
+입구x420에서 렌더 지형 둘이 겹치는 깊은 암면을 동일한 세계 좌표의 지질장으로 그린다. source-render 범위의 상면과 고정 카드 위치를 공유하고 깊이의 기준도 연속이므로, collision 영역을 넘는 원경 쪽 확장부까지 흙과 암면이 이어지며 화면 바닥까지 내려가던 수직 봉합선이 사라진다. 실제 상면 clip은 그대로여서 가짜 통행면이 없다.
+
+가운데 발판은x1710~1855, 위 당집 발판은x3060~3212의 짧은 작업대로 바꿨다. 각각 집 모서리에 닿고 두 기둥과 사재가 실제 산비탈에 내려앉는다. 지붕/작업대만 one-way이며 기둥은 뒤쪽 장식으로 길을 막지 않는다. 고목에 닿지 않는 긴 공중 통나무를 남기지 않았다. 새 그림/모션은 추가하지 않았다.
+
+보정 후 `npm run build`, 변경 소스 구문·공백 검사, 전체 화면과 두 경사/작업대가 보이는 확대 화면2뷰를 확인했다. 국소 fixture는 바뀐 두 경사의 기본 보행, 각 작업대 아래 양방향 통과, 작업대 접근과 one-way 지붕 도약만 반복해 통과했다. 기존 주민 구조·성장 저장·전체 검사는 반복하지 않았다. 증거는 `_local/reports/stage7-root-village/{finish-build.log,finish-access-checks.json,finish-render-checks.json}`이다. 전체/가운데 화면은 기존 Library ID를 교체하며, 이전 모바일v0는 이번 보정의 최신 증거로 사용하지 않는다. 이번 보정도 부모 승인 전 master 미반영이다.
