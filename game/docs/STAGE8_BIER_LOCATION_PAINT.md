@@ -64,3 +64,8 @@ v1의 얇아진 위쪽 암반과 고목 아래가 공중 아치로 읽힌다는 
 작은 창고 반사석은 하단 오른쪽 모서리와 기존 목재 통로 사이에 작은 후면 접점만 그렸다. 실제 반사석 위치·기능과 모든 terrain polygon, collision, routes, anchors, unit/encounter, map revision은 v1과 동일하다. 변경 소스는 stage8-location-art.js 한 파일이다.
 
 검증은 build와 실제 Chromium1440×900 전체·확대2뷰(pageerror0), 소스 구문/공백 확인에 한정했다. 이동·상여·증원·저장 검사와 모바일 촬영은 반복하지 않았다. 상세 `_local/reports/stage8-bier-location-paint/rear-finish/{build.log,render-checks.json,library.json}`. 두 Library 화면은 같은 ID의v2로 교체했고 모바일v0는 그대로다. master 병합·배포는 부모 화면 검토를 기다린다.
+
+
+## v2 승인 배포
+
+부모가 v2 실제2뷰의 암굴 연결/전경 통행면 구별을 승인했다. `6b3a970bfafc6be8047b84b94d20c97018eb6621`을 master `967bf02273f7991510df8d065ca8a00ecf804b3f`에 병합·push했고 승인 tree와 동일하다. [Pages39165814713](https://github.com/sys8994/honro/actions/runs/39165814713)은 해당 SHA/completed/success. build/전투 검사를 반복하지 않았으며 공개 실제 화면은 부모 확인이다.
