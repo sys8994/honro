@@ -486,8 +486,9 @@
     const far=group('stage8-quiet-warehouse-approach',`<rect x="-1600" y="-900" width="4800" height="2700" fill="#2d4149"/>`+image('forestFar',-800,-155,3200,1067,`filter="url(#${id}-far)"`)+`<rect x="-800" y="-155" width="3200" height="1067" fill="#354b52" opacity=".13"/><rect x="-800" y="410" width="3200" height="600" fill="url(#${id}-far-fade)"/>`,'data-rest-backdrop="stage8-painted"');
     const slope=group('low-rock-ledge-opposite-warehouse',`<path d="${hill}" fill="#344038"/><g clip-path="url(#${id}-hill)">${image('forestRock',1050,598,850,566,`filter="url(#${id}-near)" opacity=".75"`)}<path d="M1100 730Q1180 704 1250 700T1390 667Q1530 629 1660 648" fill="none" stroke="url(#${id}-soil)" stroke-width="32"/><rect x="1030" y="610" width="700" height="340" fill="url(#${id}-hill-depth)"/></g>`);
     // The visible right-hand bay is closed; the open middle bay lies outside
-    // the scene. The complete cutout keeps its original aspect and foot anchor.
-    const home=group('partial-funeral-warehouse',image('bierStore8',-880,725-1500*580/1536,1500,1500*580/1536,`filter="url(#${id}-near)"`));
+    // the scene. The original aspect is retained; the lower foundation is
+    // sunk 24 units into the unchanged foreground earth, hiding alpha gaps.
+    const home=group('partial-funeral-warehouse',image('bierStore8',-880,749-1500*580/1536,1500,1500*580/1536,`filter="url(#${id}-near)"`));
     const lowWall=group('low-warehouse-foundation',`<g clip-path="url(#${id}-wall)">${image('forestRock',-70,440,760,507,`filter="url(#${id}-near)"`)}<path d="${wall}" fill="#25332d" opacity=".12"/></g>`);
     const ground=group('low-earth-courtyard',`<path d="${land}" fill="#4b4838"/><g clip-path="url(#${id}-land)"><rect x="-70" y="610" width="1740" height="340" fill="url(#${id}-soil)"/><path d="M106 733Q354 711 555 743T947 756Q1124 737 1289 707L1519 829Q1222 811 1006 845T536 824Q288 787 106 791Z" fill="#a18a63" opacity=".13"/><rect x="-70" y="610" width="1740" height="340" fill="url(#${id}-earth)"/></g>`);
     let props=campProps(id).replace(/^<g data-art-layer="resting-circle"[^>]*>[\s\S]*?(?=<ellipse cx="800")/,'<g data-art-layer="resting-circle">').replace(/<g data-art-layer="wayfinding-signpost"[^>]*>[\s\S]*$/,'');
