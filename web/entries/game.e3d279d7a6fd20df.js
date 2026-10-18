@@ -88,9 +88,10 @@ new URL("../runtime/party-alias.dd433f93c412ef75.js",import.meta.url).href,
 new URL("../runtime/shared-assets-rebuild-game-adapter.7584136339439b5b.js",import.meta.url).href,
 new URL("../runtime/HONRO_ACT1_FAR_DATA.71d946edec3f3caf.js",import.meta.url).href,
 new URL("../runtime/HONRO_ACT2_FAR_DATA.cb83bfe1d99c6ee2.js",import.meta.url).href,
+new URL("../runtime/HONRO_STAGE21_PAINTED.91045daa398b5477.js",import.meta.url).href,
 new URL("../runtime/shared-assets-monsters-monsters-runtime.0c258e1887e54bf1.js",import.meta.url).href,
 new URL("../runtime/shared-assets-actors-actors-runtime.c12c31416fcd7bfc.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-renderer.a62cced1204a46d2.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-renderer.51d40a8c8f121689.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-art-dark.b915274cd70afff7.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-terrain-skirt.1557aad8e2c590b5.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-environment-art.6bfad41d6a6af0dd.js",import.meta.url).href,
@@ -98,7 +99,7 @@ new URL("../runtime/shared-runtime-map-art-polish.cf474d2a8b5091ab.js",import.me
 new URL("../runtime/shared-runtime-monster-vector.25152ab0c9207323.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-actor-vector.22acb762621bb98c.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-elements.f96fbe5d5d30dddd.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-environment-renderer.daa545ff96c3ef3a.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-environment-renderer.380aadd4b88c8f41.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-cave-enclosure.75f96a4cea42e188.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-act2-spatial-art.c4d9cc0730becf34.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage11-landscape-art.c6bc706dada62434.js",import.meta.url).href,
@@ -120,6 +121,7 @@ new URL("../runtime/shared-runtime-narrative-art.cca882ffc6f9a81b.js",import.met
 new URL("../runtime/shared-runtime-quest-target-art.3230368af6e8b076.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-story-anomaly-art.6a2e4dc023c2ca6c.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-visual-hierarchy.c8d029c9d563969d.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-stage21-painted-art.11ec8b97e6382ddf.js",import.meta.url).href,
 new URL("../runtime/game-vendor-ui-fa.641030aa7e374b4b.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-portraits.a4e6f99d2b96ea84.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-ui-bridge.75c810ce9fdb7e83.js",import.meta.url).href,
@@ -132,7 +134,7 @@ new URL("../runtime/shared-runtime-training.3a315db50d1e4073.js",import.meta.url
 new URL("../runtime/shared-runtime-skill-preview.d6f92d54c62d72b0.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-journey-art.c2577c69a87f4b04.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-rest-journey.de85171653871778.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-main.df6b9b854bd1c054.js",import.meta.url).href];
+new URL("../runtime/shared-runtime-main.4990c7daf143912e.js",import.meta.url).href];
 for(const href of modules){const link=document.createElement('link');link.rel='modulepreload';link.href=href;document.head.append(link);}
 globalThis.HONRO_READY=(async()=>{try{for(const file of modules)await import(file);
 if(location.hash==='#autostage2')HonroApp.launch(2);}

@@ -161,6 +161,23 @@
             this._staticWorldCache={key,rs,bytes:q.tiles.size*(px+gutter*2)**2*4};
         }
         renderCacheStats(){return{...this._cacheStats,screenWorldBytes:this._screenWorldCache?.bytes||0,screenBackgroundBytes:this._screenBackgroundCache?.bytes||0,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}
+        collisionTerrainOutline(c,b,w,h){
+            if(this.viewOptions?.debugTerrainOutline!==true)return;
+            const view=G.HonroBounds.viewport(this,w,h),pad=2/this.scale;
+            c.save();c.lineWidth=1.5/this.scale;c.lineJoin='round';c.lineCap='butt';c.setLineDash([]);
+            for(const t of b.terrain||[]){
+                if(t.broken||t.x+t.w<view.left-pad||t.x>view.right+pad||t.y+t.h<view.top-pad||t.y>view.bottom+pad)continue;
+                const points=G.HONRO_CORE.poly(t);if(points.length<2)continue;c.beginPath();
+                if(t.oneWay){
+                    // Same upward-facing edge rule as core terrainSurfaces and
+                    // segmentProjectileTerrain. Side/underside faces pass through.
+                    for(let i=0;i<points.length;i++){const a=points[i],z=points[(i+1)%points.length];if(z.x-a.x<=1e-7)continue;c.moveTo(a.x,a.y);c.lineTo(z.x,z.y);}
+                    c.strokeStyle='#f3cf62';
+                }else{points.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.strokeStyle='#52ddd2';}
+                c.stroke();
+            }
+            c.restore();
+        }
         render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt, paused = false) {
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
             this.battle=b;
@@ -238,6 +255,7 @@
             // Animated water lives outside the world raster cache; its collision and
             // conduction geometry remain in the canonical static map.
             this.liveWater?.(c,b);
+            this.collisionTerrainOutline(c,b,w,h);
             G.HonroStoryAnomalyArt?.draw(c,this,b);
             // Grade scenery before actors, targeting guides and labels so deeper
             // nights retain the same readable combat colors in every entry point.

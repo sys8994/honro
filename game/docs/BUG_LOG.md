@@ -3214,3 +3214,8 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 ### Stage21 네 미술 마감
 - mirrored 대칭 반복을 crop/크기/회전/위치가 다른 겹치는 월드 카드와 깊이별 어둠으로 교체. 항아리·수레·장작은 기존 vector 개별 형태에 재질·명암을 보완했다. 관아 하부는 얕은 석조 cap과 연속 암반·접촉/측면 그림자로 연결하고 원경은 작고 낮은 대비로 물렸다.
 - 동일 기본/확대 실제 Chromium 두 화면과 최종 빌드만 재확인. 기하·규칙·다른 장은 변경하지 않았다. 기존 기본/확대/비교 Library 항목은 ID를 유지해 교체했다.
+
+## 디버그 실제 지형 윤곽선 토글
+- 설정의 '지형 윤곽선 표시' checkbox는 디버그 모드에서만 보이고 기본 off다. 일반 미니맵 설정과 같은 정책으로 작은 boolean만 보존하며 전투 상태에는 필드를 추가하지 않는다.
+- App이 Scene view option으로 전달하고 렌더 캐시 뒤에 실제 b.terrain/HONRO_CORE.poly를 그린다. solid는 청록 실선, oneWay는 실제 upward-facing 충돌 면만 노랑으로 표시한다. broken/화면 밖은 제외하고 선 폭은 배율과 무관한1.5px다. 기존 일상 가독성 선은 유지한다.
+- 실제 Chromium checkbox on/off 즉시 반영·캐시 키 불변·일반 모드 checkbox 숨김/overlay off·두 색 구분·설정 저장/전투 필드 없음과 기본 빌드 확인. 다른 장 순회나 전체 verify는 실행하지 않았다. 캡처와 결과는 _local/reports/stage21-painted/debug-outline*.
