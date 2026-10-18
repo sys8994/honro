@@ -66,13 +66,13 @@ function prepareBark(){
  }
  return branchBark;
 }
-function branchSection(t,q){if(q.branch)return q.branch;const ps=C.poly(t),underside=[];
+function branchSection(t,q,baseRight){if(q.branch)return q.branch;const ps=C.poly(t),underside=[];
  for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(z.x<a.x)underside.push([z,a]);}
- const bottom=x=>{const edge=underside.find(([a,z])=>x>=a.x&&x<=z.x);return edge?edge[0].y+(edge[1].y-edge[0].y)*(x-edge[0].x)/(edge[1].x-edge[0].x):q.top(x)+8;},west=t.id==='pine-branch-west',baseX=west?t.x+t.w-10:t.x+10,baseY=(q.top(baseX)+bottom(baseX))/2,grain=[];
+ const bottom=x=>{const edge=underside.find(([a,z])=>x>=a.x&&x<=z.x);return edge?edge[0].y+(edge[1].y-edge[0].y)*(x-edge[0].x)/(edge[1].x-edge[0].x):q.top(x)+8;},west=baseRight??(t.id==='pine-branch-west'),baseX=west?t.x+t.w-10:t.x+10,baseY=(q.top(baseX)+bottom(baseX))/2,grain=[];
  for(const f of [.18,.38,.61,.81]){const p=new Path2D();for(let i=0;i<=12;i++){const u=i/12,x=t.x+8+(t.w-16)*u,top=q.top(x),thickness=Math.max(4,bottom(x)-top),taper=west?u:1-u,y=top+thickness*(.48+(f-.5)*(.46+.54*taper));i?p.lineTo(x,y):p.moveTo(x,y);}grain.push(p);}
  return q.branch={bottom,west,baseX,baseY,grain};
 }
-function branch(c,t){const q=prepare(t),section=branchSection(t,q),dir=section.west?1:-1;c.save();
+function branch(c,t,options={}){const q=prepare(t),section=branchSection(t,q,options.baseRight),dir=section.west?1:-1;c.save();
  // A short descending attachment sits inside the tree silhouette. Its upper
  // edge is curved and below the real top, so it never suggests another step.
  c.beginPath();c.moveTo(section.baseX+dir*35,section.baseY+17);c.quadraticCurveTo(section.baseX+dir*10,section.baseY+11,section.baseX-dir*12,section.baseY+3);const join=c.createLinearGradient(section.baseX+dir*35,section.baseY+17,section.baseX-dir*12,section.baseY+3);join.addColorStop(0,'#5a514600');join.addColorStop(.45,'#5a514666');join.addColorStop(1,'#3f392fc0');c.strokeStyle=join;c.lineWidth=10;c.lineCap='round';c.stroke();
@@ -94,5 +94,5 @@ const oldLandmark=S.landmark;S.landmark=function(c,l){if(active(this.battle)&&re
 const oldZones=S.surfaceZones;S.surfaceZones=function(c,b){if(!active(b)||!ready())return oldZones.call(this,c,b);
  // Existing water and live-water remain owned by the common renderer.
  return oldZones.call(this,c,{...b,honroSurfaceZones:(b.honroSurfaceZones||[]).filter(z=>/water|current/.test(z.kind))});};
-G.HonroStage1LocationArt={active,ready,terrain,prepare};
+G.HonroStage1LocationArt={active,ready,terrain,prepare,paintRock:rock,paintBranch:branch,rockCards:cards,soilPattern};
 })(globalThis);
