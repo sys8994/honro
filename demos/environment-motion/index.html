@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>환경 모션 시안</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="motion.js"></script>
+</head>
+<body>
+  <main>
+    <header><h1>환경 모션 시안</h1></header>
+    <figure class="scene" id="scene" aria-label="안개 낀 한국 산지 계곡. 나무와 바위는 정지하고 물, 불, 천, 가까운 풀만 움직입니다.">
+      <img id="landscape" src="assets/ravine.webp" width="1672" height="941" alt="소나무 사이의 낮은 폭포와 웅덩이, 왼쪽의 작은 화로와 나무 기둥" fetchpriority="high">
+    </figure>
+    <section class="controls" aria-label="환경 모션 조절">
+      <button id="play" class="play" aria-pressed="true">전체 정지</button>
+      <div class="effects" role="group" aria-label="효과별 재생">
+        <button data-effect="water" aria-pressed="true">수면</button>
+        <button data-effect="fire" aria-pressed="true">불</button>
+        <button data-effect="flag" aria-pressed="true">깃발</button>
+        <button data-effect="fall" aria-pressed="true">폭포</button>
+        <button data-effect="grass" aria-pressed="true">풀</button>
+      </div>
+      <label class="wind" for="wind"><span>바람 <output id="wind-value">오른쪽 0.35</output></span><input id="wind" type="range" min="-1" max="1" step="0.05" value="0.35"><span class="wind-ends"><span>← 왼쪽</span><span>무풍</span><span>오른쪽 →</span></span></label>
+    </section>
+    <footer><p id="status" role="status">효과를 끄면 현재 모습으로 멈춥니다.</p><details id="performance"><summary>성능 보기</summary><output id="metrics">측정 준비 중</output><p>CPU는 효과 그리기 호출 시간입니다. GPU·합성 시간은 포함하지 않습니다.</p></details></footer>
+    <noscript>모션 조절에는 JavaScript가 필요합니다. 정지 배경은 그대로 볼 수 있습니다.</noscript>
+  </main>
+</body>
+</html>
