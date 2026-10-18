@@ -1,3 +1,9 @@
+## 2026-10-18 — 9장 낮은 제의 마당·회랑/문간 미술
+
+- 별도9장 opt-in author/renderer에서 낮은 마당의 흙/자갈/석재 면, 두 평탄한 받이진, 낮은 우물, 열린 목조 회랑과 실제 one-way 지붕/접근 목재, 고목과 접지된 뿌리 우회, 한 개의 돌담 문간을 저작했다. 원비율 외부WebP2점, 조용한 공유 원경/1회 cache와 기존 날씨·배우/실 연출을 사용하며 새 모션/RAF 없음.
+- 공유9/13 author와13장을 바꾸지 않고9장 terrain/routes/markers/anchors/배우 접지를 같이 갱신했다. raw 편성/능력·HP/XP·AI·경고/유한3+3(runtime6+6)·receiver/스토리 기능은 보존했다.9장 map revision1만 적용하며 이전9장 전투만 성장/SP/장착/진척을 보존해 입구250에서 재시작한다.
+- build·실제 전체/문간/모바일3뷰,4경로 양방향 기본 접근, 초기28몸체/실제6+6 placement, 실제 소단76/286 보행, 옛9장 성장 보존만 확인했다. DOM/Canvas/time double인 국소 fixture이며 전체 전투/기예/13장 묶음/전체verify 미실행. 단계별 통과 로그를 보존해 반복하지 않았다. 상세 STAGE9_RITUAL_YARD_LOCATION_PAINT.md, feature commit/push 후 부모 미술 검토 대기.
+
 ## 2026-10-18 — 8장 쉼터 창고 기초 접지
 
 - 원인: 창고 cutout 밑 alpha 여백과 흙 앞면 사이로 원경이 얇게 비쳤다.
