@@ -33,14 +33,28 @@ function deck(c,t){const q=prepared(t);c.save();c.clip(q.path);const p=wood(c);p
  for(let x=t.x+72,i=0;x<t.x+t.w-14;x+=88+random((i++)+t.x)*43){const y=q.top(x);c.beginPath();c.moveTo(x,y+2);c.lineTo(x+1,Math.min(q.bottom(x)-8,y+17));c.strokeStyle='#15201dc0';c.lineWidth=1.5;c.stroke();}
  c.beginPath();for(let i=0;i<=16;i++){const x=t.x+t.w*i/16,y=q.bottom(x)-9;i?c.lineTo(x,y):c.moveTo(x,y);}c.strokeStyle='#2c291fb0';c.lineWidth=8;c.stroke();c.restore();return true;}
 function hallBody(c,b){const roof=b.terrain.find(t=>t.id==='warehouse-roof'&&!t.broken),floor=b.terrain.find(t=>t.id==='ferry-ground'&&!t.broken);if(!roof||!floor)return;const q=prepared(roof),img=picture('ferryHall'),meta=P.manifest.architecture3.warehouse,n=meta.roofTop.length,sw=img.width/n,base=C.topAt(floor,5550,1612)+5;
- // A level timber storehouse stands on a sloping stone foundation. Warping
- // each wall column down to soil would create stair-stepped doors and feet.
- const footing=new Path2D();footing.moveTo(roof.x,base-3);footing.lineTo(roof.x+roof.w,base-3);for(let i=24;i>=0;i--){const x=roof.x+roof.w*i/24;footing.lineTo(x,Math.max(base,C.topAt(floor,x,base)+8));}footing.closePath();c.save();c.clip(footing);c.fillStyle='#41443b';c.fill(footing);c.drawImage(P.images.forestRock,440,570,480,300,roof.x,base-3,roof.w,300);c.fillStyle='#26342f44';c.fill(footing);c.restore();
+ // A level timber floor on individual short piers follows the earth slope.
+ // Leave air between the supports; no massive rock rectangle fills this gap.
+ const wallLeft=roof.x+roof.w*.065,wallRight=roof.x+roof.w*.98;
+ c.save();const timber=wood(c);timber.setTransform(new DOMMatrix([1.1,0,0,.75,0,base]));c.fillStyle=timber;c.fillRect(wallLeft,base-8,wallRight-wallLeft,14);
+ for(const u of [.10,.25,.43,.61,.79,.94]){const x=roof.x+roof.w*u,ground=C.topAt(floor,x,base),height=ground-base;if(height<10)continue;
+  const foot=new Path2D();foot.moveTo(x-20,ground-4);foot.lineTo(x-12,ground-12);foot.lineTo(x+13,ground-10);foot.lineTo(x+22,ground+5);foot.lineTo(x-18,ground+7);foot.closePath();c.save();c.clip(foot);c.drawImage(P.images.forestRock,480,590,120,80,x-22,ground-13,46,22);c.restore();
+  timber.setTransform(new DOMMatrix([0,1.1,-.45,0,x,base]));c.fillStyle=timber;c.fillRect(x-8,base+2,16,height-6);c.fillStyle='#292c2366';c.fillRect(x+3,base+2,5,height-6);
+  if(height>65){c.beginPath();c.moveTo(x,base+Math.min(height*.65,85));c.lineTo(x+45,base+8);c.strokeStyle='#5e5441';c.lineWidth=8;c.stroke();}
+ }
+ c.restore();
  for(let i=0;i<n;i++){const x=roof.x+roof.w*i/n,w=roof.w/n,top=q.bottom(x+w*.5);if(base<=top)continue;c.drawImage(img,i*sw,meta.roofEave,sw,img.height-meta.roofEave,x,top,w+.3,base-top);}}
-function roofPaint(c,t){const q=prepared(t),img=picture('ferryHall'),meta=P.manifest.architecture3.warehouse,n=meta.roofTop.length,sourceLeft=img.width*.18,sourceWidth=img.width*.64,sw=sourceWidth/n,sy=img.height*.19;c.save();c.clip(q.path);c.fillStyle='#3c403b';c.fill(q.path);
- // The opaque central tiled face fills the complete real roof thickness;
- // decorative transparent upturned corners cannot leave rectangular holes.
- for(let i=0;i<n;i++){const x=t.x+t.w*i/n,w=t.w/n,top=q.top(x+w*.5),bottom=q.bottom(x+w*.5);c.drawImage(img,sourceLeft+i*sw,sy,sw,meta.roofEave-sy,x,top,w+.3,bottom-top);}c.beginPath();for(const [i,[a,z]]of q.edges.entries()){if(i===0)c.moveTo(a.x,a.y);c.lineTo(z.x,z.y);}c.strokeStyle='#a4aaa15c';c.lineWidth=1.2;c.stroke();c.restore();return true;}
+function roofPaint(c,t){const q=prepared(t),img=picture('ferryHall'),meta=P.manifest.architecture3.warehouse,n=meta.roofTop.length,sourceLeft=img.width*.18,sourceWidth=img.width*.64,sw=sourceWidth/n,sy=img.height*.19;
+ // Keep every point of the real walking contour. Only the underside of each
+ // non-walkable eave return tapers into the end tiles, inside the solid roof.
+ const lower=x=>{const u=clamp(Math.min((x-t.x)/85,(t.x+t.w-x)/85)),v=u*u*(3-2*u);return q.top(x)+10+(q.bottom(x)-q.top(x)-10)*v;},face=new Path2D();
+ for(const [i,[a,z]]of q.edges.entries()){if(i===0)face.moveTo(a.x,a.y);face.lineTo(z.x,z.y);}for(let i=n;i>=0;i--){const x=t.x+t.w*i/n;face.lineTo(x,lower(x));}face.closePath();c.save();c.clip(q.path);c.clip(face);c.fillStyle='#3c403b';c.fill(q.path);
+ for(let i=0;i<n;i++){const x=t.x+t.w*i/n,w=t.w/n,top=q.top(x+w*.5),bottom=q.bottom(x+w*.5);c.drawImage(img,sourceLeft+i*sw,sy,sw,meta.roofEave-sy,x,top,w+.3,bottom-top);}
+ // Reuse the actual turned end tiles in the narrow return faces, rather than
+ // terminating a central roof crop in two vertical image-card edges.
+ for(const right of [false,true]){const x=right?t.x+t.w-85:t.x,y=q.top(x+42.5);c.drawImage(img,right?img.width*.82:0,img.height*.25,img.width*.18,meta.roofEave-img.height*.25,x,y,85,96);}
+ c.beginPath();for(const [i,[a,z]]of q.edges.entries()){if(i===0)c.moveTo(a.x,a.y);c.lineTo(z.x,z.y);}c.strokeStyle='#a4aaa14a';c.lineWidth=1.2;c.stroke();c.restore();return true;}
+
 function terrain(c,t,b){if(!ready(b)||t.broken||t.honroElementCollision)return false;if(t.id==='ferry-ground')return groundField(c,t,b);if(t.id==='warehouse-roof')return roofPaint(c,t);if(t.id==='fc-choice-3-warehouse-side-pine')return M.paintBranch(c,t);if(t.mat==='wood')return deck(c,t);return false;}
 function supports(c,b){const floor=b.terrain.find(t=>t.id==='ferry-ground'&&!t.broken);if(!floor)return;for(const t of b.terrain){if(t.broken||!(/^(dock-|cargo-step-|ferry-side-gangway)/.test(t.id)))continue;const q=prepared(t),positions=t.id.startsWith('dock-')?[.12,.53,.9]:[.18,.82];for(const u of positions){const x=t.x+t.w*u,top=q.bottom(x)-7,bottom=C.topAt(floor,x,b.height)+12;if(bottom-top<12||bottom-top>720)continue;const p=wood(c);p.setTransform(new DOMMatrix([0,1.1,-.45,0,x,top]));c.fillStyle=p;c.fillRect(x-7,top,14,bottom-top);c.fillStyle='#18262388';c.fillRect(x+2,top,5,bottom-top);c.beginPath();c.moveTo(x,top+12);c.lineTo(x+(u>.5?-35:35),top+48);c.strokeStyle='#514a36';c.lineWidth=7;c.stroke();}}}
 const treeSpecs={'a1-scene-3-west-grove-west':{id:'pineA',meters:8.4,foot:.54},'a1-scene-3-west-grove-center':{id:'pineB',meters:8.8,foot:.64},'a1-scene-3-ridge-grove-west':{id:'pineB',meters:11,foot:.64}};
@@ -60,6 +74,9 @@ function landmark(c,l,b){if(!ready(b))return false;if(treeSpecs[l.id]){paintTree
  if(hidden.has(l.id)||l.asset?.id?.startsWith('act1-scene:rooted-'))return true;
  if(l.id.startsWith('flora-')){if(plants.has(l.id)){const img=P.forestImage('roots'),h=26,w=h*img.width/img.height;c.drawImage(img,l.x-w*.5,l.y-h,w,h);}return true;}
  if(/^mockup-granite/.test(l.asset?.id||'')){for(const t of G.HonroTerrainDomain.render(b))if(!t.broken&&(t.honroElementId===l.id||l.collisionIds?.includes(t.id)))M.paintRock(c,t,b);return true;}return false;}
+// These are functional enemy habitats, not buildings. Keep their identity
+// and emergence logic, and replace only the renderer's generic house glyph.
+const oldMarker=G.HonroAct1StoryArt.marker;G.HonroAct1StoryArt.marker=function(scene,m){if(ready(scene.battle)&&m.type==='hauntHabitat'){const c=scene.ctx,b=scene.battle,support=b.terrain.find(t=>t.id===m.support),y=support?C.topAt(support,m.x,m.y)+2:m.y,img=P.forestImage('roots'),h=35,w=h*img.width/img.height;c.save();c.drawImage(img,m.x-w*.5,y-h,w,h);c.restore();return true;}return oldMarker.call(this,scene,m);};
 const oldBackground=S.background;S.background=function(c,w,h,b){if(!active(b)||!background(c,w,h,b,this))return oldBackground.call(this,c,w,h,b);};
 const oldTerrain=S.terrain;S.terrain=function(c,t){if(!active(this.battle)||!terrain(c,t,this.battle))return oldTerrain.call(this,c,t);};
 const oldLandmark=S.landmark;S.landmark=function(c,l){if(!active(this.battle)||!landmark(c,l,this.battle))return oldLandmark.call(this,c,l);};
@@ -68,6 +85,6 @@ const oldVisible=S._landmarkVisible;S._landmarkVisible=function(l,v,pad=40){if(r
  const spec=l.id==='a1-scene-3-ferry-workbay'?['ferryWorkbay',225]:l.id==='a1-scene-3-exit-court'?['passGate',225]:l.id==='landmark-5'?['ferryShrine',145]:null;if(spec){const img=picture(spec[0]),h=spec[1],w=h*img.width/img.height;return l.x-w*.5-pad<=v.right&&l.x+w*.5+pad>=v.left&&l.y-h-pad<=v.bottom&&l.y+pad>=v.top;}
  }return oldVisible.call(this,l,v,pad);};
 const oldZones=S.surfaceZones;S.surfaceZones=function(c,b){return oldZones.call(this,c,ready(b)?{...b,honroSurfaceZones:(b.honroSurfaceZones||[]).filter(z=>/water|current/.test(z.kind))}:b);};
-const oldKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return oldKey.call(this,b,w)+(active(b)?':stage3-location-finish2:'+P.appearanceKey():'');};
+const oldKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return oldKey.call(this,b,w)+(active(b)?':stage3-eave-footing3:'+P.appearanceKey():'');};
 G.HonroPaintedPresentation.register({id:'stage3-location',active,naturalEdges:true,cachedWorld:true});G.HonroStage3LocationArt={active,ready,prepared};
 })(globalThis);

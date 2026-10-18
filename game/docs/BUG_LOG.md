@@ -1,3 +1,9 @@
+## 3장 소굴 표시·처마 끝·창고 받침 마감 · 2026-10-18
+
+- 청록색 선 집의 원인은 renderer의 기본 marker fallback이었다. 해당2개 `hauntHabitat`(habitat-3-0 창고 뒤 갈대밭/서식 hound, habitat-3-1 갯벌 갈대숲/crow)는 mission.reinforceHold가 실제 출현에 사용하므로 ID·위치·support·기능은 보존하고3장 marker 그림만 작은 식생 흔적으로 교체했다. 다른 marker와 공용 renderer는 미수정이다.
+- 창고는 실제 지붕 윗면의 모든 점/충돌을 유지하고 그 안의 처마 아랫면 끝만 기와 끝으로 좁혀 수직 카드 잘림을 없앴다. 건물 하부의 큰 검은 암반 면을 제거하고 경사 지면에 닿는 개별 목재 기둥·짧은 가새·작은 돌 받침으로 이었다. 실제 통행면이나 collision은 추가하지 않았다.
+- 필요한 build와 나루/창고 동일2화면만 확인했다. pageerror0·렌더 전후 전투 JSON 동일. 기존 Library 나루/창고 항목은 v2로 replace, 모바일은 기존 v1 그대로다. 증거는 `_local/reports/stage3-location-paint/eave-footing-checks.json` 및 같은 폴더 두 PNG다. 전체/모바일/무관한 검사는 반복하지 않았으며 master/Pages는 미반영이다.
+
 ## 3장 최신 흙길 방향 통합과 접합 마감 · 2026-10-18
 
 - 최신 배포 master866defa에 보존3장 WIP c9eef567를 통합했다. 1장 접지/가지 접합과2장 흙길·암괴 코드는 그대로 보존한다. 충돌은 문서와 빌드 생성물뿐이었으며 문서 기록은 모두 유지하고 생성물은 공용 소스로 재빌드했다.
