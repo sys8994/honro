@@ -40,8 +40,8 @@
 
 ## Library 실제 화면
 
-- stage8-battle-overview.png: `libfile_d5b4dfb590b881918ad0ab0b60562a6d`, version1
-- stage8-funeral-store.png: `libfile_7cf90e1d70008191ad411926c31b58c6`, version1
+- stage8-battle-overview.png: `libfile_d5b4dfb590b881918ad0ab0b60562a6d`, version2
+- stage8-funeral-store.png: `libfile_7cf90e1d70008191ad411926c31b58c6`, version2
 - stage8-mobile.png: `libfile_b5f5971448508191a4f9c9f9d2b50b21`, version0
 
 ## 부모 검토 후 underside·표시 보정
@@ -55,3 +55,12 @@
 화면 안의 두 결박은 실제 questTarget unit의 이름/체력 표시를 사용하고, 같은8장 대상에 뜨던 별도 상단 안내만 생략한다. 목표 focus ring과 화면 밖 안내, 실제 공격 가능한 대상·480/480 체력은 유지한다. 다른 장/사용자 정의 맵에는 이 생략을 적용하지 않는다. 실제 전체 frame에서 각 결박 이름 fillText가1회, 확대 frame에서는 결박1 이름1회와 화면 밖 결박2 안내1회임을 확인했다.
 
 보정 검증은 subset/상면·나머지 데이터 불변/하부7곳/저작 동일성, build와 실제 전체·확대2뷰에 한정했다. 기존6경로·상여 이벤트·증원·저장 검사를 반복하지 않았다. 상세 `_local/reports/stage8-bier-location-paint/underside-finish/{checks.json,render-checks.json,build.log,library.json}`. 전체·확대 Library는 같은 ID의v1로 교체하며, 모바일v0는 보정 전 참고본이다. 부모 검토 전 master 미반영이다.
+
+
+## 부모 검토 후 암굴 후면 보정
+
+v1의 얇아진 위쪽 암반과 고목 아래가 공중 아치로 읽힌다는 검토에 따라, 앞쪽 사격길과 아래 통로 뒤의 하늘 구멍을 넓은 암굴 후면으로 채웠다. 기존 암석 그림을 조용한 명암으로 겹친 세 개의 큰 곡면이며 윤곽선·별도 보행 윗면·가짜 전경 기둥은 없다. 산 원경은 위와 양옆에 남는다. 후면은 최초 한 번1536×960 canvas로 준비하고 동일 world cache에서 사용한다. 프레임별 필터와 새 환경 모션은 없다.
+
+작은 창고 반사석은 하단 오른쪽 모서리와 기존 목재 통로 사이에 작은 후면 접점만 그렸다. 실제 반사석 위치·기능과 모든 terrain polygon, collision, routes, anchors, unit/encounter, map revision은 v1과 동일하다. 변경 소스는 stage8-location-art.js 한 파일이다.
+
+검증은 build와 실제 Chromium1440×900 전체·확대2뷰(pageerror0), 소스 구문/공백 확인에 한정했다. 이동·상여·증원·저장 검사와 모바일 촬영은 반복하지 않았다. 상세 `_local/reports/stage8-bier-location-paint/rear-finish/{build.log,render-checks.json,library.json}`. 두 Library 화면은 같은 ID의v2로 교체했고 모바일v0는 그대로다. master 병합·배포는 부모 화면 검토를 기다린다.
