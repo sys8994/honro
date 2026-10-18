@@ -6,7 +6,7 @@
 
 - 기존3600×3500 전장을 유지한다. 마당을 낮은 수평 구도로 두고 서쪽 받이진850/2570, 우물1800/2485, 동쪽 받이진2800/2380 주변을 평탄하게 잇는다. 흙·자갈과 닳은 얕은 석재 구간, 몇 개의 이끼/풀빛 둔덕을 큰 면으로 나눈다. 깊은 지면은 큰 암반에서 어둡게 감쇠한다. 표면은 실제 polygon에 clip하며 새 밝은 외곽선을 추가하지 않는다.
 - 새로 제작한 회랑은 전체 목조 기둥/석제 받침과 파손된 기와지붕이 있는 열린 한국식 구조다. 외부WebP1536×486/154162bytes를 원비율900×284.765625, x550/foot2580에 둔다. 세 받침은 기존 흙에 조금 묻히고 기둥 사이 아래 통행은 막지 않는다. 지붕 최상부의 실제 외곽을 one-way로 저작했다. 서쪽 접근·귀환은 실제 부러진 목재 경사에서 흙에 닿는다.
-- 동쪽은 정적 고목의 밑동과 기존 돌 어깨/수피 우회로를 함께 읽는다. 두 경사 끝은 실제 지면에 연결한다. 상면과 넓은 마디 아래 형태는 실제 polygon이며 새 움직임/추가 보행면을 그림에만 넣지 않는다. 수피는 같은 고목의 큰 세로 줄기 crop을1회1536×320 canvas로 준비해 경사 길이를 따라 연속 배치한다. 짧은 edge마다 전체 텍스처를 반복하지 않는다. 아래 경로와 받이진 앞은 비운다.
+- 동쪽은 정적 고목의 밑동과 기존 돌 어깨/수피 우회로를 함께 읽는다. 두 경사 끝은 실제 지면에 연결한다. 상면과 넓은 마디 아래 형태는 실제 polygon이며 새 움직임/추가 보행면을 그림에만 넣지 않는다. 동쪽 루프는 암괴를 뿌리가 감싼 자연 갈래 전체 WebP1536×442/129456bytes로 그린다. 하나의 source를 한 번만 소비하는 고정1536×700 cache에 기존 joined 상면을 맞추고, 원래 그림의 마디/갈래/안쪽 빈 공간을 이어 둔다. 반복 수피 카드·기존 삼각 접합면·사각 암판을 그리지 않는다. 아래 경로와 받이진 앞은 비운다.
 - 동쪽 문간은 전체WebP1152×622/236736bytes, 원비율760×410.347222..., x2920/foot2403의 낮은 돌담을 갖춘 출입구 한 점이다. 실제 밟을 수 있는 지붕만 one-way이고 문짝/돌담/기둥은 뒤 평면이다. 소단의 문턱 보행3274..3560은 같은y2390 지면으로 잇는다. 문간의 붉은 실은 한 줄만이며 기존 실제 소단/받이진 연출이 그대로 이어진다.
 - 마른 우물은 사람 크기의 낮은 돌테두리/어두운 빈 내부로 표시한다. 기존 well/incenseYard, oldHall, receiver 및 habitat 기능 ID를 남기고 새 opt-in renderer에서 기존 중복 그림만 생략한다. 별도 큰 종이/문자/장식 군중은 없다.
 - mountain-dusk는 같은 공유 자산 한 장을 낮은 대비/채도로1회 준비해 act1BackdropFrame 계약으로 그린다. 나무와 건축은 정적이며 기존 날씨·배우·받이진/실 연출을 보존한다. 새 RAF/환경 모션/프레임별 filter는 없다. world cache와 고정 사진/원경/수피/목재 canvas를 쓴다.
@@ -33,6 +33,13 @@ build, JS 구문/소스 공백, 실제 Chromium1440×900 전체/동쪽 문간·�
 
 ## Library 실제 화면
 
-- stage9-overview.png: libfile_e344c530953c819184e1697c35940b4a, version0
-- stage9-gate-roots.png: libfile_a76d3c8858e0819188cfed9aceca294a, version0
+- stage9-overview.png: libfile_e344c530953c819184e1697c35940b4a, version1
+- stage9-gate-roots.png: libfile_a76d3c8858e0819188cfed9aceca294a, version1
 - stage9-mobile-corridor.png: libfile_17db167965d08191bd584a2e0e3898b9, version0
+
+
+## 부모 검토 뒤 동쪽 뿌리 갈래 보정
+
+91a26a5의 실제 화면에서 두 긴 목재 띠/상단 사각 암판/녹색 접합부를 지적받았다. 이 부분만 별도 완성형 root-fork 자산으로 바꿨다. 원본 PNG를 보존하고 같은 trim/원비율 외부WebP pipeline에 추가했다. 암괴를 둘러싼 여러 뿌리가 고목 줄기에 닿아 양쪽 흙으로 내려가는 연속된 입체 형태다. 실제 노출 상면에 한 번 투영한 한 개 cache를 사용하며 각 경사 edge에 bark strip을 늘여 칠하지 않는다. 아래 통행의 투명한 틈과 앞쪽 배우 가독성을 남기고 기존 지면이 발끝을 묻는다.
+
+실제 상면뿐 아니라 canonical terrain/author/routes/markers/anchors/units/events/story/save revision 전체가91a26a5와 동일하다. 따라서 소단·성장·4경로 검사를 반복하지 않고 build·실제 전체/동쪽 확대2뷰만 확인했다. pageerror0, picture4/far1/rootFork1/beam1/filter5가 정적3frame 동안 불변이다. 모바일v0는 이전 회랑 참고본 그대로 두고 전체/동쪽의 같은 Library ID만v1로 교체했다. 증거 `_local/reports/stage9-location-paint/root-finish/{build.log,render-checks.json,library.json,scope.json}`. 부모 미술 확인 전 master 미반영이다.
