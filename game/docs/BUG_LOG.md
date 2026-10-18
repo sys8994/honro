@@ -1,3 +1,9 @@
+## 2장 흙길 앞층과 좌우 암괴의 중첩 · 2026-10-18
+
+- 사용자 최신 구성을 반영해 canyon-ground의 큰 암반 wallpaper를 연속 흙·자갈층으로 바꿨다. 좌우 cliff는 별개의 큰 광물 면과 어두운 측면을 가지며 canonical canyon 표면 아래에서 흙 앞층에 묻히는 유한한 밑동으로 마감한다. 화면 외곽도 collision 투영의 x 한계 대신 원본 terrain-domain 윤곽을 샘플링해 같은 흙층으로 잇는다.
+- 모든 색/텍스처는 기존 solid polygon으로 clip한다. 가짜 통로·보행 가장자리·장식을 추가하지 않았으며 canonical campaign, collision, 상여 route1200→3340, 가지, 공중 적, 이벤트/대사, mapRevision20, 성장/SP/저장, 물/원경은 미수정이다. 새 필터는 소재 canvas 생성 때 한 번만 사용하며 기존 world tile cache를 유지한다.
+- 필요한 build와 줌아웃 전체 구도1600×1100/.25 및 실제 하부 길1440×900/.48만 확인했다. 외곽 텍스처 경계/매몰 이음 수정 후 같은2화면을 갱신했으며 pageerror0·렌더 전후 전투 JSON 동일이다. 전체/기예/전투 순회는 미실행. `_local/reports/stage2-earth-road-rock-masses/` 및 Library2파일에 보존하고 부모 화면 승인 전 master/Pages에는 반영하지 않는다.
+
 ## 1장 넓은 뿌리의 경사 접지 · 2026-10-18
 
 - 깨끗한 pineA/pineB/dead 이미지의 주요 뿌리 접점 5개를 계측하고 회전·배율을 적용한 월드 x마다 기존 support의 authored nearY 인접 표면을 샘플링한다. 뿌리 부채 전체가 지지되도록 시각 y를 정하고 실제 지형 안으로 들어간 부분은 해당 polygon으로 가린다. 일괄 y 이동·가짜 접촉 그림자는 사용하지 않는다.

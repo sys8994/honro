@@ -1,3 +1,17 @@
+## 2026-10-18 최신 사용자 구성 수정
+
+큰 V자 단면을 한 광물장으로 채우던 표현을 변경했다. 실제 하부 canyon-ground는 흙·자갈 바닥이며, 좌우 rock solids는 큰 광물 면과 어두운 측면을 가진 별개 암괴다. 암괴의 그림 밑동은 canonical 바닥면보다 아래에서 앞쪽 흙층에 점차 묻힌다. 숨은 solid 벽을 통과할 수 있는 가짜 가장자리는 그리지 않는다. 실제 지형·상여 경로·상부 엄호 구조는 동일하다.
+
+- 변경 소스: `shared/runtime/stage2-location-art.js`, 생성 Game/Workshop/web.
+- 충돌/route/이벤트/공중 적/mapRevision20/성장/SP/물/원경: 변경 없음.
+- 확인: build, 전체 구도1600×1100/.25, 하부 실제 길1440×900/.48. pageerror0·렌더 상태 불변. 무관한 전체 검사는 미실행.
+- 실제 그림: `_local/reports/stage2-earth-road-rock-masses/stage2-overview.png`, `stage2-lower-bier-road.png` 및 같은 폴더 `checks.json`.
+- Library v0: 전체 `libfile_a34b5c6a450481919ebb18feda367967`, 하부 `libfile_68533683e2648191ac4f3aaa0453d520`.
+- 선행1장 뿌리 접지 커밋 `fa15a69818642247c388a35bae453f835a8e6bbc`; Library 시작 `libfile_d14be35f2758819199353b598eff4a93`, 고목 `libfile_1adcf3a4f15081919cb0fe53d3c5a5b5` (모두v0). 이번2장 수정과 분리된 커밋이다.
+- 부모 확인 전 master/Pages 미반영. 3장은 별도 `art/stage3-location-paint-20261018`의 `c9eef567267700d6d302f8f733a02615730e4f0b`로 보존하며 이 브랜치에 포함하지 않는다.
+
+---
+
 # 1막 2장 장소 회화 — 2026-10-18
 
 작업 기준은 1장 공개 배포가 포함된 최신 master `e91966fa6ffc336fbc1dee6934c1df01729be2c9`다. 이번 opt-in은 2장뿐이다. 3장을 시작하거나 master/Pages에 배포하지 않는다. 부모가 브랜치와 실제 화면을 본 뒤 반영을 결정한다.
