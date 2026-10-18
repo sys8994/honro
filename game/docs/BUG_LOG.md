@@ -1,3 +1,9 @@
+## 2장 한정 장소 회화 · 2026-10-18
+
+- 변경: 2장에만 경량 wet-valley 원경·실제 polygon clip 절벽/습한 흙·수직 광물 크롭과 1장 최종 수피/작은 바위 painter를 연결했다. 기존 3개 ravine pine와 scene9개를 중복 출력하지 않고 실제 support의 authored nearY 가까운 면에 붙인 4그루로 정리한다. 원경/가까운 비충돌 나무/실제 가지 발판의 역할 차이를 유지한다.
+- 보존: canonical campaign·지형/collision·5가지 oneWay/HP340·bier-road·모든 이벤트/유닛/목표·foe1/foe4 공중 대기/출격/안전 진입·mapRevision20·성장/SP/저장·기존 물/날씨는 불변. startup/main/web-build/motion demo 미수정, 3장 미착수.
+- 확인: 필요한 빌드와 Chromium 시작 고지대/하부 상여길/모바일 대표3화면, 공용 helper 연결에 따른 1장 시작1화면만 확인했다. 렌더 전후 전투 JSON 동일·pageerror0·2장 원경만 요청/Stage21 요청0이다. 전체 전투·기예·verify·다른 장 검수는 미실행. 실제 화면3개 Library와 `STAGE2_LOCATION_PAINT.md`, `_local/reports/stage2-location-paint/`에 보존하며 작업 브랜치만 push한다. master/Pages는 부모 화면 확인 전 미반영이다.
+
 ## 1장 근거리 나무와 게임 발판의 수피 관계 · 2026-10-18
 
 - 사용자 범위: 원경처럼 푸르게 흐려진 비충돌 나무를 근거리 구조 장식으로 읽히게 하고 발판의 수피와 이어지도록 한다. 나무와 발판의 각진 형상/충돌은 이번 범위가 아니다.

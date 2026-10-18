@@ -91,6 +91,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/stage21-painted-art.js');
   if(render)await file('shared/runtime/painted-pilots-art.js');
   if(render)await file('shared/runtime/stage1-location-art.js');
+  if(render)await file('shared/runtime/stage2-location-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
     for(const name of ['portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])

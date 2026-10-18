@@ -3,7 +3,8 @@ const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,manifest=G.HO
 const stage=b=>manifest?.stages[b?.honroStage],ready=id=>!!(images[id]?.complete&&images[id].naturalWidth);
 const active=b=>!!stage(b)&&(b.honroStage===1?b.honroMap?.act1Scene?.version===1:b.honroStage===18?b.honroBellRevision===1:b.honroLandmarks?.some(l=>l.asset?.id?.startsWith('stage27-depot-')));
 const dependencies={1:['forestFar','forestRock','forestSoil','pineA','pineB','dead','roots','bark','passGate'],18:['bellRear','stone','beam','underground'],27:['depotRear','stone','beam','underground']};
-function ensure(b){if(typeof Image==='undefined')return;for(const id of dependencies[b.honroStage]||[]){if(images[id])continue;const img=images[id]=new Image();img.decoding='async';img.onload=()=>generation++;img.src=manifest.images[id];}}
+function request(ids){if(typeof Image==='undefined')return;for(const id of ids){if(images[id]||!manifest.images[id])continue;const img=images[id]=new Image();img.decoding='async';img.onload=()=>generation++;img.src=manifest.images[id];}}
+function ensure(b){request(dependencies[b.honroStage]||[]);}
 function path(points){const p=new Path2D();points.forEach((v,i)=>i?p.lineTo(v.x,v.y):p.moveTo(v.x,v.y));p.closePath();return p;}
 function shape(t){let q=shapes.get(t);if(q?.vertices===t.vertices)return q.path;const p=path(C.poly(t));shapes.set(t,{vertices:t.vertices,path:p});return p;}
 function pattern(c,key){let ps=patterns.get(c);if(!ps){ps={};patterns.set(c,ps);}if(!ps[key]){ps[key]=c.createPattern(images[key],'repeat');ps[key].setTransform(new DOMMatrix([1.1,0,0,1.1,0,0]));}return ps[key];}
@@ -25,7 +26,7 @@ function toned(b){const n=b.honroStage;if(tones.has(n))return tones.get(n);const
 function picture(c,id,x,y,w,h){if(!ready(id))return false;c.drawImage(images[id],x,y,w,h);return true;}
 // Painted forest references use metres and a trunk foot, not the atlas rectangle's root mat.
 const forestReference={pineA:{heightM:8.4,foot:[.54,.90]},pineB:{heightM:8.4,foot:[.64,.90]},dead:{heightM:7.2,foot:[.50,.91]}};
-function forestImage(id){if(forestTones.has(id))return forestTones.get(id);const img=images[id],cv=document.createElement('canvas');cv.width=img.naturalWidth;cv.height=img.naturalHeight;const c=cv.getContext('2d');c.filter=forestReference[id]?'saturate(.48) contrast(.82) brightness(.62) blur(.55px)':'saturate(.58) brightness(.78)';c.drawImage(img,0,0);c.filter='none';c.globalCompositeOperation='source-atop';c.fillStyle=forestReference[id]?'#34495848':'#26374428';c.fillRect(0,0,cv.width,cv.height);if(forestReference[id]){c.globalCompositeOperation='destination-in';const g=c.createLinearGradient(0,cv.height*.81,0,cv.height);g.addColorStop(0,'#000');g.addColorStop(.5,'#0009');g.addColorStop(1,'#0000');c.fillStyle=g;c.fillRect(0,0,cv.width,cv.height);}forestTones.set(id,cv);return cv;}
+function forestImage(id){if(forestTones.has(id))return forestTones.get(id);const img=images[id],cv=document.createElement('canvas');cv.width=img.naturalWidth;cv.height=img.naturalHeight;const c=cv.getContext('2d');c.filter=forestReference[id]?'saturate(.60) contrast(.90) brightness(.82) blur(.2px)':'saturate(.58) brightness(.78)';c.drawImage(img,0,0);c.filter='none';c.globalCompositeOperation='source-atop';c.fillStyle=forestReference[id]?'#55554b30':'#26374428';c.fillRect(0,0,cv.width,cv.height);if(forestReference[id]){c.globalCompositeOperation='destination-in';const g=c.createLinearGradient(0,cv.height*.81,0,cv.height);g.addColorStop(0,'#000');g.addColorStop(.5,'#0009');g.addColorStop(1,'#0000');c.fillStyle=g;c.fillRect(0,0,cv.width,cv.height);}forestTones.set(id,cv);return cv;}
 function background(c,w,h,b,scene){if(active(b))ensure(b);if(!active(b)||!ready(stage(b).rear))return false;
  const img=toned(b),raw=G.HonroVisualStyle.raw(c),paint=cc=>{cc.fillStyle=b.honroStage===1?'#1b303c':'#091923';cc.fillRect(0,0,w,h);
   if(stage(b).kind==='sky'){const q=E.act1BackdropFrame(scene,w,h,b,img.width,img.height);cc.drawImage(img,q.x,q.y,q.w,q.h);}
@@ -59,6 +60,6 @@ const oldVisible=S._landmarkVisible;S._landmarkVisible=function(l,view,padding=4
  }return oldVisible.call(this,l,view,padding);};
 const oldKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return oldKey.call(this,b,w)+(active(b)?':pilots:'+manifest.revision+':'+generation+':'+(b.honroStage===1?'location2':G.HonroStage21Painted.appearanceKey()):'');};
 for(const n of [1,18,27])G.HonroPaintedPresentation.register({id:'pilot-'+n,active:b=>b?.honroStage===n&&active(b),naturalEdges:true,cachedWorld:true});
-G.HonroPaintedPilots={active,ready,images,manifest,terrain};
+G.HonroPaintedPilots={active,ready,images,manifest,terrain,request,forestImage,appearanceKey:()=>manifest.revision+':'+generation};
 })(globalThis);
 
