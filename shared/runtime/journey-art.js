@@ -233,6 +233,7 @@
       <pattern id="${id}-soil" width="670" height="670" patternUnits="userSpaceOnUse">${image('forestSoil',0,0,670,670)}</pattern>
       <pattern id="${id}-stone" width="384" height="256" patternUnits="userSpaceOnUse">${image('forestRock',0,0,384,256)}</pattern>
       <pattern id="${id}-bark" width="190" height="48" patternUnits="userSpaceOnUse"><svg width="190" height="48" viewBox="250 270 260 90" preserveAspectRatio="none">${image('ferryHall',0,0,1536,409)}</svg></pattern>
+      <pattern id="${id}-bench-top" width="190" height="48" patternUnits="userSpaceOnUse"><svg width="190" height="48" viewBox="250 270 260 90" preserveAspectRatio="none">${image('ferryHall',0,0,1536,409)}</svg><rect width="190" height="48" fill="#baa482" opacity=".12"/></pattern>
       <linearGradient id="${id}-far-fade" x2="0" y2="1"><stop offset="0" stop-color="#293b44" stop-opacity="0"/><stop offset="1" stop-color="#293b44"/></linearGradient>
       <linearGradient id="${id}-earth" x2="0" y2="1"><stop stop-color="#5a564422"/><stop offset=".40" stop-color="#30392e55"/><stop offset="1" stop-color="#111d22"/></linearGradient>
       <radialGradient id="${id}-fire-ground"><stop stop-color="#c29659" stop-opacity=".3"/><stop offset=".5" stop-color="#b17d43" stop-opacity=".13"/><stop offset="1" stop-color="#ab703d" stop-opacity="0"/></radialGradient>
@@ -247,8 +248,9 @@
     const stones=group('separate-low-stones',image('granite',42,654,154,73,`filter="url(#${id}-near)"`)+image('granite',1460,684,130,62,`filter="url(#${id}-near)"`));
     const fireLight=group('fire-ground-light',glow(800,758,300,103,`${id}-fire-ground`),'data-rest-motion="fire-ground"');
     // Retain the exact fire/motion markup and anchors. Only static bench,
-    // hearth and signpost fills acquire the same painted timber/mineral finish.
-    let props=campProps(id);for(const color of ['#302d24','#352c25','#473e2c','#473d2e','#3c2d23','#3b3226','#3d382b','#665a40'])props=props.replaceAll(`fill="${color}"`,`fill="url(#${id}-bark)"`);
+    // hearth fills acquire the same painted timber/mineral finish.
+    let props=campProps(id).replace(/<g data-art-layer="wayfinding-signpost"[^>]*>[\s\S]*$/,'');for(const color of ['#302d24','#352c25','#473e2c','#473d2e','#3c2d23','#3b3226','#3d382b','#665a40'])props=props.replaceAll(`fill="${color}"`,`fill="url(#${id}-bark)"`);
+    for(const color of ['#776a49','#817052'])props=props.replaceAll(`fill="${color}"`,`fill="url(#${id}-bench-top)"`);
     props=props.replaceAll('fill="#5c5a4b"',`fill="url(#${id}-stone)"`).replace('fill="#0b171b" opacity=".6"','fill="#0b171b" opacity=".38"').replace('fill="#0c171a" opacity=".7"','fill="#0c171a" opacity=".42"');
     const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="stage1-painted" data-journey-layer="surface">${defs}${far}${trees}${ground}${inn}${stones}${fireLight}${props}</svg>`;
     cache.set(key,svg);return svg;

@@ -91,7 +91,7 @@ new URL("../runtime/shared-assets-rebuild-game-adapter.7584136339439b5b.js",impo
 new URL("../runtime/HONRO_ACT1_FAR_DATA.ba5e3d0dc63dfcfb.js",import.meta.url).href,
 new URL("../runtime/HONRO_ACT2_FAR_DATA.24c544411178203d.js",import.meta.url).href,
 new URL("../runtime/HONRO_STAGE21_PAINTED.6f8262bc6958113b.js",import.meta.url).href,
-new URL("../runtime/HONRO_PAINTED_PILOTS.33e734f905850e5f.js",import.meta.url).href,
+new URL("../runtime/HONRO_PAINTED_PILOTS.d9f2bfec4c2fdbe2.js",import.meta.url).href,
 new URL("../runtime/shared-assets-monsters-monsters-runtime.47cfa9e9910c85e0.js",import.meta.url).href,
 new URL("../runtime/shared-assets-actors-actors-runtime.e5fe9e84464ad8ed.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-renderer.27c174d4bbdba94c.js",import.meta.url).href,
@@ -128,7 +128,7 @@ new URL("../runtime/shared-runtime-stage21-painted-art.002ffd7e47ce7e0b.js",impo
 new URL("../runtime/shared-runtime-painted-pilots-art.be9a15dd180a1766.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage1-location-art.2018fedd2168740f.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage2-location-art.538e075b73b8087a.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-stage3-location-art.c0c342e919046781.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-stage3-location-art.b0e27e3571dca98b.js",import.meta.url).href,
 new URL("../runtime/game-vendor-ui-fa.641030aa7e374b4b.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-portraits.a4e6f99d2b96ea84.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-ui-bridge.75c810ce9fdb7e83.js",import.meta.url).href,
@@ -139,8 +139,8 @@ new URL("../runtime/shared-runtime-interactions.c0688558aab3d18b.js",import.meta
 new URL("../runtime/shared-runtime-unit-info.578a02d8ebd7c8bd.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-training.3a315db50d1e4073.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-skill-preview.d6f92d54c62d72b0.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-journey-art.c2577c69a87f4b04.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-rest-journey.de85171653871778.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-journey-art.99ff278d5bfb52bb.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-rest-journey.a91dc30554a20ae8.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-main.89d7bf7f84c57e65.js",import.meta.url).href];
 globalThis.HONRO_READY=(async()=>{try{
 await globalThis.HonroStartup?.firstPaint();
