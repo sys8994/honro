@@ -69,7 +69,7 @@ function prepareScene(b){let q=sceneCache.get(b);if(q?.source===b.honroMap.act1S
  }
  q={source:art,version:b.sceneVersion,rocks,shelfNecks,replaced:new Set(art.replaced||[]),scenery:new Map((art.scenery||[]).map(s=>[s.id,s]))};sceneCache.set(b,q);return q;
 }
-function supports(c,b){c=G.HonroVisualStyle?.context(c,'L1')||c;
+function supports(c,b){if(G.HonroStage3LocationArt?.active(b)&&G.HonroStage3LocationArt.ready(b))return;c=G.HonroVisualStyle?.context(c,'L1')||c;
  // Real optional decks receive visibly open timber trestles. Gaps remain gaps;
  // these narrow, darker members are scenery and never suggest extra floor.
  if(![3,4,6,8,9,10].includes(b.honroStage))return;
