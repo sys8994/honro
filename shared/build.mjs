@@ -1,5 +1,6 @@
 import {applyStage3HanokTerrain} from '../tools/map-forge/stage3-hanok-terrain.mjs';
 import {applyStage4GateDefense} from '../tools/map-forge/stage4-gate-defense.mjs';
+import {applyStage5WaterfallPaint} from '../tools/map-forge/stage5-waterfall-paint.mjs';
 import {applyPlaceEncounters} from '../tools/map-forge/act3-place-encounters-20261017.mjs';
 import {applyStage28RecordCourt} from '../tools/map-forge/stage28-record-court.mjs';
 import {applyStoryAnomalyEnvironment} from '../tools/map-forge/story-anomaly-revision.mjs';
@@ -49,6 +50,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands'])await file(`shared/map/${name}.js`);
   let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(applyStage3HanokTerrain(JSON.parse(await read('shared/data/campaign.json')))))),{existingOnly:true}),{existingOnly:true});
   applyStage4GateDefense(project);
+  applyStage5WaterfallPaint(project);
   project=await authorAct23QuestRedesign(project);
   applyOpenStructures(project);
   project=applyCityTacticalRoutes(project);
@@ -97,6 +99,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/stage2-location-art.js');
   if(render)await file('shared/runtime/stage3-location-art.js');
   if(render)await file('shared/runtime/stage4-location-art.js');
+  if(render)await file('shared/runtime/stage5-location-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
     for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])
