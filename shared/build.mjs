@@ -1,3 +1,4 @@
+import {applyStage3HanokTerrain} from '../tools/map-forge/stage3-hanok-terrain.mjs';
 import {applyPlaceEncounters} from '../tools/map-forge/act3-place-encounters-20261017.mjs';
 import {applyStage28RecordCourt} from '../tools/map-forge/stage28-record-court.mjs';
 import {applyStoryAnomalyEnvironment} from '../tools/map-forge/story-anomaly-revision.mjs';
@@ -45,7 +46,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   for(const name of modelFiles)await file(`shared/runtime/${name}.js`);
   await file('shared/runtime/camera.js');
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands'])await file(`shared/map/${name}.js`);
-  let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
+  let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(applyStage3HanokTerrain(JSON.parse(await read('shared/data/campaign.json')))))),{existingOnly:true}),{existingOnly:true});
   project=await authorAct23QuestRedesign(project);
   applyOpenStructures(project);
   project=applyCityTacticalRoutes(project);

@@ -61,3 +61,7 @@ Workshop에서 에셋을 고르고 Depth → Zone/Group → Support를 선택한
 `node tools/environment/validate.mjs [project.json]`은 rooted support, 그룹/구역 참조, layer와 mode, 기준 크기, 대기 override, 구역 연결, 최대 줌 coverage, 옛 개체별 시차 필드를 검사한다. 전체 에셋·절차 생성물 분류는 `ENVIRONMENT_INVENTORY.md`와 inventory 생성기가 담당한다.
 
 검사는 `tests/environment-depth.mjs`, `tests/environment-composition.mjs`, `tests/environment-browser.py`, `tests/environment-composition-browser.py`, `tests/environment-performance.py`에 있다. 시각·성능 결과는 `_local/reports/environment-v3/`에 저장한다. 마이그레이션 비교는 전투 데이터 보존과 레시피 재현도 함께 확인한다.
+
+## 2026-10-18 사용자 정정: 장소와 실제 지형의 공동 설계
+
+자연스러운 장소·그림·한옥 구조를 먼저 설계한 뒤 실제 terrain/platform을 맞춘다. 기존 벡터 다각형을 보존하기 위해 원화를 세로 조각으로 잘라 늘이지 않는다. 전투 컨셉·퀘스트 연결·일반 이동 접근성은 유지하며 밟는 지붕은 one-way 발판이다. 개편된 장의 진행 중 전투만 revision/restart 계약으로 폐기하고 성장·SP·장착·전체 클리어 기록을 보존한다. 전 장 공통 원칙이지만 구현은 부모가 지정한 한 장씩 진행한다.
