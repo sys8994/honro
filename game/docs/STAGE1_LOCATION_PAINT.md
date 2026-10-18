@@ -46,3 +46,16 @@
 - 고목·개울: `libfile_ccb9a3b0a5e881918000d3e73323f5a6` — `stage1-great-pine-creek.png`
 
 이전 모바일은 v0의 앞선 검토 증거로 보존하며 이번 마감에서 갱신하지 않는다. 작업 브랜치만 push하고 master 병합·배포는 진행하지 않는다.
+
+## 사용자 한정 수정 — 근거리 나무와 발판의 관계
+
+사용자는 나무가 원거리 풍경이 아니라 발판과 맞닿는 근거리 비충돌 구조 장식임을 확정했다. `forestImage`의 forestReference 처리만 sat.60 / contrast.90 / brightness.82 / blur.2px와 중성 갈회색 wash `#55554b30`으로 바꾼다. 원거리 mountain-dusk와 그 캐시 톤은 그대로다. 게임 발판 본문/짧은 기부 연결을 같은 갈회색 수피 계열로 맞추고 실제 윗면 가장자리만 한 단계 더 선명하게 유지한다. 수피 샘플의 보정은 한 번 캐시한다.
+
+다른 지형·풀·적·퀘스트·가지 형태/좌표/collision/oneWay/HP를 바꾸지 않았다. 각진 가지 형상은 이번 수정 범위가 아니다. 수정 후 빌드와 기존 기본/중앙 두 카메라만 확인했고 pageerror0·렌더 전후 전투 JSON 동일이다. 추가 coverage/이동/모바일/다른 장 검사는 없다.
+
+새 증거: `_local/reports/stage1-tree-platform-relation/`의 `checks.json`, `stage1-default.png`, `stage1-great-pine-creek.png`. 기존 Library 파일은 같은 ID의 **v2**로 갱신했다.
+
+- 기본: `libfile_ee50d53eea1481918af17558ea3cd35e` (v2)
+- 중앙: `libfile_ccb9a3b0a5e881918000d3e73323f5a6` (v2)
+
+master 병합·배포는 하지 않는다.

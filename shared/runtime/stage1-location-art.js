@@ -62,7 +62,7 @@ function prepareBark(){
  if(!branchBark){
   // Sample clean trunk bark already loaded for Stage1. Rotate its lengthwise
   // grain onto the bough axis; the old roots/moss atlas strip read as planking.
-  const img=P.images.pineA,cv=branchBark=document.createElement('canvas');cv.width=288;cv.height=72;const cc=cv.getContext('2d');cc.translate(0,72);cc.rotate(-Math.PI/2);cc.drawImage(img,img.naturalWidth*.34,img.naturalHeight*.45,img.naturalWidth*.13,img.naturalHeight*.16,0,0,72,288);
+  const img=P.images.pineA,cv=branchBark=document.createElement('canvas');cv.width=288;cv.height=72;const cc=cv.getContext('2d');cc.translate(0,72);cc.rotate(-Math.PI/2);cc.filter='saturate(.60) contrast(.94) brightness(.86)';cc.drawImage(img,img.naturalWidth*.34,img.naturalHeight*.45,img.naturalWidth*.13,img.naturalHeight*.16,0,0,72,288);cc.setTransform(1,0,0,1,0,0);cc.filter='none';cc.globalCompositeOperation='source-atop';cc.fillStyle='#65594f26';cc.fillRect(0,0,288,72);
  }
  return branchBark;
 }
@@ -75,16 +75,16 @@ function branchSection(t,q){if(q.branch)return q.branch;const ps=C.poly(t),under
 function branch(c,t){const q=prepare(t),section=branchSection(t,q),dir=section.west?1:-1;c.save();
  // A short descending attachment sits inside the tree silhouette. Its upper
  // edge is curved and below the real top, so it never suggests another step.
- c.beginPath();c.moveTo(section.baseX+dir*35,section.baseY+17);c.quadraticCurveTo(section.baseX+dir*10,section.baseY+11,section.baseX-dir*12,section.baseY+3);const join=c.createLinearGradient(section.baseX+dir*35,section.baseY+17,section.baseX-dir*12,section.baseY+3);join.addColorStop(0,'#394b5200');join.addColorStop(.45,'#394b5244');join.addColorStop(1,'#282b24c0');c.strokeStyle=join;c.lineWidth=10;c.lineCap='round';c.stroke();
- c.clip(q.path);c.fillStyle='#3c3529';c.fill(q.path);prepareBark();const m=c.getTransform(),left=Math.max(t.x,-m.e/m.a-4),right=Math.min(t.x+t.w,(c.canvas.width-m.e)/m.a+4);
+ c.beginPath();c.moveTo(section.baseX+dir*35,section.baseY+17);c.quadraticCurveTo(section.baseX+dir*10,section.baseY+11,section.baseX-dir*12,section.baseY+3);const join=c.createLinearGradient(section.baseX+dir*35,section.baseY+17,section.baseX-dir*12,section.baseY+3);join.addColorStop(0,'#5a514600');join.addColorStop(.45,'#5a514666');join.addColorStop(1,'#3f392fc0');c.strokeStyle=join;c.lineWidth=10;c.lineCap='round';c.stroke();
+ c.clip(q.path);c.fillStyle='#484036';c.fill(q.path);prepareBark();const m=c.getTransform(),left=Math.max(t.x,-m.e/m.a-4),right=Math.min(t.x+t.w,(c.canvas.width-m.e)/m.a+4);
  // The texture and round lower volume follow the actual bough contour. Every
  // span samples one continuous bough-length image, with no repeated end seam.
  for(let x=Math.floor(left/64)*64;x<right;x+=64){const x0=Math.max(x,t.x),x1=Math.min(x+64,t.x+t.w);if(x1<=x0)continue;const y0=q.top(x0),y1=q.top(x1),thickness=Math.max(10,(section.bottom((x0+x1)/2)-q.top((x0+x1)/2)));
   c.save();c.transform(1,(y1-y0)/(x1-x0),0,1,x0,y0);const sx=(x0-t.x)/t.w*branchBark.width,sw=(x1-x0)/t.w*branchBark.width;c.drawImage(branchBark,sx,0,sw,branchBark.height,0,0,x1-x0+.3,thickness+4);
-  const g=c.createLinearGradient(0,0,0,thickness);g.addColorStop(0,'#a48e6522');g.addColorStop(.28,'#6c533522');g.addColorStop(.7,'#251e1ba0');g.addColorStop(1,'#151e22df');c.fillStyle=g;c.fillRect(0,-8,x1-x0+.3,thickness+40);c.restore();
+  const g=c.createLinearGradient(0,0,0,thickness);g.addColorStop(0,'#b6a18b22');g.addColorStop(.28,'#76604c20');g.addColorStop(.7,'#30272288');g.addColorStop(1,'#21221dd4');c.fillStyle=g;c.fillRect(0,-8,x1-x0+.3,thickness+40);c.restore();
  }
- for(const [i,p]of section.grain.entries()){c.strokeStyle=i===1?'#a28d644a':'#191b18a0';c.lineWidth=i===1?1.2:1.6;c.lineCap='round';c.stroke(p);}
- for(const [a,z]of q.edges)band(c,a,z,()=>0,()=>1.5,'#b3a27c45');c.restore();return true;
+ for(const [i,p]of section.grain.entries()){c.strokeStyle=i===1?'#b4a48c55':'#211f1ba0';c.lineWidth=i===1?1.2:1.6;c.lineCap='round';c.stroke(p);}
+ for(const [a,z]of q.edges)band(c,a,z,()=>0,()=>1.5,'#c0b18a77');c.restore();return true;
 }
 function terrain(c,t,b){if(!active(b)||!ready()||t.broken||t.honroSeal)return false;if(t.honroElementCollision)return false;if(t.mat==='wood')return branch(c,t);if(['earth','soil','rock','stone'].includes(t.mat))return rock(c,t,b);return false;}
 const oldTerrain=S.terrain;S.terrain=function(c,t){if(!terrain(c,t,this.battle))return oldTerrain.call(this,c,t);};
