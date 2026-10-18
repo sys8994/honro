@@ -16,5 +16,5 @@ under=Image.open(src/'underground-atlas.png').convert('RGBA');under.save(base/'u
 for key,box in [('stone',(65,164,828,395)),('beam',(35,537,959,608))]:
  im=under.crop(box);back=Image.new('RGBA',im.size,'#222c29');back.alpha_composite(im);file=key+'.webp';back.convert('RGB').save(base/file,quality=91,method=6);images[key]=file
 patch=forest.crop((650,860,900,912));back=Image.new('RGBA',patch.size,'#3b3629');back.alpha_composite(patch);back.convert('RGB').save(base/'bark.webp',quality=91,method=6);images['bark']='bark.webp'
-manifest={'revision':1,'images':images,'forestCrops':crops,'stages':{'1':{'rear':'forestFar','kind':'sky','rockOrigin':1200},'18':{'rear':'bellRear','kind':'world','rect':[-1400,1800,16400,6560],'rockOrigin':4500},'27':{'rear':'depotRear','kind':'world','rect':[-1600,700,11400,5700],'rockOrigin':2400}}}
+manifest={'revision':2,'images':images,'forestCrops':crops,'stages':{'1':{'rear':'forestFar','kind':'sky','rockOrigin':1200},'18':{'rear':'bellRear','kind':'distant','rockOrigin':4500},'27':{'rear':'depotRear','kind':'distant','rockOrigin':2400}}}
 (base/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');print('Prepared',len(images),'runtime images;',sum((base/f).stat().st_size for f in images.values()),'bytes')

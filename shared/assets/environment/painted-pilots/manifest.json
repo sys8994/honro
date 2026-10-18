@@ -1,5 +1,5 @@
 {
-  "revision": 1,
+  "revision": 2,
   "images": {
     "forestFar": "stage1-far.webp",
     "bellRear": "stage18-rear.webp",
@@ -85,24 +85,12 @@
     },
     "18": {
       "rear": "bellRear",
-      "kind": "world",
-      "rect": [
-        -1400,
-        1800,
-        16400,
-        6560
-      ],
+      "kind": "distant",
       "rockOrigin": 4500
     },
     "27": {
       "rear": "depotRear",
-      "kind": "world",
-      "rect": [
-        -1600,
-        700,
-        11400,
-        5700
-      ],
+      "kind": "distant",
       "rockOrigin": 2400
     }
   }
