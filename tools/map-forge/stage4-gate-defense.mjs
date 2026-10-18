@@ -26,8 +26,8 @@ export function applyStage4GateDefense(project){const st=project.stages.find(s=>
  ribbon('burned-gallery',[[2080,2210],[2140,2205],[2310,2208],[2360,2220]],25,'wood',true);
  ribbon('fc-choice-4-gate-flank-pine',[[2880,2182],[2940,2172],[3020,2173],[3095,2184]],25);
  // Support positions, never combat statistics or story identifiers.
- const positions={'p-archer':690,'p-mage':805,'foe-0':1810,'foe-1':2220,'foe-3':1950,'foe-4':2360,'foe-6':2075,'foe-2':3760};
- for(const u of st.units){u.x=positions[u.id]??u.x;u.y=u.id==='foe-5'?1840:at(u.x);if(u.spawnX!==undefined)u.spawnX=u.x;if(u.spawnY!==undefined)u.spawnY=u.y;}
+ const positions={'p-archer':690,'p-mage':805,'foe-0':1810,'foe-1':2220,'foe-3':1950,'foe-4':2360,'foe-6':2075,'foe-2':3560};
+ for(const u of st.units){u.x=positions[u.id]??u.x;u.y=u.id==='foe-5'?1840:u.id==='foe-2'?deckY:at(u.x);if(u.spawnX!==undefined)u.spawnX=u.x;if(u.spawnY!==undefined)u.spawnY=u.y;}
  for(const e of st.elements){if(Number.isFinite(e.x)&&Number.isFinite(e.y))e.y=at(e.x);}
  for(const m of st.markers){if(m.id==='marker-1'||m.id==='habitat-4-0')m.x=1900;if(m.id==='habitat-4-1')m.x=3860;m.y=at(m.x);if(['marker-5','marker-6'].includes(m.id)){m.x=m.id==='marker-5'?3540:3470;m.y=top(st.terrains.find(t=>t.id==='east-watch'),m.x);m.support='east-watch';}if(m.id==='habitat-4-0'||m.id==='habitat-4-1'){const e=st.elements.find(e=>e.id===m.propId);if(e){e.x=m.x;e.y=m.y;}}}
  for(const [name,a]of Object.entries(st.anchors||{})){if(name==='start')a.x=690;if(name==='watch'){a.x=3540;a.support='east-watch';}if(name==='westVantage'){a.x=466;a.support='west-shoulder';}const t=st.terrains.find(t=>t.id===a.support)||floor;a.y=top(t,a.x);}
@@ -38,6 +38,6 @@ export function applyStage4GateDefense(project){const st=project.stages.find(s=>
  st.design.stage4Gate=copy(STAGE4_GATE);st.design.title='피란문 흙마당과 접지된 서쪽 암반·낮은 동쪽 감시대';
  st.metadata.gateDefenseTerrainRevision=1;st.initialState.honroStage4GateRevision=1;
  st.detailStats.groundTop=floor.points.findIndex(p=>p.x===st.width)+1;
- for(const ev of st.events){if(ev.id==='siege-0'){ev.action.x=1900;ev.action.y=at(1900);ev.action.support='gate-basin';}if(ev.id==='siege-1'){ev.action.x=3650;ev.action.y=1800;}}
+ for(const ev of st.events){if(ev.id==='siege-0'){ev.action.x=1900;ev.action.y=at(1900);ev.action.support='gate-basin';}if(ev.id==='siege-1'){ev.action.x=3650;ev.action.y=1800;ev.action.requireFlightClearance=true;ev.action.maxDistance=640;}}
  return project;
 }
