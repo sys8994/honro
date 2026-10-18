@@ -1,3 +1,12 @@
+## 2026-10-18 — 승인7장 쉼터 배포·8장 창고/상여터 회화와 다중 경로
+
+- 승인7장 쉼터1a40463을 masterbac66908ddbce6dee79adc2c2e9f0d53b6d906cd에 병합·push, tree 동일성과 Pages39160419009 해당 SHA/completed/success 확인. 부모19:57 UTC 공개7장 전투/쉼터 실제 화면 확인 완료. 검증 반복 없음.
+- 별도8장 브랜치에서 온전한 긴 목재 장례 창고/개방 상여집을 제작하고 원래 비율로 실제 마당에 붙였다. 고목 뿌리·흙·암면/목재 통로를 actual polygon에 맞추고 위 사격길/하부 귀환, 두 마당/두 결박과 상여 이동 의미를 보존했다. 옛 아치/중복 벡터 장식·전용 원경은 새 opt-in에서 정리하며 새 환경 모션/RAF 없음.
+- 모든 기존 support/route ID와 anchors·bier nodes/routes/spec movement/entries members/alternates/variants·원본 접지 위치를 함께 갱신했다. 원본36/9 편성·HP/XP·AI·active4/cap 메타데이터·유한3/3/2 정책을 보존하고 새 지붕의 지역 support만 추가했다. 지붕은 one-way, 몸통은 새 벽이 아니다.
+- 실제 곡면 프레임 이동의 극소 잔여 budget을 끊긴 지지면으로 오판하던 경우만 .01 loop guard로 방지했다. 전체 몸체/방해물 검사와 마지막 검증 pose에서 재개하는 정책은 유지한다. 행동 기회 전 차단, 경로 방해물 대기/안전 경계 재시도, 실제8290→5950/4250 이동과 HP 불변을 국소 확인했다.
+- build·실제3뷰·12frame 준비cache 불변/pageerror0, 주 접근/위 사격/하부 귀환6개 경로, 초기36 몸체/증원18 배치점 및 실제3/3/2 spawn, 이전8장 저장 성장 보존만 확인했다. 마지막 underside 마감은 보행 상면 유지/solid subset을 확인해 기존 통과 검사를 반복하지 않았다. 방대한8장 전체 검사/전체 전투/기예/전체 verify 미실행.
+- Stage8 map revision1/전역20, 이전8장만 재시작하고 성장/SP/장착/클리어 및1~7장/현재장 우선 loader 보존.8장 feature commit/push 후 부모 미술 검토 대기, master 미반영.8장 쉼터/9장 미착수. 상세 STAGE8_BIER_LOCATION_PAINT.md.
+
 ## 2026-10-18 — 승인7장 전투 배포·7장 북문 쉼터 근경
 
 - 승인7장058ad2d를 master58c92eab04abc0bdeccd1398fdd9ea653a36a743에 병합·push, tree 동일성 및 Pages39159726357 해당 SHA/completed/success 확인. 전투 검증 반복 없음, 공개 화면은 부모 담당.

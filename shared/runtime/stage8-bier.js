@@ -152,7 +152,9 @@ function settle(app){const b=app.engine.b,m=memory(b);if(!alive(boss(b))||m.comp
 function blockMotion(app,blocks){const b=app.engine.b,m=memory(b);m.status='blocked';m.blockers=blocks;m.reason='상여 이동 보류 · '+[...new Set(blocks.map(p=>p.label))].slice(0,2).join('·')+' · 안전한 다음 행동 끝에 다시 확인합니다.';delete boss(b)?.honroScenePose;cancelScene(app);publishNotice(app);app.dirty=true;app.engine.emit?.('save');}
 function advanceScene(app,dt,skip=false){const e=app.engine,b=e.b,m=memory(b),s=app.dialogue?.staging;if(cleanup(app)||!ownedScene(app)||m.status!=='moving'||s.complete||scenePaused(app))return false;if(!safeMotion(app,true)){blockMotion(app,[{kind:'action',id:'busy',label:'진행 중인 행동'}]);return false;}
  let budget=skip?60000:Math.max(0,dt)*900,changed=false;
- while(budget>1e-7&&s.cursor<s.steps.length){const step=s.steps[s.cursor];if(step.type==='dialogue'){s.complete=true;settle(app);break;}const u=boss(b),to=step.to;if(!s.applied[s.cursor]){s.focusActor=u.id;if(!skip)app.scene?.storyFocus?.(u.id,120);}
+ // A subpixel budget tail can be smaller than walkStep's progress epsilon.
+ // Resume from the same validated pose next frame instead of inventing a gap.
+ while(budget>.01&&s.cursor<s.steps.length){const step=s.steps[s.cursor];if(step.type==='dialogue'){s.complete=true;settle(app);break;}const u=boss(b),to=step.to;if(!s.applied[s.cursor]){s.focusActor=u.id;if(!skip)app.scene?.storyFocus?.(u.id,120);}
   if(Math.abs(u.x-to.x)<.15){if(Math.abs(u.y-to.y)>1.5){blockMotion(app,[{kind:'route',id:'height',label:'이어지지 않는 지지면'}]);return false;}s.results[s.cursor]={status:'arrived',x:u.x,y:u.y};s.cursor++;s.elapsed=0;changed=true;continue;}
   const r=walkStep(e,u,to,Math.min(4,budget));if(r.blocked){blockMotion(app,r.blocked);return false;}
   // Copy only actual locomotion outputs. No HP, action, AI, mana or ordinary
