@@ -24,7 +24,7 @@ regions={'gate':(0,55,618,510),'home':(618,225,1130,510),'office':(1130,150,1774
 crops={}
 for key,box in regions.items():
  crop=atlas.crop(box);alpha=crop.getchannel('A').point(lambda v:255 if v>=32 else 0);b=alpha.getbbox();crops[key]=[box[0]+b[0],box[1]+b[1],b[2]-b[0],b[3]-b[1]]
-manifest={'revision':2,'referenceLibraryId':'libfile_2af54b6333c88191913f28c61eb1800e','sourceLibraryIds':{'sky':'libfile_a93e2070e394819192b020069277c8cd','architecture':'libfile_dcad615ed3dc819186fa4ca5f339a79f','bedrock':'libfile_eb051213649081919a8eb09b25a94c8e'},'images':{'sky':'far.webp','architecture':'architecture.webp','bedrock':'bedrock.webp'},'sky':'sky','rock':'bedrock','rockTileSize':[1728,1152],'alphaCrops':crops,'elements':{}}
+manifest={'revision':3,'referenceLibraryId':'libfile_2af54b6333c88191913f28c61eb1800e','sourceLibraryIds':{'sky':'libfile_a93e2070e394819192b020069277c8cd','architecture':'libfile_dcad615ed3dc819186fa4ca5f339a79f','bedrock':'libfile_eb051213649081919a8eb09b25a94c8e'},'images':{'sky':'far.webp','architecture':'architecture.webp','bedrock':'bedrock.webp'},'sky':'sky','rock':'bedrock','rockTileSize':[1728,1152],'alphaCrops':crops,'elements':{}}
 elements=manifest['elements'];placements={e['id']:e for e in stage['elements']}
 manifest['images']['timber']='timber.webp'
 def part(crop,target):return {'image':'architecture','source':crop,'target':target}
@@ -75,6 +75,16 @@ for inst in stage['elements']:
  if id.startswith('eup21:') and any(v in id for v in ['-step','-awning','-eave','loading-deck','deck-crate','cart']):
   a=next(a for a in p['library'] if a['id']==id)
   manifest['joinery'][id]=[v['d'] for v in a['vector']['root']['children'] if v.get('tag')=='path' and v.get('fill','none')!='none']
+manifest['smallProps']={}
+for id in ['eup21:entry-jars','eup21:inner-jars','eup21:office-jars','eup21:shelter-wood','eup21:cart','eup21:deck-crate']:
+ a=next(a for a in p['library'] if a['id']==id);shapes=[]
+ import re
+ for v in a['vector']['root']['children']:
+  if v.get('tag')!='path' or not v.get('fill','').startswith('#'):continue
+  nums=list(map(float,re.findall(r'-?\d+(?:\.\d+)?',v['d'])));xs=nums[::2];ys=nums[1::2]
+  shapes.append({'d':v['d'],'fill':v['fill'][:7],'bounds':[min(xs),min(ys),max(.1,max(xs)-min(xs)),max(.1,max(ys)-min(ys))]})
+ manifest['smallProps'][id]=shapes
+manifest['officePlinth']={'foot':[[x,ground(x)] for x in [5190,5230,5500,5550]],'side':'M5520 2174 L5550 2174 L5572 '+str(ground(5550)-16)+' L5550 '+str(ground(5550))+' Z'}
 # The former large green rear fill becomes locally grounded painted rock.
 # Real one-way steps and brace connections remain the existing editable SVG.
 manifest['roofTerrainIds']=['eup21-'+id+'-roof' for id in ['outside-stall','cloth-shelter','inner-home','potter-home','stable','office-store','office-hall','gate']]

@@ -1,4 +1,4 @@
-globalThis.HONRO_PLAYTEST_URL="web/entries/game.c70f9b8a526502f6.html?embedded=1";
+globalThis.HONRO_PLAYTEST_URL="web/entries/game.b4dc70c6120833e5.html?embedded=1";
 const modules=[new URL("../runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.c5e0589639564156.js",import.meta.url).href,
 new URL("../runtime/engine-core.e798a3b4e89840c3.js",import.meta.url).href,
@@ -68,7 +68,7 @@ new URL("../runtime/shared-runtime-camera.d2d5fd8497d15659.js",import.meta.url).
 new URL("../runtime/shared-map-bounds.8e0a3a66fcc64fb7.js",import.meta.url).href,
 new URL("../runtime/shared-map-environment.9249b436c5070749.js",import.meta.url).href,
 new URL("../runtime/shared-map-geometry.1bccae8c35921aa5.js",import.meta.url).href,
-new URL("../runtime/shared-map-terrain-domain.e1b89b3e853bf522.js",import.meta.url).href,
+new URL("../runtime/shared-map-terrain-domain.6ba33871d2e47044.js",import.meta.url).href,
 new URL("../runtime/shared-map-stage7-reentry.9ff92a75d85b5b5c.js",import.meta.url).href,
 new URL("../runtime/shared-map-platform-passages.c55b8b65250178f4.js",import.meta.url).href,
 new URL("../runtime/shared-map-open-structures.1928a44f00f9dac7.js",import.meta.url).href,
@@ -86,6 +86,7 @@ new URL("../runtime/party-alias.dd433f93c412ef75.js",import.meta.url).href,
 new URL("../runtime/shared-assets-rebuild-game-adapter.7584136339439b5b.js",import.meta.url).href,
 new URL("../runtime/HONRO_ACT1_FAR_DATA.71d946edec3f3caf.js",import.meta.url).href,
 new URL("../runtime/HONRO_ACT2_FAR_DATA.cb83bfe1d99c6ee2.js",import.meta.url).href,
+new URL("../runtime/HONRO_STAGE21_PAINTED.91045daa398b5477.js",import.meta.url).href,
 new URL("../runtime/shared-assets-monsters-monsters-runtime.0c258e1887e54bf1.js",import.meta.url).href,
 new URL("../runtime/shared-assets-actors-actors-runtime.c12c31416fcd7bfc.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-renderer.a62cced1204a46d2.js",import.meta.url).href,
@@ -96,7 +97,7 @@ new URL("../runtime/shared-runtime-map-art-polish.cf474d2a8b5091ab.js",import.me
 new URL("../runtime/shared-runtime-monster-vector.25152ab0c9207323.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-actor-vector.22acb762621bb98c.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-elements.f96fbe5d5d30dddd.js",import.meta.url).href,
-new URL("../runtime/shared-runtime-environment-renderer.daa545ff96c3ef3a.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-environment-renderer.380aadd4b88c8f41.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-cave-enclosure.75f96a4cea42e188.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-act2-spatial-art.c4d9cc0730becf34.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage11-landscape-art.c6bc706dada62434.js",import.meta.url).href,
@@ -118,6 +119,7 @@ new URL("../runtime/shared-runtime-narrative-art.cca882ffc6f9a81b.js",import.met
 new URL("../runtime/shared-runtime-quest-target-art.3230368af6e8b076.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-story-anomaly-art.6a2e4dc023c2ca6c.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-visual-hierarchy.c8d029c9d563969d.js",import.meta.url).href,
+new URL("../runtime/shared-runtime-stage21-painted-art.11ec8b97e6382ddf.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage-rules.425c10ceb6d4b5ec.js",import.meta.url).href,
 new URL("../runtime/workshop-app.3dcb579d65e74da0.js",import.meta.url).href];
 for(const href of modules){const link=document.createElement('link');link.rel='modulepreload';link.href=href;document.head.append(link);}

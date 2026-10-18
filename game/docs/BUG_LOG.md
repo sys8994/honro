@@ -3210,3 +3210,7 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 - 원인: 단순 기와·회벽·초록 지반이 사용자가 승인한 읍성 회화의 재질·처마 그림자·차가운 원경을 전달하지 못했다.
 - 변경: 승인 원경/투명 건축 atlas/암반을 약800KB의 외부 해시 WebP로 적용했다. 지붕만 실제 oneWay contour에 맞추고 창호·문·기단·발은 고정한다. 성문 아치는 투명하게 절단하고 실제 지형 polygon과 월드 원점에 붙인 재질을 플레이 바깥까지 이어 그린다. 기존 보조 연결부는 같은 atlas의 목재/석재로 처리한다. 이미지 완료 세대가 타일·화면 캐시를 갱신한다. Stage21 한정 제작 규칙 예외와 재현 스크립트를 남겼다.
 - 확인: Game/Workshop 빌드와 실제 Chromium 기본·최대 축소·근접·모바일·Playtest, 원화 나란히 비교 통과. 원 master와 Stage21 생성 데이터/캠페인 바이트 동일, 26적·정예5·목표3·revision20 유지. 미로딩 fallback/로딩 후 캐시 갱신·진행 state 불변·극단 팬6위치 원경 coverage 확인. 전체 verify/다른 장/정상 자원 완주는 실행하지 않았다. 상세와 실제 화면 Library ID는 STAGE21_PAINTED_ART.md.
+
+### Stage21 네 미술 마감
+- mirrored 대칭 반복을 crop/크기/회전/위치가 다른 겹치는 월드 카드와 깊이별 어둠으로 교체. 항아리·수레·장작은 기존 vector 개별 형태에 재질·명암을 보완했다. 관아 하부는 얕은 석조 cap과 연속 암반·접촉/측면 그림자로 연결하고 원경은 작고 낮은 대비로 물렸다.
+- 동일 기본/확대 실제 Chromium 두 화면과 최종 빌드만 재확인. 기하·규칙·다른 장은 변경하지 않았다. 기존 기본/확대/비교 Library 항목은 ID를 유지해 교체했다.
