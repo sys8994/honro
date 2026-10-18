@@ -109,7 +109,7 @@ function ensureBattle(b){if(b.honroEnvironment?.version===E.VERSION)return b.hon
  battleEnvironments.set(b,{source:b.honroEnvironment,key,environment});return environment;
 }
 Scene.prototype.environmentTone=function(c,w,h,b){const mood=E.campaignMood(b.honroStage);if(!mood)return;c.save();c.globalCompositeOperation='multiply';c.globalAlpha*=mood.opacity;c.fillStyle=mood.tint;c.fillRect(0,0,w,h);c.restore();};
-function customSpatialScenery(scene,c,w,h,b){const env=ensureBattle(b),custom=new Set(env.placements.filter(e=>!/^scenery-stage-\d+-\d+$/.test(e.id)).map(e=>e.id));if(!custom.size)return;
+function customSpatialScenery(scene,c,w,h,b,painted21=false){const env=ensureBattle(b),custom=new Set(env.placements.filter(e=>!/^scenery-stage-\d+-\d+$/.test(e.id)&&!(painted21&&/^a3-korean-town-21-/.test(e.id))).map(e=>e.id));if(!custom.size)return;
  const st={width:b.width,height:b.height,backdrop:b.honroBackdrop,environment:env},data=prepare(env),time=A.time(scene);let visible=0,active=0;
  for(const unit of data.groups){const g=unit.group;if(env.hiddenLayers?.includes(g.depthLayer)||!unit.children.some(e=>custom.has(e.id)))continue;const tr=E.groupTransform(scene,w,h,st,g),a=E.atmosphere(st,env.zones.find(z=>z.id===g.zoneId));active++;c.save();c.globalAlpha=tr.opacity;c.translate(tr.x,tr.y);c.scale(tr.scale,tr.scale);
   // Author-created finite supports remain physical WORLD scenery. Generated
@@ -119,7 +119,9 @@ function customSpatialScenery(scene,c,w,h,b){const env=ensureBattle(b),custom=ne
  }
  if(scene.environmentStats){scene.environmentStats.groups+=active;scene.environmentStats.visibleAssets+=visible;scene.environmentStats.cachedPaths+=data.paths;}
 }
-Scene.prototype.background=function(c,w,h,b){if(G.HonroAct2SpatialArt?.active(b)){
+Scene.prototype.background=function(c,w,h,b){if(G.HonroStage21Painted?.background(c,w,h,b,this)){
+ this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0,...A.stats()};customSpatialScenery(this,c,w,h,b,true);return;
+}if(G.HonroAct2SpatialArt?.active(b)){
  const key=[this._worldCacheKey(b,w),this.x,this.y,this.scale,G.HonroAct2SpatialArt.ready()].join(':');
  const cached=G.HonroAct2SpatialArt.ready()&&this._screenRaster(c,key,w,h,cc=>{G.HonroAct2SpatialArt.background(cc,b,this,w,h);this._screenBackgroundStats={...this.environmentStats};},'_screenBackgroundCache',false);
  if(cached)this.environmentStats={...this._screenBackgroundStats};else G.HonroAct2SpatialArt.background(c,b,this,w,h);
@@ -153,7 +155,7 @@ Scene.prototype.background=function(c,w,h,b){if(G.HonroAct2SpatialArt?.active(b)
 Scene.prototype.liveWater=function(c,b){const st={backdrop:b.honroBackdrop,environment:ensureBattle(b)},a=E.atmosphereAt(st,this.y),time=A.time(this),halfW=this.canvas.clientWidth/this.scale/2,halfH=this.canvas.clientHeight/this.scale/2;
  const visible=(x,y,w,h)=>x+w>this.x-halfW&&x<this.x+halfW&&y+h>this.y-halfH&&y<this.y+halfH;
  let pools=0,falls=0;
- for(const z of b.honroSurfaceZones||[])if(['water-pool','shallow-water'].includes(z.kind)&&z.points?.length){const q=A.poolData(z);if(!visible(q.left,q.top,q.right-q.left,q.bottom-q.top))continue;A.pool(c,z,a,time);pools++;
+ for(const z of b.honroSurfaceZones||[])if(['water-pool','shallow-water'].includes(z.kind)&&z.points?.length){const paint=G.HonroTerrainDomain?.materialWaterZone(b,z)||z,q=A.poolData(z),view=A.poolData(paint);if(!visible(view.left,view.top,view.right-view.left,view.bottom-view.top))continue;A.pool(c,paint,a,time);pools++;
   const key=b.session+':'+z.id;if(!this._waterContacts||this._waterContactSession!==b.session){this._waterContacts=new Map();this._waterRipples=[];this._waterContactSession=b.session;}
   for(const u of b.units||[]){if(u.dead)continue;const id=key+':'+u.id,touch=u.x>=q.left&&u.x<=q.right&&u.y>=q.top-3&&u.y<q.top+85;if(this._waterContacts.get(id)===false&&touch)this._waterRipples.push({x:u.x,y:q.top,born:time});this._waterContacts.set(id,touch);}
  }

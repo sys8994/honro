@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Stage21's approved hybrid painting. Only presentation is derived here: no
 // authored terrain, battle snapshot, actor or mission state is written.
-const S=G.HonroScene.prototype,manifest=G.HONRO_STAGE21_PAINTED||{},images={},patterns=new WeakMap(),sprites=new WeakMap();
+const S=G.HonroScene.prototype,manifest=G.HONRO_STAGE21_PAINTED||{},images={},patterns=new WeakMap(),woodPatterns=new WeakMap(),sprites=new WeakMap(),materialPaths=new WeakMap();
 let generation=0,rockCanvas;
 const ready=id=>!!(images[id]?.complete&&images[id].naturalWidth);
 const active=b=>b?.honroStage===21&&(b.honroLandmarks||[]).some(l=>l.asset?.id?.startsWith('eup21:'));
@@ -12,11 +12,13 @@ if(typeof Image!=='undefined')for(const [id,src]of Object.entries(manifest.image
 function imagePart(c,part){if(!ready(part.image))return false;const img=images[part.image],s=part.source||[0,0,img.naturalWidth,img.naturalHeight];
  if(part.roof&&part.sourceTop){
   const [sx,sy,sw,sh]=s,[x,y,w,h]=part.target,top=part.roof;
-  const at=xx=>{for(let i=1;i<top.length;i++){const a=top[i-1],z=top[i];if(xx<=z[0])return a[1]+(z[1]-a[1])*Math.max(0,(xx-a[0])/(z[0]-a[0]));}return top.at(-1)[1];};
+  const at=(xx,contour=top)=>{for(let i=1;i<contour.length;i++){const a=contour[i-1],z=contour[i];if(xx<=z[0])return a[1]+(z[1]-a[1])*Math.max(0,(xx-a[0])/(z[0]-a[0]));}return contour.at(-1)[1];};
   // A cached tile samples this small strip mesh only when its scale changes.
   // Both the visible painted roof and the retained one-way line use the exact
   // same authored contour; facade feet remain pinned to the original ground.
-  const n=part.sourceTop.length;for(let i=0;i<n;i++){const u=i/n,xx=x+w*u,yy=at(xx+w/n/2),sourceY=Math.max(0,part.sourceTop[i]-1);c.drawImage(img,sx+sw*u,sy+sourceY,sw/n,sh-sourceY,xx,yy,w/n,y+h-yy);}
+  const n=part.sourceTop.length,eave=part.sourceEave??sh;
+  for(let i=0;i<n;i++){const u=i/n,xx=x+w*u,yy=at(xx+w/n/2),sourceY=Math.min(eave-1,Math.max(0,part.sourceTop[i]-1)),bottom=part.bottom?at(xx+w/n/2,part.bottom):part.eaveTarget??y+h;c.drawImage(img,sx+sw*u,sy+sourceY,sw/n,eave-sourceY,xx,yy,w/n,bottom-yy);}
+  if(part.sourceEave)c.drawImage(img,sx,sy+eave,sw,sh-eave,x,part.eaveTarget,w,y+h-part.eaveTarget);
  }else c.drawImage(img,...s,...part.target);return true;
 }
 function element(c,l){
@@ -31,6 +33,12 @@ function element(c,l){
  c.save();c.translate(l.x||0,l.y||0);c.rotate(l.rotation||0);c.scale(l.scale??1,l.scale??1);c.translate(-(l.asset.anchor?.x||0),-(l.asset.anchor?.y||0));
  c.drawImage(sprite.canvas,sprite.left,sprite.top,sprite.width,sprite.height);c.restore();return true;
 }
+function materialElement(c,l){
+ const wood=manifest.joinery?.[l.asset?.id],paths=wood||manifest.materialElements?.[l.asset?.id];if(!paths||!ready(wood?'timber':manifest.rock))return false;
+ c.save();c.translate(l.x||0,l.y||0);c.rotate(l.rotation||0);c.scale(l.scale??1,l.scale??1);c.translate(-(l.asset.anchor?.x||0),-(l.asset.anchor?.y||0));
+ let path=materialPaths.get(paths);if(!path){path=new Path2D();for(const d of paths)path.addPath(new Path2D(d));materialPaths.set(paths,path);}c.clip(path);c.fillStyle=wood?woodPattern(c):rockPattern(c);c.fill(path);c.fillStyle=wood?'#b39b6b22':'#15212633';c.fill(path);c.restore();return true;
+}
+function woodPattern(c){let p=woodPatterns.get(c);if(!p){p=c.createPattern(images.timber,'repeat');p.setTransform(new DOMMatrix([1.5,0,0,1.5,0,0]));woodPatterns.set(c,p);}return p;}
 function background(c,w,h,b,view){
  if(!active(b)||!ready(manifest.sky))return false;
  const img=images[manifest.sky],q=G.HonroEnvironment.act1BackdropFrame(view,w,h,b,img.naturalWidth,img.naturalHeight);
@@ -46,7 +54,12 @@ function rockPattern(c){
  p=c.createPattern(rockCanvas,'repeat');p.setTransform(new DOMMatrix([size[0]/img.naturalWidth,0,0,size[1]/img.naturalHeight,0,2220]));patterns.set(c,p);return p;
 }
 function terrain(c,t,b){
- if(!active(b)||t.id!=='a3-foundation'||!ready(manifest.rock))return false;
+ if(!active(b)||!ready(manifest.rock))return false;
+ if(manifest.roofTerrainIds?.includes(t.id)){
+  const v=G.HONRO_CORE.poly(t);c.beginPath();v.slice(0,v.length/2).forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.strokeStyle='#b0a38a88';c.lineWidth=1.2;c.stroke();return true;
+ }
+ if(t.oneWay&&t.id.startsWith('eup21-')){const path=new Path2D();G.HONRO_CORE.poly(t).forEach((p,i)=>i?path.lineTo(p.x,p.y):path.moveTo(p.x,p.y));path.closePath();c.fillStyle=t.mat==='wood'&&ready('timber')?woodPattern(c):rockPattern(c);c.fill(path);return true;}
+ if(t.id!=='a3-foundation')return false;
  const vertices=G.HONRO_CORE.poly(t),path=new Path2D();vertices.forEach((p,i)=>i?path.lineTo(p.x,p.y):path.moveTo(p.x,p.y));path.closePath();
  c.save();c.fillStyle='#343735';c.fill(path);c.clip(path);c.fillStyle=rockPattern(c);c.fill(path);
  // One world-height field continues through the play boundary and far below
@@ -59,7 +72,7 @@ const oldKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return oldKey.call(
 const oldLandmark=S.landmark;S.landmark=function(c,l){
  if(active(this.battle)){
   if(l.asset?.id==='eup21:foundations'&&ready(manifest.rock))return;
-  if(l.kind==='canonical-element'&&element(c,l))return;
+  if(l.kind==='canonical-element'&&(materialElement(c,l)||element(c,l)))return;
  }
  return oldLandmark.call(this,c,l);
 };
