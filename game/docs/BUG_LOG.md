@@ -1,3 +1,10 @@
+## 3장 온전한 한옥 기준 실제 지형 재설계 · 2026-10-18
+
+- 최신 사용자 공통 지침에 따라 기존 벡터 형상 보존 제한을 폐기했다. 온전한 warehouse.webp1536×409를 균일 축척1200×319.53125로 사용하고 roofPaint/hallBody strip 왜곡을 제거했다. 실제 지붕은 주요 곡선15점의 one-way이며 벽체는 막힌 solid가 아니다. 건물 전체 bounds를 쓰는 장식 레이어로 그림 하단 tile 잘림을 막았다.
+- `stage3-hanok-terrain.mjs`와 apply 도구/canonical campaign/common build author에서 동쪽4350~6220의 작은 창고 터/양쪽 사면, cargo-step-1/2, ledger/근처 지상 적/재질·marker/support 높이를 함께 저작했다. 단일한 완만한 터에 원본 돌 주춧돌을 접지하며 거대 검은 기초·긴 공중 말뚝을 사용하지 않는다. 나루 중심 물/잔교/소굴 기능·이벤트/대사·전투 컨셉/적 수치·주인공은 보존한다.
+- 3장 campaign map revision1을 추가해 이전3장 전투만 기존 discard/preserveGrowth/restart로 입구 재시작한다. 획득 XP·SP/배분·장착·클리어 기록은 유지한다. 현재장 우선 loader/main/campaign-entry/web-build는 미수정이며 휴식터 b33e2cd는 별도 보존한다. 공통 새 미술 원칙은 AGENTS/ENVIRONMENT_COMPOSITION에 갱신했다.
+- 필요한 build, 실제 창고/기존 debug 윤곽2화면, 기본 이동/점프2회→지붕→내려가기→장부의 적 없는 국소 경로와 이전 실제 canonical3장 저장의 App 로드/Continue만 확인했다. 이동력1105.813/1172·HP/기력 유지·장부 획득, 구 save의 XP17/SP/장착/클리어 보존 및 x330/revision1 재시작을 확인했다. pageerror0·렌더 상태 동일·원본 비율 동일이며 전체/기예/다른 장 전투 검사는 미실행이다. 실제 화면 Library 창고v3/디버그v0와 STAGE3_LOCATION_PAINT.md, `_local/reports/stage3-hanok-terrain/`를 참고한다. 부모 확인 전 master/Pages는 미반영이다.
+
 ## 실제 진입 장과 의존 에셋 우선 준비 · 2026-10-18
 
 - 원인: 첫 타이틀은 빨리 보여도 전체30장과6.36MB library·author를 기다려야 시작할 수 있었다. Game을 공통/장별 의존 묶음으로 나누고 실제 저장 전투·재입장·다음 장만 준비한다. 얇은 전체 메타와 기존 author 순서, Workshop/embedded 전체 경로, 저장/성장 이전 경로를 유지했다.

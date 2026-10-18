@@ -59,7 +59,7 @@ export async function applyAct1SceneComposition(project){
    r('high-shoulder',240,600,1600,770,'left-high-ground');r('left-cleft',1180,2200,1100,1550,'left-high-ground','buttress');r('right-buttress',3910,950,1800,800,'right-cliff-ground','buttress');r('valley-toe',3040,2910,1150,850,'canyon-ground');
   }
   if(n===3){
-   suppress(st,e=>pine(e)||['builtin:warehouse','builtin:oldHall','builtin:cargoScaffold'].includes(e.assetId));add('west-grove','pine-grove',720,1814,1.2,'ferry-ground');add('ferry-workbay','ferry-house',1500,2000,.72,'dock-west');add('cargo-hall','ferry-house',5550,1612,1.12,'ferry-ground');add('exit-court','refuge-courtyard',6140,1538,.75,'ferry-ground');add('ridge-grove','pine-grove',4320,1950,.85,'ferry-ground');
+   suppress(st,e=>pine(e)||['builtin:warehouse','builtin:oldHall','builtin:cargoScaffold'].includes(e.assetId));add('west-grove','pine-grove',720,1814,1.2,'ferry-ground');add('ferry-workbay','ferry-house',1500,2000,.72,'dock-west');add('cargo-hall','ferry-house',st.design.stage3Hanok?5450:5550,st.design.stage3Hanok?1684:1612,1.12,'ferry-ground');add('exit-court','refuge-courtyard',st.design.stage3Hanok?6320:6140,1538,.75,'ferry-ground');add('ridge-grove','pine-grove',4320,1950,.85,'ferry-ground');
    r('mudflat-bank',3160,2440,1480,610,'ferry-ground');r('warehouse-shoulder',5910,1580,1300,860,'ferry-ground');
   }
   if(n===4){
