@@ -1,3 +1,11 @@
+## 2026-10-18 — 승인6장 전투 배포·6장 쉼터 회화
+
+- 승인6장 전투 e4be8cd2를 master cb8f4a8d09d2d4df5af9f00dadcbb918988dc042에 병합·push, Pages39156677078 completed/success 확인. 승인 tree와 같아 전투 빌드/검증 반복 없음. 공개 실제 화면은 부모 담당.
+- 별도6장 쉼터 ‘나무다리 위 길목’만 구성했다. 구조 전3인 시점이며 목교 진입 끝/석재 교대 일부와 흙·자갈 어깨를 보여주고 중앙 불/배우 여백을 유지한다. 군중/운반대/복구된 전체 교량/나무·벡터 막대 장식 없음.
+- 기존 bridge6/산 원경/흙 소재 공유, 새 에셋·모션·RAF 없음. 모바일 첫 mount만 zoom.94/x최대35/bounds 안y 제한, 기존 줌/양끝 패닝/버튼/성장/SP·대화·진행·로딩 보존.
+- 필요한 build/실제 desktop·mobile2뷰/짧은 패닝·모닥불 클릭만 확인. pageerror0/profile 불변, 기존 흐름의 휘겸 합류/3인 표시, bridge6 진입 전0/후1·chapter06 engine data0·무관 구조 요청0. 전투/전체 verify 미실행.
+- Library2개v0, 상세ID·범위는 REST_STAGE6_LOCATION_PAINT.md. 쉼터는 부모 검토 전 master 미반영,7장 미착수.
+
 ## 2026-10-18 — 승인5장 쉼터 배포·6장 끊어진 목교 회화/지형
 
 - 5장 쉼터98865076을 master f26dc1eaa30eb534c208b5450240cd78a5b1b4f6에 병합·push, Pages39154938816 completed/success 확인. 승인 tree와 같아 기존 검증 반복 없음. 부모 공개 Pages 브라우저 확인 범위도 재실행하지 않았다.

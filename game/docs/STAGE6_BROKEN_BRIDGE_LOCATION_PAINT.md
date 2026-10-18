@@ -2,7 +2,7 @@
 
 부모가 승인한 5장 쉼터 `98865076`을 최신 master `f26dc1eaa30eb534c208b5450240cd78a5b1b4f6`에 병합·push했고 [Pages run39154938816](https://github.com/sys8994/honro/actions/runs/39154938816)의 해당 SHA/completed/success를 확인했다. 승인 tree와 병합 tree가 같아 기존 검증과 빌드를 반복하지 않았다. 부모의 공개 Pages 브라우저에서4장/5장 쉼터와5장 전투의 새 미술 확인도 완료했다고 전달받았으므로 해당 접속을 반복하지 않았다.
 
-6장 전투는 위 master에서 분기한 `art/stage6-broken-bridge-location-paint-20261018`의 별도 검토 단위다. 아직 master/Pages 미반영이며 6장 쉼터와 7장은 미착수다.
+6장 전투는 위 master에서 분기한 `art/stage6-broken-bridge-location-paint-20261018`의 별도 검토 단위다. 부모 실제3뷰 승인 후 `e4be8cd2`를 master `cb8f4a8d09d2d4df5af9f00dadcbb918988dc042`에 병합·push했고 Pages run39156677078의 completed/success를 확인했다. 승인 tree가 같아 기존 검증은 반복하지 않았다. 6장 쉼터는 후속 별도 검토 단위이며7장은 미착수다.
 
 ## 새 장소와 실제 경로
 
@@ -45,4 +45,4 @@ Native production App/Engine의 국소 fixture:
 | 교각귀·운반대의 하부 구조 공간 | `libfile_9c69fcc9d4c081919b312e410b50c462` | v0 |
 | 모바일 중간 교판 pose fixture | `libfile_d785c3d71f4c819193917a3a07293910` | v0 |
 
-후속 미술 수정은 같은 ID를 교체한다. 부모 실제 화면 검토 후 master 배포 결정을 기다린다.
+후속 미술 수정은 같은 ID를 교체한다. 부모 실제 화면 승인 후 위 master/Pages에 반영했다. 공개 실제 화면 확인은 부모가 담당한다.
