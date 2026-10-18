@@ -26,7 +26,7 @@ function toned(b){const n=b.honroStage;if(tones.has(n))return tones.get(n);const
 function picture(c,id,x,y,w,h){if(!ready(id))return false;c.drawImage(images[id],x,y,w,h);return true;}
 // Painted forest references use metres and a trunk foot, not the atlas rectangle's root mat.
 const forestReference={pineA:{heightM:8.4,foot:[.54,.90]},pineB:{heightM:8.4,foot:[.64,.90]},dead:{heightM:7.2,foot:[.50,.91]}};
-function forestImage(id){if(forestTones.has(id))return forestTones.get(id);const img=images[id],cv=document.createElement('canvas');cv.width=img.naturalWidth;cv.height=img.naturalHeight;const c=cv.getContext('2d');c.filter=forestReference[id]?'saturate(.60) contrast(.90) brightness(.82) blur(.2px)':'saturate(.58) brightness(.78)';c.drawImage(img,0,0);c.filter='none';c.globalCompositeOperation='source-atop';c.fillStyle=forestReference[id]?'#55554b30':'#26374428';c.fillRect(0,0,cv.width,cv.height);if(forestReference[id]){c.globalCompositeOperation='destination-in';const g=c.createLinearGradient(0,cv.height*.81,0,cv.height);g.addColorStop(0,'#000');g.addColorStop(.5,'#0009');g.addColorStop(1,'#0000');c.fillStyle=g;c.fillRect(0,0,cv.width,cv.height);}forestTones.set(id,cv);return cv;}
+function forestImage(id,grounded=false){const key=id+(grounded?':grounded':'');if(forestTones.has(key))return forestTones.get(key);const img=images[id],cv=document.createElement('canvas');cv.width=img.naturalWidth;cv.height=img.naturalHeight;const c=cv.getContext('2d');c.filter=forestReference[id]?'saturate(.60) contrast(.90) brightness(.82) blur(.2px)':'saturate(.58) brightness(.78)';c.drawImage(img,0,0);c.filter='none';c.globalCompositeOperation='source-atop';c.fillStyle=forestReference[id]?'#55554b30':'#26374428';c.fillRect(0,0,cv.width,cv.height);if(forestReference[id]){c.globalCompositeOperation='destination-in';const g=c.createLinearGradient(0,cv.height*(grounded?.975:.81),0,cv.height);g.addColorStop(0,'#000');g.addColorStop(.5,'#0009');g.addColorStop(1,'#0000');c.fillStyle=g;c.fillRect(0,0,cv.width,cv.height);}forestTones.set(key,cv);return cv;}
 function background(c,w,h,b,scene){if(active(b))ensure(b);if(!active(b)||!ready(stage(b).rear))return false;
  const img=toned(b),raw=G.HonroVisualStyle.raw(c),paint=cc=>{cc.fillStyle=b.honroStage===1?'#1b303c':'#091923';cc.fillRect(0,0,w,h);
   if(stage(b).kind==='sky'){const q=E.act1BackdropFrame(scene,w,h,b,img.width,img.height);cc.drawImage(img,q.x,q.y,q.w,q.h);}
@@ -34,7 +34,20 @@ function background(c,w,h,b,scene){if(active(b))ensure(b);if(!active(b)||!ready(
  };
  const key=['pilot',b.honroStage,generation,w,h,scene.x,scene.y,scene.scale].join(':');if(!scene._screenRaster(raw,key,w,h,paint,'_screenBackgroundCache',false))paint(raw);scene.environmentStats={groups:1,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0};return true;
 }
-function localSprite(c,l,id,height,b){if(!ready(id))return false;const ref=forestReference[id],img=forestImage(id);if(ref)height=(l.id.includes('-entry-grove-')?ref.heightM:(l.id.includes('-great-pine-')?12.2:l.asset.reference.heightM))*E.WORLD_UNITS_PER_METER;const width=height*img.width/img.height,foot=ref?.foot||[.5,1],placement=ref&&b.honroMap.act1Scene.scenery.find(p=>p.id===l.id),support=placement&&b.terrain.find(t=>t.id===placement.supportId&&!t.broken),y=support?C.topAt(support,l.x,l.y)+4:l.y;c.save();c.translate(l.x,y);c.rotate(l.rotation||0);c.scale(l.scale??1,l.scale??1);c.drawImage(img,-width*foot[0],-height*foot[1],width,height);c.restore();return true;}
+// Measured root ridges in the clean source images. Sample the whole root fan,
+// including rotation/scale, instead of aligning a single trunk pixel on a slope.
+const rootContacts={pineA:[[.24,.935],[.40,.960],[.55,.950],[.72,.963],[.88,.950]],pineB:[[.36,.948],[.52,.965],[.68,.960],[.82,.965],[.95,.951]],dead:[[.23,.943],[.40,.961],[.56,.967],[.73,.953],[.87,.943]]};
+const rootPlacements=new WeakMap();
+function rootPlacement(l,id,height,width,b){let q=rootPlacements.get(l);if(q)return q;const placement=b.honroMap.act1Scene.scenery.find(p=>p.id===l.id),support=placement&&b.terrain.find(t=>t.id===placement.supportId&&!t.broken),foot=forestReference[id].foot,scale=l.scale??1,angle=l.rotation||0,cs=Math.cos(angle),sn=Math.sin(angle);
+ const contacts=(rootContacts[id]||[]).map(([u,v])=>{const dx=(u-foot[0])*width*scale,dy=(v-foot[1])*height*scale,x=l.x+dx*cs-dy*sn,localY=dx*sn+dy*cs;return{x,localY,ground:support?C.topAt(support,x,l.y):l.y};});
+ const y=support?Math.max(...contacts.map(p=>p.ground-p.localY)):l.y;
+ q={y,support,contacts};rootPlacements.set(l,q);return q;
+}
+function localSprite(c,l,id,height,b){if(!ready(id))return false;const ref=forestReference[id],img=forestImage(id,!!ref);if(ref)height=(l.id.includes('-entry-grove-')?ref.heightM:(l.id.includes('-great-pine-')?12.2:l.asset.reference.heightM))*E.WORLD_UNITS_PER_METER;const width=height*img.width/img.height,foot=ref?.foot||[.5,1],q=ref?rootPlacement(l,id,height,width,b):null,y=q?.y??l.y;c.save();
+ // Existing earth occludes the buried root fan. This is a visual clip only;
+ // no replacement ground, contact shadow or collision surface is introduced.
+ if(q?.support){const outside=new Path2D();outside.rect(l.x-width*2,y-height*2,width*4,height*4);outside.addPath(shape(q.support));c.clip(outside,'evenodd');}
+ c.translate(l.x,y);c.rotate(l.rotation||0);c.scale(l.scale??1,l.scale??1);c.drawImage(img,-width*foot[0],-height*foot[1],width,height);c.restore();return true;}
 const forestTrees=new Set(['a1-scene-1-entry-grove-west','a1-scene-1-entry-grove-center','a1-scene-1-great-pine-center','a1-scene-1-east-grove-sacred','a1-scene-1-east-grove-pine','a1-scene-1-last-grove-center']);
 const forestPlants=new Set(['flora-1','flora-2','flora-10','flora-11','flora-14','flora-15','flora-23']);
 function forestLandmark(c,l,b){if(l.id==='old-pass-gate')return localSprite(c,l,'passGate',225*(l.size||1),b);const id=l.asset?.id;if(/^mockup-granite/.test(id||''))return false; // The Stage1 material module paints the exact colliders once ready.
@@ -58,7 +71,7 @@ const oldLandmark=S.landmark;S.landmark=function(c,l){const b=this.battle;if(act
 const oldVisible=S._landmarkVisible;S._landmarkVisible=function(l,view,padding=40){if(this.battle?.honroStage===1&&active(this.battle)&&forestReference[l.asset?.id==='act1-scene:rooted-sacred'?'dead':l.asset?.id==='act1-scene:rooted-pine'?'pineA':'']){
  if(!forestTrees.has(l.id))return false;const id=l.asset.id.endsWith('sacred')?'dead':/center|east-grove-pine/.test(l.id)?'pineB':'pineA';if(ready(id)){const ref=forestReference[id],height=(l.id.includes('-entry-grove-')?ref.heightM:l.id.includes('-great-pine-')?12.2:l.asset.reference.heightM)*E.WORLD_UNITS_PER_METER*(l.scale??1),width=height*images[id].naturalWidth/images[id].naturalHeight;return l.x-width*ref.foot[0]-padding<=view.right&&l.x+width*(1-ref.foot[0])+padding>=view.left&&l.y-height*ref.foot[1]-padding<=view.bottom&&l.y+height*(1-ref.foot[1])+padding>=view.top;}
  }return oldVisible.call(this,l,view,padding);};
-const oldKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return oldKey.call(this,b,w)+(active(b)?':pilots:'+manifest.revision+':'+generation+':'+(b.honroStage===1?'location2':G.HonroStage21Painted.appearanceKey()):'');};
+const oldKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return oldKey.call(this,b,w)+(active(b)?':pilots:'+manifest.revision+':'+generation+':'+(b.honroStage===1?'root-contact3':G.HonroStage21Painted.appearanceKey()):'');};
 for(const n of [1,18,27])G.HonroPaintedPresentation.register({id:'pilot-'+n,active:b=>b?.honroStage===n&&active(b),naturalEdges:true,cachedWorld:true});
-G.HonroPaintedPilots={active,ready,images,manifest,terrain,request,forestImage,appearanceKey:()=>manifest.revision+':'+generation};
+G.HonroPaintedPilots={active,ready,images,manifest,terrain,request,forestImage,rootPlacements,appearanceKey:()=>manifest.revision+':'+generation};
 })(globalThis);
