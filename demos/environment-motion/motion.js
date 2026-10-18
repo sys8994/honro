@@ -95,17 +95,19 @@ function prepareArt() {
     c.drawImage(glow, 27, 5);
     c.globalAlpha = 1;
     for (let i = 0; i < 3; i++) {
-      const x = 75 + i * 20, base = 136 - Math.abs(i - 1) * 2;
-      const height = 29 + (i === 1 ? 23 : 0) + Math.sin(t * 4.7 + i * 2) * 7;
+      const x = 76 + i * 16, base = 136 - Math.abs(i - 1) * 2;
+      const height = 34 + i * 4 + Math.sin(t * 4.7 + i * 2) * 8 + Math.sin(t * 2 + i * 2) * 3;
       const lean = breeze * 14 + Math.sin(t * 5.3 + i) * 3;
       const gradient = c.createLinearGradient(0, base - height, 0, base);
-      gradient.addColorStop(0, '#ab572500'); gradient.addColorStop(0.18, '#b7672e54'); gradient.addColorStop(0.55, '#da923ca6'); gradient.addColorStop(1, '#ecc27dd6');
+      gradient.addColorStop(0, '#ab572500'); gradient.addColorStop(0.22, '#b7672e28'); gradient.addColorStop(0.55, '#d58b3866'); gradient.addColorStop(1, '#e5b56ca8');
       c.fillStyle = gradient;
-      c.beginPath(); c.moveTo(x - 14, base);
-      c.bezierCurveTo(x - 17, base - 20, x + lean + 11, base - height * 0.65, x + lean - 3, base - height);
-      c.bezierCurveTo(x + lean + 13, base - height * 0.5, x + 18, base - 17, x + 13, base);
+      c.beginPath(); c.moveTo(x - 19, base);
+      c.bezierCurveTo(x - 25, base - height * 0.28, x + lean - 8, base - height * 0.43, x + lean - 6, base - height * 0.73);
+      c.bezierCurveTo(x + lean - 4, base - height * 1.02, x + lean + 7, base - height * 0.93, x + lean + 5, base - height * 0.7);
+      c.bezierCurveTo(x + lean + 1, base - height * 0.49, x + 20, base - height * 0.4, x + 21, base - height * 0.17);
+      c.bezierCurveTo(x + 23, base - 1, x + 8, base + 2, x - 19, base);
       c.closePath(); c.fill();
-      c.globalAlpha = 0.18 + 0.05 * Math.sin(t * 6 + i);
+      c.globalAlpha = 0.12 + 0.04 * Math.sin(t * 6 + i);
       c.fillStyle = '#ffe0a5'; c.beginPath(); c.ellipse(x, base - 6, 6, 8, 0.1 * breeze, 0, TAU); c.fill(); c.globalAlpha = 1;
     }
     // Ten analytical embers, bounded to this patch, with a shared signed wind.
@@ -204,8 +206,8 @@ function syncLoop() {
   playButton.textContent = playing ? '전체 정지' : '전체 재생';
   playButton.setAttribute('aria-pressed', String(playing));
   document.querySelector('#status').textContent = !playing && reducedMotion.matches && !explicitPlayback
-    ? '동작 줄이기 설정으로 정지 중 · 전체 재생으로 시작할 수 있습니다.'
-    : '작은 영역만 움직입니다 · 효과를 끄면 그 프레임에 멈춥니다.';
+    ? '동작 줄이기: 정지 중. 전체 재생으로 시작하세요.'
+    : '효과를 끄면 현재 모습으로 멈춥니다.';
   updateMetrics();
 }
 

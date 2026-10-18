@@ -1,4 +1,4 @@
-# 계곡의 숨 · 환경 모션 독립 시안
+# 환경 모션 시안
 
 실행 경로: `demos/environment-motion/index.html`. 저장소 루트에서 `python3 -m http.server 8000` 후 `http://localhost:8000/demos/environment-motion/`을 연다. 빌드·설치·외부 라이브러리는 필요 없다. 게임 코드·엔트리·캠페인·저장에는 연결하지 않는다.
 
@@ -18,11 +18,11 @@ RAF 루프는 30fps 상한과 deltaTime을 사용한다. 화면 밖(`Intersectio
 
 ## 비용과 실측
 
-- 요청 파일: WebP 282,404 bytes(275.8 KiB), HTML/CSS/JS 합계 19,884 bytes(19.4 KiB). 폰트·런타임 외부 요청 없음. 배경 생성은 1회이며 실행 중 생성 서비스 호출이나 별도 서버 연산은 없다.
+- 요청 파일: WebP 282,404 bytes(275.8 KiB), HTML/CSS/JS 합계 19,053 bytes(18.6 KiB). 폰트·런타임 외부 요청 없음. 배경 생성은 1회이며 실행 중 생성 서비스 호출이나 별도 서버 연산은 없다.
 - 원화 1672×941 디코드 RGBA 환산 약 6.0 MiB. 준비 캐시 합계 248,788px, RGBA 환산 약 0.95 MiB. 브라우저의 추가 복사·GPU 메모리는 별도다.
 - 최대 표시 폭 1440px·DPR 1.5일 때 Canvas 합계 약 64만px 이하, RGBA 환산 약 2.5 MiB 이하. 실제 갱신 면적은 마스크가 더 좁으며 아래 수치는 투명 여백을 포함한 전체 Canvas 크기의 합이다.
 
-2026-10-18, Linux x86_64 / AMD EPYC 9V74 / Headless Chromium 154.0.8037.57, 효과 5개 활성, 바람 +0.35. `performance.now()`로 효과 그리기 호출만 측정했다.
+2026-10-18, Linux x86_64 / AMD EPYC 9V74 / Headless Chromium 154.0.8037.57, 효과 5개 활성, 바람 +0.35. `performance.now()`로 효과 그리기 호출만 측정했다. 아래는 문구·화염 외형 정리 전 초기 시안의 측정값이다.
 
 | 실행 조건 | 표본 | CPU 평균 / p95 | Canvas 합계 |
 | --- | --- | --- | --- |
@@ -39,4 +39,4 @@ RAF 루프는 30fps 상한과 deltaTime을 사용한다. 화면 밖(`Intersectio
 - 배경은 이번 시안용 ImageGen 정지 원화를 WebP로 변환했다. 지정된 Library 숲·동굴 참고 이미지는 다운로드 오류 후 재시도하지 않았다. 승인된 과거 게임 그림이나 인체·묵종 에셋은 사용하지 않았다.
 - 조명은 화로 주변의 작은 광원만 바뀐다. 실제 동적 그림자·물리 천·유체 효과는 구현하지 않았다. 통합 시에는 게임 카메라 좌표와 자산 마스크를 연결하는 별도 작업이 필요하다.
 
-이 브랜치는 검토용이다. master 병합과 Pages 발행은 부모 담당자의 확인 이후 진행한다.
+기존 GitHub Pages의 `demos/environment-motion/` 경로로 제공하는 독립 정적 페이지다.
