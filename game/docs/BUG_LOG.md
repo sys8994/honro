@@ -1,3 +1,14 @@
+## 2026-10-18 — 9장 동쪽 루프의 자연 뿌리 갈래
+
+- 부모가 실제 화면에서 지적한 긴 목재 띠·녹색 접합부·상단 사각 암판만 교체했다. 암괴를 감싸 고목/양쪽 흙으로 이어지는 완성형 root-fork 자산을 source PNG/외부WebP로 추가하고 하나의 고정 root cache로 그린다. 기존 상면에 맞추며 원래 마디/분기/입체 명암을 보존한다. 반복 texture-strip과 접합 polygon은 제거했다.
+- 실제 상면·canonical geometry/동선·반사 물성·소단/성장/revision은 불변이다. build·전체/동쪽 확대 실제2뷰 pageerror0 및 준비cache/filter 불변만 확인했다. 통과한 소단/성장/4경로 검사는 반복하지 않았다. 동일 Library ID2개 v1, feature commit/push 후 부모 미술 확인 대기이며 master 미반영.
+
+## 2026-10-18 — 9장 낮은 제의 마당·회랑/문간 미술
+
+- 별도9장 opt-in author/renderer에서 낮은 마당의 흙/자갈/석재 면, 두 평탄한 받이진, 낮은 우물, 열린 목조 회랑과 실제 one-way 지붕/접근 목재, 고목과 접지된 뿌리 우회, 한 개의 돌담 문간을 저작했다. 원비율 외부WebP2점, 조용한 공유 원경/1회 cache와 기존 날씨·배우/실 연출을 사용하며 새 모션/RAF 없음.
+- 공유9/13 author와13장을 바꾸지 않고9장 terrain/routes/markers/anchors/배우 접지를 같이 갱신했다. raw 편성/능력·HP/XP·AI·경고/유한3+3(runtime6+6)·receiver/스토리 기능은 보존했다.9장 map revision1만 적용하며 이전9장 전투만 성장/SP/장착/진척을 보존해 입구250에서 재시작한다.
+- build·실제 전체/문간/모바일3뷰,4경로 양방향 기본 접근, 초기28몸체/실제6+6 placement, 실제 소단76/286 보행, 옛9장 성장 보존만 확인했다. DOM/Canvas/time double인 국소 fixture이며 전체 전투/기예/13장 묶음/전체verify 미실행. 단계별 통과 로그를 보존해 반복하지 않았다. 상세 STAGE9_RITUAL_YARD_LOCATION_PAINT.md, feature commit/push 후 부모 미술 검토 대기.
+
 ## 2026-10-18 — 공개8장 창고 기초 픽셀 접점
 
 - 부모21:14 UTC 공개8장 전투/쉼터 확인 뒤, 전투 창고 아래 alpha 여백에 비치는 얇은 원경 틈만 마감했다. 기존 이미지/지붕 좌표와 비율은 유지하고 기초 바로 뒤에 기존 earth 재질의 낮은 접점을 넣었다.
