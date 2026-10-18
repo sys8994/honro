@@ -13,7 +13,7 @@ const treeSpecs={
 };
 const plants=new Set(['flora-1','flora-2','flora-8','flora-9','flora-12','flora-13']);
 const random=n=>{const v=Math.sin(n*12.9898+78.233)*43758.5453;return v-Math.floor(v);};
-let far,cliffCards;const placements=new WeakMap(),surfaces=new WeakMap();
+let far,cliffCards,floorCards;const placements=new WeakMap(),surfaces=new WeakMap();
 function backdrop(){if(far)return far;const cv=far=document.createElement('canvas');cv.width=2048;cv.height=1024;const c=cv.getContext('2d');c.fillStyle='#293b44';c.fillRect(0,0,2048,1024);
  c.filter='saturate(.48) contrast(.78) brightness(.86) blur(.65px)';c.drawImage(P.images.valleyFar,-2,-1,2052,685);c.filter='none';c.fillStyle='#344b551f';c.fillRect(0,0,2048,1024);
  const g=c.createLinearGradient(0,435,0,680);g.addColorStop(0,'#293b4400');g.addColorStop(1,'#293b44');c.fillStyle=g;c.fillRect(0,435,2048,589);return cv;
@@ -24,6 +24,23 @@ function background(c,w,h,b,scene){if(!ready(b))return false;const img=backdrop(
 function verticalCards(){if(cliffCards)return cliffCards;cliffCards=[];
  for(const rect of [[0,0,600,1024],[550,0,620,1024],[980,0,550,1024]]){const cv=document.createElement('canvas');cv.width=384;cv.height=704;const c=cv.getContext('2d');c.drawImage(P.images.forestRock,...rect,0,0,384,704);c.globalCompositeOperation='destination-in';const x=c.createLinearGradient(0,0,384,0);x.addColorStop(0,'#0000');x.addColorStop(.18,'#000');x.addColorStop(.82,'#000');x.addColorStop(1,'#0000');c.fillStyle=x;c.fillRect(0,0,384,704);const y=c.createLinearGradient(0,0,0,704);y.addColorStop(0,'#0000');y.addColorStop(.1,'#000');y.addColorStop(.8,'#000');y.addColorStop(1,'#0000');c.fillStyle=y;c.fillRect(0,0,384,704);cliffCards.push(cv);}return cliffCards;
 }
+function groundCards(){if(floorCards)return floorCards;floorCards=M.rockCards().map(img=>{const cv=document.createElement('canvas');cv.width=img.width;cv.height=img.height;const c=cv.getContext('2d');c.filter='contrast(.90) brightness(.96)';c.drawImage(img,0,0);c.filter='none';c.globalCompositeOperation='source-atop';c.fillStyle='#4e4c400c';c.fillRect(0,0,cv.width,cv.height);return cv;});return floorCards;}
+function mineralField(c,t,cliff){const m=c.getTransform(),left=Math.max(t.x,-m.e/m.a-4),right=Math.min(t.x+t.w,(c.canvas.width-m.e)/m.a+4),top=Math.max(t.y,-m.f/m.d-4),bottom=Math.min(t.y+t.h,(c.canvas.height-m.f)/m.d+4),cards=cliff?verticalCards():groundCards();
+ c.fillStyle=cliff?'#3b423e':'#343c36';c.fill(M.prepare(t).path);const row=cliff?1080:710,col=cliff?670:930;
+ for(let iy=Math.floor((top-2100)/row);iy<=Math.floor((bottom+200)/row);iy++)for(let ix=Math.floor((left-2200)/col);ix<=Math.floor((right+200)/col);ix++){
+  const seed=ix*137+iy*971,x=ix*col+(random(seed)-.5)*(cliff?190:440),y=iy*row+(random(seed+1)-.5)*(cliff?260:460),w=cliff?930+random(seed+2)*160:1220+random(seed+2)*440,h=cliff?1560+random(seed+3)*260:880+random(seed+3)*340;
+  if(cliff)c.drawImage(cards[Math.floor(random(seed+4)*3)],x,y,w,h);
+  else {c.save();c.translate(x+w*.5,y+h*.5);c.rotate((random(seed+7)-.5)*.15);c.drawImage(cards[Math.floor(random(seed+4)*3)],-w*.5,-h*.5,w,h);c.restore();}
+ }
+}
+function mineralShade(c,t,path){const shade=c.createLinearGradient(t.x,0,t.x+Math.min(t.w,1800),0);shade.addColorStop(0,'#263b4022');shade.addColorStop(.48,'#172a302c');shade.addColorStop(1,'#48514a0c');c.fillStyle=shade;c.fill(path);}
+function granite(c,t,b){
+ const host=b.terrain.find(o=>o.id===(t.honroElementId?.startsWith('basin-')?'canyon-ground':t.x+t.w*.5<b.width*.5?'left-high-ground':'right-cliff-ground'))||t,q=M.prepare(t);
+ // The attached solid samples the host's world mineral field and lighting at
+ // the same scale. No dark isolated-rock crop or local deep fade is added.
+ c.save();c.clip(q.path);mineralField(c,t,host.id!=='canyon-ground');mineralShade(c,host,q.path);
+ const face=c.createLinearGradient(t.x,t.y,t.x+t.w,t.y+t.h);face.addColorStop(0,'#d9cdb00c');face.addColorStop(.5,'#26312900');face.addColorStop(1,'#26312918');c.fillStyle=face;c.fill(q.path);c.restore();
+}
 function surface(t,b){let q=surfaces.get(t);if(q?.source===t.vertices)return q;const geometry=M.prepare(t),walk=G.HonroAct1SpatialArt.prepareTerrain(t,b).edges;
  q={source:t.vertices,path:geometry.path,walk};surfaces.set(t,q);return q;
 }
@@ -31,16 +48,8 @@ function soilBand(c,a,z,d,color){const p=new Path2D();p.moveTo(a.x,a.y);p.lineTo
 function terrain(c,t,b){if(!ready(b)||t.broken||t.honroSeal||t.honroElementCollision)return false;
  if(t.mat==='wood')return M.paintBranch(c,t,{baseRight:t.id.startsWith('right-')});
  if(!['earth','soil','rock','stone'].includes(t.mat))return false;
- const q=surface(t,b),cliff=t.id!=='canyon-ground',m=c.getTransform(),left=Math.max(t.x,-m.e/m.a-4),right=Math.min(t.x+t.w,(c.canvas.width-m.e)/m.a+4),top=Math.max(t.y,-m.f/m.d-4),bottom=Math.min(t.y+t.h,(c.canvas.height-m.f)/m.d+4),cards=cliff?verticalCards():M.rockCards();
- c.save();c.clip(q.path);c.fillStyle=cliff?'#3b423e':'#343c36';c.fill(q.path);
- // Large vertical mineral masses cross world tiles. Unequal, feathered cards
- // retain detail down the cliff; no opaque horizontal depth cut is applied.
- const row=cliff?1080:570,col=cliff?670:780;
- for(let iy=Math.floor((top-1750)/row);iy<=Math.floor(bottom/row);iy++)for(let ix=Math.floor((left-1300)/col);ix<=Math.floor(right/col);ix++){
-  const seed=ix*137+iy*971,x=ix*col+(random(seed)-.5)*190,y=iy*row+(random(seed+1)-.5)*260,w=cliff?930+random(seed+2)*160:1120+random(seed+2)*160,h=cliff?1560+random(seed+3)*260:830+random(seed+3)*130;
-  c.drawImage(cards[Math.floor(random(seed+4)*3)],x,y,w,h);
- }
- const shade=c.createLinearGradient(t.x,0,t.x+Math.min(t.w,1800),0);shade.addColorStop(0,'#263b4022');shade.addColorStop(.48,'#172a302c');shade.addColorStop(1,'#48514a0c');c.fillStyle=shade;c.fill(q.path);
+ const q=surface(t,b),cliff=t.id!=='canyon-ground',m=c.getTransform(),left=Math.max(t.x,-m.e/m.a-4),right=Math.min(t.x+t.w,(c.canvas.width-m.e)/m.a+4);
+ c.save();c.clip(q.path);mineralField(c,t,cliff);mineralShade(c,t,q.path);
  // Soil follows exposed real walking faces. Its depth comes from the local
  // material, incline and remaining play depth, not Stage1's x-specific masks.
  for(const [a,z]of q.walk){if(z.x<left||a.x>right)continue;const len=z.x-a.x;if(len<.01)continue;const slope=(z.y-a.y)/len,mid=(a.y+z.y)/2,d=cliff?Math.max(10,22-Math.abs(slope)*8):Math.max(38,Math.min(130,(b.height-mid)*.18+45));
@@ -58,7 +67,7 @@ function landmark(c,l,b){if(!ready(b))return false;
  if(treeSpecs[l.id]){const q=placement(l,b);if(!q)return true;const img=P.forestImage(q.spec.image);c.save();c.translate(l.x,q.y);c.scale(q.spec.flip?-1:1,1);c.drawImage(img,-q.w*q.spec.foot,-q.h*.9,q.w,q.h);c.restore();return true;}
  if(l.asset?.id?.startsWith('act1-scene:rooted-'))return true;
  if(l.id.startsWith('flora-')){if(plants.has(l.id)){const img=P.forestImage('roots'),h=27*(l.scale??l.size??1),w=h*img.width/img.height;c.drawImage(img,l.x-w*.5,l.y-h,w,h);}return true;}
- if(/^mockup-granite/.test(l.asset?.id||'')){for(const t of G.HonroTerrainDomain.render(b))if(!t.broken&&(t.honroElementId===l.id||l.collisionIds?.includes(t.id)))M.paintRock(c,t,b);return true;}
+ if(/^mockup-granite/.test(l.asset?.id||'')){for(const t of G.HonroTerrainDomain.render(b))if(!t.broken&&(t.honroElementId===l.id||l.collisionIds?.includes(t.id)))granite(c,t,b);return true;}
  return false;
 }
 const oldBackground=S.background;S.background=function(c,w,h,b){if(!active(b)||!background(c,w,h,b,this))return oldBackground.call(this,c,w,h,b);};
