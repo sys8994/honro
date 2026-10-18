@@ -331,6 +331,36 @@
     const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="stage3-painted" data-journey-layer="surface">${defs}${far}${pine}${river}${pier}${stone}${ground}${table}${weather('river',false)}${light}${props}</svg>`;
     cache.set(key,svg);return svg;
   }
+  function paintedRest4(){
+    const a=G.HONRO_PAINTED_PILOTS,id='honro-rest4-painted',key=`rest4-painted:${a.revision}`;
+    if(cache.has(key))return cache.get(key);
+    const image=(name,x,y,w,h,extra='')=>`<image href="${a.images[name]}" x="${x}" y="${y}" width="${w}" height="${h}" ${extra}/>`;
+    const land='M-40 705Q70 687 190 690H660C799 694 858 710 1017 707Q1158 710 1240 703T1420 689L1640 704V930H-40Z';
+    const defs=`<defs>
+      <clipPath id="${id}-land"><path d="${land}"/></clipPath>
+      <filter id="${id}-far" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values=".46"/><feComponentTransfer><feFuncR type="linear" slope=".73" intercept=".17"/><feFuncG type="linear" slope=".73" intercept=".17"/><feFuncB type="linear" slope=".73" intercept=".17"/></feComponentTransfer></filter>
+      <filter id="${id}-near" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values=".7"/><feComponentTransfer><feFuncR type="linear" slope=".86" intercept=".025"/><feFuncG type="linear" slope=".86" intercept=".025"/><feFuncB type="linear" slope=".86" intercept=".025"/></feComponentTransfer></filter>
+      <filter id="${id}-tree" color-interpolation-filters="sRGB"><feColorMatrix type="saturate" values=".55"/><feComponentTransfer><feFuncR type="linear" slope=".76" intercept=".04"/><feFuncG type="linear" slope=".76" intercept=".04"/><feFuncB type="linear" slope=".76" intercept=".04"/></feComponentTransfer></filter>
+      <pattern id="${id}-soil" width="520" height="520" patternUnits="userSpaceOnUse">${image('forestSoil',0,0,520,520,'opacity=".67"')}</pattern>
+      <pattern id="${id}-stone" width="384" height="256" patternUnits="userSpaceOnUse">${image('forestRock',0,0,384,256)}</pattern>
+      <linearGradient id="${id}-far-fade" x2="0" y2="1"><stop stop-color="#2c3d47" stop-opacity="0"/><stop offset="1" stop-color="#2c3d47"/></linearGradient>
+      <linearGradient id="${id}-earth" x2="0" y2="1"><stop stop-color="#69563b38"/><stop offset=".38" stop-color="#403e2e66"/><stop offset="1" stop-color="#111d22"/></linearGradient>
+      <radialGradient id="${id}-fire-ground"><stop stop-color="#c29659" stop-opacity=".3"/><stop offset=".5" stop-color="#b17d43" stop-opacity=".13"/><stop offset="1" stop-color="#ab703d" stop-opacity="0"/></radialGradient>
+      <radialGradient id="${id}-fire-halo"><stop stop-color="#edb65c" stop-opacity=".3"/><stop offset=".35" stop-color="#d29748" stop-opacity=".11"/><stop offset="1" stop-color="#d29748" stop-opacity="0"/></radialGradient>
+    </defs>`;
+    const far=group('stage4-open-mountain-shadow',`<rect x="-1600" y="-900" width="4800" height="2700" fill="#2c3d47"/>`+image('gateFar',-800,-155,3200,1067,`filter="url(#${id}-far)"`)+`<rect x="-800" y="-155" width="3200" height="1067" fill="#344b55" opacity=".1"/><rect x="-800" y="410" width="3200" height="340" fill="url(#${id}-far-fade)"/>`,'data-rest-backdrop="stage4-painted"');
+    // The intact source is uniformly scaled beyond the left panorama edge.
+    // Only a gate corner and its low wall face the road; the fire stays clear.
+    const gate=group('north-gate-edge-and-low-wall',image('gate4',-415,695-1150*503/1280,1150,1150*503/1280,`filter="url(#${id}-near)"`));
+    const pine=group('one-static-roadside-pine',image('pineA',1320,256,334,334*685/488,`filter="url(#${id}-tree)"`));
+    const stones=group('local-roadside-stone',image('granite',1430,669,142,142*236/497,`filter="url(#${id}-near)"`));
+    const ground=group('earth-road-outside-north-gate',`<path d="${land}" fill="#514a3b"/><g clip-path="url(#${id}-land)"><rect x="-40" y="650" width="1680" height="280" fill="url(#${id}-soil)"/><path d="M145 694C357 698 542 742 733 747S1079 715 1255 705L1470 844C1184 812 976 841 751 830S367 761 125 747Z" fill="#9a8864" opacity=".17"/><rect x="-40" y="650" width="1680" height="280" fill="url(#${id}-earth)"/></g>`);
+    let props=campProps(id).replace(/^<g data-art-layer="resting-circle"[^>]*>[\s\S]*?(?=<ellipse cx="800")/,'<g data-art-layer="resting-circle">').replace(/<g data-art-layer="wayfinding-signpost"[^>]*>[\s\S]*$/,'');
+    props=props.replaceAll('fill="#5c5a4b"',`fill="url(#${id}-stone)"`).replace('fill="#0c171a" opacity=".7"','fill="#0c171a" opacity=".42"');
+    const light=group('fire-ground-light',glow(800,758,300,103,`${id}-fire-ground`),'data-rest-motion="fire-ground"');
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="stage4-painted" data-journey-layer="surface">${defs}${far}${gate}${pine}${stones}${ground}${light}${props}</svg>`;
+    cache.set(key,svg);return svg;
+  }
   function scene(variant, layer = 'surface', stage = 0) {
     variant = variants.includes(variant) ? variant : 'forest';
     layer = variant === 'cave' || layer === 'underground' ? 'underground' : 'surface';
@@ -338,6 +368,7 @@
     if(stage===1&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.rest1Inn)return paintedRest1();
     if(stage===2&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.valleyFar)return paintedRest2();
     if(stage===3&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.rest3Worktable)return paintedRest3();
+    if(stage===4&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.gate4)return paintedRest4();
     const key = `scene:${variant}:${layer}:${stage}:${!!G.HONRO_ACT1_FAR_DATA}`;
     if (cache.has(key)) return cache.get(key);
     const p = underground ? {...palettes[variant], sky:'#101f28', horizon:'#38565d', ridge:'#223d48', mist:'#83a4a5'} : palettes[variant];
