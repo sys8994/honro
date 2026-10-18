@@ -1,19 +1,21 @@
 {
-  "revision": 1,
+  "revision": 2,
   "images": {
-    "forestFar": "stage1-far.webp",
+    "forestFar": "stage1-mountain-dusk.webp",
     "bellRear": "stage18-rear.webp",
     "depotRear": "stage27-rear.webp",
-    "pineA": "forest-pineA.webp",
-    "pineB": "forest-pineB.webp",
-    "dead": "forest-dead.webp",
+    "pineA": "stage1-pineA-clean.webp",
+    "pineB": "stage1-pineB-clean.webp",
+    "dead": "stage1-dead-clean.webp",
     "granite": "forest-granite.webp",
     "log": "forest-log.webp",
     "roots": "forest-roots.webp",
     "underground": "underground.webp",
     "stone": "stone.webp",
     "beam": "beam.webp",
-    "bark": "bark.webp"
+    "bark": "bark.webp",
+    "forestRock": "stage1-granite-soil.webp",
+    "forestSoil": "stage1-wet-earth.webp"
   },
   "forestCrops": {
     "pineA": {
