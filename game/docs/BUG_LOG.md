@@ -3219,3 +3219,8 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 - 설정의 '지형 윤곽선 표시' checkbox는 디버그 모드에서만 보이고 기본 off다. 일반 미니맵 설정과 같은 정책으로 작은 boolean만 보존하며 전투 상태에는 필드를 추가하지 않는다.
 - App이 Scene view option으로 전달하고 렌더 캐시 뒤에 실제 b.terrain/HONRO_CORE.poly를 그린다. solid는 청록 실선, oneWay는 실제 upward-facing 충돌 면만 노랑으로 표시한다. broken/화면 밖은 제외하고 선 폭은 배율과 무관한1.5px다. 기존 일상 가독성 선은 유지한다.
 - 실제 Chromium checkbox on/off 즉시 반영·캐시 키 불변·일반 모드 checkbox 숨김/overlay off·두 색 구분·설정 저장/전투 필드 없음과 기본 빌드 확인. 다른 장 순회나 전체 verify는 실행하지 않았다. 캡처와 결과는 _local/reports/stage21-painted/debug-outline*.
+
+## Stage21 일반 지형선·근접/줌 렉 수정
+- 원인: painted 지면/지붕선과 공통 readability 선이 중복됐다. 1.1배율은 정적 캐시를 우회해36프레임 중 지형540/landmark504회를 직접 그렸고 왕복 줌은 LOD마다 캐시를10번 교체했다.
+- 변경: Stage21의 일반 인공 지형선을 없애고 debug overlay는 유지했다. painted opt-in에만 고해상도 근접 타일과3단계 LOD 공유 LRU/canvas 재사용을 적용했다. 다른 장 미술·충돌·전투·저장은 변경하지 않았다.
+- 확인: 동일 headless Chromium 렌더+1px readback에서 desktop1.1 중앙31.2→9.5ms, 왕복줌 p95148.5→81.0ms/타일135→34. 모바일 viewport1.1 중앙6.8→3.6ms, 왕복줌 p9553.9→20.4ms/타일42→6. 일반 팬 시간은 대체로 유지된다. Samsung 실기가 아니다. 기본 빌드/짧은 동일조건 성능 및 윤곽선off-on만 확인하며 전체 verify/다른 장 순회를 하지 않았다. 상세는 STAGE21_PAINTED_ART.md.

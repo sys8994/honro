@@ -27,3 +27,24 @@ Library 전송 호스트의 CONNECT 403은 원본을 보관한 `ef902f4` Git 커
 ### 네 미술 항목 마감
 
 대칭 반복을 겹치는 월드 고정 암반 카드와 깊이별 넓은 명암으로 교체했다. 소형 항아리·수레·장작은 기존 vector 경로별 명암/재질을 유지하며 관아는 얕은 석조 cap, 같은 월드 암반의 하부, 측면·접촉 그림자로 연결한다. 원경은 한 번 만든 낮은 대비/채도의 더 넓은 sky canvas로 축소해 물린다. 기하·전투·다른 장은 바꾸지 않았다. 같은 기본/확대 두 화면과 최종 빌드만 다시 확인했다. Library의 기본·확대·원화 비교 항목을 같은 ID의 새 버전으로 교체했다. 앞선 축소/모바일/Workshop 캡처는 이전 미술 revision의 역사 기록이다.
+
+### 일반 지형선 제거와 painted 캐시 성능 수정
+
+Stage21 일반 미술에서 지면의 어두운8worldpx/밝은2worldpx, 지붕1.2worldpx 및 중복 terrainReadability 선을 제거했다. 재질과 명암은 유지하고 디버그 collisionTerrainOutline은 별도의 live overlay로 유지한다. `HonroPaintedPresentation.register`의 opt-in 정책(`naturalEdges`, `cachedWorld`)을 통해 후속 painted 장도 같은 정책을 사용할 수 있다. 다른 장은 등록하지 않아 기존 미술/캐시 경로가 유지된다.
+
+실측 원인은 근접1.1배율의 캐시 우회(36프레임 중 지형540회·landmark504회 직접 호출)와 왕복 줌의 LOD마다 전체 캐시 교체10회였다. 원경의 측정 CPU 호출은 프레임당 약0.1ms로 작아 이번 수정 대상으로 확대하지 않았다. 근접은1.5px/world 고해상도 타일을 사용하고 기본/축소는 .625/.3125 LOD를 사용한다. 같은 콘텐츠의 여러 LOD를 한 bounded LRU에 유지하고 현재 visible working set을 보호하며 오래된 canvas를 재사용한다. 516×516 타일 상한은 데스크톱48개(약51.1MB), 모바일20개(약21.3MB)다. 화면 캐시/원본 이미지 메모리는 별도다.
+
+동일 executor의 headless Chromium, DPR1, desktop1440×960/mobile viewport844×390, 시뮬레이션 정지, 각4프레임 준비 뒤36프레임을 측정했다. render+1px readback이며 Samsung 실기 측정이 아니다.
+
+| 조건 | 렌더 중앙값 ms 전→후 | 렌더 p95 ms 전→후 | 타일 빌드 전→후 |
+|---|---:|---:|---:|
+| desktop / idle | 12.1→11.4 | 14.8→16.4 | 0→0 |
+| desktop / pan | 13.7→14.1 | 35.9→31.7 | 9→6 |
+| desktop / close-1.1 | 31.2→9.5 | 32.4→12.2 | 0→0 |
+| desktop / zoom-out-and-back | 25.0→16.0 | 148.5→81.0 | 135→34 |
+| mobile-viewport / idle | 3.9→4.3 | 6.1→8.0 | 0→0 |
+| mobile-viewport / pan | 5.1→5.3 | 23.7→23.3 | 6→8 |
+| mobile-viewport / close-1.1 | 6.8→3.6 | 14.9→8.0 | 0→0 |
+| mobile-viewport / zoom-out-and-back | 6.4→5.7 | 53.9→20.4 | 42→6 |
+
+처음 보는 영역의 타일 생성 비용은 남지만 같은 줌 단계로 돌아올 때 전체 캐시를 폐기하지 않는다. 측정 원본과 윤곽선 off/on 캡처는 `_local/reports/stage21-performance/`에 있다. 전체 verify/다른 장 순회는 실행하지 않았다.

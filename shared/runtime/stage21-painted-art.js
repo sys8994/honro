@@ -94,7 +94,7 @@ function paintRock(c,path){
 function terrain(c,t,b){
  if(!active(b)||!ready(manifest.rock))return false;
  if(manifest.roofTerrainIds?.includes(t.id)){
-  const v=G.HONRO_CORE.poly(t);c.beginPath();v.slice(0,v.length/2).forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.strokeStyle='#b0a38a88';c.lineWidth=1.2;c.stroke();return true;
+  return true; // The painting already describes the roof edge.
  }
  if(t.oneWay&&t.id.startsWith('eup21-')){const path=new Path2D();G.HONRO_CORE.poly(t).forEach((p,i)=>i?path.lineTo(p.x,p.y):path.moveTo(p.x,p.y));path.closePath();c.fillStyle=t.mat==='wood'&&ready('timber')?woodPattern(c):rockPattern(c);c.fill(path);return true;}
  if(t.id!=='a3-foundation')return false;
@@ -104,7 +104,7 @@ function terrain(c,t,b){
  // it. Real polygon clipping remains the only silhouette of the land mass.
  const shade=c.createLinearGradient(0,2350,0,4700);shade.addColorStop(0,'#0b151b00');shade.addColorStop(.28,'#111b2440');shade.addColorStop(.65,'#101b24cc');shade.addColorStop(1,'#101923');c.fillStyle=shade;c.fill(path);
  c.restore();
- c.save();c.lineJoin='round';for(let i=1;i<vertices.length;i++){const a=vertices[i-1],z=vertices[i],dx=z.x-a.x;if(dx<=0||Math.abs((z.y-a.y)/dx)>1.35)continue;c.beginPath();c.moveTo(a.x,a.y+3);c.lineTo(z.x,z.y+3);c.strokeStyle='#11191d';c.lineWidth=8;c.stroke();c.beginPath();c.moveTo(a.x,a.y);c.lineTo(z.x,z.y);c.strokeStyle='#aaa18a';c.lineWidth=2;c.stroke();}c.restore();return true;
+ return true;
 }
 const oldKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return oldKey.call(this,b,w)+(active(b)?':painted21:'+manifest.revision+':'+generation:'');};
 const oldLandmark=S.landmark;S.landmark=function(c,l){
@@ -116,4 +116,5 @@ const oldLandmark=S.landmark;S.landmark=function(c,l){
 };
 const oldTerrain=S.terrain;S.terrain=function(c,t){if(!terrain(c,t,this.battle))return oldTerrain.call(this,c,t);};
 G.HonroStage21Painted={active,ready,background,images,manifest,appearanceKey:()=>manifest.revision+':'+generation};
+G.HonroPaintedPresentation.register({id:'stage21',active,naturalEdges:true,cachedWorld:true});
 })(globalThis);
