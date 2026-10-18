@@ -1,3 +1,9 @@
+## 첫 접속 타이틀의 빈 화면과 초기화 비용 · 2026-10-18
+
+- 원인: 빈 app이 전체 모듈·캠페인 로딩을 기다렸고, hydrate가 primitive마다 Promise와 새 객체를 만들었다. 타이틀 이미지는 App 생성 뒤 요청해 표시를 더 늦췄다.
+- 변경: 공통 템플릿의 실제 타이틀을 HTML/critical CSS로 선표시하고 profile-ready에 이미지 DOM을 유지한 채 버튼을 인계한다. 준비 중 클릭은 실행을 예약하지 않으며 오류 시 그림/재시도를 유지한다. asset 경로 fast path·큰 JSON worker parse/분할 전달·budget yield·제한된 modulepreload·타이틀 WebP·필요할 때만 Stage21 image 요청을 적용했다. root redirect도 같은 생성 entry로 바꿨다. 저장/오디오 제스처/embedded 계약과 캠페인 내용은 유지한다.
+- 확인/한계: 빌드와 단일 startup probe의 동일 cold 조건에서 타이틀 약13초→0.5초, app ready 약11.6–12.3초→9.2–9.7초, 긴 작업 합 약59–68% 감소를 확인했다. desktop/모바일 viewport 실행, 새 시작·저장/디버그·오디오 제스처·Playtest·오류/재시도가 통과했다. 실제 휴대폰 실측이 아니며 초기화 중 최대484/739ms 작업과 전체 데이터 로딩은 남는다. 전체 verify/맵 전수 검사는 하지 않았다. `game/docs/STARTUP_LOADING.md`와 `_local/reports/startup/`에 세부 수치와 증거가 있다.
+
 ## 1장 버려진 수레 장식 제거 · 2026-10-18
 
 - 변경: canonical Stage1의 `abandoned-cart` 배치 하나와 재생성 레시피의 같은 배치만 제거했다. 공용 `cart` 에셋/다른 장 배치는 보존한다. `cart` 이벤트의 문구는 개울가 수풀로, marker-1과 같은 장소명은 젖은 개울가로 바꿨다.

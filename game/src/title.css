@@ -1,3 +1,21 @@
+/* The title owns its initial layout so gameplay styles need not block its first paint. */
+html,body{margin:0;width:100%;height:100%;background:#10191d;overflow:hidden}
+body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d9d1bb}
+.honro #app{position:relative;width:100%;height:100dvh}
+.honro-title,.honro-title *{box-sizing:border-box;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+.honro-title{width:100%;height:100dvh;position:relative;display:flex;flex-direction:column}
+.honro-title .title-bg{position:absolute}
+.honro-title:after{content:'';position:absolute;inset:0}
+.honro-title .top{display:flex;align-items:center;gap:12px;border-bottom:1px solid #68776e55;background:#111e24;flex-shrink:0}
+.honro-title .grow{flex:1}
+.honro-title .title-main{position:relative;z-index:2;display:flex;flex-direction:column}
+.honro-title button{font:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.honro-title button[disabled]{cursor:default;opacity:.35}
+.honro-title button[aria-disabled=true]{cursor:progress}
+.honro-title svg.icon{flex:none;vertical-align:middle;pointer-events:none}
+.honro-title .footer{position:relative;display:flex}
+.honro-title .title-main .title-brand{margin:0 0 18px;text-shadow:0 3px 32px #000}
+.honro-embedded .honro-title{display:none}
 /* First ferry: separately composed portrait/landscape paintings, independent brand and real controls. */
 .honro #app .honro-title{background:#08121b;isolation:isolate;overflow:hidden}
 .honro-title .title-bg{inset:0;overflow:hidden;background:linear-gradient(160deg,#1b2a34,#08121b 75%);filter:none;pointer-events:none}

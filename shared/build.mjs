@@ -34,6 +34,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   const bgm=(await readdir(path.join(root,'assets/bgm'))).filter(f=>/^[0-9]{2}.*\.mp3$/i.test(f)).sort();
   if(bgm.length!==5||bgm.some((f,i)=>!f.startsWith(String(i+1).padStart(2,'0'))))throw Error('BGM prefixes 01 through 05 required');
   await file('shared/runtime/fullscreen-input.js');
+  await file('shared/runtime/title-markup.js');
   data('HONRO_BGM_TRACKS',bgm.map(f=>'assets/bgm/'+f));
   code('engine/core',await buildCore());
   data('HONRO_BALANCE',JSON.parse(await read('game/config/balance.json')));
@@ -98,7 +99,8 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
 }
 
 // Keep the same authoring order for native consumers and the external web loader.
-export const authorProjectExpression=value=>`HonroStoryCanonV1.author(HonroBellAnomaly.author(HonroStage2Airborne.author(HonroNarrativeRevision.author(HonroObjectiveRevision.author(HonroAct1Roster.author(${value}))))))`;
+export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1'];
+export const authorProjectExpression=value=>projectAuthors.reduce((value,name)=>`${name}.author(${value})`,value);
 export async function runtimeParts(options={}) {
   return (await runtimeEntries(options)).map(entry=>entry.code);
 }
