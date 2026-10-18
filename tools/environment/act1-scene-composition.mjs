@@ -30,7 +30,7 @@ function rock(st,key,x,y,w,h,supportId,kind='shoulder'){const hit=surfaceAt(st,x
 function suppress(st,predicate){st.design.act1Scene.replaced.push(...st.elements.filter(e=>!e.id.startsWith(PREFIX)&&predicate(e)).map(e=>e.id));}
 const pine=e=>/pine|Tree/i.test(e.assetId)&&!e.id.startsWith('habitat-');
 const PLACES={
- 1:['송림 들머리','젖은 개울 수레터','고목 아래 사격터','동쪽 바위 고개'],
+ 1:['송림 들머리','젖은 개울가','고목 아래 사격터','동쪽 바위 고개'],
  2:['왼쪽 높은 엄호턱','절벽 사이 하강길','상여가 지나는 하부 물길','맞은편 송림'],
  3:['강가 숲길','침수된 나루','진흙 물길','장부가 남은 창고'],
  4:['피난민이 모인 성문','좁은 흙길','불탄 마을 안뜰','동쪽 망루'],

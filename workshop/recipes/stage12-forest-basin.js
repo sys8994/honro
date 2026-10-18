@@ -68,7 +68,9 @@ function commands(project){
    element('central-pine','builtin:giantPine',2070,1570,2.35,'back');
    element('distant-pine-west','builtin:ancientPine',560,1570,2,'back');
    element('distant-pine-east','builtin:ancientPine',3700,1130,1.8,'back');
-   element('abandoned-cart','cart',1160,top(1160),1.1,'prop');
+   // Keep the event/anchor stable; this removed cart instance was decorative.
+   add({op:'object.update',id:'cart',values:{text:'개울가 수풀에서 들린 산개가 튀어나온다.'}});
+   add({op:'object.update',id:'marker-1',values:{label:'젖은 개울가'}});
    element('old-pass-gate','builtin:oldGate',5210,top(5210),.8,'back');
    element('east-ridge-pine','builtin:ancientPine',5050,top(5050),1.3,'back');
    paint('east-ridge-grass','ridge-east-extension','grass',4910,5320,38);
