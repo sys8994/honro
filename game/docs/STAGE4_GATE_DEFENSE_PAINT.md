@@ -34,6 +34,12 @@
 
 | 화면 | Library ID | 버전 |
 |---|---|---|
-| 전체 구도 | `libfile_eb1bbee7dbd481919c132215e91c1bcf` | v0 |
+| 전체 구도 | `libfile_eb1bbee7dbd481919c132215e91c1bcf` | v1 |
 | 피란문 방어마당 | `libfile_53d39b781d748191830efe3ec45f7c4c` | v0 |
 | 모바일 대표 | `libfile_a52cbd59c5848191be9f7e6cb4290a2b` | v0 |
+
+## 부모 검토 후 줌아웃 지하 질감 조각 제거
+
+같은 전체 줌아웃의 오른쪽 아래 y약720에 남은 작은 삼각형 두 개만 수정했다. 해당 영역의 그리기 pass를 분리해 보니 오래된 장식/스커트가 아니라 gate-basin 재질의 깊이 음영 아래 드러난 soil-card였다. 경사진 각 span의 음영 사각형을 shear할 때 왼쪽 y0만으로 높이를 계산해, 가파른 외곽 오르막의 오른쪽 하단이 타일 아래쪽을 덮지 못했다. 칠 높이를 `bottom - min(y0,y1) + 20`으로 계산하고4장 미술 캐시 키만 갱신했다.
+
+필요한 build와 동일1440×900/x2300/y2050/scale.285 전체 줌아웃 한 장만 확인했다. 문제 영역(1380,700)~(1440,740)의 밝은 질감 픽셀은35→0, pageerror0·렌더 전후 전투 JSON 동일·전투 revision1이다. 화면에서도 두 조각이 사라졌다. 지형/적 배치·다른 구도·기존 이동/스폰 검증은 변경하거나 반복하지 않았다. 전체 구도 Library만 같은 ID의 v1로 replace했고 다른 두 화면은 v0을 유지한다. 증거는 `fragment-pass-diagnosis.json`, `fragment-fix-checks.json`, `fragment-library-update.json` 및 같은 전체 구도 PNG다. master/Pages는 미반영이다.

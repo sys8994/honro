@@ -14,7 +14,9 @@ function ground(c,t){const q=M.prepare(t),m=c.getTransform(),left=Math.max(t.x,-
  for(let iy=Math.floor((top-1000)/610);iy<=Math.floor(bottom/610);iy++)for(let ix=Math.floor((left-1300)/720);ix<=Math.floor(right/720);ix++){const seed=ix*173+iy*919,x=ix*720+(rand(seed)-.5)*200,y=iy*610+(rand(seed+1)-.5)*180;c.drawImage(cards[Math.floor(rand(seed+2)*3)],x,y,900+rand(seed+3)*170,800+rand(seed+4)*130);}
  for(let x=Math.floor(left/80)*80;x<right;x+=80){const a=Math.max(t.x,x),z=Math.min(t.x+t.w,x+80);if(z<=a)continue;const y0=q.top(a),y1=q.top(z),mid=(a+z)*.5,burn=Math.max(0,Math.min(1,(mid-1760)/220,(2880-mid)/250));c.save();c.transform(1,(y1-y0)/(z-a),0,1,a,y0);const cap=M.soilPattern(c);cap.setTransform(new DOMMatrix([.48,0,0,110/320,-a,0]));c.fillStyle=cap;c.fillRect(0,0,z-a+.3,110);
   if(burn>0){const g=c.createLinearGradient(0,0,0,260);g.addColorStop(0,`rgba(16,23,22,${burn*.6})`);g.addColorStop(.5,`rgba(24,29,26,${burn*.35})`);g.addColorStop(1,'#18221e00');c.fillStyle=g;c.fillRect(0,0,z-a+.3,260);}
-  const depth=c.createLinearGradient(0,45,0,560);depth.addColorStop(0,'#2b342600');depth.addColorStop(.4,'#252f2a91');depth.addColorStop(1,'#202c2e');c.fillStyle=depth;c.fillRect(0,-8,z-a+.3,Math.max(570,bottom-y0+20));c.restore();}
+  // Cover the tile bottom at both ends of a sheared contour span. On a steep
+  // uphill edge, using only y0 left exposed triangular soil-card corners.
+  const depth=c.createLinearGradient(0,45,0,560);depth.addColorStop(0,'#2b342600');depth.addColorStop(.4,'#252f2a91');depth.addColorStop(1,'#202c2e');c.fillStyle=depth;c.fillRect(0,-8,z-a+.3,Math.max(570,bottom-Math.min(y0,y1)+20));c.restore();}
  c.restore();return true;}
 function beam(c,t){const q=M.prepare(t);c.save();c.clip(q.path);const p=pattern(c,'bark');p.setTransform(new DOMMatrix([1.4,0,0,.7,0,t.y]));c.fillStyle=p;c.fill(q.path);c.fillStyle='#151c1b8c';c.fill(q.path);for(const [a,z]of q.edges){c.beginPath();c.moveTo(a.x,a.y+3);c.lineTo(z.x,z.y+3);c.strokeStyle='#8b80604a';c.lineWidth=3;c.stroke();}c.restore();return true;}
 function terrain(c,t,b){if(!ready(b)||t.broken)return false;if(['gate-roof','east-watch','east-step-1'].includes(t.id))return true;if(t.id==='gate-basin')return ground(c,t);if(t.id==='west-shoulder'||t.honroElementCollision){M.paintRock(c,t,b);return true;}if(t.id==='fc-choice-4-gate-flank-pine'){M.paintBranch(c,t);return true;}if(t.id==='burned-gallery')return beam(c,t);return false;}
@@ -38,7 +40,7 @@ const oldZones=S.surfaceZones;S.surfaceZones=function(c,b){return oldZones.call(
 const oldMarker=G.HonroAct1StoryArt.marker;G.HonroAct1StoryArt.marker=function(scene,m){if(ready(scene.battle)&&m.type==='hauntHabitat'){const c=scene.ctx,im=picture('dead'),h=90,w=h*im.width/im.height;c.drawImage(im,m.x-w*.5,m.y-h,w,h);return true;}return oldMarker.call(this,scene,m);};
 const oldBody=S.unitBody;S.unitBody=function(c,u,...args){if(ready(this.battle)&&u.id==='objective')return;return oldBody.call(this,c,u,...args);};
 const oldUnit=S.unit;S.unit=function(c,u,...args){if(!ready(this.battle)||u.id!=='objective')return oldUnit.call(this,c,u,...args);if(u.dead)return;const z=1/Math.max(.05,this.scale),w=86;c.save();c.translate(u.x,u.y-138);c.scale(z,z);c.fillStyle='#13232a';c.fillRect(-w/2-2,-2,w+4,9);c.fillStyle='#cab47c';c.fillRect(-w/2,0,w*Math.max(0,u.hp/u.maxHp),5);c.restore();};
-const oldKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return oldKey.call(this,b,w)+(active(b)?':stage4-gate1:'+P.appearanceKey():'');};
+const oldKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return oldKey.call(this,b,w)+(active(b)?':stage4-gate2:'+P.appearanceKey():'');};
 G.HonroPaintedPresentation.register({id:'stage4-location',active,naturalEdges:true,cachedWorld:true});
 G.HonroStage4LocationArt={active,ready,cacheStats:()=>({pictures:pictures.size,soilCards:soilCards?.length||0,farCanvases:far?1:0,filterPasses})};
 })(globalThis);

@@ -1,3 +1,8 @@
+## 4장 줌아웃의 지하 삼각형 질감 잔재 · 2026-10-18
+
+- 부모가 지적한 오른쪽 아래 두 조각만 추적했다. 장식/스커트가 아니라 가파른 외곽 오르막에서 sheared 깊이 음영의 하단이 타일을 끝까지 덮지 못해 밑 soil-card가 드러난 것이었다.4장 재질의 칠 높이만 span 양끝 중 낮은 y를 기준으로 계산하고 미술 캐시 키를 갱신했다. 실제 지형/적/스토리/revision은 미수정이다.
+- 필요한 build와 동일 줌아웃 한 장만 확인했다. 조각 영역의 밝은 픽셀35→0·pageerror0·렌더 상태 불변이며 화면에서도 잔재가 사라졌다. 기존 전체 구도 Library libfile_eb1bbee7dbd481919c132215e91c1bcf만 v1로 replace했다. 다른 구도/이동/전투 검증은 반복하지 않았고 master/Pages는 미반영이다. STAGE4_GATE_DEFENSE_PAINT.md와 `_local/reports/stage4-gate-defense/fragment-fix-checks.json`을 참고한다.
+
 ## 4장 피란문 방어 지형·회화 · 2026-10-18
 
 - production canonical4600×3500에서 문 앞 흙마당·얕은 중앙 배수로/탄 마당·서쪽 접지 암반턱·낮은 열린 동쪽 감시대로 지형과 그림을 함께 다시 저작했다. 공중 rock one-way3개를 없애고 실제 암반 어깨/판재층/one-way 지붕과 지지 구조를 맞춘다. 온전한 한국식 문루/감시대/붕괴 잔해 WebP와 낮은 대비의 shared still-night 원경을4장에만 요청하며 정적 캐시·기존 App 루프를 사용한다. 피란문 그림 중복과 모바일 캡처 resize 축소를 마감했다.
