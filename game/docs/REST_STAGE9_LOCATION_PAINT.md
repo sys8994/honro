@@ -24,3 +24,8 @@ build와 실제 Chromium1440×900/390×844 두 화면, 모바일 양끝 패닝/�
 
 - rest9-desktop.png: `libfile_b7709be4a6e8819190fdf7684a4c28a9`, version0
 - rest9-mobile.png: `libfile_b2781505d8c081919de5f1d776aaa091`, version0
+
+
+## 승인 배포·공개 확인
+
+부모가 실제2뷰와 접지를 승인했다. ee566fcdefba3f6f5075d75a81a1a1537457ca60을 master8b660c821ef7034a0cd9c2f76cd41da33bcc2918에 병합·push했다. 승인 tree 동일로 검증 반복 없이 Pages39169269197 해당 SHA/completed/success 확인. 부모21:55 UTC 공개9장 전투/쉼터 실제 픽셀 확인 완료, 재검사하지 않는다.
