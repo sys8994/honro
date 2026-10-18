@@ -25,3 +25,7 @@ villageTree7 요청은 쉼터 전0/후1, chapter-07 engine data 요청0, cliff5 
 
 - rest7-desktop.png: `libfile_975cef2be4fc8191aba63fb254c8a7e4`, version0
 - rest7-mobile.png: `libfile_0fa5f27057208191901c41d611a39402`, version0
+
+## 승인·공개 배포 확인 완료
+
+승인1a40463을 masterbac66908ddbce6dee79adc2c2e9f0d53b6d906cd에 병합·push했고 Pages39160419009의 해당 SHA/completed/success를 확인했다. 승인 tree와 같아 검증은 반복하지 않았다. 부모가19:57 UTC 공개 Pages에서7장 쉼터와 전투 입구·중간 마당을 실제 확인했다. 7장 공개 확인 완료이며 반복하지 않는다.

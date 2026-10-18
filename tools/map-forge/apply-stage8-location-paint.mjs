@@ -1,0 +1,1 @@
+import {readFile,writeFile} from 'node:fs/promises';import {applyStage8LocationPaint} from './stage8-location-paint.mjs';const file='shared/data/campaign.json',p=JSON.parse(await readFile(file,'utf8'));applyStage8LocationPaint(p);await writeFile(file,JSON.stringify(p)+'\n');console.log('Authored Stage8 paint, support poses and bier route metadata only');

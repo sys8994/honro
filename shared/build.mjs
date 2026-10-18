@@ -1,5 +1,6 @@
 import {applyStage3HanokTerrain} from '../tools/map-forge/stage3-hanok-terrain.mjs';
 import {applyStage4GateDefense} from '../tools/map-forge/stage4-gate-defense.mjs';
+import {applyStage8LocationPaint} from '../tools/map-forge/stage8-location-paint.mjs';
 import {applyStage7RootVillage} from '../tools/map-forge/stage7-root-village.mjs';
 import {applyStage6BrokenBridge} from '../tools/map-forge/stage6-broken-bridge.mjs';
 import {applyStage5WaterfallPaint} from '../tools/map-forge/stage5-waterfall-paint.mjs';
@@ -55,6 +56,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   applyStage5WaterfallPaint(project);
   applyStage6BrokenBridge(project);
   applyStage7RootVillage(project);
+  applyStage8LocationPaint(project);
   project=await authorAct23QuestRedesign(project);
   applyOpenStructures(project);
   project=applyCityTacticalRoutes(project);
@@ -106,6 +108,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/stage5-location-art.js');
   if(render)await file('shared/runtime/stage6-location-art.js');
   if(render)await file('shared/runtime/stage7-location-art.js');
+  if(render)await file('shared/runtime/stage8-location-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
     for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])
