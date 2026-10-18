@@ -119,7 +119,9 @@ function customSpatialScenery(scene,c,w,h,b){const env=ensureBattle(b),custom=ne
  }
  if(scene.environmentStats){scene.environmentStats.groups+=active;scene.environmentStats.visibleAssets+=visible;scene.environmentStats.cachedPaths+=data.paths;}
 }
-Scene.prototype.background=function(c,w,h,b){if(G.HonroAct2SpatialArt?.active(b)){
+Scene.prototype.background=function(c,w,h,b){if(G.HonroStage21Painted?.background(c,w,h,b,this)){
+ this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0,...A.stats()};customSpatialScenery(this,c,w,h,b);return;
+}if(G.HonroAct2SpatialArt?.active(b)){
  const key=[this._worldCacheKey(b,w),this.x,this.y,this.scale,G.HonroAct2SpatialArt.ready()].join(':');
  const cached=G.HonroAct2SpatialArt.ready()&&this._screenRaster(c,key,w,h,cc=>{G.HonroAct2SpatialArt.background(cc,b,this,w,h);this._screenBackgroundStats={...this.environmentStats};},'_screenBackgroundCache',false);
  if(cached)this.environmentStats={...this._screenBackgroundStats};else G.HonroAct2SpatialArt.background(c,b,this,w,h);

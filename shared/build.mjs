@@ -74,10 +74,17 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
     const act2Backdrops={};
     for(const [key,file] of [['clouded','act2-clouded-granite.svg'],['dawn','act2-dawn.svg'],['stage11-ravine','stage11-ravine-far.svg'],['stage11-ravine-readable','stage11-ravine-far-readable.svg']])act2Backdrops[key]='data:image/svg+xml;base64,'+Buffer.from((await readFile(path.join(root,'shared/assets/environment',file),'utf8')).replace(/\bstroke="[^"]*"/g,'stroke="none"')).toString('base64');
     data('HONRO_ACT2_FAR_DATA',act2Backdrops);
+    const painted21=JSON.parse(await read('shared/assets/environment/stage21/painted.json'));
+    for(const [key,file] of Object.entries(painted21.images)){
+      const ext=path.extname(file).slice(1),mime=ext==='jpg'?'jpeg':ext;
+      painted21.images[key]='data:image/'+mime+';base64,'+(await readFile(path.join(root,'shared/assets/environment/stage21',file))).toString('base64');
+    }
+    data('HONRO_STAGE21_PAINTED',painted21);
     await file('shared/assets/monsters/monsters.runtime.js');
     await file('shared/assets/actors/actors.runtime.js');
     for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','story-act23-art','narrative-art','quest-target-art','story-anomaly-art','visual-hierarchy'])await file(`shared/runtime/${name}.js`);
   }
+  if(render)await file('shared/runtime/stage21-painted-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
     for(const name of ['portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])
