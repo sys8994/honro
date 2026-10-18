@@ -1,3 +1,11 @@
+## 2026-10-18 — 승인5장 쉼터 배포·6장 끊어진 목교 회화/지형
+
+- 5장 쉼터98865076을 master f26dc1eaa30eb534c208b5450240cd78a5b1b4f6에 병합·push, Pages39154938816 completed/success 확인. 승인 tree와 같아 기존 검증 반복 없음. 부모 공개 Pages 브라우저 확인 범위도 재실행하지 않았다.
+- 별도6장 브랜치에서 온전한 목교의 굵은 보/사재/석재 교각/두 파손부에 실제 one-way 교판과 잔해를 맞췄다. 하부는 완만한 단일 흙·자갈 호송로이며 교각 받침이 길을 막지 않는다. 옛 중복 가는 기둥과 퀘스트 참조 없는 장식 암괴 collider2개를 정리했다.
+- 운반대/동맹/교각귀와 3인 파티 원본·수·HP/XP·기예·이벤트 의미는 유지하고 위치/지원면만 정렬했다. Stage6 map revision1, 전역20 유지. 하부 통행·잔해 진입/두 교판 도약·출구 가지·carrier 구조/선두 추종·출구 보스 조건·해당3개 wave 몸체·이전 저장 성장 보존만 국소 확인했다.
+- 필요한 build/실제3뷰/pageerror0/고정카메라 cache 불변/bridge6 요청1회. 전체 전투/기예/전체 verify 미실행. Library3개v0, 상세ID·제한은 STAGE6_BROKEN_BRIDGE_LOCATION_PAINT.md.
+- feature commit/push만 하며 부모 미술 검토 전6장 master 미반영. 6장 쉼터/7장 미착수.
+
 ## 2026-10-18 — 승인5장 전투 배포·5장 쉼터 회화
 
 - 승인5장 전투 `84084768`을 master `a6dabf98`에 병합·push, Pages39154407739 completed/success 확인. 승인 tree와 같아 전투 검증 반복 없음.

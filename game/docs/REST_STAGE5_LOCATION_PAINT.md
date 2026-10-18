@@ -2,7 +2,7 @@
 
 부모가 확인한 5장 전투 최종본 `840847681cedab2abb6e3358c34b2f128c5ab35c`를 최신 master `a6dabf9875ae8feddadd6975c7f7e8ad4e4b3a76`에 병합·push했다. [Pages run39154407739](https://github.com/sys8994/honro/actions/runs/39154407739)의 해당 SHA/completed/success를 확인했다. 승인 브랜치와 병합 tree가 같아 이미 통과한 전투 빌드·물리·화면 검증은 반복하지 않았다.
 
-이 쉼터는 위 master에서 분기한 `art/rest-stage5-location-paint-20261018`의 별도 검토 단위다. 부모 화면 검토 전 master/Pages 미반영이며 6장은 미착수다.
+이 쉼터는 위 master에서 분기한 `art/rest-stage5-location-paint-20261018`의 별도 검토 단위다. 부모 화면 승인 후 `98865076`을 master `f26dc1eaa30eb534c208b5450240cd78a5b1b4f6`에 병합·push했고 Pages run39154938816 completed/success를 확인했다. 승인 tree와 같아 기존 빌드·검증은 반복하지 않았다. 6장 전투는 후속 별도 단위다.
 
 ## 구성과 보존
 
@@ -30,4 +30,4 @@
 | 데스크톱 | `libfile_936e52b636d88191af8f14d733c65da9` | v0 |
 | 모바일 | `libfile_4744a49218b08191b44c384ba5b7c95c` | v0 |
 
-후속 수정은 같은 Library ID를 교체한다. 부모 실제 화면 확인 뒤 배포 결정을 기다린다.
+후속 수정은 같은 Library ID를 교체한다. 부모 실제 화면 확인 뒤 위 master/Pages에 반영했다.
