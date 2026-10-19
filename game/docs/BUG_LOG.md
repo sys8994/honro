@@ -3550,3 +3550,9 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 - 낮은 바위로 축소됐던2장을 부모 전달1672×941 투명 고절벽 원화로 교체했다. 원화 byte 동일/uniform2.2배, 좌측 정상 오른쪽 exposed 상면 source475/147.95에 설오를 접지하고 아래 상여까지12.82인물 높이 낙차를 확보했다. 자연 선반/맞은편 정상도 새 contact이며 뒤쪽 one-way와 전경 연속 road를 분리했다.
 - 지상 적은 아랫길/공중 적은 협곡·맞은편 정상에 배치,2장 전용 자동 고지 framing으로 설오와 행렬을 함께 보인다. 수동/대사/탄 추적·공유 원경·기존 물/날씨·적 수/능력/이벤트·목표3340은 보존했다.2장 revision3만 적용하며1장/3장이후/11장WIP 불변.
 - build1회·실제3뷰·grounding·두 기본 실제 화살 피해·인접 선반·적 제거 fixture상여 도착·old2장 restart만 국소 확인, pageerror0/sourcefilter2/farcanvas1 유지. 전체 전투/스킬/전체verify 반복 없음. feature/evidence commit·push 후 부모 화면 확인 대기, master/Pages 미반영. 상세 STAGE2_IMAGE_FIRST.md.
+
+## 2026-10-19 — 2장 반복 쌍을 단독·느슨한 역할 무리로 재배치
+
+- 높은 절벽/원화/설오/상여 길/독립 원경을 그대로 두고 지상8개와 공중4개의 최종 좌표를 재저작했다. 전방 멧돼지/후방 산개 clone의 지상 group/군집 연결도 서로 교환해 후방 동시각성을 방지한다. 동일 원본 옆 clone을 떨어뜨리고 지상은 단독/서로 다른 크기 무리/빈 구간, 공중은 가로·세로 높이 차를 사용한다. 적 ID/종/능력/난이도/증원/이벤트/roost 경고·대응 로직을 유지하며2장 revision4만 적용했다.
+- 다섯 난이도 초기12/ID별 능력/이벤트 동일, 접지/flightClear/몸체 비중첩과 occupied-roster 증원 placement 확인. 실제 살아 있는 전체 초기 편성에서 대기2회/원래 적 큐·AI로 산개·멧돼지 이동/돌진과 박쥐·까마귀 공중 이동/공격 발사를 관찰했다. 종료 시 적11생존/실제 교전 사망1, 상여는 위협 때문에 대기 중이다. 적 제거 fixture·전체 완주/스킬/30장/전체verify는 이번 흐름 검증에 사용하지 않았다.
+- 필요한 최종 build·실제1뷰만 추가하고 feature/evidence commit·push 후 부모 화면 확인 대기, master/Pages 미반영. 전 장 공통 자연 군집 원칙은 ENCOUNTER_PLACEMENT.md 한 곳에 반영하되 다른 장 실행 코드는 수정하지 않는다.
