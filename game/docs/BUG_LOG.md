@@ -3544,3 +3544,9 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 - 승인 원화/색/디테일을 그대로 두고 quiet 전용 원경 cover를 세로 1.48배 이상 확보했다. source 높이 60%의 능선을 화면 43% 부근에 두며 기존 작은 시차를 보존하고 camera zoom과 분리한다. 공용 act1BackdropFrame 및 다른 장은 불변이다.
 - 2장 시작 바위와 오른쪽 큰 바위의 앞면을 가로지르던 contact를 원화의 윗면 경사로 올렸다. 시작 x/도로/호송/적 능력·스토리/목표는 그대로다. 오른쪽 일반 점프는 실제 낮은 정상부 x1500으로 접근하는 route annotation만 맞췄으며 새 발판이나 원화 변형은 없다. 미배포 quiet revision2 마감이다.
 - build, 시작 grounding, 바뀐 양쪽 바위 접근의 일반 점프만 국소 확인했다. 2장 일반/동일 camera collision debug와 공유 framing의 1장 일반, 세 화면만 새로 캡처했다. 세 화면 pageerror0, viewport cover/zoom 독립성은 소수 수식 입력으로 확인했다. 기존 전투/호송/저장/전체 검사는 반복하지 않았으며 master/Pages는 변경하지 않는다.
+
+## 2026-10-19 — 2장 높은 절벽 엄호 구도 복원 (검수 브랜치)
+
+- 낮은 바위로 축소됐던2장을 부모 전달1672×941 투명 고절벽 원화로 교체했다. 원화 byte 동일/uniform2.2배, 좌측 정상 오른쪽 exposed 상면 source475/147.95에 설오를 접지하고 아래 상여까지12.82인물 높이 낙차를 확보했다. 자연 선반/맞은편 정상도 새 contact이며 뒤쪽 one-way와 전경 연속 road를 분리했다.
+- 지상 적은 아랫길/공중 적은 협곡·맞은편 정상에 배치,2장 전용 자동 고지 framing으로 설오와 행렬을 함께 보인다. 수동/대사/탄 추적·공유 원경·기존 물/날씨·적 수/능력/이벤트·목표3340은 보존했다.2장 revision3만 적용하며1장/3장이후/11장WIP 불변.
+- build1회·실제3뷰·grounding·두 기본 실제 화살 피해·인접 선반·적 제거 fixture상여 도착·old2장 restart만 국소 확인, pageerror0/sourcefilter2/farcanvas1 유지. 전체 전투/스킬/전체verify 반복 없음. feature/evidence commit·push 후 부모 화면 확인 대기, master/Pages 미반영. 상세 STAGE2_IMAGE_FIRST.md.
