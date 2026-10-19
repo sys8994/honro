@@ -1,0 +1,19 @@
+(function(G){'use strict';
+// Shared approved far cache and independent, transparent near caches. Geometry
+// never clips a ground texture. No grain, detail synthesis or new animation.
+const P=G.HonroPaintedPilots,E=G.HonroEnvironment,pictures=new Map();let filters=0;
+function ready(near){P.request(['quietFar',near]);return P.ready('quietFar')&&P.ready(near);}
+function picture(id){if(pictures.has(id))return pictures.get(id);const im=P.images[id],cv=document.createElement('canvas');cv.width=im.naturalWidth;cv.height=im.naturalHeight;const c=cv.getContext('2d');if(!/SopNear$/.test(id)){c.filter='brightness('+(id==='quietFar'?.68:.62)+')';filters++;}c.drawImage(im,0,0);c.filter='none';pictures.set(id,cv);return cv;}
+function near(id,cutout){const base=picture(id);if(!cutout)return base;const key=id+':broken-bough';if(pictures.has(key))return pictures.get(key);const cv=document.createElement('canvas');cv.width=base.width;cv.height=base.height;const c=cv.getContext('2d');c.drawImage(base,0,0);c.globalCompositeOperation='destination-out';const p=new Path2D();cutout.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();c.fill(p);pictures.set(key,cv);return cv;}
+// Reserve vertical cover so the approved ridges stay in the middle of the
+// screen, including tall viewports. Camera zoom never scales this screen layer.
+function backdropFrame(scene,w,h,b,iw=1672,ih=941){const base=E.act1BackdropFrame(scene,w,h,b,iw,ih),s=Math.max(base.w/iw,h*1.48/ih),dw=iw*s,dh=ih*s,my=h*E.ACT1_FAR.marginY,y=Math.max(h-dh+my,Math.min(-my,h*.43-dh*.60));return{x:(w-dw)*.5+base.offsetX,y:y+base.offsetY,w:dw,h:dh,offsetX:base.offsetX,offsetY:base.offsetY};}
+function background(scene,c,w,h,b){const raw=G.HonroVisualStyle.raw(c);if(!P.ready('quietFar')){raw.fillStyle='#62696e';raw.fillRect(0,0,w,h);return;}const far=picture('quietFar'),q=backdropFrame(scene,w,h,b,far.width,far.height),paint=cc=>cc.drawImage(far,q.x,q.y,q.w,q.h),key=['quiet-far',P.appearanceKey(),w,h,q.x,q.y,q.w,q.h].join(':');if(!scene._screenRaster(raw,key,w,h,paint,'_screenBackgroundCache',false))paint(raw);scene.environmentStats={groups:1,visibleAssets:2,backgroundAnimatedPrimitives:0,animatedPrimitives:0};}
+const stepPictures=new Map();
+function stepPicture(id,source){const key=id+':'+source.ref.join(',');if(stepPictures.has(key))return stepPictures.get(key);const xs=source.polygon.map(p=>p[0]),ys=source.polygon.map(p=>p[1]),x=Math.min(...xs)-2,y=Math.min(...ys)-2,w=Math.max(...xs)-x+2,h=Math.max(...ys)-y+2,cv=document.createElement('canvas');cv.width=w;cv.height=h;const c=cv.getContext('2d');c.beginPath();source.polygon.forEach(([px,py],i)=>i?c.lineTo(px-x,py-y):c.moveTo(px-x,py-y));c.closePath();c.clip();c.drawImage(picture(id),x,y,w,h,0,0,w,h);const out={canvas:cv,x,y,w,h};stepPictures.set(key,out);return out;}
+function steps(c,v){if(!v.stepSprites)return;const q=v.transform;c.save();c.translate(q.x,q.y);c.scale(q.scale,q.scale);for(const s of v.stepSprites){const p=stepPicture(v.image,s.source),[rx,ry]=s.source.ref;c.drawImage(p.canvas,s.at[0]+(p.x-rx)*s.scale,s.at[1]+(p.y-ry)*s.scale,p.w*s.scale,p.h*s.scale);}c.restore();}
+
+function frame(scene,w,h,b,art){scene.scale=Math.max(w/(art.right-art.left),h/(art.bottom-art.top),scene.scale);const hw=w/(2*scene.scale),hh=h/(2*scene.scale);scene.x=Math.max(art.left+hw,Math.min(art.right-hw,scene.x));scene.y=Math.max(art.top+hh,Math.min(art.bottom-hh,scene.y));}
+G.HonroQuietLayeredArt={ready,near,steps,background,frame,backdropFrame,cacheStats:()=>({pictures:pictures.size,filterPasses:filters,stepSprites:stepPictures.size,farCanvases:pictures.has('quietFar')?1:0})};
+})(globalThis);
+
