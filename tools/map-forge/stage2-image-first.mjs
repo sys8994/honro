@@ -1,38 +1,19 @@
-/** Stage2 approved quiet transparent near, independent shared far.
- * Source contacts are read inside actual rock/dirt top planes of the new art. */
-const SCALE=2.2,WIDTH=1672,HEIGHT=941;
+import{imageSpace}from'./sop-image-space.mjs';
 const profiles={
- 'canyon-ground':[[0,628],[120,650],[300,684],[480,712],[700,741],[930,762],[1150,768],[1360,758],[1540,740],[1672,719]],
- 'left-high-ground':[[0,110],[100,126],[220,143],[350,149],[425,145],[468,145],[487,153]],
- 'left-shoulder-high':[[505,167],[535,179],[575,196],[610,205]],
- 'left-inner-shelf':[[178,209],[215,219],[260,237],[300,246],[330,261]],
- 'left-shoulder-low':[[565,365],[610,373],[665,380],[709,394]],
- 'left-lower-shelf':[[740,535],[765,543],[788,560]],
- 'left-toe':[[824,594],[850,602],[875,619]],
- 'right-cliff-ground':[[1340,213],[1390,214],[1440,226],[1500,237],[1580,248],[1672,265]],
- 'right-upper-shelf':[[1440,313],[1490,313],[1540,328],[1600,341],[1672,350]],
- 'right-shoulder-middle':[[1265,394],[1295,400],[1325,412],[1342,426]],
- 'right-shoulder-low':[[1147,568],[1190,575],[1238,587]],
- 'right-front-shelf':[[1285,624],[1320,621],[1380,637],[1425,653]]
+ 'canyon-ground':[[0,936],[150,945],[300,962],[500,975],[700,981],[900,980],[1060,965],[1200,943],[1320,912],[1440,886]],
+ 'left-high-ground':[[0,184],[150,207],[310,225],[460,243],[580,257],[650,264]],
+ 'left-shoulder-high':[[435,392],[480,406],[525,423],[600,448]],
+ 'left-shoulder-low':[[490,530],[550,538],[610,557],[650,574]],
+ 'left-toe':[[575,646],[640,664],[710,687],[745,696]],
+ 'middle-shelf':[[700,742],[800,745],[895,756],[970,777],[1020,786]],
+ 'left-front-slope':[[0,679],[110,706],[210,734],[280,754],[310,798],[360,846],[432,875]]
 };
-const points=a=>a.map(([x,y])=>({x:x*SCALE,y:y*SCALE}));
-const at=(x,support='canyon-ground')=>{for(let i=1;i<profiles[support].length;i++){const a=profiles[support][i-1],b=profiles[support][i];if(x>=a[0]&&x<=b[0])return(a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]))*SCALE;}throw Error('Stage2 quiet contact outside '+support+' '+x);};
-const contact=(x,support='canyon-ground',dy=0)=>({x:x*SCALE,y:at(x,support)+dy,support});
-export function applyStage2ImageFirst(project){
- const s=project.stages.find(s=>s.metadata?.stageId===2);if(!s)return project;const prior=new Map(s.terrains.map(t=>[t.id,t]));s.width=WIDTH*SCALE;s.height=HEIGHT*SCALE;s.playBounds={left:0,top:0,right:s.width,bottom:s.height};s.terrainBounds={...s.playBounds};s.terrainDomainVersion=1;
- s.terrains=Object.entries(profiles).map(([id,line])=>{const floor=id==='canyon-ground';return{...prior.get(id),id,name:prior.get(id)?.name||id,type:'solid',layer:'terrain',baseMaterial:floor?'soil':'rock',oneWay:!floor,breakable:false,points:points(floor?[...line,[WIDTH,HEIGHT],[0,HEIGHT]]:[...line,...line.toReversed().map(([x,y])=>[x,y+17])]),detail:{spacing:18,roughness:0,optimizeEpsilon:0,seed:2},properties:{...prior.get(id)?.properties,surfaceKind:floor?'soil':'rock',honroWalkEdges:line.slice(1).map((_,i)=>i)}};});
- // The whole original art stays intact. Only the actual rear rock top planes
- // have one-way contacts; the continuous front procession road has no wall.
- s.elements=[];
- // Authored singles and unequal loose groups; clone IDs are distributed by
- // role rather than kept beside their source unit. No random offsets.
- const poses={'p-archer':contact(475,'left-high-ground'),'foe-0':contact(690),'foe-3':contact(915),'foe-1':contact(1390,'right-cliff-ground',-60),'foe-4':{x:1160*SCALE,y:505*SCALE},'foe-2':contact(1300),'foe-5':contact(1245),objective:contact(300),'ally-bokman':contact(245),'ally-baeksan':contact(415),'npc-damheo':contact(370),'npc-yeonsil':contact(185)};
- for(const u of s.units){const p=poses[u.id];if(!p)continue;Object.assign(u,{x:p.x,y:p.y});if(Object.hasOwn(u,'spawnX'))u.spawnX=p.x;if(Object.hasOwn(u,'spawnY'))u.spawnY=p.y;}
- s.anchors={...s.anchors,archerPerch:contact(475,'left-high-ground'),procession:contact(300),leftBasin:contact(660),rightBasin:contact(1080),rightShelf:contact(1440,'right-cliff-ground'),exit:{x:3340,y:at(3340/SCALE),support:'canyon-ground'}};
- const markers=[contact(475,'left-high-ground'),contact(300),contact(550),contact(970),contact(1110),contact(1440,'right-cliff-ground'),contact(1500,'right-cliff-ground')];for(const[i,m]of s.markers.entries())Object.assign(m,markers[i]);
- const progress={'procession-seen':330,'road-pressure':650,'sniper-seen':870,'right-cliff':1120,'last-flight':1390};const rebase=(w,x)=>{if(!w)return;if(w.progress!==undefined)w.progress=x;if(w.any)w.any.forEach(v=>rebase(v,x));};for(const e of s.events){rebase(e.when,progress[e.id]*SCALE);if(e.id==='road-pressure'&&e.action?.type==='spawn')Object.assign(e.action,{...contact(720),spacing:175,maxDistance:230});}
- const waters=s.materials.filter(m=>m.conductive&&/water/.test(m.kind));s.materials=waters.map((m,i)=>({...m,kind:'shallow-water',terrainId:'canyon-ground',support:'canyon-ground',x1:[1120,1360][i]*SCALE,x2:[1190,1420][i]*SCALE,reference:at([1150,1390][i]),depth:7,alpha:.13,points:undefined,surface:undefined,bottom:undefined}));
- s.routes=[300,660,950,1200,3340/SCALE].map(x=>contact(x));s.design.act1Scene={version:2,scenery:[],rocks:[],replaced:[]};
- s.design.stage2ImageFirst={revision:4,quietLayers:1,highCliffs:1,overwatchView:{x:790*SCALE,y:425*SCALE,spanY:835*SCALE},far:'quietFar',image:'stage2QuietNear',source:{width:WIDTH,height:HEIGHT},transform:{x:0,y:0,scale:SCALE},artBounds:{left:0,top:0,right:s.width,bottom:s.height},walkRibbon:points(profiles['canyon-ground']),runtimeRoster:{'foe-0-cluster':contact(1055),'foe-3-cluster':{...contact(1390),group:3,honroCluster:'exit-core'},'foe-1-cluster':{x:1000*SCALE,y:305*SCALE},'foe-4-cluster':{x:715*SCALE,y:270*SCALE},'foe-2-cluster':{...contact(850),group:1,honroCluster:'procession-screen'},'foe-5-cluster':contact(1540)},routes:{road:s.routes,left:[contact(475,'left-high-ground'),contact(560,'left-shoulder-high'),contact(630,'left-shoulder-low'),contact(760,'left-lower-shelf'),contact(850,'left-toe'),contact(960)],right:[contact(1460,'right-cliff-ground'),contact(1490,'right-upper-shelf'),contact(1310,'right-shoulder-middle'),contact(1190,'right-shoulder-low'),contact(1190)]}};
- Object.assign(s.initialState,{width:s.width,height:s.height,honroEscortGoalX:3340,honroStage2AirborneRevision:1});return project;
+export function applyStage2ImageFirst(project){const s=project.stages.find(s=>s.metadata?.stageId===2);if(!s)return project;const q=imageSpace(s,{width:1440,height:1092,worldWidth:6200,profiles,floor:'canyon-ground'}),{scale:S,contact:c,air,poses}=q;
+ poses({'p-archer':c(644,'left-high-ground'),'foe-0':c(555),'foe-3':c(810),'foe-1':air(1010,390),'foe-4':air(1000,210),'foe-2':c(1110),'foe-5':c(1010),objective:c(300),'ally-bokman':c(245),'ally-baeksan':c(415),'npc-damheo':c(360),'npc-yeonsil':c(190)});
+ const goal=c(1380);s.anchors={...s.anchors,archerPerch:c(644,'left-high-ground'),procession:c(300),leftBasin:c(660),rightBasin:c(1080),rightShelf:air(1080,470),exit:goal};const marks=[c(644,'left-high-ground'),c(300),c(550),c(950),c(1100),c(850,'middle-shelf'),c(970,'middle-shelf')];for(const[i,m]of s.markers.entries())Object.assign(m,marks[i]);
+ const progress={'procession-seen':330,'road-pressure':620,'sniper-seen':770,'right-cliff':1040,'last-flight':1260};const rebase=(w,x)=>{if(!w)return;if(w.progress!==undefined)w.progress=x;if(w.any)w.any.forEach(v=>rebase(v,x));};for(const e of s.events){rebase(e.when,progress[e.id]*S);if(e.id==='road-pressure')Object.assign(e.action,{...c(760),spacing:175,maxDistance:260});if(e.action?.type==='sniperAmbush')Object.assign(e.action,{...air(1060,430),requireFlightClearance:true,maxDistance:420});}
+ const waters=s.materials.filter(m=>m.conductive&&/water/.test(m.kind));s.materials=waters.map((m,i)=>({...m,kind:'shallow-water',terrainId:'canyon-ground',support:'canyon-ground',x1:[1060,1240][i]*S,x2:[1120,1300][i]*S,reference:q.at([1090,1270][i]),depth:7,alpha:.13,points:undefined,surface:undefined,bottom:undefined}));
+ const road=[c(300),c(660),c(950),c(1200),goal];q.finish(road);s.design.stage2ImageFirst={...q.meta('stage2SopNear',1010),revision:5,highCliffs:1,overwatchView:{x:720*S,y:560*S,spanY:825*S,maxX:660*S,maxY:330*S},airborneAlertX:590*S,walkRibbon:q.points(profiles['canyon-ground']),runtimeRoster:{'foe-0-cluster':c(690),'foe-3-cluster':{...c(1200),group:3,honroCluster:'exit-core'},'foe-1-cluster':air(900,505),'foe-4-cluster':air(745,545),'foe-2-cluster':{...c(930),group:1,honroCluster:'procession-screen'},'foe-5-cluster':c(1320)},routes:{road,left:[c(644,'left-high-ground'),c(590,'left-high-ground'),c(550,'left-shoulder-high'),c(610,'left-shoulder-low'),c(710,'left-toe'),c(850,'middle-shelf'),c(1050)]}};
+
+ Object.assign(s.initialState,{honroEscortGoalX:goal.x,honroStage2AirborneRevision:1});return project;
 }

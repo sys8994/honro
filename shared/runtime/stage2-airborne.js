@@ -3,7 +3,7 @@
 // a convoy alert; shared proximity, targeting, flight, weapons and cap stay intact.
 const E=G.HonroEncounters,A=G.HonroAllies,C=G.HONRO_CORE;
 const ids=new Set(['foe-1','foe-4','foe-1-cluster','foe-4-cluster']);
-const active=b=>b?.honroStage===2&&b.honroCanonical&&(b.honroMapOrigin==='campaign'||b.honroStage2AirborneRevision===1)&&!b.honroCustom&&b.honroLayoutRevision===1&&b.honroEscortGoalX===3340;
+const active=b=>b?.honroStage===2&&b.honroCanonical&&(b.honroMapOrigin==='campaign'||b.honroStage2AirborneRevision===1)&&!b.honroCustom&&b.honroLayoutRevision===1&&b.honroEscortGoalX===(b.honroMap?.stage2ImageFirst?.sopVersion?b.honroMapAnchors.exit.x:3340);
 const roost=u=>!!u&&ids.has(u.id)&&u.side===1&&u.honroCluster==='shelf-roost'&&u.honroType===(u.id.startsWith('foe-1')?'crow':'bat')&&u.fixed;
 const alive=u=>u&&!u.dead&&u.hp>0;
 const stopped=app=>app.done||['won','lost'].includes(app.engine.b.phase);
@@ -20,7 +20,7 @@ function repair(e,u){
 const balance=E.balance;E.balance=function(b){const out=balance(b);if(active(b)){for(const u of b.units)repair({b},u);b.honroStage2AirborneRevision=1;}return out;};
 function warning(app,text){const e=app.engine,b=e.b;app.event(text);app.dirty=true;return{warning:{round:b.round,serial:serial(b),inProgress:b.phase!=='aim'||!!b.projectiles.length||!!app.charging||!!e.active?.retreat},released:false};}
 function prepare(app){const e=app.engine,b=e.b;if(!active(b)||stopped(app)||app.dialogue||!e.alive(1).some(roost)||b.honroState.stage2Airborne?.warning)return;
- const engaged=b.units.some(u=>u.side===1&&!roost(u)&&(u.dead||u.hp<u.maxHp))||(e.unit('objective')?.x||0)>=1520;
+ const engaged=b.units.some(u=>u.side===1&&!roost(u)&&(u.dead||u.hp<u.maxHp))||(e.unit('objective')?.x||0)>=(b.honroMap?.stage2ImageFirst?.airborneAlertX??1520);
  if(engaged)Object.assign(b.honroState.stage2Airborne??={},warning(app,'오른쪽 절벽의 날짐승들이 상여 쪽으로 몸을 돌린다.'));
 }
 // Readiness checks stay pure. Only a real player fire/wait/defend input can
