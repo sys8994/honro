@@ -1,6 +1,8 @@
 import {applyStage3HanokTerrain} from '../tools/map-forge/stage3-hanok-terrain.mjs';
 import {applyStage4GateDefense} from '../tools/map-forge/stage4-gate-defense.mjs';
 import {applyStage10LocationPaint} from '../tools/map-forge/stage10-location-paint.mjs';
+import {applyStage1ImageFirst} from '../tools/map-forge/stage1-image-first.mjs';
+import {applyStage2ImageFirst} from '../tools/map-forge/stage2-image-first.mjs';
 import {applyStage9LocationPaint} from '../tools/map-forge/stage9-location-paint.mjs';
 import {applyStage8LocationPaint} from '../tools/map-forge/stage8-location-paint.mjs';
 import {applyStage7RootVillage} from '../tools/map-forge/stage7-root-village.mjs';
@@ -31,7 +33,7 @@ import {buildActors} from '../tools/actor-forge/build.mjs';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 export const modelFiles=['action-prompts','content','story-content-v0','story-content','terrain-space','map-engine','battlefield-layouts',
-  'split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests'];
+  'split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage1-image-first-roster','stage2-image-first-roster'];
 
 // This is the only bundle manifest. Game, Stage view and playtest use it.
 export async function runtimeEntries({vector=true,render=true,app=false}={}) {
@@ -70,6 +72,8 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   project=applyPlaceEncounters(project);
   applyStage9LocationPaint(project);
   applyStage10LocationPaint(project);
+  applyStage1ImageFirst(project);
+  applyStage2ImageFirst(project);
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();
@@ -115,6 +119,8 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/stage8-location-art.js');
   if(render)await file('shared/runtime/stage9-location-art.js');
   if(render)await file('shared/runtime/stage10-location-art.js');
+  if(render)await file('shared/runtime/stage1-image-first-art.js');
+  if(render)await file('shared/runtime/stage2-image-first-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
     for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])
