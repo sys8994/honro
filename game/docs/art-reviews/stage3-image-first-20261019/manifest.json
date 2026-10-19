@@ -558,5 +558,18 @@
     "errors": []
   },
   "generatedAssetIndexNote": "Stage3 no longer uses old shared library scenery. Build redistributes formerly common library assets into chapter4/7/9 asset indices; their authored terrain/art/runtime source files are unchanged.",
-  "deployment": "Feature and evidence only, master/Pages await parent pixel approval."
+  "deployment": "Feature and evidence only, master/Pages await parent pixel approval.",
+  "roofBasicShot": {
+    "scope": "Isolated firing fixture at already-reached ordinary roof landing; all original 13 enemies and terrain retained, hero position initialized only for this firing probe. Not normal full combat.",
+    "from": {
+      "x": 3982.0000000000005,
+      "y": 648.2666666666668
+    },
+    "target": "foe-5-cluster",
+    "aim": {
+      "angle": -55.833842429980606,
+      "power": 0.6038989691109468
+    },
+    "damage": 87
+  }
 }
