@@ -1,0 +1,905 @@
+{
+  "implementation": "a2ca8cef4b530a8f5330ef74c6305816d2f5b1b8",
+  "baseMaster": "9d314ebb3f75f412e03237e63a3ef060ab56ad2a",
+  "referenceCommit": "0302eab0d266237b69e76cec64ce21d363e196a7",
+  "referenceFile": "game/docs/art-references/quiet-layered-20261019/stage4-gate.webp",
+  "sourceSHA256": "fa5c2a85d11d36486078d97714a84a95926e4b735bb8f0242fafae8586814a29",
+  "sourceSize": [
+    2138,
+    736
+  ],
+  "uniformScale": 1.6,
+  "viewport": [
+    1440,
+    960
+  ],
+  "images": [
+    {
+      "png": "stage4-01-overview.png",
+      "webp": "stage4-01-overview.webp",
+      "bytes": 801596,
+      "lossless": true,
+      "decodedRGBAEqualsPNG": true,
+      "sha256": "2a82db8d970385b5f2c963c9c272a12fa3beeda5cc78cfccf5c6306be17b1d88"
+    },
+    {
+      "png": "stage4-02-same-camera-debug.png",
+      "webp": "stage4-02-same-camera-debug.webp",
+      "bytes": 810768,
+      "lossless": true,
+      "decodedRGBAEqualsPNG": true,
+      "sha256": "a6afd0149a54df6dfbd79f2b2967d24952d5a9108212e7e383790892e1379f47"
+    },
+    {
+      "png": "stage4-03-gate-contact.png",
+      "webp": "stage4-03-gate-contact.webp",
+      "bytes": 755136,
+      "lossless": true,
+      "decodedRGBAEqualsPNG": true,
+      "sha256": "eef0e6540c62360911d9c9d86ae96da0b0a6d593ce0c5fc2aeb25eca19abd56d"
+    }
+  ],
+  "checks": {
+    "browser": {
+      "entry": {
+        "stage": 4,
+        "revision": 2,
+        "enemies": 14,
+        "hwigyeom": true,
+        "chunrye": true,
+        "water": 0
+      },
+      "overview": {
+        "x": 1710.4,
+        "y": 192.70951388888898,
+        "scale": 0.42095416276894293,
+        "art": {
+          "pictures": 2,
+          "filterPasses": 2,
+          "farCanvases": 1,
+          "requestedImages": 2,
+          "maxImages": 2
+        }
+      },
+      "debug": {
+        "x": 1710.4,
+        "y": 192.70951388888898,
+        "scale": 0.42095416276894293,
+        "art": {
+          "pictures": 2,
+          "filterPasses": 2,
+          "farCanvases": 1,
+          "requestedImages": 2,
+          "maxImages": 2
+        }
+      },
+      "gate": {
+        "x": 650,
+        "y": 460,
+        "scale": 1.12,
+        "art": {
+          "pictures": 2,
+          "filterPasses": 2,
+          "farCanvases": 1,
+          "requestedImages": 2,
+          "maxImages": 2
+        }
+      },
+      "live": {
+        "scope": "Production Chromium App after original entry dialogue; all 14 initial enemies, actual two-hero waits and original ally/enemy AI. Bounded approach/attack before round 7; original round-3 warning dialogue completed, no removed enemy or forced actor/activation/damage.",
+        "startEnemies": 14,
+        "actions": [
+          {
+            "round": 1,
+            "id": "foe-0",
+            "kind": "hound",
+            "from": {
+              "x": 1607.9610933489419,
+              "y": 747.826869194872
+            },
+            "to": {
+              "x": 1607.9610933489419,
+              "y": 747.826869194872
+            },
+            "fired": true,
+            "intent": "빠른 돌진과 흙파편"
+          },
+          {
+            "round": 1,
+            "id": "foe-3",
+            "kind": "boar",
+            "from": {
+              "x": 1776,
+              "y": 765.642105263158
+            },
+            "to": {
+              "x": 1456.1490706418763,
+              "y": 729.4496243408587
+            },
+            "fired": true,
+            "intent": "전진"
+          },
+          {
+            "round": 1,
+            "id": "foe-6",
+            "kind": "hound",
+            "from": {
+              "x": 1880,
+              "y": 776.5894736842106
+            },
+            "to": {
+              "x": 1541.666666666672,
+              "y": 739.8017543859656
+            },
+            "fired": true,
+            "intent": "전진"
+          },
+          {
+            "round": 2,
+            "id": "foe-0-cluster",
+            "kind": "hound",
+            "from": {
+              "x": 2048,
+              "y": 788.1142857142858
+            },
+            "to": {
+              "x": 1715.8367913864731,
+              "y": 759.3091359354183
+            },
+            "fired": true,
+            "intent": "전진"
+          },
+          {
+            "round": 2,
+            "id": "foe-3-cluster",
+            "kind": "boar",
+            "from": {
+              "x": 2384,
+              "y": 809.4315789473685
+            },
+            "to": {
+              "x": 1892.049556711302,
+              "y": 777.857848074874
+            },
+            "fired": true,
+            "intent": "전진"
+          },
+          {
+            "round": 2,
+            "id": "foe-6-cluster",
+            "kind": "hound",
+            "from": {
+              "x": 2512,
+              "y": 818.8631578947369
+            },
+            "to": {
+              "x": 2020.07888112422,
+              "y": 786.5187932070984
+            },
+            "fired": true,
+            "intent": "전진"
+          },
+          {
+            "round": 3,
+            "id": "event-7",
+            "kind": "hound",
+            "from": {
+              "x": 2169,
+              "y": 795.0285714285715
+            },
+            "to": {
+              "x": 1715.1712492400522,
+              "y": 759.239078867374
+            },
+            "fired": false,
+            "intent": "공격 보류 · 방어"
+          },
+          {
+            "round": 3,
+            "id": "event-8",
+            "kind": "hound",
+            "from": {
+              "x": 2339,
+              "y": 806.1157894736842
+            },
+            "to": {
+              "x": 1847.1754863389713,
+              "y": 773.1342617198918
+            },
+            "fired": true,
+            "intent": "전진"
+          },
+          {
+            "round": 3,
+            "id": "event-9",
+            "kind": "hound",
+            "from": {
+              "x": 2509,
+              "y": 818.642105263158
+            },
+            "to": {
+              "x": 2017.0756473469319,
+              "y": 786.3471798483962
+            },
+            "fired": false,
+            "intent": "공격 보류 · 방어"
+          },
+          {
+            "round": 4,
+            "id": "foe-1",
+            "kind": "hound",
+            "from": {
+              "x": 2656,
+              "y": 828.4631578947369
+            },
+            "to": {
+              "x": 2337.832883715058,
+              "y": 651.3031120518076
+            },
+            "fired": true,
+            "intent": "고지 확보"
+          },
+          {
+            "round": 4,
+            "id": "foe-2",
+            "kind": "human",
+            "from": {
+              "x": 2784,
+              "y": 603.0117647058823
+            },
+            "to": {
+              "x": 2343.9763090145543,
+              "y": 650.1861256337174
+            },
+            "fired": true,
+            "intent": "전진"
+          },
+          {
+            "round": 4,
+            "id": "event-10",
+            "kind": "hound",
+            "from": {
+              "x": 2743,
+              "y": 833.9578947368421
+            },
+            "to": {
+              "x": 2207.7674517628147,
+              "y": 797.2438543864465
+            },
+            "fired": true,
+            "intent": "사거리 확보"
+          },
+          {
+            "round": 5,
+            "id": "event-15",
+            "kind": "hound",
+            "from": {
+              "x": 2115.5,
+              "y": 791.9714285714286
+            },
+            "to": {
+              "x": 1624.4517989553833,
+              "y": 749.6896630479351
+            },
+            "fired": false,
+            "intent": "공격 보류 · 방어"
+          },
+          {
+            "round": 5,
+            "id": "event-16",
+            "kind": "hound",
+            "from": {
+              "x": 2294.5,
+              "y": 802.8368421052631
+            },
+            "to": {
+              "x": 1759.5390295464747,
+              "y": 763.909371531208
+            },
+            "fired": false,
+            "intent": "공격 보류 · 방어"
+          },
+          {
+            "round": 5,
+            "id": "event-17",
+            "kind": "hound",
+            "from": {
+              "x": 2441.5,
+              "y": 630.6625
+            },
+            "to": {
+              "x": 1946.3121953226162,
+              "y": 782.3035540184353
+            },
+            "fired": false,
+            "intent": "공격 보류 · 방어"
+          },
+          {
+            "round": 6,
+            "id": "event-18",
+            "kind": "hound",
+            "from": {
+              "x": 2524.5,
+              "y": 611.9875000000001
+            },
+            "to": {
+              "x": 2031.2533733011237,
+              "y": 787.1573356172071
+            },
+            "fired": false,
+            "intent": "공격 보류 · 방어"
+          },
+          {
+            "round": 6,
+            "id": "foe-4",
+            "kind": "hound",
+            "from": {
+              "x": 2992,
+              "y": 834.4000000000001
+            },
+            "to": {
+              "x": 2499.9707920111587,
+              "y": 817.9767952008223
+            },
+            "fired": false,
+            "intent": "사선 없음 · 방어"
+          },
+          {
+            "round": 6,
+            "id": "foe-5",
+            "kind": "crow",
+            "from": {
+              "x": 2848,
+              "y": 224
+            },
+            "to": {
+              "x": 2568,
+              "y": 224.00000000000003
+            },
+            "fired": true,
+            "intent": "공중 사선 확보"
+          }
+        ],
+        "shots": [
+          {
+            "round": 1,
+            "id": "foe-0",
+            "kind": "hound",
+            "skill": "HBR01",
+            "x": 1607.9610933489419,
+            "y": 747.826869194872
+          },
+          {
+            "round": 1,
+            "id": "foe-3",
+            "kind": "boar",
+            "skill": "HBR01",
+            "x": 1437.666666666672,
+            "y": 727.212280701755
+          },
+          {
+            "round": 1,
+            "id": "foe-6",
+            "kind": "hound",
+            "skill": "HBR01",
+            "x": 1541.666666666672,
+            "y": 739.8017543859656
+          },
+          {
+            "round": 2,
+            "id": "foe-0-cluster",
+            "kind": "hound",
+            "skill": "HBR01",
+            "x": 1715.8367913864731,
+            "y": 759.3091359354183
+          },
+          {
+            "round": 2,
+            "id": "foe-3-cluster",
+            "kind": "boar",
+            "skill": "HBR01",
+            "x": 1892.049556711302,
+            "y": 777.857848074874
+          },
+          {
+            "round": 2,
+            "id": "foe-6-cluster",
+            "kind": "hound",
+            "skill": "HBR01",
+            "x": 2020.07888112422,
+            "y": 786.5187932070984
+          },
+          {
+            "round": 3,
+            "id": "event-8",
+            "kind": "hound",
+            "skill": "HBR01",
+            "x": 1847.1754863389713,
+            "y": 773.1342617198918
+          },
+          {
+            "round": 4,
+            "id": "foe-1",
+            "kind": "hound",
+            "skill": "HBR01",
+            "x": 2337.832883715058,
+            "y": 651.3031120518076
+          },
+          {
+            "round": 4,
+            "id": "foe-2",
+            "kind": "human",
+            "skill": "LA01",
+            "x": 2343.9763090145543,
+            "y": 650.1861256337174
+          },
+          {
+            "round": 4,
+            "id": "event-10",
+            "kind": "hound",
+            "skill": "HBR01",
+            "x": 2207.7674517628147,
+            "y": 797.2438543864465
+          },
+          {
+            "round": 6,
+            "id": "foe-5",
+            "kind": "crow",
+            "skill": "HCW01",
+            "x": 2568,
+            "y": 224.00000000000003
+          }
+        ],
+        "gateHits": [],
+        "final": {
+          "ticks": 4280,
+          "waits": 12,
+          "round": 7,
+          "phase": "aim",
+          "enemies": 21,
+          "dialogue": false,
+          "heroHP": [
+            {
+              "id": "p-archer",
+              "hp": 455
+            },
+            {
+              "id": "p-mage",
+              "hp": 486
+            }
+          ],
+          "hwigyeom": true,
+          "gateHP": 3600
+        }
+      },
+      "errors": []
+    },
+    "check": {
+      "scope": "Stage4 only: default initial budgets/clearance, isolated yard/optional heights, related full-roster spawns. Nine-round completion/failure logic is unchanged and not retested.",
+      "initial": [
+        {
+          "id": "foe-0",
+          "kind": "hound",
+          "x": 1552,
+          "y": 741.0526315789474,
+          "awake": true
+        },
+        {
+          "id": "foe-1",
+          "kind": "hound",
+          "x": 2656,
+          "y": 828.4631578947369,
+          "awake": true
+        },
+        {
+          "id": "foe-2",
+          "kind": "human",
+          "x": 2784,
+          "y": 603.0117647058823,
+          "awake": false
+        },
+        {
+          "id": "foe-3",
+          "kind": "boar",
+          "x": 1776,
+          "y": 765.642105263158,
+          "awake": true
+        },
+        {
+          "id": "foe-4",
+          "kind": "hound",
+          "x": 2992,
+          "y": 834.4000000000001,
+          "awake": true
+        },
+        {
+          "id": "foe-5",
+          "kind": "crow",
+          "x": 2848,
+          "y": 224,
+          "awake": false
+        },
+        {
+          "id": "foe-6",
+          "kind": "hound",
+          "x": 1880,
+          "y": 776.5894736842106,
+          "awake": true
+        },
+        {
+          "id": "foe-0-cluster",
+          "kind": "hound",
+          "x": 2048,
+          "y": 788.1142857142858,
+          "awake": true
+        },
+        {
+          "id": "foe-1-cluster",
+          "kind": "hound",
+          "x": 3120,
+          "y": 827.2,
+          "awake": true
+        },
+        {
+          "id": "foe-2-cluster",
+          "kind": "human",
+          "x": 3056,
+          "y": 463.93962264150946,
+          "awake": false
+        },
+        {
+          "id": "foe-3-cluster",
+          "kind": "boar",
+          "x": 2384,
+          "y": 809.4315789473685,
+          "awake": true
+        },
+        {
+          "id": "foe-4-cluster",
+          "kind": "hound",
+          "x": 3344,
+          "y": 818.8595744680852,
+          "awake": true
+        },
+        {
+          "id": "foe-5-cluster",
+          "kind": "crow",
+          "x": 3232,
+          "y": 416,
+          "awake": false
+        },
+        {
+          "id": "foe-6-cluster",
+          "kind": "hound",
+          "x": 2512,
+          "y": 818.8631578947369,
+          "awake": true
+        }
+      ],
+      "objective": {
+        "id": "objective",
+        "name": "피란문",
+        "x": 584,
+        "y": 571.2,
+        "hp": 3600
+      },
+      "bodyGap": 31,
+      "yard": {
+        "passed": true,
+        "failed": null,
+        "ticks": 482,
+        "jumps": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 768,
+              "y": 619.2
+            },
+            "x": 768,
+            "y": 619.2,
+            "ticks": 1,
+            "support": "gate-basin"
+          },
+          {
+            "goal": {
+              "x": 1360,
+              "y": 717.8105263157895
+            },
+            "x": 1341.0374766045009,
+            "y": 715.5150629573869,
+            "ticks": 110,
+            "support": "gate-basin"
+          },
+          {
+            "goal": {
+              "x": 1840,
+              "y": 772.3789473684211
+            },
+            "x": 1823.2186589698442,
+            "y": 770.6124904178785,
+            "ticks": 92,
+            "support": "gate-basin"
+          },
+          {
+            "goal": {
+              "x": 2320,
+              "y": 804.7157894736843
+            },
+            "x": 2302.014820027958,
+            "y": 803.3905656862706,
+            "ticks": 91,
+            "support": "gate-basin"
+          },
+          {
+            "goal": {
+              "x": 2720,
+              "y": 832.5052631578947
+            },
+            "x": 2701.0344129647597,
+            "y": 831.3074366083007,
+            "ticks": 76,
+            "support": "gate-basin"
+          },
+          {
+            "goal": {
+              "x": 3120,
+              "y": 827.2
+            },
+            "x": 3100.3361123018176,
+            "y": 828.3060936830228,
+            "ticks": 76,
+            "support": "gate-basin"
+          },
+          {
+            "goal": {
+              "x": 3344,
+              "y": 818.8595744680852
+            },
+            "x": 3324.1635534894094,
+            "y": 819.5981655615645,
+            "ticks": 43,
+            "support": "gate-basin"
+          }
+        ],
+        "mode": "isolated walk-only"
+      },
+      "heights": {
+        "west": [
+          {
+            "x": 352.0000000000001,
+            "y": 462.40000000000003,
+            "support": "west-shoulder",
+            "ticks": 62
+          },
+          {
+            "x": 453.3333333333331,
+            "y": 396.01777777777806,
+            "support": "gate-roof",
+            "ticks": 71
+          }
+        ],
+        "east": [
+          {
+            "x": 2384,
+            "y": 642.909090909091,
+            "support": "burned-gallery",
+            "ticks": 58
+          },
+          {
+            "x": 2656,
+            "y": 600,
+            "support": "burned-gallery",
+            "ticks": 73
+          },
+          {
+            "x": 2800,
+            "y": 540.9777777777778,
+            "support": "east-rock-high",
+            "ticks": 72
+          },
+          {
+            "x": 2976,
+            "y": 455.7714285714286,
+            "support": "east-step-1",
+            "ticks": 69
+          },
+          {
+            "x": 3008,
+            "y": 322.9714285714286,
+            "support": "east-watch",
+            "ticks": 62
+          }
+        ]
+      },
+      "afterBreak": [
+        {
+          "x": 3104,
+          "y": 680.6400000000001,
+          "support": "east-rock-low",
+          "ticks": 60
+        },
+        {
+          "x": 2912,
+          "y": 504.2000000000003,
+          "support": "east-step-1",
+          "ticks": 54
+        },
+        {
+          "x": 3008,
+          "y": 322.9714285714286,
+          "support": "east-watch",
+          "ticks": 53
+        }
+      ],
+      "spawns": [
+        {
+          "id": "siege-0",
+          "n": 4,
+          "gap": 23,
+          "units": [
+            {
+              "id": "event-1",
+              "x": 2169,
+              "y": 795.0285714285715
+            },
+            {
+              "id": "event-2",
+              "x": 2275,
+              "y": 801.4
+            },
+            {
+              "id": "event-3",
+              "x": 2477,
+              "y": 622.6750000000001
+            },
+            {
+              "id": "event-4",
+              "x": 2743,
+              "y": 833.9578947368421
+            }
+          ]
+        },
+        {
+          "id": "siege-1",
+          "n": 4,
+          "gap": 31,
+          "units": [
+            {
+              "id": "event-1",
+              "x": 2979.5,
+              "y": 105.61451473109312
+            },
+            {
+              "id": "event-2",
+              "x": 3126.5,
+              "y": 105.18088131403782
+            },
+            {
+              "id": "event-3",
+              "x": 3177.5,
+              "y": 655.0590425531915
+            },
+            {
+              "id": "event-4",
+              "x": 3292.5,
+              "y": 565.7771276595745
+            }
+          ]
+        },
+        {
+          "id": "habitat-4-0",
+          "n": 2,
+          "gap": 31,
+          "units": [
+            {
+              "id": "event-1",
+              "x": 2161,
+              "y": 794.5714285714286
+            },
+            {
+              "id": "event-2",
+              "x": 2271,
+              "y": 801.1052631578948
+            }
+          ]
+        },
+        {
+          "id": "habitat-4-1",
+          "n": 2,
+          "gap": 30,
+          "units": [
+            {
+              "id": "event-1",
+              "x": 3241,
+              "y": 822.6946808510638
+            },
+            {
+              "id": "event-2",
+              "x": 3096.8,
+              "y": 676.0320000000002
+            }
+          ]
+        }
+      ],
+      "revisionRestart": 4
+    },
+    "gate-probe": {
+      "scope": "Isolated single-original-hound native AI approach/shot fixture; other enemies/NPCs omitted, hero placed behind gate. Not the full-roster normal battle.",
+      "from": {
+        "x": 1552,
+        "y": 741.0526315789474
+      },
+      "gateBefore": 3600,
+      "shots": [
+        {
+          "id": "foe-0",
+          "skill": "HBR01",
+          "x": 1213.666666666672,
+          "y": 698.1176470588243
+        }
+      ],
+      "hits": [
+        {
+          "before": 3600,
+          "after": 3585,
+          "owner": "foe-0"
+        }
+      ],
+      "ticks": 126,
+      "to": {
+        "x": 1213.666666666672,
+        "y": 698.1176470588243
+      },
+      "gateAfter": 3585,
+      "enemyHP": 236,
+      "phase": "flight"
+    },
+    "cache": {
+      "before": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      },
+      "stable": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      },
+      "broken": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      },
+      "after": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      }
+    },
+    "scope": {
+      "comparison": "Current generated stage JSON versus approved master; source data only, no gameplay test of other chapters",
+      "changedStages": [
+        4
+      ],
+      "otherStageJSONEqual": true
+    }
+  },
+  "limits": [
+    "Stage4 only. No Stage1–3 or Stage11 WIP edits.",
+    "Unchanged nine-round completion and gate-destruction failure logic not retested.",
+    "Full-roster native observation through six rounds: approach and shots observed, gate stayed at3600HP.",
+    "Gate damage3600→3585 is separately proven by isolated original-hound native-AI fixture; other NPC/enemies omitted and living hero placed behind gate.",
+    "Geometry traversal and spawn probes are isolated checks, not a full battle win.",
+    "No whole verify, all-skills or unrelated-chapter gameplay tests.",
+    "Master/Pages pending parent pixel review."
+  ]
+}
