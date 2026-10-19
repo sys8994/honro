@@ -1,5 +1,5 @@
 import {prefetchProject,yieldIfNeeded} from "../runtime/load-data.fb768c8f80789aa0.js";
-globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL="web/entries/game.2c39868ce0230bac.html?embedded=1";
+globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL="web/entries/game.e099f29cd8393cc3.html?embedded=1";
 const modules=[new URL("../runtime/ordered-common-1.b4e5a49a01772627.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-title-markup.3976b37b0afc8917.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.e05556f1dfcacaa2.js",import.meta.url).href,
@@ -14,7 +14,7 @@ new URL("../runtime/ordered-common-4.007c8b780c5aae30.js",import.meta.url).href,
 new URL("../runtime/ordered-common-5.9c52a7e5824c3306.js",import.meta.url).href,
 new URL("../runtime/ordered-common-6.23560b09f8e73b60.js",import.meta.url).href,
 new URL("../runtime/ordered-common-7.7f9d22327d07d68a.js",import.meta.url).href,
-new URL("../runtime/campaign.dfa84a54b0e34096.js",import.meta.url).href,
+new URL("../runtime/campaign.0ed9992cf926f504.js",import.meta.url).href,
 new URL("../runtime/ordered-common-8.13e952fc8746d065.js",import.meta.url).href,
 new URL("../runtime/party-alias.766fe2b8e383d5c4.js",import.meta.url).href,
 new URL("../runtime/ordered-common-9.21e5f252fcc0bbf6.js",import.meta.url).href,
@@ -26,14 +26,14 @@ new URL("../runtime/shared-assets-monsters-monsters-runtime.368b4c6c02e79e1f.js"
 new URL("../runtime/shared-assets-actors-actors-runtime.71936d333b9319d2.js",import.meta.url).href,
 new URL("../runtime/ordered-common-10.ce552d00db22442e.js",import.meta.url).href,
 new URL("../runtime/ordered-common-11.c5818964e3983d1d.js",import.meta.url).href,
-new URL("../runtime/ordered-common-12.7c0275102e6abc99.js",import.meta.url).href,
+new URL("../runtime/ordered-common-12.0bf4f96930d5367c.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage-rules.425c10ceb6d4b5ec.js",import.meta.url).href,
-new URL("../runtime/workshop-app.3dcb579d65e74da0.js",import.meta.url).href].filter(file=>!false||globalThis.HONRO_EMBEDDED||globalThis.HONRO_PROJECT_MODE==='full'||!Object.values(globalThis.HONRO_OPTIONAL_MODULES).some(entry=>entry.url===file));
+new URL("../runtime/workshop-app.3dcb579d65e74da0.js",import.meta.url).href];
 globalThis.HONRO_READY=(async()=>{try{
 
 const preloaded=new Set();
 for(let i=0;i<modules.length;i++){
- if(i===2&&!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject("web/data/campaign.baeb257d2f8c7da2.json");
+ if(i===2&&!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject("web/data/campaign.e478a34879171416.json");
  for(let n=i;n<Math.min(modules.length,i+12);n++){const href=modules[n];if(preloaded.has(href))continue;preloaded.add(href);const link=document.createElement('link');link.rel='modulepreload';link.href=href;link.fetchPriority='low';document.head.append(link);}
  
  const file=modules[i];await import(file);globalThis.HonroStartup?.progress(file.includes('ordered-common')?'게임 규칙과 풍경 준비':file.includes('ordered-game')?'동행과 조작 준비':file.includes('game-art')||file.includes('title-')?'첫 화면 준비':'장소 자료 준비',i+1,modules.length);await yieldIfNeeded();
