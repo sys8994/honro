@@ -1,0 +1,465 @@
+{
+  "source": {
+    "libraryFileId": "libfile_b27f2a710008819180de5ba292ca319b",
+    "pngGitBlob": "cb0857581fd2172f8519fb4619a0d081f9b54f63",
+    "pngBytes": 2005442,
+    "sourceSize": [
+      1774,
+      887
+    ],
+    "runtimeWebPBytes": 1329274,
+    "visiblePixelDifference": 0
+  },
+  "world": [
+    6000,
+    3000
+  ],
+  "uniformScale": 3.382187147688839,
+  "native": {
+    "initial": [
+      {
+        "id": "p-archer",
+        "x": 152.19842164599777,
+        "y": 2581.285231116122,
+        "grounded": true,
+        "clear": true
+      },
+      {
+        "id": "foe-0",
+        "x": 3720.405862457723,
+        "y": 1728.2976324689967,
+        "grounded": true,
+        "clear": true
+      },
+      {
+        "id": "foe-1",
+        "x": 2198.421645997745,
+        "y": 1792.5591882750846,
+        "grounded": false,
+        "clear": true
+      },
+      {
+        "id": "foe-2",
+        "x": 5715.896279594138,
+        "y": 1018.0383314543406,
+        "grounded": true,
+        "clear": true
+      },
+      {
+        "id": "foe-3",
+        "x": 4836.5276211950395,
+        "y": 1609.9210822998873,
+        "grounded": true,
+        "clear": true
+      },
+      {
+        "id": "foe-0-cluster",
+        "x": 3517.474633596393,
+        "y": 1775.6482525366405,
+        "grounded": true,
+        "clear": true
+      },
+      {
+        "id": "foe-1-cluster",
+        "x": 2468.9966178128525,
+        "y": 1741.826381059752,
+        "grounded": false,
+        "clear": true
+      },
+      {
+        "id": "foe-2-cluster",
+        "x": 5885.00563697858,
+        "y": 933.0608793686583,
+        "grounded": true,
+        "clear": true
+      },
+      {
+        "id": "foe-3-cluster",
+        "x": 4464.487034949268,
+        "y": 1699.5490417136416,
+        "grounded": true,
+        "clear": true
+      }
+    ],
+    "enemyCount": 8,
+    "enemyLimit": 2,
+    "idStatsAndEventSemanticsPreserved": true,
+    "walk": {
+      "passed": true,
+      "samples": [
+        {
+          "goal": {
+            "x": 152.19842164599777,
+            "y": 2581.285231116122
+          },
+          "x": 152.19842164599777,
+          "y": 2581.285231116122,
+          "ticks": 1,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 1082.2998872604285,
+            "y": 2421.6459977452087
+          },
+          "x": 1061.1790090346449,
+          "y": 2428.3342758500403,
+          "ticks": 183,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 1488.162344983089,
+            "y": 2227.358136039083
+          },
+          "x": 1466.2644587722953,
+          "y": 2240.983487459133,
+          "ticks": 89,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 1860.2029312288614,
+            "y": 2080.045095828636
+          },
+          "x": 1839.2627694773641,
+          "y": 2085.803640310298,
+          "ticks": 81,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 2638.1059751972944,
+            "y": 2066.516347237881
+          },
+          "x": 2620.838819745775,
+          "y": 2067.1638655673128,
+          "ticks": 155,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 3416.0090191657273,
+            "y": 1826.381059751973
+          },
+          "x": 3395.721729766984,
+          "y": 1839.0606156261874,
+          "ticks": 162,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 3990.98083427283,
+            "y": 1708.0045095828636
+          },
+          "x": 3972.524270635843,
+          "y": 1709.3887518556376,
+          "ticks": 119,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 4701.240135287486,
+            "y": 1664.0360766629087
+          },
+          "x": 4681.083723299909,
+          "y": 1668.067359060424,
+          "ticks": 141,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 5242.3900789177005,
+            "y": 1352.8748590755356
+          },
+          "x": 5222.930871987128,
+          "y": 1363.0909427140862,
+          "ticks": 124,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 5310.033821871477,
+            "y": 1298.7598647125142
+          },
+          "x": 5289.098316278953,
+          "y": 1315.5082691865337,
+          "ticks": 17,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 5377.677564825254,
+            "y": 1178.1285231116121
+          },
+          "x": 5370.6036478629685,
+          "y": 1179.3861083493518,
+          "ticks": 86,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 5614.430665163472,
+            "y": 1078.9177001127396
+          },
+          "x": 5594.0425366653635,
+          "y": 1091.1505772116052,
+          "ticks": 49,
+          "support": "forest-floor"
+        },
+        {
+          "goal": {
+            "x": 5868.094701240136,
+            "y": 940.4594137542277
+          },
+          "x": 5846.534868167441,
+          "y": 949.8918407235313,
+          "ticks": 58,
+          "support": "forest-floor"
+        }
+      ],
+      "end": {
+        "x": 5846.534868167441,
+        "y": 949.8918407235313
+      },
+      "arrival": true
+    },
+    "optional": {
+      "root": {
+        "passed": true,
+        "fromReachedMainContact": 440,
+        "samples": [
+          {
+            "x": 1481.3979706877114,
+            "y": 2123.09942411408,
+            "support": "fc-choice-1-low-pine-root",
+            "ticks": 64
+          },
+          {
+            "goal": {
+              "x": 1251.4092446448703,
+              "y": 2100.5162285646475
+            },
+            "x": 1270.3918954827514,
+            "y": 2090.025816259503,
+            "ticks": 46,
+            "support": "fc-choice-1-low-pine-root"
+          }
+        ]
+      },
+      "ascent": {
+        "passed": true,
+        "fromReachedMainContact": 550,
+        "samples": [
+          {
+            "x": 1708.0045095828636,
+            "y": 1902.9252951996677,
+            "support": "pine-branch-east",
+            "ticks": 53
+          },
+          {
+            "goal": {
+              "x": 1454.3404735062009,
+              "y": 1789.177001127396
+            },
+            "x": 1473.1350712485755,
+            "y": 1798.5742999985832,
+            "ticks": 52,
+            "support": "pine-branch-east"
+          }
+        ]
+      },
+      "stone": {
+        "passed": true,
+        "fromReachedMainContact": 1010,
+        "samples": [
+          {
+            "goal": {
+              "x": 3483.652762119504,
+              "y": 1792.5591882750846
+            },
+            "x": 3462.81105054446,
+            "y": 1802.9800440626066,
+            "ticks": 16,
+            "support": "forest-floor"
+          },
+          {
+            "x": 3348.3652762119505,
+            "y": 1645.9977452085684,
+            "support": "forest-boulder-a",
+            "ticks": 58
+          },
+          {
+            "goal": {
+              "x": 3196.1668545659527,
+              "y": 1685.5975197294251
+            },
+            "x": 3216.1975957456525,
+            "y": 1679.0875288460227,
+            "ticks": 28,
+            "support": "forest-boulder-a"
+          }
+        ]
+      },
+      "upper": {
+        "passed": true,
+        "fromReachedMainContact": 1735,
+        "samples": [
+          {
+            "goal": {
+              "x": 5479.143179255919,
+              "y": 1160.0901916572718
+            },
+            "x": 5498.146244473179,
+            "y": 1148.6883525269159,
+            "ticks": 80,
+            "support": "forest-floor"
+          },
+          {
+            "goal": {
+              "x": 5377.677564825254,
+              "y": 1178.450636173297
+            },
+            "x": 5395.860210150776,
+            "y": 1174.8960528315195,
+            "ticks": 22,
+            "support": "forest-floor"
+          },
+          {
+            "goal": {
+              "x": 4870.349492671929,
+              "y": 1141.826381059752
+            },
+            "x": 4891.976986055787,
+            "y": 1146.584429604201,
+            "ticks": 101,
+            "support": "forest-boulder-b"
+          }
+        ]
+      }
+    },
+    "scope": "Isolated native geometry: foes omitted; normal walk/default jumps; optional forks use main-route reached contacts. Original initial roster verified separately; no full combat/skills/other chapters."
+  },
+  "browser": {
+    "normal": {
+      "camera": {
+        "x": 340.19842164599777,
+        "y": 2396.5652311161216,
+        "scale": 0.6
+      },
+      "size": [
+        6000,
+        3000
+      ],
+      "revision": 3,
+      "art": {
+        "pictures": 2,
+        "filterPasses": 1,
+        "farCanvases": 1,
+        "fringePictures": 1,
+        "fringeBuilds": 1,
+        "fringeBytes": 7656584
+      },
+      "cacheStable": true,
+      "battleStable": true,
+      "enemies": 8,
+      "requestedImages": [
+        "quietFar",
+        "stage1BalancedNear"
+      ],
+      "hero": {
+        "x": 170.19842164599777,
+        "y": 2580.5652311161216,
+        "grounded": true
+      }
+    },
+    "overview": {
+      "camera": {
+        "x": 3000,
+        "y": 1500,
+        "scale": 0.24
+      },
+      "size": [
+        6000,
+        3000
+      ],
+      "revision": 3,
+      "art": {
+        "pictures": 2,
+        "filterPasses": 1,
+        "farCanvases": 1,
+        "fringePictures": 1,
+        "fringeBuilds": 1,
+        "fringeBytes": 7656584
+      },
+      "cacheStable": true,
+      "battleStable": true,
+      "enemies": 8,
+      "requestedImages": [
+        "quietFar",
+        "stage1BalancedNear"
+      ],
+      "hero": {
+        "x": 170.19842164599777,
+        "y": 2580.5652311161216,
+        "grounded": true
+      }
+    },
+    "mobile": {
+      "camera": {
+        "x": 3020.5128205128203,
+        "y": 1500,
+        "scale": 0.057352941176470586
+      },
+      "size": [
+        6000,
+        3000
+      ],
+      "revision": 3,
+      "art": {
+        "pictures": 2,
+        "filterPasses": 1,
+        "farCanvases": 1,
+        "fringePictures": 1,
+        "fringeBuilds": 1,
+        "fringeBytes": 7656584
+      },
+      "cacheStable": true,
+      "battleStable": true,
+      "enemies": 8,
+      "requestedImages": [
+        "quietFar",
+        "stage1BalancedNear"
+      ],
+      "hero": {
+        "x": 170.19842164599777,
+        "y": 2580.5652311161216,
+        "grounded": true
+      }
+    },
+    "errors": []
+  },
+  "snapshot": {
+    "oldStage1BattleDiscarded": true,
+    "restartStage": 1,
+    "heroesIncludingGrowthAndSPPreserved": true,
+    "loadoutsClearedRecruitedPreserved": true,
+    "sameRevisionRetained": true
+  },
+  "buildCount": 1,
+  "screenshots": [
+    {
+      "file": "stage1-mobile-minimum.webp",
+      "bytes": 185346
+    },
+    {
+      "file": "stage1-normal.webp",
+      "bytes": 727010
+    },
+    {
+      "file": "stage1-overview.webp",
+      "bytes": 884474
+    }
+  ],
+  "libraryUpload": "Failed before upload: hosted apps tools/list request failed: network; repository files are the delivered fallback."
+}

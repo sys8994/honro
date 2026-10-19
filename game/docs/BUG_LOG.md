@@ -1,3 +1,9 @@
+## 2026-10-19 — 승인 balanced 1장 화면·빌드 마감
+
+- f6995bb source checkpoint 이후 HTML build1회와 실제 정상/전체·모바일 최소 줌을 확인했다.6000×3000,1장revision3,8적/cap2 유지. 콘솔 오류0, 실제 pinch 최소.05735294 유지, 요청 그림은 quietFar+stage1BalancedNear 두 개뿐이다. 정적3프레임 캐시1개7,656,584bytes·필터1회(원경만) 안정, 새 근경 추가 톤 필터 없음. 원본 PNG/보이는 픽셀 불변 lossless WebP와 실제 접촉/debug 토글을 확인했다.
+- 기존 revision2 snapshot만 폐기하고 같은 revision은 유지하며 hero 성장/SP·loadout·완료/합류 기록을 보존하는 정책1사례 확인. 무관한 다른장/기예/전체verify/전체전투 확인 없음. 실제 화면3개와 검증 범위는 docs/art-reviews/stage1-balanced-20261019에 보존한다. Library 업로드는 파일 준비 전 네트워크 오류로 실패하여 저장소 검수 파일로 전달한다.
+- 이번 마감은 승인1장만 배포하는 단위다.2~4장 보류 그림·Stage11 WIP 미반영. 초기 선택기능 실제 지연 로딩은 별도 미완 항목이며 이번 변경에 포함하지 않았다.
+
 ## 2026-10-19 — 승인 balanced 산림 1장 구현 (source checkpoint)
 
 - 승인 PNG libfile_b27f2a710008819180de5ba292ca319b를 부모 전달 bb4e155에서 확보했다.1774×887/2,005,442bytes, Git blob cb0857581fd2172f8519fb4619a0d081f9b54f63 일치. 문서 원본을 보존하고 lossless WebP1,329,274bytes로 외부 배포하며 보이는 픽셀 차이는0이다. 새 stage1BalancedNear만 톤 필터 없이 사용하며 quietFar .68과 기존 물/날씨·로딩 그룹·전술 줌·팬은 유지한다.
