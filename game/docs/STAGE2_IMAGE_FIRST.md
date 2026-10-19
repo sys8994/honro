@@ -4,7 +4,7 @@
 
 ## 레이어와 표시
 
-`quiet-layered-art.js`의 같은 `quietFar` 원경 source/cache를 1장과 공유한다. 원경은 `act1BackdropFrame` 화면/aspect cover와 기존 약한 가로/더 작은 세로 시차, 근경은 1672×941의 원비율을 보존한 균등 2.2배 WORLD 변환이다. 두 그림은 별도 좌표/캐시다. 승인 합성 이미지는 분위기 기준만이며 runtime에 등록하지 않는다. 밝기는 원경 .68/근경 .62를 source별 1회 캐시하고 원화에 풀/바위/잔질감/노드 패턴을 추가하지 않는다. 원본 alpha와 큰 깨끗한 암면을 유지한다. 지형 polygon의 재질 clip, strip warp, 반복 texture, 지면 밑면 fade는 없다. 나무는 정지이며 새 RAF/모션을 추가하지 않는다.
+`quiet-layered-art.js`의 같은 `quietFar` 원경 source/cache를 1장과 공유한다. 원경은 `act1BackdropFrame`의 기존 약한 가로/더 작은 세로 시차를 유지한 quiet 전용 cover(세로 1.48배 이상, source 높이 60%를 화면 43%에 배치), 근경은 1672×941의 원비율을 보존한 균등 2.2배 WORLD 변환이다. 두 그림은 별도 좌표/캐시다. 승인 합성 이미지는 분위기 기준만이며 runtime에 등록하지 않는다. 밝기는 원경 .68/근경 .62를 source별 1회 캐시하고 원화에 풀/바위/잔질감/노드 패턴을 추가하지 않는다. 원본 alpha와 큰 깨끗한 암면을 유지한다. 지형 polygon의 재질 clip, strip warp, 반복 texture, 지면 밑면 fade는 없다. 나무는 정지이며 새 RAF/모션을 추가하지 않는다.
 
 정상 2장은 `quietFar`, `stage2QuietNear` 두 개만 요청/디코딩한다. 1장 근경이나 다른 장소 원화를 함께 요청하지 않는다. 같은 원경 ID의 source tone canvas 한 개를 공유하고, 장별 투명 근경과 기존 월드 캐시는 독립이다. 기존 날씨/얕은 물/접촉 파문 구현을 유지한다.
 
@@ -23,3 +23,5 @@
 필요한 빌드, 고립된 기본 무점프 보행/양측 기본 점프, 적 제거 fixture에서 기존 호위 행동의 목표 도착, 12체/상한3/공중 여유/경고 대응, revision/discard의 성장·장착·진척 보존을 확인했다. 실제 Chromium의 일반 화면·동일 위치 실제 collision debug·줌아웃3뷰 및 정지90프레임에서 source filter는 최초2회/원화 요청2개로 유지됐다. 정상 교전 완주·전체 장·스킬·전체 성능 검사는 하지 않았다.
 
 결과는 `_local/reports/stage2-quiet-layered/`에 둔다. Library 저장 경로는 1장 보고 때 네트워크 실패가 확인되어 같은 오류를 반복 요청하지 않았다. 이 브랜치는 부모의 승인 시안/실제 화면 비교 전 master 병합/배포하지 않는다.
+
+최종 접지 마감: 시작 바위 source x180/y362, 오른쪽 바위의 정상부 능선에 실제 contact를 맞췄다. 도로와 원본 이미지는 불변이다. 오른쪽 마지막 일반 점프 접근점은 source x1500이며 정상부를 걸어 올라갈 수 있다. 검수 화면은 evidence 브랜치의 2026-10-19 마감 3뷰로 확인한다.

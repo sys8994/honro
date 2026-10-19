@@ -3,10 +3,10 @@
 const SCALE=2.2,WIDTH=1672,HEIGHT=941;
 const profiles={
  'canyon-ground':[[0,566],[120,585],[300,614],[480,635],[700,661],[930,687],[1150,688],[1360,680],[1540,668],[1672,657]],
- 'left-high-ground':[[75,366],[140,375],[205,400],[270,430],[310,458]],
+ 'left-high-ground':[[75,366],[100,355],[140,353],[180,362],[205,371],[235,385],[270,410],[300,438],[310,452]],
  'left-shoulder-low':[[70,495],[130,502],[190,517],[250,530],[315,542],[355,552]],
  'left-shoulder-high':[[355,426],[405,438],[465,458],[500,475]],
- 'right-cliff-ground':[[1350,430],[1400,438],[1450,455],[1500,480],[1540,495]],
+ 'right-cliff-ground':[[1350,425],[1380,414],[1400,416],[1450,432],[1500,455],[1540,481]],
  'right-shoulder-middle':[[1260,493],[1310,506],[1370,520],[1440,546]],
  'right-shoulder-low':[[1510,557],[1570,577],[1640,591],[1672,595]]
 };
@@ -26,6 +26,6 @@ export function applyStage2ImageFirst(project){
  const progress={'procession-seen':330,'road-pressure':650,'sniper-seen':870,'right-cliff':1120,'last-flight':1390};const rebase=(w,x)=>{if(!w)return;if(w.progress!==undefined)w.progress=x;if(w.any)w.any.forEach(v=>rebase(v,x));};for(const e of s.events){rebase(e.when,progress[e.id]*SCALE);if(e.id==='road-pressure'&&e.action?.type==='spawn')Object.assign(e.action,{...contact(720),spacing:175,maxDistance:230});}
  const waters=s.materials.filter(m=>m.conductive&&/water/.test(m.kind));s.materials=waters.map((m,i)=>({...m,kind:'shallow-water',terrainId:'canyon-ground',support:'canyon-ground',x1:[1120,1360][i]*SCALE,x2:[1190,1420][i]*SCALE,reference:at([1150,1390][i]),depth:7,alpha:.13,points:undefined,surface:undefined,bottom:undefined}));
  s.routes=[300,660,950,1200,3340/SCALE].map(x=>contact(x));s.design.act1Scene={version:2,scenery:[],rocks:[],replaced:[]};
- s.design.stage2ImageFirst={revision:2,quietLayers:1,far:'quietFar',image:'stage2QuietNear',source:{width:WIDTH,height:HEIGHT},transform:{x:0,y:0,scale:SCALE},artBounds:{left:0,top:0,right:s.width,bottom:s.height},walkRibbon:points(profiles['canyon-ground']),runtimeRoster:{'foe-0-cluster':contact(250,'left-shoulder-low'),'foe-3-cluster':contact(900),'foe-1-cluster':contact(1490,'right-cliff-ground',-32),'foe-4-cluster':{x:1230*SCALE,y:490*SCALE},'foe-2-cluster':contact(1500),'foe-5-cluster':contact(1350)},routes:{road:s.routes,left:[contact(250),contact(250,'left-shoulder-low'),contact(300,'left-high-ground'),contact(385,'left-shoulder-high')],right:[contact(1590),contact(1590,'right-shoulder-low'),contact(1420,'right-shoulder-middle'),contact(1450,'right-cliff-ground')]}};
+ s.design.stage2ImageFirst={revision:2,quietLayers:1,far:'quietFar',image:'stage2QuietNear',source:{width:WIDTH,height:HEIGHT},transform:{x:0,y:0,scale:SCALE},artBounds:{left:0,top:0,right:s.width,bottom:s.height},walkRibbon:points(profiles['canyon-ground']),runtimeRoster:{'foe-0-cluster':contact(250,'left-shoulder-low'),'foe-3-cluster':contact(900),'foe-1-cluster':contact(1490,'right-cliff-ground',-32),'foe-4-cluster':{x:1230*SCALE,y:490*SCALE},'foe-2-cluster':contact(1500),'foe-5-cluster':contact(1350)},routes:{road:s.routes,left:[contact(250),contact(250,'left-shoulder-low'),contact(300,'left-high-ground'),contact(385,'left-shoulder-high')],right:[contact(1590),contact(1590,'right-shoulder-low'),contact(1420,'right-shoulder-middle'),contact(1500,'right-cliff-ground')]}};
  Object.assign(s.initialState,{width:s.width,height:s.height,honroEscortGoalX:3340,honroStage2AirborneRevision:1});return project;
 }
