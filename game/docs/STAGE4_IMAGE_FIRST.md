@@ -20,3 +20,5 @@
 - 정적 카메라60회 렌더 전후 picture2/filter2/far canvas1로 동일. 파괴 상태로 전환한 뒤60회에도 picture2/filter2/far1로 고정. 새 RAF/모션/매frame 재질 필터 없음.9턴 완료/문 파괴 실패 조건, 전체verify/전체 기예/무관 장은 재검사하지 않았다.
 
 원본 PNG와 진단 JSON/실행 코드는 `_local/reports/stage4-image-first/`에 있다. 부모용3개1MB 미만 WebP와 원본 PNG/진단은 evidence 브랜치의 `game/docs/art-reviews/stage4-image-first-20261019/`로 전달한다. master/Pages 반영은 부모의 실제 화면 확인 뒤 별도 결정한다.
+
+부모 픽셀 검수 후 실 부착 좌표 보정: 공통 `story-act1-art.js`의 village 실은4장 결말/다음5장으로 이어지는 서사 단서여서 삭제하지 않았다. 옛 gate 상대 오프셋과 오른쪽 위455/-84 끝점 대신 새 원화의 문 상인방(source314/278,332/282)→담장 처마(source452/309)에 부착한다. 같은 원인의3장 eave 실도 한옥 상인방/문 위 목재에 부착하고, 해당3장 서사 카메라 및4장 춘례 지시/카메라는 같은 매듭을 참조한다. image-first3·4장만 opt-in하며 같은 revision 기존 전투도 현재 저작 좌표를 읽는다. 순수 미술 보정으로 revision/지형/전투/스토리 문구·조건·모션 규칙은 불변이다. 필요한 build와 이전과 같은3·4장 근접 각1뷰만 확인하며 통과한 경로/적/목표·방어전 검사는 반복하지 않는다.
