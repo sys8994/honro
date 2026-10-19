@@ -1,0 +1,550 @@
+{
+  "implementationCommit": "77992abb9f32b80ca99501bc2146db65b75429cf",
+  "baselineMaster": "501078b192dd795e533f2a1066f64aa01eddf3d4",
+  "file": "stage2-natural-cohorts.png",
+  "format": "original Chromium PNG, no resize or pixel edits",
+  "width": 1440,
+  "height": 960,
+  "sha256": "4748f8f5450255e7f4cce5c473762c9e077b3f41a5c54100254f41f8afae7ec7",
+  "decodedRgbaSha256": "b52fdd286fc150d4655b1f571b690771edc0de3e94f112f03179cf739289bb22",
+  "stageRevision": 4,
+  "camera": {
+    "x": 1839.2,
+    "y": 1035.1000000000001,
+    "scale": 0.40053497246642833
+  },
+  "pageErrors": [],
+  "initialSpecies": {
+    "hound": 6,
+    "boar": 2,
+    "crow": 2,
+    "bat": 2
+  },
+  "difficultyComparison": [
+    {
+      "difficulty": "explorer",
+      "initial": 12,
+      "kinds": {
+        "beast": 8,
+        "crow": 2,
+        "bat": 2
+      },
+      "sameStatsAndEvents": true
+    },
+    {
+      "difficulty": "story",
+      "initial": 12,
+      "kinds": {
+        "beast": 8,
+        "crow": 2,
+        "bat": 2
+      },
+      "sameStatsAndEvents": true
+    },
+    {
+      "difficulty": "normal",
+      "initial": 12,
+      "kinds": {
+        "beast": 8,
+        "crow": 2,
+        "bat": 2
+      },
+      "sameStatsAndEvents": true
+    },
+    {
+      "difficulty": "veteran",
+      "initial": 12,
+      "kinds": {
+        "beast": 8,
+        "crow": 2,
+        "bat": 2
+      },
+      "sameStatsAndEvents": true
+    },
+    {
+      "difficulty": "nightmare",
+      "initial": 12,
+      "kinds": {
+        "beast": 8,
+        "crow": 2,
+        "bat": 2
+      },
+      "sameStatsAndEvents": true
+    }
+  ],
+  "minimumBodyGapWorld": 43,
+  "initialPlacements": [
+    {
+      "id": "foe-0",
+      "kind": "hound",
+      "group": 1,
+      "awake": true,
+      "x": 1518.0000000000002,
+      "y": 1627.3,
+      "h": 88,
+      "r": 32,
+      "fixed": false,
+      "support": "canyon-ground"
+    },
+    {
+      "id": "foe-1",
+      "kind": "crow",
+      "group": 2,
+      "awake": true,
+      "x": 3058.0000000000005,
+      "y": 410.8,
+      "h": 80,
+      "r": 33,
+      "fixed": true
+    },
+    {
+      "id": "foe-2",
+      "kind": "boar",
+      "group": 3,
+      "awake": false,
+      "x": 2860.0000000000005,
+      "y": 1673.8857142857144,
+      "h": 108,
+      "r": 41,
+      "fixed": false,
+      "support": "canyon-ground"
+    },
+    {
+      "id": "foe-3",
+      "kind": "hound",
+      "group": 1,
+      "awake": true,
+      "x": 2013.0000000000002,
+      "y": 1673.3869565217392,
+      "h": 88,
+      "r": 32,
+      "fixed": false,
+      "support": "canyon-ground"
+    },
+    {
+      "id": "foe-4",
+      "kind": "bat",
+      "group": 2,
+      "awake": true,
+      "x": 2552,
+      "y": 1111,
+      "h": 66,
+      "r": 28,
+      "fixed": true
+    },
+    {
+      "id": "foe-5",
+      "kind": "hound",
+      "group": 3,
+      "awake": false,
+      "x": 2739,
+      "y": 1679.6476190476192,
+      "h": 88,
+      "r": 32,
+      "fixed": false,
+      "support": "canyon-ground"
+    },
+    {
+      "id": "foe-0-cluster",
+      "kind": "hound",
+      "group": 1,
+      "awake": true,
+      "x": 2321,
+      "y": 1683.9,
+      "h": 88,
+      "r": 32,
+      "fixed": false,
+      "support": "canyon-ground"
+    },
+    {
+      "id": "foe-1-cluster",
+      "kind": "crow",
+      "group": 2,
+      "awake": true,
+      "x": 2200,
+      "y": 671,
+      "h": 80,
+      "r": 33,
+      "fixed": true
+    },
+    {
+      "id": "foe-2-cluster",
+      "kind": "boar",
+      "group": 1,
+      "awake": true,
+      "x": 1870.0000000000002,
+      "y": 1660.3304347826088,
+      "h": 108,
+      "r": 41,
+      "fixed": false,
+      "support": "canyon-ground"
+    },
+    {
+      "id": "foe-3-cluster",
+      "kind": "hound",
+      "group": 3,
+      "awake": false,
+      "x": 3058.0000000000005,
+      "y": 1661.0000000000002,
+      "h": 88,
+      "r": 32,
+      "fixed": false,
+      "support": "canyon-ground"
+    },
+    {
+      "id": "foe-4-cluster",
+      "kind": "bat",
+      "group": 2,
+      "awake": true,
+      "x": 1573.0000000000002,
+      "y": 594,
+      "h": 66,
+      "r": 28,
+      "fixed": true
+    },
+    {
+      "id": "foe-5-cluster",
+      "kind": "hound",
+      "group": 3,
+      "awake": false,
+      "x": 3388.0000000000005,
+      "y": 1628.0000000000002,
+      "h": 88,
+      "r": 32,
+      "fixed": false,
+      "support": "canyon-ground"
+    }
+  ],
+  "wavePlacementProbes": [
+    {
+      "id": "road-pressure",
+      "n": 2,
+      "scope": "unchanged action placement with all 12 original enemies alive; warning gate bypassed by probe source only",
+      "minimumHorizontalBodyGap": 21.5,
+      "units": [
+        {
+          "id": "event-1",
+          "x": 1432.5000000000002,
+          "y": 1616.0295454545455
+        },
+        {
+          "id": "event-2",
+          "x": 1671.5000000000002,
+          "y": 1642.2065217391305
+        }
+      ]
+    },
+    {
+      "id": "sniper-seen",
+      "n": 2,
+      "scope": "unchanged action placement with all 12 original enemies alive; warning gate bypassed by probe source only",
+      "minimumHorizontalBodyGap": 43,
+      "units": [
+        {
+          "id": "sniper-crow-1",
+          "x": 1465,
+          "y": 225.48421052631574
+        },
+        {
+          "id": "sniper-crow-2",
+          "x": 1625,
+          "y": 120
+        }
+      ]
+    }
+  ],
+  "liveActionObservation": {
+    "scope": "Native Stage2 ordinary live turns from unchanged start, all 12 initial enemies retained with normal health. Player waits; allies and native enemy queue/AI act normally. No removed enemies, forced activation, actor order, teleport, or injected damage. No UI/dialogue timing; not a complete combat clear.",
+    "start": [
+      {
+        "id": "foe-0",
+        "hp": 128,
+        "x": 1518.0000000000002,
+        "y": 1627.3,
+        "kind": "hound"
+      },
+      {
+        "id": "foe-1",
+        "hp": 100,
+        "x": 3058.0000000000005,
+        "y": 410.8,
+        "kind": "crow"
+      },
+      {
+        "id": "foe-2",
+        "hp": 128,
+        "x": 2860.0000000000005,
+        "y": 1673.8857142857144,
+        "kind": "boar"
+      },
+      {
+        "id": "foe-3",
+        "hp": 128,
+        "x": 2013.0000000000002,
+        "y": 1673.3869565217392,
+        "kind": "hound"
+      },
+      {
+        "id": "foe-4",
+        "hp": 87,
+        "x": 2552,
+        "y": 1111,
+        "kind": "bat"
+      },
+      {
+        "id": "foe-5",
+        "hp": 128,
+        "x": 2739,
+        "y": 1679.6476190476192,
+        "kind": "hound"
+      },
+      {
+        "id": "foe-0-cluster",
+        "hp": 128,
+        "x": 2321,
+        "y": 1683.9,
+        "kind": "hound"
+      },
+      {
+        "id": "foe-1-cluster",
+        "hp": 100,
+        "x": 2200,
+        "y": 671,
+        "kind": "crow"
+      },
+      {
+        "id": "foe-2-cluster",
+        "hp": 128,
+        "x": 1870.0000000000002,
+        "y": 1660.3304347826088,
+        "kind": "boar"
+      },
+      {
+        "id": "foe-3-cluster",
+        "hp": 128,
+        "x": 3058.0000000000005,
+        "y": 1661.0000000000002,
+        "kind": "hound"
+      },
+      {
+        "id": "foe-4-cluster",
+        "hp": 87,
+        "x": 1573.0000000000002,
+        "y": 594,
+        "kind": "bat"
+      },
+      {
+        "id": "foe-5-cluster",
+        "hp": 128,
+        "x": 3388.0000000000005,
+        "y": 1628.0000000000002,
+        "kind": "hound"
+      }
+    ],
+    "actions": [
+      {
+        "round": 1,
+        "actor": "foe-0",
+        "kind": "hound",
+        "from": {
+          "x": 1572.860989013774,
+          "y": 1633.2003511708228
+        },
+        "to": {
+          "x": 1572.860989013774,
+          "y": 1633.2003511708228
+        },
+        "distance": 0,
+        "intent": "도약 준비",
+        "fired": true
+      },
+      {
+        "round": 1,
+        "actor": "foe-2-cluster",
+        "kind": "boar",
+        "from": {
+          "x": 1870.0000000000002,
+          "y": 1660.3304347826088
+        },
+        "to": {
+          "x": 1397.1701577964584,
+          "y": 1611.3724298913514
+        },
+        "distance": 475.3577031259287,
+        "intent": "고지 확보",
+        "fired": true
+      },
+      {
+        "round": 1,
+        "actor": "foe-4-cluster",
+        "kind": "bat",
+        "from": {
+          "x": 1573.0000000000002,
+          "y": 594
+        },
+        "to": {
+          "x": 1433.0000000000002,
+          "y": 351.51288694035765
+        },
+        "distance": 279.9999999999996,
+        "intent": "공중 사선 확보",
+        "fired": true
+      },
+      {
+        "round": 2,
+        "actor": "foe-3",
+        "kind": "hound",
+        "from": {
+          "x": 2013.0000000000002,
+          "y": 1673.3869565217392
+        },
+        "to": {
+          "x": 1517.330260001998,
+          "y": 1627.2117160911725
+        },
+        "distance": 497.8158735702465,
+        "intent": "고지 확보",
+        "fired": true
+      },
+      {
+        "round": 2,
+        "actor": "foe-0-cluster",
+        "kind": "hound",
+        "from": {
+          "x": 2321,
+          "y": 1683.9
+        },
+        "to": {
+          "x": 1829.0048646998619,
+          "y": 1656.5874006899874
+        },
+        "distance": 492.75266741040633,
+        "intent": "전진",
+        "fired": true
+      },
+      {
+        "round": 2,
+        "actor": "foe-1-cluster",
+        "kind": "crow",
+        "from": {
+          "x": 2200,
+          "y": 671
+        },
+        "to": {
+          "x": 2130,
+          "y": 792.2435565298214
+        },
+        "distance": 139.99999999999997,
+        "intent": "공중 사선 확보",
+        "fired": true
+      }
+    ],
+    "shots": [
+      {
+        "round": 1,
+        "actor": "foe-0",
+        "kind": "hound",
+        "skill": "HBR01",
+        "x": 1572.860989013774,
+        "y": 1633.2003511708228
+      },
+      {
+        "round": 1,
+        "actor": "foe-2-cluster",
+        "kind": "boar",
+        "skill": "HBR01",
+        "x": 1374.9669664278065,
+        "y": 1608.4456455745744
+      },
+      {
+        "round": 1,
+        "actor": "foe-4-cluster",
+        "kind": "bat",
+        "skill": "HBT01",
+        "x": 1433.0000000000002,
+        "y": 351.51288694035765
+      },
+      {
+        "round": 2,
+        "actor": "foe-3",
+        "kind": "hound",
+        "skill": "HBR01",
+        "x": 1517.330260001998,
+        "y": 1627.2117160911725
+      },
+      {
+        "round": 2,
+        "actor": "foe-0-cluster",
+        "kind": "hound",
+        "skill": "HBR01",
+        "x": 1829.0048646998619,
+        "y": 1656.5874006899874
+      },
+      {
+        "round": 2,
+        "actor": "foe-1-cluster",
+        "kind": "crow",
+        "skill": "HCW01",
+        "x": 2130,
+        "y": 792.2435565298214
+      }
+    ],
+    "turns": [
+      {
+        "round": 1,
+        "initialAlive": 12,
+        "carriageX": 660,
+        "warning": false,
+        "released": false
+      },
+      {
+        "round": 2,
+        "initialAlive": 12,
+        "carriageX": 660,
+        "warning": true,
+        "released": false
+      }
+    ],
+    "notices": [
+      "설오의 높은 절벽턱",
+      "오른쪽 절벽의 날짐승들이 상여 쪽으로 몸을 돌린다."
+    ],
+    "final": {
+      "ticks": 1624,
+      "waits": 2,
+      "round": 2,
+      "phase": "transition",
+      "alive": 11,
+      "carriageX": 660,
+      "carriageHp": 1700,
+      "heroHp": 395,
+      "warning": {
+        "warning": {
+          "round": 1,
+          "serial": 2,
+          "inProgress": true
+        },
+        "released": true,
+        "offered": {
+          "id": "p-archer",
+          "round": 2,
+          "serial": 11
+        },
+        "response": {
+          "id": "p-archer",
+          "round": 2,
+          "serial": 11
+        }
+      },
+      "observedKinds": [
+        "hound",
+        "boar",
+        "bat",
+        "crow"
+      ],
+      "wallMs": 569
+    }
+  },
+  "preservation": "terrain art/geometry, archer perch, road, far, count, per-ID stats, finite event settings, common cloning/awakening logic; only two ground clone group connections exchanged by physical role; no other stage code changes",
+  "validationLimits": "Native living encounter observation for first two enemy turns only; no UI/dialogue timing or combat clear. Occupied-roster reinforcement probes bypass warning gate solely for placement. No full verify, skill sweep, other stages or reviewer."
+}
