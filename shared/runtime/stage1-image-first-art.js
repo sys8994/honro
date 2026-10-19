@@ -4,7 +4,7 @@
 const S=G.HonroScene.prototype,P=G.HonroPaintedPilots,L=G.HonroQuietLayeredArt;
 const active=b=>b?.honroStage===1&&!b.honroCustom&&b.honroMap?.stage1ImageFirst?.quietLayers===1;
 const ready=b=>active(b)&&L.ready('stage1QuietNear'),broken=b=>!!b.terrain.find(t=>t.id==='pine-branch-east')?.broken;
-const oldBackground=S.background;S.background=function(c,w,h,b){if(!active(b))return oldBackground.call(this,c,w,h,b);ready(b);L.frame(this,w,h,b,b.honroMap.stage1ImageFirst.artBounds);L.background(this,c,w,h,b);};
+const oldBackground=S.background;S.background=function(c,w,h,b){if(!active(b))return oldBackground.call(this,c,w,h,b);ready(b);L.background(this,c,w,h,b);};
 const oldTerrain=S.terrain;S.terrain=function(c,t){if(active(this.battle))return;return oldTerrain.call(this,c,t);};
 const oldLayer=S._landmarkLayer;S._landmarkLayer=function(c,ls,layer){const b=this.battle;if(!active(b))return oldLayer.call(this,c,ls,layer);if(layer!=='structural-back'||!ready(b))return;const v=b.honroMap.stage1ImageFirst,q=v.transform;c.drawImage(L.near(v.image,broken(b)?v.brokenBoughMask:null),q.x,q.y,v.source.width*q.scale,v.source.height*q.scale);};
 const oldSkirt=S.terrainSkirt;S.terrainSkirt=function(c,b,w,h){if(active(b))return;return oldSkirt.call(this,c,b,w,h);};

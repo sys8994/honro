@@ -2,10 +2,7 @@
 const S=G.HonroScene.prototype,P=G.HonroPaintedPilots,L=G.HonroQuietLayeredArt,clips=new WeakMap();
 const active=b=>b?.honroStage===3&&!b.honroCustom&&b.honroMap?.stage3ImageFirst?.quietLayers===1;
 const ready=b=>active(b)&&L.ready('stage3QuietNear');
-// The panorama's upper edge is transparent sky. Full-width overview may show
-// more sky, while the opaque side/bottom edges always remain outside the view.
-function frame(scene,w,h,b){const a=b.honroMap.stage3ImageFirst.artBounds;scene.scale=Math.max(w/(a.right-a.left),scene.scale);const hw=w/(2*scene.scale),hh=h/(2*scene.scale);scene.x=Math.max(a.left+hw,Math.min(a.right-hw,scene.x));scene.y=Math.min(a.bottom-hh,scene.y);}
-const background=S.background;S.background=function(c,w,h,b){if(!active(b))return background.call(this,c,w,h,b);ready(b);frame(this,w,h,b);L.background(this,c,w,h,b);};
+const background=S.background;S.background=function(c,w,h,b){if(!active(b))return background.call(this,c,w,h,b);ready(b);L.background(this,c,w,h,b);};
 const terrain=S.terrain;S.terrain=function(c,t){if(active(this.battle))return;return terrain.call(this,c,t);};
 const layer=S._landmarkLayer;S._landmarkLayer=function(c,ls,name){const b=this.battle;if(!active(b))return layer.call(this,c,ls,name);if(name!=='structural-back'||!ready(b))return;const v=b.honroMap.stage3ImageFirst,q=v.transform;c.drawImage(L.near(v.image),q.x,q.y,v.source.width*q.scale,v.source.height*q.scale);};
 const skirt=S.terrainSkirt;S.terrainSkirt=function(c,b,w,h){if(active(b))return;return skirt.call(this,c,b,w,h);};

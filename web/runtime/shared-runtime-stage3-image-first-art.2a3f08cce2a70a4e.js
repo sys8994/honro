@@ -1,0 +1,16 @@
+(function(G){'use strict';
+const S=G.HonroScene.prototype,P=G.HonroPaintedPilots,L=G.HonroQuietLayeredArt,clips=new WeakMap();
+const active=b=>b?.honroStage===3&&!b.honroCustom&&b.honroMap?.stage3ImageFirst?.quietLayers===1;
+const ready=b=>active(b)&&L.ready('stage3QuietNear');
+const background=S.background;S.background=function(c,w,h,b){if(!active(b))return background.call(this,c,w,h,b);ready(b);L.background(this,c,w,h,b);};
+const terrain=S.terrain;S.terrain=function(c,t){if(active(this.battle))return;return terrain.call(this,c,t);};
+const layer=S._landmarkLayer;S._landmarkLayer=function(c,ls,name){const b=this.battle;if(!active(b))return layer.call(this,c,ls,name);if(name!=='structural-back'||!ready(b))return;const v=b.honroMap.stage3ImageFirst,q=v.transform;c.drawImage(L.near(v.image),q.x,q.y,v.source.width*q.scale,v.source.height*q.scale);};
+const skirt=S.terrainSkirt;S.terrainSkirt=function(c,b,w,h){if(active(b))return;return skirt.call(this,c,b,w,h);};
+const zones=S.surfaceZones;S.surfaceZones=function(c,b){if(active(b))return;return zones.call(this,c,b);};
+const water=S.liveWater;S.liveWater=function(c,b){if(!active(b))return water.call(this,c,b);const v=b.honroMap.stage3ImageFirst;let p=clips.get(v);if(!p){p=new Path2D();v.waterClip.forEach(({x,y},i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();clips.set(v,p);}c.save();c.clip(p);c.globalAlpha*=.18;const out=water.call(this,c,b);c.restore();return out;};
+const tone=S.environmentTone;S.environmentTone=function(c,w,h,b){if(active(b))return;return tone?.call(this,c,w,h,b);};
+const marker=G.HonroAct1StoryArt.marker;G.HonroAct1StoryArt.marker=function(scene,m){if(active(scene.battle)&&m.type==='hauntHabitat'){const c=scene.ctx;c.save();c.fillStyle='#332f2b99';c.beginPath();c.ellipse(m.x,m.y-4,24,8,0,0,Math.PI*2);c.fill();c.fillStyle='#9a7964';for(const dx of[-5,5]){c.beginPath();c.arc(m.x+dx,m.y-8,1.5,0,Math.PI*2);c.fill();}c.restore();return true;}return marker.call(this,scene,m);};
+const key=S._worldCacheKey;S._worldCacheKey=function(b,w){return key.call(this,b,w)+(active(b)?':stage3-image-first1:'+P.appearanceKey():'');};
+G.HonroPaintedPresentation.register({id:'stage3-image-first',active,naturalEdges:true,cachedWorld:true});G.HonroStage3ImageFirstArt={active,ready,cacheStats:()=>({...L.cacheStats(),requestedImages:['quietFar','stage3QuietNear'].filter(id=>P.images[id]).length,maxImages:2})};
+})(globalThis);
+

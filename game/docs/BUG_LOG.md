@@ -1,3 +1,9 @@
+## 2026-10-19 — 모바일 핀치 축소가 배경 프레임에서 복원되는 문제
+
+- 원인: 1·2장 공용 frame과 3·4장 개별 frame이 배경을 그릴 때 그림 coverage에 맞춰 scale/center를 덮었다. 세로 실제 핀치 직후0.05735294가 다음 render에서0.344107로 커지는 것을 재현했다.
+- 변경: 그림을 채우기 위한 카메라 수정과 호출을 제거했다. renderer의 기존 HonroBounds 전술 줌·focus 정책, 원경, 플레이/미니맵/지형·충돌·탄 경계와 저장/revision은 그대로다. 새 그림·장식·dummy 지형 없음.
+- 확인: build 및 실제 Chromium390×844 touch pinch 후3개 render 모두0.05735294 유지, 접촉 해제/전투 JSON 불변.844×390 실제 drag와 조준 prediction 유지. tests/quiet-layered-zoom-browser.py, _local/reports/zoom-startup/zoom.json·zoom-portrait.png. 휴대폰 실기·다른 장 전수검사는 하지 않았다.
+
 ## 2026-10-18 — 승인10장 전투 배포·윗마당 아래 계단 쉼터
 
 - 주박 중복 안내만 마감한 승인10장 전투를 master b559b8cb5fbaec0d7db29225851a467b2b08ce03에 병합·push했다. Pages39171473583 해당 SHA 성공, 공개 URL은 이 환경 Tunnel403으로 실제 화면 미확인이다. 기존 이동/협력/저장 검사 반복 없음.

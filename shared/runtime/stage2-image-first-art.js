@@ -7,7 +7,7 @@ const ready=b=>active(b)&&L.ready('stage2QuietNear');
 // and the procession road in automatic view. Manual pan/zoom, dialogue and
 // projectile tracking retain their existing controls.
 function overwatch(scene,w,h,b){const v=b.honroMap.stage2ImageFirst,u=b.units.find(u=>u.id===b.active),now=performance.now();if(!v.highCliffs||!v.overwatchView||scene.manual||scene.storyTween||scene.goalFocus||scene.storyFrozen||b.projectiles?.length||u?.id!=='p-archer'||u.y>400||u.x>1100||(scene.focusId&&now<scene.focusUntil)||(scene.speakerId&&now<scene.speakerUntil))return;const q=v.overwatchView;scene.scale=Math.min(scene.scale,h/q.spanY);scene.x=w/h<1?u.x:q.x;scene.y=q.y;}
-const background=S.background;S.background=function(c,w,h,b){if(!active(b))return background.call(this,c,w,h,b);ready(b);overwatch(this,w,h,b);L.frame(this,w,h,b,b.honroMap.stage2ImageFirst.artBounds);L.background(this,c,w,h,b);};
+const background=S.background;S.background=function(c,w,h,b){if(!active(b))return background.call(this,c,w,h,b);ready(b);overwatch(this,w,h,b);L.background(this,c,w,h,b);};
 const terrain=S.terrain;S.terrain=function(c,t){if(active(this.battle))return;return terrain.call(this,c,t);};
 const layer=S._landmarkLayer;S._landmarkLayer=function(c,ls,name){const b=this.battle;if(!active(b))return layer.call(this,c,ls,name);if(name!=='structural-back'||!ready(b))return;const v=b.honroMap.stage2ImageFirst,q=v.transform;c.drawImage(L.near(v.image),q.x,q.y,v.source.width*q.scale,v.source.height*q.scale);};
 const skirt=S.terrainSkirt;S.terrainSkirt=function(c,b,w,h){if(active(b))return;return skirt.call(this,c,b,w,h);};
