@@ -80,3 +80,32 @@
 약126개 요청·24,400전송 바이트·준비시간 약16% 감소는 요청/직렬 대기 축소다. 코드 본문은85바이트 증가했다. 전체 코드 제거·압축이나 '필요한 코드만 로딩'을 달성한 것이 아니다.2·3막 패치, 이후 장 미술, 기예 미리보기와 여정 코드가 여전히 초기 준비에 포함된다. 이들은 전역 등록/이전 패치 참조가 있어 이번에 무리하게 지연하지 않았다. JSON의 목적 장 base/shared/stageLibrary/stage와 다음 장 idle 준비, 저장 목적지 선택은 바꾸지 않았다. 실기 휴대폰·통계적 성능 우위·무관 기예/전투·전 장 확인은 범위 밖이다. 비교 원본은 _local/reports/startup/baseline-zoom-startup.json 및 grouped-zoom-startup.json에 있다.
 
 확인은 ordered-runtime-groups.mjs의 패치/consumer 순서·격리·yield/async 거부, ordered-startup-browser.py의 새1장/저장21장·HP/3라운드·성장/장착/완료 보존과 공통 편집기/embedded 초기화, quiet-layered-zoom-browser.py의 실제pinch3프레임·가로pan/조준으로 한정했다. Workshop Playtest의 전투 시작은 baseline master에도 있는 프로젝트검증23개 오류로 차단된다. 기준/수정본 오류가 정확히 같은 것을 별도로 비교했고 이를 성공으로 기록하지 않는다. 이 범위 밖 맵 검증 수리는 하지 않았다. _local/reports/zoom-startup/에 결과가 있다.
+
+
+## 선택 기능 런타임: 허공터·기예 미리보기 (2026-10-19)
+
+기준은 `ef1b8ce`다. `runtimeEntries`는 training/skill-preview 항목에 optional 메타만 붙이며 native/단일 실행의 코드 목록·순서는 유지한다. 외부 웹 빌드는 두 소스를 각각 해시 모듈로 emit하고 Game 필수 import/modulepreload에서 제외한다. embedded/full은 원래 위치에서 두 모듈을 실행한다. Workshop의 common 경로는 동일하다. 선택 모듈은 idle 예열 없이 실제 기능 사용 때만 요청한다.
+
+`optional-runtime-loader.js`는 Game entry 안에 들어간다. 이름별 진행 중 import를 공유하고 성공한 전역 등록을 재사용한다. 실패하면 pending을 비우고 다음 명시적 시도에 `honroRetry` query를 붙여 브라우저의 실패 module URL cache를 피한다. 원본 콘텐츠 해시는 유지한다.
+
+`talent`는 텍스트/수련점/장착 조작을 즉시 연다. passive는 요청하지 않는다. active의 실제 canvas·스킬·modal 노드·profile·요청 token이 같은 동안만 setup한다. 닫기/다른 modal/화면 이동은 취소한다. `restoreTalent`는 기존 canvas/preview 객체가 있으면 재생성 없이 복원하고 최신 hero 및 스크롤을 잇는다. tick은 열린 modal의 연결된 실제 preview에만 실행한다.
+
+허공터 action과 직접 `launch(...,true,...)`는 training 준비 전 화면·전투·profile·저장을 바꾸지 않는다. 중복 진입을 합쳐 한 번만 실행하고 실패는 원래 화면에서 다시 시도/취소한다. 준비 후 기존 class/skill 설정 → launch/toolbar → open 순서를 유지한다. reset도 같은 launch 경계를 쓴다. 늦게 등록된 training key listener보다 Main이 먼저 Escape/Tab을 소비하지 않도록 training-dialog는 기존 전용 listener에 넘긴다. 기존 저장은 훈련을 영속 전투로 바꾸지 않고 보류한 캠페인 snapshot을 유지한다.
+
+### 최소 확인과 한계
+
+필요한 Game/Workshop 빌드와 `tools/testing/startup-browser.py optional-checks`만 사용했다. ready 전 두 선택 모듈 요청0·초기 preload 제외·passive 미요청, active A02 로딩 중 수련점 변경과 빠른 닫기/늦은 setup 차단, 실제 preview tick·canvas/객체/스크롤 복원, A01 import 실패/재시도, 허공터 실패 시 화면/저장 보존·중복 클릭 한 번 진입·toolbar/open·Escape·reset·직접 training launch, 기존 캠페인 저장 reload/continue의 성장/장착/완료 보존을 확인했다. pageerror는0이다. 기예 전수·전체 verify·다른 맵 검사는 하지 않았다.
+
+embedded는 HONRO_READY와 두 전역의 기존 eager 준비까지 확인했다. 실제 Workshop Playtest 전투 진입은 **기준 master에서도 같은 오류로 실패**한다: stage1–4 ACT1 scene unsupported version/invalid lights, terrainBounds와 stable playBounds 포함 조건, invalid zone coverage. 기준/수정본의 common27개 해시가 모두 같고 두 화면에서 같은 오류를 대조했다. 이 항목을 전투 실행 통과로 기록하지 않으며 미술·지형·schema 수정은 범위에서 제외했다. `_local/reports/startup/optional-embedded-baseline.json`과 `optional-checks.json`에 근거가 있다.
+
+cold cache/new context/CPU4배/RTT40ms/2MiB/s에서 기존 스크립트로 전후 각1회만 비교했다. 실제 기기/공개 Pages 실측이 아니다.
+
+| 항목 | Desktop 이전 → 이후 | 모바일 viewport 이전 → 이후 |
+|---|---:|---:|
+| 실제 ready |3.931 →4.126s|3.909 →4.144s|
+| ready+500ms 관측 전송 |5,259,575 →5,242,680B|5,251,713 →5,234,818B|
+| 관측 요청 수 |93 →94|93 →94|
+
+Game 필수 common+app JS와 entry는2,823,453→2,806,363B(동일 title/data loader 제외), 순감17,090B다. 선택 모듈 원본 합은22,227B이며 gate/registry 코드가 일부를 차지한다. full 순서를 지키는 bundle 경계로 필수 core import는31→32(별도 title2개 포함33→34)다. ready는 이 단일 비교에서 약0.2초 늘었으므로 속도 개선을 주장하지 않는다. 이번 변경의 확인된 효과는 실제 진입까지 선택 코드 전송·실행을 미루는 것이다. `optional-before.json`, `optional-after.json`, `optional-build.json`에 측정 근거를 둔다.
+
+소스/검증과 생성물을 별도 커밋으로 남긴다. 부모가 진행 중인 미술과 순서대로 통합하도록 이 작업은 브랜치 push까지만 수행하며 master/Pages는 발행하지 않는다. 통합 시 최신 미술의 생성물과 이전 두 distinct 배포 세대 기준으로 다시 빌드한다. 로컬 빌드는 별도 worktree의 TypeScript5.9.3 API를 사용했으며 package 선언/lockfile은 변경하지 않았다.

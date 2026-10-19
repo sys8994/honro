@@ -82,7 +82,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     for(const [global,value]of Object.entries(values)){const external=await externalize(value,global.toLowerCase());records.push([global,await json(global,external),assetPaths(external)]);}
     return emit('runtime',name,'js',loaderImport+records.map(([global,file,refs])=>`globalThis.${global}=await loadData(${quote(file)},${quote(refs)});`).join('\n')+'\n');
   };
-  const entries=await runtimeEntries({vector,app:true}),common=[],gameOnly=[];
+  const entries=await runtimeEntries({vector,app:true}),common=[],gameOnly=[],optionalModules={};
   const appStart=entries.findIndex(e=>e.name==='game/vendor/ui/fa.js');
   assert(appStart>0,'Game application boundary required');
   let projectManifest,pending=[],pendingBytes=0,groupNumber=0;
@@ -94,6 +94,12 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   for(let i=0;i<entries.length;i++){
     const entry=entries[i],target=i<appStart?common:gameOnly;let file;
     if(i===appStart)await flushScripts(common);
+    if(entry.optional){
+      await flushScripts(target);
+      const file=await emit('runtime',entry.name,'js',entry.code+'\n');
+      optionalModules[entry.optional]={file,global:entry.optional==='training'?'HonroTraining':'HonroSkillPreview'};
+      target.push(file);continue;
+    }
     // These two scripts also have independent title/Workshop consumers.
     const independent=entry.name==='shared/runtime/title-markup.js'||entry.name==='shared/runtime/stage-rules.js';
     if(!entry.project&&!entry.global&&!vectorGlobals.has(entry.name)&&!independent){
@@ -155,7 +161,8 @@ globalThis.HONRO_TITLE_SCENE=globalThis.HonroTitleMarkup.scene(art);
   async function bootstrap(name,modules,{game=false,playtest}={}){
     const placeholder=`web/entries/${name}.js`;
     const urls=modules.map(file=>urlExpression(placeholder,file));
-    return emit('entries',name,'js',`import {prefetchProject,yieldIfNeeded} from ${quote(relative(placeholder,loader))};\n${game?"globalThis.HONRO_EMBEDDED=new URLSearchParams(location.search).get('embedded')==='1';\n":''}${playtest?'globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL='+quote(playtest)+';\n':''}const modules=[${urls.join(',\n')}];
+    const optionalSource=game?`globalThis.HONRO_OPTIONAL_MODULES={${Object.entries(optionalModules).map(([name,entry])=>`${quote(name)}:{url:${urlExpression(placeholder,entry.file)},global:${quote(entry.global)}}`).join(',')}};\n${await read('shared/runtime/optional-runtime-loader.js')}\n`:'';
+    return emit('entries',name,'js',`import {prefetchProject,yieldIfNeeded} from ${quote(relative(placeholder,loader))};\n${game?"globalThis.HONRO_EMBEDDED=new URLSearchParams(location.search).get('embedded')==='1';\n":''}${playtest?'globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL='+quote(playtest)+';\n':''}${optionalSource}const modules=[${urls.join(',\n')}].filter(file=>!${game}||globalThis.HONRO_EMBEDDED||globalThis.HONRO_PROJECT_MODE==='full'||!Object.values(globalThis.HONRO_OPTIONAL_MODULES).some(entry=>entry.url===file));
 globalThis.HONRO_READY=(async()=>{try{
 ${game?`await globalThis.HonroStartup?.firstPaint();\nlet styleError;const stylesReady=Promise.all(${quote(styles)}.map(file=>new Promise((resolve,reject)=>{const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('../../'+file,import.meta.url).href;link.onload=resolve;link.onerror=()=>reject(Error('Style load failed: '+file));document.head.append(link);}))).catch(error=>{styleError=error;});`:''}
 const preloaded=new Set();
@@ -186,7 +193,7 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   await writeGenerated(path.join(root,'workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
   const currentFiles=[...files.values()].sort((a,b)=>a.path.localeCompare(b.path));
   const {previousFiles,previousGenerations,obsoleteFiles}=planWebAssetRetention(previous,currentFiles);
-  const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations};
+  const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations};
   await writeGenerated(path.join(root,'web/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
   for(const file of obsoleteFiles)try{await unlink(path.join(root,file.path));}catch(e){if(e.code!=='ENOENT')throw e;}
   await mkdir(path.join(root,'_local/reports/web-split'),{recursive:true});

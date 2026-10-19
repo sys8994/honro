@@ -298,7 +298,7 @@
         portrait(cls, size = 1) { return `<canvas class="portrait" data-portrait="${cls}" width="88" height="108"></canvas>`; }
         drawPortraits() { for (const cv of document.querySelectorAll('canvas[data-portrait]')) G.HonroPortraits.draw(cv,null,cv.dataset.portrait); }
         showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; G.HonroTitleMarkup.mount(this.root,{scene:G.HONRO_TITLE_SCENE,logo:G.HONRO_TITLE_LOGO,hanja:G.HONRO_TITLE_HANJA,profile:this.profile,debugMode:this.debugMode,splitLocked:G.HonroSplitCampaign.locked(this.profile),settingsIcon:fa('gear',19)}); }
-        stopBattle() { G.HonroCampaignEntry?.cancel(this); G.HonroAct3Void?.abort(this); G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
+        stopBattle() { this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this); G.HonroAct3Void?.abort(this); G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
             this.persist();
@@ -335,14 +335,54 @@
 
         sig(id){return C.icon('skill:'+id,'',28);}
 
-        open(html, kind = '') { G.HonroCampaignEntry?.cancel(this);this.modalKind=kind;this.cancelInput(); if(!this.modal.classList.contains('open')){const active=document.activeElement;this.modalReturnFocus=active?.matches?.('button,input,select,textarea,a[href],[tabindex]')?active:this.root?.querySelector('button');} this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"><button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>${html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); this.modal.querySelector('[data-action="close"]')?.focus({preventScroll:true}); }
-        close() { G.HonroCampaignEntry?.cancel(this);this.modalKind='';this.pendingJourneyLaunch=null;const wasOpen=this.modal.classList.contains('open'),previous=this.modalReturnFocus;this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now();this.modalReturnFocus=null;if(wasOpen)(previous?.isConnected?previous:this.root?.querySelector('[data-action="pause"],button'))?.focus?.({preventScroll:true}); if(this.engine)this.updateAudio(); }
+        open(html, kind = '') { this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this);this.modalKind=kind;this.cancelInput(); if(!this.modal.classList.contains('open')){const active=document.activeElement;this.modalReturnFocus=active?.matches?.('button,input,select,textarea,a[href],[tabindex]')?active:this.root?.querySelector('button');} this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"><button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>${html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); this.modal.querySelector('[data-action="close"]')?.focus({preventScroll:true}); }
+        close() { this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this);this.modalKind='';this.pendingJourneyLaunch=null;const wasOpen=this.modal.classList.contains('open'),previous=this.modalReturnFocus;this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now();this.modalReturnFocus=null;if(wasOpen)(previous?.isConnected?previous:this.root?.querySelector('[data-action="pause"],button'))?.focus?.({preventScroll:true}); if(this.engine)this.updateAudio(); }
         dismissModal(){if(this.modalKind==='result')this.resultContinue();else if(this.equipReturn){const context=this.equipReturn;this.equipReturn=null;this.restoreTalent(context);}else this.close();}
         resultContinue(){if(this.resultDismissed||!this.modal.classList.contains('open'))return;if(G.HonroCampaignEntry?.defer(this,G.HonroCampaignEntry.next(this),()=>this.resultContinue()))return;this.resultDismissed=true;this.close();if(this.customMap)this.showRest();else G.HonroRestJourney.resultContinue(this);}
         talentContext(id){const dialog=this.modal.querySelector('.dialog');return {id,scroll:dialog?.scrollTop||0,armory:$('armory')?.scrollTop||0,canvas:$('previewcanvas'),preview:this.preview,action:document.activeElement?.dataset?.action};}
-        restoreTalent(context){this.talent(context.id);const canvas=$('previewcanvas');if(context.preview&&context.canvas&&canvas){canvas.replaceWith(context.canvas);this.preview=context.preview;this.preview.h=clone(this.profile.heroes[S[context.id].cls]);}const dialog=this.modal.querySelector('.dialog');if(dialog)dialog.scrollTop=context.scroll;if($('armory'))$('armory').scrollTop=context.armory;if(context.action)this.modal.querySelector(`[data-action="${context.action}"]`)?.focus({preventScroll:true});}
-        talent(id){const sk=S[id];if(!sk)return;const cls=sk.cls;this.cls=cls;const roster=this.training&&this.engine?{...this.profile,heroes:this.engine.b.heroes}:this.profile;const h=roster.heroes[cls],r=h.ranks[id]||0;this.open(G.HonroUI.talent(roster,id),'detail '+(sk.ultimate?'ultimate-dialog':'talent-dialog'));
-            this.detailSkill=id;this.preview=sk.passive?null:G.HonroSkillPreview.setup(this,id,h,$('previewcanvas'));
+        restoreTalent(context){this.talent(context.id,context);const dialog=this.modal.querySelector('.dialog');if(dialog)dialog.scrollTop=context.scroll;if($('armory'))$('armory').scrollTop=context.armory;if(context.action)this.modal.querySelector(`[data-action="${context.action}"]`)?.focus({preventScroll:true});}
+        cancelOptionalWork(){this.previewRequest=null;this.preview=null;this.trainingRequest?.node.remove();this.trainingRequest=null;}
+        deferTraining(run){
+            if(G.HonroTraining)return false;
+            const prior=this.trainingRequest;
+            if(prior?.running){prior.run=run;return true;}
+            prior?.node.remove();
+            const node=document.createElement('aside');node.className='campaign-loading';node.setAttribute('role','status');node.dataset.trainingLoad='';
+            const request={node,run,profile:this.profile,screen:this.screen,root:this.root.firstElementChild,modal:this.modal.firstElementChild,running:false};this.trainingRequest=request;
+            (this.modal.querySelector('.dialog')||document.body).append(node);
+            const owns=()=>this.trainingRequest===request&&this.profile===request.profile&&this.screen===request.screen&&this.root.firstElementChild===request.root&&this.modal.firstElementChild===request.modal;
+            const cancel=()=>{if(this.trainingRequest===request)this.trainingRequest=null;node.remove();};
+            const start=()=>{if(!owns()){cancel();return;}request.running=true;node.replaceChildren(document.createTextNode('허공터를 준비하고 있습니다… '));const back=document.createElement('button');back.textContent='취소';back.onclick=cancel;node.append(back);
+                G.HonroOptionalRuntime.load('training').then(()=>{if(!owns()){cancel();return;}cancel();request.run();},()=>{
+                    if(!owns()){cancel();return;}request.running=false;node.replaceChildren(document.createTextNode('허공터를 불러오지 못했습니다. '));const retry=document.createElement('button');retry.textContent='다시 시도';retry.onclick=start;node.append(retry,back);
+                });
+            };start();return true;
+        }
+        startTraining(){
+            if(!G.HonroSplitCampaign.allowLaunch(this,1,true))return;
+            if(this.deferTraining(()=>this.startTraining()))return;
+            this.trainingClass='archer';this.trainingSkill='A01';
+            this.launch(1,true,'A01');G.HonroTraining.open(this);
+        }
+        prepareSkillPreview(id,h,canvas){
+            if(!canvas)return;
+            const request={id,canvas,dialog:this.modal.firstElementChild,profile:this.profile};this.previewRequest=request;
+            const owns=()=>this.previewRequest===request&&this.profile===request.profile&&this.detailSkill===id&&this.modal.classList.contains('open')&&this.modal.firstElementChild===request.dialog&&canvas.isConnected&&$('previewcanvas')===canvas;
+            const setup=()=>{if(!owns())return;this.previewRequest=null;this.preview=G.HonroSkillPreview.setup(this,id,h,canvas);};
+            if(G.HonroSkillPreview){setup();return;}
+            const status=document.createElement('p');status.dataset.previewLoad='';status.setAttribute('role','status');canvas.after(status);
+            const start=()=>{if(!owns())return;status.textContent='미리보기 준비 중…';
+                G.HonroOptionalRuntime.load('skill-preview').then(()=>{if(!owns())return;status.remove();setup();},()=>{
+                    if(!owns())return;status.replaceChildren(document.createTextNode('미리보기를 불러오지 못했습니다. '));const retry=document.createElement('button');retry.textContent='다시 시도';retry.onclick=start;status.append(retry);
+                });
+            };start();
+        }
+        talent(id,context=null){const sk=S[id];if(!sk)return;const cls=sk.cls;this.cls=cls;const roster=this.training&&this.engine?{...this.profile,heroes:this.engine.b.heroes}:this.profile;const h=roster.heroes[cls];this.open(G.HonroUI.talent(roster,id),'detail '+(sk.ultimate?'ultimate-dialog':'talent-dialog'));
+            this.detailSkill=id;
+            if(sk.passive)return;
+            const canvas=$('previewcanvas');
+            if(context?.preview&&context.canvas&&canvas){canvas.replaceWith(context.canvas);this.preview=context.preview;this.preview.h=clone(h);return;}
+            this.prepareSkillPreview(id,h,canvas);
         }
         canEquip(id){const s=S[id];return !!s&&s.cls===this.cls&&!s.passive&&!s.basic&&!s.enemyOnly&&C.knownSkills(this.profile.heroes[this.cls],this.cls).includes(id);}
         equip(id,slot){if(!this.canEquip(id))return;if(!this.equipReturn)this.equipReturn=this.modal.querySelector('.talent-dialog,.ultimate-dialog')?this.talentContext(id):null;this.equipIncoming=id;this.slotIndex=Number.isInteger(slot)&&slot>0&&slot<4?slot:Math.max(1,this.profile.loadouts[this.cls].indexOf(id));this.open(G.HonroUI.equipChoice(this.profile,this.cls,id,this.slotIndex),'equip-dialog');}
@@ -442,6 +482,7 @@
         launch(id = this.stageId, training = false, skill = null) {
             if(this.customMap&&!training&&id===this.stageId)return this.launchMap(this.customMap.project,this.customMap.stageId);
             if(!G.HonroSplitCampaign.allowLaunch(this,id,training))return;
+            if(training&&this.deferTraining(()=>this.launch(id,training,skill)))return;
             // Changing a training loadout rebuilds combat, but stays in the same musical session.
             const trainingMusic=training&&this.training&&this.engine&&this.screen==='battle'?(this.trainingMusicSession||this.engine.b.session):null;
             const st = G.HonroSplitCampaign.content(this.profile,id)||H.stages[id - 1];
@@ -840,7 +881,7 @@
             document.addEventListener('pointerup', e => {if(e.pointerType!=='mouse')wakeAudio();}, {capture:true});
             document.addEventListener('touchend', wakeAudio, {capture:true,passive:true});
             document.addEventListener('click', wakeAudio, {capture:true});
-            document.addEventListener('keydown', e => { if(G.HonroAct3Void?.key(this,e))return; void this.audio?.wake?.(true); if(this.dialogue){G.HonroStory.key(this,e);return;} if(this.screen==='title'&&!this.modal.classList.contains('open')&&(e.code==='ArrowDown'||e.code==='ArrowUp')){const buttons=[...this.root.querySelectorAll('.title-actions button:not([disabled])')],index=buttons.indexOf(document.activeElement);if(buttons.length){e.preventDefault();const next=index<0?(e.code==='ArrowDown'?0:buttons.length-1):(index+(e.code==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next].focus({preventScroll:true});}return;} if (this.screen !== 'battle'&&!this.modal.classList.contains('open'))
+            document.addEventListener('keydown', e => { if(this.modal.querySelector('.training-dialog'))return; if(G.HonroAct3Void?.key(this,e))return; void this.audio?.wake?.(true); if(this.dialogue){G.HonroStory.key(this,e);return;} if(this.screen==='title'&&!this.modal.classList.contains('open')&&(e.code==='ArrowDown'||e.code==='ArrowUp')){const buttons=[...this.root.querySelectorAll('.title-actions button:not([disabled])')],index=buttons.indexOf(document.activeElement);if(buttons.length){e.preventDefault();const next=index<0?(e.code==='ArrowDown'?0:buttons.length-1):(index+(e.code==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next].focus({preventScroll:true});}return;} if (this.screen !== 'battle'&&!this.modal.classList.contains('open'))
                 return; if (e.code === 'Escape') {
                 e.preventDefault();
                 if(this.scene?.inspectUnitId){G.HonroUnitInfo.close(this);return;}
@@ -930,11 +971,7 @@
                     this.showCamp();
                     break;
                 case 'training':
-                    if(!G.HonroSplitCampaign.allowLaunch(this,1,true))break;
-                    this.trainingClass = 'archer';
-                    this.trainingSkill = 'A01';
-                    this.launch(1, true, 'A01');
-                    G.HonroTraining.open(this);
+                    this.startTraining();
                     break;
                 case 'launch':
                     this.launch();
@@ -1186,7 +1223,7 @@
                 if(G.HonroAct3Void?.blocked(this)){this.acc=0;G.HonroAct3Void.frame(this,dt);requestAnimationFrame(t=>this.frame(t));return;}
                 G.HonroStory.tick(this,now);
                 G.HonroRestJourney?.frame(this,dt);
-                if(this.preview)G.HonroSkillPreview.tick(this,this.preview,dt);
+                if(this.preview?.canvas.isConnected&&this.modal.classList.contains('open'))G.HonroSkillPreview.tick(this,this.preview,dt);
                 if (this.engine && this.scene && this.screen === 'battle') {
                     const e = this.engine;let simulated=0;
                     if(!this.modal.classList.contains('open')&&!this.dialogue&&['aim','enemy','ally','summon'].includes(e.b.phase))G.HonroStory.turn(this);

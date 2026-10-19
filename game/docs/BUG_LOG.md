@@ -10,6 +10,11 @@
 - 전체6000×3000world에 uniform6000/1774배로 배치했다. 그림의 흙길/뿌리/돌출부/오른쪽 상부 둑을 직접 접촉으로 저작했다. 새 그림·타일 반복·회색 발판/재질 clip 없음. 외곽은 비충돌 캐시를 재사용하며 아래 fade는 최하단 실제 보행면보다 아래에서 시작한다.1장 campaign revision만2→3으로 바꿔 이전 전투 snapshot만 재시작하고 성장/SP/장착/완료 정책은 그대로다.
 - Native 최소 확인: 기존8적/cap2·ID별 능력과 이벤트 의미 동일, 초기 지상/공중 끼임 없음. 적을 뺀 geometry fixture에서 원래 이동·기본 점프로 주 경로/높은 오른쪽 도착, 낮은 뿌리·고목 돌출 가지·중간 바위·상부 사격대에 도달했다. 선택 경로는 주 경로에서 실제 도달한 접촉의 분기이며 전체 전투 통과 주장이 아니다. _local/reports/stage1-balanced/check.json.
 - 이 checkpoint는 소스 구현/국소 접촉 확인까지다. HTML build·실제 정상/모바일 화면·Pages 확인은 후속 마감에서 기록한다.2~4장 보류 그림과 Stage11 WIP 미반영, 전체verify/다른 장/스킬 검사 없음.
+## 선택 기능 JS의 실제 사용 시 준비 · 2026-10-19
+
+- training/skill-preview만 외부 웹 Game의 초기 import/preload에서 분리했다. 해시 선택 모듈·진행 중 import 공유·실패 URL 재시도, preview modal/canvas 소유권 및 닫기 취소, 허공터 준비 전 화면/저장 보존을 추가했다. native/full embedded의 순서와 공통 런타임·미술·지형은 유지했다.
+- 필요한 빌드와 대표 active/passive·수련점/미리보기 복원·빠른 닫기·import 실패 재시도·허공터 중복/초기 진입/Escape/reset/직접 진입·기존 캠페인 저장 보존을 확인했다. ready 전 선택 모듈 요청0, JS 순감17,090B. 1회 CPU4 비교 ready는 약0.2초 늘어 속도 개선을 주장하지 않는다.
+- embedded 런타임/두 eager 모듈은 준비되나 Playtest 전투는 기준 master에서도 stage1–4 scene/terrainBounds/zone schema 오류로 막힌다. 해당 미술/지형은 미수정이며 전체 verify/기예 전수도 미실행이다. 측정·범위·근거는 `STARTUP_LOADING.md`의 선택 기능 절에 기록했다. 부모 통합을 위해 작업 브랜치까지만 push한다.
 
 ## 2026-10-19 — 전술 줌을 유지한 1장 이미지 절단 경계 보완
 
