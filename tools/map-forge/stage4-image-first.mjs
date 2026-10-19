@@ -1,30 +1,29 @@
-/** Stage4: the approved closed gate, yard and broken timber determine contacts.
- * Full original painting, uniform transform, independent far; no legacy silhouettes. */
-const SCALE=1.6,WIDTH=2138,HEIGHT=736;
+import{imageSpace,sourceSteps}from'./sop-image-space.mjs';
 const profiles={
- 'gate-basin':[[0,385],[150,372],[300,374],[450,381],[650,421],[820,445],[1010,468],[1200,488],[1410,500],[1600,514],[1790,526],[1950,517],[2138,510]],
- 'gate-threshold':[[328,357],[370,357],[401,358]],
- 'west-shoulder':[[130,276],[170,279],[220,289],[270,297]],
- 'gate-roof':[[247,263],[281,250],[311,218],[348,233],[392,238],[421,234],[448,260]],
- 'burned-gallery':[[1445,410],[1500,400],[1580,382],[1660,375],[1745,377]],
- 'east-rock-low':[[1780,405],[1830,391],[1880,398],[1930,419],[1955,435]],
- 'east-rock-high':[[1725,342],[1770,335],[1810,340],[1840,352]],
- 'east-step-1':[[1805,334],[1818,318],[1834,295],[1845,284],[1880,286],[1933,293]],
- 'east-watch':[[1796,221],[1820,208],[1847,187],[1875,201],[1910,207],[1937,220],[1948,229]]
+ 'gate-basin':[[0,788],[240,784],[500,783],[760,784],[980,775],[1180,760],[1320,729],[1480,690],[1659,673]],
+ 'gate-terrace':[[120,342],[240,350],[360,365],[460,366],[520,378]],
+ 'gate-threshold':[[185,337],[235,339],[282,341]],
+ 'west-shoulder':[[0,227],[85,236],[130,247]],
+ 'gate-roof':[[50,205],[87,185],[118,139],[150,164],[200,182],[290,196],[328,217]],
+ 'gate-middle-approach':[[440,475],[530,507],[640,546],[740,572],[830,604],[900,644],[990,650]],
+ 'gate-lower-toe':[[1000,718],[1090,742],[1160,746]],
+ 'burned-gallery':[[1000,506],[1070,518],[1160,533],[1260,524],[1310,510]],
+ 'east-rock-low':[[1450,646],[1530,623],[1600,641],[1659,650]],
+ 'east-rock-high':[[1350,397],[1430,418],[1530,451],[1659,462]],
+ 'east-step-1':[[1440,384],[1470,365],[1500,350],[1580,347],[1625,354]],
+ 'east-rail':[[1500,319],[1560,316],[1600,307],[1620,310]],
+ 'east-watch':[[1435,279],[1480,260],[1540,220],[1570,246],[1630,272]],
+ 'sop4-wall-step':[], 'sop4-approach-low':[], 'sop4-approach-high':[], 'sop4-valley-step':[],
+ 'sop4-east-low':[], 'sop4-east-middle':[], 'sop4-east-upper':[]
 };
-const pts=ps=>ps.map(([x,y])=>({x:x*SCALE,y:y*SCALE}));
-function at(x,id='gate-basin'){const ps=profiles[id];for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i];if(x>=a[0]&&x<=b[0])return(a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]))*SCALE;}throw Error('Stage4 source contact outside '+id+' '+x);}
-const contact=(x,support='gate-basin')=>({x:x*SCALE,y:at(x,support),support});
-const air=(x,y)=>({x:x*SCALE,y:y*SCALE});
-export function applyStage4ImageFirst(project){const s=project.stages.find(s=>s.metadata?.stageId===4);if(!s)return project;const prior=new Map(s.terrains.map(t=>[t.id,t]));s.width=WIDTH*SCALE;s.height=HEIGHT*SCALE;s.playBounds={left:0,top:0,right:s.width,bottom:s.height};s.terrainBounds={...s.playBounds};s.terrainDomainVersion=1;s.camera={...s.camera,focusBounds:{left:0,top:-1000,right:s.width,bottom:s.height}};
- s.terrains=Object.entries(profiles).map(([id,line])=>{const floor=id==='gate-basin',breakable=id==='burned-gallery',wood=/roof|watch|step-1|gallery/.test(id);return{...prior.get(id),id,name:prior.get(id)?.name||id,type:'solid',layer:'terrain',baseMaterial:wood?'wood':floor?'soil':'rock',oneWay:!floor,breakable,points:pts(floor?[...line,[WIDTH,HEIGHT],[0,HEIGHT]]:[...line,...line.toReversed().map(([x,y])=>[x,y+9])]),detail:{spacing:20,roughness:0,optimizeEpsilon:0,seed:4},properties:{...prior.get(id)?.properties,hp:breakable?280:99999,maxHp:breakable?280:99999,route:false,surfaceKind:wood?'wood':floor?'soil':'rock',honroWalkEdges:line.slice(1).map((_,i)=>i)}};});
- s.elements=[];
- const poses={'p-archer':contact(560),'p-mage':contact(625),objective:contact(365,'gate-threshold'),'npc-hwigyeom':contact(700),'npc-chunrye':contact(465),'foe-0':contact(970),'foe-3':contact(1110),'foe-6':contact(1175),'foe-1':contact(1660),'foe-4':contact(1870),'foe-2':contact(1740,'burned-gallery'),'foe-5':air(1780,140)};
- for(const u of s.units){const p=poses[u.id];if(!p)continue;Object.assign(u,{x:p.x,y:p.y});if(Object.hasOwn(u,'spawnX'))u.spawnX=p.x;if(Object.hasOwn(u,'spawnY'))u.spawnY=p.y;}
- s.anchors={...s.anchors,start:poses['p-archer'],gate:poses.objective,leftLane:contact(850),cartChoke:contact(1510),rightLane:contact(1950),exit:contact(2090),watch:contact(1880,'east-watch'),westVantage:contact(220,'west-shoulder')};
- const markers=[poses.objective,contact(960),contact(735),contact(1450),contact(1310),contact(1880,'east-watch'),contact(1900,'east-step-1')];for(const[i,m]of s.markers.entries()){if(i<markers.length)Object.assign(m,markers[i]);if(m.id==='habitat-4-0')Object.assign(m,contact(1325));if(m.id==='habitat-4-1')Object.assign(m,contact(2060));}
- for(const e of s.events){if(e.id==='siege-0')Object.assign(e.action,{...contact(1515),spacing:170,maxDistance:260});if(e.id==='siege-1')Object.assign(e.action,{x:1950*SCALE,y:180*SCALE,requireFlightClearance:true,maxDistance:640});}
- s.materials=[];s.routes=[contact(480),contact(850),contact(1150),contact(1450),contact(1700),contact(1950),s.anchors.exit];s.design.act1Scene={version:2,scenery:[],rocks:[],replaced:[]};delete s.design.stage4Gate;delete s.design.forestChoice;
- s.design.stage4ImageFirst={storyThread:{from:air(314,278),at:air(332,282),to:air(452,309)},revision:1,quietLayers:1,image:'stage4QuietNear',far:'quietFar',source:{width:WIDTH,height:HEIGHT},transform:{x:0,y:0,scale:SCALE},artBounds:{left:0,top:0,right:s.width,bottom:s.height},galleryFracture:[[1544,393],[1551,391],[1549,398],[1556,401],[1552,407],[1544,410],[1547,402],[1542,399]],runtimeRoster:{'foe-0-cluster':contact(1280),'foe-3-cluster':contact(1490),'foe-6-cluster':contact(1570),'foe-1-cluster':contact(1950),'foe-4-cluster':contact(2090),'foe-2-cluster':contact(1910,'east-step-1'),'foe-5-cluster':air(2020,260)},routes:{yard:s.routes,west:[contact(240),contact(220,'west-shoulder'),contact(285,'gate-roof')],east:[contact(1400),contact(1490,'burned-gallery'),contact(1660,'burned-gallery'),contact(1750,'east-rock-high'),contact(1860,'east-step-1'),contact(1880,'east-watch')],eastAfterBreak:[contact(2000),contact(1940,'east-rock-low'),contact(1820,'east-step-1'),contact(1880,'east-watch')]}};
- Object.assign(s.initialState,{width:s.width,height:s.height,routePoints:s.routes});delete s.initialState.honroStage4GateRevision;return project;
+const rocks=[{ref:[254,822],top:4,polygon:[[230,827],[254,822],[285,831],[310,844],[325,870],[320,899],[290,906],[256,900],[225,883],[218,850]]},{ref:[545,829],top:4,polygon:[[521,838],[545,829],[570,832],[594,846],[607,866],[595,885],[567,894],[537,886],[516,864]]}];
+const steps=sourceSteps(profiles,rocks,[['sop4-wall-step',0,.65,[125,295]],['sop4-approach-low',1,.8,[430,430]],['sop4-approach-high',0,.62,[410,390]],['sop4-valley-step',0,.65,[990,684]],['sop4-east-low',1,.72,[1550,585]],['sop4-east-middle',0,.7,[1590,531]],['sop4-east-upper',1,.7,[1625,484]]]);
+export function applyStage4ImageFirst(project){const s=project.stages.find(s=>s.metadata?.stageId===4);if(!s)return project;const q=imageSpace(s,{width:1659,height:948,worldWidth:5600,profiles,floor:'gate-basin',wood:['gate-roof','burned-gallery','east-rail','east-watch'],breakable:{'burned-gallery':280}}),{scale:S,contact:c,air}=q;steps.apply(s,q);
+ q.poses({'p-archer':c(340,'gate-terrace'),'p-mage':c(385,'gate-terrace'),objective:c(230,'gate-threshold'),'npc-hwigyeom':c(430,'gate-terrace'),'npc-chunrye':c(290,'gate-terrace'),'foe-0':c(500,'gate-middle-approach'),'foe-3':c(680,'gate-middle-approach'),'foe-6':c(790,'gate-middle-approach'),'foe-1':c(1180),'foe-4':c(1470),'foe-2':c(1120,'burned-gallery'),'foe-5':air(1430,170)});
+ const gate=s.units.find(u=>u.id==='objective');gate.h=113*S;gate.r=44*S;
+ s.anchors={...s.anchors,start:c(340,'gate-terrace'),gate:c(230,'gate-threshold'),leftLane:c(500,'gate-middle-approach'),cartChoke:c(1090),rightLane:c(1470),exit:c(1620),watch:c(1560,'east-step-1'),westVantage:c(100,'west-shoulder')};
+ const marks=[s.anchors.gate,c(680,'gate-middle-approach'),c(550,'gate-middle-approach'),c(1100),c(1020),c(1550,'east-step-1'),c(1575,'east-step-1')];for(const[i,m]of s.markers.entries()){if(i<marks.length)Object.assign(m,marks[i]);if(m.id==='habitat-4-0')Object.assign(m,c(1030));if(m.id==='habitat-4-1')Object.assign(m,c(1580));}
+ for(const e of s.events){if(e.id==='siege-0')Object.assign(e.action,{...c(1110),spacing:170,maxDistance:320});if(e.id==='siege-1')Object.assign(e.action,{...air(1300,220),requireFlightClearance:true,maxDistance:640});}
+ s.materials=[];const yard=[c(50),c(500),c(1050),c(1450),c(1620)];q.finish(yard);delete s.design.stage4Gate;delete s.design.forestChoice;
+ s.design.stage4ImageFirst={...q.meta('stage4SopNear',800),revision:2,storyThread:{from:air(180,230),at:air(205,232),to:air(320,292)},stepSprites:steps.sprites,galleryFracture:[[1184,516],[1190,516],[1188,521],[1194,524],[1189,529],[1184,526]],runtimeRoster:{'foe-0-cluster':c(940,'gate-middle-approach'),'foe-3-cluster':c(1080),'foe-6-cluster':c(1280),'foe-1-cluster':c(1370),'foe-4-cluster':c(1600),'foe-2-cluster':c(1590,'east-step-1'),'foe-5-cluster':air(1200,300)},routes:{yard,gateApproach:[c(1050),c(1050,'gate-lower-toe'),c(990,'sop4-valley-step'),c(975,'gate-middle-approach'),c(450,'gate-middle-approach'),c(430,'sop4-approach-low'),c(410,'sop4-approach-high'),c(400,'gate-terrace'),s.anchors.gate],west:[c(125,'gate-terrace'),c(125,'sop4-wall-step'),c(100,'west-shoulder'),c(95,'gate-roof')],east:[c(1600),c(1580,'east-rock-low'),c(1550,'sop4-east-low'),c(1590,'sop4-east-middle'),c(1625,'sop4-east-upper'),c(1630,'east-rock-high'),c(1440,'east-rock-high'),c(1460,'east-step-1'),c(1560,'east-rail'),c(1580,'east-watch')]}};delete s.initialState.honroStage4GateRevision;return project;
 }

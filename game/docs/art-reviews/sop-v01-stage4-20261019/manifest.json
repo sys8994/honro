@@ -1,0 +1,106 @@
+{
+  "sourceBlob": "56e6dc43e09effc19062ee7c70f336d442f975a8",
+  "source": [
+    1659,
+    948
+  ],
+  "world": [
+    5600,
+    3200
+  ],
+  "scale": 3.3755274261603376,
+  "image": {
+    "file": "stage4-01-gate-defense.webp",
+    "bytes": 810772,
+    "lossless": true
+  },
+  "browser": {
+    "camera": {
+      "x": 2800.0000000000005,
+      "y": 1088.1129131504922,
+      "scale": 0.2571428571428571,
+      "manual": true
+    },
+    "size": [
+      5600,
+      3200
+    ],
+    "revision": 3,
+    "archer": {
+      "x": 1147.6793248945148,
+      "y": 1223.6286919831223,
+      "grounded": true
+    },
+    "gate": {
+      "x": 776.3713080168776,
+      "y": 1143.6286919831225,
+      "h": 381.43459915611817,
+      "r": 148.52320675105486,
+      "hp": 3600
+    },
+    "hwigyeom": true,
+    "chunrye": true,
+    "enemies": 14,
+    "art": {
+      "pictures": 2,
+      "filterPasses": 1,
+      "stepSprites": 2,
+      "farCanvases": 1,
+      "requestedImages": 2,
+      "maxImages": 2
+    },
+    "counter": {
+      "before": "피란민 통로 보호 · 0/8턴",
+      "after": "피란민 통로 보호 · 1/8턴",
+      "round": 2,
+      "ticks": 681,
+      "waits": 2,
+      "gateHP": 3600
+    },
+    "errors": []
+  },
+  "checks": {
+    "size": [
+      5600,
+      3200
+    ],
+    "enemies": 14,
+    "gate": {
+      "x": 776.3713080168776,
+      "y": 1143.6286919831225,
+      "h": 381.43459915611817,
+      "r": 148.52320675105486,
+      "hp": 3600
+    },
+    "attack": {
+      "scope": "Isolated original-hound native AI probe, original spawn/stats and actual gate body; other enemies/NPC omitted and living hero initialized behind gate. No direct damage injection.",
+      "from": {
+        "x": 1687.7637130801688,
+        "y": 1675.3867791842474
+      },
+      "shots": [
+        {
+          "id": "foe-0",
+          "skill": "HBR01",
+          "x": 1402.5970464135066,
+          "y": 1469.8066983122346
+        }
+      ],
+      "hits": [
+        {
+          "before": 3600,
+          "after": 3585,
+          "owner": "foe-0"
+        }
+      ],
+      "ticks": 202,
+      "to": {
+        "x": 1402.5970464135066,
+        "y": 1469.8066983122346
+      },
+      "gateHP": 3585,
+      "round": 2
+    }
+  },
+  "scope": "Stage4 only: initial body/stat preservation, isolated original-hound gate approach/attack, production full-roster single native round counter. No full defense, win/failure retest, unrelated skills or Stage1–3 repeat."
+}
