@@ -1,0 +1,552 @@
+{
+  "sourceCommit": "e153a4e2ae50b2bebc4388a8c91087ed7bef2858",
+  "readAt": "2026-10-19T13:10:27Z",
+  "scope": "30 campaign chapters plus all rest locations; data inspection is not visual verification",
+  "rest": {
+    "status": "pending",
+    "sources": [
+      "shared/runtime/rest-journey.js",
+      "shared/runtime/journey-art.js",
+      "game/src/journey.css"
+    ],
+    "finding": "World art scales with restGeometry width/1600; actors use breakpoint pixel dimensions. Need measured same-plane actor-to-door/rock ratios before adjusting. Do not assume every scene needs identical factor."
+  },
+  "stages": [
+    {
+      "stage": 1,
+      "name": "연목 고갯길",
+      "width": 6000,
+      "height": 3000,
+      "aspect": 2,
+      "objectives": [
+        "연목 나루로 가는 고갯길 통과"
+      ],
+      "features": {
+        "title": "큰 소나무 아래 얕은 물길",
+        "question": "바위와 얕은 물길을 따라 이동하거나 파괴 가능한 큰 가지를 사격점으로 사용한다.",
+        "gameplay": [
+          "mockup-redesign",
+          "open-air",
+          "background-trees",
+          "breakable-branches",
+          "conductive-water"
+        ]
+      },
+      "art": [
+        {
+          "key": "stage1ImageFirst",
+          "image": "stage1BalancedNear",
+          "source": {
+            "width": 1774,
+            "height": 887
+          },
+          "transform": {
+            "x": 0,
+            "y": 0,
+            "scale": 3.382187147688839
+          }
+        }
+      ],
+      "status": "implementation-in-progress"
+    },
+    {
+      "stage": 2,
+      "name": "상여 위의 높은 길",
+      "width": 3678.4,
+      "height": 2070.2000000000003,
+      "aspect": 1.777,
+      "objectives": [
+        "능선 위에서 장례 행렬을 끝까지 엄호"
+      ],
+      "features": {
+        "title": "양쪽 절벽 사이 상여의 길",
+        "question": "왼쪽 고지에서 설오가 엄호하고 상여는 분지 바닥을 따라 오른쪽 출구로 이동한다.",
+        "gameplay": [
+          "mockup-redesign",
+          "open-air",
+          "background-trees",
+          "breakable-branches",
+          "conductive-water"
+        ]
+      },
+      "art": [
+        {
+          "key": "stage2ImageFirst",
+          "image": "stage2QuietNear",
+          "source": {
+            "width": 1672,
+            "height": 941
+          },
+          "transform": {
+            "x": 0,
+            "y": 0,
+            "scale": 2.2
+          }
+        }
+      ],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 3,
+      "name": "나루의 남은 장부",
+      "width": 4276.8,
+      "height": 1779.8000000000002,
+      "aspect": 2.403,
+      "objectives": [
+        "홍만의 나루 움막에서 장부 회수"
+      ],
+      "features": {
+        "title": "젖은 나루 제방과 영구 잔교, 창고 고지",
+        "question": "높은 제방에서 내려와 얕은 물과 진흙을 건너거나, 영구 잔교와 화물 발판을 타고 높은 창고 사격점을 선점",
+        "gameplay": [
+          "river-materials",
+          "shallow-water-basin",
+          "permanent-docks",
+          "warehouse-high-route",
+          "logical-scaffold"
+        ]
+      },
+      "art": [
+        {
+          "key": "stage3ImageFirst",
+          "image": "stage3QuietNear",
+          "source": {
+            "width": 1944,
+            "height": 809
+          },
+          "transform": {
+            "x": 0,
+            "y": 0,
+            "scale": 2.2
+          }
+        }
+      ],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 4,
+      "name": "문 밖에 남은 사람들",
+      "width": 3420.8,
+      "height": 1177.6000000000001,
+      "aspect": 2.905,
+      "objectives": [
+        "피란민이 빠져나갈 때까지 연목 입구를 방어"
+      ],
+      "features": {
+        "title": "피란문 흙마당과 접지된 서쪽 암반·낮은 동쪽 감시대",
+        "question": "문 앞 중앙 분지를 버틸지, 서쪽 둔덕과 동쪽 감시대를 먼저 점령해 교차사격을 끊을지 선택",
+        "gameplay": [
+          "stone-road",
+          "mud-basin",
+          "charred-village",
+          "dry-grass-slope",
+          "rock-watch",
+          "two-defense-heights"
+        ]
+      },
+      "art": [
+        {
+          "key": "stage4ImageFirst",
+          "image": "stage4QuietNear",
+          "source": {
+            "width": 2138,
+            "height": 736
+          },
+          "transform": {
+            "x": 0,
+            "y": 0,
+            "scale": 1.6
+          }
+        }
+      ],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 5,
+      "name": "폭포 틈의 한 발",
+      "width": 5300,
+      "height": 5000,
+      "aspect": 1.06,
+      "objectives": [
+        "물길진에서 낙수를 비틀어 동굴의 주박목 파괴"
+      ],
+      "features": {
+        "title": "넓은 소 너머의 주박목",
+        "question": "능선 뒤 낮은 길과 두 선택 사격대를 오가며 물길진을 지키고, 호수 건너 열린 동굴에 곡사한다.",
+        "gameplay": [
+          "ritual-gate",
+          "accessible-western-terraces",
+          "deep-plunge-pool",
+          "remote-cave-target"
+        ]
+      },
+      "art": [
+        {
+          "key": "stage5Paint"
+        }
+      ],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 6,
+      "name": "끊어진 나무다리",
+      "width": 6600,
+      "height": 3800,
+      "aspect": 1.737,
+      "objectives": [
+        "부상자 운반대를 북문 쉼터까지 호송"
+      ],
+      "features": {
+        "title": "오래된 목교 아래의 연속 호송로",
+        "question": "연속된 하부 호송로를 지키거나 잔해 발판으로 상부 교량을 점령해 날짐승을 끊는다",
+        "gameplay": [
+          "safe-lower-route",
+          "debris-climb",
+          "upper-bridge"
+        ]
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 7,
+      "name": "살아 있는 사람을 꺼내는 법",
+      "width": 3600,
+      "height": 5000,
+      "aspect": 0.72,
+      "objectives": [
+        "들린 주민 셋을 죽이지 않고 구조"
+      ],
+      "features": {
+        "title": "거목 곁 세 산비탈 거처",
+        "question": "주 지그재그 구조로 주민을 구조하면서 짧은 측면 발판에서 다른 사격각을 만든다",
+        "gameplay": [
+          "zigzag-climb",
+          "side-vantage",
+          "civilian-zones"
+        ]
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 8,
+      "name": "돌아오는 빈 상여",
+      "width": 9600,
+      "height": 5500,
+      "aspect": 1.745,
+      "objectives": [
+        "빈 상여에 옮겨 붙는 원혼을 받이진 안에서 제압"
+      ],
+      "features": {},
+      "art": [
+        {
+          "key": "stage8LocationPaint"
+        }
+      ],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 9,
+      "name": "바람 없는 마당",
+      "width": 3600,
+      "height": 3500,
+      "aspect": 1.029,
+      "objectives": [
+        "주민을 대피시키고 두 받이진 준비"
+      ],
+      "features": {
+        "title": "바람 없는 마당의 세 높이",
+        "question": "우물 주변 광역군을 정리하면서 양쪽 회랑에 올라 받이진을 안전하게 확보",
+        "gameplay": [
+          "compact-yard",
+          "two-galleries",
+          "center-lookout"
+        ]
+      },
+      "art": [
+        {
+          "key": "stage9LocationPaint"
+        }
+      ],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 10,
+      "name": "소단 — 놓지 못한 밤",
+      "width": 5000,
+      "height": 3900,
+      "aspect": 1.282,
+      "objectives": [
+        "소단의 주박을 비살상으로 풀고 밀려드는 원혼을 함께 막기"
+      ],
+      "features": {
+        "title": "상단 사당의 의식대와 양쪽 회랑",
+        "question": "중앙 보스 압박 속에서 계단 발판으로 의식대/회랑을 점령해 사격각을 만든다",
+        "gameplay": [
+          "continuous-yard",
+          "altar-climb",
+          "side-galleries"
+        ]
+      },
+      "art": [
+        {
+          "key": "stage10LocationPaint"
+        }
+      ],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 11,
+      "name": "매듭을 거둔 아침",
+      "width": 16000,
+      "height": 12000,
+      "aspect": 1.333,
+      "objectives": [],
+      "features": {
+        "title": "매듭을 거둔 아침"
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 12,
+      "name": "돌아오는 산길",
+      "width": 11200,
+      "height": 8000,
+      "aspect": 1.4,
+      "objectives": [],
+      "features": {
+        "title": "돌아오는 산길"
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 13,
+      "name": "숨은 석문",
+      "width": 8200,
+      "height": 6600,
+      "aspect": 1.242,
+      "objectives": [],
+      "features": {
+        "title": "숨은 석문"
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 14,
+      "name": "해가 닿지 않는 마을",
+      "width": 7600,
+      "height": 10400,
+      "aspect": 0.731,
+      "objectives": [],
+      "features": {
+        "title": "해가 닿지 않는 마을"
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 15,
+      "name": "물 아래의 길",
+      "width": 8000,
+      "height": 6000,
+      "aspect": 1.333,
+      "objectives": [],
+      "features": {
+        "title": "물 아래의 길"
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 16,
+      "name": "잠운사",
+      "width": 11000,
+      "height": 7600,
+      "aspect": 1.447,
+      "objectives": [],
+      "features": {
+        "title": "잠운사"
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 17,
+      "name": "두드리는 벽",
+      "width": 11200,
+      "height": 8200,
+      "aspect": 1.366,
+      "objectives": [],
+      "features": {
+        "title": "두드리는 벽"
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 18,
+      "name": "묵종",
+      "width": 13600,
+      "height": 9600,
+      "aspect": 1.417,
+      "objectives": [],
+      "features": {
+        "title": "묵종"
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 19,
+      "name": "종 안의 사람들",
+      "width": 13600,
+      "height": 9600,
+      "aspect": 1.417,
+      "objectives": [],
+      "features": {
+        "title": "종 안의 사람들"
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 20,
+      "name": "다시 하늘 아래",
+      "width": 9000,
+      "height": 5800,
+      "aspect": 1.552,
+      "objectives": [],
+      "features": {
+        "title": "다시 하늘 아래"
+      },
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 21,
+      "name": "성문 아래",
+      "width": 6400,
+      "height": 3200,
+      "aspect": 2,
+      "objectives": [],
+      "features": {},
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 22,
+      "name": "옛 장부",
+      "width": 4800,
+      "height": 6600,
+      "aspect": 0.727,
+      "objectives": [],
+      "features": {},
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 23,
+      "name": "사라진 짐",
+      "width": 9800,
+      "height": 6200,
+      "aspect": 1.581,
+      "objectives": [
+        "악귀가 막은 하역길을 열고 짐꾼과 운송 기록을 지켜 통과"
+      ],
+      "features": {},
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 24,
+      "name": "휘겸의 문장",
+      "width": 7000,
+      "height": 3300,
+      "aspect": 2.121,
+      "objectives": [
+        "옛 문장을 따라 잠긴 사당과 토지 장부 확인"
+      ],
+      "features": {},
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 25,
+      "name": "물 아래 묶인 이름",
+      "width": 5600,
+      "height": 6800,
+      "aspect": 0.824,
+      "objectives": [
+        "축지진목으로 물길을 건너 생활물품의 번호 확인"
+      ],
+      "features": {},
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 26,
+      "name": "지상에 남은 증언",
+      "width": 7000,
+      "height": 3300,
+      "aspect": 2.121,
+      "objectives": [
+        "선조의 조사문서와 공방 작업기록 확보"
+      ],
+      "features": {},
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 27,
+      "name": "검은 집하장",
+      "width": 8200,
+      "height": 7200,
+      "aspect": 1.139,
+      "objectives": [
+        "석대들을 축지진목으로 이어 가족 번호 대조"
+      ],
+      "features": {},
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 28,
+      "name": "지운 이름과 남은 명령",
+      "width": 7200,
+      "height": 3400,
+      "aspect": 2.118,
+      "objectives": [
+        "불길을 막고 합류해 청원서와 은폐 기록 확보"
+      ],
+      "features": {},
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 29,
+      "name": "현묵의 글",
+      "width": 7200,
+      "height": 3500,
+      "aspect": 2.057,
+      "objectives": [],
+      "features": {},
+      "art": [],
+      "status": "pending-character-relative-review"
+    },
+    {
+      "stage": 30,
+      "name": "남겨진 길",
+      "width": 11200,
+      "height": 7200,
+      "aspect": 1.556,
+      "objectives": [],
+      "features": {},
+      "art": [],
+      "status": "pending-character-relative-review"
+    }
+  ]
+}
