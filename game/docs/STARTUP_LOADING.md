@@ -109,3 +109,10 @@ cold cache/new context/CPU4배/RTT40ms/2MiB/s에서 기존 스크립트로 전�
 Game 필수 common+app JS와 entry는2,823,453→2,806,363B(동일 title/data loader 제외), 순감17,090B다. 선택 모듈 원본 합은22,227B이며 gate/registry 코드가 일부를 차지한다. full 순서를 지키는 bundle 경계로 필수 core import는31→32(별도 title2개 포함33→34)다. ready는 이 단일 비교에서 약0.2초 늘었으므로 속도 개선을 주장하지 않는다. 이번 변경의 확인된 효과는 실제 진입까지 선택 코드 전송·실행을 미루는 것이다. `optional-before.json`, `optional-after.json`, `optional-build.json`에 측정 근거를 둔다.
 
 소스/검증과 생성물을 별도 커밋으로 남긴다. 부모가 진행 중인 미술과 순서대로 통합하도록 이 작업은 브랜치 push까지만 수행하며 master/Pages는 발행하지 않는다. 통합 시 최신 미술의 생성물과 이전 두 distinct 배포 세대 기준으로 다시 빌드한다. 로컬 빌드는 별도 worktree의 TypeScript5.9.3 API를 사용했으며 package 선언/lockfile은 변경하지 않았다.
+
+
+### 최신 1장 미술 기준 통합 발행 (2026-10-19)
+
+부모가 master `41c3289`의 승인 balanced1장을 확인한 뒤 소스 `d0689d9` 통합과 master/기존 Pages 발행을 승인했다. `34dadf4` 생성물은 가져오지 않고 별도 통합 브랜치에서 소스만 cherry-pick했다(새 source `62c8583`). BUG_LOG의 추가 기록만 양쪽을 보존하여 해결했다. 최신 미술·지형·충돌·revision 파일은 변경하지 않았고 공통27개 모듈의 콘텐츠 해시도 기준과 같다. 생성물은 최신 기준에서 한 번 빌드했으며 기준 배포 자산 및 이전 두 distinct 세대를 유지했다.
+
+확인은 필요한 통합 빌드와 짧은 실제 Game smoke만 했다: 초기 ready/두 선택 모듈 요청0, 실제1장6000×3000 및 campaign map revision3, A01 preview 최초 import/setup/tick1회, 허공터 최초 import/toolbar/open1회, pageerror0. 측정과 전수 검사, 앞 단계의 상세 실패/저장 확인 및 미술 검수는 반복하지 않았다. 결과는 `_local/reports/startup/optional-integration-smoke.json`이다. 이 발행 확인이 앞 절의 기준-master Playtest schema 차단을 수리했다는 주장은 하지 않는다.

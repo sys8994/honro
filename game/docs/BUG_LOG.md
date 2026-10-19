@@ -1,3 +1,9 @@
+## 2026-10-19 — 최신 1장 미술에 선택 런타임 통합
+
+- 부모 승인에 따라 master `41c3289` 위에 소스 `d0689d9`만 적용했다(통합 source `62c8583`). 이전 생성물 `34dadf4`는 적용하지 않고 최신 미술 기준으로 빌드했다. BUG_LOG 추가 기록만 충돌하여 양쪽 기록을 보존했다.
+- 1장 미술/지형/충돌/revision 소스와 common27개 해시 동일, 현재 및 이전 두 distinct 배포 세대 보존을 확인했다. 필요한 빌드와 짧은 smoke: title ready·선택 모듈 선요청0·1장6000×3000/revision3·A01 preview 최초1회·허공터 최초1회/toolbar/open·pageerror0. 성능 재측정·전체 검사·미술 재검수는 반복하지 않았다.
+- 이번 통합은 master/기존 Pages 발행 승인 범위다. 근거는 `_local/reports/startup/optional-integration-smoke.json` 및 `STARTUP_LOADING.md` 통합 절이다.
+
 ## 2026-10-19 — 승인 balanced 1장 화면·빌드 마감
 
 - f6995bb source checkpoint 이후 HTML build1회와 실제 정상/전체·모바일 최소 줌을 확인했다.6000×3000,1장revision3,8적/cap2 유지. 콘솔 오류0, 실제 pinch 최소.05735294 유지, 요청 그림은 quietFar+stage1BalancedNear 두 개뿐이다. 정적3프레임 캐시1개7,656,584bytes·필터1회(원경만) 안정, 새 근경 추가 톤 필터 없음. 원본 PNG/보이는 픽셀 불변 lossless WebP와 실제 접촉/debug 토글을 확인했다.
