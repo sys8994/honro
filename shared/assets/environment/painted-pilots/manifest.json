@@ -1,5 +1,5 @@
 {
-  "revision": 16,
+  "revision": 17,
   "images": {
     "forestFar": "stage1-mountain-dusk.webp",
     "bellRear": "stage18-rear.webp",
@@ -40,7 +40,11 @@
     "rest9Well": "../rest-stage9/well.webp",
     "guardianTree10": "../stage10/tree.webp",
     "guardianHall10": "../stage10/gallery.webp",
-    "rest10RootSteps": "../rest-stage10/root-stairs.webp"
+    "rest10RootSteps": "../rest-stage10/root-stairs.webp",
+    "stage1Place": "../stage1-image-first/place.webp",
+    "stage1PlaceWestBroken": "../stage1-image-first/place-west-broken.webp",
+    "stage1PlaceEastBroken": "../stage1-image-first/place-east-broken.webp",
+    "stage1PlaceBothBroken": "../stage1-image-first/place-both-broken.webp"
   },
   "forestCrops": {
     "pineA": {

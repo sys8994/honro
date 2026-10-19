@@ -1,6 +1,7 @@
 import {applyStage3HanokTerrain} from '../tools/map-forge/stage3-hanok-terrain.mjs';
 import {applyStage4GateDefense} from '../tools/map-forge/stage4-gate-defense.mjs';
 import {applyStage10LocationPaint} from '../tools/map-forge/stage10-location-paint.mjs';
+import {applyStage1ImageFirst} from '../tools/map-forge/stage1-image-first.mjs';
 import {applyStage9LocationPaint} from '../tools/map-forge/stage9-location-paint.mjs';
 import {applyStage8LocationPaint} from '../tools/map-forge/stage8-location-paint.mjs';
 import {applyStage7RootVillage} from '../tools/map-forge/stage7-root-village.mjs';
@@ -70,6 +71,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   project=applyPlaceEncounters(project);
   applyStage9LocationPaint(project);
   applyStage10LocationPaint(project);
+  applyStage1ImageFirst(project);
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();
@@ -115,6 +117,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/stage8-location-art.js');
   if(render)await file('shared/runtime/stage9-location-art.js');
   if(render)await file('shared/runtime/stage10-location-art.js');
+  if(render)await file('shared/runtime/stage1-image-first-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
     for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main'])
