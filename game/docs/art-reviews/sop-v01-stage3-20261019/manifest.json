@@ -1,0 +1,88 @@
+{
+  "sourceBlob": "68d9cd716e8783d9ac5ee87b160e4a8ae2f76996",
+  "source": [
+    1983,
+    793
+  ],
+  "world": [
+    7000,
+    2799.293998991427
+  ],
+  "scale": 3.530005042864347,
+  "image": {
+    "file": "stage3-01-ferry-warehouse.webp",
+    "bytes": 735186,
+    "lossless": true
+  },
+  "browser": {
+    "camera": {
+      "x": 3500,
+      "y": 490.91729571146425,
+      "scale": 0.2057142857142857,
+      "manual": true
+    },
+    "size": [
+      7000,
+      2799.293998991427
+    ],
+    "revision": 3,
+    "archer": {
+      "x": 158.8502269288956,
+      "y": 2124.842410489158,
+      "grounded": true
+    },
+    "ledger": {
+      "x": 5506.807866868381,
+      "y": 1465.2730023380552,
+      "support": "cargo-step-1"
+    },
+    "hwigyeom": true,
+    "enemies": 13,
+    "art": {
+      "pictures": 2,
+      "filterPasses": 1,
+      "stepSprites": 2,
+      "farCanvases": 1,
+      "requestedImages": 2,
+      "maxImages": 2
+    },
+    "errors": []
+  },
+  "checks": {
+    "size": [
+      7000,
+      2799.293998991427
+    ],
+    "enemies": 13,
+    "main": {
+      "passed": true,
+      "scope": "Prior native run reached ledger through all walk/jump assertions. Interaction fixture passed a string instead of marker object; only that call and remaining roof/exit checks run here."
+    },
+    "ledger": true,
+    "roof": [
+      {
+        "x": 5065.557236510338,
+        "y": 1288.4518406454865,
+        "support": "cargo-step-2",
+        "ticks": 51
+      },
+      {
+        "x": 5186.307236510338,
+        "y": 1162.0116994452849,
+        "support": "warehouse-roof",
+        "ticks": 63
+      },
+      {
+        "x": 5590.998594112521,
+        "y": 1012.5664880649495,
+        "support": "warehouse-roof"
+      }
+    ],
+    "exit": {
+      "x": 6807.937660243861,
+      "y": 1868.0278976093373,
+      "support": "ferry-ground"
+    }
+  },
+  "scope": "Stage3 contacts/ledger/roof/exit only. Original initial13 stats and placement checked. Isolated hero traversal and endpoint forks; not a full battle. No Stage1/2 repeat or whole verify."
+}

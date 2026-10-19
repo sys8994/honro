@@ -2,10 +2,10 @@
   "version": 1,
   "game": "HONRO.html",
   "workshop": "HONRO_WORKSHOP.html",
-  "playtest": "web/entries/game.6b5552c3a6c4c556.html?embedded=1",
-  "project": "web/data/campaign.101a65805ebd389f.json",
-  "gameEntry": "web/entries/game.7595e938a256ffe0.js",
-  "workshopEntry": "web/entries/workshop.4a8259aa373d793e.js",
+  "playtest": "web/entries/game.95927ef19ec2fec9.html?embedded=1",
+  "project": "web/data/campaign.7a39818361523b96.json",
+  "gameEntry": "web/entries/game.a2a15c84c111f137.js",
+  "workshopEntry": "web/entries/workshop.ccad866452475ec0.js",
   "common": [
     "web/runtime/shared-runtime-fullscreen-input.d0519ea8781864b6.js",
     "web/runtime/shared-runtime-title-markup.3976b37b0afc8917.js",
@@ -24,7 +24,7 @@
     "web/runtime/shared-runtime-map-engine.7d9366336b5cc0e5.js",
     "web/runtime/shared-runtime-battlefield-layouts.ab57c6e52e8553d8.js",
     "web/runtime/shared-runtime-split-campaign.ca8d4aab54cbd13c.js",
-    "web/runtime/shared-runtime-campaign-map-revision.af89be865f2479b7.js",
+    "web/runtime/shared-runtime-campaign-map-revision.d3bb0209ab3fe3b4.js",
     "web/runtime/shared-runtime-stake-crossing.856b1d39148283c3.js",
     "web/runtime/shared-runtime-contribution-xp.a4c4466ca62fa342.js",
     "web/runtime/shared-runtime-progression.653664f006c3f018.js",
@@ -93,14 +93,14 @@
     "web/runtime/shared-map-units.3823d4dde2d7a3ea.js",
     "web/runtime/shared-map-compiler.39e2ee6ada55ff61.js",
     "web/runtime/shared-map-commands.0bfc0d1f5891d562.js",
-    "web/runtime/campaign.191a5c4d9d09e2d0.js",
+    "web/runtime/campaign.7583cedc3264b244.js",
     "web/runtime/shared-runtime-party-rig.51f29b73aad09a0e.js",
     "web/runtime/party-alias.766fe2b8e383d5c4.js",
     "web/runtime/shared-assets-rebuild-game-adapter.7584136339439b5b.js",
     "web/runtime/HONRO_ACT1_FAR_DATA.06faf0ab5dbfc8a1.js",
     "web/runtime/HONRO_ACT2_FAR_DATA.0de09acbad7a7af8.js",
     "web/runtime/HONRO_STAGE21_PAINTED.48a558c3fa9b5fab.js",
-    "web/runtime/HONRO_PAINTED_PILOTS.df2b8cf950056978.js",
+    "web/runtime/HONRO_PAINTED_PILOTS.9ad02da90b716573.js",
     "web/runtime/shared-assets-monsters-monsters-runtime.368b4c6c02e79e1f.js",
     "web/runtime/shared-assets-actors-actors-runtime.71936d333b9319d2.js",
     "web/runtime/shared-runtime-renderer.27c174d4bbdba94c.js",
@@ -148,7 +148,7 @@
     "web/runtime/shared-runtime-quiet-layered-art.5814efe9e9da7056.js",
     "web/runtime/shared-runtime-stage1-image-first-art.0d634e557dbf4d69.js",
     "web/runtime/shared-runtime-stage2-image-first-art.1f0aafb8813c67c1.js",
-    "web/runtime/shared-runtime-stage3-image-first-art.f5dd165a9b775e63.js",
+    "web/runtime/shared-runtime-stage3-image-first-art.ef1a428393f63aba.js",
     "web/runtime/shared-runtime-stage4-image-first-art.c62f60e0a82017ef.js"
   ],
   "gameOnly": [
@@ -200,9 +200,9 @@
       "sha256": "052987bebcda364ff3b8a71974910f4efbc0e450436069a20b7bd138b4770de5"
     },
     {
-      "path": "web/data/campaign.101a65805ebd389f.json",
-      "bytes": 11092,
-      "sha256": "101a65805ebd389f3b1b1581ac00064fa9c57e9b68bf528b18a38499b52d3027"
+      "path": "web/data/campaign.7a39818361523b96.json",
+      "bytes": 11089,
+      "sha256": "7a39818361523b96f8ad8fdefcc657304290d980d0b0ca42d26c4979ee80ac8a"
     },
     {
       "path": "web/data/chapter-01-assets.b9ce1e6d0084b66c.json",
@@ -230,9 +230,9 @@
       "sha256": "ad251fe0b889b74eaaeec0c3228a9dab17f553b8252c00850a2edbb8a23d6cd4"
     },
     {
-      "path": "web/data/chapter-03.8d818877e17c3e2f.json",
-      "bytes": 32012,
-      "sha256": "8d818877e17c3e2f859bbffecf7cb4c1cc2bd2ee6ea9af99243312c3bbddad2c"
+      "path": "web/data/chapter-03.93ef26f6484deeaf.json",
+      "bytes": 35312,
+      "sha256": "93ef26f6484deeaff1141ca88535cc523e8bc91727aecaba2233603ff1c9b5b2"
     },
     {
       "path": "web/data/chapter-04-assets.37517e5f3dc66819.json",
@@ -545,9 +545,9 @@
       "sha256": "bd10fa99a7eaab14f6e08a5a8e25360125036b76f4f8a52437001731832ff7ae"
     },
     {
-      "path": "web/data/HONRO_PAINTED_PILOTS.e0b308844319a55e.json",
-      "bytes": 6579,
-      "sha256": "e0b308844319a55e1353195029217de01a407f58c5fd51c6a66d52085adc3b09"
+      "path": "web/data/HONRO_PAINTED_PILOTS.ebe28ad802675311.json",
+      "bytes": 6690,
+      "sha256": "ebe28ad802675311b3bf6810ff3b66fc22b851ef9b5ebefb03baa2de91168c11"
     },
     {
       "path": "web/data/HONRO_PARTY_ART.62c967e06066946d.json",
@@ -590,19 +590,19 @@
       "sha256": "7d653f087d5ae12f19ef78cd7356daff1c92be83786ace356b5f118eb8011f6c"
     },
     {
-      "path": "web/entries/game.6b5552c3a6c4c556.html",
+      "path": "web/entries/game.95927ef19ec2fec9.html",
       "bytes": 10293,
-      "sha256": "6b5552c3a6c4c556bb109d1985d1bc315a060a5d06de86afdb67e534b9e46dcf"
+      "sha256": "95927ef19ec2fec97daa5c84a100cb40aff66d1c8bebea129d3f334de584e514"
     },
     {
-      "path": "web/entries/game.7595e938a256ffe0.js",
+      "path": "web/entries/game.a2a15c84c111f137.js",
       "bytes": 17042,
-      "sha256": "7595e938a256ffe010844cc1e5f5965019f3194b95786778af4041bda346328c"
+      "sha256": "a2a15c84c111f13773dfba96d5b437e0e7a08ff6c1a5740b9e04b3f67d7c8e71"
     },
     {
-      "path": "web/entries/workshop.4a8259aa373d793e.js",
+      "path": "web/entries/workshop.ccad866452475ec0.js",
       "bytes": 14572,
-      "sha256": "4a8259aa373d793e7f6adebab3fc09891f6bf725c8b423392924b302216aeb07"
+      "sha256": "ccad866452475ec0a7c6e72e6a735248b3fb3f8670e664f591e1f4cd92a118df"
     },
     {
       "path": "web/graphics/honro_act1_far_data-act3.9814017ddf006228.svg",
@@ -865,6 +865,11 @@
       "sha256": "fa245c9fcb1b735cf2abc4ec2ca7116444f9a7dcf266b0280ea954082822c3db"
     },
     {
+      "path": "web/graphics/honro_painted_pilots-images-stage3SopNear.77638074cdea9256.webp",
+      "bytes": 1040608,
+      "sha256": "77638074cdea9256894a2679745924ca83faeb013be7afe69579b240b728ec78"
+    },
+    {
       "path": "web/graphics/honro_painted_pilots-images-stage4QuietNear.fa5c2a85d11d3648.webp",
       "bytes": 1199714,
       "sha256": "fa5c2a85d11d36486078d97714a84a95926e4b735bb8f0242fafae8586814a29"
@@ -1005,9 +1010,9 @@
       "sha256": "f6a4f459f72ea15fa531cc8c9265d9294cc94398b992030d51f07c3bfe5cf61f"
     },
     {
-      "path": "web/runtime/campaign.191a5c4d9d09e2d0.js",
+      "path": "web/runtime/campaign.7583cedc3264b244.js",
       "bytes": 342,
-      "sha256": "191a5c4d9d09e2d0794c5e10706043cd632c031885706f940a14b95527d3cebd"
+      "sha256": "7583cedc3264b2440c8ffef5f979af6ef773bf57fdf7d98263466c7208125382"
     },
     {
       "path": "web/runtime/engine-core.e798a3b4e89840c3.js",
@@ -1055,9 +1060,9 @@
       "sha256": "680dacb13bf865ccb0d031c87b8d7343404d623b7a2b44f9b2e21132109e6d6a"
     },
     {
-      "path": "web/runtime/HONRO_PAINTED_PILOTS.df2b8cf950056978.js",
-      "bytes": 1432,
-      "sha256": "df2b8cf95005697888b55aed784f9260a8f2ba6bb11587a6a314ba4962ffb80a"
+      "path": "web/runtime/HONRO_PAINTED_PILOTS.9ad02da90b716573.js",
+      "bytes": 1459,
+      "sha256": "9ad02da90b71657339735858cd7de4d5b3ec71eed256efb04cce901f70b7fbfe"
     },
     {
       "path": "web/runtime/HONRO_SPLIT_V1.8b78ccf0dc8a4cec.js",
@@ -1300,9 +1305,9 @@
       "sha256": "8daa3116c163572a242af9655f65dbe1831ea3434263e1f5f484e0eb05f6bbb9"
     },
     {
-      "path": "web/runtime/shared-runtime-campaign-map-revision.af89be865f2479b7.js",
+      "path": "web/runtime/shared-runtime-campaign-map-revision.d3bb0209ab3fe3b4.js",
       "bytes": 2259,
-      "sha256": "af89be865f2479b7c1fe0158c35e0deccdfd51cd87c0f45505525b567cdb0253"
+      "sha256": "d3bb0209ab3fe3b4df9f669f026a0b1c55275172cc639aa9baad4723c4fb3abe"
     },
     {
       "path": "web/runtime/shared-runtime-cave-enclosure.75f96a4cea42e188.js",
@@ -1620,9 +1625,9 @@
       "sha256": "c38ed5ac3c3bdeb80fe623249e106e8de8bf7cfa25236c5045a7caaf91dab6d3"
     },
     {
-      "path": "web/runtime/shared-runtime-stage3-image-first-art.f5dd165a9b775e63.js",
-      "bytes": 2856,
-      "sha256": "f5dd165a9b775e633936cab437781e981872b06b819edeeed7eb27db6afd2fce"
+      "path": "web/runtime/shared-runtime-stage3-image-first-art.ef1a428393f63aba.js",
+      "bytes": 2901,
+      "sha256": "ef1a428393f63aba60332d959bf4c6a57238748c37cd1acf1a5181f3bf4268da"
     },
     {
       "path": "web/runtime/shared-runtime-stage3-image-first-roster.e03ffa178be85904.js",
@@ -1887,6 +1892,56 @@
   ],
   "previousFiles": [
     {
+      "path": "web/data/campaign.101a65805ebd389f.json",
+      "bytes": 11092,
+      "sha256": "101a65805ebd389f3b1b1581ac00064fa9c57e9b68bf528b18a38499b52d3027"
+    },
+    {
+      "path": "web/data/chapter-03.8d818877e17c3e2f.json",
+      "bytes": 32012,
+      "sha256": "8d818877e17c3e2f859bbffecf7cb4c1cc2bd2ee6ea9af99243312c3bbddad2c"
+    },
+    {
+      "path": "web/data/HONRO_PAINTED_PILOTS.e0b308844319a55e.json",
+      "bytes": 6579,
+      "sha256": "e0b308844319a55e1353195029217de01a407f58c5fd51c6a66d52085adc3b09"
+    },
+    {
+      "path": "web/entries/game.6b5552c3a6c4c556.html",
+      "bytes": 10293,
+      "sha256": "6b5552c3a6c4c556bb109d1985d1bc315a060a5d06de86afdb67e534b9e46dcf"
+    },
+    {
+      "path": "web/entries/game.7595e938a256ffe0.js",
+      "bytes": 17042,
+      "sha256": "7595e938a256ffe010844cc1e5f5965019f3194b95786778af4041bda346328c"
+    },
+    {
+      "path": "web/entries/workshop.4a8259aa373d793e.js",
+      "bytes": 14572,
+      "sha256": "4a8259aa373d793e7f6adebab3fc09891f6bf725c8b423392924b302216aeb07"
+    },
+    {
+      "path": "web/runtime/campaign.191a5c4d9d09e2d0.js",
+      "bytes": 342,
+      "sha256": "191a5c4d9d09e2d0794c5e10706043cd632c031885706f940a14b95527d3cebd"
+    },
+    {
+      "path": "web/runtime/HONRO_PAINTED_PILOTS.df2b8cf950056978.js",
+      "bytes": 1432,
+      "sha256": "df2b8cf95005697888b55aed784f9260a8f2ba6bb11587a6a314ba4962ffb80a"
+    },
+    {
+      "path": "web/runtime/shared-runtime-campaign-map-revision.af89be865f2479b7.js",
+      "bytes": 2259,
+      "sha256": "af89be865f2479b7c1fe0158c35e0deccdfd51cd87c0f45505525b567cdb0253"
+    },
+    {
+      "path": "web/runtime/shared-runtime-stage3-image-first-art.f5dd165a9b775e63.js",
+      "bytes": 2856,
+      "sha256": "f5dd165a9b775e633936cab437781e981872b06b819edeeed7eb27db6afd2fce"
+    },
+    {
       "path": "web/data/campaign.f76083ff733cb6cf.json",
       "bytes": 11092,
       "sha256": "f76083ff733cb6cf95762d46228f096adc8ea464458abe8fe47b5a3ad9c5dca9"
@@ -1915,69 +1970,61 @@
       "path": "web/runtime/campaign.dff1fd0cb1989597.js",
       "bytes": 342,
       "sha256": "dff1fd0cb1989597623147bd07285f05e8f189d9db07711e815a552dbb24daa1"
-    },
-    {
-      "path": "web/data/campaign.5a47a8f418671270.json",
-      "bytes": 11095,
-      "sha256": "5a47a8f418671270458629dcbcaad1b9e05375fc87b5775142d2adf12efb743e"
-    },
-    {
-      "path": "web/data/chapter-02.df737e654410e8c9.json",
-      "bytes": 37450,
-      "sha256": "df737e654410e8c9056c610d8a775ac34979cde6ea5b9888a3827c0fa045218b"
-    },
-    {
-      "path": "web/data/HONRO_PAINTED_PILOTS.f604e1ea5caf3f15.json",
-      "bytes": 6468,
-      "sha256": "f604e1ea5caf3f15e4ba8faff7d498259a345ade482bea9b8f4931a033c534ac"
-    },
-    {
-      "path": "web/entries/game.ecc953129ccfdf46.html",
-      "bytes": 10293,
-      "sha256": "ecc953129ccfdf4633daddd3e7d3406bf4f890d79ff19b90a1e544dffa21c64f"
-    },
-    {
-      "path": "web/entries/game.eee38df968b79a91.js",
-      "bytes": 17042,
-      "sha256": "eee38df968b79a91bf84ae8c4774cd912150f82e5b2ae3bc98c3b091e0fb2252"
-    },
-    {
-      "path": "web/entries/workshop.201377587999d65b.js",
-      "bytes": 14572,
-      "sha256": "201377587999d65bc208254829c2a3abd08caf759ea708b2fb0a36737410ce25"
-    },
-    {
-      "path": "web/runtime/campaign.4a3a180bf16b388c.js",
-      "bytes": 342,
-      "sha256": "4a3a180bf16b388ccd16caed55ba40a4a6b82bb1a02c114141b2e75471297fb3"
-    },
-    {
-      "path": "web/runtime/HONRO_PAINTED_PILOTS.077b4cae00b1e443.js",
-      "bytes": 1405,
-      "sha256": "077b4cae00b1e443508c7c7ba7b3132bb9bf77969ab04c674bc246525c7e5e1a"
-    },
-    {
-      "path": "web/runtime/shared-runtime-campaign-map-revision.09990bdb7aa6fb83.js",
-      "bytes": 2259,
-      "sha256": "09990bdb7aa6fb830313f0c29853fa4a2be80e41c174f15d0fbad55df60faec2"
-    },
-    {
-      "path": "web/runtime/shared-runtime-stage2-airborne.09d2c7c6630c80e0.js",
-      "bytes": 6457,
-      "sha256": "09d2c7c6630c80e0b7f8985e1d598717110b5446fb9606e3c4cde6cc31a19236"
-    },
-    {
-      "path": "web/runtime/shared-runtime-stage2-image-first-art.8fdbc0233734279c.js",
-      "bytes": 2848,
-      "sha256": "8fdbc0233734279c38db6eee8fd5152e5ff7b5d84178fca8b24780846796de14"
-    },
-    {
-      "path": "web/runtime/shared-runtime-stage2-image-first-roster.a3b9cdfe91858c3d.js",
-      "bytes": 819,
-      "sha256": "a3b9cdfe91858c3daa1f7aa17184068d4ec5c0c2bf34cdc9263e0325b76caaf0"
     }
   ],
   "previousGenerations": [
+    [
+      {
+        "path": "web/data/campaign.101a65805ebd389f.json",
+        "bytes": 11092,
+        "sha256": "101a65805ebd389f3b1b1581ac00064fa9c57e9b68bf528b18a38499b52d3027"
+      },
+      {
+        "path": "web/data/chapter-03.8d818877e17c3e2f.json",
+        "bytes": 32012,
+        "sha256": "8d818877e17c3e2f859bbffecf7cb4c1cc2bd2ee6ea9af99243312c3bbddad2c"
+      },
+      {
+        "path": "web/data/HONRO_PAINTED_PILOTS.e0b308844319a55e.json",
+        "bytes": 6579,
+        "sha256": "e0b308844319a55e1353195029217de01a407f58c5fd51c6a66d52085adc3b09"
+      },
+      {
+        "path": "web/entries/game.6b5552c3a6c4c556.html",
+        "bytes": 10293,
+        "sha256": "6b5552c3a6c4c556bb109d1985d1bc315a060a5d06de86afdb67e534b9e46dcf"
+      },
+      {
+        "path": "web/entries/game.7595e938a256ffe0.js",
+        "bytes": 17042,
+        "sha256": "7595e938a256ffe010844cc1e5f5965019f3194b95786778af4041bda346328c"
+      },
+      {
+        "path": "web/entries/workshop.4a8259aa373d793e.js",
+        "bytes": 14572,
+        "sha256": "4a8259aa373d793e7f6adebab3fc09891f6bf725c8b423392924b302216aeb07"
+      },
+      {
+        "path": "web/runtime/campaign.191a5c4d9d09e2d0.js",
+        "bytes": 342,
+        "sha256": "191a5c4d9d09e2d0794c5e10706043cd632c031885706f940a14b95527d3cebd"
+      },
+      {
+        "path": "web/runtime/HONRO_PAINTED_PILOTS.df2b8cf950056978.js",
+        "bytes": 1432,
+        "sha256": "df2b8cf95005697888b55aed784f9260a8f2ba6bb11587a6a314ba4962ffb80a"
+      },
+      {
+        "path": "web/runtime/shared-runtime-campaign-map-revision.af89be865f2479b7.js",
+        "bytes": 2259,
+        "sha256": "af89be865f2479b7c1fe0158c35e0deccdfd51cd87c0f45505525b567cdb0253"
+      },
+      {
+        "path": "web/runtime/shared-runtime-stage3-image-first-art.f5dd165a9b775e63.js",
+        "bytes": 2856,
+        "sha256": "f5dd165a9b775e633936cab437781e981872b06b819edeeed7eb27db6afd2fce"
+      }
+    ],
     [
       {
         "path": "web/data/campaign.f76083ff733cb6cf.json",
@@ -2008,68 +2055,6 @@
         "path": "web/runtime/campaign.dff1fd0cb1989597.js",
         "bytes": 342,
         "sha256": "dff1fd0cb1989597623147bd07285f05e8f189d9db07711e815a552dbb24daa1"
-      }
-    ],
-    [
-      {
-        "path": "web/data/campaign.5a47a8f418671270.json",
-        "bytes": 11095,
-        "sha256": "5a47a8f418671270458629dcbcaad1b9e05375fc87b5775142d2adf12efb743e"
-      },
-      {
-        "path": "web/data/chapter-02.df737e654410e8c9.json",
-        "bytes": 37450,
-        "sha256": "df737e654410e8c9056c610d8a775ac34979cde6ea5b9888a3827c0fa045218b"
-      },
-      {
-        "path": "web/data/HONRO_PAINTED_PILOTS.f604e1ea5caf3f15.json",
-        "bytes": 6468,
-        "sha256": "f604e1ea5caf3f15e4ba8faff7d498259a345ade482bea9b8f4931a033c534ac"
-      },
-      {
-        "path": "web/entries/game.ecc953129ccfdf46.html",
-        "bytes": 10293,
-        "sha256": "ecc953129ccfdf4633daddd3e7d3406bf4f890d79ff19b90a1e544dffa21c64f"
-      },
-      {
-        "path": "web/entries/game.eee38df968b79a91.js",
-        "bytes": 17042,
-        "sha256": "eee38df968b79a91bf84ae8c4774cd912150f82e5b2ae3bc98c3b091e0fb2252"
-      },
-      {
-        "path": "web/entries/workshop.201377587999d65b.js",
-        "bytes": 14572,
-        "sha256": "201377587999d65bc208254829c2a3abd08caf759ea708b2fb0a36737410ce25"
-      },
-      {
-        "path": "web/runtime/campaign.4a3a180bf16b388c.js",
-        "bytes": 342,
-        "sha256": "4a3a180bf16b388ccd16caed55ba40a4a6b82bb1a02c114141b2e75471297fb3"
-      },
-      {
-        "path": "web/runtime/HONRO_PAINTED_PILOTS.077b4cae00b1e443.js",
-        "bytes": 1405,
-        "sha256": "077b4cae00b1e443508c7c7ba7b3132bb9bf77969ab04c674bc246525c7e5e1a"
-      },
-      {
-        "path": "web/runtime/shared-runtime-campaign-map-revision.09990bdb7aa6fb83.js",
-        "bytes": 2259,
-        "sha256": "09990bdb7aa6fb830313f0c29853fa4a2be80e41c174f15d0fbad55df60faec2"
-      },
-      {
-        "path": "web/runtime/shared-runtime-stage2-airborne.09d2c7c6630c80e0.js",
-        "bytes": 6457,
-        "sha256": "09d2c7c6630c80e0b7f8985e1d598717110b5446fb9606e3c4cde6cc31a19236"
-      },
-      {
-        "path": "web/runtime/shared-runtime-stage2-image-first-art.8fdbc0233734279c.js",
-        "bytes": 2848,
-        "sha256": "8fdbc0233734279c38db6eee8fd5152e5ff7b5d84178fca8b24780846796de14"
-      },
-      {
-        "path": "web/runtime/shared-runtime-stage2-image-first-roster.a3b9cdfe91858c3d.js",
-        "bytes": 819,
-        "sha256": "a3b9cdfe91858c3daa1f7aa17184068d4ec5c0c2bf34cdc9263e0325b76caaf0"
       }
     ]
   ]

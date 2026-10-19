@@ -1,33 +1,22 @@
-/** Approved whole ferry painting. Uniform world transform, source-measured
- * walking faces, independent far. No old roof/ground coordinate constraints. */
-const SCALE=2.2,WIDTH=1944,HEIGHT=809;
+import{imageSpace,sourceSteps}from'./sop-image-space.mjs';
 const profiles={
- 'ferry-ground':[[0,688],[150,720],[350,743],[550,761],[720,741],[840,634],[885,516],[975,517],[1080,543],[1190,568],[1280,567],[1390,526],[1490,490],[1550,456],[1615,423],[1660,401],[1740,399],[1860,405],[1944,410]],
- 'ferry-side-gangway':[[0,550],[90,554],[185,563],[240,563],[280,560]],
- 'dock-west':[[178,588],[250,597],[360,605],[470,607],[555,602],[640,588]],
- 'dock-mid':[[592,550],[650,537],[740,519],[825,504],[879,505]],
- 'dock-east':[[850,507],[885,509],[930,517]],
- 'ferry-shoal':[[568,655],[605,659],[640,671],[675,681]],
- 'cargo-step-1':[[1618,382],[1650,382],[1680,384]],
- 'cargo-step-2':[[1795,371],[1830,370],[1870,373]],
- 'warehouse-roof':[[1545,291],[1580,284],[1618,252],[1680,251],[1730,247],[1758,239],[1775,258],[1808,294],[1820,298]]
+ 'ferry-ground':[[0,688],[180,688],[230,619],[350,619],[550,628],[700,618],[850,626],[1000,647],[1160,661],[1320,658],[1460,636],[1600,619],[1740,578],[1870,552],[1983,508]],
+ 'dock-west':[[0,598],[80,605],[150,608],[200,609]],
+ 'bank-middle':[[980,543],[1100,532],[1220,518],[1300,507],[1380,504]],
+ 'ridge-walk':[[820,396],[940,421],[1080,438],[1200,449],[1230,455],[1280,480],[1300,497]],
+ 'warehouse-yard':[[1365,420],[1450,418],[1560,419],[1710,425],[1810,428],[1845,430]],
+ 'cargo-step-1':[[1540,414],[1595,417]],
+ 'warehouse-roof':[[1435,337],[1470,329],[1510,297],[1590,286],[1680,267],[1720,248],[1750,286],[1775,326],[1790,337]],
+ 'sop3-bank-step':[], 'sop3-yard-step':[], 'cargo-step-2':[]
 };
-const points=a=>a.map(([x,y])=>({x:x*SCALE,y:y*SCALE}));
-function at(x,id='ferry-ground'){const ps=profiles[id];for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i];if(x>=a[0]&&x<=b[0])return(a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]))*SCALE;}throw Error('Stage3 source contact outside '+id+' '+x);}
-const contact=(x,support='ferry-ground')=>({x:x*SCALE,y:at(x,support),support});
-const air=(x,y)=>({x:x*SCALE,y:y*SCALE});
-export function applyStage3ImageFirst(project){const s=project.stages.find(s=>s.metadata?.stageId===3);if(!s)return project;const prior=new Map(s.terrains.map(t=>[t.id,t]));s.width=WIDTH*SCALE;s.height=HEIGHT*SCALE;s.playBounds={left:0,top:0,right:s.width,bottom:s.height};s.terrainBounds={...s.playBounds};s.terrainDomainVersion=1;s.camera={...s.camera,focusBounds:{left:0,top:-1000,right:s.width,bottom:s.height}};
- s.terrains=Object.entries(profiles).map(([id,line])=>{const floor=id==='ferry-ground',wood=/^dock|^cargo-step-2$|roof/.test(id),soil=floor||id==='ferry-side-gangway';return{...prior.get(id),id,name:prior.get(id)?.name||id,type:'solid',layer:'terrain',baseMaterial:wood?'wood':soil?'soil':'rock',oneWay:!floor,breakable:false,points:points(floor?[...line,[WIDTH,HEIGHT],[0,HEIGHT]]:[...line,...line.toReversed().map(([x,y])=>[x,y+10])]),detail:{spacing:20,roughness:0,optimizeEpsilon:0,seed:3},properties:{...prior.get(id)?.properties,surfaceKind:wood?'wood':soil?'soil':'rock',honroWalkEdges:line.slice(1).map((_,i)=>i)}};});
- // Posts, rocks behind the path and the intact house are painted scenery;
- // only their exposed walking faces receive contacts. No full solid wall.
- s.elements=[];
- const poses={'p-archer':contact(85,'ferry-side-gangway'),'p-mage':contact(145,'ferry-side-gangway'),'npc-hwigyeom':contact(400,'dock-west'),'foe-0':contact(640,'dock-mid'),'foe-3':contact(900),'foe-1':air(760,385),'foe-4':air(510,425),'foe-2':contact(1535),'foe-5':contact(1725,'warehouse-roof'),'midboss-stage3':contact(630,'ferry-shoal')};
- for(const u of s.units){const p=poses[u.id];if(!p)continue;Object.assign(u,{x:p.x,y:p.y});if(Object.hasOwn(u,'spawnX'))u.spawnX=p.x;if(Object.hasOwn(u,'spawnY'))u.spawnY=p.y;}
- s.anchors={...s.anchors,start:poses['p-archer'],ferry:contact(520,'dock-west'),mudflat:contact(630,'ferry-shoal'),cargo:contact(1470),ledger:contact(1650,'cargo-step-1'),roof:contact(1725,'warehouse-roof'),exit:contact(1895)};
- const markers=[contact(120,'ferry-side-gangway'),contact(430,'dock-west'),contact(875,'dock-east'),contact(1000),contact(1240),contact(1670),contact(1900)];for(const[i,m]of s.markers.entries()){if(i<markers.length&&m.id!=='ledger')Object.assign(m,markers[i]);if(m.id==='ledger')Object.assign(m,s.anchors.ledger);if(m.id==='habitat-3-0')Object.assign(m,contact(1450));if(m.id==='habitat-3-1')Object.assign(m,contact(530,'dock-west'));}
- const progress={'midboss-stage3-seen':530,'dock-beasts':570,transfer:1440};for(const e of s.events){if(e.when?.progress!==undefined)e.when.progress=progress[e.id]*SCALE;if(e.id==='dock-beasts')Object.assign(e.action,{...contact(1040),spacing:180,maxDistance:260});}
- const originalWater=s.materials.find(m=>m.id==='ferry-water');s.materials=[{...originalWater,id:'ferry-water',kind:'water',support:'ferry-ground',terrainId:'ferry-ground',conductive:true,x1:0,x2:760*SCALE,surfaceY:642*SCALE,depth:90*SCALE,reference:750*SCALE,step:24,alpha:.2,surface:undefined,bottom:undefined,points:undefined}];
- s.routes=[s.anchors.start,contact(260,'ferry-side-gangway'),contact(360,'dock-west'),contact(590,'dock-west'),contact(660,'dock-mid'),contact(875,'dock-east'),contact(1000),contact(1240),contact(1470),s.anchors.ledger,s.anchors.exit];s.design.act1Scene={version:2,scenery:[],rocks:[],replaced:[]};delete s.design.stage3Hanok;delete s.design.forestChoice;
- s.design.stage3ImageFirst={storyThread:{from:air(1588,313),at:air(1620,315),to:air(1673,313),tail:air(1622,330)},revision:1,quietLayers:1,far:'quietFar',image:'stage3QuietNear',source:{width:WIDTH,height:HEIGHT},transform:{x:0,y:0,scale:SCALE},artBounds:{left:0,top:0,right:s.width,bottom:s.height},runtimeRoster:{'foe-0-cluster':contact(1090),'foe-3-cluster':contact(1200),'foe-1-cluster':air(1340,255),'foe-4-cluster':air(1110,370),'foe-2-cluster':contact(1640),'foe-5-cluster':contact(1885)},routes:{main:s.routes,roof:[contact(1770),contact(1820,'cargo-step-2'),contact(1810,'warehouse-roof'),contact(1725,'warehouse-roof')]},waterClip:points([[0,682],[200,674],[300,690],[430,709],[620,730],[725,740],[640,770],[350,752],[130,724],[0,735]])};
- Object.assign(s.initialState,{width:s.width,height:s.height,routePoints:s.routes});delete s.initialState.honroStage3HanokRevision;return project;
+const rocks=[{ref:[1035,663],top:5,polygon:[[982,673],[1000,665],[1035,663],[1067,670],[1094,691],[1100,725],[1080,750],[1015,753],[975,742],[966,710]]},{ref:[290,623],top:4,polygon:[[265,630],[290,623],[310,625],[326,636],[334,649],[324,663],[307,678],[286,685],[261,682],[254,665],[254,645]]}];
+const steps=sourceSteps(profiles,rocks,[['sop3-bank-step',0,.65,[1000,590]],['sop3-yard-step',1,.8,[1350,455]],['cargo-step-2',1,.9,[1435,365]]]);
+export function applyStage3ImageFirst(project){const s=project.stages.find(s=>s.metadata?.stageId===3);if(!s)return project;const q=imageSpace(s,{width:1983,height:793,worldWidth:7000,profiles,floor:'ferry-ground',wood:['dock-west','warehouse-roof']}),{scale:S,contact:c,air}=q;steps.apply(s,q);
+ q.poses({'p-archer':c(45,'dock-west'),'p-mage':c(120,'dock-west'),'npc-hwigyeom':c(390),'foe-0':c(650),'foe-3':c(930),'foe-1':air(600,330),'foe-4':air(900,240),'foe-2':c(1420,'warehouse-yard'),'foe-5':c(1630,'warehouse-roof'),'midboss-stage3':c(790)});
+ s.anchors={...s.anchors,start:c(45,'dock-west'),ferry:c(150,'dock-west'),mudflat:c(650),cargo:c(1200,'bank-middle'),ledger:c(1560,'cargo-step-1'),roof:c(1590,'warehouse-roof'),exit:c(1930)};
+ const marks=[c(100,'dock-west'),c(430),c(875),c(1000),c(1240),c(1670,'warehouse-yard'),c(1900)];for(const[i,m]of s.markers.entries()){if(i<marks.length&&m.id!=='ledger')Object.assign(m,marks[i]);if(m.id==='ledger')Object.assign(m,s.anchors.ledger);if(m.id==='habitat-3-0')Object.assign(m,c(1140));if(m.id==='habitat-3-1')Object.assign(m,air(1100,280));}
+ const progress={'midboss-stage3-seen':530,'dock-beasts':570,transfer:1200};for(const e of s.events){if(e.when?.progress!==undefined)e.when.progress=progress[e.id]*S;if(e.id==='dock-beasts')Object.assign(e.action,{...c(1100),spacing:180,maxDistance:260});}
+ const water=s.materials.find(m=>m.id==='ferry-water');s.materials=[{...water,id:'ferry-water',kind:'water',support:'ferry-ground',terrainId:'ferry-ground',conductive:true,x1:0,x2:210*S,surfaceY:646*S,depth:80*S,reference:646*S,step:24,alpha:.2,surface:undefined,bottom:undefined,points:undefined}];
+ const main=[c(45,'dock-west'),c(180,'dock-west'),c(280),c(650),c(950),c(1000,'sop3-bank-step'),c(1010,'bank-middle'),c(1300,'bank-middle'),c(1350,'sop3-yard-step'),c(1410,'warehouse-yard'),s.anchors.ledger];q.finish(main);delete s.design.stage3Hanok;delete s.design.forestChoice;
+ s.design.stage3ImageFirst={...q.meta('stage3SopNear',710),revision:3,storyThread:{from:air(1495,349),at:air(1540,350),to:air(1595,348),tail:air(1542,371)},stepSprites:steps.sprites,runtimeRoster:{'foe-0-cluster':c(1000),'foe-3-cluster':c(1250),'foe-1-cluster':air(1110,280),'foe-4-cluster':air(1730,95),'foe-2-cluster':c(1750,'warehouse-yard'),'foe-5-cluster':c(1930)},routes:{main,roof:[c(1410,'warehouse-yard'),c(1435,'cargo-step-2'),c(1470,'warehouse-roof'),c(1590,'warehouse-roof')]},waterClip:q.points([[0,645],[180,656],[220,672],[400,700],[750,729],[850,752],[785,793],[0,793]])};delete s.initialState.honroStage3HanokRevision;return project;
 }
