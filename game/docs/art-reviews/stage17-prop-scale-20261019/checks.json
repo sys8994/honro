@@ -1,0 +1,306 @@
+{
+  "author": {
+    "factor": 0.55,
+    "props": [
+      {
+        "id": "s17-art-entry-timber-store",
+        "authoredScale": 1.04,
+        "displayScale": 0.5720000000000001,
+        "x": 1120,
+        "y": 4300,
+        "support": {
+          "terrainId": "act2-floor",
+          "x": 1120,
+          "y": 4300
+        }
+      },
+      {
+        "id": "s17-art-west-tool-bench",
+        "authoredScale": 1.02,
+        "displayScale": 0.561,
+        "x": 2030,
+        "y": 4413,
+        "support": {
+          "terrainId": "ws-west-work-buttress",
+          "x": 2030,
+          "y": 4413
+        }
+      },
+      {
+        "id": "s17-art-axle-tool-bench",
+        "authoredScale": 1,
+        "displayScale": 0.55,
+        "x": 8850,
+        "y": 4580,
+        "support": {
+          "terrainId": "ws-axle-footing",
+          "x": 8850,
+          "y": 4580
+        }
+      },
+      {
+        "id": "s17-art-notes-work-bench",
+        "authoredScale": 0.92,
+        "displayScale": 0.5060000000000001,
+        "x": 10320,
+        "y": 4780,
+        "support": {
+          "terrainId": "act2-floor",
+          "x": 10320,
+          "y": 4780
+        }
+      },
+      {
+        "id": "s17-art-lower-oil-lamp",
+        "authoredScale": 1.05,
+        "displayScale": 0.5775000000000001,
+        "x": 4350,
+        "y": 6093,
+        "support": {
+          "terrainId": "act2-floor",
+          "x": 4350,
+          "y": 6093
+        }
+      },
+      {
+        "id": "s17-art-hoist-oil-lamp",
+        "authoredScale": 1.1,
+        "displayScale": 0.6050000000000001,
+        "x": 6580,
+        "y": 4610.8,
+        "support": {
+          "terrainId": "ws-east-hoist-buttress",
+          "x": 6580,
+          "y": 4610.8
+        }
+      },
+      {
+        "id": "s17-art-axle-oil-lamp",
+        "authoredScale": 0.85,
+        "displayScale": 0.4675,
+        "x": 5790,
+        "y": 4820,
+        "support": {
+          "terrainId": "ws-hoist-service-bridge",
+          "x": 5790,
+          "y": 4820
+        }
+      }
+    ],
+    "changed": [
+      {
+        "path": "/elements/15/scale",
+        "before": 1.04,
+        "after": 0.5720000000000001
+      },
+      {
+        "path": "/elements/16/scale",
+        "before": 1.02,
+        "after": 0.561
+      },
+      {
+        "path": "/elements/17/scale",
+        "before": 1,
+        "after": 0.55
+      },
+      {
+        "path": "/elements/18/scale",
+        "before": 0.92,
+        "after": 0.5060000000000001
+      },
+      {
+        "path": "/elements/19/scale",
+        "before": 1.05,
+        "after": 0.5775000000000001
+      },
+      {
+        "path": "/elements/20/scale",
+        "before": 1.1,
+        "after": 0.6050000000000001
+      },
+      {
+        "path": "/elements/21/scale",
+        "before": 0.85,
+        "after": 0.4675
+      },
+      {
+        "path": "/design/space/lights/0/x",
+        "before": 4415.1,
+        "after": 4385.805
+      },
+      {
+        "path": "/design/space/lights/0/y",
+        "before": 5898.75,
+        "after": 5986.1625
+      },
+      {
+        "path": "/design/space/lights/1/x",
+        "before": 6648.2,
+        "after": 6617.51
+      },
+      {
+        "path": "/design/space/lights/1/y",
+        "before": 4407.3,
+        "after": 4498.875
+      },
+      {
+        "path": "/design/space/lights/2/x",
+        "before": 5842.7,
+        "after": 5818.985
+      },
+      {
+        "path": "/design/space/lights/2/y",
+        "before": 4662.75,
+        "after": 4733.5125
+      }
+    ],
+    "twiceIdentical": true,
+    "other29StagesExact": true,
+    "allAssetVectorsExact": true,
+    "terrainUnitsQuestsIdsRevisionsExact": true,
+    "lightAnchorsMatchDisplayScale": true
+  },
+  "build": {
+    "buildCount": 1,
+    "changedActiveFiles": [
+      "web/data/campaign.5849e2989e820705.json",
+      "web/data/chapter-17.7d2fa0016ccc7551.json",
+      "web/entries/game.161cf1db82b13369.js",
+      "web/entries/game.b002a750474345b2.html",
+      "web/entries/workshop.0110ef3c05050007.js",
+      "web/runtime/campaign.858fcf0b152b29d8.js"
+    ],
+    "other59ChapterAndAssetFilesExact": true,
+    "optionalModulesExact": true
+  },
+  "browser": {
+    "stage": 17,
+    "viewport": {
+      "w": 3000,
+      "h": 1869.1875,
+      "d": 1
+    },
+    "camera": {
+      "x": 2500,
+      "y": 5000,
+      "scale": 0.6
+    },
+    "hero": {
+      "id": "p-archer",
+      "x": 1350,
+      "y": 4324,
+      "h": 92,
+      "grounded": true
+    },
+    "props": [
+      {
+        "id": "s17-art-entry-timber-store",
+        "scale": 0.5720000000000001,
+        "x": 1120,
+        "y": 4300,
+        "support": {
+          "terrainId": "act2-floor",
+          "x": 1120,
+          "y": 4300
+        }
+      },
+      {
+        "id": "s17-art-west-tool-bench",
+        "scale": 0.561,
+        "x": 2030,
+        "y": 4413,
+        "support": {
+          "terrainId": "ws-west-work-buttress",
+          "x": 2030,
+          "y": 4413
+        }
+      },
+      {
+        "id": "s17-art-axle-tool-bench",
+        "scale": 0.55,
+        "x": 8850,
+        "y": 4580,
+        "support": {
+          "terrainId": "ws-axle-footing",
+          "x": 8850,
+          "y": 4580
+        }
+      },
+      {
+        "id": "s17-art-notes-work-bench",
+        "scale": 0.5060000000000001,
+        "x": 10320,
+        "y": 4780,
+        "support": {
+          "terrainId": "act2-floor",
+          "x": 10320,
+          "y": 4780
+        }
+      },
+      {
+        "id": "s17-art-lower-oil-lamp",
+        "scale": 0.5775000000000001,
+        "x": 4350,
+        "y": 6093,
+        "support": {
+          "terrainId": "act2-floor",
+          "x": 4350,
+          "y": 6093
+        }
+      },
+      {
+        "id": "s17-art-hoist-oil-lamp",
+        "scale": 0.6050000000000001,
+        "x": 6580,
+        "y": 4610.8,
+        "support": {
+          "terrainId": "ws-east-hoist-buttress",
+          "x": 6580,
+          "y": 4610.8
+        }
+      },
+      {
+        "id": "s17-art-axle-oil-lamp",
+        "scale": 0.4675,
+        "x": 5790,
+        "y": 4820,
+        "support": {
+          "terrainId": "ws-hoist-service-bridge",
+          "x": 5790,
+          "y": 4820
+        }
+      }
+    ],
+    "lights": [
+      {
+        "id": "s17-light-lower-oil-lamp",
+        "stage17Art": true,
+        "kind": "oil",
+        "x": 4385.805,
+        "y": 5986.1625,
+        "radius": 320,
+        "color": "#bd9b62"
+      },
+      {
+        "id": "s17-light-hoist-oil-lamp",
+        "stage17Art": true,
+        "kind": "oil",
+        "x": 6617.51,
+        "y": 4498.875,
+        "radius": 320,
+        "color": "#bd9b62"
+      },
+      {
+        "id": "s17-light-axle-oil-lamp",
+        "stage17Art": true,
+        "kind": "oil",
+        "x": 5818.985,
+        "y": 4733.5125,
+        "radius": 480,
+        "color": "#bd9b62"
+      }
+    ],
+    "errors": [],
+    "scope": "One actual Game render at 3000x2000 and zoom .6; active actor placed on the existing entry floor for visual ratio only. No combat/traversal/mobile suite."
+  }
+}
