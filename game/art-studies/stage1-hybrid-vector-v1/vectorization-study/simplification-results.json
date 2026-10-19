@@ -1,0 +1,60 @@
+{
+  "source": "balanced-48.svg",
+  "source_sha256": "2fef3f022e59f8c6cb0f1c5dd8ae2387de4525c6a83b53dc535701e35373789f",
+  "output": "balanced-48-simplified.svg",
+  "settings": {
+    "flatten_chord_bound": 0.2,
+    "topology_preserving_rdp_tolerance": 1.75,
+    "output_decimal_places": 2,
+    "combined_geometric_budget": 1.9570710678118655
+  },
+  "libraries": {
+    "svgpathtools": "1.7.2",
+    "shapely": "2.2.0",
+    "geos": "3.14.1"
+  },
+  "before": {
+    "raw_bytes": 3437814,
+    "gzip9_bytes": 1136532,
+    "path_count": 3119,
+    "subpath_count": 4234,
+    "curve_count": 129374,
+    "raster_reference_count": 0
+  },
+  "after": {
+    "raw_bytes": 1406226,
+    "gzip9_bytes": 467000,
+    "path_count": 3119,
+    "subpath_count": 4234,
+    "curve_count": 27005,
+    "raster_reference_count": 0
+  },
+  "operations": {
+    "simplified_paths": 2839,
+    "retained_original_paths": 280,
+    "sampled_vertices": 144230,
+    "output_line_segments": 67009
+  },
+  "retained_original_reasons": {
+    "degenerate sampled ring; original path retained": 269,
+    "sampled ring not a valid polygon; original path retained": 10,
+    "invalid compound geometry; original path retained": 1
+  },
+  "preservation": "Original path order, explicit subpath count, winding, transforms, SVG viewport and paint attributes retained. Invalid polygon representations are kept as original Beziers; no repair, buffer, dropped holes or palette changes.",
+  "limits": "GEOS preserves topology of the chord-bounded polygon representation. This is not a formal certification of the exact original spline topology at subpixel contacts, nor a shared-boundary simplifier across separate colored paths. No unsupported cubic refitter or generic corner-rounding filter is used.",
+  "comparison": {
+    "file": "simplification-comparison.png",
+    "browser": "Chromium 154.0.8037.57",
+    "full_scale": 0.5,
+    "crop_scale": 1,
+    "crop_source_bounds": [
+      270,
+      380,
+      887,
+      250
+    ],
+    "page_errors": []
+  },
+  "visual_assessment": "Actual Chromium comparison inspected at the same 0.5x full scale and 1:1 crop. Main silhouettes, roots, granite and intermediate shade masses remain close to the previous 48-color sample; some fine edges are straighter/more angular. Original floating trace fragments remain, and this pass does not claim to remove them.",
+  "decision": "Single fixed-setting pass finished. Raw output remains 1,406,226 bytes (gzip 467,000), above a few-hundred-KB raw target; no further tolerance search, curve refit, retrace, palette experiment or map integration."
+}
