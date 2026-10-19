@@ -1,0 +1,217 @@
+{
+  "stage": 2,
+  "implementationCommit": "ee560ebd466060f3bfa0f60eadc138d45b74bda9",
+  "referenceCommit": "ffcbc54a151b2224945d70c2d55f50a83dc03491",
+  "sourceAssetSha256": "e07cce6480a96b206bce566c4cc56a815258e7d525d5c761f74ce73a737d9700",
+  "description": "Three actual Chromium captures, PNG to lossless WebP without resizing or pixel changes. Normal/debug identical camera. New cliff geometry only Stage2. No master/Pages changes.",
+  "files": [
+    {
+      "file": "stage2-high-cliff-01-normal.webp",
+      "sourceCapture": "stage2-high-cliff-01-normal.png",
+      "width": 1440,
+      "height": 960,
+      "bytes": 986568,
+      "losslessPixelMatch": true,
+      "decodedRgbaSha256": "77ebd24b1221ffc8c694c3b7f7496f825f473ea30e354f90c662976219f7c28d"
+    },
+    {
+      "file": "stage2-high-cliff-02-same-camera-debug.webp",
+      "sourceCapture": "stage2-high-cliff-02-same-camera-debug.png",
+      "width": 1440,
+      "height": 960,
+      "bytes": 1000930,
+      "losslessPixelMatch": true,
+      "decodedRgbaSha256": "65672a031d6cc2150b28687fd88af502524f5777d05aa701bb98bbaed9f6eb91"
+    },
+    {
+      "file": "stage2-high-cliff-03-zoomout.webp",
+      "sourceCapture": "stage2-high-cliff-03-zoomout.png",
+      "width": 1440,
+      "height": 960,
+      "bytes": 1081732,
+      "losslessPixelMatch": true,
+      "decodedRgbaSha256": "e6dbc10d4c15a78b70ee750373888cbf07f42ba8182bedbe70da1bb60717409e"
+    }
+  ],
+  "coreVerification": {
+    "scope": "Stage2 only. Authored start, two live basic arrows, cleared convoy fixture, affected revision. No full combat or skill sweep.",
+    "start": {
+      "x": 1045,
+      "y": 325.48421052631574,
+      "support": "left-high-ground",
+      "grounded": true,
+      "dropToProcession": 1179.3157894736844,
+      "actorHeights": 12.818649885583525
+    },
+    "shots": [
+      {
+        "target": "foe-0",
+        "aim": {
+          "angle": 71,
+          "power": 0.5
+        },
+        "damage": 75,
+        "from": {
+          "x": 1045,
+          "y": 325.48421052631574
+        },
+        "to": {
+          "x": 1672.0000000000002,
+          "y": 1642.2521739130436
+        }
+      },
+      {
+        "target": "foe-4",
+        "aim": {
+          "angle": -13.010059438102804,
+          "power": 0.9568910031024987
+        },
+        "damage": 72,
+        "from": {
+          "x": 1045,
+          "y": 325.48421052631574
+        },
+        "to": {
+          "x": 2442,
+          "y": 880.0000000000001
+        }
+      }
+    ],
+    "convoy": [
+      {
+        "x": 1052,
+        "y": 1565.7777777777778,
+        "ticks": 193
+      },
+      {
+        "x": 1492,
+        "y": 1623.8727272727274,
+        "ticks": 182
+      },
+      {
+        "x": 1932,
+        "y": 1665.9913043478261,
+        "ticks": 181
+      },
+      {
+        "x": 2374.9183287329834,
+        "y": 1685.370499874536,
+        "ticks": 182
+      },
+      {
+        "x": 2817.9742650728826,
+        "y": 1675.8869397584342,
+        "ticks": 182
+      },
+      {
+        "x": 3260.3141678663646,
+        "y": 1640.7685832133639,
+        "ticks": 183
+      },
+      {
+        "x": 3340,
+        "y": 1632.8000000000002,
+        "ticks": 64
+      }
+    ],
+    "oldStage2RestartOnly": true
+  },
+  "adjacentShelf": {
+    "scope": "ordinary walk/drop from original firing edge to adjoining natural shelf only",
+    "x": 1270,
+    "y": 432.4857142857143,
+    "support": "left-shoulder-high",
+    "jumps": 0
+  },
+  "browser": {
+    "normal": {
+      "camera": {
+        "x": 1738.0000000000002,
+        "y": 935.0000000000001,
+        "scale": 0.4513813282525857,
+        "manual": false
+      },
+      "revision": 3,
+      "hero": {
+        "x": 1045,
+        "y": 325.48421052631574
+      },
+      "procession": {
+        "x": 660,
+        "y": 1504.8000000000002
+      },
+      "art": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      }
+    },
+    "debug": {
+      "camera": {
+        "x": 1738.0000000000002,
+        "y": 935.0000000000001,
+        "scale": 0.4513813282525857,
+        "manual": false
+      },
+      "revision": 3,
+      "hero": {
+        "x": 1045,
+        "y": 325.48421052631574
+      },
+      "procession": {
+        "x": 660,
+        "y": 1504.8000000000002
+      },
+      "art": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      }
+    },
+    "zoomout": {
+      "camera": {
+        "x": 1839.2,
+        "y": 1035.1000000000001,
+        "scale": 0.40053497246642833,
+        "manual": true
+      },
+      "revision": 3,
+      "hero": {
+        "x": 1045,
+        "y": 325.48421052631574
+      },
+      "procession": {
+        "x": 660,
+        "y": 1504.8000000000002
+      },
+      "art": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      }
+    },
+    "static": {
+      "before": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1
+      },
+      "after": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1
+      },
+      "loaded": [
+        "quietFar",
+        "stage2QuietNear"
+      ]
+    },
+    "errors": []
+  }
+}
