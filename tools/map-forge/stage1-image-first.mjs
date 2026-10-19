@@ -25,12 +25,16 @@ export function applyStage1ImageFirst(project){
  ])s.terrains.push({...base(id,line,depth,'rock'),oneWay:false,breakable:false});
  s.elements=[]; // All were scenery or the two colliders re-authored above.
  const place=(u,x,support)=>{u.x=x*SCALE;u.y=at(u.x,support?boughs[support]:ground);if(Object.hasOwn(u,'spawnX'))u.spawnX=u.x;if(Object.hasOwn(u,'spawnY'))u.spawnY=u.y;};
- const poses={'p-archer':[140], 'foe-0':[1090], 'foe-3':[1150], 'foe-1':[650,'pine-branch-east'], 'foe-2':[1400], 'npc-woodcutter':[1220]};
+ const poses={'p-archer':[140], 'foe-0':[725], 'foe-3':[1110], 'foe-1':[680,'pine-branch-east'], 'foe-2':[1340], 'npc-woodcutter':[1220]};
  for(const u of s.units){const p=poses[u.id];if(p)place(u,...p);}
  const anchors={start:140,cart:1050,shrine:500,lookout:650,ridge:1370,woodcutter:1220,exit:1490};
  for(const [key,x]of Object.entries(anchors)){s.anchors[key]={x:x*SCALE,y:at(x*SCALE,key==='lookout'?boughs['pine-branch-east']:ground),support:key==='lookout'?'pine-branch-east':'forest-floor'};}
  const markerX=[140,1050,250,500,570,1370,1250,1490];for(const [i,m]of s.markers.entries()){m.x=markerX[i]*SCALE;m.y=at(m.x);}
- const progress={cart:970,more:620,witness:1180,ridge:1320};for(const e of s.events){if(e.when?.progress!==undefined)e.when.progress=progress[e.id]*SCALE;if(e.action?.type==='spawn'){Object.assign(e.action,{x:1090*SCALE,y:at(1090*SCALE),support:'forest-floor'});}}
+ const progress={cart:970,more:620,witness:1180,ridge:1320};for(const e of s.events){if(e.when?.progress!==undefined)e.when.progress=progress[e.id]*SCALE;
+  // The same finite cart ambush enters from the two creek approaches, rather
+  // than stacking every arrival on the eastern initial sentries. Keep its count.
+  if(e.id==='cart'&&e.action?.type==='spawn'){const n=e.action.n,make=(x,count)=>({...e.action,n:count,x:x*SCALE,y:at(x*SCALE),support:'forest-floor',spacing:180,maxDistance:220});e.action={type:'multi',actions:[make(870,Math.ceil(n/2)),make(1240,Math.floor(n/2))].filter(a=>a.n)};}
+ }
  // Conductive water, common contact ripples and weather remain the existing
  // systems; only their place anchor is moved into the painted shallow ford.
  const water=s.materials.find(m=>m.id==='creek-water');s.materials=water?[{...water,kind:'shallow-water',terrainId:'forest-floor',support:'forest-floor',x1:925*SCALE,x2:1025*SCALE,reference:590*SCALE,depth:22,alpha:.22,surface:undefined,bottom:undefined,points:undefined}]:[];
@@ -38,6 +42,9 @@ export function applyStage1ImageFirst(project){
  s.design.act1Scene={version:2,scenery:[],rocks:[],replaced:[]};
  s.design.forestChoice={version:2,supportId:'fc-choice-1-low-pine-root',treeX:480*SCALE,from:{x:460*SCALE,y:at(460*SCALE)},to:{x:460*SCALE,y:at(460*SCALE,boughs['fc-choice-1-low-pine-root'])},required:false};
  s.design.stage1ImageFirst={revision:1,image:'stage1Place',source:{width:WIDTH,height:HEIGHT},transform:{x:0,y:0,scale:SCALE},artBounds:{left:0,top:0,right:s.width,bottom:s.height},walkRibbon:points(ground),boughs:structuredClone(boughs),routes:{walk:s.routes,ascent:[{x:435*SCALE,support:'forest-floor'},{x:465*SCALE,support:'fc-choice-1-low-pine-root'},{x:455*SCALE,support:'pine-branch-west'},{x:560*SCALE,support:'pine-branch-east'}]}};
+ s.design.stage1ImageFirst.runtimeRoster=Object.fromEntries([
+  ['foe-0-cluster',790],['foe-3-cluster',1180],['foe-2-cluster',1445],['foe-1-cluster',400,'pine-branch-west']
+ ].map(([id,x,support])=>[id,{x:x*SCALE,y:at(x*SCALE,support?boughs[support]:ground)}]));
  Object.assign(s.initialState,{width:s.width,height:s.height});
  return project;
 }
