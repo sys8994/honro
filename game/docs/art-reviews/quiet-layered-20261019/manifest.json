@@ -1,16 +1,17 @@
 {
-  "description": "Existing Chromium captures only. PNG to lossless WebP without resizing or pixel changes. No recapture or gameplay rerun.",
+  "description": "Requested finishing captures: Stage2 normal + identical-camera collision debug, Stage1 normal. Other three earlier views retained and explicitly marked previous; no new zoomout/debug recapture.",
   "files": [
     {
       "stage": 1,
       "file": "stage1-quiet-01-normal.webp",
       "sourceCapture": "stage1-quiet-01-normal.png",
-      "implementationCommit": "59f40888dc8a5443ca8a141447d31a07b325aeb8",
+      "implementationCommit": "c351b705bd7190a673966ce41708196b7f8a9b6e",
       "width": 1440,
       "height": 960,
       "losslessPixelMatch": true,
-      "decodedRgbaSha256": "8e5aa03c02e9c3c83802f0186adf668eb63057c93200f631249e829fd1ab8c50",
-      "bytes": 883154
+      "decodedRgbaSha256": "2d1a9839fe08efbd8583d9e0bd618fff2fbf3608cf992e54f5b374f14f696eac",
+      "bytes": 837780,
+      "captureStatus": "current-framing-and-summit-finish"
     },
     {
       "stage": 1,
@@ -21,7 +22,8 @@
       "height": 960,
       "losslessPixelMatch": true,
       "decodedRgbaSha256": "36d34b47d7c0db0a31a815ce1f1678df10e1072bb3687b53079f89c030e1ca1c",
-      "bytes": 897956
+      "bytes": 897956,
+      "captureStatus": "previous-before-framing-finish"
     },
     {
       "stage": 1,
@@ -32,29 +34,32 @@
       "height": 960,
       "losslessPixelMatch": true,
       "decodedRgbaSha256": "272eb324e6ff0ec8eea826da14517cdb5f75eacb8b0cc78935aee62279813604",
-      "bytes": 915290
+      "bytes": 915290,
+      "captureStatus": "previous-before-framing-finish"
     },
     {
       "stage": 2,
       "file": "stage2-quiet-01-upper-and-procession.webp",
       "sourceCapture": "stage2-quiet-01-upper-and-procession.png",
-      "implementationCommit": "42cbcb5fade6e14cd2cc7267e57e7ad32a3736fa",
+      "implementationCommit": "c351b705bd7190a673966ce41708196b7f8a9b6e",
       "width": 1440,
       "height": 960,
       "losslessPixelMatch": true,
-      "decodedRgbaSha256": "6cfb5af09f33443bb57a5f8b1ce7f62d2f6ee54c9a5e889335335ad5f0ad6272",
-      "bytes": 969716
+      "decodedRgbaSha256": "48e4eb76d76699b688f14d437ccb64b798a9442834fd524cf3e56f88901f2aa9",
+      "bytes": 937644,
+      "captureStatus": "current-framing-and-summit-finish"
     },
     {
       "stage": 2,
       "file": "stage2-quiet-02-same-camera-collision.webp",
       "sourceCapture": "stage2-quiet-02-same-camera-collision.png",
-      "implementationCommit": "42cbcb5fade6e14cd2cc7267e57e7ad32a3736fa",
+      "implementationCommit": "c351b705bd7190a673966ce41708196b7f8a9b6e",
       "width": 1440,
       "height": 960,
       "losslessPixelMatch": true,
-      "decodedRgbaSha256": "c240362877f183407c8f550dba9ae05cc470d2a8d86d7a6da6f38a8877c2df5e",
-      "bytes": 980518
+      "decodedRgbaSha256": "2678b6952016f9e9349e45f6e4f85e234dbd63744562e73c1ebc89a94f7a1009",
+      "bytes": 948574,
+      "captureStatus": "current-framing-and-summit-finish"
     },
     {
       "stage": 2,
@@ -65,7 +70,18 @@
       "height": 960,
       "losslessPixelMatch": true,
       "decodedRgbaSha256": "b982358f7cd0acc7d76986d8703f658578eb3682bbeb43dc7e50e98db7fd9b2c",
-      "bytes": 978604
+      "bytes": 978604,
+      "captureStatus": "previous-before-framing-finish"
     }
-  ]
+  ],
+  "limitedVerification": {
+    "build": "passed",
+    "stage2StartGrounded": "left-high-ground x396 y796.4",
+    "ordinaryAscent": "left and right passed, isolated archer fixture",
+    "rightSummitUphillWalk": "passed, source x1500 to1380, no jump",
+    "browserPageErrors": 0,
+    "screenCaptureCount": 3,
+    "framingFormula": "cover verified at 1440x829,390x700,2560x720 with zoom .4/.55/1; no extra rendered viewport captures",
+    "notRepeated": "full combat, convoy, save compatibility, skills, other stages, full verify"
+  }
 }
