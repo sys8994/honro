@@ -13,7 +13,18 @@ function render(){
  document.querySelector('#overview').setAttribute('aria-pressed',String(state.mode==='overview'));
  document.querySelector('#closeup').setAttribute('aria-pressed',String(state.mode==='closeup'));
 }
-function preset(mode){state.mode=mode;const {w,h}=size();if(mode==='overview'){state.x=3000;state.y=1500;state.scale=minimum();}else{state.x=2200;state.y=1735;state.scale=w<600?Math.min(w/1050,h/1450):Math.min(w/2400,h/1470);}render();}
+function preset(mode){
+ state.mode=mode;const {w,h}=size();
+ if(mode==='overview'){state.x=3000;state.y=1500;state.scale=minimum();}
+ else{
+  // Keep the approved H=103.5 actor readable: 12% of the short viewport edge,
+  // capped at 129.4 px. Anchor feet at 70% height and leave space ahead to the right.
+  state.scale=Math.min(1.25,Math.min(w,h)*.12/103.5);
+  state.x=2025+(.5-.36)*w/state.scale;
+  state.y=2101-(.70-.5)*h/state.scale;
+ }
+ render();
+}
 function zoom(factor,x,y){const {w,h}=size(),old=state.scale,next=Math.max(minimum(),Math.min(2,old*factor));state.x+=(x-w/2)*(1/old-1/next);state.y+=(y-h/2)*(1/old-1/next);state.scale=next;state.mode='manual';render();}
 function gesture(){const p=[...pointers.values()];if(!p.length)return null;return p.length===1?{x:p[0].x,y:p[0].y,d:0}:{x:(p[0].x+p[1].x)/2,y:(p[0].y+p[1].y)/2,d:Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y)};}
 viewport.addEventListener('wheel',e=>{e.preventDefault();zoom(Math.exp(-e.deltaY*.0015),e.clientX,e.clientY);},{passive:false});
