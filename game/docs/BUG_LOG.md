@@ -1,3 +1,9 @@
+## 2026-10-19 — 1장 독립 sections 기반 (비율 교정 전)
+
+- e153a4e의 선택기능 lazy loading을 보존하고 단일 image/transform을 sections 배열로 호환 확장했다. 구간별 source·uniform transform·접촉선/몸체·비충돌 외곽·파괴 mask·source tone을 명시한다. 기존1구간을 한 항목으로 넣었으며6000맵/캐릭터/접촉/스폰/revision은 동일하다. 현재 과대3.38배는 동등성 기준일 뿐 교정 완료가 아니다.
+- 실제1장 설오 unitBody alpha 실측 H103.5world(8배828px), collider92, 표시계산106.61536. 일반 돌.2–.8H·수풀.3–1H·문1.3–1.6H 및 길/랜드마크 구분을 STAGE1_ART_SECTIONS.md에 기록했다. 새 그림 배치는 아직 이 기반에 적용하지 않았다.
+- 구문/build와1항목 근경 픽셀/충돌geometry/anchor/초기배치 동일 확인만 수행했다. 외곽 cache는 활성section×2,최소2/최대8 LRU이며 내부 좌우 외곽 비활성화와 source 톤을 지원한다. 전체verify/검수자/다른장·스킬 검사는 없고 기반만 master/Pages로 배포하지 않는다. 이어서 부모 전달 고유 시작/출구 보정과3구간 결합을 진행한다.
+
 ## 2026-10-19 — 최신 1장 미술에 선택 런타임 통합
 
 - 부모 승인에 따라 master `41c3289` 위에 소스 `d0689d9`만 적용했다(통합 source `62c8583`). 이전 생성물 `34dadf4`는 적용하지 않고 최신 미술 기준으로 빌드했다. BUG_LOG 추가 기록만 충돌하여 양쪽 기록을 보존했다.
