@@ -1,27 +1,15 @@
-# 2장 · 승인 절제 근경과 독립 공유 원경
+# 2장 · 높은 절벽 위 엄호와 하단 상여 길
 
-2026-10-19 최신 승인 시안 적용 검수본이다. 이전 고밀도 통합 원화는 사용하지 않는다. 부모 전달 `c572a8765bc0775310c4efbf43f5d4df416c0ceb`의 `honro-stage2-near-transparent.webp`를 픽셀 확인하고 그대로 runtime에 복사했다. 이는 부모가 승인 1장 근경만 스타일 참고로 독립 생성한 원본이며, 이 작업에서 새 이미지 생성이나 원본 벡터/거절된 그림을 입력하는 작업은 하지 않았다. 원본 참고 파일은 `game/docs/art-references/quiet-layered-20261019/`에 보존한다.
+2026-10-19 부모 전달 `ffcbc54a151b2224945d70c2d55f50a83dc03491`의 `honro-stage2-high-cliffs.webp`를 실제 확인하고 runtime `quiet-layered/stage2-high-cliffs.webp`로 byte 동일하게 복사했다. 1672×941 투명 근경 전체를 uniform 2.2배 WORLD 변환으로 그린다. 낮은 바위 원화/접촉 좌표를 재사용하거나 세로 늘이기·strip·추가 그림을 사용하지 않는다.
 
-## 레이어와 표시
+설오는 source x475/y147.95 부근, 왼쪽 정상 오른쪽의 실제 노출된 윗면에 선다. 시작 상여 길까지 낙차는 world1179.32, 설오 h92의 약12.82배다. 정상과 중간의 자연 암반 윗면만 one-way 얇은 contact로 저작하며, 뒤쪽 절벽 전체를 solid로 채워 전경 길을 막지 않는다. 오른쪽 절벽 정상/선반도 새 그림에서 읽는다. 설오 바로 옆 자연 선반으로 걸어 내려갈 수 있으며 모든 절벽을 아래에서 정상까지 일반 점프로 등반하는 구조는 아니다.
 
-`quiet-layered-art.js`의 같은 `quietFar` 원경 source/cache를 1장과 공유한다. 원경은 `act1BackdropFrame`의 기존 약한 가로/더 작은 세로 시차를 유지한 quiet 전용 cover(세로 1.48배 이상, source 높이 60%를 화면 43%에 배치), 근경은 1672×941의 원비율을 보존한 균등 2.2배 WORLD 변환이다. 두 그림은 별도 좌표/캐시다. 승인 합성 이미지는 분위기 기준만이며 runtime에 등록하지 않는다. 밝기는 원경 .68/근경 .62를 source별 1회 캐시하고 원화에 풀/바위/잔질감/노드 패턴을 추가하지 않는다. 원본 alpha와 큰 깨끗한 암면을 유지한다. 지형 polygon의 재질 clip, strip warp, 반복 texture, 지면 밑면 fade는 없다. 나무는 정지이며 새 RAF/모션을 추가하지 않는다.
+상여와 동행은 맨 아래의 하나의 연속 `canyon-ground`를 좌→우로 지나 기존 goalX3340에 도달한다. 지상 적은 아랫길 역할 군집으로, 까마귀는 맞은편 정상 위에, 박쥐는 열린 협곡 공중에 배치한다. 기존 적 수12/행동 cap3, 능력·HP·XP·AI, 경고/응답과 유한 증원, 이벤트·목표 ID와 공중 대응 opt-in marker는 보존한다. 변경은 원화에 맞춘 위치/접촉면·카메라뿐이다.
 
-정상 2장은 `quietFar`, `stage2QuietNear` 두 개만 요청/디코딩한다. 1장 근경이나 다른 장소 원화를 함께 요청하지 않는다. 같은 원경 ID의 source tone canvas 한 개를 공유하고, 장별 투명 근경과 기존 월드 캐시는 독립이다. 기존 날씨/얕은 물/접촉 파문 구현을 유지한다.
+2장 전용 자동 고지 framing은 설오가 원래 정상부에 머무는 동안 아랫길을 함께 보여준다. 수동 pan/zoom, 대사 focus, projectile tracking은 기존 동작을 따른다. `quiet-layered-art.js`의 공유 독립 원경과 색/시차/캐시는 변경하지 않았다. runtime 요청은 `quietFar`와 `stage2QuietNear` 두 개뿐이다. 근경/원경 tone은 source별 1회 cache하고 기존 날씨/얕은 물을 보존한다. 새 모션/RAF/디테일은 없다.
 
-## 실제 접촉과 사건
+배포됐던 낮은 2장 지형과 달라졌으므로 2장 campaign map revision만2→3으로 바꿨다. 이전2장 전투만 현행 정책으로 재시작하며 성장/SP/장착/캠페인 진척을 보존한다. 1장과3장 이후, 별도11장 WIP는 수정하지 않는다.
 
-`stage2-image-first.mjs`는 새 근경의 넓은 밝은 흙길 한가운데에서 연속 보행선을 저작했다. 토양 solid는 물리 내부일 뿐, 원화를 잘라 넣는 마스크가 아니다. 양쪽 독립 암괴의 실제 큰 상면만 one-way로 저작하여 앞쪽 상여 길을 뒤쪽 암벽의 보이지 않는 벽/천장으로 막지 않는다. 기존 그림의 좌표나 존재하지 않는 나무 발판은 복사하지 않았다. 기본 점프로 낮은 바위→큰 암면→상부 자리에 접근한다. 서쪽 큰 암면 위 설오와 하부 상여/호위의 높이 관계를 유지한다.
+확인은 build1회, 실제 시작 grounding, 온전한 지형/기존 적 배치에서 기본 화살로 아랫길 산개/공중 박쥐 각각 실제 피해75/72, 인접 자연 선반 보행/하강, 적을 제거한 allied convoy fixture의 goal3340 도착, 이전 revision2 전투 restart만 수행했다. 이는 정상 전체 전투 완주가 아니다. 일반/같은 구도 collision debug/줌아웃 실제3뷰는 pageerror0이며 정적20frame 동안 source filter2회/원경 canvas1개가 증가하지 않았다. 전체 verify/스킬/다른 장/별도 검수자는 실행하지 않았다.
 
-원본 및 런타임 추가 편성 12체의 비위치 필드, HP/XP/동행/상여/행동 상한3은 유지한다. 왼쪽 높은 바위/낮은 접근 2체, 중간 흙길 2체, 오른쪽 둥지 4체, 출구 방어 4체의 작은 역할 군집과 빈 연결 구간으로 배치한다. 공중 개체의 몸 전체 여유를 기존 `flightClear`로 확인한다. 저장된 전투 위치를 재배치하지 않는다.
-
-`procession-seen`, `road-pressure`, `sniper-seen`, `right-cliff`, `last-flight`의 ID/대사/행동 의미/연쇄/유한 증원 총수는 유지한다. 위치 progress/진입점만 새 장소에 연결했다. 상여 목표3340과 `honroStage2AirborneRevision=1`을 유지하며, 원본 `stage2-airborne.js`는 수정하지 않는다. 기존 경고→새 대응 기회→방출, 안전 경계 진입, 공중 이동/공격을 그대로 사용한다.
-
-2장의 campaign map revision만 1→2로 올린다. 새 1장 revision2는 그대로다. 이전 2장 진행 전투만 같은 장 입구로 다시 시작하고 성장/SP/장착/완료 기록은 기존 정책으로 보존한다. 3장 이후·11장 WIP·공용 `HonroStage1LocationArt` API는 수정하지 않는다.
-
-## 확인과 한계
-
-필요한 빌드, 고립된 기본 무점프 보행/양측 기본 점프, 적 제거 fixture에서 기존 호위 행동의 목표 도착, 12체/상한3/공중 여유/경고 대응, revision/discard의 성장·장착·진척 보존을 확인했다. 실제 Chromium의 일반 화면·동일 위치 실제 collision debug·줌아웃3뷰 및 정지90프레임에서 source filter는 최초2회/원화 요청2개로 유지됐다. 정상 교전 완주·전체 장·스킬·전체 성능 검사는 하지 않았다.
-
-결과는 `_local/reports/stage2-quiet-layered/`에 둔다. Library 저장 경로는 1장 보고 때 네트워크 실패가 확인되어 같은 오류를 반복 요청하지 않았다. 이 브랜치는 부모의 승인 시안/실제 화면 비교 전 master 병합/배포하지 않는다.
-
-최종 접지 마감: 시작 바위 source x180/y362, 오른쪽 바위의 정상부 능선에 실제 contact를 맞췄다. 도로와 원본 이미지는 불변이다. 오른쪽 마지막 일반 점프 접근점은 source x1500이며 정상부를 걸어 올라갈 수 있다. 검수 화면은 evidence 브랜치의 2026-10-19 마감 3뷰로 확인한다.
+로컬 보고서는 `_local/reports/stage2-high-cliff/`, 전달 화면은 기존 evidence 브랜치의 `game/docs/art-reviews/stage2-high-cliff-20261019/`다. 부모가 실제 화면을 확인한 뒤 master/Pages 배포를 결정한다.
