@@ -55,9 +55,11 @@ function markerArt(scene,m){const b=scene.battle;if(b?.honroNarrativeRevision!==
 function replacedLandmark(b,l){if(b?.honroNarrativeRevision!==1||b.honroCustom)return false;const kind=l.asset?.kind||l.kind;
  if(kind==='receiverStone'&&(b.honroMarkers||[]).some(m=>m.type==='receiver'&&Math.hypot(m.x-l.x,m.y-l.y)<5))return true;
  if(b.honroStage===5&&['cliffShrine','spiritKnot'].includes(kind)){const t=G.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat');return !!t&&Math.hypot(l.x-(t.x+t.w/2),l.y-(t.y+t.h))<5;}return false;}
+// Read current authored attachment points for same-revision saved image-first battles too.
+function threadAttachment(b){if(b.honroCustom||![3,4].includes(b.honroStage))return null;const key='stage'+b.honroStage+'ImageFirst',v=b.honroMap?.[key];if(v?.quietLayers!==1)return null;return v.storyThread||G.HONRO_PROJECT?.stages?.[b.honroStage-1]?.design?.[key]?.storyThread||null;}
 function evidence(b){const s=b.honroState||{},id=b.honroStage;
- if(id===3){const a=anchor(b,'ledger');if(!a)return null;return{kind:'eave',at:{x:a.x-65,y:a.y-185}};}
- if(id===4){const a=anchor(b,'gate');if(!a)return null;return{kind:'village',at:{x:a.x-120,y:a.y-178}};}
+ if(id===3){const thread=threadAttachment(b);if(thread)return{kind:'eave',...thread};const a=anchor(b,'ledger');if(!a)return null;return{kind:'eave',at:{x:a.x-65,y:a.y-185}};}
+ if(id===4){const thread=threadAttachment(b);if(thread)return{kind:'village',...thread};const a=anchor(b,'gate');if(!a)return null;return{kind:'village',at:{x:a.x-120,y:a.y-178}};}
  if(id===5){const seal=G.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat'),r=marker(b,'receiver-5');if(!seal||!r)return null;return{kind:'waterfall',at:{x:seal.x+seal.w/2,y:seal.y+seal.h*.4},broken:!!seal.broken,receiving:!!s.ritual?.active||!!seal.broken&&!!r.collected,receiver:r,seal};}
  if(id===7){return{kind:'rescue',residents:(b.honroMarkers||[]).filter(m=>m.action==='rescue').map(m=>({marker:m,unit:actor(b,m.target)}))};}
  if(id===8){const mage=actor(b,'mage'),boss=actor(b,'boss'),seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal);return{kind:'bier',mage,boss,seals,receiving:seals.some(t=>t.broken&&mage&&Math.hypot(t.x+t.w/2-mage.x,t.y-mage.y)<600)||!!boss?.dead&&mage&&Math.hypot(boss.x-mage.x,boss.y-mage.y)<600};}
@@ -73,8 +75,8 @@ function bindingBody(c,a,hitCount=0,t=0){if(a.broken)return;const p={x:a.x+a.w/2
 }
 function draw(scene,e){const b=e.b;if(G.HonroStage5Waterfall?.active(b))return G.HonroStage5WaterfallArt?.evidence(scene,e);if(b.honroCustom||b.honroNarrativeRevision!==1)return;const d=evidence(b);if(!d)return;const c=scene.ctx,t=time(scene,b);c.save();c.lineCap='round';
  for(const m of b.honroMarkers||[])if(m.type==='receiver')floorArray(c,m,t,m.action==='ritual'?d.receiving:!!m.collected);
- if(d.kind==='eave'){const p=d.at,w=Math.sin(t*10)*5;curve(c,{x:p.x-90,y:p.y-10},{x:p.x+100,y:p.y-4},w);knot(c,{x:p.x,y:p.y+w/2});curve(c,{x:p.x,y:p.y},{x:p.x+5+w,y:p.y+45},4);}
- if(d.kind==='village'){const p=d.at;curve(c,{x:p.x-74,y:p.y+32},p,-8);knot(c,p);curve(c,p,{x:p.x+455,y:p.y-84},Math.sin(t*9)*7);}
+ if(d.kind==='eave'){const p=d.at,w=Math.sin(t*10)*5;curve(c,d.from||{x:p.x-90,y:p.y-10},d.to||{x:p.x+100,y:p.y-4},w);knot(c,{x:p.x,y:p.y+w/2});curve(c,{x:p.x,y:p.y},d.tail||{x:p.x+5+w,y:p.y+45},4);}
+ if(d.kind==='village'){const p=d.at;curve(c,d.from||{x:p.x-74,y:p.y+32},p,-8);knot(c,p);curve(c,p,d.to||{x:p.x+455,y:p.y-84},Math.sin(t*9)*7);}
  if(d.kind==='waterfall'){if(!d.seal.honroQuestTarget)cleat(c,d.seal);const p=d.at,home={x:p.x-210,y:p.y-15},side={x:p.x+320,y:p.y-70};
   // The near split knot visibly opens before intervention. Breaking only its
   // iron anchor relaxes this local line while the other line remains strained.
@@ -120,5 +122,5 @@ if(G.HonroScene){const S=G.HonroScene.prototype,damage=S.objectDamage,terrain=S.
  S.landmark=function(c,l,...args){if(replacedLandmark(this.battle,l))return;return landmark.call(this,c,l,...args);};
  S.objectDamage=function(c,b,...args){const replaced=t=>b.honroStage===10&&t.id==='sodan-binding'||b.honroStage===5&&t.id==='cliff-cleat';return damage.call(this,c,fresh(b)?{...b,terrain:G.HonroQuestTargets.records(b).filter(t=>!replaced(t))}:b,...args);};
 }
-G.HonroAct1StoryArt={draw,evidence,marker:markerArt,replacedLandmark,cleat,cleatDamageStage,floorArray,bindingBody};
+G.HonroAct1StoryArt={draw,evidence,threadAttachment,marker:markerArt,replacedLandmark,cleat,cleatDamageStage,floorArray,bindingBody};
 })(globalThis);

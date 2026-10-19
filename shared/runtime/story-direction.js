@@ -54,8 +54,8 @@ const rules=[
  rule(10,'cooperation-defense','소단','무릎을 꿇',[pose('boss','kneel'),shot({actor:'boss'})]),
  rule(10,'finale-midpoint','소단','몸을 낮춰',[pose('boss','kneel'),shot({actor:'boss'})]),
  rule(10,'finale-midpoint','설오','제 목소리',[face('archer',{actor:'boss'},'lower-bow')]),
- rule(3,'event-3-transfer','설오','처마에 실',[shot({anchor:'ledger',dx:-65,dy:-185})]),
- rule(4,'outcome','춘례','저쪽으로 당겨',[face('npc-chunrye',{anchor:'gate',dx:335,dy:-260},'point'),shot({anchor:'gate',dx:100,dy:-178})]),
+ rule(3,'event-3-transfer','설오','처마에 실',[shot({anchor:'ledger',dx:-65,dy:-185,storyThread:true})]),
+ rule(4,'outcome','춘례','저쪽으로 당겨',[face('npc-chunrye',{anchor:'gate',dx:335,dy:-260,storyThread:true},'point'),shot({anchor:'gate',dx:100,dy:-178,storyThread:true})]),
  rule(5,'entry','담허','매듭이 벌어',[shot({anchor:'cleat',dx:-105,dy:-90})]),
  rule(5,'ritual-5','담허','진과 물살',[face('mage',{goal:'seal'},'point')]),
  rule(5,'outcome','설오','이어진 줄은',[shot({anchor:'cleat',dx:100,dy:-80})]),
@@ -149,6 +149,7 @@ function build(app,lines,options={}){
  const context={origins,spirit:lines.find(l=>l[2]?.sceneTarget)?.[2].sceneTarget};
  // Resolve objective shots now, after deferred story has checked current progress.
  function resolve(s){const next=JSON.parse(JSON.stringify(s));for(const key of ['at','to','towards']){
+  if(next[key]?.storyThread){const thread=G.HonroAct1StoryArt?.threadAttachment(b);if(thread)next[key]={...thread.at};else delete next[key].storyThread;}
   if(next[key]?.goal){const p=G.HonroObjectives.focus(app,next[key].goal);next[key]=p?{x:p.x,y:p.y}:null;}
   if(next[key]?.breach){const ids=b.honroState?.sodanBreach?.units||[],u=b.units.filter(u=>ids.includes(u.id)&&!u.dead&&u.hp>0).sort((a,b)=>b.x-a.x)[0];next[key]=u?{actor:u.id}:null;}
  }return next;}
