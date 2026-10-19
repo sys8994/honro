@@ -14,7 +14,7 @@ with sync_playwright() as pw:
     page.on('pageerror', lambda e: errors.append(str(e)))
     page.goto(story_base_url()+'/HONRO.html')
     page.wait_for_function('document.documentElement.dataset.honroReady')
-    page.evaluate('''()=>{const a=HonroApp;a.frame=()=>{};a.launch(1);while(a.dialogue)HonroStory.finish(a);a.close();a.turnNotice=null;Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,cinematic:null,storyFrozen:false,focusId:null,speakerId:null,x:2600,y:1300,scale:.66});a.scene.render(a.engine,0,'',.7,false,0);}''')
+    page.evaluate('''()=>{const a=HonroApp;a.frame=()=>{};a.launch(1);while(a.dialogue)HonroStory.finish(a);a.close();a.turnNotice=null;document.getElementById('turn-banner').hidden=true;Object.assign(a.scene,{manual:true,storyTween:null,goalFocus:null,cinematic:null,storyFrozen:false,focusId:null,speakerId:null,x:2600,y:1300,scale:.66});a.scene.render(a.engine,0,'',.7,false,0);}''')
     page.wait_for_function('HonroStage1ImageFirstArt.ready(HonroApp.engine.b)')
     session = page.context.new_cdp_session(page)
     box = page.locator('#battlecanvas').bounding_box()

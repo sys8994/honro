@@ -61,3 +61,22 @@
 이후 ready 전 완료 resource body는 desktop5,091,692B/모바일5,083,830B였다. 두 경우 모두 chapter01 하나만 요청하고 전체 campaign-library 요청은 없었다. 초기화가 완전 무정지라는 뜻은 아니며 공통 런타임·캐릭터·서사/구 저장 호환 데이터는 여전히 공통 준비에 포함된다.
 
 `tools/testing/startup-browser.py` 하나를 재사용했다. fresh는 실제 stage1만 준비·library38개/catalog30개, 21장 저장은 잘못된 lastStage1을 무시하고 실제21장만 준비한 뒤 HP/round/성장/장착/완료를 보존했다. 준비 실패→동일 전투/저장 유지→재시도12장, 취소된21장 요청의 늦은 완료가 타이틀을 덮지 않음, 이동/재시도, 실제 여정첩 확인 진입/직결 다음 장, 기존 동기 반환, full editor/embedded, Game/Workshop의 실제1·21장 author 결과 일치를 확인했다. 초기 타이틀 DOM 인계·조기 클릭 자동 실행 없음·trusted click audio·debug 분리·초기 오류 재시도도 통과했다. 전체 verify·30장 실행·무관한 기예 검사는 하지 않았다. 증거는 `_local/reports/startup/phase2-before.json`, `phase2-after.json`, `stage-checks.json`, `entry-checks.json`, `checks.json`이다.
+
+
+## 세 번째 단계: 실행 순서를 보존한 요청 묶음 (2026-10-19)
+
+기준 master0c2181a의 코드와 목적 장 우선 JSON 로딩을 유지한다.159개 순차 import를33개로 줄였다. 동기 코드만 연속된 원래 순서로15묶음에 넣고, 각 소스는 strict arrow scope로 격리하며 기존 yield 경계도 남긴다.192KiB를 넘기기 전 묶음을 나누되 원래 약967KB 엔진 한 파일은 쪼개지 않는다. await 데이터 모듈은 별도 완료 경계이고, title-markup과 Workshop stage-rules의 독립 진입도 유지한다. Promise.all로 패치 실행 순서를 바꾸거나 eval을 추가하지 않는다. 준비 라벨은 첫 화면·장소 자료·게임 규칙과 풍경·동행과 조작 단계로 표시한다. 실제 HONRO_APP_READY 후에만 버튼이 준비된다.
+
+로컬 HTTP·새 isolated context·캐시 disabled·Chromium CPU4배·latency40ms·download2MiB/s, 기존 startup-browser.py로 전후 각1회 비교했다. 요청/전송량은 App ready 및 타이틀 확인 후500ms까지의 동일 창이다.
+
+| 항목 | Desktop 이전 → 이후 | 모바일390×844 viewport 이전 → 이후 |
+|---|---:|---:|
+| App 준비 |4.303s →3.622s|4.238s →3.579s|
+| 전체 요청 |219 →93|219 →93|
+| JS 요청 |162 →36|162 →36|
+| 전송 바이트 |5,281,065 →5,256,665|5,273,203 →5,248,803|
+| JS 본문 바이트 |2,830,231 →2,830,316|2,830,231 →2,830,316|
+
+약126개 요청·24,400전송 바이트·준비시간 약16% 감소는 요청/직렬 대기 축소다. 코드 본문은85바이트 증가했다. 전체 코드 제거·압축이나 '필요한 코드만 로딩'을 달성한 것이 아니다.2·3막 패치, 이후 장 미술, 기예 미리보기와 여정 코드가 여전히 초기 준비에 포함된다. 이들은 전역 등록/이전 패치 참조가 있어 이번에 무리하게 지연하지 않았다. JSON의 목적 장 base/shared/stageLibrary/stage와 다음 장 idle 준비, 저장 목적지 선택은 바꾸지 않았다. 실기 휴대폰·통계적 성능 우위·무관 기예/전투·전 장 확인은 범위 밖이다. 비교 원본은 _local/reports/startup/baseline-zoom-startup.json 및 grouped-zoom-startup.json에 있다.
+
+확인은 ordered-runtime-groups.mjs의 패치/consumer 순서·격리·yield/async 거부, ordered-startup-browser.py의 새1장/저장21장·HP/3라운드·성장/장착/완료 보존과 공통 편집기/embedded 초기화, quiet-layered-zoom-browser.py의 실제pinch3프레임·가로pan/조준으로 한정했다. Workshop Playtest의 전투 시작은 baseline master에도 있는 프로젝트검증23개 오류로 차단된다. 기준/수정본 오류가 정확히 같은 것을 별도로 비교했고 이를 성공으로 기록하지 않는다. 이 범위 밖 맵 검증 수리는 하지 않았다. _local/reports/zoom-startup/에 결과가 있다.

@@ -1,3 +1,9 @@
+## 2026-10-19 — 순차 런타임 요청 묶음으로 초기 준비 대기 감소
+
+- 원인/변경:159개 import와12개 lookahead 요청의 직렬 대기. 동기 코드만15묶음으로 합쳐33개 순차 import로 줄였다. 각 소스 strict scope·패치 순서·yield, await 데이터 완료 경계·독립 title/stage-rules를 보존했다. 목적 장 JSON·다음 장 idle·저장 선택은 불변. 준비 라벨을 화면/장소/규칙·풍경/동행·조작 단계로 표시하며 실제 준비 전에 시작하지 않는다.
+- 같은 cold 조건 전후 각1회: 전체 요청219→93, JS162→36, 전송량24,400bytes 감소. Desktop App4.303→3.622s, 모바일 viewport4.238→3.579s. JS본문2,830,231→2,830,316bytes로 코드 지연/제거가 아니라 요청 감소다.2·3막·이후장 미술·기예 미리보기/여정 코드가 여전히 초기 준비에 포함된다. STARTUP_LOADING.md 참고.
+- 확인: build·격리/패치/yield 단위 확인, 실제 새 시작1장만 준비 및 저장21장만 준비/HP·라운드·성장/장착/완료 보존, 공통 묶음 적용 후 실제 모바일 pinch/가로 pan·조준 유지. Workshop와embedded 코드 초기화 확인. Playtest 전투 시작은 기준master와 동일한 기존 프로젝트 오류23개(scene/lights/terrainBounds/zone)로 차단되며 통과로 간주하지 않는다. baseline 비교는 _local/reports/zoom-startup/editor-baseline.json. 실기·전체verify·기예/전투 전수검사 없음.
+
 ## 2026-10-19 — 모바일 핀치 축소가 배경 프레임에서 복원되는 문제
 
 - 원인: 1·2장 공용 frame과 3·4장 개별 frame이 배경을 그릴 때 그림 coverage에 맞춰 scale/center를 덮었다. 세로 실제 핀치 직후0.05735294가 다음 render에서0.344107로 커지는 것을 재현했다.

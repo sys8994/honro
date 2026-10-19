@@ -17,6 +17,17 @@ const scriptTag=file=>`<script type="module" src="${file}"></script>`;
 const relative=(from,to)=>{const p=path.posix.relative(path.posix.dirname(from),to);return p.startsWith('.')?p:'./'+p;};
 const urlExpression=(from,to)=>`new URL(${quote(relative(from,to))},import.meta.url).href`;
 
+// Plain runtime scripts communicate through explicit globals. Keep their module
+// scope isolated and their patch order exact, including the existing yields.
+// Async data modules remain separate barriers; never Promise.all their imports.
+export function orderedScriptSource(entries,loader){
+  return `import {yieldIfNeeded} from ${quote(loader)};\n`+entries.map(entry=>{
+    const isolated=`(()=>{\n'use strict';\n${entry.code}\n})();\n`;
+    new vm.Script(isolated,{filename:entry.name}); // Reject module syntax/TLA here.
+    return `// ${entry.name}\n${isolated}await yieldIfNeeded();\n`;
+  }).join('');
+}
+
 // Keep two distinct releases for cached entrypoints; identical builds do not rotate them.
 export function planWebAssetRetention(previous,currentFiles){
   const current=new Set(currentFiles.map(file=>file.path));
@@ -74,9 +85,23 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   const entries=await runtimeEntries({vector,app:true}),common=[],gameOnly=[];
   const appStart=entries.findIndex(e=>e.name==='game/vendor/ui/fa.js');
   assert(appStart>0,'Game application boundary required');
-  let projectManifest;
+  let projectManifest,pending=[],pendingBytes=0,groupNumber=0;
+  async function flushScripts(target){
+    if(!pending.length)return;
+    target.push(await emit('runtime',`ordered-${target===common?'common':'game'}-${++groupNumber}`,'js',orderedScriptSource(pending,'./'+path.posix.basename(loader))));
+    pending=[];pendingBytes=0;
+  }
   for(let i=0;i<entries.length;i++){
-    const entry=entries[i];let file;
+    const entry=entries[i],target=i<appStart?common:gameOnly;let file;
+    if(i===appStart)await flushScripts(common);
+    // These two scripts also have independent title/Workshop consumers.
+    const independent=entry.name==='shared/runtime/title-markup.js'||entry.name==='shared/runtime/stage-rules.js';
+    if(!entry.project&&!entry.global&&!vectorGlobals.has(entry.name)&&!independent){
+      const bytes=Buffer.byteLength(entry.code);
+      if(pendingBytes+bytes>192*1024)await flushScripts(target);
+      pending.push(entry);pendingBytes+=bytes;continue;
+    }
+    await flushScripts(target);
     if(entry.project){
       const {library,stages,...base}=entry.project;
       const externalLibrary=await externalize(library,'library');
@@ -104,9 +129,10 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       file=await dataModule(entry.name,context);
       if(entry.name.includes('/party/'))file=await emit('runtime','party-alias','js',`import ${quote('./'+path.posix.basename(file))};\nglobalThis.HONRO_ARCHER=globalThis.HONRO_PARTY.seol_o;\n`);
     }else file=await emit('runtime',entry.name,'js',entry.code+'\n');
-    (i<appStart?common:gameOnly).push(file);
+    target.push(file);
   }
-  const stageRules=gameOnly[entries.slice(appStart).findIndex(e=>e.name==='shared/runtime/stage-rules.js')];
+  await flushScripts(gameOnly);
+  const stageRules=gameOnly.find(file=>file.includes('shared-runtime-stage-rules.'));
   assert(stageRules,'Stage View rules required');
   const styles=[];for(const source of gameStyles)styles.push(await emit('styles',source.replace(/\.css$/,''),'css',await read(source)));
   const workshopStyle=await emit('styles','workshop','css',await read('workshop/src/style.css'));
@@ -137,7 +163,7 @@ for(let i=0;i<modules.length;i++){
  if(i===2&&!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject(${quote(projectManifest)});
  for(let n=i;n<Math.min(modules.length,i+12);n++){const href=modules[n];if(preloaded.has(href))continue;preloaded.add(href);const link=document.createElement('link');link.rel='modulepreload';link.href=href;link.fetchPriority='low';document.head.append(link);}
  ${game?'if(i===modules.length-1){await stylesReady;if(styleError)throw styleError;}':''}
- const file=modules[i];await import(file);globalThis.HonroStartup?.progress('공통 준비',i+1,modules.length);await yieldIfNeeded();
+ const file=modules[i];await import(file);globalThis.HonroStartup?.progress(file.includes('ordered-common')?'게임 규칙과 풍경 준비':file.includes('ordered-game')?'동행과 조작 준비':file.includes('game-art')||file.includes('title-')?'첫 화면 준비':'장소 자료 준비',i+1,modules.length);await yieldIfNeeded();
 }
 ${game?"await globalThis.HONRO_APP_READY;globalThis.HonroStartup?.ready();\nif(location.hash==='#autostage2')HonroApp.launch(2);":''}}
 catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);else{const host=document.getElementById('app');if(host)host.textContent='불러오지 못했습니다. 새로고침해 주세요.';}throw error;}})();
