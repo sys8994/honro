@@ -119,6 +119,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/stage8-location-art.js');
   if(render)await file('shared/runtime/stage9-location-art.js');
   if(render)await file('shared/runtime/stage10-location-art.js');
+  if(render)await file('shared/runtime/quiet-layered-art.js');
   if(render)await file('shared/runtime/stage1-image-first-art.js');
   if(render)await file('shared/runtime/stage2-image-first-art.js');
   if(app){
