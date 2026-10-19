@@ -1,0 +1,202 @@
+{
+  "status": "Stage1 functional candidate; added rock-step appearance pending parent pixel review/refinement. Stages2–5 not applied yet.",
+  "referenceCommit": "76bba363a8d0ed4df17d6b9adaa06d39486e14d4",
+  "sourceBlob": "e9c39e70b5c080d5d01a8451bd2d5812dbc760cf",
+  "world": [
+    6000,
+    2698.395721925134
+  ],
+  "scale": 3.2085561497326203,
+  "images": [
+    {
+      "file": "stage1-01-overview.webp",
+      "bytes": 755448,
+      "lossless": true
+    },
+    {
+      "file": "stage1-02-same-camera-debug.webp",
+      "bytes": 770550,
+      "lossless": true
+    },
+    {
+      "file": "stage1-03-pine-rock-contact.webp",
+      "bytes": 688676,
+      "lossless": true
+    }
+  ],
+  "browser": {
+    "overview": {
+      "camera": {
+        "x": 3000,
+        "y": 970.9217635918003,
+        "scale": 0.24
+      },
+      "size": [
+        6000,
+        2698.395721925134
+      ],
+      "art": {
+        "pictures": 2,
+        "filterPasses": 1,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      },
+      "revision": 3
+    },
+    "debug": {
+      "camera": {
+        "x": 3000,
+        "y": 970.9217635918003,
+        "scale": 0.24
+      },
+      "size": [
+        6000,
+        2698.395721925134
+      ],
+      "art": {
+        "pictures": 2,
+        "filterPasses": 1,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      },
+      "revision": 3
+    },
+    "detail": {
+      "camera": {
+        "x": 900,
+        "y": 2050,
+        "scale": 0.8
+      },
+      "size": [
+        6000,
+        2698.395721925134
+      ],
+      "art": {
+        "pictures": 2,
+        "filterPasses": 1,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      },
+      "revision": 3
+    },
+    "errors": []
+  },
+  "native": {
+    "size": [
+      6000,
+      2698.395721925134
+    ],
+    "initial": [
+      {
+        "id": "p-archer",
+        "x": 144.3850267379679,
+        "y": 2438.5026737967914
+      },
+      {
+        "id": "foe-0",
+        "kind": "hound",
+        "x": 3208.5561497326203,
+        "y": 1938.8846447669978
+      },
+      {
+        "id": "foe-1",
+        "kind": "crow",
+        "x": 1251.3368983957218,
+        "y": 1668.4491978609626
+      },
+      {
+        "id": "foe-2",
+        "kind": "stag",
+        "x": 5133.689839572193,
+        "y": 877.0053475935827
+      },
+      {
+        "id": "foe-3",
+        "kind": "hound",
+        "x": 4363.636363636364,
+        "y": 1301.7570664629484
+      },
+      {
+        "id": "foe-0-cluster",
+        "kind": "hound",
+        "x": 2374.331550802139,
+        "y": 2191.6906622788974
+      },
+      {
+        "id": "foe-1-cluster",
+        "kind": "crow",
+        "x": 914.4385026737967,
+        "y": 1556.1497326203207
+      },
+      {
+        "id": "foe-2-cluster",
+        "kind": "stag",
+        "x": 5775.401069518716,
+        "y": 417.11229946524065
+      },
+      {
+        "id": "foe-3-cluster",
+        "kind": "hound",
+        "x": 4780.7486631016045,
+        "y": 1097.7845683728037
+      }
+    ],
+    "routes": {
+      "stone": {
+        "passed": true,
+        "samples": [
+          {
+            "x": 2567.311051693401,
+            "y": 1615.298262032087,
+            "support": "forest-boulder-a",
+            "ticks": 68
+          },
+          {
+            "x": 2724.894385026739,
+            "y": 1530.9973262032079,
+            "support": "forest-boulder-a",
+            "ticks": 69
+          },
+          {
+            "x": 2699.477718360072,
+            "y": 1363.8939818351582,
+            "support": "sop1-plateau-step",
+            "ticks": 56
+          },
+          {
+            "x": 2790.9777183600745,
+            "y": 1244.6156040038397,
+            "support": "forest-boulder-b",
+            "ticks": 64
+          }
+        ],
+        "mode": "isolated explicit ordinary jump at each authored optional transition"
+      }
+    },
+    "previouslyPassed": {
+      "walk": true,
+      "arrival": true,
+      "end": {
+        "x": 5851.086499873589,
+        "y": 409.5437564297534
+      },
+      "scope": "Main walk/arrival passed in preceding run; not repeated after optional branch/plateau-only adjustment."
+    }
+  },
+  "branchAscent": {
+    "passed": true,
+    "end": [
+      1003.8785522656018,
+      1751.4172154273324
+    ],
+    "scope": "Prior isolated native run, not repeated after unrelated optional plateau route annotation fix."
+  },
+  "limits": [
+    "Native walking/jumps use isolated hero geometry fixture, not full normal battle.",
+    "No whole verify or unrelated skill checks.",
+    "Master/Pages unchanged."
+  ]
+}

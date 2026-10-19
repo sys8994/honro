@@ -1,35 +1,29 @@
-/** Stage1: approved quiet transparent near art and an independent shared far.
- * Source contacts are measured within the new broad ground/wood top planes. */
-const SCALE=2,WIDTH=1672,HEIGHT=941;
-const ground=[[0,515],[80,537],[160,561],[260,582],[430,611],[600,631],[790,654],[980,673],[1120,689],[1230,702],[1320,700],[1420,678],[1540,653],[1672,636]];
+/** SOP v0.1: final repainted source defines contacts; world design is 6000 wide. */
+const WIDTH=1870,HEIGHT=841,SCALE=6000/WIDTH;
+const ground=[[0,766],[120,750],[260,738],[430,735],[600,718],[700,696],[765,675],[820,650],[820,530],[865,536],[940,570],[1010,610],[1090,617],[1200,619],[1280,635],[1280,439],[1330,422],[1400,384],[1440,350],[1510,339],[1570,300],[1615,260],[1615,220],[1670,207],[1710,174],[1750,144],[1800,130],[1870,123]];
 const supports={
- 'fc-choice-1-low-pine-root':[[78,443],[112,440],[142,448],[166,462]],
- 'pine-branch-east':[[175,342],[210,326],[245,309],[285,298],[325,302],[370,319],[415,325]],
- 'forest-boulder-a':[[238,451],[280,460],[320,479],[355,496]],
- 'forest-boulder-b':[[690,551],[750,549],[830,555],[910,570],[990,583]]
+ 'fc-choice-1-low-pine-root':[[195,675],[225,673],[265,656],[310,652]],
+ 'pine-branch-east':[[248,550],[285,544],[330,547],[390,557],[445,578]],
+ 'forest-boulder-a':[[730,525],[790,508],[830,490],[860,470]],
+ 'forest-boulder-b':[[830,383],[895,391],[1010,385],[1100,376]],
+ 'sop1-root-step':[[178,715],[205,711],[227,715]],
+ 'sop1-root-upper':[[265,603],[295,598],[324,604]],
+ 'sop1-west-step':[[770,592],[796,589],[817,595]],
+ 'sop1-plateau-step':[[816,428],[841,425],[862,430]],
+ 'sop1-east-step-low':[[1212,568],[1240,565],[1265,570]],
+ 'sop1-east-step-high':[[1238,505],[1262,502],[1280,510]],
+ 'sop1-east-step-lip':[[1257,466],[1266,463],[1274,468]]
 };
 const points=a=>a.map(([x,y])=>({x:x*SCALE,y:y*SCALE}));
-const at=(x,line=ground)=>{for(let i=1;i<line.length;i++){const a=line[i-1],b=line[i];if(x>=a[0]&&x<=b[0])return(a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]))*SCALE;}throw Error('Stage1 quiet art contact outside '+x);};
+const at=(x,line=ground)=>{for(let i=1;i<line.length;i++){const a=line[i-1],b=line[i];if(x>=a[0]&&x<=b[0]&&b[0]>a[0])return(a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]))*SCALE;}throw Error('Stage1 source contact outside '+x);};
 const contact=(x,support='forest-floor')=>({x:x*SCALE,y:at(x,support==='forest-floor'?ground:supports[support]),support});
-export function applyStage1ImageFirst(project){
- const s=project.stages.find(s=>s.metadata?.stageId===1);if(!s)return project;const prior=new Map(s.terrains.map(t=>[t.id,t]));
- s.width=WIDTH*SCALE;s.height=HEIGHT*SCALE;s.playBounds={left:0,top:0,right:s.width,bottom:s.height};s.terrainBounds={...s.playBounds};s.terrainDomainVersion=1;
- const floor={...prior.get('forest-floor'),id:'forest-floor',type:'solid',layer:'terrain',baseMaterial:'soil',oneWay:false,points:points([...ground,[WIDTH,HEIGHT],[0,HEIGHT]]),detail:{spacing:18,roughness:0,optimizeEpsilon:0,seed:1},properties:{...prior.get('forest-floor')?.properties,honroWalkEdges:ground.slice(1).map((_,i)=>i)}};
- s.terrains=[floor,...Object.entries(supports).map(([id,line])=>({...prior.get(id),id,name:prior.get(id)?.name||id,type:'solid',layer:'terrain',baseMaterial:id.startsWith('forest-boulder')?'rock':'wood',oneWay:true,breakable:id.startsWith('forest-boulder')?false:prior.get(id)?.breakable,points:points([...line,...line.toReversed().map(([x,y])=>[x,y+(id.startsWith('forest-boulder')?20:12)])]),detail:{spacing:18,roughness:0,optimizeEpsilon:0,seed:1},properties:{...prior.get(id)?.properties,honroWalkEdges:line.slice(1).map((_,i)=>i)}}))];
- // No invented west bough: this source has one visibly substantial natural arm.
- // Rear stone top contacts are one-way so the broad path in front stays open.
- s.elements=[];
- const poses={'p-archer':contact(45),'foe-0':contact(960),'foe-1':contact(245,'pine-branch-east'),'foe-2':contact(1530),'foe-3':contact(1330),'npc-woodcutter':contact(1450)};
- for(const u of s.units){const p=poses[u.id];if(!p)continue;Object.assign(u,{x:p.x,y:p.y});if(Object.hasOwn(u,'spawnX'))u.spawnX=p.x;if(Object.hasOwn(u,'spawnY'))u.spawnY=p.y;}
- s.anchors={...s.anchors,start:contact(45),cart:contact(1190),shrine:contact(120,'fc-choice-1-low-pine-root'),lookout:contact(320,'pine-branch-east'),ridge:contact(1510),woodcutter:contact(1450),exit:contact(1625)};
- const markerX=[45,1190,420,780,870,1510,1460,1625];for(const[i,m]of s.markers.entries())Object.assign(m,contact(markerX[i]));
- const progress={cart:1100,more:170,witness:1390,ridge:1500};for(const e of s.events){if(e.when?.progress!==undefined)e.when.progress=progress[e.id]*SCALE;if(e.id==='cart'&&e.action?.type==='spawn'){const n=e.action.n,make=(x,count)=>({...e.action,n:count,...contact(x),spacing:165,maxDistance:210});e.action={type:'multi',actions:[make(1030,Math.ceil(n/2)),make(1470,Math.floor(n/2))].filter(a=>a.n)};}}
- const water=s.materials.find(m=>m.id==='creek-water');s.materials=water?[{...water,kind:'shallow-water',terrainId:'forest-floor',support:'forest-floor',x1:1180*SCALE,x2:1320*SCALE,reference:at(1240),depth:9,alpha:.15,surface:undefined,bottom:undefined,points:undefined}]:[];
- s.routes=[45,430,790,1130,1370,1625].map(x=>contact(x));s.design.act1Scene={version:2,scenery:[],rocks:[],replaced:[]};
- s.design.forestChoice={version:3,supportId:'fc-choice-1-low-pine-root',treeX:145*SCALE,from:contact(100),to:contact(112,'fc-choice-1-low-pine-root'),required:false};
- s.design.stage1ImageFirst={revision:2,quietLayers:1,far:'quietFar',image:'stage1QuietNear',source:{width:WIDTH,height:HEIGHT},transform:{x:0,y:0,scale:SCALE},artBounds:{left:0,top:0,right:s.width,bottom:s.height},walkRibbon:points(ground),runtimeRoster:{'foe-0-cluster':contact(820,'forest-boulder-b'),'foe-1-cluster':contact(370,'pine-branch-east'),'foe-2-cluster':contact(1610),'foe-3-cluster':contact(1390)},
-  // Art-space destruction mask only, never a terrain/collision paint clip.
-  brokenBoughMask:[[188,342],[223,316],[290,277],[390,255],[530,278],[662,322],[755,369],[751,418],[676,446],[531,424],[399,383],[290,352],[220,358]],
-  routes:{walk:s.routes,ascent:[contact(100),contact(112,'fc-choice-1-low-pine-root'),contact(190,'pine-branch-east'),contact(320,'pine-branch-east')],stone:[contact(800),contact(820,'forest-boulder-b')]}};
- Object.assign(s.initialState,{width:s.width,height:s.height});return project;
+export function applyStage1ImageFirst(project){const s=project.stages.find(s=>s.metadata?.stageId===1);if(!s)return project;const prior=new Map(s.terrains.map(t=>[t.id,t]));s.width=6000;s.height=HEIGHT*SCALE;s.playBounds={left:0,top:0,right:s.width,bottom:s.height};s.terrainBounds={...s.playBounds};s.terrainDomainVersion=1;s.camera={...s.camera,focusBounds:{left:0,top:-700,right:s.width,bottom:s.height}};
+ const stepFaces=Object.fromEntries(Object.entries(supports).filter(([id])=>id.startsWith('sop1-')).map(([id,line])=>[id,[...line,[line.at(-1)[0]+5,line.at(-1)[1]+21],[line[0][0]-5,line[0][1]+24]]]));
+ s.terrains=[{...prior.get('forest-floor'),id:'forest-floor',playProjection:undefined,type:'solid',layer:'terrain',baseMaterial:'soil',oneWay:false,points:points([...ground,[WIDTH,HEIGHT],[0,HEIGHT]]),detail:{spacing:18,roughness:0,optimizeEpsilon:0,seed:1},properties:{...prior.get('forest-floor')?.properties,honroWalkEdges:ground.slice(1).map((_,i)=>i)}} ,...Object.entries(supports).map(([id,line])=>({...prior.get(id),id,name:prior.get(id)?.name||id,playProjection:undefined,type:'solid',layer:'terrain',baseMaterial:id==='pine-branch-east'?'wood':'rock',oneWay:true,breakable:id==='pine-branch-east',points:points(stepFaces[id]||[...line,...line.toReversed().map(([x,y])=>[x,y+12])]),detail:{spacing:18,roughness:0,optimizeEpsilon:0,seed:1},properties:{...prior.get(id)?.properties,hp:id==='pine-branch-east'?340:99999,maxHp:id==='pine-branch-east'?340:99999,honroWalkEdges:line.slice(1).map((_,i)=>i)}}))];s.elements=[];
+ const poses={'p-archer':contact(45),'foe-0':contact(1000),'foe-1':{x:390*SCALE,y:520*SCALE},'foe-2':contact(1600),'foe-3':contact(1360),'npc-woodcutter':contact(1680)};for(const u of s.units){const p=poses[u.id];if(!p)continue;Object.assign(u,{x:p.x,y:p.y});if(Object.hasOwn(u,'spawnX'))u.spawnX=p.x;if(Object.hasOwn(u,'spawnY'))u.spawnY=p.y;}
+ s.anchors={...s.anchors,start:contact(45),cart:contact(1090),shrine:contact(235,'fc-choice-1-low-pine-root'),lookout:contact(350,'pine-branch-east'),ridge:contact(1720),woodcutter:contact(1680),exit:contact(1830)};
+ const markerX=[45,1090,600,945,1000,1720,1660,1830];for(const[i,m]of s.markers.entries())Object.assign(m,contact(markerX[i]));const progress={cart:1040,more:250,witness:1620,ridge:1690};for(const e of s.events){if(e.when?.progress!==undefined)e.when.progress=progress[e.id]*SCALE;if(e.id==='cart'&&e.action?.type==='spawn'){const n=e.action.n,make=(x,count)=>({...e.action,n:count,...contact(x),spacing:165,maxDistance:260});e.action={type:'multi',actions:[make(1040,Math.ceil(n/2)),make(1510,Math.floor(n/2))].filter(a=>a.n)};}}
+ const water=s.materials.find(m=>m.id==='creek-water');s.materials=water?[{...water,kind:'shallow-water',terrainId:'forest-floor',support:'forest-floor',x1:1060*SCALE,x2:1210*SCALE,reference:730*SCALE,depth:9,alpha:.15,surface:undefined,bottom:undefined,points:undefined}]:[];
+ const walk=[contact(45),contact(700),contact(815),contact(800,'sop1-west-step'),contact(835),contact(1090),contact(1225),contact(1240,'sop1-east-step-low'),contact(1262,'sop1-east-step-high'),contact(1266,'sop1-east-step-lip'),contact(1290),contact(1510),contact(1605),contact(1630),contact(1830)];s.routes=walk;s.design.act1Scene={version:2,scenery:[],rocks:[],replaced:[]};s.design.forestChoice={version:3,supportId:'fc-choice-1-low-pine-root',treeX:235*SCALE,from:contact(200),to:contact(225,'fc-choice-1-low-pine-root'),required:false};
+ s.design.stage1ImageFirst={revision:3,sopVersion:'0.1',quietLayers:1,far:'quietFar',image:'stage1SopNear',source:{width:WIDTH,height:HEIGHT},transform:{x:0,y:0,scale:SCALE},artBounds:{left:0,top:0,right:s.width,bottom:s.height},walkRibbon:points(ground),stepFaces,runtimeRoster:{'foe-0-cluster':contact(740),'foe-1-cluster':{x:285*SCALE,y:485*SCALE},'foe-2-cluster':contact(1800),'foe-3-cluster':contact(1490)},brokenBoughMask:[[320,510],[410,530],[505,560],[505,598],[415,585],[350,565]],routes:{walk,ascent:[contact(195),contact(205,'sop1-root-step'),contact(225,'fc-choice-1-low-pine-root'),contact(300,'fc-choice-1-low-pine-root'),contact(295,'sop1-root-upper'),contact(315,'pine-branch-east')],stone:[{...contact(835),jumpTo:{x:800*SCALE,support:'forest-boulder-a'}},contact(800,'forest-boulder-a'),contact(850,'forest-boulder-a'),{...contact(841,'sop1-plateau-step'),jumpTo:{x:870*SCALE,support:'forest-boulder-b'}},contact(870,'forest-boulder-b')]}};Object.assign(s.initialState,{width:s.width,height:s.height,routePoints:walk});return project;
 }
