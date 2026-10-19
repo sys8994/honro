@@ -1,0 +1,259 @@
+{
+  "check": {
+    "scope": "Stage1 coordinate correction only: fresh roster stats/count/cap, ground/air body clearance, two seconds ground-body integration (fixed flyers stay at authored positions), final approach from already reached native checkpoint. No full combat, full build, other stage or skill tests.",
+    "initial": [
+      {
+        "id": "foe-0",
+        "type": "beast",
+        "x": 950,
+        "y": 2434.54,
+        "flying": false,
+        "clear": true
+      },
+      {
+        "id": "foe-1",
+        "type": "crow",
+        "x": 1328.4,
+        "y": 1981.3,
+        "flying": true,
+        "clear": true
+      },
+      {
+        "id": "foe-2",
+        "type": "beast",
+        "x": 5490.780000000001,
+        "y": 1070.682625,
+        "flying": false,
+        "clear": true
+      },
+      {
+        "id": "foe-3",
+        "type": "beast",
+        "x": 3270,
+        "y": 1855.9860625,
+        "flying": false,
+        "clear": true
+      },
+      {
+        "id": "foe-0-cluster",
+        "type": "beast",
+        "x": 1830,
+        "y": 2203.375,
+        "flying": false,
+        "clear": true
+      },
+      {
+        "id": "foe-1-cluster",
+        "type": "crow",
+        "x": 3077.4900000000002,
+        "y": 1695.4568125,
+        "flying": true,
+        "clear": true
+      },
+      {
+        "id": "foe-2-cluster",
+        "type": "beast",
+        "x": 4710,
+        "y": 1437.954625,
+        "flying": false,
+        "clear": true
+      },
+      {
+        "id": "foe-3-cluster",
+        "type": "beast",
+        "x": 4080,
+        "y": 1601.218625,
+        "flying": false,
+        "clear": true
+      }
+    ],
+    "idleBodiesClearAndHealthStable": true,
+    "finalApproach": {
+      "from": 5820,
+      "passed": true,
+      "arrival": true,
+      "samples": [
+        {
+          "goal": {
+            "x": 5950,
+            "y": 1043.068375
+          },
+          "x": 5930.751703335503,
+          "y": 1051.1887501553347,
+          "ticks": 28,
+          "support": "forest-exit-floor"
+        }
+      ]
+    },
+    "enemyCount": 8,
+    "enemyLimit": 2,
+    "revision": 4
+  },
+  "browser": {
+    "units": [
+      {
+        "id": "foe-0",
+        "x": 950,
+        "y": 2434.54
+      },
+      {
+        "id": "foe-1",
+        "x": 1328.4,
+        "y": 1981.3
+      },
+      {
+        "id": "foe-2",
+        "x": 5490.780000000001,
+        "y": 1070.682625
+      },
+      {
+        "id": "foe-3",
+        "x": 3270,
+        "y": 1855.9860625
+      },
+      {
+        "id": "foe-0-cluster",
+        "x": 1830,
+        "y": 2203.375
+      },
+      {
+        "id": "foe-1-cluster",
+        "x": 3077.4900000000002,
+        "y": 1695.4568125
+      },
+      {
+        "id": "foe-2-cluster",
+        "x": 4710,
+        "y": 1437.954625
+      },
+      {
+        "id": "foe-3-cluster",
+        "x": 4080,
+        "y": 1601.218625
+      }
+    ],
+    "revision": 4,
+    "sections": [
+      {
+        "x": 0,
+        "y": 1600,
+        "scale": 1.23
+      },
+      {
+        "x": 1908.9900000000002,
+        "y": 1228.0568125,
+        "scale": 1.23
+      },
+      {
+        "x": 3817.9800000000005,
+        "y": 708.3246249999999,
+        "scale": 1.23
+      }
+    ],
+    "enemyLimit": 2,
+    "errors": [],
+    "scope": "One corrected middle composition and whole-layout view using the already verified reachable hero pose. Coordinate comparison only; no repeated camera/mobile/cache suite."
+  },
+  "generated": {
+    "scope": "Incremental dependency update only; no full web build or unrelated assets regenerated.",
+    "coordinateChanges": [
+      {
+        "path": "/units/2/x",
+        "before": 2831.4900000000002,
+        "after": 1328.4
+      },
+      {
+        "path": "/units/2/y",
+        "before": 1781.5568125,
+        "after": 1981.3
+      },
+      {
+        "path": "/units/2/spawnX",
+        "before": 2831.4900000000002,
+        "after": 1328.4
+      },
+      {
+        "path": "/units/2/spawnY",
+        "before": 1781.5568125,
+        "after": 1981.3
+      },
+      {
+        "path": "/units/4/x",
+        "before": 3415,
+        "after": 3270
+      },
+      {
+        "path": "/units/4/y",
+        "before": 1848.5241875,
+        "after": 1855.9860625000001
+      },
+      {
+        "path": "/units/4/spawnX",
+        "before": 3415,
+        "after": 3270
+      },
+      {
+        "path": "/units/4/spawnY",
+        "before": 1848.5241875,
+        "after": 1855.9860625000001
+      },
+      {
+        "path": "/design/stage1ImageFirst/runtimeRoster/foe-0-cluster/x",
+        "before": 1165,
+        "after": 1830
+      },
+      {
+        "path": "/design/stage1ImageFirst/runtimeRoster/foe-0-cluster/y",
+        "before": 2400.6800000000003,
+        "after": 2203.375
+      },
+      {
+        "path": "/design/stage1ImageFirst/runtimeRoster/foe-1-cluster/x",
+        "before": 2917.59,
+        "after": 3077.4900000000002
+      },
+      {
+        "path": "/design/stage1ImageFirst/runtimeRoster/foe-1-cluster/y",
+        "before": 1787.7068125,
+        "after": 1695.4568125
+      },
+      {
+        "path": "/design/stage1ImageFirst/runtimeRoster/foe-2-cluster/x",
+        "before": 5720,
+        "after": 4710
+      },
+      {
+        "path": "/design/stage1ImageFirst/runtimeRoster/foe-2-cluster/y",
+        "before": 1175.771825,
+        "after": 1437.9546249999999
+      },
+      {
+        "path": "/design/stage1ImageFirst/runtimeRoster/foe-3-cluster/x",
+        "before": 3560,
+        "after": 4080
+      },
+      {
+        "path": "/design/stage1ImageFirst/runtimeRoster/foe-3-cluster/y",
+        "before": 1844.9548125000001,
+        "after": 1601.218625
+      },
+      {
+        "path": "/design/stage1ImageFirst/runtimeRoster/foe-3-cluster/support",
+        "before": "forest-middle-floor",
+        "after": "forest-exit-floor"
+      }
+    ],
+    "hashedAssetsUpdated": {
+      "web/data/chapter-01.becc2aa6947f22f7.json": "web/data/chapter-01.1f16b6d109fc2d17.json",
+      "web/data/campaign.6b4bf2115a11494a.json": "web/data/campaign.cc56d40560db4780.json",
+      "web/runtime/campaign.6343f4120309ebe7.js": "web/runtime/campaign.8aae0f03e89b5a7b.js",
+      "web/entries/game.58a6c03058da9c1f.js": "web/entries/game.608c6a3cc37b28d5.js",
+      "web/entries/game.43795c70520f266c.html": "web/entries/game.aa69840c1d9d1698.html",
+      "web/entries/workshop.4d2b5cabfc32d77f.js": "web/entries/workshop.7b124357f9130e90.js"
+    },
+    "activeFiles": 218,
+    "otherActiveFilesPreserved": 212,
+    "authoringMetadataRevision": 20,
+    "campaignRevisionSourceUnchanged": true
+  }
+}
