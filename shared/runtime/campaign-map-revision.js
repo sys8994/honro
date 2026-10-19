@@ -1,5 +1,5 @@
 (function(G){'use strict';
-const clone=x=>structuredClone(x),REVISIONS=Object.freeze({1:2,2:1,3:1,4:1,5:1,6:1,7:1,8:1,9:1,10:1,...Object.fromEntries(Array.from({length:10},(_,i)=>[21+i,1]))});
+const clone=x=>structuredClone(x),REVISIONS=Object.freeze({1:2,2:2,3:1,4:1,5:1,6:1,7:1,8:1,9:1,10:1,...Object.fromEntries(Array.from({length:10},(_,i)=>[21+i,1]))});
 // Increment only the chapters whose authored geography/encounters are replaced.
 // Workshop projects and their protected campaign owner are outside this contract.
 const current=id=>REVISIONS[id]||0;
