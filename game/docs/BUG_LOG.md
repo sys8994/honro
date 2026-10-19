@@ -1,3 +1,9 @@
+## 선택 기능 JS의 실제 사용 시 준비 · 2026-10-19
+
+- training/skill-preview만 외부 웹 Game의 초기 import/preload에서 분리했다. 해시 선택 모듈·진행 중 import 공유·실패 URL 재시도, preview modal/canvas 소유권 및 닫기 취소, 허공터 준비 전 화면/저장 보존을 추가했다. native/full embedded의 순서와 공통 런타임·미술·지형은 유지했다.
+- 필요한 빌드와 대표 active/passive·수련점/미리보기 복원·빠른 닫기·import 실패 재시도·허공터 중복/초기 진입/Escape/reset/직접 진입·기존 캠페인 저장 보존을 확인했다. ready 전 선택 모듈 요청0, JS 순감17,090B. 1회 CPU4 비교 ready는 약0.2초 늘어 속도 개선을 주장하지 않는다.
+- embedded 런타임/두 eager 모듈은 준비되나 Playtest 전투는 기준 master에서도 stage1–4 scene/terrainBounds/zone schema 오류로 막힌다. 해당 미술/지형은 미수정이며 전체 verify/기예 전수도 미실행이다. 측정·범위·근거는 `STARTUP_LOADING.md`의 선택 기능 절에 기록했다. 부모 통합을 위해 작업 브랜치까지만 push한다.
+
 ## 2026-10-19 — 전술 줌을 유지한 1장 이미지 절단 경계 보완
 
 - 부모가 공개 Pages에서 ca3ffb3의 초기/축소1장 왼쪽 수직·아래 수평 이미지 절단을 확인했다. 줌 제한 제거 후 그림 밖 비충돌 연결이 빠진 문제다.
