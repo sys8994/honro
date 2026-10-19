@@ -1,0 +1,562 @@
+{
+  "implementationCommit": "5d3266d020ee755b3f551b5ce118a29622b742f1",
+  "referenceCommit": "e346c26f7b748704a8ae6f3393259b87776765b8",
+  "referenceSha256": "fa245c9fcb1b735cf2abc4ec2ca7116444f9a7dcf266b0280ea954082822c3db",
+  "files": [
+    {
+      "webp": "stage3-01-overview.webp",
+      "png": "stage3-01-overview.png",
+      "bytes": 790396,
+      "lossless": true,
+      "quality": 100,
+      "width": 1440,
+      "height": 960,
+      "sourcePngSha256": "ad827e33a3c7b095a5027e350841011e515daee75171e86737699e6bf78d1e85",
+      "decodedRgbaSha256": "7d93c414f74c4cd74aa968252cb0ec4cdcedaed1c1e17f124f3e9b5377ce947e"
+    },
+    {
+      "webp": "stage3-02-same-camera-debug.webp",
+      "png": "stage3-02-same-camera-debug.png",
+      "bytes": 803478,
+      "lossless": true,
+      "quality": 100,
+      "width": 1440,
+      "height": 960,
+      "sourcePngSha256": "1a7403d88179755780fe9beed60384463258f78470e380e4db3310df923d3768",
+      "decodedRgbaSha256": "b5b5d8e437ae3054d91c68481e31967ef73901aaa50fb0f26a13e345a055b675"
+    },
+    {
+      "webp": "stage3-03-hanok-contact.webp",
+      "png": "stage3-03-hanok-contact.png",
+      "bytes": 781374,
+      "lossless": true,
+      "quality": 100,
+      "width": 1440,
+      "height": 960,
+      "sourcePngSha256": "5cf8034a8c75c3d7b03cea81cfeaa4efb69c79206c96df6ef514270d4f10ed7c",
+      "decodedRgbaSha256": "4fa3f2e84e546face0c010fa9064631bfa33b8dba507b7bd61f7cbd4085ca46e"
+    }
+  ],
+  "captureNote": "Three actual Chromium captures before final bank/threshold material normalization and removal of unused forestChoice metadata. Art, vertices, actor positions and camera are unchanged; final build refreshed without repeating passed gameplay checks. Original PNG files preserved alongside lossless WebPs.",
+  "geometryAndPlacement": {
+    "scope": "Stage3 only: isolated ordinary geometry/ledger, full initial stat/contact and occupied-roster spawn placement. Real living action is checked separately in Chromium.",
+    "initial": [
+      {
+        "id": "foe-0",
+        "kind": "hound",
+        "x": 1408,
+        "y": 1186.3310344827587
+      },
+      {
+        "id": "foe-1",
+        "kind": "crow",
+        "x": 1672.0000000000002,
+        "y": 847.0000000000001
+      },
+      {
+        "id": "foe-2",
+        "kind": "human",
+        "x": 3377.0000000000005,
+        "y": 1021.9000000000001
+      },
+      {
+        "id": "foe-3",
+        "kind": "boar",
+        "x": 1980.0000000000002,
+        "y": 1135.5666666666668
+      },
+      {
+        "id": "foe-4",
+        "kind": "bat",
+        "x": 1122,
+        "y": 935.0000000000001
+      },
+      {
+        "id": "foe-5",
+        "kind": "human",
+        "x": 3795.0000000000005,
+        "y": 544.2800000000001
+      },
+      {
+        "id": "midboss-stage3",
+        "kind": "warden",
+        "x": 1386,
+        "y": 1468.6571428571428
+      },
+      {
+        "id": "foe-0-cluster",
+        "kind": "hound",
+        "x": 2398,
+        "y": 1199.6000000000001
+      },
+      {
+        "id": "foe-1-cluster",
+        "kind": "crow",
+        "x": 2948.0000000000005,
+        "y": 561
+      },
+      {
+        "id": "foe-2-cluster",
+        "kind": "human",
+        "x": 3608.0000000000005,
+        "y": 903.7111111111111
+      },
+      {
+        "id": "foe-3-cluster",
+        "kind": "boar",
+        "x": 2640,
+        "y": 1249.3555555555556
+      },
+      {
+        "id": "foe-4-cluster",
+        "kind": "bat",
+        "x": 2442,
+        "y": 814.0000000000001
+      },
+      {
+        "id": "foe-5-cluster",
+        "kind": "human",
+        "x": 4147,
+        "y": 894.2738095238096
+      }
+    ],
+    "water": {
+      "x": 0,
+      "y": 1412.4,
+      "w": 1672.0000000000002,
+      "depth": 260.83865546218476
+    },
+    "hwigyeom": {
+      "id": "npc-hwigyeom",
+      "name": "휘겸",
+      "role": "ally-guard",
+      "cls": "knight",
+      "side": 2,
+      "x": 880.0000000000001,
+      "y": 1332.6000000000001,
+      "vx": 0,
+      "vy": 0,
+      "hp": 752,
+      "maxHp": 752,
+      "r": 20,
+      "h": 90,
+      "focus": 160,
+      "maxFocus": 160,
+      "regen": 14,
+      "level": 3,
+      "attack": 1.7723999999999998,
+      "armor": 0.24,
+      "shield": 0,
+      "bound": 0,
+      "mark": 0,
+      "breaks": 0,
+      "acted": true,
+      "moveLeft": 900,
+      "maxMove": 900,
+      "walkSpeed": 260,
+      "angle": 44,
+      "lastPower": 0.55,
+      "loadout": [
+        "LS01",
+        "LS09"
+      ],
+      "tune": 0.5,
+      "facing": 1,
+      "hurt": 0,
+      "anim": 0,
+      "airborne": false,
+      "fixed": false,
+      "spawnX": 880.0000000000001,
+      "spawnY": 1332.6000000000001,
+      "intent": "",
+      "dead": false,
+      "ranks": {
+        "LS01": 2,
+        "LS09": 2
+      },
+      "group": -1,
+      "awake": true,
+      "lastAct": 0,
+      "aggroUntil": 0,
+      "xpBudget": 0,
+      "xpGranted": 0,
+      "killRewarded": false,
+      "damageBy": {},
+      "honroAlly": true,
+      "allyRole": "guard",
+      "honroType": "ally",
+      "allyState": "follow",
+      "critChance": 0.0524,
+      "critMultiplier": 1.624
+    },
+    "main": {
+      "passed": true,
+      "failed": null,
+      "ticks": 726,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 187.00000000000003,
+            "y": 1218.3111111111114
+          },
+          "x": 187.00000000000003,
+          "y": 1218.3111111111114,
+          "ticks": 1,
+          "support": "ferry-side-gangway"
+        },
+        {
+          "goal": {
+            "x": 572,
+            "y": 1235.3000000000002
+          },
+          "x": 553.4817744611989,
+          "y": 1236.6888669154102,
+          "ticks": 71,
+          "support": "ferry-side-gangway"
+        },
+        {
+          "goal": {
+            "x": 792.0000000000001,
+            "y": 1331
+          },
+          "x": 784.3061885233418,
+          "y": 1330.440450074425,
+          "ticks": 59,
+          "support": "dock-west"
+        },
+        {
+          "goal": {
+            "x": 1298,
+            "y": 1311.7176470588236
+          },
+          "x": 1394.3214147396577,
+          "y": 1189.3969242824905,
+          "ticks": 95,
+          "support": "dock-mid",
+          "jumpTo": {
+            "x": 1430.0000000000002,
+            "support": "dock-mid"
+          }
+        },
+        {
+          "goal": {
+            "x": 1452.0000000000002,
+            "y": 1177
+          },
+          "x": 1430.1825737468773,
+          "y": 1181.3634852506248,
+          "ticks": 8,
+          "support": "dock-mid"
+        },
+        {
+          "goal": {
+            "x": 1925.0000000000002,
+            "y": 1118.5428571428572
+          },
+          "x": 1906.3599112264844,
+          "y": 1110.4918502078979,
+          "ticks": 93,
+          "support": "dock-mid"
+        },
+        {
+          "goal": {
+            "x": 2200,
+            "y": 1151.0190476190476
+          },
+          "x": 2182.0475676838596,
+          "y": 1146.5736834264796,
+          "ticks": 54,
+          "support": "ferry-ground"
+        },
+        {
+          "goal": {
+            "x": 2728,
+            "y": 1248.377777777778
+          },
+          "x": 2710.76286972442,
+          "y": 1248.5693014475066,
+          "ticks": 104,
+          "support": "ferry-ground"
+        },
+        {
+          "goal": {
+            "x": 3234.0000000000005,
+            "y": 1093.8400000000001
+          },
+          "x": 3214.8862626622026,
+          "y": 1100.7209454416072,
+          "ticks": 102,
+          "support": "ferry-ground"
+        },
+        {
+          "goal": {
+            "x": 3630.0000000000005,
+            "y": 840.4000000000001
+          },
+          "x": 3608.6300753506666,
+          "y": 903.4030742730076,
+          "ticks": 85,
+          "support": "ferry-ground"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    "roof": [
+      {
+        "x": 4004.0000000000005,
+        "y": 814.6285714285715,
+        "ticks": 71,
+        "support": "cargo-step-2"
+      },
+      {
+        "x": 3983.0000000000005,
+        "y": 648.6000000000001,
+        "ticks": 56,
+        "support": "warehouse-roof"
+      }
+    ],
+    "roofWalk": {
+      "passed": true,
+      "failed": null,
+      "ticks": 43,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 3795.0000000000005,
+            "y": 544.2800000000001
+          },
+          "x": 3813.2465227292673,
+          "y": 541.3295649344952,
+          "ticks": 44,
+          "support": "warehouse-roof"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    "roofToLedger": {
+      "passed": true,
+      "failed": null,
+      "ticks": 31,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 3630.0000000000005,
+            "y": 544.2800000000001
+          },
+          "x": 3651.1437701906375,
+          "y": 552.9234875775704,
+          "ticks": 32,
+          "support": "warehouse-roof"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    "ledger": {
+      "collected": true,
+      "x": 3651.1437701906375,
+      "y": 841.8095846793759,
+      "support": "cargo-step-1"
+    },
+    "spawns": [
+      {
+        "source": "dock-beasts",
+        "count": 2,
+        "units": [
+          {
+            "id": "event-1",
+            "x": 2198,
+            "y": 1150.5238095238096
+          },
+          {
+            "id": "event-2",
+            "x": 2506,
+            "y": 1224.1454545454546
+          }
+        ]
+      },
+      {
+        "source": "habitat-3-0",
+        "count": 2,
+        "units": [
+          {
+            "id": "event-1",
+            "x": 3135.0000000000005,
+            "y": 1129.48
+          },
+          {
+            "id": "event-2",
+            "x": 3245.0000000000005,
+            "y": 1089.88
+          }
+        ]
+      },
+      {
+        "source": "habitat-3-1",
+        "count": 2,
+        "units": [
+          {
+            "id": "event-1",
+            "x": 1111,
+            "y": 1075.8705882352942
+          },
+          {
+            "id": "event-2",
+            "x": 1221,
+            "y": 984.4000000000001
+          }
+        ]
+      }
+    ],
+    "oldStage3RestartOnly": true
+  },
+  "actualBrowserAndLivingActions": {
+    "entry": {
+      "stage": 3,
+      "revision": 2,
+      "enemies": 13,
+      "hwigyeom": true,
+      "water": 1
+    },
+    "overview": {
+      "x": 2138.4,
+      "y": 548.4565625,
+      "scale": 0.33670033670033667,
+      "art": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      }
+    },
+    "debug": {
+      "x": 2138.4,
+      "y": 548.4565625,
+      "scale": 0.33670033670033667,
+      "art": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      }
+    },
+    "house": {
+      "x": 3550,
+      "y": 750,
+      "scale": 1.05,
+      "art": {
+        "pictures": 2,
+        "filterPasses": 2,
+        "farCanvases": 1,
+        "requestedImages": 2,
+        "maxImages": 2
+      }
+    },
+    "live": {
+      "scope": "Production Chromium App after original entry dialogue; all 13 initial enemies, actual two-hero waits and original ally/enemy AI. Three enemy actions only, no removed enemy or forced actor/activation/damage.",
+      "startEnemies": 13,
+      "actions": [
+        {
+          "round": 1,
+          "id": "foe-4",
+          "kind": "bat",
+          "from": {
+            "x": 1122,
+            "y": 935.0000000000001
+          },
+          "to": {
+            "x": 1122,
+            "y": 935.0000000000001
+          },
+          "fired": true,
+          "intent": "초음파와 반향"
+        },
+        {
+          "round": 1,
+          "id": "foe-0",
+          "kind": "hound",
+          "from": {
+            "x": 1408,
+            "y": 1186.3310344827587
+          },
+          "to": {
+            "x": 1072.286719931562,
+            "y": 1333.147840004026
+          },
+          "fired": true,
+          "intent": "전진"
+        },
+        {
+          "round": 1,
+          "id": "midboss-stage3",
+          "kind": "warden",
+          "from": {
+            "x": 1386,
+            "y": 1468.6571428571428
+          },
+          "to": {
+            "x": 1299.0000000000014,
+            "y": 1311.5529411764705
+          },
+          "fired": true,
+          "intent": "고지 확보"
+        }
+      ],
+      "shots": [
+        {
+          "round": 1,
+          "id": "foe-4",
+          "kind": "bat",
+          "skill": "HBT01",
+          "x": 1122,
+          "y": 935.0000000000001
+        },
+        {
+          "round": 1,
+          "id": "foe-0",
+          "kind": "hound",
+          "skill": "HBR01",
+          "x": 1072.286719931562,
+          "y": 1333.147840004026
+        },
+        {
+          "round": 1,
+          "id": "midboss-stage3",
+          "kind": "warden",
+          "skill": "HWD01",
+          "x": 1299.0000000000014,
+          "y": 1311.5529411764705
+        }
+      ],
+      "final": {
+        "ticks": 556,
+        "waits": 2,
+        "round": 1,
+        "phase": "transition",
+        "enemies": 13,
+        "dialogue": false,
+        "heroHP": [
+          {
+            "id": "p-archer",
+            "hp": 425
+          },
+          {
+            "id": "p-mage",
+            "hp": 454
+          }
+        ],
+        "hwigyeom": true
+      }
+    },
+    "errors": []
+  },
+  "generatedAssetIndexNote": "Stage3 no longer uses old shared library scenery. Build redistributes formerly common library assets into chapter4/7/9 asset indices; their authored terrain/art/runtime source files are unchanged.",
+  "deployment": "Feature and evidence only, master/Pages await parent pixel approval."
+}
