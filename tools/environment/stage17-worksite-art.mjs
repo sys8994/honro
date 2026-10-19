@@ -3,6 +3,9 @@ import {compileSVG} from './build-act2-art.mjs';
 // Stage-local, editable native vectors. All walking silhouettes remain authored
 // terrain; these assemblies only describe the timber and tools behind them.
 export const STAGE17_ART_PREFIX='stage17:worksite-';
+// art.props retains authored scales; apply this visual-only correction once at
+// placement, so reauthoring never compounds it or moves the support foot.
+const PROP_DISPLAY_SCALE=.55;
 const n=v=>Math.round(v*100)/100;
 const path=(d,fill,stroke='',width=1,id='')=>`<path${id?` id="${id}"`:''} d="${d}" fill="${fill}"${stroke?` stroke="${stroke}" stroke-width="${width}" stroke-linejoin="round" stroke-linecap="round"`:''}/>`;
 const poly=(points,fill,stroke='',width=1)=>path('M'+points.map(p=>p.map(n).join(' ')).join('L')+'Z',fill,stroke,width);
@@ -394,7 +397,12 @@ export function applyStage17WorksiteArt(project){
  ];
  const assets={timber:timberStore(),tools:toolBay('tool-bench'),['tools-alt']:toolBay('axle-tool-bench',1),lamp:oilLamp()};
  st.design.space.lights=(st.design.space.lights||[]).filter(l=>!l.stage17Art);
- for(const p of props){if(!assets[p.asset])throw Error('Unknown stage 17 tool composition: '+p.asset);const e=placeOn(project,st,assets[p.asset],p.key,p.terrainId,p.x,p.scale??1);if(p.asset==='lamp')st.design.space.lights.push({id:'s17-light-'+p.key,stage17Art:true,kind:'oil',x:e.x+62*e.scale,y:e.y-185*e.scale,radius:p.key==='axle-oil-lamp'?480:320,color:'#bd9b62'});}
+ for(const p of props){
+  if(!assets[p.asset])throw Error('Unknown stage 17 tool composition: '+p.asset);
+  const displayScale=(p.scale??1)*PROP_DISPLAY_SCALE;
+  const e=placeOn(project,st,assets[p.asset],p.key,p.terrainId,p.x,displayScale);
+  if(p.asset==='lamp')st.design.space.lights.push({id:'s17-light-'+p.key,stage17Art:true,kind:'oil',x:e.x+62*e.scale,y:e.y-185*e.scale,radius:p.key==='axle-oil-lamp'?480:320,color:'#bd9b62'});
+ }
  st.design.worksite.art={...art,flights,hoist,props};
  st.design.worksiteArt={revision:3,nativeVectorOnly:true,hoist,supports,artAssetIds:[...new Set(st.elements.filter(e=>e.id.startsWith('s17-art-')).map(e=>e.assetId))],source:'stage17-local-authored-terrain',budgets:{maxNodesPerAsset:420}};
  return project;
