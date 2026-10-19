@@ -28,6 +28,12 @@ function makeSections(){
   const line=clipLine(s.fullLine,(left-q.x)/SCALE,(right-q.x)/SCALE),id=i===0?'forest-floor':'forest-'+s.id+'-floor';s.contacts.push(profile(id,line,false));
   for(const [terrainId,v]of Object.entries(s.supports))s.contacts.push(profile(terrainId,v.line,true,v.wood?'wood':'rock',!!v.breakable));
   s.joinFade={};if(i)s.joinFade.left=[(seams[i-1]-48-q.x)/SCALE,(seams[i-1]+48-q.x)/SCALE];if(i<2)s.joinFade.right=[(seams[i]-48-q.x)/SCALE,(seams[i]+48-q.x)/SCALE];
+  // Align only the deep visual margin. These source-space alpha contours never
+  // create collision or trim the walk surface/roots/standable rock caps.
+  s.exterior.bottomPhaseOffset=q.x/(SCALE*WIDTH);
+  if(i<2){const delta=(list[i+1].transform.y-q.y)/SCALE,j=(seams[i]-q.x)/SCALE;s.exterior.bottomContour=[[0,805,885],[1100,805,885],[1300,805+delta*.15,885+delta*.15],[1500,805+delta*.5,885+delta*.5],[j,805+delta,885+delta],[WIDTH,805+delta,885+delta]];}
+  if(i===1)s.exterior.topContour=[[0,0],[1250,0],[1320,12],[1380,22],[1430,16],[1490,34],[1540,19],[1590,30],[1650,13],[1710,26],[1774,16]];
+  if(i===2)s.exterior.topContour=[[0,0],[1450,0],[1520,18],[1560,30],[1600,13],[1640,25],[1680,18],[1730,32],[1774,20]];
   delete s.supports;delete s.fullLine;
  }
  return list;

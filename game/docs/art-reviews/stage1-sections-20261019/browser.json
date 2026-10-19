@@ -1,0 +1,302 @@
+{
+  "entry": {
+    "camera": {
+      "x": 338,
+      "y": 2325.6699999999996,
+      "scale": 0.6
+    },
+    "hero": {
+      "x": 168,
+      "y": 2509.6699999999996,
+      "h": 92,
+      "grounded": true
+    },
+    "size": [
+      6000,
+      3000
+    ],
+    "revision": 4,
+    "art": {
+      "pictures": 4,
+      "filterPasses": 1,
+      "farCanvases": 1,
+      "fringePictures": 3,
+      "fringeLimit": 6,
+      "fringeBuilds": 3,
+      "fringeBytes": 22969752,
+      "sectionLayerBuilds": 8,
+      "sectionLayerBytes": 4194304,
+      "sections": 3,
+      "requestedImages": 4,
+      "maxImages": 4
+    },
+    "requested": [
+      "quietFar",
+      "stage1ForestStartNear",
+      "stage1BalancedNear",
+      "stage1ForestExitNear"
+    ],
+    "enemies": 8
+  },
+  "stage1-seam-entry-normal": {
+    "camera": {
+      "x": 2268.4641738884334,
+      "y": 1970.9466135903403,
+      "scale": 0.6
+    },
+    "hero": {
+      "x": 2098.4641738884334,
+      "y": 2154.9466135903403,
+      "h": 92,
+      "grounded": true
+    },
+    "size": [
+      6000,
+      3000
+    ],
+    "revision": 4,
+    "art": {
+      "pictures": 4,
+      "filterPasses": 1,
+      "farCanvases": 1,
+      "fringePictures": 3,
+      "fringeLimit": 6,
+      "fringeBuilds": 3,
+      "fringeBytes": 22969752,
+      "sectionLayerBuilds": 8,
+      "sectionLayerBytes": 4194304,
+      "sections": 3,
+      "requestedImages": 4,
+      "maxImages": 4
+    },
+    "requested": [
+      "quietFar",
+      "stage1ForestStartNear",
+      "stage1BalancedNear",
+      "stage1ForestExitNear"
+    ],
+    "enemies": 8
+  },
+  "stage1-middle-normal": {
+    "camera": {
+      "x": 2746.3112019692803,
+      "y": 1458.126353386176,
+      "scale": 0.6
+    },
+    "hero": {
+      "x": 2576.3112019692803,
+      "y": 1642.126353386176,
+      "h": 92,
+      "grounded": true
+    },
+    "size": [
+      6000,
+      3000
+    ],
+    "revision": 4,
+    "art": {
+      "pictures": 4,
+      "filterPasses": 1,
+      "farCanvases": 1,
+      "fringePictures": 3,
+      "fringeLimit": 6,
+      "fringeBuilds": 3,
+      "fringeBytes": 22969752,
+      "sectionLayerBuilds": 8,
+      "sectionLayerBytes": 4194304,
+      "sections": 3,
+      "requestedImages": 4,
+      "maxImages": 4
+    },
+    "requested": [
+      "quietFar",
+      "stage1ForestStartNear",
+      "stage1BalancedNear",
+      "stage1ForestExitNear"
+    ],
+    "enemies": 8
+  },
+  "stage1-seam-exit-normal": {
+    "camera": {
+      "x": 4250.802916032386,
+      "y": 1417.111569529015,
+      "scale": 0.6
+    },
+    "hero": {
+      "x": 4080.8029160323863,
+      "y": 1601.111569529015,
+      "h": 92,
+      "grounded": true
+    },
+    "size": [
+      6000,
+      3000
+    ],
+    "revision": 4,
+    "art": {
+      "pictures": 4,
+      "filterPasses": 1,
+      "farCanvases": 1,
+      "fringePictures": 3,
+      "fringeLimit": 6,
+      "fringeBuilds": 3,
+      "fringeBytes": 22969752,
+      "sectionLayerBuilds": 8,
+      "sectionLayerBytes": 4194304,
+      "sections": 3,
+      "requestedImages": 4,
+      "maxImages": 4
+    },
+    "requested": [
+      "quietFar",
+      "stage1ForestStartNear",
+      "stage1BalancedNear",
+      "stage1ForestExitNear"
+    ],
+    "enemies": 8
+  },
+  "overview": {
+    "camera": {
+      "x": 3000,
+      "y": 1500,
+      "scale": 0.24
+    },
+    "hero": {
+      "x": 4080.8029160323863,
+      "y": 1601.111569529015,
+      "h": 92,
+      "grounded": true
+    },
+    "size": [
+      6000,
+      3000
+    ],
+    "revision": 4,
+    "art": {
+      "pictures": 4,
+      "filterPasses": 1,
+      "farCanvases": 1,
+      "fringePictures": 3,
+      "fringeLimit": 6,
+      "fringeBuilds": 3,
+      "fringeBytes": 22969752,
+      "sectionLayerBuilds": 10,
+      "sectionLayerBytes": 3842048,
+      "sections": 3,
+      "requestedImages": 4,
+      "maxImages": 4
+    },
+    "requested": [
+      "quietFar",
+      "stage1ForestStartNear",
+      "stage1BalancedNear",
+      "stage1ForestExitNear"
+    ],
+    "enemies": 8
+  },
+  "cache": {
+    "before": {
+      "pictures": 4,
+      "filterPasses": 1,
+      "farCanvases": 1,
+      "fringePictures": 3,
+      "fringeLimit": 6,
+      "fringeBuilds": 3,
+      "fringeBytes": 22969752,
+      "sectionLayerBuilds": 10,
+      "sectionLayerBytes": 3842048
+    },
+    "after": {
+      "pictures": 4,
+      "filterPasses": 1,
+      "farCanvases": 1,
+      "fringePictures": 3,
+      "fringeLimit": 6,
+      "fringeBuilds": 3,
+      "fringeBytes": 22969752,
+      "sectionLayerBuilds": 10,
+      "sectionLayerBytes": 3842048
+    },
+    "battleStable": true
+  },
+  "stage1-three-mobile-normal": {
+    "camera": {
+      "x": 4250.802916032386,
+      "y": 1417.111569529015,
+      "scale": 0.1625
+    },
+    "hero": {
+      "x": 4080.8029160323863,
+      "y": 1601.111569529015,
+      "h": 92,
+      "grounded": true
+    },
+    "size": [
+      6000,
+      3000
+    ],
+    "revision": 4,
+    "art": {
+      "pictures": 4,
+      "filterPasses": 1,
+      "farCanvases": 1,
+      "fringePictures": 3,
+      "fringeLimit": 6,
+      "fringeBuilds": 3,
+      "fringeBytes": 22969752,
+      "sectionLayerBuilds": 10,
+      "sectionLayerBytes": 3842048,
+      "sections": 3,
+      "requestedImages": 4,
+      "maxImages": 4
+    },
+    "requested": [
+      "quietFar",
+      "stage1ForestStartNear",
+      "stage1BalancedNear",
+      "stage1ForestExitNear"
+    ],
+    "enemies": 8
+  },
+  "mobile": {
+    "camera": {
+      "x": 4270.436615666084,
+      "y": 1417.111569529015,
+      "scale": 0.057352941176470586
+    },
+    "hero": {
+      "x": 4080.8029160323863,
+      "y": 1601.111569529015,
+      "h": 92,
+      "grounded": true
+    },
+    "size": [
+      6000,
+      3000
+    ],
+    "revision": 4,
+    "art": {
+      "pictures": 4,
+      "filterPasses": 1,
+      "farCanvases": 1,
+      "fringePictures": 3,
+      "fringeLimit": 6,
+      "fringeBuilds": 3,
+      "fringeBytes": 22969752,
+      "sectionLayerBuilds": 10,
+      "sectionLayerBytes": 3842048,
+      "sections": 3,
+      "requestedImages": 4,
+      "maxImages": 4
+    },
+    "requested": [
+      "quietFar",
+      "stage1ForestStartNear",
+      "stage1BalancedNear",
+      "stage1ForestExitNear"
+    ],
+    "enemies": 8
+  },
+  "scope": "Actual Game renderer with original roster; normal entry is untouched. Other hero positions are already reached native geometry poses for camera/ratio review, not full combat progress.",
+  "errors": []
+}

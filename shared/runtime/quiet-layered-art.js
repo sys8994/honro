@@ -15,6 +15,7 @@ function sections(v){
  return legacySections.get(v);
 }
 function readySections(v){const list=sections(v),ids=[...new Set(['quietFar',...list.map(s=>s.image)])];fringeLimit=Math.min(MAX_FRINGES,Math.max(2,list.length*2));trimFringes(fringeLimit);P.request(ids);return ids.every(id=>P.ready(id));}
+function contourAt(line,x,column,fallback,rounded=false){if(!line?.length)return fallback;if(x<=line[0][0])return line[0][column];for(let i=1;i<line.length;i++){const a=line[i-1],b=line[i];if(x<=b[0]){let t=(x-a[0])/(b[0]-a[0]);if(rounded)t=t*t*(3-2*t);return a[column]+(b[column]-a[column])*t;}}return line.at(-1)[column];}
 function picture(id,tone){const source=tone==='source'||id==='stage1BalancedNear',key=source?id+':source':id;if(pictures.has(key))return pictures.get(key);const im=P.images[id],cv=document.createElement('canvas');cv.width=im.naturalWidth;cv.height=im.naturalHeight;const c=cv.getContext('2d');if(!source){c.filter='brightness('+(id==='quietFar'?.68:.62)+')';filters++;}c.drawImage(im,0,0);c.filter='none';pictures.set(key,cv);return cv;}
 function near(id,cutout){const base=picture(id);if(!cutout)return base;const key=id+':broken-bough';if(pictures.has(key))return pictures.get(key);const cv=document.createElement('canvas');cv.width=base.width;cv.height=base.height;const c=cv.getContext('2d');c.drawImage(base,0,0);c.globalCompositeOperation='destination-out';const p=new Path2D();cutout.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();c.fill(p);pictures.set(key,cv);return cv;}
 // A finite, non-colliding margin uses the existing edge's broad forms once.
@@ -37,14 +38,14 @@ function fringe(id,cutout,options={}){
   if(pad&&edges.left!==false){c.save();c.translate(pad,0);c.scale(-1,1);c.drawImage(base,0,left,96,h-left,0,left,pad,h-left);c.restore();}
   if(pad&&edges.right!==false){c.save();c.translate(pad+w,0);c.scale(-1,1);c.drawImage(base,w-96,right,96,h-right,-pad,right,pad,h-right);c.restore();}
   const pixels=c.getImageData(0,0,cv.width,cv.height),data=pixels.data,smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
-  const starts=new Float32Array(cv.width),ends=new Float32Array(cv.width),join=new Float32Array(cv.width),fade=options.joinFade;
-  for(let x=0;x<cv.width;x++){const u=x-pad,phase=u/w,v=options.bottomVariation;starts[x]=(options.bottomStart??h-180)+(v??22)*Math.sin(phase*9)+(v===undefined?14:v*.6)*Math.sin(phase*4+1);ends[x]=(options.bottomEnd??h-5)-(v??22)*Math.abs(Math.sin(phase*7+2));join[x]=(fade?.left?smooth((u-fade.left[0])/(fade.left[1]-fade.left[0])):1)*(fade?.right?1-smooth((u-fade.right[0])/(fade.right[1]-fade.right[0])):1);}
+  const starts=new Float32Array(cv.width),ends=new Float32Array(cv.width),tops=new Float32Array(cv.width),join=new Float32Array(cv.width),fade=options.joinFade;
+  for(let x=0;x<cv.width;x++){const u=x-pad,phase=u/w+(options.bottomPhaseOffset??0),v=options.bottomVariation;starts[x]=contourAt(options.bottomContour,u,1,options.bottomStart??h-180)+(v??22)*Math.sin(phase*9)+(v===undefined?14:v*.6)*Math.sin(phase*4+1);ends[x]=contourAt(options.bottomContour,u,2,options.bottomEnd??h-5)-(v??22)*Math.abs(Math.sin(phase*7+2));tops[x]=contourAt(options.topContour,u,1,0,true);join[x]=(fade?.left?smooth((u-fade.left[0])/(fade.left[1]-fade.left[0])):1)*(fade?.right?1-smooth((u-fade.right[0])/(fade.right[1]-fade.right[0])):1);}
   for(let y=0;y<cv.height;y++){
    const lp=pad*(.82+.14*Math.sin(y/170)),rp=pad*(.84+.12*Math.sin(y/190+1));
    for(let x=0;x<cv.width;x++){
     const i=(y*cv.width+x)*4+3;if(!data[i])continue;
     const side=x<pad?smooth((x-pad+lp)/lp)*smooth((y-left+1)/Math.max(1,(pad-x)*.45)):x>pad+w?smooth((pad+w+rp-x)/rp)*smooth((y-right+1)/Math.max(1,(x-pad-w)*.45)):1;
-    data[i]*=side*(edges.bottom===false?1:smooth((ends[x]-y)/(ends[x]-starts[x])))*join[x];
+    data[i]*=side*(edges.bottom===false?1:smooth((ends[x]-y)/(ends[x]-starts[x])))*join[x]*(options.topContour?smooth((y-tops[x])/(options.topFeather??4)):1);
    }
   }
   c.putImageData(pixels,0,0);
