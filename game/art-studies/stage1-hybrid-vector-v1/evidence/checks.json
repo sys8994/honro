@@ -1,0 +1,59 @@
+{
+  "scope": "Standalone art study only; no game/skill/save tests",
+  "reference": "game/docs/art-references/stage1-balanced-20261019/balanced.png; actual pixels inspected",
+  "screenshots": {
+    "normal.png": "1440x960, closeup, deviceScaleFactor 1",
+    "overview.png": "1440x960, minimum zoom, deviceScaleFactor 1",
+    "mobile.png": "390x844, closeup, deviceScaleFactor 1"
+  },
+  "pageErrors": [],
+  "httpErrors": [],
+  "foregroundWithoutFar": {
+    "paths": 208,
+    "bounds": 13150
+  },
+  "contactToggle": true,
+  "desktopPanZoom": true,
+  "mobilePinchThenPan": true,
+  "foregroundRasterImageCount": 0,
+  "foregroundFilterCount": 0,
+  "foregroundPathDefinitions": 208,
+  "files": {
+    "foreground.svg": {
+      "raw": 36056,
+      "gzip": 8832
+    },
+    "index.html": {
+      "raw": 36905,
+      "gzip": 9466
+    },
+    "study.js": {
+      "raw": 4099,
+      "gzip": 1601
+    },
+    "study.css": {
+      "raw": 1716,
+      "gzip": 777
+    },
+    "seol-o-scale.svg": {
+      "raw": 18771,
+      "gzip": 5823
+    }
+  },
+  "far": {
+    "path": "shared/assets/environment/quiet-layered/far.webp",
+    "raw": 952722,
+    "gzip": 952878
+  },
+  "actor": {
+    "source": "approved HONRO_PARTY.seol_o + HonroVectorRig.poseSVG idle t=0",
+    "visibleHeightWorld": 103.5,
+    "measuredSourceBounds": [
+      135.5448760986328,
+      11.975950241088867,
+      246.77513122558594,
+      467.0240478515625
+    ]
+  },
+  "visualReview": "Reference and all three final screenshots inspected. One art correction pass softened needle silhouettes, differentiated large granite forms, refined bark and aligned actor feet. Vector treatment remains more graphic and simplified than the painted reference; not a claim of final user art approval."
+}
