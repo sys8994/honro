@@ -1,0 +1,296 @@
+{
+  "implementation": "af2c5cbe51305bd3f22692ef8459675e2c8e2310",
+  "scope": "Only stage3/4 image-first story thread visual attachment coordinates and matching story camera/point target. No terrain, actor, objective, story text/conditions or motion-rule changes.",
+  "build": "passed",
+  "browser": {
+    "3": {
+      "camera": {
+        "x": 3550,
+        "y": 750,
+        "scale": 1.05
+      },
+      "evidence": {
+        "kind": "eave",
+        "from": {
+          "x": 3493.6000000000004,
+          "y": 688.6
+        },
+        "at": {
+          "x": 3564.0000000000005,
+          "y": 693
+        },
+        "to": {
+          "x": 3680.6000000000004,
+          "y": 688.6
+        },
+        "tail": {
+          "x": 3568.4,
+          "y": 726.0000000000001
+        }
+      },
+      "storyCue": {
+        "id": "direction-v2:event-3-transfer",
+        "context": {
+          "origins": {
+            "p-archer": {
+              "x": 187.00000000000003,
+              "y": 1218.3111111111114
+            },
+            "archer": {
+              "x": 187.00000000000003,
+              "y": 1218.3111111111114
+            },
+            "p-mage": {
+              "x": 319,
+              "y": 1230.263157894737
+            },
+            "mage": {
+              "x": 319,
+              "y": 1230.263157894737
+            },
+            "foe-0": {
+              "x": 1408,
+              "y": 1186.3310344827587
+            },
+            "foe-1": {
+              "x": 1672.0000000000002,
+              "y": 847.0000000000001
+            },
+            "foe-2": {
+              "x": 3377.0000000000005,
+              "y": 1021.9000000000001
+            },
+            "foe-3": {
+              "x": 1980.0000000000002,
+              "y": 1135.5666666666668
+            },
+            "foe-4": {
+              "x": 1122,
+              "y": 935.0000000000001
+            },
+            "foe-5": {
+              "x": 3795.0000000000005,
+              "y": 544.2800000000001
+            },
+            "midboss-stage3": {
+              "x": 1386,
+              "y": 1468.6571428571428
+            },
+            "foe-0-cluster": {
+              "x": 2398,
+              "y": 1199.6000000000001
+            },
+            "foe-1-cluster": {
+              "x": 2948.0000000000005,
+              "y": 561
+            },
+            "foe-2-cluster": {
+              "x": 3608.0000000000005,
+              "y": 903.7111111111111
+            },
+            "foe-3-cluster": {
+              "x": 2640,
+              "y": 1249.3555555555556
+            },
+            "foe-4-cluster": {
+              "x": 2442,
+              "y": 814.0000000000001
+            },
+            "foe-5-cluster": {
+              "x": 4147,
+              "y": 894.2738095238096
+            },
+            "npc-hwigyeom": {
+              "x": 816.0000000000001,
+              "y": 1331.4363636363637
+            }
+          },
+          "spirit": null
+        },
+        "head": [],
+        "cues": [
+          [
+            {
+              "type": "look",
+              "at": {
+                "x": 3564.0000000000005,
+                "y": 693
+              },
+              "duration": 650,
+              "scale": 1.05
+            }
+          ]
+        ]
+      },
+      "revision": 2
+    },
+    "4": {
+      "camera": {
+        "x": 650,
+        "y": 460,
+        "scale": 1.12
+      },
+      "evidence": {
+        "kind": "village",
+        "from": {
+          "x": 502.40000000000003,
+          "y": 444.8
+        },
+        "at": {
+          "x": 531.2,
+          "y": 451.20000000000005
+        },
+        "to": {
+          "x": 723.2,
+          "y": 494.40000000000003
+        }
+      },
+      "storyCue": {
+        "id": "direction-v2:outcome-4",
+        "context": {
+          "origins": {
+            "p-archer": {
+              "x": 896,
+              "y": 644.8000000000001
+            },
+            "archer": {
+              "x": 896,
+              "y": 644.8000000000001
+            },
+            "p-mage": {
+              "x": 1000,
+              "y": 665.6
+            },
+            "mage": {
+              "x": 1000,
+              "y": 665.6
+            },
+            "foe-0": {
+              "x": 1552,
+              "y": 741.0526315789474
+            },
+            "foe-1": {
+              "x": 2656,
+              "y": 828.4631578947369
+            },
+            "foe-2": {
+              "x": 2784,
+              "y": 603.0117647058823
+            },
+            "foe-3": {
+              "x": 1776,
+              "y": 765.642105263158
+            },
+            "foe-4": {
+              "x": 2992,
+              "y": 834.4000000000001
+            },
+            "foe-5": {
+              "x": 2848,
+              "y": 224
+            },
+            "foe-6": {
+              "x": 1880,
+              "y": 776.5894736842106
+            },
+            "objective": {
+              "x": 584,
+              "y": 571.2
+            },
+            "npc-hwigyeom": {
+              "x": 1120,
+              "y": 684.8941176470588
+            },
+            "foe-0-cluster": {
+              "x": 2048,
+              "y": 788.1142857142858
+            },
+            "foe-1-cluster": {
+              "x": 3120,
+              "y": 827.2
+            },
+            "foe-2-cluster": {
+              "x": 3056,
+              "y": 463.93962264150946
+            },
+            "foe-3-cluster": {
+              "x": 2384,
+              "y": 809.4315789473685
+            },
+            "foe-4-cluster": {
+              "x": 3344,
+              "y": 818.8595744680852
+            },
+            "foe-5-cluster": {
+              "x": 3232,
+              "y": 416
+            },
+            "foe-6-cluster": {
+              "x": 2512,
+              "y": 818.8631578947369
+            },
+            "npc-chunrye": {
+              "x": 786,
+              "y": 622.8000000000001
+            }
+          },
+          "spirit": null
+        },
+        "head": [],
+        "cues": [
+          [
+            {
+              "type": "look",
+              "actor": "npc-chunrye",
+              "at": {
+                "x": 531.2,
+                "y": 451.20000000000005
+              },
+              "pose": "point",
+              "camera": false,
+              "duration": 650,
+              "delay": 0
+            },
+            {
+              "type": "look",
+              "at": {
+                "x": 531.2,
+                "y": 451.20000000000005
+              },
+              "duration": 650,
+              "scale": 1.05
+            }
+          ]
+        ]
+      },
+      "revision": 2
+    },
+    "errors": []
+  },
+  "savedMetadataFallback": "Existing image-first same-revision metadata without storyThread resolves to current authored points; browser equality check passed.",
+  "payloadDiff": "Only stage3/4 design.storyThread added; all other current stage JSON fields identical to a2ca8cef.",
+  "images": [
+    {
+      "webp": "stage3-03-hanok-contact.webp",
+      "png": "stage3-03-hanok-contact.png",
+      "bytes": 780812,
+      "lossless": true,
+      "decodedRGBAEqualsPNG": true,
+      "sha256": "1a0a26bd82a51c19deeb941c8a3b3f6a0790c097c9a3df6118e5833290959d7c"
+    },
+    {
+      "webp": "stage4-03-gate-contact.webp",
+      "png": "stage4-03-gate-contact.png",
+      "bytes": 754898,
+      "lossless": true,
+      "decodedRGBAEqualsPNG": true,
+      "sha256": "4b6a603b8c3a695ce9f092b4d486ad2695024a4f2f172352c669fa35ba5bfb3d"
+    }
+  ],
+  "notRepeated": [
+    "previous movement/roofs/roster/objective checks",
+    "defense battle or nine-round completion",
+    "unrelated chapters or whole verify"
+  ],
+  "deployment": "Master/Pages unchanged; parent review pending"
+}
