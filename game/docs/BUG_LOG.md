@@ -3562,3 +3562,9 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 - 부모 승인1944×809 투명 원화를 uniform2.2배로 사용하고 낮은 실제 잔교/물·중앙 흙길·오른쪽 높은 한국 창고와 one-way 문턱/상자/지붕을 함께 새로 저작했다. 그림 늘이기/strip/기둥 solid/옛clip texture·잡다한 장식을 추가하지 않았다. quietFar 독립 원경과 기존 물/날씨/서사 실은 보존한다.
 - ledger/휘겸 숨김→등장/소굴2개/장승/이벤트·대사·보상을 유지하며 원본 및 runtime clone/추가 스폰의 위치를 새 좌표로 맞췄다. 초기13/종·ID별 능력·증원 수는 불변이고 반복 쌍을 피했다.3장 revision2만 적용하며1·2장/4장이후/11장WIP 불변이다.
 - 기본 주요길·상자/지붕/하강·ledger, 초기접지/flightClear/관련spawn, old3장 restart, build·실제3뷰만 확인했다. 실제 Chromium 첫 적턴에서 살아 있는13개 적/원래 AI로 박쥐·산개·장승의 접근/공격 발사를 확인했고 종료 시13생존이다. geometry fixture와 생전 행동 관찰을 구분했으며 전체verify/무관 장·기예 검사는 없다. feature/evidence commit·push 후 부모 실제 화면 확인 대기. 상세 STAGE3_IMAGE_FIRST.md.
+
+## 2026-10-19 — 4장 피란문 image-first 검수본
+
+- 부모 승인 닫힌 문/사람 비례 원화만 uniform1.6배로 사용하고, 실제 문턱/마당/목재/바위/지붕 윗면에4장 전용 지형을 맞췄다. 독립 quietFar와 기존 날씨를 보존하며 옛 문 몸체/재질·장식을 중복 표시하지 않는다. 파괴 목재280HP와 작은 파단 표시, 파괴 뒤 바위 우회 경로를 둔다.
+- 기존 목표3600HP/NPC/9턴 수비·문 파괴 실패/대사·스토리/초기14적 ID별 능력·group·군집/각성·cap3/기존 두 siege와 소굴 예산을 유지한다.4장 revision2만 적용하며1–3장/5장이후/11장WIP는 수정하지 않는다.
+- 마당/선택 고지/파괴 뒤 우회·초기/관련 스폰 여유·old4장 재시작·build·실제3뷰 확인. 전체 초기 편성의 실제 Chromium6턴에서 접근/발사를 관찰했고 문 피해는 없었다. 별도 단독 native-AI fixture에서는 산개가 원래 위치에서 접근/발사하여 문HP3600→3585를 확인했다. 두 증거를 구분하고9턴 조건/전체verify/무관 장·기예 검사는 하지 않았다. 상세 STAGE4_IMAGE_FIRST.md. feature/evidence push 후 부모 화면 검수 대기, master/Pages 미반영.
