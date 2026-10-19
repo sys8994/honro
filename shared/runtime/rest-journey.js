@@ -36,7 +36,11 @@ const REST_MIN_ZOOM=.9,REST_MAX_ZOOM=1.35;
 // A tall phone covers the full SVG height; its hidden horizontal wings remain
 // reachable at every zoom, including the deliberately limited .9 zoom-out.
 function restGeometry(viewWidth,viewHeight){const height=viewHeight/REST_MIN_ZOOM,artHeight=Math.max(1,height-140),width=Math.max(viewWidth/REST_MIN_ZOOM,artHeight*1600/900),scale=width/1600,dy=artHeight-900*scale;return{width,height,artHeight,scale,dy,ground:765*scale+dy,campWidth:viewWidth/REST_MIN_ZOOM};}
-function layoutRest(){const scene=document.querySelector('.rest-landscape'),box=scene?.getBoundingClientRect?.();if(!box)return;const g=restGeometry(box.width,box.height);for(const [key,value]of Object.entries({width:g.width,height:g.height,ground:g.ground,'camp-width':g.campWidth}))scene.style.setProperty(`--rest-${key}`,`${value}px`);scene._restCamera?.resize(box,g.width,g.height);}
+// Keep the established 1280px desktop composition (SVG scale 8/9): its
+// 110x150 canvas becomes 123.75x168.75 in the panorama's 1600x900 units.
+// Source foot y282/300 leaves 6% transparent space below the actual feet.
+// Only artwork follows this scale; labels and tap targets keep CSS minima.
+function layoutRest(){const scene=document.querySelector('.rest-landscape'),box=scene?.getBoundingClientRect?.();if(!box)return;const g=restGeometry(box.width,box.height),personHeight=168.75*g.scale;for(const [key,value]of Object.entries({width:g.width,height:g.height,ground:g.ground,'camp-width':g.campWidth,'person-width':123.75*g.scale,'person-height':personHeight,'person-foot-pad':personHeight*.06,'fire-gap':48.375*g.scale}))scene.style.setProperty(`--rest-${key}`,`${value}px`);scene._restCamera?.resize(box,g.width,g.height);}
 function mountRestCamera(app,scene){const world=scene?.querySelector?.('.rest-world'),far=scene?.querySelector?.('[data-rest-backdrop]'),center=scene?.querySelector?.('[data-rest-center]');if(!world||!scene.addEventListener)return;
  const contacts=new Map();let moved=false,zoom=1,x=0,y=0,box,width,height,initial=true;
  const blocked=()=>app.screen!=='rest'||!!app.dialogue||!!app.modal?.classList.contains('open');

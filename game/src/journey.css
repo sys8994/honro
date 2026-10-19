@@ -76,11 +76,12 @@
 .rest-location{left:6%;top:5%;max-width:88%;pointer-events:none;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .rest-location>span{font-size:11px;letter-spacing:.08em;white-space:nowrap}
 .rest-location h1{font-size:clamp(25px,3vw,42px);margin:0;letter-spacing:.04em}
-.honro #app .rest-world .rest-person{top:calc(var(--rest-ground,75%) + 32px);width:110px;height:174px}
-.rest-world .rest-person canvas{height:150px;width:110px}
-.rest-world .rest-person-label{font-size:11px;height:24px;box-sizing:border-box}
-.rest-world .rest-person-label i{top:-54px;right:7%;min-width:50px;min-height:50px;display:grid;place-items:center;font-size:22px;padding:0 6px 7px;box-sizing:border-box}
-.honro #app .rest-world .rest-fire{left:50%;top:calc(var(--rest-ground,75%) + 43px);transform:translateX(-50%);min-width:126px;min-height:52px;padding:7px 12px;gap:3px;background:#101e20dc;box-shadow:none}
+.honro #app .rest-world .rest-person{top:var(--rest-ground,75%);width:var(--rest-person-width,110px);height:calc(var(--rest-person-height,150px) - var(--rest-person-foot-pad,9px));min-width:44px;min-height:44px}
+.rest-world .rest-person canvas{position:absolute;bottom:calc(-1 * var(--rest-person-foot-pad,9px));height:var(--rest-person-height,150px);width:var(--rest-person-width,110px)}
+.rest-world .rest-person:hover canvas,.rest-world .rest-person:focus-visible canvas{transform:none}
+.rest-world .rest-person-label{position:absolute;top:calc(100% + var(--rest-person-foot-pad,9px));font-size:11px;height:24px;box-sizing:border-box}
+.rest-world .rest-person-label i{top:calc(-1 * var(--rest-person-height,150px) - 54px);right:7%;min-width:50px;min-height:50px;display:grid;place-items:center;font-size:22px;padding:0 6px 7px;box-sizing:border-box}
+.honro #app .rest-world .rest-fire{left:50%;top:calc(var(--rest-ground,75%) + var(--rest-fire-gap,43px));transform:translateX(-50%);min-width:126px;min-height:52px;padding:7px 12px;gap:3px;background:#101e20dc;box-shadow:none}
 .rest-world .rest-fire span{font-size:17px}.rest-world .rest-fire small{font-size:9px}
 .rest-world .rest-fire::before{display:none}
 .honro #app .rest-world .rest-fire.has-new-sp{border-color:#f0cc83;box-shadow:0 0 0 2px #e7b96835,0 0 26px #e5a64c55;background:#342d1fea}
@@ -95,14 +96,14 @@
 .rest-ending{position:absolute;left:10%;right:10%;bottom:85px;text-align:center;color:#d8d7bb;pointer-events:none}.rest-ending span{display:block;font-size:11px;margin-top:8px}
 @media(max-width:700px){
  .rest-location{left:6%;top:5%;gap:8px}.rest-location>span{font-size:10px}.rest-location h1{font-size:27px}
- .honro #app .rest-world .rest-person{width:76px;height:128px}.rest-world .rest-person canvas{width:76px;height:104px}.rest-world .rest-person-label{font-size:10px}
+ .rest-world .rest-person-label{font-size:10px}
  .honro #app .rest-world .rest-archer{left:20%}.honro #app .rest-world .rest-mage{left:36%}.honro #app .rest-world .rest-knight{left:65%}.honro #app .rest-world .rest-occultist{left:81%}
- .rest-world .rest-person-label i{top:-54px;right:0;font-size:19px}
+ .rest-world .rest-person-label i{right:0;font-size:19px}
  .rest-actions{left:12px;right:12px;gap:6px;bottom:max(18px,env(safe-area-inset-bottom))}
  .honro #app .rest-actions>button{font-size:11px;min-height:46px;padding:9px 8px;gap:4px;flex:1}
  .honro #app .rest-actions>.rest-next{flex:1.55}.rest-actions svg{width:16px;height:16px}
 }
-@media(max-height:460px){.rest-location{top:2%}.rest-location h1{font-size:23px}.honro #app .rest-world .rest-person{height:110px;width:63px}.rest-world .rest-person canvas{height:86px;width:63px}.rest-world .rest-person-label i{top:-54px}.rest-actions{bottom:8px}.honro #app .rest-world .rest-fire{top:calc(var(--rest-ground,75%) + 13px);min-height:46px;padding:5px 9px}}
+@media(max-height:460px){.rest-location{top:2%}.rest-location h1{font-size:23px}.rest-actions{bottom:8px}.honro #app .rest-world .rest-fire{min-height:46px;padding:5px 9px}}
 
 /* Only shown after leaving the central camp; never changes a save or route. */
 .honro #app .rest-center{position:absolute;right:12px;bottom:calc(max(18px,env(safe-area-inset-bottom)) + 58px);z-index:3;min-height:44px;padding:8px 12px;background:#14262ae6;color:#ded8c4;border:1px solid #9aab9859;border-radius:4px;font-size:11px;touch-action:manipulation}
