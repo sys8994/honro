@@ -3556,3 +3556,9 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 - 높은 절벽/원화/설오/상여 길/독립 원경을 그대로 두고 지상8개와 공중4개의 최종 좌표를 재저작했다. 전방 멧돼지/후방 산개 clone의 지상 group/군집 연결도 서로 교환해 후방 동시각성을 방지한다. 동일 원본 옆 clone을 떨어뜨리고 지상은 단독/서로 다른 크기 무리/빈 구간, 공중은 가로·세로 높이 차를 사용한다. 적 ID/종/능력/난이도/증원/이벤트/roost 경고·대응 로직을 유지하며2장 revision4만 적용했다.
 - 다섯 난이도 초기12/ID별 능력/이벤트 동일, 접지/flightClear/몸체 비중첩과 occupied-roster 증원 placement 확인. 실제 살아 있는 전체 초기 편성에서 대기2회/원래 적 큐·AI로 산개·멧돼지 이동/돌진과 박쥐·까마귀 공중 이동/공격 발사를 관찰했다. 종료 시 적11생존/실제 교전 사망1, 상여는 위협 때문에 대기 중이다. 적 제거 fixture·전체 완주/스킬/30장/전체verify는 이번 흐름 검증에 사용하지 않았다.
 - 필요한 최종 build·실제1뷰만 추가하고 feature/evidence commit·push 후 부모 화면 확인 대기, master/Pages 미반영. 전 장 공통 자연 군집 원칙은 ENCOUNTER_PLACEMENT.md 한 곳에 반영하되 다른 장 실행 코드는 수정하지 않는다.
+
+## 2026-10-19 — 3장 연목 나루 image-first 검수본
+
+- 부모 승인1944×809 투명 원화를 uniform2.2배로 사용하고 낮은 실제 잔교/물·중앙 흙길·오른쪽 높은 한국 창고와 one-way 문턱/상자/지붕을 함께 새로 저작했다. 그림 늘이기/strip/기둥 solid/옛clip texture·잡다한 장식을 추가하지 않았다. quietFar 독립 원경과 기존 물/날씨/서사 실은 보존한다.
+- ledger/휘겸 숨김→등장/소굴2개/장승/이벤트·대사·보상을 유지하며 원본 및 runtime clone/추가 스폰의 위치를 새 좌표로 맞췄다. 초기13/종·ID별 능력·증원 수는 불변이고 반복 쌍을 피했다.3장 revision2만 적용하며1·2장/4장이후/11장WIP 불변이다.
+- 기본 주요길·상자/지붕/하강·ledger, 초기접지/flightClear/관련spawn, old3장 restart, build·실제3뷰만 확인했다. 실제 Chromium 첫 적턴에서 살아 있는13개 적/원래 AI로 박쥐·산개·장승의 접근/공격 발사를 확인했고 종료 시13생존이다. geometry fixture와 생전 행동 관찰을 구분했으며 전체verify/무관 장·기예 검사는 없다. feature/evidence commit·push 후 부모 실제 화면 확인 대기. 상세 STAGE3_IMAGE_FIRST.md.
