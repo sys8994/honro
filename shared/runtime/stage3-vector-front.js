@@ -1,6 +1,6 @@
 (function(G){'use strict';
 // Clean hand-authored bedrock continuation of the user-selected r25 design.
-// Every large network below is unique. A/B/C native faces provide local
+// A/B/C native faces overlap in an authored local cluster, providing
 // fracture vocabulary at the original 103.5/80 actor scale, never image tiles.
 const paths=new Map(),surfaces=new WeakMap(),C=G.HONRO_CORE;
 function p(d){if(!paths.has(d))paths.set(d,new Path2D(d));return paths.get(d);}
@@ -14,6 +14,14 @@ function draw(c,b,view){if(b?.honroStage!==3)return;c.save();c.clip(silhouette);
  G.HonroVectorCampaignMaterials.part(c,'narubank-body');
  const part=G.HonroVectorCampaignMaterials.part,S=103.5/80;
  function exposure(id,x,y,r,mask,tone=0){c.save();c.translate(x,y);c.rotate(r);c.scale(S,S);c.clip(p(mask));part(c,id,{tone});c.restore();}
+ // Local continuation trial: the same three source outcrops at the original
+ // actor-relative scale. Unequal overlaps follow one bank, not a tile grid.
+ exposure('ferry-shelf',2230,1185,.025,
+  'M-20 100H740V280L701 300 674 294 649 321 614 318 591 346 552 338 522 367 481 359 447 387 405 378 366 408 322 395 286 420 242 406 211 431 168 414 133 427 96 400 62 412 31 386 9 391 23 357 4 331 21 307-8 282Z');
+ exposure('ferry-shoulder',3070,1155,-.045,
+  'M-20 80H488L472 221 485 249 461 275 468 309 442 335 451 361 424 381 405 390 369 416 332 398 294 422 254 405 224 427 185 411 149 421 116 399 80 406 55 378 24 382 4 355 20 326-7 299Z',-.16);
+ exposure('ferry-fan',2380,1390,-.02,
+  'M-20 100H740V245L692 261 670 283 641 286 618 317 588 325 565 352 530 356 505 381 470 392 438 418 404 407 368 435 335 423 302 447 265 430 231 441 198 420 165 433 132 413 98 422 64 397 32 404 12 375 28 350 10 329 34 303 17 281-6 268Z');
  exposure('ferry-shoulder',2850,900,-.12,
   'M-20 80H740V231L688 252 672 277 682 305 657 331 646 369 607 389 573 404 534 389 484 413 443 398 409 426 357 408 318 422 274 402 236 416 190 394 163 406 127 379 91 387 53 365 27 373 7 343 22 313-5 287Z',-.20);
  exposure('ferry-shelf',2050,900,0,
@@ -23,6 +31,20 @@ function draw(c,b,view){if(b?.honroStage!==3)return;c.save();c.clip(silhouette);
  exposure('ferry-fan',2560,1110,-.12,
   'M-20 100H740V237L686 252 669 277 648 286 637 309 605 328 574 328 552 354 517 362 490 387 456 389 422 412 390 410 354 432 321 424 287 445 253 425 223 434 195 418 162 425 131 408 94 415 63 393 33 398 15 374 36 351 19 332 46 304 27 284-5 272Z');
 
+
+ // Hand-drawn contact slabs cross the join between the original fan and its
+ // descending extension. Their steps join existing ledges at world scale.
+ c.save();c.translate(2850,1670);c.scale(.65,.65);c.translate(-2850,-1670);
+ fill(c,'M2608 1663L2634 1628 2662 1622 2686 1597 2732 1605 2764 1588 2814 1600 2836 1631 2813 1665 2784 1670 2761 1702 2724 1708 2702 1737 2659 1730 2625 1742 2600 1718Z','#55564a');
+ fill(c,'M2608 1663L2634 1628 2662 1622 2686 1597 2732 1605 2764 1588 2814 1600 2789 1616 2761 1611 2744 1631 2714 1629 2690 1652 2664 1649 2641 1675 2612 1687Z','#77796a');
+ fill(c,'M2641 1675L2664 1649 2690 1652 2714 1629 2744 1631 2728 1661 2706 1670 2696 1695 2664 1709 2625 1742 2600 1718 2612 1687Z','#686b5d');
+ fill(c,'M2789 1616L2814 1600 2836 1631 2813 1665 2784 1670 2761 1702 2724 1708 2750 1676 2764 1642Z','#464b40');
+ fill(c,'M2865 1694L2898 1659 2925 1655 2953 1618 2994 1627 3013 1608 3058 1620 3084 1650 3067 1682 3035 1691 3018 1720 2981 1728 2957 1755 2918 1746 2891 1758 2860 1735Z','#55584c');
+ fill(c,'M2865 1694L2898 1659 2925 1655 2953 1618 2994 1627 3013 1608 3058 1620 3038 1638 3010 1633 2993 1654 2967 1650 2944 1678 2912 1681 2895 1704 2866 1711Z','#7b7c6c');
+ fill(c,'M2895 1704L2912 1681 2944 1678 2967 1650 2993 1654 2978 1688 2955 1700 2946 1722 2918 1746 2891 1758 2860 1735 2866 1711Z','#66695b');
+ fill(c,'M3038 1638L3058 1620 3084 1650 3067 1682 3035 1691 3018 1720 2981 1728 3001 1704 3010 1674Z','#494e42');
+
+ c.restore();
  c.fillStyle=grad(c,0,2350,0,2200,[[0,'#4d5b4500'],[.5,'#4d5b4520'],[1,'#4d5b4552']]);c.fillRect(-6200,2350,16600,25500);
  c.restore();}
 // Each point is [world x, vertical offset from the unchanged walking profile].
