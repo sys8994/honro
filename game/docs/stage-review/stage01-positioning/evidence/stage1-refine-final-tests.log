@@ -1,0 +1,235 @@
+upper true null [
+  {
+    goal: { x: 690, jumpTo: [Object] },
+    x: 685.4029155038306,
+    y: 1540.4051501867286,
+    support: 'forest-floor',
+    round: 1,
+    moveLeft: 649.7979463925949
+  },
+  {
+    jump: { x: 930 },
+    x: 903.9862488371607,
+    y: 1329.6439398084988,
+    support: 'forest-boulder-a:collision:0',
+    round: 2,
+    moveLeft: 806.4166666666699
+  },
+  {
+    goal: { x: 1060, jumpTo: [Object] },
+    x: 1059.786958662136,
+    y: 1392.3274087150046,
+    support: 'pine-branch-west',
+    round: 2,
+    moveLeft: 630.4757979072258
+  },
+  {
+    jump: { x: 1120, support: 'pine-branch-west' },
+    x: 1118.245291995471,
+    y: 1389.1411154171385,
+    support: 'pine-branch-west',
+    round: 3,
+    moveLeft: 966.5416666666649
+  },
+  {
+    goal: { x: 1620 },
+    x: 1614.3650359017654,
+    y: 1279.5223820930237,
+    support: 'pine-branch-west',
+    round: 3,
+    moveLeft: 458.1685402037716
+  },
+  {
+    goal: { x: 1950 },
+    x: 1944.393461833167,
+    y: 1317.2674827127769,
+    support: 'pine-branch-west',
+    round: 3,
+    moveLeft: 122.6040113117762
+  },
+  {
+    goal: { x: 1950, drop: true },
+    x: 1944.393461833167,
+    y: 1317.2674827127769,
+    support: 'pine-branch-west',
+    round: 3,
+    moveLeft: 122.6040113117762
+  },
+  {
+    goal: { x: 2150 },
+    x: 2145.7321888673137,
+    y: 1586.6877700677226,
+    support: 'forest-floor',
+    round: 4,
+    moveLeft: 1003.3068982926718
+  }
+]
+lower true null [
+  {
+    goal: { x: 690, jumpTo: [Object] },
+    x: 685.4029155038306,
+    y: 1540.4051501867286,
+    support: 'forest-floor',
+    round: 1,
+    moveLeft: 649.7979463925949
+  },
+  {
+    jump: { x: 930 },
+    x: 903.9862488371607,
+    y: 1329.6439398084988,
+    support: 'forest-boulder-a:collision:0',
+    round: 2,
+    moveLeft: 806.4166666666699
+  },
+  {
+    goal: { x: 1100, drop: true },
+    x: 1095.3638566674272,
+    y: 1391.0435028116742,
+    support: 'pine-branch-west',
+    round: 2,
+    moveLeft: 594.8924645738915
+  },
+  {
+    goal: { x: 1350, support: 'forest-floor' },
+    x: 1344.530939310467,
+    y: 1509.7031043522607,
+    support: 'forest-floor',
+    round: 2,
+    moveLeft: 340.6353018303304
+  },
+  {
+    goal: { x: 1800, support: 'forest-floor' },
+    x: 1798.318877490878,
+    y: 1491.576827681965,
+    support: 'forest-floor',
+    round: 3,
+    moveLeft: 965.0200589086954
+  },
+  {
+    goal: { x: 2150, support: 'forest-floor' },
+    x: 2144.6147783867013,
+    y: 1586.3375137411047,
+    support: 'forest-floor',
+    round: 3,
+    moveLeft: 603.7198544696661
+  },
+  {
+    goal: { x: 2300 },
+    x: 2294.68962588858,
+    y: 1668.8006495141158,
+    support: 'forest-floor',
+    round: 3,
+    moveLeft: 435.55764442603515
+  },
+  {
+    goal: { x: 2600 },
+    x: 2594.8295501469274,
+    y: 1715.7194027975092,
+    support: 'forest-floor',
+    round: 3,
+    moveLeft: 122.68733462955902
+  },
+  {
+    goal: { x: 2900 },
+    x: 2896.298937051991,
+    y: 1601.6844899206092,
+    support: 'forest-floor',
+    round: 4,
+    moveLeft: 888.9677815159625
+  },
+  {
+    goal: { x: 3100 },
+    x: 3095.218619866441,
+    y: 1499.50564196505,
+    support: 'forest-floor',
+    round: 4,
+    moveLeft: 659.4475283249091
+  },
+  {
+    goal: { x: 3350 },
+    x: 3344.190103035565,
+    y: 1300,
+    support: 'forest-floor',
+    round: 4,
+    moveLeft: 328.5408740575093
+  },
+  {
+    goal: { x: 3550 },
+    x: 3544.779899631433,
+    y: 1247.756783763328,
+    support: 'forest-floor',
+    round: 4,
+    moveLeft: 103.92259785222205
+  },
+  {
+    goal: { x: 3800 },
+    x: 3794.167490094973,
+    y: 1160,
+    support: 'forest-floor',
+    round: 5,
+    moveLeft: 904.2916666666781
+  },
+  {
+    goal: { x: 4200 },
+    x: 4196.045223495615,
+    y: 861.5819106017541,
+    support: 'forest-floor',
+    round: 5,
+    moveLeft: 392.5361217714365
+  },
+  {
+    goal: { x: 4650 },
+    x: 4648.280101751669,
+    y: 1030.3991340699756,
+    support: 'ridge-east-extension',
+    round: 6,
+    moveLeft: 575.1249999999463
+  },
+  {
+    goal: { x: 4900 },
+    x: 4900,
+    y: 851.475811932448,
+    support: 'ridge-east-extension',
+    round: 7,
+    moveLeft: 959
+  },
+  {
+    goal: { x: 5210 },
+    x: 5204.881287604283,
+    y: 692.4988039751396,
+    support: 'ridge-east-extension',
+    round: 7,
+    moveLeft: 578.999999999966
+  }
+]
+PASS other 29 chapters and shared library unchanged
+PASS actual lower/upper arrows [
+  {
+    support: 'forest-floor',
+    x: 1180,
+    target: 'foe-0',
+    damage: 68,
+    aim: { angle: -20.615881144749604, power: 0.4126012977348216 }
+  },
+  {
+    support: 'pine-branch-west',
+    x: 1620,
+    target: 'foe-1',
+    damage: 59,
+    aim: { angle: 34.78404808468273, power: 0.8443553281900216 }
+  },
+  {
+    support: 'forest-floor',
+    x: 3430,
+    target: 'foe-1-cluster',
+    damage: 59,
+    aim: { angle: 48.368534052666476, power: 0.7943051233952665 }
+  },
+  {
+    support: 'forest-floor',
+    x: 3760,
+    target: 'foe-1-cluster',
+    damage: 59,
+    aim: { angle: 66.77276218055343, power: 0.6646837255337332 }
+  }
+]
