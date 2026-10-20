@@ -1,3 +1,4 @@
+import {restBackdropData} from '../tools/environment/rest-backdrop-assets.mjs';
 import {vectorKitRuntime} from '../tools/environment/vector-kit-runtime.mjs';
 import {applyStage3HanokTerrain} from '../tools/map-forge/stage3-hanok-terrain.mjs';
 import {applyStage4GateDefense} from '../tools/map-forge/stage4-gate-defense.mjs';
@@ -101,6 +102,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
     const act2Backdrops={};
     for(const [key,file] of [['clouded','act2-clouded-granite.svg'],['dawn','act2-dawn.svg'],['stage11-ravine','stage11-ravine-far.svg'],['stage11-ravine-readable','stage11-ravine-far-readable.svg']])act2Backdrops[key]='data:image/svg+xml;base64,'+Buffer.from((await readFile(path.join(root,'shared/assets/environment',file),'utf8')).replace(/\bstroke="[^"]*"/g,'stroke="none"')).toString('base64');
     data('HONRO_ACT2_FAR_DATA',act2Backdrops);
+    data('HONRO_REST_BACKDROPS',await restBackdropData());
     const painted21=JSON.parse(await read('shared/assets/environment/stage21/painted.json'));
     for(const [key,file] of Object.entries(painted21.images)){
       const ext=path.extname(file).slice(1),mime=ext==='jpg'?'jpeg':ext;

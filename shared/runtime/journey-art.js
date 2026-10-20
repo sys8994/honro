@@ -570,12 +570,22 @@
       path('M512-190Q535 87 515 310T535 850','none','stroke="#e3e9dd" stroke-width="2" stroke-dasharray="55 107 87 66" opacity=".2" data-rest-motion="rest5-fall" data-rest-phase=".7"')+'</g>')+
       group('small-fall-contact',path('M403 648Q421 634 443 643Q461 627 486 643Q510 630 533 646Q553 637 575 651Q530 662 489 657T403 648Z','#c9d9cf','data-rest-motion="rest5-foam"'));
   }
+  function rasterRestBackdrop(style,id){
+    const frame=G.HonroEnvironmentVectorKit.REST_BACKDROPS[style.backdrop];
+    const uri=G.HONRO_REST_BACKDROPS?.images?.[style.backdrop];
+    const [x,y,w,h]=frame.rect;
+    return group('independent-raster-distance',
+      path('M-1600-900H3200V1800H-1600Z',frame.veil)+
+      (uri?`<image data-rest-raster="${style.backdrop}" href="${uri}" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid slice"/>`:'')+
+      path('M-1600-900H3200V1800H-1600Z',frame.veil,`opacity="${frame.opacity}"`),
+      `data-rest-backdrop="raster-${style.backdrop}"`);
+  }
   // Shared world kit, retained menu SVG adapter. Static nodes compile once;
   // the existing motion loop continues to own the retained live transforms.
   function sharedRest(stage,variant){
     const K=G.HonroEnvironmentVectorKit,style=K.REST_STYLES[stage];
     const underground=!!style.underground,id=`honro-rest-shared-${stage}`;
-    const key=`shared-rest:${stage}:${!!G.HONRO_ACT1_FAR_DATA}:${!!G.HONRO_PAINTED_PILOTS}`;
+    const key=`shared-rest:${stage}:${G.HONRO_REST_BACKDROPS?.revision||0}:${!!G.HONRO_PAINTED_PILOTS}`;
     if(cache.has(key))return cache.get(key);
     const assembly=K.compileRestScene(stage);
     const p=underground?{...palettes.cave}:palettes[variant];
@@ -585,8 +595,7 @@
       `<radialGradient id="${id}-fire-ground"><stop stop-color="#c29659" stop-opacity=".3"/><stop offset="1" stop-color="#ab703d" stop-opacity="0"/></radialGradient>`+
       `<radialGradient id="${id}-fire-halo"><stop stop-color="#edb65c" stop-opacity=".3"/><stop offset="1" stop-color="#d29748" stop-opacity="0"/></radialGradient></defs>`;
     const body=(compiled,name)=>K.svgScene(compiled,{prefix:id+'-'+name}).replace(/^<svg[^>]*>/,'').replace(/<\/svg>$/,'');
-    let far=underground?cavernBackdrop(p,id):campaignBackdrop(stage,id)||farLandscape(p,id,variant);
-    if(!far.includes('data-rest-backdrop='))far=group('retained-independent-distance',far,'data-rest-backdrop="retained"');
+    const far=rasterRestBackdrop(style,id);
     const water=style.water?group('rest-water-reach',path('M-40 619Q326 600 666 625T1640 614V810H-40Z',`url(#${id}-water)`)+path('M-20 662Q129 650 274 664M967 652Q1197 636 1450 651M1090 680L1540 676','none','stroke="#b0beb0" stroke-width="2" opacity=".29" data-rest-motion="ripples"')):'';
     const buildings=assembly.architecture.groups.map((part,i)=>{
       const clip=id+'-architecture-clip-'+i;

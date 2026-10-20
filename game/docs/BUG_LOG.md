@@ -1,3 +1,7 @@
+## 2026-10-20 — 휴식터 원경 미술 검토 후 래스터 교정
+
+부모 검토에서 21장의 선명한 SVG 산맥 원경이 불합격했다. 기존 location-far 후보와 stage21/far.webp를 직접 비교해 읍성/나루/수로/동굴 계열의 실제 래스터를 30개 장소에 명시했다. 원본은 보존하고 빌드에서 WebP 인코딩만 한다. 기존 demand 요청과 시차를 사용하며 대비는 정적 회색 색막으로 낮추고 실시간 filter는 없다. 21장 건축만 x+340으로 옮겨 모바일 첫 화면에 일부가 보이게 했다. 인물 크기·ground765·카메라·버튼·전투/로더는 불변이다. 빌드1회·매핑 데이터 검사·21/25장 PC/모바일 캡처와 래스터 decode/독립pan·pageerror0만 확인했다. 다른 장소 화면·전체 검사·master 통합·배포는 미실행이다. [교정 캡처·검토 한계](../../review/rest-shared-vector/README.md).
+
 ## 2026-10-20 — 초기 필수 JSON 요청 대기 겹치기
 
 - 기준 `1fb64610`: modulepreload는 코드만 가져오므로 필수 JSON이 각 순차 import 뒤에 요청됐다. cold에서 split 메타 fetch373ms+parse/전달40ms, 동행 자료 fetch335ms+parse/전달10ms였고 hydrate는 각각0/0.1ms였다. 현재 장 author 준비는 약17ms로 주 병목이 아니었다.
