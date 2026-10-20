@@ -89,7 +89,7 @@
       path('M0 0H1600V401L1517 348 1486 291 1401 263 1353 186 1223 174 1161 108 1036 153 973 125 861 179 755 106 644 93 527 124 415 91 273 145 202 118 100 213 56 383 0 422Z', '#182c35') +
       path('M117 577L170 463 206 439 217 362 254 325 284 421 319 449 345 567Z M1206 625L1244 567 1250 501 1286 469 1319 485 1339 570 1392 604 1415 652Z', '#304952') +
       path('M206 439L217 362 254 325 242 419 224 450 210 524 181 553Z M1286 469L1319 485 1339 570 1318 560 1303 506 1280 507Z', '#556c6b', 'opacity=".32"') +
-      path('M-20 560C237 554 427 619 678 589S1240 542 1630 596V747H-20Z', `url(#${id}-mist)`, 'data-rest-motion="mist"')) + cavernEnclosure(p, id);
+      path('M-20 560C237 554 427 619 678 589S1240 542 1630 596V747H-20Z', `url(#${id}-mist)`, 'data-rest-motion="mist"'), 'data-rest-backdrop="cavern"') + cavernEnclosure(p, id);
   }
   function cavernEnclosure(p, id) {
     return group('cavern-enclosure',
@@ -188,7 +188,7 @@
   // Reuse the exact battlefield SVG and shared act-one palette pass.
   // Web loading retains external SVG text before the synchronous scene render.
   function campaignBackdrop(stage, id) {
-    const mood=G.HonroEnvironment?.act1Mood(stage),finish=G.HonroEnvironment?.ACT1_FAR;
+    const mood=G.HonroEnvironment?.campaignMood(stage),finish=G.HonroEnvironment?.ACT1_FAR;
     const uri=mood&&G.HONRO_ACT1_FAR_DATA?.[mood.variant];
     if(!uri||!finish)return '';
     const source=G.HONRO_SVG_SOURCES?.[uri]||(/^data:image\/svg\+xml;base64,/.test(uri)&&G.atob?G.atob(uri.slice(uri.indexOf(',')+1)):'');
@@ -562,10 +562,50 @@
     const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="stage10-painted" data-journey-layer="surface">${defs}${far}${slope}${home}${thread}${roots}${ground}${light}${props}</svg>`;
     cache.set(key,svg);return svg;
   }
+  function retainedRestFall(id){
+    // Existing waterfall clip, ribbons and foam; motionFrame is unchanged.
+    return `<defs><clipPath id="${id}-fall"><path d="M421-60Q438 123 436 280T428 470Q418 575 395 644Q477 659 589 646Q554 549 554 450T570 260Q574 105 577-60Z"/></clipPath></defs>`+
+      group('waterfall-part-behind-shelf',`<g clip-path="url(#${id}-fall)">`+path('M395-60H617V662H395Z','#8da7a5','opacity=".65"')+
+      path('M460-170C448 55 477 230 456 440T449 850','none','stroke="#d6e3d8" stroke-width="3" stroke-dasharray="34 68 113 92" opacity=".25" data-rest-motion="rest5-fall" data-rest-phase="0"')+
+      path('M512-190Q535 87 515 310T535 850','none','stroke="#e3e9dd" stroke-width="2" stroke-dasharray="55 107 87 66" opacity=".2" data-rest-motion="rest5-fall" data-rest-phase=".7"')+'</g>')+
+      group('small-fall-contact',path('M403 648Q421 634 443 643Q461 627 486 643Q510 630 533 646Q553 637 575 651Q530 662 489 657T403 648Z','#c9d9cf','data-rest-motion="rest5-foam"'));
+  }
+  // Shared world kit, retained menu SVG adapter. Static nodes compile once;
+  // the existing motion loop continues to own the retained live transforms.
+  function sharedRest(stage,variant){
+    const K=G.HonroEnvironmentVectorKit,style=K.REST_STYLES[stage];
+    const underground=!!style.underground,id=`honro-rest-shared-${stage}`;
+    const key=`shared-rest:${stage}:${!!G.HONRO_ACT1_FAR_DATA}:${!!G.HONRO_PAINTED_PILOTS}`;
+    if(cache.has(key))return cache.get(key);
+    const assembly=K.compileRestScene(stage);
+    const p=underground?{...palettes.cave}:palettes[variant];
+    const defs='<defs>'+gradient(`${id}-sky`,p.sky,p.horizon)+gradient(`${id}-mountain`,p.ridge,p.horizon)+gradient(`${id}-water`,'#526f70','#263f46')+
+      gradient(`${id}-granite`,p.light,p.ridge)+`<linearGradient id="${id}-mist" x2="0" y2="1"><stop stop-color="${p.mist}" stop-opacity="0"/><stop offset=".6" stop-color="${p.mist}" stop-opacity=".25"/><stop offset="1" stop-color="${p.mist}" stop-opacity="0"/></linearGradient>`+
+      `<radialGradient id="${id}-halo"><stop stop-color="${p.mist}" stop-opacity=".2"/><stop offset="1" stop-color="${p.mist}" stop-opacity="0"/></radialGradient>`+
+      `<radialGradient id="${id}-fire-ground"><stop stop-color="#c29659" stop-opacity=".3"/><stop offset="1" stop-color="#ab703d" stop-opacity="0"/></radialGradient>`+
+      `<radialGradient id="${id}-fire-halo"><stop stop-color="#edb65c" stop-opacity=".3"/><stop offset="1" stop-color="#d29748" stop-opacity="0"/></radialGradient></defs>`;
+    const body=(compiled,name)=>K.svgScene(compiled,{prefix:id+'-'+name}).replace(/^<svg[^>]*>/,'').replace(/<\/svg>$/,'');
+    let far=underground?cavernBackdrop(p,id):campaignBackdrop(stage,id)||farLandscape(p,id,variant);
+    if(!far.includes('data-rest-backdrop='))far=group('retained-independent-distance',far,'data-rest-backdrop="retained"');
+    const water=style.water?group('rest-water-reach',path('M-40 619Q326 600 666 625T1640 614V810H-40Z',`url(#${id}-water)`)+path('M-20 662Q129 650 274 664M967 652Q1197 636 1450 651M1090 680L1540 676','none','stroke="#b0beb0" stroke-width="2" opacity=".29" data-rest-motion="ripples"')):'';
+    const buildings=assembly.architecture.groups.map((part,i)=>{
+      const clip=id+'-architecture-clip-'+i;
+      return group(part.id,(part.clipD?`<defs><clipPath id="${clip}"><path d="${part.clipD}"/></clipPath></defs>`:'')+group('shared-architecture-part',body(part.compiled,'architecture-'+i),part.clipD?`clip-path="url(#${clip})"`:''));
+    }).join('');
+    // Preserve the unique existing root/stair landmark without a new design.
+    const landmark=stage===10&&G.HONRO_PAINTED_PILOTS?.images?.rest10RootSteps?(paintedRest10().match(/<g data-art-layer="(?:guardian-root-stairs|distant-taut-thread)"[^>]*>[\s\S]*?<\/g>/g)?.join('')||'').replace(/ filter="[^"]*"/g,''):'';
+    const grass=group('rest-edge-grass',path('M45 843q-11-44-34-61 28 9 43 51 1-45 20-67-10 32-8 70 17-23 37-29-18 16-25 36z','#52604d','opacity=".56"'),'data-rest-motion="grass" data-rest-phase=".2"');
+    const flag=style.flag?group('rest-gate-cloth',path('M367 451H373V613H367Z','#665b47')+group('retained-wind-cloth',path('M373 456Q413 449 442 461L432 505Q401 492 373 501Z','#85775a'),'data-rest-motion="grass" data-rest-phase="1.9"')):'';
+    const floor=group('shared-rest-ground',body(assembly.ground,'ground'));
+    const light=group('fire-ground-light',glow(800,758,300,103,`${id}-fire-ground`),'data-rest-motion="fire-ground"');
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" data-journey-art="shared-${style.name}" data-rest-stage="${stage}" data-journey-layer="${underground?'underground':'surface'}">`+defs+far+water+buildings+(stage===5?retainedRestFall(id):'')+floor+body(assembly.near,'near')+landmark+flag+weather(variant,underground)+grass+light+campProps(id)+'</svg>';
+    cache.set(key,svg);return svg;
+  }
   function scene(variant, layer = 'surface', stage = 0) {
     variant = variants.includes(variant) ? variant : 'forest';
     layer = variant === 'cave' || layer === 'underground' ? 'underground' : 'surface';
     const underground = layer === 'underground';
+    if(G.HonroEnvironmentVectorKit?.REST_STYLES[stage])return sharedRest(stage,variant);
     if(stage===1&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.rest1Inn)return paintedRest1();
     if(stage===2&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.valleyFar)return paintedRest2();
     if(stage===3&&!underground&&G.HONRO_PAINTED_PILOTS?.images?.rest3Worktable)return paintedRest3();
