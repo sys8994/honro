@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "config": {
+    "path": "game/docs/art-review/current.json",
+    "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-connected-ribs-r28-state.json.files/scope-config.json",
+    "sha256": "2bf2565f450cbb432f8f10ccee74b8e30a7448e28844adbb3c12ca2546510205"
+  },
+  "files": [
+    {
+      "path": "game/art-studies/rock-outcrop-quality/rock-fan.svg",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "5136abff952124aa3fcf7ed5416ad2ab929c28aea6c54b07670494e7e8d3ea4b"
+    },
+    {
+      "path": "game/art-studies/rock-outcrop-quality/rock-shelf.svg",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "c064e0049a6f1139525412ce0680386a73e996dbec7e7349c99f46d3b9e52db7"
+    },
+    {
+      "path": "game/art-studies/rock-outcrop-quality/rock-shoulder.svg",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "26745b1f14cd4f3840181647c77f08b800ea5e25a01b5497f645dd3ea96f1b11"
+    },
+    {
+      "path": "game/src/journey.css",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "ead378cd3458d2a3ffd30af9f5d1a6271ab1fac77df895f40bcefe7990cc7c22"
+    },
+    {
+      "path": "shared/assets/environment/vector-campaign-parts.json",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "2b538e44a83703571abd4e2a2158e85af391289bb2cbccda865c0a664db44a37"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/architecture.mjs",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "c5b87709bfc85feb3da17d64beaf4b8711f2434ce2a0eb7e925b0b524c64ade0"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/campaign.mjs",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "378ed953755cd23279b7d70a8c9b8b59a601071ac7984b94d8c6052fdc7419e1"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/compositions.mjs",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "72ac92352e4ea65393f9b64eba800fb6176a6a574a176f58565bb9abef8d1f08"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/registry.mjs",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "8da8409eac5947a57849bc74b9c380f71df3f2800628be32f57dcdbb28d4843d"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/rest.mjs",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "fef818ac3360d178e1329665123b57cc185646cb01602b2d74f6a6b2eae07401"
+    },
+    {
+      "path": "shared/build.mjs",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "810337d7af4963adf7b4bbef1e530a5fba698fae84ed842fe479029ff1ba7581"
+    },
+    {
+      "path": "shared/data/campaign.json",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "8f2b3b9f20feda7734b7a0be5dea6c03d62a6620e71be16e5df42c0efc99cda2"
+    },
+    {
+      "path": "shared/map/terrain-domain.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "18d401230a46483b71113943ffb7e78c04631bd7e4ae2e505401f2965bd0bdc1"
+    },
+    {
+      "path": "shared/map/vector-art.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "c2a8200b80b6519a91689898931a35f8c927381fd8fabed994d30f7cfda421e6"
+    },
+    {
+      "path": "shared/map/visual-style.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "b3d1fe996205ca5a935ed3ec16c5a377d314d9737094bbff92afd769b6045dfb"
+    },
+    {
+      "path": "shared/runtime/act1-spatial-art.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "ef2149c8409b37db54ca7d181849a25a86e7c3c420659377f3df22c2679e8950"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "deecb16aac810bcb7dba1e37cd0008fb9c3e3647b617292c86502c410b5ec2e0"
+    },
+    {
+      "path": "shared/runtime/city-gate-art.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "526f26667b0d184e64558333bad081ed62ee863deab91739c954845576038c14"
+    },
+    {
+      "path": "shared/runtime/environment-art.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "29a12578c121012e76b59b7fde85c69d570db63a45193000f35617eb7e0464b6"
+    },
+    {
+      "path": "shared/runtime/environment-renderer.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "ddff3b2dcc90b1a38cf7287501c1d29e0443e02de2cf2c1e59940a5c649b6473"
+    },
+    {
+      "path": "shared/runtime/forest-pine-art.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "2a0ea8d60f55809843dc6c3a914d2abaaeabed61a45973cebd2d43b8d5e4b1d9"
+    },
+    {
+      "path": "shared/runtime/journey-art.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "1345931d8c016b38398dd2c412290af2640f264b0d92c00d0b55dd233044e2d9"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "c3e13adb8565f07b486da94a801cba3c3c3bab588a5d46ed60759d427d18b358"
+    },
+    {
+      "path": "shared/runtime/rest-journey.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "501157a171800dc6f25bb64646f58b4afc4f8537ac176ccaaa2982d80825b78b"
+    },
+    {
+      "path": "shared/runtime/stage1-vector-front.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "77d1c197ddb65c068b85affcf17aca550cc586f9251000ebeaab9ab20a18ebf6"
+    },
+    {
+      "path": "shared/runtime/stage3-vector-front.js",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-connected-ribs-r28-state.json.files/sources/shared/runtime/stage3-vector-front.js",
+      "sha256": "abca768fe4652446d019f08250769ca5bfa0b09187227cedbe6a91f4897e0089"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-art.js",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-connected-ribs-r28-state.json.files/sources/shared/runtime/vector-campaign-art.js",
+      "sha256": "9b675fe3d0abce5609823781b62712f42a79fcc1c439568edc21cdc308a3c02f"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-config.js",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "c154b88056b5a5d53e5127d75576cfb61d0ccbbcca2dd84e7d48b1880bf569ac"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-materials.js",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-connected-ribs-r28-state.json.files/sources/shared/runtime/vector-campaign-materials.js",
+      "sha256": "0d938db8a1332220889e8b5cc503153a0cd8b1de589183c2e582ce3bd7da450a"
+    },
+    {
+      "path": "tools/environment/extract-vector-campaign-parts.py",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "1e38f53dd033a1b579c0cbe0b63e4c1b151194a629218f1671dd6f5276c3d2df"
+    },
+    {
+      "path": "tools/environment/rest-backdrop-assets.mjs",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "35724820250619fd60d656f3af37584eec5614e0715c1804c96851cd51a6c6c5"
+    },
+    {
+      "path": "tools/environment/vector-kit-runtime.mjs",
+      "gitCommit": "973087cd9bf6824dfb08dff124d1b76f9eb5367e",
+      "sha256": "ab0f6c70093a3132d4509519faaf420612ac1587b8f5cf6449d4dd0d071390ee"
+    }
+  ]
+}

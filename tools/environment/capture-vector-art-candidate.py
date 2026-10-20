@@ -42,6 +42,7 @@ with sync_playwright() as p:
   size=page.evaluate('''async n=>{const st=await HonroCampaignLoader.ensureStage(n),b=HonroMaps.createBattle(st,HONRO_PROJECT);HonroStageRules.sanitizeStageBattle(b);const e=new HONRO_CORE.Engine(b,()=>{},true),s=new HonroScene(terrainCanvas);Object.assign(s,{manual:true,time:2,skillPreview:true});window.terrainCurrent={b,e,s,before:JSON.stringify([b.terrain,b.units,b.honroMarkers,b.honroEvents,b.honroObjectives])};return{width:b.width,height:b.height};}''',n)
   if mode=='overview':poses=[('overview',size['width']/2,size['height']*.54,min((width-130)/(size['width']+700),(height-120)/(size['height']+700)))]
   for label,x,y,scale in poses:
+   if label=='wide' and os.environ.get('HONRO_MAX_WIDE')=='1':scale=page.evaluate('HonroBounds.zoomLimits(terrainCanvas.width).min')
    pose={'x':x,'y':y,'scale':scale}
    result=page.evaluate('''v=>{const {s,e,b}=terrainCurrent;Object.assign(s,v);s.render(e,0,'',.6,false,0);s.render(e,0,'',.6,false,0);return{art:HonroVectorCampaignArt.stats(b),pure:terrainCurrent.before===JSON.stringify([b.terrain,b.units,b.honroMarkers,b.honroEvents,b.honroObjectives])};}''',pose)
    page.wait_for_timeout(100);page.evaluate("terrainCurrent.s.render(terrainCurrent.e,0,'',.6,false,0)")

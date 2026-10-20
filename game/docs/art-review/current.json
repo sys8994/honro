@@ -34,7 +34,12 @@
     "shared/runtime/city-gate-art.js",
     "game/art-studies/rock-outcrop-quality/rock-shelf.svg",
     "game/art-studies/rock-outcrop-quality/rock-shoulder.svg",
-    "game/art-studies/rock-outcrop-quality/rock-fan.svg"
+    "game/art-studies/rock-outcrop-quality/rock-fan.svg",
+    "shared/assets/environment/ferry-scene/foreground.svg",
+    "shared/assets/environment/ferry-scene/foreground.json",
+    "shared/assets/environment/ferry-scene/provenance.json",
+    "tools/environment/derive-ferry-foreground.py",
+    "tools/environment/capture-vector-art-candidate.py"
   ],
   "stages": [
     1,

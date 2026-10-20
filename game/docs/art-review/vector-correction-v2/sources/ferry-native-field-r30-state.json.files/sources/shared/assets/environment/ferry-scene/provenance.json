@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "kind": "unapproved-new-authoring-reference-prototype",
+  "geometrySource": "game/art-studies/ferry-foreground-authoring/reference.png",
+  "sourcePngSha256": "ae19ec782732ebf81c8771ae76f29d04a0097dd784d104db75cde34101817594",
+  "sourceSize": [
+    1672,
+    941
+  ],
+  "sourceFormat": "RGB PNG used only in this offline shape derivation",
+  "runtimePngReferences": 0,
+  "embeddedRasterImages": 0,
+  "filterElements": 0,
+  "colorsRequested": 8,
+  "colorPathsRetained": 8,
+  "workingSize": [
+    1000,
+    563
+  ],
+  "minimumWorkingComponentArea": 100,
+  "minimumSourceComponentAreaApprox": 279.5584,
+  "smallRegionMerging": [
+    {
+      "pass": 1,
+      "smallComponentsMerged": 23457,
+      "smallPixelsMerged": 125162
+    },
+    {
+      "pass": 2,
+      "smallComponentsMerged": 364,
+      "smallPixelsMerged": 1717
+    },
+    {
+      "pass": 3,
+      "smallComponentsMerged": 2,
+      "smallPixelsMerged": 11
+    }
+  ],
+  "simplificationWorkingEpsilon": 2.6,
+  "boundaryNodes": 10713,
+  "rawSvgBytes": 88822,
+  "rawJsonBytes": 88770,
+  "gzipSvgBytes": 35994,
+  "scaleConcept": {
+    "adultSourceHeightPx": 30,
+    "adultWorldHeight": 103.5,
+    "sourcePixelToWorld": 3.45,
+    "fullFieldWorldWidth": 5768.400000000001,
+    "fullFieldWorldHeight": 3246.4500000000003,
+    "unrelatedToPrior80PixelActorReference": true
+  },
+  "method": "Offline eight-role palette, bounded connected-region merge, simplified native boundaries; source-edge faces continue beyond the focused wide frame. No runtime image.",
+  "candidateSvgSha256": "728c04b335080c878dde8d73e93ef6d31fe057fd1316514a32fc1879bc765181",
+  "approvedArt": false,
+  "runtimeAcceptance": false,
+  "planes": [
+    {
+      "paletteIndex": 4,
+      "fill": "#2e3931",
+      "loops": 114,
+      "nodes": 2138
+    },
+    {
+      "paletteIndex": 0,
+      "fill": "#42483f",
+      "loops": 152,
+      "nodes": 3399
+    },
+    {
+      "paletteIndex": 6,
+      "fill": "#685e48",
+      "loops": 122,
+      "nodes": 2253
+    },
+    {
+      "paletteIndex": 7,
+      "fill": "#5e6744",
+      "loops": 20,
+      "nodes": 277
+    },
+    {
+      "paletteIndex": 1,
+      "fill": "#65695b",
+      "loops": 84,
+      "nodes": 1154
+    },
+    {
+      "paletteIndex": 5,
+      "fill": "#948060",
+      "loops": 44,
+      "nodes": 758
+    },
+    {
+      "paletteIndex": 2,
+      "fill": "#878975",
+      "loops": 62,
+      "nodes": 632
+    },
+    {
+      "paletteIndex": 3,
+      "fill": "#b0ad92",
+      "loops": 12,
+      "nodes": 98
+    }
+  ],
+  "semanticPalette": [
+    "#42483f",
+    "#65695b",
+    "#878975",
+    "#b0ad92",
+    "#2e3931",
+    "#948060",
+    "#685e48",
+    "#5e6744"
+  ],
+  "projectedCore": {
+    "x": -900,
+    "y": 740,
+    "width": 6000,
+    "sourcePixelToWorld": 3.588516746411483,
+    "adultWorldHeight": 103.5,
+    "adultConceptSourceHeight": 28.842000000000002
+  },
+  "coverageNative": [
+    -130,
+    0,
+    1802,
+    1120
+  ],
+  "stroke": "1.2 native px in the same fill colour to close independently simplified boundaries; no dark object outline",
+  "status": "experiment awaiting actual game pixel review; not approved",
+  "foregroundSvgSha256": "842f74ff93b6874797dc6a678a6fcdfdd2f5a66f9964699600dfaa49a3ae024e"
+}

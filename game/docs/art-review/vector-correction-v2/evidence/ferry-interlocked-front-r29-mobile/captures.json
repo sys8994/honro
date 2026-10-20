@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:b38a5c36ab0382abb963f4b5a4b642a04c9f32bb229273fec304b408fd2981be",
+  "sourceHashAfter": "sha256:b38a5c36ab0382abb963f4b5a4b642a04c9f32bb229273fec304b408fd2981be",
+  "mode": "mobile",
+  "rows": [
+    {
+      "id": "ferry-interlocked-front-r29-mobile-stage03-mobile",
+      "sourceHash": "sha256:b38a5c36ab0382abb963f4b5a4b642a04c9f32bb229273fec304b408fd2981be",
+      "stage": 3,
+      "view": "mobile",
+      "camera": {
+        "x": 3100,
+        "y": 1400,
+        "scale": 0.4
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-interlocked-front-r29-mobile/stage03-mobile.png",
+        "sha256": "ca6be2ce55e011adadc547779591328fc3c4f4767b2c11f1ec11fc72dd796c6d"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-interlocked-front-29",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    }
+  ],
+  "errors": []
+}

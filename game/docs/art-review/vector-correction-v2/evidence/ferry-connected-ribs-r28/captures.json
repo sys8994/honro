@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:f4f62cc3a2bd20c818a7d775598acd07d4671259e364932d740954a40e0b2ab6",
+  "sourceHashAfter": "sha256:f4f62cc3a2bd20c818a7d775598acd07d4671259e364932d740954a40e0b2ab6",
+  "mode": "representative",
+  "rows": [
+    {
+      "id": "ferry-connected-ribs-r28-stage03-normal",
+      "sourceHash": "sha256:f4f62cc3a2bd20c818a7d775598acd07d4671259e364932d740954a40e0b2ab6",
+      "stage": 3,
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-ribs-r28/stage03-normal.png",
+        "sha256": "588c9cf478bc11a080ec55d9fbc90ecbf939e7b6b05ac9dab2ddc3a427f3bba8"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-connected-ribs-28",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    },
+    {
+      "id": "ferry-connected-ribs-r28-stage03-wide",
+      "sourceHash": "sha256:f4f62cc3a2bd20c818a7d775598acd07d4671259e364932d740954a40e0b2ab6",
+      "stage": 3,
+      "view": "wide",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.24
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-ribs-r28/stage03-wide.png",
+        "sha256": "ca4f520695b5b6de95c8af8a29945549f531899685d75a874899168afe3d3906"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-connected-ribs-28",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    }
+  ],
+  "errors": []
+}
