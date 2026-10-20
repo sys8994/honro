@@ -24,35 +24,40 @@ function layers(scene,w,h,b){
  const spec=manifest?.stages[b?.honroStage];if(!spec)return [];
  const out=[{key:spec.key,alpha:1}];
  if(spec.enclosed){
-  // Existing ceilings delimit the enclosed portion; never change their shape.
-  const roofs=b.terrain.filter(t=>t.honroCeiling&&!t.broken);
-  if(roofs.length){const left=Math.min(...roofs.map(t=>t.x)),right=Math.max(...roofs.map(t=>t.x+t.w));out.push({key:spec.enclosed,left:(left-scene.x)*scene.scale+w/2,right:(right-scene.x)*scene.scale+w/2,fade:Math.max(1,500*scene.scale)});}
+  // Camera depth blends whole paintings: no vertical pasted-image seam, and
+  // an upper outdoor path is never enclosed merely because a roof lies below.
+  const roofs=b.terrain.filter(t=>t.honroCeiling&&!t.broken),smooth=v=>{v=Math.max(0,Math.min(1,v));return v*v*(3-2*v);};
+  let alpha=0;
+  for(const t of roofs)alpha=Math.max(alpha,smooth((scene.x-t.x+200)/700)*smooth((t.x+t.w-scene.x+200)/700)*smooth((scene.y-(t.y+t.h-600))/600));
+  if(alpha>0)out.push({key:spec.enclosed,alpha});
  }
  return out.map(l=>{const canvas=request(l.key)?.canvas;return{...l,canvas,frame:canvas&&E.act1BackdropFrame(scene,w,h,b,canvas.width,canvas.height)};});
 }
-const previous=S.background,landmark=S.landmark;
+const previous=S.background,landmark=S.landmark,cardAssets=new WeakMap();
+// Remove only opaque backing washes from non-colliding distance cards. Keep
+// their architecture, rock contours, lamps and every physical/world landmark.
+const backingCounts={'stage16:temple-rear-cavern-courts':1,'stage18:bell-rear-cavern':1,'a3-maintenance25:dark-shell':1,'stage27-depot-r4:misconnected-rear':2};
 S.landmark=function(c,l){
  if(this.battle?.honroStage===18&&request('bellRear')?.canvas&&['sb-art-rear-cavern','sb-art-rear-rock-roots'].includes(l.id))return;
+ const count=backingCounts[l.asset?.id],n=this.battle?.honroStage;
+ if(count&&[16,19,25,27].includes(n)&&!l.asset.collision?.length&&request(keyFor(n))?.canvas){
+  let asset=cardAssets.get(l.asset);if(!asset){asset={...l.asset,vector:{...l.asset.vector,root:{...l.asset.vector.root,children:l.asset.vector.root.children.slice(count)}}};cardAssets.set(l.asset,asset);}
+  return landmark.call(this,c,{...l,asset});
+ }
  return landmark.call(this,c,l);
 };
 const worldKey=S._worldCacheKey;
-S._worldCacheKey=function(b,w){return worldKey.call(this,b,w)+(b.honroStage===18?':rear-image:'+!!request('bellRear')?.canvas:'');};
+S._worldCacheKey=function(b,w){return worldKey.call(this,b,w)+([16,18,19,25,27].includes(b.honroStage)?':rear-image:'+!!request(keyFor(b.honroStage))?.canvas:'');};
 S.background=function(c,w,h,b){
  if(b?.honroCustom)return previous.call(this,c,w,h,b);
  const ls=layers(this,w,h,b);if(!ls.length||ls.some(l=>!l.canvas))return previous.call(this,c,w,h,b);
  const raw=G.HonroVisualStyle.raw(c),paint=cc=>{
   for(const l of ls){const f=l.frame;cc.save();
-   if(l.left!==undefined){
-    // Soft transition strips use only image opacity, no repeating textures or
-    // opaque gradient filler. At full enclosure the image is fully opaque.
-    const count=24,step=l.fade/count;
-    cc.beginPath();cc.rect(l.left+l.fade,0,Math.max(0,l.right-l.left-2*l.fade),h);cc.clip();cc.drawImage(l.canvas,f.x,f.y,f.w,f.h);cc.restore();
-    for(let i=0;i<count;i++){cc.save();cc.globalAlpha=(i+.5)/count;cc.beginPath();cc.rect(l.left+i*step,0,step+.5,h);cc.rect(l.right-(i+1)*step,0,step+.5,h);cc.clip();cc.drawImage(l.canvas,f.x,f.y,f.w,f.h);cc.restore();}continue;
-   }
+   cc.globalAlpha=l.alpha;
    cc.drawImage(l.canvas,f.x,f.y,f.w,f.h);cc.restore();
   }
  };
- const signature=ls.map(l=>[l.key,l.frame.x,l.frame.y,l.frame.w,l.frame.h,l.left,l.right,l.fade].join(',')).join('|');
+ const signature=ls.map(l=>[l.key,l.frame.x,l.frame.y,l.frame.w,l.frame.h,l.alpha].join(',')).join('|');
  if(!this._screenRaster(raw,['authored-far',w,h,signature].join(':'),w,h,paint,'_screenBackgroundCache',false))paint(raw);
  // These stages previously drew authored room rocks, hanging clues and lights
  // in background(). Keep that pass, omitting only its old sky/flat cave base.

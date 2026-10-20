@@ -108,7 +108,7 @@ function background(c,b,scene,w,h,overPainting=false){if(!active(b))return false
  else{const dark=c.createLinearGradient(0,0,0,h);dark.addColorStop(0,'#0a121d');dark.addColorStop(.66,'#101c28');dark.addColorStop(1,'#172630');c.fillStyle=dark;c.fillRect(0,0,w,h);}}
  const q=prepareRooms(b),extent=caveExtent(b),left=scene.x-w/scene.scale/2,right=scene.x+w/scene.scale/2,top=scene.y-h/scene.scale/2,bottom=scene.y+h/scene.scale/2;
  world(c,scene,w,h,()=>{
-  if(open&&extent){const fade=500,entry=n!==20,start=entry?extent.left:extent.right-fade,end=entry?extent.left+fade:extent.right;
+  if(open&&extent&&!overPainting){const fade=500,entry=n!==20,start=entry?extent.left:extent.right-fade,end=entry?extent.left+fade:extent.right;
    const g=c.createLinearGradient(start,0,end,0);g.addColorStop(0,entry?'#0a121d00':'#0a121d');g.addColorStop(1,entry?'#0a121d':'#0a121d00');c.fillStyle=g;const shadeTop=G.HonroTerrainDomain.active(b)?Math.max(0,top):top;c.fillRect(entry?start:left,shadeTop,entry?right-start:end-left,Math.max(0,bottom-shadeTop));}
   for(const room of q.rooms){const box=room.box;if(box.x+box.w<left-300||box.x>right+300)continue;
    c.save();
