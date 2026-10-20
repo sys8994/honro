@@ -24,7 +24,7 @@ function material(t,style){return t.mat==='wood'||t.surfaceKind==='branch'?'wood
 function canvasPaint(c,p){if(p.type==='color')return p.value;const g=c.createLinearGradient(...p.from,...p.to);for(const [offset,color] of p.stops)g.addColorStop(offset,color);return g;}
 function contextView(c){const m=c.getTransform();return{x:-m.e/m.a,y:-m.f/m.d,w:c.canvas.width/m.a,h:c.canvas.height/m.d};}
 // A bounded landform composition follows exposed faces, not the extended map box.
-const INTERIOR_REVISION='landforms-2';
+const INTERIOR_REVISION='landforms-3';
 function hash01(text){let h=2166136261;for(const c of text){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return(h>>>0)/4294967295;}
 function clipFace(face,box){let lo=0,hi=1;const dx=face.z.x-face.a.x,dy=face.z.y-face.a.y;
  for(const [p,q] of [[-dx,face.a.x-box.left],[dx,box.right-face.a.x],[-dy,face.a.y-box.top],[dy,box.bottom-face.a.y]]){if(Math.abs(p)<1e-8){if(q<0)return null;}else{const t=q/p;if(p<0)lo=Math.max(lo,t);else hi=Math.min(hi,t);if(lo>hi)return null;}}
@@ -41,40 +41,45 @@ function composeInterior(b,records,style){
   const t=r.t;if(t.oneWay||r.mat==='wood'||r.mat==='water'||t.honroQuestTarget||t.device||t.honroSeal||/^sb-(bell-|inner-)/.test(t.id)||['sf-settled-barge','sf-outbank-screen'].includes(t.id))continue;
   if(t.w<200||t.h<130)continue;
   for(const original of r.faces){const face=clipFace(original,region);if(!face||face.len<100)continue;
+   // Soil flows start at the visible top; synthetic domain sides/bottoms never seed art.
+   if((r.mat==='earth'||cave)&&(face.ny>-.55||face.a.y>b.height+200||face.z.y>b.height+200))continue;
    const count=Math.max(1,Math.min(6,Math.ceil(face.len/1250)));
    for(let i=0;i<count;i++){
     const seed=hash01(t.id+':'+face.a.x+':'+face.a.y+':'+i),f=(i+.22+seed*.48)/count,x=face.a.x+(face.z.x-face.a.x)*f,y=face.a.y+(face.z.y-face.a.y)*f;
     let depth=0;for(const d of [95,210,390,680,1080,1620,2320]){if(!inside(x-face.nx*d,y-face.ny*d,r.points))break;depth=d;}
     if(depth<210)continue;
-    const onMap=x>=0&&x<=b.width&&y>=0&&y<=b.height+500,score=Math.sqrt(face.len)*Math.min(depth,1620)*(onMap?1.3:.55);
+    const onMap=x>=0&&x<=b.width&&y>=0&&y<=b.height+500;if((r.mat==='earth'||cave)&&!onMap)continue;const score=Math.sqrt(face.len)*Math.min(depth,1620)*(onMap?1.3:.55);
     r.landformCandidates.push({x,y,nx:face.nx,ny:face.ny,depth,seed,score,len:face.len});
    }
   }
-  r.landformCandidates.sort((a,z)=>z.score-a.score);const chosen=[];
-  for(const c of r.landformCandidates){if(chosen.every(p=>Math.hypot(c.x-p.x,c.y-p.y)>1020)){chosen.push(c);if(chosen.length===7)break;}}
+  r.landformCandidates.sort(cave&&t.w>4000?(a,z)=>a.x-z.x:(a,z)=>z.score-a.score);const chosen=[];
+  for(const c of r.landformCandidates){if(chosen.every(p=>Math.hypot(c.x-p.x,c.y-p.y)>(cave&&t.w>4000?2800:r.mat==='earth'?1750:1100))){chosen.push(c);if(chosen.length===(r.mat==='earth'?2:cave?3:5))break;}}
   r.landformCandidates=chosen;r.rank=chosen[0]?.score||0;if(chosen.length)plans.push(r);
  }
  plans.sort((a,z)=>z.rank-a.rank);let majors=0,middles=0,near=0;
- for(let round=0;round<7&&majors<majorLimit;round++)for(const r of plans){const c=r.landformCandidates[round];if(!c||majors>=majorLimit)continue;
-  const earth=r.mat==='earth',wall=Math.abs(c.nx)>.55||c.ny>.5,angle=wall?Math.atan2(c.ny,c.nx)*180/Math.PI+90:Math.atan2(-c.nx,-c.ny)*180/Math.PI;
-  let id=earth?(style.palette==='wet'?'wet.silt-bank':(c.seed>.72&&c.depth>700?'earth.erosion-face':'earth.slope-mass')):city&&!wall?'rock.foundation-ledge':wall||cave&&c.seed>.62?'rock.cavern-buttress':'rock.stratified-mass';
-  const def=K.ASSETS[id],height=-def.bounds.y,desired=c.depth>1500?1.35:c.depth>680?1.05:.72,fit=c.depth/(height*.66),scale=Math.min(desired,fit,def.scaleRange[1]);
-  if(scale<def.scaleRange[0])continue;
-  const rotation=earth?Math.max(-12,Math.min(12,-c.nx*13+(c.seed-.5)*10)):wall?angle:Math.max(-18,Math.min(18,angle));
-  const d=height*scale*.64,normal=earth&&wall?{x:-c.nx*.75,y:-c.ny*.75+.2}:{x:-c.nx,y:-c.ny};
-  add('major',r,id,c.x+normal.x*d,c.y+normal.y*d,scale,rotation,1);majors++;
-  // Sparse medium rock exposures are buried in an authored soil lip, not floating strips.
-  if(earth&&style.palette!=='wet'&&middles<middleLimit&&c.depth>680&&c.seed>.63){
-   const d2=Math.min(520,c.depth*.35),x=c.x-c.nx*d2+(c.seed-.5)*180,y=c.y-c.ny*d2;
-   if(inside(x,y+70,r.points)){add('middle',r,'earth.buried-exposure',x,y,.85,Math.max(-12,Math.min(12,rotation)),.9);middles++;}
+ for(let round=0;round<5&&majors<majorLimit;round++)for(const r of plans){const c=r.landformCandidates[round];if(!c||majors>=majorLimit)continue;
+  const earth=r.mat==='earth',wall=Math.abs(c.nx)>.55||c.ny>.5,angle=Math.atan2(-c.nx,-c.ny)*180/Math.PI;
+  if(earth){
+   const id=round===0?(style.palette==='wet'?'wet.silt-bank':'earth.slope-mass'):'earth.erosion-face';
+   const scale=Math.max(K.ASSETS[id].scaleRange[0],Math.min(round===0?.98:.7,c.depth/880)),rotation=Math.max(-14,Math.min(14,angle*(round===0?.55:.8)+(round===0?-3:11)));
+   add('major',r,id,c.x,c.y-(round===0?170:100),scale,rotation,round===0?.95:.8);majors++;
+   if(middles<middleLimit&&style.palette!=='wet'&&c.depth>680&&round===0){add('middle',r,'earth.buried-exposure',c.x+220,c.y+145,.68,rotation,.7);middles++;}
+   continue;
   }
-  // Deep foreground is a second broad shoulder, placed only in thick connected mass.
-  if(round===0&&c.depth>=1620&&c.seed>.45&&majors<majorLimit){const d2=1450+c.seed*340,x=c.x-c.nx*d2+(c.ny*220),y=c.y-c.ny*d2-c.nx*220;
-   if(x>=region.left&&x<=region.right&&y<region.bottom&&inside(x,y,r.points)){
-    const deepId=earth?(style.palette==='wet'?'wet.silt-bank':'earth.slope-mass'):city?'rock.foundation-ledge':'rock.stratified-mass';
-    add('major',r,deepId,x,y,1.25,earth?(c.seed-.5)*14:Math.max(-18,Math.min(18,rotation)),.72);majors++;
+  if(cave){
+   // A low asymmetric shoulder carries the primary plane; most of the depth stays quiet.
+   // Narrow supports get only a small buried lobe, never an enlarged cliff motif.
+   const primary=r.t.w>1400&&c.depth>680,rotation=Math.max(-22,Math.min(22,angle*.45+(round%2?9:-8)));
+   if(primary){add('major',r,'rock.stratified-mass',c.x-180,c.y-80,round===0?.9:.68,rotation,round===0?.78:.56);majors++;}
+   if(middles<middleLimit){const side=c.seed>.5?1:-1,x=c.x+(primary?side*380:0),y=c.y+55;
+    if(inside(x,y+110,r.points)){add('middle',r,'rock.buried-lobe',x,y,primary?.82:.65,rotation+(primary?-13:7),.68);middles++;}
    }
+   continue;
   }
+  const id=city&&!wall?'rock.foundation-ledge':wall?'rock.cavern-buttress':'rock.stratified-mass',def=K.ASSETS[id];
+  const scale=Math.min(.95,c.depth/Math.max(500,def.bounds.h)),rotation=Math.max(-18,Math.min(18,angle));if(scale<def.scaleRange[0])continue;
+  const surfaceOrigin=id==='rock.stratified-mass',d=surfaceOrigin?24:-def.bounds.y*scale*.64;
+  add('major',r,id,c.x-c.nx*d,c.y-c.ny*d,scale,rotation,.8);majors++;
  }
  // Roots belong to existing tree feet, never to arbitrary empty soil cells.
  const roots=[...(style.scenery||[]).filter(p=>/^pine\./.test(p.assetId)).map(p=>{const a=b.honroMapAnchors?.[p.anchor]||{},x=p.x??a.x,t=b.terrain.find(t=>t.id===p.support&&!t.broken);return t&&Number.isFinite(x)?{x,y:C.topAt(t,x,t.y),support:t.id}:null;}),...(b.honroLandmarks||[]).filter(l=>/rooted-pine|ancientPine|giantPine/.test(l.asset?.id||l.kind||'')).map(l=>({x:l.x,y:l.y}))].filter(Boolean);
@@ -119,7 +124,9 @@ function paintTerrain(c,t,b){
  const live=b.terrain.find(v=>v.id===t.id);if(t.broken||live?.broken)return;
  const q=prepare(b),r=q.records.get(t.id);if(!r||q.architecture.covered.has(t.id))return;
  c.save();c.fillStyle=canvasPaint(c,K.paintFor(r.asset,'body',q.style.palette));c.fill(r.path);
- c.save();c.clip(r.path);const view=contextView(c),density=Math.abs(c.getTransform().a);K.drawCanvas(c,r.partsByLOD.major,{viewBounds:view});if(density>=.45)K.drawCanvas(c,r.partsByLOD.middle,{viewBounds:view});
+ c.save();c.clip(r.path);
+ if(['cave','ink'].includes(q.style.palette)&&r.mat==='rock'&&r.t.y>=0&&r.t.h>900){const top=Math.min(...r.tops.map(f=>Math.min(f.a.y,f.z.y)));if(Number.isFinite(top)){const shade=K.paintFor(r.asset,'shade',q.style.palette).value,g=c.createLinearGradient(0,top+250,0,top+1450);g.addColorStop(0,shade+'00');g.addColorStop(1,shade+'66');c.fillStyle=g;c.fill(r.path);}}
+ const view=contextView(c),density=Math.abs(c.getTransform().a);K.drawCanvas(c,r.partsByLOD.major,{viewBounds:view});if(density>=.45)K.drawCanvas(c,r.partsByLOD.middle,{viewBounds:view});
  c.save();c.globalAlpha*=r.mat==='earth'?.17:.11;c.fillStyle=canvasPaint(c,K.paintFor(r.asset,'light',q.style.palette));c.fill(r.topPlane);c.restore();
  // Small, broad grain faces follow a timber member; no repeating texture pass.
  if(r.mat==='wood'){c.strokeStyle=K.paintFor(r.asset,'light',q.style.palette).stops[0][1];c.globalAlpha=.22;c.lineWidth=3;const top=r.tops[0];if(top){c.beginPath();c.moveTo(top.a.x+6,top.a.y+8);c.quadraticCurveTo((top.a.x+top.z.x)/2,(top.a.y+top.z.y)/2+13,top.z.x-6,top.z.y+8);c.stroke();}}c.restore();
