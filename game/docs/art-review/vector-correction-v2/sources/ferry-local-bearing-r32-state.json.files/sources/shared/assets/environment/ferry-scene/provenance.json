@@ -1,0 +1,292 @@
+{
+  "experiment": "same-source-native-fidelity",
+  "approvedArt": false,
+  "geometrySource": "game/art-studies/ferry-foreground-authoring/reference.png",
+  "sourcePngSha256": "ae19ec782732ebf81c8771ae76f29d04a0097dd784d104db75cde34101817594",
+  "sourceSize": [
+    1672,
+    941
+  ],
+  "workingSize": [
+    1672,
+    941
+  ],
+  "colors": 48,
+  "retainedColors": 48,
+  "spatialGroups": 3700,
+  "curves": false,
+  "leastSquaresCubicFit": false,
+  "medianSourcePixels": 3,
+  "minimumRegionSourcePixels": 12,
+  "boundaryErrorSourcePixels": 0.55,
+  "minimumLoopSourceArea": 4,
+  "mergeStats": [
+    {
+      "pass": 1,
+      "components": 207739,
+      "pixelsChanged": 373390
+    },
+    {
+      "pass": 2,
+      "components": 689,
+      "pixelsChanged": 1202
+    }
+  ],
+  "boundaryNodes": 460909,
+  "rawSvgBytes": 4127721,
+  "gzipSvgBytes": 1076867,
+  "rawJsonBytes": 4003612,
+  "gzipJsonBytes": 1111705,
+  "sameFillStrokeWidthSourcePixels": 0.45,
+  "projection": {
+    "x": -900,
+    "y": 740,
+    "worldWidth": 6000,
+    "worldPerSourcePixel": 3.588516746411483,
+    "adultWorldHeight": 103.5,
+    "adultSourcePixels": 28.842
+  },
+  "paths": [
+    {
+      "color": "#1d1d16",
+      "loops": 576,
+      "nodes": 13459
+    },
+    {
+      "color": "#2d2b21",
+      "loops": 792,
+      "nodes": 15953
+    },
+    {
+      "color": "#333229",
+      "loops": 495,
+      "nodes": 11636
+    },
+    {
+      "color": "#37352d",
+      "loops": 343,
+      "nodes": 9071
+    },
+    {
+      "color": "#3a362b",
+      "loops": 514,
+      "nodes": 12093
+    },
+    {
+      "color": "#3a392f",
+      "loops": 359,
+      "nodes": 9034
+    },
+    {
+      "color": "#3d3a31",
+      "loops": 366,
+      "nodes": 8514
+    },
+    {
+      "color": "#3e3d33",
+      "loops": 355,
+      "nodes": 8748
+    },
+    {
+      "color": "#413e35",
+      "loops": 335,
+      "nodes": 8189
+    },
+    {
+      "color": "#423f36",
+      "loops": 503,
+      "nodes": 14306
+    },
+    {
+      "color": "#463f31",
+      "loops": 483,
+      "nodes": 11271
+    },
+    {
+      "color": "#414230",
+      "loops": 401,
+      "nodes": 10264
+    },
+    {
+      "color": "#464339",
+      "loops": 569,
+      "nodes": 16533
+    },
+    {
+      "color": "#47453a",
+      "loops": 258,
+      "nodes": 5275
+    },
+    {
+      "color": "#49463d",
+      "loops": 639,
+      "nodes": 20104
+    },
+    {
+      "color": "#4a493b",
+      "loops": 62,
+      "nodes": 1388
+    },
+    {
+      "color": "#4d483b",
+      "loops": 90,
+      "nodes": 1938
+    },
+    {
+      "color": "#4e4b40",
+      "loops": 593,
+      "nodes": 18357
+    },
+    {
+      "color": "#514c40",
+      "loops": 132,
+      "nodes": 2933
+    },
+    {
+      "color": "#584c35",
+      "loops": 736,
+      "nodes": 20787
+    },
+    {
+      "color": "#534e42",
+      "loops": 498,
+      "nodes": 14667
+    },
+    {
+      "color": "#565144",
+      "loops": 429,
+      "nodes": 13093
+    },
+    {
+      "color": "#585340",
+      "loops": 135,
+      "nodes": 3030
+    },
+    {
+      "color": "#58544b",
+      "loops": 580,
+      "nodes": 17507
+    },
+    {
+      "color": "#5b5649",
+      "loops": 179,
+      "nodes": 3898
+    },
+    {
+      "color": "#5d584b",
+      "loops": 462,
+      "nodes": 15128
+    },
+    {
+      "color": "#615947",
+      "loops": 44,
+      "nodes": 862
+    },
+    {
+      "color": "#5e5b48",
+      "loops": 15,
+      "nodes": 278
+    },
+    {
+      "color": "#6c593a",
+      "loops": 642,
+      "nodes": 19472
+    },
+    {
+      "color": "#635e47",
+      "loops": 103,
+      "nodes": 2286
+    },
+    {
+      "color": "#635e54",
+      "loops": 531,
+      "nodes": 18248
+    },
+    {
+      "color": "#69604d",
+      "loops": 83,
+      "nodes": 2149
+    },
+    {
+      "color": "#686352",
+      "loops": 445,
+      "nodes": 13426
+    },
+    {
+      "color": "#6e6451",
+      "loops": 139,
+      "nodes": 3582
+    },
+    {
+      "color": "#6f694c",
+      "loops": 171,
+      "nodes": 3518
+    },
+    {
+      "color": "#706a5d",
+      "loops": 482,
+      "nodes": 15732
+    },
+    {
+      "color": "#756c56",
+      "loops": 97,
+      "nodes": 2264
+    },
+    {
+      "color": "#816c4a",
+      "loops": 423,
+      "nodes": 12956
+    },
+    {
+      "color": "#77705b",
+      "loops": 335,
+      "nodes": 10125
+    },
+    {
+      "color": "#80755c",
+      "loops": 213,
+      "nodes": 5839
+    },
+    {
+      "color": "#827b59",
+      "loops": 165,
+      "nodes": 3440
+    },
+    {
+      "color": "#837c6a",
+      "loops": 309,
+      "nodes": 9919
+    },
+    {
+      "color": "#8a816a",
+      "loops": 216,
+      "nodes": 6062
+    },
+    {
+      "color": "#938060",
+      "loops": 219,
+      "nodes": 7355
+    },
+    {
+      "color": "#908871",
+      "loops": 268,
+      "nodes": 8123
+    },
+    {
+      "color": "#9a8d71",
+      "loops": 309,
+      "nodes": 7297
+    },
+    {
+      "color": "#a1967c",
+      "loops": 389,
+      "nodes": 10462
+    },
+    {
+      "color": "#b7aa8c",
+      "loops": 342,
+      "nodes": 10334
+    }
+  ],
+  "runtimeRasterReferences": 0
+}

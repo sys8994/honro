@@ -13,6 +13,9 @@
   ],
   "colors": 48,
   "retainedColors": 48,
+  "spatialGroups": 3700,
+  "curves": false,
+  "leastSquaresCubicFit": false,
   "medianSourcePixels": 3,
   "minimumRegionSourcePixels": 12,
   "boundaryErrorSourcePixels": 0.55,
@@ -30,19 +33,11 @@
     }
   ],
   "boundaryNodes": 460909,
-  "rawSvgBytes": 3810084,
-  "gzipSvgBytes": 1068225,
-  "rawJsonBytes": 3807131,
-  "gzipJsonBytes": 1065671,
+  "rawSvgBytes": 4127721,
+  "gzipSvgBytes": 1076867,
+  "rawJsonBytes": 4003612,
+  "gzipJsonBytes": 1111705,
   "sameFillStrokeWidthSourcePixels": 0.45,
-  "projection": {
-    "x": -900,
-    "y": 740,
-    "worldWidth": 6000,
-    "worldPerSourcePixel": 3.588516746411483,
-    "adultWorldHeight": 103.5,
-    "adultSourcePixels": 28.842
-  },
   "paths": [
     {
       "color": "#1d1d16",
@@ -285,5 +280,15 @@
       "nodes": 10334
     }
   ],
-  "runtimeRasterReferences": 0
+  "runtimeRasterReferences": 0,
+  "controlledComparisonProjection": {
+    "x": -900,
+    "y": 740,
+    "worldWidth": 6000,
+    "worldPerSourcePixel": 3.588516746411483,
+    "adultWorldHeight": 103.5,
+    "adultSourcePixels": 28.842
+  },
+  "runtimeComposition": "shared/runtime/stage3-vector-front.js",
+  "runtimeCompositionStatus": "unapproved perimeter composition experiment"
 }

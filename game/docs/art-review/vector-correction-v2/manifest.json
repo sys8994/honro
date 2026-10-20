@@ -2467,6 +2467,248 @@
       ],
       "regressions": [],
       "resolutions": []
+    },
+    {
+      "id": "ferry-local-bearing-r32",
+      "sourceHash": "sha256:04de94927f986d65e41ccc9d733c8d2bfe2d502b6e04c1ed162f53dddf41b142",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-local-bearing-r32-state.json",
+        "sha256": "3763df32619cb64bdef2ed9d26aab7292b4167730b8558642e7a4960efe528cc"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "구간별 배율로 줄였으나 마스크가 실제 개별 암반 외곽을 따르지 않아 여러 암반을 담은 잘린 창문처럼 보인다. 실제 normal/wide 둘 다 명확히 FAIL이다.",
+      "captures": [
+        {
+          "id": "ferry-local-bearing-r32-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:04de94927f986d65e41ccc9d733c8d2bfe2d502b6e04c1ed162f53dddf41b142",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-normal.png",
+            "sha256": "e35855baf6d4c6241884a35b78dcda104d422d8144f06aeac183b8eddb99e61f"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/captures.json",
+            "sha256": "f754653c63be360479ea3d6d964f5465f749a46f838ad23284f929eee6c09d50"
+          }
+        },
+        {
+          "id": "ferry-local-bearing-r32-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:04de94927f986d65e41ccc9d733c8d2bfe2d502b6e04c1ed162f53dddf41b142",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-wide.png",
+            "sha256": "d4d5b3b7f8c02f701b83b36c0cc8f8f441e8bccb8b47a9a52f2968f079fdfcaf"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/captures.json",
+            "sha256": "f754653c63be360479ea3d6d964f5465f749a46f838ad23284f929eee6c09d50"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "구간별 배율로 줄였으나 마스크가 실제 개별 암반 외곽을 따르지 않아 여러 암반을 담은 잘린 창문처럼 보인다. 실제 normal/wide 둘 다 명확히 FAIL이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "중간 재질은 유지됐으나 넓은 단순 흙 덩어리와 복잡한 창문의 대비만 커졌다. 큰 형태부터 전체 위계를 설계하지 못했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "흙이 암반 발을 묻는 대신 직사각형/임의 폴리곤 조각 사이를 덮는다. 전경이 한 몸으로 연결되지 않았다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "원본48색 재질은 보존하나 단순한 흙의 면과 지나치게 다르다. 작은 배율 조정만으로 통합할 수 없다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "실제 두 화면에서 창문/스티커 경계와 넓은 빈 흙을 확인했다. 모바일 확대를 추가해 합격 근거로 삼지 않고 이 구조를 폐기했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-local-bearing-r32/stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "ferry-stone-perimeters-r33",
+      "sourceHash": "sha256:1c90ca99e0bb8ef305b5ab1825d1850b38d213a05a0d37f936df3bbb20a9d42a",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-stone-perimeters-r33-state.json",
+        "sha256": "d4fa4d6a7a0afbbc65a5ef31968fb7c284322a3aff525ee14d31c35c83b22e7d"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "실제 원본 위에서 개별 바위 외곽을 직접 잡았으나 전체는 독립된 돌을 흙 위에 늘어놓은 정원처럼 보인다. 개별 부품 외곽 교정과 장면 전체의 완성은 다르다.",
+      "captures": [
+        {
+          "id": "ferry-stone-perimeters-r33-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:1c90ca99e0bb8ef305b5ab1825d1850b38d213a05a0d37f936df3bbb20a9d42a",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-normal.png",
+            "sha256": "e36a5c6c2a459903b1cacaa3960d7cc9e01f10f83e756c156f8a9075e8f4d203"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/captures.json",
+            "sha256": "8dee35c0635102e0a40ba6766dddeb591477866aac68d8d1a72cc72cc976f28a"
+          }
+        },
+        {
+          "id": "ferry-stone-perimeters-r33-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:1c90ca99e0bb8ef305b5ab1825d1850b38d213a05a0d37f936df3bbb20a9d42a",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-wide.png",
+            "sha256": "1c52fc2b163630064c14017bfebe0b607870c3c40d54c67248138727db47ed06"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/captures.json",
+            "sha256": "8dee35c0635102e0a40ba6766dddeb591477866aac68d8d1a72cc72cc976f28a"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "실제 원본 위에서 개별 바위 외곽을 직접 잡았으나 전체는 독립된 돌을 흙 위에 늘어놓은 정원처럼 보인다. 개별 부품 외곽 교정과 장면 전체의 완성은 다르다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "큰 흙 바탕과 독립된 돌의 반복이 여전하다. 큰 지질 몸체와 중간 퇴적 형태가 한 덩어리로 설계되지 않았다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "바위 외곽은 r32보다 적절하나 흙 표면 위에 따로 부착된 듯하다. 몇 개의 그림자와 흙 부채만으로 접지·연결을 충족하지 못한다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "개별 암면의 명암은 유지되지만 흙 사면이 단순 도형이어서 두 재질 사이의 질 차이가 남는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "실제 normal/wide를 열고 독립된 돌 배열과 넓은 빈 전경을 확인했다. 이 후보는 FAIL이며 다른 장으로 확장하지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-stone-perimeters-r33/stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
     }
   ],
   "final": null
