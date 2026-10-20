@@ -4541,6 +4541,117 @@
       ],
       "regressions": [],
       "resolutions": []
+    },
+    {
+      "id": "ferry-continuous-mass-r48-final",
+      "sourceHash": "sha256:304d56c02f485753144bd3707ff00f9d5e7f6e7cc17ead169082aa37950ea6af",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-continuous-mass-r48-final-state.json",
+        "sha256": "7a3a125f100f8300d431b8a5bc921ddadbe00bdb7d65792027df48ce1241a95c"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "materials"
+      ],
+      "changes": "FAIL: 전체를 공유 지층 윤곽으로 다시 그리고 A/B/C 독립 노출 묶음을 제거했다. 그러나 normal/wide/mobile 원본 픽셀에서 등간격에 가까운 띠와 파단 조각의 반복 배열이 드러난다. r25의 중간 크기 면을 지층 높이에 맞춰 늘려 과대하고 단순한 침식면으로 만들었다. 자연 지질 매스의 연속성과 사용자가 선호한 디자인을 동시에 충족하지 못했다. 콜라주를 없앤 것을 미술 개선/합격으로 판정하지 않는다. preview·비미술 상태불변과 미술 실패는 별개다. final 접미사는 이번 촬영본 이름이며 전체 최종 심미 검수/부모 승인이 아니다.",
+      "captures": [
+        {
+          "id": "ferry-continuous-mass-r48-final-stage03-normal",
+          "sourceHash": "sha256:304d56c02f485753144bd3707ff00f9d5e7f6e7cc17ead169082aa37950ea6af",
+          "stage": 3,
+          "view": "normal",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final/stage03-normal.png",
+            "sha256": "ac2b570773bb2179027f77c80d186792e1bae0d1e463b1f0b444c5cca9e878b2"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final/captures.json",
+            "sha256": "cb4e9eb319d1bc36ca933e91586a9b3688c79fc21d4f6c1cc720ec47618647af"
+          }
+        },
+        {
+          "id": "ferry-continuous-mass-r48-final-stage03-wide",
+          "sourceHash": "sha256:304d56c02f485753144bd3707ff00f9d5e7f6e7cc17ead169082aa37950ea6af",
+          "stage": 3,
+          "view": "wide",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final/stage03-wide.png",
+            "sha256": "c26007835a7d465462838b75368fc305c53516a54c0e9cbf3678102b2bdb9fa5"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final/captures.json",
+            "sha256": "cb4e9eb319d1bc36ca933e91586a9b3688c79fc21d4f6c1cc720ec47618647af"
+          }
+        },
+        {
+          "id": "ferry-continuous-mass-r48-final-mobile-stage03-mobile",
+          "sourceHash": "sha256:304d56c02f485753144bd3707ff00f9d5e7f6e7cc17ead169082aa37950ea6af",
+          "stage": 3,
+          "view": "mobile",
+          "camera": {
+            "x": 3100,
+            "y": 1400,
+            "scale": 0.4
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final-mobile/stage03-mobile.png",
+            "sha256": "cd0200780f487831d43f97c37c4201f567fcc3e9546fcceacdd7807125b0affe"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final-mobile/captures.json",
+            "sha256": "508e14a8b0f684c0f7f7fd3a2910ad159a2f4ba0957e86496359eb91cf56e7e0"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "FAIL: 전체를 공유 지층 윤곽으로 다시 그리고 A/B/C 독립 노출 묶음을 제거했다. 그러나 normal/wide/mobile 원본 픽셀에서 등간격에 가까운 띠와 파단 조각의 반복 배열이 드러난다. r25의 중간 크기 면을 지층 높이에 맞춰 늘려 과대하고 단순한 침식면으로 만들었다. 자연 지질 매스의 연속성과 사용자가 선호한 디자인을 동시에 충족하지 못했다. 콜라주를 없앤 것을 미술 개선/합격으로 판정하지 않는다. preview·비미술 상태불변과 미술 실패는 별개다. final 접미사는 이번 촬영본 이름이며 전체 최종 심미 검수/부모 승인이 아니다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final-mobile/stage03-mobile.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "FAIL: 전체를 공유 지층 윤곽으로 다시 그리고 A/B/C 독립 노출 묶음을 제거했다. 그러나 normal/wide/mobile 원본 픽셀에서 등간격에 가까운 띠와 파단 조각의 반복 배열이 드러난다. r25의 중간 크기 면을 지층 높이에 맞춰 늘려 과대하고 단순한 침식면으로 만들었다. 자연 지질 매스의 연속성과 사용자가 선호한 디자인을 동시에 충족하지 못했다. 콜라주를 없앤 것을 미술 개선/합격으로 판정하지 않는다. preview·비미술 상태불변과 미술 실패는 별개다. final 접미사는 이번 촬영본 이름이며 전체 최종 심미 검수/부모 승인이 아니다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final-mobile/stage03-mobile.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
     }
   ],
   "final": null

@@ -1,3 +1,13 @@
+## 2026-10-20 — Stage 3 지질 매스 재구성 r48 (실패 보존)
+
+사용자의 “지형이 연속성 일관성이 없잖아” 피드백을 반영해 r47 조각 채움을 중단했다. r47b는 중간 면이 전체를 채워도 서로 다른 방향의 조각 콜라주라는 결함을 그대로 남겼다. 해당 소스/실제 normal·wide·mobile 캡처를 b722228b에 실패로 보존했다.
+
+다음 r48은 독립 A/B/C 노출 묶음과 변형 에셋 배치를 제거하고, 후면 능선에서 서쪽 아래로 내려오는 공유 지층 윤곽으로 native-body 전체를 재작성했다. 지층 사이의 면은 이어지고 국소 파단은 그 내부에만 clip된다. 그러나 실제 화면은 일정한 띠와 반복 파단 배열이 되었고, 원본 파단면을 늘려 r25의 중간 크기 디테일도 잃었다. **전체 형태/자연스러움/선호 디자인 유지 모두 실패이며 개선이나 합격으로 포장하지 않는다.** 공유 윤곽이나 단일 SVG 자체가 시각적 연속성의 증거가 아니다.
+
+저작기→SVG→native JSON 재생성 hash 일치, 실제 native 재질을 포함한 Canvas transform/clip 복원 검사, JS 구문·diff 검사 통과. preview 빌드와 Chromium normal/minimum-wide/mobile 촬영 성공, 오류0·렌더 전후 비미술 상태 불변. 워밍 후 1.7/3.6/2.0ms, 타일 12/32/6개. 일반 build는 최종 전체 픽셀 검수 없음으로 HONRO_ART_REVIEW_BLOCKED(build:not-run); gate 우회 없음. 충돌·카메라·게임플레이·캐릭터 순서는 그대로다. 앞 가림 요소를 새로 추가하지 않았으며 그런 요소가 필요하면 캐릭터 이후 렌더링해야 한다.
+
+[normal](art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final/stage03-normal.png), [wide](art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final/stage03-wide.png), [mobile](art-review/vector-correction-v2/evidence/ferry-continuous-mass-r48-final-mobile/stage03-mobile.png). 실패 sourceState/실제 캡처를 manifest에 추가했고 final:null을 유지했다. `r48-final`은 촬영 태그일 뿐 전체 최종 검수 통과가 아니다. master/Pages는 변경하지 않았다.
+
 ## 2026-10-20 — Stage 3 실제 암반 에셋 국소 확장 r46e (미승인)
 
 부모의 r45b 불합격 피드백에 따라 큰 균일 절리 벽을 제거했다. 기존 ferry-shelf/shoulder/fan을 원래 S=103.5/80 배율로 중앙 아래 한 구역에 겹치고, 눈에 띄는 어깨 암반의 노출 외곽을 줄였다. 기존 fan과 하단 확장부 사이에는 작은 수작업 접합 암면 2개를 더했다. 중앙/하단 중간 면의 밀도·재질은 가까워졌으나 동일 에셋의 특징 반복과 wide의 외곽 상세도 경계가 남는다. 방법 검증용 국소 후보이며 전체 확대·미술 통과는 아니다.
