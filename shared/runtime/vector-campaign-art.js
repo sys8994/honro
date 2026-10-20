@@ -61,11 +61,12 @@ function prepare(b){
  }).filter(Boolean);
  const sceneryScene=K.compileScene({instances:scenery});
  for(const part of style.scenery||[])for(const [support,ids] of Object.entries(part.breakLinks||{}))if(b.terrain.find(t=>t.id===support)?.broken)sceneryScene.nodes=sceneryScene.nodes.filter(node=>!ids.some(id=>node.id===part.id+'/'+id));
- q={key,source,records,style,scenery:sceneryScene,partCount:style.maxParts-budget,builds:(q?.builds||0)+1};cache.set(b,q);return q;
+ const architecture=K.compileArchitecture(style.architecture,b,{...K,palette:style.palette},C);for(const group of architecture.groups)if(group.clipD)group.clip=new Path2D(group.clipD);
+ q={key,source,records,style,architecture,scenery:sceneryScene,partCount:style.maxParts-budget,builds:(q?.builds||0)+1};cache.set(b,q);return q;
 }
 function paintTerrain(c,t,b){
  const live=b.terrain.find(v=>v.id===t.id);if(t.broken||live?.broken)return;
- const q=prepare(b),r=q.records.get(t.id);if(!r)return;
+ const q=prepare(b),r=q.records.get(t.id);if(!r||q.architecture.covered.has(t.id))return;
  c.save();c.fillStyle=canvasPaint(c,K.paintFor(r.asset,'body',q.style.palette));c.fill(r.path);
  c.save();c.clip(r.path);K.drawCanvas(c,r.parts,{viewBounds:contextView(c)});
  // Small, broad grain faces follow a timber member; no repeating texture pass.
@@ -90,9 +91,11 @@ function replacement(l,b){
 }
 const priorStatic=S._drawStaticWorldCached;S._drawStaticWorldCached=function(c,b,w,h){return priorStatic.call(this,c,displayBattle(b),w,h);};
 const priorSkirt=S.terrainSkirt;S.terrainSkirt=function(c,b,w,h){const display=displayBattle(b);if(display!==b){this.overscanStats={bounds:display.honroTerrainBounds,paths:0,unified:true,visualOnly:true};return;}return priorSkirt.call(this,c,b,w,h);};
-const priorLayer=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){priorLayer.call(this,c,list,layer);if(layer==='structural-back'&&V.active(this.battle))K.drawCanvas(c,prepare(this.battle).scenery,{viewBounds:contextView(c)});};
+const priorLayer=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){priorLayer.call(this,c,list,layer);if(layer==='structural-back'&&V.active(this.battle)){const q=prepare(this.battle),view=contextView(c);K.drawCanvas(c,q.scenery,{viewBounds:view});for(const group of q.architecture.groups){c.save();if(group.clip)c.clip(group.clip);K.drawCanvas(c,group.compiled,{viewBounds:view});c.restore();}}};
 const priorTerrain=S.terrain;S.terrain=function(c,t){if(!V.active(this.battle)||t.honroQuestTarget||t.device||t.honroSeal||([18,19].includes(this.battle.honroStage)&&/^sb-(bell-|inner-)/.test(t.id))||(this.battle.honroStage===30&&['sf-settled-barge','sf-outbank-screen'].includes(t.id)))return priorTerrain.call(this,c,t);return paintTerrain(c,t,this.battle);};
 const priorLandmark=S.landmark;S.landmark=function(c,l){const replacementScene=replacement(l,this.battle);if(replacementScene){K.drawCanvas(c,replacementScene,{viewBounds:contextView(c)});return;}return priorLandmark.call(this,c,l);};
+const targetArt=new WeakMap(),priorUnitBody=S.unitBody;
+S.unitBody=function(c,u,charge=0){const id=V.active(this.battle)&&K.STAGE_STYLES[this.battle.honroStage].unitArt?.[u.id];if(!id)return priorUnitBody.call(this,c,u,charge);const asset=K.ASSETS[id],key=[id,u.x,u.y,u.h,K.REGISTRY_VERSION].join(':');let q=targetArt.get(u);if(q?.key!==key){q={key,compiled:K.compileScene({instances:[{id:u.id,assetId:id,palette:K.STAGE_STYLES[this.battle.honroStage].palette,transform:{x:u.x,y:u.y,scale:u.h/asset.bounds.h}}]})};targetArt.set(u,q);}K.drawCanvas(c,q.compiled);};
 const priorVisible=S._landmarkVisible;S._landmarkVisible=function(l,view,pad=40){const q=replacement(l,this.battle);if(!q)return priorVisible.call(this,l,view,pad);return q.nodes.some(n=>n.bounds.x+n.bounds.w+pad>=view.left&&n.bounds.x-pad<=view.right&&n.bounds.y+n.bounds.h+pad>=view.top&&n.bounds.y-pad<=view.bottom);};
 const priorBackground=S.background;S.background=function(c,w,h,b){if(V.active(b)&&b.honroStage===2&&b.honroMap?.stage2ImageFirst)G.HonroStage2ImageFirstArt.overwatch(this,w,h,b);const style=V.active(b)&&K.STAGE_STYLES[b.honroStage],far=style?.far,P=G.HonroPaintedPilots;if(!far||!P)return priorBackground.call(this,c,w,h,b);P.request([far]);if(!P.ready(far)){const raw=G.HonroVisualStyle.raw(c);raw.fillStyle='#59666a';raw.fillRect(0,0,w,h);return;}const image=P.images[far],raw=G.HonroVisualStyle.raw(c),scale=Math.max(w/image.naturalWidth,h/image.naturalHeight),width=image.naturalWidth*scale,height=image.naturalHeight*scale;raw.drawImage(image,(w-width)/2,(h-height)/2,width,height);raw.fillStyle='#334a502b';raw.fillRect(0,0,w,h);};
 const priorKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return priorKey.call(this,b,w)+(V.active(b)?':shared-vector:'+K.REGISTRY_VERSION+':'+K.STAGE_STYLES[b.honroStage].palette:'');};

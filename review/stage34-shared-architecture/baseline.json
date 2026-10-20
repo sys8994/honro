@@ -1,0 +1,3626 @@
+{
+  "commit": "0964be9e0cf4d9fc6d98b092dfe725de6a1b760a",
+  "stages": [
+    {
+      "stage": 3,
+      "id": "stage-3",
+      "name": "나루의 남은 장부",
+      "preserved": {
+        "width": 4276.8,
+        "height": 1779.8000000000002,
+        "terrains": [
+          {
+            "id": "ferry-ground",
+            "name": "ferry-ground",
+            "type": "solid",
+            "points": [
+              {
+                "x": 0,
+                "y": 1513.6000000000001
+              },
+              {
+                "x": 330,
+                "y": 1584.0000000000002
+              },
+              {
+                "x": 770.0000000000001,
+                "y": 1634.6000000000001
+              },
+              {
+                "x": 1210,
+                "y": 1674.2
+              },
+              {
+                "x": 1584.0000000000002,
+                "y": 1630.2
+              },
+              {
+                "x": 1848.0000000000002,
+                "y": 1394.8000000000002
+              },
+              {
+                "x": 1947.0000000000002,
+                "y": 1135.2
+              },
+              {
+                "x": 2145,
+                "y": 1137.4
+              },
+              {
+                "x": 2376,
+                "y": 1194.6000000000001
+              },
+              {
+                "x": 2618,
+                "y": 1249.6000000000001
+              },
+              {
+                "x": 2816,
+                "y": 1247.4
+              },
+              {
+                "x": 3058.0000000000005,
+                "y": 1157.2
+              },
+              {
+                "x": 3278.0000000000005,
+                "y": 1078
+              },
+              {
+                "x": 3410.0000000000005,
+                "y": 1003.2
+              },
+              {
+                "x": 3553.0000000000005,
+                "y": 930.6
+              },
+              {
+                "x": 3652.0000000000005,
+                "y": 882.2
+              },
+              {
+                "x": 3828.0000000000005,
+                "y": 877.8000000000001
+              },
+              {
+                "x": 4092.0000000000005,
+                "y": 891.0000000000001
+              },
+              {
+                "x": 4276.8,
+                "y": 902.0000000000001
+              },
+              {
+                "x": 4276.8,
+                "y": 1779.8000000000002
+              },
+              {
+                "x": 0,
+                "y": 1779.8000000000002
+              }
+            ],
+            "baseMaterial": "soil",
+            "oneWay": false,
+            "breakable": false,
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": true,
+              "surfaceKind": "soil",
+              "artSeed": 1,
+              "honroWalkEdges": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17
+              ]
+            },
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 3
+            },
+            "playProjection": {
+              "bounds": {
+                "left": 0,
+                "top": 0,
+                "right": 6500,
+                "bottom": 3300
+              },
+              "start": {
+                "x": 0,
+                "y": 1781.337
+              }
+            }
+          },
+          {
+            "id": "ferry-side-gangway",
+            "name": "Terrain",
+            "type": "solid",
+            "baseMaterial": "soil",
+            "breakable": false,
+            "oneWay": true,
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 3
+            },
+            "properties": {
+              "surfaceKind": "soil",
+              "route": false,
+              "hp": 260,
+              "maxHp": 260,
+              "honroWalkEdges": [
+                0,
+                1,
+                2,
+                3
+              ]
+            },
+            "points": [
+              {
+                "x": 0,
+                "y": 1210
+              },
+              {
+                "x": 198.00000000000003,
+                "y": 1218.8000000000002
+              },
+              {
+                "x": 407.00000000000006,
+                "y": 1238.6000000000001
+              },
+              {
+                "x": 528,
+                "y": 1238.6000000000001
+              },
+              {
+                "x": 616,
+                "y": 1232
+              },
+              {
+                "x": 616,
+                "y": 1254
+              },
+              {
+                "x": 528,
+                "y": 1260.6000000000001
+              },
+              {
+                "x": 407.00000000000006,
+                "y": 1260.6000000000001
+              },
+              {
+                "x": 198.00000000000003,
+                "y": 1240.8000000000002
+              },
+              {
+                "x": 0,
+                "y": 1232
+              }
+            ]
+          },
+          {
+            "id": "dock-west",
+            "name": "dock-west",
+            "type": "solid",
+            "points": [
+              {
+                "x": 391.6,
+                "y": 1293.6000000000001
+              },
+              {
+                "x": 550,
+                "y": 1313.4
+              },
+              {
+                "x": 792.0000000000001,
+                "y": 1331
+              },
+              {
+                "x": 1034,
+                "y": 1335.4
+              },
+              {
+                "x": 1221,
+                "y": 1324.4
+              },
+              {
+                "x": 1408,
+                "y": 1293.6000000000001
+              },
+              {
+                "x": 1408,
+                "y": 1315.6000000000001
+              },
+              {
+                "x": 1221,
+                "y": 1346.4
+              },
+              {
+                "x": 1034,
+                "y": 1357.4
+              },
+              {
+                "x": 792.0000000000001,
+                "y": 1353
+              },
+              {
+                "x": 550,
+                "y": 1335.4
+              },
+              {
+                "x": 391.6,
+                "y": 1315.6000000000001
+              }
+            ],
+            "baseMaterial": "wood",
+            "oneWay": true,
+            "breakable": false,
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "wood",
+              "artSeed": 1,
+              "honroWalkEdges": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 3
+            }
+          },
+          {
+            "id": "dock-mid",
+            "name": "dock-mid",
+            "type": "solid",
+            "points": [
+              {
+                "x": 1302.4,
+                "y": 1210
+              },
+              {
+                "x": 1430.0000000000002,
+                "y": 1181.4
+              },
+              {
+                "x": 1628.0000000000002,
+                "y": 1141.8000000000002
+              },
+              {
+                "x": 1815.0000000000002,
+                "y": 1108.8000000000002
+              },
+              {
+                "x": 1933.8000000000002,
+                "y": 1111
+              },
+              {
+                "x": 1933.8000000000002,
+                "y": 1133
+              },
+              {
+                "x": 1815.0000000000002,
+                "y": 1130.8000000000002
+              },
+              {
+                "x": 1628.0000000000002,
+                "y": 1163.8000000000002
+              },
+              {
+                "x": 1430.0000000000002,
+                "y": 1203.4
+              },
+              {
+                "x": 1302.4,
+                "y": 1232
+              }
+            ],
+            "baseMaterial": "wood",
+            "oneWay": true,
+            "breakable": false,
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "wood",
+              "artSeed": 1,
+              "honroWalkEdges": [
+                0,
+                1,
+                2,
+                3
+              ]
+            },
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 3
+            }
+          },
+          {
+            "id": "dock-east",
+            "name": "dock-east",
+            "type": "solid",
+            "points": [
+              {
+                "x": 1870.0000000000002,
+                "y": 1115.4
+              },
+              {
+                "x": 1947.0000000000002,
+                "y": 1119.8000000000002
+              },
+              {
+                "x": 2046.0000000000002,
+                "y": 1137.4
+              },
+              {
+                "x": 2046.0000000000002,
+                "y": 1159.4
+              },
+              {
+                "x": 1947.0000000000002,
+                "y": 1141.8000000000002
+              },
+              {
+                "x": 1870.0000000000002,
+                "y": 1137.4
+              }
+            ],
+            "baseMaterial": "wood",
+            "oneWay": true,
+            "breakable": false,
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "wood",
+              "artSeed": 1,
+              "honroWalkEdges": [
+                0,
+                1
+              ]
+            },
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 3
+            }
+          },
+          {
+            "id": "ferry-shoal",
+            "name": "ferry-shoal",
+            "type": "solid",
+            "layer": "terrain",
+            "baseMaterial": "rock",
+            "oneWay": true,
+            "breakable": false,
+            "points": [
+              {
+                "x": 1249.6000000000001,
+                "y": 1441.0000000000002
+              },
+              {
+                "x": 1331,
+                "y": 1449.8000000000002
+              },
+              {
+                "x": 1408,
+                "y": 1476.2
+              },
+              {
+                "x": 1485.0000000000002,
+                "y": 1498.2
+              },
+              {
+                "x": 1485.0000000000002,
+                "y": 1520.2
+              },
+              {
+                "x": 1408,
+                "y": 1498.2
+              },
+              {
+                "x": 1331,
+                "y": 1471.8000000000002
+              },
+              {
+                "x": 1249.6000000000001,
+                "y": 1463.0000000000002
+              }
+            ],
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 3
+            },
+            "properties": {
+              "surfaceKind": "rock",
+              "honroWalkEdges": [
+                0,
+                1,
+                2
+              ]
+            }
+          },
+          {
+            "id": "cargo-step-1",
+            "name": "cargo-step-1",
+            "type": "solid",
+            "points": [
+              {
+                "x": 3559.6000000000004,
+                "y": 840.4000000000001
+              },
+              {
+                "x": 3630.0000000000005,
+                "y": 840.4000000000001
+              },
+              {
+                "x": 3696.0000000000005,
+                "y": 844.8000000000001
+              },
+              {
+                "x": 3696.0000000000005,
+                "y": 866.8000000000001
+              },
+              {
+                "x": 3630.0000000000005,
+                "y": 862.4000000000001
+              },
+              {
+                "x": 3559.6000000000004,
+                "y": 862.4000000000001
+              }
+            ],
+            "baseMaterial": "rock",
+            "oneWay": true,
+            "breakable": false,
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "rock",
+              "artSeed": 1,
+              "honroWalkEdges": [
+                0,
+                1
+              ]
+            },
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 3
+            }
+          },
+          {
+            "id": "cargo-step-2",
+            "name": "cargo-step-2",
+            "type": "solid",
+            "points": [
+              {
+                "x": 3949.0000000000005,
+                "y": 816.2
+              },
+              {
+                "x": 4026.0000000000005,
+                "y": 814.0000000000001
+              },
+              {
+                "x": 4114,
+                "y": 820.6
+              },
+              {
+                "x": 4114,
+                "y": 842.6
+              },
+              {
+                "x": 4026.0000000000005,
+                "y": 836.0000000000001
+              },
+              {
+                "x": 3949.0000000000005,
+                "y": 838.2
+              }
+            ],
+            "baseMaterial": "wood",
+            "oneWay": true,
+            "breakable": false,
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "wood",
+              "artSeed": 1,
+              "honroWalkEdges": [
+                0,
+                1
+              ]
+            },
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 3
+            }
+          },
+          {
+            "id": "warehouse-roof",
+            "name": "warehouse-roof",
+            "type": "solid",
+            "points": [
+              {
+                "x": 3399.0000000000005,
+                "y": 640.2
+              },
+              {
+                "x": 3476.0000000000005,
+                "y": 624.8000000000001
+              },
+              {
+                "x": 3559.6000000000004,
+                "y": 554.4000000000001
+              },
+              {
+                "x": 3696.0000000000005,
+                "y": 552.2
+              },
+              {
+                "x": 3806.0000000000005,
+                "y": 543.4000000000001
+              },
+              {
+                "x": 3867.6000000000004,
+                "y": 525.8000000000001
+              },
+              {
+                "x": 3905.0000000000005,
+                "y": 567.6
+              },
+              {
+                "x": 3977.6000000000004,
+                "y": 646.8000000000001
+              },
+              {
+                "x": 4004.0000000000005,
+                "y": 655.6
+              },
+              {
+                "x": 4004.0000000000005,
+                "y": 677.6
+              },
+              {
+                "x": 3977.6000000000004,
+                "y": 668.8000000000001
+              },
+              {
+                "x": 3905.0000000000005,
+                "y": 589.6
+              },
+              {
+                "x": 3867.6000000000004,
+                "y": 547.8000000000001
+              },
+              {
+                "x": 3806.0000000000005,
+                "y": 565.4000000000001
+              },
+              {
+                "x": 3696.0000000000005,
+                "y": 574.2
+              },
+              {
+                "x": 3559.6000000000004,
+                "y": 576.4000000000001
+              },
+              {
+                "x": 3476.0000000000005,
+                "y": 646.8000000000001
+              },
+              {
+                "x": 3399.0000000000005,
+                "y": 662.2
+              }
+            ],
+            "baseMaterial": "wood",
+            "oneWay": true,
+            "breakable": false,
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "wood",
+              "artSeed": 1,
+              "honroWalkEdges": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ]
+            },
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 3
+            }
+          }
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "name": "설오",
+            "role": "archer",
+            "cls": "archer",
+            "side": 0,
+            "x": 187.00000000000003,
+            "y": 1218.3111111111114,
+            "vx": 0,
+            "vy": 0,
+            "hp": 425,
+            "maxHp": 425,
+            "r": 22,
+            "h": 92,
+            "focus": 108,
+            "maxFocus": 108,
+            "regen": 15,
+            "level": 3,
+            "attack": 2.11,
+            "armor": 0.096,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 1172,
+            "maxMove": 1172,
+            "walkSpeed": 315,
+            "angle": 44,
+            "lastPower": 0.55,
+            "loadout": [
+              "A01",
+              "A05"
+            ],
+            "tune": 0.5,
+            "facing": 1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 187.00000000000003,
+            "spawnY": 1218.3111111111114,
+            "intent": "",
+            "dead": false,
+            "ranks": {
+              "A01": 1,
+              "A05": 1
+            },
+            "group": 0,
+            "awake": true,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 0,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "cooldowns": {},
+            "kind": "archer",
+            "team": "player",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "p-mage",
+            "name": "담허",
+            "role": "mage",
+            "cls": "mage",
+            "side": 0,
+            "x": 319,
+            "y": 1230.2631578947369,
+            "vx": 0,
+            "vy": 0,
+            "hp": 454,
+            "maxHp": 454,
+            "r": 22,
+            "h": 92,
+            "focus": 136,
+            "maxFocus": 136,
+            "regen": 15,
+            "level": 3,
+            "attack": 2.11,
+            "armor": 0.076,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 1192,
+            "maxMove": 1192,
+            "walkSpeed": 292,
+            "angle": 44,
+            "lastPower": 0.55,
+            "loadout": [
+              "M01",
+              "M03"
+            ],
+            "tune": 0.5,
+            "facing": 1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 319,
+            "spawnY": 1230.2631578947369,
+            "intent": "",
+            "dead": false,
+            "ranks": {
+              "M01": 1,
+              "M03": 1
+            },
+            "group": 0,
+            "awake": true,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 0,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "cooldowns": {},
+            "kind": "mage",
+            "team": "player",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-0",
+            "name": "들린 산개",
+            "role": "leaper",
+            "cls": "knight",
+            "side": 1,
+            "x": 1408,
+            "y": 1186.331034482759,
+            "vx": 0,
+            "vy": 0,
+            "hp": 280,
+            "maxHp": 280,
+            "r": 32,
+            "h": 88,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 3,
+            "attack": 0.5093988329070522,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "HBR01",
+              "HBR02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 1408,
+            "spawnY": 1186.331034482759,
+            "intent": "빠른 돌진과 흙파편",
+            "dead": false,
+            "ranks": {
+              "HBR01": 1,
+              "HBR02": 1
+            },
+            "group": 1,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 19,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "beast",
+            "elite": false,
+            "honroVariant": "hound",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 215.721558036923,
+            "combatBaseAttack": 0.4391369249198726,
+            "honroXpWeight": 1,
+            "honroCluster": "dock-pack",
+            "honroSpawnReason": "버려진 나룻배와 젖은 짐에 사람 냄새가 남아 산개가 몰렸다.",
+            "honroTacticalReason": "제방 아래 밀집군. 잔교 위에서 곡사하거나 물길로 내려가 광역 공격.",
+            "honroEncounterRole": "guard",
+            "kind": "hound",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-1",
+            "name": "들린 까마귀",
+            "role": "bow",
+            "cls": "archer",
+            "side": 1,
+            "x": 1672.0000000000002,
+            "y": 847.0000000000001,
+            "vx": 0,
+            "vy": 0,
+            "hp": 219,
+            "maxHp": 219,
+            "r": 33,
+            "h": 80,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 3,
+            "attack": 0.5724363349344096,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "HCW01",
+              "HCW02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": true,
+            "spawnX": 1672.0000000000002,
+            "spawnY": 847.0000000000001,
+            "intent": "썩은깃과 검은깃비",
+            "dead": false,
+            "ranks": {
+              "HCW01": 1,
+              "HCW02": 1
+            },
+            "group": 2,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 15,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "crow",
+            "elite": false,
+            "honroVariant": "crow",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 168.26281526879995,
+            "combatBaseAttack": 0.4934795990813876,
+            "honroXpWeight": 0.78,
+            "honroCluster": "islet-flock",
+            "honroSpawnReason": "얕은 물의 말뚝과 유실물 위에 날짐승이 자리 잡았다.",
+            "honroTacticalReason": "낮은 수면 군집과 위쪽 공중 표적을 분리해 노린다.",
+            "honroEncounterRole": "precision",
+            "kind": "crow",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-2",
+            "name": "들린 사람",
+            "role": "bow",
+            "cls": "archer",
+            "side": 1,
+            "x": 3377.0000000000005,
+            "y": 1021.9000000000001,
+            "vx": 0,
+            "vy": 0,
+            "hp": 280,
+            "maxHp": 280,
+            "r": 21,
+            "h": 91,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 3,
+            "attack": 0.5088787731505118,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "A01",
+              "A02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 3377.0000000000005,
+            "spawnY": 1021.9000000000001,
+            "intent": "불규칙한 사격",
+            "dead": false,
+            "ranks": {
+              "A01": 1,
+              "A02": 1
+            },
+            "group": 3,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 19,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "human",
+            "elite": false,
+            "honroVariant": "human",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 215.721558036923,
+            "combatBaseAttack": 0.43868859754354467,
+            "honroXpWeight": 1,
+            "honroCluster": "warehouse-core",
+            "honroSpawnReason": "장부가 있는 창고의 처마와 화물 뒤에 들림이 버틴다.",
+            "honroTacticalReason": "화물 엄폐 뒤 지상군과 창고 지붕의 원거리 표적을 선택.",
+            "honroEncounterRole": "screen",
+            "kind": "human",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-3",
+            "name": "들린 멧돼지",
+            "role": "leaper",
+            "cls": "knight",
+            "side": 1,
+            "x": 1980.0000000000002,
+            "y": 1135.5666666666666,
+            "vx": 0,
+            "vy": 0,
+            "hp": 280,
+            "maxHp": 280,
+            "r": 41,
+            "h": 108,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 3,
+            "attack": 0.5093988329070522,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "HBR01",
+              "HBR02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 1980.0000000000002,
+            "spawnY": 1135.5666666666666,
+            "intent": "무거운 돌진과 흙울음",
+            "dead": false,
+            "ranks": {
+              "HBR01": 1,
+              "HBR02": 1
+            },
+            "group": 1,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 19,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "beast",
+            "elite": false,
+            "honroVariant": "boar",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 215.721558036923,
+            "combatBaseAttack": 0.4391369249198726,
+            "honroXpWeight": 1,
+            "honroCluster": "dock-pack",
+            "honroSpawnReason": "버려진 나룻배와 젖은 짐에 사람 냄새가 남아 산개가 몰렸다.",
+            "honroTacticalReason": "제방 아래 밀집군. 잔교 위에서 곡사하거나 물길로 내려가 광역 공격.",
+            "honroEncounterRole": "screen",
+            "kind": "boar",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-4",
+            "name": "들린 산박쥐",
+            "role": "storm",
+            "cls": "mage",
+            "side": 1,
+            "x": 1122,
+            "y": 935.0000000000001,
+            "vx": 0,
+            "vy": 0,
+            "hp": 191,
+            "maxHp": 191,
+            "r": 28,
+            "h": 66,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 3,
+            "attack": 0.6261463763659912,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "HBT01",
+              "HBT02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": true,
+            "spawnX": 1122,
+            "spawnY": 935.0000000000001,
+            "intent": "초음파와 반향",
+            "dead": false,
+            "ranks": {
+              "HBT01": 1,
+              "HBT02": 1
+            },
+            "group": 2,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 13,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "bat",
+            "elite": false,
+            "honroVariant": "bat",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 146.69065946510764,
+            "combatBaseAttack": 0.5397813589361994,
+            "honroXpWeight": 0.68,
+            "honroCluster": "islet-flock",
+            "honroSpawnReason": "얕은 물의 말뚝과 유실물 위에 날짐승이 자리 잡았다.",
+            "honroTacticalReason": "낮은 수면 군집과 위쪽 공중 표적을 분리해 노린다.",
+            "honroEncounterRole": "harrier",
+            "kind": "bat",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-5",
+            "name": "들린 사람",
+            "role": "bow",
+            "cls": "archer",
+            "side": 1,
+            "x": 3795.0000000000005,
+            "y": 544.2800000000001,
+            "vx": 0,
+            "vy": 0,
+            "hp": 280,
+            "maxHp": 280,
+            "r": 21,
+            "h": 91,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 3,
+            "attack": 0.462469029039185,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "LA01",
+              "LA02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 3795.0000000000005,
+            "spawnY": 544.2800000000001,
+            "intent": "불규칙한 사격",
+            "dead": false,
+            "ranks": {
+              "LA01": 1,
+              "LA02": 1
+            },
+            "group": 3,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 19,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "human",
+            "elite": false,
+            "honroVariant": "human",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 215.721558036923,
+            "combatBaseAttack": 0.39868019744757327,
+            "honroXpWeight": 1,
+            "honroCluster": "warehouse-core",
+            "honroSpawnReason": "장부가 있는 창고의 처마와 화물 뒤에 들림이 버틴다.",
+            "honroTacticalReason": "화물 엄폐 뒤 지상군과 창고 지붕의 원거리 표적을 선택.",
+            "honroEncounterRole": "core",
+            "kind": "human",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "npc-hwigyeom",
+            "name": "휘겸",
+            "role": "ally-guard",
+            "cls": "knight",
+            "side": 2,
+            "x": 880.0000000000001,
+            "y": 1332.6000000000001,
+            "vx": 0,
+            "vy": 0,
+            "hp": 752,
+            "maxHp": 752,
+            "r": 20,
+            "h": 90,
+            "focus": 160,
+            "maxFocus": 160,
+            "regen": 14,
+            "level": 3,
+            "attack": 1.7723999999999998,
+            "armor": 0.24,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": true,
+            "moveLeft": 900,
+            "maxMove": 900,
+            "walkSpeed": 260,
+            "angle": 44,
+            "lastPower": 0.55,
+            "loadout": [
+              "S01",
+              "S09"
+            ],
+            "tune": 0.5,
+            "facing": 1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 880.0000000000001,
+            "spawnY": 1332.6000000000001,
+            "intent": "",
+            "dead": false,
+            "ranks": {
+              "S01": 2,
+              "S09": 2
+            },
+            "group": -1,
+            "awake": true,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 0,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroAlly": true,
+            "allyRole": "guard",
+            "honroType": "ally",
+            "allyState": "follow",
+            "kind": "ally:guard",
+            "team": "ally",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "midboss-stage3",
+            "name": "침수된 나루장승",
+            "role": "guard",
+            "cls": "knight",
+            "side": 1,
+            "x": 1386,
+            "y": 1468.6571428571428,
+            "vx": 0,
+            "vy": 0,
+            "hp": 1025,
+            "maxHp": 1025,
+            "r": 32,
+            "h": 146,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 3,
+            "attack": 0.8339039549984988,
+            "armor": 0.14,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "HWD01",
+              "HWD02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 1386,
+            "spawnY": 1468.6571428571428,
+            "intent": "장승못과 터줏바람",
+            "dead": false,
+            "ranks": {
+              "HWD01": 1,
+              "HWD02": 1
+            },
+            "group": -3,
+            "awake": true,
+            "lastAct": 0,
+            "aggroUntil": 999,
+            "xpBudget": 61,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "warden",
+            "elite": true,
+            "honroVariant": "warden",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 788.3512087728083,
+            "combatBaseAttack": 0.7188827198262921,
+            "honroXpWeight": 3.2,
+            "honroMidboss": true,
+            "kind": "warden",
+            "team": "enemy",
+            "runtimeTemplate": true
+          }
+        ],
+        "markers": [
+          {
+            "id": "marker-0",
+            "type": "sector",
+            "x": 264,
+            "y": 1225.0526315789475,
+            "label": "젖은 제방",
+            "sector": 0,
+            "support": "ferry-side-gangway"
+          },
+          {
+            "id": "marker-1",
+            "type": "sector",
+            "x": 946.0000000000001,
+            "y": 1333.8,
+            "label": "잠긴 잔교",
+            "sector": 1,
+            "support": "dock-west"
+          },
+          {
+            "id": "marker-2",
+            "type": "rest",
+            "x": 1925.0000000000002,
+            "y": 1118.5428571428572,
+            "label": "불씨",
+            "radius": 170,
+            "sector": 1,
+            "support": "dock-east"
+          },
+          {
+            "id": "marker-3",
+            "type": "sector",
+            "x": 2200,
+            "y": 1151.0190476190476,
+            "label": "얕은 나루",
+            "sector": 2,
+            "support": "ferry-ground"
+          },
+          {
+            "id": "marker-4",
+            "type": "rest",
+            "x": 2728,
+            "y": 1248.377777777778,
+            "label": "불씨",
+            "radius": 170,
+            "sector": 2,
+            "support": "ferry-ground"
+          },
+          {
+            "id": "marker-5",
+            "type": "sector",
+            "x": 3674.0000000000005,
+            "y": 881.6500000000001,
+            "label": "홍만의 창고",
+            "sector": 3,
+            "support": "ferry-ground"
+          },
+          {
+            "id": "marker-6",
+            "type": "rest",
+            "x": 4180,
+            "y": 896.2380952380954,
+            "label": "불씨",
+            "radius": 170,
+            "sector": 3,
+            "support": "ferry-ground"
+          },
+          {
+            "id": "ledger",
+            "type": "ledger",
+            "x": 3630.0000000000005,
+            "y": 840.4000000000001,
+            "label": "홍만의 장부",
+            "action": "ledger",
+            "support": "cargo-step-1"
+          },
+          {
+            "id": "habitat-3-0",
+            "type": "hauntHabitat",
+            "x": 3190.0000000000005,
+            "y": 1109.68,
+            "label": "창고 뒤 갈대밭",
+            "kind": "hound",
+            "propId": "habitat-prop-3-0",
+            "support": "ferry-ground"
+          },
+          {
+            "id": "habitat-3-1",
+            "type": "hauntHabitat",
+            "x": 1166,
+            "y": 1327.6352941176472,
+            "label": "갯벌 갈대숲",
+            "kind": "crow",
+            "propId": "habitat-prop-3-1",
+            "support": "dock-west"
+          }
+        ],
+        "events": [
+          {
+            "id": "midboss-stage3-seen",
+            "when": {
+              "progress": 1166
+            },
+            "action": null,
+            "text": "물에 잠긴 장승이 나루 바닥에서 몸을 일으킨다.",
+            "lines": [
+              [
+                "휘겸",
+                "저 장승은 원래 배를 지키던 것이오. 안에 든 것만 떼어내시오."
+              ]
+            ],
+            "once": true
+          },
+          {
+            "id": "dock-beasts",
+            "when": {
+              "progress": 1254
+            },
+            "action": {
+              "type": "spawn",
+              "n": 1,
+              "x": 2288,
+              "kind": "boar",
+              "y": 1172.8095238095239,
+              "support": "ferry-ground",
+              "spacing": 180,
+              "maxDistance": 260
+            },
+            "text": "나루 아래에서 들린 짐승들이 올라온다.",
+            "lines": [],
+            "once": true
+          },
+          {
+            "id": "transfer",
+            "when": {
+              "progress": 3168.0000000000005
+            },
+            "action": null,
+            "text": "부서진 그릇에서 빠져나온 기척을 따라 까마귀 떼가 들끓는다.",
+            "lines": [
+              [
+                "설오",
+                "하나를 쓰러뜨리면 옆의 놈이 바로 달려듭니다."
+              ],
+              [
+                "담허",
+                "몸만 바꿔 붙는 듯하군. 장부부터 찾고 나가세."
+              ]
+            ],
+            "once": true
+          }
+        ],
+        "objectives": [
+          {
+            "id": "campaign-goal",
+            "type": "campaign",
+            "label": "홍만의 나루 움막에서 장부 회수"
+          }
+        ],
+        "routes": [
+          {
+            "x": 187.00000000000003,
+            "y": 1218.3111111111114,
+            "support": "ferry-side-gangway"
+          },
+          {
+            "x": 572,
+            "y": 1235.3000000000002,
+            "support": "ferry-side-gangway"
+          },
+          {
+            "x": 792.0000000000001,
+            "y": 1331,
+            "support": "dock-west"
+          },
+          {
+            "x": 1298,
+            "y": 1311.7176470588236,
+            "support": "dock-west"
+          },
+          {
+            "x": 1452.0000000000002,
+            "y": 1177,
+            "support": "dock-mid"
+          },
+          {
+            "x": 1925.0000000000002,
+            "y": 1118.5428571428572,
+            "support": "dock-east"
+          },
+          {
+            "x": 2200,
+            "y": 1151.0190476190476,
+            "support": "ferry-ground"
+          },
+          {
+            "x": 2728,
+            "y": 1248.377777777778,
+            "support": "ferry-ground"
+          },
+          {
+            "x": 3234.0000000000005,
+            "y": 1093.8400000000001,
+            "support": "ferry-ground"
+          },
+          {
+            "x": 3630.0000000000005,
+            "y": 840.4000000000001,
+            "support": "cargo-step-1"
+          },
+          {
+            "x": 4169,
+            "y": 895.5833333333334,
+            "support": "ferry-ground"
+          }
+        ],
+        "anchors": {
+          "start": {
+            "x": 187.00000000000003,
+            "y": 1218.3111111111114,
+            "support": "ferry-side-gangway"
+          },
+          "ferry": {
+            "x": 1144,
+            "y": 1328.929411764706,
+            "support": "dock-west"
+          },
+          "mudflat": {
+            "x": 1386,
+            "y": 1468.6571428571428,
+            "support": "ferry-shoal"
+          },
+          "cargo": {
+            "x": 3234.0000000000005,
+            "y": 1093.8400000000001,
+            "support": "ferry-ground"
+          },
+          "ledger": {
+            "x": 3630.0000000000005,
+            "y": 840.4000000000001,
+            "support": "cargo-step-1"
+          },
+          "exit": {
+            "x": 4169,
+            "y": 895.5833333333334,
+            "support": "ferry-ground"
+          },
+          "roof": {
+            "x": 3795.0000000000005,
+            "y": 544.2800000000001,
+            "support": "warehouse-roof"
+          }
+        },
+        "initialState": {
+          "version": 2,
+          "revision": 11,
+          "physics": {
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "dragScale": 1,
+            "flow": {
+              "x": 0,
+              "y": 0
+            },
+            "regions": [],
+            "timeline": [],
+            "applied": [],
+            "revision": 0
+          },
+          "controlMode": "move",
+          "fields": [],
+          "reviewDamage": {},
+          "reviewLeft": 0,
+          "stageId": 1,
+          "mode": "campaign",
+          "round": 1,
+          "side": 0,
+          "phase": "aim",
+          "active": "p-archer",
+          "waters": [],
+          "drafts": [],
+          "decor": [],
+          "width": 4276.8,
+          "height": 1779.8000000000002,
+          "vertical": false,
+          "routePoints": [
+            {
+              "x": 187.00000000000003,
+              "y": 1218.3111111111114,
+              "support": "ferry-side-gangway"
+            },
+            {
+              "x": 572,
+              "y": 1235.3000000000002,
+              "support": "ferry-side-gangway"
+            },
+            {
+              "x": 792.0000000000001,
+              "y": 1331,
+              "support": "dock-west"
+            },
+            {
+              "x": 1298,
+              "y": 1311.7176470588236,
+              "support": "dock-west"
+            },
+            {
+              "x": 1452.0000000000002,
+              "y": 1177,
+              "support": "dock-mid"
+            },
+            {
+              "x": 1925.0000000000002,
+              "y": 1118.5428571428572,
+              "support": "dock-east"
+            },
+            {
+              "x": 2200,
+              "y": 1151.0190476190476,
+              "support": "ferry-ground"
+            },
+            {
+              "x": 2728,
+              "y": 1248.377777777778,
+              "support": "ferry-ground"
+            },
+            {
+              "x": 3234.0000000000005,
+              "y": 1093.8400000000001,
+              "support": "ferry-ground"
+            },
+            {
+              "x": 3630.0000000000005,
+              "y": 840.4000000000001,
+              "support": "cargo-step-1"
+            },
+            {
+              "x": 4169,
+              "y": 895.5833333333334,
+              "support": "ferry-ground"
+            }
+          ],
+          "projectiles": [],
+          "zones": [],
+          "wind": -11,
+          "teamEnds": [
+            0,
+            0,
+            0
+          ],
+          "queue": [],
+          "turnAge": 0,
+          "resolveAge": 0,
+          "nextId": 1,
+          "shot": 0,
+          "shotDamage": {},
+          "shots": 0,
+          "hits": 0,
+          "kills": 0,
+          "items": {
+            "heal": 3,
+            "focus": 3,
+            "cleanse": 2,
+            "ward": 2
+          },
+          "events": [],
+          "seed": 19388,
+          "rng": 19388,
+          "reinforced": 0,
+          "sceneVersion": 80,
+          "winnerReason": "",
+          "practiceDistance": 900,
+          "lastShots": {},
+          "rewardGranted": false,
+          "awardIds": [],
+          "enemyLimit": 3,
+          "encounter": 0,
+          "stage": 3,
+          "honroStage": 3,
+          "honroRevision": 20,
+          "heroDamage": 0,
+          "damageDone": 0,
+          "honroState": {
+            "flags": {},
+            "collected": [],
+            "hold": 0,
+            "lastRound": 1,
+            "rescued": false,
+            "rescuedCount": 0,
+            "receivers": 0,
+            "ledger": false,
+            "sodanCoop": false,
+            "coopHold": 0,
+            "allyQueue": null,
+            "combatLog": [],
+            "respawns": 0,
+            "carriagePauseUntilRound": 0
+          },
+          "honroMapRevision": 20,
+          "honroLayoutRevision": 1,
+          "honroActiveLimit": 3,
+          "honroCounters": {
+            "initialEnemies": 7,
+            "allyActions": 0,
+            "spawned": 0
+          }
+        }
+      },
+      "sha256": "e09504538311073387b666851074ea4762d00df6dc964052ed32fe2fd21a7412"
+    },
+    {
+      "stage": 4,
+      "id": "stage-4",
+      "name": "문 밖에 남은 사람들",
+      "preserved": {
+        "width": 3420.8,
+        "height": 1177.6000000000001,
+        "terrains": [
+          {
+            "id": "gate-basin",
+            "name": "gate-basin",
+            "type": "solid",
+            "points": [
+              {
+                "x": 0,
+                "y": 616
+              },
+              {
+                "x": 240,
+                "y": 595.2
+              },
+              {
+                "x": 480,
+                "y": 598.4
+              },
+              {
+                "x": 720,
+                "y": 609.6
+              },
+              {
+                "x": 1040,
+                "y": 673.6
+              },
+              {
+                "x": 1312,
+                "y": 712
+              },
+              {
+                "x": 1616,
+                "y": 748.8000000000001
+              },
+              {
+                "x": 1920,
+                "y": 780.8000000000001
+              },
+              {
+                "x": 2256,
+                "y": 800
+              },
+              {
+                "x": 2560,
+                "y": 822.4000000000001
+              },
+              {
+                "x": 2864,
+                "y": 841.6
+              },
+              {
+                "x": 3120,
+                "y": 827.2
+              },
+              {
+                "x": 3420.8,
+                "y": 816
+              },
+              {
+                "x": 3420.8,
+                "y": 1177.6000000000001
+              },
+              {
+                "x": 0,
+                "y": 1177.6000000000001
+              }
+            ],
+            "baseMaterial": "soil",
+            "oneWay": false,
+            "breakable": false,
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "soil",
+              "artSeed": 1,
+              "honroWalkEdges": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11
+              ]
+            },
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 4
+            },
+            "playProjection": {
+              "bounds": {
+                "left": 0,
+                "top": 0,
+                "right": 4600,
+                "bottom": 3700
+              },
+              "start": {
+                "x": 0,
+                "y": 2280
+              }
+            }
+          },
+          {
+            "id": "gate-threshold",
+            "name": "gate-threshold",
+            "type": "solid",
+            "layer": "terrain",
+            "baseMaterial": "rock",
+            "oneWay": true,
+            "breakable": false,
+            "points": [
+              {
+                "x": 524.8000000000001,
+                "y": 571.2
+              },
+              {
+                "x": 592,
+                "y": 571.2
+              },
+              {
+                "x": 641.6,
+                "y": 572.8000000000001
+              },
+              {
+                "x": 641.6,
+                "y": 587.2
+              },
+              {
+                "x": 592,
+                "y": 585.6
+              },
+              {
+                "x": 524.8000000000001,
+                "y": 585.6
+              }
+            ],
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 4
+            },
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "rock",
+              "honroWalkEdges": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "id": "west-shoulder",
+            "name": "west-shoulder",
+            "type": "solid",
+            "points": [
+              {
+                "x": 208,
+                "y": 441.6
+              },
+              {
+                "x": 272,
+                "y": 446.40000000000003
+              },
+              {
+                "x": 352,
+                "y": 462.40000000000003
+              },
+              {
+                "x": 432,
+                "y": 475.20000000000005
+              },
+              {
+                "x": 432,
+                "y": 489.6
+              },
+              {
+                "x": 352,
+                "y": 476.8
+              },
+              {
+                "x": 272,
+                "y": 460.8
+              },
+              {
+                "x": 208,
+                "y": 456
+              }
+            ],
+            "baseMaterial": "rock",
+            "oneWay": true,
+            "breakable": false,
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "rock",
+              "artSeed": 1,
+              "honroWalkEdges": [
+                0,
+                1,
+                2
+              ]
+            },
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 4
+            }
+          },
+          {
+            "id": "gate-roof",
+            "name": "gate-roof",
+            "layer": "terrain",
+            "type": "solid",
+            "baseMaterial": "wood",
+            "oneWay": true,
+            "breakable": false,
+            "points": [
+              {
+                "x": 395.20000000000005,
+                "y": 420.8
+              },
+              {
+                "x": 449.6,
+                "y": 400
+              },
+              {
+                "x": 497.6,
+                "y": 348.8
+              },
+              {
+                "x": 556.8000000000001,
+                "y": 372.8
+              },
+              {
+                "x": 627.2,
+                "y": 380.8
+              },
+              {
+                "x": 673.6,
+                "y": 374.40000000000003
+              },
+              {
+                "x": 716.8000000000001,
+                "y": 416
+              },
+              {
+                "x": 716.8000000000001,
+                "y": 430.40000000000003
+              },
+              {
+                "x": 673.6,
+                "y": 388.8
+              },
+              {
+                "x": 627.2,
+                "y": 395.20000000000005
+              },
+              {
+                "x": 556.8000000000001,
+                "y": 387.20000000000005
+              },
+              {
+                "x": 497.6,
+                "y": 363.20000000000005
+              },
+              {
+                "x": 449.6,
+                "y": 414.40000000000003
+              },
+              {
+                "x": 395.20000000000005,
+                "y": 435.20000000000005
+              }
+            ],
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 4
+            },
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "wood",
+              "artSeed": 4,
+              "honroWalkEdges": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            }
+          },
+          {
+            "id": "burned-gallery",
+            "name": "Terrain",
+            "type": "solid",
+            "baseMaterial": "wood",
+            "breakable": true,
+            "oneWay": true,
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 4
+            },
+            "properties": {
+              "surfaceKind": "wood",
+              "route": false,
+              "hp": 280,
+              "maxHp": 280,
+              "artSeed": 4,
+              "honroWalkEdges": [
+                0,
+                1,
+                2,
+                3
+              ]
+            },
+            "points": [
+              {
+                "x": 2312,
+                "y": 656
+              },
+              {
+                "x": 2400,
+                "y": 640
+              },
+              {
+                "x": 2528,
+                "y": 611.2
+              },
+              {
+                "x": 2656,
+                "y": 600
+              },
+              {
+                "x": 2792,
+                "y": 603.2
+              },
+              {
+                "x": 2792,
+                "y": 617.6
+              },
+              {
+                "x": 2656,
+                "y": 614.4000000000001
+              },
+              {
+                "x": 2528,
+                "y": 625.6
+              },
+              {
+                "x": 2400,
+                "y": 654.4000000000001
+              },
+              {
+                "x": 2312,
+                "y": 670.4000000000001
+              }
+            ]
+          },
+          {
+            "id": "east-rock-low",
+            "name": "east-rock-low",
+            "type": "solid",
+            "layer": "terrain",
+            "baseMaterial": "rock",
+            "oneWay": true,
+            "breakable": false,
+            "points": [
+              {
+                "x": 2848,
+                "y": 648
+              },
+              {
+                "x": 2928,
+                "y": 625.6
+              },
+              {
+                "x": 3008,
+                "y": 636.8000000000001
+              },
+              {
+                "x": 3088,
+                "y": 670.4000000000001
+              },
+              {
+                "x": 3128,
+                "y": 696
+              },
+              {
+                "x": 3128,
+                "y": 710.4000000000001
+              },
+              {
+                "x": 3088,
+                "y": 684.8000000000001
+              },
+              {
+                "x": 3008,
+                "y": 651.2
+              },
+              {
+                "x": 2928,
+                "y": 640
+              },
+              {
+                "x": 2848,
+                "y": 662.4000000000001
+              }
+            ],
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 4
+            },
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "rock",
+              "honroWalkEdges": [
+                0,
+                1,
+                2,
+                3
+              ]
+            }
+          },
+          {
+            "id": "east-rock-high",
+            "name": "east-rock-high",
+            "type": "solid",
+            "layer": "terrain",
+            "baseMaterial": "rock",
+            "oneWay": true,
+            "breakable": false,
+            "points": [
+              {
+                "x": 2760,
+                "y": 547.2
+              },
+              {
+                "x": 2832,
+                "y": 536
+              },
+              {
+                "x": 2896,
+                "y": 544
+              },
+              {
+                "x": 2944,
+                "y": 563.2
+              },
+              {
+                "x": 2944,
+                "y": 577.6
+              },
+              {
+                "x": 2896,
+                "y": 558.4
+              },
+              {
+                "x": 2832,
+                "y": 550.4
+              },
+              {
+                "x": 2760,
+                "y": 561.6
+              }
+            ],
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 4
+            },
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "rock",
+              "honroWalkEdges": [
+                0,
+                1,
+                2
+              ]
+            }
+          },
+          {
+            "id": "east-step-1",
+            "name": "east-step-1",
+            "type": "solid",
+            "points": [
+              {
+                "x": 2888,
+                "y": 534.4
+              },
+              {
+                "x": 2908.8,
+                "y": 508.8
+              },
+              {
+                "x": 2934.4,
+                "y": 472
+              },
+              {
+                "x": 2952,
+                "y": 454.40000000000003
+              },
+              {
+                "x": 3008,
+                "y": 457.6
+              },
+              {
+                "x": 3092.8,
+                "y": 468.8
+              },
+              {
+                "x": 3092.8,
+                "y": 483.20000000000005
+              },
+              {
+                "x": 3008,
+                "y": 472
+              },
+              {
+                "x": 2952,
+                "y": 468.8
+              },
+              {
+                "x": 2934.4,
+                "y": 486.40000000000003
+              },
+              {
+                "x": 2908.8,
+                "y": 523.2
+              },
+              {
+                "x": 2888,
+                "y": 548.8000000000001
+              }
+            ],
+            "baseMaterial": "wood",
+            "oneWay": true,
+            "breakable": false,
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "wood",
+              "artSeed": 4,
+              "honroWalkEdges": [
+                0,
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 4
+            }
+          },
+          {
+            "id": "east-watch",
+            "name": "east-watch",
+            "type": "solid",
+            "points": [
+              {
+                "x": 2873.6000000000004,
+                "y": 353.6
+              },
+              {
+                "x": 2912,
+                "y": 332.8
+              },
+              {
+                "x": 2955.2000000000003,
+                "y": 299.2
+              },
+              {
+                "x": 3000,
+                "y": 321.6
+              },
+              {
+                "x": 3056,
+                "y": 331.20000000000005
+              },
+              {
+                "x": 3099.2000000000003,
+                "y": 352
+              },
+              {
+                "x": 3116.8,
+                "y": 366.40000000000003
+              },
+              {
+                "x": 3116.8,
+                "y": 380.8
+              },
+              {
+                "x": 3099.2000000000003,
+                "y": 366.40000000000003
+              },
+              {
+                "x": 3056,
+                "y": 345.6
+              },
+              {
+                "x": 3000,
+                "y": 336
+              },
+              {
+                "x": 2955.2000000000003,
+                "y": 313.6
+              },
+              {
+                "x": 2912,
+                "y": 347.20000000000005
+              },
+              {
+                "x": 2873.6000000000004,
+                "y": 368
+              }
+            ],
+            "baseMaterial": "wood",
+            "oneWay": true,
+            "breakable": false,
+            "properties": {
+              "hp": 99999,
+              "maxHp": 99999,
+              "route": false,
+              "surfaceKind": "wood",
+              "artSeed": 4,
+              "honroWalkEdges": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5
+              ]
+            },
+            "layer": "terrain",
+            "detail": {
+              "spacing": 20,
+              "roughness": 0,
+              "optimizeEpsilon": 0,
+              "seed": 4
+            }
+          }
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "name": "설오",
+            "role": "archer",
+            "cls": "archer",
+            "side": 0,
+            "x": 896,
+            "y": 644.8000000000001,
+            "vx": 0,
+            "vy": 0,
+            "hp": 455,
+            "maxHp": 455,
+            "r": 22,
+            "h": 92,
+            "focus": 114,
+            "maxFocus": 114,
+            "regen": 15,
+            "level": 4,
+            "attack": 2.29,
+            "armor": 0.10400000000000001,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 1208,
+            "maxMove": 1208,
+            "walkSpeed": 320,
+            "angle": 44,
+            "lastPower": 0.55,
+            "loadout": [
+              "A01",
+              "A05"
+            ],
+            "tune": 0.5,
+            "facing": 1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 896,
+            "spawnY": 644.8000000000001,
+            "intent": "",
+            "dead": false,
+            "ranks": {
+              "A01": 1,
+              "A05": 1
+            },
+            "group": 0,
+            "awake": true,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 0,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "cooldowns": {},
+            "kind": "archer",
+            "team": "player",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "p-mage",
+            "name": "담허",
+            "role": "mage",
+            "cls": "mage",
+            "side": 0,
+            "x": 1000,
+            "y": 665.6,
+            "vx": 0,
+            "vy": 0,
+            "hp": 486,
+            "maxHp": 486,
+            "r": 22,
+            "h": 92,
+            "focus": 144,
+            "maxFocus": 144,
+            "regen": 15,
+            "level": 4,
+            "attack": 2.29,
+            "armor": 0.08399999999999999,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 1228,
+            "maxMove": 1228,
+            "walkSpeed": 297,
+            "angle": 44,
+            "lastPower": 0.55,
+            "loadout": [
+              "M01",
+              "M03"
+            ],
+            "tune": 0.5,
+            "facing": 1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 1000,
+            "spawnY": 665.6,
+            "intent": "",
+            "dead": false,
+            "ranks": {
+              "M01": 1,
+              "M03": 1
+            },
+            "group": 0,
+            "awake": true,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 0,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "cooldowns": {},
+            "kind": "mage",
+            "team": "player",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-0",
+            "name": "들린 산개",
+            "role": "leaper",
+            "cls": "knight",
+            "side": 1,
+            "x": 1552,
+            "y": 741.0526315789474,
+            "vx": 0,
+            "vy": 0,
+            "hp": 393,
+            "maxHp": 393,
+            "r": 32,
+            "h": 88,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 4,
+            "attack": 0.5869073612082036,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "HBR01",
+              "HBR02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 1552,
+            "spawnY": 741.0526315789474,
+            "intent": "빠른 돌진과 흙파편",
+            "dead": false,
+            "ranks": {
+              "HBR01": 2,
+              "HBR02": 2
+            },
+            "group": 1,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 28,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "beast",
+            "elite": false,
+            "honroVariant": "hound",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 302.62243905215996,
+            "combatBaseAttack": 0.5059546217312101,
+            "honroXpWeight": 1,
+            "honroCluster": "gate-pressure",
+            "honroSpawnReason": "피란 행렬을 뒤쫓은 짐승들이 배수로와 문 앞 저지선을 밀어붙인다.",
+            "honroTacticalReason": "중앙 전열과 좌측 둔덕의 공격을 동시에 관리.",
+            "honroEncounterRole": "guard",
+            "kind": "hound",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-1",
+            "name": "들린 산개",
+            "role": "leaper",
+            "cls": "knight",
+            "side": 1,
+            "x": 2656,
+            "y": 828.4631578947369,
+            "vx": 0,
+            "vy": 0,
+            "hp": 393,
+            "maxHp": 393,
+            "r": 32,
+            "h": 88,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 4,
+            "attack": 0.5869073612082036,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "HBR01",
+              "HBR02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 2656,
+            "spawnY": 828.4631578947369,
+            "intent": "빠른 돌진과 흙파편",
+            "dead": false,
+            "ranks": {
+              "HBR01": 2,
+              "HBR02": 2
+            },
+            "group": 2,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 28,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "beast",
+            "elite": false,
+            "honroVariant": "hound",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 302.62243905215996,
+            "combatBaseAttack": 0.5059546217312101,
+            "honroXpWeight": 1,
+            "honroCluster": "cart-pocket",
+            "honroSpawnReason": "멈춘 수레와 불탄 짐 주변의 혼기에 작은 무리가 모였다.",
+            "honroTacticalReason": "분지 중앙의 광역 보상 군집. 피란문과 충분히 떨어져 있다.",
+            "honroEncounterRole": "guard",
+            "kind": "hound",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-2",
+            "name": "들린 사람",
+            "role": "bow",
+            "cls": "archer",
+            "side": 1,
+            "x": 2784,
+            "y": 603.0117647058823,
+            "vx": 0,
+            "vy": 0,
+            "hp": 393,
+            "maxHp": 393,
+            "r": 21,
+            "h": 91,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 4,
+            "attack": 0.586308170790668,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "A01",
+              "A02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 2784,
+            "spawnY": 603.0117647058823,
+            "intent": "불규칙한 사격",
+            "dead": false,
+            "ranks": {
+              "A01": 2,
+              "A02": 2
+            },
+            "group": 3,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 28,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "human",
+            "elite": false,
+            "honroVariant": "human",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 302.62243905215996,
+            "combatBaseAttack": 0.5054380782678173,
+            "honroXpWeight": 1,
+            "honroCluster": "watch-crossfire",
+            "honroSpawnReason": "무너진 감시대와 동쪽 암반을 날짐승과 들린 병사가 차지했다.",
+            "honroTacticalReason": "동쪽 고지를 점령하면 공중 견제에 짧은 사선 확보.",
+            "honroEncounterRole": "core",
+            "kind": "human",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-3",
+            "name": "들린 멧돼지",
+            "role": "leaper",
+            "cls": "knight",
+            "side": 1,
+            "x": 1776,
+            "y": 765.642105263158,
+            "vx": 0,
+            "vy": 0,
+            "hp": 393,
+            "maxHp": 393,
+            "r": 41,
+            "h": 108,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 4,
+            "attack": 0.5869073612082036,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "HBR01",
+              "HBR02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 1776,
+            "spawnY": 765.642105263158,
+            "intent": "무거운 돌진과 흙울음",
+            "dead": false,
+            "ranks": {
+              "HBR01": 2,
+              "HBR02": 2
+            },
+            "group": 1,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 28,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "beast",
+            "elite": false,
+            "honroVariant": "boar",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 302.62243905215996,
+            "combatBaseAttack": 0.5059546217312101,
+            "honroXpWeight": 1,
+            "honroCluster": "gate-pressure",
+            "honroSpawnReason": "피란 행렬을 뒤쫓은 짐승들이 배수로와 문 앞 저지선을 밀어붙인다.",
+            "honroTacticalReason": "중앙 전열과 좌측 둔덕의 공격을 동시에 관리.",
+            "honroEncounterRole": "screen",
+            "kind": "boar",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-4",
+            "name": "들린 산개",
+            "role": "leaper",
+            "cls": "knight",
+            "side": 1,
+            "x": 2992,
+            "y": 834.4000000000001,
+            "vx": 0,
+            "vy": 0,
+            "hp": 393,
+            "maxHp": 393,
+            "r": 32,
+            "h": 88,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 4,
+            "attack": 0.5869073612082036,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "HBR01",
+              "HBR02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 2992,
+            "spawnY": 834.4000000000001,
+            "intent": "빠른 돌진과 흙파편",
+            "dead": false,
+            "ranks": {
+              "HBR01": 2,
+              "HBR02": 2
+            },
+            "group": 2,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 28,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "beast",
+            "elite": false,
+            "honroVariant": "hound",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 302.62243905215996,
+            "combatBaseAttack": 0.5059546217312101,
+            "honroXpWeight": 1,
+            "honroCluster": "cart-pocket",
+            "honroSpawnReason": "멈춘 수레와 불탄 짐 주변의 혼기에 작은 무리가 모였다.",
+            "honroTacticalReason": "분지 중앙의 광역 보상 군집. 피란문과 충분히 떨어져 있다.",
+            "honroEncounterRole": "guard",
+            "kind": "hound",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-5",
+            "name": "들린 까마귀",
+            "role": "bow",
+            "cls": "archer",
+            "side": 1,
+            "x": 2848,
+            "y": 224,
+            "vx": 0,
+            "vy": 0,
+            "hp": 307,
+            "maxHp": 307,
+            "r": 33,
+            "h": 80,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 4,
+            "attack": 0.6595364517793315,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "HCW01",
+              "HCW02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": true,
+            "spawnX": 2848,
+            "spawnY": 224,
+            "intent": "썩은깃과 검은깃비",
+            "dead": false,
+            "ranks": {
+              "HCW01": 2,
+              "HCW02": 2
+            },
+            "group": 3,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 22,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "crow",
+            "elite": false,
+            "honroVariant": "crow",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 236.0455024606848,
+            "combatBaseAttack": 0.5685659067063203,
+            "honroXpWeight": 0.78,
+            "honroCluster": "watch-crossfire",
+            "honroSpawnReason": "무너진 감시대와 동쪽 암반을 날짐승과 들린 병사가 차지했다.",
+            "honroTacticalReason": "동쪽 고지를 점령하면 공중 견제에 짧은 사선 확보.",
+            "honroEncounterRole": "precision",
+            "kind": "crow",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "foe-6",
+            "name": "들린 산개",
+            "role": "leaper",
+            "cls": "knight",
+            "side": 1,
+            "x": 1880,
+            "y": 776.5894736842106,
+            "vx": 0,
+            "vy": 0,
+            "hp": 393,
+            "maxHp": 393,
+            "r": 32,
+            "h": 88,
+            "focus": 118,
+            "maxFocus": 118,
+            "regen": 22,
+            "level": 4,
+            "attack": 0.5869073612082036,
+            "armor": 0.04,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 550,
+            "maxMove": 550,
+            "walkSpeed": 290,
+            "angle": 136,
+            "lastPower": 0.55,
+            "loadout": [
+              "HBR01",
+              "HBR02"
+            ],
+            "tune": 0.5,
+            "facing": -1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 1880,
+            "spawnY": 776.5894736842106,
+            "intent": "빠른 돌진과 흙파편",
+            "dead": false,
+            "ranks": {
+              "HBR01": 2,
+              "HBR02": 2
+            },
+            "group": 1,
+            "awake": false,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 28,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "beast",
+            "elite": false,
+            "honroVariant": "hound",
+            "honroDifficulty": "normal",
+            "combatBaseHp": 302.62243905215996,
+            "combatBaseAttack": 0.5059546217312101,
+            "honroXpWeight": 1,
+            "honroCluster": "gate-pressure",
+            "honroSpawnReason": "피란 행렬을 뒤쫓은 짐승들이 배수로와 문 앞 저지선을 밀어붙인다.",
+            "honroTacticalReason": "중앙 전열과 좌측 둔덕의 공격을 동시에 관리.",
+            "honroEncounterRole": "guard",
+            "kind": "hound",
+            "team": "enemy",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "objective",
+            "name": "피란문",
+            "role": "ward",
+            "cls": "knight",
+            "side": 2,
+            "x": 584,
+            "y": 571.2,
+            "vx": 0,
+            "vy": 0,
+            "hp": 3600,
+            "maxHp": 3600,
+            "r": 34,
+            "h": 110,
+            "focus": 100,
+            "maxFocus": 100,
+            "regen": 14,
+            "level": 1,
+            "attack": 1.75,
+            "armor": 0.15,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": false,
+            "moveLeft": 900,
+            "maxMove": 900,
+            "walkSpeed": 260,
+            "angle": 44,
+            "lastPower": 0.55,
+            "loadout": [],
+            "tune": 0.5,
+            "facing": 1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": true,
+            "spawnX": 584,
+            "spawnY": 571.2,
+            "intent": "",
+            "dead": false,
+            "ranks": {},
+            "group": 0,
+            "awake": true,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 0,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroType": "gate",
+            "honroCivilian": true,
+            "kind": "object:gate",
+            "team": "npc",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "npc-hwigyeom",
+            "name": "휘겸",
+            "role": "ally-guard",
+            "cls": "knight",
+            "side": 2,
+            "x": 1120,
+            "y": 684.8941176470589,
+            "vx": 0,
+            "vy": 0,
+            "hp": 805,
+            "maxHp": 805,
+            "r": 20,
+            "h": 90,
+            "focus": 160,
+            "maxFocus": 160,
+            "regen": 14,
+            "level": 4,
+            "attack": 1.9236,
+            "armor": 0.24,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": true,
+            "moveLeft": 900,
+            "maxMove": 900,
+            "walkSpeed": 260,
+            "angle": 44,
+            "lastPower": 0.55,
+            "loadout": [
+              "S01",
+              "S09"
+            ],
+            "tune": 0.5,
+            "facing": 1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 1120,
+            "spawnY": 684.8941176470589,
+            "intent": "",
+            "dead": false,
+            "ranks": {
+              "S01": 2,
+              "S09": 2
+            },
+            "group": -1,
+            "awake": true,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 0,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroAlly": true,
+            "allyRole": "guard",
+            "honroType": "ally",
+            "allyState": "follow",
+            "kind": "ally:guard",
+            "team": "ally",
+            "runtimeTemplate": true
+          },
+          {
+            "id": "npc-chunrye",
+            "name": "춘례",
+            "role": "ally-healer",
+            "cls": "mage",
+            "side": 2,
+            "x": 744,
+            "y": 614.4000000000001,
+            "vx": 0,
+            "vy": 0,
+            "hp": 373,
+            "maxHp": 373,
+            "r": 20,
+            "h": 90,
+            "focus": 160,
+            "maxFocus": 160,
+            "regen": 14,
+            "level": 4,
+            "attack": 0.6869999999999999,
+            "armor": 0.06,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": true,
+            "moveLeft": 900,
+            "maxMove": 900,
+            "walkSpeed": 260,
+            "angle": 44,
+            "lastPower": 0.55,
+            "loadout": [
+              "M01"
+            ],
+            "tune": 0.5,
+            "facing": 1,
+            "hurt": 0,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 744,
+            "spawnY": 614.4000000000001,
+            "intent": "",
+            "dead": false,
+            "ranks": {
+              "M01": 2
+            },
+            "group": -1,
+            "awake": true,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 0,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroAlly": true,
+            "allyRole": "healer",
+            "honroType": "ally",
+            "allyState": "follow",
+            "honroCivilian": true,
+            "kind": "ally:healer",
+            "team": "npc",
+            "runtimeTemplate": true
+          }
+        ],
+        "markers": [
+          {
+            "id": "marker-0",
+            "type": "sector",
+            "x": 584,
+            "y": 571.2,
+            "label": "연목 피란문",
+            "sector": 0,
+            "support": "gate-threshold"
+          },
+          {
+            "id": "marker-1",
+            "type": "sector",
+            "x": 1536,
+            "y": 739.1157894736842,
+            "label": "배수로 방어선",
+            "sector": 1,
+            "support": "gate-basin"
+          },
+          {
+            "id": "marker-2",
+            "type": "rest",
+            "x": 1176,
+            "y": 692.8000000000001,
+            "label": "불씨",
+            "radius": 170,
+            "sector": 1,
+            "support": "gate-basin"
+          },
+          {
+            "id": "marker-3",
+            "type": "sector",
+            "x": 2320,
+            "y": 804.7157894736843,
+            "label": "불탄 수레 목",
+            "sector": 2,
+            "support": "gate-basin"
+          },
+          {
+            "id": "marker-4",
+            "type": "rest",
+            "x": 2096,
+            "y": 790.8571428571429,
+            "label": "불씨",
+            "radius": 170,
+            "sector": 2,
+            "support": "gate-basin"
+          },
+          {
+            "id": "marker-5",
+            "type": "sector",
+            "x": 3008,
+            "y": 322.9714285714286,
+            "label": "동쪽 감시대",
+            "sector": 3,
+            "support": "east-watch"
+          },
+          {
+            "id": "marker-6",
+            "type": "rest",
+            "x": 3040,
+            "y": 461.8264150943396,
+            "label": "불씨",
+            "radius": 170,
+            "sector": 3,
+            "support": "east-step-1"
+          },
+          {
+            "id": "habitat-4-0",
+            "type": "hauntHabitat",
+            "x": 2120,
+            "y": 792.2285714285715,
+            "label": "배수로 고사목",
+            "kind": "hound",
+            "propId": "habitat-prop-4-0",
+            "support": "gate-basin"
+          },
+          {
+            "id": "habitat-4-1",
+            "type": "hauntHabitat",
+            "x": 3296,
+            "y": 820.6468085106383,
+            "label": "동쪽 숲그늘",
+            "kind": "boar",
+            "propId": "habitat-prop-4-1",
+            "support": "gate-basin"
+          }
+        ],
+        "events": [
+          {
+            "id": "siege-0",
+            "when": {
+              "round": 3
+            },
+            "action": {
+              "type": "spawn",
+              "n": 2,
+              "x": 2424,
+              "kind": "hound",
+              "y": 812.3789473684211,
+              "support": "gate-basin",
+              "spacing": 170,
+              "maxDistance": 260
+            },
+            "text": "산개들이 피난문으로 몰린다.",
+            "lines": [],
+            "once": true
+          },
+          {
+            "id": "siege-1",
+            "when": {
+              "round": 7
+            },
+            "action": {
+              "type": "spawn",
+              "n": 2,
+              "x": 3120,
+              "kind": "crow",
+              "y": 288,
+              "requireFlightClearance": true,
+              "maxDistance": 640
+            },
+            "text": "마지막 피란 행렬을 노린 까마귀 떼가 동쪽에서 내려온다.",
+            "lines": [],
+            "once": true
+          }
+        ],
+        "objectives": [
+          {
+            "id": "campaign-goal",
+            "type": "campaign",
+            "label": "피란민이 빠져나갈 때까지 연목 입구를 방어"
+          }
+        ],
+        "routes": [
+          {
+            "x": 768,
+            "y": 619.2,
+            "support": "gate-basin"
+          },
+          {
+            "x": 1360,
+            "y": 717.8105263157895,
+            "support": "gate-basin"
+          },
+          {
+            "x": 1840,
+            "y": 772.3789473684211,
+            "support": "gate-basin"
+          },
+          {
+            "x": 2320,
+            "y": 804.7157894736843,
+            "support": "gate-basin"
+          },
+          {
+            "x": 2720,
+            "y": 832.5052631578947,
+            "support": "gate-basin"
+          },
+          {
+            "x": 3120,
+            "y": 827.2,
+            "support": "gate-basin"
+          },
+          {
+            "x": 3344,
+            "y": 818.8595744680852,
+            "support": "gate-basin"
+          }
+        ],
+        "anchors": {
+          "start": {
+            "x": 896,
+            "y": 644.8000000000001,
+            "support": "gate-basin"
+          },
+          "gate": {
+            "x": 584,
+            "y": 571.2,
+            "support": "gate-threshold"
+          },
+          "leftLane": {
+            "x": 1360,
+            "y": 717.8105263157895,
+            "support": "gate-basin"
+          },
+          "cartChoke": {
+            "x": 2416,
+            "y": 811.7894736842105,
+            "support": "gate-basin"
+          },
+          "rightLane": {
+            "x": 3120,
+            "y": 827.2,
+            "support": "gate-basin"
+          },
+          "exit": {
+            "x": 3344,
+            "y": 818.8595744680852,
+            "support": "gate-basin"
+          },
+          "watch": {
+            "x": 3008,
+            "y": 322.9714285714286,
+            "support": "east-watch"
+          },
+          "westVantage": {
+            "x": 352,
+            "y": 462.40000000000003,
+            "support": "west-shoulder"
+          }
+        },
+        "initialState": {
+          "version": 2,
+          "revision": 11,
+          "physics": {
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "dragScale": 1,
+            "flow": {
+              "x": 0,
+              "y": 0
+            },
+            "regions": [],
+            "timeline": [],
+            "applied": [],
+            "revision": 0
+          },
+          "controlMode": "move",
+          "fields": [],
+          "reviewDamage": {},
+          "reviewLeft": 0,
+          "stageId": 1,
+          "mode": "campaign",
+          "round": 1,
+          "side": 0,
+          "phase": "aim",
+          "active": "p-archer",
+          "waters": [],
+          "drafts": [],
+          "decor": [],
+          "width": 3420.8,
+          "height": 1177.6000000000001,
+          "vertical": false,
+          "routePoints": [
+            {
+              "x": 768,
+              "y": 619.2,
+              "support": "gate-basin"
+            },
+            {
+              "x": 1360,
+              "y": 717.8105263157895,
+              "support": "gate-basin"
+            },
+            {
+              "x": 1840,
+              "y": 772.3789473684211,
+              "support": "gate-basin"
+            },
+            {
+              "x": 2320,
+              "y": 804.7157894736843,
+              "support": "gate-basin"
+            },
+            {
+              "x": 2720,
+              "y": 832.5052631578947,
+              "support": "gate-basin"
+            },
+            {
+              "x": 3120,
+              "y": 827.2,
+              "support": "gate-basin"
+            },
+            {
+              "x": 3344,
+              "y": 818.8595744680852,
+              "support": "gate-basin"
+            }
+          ],
+          "projectiles": [],
+          "zones": [],
+          "wind": 9,
+          "teamEnds": [
+            0,
+            0,
+            0
+          ],
+          "queue": [],
+          "turnAge": 0,
+          "resolveAge": 0,
+          "nextId": 1,
+          "shot": 0,
+          "shotDamage": {},
+          "shots": 0,
+          "hits": 0,
+          "kills": 0,
+          "items": {
+            "heal": 3,
+            "focus": 3,
+            "cleanse": 2,
+            "ward": 2
+          },
+          "events": [],
+          "seed": 19388,
+          "rng": 19388,
+          "reinforced": 0,
+          "sceneVersion": 80,
+          "winnerReason": "",
+          "practiceDistance": 900,
+          "lastShots": {},
+          "rewardGranted": false,
+          "awardIds": [],
+          "enemyLimit": 3,
+          "encounter": 0,
+          "stage": 4,
+          "honroStage": 4,
+          "honroRevision": 20,
+          "heroDamage": 0,
+          "damageDone": 0,
+          "honroState": {
+            "flags": {},
+            "collected": [],
+            "hold": 0,
+            "lastRound": 1,
+            "rescued": false,
+            "rescuedCount": 0,
+            "receivers": 0,
+            "ledger": false,
+            "sodanCoop": false,
+            "coopHold": 0,
+            "allyQueue": null,
+            "combatLog": [],
+            "respawns": 0,
+            "carriagePauseUntilRound": 0
+          },
+          "honroMapRevision": 20,
+          "honroLayoutRevision": 1,
+          "honroActiveLimit": 3,
+          "honroCounters": {
+            "initialEnemies": 7,
+            "allyActions": 0,
+            "spawned": 0
+          }
+        }
+      },
+      "sha256": "4d53ea7799656c931c53ad49751e3563929a4d592bd6d17f546dffb3a0b64a97"
+    }
+  ]
+}

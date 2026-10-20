@@ -1,0 +1,54 @@
+{
+  "inputIdentity": [
+    {
+      "stage": 3,
+      "sameGameplayInput": true
+    },
+    {
+      "stage": 4,
+      "sameGameplayInput": true
+    }
+  ],
+  "routes": [
+    {
+      "stage": 3,
+      "from": "cargo-step-2",
+      "to": "warehouse-roof",
+      "jumpStarted": true,
+      "x": 3991.75,
+      "y": 651.5166666666665,
+      "expected": 651.5166666666665,
+      "error": 0
+    },
+    {
+      "stage": 4,
+      "from": "west-shoulder",
+      "to": "gate-roof",
+      "jumpStarted": true,
+      "x": 433.6666666666671,
+      "y": 406.09215686274496,
+      "expected": 406.09215686274496,
+      "error": 0
+    },
+    {
+      "stage": 4,
+      "from": "east-step-1",
+      "to": "east-watch",
+      "jumpStarted": true,
+      "x": 3005,
+      "y": 322.45714285714286,
+      "expected": 322.45714285714286,
+      "error": 0
+    },
+    {
+      "stage": 4,
+      "route": "ground beneath burned-gallery",
+      "moved": 79.78370584194636,
+      "finite": true
+    }
+  ],
+  "limits": [
+    "Short production Engine jump/move fixtures placed at the existing approach surfaces.",
+    "No added collision, no event completion, no full chapter replay."
+  ]
+}

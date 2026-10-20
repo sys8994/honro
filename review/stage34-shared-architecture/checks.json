@@ -1,0 +1,392 @@
+{
+  "rows": [
+    {
+      "stage": 3,
+      "preservedRenderState": true,
+      "joins": [
+        {
+          "id": "ferry-warehouse/column-3435",
+          "assetId": "hanok.column.long",
+          "x": 3435,
+          "foot": 990.5076923076925,
+          "bearing": 684.9856986723677,
+          "scale": 0.5967226438189939,
+          "error": 0
+        },
+        {
+          "id": "ferry-warehouse/column-3735",
+          "assetId": "hanok.column",
+          "x": 3735,
+          "foot": 880.1250000000001,
+          "bearing": 687.6201551250059,
+          "scale": 0.7857340607142621,
+          "error": 0
+        },
+        {
+          "id": "ferry-warehouse/column-3970",
+          "assetId": "hanok.column",
+          "x": 3970,
+          "foot": 884.9000000000001,
+          "bearing": 683.1382733703969,
+          "scale": 0.8235172515494009,
+          "error": 0
+        },
+        {
+          "id": "ledger-maroo/pile-3580.0600000000004",
+          "assetId": "dock.pile",
+          "x": 3580.0600000000004,
+          "foot": 925.3706666666667,
+          "bearing": 850.4000000000001,
+          "scale": 0.2285691056910567,
+          "error": 0
+        },
+        {
+          "id": "east-loading-step/pile-3973.7500000000005",
+          "assetId": "dock.pile",
+          "x": 3973.7500000000005,
+          "foot": 893.0875000000001,
+          "bearing": 825.4928571428572,
+          "scale": 0.2060812282229965,
+          "error": 0
+        },
+        {
+          "id": "east-loading-step/pile-4077.7000000000003",
+          "assetId": "dock.pile",
+          "x": 4077.7000000000003,
+          "foot": 898.2850000000001,
+          "bearing": 827.8775,
+          "scale": 0.21465701219512204,
+          "error": 0
+        },
+        {
+          "id": "entry-gangway/pile-110",
+          "assetId": "dock.pile",
+          "x": 110,
+          "foot": 1545.0666666666668,
+          "bearing": 1224.888888888889,
+          "scale": 0.9761517615176156,
+          "error": 0
+        },
+        {
+          "id": "entry-gangway/pile-455",
+          "assetId": "dock.pile",
+          "x": 455,
+          "foot": 1606.3750000000002,
+          "bearing": 1248.6000000000001,
+          "scale": 1.0907774390243905,
+          "error": 0
+        },
+        {
+          "id": "west-wharf/pile-470",
+          "assetId": "dock.pile",
+          "x": 470,
+          "foot": 1608.1000000000001,
+          "bearing": 1313.4,
+          "scale": 0.8984756097560977,
+          "error": 0
+        },
+        {
+          "id": "west-wharf/pile-850",
+          "assetId": "dock.pile",
+          "x": 850,
+          "foot": 1649.8000000000002,
+          "bearing": 1342.0545454545454,
+          "scale": 0.9382483370288255,
+          "error": 0
+        },
+        {
+          "id": "west-wharf/pile-1250",
+          "assetId": "dock.pile",
+          "x": 1250,
+          "foot": 1677.4941176470588,
+          "bearing": 1329.6235294117648,
+          "scale": 1.0605810616929696,
+          "error": 0
+        },
+        {
+          "id": "rising-wharf/pile-1380",
+          "assetId": "dock.pile",
+          "x": 1380,
+          "foot": 1662.2,
+          "bearing": 1202.6068965517243,
+          "scale": 1.401198486122792,
+          "error": 0
+        },
+        {
+          "id": "rising-wharf/pile-1730",
+          "assetId": "dock.pile",
+          "x": 1730,
+          "foot": 1508.0166666666669,
+          "bearing": 1133.8000000000002,
+          "scale": 1.1409044715447156,
+          "error": 0
+        },
+        {
+          "id": "east-wharf/pile-1900",
+          "assetId": "dock.pile",
+          "x": 1900,
+          "foot": 1266.4444444444453,
+          "bearing": 1127.1142857142859,
+          "scale": 0.4247870692992664,
+          "error": 0
+        }
+      ],
+      "groups": [
+        "ferry-warehouse/wall",
+        "ferry-warehouse/infill",
+        "ferry-warehouse/columns",
+        "ferry-warehouse/beams",
+        "ferry-warehouse/roof-skin",
+        "ferry-warehouse/roof-light",
+        "ferry-warehouse/roof-mid",
+        "ferry-warehouse/continuous-fascia",
+        "ferry-warehouse/eaves",
+        "ledger-maroo/piles",
+        "ledger-maroo/fascia",
+        "east-loading-step/piles",
+        "east-loading-step/fascia",
+        "entry-gangway/piles",
+        "entry-gangway/fascia",
+        "entry-gangway/brace",
+        "west-wharf/piles",
+        "west-wharf/fascia",
+        "west-wharf/brace",
+        "rising-wharf/piles",
+        "rising-wharf/fascia",
+        "east-wharf/piles",
+        "east-wharf/fascia"
+      ],
+      "roofTerrain": [
+        "warehouse-roof"
+      ],
+      "targets": [],
+      "ledger": {
+        "id": "ledger",
+        "type": "ledger",
+        "x": 3630.0000000000005,
+        "y": 840.4000000000001,
+        "label": "움막 기록함 챙기기",
+        "action": "ledger",
+        "support": "cargo-step-1"
+      },
+      "entryMovement": {
+        "before": {
+          "x": 187.00000000000003,
+          "y": 1218.3111111111114
+        },
+        "after": {
+          "x": 265.4445293703652,
+          "y": 1225.1894817298241
+        },
+        "finite": true
+      },
+      "roofContact": {
+        "id": "warehouse-roof",
+        "x": 3731.7500000000005,
+        "expected": 549.34,
+        "actual": 549.34,
+        "error": 0
+      }
+    },
+    {
+      "stage": 4,
+      "preservedRenderState": true,
+      "joins": [
+        {
+          "id": "refuge-gate/column-435",
+          "assetId": "hanok.column",
+          "x": 435,
+          "foot": 597.8,
+          "bearing": 439.38300692132725,
+          "scale": 0.6465999717496845,
+          "error": 0
+        },
+        {
+          "id": "refuge-gate/column-680",
+          "assetId": "hanok.column",
+          "x": 680,
+          "foot": 607.7333333333333,
+          "bearing": 437.6720265666902,
+          "scale": 0.6941277827209925,
+          "error": 0
+        },
+        {
+          "id": "burned-walk/pile-2390",
+          "assetId": "dock.pile",
+          "x": 2390,
+          "foot": 817.8736842105263,
+          "bearing": 651.8181818181819,
+          "scale": 0.5062667755864161,
+          "error": 0
+        },
+        {
+          "id": "burned-walk/pile-2660",
+          "assetId": "dock.pile",
+          "x": 2660,
+          "foot": 836.7157894736843,
+          "bearing": 610.0941176470589,
+          "scale": 0.690919731178736,
+          "error": 0
+        },
+        {
+          "id": "east-watch-house/column-2910",
+          "assetId": "hanok.column.long",
+          "x": 2910,
+          "foot": 839.0125,
+          "bearing": 364.1159942412317,
+          "scale": 0.9275322378100944,
+          "error": 0
+        },
+        {
+          "id": "east-watch-house/column-3080",
+          "assetId": "hanok.column.long",
+          "x": 3080,
+          "foot": 829.45,
+          "bearing": 372.98821646345385,
+          "scale": 0.8915269209698168,
+          "error": 0
+        },
+        {
+          "id": "watch-balcony/pile-2940",
+          "assetId": "dock.pile",
+          "x": 2940,
+          "foot": 845.325,
+          "bearing": 476.4000000000001,
+          "scale": 1.1247713414634144,
+          "error": 0
+        },
+        {
+          "id": "watch-balcony/pile-3065",
+          "assetId": "dock.pile",
+          "x": 3065,
+          "foot": 838.29375,
+          "bearing": 475.1283018867924,
+          "scale": 1.1072117320524621,
+          "error": 0
+        }
+      ],
+      "groups": [
+        "refuge-gate/wall",
+        "refuge-gate/infill",
+        "refuge-gate/columns",
+        "refuge-gate/beams",
+        "refuge-gate/roof-skin",
+        "refuge-gate/roof-light",
+        "refuge-gate/roof-mid",
+        "refuge-gate/continuous-fascia",
+        "refuge-gate/eaves",
+        "gate-plinth/body",
+        "gate-plinth/stone-face",
+        "west-vantage/body",
+        "west-vantage/stone-face",
+        "burned-walk/piles",
+        "burned-walk/fascia",
+        "burned-walk/brace",
+        "east-watch-house/wall",
+        "east-watch-house/infill",
+        "east-watch-house/columns",
+        "east-watch-house/roof-skin",
+        "east-watch-house/roof-light",
+        "east-watch-house/roof-mid",
+        "east-watch-house/continuous-fascia",
+        "east-watch-house/eaves",
+        "watch-balcony/piles",
+        "watch-balcony/fascia",
+        "east-rock-base/body",
+        "east-rock-base/stone-face",
+        "east-rock-shoulder/body",
+        "east-rock-shoulder/stone-face"
+      ],
+      "roofTerrain": [
+        "gate-roof",
+        "east-watch"
+      ],
+      "targets": [
+        {
+          "id": "objective",
+          "x": 584,
+          "y": 571.2,
+          "h": 110
+        }
+      ],
+      "ledger": null,
+      "entryMovement": {
+        "before": {
+          "x": 896,
+          "y": 644.8000000000001
+        },
+        "after": {
+          "x": 974.4464540552733,
+          "y": 660.4892908110547
+        },
+        "finite": true
+      },
+      "roofContact": {
+        "id": "gate-roof",
+        "x": 572.08,
+        "expected": 374.53636363636366,
+        "actual": 374.53636363636366,
+        "error": 0
+      },
+      "brokenGalleryGroups": []
+    }
+  ],
+  "pageErrors": [],
+  "httpErrors": [],
+  "limits": [
+    "Only stages 3 and 4. Original production battles with inspection cameras.",
+    "Short entry movement and roof landing fixtures; no complete combat/quest replay."
+  ],
+  "gameplayInputIdentity": [
+    {
+      "stage": 3,
+      "sameGameplayInput": true
+    },
+    {
+      "stage": 4,
+      "sameGameplayInput": true
+    }
+  ],
+  "targetBodyChange": {
+    "stage": 4,
+    "id": "objective",
+    "sharedAssetId": "hanok.door.closed",
+    "preserved": [
+      "ID",
+      "honroType",
+      "position",
+      "hit bounds",
+      "HP",
+      "failure condition",
+      "HP/UI pipeline"
+    ],
+    "reason": "Remove the duplicate miniature roof inside the assembled refuge gate."
+  },
+  "newSharedAssetIds": [
+    "hanok.column.long",
+    "hanok.wall.bay",
+    "hanok.door.open",
+    "hanok.eave.band",
+    "dock.pile",
+    "dock.brace",
+    "hanok.door.closed"
+  ],
+  "builds": {
+    "successful": 2,
+    "scope": "Official build and one correction for brace endpoint/target-body overlap; no 30-stage regression."
+  },
+  "bytes": {
+    "shared/assets/environment/vector-kit/registry.mjs": {
+      "raw": 62414,
+      "gzip9": 25924
+    },
+    "shared/assets/environment/vector-kit/architecture.mjs": {
+      "raw": 7616,
+      "gzip9": 2866
+    },
+    "shared/assets/environment/vector-kit/campaign.mjs": {
+      "raw": 7499,
+      "gzip9": 2693
+    }
+  }
+}

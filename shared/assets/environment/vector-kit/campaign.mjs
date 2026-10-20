@@ -41,8 +41,30 @@ Object.assign(STAGE_STYLES[1],{foundations:['forest-floor','forest-middle-floor'
  {id:'ridge-pine',assetId:'pine.small',anchor:'ridge',support:'forest-exit-floor',scale:.9}]});
 Object.assign(STAGE_STYLES[2],{foundations:['canyon-ground'],scenery:[
  {id:'basin-pine',assetId:'pine.small',anchor:'leftBasin',support:'canyon-ground',scale:.8}]});
-Object.assign(STAGE_STYLES[3],{foundations:['ferry-ground'],scenery:[
- {id:'cargo-shelter',assetId:'hanok.shelter',anchor:'cargo',support:'ferry-ground',scale:.85}]});
-Object.assign(STAGE_STYLES[4],{foundations:['gate-basin'],scenery:[
- {id:'gate-left-post',assetId:'hanok.column',x:425,support:'gate-basin',scale:1},
- {id:'gate-right-post',assetId:'hanok.column',x:690,support:'gate-basin',scale:1}]});
+Object.assign(STAGE_STYLES[3],{foundations:['ferry-ground'],architecture:[
+ {id:'ferry-warehouse',type:'building',roof:'warehouse-roof',ground:'ferry-ground',columns:[3435,3735,3970],eaveSpan:100,openings:[
+  {id:'main-entry',assetId:'hanok.door.open',x:3480,scale:.95},
+  {id:'ledger-loft',assetId:'hanok.door.open',x:3627,support:'cargo-step-1',scale:.7},
+  {id:'east-window',assetId:'hanok.wall.bay',x:3820,scale:.7}]},
+ {id:'ledger-maroo',type:'deck',deck:'cargo-step-1',ground:'ferry-ground',braces:false},
+ {id:'east-loading-step',type:'deck',deck:'cargo-step-2',ground:'ferry-ground',braces:false},
+ {id:'entry-gangway',type:'deck',deck:'ferry-side-gangway',ground:'ferry-ground',piles:[110,455]},
+ {id:'west-wharf',type:'deck',deck:'dock-west',ground:'ferry-ground',piles:[470,850,1250]},
+ {id:'rising-wharf',type:'deck',deck:'dock-mid',ground:'ferry-ground',piles:[1380,1730]},
+ {id:'east-wharf',type:'deck',deck:'dock-east',ground:'ferry-ground',piles:[1900,2010],braces:false}
+]});
+Object.assign(STAGE_STYLES[4],{foundations:['gate-basin'],unitArt:{objective:'hanok.door.closed'},architecture:[
+ {id:'refuge-gate',type:'building',roof:'gate-roof',ground:'gate-basin',columns:[435,680],eaveDrop:2,eaveSpan:70,openings:[
+  {id:'west-wall',assetId:'hanok.wall.bay',x:470,scale:.5},
+  {id:'east-wall',assetId:'hanok.wall.bay',x:650,scale:.5},
+  {id:'inner-door',assetId:'hanok.door.open',x:584,support:'gate-threshold',scale:.7}]},
+ {id:'gate-plinth',type:'ledge',deck:'gate-threshold',ground:'gate-basin',stone:'masonry'},
+ {id:'west-vantage',type:'ledge',deck:'west-shoulder',ground:'gate-basin'},
+ {id:'burned-walk',type:'deck',deck:'burned-gallery',ground:'gate-basin',piles:[2390,2660]},
+ {id:'east-watch-house',type:'building',roof:'east-watch',ground:'gate-basin',columns:[2910,3080],profileEave:true,eaveSpan:100,openings:[
+  {id:'watch-entry',assetId:'hanok.door.open',x:2980,scale:.9},
+  {id:'watch-upper-room',assetId:'hanok.wall.bay',x:3005,support:'east-step-1',scale:.55}]},
+ {id:'watch-balcony',type:'deck',deck:'east-step-1',ground:'gate-basin',piles:[2940,3065],braces:false},
+ {id:'east-rock-base',type:'ledge',deck:'east-rock-low',ground:'gate-basin'},
+ {id:'east-rock-shoulder',type:'ledge',deck:'east-rock-high',ground:'gate-basin'}
+]});
