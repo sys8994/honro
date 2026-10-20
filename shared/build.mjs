@@ -1,3 +1,4 @@
+import {applyStage1Positioning} from '../tools/map-forge/stage1-positioning.mjs';
 import {restBackdropData} from '../tools/environment/rest-backdrop-assets.mjs';
 import {vectorKitRuntime} from '../tools/environment/vector-kit-runtime.mjs';
 import {applyPlaceEncounters} from '../tools/map-forge/act3-place-encounters-20261017.mjs';
@@ -58,6 +59,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   project=applyStoryAnomalyEnvironment(project);
   project=applyStage28RecordCourt(project);
   project=applyPlaceEncounters(project);
+  project=applyStage1Positioning(project);
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();

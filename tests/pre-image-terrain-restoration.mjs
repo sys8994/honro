@@ -8,14 +8,15 @@ const fixture=JSON.parse(await readFile('tests/fixtures/pre-image-terrain.json',
 const g=await runtime({legacyMaps:false}),checks=[];
 function canonical(v){return Array.isArray(v)?v.map(canonical):v&&typeof v==='object'?Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])])):v;}
 const hash=v=>createHash('sha256').update(JSON.stringify(canonical(v))).digest('hex');
-for(const expected of fixture.stages){
+// Stage 1 has a separately authorized positioning redesign after restoration.
+for(const expected of fixture.stages.filter(s=>s.stage!==1)){
  const stage=plain(g.HONRO_PROJECT.stages.find(s=>s.metadata.stageId===expected.stage));
  assert.equal(hash(stage.terrains),expected.terrains,'historical terrain '+expected.stage);
  assert.equal(hash(stage.elements),expected.elements,'historical landmarks '+expected.stage);
  assert.equal(hash(stage),expected.wholeStage,'entire historical stage '+expected.stage);
 }
-checks.push('All ten authored stages exactly match the pre-image baseline, including geometry and dependent placements');
-for(const [sid,previousRevision] of [[1,4],[3,2],[8,1]]){
+checks.push('Stages 2–10 exactly match the pre-image baseline, including geometry and dependent placements');
+for(const [sid,previousRevision] of [[1,5],[3,2],[8,1]]){
  const {b,p}=battlefield(g,sid);g.HonroCampaignMapRevision.stamp(b);p.honroBattle=plain(b);
  const saved=plain(p),keep=Object.fromEntries(['heroes','cleared','loadouts','settings'].filter(k=>p[k]!==undefined).map(k=>[k,plain(p[k])]));
  assert.equal(g.HonroCampaignMapRevision.discard(p),false);assert.deepEqual(plain(p),saved,'same revision remains exact');
