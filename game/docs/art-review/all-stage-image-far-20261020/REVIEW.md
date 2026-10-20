@@ -1,0 +1,46 @@
+# 30장 이미지 원경 — 부모 화면 검수 체크포인트
+
+실행 코드: `a9125834cc9936d16e0619d7b95dafe8db4de0b7`. 기준 master: `5aa8d716ababc006488ead4133314073442a8d21`.
+
+30장 모두 기존 벡터 지형 위에 장면별 회화 원경을 연결했다. 신규 생성은7장 거목 내부·22장 기록실·26장 작업/기록 공간이며 나머지는 기존 회화 원본을 재사용한다. **부모 미술 승인 전이며 master 병합·Pages 배포는 하지 않았다.**
+
+같은 빌드에서 각 장 desktop1440×900 / wide1920×720 / mobile390×844의 일반·최대축소180컷, desktop최대확대30컷, 내부 중심15컷을 캡처했다. 캔버스 영역 캡처이므로 실제 PNG 높이는 UI 배치에 따라 viewport보다 작다. 각 장의6뷰 묶음과 확대 화면을 직접 열어 확인했고 수정한 장은 다시 열었다. 재캡처한 비수정 화면은 이전 직접 검수본과 바이트 동일성도 확인했다. 대표4장 검수로 대체하지 않았다.
+
+검증: `npm run build`, `node tests/pre-image-terrain-restoration.mjs`, `python tools/testing/capture-all-stage-far.py http://127.0.0.1:8844/HONRO.html release`. 브라우저210뷰 모두 이미지 준비 완료·JS오류0·render 전후 battle JSON 동일·카메라3지점의 원경 프레임 coverage 통과. 원경 캐시 최대3개, 관측 캔버스 최대17.34MiB. 이는 원경 캔버스 메모리이며 브라우저 전체 GPU/decoded image 캐시 메모리는 측정하지 않았다.
+
+컴파일된 캠페인30장과 라이브러리 전체 JSON은 변경 전과 완전히 동일: SHA256 `94d879eff8fdde121c384ce3bcb5da4f57919dd5ce5d3571627e336ec4e4379e`. 형상·충돌·적·발판·랜드마크 배치 및 저장 revision은 그대로다. 미술 변경은 원경 provider와 충돌 없는 후경 카드의 깊이 바탕 일부에 한정한다. 실제 전각·석조 지지대·수문·암맥·종·조명·단서는 유지했다.
+
+남은 미술 판단:14장 근접 시작점과20장 입구,27장 기존 큰 회랑·기둥 뒤는 원경이 많이 가려진다. 이것을 없애기 위해 기존 지형/구조 형상을 바꾸지 않았다.7/22/26 신규 회화의 상세도와 벡터 전경 조화,12/13/20 카메라 깊이에 따른 장면 전환은 부모 확인이 필요하다. 전투 완주·모든 이동 경로·배포 실서비스 검증은 이번 정지 화면 검수에 포함하지 않는다.
+
+|장|원경 키|직접 검수 메모|화면|
+|---|---|---|---|
+|1|forestFar|소나무 산길, 기존 원경 유지|[normal](captures/stage01-1440-normal.png) · [wide](captures/stage01-1920-normal.png) · [mobile](captures/stage01-390-normal.png) · [축소](captures/stage01-1440-max-out.png) · [확대](captures/stage01-1440-max-in.png)|
+|2|valleyFar|높은 계곡, 기존 원경 유지|[normal](captures/stage02-1440-normal.png) · [wide](captures/stage02-1920-normal.png) · [mobile](captures/stage02-390-normal.png) · [축소](captures/stage02-1440-max-out.png) · [확대](captures/stage02-1440-max-in.png)|
+|3|valleyFar|강 나루 계곡, 기존 원경 유지|[normal](captures/stage03-1440-normal.png) · [wide](captures/stage03-1920-normal.png) · [mobile](captures/stage03-390-normal.png) · [축소](captures/stage03-1440-max-out.png) · [확대](captures/stage03-1440-max-in.png)|
+|4|stillNight|문 밖 마당에 조용한 밤 산세|[normal](captures/stage04-1440-normal.png) · [wide](captures/stage04-1920-normal.png) · [mobile](captures/stage04-390-normal.png) · [축소](captures/stage04-1440-max-out.png) · [확대](captures/stage04-1440-max-in.png)|
+|5|valleyFar|폭포 계곡 유지|[normal](captures/stage05-1440-normal.png) · [wide](captures/stage05-1920-normal.png) · [mobile](captures/stage05-390-normal.png) · [축소](captures/stage05-1440-max-out.png) · [확대](captures/stage05-1440-max-in.png)|
+|6|valleyFar|끊어진 다리 계곡 유지|[normal](captures/stage06-1440-normal.png) · [wide](captures/stage06-1920-normal.png) · [mobile](captures/stage06-390-normal.png) · [축소](captures/stage06-1440-max-out.png) · [확대](captures/stage06-1440-max-in.png)|
+|7|root-interior|하늘 없는 거목 내부로 수정|[normal](captures/stage07-1440-normal.png) · [wide](captures/stage07-1920-normal.png) · [mobile](captures/stage07-390-normal.png) · [축소](captures/stage07-1440-max-out.png) · [확대](captures/stage07-1440-max-in.png)|
+|8|stillNight|상여 마당, 조용한 밤 산세; 기존 암반 가림 유지|[normal](captures/stage08-1440-normal.png) · [wide](captures/stage08-1920-normal.png) · [mobile](captures/stage08-390-normal.png) · [축소](captures/stage08-1440-max-out.png) · [확대](captures/stage08-1440-max-in.png)|
+|9|stillNight|제례 마당 밤 산세|[normal](captures/stage09-1440-normal.png) · [wide](captures/stage09-1920-normal.png) · [mobile](captures/stage09-390-normal.png) · [축소](captures/stage09-1440-max-out.png) · [확대](captures/stage09-1440-max-in.png)|
+|10|stillNight|소단 사당 밤 산세|[normal](captures/stage10-1440-normal.png) · [wide](captures/stage10-1920-normal.png) · [mobile](captures/stage10-390-normal.png) · [축소](captures/stage10-1440-max-out.png) · [확대](captures/stage10-1440-max-in.png)|
+|11|dawn|아침 안개 산세|[normal](captures/stage11-1440-normal.png) · [wide](captures/stage11-1920-normal.png) · [mobile](captures/stage11-390-normal.png) · [축소](captures/stage11-1440-max-out.png) · [확대](captures/stage11-1440-max-in.png)|
+|12|valleyFar|열린 채석장 산세; 지하 깊이에서 동굴 전환|[normal](captures/stage12-1440-normal.png) · [wide](captures/stage12-1920-normal.png) · [mobile](captures/stage12-390-normal.png) · [축소](captures/stage12-1440-max-out.png) · [확대](captures/stage12-1440-max-in.png)|
+|13|valleyFar|석문 외부→동굴 깊이 전환|[normal](captures/stage13-1440-normal.png) · [wide](captures/stage13-1920-normal.png) · [mobile](captures/stage13-390-normal.png) · [축소](captures/stage13-1440-max-out.png) · [확대](captures/stage13-1440-max-in.png)|
+|14|cave-settlement|동굴 마을; 시작 근접 화면은 기존 큰 암반에 가림|[normal](captures/stage14-1440-normal.png) · [wide](captures/stage14-1920-normal.png) · [mobile](captures/stage14-390-normal.png) · [축소](captures/stage14-1440-max-out.png) · [확대](captures/stage14-1440-max-in.png)|
+|15|cave-waterwork|물길 동굴과 작은 목조 작업대|[normal](captures/stage15-1440-normal.png) · [wide](captures/stage15-1920-normal.png) · [mobile](captures/stage15-390-normal.png) · [축소](captures/stage15-1440-max-out.png) · [확대](captures/stage15-1440-max-in.png)|
+|16|cave-settlement|사찰 동굴, 먼 전각과 기존 법당 유지|[normal](captures/stage16-1440-normal.png) · [wide](captures/stage16-1920-normal.png) · [mobile](captures/stage16-390-normal.png) · [축소](captures/stage16-1440-max-out.png) · [확대](captures/stage16-1440-max-in.png)|
+|17|cave-waterwork|작업굴; 옛 불투명 공동 바탕 교체|[normal](captures/stage17-1440-normal.png) · [wide](captures/stage17-1920-normal.png) · [mobile](captures/stage17-390-normal.png) · [축소](captures/stage17-1440-max-out.png) · [확대](captures/stage17-1440-max-in.png)|
+|18|bellRear|범종 동굴, 기존 종과 지지부 유지|[normal](captures/stage18-1440-normal.png) · [wide](captures/stage18-1920-normal.png) · [mobile](captures/stage18-390-normal.png) · [축소](captures/stage18-1440-max-out.png) · [확대](captures/stage18-1440-max-in.png)|
+|19|bellRear|같은 범종 공동; 바탕 교체, 암맥·종 유지|[normal](captures/stage19-1440-normal.png) · [wide](captures/stage19-1920-normal.png) · [mobile](captures/stage19-390-normal.png) · [축소](captures/stage19-1440-max-out.png) · [확대](captures/stage19-1440-max-in.png)|
+|20|dawn|동굴 입구→아침 산세, 기존 입구 암반 유지|[normal](captures/stage20-1440-normal.png) · [wide](captures/stage20-1920-normal.png) · [mobile](captures/stage20-390-normal.png) · [축소](captures/stage20-1440-max-out.png) · [확대](captures/stage20-1440-max-in.png)|
+|21|townSky|성문 밤 원경 유지|[normal](captures/stage21-1440-normal.png) · [wide](captures/stage21-1920-normal.png) · [mobile](captures/stage21-390-normal.png) · [축소](captures/stage21-1440-max-out.png) · [확대](captures/stage21-1440-max-in.png)|
+|22|archive-interior|기록실 깊은 서가, 하늘 없음|[normal](captures/stage22-1440-normal.png) · [wide](captures/stage22-1920-normal.png) · [mobile](captures/stage22-390-normal.png) · [축소](captures/stage22-1440-max-out.png) · [확대](captures/stage22-1440-max-in.png)|
+|23|town-river|강변 하역장, 기존 큰 강변 벽에 일부 가림|[normal](captures/stage23-1440-normal.png) · [wide](captures/stage23-1920-normal.png) · [mobile](captures/stage23-390-normal.png) · [축소](captures/stage23-1440-max-out.png) · [확대](captures/stage23-1440-max-in.png)|
+|24|town-wall|저택 뒤 성벽·산세|[normal](captures/stage24-1440-normal.png) · [wide](captures/stage24-1920-normal.png) · [mobile](captures/stage24-390-normal.png) · [축소](captures/stage24-1440-max-out.png) · [확대](captures/stage24-1440-max-in.png)|
+|25|cave-waterwork|지하 물길; 공동의 검은 면 교체, 수문·석조 구조 유지|[normal](captures/stage25-1440-normal.png) · [wide](captures/stage25-1920-normal.png) · [mobile](captures/stage25-390-normal.png) · [축소](captures/stage25-1440-max-out.png) · [확대](captures/stage25-1440-max-in.png)|
+|26|workshop-interior|그을린 작업/기록 공간, skyVisible:false 반영|[normal](captures/stage26-1440-normal.png) · [wide](captures/stage26-1920-normal.png) · [mobile](captures/stage26-390-normal.png) · [축소](captures/stage26-1440-max-out.png) · [확대](captures/stage26-1440-max-in.png)|
+|27|depotRear|깊은 집하장, 기존 벡터 회랑/기둥에 많이 가림|[normal](captures/stage27-1440-normal.png) · [wide](captures/stage27-1920-normal.png) · [mobile](captures/stage27-390-normal.png) · [축소](captures/stage27-1440-max-out.png) · [확대](captures/stage27-1440-max-in.png)|
+|28|town-wall|기록 마당 뒤 성벽|[normal](captures/stage28-1440-normal.png) · [wide](captures/stage28-1920-normal.png) · [mobile](captures/stage28-390-normal.png) · [축소](captures/stage28-1440-max-out.png) · [확대](captures/stage28-1440-max-in.png)|
+|29|town-river|수문 뒤 강변; 기존 문서 공간 벽에 가림|[normal](captures/stage29-1440-normal.png) · [wide](captures/stage29-1920-normal.png) · [mobile](captures/stage29-390-normal.png) · [축소](captures/stage29-1440-max-out.png) · [확대](captures/stage29-1440-max-in.png)|
+|30|town-river|마지막 나루 강변, 기존 배·지형 유지|[normal](captures/stage30-1440-normal.png) · [wide](captures/stage30-1920-normal.png) · [mobile](captures/stage30-390-normal.png) · [축소](captures/stage30-1440-max-out.png) · [확대](captures/stage30-1440-max-in.png)|

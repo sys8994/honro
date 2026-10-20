@@ -1,0 +1,145 @@
+{
+  "revision": 1,
+  "images": {
+    "forestFar": "../painted-pilots/stage1-mountain-dusk.webp",
+    "valleyFar": "../painted-pilots/stage2-wet-valley.webp",
+    "stillNight": "../stage4/still-night.webp",
+    "dawn": "../quiet-layered/far.webp",
+    "bellRear": "../painted-pilots/stage18-rear.webp",
+    "townSky": "../stage21/far.webp",
+    "depotRear": "../painted-pilots/stage27-rear.webp",
+    "cave-settlement": "cave-settlement.webp",
+    "cave-waterwork": "cave-waterwork.webp",
+    "cave-entrance": "cave-entrance.webp",
+    "town-river": "town-river.webp",
+    "town-wall": "town-wall.webp",
+    "root-interior": "root-interior.webp",
+    "archive-interior": "archive-interior.webp",
+    "workshop-interior": "workshop-interior.webp"
+  },
+  "stages": {
+    "1": {
+      "key": "forestFar",
+      "kind": "outdoor"
+    },
+    "2": {
+      "key": "valleyFar",
+      "kind": "outdoor"
+    },
+    "3": {
+      "key": "valleyFar",
+      "kind": "outdoor"
+    },
+    "4": {
+      "key": "stillNight",
+      "kind": "outdoor"
+    },
+    "5": {
+      "key": "valleyFar",
+      "kind": "outdoor"
+    },
+    "6": {
+      "key": "valleyFar",
+      "kind": "outdoor"
+    },
+    "7": {
+      "key": "root-interior",
+      "kind": "interior"
+    },
+    "8": {
+      "key": "stillNight",
+      "kind": "outdoor"
+    },
+    "9": {
+      "key": "stillNight",
+      "kind": "outdoor"
+    },
+    "10": {
+      "key": "stillNight",
+      "kind": "outdoor"
+    },
+    "11": {
+      "key": "dawn",
+      "kind": "outdoor"
+    },
+    "12": {
+      "key": "valleyFar",
+      "kind": "outdoor",
+      "enclosed": "cave-entrance"
+    },
+    "13": {
+      "key": "valleyFar",
+      "kind": "outdoor",
+      "enclosed": "cave-entrance"
+    },
+    "14": {
+      "key": "cave-settlement",
+      "kind": "interior"
+    },
+    "15": {
+      "key": "cave-waterwork",
+      "kind": "interior"
+    },
+    "16": {
+      "key": "cave-settlement",
+      "kind": "interior"
+    },
+    "17": {
+      "key": "cave-waterwork",
+      "kind": "interior"
+    },
+    "18": {
+      "key": "bellRear",
+      "kind": "interior"
+    },
+    "19": {
+      "key": "bellRear",
+      "kind": "interior"
+    },
+    "20": {
+      "key": "dawn",
+      "kind": "outdoor",
+      "enclosed": "cave-entrance"
+    },
+    "21": {
+      "key": "townSky",
+      "kind": "outdoor"
+    },
+    "22": {
+      "key": "archive-interior",
+      "kind": "interior"
+    },
+    "23": {
+      "key": "town-river",
+      "kind": "outdoor"
+    },
+    "24": {
+      "key": "town-wall",
+      "kind": "outdoor"
+    },
+    "25": {
+      "key": "cave-waterwork",
+      "kind": "interior"
+    },
+    "26": {
+      "key": "workshop-interior",
+      "kind": "interior"
+    },
+    "27": {
+      "key": "depotRear",
+      "kind": "interior"
+    },
+    "28": {
+      "key": "town-wall",
+      "kind": "outdoor"
+    },
+    "29": {
+      "key": "town-river",
+      "kind": "outdoor"
+    },
+    "30": {
+      "key": "town-river",
+      "kind": "outdoor"
+    }
+  }
+}
