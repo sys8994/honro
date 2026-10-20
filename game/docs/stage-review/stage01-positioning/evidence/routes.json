@@ -1,0 +1,480 @@
+[
+  {
+    "label": "upper",
+    "cls": "archer",
+    "passed": true,
+    "failure": null,
+    "start": {
+      "x": 250,
+      "y": 1520.6918702317707,
+      "hp": 365,
+      "round": 1
+    },
+    "end": {
+      "x": 2146.25571995406,
+      "y": 1586.8346536266833,
+      "support": "forest-floor",
+      "round": 4,
+      "moveLeft": 1003.2665914009458
+    },
+    "counts": {
+      "ticks": 1372,
+      "jumps": 2,
+      "waits": 3,
+      "walkCost": 1958.422094763848,
+      "jumpCost": 150,
+      "damage": 0,
+      "invalid": 0
+    },
+    "movementCost": 2108.422094763848,
+    "turnEquivalent": 1.9167473588762252,
+    "events": [
+      {
+        "op": "wait",
+        "x": 685.4029155038306,
+        "y": 1540.4051501867286,
+        "support": "forest-floor",
+        "round": 1,
+        "moveLeft": 649.7979463925949
+      },
+      {
+        "op": "jump",
+        "x": 685.4029155038306,
+        "y": 1540.4051501867286,
+        "support": "forest-floor",
+        "round": 2,
+        "moveLeft": 1025
+      },
+      {
+        "op": "wait",
+        "x": 1059.786958662136,
+        "y": 1392.5106520668933,
+        "support": "pine-branch-west",
+        "round": 2,
+        "moveLeft": 630.4757979072258
+      },
+      {
+        "op": "jump",
+        "x": 1059.786958662136,
+        "y": 1392.5106520668933,
+        "support": "pine-branch-west",
+        "round": 3,
+        "moveLeft": 1025
+      },
+      {
+        "op": "drop",
+        "x": 1944.8358848859848,
+        "y": 1317.2535715600668,
+        "support": "pine-branch-west",
+        "round": 3,
+        "moveLeft": 122.66869153332385
+      },
+      {
+        "op": "wait",
+        "x": 2055.750809361001,
+        "y": 1553.6121292933253,
+        "support": "forest-floor",
+        "round": 3,
+        "moveLeft": 8.037569535379745
+      }
+    ],
+    "poses": [
+      {
+        "goal": {
+          "x": 690,
+          "jumpTo": {
+            "x": 930
+          }
+        },
+        "x": 685.4029155038306,
+        "y": 1540.4051501867286,
+        "support": "forest-floor",
+        "round": 1,
+        "moveLeft": 649.7979463925949
+      },
+      {
+        "jump": {
+          "x": 930
+        },
+        "x": 903.9862488371607,
+        "y": 1329.6439398084988,
+        "support": "forest-boulder-a:collision:0",
+        "round": 2,
+        "moveLeft": 806.4166666666699
+      },
+      {
+        "goal": {
+          "x": 1060,
+          "jumpTo": {
+            "x": 1120,
+            "support": "pine-branch-west"
+          }
+        },
+        "x": 1059.786958662136,
+        "y": 1392.5106520668933,
+        "support": "pine-branch-west",
+        "round": 2,
+        "moveLeft": 630.4757979072258
+      },
+      {
+        "jump": {
+          "x": 1120,
+          "support": "pine-branch-west"
+        },
+        "x": 1118.245291995471,
+        "y": 1388.7632062006794,
+        "support": "pine-branch-west",
+        "round": 3,
+        "moveLeft": 966.5416666666649
+      },
+      {
+        "goal": {
+          "x": 1620
+        },
+        "x": 1614.7649015016389,
+        "y": 1281.205849749727,
+        "support": "pine-branch-west",
+        "round": 3,
+        "moveLeft": 458.1860382794589
+      },
+      {
+        "goal": {
+          "x": 1950
+        },
+        "x": 1944.8358848859848,
+        "y": 1317.2535715600668,
+        "support": "pine-branch-west",
+        "round": 3,
+        "moveLeft": 122.66869153332385
+      },
+      {
+        "goal": {
+          "x": 1950,
+          "drop": true
+        },
+        "x": 1944.8358848859848,
+        "y": 1317.2535715600668,
+        "support": "pine-branch-west",
+        "round": 3,
+        "moveLeft": 122.66869153332385
+      },
+      {
+        "goal": {
+          "x": 2150
+        },
+        "x": 2146.25571995406,
+        "y": 1586.8346536266833,
+        "support": "forest-floor",
+        "round": 4,
+        "moveLeft": 1003.2665914009458
+      }
+    ]
+  },
+  {
+    "label": "lower",
+    "cls": "archer",
+    "passed": true,
+    "failure": null,
+    "start": {
+      "x": 250,
+      "y": 1520.6918702317707,
+      "hp": 365,
+      "round": 1
+    },
+    "end": {
+      "x": 5204.881287604283,
+      "y": 692.4988039751396,
+      "support": "ridge-east-extension",
+      "round": 7,
+      "moveLeft": 578.999999999966
+    },
+    "counts": {
+      "ticks": 3122,
+      "jumps": 5,
+      "waits": 6,
+      "walkCost": 5299.474721071756,
+      "jumpCost": 375,
+      "damage": 0,
+      "invalid": 0
+    },
+    "movementCost": 5674.474721071756,
+    "turnEquivalent": 5.158613382792505,
+    "events": [
+      {
+        "op": "wait",
+        "x": 685.4029155038306,
+        "y": 1540.4051501867286,
+        "support": "forest-floor",
+        "round": 1,
+        "moveLeft": 649.7979463925949
+      },
+      {
+        "op": "jump",
+        "x": 685.4029155038306,
+        "y": 1540.4051501867286,
+        "support": "forest-floor",
+        "round": 2,
+        "moveLeft": 1025
+      },
+      {
+        "op": "drop",
+        "x": 1095.3671208567848,
+        "y": 1390.7316439571607,
+        "support": "pine-branch-west",
+        "round": 2,
+        "moveLeft": 594.8924645738914
+      },
+      {
+        "op": "wait",
+        "x": 1667.8773135917054,
+        "y": 1471.363948221329,
+        "support": "forest-floor",
+        "round": 2,
+        "moveLeft": 9.999353365505446
+      },
+      {
+        "op": "wait",
+        "x": 2693.2292548544324,
+        "y": 1662.7971091539068,
+        "support": "forest-floor",
+        "round": 3,
+        "moveLeft": 8.083137910288974
+      },
+      {
+        "op": "wait",
+        "x": 3222.5,
+        "y": 1423.5059830329785,
+        "support": "forest-floor",
+        "round": 4,
+        "moveLeft": 505.84580574017673
+      },
+      {
+        "op": "jump",
+        "x": 3222.5,
+        "y": 1423.5059830329785,
+        "support": "forest-floor",
+        "round": 5,
+        "moveLeft": 1025
+      },
+      {
+        "op": "wait",
+        "x": 4096.614090776849,
+        "y": 883.5469821254256,
+        "support": "forest-floor",
+        "round": 5,
+        "moveLeft": 9.283937654404935
+      },
+      {
+        "op": "jump",
+        "x": 4197.7271037445835,
+        "y": 860.1382881004877,
+        "support": "forest-floor",
+        "round": 6,
+        "moveLeft": 920.6762807784532
+      },
+      {
+        "op": "wait",
+        "x": 4834,
+        "y": 957.0444236398989,
+        "support": "ridge-east-extension",
+        "round": 6,
+        "moveLeft": 263.5150978653263
+      },
+      {
+        "op": "jump",
+        "x": 4834,
+        "y": 957.0444236398989,
+        "support": "ridge-east-extension",
+        "round": 7,
+        "moveLeft": 1025
+      },
+      {
+        "op": "jump",
+        "x": 4900,
+        "y": 851.475811932448,
+        "support": "ridge-east-extension",
+        "round": 7,
+        "moveLeft": 884
+      }
+    ],
+    "poses": [
+      {
+        "goal": {
+          "x": 690,
+          "jumpTo": {
+            "x": 930
+          }
+        },
+        "x": 685.4029155038306,
+        "y": 1540.4051501867286,
+        "support": "forest-floor",
+        "round": 1,
+        "moveLeft": 649.7979463925949
+      },
+      {
+        "jump": {
+          "x": 930
+        },
+        "x": 903.9862488371607,
+        "y": 1329.6439398084988,
+        "support": "forest-boulder-a:collision:0",
+        "round": 2,
+        "moveLeft": 806.4166666666699
+      },
+      {
+        "goal": {
+          "x": 1100,
+          "drop": true
+        },
+        "x": 1095.3671208567848,
+        "y": 1390.7316439571607,
+        "support": "pine-branch-west",
+        "round": 2,
+        "moveLeft": 594.8924645738914
+      },
+      {
+        "goal": {
+          "x": 1350,
+          "support": "forest-floor"
+        },
+        "x": 1344.5345785954191,
+        "y": 1509.7031036534854,
+        "support": "forest-floor",
+        "round": 2,
+        "moveLeft": 340.6349424407334
+      },
+      {
+        "goal": {
+          "x": 1800,
+          "support": "forest-floor"
+        },
+        "x": 1798.3240055336241,
+        "y": 1491.5786452840316,
+        "support": "forest-floor",
+        "round": 3,
+        "moveLeft": 962.4771916976117
+      },
+      {
+        "goal": {
+          "x": 2150,
+          "support": "forest-floor"
+        },
+        "x": 2144.6216514982175,
+        "y": 1586.3396681425836,
+        "support": "forest-floor",
+        "round": 3,
+        "moveLeft": 601.1752250385747
+      },
+      {
+        "goal": {
+          "x": 2300
+        },
+        "x": 2294.70467079479,
+        "y": 1668.8065477441103,
+        "support": "forest-floor",
+        "round": 3,
+        "moveLeft": 433.00899460751737
+      },
+      {
+        "goal": {
+          "x": 2600
+        },
+        "x": 2594.8460370497355,
+        "y": 1715.7137604771822,
+        "support": "forest-floor",
+        "round": 3,
+        "moveLeft": 120.13741892244951
+      },
+      {
+        "goal": {
+          "x": 2900
+        },
+        "x": 2896.3210622321235,
+        "y": 1601.6813499079892,
+        "support": "forest-floor",
+        "round": 4,
+        "moveLeft": 886.4233744530388
+      },
+      {
+        "goal": {
+          "x": 3100
+        },
+        "x": 3095.2493300806127,
+        "y": 1499.4839987866533,
+        "support": "forest-floor",
+        "round": 4,
+        "moveLeft": 656.8878976210962
+      },
+      {
+        "goal": {
+          "x": 3350
+        },
+        "x": 3349.5833333333258,
+        "y": 1272.2394146981114,
+        "support": "forest-floor",
+        "round": 5,
+        "moveLeft": 897.9166666666742
+      },
+      {
+        "goal": {
+          "x": 3550
+        },
+        "x": 3544.8377085324987,
+        "y": 1154.4436315590044,
+        "support": "forest-floor",
+        "round": 5,
+        "moveLeft": 665.9539034286438
+      },
+      {
+        "goal": {
+          "x": 3800
+        },
+        "x": 3794.192205940685,
+        "y": 1002.5285560801364,
+        "support": "forest-floor",
+        "round": 5,
+        "moveLeft": 352.9544252251337
+      },
+      {
+        "goal": {
+          "x": 4200
+        },
+        "x": 4195.190128400409,
+        "y": 860.2926433643911,
+        "support": "forest-floor",
+        "round": 6,
+        "moveLeft": 998.21794744512
+      },
+      {
+        "goal": {
+          "x": 4650
+        },
+        "x": 4650,
+        "y": 1029.9879117833027,
+        "support": "ridge-east-extension",
+        "round": 6,
+        "moveLeft": 468.4033845230367
+      },
+      {
+        "goal": {
+          "x": 4900
+        },
+        "x": 4900,
+        "y": 851.475811932448,
+        "support": "ridge-east-extension",
+        "round": 7,
+        "moveLeft": 959
+      },
+      {
+        "goal": {
+          "x": 5210
+        },
+        "x": 5204.881287604283,
+        "y": 692.4988039751396,
+        "support": "ridge-east-extension",
+        "round": 7,
+        "moveLeft": 578.999999999966
+      }
+    ]
+  }
+]

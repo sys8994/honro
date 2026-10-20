@@ -1,0 +1,93 @@
+{
+  "label": "",
+  "cls": "archer",
+  "passed": true,
+  "failure": null,
+  "start": {
+    "x": 268,
+    "y": 1520.3516392030963,
+    "hp": 365,
+    "round": 1
+  },
+  "end": {
+    "x": 1496.1328985792563,
+    "y": 1304.568990331507,
+    "support": "pine-branch-west",
+    "round": 2,
+    "moveLeft": 155.38816287329215
+  },
+  "counts": {
+    "ticks": 1220,
+    "jumps": 1,
+    "waits": 1,
+    "walkCost": 1302.078310383303,
+    "jumpCost": 75,
+    "damage": 0,
+    "invalid": 0
+  },
+  "movementCost": 1377.078310383303,
+  "turnEquivalent": 1.25188937307573,
+  "events": [
+    {
+      "op": "wait",
+      "x": 685.7247129851871,
+      "y": 1540.2701164338755,
+      "support": "forest-floor",
+      "round": 1,
+      "moveLeft": 667.5335267433998
+    },
+    {
+      "op": "jump",
+      "x": 657.5510191900789,
+      "y": 1548.2975086860108,
+      "support": "forest-floor",
+      "round": 2,
+      "moveLeft": 1025
+    }
+  ],
+  "poses": [
+    {
+      "goal": {
+        "x": 690,
+        "jumpTo": {
+          "x": 930
+        }
+      },
+      "x": 685.7247129851871,
+      "y": 1540.2701164338755,
+      "support": "forest-floor",
+      "round": 1,
+      "moveLeft": 667.5335267433998
+    },
+    {
+      "jump": {
+        "x": 930
+      },
+      "x": 878.6760191900756,
+      "y": 1337.5599386022197,
+      "support": "forest-boulder-a:collision:0",
+      "round": 2,
+      "moveLeft": 803.8750000000033
+    },
+    {
+      "goal": {
+        "x": 1100
+      },
+      "x": 1096.470691923048,
+      "y": 1390.6764654038475,
+      "support": "pine-branch-west",
+      "round": 2,
+      "moveLeft": 564.655233219457
+    },
+    {
+      "goal": {
+        "x": 1500
+      },
+      "x": 1496.1328985792563,
+      "y": 1304.568990331507,
+      "support": "pine-branch-west",
+      "round": 2,
+      "moveLeft": 155.38816287329215
+    }
+  ]
+}
