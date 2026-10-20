@@ -1,3 +1,10 @@
+## 2026-10-20 — 초기 필수 JSON 요청 대기 겹치기
+
+- 기준 `1fb64610`: modulepreload는 코드만 가져오므로 필수 JSON이 각 순차 import 뒤에 요청됐다. cold에서 split 메타 fetch373ms+parse/전달40ms, 동행 자료 fetch335ms+parse/전달10ms였고 hydrate는 각각0/0.1ms였다. 현재 장 author 준비는 약17ms로 주 병목이 아니었다.
+- 기존12모듈 lookahead 안의 필수 JSON 경로만 빌드가 기록하고 같은 request cache로 먼저 읽는다. 전역 등록·SVG 원문 준비·author·patch·yield 실행 순서는 유지한다. 현재/이어갈 장의 기존 JSON 선행 요청은 첫 준비 구간으로 당긴다. 새 장 분할·추가 장/선택 runtime/Workshop/큰 이미지 예열은 없다. 저장 힌트/진도·취소·오디오 처리와 공통 미술/맵/쉼터는 미수정이다.
+- Chromium390×844/touch viewport, 새 context/cache disabled, CPU4배/RTT40ms/2MiB/s에서 cold ready3.694→3.064초,21장 이어하기 ready4.151→3.654초. 요청95→95/94→94, 전송5,368,235→5,370,626B/6,904,540→6,906,931B로 줄지 않았다. 클릭 후 관측0.493→0.529초/2.005→2.223초는 개선되지 않았다. 단일 전후 실측이며 실제 휴대폰/공개 Pages 수치가 아니다.
+- 필요한 빌드·구문 확인, 현재1장/21장만 준비,21장 HP/3라운드/성장/장착/완료 보존·실제 클릭 audio running,12장 실패/중복요청 억제/재시도1건,21장 취소 후 늦은 완료 미진입1건 통과·pageerror0. data81/graphics81/styles14 콘텐츠 해시 동일. 전체verify·별도검수자·다른 장/기예·Workshop 실행·Pages는 미실행이다. 소스 브랜치만 push하고 생성물/master 통합은 부모가 진행한다. 상세/캡처: `STARTUP_LOADING.md` 마지막 절과 `_local/reports/startup/critical-path-*`.
+
 ## 2026-10-19 — 17장 일상 작업 소품의 사람 기준 배율
 
 ## 3·4장 공유 건축 접합 보완 (2026-10-20)

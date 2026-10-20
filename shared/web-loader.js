@@ -26,6 +26,9 @@ function hydrate(value,refs){const pending=[];
  return pending.length?Promise.all(pending).then(()=>value):value;
 }
 export async function loadData(file,refs){return hydrate(await request(file),refs);}
+// Fetch only known required JSON while earlier scripts execute. Registration and
+// SVG hydration still happen at the original ordered import boundary.
+export function prefetchData(files){for(const file of files)void request(file).catch(()=>{});}
 export async function loadProject(file){const manifest=await request(file),refs=manifest.assetPaths;const [base,library,stages]=await Promise.all([loadData(manifest.base,refs?.base),loadData(manifest.library,refs?.library),Promise.all(manifest.stages.map((file,i)=>loadData(file,refs?.stages[i])))]);return {...base,library,stages};}
 // The hint is read-only. App.load remains the sole migration/save authority.
 function savedHint(){try{const p=JSON.parse(localStorage.getItem('honro-first-act-profile-1'));return p?.game==='honro'&&[1,2,3,4].includes(p.schema)&&p.heroes&&Array.isArray(p.recruited)&&p.recruited.includes('archer')?p:null;}catch{return null;}}

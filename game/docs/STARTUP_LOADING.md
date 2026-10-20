@@ -116,3 +116,27 @@ Game 필수 common+app JS와 entry는2,823,453→2,806,363B(동일 title/data lo
 부모가 master `41c3289`의 승인 balanced1장을 확인한 뒤 소스 `d0689d9` 통합과 master/기존 Pages 발행을 승인했다. `34dadf4` 생성물은 가져오지 않고 별도 통합 브랜치에서 소스만 cherry-pick했다(새 source `62c8583`). BUG_LOG의 추가 기록만 양쪽을 보존하여 해결했다. 최신 미술·지형·충돌·revision 파일은 변경하지 않았고 공통27개 모듈의 콘텐츠 해시도 기준과 같다. 생성물은 최신 기준에서 한 번 빌드했으며 기준 배포 자산 및 이전 두 distinct 세대를 유지했다.
 
 확인은 필요한 통합 빌드와 짧은 실제 Game smoke만 했다: 초기 ready/두 선택 모듈 요청0, 실제1장6000×3000 및 campaign map revision3, A01 preview 최초 import/setup/tick1회, 허공터 최초 import/toolbar/open1회, pageerror0. 측정과 전수 검사, 앞 단계의 상세 실패/저장 확인 및 미술 검수는 반복하지 않았다. 결과는 `_local/reports/startup/optional-integration-smoke.json`이다. 이 발행 확인이 앞 절의 기준-master Playtest schema 차단을 수리했다는 주장은 하지 않는다.
+
+
+## 필수 JSON의 직렬 요청 대기 완화 (2026-10-20)
+
+기준 master `1fb64610be98f9d6b4e7c273d08fc64b80c9d886`의 기존 장별/선택 runtime 분할을 유지했다. 현재 병목은 새 장의 author보다 필수 공통 JSON의 요청 시점이었다. cold에서 split 메타 fetch372.7ms, 응답 완료→hydrate40.2ms, hydrate0ms; 동행 자료 fetch335.1ms, 응답 완료→hydrate10.2ms, hydrate0.1ms였다. 응답 후 구간은 worker parse/전달 및 스케줄링을 포함하며 순수 parse만 따로 측정한 값은 아니다. campaign import의 현재1장 author/완료 구간은 약17ms였다. 엔진 파일의 전송/실행 대기와 far SVG 원문 hydrate도 남아 있다.
+
+`modulepreload`는 실행 전 코드만 받으므로, 빌드는 각 data module의 필수 JSON 목록을 함께 기록한다. 기존12모듈 lookahead에서 해당 JSON을 먼저 request한다. 기존 cache를 공유해 소비 시 중복 요청하지 않으며 실패는 cache에서 제거된다. hydration/전역 등록/author/패치는 원래의 순차 import 시점에 수행한다. party alias에도 실제 data module의 JSON 목록을 전달한다. 현재/이어갈 장의 기존 JSON 선행 요청은 첫 준비 구간으로 당긴다. 전체 library, 다른 장, optional preview/training, Workshop 앱, 래스터 그림을 새로 예열하지 않는다. full/embedded의 코드 실행 순서와 모든 데이터/그림/CSS 콘텐츠는 그대로다. common 미술/지형/쉼터 렌더와 저장/진도/입력/audio 코드는 수정하지 않았다.
+
+로컬 Chromium `390×844` touch/mobile viewport, 새 isolated context/cache disabled, CPU slowdown4, latency40ms, download2MiB/s에서 같은21장 synthetic 전투 저장을 재사용해 전후 각1회 측정했다. ready는 `data-honro-ready`, 요청/전송 관측은 ready와 타이틀 그림 표시를 확인한 뒤500ms까지다. 클릭 반응은 trusted click 시작부터 화면 전환 및 audio context running 관측까지이며 Playwright 관측 지연을 포함한다. 실제 휴대폰/공개 Pages/통계적 우위의 근거가 아니다.
+
+| 항목 | Cold 새 시작 이전 → 이후 | 21장 이어하기 이전 → 이후 |
+|---|---:|---:|
+| 실제 ready |3.694 →3.064s|4.151 →3.654s|
+| 타이틀 그림 표시 |0.404 →0.384s|0.421 →0.432s|
+| 관측 요청 수 |95 →95|94 →94|
+| 관측 전송 |5,368,235 →5,370,626B|6,904,540 →6,906,931B|
+| 클릭 후 관측 |0.493 →0.529s|2.005 →2.223s|
+| ready 전 chapter/장별 assets |1장만 →1장만|21장만 →21장만|
+
+준비시간은 각각 약17.1%/12.0% 줄었지만 요청/바이트/클릭 후 진입은 개선되지 않았다. 새 bootstrap 목록 때문에 전송은2,391B 늘었다. 전송량 축소나 무관 코드 제거를 주장하지 않는다. firstPaint의 이미지 최대1200ms/두rAF와 준비 전 버튼 비활성도 기존 그대로다. far SVG 원문 대기, 필수 엔진/구 저장 호환 메타/서사·장 패치 초기화는 남아 있으며, renderer가 캡처하는 전역과 쉼터 SVG cache를 깨는 임의 지연은 추가하지 않았다. 벡터 지형과 기존 래스터 요청 시점은 기준 master의 구현을 유지한다.
+
+한정 확인은 필요한 build/구문 검사와 실제 cold/continue 측정,12장 fetch 실패→기존 전투/profile/저장 동일→재시도 및 중복 launch의 요청1회,21장 취소→늦은 로딩 완료→타이틀 유지 각1건이다.21장 HP/3라운드/성장/장착/완료, trusted click의 audio running도 보존했다. pageerror0, 초기 optional/Workshop/full-library 요청0이다. 빌드 전후 data81개·graphics81개·styles14개 해시가 동일했다. 전체verify·별도검수자·무관 기예·다른 장·Workshop 실제 실행·master/Pages는 하지 않았다. 로컬 생성물은 측정용이며 소스 커밋에 포함하지 않고 부모의 통합 순서에 맡긴다.
+
+근거 JSON: `_local/reports/startup/critical-path-{before,after}.json`, `critical-path-checks.json`. 캡처: `critical-path-after-{cold-ready,cold-entered,continue21-ready,continue21-entered}.png`, `critical-path-retry.png`, `critical-path-cancelled.png`. 같은 디렉터리의 `critical-probe.py`와 `critical-entry-check.py`는 이번 한정 측정의 로컬 재현 스크립트다.
