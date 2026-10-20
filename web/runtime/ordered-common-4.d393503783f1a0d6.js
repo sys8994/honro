@@ -1491,7 +1491,9 @@ function balance(b){
  for(const u of originals){
   u.combatBaseHp=(u.combatBaseHp??u.maxHp/(G.HONRO_CORE.DIFFICULTIES[b.difficulty]?.hp||1))*.6;
   u.hp=u.maxHp=Math.max(1,Math.round(u.maxHp*.6));
-  const v=structuredClone(u);v.id=u.id+'-cluster';v.x+=u.r*2+24;v.spawnX=v.x;v.damageBy={};v.xpGranted=0;
+  const v=structuredClone(u);v.id=u.id+'-cluster';v.x+=u.r*2+24;
+  const authored=b.honroStage===1&&b.honroMap?.positioning?.clusterPositions?.[v.id];if(authored)Object.assign(v,authored);
+  v.spawnX=v.x;v.damageBy={};v.xpGranted=0;
   const kind=v.honroVariant||v.honroType,flying=!!G.HonroWorld.archetypes[kind]?.flying;
   const spot=G.HonroTerrain.place({...b,units:[...b.units,...added]},v,{flying,maxDistance:700});
   if(!spot)throw Error('No safe cluster placement: '+v.id);

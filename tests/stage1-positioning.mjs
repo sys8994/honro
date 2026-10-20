@@ -14,9 +14,9 @@ await mkdir('_local/reports/stage1-positioning',{recursive:true});await writeFil
 const {readFile}=await import('node:fs/promises');
 if(process.env.HONRO_BASELINE){const baseline=JSON.parse(await readFile(process.env.HONRO_BASELINE,'utf8')),plain=x=>JSON.parse(JSON.stringify(x));assert.deepEqual(plain(g.HONRO_PROJECT.library),baseline.library);assert.deepEqual(plain(g.HONRO_PROJECT.stages.slice(1)),baseline.stages.slice(1));console.log('PASS other 29 chapters and shared library unchanged');}
 const shots=[];
-for(const [support,x]of [['forest-floor',1180],['pine-branch-west',1620]]){
+for(const [support,x]of [['forest-floor',1180],['pine-branch-west',1620],['forest-floor',3430],['forest-floor',3760]]){
  const q=battlefield(g,1),u=q.e.active,t=q.b.terrain.find(t=>t.id===support);Object.assign(u,{x,y:g.HONRO_CORE.topAt(t,x),vx:0,vy:0});assert(g.HONRO_CORE.validTerrainContactPose(q.b.terrain,u));
- let chosen;outer:for(const enemy of q.e.alive(1))for(const a of q.e.shotSeeds(u,g.HONRO_CORE.SKILLS.A01,enemy))if(q.e.predict(u,g.HONRO_CORE.SKILLS.A01,a.angle,a.power,enemy,false).unit===enemy.id){chosen={enemy,a};break outer;}
+ let chosen;outer:for(const enemy of q.e.alive(1).filter(v=>x<3000||v.x>x))for(const a of q.e.shotSeeds(u,g.HONRO_CORE.SKILLS.A01,enemy))if(q.e.predict(u,g.HONRO_CORE.SKILLS.A01,a.angle,a.power,enemy,false).unit===enemy.id){chosen={enemy,a};break outer;}
  assert(chosen,support+' basic arrow angle');const hp=chosen.enemy.hp;assert(q.e.fire('A01',chosen.a.angle,chosen.a.power));for(let i=0;i<1800&&q.b.projectiles.length;i++)for(const p of [...q.b.projectiles])if(q.b.projectiles.includes(p))q.e.stepProjectile(p,g.HONRO_CORE.STEP);
  assert(chosen.enemy.hp<hp);shots.push({support,x,target:chosen.enemy.id,damage:hp-chosen.enemy.hp,aim:chosen.a});
 }

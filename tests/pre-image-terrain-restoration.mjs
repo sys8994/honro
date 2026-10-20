@@ -16,7 +16,7 @@ for(const expected of fixture.stages.filter(s=>s.stage!==1)){
  assert.equal(hash(stage),expected.wholeStage,'entire historical stage '+expected.stage);
 }
 checks.push('Stages 2–10 exactly match the pre-image baseline, including geometry and dependent placements');
-for(const [sid,previousRevision] of [[1,5],[3,2],[8,1]]){
+for(const [sid,previousRevision] of [[1,5],[1,6],[3,2],[8,1]]){
  const {b,p}=battlefield(g,sid);g.HonroCampaignMapRevision.stamp(b);p.honroBattle=plain(b);
  const saved=plain(p),keep=Object.fromEntries(['heroes','cleared','loadouts','settings'].filter(k=>p[k]!==undefined).map(k=>[k,plain(p[k])]));
  assert.equal(g.HonroCampaignMapRevision.discard(p),false);assert.deepEqual(plain(p),saved,'same revision remains exact');
