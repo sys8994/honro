@@ -1,0 +1,89 @@
+{
+  "version": "shared-vector-kit-2",
+  "baselineCommit": "0d890aea2d5f3b53f32a7b91e4beebd7c93a7240",
+  "screenshots": [
+    "shared-kit-v2-closeup.png",
+    "shared-kit-v2-catalog.png",
+    "shared-kit-v2-assemblies.png"
+  ],
+  "captureViewport": [
+    1440,
+    960
+  ],
+  "assemblySvgDisplayHeight": 560,
+  "assetCards": 26,
+  "assemblyCards": 3,
+  "pageErrors": [],
+  "httpErrors": [],
+  "syntaxCheckedFiles": [
+    "registry.mjs",
+    "compositions.mjs",
+    "environment-vector-kit.mjs"
+  ],
+  "bytes": {
+    "shared/assets/environment/vector-kit/registry.mjs": {
+      "raw": 55139,
+      "gzip9": 23052
+    },
+    "shared/assets/environment/vector-kit/compositions.mjs": {
+      "raw": 4657,
+      "gzip9": 1187
+    },
+    "shared/runtime/environment-vector-kit.mjs": {
+      "raw": 10315,
+      "gzip9": 3932
+    },
+    "game/art-studies/stage1-hybrid-vector-v1/shared-kit/stage1.scene.mjs": {
+      "raw": 3661,
+      "gzip9": 1083
+    },
+    "game/art-studies/stage1-hybrid-vector-v1/foreground.svg": {
+      "raw": 245010,
+      "gzip9": 58922
+    },
+    "shared/assets/environment/quiet-layered/far.webp": {
+      "raw": 952722,
+      "gzip9": 952878
+    },
+    "sharedSourceJoined": {
+      "raw": 73775,
+      "gzip9": 29040
+    }
+  },
+  "preserved": [
+    "Stage1 terrain profile and instance placement",
+    "approved actor H103.5 and closeup camera",
+    "independent existing far.webp",
+    "shared SVG/Canvas source and catalog connection"
+  ],
+  "artChanges": [
+    "separated horizontal foliage plates, medium-value clusters and sparse supporting twigs",
+    "broader tapered trunks, flowing bark ridges and branch collars",
+    "branch/trunk/leaf order within assemblies",
+    "front and rear column frames, plinth stones, brackets and knee braces",
+    "thick eave soffit, rafters, ridge caps and limited tile ends",
+    "continuous erosion folds and buried rock interfaces in existing soil parts"
+  ],
+  "artLimitations": [
+    "foliage edges and long bark planes remain stylized",
+    "small shrubs and base rocks retain previous simple geometry",
+    "broad slope composition remains sparse; no new scatter added"
+  ],
+  "notRun": [
+    "full game verify",
+    "combat, quest, movement, skill or save tests",
+    "water motion",
+    "mobile/overview recapture"
+  ],
+  "pathDefinitions": 195,
+  "stageExpandedInstances": 65,
+  "svgRasterImages": 0,
+  "svgFilters": 0,
+  "giantAssemblyOrder": [
+    "branches",
+    "upper trunk",
+    "base trunk",
+    "roots",
+    "crowns"
+  ]
+}

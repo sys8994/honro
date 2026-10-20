@@ -31,14 +31,17 @@ export function compileScene(scene,{assets=ASSETS,compositions=COMPOSITIONS}={})
   const transform={...instance.transform};if(instance.support==='surface'){if(!scene.terrain)throw Error('Surface support needs terrain');transform.y=surfaceAt(scene.terrain.profile,transform.x||0)+(instance.dy||0);}
   const m=multiply(parent,matrix(transform,definition)),id=prefix+(instance.id||instance.assetId),palette=instance.palette||inheritedPalette,layer=instance.layer||inheritedLayer;
   if(definition.parts){
+   const firstNode=nodes.length;
    const locals=new Map();
    for(const part of definition.parts){let basis=m;
     if(part.attach){const parentPart=locals.get(part.attach.instance);if(!parentPart)throw Error('Socket parent must precede child '+part.id);const socket=parentPart.definition.sockets?.[part.attach.socket];if(!socket)throw Error('Missing socket '+part.attach.socket);basis=multiply(parentPart.matrix,matrix({x:socket.at[0],y:socket.at[1],rotation:socket.angle||0}));}
     locals.set(part.id,expand(part,basis,id+'/',palette,layer,[...stack,instance.assetId]));
    }
+   // Order only within this assembly: branches behind timber, leaves in front.
+   nodes.splice(firstNode,nodes.length-firstNode,...nodes.slice(firstNode).sort((a,b)=>a.paintOrder-b.paintOrder));
    return {definition,matrix:m,id};
   }
-  const node={id,assetId:instance.assetId,definition,matrix:m,palette,layer,opacity:instance.opacity??1,bounds:transformedBounds(definition.bounds,m)};nodes.push(node);return node;
+  const node={id,assetId:instance.assetId,definition,matrix:m,palette,layer,paintOrder:instance.paintOrder??0,opacity:instance.opacity??1,bounds:transformedBounds(definition.bounds,m)};nodes.push(node);return node;
  }
  for(const instance of scene.instances||[])expand(instance);
  let terrain=null;
@@ -47,6 +50,8 @@ export function compileScene(scene,{assets=ASSETS,compositions=COMPOSITIONS}={})
 }
 export function paintFor(asset,token,palette='forest'){
  if(token==='none'||token?.startsWith('#'))return{type:'color',value:token};
+ // A compound asset can expose timber under a roof or stone beneath a column.
+ if(token.includes(':')){const [material,role]=token.split(':');return paintFor({...asset,material},role,palette);}
  const colors={...MATERIALS[asset.material].colors,...PALETTES[palette]?.[asset.material]},b=asset.bounds;
  if(token==='body')return{type:'linear',from:[b.x,b.y],to:[b.x+b.w*.85,b.y+b.h],stops:[[0,colors.light],[.42,colors.base],[1,colors.shade]]};
  if(token==='light')return{type:'linear',from:[b.x,b.y],to:[b.x+b.w*.5,b.y+b.h],stops:[[0,colors.light],[1,colors.base]]};
