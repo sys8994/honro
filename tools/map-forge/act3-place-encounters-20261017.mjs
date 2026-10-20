@@ -33,15 +33,15 @@ export const PLACE_ENCOUNTERS={
  ],
  24:[
   q('empty-court-watch','종택 서쪽 문간 전위 셋과 실제 낮은 처마의 등불. 긴 바깥길은 비운다.','family-crest',[
-   m('archiveFiend',1510,undefined,true),m('archiveFiend',1610),m('lantern',1690,'family24-hall-west-step',false,'empty-court-upper'),m('archiveFiend',1800),m('possessedArcher',1760,'family24-hall-west-step',false,'empty-court-upper')]),
+   m('archiveFiend',1465,undefined,true),m('archiveFiend',1640),m('lantern',1650,'family24-hall-west-step',false,'empty-court-upper'),m('archiveFiend',1820),m('possessedArcher',1760,'family24-hall-west-step',false,'empty-court-upper')]),
   q('crest-room-watch','가문 문장 동쪽에 결집한 수호군과 측면 처마 사수. 문장 앞 작업면은 남긴다.','family-main-hall',[
-   m('archiveFiend',2250,undefined,true),m('archiveFiend',2350),m('lantern',2630,'family24-hall-east-step',false,'crest-room-upper'),m('archiveFiend',2450),m('possessedArcher',2720,'family24-hall-east-step',false,'crest-room-upper')]),
-  q('abandoned-garden-watch','가라앉은 정원 전위 셋과 그 바로 위 회랑의 정예 사격쌍. 양쪽 연결 경사는 비운다.','abandoned-study',[
-   m('archiveFiend',3370),m('lantern',3720,'family24-garden-gallery',true,'garden-upper'),m('archiveFiend',3470),m('archiveFiend',3570),m('possessedArcher',3820,'family24-garden-gallery',false,'garden-upper'),m('hound',3670)]),
+   m('archiveFiend',2230,undefined,true),m('archiveFiend',2310),m('lantern',2940,undefined,false,'crest-room-upper',2300),m('archiveFiend',2495),m('possessedArcher',2720,'family24-hall-east-step',false,'crest-room-upper')]),
+  q('abandoned-garden-watch','가라앉은 정원 전위 셋과 그 바로 위 회랑의 정예 등불과 떨어진 사수. 양쪽 연결 경사는 비운다.','abandoned-study',[
+   m('archiveFiend',3290),m('lantern',3720,'family24-garden-gallery',true,'garden-upper'),m('archiveFiend',3370),m('archiveFiend',3555),m('possessedArcher',3940,'family24-garden-gallery',false,'garden-upper'),m('hound',3700)]),
   q('shrine-approach','봉인 서쪽 문지기와 동쪽 사당 퇴칸의 지원조를 나눈다. 봉인 바로 위는 비운다.','shrine-seal',[
-   m('archiveFiend',4270,undefined,true),m('archiveFiend',4160),m('lantern',5230,'family24-shrine-east-porch',false,'shrine-upper'),m('possessedArcher',5320,'family24-shrine-east-porch',true,'shrine-upper'),m('archiveFiend',4820)]),
-  q('land-register-watch','동쪽 갈림마당의 작은 후위. 수로 입구와 지상 출발 평지는 비워 서로 다른 퇴로를 남긴다.','land-register',[
-   m('archiveFiend',6080,undefined,true),m('archiveFiend',6180),m('lantern',6380),m('archiveFiend',6280),m('hound',5990)])
+   m('archiveFiend',4290,undefined,true),m('archiveFiend',4110),m('lantern',5230,'family24-shrine-east-porch',false,'shrine-upper'),m('possessedArcher',5320,'family24-shrine-east-porch',true,'shrine-upper'),m('archiveFiend',4870)]),
+  q('land-register-watch','동쪽 갈림마당의 단독 경계와 밀집 호위·후위 등불. 수로 입구와 지상 출발 평지는 비워 서로 다른 퇴로를 남긴다.','land-register',[
+   m('archiveFiend',6040,undefined,true),m('archiveFiend',6120),m('lantern',6500),m('archiveFiend',6370),m('hound',5870)])
  ],
  25:[
   q('seal-approach','첫 작업면 서쪽 전위쌍과 동쪽 등불. 시작 대형과 봉인 발사창은 비운다.','depot-entry-seal',[

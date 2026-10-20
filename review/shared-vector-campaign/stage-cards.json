@@ -1696,7 +1696,7 @@
       "next": 25
     },
     "goal": "옛 문장을 따라 잠긴 사당과 토지 장부 확인",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "휘겸의 문장→담허의 사당 봉인 해제→보호지 토지문서→지상/지하 두 조사길 출발. 현행 순서·필수 동행·분할 이벤트·전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1715,7 +1715,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "휘겸의 문장을 확인한 뒤 정원 회랑으로 사당 문지기의 측면을 잡아 담허의 봉인 해제 작업면을 확보할 수 있는가?",
     "size": [
       7000,
       3300
@@ -1724,7 +1724,10 @@
     "place": "문장이 남은 사당",
     "preservedIds": {
       "objectives": [
-        "campaign-objective"
+        "family-crest",
+        "shrine-seal",
+        "land-register",
+        "garden-exit"
       ],
       "markers": [
         "family-crest",
@@ -1742,17 +1745,52 @@
     },
     "enemyBudget": {
       "initial": 26,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 6,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기26·정예/전력/XP·유한 증원·행동 상한 유지. 종택 문간의 단독 전위, 정원 군집과 동쪽 후위를 서로 다른 간격에 두고 회랑 사수 쌍 반복을 없앤다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 정원 one-way 회랑과 사당 담장 앞 접근, 봉인으로 열리는 shrine-door 및 양쪽 퇴칸이 이미 연결되어 있다. 사당과 두 조사길 지형은 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "family-crest",
+        "label": "휘겸으로 가문 출입문의 문장 확인",
+        "kind": "interact",
+        "requiredClass": "knight"
+      },
+      {
+        "id": "shrine-seal",
+        "label": "담허로 사당 출입로 개방",
+        "kind": "interact",
+        "requiredClass": "mage",
+        "opens": "shrine-door"
+      },
+      {
+        "id": "land-register",
+        "label": "설오·담허는 물길 입구, 휘겸·소단은 기록실 입구 확인",
+        "kind": "evidence",
+        "evidenceAction": "entrances"
+      },
+      {
+        "id": "garden-exit",
+        "label": "지상과 지하 두 조사길로 출발",
+        "kind": "reach"
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행."
   },
   {
     "stage": 25,
