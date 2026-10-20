@@ -3688,3 +3688,8 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 - 입구 봉인→다섯 실제 축지 도착→가구별 수량 대조→출구. 각 도착의 실제 두 동행 M09 사용과 출구 allHeroes:true, 실수 시 현행 체크포인트 복구를 보존한다. 변경한 장의 단일 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄을 확인했다. Native Scene: `_local/reports/act3-stage-rework-20261020/stage25/native.png`. 정상 완주/브라우저/전체 verify/배포 미실행. 지형은 보존하므로 map revision 미변경.
 
 - 25장 실제 첫 연결: 현행 맵에서 M09 실탄으로 진목 생성, 두 사람 E 사용, stake-arrival-1 완료를 격리 fixture로 확인했다. 이후 발사창 전수·정상 전투 완주는 미실행. 출구 allHeroes:true와 설오/담허 출전 보존.
+
+## 2026-10-20 — 26장 목표 기준 군집 교정
+
+- 기존 west-work-ramp→work-loft→east-work-ramp의 짧은 상층 선택과 열린 지상 통로가 충분하다. 기록실 문·주민 퇴칸·출구 지형을 보존한다. 초기18 고정·정예/전력/XP·유한 증원·행동2 유지. 기록실 호위 간격을 벌리고 작업장 전위/수레/다락 후위를 비대칭 배치하며 강둑 전위쌍 반복을 해소한다.
+- 휘겸의 기록실 개방→선조 조사 기록→주민 구조→수거량/주조량 대조→두 동행 귀환. 주민 보호와 출구 allHeroes:true, 분할 팀·전멸 실패 판정 유지. 변경한 장의 단일 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄을 확인했다. Native Scene: `_local/reports/act3-stage-rework-20261020/stage26/native.png`. 정상 완주/브라우저/전체 verify/배포 미실행. 지형은 보존하므로 map revision 미변경.

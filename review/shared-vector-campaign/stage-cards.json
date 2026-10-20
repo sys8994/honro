@@ -1933,7 +1933,7 @@
       "next": 27
     },
     "goal": "선조의 조사문서와 공방 작업기록 확보",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "휘겸의 기록실 개방→선조 조사 기록→주민 구조→수거량/주조량 대조→두 동행 귀환. 주민 보호와 출구 allHeroes:true, 분할 팀·전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-knight",
@@ -1944,7 +1944,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "휘겸과 소단이 작업장 바닥의 도구·수레를 밀지, 낮은 작업다락의 사선을 먼저 걷어낼지 선택해 주민에게 접근하고 함께 귀환할 수 있는가?",
     "size": [
       7000,
       3300
@@ -1953,7 +1953,11 @@
     "place": "지상 공방과 증언",
     "preservedIds": {
       "objectives": [
-        "campaign-objective"
+        "hidden-latch",
+        "investigation-record",
+        "artisan-resident",
+        "casting-tally",
+        "workshop-exit"
       ],
       "markers": [
         "hidden-latch",
@@ -1966,17 +1970,59 @@
     },
     "enemyBudget": {
       "initial": 18,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 4,
+      "activeLimit": 2
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기18 고정·정예/전력/XP·유한 증원·행동2 유지. 기록실 호위 간격을 벌리고 작업장 전위/수레/다락 후위를 비대칭 배치하며 강둑 전위쌍 반복을 해소한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 west-work-ramp→work-loft→east-work-ramp의 짧은 상층 선택과 열린 지상 통로가 충분하다. 기록실 문·주민 퇴칸·출구 지형을 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "hidden-latch",
+        "label": "휘겸으로 기록실 열기",
+        "kind": "interact",
+        "requiredClass": "knight",
+        "opens": "hidden-door"
+      },
+      {
+        "id": "investigation-record",
+        "label": "열린 기록실의 조사 원본 확보",
+        "kind": "evidence",
+        "afterEvidence": "hidden-latch"
+      },
+      {
+        "id": "artisan-resident",
+        "label": "작업기록을 지킨 주민 구조",
+        "kind": "rescue",
+        "target": "act3-resident"
+      },
+      {
+        "id": "casting-tally",
+        "label": "구조한 주민의 공방 장부 보관",
+        "kind": "evidence",
+        "afterEvidence": "artisan-resident"
+      },
+      {
+        "id": "workshop-exit",
+        "label": "관아 뒤뜰로 돌아가기",
+        "kind": "reach",
+        "allHeroes": true
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행."
   },
   {
     "stage": 27,

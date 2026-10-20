@@ -55,15 +55,15 @@ export const PLACE_ENCOUNTERS={
  ],
  26:[
   q('record-room-remnants','묘역 기록실 동쪽 벽의 정예·사수와 호위. 서쪽 문과 기록 작업면은 비운다.','investigation-record',[
-   m('possessedGuard',1170,undefined,true),m('possessedArcher',1660),m('possessedGuard',1270)]),
+   m('possessedGuard',1130,undefined,true),m('possessedArcher',1700),m('possessedGuard',1320)]),
   q('casting-yard-tools','작업장 바닥의 도구·수레와 바로 위 작업다락의 정예 지원. 진입 경사는 비운다.','artisan-resident',[
-   m('picks',2540),m('minecart',3050),m('lantern',3210,'work-loft:collision:0',true,'casting-yard-upper'),m('picks',2640),m('possessedArcher',3310,'work-loft:collision:0',false,'casting-yard-upper')]),
+   m('picks',2470),m('minecart',3120),m('lantern',3270,'work-loft:collision:0',true,'casting-yard-upper'),m('picks',2570),m('possessedArcher',3410,'work-loft:collision:0',false,'casting-yard-upper')]),
   q('tally-store-remnants','퇴칸 서쪽 낮은 경사의 정예와 후위. 주민 몸·집 앞 작업반경을 비운다.','casting-tally',[
-   m('picks',4100,undefined,true),m('lantern',4320),m('minecart',5330),m('picks',4200)]),
-  q('surface-exit-remnants','강둑 굽이의 전위쌍과 공중 지원. 출구 집결면까지 마지막 사백 이상을 비운다.','workshop-exit',[
-   m('picks',5790),m('lantern',6230),m('picks',5900,undefined,true)]),
+   m('picks',4050,undefined,true),m('lantern',4420),m('minecart',5370),m('picks',4260)]),
+  q('surface-exit-remnants','강둑 굽이의 선발 도구와 떨어진 정예 후위과 공중 지원. 출구 집결면까지 마지막 사백 이상을 비운다.','workshop-exit',[
+   m('picks',5720),m('lantern',6260),m('picks',5950,undefined,true)]),
   q('work-hollow-crossfire','낮은 작업마당의 도구와 같은 교전권 작업다락 사수. 작업장 중앙 퇴로는 남긴다.','investigation-record',[
-   m('picks',2790),m('possessedArcher',2850,'work-loft:collision:0',false,'work-hollow-upper')]),
+   m('picks',2820),m('possessedArcher',2900,'work-loft:collision:0',false,'work-hollow-upper')]),
   q('return-bank-spirit','주민 퇴칸과 출구 집결면 밖 강둑의 공중 위협.','workshop-exit',[
    m('crow',6030,undefined,false,undefined,2220)])
  ],
