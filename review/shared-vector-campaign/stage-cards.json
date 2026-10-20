@@ -2393,7 +2393,7 @@
       "next": "campaign ending"
     },
     "goal": "세 기록을 대조하고 나루 방어 후 동행 전원 집결",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "세 운송기록 확인→ferry-hold 3턴 방어→생존 동행 전원 old-road 집결(allHeroes:true). 별도 호송 NPC는 활성 데이터에 없으며 현행 동행 집결을 보존한다. 배의 점유 대기/내려앉기·전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -2412,7 +2412,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "네 동행이 낮은 여울과 높은 곶 중 진입로를 고르고 나루 방어면의 층별 사선을 밀어낸 뒤, 내려앉은 배 또는 기존 고지 길로 함께 옛길에 모일 수 있는가?",
     "size": [
       11200,
       7200
@@ -2420,7 +2420,11 @@
     "vertical": false,
     "place": "남겨진 길과 마지막 나루",
     "preservedIds": {
-      "objectives": [],
+      "objectives": [
+        "transport-map",
+        "ferry-hold",
+        "old-road"
+      ],
       "markers": [
         "transport-map",
         "ferry-hold",
@@ -2435,16 +2439,53 @@
     },
     "enemyBudget": {
       "initial": 40,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 10,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기40/정예10·전력/XP·유한 증원·행동 상한 유지. 여울의 돌격조와 단독 후위, 곶 문간/안쪽 호위, 나루 지상/마루, 높은 둔덕/낮은 상륙길을 서로 다른 간격으로 저작한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 낮은 여울→나루 계단, 높은 곶 우회, 배의 안전한 내려앉기와 낮은 퇴로/고지 귀환길이 충분하다. 나루·배 충돌 상태 전이와 집결면 지형을 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "transport-map",
+        "label": "나루에서 강 방향·끊긴 옛길을 기존 기록과 대조",
+        "kind": "reach",
+        "radius": 260
+      },
+      {
+        "id": "ferry-hold",
+        "label": "일행이 빠져나갈 나루 지키기",
+        "kind": "hold",
+        "rounds": 3,
+        "wave": {
+          "kind": "hound",
+          "count": 3
+        },
+        "radius": 540,
+        "contestRadius": 230
+      },
+      {
+        "id": "old-road",
+        "label": "생존한 동행과 옛길 입구에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 440
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides",
+      "shared/runtime/stage30-ferry.js: transition/pressureEnemies; no separate escort NPC"
+    ],
+    "validation": "단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행. 배 내려앉기 상태 전이·동행 전원 최종 집결의 실제 플레이는 미실행; 원본 컨트롤러와 데이터 보존."
   }
 ]
