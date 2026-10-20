@@ -1,0 +1,31 @@
+{
+  "scope": "Branch-only first closeup review. No master/Pages promotion, no game integration and no other stage/rest area work.",
+  "baseline": "1935a106fe99620e2a09de93a6cb89d16d3abda8",
+  "screenshot": "curved-review-normal.png",
+  "viewport": [
+    1440,
+    960
+  ],
+  "pageErrors": [],
+  "foreground": {
+    "raw_bytes": 139128,
+    "gzip9_bytes": 30129,
+    "path_count": 466,
+    "raster_references": 0
+  },
+  "changes": [
+    "Removed serrated crowns; unequal broad curved leaf masses, dark lower volume and restrained olive upper light; short needle edge marks only on selected groups.",
+    "Smoothed main trunk contour and blunted/enclosed exposed branch tips; root plate partly covered by soil.",
+    "Removed underground ribbon-root networks and four isolated exposure props.",
+    "One broad concave erosion basin with a continuous rock exposure on one side; irregular soil mantle and broad contact shade.",
+    "Variable nonparallel trail margins built around the unchanged planned contact line; few dirt/grass clumps overlap margins."
+  ],
+  "preserved": [
+    "H=103.5 and approved character asset",
+    "closeup actor size 115.2px / previous camera unchanged",
+    "ordinary prop sizes and contact overlay",
+    "independent far image and continuous opaque terrain body"
+  ],
+  "review": "Closeup PNG inspected. Serrated motifs and long underground ribbons are removed. Leaves still have a smooth, designed illustrative appearance; trunk/stone shading and the erosion basin remain simplified. This is a first review candidate, not final art approval. Overview/mobile not captured for this requested first-closeup handoff.",
+  "proceed": "Hold integration and cross-stage expansion; hand off this single closeup candidate for parent review."
+}
