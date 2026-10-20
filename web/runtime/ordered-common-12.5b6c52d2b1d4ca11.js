@@ -1,4 +1,4 @@
-import {yieldIfNeeded} from "./load-data.fb768c8f80789aa0.js";
+import {yieldIfNeeded} from "./load-data.60b63bd7d9d5af82.js";
 // shared/runtime/act2-spatial-art.js
 (()=>{
 'use strict';
@@ -1653,7 +1653,7 @@ await yieldIfNeeded();
 const S=G.HonroScene.prototype,manifest=G.HONRO_STAGE21_PAINTED||{},images={},patterns=new WeakMap(),woodPatterns=new WeakMap(),sprites=new WeakMap(),materialPaths=new WeakMap();
 let generation=0,rockCards,skyCanvas;
 const ready=id=>{ensure(id);return !!(images[id]?.complete&&images[id].naturalWidth);};
-const active=b=>b?.honroStage===21&&(b.honroLandmarks||[]).some(l=>l.asset?.id?.startsWith('eup21:'));
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===21&&(b.honroLandmarks||[]).some(l=>l.asset?.id?.startsWith('eup21:'));
 function ensure(id){if(images[id]||typeof Image==='undefined'||!manifest.images?.[id])return;const img=images[id]=new Image();img.decoding='async';img.onload=()=>generation++;img.src=manifest.images[id];}
 function imagePart(c,part){if(!ready(part.image))return false;const img=images[part.image],s=part.source||[0,0,img.naturalWidth,img.naturalHeight];
  if(part.roof&&part.sourceTop){

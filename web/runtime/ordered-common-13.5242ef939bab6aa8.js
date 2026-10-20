@@ -1,11 +1,11 @@
-import {yieldIfNeeded} from "./load-data.fb768c8f80789aa0.js";
+import {yieldIfNeeded} from "./load-data.60b63bd7d9d5af82.js";
 // shared/runtime/painted-pilots-art.js
 (()=>{
 'use strict';
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,manifest=G.HONRO_PAINTED_PILOTS,images={},tones=new Map(),forestTones=new Map(),patterns=new WeakMap(),shapes=new WeakMap(),structures=new WeakMap();let generation=0;
 const stage=b=>manifest?.stages[b?.honroStage],ready=id=>!!(images[id]?.complete&&images[id].naturalWidth);
-const active=b=>!!stage(b)&&(b.honroStage===1?b.honroMap?.act1Scene?.version===1:b.honroStage===18?b.honroBellRevision===1:b.honroLandmarks?.some(l=>l.asset?.id?.startsWith('stage27-depot-')));
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&!!stage(b)&&(b.honroStage===1?b.honroMap?.act1Scene?.version===1:b.honroStage===18?b.honroBellRevision===1:b.honroLandmarks?.some(l=>l.asset?.id?.startsWith('stage27-depot-')));
 const dependencies={1:['forestFar','forestRock','forestSoil','pineA','pineB','dead','roots','bark','passGate'],18:['bellRear','stone','beam','underground'],27:['depotRear','stone','beam','underground']};
 function request(ids){if(typeof Image==='undefined')return;for(const id of ids){if(images[id]||!manifest.images[id])continue;const img=images[id]=new Image();img.decoding='async';img.onload=()=>generation++;img.src=manifest.images[id];}}
 function ensure(b){request(dependencies[b.honroStage]||[]);}
@@ -100,7 +100,7 @@ await yieldIfNeeded();
 // no scenery silhouette, collision, save revision or gameplay state is authored here.
 let earthCard,rockCards,branchBark;
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,P=G.HonroPaintedPilots,geometry=new WeakMap(),fields=new WeakMap();
-const active=b=>b?.honroStage===1&&P.active(b),ready=()=>P.ready('forestRock')&&P.ready('forestSoil')&&P.ready('bark')&&P.ready('pineA');
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===1&&P.active(b),ready=()=>P.ready('forestRock')&&P.ready('forestSoil')&&P.ready('bark')&&P.ready('pineA');
 function closed(points){const p=new Path2D();points.forEach((v,i)=>i?p.lineTo(v.x,v.y):p.moveTo(v.x,v.y));p.closePath();return p;}
 function prepare(t){let q=geometry.get(t);if(q?.source===t.vertices)return q;const points=C.poly(t),edges=[];
  for(let i=0;i<points.length;i++){const a=points[i],z=points[(i+1)%points.length];if(z.x>a.x+.01)edges.push([a,z]);}
@@ -203,7 +203,7 @@ await yieldIfNeeded();
 // Stage2 paint only: the canonical cliff solids, bier road and airborne events
 // retain their own data. No placement or material operation edits battle state.
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===2&&b.honroMap?.act1Scene?.version===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===2&&b.honroMap?.act1Scene?.version===1;
 const ids=['valleyFar','forestRock','forestSoil','pineA','pineB','roots','bark'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);};
 const treeSpecs={
@@ -314,7 +314,7 @@ await yieldIfNeeded();
 'use strict';
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===3&&b.honroMap?.act1Scene?.version===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===3&&b.honroMap?.act1Scene?.version===1;
 const ids=['valleyFar','forestSoil','forestRock','pineA','pineB','roots','passGate','ferryHall','ferryShrine','ferryWorkbay'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);};
 const paths=new WeakMap(),pictures=new Map(),patterns=new WeakMap(),treeCache=new WeakMap();let far,earthCards,plank,mudCard;
@@ -388,7 +388,7 @@ await yieldIfNeeded();
 'use strict';
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===4&&b.honroMap?.stage4Gate?.version===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===4&&b.honroMap?.stage4Gate?.version===1;
 const ids=['gateFar','gate4','watch4','burned4','forestSoil','forestRock','pineA','pineB','dead','roots','bark'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);};
 const pictures=new Map(),patterns=new WeakMap(),trees=new WeakMap();let far,soilCards,filterPasses=0;
@@ -440,7 +440,7 @@ await yieldIfNeeded();
 'use strict';
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,A=G.HonroEnvironmentArt,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt,W=G.HonroStage5WaterGeometry;
-const active=b=>G.HonroStage5Waterfall.active(b)&&b.honroMap?.stage5Paint?.version===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&G.HonroStage5Waterfall.active(b)&&b.honroMap?.stage5Paint?.version===1;
 const ids=['valleyFar','water5','cliff5','forestRock','forestSoil','pineA','bark'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);};
 const pictures=new Map(),trees=new WeakMap(),caves=new WeakMap(),paths=new Map();let far,waterStates,ribbonCard,poolCard,headCard,foamCard,filterPasses=0;
@@ -501,7 +501,7 @@ await yieldIfNeeded();
 'use strict';
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,A=G.HonroEnvironmentArt,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===6&&!b.honroCustom&&b.honroMap?.stage6Bridge?.version===1,ids=['valleyFar','bridge6','forestRock','forestSoil','pineA','bark'];
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===6&&!b.honroCustom&&b.honroMap?.stage6Bridge?.version===1,ids=['valleyFar','bridge6','forestRock','forestSoil','pineA','bark'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);},pictures=new Map(),trees=new WeakMap(),paths=new Map();let far,filterPasses=0;
 const path=d=>{if(!paths.has(d))paths.set(d,new Path2D(d));return paths.get(d);};
 function picture(id){if(pictures.has(id))return pictures.get(id);const im=P.images[id],cv=document.createElement('canvas');cv.width=im.naturalWidth;cv.height=im.naturalHeight;const c=cv.getContext('2d');c.filter=id==='pineA'?'saturate(.55) contrast(.86) brightness(.88)':'saturate(.65) contrast(.96) brightness(.88)';filterPasses++;c.drawImage(im,0,0);c.filter='none';pictures.set(id,cv);return cv;}
@@ -537,7 +537,7 @@ await yieldIfNeeded();
 'use strict';
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,A=G.HonroEnvironmentArt,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===7&&!b.honroCustom&&b.honroMap?.stage7Village?.version===1,ids=['forestFar','villageTree7','villageHome7','ferryWorkbay','ferryShrine','forestRock','forestSoil'];
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===7&&!b.honroCustom&&b.honroMap?.stage7Village?.version===1,ids=['forestFar','villageTree7','villageHome7','ferryWorkbay','ferryShrine','forestRock','forestSoil'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);};const pictures=new Map(),patterns=new WeakMap();let far,barkCard,filterPasses=0;
 function picture(id){if(pictures.has(id))return pictures.get(id);const im=P.images[id],cv=document.createElement('canvas');cv.width=im.naturalWidth;cv.height=im.naturalHeight;const c=cv.getContext('2d');c.filter=id==='villageTree7'?'saturate(.61) contrast(.9) brightness(.88)':'saturate(.69) contrast(.95) brightness(.9)';filterPasses++;c.drawImage(im,0,0);c.filter='none';pictures.set(id,cv);return cv;}
 function background(c,w,h,b,scene){if(!ready(b))return false;if(!far){far=document.createElement('canvas');far.width=2304;far.height=1024;const cc=far.getContext('2d');cc.fillStyle='#2a3e43';cc.fillRect(0,0,2304,1024);cc.filter='saturate(.42) contrast(.72) brightness(.85) blur(.65px)';filterPasses++;cc.drawImage(P.images.forestFar,0,0,2304,1024);cc.filter='none';cc.fillStyle='#31485024';cc.fillRect(0,0,2304,1024);const g=cc.createLinearGradient(0,550,0,1024);g.addColorStop(0,'#2a3e4300');g.addColorStop(1,'#2a3e43');cc.fillStyle=g;cc.fillRect(0,550,2304,474);}const raw=G.HonroVisualStyle.raw(c),q=E.act1BackdropFrame(scene,w,h,b,far.width,far.height),paint=cc=>{cc.fillStyle='#2a3e43';cc.fillRect(0,0,w,h);cc.drawImage(far,q.x,q.y,q.w,q.h);};if(!scene._screenRaster(raw,['stage7',P.appearanceKey(),w,h,scene.x,scene.y,scene.scale].join(':'),w,h,paint,'_screenBackgroundCache',false))paint(raw);scene.environmentStats={groups:1,visibleAssets:1,cachedPaths:0,animatedPrimitives:0};return true;}
@@ -573,7 +573,7 @@ await yieldIfNeeded();
 'use strict';
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===8&&!b.honroCustom&&b.honroMap?.stage8LocationPaint?.revision===1,ids=['forestFar','forestRock','forestSoil','villageTree7','bierStore8','bierShelter8'];
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===8&&!b.honroCustom&&b.honroMap?.stage8LocationPaint?.revision===1,ids=['forestFar','forestRock','forestSoil','villageTree7','bierStore8','bierShelter8'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);},pictures=new Map(),patterns=new WeakMap(),depthMasks=new WeakMap();let far,woodCard,rootCard,postCard,cavernCard,filterPasses=0,maskBuilds=0;
 function picture(id){if(pictures.has(id))return pictures.get(id);const im=P.images[id],cv=document.createElement('canvas');cv.width=im.naturalWidth;cv.height=im.naturalHeight;const c=cv.getContext('2d');c.filter=id==='villageTree7'?'saturate(.55) contrast(.88) brightness(.84)':'saturate(.65) contrast(.92) brightness(.87)';filterPasses++;c.drawImage(im,0,0);c.filter='none';pictures.set(id,cv);return cv;}
 function background(c,w,h,b,scene){if(!ready(b))return false;if(!far){far=document.createElement('canvas');far.width=2304;far.height=1024;const cc=far.getContext('2d');cc.fillStyle='#293d46';cc.fillRect(0,0,2304,1024);cc.filter='saturate(.36) contrast(.65) brightness(.78) blur(.7px)';filterPasses++;cc.drawImage(P.images.forestFar,0,0,2304,1024);cc.filter='none';cc.fillStyle='#2d424b38';cc.fillRect(0,0,2304,1024);const g=cc.createLinearGradient(0,480,0,1024);g.addColorStop(0,'#293d4600');g.addColorStop(1,'#293d46');cc.fillStyle=g;cc.fillRect(0,480,2304,544);}const raw=G.HonroVisualStyle.raw(c),q=E.act1BackdropFrame(scene,w,h,b,2304,1024),paint=cc=>{cc.fillStyle='#293d46';cc.fillRect(0,0,w,h);cc.drawImage(far,q.x,q.y,q.w,q.h);};if(!scene._screenRaster(raw,['stage8-painted',P.appearanceKey(),w,h,scene.x,scene.y,scene.scale].join(':'),w,h,paint,'_screenBackgroundCache',false))paint(raw);scene.environmentStats={groups:1,visibleAssets:1,cachedPaths:0,animatedPrimitives:0};return true;}
@@ -640,7 +640,7 @@ await yieldIfNeeded();
 'use strict';
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===9&&!b.honroCustom&&b.honroMap?.stage9LocationPaint?.revision===1,ids=['forestFar','forestRock','forestSoil','villageTree7','ritualCorridor9','ritualGate9','ritualRoots9'];
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===9&&!b.honroCustom&&b.honroMap?.stage9LocationPaint?.revision===1,ids=['forestFar','forestRock','forestSoil','villageTree7','ritualCorridor9','ritualGate9','ritualRoots9'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);},pictures=new Map(),patterns=new WeakMap();let far,beam,rootFork,filters=0;
 function picture(id){if(pictures.has(id))return pictures.get(id);const im=P.images[id],cv=document.createElement('canvas');cv.width=(im.naturalWidth||im.width);cv.height=(im.naturalHeight||im.height);const c=cv.getContext('2d');c.filter=id==='villageTree7'?'saturate(.52) contrast(.84) brightness(.78)':'saturate(.66) contrast(.92) brightness(.86)';filters++;c.drawImage(im,0,0);c.filter='none';pictures.set(id,cv);return cv;}
 function background(c,w,h,b,scene){if(!ready(b))return false;if(!far){far=document.createElement('canvas');far.width=2304;far.height=1024;const cc=far.getContext('2d');cc.fillStyle='#293d46';cc.fillRect(0,0,2304,1024);cc.filter='saturate(.34) contrast(.64) brightness(.77) blur(.65px)';filters++;cc.drawImage(P.images.forestFar,0,0,2304,1024);cc.filter='none';cc.fillStyle='#2d424b35';cc.fillRect(0,0,2304,1024);const g=cc.createLinearGradient(0,480,0,1024);g.addColorStop(0,'#293d4600');g.addColorStop(1,'#293d46');cc.fillStyle=g;cc.fillRect(0,480,2304,544);}const raw=G.HonroVisualStyle.raw(c),q=E.act1BackdropFrame(scene,w,h,b,2304,1024),paint=cc=>{cc.fillStyle='#293d46';cc.fillRect(0,0,w,h);cc.drawImage(far,q.x,q.y,q.w,q.h);};if(!scene._screenRaster(raw,['stage9',P.appearanceKey(),w,h,scene.x,scene.y,scene.scale].join(':'),w,h,paint,'_screenBackgroundCache',false))paint(raw);scene.environmentStats={groups:1,visibleAssets:1,cachedPaths:0,animatedPrimitives:0};return true;}
@@ -684,7 +684,7 @@ await yieldIfNeeded();
 'use strict';
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===10&&!b.honroCustom&&b.honroMap?.stage10LocationPaint?.revision===1,ids=['forestFar','forestRock','forestSoil','guardianTree10','guardianHall10','ritualCorridor9'];
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===10&&!b.honroCustom&&b.honroMap?.stage10LocationPaint?.revision===1,ids=['forestFar','forestRock','forestSoil','guardianTree10','guardianHall10','ritualCorridor9'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);},pictures=new Map(),patterns=new WeakMap();let far,beam,filters=0;
 function picture(id){if(pictures.has(id))return pictures.get(id);const im=P.images[id],cv=document.createElement('canvas');cv.width=(im.naturalWidth||im.width);cv.height=(im.naturalHeight||im.height);const c=cv.getContext('2d');c.filter=id==='guardianTree10'?'saturate(.64) contrast(.93) brightness(.87)':'saturate(.66) contrast(.92) brightness(.86)';filters++;c.drawImage(im,0,0);c.filter='none';pictures.set(id,cv);return cv;}
 function background(c,w,h,b,scene){if(!ready(b))return false;if(!far){far=document.createElement('canvas');far.width=2304;far.height=1024;const cc=far.getContext('2d');cc.fillStyle='#293d46';cc.fillRect(0,0,2304,1024);cc.filter='saturate(.34) contrast(.64) brightness(.70) blur(.65px)';filters++;cc.drawImage(P.images.forestFar,0,0,2304,1024);cc.filter='none';cc.fillStyle='#2d424b35';cc.fillRect(0,0,2304,1024);const g=cc.createLinearGradient(0,480,0,1024);g.addColorStop(0,'#293d4600');g.addColorStop(1,'#293d46');cc.fillStyle=g;cc.fillRect(0,480,2304,544);}const raw=G.HonroVisualStyle.raw(c),q=E.act1BackdropFrame(scene,w,h,b,2304,1024),paint=cc=>{cc.fillStyle='#293d46';cc.fillRect(0,0,w,h);cc.drawImage(far,q.x,q.y,q.w,q.h);};if(!scene._screenRaster(raw,['stage10',P.appearanceKey(),w,h,scene.x,scene.y,scene.scale].join(':'),w,h,paint,'_screenBackgroundCache',false))paint(raw);scene.environmentStats={groups:1,visibleAssets:1,cachedPaths:0,animatedPrimitives:0};return true;}
@@ -815,7 +815,7 @@ await yieldIfNeeded();
 // Stage1 approved transparent near + independent screen-space far. The source
 // playable near is unchanged; a cached non-colliding fringe joins its cut edges.
 const S=G.HonroScene.prototype,P=G.HonroPaintedPilots,L=G.HonroQuietLayeredArt;
-const active=b=>b?.honroStage===1&&!b.honroCustom&&b.honroMap?.stage1ImageFirst?.quietLayers===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===1&&!b.honroCustom&&b.honroMap?.stage1ImageFirst?.quietLayers===1;
 let lastPresentation;
 const ready=b=>{if(!active(b))return false;lastPresentation=b.honroMap.stage1ImageFirst;return L.readySections(lastPresentation);},damageKey=b=>b.terrain.filter(t=>t.broken).map(t=>t.id).join(',');
 const oldBackground=S.background;S.background=function(c,w,h,b){if(!active(b))return oldBackground.call(this,c,w,h,b);ready(b);L.background(this,c,w,h,b);};
@@ -839,7 +839,7 @@ await yieldIfNeeded();
 (function(G){'use strict';
 // Stage2 uses the same independent approved far and its own transparent near.
 const S=G.HonroScene.prototype,P=G.HonroPaintedPilots,L=G.HonroQuietLayeredArt;
-const active=b=>b?.honroStage===2&&!b.honroCustom&&b.honroMap?.stage2ImageFirst?.quietLayers===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===2&&!b.honroCustom&&b.honroMap?.stage2ImageFirst?.quietLayers===1;
 const ready=b=>active(b)&&L.ready('stage2QuietNear');
 // While the archer holds the original high perch, keep both his firing edge
 // and the procession road in automatic view. Manual pan/zoom, dialogue and
@@ -856,6 +856,7 @@ const marker=G.HonroAct1StoryArt.marker;G.HonroAct1StoryArt.marker=function(scen
 const key=S._worldCacheKey;S._worldCacheKey=function(b,w){return key.call(this,b,w)+(active(b)?':stage2-high-cliffs3:'+P.appearanceKey():'');};
 G.HonroPaintedPresentation.register({id:'stage2-quiet-layered',active,naturalEdges:true,cachedWorld:true});
 G.HonroStage2ImageFirstArt={active,ready,cacheStats:()=>({...L.cacheStats(),requestedImages:['quietFar','stage2QuietNear'].filter(id=>P.images[id]).length,maxImages:2})};
+G.HonroStage2ImageFirstArt.overwatch=overwatch;
 })(globalThis);
 
 })();
@@ -865,7 +866,7 @@ await yieldIfNeeded();
 'use strict';
 (function(G){'use strict';
 const S=G.HonroScene.prototype,P=G.HonroPaintedPilots,L=G.HonroQuietLayeredArt,clips=new WeakMap();
-const active=b=>b?.honroStage===3&&!b.honroCustom&&b.honroMap?.stage3ImageFirst?.quietLayers===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===3&&!b.honroCustom&&b.honroMap?.stage3ImageFirst?.quietLayers===1;
 const ready=b=>active(b)&&L.ready('stage3QuietNear');
 const background=S.background;S.background=function(c,w,h,b){if(!active(b))return background.call(this,c,w,h,b);ready(b);L.background(this,c,w,h,b);};
 const terrain=S.terrain;S.terrain=function(c,t){if(active(this.battle))return;return terrain.call(this,c,t);};
@@ -886,7 +887,7 @@ await yieldIfNeeded();
 'use strict';
 (function(G){'use strict';
 const S=G.HonroScene.prototype,P=G.HonroPaintedPilots,L=G.HonroQuietLayeredArt;
-const active=b=>b?.honroStage===4&&!b.honroCustom&&b.honroMap?.stage4ImageFirst?.quietLayers===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===4&&!b.honroCustom&&b.honroMap?.stage4ImageFirst?.quietLayers===1;
 const ready=b=>active(b)&&L.ready('stage4QuietNear');
 const background=S.background;S.background=function(c,w,h,b){if(!active(b))return background.call(this,c,w,h,b);ready(b);L.background(this,c,w,h,b);};
 const terrain=S.terrain;S.terrain=function(c,t){if(active(this.battle))return;return terrain.call(this,c,t);};
@@ -901,6 +902,116 @@ const body=S.unitBody;S.unitBody=function(c,u,...args){if(active(this.battle)&&u
 const unit=S.unit;S.unit=function(c,u,...args){if(!active(this.battle)||u.id!=='objective')return unit.call(this,c,u,...args);if(u.dead)return;const z=1/Math.max(.05,this.scale),w=86;c.save();c.translate(u.x,u.y-u.h-18);c.scale(z,z);c.fillStyle='#13232a';c.fillRect(-w/2-2,-2,w+4,9);c.fillStyle='#cab47c';c.fillRect(-w/2,0,w*Math.max(0,u.hp/u.maxHp),5);c.restore();};
 const key=S._worldCacheKey;S._worldCacheKey=function(b,w){return key.call(this,b,w)+(active(b)?':stage4-image-first1:'+Number(!!b.terrain.find(t=>t.id==='burned-gallery')?.broken)+':'+P.appearanceKey():'');};
 G.HonroPaintedPresentation.register({id:'stage4-image-first',active,naturalEdges:true,cachedWorld:true});G.HonroStage4ImageFirstArt={active,ready,cacheStats:()=>({...L.cacheStats(),requestedImages:['quietFar','stage4QuietNear'].filter(id=>P.images[id]).length,maxImages:2})};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/vector-campaign-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Presentation over canonical polygons. Never edits terrain, actors, events or saves.
+const V=G.HonroVectorCampaignArt,K=G.HonroEnvironmentVectorKit,S=G.HonroScene.prototype,C=G.HONRO_CORE;
+const cache=new WeakMap(),landmarks=new WeakMap();
+const displays=new WeakMap(),D=G.HonroTerrainDomain,domainRender=D.render;
+function displayBattle(b){
+ if(!V.active(b)||D.active(b)||!K.STAGE_STYLES[b.honroStage].foundations)return b;
+ const source=domainRender(b),key=b.sceneVersion+':'+b.terrain.filter(t=>t.broken).map(t=>t.id).join(',');let q=displays.get(b);if(q?.key===key&&q.source===source)return q.battle;
+ // Ask the existing domain policy for its coverage. Extend only the explicitly
+ // named flat-bottom foundations, using their old closure as the extension base.
+ const box=D.author({stages:[{width:b.width,height:b.height,terrains:[],metadata:{stageId:b.honroStage}}]}).stages[0].terrainBounds;
+ const ids=K.STAGE_STYLES[b.honroStage].foundations,world=source.map(t=>{
+  if(!ids.includes(t.id)||t.broken||t.oneWay)return t;
+  const points=D.extend(C.poly(t),{width:b.width,height:t.y+t.h,terrainBounds:box,metadata:{stageId:b.honroStage}}),shape=G.HonroMapEngine.solid(t.id,points.map(p=>[p.x,p.y]));
+  return{...t,vertices:shape.vertices,x:shape.x,y:shape.y,w:shape.w,h:shape.h};
+ });
+ const battle=Object.create(b);Object.assign(battle,{honroTerrainBounds:box,honroWorldTerrain:world,honroTerrainDomainVersion:1});displays.set(b,{key,source,battle});return battle;
+}
+D.render=function(b){return domainRender(displayBattle(b));};
+
+function polygon(points){const p=new Path2D();points.forEach((a,i)=>i?p.lineTo(a.x,a.y):p.moveTo(a.x,a.y));p.closePath();return p;}
+function inside(x,y,points){let yes=false;for(let i=0,j=points.length-1;i<points.length;j=i++){const a=points[i],z=points[j];if((a.y>y)!==(z.y>y)&&x<(z.x-a.x)*(y-a.y)/(z.y-a.y)+a.x)yes=!yes;}return yes;}
+function material(t,style){return t.mat==='wood'||t.surfaceKind==='branch'?'wood':t.mat==='water'||t.mat==='ice'||t.mat==='crystal'?'water':t.mat==='earth'||t.surfaceKind==='soil'?'earth':t.mat==='rock'||t.honroCeiling?'rock':style.ground;}
+function canvasPaint(c,p){if(p.type==='color')return p.value;const g=c.createLinearGradient(...p.from,...p.to);for(const [offset,color] of p.stops)g.addColorStop(offset,color);return g;}
+function contextView(c){const m=c.getTransform();return{x:-m.e/m.a,y:-m.f/m.d,w:c.canvas.width/m.a,h:c.canvas.height/m.d};}
+function prepare(b){
+ const source=G.HonroTerrainDomain.render(b),key=[b.sceneVersion,K.REGISTRY_VERSION,b.terrain.filter(t=>t.broken).map(t=>t.id).join(',')].join(':');
+ let q=cache.get(b);if(q?.key===key&&q.source===source)return q;
+ const style=K.STAGE_STYLES[b.honroStage],records=new Map(),solids=source.filter(t=>!t.broken&&!t.oneWay&&!t.honroElementCollision).map(t=>({t,points:C.poly(t)}));let budget=style.maxParts;
+ for(const [index,t] of source.entries()){
+  if(t.broken)continue;const points=C.poly(t);if(points.length<3)continue;
+  const path=polygon(points),mat=material(t,style),edges=new Path2D(),tops=[];
+  const area=points.reduce((sum,a,i)=>{const z=points[(i+1)%points.length];return sum+a.x*z.y-z.x*a.y;},0),sign=area>=0?1:-1;
+  for(let i=0;i<points.length;i++){
+   const a=points[i],z=points[(i+1)%points.length],dx=z.x-a.x,dy=z.y-a.y,len=Math.hypot(dx,dy);if(len<8)continue;
+   const nx=sign*dy/len,ny=-sign*dx/len,mx=(a.x+z.x)/2,my=(a.y+z.y)/2;
+   if(solids.some(other=>other.t.id!==t.id&&inside(mx+nx*3,my+ny*3,other.points)))continue;
+   edges.moveTo(a.x,a.y);edges.lineTo(z.x,z.y);
+   if(ny<-.68&&Math.abs(dx)>65)tops.push({a,z,len,nx,ny});
+  }
+  const instances=[];
+  if(!t.oneWay&&!t.honroElementCollision&&t.w>180&&t.h>90&&budget>0){
+   const count=Math.min(t.w>1300&&t.h>500?3:1,budget),fractions=[[.22,.56,.81],[.69,.29,.88],[.42,.76,.13]][index%3];
+   for(let j=0;j<count;j++){
+    const x=t.x+t.w*fractions[j],edge=tops.find(e=>x>=Math.min(e.a.x,e.z.x)&&x<=Math.max(e.a.x,e.z.x));
+    // Existing polygon topology decides available volume; ceilings use their own mass.
+    const top=edge?edge.a.y+(edge.z.y-edge.a.y)*(x-edge.a.x)/(edge.z.x-edge.a.x):t.y+Math.min(t.h*.4,180);
+    const assetId=style.pieces[(index+j*2)%style.pieces.length],a=K.ASSETS[assetId];if(!a)throw Error('Missing campaign asset '+assetId);
+    if(mat==='wood'||mat==='water')continue;
+    const scale=Math.max(a.scaleRange[0],Math.min(a.scaleRange[1],Math.min(t.w/a.bounds.w*.68,t.h/a.bounds.h*.9))),y=top+Math.min(t.h*.72,a.bounds.h*scale*.88+38);
+    if(!inside(x,y-12,points))continue;
+    instances.push({id:t.id+'/mass-'+j,assetId,palette:style.palette,transform:{x,y,scale,rotation:((index+j)%3-1)*7}});budget--;
+   }
+  }
+  const parts=K.compileScene({instances}),asset={id:'campaign-ground',material:mat,bounds:{x:0,y:0,w:b.width,h:b.height}};
+  records.set(t.id,{path,parts,edges,tops,asset,mat,points});
+ }
+ const scenery=(style.scenery||[]).map(part=>{
+  const anchor=b.honroMapAnchors?.[part.anchor]||{},x=part.x??anchor.x,support=b.terrain.find(t=>t.id===part.support&&!t.broken);if(!support||!Number.isFinite(x))return null;
+  return{id:part.id,assetId:part.assetId,palette:style.palette,transform:{x,y:C.topAt(support,x,anchor.y??support.y),scale:part.scale}};
+ }).filter(Boolean);
+ const sceneryScene=K.compileScene({instances:scenery});
+ for(const part of style.scenery||[])for(const [support,ids] of Object.entries(part.breakLinks||{}))if(b.terrain.find(t=>t.id===support)?.broken)sceneryScene.nodes=sceneryScene.nodes.filter(node=>!ids.some(id=>node.id===part.id+'/'+id));
+ const architecture=K.compileArchitecture(style.architecture,b,{...K,palette:style.palette},C);for(const group of architecture.groups)if(group.clipD)group.clip=new Path2D(group.clipD);
+ q={key,source,records,style,architecture,scenery:sceneryScene,partCount:style.maxParts-budget,builds:(q?.builds||0)+1};cache.set(b,q);return q;
+}
+function paintTerrain(c,t,b){
+ const live=b.terrain.find(v=>v.id===t.id);if(t.broken||live?.broken)return;
+ const q=prepare(b),r=q.records.get(t.id);if(!r||q.architecture.covered.has(t.id))return;
+ c.save();c.fillStyle=canvasPaint(c,K.paintFor(r.asset,'body',q.style.palette));c.fill(r.path);
+ c.save();c.clip(r.path);K.drawCanvas(c,r.parts,{viewBounds:contextView(c)});
+ // Small, broad grain faces follow a timber member; no repeating texture pass.
+ if(r.mat==='wood'){c.strokeStyle=K.paintFor(r.asset,'light',q.style.palette).stops[0][1];c.globalAlpha=.22;c.lineWidth=3;const top=r.tops[0];if(top){c.beginPath();c.moveTo(top.a.x+6,top.a.y+8);c.quadraticCurveTo((top.a.x+top.z.x)/2,(top.a.y+top.z.y)/2+13,top.z.x-6,top.z.y+8);c.stroke();}}c.restore();
+ // Quiet edge cue follows the exact exposed polygon. The debug toggle owns the strong outline.
+ c.strokeStyle=K.paintFor(r.asset,'light',q.style.palette).stops[0][1];c.globalAlpha=.34;c.lineWidth=t.oneWay?2.4:2;c.lineJoin='round';c.stroke(r.edges);c.restore();
+}
+function replacement(l,b){
+ if(!V.active(b))return null;
+ const id=l.asset?.id||'',kind=l.kind||'';
+ if(/guardian|sacred|bell|ritual|gate|waterfall|ferry|village|temple/i.test(id+' '+kind))return null;
+ let assetId;
+ if(/^(giantPine|ancientPine|pine)$/.test(kind)||/rooted-pine|cape-pine|east-pine|old-road-pine/.test(id))assetId=kind==='giantPine'?'pine.landmark':'pine.small';
+ else if(/^(fernPatch|grass)$/.test(kind)||id==='grass_tuft')assetId='grass.sedge';
+ else if(/mockup-granite-(large|small)/.test(id)&&!(l.collisionIds?.length))assetId=id.endsWith('large')?'rock.shoulder':'stone.round';
+ if(!assetId)return null;
+ const style=K.STAGE_STYLES[b.honroStage];if(l.collisionIds?.some(id=>b.terrain.find(t=>t.id===id)?.broken))return {nodes:[]};
+ let prior=landmarks.get(l);const key=style.palette+':'+K.REGISTRY_VERSION;if(prior?.key===key)return prior.compiled;
+ const definition=K.ASSETS[assetId]||K.COMPOSITIONS[assetId],height=l.asset?.bounds?.h*(l.scale||1)|| (assetId==='pine.landmark'?1000:540)*(l.size||1),nativeHeight=definition.bounds.h;
+ const scale=Math.max(definition.scaleRange[0],Math.min(definition.scaleRange[1],height/nativeHeight));
+ const compiled=K.compileScene({instances:[{id:l.id,assetId,palette:style.palette,transform:{x:l.x||0,y:l.y||0,scale,rotation:l.rotation||0,mirror:!!l.flip}}]});landmarks.set(l,{key,compiled});return compiled;
+}
+const priorStatic=S._drawStaticWorldCached;S._drawStaticWorldCached=function(c,b,w,h){return priorStatic.call(this,c,displayBattle(b),w,h);};
+const priorSkirt=S.terrainSkirt;S.terrainSkirt=function(c,b,w,h){const display=displayBattle(b);if(display!==b){this.overscanStats={bounds:display.honroTerrainBounds,paths:0,unified:true,visualOnly:true};return;}return priorSkirt.call(this,c,b,w,h);};
+const priorLayer=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){priorLayer.call(this,c,list,layer);if(layer==='structural-back'&&V.active(this.battle)){const q=prepare(this.battle),view=contextView(c);K.drawCanvas(c,q.scenery,{viewBounds:view});for(const group of q.architecture.groups){c.save();if(group.clip)c.clip(group.clip);K.drawCanvas(c,group.compiled,{viewBounds:view});c.restore();}}};
+const priorTerrain=S.terrain;S.terrain=function(c,t){if(!V.active(this.battle)||t.honroQuestTarget||t.device||t.honroSeal||([18,19].includes(this.battle.honroStage)&&/^sb-(bell-|inner-)/.test(t.id))||(this.battle.honroStage===30&&['sf-settled-barge','sf-outbank-screen'].includes(t.id)))return priorTerrain.call(this,c,t);return paintTerrain(c,t,this.battle);};
+const priorLandmark=S.landmark;S.landmark=function(c,l){const replacementScene=replacement(l,this.battle);if(replacementScene){K.drawCanvas(c,replacementScene,{viewBounds:contextView(c)});return;}return priorLandmark.call(this,c,l);};
+const targetArt=new WeakMap(),priorUnitBody=S.unitBody;
+S.unitBody=function(c,u,charge=0){const id=V.active(this.battle)&&K.STAGE_STYLES[this.battle.honroStage].unitArt?.[u.id];if(!id)return priorUnitBody.call(this,c,u,charge);const asset=K.ASSETS[id],key=[id,u.x,u.y,u.h,K.REGISTRY_VERSION].join(':');let q=targetArt.get(u);if(q?.key!==key){q={key,compiled:K.compileScene({instances:[{id:u.id,assetId:id,palette:K.STAGE_STYLES[this.battle.honroStage].palette,transform:{x:u.x,y:u.y,scale:u.h/asset.bounds.h}}]})};targetArt.set(u,q);}K.drawCanvas(c,q.compiled);};
+const priorVisible=S._landmarkVisible;S._landmarkVisible=function(l,view,pad=40){const q=replacement(l,this.battle);if(!q)return priorVisible.call(this,l,view,pad);return q.nodes.some(n=>n.bounds.x+n.bounds.w+pad>=view.left&&n.bounds.x-pad<=view.right&&n.bounds.y+n.bounds.h+pad>=view.top&&n.bounds.y-pad<=view.bottom);};
+const priorBackground=S.background;S.background=function(c,w,h,b){if(V.active(b)&&b.honroStage===2&&b.honroMap?.stage2ImageFirst)G.HonroStage2ImageFirstArt.overwatch(this,w,h,b);const style=V.active(b)&&K.STAGE_STYLES[b.honroStage],far=style?.far,P=G.HonroPaintedPilots;if(!far||!P)return priorBackground.call(this,c,w,h,b);P.request([far]);if(!P.ready(far)){const raw=G.HonroVisualStyle.raw(c);raw.fillStyle='#59666a';raw.fillRect(0,0,w,h);return;}const image=P.images[far],raw=G.HonroVisualStyle.raw(c),scale=Math.max(w/image.naturalWidth,h/image.naturalHeight),width=image.naturalWidth*scale,height=image.naturalHeight*scale;raw.drawImage(image,(w-width)/2,(h-height)/2,width,height);raw.fillStyle='#334a502b';raw.fillRect(0,0,w,h);};
+const priorKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return priorKey.call(this,b,w)+(V.active(b)?':shared-vector:'+K.REGISTRY_VERSION+':'+K.STAGE_STYLES[b.honroStage].palette:'');};
+G.HonroPaintedPresentation.providers.unshift({id:'shared-vector-campaign',active:V.active,naturalEdges:true,cachedWorld:true});
+Object.assign(V,{prepare,stats:b=>{const q=prepare(b);return{stage:b.honroStage,style:q.style.place,palette:q.style.palette,polygons:q.records.size,parts:q.partCount,builds:q.builds,missingAssets:[],domain:G.HonroTerrainDomain.active(b),visualDomain:D.active(displayBattle(b)),scenery:q.scenery.nodes.length};}});
 })(globalThis);
 
 })();

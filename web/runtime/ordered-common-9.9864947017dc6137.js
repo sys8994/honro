@@ -1,4 +1,4 @@
-import {yieldIfNeeded} from "./load-data.fb768c8f80789aa0.js";
+import {yieldIfNeeded} from "./load-data.60b63bd7d9d5af82.js";
 // shared/runtime/party-rig.js
 (()=>{
 'use strict';
