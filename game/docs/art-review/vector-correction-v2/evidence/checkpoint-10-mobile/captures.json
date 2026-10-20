@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:6b88e7fd960a5e636be4b4ebbafbea3f35535c5ae4fab1e338aff6a02b70b1a7",
+  "sourceHashAfter": "sha256:6b88e7fd960a5e636be4b4ebbafbea3f35535c5ae4fab1e338aff6a02b70b1a7",
+  "mode": "mobile",
+  "rows": [
+    {
+      "id": "checkpoint-10-mobile-stage01-mobile",
+      "sourceHash": "sha256:6b88e7fd960a5e636be4b4ebbafbea3f35535c5ae4fab1e338aff6a02b70b1a7",
+      "stage": 1,
+      "view": "mobile",
+      "camera": {
+        "x": 2400,
+        "y": 2140,
+        "scale": 0.4
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/checkpoint-10-mobile/stage01-mobile.png",
+        "sha256": "fdbb833fd44aec34885321c8d3f5885ca70d4a1b99f650cf1a01ab907ba939b1"
+      },
+      "art": {
+        "stage": 1,
+        "style": "고갯길 산림",
+        "palette": "forest",
+        "polygons": 10,
+        "parts": 0,
+        "materialRevision": "local-fracture-planes-7",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 32
+      },
+      "pure": true
+    },
+    {
+      "id": "checkpoint-10-mobile-stage03-mobile",
+      "sourceHash": "sha256:6b88e7fd960a5e636be4b4ebbafbea3f35535c5ae4fab1e338aff6a02b70b1a7",
+      "stage": 3,
+      "view": "mobile",
+      "camera": {
+        "x": 3100,
+        "y": 1400,
+        "scale": 0.4
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/checkpoint-10-mobile/stage03-mobile.png",
+        "sha256": "8016d79e5e9afaa92eeb4acc28d6217d819e7ac9202bdfb78a1a680483137bf1"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "local-fracture-planes-7",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    }
+  ],
+  "errors": []
+}

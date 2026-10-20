@@ -1,19 +1,31 @@
 """Capture only the artwork under review; no engine step or gameplay tour.
 Usage: python tools/environment/capture-vector-art-candidate.py TAG MODE
 MODE representative | overview | mobile | rest. HONRO_OVERLAY=1 uses source overlays.
+HONRO_STAGES=1,3 limits capture scope; HONRO_CAPTURE_OUTPUT sets a repository-relative
+artifact parent. A capture tag is immutable: existing output is never overwritten.
 """
 from pathlib import Path
 from playwright.sync_api import sync_playwright
-import subprocess,json,sys,os,hashlib
+import subprocess,json,sys,os,hashlib,re
 ROOT=Path(__file__).resolve().parents[2]
 tag=sys.argv[1];mode=sys.argv[2] if len(sys.argv)>2 else 'representative'
-out=ROOT/'_local/reports/vector-art-correction-v2'/tag;out.mkdir(parents=True,exist_ok=True)
+assert re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]*',tag),'simple capture tag required'
+assert mode in {'representative','overview','mobile','rest'},'known capture mode required'
+capture_base=Path(os.environ.get('HONRO_CAPTURE_OUTPUT','_local/reports/vector-art-correction-v2'))
+assert not capture_base.is_absolute() and '..' not in capture_base.parts,'repository-relative capture output required'
+out=ROOT/capture_base/tag
+cursor=ROOT
+for segment in (capture_base/tag).parts:
+ cursor=cursor/segment;assert not cursor.is_symlink(),'capture output cannot follow symlinks'
+out.mkdir(parents=True,exist_ok=False)
 source_hash=lambda:subprocess.check_output(['node','tools/release/art-review.mjs','hash'],cwd=ROOT,text=True).strip()
 before_hash=source_hash();rows=[];errors=[]
 views={1:[('normal',2400,2300,.6),('wide',3000,1900,.22)],3:[('normal',3100,1550,.65),('wide',2100,1450,.24)],18:[('normal',1200,6200,.5),('wide',6800,5800,.12)],21:[('normal',2277,2460,.6),('wide',4700,2600,.15)]}
 if mode=='overview':views={n:[] for n in range(1,31)}
 if mode=='mobile':views={1:[('mobile',2400,2140,.4)],3:[('mobile',3100,1400,.4)],18:[('mobile',700,5890,.35)],21:[('mobile',2277,2400,.35)]}
 if mode=='rest':views={n:[] for n in [1,3,18,21]}
+if os.environ.get('HONRO_STAGES'):
+ selected={int(n) for n in os.environ['HONRO_STAGES'].split(',')};views={n:v for n,v in views.items() if n in selected}
 width,height=(390,844) if mode=='mobile' else (1440,960)
 with sync_playwright() as p:
  browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage']);page=browser.new_page(viewport={'width':width,'height':height},device_scale_factor=1);page.on('pageerror',lambda e:errors.append(str(e)))

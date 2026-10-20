@@ -8,3 +8,5 @@
 | 3 | [b02](baseline-b02-stage03-normal.png) | [현재](current-stage03-normal.png) | 바위가 5H 이상으로 크고 면이 빈다. 굵은 지그재그 균열 반복, 얇은 떠 있는 뿌리, 토양·중간 돌·수풀의 계층이 부족하다. |
 
 Stage18 동굴의 큰 빈 면과 Stage21 도시 기단도 미해결이다. 최종 전체 검수와 부모 승인 기록은 없다. 공개 build는 차단 상태이며 master/Pages는 보류한다.
+
+동일 소스의 실제 모바일 원본: [숲](../evidence/checkpoint-10-mobile/stage01-mobile.png), [나루](../evidence/checkpoint-10-mobile/stage03-mobile.png). 두 화면에서도 거대 암면·수관의 단순함이 남아 fail이다. 해당 폴더 `captures.json`에 원본 촬영 메타데이터를 보존했다.
