@@ -2,7 +2,7 @@
 
 상층 1000 길이 평면의 난간이 그림뿐이라 낮은 직사를 막지 못했다. 같은 r29-high-road polygon 윗면에 높이95 석제 정비 받침과 보행 경사를 만들고 사수 한 체의 발 Y를 맞췄다. 다른 장·하층·출구·목표/이벤트/대사·27명/정예7 예산은 보존한다. 29장 지도 revision만2로 올려 이전 전투는 입구 재시작하며 성장·장착·진도를 유지한다.
 
-국소 실제 실탄 전130→후0/받침 위148 피해, 왕복 기본 보행·기존 A 출구 선택·revision 폐기/재생성 계약·Native 전후 확인 통과. 공통 App harness 시작 hook이 최신 코드와 달라 앱 저장 UI는 미검증이며 전체 verify·다른9장 재플레이·정상 완주는 미실행. [설계와 범위](plans/2026-10-20-act3-terrain-continuation.md), [화면/배포 기록](../../review/act3-terrain-continuation/README.md).
+국소 실제 실탄 전130→후0/받침 위148 피해, 왕복 기본 보행·기존 A 출구 선택·revision 폐기/재생성 계약·Native 전후 확인 통과. 공통 App harness 시작 hook 불일치는 수정하지 않고 production Chromium의 실제 localStorage 재로드/Continue로 보완해 입구 재시작과 성장·장착·진도 보존을 확인했다. build·29장 진입/받침 횡단 통과, pageerror0. 전체 verify·다른9장 재플레이·정상 완주는 미실행. [설계와 범위](plans/2026-10-20-act3-terrain-continuation.md), [화면/배포 기록](../../review/act3-terrain-continuation/README.md).
 
 ## 2026-10-20 — 병렬 완료분 복구 통합
 

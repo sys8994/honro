@@ -2382,7 +2382,7 @@
       "shared/runtime/act3-objectives.js and chapter-specific controllers",
       "shared/runtime/act3-content.js / objective-revision.js overrides"
     ],
-    "validation": "29장 지형 후속: 동일 M01 실탄은 변경 전130/변경 후0 피해로 차폐되고 받침 위 사격148 피해. 양방향 무점프 보행·기존 상층 출구 선택·revision1 폐기/29장 재생성과 성장/장착/진도 보존 통과. Native 동일 카메라 전후 확인. 공통 App harness 시작 hook 불일치로 App 저장 UI 미검증; 정상 완주·나머지9장 재플레이·전체 verify 미실행.",
+    "validation": "29장 지형 후속: 동일 M01 실탄은 변경 전130/변경 후0 피해로 차폐되고 받침 위 사격148 피해. 양방향 무점프 보행·기존 상층 출구 선택·revision1 폐기/29장 재생성과 성장/장착/진도 보존 통과. Native 동일 카메라 전후 확인. 공통 App harness는 시작 hook 불일치로 미실행. build 뒤 production Chromium의 29장 진입·받침 횡단과 localStorage 재로드/실제 Continue로 revision 재시작/성장·장착·진도 보존을 확인(pageerror0); 정상 완주·나머지9장 재플레이·전체 verify 미실행.",
     "campaignMapRevision": 2
   },
   {
