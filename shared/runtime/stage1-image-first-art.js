@@ -2,7 +2,7 @@
 // Stage1 approved transparent near + independent screen-space far. The source
 // playable near is unchanged; a cached non-colliding fringe joins its cut edges.
 const S=G.HonroScene.prototype,P=G.HonroPaintedPilots,L=G.HonroQuietLayeredArt;
-const active=b=>b?.honroStage===1&&!b.honroCustom&&b.honroMap?.stage1ImageFirst?.quietLayers===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===1&&!b.honroCustom&&b.honroMap?.stage1ImageFirst?.quietLayers===1;
 let lastPresentation;
 const ready=b=>{if(!active(b))return false;lastPresentation=b.honroMap.stage1ImageFirst;return L.readySections(lastPresentation);},damageKey=b=>b.terrain.filter(t=>t.broken).map(t=>t.id).join(',');
 const oldBackground=S.background;S.background=function(c,w,h,b){if(!active(b))return oldBackground.call(this,c,w,h,b);ready(b);L.background(this,c,w,h,b);};

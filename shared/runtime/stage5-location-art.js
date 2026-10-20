@@ -1,6 +1,6 @@
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,A=G.HonroEnvironmentArt,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt,W=G.HonroStage5WaterGeometry;
-const active=b=>G.HonroStage5Waterfall.active(b)&&b.honroMap?.stage5Paint?.version===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&G.HonroStage5Waterfall.active(b)&&b.honroMap?.stage5Paint?.version===1;
 const ids=['valleyFar','water5','cliff5','forestRock','forestSoil','pineA','bark'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);};
 const pictures=new Map(),trees=new WeakMap(),caves=new WeakMap(),paths=new Map();let far,waterStates,ribbonCard,poolCard,headCard,foamCard,filterPasses=0;

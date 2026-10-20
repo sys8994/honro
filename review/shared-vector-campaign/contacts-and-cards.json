@@ -1,0 +1,347 @@
+{
+  "platformContact": {
+    "id": "pine-branch-east",
+    "expected": 1898.5605625,
+    "actual": 1898.5605625,
+    "error": 0
+  },
+  "brokenBranchRemovedParts": [
+    "choice-pine/middle-right",
+    "choice-pine/middle-right-crown",
+    "choice-pine/right-fork-crown"
+  ],
+  "stage27VaultCollisionIds": [
+    "masonry-vault:collision:0"
+  ],
+  "stage27CollisionPolygons": 25,
+  "cards": [
+    {
+      "stage": 1,
+      "name": "연목 고갯길",
+      "goal": "연목 나루로 가는 고갯길 통과",
+      "requires": [],
+      "active": 2,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 2,
+      "name": "상여 위의 높은 길",
+      "goal": "능선 위에서 장례 행렬을 끝까지 엄호",
+      "requires": [
+        1
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 3,
+      "name": "나루의 남은 장부",
+      "goal": "홍만의 나루 움막에서 장부 회수",
+      "requires": [
+        2
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 4,
+      "name": "문 밖에 남은 사람들",
+      "goal": "피란민이 빠져나갈 때까지 연목 입구를 방어",
+      "requires": [
+        3
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 5,
+      "name": "폭포 틈의 한 발",
+      "goal": "받이진을 지키며 절벽 틈의 고리쇠 파괴",
+      "requires": [
+        4
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 6,
+      "name": "끊어진 나무다리",
+      "goal": "부상자 운반대를 북문 쉼터까지 호송",
+      "requires": [
+        5
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 7,
+      "name": "살아 있는 사람을 꺼내는 법",
+      "goal": "들린 주민 셋을 죽이지 않고 구조",
+      "requires": [
+        6
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 8,
+      "name": "돌아오는 빈 상여",
+      "goal": "결박을 풀고 빈 상여를 멈춰 주민의 귀환로 확보",
+      "requires": [
+        7
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 9,
+      "name": "바람 없는 마당",
+      "goal": "주민을 대피시키고 두 받이진 준비",
+      "requires": [
+        8
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 10,
+      "name": "소단 — 놓지 못한 밤",
+      "goal": "바깥 주박을 걷고 소단과 함께 밀려드는 원혼 막기",
+      "requires": [
+        9
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 11,
+      "name": "매듭을 거둔 아침",
+      "goal": "두 매듭의 들림을 제압하고 소단의 해체 작업과 주민을 지켜 북쪽 흔적을 찾기",
+      "requires": [
+        10
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 12,
+      "name": "돌아오는 산길",
+      "goal": "길표의 진을 풀고 높은 작업굴 또는 열린 내리막으로 이탈",
+      "requires": [
+        11
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 13,
+      "name": "숨은 석문",
+      "goal": "석공을 구조하고 석문 빗장을 열어 마을 입구에 도착",
+      "requires": [
+        12
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 14,
+      "name": "해가 닿지 않는 마을",
+      "goal": "상·중·하층 주민을 구조하고 피난 다리를 6턴 방어한 뒤 마을 소탕",
+      "requires": [
+        13
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 15,
+      "name": "물 아래의 길",
+      "goal": "옛 흔적을 확인하고 배수한 낮은 길 또는 고지로 통과",
+      "requires": [
+        14
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 16,
+      "name": "잠운사",
+      "goal": "승려를 구해 증언과 열쇠를 받고 동쪽 기록함 조사",
+      "requires": [
+        15
+      ],
+      "active": 4,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 17,
+      "name": "두드리는 벽",
+      "goal": "인양틀을 복구하고 방어해 종지기의 작업 기록 확보",
+      "requires": [
+        16
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 18,
+      "name": "묵종",
+      "goal": "억제진과 장력 고정구를 함께 안정시켜 대종을 내리고, 누출혼과 종지기 제압",
+      "requires": [
+        17
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 19,
+      "name": "종 안의 사람들",
+      "goal": "가족과 세 혼의 만남을 마친 뒤 옛 이송 표식 확인",
+      "requires": [
+        18
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 20,
+      "name": "다시 하늘 아래",
+      "goal": "생존자 행렬을 중간 쉼터와 바깥 산길까지 호송",
+      "requires": [
+        19
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 21,
+      "name": "성문 아래",
+      "goal": "주민 구조와 길목 방어 후 성문 안 출구에 도착",
+      "requires": [
+        20
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 22,
+      "name": "옛 장부",
+      "goal": "사건 보고와 호적을 확보·대조하고 관창 출구에 도착",
+      "requires": [
+        21
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 23,
+      "name": "사라진 짐",
+      "goal": "악귀가 막은 하역길을 열고 짐꾼과 운송 기록을 지켜 통과",
+      "requires": [
+        22
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 24,
+      "name": "휘겸의 문장",
+      "goal": "옛 문장을 따라 잠긴 사당과 토지 장부 확인",
+      "requires": [
+        23
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 25,
+      "name": "물 아래 묶인 이름",
+      "goal": "축지진목으로 물길을 건너 생활물품의 번호 확인",
+      "requires": [
+        24
+      ],
+      "active": 2,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 26,
+      "name": "지상에 남은 증언",
+      "goal": "선조의 조사문서와 공방 작업기록 확보",
+      "requires": [
+        25
+      ],
+      "active": 2,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 27,
+      "name": "검은 집하장",
+      "goal": "석대들을 축지진목으로 이어 가족 번호 대조",
+      "requires": [
+        26
+      ],
+      "active": 2,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 28,
+      "name": "지운 이름과 남은 명령",
+      "goal": "불길을 막고 합류해 청원서와 은폐 기록 확보",
+      "requires": [
+        27
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 29,
+      "name": "현묵의 글",
+      "goal": "현묵의 글을 확보하고 높은 수문길 또는 점검다리로 이탈",
+      "requires": [
+        28
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    },
+    {
+      "stage": 30,
+      "name": "남겨진 길",
+      "goal": "세 기록을 대조하고 나루 방어 후 동행 전원 집결",
+      "requires": [
+        29
+      ],
+      "active": 3,
+      "win": null,
+      "fail": null
+    }
+  ]
+}

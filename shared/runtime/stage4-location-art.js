@@ -1,6 +1,6 @@
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===4&&b.honroMap?.stage4Gate?.version===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===4&&b.honroMap?.stage4Gate?.version===1;
 const ids=['gateFar','gate4','watch4','burned4','forestSoil','forestRock','pineA','pineB','dead','roots','bark'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);};
 const pictures=new Map(),patterns=new WeakMap(),trees=new WeakMap();let far,soilCards,filterPasses=0;

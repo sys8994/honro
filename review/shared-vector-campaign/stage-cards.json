@@ -1,0 +1,1999 @@
+[
+  {
+    "stage": 1,
+    "id": "stage-1",
+    "name": "연목 고갯길",
+    "storyConnection": {
+      "requires": [],
+      "next": 2
+    },
+    "goal": "연목 나루로 가는 고갯길 통과",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      6000,
+      3000
+    ],
+    "vertical": false,
+    "place": "고갯길 산림",
+    "preservedIds": {
+      "objectives": [
+        "campaign-goal"
+      ],
+      "markers": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "marker-7"
+      ],
+      "events": [
+        "cart",
+        "more",
+        "witness",
+        "ridge"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 8,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 2,
+    "id": "stage-2",
+    "name": "상여 위의 높은 길",
+    "storyConnection": {
+      "requires": [
+        1
+      ],
+      "next": 3
+    },
+    "goal": "능선 위에서 장례 행렬을 끝까지 엄호",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      3678.4,
+      2070.2000000000003
+    ],
+    "vertical": false,
+    "place": "상여길과 높은 사격턱",
+    "preservedIds": {
+      "objectives": [
+        "campaign-goal"
+      ],
+      "markers": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6"
+      ],
+      "events": [
+        "procession-seen",
+        "road-pressure",
+        "sniper-seen",
+        "right-cliff",
+        "last-flight"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 12,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 3,
+    "id": "stage-3",
+    "name": "나루의 남은 장부",
+    "storyConnection": {
+      "requires": [
+        2
+      ],
+      "next": 4
+    },
+    "goal": "홍만의 나루 움막에서 장부 회수",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      4276.8,
+      1779.8000000000002
+    ],
+    "vertical": false,
+    "place": "나루와 장부 보관처",
+    "preservedIds": {
+      "objectives": [
+        "campaign-goal"
+      ],
+      "markers": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "ledger",
+        "habitat-3-0",
+        "habitat-3-1"
+      ],
+      "events": [
+        "midboss-stage3-seen",
+        "dock-beasts",
+        "transfer"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 13,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 4,
+    "id": "stage-4",
+    "name": "문 밖에 남은 사람들",
+    "storyConnection": {
+      "requires": [
+        3
+      ],
+      "next": 5
+    },
+    "goal": "피란민이 빠져나갈 때까지 연목 입구를 방어",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      3420.8,
+      1177.6000000000001
+    ],
+    "vertical": false,
+    "place": "피란문과 탄 회랑",
+    "preservedIds": {
+      "objectives": [
+        "campaign-goal"
+      ],
+      "markers": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "habitat-4-0",
+        "habitat-4-1"
+      ],
+      "events": [
+        "siege-0",
+        "siege-1"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 14,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 5,
+    "id": "stage-5",
+    "name": "폭포 틈의 한 발",
+    "storyConnection": {
+      "requires": [
+        4
+      ],
+      "next": 6
+    },
+    "goal": "받이진을 지키며 절벽 틈의 고리쇠 파괴",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      5300,
+      5000
+    ],
+    "vertical": false,
+    "place": "폭포 암벽과 물 틈",
+    "preservedIds": {
+      "objectives": [
+        "campaign-goal"
+      ],
+      "markers": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "receiver-5",
+        "habitat-5-0",
+        "habitat-5-1"
+      ],
+      "events": [
+        "lower-beasts-warning",
+        "lower-beasts",
+        "bell"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 21,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 6,
+    "id": "stage-6",
+    "name": "끊어진 나무다리",
+    "storyConnection": {
+      "requires": [
+        5
+      ],
+      "next": 7
+    },
+    "goal": "부상자 운반대를 북문 쉼터까지 호송",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      6600,
+      3800
+    ],
+    "vertical": false,
+    "place": "끊어진 목교",
+    "preservedIds": {
+      "objectives": [
+        "campaign-goal"
+      ],
+      "markers": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "marker-7"
+      ],
+      "events": [
+        "midboss-stage6-seen",
+        "bridge-crows",
+        "bridge-boars",
+        "pursuit"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 21,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 7,
+    "id": "stage-7",
+    "name": "살아 있는 사람을 꺼내는 법",
+    "storyConnection": {
+      "requires": [
+        6
+      ],
+      "next": 8
+    },
+    "goal": "들린 주민 셋을 죽이지 않고 구조",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      3600,
+      5000
+    ],
+    "vertical": true,
+    "place": "뿌리 사이 산비탈 마을",
+    "preservedIds": {
+      "objectives": [
+        "campaign-goal"
+      ],
+      "markers": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "resident-marker-1",
+        "resident-marker-2",
+        "resident-marker-3",
+        "habitat-7-0",
+        "habitat-7-1"
+      ],
+      "events": [
+        "yard-hounds",
+        "upper-crows"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 22,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 8,
+    "id": "stage-8",
+    "name": "돌아오는 빈 상여",
+    "storyConnection": {
+      "requires": [
+        7
+      ],
+      "next": 9
+    },
+    "goal": "결박을 풀고 빈 상여를 멈춰 주민의 귀환로 확보",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      9600,
+      5500
+    ],
+    "vertical": false,
+    "place": "빈 상여가 돌아오는 마당",
+    "preservedIds": {
+      "objectives": [
+        "campaign-goal"
+      ],
+      "markers": [
+        "marker-2",
+        "marker-4",
+        "marker-6"
+      ],
+      "events": [
+        "stage8-first-seal",
+        "stage8-settled-crows",
+        "stage8-low-health"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 39,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 9,
+    "id": "stage-9",
+    "name": "바람 없는 마당",
+    "storyConnection": {
+      "requires": [
+        8
+      ],
+      "next": 10
+    },
+    "goal": "주민을 대피시키고 두 받이진 준비",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      3600,
+      3500
+    ],
+    "vertical": false,
+    "place": "바람 없는 의식 마당",
+    "preservedIds": {
+      "objectives": [
+        "campaign-goal"
+      ],
+      "markers": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "receiver-west",
+        "receiver-east",
+        "habitat-9-0",
+        "habitat-9-1"
+      ],
+      "events": [
+        "evac-beasts",
+        "evac-crows"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 24,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 10,
+    "id": "stage-10",
+    "name": "소단 — 놓지 못한 밤",
+    "storyConnection": {
+      "requires": [
+        9
+      ],
+      "next": 11
+    },
+    "goal": "바깥 주박을 걷고 소단과 함께 밀려드는 원혼 막기",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      5000,
+      3900
+    ],
+    "vertical": false,
+    "place": "주술목과 마지막 밤",
+    "preservedIds": {
+      "objectives": [
+        "campaign-goal"
+      ],
+      "markers": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "receiver-west",
+        "receiver-east"
+      ],
+      "events": [
+        "sodan-hounds"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 18,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 11,
+    "id": "stage-11",
+    "name": "매듭을 거둔 아침",
+    "storyConnection": {
+      "requires": [
+        10
+      ],
+      "next": 12
+    },
+    "goal": "두 매듭의 들림을 제압하고 소단의 해체 작업과 주민을 지켜 북쪽 흔적을 찾기",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      16000,
+      12000
+    ],
+    "vertical": false,
+    "place": "산길과 깊은 계곡",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "knot-west",
+        "clear-west",
+        "knot-east",
+        "wave-hold-knots",
+        "hold-knots",
+        "resident",
+        "clear-road",
+        "trace",
+        "wave"
+      ],
+      "events": [
+        "ravine-response-west-return",
+        "ravine-response-saddle-wings",
+        "ravine-response-ravine-crosswind",
+        "ravine-response-ritual-west-pursuit",
+        "ravine-response-ritual-east-turn"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 53,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 12,
+    "id": "stage-12",
+    "name": "돌아오는 산길",
+    "storyConnection": {
+      "requires": [
+        11
+      ],
+      "next": 13
+    },
+    "goal": "길표의 진을 풀고 높은 작업굴 또는 열린 내리막으로 이탈",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      11200,
+      8000
+    ],
+    "vertical": false,
+    "place": "되돌아온 산길과 채석터",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "sign",
+        "wave-hold-road",
+        "wave",
+        "route-upper-exit",
+        "route-lower-exit",
+        "route-exit"
+      ],
+      "events": []
+    },
+    "enemyBudget": {
+      "initial": 38,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 13,
+    "id": "stage-13",
+    "name": "숨은 석문",
+    "storyConnection": {
+      "requires": [
+        12
+      ],
+      "next": 14
+    },
+    "goal": "석공을 구조하고 석문 빗장을 열어 마을 입구에 도착",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      8200,
+      6600
+    ],
+    "vertical": false,
+    "place": "숨은 석문",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "resident",
+        "gate",
+        "wave-hold-gate",
+        "exit",
+        "wave"
+      ],
+      "events": []
+    },
+    "enemyBudget": {
+      "initial": 23,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 14,
+    "id": "stage-14",
+    "name": "해가 닿지 않는 마을",
+    "storyConnection": {
+      "requires": [
+        13
+      ],
+      "next": 15
+    },
+    "goal": "상·중·하층 주민을 구조하고 피난 다리를 6턴 방어한 뒤 마을 소탕",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      7600,
+      10400
+    ],
+    "vertical": true,
+    "place": "동굴마을과 수직 생활터",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "clear-upper",
+        "family-upper",
+        "clear-middle",
+        "family-mid",
+        "family-lower",
+        "bridge",
+        "wave-hold-refuge",
+        "hold-refuge",
+        "clear-village",
+        "wave"
+      ],
+      "events": []
+    },
+    "enemyBudget": {
+      "initial": 43,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 15,
+    "id": "stage-15",
+    "name": "물 아래의 길",
+    "storyConnection": {
+      "requires": [
+        14
+      ],
+      "next": 16
+    },
+    "goal": "옛 흔적을 확인하고 배수한 낮은 길 또는 고지로 통과",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      8000,
+      6000
+    ],
+    "vertical": false,
+    "place": "물 아래 수로",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "sluice",
+        "wave-hold-sluice",
+        "groove",
+        "wave",
+        "route-lower-exit",
+        "route-upper-exit",
+        "route-exit"
+      ],
+      "events": []
+    },
+    "enemyBudget": {
+      "initial": 22,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 16,
+    "id": "stage-16",
+    "name": "잠운사",
+    "storyConnection": {
+      "requires": [
+        15
+      ],
+      "next": 17
+    },
+    "goal": "승려를 구해 증언과 열쇠를 받고 동쪽 기록함 조사",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      11000,
+      7600
+    ],
+    "vertical": false,
+    "place": "잠운사 사찰",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "monk",
+        "hall",
+        "wave-hold-hall",
+        "record",
+        "witness",
+        "wave",
+        "clear-rescue-threat"
+      ],
+      "events": [
+        "temple-cloister-answer",
+        "temple-record-answer"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 49,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 17,
+    "id": "stage-17",
+    "name": "두드리는 벽",
+    "storyConnection": {
+      "requires": [
+        16
+      ],
+      "next": 18
+    },
+    "goal": "인양틀을 복구하고 방어해 종지기의 작업 기록 확보",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      11200,
+      8200
+    ],
+    "vertical": false,
+    "place": "벽을 두드리는 작업굴",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "clear-works",
+        "brace",
+        "hoist",
+        "repair",
+        "wave-hold-hoist",
+        "hold-hoist",
+        "clear-lift",
+        "notes",
+        "wave"
+      ],
+      "events": [
+        "worksite-brace-answer",
+        "worksite-axle-answer"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 50,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 18,
+    "id": "stage-18",
+    "name": "묵종",
+    "storyConnection": {
+      "requires": [
+        17
+      ],
+      "next": 19
+    },
+    "goal": "억제진과 장력 고정구를 함께 안정시켜 대종을 내리고, 누출혼과 종지기 제압",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      13600,
+      9600
+    ],
+    "vertical": false,
+    "place": "묵종의 큰 동굴",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "clear-wards",
+        "silence",
+        "wave-hold-silence",
+        "hold-silence",
+        "marker-upper-chain",
+        "leak",
+        "keeper",
+        "clear-bell",
+        "spirit-lamp-0",
+        "wave",
+        "bell-descent",
+        "spirit-lamp-1"
+      ],
+      "events": [
+        "bell-suppression-answer",
+        "bell-descent-answer"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 56,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 19,
+    "id": "stage-19",
+    "name": "종 안의 사람들",
+    "storyConnection": {
+      "requires": [
+        18
+      ],
+      "next": 20
+    },
+    "goal": "가족과 세 혼의 만남을 마친 뒤 옛 이송 표식 확인",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      13600,
+      9600
+    ],
+    "vertical": false,
+    "place": "종 안의 사람들",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "route",
+        "separate-1",
+        "send-1",
+        "separate-2",
+        "send-2",
+        "separate-3",
+        "send-3",
+        "old-soul"
+      ],
+      "events": []
+    },
+    "enemyBudget": {
+      "initial": 0,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 20,
+    "id": "stage-20",
+    "name": "다시 하늘 아래",
+    "storyConnection": {
+      "requires": [
+        19
+      ],
+      "next": 21
+    },
+    "goal": "생존자 행렬을 중간 쉼터와 바깥 산길까지 호송",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      9000,
+      5800
+    ],
+    "vertical": false,
+    "place": "동굴 출구와 하늘",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "clear-mouth",
+        "escort",
+        "escort-mid",
+        "wave-hold-convoy",
+        "hold-convoy",
+        "clear-pass",
+        "escape",
+        "wave"
+      ],
+      "events": []
+    },
+    "enemyBudget": {
+      "initial": 18,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 21,
+    "id": "stage-21",
+    "name": "성문 아래",
+    "storyConnection": {
+      "requires": [
+        20
+      ],
+      "next": 22
+    },
+    "goal": "주민 구조와 길목 방어 후 성문 안 출구에 도착",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      6400,
+      3200
+    ],
+    "vertical": false,
+    "place": "읍성 성문 아래",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "gate-resident",
+        "refuge-hold",
+        "wave-refuge-hold",
+        "city-exit"
+      ],
+      "events": [
+        "act3-response-21-0",
+        "act3-response-21-1"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 26,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 22,
+    "id": "stage-22",
+    "name": "옛 장부",
+    "storyConnection": {
+      "requires": [
+        21
+      ],
+      "next": 23
+    },
+    "goal": "사건 보고와 호적을 확보·대조하고 관창 출구에 도착",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      4800,
+      6600
+    ],
+    "vertical": true,
+    "place": "관청의 옛 장부",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "archive-seal",
+        "ledger-case",
+        "compare-ledgers",
+        "wave-compare-ledgers",
+        "archive-exit",
+        "upper-register"
+      ],
+      "events": [
+        "act3-response-22-0",
+        "act3-response-22-1",
+        "act3-response-22-2"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 30,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 23,
+    "id": "stage-23",
+    "name": "사라진 짐",
+    "storyConnection": {
+      "requires": [
+        22
+      ],
+      "next": 24
+    },
+    "goal": "악귀가 막은 하역길을 열고 짐꾼과 운송 기록을 지켜 통과",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      9800,
+      6200
+    ],
+    "vertical": false,
+    "place": "하역장과 사라진 짐",
+    "preservedIds": {
+      "objectives": [
+        "campaign-objective"
+      ],
+      "markers": [
+        "dispatch-bundle",
+        "carrier-start",
+        "dock-mid",
+        "dock-exit",
+        "route:dock-mid:0",
+        "route:dock-mid:1",
+        "route:dock-mid:2",
+        "route:dock-mid:3",
+        "route:dock-mid:4",
+        "route:dock-mid:5",
+        "route:dock-mid:6",
+        "route:dock-mid:7",
+        "route:dock-mid:8",
+        "route:dock-mid:9",
+        "route:dock-mid:10",
+        "route:dock-mid:11",
+        "route:dock-mid:12",
+        "route:dock-mid:13",
+        "route:dock-mid:14",
+        "route:dock-mid:15",
+        "route:dock-mid:16",
+        "route:dock-mid:17",
+        "route:dock-mid:18",
+        "route:dock-mid:19",
+        "route:dock-mid:20",
+        "route:dock-mid:21",
+        "route:dock-mid:22",
+        "route:dock-exit:0",
+        "route:dock-exit:1",
+        "route:dock-exit:2",
+        "route:dock-exit:3",
+        "route:dock-exit:4",
+        "route:dock-exit:5",
+        "route:dock-exit:6",
+        "route:dock-exit:7",
+        "route:dock-exit:8",
+        "route:dock-exit:9",
+        "route:dock-exit:10",
+        "route:dock-exit:11",
+        "route:dock-exit:12",
+        "route:dock-exit:13",
+        "route:dock-exit:14",
+        "route:dock-exit:15",
+        "route:dock-exit:16",
+        "route:dock-exit:17",
+        "route:dock-exit:18",
+        "route:dock-exit:19",
+        "route:dock-exit:20",
+        "route:dock-exit:21"
+      ],
+      "events": [
+        "act3-response-23-0",
+        "act3-response-23-1",
+        "act3-response-23-2"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 40,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 24,
+    "id": "stage-24",
+    "name": "휘겸의 문장",
+    "storyConnection": {
+      "requires": [
+        23
+      ],
+      "next": 25
+    },
+    "goal": "옛 문장을 따라 잠긴 사당과 토지 장부 확인",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      7000,
+      3300
+    ],
+    "vertical": false,
+    "place": "문장이 남은 사당",
+    "preservedIds": {
+      "objectives": [
+        "campaign-objective"
+      ],
+      "markers": [
+        "family-crest",
+        "shrine-seal",
+        "land-register",
+        "garden-exit",
+        "split-route-a",
+        "split-route-b"
+      ],
+      "events": [
+        "act3-response-24-0",
+        "act3-response-24-1",
+        "act3-response-24-2"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 26,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 25,
+    "id": "stage-25",
+    "name": "물 아래 묶인 이름",
+    "storyConnection": {
+      "requires": [
+        24
+      ],
+      "next": 26
+    },
+    "goal": "축지진목으로 물길을 건너 생활물품의 번호 확인",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      5600,
+      6800
+    ],
+    "vertical": true,
+    "place": "지하 수문과 묶인 이름",
+    "preservedIds": {
+      "objectives": [
+        "campaign-objective"
+      ],
+      "markers": [
+        "stake-arrival-1",
+        "stake-arrival-2",
+        "stake-arrival-3",
+        "stake-arrival-4",
+        "stake-arrival-5",
+        "depot-entry-seal",
+        "household-tally",
+        "waterworks-exit"
+      ],
+      "events": []
+    },
+    "enemyBudget": {
+      "initial": 15,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 26,
+    "id": "stage-26",
+    "name": "지상에 남은 증언",
+    "storyConnection": {
+      "requires": [
+        25
+      ],
+      "next": 27
+    },
+    "goal": "선조의 조사문서와 공방 작업기록 확보",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      7000,
+      3300
+    ],
+    "vertical": false,
+    "place": "지상 공방과 증언",
+    "preservedIds": {
+      "objectives": [
+        "campaign-objective"
+      ],
+      "markers": [
+        "hidden-latch",
+        "investigation-record",
+        "artisan-resident",
+        "casting-tally",
+        "workshop-exit"
+      ],
+      "events": []
+    },
+    "enemyBudget": {
+      "initial": 18,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 27,
+    "id": "stage-27",
+    "name": "검은 집하장",
+    "storyConnection": {
+      "requires": [
+        26
+      ],
+      "next": 28
+    },
+    "goal": "석대들을 축지진목으로 이어 가족 번호 대조",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      8200,
+      7200
+    ],
+    "vertical": false,
+    "place": "검은 지하 집하장",
+    "preservedIds": {
+      "objectives": [
+        "campaign-objective"
+      ],
+      "markers": [
+        "stake-arrival-1",
+        "stake-arrival-2",
+        "stake-arrival-3",
+        "stake-arrival-4",
+        "depot-route-ledger",
+        "family-manifest",
+        "deep-depot-exit"
+      ],
+      "events": []
+    },
+    "enemyBudget": {
+      "initial": 15,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 28,
+    "id": "stage-28",
+    "name": "지운 이름과 남은 명령",
+    "storyConnection": {
+      "requires": [
+        27
+      ],
+      "next": 29
+    },
+    "goal": "불길을 막고 합류해 청원서와 은폐 기록 확보",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      7200,
+      3400
+    ],
+    "vertical": false,
+    "place": "불타는 기록 마당",
+    "preservedIds": {
+      "objectives": [
+        "campaign-objective"
+      ],
+      "markers": [
+        "fire-screen",
+        "water-release",
+        "fire-west",
+        "fire-east",
+        "party-reunion",
+        "petition-record",
+        "closure-order",
+        "suppression-order",
+        "office-exit"
+      ],
+      "events": []
+    },
+    "enemyBudget": {
+      "initial": 20,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 29,
+    "id": "stage-29",
+    "name": "현묵의 글",
+    "storyConnection": {
+      "requires": [
+        28
+      ],
+      "next": 30
+    },
+    "goal": "현묵의 글을 확보하고 높은 수문길 또는 점검다리로 이탈",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      7200,
+      3500
+    ],
+    "vertical": false,
+    "place": "현묵의 기록 공간",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "old-seal",
+        "wave-old-seal",
+        "hyeonmuk-letter",
+        "wave-flight-hold",
+        "route-upper-exit",
+        "route-lower-exit",
+        "route-exit"
+      ],
+      "events": [
+        "act3-response-29-0",
+        "act3-response-29-1",
+        "act3-response-29-2"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 27,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  },
+  {
+    "stage": 30,
+    "id": "stage-30",
+    "name": "남겨진 길",
+    "storyConnection": {
+      "requires": [
+        29
+      ],
+      "next": "campaign ending"
+    },
+    "goal": "세 기록을 대조하고 나루 방어 후 동행 전원 집결",
+    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "currentParticipants": [
+      {
+        "id": "p-archer",
+        "cls": "archer"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist"
+      }
+    ],
+    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "size": [
+      11200,
+      7200
+    ],
+    "vertical": false,
+    "place": "남겨진 길과 마지막 나루",
+    "preservedIds": {
+      "objectives": [],
+      "markers": [
+        "transport-map",
+        "ferry-hold",
+        "old-road",
+        "wave-ferry-hold"
+      ],
+      "events": [
+        "act3-response-30-0",
+        "act3-response-30-1",
+        "act3-response-30-2"
+      ]
+    },
+    "enemyBudget": {
+      "initial": 40,
+      "change": false
+    },
+    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "sopStages": {
+      "1": "preserved; render geometry purity checked",
+      "2": "shared renderer active; inspection for representative stages",
+      "3": "preserved; render unit purity checked",
+      "4": "preserved; no encounter rewrite",
+      "5": "preserved; render event purity checked, no chapter completion claim",
+      "6": "preserved; no new dialogue/scene"
+    }
+  }
+]

@@ -1,6 +1,6 @@
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===3&&b.honroMap?.act1Scene?.version===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===3&&b.honroMap?.act1Scene?.version===1;
 const ids=['valleyFar','forestSoil','forestRock','pineA','pineB','roots','passGate','ferryHall','ferryShrine','ferryWorkbay'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);};
 const paths=new WeakMap(),pictures=new Map(),patterns=new WeakMap(),treeCache=new WeakMap();let far,earthCards,plank,mudCard;

@@ -1,3 +1,4 @@
+import {vectorKitRuntime} from '../tools/environment/vector-kit-runtime.mjs';
 import {applyStage3HanokTerrain} from '../tools/map-forge/stage3-hanok-terrain.mjs';
 import {applyStage4GateDefense} from '../tools/map-forge/stage4-gate-defense.mjs';
 import {applyStage10LocationPaint} from '../tools/map-forge/stage10-location-paint.mjs';
@@ -49,6 +50,8 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   await file('shared/runtime/title-markup.js');
   data('HONRO_BGM_TRACKS',bgm.map(f=>'assets/bgm/'+f));
   code('engine/core',await buildCore());
+  code('shared/environment-vector-kit',await vectorKitRuntime());
+  await file('shared/runtime/vector-campaign-config.js');
   data('HONRO_BALANCE',JSON.parse(await read('game/config/balance.json')));
   data('HONRO_NARRATIVE_V0',JSON.parse(await read('shared/data/narrative-legacy-v0.json')));
   data('HONRO_SPLIT_V1',JSON.parse(await read('shared/data/split-campaign-v1.json')));
@@ -128,6 +131,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/stage2-image-first-art.js');
   if(render)await file('shared/runtime/stage3-image-first-art.js');
   if(render)await file('shared/runtime/stage4-image-first-art.js');
+  if(render)await file('shared/runtime/vector-campaign-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
     for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main']){
@@ -140,7 +144,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
 }
 
 // Keep the same authoring order for native consumers and the external web loader.
-export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1'];
+export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1','HonroVectorCampaignArt'];
 export const authorProjectExpression=value=>projectAuthors.reduce((value,name)=>`${name}.author(${value})`,value);
 export async function runtimeParts(options={}) {
   return (await runtimeEntries(options)).map(entry=>entry.code);

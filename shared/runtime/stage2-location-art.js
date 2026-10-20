@@ -2,7 +2,7 @@
 // Stage2 paint only: the canonical cliff solids, bier road and airborne events
 // retain their own data. No placement or material operation edits battle state.
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===2&&b.honroMap?.act1Scene?.version===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===2&&b.honroMap?.act1Scene?.version===1;
 const ids=['valleyFar','forestRock','forestSoil','pineA','pineB','roots','bark'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);};
 const treeSpecs={

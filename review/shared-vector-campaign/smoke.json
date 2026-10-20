@@ -1,0 +1,2276 @@
+{
+  "entry": {
+    "before": {
+      "x": 168,
+      "y": 2509.6699999999996,
+      "canInput": true
+    },
+    "after": {
+      "x": 349.9396809030896,
+      "y": 2492.5084479899656
+    },
+    "moved": 181.9396809030896,
+    "phase": "aim",
+    "shared": true
+  },
+  "rows": [
+    {
+      "stage": 1,
+      "id": "stage-1",
+      "name": "연목 고갯길",
+      "size": [
+        6000,
+        3000
+      ],
+      "style": "고갯길 산림",
+      "palette": "forest",
+      "ground": "earth",
+      "pieces": [
+        "rock.shoulder",
+        "earth.gully",
+        "earth.mantle",
+        "grass.sedge"
+      ],
+      "temporary": [
+        "옛 고갯문·추적 흔적"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 1,
+        "style": "고갯길 산림",
+        "palette": "forest",
+        "polygons": 10,
+        "parts": 8,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 32
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 7,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "marker-7"
+      ],
+      "eventIds": [
+        "cart",
+        "more",
+        "witness",
+        "ridge"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        }
+      ],
+      "enemyCount": 8
+    },
+    {
+      "stage": 2,
+      "id": "stage-2",
+      "name": "상여 위의 높은 길",
+      "size": [
+        3678.4,
+        2070.2000000000003
+      ],
+      "style": "상여길과 높은 사격턱",
+      "palette": "dry",
+      "ground": "earth",
+      "pieces": [
+        "rock.upright",
+        "rock.swept",
+        "earth.mantle"
+      ],
+      "temporary": [
+        "상여·공중 적·높은 사격턱"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 2,
+        "style": "상여길과 높은 사격턱",
+        "palette": "dry",
+        "polygons": 12,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 8
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 11,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6"
+      ],
+      "eventIds": [
+        "procession-seen",
+        "road-pressure",
+        "sniper-seen",
+        "right-cliff",
+        "last-flight"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        }
+      ],
+      "enemyCount": 12
+    },
+    {
+      "stage": 3,
+      "id": "stage-3",
+      "name": "나루의 남은 장부",
+      "size": [
+        4276.8,
+        1779.8000000000002
+      ],
+      "style": "나루와 장부 보관처",
+      "palette": "wet",
+      "ground": "earth",
+      "pieces": [
+        "rock.swept",
+        "stone.flat",
+        "grass.sedge"
+      ],
+      "temporary": [
+        "나루 건축·장부·전도 물"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 8
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 8,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "ledger",
+        "habitat-3-0",
+        "habitat-3-1"
+      ],
+      "eventIds": [
+        "midboss-stage3-seen",
+        "dock-beasts",
+        "transfer"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        }
+      ],
+      "enemyCount": 13,
+      "representative": {
+        "entry": {
+          "x": 187.00000000000003,
+          "y": 1218.3111111111114
+        },
+        "canAct": true,
+        "moved": 62.76473581184601,
+        "finitePosition": true
+      }
+    },
+    {
+      "stage": 4,
+      "id": "stage-4",
+      "name": "문 밖에 남은 사람들",
+      "size": [
+        3420.8,
+        1177.6000000000001
+      ],
+      "style": "피란문과 탄 회랑",
+      "palette": "ash",
+      "ground": "rock",
+      "pieces": [
+        "rock.shoulder",
+        "stone.split",
+        "earth.mantle"
+      ],
+      "temporary": [
+        "피란문·화재·파괴 회랑"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 4,
+        "style": "피란문과 탄 회랑",
+        "palette": "ash",
+        "polygons": 9,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 2
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 8,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "habitat-4-0",
+        "habitat-4-1"
+      ],
+      "eventIds": [
+        "siege-0",
+        "siege-1"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        }
+      ],
+      "enemyCount": 14,
+      "representative": {
+        "entry": {
+          "x": 896,
+          "y": 644.8000000000001
+        },
+        "canAct": true,
+        "moved": 62.757163244218646,
+        "finitePosition": true
+      }
+    },
+    {
+      "stage": 5,
+      "id": "stage-5",
+      "name": "폭포 틈의 한 발",
+      "size": [
+        5300,
+        5000
+      ],
+      "style": "폭포 암벽과 물 틈",
+      "palette": "wet",
+      "ground": "rock",
+      "pieces": [
+        "rock.upright",
+        "rock.swept",
+        "stone.flat"
+      ],
+      "temporary": [
+        "기존 벡터 폭포 모션·표적·진목"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 5,
+        "style": "폭포 암벽과 물 틈",
+        "palette": "wet",
+        "polygons": 5,
+        "parts": 6,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 1,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "receiver-5",
+        "habitat-5-0",
+        "habitat-5-1"
+      ],
+      "eventIds": [
+        "lower-beasts-warning",
+        "lower-beasts",
+        "bell"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        }
+      ],
+      "enemyCount": 21,
+      "representative": {
+        "entry": {
+          "x": 330,
+          "y": 2520
+        },
+        "canAct": true,
+        "moved": 64.99999999999955,
+        "finitePosition": true,
+        "waterfall": {
+          "active": true,
+          "targets": [
+            "valley-floor",
+            "west-overlook",
+            "ritual-overlook",
+            "waterfall-cliff",
+            "waterfall-veil",
+            "cliff-cleat"
+          ],
+          "waterZones": 2
+        }
+      }
+    },
+    {
+      "stage": 6,
+      "id": "stage-6",
+      "name": "끊어진 나무다리",
+      "size": [
+        6600,
+        3800
+      ],
+      "style": "끊어진 목교",
+      "palette": "cool",
+      "ground": "rock",
+      "pieces": [
+        "rock.swept",
+        "stone.split",
+        "earth.mantle"
+      ],
+      "temporary": [
+        "목교 잔해·낙차·발판"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 6,
+        "style": "끊어진 목교",
+        "palette": "cool",
+        "polygons": 9,
+        "parts": 2,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 8,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "marker-7"
+      ],
+      "eventIds": [
+        "midboss-stage6-seen",
+        "bridge-crows",
+        "bridge-boars",
+        "pursuit"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        }
+      ],
+      "enemyCount": 21
+    },
+    {
+      "stage": 7,
+      "id": "stage-7",
+      "name": "살아 있는 사람을 꺼내는 법",
+      "size": [
+        3600,
+        5000
+      ],
+      "style": "뿌리 사이 산비탈 마을",
+      "palette": "forest",
+      "ground": "earth",
+      "pieces": [
+        "earth.gully",
+        "earth.mantle",
+        "rock.shoulder"
+      ],
+      "temporary": [
+        "고목 마을·집·구조 주민"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 7,
+        "style": "뿌리 사이 산비탈 마을",
+        "palette": "forest",
+        "polygons": 10,
+        "parts": 6,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 8,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "resident-marker-1",
+        "resident-marker-2",
+        "resident-marker-3",
+        "habitat-7-0",
+        "habitat-7-1"
+      ],
+      "eventIds": [
+        "yard-hounds",
+        "upper-crows"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        }
+      ],
+      "enemyCount": 22
+    },
+    {
+      "stage": 8,
+      "id": "stage-8",
+      "name": "돌아오는 빈 상여",
+      "size": [
+        9600,
+        5500
+      ],
+      "style": "빈 상여가 돌아오는 마당",
+      "palette": "dry",
+      "ground": "earth",
+      "pieces": [
+        "rock.swept",
+        "earth.mantle",
+        "stone.flat"
+      ],
+      "temporary": [
+        "상여·운반 경로·보관채"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 8,
+        "style": "빈 상여가 돌아오는 마당",
+        "palette": "dry",
+        "polygons": 22,
+        "parts": 8,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 10,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-2",
+        "marker-4",
+        "marker-6"
+      ],
+      "eventIds": [
+        "stage8-first-seal",
+        "stage8-settled-crows",
+        "stage8-low-health"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        }
+      ],
+      "enemyCount": 39
+    },
+    {
+      "stage": 9,
+      "id": "stage-9",
+      "name": "바람 없는 마당",
+      "size": [
+        3600,
+        3500
+      ],
+      "style": "바람 없는 의식 마당",
+      "palette": "cool",
+      "ground": "earth",
+      "pieces": [
+        "rock.shoulder",
+        "stone.flat",
+        "earth.mantle"
+      ],
+      "temporary": [
+        "의식 회랑·제단·진목"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 9,
+        "style": "바람 없는 의식 마당",
+        "palette": "cool",
+        "polygons": 8,
+        "parts": 4,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 6,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "receiver-west",
+        "receiver-east",
+        "habitat-9-0",
+        "habitat-9-1"
+      ],
+      "eventIds": [
+        "evac-beasts",
+        "evac-crows"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        }
+      ],
+      "enemyCount": 24
+    },
+    {
+      "stage": 10,
+      "id": "stage-10",
+      "name": "소단 — 놓지 못한 밤",
+      "size": [
+        5000,
+        3900
+      ],
+      "style": "주술목과 마지막 밤",
+      "palette": "forest",
+      "ground": "earth",
+      "pieces": [
+        "earth.gully",
+        "rock.upright",
+        "earth.mantle"
+      ],
+      "temporary": [
+        "주술목·소단·의식 대상"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 10,
+        "style": "주술목과 마지막 밤",
+        "palette": "forest",
+        "polygons": 11,
+        "parts": 2,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 10,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "receiver-west",
+        "receiver-east"
+      ],
+      "eventIds": [
+        "sodan-hounds"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        }
+      ],
+      "enemyCount": 18
+    },
+    {
+      "stage": 11,
+      "id": "stage-11",
+      "name": "매듭을 거둔 아침",
+      "size": [
+        16000,
+        12000
+      ],
+      "style": "산길과 깊은 계곡",
+      "palette": "cool",
+      "ground": "rock",
+      "pieces": [
+        "rock.upright",
+        "rock.swept",
+        "grass.sedge"
+      ],
+      "temporary": [
+        "흔적·고도차·출구"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 11,
+        "style": "산길과 깊은 계곡",
+        "palette": "cool",
+        "polygons": 31,
+        "parts": 24,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 20,
+      "ceilings": 0,
+      "objectiveIds": [],
+      "markerIds": [
+        "knot-west",
+        "clear-west",
+        "knot-east",
+        "wave-hold-knots",
+        "hold-knots",
+        "resident",
+        "clear-road",
+        "trace",
+        "wave"
+      ],
+      "eventIds": [
+        "ravine-response-west-return",
+        "ravine-response-saddle-wings",
+        "ravine-response-ravine-crosswind",
+        "ravine-response-ritual-west-pursuit",
+        "ravine-response-ritual-east-turn"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 53
+    },
+    {
+      "stage": 12,
+      "id": "stage-12",
+      "name": "돌아오는 산길",
+      "size": [
+        11200,
+        8000
+      ],
+      "style": "되돌아온 산길과 채석터",
+      "palette": "dry",
+      "ground": "rock",
+      "pieces": [
+        "rock.shoulder",
+        "rock.upright",
+        "earth.mantle"
+      ],
+      "temporary": [
+        "채석 시설·기록·매복"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 12,
+        "style": "되돌아온 산길과 채석터",
+        "palette": "dry",
+        "polygons": 12,
+        "parts": 15,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 0,
+      "ceilings": 2,
+      "objectiveIds": [],
+      "markerIds": [
+        "sign",
+        "wave-hold-road",
+        "wave",
+        "route-upper-exit",
+        "route-lower-exit",
+        "route-exit"
+      ],
+      "eventIds": [],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 38
+    },
+    {
+      "stage": 13,
+      "id": "stage-13",
+      "name": "숨은 석문",
+      "size": [
+        8200,
+        6600
+      ],
+      "style": "숨은 석문",
+      "palette": "cave",
+      "ground": "rock",
+      "pieces": [
+        "rock.upright",
+        "rock.swept",
+        "stone.split"
+      ],
+      "temporary": [
+        "석문·통로·매복"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 13,
+        "style": "숨은 석문",
+        "palette": "cave",
+        "polygons": 10,
+        "parts": 6,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 5,
+      "ceilings": 1,
+      "objectiveIds": [],
+      "markerIds": [
+        "resident",
+        "gate",
+        "wave-hold-gate",
+        "exit",
+        "wave"
+      ],
+      "eventIds": [],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 23
+    },
+    {
+      "stage": 14,
+      "id": "stage-14",
+      "name": "해가 닿지 않는 마을",
+      "size": [
+        7600,
+        10400
+      ],
+      "style": "동굴마을과 수직 생활터",
+      "palette": "cave",
+      "ground": "rock",
+      "pieces": [
+        "rock.shoulder",
+        "rock.swept",
+        "stone.flat"
+      ],
+      "temporary": [
+        "기존 동굴 집·시장·가족 거처"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 14,
+        "style": "동굴마을과 수직 생활터",
+        "palette": "cave",
+        "polygons": 14,
+        "parts": 21,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 1,
+      "ceilings": 0,
+      "objectiveIds": [],
+      "markerIds": [
+        "clear-upper",
+        "family-upper",
+        "clear-middle",
+        "family-mid",
+        "family-lower",
+        "bridge",
+        "wave-hold-refuge",
+        "hold-refuge",
+        "clear-village",
+        "wave"
+      ],
+      "eventIds": [],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 43
+    },
+    {
+      "stage": 15,
+      "id": "stage-15",
+      "name": "물 아래의 길",
+      "size": [
+        8000,
+        6000
+      ],
+      "style": "물 아래 수로",
+      "palette": "wet",
+      "ground": "rock",
+      "pieces": [
+        "rock.swept",
+        "stone.flat",
+        "stone.split"
+      ],
+      "temporary": [
+        "수로·수위·물 기믹"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 15,
+        "style": "물 아래 수로",
+        "palette": "wet",
+        "polygons": 11,
+        "parts": 8,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 7,
+      "ceilings": 1,
+      "objectiveIds": [],
+      "markerIds": [
+        "sluice",
+        "wave-hold-sluice",
+        "groove",
+        "wave",
+        "route-lower-exit",
+        "route-upper-exit",
+        "route-exit"
+      ],
+      "eventIds": [],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 22
+    },
+    {
+      "stage": 16,
+      "id": "stage-16",
+      "name": "잠운사",
+      "size": [
+        11000,
+        7600
+      ],
+      "style": "잠운사 사찰",
+      "palette": "cave",
+      "ground": "rock",
+      "pieces": [
+        "rock.shoulder",
+        "stone.flat",
+        "rock.swept"
+      ],
+      "temporary": [
+        "사찰 건축·범종 구조·의식"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 16,
+        "style": "잠운사 사찰",
+        "palette": "cave",
+        "polygons": 26,
+        "parts": 14,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 16,
+      "ceilings": 2,
+      "objectiveIds": [],
+      "markerIds": [
+        "monk",
+        "hall",
+        "wave-hold-hall",
+        "record",
+        "witness",
+        "wave",
+        "clear-rescue-threat"
+      ],
+      "eventIds": [
+        "temple-cloister-answer",
+        "temple-record-answer"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 49
+    },
+    {
+      "stage": 17,
+      "id": "stage-17",
+      "name": "두드리는 벽",
+      "size": [
+        11200,
+        8200
+      ],
+      "style": "벽을 두드리는 작업굴",
+      "palette": "cave",
+      "ground": "rock",
+      "pieces": [
+        "rock.upright",
+        "rock.swept",
+        "stone.split"
+      ],
+      "temporary": [
+        "작업장 목재·채굴 장치"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 17,
+        "style": "벽을 두드리는 작업굴",
+        "palette": "cave",
+        "polygons": 41,
+        "parts": 17,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 30,
+      "ceilings": 2,
+      "objectiveIds": [],
+      "markerIds": [
+        "clear-works",
+        "brace",
+        "hoist",
+        "repair",
+        "wave-hold-hoist",
+        "hold-hoist",
+        "clear-lift",
+        "notes",
+        "wave"
+      ],
+      "eventIds": [
+        "worksite-brace-answer",
+        "worksite-axle-answer"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 50
+    },
+    {
+      "stage": 18,
+      "id": "stage-18",
+      "name": "묵종",
+      "size": [
+        13600,
+        9600
+      ],
+      "style": "묵종의 큰 동굴",
+      "palette": "cave",
+      "ground": "rock",
+      "pieces": [
+        "rock.upright",
+        "rock.shoulder",
+        "stone.flat"
+      ],
+      "temporary": [
+        "묵종·봉인·지지대·전투 상태"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 18,
+        "style": "묵종의 큰 동굴",
+        "palette": "cave",
+        "polygons": 64,
+        "parts": 38,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 29,
+      "ceilings": 3,
+      "objectiveIds": [],
+      "markerIds": [
+        "clear-wards",
+        "silence",
+        "wave-hold-silence",
+        "hold-silence",
+        "marker-upper-chain",
+        "leak",
+        "keeper",
+        "clear-bell",
+        "spirit-lamp-0",
+        "wave",
+        "bell-descent",
+        "spirit-lamp-1"
+      ],
+      "eventIds": [
+        "bell-suppression-answer",
+        "bell-descent-answer"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 56,
+      "representative": {
+        "entry": {
+          "x": 740,
+          "y": 5800
+        },
+        "canAct": true,
+        "moved": 75.99999999999909,
+        "finitePosition": true,
+        "bell": {
+          "active": true,
+          "shellIds": [
+            "sb-bell-crown",
+            "sb-bell-west-wall",
+            "sb-bell-east-wall",
+            "sb-bell-east-lip",
+            "sb-bell-east-yoke"
+          ],
+          "status": "suspended"
+        }
+      }
+    },
+    {
+      "stage": 19,
+      "id": "stage-19",
+      "name": "종 안의 사람들",
+      "size": [
+        13600,
+        9600
+      ],
+      "style": "종 안의 사람들",
+      "palette": "ink",
+      "ground": "rock",
+      "pieces": [
+        "rock.swept",
+        "stone.split",
+        "rock.shoulder"
+      ],
+      "temporary": [
+        "묵종 내부·생존자·호송"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 19,
+        "style": "종 안의 사람들",
+        "palette": "ink",
+        "polygons": 64,
+        "parts": 40,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 29,
+      "ceilings": 3,
+      "objectiveIds": [],
+      "markerIds": [
+        "route",
+        "separate-1",
+        "send-1",
+        "separate-2",
+        "send-2",
+        "separate-3",
+        "send-3",
+        "old-soul"
+      ],
+      "eventIds": [],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 0
+    },
+    {
+      "stage": 20,
+      "id": "stage-20",
+      "name": "다시 하늘 아래",
+      "size": [
+        9000,
+        5800
+      ],
+      "style": "동굴 출구와 하늘",
+      "palette": "cool",
+      "ground": "earth",
+      "pieces": [
+        "rock.shoulder",
+        "earth.mantle",
+        "grass.blades"
+      ],
+      "temporary": [
+        "출구·호송·합류"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 20,
+        "style": "동굴 출구와 하늘",
+        "palette": "cool",
+        "polygons": 4,
+        "parts": 6,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 2,
+      "ceilings": 1,
+      "objectiveIds": [],
+      "markerIds": [
+        "clear-mouth",
+        "escort",
+        "escort-mid",
+        "wave-hold-convoy",
+        "hold-convoy",
+        "clear-pass",
+        "escape",
+        "wave"
+      ],
+      "eventIds": [],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 18
+    },
+    {
+      "stage": 21,
+      "id": "stage-21",
+      "name": "성문 아래",
+      "size": [
+        6400,
+        3200
+      ],
+      "style": "읍성 성문 아래",
+      "palette": "city",
+      "ground": "rock",
+      "pieces": [
+        "rock.shoulder",
+        "stone.flat",
+        "stone.split"
+      ],
+      "temporary": [
+        "기존 읍성·성문·시장 지붕"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 21,
+        "style": "읍성 성문 아래",
+        "palette": "city",
+        "polygons": 27,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 24,
+      "ceilings": 0,
+      "objectiveIds": [],
+      "markerIds": [
+        "gate-resident",
+        "refuge-hold",
+        "wave-refuge-hold",
+        "city-exit"
+      ],
+      "eventIds": [
+        "act3-response-21-0",
+        "act3-response-21-1"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 26
+    },
+    {
+      "stage": 22,
+      "id": "stage-22",
+      "name": "옛 장부",
+      "size": [
+        4800,
+        6600
+      ],
+      "style": "관청의 옛 장부",
+      "palette": "city",
+      "ground": "rock",
+      "pieces": [
+        "rock.swept",
+        "stone.flat",
+        "stone.split"
+      ],
+      "temporary": [
+        "관청·서가·기록 목표"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 22,
+        "style": "관청의 옛 장부",
+        "palette": "city",
+        "polygons": 10,
+        "parts": 10,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 1,
+      "ceilings": 0,
+      "objectiveIds": [],
+      "markerIds": [
+        "archive-seal",
+        "ledger-case",
+        "compare-ledgers",
+        "wave-compare-ledgers",
+        "archive-exit",
+        "upper-register"
+      ],
+      "eventIds": [
+        "act3-response-22-0",
+        "act3-response-22-1",
+        "act3-response-22-2"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 30
+    },
+    {
+      "stage": 23,
+      "id": "stage-23",
+      "name": "사라진 짐",
+      "size": [
+        9800,
+        6200
+      ],
+      "style": "하역장과 사라진 짐",
+      "palette": "dry",
+      "ground": "earth",
+      "pieces": [
+        "rock.swept",
+        "earth.mantle",
+        "stone.flat"
+      ],
+      "temporary": [
+        "하역장·수레·호송·목표 짐"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 23,
+        "style": "하역장과 사라진 짐",
+        "palette": "dry",
+        "polygons": 25,
+        "parts": 4,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 19,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-objective"
+      ],
+      "markerIds": [
+        "dispatch-bundle",
+        "carrier-start",
+        "dock-mid",
+        "dock-exit",
+        "route:dock-mid:0",
+        "route:dock-mid:1",
+        "route:dock-mid:2",
+        "route:dock-mid:3",
+        "route:dock-mid:4",
+        "route:dock-mid:5",
+        "route:dock-mid:6",
+        "route:dock-mid:7",
+        "route:dock-mid:8",
+        "route:dock-mid:9",
+        "route:dock-mid:10",
+        "route:dock-mid:11",
+        "route:dock-mid:12",
+        "route:dock-mid:13",
+        "route:dock-mid:14",
+        "route:dock-mid:15",
+        "route:dock-mid:16",
+        "route:dock-mid:17",
+        "route:dock-mid:18",
+        "route:dock-mid:19",
+        "route:dock-mid:20",
+        "route:dock-mid:21",
+        "route:dock-mid:22",
+        "route:dock-exit:0",
+        "route:dock-exit:1",
+        "route:dock-exit:2",
+        "route:dock-exit:3",
+        "route:dock-exit:4",
+        "route:dock-exit:5",
+        "route:dock-exit:6",
+        "route:dock-exit:7",
+        "route:dock-exit:8",
+        "route:dock-exit:9",
+        "route:dock-exit:10",
+        "route:dock-exit:11",
+        "route:dock-exit:12",
+        "route:dock-exit:13",
+        "route:dock-exit:14",
+        "route:dock-exit:15",
+        "route:dock-exit:16",
+        "route:dock-exit:17",
+        "route:dock-exit:18",
+        "route:dock-exit:19",
+        "route:dock-exit:20",
+        "route:dock-exit:21"
+      ],
+      "eventIds": [
+        "act3-response-23-0",
+        "act3-response-23-1",
+        "act3-response-23-2"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 40
+    },
+    {
+      "stage": 24,
+      "id": "stage-24",
+      "name": "휘겸의 문장",
+      "size": [
+        7000,
+        3300
+      ],
+      "style": "문장이 남은 사당",
+      "palette": "city",
+      "ground": "rock",
+      "pieces": [
+        "rock.shoulder",
+        "stone.flat",
+        "stone.split"
+      ],
+      "temporary": [
+        "사당·휘겸 문장·문"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 24,
+        "style": "문장이 남은 사당",
+        "palette": "city",
+        "polygons": 14,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 12,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-objective"
+      ],
+      "markerIds": [
+        "family-crest",
+        "shrine-seal",
+        "land-register",
+        "garden-exit",
+        "split-route-a",
+        "split-route-b"
+      ],
+      "eventIds": [
+        "act3-response-24-0",
+        "act3-response-24-1",
+        "act3-response-24-2"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 26
+    },
+    {
+      "stage": 25,
+      "id": "stage-25",
+      "name": "물 아래 묶인 이름",
+      "size": [
+        5600,
+        6800
+      ],
+      "style": "지하 수문과 묶인 이름",
+      "palette": "wet",
+      "ground": "rock",
+      "pieces": [
+        "rock.upright",
+        "rock.swept",
+        "stone.flat"
+      ],
+      "temporary": [
+        "지하 천장·수문·권양기·수로"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 25,
+        "style": "지하 수문과 묶인 이름",
+        "palette": "wet",
+        "polygons": 21,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 13,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-objective"
+      ],
+      "markerIds": [
+        "stake-arrival-1",
+        "stake-arrival-2",
+        "stake-arrival-3",
+        "stake-arrival-4",
+        "stake-arrival-5",
+        "depot-entry-seal",
+        "household-tally",
+        "waterworks-exit"
+      ],
+      "eventIds": [],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        }
+      ],
+      "enemyCount": 15
+    },
+    {
+      "stage": 26,
+      "id": "stage-26",
+      "name": "지상에 남은 증언",
+      "size": [
+        7000,
+        3300
+      ],
+      "style": "지상 공방과 증언",
+      "palette": "city",
+      "ground": "rock",
+      "pieces": [
+        "rock.swept",
+        "earth.mantle",
+        "stone.split"
+      ],
+      "temporary": [
+        "공방·증언자·작업 기구"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 26,
+        "style": "지상 공방과 증언",
+        "palette": "city",
+        "polygons": 9,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 7,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-objective"
+      ],
+      "markerIds": [
+        "hidden-latch",
+        "investigation-record",
+        "artisan-resident",
+        "casting-tally",
+        "workshop-exit"
+      ],
+      "eventIds": [],
+      "initialParty": [
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 18
+    },
+    {
+      "stage": 27,
+      "id": "stage-27",
+      "name": "검은 집하장",
+      "size": [
+        8200,
+        7200
+      ],
+      "style": "검은 지하 집하장",
+      "palette": "cave",
+      "ground": "rock",
+      "pieces": [
+        "rock.shoulder",
+        "rock.upright",
+        "stone.flat"
+      ],
+      "temporary": [
+        "집하장 구조·천장·연결 왜곡"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 27,
+        "style": "검은 지하 집하장",
+        "palette": "cave",
+        "polygons": 25,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 13,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-objective"
+      ],
+      "markerIds": [
+        "stake-arrival-1",
+        "stake-arrival-2",
+        "stake-arrival-3",
+        "stake-arrival-4",
+        "depot-route-ledger",
+        "family-manifest",
+        "deep-depot-exit"
+      ],
+      "eventIds": [],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        }
+      ],
+      "enemyCount": 15,
+      "representative": {
+        "entry": {
+          "x": 300,
+          "y": 4700
+        },
+        "canAct": true,
+        "moved": 79.00000000000045,
+        "finitePosition": true,
+        "ceilingCount": 0
+      }
+    },
+    {
+      "stage": 28,
+      "id": "stage-28",
+      "name": "지운 이름과 남은 명령",
+      "size": [
+        7200,
+        3400
+      ],
+      "style": "불타는 기록 마당",
+      "palette": "ash",
+      "ground": "rock",
+      "pieces": [
+        "rock.swept",
+        "earth.mantle",
+        "stone.split"
+      ],
+      "temporary": [
+        "화재 모션·명령 기록·탈출"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 28,
+        "style": "불타는 기록 마당",
+        "palette": "ash",
+        "polygons": 17,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 14,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-objective"
+      ],
+      "markerIds": [
+        "fire-screen",
+        "water-release",
+        "fire-west",
+        "fire-east",
+        "party-reunion",
+        "petition-record",
+        "closure-order",
+        "suppression-order",
+        "office-exit"
+      ],
+      "eventIds": [],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 20
+    },
+    {
+      "stage": 29,
+      "id": "stage-29",
+      "name": "현묵의 글",
+      "size": [
+        7200,
+        3500
+      ],
+      "style": "현묵의 기록 공간",
+      "palette": "ink",
+      "ground": "rock",
+      "pieces": [
+        "rock.upright",
+        "rock.shoulder",
+        "stone.flat"
+      ],
+      "temporary": [
+        "기록 건축·공간왜곡·보스"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 29,
+        "style": "현묵의 기록 공간",
+        "palette": "ink",
+        "polygons": 8,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 2,
+      "ceilings": 0,
+      "objectiveIds": [],
+      "markerIds": [
+        "old-seal",
+        "wave-old-seal",
+        "hyeonmuk-letter",
+        "wave-flight-hold",
+        "route-upper-exit",
+        "route-lower-exit",
+        "route-exit"
+      ],
+      "eventIds": [
+        "act3-response-29-0",
+        "act3-response-29-1",
+        "act3-response-29-2"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 27
+    },
+    {
+      "stage": 30,
+      "id": "stage-30",
+      "name": "남겨진 길",
+      "size": [
+        11200,
+        7200
+      ],
+      "style": "남겨진 길과 마지막 나루",
+      "palette": "wet",
+      "ground": "earth",
+      "pieces": [
+        "rock.shoulder",
+        "rock.swept",
+        "grass.sedge"
+      ],
+      "temporary": [
+        "나루·배 정착 상태·최종 출구"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 30,
+        "style": "남겨진 길과 마지막 나루",
+        "palette": "wet",
+        "polygons": 28,
+        "parts": 19,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 12,
+      "ceilings": 0,
+      "objectiveIds": [],
+      "markerIds": [
+        "transport-map",
+        "ferry-hold",
+        "old-road",
+        "wave-ferry-hold"
+      ],
+      "eventIds": [
+        "act3-response-30-0",
+        "act3-response-30-1",
+        "act3-response-30-2"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist"
+        }
+      ],
+      "enemyCount": 40,
+      "representative": {
+        "entry": {
+          "x": 700,
+          "y": 5407.272727272727
+        },
+        "canAct": true,
+        "moved": 80.99070407984527,
+        "finitePosition": true,
+        "ferry": {
+          "active": true,
+          "exit": {
+            "id": "old-road",
+            "x": 9450,
+            "y": 4300
+          },
+          "status": "moored"
+        }
+      }
+    }
+  ],
+  "pageErrors": [],
+  "httpErrors": [],
+  "limits": [
+    "One light render/activation/reference smoke per chapter, no complete playthrough.",
+    "Stage1 screenshot uses actual App entry and keyboard movement.",
+    "Other four screenshots use original production battles with inspection cameras and a short real Engine.move/tick sequence.",
+    "No combat completion, waterfall solution, bell lowering, ferry completion, skills or save compatibility claim."
+  ],
+  "focusedRecheck": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "platformContact": {
+    "id": "pine-branch-east",
+    "expected": 1898.5605625,
+    "actual": 1898.5605625,
+    "error": 0
+  },
+  "brokenBranchRemovedParts": [
+    "choice-pine/middle-right",
+    "choice-pine/middle-right-crown",
+    "choice-pine/right-fork-crown"
+  ],
+  "stage27VaultCollisionIds": [
+    "masonry-vault:collision:0"
+  ],
+  "build": {
+    "result": "pass",
+    "successfulBuilds": 4,
+    "reasonForRebuilds": [
+      "preserve bell/ferry event artwork",
+      "repair finite image-stage display mass",
+      "link broken optional branch scenery"
+    ],
+    "environmentFailure": "Initial build could not start: existing TypeScript dependency absent in replacement environment; restored existing root/game dependencies."
+  },
+  "assetRetention": {
+    "baseline": "a1e6a4dee3b45154eadbd84ae9badf20c8ebcb48",
+    "retainedPublishedFiles": 24,
+    "removedUnpublishedIntermediateFiles": 10
+  }
+}

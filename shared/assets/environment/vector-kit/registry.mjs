@@ -12,6 +12,11 @@ export const MATERIALS={
  roof:{name:'기와',colors:{base:'#566258',light:'#838b7b',shade:'#2d4036',accent:'#687658',contact:'#263a30'}},
 };
 export const PALETTES={
+ cave:{earth:{base:'#5c594b',light:'#7b7964',shade:'#343e3e'},rock:{base:'#657474',light:'#8b9993',shade:'#344a4e',accent:'#66756b'},grass:{base:'#536354',light:'#78836b',shade:'#304641'},wood:{base:'#635849',light:'#95856c',shade:'#343c37',ridge:'#89795f'}},
+ wet:{earth:{base:'#626450',light:'#92977b',shade:'#344b49'},rock:{base:'#687f7b',light:'#98aba0',shade:'#3b5757',accent:'#687f60'},grass:{base:'#526b50',light:'#84936a'}},
+ city:{earth:{base:'#78715d',light:'#a59a80',shade:'#4f554c'},rock:{base:'#858b7e',light:'#b0b3a0',shade:'#545e58',accent:'#83866c'},wood:{base:'#685844',light:'#a08b69',shade:'#3b4035',ridge:'#93805e'},grass:{base:'#6a7254',light:'#949b72'}},
+ ash:{earth:{base:'#615a4c',light:'#8c7e66',shade:'#383e38'},rock:{base:'#73796f',light:'#989f8f',shade:'#46544d',accent:'#71745b'},wood:{base:'#4d4940',light:'#7c735d',shade:'#303933',ridge:'#746a55'},grass:{base:'#59634a',light:'#7f8760'}},
+ ink:{earth:{base:'#525b58',light:'#74877b',shade:'#2c3e44'},rock:{base:'#596e73',light:'#879e99',shade:'#2d474f',accent:'#697a6e'},wood:{base:'#505548',light:'#80836c',shade:'#2d3b38',ridge:'#777b62'},grass:{base:'#415c4b',light:'#718566'}},
  forest:{},
  cool:{rock:{base:'#728379',light:'#9aa89a',shade:'#465e56'},grass:{base:'#496346',light:'#7b8a60'},wood:{base:'#6c6652',light:'#9a9277'}},
  dry:{earth:{base:'#827054',light:'#b19b73'},grass:{base:'#687047',light:'#9a9b65'},rock:{accent:'#85855b'}},

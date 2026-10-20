@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Stage2 uses the same independent approved far and its own transparent near.
 const S=G.HonroScene.prototype,P=G.HonroPaintedPilots,L=G.HonroQuietLayeredArt;
-const active=b=>b?.honroStage===2&&!b.honroCustom&&b.honroMap?.stage2ImageFirst?.quietLayers===1;
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===2&&!b.honroCustom&&b.honroMap?.stage2ImageFirst?.quietLayers===1;
 const ready=b=>active(b)&&L.ready('stage2QuietNear');
 // While the archer holds the original high perch, keep both his firing edge
 // and the procession road in automatic view. Manual pan/zoom, dialogue and
@@ -18,4 +18,5 @@ const marker=G.HonroAct1StoryArt.marker;G.HonroAct1StoryArt.marker=function(scen
 const key=S._worldCacheKey;S._worldCacheKey=function(b,w){return key.call(this,b,w)+(active(b)?':stage2-high-cliffs3:'+P.appearanceKey():'');};
 G.HonroPaintedPresentation.register({id:'stage2-quiet-layered',active,naturalEdges:true,cachedWorld:true});
 G.HonroStage2ImageFirstArt={active,ready,cacheStats:()=>({...L.cacheStats(),requestedImages:['quietFar','stage2QuietNear'].filter(id=>P.images[id]).length,maxImages:2})};
+G.HonroStage2ImageFirstArt.overwatch=overwatch;
 })(globalThis);

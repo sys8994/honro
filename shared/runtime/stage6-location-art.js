@@ -1,6 +1,6 @@
 (function(G){'use strict';
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,A=G.HonroEnvironmentArt,P=G.HonroPaintedPilots,M=G.HonroStage1LocationArt;
-const active=b=>b?.honroStage===6&&!b.honroCustom&&b.honroMap?.stage6Bridge?.version===1,ids=['valleyFar','bridge6','forestRock','forestSoil','pineA','bark'];
+const active=b=>!G.HonroVectorCampaignArt?.active(b)&&b?.honroStage===6&&!b.honroCustom&&b.honroMap?.stage6Bridge?.version===1,ids=['valleyFar','bridge6','forestRock','forestSoil','pineA','bark'];
 const ready=b=>{if(!active(b))return false;P.request(ids);return ids.every(P.ready);},pictures=new Map(),trees=new WeakMap(),paths=new Map();let far,filterPasses=0;
 const path=d=>{if(!paths.has(d))paths.set(d,new Path2D(d));return paths.get(d);};
 function picture(id){if(pictures.has(id))return pictures.get(id);const im=P.images[id],cv=document.createElement('canvas');cv.width=im.naturalWidth;cv.height=im.naturalHeight;const c=cv.getContext('2d');c.filter=id==='pineA'?'saturate(.55) contrast(.86) brightness(.88)':'saturate(.65) contrast(.96) brightness(.88)';filterPasses++;c.drawImage(im,0,0);c.filter='none';pictures.set(id,cv);return cv;}

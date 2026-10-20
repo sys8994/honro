@@ -1,0 +1,317 @@
+{
+  "entry": {
+    "before": {
+      "x": 168,
+      "y": 2509.6699999999996,
+      "canInput": true
+    },
+    "after": {
+      "x": 349.9396809030896,
+      "y": 2492.5084479899656
+    },
+    "moved": 181.9396809030896,
+    "phase": "aim",
+    "shared": true
+  },
+  "rows": [
+    {
+      "stage": 1,
+      "id": "stage-1",
+      "name": "연목 고갯길",
+      "size": [
+        6000,
+        3000
+      ],
+      "style": "고갯길 산림",
+      "palette": "forest",
+      "ground": "earth",
+      "pieces": [
+        "rock.shoulder",
+        "earth.gully",
+        "earth.mantle",
+        "grass.sedge"
+      ],
+      "temporary": [
+        "옛 고갯문·추적 흔적"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 1,
+        "style": "고갯길 산림",
+        "palette": "forest",
+        "polygons": 10,
+        "parts": 8,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 32
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 7,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "marker-7"
+      ],
+      "eventIds": [
+        "cart",
+        "more",
+        "witness",
+        "ridge"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        }
+      ],
+      "enemyCount": 8
+    },
+    {
+      "stage": 2,
+      "id": "stage-2",
+      "name": "상여 위의 높은 길",
+      "size": [
+        3678.4,
+        2070.2000000000003
+      ],
+      "style": "상여길과 높은 사격턱",
+      "palette": "dry",
+      "ground": "earth",
+      "pieces": [
+        "rock.upright",
+        "rock.swept",
+        "earth.mantle"
+      ],
+      "temporary": [
+        "상여·공중 적·높은 사격턱"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 2,
+        "style": "상여길과 높은 사격턱",
+        "palette": "dry",
+        "polygons": 12,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 8
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 11,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6"
+      ],
+      "eventIds": [
+        "procession-seen",
+        "road-pressure",
+        "sniper-seen",
+        "right-cliff",
+        "last-flight"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        }
+      ],
+      "enemyCount": 12
+    },
+    {
+      "stage": 3,
+      "id": "stage-3",
+      "name": "나루의 남은 장부",
+      "size": [
+        4276.8,
+        1779.8000000000002
+      ],
+      "style": "나루와 장부 보관처",
+      "palette": "wet",
+      "ground": "earth",
+      "pieces": [
+        "rock.swept",
+        "stone.flat",
+        "grass.sedge"
+      ],
+      "temporary": [
+        "나루 건축·장부·전도 물"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 8
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 8,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "ledger",
+        "habitat-3-0",
+        "habitat-3-1"
+      ],
+      "eventIds": [
+        "midboss-stage3-seen",
+        "dock-beasts",
+        "transfer"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        }
+      ],
+      "enemyCount": 13,
+      "representative": {
+        "entry": {
+          "x": 187.00000000000003,
+          "y": 1218.3111111111114
+        },
+        "canAct": true,
+        "moved": 62.76473581184601,
+        "finitePosition": true
+      }
+    },
+    {
+      "stage": 4,
+      "id": "stage-4",
+      "name": "문 밖에 남은 사람들",
+      "size": [
+        3420.8,
+        1177.6000000000001
+      ],
+      "style": "피란문과 탄 회랑",
+      "palette": "ash",
+      "ground": "rock",
+      "pieces": [
+        "rock.shoulder",
+        "stone.split",
+        "earth.mantle"
+      ],
+      "temporary": [
+        "피란문·화재·파괴 회랑"
+      ],
+      "active": true,
+      "provider": "shared-vector-campaign",
+      "missing": [],
+      "stats": {
+        "stage": 4,
+        "style": "피란문과 탄 회랑",
+        "palette": "ash",
+        "polygons": 9,
+        "parts": 3,
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 2
+      },
+      "renderPreservedGeometry": true,
+      "renderPreservedEvents": true,
+      "renderPreservedUnits": true,
+      "oneWay": 8,
+      "ceilings": 0,
+      "objectiveIds": [
+        "campaign-goal"
+      ],
+      "markerIds": [
+        "marker-0",
+        "marker-1",
+        "marker-2",
+        "marker-3",
+        "marker-4",
+        "marker-5",
+        "marker-6",
+        "habitat-4-0",
+        "habitat-4-1"
+      ],
+      "eventIds": [
+        "siege-0",
+        "siege-1"
+      ],
+      "initialParty": [
+        {
+          "id": "p-archer",
+          "cls": "archer"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage"
+        }
+      ],
+      "enemyCount": 14,
+      "representative": {
+        "entry": {
+          "x": 896,
+          "y": 644.8000000000001
+        },
+        "canAct": true,
+        "moved": 62.757163244218646,
+        "finitePosition": true
+      }
+    }
+  ],
+  "pageErrors": [],
+  "httpErrors": [],
+  "limits": [
+    "One light render/activation/reference smoke per chapter, no complete playthrough.",
+    "Stage1 screenshot uses actual App entry and keyboard movement.",
+    "Other four screenshots use original production battles with inspection cameras and a short real Engine.move/tick sequence.",
+    "No combat completion, waterfall solution, bell lowering, ferry completion, skills or save compatibility claim."
+  ]
+}
