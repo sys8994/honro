@@ -1321,7 +1321,7 @@
       "next": 22
     },
     "goal": "주민 구조와 길목 방어 후 성문 안 출구에 도착",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "gate-resident 구조 → refuge-hold 같은 층 길목 2턴 방어 → city-exit 진입. 보호 주민 상실·출전 동행 전멸의 현행 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1340,7 +1340,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "주민 옆 지상 방어를 유지하면서 장터·관아 처마로 사격 위치를 바꾸고 다시 길목으로 내려올 수 있는가?",
     "size": [
       6400,
       3200
@@ -1348,7 +1348,11 @@
     "vertical": false,
     "place": "읍성 성문 아래",
     "preservedIds": {
-      "objectives": [],
+      "objectives": [
+        "gate-resident",
+        "refuge-hold",
+        "city-exit"
+      ],
       "markers": [
         "gate-resident",
         "refuge-hold",
@@ -1362,17 +1366,52 @@
     },
     "enemyBudget": {
       "initial": 26,
-      "change": false
+      "change": "좌표만 변경; 종류·정예·능력/XP 원본 예산·유한 증원 유지",
+      "elites": 5,
+      "finite": 7,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "실제 지형은 보존. 수레·성문·장터·마구간·관아의 동일 ID 26체를 비대칭 전위/후위/고지 군집으로 재배치.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 one-way 순환로 보존, 장터 경로 최소 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 아군·주민 원본 그대로",
+      "4": "반복 간격 교정; 초기 몸/비행 여유 통과",
+      "5": "목표·증원 이벤트 ID/정의 그대로; 길목 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 short-wall-cover / market-loading-choice / office-side-choice와 one-way 지붕이 이미 연결되어 추가 지형 불필요. 장터 순환 기본 점프 5회·무피해 통과.",
+    "sourceOfTruth": [
+      "shared/runtime/act3-objectives.js: steps(b)",
+      "compiled campaign honroAct3Steps",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "activeObjectives": [
+      {
+        "id": "gate-resident",
+        "label": "수레 아래 주민 구하기",
+        "kind": "rescue",
+        "target": "act3-resident"
+      },
+      {
+        "id": "refuge-hold",
+        "label": "주민이 물러날 동안 길목 지키기",
+        "kind": "hold",
+        "rounds": 2,
+        "wave": {
+          "kind": "hound",
+          "count": 2
+        },
+        "radius": 520,
+        "contestRadius": 230
+      },
+      {
+        "id": "city-exit",
+        "label": "읍성 안으로 진입",
+        "kind": "reach"
+      }
+    ],
+    "validation": "단일 장터 순환로, refuge-hold 지지면, 초기 전원 몸/공중 여유 통과. Native Scene 캡처 확인. 정상 완주·브라우저·Pages·전체 verify 미실행."
   },
   {
     "stage": 22,

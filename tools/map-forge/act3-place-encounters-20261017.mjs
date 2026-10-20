@@ -21,15 +21,15 @@ const q=(id,purpose,anchor,members)=>({id,purpose,anchor,members});
 export const PLACE_ENCOUNTERS={
  21:[
   q('wagon-cordon','수레 서쪽 구조면과 주민 몸을 비우고 동쪽 문간에 짐승·도구를 결집한다.','gate-resident',[
-   m('hound',1840),m('picks',1940,undefined,true),m('hound',2045),m('lantern',2160),m('hound',2250)]),
+   m('hound',1830),m('picks',1995,undefined,true),m('hound',2075),m('lantern',2310),m('hound',2190)]),
   q('gate-watch','홍예 아래 전위와 성벽 위 사수는 독립 경계조다. 성문 뒤 긴 연결길은 비운다.','refuge-hold',[
-   m('picks',2400,undefined,true),m('hound',2500),m('lantern',2200,'gate:collision:0',false,'gate-watch-upper'),m('lantern',2780,'eup21-east-wall-return',false,'gate-watch-upper'),m('picks',2820),m('hound',2920)]),
+   m('picks',2400,undefined,true),m('hound',2490),m('lantern',2235,'gate:collision:0',false,'gate-watch-upper'),m('lantern',2640,'eup21-east-wall-return',false,'gate-watch-upper'),m('picks',2780),m('hound',2990)]),
   q('market-pack','장터 입구 세 짐승과 실제 하역마루 위 정예·등불이 아래 길과 위 우회를 함께 지킨다.','tea-market',[
-   m('hound',3930,undefined,true),m('hound',4025),m('lantern',4180,'loading-deck:collision:0',false,'market-pack-deck'),m('hound',4120),m('picks',4440,'loading-deck:collision:0',true,'market-pack-deck')]),
-  q('stable-tools','마구간 한쪽 출입면의 도구 셋과 처마 아래 짐승. 관아까지 경사는 여백으로 둔다.','east-stables',[
-   m('picks',4680),m('hound',4780),m('picks',4880),m('lantern',4980)]),
+   m('hound',3920,undefined,true),m('hound',4000),m('lantern',4195,'loading-deck:collision:0',false,'market-pack-deck'),m('hound',4210),m('picks',4445,'loading-deck:collision:0',true,'market-pack-deck')]),
+  q('stable-tools','마구간 서쪽 단독 도구와 문간의 짐승·도구, 동쪽 등불을 서로 다른 간격에 둔다. 관아까지 경사는 여백이다.','east-stables',[
+   m('picks',4625),m('hound',4775),m('picks',4850),m('lantern',4990)]),
   q('office-rearguard','기단 정예와 바로 뒤 사격조, 아래 골목의 짐승을 다른 높이로 나눈다. 출구 평지는 비운다.','office-porch',[
-   m('picks',5300,'office-plinth:collision:0',true,'office-rearguard-plinth'),m('hound',5465),m('lantern',5480,'office-plinth:collision:0',false,'office-rearguard-plinth'),m('lantern',5750),m('picks',5400,'office-plinth:collision:0',false,'office-rearguard-plinth'),m('hound',5565)])
+   m('picks',5280,'office-plinth:collision:0',true,'office-rearguard-plinth'),m('hound',5430),m('lantern',5490,'office-plinth:collision:0',false,'office-rearguard-plinth'),m('lantern',5780),m('picks',5370,'office-plinth:collision:0',false,'office-rearguard-plinth'),m('hound',5555)])
  ],
  24:[
   q('empty-court-watch','종택 서쪽 문간 전위 셋과 실제 낮은 처마의 등불. 긴 바깥길은 비운다.','family-crest',[
