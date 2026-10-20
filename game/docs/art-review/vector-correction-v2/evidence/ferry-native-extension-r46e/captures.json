@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:1532221a2c4c57726df73622fd209c08bf318ca0472b7ffd8aaf49fd8aa798ec",
+  "sourceHashAfter": "sha256:1532221a2c4c57726df73622fd209c08bf318ca0472b7ffd8aaf49fd8aa798ec",
+  "mode": "representative",
+  "rows": [
+    {
+      "id": "ferry-native-extension-r46e-stage03-normal",
+      "sourceHash": "sha256:1532221a2c4c57726df73622fd209c08bf318ca0472b7ffd8aaf49fd8aa798ec",
+      "stage": 3,
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-normal.png",
+        "sha256": "6c762a014354b79169f63586f3d65e35478d9198f07664251e1819957c639af6"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-native-extension-46",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true,
+      "profile": {
+        "renderMilliseconds": [
+          172.69999999995343,
+          11,
+          1.900000000023283
+        ],
+        "tileCount": 12,
+        "tileRgbaBytes": 12780288
+      }
+    },
+    {
+      "id": "ferry-native-extension-r46e-stage03-wide",
+      "sourceHash": "sha256:1532221a2c4c57726df73622fd209c08bf318ca0472b7ffd8aaf49fd8aa798ec",
+      "stage": 3,
+      "view": "wide",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-wide.png",
+        "sha256": "e4afa1b98bf08ca0526695bdcaf792451c174c5e78c10963902cfd20e57e9821"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-native-extension-46",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true,
+      "profile": {
+        "renderMilliseconds": [
+          178.70000000006985,
+          11.099999999976717,
+          3
+        ],
+        "tileCount": 32,
+        "tileRgbaBytes": 34080768
+      }
+    }
+  ],
+  "errors": []
+}

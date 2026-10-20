@@ -1,3 +1,11 @@
+## 2026-10-20 — Stage 3 실제 암반 에셋 국소 확장 r46e (미승인)
+
+부모의 r45b 불합격 피드백에 따라 큰 균일 절리 벽을 제거했다. 기존 ferry-shelf/shoulder/fan을 원래 S=103.5/80 배율로 중앙 아래 한 구역에 겹치고, 눈에 띄는 어깨 암반의 노출 외곽을 줄였다. 기존 fan과 하단 확장부 사이에는 작은 수작업 접합 암면 2개를 더했다. 중앙/하단 중간 면의 밀도·재질은 가까워졌으나 동일 에셋의 특징 반복과 wide의 외곽 상세도 경계가 남는다. 방법 검증용 국소 후보이며 전체 확대·미술 통과는 아니다.
+
+최종 preview 빌드와 normal/minimum-wide Chromium 실제 캡처 성공, 오류0·렌더 전후 비미술 상태 불변·촬영 전후 소스 해시 동일. 중간 후보에서 Canvas save 중복으로 지붕이 잘리는 회귀를 발견해 수정했다. 최종 native Canvas 호출 전후 transform 일치 및 clip 해제 후 네 모서리 채우기 검사, JS 구문·diff 검사 통과. mobile은 이번 실행에서 미촬영. 앞 가림은 공간상 캐릭터 앞이며 렌더 순서상 캐릭터 이후가 맞다. 이번에는 그런 가림 요소를 추가하지 않았고 기존 근경 장면은 캐릭터 전에 그린다. 충돌·카메라·게임플레이 미수정.
+
+[normal](art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-normal.png), [wide](art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-wide.png), [측정/원본 해시](art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/captures.json). manifest에 실제 최종 후보 실패/미해결 근거를 추가했으며 final:null, 부모 승인 없음, master/Pages 보류를 유지한다.
+
 ## 2026-10-20 — Stage 3 근경 연속 암반 후보 r45b (미술 실패)
 
 `art/near-ground-continuation`은 원격 `art/vector-art-correction-v2`의 ef159212에서 시작했다. r25/r31/r44 원본 픽셀을 확인하고 r44의 밝은 독립 조각을 연결된 선반·경사층·절리로 교체했다. 첫 로컬 후보의 삼각 단면을 수정한 후 normal/wide/mobile을 직접 열었다. 독립 돌의 긴 그림자는 줄었으나 절리의 균일한 벽 느낌, 중앙 r25와의 상세도 차이, wide의 새 암반 패치 외곽이 남아 **FAIL**이다. 전체 지형으로 자연스럽게 확장한다는 목표를 달성하지 못했다.

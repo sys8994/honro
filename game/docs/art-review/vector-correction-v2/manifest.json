@@ -4314,6 +4314,122 @@
       ],
       "regressions": [],
       "resolutions": []
+    },
+    {
+      "id": "ferry-native-extension-r46e",
+      "sourceHash": "sha256:1532221a2c4c57726df73622fd209c08bf318ca0472b7ffd8aaf49fd8aa798ec",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-native-extension-r46e-state.json",
+        "sha256": "04dea17ed9592fa5ff612f909783701b2bec40ea0f65a13c7528ecafcd9cfdf0"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "부모의 r45b 불합격 피드백에 따라 큰 절리 벽을 폐기하고, r25 A/B/C 실제 에셋 3개를 동일 배율로 중앙 아래에 비격자 겹침 배치했다. 어깨 노출부를 줄이고 손으로 그린 접합 암면 2개를 더했다. 1개 국소 확장 후보의 반복 수정이며 5회 필수 검수나 최종 전체 통과로 주장하지 않는다. 전체 확대는 보류한다.",
+      "captures": [
+        {
+          "id": "ferry-native-extension-r46e-stage03-normal",
+          "sourceHash": "sha256:1532221a2c4c57726df73622fd209c08bf318ca0472b7ffd8aaf49fd8aa798ec",
+          "stage": 3,
+          "view": "normal",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-normal.png",
+            "sha256": "6c762a014354b79169f63586f3d65e35478d9198f07664251e1819957c639af6"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/captures.json",
+            "sha256": "fc3f1cc291a1aa227b8cfa2c31d3edebfd535b0aaaca3afe0721fba94c88ed6c"
+          }
+        },
+        {
+          "id": "ferry-native-extension-r46e-stage03-wide",
+          "sourceHash": "sha256:1532221a2c4c57726df73622fd209c08bf318ca0472b7ffd8aaf49fd8aa798ec",
+          "stage": 3,
+          "view": "wide",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-wide.png",
+            "sha256": "e4afa1b98bf08ca0526695bdcaf792451c174c5e78c10963902cfd20e57e9821"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/captures.json",
+            "sha256": "fc3f1cc291a1aa227b8cfa2c31d3edebfd535b0aaaca3afe0721fba94c88ed6c"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "국소 개선: 중앙 아래가 이어진 한 덩어리로 보이기 시작한다. 그러나 wide에서 상세 암반과 외곽 큰 면의 경계가 보이므로 전체 구성은 여전히 FAIL.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "r45의 큰 균일 절리 셀은 제거했다. 기존 세 에셋을 동일 S=103.5/80으로 겹쳐 중앙/하단의 중간 면 밀도는 맞췄지만 에셋의 반복 특징은 남는다. 전체 FAIL.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "충돌·카메라·배우 순서 불변. 이번 암면은 캐릭터 뒤의 근경 장면이다. 앞으로 가림 요소가 필요하면 캐릭터 이후에 렌더링해야 한다. 바깥 접합은 아직 FAIL.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "기존 세 native 암반 에셋의 회올리브 재질을 유지해 r45보다 국소 일치가 좋아졌다. 수작업 연결면 2개의 단순함과 노출부 반복 식별이 남아 전체 미술 FAIL.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "normal/wide 직접 픽셀 확인, 오류0·pure true·동일 소스 해시. 지붕 잘림을 일으킨 중간 후보의 Canvas save 누락을 수정하고 transform/clip 복원 검사를 통과한 뒤 최종 재촬영했다. mobile 및 최종 전체 검수는 이번 실행에서 하지 않았으므로 전체 합격 없음.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-native-extension-r46e/stage03-wide.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
     }
   ],
   "final": null
