@@ -1,0 +1,90 @@
+{
+  "assetCount": 26,
+  "pathDefinitions": 99,
+  "stageTopLevelInstances": 29,
+  "stageExpandedInstances": 65,
+  "sharedEdit": {
+    "edit": "one cloned registry path paint: pine.crown.a:0",
+    "assemblies": [
+      {
+        "assembly": "pine.small",
+        "crownInstances": 1,
+        "svgEditReflected": true,
+        "canvasChangedPixels": 2433
+      },
+      {
+        "assembly": "pine.landmark",
+        "crownInstances": 2,
+        "svgEditReflected": true,
+        "canvasChangedPixels": 4113
+      }
+    ],
+    "stageInstanceIds": [
+      "old-pine/middle-right-crown",
+      "old-pine/upper-left-crown",
+      "ordinary-pine/right-leaf",
+      "entrance-pine/right-leaf",
+      "ridge-pine/right-leaf"
+    ],
+    "sameDefinitionReference": true
+  },
+  "actorPixels": "115.20",
+  "mobileActorPixels": "46.80",
+  "pageErrors": [],
+  "httpErrors": [],
+  "bytes": {
+    "shared/assets/environment/vector-kit/registry.mjs": {
+      "raw": 19597,
+      "gzip9": 8750
+    },
+    "shared/assets/environment/vector-kit/compositions.mjs": {
+      "raw": 4017,
+      "gzip9": 1091
+    },
+    "shared/runtime/environment-vector-kit.mjs": {
+      "raw": 9857,
+      "gzip9": 3732
+    },
+    "game/art-studies/stage1-hybrid-vector-v1/shared-kit/stage1.scene.mjs": {
+      "raw": 3661,
+      "gzip9": 1083
+    },
+    "game/art-studies/stage1-hybrid-vector-v1/foreground.svg": {
+      "raw": 85969,
+      "gzip9": 12353
+    },
+    "game/art-studies/stage1-hybrid-vector-v1/study.js": {
+      "raw": 4628,
+      "gzip9": 1836
+    },
+    "game/art-studies/stage1-hybrid-vector-v1/catalog.mjs": {
+      "raw": 2405,
+      "gzip9": 1198
+    },
+    "game/art-studies/stage1-hybrid-vector-v1/seol-o-scale.svg": {
+      "raw": 18771,
+      "gzip9": 5823
+    },
+    "shared/assets/environment/quiet-layered/far.webp": {
+      "raw": 952722,
+      "gzip9": 952878
+    }
+  },
+  "sharedGeometryAndRendererBytes": {
+    "raw": 37135,
+    "gzip9": 14253
+  },
+  "syntaxCheckedFiles": 7,
+  "svgCatalog": {
+    "assetCards": 26,
+    "assemblyCards": 3
+  },
+  "screenshots": [
+    "shared-kit-closeup.png",
+    "shared-kit-catalog.png",
+    "shared-kit-overview.png",
+    "shared-kit-mobile.png"
+  ],
+  "waterMotionCheck": "Not run: Stage1 water is empty. Adapter calls existing HonroEnvironmentArt only.",
+  "artQuality": "Not approved: rounded crown masses and broad earth slope remain too schematic."
+}

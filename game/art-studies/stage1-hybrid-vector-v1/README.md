@@ -1,56 +1,57 @@
-# 숲길 하이브리드 벡터 시안 01
+# 공유 벡터 환경 부품 01
 
-[시안 열기](https://sys8994.github.io/honro/game/art-studies/stage1-hybrid-vector-v1/) · [전체 구도](https://sys8994.github.io/honro/game/art-studies/stage1-hybrid-vector-v1/?view=overview)
+[숲길 시안](https://sys8994.github.io/honro/game/art-studies/stage1-hybrid-vector-v1/) · [실제 SVG 도감](https://sys8994.github.io/honro/game/art-studies/stage1-hybrid-vector-v1/catalog.html) · [전체 보기](https://sys8994.github.io/honro/game/art-studies/stage1-hybrid-vector-v1/?view=overview)
 
-6000 × 3000 world의 독립 미술 시안이다. 낮은 입구 숲길 → 고목 뿌리 옆 골 → 불규칙 암반 어깨 → 높은 오른쪽 능선으로 이어진다. 본게임 지형·캠페인·전투·퀘스트·저장·활성 렌더러는 변경하지 않는다. 고목 오른쪽 가지의 선택 높이는 윤곽선 토글에서만 예정 접촉선으로 표시한다. 게임 충돌/이동 검증이나 최종 미술 승인을 뜻하지 않는다.
+이번 단위는 공유 부품 데이터, SVG/Canvas 조립 렌더러, 도감, 인스턴스 기반 숲길 예시다. 본게임 번들·활성 지형·전투·퀘스트·저장에는 연결하지 않는다. **미술 품질은 미승인**이다. 수관이 둥근 덩어리로 읽히고 넓은 흙 사면과 일부 접합이 단순하다. 기준 회화의 성숙한 한국 산림·자연스러운 부피 수준을 충족했다고 보지 않으며 다른 장으로 확대하지 않는다.
 
-`game/docs/art-references/stage1-balanced-20261019/balanced.png`의 실제 픽셀에서 한국 산림의 색과 재질·접지 관계를 참고했다. 그림 삽입·자동 트레이싱·기존 지형 윤곽 복제는 사용하지 않았다. 결과는 회화 참고보다 단순하고 그래픽적인 벡터 표현이다.
+기존 수작업 SVG 시안은 `1935a106` 커밋에 남아 있다. 별도 벡터화 실험 브랜치는 합치지 않았다. 이 디렉터리의 `normal.png`, `overview.png`, `mobile.png` 및 이전 checks/scale-checks 기록은 그 이전 시안의 역사 자료다. 현재 공유 부품 결과는 아래 `shared-kit-*` 파일이다.
 
-## 소스와 기법
+## 하나의 제작 원본
 
-- `foreground.svg`: 편집 가능한 근경 원본. 흙 사면, 화강암 면, 나무·뿌리·수관·수풀·돌 모두 저작 SVG Path다. 506개 Path 정의. 주요 수관은 개별 곡선 윤곽과 면으로 저작하며 `<use>`는 주로 동일 윤곽의 clip 참조에 사용한다. 근경 `<image>` 0, SVG 필터 0.
-- `index.html`: 첫 HTML 페인트부터 지형이 보이도록 같은 벡터를 인라인한다. 원경 로드/디코드 성공을 기다리지 않는다. `build.mjs`가 근경 원본을 인라인하므로 두 군데를 따로 편집하지 않는다.
-- `study.js` / `study.css`: 이벤트 발생 시에만 SVG viewBox를 바꾸는 독립 카메라. 드래그/터치 팬, 포인터 중심 휠 줌, 두 손가락 핀치, 전체/근경/예정 접촉선. idle RAF나 거대한 전체 맵 Canvas 재생성이 없다. 키보드 화살표, +/−도 지원한다.
-- 원경만 기존 `../../../shared/assets/environment/quiet-layered/far.webp`를 그대로 참조한다. CSS opacity와 배경 혼합으로 대비를 낮추며 실시간 픽셀 필터는 없다.
-- 광원은 왼쪽 위. 큰 곡면 그라디언트, 바위당 3–5개의 큰 면, 제한된 긴 균열, 국소 접촉 그림자를 사용한다. 지형은 하나의 연속된 몸체로 최대 카메라의 좌우/하단까지 이어진다. 하단 alpha fade는 없으며 전면 흙 사면과 큰 암반의 겹침은 낮은 대비로 남는다.
-- `seol-o-scale.svg`: 저장소 승인 `HONRO_PARTY.seol_o`와 `HonroVectorRig.poseSVG(..., 'idle', 0)`로 생성한 정지 벡터 포즈. 사람 크기 비교만을 위한 표시다. 실제 visible bbox y=11.97595…479, 높이 467.02405를 측정해 world H=103.5로 맞췄고 발을 예정 보행면에 둔다. 새 캐릭터/모션을 저작하지 않았다.
+- `shared/assets/environment/vector-kit/registry.mjs`: 실제 경로 99개와 재질·팔레트의 단일 원본. 기반 암반 3, 일반 돌 3, 풀 2, 관목 2, 소나무 줄기 2/가지 3/수관 3/뿌리 2, 한옥 기둥/보/처마/석축 각 1, 흙 부품 2로 총 26개다. 미세 반복 잎·노이즈·필터·근경 래스터는 없다.
+- `shared/assets/environment/vector-kit/compositions.mjs`: 보통 소나무·거목 소나무·한옥 쉼칸. 부품 ID, 제한된 균등 scale/rotation/mirror, socket 부착만 기록하며 경로를 복사하지 않는다.
+- `shared/runtime/environment-vector-kit.mjs`: 공통 `compileScene`, `drawCanvas`, `svgBody`, `svgScene`. 두 출력이 같은 경로·paint·행렬을 사용한다. Canvas는 Path2D를 캐시하고 표시 영역 밖 부품을 생략한다. SVG 도감과 내보내기도 같은 클립과 그라디언트를 사용한다.
+- `shared-kit/stage1.scene.mjs`: 6000×3000 world의 지형 프로파일과 29개 배치 인스턴스(조립 후 65개 부품). 지형 윤곽은 지도 데이터이고 장식 경로는 없다. 거목과 보통 나무가 동일한 줄기·가지·수관·뿌리 정의를 조립한다.
+- `catalog.mjs`: 위 원본을 그대로 SVG로 출력하는 실제 부품 도감. 각 부품·조립 예시에 승인 설오 H=103.5를 함께 표시한다.
+- `foreground.svg`: 공통 원본에서 생성한 내보내기 결과이며 편집 원본이 아니다. 숲길 페이지는 이 파일을 이미지로 로드하지 않고 Canvas에 벡터를 직접 그린다.
 
-의존성 설치 없이 저장소 루트에서 `node game/art-studies/stage1-hybrid-vector-v1/build.mjs`로 이 디렉터리의 인라인 SVG와 정지 포즈만 갱신한다. 저장소 루트의 정적 HTTP 서버에서 `game/art-studies/stage1-hybrid-vector-v1/`를 연다. 게임 빌드는 실행하지 않는다.
+각 부품은 `id`, `family`, `material`, `bounds`, `foot`, `groundContacts`, `sockets`, `recommendedHeightH`, `scaleRange`, `rotationRange`, `use`를 가진다. 좌표는 게임과 같은 world 단위, 바닥 기준점은 `[0,0]`, 위쪽은 음수다. 공중 부품은 joint가 원점이고 `groundContacts: []`다. 소켓은 `{at:[x,y], angle}`이고 조립 시 부모의 전체 행렬을 상속한다. 미술 접점은 게임 충돌 판정을 만들지 않는다. `material`이 공통 재질 색을 참조하고 인스턴스 `palette`는 `forest/cool/dry` 변형을 선택한다.
 
-## 실제 확인과 용량
+부품 변경은 registry 한 곳에서 한다. 인스턴스는 `{id, assetId, transform, palette, layer}`이며 `support:'surface'`는 지도와 동일한 cubic 표면에 원점을 붙인다. 조립 부품의 `attach:{instance,socket}`는 앞서 선언한 부모를 가리킨다. `compileScene(scene,{assets,compositions})` 옵션으로 편집 중인 데이터를 출력해 볼 수 있다. 비균등 `sx/sy`는 거부하고 scale/rotation은 정의된 범위로 제한한다. 매 프레임 무작위 변형은 없다.
 
-이전 3b93c662 미술 보강본은 정상 배율 1440×960과 최대 줌아웃 1440×960 두 화면을 갱신해 이전 180c5555 픽셀과 비교했다. 고목의 개별 수관·가지 갈라짐·긴 수피 면·매듭, 암반별 곡면·좁은 틈·흙 가림, 돌 사이 골과 뿌리 접지를 보강하고 원경 혼합을 차갑게 낮췄다. JS page error와 요청 HTTP 오류는 0이다. 카메라 기능·사람 H는 그대로이며 새 기능·게임·스킬·저장 검사는 실행하지 않았다. 해당 미술 보강 당시에는 모바일을 재촬영하지 않았다. 현재 `normal.png`·`mobile.png`·`overview.png`는 아래 크기 비율 수정의 최신 화면으로 교체했다. 기존 팬/핀치/토글 결과만 180c5555의 이전 증거로 구분한다.
+물 재질 색상은 공유하지만 새 물 모션을 만들지 않았다. Canvas의 물 항목은 기존 `HonroEnvironmentArt.pool/waterfall`로 전달한다. 현재 숲길은 `water:[]`여서 물 모션은 이번 확인 대상이 아니며 SVG 정적 출력에는 물을 내보내지 않는다. 본게임 환경 체계와의 연결은 후속 범위다.
 
-실제 결과는 여전히 단순화한 벡터 일러스트로 읽힌다. 특히 작은 소나무와 일부 수풀·암반, 하단의 넓은 흙 면은 승인 회화의 자연스러운 형태 밀도에 못 미치므로 최종 미술 품질이 승인됐다고 기록하지 않는다.
+## 실행과 카메라
+
+저장소 루트에서 정적 HTTP 서버로 이 디렉터리를 연다. 의존성 설치나 게임 빌드는 필요 없다. `node game/art-studies/stage1-hybrid-vector-v1/build.mjs`는 생성 `foreground.svg`와 승인 설오의 정지 SVG만 갱신한다.
+
+원경은 기존 `shared/assets/environment/quiet-layered/far.webp`만 독립 이미지로 사용한다. Canvas는 원경/캐릭터 디코드를 기다리지 않고 지형을 그린다. 초기 모듈 로드 이후 첫 render부터 벡터가 보이며 idle RAF는 없다. 드래그·터치 팬, 휠·핀치 확대, 전체/근경/윤곽선과 키보드를 지원한다. 윤곽선은 예정 표면 참고 표시이며 실제 충돌/이동 검증이 아니다.
+
+`seol-o-scale.svg`는 승인 `HONRO_PARTY.seol_o`와 기존 `HonroVectorRig.poseSVG(...,'idle',0)`의 출력이다. 크기 비교용이며 새 리그나 모션을 만들지 않았다. visible bbox 높이 467.02405에 맞춰 H=103.5 world를 유지한다. 근경은 짧은 화면 변의 12%, 최대 scale 1.25, 발 위치는 가로 36%·세로 70%다. 데스크톱 1440×960에서 115.2px, 모바일 390×844에서 46.8px다.
+
+## 필요한 확인과 용량
+
+실제 도감·근경을 본 뒤 한 차례 핵심 수정했다. 상부 줄기 연결부의 넓은 단면을 줄이고 명암을 실루엣 안에 클립했으며, 길 띠를 돌·풀보다 먼저 그리도록 SVG와 Canvas를 함께 수정했다. 정상 배율·전체·모바일에서 불투명 지형 몸체가 하단까지 이어지는 것을 확인했다. 전체 보기의 넓은 흙 면은 부피 표현이 부족한 상태다.
+
+한 정의(`pine.crown.a:0`)의 색을 메모리 복사본에서 한 번 바꿔 보통 나무·거목의 SVG와 Canvas에 모두 반영됨을 확인했다. 두 Canvas의 변경 픽셀은 각각 2,433/4,113개이며, 숲길의 다섯 사용처도 동일한 정의 객체를 참조한다. 원본 색을 실제 파일에 바꾸는 검사는 아니다. 문법 확인 7파일, 로컬 페이지 오류 0·HTTP 오류 0. 전체 게임·이동·전투·스킬·저장 검증이나 별도 검수자는 실행하지 않았다.
 
 | 파일 | raw bytes | gzip-9 bytes |
 |---|---:|---:|
-| foreground.svg | 136,564 | 31,860 |
-| index.html (근경 인라인 포함) | 137,428 | 32,596 |
-| study.js | 4,316 | 1,724 |
-| study.css | 1,716 | 778 |
-| seol-o-scale.svg | 18,771 | 5,823 |
+| registry.mjs | 19,597 | 8,750 |
+| compositions.mjs | 4,017 | 1,091 |
+| environment-vector-kit.mjs | 9,857 | 3,732 |
+| stage1.scene.mjs | 3,661 | 1,083 |
+| 위 4개 소스 결합본(개행 포함) | 37,135 | 14,253 |
+| 생성 foreground.svg | 85,969 | 12,353 |
+| study.js | 4,628 | 1,836 |
+| catalog.mjs | 2,405 | 1,198 |
+| 승인 설오 SVG | 18,771 | 5,823 |
 | 기존 far.webp | 952,722 | 952,878 |
 
-gzip 값은 `gzip.compress(..., compresslevel=9, mtime=0)` 실측이다. foreground.svg는 편집 원본으로 보존하며 페이지에서는 다시 요청하지 않는다. 배포 서버가 실제 gzip을 적용하는지는 이 수치와 별개다. 원경 파일은 재압축/복사하지 않았다.
+gzip은 `gzip.compress(..., compresslevel=9, mtime=0)` 실측이며 서버 압축 설정과 별개다. 원경은 복사/재압축하지 않았다. 경로 데이터 원본과 생성 SVG 모두 raw 250KB 이하다.
 
-- [정상 배율](evidence/normal.png)
-- [최대 줌아웃](evidence/overview.png)
-- [모바일 근경](evidence/mobile.png)
-- [최소 확인 및 바이트 기록](evidence/checks.json)
-
-## 크기 비율 수정
-
-승인 설오 원본과 H=103.5 world는 유지한다. 근경 preset은 짧은 화면 변의 12%를 목표로 하고 최대 129.4px에서 제한한다. 발은 화면 높이 70%, 가로 36%에 두어 오른쪽 진행 공간과 발밑을 남긴다. 전체 보기와 수동 줌 범위는 그대로다. 실제 캐릭터 불투명 경계를 기준으로 1440×960에서 **115.2px**, 390×844에서 **46.8px**다. 데스크톱은 발밑 288px·오른쪽 921.6px, 모바일은 발밑 253.2px·오른쪽 249.6px가 남는다.
-
-일반 보행로 돌 9개와 낮은 반매몰 돌 하나는 22~76 world(0.21~0.73H)로 다양하게 조정했다. 보행로 돌은 예정 접촉면을 실제 SVG 곡선에서 읽어 하단을 +2 world에 다시 심었다. 덤불 14개는 36~96 world(0.35~0.93H)로 줄이며 원래 하단 접점을 보존했다. 사람 크기였던 오른쪽 뾰족한 풀은 105→36 world(0.35H)다. 고목의 보행로 쪽 수평 돌출 뿌리를 짧게 하고 새 표면 뿌리 중간 두께는 10 world(0.097H)로 맞췄다. 아래쪽 노출 뿌리는 연결된 가지·빛 면을 함께 가로 65%로 좁혔다. 고목 내부 clipPath의 누락된 id도 복구해 이전의 큰 뿌리 명암이 새 윤곽 밖으로 나오지 않게 했다.
-
-산 기반 화강암·전경 절벽·고목 전체 크기는 유지했다. SVG 원본과 인라인 index를 동기화하고 데스크톱 근경·모바일 근경·전체 보기 3장을 실제로 확인했다. 사람/소품 비율 기록은 [scale-checks.json](evidence/scale-checks.json)에 있다. 추가 게임/스킬/저장 검증이나 별도 검수자는 사용하지 않았다. 벡터화 실험 브랜치는 합치지 않았다.
-
-## 수관·흙 내부 형태 보강
-
-현재 PNG 세 장은 b18beafb의 카메라와 사람/주변 소품 비율을 유지한 후속 미술 보강 결과다. 반복 타원 수관을 성긴 수평 솔잎 묶음과 그 사이의 가지/하늘 틈으로 바꾸고, 주 가지·작은 소나무 줄기를 곡선과 점진적인 굵기로 정리했다. 고목 수피는 소수의 긴 능선과 좁은 상처로 줄였다. 흙 내부의 큰 임의 색면을 제거하고 노출 암반 사이의 씻긴 홈, 부분 매몰된 네 암반, 고목에서 암반 틈으로 이어지는 가는 뿌리로 바꿨다. 거대한 화강암의 일부 각진 밝은 조각과 반복 배지를 줄이고 돌별 면의 조명 방향을 다르게 했다. 산의 연속 윤곽·불투명한 하단·독립 원경·H=103.5·근경 카메라·일반 소품 비율은 보존했다. 자동 트레이싱 결과는 사용하지 않았다.
-
-실제 근경/전체/모바일을 본 뒤 한 차례 수정해 지나치게 뾰족한 잎 묶음을 낮추고, 떠 보이던 오른쪽 능선 수관에 가지를 연결하고, 흙 골의 암반을 뿌리 접점과 맞췄다. 페이지 오류는 0이며 새 게임/전투/스킬/저장 검증이나 별도 검수자는 사용하지 않았다.
-
-**미술 목표 미충족:** 원형 수관 더미와 임의 색면 문제는 줄었으나, 솔잎 묶음은 여전히 도식적인 그래픽으로 읽히고 일부 맨가지·암반 면은 각지며 넓은 흙 공간도 충분한 자연스러운 부피를 얻지 못했다. 요구된 높은 기준작 품질을 충족했다고 판정하지 않으며, 이 상태를 승인 기준으로 다른 스테이지·휴식터에 복제하지 않는다.
+- [현재 근경](evidence/shared-kit-closeup.png)
+- [실제 SVG 도감](evidence/shared-kit-catalog.png)
+- [현재 전체 보기](evidence/shared-kit-overview.png)
+- [현재 모바일](evidence/shared-kit-mobile.png)
+- [공유 편집·오류·용량 기록](evidence/shared-kit-checks.json)

@@ -1,0 +1,38 @@
+/** Reusable assemblies contain references and socket attachments only. No paths. */
+export const COMPOSITIONS={
+ 'pine.small':{id:'pine.small',name:'보통 소나무',family:'composition',bounds:{x:-320,y:-565,w:700,h:590},foot:[0,0],groundContacts:[[-55,0],[60,0]],scaleRange:[.7,1.15],rotationRange:[-7,7],use:'숲길의 보통 나무',parts:[
+  {id:'stem',assetId:'pine.trunk.b',transform:{scale:.9,rotation:-7}},
+  {id:'low-left',assetId:'pine.branch.b',attach:{instance:'stem',socket:'left'},transform:{scale:.85,mirror:true,rotation:5}},
+  {id:'left-leaf',assetId:'pine.crown.c',attach:{instance:'low-left',socket:'tip'},transform:{scale:.92,rotation:3}},
+  {id:'right',assetId:'pine.branch.a',attach:{instance:'stem',socket:'right'},transform:{scale:.83,rotation:4}},
+  {id:'right-leaf',assetId:'pine.crown.a',attach:{instance:'right',socket:'tip'},transform:{scale:.92,rotation:-4}},
+  {id:'top',assetId:'pine.branch.c',attach:{instance:'stem',socket:'top'},transform:{scale:.62,mirror:true,rotation:8}},
+  {id:'top-leaf',assetId:'pine.crown.b',attach:{instance:'top',socket:'tip'},transform:{scale:1.0,rotation:3}},
+  {id:'root',assetId:'pine.root.a',transform:{scale:.7}},
+ ]},
+ 'pine.landmark':{id:'pine.landmark',name:'거목 소나무',family:'composition',bounds:{x:-580,y:-1110,w:1300,h:1140},foot:[0,0],groundContacts:[[-170,0],[-60,0],[80,0],[180,0]],scaleRange:[.85,1.1],rotationRange:[-3,3],use:'같은 부품을 다단으로 연결한 이야기 거목',parts:[
+  {id:'base',assetId:'pine.trunk.a',transform:{scale:1.35,rotation:-3}},
+  {id:'upper',assetId:'pine.trunk.b',attach:{instance:'base',socket:'top'},transform:{scale:.98,rotation:8}},
+  {id:'low-left',assetId:'pine.branch.a',attach:{instance:'base',socket:'left'},transform:{scale:1.18,mirror:true,rotation:-2}},
+  {id:'low-left-crown',assetId:'pine.crown.b',attach:{instance:'low-left',socket:'tip'},transform:{scale:.9,rotation:-3}},
+  {id:'low-left-inner',assetId:'pine.crown.c',attach:{instance:'low-left',socket:'fork'},transform:{scale:.72,rotation:8}},
+  {id:'middle-right',assetId:'pine.branch.b',attach:{instance:'base',socket:'right'},transform:{scale:1.16,rotation:-6}},
+  {id:'middle-right-crown',assetId:'pine.crown.a',attach:{instance:'middle-right',socket:'tip'},transform:{scale:1.0,rotation:4}},
+  {id:'right-fork-crown',assetId:'pine.crown.c',attach:{instance:'middle-right',socket:'fork'},transform:{scale:.78,rotation:-8}},
+  {id:'upper-left',assetId:'pine.branch.b',attach:{instance:'upper',socket:'left'},transform:{scale:1.03,mirror:true,rotation:4}},
+  {id:'upper-left-crown',assetId:'pine.crown.a',attach:{instance:'upper-left',socket:'tip'},transform:{scale:.95,rotation:5}},
+  {id:'upper-right',assetId:'pine.branch.a',attach:{instance:'upper',socket:'right'},transform:{scale:1.05,rotation:-9}},
+  {id:'upper-right-crown',assetId:'pine.crown.b',attach:{instance:'upper-right',socket:'tip'},transform:{scale:.95,rotation:6}},
+  {id:'leader',assetId:'pine.branch.c',attach:{instance:'upper',socket:'top'},transform:{scale:.7,rotation:10}},
+  {id:'leader-crown',assetId:'pine.crown.c',attach:{instance:'leader',socket:'tip'},transform:{scale:1.12,rotation:-5}},
+  {id:'root-left',assetId:'pine.root.a',transform:{x:-30,scale:1.35,rotation:4}},
+  {id:'root-right',assetId:'pine.root.b',transform:{x:30,y:20,scale:1.0,rotation:8}},
+ ]},
+ 'hanok.shelter':{id:'hanok.shelter',name:'작은 한옥 쉼칸',family:'composition',bounds:{x:-245,y:-465,w:490,h:480},foot:[0,0],groundContacts:[[-215,0],[0,0],[218,0]],scaleRange:[.85,1.15],rotationRange:[0,0],use:'기둥·보·처마·석축의 접합 예시',parts:[
+  {id:'base',assetId:'hanok.masonry'},
+  {id:'column-left',assetId:'hanok.column',attach:{instance:'base',socket:'leftColumn'}},
+  {id:'column-right',assetId:'hanok.column',attach:{instance:'base',socket:'rightColumn'}},
+  {id:'beam',assetId:'hanok.beam',attach:{instance:'column-left',socket:'top'},transform:{x:110}},
+  {id:'roof',assetId:'hanok.eave',attach:{instance:'beam',socket:'roof'}},
+ ]},
+};
