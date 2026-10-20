@@ -4430,6 +4430,117 @@
       ],
       "regressions": [],
       "resolutions": []
+    },
+    {
+      "id": "ferry-full-native-r47b",
+      "sourceHash": "sha256:bafe995182d426943c6afbf895c72817ac74b964c7707d3b3d8b4b3afa741c2c",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-full-native-r47b-state.json",
+        "sha256": "da120aeb5628f1983b9337f7d5acfc623ac28bc69196bc949d67008a469ac967"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "materials"
+      ],
+      "changes": "중단/FAIL: normal/wide/mobile 원본을 직접 확인했다. 전체 영역에 중간 크기 면은 생겼지만 다른 방향의 조각을 조합한 콜라주이며 지형의 연속성과 일관성이 없다. 재질 유사성을 공간 연속성으로 혼동한 접근이다. 사용자 최신 피드백에 따라 이 채움 접근을 중단하고 보존한다. 전체 지질 매스와 면 방향부터 다시 구성해야 한다. 전체 미술 통과나 개선으로 판정하지 않는다.",
+      "captures": [
+        {
+          "id": "ferry-full-native-r47b-stage03-normal",
+          "sourceHash": "sha256:bafe995182d426943c6afbf895c72817ac74b964c7707d3b3d8b4b3afa741c2c",
+          "stage": 3,
+          "view": "normal",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b/stage03-normal.png",
+            "sha256": "7a8a52ff3a4f724f3af94022be3072da5d195da2756ab92f23ac820f2403737f"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b/captures.json",
+            "sha256": "42042a9bba639c5100c376a51d8485695ebcd4581fcec400a4333eba59ac42b3"
+          }
+        },
+        {
+          "id": "ferry-full-native-r47b-stage03-wide",
+          "sourceHash": "sha256:bafe995182d426943c6afbf895c72817ac74b964c7707d3b3d8b4b3afa741c2c",
+          "stage": 3,
+          "view": "wide",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b/stage03-wide.png",
+            "sha256": "39abd86df7ef8c06f40a524fbd1b7cf5cd52b0b6e400d6f18fe3cfdc9e68eb47"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b/captures.json",
+            "sha256": "42042a9bba639c5100c376a51d8485695ebcd4581fcec400a4333eba59ac42b3"
+          }
+        },
+        {
+          "id": "ferry-full-native-r47b-mobile-stage03-mobile",
+          "sourceHash": "sha256:bafe995182d426943c6afbf895c72817ac74b964c7707d3b3d8b4b3afa741c2c",
+          "stage": 3,
+          "view": "mobile",
+          "camera": {
+            "x": 3100,
+            "y": 1400,
+            "scale": 0.4
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b-mobile/stage03-mobile.png",
+            "sha256": "c8b7aef1a80f392adfe70299b044fe76bc73c198b579dd6ad0930e72e6d286f0"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b-mobile/captures.json",
+            "sha256": "2decdfe7d3228520dce3f3de51776ce487436bdccc51b0edf915489b723aaa45"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "중단/FAIL: normal/wide/mobile 원본을 직접 확인했다. 전체 영역에 중간 크기 면은 생겼지만 다른 방향의 조각을 조합한 콜라주이며 지형의 연속성과 일관성이 없다. 재질 유사성을 공간 연속성으로 혼동한 접근이다. 사용자 최신 피드백에 따라 이 채움 접근을 중단하고 보존한다. 전체 지질 매스와 면 방향부터 다시 구성해야 한다. 전체 미술 통과나 개선으로 판정하지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b-mobile/stage03-mobile.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "중단/FAIL: normal/wide/mobile 원본을 직접 확인했다. 전체 영역에 중간 크기 면은 생겼지만 다른 방향의 조각을 조합한 콜라주이며 지형의 연속성과 일관성이 없다. 재질 유사성을 공간 연속성으로 혼동한 접근이다. 사용자 최신 피드백에 따라 이 채움 접근을 중단하고 보존한다. 전체 지질 매스와 면 방향부터 다시 구성해야 한다. 전체 미술 통과나 개선으로 판정하지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b-mobile/stage03-mobile.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
     }
   ],
   "final": null

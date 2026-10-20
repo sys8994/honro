@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:bafe995182d426943c6afbf895c72817ac74b964c7707d3b3d8b4b3afa741c2c",
+  "sourceHashAfter": "sha256:bafe995182d426943c6afbf895c72817ac74b964c7707d3b3d8b4b3afa741c2c",
+  "mode": "mobile",
+  "rows": [
+    {
+      "id": "ferry-full-native-r47b-mobile-stage03-mobile",
+      "sourceHash": "sha256:bafe995182d426943c6afbf895c72817ac74b964c7707d3b3d8b4b3afa741c2c",
+      "stage": 3,
+      "view": "mobile",
+      "camera": {
+        "x": 3100,
+        "y": 1400,
+        "scale": 0.4
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-full-native-r47b-mobile/stage03-mobile.png",
+        "sha256": "c8b7aef1a80f392adfe70299b044fe76bc73c198b579dd6ad0930e72e6d286f0"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-full-native-beds-47",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true,
+      "profile": {
+        "renderMilliseconds": [
+          156.30000000004657,
+          4.399999999906868,
+          2.5
+        ],
+        "tileCount": 6,
+        "tileRgbaBytes": 6390144
+      }
+    }
+  ],
+  "errors": []
+}
