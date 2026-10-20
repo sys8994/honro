@@ -2,20 +2,69 @@
   "checks": [
     {
       "viewport": "pc",
-      "screen": "rest",
-      "scene": "shared-cityFerry",
-      "actors": 4,
+      "stage": 21,
+      "raster": "town-wall",
+      "href": "http://127.0.0.1:8000/web/graphics/honro_rest_backdrops-images-town-wall.d018c0ef9c3ec931.webp",
+      "frame": "0 0 1600 900",
+      "ground": 765,
+      "actorCanvas": 168.75,
+      "filters": 0,
+      "vectorMountain": false,
+      "buildingWidth": 450,
       "fire": true,
-      "svg": "0 0 1600 900"
+      "next": true,
+      "independentPan": true,
+      "requestedFamilies": 1
+    },
+    {
+      "viewport": "pc",
+      "stage": 25,
+      "raster": "underground-channel",
+      "href": "http://127.0.0.1:8000/web/graphics/honro_rest_backdrops-images-underground-channel.9cc52f2e8069de34.webp",
+      "frame": "0 0 1600 900",
+      "ground": 765,
+      "actorCanvas": 168.75,
+      "filters": 0,
+      "vectorMountain": false,
+      "buildingWidth": null,
+      "fire": true,
+      "next": true,
+      "independentPan": true,
+      "requestedFamilies": 2
     },
     {
       "viewport": "mobile",
-      "screen": "rest",
-      "scene": "shared-cityFerry",
-      "actors": 4,
+      "stage": 21,
+      "raster": "town-wall",
+      "href": "http://127.0.0.1:8000/web/graphics/honro_rest_backdrops-images-town-wall.d018c0ef9c3ec931.webp",
+      "frame": "0 0 1600 900",
+      "ground": 765,
+      "actorCanvas": 138.75,
+      "filters": 0,
+      "vectorMountain": false,
+      "buildingWidth": 170.34112548828125,
       "fire": true,
-      "svg": "0 0 1600 900"
+      "next": true,
+      "independentPan": true,
+      "requestedFamilies": 1
+    },
+    {
+      "viewport": "mobile",
+      "stage": 25,
+      "raster": "underground-channel",
+      "href": "http://127.0.0.1:8000/web/graphics/honro_rest_backdrops-images-underground-channel.9cc52f2e8069de34.webp",
+      "frame": "0 0 1600 900",
+      "ground": 765,
+      "actorCanvas": 138.75,
+      "filters": 0,
+      "vectorMountain": false,
+      "buildingWidth": null,
+      "fire": true,
+      "next": true,
+      "independentPan": true,
+      "requestedFamilies": 2
     }
   ],
-  "pageErrors": []
+  "pageErrors": [],
+  "eagerRestRasterRequests": 0
 }

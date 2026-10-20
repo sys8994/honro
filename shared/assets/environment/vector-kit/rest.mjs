@@ -6,6 +6,29 @@ import {ASSETS} from './registry.mjs';
 import {compileScene} from '../../../runtime/environment-vector-kit.mjs';
 import {compileArchitecture} from './architecture.mjs';
 
+// Existing paintings only. Source candidates stay untouched; the build encodes
+// right-sized WebP bytes and the retained SVG requests only the displayed image.
+export const REST_BACKDROPS=Object.freeze({
+ 'mountain-dusk':{file:'location-far/source/mountain-dusk.png',rect:[-850,-160,3300,1100],veil:'#35434b',opacity:.24},
+ 'mountain-wet-valley':{file:'location-far/source/mountain-wet-valley.png',rect:[-850,-160,3300,1100],veil:'#35434b',opacity:.24},
+ 'mountain-still-night':{file:'location-far/source/mountain-still-night.png',rect:[-850,-160,3300,1100],veil:'#303e43',opacity:.22},
+ 'cave-entrance':{file:'location-far/source/cave-entrance.png',rect:[-850,-160,3300,1100],veil:'#2d3c40',opacity:.24},
+ 'cave-settlement':{file:'location-far/source/cave-settlement.png',rect:[-850,-160,3300,1100],veil:'#2e3f42',opacity:.24},
+ 'cave-waterwork':{file:'location-far/source/cave-waterwork.png',rect:[-850,-160,3300,1100],veil:'#2d3d40',opacity:.24},
+ 'cave-bell-chamber':{file:'location-far/source/cave-bell-chamber.png',rect:[-850,-160,3300,1100],veil:'#2e3e42',opacity:.24},
+ 'town-wall':{file:'location-far/source/town-wall.png',rect:[-1210,-140,3300,1100],veil:'#354249',opacity:.25},
+ 'town-river':{file:'location-far/source/town-river.png',rect:[-850,-160,3300,1100],veil:'#34434a',opacity:.24},
+ 'underground-channel':{file:'location-far/source/underground-channel.png',rect:[-850,-160,3300,1100],veil:'#2f4043',opacity:.24},
+});
+const REST_BACKDROP_STAGES=[
+ 'mountain-dusk','mountain-dusk','mountain-wet-valley','mountain-still-night','mountain-wet-valley',
+ 'mountain-wet-valley','mountain-dusk','mountain-still-night','mountain-still-night','mountain-still-night',
+ 'mountain-dusk','cave-entrance','cave-entrance','cave-settlement','cave-waterwork',
+ 'cave-settlement','cave-waterwork','cave-bell-chamber','cave-bell-chamber','cave-entrance',
+ 'town-wall','town-wall','town-river','town-wall','underground-channel',
+ 'town-river','cave-waterwork','town-wall','town-wall','town-river',
+];
+
 const REST_PRESETS={
  inn:{palette:'forest',building:'inn',pines:[[-10,708,.8]],rocks:[[1455,732,.65]]},
  ridge:{palette:'cool',pines:[[90,705,.7]],rocks:[[270,711,1.15],[1430,734,.7]]},
@@ -42,7 +65,7 @@ export const REST_STYLES=Object.freeze(Object.fromEntries([
  'inn','ridge','ferry','gate','waterfall','bridge','village','warehouse','court','guardian',
  'dawnGate','quarry','stoneSteps','caveVillage','caveBridge','caveTemple','workshop','bellApproach','bellApproach','caveExit',
  'cityFerry','archive','freight','mansion','canal','graveyard','depot','courtyard','sluice','riverExit',
-].map((name,i)=>[i+1,Object.freeze({name,...REST_PRESETS[name]})])));
+].map((name,i)=>[i+1,Object.freeze({name,...REST_PRESETS[name],backdrop:REST_BACKDROP_STAGES[i],buildingX:i===20?340:0})])));
 
 export function compileRestScene(stage){
  const style=REST_STYLES[stage];if(!style)return null;
@@ -61,7 +84,7 @@ export function compileRestScene(stage){
  function plane(id,points){const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);terrain.push({id,x:Math.min(...xs),y:Math.min(...ys),points:points.map(([x,y])=>({x,y})),honroWalkEdges:Array.from({length:points.length/2-1},(_,i)=>i)});}
  function support(id,left,right,y){plane(id,[[left,y],[right,y],[right,y+20],[left,y+20]]);}
  if(style.building){
-  const wide=style.building==='warehouse',left=wide?-120:-40,right=wide?490:450,foot=707;
+  const wide=style.building==='warehouse',left=(wide?-120:-40)+(style.buildingX||0),right=(wide?490:450)+(style.buildingX||0),foot=707;
   const peak=style.building==='temple'?378:420,eave=style.building==='gate'?464:480;
   support('rest-house-floor',left,right,foot);
   plane('rest-house-roof',[[left-32,eave],[left+95,eave-17],[(left+right)/2,peak],[right-95,eave-17],[right+32,eave],[right+32,eave+14],[right-95,eave-3],[(left+right)/2,peak+14],[left+95,eave-3],[left-32,eave+14]]);
