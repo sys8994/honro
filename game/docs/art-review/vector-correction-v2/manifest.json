@@ -3640,6 +3640,392 @@
       ],
       "regressions": [],
       "resolutions": []
+    },
+    {
+      "id": "ferry-authored-depth-r41",
+      "sourceHash": "sha256:485933968da182905195fc9850af5ea4bee7b464d5daadfcff9b4e58bbd8c377",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-authored-depth-r41-state.json",
+        "sha256": "8d53bae28c46addf65daa1589b01a16e48c2391150e7f11656ebcaff07c24e42"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "기존 원본 r25 중심부에 뒤쪽 지표와 폭 있는 상면을 추가한 중간 화면이다. 신규 전경 원본이 아직 로드되지 않아 주변 빈 면이 남는다.",
+      "captures": [
+        {
+          "id": "ferry-authored-depth-r41-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:485933968da182905195fc9850af5ea4bee7b464d5daadfcff9b4e58bbd8c377",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-normal.png",
+            "sha256": "b22eef26c80a0ce9f44cfa4da95a06a90b71710e98497fd58bf39b0d592db42a"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/captures.json",
+            "sha256": "4d1c43bdfce9b16d498c63d3f2a3cde7b6320599e1612bdb1638cc9baade1094"
+          }
+        },
+        {
+          "id": "ferry-authored-depth-r41-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:485933968da182905195fc9850af5ea4bee7b464d5daadfcff9b4e58bbd8c377",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-wide.png",
+            "sha256": "e17b211484f733e84017f9f278dc32a60e018513525051ce12cd3e95293ac947"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/captures.json",
+            "sha256": "4d1c43bdfce9b16d498c63d3f2a3cde7b6320599e1612bdb1638cc9baade1094"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "기존 원본 r25 중심부에 뒤쪽 지표와 폭 있는 상면을 추가한 중간 화면이다. 신규 전경 원본이 아직 로드되지 않아 주변 빈 면이 남는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "거대한 단순 상면이 도로 조각처럼 보여 더 작은 파단면과 박리층이 필요하다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "실제 보행 좌표는 보존했고 인물 뒤에 지표가 나타나지만, 전경 전체의 접지는 아직 판정하지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "뒤쪽과 발밑은 같은 암반·흙색을 쓰지만 단순한 큰 면과 원본 r25 재질의 차이가 남는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "actual normal/minimum-wide에서 확인했다. 모바일은 이 중간 버전에서 촬영하지 않았다. 최종 판정이 아니다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "ferry-unified-near-r42",
+      "sourceHash": "sha256:b4fe23d7dbc3db625fd3928b254f6b570a6648cbc950d140489a8f1b3a090456",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-unified-near-r42-state.json",
+        "sha256": "fcd8e5c1887a8888ae94918a0bbe05aa296cc545b44f2ae95d5b5a98552cdce6"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "하나의 근경 장면을 인물 전에 그리며 충돌 다각형으로 자르지 않는다. 뒤쪽 지표→발밑 상면→앞 사면은 이어졌지만, 새 몸체의 바위가 지나치게 커 최종 FAIL이다.",
+      "captures": [
+        {
+          "id": "ferry-unified-near-r42-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:b4fe23d7dbc3db625fd3928b254f6b570a6648cbc950d140489a8f1b3a090456",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-normal.png",
+            "sha256": "df338aae6baeb32b7797aab0f668b60de8024a52372c57b3ffa78c331f3a12d0"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/captures.json",
+            "sha256": "472c7a182d5b20fa0898a23374f8c478345e2399bc04a16845523505f203b59f"
+          }
+        },
+        {
+          "id": "ferry-unified-near-r42-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:b4fe23d7dbc3db625fd3928b254f6b570a6648cbc950d140489a8f1b3a090456",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-wide.png",
+            "sha256": "39895aaa17702c2bd4deb41436b11740bd76f3d78ae47a65a27a2cbd53fdd8dd"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/captures.json",
+            "sha256": "472c7a182d5b20fa0898a23374f8c478345e2399bc04a16845523505f203b59f"
+          }
+        },
+        {
+          "id": "ferry-unified-near-r42-mobile-stage03-mobile",
+          "stage": 3,
+          "view": "mobile",
+          "sourceHash": "sha256:b4fe23d7dbc3db625fd3928b254f6b570a6648cbc950d140489a8f1b3a090456",
+          "camera": {
+            "x": 3100,
+            "y": 1400,
+            "scale": 0.4
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42-mobile/stage03-mobile.png",
+            "sha256": "f4dc1aae74aa6e835e60cf83264f31e90980b10e82247c1b3ce15253f80a49e5"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42-mobile/captures.json",
+            "sha256": "f6e39dac4f590a5fa806195743439fa98d1a6d9a938a41f9c42eeed6d7d777a6"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "하나의 근경 장면을 인물 전에 그리며 충돌 다각형으로 자르지 않는다. 뒤쪽 지표→발밑 상면→앞 사면은 이어졌지만, 새 몸체의 바위가 지나치게 커 최종 FAIL이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "8개 고유 지질 몸체로 반복 타일은 제거했으나 정상 화면의 신규 바위/면이5~10H로 커서 r25의 중간 형태와 차이가 크다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "normal/wide/mobile에서 인물은 최상단 선보다 안쪽 지표에 서 있다. 물리·퀘스트 좌표/파괴 상태를 변경하지 않았다. 하지만 원본 세 조각과 주변 큰 면의 단절이 남는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "네이티브204path/6gradient이며 이미지/필터/타일이 없다. 신규 면의 단순한 큰 하이라이트를 r25 박리층 문법으로 교정해야 한다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "actual normal/minimum-wide/mobile를 직접 열었다. 오류0, pure true. 공간 구조는 개선됐으나 크기/재질 차이 때문에 완성이나 배포로 판정하지 않았다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r42-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "ferry-surface-r43",
+      "sourceHash": "sha256:56c3b519399cbcc074e456c2acec1b95016828638543faa99982c75183288760",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-surface-r43-state.json",
+        "sha256": "4736bfe4b5aca22ecd987a915f5078560c30c2c9b919f5d15df745067df44270"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "한 근경 공간 안의 상면 명암을 낮추고 국소 박리면을 더했다. 뒤쪽 지표가 인물과 연결되지만 전체 몸체의 과대한 면은 아직 교정 전이어서 FAIL이다.",
+      "captures": [
+        {
+          "id": "ferry-surface-r43-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:56c3b519399cbcc074e456c2acec1b95016828638543faa99982c75183288760",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-normal.png",
+            "sha256": "c763d5c5581f660240fdbb2f41c7184174c063e7075b092b5cbe6f92ccb461e4"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/captures.json",
+            "sha256": "c8f17629d5011d01c58caf37de2c13c280e637542e0f11bafe954410bd49ffcb"
+          }
+        },
+        {
+          "id": "ferry-surface-r43-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:56c3b519399cbcc074e456c2acec1b95016828638543faa99982c75183288760",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-wide.png",
+            "sha256": "3441c81fd72f544f599abc7b8b7f5374ff12513ed75852192a255344fbbd7dae"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/captures.json",
+            "sha256": "c8f17629d5011d01c58caf37de2c13c280e637542e0f11bafe954410bd49ffcb"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "한 근경 공간 안의 상면 명암을 낮추고 국소 박리면을 더했다. 뒤쪽 지표가 인물과 연결되지만 전체 몸체의 과대한 면은 아직 교정 전이어서 FAIL이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "발밑의 면 위계는 개선됐으나 신규 몸체가 r25 원본보다 훨씬 큰 단순 다각형이어서 최종 위계가 성립하지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "기존 collision과 독립된 근경 외곽을 사용한다. actual normal/wide에서 인물은 지표 내부에 서고 뒤쪽 땅은 collision clip에 잘리지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "상면의 강한 삼각 대비를 낮추고 일부 노출된 층을 더했다. 전경 전체의 저작 면은 다음 핵심 수정 대상이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "actual normal/minimum-wide 확인, 오류0·pure true·전후 sourceHash 동일. 이 중간 버전의 모바일은 별도 촬영하지 않았다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-surface-r43/stage03-wide.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
     }
   ],
   "final": null

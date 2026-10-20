@@ -57,6 +57,17 @@ for name in ['shelf','shoulder','fan']:
   if tag(e)=='clipPath':clips[e.get('id')]=[node(c) for c in e]
  parts['ferry-'+name]={'tag':'g','children':[node(c) for c in svg if tag(c) in ['g','path']]}
  imports.append({'path':str(file.relative_to(root)),'sha256':hashlib.sha256(raw).hexdigest(),'sourceCommit':'2d432127c7c3f16dd8cb748048853601c99fdc37','status':'parent permits preview integration; not final art pass'})
+# Scene-specific continuation. These paths are authored directly in world
+# coordinates; none are traced from an image or tiled from A/B/C.
+file=root/'game/art-studies/ferry-clean-scene/native-body.svg'
+if file.exists():
+ raw=file.read_bytes();svg=E.fromstring(raw);prefix='narubank-'
+ rewrite(svg)
+ for e in svg.iter():
+  if tag(e) in ['linearGradient','radialGradient']:gradients[e.get('id')]={**e.attrib,'type':tag(e),'stops':[c.attrib for c in e]}
+  if tag(e)=='clipPath':clips[e.get('id')]=[node(c) for c in e]
+ parts['narubank-body']={'tag':'g','children':[node(c) for c in svg if tag(c) in ['g','path']]}
+ imports.append({'path':str(file.relative_to(root)),'sha256':hashlib.sha256(raw).hexdigest(),'status':'direct native scene authoring; pending actual scene art review'})
 out={'provenance':{'commit':'1935a106fe99620e2a09de93a6cb89d16d3abda8','status':'regression reference; not approved final'},'imports':imports,'gradients':gradients,'clips':clips,'parts':parts}
 (root/'shared/assets/environment/vector-campaign-parts.json').write_text(json.dumps(out,ensure_ascii=False,separators=(',',':'))+'\n')
 # Exact Bezier bounds are computed once for SVG objectBoundingBox gradients.

@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:485933968da182905195fc9850af5ea4bee7b464d5daadfcff9b4e58bbd8c377",
+  "sourceHashAfter": "sha256:485933968da182905195fc9850af5ea4bee7b464d5daadfcff9b4e58bbd8c377",
+  "mode": "representative",
+  "rows": [
+    {
+      "id": "ferry-authored-depth-r41-stage03-normal",
+      "sourceHash": "sha256:485933968da182905195fc9850af5ea4bee7b464d5daadfcff9b4e58bbd8c377",
+      "stage": 3,
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-normal.png",
+        "sha256": "b22eef26c80a0ce9f44cfa4da95a06a90b71710e98497fd58bf39b0d592db42a"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-authored-depth-41",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true,
+      "profile": {
+        "renderMilliseconds": [
+          94.80000000447035,
+          8.299999997019768,
+          2.1999999955296516
+        ],
+        "tileCount": 12,
+        "tileRgbaBytes": 12780288
+      }
+    },
+    {
+      "id": "ferry-authored-depth-r41-stage03-wide",
+      "sourceHash": "sha256:485933968da182905195fc9850af5ea4bee7b464d5daadfcff9b4e58bbd8c377",
+      "stage": 3,
+      "view": "wide",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-depth-r41/stage03-wide.png",
+        "sha256": "e17b211484f733e84017f9f278dc32a60e018513525051ce12cd3e95293ac947"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-authored-depth-41",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true,
+      "profile": {
+        "renderMilliseconds": [
+          100.10000000149012,
+          11.399999998509884,
+          3.7999999970197678
+        ],
+        "tileCount": 32,
+        "tileRgbaBytes": 34080768
+      }
+    }
+  ],
+  "errors": []
+}

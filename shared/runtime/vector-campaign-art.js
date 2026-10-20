@@ -23,7 +23,7 @@ function inside(x,y,points){let yes=false;for(let i=0,j=points.length-1;i<points
 function material(t,style){return t.mat==='wood'||t.surfaceKind==='branch'?'wood':t.mat==='water'||t.mat==='ice'||t.mat==='crystal'?'water':t.mat==='earth'||t.surfaceKind==='soil'?'earth':t.mat==='rock'||t.honroCeiling?'rock':style.ground;}
 function canvasPaint(c,p){if(p.type==='color')return p.value;const g=c.createLinearGradient(...p.from,...p.to);for(const [offset,color] of p.stops)g.addColorStop(offset,color);return g;}
 function contextView(c){const m=c.getTransform();return{x:-m.e/m.a,y:-m.f/m.d,w:c.canvas.width/m.a,h:c.canvas.height/m.d};}
-const INTERIOR_REVISION='ferry-clean-bedrock-40',M=G.HonroVectorCampaignMaterials;
+const INTERIOR_REVISION='ferry-unified-near-42',M=G.HonroVectorCampaignMaterials;
 
 function prepare(b){
  const source=G.HonroTerrainDomain.render(b),key=[b.sceneVersion,K.REGISTRY_VERSION,INTERIOR_REVISION,b.terrain.filter(t=>t.broken).map(t=>t.id).join(',')].join(':');
@@ -55,17 +55,19 @@ function prepare(b){
 }
 function paintTerrain(c,t,b){
  const live=b.terrain.find(v=>v.id===t.id);if(t.broken||live?.broken)return;
+ // The unified Stage 3 near scene owns its visual silhouette. Its physical
+ // ground stays present for contact, targeting and damage without clipping art.
+ if(b.honroStage===3&&t.id==='ferry-ground'&&G.HonroStage3VectorFront?.drawScene)return;
  const q=prepare(b),r=q.records.get(t.id);if(!r||q.architecture.covered.has(t.id))return;
  c.save();c.fillStyle=canvasPaint(c,K.paintFor(r.asset,'body',q.style.palette));c.fill(r.path);
  c.save();c.clip(r.path);
  if(['cave','ink'].includes(q.style.palette)&&r.mat==='rock'&&r.t.y>=0&&r.t.h>900){const top=Math.min(...r.tops.map(f=>Math.min(f.a.y,f.z.y)));if(Number.isFinite(top)){const shade=K.paintFor(r.asset,'shade',q.style.palette).value,g=c.createLinearGradient(0,top+250,0,top+1450);g.addColorStop(0,shade+'00');g.addColorStop(1,shade+'66');c.fillStyle=g;c.fill(r.path);}}
- const naturalSurface=b.honroStage===3&&t.id==='ferry-ground'&&G.HonroStage3VectorFront?.surface;
  const view=contextView(c);M.original(c,r.historical);if(!t.oneWay&&['earth','rock'].includes(r.mat))M.front(c,b,q.style,view);if(!t.oneWay&&r.mat!=='wood'&&r.mat!=='water')M.sculptures(c,q.sculptures,q.style.palette,view);if(r.mat==='earth')M.roots(c,b,q.style);
- if(!naturalSurface){c.save();c.globalAlpha*=r.mat==='earth'?.60:.28;c.fillStyle=r.mat==='earth'?'#a49470':canvasPaint(c,K.paintFor(r.asset,'light',q.style.palette));c.fill(r.topPlane);c.restore();}
+ c.save();c.globalAlpha*=r.mat==='earth'?.60:.28;c.fillStyle=r.mat==='earth'?'#a49470':canvasPaint(c,K.paintFor(r.asset,'light',q.style.palette));c.fill(r.topPlane);c.restore();
  // Small, broad grain faces follow a timber member; no repeating texture pass.
  if(r.mat==='wood'){c.strokeStyle=K.paintFor(r.asset,'light',q.style.palette).stops[0][1];c.globalAlpha=.22;c.lineWidth=3;const top=r.tops[0];if(top){c.beginPath();c.moveTo(top.a.x+6,top.a.y+8);c.quadraticCurveTo((top.a.x+top.z.x)/2,(top.a.y+top.z.y)/2+13,top.z.x-6,top.z.y+8);c.stroke();}}c.restore();
  // Quiet edge cue follows the exact exposed polygon. The debug toggle owns the strong outline.
- if(naturalSurface)naturalSurface(c,b,view);else{c.strokeStyle=K.paintFor(r.asset,'light',q.style.palette).stops[0][1];c.globalAlpha=.21;c.lineWidth=t.oneWay?2.4:1.6;c.lineJoin='round';c.stroke(r.edges);}c.restore();
+ c.strokeStyle=K.paintFor(r.asset,'light',q.style.palette).stops[0][1];c.globalAlpha=.21;c.lineWidth=t.oneWay?2.4:1.6;c.lineJoin='round';c.stroke(r.edges);c.restore();
 }
 function replacement(l,b){
  if(!V.active(b))return null;
