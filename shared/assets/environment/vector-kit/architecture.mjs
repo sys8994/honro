@@ -63,7 +63,7 @@ export function compileArchitecture(specs,b,kit,core){
  function ledge(spec){
   const t=terrain(spec.deck),floor=terrain(spec.ground);if(!t||!floor)return;const top=topLine(t),left=top[0].x,right=top.at(-1).x,base=baseLine(floor,left,right),shape=[...top,...base.toReversed()];
   group(spec.id+'/body',[],{shape,material:'rock'});
-  const width=right-left,parts=[];if(spec.stone==='masonry'){parts.push(instance(spec.id+'/stone','hanok.masonry',(left+right)/2,Math.max(...base.map(p=>p.y))+12,.8));}
+  const width=right-left,parts=[];if(spec.stone==='masonry'){parts.push(instance(spec.id+'/stone','hanok.masonry',(left+right)/2,Math.max(...base.map(p=>p.y))+(spec.stoneFootOffset??12),.8));}
   else {const def=kit.ASSETS['rock.shoulder'],scale=Math.max(def.scaleRange[0],Math.min(def.scaleRange[1],width/def.bounds.w*1.15));parts.push(instance(spec.id+'/stone','rock.shoulder',(left+right)/2,Math.max(...base.map(p=>p.y))+22,scale));}
   group(spec.id+'/stone-face',parts,{clip:shape});
  }

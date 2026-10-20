@@ -1,0 +1,21 @@
+{
+  "checks": [
+    {
+      "viewport": "pc",
+      "screen": "rest",
+      "scene": "shared-cityFerry",
+      "actors": 4,
+      "fire": true,
+      "svg": "0 0 1600 900"
+    },
+    {
+      "viewport": "mobile",
+      "screen": "rest",
+      "scene": "shared-cityFerry",
+      "actors": 4,
+      "fire": true,
+      "svg": "0 0 1600 900"
+    }
+  ],
+  "pageErrors": []
+}

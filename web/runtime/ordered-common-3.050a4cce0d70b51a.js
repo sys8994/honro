@@ -1,4 +1,4 @@
-import {yieldIfNeeded} from "./load-data.fb768c8f80789aa0.js";
+import {yieldIfNeeded} from "./load-data.60b63bd7d9d5af82.js";
 // shared/environment-vector-kit
 (()=>{
 'use strict';
@@ -10,6 +10,7 @@ import {yieldIfNeeded} from "./load-data.fb768c8f80789aa0.js";
  */
 const HUMAN_H=103.5;
 const MATERIALS={
+ wall:{name:'흙벽',colors:{base:'#a3987e',light:'#c2b99b',shade:'#7c7f69',accent:'#9a9b7b',contact:'#47544a'}},
  earth:{name:'흙',colors:{base:'#70634e',light:'#99896c',shade:'#424c3c',accent:'#70754e',contact:'#354333'}},
  rock:{name:'암석',colors:{base:'#7c897b',light:'#acaf9c',shade:'#50685b',accent:'#747d53',contact:'#354b3d'}},
  grass:{name:'풀',colors:{base:'#506645',light:'#879062',shade:'#2a432f',accent:'#657c4d',contact:'#2b3e2c'}},
@@ -218,7 +219,7 @@ asset('hanok.column','배흘림 기둥과 주두','column','wood',[-35,-265,70,2
  ['M-30-10-18-16-5-13 15-17 30-11 32-3 12 1-8-1-31 2Z','rock:light'],
  ['M-31 2-8-1 12 1 32-3 34-1 28 8 9 11-10 8-28 7Z','rock:shade'],
  ['M-22-7-10-11 5-8 17-12 25-9 19-5 3-3-10-5Z','rock:base'],
-],{heightH:[2,3],scaleRange:[.8,1.2],groundContacts:[[-28,5],[28,5]],sockets:{top:{at:[0,-245],angle:0},beam:{at:[0,-230],angle:0}},use:'주두 받침·장부 그림자·배흘림·기둥 받침돌'});
+],{heightH:[1.5,3],scaleRange:[.5,1.4],groundContacts:[[-28,5],[28,5]],sockets:{top:{at:[0,-245],angle:0},beam:{at:[0,-230],angle:0}},use:'주두 받침·장부 그림자·배흘림·기둥 받침돌'});
 asset('hanok.beam','도리와 무릎받침 보','beam','wood',[-172,-78,344,125],[
  ['M-165-41Q-92-46-17-43Q69-49 164-41L169-8Q89-2 8-3L-168 5Z','body'],
  ['M-164-41Q-87-48-17-43Q70-49 164-41L164-32Q76-39-7-35L-165-32Z','light'],
@@ -289,9 +290,79 @@ asset('earth.mantle','암반 발을 덮는 침식 흙턱','earth','earth',[-252,
  ['M105-8 121-11 135-5 149-9 164-13 171-9 159 0 142 4 125-1 109 1Z','base'],
  ['M-29-6Q-13-16 1-10L15-6 8 0-2-4-15-2Z M194-14 207-16 223-10 217-5 205-10Z','accent',{opacity:.7}],
 ],{heightH:[.25,.8],scaleRange:[.5,1.6],use:'흙 덮임·작은 노출 암반·접촉 그늘을 가진 공통 접합'});
+// Modular building infill and pier members. Ground/roof positions are supplied by the map.
+asset('hanok.column.long','창고와 감시루의 긴 기둥','column','wood',[-35,-530,70,542],[
+ ['M-29 7-32-3-24-13-16-17C-16-112-20-194-17-277L-14-496-25-501-33-516-34-526Q-12-532 2-528L33-529 32-514 23-502 15-497C16-421 20-353 18-282L16-18 29-12 34-2 28 8 7 12-11 8Z','base'],
+ ['M-13-496-5-500-4-292-8-156-5-18-13-15C-14-126-16-206-12-281Z','ridge'],
+ ['M9-497 15-497C16-421 20-353 18-282L16-18 6-14 9-282Z','shade'],
+ ['M-31-523Q-13-528 1-525L31-526 30-518 2-515-29-517Z','light'],
+ ['M-29-515 30-516 23-502 15-497-15-496-25-501Z','shade'],
+ ['M-23-515-14-508 17-509 28-516 22-504-16-502Z','accent'],
+ ['M-9-432C-13-404-7-373-10-345L-8-309-6-344-6-384-4-420Z M7-226C2-200 9-166 4-137L8-111 10-137C10-165 6-191 9-217Z','accent',{opacity:.7}],
+ ['M-31-4-22-14-5-11 15-17 29-12 32-3 12 1-9-1Z','rock:light'],
+ ['M-31-1-9-1 12 1 32-3 34-2 28 8 7 12-11 8-29 7Z','rock:shade'],
+],{heightH:[3,7],scaleRange:[.45,1.5],sockets:{top:{at:[0,-512],angle:0}},use:'두 층 높이의 연속 목재 기둥 · 받침돌 포함'});
+asset('hanok.wall.bay','흙벽과 창이 있는 벽칸','wall','wood',[-96,-264,192,269],[
+ ['M-95 1-92-256-82-263 83-264 94-256 96 3Z','wall:body'],
+ ['M-90-250-84-254-82-5-93 0Z M81-255 91-250 94 1 83-1Z','base'],
+ ['M-82-258 82-259 83-246-82-245Z M-85-17 85-19 87-6-87-3Z','base'],
+ ['M-75-237Q-22-244 21-236L74-240 75-217 42-221 3-214-29-223-74-217Z','wall:light',{opacity:.55}],
+ ['M-51-203 53-204 55-111-53-108Z','shade'],
+ ['M-45-197 46-198 47-117-46-115Z','contact'],
+ ['M-49-201 51-202 51-192-49-190Z M-51-119 54-121 55-111-53-108Z','light'],
+ ['M-24-193-18-193-17-119-23-117ZM4-194 10-194 11-119 5-119ZM30-195 36-195 38-119 32-119Z','accent'],
+ ['M-43-163 47-164 47-159-44-158Z','base'],
+ ['M-74-78Q-53-90-37-79L-20-85-7-73 19-81 40-75 66-83 75-73 75-50 46-56 23-49-2-54-24-49-50-60-74-53Z','wall:base',{opacity:.5}],
+],{heightH:[1.5,3.5],scaleRange:[.5,1.5],use:'큰 흙벽 면·목재 테두리·성긴 창살의 반복 가능한 한 칸'});
+asset('hanok.door.open','열린 판문과 어두운 문간','door','wood',[-76,-224,152,235],[
+ ['M-73 5-72-215-63-223 63-224 74-216 76 5Z','shade'],
+ ['M-54-204 55-205 57 1-56 2Z','contact'],
+ ['M-72-214-59-219-58 3-72 6Z M61-219 72-216 75 4 61 3Z','light'],
+ ['M-59-206-33-199-30-6-58 1Z M35-199 61-206 60 0 34-6Z','base'],
+ ['M-56-197-49-196-47-13-55-9ZM-43-196-38-195-35-15-41-13ZM40-195 46-197 45-12 39-13ZM53-199 58-201 57-10 51-12Z','accent'],
+ ['M-59-155-33-151-33-142-58-145ZM36-151 61-155 61-146 35-142ZM-58-54-31-50-31-41-58-45ZM35-50 60-54 60-45 35-41Z','shade'],
+ ['M-74-214-64-223 63-224 74-216 72-204-72-202Z','base'],
+ ['M-71 4-54-3 54-3 75 4 73 10-72 11Z','rock:light'],
+],{clipToShape:null,heightH:[1.7,2.5],scaleRange:[.7,1.25],use:'열린 중앙 통로와 양쪽으로 접은 문짝 · 목표를 가리지 않는 문간'});
+asset('hanok.eave.band','연결 처마와 서까래 끝','eave','roof',[-64,-8,128,50],[
+ ['M-64-8Q-30-3 0-6Q35-2 64-7L62 10 53 15 19 16-13 18-43 14-62 9Z','body'],
+ ['M-64-8Q-31-3 0-6Q33-2 64-7L63-1Q34 4 0 0-31 4-63-2Z','light'],
+ ['M-62 6Q-29 12 1 9Q32 13 62 7L62 15 34 21-1 19-34 22-62 14Z','wood:shade'],
+ ['M-48 10-39 11-36 28-43 32-49 27Z M-18 12-9 12-8 30-15 34-20 28Z M15 11 24 12 25 29 19 33 13 28Z M45 11 54 9 53 27 47 31 43 26Z','wood:light'],
+ ['M-62 27Q-30 31 0 29Q35 32 62 26L61 35 31 40 0 38-32 42-62 35Z','wood:base'],
+ ['M-61 34Q-30 38 0 35Q31 39 61 32L61 37 30 42-1 40-31 44-61 40Z','wood:shade'],
+],{ground:false,clipToShape:null,heightH:[.25,.6],scaleRange:[.45,1.5],rotationRange:[-65,65],use:'기존 지붕 윗선에 맞춘 처마 띠 · 큰 서까래 끝 네 개'});
+asset('dock.pile','물가 잔교의 박은 말뚝','pier','wood',[-18,-340,37,350],[
+ ['M-14 5-12-321-16-332-11-339 10-340 16-332 12-320 17 4 7 10-7 7Z','base'],
+ ['M-10-323-4-330-2-210-5-105-2 5-10 3Z','ridge'],
+ ['M7-332 12-327 12-320 17 4 7 10 4-82 6-202Z','shade'],
+ ['M-13-316 13-317 13-305-12-305Z M-11-125 15-125 15-114-11-113Z','contact'],
+ ['M-11-68 15-66 17 4 7 10-7 7-12 5Z','shade',{opacity:.6}],
+ ['M-15-332-11-339 10-340 16-332 10-328-10-327Z','light'],
+],{heightH:[.4,5],scaleRange:[.12,1.7],sockets:{top:{at:[0,-328],angle:0}},use:'잔교 윗면에서 지면/물 밑까지 연속되는 받침 말뚝'});
+asset('dock.brace','잔교의 비스듬한 장선','pier','wood',[-6,-128,194,139],[
+ ['M-5-2 172-124 182-128 188-118 9 10 0 11Z','base'],
+ ['M-3-3 174-124 179-123 5 5Z','light'],
+ ['M3 8 185-119 188-118 9 10 0 11Z','shade'],
+ ['M2-5 12-10 18-2 8 5ZM165-117 174-124 182-117 173-110Z','contact'],
+],{ground:false,heightH:[.6,1.5],scaleRange:[.3,1.8],rotationRange:[-65,65],use:'말뚝 사이 하중을 잇는 긴 장선 · 끝 철물만 표시'});
+
+asset('hanok.door.closed','닫힌 피란문 판문','door','wood',[-106,-224,212,234],[
+ ['M-104 4-102-213-94-223 94-224 103-215 106 4Z','base'],
+ ['M-88-206-4-207-4-5-88-3Z','body'],
+ ['M4-207 89-206 91-3 4-5Z','base'],
+ ['M-86-201-76-201-74-10-84-9ZM-59-202-51-202-49-11-57-10ZM-31-202-24-202-23-10-30-10Z M14-202 21-202 23-10 16-11ZM41-202 49-201 51-10 43-10ZM70-201 79-201 82-10 73-11Z','accent',{opacity:.8}],
+ ['M-101-215-92-222 93-223 103-215 101-203-102-202Z','light'],
+ ['M-103-211-91-214-89 1-103 5Z M92-214 103-213 106 3 92 1Z','shade'],
+ ['M-87-161-5-162-5-151-87-150ZM5-162 90-161 90-150 5-151Z M-87-66-5-67-5-55-87-54ZM5-67 91-66 91-54 5-55Z','shade'],
+ ['M-18-124Q-29-124-30-112Q-30-100-19-98Q-8-100-9-112Q-9-123-18-124M19-124Q8-124 8-112Q8-100 19-98Q30-100 30-112Q30-123 19-124','none',{stroke:'contact',strokeWidth:4}],
+ ['M-21-122Q-26-118-26-111Q-26-105-21-103M17-122Q12-118 12-111Q12-105 17-103','none',{stroke:'light',strokeWidth:1.6}],
+ ['M-105 4-89-2 91-2 106 4 103 10-104 10Z','rock:light'],
+],{clipToShape:null,heightH:[1,2.5],scaleRange:[.4,1.3],use:'방어 대상의 피격 크기에 맞추는 닫힌 두 짝 판문 · 체력/이벤트는 기존 유닛'});
+
 const ASSETS=assets;
-const FAMILIES={rock:'암반',stone:'작은 돌',grass:'풀',shrub:'덤불',trunk:'소나무 줄기',branch:'가지',crown:'수관',root:'뿌리',column:'한옥 기둥',beam:'보',eave:'처마',masonry:'석축',earth:'흙 사면'};
-const REGISTRY_VERSION='shared-vector-kit-2';
+const FAMILIES={rock:'암반',stone:'작은 돌',grass:'풀',shrub:'덤불',trunk:'소나무 줄기',branch:'가지',crown:'수관',root:'뿌리',wall:'벽',door:'문',pier:'잔교 부재',column:'한옥 기둥',beam:'보',eave:'처마',masonry:'석축',earth:'흙 사면'};
+const REGISTRY_VERSION='shared-vector-kit-3';
 
 // shared/assets/environment/vector-kit/compositions.mjs
 /** Reusable assemblies contain references and socket attachments only. No paths. */
@@ -380,11 +451,33 @@ Object.assign(STAGE_STYLES[1],{foundations:['forest-floor','forest-middle-floor'
  {id:'ridge-pine',assetId:'pine.small',anchor:'ridge',support:'forest-exit-floor',scale:.9}]});
 Object.assign(STAGE_STYLES[2],{foundations:['canyon-ground'],scenery:[
  {id:'basin-pine',assetId:'pine.small',anchor:'leftBasin',support:'canyon-ground',scale:.8}]});
-Object.assign(STAGE_STYLES[3],{foundations:['ferry-ground'],scenery:[
- {id:'cargo-shelter',assetId:'hanok.shelter',anchor:'cargo',support:'ferry-ground',scale:.85}]});
-Object.assign(STAGE_STYLES[4],{foundations:['gate-basin'],scenery:[
- {id:'gate-left-post',assetId:'hanok.column',x:425,support:'gate-basin',scale:1},
- {id:'gate-right-post',assetId:'hanok.column',x:690,support:'gate-basin',scale:1}]});
+Object.assign(STAGE_STYLES[3],{foundations:['ferry-ground'],architecture:[
+ {id:'ferry-warehouse',type:'building',roof:'warehouse-roof',ground:'ferry-ground',columns:[3435,3735,3970],eaveSpan:100,openings:[
+  {id:'main-entry',assetId:'hanok.door.open',x:3480,scale:.95},
+  {id:'ledger-loft',assetId:'hanok.door.open',x:3627,support:'cargo-step-1',scale:.7},
+  {id:'east-window',assetId:'hanok.wall.bay',x:3820,scale:.7}]},
+ {id:'ledger-maroo',type:'deck',deck:'cargo-step-1',ground:'ferry-ground',braces:false},
+ {id:'east-loading-step',type:'deck',deck:'cargo-step-2',ground:'ferry-ground',braces:false},
+ {id:'entry-gangway',type:'deck',deck:'ferry-side-gangway',ground:'ferry-ground',piles:[110,455]},
+ {id:'west-wharf',type:'deck',deck:'dock-west',ground:'ferry-ground',piles:[470,850,1250]},
+ {id:'rising-wharf',type:'deck',deck:'dock-mid',ground:'ferry-ground',piles:[1380,1730]},
+ {id:'east-wharf',type:'deck',deck:'dock-east',ground:'ferry-ground',piles:[1900,2010],braces:false}
+]});
+Object.assign(STAGE_STYLES[4],{foundations:['gate-basin'],unitArt:{objective:'hanok.door.closed'},architecture:[
+ {id:'refuge-gate',type:'building',roof:'gate-roof',ground:'gate-basin',columns:[435,680],eaveDrop:2,eaveSpan:70,openings:[
+  {id:'west-wall',assetId:'hanok.wall.bay',x:470,scale:.5},
+  {id:'east-wall',assetId:'hanok.wall.bay',x:650,scale:.5},
+  {id:'inner-door',assetId:'hanok.door.open',x:584,support:'gate-threshold',scale:.7}]},
+ {id:'gate-plinth',type:'ledge',deck:'gate-threshold',ground:'gate-basin',stone:'masonry'},
+ {id:'west-vantage',type:'ledge',deck:'west-shoulder',ground:'gate-basin'},
+ {id:'burned-walk',type:'deck',deck:'burned-gallery',ground:'gate-basin',piles:[2390,2660]},
+ {id:'east-watch-house',type:'building',roof:'east-watch',ground:'gate-basin',columns:[2910,3080],profileEave:true,eaveSpan:100,openings:[
+  {id:'watch-entry',assetId:'hanok.door.open',x:2980,scale:.9},
+  {id:'watch-upper-room',assetId:'hanok.wall.bay',x:3005,support:'east-step-1',scale:.55}]},
+ {id:'watch-balcony',type:'deck',deck:'east-step-1',ground:'gate-basin',piles:[2940,3065],braces:false},
+ {id:'east-rock-base',type:'ledge',deck:'east-rock-low',ground:'gate-basin'},
+ {id:'east-rock-shoulder',type:'ledge',deck:'east-rock-high',ground:'gate-basin'}
+]});
 
 // shared/runtime/environment-vector-kit.mjs
 /** Shared SVG/Canvas authoring renderer. Not registered in the game bundle yet. */
@@ -479,7 +572,164 @@ function svgBody(compiled,{prefix='kit'}={}){
 }
 function svgScene(compiled,{viewBox=[0,0,6000,3000],prefix='kit',label='혼로 공유 벡터 환경'}={}){return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox.join(' ')}" role="img" aria-label="${esc(label)}">${svgBody(compiled,{prefix})}</svg>`;}
 
-G.HonroEnvironmentVectorKit={ASSETS,MATERIALS,PALETTES,HUMAN_H,COMPOSITIONS,STAGE_STYLES,REGISTRY_VERSION,compileScene,drawCanvas,paintFor,svgScene};
+// shared/assets/environment/vector-kit/architecture.mjs
+/** Shared geometry-aware building assembly. Inputs reference live terrain IDs only.
+ * Walls are rear scenery; all walking/roof lines remain the canonical one-way edges.
+ */
+function compileArchitecture(specs,b,kit,core){
+ const groups=[],covered=new Set(),joins=[],terrain=id=>b.terrain.find(t=>t.id===id&&!t.broken);
+ const point=(x,y)=>({x,y}),lineD=ps=>ps.map((p,i)=>(i?'L':'M')+p.x+' '+p.y).join(''),polyD=ps=>lineD(ps)+'Z';
+ const topLine=t=>{const ps=core.poly(t),edges=t.honroWalkEdges;if(edges?.length)return [...edges.map(i=>ps[i]),ps[edges.at(-1)+1]];return ps.slice(0,ps.length/2);};
+ const at=(ps,x)=>{for(let i=1;i<ps.length;i++){const a=ps[i-1],z=ps[i];if(x>=Math.min(a.x,z.x)-.01&&x<=Math.max(a.x,z.x)+.01)return a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x||1);}return x<ps[0].x?ps[0].y:ps.at(-1).y;};
+ function group(id,instances,{shape,material='wood',paint='body',clip,paths=[]}={}){
+  const assets=Object.create(kit.ASSETS),all=[];
+  if(shape){const xs=shape.map(p=>p.x),ys=shape.map(p=>p.y),assetId='architecture:'+id;assets[assetId]={id:assetId,material,bounds:{x:Math.min(...xs),y:Math.min(...ys),w:Math.max(1,Math.max(...xs)-Math.min(...xs)),h:Math.max(1,Math.max(...ys)-Math.min(...ys))},scaleRange:[1,1],rotationRange:[0,0],clipToShape:null,paths:[{id:assetId,d:polyD(shape),paint},...paths]};all.push({id,assetId,palette:kit.palette});}
+  all.push(...instances);const compiled=kit.compileScene({instances:all},{assets});groups.push({id,compiled,clipD:clip&&polyD(clip)});return compiled;
+ }
+ const instance=(id,assetId,x,y,scale=1,rotation=0)=>({id,assetId,palette:kit.palette,transform:{x,y,scale,rotation}});
+ function member(id,assetId,x,foot,bearing){const def=kit.ASSETS[assetId],height=-def.sockets.top.at[1],scale=(foot-bearing)/height;
+  if(scale<def.scaleRange[0]-.001||scale>def.scaleRange[1]+.001)return null;
+  joins.push({id,assetId,x,foot,bearing,scale,error:0});return instance(id,assetId,x,foot,scale);
+ }
+ function baseLine(floor,left,right,steps=5){return Array.from({length:steps+1},(_,i)=>{const x=left+(right-left)*i/steps;return point(x,core.topAt(floor,x,floor.y));});}
+ function strip(id,upper,depth,material,paint='body'){
+  const lower=upper.map(p=>point(p.x,p.y+depth)),shape=[...upper,...lower.toReversed()];
+  group(id,[],{shape,material,paint});return shape;
+ }
+ function roof(spec,t){
+  const top=topLine(t),left=top[0].x,right=top.at(-1).x,width=right-left,drop=spec.eaveDrop??8;
+  const eave=spec.profileEave?top.map(p=>point(p.x,p.y+drop)):[point(left,Math.max(...top.map(p=>p.y))+drop),point(left+width*.48,Math.max(...top.map(p=>p.y))+drop+4),point(right,Math.max(...top.map(p=>p.y))+drop-2)];
+  const body=[...top,...eave.toReversed()];group(spec.id+'/roof-skin',[],{shape:body,material:'roof'});
+  // One broad upper face and two restrained tile/hip planes, clipped to the roof.
+  const hip=top.map(p=>point(p.x,p.y+Math.min(14,width*.025))),middle=top.map(p=>point(p.x,p.y+Math.min(37,width*.055)));
+  group(spec.id+'/roof-light',[],{shape:[...top,...hip.toReversed()],material:'roof',paint:'light',clip:body});
+  group(spec.id+'/roof-mid',[],{shape:[...hip,...middle.toReversed()],material:'roof',paint:'base',clip:body});
+  const bands=[],span=spec.eaveSpan||105,total=eave.slice(1).reduce((sum,p,i)=>sum+Math.hypot(p.x-eave[i].x,p.y-eave[i].y),0),count=Math.max(1,Math.ceil(total/span)),step=total/count;
+  function sample(distance){let d=0;for(let i=1;i<eave.length;i++){const a=eave[i-1],z=eave[i],length=Math.hypot(z.x-a.x,z.y-a.y);if(d+length>=distance||i===eave.length-1){const f=Math.max(0,Math.min(1,(distance-d)/length));return point(a.x+(z.x-a.x)*f,a.y+(z.y-a.y)*f);}d+=length;}}
+  for(let i=0;i<count;i++){const a=sample(i*step),z=sample((i+1)*step),m=sample((i+.5)*step),scale=step/120;bands.push(instance(spec.id+'/eave-'+i,'hanok.eave.band',m.x,m.y,scale,Math.atan2(z.y-a.y,z.x-a.x)*180/Math.PI));}
+  strip(spec.id+'/continuous-fascia',eave,step/120*32,'wood','shade');
+  group(spec.id+'/eaves',bands);covered.add(t.id);
+  return{top,eave,left,right,bearing:x=>at(eave,x)+step/120*29};
+ }
+ function building(spec){
+  const t=terrain(spec.roof),floor=terrain(spec.ground);if(!t||!floor)return;
+  const rtop=topLine(t),left=spec.left??rtop[0].x+18,right=spec.right??rtop.at(-1).x-18;
+  // Compile the roof last so its soffit overlaps the column heads and wall joins.
+  const groupStart=groups.length,coverStart=new Set(covered),r=roof(spec,t),roofGroups=groups.splice(groupStart);covered.clear();for(const id of coverStart)covered.add(id);covered.add(t.id);
+  const upper=[point(left,at(r.eave,left)+12),...r.eave.filter(p=>p.x>left&&p.x<right).map(p=>point(p.x,p.y+12)),point(right,at(r.eave,right)+12)],base=baseLine(floor,left,right),wall=[...upper,...base.toReversed()];
+  group(spec.id+'/wall',[],{shape:wall,material:'wall'});
+  const infill=[];
+  for(const opening of spec.openings||[]){const support=terrain(opening.support||spec.ground);if(!support)continue;const y=core.topAt(support,opening.x,support.y);infill.push(instance(spec.id+'/'+opening.id,opening.assetId,opening.x,y,opening.scale||1));}
+  group(spec.id+'/infill',infill,{clip:wall});
+  const posts=[];for(const x of spec.columns){const foot=core.topAt(floor,x,floor.y),bearing=r.bearing(x),height=foot-bearing,id=height>290?'hanok.column.long':'hanok.column',p=member(spec.id+'/column-'+x,id,x,foot,bearing);if(p)posts.push(p);}
+  group(spec.id+'/columns',posts);
+  if(!spec.profileEave){const span=right-left,count=Math.max(1,Math.round(span/310)),segment=span/count,scale=segment/315;if(scale>=.85&&scale<=1.2)group(spec.id+'/beams',Array.from({length:count},(_,i)=>{const x=left+(i+.5)*segment;return instance(spec.id+'/beam-'+i,'hanok.beam',x,r.bearing(x)+6,scale);}));}
+  groups.push(...roofGroups);
+ }
+ function deck(spec){
+  const t=terrain(spec.deck),floor=terrain(spec.ground);if(!t||!floor)return;const top=topLine(t),left=top[0].x,right=top.at(-1).x;
+  const posts=[],xs=spec.piles||[left+(right-left)*.15,left+(right-left)*.78];
+  for(const x of xs){const foot=core.topAt(floor,x,floor.y)+8,bearing=at(top,x)+10;if(foot-bearing<35)continue;const p=member(spec.id+'/pile-'+x,'dock.pile',x,foot,bearing);if(p)posts.push(p);}
+  group(spec.id+'/piles',posts);strip(spec.id+'/fascia',top.map(p=>point(p.x,p.y+8)),22,'wood','base');
+  if(spec.braces!==false&&posts.length>1){const a=posts[0].transform,z=posts[1].transform,dx=Math.min(220,(z.x-a.x)*.7),dy=(a.y-12)-(at(top,a.x+dx)+15),length=Math.hypot(dx,dy),scale=length/Math.hypot(180,120),angle=Math.atan2(-dy,dx)*180/Math.PI+Math.atan2(120,180)*180/Math.PI;
+   if(scale>=.3&&scale<=1.8)group(spec.id+'/brace',[instance(spec.id+'/brace','dock.brace',a.x,a.y-12,scale,angle)]);
+  }
+ }
+ function ledge(spec){
+  const t=terrain(spec.deck),floor=terrain(spec.ground);if(!t||!floor)return;const top=topLine(t),left=top[0].x,right=top.at(-1).x,base=baseLine(floor,left,right),shape=[...top,...base.toReversed()];
+  group(spec.id+'/body',[],{shape,material:'rock'});
+  const width=right-left,parts=[];if(spec.stone==='masonry'){parts.push(instance(spec.id+'/stone','hanok.masonry',(left+right)/2,Math.max(...base.map(p=>p.y))+(spec.stoneFootOffset??12),.8));}
+  else {const def=kit.ASSETS['rock.shoulder'],scale=Math.max(def.scaleRange[0],Math.min(def.scaleRange[1],width/def.bounds.w*1.15));parts.push(instance(spec.id+'/stone','rock.shoulder',(left+right)/2,Math.max(...base.map(p=>p.y))+22,scale));}
+  group(spec.id+'/stone-face',parts,{clip:shape});
+ }
+ for(const spec of specs||[]){if(spec.type==='building')building(spec);else if(spec.type==='deck')deck(spec);else if(spec.type==='ledge')ledge(spec);}
+ return{groups,covered,joins};
+}
+
+// shared/assets/environment/vector-kit/rest.mjs
+/** Rest-only presentation assemblies, in the retained 1600×900 menu frame.
+ * Actors remain on the existing y765 plane (visible adult ≈127 units).
+ * These support records never enter a campaign map, collision or a save.
+ */
+
+
+
+const REST_PRESETS={
+ inn:{palette:'forest',building:'inn',pines:[[-10,708,.8]],rocks:[[1455,732,.65]]},
+ ridge:{palette:'cool',pines:[[90,705,.7]],rocks:[[270,711,1.15],[1430,734,.7]]},
+ ferry:{palette:'wet',deck:true,pines:[[15,708,.7]],rocks:[[300,716,.7]],water:true},
+ gate:{palette:'ash',building:'gate',rocks:[[1490,735,.65]],flag:true},
+ waterfall:{palette:'wet',rocks:[[80,710,1.2],[1440,734,.85]],water:true},
+ bridge:{palette:'cool',deck:true,rocks:[[85,716,.9]],water:true},
+ village:{palette:'forest',building:'house',pines:[[1515,718,.7]]},
+ warehouse:{palette:'ash',building:'warehouse',rocks:[[1430,732,.7]]},
+ court:{palette:'ash',building:'temple',rocks:[[1450,727,.65]]},
+ guardian:{palette:'ink',building:'temple',landmark:'guardian-root-stairs'},
+ dawnGate:{palette:'dry',building:'gate',pines:[[1500,715,.7]],flag:true},
+ quarry:{palette:'dry',rocks:[[100,708,1.3],[1430,732,.85]]},
+ stoneSteps:{palette:'cave',rocks:[[90,707,1.2],[360,712,.7],[1460,728,.9]],underground:true},
+ caveVillage:{palette:'cave',building:'house',rocks:[[1440,729,.8]],underground:true},
+ caveBridge:{palette:'cave',deck:true,water:true,rocks:[[95,714,.85]],underground:true},
+ caveTemple:{palette:'cave',building:'temple',rocks:[[1470,731,.7]],underground:true},
+ workshop:{palette:'cave',building:'warehouse',rocks:[[1470,732,.8]],underground:true},
+ bellApproach:{palette:'ink',deck:true,rocks:[[120,710,1.15],[1490,729,.9]],underground:true,landmark:'existing-bell-chamber'},
+ caveExit:{palette:'cave',rocks:[[40,705,1.2],[1490,732,.7]],underground:true},
+ cityFerry:{palette:'city',building:'gate',deck:true,water:true,flag:true},
+ archive:{palette:'city',building:'house',rocks:[[1470,733,.65]]},
+ freight:{palette:'city',building:'warehouse',deck:true,water:true},
+ mansion:{palette:'ash',building:'temple',rocks:[[1450,732,.65]]},
+ canal:{palette:'cave',canal:true,water:true,rocks:[[1500,730,.8]],underground:true},
+ graveyard:{palette:'ash',building:'house',rocks:[[1430,733,.7]]},
+ depot:{palette:'ink',building:'warehouse',canal:true,water:true,underground:true},
+ courtyard:{palette:'ash',building:'temple',flag:true},
+ sluice:{palette:'ink',building:'gate',canal:true,water:true},
+ riverExit:{palette:'city',deck:true,water:true,rocks:[[120,717,.85]]},
+};
+// Every chapter has an explicit local-place assembly. No variant → forest fallback.
+const REST_STYLES=Object.freeze(Object.fromEntries([
+ 'inn','ridge','ferry','gate','waterfall','bridge','village','warehouse','court','guardian',
+ 'dawnGate','quarry','stoneSteps','caveVillage','caveBridge','caveTemple','workshop','bellApproach','bellApproach','caveExit',
+ 'cityFerry','archive','freight','mansion','canal','graveyard','depot','courtyard','sluice','riverExit',
+].map((name,i)=>[i+1,Object.freeze({name,...REST_PRESETS[name]})])));
+
+function compileRestScene(stage){
+ const style=REST_STYLES[stage];if(!style)return null;
+ const instance=(id,assetId,x,y,scale)=>({id,assetId,palette:style.palette,transform:{x,y,scale}});
+ const ground=compileScene({terrain:{profile:[[-80,719],[240,697],[480,707],[800,714],[1130,710],[1390,699],[1680,722]],bottom:950,halfWidths:[9,9,8,8,8,9,9],palette:style.palette,paintBounds:{x:0,y:700,w:1600,h:250}},instances:[]});
+ const near=compileScene({instances:[...(style.pines||[]).map(([x,y,s],i)=>instance('rest-pine-'+i,'pine.small',x,y,s)),...(style.rocks||[]).map(([x,y,s],i)=>instance('rest-rock-'+i,'rock.shoulder',x,y,s))]});
+ // The same terrain-aware assembly used by the stage3/4 warehouses and gates.
+ // Door H157–179 is 1.24–1.41 visible rest adults, with a single storey above it.
+ const terrain=[],specs=[];
+ if(style.name==='waterfall'){
+  plane('rest-waterfall-wall',[[-80,-200],[452,-200],[478,-34],[465,73],[502,160],[485,248],[521,326],[509,429],[550,510],[541,581],[592,683],[536,733],[-80,733],[-100,730],[-100,650],[-100,550],[-100,450],[-100,350],[-100,250],[-100,150],[-100,50],[-100,-50],[-100,-150],[-100,-200]]);
+  // Reuse the broad legacy wet-wall contour as a finite rock face.
+  support('rest-waterfall-bed',-100,600,734);
+  specs.push({id:'rest-wet-wall',type:'ledge',deck:'rest-waterfall-wall',ground:'rest-waterfall-bed'});
+ }
+ function plane(id,points){const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);terrain.push({id,x:Math.min(...xs),y:Math.min(...ys),points:points.map(([x,y])=>({x,y})),honroWalkEdges:Array.from({length:points.length/2-1},(_,i)=>i)});}
+ function support(id,left,right,y){plane(id,[[left,y],[right,y],[right,y+20],[left,y+20]]);}
+ if(style.building){
+  const wide=style.building==='warehouse',left=wide?-120:-40,right=wide?490:450,foot=707;
+  const peak=style.building==='temple'?378:420,eave=style.building==='gate'?464:480;
+  support('rest-house-floor',left,right,foot);
+  plane('rest-house-roof',[[left-32,eave],[left+95,eave-17],[(left+right)/2,peak],[right-95,eave-17],[right+32,eave],[right+32,eave+14],[right-95,eave-3],[(left+right)/2,peak+14],[left+95,eave-3],[left-32,eave+14]]);
+  specs.push({id:'rest-'+style.building,type:'building',roof:'rest-house-roof',ground:'rest-house-floor',left:left+20,right:right-20,columns:[left+28,(left+right)/2+85,right-28],openings:[{id:'door',assetId:'hanok.door.open',x:(left+right)/2-38,scale:style.building==='gate'?.8:.7},{id:'wall-bay',assetId:'hanok.wall.bay',x:right-107,scale:.7}]});
+ }
+ if(style.deck){
+  support('rest-pier-bed',1100,1700,788);
+  plane('rest-pier-deck',[[1120,707],[1330,630],[1680,644],[1680,660],[1330,646],[1120,723]]);
+  specs.push({id:'rest-pier',type:'deck',deck:'rest-pier-deck',ground:'rest-pier-bed',piles:[1170,1430,1630]});
+ }
+ if(style.canal){
+  support('rest-canal-bed',-50,445,770);support('rest-canal-top',-50,445,610);
+  specs.push({id:'rest-canal-bank',type:'ledge',deck:'rest-canal-top',ground:'rest-canal-bed',stone:'masonry',stoneFootOffset:-67});
+ }
+ const core={poly:t=>t.points,topAt:t=>t.y};
+ const architecture=compileArchitecture(specs,{terrain},{ASSETS,compileScene,palette:style.palette},core);
+ return{style,ground,near,architecture};
+}
+
+G.HonroEnvironmentVectorKit={ASSETS,MATERIALS,PALETTES,HUMAN_H,COMPOSITIONS,STAGE_STYLES,REGISTRY_VERSION,REST_STYLES,compileRestScene,compileArchitecture,compileScene,drawCanvas,paintFor,svgScene};
 })(globalThis);
 })();
 await yieldIfNeeded();
