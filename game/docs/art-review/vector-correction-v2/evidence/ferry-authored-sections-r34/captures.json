@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:402743c5066ffc0a2811a8e05210e7ec5da2dfa4f52704d09a57c035b549a1da",
+  "sourceHashAfter": "sha256:402743c5066ffc0a2811a8e05210e7ec5da2dfa4f52704d09a57c035b549a1da",
+  "mode": "representative",
+  "rows": [
+    {
+      "id": "ferry-authored-sections-r34-stage03-normal",
+      "sourceHash": "sha256:402743c5066ffc0a2811a8e05210e7ec5da2dfa4f52704d09a57c035b549a1da",
+      "stage": 3,
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-normal.png",
+        "sha256": "f5f0a1031f7bd9a81037412d2c357a837b8a03974563036ace51cf2338235484"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-authored-sections-34",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    },
+    {
+      "id": "ferry-authored-sections-r34-stage03-wide",
+      "sourceHash": "sha256:402743c5066ffc0a2811a8e05210e7ec5da2dfa4f52704d09a57c035b549a1da",
+      "stage": 3,
+      "view": "wide",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-wide.png",
+        "sha256": "02591ff11a9d7174cca211b98857fd9e4e30cd5b8b6d58d55684592ff9568492"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-authored-sections-34",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    }
+  ],
+  "errors": []
+}

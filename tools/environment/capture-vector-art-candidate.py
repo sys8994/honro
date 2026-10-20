@@ -44,8 +44,8 @@ with sync_playwright() as p:
   for label,x,y,scale in poses:
    if label=='wide' and os.environ.get('HONRO_MAX_WIDE')=='1':scale=page.evaluate('HonroBounds.zoomLimits(terrainCanvas.width).min')
    pose={'x':x,'y':y,'scale':scale}
-   result=page.evaluate('''v=>{const {s,e,b}=terrainCurrent;Object.assign(s,v);s.render(e,0,'',.6,false,0);s.render(e,0,'',.6,false,0);return{art:HonroVectorCampaignArt.stats(b),pure:terrainCurrent.before===JSON.stringify([b.terrain,b.units,b.honroMarkers,b.honroEvents,b.honroObjectives])};}''',pose)
-   page.wait_for_timeout(100);page.evaluate("terrainCurrent.s.render(terrainCurrent.e,0,'',.6,false,0)")
+   result=page.evaluate('''v=>{const {s,e,b}=terrainCurrent;Object.assign(s,v);const times=[];for(let i=0;i<2;i++){const at=performance.now();s.render(e,0,'',.6,false,0);times.push(performance.now()-at);}const tiles=[...(s._domainTiles?.tiles.values()||[])];return{art:HonroVectorCampaignArt.stats(b),pure:terrainCurrent.before===JSON.stringify([b.terrain,b.units,b.honroMarkers,b.honroEvents,b.honroObjectives]),profile:{renderMilliseconds:times,tileCount:tiles.length,tileRgbaBytes:tiles.reduce((n,t)=>n+t.canvas.width*t.canvas.height*4,0)}};}''',pose)
+   page.wait_for_timeout(100);result['profile']['renderMilliseconds'].append(page.evaluate("()=>{const t=performance.now();terrainCurrent.s.render(terrainCurrent.e,0,'',.6,false,0);return performance.now()-t;}"))
    shot=out/f'stage{n:02d}-{label}.png';page.locator('#terrain-view').screenshot(path=str(shot));rows.append({'id':f'{tag}-stage{n:02d}-{label}','sourceHash':before_hash,'stage':n,'view':label,'camera':pose,'viewport':{'width':width,'height':height},'screenshot':{'path':str(shot.relative_to(ROOT)),'sha256':hashlib.sha256(shot.read_bytes()).hexdigest()},**result});print(tag,n,label,result['pure'],flush=True)
   page.evaluate("()=>{for(const tile of terrainCurrent.s._domainTiles?.tiles.values()||[])tile.canvas.width=1;terrainCurrent.s._domainTiles?.tiles.clear();delete window.terrainCurrent;}")
  browser.close()

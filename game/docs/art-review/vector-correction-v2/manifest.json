@@ -2709,6 +2709,155 @@
       ],
       "regressions": [],
       "resolutions": []
+    },
+    {
+      "id": "ferry-authored-sections-r34",
+      "sourceHash": "sha256:402743c5066ffc0a2811a8e05210e7ec5da2dfa4f52704d09a57c035b549a1da",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-authored-sections-r34-state.json",
+        "sha256": "ac4e1f8eab4ad448f6cd7d2bd671434ab57960c436597e8ad61e38b4e10e099d"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "과대 확대된 전체 원본 대신 2000world의 실제 카메라 구간을 각각 저작한 네 참조를 낮은 경계 오차/공통64색 네이티브 경로로 구성했다. 하단 대비 수정 전 실제 세 화면이다.",
+      "captures": [
+        {
+          "id": "ferry-authored-sections-r34-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:402743c5066ffc0a2811a8e05210e7ec5da2dfa4f52704d09a57c035b549a1da",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-normal.png",
+            "sha256": "f5f0a1031f7bd9a81037412d2c357a837b8a03974563036ace51cf2338235484"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/captures.json",
+            "sha256": "efcd01018a7ac5e2d459b420cdc8e53283c03ccd06b176108cf5390349f1ed6a"
+          }
+        },
+        {
+          "id": "ferry-authored-sections-r34-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:402743c5066ffc0a2811a8e05210e7ec5da2dfa4f52704d09a57c035b549a1da",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-wide.png",
+            "sha256": "02591ff11a9d7174cca211b98857fd9e4e30cd5b8b6d58d55684592ff9568492"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/captures.json",
+            "sha256": "efcd01018a7ac5e2d459b420cdc8e53283c03ccd06b176108cf5390349f1ed6a"
+          }
+        },
+        {
+          "id": "ferry-authored-sections-r34-mobile-stage03-mobile",
+          "stage": 3,
+          "view": "mobile",
+          "sourceHash": "sha256:402743c5066ffc0a2811a8e05210e7ec5da2dfa4f52704d09a57c035b549a1da",
+          "camera": {
+            "x": 3100,
+            "y": 1400,
+            "scale": 0.4
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34-mobile/stage03-mobile.png",
+            "sha256": "f18a29e9448ba7477e84cd87d778f3bea613600bf7f9a235ccb94f1bd44edd95"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34-mobile/captures.json",
+            "sha256": "7a8f7f4cc98d2455aaac170905ec712eb2004949b37aa8488a1a2c07f84a5a27"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "별도 저작 네 구간을 각각2000world 폭으로 구성했다. 실제 normal/minimum-wide/mobile에서 사각 창문과 고립된 돌 배열은 크게 줄고 표면 아래 몸체가 하단까지 연결된다. 다만 이 단계는 하단 대비/밀도가 높아 전체 장면 통과로 세지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34-mobile/stage03-mobile.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "하단까지 중간 형태가 이어지나 최대 줌에서 전경 하단 대비와 밀도가 상단과 비슷해 시선이 분산된다. 큰 형태를 남긴 채 아래 명암 차이를 줄이는 수정이 필요하다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34-mobile/stage03-mobile.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "실제 보행선 아래30world 재질을 좁은 불규칙 전면 어깨로 겹쳐 거대한 암면을 칼로 자른 상단 문제를 줄였다. 구간 접촉은 개선됐으나 부모의 전체 장면 판단 전 합격으로 세지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34-mobile/stage03-mobile.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "공통64색과 낮은 경계 오차로 암면/흙/접촉 틈의 역할을 유지했다. 별도 원본1px가 정상화면1.2695px라 과대 확대는 줄었으나 아직 하단 색/명암 정돈 전이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34-mobile/stage03-mobile.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "세 실제 화면을 열었다. 근경과 광역이 하나의 산지로 읽히지만 광역 하단이 너무 강해 수정을 이어간다. 근경 PNG나 원경 래스터를 런타임 지형에 사용하지 않았다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r34-mobile/stage03-mobile.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
     }
   ],
   "final": null

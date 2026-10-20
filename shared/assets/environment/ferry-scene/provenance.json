@@ -91,12 +91,12 @@
       "minimumRegionAreaNativePixels": 12
     }
   ],
-  "geometrySvgSha256": "ce73e45db7ac058424944c949d9ca9c459bdf4b7ea4c15726efa123da3bee66a",
-  "geometryJsonSha256": "477322830d309b82c27e0907d64f7a36715e509ffd0e7e747018f04dbf79db1f",
-  "rawSvgBytes": 7477523,
-  "gzipSvgBytes": 1542342,
-  "rawJsonBytes": 6588540,
-  "gzipJsonBytes": 1680098,
+  "geometrySvgSha256": "622ea79a5b400afb8aab1b0e8e65bc84348191d11b4c18633297730e151a9551",
+  "geometryJsonSha256": "eb93fb60c3ba5a8946ce2359786bb78346940a051c4592d748dcfbaaa8a7ef90",
+  "rawSvgBytes": 7477955,
+  "gzipSvgBytes": 1542599,
+  "rawJsonBytes": 6588663,
+  "gzipJsonBytes": 1680203,
   "coverage": [
     -1300,
     700,
@@ -107,5 +107,29 @@
   "sourcePixelAtNormalZoom": 1.26953125,
   "actualAdultWorldHeight": 103.5,
   "seamMethod": "offline RGB overlap energy with bounded smooth path; no runtime image operation; requires actual pixel review",
-  "bottomEdgeContinuationWorld": 46.875
+  "bottomEdgeContinuationWorld": 46.875,
+  "lowerFinish": {
+    "washStartWorld": 1850,
+    "washHeightWorld": 2400,
+    "color": "#535b49",
+    "stops": [
+      [
+        0,
+        0
+      ],
+      [
+        0.28,
+        0.06
+      ],
+      [
+        0.65,
+        0.22
+      ],
+      [
+        1,
+        0.38
+      ]
+    ]
+  },
+  "groundAlphaPreserved": true
 }
