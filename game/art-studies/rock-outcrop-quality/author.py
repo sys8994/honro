@@ -4,11 +4,14 @@ Coordinates are composition-specific. No shared rock contour, scattered texture 
 from pathlib import Path
 import sys
 R=Path(__file__).parent
-REV=int(sys.argv[1]) if len(sys.argv)>1 else 13
+REV=int(sys.argv[1]) if len(sys.argv)>1 else 16
 
 def p(d,c,op=1):return f'<path d="{d}" fill="{c}" opacity="{op}"/>'
 def line(d,c='#96988a',w=1.2,op=.5):return f'<path d="{d}" fill="none" stroke="{c}" stroke-width="{w}" opacity="{op}"/>'
 def bed(out,body,lit,side,scar=None):
+ if REV>=14:
+  from cap_profiles import PROFILES
+  lit=PROFILES.get(body.split('L')[0],lit)
  out.append(p(body,'url(#stone)'))
  out.append(p(lit,'url(#lit)'))
  out.append(p(side,'#2d3a3e',.88))
@@ -172,6 +175,9 @@ for name,fn in [('shelf',shelf),('shoulder',shoulder),('fan',fan)]:
  if REV>=11:
   from weathering import weather
   weather(content,name,p,line)
+ if REV>=14:
+  from buried_joints import revise
+  revise(content,name,p,line)
  content.append('</svg>')
  svg='\n'.join(content)
  if REV>=11:
