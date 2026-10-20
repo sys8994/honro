@@ -1,5 +1,6 @@
 import {authorPlaceEncounters} from './act3-place-encounters-20261017.mjs';
-/** Stage29-only fresh author. Saves retain serialized terrain and story state. */
+import {SERVICE_COVER_TOP,SERVICE_COVER_BOTTOM,authorStage29ServiceCover} from './stage29-service-cover.mjs';
+/** Stage29-only fresh author. Campaign revision discards obsolete battle geography. */
 import {readFile,writeFile} from 'node:fs/promises';
 import {pathToFileURL} from 'node:url';
 import {asset,put,P,R,line,pool} from './act3-map-kit.mjs';
@@ -10,7 +11,7 @@ export const RECORD29_SURFACES=[
  ['r29-record-vault',[[2370,2050],[2480,2055],[2660,2020],[3320,2020],[3540,2055],[3650,2050]],[[3650,2074],[3540,2079],[3320,2044],[2660,2044],[2480,2079],[2370,2074]],'stone'],
  ['old-door',[[3030,2050],[3074,2050]],[[3074,2220],[3030,2220]],'wood'],
  ['r29-upper-ascent',[[3830,2095],[4250,1840],[4550,1840]],[[4550,1940],[4250,1940],[3830,2195]],'stone'],
- ['r29-high-road',[[4550,1840],[5550,1840],[6100,2190],[6500,2190]],[[6500,2270],[6100,2270],[5550,1930],[4550,1930]],'stone'],
+ ['r29-high-road',SERVICE_COVER_TOP,SERVICE_COVER_BOTTOM,'stone'],
  ['r29-inspection-roof',[[4420,2560],[5530,2560]],[[5530,2590],[4420,2590]],'stone'],
  ['r29-inspection-deck',[[4150,2760],[5740,2760]],[[5740,2830],[4150,2830]],'stone'],
  ['r29-low-screen',[[5740,2650],[5850,2650]],[[5850,2760],[5740,2760]],'rock']
@@ -39,7 +40,7 @@ export function authorStage29Record(g,input){
  s.design.questRoutes.traversal={A:a.map(([x,y])=>pt(x,y)),B:b.map(([x,y])=>pt(x,y))};s.design.questRoutes.traversal.A[0].jumpTo={x:3850,support:'r29-upper-ascent'};s.routes=[...common,...b].map(([x,y])=>pt(x,y));
  authorPlaceEncounters(p,s);
  applyStage29RecordArt(g,p);
- const out=g.HonroTerrainDomain.author(p);if(JSON.stringify(out.stages.filter(t=>t.metadata?.stageId!==29))!==before)throw Error('Other stages changed');return out;
+ const out=g.HonroTerrainDomain.author(authorStage29ServiceCover(p));if(JSON.stringify(out.stages.filter(t=>t.metadata?.stageId!==29))!==before)throw Error('Other stages changed');return out;
 }
 /** Art-only refresh for an existing campaign; never reauthors quest or collision state. */
 export function applyStage29RecordArt(g,p){
