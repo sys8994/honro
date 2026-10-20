@@ -1,0 +1,145 @@
+{
+  "version": 1,
+  "config": {
+    "path": "game/docs/art-review/current.json",
+    "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-bearing-r12b-state.json.files/scope-config.json",
+    "sha256": "c47f159d6ec7ac4df5e13fc11a3da7685ec7c92951660f6b31eb95873e398b56"
+  },
+  "files": [
+    {
+      "path": "game/src/journey.css",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "ead378cd3458d2a3ffd30af9f5d1a6271ab1fac77df895f40bcefe7990cc7c22"
+    },
+    {
+      "path": "shared/assets/environment/vector-campaign-parts.json",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "14fe01b9621cb820b020fafb360f4725b284fda9fe2173e8add38b317e67cd35"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/architecture.mjs",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "e693c2eca34f5020286081cf8682a0fa84d0f700f310bf56dafbe08f7c87311d"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/campaign.mjs",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "378ed953755cd23279b7d70a8c9b8b59a601071ac7984b94d8c6052fdc7419e1"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/compositions.mjs",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "72ac92352e4ea65393f9b64eba800fb6176a6a574a176f58565bb9abef8d1f08"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/registry.mjs",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "2c2141225e679c2f885eddbc9baa296cf5b6c58722197b53ddb0f659645c5bd4"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/rest.mjs",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "fef818ac3360d178e1329665123b57cc185646cb01602b2d74f6a6b2eae07401"
+    },
+    {
+      "path": "shared/build.mjs",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "eed4be3fb76775c0c21c299953bfe939279216124fdbb3b21dc164aa114634c5"
+    },
+    {
+      "path": "shared/data/campaign.json",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "8f2b3b9f20feda7734b7a0be5dea6c03d62a6620e71be16e5df42c0efc99cda2"
+    },
+    {
+      "path": "shared/map/terrain-domain.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "18d401230a46483b71113943ffb7e78c04631bd7e4ae2e505401f2965bd0bdc1"
+    },
+    {
+      "path": "shared/map/vector-art.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "c2a8200b80b6519a91689898931a35f8c927381fd8fabed994d30f7cfda421e6"
+    },
+    {
+      "path": "shared/map/visual-style.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "b3d1fe996205ca5a935ed3ec16c5a377d314d9737094bbff92afd769b6045dfb"
+    },
+    {
+      "path": "shared/runtime/act1-spatial-art.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "ef2149c8409b37db54ca7d181849a25a86e7c3c420659377f3df22c2679e8950"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "deecb16aac810bcb7dba1e37cd0008fb9c3e3647b617292c86502c410b5ec2e0"
+    },
+    {
+      "path": "shared/runtime/environment-art.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "29a12578c121012e76b59b7fde85c69d570db63a45193000f35617eb7e0464b6"
+    },
+    {
+      "path": "shared/runtime/environment-renderer.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "ddff3b2dcc90b1a38cf7287501c1d29e0443e02de2cf2c1e59940a5c649b6473"
+    },
+    {
+      "path": "shared/runtime/journey-art.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "1345931d8c016b38398dd2c412290af2640f264b0d92c00d0b55dd233044e2d9"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "c3e13adb8565f07b486da94a801cba3c3c3bab588a5d46ed60759d427d18b358"
+    },
+    {
+      "path": "shared/runtime/rest-journey.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "501157a171800dc6f25bb64646f58b4afc4f8537ac176ccaaa2982d80825b78b"
+    },
+    {
+      "path": "shared/runtime/stage1-vector-front.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "77d1c197ddb65c068b85affcf17aca550cc586f9251000ebeaab9ab20a18ebf6"
+    },
+    {
+      "path": "shared/runtime/stage3-vector-front.js",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-bearing-r12b-state.json.files/sources/shared/runtime/stage3-vector-front.js",
+      "sha256": "8ef0eb34916d5dbf0ec26917118a6509432e55c0f564429fdcf4d6ea9b153d60"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-art.js",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-bearing-r12b-state.json.files/sources/shared/runtime/vector-campaign-art.js",
+      "sha256": "554792685ba42240db1899b6c92f41e5b1b66b8f72a82eec8bdd3ae4f17355fe"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-config.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "c154b88056b5a5d53e5127d75576cfb61d0ccbbcca2dd84e7d48b1880bf569ac"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-materials.js",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "a1482c9f5f53d1951c5aaf277e9ca105f39a28a8009126dd9711c90b743e0aa1"
+    },
+    {
+      "path": "tools/environment/extract-vector-campaign-parts.py",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "6b3db9a60ba02eb59389ce56efbcee85dbd8926e6d9e8542cf742c5dfdc713cb"
+    },
+    {
+      "path": "tools/environment/rest-backdrop-assets.mjs",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "35724820250619fd60d656f3af37584eec5614e0715c1804c96851cd51a6c6c5"
+    },
+    {
+      "path": "tools/environment/vector-kit-runtime.mjs",
+      "gitCommit": "af1153545549ba6d68d85f432869d08bb9a20a49",
+      "sha256": "ab0f6c70093a3132d4509519faaf420612ac1587b8f5cf6449d4dd0d071390ee"
+    }
+  ]
+}

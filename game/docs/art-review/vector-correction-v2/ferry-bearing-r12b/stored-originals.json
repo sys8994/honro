@@ -1,0 +1,26 @@
+{
+  "sourceHash": "sha256:360c82df154dc886ce69b3ec6869215c5208fce01f089ad83692ca381de7cdfa",
+  "originalCaptureReport": {
+    "path": "game/docs/art-review/vector-correction-v2/ferry-bearing-r12b/original-captures.json",
+    "sha256": "15bca2508a4c663b31db5bff279f93f946a953527fb41ae59af49d1e425d9de8"
+  },
+  "copies": [
+    {
+      "originalCaptureId": "ferry-bearing-r12b-stage03-normal",
+      "storedScreenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/ferry-bearing-r12b/stage03-normal.png",
+        "sha256": "ca422f34e8050988b28090131d4284a41d18292af62316e6ad9a51c380c56530"
+      },
+      "originalScreenshotPath": "_local/reports/vector-art-correction-v2/ferry-bearing-r12b/stage03-normal.png"
+    },
+    {
+      "originalCaptureId": "ferry-bearing-r12b-stage03-wide",
+      "storedScreenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/ferry-bearing-r12b/stage03-wide.png",
+        "sha256": "8c4223c45efd9590996976df76c85ef075bc46ff9491d10a744d638e8176ec01"
+      },
+      "originalScreenshotPath": "_local/reports/vector-art-correction-v2/ferry-bearing-r12b/stage03-wide.png"
+    }
+  ],
+  "status": "incomplete_soil_bearing_only_not_art_pass"
+}

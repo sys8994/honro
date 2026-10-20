@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:360c82df154dc886ce69b3ec6869215c5208fce01f089ad83692ca381de7cdfa",
+  "sourceHashAfter": "sha256:360c82df154dc886ce69b3ec6869215c5208fce01f089ad83692ca381de7cdfa",
+  "mode": "representative",
+  "rows": [
+    {
+      "id": "ferry-bearing-r12b-stage03-normal",
+      "sourceHash": "sha256:360c82df154dc886ce69b3ec6869215c5208fce01f089ad83692ca381de7cdfa",
+      "stage": 3,
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "_local/reports/vector-art-correction-v2/ferry-bearing-r12b/stage03-normal.png",
+        "sha256": "ca422f34e8050988b28090131d4284a41d18292af62316e6ad9a51c380c56530"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-soil-bearing-12",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    },
+    {
+      "id": "ferry-bearing-r12b-stage03-wide",
+      "sourceHash": "sha256:360c82df154dc886ce69b3ec6869215c5208fce01f089ad83692ca381de7cdfa",
+      "stage": 3,
+      "view": "wide",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.24
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "_local/reports/vector-art-correction-v2/ferry-bearing-r12b/stage03-wide.png",
+        "sha256": "8c4223c45efd9590996976df76c85ef075bc46ff9491d10a744d638e8176ec01"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-soil-bearing-12",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    }
+  ],
+  "errors": []
+}
