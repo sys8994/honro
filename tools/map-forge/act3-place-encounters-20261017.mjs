@@ -44,14 +44,14 @@ export const PLACE_ENCOUNTERS={
    m('archiveFiend',6040,undefined,true),m('archiveFiend',6120),m('lantern',6500),m('archiveFiend',6370),m('hound',5870)])
  ],
  25:[
-  q('seal-approach','첫 작업면 서쪽 전위쌍과 동쪽 등불. 시작 대형과 봉인 발사창은 비운다.','depot-entry-seal',[
-   m('picks',790,'gallery-0:collision:0'),m('lantern',1210,'gallery-0:collision:0',true),m('picks',900,'gallery-0:collision:0')]),
-  q('numbered-goods','서쪽 전망대 정예 도구쌍과 바로 위 낮은 지붕의 독립 지원. 귀환 사격창은 비운다.','stake-arrival-2',[
-   m('picks',310,'gallery-3:collision:0',true),m('lantern',520,'west-lookout-roof:collision:0',false,'numbered-goods-upper'),m('picks',410,'gallery-3:collision:0')]),
+  q('seal-approach','첫 작업면 서쪽 단독 전위와 뒤쪽 호위과 동쪽 등불. 시작 대형과 봉인 발사창은 비운다.','depot-entry-seal',[
+   m('picks',740,'gallery-0:collision:0'),m('lantern',1210,'gallery-0:collision:0',true),m('picks',940,'gallery-0:collision:0')]),
+  q('numbered-goods','서쪽 전망대 정예와 떨어진 도구과 바로 위 낮은 지붕의 독립 지원. 귀환 사격창은 비운다.','stake-arrival-2',[
+   m('picks',245,'gallery-3:collision:0',true),m('lantern',520,'west-lookout-roof:collision:0',false,'numbered-goods-upper'),m('picks',445,'gallery-3:collision:0')]),
   q('inner-store','검문실의 도구·수레 전위와 그 위 처마 지원쌍. 동쪽 벽과 도착창 앞은 비운다.','stake-arrival-4',[
-   m('picks',4510,'gallery-5:collision:0'),m('minecart',4810,'lookout-stair:collision:0'),m('lantern',4970,'upper-checkpoint-roof:collision:0',false,'inner-store-upper'),m('picks',4610,'gallery-5:collision:0',true),m('possessedArcher',5120,'upper-checkpoint-roof:collision:0',false,'inner-store-upper')]),
-  q('maintenance-window-pressure','도착창은 비우고 정비실 동쪽 끝 전위쌍과 창 위 공중을 견제한다.','stake-arrival-1',[
-   m('crow',1880,undefined,false,'maintenance-window-air',4650),m('lantern',2910,undefined,false,'maintenance-window-air',4230),m('picks',3470,'gallery-1:collision:0'),m('picks',3580,'gallery-1:collision:0')])
+   m('picks',4400,'gallery-5:collision:0'),m('minecart',4850,'lookout-stair:collision:0'),m('lantern',4970,'upper-checkpoint-roof:collision:0',false,'inner-store-upper'),m('picks',4660,'gallery-5:collision:0',true),m('possessedArcher',5175,'upper-checkpoint-roof:collision:0',false,'inner-store-upper')]),
+  q('maintenance-window-pressure','도착창은 비우고 정비실 동쪽의 단독 도구와 끝단 후위과 창 위 공중을 견제한다.','stake-arrival-1',[
+   m('crow',1880,undefined,false,'maintenance-window-air',4650),m('lantern',2910,undefined,false,'maintenance-window-air',4230),m('picks',3400,'gallery-1:collision:0'),m('picks',3580,'gallery-1:collision:0')])
  ],
  26:[
   q('record-room-remnants','묘역 기록실 동쪽 벽의 정예·사수와 호위. 서쪽 문과 기록 작업면은 비운다.','investigation-record',[

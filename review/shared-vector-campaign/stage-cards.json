@@ -1803,7 +1803,7 @@
       "next": 26
     },
     "goal": "축지진목으로 물길을 건너 생활물품의 번호 확인",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "입구 봉인→다섯 실제 축지 도착→가구별 수량 대조→출구. 각 도착의 실제 두 동행 M09 사용과 출구 allHeroes:true, 실수 시 현행 체크포인트 복구를 보존한다.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1814,7 +1814,7 @@
         "cls": "mage"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "설오와 담허가 수문 정비실의 열린 발사창에서 진목을 건너 보내 두 사람 모두 착지하고, 다음 발사창의 압박을 함께 걷어낼 수 있는가?",
     "size": [
       5600,
       6800
@@ -1823,7 +1823,14 @@
     "place": "지하 수문과 묶인 이름",
     "preservedIds": {
       "objectives": [
-        "campaign-objective"
+        "depot-entry-seal",
+        "stake-arrival-1",
+        "stake-arrival-2",
+        "stake-arrival-3",
+        "stake-arrival-4",
+        "stake-arrival-5",
+        "household-tally",
+        "waterworks-exit"
       ],
       "markers": [
         "stake-arrival-1",
@@ -1839,17 +1846,81 @@
     },
     "enemyBudget": {
       "initial": 15,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 3,
+      "activeLimit": 2
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기15 고정·정예/전력/XP·유한 증원·행동2 유지. 첫 작업면과 전망대의 도구쌍을 단독 경계·떨어진 호위로 나누고 검문실·정비실 후위 간격을 달리한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 수직 수문축·정비실 천장·전망 복귀길·지붕 접근과 M09 발사창 5개를 보존한다. 일반 보행은 같은 작업면의 선택이며 층간 축지 퍼즐을 대체하지 않는다.",
+    "activeObjectives": [
+      {
+        "id": "depot-entry-seal",
+        "label": "담허와 수로 봉인 살피기",
+        "kind": "interact",
+        "requiredClass": "mage"
+      },
+      {
+        "id": "stake-arrival-1",
+        "label": "두 동행이 동쪽 정비실에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-2",
+        "label": "두 동행이 중앙 점검창에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-3",
+        "label": "두 동행이 상층 물받이에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-4",
+        "label": "두 동행이 맞은편 검문실에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-5",
+        "label": "두 동행이 상층 봉인회랑에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "household-tally",
+        "label": "다섯 도착지 물증과 가족 번호 대조",
+        "kind": "evidence",
+        "afterEvidence": "stake-arrival-5"
+      },
+      {
+        "id": "waterworks-exit",
+        "label": "안쪽 집하장 입구로 이동",
+        "kind": "reach",
+        "allHeroes": true
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행. 실제 첫 발사창의 M09 실탄→설오/담허 E 진입→stake-arrival-1 완료도 통과(이전 목표는 명시 fixture)."
   },
   {
     "stage": 26,
