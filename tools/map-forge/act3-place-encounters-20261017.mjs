@@ -85,11 +85,11 @@ export const PLACE_ENCOUNTERS={
   q('east-water','동쪽 두 동행의 수문 접근에는 기존 두 경비만 남긴다.','water-release',[
    m('possessedGuard',5840),m('possessedArcher',6140)]),
   q('court-petition','합류면 동쪽의 전위 셋과 마당 사수, 접근 가능한 낮은 처마의 별도 정예 지원.','petition-record',[
-   m('possessedGuard',3740,undefined,true),m('possessedArcher',4060),m('possessedGuard',3940),m('possessedGuard',3640),m('possessedArcher',3310,'s28-roof-access-court-lower',true,'court-petition-upper')]),
-  q('decision-suppression','동쪽 부속각 아래 전위와 마루 사격쌍, 은폐 기록실 서쪽의 두 번째 전위. 서고 사이 연결면은 비운다.','suppression-order',[
-   m('possessedGuard',4610,undefined,true),m('possessedArcher',4900,'s28-east-loading-veranda',false,'decision-suppression-upper'),m('possessedGuard',5540,undefined,true,'suppression-door'),m('possessedArcher',5740,undefined,false,'suppression-door'),m('possessedGuard',4710),m('possessedArcher',4800,'s28-east-loading-veranda',false,'decision-suppression-upper'),m('possessedGuard',5640,undefined,false,'suppression-door')]),
-  q('west-record-veranda','불 제어 뒤에만 접근하는 서쪽 기록 회랑 전위쌍과 위 처마 정예 사격. 초기 화재 접근길은 비운다.','closure-order',[
-   m('possessedGuard',2450),m('possessedGuard',2560),m('possessedArcher',2670,'s28-west-veranda',true,'west-record-upper'),m('possessedArcher',2770,'s28-west-veranda',false,'west-record-upper')])
+   m('possessedGuard',3720,undefined,true),m('possessedArcher',4190),m('possessedGuard',3900),m('possessedGuard',3610),m('possessedArcher',3280,'s28-roof-access-court-lower',true,'court-petition-upper')]),
+  q('decision-suppression','동쪽 부속각 아래 전위와 마루 전후의 떨어진 사격점, 은폐 기록실 서쪽의 두 번째 전위. 서고 사이 연결면은 비운다.','suppression-order',[
+   m('possessedGuard',4550,undefined,true),m('possessedArcher',4930,'s28-east-loading-veranda',false,'decision-suppression-upper'),m('possessedGuard',5510,undefined,true,'suppression-door'),m('possessedArcher',5750,undefined,false,'suppression-door'),m('possessedGuard',4705),m('possessedArcher',4720,'s28-east-loading-veranda',false,'decision-suppression-upper'),m('possessedGuard',5660,undefined,false,'suppression-door')]),
+  q('west-record-veranda','불 제어 뒤에만 접근하는 서쪽 기록 회랑의 문지기와 뒤로 물러난 호위과 위 처마 정예 사격. 초기 화재 접근길은 비운다.','closure-order',[
+   m('possessedGuard',2410),m('possessedGuard',2600),m('possessedArcher',2520,'s28-west-veranda',true,'west-record-upper'),m('possessedArcher',2790,'s28-west-veranda',false,'west-record-upper')])
  ],
  29:[
   q('sealed-store-response','봉인 창고 첫 접근의 정예 전위 세 체와 짧은 후위. 서쪽 시작 길은 비운다.','old-seal',[

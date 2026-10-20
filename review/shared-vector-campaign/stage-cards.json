@@ -2155,7 +2155,7 @@
       "next": 29
     },
     "goal": "불길을 막고 합류해 청원서와 은폐 기록 확보",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "차단막/수문 병행→두 조사팀 합류→청원서→폐쇄 승인문→은폐 지시문→관아 출구. 기존 소각 제한·분할 합류·문 개방·전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -2174,7 +2174,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "양쪽 조사팀이 제한시간 안에 차단막과 수문을 나눠 처리한 뒤 중앙에서 합류하고, 양쪽 짧은 처마로 기록각 수비의 측면을 잡을 수 있는가?",
     "size": [
       7200,
       3400
@@ -2183,7 +2183,13 @@
     "place": "불타는 기록 마당",
     "preservedIds": {
       "objectives": [
-        "campaign-objective"
+        "fire-screen",
+        "water-release",
+        "party-reunion",
+        "petition-record",
+        "closure-order",
+        "suppression-order",
+        "office-exit"
       ],
       "markers": [
         "fire-screen",
@@ -2200,17 +2206,73 @@
     },
     "enemyBudget": {
       "initial": 20,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 5,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기20·정예/전력/XP·유한 증원·행동 상한 유지. 제한시간 초반 양쪽 두 경비는 그대로 두고 합류 후 마당과 기록 회랑의 전위/호위/상층 사수를 비대칭 간격으로 교정한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 서쪽 서비스 처마·동쪽 하역 처마와 낮은 지상길, 중앙 합류마당이 충분하다. 화재 문/수문·양쪽 출발·기록각 지붕 one-way를 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "fire-screen",
+        "label": "휘겸으로 서쪽 불길 막기",
+        "kind": "interact",
+        "requiredClass": "knight",
+        "opens": "fire-door",
+        "parallelGroup": "fire-control"
+      },
+      {
+        "id": "water-release",
+        "label": "설오로 동쪽 수문 열기",
+        "kind": "interact",
+        "requiredClass": "archer",
+        "opens": "water-gate",
+        "parallelGroup": "fire-control"
+      },
+      {
+        "id": "party-reunion",
+        "label": "네 동행이 뒤뜰에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 440
+      },
+      {
+        "id": "petition-record",
+        "label": "불길에서 청원·결재 기록함 구출",
+        "kind": "interact"
+      },
+      {
+        "id": "closure-order",
+        "label": "구출한 기록함의 폐쇄 승인 확인",
+        "kind": "evidence",
+        "afterEvidence": "petition-record"
+      },
+      {
+        "id": "suppression-order",
+        "label": "구출한 기록함의 사후 은폐 기록 확인",
+        "kind": "evidence",
+        "afterEvidence": "closure-order"
+      },
+      {
+        "id": "office-exit",
+        "label": "기록을 가지고 봉쇄 벗어나기",
+        "kind": "reach"
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행."
   },
   {
     "stage": 29,
