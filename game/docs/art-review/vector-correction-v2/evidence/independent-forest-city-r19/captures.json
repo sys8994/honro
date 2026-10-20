@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+  "sourceHashAfter": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+  "mode": "representative",
+  "rows": [
+    {
+      "id": "independent-forest-city-r19-stage01-normal",
+      "sourceHash": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+      "stage": 1,
+      "view": "normal",
+      "camera": {
+        "x": 2400,
+        "y": 2300,
+        "scale": 0.6
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/independent-forest-city-r19/stage01-normal.png",
+        "sha256": "cc8da735db0c125d38df58f2426fb3c89691e631e79ff2fc6d5eced6022b26d8"
+      },
+      "art": {
+        "stage": 1,
+        "style": "고갯길 산림",
+        "palette": "forest",
+        "polygons": 10,
+        "parts": 0,
+        "materialRevision": "ferry-soil-bearing-12",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 32
+      },
+      "pure": true
+    },
+    {
+      "id": "independent-forest-city-r19-stage01-wide",
+      "sourceHash": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+      "stage": 1,
+      "view": "wide",
+      "camera": {
+        "x": 3000,
+        "y": 1900,
+        "scale": 0.22
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/independent-forest-city-r19/stage01-wide.png",
+        "sha256": "b7152d4b4d9129bb0b9ac9a9fcbde6996cbafb0da3f941950ebba89746154b6a"
+      },
+      "art": {
+        "stage": 1,
+        "style": "고갯길 산림",
+        "palette": "forest",
+        "polygons": 10,
+        "parts": 0,
+        "materialRevision": "ferry-soil-bearing-12",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 32
+      },
+      "pure": true
+    },
+    {
+      "id": "independent-forest-city-r19-stage21-normal",
+      "sourceHash": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+      "stage": 21,
+      "view": "normal",
+      "camera": {
+        "x": 2277,
+        "y": 2460,
+        "scale": 0.6
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/independent-forest-city-r19/stage21-normal.png",
+        "sha256": "1def9f62e51cb04f5b7a77a9987b797c762868bdea4cdec45bcf13b71c684610"
+      },
+      "art": {
+        "stage": 21,
+        "style": "읍성 성문 아래",
+        "palette": "city",
+        "polygons": 27,
+        "parts": 0,
+        "materialRevision": "ferry-soil-bearing-12",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    },
+    {
+      "id": "independent-forest-city-r19-stage21-wide",
+      "sourceHash": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+      "stage": 21,
+      "view": "wide",
+      "camera": {
+        "x": 4700,
+        "y": 2600,
+        "scale": 0.15
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/independent-forest-city-r19/stage21-wide.png",
+        "sha256": "364267eab8d066facf15e7f5373f8bde12a039f8e47bacb93311b87f030f4f9b"
+      },
+      "art": {
+        "stage": 21,
+        "style": "읍성 성문 아래",
+        "palette": "city",
+        "polygons": 27,
+        "parts": 0,
+        "materialRevision": "ferry-soil-bearing-12",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    }
+  ],
+  "errors": []
+}

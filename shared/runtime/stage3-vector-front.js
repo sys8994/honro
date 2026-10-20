@@ -12,11 +12,21 @@ function draw(c,b,view){if(b?.honroStage!==3)return;c.save();
  c.fillStyle=grad(c,-600,800,3000,10500,[[0,'#807258'],[.13,'#71654e'],[.36,'#595c47'],[.7,'#405345'],[1,'#30483e']]);c.fillRect(-6100,400,16500,25500);
  fill(c,'M-6100 2210C-4010 1560-2140 2450-410 2160C530 2000 1190 2200 1850 1850C2550 1480 2990 1640 3550 1380C4560 910 5560 1690 6640 1370C7890 1010 9110 1610 10400 1330L10400 27000-6100 27000Z',grad(c,600,1600,4300,8400,[[0,'#6d654e'],[.27,'#5f604b'],[.66,'#465646'],[1,'#304a3e']]));
  fill(c,'M-6100 4280C-3750 3120-1670 4680-60 3780C770 3320 1350 3520 2050 3030C2750 2550 3420 2880 4050 2420C5520 1340 7230 2960 10400 2170L10400 27000-6100 27000Z',grad(c,1000,2800,4600,11200,[[0,'#605f49'],[.38,'#4b5947'],[1,'#2e483c']]));
- // A broad lower apron receives soil from both hollows. The quiet planes
- // remain connected below the eventual rock exposures and overlap their toes.
- fill(c,'M1450 2360C1640 2265 1770 2350 1955 2300Q2110 2245 2225 2320L2335 2370Q2490 2340 2600 2410L2760 2400 2890 2500Q2770 2595 2600 2565L2440 2610 2270 2560 2100 2610Q1930 2515 1780 2550L1620 2500 1485 2520Z',grad(c,1500,2310,1400,1150,[[0,'#7c6c4d'],[.45,'#656046'],[1,'#4f5942']]));
- fill(c,'M3030 1550C3180 1510 3250 1570 3370 1535L3480 1490Q3610 1460 3700 1550L3760 1650Q3640 1700 3535 1650L3400 1680 3290 1630Q3170 1650 3075 1615Z',grad(c,3060,1500,1000,700,[[0,'#786d50'],[1,'#5c6045']]));
- fill(c,'M3460 2070Q3620 2000 3760 2090L3880 2150 4015 2125Q4210 2130 4300 2280L4220 2360 4060 2320 3890 2360 3740 2295 3580 2320 3475 2220Z',grad(c,3450,2070,1100,1000,[[0,'#726b4f'],[1,'#505d44']]));
+ // One bank exposure, each module used once. H=80 in the source study
+ // maps to the actual adult H=103.5 world units (scale 1.29375).
+ const part=G.HonroVectorCampaignMaterials.part,S=103.5/80;
+ // The recessed shoulder is behind both neighbours and deliberately darker.
+ part(c,'ferry-shoulder',{x:2850,y:900,sx:S,rotation:-.12,tone:-.2});
+ part(c,'ferry-shelf',{x:2050,y:900,sx:S});
+ part(c,'ferry-fan',{x:2550,y:1290,sx:S,rotation:-.12});
+ // The foreground fan lies lower and in front of the two bank exposures.
+ // It conceals the shoulder's lower-left bearing; the three are not a tile
+ // row along the walk edge. Warm earth crosses the gaps and hides hard feet.
+ fill(c,'M2020 1450Q2110 1438 2177 1467L2240 1458 2317 1490 2386 1478 2460 1521 2534 1510 2604 1560 2580 1640 2494 1620 2411 1571 2331 1584 2250 1541 2160 1557 2081 1519 1990 1530Z',grad(c,2000,1440,900,1000,[[0,'#7c7055'],[.4,'#68634b'],[1,'#536047']]));
+ fill(c,'M3510 1370Q3590 1340 3661 1383L3730 1370 3795 1425 3880 1438 3950 1510Q3880 1570 3790 1527L3718 1494 3650 1511 3571 1468 3490 1460Z',grad(c,3500,1370,850,1100,[[0,'#756d52'],[1,'#546149']]));
+ // Soil wraps the front toe and continues through the lower camera domain.
+ // Its lip is unequal and interrupted by the fan's exposed wedges.
+ fill(c,'M2440 1870Q2520 1810 2594 1845L2661 1809 2730 1830 2810 1792 2885 1819 2960 1774 3037 1802 3120 1760 3198 1785 3270 1742 3344 1770 3420 1734 3510 1781 3610 1760 3700 1820C4390 1990 4860 2420 5370 2820L10400 8720V27000H-6100V8240C-3520 5920-1400 4100 690 2910Q1760 2310 2440 1870Z',grad(c,2200,1810,2000,5600,[[0,'#68654c'],[.28,'#5b6149'],[.65,'#485843'],[1,'#354c3d']]));
  c.restore();}
 function surfaceData(b){const t=b.terrain.find(t=>t.id==='ferry-ground'&&!t.broken);if(!t)return null;const key=b.sceneVersion+':'+t.x+':'+t.y+':'+t.w+':'+t.h;let data=surfaces.get(b);if(data?.key===key)return data;
  // Width changes belong to a few worn shoulders and runoff mouths. There is

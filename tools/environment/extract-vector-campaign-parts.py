@@ -38,7 +38,26 @@ def crown(n):
  if n.get('tag')=='path' and n.get('fill')=='url(#needle-top)':n['d']=crowns[len(n['d'])%3]
  for c in n.get('children',[]):crown(c)
 for p in parts.values():crown(p)
-out={'provenance':{'commit':'1935a106fe99620e2a09de93a6cb89d16d3abda8','status':'regression reference; not approved final'},'gradients':gradients,'clips':clips,'parts':parts}
+# Three separately reviewed rock sources; their original SVG bytes stay intact.
+# Prefix definition IDs so their gradients/clips cannot collide with the forest.
+import hashlib
+imports=[]
+for name in ['shelf','shoulder','fan']:
+ file=root/'game/art-studies/rock-outcrop-quality'/('rock-'+name+'.svg')
+ if not file.exists():continue
+ raw=file.read_bytes();svg=E.fromstring(raw);prefix='ferry-'+name+'-'
+ def rewrite(n):
+  for k,v in list(n.attrib.items()):
+   if k=='id':n.set(k,prefix+v)
+   elif 'url(#' in v:n.set(k,v.replace('url(#','url(#'+prefix))
+  for c in n:rewrite(c)
+ rewrite(svg)
+ for e in svg.iter():
+  if tag(e) in ['linearGradient','radialGradient']:gradients[e.get('id')]={**e.attrib,'type':tag(e),'stops':[c.attrib for c in e]}
+  if tag(e)=='clipPath':clips[e.get('id')]=[node(c) for c in e]
+ parts['ferry-'+name]={'tag':'g','children':[node(c) for c in svg if tag(c) in ['g','path']]}
+ imports.append({'path':str(file.relative_to(root)),'sha256':hashlib.sha256(raw).hexdigest(),'sourceCommit':'2d432127c7c3f16dd8cb748048853601c99fdc37','status':'parent permits preview integration; not final art pass'})
+out={'provenance':{'commit':'1935a106fe99620e2a09de93a6cb89d16d3abda8','status':'regression reference; not approved final'},'imports':imports,'gradients':gradients,'clips':clips,'parts':parts}
 (root/'shared/assets/environment/vector-campaign-parts.json').write_text(json.dumps(out,ensure_ascii=False,separators=(',',':'))+'\n')
 # Exact Bezier bounds are computed once for SVG objectBoundingBox gradients.
 subprocess.run(['node','--input-type=module','-e',"""

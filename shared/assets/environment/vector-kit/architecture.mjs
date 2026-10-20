@@ -39,6 +39,12 @@ export function compileArchitecture(specs,b,kit,core){
  function building(spec){
   const t=terrain(spec.roof),floor=terrain(spec.ground);if(!t||!floor)return;
   const rtop=topLine(t),left=spec.left??rtop[0].x+18,right=spec.right??rtop.at(-1).x-18;
+  if(spec.id==='rest-gate'&&kit.ASSETS['hanok.gatehouse.front']){
+   // Rest-only presentation uses the same adult-scaled pavilion as Stage21.
+   // Its floor is unchanged; campaign roof/collision assembly stays untouched.
+   const x=(left+right)/2,foot=core.topAt(floor,x,floor.y),scale=(foot-Math.min(...rtop.map(p=>p.y)))/269;
+   group(spec.id+'/shared-pavilion',[instance(spec.id+'/pavilion','hanok.gatehouse.front',x,foot,scale)]);covered.add(t.id);return;
+  }
   // Compile the roof last so its soffit overlaps the column heads and wall joins.
   const groupStart=groups.length,coverStart=new Set(covered),r=roof(spec,t),roofGroups=groups.splice(groupStart);covered.clear();for(const id of coverStart)covered.add(id);covered.add(t.id);
   const upper=[point(left,at(r.eave,left)+12),...r.eave.filter(p=>p.x>left&&p.x<right).map(p=>point(p.x,p.y+12)),point(right,at(r.eave,right)+12)],base=baseLine(floor,left,right),wall=[...upper,...base.toReversed()];

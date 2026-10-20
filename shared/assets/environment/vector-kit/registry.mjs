@@ -490,6 +490,84 @@ asset('rock.contact-cleft','겹친 암석 사이의 접촉 틈','rock','rock',[-
  ['M-143 8Q-72-31-11-11L58-19 153 48 119 76 44 55-20 82-76 45Z','shade'],
 ],{heightH:[.3,.8],scaleRange:[.65,1],rotationRange:[-25,25],use:'돌 몸체 뒤에서 대부분 가려지는 국소 접촉 틈'});
 
+// Three-bay gate pavilion. Origin is the top of the masonry platform; a door
+// leaf is 135 units high against the H103.5 adult. The silhouette follows the
+// Stage21 editable roof, while framing sits behind its unchanged walking edge.
+const gatehouse=[
+ ['M-177-12L169-12 185-3 171 8-178 8-187 0Z','#313d3a'],
+ ['M-180-15L167-15 180-8 170-2-179-2-188-8Z','#929487'],
+ ['M-164-173L145-173 171-156 171-16-164-16Z','#645d4e'],
+ ['M145-173L171-156 171-16 145-30Z','#353d36'],
+ ['M-148-153H136V-29H-148Z','#928872'],
+ ['M-145-151H-58V-34H-145Z M58-151H133V-34H58Z','#7d7967'],
+ ['M-52-153H54V-17H-52Z','#202f2d'],
+ ['M-44-143H0V-23H-44Z M5-143H47V-23H5Z','#5b4938'],
+ ['M-39-137H-5V-68H-39Z M10-137H42V-68H10Z','#a48e64'],
+ ['M-36-134H-8V-120H-36Z M13-134H39V-120H13Z','#c3aa77'],
+ ['M-42-65H-2V-25H-42Z M8-65H45V-25H8Z','#68543d'],
+ ['M-37-60H-8V-31H-37Z M14-60H39V-31H14Z','#453c31'],
+ ['M-135-143H-67V-66H-135Z M69-143H130V-66H69Z','#263632'],
+ ['M-129-137H-73V-72H-129Z M75-137H124V-72H75Z','#aaa07e'],
+ ['M-127-135H-76V-120H-127Z M77-135H121V-120H77Z','#bcb08b'],
+ ['M-138-146H-64V-137H-138Z M65-146H133V-137H65Z M-138-72H-64V-62H-138Z M66-72H133V-62H66Z','#877455'],
+ ['M-137-137H-130V-72H-137Z M-73-137H-65V-72H-73Z M66-137H74V-72H66Z M125-137H133V-72H125Z','#4b493a'],
+ ['M-139-55H-65V-33H-139Z M66-55H132V-33H66Z','#575c4a'],
+ ['M-138-59H-63V-53H-138Z M64-59H133V-53H64Z','#a3946c'],
+ ['M-165-31H164V-17H-165Z','#3f3e31'],
+ ['M-165-31H164V-27H-165Z','#968261'],
+ ['M-174-182Q-2-187 173-182L174-169H-175Z','#3a3931'],
+ ['M-174-183Q-2-188 173-183L173-179Q-1-182-174-178Z','#a18a65'],
+ ['M-175-169H174V-162H-175Z','#7d6449'],
+ ['M-174-163H173V-157H-174Z','#2d3c35'],
+ ['M-38-155H43V-138H-38Z','#1d302d'],
+ ['M-32-151H37V-148H-32Z','#ab9870'],
+];
+// Joinery repeats at the structural bay spacing, with tapered shafts and stone
+// shoes. The column heads disappear into the tie beam rather than floating.
+for(const x of [-153,-51,52,153]){
+ gatehouse.push(
+  [`M${x-8}-166L${x+7}-166Q${x+10}-98 ${x+8}-20L${x+13}-14 ${x+11}-7 ${x-12}-7 ${x-15}-14 ${x-9}-20Q${x-11}-97 ${x-8}-166Z`,'#564835'],
+  [`M${x-6}-163L${x-1}-164 ${x-2}-22 ${x-7}-19Q${x-8}-96 ${x-6}-163Z`,'#97805a'],
+  [`M${x+3}-165L${x+7}-166Q${x+10}-98 ${x+8}-20L${x+2}-17Z`,'#30362c'],
+  [`M${x-14}-17L${x+13}-17 ${x+17}-10 ${x+13}-4 ${x-15}-4 ${x-18}-10Z`,'#959383'],
+  [`M${x-17}-9L${x+17}-9 ${x+13}-4 ${x-15}-4Z`,'#4e5b52'],
+  [`M${x-21}-170H${x+21}V-163H${x-21}Z`,'#aa8c60'],
+  [`M${x-29}-185L${x-21}-174 ${x-10}-172 ${x-6}-164 ${x-17}-164 ${x-25}-170 ${x-34}-181Z M${x+29}-185L${x+21}-174 ${x+10}-172 ${x+6}-164 ${x+17}-164 ${x+25}-170 ${x+34}-181Z`,'#67553d'],
+  [`M${x-33}-185H${x+33}V-179H${x-33}Z`,'#826c4d'],
+  [`M${x-27}-188H${x+27}V-184H${x-27}Z`,'#ad9268']);
+}
+// Thin timber lattice belongs to the paper panels and does not become a second
+// floor or oversized bars. It remains distinct at the normal game camera.
+for(const [left,right,top,bottom]of [[-129,-73,-137,-72],[75,124,-137,-72],[-39,-5,-137,-68],[10,42,-137,-68]]){
+ for(let x=left+10;x<right-3;x+=12)gatehouse.push([`M${x} ${top+4}h2.7v${bottom-top-6}h-2.7Z`,'#514d3b']);
+ for(const y of [top+22,top+44])gatehouse.push([`M${left+3} ${y}H${right-3}v2.5H${left+3}Z`,'#62563e']);
+}
+gatehouse.push(
+ ['M-4-135H2V-24H-4Z','#b3976b'],
+ ['M-10-81Q-17-81-17-74Q-17-67-11-67Q-5-68-5-74Q-5-80-10-81Z M16-81Q10-81 10-74Q10-67 16-67Q22-68 22-74Q22-80 16-81Z','none',{stroke:'#2b3029',strokeWidth:2}],
+ // Soffit casts a continuous shadow above the connected bracket sets.
+ ['M-238-204Q-182-189-108-192Q-10-187 97-193Q176-189 238-204L231-188Q162-178 94-181Q-2-176-104-180Q-176-178-231-188Z','#192d31'],
+ ['M-231-194Q-162-182-98-185Q0-181 102-186Q174-182 232-196L231-188Q162-178 94-181Q-2-176-104-180Q-176-178-231-188Z','#5b513d'],
+ // Roof profile matches the retained canonical one-way silhouette.
+ ['M-240.5-208Q-175.5-201-90.42-260Q0-273 90.42-260Q187.5-199 240.5-208L230.5-179Q0-162-230.5-179Z','#1c3037'],
+ ['M-240.5-208Q-175.5-201-90.42-260L90.42-260Q-5-241-99-218Q-166-204-240.5-208Z','#53676c'],
+ ['M90.42-260Q187.5-199 240.5-208Q178-191 99-202Q35-225-24-240Z','#2c444c'],
+ ['M-91-258H90Q138-225 183-211Q-7-185-186-211Q-137-226-91-258Z','#354d56'],
+ ['M-100-240Q0-222 103-240L113-235Q0-216-110-235Z M-140-223Q-2-207 144-224L156-219Q-4-201-152-218Z','#243c45'],
+ ['M-238-207Q-174-196-109-199Q-4-193 106-199Q178-194 238-208L236-201Q171-188 102-193Q-6-187-108-193Q-176-189-236-201Z','#81928b'],
+ ['M-236-201Q-176-189-108-193Q-6-187 102-193Q171-188 236-201L234-195Q170-182 102-186Q-5-181-108-186Q-175-183-234-195Z','#293e42'],
+ ['M-100-261L-91-269H91L101-261 91-255H-91Z','#273d43'],
+ ['M-91-269H91L94-265H-94Z','#97a194'],
+ ['M-102-261L-116-249-108-245-93-256Z M102-261L116-249 108-245 93-256Z','#819085']);
+// Tile channels converge toward the ridge; they describe the roof surface,
+// while the curved ceramic ends and exposed rafters explain its thickness.
+for(let i=0;i<27;i++){
+ const end=-220+i*440/26,start=end*.37,y=-258+Math.abs(start)*.055;
+ gatehouse.push([`M${start} ${y}Q${end*.69}-224 ${end}-199L${end+3}-199Q${end*.69+3}-224 ${start+2} ${y}Z`,i%4===0?'#64797b':'#425b63']);
+ gatehouse.push([`M${end-3}-199Q${end+1}-203 ${end+5}-199L${end+4}-195 ${end-2}-195Z`,'#96a297']);
+ if(i%2===0)gatehouse.push([`M${end-3}-189L${end+3}-189 ${end+7}-179 ${end+3}-176 ${end-3}-179Z`,'#998564']);
+}
+asset('hanok.gatehouse.front','삼칸 문루·접힌 처마·판문과 주초','architecture','wood',[-245,-275,490,290],gatehouse,{clipToShape:null,heightH:[2.4,3.3],scaleRange:[.65,1.3],rotationRange:[0,0],use:'성문 석축 위 문루와 관련 쉼터의 같은 목조 결구'});
 export const ASSETS=assets;
 export const FAMILIES={rock:'암반',stone:'작은 돌',grass:'풀',shrub:'덤불',trunk:'소나무 줄기',branch:'가지',crown:'수관',root:'뿌리',wall:'벽',door:'문',pier:'잔교 부재',column:'한옥 기둥',beam:'보',eave:'처마',masonry:'석축',earth:'흙 사면'};
-export const REGISTRY_VERSION='shared-vector-kit-3-interior-5';
+export const REGISTRY_VERSION='shared-vector-kit-3-gatehouse-1';

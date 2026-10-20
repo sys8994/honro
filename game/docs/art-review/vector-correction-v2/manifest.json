@@ -963,6 +963,124 @@
         "sha256": "ddbc262fd593cfad1848bc880bb775ed2e935fdc9c3a03565dd75f27c4f0b6b4"
       },
       "resolutions": []
+    },
+    {
+      "id": "ferry-outcrop-r20",
+      "sourceHash": "sha256:ed8c0cc9089174c2e00f339c087c8b39dd506a2a6f3bbe450650f5d96e374a15",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-outcrop-r20-state.json",
+        "sha256": "62204a5552d2b35227d850fbe3b98ce2f1a90c9e61127ad54e163a1a0da2d9a4"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "grounding"
+      ],
+      "changes": "부모가 preview 통합을 허용한 2d432127의 16차 SVG 세 개를 각 한 번만 배치했다. B는 20% 어둡게 뒤로 두고 C를 낮은 전경으로 옮겼다. 앞선 거대 판석 채움은 폐기했다. 정상·광역을 실제 열어 읽었지만 전체 구도·접지 미달로 fail을 유지한다.",
+      "captures": [
+        {
+          "id": "ferry-outcrop-r20-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:ed8c0cc9089174c2e00f339c087c8b39dd506a2a6f3bbe450650f5d96e374a15",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-normal.png",
+            "sha256": "bfbc9d029929876a0563ee1934be55fe99862ba393734f04e43a2051eb3da4a6"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/captures.json",
+            "sha256": "f39640d48b768a4ffbacd6d8afed92ae0d02961cfd048627fd65e9449042403f"
+          }
+        },
+        {
+          "id": "ferry-outcrop-r20-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:ed8c0cc9089174c2e00f339c087c8b39dd506a2a6f3bbe450650f5d96e374a15",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.24
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-wide.png",
+            "sha256": "5693359484d5a1afede1f8b00619fe4ccb4309e17436dca0166120b939b76603"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/captures.json",
+            "sha256": "f39640d48b768a4ffbacd6d8afed92ae0d02961cfd048627fd65e9449042403f"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "정상 화면에서 A/B가 여전히 경계선 바로 아래의 직사각형 띠로 읽힌다. 낮춘 C는 앞뒤 차이를 만들지만 흙 사면 속 하나의 노출부로 연결되지 못했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-wide.png",
+            "game/docs/art-references/quiet-layered-20261019/stage3-ferry.webp"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "16차 모듈 내부에는 중간 암면과 절리의 계층이 늘었다. 그러나 장면의 큰 흙 면과 수변 기단·전경 사이에는 그 계층이 이어지지 않아 빈 사면이 남는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-wide.png",
+            "game/docs/art-references/quiet-layered-20261019/stage3-ferry.webp"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "B 오른쪽과 C 아래의 절단 윤곽이 드러나 부품이 붙은 느낌이 남는다. 실제 흙의 덮임·퇴적·기단 지지가 부족하여 접지 기준을 통과시키지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-wide.png",
+            "game/docs/art-references/quiet-layered-20261019/stage3-ferry.webp"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "위·왼쪽 광원과 회녹색 암질은 기존 거대 둥근 돌보다 구분된다. 그래도 넓은 흙 채움면의 조명과 전경 깊이, 수변의 재질 연결이 충분하지 않다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-wide.png",
+            "game/docs/art-references/quiet-layered-20261019/stage3-ferry.webp"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "H=80 원본을 H=103.5 world에 맞춘 1.29375배로 유지하여 바위 세부 크기는 과장하지 않았다. 광역에서 세 구획과 큰 빈 사면이 여전히 보이며 모바일 재검수도 남았다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r20/stage03-wide.png",
+            "game/docs/art-references/quiet-layered-20261019/stage3-ferry.webp"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
     }
   ],
   "final": null

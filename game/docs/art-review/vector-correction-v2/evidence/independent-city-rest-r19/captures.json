@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+  "sourceHashAfter": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+  "mode": "rest",
+  "rows": [
+    {
+      "id": "independent-city-rest-r19-stage21-rest",
+      "sourceHash": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+      "stage": 21,
+      "view": "rest",
+      "camera": {
+        "x": 720.0,
+        "y": 480.0,
+        "scale": 1
+      },
+      "cameraSpace": "document-pixels",
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/independent-city-rest-r19/stage21-rest.png",
+        "sha256": "f39c428c55006e4100a0e83395e8c4d41f6c3a8a4106708f0c72dcec79ae3652"
+      }
+    }
+  ],
+  "errors": []
+}

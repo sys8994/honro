@@ -1,6 +1,6 @@
 """Capture only the artwork under review; no engine step or gameplay tour.
 Usage: python tools/environment/capture-vector-art-candidate.py TAG MODE
-MODE representative | overview | mobile | rest. HONRO_OVERLAY=1 uses source overlays.
+MODE representative | overview | mobile | rest | canopy. HONRO_OVERLAY=1 uses source overlays.
 HONRO_STAGES=1,3 limits capture scope; HONRO_CAPTURE_OUTPUT sets a repository-relative
 artifact parent. A capture tag is immutable: existing output is never overwritten.
 """
@@ -10,7 +10,7 @@ import subprocess,json,sys,os,hashlib,re
 ROOT=Path(__file__).resolve().parents[2]
 tag=sys.argv[1];mode=sys.argv[2] if len(sys.argv)>2 else 'representative'
 assert re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]*',tag),'simple capture tag required'
-assert mode in {'representative','overview','mobile','rest'},'known capture mode required'
+assert mode in {'representative','overview','mobile','rest','canopy'},'known capture mode required'
 capture_base=Path(os.environ.get('HONRO_CAPTURE_OUTPUT','_local/reports/vector-art-correction-v2'))
 assert not capture_base.is_absolute() and '..' not in capture_base.parts,'repository-relative capture output required'
 out=ROOT/capture_base/tag
@@ -24,6 +24,7 @@ views={1:[('normal',2400,2300,.6),('wide',3000,1900,.22)],3:[('normal',3100,1550
 if mode=='overview':views={n:[] for n in range(1,31)}
 if mode=='mobile':views={1:[('mobile',2400,2140,.4)],3:[('mobile',3100,1400,.4)],18:[('mobile',700,5890,.35)],21:[('mobile',2277,2400,.35)]}
 if mode=='rest':views={n:[] for n in [1,3,18,21]}
+if mode=='canopy':views={1:[('normal',2450,900,.6)]}
 if os.environ.get('HONRO_STAGES'):
  selected={int(n) for n in os.environ['HONRO_STAGES'].split(',')};views={n:v for n,v in views.items() if n in selected}
 width,height=(390,844) if mode=='mobile' else (1440,960)
@@ -36,8 +37,8 @@ with sync_playwright() as p:
  page.evaluate('''size=>{HonroApp.frame=()=>{};const c=document.createElement('canvas');c.id='terrain-view';c.width=size[0];c.height=size[1];c.style.cssText='position:fixed;inset:0;z-index:99999;width:'+size[0]+'px;height:'+size[1]+'px';document.body.append(c);window.terrainCanvas=c;}''',[width,height])
  for n,poses in views.items():
   if mode=='rest':
-   page.evaluate('''n=>{document.getElementById('terrain-view')?.remove();HonroApp.debugRestStage=n;HonroApp.dialogue=null;HonroApp.profile.honroBattle=null;HonroRestJourney.showRest(HonroApp);HonroRestJourney.stopMotion(HonroApp);document.getElementById('dialogue-root')?.replaceChildren();HonroRestJourney.drawPeople(0);}''',n)
-   page.wait_for_timeout(200);shot=out/f'stage{n:02d}-rest.png';page.screenshot(path=str(shot));rows.append({'id':f'{tag}-stage{n:02d}-rest','sourceHash':before_hash,'stage':n,'view':'rest','camera':{'x':800,'y':450,'scale':1},'viewport':{'width':width,'height':height},'screenshot':{'path':str(shot.relative_to(ROOT)),'sha256':hashlib.sha256(shot.read_bytes()).hexdigest()}});continue
+   page.evaluate('''n=>{document.getElementById('terrain-view')?.remove();HonroApp.debugMode=true;HonroApp.debugRestStage=n;HonroApp.dialogue=null;HonroApp.profile.honroBattle=null;HonroRestJourney.showRest(HonroApp);HonroRestJourney.stopMotion(HonroApp);document.getElementById('dialogue-root')?.replaceChildren();HonroRestJourney.drawPeople(0);const place=HonroJourneyContent.at(n);if(!document.querySelector('.rest-location')?.textContent.includes(place.restName))throw Error('Rest scene did not match requested stage '+n);}''',n)
+   page.wait_for_timeout(200);shot=out/f'stage{n:02d}-rest.png';page.screenshot(path=str(shot));rows.append({'id':f'{tag}-stage{n:02d}-rest','sourceHash':before_hash,'stage':n,'view':'rest','camera':{'x':width/2,'y':height/2,'scale':1},'cameraSpace':'document-pixels','viewport':{'width':width,'height':height},'screenshot':{'path':str(shot.relative_to(ROOT)),'sha256':hashlib.sha256(shot.read_bytes()).hexdigest()}});continue
   size=page.evaluate('''async n=>{const st=await HonroCampaignLoader.ensureStage(n),b=HonroMaps.createBattle(st,HONRO_PROJECT);HonroStageRules.sanitizeStageBattle(b);const e=new HONRO_CORE.Engine(b,()=>{},true),s=new HonroScene(terrainCanvas);Object.assign(s,{manual:true,time:2,skillPreview:true});window.terrainCurrent={b,e,s,before:JSON.stringify([b.terrain,b.units,b.honroMarkers,b.honroEvents,b.honroObjectives])};return{width:b.width,height:b.height};}''',n)
   if mode=='overview':poses=[('overview',size['width']/2,size['height']*.54,min((width-130)/(size['width']+700),(height-120)/(size['height']+700)))]
   for label,x,y,scale in poses:

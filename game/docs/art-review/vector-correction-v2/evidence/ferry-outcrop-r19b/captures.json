@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+  "sourceHashAfter": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+  "mode": "representative",
+  "rows": [
+    {
+      "id": "ferry-outcrop-r19b-stage03-normal",
+      "sourceHash": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+      "stage": 3,
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r19b/stage03-normal.png",
+        "sha256": "d7ab8f25487a1b105f3a458c13c3bc138abdb5641ee6ce6f9632ee6b550c49d8"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-soil-bearing-12",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    },
+    {
+      "id": "ferry-outcrop-r19b-stage03-wide",
+      "sourceHash": "sha256:8f30b9f63ed98bbff634f3415a1c60a68ee832eae0a8bdea4ce1ee91bc3f944f",
+      "stage": 3,
+      "view": "wide",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.24
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r19b/stage03-wide.png",
+        "sha256": "3efdbd78e9eed6b85dd85cebf527a3e979e59c9cb9133a6a20a401959940d681"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-soil-bearing-12",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    }
+  ],
+  "errors": []
+}
