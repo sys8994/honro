@@ -4170,6 +4170,150 @@
       ],
       "regressions": [],
       "resolutions": []
+    },
+    {
+      "id": "ferry-connected-r45b",
+      "sourceHash": "sha256:4f53e08b290d4858ee0ee58217b0e49e8c11a888b0302bc3cdd9a5598f3de65d",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-connected-r45b-state.json",
+        "sha256": "c5e63b07aeaae2fad770cf20d69c019bfb8935db819bedbe6843b21f72359ffe"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "r44의 분리된 반복 연두 조각을 제거하고 연결된 선반·경사층·수직 절리로 후보를 작성했다. 첫 로컬 검수의 삼각 단면/직선 절리를 다시 수정하고 최종 normal/wide/mobile 픽셀을 직접 열었다. 두 번의 로컬 수정이며 5회 또는 최종 전체 검수 통과를 주장하지 않는다. 최종 후보도 FAIL이다.",
+      "captures": [
+        {
+          "id": "ferry-connected-r45b-stage03-normal",
+          "sourceHash": "sha256:4f53e08b290d4858ee0ee58217b0e49e8c11a888b0302bc3cdd9a5598f3de65d",
+          "stage": 3,
+          "view": "normal",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-normal.png",
+            "sha256": "3284a586411e366d6b19681d321c2f45b56fa91f86c6c75fa89dc0083c5a4ed2"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/captures.json",
+            "sha256": "426128a38547917a07a6e195b96fa705a0d482dbb31cf48d2c374c3c2538b184"
+          }
+        },
+        {
+          "id": "ferry-connected-r45b-stage03-wide",
+          "sourceHash": "sha256:4f53e08b290d4858ee0ee58217b0e49e8c11a888b0302bc3cdd9a5598f3de65d",
+          "stage": 3,
+          "view": "wide",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-wide.png",
+            "sha256": "7b7876a0340e4034b412aa2e4c94d60dcfac4648b4ea4d6f386ef3a74cc308dd"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/captures.json",
+            "sha256": "426128a38547917a07a6e195b96fa705a0d482dbb31cf48d2c374c3c2538b184"
+          }
+        },
+        {
+          "id": "ferry-connected-r45b-mobile-stage03-mobile",
+          "sourceHash": "sha256:4f53e08b290d4858ee0ee58217b0e49e8c11a888b0302bc3cdd9a5598f3de65d",
+          "stage": 3,
+          "view": "mobile",
+          "camera": {
+            "x": 3100,
+            "y": 1400,
+            "scale": 0.4
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b-mobile/stage03-mobile.png",
+            "sha256": "699ca9b144caf065e953077ae0882f4f0a8c73784cc7506c86370452ec549527"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b-mobile/captures.json",
+            "sha256": "5d22a21dc0341a82a1eb77908b94762efd01b0521b920a28f911795dd63f50dd"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "FAIL: normal 중앙 r25의 상세 암반과 신규 넓은 면의 해상도 차이가 남는다. wide에서는 새 면이 직사각형 패치처럼 바깥 지형과 분리된다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b-mobile/stage03-mobile.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "FAIL: 독립 연두색 돌/긴 그림자는 제거됐으나, 절리의 긴 띠와 선반의 일정한 두께가 반복 벽처럼 보인다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b-mobile/stage03-mobile.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "FAIL: 기존 rear/보행면/앞 사면 렌더 순서와 별도 물리는 유지했으나 중앙 노출부의 붙여 넣은 경계가 남는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b-mobile/stage03-mobile.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "FAIL: 같은 명암 폭의 수직 절리와 단면 공식이 반복되어 r25의 불규칙 3–5면 돌 문법을 확장하지 못했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b-mobile/stage03-mobile.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "FAIL: 세 화면에서 캐릭터와 보행선은 보이지만 mobile 아래쪽은 길게 뻗은 단순 면이 지배한다. 전체 미술 통과 아님.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b-mobile/stage03-mobile.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
     }
   ],
   "final": null

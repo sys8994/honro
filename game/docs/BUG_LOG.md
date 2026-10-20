@@ -1,3 +1,11 @@
+## 2026-10-20 — Stage 3 근경 연속 암반 후보 r45b (미술 실패)
+
+`art/near-ground-continuation`은 원격 `art/vector-art-correction-v2`의 ef159212에서 시작했다. r25/r31/r44 원본 픽셀을 확인하고 r44의 밝은 독립 조각을 연결된 선반·경사층·절리로 교체했다. 첫 로컬 후보의 삼각 단면을 수정한 후 normal/wide/mobile을 직접 열었다. 독립 돌의 긴 그림자는 줄었으나 절리의 균일한 벽 느낌, 중앙 r25와의 상세도 차이, wide의 새 암반 패치 외곽이 남아 **FAIL**이다. 전체 지형으로 자연스럽게 확장한다는 목표를 달성하지 못했다.
+
+변경은 native-body.svg/추출 JSON/캐시 revision뿐이다. 별도 충돌 지면, 근경 rear·보행면·앞 사면 렌더 순서, 카메라·게임플레이는 수정하지 않았다. preview 빌드 성공; 실제 Chromium normal/minimum-wide/mobile 오류0·비미술 상태 불변. 워밍 후 렌더 1.9/8/1.5ms, 타일 12/32/6개(성능 비교 합격 판정 아님). art-review-gate/art-review-provenance/art-public-build-gate 33개 통과, JS 구문 및 diff 검사 통과. 일반 build는 HONRO_ART_REVIEW_BLOCKED: Separate final holistic pixel review is missing으로 build:not-run. 우회하지 않았다.
+
+[normal](art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-normal.png), [wide](art-review/vector-correction-v2/evidence/ferry-connected-r45b/stage03-wide.png), [mobile](art-review/vector-correction-v2/evidence/ferry-connected-r45b-mobile/stage03-mobile.png). 각 captures.json에 카메라·viewport·해시·상태불변·캐시 측정이 있다. manifest에는 실패 1회 기록만 추가하고 final:null 및 이전 실패를 유지한다. 이 실행의 두 로컬 수정을 5회 검수나 최종 전체 검수로 세지 않았다. 부모 승인 없음, master/Pages 미반영.
+
 ## 2026-10-20 — 미승인 벡터 교정 보존 지점 r26
 
 별도 art/vector-art-correction-v2에서 나루 암반의 사각 경계·분리된 C를 줄이고 인물 H=103.5 기준 배율을 보존했다. 실제 지형 위 얇은 표면 띠와 부분 매몰석을 그리고, 성문 gate:collision:0 안에만 큰 받침돌·홍예돌을 연결했다. 숲 수관은 비대칭 곡면으로 재저작하고 기존 줄기·뿌리와 지지 가지를 연결했다. 캠페인·충돌·캐릭터·퀘스트·전투·저장·로딩 데이터는 바꾸지 않았다.

@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:4f53e08b290d4858ee0ee58217b0e49e8c11a888b0302bc3cdd9a5598f3de65d",
+  "sourceHashAfter": "sha256:4f53e08b290d4858ee0ee58217b0e49e8c11a888b0302bc3cdd9a5598f3de65d",
+  "mode": "mobile",
+  "rows": [
+    {
+      "id": "ferry-connected-r45b-mobile-stage03-mobile",
+      "sourceHash": "sha256:4f53e08b290d4858ee0ee58217b0e49e8c11a888b0302bc3cdd9a5598f3de65d",
+      "stage": 3,
+      "view": "mobile",
+      "camera": {
+        "x": 3100,
+        "y": 1400,
+        "scale": 0.4
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-connected-r45b-mobile/stage03-mobile.png",
+        "sha256": "699ca9b144caf065e953077ae0882f4f0a8c73784cc7506c86370452ec549527"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-connected-beds-45",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true,
+      "profile": {
+        "renderMilliseconds": [
+          105.80000000004657,
+          5,
+          1.5
+        ],
+        "tileCount": 6,
+        "tileRgbaBytes": 6390144
+      }
+    }
+  ],
+  "errors": []
+}
