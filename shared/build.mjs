@@ -118,6 +118,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
     await file('shared/assets/actors/actors.runtime.js');
     for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','story-act23-art','narrative-art','quest-target-art','story-anomaly-art','visual-hierarchy'])await file(`shared/runtime/${name}.js`);
   }
+  if(render)await file('shared/runtime/authored-far-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
     for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main']){

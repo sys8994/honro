@@ -1,3 +1,14 @@
+
+## 2026-10-20 — 기존 벡터 근경 복구와 이미지 원경 재연결
+
+- 기준: c0235043 전체 되돌리기가 아니라 현재 master에 남은 `act1-spatial-art`, `act2-spatial-art`, 장별 후속 벡터와 기존 SVG를 재연결했다. shared-vector 및 image-first/회화 근경 override를 번들에서 제외했다. 휴식 그림, 인물, 로딩과 gameplay author는 유지한다.
+- 1–4장 image-first가 비웠던 장식만 기존 scene composition에서 보존하고 현재 지지면에 재접지한다. 변경 전후 JSON 비교에서 장식/act1Scene 외 30장 지형·동선·유닛·이벤트와 라이브러리는 동일했다. 새 SVG를 제작하지 않았다. 기존 진행 중 snapshot의 장식은 재작성하지 않으며 새 진입에서 복구된 장식을 받는다.
+- 기존 forestFar/valleyFar/bellRear/Stage21 sky/depotRear를 원경에만 사용한다. 공통 act1BackdropFrame의 작은 독립 x/y 시차와 cover 계산을 재사용한다. 최대 3개 원경 캔버스, 폭 최대 2048; 대표 순회에서 원경 캔버스 최대 17,088,512 bytes. Stage18의 두 옛 후경 카드만 대체하고 종·기둥·충돌은 유지한다.
+- 1장 짧은 이미지 밑면이 벡터 복구 후 떠 보이는 문제는 기존 TerrainDomain.extend를 표시용 지형에 재사용하고 bounded tile 경로로 그려 수정했다. live collision/snapshot은 변경하지 않는다. 8장 기존 벡터 terrain도 회화 metadata 때문에 비활성화되던 조건을 해제했다.
+- 확인: `npm run build` 성공. `tools/testing/capture-authored-restoration.py`: 대표 1·3·18·21장 1440×900/390×844, 보통/최대 축소, x/y 이동의 coverage 및 전투 불변성, 휴식 3장. 16개 조합과 중앙 종굴/휴식 캡처, pageerror 0. `_local/reports/authored-restoration-browser/`. Native 보조 캡처는 `_local/reports/act1-spatial/authored-restoration/`. 디버그 정지 화면이며 전투 완주나 30장 미술 통과를 뜻하지 않는다.
+- 기존 실패: `tests/camera-bounds.mjs`, `tests/stage8-bier-art-contract.mjs`는 1–4장 terrainBounds/zone coverage가 기존 schema 검사를 통과하지 못해 중단된다. 변경 전 프로젝트에서도 동일 bounds/coverage 오류를 재현했다. gate를 삭제하거나 통과로 기록하지 않는다.
+- 제한: 1–4장 옛 SVG 배치는 현재 지형에 맞춰 접지한 것이며 역사 화면과 픽셀 동일 복원은 아니다. 기타 장의 모든 장식을 전수 복구/미술 승인하지 않았다. 공개 Pages URL 및 Pages 설정 API는 실행 환경에서 HTTP 403/Forbidden으로 접근이 차단되어 배포 성공·공개 화면은 별도 확인이 필요하다.
+
 ## 2026-10-20 — 승인 초상화·휴식터 원경 통합의 원기록 보존
 
 복구 소스 `75e447de`와 생성물 `de286f94`에 포함된 승인 작업 `c059e903`·`0d536e4f`의 원기록 두 개를 아래에 보존한다. 복구 과정에서 기존 master BUG_LOG를 유지하여 이 두 추가 기록이 빠져 있었다. 아래 각 작업의 “master/Pages 미실행”은 소스 브랜치 작성 시점의 상태다. 통합 생성물 `de286f945376553e159c5f4c8a4a9d5063b3e4a3`의 [Pages 배포](https://github.com/sys8994/honro/actions/runs/39376088711)는 성공했고, 후속 master `b02fb44d`에도 두 변경이 유지된다. 이 문서 보완은 기존 기록·실행 소스·생성물을 변경하지 않으며 측정/검사를 반복하지 않는다.
