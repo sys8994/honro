@@ -39,30 +39,14 @@ function validate(st){const out=[],fail=text=>out.push({level:'err',text:st.id+'
   if(t.type!=='solid'||!validPoints||!q||typeof q!=='object'||!box(q.bounds)||!q.start||!Number.isFinite(q.start.x)||!Number.isFinite(q.start.y)||q.bounds.left!==p.left||q.bounds.right!==p.right||q.bounds.top!==p.top||q.bounds.bottom<p.bottom||q.bounds.bottom>v.bottom)fail(t.id+' invalid play projection');else if(clip(points,q.bounds).length<3)fail(t.id+' empty play projection');
  }return out;
 }
-const renders=new WeakMap(),validBattles=new WeakMap(),forestViews=new WeakMap();
-// The image-first forest closes each continuous floor at the picture's lower
-// edge, above the map bottom. Reuse the established vector exterior profile
-// for its presentation; the saved/live collision polygons remain untouched.
-const forestDisplay=b=>!b?.honroCustom&&b?.honroStage===1&&!!b.honroMap?.stage1ImageFirst;
-const renderBounds=b=>forestDisplay(b)?{left:-6000,right:b.width+6000,top:-24000,bottom:b.height+24000}:active(b)?b.honroTerrainBounds:null;
-function forestGround(b){
- if(!forestDisplay(b))return b.terrain||[];
- const old=forestViews.get(b);if(old?.source===b.terrain&&old.version===b.sceneVersion)return old.terrain;
- const terrain=b.terrain.map(t=>{
-  if(t.oneWay||t.broken||!/^forest-(?:floor|middle-floor|exit-floor)$/.test(t.id))return t;
-  const bottom=Math.max(...t.vertices.map(p=>p.y)),points=extend(t.vertices,{width:b.width,height:bottom,metadata:{stageId:1},terrainBounds:{left:-6000,right:b.width+6000,top:-24000,bottom:b.height+24000}});
-  const shape=G.HonroMapEngine.solid(t.id,points.map(p=>[p.x,p.y]));
-  return {...t,vertices:shape.vertices,x:shape.x,y:shape.y,w:shape.w,h:shape.h,honroDomain:true};
- });
- forestViews.set(b,{source:b.terrain,version:b.sceneVersion,terrain});return terrain;
-}
+const renders=new WeakMap(),validBattles=new WeakMap();
 function active(b){if(!b||b.honroTerrainDomainVersion!==1)return false;const prior=validBattles.get(b);if(prior?.source===b.honroWorldTerrain&&prior.bounds===b.honroTerrainBounds&&prior.play===b.honroPlayBounds&&prior.version===b.sceneVersion&&prior.width===b.width&&prior.height===b.height)return prior.valid;
  const box=v=>v&&['left','top','right','bottom'].every(k=>Number.isFinite(v[k])&&Math.abs(v[k])<=100000)&&v.right>v.left&&v.bottom>v.top,p=b.honroPlayBounds,v=b.honroTerrainBounds,ts=b.honroWorldTerrain;
  const validProjection=t=>{if(!Object.prototype.hasOwnProperty.call(t,'honroDomainProjection'))return true;const q=t.honroDomainProjection;return !!(q&&typeof q==='object'&&!Array.isArray(q)&&box(q.bounds)&&q.bounds.left===p.left&&q.bounds.right===p.right&&q.bounds.top===p.top&&q.bounds.bottom>=p.bottom&&q.bounds.bottom<=v.bottom&&q.start&&Number.isFinite(q.start.x)&&Number.isFinite(q.start.y));};
  const valid=!!(box(p)&&box(v)&&p.left===0&&p.top===0&&p.right===b.width&&p.bottom===b.height&&v.left<p.left&&v.right>p.right&&v.top<p.top&&v.bottom>p.bottom&&Array.isArray(ts)&&ts.length<=512&&ts.every(t=>t&&typeof t.id==='string'&&validProjection(t)&&[t.x,t.y,t.w,t.h].every(Number.isFinite)&&t.w>0&&t.h>0&&Array.isArray(t.vertices)&&t.vertices.length>=3&&t.vertices.length<=4096&&t.vertices.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=v.left-EPS&&p.x<=v.right+EPS&&p.y>=v.top-EPS&&p.y<=v.bottom+EPS)));
  validBattles.set(b,{source:ts,bounds:v,play:p,version:b.sceneVersion,width:b.width,height:b.height,valid});return valid;
 }
-function render(b){if(!active(b))return forestGround(b);let q=renders.get(b);if(q?.version===b.sceneVersion&&q.source===b.honroWorldTerrain&&q.count===b.terrain.length)return q.terrain;
+function render(b){if(!active(b))return b.terrain||[];let q=renders.get(b);if(q?.version===b.sceneVersion&&q.source===b.honroWorldTerrain&&q.count===b.terrain.length)return q.terrain;
  const live=new Map(b.terrain.map(t=>[t.id,t])),terrain=[];for(const world of b.honroWorldTerrain){const t=live.get(world.id);if(!t)continue;let shape=world;
   // Existing restoration events update the collision projection. Re-form the
   // complete mass from that changed surface, including after save/reload.
@@ -185,5 +169,5 @@ function materialWaterZone(b,z){
  const zone={...z,points:[[bounds.left,top],[bounds.right,top],[bounds.right,bounds.bottom],[bounds.left,bounds.bottom]],surface:[[bounds.left,top],[bounds.right,top]],bottom:[[bounds.left,bounds.bottom],[bounds.right,bounds.bottom]],honroWaterPaintBottom:bottom,honroWaterPaintLeft:Math.min(...z.points.map(p=>p[0])),honroWaterPaintRight:Math.max(...z.points.map(p=>p[0])),honroCarvedBasin:true};
  views.set(z,{bounds,zone});return zone;
 }
-G.HonroTerrainDomain={VERSION:1,render,renderBounds,active,author,projection,clip,extend,worldBounds,validate,materialLandmarks,materialWaterZone};
+G.HonroTerrainDomain={VERSION:1,render,active,author,projection,clip,extend,worldBounds,validate,materialLandmarks,materialWaterZone};
 })(globalThis);

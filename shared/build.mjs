@@ -1,18 +1,5 @@
 import {restBackdropData} from '../tools/environment/rest-backdrop-assets.mjs';
-import {captureAuthoredScenery,restoreAuthoredScenery} from '../tools/environment/restore-authored-scenery.mjs';
 import {vectorKitRuntime} from '../tools/environment/vector-kit-runtime.mjs';
-import {applyStage3HanokTerrain} from '../tools/map-forge/stage3-hanok-terrain.mjs';
-import {applyStage4GateDefense} from '../tools/map-forge/stage4-gate-defense.mjs';
-import {applyStage10LocationPaint} from '../tools/map-forge/stage10-location-paint.mjs';
-import {applyStage1ImageFirst} from '../tools/map-forge/stage1-image-first.mjs';
-import {applyStage2ImageFirst} from '../tools/map-forge/stage2-image-first.mjs';
-import {applyStage3ImageFirst} from '../tools/map-forge/stage3-image-first.mjs';
-import {applyStage4ImageFirst} from '../tools/map-forge/stage4-image-first.mjs';
-import {applyStage9LocationPaint} from '../tools/map-forge/stage9-location-paint.mjs';
-import {applyStage8LocationPaint} from '../tools/map-forge/stage8-location-paint.mjs';
-import {applyStage7RootVillage} from '../tools/map-forge/stage7-root-village.mjs';
-import {applyStage6BrokenBridge} from '../tools/map-forge/stage6-broken-bridge.mjs';
-import {applyStage5WaterfallPaint} from '../tools/map-forge/stage5-waterfall-paint.mjs';
 import {applyPlaceEncounters} from '../tools/map-forge/act3-place-encounters-20261017.mjs';
 import {applyStage28RecordCourt} from '../tools/map-forge/stage28-record-court.mjs';
 import {applyStoryAnomalyEnvironment} from '../tools/map-forge/story-anomaly-revision.mjs';
@@ -38,7 +25,7 @@ import {buildActors} from '../tools/actor-forge/build.mjs';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 export const modelFiles=['action-prompts','content','story-content-v0','story-content','terrain-space','map-engine','battlefield-layouts',
-  'split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage1-image-first-roster','stage2-image-first-roster','stage3-image-first-roster','stage4-image-first-roster'];
+  'split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests'];
 
 // This is the only bundle manifest. Game, Stage view and playtest use it.
 export async function runtimeEntries({vector=true,render=true,app=false}={}) {
@@ -61,12 +48,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   for(const name of modelFiles)await file(`shared/runtime/${name}.js`);
   await file('shared/runtime/camera.js');
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands'])await file(`shared/map/${name}.js`);
-  let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(applyStage3HanokTerrain(JSON.parse(await read('shared/data/campaign.json')))))),{existingOnly:true}),{existingOnly:true});
-  applyStage4GateDefense(project);
-  applyStage5WaterfallPaint(project);
-  applyStage6BrokenBridge(project);
-  applyStage7RootVillage(project);
-  applyStage8LocationPaint(project);
+  let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
   project=await authorAct23QuestRedesign(project);
   applyOpenStructures(project);
   project=applyCityTacticalRoutes(project);
@@ -76,14 +58,6 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   project=applyStoryAnomalyEnvironment(project);
   project=applyStage28RecordCourt(project);
   project=applyPlaceEncounters(project);
-  applyStage9LocationPaint(project);
-  applyStage10LocationPaint(project);
-  const authoredScenery=captureAuthoredScenery(project);
-  applyStage1ImageFirst(project);
-  applyStage2ImageFirst(project);
-  applyStage3ImageFirst(project);
-  applyStage4ImageFirst(project);
-  restoreAuthoredScenery(project,authoredScenery);
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();

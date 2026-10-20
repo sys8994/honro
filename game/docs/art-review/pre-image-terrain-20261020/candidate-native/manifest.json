@@ -1,0 +1,443 @@
+{
+  "tag": "pre-image-candidate",
+  "bundleSha256": "023fe80cf44e37a89e5c4247e7b45b173a217ff2ef821b6e38f812d0e13265f8",
+  "projectSha256": "0d678d820f66fd346c11a02ad71a2638a9cceeae2d8f52ddffc806b92b4fda89",
+  "baselineProjectOverride": false,
+  "results": [
+    {
+      "stageId": 1,
+      "file": "stage-1-overview.png",
+      "sha256": "75413c5f4f85d27bbd705d3eb50b3b6d4e18222a7b7e153e8b7f34eca4893a22",
+      "view": {
+        "name": "overview",
+        "x": 2700,
+        "y": 1100,
+        "scale": 0.25925925925925924,
+        "width": 1440,
+        "height": 960,
+        "overview": true
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 192.00492699999813,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 15,
+        "bgHits": 0,
+        "domainCanvasAllocations": 15,
+        "domainTileBuilds": 15,
+        "screenBuilds": 1,
+        "screenWorldBytes": 5529600,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 15975360,
+        "worldScale": 0.29730177875068026,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    },
+    {
+      "stageId": 1,
+      "file": "stage-1-entry.png",
+      "sha256": "935d589234dfed40ec445b4c950ff73ebb2490c5c747061a0da123e4dda740cc",
+      "view": {
+        "name": "entry",
+        "x": 870,
+        "y": 1240.6918702317707,
+        "scale": 0.68,
+        "width": 1440,
+        "height": 960
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 190.44186100000115,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 12,
+        "bgHits": 0,
+        "domainCanvasAllocations": 12,
+        "domainTileBuilds": 12,
+        "screenBuilds": 2,
+        "screenWorldBytes": 5529600,
+        "screenBackgroundBytes": 5529600,
+        "worldBytes": 12780288,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    },
+    {
+      "stageId": 1,
+      "file": "stage-1-place.png",
+      "sha256": "7196073dc7919f940ce2ac9e386fc3439f89144f8fd704aa5dec1d584f24bffd",
+      "view": {
+        "name": "place",
+        "x": 1160,
+        "y": 1041.5244701682225,
+        "scale": 0.46,
+        "width": 1440,
+        "height": 960
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 199.8417309999968,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 16,
+        "bgHits": 0,
+        "domainCanvasAllocations": 16,
+        "domainTileBuilds": 16,
+        "screenBuilds": 2,
+        "screenWorldBytes": 5529600,
+        "screenBackgroundBytes": 5529600,
+        "worldBytes": 17040384,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    },
+    {
+      "stageId": 1,
+      "file": "stage-1-portrait.png",
+      "sha256": "699991030b7b8f5ad3afb00e72707af47783f5c83b56abff8c348cd7f22c6446",
+      "view": {
+        "name": "portrait",
+        "x": 590,
+        "y": 1240.6918702317707,
+        "scale": 0.52,
+        "width": 720,
+        "height": 1080
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 93.43265999999858,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 9,
+        "bgHits": 0,
+        "domainCanvasAllocations": 9,
+        "domainTileBuilds": 9,
+        "screenBuilds": 2,
+        "screenWorldBytes": 3110400,
+        "screenBackgroundBytes": 3110400,
+        "worldBytes": 9585216,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    },
+    {
+      "stageId": 3,
+      "file": "stage-3-overview.png",
+      "sha256": "ed427eeb95c2c19f624b96c3ecc327aa813f7a1f11e053d806b1af9c4809518e",
+      "view": {
+        "name": "overview",
+        "x": 3250,
+        "y": 1550,
+        "scale": 0.2153846153846154,
+        "width": 1440,
+        "height": 960,
+        "overview": true
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 160.2008850000002,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 15,
+        "bgHits": 0,
+        "domainCanvasAllocations": 15,
+        "domainTileBuilds": 15,
+        "screenBuilds": 1,
+        "screenWorldBytes": 5529600,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 15975360,
+        "worldScale": 0.25,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    },
+    {
+      "stageId": 3,
+      "file": "stage-3-entry.png",
+      "sha256": "ed69ac2b9a98d64fcee448992688cfc4ba40e0951e7cca08653fb3f3f2767717",
+      "view": {
+        "name": "entry",
+        "x": 950,
+        "y": 1472.282,
+        "scale": 0.68,
+        "width": 1440,
+        "height": 960
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 74.33702399999675,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 8,
+        "bgHits": 0,
+        "domainCanvasAllocations": 8,
+        "domainTileBuilds": 8,
+        "screenBuilds": 2,
+        "screenWorldBytes": 5529600,
+        "screenBackgroundBytes": 5529600,
+        "worldBytes": 8520192,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    },
+    {
+      "stageId": 3,
+      "file": "stage-3-place.png",
+      "sha256": "2bb473d4fc77aa63f4ac0ae4329d56c7c4636efddb6fb2d095393292bcd333b2",
+      "view": {
+        "name": "place",
+        "x": 4700,
+        "y": 1397.334,
+        "scale": 0.46,
+        "width": 1440,
+        "height": 960
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 127.53739900000255,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 12,
+        "bgHits": 0,
+        "domainCanvasAllocations": 12,
+        "domainTileBuilds": 12,
+        "screenBuilds": 2,
+        "screenWorldBytes": 5529600,
+        "screenBackgroundBytes": 5529600,
+        "worldBytes": 12780288,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    },
+    {
+      "stageId": 3,
+      "file": "stage-3-portrait.png",
+      "sha256": "798a4ad70f4a302bf108c20c62676273f675e8137fa396ee5f82b0f52f31d96c",
+      "view": {
+        "name": "portrait",
+        "x": 670,
+        "y": 1472.282,
+        "scale": 0.52,
+        "width": 720,
+        "height": 1080
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 66.12459399999534,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 9,
+        "bgHits": 0,
+        "domainCanvasAllocations": 9,
+        "domainTileBuilds": 9,
+        "screenBuilds": 2,
+        "screenWorldBytes": 3110400,
+        "screenBackgroundBytes": 3110400,
+        "worldBytes": 9585216,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    },
+    {
+      "stageId": 8,
+      "file": "stage-8-overview.png",
+      "sha256": "b1429d236baa869d87c80d0d6a52ace27abc64dee399e5342894fa63257fae3c",
+      "view": {
+        "name": "overview",
+        "x": 4800,
+        "y": 2750,
+        "scale": 0.14583333333333334,
+        "width": 1440,
+        "height": 960,
+        "overview": true
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 21.19144899999992,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 20,
+        "bgHits": 0,
+        "domainCanvasAllocations": 20,
+        "domainTileBuilds": 20,
+        "screenBuilds": 2,
+        "screenWorldBytes": 5529600,
+        "screenBackgroundBytes": 5529600,
+        "worldBytes": 21300480,
+        "worldScale": 0.1767766952966369,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    },
+    {
+      "stageId": 8,
+      "file": "stage-8-entry.png",
+      "sha256": "917ab3688c664553131f3f5a247dc85995cae021e6fa2757dd045a1020191ecc",
+      "view": {
+        "name": "entry",
+        "x": 1390,
+        "y": 3886.1000000000004,
+        "scale": 0.68,
+        "width": 1440,
+        "height": 960
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 17.07389800000601,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 12,
+        "bgHits": 0,
+        "domainCanvasAllocations": 12,
+        "domainTileBuilds": 12,
+        "screenBuilds": 2,
+        "screenWorldBytes": 5529600,
+        "screenBackgroundBytes": 5529600,
+        "worldBytes": 12780288,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    },
+    {
+      "stageId": 8,
+      "file": "stage-8-place.png",
+      "sha256": "9df55a89efb816950601a9dcc19945efdab248d435b2e6634e51b412a3be1e1d",
+      "view": {
+        "name": "place",
+        "x": 5950,
+        "y": 3820,
+        "scale": 0.46,
+        "width": 1440,
+        "height": 960
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 12.710522999990644,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 12,
+        "bgHits": 0,
+        "domainCanvasAllocations": 12,
+        "domainTileBuilds": 12,
+        "screenBuilds": 2,
+        "screenWorldBytes": 5529600,
+        "screenBackgroundBytes": 5529600,
+        "worldBytes": 12780288,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    },
+    {
+      "stageId": 8,
+      "file": "stage-8-portrait.png",
+      "sha256": "8248d7319dd76028ff2e7ef0b2245c05d440476bf27fd1b7904de45ab06ac23c",
+      "view": {
+        "name": "portrait",
+        "x": 1110,
+        "y": 3886.1000000000004,
+        "scale": 0.52,
+        "width": 720,
+        "height": 1080
+      },
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 9.567245999998704,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 9,
+        "bgHits": 0,
+        "domainCanvasAllocations": 9,
+        "domainTileBuilds": 9,
+        "screenBuilds": 2,
+        "screenWorldBytes": 3110400,
+        "screenBackgroundBytes": 3110400,
+        "worldBytes": 9585216,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "renderPure": true,
+      "source": "Production shared HonroMaps + Engine + HonroScene on native Canvas",
+      "limits": [
+        "No browser DOM/HUD/input or performance validation",
+        "No normal combat completion",
+        "Overview uses editor inspection zoom"
+      ]
+    }
+  ]
+}

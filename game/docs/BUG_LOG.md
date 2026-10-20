@@ -1,4 +1,15 @@
 
+## 2026-10-20 — 이미지 지형 이전 실제 지형 복구 후보 (master 미반영)
+
+앞선 3280166은 현재 이미지 지형에 기존 벡터 renderer를 붙였으므로 사용자의 지형 복구 의도와 달랐다. 이번 기준은 실제 이미지 기반 지형 변경 시작 2aa7a04e의 직전 4d99ec4a다. 1–10장의 이미지 author와 종속 roster 연결을 제외하고 해당 raw campaign 변경 필드만 되돌렸다. 11–30장 및 무관한 현재 전투/로딩/저장 개선은 유지한다. 이미지 원경은 유지한다.
+
+빌드 후 전체 Stage1–10 객체가 역사 기준과 정확히 일치함을 확인했다(terrain·발판·장식·랜드마크·앵커·유닛·이벤트 포함). Stage11–30은 직전 현재판과 동일하고 라이브러리도 동일하다. 비교 fixture와 기준/native 후보 화면은 game/docs/art-review/pre-image-terrain-20261020에 있다. 새 암반 미술 제작 없음. 잘못된 이전 복구의 forest 표시용 확장은 제거했다.
+
+1–10장 map revision을 증가시켜 이미지 시대 전투 snapshot만 해당 장 입구에서 다시 시작한다. 성장·장착·설정·클리어 기록은 보존한다. tests/pre-image-terrain-restoration.mjs에서 역사 데이터 일치와 1/3/8장 discard·동일 revision 보존을 확인했다. npm run build 성공. tests/camera-bounds.mjs는 초반 두 검사를 통과한 뒤 1장 자동 출구 도달 실패가 남으며 4d99ec4a 자체에서도 동일 실패를 재현했다. tests/campaign-map-revision.mjs는 기존 app-regression-helpers의 오래된 App 생성 문자열 assertion에서 실행 전 중단된다. 이 gate들을 변경하지 않았다.
+
+부모의 기준/픽셀 확인 전 master와 Pages에 추가 반영하지 않는다. 공개 Pages 403 조회는 재시도하지 않았다.
+
+
 ## 2026-10-20 — 기존 벡터 근경 복구와 이미지 원경 재연결
 
 - 기준: c0235043 전체 되돌리기가 아니라 현재 master에 남은 `act1-spatial-art`, `act2-spatial-art`, 장별 후속 벡터와 기존 SVG를 재연결했다. shared-vector 및 image-first/회화 근경 override를 번들에서 제외했다. 휴식 그림, 인물, 로딩과 gameplay author는 유지한다.
