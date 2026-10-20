@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:3edfe4eecec30cbf61500d286681f4d829293130a7c0e5fdfd69d929c38bf994",
+  "sourceHashAfter": "sha256:3edfe4eecec30cbf61500d286681f4d829293130a7c0e5fdfd69d929c38bf994",
+  "mode": "mobile",
+  "rows": [
+    {
+      "id": "ferry-clean-bedrock-r40-mobile-stage03-mobile",
+      "sourceHash": "sha256:3edfe4eecec30cbf61500d286681f4d829293130a7c0e5fdfd69d929c38bf994",
+      "stage": 3,
+      "view": "mobile",
+      "camera": {
+        "x": 3100,
+        "y": 1400,
+        "scale": 0.4
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40-mobile/stage03-mobile.png",
+        "sha256": "2f487f5d2e43aa4c0355474b7c0b4ecb40c6cb83ad5bb10a2ca0f175959f786b"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-clean-bedrock-40",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true,
+      "profile": {
+        "renderMilliseconds": [
+          183.10000000149012,
+          5.699999995529652,
+          1.6999999955296516
+        ],
+        "tileCount": 6,
+        "tileRgbaBytes": 6390144
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:6483926d97d076e69dff20f6a047edd72456e6ee43f045d6a18b2afdae1c15cb",
+  "sourceHashAfter": "sha256:6483926d97d076e69dff20f6a047edd72456e6ee43f045d6a18b2afdae1c15cb",
+  "mode": "representative",
+  "rows": [
+    {
+      "id": "ferry-clean-bedrock-r36-stage03-normal",
+      "sourceHash": "sha256:6483926d97d076e69dff20f6a047edd72456e6ee43f045d6a18b2afdae1c15cb",
+      "stage": 3,
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-normal.png",
+        "sha256": "243c20804adeebaa6e741fd23ceea546340e2d3d0a7590754597626ba7cc40da"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-clean-bedrock-36",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true,
+      "profile": {
+        "renderMilliseconds": [
+          114.79999999701977,
+          9.5,
+          1.8000000044703484
+        ],
+        "tileCount": 12,
+        "tileRgbaBytes": 12780288
+      }
+    },
+    {
+      "id": "ferry-clean-bedrock-r36-stage03-wide",
+      "sourceHash": "sha256:6483926d97d076e69dff20f6a047edd72456e6ee43f045d6a18b2afdae1c15cb",
+      "stage": 3,
+      "view": "wide",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.21176470588235294
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-wide.png",
+        "sha256": "772c9786567131ab899e877ad86ccdb073963d330a71c76bc98d439b45f8f3bd"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-clean-bedrock-36",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true,
+      "profile": {
+        "renderMilliseconds": [
+          140.70000000298023,
+          10.899999998509884,
+          3
+        ],
+        "tileCount": 32,
+        "tileRgbaBytes": 34080768
+      }
+    }
+  ],
+  "errors": []
+}

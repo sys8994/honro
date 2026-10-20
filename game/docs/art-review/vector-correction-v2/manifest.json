@@ -2858,6 +2858,788 @@
       ],
       "regressions": [],
       "resolutions": []
+    },
+    {
+      "id": "ferry-authored-sections-r35",
+      "sourceHash": "sha256:605a25d17c8a4a15956dde1bfa7f02d083d9a616c1903e4bc8d7d3250414782e",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-authored-sections-r35-state.json",
+        "sha256": "e76be4f62fe9561644c7c4ec34a9cdf8e3377d526ad18d17f360a82445fdbc90"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "구간별 회화 변환 참조를 연결했으나 최신 사용자가 선택한 r25의 디자인과 다른 스타일이다. 이후 경로의 최종 목표에서 철회했다.",
+      "captures": [
+        {
+          "id": "ferry-authored-sections-r35-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:605a25d17c8a4a15956dde1bfa7f02d083d9a616c1903e4bc8d7d3250414782e",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-normal.png",
+            "sha256": "1e8eee4369da1bff589d6faf0d1982ba6f504bfd010991761dcd9b1cc12eebb5"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/captures.json",
+            "sha256": "20fc879e90864f4778520120ee0af5baa9b78ed2c85358bdd6c5a9be4ae58411"
+          }
+        },
+        {
+          "id": "ferry-authored-sections-r35-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:605a25d17c8a4a15956dde1bfa7f02d083d9a616c1903e4bc8d7d3250414782e",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-wide.png",
+            "sha256": "8914fb180542e61a9588a6a8cc1d48ebf583abd88faf7ec123e82359000ad7c2"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/captures.json",
+            "sha256": "20fc879e90864f4778520120ee0af5baa9b78ed2c85358bdd6c5a9be4ae58411"
+          }
+        },
+        {
+          "id": "ferry-authored-sections-r35-mobile-stage03-mobile",
+          "stage": 3,
+          "view": "mobile",
+          "sourceHash": "sha256:605a25d17c8a4a15956dde1bfa7f02d083d9a616c1903e4bc8d7d3250414782e",
+          "camera": {
+            "x": 3100,
+            "y": 1400,
+            "scale": 0.4
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35-mobile/stage03-mobile.png",
+            "sha256": "3e713d3ef6d7763990bb63ef1cb55415b59fb33a0244d1d69054ecb70e9f5f1c"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35-mobile/captures.json",
+            "sha256": "920af6194e1735f06fc578612b8623ac4032ca3d61f94aee1f570c7e72d43ad7"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "구간별 회화 변환 참조를 연결했으나 최신 사용자가 선택한 r25의 디자인과 다른 스타일이다. 이후 경로의 최종 목표에서 철회했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "하단 대비를 줄여도 사용자가 원한 정돈된 벡터 문법 대신 미세 색 경계가 많이 남는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "전경 전체 연결은 개선됐지만 최신 스타일 기준으로 닫힌 장면이 아니며 다른 장에 확장하지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "사용자가 명시적으로 좋아한 것은 r25 스타일이다. r31–35의 회화 충실도를 최종 재질 기준으로 쓰지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "실제 normal/minimum-wide/mobile를 열었다. 최신 선호에 따라 이 시각 방향은 철회했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-authored-sections-r35-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "ferry-clean-bedrock-r36",
+      "sourceHash": "sha256:6483926d97d076e69dff20f6a047edd72456e6ee43f045d6a18b2afdae1c15cb",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-clean-bedrock-r36-state.json",
+        "sha256": "10592ffdda71c3fd6b4aa7d2dd1c95e041b210f10159b2e31f630e8726a7f4fb"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "r25 중앙을 유지하고 큰 몸체를 저작했으나 너무 큰 단순 면이 창문 주위를 채운 형태여서 FAIL이다.",
+      "captures": [
+        {
+          "id": "ferry-clean-bedrock-r36-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:6483926d97d076e69dff20f6a047edd72456e6ee43f045d6a18b2afdae1c15cb",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-normal.png",
+            "sha256": "243c20804adeebaa6e741fd23ceea546340e2d3d0a7590754597626ba7cc40da"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/captures.json",
+            "sha256": "93ced98b0b68e0a56f95138cb20dc185202658f9050c81e9ce64a18c2f361fbb"
+          }
+        },
+        {
+          "id": "ferry-clean-bedrock-r36-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:6483926d97d076e69dff20f6a047edd72456e6ee43f045d6a18b2afdae1c15cb",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-wide.png",
+            "sha256": "772c9786567131ab899e877ad86ccdb073963d330a71c76bc98d439b45f8f3bd"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/captures.json",
+            "sha256": "93ced98b0b68e0a56f95138cb20dc185202658f9050c81e9ce64a18c2f361fbb"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "r25 중앙을 유지하고 큰 몸체를 저작했으나 너무 큰 단순 면이 창문 주위를 채운 형태여서 FAIL이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "새 암면이 너무 넓고 단순하다. 바탕색을 갈색에서 회색으로 바꾼 빈 면은 중간 형태의 해결이 아니다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "작은 원본 조각이 큰 새 면 위에 따로 붙어 보여 전체 연결/가림이 부족하다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "상부 r25는 정확히 유지하지만 주변의 단순한 큰 평면과 원본의 절리 수준이 다르다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "실제 normal/wide에서 거대한 평면과 작은 조각의 분리를 확인했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r36/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "ferry-clean-bedrock-r37",
+      "sourceHash": "sha256:7b2d83d1d4dfe0410940892073c8c96990a4dd37cf229dbf1beafd9fc3a0c850",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-clean-bedrock-r37-state.json",
+        "sha256": "b10af62fa834a66ef9dd44a99ddae6c79b8f3d2aef1e689c8d2cf70fc8c7705b"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "중간 면을 이어 전경을 채웠으나 전체가 평행한 줄무늬로 보여 FAIL이다.",
+      "captures": [
+        {
+          "id": "ferry-clean-bedrock-r37-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:7b2d83d1d4dfe0410940892073c8c96990a4dd37cf229dbf1beafd9fc3a0c850",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-normal.png",
+            "sha256": "e96bc0d529c5f74d6549d1b116e7c52d1051b679d544b66220c6621d8ecf1a90"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/captures.json",
+            "sha256": "54b57d42680f76d08831b91212ed9da1bf321e7a4d4fcb1351256edc0eadd661"
+          }
+        },
+        {
+          "id": "ferry-clean-bedrock-r37-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:7b2d83d1d4dfe0410940892073c8c96990a4dd37cf229dbf1beafd9fc3a0c850",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-wide.png",
+            "sha256": "e71d71d453a8b1047c447f7e3c7704f9baf4ebdc9d08acdb54a1f2b48b7edf8e"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/captures.json",
+            "sha256": "54b57d42680f76d08831b91212ed9da1bf321e7a4d4fcb1351256edc0eadd661"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "중간 면을 이어 전경을 채웠으나 전체가 평행한 줄무늬로 보여 FAIL이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "지질 몸체의 큰 구도보다 일정한 층리 배열이 먼저 읽힌다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "면 조각이 서로 충분히 물리지 않고 바탕 위에 떠 있다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "원본 A/B/C 기본 면만 사용해 국소 명암이 너무 단순해졌다. r25의 실제 조각 문법을 충분히 유지하지 못했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "actual normal/wide에서 바코드 같은 반복을 확인했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r37/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "ferry-clean-bedrock-r38",
+      "sourceHash": "sha256:a450fbee82cfec8a873acb05706b8bdc100817baf461a465035db810f74de8bf",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-clean-bedrock-r38-state.json",
+        "sha256": "4bdf177edd2fdb18e237494f99a52f13362e71a4c1c83581e6194eaa420d7824"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "서로 다른 지질 방향으로 나눴으나 개별 돌을 채운 카펫처럼 보여 FAIL이다.",
+      "captures": [
+        {
+          "id": "ferry-clean-bedrock-r38-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:a450fbee82cfec8a873acb05706b8bdc100817baf461a465035db810f74de8bf",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-normal.png",
+            "sha256": "ccc896a3352cb06b738103d258199c3ecddbe547ab14cc33a7497492ae3703c0"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/captures.json",
+            "sha256": "2cab67c627b04404e02533f28a7c03ab2b4dfc74986af4b13ffdb364bfecdd00"
+          }
+        },
+        {
+          "id": "ferry-clean-bedrock-r38-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:a450fbee82cfec8a873acb05706b8bdc100817baf461a465035db810f74de8bf",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-wide.png",
+            "sha256": "817e3536785563dd75ae937c1cfcfbd78aca8a2adabae50e2b4cf4af1c2c26e9"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/captures.json",
+            "sha256": "2cab67c627b04404e02533f28a7c03ab2b4dfc74986af4b13ffdb364bfecdd00"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "서로 다른 지질 방향으로 나눴으나 개별 돌을 채운 카펫처럼 보여 FAIL이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "같은 작은 외곽이 반복돼 장면의 고유한 큰 몸체가 약하다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "일부 조각은 공중에 붙은 듯하고 바탕 틈이 남는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "원본 내부 세부를 복원해도 조합 방식 자체의 문제를 해결하지 못했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "actual normal/wide에서 반복되는 개별 돌을 확인했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r38/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "ferry-clean-bedrock-r39",
+      "sourceHash": "sha256:e49e586e39361f2808c82f2a97554c416604047fc1adf8896fa363349e26296c",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-clean-bedrock-r39-state.json",
+        "sha256": "21de304d1dfe21e1e05e89d07f26139b45c464000e362f19da0ced7dab2831a6"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "A/C의 내부 암면을 겹쳤으나 큰 몸체 마스크 사이에 빈 골이 남아 FAIL이다.",
+      "captures": [
+        {
+          "id": "ferry-clean-bedrock-r39-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:e49e586e39361f2808c82f2a97554c416604047fc1adf8896fa363349e26296c",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-normal.png",
+            "sha256": "cb6f798390dd356f4b117394e5af0084b378719a5e5ed6b20d396a1916571e71"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/captures.json",
+            "sha256": "1425027baec36bf656dab1d1146e54219f04fb86fca7109b8d1a3c514cf8bfab"
+          }
+        },
+        {
+          "id": "ferry-clean-bedrock-r39-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:e49e586e39361f2808c82f2a97554c416604047fc1adf8896fa363349e26296c",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-wide.png",
+            "sha256": "7a90f5c849eb2e114236854d5439aa11f45981b9c1db0d2b1fa6bf9a3abe5d75"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/captures.json",
+            "sha256": "1425027baec36bf656dab1d1146e54219f04fb86fca7109b8d1a3c514cf8bfab"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "A/C의 내부 암면을 겹쳤으나 큰 몸체 마스크 사이에 빈 골이 남아 FAIL이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "주변 암면 밀도는 높지만 비어 있는 넓은 경계와 반복 재질의 대비가 크다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "몸체 구역 경계가 암반을 잘라 연결되지 않은 부분을 만든다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "r25의 원본 재질을 유지했으나 반복하는 전체 시트가 벽지처럼 읽힌다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "actual normal/wide에서 중앙의 큰 빈 부분과 반복되는 표면을 확인했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r39/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "ferry-clean-bedrock-r40",
+      "sourceHash": "sha256:3edfe4eecec30cbf61500d286681f4d829293130a7c0e5fdfd69d929c38bf994",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-clean-bedrock-r40-state.json",
+        "sha256": "e7ee9a830b9dc9ce4ad9a8f02b9de03ce7b04051785e06d4ba0fd2cc9b0b8e42"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "전체 몸체의 빈 부분은 줄었으나 A/C 전체 시트가 반복되는 암석 벽지가 됐다. 완성으로 판정하지 않는다.",
+      "captures": [
+        {
+          "id": "ferry-clean-bedrock-r40-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:3edfe4eecec30cbf61500d286681f4d829293130a7c0e5fdfd69d929c38bf994",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-normal.png",
+            "sha256": "3b4d36228086defcad91106a15466e4da326194c5fbbf1918f419a66fc940374"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/captures.json",
+            "sha256": "5bc1827df6416adc9dc047ea74048faaf8b11796115f0418c117eb1bc462f2a0"
+          }
+        },
+        {
+          "id": "ferry-clean-bedrock-r40-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:3edfe4eecec30cbf61500d286681f4d829293130a7c0e5fdfd69d929c38bf994",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-wide.png",
+            "sha256": "b7d729a972296d6a8c90d0c33aed7ade6464ebc0e8d3f76488fd3feea83ca833"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/captures.json",
+            "sha256": "5bc1827df6416adc9dc047ea74048faaf8b11796115f0418c117eb1bc462f2a0"
+          }
+        },
+        {
+          "id": "ferry-clean-bedrock-r40-mobile-stage03-mobile",
+          "stage": 3,
+          "view": "mobile",
+          "sourceHash": "sha256:3edfe4eecec30cbf61500d286681f4d829293130a7c0e5fdfd69d929c38bf994",
+          "camera": {
+            "x": 3100,
+            "y": 1400,
+            "scale": 0.4
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40-mobile/stage03-mobile.png",
+            "sha256": "2f487f5d2e43aa4c0355474b7c0b4ecb40c6cb83ad5bb10a2ca0f175959f786b"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40-mobile/captures.json",
+            "sha256": "87c52d00e47745dae917349c938c2cdca7faf4695f0180396cbd6a4046e0ec5b"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "전체 몸체의 빈 부분은 줄었으나 A/C 전체 시트가 반복되는 암석 벽지가 됐다. 완성으로 판정하지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "장면의 큰·중간 고유 형태보다 반복하는 원본 내부 구성이 전경 전체를 지배한다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "불투명 몸체는 하단까지 이어지지만 독립된 지질 덩어리와 퇴적 포켓의 연결을 직접 저작하지 못했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "최신 사용자 선호의 r25 재질로 돌아왔고 회화 변환의 런타임 주입은 제거했다. 다만 반복 패턴이 남아 전체 장면의 미술 합격이 아니다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "actual normal/minimum-wide/mobile를 직접 확인했다. 반복 타일 접근을 더 발전시키지 않고 직접 저작한 연결 장면으로 전환한다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-clean-bedrock-r40-mobile/stage03-mobile.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
     }
   ],
   "final": null

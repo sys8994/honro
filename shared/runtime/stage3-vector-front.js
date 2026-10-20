@@ -1,19 +1,80 @@
 (function(G){'use strict';
-// Four distinct actual-camera authoring sections, all native Path2D.
-// Path parsing happens once. Existing world tiles cache the composed result.
+// Clean hand-authored bedrock continuation of the user-selected r25 design.
+// Every large network below is unique. A/B/C native faces provide local
+// fracture vocabulary at the original 103.5/80 actor scale, never image tiles.
 const paths=new Map(),surfaces=new WeakMap(),C=G.HONRO_CORE;
 function p(d){if(!paths.has(d))paths.set(d,new Path2D(d));return paths.get(d);}
+function fill(c,d,paint){c.fillStyle=paint;c.fill(p(d));}
 function grad(c,x,y,w,h,stops){const g=c.createLinearGradient(x,y,x+w,y+h);for(const[a,v]of stops)g.addColorStop(a,v);return g;}
-const intersects=(a,b)=>a[0]<=b[2]&&a[2]>=b[0]&&a[1]<=b[3]&&a[3]>=b[1];
-const sections=G.HONRO_FERRY_FOREGROUND.sections.map(s=>({...s,clipPath:p(s.clip),paths:s.paths.map(n=>({...n,path:p(n.d)}))}));
-function section(c,s,view){if(view&&!intersects(s.coverage,[view.x,view.y,view.x+view.w,view.y+view.h]))return;c.save();c.clip(s.clipPath);c.translate(...s.origin);c.scale(s.scale,s.scale);const v=view?[(view.x-s.origin[0])/s.scale,(view.y-s.origin[1])/s.scale,(view.x+view.w-s.origin[0])/s.scale,(view.y+view.h-s.origin[1])/s.scale]:null;
- for(const n of s.paths){if(v&&!intersects(n.bounds,v))continue;c.fillStyle=n.fill;c.fill(n.path,'evenodd');c.strokeStyle=n.fill;c.lineJoin='round';c.lineWidth=.45;c.stroke(n.path);}c.restore();}
-function draw(c,b,view){if(b?.honroStage!==3)return;c.save();c.fillStyle=grad(c,0,900,1000,17000,[[0,'#76674d'],[.17,'#68624d'],[.42,'#4e5746'],[1,'#344b3d']]);c.fillRect(-6100,400,16500,25500);for(const s of sections)section(c,s,view);const f=G.HONRO_FERRY_FOREGROUND.finish;if(f){const g=c.createLinearGradient(0,f.washStartWorld,0,f.washStartWorld+f.washHeightWorld);for(const[a,v]of f.stops)g.addColorStop(a,f.color+Math.round(v*255).toString(16).padStart(2,'0'));c.fillStyle=g;c.fillRect(-6100,f.washStartWorld,16500,27000-f.washStartWorld);}c.restore();}
+// Body / lit folded plane / returning plane / long local fracture.
+const networks=[
+ {id:'western-bank',bounds:[-1800,1580,1400,2840],body:'M-1800 1800L-1340 1710-1190 1740-870 1640-623 1675-381 1580-130 1632 89 1618 277 1700 492 1711 690 1818 947 1870 1190 2045 1400 2290 1240 2470 1035 2557 806 2510 611 2618 359 2580 150 2670-96 2624-318 2720-584 2680-797 2803-1053 2769-1310 2840-1800 2690Z',light:'M-1710 1840L-1324 1760-1177 1792-855 1692-628 1724-385 1642-149 1690 57 1668 267 1761 472 1770 675 1873 901 1932 1138 2110 1235 2256 1077 2180 885 2085 653 2064 486 1976 236 1953 52 1859-181 1865-391 1794-622 1829-844 1770-1092 1850-1355 1821Z',returning:'M-1102 1910L-867 1848-639 1903-411 1873-213 1950 40 1930 239 2021 472 2028 657 2120 906 2143 1090 2268 1041 2400 831 2353 674 2433 459 2408 260 2490 34 2449-154 2548-376 2499-609 2610-824 2546-1053 2638-1330 2574-1469 2434-1269 2300-1170 2136Z',joint:'M-552 1813L-477 1871-518 1968-455 2024-489 2124-410 2192-441 2304-359 2341-408 2450-362 2497-415 2535-486 2478-447 2367-503 2308-470 2202-532 2134-499 2030-552 1972-514 1880Z'},
+ {id:'landing-bearing',bounds:[-170,1760,2250,3110],body:'M-170 2180L43 2095 219 2108 370 1984 555 2010 730 1878 925 1900 1080 1817 1278 1848 1460 1760 1636 1810 1811 1779 1990 1880 2147 1913 2250 2090 2125 2255 2194 2450 2053 2597 2085 2818 1874 2950 1640 2913 1424 3030 1207 2987 986 3110 773 3060 552 3085 360 2940 153 2908-17 2700-151 2567Z',light:'M-119 2192L86 2146 252 2150 410 2030 584 2064 753 1932 950 1960 1104 1870 1300 1906 1463 1827 1620 1872 1803 1842 1963 1937 2080 1963 2176 2115 2023 2072 1885 2112 1747 2039 1570 2080 1429 2027 1252 2115 1057 2101 897 2216 697 2185 522 2301 332 2269 178 2362-3 2320Z',returning:'M324 2383L533 2354 708 2259 907 2301 1070 2187 1261 2217 1431 2130 1602 2183 1775 2121 1942 2198 2079 2164 2001 2330 2041 2495 1909 2658 1940 2818 1799 2891 1604 2858 1406 2954 1214 2910 1009 3021 806 2974 600 2987 449 2848 275 2806 210 2643Z',joint:'M1470 2093L1528 2157 1501 2261 1564 2315 1529 2450 1590 2500 1543 2627 1618 2690 1589 2827 1640 2879 1598 2925 1532 2847 1560 2708 1489 2641 1530 2512 1477 2464 1509 2334 1452 2280 1486 2169Z'},
+ {id:'inner-oblique',bounds:[1050,1920,3350,3410],body:'M1050 2640L1270 2488 1459 2445 1648 2302 1855 2284 2042 2150 2246 2140 2431 2027 2643 2045 2828 1920 3003 1960 3180 2105 3350 2336 3240 2561 3295 2762 3112 2936 3029 3178 2782 3217 2608 3362 2351 3317 2136 3410 1917 3341 1710 3355 1518 3224 1326 3210 1208 2995 1078 2866Z',light:'M1125 2640L1310 2530 1502 2502 1694 2361 1880 2343 2078 2206 2277 2204 2458 2091 2668 2109 2838 1983 2991 2034 3110 2141 3204 2292 3057 2274 2899 2325 2747 2281 2563 2370 2397 2348 2213 2468 2026 2454 1845 2587 1650 2560 1467 2700 1272 2703Z',returning:'M1439 2809L1645 2690 1839 2715 2040 2579 2212 2593 2418 2467 2570 2491 2762 2404 2916 2449 3073 2398 3189 2438 3124 2603 3169 2757 3014 2903 2943 3101 2732 3134 2553 3279 2342 3227 2131 3322 1934 3258 1730 3279 1575 3147 1394 3135 1310 2968Z',joint:'M2307 2477L2367 2505 2340 2630 2397 2671 2342 2793 2401 2845 2365 2984 2418 3026 2379 3189 2427 3244 2378 3277 2319 3202 2352 3047 2302 3001 2332 2861 2274 2812 2327 2686 2275 2650Z'},
+ {id:'ridge-front',bounds:[3100,850,6100,2750],body:'M3100 1237L3345 1081 3520 1061 3690 944 3884 969 4078 850 4283 911 4478 902 4650 1021 4862 1055 5050 1183 5300 1229 5487 1382 5756 1425 6100 1638V2530L5842 2579 5614 2505 5392 2638 5142 2597 4910 2750 4659 2678 4443 2723 4236 2588 4024 2597 3837 2406 3650 2330 3471 2112 3310 2001 3218 1777 3110 1618Z',light:'M3201 1264L3400 1136 3560 1129 3710 1010 3907 1040 4086 922 4260 985 4460 967 4620 1090 4818 1113 5006 1244 5230 1296 5429 1449 5681 1488 5920 1650 5710 1640 5505 1572 5291 1600 5110 1470 4886 1458 4712 1327 4509 1290 4336 1180 4145 1208 3948 1150 3777 1260 3593 1251 3423 1384 3220 1450Z',returning:'M3539 1460L3737 1344 3934 1368 4115 1280 4312 1326 4502 1430 4703 1458 4862 1594 5070 1615 5242 1750 5467 1726 5689 1810 5900 1774V2424L5725 2471 5557 2404 5351 2532 5136 2489 4894 2641 4680 2571 4486 2612 4293 2470 4102 2479 3917 2299 3748 2211 3599 1990 3460 1890 3431 1680Z',joint:'M4243 1331L4304 1390 4253 1523 4333 1591 4304 1742 4380 1796 4328 1964 4403 2027 4363 2170 4441 2259 4375 2402 4434 2480 4382 2518 4313 2419 4376 2274 4297 2191 4330 2044 4250 1979 4309 1817 4237 1755 4268 1615 4190 1542Z'},
+ {id:'low-west-mass',bounds:[-2100,2700,1200,5100],body:'M-2100 3400L-1770 3210-1480 3247-1215 3030-940 3060-676 2860-420 2890-185 2700 70 2760 302 2730 535 2906 776 2931 1000 3145 1200 3380 1108 3660 1160 3920 970 4190 930 4490 690 4770 420 4700 170 4910-90 4860-350 5100H-2100Z',light:'M-2010 3434L-1730 3278-1460 3322-1181 3098-928 3134-657 2934-408 2969-167 2788 60 2846 294 2810 508 2985 722 3016 901 3183 1039 3382 826 3339 603 3381 398 3224 195 3220-10 3069-230 3090-432 3220-659 3190-873 3376-1098 3350-1320 3547-1550 3500-1782 3653Z',returning:'M-1500 3710L-1270 3618-1040 3680-804 3480-581 3518-360 3369-140 3411 65 3312 281 3392 505 3501 731 3469 960 3600 873 3804 921 3987 745 4218 698 4497 470 4678 255 4621 58 4800-166 4754-413 4980H-1800V4000Z',joint:'M-426 3235L-349 3320-391 3478-315 3550-369 3717-286 3793-340 3970-267 4040-329 4220-249 4300-289 4500-218 4580-270 4635-350 4520-307 4320-387 4240-323 4060-400 3990-342 3810-421 3740-367 3570-441 3500Z'},
+ {id:'lower-central-ramp',bounds:[800,2790,3700,4870],body:'M800 3650L1040 3485 1268 3520 1503 3340 1719 3360 1941 3178 2158 3190 2389 3017 2618 3048 2830 2880 3058 2925 3250 2790 3475 2860 3700 3070 3650 3350 3697 3600 3490 3807 3460 4100 3210 4248 3020 4510 2760 4460 2520 4670 2257 4625 2020 4870 1760 4805 1510 4850 1310 4650 1100 4605 930 4320 850 4060Z',light:'M901 3677L1081 3560 1289 3601 1526 3418 1732 3442 1967 3251 2179 3267 2412 3097 2640 3122 2840 2961 3077 3006 3261 2875 3448 2954 3592 3094 3412 3126 3247 3094 3060 3210 2851 3199 2650 3351 2433 3328 2227 3490 2009 3471 1788 3637 1581 3611 1373 3761 1140 3737Z',returning:'M1205 3890L1403 3856 1606 3714 1807 3762 2023 3579 2230 3612 2440 3448 2654 3489 2860 3330 3070 3338 3267 3228 3470 3270 3551 3361 3500 3550 3550 3710 3360 3920 3330 4150 3130 4278 2940 4430 2722 4389 2497 4587 2260 4535 2018 4780 1801 4710 1563 4771 1387 4563 1180 4510 1050 4300 1070 4108Z',joint:'M2767 3422L2830 3510 2784 3667 2862 3738 2808 3892 2873 3979 2821 4167 2900 4258 2834 4410 2891 4489 2834 4533 2762 4427 2827 4279 2744 4186 2795 3996 2727 3916 2783 3761 2707 3690Z'},
+ {id:'lower-east-return',bounds:[3500,2390,6600,5100],body:'M3500 2960L3755 2858 3940 2880 4160 2680 4390 2710 4603 2507 4830 2533 5050 2390 5288 2450 5500 2467 5713 2620 5930 2600 6150 2780 6600 2920V5100H3940L3832 4840 3640 4680 3579 4400 3450 4200 3525 3950 3440 3720 3537 3470Z',light:'M3605 2990L3789 2929 3965 2959 4182 2757 4412 2788 4630 2582 4851 2614 5062 2470 5280 2537 5481 2549 5688 2702 5923 2681 6133 2860 6420 2970 6160 3030 5910 2959 5704 3061 5491 2931 5270 2948 5063 2808 4845 2871 4639 2861 4442 3034 4218 3030 4020 3210 3790 3184Z',returning:'M3880 3300L4087 3323 4305 3130 4519 3159 4715 2980 4920 3018 5110 2907 5309 3042 5503 3028 5727 3170 5937 3069 6160 3140 6420 3070V5100H4070L3977 4807 3784 4621 3739 4360 3617 4180 3685 3949 3615 3740 3719 3492Z',joint:'M5037 3010L5103 3079 5063 3257 5140 3318 5084 3520 5163 3590 5110 3807 5190 3873 5133 4080 5200 4170 5136 4388 5190 4470 5140 4522 5060 4409 5125 4189 5052 4093 5109 3896 5030 3821 5086 3610 5009 3541 5065 3340 4990 3279Z'}
+].map(n=>({...n,body:p(n.body),light:p(n.light),returning:p(n.returning),joint:p(n.joint)}));
+const faces={s1:['ferry-shelf',[5,6,7],[275,229,585,300]],s2:['ferry-shelf',[15,16,17],[275,304,541,374]],s3:['ferry-shelf',[24,25,26],[209,383,478,460]],v1:['ferry-shoulder',[5,6,7,8],[86,178,203,368]],v2:['ferry-shoulder',[12,13,14],[312,195,421,403]],v3:['ferry-shoulder',[15,16,17,18],[415,215,520,407]],f1:['ferry-fan',[4,5,6],[99,223,266,352]],f2:['ferry-fan',[7,8,9],[231,192,400,310]],f3:['ferry-fan',[16,17,18],[129,311,300,426]],f4:['ferry-fan',[19,20,21],[278,289,428,390]]};
+// Local joints interrupt different network shoulders. They are not rows of
+// complete A/B/C sheets and never include the rectangular source backing.
+// Each authored rock network carries overlapping native A/C beds. Their
+// backing joins the mountain body; outer sheet borders lie beneath adjacent
+// beds. The deep B shoulder is reserved for the original central landmark.
+const coverings=[];
+for(let ni=0;ni<networks.length;ni++){const n=networks[ni],z=n.bounds;let row=0;for(let y=z[1]-350;y<z[3]+200;y+=270){let col=0;for(let x=z[0]-350+(row%3)*117;x<z[2]+250;x+=650){coverings.push({network:n,x,y,id:(col+row+ni)%3===0?'ferry-shelf':'ferry-fan',rotation:[-.045,.025,-.02,.055][(row+col+ni)%4]});col++;}row++;}}
+const nativeElements=new Map();
+function covering(c,f,view){const S=103.5/80;if(view&&(f.x+1050<view.x||f.x-100>view.x+view.w||f.y+750<view.y||f.y-100>view.y+view.h))return;let selected=nativeElements.get(f.id);if(!selected){const children=G.HONRO_VECTOR_CAMPAIGN_PARTS.parts[f.id].children[0].children;selected=children.map((_,i)=>i).filter(i=>i!==(f.id==='ferry-shelf'?30:22));nativeElements.set(f.id,selected);}c.save();c.translate(f.x,f.y);c.rotate(f.rotation);c.scale(S,S);G.HonroVectorCampaignMaterials.part(c,f.id,{elements:selected});c.restore();}
+function draw(c,b,view){if(b?.honroStage!==3)return;c.save();
+ c.fillStyle=grad(c,-500,1000,2000,16000,[[0,'#5d6053'],[.18,'#52594b'],[.45,'#485244'],[1,'#354c3e']]);c.fillRect(-6100,400,16500,25500);
+ for(const n of networks){const z=n.bounds;if(view&&(z[2]<view.x||z[0]>view.x+view.w||z[3]<view.y||z[1]>view.y+view.h))continue;
+  c.fillStyle=grad(c,z[0],z[1],(z[2]-z[0])*.25,z[3]-z[1],[[0,'#64695c'],[.4,'#535d51'],[1,'#435347']]);c.fill(n.body);
+ }
+ for(const f of coverings)covering(c,f,view);
+ const part=G.HonroVectorCampaignMaterials.part,S=103.5/80;
+ function exposure(id,x,y,r,mask,tone=0){c.save();c.translate(x,y);c.rotate(r);c.scale(S,S);c.clip(p(mask));part(c,id,{tone});c.restore();}
+ exposure('ferry-shoulder',2850,900,-.12,
+  'M-20 80H740V231L688 252 672 277 682 305 657 331 646 369 607 389 573 404 534 389 484 413 443 398 409 426 357 408 318 422 274 402 236 416 190 394 163 406 127 379 91 387 53 365 27 373 7 343 22 313-5 287Z',-.20);
+ exposure('ferry-shelf',2050,900,0,
+  'M-20 100H740V294L689 301 661 322 674 346 648 374 610 368 585 395 532 390 510 412 462 400 425 426 377 411 344 430 282 416 241 411 207 428 177 412 131 421 101 399 64 407 37 385 12 392 29 363 8 347 35 317 18 295 40 272-5 260Z');
+ // The oblique fan overlaps the toe of A/B rather than sitting separately
+ // below them. Its exposed sheets taper inside a foreground soil fold.
+ exposure('ferry-fan',2560,1110,-.12,
+  'M-20 100H740V237L686 252 669 277 648 286 637 309 605 328 574 328 552 354 517 362 490 387 456 389 422 412 390 410 354 432 321 424 287 445 253 425 223 434 195 418 162 425 131 408 94 415 63 393 33 398 15 374 36 351 19 332 46 304 27 284-5 272Z');
+
+ // Local colluvial pockets occupy fracture junctions, never a frame.
+ fill(c,'M-630 2070Q-551 2026-470 2062L-431 2050-409 2072-367 2068-340 2091-293 2083-259 2110-215 2106-189 2139-217 2170-270 2160-304 2185-352 2178-393 2151-442 2156-481 2126-533 2130-572 2105Z',grad(c,-620,2030,400,270,[[0,'#958261'],[.45,'#7d7254'],[1,'#5e634c']]));
+ fill(c,'M980 2260Q1057 2224 1120 2247L1152 2239 1180 2264 1216 2260 1249 2290 1286 2286 1320 2315 1291 2348 1254 2341 1229 2363 1192 2356 1159 2329 1124 2337 1090 2310 1051 2315 1018 2283Z',grad(c,990,2220,400,260,[[0,'#94815f'],[.5,'#7b7052'],[1,'#5c624b']]));
+ fill(c,'M4140 1740Q4209 1707 4278 1736L4311 1729 4344 1754 4380 1749 4418 1780 4452 1771 4480 1801 4450 1831 4413 1823 4381 1848 4345 1835 4310 1810 4278 1816 4240 1784 4208 1790 4170 1760Z',grad(c,4140,1710,400,260,[[0,'#95815f'],[.45,'#7c7052'],[1,'#5c624a']]));
+ fill(c,'M2590 2940Q2665 2900 2732 2924L2769 2914 2800 2940 2839 2936 2878 2966 2910 2959 2941 2992 2915 3020 2872 3011 2842 3038 2801 3025 2771 3001 2731 3006 2697 2979 2658 2982 2620 2956Z',grad(c,2590,2890,420,280,[[0,'#8e7c5c'],[.5,'#786d51'],[1,'#596049']]));
+ c.fillStyle=grad(c,0,2350,0,2200,[[0,'#4d5b4500'],[.5,'#4d5b4520'],[1,'#4d5b4552']]);c.fillRect(-6100,2350,16500,24650);
+ c.restore();}
 function surfaceData(b){const t=b.terrain.find(t=>t.id==='ferry-ground'&&!t.broken);if(!t)return null;const key=b.sceneVersion+':'+t.x+':'+t.y+':'+t.w+':'+t.h;let data=surfaces.get(b);if(data?.key===key)return data;
- // Contact stays at the real line. Unequal authored front shoulders rise a
- // few world units over it; source material is sampled safely below feet.
- const rows=[[0,-5,25],[190,-8,31],[420,-4,23],[690,-11,35],[920,-6,28],[1170,-9,34],[1410,-5,27],[1650,-12,36],[1880,-7,24],[2100,-4,29],[2320,-10,37],[2530,-6,26],[2750,-11,34],[2960,-5,23],[3160,-8,31],[3370,-4,28],[3580,-10,35],[3810,-6,24],[4040,-9,33],[4276,-5,26]];
- const upper=rows.map(([x,a])=>[x,C.topAt(t,x,t.y)+a]),lower=rows.toReversed().map(([x,,a])=>[x,C.topAt(t,x,t.y)+a]);const d='M'+upper.concat(lower).map(([x,y])=>x+','+y).join('L')+'Z';data={key,lip:p(d)};surfaces.set(b,data);return data;}
-function surface(c,b,view){if(b?.honroStage!==3)return;const s=surfaceData(b);if(!s)return;c.save();c.clip(s.lip);c.translate(0,-30);const below=view?{...view,y:view.y+30}:null;for(const f of sections)section(c,f,below);c.restore();}
+ // Width changes belong to a few worn shoulders and runoff mouths. There is
+ // no regular sawtooth, leaf field or repeated edge-noise generator.
+ const rows=[[0,-7,17],[200,-10,23],[470,-8,15],[730,-12,26],[980,-6,19],[1220,-9,31],[1480,-11,21],[1700,-7,28],[1850,-10,19],[1990,-7,33],[2190,-11,25],[2390,-8,36],[2580,-10,22],[2770,-6,30],[2970,-11,18],[3150,-8,29],[3330,-12,22],[3520,-7,32],[3710,-10,23],[3910,-6,29],[4100,-10,18],[4276,-7,23]];
+ const top=rows.map(([x,a])=>[x,C.topAt(t,x,t.y)+a*.5]),bottom=rows.map(([x,,a])=>[x,C.topAt(t,x,t.y)+a*.55]);
+ const band=new Path2D();function edge(points,start){if(start)band.moveTo(...points[0]);else band.lineTo(...points[0]);for(let i=1;i<points.length-1;i++){const a=points[i],z=points[i+1];band.quadraticCurveTo(a[0],a[1],(a[0]+z[0])/2,(a[1]+z[1])/2);}band.lineTo(...points.at(-1));}edge(top,true);edge(bottom.toReversed(),false);band.closePath();
+ 
+ const deposit=new Path2D();const strip=rows.slice(8,17);strip.forEach(([x],i)=>{const y=C.topAt(t,x,t.y)+5; i?deposit.lineTo(x,y):deposit.moveTo(x,y);});for(const[x,,width]of strip.toReversed())deposit.lineTo(x,C.topAt(t,x,t.y)+Math.min(14,width*.48));deposit.closePath();
+ data={key,t,band,deposit};surfaces.set(b,data);return data;}
+function surface(c,b,view){if(b?.honroStage!==3)return;const s=surfaceData(b);if(!s)return;c.save();
+ c.fillStyle=grad(c,1900,1050,1200,600,[[0,'#91805e'],[.35,'#998361'],[1,'#8e7e5e']]);c.fill(s.band);
+ c.fillStyle='#c3ae8023';c.fill(s.deposit);
+ // Broken runoff lips interrupt the thin front edge at two actual hollows.
+ const x=2390,y=C.topAt(s.t,x,s.t.y);c.translate(x,y);
+ fill(c,'M-63 18L-31 23-12 15 13 24 31 18 59 27 42 36 17 30-9 39-34 30-56 34Z','#756345');
+ fill(c,'M-8 28L8 33 1 51-14 64-10 45-23 35Z','#514c37');
+ c.restore();
+ // Three small, partly buried surface stones. Their unequal faces overlap
+ // the surface ribbon, giving the walk edge a few real material breaks.
+ const caps=[
+  [2231,'M-39 5L-25-8-9-13 11-8 24-11 39 0 31 12 12 15-4 10-23 14Z','M-39 5L-25-8-9-13 11-8 24-11 14-1-7-3-20 4Z','M14-1L24-11 39 0 31 12 12 15 2 8Z'],
+  [2930,'M-52 5L-34-5-16-4 7-19 24-16 42-7 52 7 29 12 8 8-15 15-43 12Z','M-52 5L-34-5-16-4 7-19 24-16 12-9 3-6-10 3-32 2Z','M24-16L42-7 52 7 29 12 8 8 19 0Z'],
+  [3470,'M-27 6L-25-7-11-20 7-25 22-16 19-3 32 7 12 14-5 9-17 13Z','M-27 6L-25-7-11-20 7-25 22-16 4-12-3-3-16 2Z','M4-12L22-16 19-3 32 7 12 14-5 9 4 2Z']
+ ];
+ for(const[x,body,light,side]of caps){const y=C.topAt(s.t,x,s.t.y);c.save();c.translate(x,y);fill(c,body,'#586560');fill(c,light,'#87907a');fill(c,side,'#3d4c4a');fill(c,'M-33 10Q-8 7 9 12L33 12 24 17-7 15-26 18Z','#7d7152');c.restore();}
+}
 G.HonroStage3VectorFront={draw,surface};
 })(globalThis);

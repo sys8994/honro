@@ -136,7 +136,6 @@ export async function runtimeEntries({vector=true,render=true,app=false,regenera
   if(render)await file('shared/runtime/city-gate-art.js');
   if(render)await file('shared/runtime/forest-pine-art.js');
   if(render)await file('shared/runtime/stage1-vector-front.js');
-  if(render)data('HONRO_FERRY_FOREGROUND',JSON.parse(await read('shared/assets/environment/ferry-scene/foreground.json')));
   if(render)await file('shared/runtime/stage3-vector-front.js');
   if(render)data('HONRO_VECTOR_CAMPAIGN_PARTS',JSON.parse(await read('shared/assets/environment/vector-campaign-parts.json')));
   if(render)await file('shared/runtime/vector-campaign-materials.js');
