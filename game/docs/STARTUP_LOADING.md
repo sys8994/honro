@@ -140,3 +140,28 @@ Game 필수 common+app JS와 entry는2,823,453→2,806,363B(동일 title/data lo
 한정 확인은 필요한 build/구문 검사와 실제 cold/continue 측정,12장 fetch 실패→기존 전투/profile/저장 동일→재시도 및 중복 launch의 요청1회,21장 취소→늦은 로딩 완료→타이틀 유지 각1건이다.21장 HP/3라운드/성장/장착/완료, trusted click의 audio running도 보존했다. pageerror0, 초기 optional/Workshop/full-library 요청0이다. 빌드 전후 data81개·graphics81개·styles14개 해시가 동일했다. 전체verify·별도검수자·무관 기예·다른 장·Workshop 실제 실행·master/Pages는 하지 않았다. 로컬 생성물은 측정용이며 소스 커밋에 포함하지 않고 부모의 통합 순서에 맡긴다.
 
 근거 JSON: `_local/reports/startup/critical-path-{before,after}.json`, `critical-path-checks.json`. 캡처: `critical-path-after-{cold-ready,cold-entered,continue21-ready,continue21-entered}.png`, `critical-path-retry.png`, `critical-path-cancelled.png`. 같은 디렉터리의 `critical-probe.py`와 `critical-entry-check.py`는 이번 한정 측정의 로컬 재현 스크립트다.
+
+
+## 클릭 후 진입 대기 한정 조사 (2026-10-20)
+
+기준은 master/Pages에 통합한 `2014aa4c57c4a4deb579863fdea87cfb7c08f2d1`이다. 이번 요청은 클릭 뒤 SVG 준비가 전투 진입을 막는 경우만 고치며 엔진/미술 영역은 수정하지 않는 범위다. 조사 결과 해당 경로에 SVG 대기가 없어서 실행 코드를 변경하지 않았다.
+
+- 생성 campaign manifest의 base/library/shared와30개 chapter·30개 stageLibrary의 `assetPaths`가 모두 빈 배열이다. 플레이 지형/충돌/인터랙션/주인공 벡터 자료는 inline JSON/런타임 자료로 준비되며 이 JSON을 지연하는 변경은 하지 않는다. `hydrate`가 SVG 원문 fetch를 기다리는 코드는 존재하지만 현재 캠페인 ensureStage의 입력에는 해당 참조가 없다.
+- 외부 SVG8개는 `HONRO_ACT1_FAR_DATA`/`HONRO_ACT2_FAR_DATA`의 원경이다. 이 모듈은 ready 전에 실행되고 raw source8개도 이미 채워져 있었다. 전장 원경 renderer는 Image 준비 여부와 fallback을 사용하지만, act1 raw source는 `journey-art.js:campaignBackdrop`의 동기 inline SVG 소비처가 있다. source가 없을 때 만들어진 쉼터 fallback은 같은 scene cache key에 남으므로 이를 무작정 비동기화하지 않았다. 이 준비를 바꾸는 것은 이번 클릭 지연의 해결도 아니다.
+- 같은 synthetic21장 저장, Chromium390×844 touch/mobile viewport, CPU4배/RTT40ms/2MiB/s, 새 context/cache disabled에서 method timer와 CDP CPU profiler로1회만 관측했다. ready 때 준비된 장은21장 하나였고 `has(21)`은true였다. 실제 click 이후 fetch0회, ensureStage0회였으며, 완료 resource에는 favicon만 추가됐다. 앞 단계의 클릭 완료 관측과 달리 실제 capture click event부터 첫 render 반환까지를 재었다.
+
+| 구간 | 이번 단일 관측 |
+|---|---:|
+| click → 첫 전장 render 반환 |2452.4ms|
+| click → 첫 render 후 두rAF 경계 |2660.4ms|
+| continue 동기 호출 |1851.6ms|
+| mount(continue에 포함) |1754.3ms|
+| 최초 updateHUD(mount에 포함) |1631.2ms|
+| 최초 Scene.render |552.7ms|
+| portrait alphaBounds / sourceFor CPU self time |1058.6 /350.5ms|
+
+구간들은 중첩되므로 더하지 않는다. profiler는 클릭 전후를 포함하며 자체 오버헤드가 있고 단일 실행이다. 원인은 `mount→updateHUD(true)→drawPortraits→HonroPortraits.draw→sourceFor→alphaBounds`의 최초 초상화 준비다. `portraits.js`는1200×1500 Canvas에서 주인공을 그린 뒤 alpha pixel을 순회한다. 이 초상화/렌더 코드는 이번 소유 범위 밖이므로 건드리지 않았다. 후속 개선을 한다면 이 최초 준비를 별도 범위로 다루어야 하며, SVG fetch 비동기화로 클릭 진입이 개선된다고 주장할 근거는 없다.
+
+필수 표시만 확인했다:21장 전투 canvas/지형27개/네 동행 및 HUD 초상화 표시, HP358·3라운드·성장/장착/완료 보존, audio running, pageerror0. 런타임/생성물 변경이 없어 전후 비교쌍·재시도/취소 재실행·빌드·master/Pages 갱신·전체verify·기타 장/기예 검사는 하지 않았다. 기존 소유권/취소/재시도 코드는 그대로다. 이번 단위의 완료물은 조사 문서이며 속도 개선 패치가 아니다.
+
+근거: `_local/reports/startup/click-entry-analysis.json`, `click-entry-dependencies.json`, `click-entry-probe.py`, `click-entry-continue21.png`.
