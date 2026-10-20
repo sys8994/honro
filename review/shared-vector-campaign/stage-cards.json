@@ -1424,7 +1424,7 @@
       "next": 23
     },
     "goal": "사건 보고와 호적을 확보·대조하고 관창 출구에 도착",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "하층 봉인→사건 보고→호적→상층 대조 방어→서고 출구의 활성 5단계. 두 기록 운반자가 같은 층에서 접근해야 하는 대조 조건과 보호/전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1443,7 +1443,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "휘겸이 하층 봉인을 열고 두 기록을 각각 회수하는 동안, 계단과 서쪽 회랑 중 어느 사선을 확보해 상층 대조대로 모일 것인가?",
     "size": [
       4800,
       6600
@@ -1451,7 +1451,13 @@
     "vertical": true,
     "place": "관청의 옛 장부",
     "preservedIds": {
-      "objectives": [],
+      "objectives": [
+        "archive-seal",
+        "ledger-case",
+        "upper-register",
+        "compare-ledgers",
+        "archive-exit"
+      ],
       "markers": [
         "archive-seal",
         "ledger-case",
@@ -1468,17 +1474,63 @@
     },
     "enemyBudget": {
       "initial": 30,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 7,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기 30체/정예7/유한9/행동3 유지. 봉인 앞 단독 경계·입구 전위·궁수 후열과 가까운 서쪽 회랑의 서로 다른 간격을 명시 저작한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "하층→보고고→호적각→대조대의 4100 높이 연결과 선택 서쪽 회랑이 이미 충분하다. 기존 두 판문과 상층 대조마당을 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "archive-seal",
+        "label": "하층 서고 봉인 열기",
+        "kind": "interact",
+        "requiredClass": "knight",
+        "opens": "archive-door"
+      },
+      {
+        "id": "ledger-case",
+        "label": "중층 기록함을 꺼내 통로 열기",
+        "kind": "interact",
+        "opens": "upper-door"
+      },
+      {
+        "id": "upper-register",
+        "label": "상층 호적함 구출",
+        "kind": "interact"
+      },
+      {
+        "id": "compare-ledgers",
+        "label": "상층에서 사건 보고와 호적 대조",
+        "kind": "hold",
+        "rounds": 2,
+        "wave": {
+          "kind": "lantern",
+          "count": 2
+        },
+        "radius": 460,
+        "contestRadius": 230
+      },
+      {
+        "id": "archive-exit",
+        "label": "옛 관창으로 나가기",
+        "kind": "reach"
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행."
   },
   {
     "stage": 23,
