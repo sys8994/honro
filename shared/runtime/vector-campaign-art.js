@@ -23,38 +23,89 @@ function inside(x,y,points){let yes=false;for(let i=0,j=points.length-1;i<points
 function material(t,style){return t.mat==='wood'||t.surfaceKind==='branch'?'wood':t.mat==='water'||t.mat==='ice'||t.mat==='crystal'?'water':t.mat==='earth'||t.surfaceKind==='soil'?'earth':t.mat==='rock'||t.honroCeiling?'rock':style.ground;}
 function canvasPaint(c,p){if(p.type==='color')return p.value;const g=c.createLinearGradient(...p.from,...p.to);for(const [offset,color] of p.stops)g.addColorStop(offset,color);return g;}
 function contextView(c){const m=c.getTransform();return{x:-m.e/m.a,y:-m.f/m.d,w:c.canvas.width/m.a,h:c.canvas.height/m.d};}
+// A bounded landform composition follows exposed faces, not the extended map box.
+const INTERIOR_REVISION='landforms-2';
+function hash01(text){let h=2166136261;for(const c of text){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return(h>>>0)/4294967295;}
+function clipFace(face,box){let lo=0,hi=1;const dx=face.z.x-face.a.x,dy=face.z.y-face.a.y;
+ for(const [p,q] of [[-dx,face.a.x-box.left],[dx,box.right-face.a.x],[-dy,face.a.y-box.top],[dy,box.bottom-face.a.y]]){if(Math.abs(p)<1e-8){if(q<0)return null;}else{const t=q/p;if(p<0)lo=Math.max(lo,t);else hi=Math.min(hi,t);if(lo>hi)return null;}}
+ const a={x:face.a.x+lo*dx,y:face.a.y+lo*dy},z={x:face.a.x+hi*dx,y:face.a.y+hi*dy};return{...face,a,z,len:Math.hypot(z.x-a.x,z.y-a.y)};
+}
+function composeInterior(b,records,style){
+ const limit=Math.min(80,(style.maxParts||48)+24),majorLimit=Math.min(30,Math.ceil(limit*.44)),middleLimit=Math.min(34,limit-majorLimit-8),plans=[];
+ const region={left:-750,top:-650,right:b.width+750,bottom:b.height+2200},city=['city','ash'].includes(style.palette),cave=['cave','ink'].includes(style.palette);
+ function add(level,r,id,x,y,scale,rotation=0,opacity=1){const definition=K.ASSETS[id];if(!definition)throw Error('Missing landform '+id);const [lo,hi]=definition.scaleRange;scale=Math.max(lo,Math.min(hi,scale));
+  const instance={id:r.t.id+'/landform-'+r.features.length,assetId:id,palette:style.palette,opacity,transform:{x,y,scale,rotation}};r.features.push({level,instance});return instance;
+ }
+ for(const r of records.values()){
+  r.features=[];r.partsByLOD={};r.landformCandidates=[];
+  const t=r.t;if(t.oneWay||r.mat==='wood'||r.mat==='water'||t.honroQuestTarget||t.device||t.honroSeal||/^sb-(bell-|inner-)/.test(t.id)||['sf-settled-barge','sf-outbank-screen'].includes(t.id))continue;
+  if(t.w<200||t.h<130)continue;
+  for(const original of r.faces){const face=clipFace(original,region);if(!face||face.len<100)continue;
+   const count=Math.max(1,Math.min(6,Math.ceil(face.len/1250)));
+   for(let i=0;i<count;i++){
+    const seed=hash01(t.id+':'+face.a.x+':'+face.a.y+':'+i),f=(i+.22+seed*.48)/count,x=face.a.x+(face.z.x-face.a.x)*f,y=face.a.y+(face.z.y-face.a.y)*f;
+    let depth=0;for(const d of [95,210,390,680,1080,1620,2320]){if(!inside(x-face.nx*d,y-face.ny*d,r.points))break;depth=d;}
+    if(depth<210)continue;
+    const onMap=x>=0&&x<=b.width&&y>=0&&y<=b.height+500,score=Math.sqrt(face.len)*Math.min(depth,1620)*(onMap?1.3:.55);
+    r.landformCandidates.push({x,y,nx:face.nx,ny:face.ny,depth,seed,score,len:face.len});
+   }
+  }
+  r.landformCandidates.sort((a,z)=>z.score-a.score);const chosen=[];
+  for(const c of r.landformCandidates){if(chosen.every(p=>Math.hypot(c.x-p.x,c.y-p.y)>1020)){chosen.push(c);if(chosen.length===7)break;}}
+  r.landformCandidates=chosen;r.rank=chosen[0]?.score||0;if(chosen.length)plans.push(r);
+ }
+ plans.sort((a,z)=>z.rank-a.rank);let majors=0,middles=0,near=0;
+ for(let round=0;round<7&&majors<majorLimit;round++)for(const r of plans){const c=r.landformCandidates[round];if(!c||majors>=majorLimit)continue;
+  const earth=r.mat==='earth',wall=Math.abs(c.nx)>.55||c.ny>.5,angle=wall?Math.atan2(c.ny,c.nx)*180/Math.PI+90:Math.atan2(-c.nx,-c.ny)*180/Math.PI;
+  let id=earth?(style.palette==='wet'?'wet.silt-bank':(c.seed>.72&&c.depth>700?'earth.erosion-face':'earth.slope-mass')):city&&!wall?'rock.foundation-ledge':wall||cave&&c.seed>.62?'rock.cavern-buttress':'rock.stratified-mass';
+  const def=K.ASSETS[id],height=-def.bounds.y,desired=c.depth>1500?1.35:c.depth>680?1.05:.72,fit=c.depth/(height*.66),scale=Math.min(desired,fit,def.scaleRange[1]);
+  if(scale<def.scaleRange[0])continue;
+  const rotation=earth?Math.max(-12,Math.min(12,-c.nx*13+(c.seed-.5)*10)):wall?angle:Math.max(-18,Math.min(18,angle));
+  const d=height*scale*.64,normal=earth&&wall?{x:-c.nx*.75,y:-c.ny*.75+.2}:{x:-c.nx,y:-c.ny};
+  add('major',r,id,c.x+normal.x*d,c.y+normal.y*d,scale,rotation,1);majors++;
+  // Sparse medium rock exposures are buried in an authored soil lip, not floating strips.
+  if(earth&&style.palette!=='wet'&&middles<middleLimit&&c.depth>680&&c.seed>.63){
+   const d2=Math.min(520,c.depth*.35),x=c.x-c.nx*d2+(c.seed-.5)*180,y=c.y-c.ny*d2;
+   if(inside(x,y+70,r.points)){add('middle',r,'earth.buried-exposure',x,y,.85,Math.max(-12,Math.min(12,rotation)),.9);middles++;}
+  }
+  // Deep foreground is a second broad shoulder, placed only in thick connected mass.
+  if(round===0&&c.depth>=1620&&c.seed>.45&&majors<majorLimit){const d2=1450+c.seed*340,x=c.x-c.nx*d2+(c.ny*220),y=c.y-c.ny*d2-c.nx*220;
+   if(x>=region.left&&x<=region.right&&y<region.bottom&&inside(x,y,r.points)){
+    const deepId=earth?(style.palette==='wet'?'wet.silt-bank':'earth.slope-mass'):city?'rock.foundation-ledge':'rock.stratified-mass';
+    add('major',r,deepId,x,y,1.25,earth?(c.seed-.5)*14:Math.max(-18,Math.min(18,rotation)),.72);majors++;
+   }
+  }
+ }
+ // Roots belong to existing tree feet, never to arbitrary empty soil cells.
+ const roots=[...(style.scenery||[]).filter(p=>/^pine\./.test(p.assetId)).map(p=>{const a=b.honroMapAnchors?.[p.anchor]||{},x=p.x??a.x,t=b.terrain.find(t=>t.id===p.support&&!t.broken);return t&&Number.isFinite(x)?{x,y:C.topAt(t,x,t.y),support:t.id}:null;}),...(b.honroLandmarks||[]).filter(l=>/rooted-pine|ancientPine|giantPine/.test(l.asset?.id||l.kind||'')).map(l=>({x:l.x,y:l.y}))].filter(Boolean);
+ if(!cave&&!city&&style.palette!=='wet')for(const tree of roots){if(near===5)break;const r=[...records.values()].find(r=>r.mat==='earth'&&(!tree.support||tree.support===r.t.id)&&inside(tree.x,tree.y+80,r.points));if(!r)continue;add('middle',r,'earth.root-scarp',tree.x,tree.y+10,.78,0,.8);near++;}
+ // One world-space composition per material crosses adjacent collision polygons.
+ // Each polygon clips the same nodes, so an internal seam cannot cut a soil shoulder.
+ const byMaterial=new Map();for(const r of records.values()){if(!byMaterial.has(r.mat))byMaterial.set(r.mat,{features:[],scenes:{}});byMaterial.get(r.mat).features.push(...r.features);}
+ for(const group of byMaterial.values())for(const level of ['major','middle'])group.scenes[level]=K.compileScene({instances:group.features.filter(p=>p.level===level).map(p=>p.instance)});
+ for(const r of records.values())r.partsByLOD=byMaterial.get(r.mat).scenes;
+ return{limit,major:majors,middle:middles+near,roots:near,total:majors+middles+near,regions:plans.length,revision:INTERIOR_REVISION};
+}
+
 function prepare(b){
- const source=G.HonroTerrainDomain.render(b),key=[b.sceneVersion,K.REGISTRY_VERSION,b.terrain.filter(t=>t.broken).map(t=>t.id).join(',')].join(':');
+ const source=G.HonroTerrainDomain.render(b),key=[b.sceneVersion,K.REGISTRY_VERSION,INTERIOR_REVISION,b.terrain.filter(t=>t.broken).map(t=>t.id).join(',')].join(':');
  let q=cache.get(b);if(q?.key===key&&q.source===source)return q;
- const style=K.STAGE_STYLES[b.honroStage],records=new Map(),solids=source.filter(t=>!t.broken&&!t.oneWay&&!t.honroElementCollision).map(t=>({t,points:C.poly(t)}));let budget=style.maxParts;
+ const style=K.STAGE_STYLES[b.honroStage],records=new Map(),solids=source.filter(t=>!t.broken&&!t.oneWay&&!t.honroElementCollision).map(t=>({t,points:C.poly(t)}));
  for(const [index,t] of source.entries()){
   if(t.broken)continue;const points=C.poly(t);if(points.length<3)continue;
-  const path=polygon(points),mat=material(t,style),edges=new Path2D(),tops=[];
+  const path=polygon(points),mat=material(t,style),edges=new Path2D(),topPlane=new Path2D(),tops=[],faces=[];
   const area=points.reduce((sum,a,i)=>{const z=points[(i+1)%points.length];return sum+a.x*z.y-z.x*a.y;},0),sign=area>=0?1:-1;
   for(let i=0;i<points.length;i++){
    const a=points[i],z=points[(i+1)%points.length],dx=z.x-a.x,dy=z.y-a.y,len=Math.hypot(dx,dy);if(len<8)continue;
    const nx=sign*dy/len,ny=-sign*dx/len,mx=(a.x+z.x)/2,my=(a.y+z.y)/2;
    if(solids.some(other=>other.t.id!==t.id&&inside(mx+nx*3,my+ny*3,other.points)))continue;
-   edges.moveTo(a.x,a.y);edges.lineTo(z.x,z.y);
-   if(ny<-.68&&Math.abs(dx)>65)tops.push({a,z,len,nx,ny});
+   edges.moveTo(a.x,a.y);edges.lineTo(z.x,z.y);faces.push({a,z,len,nx,ny});
+   if(ny<-.68&&Math.abs(dx)>65){tops.push({a,z,len,nx,ny});const insetA=8+(i%3)*2,insetZ=6+((i+1)%3)*3;topPlane.moveTo(a.x,a.y);topPlane.lineTo(z.x,z.y);topPlane.lineTo(z.x-nx*insetZ,z.y-ny*insetZ);topPlane.lineTo(a.x-nx*insetA,a.y-ny*insetA);topPlane.closePath();}
   }
-  const instances=[];
-  if(!t.oneWay&&!t.honroElementCollision&&t.w>180&&t.h>90&&budget>0){
-   const count=Math.min(t.w>1300&&t.h>500?3:1,budget),fractions=[[.22,.56,.81],[.69,.29,.88],[.42,.76,.13]][index%3];
-   for(let j=0;j<count;j++){
-    const x=t.x+t.w*fractions[j],edge=tops.find(e=>x>=Math.min(e.a.x,e.z.x)&&x<=Math.max(e.a.x,e.z.x));
-    // Existing polygon topology decides available volume; ceilings use their own mass.
-    const top=edge?edge.a.y+(edge.z.y-edge.a.y)*(x-edge.a.x)/(edge.z.x-edge.a.x):t.y+Math.min(t.h*.4,180);
-    const assetId=style.pieces[(index+j*2)%style.pieces.length],a=K.ASSETS[assetId];if(!a)throw Error('Missing campaign asset '+assetId);
-    if(mat==='wood'||mat==='water')continue;
-    const scale=Math.max(a.scaleRange[0],Math.min(a.scaleRange[1],Math.min(t.w/a.bounds.w*.68,t.h/a.bounds.h*.9))),y=top+Math.min(t.h*.72,a.bounds.h*scale*.88+38);
-    if(!inside(x,y-12,points))continue;
-    instances.push({id:t.id+'/mass-'+j,assetId,palette:style.palette,transform:{x,y,scale,rotation:((index+j)%3-1)*7}});budget--;
-   }
-  }
-  const parts=K.compileScene({instances}),asset={id:'campaign-ground',material:mat,bounds:{x:0,y:0,w:b.width,h:b.height}};
-  records.set(t.id,{path,parts,edges,tops,asset,mat,points});
+  const asset={id:'campaign-ground',material:mat,bounds:{x:0,y:0,w:b.width,h:b.height}};
+  records.set(t.id,{t,path,edges,topPlane,tops,faces,asset,mat,points});
  }
+ const interior=composeInterior(b,records,style);
  const scenery=(style.scenery||[]).map(part=>{
   const anchor=b.honroMapAnchors?.[part.anchor]||{},x=part.x??anchor.x,support=b.terrain.find(t=>t.id===part.support&&!t.broken);if(!support||!Number.isFinite(x))return null;
   return{id:part.id,assetId:part.assetId,palette:style.palette,transform:{x,y:C.topAt(support,x,anchor.y??support.y),scale:part.scale}};
@@ -62,17 +113,18 @@ function prepare(b){
  const sceneryScene=K.compileScene({instances:scenery});
  for(const part of style.scenery||[])for(const [support,ids] of Object.entries(part.breakLinks||{}))if(b.terrain.find(t=>t.id===support)?.broken)sceneryScene.nodes=sceneryScene.nodes.filter(node=>!ids.some(id=>node.id===part.id+'/'+id));
  const architecture=K.compileArchitecture(style.architecture,b,{...K,palette:style.palette},C);for(const group of architecture.groups)if(group.clipD)group.clip=new Path2D(group.clipD);
- q={key,source,records,style,architecture,scenery:sceneryScene,partCount:style.maxParts-budget,builds:(q?.builds||0)+1};cache.set(b,q);return q;
+ q={key,source,records,style,architecture,scenery:sceneryScene,interior,partCount:interior.total,builds:(q?.builds||0)+1};cache.set(b,q);return q;
 }
 function paintTerrain(c,t,b){
  const live=b.terrain.find(v=>v.id===t.id);if(t.broken||live?.broken)return;
  const q=prepare(b),r=q.records.get(t.id);if(!r||q.architecture.covered.has(t.id))return;
  c.save();c.fillStyle=canvasPaint(c,K.paintFor(r.asset,'body',q.style.palette));c.fill(r.path);
- c.save();c.clip(r.path);K.drawCanvas(c,r.parts,{viewBounds:contextView(c)});
+ c.save();c.clip(r.path);const view=contextView(c),density=Math.abs(c.getTransform().a);K.drawCanvas(c,r.partsByLOD.major,{viewBounds:view});if(density>=.45)K.drawCanvas(c,r.partsByLOD.middle,{viewBounds:view});
+ c.save();c.globalAlpha*=r.mat==='earth'?.17:.11;c.fillStyle=canvasPaint(c,K.paintFor(r.asset,'light',q.style.palette));c.fill(r.topPlane);c.restore();
  // Small, broad grain faces follow a timber member; no repeating texture pass.
  if(r.mat==='wood'){c.strokeStyle=K.paintFor(r.asset,'light',q.style.palette).stops[0][1];c.globalAlpha=.22;c.lineWidth=3;const top=r.tops[0];if(top){c.beginPath();c.moveTo(top.a.x+6,top.a.y+8);c.quadraticCurveTo((top.a.x+top.z.x)/2,(top.a.y+top.z.y)/2+13,top.z.x-6,top.z.y+8);c.stroke();}}c.restore();
  // Quiet edge cue follows the exact exposed polygon. The debug toggle owns the strong outline.
- c.strokeStyle=K.paintFor(r.asset,'light',q.style.palette).stops[0][1];c.globalAlpha=.34;c.lineWidth=t.oneWay?2.4:2;c.lineJoin='round';c.stroke(r.edges);c.restore();
+ c.strokeStyle=K.paintFor(r.asset,'light',q.style.palette).stops[0][1];c.globalAlpha=.21;c.lineWidth=t.oneWay?2.4:1.6;c.lineJoin='round';c.stroke(r.edges);c.restore();
 }
 function replacement(l,b){
  if(!V.active(b))return null;
@@ -98,7 +150,7 @@ const targetArt=new WeakMap(),priorUnitBody=S.unitBody;
 S.unitBody=function(c,u,charge=0){const id=V.active(this.battle)&&K.STAGE_STYLES[this.battle.honroStage].unitArt?.[u.id];if(!id)return priorUnitBody.call(this,c,u,charge);const asset=K.ASSETS[id],key=[id,u.x,u.y,u.h,K.REGISTRY_VERSION].join(':');let q=targetArt.get(u);if(q?.key!==key){q={key,compiled:K.compileScene({instances:[{id:u.id,assetId:id,palette:K.STAGE_STYLES[this.battle.honroStage].palette,transform:{x:u.x,y:u.y,scale:u.h/asset.bounds.h}}]})};targetArt.set(u,q);}K.drawCanvas(c,q.compiled);};
 const priorVisible=S._landmarkVisible;S._landmarkVisible=function(l,view,pad=40){const q=replacement(l,this.battle);if(!q)return priorVisible.call(this,l,view,pad);return q.nodes.some(n=>n.bounds.x+n.bounds.w+pad>=view.left&&n.bounds.x-pad<=view.right&&n.bounds.y+n.bounds.h+pad>=view.top&&n.bounds.y-pad<=view.bottom);};
 const priorBackground=S.background;S.background=function(c,w,h,b){if(V.active(b)&&b.honroStage===2&&b.honroMap?.stage2ImageFirst)G.HonroStage2ImageFirstArt.overwatch(this,w,h,b);const style=V.active(b)&&K.STAGE_STYLES[b.honroStage],far=style?.far,P=G.HonroPaintedPilots;if(!far||!P)return priorBackground.call(this,c,w,h,b);P.request([far]);if(!P.ready(far)){const raw=G.HonroVisualStyle.raw(c);raw.fillStyle='#59666a';raw.fillRect(0,0,w,h);return;}const image=P.images[far],raw=G.HonroVisualStyle.raw(c),scale=Math.max(w/image.naturalWidth,h/image.naturalHeight),width=image.naturalWidth*scale,height=image.naturalHeight*scale;raw.drawImage(image,(w-width)/2,(h-height)/2,width,height);raw.fillStyle='#334a502b';raw.fillRect(0,0,w,h);};
-const priorKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return priorKey.call(this,b,w)+(V.active(b)?':shared-vector:'+K.REGISTRY_VERSION+':'+K.STAGE_STYLES[b.honroStage].palette:'');};
+const priorKey=S._worldCacheKey;S._worldCacheKey=function(b,w){return priorKey.call(this,b,w)+(V.active(b)?':shared-vector:'+K.REGISTRY_VERSION+':'+INTERIOR_REVISION+':'+K.STAGE_STYLES[b.honroStage].palette:'');};
 G.HonroPaintedPresentation.providers.unshift({id:'shared-vector-campaign',active:V.active,naturalEdges:true,cachedWorld:true});
-Object.assign(V,{prepare,stats:b=>{const q=prepare(b);return{stage:b.honroStage,style:q.style.place,palette:q.style.palette,polygons:q.records.size,parts:q.partCount,builds:q.builds,missingAssets:[],domain:G.HonroTerrainDomain.active(b),visualDomain:D.active(displayBattle(b)),scenery:q.scenery.nodes.length};}});
+Object.assign(V,{prepare,stats:b=>{const q=prepare(b);return{stage:b.honroStage,style:q.style.place,palette:q.style.palette,polygons:q.records.size,parts:q.partCount,interior:q.interior,builds:q.builds,missingAssets:[],domain:G.HonroTerrainDomain.active(b),visualDomain:D.active(displayBattle(b)),scenery:q.scenery.nodes.length};}});
 })(globalThis);
