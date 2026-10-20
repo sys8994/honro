@@ -1,0 +1,45 @@
+{
+  "scope": "Prepared supported positions, real basic-arrow projectiles; not a full combat completion",
+  "shots": [
+    {
+      "support": "forest-floor",
+      "x": 1180,
+      "target": "foe-0",
+      "damage": 68,
+      "aim": {
+        "angle": -20.615881144749604,
+        "power": 0.4126012977348216
+      }
+    },
+    {
+      "support": "pine-branch-west",
+      "x": 1620,
+      "target": "foe-1",
+      "damage": 59,
+      "aim": {
+        "angle": 34.78404808468273,
+        "power": 0.8443553281900216
+      }
+    },
+    {
+      "support": "forest-floor",
+      "x": 3430,
+      "target": "foe-1-cluster",
+      "damage": 59,
+      "aim": {
+        "angle": 48.368534052666476,
+        "power": 0.7943051233952665
+      }
+    },
+    {
+      "support": "forest-floor",
+      "x": 3760,
+      "target": "foe-1-cluster",
+      "damage": 59,
+      "aim": {
+        "angle": 66.77276218055343,
+        "power": 0.6646837255337332
+      }
+    }
+  ]
+}

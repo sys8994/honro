@@ -1,0 +1,63 @@
+{
+  "sha": "543bbb12861d3c3f26e939c1752bd4875478d21c",
+  "scope": "Production browser. Engine walk/jump/wait with enemies present; branch destruction is prepared damageTerrain state, not a skill-completion claim.",
+  "rows": [
+    {
+      "view": "normal",
+      "camera": {
+        "x": 3830,
+        "y": 1280,
+        "scale": 0.65
+      },
+      "hero": {
+        "x": 1495.2610857285777,
+        "y": 1304.191140501647,
+        "hp": 365
+      },
+      "broken": null
+    },
+    {
+      "view": "zoom",
+      "camera": {
+        "x": 3830,
+        "y": 1280,
+        "scale": 1
+      },
+      "hero": {
+        "x": 1495.2610857285777,
+        "y": 1304.191140501647,
+        "hp": 365
+      },
+      "broken": null
+    },
+    {
+      "view": "wide",
+      "camera": {
+        "x": 3830,
+        "y": 1280,
+        "scale": 0.65
+      },
+      "hero": {
+        "x": 1495.2610857285777,
+        "y": 1304.191140501647,
+        "hp": 365
+      },
+      "broken": null
+    },
+    {
+      "view": "mobile",
+      "camera": {
+        "x": 3830,
+        "y": 1280,
+        "scale": 0.5
+      },
+      "hero": {
+        "x": 1495.2610857285777,
+        "y": 1304.191140501647,
+        "hp": 365
+      },
+      "broken": null
+    }
+  ],
+  "errors": []
+}
