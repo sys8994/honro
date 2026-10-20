@@ -93,15 +93,15 @@ export const PLACE_ENCOUNTERS={
  ],
  29:[
   q('sealed-store-response','봉인 창고 첫 접근의 정예 전위 세 체와 짧은 후위. 서쪽 시작 길은 비운다.','old-seal',[
-   m('possessedGuard',1560,undefined,true),m('possessedGuard',1660),m('possessedArcher',1950),m('possessedGuard',1760),m('hound',1850)]),
+   m('possessedGuard',1505,undefined,true),m('possessedGuard',1610),m('possessedArcher',2060),m('possessedGuard',1790),m('hound',1875)]),
   q('letter-store-guard','문서실 동쪽에 전위 셋을 결집하고 문밖 두 사수와 지붕의 독립 정예가 접근각을 나눈다.','hyeonmuk-letter',[
-   m('possessedGuard',3160,undefined,true),m('possessedGuard',3260),m('possessedGuard',3360),m('possessedArcher',3480),m('possessedArcher',3580),m('possessedArcher',3390,'r29-record-vault',true,'letter-vault-upper')]),
+   m('possessedGuard',3110,undefined,true),m('possessedGuard',3195),m('possessedGuard',3400),m('possessedArcher',3600),m('possessedArcher',3780),m('possessedArcher',3390,'r29-record-vault',true,'letter-vault-upper')]),
   q('underwater-bridge-watch','점검교 전위 셋과 낮은 통로 사수, 위 검사 지붕 사수는 다른 높이로 활성화한다.','under-sluice-inspection-bridge',[
-   m('possessedGuard',4520,'r29-inspection-deck'),m('possessedGuard',4620,'r29-inspection-deck'),m('possessedArcher',5040,'r29-inspection-deck'),m('possessedGuard',4720,'r29-inspection-deck'),m('possessedArcher',4930,'r29-inspection-roof',true,'inspection-roof-watch')]),
-  q('dark-lock-approach','상층 수문길의 정예·호위 셋과 뒤 사수쌍. 서쪽 오름 경사와 동쪽 연결길은 비운다.','flight-hold',[
-   m('possessedGuard',4760,'r29-high-road',true),m('possessedGuard',4860,'r29-high-road'),m('possessedArcher',5180,'r29-high-road'),m('possessedGuard',4960,'r29-high-road'),m('possessedArcher',5280,'r29-high-road')]),
-  q('moonlit-exit-watch','낮은 수문 퇴로의 정예·호위·사수와 상층 후위쌍. 두 출구 집결면은 남긴다.','sluice-exit',[
-   m('possessedGuard',6000,undefined,true),m('possessedArcher',6200),m('possessedGuard',5900,'r29-high-road',true,'moonlit-upper'),m('possessedArcher',6060,'r29-high-road',false,'moonlit-upper'),m('possessedGuard',6100),m('hound',5890)])
+   m('possessedGuard',4480,'r29-inspection-deck'),m('possessedGuard',4570,'r29-inspection-deck'),m('possessedArcher',5140,'r29-inspection-deck'),m('possessedGuard',4790,'r29-inspection-deck'),m('possessedArcher',4930,'r29-inspection-roof',true,'inspection-roof-watch')]),
+  q('dark-lock-approach','상층 수문길의 정예·호위 셋과 떨어진 두 사격점. 서쪽 오름 경사와 동쪽 연결길은 비운다.','flight-hold',[
+   m('possessedGuard',4700,'r29-high-road',true),m('possessedGuard',4785,'r29-high-road'),m('possessedArcher',5300,'r29-high-road'),m('possessedGuard',5030,'r29-high-road'),m('possessedArcher',5510,'r29-high-road')]),
+  q('moonlit-exit-watch','낮은 수문 퇴로의 정예·호위·사수와 상층 정예와 더 뒤쪽의 사수. 두 출구 집결면은 남긴다.','sluice-exit',[
+   m('possessedGuard',5970,undefined,true),m('possessedArcher',6340),m('possessedGuard',5880,'r29-high-road',true,'moonlit-upper'),m('possessedArcher',6150,'r29-high-road',false,'moonlit-upper'),m('possessedGuard',6110),m('hound',5800)])
  ]
 };
 
