@@ -1,0 +1,969 @@
+{
+  "version": 1,
+  "scope": "vector-correction-v2",
+  "status": "in_progress_art_failed",
+  "rounds": [
+    {
+      "id": "round-2",
+      "sourceHash": "sha256:bae7610b38b13d9df3f99d3d6559359a8cba2077d8be034d6a851da08d2192d5",
+      "stages": [
+        1,
+        3,
+        18,
+        21
+      ],
+      "focusCriteria": [
+        "composition"
+      ],
+      "changes": "폐기할 반복 공통 도형 대신 역사 시안의 곡선 암석/고목 일부를 분리 연결했다. 이 후보도 합격하지 못했고 다음 후보에서 폐기했다.",
+      "captures": [
+        {
+          "id": "round-2-stage01-normal",
+          "stage": 1,
+          "view": "normal",
+          "sourceHash": "sha256:bae7610b38b13d9df3f99d3d6559359a8cba2077d8be034d6a851da08d2192d5",
+          "camera": {
+            "x": 2400,
+            "y": 2300,
+            "scale": 0.6
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage01-normal.png",
+            "sha256": "bc223e56fc2f7306553c8c6c4b14aa99c09508b6ac49b0c37dfc39965c1611cb"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-2-capture-receipt.json",
+            "sha256": "e576616f82dba8a2236d5e64facd48befa0345a4cce7d295eebe327faae9fef3"
+          }
+        },
+        {
+          "id": "round-2-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:bae7610b38b13d9df3f99d3d6559359a8cba2077d8be034d6a851da08d2192d5",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.24
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage03-wide.png",
+            "sha256": "2bc4b1018659f0e7e93d0f71daf2dc927ba05d167df9f786568fd435d7f2d855"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-2-capture-receipt.json",
+            "sha256": "e576616f82dba8a2236d5e64facd48befa0345a4cce7d295eebe327faae9fef3"
+          }
+        },
+        {
+          "id": "round-2-stage18-normal",
+          "stage": 18,
+          "view": "normal",
+          "sourceHash": "sha256:bae7610b38b13d9df3f99d3d6559359a8cba2077d8be034d6a851da08d2192d5",
+          "camera": {
+            "x": 1200,
+            "y": 6200,
+            "scale": 0.5
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage18-normal.png",
+            "sha256": "433ce9a2c0bf5eb7c30295ad703d97a9d95b255a65fa4dcd129e0f49f695c15c"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-2-capture-receipt.json",
+            "sha256": "e576616f82dba8a2236d5e64facd48befa0345a4cce7d295eebe327faae9fef3"
+          }
+        },
+        {
+          "id": "round-2-stage21-wide",
+          "stage": 21,
+          "view": "wide",
+          "sourceHash": "sha256:bae7610b38b13d9df3f99d3d6559359a8cba2077d8be034d6a851da08d2192d5",
+          "camera": {
+            "x": 4700,
+            "y": 2600,
+            "scale": 0.15
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage21-wide.png",
+            "sha256": "4244ef661412f52befbd8966f9eb4e089f3c4ffbc50fa7669b874b2a66f704ff"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-2-capture-receipt.json",
+            "sha256": "e576616f82dba8a2236d5e64facd48befa0345a4cce7d295eebe327faae9fef3"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "나루 wide에서 흙 사면에 독립 돌이 일정한 간격으로 떠 있다. 승인 그림의 연속된 앞면과 서로 물리는 하중 관계가 없다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "Stage18 normal의 두 큰 돌은 사람보다 몇 배나 크지만 면 안에는 중앙 균열 하나뿐이다. 중간 박리층과 가림이 빠졌다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage18-normal.png",
+            "game/docs/art-references/image-first-20261019/1000047659.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "숲 normal의 고목 왼쪽 뿌리가 경사면 위로 돌출돼 일부 떠 있다. 나루 돌의 납작한 접촉 그림자도 지면과 분리된다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage03-wide.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "묵종 구간에도 숲의 밝은 올리브 이끼·회녹색 표면이 그대로 나타난다. 동굴의 차갑고 젖은 암질과 차이가 크다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage18-normal.png",
+            "game/docs/art-references/image-first-20261019/1000047659.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "넓은 화면에서 동일한 바위 실루엣이 즉시 반복된다. 모바일 확인도 아직 없으므로 일반/넓은 화면만으로 이 기준을 통과시키지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage21-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/round-2-state.json",
+        "sha256": "eaf8ef2614b22be4fcc1932ba7aa77132ddc515f95151537947963c9de11ac75"
+      },
+      "resolutions": []
+    },
+    {
+      "id": "round-3",
+      "sourceHash": "sha256:c58c824eb9b985cda7d51e79df32691f1ea966cb48544a02fdb62be81c6c63c3",
+      "stages": [
+        1,
+        3,
+        18,
+        21
+      ],
+      "focusCriteria": [
+        "hierarchy"
+      ],
+      "changes": "돌의 명암을 낮추고 서로 겹치는 두 조각을 각 노출부에 붙였다. 고목 발의 경사 샘플과 전면 뿌리를 추가했다.",
+      "captures": [
+        {
+          "id": "round-3-stage01-normal",
+          "stage": 1,
+          "view": "normal",
+          "sourceHash": "sha256:c58c824eb9b985cda7d51e79df32691f1ea966cb48544a02fdb62be81c6c63c3",
+          "camera": {
+            "x": 2400,
+            "y": 2300,
+            "scale": 0.6
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage01-normal.png",
+            "sha256": "e42e195054e854a465ea8dd6fd62fe3c161ff8b7f38c5953a1a4dbbf547b2e7a"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-3-capture-receipt.json",
+            "sha256": "93b5802769ab7cc75b48fb21cdda6246efcefa9c7bb6bc403cf36a9cc8829453"
+          }
+        },
+        {
+          "id": "round-3-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:c58c824eb9b985cda7d51e79df32691f1ea966cb48544a02fdb62be81c6c63c3",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage03-normal.png",
+            "sha256": "af4645a4fa3ed1f5fbb2990dcf4f49a6771d20a7fdd97a50e6cb8e314a8137bf"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-3-capture-receipt.json",
+            "sha256": "93b5802769ab7cc75b48fb21cdda6246efcefa9c7bb6bc403cf36a9cc8829453"
+          }
+        },
+        {
+          "id": "round-3-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:c58c824eb9b985cda7d51e79df32691f1ea966cb48544a02fdb62be81c6c63c3",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.24
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage03-wide.png",
+            "sha256": "adf39ee3c9c19ba3ce46d67e109b1651b95a641440df30476661417071f76256"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-3-capture-receipt.json",
+            "sha256": "93b5802769ab7cc75b48fb21cdda6246efcefa9c7bb6bc403cf36a9cc8829453"
+          }
+        },
+        {
+          "id": "round-3-stage18-normal",
+          "stage": 18,
+          "view": "normal",
+          "sourceHash": "sha256:c58c824eb9b985cda7d51e79df32691f1ea966cb48544a02fdb62be81c6c63c3",
+          "camera": {
+            "x": 1200,
+            "y": 6200,
+            "scale": 0.5
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage18-normal.png",
+            "sha256": "6e71dd6b6c560ddc108175adc7ec506230908f9f440e87a629ebf8938d8ace3b"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-3-capture-receipt.json",
+            "sha256": "93b5802769ab7cc75b48fb21cdda6246efcefa9c7bb6bc403cf36a9cc8829453"
+          }
+        },
+        {
+          "id": "round-3-stage18-wide",
+          "stage": 18,
+          "view": "wide",
+          "sourceHash": "sha256:c58c824eb9b985cda7d51e79df32691f1ea966cb48544a02fdb62be81c6c63c3",
+          "camera": {
+            "x": 6800,
+            "y": 5800,
+            "scale": 0.12
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage18-wide.png",
+            "sha256": "310f57fcd71b8d1118a5a6c82362300371e9b495b5933ca679cb3ea8652938df"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-3-capture-receipt.json",
+            "sha256": "93b5802769ab7cc75b48fb21cdda6246efcefa9c7bb6bc403cf36a9cc8829453"
+          }
+        },
+        {
+          "id": "round-3-stage21-wide",
+          "stage": 21,
+          "view": "wide",
+          "sourceHash": "sha256:c58c824eb9b985cda7d51e79df32691f1ea966cb48544a02fdb62be81c6c63c3",
+          "camera": {
+            "x": 4700,
+            "y": 2600,
+            "scale": 0.15
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage21-wide.png",
+            "sha256": "17b8d8cbf8b271b7bf4931c4972782f867c5751ed284158b0740e71e1ba7ed1f"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-3-capture-receipt.json",
+            "sha256": "93b5802769ab7cc75b48fb21cdda6246efcefa9c7bb6bc403cf36a9cc8829453"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "나루 wide와 도시 wide가 독립된 세 바위 묶음의 반복으로 채워진다. 같은 집단이 전경을 가로지르며 장소의 산세로 이어지지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage21-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "암석 수를 늘려도 하나의 동일한 굵은 중앙 홈과 둥근 외곽이 되풀이된다. 큰 몸체 안의 중간 재료 면을 설계한 결과가 아니다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage18-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage18-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage21-wide.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png",
+            "game/docs/art-references/image-first-20261019/1000047659.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "숲의 뿌리 시작은 전보다 붙지만 전면 뿌리와 바위의 부분 가림이 부족하다. 나루의 바위 발은 여전히 넓은 빈 채움면 위에 얹혀 있다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage03-wide.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "돌은 동굴에서 차갑게, 야외에서 어둡게 바뀌었지만 균일한 이끼 테두리와 중앙 홈 때문에 같은 아이콘으로 보인다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage18-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage18-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage21-wide.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png",
+            "game/docs/art-references/image-first-20261019/1000047659.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "묵종 wide에는 동일 바위 묶음이 여러 번 드러나며 큰 동굴 구조와 다른 밀도로 경쟁한다. 모바일은 미확인이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-3/round-3-stage18-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047659.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/round-3-state.json",
+        "sha256": "296837abb511ebc3ddd5825ed77be3dfad37a254f356f9d3eb0586bb22900da5"
+      },
+      "resolutions": []
+    },
+    {
+      "id": "round-4",
+      "sourceHash": "sha256:5d88dcbfdde628cf53292f3fed237cccbc0d674d515b8168d26e41248ae37fdb",
+      "stages": [
+        1,
+        3,
+        18,
+        21
+      ],
+      "focusCriteria": [
+        "grounding"
+      ],
+      "changes": "둥근 바위 스탬프를 버리고 길쭉한 박리판의 어깨 묶음으로 전경을 연결하려 했다. 실제 픽셀에서 벽지로 보여 이 접근도 폐기했다.",
+      "captures": [
+        {
+          "id": "round-4-stage01-normal",
+          "stage": 1,
+          "view": "normal",
+          "sourceHash": "sha256:5d88dcbfdde628cf53292f3fed237cccbc0d674d515b8168d26e41248ae37fdb",
+          "camera": {
+            "x": 2400,
+            "y": 2300,
+            "scale": 0.6
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage01-normal.png",
+            "sha256": "c895c4a2ba8a9503493c960a53022ff983dda84af3903382023e29403df9008d"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-4-capture-receipt.json",
+            "sha256": "d212ff57aaa71d3eec718519e817b0b359d66ff7f9e2ac377b961324cca67ea5"
+          }
+        },
+        {
+          "id": "round-4-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:5d88dcbfdde628cf53292f3fed237cccbc0d674d515b8168d26e41248ae37fdb",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage03-normal.png",
+            "sha256": "c9f15c777fc6d78d9f8bea3f45827404b0767c039462042b4b58c8ae5ed612f9"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-4-capture-receipt.json",
+            "sha256": "d212ff57aaa71d3eec718519e817b0b359d66ff7f9e2ac377b961324cca67ea5"
+          }
+        },
+        {
+          "id": "round-4-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:5d88dcbfdde628cf53292f3fed237cccbc0d674d515b8168d26e41248ae37fdb",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.24
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage03-wide.png",
+            "sha256": "42d0dede4aeae5cca34b8d1a37de7550dd21cf440ca26605d28591f35b6b43d3"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-4-capture-receipt.json",
+            "sha256": "d212ff57aaa71d3eec718519e817b0b359d66ff7f9e2ac377b961324cca67ea5"
+          }
+        },
+        {
+          "id": "round-4-stage18-normal",
+          "stage": 18,
+          "view": "normal",
+          "sourceHash": "sha256:5d88dcbfdde628cf53292f3fed237cccbc0d674d515b8168d26e41248ae37fdb",
+          "camera": {
+            "x": 1200,
+            "y": 6200,
+            "scale": 0.5
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage18-normal.png",
+            "sha256": "dc94b13ba8b6d45fe93ce61968ebc83b0efa2ec3398c28397592515f2b5d1d86"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-4-capture-receipt.json",
+            "sha256": "d212ff57aaa71d3eec718519e817b0b359d66ff7f9e2ac377b961324cca67ea5"
+          }
+        },
+        {
+          "id": "round-4-stage18-wide",
+          "stage": 18,
+          "view": "wide",
+          "sourceHash": "sha256:5d88dcbfdde628cf53292f3fed237cccbc0d674d515b8168d26e41248ae37fdb",
+          "camera": {
+            "x": 6800,
+            "y": 5800,
+            "scale": 0.12
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage18-wide.png",
+            "sha256": "c55a2ba0fbab7c29a22ab9c5a178f01d241bd042569329e4af077a8c9f36019b"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-4-capture-receipt.json",
+            "sha256": "d212ff57aaa71d3eec718519e817b0b359d66ff7f9e2ac377b961324cca67ea5"
+          }
+        },
+        {
+          "id": "round-4-stage21-wide",
+          "stage": 21,
+          "view": "wide",
+          "sourceHash": "sha256:5d88dcbfdde628cf53292f3fed237cccbc0d674d515b8168d26e41248ae37fdb",
+          "camera": {
+            "x": 4700,
+            "y": 2600,
+            "scale": 0.15
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage21-wide.png",
+            "sha256": "39a7c3fb9ef61f7288d89d8abf932e316eeffc783b28b02ed227d16dd4292904"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-4-capture-receipt.json",
+            "sha256": "d212ff57aaa71d3eec718519e817b0b359d66ff7f9e2ac377b961324cca67ea5"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "넓은 나루 화면 전체가 일정한 방향의 수직 암판으로 덮여 지형의 큰 곡면과 퇴적 흐름이 사라진다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "8종 판을 조합해도 같은 크기와 폐곡선·중앙 홈이 반복된다. 중간 면을 추가한 것이 규칙적인 벽지 패턴이 되었다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage18-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage18-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage21-wide.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png",
+            "game/docs/art-references/image-first-20261019/1000047659.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "판들이 앞뒤로 가려지지만 바닥에서 아래로 떨어지는 돌기처럼 읽힌다. 흙과 뿌리가 판을 자연스럽게 물고 있는 접촉 설계가 아니다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage03-wide.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "모든 암판의 좁은 밝은 모서리와 검은 옆선이 비슷해 회화 기준의 불연속 풍화면 대신 장식된 기하 도형처럼 보인다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage18-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage18-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage21-wide.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png",
+            "game/docs/art-references/image-first-20261019/1000047659.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "묵종 wide에서 반복 단위가 정상보다 더 명확하다. 도시와 숲의 재료가 같은 수직 패턴으로 평준화되며 모바일 검토는 아직 없다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage18-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-4/round-4-stage21-wide.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png",
+            "game/docs/art-references/image-first-20261019/1000047659.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/round-4-state.json",
+        "sha256": "d69b8db75f2b85275990ea6a037dd7384a1e5c66d487e894a933124955aa2ec2"
+      },
+      "resolutions": []
+    },
+    {
+      "id": "round-5",
+      "sourceHash": "sha256:1311e8c18a4b18abeaa9aa79762a575ef6c18e371d18027f2bc29c71d1e9b930",
+      "stages": [
+        3,
+        18,
+        21
+      ],
+      "focusCriteria": [
+        "materials"
+      ],
+      "changes": "반복 조합 대신 개별 좌표로 51개의 면을 새로 배치했다. 실제 화면에서 비슷한 다각형과 삼각 명암이 드러나 이 코드도 폐기했다.",
+      "captures": [
+        {
+          "id": "round-5-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:1311e8c18a4b18abeaa9aa79762a575ef6c18e371d18027f2bc29c71d1e9b930",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage03-normal.png",
+            "sha256": "b66f7d5f6df55ec6f432381e1d7de52245559b3d72e087ba7f56cbdcfa6d6b42"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-5-capture-receipt.json",
+            "sha256": "44aaa83ebe9e1d1fdce9a793bf74dc808e5fece23299832e796f9b480bd7af52"
+          }
+        },
+        {
+          "id": "round-5-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:1311e8c18a4b18abeaa9aa79762a575ef6c18e371d18027f2bc29c71d1e9b930",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.24
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage03-wide.png",
+            "sha256": "8270c6eff0f29a86f086cdcb53c869958fba5262a183de4ff4628b21d0282c2e"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-5-capture-receipt.json",
+            "sha256": "44aaa83ebe9e1d1fdce9a793bf74dc808e5fece23299832e796f9b480bd7af52"
+          }
+        },
+        {
+          "id": "round-5-stage18-normal",
+          "stage": 18,
+          "view": "normal",
+          "sourceHash": "sha256:1311e8c18a4b18abeaa9aa79762a575ef6c18e371d18027f2bc29c71d1e9b930",
+          "camera": {
+            "x": 1200,
+            "y": 6200,
+            "scale": 0.5
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage18-normal.png",
+            "sha256": "c3a6b4414b8f75d93fa24dd045311bf8496e05186c3a65737a53f200abe7b22e"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-5-capture-receipt.json",
+            "sha256": "44aaa83ebe9e1d1fdce9a793bf74dc808e5fece23299832e796f9b480bd7af52"
+          }
+        },
+        {
+          "id": "round-5-stage21-wide",
+          "stage": 21,
+          "view": "wide",
+          "sourceHash": "sha256:1311e8c18a4b18abeaa9aa79762a575ef6c18e371d18027f2bc29c71d1e9b930",
+          "camera": {
+            "x": 4700,
+            "y": 2600,
+            "scale": 0.15
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage21-wide.png",
+            "sha256": "9b29502775769fabd859f2108a435811e64941a7f29a652682414f482e0d069d"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-5-capture-receipt.json",
+            "sha256": "44aaa83ebe9e1d1fdce9a793bf74dc808e5fece23299832e796f9b480bd7af52"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "나루 wide의 넓은 골과 능선이 거의 같은 사각/오각 폐곡선의 줄로 처리된다. 승인 그림의 비대칭 산지 앞면과 다르다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "묵종 normal에서 사람 뒤 암반 하나가 화면의 큰 비율을 차지하지만 내부는 두세 개의 삼각 면뿐이다. 중간 형태 부족이 남는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage18-normal.png",
+            "game/docs/art-references/image-first-20261019/1000047659.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "각 바위는 서로 물린 기반암보다 빈 면에 박힌 보석 형상으로 읽힌다. 큰 바위 밑 하중과 토사 덮임이 구체적이지 않다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage18-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage21-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png",
+            "game/docs/art-references/image-first-20261019/1000047659.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "명암이 중앙 삼각형/옆면 분할로 반복되어 low-poly 인상이 강하다. 긴 균열을 추가해도 재료와 양감의 부족이 닫히지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage18-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage21-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png",
+            "game/docs/art-references/image-first-20261019/1000047659.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "도시 wide에 같은 비율의 다각형들이 연속돼 장별 고유성이 약해진다. 모바일은 아직 촬영하지 않아 통과할 수 없다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-5/round-5-stage21-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/round-5-state.json",
+        "sha256": "723886bc1c2222b053c77fa3ef0193b5c32589c8c172f7c215bef6341c150597"
+      },
+      "resolutions": []
+    },
+    {
+      "id": "round-6",
+      "sourceHash": "sha256:0ca03214b6aa74941be2798ce7ae8138c19d2cdcf5177c74b342403520082ac8",
+      "stages": [
+        3,
+        21
+      ],
+      "focusCriteria": [
+        "readability"
+      ],
+      "changes": "반복 암석 알고리즘을 제거했다. Stage3만 실좌표 고유 전경 경로로 연결했고 도시 투영도 시험했다. 도시 투영은 접지와 배치가 어긋나 폐기했다.",
+      "captures": [
+        {
+          "id": "round-6-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:0ca03214b6aa74941be2798ce7ae8138c19d2cdcf5177c74b342403520082ac8",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage03-normal.png",
+            "sha256": "4c7eb6876f61288899225e9eaf33f2d67f56a6bc0c2f76198958fdba16e971c4"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-6-capture-receipt.json",
+            "sha256": "839bcc7afe21cdd431bce4558f8f5e89ba3a09f0fff87cafe9d88d33cb8c2cb5"
+          }
+        },
+        {
+          "id": "round-6-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:0ca03214b6aa74941be2798ce7ae8138c19d2cdcf5177c74b342403520082ac8",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.24
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage03-wide.png",
+            "sha256": "ff7a287a5debb257629ebf51c3f47dc286a706f52ebd27ed92c3461924ae6d01"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-6-capture-receipt.json",
+            "sha256": "839bcc7afe21cdd431bce4558f8f5e89ba3a09f0fff87cafe9d88d33cb8c2cb5"
+          }
+        },
+        {
+          "id": "round-6-stage21-normal",
+          "stage": 21,
+          "view": "normal",
+          "sourceHash": "sha256:0ca03214b6aa74941be2798ce7ae8138c19d2cdcf5177c74b342403520082ac8",
+          "camera": {
+            "x": 2277,
+            "y": 2460,
+            "scale": 0.6
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage21-normal.png",
+            "sha256": "0289212856c29df406132ba25109eafe1075a86bdde7762db1237d7dc1935057"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-6-capture-receipt.json",
+            "sha256": "839bcc7afe21cdd431bce4558f8f5e89ba3a09f0fff87cafe9d88d33cb8c2cb5"
+          }
+        },
+        {
+          "id": "round-6-stage21-wide",
+          "stage": 21,
+          "view": "wide",
+          "sourceHash": "sha256:0ca03214b6aa74941be2798ce7ae8138c19d2cdcf5177c74b342403520082ac8",
+          "camera": {
+            "x": 4700,
+            "y": 2600,
+            "scale": 0.15
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage21-wide.png",
+            "sha256": "611a2ca28680bfb21295e7e7774210e74e814a2b1cc76b13611283500b396e34"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/receipts/round-6-capture-receipt.json",
+            "sha256": "839bcc7afe21cdd431bce4558f8f5e89ba3a09f0fff87cafe9d88d33cb8c2cb5"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "나루는 퇴적 흐름과 겹친 암반이 생겼지만 중간 면이 빈 대형 바위가 전면을 점유한다. 도시 정상 화면에는 성문 아래 넓은 단색 기단이 남는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage21-normal.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "나루 normal의 바위 하나는 6H 이상인데 내부가 top/cheek와 몇 개 선으로만 나뉜다. 승인 그림의 중간 박리층 밀도에 미달한다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage03-normal.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "도시에 나루 전경을 좌표 변환한 결과 성문 아랫부분과 오른쪽 능선의 받침이 자연스럽지 않다. 장별 지지 구조에 맞춘 별도 저작이 필요하다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage21-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage21-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "나루의 흙 띠가 넓고 밝은 올리브색으로 보여 흙길·젖은 홈·암반의 재질 차가 약하다. 균열도 균일한 지그재그 선으로 읽힌다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage03-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "정상/넓은 나루 구도는 볼 수 있지만 도시 확대에서 접지 회귀가 확인됐다. 모바일 증거와 영향을 받는 나머지 장의 전체 구도 검토도 아직 없어 합격할 수 없다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage21-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/round-6/round-6-stage21-wide.png",
+            "game/docs/art-references/image-first-20261019/1000047658.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/round-6-state.json",
+        "sha256": "ddbc262fd593cfad1848bc880bb775ed2e935fdc9c3a03565dd75f27c4f0b6b4"
+      },
+      "resolutions": []
+    }
+  ],
+  "final": null
+}

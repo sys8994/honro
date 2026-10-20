@@ -36,7 +36,7 @@ ES 모듈과 JSON을 불러오므로 로컬에서도 HTTP를 사용합니다. �
 - 기본 주소 `https://<사용자>.github.io/<저장소>/`는 `index.html`을 통해 게임으로 이동합니다. 쿼리와 `#` 뒤의 진입 옵션도 유지합니다.
 - 게임 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO.html`
 - 편집기 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO_WORKSHOP.html`
-- 배포 필수 파일은 `index.html`, `HONRO.html`, `web/` 전체와 `assets/bgm/`의 MP3 5개입니다. 편집기도 공개하려면 `HONRO_WORKSHOP.html`을 함께 포함합니다. `npm run build`가 두 HTML과 콘텐츠 해시 자산을 함께 최신화합니다. Playtest는 `web/entries/game.<hash>.html?embedded=1`을 직접 열며 기존 공개 주소와 저장키는 유지합니다.
+- 배포 필수 파일은 `index.html`, `HONRO.html`, `web/` 전체와 `assets/bgm/`의 MP3 5개입니다. 편집기도 공개하려면 `HONRO_WORKSHOP.html`을 함께 포함합니다. `npm run build`는 미술 검수 gate 통과 후 두 HTML과 콘텐츠 해시 자산을 함께 최신화합니다. Playtest는 `web/entries/game.<hash>.html?embedded=1`을 직접 열며 기존 공개 주소와 저장키는 유지합니다.
 
 Pages는 파일명의 대소문자를 구분합니다. [GitHub 공식 안내](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)를 참고합니다.
 
@@ -55,6 +55,8 @@ python -m playwright install chromium
 npm.cmd run build
 ```
 
+미술 후보를 촬영할 때는 `npm run build:preview`를 사용합니다. 미술 gate를 생략하는 대신 모든 생성 HTML·`web/`·manifest·이전 자산 정리·보고서와 BGM 복사본을 `_local/preview/vector-art/`에 격리합니다. 기존 생성 캐릭터 자산은 읽기만 하며 공개 `HONRO.html`·`index.html`·`web/`는 변경하지 않습니다. 저장소에서 HTTP 서버를 실행했다면 `/_local/preview/vector-art/HONRO.html`을 엽니다. `npm run build:preview -- --output _local/preview/이름`으로 다른 격리 폴더를 지정할 수 있으며, 공개 경로나 이를 가리키는 심볼릭 링크는 허용하지 않습니다. preview 성공은 미술 통과나 배포 준비 완료가 아닙니다.
+
 일반 수정은 변경 관련 최소 확인만 합니다. 디자인은 해당 이미지/필요 모션, 스킬은 기존 정량 계산/해당 동작, 맵은 해당 구간 이동/퀘스트를 확인합니다. 문서만 바꾸면 문구·링크만 확인하며 위 설치·빌드·브라우저 준비도 생략합니다. 전체 검사는 광범위한 회귀 조사가 필요한 경우에만 `npm.cmd run verify`로 선택 실행합니다. [검증 범위와 과거 기록](VALIDATION.md).
 
 게임 집계 검증은 정적 감사(`npm --prefix game test`)와 RC21 브라우저·성능 검사(`npm --prefix game run test:rc21:browser`)를 순서대로 실행하여 Stage 1/2 지도를 한 번만 감사합니다. 독립 실행 `npm --prefix game run test:rc21`은 지도 감사부터 브라우저·성능까지 모두 실행합니다. `npm --prefix game run test:verification-plan`은 중복·누락·실패 무시가 없는 명령 구성을 빠르게 검사하며 실제 감사/브라우저 통과를 대신하지 않습니다.
@@ -62,6 +64,8 @@ npm.cmd run build
 브라우저 검사는 Chrome/Edge 또는 Playwright Chromium을 찾습니다. 다른 실행 파일은 `HONRO_BROWSER` 환경 변수로 지정합니다. 성능 검사는 다른 브라우저 부하와 겹치지 않게 순차 실행합니다.
 
 `npm run build`는 게임과 Workshop을 함께 생성합니다. `shared/build.mjs`의 단일 목록을 `shared/web-build.mjs`가 `web/runtime/`, `web/styles/`, `web/data/`, `web/graphics/`, `web/entries/`로 내보냅니다. `web/manifest.json`은 현재 자산 그래프이며 HTML이나 `web/` 생성물을 직접 수정하지 않습니다. 파일 분리 연결만 확인할 때는 `node tests/web-split.mjs`로 데이터 재조립·자산 해시·native 기본 진입·embedded 저장 보호를 확인합니다. 기존 HTML 안의 script 추출을 전제한 과거 검사는 새 모듈 빌드에 그대로 적용되지 않을 수 있습니다. 기존 `python workshop/build.py`도 같은 빌더에 위임합니다. 생성 HTML을 직접 수정하지 않습니다.
+
+공개 빌드는 `shared/web-build.mjs`의 공통 진입점에서 출력 시작 전에 `checkArtReview`를 실행합니다. `npm run build`, `node game/build.mjs`, `python workshop/build.py`, `npm run prepare:release`가 모두 이 gate를 거칩니다. 현재 미술 범위 manifest의 실검수·원본 이미지/hash·동일 최종 소스·미해결 fail·부모 최종 픽셀 확인 조건이 맞지 않으면 공개 생성물을 쓰지 않고 `build: not-run`으로 차단합니다. 이는 검수 기록의 일관성 검사이며 픽셀 품질을 자동 승인하지 않습니다. 이 저장소 명령의 공개 생성 경로를 막는 장치이며, 직접 Git push나 외부 GitHub Pages 설정 변경까지 막지는 않습니다.
 
 이야기 런타임·기록·저장/재개를 바꿨다면 필요에 따라 빌드 후 기존 `npm run test:story`를 사용합니다. 문구·문서만 바꾸면 이 검사를 실행하지 않습니다. 이 검사는 전체 `verify`에도 포함됩니다.
 

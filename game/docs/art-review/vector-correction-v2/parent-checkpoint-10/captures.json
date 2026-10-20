@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:6b88e7fd960a5e636be4b4ebbafbea3f35535c5ae4fab1e338aff6a02b70b1a7",
+  "sourceHashAfter": "sha256:6b88e7fd960a5e636be4b4ebbafbea3f35535c5ae4fab1e338aff6a02b70b1a7",
+  "sourceState": {
+    "path": "game/docs/art-review/vector-correction-v2/sources/checkpoint-10-state.json",
+    "sha256": "1c5163e6473aa67d1e2e782c45bba0fc0f1487f82513971c75d14aaf7ba8a57f"
+  },
+  "captures": [
+    {
+      "id": "checkpoint-10-stage01-normal",
+      "sourceHash": "sha256:6b88e7fd960a5e636be4b4ebbafbea3f35535c5ae4fab1e338aff6a02b70b1a7",
+      "stage": 1,
+      "view": "normal",
+      "camera": {
+        "x": 2400,
+        "y": 2300,
+        "scale": 0.6
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/parent-checkpoint-10/current-stage01-normal.png",
+        "sha256": "326b5f96ba4f9fa09274bcabb3d22a4a4f014b5ebd74d8899f1a6dd30ed7919d"
+      },
+      "art": {
+        "stage": 1,
+        "style": "고갯길 산림",
+        "palette": "forest",
+        "polygons": 10,
+        "parts": 0,
+        "materialRevision": "local-fracture-planes-7",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 32
+      },
+      "pure": true
+    },
+    {
+      "id": "checkpoint-10-stage03-normal",
+      "sourceHash": "sha256:6b88e7fd960a5e636be4b4ebbafbea3f35535c5ae4fab1e338aff6a02b70b1a7",
+      "stage": 3,
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/parent-checkpoint-10/current-stage03-normal.png",
+        "sha256": "724ce7deae0152683d1c62a592bed2ed7149dcece8398d0575be551b79fb482d"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "local-fracture-planes-7",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    }
+  ],
+  "baseline": [
+    {
+      "stage": 1,
+      "view": "normal",
+      "commit": "b02fb44d36870ceda6c83b82c8730032f06f65ef",
+      "camera": {
+        "x": 2400,
+        "y": 2300,
+        "scale": 0.6
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/parent-checkpoint-10/baseline-b02-stage01-normal.png",
+        "sha256": "ce14fd9a04e0e2cd986d5fe4096e6dafc41bbf678ef26555db290728c6280db2"
+      },
+      "provenance": "Previously captured rejected b02 baseline; comparison only, not approved art."
+    },
+    {
+      "stage": 3,
+      "view": "normal",
+      "commit": "b02fb44d36870ceda6c83b82c8730032f06f65ef",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/parent-checkpoint-10/baseline-b02-stage03-normal.png",
+        "sha256": "8247a1d52b565b554dd94f10c576565d2927feba35c37e85adf4a67bf570ba1b"
+      },
+      "provenance": "Previously captured rejected b02 baseline; comparison only, not approved art."
+    }
+  ],
+  "errors": [],
+  "artStatus": "failed_not_approved"
+}

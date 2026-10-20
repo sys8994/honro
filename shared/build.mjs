@@ -40,7 +40,7 @@ export const modelFiles=['action-prompts','content','story-content-v0','story-co
   'split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage1-image-first-roster','stage2-image-first-roster','stage3-image-first-roster','stage4-image-first-roster'];
 
 // This is the only bundle manifest. Game, Stage view and playtest use it.
-export async function runtimeEntries({vector=true,render=true,app=false}={}) {
+export async function runtimeEntries({vector=true,render=true,app=false,regenerateAssets=true}={}) {
   const parts=[];
   const code=(name,code)=>parts.push({name,code});
   const file=async source=>code(source,await read(source));
@@ -84,15 +84,15 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   applyStage4ImageFirst(project);
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
-    await buildParty();
+    if(regenerateAssets)await buildParty();
     await file('shared/runtime/party-rig.js');
     await file('shared/assets/party/party.runtime.js');
     code('shared/assets/rebuild-game-adapter.mjs',(await read('shared/assets/rebuild-game-adapter.mjs')).replace(/^export /gm,'')+
       '\nglobalThis.resolveRebuildCharacter=resolveRebuildCharacter;globalThis.HonroArcherVisual=HonroArcherVisual;globalThis.HonroPartyVisual=HonroPartyVisual;');
   }
   if(render){
-    await buildMonsters();
-    await buildActors();
+    if(regenerateAssets)await buildMonsters();
+    if(regenerateAssets)await buildActors();
     const act1Backdrops={};
     for(const [key,file] of [['mountains','act1-far.svg'],['gorge','act1-gorge.svg'],['dawn','act2-dawn.svg'],['act3','act3-far.svg']]){
       const svg=Buffer.from((await readFile(path.join(root,'shared/assets/environment',file),'utf8')).replace(/\bstroke="[^"]*"/g,'stroke="none"'));
@@ -133,6 +133,10 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/stage2-image-first-art.js');
   if(render)await file('shared/runtime/stage3-image-first-art.js');
   if(render)await file('shared/runtime/stage4-image-first-art.js');
+  if(render)await file('shared/runtime/stage1-vector-front.js');
+  if(render)await file('shared/runtime/stage3-vector-front.js');
+  if(render)data('HONRO_VECTOR_CAMPAIGN_PARTS',JSON.parse(await read('shared/assets/environment/vector-campaign-parts.json')));
+  if(render)await file('shared/runtime/vector-campaign-materials.js');
   if(render)await file('shared/runtime/vector-campaign-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');

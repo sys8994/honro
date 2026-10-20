@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "provenance": {
+    "kind": "retrospective-reconstruction",
+    "baseCommit": "10e4f602d8fbaf63bb8f27c9eb720a2f7ef19f36",
+    "description": "Exact preserved per-round source bytes plus unchanged regular Git blobs; historical sourceHash is preserved, never replaced."
+  },
+  "config": {
+    "path": "game/docs/art-review/current.json",
+    "snapshot": "game/docs/art-review/vector-correction-v2/sources/scope-rounds-2-5.json",
+    "sha256": "7dcefef743596716c60b03216ede44f0d37c94aba63170a91a3515258c089f13"
+  },
+  "files": [
+    {
+      "path": "shared/assets/environment/vector-campaign-parts.json",
+      "sha256": "7551eda6bfe830041dd603a67e2970481ee3e680859c9aa7cc5b71327c01d86c",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/round-3-parts.json"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/architecture.mjs",
+      "sha256": "e693c2eca34f5020286081cf8682a0fa84d0f700f310bf56dafbe08f7c87311d",
+      "gitCommit": "10e4f602d8fbaf63bb8f27c9eb720a2f7ef19f36"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/campaign.mjs",
+      "sha256": "378ed953755cd23279b7d70a8c9b8b59a601071ac7984b94d8c6052fdc7419e1",
+      "gitCommit": "10e4f602d8fbaf63bb8f27c9eb720a2f7ef19f36"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/compositions.mjs",
+      "sha256": "72ac92352e4ea65393f9b64eba800fb6176a6a574a176f58565bb9abef8d1f08",
+      "gitCommit": "10e4f602d8fbaf63bb8f27c9eb720a2f7ef19f36"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/registry.mjs",
+      "sha256": "2c2141225e679c2f885eddbc9baa296cf5b6c58722197b53ddb0f659645c5bd4",
+      "gitCommit": "10e4f602d8fbaf63bb8f27c9eb720a2f7ef19f36"
+    },
+    {
+      "path": "shared/build.mjs",
+      "sha256": "10d8d04282dd490cf1c97014ad4ea9e2877752732a5f7e97ba3248dcaaf1c6a0",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/build-rounds-2-5.mjs"
+    },
+    {
+      "path": "shared/data/campaign.json",
+      "sha256": "8f2b3b9f20feda7734b7a0be5dea6c03d62a6620e71be16e5df42c0efc99cda2",
+      "gitCommit": "10e4f602d8fbaf63bb8f27c9eb720a2f7ef19f36"
+    },
+    {
+      "path": "shared/runtime/act1-spatial-art.js",
+      "sha256": "ef2149c8409b37db54ca7d181849a25a86e7c3c420659377f3df22c2679e8950",
+      "gitCommit": "10e4f602d8fbaf63bb8f27c9eb720a2f7ef19f36"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "sha256": "deecb16aac810bcb7dba1e37cd0008fb9c3e3647b617292c86502c410b5ec2e0",
+      "gitCommit": "10e4f602d8fbaf63bb8f27c9eb720a2f7ef19f36"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-art.js",
+      "sha256": "9e281128a3e5442f15929f824ae86947ed27e9032100e6439c15801026ab2e25",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/round-4-art.js"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-config.js",
+      "sha256": "c154b88056b5a5d53e5127d75576cfb61d0ccbbcca2dd84e7d48b1880bf569ac",
+      "gitCommit": "10e4f602d8fbaf63bb8f27c9eb720a2f7ef19f36"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-materials.js",
+      "sha256": "b11c97b9e9560ce4db32e64549d2cb05d3ba058cb0817becb12a29e9b775f1b7",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/round-4-materials.js"
+    },
+    {
+      "path": "tools/environment/extract-vector-campaign-parts.py",
+      "sha256": "f3b47213c85f8a030658fa1484946e10f35b856b4ba4ccae4666ffd69e8a058a",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/round-3-extractor.py"
+    }
+  ]
+}

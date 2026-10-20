@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:bae7610b38b13d9df3f99d3d6559359a8cba2077d8be034d6a851da08d2192d5",
+  "provenance": {
+    "kind": "retrospective-import",
+    "description": "Imported retrospectively from actual original capture checks and byte-identical archived/original PNGs. This receipt was not emitted contemporaneously and asserts no art approval.",
+    "originalChecks": {
+      "path": "_local/reports/vector-art-correction-v2/round-2-checks.json",
+      "sha256": "9ec2e45af118a7229d07a7e7791120d36c91a14ad03f9857c7dcd5fee1dfe2db"
+    },
+    "preservedChecks": {
+      "path": "game/docs/art-review/vector-correction-v2/receipts/round-2-original-checks.json",
+      "sha256": "9ec2e45af118a7229d07a7e7791120d36c91a14ad03f9857c7dcd5fee1dfe2db"
+    },
+    "sourceBinding": "The original checks did not record sourceHash. The unchanged historical manifest digest was independently reconstructed from preserved source bytes and Git base, and is attached here retrospectively.",
+    "captures": [
+      {
+        "captureId": "round-2-stage01-normal",
+        "checksRowIndex": 0,
+        "originalScreenshot": {
+          "path": "_local/reports/vector-art-correction-v2/round-2-stage01-normal.png",
+          "sha256": "bc223e56fc2f7306553c8c6c4b14aa99c09508b6ac49b0c37dfc39965c1611cb"
+        },
+        "metadataOrigin": "stage/view/camera imported exactly from the preserved checks row; viewport dimensions read from the unchanged original PNG IHDR."
+      },
+      {
+        "captureId": "round-2-stage03-wide",
+        "checksRowIndex": 3,
+        "originalScreenshot": {
+          "path": "_local/reports/vector-art-correction-v2/round-2-stage03-wide.png",
+          "sha256": "2bc4b1018659f0e7e93d0f71daf2dc927ba05d167df9f786568fd435d7f2d855"
+        },
+        "metadataOrigin": "stage/view/camera imported exactly from the preserved checks row; viewport dimensions read from the unchanged original PNG IHDR."
+      },
+      {
+        "captureId": "round-2-stage18-normal",
+        "checksRowIndex": 4,
+        "originalScreenshot": {
+          "path": "_local/reports/vector-art-correction-v2/round-2-stage18-normal.png",
+          "sha256": "433ce9a2c0bf5eb7c30295ad703d97a9d95b255a65fa4dcd129e0f49f695c15c"
+        },
+        "metadataOrigin": "stage/view/camera imported exactly from the preserved checks row; viewport dimensions read from the unchanged original PNG IHDR."
+      },
+      {
+        "captureId": "round-2-stage21-wide",
+        "checksRowIndex": 7,
+        "originalScreenshot": {
+          "path": "_local/reports/vector-art-correction-v2/round-2-stage21-wide.png",
+          "sha256": "4244ef661412f52befbd8966f9eb4e089f3c4ffbc50fa7669b874b2a66f704ff"
+        },
+        "metadataOrigin": "stage/view/camera imported exactly from the preserved checks row; viewport dimensions read from the unchanged original PNG IHDR."
+      }
+    ]
+  },
+  "captures": [
+    {
+      "id": "round-2-stage01-normal",
+      "stage": 1,
+      "view": "normal",
+      "sourceHash": "sha256:bae7610b38b13d9df3f99d3d6559359a8cba2077d8be034d6a851da08d2192d5",
+      "camera": {
+        "x": 2400,
+        "y": 2300,
+        "scale": 0.6
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage01-normal.png",
+        "sha256": "bc223e56fc2f7306553c8c6c4b14aa99c09508b6ac49b0c37dfc39965c1611cb"
+      }
+    },
+    {
+      "id": "round-2-stage03-wide",
+      "stage": 3,
+      "view": "wide",
+      "sourceHash": "sha256:bae7610b38b13d9df3f99d3d6559359a8cba2077d8be034d6a851da08d2192d5",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.24
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage03-wide.png",
+        "sha256": "2bc4b1018659f0e7e93d0f71daf2dc927ba05d167df9f786568fd435d7f2d855"
+      }
+    },
+    {
+      "id": "round-2-stage18-normal",
+      "stage": 18,
+      "view": "normal",
+      "sourceHash": "sha256:bae7610b38b13d9df3f99d3d6559359a8cba2077d8be034d6a851da08d2192d5",
+      "camera": {
+        "x": 1200,
+        "y": 6200,
+        "scale": 0.5
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage18-normal.png",
+        "sha256": "433ce9a2c0bf5eb7c30295ad703d97a9d95b255a65fa4dcd129e0f49f695c15c"
+      }
+    },
+    {
+      "id": "round-2-stage21-wide",
+      "stage": 21,
+      "view": "wide",
+      "sourceHash": "sha256:bae7610b38b13d9df3f99d3d6559359a8cba2077d8be034d6a851da08d2192d5",
+      "camera": {
+        "x": 4700,
+        "y": 2600,
+        "scale": 0.15
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/round-2/round-2-stage21-wide.png",
+        "sha256": "4244ef661412f52befbd8966f9eb4e089f3c4ffbc50fa7669b874b2a66f704ff"
+      }
+    }
+  ]
+}

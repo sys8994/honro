@@ -4,9 +4,11 @@
   "type": "module",
   "scripts": {
     "build": "node workshop/build.mjs",
+    "build:preview": "node tools/release/preview.mjs",
     "prepare:release": "node tools/release/prepare.mjs",
     "art:review": "node tools/release/art-review.mjs check",
     "test:art-review": "node --test tests/art-review-gate.mjs",
+    "test:art-public-build": "node --test tests/art-public-build-gate.mjs",
     "migrate": "node migration/migrate-stages.mjs && node tools/map-forge/apply-act2.mjs && node tools/map-forge/apply-act1.mjs && node tools/map-forge/apply-terrain-domain.mjs && node tools/map-forge/apply-act1-roster.mjs",
     "verify": "npm run test:release-guard && npm run build && npm run test:title && npm run test:campaign-metadata && npm run test:campaign-contracts && npm run test:runtime-contracts && npm run test:migration-ledger && npm run test:migration-current-meta && npm run test:current-story-display && npm run test:binding-detail && npm --prefix game run verify && npm run test:integration && npm run test:performance",
     "test:binding-detail": "node tests/binding-detail-normalization.mjs && node tests/narrative-revision.mjs",

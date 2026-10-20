@@ -1,4 +1,4 @@
-import {readFile,mkdir,unlink} from 'node:fs/promises';
+import {readFile,mkdir,unlink,lstat,copyFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
 import vm from 'node:vm';
@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import {root,runtimeEntries,projectAuthors} from './build.mjs';
 import {writeGenerated} from './write-generated.mjs';
 import sharp from 'sharp';
+import {checkArtReview} from '../tools/release/art-review.mjs';
 
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 const hash=body=>createHash('sha256').update(body).digest('hex');
@@ -42,22 +43,52 @@ export function planWebAssetRetention(previous,currentFiles){
   return {previousFiles,previousGenerations,obsoleteFiles};
 }
 
-// Generated files are immutable by content. Stable HTML names remain the public entrypoints.
-export async function buildWeb({vector=true,destination=path.join(root,'HONRO.html')}={}) {
-  let previous;try{previous=JSON.parse(await read('web/manifest.json'));}catch(e){if(e.code!=='ENOENT')throw e;}
+const within=(parent,child)=>child.startsWith(parent+path.sep);
+async function noSymlink(file){
+  const relative=path.relative(root,file);assert(relative!==''&&!relative.startsWith('..'+path.sep)&&relative!=='..'&&!path.isAbsolute(relative),'Output must be inside the repository');
+  let current=root;
+  for(const part of relative.split(path.sep)){
+    current=path.join(current,part);
+    try{assert(!(await lstat(current)).isSymbolicLink(),`Build output cannot follow a symlink: ${current}`);}catch(error){if(error.code!=='ENOENT')throw error;}
+  }
+}
+export async function buildOutput({outputRoot=root,preview=false,destination}={}){
+  outputRoot=path.resolve(outputRoot);
+  if(preview)assert(within(path.join(root,'_local/preview'),outputRoot),'Preview outputRoot must be an isolated directory below _local/preview/');
+  else assert.equal(outputRoot,root,'Public builds must use the repository output root');
+  const gameDestination=destination?path.resolve(destination):path.join(outputRoot,'HONRO.html');
+  assert(within(outputRoot,gameDestination),'Game destination must stay inside outputRoot');
+  if(preview)await noSymlink(outputRoot);
+  const output=async file=>{
+    const absolute=path.resolve(outputRoot,file);assert(within(outputRoot,absolute),'Generated path escaped outputRoot');
+    await noSymlink(absolute);return absolute;
+  };
+  await output(path.relative(outputRoot,gameDestination));
+  return {outputRoot,gameDestination,output};
+}
+
+// Public entrypoints share this gate, including the legacy Python/Node wrappers.
+// Preview is a separate output tree; it can never overwrite public entrypoints.
+export async function buildWeb({vector=true,destination,outputRoot=root,preview=false}={}) {
+  const target=await buildOutput({outputRoot,preview,destination}),output=target.output;
+  if(!preview){
+    const review=await checkArtReview();
+    if(review.status!=='records-consistent')throw Object.assign(Error('Art review blocked before public output; build: not-run\n'+review.errors.join('\n')),{code:'HONRO_ART_REVIEW_BLOCKED',review,build:'not-run'});
+  }
+  let previous;try{previous=JSON.parse(await readFile(await output('web/manifest.json'),'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
   const files=new Map();
   async function emit(folder,name,extension,body){
     const bytes=Buffer.isBuffer(body)?body:Buffer.from(body),sha256=hash(bytes);
     const stem=name.replace(/\.[cm]?js$/,'').replace(/[^a-zA-Z0-9_-]+/g,'-');
     const file=`web/${folder}/${stem}.${sha256.slice(0,16)}.${extension}`;
-    await mkdir(path.dirname(path.join(root,file)),{recursive:true});
+    const destination=await output(file);await mkdir(path.dirname(destination),{recursive:true});
     // writeGenerated compares UTF-8; binary art must retain its exact bytes.
     if(!files.has(file)){
       if(Buffer.isBuffer(body)){
         const {writeFile}=await import('node:fs/promises');
-        let same=false;try{same=(await readFile(path.join(root,file))).equals(bytes);}catch(e){if(e.code!=='ENOENT')throw e;}
-        if(!same)await writeFile(path.join(root,file),bytes);
-      }else await writeGenerated(path.join(root,file),body);
+        let same=false;try{same=(await readFile(destination)).equals(bytes);}catch(e){if(e.code!=='ENOENT')throw e;}
+        if(!same)await writeFile(destination,bytes);
+      }else await writeGenerated(destination,body);
       files.set(file,{path:file,bytes:bytes.length,sha256});
     }
     return file;
@@ -84,7 +115,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     const file=await emit('runtime',name,'js',loaderImport+records.map(([global,file,refs])=>`globalThis.${global}=await loadData(${quote(file)},${quote(refs)});`).join('\n')+'\n');
     moduleData.set(file,records.map(([,file])=>file));return file;
   };
-  const entries=await runtimeEntries({vector,app:true}),common=[],gameOnly=[],optionalModules={};
+  const entries=await runtimeEntries({vector,app:true,regenerateAssets:!preview}),common=[],gameOnly=[],optionalModules={};
   const appStart=entries.findIndex(e=>e.name==='game/vendor/ui/fa.js');
   assert(appStart>0,'Game application boundary required');
   let projectManifest,pending=[],pendingBytes=0,groupNumber=0;
@@ -190,18 +221,25 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   const editorModule=await emit('runtime','workshop-app','js',await read('workshop/src/app.js'));
   const workshopEntry=await bootstrap('workshop',[...common,stageRules,editorModule],{playtest:gameDocument+'?embedded=1'});
   const workshopHtml=(await read('workshop/src/index.html')).replace('<style>/*STYLE*/</style>',cssTag(workshopStyle)).replace('<script>/*SCRIPT*/</script>',scriptTag(workshopEntry));
-  await writeGenerated(destination,gameHtml());
-  await writeGenerated(path.join(root,'index.html'),gameHtml());
-  await writeGenerated(path.join(root,'HONRO_WORKSHOP.html'),workshopHtml);
-  await writeGenerated(path.join(root,'workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
+  await mkdir(path.dirname(target.gameDestination),{recursive:true});await mkdir(path.dirname(await output('workshop/HONRO_MAP_WORKSHOP.html')),{recursive:true});
+  await writeGenerated(target.gameDestination,gameHtml());
+  await writeGenerated(await output('index.html'),gameHtml());
+  await writeGenerated(await output('HONRO_WORKSHOP.html'),workshopHtml);
+  await writeGenerated(await output('workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
   const currentFiles=[...files.values()].sort((a,b)=>a.path.localeCompare(b.path));
   const {previousFiles,previousGenerations,obsoleteFiles}=planWebAssetRetention(previous,currentFiles);
   const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations};
-  await writeGenerated(path.join(root,'web/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
-  for(const file of obsoleteFiles)try{await unlink(path.join(root,file.path));}catch(e){if(e.code!=='ENOENT')throw e;}
-  await mkdir(path.join(root,'_local/reports/web-split'),{recursive:true});
-  const summary={gameBytes:Buffer.byteLength(gameHtml()),workshopBytes:Buffer.byteLength(workshopHtml),files:files.size,playtest:manifest.playtest};
-  await writeGenerated(path.join(root,'_local/reports/web-split/build.json'),JSON.stringify(summary,null,2)+'\n');
+  await writeGenerated(await output('web/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
+  for(const file of obsoleteFiles)try{await unlink(await output(file.path));}catch(e){if(e.code!=='ENOENT')throw e;}
+  if(preview){
+    // BGM paths are deliberately stable in runtime data. Copy their bytes into
+    // the preview, without linking back to the public asset tree.
+    await mkdir(await output('assets/bgm'),{recursive:true});
+    for(const entry of await readdir(path.join(root,'assets/bgm'),{withFileTypes:true}))if(entry.isFile()&&/\.mp3$/i.test(entry.name))await copyFile(path.join(root,'assets/bgm',entry.name),await output('assets/bgm/'+entry.name));
+  }
+  await mkdir(await output('_local/reports/web-split'),{recursive:true});
+  const summary={gameBytes:Buffer.byteLength(gameHtml()),workshopBytes:Buffer.byteLength(workshopHtml),files:files.size,playtest:manifest.playtest,outputRoot:target.outputRoot,preview};
+  await writeGenerated(await output('_local/reports/web-split/build.json'),JSON.stringify(summary,null,2)+'\n');
   console.log(JSON.stringify(summary));
   return gameHtml();
 }
