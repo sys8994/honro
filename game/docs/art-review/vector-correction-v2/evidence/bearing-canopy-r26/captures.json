@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:3fb4e1dcf74aaf3f09c6aedb8d38a870fb6a9c355677c869d380412623e058b6",
+  "sourceHashAfter": "sha256:3fb4e1dcf74aaf3f09c6aedb8d38a870fb6a9c355677c869d380412623e058b6",
+  "mode": "representative",
+  "rows": [
+    {
+      "id": "bearing-canopy-r26-stage01-normal",
+      "sourceHash": "sha256:3fb4e1dcf74aaf3f09c6aedb8d38a870fb6a9c355677c869d380412623e058b6",
+      "stage": 1,
+      "view": "normal",
+      "camera": {
+        "x": 2400,
+        "y": 2300,
+        "scale": 0.6
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-normal.png",
+        "sha256": "d3234bea54b815d7a39b8e42d2906f2df207fc71a9b1264ce592a5d1bd7861c5"
+      },
+      "art": {
+        "stage": 1,
+        "style": "고갯길 산림",
+        "palette": "forest",
+        "polygons": 10,
+        "parts": 0,
+        "materialRevision": "bearing-and-canopy-26",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 32
+      },
+      "pure": true
+    },
+    {
+      "id": "bearing-canopy-r26-stage01-wide",
+      "sourceHash": "sha256:3fb4e1dcf74aaf3f09c6aedb8d38a870fb6a9c355677c869d380412623e058b6",
+      "stage": 1,
+      "view": "wide",
+      "camera": {
+        "x": 3000,
+        "y": 1900,
+        "scale": 0.22
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-wide.png",
+        "sha256": "eca354b9c1a5c3ede7fe14db0ea672a773c22ea2d766b2483ed4a5d358807e6b"
+      },
+      "art": {
+        "stage": 1,
+        "style": "고갯길 산림",
+        "palette": "forest",
+        "polygons": 10,
+        "parts": 0,
+        "materialRevision": "bearing-and-canopy-26",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 32
+      },
+      "pure": true
+    }
+  ],
+  "errors": []
+}

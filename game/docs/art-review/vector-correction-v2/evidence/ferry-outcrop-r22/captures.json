@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:45fde90455926438b4a9118b52fc82ce2d77104aab5e670d10aa04a825d96279",
+  "sourceHashAfter": "sha256:45fde90455926438b4a9118b52fc82ce2d77104aab5e670d10aa04a825d96279",
+  "mode": "representative",
+  "rows": [
+    {
+      "id": "ferry-outcrop-r22-stage03-normal",
+      "sourceHash": "sha256:45fde90455926438b4a9118b52fc82ce2d77104aab5e670d10aa04a825d96279",
+      "stage": 3,
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-normal.png",
+        "sha256": "f780e85e468cc62d189f804172893578eb8b73db4985f44cff71e20a184432ff"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-soil-bearing-12",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    },
+    {
+      "id": "ferry-outcrop-r22-stage03-wide",
+      "sourceHash": "sha256:45fde90455926438b4a9118b52fc82ce2d77104aab5e670d10aa04a825d96279",
+      "stage": 3,
+      "view": "wide",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.24
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-wide.png",
+        "sha256": "729bcba3e48466068baa946dbbf12c2f1422716f21c32cf0a003f3b3e191f12a"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-soil-bearing-12",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    }
+  ],
+  "errors": []
+}

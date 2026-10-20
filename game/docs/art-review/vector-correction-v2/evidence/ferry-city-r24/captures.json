@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:37d9c1d9dbe0a97e2ad59d5aa2027bbe1964e7df6d40bbb09f72665b23e23363",
+  "sourceHashAfter": "sha256:37d9c1d9dbe0a97e2ad59d5aa2027bbe1964e7df6d40bbb09f72665b23e23363",
+  "mode": "representative",
+  "rows": [
+    {
+      "id": "ferry-city-r24-stage03-normal",
+      "sourceHash": "sha256:37d9c1d9dbe0a97e2ad59d5aa2027bbe1964e7df6d40bbb09f72665b23e23363",
+      "stage": 3,
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-normal.png",
+        "sha256": "a2f67991a6436d8fb3b8355714e60b330106bd4274f63f3cd534ef8ad7524fa2"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-joint-burial-24",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    },
+    {
+      "id": "ferry-city-r24-stage03-wide",
+      "sourceHash": "sha256:37d9c1d9dbe0a97e2ad59d5aa2027bbe1964e7df6d40bbb09f72665b23e23363",
+      "stage": 3,
+      "view": "wide",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.24
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-wide.png",
+        "sha256": "22f1d21cd437433a4dfc7196bc88a7a6098281e129250ca69f7b5959ac39790d"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-joint-burial-24",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    },
+    {
+      "id": "ferry-city-r24-stage21-normal",
+      "sourceHash": "sha256:37d9c1d9dbe0a97e2ad59d5aa2027bbe1964e7df6d40bbb09f72665b23e23363",
+      "stage": 21,
+      "view": "normal",
+      "camera": {
+        "x": 2277,
+        "y": 2460,
+        "scale": 0.6
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-normal.png",
+        "sha256": "b57618d73a67b250c5816cd4a2dd7e1116c837738e16e7b0cee88d14668d4f2b"
+      },
+      "art": {
+        "stage": 21,
+        "style": "읍성 성문 아래",
+        "palette": "city",
+        "polygons": 27,
+        "parts": 0,
+        "materialRevision": "ferry-joint-burial-24",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    },
+    {
+      "id": "ferry-city-r24-stage21-wide",
+      "sourceHash": "sha256:37d9c1d9dbe0a97e2ad59d5aa2027bbe1964e7df6d40bbb09f72665b23e23363",
+      "stage": 21,
+      "view": "wide",
+      "camera": {
+        "x": 4700,
+        "y": 2600,
+        "scale": 0.15
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 960
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-wide.png",
+        "sha256": "4ae605c7f09cb1716bdc7d0643965df305a58ea76714b02a5d1b97448188e7e5"
+      },
+      "art": {
+        "stage": 21,
+        "style": "읍성 성문 아래",
+        "palette": "city",
+        "polygons": 27,
+        "parts": 0,
+        "materialRevision": "ferry-joint-burial-24",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": true,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true
+    }
+  ],
+  "errors": []
+}

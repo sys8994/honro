@@ -1081,6 +1081,698 @@
       ],
       "regressions": [],
       "resolutions": []
+    },
+    {
+      "id": "ferry-outcrop-r22",
+      "sourceHash": "sha256:45fde90455926438b4a9118b52fc82ce2d77104aab5e670d10aa04a825d96279",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-outcrop-r22-state.json",
+        "sha256": "25dc64b8f7fdeaa8a6be622069d68ddc168e0def69a1f1a2980ab47ddfd23e42"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "grounding",
+        "materials"
+      ],
+      "changes": "사각형 절단 경계는 흙 옆면에 가렸으나 큰 초승달형 흙 명암과 반복 톱니 바닥이 남는다. 실제 나루 전체 구성은 아직 미달이다.",
+      "captures": [
+        {
+          "id": "ferry-outcrop-r22-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:45fde90455926438b4a9118b52fc82ce2d77104aab5e670d10aa04a825d96279",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-normal.png",
+            "sha256": "f780e85e468cc62d189f804172893578eb8b73db4985f44cff71e20a184432ff"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/captures.json",
+            "sha256": "c6807873417b297bb04417f1cf6aecb6bd1207e6f9c75a1d31bb526f9e2c7d4a"
+          }
+        },
+        {
+          "id": "ferry-outcrop-r22-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:45fde90455926438b4a9118b52fc82ce2d77104aab5e670d10aa04a825d96279",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.24
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-wide.png",
+            "sha256": "729bcba3e48466068baa946dbbf12c2f1422716f21c32cf0a003f3b3e191f12a"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/captures.json",
+            "sha256": "c6807873417b297bb04417f1cf6aecb6bd1207e6f9c75a1d31bb526f9e2c7d4a"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "사각형 절단 경계는 흙 옆면에 가렸으나 큰 초승달형 흙 명암과 반복 톱니 바닥이 남는다. 실제 나루 전체 구성은 아직 미달이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "원본 암반의 중간 면은 보이지만 넓은 하단 흙 면에는 큰 그래픽 곡선이 부피 대신 읽힌다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "C를 A/B 아래에 겹쳐 분리 스티커는 줄었다. 오른쪽 흙 가림이 둔덕으로 충분히 설득되지 않고 절리 윤곽도 균일하다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "회청색 암반과 올리브 흙의 색·광원 연결이 약하며 큰 흙 면의 명암 설계가 자연스러운 지질로 읽히지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "보행 띠는 좁아졌고 작은 표면 돌이 일부 겹친다. 광역의 과한 도식적 흙 면과 모바일 미확인 때문에 통과하지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r22/stage03-wide.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "ferry-outcrop-r23",
+      "sourceHash": "sha256:f34107c8eeb6ac12d420b48e7c6da2f3209562893e18cc78ae64a580a8d341bd",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-outcrop-r23-state.json",
+        "sha256": "44068b0501732808c9746a3554c43847bd47c73f33c07a682a759b780a748a21"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "grounding",
+        "materials"
+      ],
+      "changes": "C와 지형의 겹침은 유지했으나 새 작은 돌·수풀이 빈 흙 사면에 흩뿌린 장식처럼 보여 큰 구성 문제를 해결하지 못했다.",
+      "captures": [
+        {
+          "id": "ferry-outcrop-r23-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:f34107c8eeb6ac12d420b48e7c6da2f3209562893e18cc78ae64a580a8d341bd",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-normal.png",
+            "sha256": "d124906b9d361e9d545b37650939ee74f074a6a92426f69d691ea9e07d0d4037"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/captures.json",
+            "sha256": "a1c380bac75c48fa3cfcf3ab1d9ca344f9fdb103512d4b69a889c8a9d2797deb"
+          }
+        },
+        {
+          "id": "ferry-outcrop-r23-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:f34107c8eeb6ac12d420b48e7c6da2f3209562893e18cc78ae64a580a8d341bd",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.24
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-wide.png",
+            "sha256": "ff9035456d1c054a2a5b4bd5b6c5874cd948f4384839ad8c14b4f34e0181713d"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/captures.json",
+            "sha256": "a1c380bac75c48fa3cfcf3ab1d9ca344f9fdb103512d4b69a889c8a9d2797deb"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "C와 지형의 겹침은 유지했으나 새 작은 돌·수풀이 빈 흙 사면에 흩뿌린 장식처럼 보여 큰 구성 문제를 해결하지 못했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "중간 크기의 흙 덩어리가 필요한 자리를 작은 소품으로 채웠고 큰 전경 면은 여전히 비어 있다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "작은 바위는 흙에 일부 잠기지만 암반 전체와의 하중 관계가 떨어진다. 이 후보의 새 분산 소품은 다음 후보에서 제거·축소한다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "작은 수풀이 각진 녹색 조각처럼 읽히고 흙의 곡선 명암은 여전히 도식적이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-wide.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "정상·광역에서 길은 확인되나 큰 빈 사면과 흩어진 소품이 먼저 보이며 전체 재질 품질은 미달이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r23/stage03-wide.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "ferry-city-r24",
+      "sourceHash": "sha256:37d9c1d9dbe0a97e2ad59d5aa2027bbe1964e7df6d40bbb09f72665b23e23363",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-outcrop-r24-state.json",
+        "sha256": "766a57701ca9114b5a891693f6b1b04e3f9cbf9b846fb7c255b7b12adf019870"
+      },
+      "stages": [
+        3,
+        21
+      ],
+      "focusCriteria": [
+        "composition",
+        "grounding",
+        "materials"
+      ],
+      "changes": "나루 모듈은 연결됐고 문루 하부의 하중 구조도 보강됐다. 나루 큰 흙 사면과 도시의 판상 전경은 여전히 미완이다.",
+      "captures": [
+        {
+          "id": "ferry-city-r24-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:37d9c1d9dbe0a97e2ad59d5aa2027bbe1964e7df6d40bbb09f72665b23e23363",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-normal.png",
+            "sha256": "a2f67991a6436d8fb3b8355714e60b330106bd4274f63f3cd534ef8ad7524fa2"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/captures.json",
+            "sha256": "3481ace094f0a2d7fa8c5bba64f3662068c06b99d9b45df3972144d2da41a9c7"
+          }
+        },
+        {
+          "id": "ferry-city-r24-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:37d9c1d9dbe0a97e2ad59d5aa2027bbe1964e7df6d40bbb09f72665b23e23363",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.24
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-wide.png",
+            "sha256": "22f1d21cd437433a4dfc7196bc88a7a6098281e129250ca69f7b5959ac39790d"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/captures.json",
+            "sha256": "3481ace094f0a2d7fa8c5bba64f3662068c06b99d9b45df3972144d2da41a9c7"
+          }
+        },
+        {
+          "id": "ferry-city-r24-stage21-normal",
+          "stage": 21,
+          "view": "normal",
+          "sourceHash": "sha256:37d9c1d9dbe0a97e2ad59d5aa2027bbe1964e7df6d40bbb09f72665b23e23363",
+          "camera": {
+            "x": 2277,
+            "y": 2460,
+            "scale": 0.6
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-normal.png",
+            "sha256": "b57618d73a67b250c5816cd4a2dd7e1116c837738e16e7b0cee88d14668d4f2b"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/captures.json",
+            "sha256": "3481ace094f0a2d7fa8c5bba64f3662068c06b99d9b45df3972144d2da41a9c7"
+          }
+        },
+        {
+          "id": "ferry-city-r24-stage21-wide",
+          "stage": 21,
+          "view": "wide",
+          "sourceHash": "sha256:37d9c1d9dbe0a97e2ad59d5aa2027bbe1964e7df6d40bbb09f72665b23e23363",
+          "camera": {
+            "x": 4700,
+            "y": 2600,
+            "scale": 0.15
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-wide.png",
+            "sha256": "4ae605c7f09cb1716bdc7d0643965df305a58ea76714b02a5d1b97448188e7e5"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/captures.json",
+            "sha256": "3481ace094f0a2d7fa8c5bba64f3662068c06b99d9b45df3972144d2da41a9c7"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "나루 모듈은 연결됐고 문루 하부의 하중 구조도 보강됐다. 나루 큰 흙 사면과 도시의 판상 전경은 여전히 미완이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-wide.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "성문 빈 석축은 15개 큰 받침돌·11개 홍예돌로 바뀌었다. 주변 거대한 지형 면과 나루의 전경 중간 형태는 해결하지 못했다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-wide.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "성문은 실제 gate:collision:0 polygon 안에만 석재를 그려 홍예 개구와 기둥 받침을 보존했다. 나루 바깥 흙 가림과 수풀 접지는 아직 부자연스럽다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-wide.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "나루 암반에 회갈색 보정을 시도했으나 일부 회청색 면이 남아 일관되지 않다. 성문도 회화 기준의 석재 재질에는 못 미친다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-wide.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "성문 정상에서 창·기둥·홍예와 인물은 읽힌다. 전체 wide에서는 도시·나루의 큰 빈 전경이 남고 모바일 최종 재검토도 없어 전체 pass를 기록하지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-city-r24/stage21-wide.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "ferry-outcrop-r25",
+      "sourceHash": "sha256:59013e1a4880c14329f77913b726f56b603717d1e1bdad2bab02deed1f8b01ef",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-outcrop-r25-state.json",
+        "sha256": "0ad9b36cd038ba62dc9093c3dffa01c6a00a4f6610bd7a5e1d56f46d3d49db5d"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "사각형 경계와 분리된 C는 줄고 암반이 이어졌다. 그러나 흙 전경의 큰 빈 면과 너무 단순한 우측 둔덕 때문에 장소 전체 구성은 미달이다.",
+      "captures": [
+        {
+          "id": "ferry-outcrop-r25-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:59013e1a4880c14329f77913b726f56b603717d1e1bdad2bab02deed1f8b01ef",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png",
+            "sha256": "8dc7fb65ef7b4986131a687c6d7344ed4c539dda26491dfa89bc59d048776606"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/captures.json",
+            "sha256": "5bd7945dd86a1dbbc8f8e306e2d1dd5fe59237171510489fe27c61a74b24d144"
+          }
+        },
+        {
+          "id": "ferry-outcrop-r25-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:59013e1a4880c14329f77913b726f56b603717d1e1bdad2bab02deed1f8b01ef",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.24
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-wide.png",
+            "sha256": "4baa50318095bad9cdebc962813d7a64fbfe0a21428efe508652da89e859d058"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/captures.json",
+            "sha256": "5bd7945dd86a1dbbc8f8e306e2d1dd5fe59237171510489fe27c61a74b24d144"
+          }
+        },
+        {
+          "id": "ferry-outcrop-r25-mobile-stage03-mobile",
+          "stage": 3,
+          "view": "mobile",
+          "sourceHash": "sha256:59013e1a4880c14329f77913b726f56b603717d1e1bdad2bab02deed1f8b01ef",
+          "camera": {
+            "x": 3100,
+            "y": 1400,
+            "scale": 0.4
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25-mobile/stage03-mobile.png",
+            "sha256": "ae01e5e8f4b7f4b00ca7c8258c4172338be9f50d6dbc8539894cc721c0f505cc"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25-mobile/captures.json",
+            "sha256": "1cf990c9353a5e5730650e04175db2601da50ac6ddabd96569f7e71dd340500f"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "사각형 경계와 분리된 C는 줄고 암반이 이어졌다. 그러나 흙 전경의 큰 빈 면과 너무 단순한 우측 둔덕 때문에 장소 전체 구성은 미달이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25-mobile/stage03-mobile.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "암반 내부의 판과 쐐기는 보이나 작은 수풀·독립 돌을 걷어낸 뒤 드러난 넓은 흙 면의 중간 형태가 아직 설계되지 않았다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25-mobile/stage03-mobile.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "앞 흙이 A와 C의 발을 가리고 B가 뒤로 물려 있다. 일부 외곽이 일정한 톱니처럼 읽히며 수변에서 기단으로 이어지는 무게 관계도 보완해야 한다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25-mobile/stage03-mobile.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "회갈색 보정은 청록색 잔류 면까지 같은 기준으로 통일했다. 흙과 암석 재질의 중간 변화는 여전히 회화 기준에 못 미친다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25-mobile/stage03-mobile.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "정상·광역·390×844 모바일 모두 실제 렌더를 열었다. 좁은 길과 인물은 읽히지만 모바일 하반의 거대한 빈 면과 전체 광역의 단순한 사면 때문에 통과하지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-outcrop-r25-mobile/stage03-mobile.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
+    },
+    {
+      "id": "bearing-canopy-r26",
+      "sourceHash": "sha256:3fb4e1dcf74aaf3f09c6aedb8d38a870fb6a9c355677c869d380412623e058b6",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/bearing-canopy-r26-state.json",
+        "sha256": "b7b1acdeeacc73342731bcdd379c629a8ad4ffd2383ca5910960ea2e105beaac"
+      },
+      "stages": [
+        1
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "수관의 반복 톱니를 줄이고 열린 아래 가지 공간을 만들었다. 전체 숲은 같은 계단식 나무 배치와 거대 둥근 돌 사면이 지배하여 기준 미달이다.",
+      "captures": [
+        {
+          "id": "bearing-canopy-r26-stage01-normal",
+          "stage": 1,
+          "view": "normal",
+          "sourceHash": "sha256:3fb4e1dcf74aaf3f09c6aedb8d38a870fb6a9c355677c869d380412623e058b6",
+          "camera": {
+            "x": 2400,
+            "y": 2300,
+            "scale": 0.6
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-normal.png",
+            "sha256": "d3234bea54b815d7a39b8e42d2906f2df207fc71a9b1264ce592a5d1bd7861c5"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/captures.json",
+            "sha256": "0ba19da05e161c58ed0b6a106901896c37c97569c98fe7d6095aafc2e8190e17"
+          }
+        },
+        {
+          "id": "bearing-canopy-r26-stage01-wide",
+          "stage": 1,
+          "view": "wide",
+          "sourceHash": "sha256:3fb4e1dcf74aaf3f09c6aedb8d38a870fb6a9c355677c869d380412623e058b6",
+          "camera": {
+            "x": 3000,
+            "y": 1900,
+            "scale": 0.22
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-wide.png",
+            "sha256": "eca354b9c1a5c3ede7fe14db0ea672a773c22ea2d766b2483ed4a5d358807e6b"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/captures.json",
+            "sha256": "0ba19da05e161c58ed0b6a106901896c37c97569c98fe7d6095aafc2e8190e17"
+          }
+        },
+        {
+          "id": "bearing-canopy-r26-crown-stage01-normal",
+          "stage": 1,
+          "view": "normal",
+          "sourceHash": "sha256:3fb4e1dcf74aaf3f09c6aedb8d38a870fb6a9c355677c869d380412623e058b6",
+          "camera": {
+            "x": 2450,
+            "y": 900,
+            "scale": 0.6
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26-crown/stage01-normal.png",
+            "sha256": "a5570d186ea70214bdf3abe6daf8621c5014d099808849bc432641fce5f9f00a"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26-crown/captures.json",
+            "sha256": "a7285aa67a3a8e73e9a52fc3e89d89d0b8d25d8b034c7c3cea69d9bdd5f95edc"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "수관의 반복 톱니를 줄이고 열린 아래 가지 공간을 만들었다. 전체 숲은 같은 계단식 나무 배치와 거대 둥근 돌 사면이 지배하여 기준 미달이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26-crown/stage01-normal.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "수관마다 다섯 곡면과 제한된 지지 가지를 저작했다. 성숙한 수관의 중간 밀도와 거친 줄기 덩어리가 충분하지 않고 기존 지형 거석 반복도 남았다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26-crown/stage01-normal.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "아래 서쪽 수관에 가지 지지를 추가하고 뿌리의 기존 경사 기준을 보존했다. 정상 화면에서 뿌리와 몸통의 지지 관계는 여전히 도식적이며 접지 합격으로 볼 수 없다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26-crown/stage01-normal.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "반복 잔잎이나 trace 없이 순수 경로로 만들었으나 수관과 긴 줄기 명암은 여전히 단순한 평면 그래픽이다. 회화 원경과 근경의 재질 수준 차이가 크다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26-crown/stage01-normal.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "정상·광역과 수관 정상 배율 화면을 직접 열었다. 수관은 기존보다 열리지만 공통 최종 빌드의 모바일·장소별 전체 심미 검수는 없고 현재 형태도 미달이므로 pass를 기록하지 않는다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26/stage01-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/bearing-canopy-r26-crown/stage01-normal.png",
+            "game/docs/art-references/stage1-balanced-20261019/balanced.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
     }
   ],
   "final": null
