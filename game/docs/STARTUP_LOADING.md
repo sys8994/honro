@@ -140,3 +140,29 @@ Game 필수 common+app JS와 entry는2,823,453→2,806,363B(동일 title/data lo
 한정 확인은 필요한 build/구문 검사와 실제 cold/continue 측정,12장 fetch 실패→기존 전투/profile/저장 동일→재시도 및 중복 launch의 요청1회,21장 취소→늦은 로딩 완료→타이틀 유지 각1건이다.21장 HP/3라운드/성장/장착/완료, trusted click의 audio running도 보존했다. pageerror0, 초기 optional/Workshop/full-library 요청0이다. 빌드 전후 data81개·graphics81개·styles14개 해시가 동일했다. 전체verify·별도검수자·무관 기예·다른 장·Workshop 실제 실행·master/Pages는 하지 않았다. 로컬 생성물은 측정용이며 소스 커밋에 포함하지 않고 부모의 통합 순서에 맡긴다.
 
 근거 JSON: `_local/reports/startup/critical-path-{before,after}.json`, `critical-path-checks.json`. 캡처: `critical-path-after-{cold-ready,cold-entered,continue21-ready,continue21-entered}.png`, `critical-path-retry.png`, `critical-path-cancelled.png`. 같은 디렉터리의 `critical-probe.py`와 `critical-entry-check.py`는 이번 한정 측정의 로컬 재현 스크립트다.
+
+
+## 최초 HUD 초상화 준비 최적화 (2026-10-20)
+
+부모 승인으로 `shared/runtime/portraits.js`만 실행 수정 범위에 추가했다. 기준은 쉼터 통합을 보존하는 master `25071f2a20f0695e9260408394fa5ef3c9e76c43`이다. 앞 조사에서 클릭 뒤 fetch/ensureStage 대기가 아니라 `mount→updateHUD(true)→drawPortraits→sourceFor→alphaBounds`가 주 병목이었다. sourceFor는 작은 HUD에도1200×1500 canvas와 전체 getImageData를 사용했고 headBounds 없는 NPC는 같은 이미지를 두 번 읽었다.
+
+- 대상 canvas의 backing 크기와 CSS 크기×DPR 중 큰 값을 기준으로 source 비율을1/4단계로 정한다. HUD88×108 backing/실측27×30 CSS는600×750 source를 사용한다. 큰 대사400×440 backing/최대240×264 CSS는 기존1200×1500 source를 유지한다. 캐시된 소스가 충분히 크면 재사용하고 큰 표시가 처음 필요할 때만 고해상도로 교체한다. 기존 backing canvas와 framing 식/패딩/alpha threshold24/head metadata는 유지한다.
+- getImageData는 생성당 한 번만 읽는다. NPC의 상부31% head fallback은 같은 pixel buffer를 사용한다. alpha bounds 스캔의 픽셀당 Math.min/max 대신 경계가 변할 때만 값을 대입한다. registry/전투 엔진/공통 미술/쉼터/게임 진행은 수정하지 않는다.
+- 네 동행은 resolver가 같은 companion asset으로 판정하고 팀이0/2이며 보스/소환/종류/외형 override가 없는 경우만 같은 key를 사용한다. NPC·보스·소환수 및 명시 외형 override는 기존 개별 신원 key를 유지하며 summonKind도 분리한다. 기존8개 cache 상한을 유지하고 해상도 교체로 다른 항목을 불필요하게 버리지 않는다. 플레이어/동맹의 기존 출력이 같은 네 동행만 확인했으며 보스는 별도 source 읽기를 하는 것으로 분리를 확인했다.
+
+다섯 인물은 설오·담허·휘겸·소단 및 headBounds 없는 NPC 문탁이다. browser DPR2에서 같은 CSS HUD27×30/대사240×264와 실제 backing88×108/400×440만 비교했다. HUD 머리 경계의 최대 이동은0.071CSSpx이고 대사는 다섯 인물 모두 crop/이미지 픽셀이 동일했다. 투명 모서리와 전체 머리/갓·어깨 프레이밍을 비교 캡처에서 확인했다. HUD backing RGBA 채널의 전후 평균 절대 차이는1.38–2.76/255이며 작은 소스 재표본화에 따른 차이다. HUD 픽셀 읽기는 동행마다1,800,000→450,000, NPC는3,600,000(2회)→450,000(1회)이다. 큰 대사 최초 전환은 다시 큰 소스를 만들며, 이 비용을 없앴다고 주장하지 않는다.
+
+같은 로컬 generated build에서 portrait IIFE만 기준/수정본으로 각각 주입해 비교했고, 각 측정은 새 browser context/cache disabled에서 한 번씩이다. 조건은 Chromium390×844 touch/mobile viewport·DPR1·CPU slowdown4·RTT40ms·download2MiB/s, 같은 synthetic21장 저장이다. actual capture click event부터 첫 전장 render 반환과 두rAF 경계를 재며 method timer만 사용했다. 앞 조사의 CPU profiler 수치와 직접 비교하지 않는다.
+
+| 구간 | 이전 → 이후 |
+|---|---:|
+| click → 첫 전장 render 반환 |1331.9 →814.4ms|
+| click → 첫 render 후 두rAF 경계 |1551.9 →1009.7ms|
+| continue 동기 호출 |910.6 →409.4ms|
+| mount(continue에 포함) |867.8 →355.6ms|
+| 최초 updateHUD(mount에 포함) |787.7 →246.8ms|
+| 최초 전장 render |398.5 →378.4ms|
+
+초기 클릭→첫 렌더 약38.9% 감소는 단일 비교이며 실기/통계적 보장을 뜻하지 않는다. 전장 render 비용은 거의 그대로이며 네 초상화 최초 draw 합은724.4→188.1ms였다. 두 경우 모두21장만 준비되고 HP358/3라운드/성장/장착/완료·audio running·pageerror0을 확인했다. 필요한 local build/구문과 다섯 초상화/한 쌍의 진입만 확인했다. 전체verify·무관 기예/맵·별도검수자·취소/재시도 재실행·master/Pages 발행은 하지 않았다. 생성물은 로컬 확인용이며 소스 브랜치만 push한다.
+
+증거: `_local/reports/portrait-budget/{crop-summary,entry-pair}.json`, `before-crops.json`, `after-crops.json`, `crop-before-after.png`, `{before,after}-entry.png`. `compare.py`, `entry-pair.py`, `before.js`는 같은 디렉터리에 보존한 이번 한정 비교 재현 자료다.

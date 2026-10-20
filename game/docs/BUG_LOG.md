@@ -1,3 +1,9 @@
+## 2026-10-20 — 최초 HUD 초상화 픽셀 준비 비용 축소
+
+- `portraits.js`의 모든 표시 크기 공통1200×1500 소스/전체 alpha 스캔이 최초 HUD에서 네 번 반복됐다. backing·CSS/DPR에 맞는1/4단계 소스 비율을 사용하고 큰 대사는 기존 해상도를 유지한다. NPC의 head fallback도 같은 getImageData 버퍼를 재사용하며 스캔 안의 반복 Math.min/max를 제거했다. 같은 resolver의 일반 동행 외형만 팀/id/name 사이에서 캐시를 공유하고 NPC·보스·소환수·외형 override는 분리한다. registry/엔진/물리/저장/기존 framing과 head metadata는 미수정이다.
+- 네 주인공과 headBounds 없는 문탁의 HUD/대사만 전후 비교했다. DPR2에서 HUD27×30 CSS/backing88×108의 머리 경계 이동≤0.071CSSpx·투명 모서리 유지, 대사240×264/backing400×440는 전후 픽셀 동일. 주인공/동맹 외형 동일·캐시 추가읽기0, 보스는 별도읽기1로 분리됨을 확인했다. HUD 읽기는 주인공180만→45만pixel, NPC360만(2회)→45만(1회)이다. 작은 HUD에서 큰 대사로 처음 전환하면 고해상도 소스를 한 번 다시 만드는 비용은 남는다.
+- 로컬 Chromium390×844 touch/DPR1, CPU4배/RTT40ms/2MiB/s, 새 context/cache disabled에서21장 첫 이어하기를 한 쌍만 관측했다. 실제 click→첫 render1.332→0.814초, 최초HUD788→247ms, 첫 전장render399→378ms. HP/3라운드/성장/장착/완료·audio running·21장만 준비·pageerror0. 필요한 빌드·구문과 해당 비교만 확인했으며 전체verify·다른 장/기예·재시도/취소 반복·master/Pages는 미실행이다. `_local/reports/portrait-budget/` 및 `STARTUP_LOADING.md` 마지막 절에 근거가 있다.
+
 ## 2026-10-20 — 초기 필수 JSON 요청 대기 겹치기
 
 - 기준 `1fb64610`: modulepreload는 코드만 가져오므로 필수 JSON이 각 순차 import 뒤에 요청됐다. cold에서 split 메타 fetch373ms+parse/전달40ms, 동행 자료 fetch335ms+parse/전달10ms였고 hydrate는 각각0/0.1ms였다. 현재 장 author 준비는 약17ms로 주 병목이 아니었다.
