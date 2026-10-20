@@ -1,6 +1,6 @@
 # Campaign distance paintings (candidate)
 
-All 30 stages retain the existing vector terrain. `manifest.json` selects only distant paintings; it does not author terrain, placements, or physics. Interior images contain no outdoor sky. Stages12/13/20 use their existing ceiling geometry to delimit distant cave backing.
+All 30 stages retain the existing vector terrain. `manifest.json` selects only distant paintings; it does not author terrain, placements, or physics. Interior images contain no outdoor sky. Stages12/13/20 use their existing ceiling geometry and camera depth to blend distant cave backing without a vertical image seam.
 
 Reused paintings: location-far/source/{cave-settlement,cave-waterwork,cave-entrance,town-river,town-wall}.png, encoded at2048px WebP quality85. Other paths reuse existing production WebP assets.
 

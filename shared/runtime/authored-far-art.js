@@ -36,18 +36,18 @@ function layers(scene,w,h,b){
 const previous=S.background,landmark=S.landmark,cardAssets=new WeakMap();
 // Remove only opaque backing washes from non-colliding distance cards. Keep
 // their architecture, rock contours, lamps and every physical/world landmark.
-const backingCounts={'stage16:temple-rear-cavern-courts':1,'stage18:bell-rear-cavern':1,'a3-maintenance25:dark-shell':1,'stage27-depot-r4:misconnected-rear':2};
+const backingCounts={'stage16:temple-rear-cavern-courts':1,'stage17:worksite-rear-cavern':1,'stage18:bell-rear-cavern':2,'a3-maintenance25:dark-shell':5,'stage27-depot-r4:misconnected-rear':2};
 S.landmark=function(c,l){
  if(this.battle?.honroStage===18&&request('bellRear')?.canvas&&['sb-art-rear-cavern','sb-art-rear-rock-roots'].includes(l.id))return;
  const count=backingCounts[l.asset?.id],n=this.battle?.honroStage;
- if(count&&[16,19,25,27].includes(n)&&!l.asset.collision?.length&&request(keyFor(n))?.canvas){
+ if(count&&[16,17,19,25,27].includes(n)&&!l.asset.collision?.length&&request(keyFor(n))?.canvas){
   let asset=cardAssets.get(l.asset);if(!asset){asset={...l.asset,vector:{...l.asset.vector,root:{...l.asset.vector.root,children:l.asset.vector.root.children.slice(count)}}};cardAssets.set(l.asset,asset);}
   return landmark.call(this,c,{...l,asset});
  }
  return landmark.call(this,c,l);
 };
 const worldKey=S._worldCacheKey;
-S._worldCacheKey=function(b,w){return worldKey.call(this,b,w)+([16,18,19,25,27].includes(b.honroStage)?':rear-image:'+!!request(keyFor(b.honroStage))?.canvas:'');};
+S._worldCacheKey=function(b,w){return worldKey.call(this,b,w)+([16,17,18,19,25,27].includes(b.honroStage)?':rear-image:'+!!request(keyFor(b.honroStage))?.canvas:'');};
 S.background=function(c,w,h,b){
  if(b?.honroCustom)return previous.call(this,c,w,h,b);
  const ls=layers(this,w,h,b);if(!ls.length||ls.some(l=>!l.canvas))return previous.call(this,c,w,h,b);
