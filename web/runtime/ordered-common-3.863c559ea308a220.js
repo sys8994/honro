@@ -24,6 +24,9 @@ const PALETTES={
  city:{earth:{base:'#78715d',light:'#a59a80',shade:'#4f554c'},rock:{base:'#858b7e',light:'#b0b3a0',shade:'#545e58',accent:'#83866c'},wood:{base:'#685844',light:'#a08b69',shade:'#3b4035',ridge:'#93805e'},grass:{base:'#6a7254',light:'#949b72'}},
  ash:{earth:{base:'#615a4c',light:'#8c7e66',shade:'#383e38'},rock:{base:'#73796f',light:'#989f8f',shade:'#46544d',accent:'#71745b'},wood:{base:'#4d4940',light:'#7c735d',shade:'#303933',ridge:'#746a55'},grass:{base:'#59634a',light:'#7f8760'}},
  ink:{earth:{base:'#525b58',light:'#74877b',shade:'#2c3e44'},rock:{base:'#596e73',light:'#879e99',shade:'#2d474f',accent:'#697a6e'},wood:{base:'#505548',light:'#80836c',shade:'#2d3b38',ridge:'#777b62'},grass:{base:'#415c4b',light:'#718566'}},
+ // Buried inclusions stay opaque; reduced contrast comes from material colour.
+ 'wet-depth':{earth:{base:'#5c6651',light:'#69715a',shade:'#4d5c4d'},rock:{base:'#66766e',light:'#859184',shade:'#465c55',accent:'#68765c',contact:'#354b47'}},
+ 'cave-depth':{rock:{base:'#607174',light:'#798784',shade:'#40565b',accent:'#61716a',contact:'#30484e'}},
  forest:{},
  cool:{rock:{base:'#728379',light:'#9aa89a',shade:'#465e56'},grass:{base:'#496346',light:'#7b8a60'},wood:{base:'#6c6652',light:'#9a9277'}},
  dry:{earth:{base:'#827054',light:'#b19b73'},grass:{base:'#687047',light:'#9a9b65'},rock:{accent:'#85855b'}},
@@ -360,9 +363,142 @@ asset('hanok.door.closed','닫힌 피란문 판문','door','wood',[-106,-224,212
  ['M-105 4-89-2 91-2 106 4 103 10-104 10Z','rock:light'],
 ],{clipToShape:null,heightH:[1,2.5],scaleRange:[.4,1.3],use:'방어 대상의 피격 크기에 맞추는 닫힌 두 짝 판문 · 체력/이벤트는 기존 유닛'});
 
+// Large landform members: each carries a few connected planes, not tiled texture.
+asset('earth.slope-mass','지표에서 내려오는 넓은 흙 사면','earth','earth',[-1060,-120,2250,940],[
+ ['M-1040-94C-723-65-510-122-279-82C-71-51 113 61 246 231C366 371 562 399 744 482C954 566 1108 641 1166 783C1011 730 843 706 697 661C467 622 346 530 147 480C-60 410-113 239-316 180C-530 100-753 111-1040 64Z','shade',{opacity:.21}],
+ ['M-825-91C-583-64-413-103-229-61C-35-9 54 102 166 237C256 346 383 418 545 456C338 426 228 379 115 304C-30 207-108 135-268 103C-463 64-596 92-801 60Z','light',{opacity:.22}],
+ ['M-261 116C-122 155-55 248 58 315C188 401 356 418 470 493C315 469 155 440 28 372C-104 302-147 209-301 167Z','base',{opacity:.28}],
+],{heightH:[3,8],scaleRange:[.65,1.1],rotationRange:[-16,16],use:'상단을 지표에 물려 능선에서 이어지는 비대칭 흙 사면'});
+asset('earth.erosion-face','지표의 얕은 침식 골','earth','earth',[-390,-100,1110,690],[
+ ['M-338-91C-153-65-22-102 94-56C171 11 183 120 274 190C390 276 568 316 695 462C572 422 468 423 368 389C240 359 133 294 81 213C21 108-27 62-155 49L-374 31Z','shade',{opacity:.19}],
+ ['M-215-74C-91-60-4-81 65-38C123 32 127 117 215 189C302 258 414 294 495 346C357 316 243 280 171 214C85 136 78 69-7 34C-77 9-150 22-237 1Z','light',{opacity:.17}],
+ ['M369 336C490 365 574 386 695 462C605 455 539 486 457 474C369 461 292 412 245 380C285 382 332 359 369 336Z','base',{opacity:.22}],
+],{heightH:[2,6],scaleRange:[.55,1],rotationRange:[-24,24],use:'넓은 주면 옆으로 굽어 내려가는 작은 침식·퇴적 흐름'});
+asset('wet.silt-bank','지표와 이어진 퇴적 사면','earth','earth',[-1220,-140,2480,930],[
+ ['M-1081-109C-805-57-595-100-389-73C-190-42-90 53 82 143C226 216 433 198 589 280C759 374 826 490 999 568C1087 616 1187 668 1242 765C1041 696 861 716 688 653C510 589 450 480 306 433C154 374 14 384-126 311C-280 235-348 154-523 119C-696 88-891 135-1087 76C-1186 20-1176-84-1081-109Z','shade',{opacity:.22}],
+ ['M-980-84C-738-41-576-78-394-45C-209-9-110 86 54 169C202 239 353 236 497 274C334 259 198 289 64 250C-104 208-209 122-363 95C-556 64-719 106-973 81C-1055 23-1054-76-980-84Z','light',{opacity:.18}],
+ ['M166 322C307 353 384 344 496 419C605 495 650 559 759 598C654 578 547 564 456 507C373 452 283 431 188 405C91 380 37 345-20 304C42 321 106 300 166 322Z','base',{opacity:.22}],
+],{heightH:[3,8],scaleRange:[.65,1.1],rotationRange:[-16,16],use:'실제 지표에 붙는 하나의 주 퇴적 흐름 · 고립된 깊은 둔덕 금지'});
+asset('rock.stratified-mass','한쪽으로 누운 기반 암반 어깨','rock','rock',[-740,-110,1520,775],[
+ ['M-628-72C-456-101-352-61-194-79C-42-96 63-31 158 46C274 109 384 119 484 210C584 289 674 406 754 590C610 548 497 592 377 557C249 524 215 431 96 407C-35 386-120 320-225 275C-388 241-513 153-631 102C-702 67-721-16-628-72Z','body'],
+ ['M-616-64C-455-86-349-44-193-60C-42-76 49-19 145 64C238 127 324 132 396 186C245 169 178 210 66 170C-61 125-110 66-248 57C-399 53-488 92-616 77C-701 40-693-40-616-64Z','light',{opacity:.38}],
+ ['M66 170C178 210 245 169 396 186C502 246 551 330 618 417C478 382 423 411 325 368C221 319 187 251 66 228C-70 212-112 138-248 122L-248 57C-110 66-61 125 66 170Z','base',{opacity:.74}],
+ ['M396 186C502 246 551 330 618 417L754 590C610 548 497 592 377 557C249 524 215 431 96 407C219 397 288 438 369 437C472 453 481 413 537 412C488 332 417 285 396 186Z','shade',{opacity:.39}],
+ ['M-320 102C-223 119-170 151-109 199C-53 243 10 253 72 267C-7 270-68 256-126 218C-196 174-237 152-320 143Z','shade',{opacity:.25}],
+],{heightH:[3,7],scaleRange:[.5,1.05],rotationRange:[-24,24],use:'하나의 낮고 넓은 어깨와 3개 큰 면 · 세로 칼자국 반복 없음'});
+asset('rock.cavern-buttress','동굴의 굽은 암반 버팀면','rock','rock',[-610,-1510,1220,1640],[
+ ['M-589 24-530-207Q-552-408-472-575L-442-806-313-989Q-259-1172-146-1302L-17-1496 107-1510 205-1399 254-1193Q379-1101 377-924L465-745 451-513 548-327 608-88 568 66 413 84 281 45Q117 105-125 119L-353 68-553 70Z','body'],
+ ['M-553 21-500-213Q-519-393-443-567L-412-792-290-976Q-238-1155-121-1289L-7-1468 69-1482 21-1275-91-1124-133-924-254-751-263-557-365-393-382-170-453 26Z','light',{opacity:.32}],
+ ['M69-1482 107-1510 205-1399 254-1193Q379-1101 377-924L465-745 451-513 548-327 608-88 568 66 413 84 281 45 350-216 296-401 329-593 231-771 261-944 141-1125 135-1293Z','shade',{opacity:.42}],
+ ['M-254-751-133-924-91-1124 21-1275-25-1088-85-939-93-793-190-640-201-494-276-369-259-542Z','shade',{opacity:.3}],
+ ['M-365-393-263-557-190-640-201-494-276-369-251-203-301-79-353 68-420 48-383-113Z','base',{opacity:.68}],
+ ['M83-855 126-717 111-599 158-478 142-382 113-471 88-576 99-711Z','shade',{opacity:.45}],
+],{heightH:[10,23],scaleRange:[.55,1.4],rotationRange:[-180,180],use:'단단한 암반 어깨와 불규칙한 파단면 · 벽/천장 지형 안쪽에 묻어 사용'});
+asset('earth.root-scarp','접지한 뿌리 아래 흙 사면','root','earth',[-430,-65,990,690],[
+ ['M-417 64C-319-2-211 40-111-31L-5-61 89-45C188 35 319 20 387 130C426 253 512 348 552 508L506 598C347 636 218 566 72 613C-104 594-209 501-345 466C-384 333-438 211-417 64Z','base',{opacity:.34}],
+ ['M-5-42C18 21-24 67 8 133C40 213 146 204 183 275C209 354 301 389 313 475L302 518C271 429 183 407 161 325C149 246 43 240-5 173C-48 112-20 58-31 1Z','wood:shade',{opacity:.66}],
+ ['M-28-22C-62 34-109 65-165 107C-227 170-280 166-320 238L-353 313C-355 235-305 200-274 165C-228 123-201 116-166 83L-93 37-55-17Z','wood:shade',{opacity:.61}],
+ ['M12 122C88 139 126 113 184 145C238 191 305 176 351 225L421 265C353 255 318 218 264 221C192 203 182 162 117 168L39 159Z','wood:shade',{opacity:.56}],
+ ['M-18-38C-6 16-36 74-9 132C20 203 118 221 154 267C107 229 24 231-12 175C-47 115-35 54-38-5Z','wood:accent',{opacity:.53}],
+ ['M-53 2C-109 59-145 62-180 108C-212 144-253 156-278 187C-263 151-222 133-195 105C-151 54-112 50-71-7Z','wood:light',{opacity:.3}],
+ ['M192 304C223 360 281 386 293 442L299 485C281 426 225 405 208 357Z','wood:accent',{opacity:.42}],
+],{clipToShape:null,heightH:[3,9],scaleRange:[.5,1.25],rotationRange:[-15,15],use:'실제 수목 밑동에만 붙이는 성긴 굵은 뿌리와 접촉 그늘'});
+asset('rock.foundation-ledge','읍성 아래 묻힌 석재 어깨','rock','rock',[-860,-610,1720,760],[
+ ['M-853-271-761-428-552-473-426-564-239-568-92-607 101-592 217-529 393-517 541-439 726-416 855-282 860-104 746 9 570 33 452 99 261 75 119 142-72 107-215 136-399 63-570 66-718-21-851-52Z','body'],
+ ['M-833-269-748-409-541-453-413-544-233-548-86-584 98-571 210-506 391-495 522-425 686-406 571-357 393-360 270-405 90-397-52-437-227-399-392-403-505-330-681-309Z','light',{opacity:.48}],
+ ['M-681-309-505-330-392-403-227-399C-279-315-267-234-322-173L-347-64-424 42-570 66-718-21-838-44C-757-139-769-225-681-309Z','base',{opacity:.65}],
+ ['M270-405 393-360 571-357 686-406 726-416 855-282 860-104 746 9 570 33 452 99 261 75 119 142C218 11 171-125 237-216Z','shade',{opacity:.56}],
+ ['M-188-490-171-397-198-304-192-209-213-124C-223-211-224-270-208-342L-214-407Z M382-316 402-241 385-170 398-82 373-17 379-119 365-177 382-239Z','shade',{opacity:.36}],
+],{heightH:[5,12],scaleRange:[.65,1.45],rotationRange:[-12,12],use:'줄눈 타일 대신 큰 석재 두 면과 흙에 묻힌 석축 기초 덩어리'});
+
+asset('earth.buried-exposure','흙에 부분 매몰된 암반','earth','earth',[-315,-200,650,280],[
+ ['M-309 13-274-83-185-123-124-184-35-192 54-160 139-169 226-105 304-58 331 31 216 57 94 40-24 73-150 43-251 54Z','body'],
+ ['M-283-23-253-81-174-109-116-166-34-176 53-143 138-151 215-91 268-60 187-53 108-77 27-54-48-78-126-32-204-30Z','rock:body'],
+ ['M-253-81-174-109-116-166-34-176 53-143 138-151 181-115 92-111 24-127-48-106-102-113-155-66-225-51Z','rock:light',{opacity:.55}],
+ ['M181-115 215-91 268-60 280-22 191-4 110-29 108-77Z','rock:shade',{opacity:.6}],
+ ['M-305 8-239-10-178 1-108-28-42-16 36-34 112-8 196-14 260-2 324 30 216 57 94 40-24 73-150 43-251 54Z','body'],
+ ['M-239-10-178 1-108-28-42-16 36-34 112-8 196-14 260-2 277 9 196 1 111 8 37-17-41 0-108-12-179 15-239 4Z','light',{opacity:.3}],
+],{heightH:[1.5,3.5],scaleRange:[.65,1.15],rotationRange:[-16,16],use:'사면 중간 암반 노출 · 하단을 같은 흙 면으로 가려 접지'});
+
+asset('rock.buried-lobe','어깨 옆에 잠긴 낮은 암반','rock','rock',[-220,-35,520,265],[
+ ['M-214 1Q-155-36-81-16C-15-41 43-13 83 21Q159 13 202 78L286 141 271 209C169 191 114 229 37 203C-48 218-88 161-156 145L-216 88Z','body'],
+ ['M-207 2Q-153-24-83-4C-12-27 38 0 78 35Q143 26 179 72C104 72 65 107 15 78C-53 49-112 91-194 60Z','light',{opacity:.46}],
+ ['M179 72 202 78 286 141 271 209C169 191 114 229 37 203L77 152Q166 156 179 72Z','shade',{opacity:.45}],
+ ['M-215 99Q-146 112-89 144C-16 159 27 159 82 171Q183 152 282 184L271 209C169 191 114 229 37 203C-48 218-88 161-156 145Z','base',{opacity:.8}],
+],{heightH:[1,3],scaleRange:[.45,1.1],rotationRange:[-30,30],use:'표면 바로 아래의 중간 크기 구조 · 큰 어깨 옆에 부분 매몰'});
+
+// Local geological members: opaque bodies, few broad planes, human-scale inclusions.
+asset('earth.wet-cutbank','잔교 아래 젖은 퇴적층','earth','earth',[-660,-80,1390,500],[
+ ['M-646-66C-439-83-286-28-106-46C61-68 187-2 293 51C424 83 542 148 663 216L710 333C562 307 450 366 307 341C142 318 54 394-107 373C-276 361-375 282-501 253C-585 218-659 117-646-66Z','body'],
+ ['M-638-47C-441-68-282-9-105-28C59-46 186 16 291 70C400 96 492 138 562 184C389 141 286 161 148 129C5 111-97 154-231 114C-382 72-497 116-636 78Z','light',{opacity:.43}],
+ ['M-636 78C-497 116-382 72-231 114C-97 154 5 111 148 129C286 161 389 141 562 184L663 216 710 333C562 307 450 366 307 341C446 294 508 302 531 265C421 231 334 243 216 214C88 195 6 227-125 203C-313 169-457 203-579 151Z','shade',{opacity:.48}],
+ ['M-394 199C-239 202-159 258-35 259C82 260 156 229 246 252C151 269 86 306-33 301C-179 292-264 238-400 241Z','base'],
+],{heightH:[3,5],scaleRange:[.65,1.1],rotationRange:[-15,15],use:'실제 수면/잔교 아래 지표와 이어지는 두꺼운 퇴적층'});
+asset('earth.alluvial-toe','비탈 아래 퇴적 흙 둔덕','earth','earth',[-450,-65,970,405],[
+ ['M-435-52C-287-72-176-20-47-29C69-35 170 27 218 101C291 160 404 181 503 262C398 245 349 303 252 296C117 286 24 340-96 303C-221 274-297 195-395 163C-436 106-462 38-435-52Z','body'],
+ ['M-421-38C-282-56-176-3-44-11C70-15 145 33 184 96C82 67 26 103-65 70C-187 30-276 72-423 45Z','light',{opacity:.46}],
+ ['M184 96C291 160 404 181 503 262C398 245 349 303 252 296C117 286 24 340-96 303C-10 262 65 254 110 207C171 179 164 142 184 96Z','shade',{opacity:.44}],
+],{heightH:[2,4],scaleRange:[.65,1.1],rotationRange:[-18,18],use:'물가에서 높은 비탈로 옮겨 가는 비대칭 퇴적 발치'});
+asset('earth.drain-scarp','배수골 옆 침식 사면','earth','earth',[-350,-85,900,710],[
+ ['M-335-67C-209-96-104-32-12-51C75-38 95 73 148 150C205 238 338 278 383 382C414 478 495 512 533 603C406 569 347 601 261 548C167 503 154 420 68 374C-38 331-104 244-183 204C-272 172-343 53-335-67Z','body'],
+ ['M-320-48C-215-72-108-11-14-31C42-18 65 71 107 137C160 228 273 267 303 331C190 286 129 257 70 189C-2 89-99 78-171 57C-236 36-271 58-323 31Z','light',{opacity:.43}],
+ ['M-14-31C42-18 65 71 107 137C160 228 273 267 303 331C233 301 177 276 130 239C63 196 37 130 2 98C-27 57-53 50-85 39Z','shade'],
+ ['M130 239C177 276 233 301 303 331C333 420 408 470 432 528C356 493 313 428 259 399C203 375 164 321 130 288Z','shade',{opacity:.6}],
+],{heightH:[4,7],scaleRange:[.65,1],rotationRange:[-18,18],use:'지표의 배수 시작점에서 내려오는 굽은 홈과 한쪽 흙 턱'});
+asset('rock.compact-shoulder','디딤면 아래 낮은 암반 어깨','rock','rock',[-310,-85,670,460],[
+ ['M-297-63Q-214-94-129-58C-51-76 12-23 74 2Q150-5 205 62C268 117 280 195 342 272L321 344Q225 318 159 351C66 371 11 309-67 319C-153 306-171 235-239 202Q-306 137-297-63Z','body'],
+ ['M-283-50Q-212-75-130-41C-50-59 10-6 69 20Q145 13 193 76C107 69 61 110 1 79C-75 45-123 68-185 46L-285 57Z','light',{opacity:.65}],
+ ['M1 79C61 110 107 69 193 76C258 125 267 189 301 232C217 214 167 245 114 205C64 173 49 132 1 114C-66 105-105 79-185 79L-185 46C-123 68-75 45 1 79Z','base'],
+ ['M193 76C258 125 267 189 301 232L342 272 321 344Q225 318 159 351C66 371 11 309-67 319C39 284 93 307 150 278C214 259 211 216 246 207C232 156 204 121 193 76Z','shade'],
+ ['M-223 135Q-154 142-120 183C-76 219-36 224 13 235Q-58 247-113 218C-164 180-195 181-223 173Z','shade',{opacity:.65}],
+],{heightH:[2,4],scaleRange:[.65,1],rotationRange:[-18,18],use:'큰 세로 균열 대신 디딤면에 붙는 불투명 기반 어깨'});
+asset('rock.bedded-shelf','작은 매몰석을 받치는 낮은 암반층','rock','rock',[-400,-65,870,360],[
+ ['M-385-46C-254-72-158-18-42-35C65-56 173 6 236 40C302 59 386 134 455 213C347 185 265 233 173 217C61 235-2 289-111 265C-220 243-277 177-365 151Q-405 60-385-46Z','body'],
+ ['M-373-32C-254-53-155-2-42-18C63-37 168 23 229 58C116 51 45 90-34 58C-137 28-216 68-372 67Z','light',{opacity:.55}],
+ ['M229 58C302 59 386 134 455 213C347 185 265 233 173 217C61 235-2 289-111 265C-30 213 21 215 77 174C124 125 171 148 229 58Z','shade',{opacity:.7}],
+],{heightH:[1,3],scaleRange:[.65,1],rotationRange:[-16,16],use:'지표 아래에 붙어 중간 매몰석과 맞물리는 짧은 기반층'});
+asset('stone.bank-slab','비스듬히 묻힌 넓은 돌','stone','rock',[-165,-105,350,170],[
+ ['M-159 11-139-52-70-74-26-98 41-87 86-53 151-39 180 16 156 57 81 49 14 65-54 47-119 54Z','body'],
+ ['M-151 1-129-46-65-62-23-84 38-74 82-41 125-32 59-17 1-30-58-8-111-13Z','light'],
+ ['M125-32 151-39 180 16 156 57 81 49 14 65 43 22 96 15Z','shade'],
+],{heightH:[.7,1.8],scaleRange:[.65,1.05],rotationRange:[-28,28],use:'전체 높이 약 1H · 침식면/암반 어깨에 하단이 잠기는 돌'});
+asset('stone.buried-block','모난 매몰석','stone','rock',[-100,-150,225,215],[
+ ['M-92 12-97-51-56-92-42-142 18-144 59-113 75-64 119-22 114 42 62 53 20 42-26 65-68 43Z','body'],
+ ['M-87-6-81-48-46-82-31-130 17-129 50-104 47-66 0-65-30-30-60-30Z','light'],
+ ['M47-66 50-104 59-113 75-64 119-22 114 42 62 53 20 42 42 13 28-18Z','shade'],
+ ['M0-65 11-59-2-32 3-7-7 8-7-20-15-34Z','shade'],
+],{heightH:[1,2],scaleRange:[.65,1],rotationRange:[-25,25],use:'고립된 장식이 아닌 1~2H 크기의 암반 포획체'});
+asset('stone.silt-nodule','젖은 흙에 잠긴 납작한 돌','stone','rock',[-95,-60,205,120],[
+ ['M-89 8Q-92-23-56-35L-23-54 20-45Q63-54 82-20L107 7 92 40 45 36 8 55-37 41-72 44Z','body'],
+ ['M-84 0Q-83-22-51-26L-19-42 21-33Q53-42 71-16L24-8-7-15-39 6-67 3Z','light'],
+ ['M71-16 82-20 107 7 92 40 45 36 8 55 25 14Z','shade'],
+],{heightH:[.5,1.2],scaleRange:[.65,1],rotationRange:[-20,20],use:'낮은 퇴적 돌 · 사람 크기보다 작게 저작한 비대칭 덩어리'});
+asset('earth.wet-bank-cover','퇴적층 앞면의 매몰 가림','earth','earth',[-660,-80,1390,500],[
+ ['M-578 151C-440 182-330 164-224 204C-114 243-55 218 37 244C128 249 205 201 304 188C411 188 479 216 531 265C508 302 446 294 307 341C142 318 54 394-107 373C-276 361-375 282-501 253Z','body'],
+ ['M304 188C411 188 479 216 531 265C508 302 446 294 307 341C395 300 405 249 460 244C405 218 350 232 304 217Z','shade',{opacity:.5}],
+],{scaleRange:[.65,1.1],rotationRange:[-15,15],use:'퇴적층과 같은 좌표/gradient로 돌 하단을 덮는 앞면'});
+asset('earth.toe-cover','퇴적 둔덕 앞면의 매몰 가림','earth','earth',[-450,-65,970,405],[
+ ['M-395 163C-305 169-244 200-167 173C-81 160-12 207 68 192C149 176 202 185 260 202C345 231 405 228 503 262C398 245 349 303 252 296C117 286 24 340-96 303C-221 274-297 195-395 163Z','body'],
+],{scaleRange:[.65,1.1],rotationRange:[-18,18],use:'흙 둔덕 앞면이 매몰석의 바닥을 부분 가림'});
+asset('earth.runoff-cover','침식 사면의 앞쪽 흙 면','earth','earth',[-350,-85,900,710],[
+ ['M-183 204C-99 234-46 257 31 281C108 288 154 266 207 309C265 358 291 405 365 414C425 425 451 471 481 507L533 603C406 569 347 601 261 548C167 503 154 420 68 374C-38 331-104 244-183 204Z','body'],
+ ['M207 309C265 358 291 405 365 414C425 425 451 471 481 507C398 472 333 475 278 421C252 377 221 361 207 344Z','shade',{opacity:.6}],
+],{scaleRange:[.65,1],rotationRange:[-18,18],use:'배수골 주변 돌의 하단을 흙 사면으로 자연스럽게 묻음'});
+asset('rock.shoulder-cover','기반 어깨의 맞물린 앞면','rock','rock',[-310,-85,670,460],[
+ ['M-239 202Q-184 180-143 216C-77 240-35 264 27 251C100 246 143 207 205 216C270 210 291 253 342 272L321 344Q225 318 159 351C66 371 11 309-67 319C-153 306-171 235-239 202Z','body'],
+ ['M205 216C270 210 291 253 342 272L321 344Q225 318 159 351C102 361 47 327 6 322C99 300 144 317 191 286C219 268 224 245 251 241Z','shade'],
+],{scaleRange:[.65,1],rotationRange:[-18,18],use:'돌 하단을 가리는 실제 기반 어깨의 앞면 · 별도 선반 없음'});
+asset('rock.shelf-cover','매몰층의 맞물린 앞면','rock','rock',[-400,-65,870,360],[
+ ['M-365 151C-259 153-203 185-119 171C-21 156 18 193 91 179C158 153 207 154 259 166C332 180 389 182 455 213C347 185 265 233 173 217C61 235-2 289-111 265C-220 243-277 177-365 151Z','body'],
+ ['M259 166C332 180 389 182 455 213C347 185 265 233 173 217C214 193 232 185 259 166Z','shade',{opacity:.7}],
+],{scaleRange:[.65,1],rotationRange:[-16,16],use:'낮은 기반층과 같은 gradient의 전면 · 돌 밑부분만 부분 가림'});
+asset('rock.contact-cleft','겹친 암석 사이의 접촉 틈','rock','rock',[-150,-30,320,115],[
+ ['M-143 8Q-72-31-11-11L58-19 153 48 119 76 44 55-20 82-76 45Z','shade'],
+],{heightH:[.3,.8],scaleRange:[.65,1],rotationRange:[-25,25],use:'돌 몸체 뒤에서 대부분 가려지는 국소 접촉 틈'});
+
 const ASSETS=assets;
 const FAMILIES={rock:'암반',stone:'작은 돌',grass:'풀',shrub:'덤불',trunk:'소나무 줄기',branch:'가지',crown:'수관',root:'뿌리',wall:'벽',door:'문',pier:'잔교 부재',column:'한옥 기둥',beam:'보',eave:'처마',masonry:'석축',earth:'흙 사면'};
-const REGISTRY_VERSION='shared-vector-kit-3';
+const REGISTRY_VERSION='shared-vector-kit-3-interior-5';
 
 // shared/assets/environment/vector-kit/compositions.mjs
 /** Reusable assemblies contain references and socket attachments only. No paths. */
@@ -654,6 +790,29 @@ function compileArchitecture(specs,b,kit,core){
 
 
 
+// Existing paintings only. Source candidates stay untouched; the build encodes
+// right-sized WebP bytes and the retained SVG requests only the displayed image.
+const REST_BACKDROPS=Object.freeze({
+ 'mountain-dusk':{file:'location-far/source/mountain-dusk.png',rect:[-850,-160,3300,1100],veil:'#35434b',opacity:.24},
+ 'mountain-wet-valley':{file:'location-far/source/mountain-wet-valley.png',rect:[-850,-160,3300,1100],veil:'#35434b',opacity:.24},
+ 'mountain-still-night':{file:'location-far/source/mountain-still-night.png',rect:[-850,-160,3300,1100],veil:'#303e43',opacity:.22},
+ 'cave-entrance':{file:'location-far/source/cave-entrance.png',rect:[-850,-160,3300,1100],veil:'#2d3c40',opacity:.24},
+ 'cave-settlement':{file:'location-far/source/cave-settlement.png',rect:[-850,-160,3300,1100],veil:'#2e3f42',opacity:.24},
+ 'cave-waterwork':{file:'location-far/source/cave-waterwork.png',rect:[-850,-160,3300,1100],veil:'#2d3d40',opacity:.24},
+ 'cave-bell-chamber':{file:'location-far/source/cave-bell-chamber.png',rect:[-850,-160,3300,1100],veil:'#2e3e42',opacity:.24},
+ 'town-wall':{file:'location-far/source/town-wall.png',rect:[-1210,-140,3300,1100],veil:'#354249',opacity:.25},
+ 'town-river':{file:'location-far/source/town-river.png',rect:[-850,-160,3300,1100],veil:'#34434a',opacity:.24},
+ 'underground-channel':{file:'location-far/source/underground-channel.png',rect:[-850,-160,3300,1100],veil:'#2f4043',opacity:.24},
+});
+const REST_BACKDROP_STAGES=[
+ 'mountain-dusk','mountain-dusk','mountain-wet-valley','mountain-still-night','mountain-wet-valley',
+ 'mountain-wet-valley','mountain-dusk','mountain-still-night','mountain-still-night','mountain-still-night',
+ 'mountain-dusk','cave-entrance','cave-entrance','cave-settlement','cave-waterwork',
+ 'cave-settlement','cave-waterwork','cave-bell-chamber','cave-bell-chamber','cave-entrance',
+ 'town-wall','town-wall','town-river','town-wall','underground-channel',
+ 'town-river','cave-waterwork','town-wall','town-wall','town-river',
+];
+
 const REST_PRESETS={
  inn:{palette:'forest',building:'inn',pines:[[-10,708,.8]],rocks:[[1455,732,.65]]},
  ridge:{palette:'cool',pines:[[90,705,.7]],rocks:[[270,711,1.15],[1430,734,.7]]},
@@ -690,7 +849,7 @@ const REST_STYLES=Object.freeze(Object.fromEntries([
  'inn','ridge','ferry','gate','waterfall','bridge','village','warehouse','court','guardian',
  'dawnGate','quarry','stoneSteps','caveVillage','caveBridge','caveTemple','workshop','bellApproach','bellApproach','caveExit',
  'cityFerry','archive','freight','mansion','canal','graveyard','depot','courtyard','sluice','riverExit',
-].map((name,i)=>[i+1,Object.freeze({name,...REST_PRESETS[name]})])));
+].map((name,i)=>[i+1,Object.freeze({name,...REST_PRESETS[name],backdrop:REST_BACKDROP_STAGES[i],buildingX:i===20?340:0})])));
 
 function compileRestScene(stage){
  const style=REST_STYLES[stage];if(!style)return null;
@@ -709,7 +868,7 @@ function compileRestScene(stage){
  function plane(id,points){const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);terrain.push({id,x:Math.min(...xs),y:Math.min(...ys),points:points.map(([x,y])=>({x,y})),honroWalkEdges:Array.from({length:points.length/2-1},(_,i)=>i)});}
  function support(id,left,right,y){plane(id,[[left,y],[right,y],[right,y+20],[left,y+20]]);}
  if(style.building){
-  const wide=style.building==='warehouse',left=wide?-120:-40,right=wide?490:450,foot=707;
+  const wide=style.building==='warehouse',left=(wide?-120:-40)+(style.buildingX||0),right=(wide?490:450)+(style.buildingX||0),foot=707;
   const peak=style.building==='temple'?378:420,eave=style.building==='gate'?464:480;
   support('rest-house-floor',left,right,foot);
   plane('rest-house-roof',[[left-32,eave],[left+95,eave-17],[(left+right)/2,peak],[right-95,eave-17],[right+32,eave],[right+32,eave+14],[right-95,eave-3],[(left+right)/2,peak+14],[left+95,eave-3],[left-32,eave+14]]);
@@ -729,7 +888,7 @@ function compileRestScene(stage){
  return{style,ground,near,architecture};
 }
 
-G.HonroEnvironmentVectorKit={ASSETS,MATERIALS,PALETTES,HUMAN_H,COMPOSITIONS,STAGE_STYLES,REGISTRY_VERSION,REST_STYLES,compileRestScene,compileArchitecture,compileScene,drawCanvas,paintFor,svgScene};
+G.HonroEnvironmentVectorKit={ASSETS,MATERIALS,PALETTES,HUMAN_H,COMPOSITIONS,STAGE_STYLES,REGISTRY_VERSION,REST_BACKDROPS,REST_STYLES,compileRestScene,compileArchitecture,compileScene,drawCanvas,paintFor,svgScene};
 })(globalThis);
 })();
 await yieldIfNeeded();
