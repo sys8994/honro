@@ -162,7 +162,7 @@ function authorGeometry(st,settled){
 // Deliberately authored locations, never an evenly spaced fill of each corridor.
 // tuple: local id, class, support, x, flying lift, elite, squad, original budget.
 export const BELL_ROSTER=[
- ['a-front','picks','sb-entry-rise',1810,0,false,'entry-front',true],['a-side','picks','sb-entry-rise',2010,0,false,'entry-front',false],['a-lamp','stoneLantern','sb-entry-rise',2170,0,true,'entry-rear',true],['a-bat-low','bat','sb-entry-rise',1640,-230,false,'entry-roof',true],['a-bat-high','bat','sb-entry-rise',1940,-650,false,'entry-roof',true],
+ ['a-front','picks','sb-entry-rise',1810,0,false,'entry-front',true],['a-side','picks','sb-entry-rise',2010,0,false,'entry-front',false],['a-lamp','stoneLantern','sb-entry-rise',2170,0,true,'entry-rear',true],['a-bat-low','bat','sb-entry-rise',1640,-200,false,'entry-roof',true],['a-bat-high','bat','sb-entry-rise',1940,-650,false,'entry-roof',true],
  ['b-left','stoneLantern','sb-suppression-court',2760,0,false,'court-west',true],['b-center','picks','sb-suppression-court',2945,0,false,'court-west',true],['b-screen','picks','sb-suppression-court',3520,0,false,'court-east',false],['b-east','stoneLantern','sb-suppression-court',3660,0,true,'court-east',true],['b-high','stoneLantern','sb-court-rear-ledge',3800,0,false,'court-overwatch',false],['b-spirit-left','bellCluster','sb-suppression-court',4030,-310,false,'court-spirits',true],['b-spirit-right','bellCluster','sb-suppression-court',3670,-290,true,'court-spirits',true],['b-spirit-high','bellCluster','sb-court-rear-ledge',3910,-245,false,'court-overwatch',true],
  ['c-bat-front','bat','sb-west-firing-ledge',4130,-40,false,'west-rise',true],['c-bat-side','bat','sb-west-upper-rise',3020,-210,false,'west-rise',true],['c-bat-crown','bat','sb-west-firing-crown',5260,-260,true,'west-crown',true],['c-bat-rear','bat','sb-west-firing-crown',5420,-375,false,'west-crown',true],['c-lamp','stoneLantern','sb-west-firing-crown',5140,0,false,'west-crown',true],
  ['d-bat-front','bat','sb-east-resonance-ledge',8650,-170,false,'east-ledge',true],['d-bat-roof','bat','sb-east-resonance-ledge',8810,-295,false,'east-ledge',true],['d-lamp','stoneLantern','sb-east-upper-arc',9040,0,true,'east-arc',true],['d-bat-flank','bat','sb-east-upper-arc',9240,-290,false,'east-arc',true],['d-spirit','bellCluster','act2-floor',8420,-220,false,'basin-east',false],
@@ -172,7 +172,7 @@ export const BELL_ROSTER=[
  // Reinforce actual contested places. Leave the crown bridge, hanging
  // shell sweep, center escape floor and return stair chain unoccupied.
  ['a-point','picks','sb-entry-rise',1910,0,false,'entry-front',false],
- ['a-air-screen','bat','sb-entry-rise',1720,-310,false,'entry-rear',false],
+ ['a-air-screen','bat','sb-entry-rise',1720,-280,false,'entry-rear',false],
  ['b-west-point','picks','sb-suppression-court',2665,0,false,'court-west',false],
  ['b-west-lamp','stoneLantern','sb-suppression-court',2845,0,false,'court-west',false],
  ['b-high-elite','stoneLantern','sb-court-rear-ledge',3575,0,true,'court-overwatch',false],

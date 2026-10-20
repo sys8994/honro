@@ -120,7 +120,7 @@ export function applyStage16Temple(project) {
   ['a2-enemy-20','stoneLantern','act2-floor',9080,0,false,'archive-front','east','ranged-screen'],
   ['a2-enemy-21','stoneLantern','act2-floor',9165,0,false,'archive-front','east','rear-fire'],
   ['tm-archive-point','picks','act2-floor',8900,0,false,'archive-front','east','melee-point'],
-  ['a2-enemy-17','bat','act2-floor',9140,-185,false,'archive-air','east','air-flank'],
+  ['a2-enemy-17','bat','act2-floor',9140,-295,false,'archive-air','east','air-flank'],
   ['a2-enemy-18','bat','tm-archive-walk',9630,-180,false,'archive-overwatch','east','air-support'],
   ['a2-enemy-19','bat','tm-archive-walk',9790,-265,true,'archive-overwatch','east','elite-air-support'],
   ['a2-enemy-22','stoneLantern','tm-archive-walk',9510,0,false,'archive-overwatch','east','high-fire'],

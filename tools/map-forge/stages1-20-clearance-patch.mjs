@@ -8,6 +8,14 @@ export const CLEARANCE_PATCHES={
   {id:'rv11-refuge-two-levels-0',x:9215,y:8761.69387755102,obstacle:'rv-root-arch'},
   {id:'rv11-east-stone-overwatch-7',x:11590,y:4784,obstacle:'rv-east-windswept-bough'},
   {id:'rv11-east-stone-overwatch-9',x:11690,y:4814,obstacle:'rv-east-windswept-bough'}
+ ],
+ 13:[{id:'a2-enemy-7',x:3000,y:3352.5,obstacle:'forecourt-shot-ledge'}],
+ 15:[{id:'a2-enemy-11',x:5200,y:3900,obstacle:'fc15-safe-crown-descent'}],
+ 16:[{id:'a2-enemy-17',x:9140,y:4522.333333333333,obstacle:'tm-archive-walk'}],
+ 17:[{id:'ws-brace-bat',x:2845,y:3750,obstacle:'ws-west-switchback'}],
+ 18:[
+  {id:'sb-a-bat-low',x:1640,y:5329.2307692307695,obstacle:'sb-west-upper-rise'},
+  {id:'sb-a-air-screen',x:1720,y:5238.518518518518,obstacle:'sb-west-upper-rise'}
  ]
 };
 export function applyChapterClearancePatch(project,stageId){

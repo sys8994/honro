@@ -56,7 +56,7 @@ function author(s,project){
  // Fixed flying sentries keep their role above the new shoulders, rather than
  // starting inside the new solid shell. Their budgets and number are unchanged.
  if(n===9)for(const [id,y]of [['foe-2',1840],['foe-5',1880],['foe-6',2200]]){const u=s.units.find(u=>u.id===id);if(u){u.y=y;u.spawnY=y;}}
- if(n===13)for(const [id,y]of [['a2-enemy-14',4040],['a2-enemy-16',4210],['a2-enemy-17',4250]]){const u=s.units.find(u=>u.id===id);if(u)u.y=y;const site=s.design.space.encounterSites.find(q=>q.unitId===id);if(site)site.y=y;}
+ if(n===13)for(const [id,y]of [['a2-enemy-7',3352.5],['a2-enemy-14',4040],['a2-enemy-16',4210],['a2-enemy-17',4250]]){const u=s.units.find(u=>u.id===id);if(u)u.y=y;const site=s.design.space.encounterSites.find(q=>q.unitId===id);if(site)site.y=y;}
  return s;
 }
 export function applyStage9And13Tactical(project){for(const s of project.stages)if([9,13].includes(s.metadata?.stageId))author(s,project);return project;}
