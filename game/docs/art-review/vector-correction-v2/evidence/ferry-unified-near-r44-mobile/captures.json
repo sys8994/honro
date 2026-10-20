@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "sourceHash": "sha256:2ab1c9258a5f87b652ef85139f8d12647a34d696308e226c0b1667231e8433ae",
+  "sourceHashAfter": "sha256:2ab1c9258a5f87b652ef85139f8d12647a34d696308e226c0b1667231e8433ae",
+  "mode": "mobile",
+  "rows": [
+    {
+      "id": "ferry-unified-near-r44-mobile-stage03-mobile",
+      "sourceHash": "sha256:2ab1c9258a5f87b652ef85139f8d12647a34d696308e226c0b1667231e8433ae",
+      "stage": 3,
+      "view": "mobile",
+      "camera": {
+        "x": 3100,
+        "y": 1400,
+        "scale": 0.4
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": {
+        "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-unified-near-r44-mobile/stage03-mobile.png",
+        "sha256": "7d046c18d765105def3efefd2423564c94889188ddaaa613142d2af1b47c65ab"
+      },
+      "art": {
+        "stage": 3,
+        "style": "나루와 장부 보관처",
+        "palette": "wet",
+        "polygons": 9,
+        "parts": 0,
+        "materialRevision": "ferry-unified-near-44",
+        "builds": 1,
+        "missingAssets": [],
+        "domain": false,
+        "visualDomain": true,
+        "scenery": 0
+      },
+      "pure": true,
+      "profile": {
+        "renderMilliseconds": [
+          97.09999999403954,
+          5.100000001490116,
+          2
+        ],
+        "tileCount": 6,
+        "tileRgbaBytes": 6390144
+      }
+    }
+  ],
+  "errors": []
+}
