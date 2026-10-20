@@ -7,7 +7,7 @@ for(const route of ['upper','lower']){
  const q=battlefield(g,1),u=isolate(q,'archer');
  const entrance=[{x:690,jumpTo:{x:930}}];
  const pts=route==='upper'?[{x:1060,jumpTo:{x:1120,support:'pine-branch-west'}},{x:1620},{x:1950},{x:1950,drop:true},{x:2150}]:[{x:1100,drop:true},{x:1350,support:'forest-floor'},{x:1800,support:'forest-floor'},{x:2150,support:'forest-floor'}];
- const result=drive(g,q,u,[...entrance,...pts],{label:route,strictPose:true});rows.push(result);console.log(route,result.passed,result.failure,result.poses);
+ const result=drive(g,q,u,[...entrance,...pts,...(route==='lower'?[2300,2600,2900,3100,3350,3550,3800,4200,4650,4900,5210].map(x=>({x})):[])],{label:route,strictPose:true});rows.push(result);console.log(route,result.passed,result.failure,result.poses);
 }
 await mkdir('_local/reports/stage1-positioning',{recursive:true});await writeFile('_local/reports/stage1-positioning/routes.json',JSON.stringify(rows,null,2));assert(rows.every(r=>r.passed));
 // Source preservation: compare the exact deployed compiled project, not a rewritten golden.

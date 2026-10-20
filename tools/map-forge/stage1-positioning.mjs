@@ -9,7 +9,7 @@ export function applyStage1Positioning(project){
  const top=x=>{for(let i=0;i<t.points.length-1;i++){const a=t.points[i],b=t.points[i+1];if(b.x>a.x&&x>=a.x&&x<=b.x)return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}};
  // Keep the original combat budgets and encounter IDs; separate lower pursuit and bough guard.
  const guard=s.units.find(u=>u.id==='foe-3');guard.x=1810;guard.y=top(guard.x);
- const rest=s.markers.find(m=>m.id==='marker-4');rest.x=1620;rest.y=top(rest.x);rest.label='고목 가지 쉼터';
+ const rest=s.markers.find(m=>m.id==='marker-4');rest.x=1850;rest.y=1507;rest.label='고목 아래 쉼터';
  const sector=s.markers.find(m=>m.id==='marker-3');sector.label='고목 위 사격 자리';sector.y=top(sector.x);
  s.design.positioning={version:1,question:'산개가 있는 아래 길로 접근할까, 먼저 낮은 가지 끝을 올라 내려다보며 쏠까?',entry:{x:1060,y:1391},perch:{x:1620,y:top(1620)},merge:{x:2101,y:1573},preserved:['cart','more','witness','ridge','campaign-goal','marker-7'],optional:true};
  s.metadata.designRevision=2;
