@@ -1,83 +1,100 @@
-"""Compose editable bedrock variants from the three r25 native rock studies.
-No random noise, raster tracing, reflected sheets, or runtime tessellation.
-The recipes omit soil caps, grass, identifying pebbles and the shelf pillar.
-Shared non-affine control profiles move whole connected faces and their cracks.
+"""Author one continuous dipping bedrock mass, then incise medium-scale faces.
+The shared bedding contours are the geometry. r25 face fragments supply only
+local erosion vocabulary inside those beds, never independent outcrop silhouettes.
 """
 from pathlib import Path
-import re,copy,xml.etree.ElementTree as E
+import xml.etree.ElementTree as E,re,math
 ROOT=Path(__file__).resolve().parents[2]
-ns='{http://www.w3.org/2000/svg}'
-sources={name:list(E.parse(ROOT/f'game/art-studies/rock-outcrop-quality/rock-{name}.svg').getroot())[-1] for name in ['shelf','shoulder','fan']}
-# Whole stone face groups + their middle-scale fracture faces, no signature flora.
-sets={
- 'shelf':list(range(1,30))+list(range(44,72)),
- 'shoulder':list(range(1,25))+list(range(50,87)),
- 'fan':list(range(1,22))+list(range(60,82))+list(range(99,103)),
-}
-# Per-composition x displacement, bedding height and joint lean profiles.
-profiles=[
- ([0,32,-24,18,0],[-18,16,-32,11,-8],[0,16,-21,9]),
- ([0,-24,31,-18,0],[24,-21,13,-28,12],[12,-18,7,24]),
- ([0,19,37,-26,0],[-27,-8,29,-16,18],[-16,9,23,-8]),
- ([0,-35,12,30,0],[17,34,-11,-25,9],[8,25,-17,-4]),
- ([0,26,-34,-14,0],[8,-32,18,33,-16],[-21,13,-4,18]),
- ([0,-17,-29,35,0],[-24,19,31,-9,-30],[19,-11,27,-15]),
- ([0,38,-11,-27,0],[31,-14,-29,22,4],[-9,22,5,-24]),
- ([0,-28,24,13,0],[-13,28,-7,-31,24],[24,-7,-23,12]),
- ([0,12,-38,26,0],[19,-27,35,8,-22],[-12,28,-9,15]),
- ([0,-32,16,39,0],[-31,9,23,-19,16],[17,-24,11,-3]),
- ([0,29,8,-33,0],[12,31,-24,19,-9],[-25,6,19,-13]),
- ([0,-13,36,-22,0],[27,-17,9,-34,21],[6,19,-28,17]),
+X=[-2000,-1250,-530,170,850,1470,2040,2530,2950,3320,3690,4110,4650,5250,5870,6500]
+# A single geological strike bends from the western bank into the high eastern
+# shoulder. Consecutive contours bound the same material, without gaps or sheets.
+BEDS=[
+[1020,1030,1050,1070,1090,1080,1010,900,760,650,620,660,700,740,780,820],
+[1550,1540,1580,1600,1610,1570,1450,1290,1100,980,940,990,1010,1060,1100,1150],
+[1900,1940,1930,1960,1940,1860,1740,1560,1390,1270,1240,1290,1350,1390,1430,1490],
+[2280,2250,2300,2310,2260,2160,2010,1820,1670,1570,1540,1600,1660,1730,1800,1860],
+[2670,2700,2680,2700,2600,2470,2330,2160,2010,1900,1870,1940,2000,2070,2130,2200],
+[3060,3030,3080,3060,2940,2810,2670,2490,2330,2240,2220,2290,2370,2430,2510,2590],
+[3440,3480,3450,3440,3320,3170,3010,2830,2680,2580,2580,2630,2710,2800,2880,2960],
+[3880,3830,3890,3840,3710,3540,3370,3180,3040,2970,2940,3020,3110,3190,3300,3380],
+[4270,4320,4290,4260,4110,3930,3750,3570,3420,3340,3320,3420,3520,3620,3710,3800],
+[4800,4800,4770,4750,4600,4400,4240,4040,3920,3840,3830,3940,4050,4160,4280,4400],
 ]
-# Mixed lower toes give each source a different structural ending.
-toes=[('fan',range(13,22),180,165),('shelf',range(21,30),0,105),('shoulder',range(2,9),420,105),('fan',range(4,13),-80,240),('shelf',range(11,18),150,205),('fan',range(29,35),-90,90),('shoulder',range(15,22),-230,125),('shelf',range(1,8),250,260),('fan',range(13,22),230,115),('shelf',range(18,30),-250,130),('shoulder',range(5,12),360,200),('fan',range(4,13),100,190)]
-def lerp(vals,t):
- t=max(0,min(len(vals)-1,t));i=min(len(vals)-2,int(t));return vals[i]+(vals[i+1]-vals[i])*(t-i)
-def warp(x,y,k):
- a,b,c=profiles[k];return x+lerp(a,x/180)+lerp(c,(y-160)/165),y+lerp(b,x/180)+(y-320)*lerp(a,x/180)/850
-# Normalize commands first so H/V become real two-dimensional vertices.
-def mapped(d,k,dx=0,dy=0):
- tokens=re.findall(r'[A-Za-z]|[-+]?(?:\d*\.\d+|\d+)(?:[eE][-+]?\d+)?',d);i=0;cmd=None;x=y=0;start=(0,0);out=[]
- while i<len(tokens):
-  if tokens[i].isalpha():cmd=tokens[i];i+=1
-  upper=cmd.upper();relative=cmd.islower()
-  if upper=='Z':out.append('Z');x,y=start;cmd=None;continue
-  n={'M':2,'L':2,'H':1,'V':1,'Q':4}[upper];v=list(map(float,tokens[i:i+n]));i+=n
-  if upper=='H':v=[v[0]+(x if relative else 0),y];upper='L';relative=False
-  if upper=='V':v=[x,v[0]+(y if relative else 0)];upper='L';relative=False
-  pairs=[(v[j]+(x if relative else 0),v[j+1]+(y if relative else 0)) for j in range(0,len(v),2)]
-  x,y=pairs[-1]
-  if upper=='M':start=(x,y);cmd='l' if relative else 'L'
-  coords=[warp(px+dx,py+dy,k) for px,py in pairs]
-  out.append(upper+' '.join(f'{a:.1f} {b:.1f}' for a,b in coords))
- return ''.join(out)
-p=ROOT/'game/art-studies/ferry-clean-scene/native-body.svg';text=p.read_text().split('<!-- native-extension-variants -->')[0].replace('</svg>','')
-text+='<!-- native-extension-variants -->\n<defs>\n'
-base=E.parse(ROOT/'game/art-studies/rock-outcrop-quality/rock-fan.svg').getroot()
-for d in base.find(ns+'defs'):
- e=copy.deepcopy(d);e.set('id','extension-'+e.get('id'));text+=E.tostring(e,encoding='unicode').replace('ns0:','').replace(':ns0','')+'\n'
-text+='</defs>\n'
-for k in range(12):
- name=['shelf','fan','shoulder','fan','shelf','fan','shoulder','shelf','fan','shoulder','fan','shelf'][k]
- text+=f'<g id="extension-{k}" data-part="ferry-extension-{k}">\n'
- clip_count=0
- def add(src,indices,dx=0,dy=0):
-  global text,clip_count
-  clip_count+=1;cid=f'extension-edge-{k}-{clip_count}'
-  # The r25 studies end at a rectangular sheet boundary. Fractured side/toe
-  # masks remove those cuts before pieces are assembled into a larger mass.
-  contour='M-15 70H735V215L718 237 725 264 704 290 716 315 697 343 708 366 689 391 701 418 672 431 643 421 615 445 584 433 552 451 520 438 489 455 456 438 422 449 390 431 356 453 323 439 290 457 257 437 224 452 190 433 160 448 126 428 94 442 64 419 34 433 11 410 24 383 3 360 20 334 2 310 18 281 0 259 17 233-9 214Z'
-  text+=f'<defs><clipPath id="{cid}"><path d="{mapped(contour,k,dx,dy)}"/></clipPath></defs>\n<g clip-path="url(#{cid})">\n'
-  for j in indices:
-   e=copy.deepcopy(sources[src][j]);
-   if e.tag!=ns+'path' or e.get('fill')=='url(#soil)' or e.get('fill')=='none':continue
-   e.set('d',mapped(e.get('d'),k,dx,dy));e.set('fill',e.get('fill').replace('url(#','url(#extension-'))
-   text+=E.tostring(e,encoding='unicode').replace('ns0:','').replace(':ns0','')+'\n'
-  text+='</g>\n'
- add(name,sets[name])
- # Replace the fan's sparse right-hand rubble with connected shoulder faces.
- if name=='fan':add('shoulder',range(15,22),60,35)
- # Lower toe is a different subset/orientation, not another copy of the source.
- src,ids,dx,dy=toes[k];add(src,ids,dx,dy)
+# Bedding lips: uneven intermediate ledges attached to the same dipping surface.
+N=[-12,18,-24,9,-17,26,-8,15,-22,11,-19,23,-10,16,-14]
+DEPTH=[43,61,35,55,72,41,64,48,81,56,39,68,46,73,52,63]
+def boundary(vals,row):
+ out=[]
+ for i in range(len(X)-1):
+  x,z=X[i:i+2];a,b=vals[i:i+2];d=N[(i+row)%len(N)]
+  out.extend([(x,a),(x+(z-x)*.36,a+(b-a)*.36+d),(x+(z-x)*.58,a+(b-a)*.58+d-13),(x+(z-x)*.74,a+(b-a)*.74+8)])
+ out.append((X[-1],vals[-1]));return out
+lines=[boundary(v,r) for r,v in enumerate(BEDS)]
+def dpath(pts):return 'M'+' L'.join(f'{x:.1f} {y:.1f}' for x,y in pts)+'Z'
+def path(pts,fill):return f'<path fill="{fill}" d="{dpath(pts)}"/>\n'
+def at(points,x):
+ for i in range(len(points)-1):
+  a,b=points[i:i+2]
+  if x<=b[0]:return a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0])
+ return points[-1][1]
+text='<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2000 600 8500 4400">\n'
+text+='<!-- One dipping geological body; shared contours precede erosion detail. -->\n'
+text+=path([(-2200,500),(6800,500),(6800,5100),(-2200,5100)],'#626557')
+fronts=[]
+for r in range(len(lines)-1):
+ top,bottom=lines[r:r+2]
+ lip=[(x,y+DEPTH[(i//4+r)%len(DEPTH)]) for i,(x,y) in enumerate(top)]
+ front=lip+bottom[::-1];fronts.append(front)
+ text+=f'<g id="continuous-bed-{r}">\n'
+ text+=path(top+bottom[::-1],['#66695c','#626658','#696c5e'][r%3])
+ text+=path(top+lip[::-1],['#7b7e6d','#767a68','#808270'][r%3])
+ # The contact shadow is attached beneath the lip, not a cast shadow from a rock.
+ seam=[(x,y+12+(i%3)*4) for i,(x,y) in enumerate(lip)]
+ text+=path(lip+seam[::-1],'#4e5548')
  text+='</g>\n'
-text+='</svg>\n';p.write_text(text)
+# Erosion cuts use only three-face fragments from C, with all flora/soil omitted.
+ns='{http://www.w3.org/2000/svg}';fan=list(E.parse(ROOT/'game/art-studies/rock-outcrop-quality/rock-fan.svg').getroot())[-1]
+fragments=[(1,2,3),(4,5,6),(7,8,9),(10,11,12),(13,14,15),(16,17,18),(19,20,21)]
+# Sparse, unequal fracture stations along each shared bed. These marks do not
+# define the body or its outline; clipped secondary cuts inherit its direction.
+stations=[
+[-1880,-1510,-1080,-660,-230,210,680,1090,1570,1970,2380,2780,3210,3650,4060,4500,4960,5450,5900,6280],
+[-1760,-1330,-920,-480,-20,430,890,1320,1740,2190,2630,3080,3490,3900,4320,4760,5210,5660,6100],
+[-1900,-1450,-1040,-610,-180,280,720,1160,1590,2050,2470,2910,3350,3770,4180,4620,5090,5520,5980,6400],
+[-1800,-1380,-940,-490,-70,370,820,1270,1690,2140,2570,3020,3450,3880,4310,4770,5200,5660,6090],
+[-1930,-1480,-1030,-570,-140,300,750,1200,1640,2080,2530,2970,3410,3850,4300,4740,5180,5640,6080,6430],
+[-1760,-1330,-870,-440,10,460,900,1340,1780,2220,2670,3100,3540,3980,4430,4880,5320,5770,6200],
+[-1900,-1470,-1020,-580,-130,310,750,1190,1650,2100,2540,2990,3440,3890,4330,4800,5250,5690,6140],
+[-1780,-1350,-910,-460,-30,410,850,1300,1750,2190,2640,3080,3520,3980,4430,4870,5340,5780,6220],
+[-1900,-1460,-1010,-560,-120,330,780,1230,1670,2120,2560,3010,3460,3910,4360,4820,5260,5710,6160],
+]
+# All source fragments use absolute M/L/H/V only. Convert to points for mapping
+# into the direction and depth of the actual shared bedding surface.
+def points(d):
+ ts=re.findall(r'[A-Za-z]|[-+]?(?:\d*\.\d+|\d+)',d);i=0;cmd='';x=y=0;out=[]
+ while i<len(ts):
+  if ts[i].isalpha():cmd=ts[i];i+=1
+  if cmd=='Z':break
+  if cmd in ['M','L']:x,y=float(ts[i]),float(ts[i+1]);i+=2;cmd='L'
+  elif cmd=='H':x=float(ts[i]);i+=1
+  elif cmd=='V':y=float(ts[i]);i+=1
+  else:raise ValueError(cmd)
+  out.append((x,y))
+ return out
+for r,xs in enumerate(stations):
+ text+=f'<defs><clipPath id="bed-incision-{r}"><path d="{dpath(fronts[r])}"/></clipPath></defs>\n<g id="erosion-bed-{r}" clip-path="url(#bed-incision-{r})">\n'
+ for j,x in enumerate(xs):
+  ids=fragments[(j+2*r)%7];body=points(fan[ids[0]].get('d'));minx=min(a for a,b in body);maxx=max(a for a,b in body);miny=min(b for a,b in body);maxy=max(b for a,b in body)
+  # Different exposure widths and buried feet, always attached to this bed.
+  width=[230,310,270,350,245,290,325][(j+r)%7]
+  upper=at(lines[r],x)+55;lower=at(lines[r+1],x)-18;depth=lower-upper
+  for q,idx in enumerate(ids):
+   poly=[]
+   for px,py in points(fan[idx].get('d')):
+    u=(px-minx)/(maxx-minx);v=(py-miny)/(maxy-miny)
+    xx=x+u*width+(1-v)*55
+    yy=upper+v*depth+at(lines[r],xx)-at(lines[r],x)
+    poly.append((xx,yy))
+   text+=path(poly,['#5e6355','#7b7f6b','#4c5447'][q])
+ text+='</g>\n'
+text+='</svg>\n';(ROOT/'game/art-studies/ferry-clean-scene/native-body.svg').write_text(text)

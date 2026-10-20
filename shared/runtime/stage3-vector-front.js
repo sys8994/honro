@@ -1,7 +1,6 @@
 (function(G){'use strict';
-// Clean hand-authored bedrock continuation of the user-selected r25 design.
-// A/B/C native faces overlap in an authored local cluster, providing
-// fracture vocabulary at the original 103.5/80 actor scale, never image tiles.
+// Failed continuous-mass study: shared bed contours own the visual body.
+// Collision and actor draw order remain independent of these art contours.
 const paths=new Map(),surfaces=new WeakMap(),C=G.HONRO_CORE;
 function p(d){if(!paths.has(d))paths.set(d,new Path2D(d));return paths.get(d);}
 function fill(c,d,paint){c.fillStyle=paint;c.fill(p(d));}
@@ -9,43 +8,10 @@ function grad(c,x,y,w,h,stops){const g=c.createLinearGradient(x,y,x+w,y+h);for(c
 // The native bank source is one scene, not repeated sheets. Its world-space
 // masses are cached in the existing visible world tiles.
 const silhouette=p('M-6200 1635Q-4150 1510-2600 1605L-1650 1590-1130 1510-590 1472-120 1450 0 1459 180 1497 390 1530 720 1560 1020 1610 1270 1594 1510 1560 1630 1503 1780 1390 1845 1285 1908 1090 1990 1068 2145 1065 2310 1108 2450 1121 2580 1191 2730 1166 2832 1177 2970 1131 3100 1068 3280 1007 3410 932 3553 855 3652 803 3828 801 3990 827 4277 846Q4900 826 5500 910L6500 950 10400 1390V27500H-6200Z');
-// Authored overlapping beds across the near scene. Source faces have distinct
-// joint/height profiles and mixed toes; signature grass/pebbles are excluded.
-const extendedBeds=[[-1900,3960,0],[-605,3950,0],[-1250,3920,7],[915,3900,4],[180,3880,7],[1435,3770,4],[5750,3740,2],[2185,3720,5],[4980,3700,9],[3580,3680,6],[4460,3650,8],[-180,3620,11],[2940,3610,3],[-1700,3590,11],[-1035,3540,11],[410,3540,0],[1140,3520,7],[1740,3430,5],[2610,3340,8],[5270,3340,6],[3895,3300,2],[4705,3270,6],[3280,3250,9],[-1920,3240,7],[-630,3230,4],[-1375,3190,4],[220,3180,0],[805,3160,0],[1625,3070,4],[5060,2990,8],[5690,2970,9],[2270,2950,1],[4305,2930,8],[3760,2920,8],[-280,2870,11],[2940,2870,1],[-1570,2860,11],[-980,2820,0],[1075,2810,11],[350,2780,7],[1760,2670,4],[2425,2580,1],[5415,2570,6],[4690,2550,9],[3205,2510,10],[-460,2500,0],[-2010,2490,4],[4020,2490,2],[140,2470,11],[-1165,2440,4],[755,2420,4],[1670,2350,11],[2190,2220,5],[5055,2220,2],[5830,2170,9],[-1600,2160,7],[-160,2150,7],[3670,2150,2],[4400,2140,9],[565,2120,4],[2915,2110,5],[-945,2070,0],[1190,2050,0],[1835,1990,11],[2690,1840,8],[-460,1820,0],[5295,1820,6],[4000,1800,8],[-1915,1770,11],[165,1770,4],[1050,1740,0],[4620,1740,9],[-1220,1730,7],[3390,1720,8],[1660,1620,11],[2400,1530,1],[-5,1480,4],[5110,1450,6],[-1605,1420,4],[650,1410,7],[-700,1390,0],[1400,1370,7],[4445,1370,2],[3820,1350,9],[3155,1340,3],[2005,1170,0],[380,1140,11],[-1065,1120,0],[5510,1070,8],[-355,1060,11],[-1760,1050,0],[1190,1050,11],[2665,1030,5],[4810,980,2],[4240,960,8],[3350,900,10],[1700,790,4],[5230,640,9],[2350,620,7],[4590,580,2],[3885,530,3],[3170,490,3]];
-function continuation(c,view){const S=103.5/80;for(const [x,y,id] of extendedBeds){
- if(view&&(x+1250<view.x||x-90>view.x+view.w||y+1100<view.y||y+100>view.y+view.h))continue;
- G.HonroVectorCampaignMaterials.part(c,'ferry-extension-'+id,{x,y,sx:S});
-}}
 function draw(c,b,view){if(b?.honroStage!==3)return;c.save();c.clip(silhouette);
- c.fillStyle=grad(c,-500,1000,2000,16000,[[0,'#5d6053'],[.18,'#52594b'],[.45,'#485244'],[1,'#354c3e']]);c.fillRect(-6200,400,16600,27500);
+ // The entire visible bank is one authored mass. Its internal bed contacts
+ // and erosion faces share the same downhill direction and light source.
  G.HonroVectorCampaignMaterials.part(c,'narubank-body');
- continuation(c,view);
- const part=G.HonroVectorCampaignMaterials.part,S=103.5/80;
- function exposure(id,x,y,r,mask,tone=0){c.save();c.translate(x,y);c.rotate(r);c.scale(S,S);c.clip(p(mask));part(c,id,{tone});c.restore();}
- exposure('ferry-shoulder',2850,900,-.12,
-  'M-20 80H740V231L688 252 672 277 682 305 657 331 646 369 607 389 573 404 534 389 484 413 443 398 409 426 357 408 318 422 274 402 236 416 190 394 163 406 127 379 91 387 53 365 27 373 7 343 22 313-5 287Z',-.20);
- exposure('ferry-shelf',2050,900,0,
-  'M-20 100H740V294L689 301 661 322 674 346 648 374 610 368 585 395 532 390 510 412 462 400 425 426 377 411 344 430 282 416 241 411 207 428 177 412 131 421 101 399 64 407 37 385 12 392 29 363 8 347 35 317 18 295 40 272-5 260Z');
- // The oblique fan overlaps the toe of A/B rather than sitting separately
- // below them. Its exposed sheets taper inside a foreground soil fold.
- exposure('ferry-fan',2560,1110,-.12,
-  'M-20 100H740V237L686 252 669 277 648 286 637 309 605 328 574 328 552 354 517 362 490 387 456 389 422 412 390 410 354 432 321 424 287 445 253 425 223 434 195 418 162 425 131 408 94 415 63 393 33 398 15 374 36 351 19 332 46 304 27 284-5 272Z');
-
-
- // Hand-drawn contact slabs cross the join between the original fan and its
- // descending extension. Their steps join existing ledges at world scale.
- c.save();c.translate(2850,1670);c.scale(.65,.65);c.translate(-2850,-1670);
- fill(c,'M2608 1663L2634 1628 2662 1622 2686 1597 2732 1605 2764 1588 2814 1600 2836 1631 2813 1665 2784 1670 2761 1702 2724 1708 2702 1737 2659 1730 2625 1742 2600 1718Z','#55564a');
- fill(c,'M2608 1663L2634 1628 2662 1622 2686 1597 2732 1605 2764 1588 2814 1600 2789 1616 2761 1611 2744 1631 2714 1629 2690 1652 2664 1649 2641 1675 2612 1687Z','#77796a');
- fill(c,'M2641 1675L2664 1649 2690 1652 2714 1629 2744 1631 2728 1661 2706 1670 2696 1695 2664 1709 2625 1742 2600 1718 2612 1687Z','#686b5d');
- fill(c,'M2789 1616L2814 1600 2836 1631 2813 1665 2784 1670 2761 1702 2724 1708 2750 1676 2764 1642Z','#464b40');
- fill(c,'M2865 1694L2898 1659 2925 1655 2953 1618 2994 1627 3013 1608 3058 1620 3084 1650 3067 1682 3035 1691 3018 1720 2981 1728 2957 1755 2918 1746 2891 1758 2860 1735Z','#55584c');
- fill(c,'M2865 1694L2898 1659 2925 1655 2953 1618 2994 1627 3013 1608 3058 1620 3038 1638 3010 1633 2993 1654 2967 1650 2944 1678 2912 1681 2895 1704 2866 1711Z','#7b7c6c');
- fill(c,'M2895 1704L2912 1681 2944 1678 2967 1650 2993 1654 2978 1688 2955 1700 2946 1722 2918 1746 2891 1758 2860 1735 2866 1711Z','#66695b');
- fill(c,'M3038 1638L3058 1620 3084 1650 3067 1682 3035 1691 3018 1720 2981 1728 3001 1704 3010 1674Z','#494e42');
-
- c.restore();
-
  c.restore();}
 // Each point is [world x, vertical offset from the unchanged walking profile].
 // The profile runs through these top planes, with authored ground behind it.
