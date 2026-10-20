@@ -103,9 +103,9 @@ function prepareRooms(b){const space=b.honroMap.space;let q=roomCache.get(b);if(
  }
  q={source:space,version:b.sceneVersion,rooms};roomCache.set(b,q);return q;
 }
-function background(c,b,scene,w,h){if(!active(b))return false;const n=b.honroStage,open=[11,12,13,20].includes(n),img=images[n===11&&b.honroStage11LandscapeRevision===1?'stage11-ravine-readable':n===11&&b.honroMap?.ravine?.version>=1?'stage11-ravine':n===20?'dawn':'clouded'];
- if(open){const sky=c.createLinearGradient(0,0,0,h);sky.addColorStop(0,n===20?'#3b4d5a':'#2f3d4e');sky.addColorStop(1,n===20?'#88908a':'#617079');c.fillStyle=sky;c.fillRect(0,0,w,h);if(img?.complete&&img.naturalWidth){const q=E.act1BackdropFrame(scene,w,h,b,img.naturalWidth,img.naturalHeight);c.drawImage(G.HonroVisualStyle?.image(img,'SKY')||img,q.x,q.y,q.w,q.h);}}
- else{const dark=c.createLinearGradient(0,0,0,h);dark.addColorStop(0,'#0a121d');dark.addColorStop(.66,'#101c28');dark.addColorStop(1,'#172630');c.fillStyle=dark;c.fillRect(0,0,w,h);}
+function background(c,b,scene,w,h,overPainting=false){if(!active(b))return false;const n=b.honroStage,open=[11,12,13,20].includes(n),img=images[n===11&&b.honroStage11LandscapeRevision===1?'stage11-ravine-readable':n===11&&b.honroMap?.ravine?.version>=1?'stage11-ravine':n===20?'dawn':'clouded'];
+ if(!overPainting){if(open){const sky=c.createLinearGradient(0,0,0,h);sky.addColorStop(0,n===20?'#3b4d5a':'#2f3d4e');sky.addColorStop(1,n===20?'#88908a':'#617079');c.fillStyle=sky;c.fillRect(0,0,w,h);if(img?.complete&&img.naturalWidth){const q=E.act1BackdropFrame(scene,w,h,b,img.naturalWidth,img.naturalHeight);c.drawImage(G.HonroVisualStyle?.image(img,'SKY')||img,q.x,q.y,q.w,q.h);}}
+ else{const dark=c.createLinearGradient(0,0,0,h);dark.addColorStop(0,'#0a121d');dark.addColorStop(.66,'#101c28');dark.addColorStop(1,'#172630');c.fillStyle=dark;c.fillRect(0,0,w,h);}}
  const q=prepareRooms(b),extent=caveExtent(b),left=scene.x-w/scene.scale/2,right=scene.x+w/scene.scale/2,top=scene.y-h/scene.scale/2,bottom=scene.y+h/scene.scale/2;
  world(c,scene,w,h,()=>{
   if(open&&extent){const fade=500,entry=n!==20,start=entry?extent.left:extent.right-fade,end=entry?extent.left+fade:extent.right;

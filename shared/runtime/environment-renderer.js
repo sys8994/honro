@@ -164,5 +164,5 @@ Scene.prototype.liveWater=function(c,b){const st={backdrop:b.honroBackdrop,envir
  for(const r of this._waterRipples){const age=time-r.born;c.save();c.globalAlpha*=Math.max(0,.5-age*.4);c.strokeStyle=a.waterfallFoamColor;c.lineWidth=2;c.beginPath();c.ellipse(r.x,r.y+4,12+age*53,3+age*4,0,0,Math.PI*2);c.stroke();c.restore();}
  if(this.environmentStats)Object.assign(this.environmentStats,{pools,waterfalls:falls,animatedPrimitives:this.environmentStats.backgroundAnimatedPrimitives+pools*5+falls*10+this._waterRipples.length});
 };
-G.HonroEnvironmentRenderer={ensureBattle,prepare};
+G.HonroEnvironmentRenderer={ensureBattle,prepare,customSpatialScenery};
 })(globalThis);

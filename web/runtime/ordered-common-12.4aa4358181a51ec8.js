@@ -1,0 +1,1716 @@
+import {yieldIfNeeded} from "./load-data.60b63bd7d9d5af82.js";
+// shared/runtime/act2-spatial-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// The common scene renderer reads the canonical room references and live solid
+// polygons. Every visible rim is a physical edge; only the rear ink masses and
+// the overscan extension are visual-only. Old saves never enter this branch.
+const C=G.HONRO_CORE,A=G.HonroEnvironmentArt,E=G.HonroEnvironment,terrainCache=new WeakMap(),roomCache=new WeakMap(),images={};
+if(typeof Image!=='undefined')for(const [key,src]of Object.entries(G.HONRO_ACT2_FAR_DATA||{})){const image=new Image();image.src=src;images[key]=image;}
+const active=b=>b?.honroStage>=11&&b.honroStage<=20&&b.honroMap?.space?.version===1;
+const polygon=points=>{const p=new Path2D();points.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();return p;};
+function roundedPolygon(points,radius=28,roundIndices=null){const p=new Path2D(),cuts=points.map((v,i)=>{const a=points[(i+points.length-1)%points.length],z=points[(i+1)%points.length],da=Math.hypot(v[0]-a[0],v[1]-a[1]),dz=Math.hypot(z[0]-v[0],z[1]-v[1]),r=roundIndices&&!roundIndices.has(i)?0:Math.min(radius,da*.14,dz*.14);return{v,enter:[v[0]+(a[0]-v[0])*r/(da||1),v[1]+(a[1]-v[1])*r/(da||1)],exit:[v[0]+(z[0]-v[0])*r/(dz||1),v[1]+(z[1]-v[1])*r/(dz||1)]};});p.moveTo(...cuts[0].exit);for(let i=1;i<=cuts.length;i++){const q=cuts[i%cuts.length];p.lineTo(...q.enter);p.quadraticCurveTo(...q.v,...q.exit);}p.closePath();return p;}
+function pointIn(x,y,pts){let inside=false;for(let i=0,j=pts.length-1;i<pts.length;j=i++){const a=pts[i],z=pts[j];if((a.y>y)!==(z.y>y)&&x<(z.x-a.x)*(y-a.y)/(z.y-a.y)+a.x)inside=!inside;}return inside;}
+function surfaceEdges(t,b){const original=t.honroDomain?b.terrain.find(v=>v.id===t.id)||t:t,ps=C.poly(original),space=b.honroMap.space,ref=space.surfaces?.find(s=>s.terrainId===t.id),indices=ref?.edgeIndices||t.honroWalkEdges||[];const edges=indices.map(i=>[ps[i],ps[(i+1)%ps.length]]).filter(p=>p[0]&&p[1]&&(!t.honroDomain||!(Math.abs(p[0].x-p[1].x)<.001&&(p[0].x===0||p[0].x===b.width))));if(t.honroDomain){const ws=C.poly(t);for(let i=0;i<ws.length;i++){const a=ws[i],z=ws[(i+1)%ws.length],outside=Math.max(a.x,z.x)<=0||Math.min(a.x,z.x)>=b.width;if(outside&&Math.abs(z.x-a.x)>.001&&(t.honroCeiling?z.x<a.x:z.x>a.x)&&Math.abs((z.y-a.y)/(z.x-a.x))<1.36)edges.push([a,z]);}}return edges;}
+function prepareTerrain(t,b){let q=terrainCache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion)return q;const ps=C.poly(t),shape=polygon(ps.map(p=>[p.x,p.y])),surface=surfaceEdges(t,b),rim=new Path2D(),facets=[],blocks=[],wedges=[],masonry=[],lip=[],ceiling=!!t.honroCeiling,timber=!!(t.oneWay&&t.optional&&t.honroSurfaceRole==='shelf'&&(!t.honroRavine||t.honroRavineTree));
+ const peers=G.HonroTerrainDomain.render(b).filter(s=>s.id!==t.id&&!s.broken&&!s.oneWay&&!s.honroElementCollision),buried=(x,y)=>peers.some(s=>x>s.x&&x<s.x+s.w&&y>s.y&&y<s.y+s.h&&pointIn(x,y,C.poly(s)));
+ for(const [a,z]of surface){if(buried((a.x+z.x)/2,(a.y+z.y)/2+(ceiling?-3:3)))continue;rim.moveTo(a.x,a.y);rim.lineTo(z.x,z.y);if(!ceiling)lip.push(polygon([[a.x,a.y],[z.x,z.y],[z.x,z.y+18],[a.x,a.y+18]]));}
+ // Three or four unequal broad fracture planes per physical mass. These have
+ // no independent silhouette: clipping always uses the canonical polygon.
+ const left=t.x,right=t.x+t.w,top=t.y,bottom=t.y+t.h,w=t.w,h=t.h;
+ const range=surface.length?surface.flat().map(p=>p.y):[top];const y0=ceiling?Math.max(...range):Math.min(...range),sign=ceiling?-1:1;
+ const anchors=[.015,.205,.515,.775],spans=[.30,.41,.31,.27];
+ const at=x=>{const e=surface.find(([a,z])=>x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x));return e?e[0].y+(e[1].y-e[0].y)*(x-e[0].x)/(e[1].x-e[0].x||1):y0;};
+ for(let i=0;i<anchors.length;i++){const x=left+w*anchors[i],wide=w*spans[i],depth=ceiling?Math.min(880,h*.65):Math.min(1900,h*.7),y=at(x)+sign*12,edgeY=at(Math.min(right,x+wide)),foot=depth*[.62,1,.73,.88][i];
+  const sketches=[[[x,y],[x+wide,edgeY-sign*14],[x+wide*.81,edgeY+sign*foot*.44],[x+wide*.47,y+sign*foot],[x+wide*.13,y+sign*foot*.71]],[[x,y],[x+wide*.96,edgeY],[x+wide*.74,edgeY+sign*foot*.23],[x+wide*.46,y+sign*foot*.79],[x-wide*.04,y+sign*foot]],[[x,y],[x+wide,edgeY],[x+wide*.68,edgeY+sign*foot*.78],[x+wide*.25,y+sign*foot],[x+wide*.07,y+sign*foot*.46]],[[x,y],[x+wide,edgeY],[x+wide*.83,edgeY+sign*foot],[x+wide*.29,y+sign*foot*.71],[x+wide*.4,y+sign*foot*.20]]];facets.push(polygon(sketches[i]));}
+ // Local stone blocks are tied to actual room changes and scenery supports,
+ // not evenly-spaced stripes. Their entire shape is inside the live solid.
+ if(!t.oneWay&&surface.length>1){const named=b.honroMap.space.rooms.filter(r=>r.terrainIds?.includes(t.id)||r.ceilingIds?.includes(t.id));
+  for(const [j,room]of named.entries()){if(room.bounds.w<650)continue;const landmarks=(b.honroMap.space.scenery||[]).filter(v=>v.roomId===room.id&&/house|temple|hoist|bell|sluice/.test(v.assetId));const center=landmarks.length?landmarks.reduce((n,l)=>n+l.x,0)/landmarks.length:room.bounds.x+room.bounds.w*[.30,.67,.46][j%3],bw=Math.min(room.bounds.w*.82,landmarks.some(l=>/temple|bell/.test(l.assetId))?1750:1250),x0=Math.max(t.x,center-bw*.53),x1=Math.min(t.x+t.w,center+bw*.47),depth=ceiling?330+(j%3)*90:500+(j%3)*170,dir=ceiling?-1:1;
+   const ridge=[x0,x0+(x1-x0)*.31,x0+(x1-x0)*.72,x1].map(x=>[x,at(x)]),a=ridge[0],z=ridge.at(-1),cut=x0+(x1-x0)*(.64-(j%2)*.13);
+   const lower=[[x1-(x1-x0)*.12,z[1]+dir*depth*.63],[cut,a[1]+dir*depth],[x0+(x1-x0)*.07,a[1]+dir*depth*.79]];
+   blocks.push({body:roundedPolygon([...ridge,...lower],30),side:roundedPolygon([[cut,at(cut)],[...z],lower[0],lower[1],[cut-(x1-x0)*.07,a[1]+dir*depth*.44]],24),contact:polygon([[cut-12,at(cut)+dir*15],[cut+12,at(cut)+dir*15],[cut-(x1-x0)*.055,a[1]+dir*depth*.44],[lower[1][0]+12,lower[1][1]],[lower[1][0]-10,lower[1][1]],[cut-(x1-x0)*.085,a[1]+dir*depth*.44]])});
+  }
+ }
+ if([18,19].includes(b.honroStage)&&t.honroSurfaceRole==='floor'){const bell=(b.honroMap.space.landmarks||[]).find(l=>l.kind==='bell');if(bell)for(const side of [-1,1]){const cx=bell.x+side*650,left=cx-270,right=cx+270,top=[left,left+130,right-120,right].map(x=>[x,at(x)]),a=top[0],z=top.at(-1),depth=side<0?470:620,lower=[[right-80,z[1]+depth*.68],[cx+side*70,(a[1]+z[1])/2+depth],[left+55,a[1]+depth*.64]];wedges.push({body:polygon([...top,...lower]),side:polygon([[cx,at(cx)],[...z],lower[0],lower[1],[cx-45,at(cx)+depth*.4]]),contact:polygon([[cx-13,at(cx)+14],[cx+12,at(cx)+14],[cx-28,at(cx)+depth*.4],[lower[1][0]+12,lower[1][1]],[lower[1][0]-13,lower[1][1]],[cx-64,at(cx)+depth*.4]])});}}
+ if(b.honroStage===16&&t.honroSurfaceRole==='floor'){const hall=b.honroMap.space.sites?.hall,hx=hall?.x??hall?.position?.x;const hy=Number.isFinite(hx)?at(hx):NaN,flat=surface.filter(([a,z])=>Math.abs(a.y-hy)<.5&&Math.abs(z.y-hy)<.5&&Math.abs((a.x+z.x)/2-hx)<1800);if(flat.length){const l=Math.min(...flat.flat().map(v=>v.x)),r=Math.max(...flat.flat().map(v=>v.x));for(const [i,depth]of [8,55,111].entries()){masonry.push({body:polygon([[l+18-i*13,hy+depth],[r-18+i*13,hy+depth],[r-10+i*13,hy+depth+43],[l+10-i*13,hy+depth+43]]),edge:polygon([[l+18-i*13,hy+depth],[r-18+i*13,hy+depth],[r-18+i*13,hy+depth+5],[l+18-i*13,hy+depth+5]])});}}}
+ const joints=new Path2D();if(timber&&!t.honroRavine)for(let i=1;i<=3;i++){const x=t.x+t.w*[.24,.57,.81][i-1];joints.moveTo(x,at(x)+6);joints.lineTo(x-3,Math.min(t.y+t.h,at(x)+t.h*.86));}
+ const authoredPlanes=(b.honroMap.space.terrainPlanes||[]).filter(p=>p.terrainId===t.id).map(p=>({fill:p.fill,path:polygon(p.points)}));
+ q={source:t.vertices,version:b.sceneVersion,shape,rim,facets,blocks,wedges,masonry,lip,ceiling,timber,joints,authoredPlanes};terrainCache.set(t,q);return q;
+}
+function rock(c,b){const g=c.createLinearGradient(0,0,0,b.height+1300);g.addColorStop(0,'#333d49');g.addColorStop(.34,'#454d59');g.addColorStop(.69,'#323c49');g.addColorStop(1,'#152331');return g;}
+function terrain(c,t,b){if(G.HonroStage11LandscapeArt?.terrain(c,t,b))return;const q=prepareTerrain(t,b);c.save();
+ if(t.oneWay&&t.optional&&!t.honroRavine&&!t.honroWorksite&&!t.honroTemple){const floor=b.terrain.find(s=>s.honroSurfaceRole==='floor'&&!s.broken);if(floor){const terrainContext=c;c=G.HonroVisualStyle?.context(c,'L1')||c;const left=t.x+24,right=t.x+t.w-24,ly=C.topAt(floor,left,b.height),ry=C.topAt(floor,right,b.height);c.strokeStyle='#343731';c.lineWidth=19;c.lineCap='butt';c.beginPath();c.moveTo(left,t.y+t.h-3);c.lineTo(left-20,Math.min(ly,t.y+600));c.moveTo(right,t.y+t.h-3);c.lineTo(right+18,Math.min(ry,t.y+600));c.moveTo(left,t.y+t.h+20);c.lineTo(right,Math.min(ry,t.y+600)-35);c.stroke();c.strokeStyle='#6c6350';c.lineWidth=4;c.beginPath();c.moveTo(left-6,t.y+t.h);c.lineTo(left-26,Math.min(ly,t.y+600));c.moveTo(right-6,t.y+t.h);c.lineTo(right+12,Math.min(ry,t.y+600));c.stroke();c=terrainContext;}}
+ c.fillStyle=q.timber?A.gradient(c,0,t.y,0,t.y+t.h,[[0,'#776b52'],[.23,'#655640'],[.28,'#463e31'],[1,'#292e2a']]):rock(c,b);c.fill(q.shape);c.clip(q.shape);
+ if(q.timber){
+  // These existing optional decks already have open timber trestles. Match
+  // the top/front material without changing their collision contract.
+  c.strokeStyle='#222a26';c.lineWidth=3;c.stroke(q.joints);
+ }else{
+  // Preserve the broad fracture paths. Stronger paired light/shadow values
+  // describe granite planes, rather than adding small polygon texture.
+  q.facets.forEach((p,i)=>{c.fillStyle=['#7481901d','#0b182940','#9098a819','#07142342'][i%4];c.fill(p);});
+  for(const block of q.blocks){c.fillStyle=q.ceiling?'#414c59':'#5b6572';c.fill(block.body);c.fillStyle=q.ceiling?'#192532':'#273443';c.fill(block.side);c.fillStyle='#091521a3';c.fill(block.contact);}
+  for(const wedge of q.wedges){c.fillStyle='#75828da6';c.fill(wedge.body);c.fillStyle='#142431d4';c.fill(wedge.side);c.fillStyle='#091722bf';c.fill(wedge.contact);}
+  for(const [i,row]of q.masonry.entries()){c.fillStyle=i%2?'#414c56':'#53616c';c.fill(row.body);c.fillStyle='#8c98924f';c.fill(row.edge);}
+  // Optional broad authored planes remain clipped to the CURRENT solid.
+  // Destroyed geometry cannot retain a detached decorative silhouette.
+  for(const p of q.authoredPlanes){c.fillStyle=p.fill;c.fill(p.path);}
+  // A local oil lamp warms only the neighbouring solid. The clipped bounce
+  // shares the world's static cache; it never brightens actors or the cave.
+  if(!q.ceiling)for(const light of b.honroMap.space.lights||[]){if(light.kind!=='oil'||!Number.isFinite(light.x)||!Number.isFinite(light.y)||light.x<t.x-160||light.x>t.x+t.w+160||light.y<t.y-220||light.y>t.y+t.h)continue;A.glow(c,light.x,light.y+74,155,118,light.color||'#d6aa70',.19);}
+ }
+ for(const p of q.lip){c.fillStyle=q.timber?'#b8a37a35':'#a1a9b130';c.fill(p);}c.strokeStyle=q.timber?'#a09172':q.ceiling?'#66748383':'#a8b5b9af';c.lineWidth=q.ceiling?3.5:4;c.lineJoin='bevel';c.stroke(q.rim);c.restore();}
+function world(c,scene,w,h,fn){c.save();c.translate(w/2,h/2);c.scale(scene.scale,scene.scale);c.translate(-scene.x,-scene.y);fn();c.restore();}
+function caveExtent(b){const roofs=b.terrain.filter(t=>t.honroCeiling&&!t.broken);if(!roofs.length)return null;return{left:Math.min(...roofs.map(t=>t.x)),right:Math.max(...roofs.map(t=>t.x+t.w))};}
+// Local compositions are keyed to named rooms, not repeated at distance
+// intervals. Each rear buttress stands on that room's canonical support and
+// leaves an authored void around its action site. Profiles are original large
+// granite masses in the approved illustration's broad-plane vocabulary.
+const ROOM_ART={
+ 11:[['east-knot-court','shoulder',.14,1450,720,-1],['resident-bank','buttress',.10,1550,1050,1],['north-trace','quarry',.8,1900,1350,1]],
+ 12:[['rockfall-cut','quarry',.70,2300,1750,1],['sign-yard','shoulder',.7,1800,950,-1],['outer-mouth','buttress',.95,1500,2300,1]],
+ 13:[['mason-ledge','shoulder',.20,1450,1450,-1],['stone-threshold','quarry',.18,1900,2000,1],['inner-pocket','buttress',.88,1450,1250,1]],
+ 14:[['upper-homes','quarry',.42,2600,1600,-1],['middle-market','buttress',.55,1850,1370,1],['right-descent','wall',.50,2400,1550,1],['lower-family','shoulder',.78,1650,1150,-1]],
+ 15:[['wet-approach','shoulder',.23,1600,1050,-1],['sluice-neck','quarry',.28,1450,1550,-1],['open-shaft','buttress',.89,1650,2550,1],['temple-stair','shoulder',.88,1750,1500,1]],
+ 16:[['temple-court','wall',.44,2550,1550,-1],['monk-shelter','shoulder',.38,1500,1250,-1],['hall-terrace','quarry',.76,2050,1770,1],['record-gallery','buttress',.98,1200,1450,-1]],
+ 17:[['brace-workyard','buttress',.17,1650,1450,-1],['hoist-bay','quarry',.80,2500,2300,1],['work-notes','shoulder',.94,1450,1300,1]],
+ 18:[['bell-entry','shoulder',.2,1850,1550,-1],['chain-shoulder','buttress',.43,1550,2150,-1],['keeper-ledge','quarry',.68,2850,2700,1]],
+ 19:[['bell-entry','shoulder',.2,1850,1550,-1],['chain-shoulder','buttress',.43,1550,2150,-1],['keeper-ledge','quarry',.68,2850,2700,1]],
+ 20:[['blocked-mouth','buttress',.45,2300,1750,-1],['final-pass','shoulder',.6,1900,650,1]]
+};
+const ROCK_FORMS={
+ wall:{outline:[[-.67,.15],[-.64,-.42],[-.49,-.69],[-.19,-.77],[.03,-.66],[.23,-.57],[.43,-.33],[.65,-.17],[.67,.16]],faces:[
+ [[-.49,-.69],[-.19,-.77],[-.10,-.61],[-.22,-.38],[-.47,-.21],[-.58,-.34]],
+ [[-.09,-.60],[.03,-.66],[.23,-.57],[.43,-.33],[.19,-.19],[-.01,-.24]],
+ [[-.47,-.2],[-.22,-.38],[.03,-.22],[.13,.15],[-.47,.15]],
+ [[.2,-.19],[.43,-.33],[.65,-.17],[.67,.16],[.35,.16]]],seams:[[[ -.1,-.61],[-.22,-.38],[-.47,-.21],[-.42,-.25],[-.28,-.42],[-.16,-.62]],[[.19,-.19],[.35,.16],[.29,.16],[.14,-.21]]]},
+ shoulder:{outline:[[-.62,.15],[-.59,-.19],[-.48,-.38],[-.34,-.43],[-.3,-.69],[-.12,-.8],[.12,-.79],[.26,-.66],[.29,-.4],[.51,-.28],[.63,.14]],faces:[
+ [[-.3,-.69],[-.12,-.8],[.07,-.72],[.06,-.43],[-.16,-.22],[-.29,-.3],[-.35,-.48]],
+ [[-.56,-.19],[-.45,-.39],[-.24,-.4],[-.12,-.21],[-.24,.13],[-.52,.13]],
+ [[.08,-.4],[.25,-.48],[.46,-.26],[.57,-.05],[.43,.14],[.06,.14],[-.03,-.17]]],seams:[[[.07,-.71],[.14,-.76],[.23,-.65],[.17,-.51],[.10,-.53],[.14,-.63]],[[ -.24,-.4],[-.12,-.21],[-.19,-.1],[-.23,-.13],[-.2,-.2],[-.28,-.39]]]},
+ buttress:{outline:[[-.6,.15],[-.53,-.3],[-.37,-.43],[-.29,-.54],[-.3,-.87],[-.15,-.98],[.12,-1],[.29,-.88],[.32,-.65],[.27,-.35],[.49,-.2],[.61,.15]],faces:[
+ [[-.29,-.84],[-.15,-.98],[.08,-.98],[.16,-.8],[.03,-.45],[-.13,-.25],[-.26,-.33],[-.22,-.63]],
+ [[.16,-.81],[.29,-.88],[.32,-.65],[.27,-.35],[.15,-.28],[.02,-.44]],
+ [[-.5,-.27],[-.35,-.47],[-.14,-.42],[-.05,-.23],[-.22,.13],[-.48,.13]],
+ [[.08,-.24],[.26,-.35],[.47,-.18],[.55,.12],[.2,.13],[.13,-.07]]],seams:[[[.02,-.45],[.15,-.3],[.08,-.24],[-.05,-.23],[-.14,-.42],[-.1,-.46]],[[.08,-.97],[.16,-.8],[.09,-.63],[.03,-.65],[.09,-.81],[.02,-.98]],[[.13,-.07],[.2,.13],[.15,.13],[.09,-.03]]]},
+ quarry:{outline:[[-.62,.15],[-.59,-.32],[-.48,-.4],[-.46,-.65],[-.29,-.73],[-.24,-.93],[.03,-1],[.27,-.96],[.34,-.8],[.31,-.5],[.49,-.4],[.58,-.14],[.6,.15]],faces:[
+ [[-.24,-.93],[.03,-1],[.20,-.89],[.12,-.54],[-.04,-.39],[-.18,-.11],[-.32,-.08],[-.34,-.5]],
+ [[.20,-.89],[.27,-.96],[.34,-.8],[.31,-.5],[.19,-.39],[.12,-.54]],
+ [[-.58,-.3],[-.46,-.65],[-.31,-.7],[-.2,-.43],[-.32,-.19],[-.36,.14],[-.54,.14]],
+ [[-.01,-.37],[.13,-.53],[.34,-.48],[.49,-.38],[.56,-.12],[.50,.15],[.25,.16],[.24,-.17]]],seams:[[[.2,-.89],[.15,-.67],[.09,-.63],[.10,-.73],[.14,-.89]],[[.12,-.54],[-.04,-.39],[-.10,-.25],[-.16,-.29],[-.1,-.43],[.06,-.57]],[[ -.2,-.43],[-.32,-.19],[-.37,-.2],[-.31,-.34],[-.26,-.46]]]}
+};
+function prepareRooms(b){const space=b.honroMap.space;let q=roomCache.get(b);if(q?.source===space&&q.version===b.sceneVersion)return q;const floor=b.terrain.find(t=>t.honroSurfaceRole==='floor'&&!t.broken),rooms=[];
+ for(const [id,kind,u,width,height,flip]of (Array.isArray(space.rockCompositions)?space.rockCompositions:ROOM_ART[b.honroStage]||[])){const room=space.rooms.find(r=>r.id===id);if(!room||!floor)continue;const x=room.bounds.x+room.bounds.w*u,y=C.topAt(floor,x,room.bounds.y+room.bounds.h),form=ROCK_FORMS[kind],pp=(ps,soft=false)=>{const samples=[],softCorners=new Set();for(let i=0;i<ps.length;i++){const a=ps[i],next=ps[(i+1)%ps.length],count=a[1]>=0&&next[1]>=0?Math.max(1,Math.ceil(Math.abs(next[0]-a[0])*width/180)):1;if(soft&&a[1]<-.65&&i%2===0)softCorners.add(samples.length);for(let k=0;k<count;k++){const f=k/count,z=a[1]+(next[1]-a[1])*f,px=x+(a[0]+(next[0]-a[0])*f)*width*flip,py=z>=0?C.topAt(floor,Math.max(0,Math.min(b.width,px)),y)+z*height+80:y+z*height;samples.push([px,py]);}}return soft?roundedPolygon(samples,Math.min(15,width*.008),softCorners):polygon(samples);};
+  rooms.push({id,box:{x:x-width*.7,y:y-height,w:width*1.4,h:height*1.2},shape:pp(form.outline,true),faces:form.faces.map(face=>pp(face)),seams:form.seams.map(face=>pp(face)),outdoor:room.sky==='open'});
+ }
+ q={source:space,version:b.sceneVersion,rooms};roomCache.set(b,q);return q;
+}
+function background(c,b,scene,w,h,overPainting=false){if(!active(b))return false;const n=b.honroStage,open=[11,12,13,20].includes(n),img=images[n===11&&b.honroStage11LandscapeRevision===1?'stage11-ravine-readable':n===11&&b.honroMap?.ravine?.version>=1?'stage11-ravine':n===20?'dawn':'clouded'];
+ if(!overPainting){if(open){const sky=c.createLinearGradient(0,0,0,h);sky.addColorStop(0,n===20?'#3b4d5a':'#2f3d4e');sky.addColorStop(1,n===20?'#88908a':'#617079');c.fillStyle=sky;c.fillRect(0,0,w,h);if(img?.complete&&img.naturalWidth){const q=E.act1BackdropFrame(scene,w,h,b,img.naturalWidth,img.naturalHeight);c.drawImage(G.HonroVisualStyle?.image(img,'SKY')||img,q.x,q.y,q.w,q.h);}}
+ else{const dark=c.createLinearGradient(0,0,0,h);dark.addColorStop(0,'#0a121d');dark.addColorStop(.66,'#101c28');dark.addColorStop(1,'#172630');c.fillStyle=dark;c.fillRect(0,0,w,h);}}
+ const q=prepareRooms(b),extent=caveExtent(b),left=scene.x-w/scene.scale/2,right=scene.x+w/scene.scale/2,top=scene.y-h/scene.scale/2,bottom=scene.y+h/scene.scale/2;
+ world(c,scene,w,h,()=>{
+  if(open&&extent){const fade=500,entry=n!==20,start=entry?extent.left:extent.right-fade,end=entry?extent.left+fade:extent.right;
+   const g=c.createLinearGradient(start,0,end,0);g.addColorStop(0,entry?'#0a121d00':'#0a121d');g.addColorStop(1,entry?'#0a121d':'#0a121d00');c.fillStyle=g;const shadeTop=G.HonroTerrainDomain.active(b)?Math.max(0,top):top;c.fillRect(entry?start:left,shadeTop,entry?right-start:end-left,Math.max(0,bottom-shadeTop));}
+  for(const room of q.rooms){const box=room.box;if(box.x+box.w<left-300||box.x>right+300)continue;
+   c.save();
+   c.globalAlpha=1;c.fillStyle=A.gradient(c,0,box.y,0,box.y+box.h,[[0,room.outdoor?'#2c3d49':'#253440'],[.55,room.outdoor?'#283947':'#1b2b38'],[1,'#142431']]);c.fill(room.shape);c.clip(room.shape);room.faces.forEach((face,i)=>{c.fillStyle=i%2?'#101b26':'#40505e';c.globalAlpha=room.outdoor?.40:i===0?.42:.36;c.fill(face);});c.globalAlpha=.68;c.fillStyle='#0d1c28';for(const seam of room.seams)c.fill(seam);c.restore();
+  }
+  c.globalAlpha=1;
+  const sceneryContext=c;c=G.HonroVisualStyle?.raw(c)||c;
+  const hanging=b.honroCaveHangingTarget,target=G.HonroQuestTargets.records(b).find(t=>t.id==='shaft-pin');
+  if(hanging&&target&&!target.broken){c.strokeStyle='#746d58';c.lineWidth=4;c.beginPath();c.moveTo(hanging.x,hanging.roofY-4);c.lineTo(hanging.x+4,hanging.roofY+65);c.lineTo(target.x+target.w*.5,target.y+4);c.stroke();}
+  const clue=b.honroCaveHangingClue;if(clue&&Number.isFinite(clue.x)&&Number.isFinite(clue.targetY)){c.save();c.strokeStyle='#746d58';c.lineWidth=5;c.beginPath();c.moveTo(clue.x,clue.roofY);c.lineTo(clue.x,clue.targetY);c.stroke();c.strokeStyle='#a29370';c.lineWidth=7;c.beginPath();c.ellipse(clue.x,clue.targetY+22,22,30,0,0,Math.PI*2);c.stroke();c.restore();}
+  c=sceneryContext;
+  // Illumination stays behind terrain and actors. Limited local pools replace
+  // repeated pillars and particles; the marker is the authored light source.
+  const lights=b.honroMap.space.lights||[];for(const light of lights){const x=light.x,y=light.y;if(!Number.isFinite(x)||!Number.isFinite(y)||x<left-500||x>right+500)continue;A.glow(c,x,y-75,light.radius||280,(light.radius||280)*.75,light.color||'#c29959',.13);}
+  if(n===19){const bell=(b.honroLandmarks||[]).find(l=>l.asset?.id==='act2:bell');if(bell)A.glow(c,bell.x,bell.y-500,850,1150,'#657d84',.07);}
+ });
+ scene.environmentStats={groups:q.rooms.length,visibleAssets:0,cachedPaths:q.rooms.length*3,backgroundAnimatedPrimitives:0,animatedPrimitives:0,...A.stats(),act2Spatial:true};return true;
+}
+// Extrapolate only intervals occupied by real boundary solids. Each is filled
+// independently (union semantics), so overlapping floors never cancel holes.
+function intervals(t,x){const ps=C.poly(t),ys=[];for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if((a.x<=x&&z.x>x)||(z.x<=x&&a.x>x))ys.push(a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x));}ys.sort((a,z)=>a-z);const out=[];for(let i=0;i+1<ys.length;i+=2)out.push([ys[i],ys[i+1]]);return out;}
+function enclosure(c,b,w,h,scene){const v=G.HonroBounds.visual(b,w,h,scene.scale),key=[b.sceneVersion,v.left,v.top,v.right,v.bottom].join(':'),cached=scene._act2Enclosure;let q=cached;
+ if(!q||q.key!==key||q.terrain!==b.terrain){const paths=[],rims=[];for(const t of b.terrain){if(t.broken||t.oneWay||t.honroElementCollision)continue;for(const side of [-1,1]){const edge=side<0?0:b.width;if(t.x>edge||t.x+t.w<edge)continue;const outer=side<0?v.left:v.right,spans=intervals(t,edge-side*.5);for(const [top,bottom]of spans){if(bottom-top<2)continue;const d=Math.abs(outer-edge),mid=edge+side*Math.min(800,d*.4),bend=Math.min(150,d*.045),p=new Path2D();p.moveTo(edge-side*8,top<=1?v.top-20:top);p.lineTo(mid,top<=1?v.top-20:top+(side<0?-bend:bend));p.lineTo(outer,top<=1?v.top-20:top+(side<0?-bend*.6:bend*.8));p.lineTo(outer,bottom>=b.height?v.bottom+20:bottom+bend*.6);p.lineTo(mid,bottom>=b.height?v.bottom+20:bottom+bend);p.lineTo(edge-side*8,bottom);p.closePath();paths.push(p);}}
+   if(t.y<1){const p=polygon([[Math.max(v.left,t.x),v.top-20],[Math.min(v.right,t.x+t.w),v.top-20],[Math.min(v.right,t.x+t.w),t.y+8],[Math.max(v.left,t.x),t.y+8]]);paths.push(p);}
+   if(t.y+t.h>=b.height){paths.push(polygon([[t.x,b.height-5],[t.x+t.w,b.height-5],[t.x+t.w,v.bottom+20],[t.x,v.bottom+20]]));}
+  }q={key,terrain:b.terrain,paths,rims};scene._act2Enclosure=q;scene._skirtBuilds=(scene._skirtBuilds||0)+1;}
+ c.save();c.fillStyle=rock(c,b);for(const p of q.paths)c.fill(p);c.restore();scene.overscanStats={bounds:v,paths:q.paths.length,builds:scene._skirtBuilds,cave:true,canonical:true};
+}
+const releasedBells=new WeakMap(),chainCache=new WeakMap();
+function appearanceKey(b){if(!active(b))return'';const done=b.honroState?.act2?.done||{};return [b.honroStage,!!done['upper-chain'],!!done['lower-chain'],!!done['clear-souls'],!!done['old-soul']].join(':');}
+function element(c,asset,inst,scene){const b=scene?.battle;if(!active(b))return false;
+ if(asset.id==='act2:old-soul-stone'&&b.honroStage===19){const done=b.honroState?.act2?.done||{};if(!done['clear-souls']&&!done['old-soul'])return true;}
+ if(asset.id==='act2:bell'&&b.honroStage===19&&asset.vector){if(!asset.vector.gradients?.bronze||!Array.isArray(asset.vector.gradients.bronze.stops))return false;let quiet=releasedBells.get(asset);if(!quiet){quiet={...asset,vector:JSON.parse(JSON.stringify(asset.vector))};quiet.vector.gradients.bronze.stops=quiet.vector.gradients.bronze.stops.map(s=>({...s,color:E.mixColor(s.color,'#273636',.18)}));const light=quiet.vector.root.children?.find(n=>n.id==='left-bronze-light-plane');if(light)light.opacity=.07;releasedBells.set(asset,quiet);}G.HonroVectorArt.draw(c,quiet,inst);return true;}
+ return false;
+}
+// Short tension members pin the bell laterally into stone. Nothing descends
+// from the crown or ceiling, so the monument can never read as hanging.
+function bellBindings(c,b){if(!active(b)||![18,19].includes(b.honroStage))return;const bell=(b.honroLandmarks||[]).find(l=>l.asset?.id==='act2:bell');if(!bell)return;const done=b.honroState?.act2?.done||{},released=b.honroStage===19,scale=bell.scale||1;
+ c.save();c.strokeStyle=released?'#4c554c':'#77705a';c.lineWidth=7;c.lineCap='round';
+ for(const side of [-1,1]){const x=bell.x+side*265*scale,y=bell.y-300*scale,near=bell.x+side*380*scale,floor=b.terrain.find(t=>t.honroSurfaceRole==='floor'&&!t.broken),foot=floor?C.topAt(floor,near,bell.y):bell.y;const cut=released||(side<0?done['upper-chain']:done['lower-chain']);c.beginPath();c.moveTo(x,y);if(cut){c.quadraticCurveTo(x+side*47*scale,y+80*scale,x+side*25*scale,y+135*scale);c.moveTo(near,foot-12);c.lineTo(near-side*24*scale,foot-36);}else c.lineTo(near,foot-12);c.stroke();}
+ c.restore();
+}
+const oldLandmarkLayer=G.HonroScene.prototype._landmarkLayer;
+G.HonroScene.prototype._landmarkLayer=function(c,landmarks,layer){oldLandmarkLayer.call(this,c,landmarks,layer);if(layer==='structural-back')bellBindings(c,this.battle);};
+G.HonroAct2SpatialArt={active,background,terrain,prepareTerrain,prepareRooms,surfaceEdges,rock,enclosure,element,appearanceKey,bellBindings,images,ready:()=>Object.values(images).every(i=>i.complete&&i.naturalWidth)};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/stage11-landscape-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// This material pass is explicitly opt-in. It clips every wash, bark plate and
+// fracture to the live collider; old battles and every other stage are untouched.
+const C=G.HONRO_CORE,cache=new WeakMap();
+const active=b=>b?.honroStage===11&&b.honroStage11LandscapeRevision===1;
+const path=d=>new Path2D(d),P=ps=>{const p=new Path2D();ps.forEach((v,i)=>i?p.lineTo(v.x??v[0],v.y??v[1]):p.moveTo(v.x??v[0],v.y??v[1]));p.closePath();return p;};
+const grad=(c,x,y,xx,yy,colors)=>{const g=c.createLinearGradient(x,y,xx,yy);colors.forEach(([u,k])=>g.addColorStop(u,k));return g;};
+const hash=s=>{let h=11;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;return h;};
+const ROCK_BLOCKS=[
+ {body:'M28 151Q76 30 234 27L510 2 846 59 1118 160Q1214 298 1110 473L962 612 901 825 559 895 195 774Q35 691 59 510Z',light:'M71 153Q128 68 235 69L484 39 513 185 439 312 283 453 95 448Z',face:'M514 38L829 91 1068 178 1075 336 879 450 694 398 442 327 501 202Z',shade:'M1107 180Q1169 294 1078 464L927 603 875 811 729 849 771 639 832 462 1035 326Z',foot:'M290 482L438 377 698 439 862 479 845 631 765 815 547 858 219 733Z',joint:'M486 43L514 63 489 211 424 315 455 367 410 406 376 559 278 647 308 719 292 766 263 728 246 639 344 542 378 387 405 342 395 309 459 201Z',bed:'M93 445Q221 466 299 431L431 369 461 383 304 464 167 484 95 467Z',wash:'M203 114L264 85 281 185 258 271 264 393 233 414 219 279 239 198Z'},
+ {body:'M3 206L186 58 431 3 719 41Q909 72 1003 223L1171 437 1137 616 988 767 769 862 413 894 111 728Q49 538 3 206Z',light:'M51 206L210 91 425 48 663 66 627 166 488 215 441 342 216 391 70 332Z',face:'M662 63Q866 99 947 233L1081 403 898 429 747 358 635 422 443 355 488 215 623 168Z',shade:'M1006 253L1141 443 1109 602 961 747 735 832 713 658 879 516 1032 448Z',foot:'M190 433L430 396 624 457 741 397 877 464 751 599 681 818 421 854 155 696Z',joint:'M449 39L464 53 435 128 489 211 459 238 431 344 471 394 437 421 408 545 457 642 407 721 412 849 386 854 377 709 426 640 375 546 404 405 399 349 431 227 455 207 405 133Z',bed:'M697 365L750 337 867 401 991 398 1016 422 877 432 749 371 651 444 621 422Z',wash:'M207 471Q278 428 337 442L325 514 281 563 298 668 266 688 252 562 291 502Z'},
+ {body:'M11 117L296 15 630 37 965 113 1183 329Q1206 477 1075 601L973 762 647 858 317 899 80 722Z',light:'M58 141L299 63 593 82 651 202 514 258 230 258 74 366Z',face:'M639 89L949 158 1121 348 1047 446 878 416 749 470 603 402 527 273 686 230Z',shade:'M1138 360L1117 498 1038 590 937 737 612 824 667 623 812 558 936 459 1036 470Z',foot:'M89 414L262 308 510 310 582 440 746 512 632 664 575 827 321 853 119 694Z',joint:'M610 60L638 71 695 229 555 278 614 410 768 487 754 520 595 446 518 272 653 215Z',bed:'M129 581L283 553 418 577 508 549 543 568 419 607 282 585 130 610Z',wash:'M852 229L886 235 902 326 883 371 858 366 868 325Z'}
+].map(r=>Object.fromEntries(Object.entries(r).map(([k,d])=>[k,path(d)])));
+const mix=(a,b,u)=>{const aa=[1,3,5].map(i=>parseInt(a.slice(i,i+2),16)),bb=[1,3,5].map(i=>parseInt(b.slice(i,i+2),16));return'#'+aa.map((v,i)=>Math.round(v+(bb[i]-v)*u).toString(16).padStart(2,'0')).join('');};
+function rockBlock(c,p){
+ const r=ROCK_BLOCKS[p.variant%3];c.save();c.translate(p.x,p.y);c.scale(p.ww/1200,p.depth/900);
+ c.fillStyle=grad(c,170,30,790,880,[[0,'#9ba696'],[.45,'#6c817b'],[1,'#314b54']]);c.fill(r.body);c.clip(r.body);
+ c.fillStyle=grad(c,0,0,700,790,[[0,'#aab5a0'],[.53,'#8e9e8d'],[1,'#607c75']]);c.fill(r.light);
+ c.fillStyle=grad(c,600,0,910,610,[[0,'#a7b09b'],[.6,'#7d9287'],[1,'#526f6c']]);c.fill(r.face);
+ c.fillStyle=grad(c,500,280,420,900,[[0,'#789082'],[.48,'#607c75'],[1,'#4a6668']]);c.fill(r.foot);
+ c.fillStyle=grad(c,940,60,795,870,[[0,'#506d6b'],[.6,'#35515a'],[1,'#324f59']]);c.fill(r.shade);
+ if(p.rift){c.fillStyle='#233f47a8';c.fill(r.joint);}if(p.variant!==1){c.fillStyle='#36565a88';c.fill(r.bed);}c.fillStyle='#c4c4a928';c.fill(r.wash);c.restore();
+}
+function smooth(ps,closed=true){const p=new Path2D();if(ps.length<2)return p;p.moveTo(...ps[0]);for(let i=1;i<ps.length;i++){const a=ps[i],z=ps[i+1];if(z)p.quadraticCurveTo(...a,(a[0]+z[0])/2,(a[1]+z[1])/2);else p.lineTo(...a);}if(closed)p.closePath();return p;}
+function prepare(t,b){
+ let q=cache.get(t);if(q?.vertices===t.vertices&&q.version===b.sceneVersion)return q;
+ const ps=C.poly(t),shape=P(ps),edges=G.HonroAct2SpatialArt.surfaceEdges(t,b),seed=hash(t.id),wood=!!t.honroRavineTree;
+ const at=x=>{const e=edges.find(([a,z])=>x>=Math.min(a.x,z.x)-.01&&x<=Math.max(a.x,z.x)+.01);return e?e[0].y+(e[1].y-e[0].y)*(x-e[0].x)/(e[1].x-e[0].x||1):t.y;};
+ const bottom=x=>{const ys=[];for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x)&&Math.abs(a.x-z.x)>.01)ys.push(a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x));}return Math.max(at(x)+10,...ys);};
+ const rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y);rim.lineTo(z.x,z.y);}
+ q={vertices:t.vertices,version:b.sceneVersion,shape,rim,wood,edges,plates:[],grooves:[],moss:[],bands:[],top:at,bottom};
+ if(wood){
+  const start=Math.min(...edges.flat().map(v=>v.x)),end=Math.max(...edges.flat().map(v=>v.x)),width=end-start;
+  const sampleCount=Math.max(8,Math.min(42,Math.ceil(width/70))),xs=Array.from({length:sampleCount},(_,i)=>start+(end-start)*i/(sampleCount-1));
+  const stops=[[0,'#8e734c'],[.22,'#ac8e5f'],[.48,'#755b3e'],[.78,'#493b2e'],[1,'#262a23']],tone=f=>{for(let i=1;i<stops.length;i++)if(f<=stops[i][0])return mix(stops[i-1][1],stops[i][1],(f-stops[i-1][0])/(stops[i][0]-stops[i-1][0]));return stops.at(-1)[1];};
+  for(let i=0;i<24;i++){const f=i/24,z=(i+1.1)/24,up=xs.map(x=>[x,at(x)+(bottom(x)-at(x))*f]),down=xs.slice().reverse().map(x=>[x,at(x)+(bottom(x)-at(x))*z]);q.bands.push({path:P([...up,...down]),fill:tone((f+z)/2)});}
+  const count=Math.max(2,Math.min(7,Math.ceil(width/390)));
+  for(let i=0;i<count;i++){
+   const u=(i+.08)/count,x=start+width*u,ww=width/count*(1.1+(i%3)*.14),samples=[];
+   for(let j=0;j<=7;j++){const xx=Math.min(end-.4,x+ww*j/7),top=at(xx),dep=bottom(xx)-top,s=j/7; samples.push([xx,top,dep,s]);}
+   const upper=samples.map(([xx,y,d,s])=>[xx,y+d*(.43+.12*Math.sin(s*3+i*.71)-.29*Math.sin(Math.PI*s))]),lower=samples.slice().reverse().map(([xx,y,d,s])=>[xx,y+d*(.43+.12*Math.sin(s*3+i*.71)+.29*Math.sin(Math.PI*s))]);
+   const face=smooth([...upper,...lower]);
+   const deep=smooth(samples.map(([xx,y,d,s])=>[xx,y+d*(.78+.1*Math.sin(s*5.2+i*.8))]),false);
+   q.plates.push({face,x,y:at(x),h:Math.max(90,bottom(x)-at(x)),light:i%3!==2});q.grooves.push(deep);
+   // One short branching split interrupts each broad plate. Nothing repeats
+   // at a fixed world interval or extends as a ruler-straight yellow stripe.
+   const xx=Math.min(end-20,x+ww*.61),y=at(xx),dep=bottom(xx)-y;
+   const crack=path(`M${xx-ww*.18} ${y+dep*.38}Q${xx-ww*.03} ${y+dep*.51} ${xx+ww*.11} ${at(Math.min(end,xx+ww*.11))+dep*.35}M${xx} ${y+dep*.48}q${ww*.02} ${dep*.17} ${ww*.12} ${dep*.20}`);
+   q.grooves.push(crack);
+  }
+  // Broken side arm alone exposes a torn cambium end. Other connections are
+  // continuous wood, never modular beam caps or identical ellipse tokens.
+  if(t.id==='rv-saddle-broken-arm'){const x=end-31,y=at(x),d=bottom(x)-y;q.cut=path(`M${x-19} ${y+12}q-26 ${d*.17} -5 ${d*.43}q25 ${d*.17} 37 ${-d*.14}q15 ${-d*.28} -18 ${-d*.37}`);}
+ }else{
+  const floor=t.honroSurfaceRole==='floor',start=floor?Math.max(0,t.x):t.x,end=floor?Math.min(b.width,t.x+t.w):t.x+t.w,w=end-start;
+  const pillar=!t.oneWay&&w<550&&t.h>w*1.07;
+  const count=pillar?1:t.oneWay||t.h<220?Math.max(1,Math.ceil(w/360)):Math.max(2,Math.min(14,Math.ceil(w/(floor?1400:960))));
+  const weights=Array.from({length:count},(_,i)=>[1.43,.71,1.18,.86,1.51,.59,1.06][(i+seed)%7]),total=weights.reduce((a,z)=>a+z,0);let cursor=start;
+  for(let i=0;i<count;i++){
+   const stride=w*weights[i]/total,x=cursor-stride*.12,ww=stride*[1.26,1.08,1.34,1.15][(i+seed)%4];cursor+=stride;
+   const y=at(Math.max(start,Math.min(end,x+ww*.34)))+(pillar?0:!t.oneWay?[5,133,57,-49,211][(i+seed)%5]:3);
+   const depth=pillar?t.h*.96:Math.min(t.h*(t.oneWay?.88:.79),ww*[.63,.79,.72,.88,.67][(i+seed)%5],1050);
+   if(!t.oneWay&&t.h>500&&(i+seed)%3===1)q.plates.push({x:x-ww*.17,y:y+depth*.73,ww:ww*1.22,depth:depth*1.16,variant:(i+seed+1)%3,rift:false});
+   q.plates.push({x,y,ww,depth,variant:(i+seed)%3,rift:(i+seed)%3===0||w<220});
+  }
+  // Coherent moss grows in a few damp seams, rather than flat green stickers.
+  const e=edges.filter(([a,z])=>Math.abs(z.x-a.x)>100);for(const [i,[a,z]]of e.entries()){
+   if((i+seed)%3===0)continue;const lo=.1+((i+seed)%3)*.13,hi=Math.min(.95,lo+.24+((i+seed)%2)*.18),x=a.x+(z.x-a.x)*lo,xx=a.x+(z.x-a.x)*hi,y=at(x),yy=at(xx),deep=t.oneWay?12:35+((i+seed)%3)*11;
+   q.moss.push(path(`M${x} ${y+5}Q${(x+xx)/2} ${(y+yy)/2+18} ${xx} ${yy+6}L${xx-13} ${yy+deep*.7}Q${(x+xx)/2+24} ${(y+yy)/2+deep+10} ${x+12} ${y+deep*.6}Z`));
+  }
+ }
+ cache.set(t,q);return q;
+}
+function terrain(c,t,b){
+ if(!active(b)||!t.honroRavine)return false;
+ const q=prepare(t,b);c.save();c.clip(q.shape);
+ if(q.wood){
+  c.fillStyle=grad(c,t.x,t.y,t.x+t.w*.24,t.y+t.h,[[0,'#8d6f49'],[.35,'#66513b'],[1,'#282f29']]);c.fill(q.shape);
+  for(const band of q.bands){c.fillStyle=band.fill;c.fill(band.path);}
+  for(const p of q.plates){c.fillStyle=p.light?'#b0a07028':'#29261f40';c.fill(p.face);}
+  c.lineCap='round';c.lineJoin='round';c.strokeStyle='#34271979';c.lineWidth=6;for(const p of q.grooves)c.stroke(p);
+  if(q.cut){c.strokeStyle='#b79963';c.lineWidth=7;c.stroke(q.cut);}
+  c.strokeStyle='#b6a077';c.lineWidth=4;c.stroke(q.rim);
+ }else{
+  // Continuous warm-grey bedrock is visibly separate from the cool blue rear
+  // cliff. The rounded exposed faces belong to this mass, never to empty air.
+  c.fillStyle=grad(c,t.x,t.y,t.x+t.w*.1,t.y+Math.min(t.h,2800),[[0,'#929982'],[.28,'#6f7560'],[.75,'#525b48'],[1,'#414b3b']]);c.fill(q.shape);
+  c.fillStyle=grad(c,t.x,t.y,t.x+t.w,t.y+t.h*.23,[[0,'#b9aa7324'],[.38,'#7c775512'],[.72,'#24322c20'],[1,'#182c2b65']]);c.fill(q.shape);
+  for(const p of q.plates)rockBlock(c,p);
+  c.strokeStyle='#18292360';c.lineWidth=10;c.stroke(q.shape);
+  c.fillStyle='#495d3e';for(const p of q.moss)c.fill(p);
+  c.strokeStyle='#b1bba1';c.lineWidth=5;c.stroke(q.rim);
+ }
+ c.restore();return true;
+}
+G.HonroStage11LandscapeArt={active,prepare,terrain};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/act2-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Shared Canvas art: these retained paths are used by the game, Stage View,
+// portraits, and Playtest. Collision comes exclusively from the map model.
+const S=G.HonroScene.prototype,C=G.HONRO_CORE;
+const path=d=>new Path2D(d),paint=(c,p,fill,stroke='#151d21',width=2)=>{if(fill){c.fillStyle=fill;c.fill(p);}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.lineJoin='round';c.stroke(p);}};
+const paths={
+ spiritSkull:path('M-11 -94 L-3 -101 7 -94 11 -84 5 -72 -3 -70 -12 -81Z'),
+ spiritSocket:path('M-10 -87 L-3 -83 -5 -78 -11 -82Z M1 -84 L8 -88 7 -80 2 -78Z'),
+ spiritJaw:path('M-8 -75 L-3 -72 5 -75 3 -67 -3 -65 -8 -69Z'),
+ resonanceTendon:path('M-16 -76 Q-8 -64 -13 -51 L-8 -33 -15 -22 -20 -40 -23 -59Z M9 -70 L17 -62 18 -46 12 -29 8 -37 13 -52Z'),
+ echoShoulder:path('M-25 -77 L-16 -81 -11 -71 -17 -56 -20 -43 -28 -49 -31 -62Z'),
+ echoTendon:path('M-23 -73 L-17 -70 -23 -55 -23 -47 M9 -61 L18 -51 17 -37 9 -24'),
+ // Keeper-only retained contours: tendons, overlapping cloth and loaded grips.
+ keeperNeck:path('M-5 -96 L3 -96 6 -86 1 -81 -7 -87Z'),
+ keeperNeckShade:path('M0 -95 L3 -95 5 -87 1 -84 -2 -88Z'),
+ keeperSleeveFold:path('M-18 -77 Q-24 -71 -21 -63 L-18 -59 M-21 -56 L-17 -52 M13 -78 Q17 -73 15 -69'),
+ keeperLeather:path('M-10 -59 Q-5 -58 -5 -53 L-7 -43 -5 -35 -12 -35Z M5 -54 L9 -53 10 -37 5 -38Z'),
+ keeperFaceShade:path('M1 -104 L6 -102 6 -98 9 -96 6 -94 5 -90 1 -88 -3 -91 1 -94 -2 -98Z'),
+ keeperBrow:path('M-5 -100 L1 -101 5 -99 2 -97 -3 -98Z'),
+ keeperFaceLight:path('M-5 -103 L0 -104 0 -102 -4 -101Z M3 -99 L5 -99 5 -97 7 -96 4 -96Z M-3 -94 L0 -95 -1 -92Z'),
+ keeperFaceLine:path('M-4 -98 L0 -98 M1 -92 L5 -93 M-4 -96 Q-6 -94 -3 -93 M-2 -90 L2 -89'),
+ keeperWrapFold:path('M-8 -104 Q-1 -107 7 -104 M-6 -102 L3 -103 M-6 -105 Q-9 -101 -8 -99'),
+ keeperWrapKnot:path('M-8 -104 L-12 -102 -10 -98 -7 -100Z M-10 -99 Q-13 -94 -11 -89 L-8 -92 -8 -99Z'),
+ keeperRobeFold:path('M-9 -81 Q-13 -71 -8 -63 L-11 -52 M2 -71 L-2 -63 0 -57 M14 -46 L17 -32 M-16 -43 L-17 -31'),
+ keeperRobeLight:path('M-12 -85 Q-17 -84 -18 -79 L-16 -72 -13 -76 -10 -80Z M-14 -49 L-12 -44 -15 -31 -18 -30Z M9 -35 L14 -32 19 -33 17 -38 13 -40Z'),
+ keeperSash:path('M-13 -85 Q-7 -79 1 -73 L14 -65 11 -61 Q0 -68 -16 -81Z'),
+ keeperSashEdge:path('M-12 -83 Q-3 -76 12 -65'),
+ keeperBelt:path('M-15 -64 Q-1 -60 13 -64 L14 -59 Q1 -56 -15 -59Z'),
+ keeperApronEdge:path('M-11 -59 Q-1 -56 9 -59 M-10 -37 Q0 -34 11 -36 M-7 -56 L-6 -53 M6 -56 L6 -52'),
+ keeperChain:path('M-18 -49 L-21 -47 -19 -44 -22 -41 -22 -38 M-18 -47 L-17 -44 -20 -42'),
+ keeperHandLine:path('M-20 -51 L-17 -49 -14 -49 M-19 -48 L-16 -47'),
+ keeperGripLine:path('M10 -65 L13 -63 M11 -62 L14 -61'),
+ keeperRearTrouser:path('M-11 -37 Q-17 -25 -14 -15 L-14 -3 -7 -2 -6 -18 -3 -30Z'),
+ keeperFrontTrouser:path('M5 -36 Q2 -28 6 -18 L8 -2 15 -2 15 -19 17 -31Z'),
+ keeperTrouserFold:path('M-10 -28 L-11 -19 -9 -15 M9 -29 Q6 -23 10 -18 M12 -13 L13 -6'),
+ keeperRearShoe:path('M-15 -6 Q-11 -7 -7 -4 L-2 -2 -1 1 Q-10 3 -16 0Z'),
+ keeperFrontShoe:path('M7 -6 Q12 -7 16 -3 L21 -1 20 2 8 2 6 -1Z'),
+ keeperStrikerArm:path('M12 -83 Q20 -82 21 -75 L19 -64 13 -60 8 -64 12 -70 10 -75Z'),
+ keeperStrikerFold:path('M16 -78 L18 -74 16 -69 12 -67 M12 -72 L14 -70'),
+ keeperStrikerHand:path('M9 -69 L14 -68 16 -65 15 -60 11 -60 8 -64Z'),
+ keeperStrikerHead:path('M24 -68 L33 -66 35 -58 29 -56 24 -59Z'),
+ keeperStrikerFace:path('M30 -65 L33 -65 34 -59 30 -58 28 -61Z'),
+ keeperStrikerBinding:path('M23 -65 L24 -59 M26 -66 L27 -58'),
+ keeperBellCasting:path('M-13 -69 Q-7 -74 -1 -74 M-17 -30 Q-1 -23 17 -30 M-13 -65 L-13 -57 M-8 -66 L-8 -58 M6 -66 L6 -58 M11 -65 L11 -57'),
+ cartPlanks:path('M-42 -49 L3 -46 M-38 -36 L1 -33 M10 -46 L43 -44 M7 -33 L40 -31'),
+ cartIron:path('M-43 -58 L-36 -59 -32 -49 -39 -48Z M34 -56 L42 -55 39 -46 32 -46Z'),
+ cartOre:path('M-31 -79 L-18 -75 -23 -66 -39 -65Z M-4 -86 L9 -80 0 -70 -13 -73Z M25 -82 L36 -69 24 -64 18 -74Z'),
+ cartSpokes:path('M-36 -20 L-26 -3 M-41 -10 L-20 -12 M22 -17 L38 -3 M19 -8 L41 -13'),
+ bellLip:path('M-23 -20 Q0 -14 23 -20 L22 -16 Q0 -10 -22 -16Z'),
+ bellPanel:path('M-12 -60 L-5 -61 -4 -50 -12 -49Z M4 -61 L11 -60 13 -49 5 -50Z'),
+ cart:path('M-49-63L35-70 49-57 38-18-35-18Z'),cartSide:path('M8-60L49-57 38-18 2-18Z'),
+ cartLoad:path('M-43-65L-32-81-15-77-4-89 12-81 25-85 40-67 11-58Z'),
+ cartRim:path('M-53-66L35-74 52-60 48-52 7-55-48-58Z'),
+ cartBrace:path('M-35-58L-28-59-19-22-26-21Z M-8-59L-1-59 3-22-4-22Z M28-56L35-55 27-22 20-22Z'),
+ wheel:path('M-41-19L-32-25-22-21-17-11-21-2-31 2-41-3-45-12Z M20-19L29-24 39-20 44-10 40 0 30 3 20-2 16-11Z'),
+ wheelHub:path('M-35-16L-28-17-24-11-29-6-35-9Z M25-15L32-16 36-10 31-5 25-8Z'),
+ pick:path('M-5-83L2-86 7-3 1 0-2-35Z'),
+ pickHead:path('M-37-73Q-22-91-3-94L6-95Q24-94 40-81L21-84 8-85 6-76-5-77-9-85Q-24-82-37-73Z'),
+ pickBlade:path('M-37-73Q-23-91-7-93L-9-86Q-24-82-37-73Z M8-91Q27-91 40-81L22-85 8-86Z'),
+ lantern:path('M-32 0L-29-9 29-9 33 0Z M-25-9L-19-22-9-28H10L21-21 26-9Z M-8-28L-7-64H8L9-28Z M-22-64L-11-76H12L24-64Z M-25-76L-23-104-13-109H15L25-103 26-76Z'),
+ lanternShade:path('M6-28L6-64 14-71 24-64 10-61 11-28Z M15-109L25-103 26-76 16-76Z M10-27L21-21 26-9 12-9Z'),
+ lanternRoof:path('M-34-105Q-20-110-12-119L-5-121-4-127 1-133 6-127 6-121 14-118Q24-109 35-105L32-101-31-101Z'),
+ window:path('M-15-82L-15-100-5-103 4-100V-82Z M15-99L21-97 21-83 15-82Z'),
+ hoist:path('M-61 0L-43-173H-29L-42 0Z M42 0L27-173H42L60 0Z M-76-169H74V-151H-76Z M-41-144L43-52 40-34-48-130Z'),
+ hoistShade:path('M-34-169L-29-169-42 0-48 0Z M35-169L42-169 60 0 52 0Z M-76-156H74V-151H-76Z'),
+ hoistJoint:path('M-49-153L-27-153-29-141-48-141Z M25-153L46-153 47-141 27-141Z M-50-30L-39-29-42-15-52-16Z M40-30L54-31 56-19 42-18Z'),
+ hoistWeight:path('M-15-79L9-85 24-68 29-32 18-11-24-11-31-30Z'),
+ hoistWeightShade:path('M9-85L24-68 29-32 18-11 4-11 13-36Z'),
+ wheelPaddle:path('M35-22L51-24 58-5 41 1Z'),
+ wheelSpoke:path('M-4-5L40-7 43 2-3 5Z'),
+ wheelCenter:path('M-10-6L-3-12 8-9 12 1 5 10-6 9-12 2Z'),
+ // Original silhouettes informed by Korean bronze bell structure, not traced ornament.
+ bell:path('M-17-63Q-18-76 0-79Q18-76 17-63L24-20Q0-12-24-20Z'),
+ bellShade:path('M5-77Q18-75 17-63L24-20 9-18Z'),
+ bellRim:path('M-24-24Q0-17 24-24L25-17Q0-10-25-17Z'),
+ bellCrown:path('M-8-77L-10-87Q-3-97 5-86L4-79 M10-80L9-93 15-93 17-79'),
+ resonance:path('M-28-13L-22-37-32-58-20-85-6-100 7-96 20-73 27-46 16-20 24-5 4-12-7 0-10-18Z'),
+ resonancePlane:path('M-6-100L7-96 20-73 27-46 16-20 8-30 13-61 2-81Z'),
+ resonanceGap:path('M-19-76Q-8-67 9-84L15-73Q1-54-17-64Z M-20-48Q-9-53 15-60L13-43Q-3-34-15-39Z'),
+ echo:path('M-30-15L-24-42-35-55-27-81-9-99 8-104 18-88 16-73 31-59 28-39 13-18 18-3-3-12-17 1-13-20Z'),
+ echoPlane:path('M8-104L18-88 16-73 31-59 28-39 13-18 18-3 3-14 8-39 15-53 3-69Z'),
+ echoFace:path('M-20-75L-7-95 5-87-4-65-16-56-11-76Z'),
+ echoJaw:path('M-22-45L-4-55 13-66 7-44-8-27-17-30-4-44Z'),
+ keeperRobe:path('M-10 -88 Q-20 -86 -22 -79 L-19 -64 -16 -57 Q-15 -48 -20 -30 L-8 -27 -1 -38 8 -28 21 -31 Q16 -47 15 -59 L19 -78 Q16 -87 6 -89 L0 -84Z'),
+ keeperPlane:path('M1 -84 L8 -88 Q18 -83 17 -77 L13 -61 Q11 -49 19 -32 L9 -30 0 -40 -3 -59 0 -71Z'),
+ keeperCollar:path('M-7 -90 L0 -84 6 -90 9 -85 2 -77 -3 -76 -12 -84Z'),
+ keeperHead:path('M-7 -104 Q-3 -108 3 -105 L6 -102 6 -98 9 -96 6 -94 5 -90 1 -88 -4 -91 -7 -97Z'),
+ keeperWrap:path('M-9 -105 Q-2 -110 6 -106 L8 -102 Q0 -103 -8 -101Z'),
+ keeperApron:path('M-12 -60 Q-2 -58 9 -61 L12 -35 Q1 -32 -13 -34Z'),
+ keeperArm:path('M-18 -83 Q-25 -80 -25 -72 L-26 -59 Q-25 -51 -21 -49 L-16 -52 -20 -60 -18 -70 -13 -76Z'),
+ keeperHand:path('M-21 -53 L-17 -54 -13 -52 -13 -49 -16 -48 -17 -46 -20 -47 -22 -50Z'),
+ striker:path('M-1 -68 L27 -63 27 -59 -1 -64Z')
+};
+function drawBell(c){
+ paint(c,paths.bellCrown,'#8c9173','#b0af8a',1.8);
+ paint(c,paths.bell,'#7d896b','#bdba91',1.8);paint(c,paths.bellShade,'#435a51',null);
+ paint(c,paths.bellPanel,'#81724f','#b5a577',.7);paint(c,paths.bellRim,'#9e9872');paint(c,paths.bellLip,'#25322e','#b1a37a',.7);
+ c.strokeStyle='#bbb38b';c.lineWidth=2;c.beginPath();c.moveTo(-16,-65);c.quadraticCurveTo(0,-60,16,-65);c.stroke();
+ c.fillStyle='#41574e';c.strokeStyle='#b4a77a';c.beginPath();c.ellipse(-3,-40,7,8,0,0,Math.PI*2);c.fill();c.stroke();
+}
+const body=S.unitBody;
+const drawUnit=S.unit;
+S.unit=function(c,u,active,charge=0){
+ if(!u.dead&&!u.portraitOnly&&this.battle&&u.honroSpirit&&!G.HonroAct2.visible(this.battle,u)){
+  // No body, face, outline, name or HP bar. A few displaced translucent bands
+  // suggest disturbed air while the unchanged unit remains in hit collision.
+  c.save();c.translate(u.x,u.y-u.h*.5);const time=this.time||0;
+  for(let j=0;j<5;j++){const phase=time*1.65+j*1.2,y=(j-2)*u.h*.16,drift=Math.sin(phase)*u.r*.25;c.globalAlpha=.07+.025*Math.sin(phase+.8);c.strokeStyle=j%2?'#b4c2be':'#728d96';c.lineWidth=2.5;c.beginPath();c.ellipse(drift,y,u.r*(.5+.15*Math.cos(phase)),u.h*.09,Math.sin(phase)*.14,.15,Math.PI*1.78);c.stroke();}
+  c.restore();return;
+ }
+ return drawUnit.call(this,c,u,active,charge);
+};
+S.unitBody=function(c,u,charge){if(!u.honroAct2&&!u.honroSpirit)return body.call(this,c,u,charge);
+ const kind=u.honroType;
+ c.save();c.translate(u.x,u.y);c.scale((u.facing||1)*u.h/110,u.h/110);const t=this.time||0;
+ const attack=Math.max(0,Math.min(1,u.anim||0)),step=u.moving?Math.sin(t*10)*3:0;
+ if(kind==='keeper'){
+  // Korean crossed work jacket with sleeve ties. The hand carries the yoke;
+  // the other grip, handle and mallet rotate together at the existing pivot.
+  c.save();c.translate(0,Math.abs(step)*-.3);c.rotate(attack*.045);
+  for(const [p,shoe,dx]of [[paths.keeperRearTrouser,paths.keeperRearShoe,step],[paths.keeperFrontTrouser,paths.keeperFrontShoe,-step]]){
+   c.save();c.translate(dx,0);paint(c,p,'#4b5148','#172729',1.2);paint(c,shoe,'#2c3530','#152320',.8);c.restore();
+  }
+  paint(c,paths.keeperTrouserFold,null,'#899080',.65);
+  paint(c,paths.keeperRobe,'#626960','#1c2928',1.1);paint(c,paths.keeperPlane,'#35443f',null);
+  paint(c,paths.keeperRobeLight,'#858c78',null);paint(c,paths.keeperRobeFold,null,'#283732',.85);
+  paint(c,paths.keeperNeck,'#9a8268',null);paint(c,paths.keeperNeckShade,'#514c3d',null);
+  paint(c,paths.keeperCollar,'#aaa58a','#303c35',.7);
+  paint(c,paths.keeperSash,'#77624a','#29332e',.6);paint(c,paths.keeperSashEdge,null,'#ac9470',.6);
+  paint(c,paths.keeperBelt,'#373b30','#202a25',.6);
+  paint(c,paths.keeperApron,'#746049','#242d27',.9);paint(c,paths.keeperLeather,'#4c3b2d',null);
+  paint(c,paths.keeperApronEdge,null,'#ab9067',.6);
+  paint(c,paths.keeperHead,'#af9c7b','#30362c',.7);paint(c,paths.keeperFaceShade,'#6f6451',null);
+  paint(c,paths.keeperBrow,'#343a30',null);paint(c,paths.keeperFaceLight,'#c3b393',null);paint(c,paths.keeperFaceLine,null,'#30382d',.55);
+  paint(c,paths.keeperWrapKnot,'#444b40','#242f29',.6);paint(c,paths.keeperWrap,'#626959','#28332d',.65);paint(c,paths.keeperWrapFold,null,'#a3a48a',.5);
+  c.save();c.translate(-23,-8);c.scale(.4,.4);drawBell(c);paint(c,paths.keeperBellCasting,null,'#c0ae7d',1);c.restore();
+  paint(c,paths.keeperChain,null,'#969783',1.2);
+  paint(c,paths.keeperArm,'#5b6458','#25352e',1);paint(c,paths.keeperSleeveFold,null,'#26392f',.85);
+  paint(c,paths.keeperHand,'#ac9878','#30382e',.6);paint(c,paths.keeperHandLine,null,'#534a36',.6);
+  c.save();c.translate(4,-65);c.rotate(-attack*.5);c.translate(-4,65);
+  paint(c,paths.keeperStrikerArm,'#596352','#26342e',.9);paint(c,paths.keeperStrikerFold,null,'#9c9e82',.65);
+  paint(c,paths.striker,'#745b3c','#292d25',.7);paint(c,paths.keeperStrikerHead,'#65533b','#242d26',.85);
+  paint(c,paths.keeperStrikerFace,'#a4875b',null);paint(c,paths.keeperStrikerBinding,null,'#a5a083',.8);
+  paint(c,paths.keeperStrikerHand,'#ac9878','#30382e',.65);paint(c,paths.keeperGripLine,null,'#534a36',.6);c.restore();
+  c.restore();
+ }else if(u.honroSpirit){c.globalAlpha*=.94;c.translate(0,Math.sin(t*1.7)*5);c.rotate(-attack*.06);
+  if(kind==='bellCluster'){
+   // Linked, displaced bronze bodies make the cluster read as sound-bound
+   // metal at game scale rather than three identical white ghost faces.
+   c.strokeStyle='#9b987c';c.lineWidth=3;c.beginPath();c.moveTo(-27,-78);c.lineTo(0,-101);c.lineTo(29,-72);c.stroke();
+   for(const [x,y,z] of [[-28,-14,.55],[28,-7,.58],[0,5,.88]]){c.save();c.translate(x,y+Math.sin(t*1.7+x)*2);c.rotate(Math.sin(t+x)*.045+attack*.12);c.scale(z,z);drawBell(c);c.restore();}
+  }else if(kind==='echo'){
+   paint(c,paths.echo,'#637879','#b4bca6',1.7);paint(c,paths.echoPlane,'#394f55',null);
+   paint(c,paths.echoFace,'#c1bea4');paint(c,paths.echoJaw,'#9eaa97');
+   paint(c,paths.echoShoulder,'#6e706a','#233136',1);paint(c,paths.echoTendon,null,'#a4a08a',1.8);paint(c,paths.spiritSkull,'#aa9f88','#344046',1);paint(c,paths.spiritSocket,'#19292d',null);paint(c,paths.spiritJaw,'#807666','#252f33',1);
+  }else{
+   paint(c,paths.resonance,'#788b80','#bec2a8',1.7);paint(c,paths.resonancePlane,'#425b5d',null);paint(c,paths.resonanceGap,'#203b43','#9cae9e',1.1);paint(c,paths.resonanceTendon,'#8b8172','#364847',1);paint(c,paths.spiritSkull,'#9c8c75','#33413c',1);paint(c,paths.spiritSocket,'#202c2b',null);paint(c,paths.spiritJaw,'#70634f','#263b38',1);
+   c.strokeStyle='#c7b689';c.lineWidth=3;c.beginPath();c.moveTo(-4,-91);c.lineTo(2,-83);c.moveTo(-10,-29);c.lineTo(6,-32);c.stroke();
+  }
+ }else if(kind==='minecart'){
+  c.rotate(Math.sin(t*8)*(u.moving?.018:.005));paint(c,paths.cartLoad,'#4e5c59','#9caa96',1.7);
+  paint(c,paths.cart,'#766950','#b2a384',1.8);paint(c,paths.cartSide,'#3e4942',null);paint(c,paths.cartBrace,'#343e39','#9b9d83',1.2);paint(c,paths.cartRim,'#8a7a59');paint(c,paths.cartPlanks,null,'#342d28',1.4);paint(c,paths.cartIron,'#536267','#9a9b8b',.8);paint(c,paths.cartOre,'#82857b','#3b4848',.8);
+  paint(c,paths.wheel,'#3e4a43','#a2a58d',2);paint(c,paths.cartSpokes,null,'#a39777',1.8);paint(c,paths.wheelHub,'#9d9571');
+ }else if(kind==='picks'){
+  for(const [x,y,a] of [[-27,-3,-.5],[23,-6,.6],[0,-14,.1]]){c.save();c.translate(x,y);c.rotate(a+Math.sin(t*2+x)*.05);paint(c,paths.pick,'#7d6b50','#b8ac8b',1.4);paint(c,paths.pickHead,'#536760','#aeb5a1',1.7);paint(c,paths.pickBlade,'#a2ad98',null);c.restore();}
+ }else if(kind==='waterwheel'){
+  c.save();c.translate(0,-55);c.rotate(t*.24);
+  for(let j=0;j<8;j++){c.save();c.rotate(j*Math.PI/4);paint(c,paths.wheelSpoke,j%2?'#6b634d':'#847657','#192e30',1.8);paint(c,paths.wheelPaddle,j%2?'#576254':'#7b7d62','#a2a489',1.7);c.restore();}
+  c.strokeStyle='#172d30';c.lineWidth=12;c.beginPath();c.arc(0,0,38,0,Math.PI*2);c.stroke();c.strokeStyle='#9d9470';c.lineWidth=7;c.stroke();
+  paint(c,paths.wheelCenter,'#556359','#b4ac85',2);c.restore();
+ }else if(kind==='stoneLantern'){
+  // Octagonal shaft, lotus-bearing tiers, fire chamber and shallow stone roof.
+  paint(c,paths.lantern,'#7c887b','#b3b9a1',1.8);paint(c,paths.lanternShade,'#475f59',null);
+  paint(c,paths.window,'#243d3b','#a8ad8e',1.2);c.fillStyle='#bdb188';c.fillRect(-11,-96,7,12);
+  paint(c,paths.lanternRoof,'#8c947e','#c0bda0',1.8);
+ }else if(kind==='hoist'){
+  paint(c,paths.hoist,'#75664c','#b7a883',2);paint(c,paths.hoistShade,'#3d4b43',null);paint(c,paths.hoistJoint,'#48584e','#a5a48b',1.3);
+  c.save();c.translate(0,-143);c.scale(.8,.8);paint(c,paths.wheelCenter,'#928968','#b9b18f',2);c.restore();
+  const sway=Math.sin(t*1.5)*10;c.strokeStyle='#aca68b';c.lineWidth=3;c.beginPath();c.moveTo(-5,-143);c.lineTo(sway-6,-70);c.moveTo(5,-143);c.lineTo(sway+6,-71);c.stroke();
+  c.translate(sway,0);paint(c,paths.hoistWeight,'#5a6a60','#aab2a0',2);paint(c,paths.hoistWeightShade,'#354d48',null);
+  c.strokeStyle='#a3997b';c.lineWidth=4;c.beginPath();c.moveTo(-20,-65);c.lineTo(-16,-29);c.lineTo(21,-30);c.lineTo(17,-68);c.stroke();
+ }
+ else{c.restore();return body.call(this,c,u,charge);}
+ c.restore();
+};
+const terrain=S.terrain;
+S.terrain=function(c,t){if(t.honroFireBarrier){
+ const ps=C.poly(t),x=t.x,y=t.y,w=t.w,h=t.h;c.save();c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.fillStyle='#4f4432';c.fill();c.clip();
+ // The solid is a blocked timber doorway. Charred planks and cross-braces
+ // occupy that exact live polygon and disappear together when opened.
+ for(let k=0;k<4;k++){const xx=x+k*w/4;c.fillStyle=k%2?'#746045':'#63553d';c.fillRect(xx+3,y+6,w/4-7,h-11);c.fillStyle='#a18a5f';c.fillRect(xx+6,y+15,3,h-30);c.fillStyle='#2d3c33';c.fillRect(xx+w/4-7,y+3,5,h-6);}
+ c.lineCap='butt';for(const [a,z]of [[{x:x-5,y:y+h*.24},{x:x+w+4,y:y+h*.72}],[{x:x+3,y:y+h*.83},{x:x+w+7,y:y+h*.38}]]){c.strokeStyle='#293a31';c.lineWidth=23;c.beginPath();c.moveTo(a.x,a.y);c.lineTo(z.x,z.y);c.stroke();c.strokeStyle='#8b7751';c.lineWidth=5;c.stroke();}c.restore();return;}
+ if(t.honroLocationCeiling)return terrain.call(this,c,t);if(!t.honroCave&&!t.honroCeiling&&!(this.battle?.honroStage>=13&&this.battle?.honroStage<=19&&t.id==='act2-floor'))return terrain.call(this,c,t);
+ if(G.HonroCaveRock&&this.battle)return G.HonroCaveRock.terrain(c,t,this.battle);
+ const ps=C.poly(t);c.save();c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();const grad=c.createLinearGradient(t.x,t.y,t.x+t.w*.4,t.y+Math.min(t.h,1200));grad.addColorStop(0,t.honroCeiling?'#252a30':'#444b50');grad.addColorStop(.5,'#30373d');grad.addColorStop(1,'#161f27');c.fillStyle=grad;c.fill();c.strokeStyle=t.honroCeiling?'#737c7d':'#919d99';c.lineWidth=t.honroCeiling?2:3;c.stroke();
+ // A few broad mineral planes, clipped to the physical rock mass.
+ c.clip();c.globalAlpha=.17;c.fillStyle='#8b9290';c.beginPath();c.moveTo(t.x+t.w*.12,t.y);c.lineTo(t.x+t.w*.56,t.y);c.lineTo(t.x+t.w*.37,t.y+t.h*.7);c.lineTo(t.x+t.w*.21,t.y+t.h);c.closePath();c.fill();c.restore();
+};
+// Guidance uses the same Euclidean foot-point radii as Act2.tick. These are
+// screen cues only: no collision, geometry, progress or saved fields are added.
+function holdGuide(b,s){
+ if(!s||s.kind!=='hold'||!G.HonroAct2.revision2(b))return null;
+ const m=b.honroMarkers.find(m=>m.id===s.id);if(!m||!(s.radius>0)||!(s.contestRadius>0))return null;
+ const heroes=b.units.filter(u=>u.side===0&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall);
+ const guarded=heroes.some(u=>(!s.requiredClass||u.cls===s.requiredClass)&&Math.hypot(u.x-m.x,u.y-m.y)<s.radius);
+ const contested=b.units.some(u=>u.side===1&&u.summonKind!=='eater'&&!u.eaterCapturedBy&&!u.dead&&Math.hypot(u.x-m.x,u.y-m.y)<s.contestRadius);
+ const progress=b.honroState?.act2?.holds?.[s.id]?.progress||0;
+ return{x:m.x,y:m.y,radius:s.radius,contestRadius:s.contestRadius,guarded,contested,progress,rounds:s.rounds,
+  who:s.requiredClass?G.HONRO_CONTENT.hero[s.requiredClass].name:'동행 1명',status:contested?'적 진입 · 진행 멈춤':guarded?'방어 중':'범위 안으로 이동'};
+}
+function guideBadge(c,scene,x,y,lines,color){
+ const z=Math.max(.05,scene.scale),{w,h}=scene.size(),sx=w/2+(x-scene.x)*z,sy=h/2+(y-scene.y)*z;
+ if(sx<0||sx>w||sy<20||sy>h-lines.length*19-14)return;
+ c.save();c.font='600 12px sans-serif';const width=Math.min(w-24,Math.max(...lines.map(t=>c.measureText(t).width))+20);
+ const clamped=Math.max(width/2+12,Math.min(w-width/2-12,sx));c.translate(x+(clamped-sx)/z,y);c.scale(1/z,1/z);c.textAlign='center';c.textBaseline='middle';
+ c.fillStyle='#10212bed';c.fillRect(-width/2,-13,width,lines.length*19+7);c.strokeStyle=color+'88';c.lineWidth=1;c.strokeRect(-width/2,-13,width,lines.length*19+7);
+ lines.forEach((text,i)=>{c.fillStyle=i?'#c7cdc8':color;c.fillText(text,0,i*19,width-16);});c.restore();
+}
+function objectiveGuide(c,scene,b){
+ if(scene.editorView||scene.skillPreview)return null;
+ const s=G.HonroAct2.active(b)?G.HonroAct2.current(b):null;if(!s)return null;
+ const z=Math.max(.05,scene.scale),hold=holdGuide(b,s);
+ c.save();
+ if(hold){
+  const color=hold.contested?'#edab88':hold.guarded?'#b9d1b7':'#dfca98';
+  c.beginPath();c.arc(hold.x,hold.y,hold.radius,0,Math.PI*2);c.fillStyle=color+'09';c.fill();c.strokeStyle=color+'ba';c.lineWidth=1.6/z;c.stroke();
+  c.beginPath();c.arc(hold.x,hold.y,hold.contestRadius,0,Math.PI*2);c.setLineDash([5/z,7/z]);c.strokeStyle=hold.contested?'#edab88':'#cfb98b99';c.lineWidth=1.3/z;c.stroke();c.setLineDash([]);
+  guideBadge(c,scene,hold.x,hold.y+43/z,[`${hold.who} 유지 · ${hold.progress}/${hold.rounds}${b.honroStage===12&&!b.honroCustom&&b.honroQuarryRevision===1?'라운드':'턴'} · ${hold.status}`,b.honroStage===12&&!b.honroCustom&&b.honroQuarryRevision===1?'실선: 방어 범위 / 점선 안에 적이 오면 중단':'실선: 방어 범위 / 점선: 적 진입 금지'],color);
+ }else if(s.kind==='destroy'){
+  const t=b.terrain.find(t=>t.id===s.id&&!t.broken);if(t){
+   // Trace the real collision polygon, then bracket its bounds at a readable
+   // screen width. Only the current actionable pin is highlighted.
+   const ps=C.poly(t);c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.strokeStyle='#f3d99bcc';c.lineWidth=1.6/z;c.stroke();
+   const pad=7/z,l=t.x-pad,r=t.x+t.w+pad,top=t.y-pad,bottom=t.y+t.h+pad,arm=8/z;c.beginPath();
+   for(const [x,dx]of [[l,1],[r,-1]])for(const [y,dy]of [[top,1],[bottom,-1]]){c.moveTo(x+dx*arm,y);c.lineTo(x,y);c.lineTo(x,y+dy*arm);}c.strokeStyle='#f3d99b';c.lineWidth=1.7/z;c.stroke();
+   guideBadge(c,scene,t.x+t.w/2,bottom+23/z,[s.requiredClass?G.HONRO_CONTENT.hero[s.requiredClass].name+' · 사격 표적':'공격하여 파괴'],'#f3d99b');
+  }
+ }
+ c.restore();return hold;
+}
+const tone=S.environmentTone;
+S.environmentTone=function(c,w,h,b){tone?.call(this,c,w,h,b);if(b.honroStage<11||b.honroStage>20)return;
+ c.save();c.translate(w/2,h/2);c.scale(this.scale,this.scale);c.translate(-this.x,-this.y);
+ const radius=125;for(const m of b.honroMarkers||[])if(m.type==='act2-light'){
+  if(Math.abs(m.x-this.x)>w/this.scale/2+radius||Math.abs(m.y-this.y)>h/this.scale/2+radius)continue;
+  const q=c.createRadialGradient(m.x,m.y-50,5,m.x,m.y-50,radius);q.addColorStop(0,m.color+'45');q.addColorStop(1,m.color+'00');c.fillStyle=q;c.fillRect(m.x-radius,m.y-50-radius,radius*2,radius*2);
+ }
+ const target=G.HonroAct2.active(b)?G.HonroAct2.current(b):null;
+ if(target){const m=b.honroMarkers.find(m=>m.id===target.id);if(m){c.strokeStyle='#d6c69c';c.lineWidth=2;c.beginPath();c.ellipse(m.x,m.y-3,32,9,0,0,Math.PI*2);c.stroke();}}
+ objectiveGuide(c,this,b);
+ const a=b.honroState?.act2,pulse=a?.pulseRound;if(pulse&&pulse!==this._act2Pulse){this._act2Pulse=pulse;this._act2PulseStart=this.time;}
+ if(this._act2PulseStart!==undefined&&this.time-this._act2PulseStart<1.6){c.globalAlpha=Math.max(0,.12*(1-(this.time-this._act2PulseStart)/1.6));c.fillStyle='#b0c9d5';c.fillRect(this.x-w/this.scale/2,this.y-h/this.scale/2,w/this.scale,h/this.scale);}
+ c.restore();
+};
+G.HonroAct2Art={paths,holdGuide,objectiveGuide};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/act3-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Shared render-only guidance; authored geometry remains the sole collision.
+const S=G.HonroScene.prototype,C=G.HONRO_CORE,A=G.HonroAct3;
+const hasFire=b=>['fire-screen','water-release'].every(id=>A.steps(b).some(s=>s.id===id));
+function guide(b){if(!A.active(b))return null;const s=A.steps(b).find(s=>!b.honroState?.act3?.done?.[s.id]);if(!s)return null;const m=A.marker(b,s.id);if(!m)return null;const h=b.honroState?.act3?.holds?.[s.id];return{step:s,marker:m,hold:h,remaining:hasFire(b)&&!(b.honroState?.act3?.done?.['water-release']&&b.honroState?.act3?.done?.['fire-screen'])?Math.max(0,12-(b.honroState?.act3?.fireTurns||0)):null};}
+function region(c,x,y,r){
+ // Exact same-floor eligibility region: abs(dy)<=150 and dx²+(.75dy)²<=r².
+ const half=Math.min(150,r/.75),edge=Math.sqrt(Math.max(0,r*r-(half*.75)**2));c.beginPath();c.moveTo(x-edge,y-half);c.lineTo(x+edge,y-half);
+ for(let i=1;i<=18;i++){const yy=-half+2*half*i/18;c.lineTo(x+Math.sqrt(Math.max(0,r*r-(yy*.75)**2)),y+yy);}c.lineTo(x-edge,y+half);
+ for(let i=17;i>=0;i--){const yy=-half+2*half*i/18;c.lineTo(x-Math.sqrt(Math.max(0,r*r-(yy*.75)**2)),y+yy);}c.closePath();
+}
+const fireSite=(b,id)=>A.marker(b,id)?.fireSite||(id==='water-release'?'fire-west':'fire-east');
+function draw(c,scene,b){const q=guide(b);if(!q||scene.editorView||scene.skillPreview)return;const {step:s,marker:m,hold:h}=q,z=Math.max(.05,scene.scale),color=h?.contested?'#e8a47b':h?.guarded?'#adcbb8':'#ebd4a0';c.save();
+ if(s.kind==='hold'||s.kind==='reach'&&s.allHeroes){region(c,m.x,m.y,s.radius||440);c.fillStyle=color+'12';c.fill();c.strokeStyle=color+'c0';c.lineWidth=1.5/z;c.stroke();if(s.kind==='hold'){region(c,m.x,m.y,s.contestRadius||230);c.setLineDash([5/z,7/z]);c.strokeStyle='#e3b29499';c.stroke();c.setLineDash([]);}}
+ if(s.kind==='destroy'){const t=b.terrain.find(t=>t.id===s.id&&!t.broken);if(t){c.beginPath();C.poly(t).forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.strokeStyle='#f4d89b';c.lineWidth=2/z;c.stroke();}}
+ else{const target=A.interactionTarget(b,m)||m;c.strokeStyle=color;c.lineWidth=2/z;c.beginPath();c.ellipse(target.x,target.y-3,34,9,0,0,Math.PI*2);c.stroke();
+  c.save();c.translate(target.x,target.y-(target===m?38:(target.h||92)+24));const scale=Math.max(1,.5/z);c.scale(scale,scale);c.lineWidth=2;
+  if(s.kind==='rescue'||s.startsEscort){c.beginPath();c.arc(0,-13,7,0,Math.PI*2);c.moveTo(-13,10);c.quadraticCurveTo(-13,-5,0,-5);c.quadraticCurveTo(13,-5,13,10);c.stroke();}
+  else if(s.kind==='reach'||s.kind==='escort'){c.beginPath();c.moveTo(-10,15);c.lineTo(-10,-23);c.lineTo(18,-14);c.lineTo(-10,-5);c.stroke();}
+  else if(s.kind!=='hold'){c.fillStyle='#dec99b';c.fillRect(-17,-22,34,34);c.strokeRect(-17,-22,34,34);c.beginPath();c.moveTo(-22,-22);c.lineTo(22,-22);c.moveTo(-22,12);c.lineTo(22,12);c.stroke();c.strokeStyle='#766548';c.lineWidth=1.5;for(let i=0;i<3;i++){c.beginPath();c.moveTo(-10,-13+i*8);c.lineTo(10,-13+i*8);c.stroke();}}
+  c.restore();}
+ // Fire symbols are attached to the live control sites; stopping each control
+ // visibly removes its pressure. They do not add hidden damage or world rules.
+ if(hasFire(b))for(const id of ['water-release','fire-screen']){const p=A.marker(b,fireSite(b,id))||A.marker(b,id);if(!p)continue;const burning=q.remaining!==null&&!b.honroState?.act3?.done?.[id];c.save();c.translate(p.x,p.y-8);
+  // Broad ash and scorched timbers stay attached to the source after it is
+  // controlled. Only active sources emit smoke and warm reflected light.
+  c.fillStyle='#263931aa';c.beginPath();c.moveTo(-132,7);c.quadraticCurveTo(-74,-16,-36,-8);c.lineTo(23,-15);c.quadraticCurveTo(78,-10,127,8);c.lineTo(69,18);c.lineTo(-93,17);c.closePath();c.fill();
+  c.fillStyle='#747363';c.beginPath();c.moveTo(-96,7);c.lineTo(-60,-1);c.lineTo(-20,5);c.lineTo(27,-5);c.lineTo(73,8);c.lineTo(31,13);c.lineTo(-28,10);c.closePath();c.fill();
+  c.fillStyle='#354132';c.save();c.translate(-22,-2);c.rotate(-.12);c.fillRect(-67,-8,129,14);c.restore();c.save();c.translate(27,1);c.rotate(.18);c.fillRect(-45,-7,99,12);c.restore();
+  if(!burning){c.restore();continue;}
+  c.fillStyle='#34443d24';c.beginPath();c.moveTo(-67,-40);c.bezierCurveTo(-118,-147,-8,-224,-65,-361);c.bezierCurveTo(-88,-410,-45,-444,-8,-466);c.bezierCurveTo(-30,-393,62,-331,35,-249);c.bezierCurveTo(7,-173,99,-103,64,-38);c.closePath();c.fill();
+  const light=c.createRadialGradient(-12,-62,8,-12,-62,258);light.addColorStop(0,'#ecb06b80');light.addColorStop(.48,'#ce773d38');light.addColorStop(1,'#a0522d00');c.fillStyle=light;c.fillRect(-280,-335,550,420);
+  c.fillStyle='#be804549';c.beginPath();c.moveTo(-125,9);c.quadraticCurveTo(-3,-5,118,9);c.lineTo(74,23);c.lineTo(-87,23);c.closePath();c.fill();
+  for(const [i,x,scale] of [[0,-47,.8],[1,8,1.12],[2,48,.74]]){c.save();c.translate(x,0);c.scale(scale,scale);const sway=Math.sin((scene.time||0)*3+i*1.7)*14;c.fillStyle=i===1?'#ecb45baa':'#cb773dcc';c.beginPath();c.moveTo(-40,0);c.quadraticCurveTo(-58,-81,-14+sway,-155);c.quadraticCurveTo(-15,-73,8,-96);c.quadraticCurveTo(20,-166,37+sway,-221);c.quadraticCurveTo(72,-71,35,0);c.closePath();c.fill();c.restore();}c.restore();}
+
+ c.restore();
+}
+const tone=S.environmentTone;S.environmentTone=function(c,w,h,b){tone?.call(this,c,w,h,b);if(!A.active(b))return;c.save();c.translate(w/2,h/2);c.scale(this.scale,this.scale);c.translate(-this.x,-this.y);draw(c,this,b);c.restore();};
+G.HonroAct3Art={guide,draw,region,fireSite};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/act1-spatial-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// ACT1 outdoor art uses the same Canvas scene and live canonical terrain as
+// gameplay. The authored support references are visual-only; old saves keep
+// their own landscape, and ACT2 never enters this renderer.
+const S=G.HonroScene.prototype,C=G.HONRO_CORE,A=G.HonroEnvironmentArt,terrainCache=new WeakMap(),sceneCache=new WeakMap();
+const active=b=>b?.honroStage>=1&&b.honroStage<=10&&b.honroMap?.act1Scene?.version===1;
+const guardianBranch=(b,t)=>b.honroStage===10&&b.honroMap?.act1Scene?.guardianTree?.branches?.includes(t.id);
+function poly(points){const p=new Path2D();points.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();return p;}
+function line(points){const p=new Path2D();points.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));return p;}
+function liveTop(b,id,x,fallback){const t=b.terrain.find(t=>t.id===id&&!t.broken);return t?C.topAt(t,x,fallback):fallback;}
+function pointIn(x,y,ps){let inside=false;for(let i=0,j=ps.length-1;i<ps.length;j=i++){const a=ps[i],z=ps[j];if((a.y>y)!==(z.y>y)&&x<(z.x-a.x)*(y-a.y)/(z.y-a.y)+a.x)inside=!inside;}return inside;}
+function prepareTerrain(t,b){let q=terrainCache.get(t);if(q?.version===b.sceneVersion&&q.source===t.vertices)return q;const ps=C.poly(t),shape=poly(ps.map(p=>[p.x,p.y])),rim=new Path2D(),caps=[],planes=[],joints=[],edges=[],cliffPlanes=[];
+ const peers=G.HonroTerrainDomain.render(b).filter(o=>o.id!==t.id&&!o.broken&&!o.oneWay&&!o.honroElementCollision),exposed=(x,y)=>!peers.some(o=>x>o.x&&x<o.x+o.w&&y>o.y&&y<o.y+o.h&&pointIn(x,y,C.poly(o)));
+ for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(z.x<=a.x||Math.abs((z.y-a.y)/(z.x-a.x))>1.36||!exposed((a.x+z.x)/2,(a.y+z.y)/2-3))continue;edges.push([a,z]);rim.moveTo(a.x,a.y);rim.lineTo(z.x,z.y);}
+ const at=x=>{const e=edges.find(([a,z])=>x>=a.x&&x<=z.x);return e?e[0].y+(e[1].y-e[0].y)*(x-e[0].x)/(e[1].x-e[0].x):C.topAt(t,x,t.y);};
+ // Material strata and large cut faces stay clipped inside each actual solid.
+ // Unequal authored sites, rather than a fixed polygon tiling, divide masses.
+ const features=(b.honroMap.act1Scene.rocks||[]).filter(r=>r.supportId===t.id);
+ const anchors=features.length?features.map(r=>({x:r.x,w:Math.min(r.width,t.w*.65),depth:Math.min(r.height*.64,t.h*.75)})):[{x:t.x+t.w*.30,w:t.w*.56,depth:Math.min(760,t.h*.76)},{x:t.x+t.w*.77,w:t.w*.39,depth:Math.min(580,t.h*.6)}];
+ for(const [i,r]of anchors.entries()){const l=Math.max(t.x,r.x-r.w*.52),rr=Math.min(t.x+t.w,r.x+r.w*.48),m=l+(rr-l)*(.57-i%2*.16),y=at(l),ry=at(rr),my=at(m),d=r.depth;
+  if(rr-l<45||d<18)continue;planes.push({lit:poly([[l,y],[m,my],[m-(rr-l)*.08,my+d*.24],[m-(rr-l)*.11,my+d*.59],[l+(rr-l)*.27,y+d*.72],[l+(rr-l)*.08,y+d*.43]]),shadow:poly([[m,my],[rr,ry],[rr-(rr-l)*.08,ry+d*.21],[rr-(rr-l)*.13,ry+d*.51],[m+(rr-l)*.12,my+d*.74],[m-(rr-l)*.05,my+d]]),contact:line([[m,my+9],[m-(rr-l)*.1,my+d*.58],[m-(rr-l)*.05,my+d]])});
+ }
+ // A subdued weathered soil/stone cap describes the route itself. It follows
+ // every compiled edge, including tiny original roughness and slope breaks.
+ for(const [a,z]of edges)caps.push(poly([[a.x,a.y],[z.x,z.y],[z.x,z.y+24],[a.x,a.y+24]]));
+ // The canyon is a real tall collision mass. Four unequal fracture planes
+ // span its entire face instead of ending in a shallow band at the crest.
+ if(b.honroStage===2&&/^(left-high-ground|right-cliff-ground)$/.test(t.id)){
+  const mirror=t.id==='right-cliff-ground',map=ps=>poly(ps.map(([u,v])=>[t.x+(mirror?1-u:u)*t.w,t.y+v*t.h]));
+  for(const ps of [ [[.05,.01],[.45,.02],[.35,.24],[.23,.37],[.26,.67],[.07,.91]], [[.45,.02],[.70,.11],[.65,.35],[.42,.52],[.31,.82],[.22,.94],[.26,.67],[.23,.37],[.35,.24]], [[.71,.11],[.94,.23],[.90,.54],[.75,.63],[.68,.94],[.36,.98],[.47,.68],[.66,.43]], [[.06,.45],[.22,.39],[.26,.67],[.16,.92],[.03,.99]] ])cliffPlanes.push(map(ps));
+ }
+ const wood=t.mat==='wood';if(wood){const n=Math.max(1,Math.min(12,Math.floor(t.w/90)));for(let i=1;i<n;i++){const x=t.x+t.w*i/n,y=at(x);joints.push(line([[x,y+6],[x-4,Math.min(t.y+t.h,y+80)]]));}}
+ let branchBody=null,branchGrain=null;
+ if(guardianBranch(b,t)&&edges.length){
+  // The entire living-bough silhouette is the canonical collision polygon.
+  // Follow its irregular top, thick trunk junction and tapered outward tip.
+  branchBody=shape;branchGrain=new Path2D();const first=edges[0][0];branchGrain.moveTo(first.x+8,first.y+9);
+  for(const [a,z]of edges)branchGrain.quadraticCurveTo((a.x+z.x)/2,(a.y+z.y)/2+24,z.x-3,z.y+12);
+ }
+
+ q={source:t.vertices,version:b.sceneVersion,shape,rim,caps,planes,joints,edges,cliffPlanes,wood,branchBody,branchGrain};terrainCache.set(t,q);return q;
+}
+function groundGradient(c,t,b){const earth=t.mat==='earth'||t.surfaceKind==='soil',tall=t.h>500,top=tall?Math.min(...b.terrain.filter(q=>!q.oneWay&&!q.broken&&q.mat===t.mat).map(q=>q.y)):t.y,bottom=tall?b.height+30:t.y+t.h;
+ const g=c.createLinearGradient(0,top,0,Math.max(top+60,bottom));g.addColorStop(0,earth?'#5a655e':'#62707a');g.addColorStop(.3,earth?'#3b4b47':'#43545e');g.addColorStop(.68,earth?'#283c3d':'#2e414b');g.addColorStop(1,earth?'#18282a':'#17282b');return g;}
+const oldGradient=G.HonroTerrainGradient;G.HonroTerrainGradient=(c,t,b)=>active(b)&&t.mat!=='wood'&&!t.honroSeal?groundGradient(c,t,b):oldGradient(c,t,b);
+const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
+ if(guardianBranch(b,t)){
+  // Use the authored collision silhouette and bright walkable top. The bark
+  // palette never changes resistance or the one-way projectile passage rule.
+  const tip=Math.abs(t.x-2500)>Math.abs(t.x+t.w-2500)?t.x:t.x+t.w;
+  c.fillStyle=A.gradient(c,2500,t.y,tip,t.y+35,[[0,'#777568'],[.3,'#626957'],[1,'#394f43']]);c.fill(q.branchBody||q.shape);c.clip(q.branchBody||q.shape);
+  c.strokeStyle='#253d34';c.lineWidth=4;if(q.branchGrain)c.stroke(q.branchGrain);
+  c.strokeStyle='#c2c4a0';c.lineWidth=5;c.lineJoin='round';c.stroke(q.rim);c.restore();return;
+ }
+ const roof=/^(west-eave|east-eave|west-gallery|east-gallery|altar-platform)$/.test(t.id);c.fillStyle=/^climb-/.test(t.id)?'#405460':roof?'#2b3e48':q.wood?A.gradient(c,0,t.y,0,t.y+t.h,[[0,'#6b6d5b'],[.28,'#484d41'],[1,'#26352e']]):groundGradient(c,t,b);c.fill(q.shape);c.clip(q.shape);
+ for(const [i,p]of q.cliffPlanes.entries()){c.fillStyle=['#a2b4bb28','#081e294f','#82979f24','#0e27335c'][i];c.fill(p);}
+ for(const [i,f]of q.planes.entries()){c.fillStyle=q.wood?'#a5a27e1e':i%2?'#a2b0b71e':'#b0b9ba23';c.fill(f.lit);c.fillStyle=q.wood?'#16292369':'#10243155';c.fill(f.shadow);c.strokeStyle=q.wood?'#20352b50':'#172c3655';c.lineWidth=5;c.stroke(f.contact);}
+ for(const cap of q.caps){c.fillStyle=q.wood?'#bdad781d':t.mat==='earth'?'#87927637':'#b9c2bc24';c.fill(cap);}c.strokeStyle='#1a2b2960';c.lineWidth=3;for(const j of q.joints)c.stroke(j);
+ c.strokeStyle=q.wood?'#b7b298':/^climb-/.test(t.id)?'#95aaa3':'#b4c6c1';c.lineWidth=/^climb-/.test(t.id)?2:3.5;c.lineJoin='round';c.stroke(q.rim);c.restore();};
+const FORMS={
+ shoulder:{outline:[[-.66,.16],[-.61,-.17],[-.47,-.31],[-.30,-.35],[-.29,-.64],[-.14,-.76],[.08,-.78],[.25,-.62],[.31,-.35],[.48,-.27],[.64,.16]],faces:[[[ -.29,-.64],[-.14,-.76],[.02,-.73],[.09,-.52],[-.11,-.21],[-.29,-.30]],[[.09,-.52],[.25,-.62],[.31,-.35],[.48,-.27],[.58,.12],[.12,.15],[-.03,-.1]],[[-.6,-.15],[-.46,-.3],[-.29,-.30],[-.11,-.21],[-.24,.15],[-.57,.15]]]},
+ buttress:{outline:[[-.61,.15],[-.58,-.27],[-.47,-.35],[-.40,-.65],[-.25,-.78],[-.20,-.93],[.03,-1],[.21,-.94],[.34,-.77],[.32,-.42],[.48,-.29],[.59,.15]],faces:[[[ -.20,-.93],[.03,-1],[.15,-.86],[.08,-.55],[-.05,-.39],[-.2,-.1],[-.31,-.21],[-.31,-.66]],[[.15,-.86],[.21,-.94],[.34,-.77],[.32,-.42],[.21,-.32],[.08,-.55]],[[-.57,-.23],[-.40,-.65],[-.25,-.78],[-.31,-.21],[-.22,.15],[-.55,.15]],[[.01,-.4],[.21,-.32],[.48,-.29],[.59,.15],[.16,.15],[.14,-.09]]]}
+};
+function prepareScene(b){let q=sceneCache.get(b);if(q?.source===b.honroMap.act1Scene&&q.version===b.sceneVersion)return q;const art=b.honroMap.act1Scene,rocks=[];
+ for(const r of art.rocks||[]){const t=b.terrain.find(t=>t.id===r.supportId&&!t.broken);if(!t)continue;const form=FORMS[r.kind]||FORMS.shoulder,base=liveTop(b,r.supportId,r.x,r.y),foundations=b.terrain.filter(t=>!t.broken&&!t.oneWay&&!t.honroElementCollision&&t.y+t.h>=b.height),foot=px=>{const hits=foundations.filter(t=>px>=t.x&&px<=t.x+t.w).map(t=>C.topAt(t,px,b.height)).filter(Number.isFinite);return hits.length?Math.max(base,Math.min(...hits)):b.height;},map=points=>poly(points.map(([x,y])=>{const px=r.x+x*r.width;return[px,y>=0?foot(px)+y*r.height+55:base+y*r.height];}));rocks.push({...r,shape:map(form.outline),faces:form.faces.map(map)});}
+ const shelfNecks=[];
+ if(b.honroStage===5){const joins=[['climb-1',2790,205],['climb-2',2990,180],['climb-3',2900,270],['climb-4',3090,160],['climb-5',3010,225],['climb-6',3140,175],['climb-7',3210,210]];
+  for(const [id,wall,drop]of joins){const t=b.terrain.find(t=>t.id===id&&!t.broken);if(!t)continue;const x=t.x+t.w*.35,right=t.x+t.w-8,y=C.topAt(t,right,t.y);shelfNecks.push({body:poly([[x,y+24],[right,y+9],[wall,y+35],[wall+70,y+drop],[right-40,y+drop*.65],[x,y+80]]),face:poly([[right,y+9],[wall,y+35],[wall-28,y+83],[right-16,y+93]])});}
+ }
+ q={source:art,version:b.sceneVersion,rocks,shelfNecks,replaced:new Set(art.replaced||[]),scenery:new Map((art.scenery||[]).map(s=>[s.id,s]))};sceneCache.set(b,q);return q;
+}
+function supports(c,b){if(G.HonroStage3LocationArt?.active(b)&&G.HonroStage3LocationArt.ready(b)||G.HonroStage4LocationArt?.active(b)&&G.HonroStage4LocationArt.ready(b)||G.HonroStage6LocationArt?.active(b)&&G.HonroStage6LocationArt.ready(b))return;c=G.HonroVisualStyle?.context(c,'L1')||c;
+ // Real optional decks receive visibly open timber trestles. Gaps remain gaps;
+ // these narrow, darker members are scenery and never suggest extra floor.
+ if(![3,4,6,8,9,10].includes(b.honroStage))return;
+ const floors=b.terrain.filter(t=>!t.broken&&!t.oneWay&&!t.honroElementCollision&&t.y+t.h>=b.height);
+ for(const t of b.terrain){if(guardianBranch(b,t)||t.broken||t.honroSeal||t.honroElementCollision||(!t.oneWay&&!/gallery|eave|tier-|ramp-|bridge-/.test(t.id))||t.w<190)continue;
+  const under=(x,y)=>{const hits=floors.flatMap(f=>C.terrainSurfaces(f,x)).filter(p=>p.y>y+24);return hits.length?Math.min(...hits.map(p=>p.y)):b.height;};
+  const pos=[t.x+t.w*.2,t.x+t.w*.8];for(const [i,x]of pos.entries()){const top=C.topAt(t,x,t.y)+t.h*.18,foot=under(x,top),max=b.honroStage===7?500:950,bottom=foot;if(bottom-top<30||bottom-top>max)continue;
+   c.strokeStyle=b.honroStage===7?'#263b3299':'#263741';c.lineWidth=b.honroStage===7?32:18;c.lineCap='butt';c.beginPath();c.moveTo(x,top);c.lineTo(x+(i?-22:19),bottom);c.stroke();c.strokeStyle='#7381744f';c.lineWidth=3;c.beginPath();c.moveTo(x-4,top);c.lineTo(x+(i?-26:15),bottom);c.stroke();
+   if(bottom-top<900){c.strokeStyle='#3e514b';c.lineWidth=9;c.beginPath();c.moveTo(x,Math.min(bottom,top+40));c.lineTo(x+(i?-100:100),Math.min(bottom,top+240));c.stroke();}
+  }
+ }
+}
+const oldBackground=S.background;S.background=function(c,w,h,b){oldBackground.call(this,c,w,h,b);if(!active(b))return;const q=prepareScene(b);c.save();c.translate(w/2,h/2);c.scale(this.scale,this.scale);c.translate(-this.x,-this.y);
+ for(const r of q.rocks){if(r.x+r.width<this.x-w/this.scale||r.x-r.width>this.x+w/this.scale)continue;c.save();c.fillStyle=A.gradient(c,0,r.y-r.height,0,r.y+100,[[0,'#344955'],[.6,'#2a4149'],[1,'#22363d']]);c.fill(r.shape);c.clip(r.shape);for(const [i,p]of r.faces.entries()){c.fillStyle=['#7e909d50','#10293577','#233b4388','#a0a79620'][i%4];c.fill(p);}c.restore();}
+ // Retained rear shelf fractures leave the bright rim on actual collision only.
+ for(const neck of q.shelfNecks){c.fillStyle='#203743';c.fill(neck.body);c.fillStyle='#667f8526';c.fill(neck.face);}
+ for(const light of b.honroMap.act1Scene.lights||[])A.glow(c,light.x,light.y,light.radius||200,(light.radius||200)*.8,'#bc9458',.1);c.restore();if(this.environmentStats){this.environmentStats.act1Spatial=true;this.environmentStats.cachedPaths+=q.rocks.length*4+q.shelfNecks.length*2;}
+};
+const oldLayer=S._landmarkLayer;S._landmarkLayer=function(c,landmarks,layer){oldLayer.call(this,c,landmarks,layer);if(layer==='structural-back'&&active(this.battle))supports(c,this.battle);};
+const oldLandmark=S.landmark;S.landmark=function(c,l){if(active(this.battle)){const q=prepareScene(this.battle);if(q.replaced.has(l.id))return;const record=q.scenery.get(l.id);if(record&&!this.battle.terrain.some(t=>t.id===record.supportId&&!t.broken))return;}oldLandmark.call(this,c,l);};
+G.HonroAct1SpatialArt={active,prepareTerrain,prepareScene,groundGradient,supports};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/terrain-readability.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Readability belongs to the collision silhouette, not the decoration's art.
+// Build exposed paths once per sceneVersion and rasterize them with world tiles.
+const S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap();
+const STYLE=G.HonroVisualStyle?.STYLE.terrain||Object.freeze({edgeInk:'#101d23d9',topLight:'#c7d0bd',woodLight:'#c8b994',edgePixels:1.5,topInkPixels:2.6,topLightPixels:1.2});
+const cross=(ax,ay,bx,by)=>ax*by-ay*bx;
+function inside(x,y,ps){let yes=false;for(let i=0,j=ps.length-1;i<ps.length;j=i++){const a=ps[i],z=ps[j];if((a.y>y)!==(z.y>y)&&x<(z.x-a.x)*(y-a.y)/(z.y-a.y)+a.x)yes=!yes;}return yes;}
+function cutAt(a,z,p,q,cuts){const dx=z.x-a.x,dy=z.y-a.y,ex=q.x-p.x,ey=q.y-p.y,den=cross(dx,dy,ex,ey),len2=dx*dx+dy*dy;
+ if(Math.abs(den)>1e-8){const t=cross(p.x-a.x,p.y-a.y,ex,ey)/den,u=cross(p.x-a.x,p.y-a.y,dx,dy)/den;if(t>0&&t<1&&u>=0&&u<=1)cuts.push(t);}
+ else if(Math.abs(cross(p.x-a.x,p.y-a.y,dx,dy))<1e-6)for(const v of [p,q]){const t=((v.x-a.x)*dx+(v.y-a.y)*dy)/len2;if(t>0&&t<1)cuts.push(t);}
+}
+function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prior=cache.get(b);if(prior?.source===ts&&prior.version===b.sceneVersion)return prior;
+ const solids=ts.filter(t=>!t.broken).map(t=>({t,ps:C.poly(t)})),groups=[];
+ for(const {t,ps}of solids){
+  // Some legacy sprite hitboxes deliberately enclose empty air. Outlining
+  // those would create a floating wireframe, so retain their authored rim.
+  // New roofs explicitly promise a single sampled art/collision silhouette.
+  if(t.honroElementCollision){const asset=b.honroLandmarks?.find(l=>l.id===t.honroElementId)?.asset;if(asset?.params?.rearOnly||asset?.params?.collisionSource!=='sampled-drawn-roof')continue;}
+  const edge=new Path2D(),top=new Path2D(),segments=[];let area=0;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];area+=cross(a.x,a.y,z.x,z.y);}const sign=area>=0?1:-1;
+  for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length],dx=z.x-a.x,dy=z.y-a.y,len=Math.hypot(dx,dy);if(len<.01)continue;
+   const nx=sign*dy/len,ny=-sign*dx/len,walkable=ny<0&&Math.abs(dy)<=Math.abs(dx)*1.35;if(t.oneWay&&!walkable)continue;
+   const left=Math.min(a.x,z.x),right=Math.max(a.x,z.x),low=Math.min(a.y,z.y),high=Math.max(a.y,z.y),peers=solids.filter(o=>o.t!==t&&!o.t.oneWay&&o.t.x<=right+1&&o.t.x+o.t.w>=left-1&&o.t.y<=high+1&&o.t.y+o.t.h>=low-1),cuts=[0,1];
+   for(const o of peers)for(let j=0;j<o.ps.length;j++)cutAt(a,z,o.ps[j],o.ps[(j+1)%o.ps.length],cuts);cuts.sort((a,z)=>a-z);
+   for(let k=1;k<cuts.length;k++){const start=cuts[k-1],end=cuts[k];if((end-start)*len<.05)continue;const mid=(start+end)/2;if(peers.some(o=>inside(a.x+dx*mid+nx*.6,a.y+dy*mid+ny*.6,o.ps)))continue;
+    const p={x:a.x+dx*start,y:a.y+dy*start},q={x:a.x+dx*end,y:a.y+dy*end};edge.moveTo(p.x,p.y);edge.lineTo(q.x,q.y);if(walkable){top.moveTo(p.x,p.y);top.lineTo(q.x,q.y);}segments.push({a:p,z:q,walkable});
+   }
+  }
+  if(segments.length)groups.push({id:t.id,wood:t.mat==='wood',edge,top,segments,bounds:{left:t.x,top:t.y,right:t.x+t.w,bottom:t.y+t.h}});
+ }
+ const q={source:ts,version:b.sceneVersion,groups,builds:(prior?.builds||0)+1};cache.set(b,q);return q;
+}
+S.terrainReadability=function(c,b,view){if(G.HonroPaintedPresentation?.forBattle(b)?.naturalEdges)return;const q=prepare(b),raster=this._staticCacheBuild?this._worldRasterScale(b,this.canvas.clientWidth):this.scale,unit=1/Math.max(.05,raster);
+ c.save();c.lineJoin='round';c.lineCap='butt';for(const group of q.groups){if(G.HonroStage18BellArt?.omitReadability(group,b)||G.HonroStage30FerryArt?.omitReadability(group,b)||G.HonroStage12QuarryArt?.omitReadability(group,b)||G.HonroStage23EscortArt?.omitReadability(group,b)||G.HonroStage8BierArt?.omitReadability(group,b))continue;const box=group.bounds;if(view&&(box.right<view.left-8*unit||box.left>view.right+8*unit||box.bottom<view.top-8*unit||box.top>view.bottom+8*unit))continue;
+  c.strokeStyle=STYLE.edgeInk;c.lineWidth=STYLE.edgePixels*unit;c.stroke(group.edge);
+  c.lineWidth=STYLE.topInkPixels*unit;c.stroke(group.top);
+  c.strokeStyle=group.wood?STYLE.woodLight:STYLE.topLight;c.lineWidth=STYLE.topLightPixels*unit;c.stroke(group.top);
+ }c.restore();this.terrainReadabilityStats={builds:q.builds,groups:q.groups.length};
+};
+G.HonroTerrainReadability={STYLE,prepare};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/stage18-bell-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Opt-in material and event cues for the one authored hollow bell. The source
+// terrain and saved descent state remain the authority. No physics lives here.
+const S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap();
+const active=b=>[18,19].includes(b?.honroStage)&&b.honroBellRevision===1;
+const lowering=b=>active(b)&&b.honroState?.bellDescent?.status==='lowering';
+const shellIds=new Set(['sb-bell-crown','sb-bell-west-wall','sb-bell-east-wall','sb-bell-east-lip','sb-bell-east-yoke']);
+const interiorStoneIds=new Set(['sb-inner-upper-turn','sb-inner-sound-stone']);
+const omitReadability=(group,b)=>active(b)&&(shellIds.has(group.id)||interiorStoneIds.has(group.id));
+function prepare(t,b){let q=cache.get(t);if(q?.vertices===t.vertices&&q.version===b.sceneVersion)return q;
+ const shape=new Path2D(),ps=C.poly(t);ps.forEach((p,i)=>i?shape.lineTo(p.x,p.y):shape.moveTo(p.x,p.y));shape.closePath();
+ q={shape,vertices:t.vertices,version:b.sceneVersion};cache.set(t,q);return q;
+}
+function shell(c,t,b){if(!active(b)||!(t.honroBellShell||t.honroBellBody))return false;const q=prepare(t,b);c.save();
+ const pilot=G.HonroPaintedPilots?.active(b),g=c.createLinearGradient(t.x,t.y,t.x+t.w,t.y+t.h*.22);g.addColorStop(0,pilot?'#8a7553':'#867957');g.addColorStop(.42,pilot?'#525b48':'#59634d');g.addColorStop(1,pilot?'#1e3630':'#304b40');c.fillStyle=g;c.fill(q.shape);
+ c.strokeStyle='#192f2c';c.lineWidth=9;c.lineJoin='round';c.stroke(q.shape);c.restore();return true;
+}
+// Broad curved mineral planes are clipped to each authored collider. The
+// exterior silhouette always comes from the terrain, never decorative rocks.
+const rockForms=[
+ ['M-90-160H1060V118Q763 18 529 162Q378 324 269 402Q94 509-70 404Z','M657-120Q470 107 576 314Q666 453 533 640Q451 849 548 1100H1080V-100Z','M-100 565Q142 412 308 506Q521 658 659 546Q781 455 1090 580V780Q817 615 636 726Q401 809 204 670Q46 606-100 745Z','M604-20Q533 103 546 245L491 373Q485 544 411 655Q354 779 392 941'],
+ ['M-120-150H1040V195Q871 322 641 234Q423 114 311 251Q220 339 71 330L-100 490Z','M745-150Q672 230 535 351Q638 581 515 819L590 1120H1100V-120Z','M-60 494Q121 565 325 441Q517 327 748 426Q948 545 1070 467V664Q888 741 698 598Q527 535 353 647Q157 778-40 665Z','M259 48Q374 194 341 342Q285 476 357 579L348 851'],
+ ['M-90-180H1090V93Q930 219 733 190Q520 63 359 185Q236 294 11 231Z','M792-130Q905 154 777 359Q652 576 754 769L722 1110H1120V-130Z','M-70 380Q174 257 337 369Q516 496 659 360Q842 260 1090 402V665Q841 527 648 655Q436 751 292 617Q96 494-70 590Z','M561 138Q649 231 558 349Q484 434 508 579Q552 667 471 874'],
+ ['M-100-180H1100V159Q921 313 710 276Q553 304 403 418Q191 463 54 348L-100 455Z','M751-100Q587 33 695 257Q805 463 644 547Q563 719 668 1100H1110V-120Z','M-70 641Q181 469 375 540Q610 629 723 474Q865 377 1080 464V622Q882 548 768 696Q565 862 333 709Q132 639-70 789Z','M385 89Q340 183 419 298Q475 379 402 481L391 708Q357 824 403 947']
+].map(a=>a.map(d=>new Path2D(d)));
+function rock(c,t,b){if(!active(b)||!t.honroBell||t.mat!=='rock'||t.oneWay||['act2-floor','cave-roof'].includes(t.id)||t.w<170||t.h<170)return false;
+ const q=prepare(t,b),index=/crown|court/.test(t.id)?2:/lower|buttress|saddle/.test(t.id)?1:/east|return/.test(t.id)?3:0,forms=rockForms[index];c.save();c.clip(q.shape);const base=c.createLinearGradient(t.x,t.y,t.x+t.w*.47,t.y+t.h);base.addColorStop(0,'#6c817b');base.addColorStop(.48,'#4d676b');base.addColorStop(1,'#263f4d');c.fillStyle=base;c.fill(q.shape);c.translate(t.x,t.y);c.scale(t.w/1000,t.h/1000);
+ c.fillStyle='#8f9a822b';c.fill(forms[0]);c.fillStyle='#152f408f';c.fill(forms[1]);c.fillStyle='#91a08a13';c.fill(forms[2]);if(/west-middle|west-crown|maintenance-buttress|east-resonance-mass|east-keeper-mass|return-cave-buttress/.test(t.id)){c.strokeStyle='#203c486a';c.lineWidth=8;c.lineCap='round';c.stroke(forms[3]);c.strokeStyle='#a3ae901c';c.lineWidth=3;c.translate(-8,-5);c.stroke(forms[3]);}c.restore();return true;
+}
+const stoneProxies=new WeakMap();
+const terrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(active(b)&&interiorStoneIds.has(t.id))return;if(lowering(b)&&shellIds.has(t.id))return;if(shell(c,t,b))return;if(rock(c,t,b))return;
+ // Old generic optional shelves are timber. These two named new rock ramps
+ // retain their actual material without mutating the playable one-way flag.
+ if(active(b)&&t.honroBell&&t.mat==='rock'&&t.oneWay&&t.optional){let q=stoneProxies.get(t);if(!q||q.source!==t.vertices||q.version!==b.sceneVersion){q={source:t.vertices,version:b.sceneVersion,view:{...t,optional:false}};stoneProxies.set(t,q);}return G.HonroAct2SpatialArt.terrain(c,q.view,b);}
+ return terrain.call(this,c,t);
+};
+// The 0.9-second safe descent reuses the still cavern tiles. Only this one
+// retained SVG is drawn live, with the position already moved by the runtime.
+const bellPaintCache=new WeakMap();
+function bellPaint(asset,b){const pilot=b?.honroStage===18&&G.HonroPaintedPilots?.active(b);let rows=bellPaintCache.get(asset);if(!rows){rows=new Map();bellPaintCache.set(asset,rows);}if(rows.has(!!pilot))return rows.get(!!pilot);const spec=asset.params?.soundWindow;if(!spec)return null;const box=asset.bounds,clip=new Path2D(`M${box.x-20} ${box.y-20}h${box.w+40}v${box.h+40}h${-box.w-40}Z ${spec.interiorReveal}`);let paint=asset;
+ if(pilot){paint={...asset,vector:{...asset.vector,gradients:JSON.parse(JSON.stringify(asset.vector.gradients))}};const colors={bronze:['#3c382d','#8f7855','#767057','#485447','#31453d','#182c2b'],'bell-lip':['#b6a075','#897550','#4e5645','#203936'],'aged-crown':['#9e875c','#77694c','#425846','#223c35']};for(const [id,values]of Object.entries(colors))paint.vector.gradients[id].stops.forEach((s,i)=>s.color=values[i]);}
+ const overlays={...paint,vector:{...paint.vector,root:{...paint.vector.root,children:paint.vector.root.children.filter(node=>spec.overlays.includes(node.id))}}},q={clip,overlays,paint};rows.set(!!pilot,q);return q;}
+function drawBell(c,body,b){const q=bellPaint(body.asset,b);if(!q)return G.HonroVectorArt.draw(c,body.asset,body);
+ // The cast side aperture is transparent to the actual gallery and actors.
+ // Its physical outer opening is authored in soundWindow.shellOpening; the
+ // leftward reveal is the already-empty bell interior viewed through it.
+ c.save();c.translate(body.x||0,body.y||0);c.rotate(body.rotation||0);c.scale(body.scale??1,body.scale??1);c.clip(q.clip,'evenodd');G.HonroVectorArt.draw(c,q.paint,{x:0,y:0,scale:1,rotation:0});c.restore();G.HonroVectorArt.draw(c,q.overlays,body);return true;
+}
+const landmarks=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){const b=this.battle;if(!active(b))return landmarks.call(this,c,list,layer);const body=list.find(l=>l.id==='sb-bell-body');const result=landmarks.call(this,c,list.filter(l=>l.id!=='sb-bell-body'),layer);if(body&&!lowering(b)&&(body.layer||'back')===layer)drawBell(c,body,b);return result;};
+function movingBody(c,b){if(!lowering(b))return false;const body=b.honroLandmarks?.find(l=>l.id==='sb-bell-body');if(!body?.asset)return false;return drawBell(c,body,b);}
+// These two fixed stones stand in the open mouth, in front of its dark
+// underside. Paint their actual polygons once, after the bell and before
+// actors. They are omitted from the cached terrain/readability passes above.
+function interiorStones(c,b,scene){if(!active(b))return false;for(const t of b.terrain||[]){if(!interiorStoneIds.has(t.id))continue;if(G.HonroPaintedPilots?.terrain(c,t,b,true))continue;if(rock(c,t,b))continue;let q=stoneProxies.get(t);if(!q||q.source!==t.vertices||q.version!==b.sceneVersion){q={source:t.vertices,version:b.sceneVersion,view:{...t,optional:false}};stoneProxies.set(t,q);}G.HonroAct2SpatialArt.terrain(c,q.view,b);}
+ if(G.HonroPaintedPresentation?.forBattle(b)?.naturalEdges)return true;
+ const style=G.HonroTerrainReadability.STYLE,unit=1/Math.max(.05,scene.scale||1);c.save();c.lineJoin='round';c.lineCap='butt';for(const group of G.HonroTerrainReadability.prepare(b).groups){if(!interiorStoneIds.has(group.id))continue;c.strokeStyle=style.edgeInk;c.lineWidth=style.edgePixels*unit;c.stroke(group.edge);c.lineWidth=style.topInkPixels*unit;c.stroke(group.top);c.strokeStyle=style.topLight;c.lineWidth=style.topLightPixels*unit;c.stroke(group.top);}c.restore();return true;
+}
+function rect(zone){if(!zone)return null;const z=zone.bounds||zone;if([z.x,z.y,z.w,z.h].every(Number.isFinite))return z;if(Number.isFinite(z.x)&&Number.isFinite(z.y)&&Number.isFinite(z.radius))return{x:z.x-z.radius,y:z.y-110,w:z.radius*2,h:110};return null;}
+const guideCache=new WeakMap();
+function sweepArt(b){const spec=b.honroBellDescent,shapes=G.HonroStage18Bell?.sweepGeometry(b)||[];let q=guideCache.get(spec);if(q?.source===shapes)return q;
+ const fill=new Path2D();for(const shape of shapes){const ps=shape.vertices;let area=0;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];area+=a.x*z.y-z.x*a.y;}const ordered=area<0?ps.slice().reverse():ps;ordered.forEach((p,i)=>i?fill.lineTo(p.x,p.y):fill.moveTo(p.x,p.y));fill.closePath();}
+ // Reuse the common exposed-edge builder for the union outline. This scratch
+ // geometry is read-only and never replaces any live terrain or saved state.
+ const union={terrain:shapes,sceneVersion:0,honroLandmarks:[]},rims=G.HonroTerrainReadability.prepare(union).groups.map(group=>group.edge);
+ q={source:shapes,fill,rims};guideCache.set(spec,q);return q;
+}
+function descentGuide(c,b,scene){if(!active(b)||b.honroStage!==18)return false;const m=b.honroState?.bellDescent,spec=b.honroBellDescent;if(!m||!spec||!['warning','waiting','lowering'].includes(m.status))return false;
+ const z=Math.max(.05,scene.scale||1),time=G.HonroEnvironmentArt?.time?.(scene)||0,pulse=.74+Math.sin(time*2.3)*.08;c.save();c.lineJoin='round';
+ // Safe floor cues are intentionally quieter than the amber moving edge.
+ for(const zone of spec.safeZones||[]){const r=rect(zone);if(!r)continue;c.fillStyle='#8cc7c811';c.fillRect(r.x,r.y,r.w,r.h);c.strokeStyle='#8ebfc991';c.lineWidth=1.25/z;c.beginPath();c.moveTo(r.x,r.y+r.h);c.lineTo(r.x+r.w,r.y+r.h);c.stroke();}
+ const q=sweepArt(b);c.fillStyle='#e4a96025';c.fill(q.fill,'nonzero');c.strokeStyle=`rgba(222,170,98,${pulse})`;c.lineWidth=1.45/z;c.setLineDash([7/z,6/z]);for(const rim of q.rims)c.stroke(rim);c.setLineDash([]);
+ for(const id of ['sb-bell-west-wall','sb-bell-east-wall','sb-bell-east-lip','sb-bell-east-yoke']){const t=b.terrain.find(t=>t.id===id);if(!t)continue;const ps=C.poly(t),bottom=Math.max(...ps.map(p=>p.y)),feet=ps.filter(p=>Math.abs(p.y-bottom)<.5),xx=feet.reduce((sum,p)=>sum+p.x,0)/feet.length,yy=bottom+(spec.distance-(m.offset||0))-23/z,size=6/z;c.beginPath();c.moveTo(xx-size,yy-size);c.lineTo(xx,yy);c.lineTo(xx+size,yy-size);c.moveTo(xx-size,yy+5/z);c.lineTo(xx,yy+5/z+size);c.lineTo(xx+size,yy+5/z);c.stroke();}
+ c.restore();return true;
+}
+const water=S.liveWater;S.liveWater=function(c,b){const result=water?.call(this,c,b);movingBody(c,b);interiorStones(c,b,this);descentGuide(c,b,this);return result;};
+G.HonroStage18BellArt={active,lowering,prepare,shell,rock,omitReadability,bellPaint,drawBell,movingBody,interiorStones,sweepArt,descentGuide};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/stage30-ferry-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// The authored river has one physical source. This opt-in pass paints its exact
+// live polygons; it never owns movement, event timing, collision or a camera.
+const S=G.HonroScene.prototype,C=G.HONRO_CORE,E=G.HonroEnvironment,cache=new WeakMap(),skyCache=new WeakMap();
+const reducedMotion=G.matchMedia?.('(prefers-reduced-motion: reduce)');
+const active=b=>b?.honroStage===30&&b.honroFerryRevision===1;
+const state=b=>b.honroState?.ferry||{};
+const P=ps=>{const p=new Path2D();ps.forEach((v,i)=>i?p.lineTo(v.x??v[0],v.y??v[1]):p.moveTo(v.x??v[0],v.y??v[1]));p.closePath();return p;};
+const gradient=(c,x,y,xx,yy,stops)=>{const g=c.createLinearGradient(x,y,xx,yy);for(const[u,k]of stops)g.addColorStop(u,k);return g;};
+const hash=s=>{let h=17;for(const ch of s)h=(h*31+ch.charCodeAt(0))>>>0;return h;};
+const ROCK_FORMS=[
+ ['M-80-40Q165-115 470-9L676 88Q675 182 559 277L336 350 176 523-80 568Z','M669-110L1120-40V1110H638L527 829 617 616 565 472 695 298Z','M-90 630Q118 515 268 594L462 558 567 695 776 609 1090 790V1150H-90Z','M-30 154Q133 210 266 163L414 180 352 222 189 231 22 218Z','M524 19L559 50 537 229 463 349 492 470 470 500 432 347 506 218Z'],
+ ['M-90-90H641L696 175 548 284 274 306 154 471-90 496Z','M850-60L1110-60V1120H714L755 848 661 600 793 450 753 308Z','M-80 650L162 557 420 660 636 557 776 653 1070 567V1130H-90Z','M122 455Q309 363 431 406L635 374 648 400 437 445 280 433 148 487Z','M702 56L734 87 790 287 716 382 649 499 648 666 618 690 615 494 681 373 755 281Z'],
+ ['M-100-60L422-60 652 106 593 267 487 330 168 288-70 454Z','M639-60H1130V1100H567L493 908 632 743 731 589 649 439 783 288Z','M-70 662Q151 550 359 687L543 701 697 592 912 704 1110 681V1130H-100Z','M33 193L262 232 383 189 553 208 494 244 358 226 282 264 53 222Z','M505 34L540 43 616 241 539 337 479 478 378 624 394 768 365 788 344 617 445 466 503 332 582 237Z']
+].map(v=>v.map(d=>new Path2D(d)));
+function surfaceEdges(t,b){const ps=C.poly(t),indices=t.honroWalkEdges||b.honroMap?.space?.surfaces?.find(s=>s.terrainId===t.id)?.edgeIndices||[];return indices.map(i=>[ps[i],ps[(i+1)%ps.length]]).filter(([a,z])=>a&&z&&Math.abs(a.x-z.x)>.001);}
+function prepare(t,b){let q=cache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion)return q;const ps=C.poly(t),shape=P(ps),edges=surfaceEdges(t,b),rim=new Path2D(),caps=[],strata=[],joints=new Path2D();
+ for(const[a,z]of edges){rim.moveTo(a.x,a.y);rim.lineTo(z.x,z.y);caps.push(P([[a.x,a.y],[z.x,z.y],[z.x,z.y+20],[a.x,a.y+20]]));if(t.h>190&&t.mat!=='wood')strata.push(P([[a.x,a.y+30],[z.x,z.y+30],[z.x,z.y+83],[a.x,a.y+83]]));}
+ const at=x=>{const edge=edges.find(([a,z])=>x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x));return edge?edge[0].y+(edge[1].y-edge[0].y)*(x-edge[0].x)/(edge[1].x-edge[0].x):t.y;};
+ if(t.mat==='wood'){for(const u of [.17,.43,.78]){const x=t.x+t.w*u,y=at(x);joints.moveTo(x,y+10);joints.lineTo(x+7,Math.min(y+49,t.y+t.h));}}
+ const ledges=[];if(/granite-cape|bank-inner/.test(t.id)&&t.h>230&&t.w>450&&edges.length){
+  const left=Math.max(t.x,-600),right=Math.min(t.x+t.w,b.width+600),span=right-left;
+  const configs=/granite-cape/.test(t.id)?[[.03,.55,.72],[.36,.61,.90]]:/bank-inner|outer-grade|old-road-west-rise/.test(t.id)?[[.02,.56,.62],[.48,.50,.86]]:/map-rock|west-ford|recovery-shore/.test(t.id)?[[.02,.42,.35],[.39,.47,.48],[.73,.35,.64]]:[[.02,.96,.84]];
+  for(const [i,[u,uw,dh]]of configs.entries()){const x=left+span*u,w=span*uw,y=at(x),z=at(Math.min(right,x+w)),depth=Math.min(t.h*.92,1120)*dh,points=[[x,y+48],[x+w*.26,at(Math.min(right,x+w*.26))+65],[x+w*.66,at(Math.min(right,x+w*.66))+84],[Math.min(right,x+w),z+90],[x+w*.83,z+depth*.71],[x+w*.47,y+depth],[x+w*.11,y+depth*.83]],lit=P(points);
+   const seam=new Path2D();seam.moveTo(x+w*.09,y+depth*.76);seam.lineTo(x+w*.29,y+depth*.82);seam.lineTo(x+w*.51,y+depth*.68);seam.lineTo(x+w*.68,z+depth*.62);seam.lineTo(x+w*.85,z+depth*.65);
+   ledges.push({lit,seam,x,y,w,depth,i});
+  }
+ }
+ // The quay is a retained landing cut into bedrock, not a wall of giant bricks.
+ // Individually authored face stones sit only in the upper retaining course;
+ // below them the unbroken native rock planes remain visible.
+ const masonry=[];if(t.id==='sf-ferry-court'){
+  const stones=[[0,24,.12,99],[.125,19,.18,116],[.31,26,.15,102],[.466,20,.205,112],[.677,23,.16,95],[.843,19,.16,120],[.015,132,.19,119],[.213,145,.135,128],[.355,137,.22,114],[.582,143,.17,128],[.76,129,.245,116]];
+  for(const[i,[u,v,w,h]]of stones.entries()){const x=t.x+t.w*u,y=t.y+v,ww=t.w*w;
+   masonry.push({body:P([[x+13,y+9],[x+ww-20,y],[x+ww,y+26],[x+ww-12,y+h-9],[x+ww*.43,y+h],[x,y+h-19]]),top:P([[x+13,y+9],[x+ww-20,y],[x+ww-4,y+20],[x+ww*.46,y+28],[x+5,y+25]]),light:i%3});
+  }
+ }else if(/reflector/.test(t.id)){for(const[i,f]of [0,.38,.71].entries()){const top=t.y+t.h*f,hh=t.h*(i===2?.29:.34);for(const[u,w]of [[0,.43],[.46,.54]]){const x=t.x+t.w*u,ww=t.w*w;masonry.push({body:P([[x+7,top+6],[x+ww-5,top+3],[x+ww,top+hh-7],[x,top+hh-3]]),top:P([[x+7,top+6],[x+ww-5,top+3],[x+ww-10,top+20],[x+7,top+22]]),light:i});}}}
+
+ q={source:t.vertices,version:b.sceneVersion,shape,edges,rim,caps,strata,joints,masonry,ledges,forms:ROCK_FORMS[hash(t.id)%3]};cache.set(t,q);return q;}
+function terrain(c,t,b,live=false){if(!active(b)||!t.id?.startsWith('sf-'))return false;if(t.id==='sf-settled-barge')return true;if(t.id==='sf-outbank-screen'&&state(b).status==='settling'&&!live)return true;const q=prepare(t,b),wood=t.mat==='wood',earth=t.mat==='earth',depth=Math.min(t.h,2600),roof=t.oneWay&&/^sf-quay-(west|east)-loft$/.test(t.id);c.save();c.clip(q.shape);
+ c.fillStyle=gradient(c,t.x,t.y,t.x+t.w*.18,t.y+depth,wood?[[0,'#a1966b'],[.2,'#776c4d'],[.45,'#4d523e'],[1,'#263c38']]:earth?[[0,'#7e886d'],[.18,'#5b7264'],[.55,'#405c5b'],[1,'#1d3a49']]:[[0,'#93a18d'],[.24,'#748b82'],[.58,'#4b6b70'],[1,'#243f50']]);c.fill(q.shape);
+ if(roof){c.fillStyle=gradient(c,t.x,t.y,t.x,t.y+t.h,[[0,'#89908a'],[.18,'#637571'],[.57,'#344b4b'],[1,'#1a3237']]);c.fill(q.shape);for(const[a,z]of q.edges){c.beginPath();c.moveTo(a.x,a.y+17);c.lineTo(z.x,z.y+17);c.strokeStyle='#9ca38b';c.lineWidth=6;c.stroke();c.beginPath();c.moveTo(a.x,a.y+38);c.lineTo(z.x,z.y+38);c.strokeStyle='#152d33';c.lineWidth=8;c.stroke();}c.strokeStyle='#293d3d';c.lineWidth=4;c.stroke(q.joints);}
+ else if(wood){c.strokeStyle='#253c34';c.lineWidth=5;c.stroke(q.joints);for(const[a,z]of q.edges){c.beginPath();c.moveTo(a.x,a.y+29);c.lineTo(z.x,z.y+29);c.stroke();}}
+ else{c.save();c.translate(t.x,t.y);c.scale(t.w/1000,depth/1000);for(const[i,col]of ['#b9bca83d','#173847aa','#223e4f79','#c6c6a448','#19394588'].entries()){c.fillStyle=col;c.fill(q.forms[i]);}c.restore();for(const p of q.ledges){c.fillStyle=gradient(c,p.x,p.y,p.x+p.w*.45,p.y+p.depth,[[0,p.i%2?'#aeb6a529':'#bbc3a72e'],[.55,'#8da79419'],[1,'#172f404f']]);c.fill(p.lit);c.lineWidth=14;c.strokeStyle='#18384763';c.stroke(p.seam);c.save();c.translate(-7,-12);c.lineWidth=4;c.strokeStyle='#b5c0a533';c.stroke(p.seam);c.restore();}for(const p of q.strata){c.fillStyle=earth?'#a3a48237':'#b7bba749';c.fill(p);}for(const p of q.masonry){c.fillStyle=['#748b83','#586f70','#819289'][p.light];c.fill(p.body);c.fillStyle='#b7bba67a';c.fill(p.top);}}
+ for(const p of q.caps){c.fillStyle=roof?'#afb6a36b':wood?'#c5b88988':earth?'#bac09869':'#d0d1b578';c.fill(p);}c.restore();return true;}
+const originalTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return originalTerrain.call(this,c,t);};
+function skyAsset(b){return b.honroMap?.ferryArt?.backdropAsset;}
+function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1050;const c=G.HonroVisualStyle?.context(cv.getContext('2d'),'SKY')||cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});q=cv;skyCache.set(asset,q);return q;}
+const background=S.background;S.background=function(c,w,h,b){if(!active(b)||!skyAsset(b))return background.call(this,c,w,h,b);const cv=skyRaster(skyAsset(b)),r=E.act1BackdropFrame(this,w,h,b,cv.width,cv.height);c.drawImage(cv,r.x,r.y,r.w,r.h);this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0};};
+function body(b){return b.honroLandmarks?.find(l=>l.id==='sf-art-settled-barge');}
+const initialMotion=b=>b.honroFerrySpec?.artFrom||{x:80,y:-145,rotation:.008};
+function motion(b){const s=state(b),u=s.status==='settling'?Math.max(0,Math.min(1,(s.elapsed||0)/(s.duration||1))):s.status==='settled'?1:0,v=u*u*(3-2*u),from=initialMotion(b);return{x:from.x*(1-v),y:from.y*(1-v),rotation:from.rotation*(1-v),progress:u};}
+function transformPoint(l,m,p){const last=l.asset.params.topPoints.at(-1),x=p[0]-last[0],y=p[1]-last[1],cs=Math.cos(m.rotation),sn=Math.sin(m.rotation);return{x:last[0]+m.x+x*cs-y*sn,y:last[1]+m.y+x*sn+y*cs};}
+function drawBody(c,l,m){const last=l.asset.params.topPoints.at(-1);c.save();c.translate(last[0]+m.x,last[1]+m.y);c.rotate(m.rotation);c.translate(-last[0],-last[1]);G.HonroVectorArt.draw(c,l.asset,l);c.restore();return true;}
+const landmarks=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){const b=this.battle;if(!active(b))return landmarks.call(this,c,list,layer);const s=state(b).status,l=list.find(l=>l.id==='sf-art-settled-barge'),result=landmarks.call(this,c,s==='settled'?list:list.filter(l=>l.id!=='sf-art-settled-barge'),layer);
+ // Before the event, the very same boat is moored behind the surviving bank.
+ // The event owns sceneVersion on entry/abort, so its cached and live images
+ // never coexist. Actors and physical surfaces are unchanged by this painting.
+ if(l&&layer==='back'&&!['settling','settled'].includes(s))drawBody(c,l,motion(b));return result;};
+function movingBody(c,b){if(!active(b)||state(b).status!=='settling')return false;const l=body(b);if(!l?.asset)return false;return drawBody(c,l,reducedMotion?.matches?{...initialMotion(b),progress:0}:motion(b));}
+const ropePath=new Path2D('M0 0Q.5 .08 1 0');
+function mooring(c,b){if(!active(b)||state(b).status==='settled')return false;const court=b.terrain.find(t=>t.id==='sf-ferry-court'),l=body(b);if(!court||!l?.asset)return false;const a={x:court.x+court.w*.88,y:court.y-42},ps=l.asset.params.topPoints,first=ps[0],next=ps[1],f=.1,p=[first[0]+(next[0]-first[0])*f,first[1]+(next[1]-first[1])*f-23],m=reducedMotion?.matches&&state(b).status==='settling'?initialMotion(b):motion(b),z=transformPoint(l,m,p),dx=z.x-a.x,dy=z.y-a.y,len=Math.hypot(dx,dy);if(len<1)return false;c.save();c.transform(dx,dy,-dy,dx,a.x,a.y);c.strokeStyle='#192f34';c.lineWidth=7/len;c.stroke(ropePath);c.strokeStyle='#aea078a6';c.lineWidth=2.5/len;c.stroke(ropePath);c.restore();return true;}
+const collapseCrack=new Path2D('M510 45L489 201 560 327 480 437 517 573 451 692 478 895M555 326L719 386 786 507M481 438L327 494 252 645');
+const collapseChips=[new Path2D('M315 470L343 483 332 512 303 502Z'),new Path2D('M700 376L727 389 713 411 690 401Z'),new Path2D('M477 663L499 676 489 702 466 686Z')];
+const omitReadability=(group,b)=>active(b)&&group.id==='sf-outbank-screen'&&state(b).status==='settling';
+function collapsingScreen(c,b){if(!active(b)||state(b).status!=='settling')return false;const t=(G.HonroTerrainDomain?.render(b)||b.terrain).find(t=>t.id==='sf-outbank-screen'&&!t.broken);if(!t)return false;const q=prepare(t,b),u=motion(b).progress,smooth=u*u*(3-2*u);c.save();c.globalAlpha*=reducedMotion?.matches?1:1-smooth*.94;terrain(c,t,b,true);c.clip(q.shape);c.translate(t.x,t.y);c.scale(t.w/1000,t.h/1000);c.strokeStyle='#c8b991';c.lineWidth=4+u*4;c.globalAlpha*=.35+u*.5;c.stroke(collapseCrack);c.strokeStyle='#132f3e';c.lineWidth=9;c.stroke(collapseCrack);if(!reducedMotion?.matches){c.translate(0,u*32);for(const p of collapseChips){c.fillStyle='#b1b497';c.fill(p);}}c.restore();return true;}
+const water=S.liveWater;S.liveWater=function(c,b){const result=water?.call(this,c,b);movingBody(c,b);collapsingScreen(c,b);mooring(c,b);return result;};
+G.HonroStage30FerryArt={active,prepare,terrain,surfaceEdges,skyAsset,skyRaster,body,initialMotion,motion,transformPoint,drawBody,movingBody,mooring,collapsingScreen,omitReadability};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/stage12-quarry-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Stage-local painting over the exact physical granite union. No independent
+// collision, event clock, actor movement, or save writes live in this module.
+const S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap(),skyCache=new WeakMap();
+const active=b=>b?.honroStage===12&&b.honroQuarryRevision===1;
+const path=ps=>{const p=new Path2D();ps.forEach((v,i)=>i?p.lineTo(v.x??v[0],v.y??v[1]):p.moveTo(v.x??v[0],v.y??v[1]));p.closePath();return p;};
+const forms=[
+ ['M-30-30H615L567 150 445 285 178 309-30 455Z','M770-30H1030V1030H595L532 765 695 514 608 341Z','M-30 643L155 547 402 611 545 526 720 648 1030 562V1030H-30Z'],
+ ['M-30-30H358L583 108 539 316 235 417-30 365Z','M650-30H1030V1030H709L620 736 788 507 678 321Z','M-30 640L203 541 456 664 634 593 799 711 1030 692V1030H-30Z'],
+ ['M-30-30H540L650 217 394 363 229 345-30 535Z','M851-30H1030V1030H619L581 846 727 636 666 428Z','M-30 745L282 643 521 751 705 626 1030 744V1030H-30Z']
+].map(xs=>xs.map(d=>new Path2D(d)));
+function prepare(t,b){let q=cache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion)return q;const ps=C.poly(t),indices=t.honroWalkEdges||[],edges=indices.map(i=>[ps[i],ps[(i+1)%ps.length]]).filter(([a,z])=>a&&z&&Math.abs(a.x-z.x)>.001),rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y+7);rim.lineTo(z.x,z.y+7);}let key=0;for(const ch of t.id)key+=ch.charCodeAt(0);q={source:t.vertices,version:b.sceneVersion,shape:path(ps),edges,rim,forms:forms[key%forms.length]};cache.set(t,q);return q;}
+function terrain(c,t,b){if(!active(b)||!t.honroQuarry)return false;const q=prepare(t,b);c.save();c.clip(q.shape);const gradient=c.createLinearGradient(t.x,t.y,t.x+t.w*.16,t.y+Math.min(t.h,2400));gradient.addColorStop(0,t.honroCeiling?'#586a6c':'#98a397');gradient.addColorStop(.27,'#72898a');gradient.addColorStop(.64,'#45666d');gradient.addColorStop(1,'#203c4e');c.fillStyle=gradient;c.fill(q.shape);
+ if(t.honroQuarryVeil){c.fillStyle='#28484e';c.fill(q.shape);c.strokeStyle='#a2af9388';c.lineWidth=4;c.beginPath();c.moveTo(t.x+t.w*.3,t.y+70);c.lineTo(t.x+t.w*.65,t.y+t.h*.31);c.lineTo(t.x+t.w*.35,t.y+t.h*.64);c.lineTo(t.x+t.w*.68,t.y+t.h-48);c.stroke();}
+ else{c.save();c.translate(t.x,t.y);c.scale(t.w/1000,Math.min(t.h,2300)/1000);for(const[i,color]of ['#c1c2a92f','#17384789','#1838475c'].entries()){c.fillStyle=color;c.fill(q.forms[i]);}c.restore();c.strokeStyle='#d0d2b16f';c.lineWidth=15;c.stroke(q.rim);
+  // Three authored broad faces distinguish the work areas. No repeated
+  // rectangular tile/stamp detail: the rock's cut and shadow have a direction.
+  const panels=t.id==='sq-north-quarry'?[
+   [[5350,3762],[5800,3715],[6260,3560],[6400,3650],[6250,3900],[6000,4020],[5590,3910]],
+   [[6740,3550],[7130,3390],[7510,3320],[7790,3410],[7730,3720],[7500,4030],[7290,4170],[7000,3990]],
+   [[7900,3500],[8270,3720],[8610,3980],[8550,4140],[8220,4190],[7990,3990]]
+  ]:t.id==='sq-west-quarry'?[
+   [[3320,4395],[3720,4310],[4090,4135],[4260,4190],[4210,4410],[3890,4510],[3470,4480]],
+   [[4520,4070],[4850,3935],[5180,3910],[5330,4080],[5160,4270],[4920,4580],[4680,4530]],
+   [[5410,4180],[5730,4410],[5900,4530],[5630,4660],[5400,4560],[5240,4370]]
+  ]:[];
+  for(const [i,ps] of panels.entries()){c.fillStyle=['#bec3a736','#aebaa837','#213f5066'][i];c.fill(path(ps));}
+  const seams=t.id==='sq-north-quarry'?[[[7560,3350],[7520,3600],[7680,3800],[7560,4050],[7310,4210]],[[6190,3590],[6090,3750],[6200,3920],[6030,4030]]]:t.id==='sq-west-quarry'?[[[4850,3935],[4780,4150],[4870,4330],[4700,4570]],[[4080,4140],[3980,4320],[4070,4480]]]:[];
+  for(const ps of seams){c.lineWidth=13;c.strokeStyle='#1a3b4977';c.beginPath();ps.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.stroke();c.save();c.translate(-7,-9);c.lineWidth=3;c.strokeStyle='#c3c5a43d';c.stroke();c.restore();}
+  if(t.id==='sq-lower-ground'){c.fillStyle='#b2ae8138';c.fill(path([[6060,4822],[6210,4805],[6510,4805],[6930,4805],[6990,4825],[6560,4835],[6250,4830],[6060,4850]]));}
+
+ }c.restore();return true;}
+const baseTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return baseTerrain.call(this,c,t);};
+const skyAsset=b=>b.honroMap?.quarryArt?.backdropAsset;
+function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1080;const c=G.HonroVisualStyle?.context(cv.getContext('2d'),'SKY')||cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});skyCache.set(asset,cv);return cv;}
+const background=S.background;S.background=function(c,w,h,b){if(!active(b)||!skyAsset(b))return background.call(this,c,w,h,b);const cv=skyRaster(skyAsset(b)),frame=G.HonroEnvironment.act1BackdropFrame(this,w,h,b,cv.width,cv.height);c.drawImage(cv,frame.x,frame.y,frame.w,frame.h);this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0};};
+const shoe=new Path2D('M-26-3Q-20-17-2-19Q18-17 25-6L20 0Q-1 6-24 2Z'),lace=new Path2D('M-16-12L-9 1M-5-17L0 3M7-15L11 2');
+function storyProp(c,b){if(!active(b)||!b.honroState?.quarry?.shoePlaced)return;const m=b.honroMarkers.find(m=>m.id==='sign');if(!m)return;c.save();c.translate(m.x+44,m.y-9);c.fillStyle='#ac9b6c';c.fill(shoe);c.strokeStyle='#574f38';c.lineWidth=2;c.stroke(shoe);c.stroke(lace);c.restore();}
+const live=S.liveWater;S.liveWater=function(c,b){const out=live?.call(this,c,b);storyProp(c,b);return out;};
+// Shared exposed-edge generation still owns every walkable edge and union.
+const omitReadability=(group,b)=>active(b)&&group.id==='sq-turning-veil'&&!!group.broken;
+G.HonroStage12QuarryArt={active,prepare,terrain,skyAsset,skyRaster,storyProp,omitReadability};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/stage23-escort-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Exact authored polygons and one translated cargo drawing. Story owns timing;
+// this pass cannot move an actor, change geography, or write a saved value.
+const S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap(),skyCache=new WeakMap();
+const active=b=>b?.honroStage===23&&!b.honroCustom&&b.honroEscortYardRevision===1;
+const reduced=G.matchMedia?.('(prefers-reduced-motion: reduce)');
+const state=b=>b.honroState?.escortYard||{},spec=b=>b.honroEscortYardSpec?.cargo||{};
+function path(ps){const p=new Path2D();ps.forEach((v,i)=>i?p.lineTo(v.x??v[0],v.y??v[1]):p.moveTo(v.x??v[0],v.y??v[1]));p.closePath();return p;}
+function shape(t,b){let q=cache.get(t);if(q?.vertices===t.vertices&&q.version===b.sceneVersion)return q;
+ const ps=C.poly(t),profile=t.id==='sy-ground'?b.honroMap?.act3?.primaryContour:null;
+ // The extended v6 polygon starts outside Play Bounds. Its vertex indices are
+ // not the authored road indices; paint only the actual contour's top edge.
+ const pairs=profile?profile.slice(1).map((z,i)=>[profile[i],z].map(p=>({x:p[0],y:p[1]}))):(t.honroWalkEdges||[]).map(i=>[ps[i],ps[(i+1)%ps.length]]);
+ const edges=pairs.filter(([a,z])=>a&&z&&Math.abs(a.x-z.x)>.001&&Math.abs((a.y-z.y)/(a.x-z.x))<=1.35),rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y+7);rim.lineTo(z.x,z.y+7);}
+ q={vertices:t.vertices,version:b.sceneVersion,body:path(ps),edges,rim};cache.set(t,q);return q;
+}
+// Render-only material breakup. Faces retain their exact authored outlines;
+// these cached paths never enter the map, collision, camera or saved battle.
+const masonryCache=new WeakMap(),rearCache=new WeakMap();
+function masonryDetail(owner,ps){let q=masonryCache.get(owner);if(q)return q;
+ const xs=ps.map(p=>p.x??p[0]),ys=ps.map(p=>p.y??p[1]),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys),w=x1-x0,h=y1-y0;
+ const joints=new Path2D(),light=new Path2D(),beds=new Path2D(),washes=[],rows=[],seed=Math.round(x0+y0)%7;
+ // Unequal 48–76-unit courses are smaller than a 110-unit person. Worn gaps
+ // break long joints; only sparse major bedding lines span a larger structure.
+ const heights=[58,72,51,66,76,55,63],widths=[126,158,107,143,172,119,151];let y=y0+32,row=0;
+ while(y<y1){const rh=heights[(row+seed)%heights.length],next=Math.min(y1,y+rh),major=row%5===3;rows.push({y,height:next-y});
+  let x=x0-((row*57+seed*19)%139),col=0;
+  while(x<x1){const bw=widths[(row*3+col+seed)%widths.length],end=Math.min(x1,x+bw),start=Math.max(x0,x),cut=(row+col+seed)%4===0?17:6,dy=((row+col)%3-1)*2;
+   if(end-start>22){joints.moveTo(start+4,y+dy);joints.lineTo(Math.max(start+6,end-cut),y+dy+1);if((row+col)%3===0){light.moveTo(start+9,y+dy+4);light.lineTo(Math.max(start+10,end-24),y+dy+5);}}
+   if(x>x0+12&&x<x1-12&&(row+col)%5!==2){joints.moveTo(x+2,y+7);joints.lineTo(x-2,next-7);}
+   x+=bw;col++;
+  }
+  if(major){beds.moveTo(x0+16,y+rh*.48);beds.lineTo(x0+w*.41,y+rh*.48+2);if(w>500){beds.moveTo(x0+w*.47,y+rh*.48+2);beds.lineTo(x1-24,y+rh*.48);}}
+  y=next;row++;if(row>80)break;
+ }
+ // One or two broad, quiet drainage marks, rather than repeated cracks/noise.
+ if(h>150){const count=w>850?2:1;for(let i=0;i<count;i++){const x=x0+w*(i===0?.24:.79),yy=y0+h*(i===0?.12:.35),reach=Math.min(h*.5,210),ww=Math.min(48,w*.16);washes.push({points:[[x-ww*.5,yy],[x+ww*.6,yy+7],[x+ww*.32,yy+reach*.6],[x+ww*.10,yy+reach],[x-ww*.22,yy+reach*.78]],base:yy,end:yy+reach});}}
+ q={joints,light,beds,washes,rows,bounds:{x:x0,y:y0,w,h},clip:path(ps)};masonryCache.set(owner,q);return q;
+}
+function drawMasonryDetail(c,q){c.save();c.clip(q.clip);
+ for(const wash of q.washes){const g=c.createLinearGradient(0,wash.base,0,wash.end);g.addColorStop(0,'#304b3e2b');g.addColorStop(1,'#304b3e00');c.fillStyle=g;c.fill(path(wash.points));}
+ // The heavier bedding line reads as a construction tier, while small joints
+ // stay low contrast and interrupted. No repetitive stone outline grid.
+ c.lineCap='round';c.lineJoin='round';c.strokeStyle='#324a3d35';c.lineWidth=4;c.stroke(q.beds);c.strokeStyle='#304b3d70';c.lineWidth=2.3;c.stroke(q.joints);c.strokeStyle='#b2b59a35';c.lineWidth=1.8;c.stroke(q.light);c.restore();
+}
+function rearPaint(asset){let q=rearCache.get(asset);if(q)return q;const nodes=asset.vector?.root?.children||[],faces=asset.params?.rearMasonryFaces;
+ const wanted=faces||[{id:'west-bridge-abutment',polygon:[[5160,4490],[5400,4530],[5400,4910],[5160,4770]]},{id:'east-bridge-abutment',polygon:[[5830,4510],[6100,4460],[6100,4740],[5830,4920]]}];
+ q=wanted.map(f=>{const i=nodes.findIndex(n=>n.id===f.id);if(i<0)return null;const base=nodes[i],top=nodes[i+1],finish=nodes.slice(i+2).find(n=>n.fill==='#354a40');return{body:new Path2D(base.d),fill:base.fill,stroke:base.stroke,detail:masonryDetail(f,f.polygon),top:top?.d?{path:new Path2D(top.d),fill:top.fill}:null,side:finish?.d?{path:new Path2D(finish.d),fill:finish.fill}:null};}).filter(Boolean);rearCache.set(asset,q);return q;
+}
+function drawRearMasonry(c,l){const qs=rearPaint(l.asset);if(!qs.length)return false;c.save();c.translate(l.x||0,l.y||0);c.rotate(l.rotation||0);c.scale(l.scale??1,l.scale??1);c.lineJoin='round';c.lineCap='round';
+ for(const q of qs){c.fillStyle=q.fill;c.fill(q.body);c.strokeStyle=q.stroke;c.lineWidth=5;c.stroke(q.body);c.save();c.clip(q.body);drawMasonryDetail(c,q.detail);if(q.top){c.fillStyle=q.top.fill;c.fill(q.top.path);}if(q.side){c.fillStyle=q.side.fill;c.fill(q.side.path);}c.restore();}
+ c.restore();return true;
+}
+const originalLandmark=S.landmark;S.landmark=function(c,l){if(!active(this.battle))return originalLandmark.call(this,c,l);if(l.id==='sy-art-rear-plinths'&&drawRearMasonry(c,l))return;const out=originalLandmark.call(this,c,l);if(l.id==='sy-art-stone-bridge')drawRearMasonry(G.HonroVisualStyle?.context(c,'L1')||c,l);return out;};
+function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('sy-'))return false;
+ // The bound bundle asset is the visible body of both collision poses.
+ if(t.id==='sy-cargo-stored'||t.id==='sy-cargo-settled')return true;
+ const q=shape(t,b),earth=t.id==='sy-ground',wood=t.mat==='wood',roof=!!t.honroRoof,stone=/bridge|pier|corner/.test(t.id),top=earth?4100:t.y,depth=earth?2200:Math.max(24,Math.min(850,t.h));
+ // Local vertical values, never the huge v6 world-bound width/height, own tone.
+ const g=c.createLinearGradient(0,top,0,top+depth);g.addColorStop(0,roof?'#597077':wood?'#ab9868':earth?'#727e65':'#88937a');g.addColorStop(.38,roof?'#334c53':wood?'#7b6c48':earth?'#54674f':'#667d62');g.addColorStop(1,roof?'#1d343c':earth?'#304c40':'#3f5948');
+ c.save();c.clip(q.body);c.fillStyle=g;c.fill(q.body);
+ if(earth){
+  // A broad worn road and its compacted earth shoulder follow every true
+  // incline; the water-cut cliffs deliberately receive no walkable rim.
+  for(const[a,z]of q.edges){c.fillStyle='#9b9e7d';c.fill(path([[a.x,a.y],[z.x,z.y],[z.x,z.y+43],[a.x,a.y+43]]));c.fillStyle='#758367';c.fill(path([[a.x,a.y+43],[z.x,z.y+43],[z.x,z.y+112],[a.x,a.y+112]]));}
+ }else if(wood){c.strokeStyle='#3d4a36';c.lineWidth=4;for(const f of [.19,.46,.81]){const x=t.x+t.w*f;c.beginPath();c.moveTo(x,t.y);c.lineTo(x+6,t.y+t.h);c.stroke();}}
+ else if(stone){
+  drawMasonryDetail(c,masonryDetail(t,C.poly(t)));
+  if(t.id==='sy-stone-corner'){c.fillStyle='#9ca183';c.fill(path([[t.x,t.y],[t.x+24,t.y],[t.x+24,t.y+t.h],[t.x,t.y+t.h]]));c.fillStyle='#314a3c66';c.fill(path([[t.x+t.w-30,t.y],[t.x+t.w,t.y],[t.x+t.w,t.y+t.h],[t.x+t.w-30,t.y+t.h]]));}
+ }
+ c.strokeStyle=wood?'#c9b88b99':earth?'#c3bea078':'#bdc0a278';c.lineWidth=roof?3:earth?9:7;c.stroke(q.rim);c.restore();return true;
+}
+const originalTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return originalTerrain.call(this,c,t);};
+const skyAsset=b=>b.honroMap?.escortYardArt?.backdropAsset;
+function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1080;const c=G.HonroVisualStyle?.context(cv.getContext('2d'),'SKY')||cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});skyCache.set(asset,cv);return cv;}
+const background=S.background;S.background=function(c,w,h,b){if(!active(b)||!skyAsset(b))return background.call(this,c,w,h,b);const cv=skyRaster(skyAsset(b)),frame=G.HonroEnvironment.act1BackdropFrame(this,w,h,b,cv.width,cv.height);c.drawImage(cv,frame.x,frame.y,frame.w,frame.h);this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0};};
+function motion(b){const s=state(b),ps=spec(b).path||[],u=s.status==='settled'?1:s.status==='sliding'?(reduced?.matches?0:Math.max(0,Math.min(1,(s.elapsed||0)/(s.duration||1)))):0;if(ps.length<2)return{x:0,y:0,progress:u};
+ const lengths=ps.slice(1).map((p,i)=>Math.hypot(p.x-ps[i].x,p.y-ps[i].y)),total=lengths.reduce((a,z)=>a+z,0);let remaining=total*(u*u*(3-2*u));for(let i=0;i<lengths.length;i++){if(remaining<=lengths[i]||i===lengths.length-1){const f=lengths[i]?Math.min(1,remaining/lengths[i]):1;return{x:ps[i].x+(ps[i+1].x-ps[i].x)*f-ps[0].x,y:ps[i].y+(ps[i+1].y-ps[i].y)*f-ps[0].y,progress:u};}remaining-=lengths[i];}return{x:0,y:0,progress:u};}
+function body(b){return b.honroLandmarks?.find(l=>l.id===(spec(b).elementId||'sy-art-cargo'));}
+function drawBody(c,l,m){c.save();c.translate(m.x,m.y);G.HonroVectorArt.draw(c,l.asset,l);c.restore();return true;}
+const landmarks=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){const b=this.battle;if(!active(b))return landmarks.call(this,c,list,layer);const id=spec(b).elementId||'sy-art-cargo',l=list.find(l=>l.id===id),out=landmarks.call(this,c,list.filter(l=>l.id!==id),layer);if(l&&layer===(l.layer||'back')&&state(b).status!=='sliding')drawBody(c,l,motion(b));return out;};
+// The loading trough sits behind the narrow upper front walkway. Repaint only
+// its actual 24-unit solid strip over the moving rear bundle, before actors and
+// aiming guides. Its occupants are still part of the unchanged safety sweep.
+function cargoForeground(c,b){const t=b.terrain.find(t=>t.id==='sy-west-upper');if(!t||t.broken)return;terrain(c,t,b);}
+const live=S.liveWater;S.liveWater=function(c,b){const out=live?.call(this,c,b);if(active(b)&&state(b).status==='sliding'){const l=body(b);if(l?.asset){drawBody(c,l,motion(b));cargoForeground(c,b);}}return out;};
+const omitReadability=(group,b)=>active(b)&&['sy-cargo-stored','sy-cargo-settled'].includes(group.id);
+G.HonroStage23EscortArt={active,shape,terrain,skyAsset,skyRaster,motion,body,drawBody,cargoForeground,omitReadability,masonryDetail,drawMasonryDetail,rearPaint,drawRearMasonry};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/stage8-bier-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Exact Stage8 collision polygons, with material-scale painting only. Never
+// reads animation time to move geometry or writes saved battle/actor state.
+const S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap(),skyCache=new WeakMap();
+const active=b=>b?.honroStage===8&&!b.honroCustom&&b.honroStage8BierRevision===1;
+function path(ps){const p=new Path2D();ps.forEach((v,i)=>i?p.lineTo(v.x??v[0],v.y??v[1]):p.moveTo(v.x??v[0],v.y??v[1]));p.closePath();return p;}
+function shape(t,b){let q=cache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion)return q;const ps=C.poly(t),contour=t.id==='s8-ground'?b.honroMap?.bier?.primaryContour:null,pairs=contour?contour.slice(1).map((z,i)=>[contour[i],z].map(p=>({x:p[0],y:p[1]}))):(t.honroWalkEdges||[]).map(i=>[ps[i],ps[(i+1)%ps.length]]),edges=pairs.filter(([a,z])=>a&&z&&Math.abs(a.x-z.x)>.001),rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y+5);rim.lineTo(z.x,z.y+5);}q={source:t.vertices,version:b.sceneVersion,body:path(ps),edges,rim};cache.set(t,q);return q;}
+function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('s8-'))return false;const q=shape(t,b),earth=t.id==='s8-ground',wood=t.mat==='wood',branch=/branch/.test(t.id),stone=/reflector|cover|stone/.test(t.id),top=earth?2600:t.y,depth=earth?3000:Math.min(800,Math.max(40,t.h));c.save();c.clip(q.body);const gr=c.createLinearGradient(0,top,0,top+depth);gr.addColorStop(0,wood?'#a69b72':earth?'#77836a':'#8d987c');gr.addColorStop(.42,wood?'#6e6849':earth?'#586d54':'#637e62');gr.addColorStop(1,wood?'#3c5039':earth?'#2d4b42':'#354f42');c.fillStyle=gr;c.fill(q.body);
+ if(earth){
+  // Broad asymmetrical sediment faces, not repeated geometric stamps. The
+  // exposed earth mass and a dressed human-sized stone stay distinct scales.
+  for(const[ps,col]of[[[[0,4290],[1720,4110],[2420,4090],[3050,4610],[3240,5500],[0,5500]],'#adab7b19'],[[[3550,4870],[5000,4890],[5810,4670],[5520,5300],[3890,5500]],'#173f3c44'],[[[6730,4480],[7240,3970],[7610,3510],[8180,3070],[8130,3660],[7450,4450],[7110,5060]],'#99a07126'],[[[8660,2770],[9600,2770],[9600,3890],[9100,3490]],'#afac791c']]){c.fillStyle=col;c.fill(path(ps));}
+  for(const[a,z]of q.edges){c.fillStyle='#a6a282';c.fill(path([[a.x,a.y],[z.x,z.y],[z.x,z.y+31],[a.x,a.y+31]]));c.fillStyle='#697d59';c.fill(path([[a.x,a.y+31],[z.x,z.y+31],[z.x,z.y+78],[a.x,a.y+78]]));}
+ }else if(wood){
+  if(branch){c.strokeStyle='#b7a67599';c.lineWidth=15;for(const[a,z]of q.edges){c.beginPath();c.moveTo(a.x,a.y+32);c.lineTo(z.x,z.y+32);c.stroke();}c.strokeStyle='#364d3699';c.lineWidth=28;for(const[a,z]of q.edges){c.beginPath();c.moveTo(a.x,a.y+100);c.lineTo(z.x,z.y+126);c.stroke();}}
+  else{c.strokeStyle='#344d3bcc';c.lineWidth=4;for(const[a,z]of q.edges){const n=Math.max(1,Math.ceil(Math.hypot(z.x-a.x,z.y-a.y)/110));for(let i=1;i<n;i++){const x=a.x+(z.x-a.x)*i/n,y=a.y+(z.y-a.y)*i/n;c.beginPath();c.moveTo(x,y+9);c.lineTo(x+3,y+33);c.stroke();}}}
+ }else if(t.id==='s8-west-root'){
+  for(const[ps,col]of[[[[430,3930],[740,3540],[1190,3190],[1640,3120],[2070,3100],[1910,3210],[1360,3250],[910,3570],[570,4010]],'#b1ad8938'],[[[2180,3100],[2530,3210],[2780,3440],[2990,3610],[2800,3420],[2510,3340],[2220,3280]],'#193f3c43']]){c.fillStyle=col;c.fill(path(ps));}
+ }else if(t.id==='s8-west-shoulder'||t.id==='s8-east-shoulder'){
+  const faces=t.id==='s8-west-shoulder'?[
+   [[[3180,3640],[3480,3400],[3760,3100],[4240,2840],[4690,2650],[4580,3080],[4370,3400],[3860,3660]],'#b1b49537'],
+   [[[4700,2900],[4860,2740],[4960,3200],[5050,3680],[5090,4250],[4820,4450],[4680,4030],[4650,3580]],'#1a3e3e62'],
+   [[[3630,3520],[4090,3340],[4370,3470],[4190,3740],[3900,3720]],'#84957535']
+  ]:[[[[5520,2720],[5760,2910],[5940,3150],[6100,3410],[5860,3510],[5640,3320]],'#b6b39332'],[[[5440,3070],[5540,3400],[5590,3770],[5530,4150],[5480,4110],[5440,3640]],'#233f3d72']];
+  for(const[ps,color]of faces){c.fillStyle=color;c.fill(path(ps));}
+  // A few connected fractures divide broad weathered rock faces. They do
+  // not pretend the tall natural cliff is masonry made of giant blocks.
+  const joints=t.id==='s8-west-shoulder'?[
+   [[4580,2880],[4515,3070],[4540,3340],[4680,3500],[4780,3880],[4740,4200],[4840,4420]],
+   [[4850,3180],[4720,3310],[4540,3340],[4290,3420]],
+   [[5010,3880],[4910,3990],[4780,3880],[4640,3890]],
+   [[4860,4420],[5010,4300],[5110,4320]]
+  ]:[[[5540,2840],[5520,3120],[5650,3350],[5670,3600]],[[5460,3580],[5530,3770],[5505,4010]],[[5570,3230],[5780,3200],[5910,3310]]];
+  c.lineWidth=6;c.lineJoin='round';c.strokeStyle='#244b414f';for(const ps of joints){c.beginPath();ps.forEach((p,i)=>i?c.lineTo(...p):c.moveTo(...p));c.stroke();}
+ }else if(t.id==='s8-court'){
+  // This long object is weathered earth/bedrock under a thin dressed rim,
+  // not a single building made of thousand-unit rectangular stone blocks.
+  c.fillStyle='#aeb0923d';c.fill(path([[4060,4290],[5380,4290],[5700,4100],[5920,4080],[5440,4440],[4530,4470],[4130,4400]]));c.fillStyle='#183f3e40';c.fill(path([[5900,4190],[6560,3680],[7020,3210],[7360,3030],[6760,3790],[6110,4310]]));
+ }else if(stone){
+  // Individually dressed blocks roughly knee-to-waist high, at most a few
+  // courses on the two tactical covers. No full-world tiling or tiny noise.
+  c.strokeStyle='#385643a6';c.lineWidth=3;const rows=Math.max(1,Math.ceil(t.h/58));for(let i=1;i<rows;i++){const y=t.y+t.h*i/rows;c.beginPath();c.moveTo(t.x,y);c.lineTo(t.x+t.w,y+2);c.stroke();if(i%2){c.beginPath();c.moveTo(t.x+t.w*.48,y);c.lineTo(t.x+t.w*.5,y-t.h/rows);c.stroke();}}c.fillStyle='#bbc1a255';c.fill(path([[t.x,t.y],[t.x+12,t.y],[t.x+14,t.y+t.h],[t.x,t.y+t.h]]));
+ }
+ c.strokeStyle=wood?'#d2bf8e99':'#d0c8a494';c.lineWidth=earth?8:6;c.stroke(q.rim);c.restore();return true;}
+const oldTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return oldTerrain.call(this,c,t);};
+// Preserve the quiet compact names of the two bindings without durability UI.
+const sealId=id=>id==='bier-knot-0'||id==='bier-knot-1',oldHealth=S.terrainHealth;
+S.terrainHealth=function(c,b,w,h){
+ if(!active(b))return oldHealth.call(this,c,b,w,h);
+ const targets=this.terrainHealthTargets(b),other=targets.filter(t=>!sealId(t.id));
+ if(other.length)oldHealth.call(this,c,{...b,terrain:b.terrain.filter(t=>!sealId(t.id))},w,h);
+ const z=1/Math.max(.01,this.scale),left=this.x-w*z/2,right=this.x+w*z/2,top=this.y-h*z/2,bottom=this.y+h*z/2;
+ for(const t of targets.filter(t=>sealId(t.id))){
+  if(t.x<left-100*z||t.x>right+100*z||t.y<top-70*z||t.y>bottom+70*z)continue;
+  c.save();c.translate(t.x,t.y);c.scale(z,z);c.textAlign='center';c.textBaseline='middle';c.font='600 10px sans-serif';
+  c.strokeStyle='#17352ed9';c.lineWidth=3;c.strokeText(t.label,0,-10,180);c.fillStyle='#f0e4c9';c.fillText(t.label,0,-10,180);
+  c.restore();
+ }
+};
+const skyAsset=b=>b.honroMap?.bierArt?.backdropAsset;
+function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1100;const c=G.HonroVisualStyle?.context(cv.getContext('2d'),'SKY')||cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});skyCache.set(asset,cv);return cv;}
+const background=S.background;S.background=function(c,w,h,b){if(!active(b)||b.honroMap?.stage8LocationPaint?.revision===1||!skyAsset(b))return background.call(this,c,w,h,b);const cv=skyRaster(skyAsset(b)),frame=G.HonroEnvironment.act1BackdropFrame(this,w,h,b,cv.width,cv.height);c.drawImage(cv,frame.x,frame.y,frame.w,frame.h);this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0};};
+G.HonroStage8BierArt={active,shape,terrain,skyAsset,skyRaster,omitReadability:()=>false};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/object-damage.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+const C=G.HONRO_CORE;
+// Derived from current HP on every frame: repairs and old saves need no new
+// field, event history, random seed or static-world cache invalidation.
+function stage(t){
+ if(t.broken||t.indestructible||!Number.isFinite(t.hp)||t.hp>=9999||!Number.isFinite(t.maxHp)||t.maxHp<=0||t.hp>=t.maxHp)return 0;
+ const r=Math.max(0,t.hp/t.maxHp);return r>2/3?1:r>1/3?2:3;
+}
+function material(t){return ['wood','support','barrel'].includes(t.mat)||t.surfaceKind==='branch'?'wood':['iron','metal'].includes(t.mat)?'metal':['ice','crystal'].includes(t.mat)?'crystal':['earth','soil'].includes(t.mat)?'earth':'stone';}
+function path(c,points){c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));}
+function line(c,points,color,width){path(c,points);c.strokeStyle=color;c.lineWidth=width;c.stroke();}
+function face(c,points,color){path(c,points);c.closePath();c.fillStyle=color;c.fill();}
+function draw(c,t,zoom=1){
+ const level=stage(t);if(!level)return false;
+ const poly=C.poly(t);if(poly.length<3||!(t.w>0)||!(t.h>0))return false;
+ const kind=material(t),z=Math.max(.08,zoom),width=Math.min(Math.max(1.4,.85/z),Math.max(1.4,Math.min(t.w,t.h)*.18));
+ // Follow the actual top/bottom at each column instead of placing scratches
+ // in the empty bounding box of sloped branches or irregular rock polygons.
+ const at=(u,v)=>{const x=t.x+t.w*u,ys=[];for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length];if(a.x===b.x)continue;if(x>=Math.min(a.x,b.x)&&x<=Math.max(a.x,b.x))ys.push(a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x));}const top=ys.length?Math.min(...ys):t.y,bottom=ys.length?Math.max(...ys):t.y+t.h;return[x,top+(bottom-top)*v];};
+ const points=rows=>rows.map(([u,v])=>at(u,v));
+ c.save();path(c,poly.map(p=>[p.x,p.y]));c.closePath();c.clip();c.lineJoin='round';c.lineCap='round';
+ const exposed=kind==='wood'?'#af916bbb':kind==='crystal'?'#b4d9d6bb':kind==='metal'?'#a3aaa2a6':kind==='earth'?'#b09a7599':'#a3aaa099';
+ const shadow=kind==='wood'?'#181d19c9':kind==='crystal'?'#254852cf':'#152326d9';
+ // A few broad worn facets preserve the original silhouette and artwork.
+ face(c,points([[.19,.33],[.37,.24],[.52,.36],[.40,.49],[.24,.47]]),kind==='wood'?'#b89a6c35':kind==='metal'?'#ac8f6838':'#a9b0a738');
+ if(kind==='wood'){
+  line(c,points([[.13,.46],[.31,.40],[.49,.49],[.60,.43]]),exposed,width);
+  line(c,points([[.23,.54],[.40,.51],[.54,.55]]),shadow,width);
+  if(level>=2){
+   face(c,points([[.37,.52],[.48,.33],[.55,.41],[.65,.27],[.61,.57],[.75,.65],[.52,.63]]),'#171e1cc4');
+   line(c,points([[.35,.53],[.48,.31],[.55,.39],[.66,.26]]),exposed,width*1.25);
+   line(c,points([[.55,.58],[.70,.77],[.88,.69]]),shadow,width*1.5);
+  }
+  if(level>=3){
+   face(c,points([[.55,.02],[.63,.12],[.58,.42],[.66,.65],[.61,.98],[.52,.87],[.56,.59],[.48,.36]]),'#121b19e8');
+   line(c,points([[.54,.06],[.57,.31],[.52,.42],[.59,.62],[.55,.89]]),'#c5a579cf',width*1.5);
+   line(c,points([[.21,.73],[.31,.80],[.44,.68]]),exposed,width);
+  }
+ }else if(kind==='metal'){
+  // Flattened dents and rubbed metal, rather than stone-like branching cracks.
+  face(c,points([[.27,.35],[.43,.25],[.57,.42],[.46,.59],[.31,.55]]),'#192a2b80');
+  line(c,points([[.25,.36],[.43,.27],[.55,.41]]),exposed,width);
+  if(level>=2){face(c,points([[.40,.58],[.68,.42],[.78,.61],[.61,.79]]),'#152223b8');line(c,points([[.40,.58],[.69,.44],[.77,.59]]),exposed,width*1.5);}
+  if(level>=3){face(c,points([[.57,.07],[.67,.14],[.60,.38],[.69,.57],[.57,.87],[.52,.72],[.59,.53],[.51,.32]]),'#101d20ed');line(c,points([[.65,.15],[.58,.38],[.67,.57],[.55,.84]]),'#bbb6a4c9',width*1.4);}
+ }else{
+  line(c,points([[.27,.23],[.39,.40],[.34,.58]]),shadow,width);
+  line(c,points([[.28,.23],[.41,.39],[.36,.58]]),exposed,width*.55);
+  if(level>=2){
+   line(c,points([[.39,.40],[.59,.47],[.70,.68],[.62,.87]]),shadow,width*1.65);
+   line(c,points([[.60,.47],[.70,.30],[.79,.27]]),shadow,width);
+   face(c,points([[.40,.39],[.59,.47],[.49,.59],[.32,.57]]),kind==='crystal'?'#b4dedb52':'#bdbaa442');
+  }
+  if(level>=3){
+   face(c,points([[.58,.02],[.64,.21],[.58,.43],[.66,.60],[.60,.79],[.68,.98],[.56,.89],[.54,.65],[.49,.43],[.57,.20]]),shadow);
+   line(c,points([[.65,.22],[.60,.43],[.68,.60],[.62,.80]]),exposed,width*1.6);
+   face(c,points([[.08,.66],[.24,.63],[.30,.85],[.17,.93]]),'#172423aa');
+  }
+ }
+ c.restore();return true;
+}
+G.HonroObjectDamage={stage,material,draw};
+G.HonroScene.prototype.objectDamage=function(c,b,w,h){
+ const z=1/Math.max(.01,this.scale),left=this.x-w*z/2,right=this.x+w*z/2,top=this.y-h*z/2,bottom=this.y+h*z/2;
+ for(const t of b.terrain||[]){if(t.x+t.w<left||t.x>right||t.y+t.h<top||Math.min(t.y,t.y+(t.slope||0))>bottom)continue;draw(c,t,this.scale);}
+};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/combat-feedback.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+const S=G.HonroScene.prototype,event=S.event,render=S.render,body=S.unitBody;
+// One retained number per target and attack; projectile children retain shot IDs.
+// This is presentation state, never battle state or a replayed save reward.
+S.event=function(ev){
+ if(ev.type==='fx'&&ev.damage>0&&ev.targetId)this.settledHits?.delete(ev.targetId);
+ if(ev.type==='fx'&&ev.damage>0&&ev.targetId&&ev.attackId){
+  this.damageNumbers??=new Map();const key=ev.attackId+':'+ev.targetId,old=this.damageNumbers.get(key);
+  this.damageNumbers.set(key,{...ev,total:(old?.total||0)+ev.damage,critical:!!(old?.critical||ev.critical),updated:this.time||0});
+  if(this.damageNumbers.size>64)this.damageNumbers.delete(this.damageNumbers.keys().next().value);return;
+ }return event.call(this,ev);
+};
+// Finish already-emitted hit feedback at a pause boundary without touching the
+// serialized simulation. Projectiles, zones, pending attacks and warning FX stay.
+S.settleHitFeedback=function(e,paused){
+ this.settledHits??=new Map();
+ for(const u of e.b.units||[]){
+  const old=this.settledHits.get(u.id);
+  if(!(u.hurt>0)||old&&(old.unit!==u||u.hurt>old.hurt||u.hp<old.hp))this.settledHits.delete(u.id);
+  if(paused&&u.hurt>0)this.settledHits.set(u.id,{unit:u,hurt:u.hurt,hp:u.hp});
+  else if(this.settledHits.has(u.id))this.settledHits.get(u.id).hurt=u.hurt;
+ }
+ if(!paused)return;
+ this.damageNumbers?.clear();
+ const finished=f=>['swordCut','slash','inkLine','inkImpact'].includes(f.kind||f.name)||
+  (f.kind||f.name)==='text'&&/^(?:치명! )?−?\d+$/.test(f.text||'');
+ if(this.arcFx)this.arcFx.fxs=this.arcFx.fxs.filter(f=>!finished(f));
+ this.effects=this.effects.filter(f=>!finished(f));
+};
+S.hitFlashVisible=function(u){return u.hurt>0&&!this.settledHits?.has(u.id);};
+S.unitBody=function(c,u,charge=0){if(!u.elite||u.side!==1)return body.call(this,c,u,charge);
+ c.save();c.translate(u.x,u.y);c.scale(1.12,1.12);c.translate(-u.x,-u.y);body.call(this,c,u,charge);c.restore();
+};
+S.render=function(e,...args){const out=render.call(this,e,...args);
+ if(!this.damageNumbers?.size)return out;
+ for(const [key,f]of this.damageNumbers)if((this.time||0)-f.updated>1.5)this.damageNumbers.delete(key);
+ if(!this.damageNumbers.size)return out;
+ const {w,h,d}=this.size(),c=this.ctx;
+ c.save();c.setTransform(d,0,0,d,0,0);c.textAlign='center';c.textBaseline='middle';c.lineJoin='round';
+ const top=document.querySelector?.('.battle-head')?.getBoundingClientRect?.().bottom||80;
+ for(const f of this.damageNumbers?.values()||[]){const age=(this.time||0)-f.updated;if(age>1.5)continue;
+  const u=e.unit(f.targetId);if(u?.eaterCapturedBy)continue;const wx=u?.x??f.x,wy=u?u.y-u.h*(u.elite?1.12:1)-20:f.y,x=(wx-this.x)*this.scale+w/2,y=(wy-this.y)*this.scale+h/2-9-Math.min(22,age*20);
+  if(x<-60||x>w+60||y<top-30||y>h+50)continue;
+  c.save();c.translate(x,y);const bump=1+.14*Math.max(0,1-age/.16);c.scale(bump,bump);c.globalAlpha=Math.min(1,(1.5-age)/.4);
+  c.font=(f.critical?'900 24':'800 20')+'px "Malgun Gothic",system-ui';c.strokeStyle='#102025';c.lineWidth=3;c.strokeText(String(Math.round(f.total)),0,0);c.fillStyle=f.critical?'#f5cd76':f.color;c.fillText(String(Math.round(f.total)),0,0);
+  if(f.critical){c.font='700 9px "Malgun Gothic",system-ui';c.fillText('치명',0,-18);}c.restore();
+ }
+ c.restore();return out;
+};
+G.HonroCombatFeedback={attackKey:ev=>ev.attackId+':'+ev.targetId};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/story-act1-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Evidence lives on the current map and reacts to saved mission state. This is a
+// bounded world pass: no geometry, actors, combat timers or progress are written.
+const alive=u=>u&&!u.dead&&u.hp>0;
+const actor=(b,id)=>b.units.find(u=>u.id===id)||b.units.find(u=>u.cls===id&&u.side===0&&!u.summoned);
+const anchor=(b,id)=>b.honroMapAnchors?.[id];
+const marker=(b,id)=>b.honroMarkers?.find(m=>m.id===id);
+function time(scene,b){const s=b.honroStory?.staging;return scene.time+(s?.cue?.elapsed||s?.elapsed||0)/1000;}
+function curve(c,a,z,bend,col='#b45f54',width=3){c.beginPath();c.moveTo(a.x,a.y);c.quadraticCurveTo((a.x+z.x)/2,(a.y+z.y)/2+bend,z.x,z.y);c.strokeStyle='#181d24dd';c.lineWidth=width+4;c.stroke();c.strokeStyle=col;c.lineWidth=width;c.stroke();}
+function knot(c,p,open=0,color='#d2846c'){c.strokeStyle=color;c.lineWidth=3;c.beginPath();c.ellipse(p.x-6-open,p.y,11,6,-.5,0,Math.PI*2);c.ellipse(p.x+6+open,p.y,11,6,.5,0,Math.PI*2);c.stroke();}
+function pulse(c,a,z,bend,t,count=4){for(let i=0;i<count;i++){const p=(t*.19+i/count)%1,q=1-p,x=q*q*a.x+2*q*p*(a.x+z.x)/2+p*p*z.x,y=q*q*a.y+2*q*p*((a.y+z.y)/2+bend)+p*p*z.y;c.fillStyle='#f0d9a9';c.beginPath();c.ellipse(x,y,3.5,2.5,0,0,Math.PI*2);c.fill();}}
+function ring(c,p,t,lit){c.strokeStyle=lit?'#d9bf85':'#6e7668';c.lineWidth=lit?3:2;c.beginPath();c.ellipse(p.x,p.y-5,58,15,0,0,Math.PI*2);c.stroke();if(lit){c.globalAlpha=.55+.2*Math.sin(t*2);c.beginPath();c.ellipse(p.x,p.y-5,67,20,0,0,Math.PI*2);c.stroke();c.globalAlpha=1;}}
+function floorArray(c,p,t,lit){c.save();c.lineCap='round';
+ c.fillStyle=lit?'#b9b98215':'#101d2644';c.beginPath();c.ellipse(p.x,p.y-4,125,30,0,0,Math.PI*2);c.fill();
+ c.strokeStyle=lit?'#d6c48c':'#8c9780';c.lineWidth=lit?3:2;
+ for(const [rx,ry]of [[125,30],[92,22]]){c.beginPath();c.ellipse(p.x,p.y-4,rx,ry,0,0,Math.PI*2);c.stroke();}
+ for(let i=0;i<8;i++){const a=i*Math.PI/4;c.beginPath();c.moveTo(p.x+Math.cos(a)*92,p.y-4+Math.sin(a)*22);c.lineTo(p.x+Math.cos(a)*125,p.y-4+Math.sin(a)*30);c.stroke();}
+ c.beginPath();c.moveTo(p.x-27,p.y-4);c.lineTo(p.x,p.y-13);c.lineTo(p.x+27,p.y-4);c.lineTo(p.x,p.y+5);c.closePath();c.stroke();
+ if(lit){c.globalAlpha=.55+.18*Math.sin(t*2);for(const x of [-65,0,65]){c.fillStyle='#eedda4';c.beginPath();c.ellipse(p.x+x,p.y-5,3,3,0,0,Math.PI*2);c.fill();}}
+ c.restore();}
+function cleatDamageStage(a){
+ // Share the existing durability thresholds. The fallback keeps isolated art
+ // previews identical without introducing a saved state or a second rule.
+ if(G.HonroObjectDamage)return G.HonroObjectDamage.stage(a);
+ if(a.broken||a.indestructible||!Number.isFinite(a.hp)||a.hp>=9999||!Number.isFinite(a.maxHp)||a.maxHp<=0||a.hp>=a.maxHp)return 0;
+ return a.hp/a.maxHp>2/3?1:a.hp/a.maxHp>1/3?2:3;
+}
+function cleat(c,a){if(a.broken)return;const x=a.x,y=a.y,w=a.w,h=a.h,level=cleatDamageStage(a);c.save();c.lineJoin='round';c.lineCap='round';
+ // Always show the whole unchanged collision rectangle as a solid backing
+ // plate, including behind the open ring. Damage deforms metal, not hitboxes.
+ c.fillStyle=['#424c4d','#465051','#3b4548','#323e42'][level];c.fillRect(x,y,w,h);c.fillStyle='#798887';c.fillRect(x+2,y+2,w-4,5);c.fillRect(x+2,y+7,4,h-9);c.fillStyle='#202c31';c.fillRect(x+w-7,y+7,5,h-9);c.fillRect(x+6,y+h-7,w-8,5);
+ for(const [xx,yy]of [[x+12,y+14],[x+w-12,y+14],[x+12,y+h-14],[x+w-12,y+h-14]]){c.fillStyle='#a9b4ad';c.beginPath();c.arc(xx,yy,4,0,Math.PI*2);c.fill();}
+ const path=points=>{c.beginPath();points.forEach(([u,v],i)=>i?c.lineTo(x+w*u,y+h*v):c.moveTo(x+w*u,y+h*v));};
+ if(level){
+  // Broad rubbed facets remain legible at the normal camera zoom.
+  path([[.15,.28],[.40,.22],[.58,.39],[.45,.52],[.20,.43]]);c.closePath();c.fillStyle='#b1b6a88c';c.fill();
+  path([[.20,.43],[.45,.52],[.58,.39]]);c.strokeStyle='#17272d';c.lineWidth=5;c.stroke();
+ }
+ if(level>=2){path([[.42,.51],[.80,.37],[.88,.72],[.59,.88],[.37,.72]]);c.closePath();c.fillStyle='#1a2a31';c.fill();path([[.44,.53],[.80,.40],[.85,.65]]);c.strokeStyle='#c3c5af';c.lineWidth=5;c.stroke();}
+ if(level>=3){path([[.56,.07],[.70,.17],[.59,.40],[.72,.62],[.59,.91],[.47,.81],[.54,.60],[.44,.34]]);c.closePath();c.fillStyle='#14232b';c.fill();path([[.68,.18],[.56,.40],[.68,.62],[.56,.87]]);c.strokeStyle='#d2c6a9';c.lineWidth=4;c.stroke();}
+ const loop=()=>{
+  c.beginPath();
+  if(level<2)c.ellipse(x+w/2,y+h*.54,w*.33,h*.30,0,0,Math.PI*2);
+  else if(level===2){c.moveTo(x+w*.52,y+h*.24);c.bezierCurveTo(x+w*.14,y+h*.25,x+w*.11,y+h*.68,x+w*.38,y+h*.82);c.bezierCurveTo(x+w*.71,y+h*.96,x+w*.88,y+h*.61,x+w*.69,y+h*.48);c.lineTo(x+w*.77,y+h*.34);c.quadraticCurveTo(x+w*.72,y+h*.23,x+w*.52,y+h*.24);}
+  else{c.moveTo(x+w*.71,y+h*.35);c.bezierCurveTo(x+w*.65,y+h*.17,x+w*.23,y+h*.22,x+w*.21,y+h*.44);c.bezierCurveTo(x+w*.10,y+h*.68,x+w*.23,y+h*.84,x+w*.47,y+h*.84);c.lineTo(x+w*.72,y+h*.76);}
+ };
+ loop();c.strokeStyle='#18252d';c.lineWidth=14;c.stroke();c.strokeStyle=level>=2?'#bcc1b4':'#adb8b1';c.lineWidth=8;c.stroke();c.strokeStyle='#e0dcc0';c.lineWidth=2;c.stroke();
+ c.fillStyle='#bac1b1';c.fillRect(x+w*.34,y+h*.18,w*.32,10);
+ if(level>=3){for(const [u,v]of [[.71,.35],[.72,.76]]){c.fillStyle='#e5d6b5';c.beginPath();c.arc(x+w*u,y+h*v,4,0,Math.PI*2);c.fill();}}
+ c.restore();}
+function markerArt(scene,m){const b=scene.battle;if(b?.honroNarrativeRevision!==1||b.honroCustom)return false;
+ // Drawing happens in the world pass, including already-collected arrays.
+ if(m.type==='receiver')return true;
+ if(b.honroStage===3&&m.type==='ledger'){const c=scene.ctx;c.save();c.fillStyle='#40352f';c.fillRect(m.x-28,m.y-15,56,13);c.fillStyle='#d2c8aa';c.fillRect(m.x-22,m.y-26,42,13);c.strokeStyle='#71654c';c.lineWidth=2;c.strokeRect(m.x-22,m.y-26,42,13);c.beginPath();c.moveTo(m.x-14,m.y-26);c.lineTo(m.x-14,m.y-13);c.stroke();c.restore();return true;}return false;}
+function replacedLandmark(b,l){if(b?.honroNarrativeRevision!==1||b.honroCustom)return false;const kind=l.asset?.kind||l.kind;
+ if(kind==='receiverStone'&&(b.honroMarkers||[]).some(m=>m.type==='receiver'&&Math.hypot(m.x-l.x,m.y-l.y)<5))return true;
+ if(b.honroStage===5&&['cliffShrine','spiritKnot'].includes(kind)){const t=G.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat');return !!t&&Math.hypot(l.x-(t.x+t.w/2),l.y-(t.y+t.h))<5;}return false;}
+// Read current authored attachment points for same-revision saved image-first battles too.
+function threadAttachment(b){if(b.honroCustom||![3,4].includes(b.honroStage))return null;const key='stage'+b.honroStage+'ImageFirst',v=b.honroMap?.[key];if(v?.quietLayers!==1)return null;return v.storyThread||G.HONRO_PROJECT?.stages?.[b.honroStage-1]?.design?.[key]?.storyThread||null;}
+function evidence(b){const s=b.honroState||{},id=b.honroStage;
+ if(id===3){const thread=threadAttachment(b);if(thread)return{kind:'eave',...thread};const a=anchor(b,'ledger');if(!a)return null;return{kind:'eave',at:{x:a.x-65,y:a.y-185}};}
+ if(id===4){const thread=threadAttachment(b);if(thread)return{kind:'village',...thread};const a=anchor(b,'gate');if(!a)return null;return{kind:'village',at:{x:a.x-120,y:a.y-178}};}
+ if(id===5){const seal=G.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat'),r=marker(b,'receiver-5');if(!seal||!r)return null;return{kind:'waterfall',at:{x:seal.x+seal.w/2,y:seal.y+seal.h*.4},broken:!!seal.broken,receiving:!!s.ritual?.active||!!seal.broken&&!!r.collected,receiver:r,seal};}
+ if(id===7){return{kind:'rescue',residents:(b.honroMarkers||[]).filter(m=>m.action==='rescue').map(m=>({marker:m,unit:actor(b,m.target)}))};}
+ if(id===8){const mage=actor(b,'mage'),boss=actor(b,'boss'),seals=G.HonroQuestTargets.records(b).filter(t=>t.honroSeal);return{kind:'bier',mage,boss,seals,receiving:seals.some(t=>t.broken&&mage&&Math.hypot(t.x+t.w/2-mage.x,t.y-mage.y)<600)||!!boss?.dead&&mage&&Math.hypot(boss.x-mage.x,boss.y-mage.y)<600};}
+ if(id===9){const v=actor(b,'npc-sodan')||b.honroStaging?.hidden?.['npc-sodan'];if(!alive(v))return null;return{kind:'receivers',at:{x:v.x-8,y:v.y-v.h*.58},receivers:(b.honroMarkers||[]).filter(m=>m.action==='receiver')};}
+ if(id===10){const binding=G.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding'),v=actor(b,'boss');if(!binding||!alive(v)||s.sodanCoop)return null;return{kind:'binding',binding,boss:v,phase:s.sodanBinding?.phase||'bound',hitCount:s.sodanBinding?.hitCount||0,receivers:(b.honroMarkers||[]).filter(m=>m.action==='receiver')};}
+ return null;
+}
+function bindingBody(c,a,hitCount=0,t=0){if(a.broken)return;const p={x:a.x+a.w/2,y:a.y+a.h/2};
+   const wobble=Math.sin(t*9)*Math.min(7,2+hitCount),ratio=Math.max(0,Math.min(1,a.hp/(a.maxHp||a.hp||1)));
+   c.save();c.translate(p.x+wobble,p.y);c.strokeStyle='#d48475';c.lineWidth=4;
+   for(let i=0;i<3;i++){c.beginPath();c.ellipse(0,0,31+i*4,48-i*5,i*Math.PI/3,0,Math.PI*2);c.stroke();}
+   knot(c,{x:0,y:0},Math.max(0,(1-ratio)*13));c.restore();
+}
+function draw(scene,e){const b=e.b;if(G.HonroStage5Waterfall?.active(b))return G.HonroStage5WaterfallArt?.evidence(scene,e);if(b.honroCustom||b.honroNarrativeRevision!==1)return;const d=evidence(b);if(!d)return;const c=scene.ctx,t=time(scene,b);c.save();c.lineCap='round';
+ for(const m of b.honroMarkers||[])if(m.type==='receiver')floorArray(c,m,t,m.action==='ritual'?d.receiving:!!m.collected);
+ if(d.kind==='eave'){const p=d.at,w=Math.sin(t*10)*5;curve(c,d.from||{x:p.x-90,y:p.y-10},d.to||{x:p.x+100,y:p.y-4},w);knot(c,{x:p.x,y:p.y+w/2});curve(c,{x:p.x,y:p.y},d.tail||{x:p.x+5+w,y:p.y+45},4);}
+ if(d.kind==='village'){const p=d.at;curve(c,d.from||{x:p.x-74,y:p.y+32},p,-8);knot(c,p);curve(c,p,d.to||{x:p.x+455,y:p.y-84},Math.sin(t*9)*7);}
+ if(d.kind==='waterfall'){if(!d.seal.honroQuestTarget)cleat(c,d.seal);const p=d.at,home={x:p.x-210,y:p.y-15},side={x:p.x+320,y:p.y-70};
+  // The near split knot visibly opens before intervention. Breaking only its
+  // iron anchor relaxes this local line while the other line remains strained.
+  const shake=d.broken?0:Math.sin(t*10)*7;
+  curve(c,{x:home.x-260,y:home.y+15},home,d.broken?66:shake);
+  curve(c,home,{x:p.x,y:p.y+(d.broken?72:0)},d.broken?75:shake);
+  knot(c,{x:home.x,y:home.y+shake*.4},d.broken?0:9+Math.sin(t*4)*3);
+  if(!d.broken){for(const q of [-1,1])curve(c,{x:home.x+q*15,y:home.y},{x:home.x+q*25,y:home.y+32},q*9,'#e1a38b',1.5);}
+  curve(c,{x:p.x+22,y:p.y},side,d.broken?Math.sin(t*12)*9:12,'#a65352');
+  if(d.receiving){const to={x:d.receiver.x,y:d.receiver.y-12};curve(c,{x:p.x-25,y:p.y+30},to,-90,'#ad997366',1.5);if(d.broken)pulse(c,{x:p.x-25,y:p.y+30},to,-90,t);}
+ }
+ if(d.kind==='rescue')for(const {marker:m,unit:u}of d.residents){if(!alive(u))continue;const p={x:u.x,y:u.y-u.h*.6};if(!m.collected){knot(c,p);curve(c,p,{x:u.x+45,y:u.y-16},4);}else{ring(c,{x:u.x+45,y:u.y},t,true);pulse(c,p,{x:u.x+45,y:u.y-16},10,t,2);}}
+ if(d.kind==='bier'){
+  // The attackable straps are broad cloth lashings, distinct from fine red
+  // protective thread. Loose ends are attached to their actual terrain targets.
+  for(const a of d.seals){const p={x:a.x+a.w/2,y:a.y+a.h*.5},z={x:p.x+90,y:p.y+(a.broken?85:8)};curve(c,{x:p.x-90,y:p.y-8},z,a.broken?45:5,'#c0a77d',8);if(!a.broken)knot(c,p,0,'#d7bd91');}
+  // Damheo already carries his gourd in the shared party rig. Do not paint
+  // a second, oversized hand prop (or particles aimed at that absent prop).
+ }
+ if(d.kind==='receivers'){for(const m of d.receivers){const to={x:m.x,y:m.y-17},loose=m.collected;curve(c,d.at,to,loose?115:Math.sin(t*12)*11,loose?'#a58363':'#b25751');if(loose)pulse(c,d.at,to,115,t,4);}knot(c,{x:d.at.x,y:d.at.y-28});}
+ if(d.kind==='binding'){const a=d.binding,p={x:a.x+a.w/2,y:a.y+a.h/2},v=d.boss,hand={x:v.x-8,y:v.y-v.h*.58};
+  curve(c,p,hand,24,'#a54f56');
+  if(!a.broken){
+   if(!a.honroQuestTarget)bindingBody(c,a,d.hitCount,t);
+   if(!a.honroQuestTarget){const ratio=Math.max(0,Math.min(1,a.hp/(a.maxHp||a.hp||1)));
+   c.fillStyle='#171c24';c.fillRect(p.x-56,p.y-82,112,8);c.fillStyle='#be8aaf';c.fillRect(p.x-55,p.y-81,110*ratio,6);
+   c.font=`600 ${12/scene.scale}px sans-serif`;c.textAlign='center';c.fillStyle='#efd7bf';if(!scene.missionTargets?.some(t=>t.id===a.id)&&scene.goalFocus?.id!==a.id)c.fillText('바깥 주박',p.x,p.y-96);}
+  }
+  const offering=d.phase==='offering'||d.phase==='accepted',s=b.honroStory;
+  // Gold reaches a real receiving stone during the small trial, before the
+  // character accepts and before the protection mission changes her team.
+  const row=s?.lines?.[s.index],trialRow=row?.[2]?.storyId?.includes('cooperation')&&!row?.[2]?.storyId?.includes('defense');
+  const hasOffered=d.phase==='accepted'||offering&&trialRow&&s.lines.slice(0,s.index+1).some(l=>l[0]==='담허'&&l[1].includes('받았네'));
+  for(const m of d.receivers){const to={x:m.x,y:m.y-15};curve(c,hand,to,hasOffered?100:Math.sin(t*10)*6,hasOffered?'#b29c77':'#874f55',2);if(hasOffered)pulse(c,hand,to,100,t,3);}
+ }
+ c.restore();}
+// The fresh cleat is drawn once in the live world pass before actors, never
+// cached: nonlethal HP changes and repairs must update its ring silhouette.
+// Narrow fresh-only replacements; the old saved scene retains all its props.
+if(G.HonroScene){const S=G.HonroScene.prototype,damage=S.objectDamage,terrain=S.terrain,landmark=S.landmark;
+ const fresh=b=>b?.honroNarrativeRevision===1&&!b.honroCustom;
+ S.terrain=function(c,t,...args){if(fresh(this.battle)&&this.battle.honroStage===5&&t.id==='cliff-cleat'){return;}return terrain.call(this,c,t,...args);};
+ S.landmark=function(c,l,...args){if(replacedLandmark(this.battle,l))return;return landmark.call(this,c,l,...args);};
+ S.objectDamage=function(c,b,...args){const replaced=t=>b.honroStage===10&&t.id==='sodan-binding'||b.honroStage===5&&t.id==='cliff-cleat';return damage.call(this,c,fresh(b)?{...b,terrain:G.HonroQuestTargets.records(b).filter(t=>!replaced(t))}:b,...args);};
+}
+G.HonroAct1StoryArt={draw,evidence,threadAttachment,marker:markerArt,replacedLandmark,cleat,cleatDamageStage,floorArray,bindingBody};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/stage5-waterfall-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// One opt-in material/flow pass, shared by Game, Stage View and Playtest.
+// Geometry remains canonical; paths are immutable and clipped to live terrain.
+const S=G.HonroScene.prototype,A=G.HonroEnvironmentArt,active=G.HonroStage5Waterfall.active,cache=new WeakMap();
+const paths=new Map(),P=d=>{if(!paths.has(d))paths.set(d,new Path2D(d));return paths.get(d);},poly=ps=>{const p=new Path2D();ps.forEach((q,i)=>i?p.lineTo(q.x,q.y):p.moveTo(q.x,q.y));p.closePath();return p;};
+const facets=[
+ ['M3020 1240L3220 1270 3280 1760 3190 2110 3080 2200 2970 1900Z','#83968a'],
+ ['M3260 1230L3480 1260 3400 1580 3510 1840 3440 2110 3220 2230 3320 1830Z','#5e7774'],
+ ['M3500 1250L3790 1220 3700 1570 3830 2040 3740 2430 3580 2620 3470 2200 3530 1820Z','#a1aa91'],
+ ['M3780 1210L4090 1170 4180 1510 3990 1800 4140 2120 4040 2430 3820 2520 3910 2050 3740 1650Z','#6a8179'],
+ ['M4100 1180L4470 1160 4690 1590 4440 1910 4510 2600 4090 2840 4130 2300 4250 1910Z','#536d6e'],
+ ['M3600 2410L3830 2520 4050 2370 4190 2710 4020 3060 4090 3460 3760 3760 3690 3210Z','#6d8278'],
+ ['M3290 2680L3510 2590 3630 2830 3560 3110 3680 3450 3440 3840 3210 3880Z','#476862'],
+ ['M4400 1500L4690 1350 5020 1610 4860 2090 5130 2700 4780 3200 4300 3330Z','#657c74']
+].map(([d,color])=>({path:P(d),color}));
+const cracks=[P('M3460 1350L3390 1590 3490 1840 3435 2080 3520 2320 3510 2590'),P('M4030 1360L3970 1670 4110 2110 4010 2430 4150 2700'),P('M3720 2600L3890 2780 3790 3030 3930 3330')];
+const moss=[P('M3140 1330Q3360 1320 3470 1290L3420 1345 3270 1370 3150 1355Z'),P('M3580 2110L3760 2100 3830 2160 3720 2140 3600 2160Z'),P('M3610 2480L3800 2500 3840 2540 3730 2530 3620 2520Z'),P('M3940 1240Q4120 1200 4290 1195L4220 1250 4060 1290 3950 1280Z')];
+const closed=poly(G.HonroStage5WaterGeometry.closed),opened=poly(G.HonroStage5WaterGeometry.opened);
+const flowHighlights=[P('M2960 1220Q2920 1740 2970 2100T2910 3280L2940 3290Q3030 2830 3010 2330T3000 1220Z'),P('M3050 1220Q3070 1760 3040 2080T3100 3280L3130 3290Q3070 2740 3070 2260T3090 1220Z')];
+
+function terrain(c,t,b){let q=cache.get(t);if(!q||q.vertices!==t.vertices){q={vertices:t.vertices,path:poly(G.HONRO_CORE.poly(t))};cache.set(t,q);}c.save();c.clip(q.path);
+ c.fillStyle=A.gradient(c,0,1220,0,4450,[[0,'#788d80'],[.25,'#4d6968'],[.68,'#29484d'],[1,'#172e38']]);c.fill(q.path);
+ if(t.id==='waterfall-cliff'){
+  c.translate(b.honroStage5LakeRevision===1?900:0,0);
+  for(const f of facets){c.fillStyle=A.gradient(c,3200,1280,4400,3550,[[0,f.color],[1,'#233d46']]);c.fill(f.path);}c.fillStyle='#213b3e44';c.fill(P('M3360 1540Q3490 1690 3410 1860L3330 2060 3415 1870Q3460 1680 3360 1540Z'));c.fill(P('M3980 1990L3930 2250 3990 2400 3960 2260 4010 2070Z'));
+  for(const path of moss){c.fillStyle='#66765a';c.fill(path);}c.fillStyle=A.gradient(c,2910,0,3670,0,[[0,'#142f3740'],[.45,'#c1cbb318'],[1,'#162b3344']]);c.fillRect(2870,1280,850,2540);
+ }else{
+  const x=Math.max(-200,t.x),y=Math.max(2200,t.y),w=Math.min(2500,t.w),d=Math.min(1000,t.h);c.fillStyle='#7d92824d';c.fill(poly([{x,y},{x:x+w*.43,y:y+40},{x:x+w*.25,y:y+d*.65},{x:x+w*.03,y:y+d*.85}]));c.fillStyle='#183a4366';c.fill(poly([{x:x+w*.5,y},{x:x+w,y:y+70},{x:x+w*.85,y:y+d},{x:x+w*.62,y:y+d*.72}]));
+  c.fillStyle='#75826388';c.fillRect(t.x,t.y,t.w,18);
+ }c.restore();c.save();c.strokeStyle='#162c33';c.lineWidth=3;c.stroke(q.path);c.restore();}
+const oldTerrain=S.terrain;S.terrain=function(c,t,...args){if(active(this.battle)&&t.indestructible&&t.id!=='waterfall-veil'&&!t.honroElementCollision){terrain(c,t,this.battle);return;}if(active(this.battle)&&t.id==='waterfall-veil')return;return oldTerrain.call(this,c,t,...args);};
+const oldLandmark=S.landmark;S.landmark=function(c,l,...args){if(active(this.battle)&&l.kind==='waterfall')return;return oldLandmark.call(this,c,l,...args);};
+const oldBackground=S.background;S.background=function(c,w,h,b){oldBackground.call(this,c,w,h,b);if(!active(b))return;c.save();c.translate(w/2,h/2);c.scale(this.scale,this.scale);c.translate(-this.x+(b.honroStage5LakeRevision===1?900:0),-this.y);c.fillStyle='#14252d';c.fill(P('M2920 2100Q3260 1990 3570 2110L3710 2300 3660 2520 2900 2590Z'));c.fillStyle='#273c3e';c.fill(P('M3020 2160L3260 2120 3570 2170 3600 2290 3500 2400 3030 2430Z'));c.restore();};
+const oldWater=S.liveWater;S.liveWater=function(c,b){if(!active(b))return oldWater.call(this,c,b);oldWater.call(this,c,{...b,honroLandmarks:b.honroLandmarks.filter(l=>l.kind!=='waterfall'),honroSurfaceZones:b.honroSurfaceZones.filter(z=>!['stage5-downstream','stage5-plunge-pool','stage5-headwater'].includes(z.id))});const time=A.time(this),a=G.HonroEnvironment.atmosphereAt({backdrop:b.honroBackdrop,environment:b.honroEnvironment},this.y),open=!!G.HonroQuestTargets.records(b).find(t=>t.id==='waterfall-veil')?.honroWaterOpen,shape=open?opened:closed;const downstream=b.honroSurfaceZones.find(z=>z.id==='stage5-downstream');if(downstream){c.save();c.clip(A.poolData(downstream).clip);c.fillStyle=A.gradient(c,0,3300,0,3460,[[0,'#3f63635c'],[1,'#17343aaa']]);c.fillRect(-6000,3300,8400,180);c.restore();}
+ const head=b.honroSurfaceZones.find(z=>z.id==='stage5-headwater');if(head){c.save();c.clip(A.poolData(head).clip);c.fillStyle=A.gradient(c,0,1220,0,1350,[[0,'#a8c4b980'],[1,'#315859dd']]);c.fillRect(2960,1220,8000,150);c.strokeStyle='#adcdbd70';c.lineWidth=4;for(let i=0;i<8;i++){const x=3070+i*260-(time*60%260);c.beginPath();c.moveTo(x,1240+i%3*13);c.quadraticCurveTo(x+50,1232+i%3*13,x+135,1244+i%3*13);c.stroke();}c.restore();}
+ const basin=b.honroSurfaceZones.find(z=>z.id==='stage5-plunge-pool');if(basin){c.save();c.clip(A.poolData(basin).clip);c.fillStyle=A.gradient(c,0,3300,0,b.honroStage5LakeRevision===1?4300:3820,[[0,'#487d78cc'],[.16,'#234f5c'],[.55,'#102e43'],[1,'#071c2c']]);c.fillRect(basin.x1||2290,3300,(basin.x2||3970)-(basin.x1||2290),1100);A.glow(c,2960,3330,450,100,'#bdddd0',.25);c.strokeStyle='#80aba54d';c.lineWidth=3;for(let i=0;i<7;i++){c.beginPath();c.ellipse(2940+Math.sin(i*4)*120,3320+i*25,200+i*26,8+i*2,0,0,Math.PI);c.stroke();}c.restore();}c.save();c.translate(b.honroStage5LakeRevision===1?900:0,0);c.save();c.clip(shape);
+ c.fillStyle=A.gradient(c,2780,0,3650,0,[[0,'#d8e2ccdd'],[.20,'#9ebcb4e8'],[.36,'#5d898ee0'],[.67,'#d4dfc9d8'],[1,'#779e9ddd']]);c.fillRect(2650,1210,1080,2150);
+ if(!open){for(const p of flowHighlights){c.fillStyle='#ecf0d64a';c.fill(p);}}else{c.save();c.strokeStyle='#e6ecda43';c.setLineDash([300,95,580,160,65,240]);for(const dx of [-83,-21,58]){c.save();c.translate(dx,0);c.lineDashOffset=-time*310+dx*13;c.lineWidth=dx===-21?6:3;c.stroke(P('M2995 1220C2950 1630 3030 1880 3290 2060C3580 2240 3650 2440 3470 2750C3300 3020 3120 3230 2990 3310'));c.restore();}c.restore();}
+ for(let i=0;i<12;i++){const y=1230+(time*(150+i%3*21)+i*177)%2090;c.fillStyle=i%2?'#eff1d331':'#c4ded530';c.save();c.translate(2850+(i%4)*58,y);c.fill(P('M0 0Q-7 70 6 130L17 175Q12 67 22 0Z'));c.restore();}
+ c.restore();A.glow(c,2980,3250,490,170,'#c0dbd0',.52);A.fog(c,3010,3260,1450,400,'#d5e2d0',.80,time,22);A.fog(c,2900,3170,1050,320,'#b3c8bd',.5,time,15);
+ c.save();c.fillStyle='#cbdcca8c';c.fill(P('M2720 3301Q2770 3276 2825 3294Q2860 3255 2910 3278Q2950 3252 3000 3284Q3070 3256 3120 3290Q3180 3270 3230 3303Q3100 3328 2980 3317Q2840 3330 2720 3301Z'));c.fillStyle='#edf0d7a1';c.fill(P('M2820 3300Q2890 3282 2950 3296Q3010 3270 3080 3294L3160 3305Q3000 3320 2820 3300Z'));c.restore();
+ c.save();c.strokeStyle='#d1dfc5ad';c.lineWidth=7;c.beginPath();c.moveTo(2798,1220);c.bezierCurveTo(2920,1210,3070,1216,3210,1220);c.stroke();for(let i=0;i<4;i++){const phase=(time*.19+i*.24)%1;c.globalAlpha=(1-phase)*.65;c.beginPath();c.ellipse(2980,3305,140+phase*420,11+phase*29,0,0,Math.PI*2);c.stroke();}c.restore();c.restore();};
+function targetBody(c,t){ if(!t.broken){const level=G.HonroAct1StoryArt.cleatDamageStage(t),x=t.x,y=t.y,w=t.w,h=t.h;c.save();c.fillStyle='#4b352e';c.fillRect(x,y,w,h);c.fillStyle='#91765a';c.fillRect(x+3,y+3,w-6,10);c.fillRect(x+3,y+3,7,h-6);c.fillStyle='#201e20';c.fillRect(x+w-12,y+8,10,h-10);c.strokeStyle='#15252b';c.lineWidth=3;c.strokeRect(x,y,w,h);
+ c.fillStyle='#d8caaa';c.fill(poly([{x:x+20,y:y+12},{x:x+61,y:y+19},{x:x+55,y:y+115},{x:x+29,y:y+130}]));c.strokeStyle='#9c5848';c.lineWidth=4;c.beginPath();c.moveTo(x+43,y+25);c.lineTo(x+41,y+100);c.moveTo(x+31,y+39);c.lineTo(x+54,y+47);c.moveTo(x+28,y+62);c.lineTo(x+56,y+70);c.stroke();c.strokeStyle='#753f3b';c.lineWidth=7;c.beginPath();c.moveTo(x+1,y+30);c.lineTo(x+w-1,y+72);c.moveTo(x,y+87);c.lineTo(x+w,y+44);c.stroke();
+ if(level){c.strokeStyle='#171e23';c.lineWidth=3+level;c.beginPath();c.moveTo(x+w*.56,y+3);c.lineTo(x+w*.47,y+h*.41);c.lineTo(x+w*.67,y+h*.55);c.lineTo(x+w*.4,y+h-3);c.stroke();}c.restore();}}
+function evidence(scene,e){const b=e.b,c=scene.ctx,t=G.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat'),m=b.honroMarkers.find(m=>m.id==='receiver-5');if(!t||!m)return;const lit=!!b.honroState.ritual?.active,time=A.time(scene);G.HonroAct1StoryArt.floorArray(c,m,time,lit);
+ for(const site of b.honroMarkers.filter(m=>m.type==='hauntHabitat')){c.save();c.translate(site.x,site.y);if(site.kind==='crow'){c.fillStyle='#554d42';c.strokeStyle='#1b2a2d';c.lineWidth=3;c.beginPath();c.ellipse(0,-9,38,13,-.08,0,Math.PI*2);c.fill();c.stroke();c.strokeStyle='#a69b7d';c.lineWidth=2;for(let i=0;i<5;i++){c.beginPath();c.moveTo(-33+i*7,-16+i%2*5);c.lineTo(24+i*3,-4-i%3*5);c.stroke();}}else{c.strokeStyle='#566d58';c.lineWidth=5;for(let i=0;i<9;i++){const x=(i-4)*10;c.beginPath();c.moveTo(x,0);c.quadraticCurveTo(x-10,-30,x+(i%2?18:-15),-55-i%3*12);c.stroke();}}c.restore();}
+ // The complete wood slab represents the attackable rectangle, without hollow holes.
+ if(!t.honroQuestTarget)targetBody(c,t);
+ c.save();c.strokeStyle=t.broken?'#8c63504d':'#ad6657';c.lineWidth=3;c.beginPath();c.moveTo(t.x-210,t.y+55);c.quadraticCurveTo(t.x-90,t.y+(t.broken?150:50),t.x+t.w/2,t.y+66);c.lineTo(t.x+230,t.y+24);c.stroke();c.restore();}
+G.HonroStage5WaterfallArt={active,evidence,terrain,targetBody};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/story-act23-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Read-only evidence on actual authored supports. No counters, scene requests,
+// actors or combat state are created by this presentation pass.
+const marker=(b,id)=>b.honroMarkers?.find(m=>m.id===id),done=b=>b.honroState?.[b.honroStage<=20?'act2':'act3']?.done||{};
+function evidence(b){if(b.honroCustom||b.honroNarrativeRevision!==1)return[];const id=b.honroStage,d=done(b),at=(key,kind,extra={})=>{const m=marker(b,key);return m?{key,kind,x:m.x,y:m.y,...extra}:null;};let rows=[];
+ if(id===15)rows=[at('groove','transport-traces')];
+ if(id===16)rows=[at('record','torn-record')];
+ if(id===17)rows=[at('notes','work-log')];
+ if(id===19)rows=[at('separate-1','mourning-hammer'),at('separate-2','mourning-bowl'),at('separate-3','farewell-place'),...[1,2,3].filter(i=>d['separate-'+i]&&!d['send-'+i]).map(i=>at('separate-'+i,'released-soul'))];
+ if(id===22)rows=[at('compare-ledgers','paired-records')];
+ if(id===23)rows=[at('dispatch-bundle','cargo-tag')];
+ if(id===24)rows=[at('land-register','folded-plan')];
+ if(id===25)rows=[at('household-tally','family-tags')];
+ if(id===26)rows=[at('investigation-record','investigation'),at('casting-tally','amounts')];
+ if(id===27)rows=[at('family-manifest','family-manifest')];
+ if(id===28&&d['party-reunion'])rows=[at('party-reunion','shared-evidence'),...(d['petition-record']?[at('petition-record','petition')]:[]),...(d['closure-order']?[at('closure-order','approval')]:[]),...(d['suppression-order']?[at('suppression-order','suppression')]:[])];
+ if(id===29&&d['old-seal'])rows=[at('hyeonmuk-letter','signed-letter')];
+ if(id===30&&!G.HonroEvidenceQuests?.active(b))rows=[at('transport-map','transport-map')];
+ const f=b.honroState?.fieldEvidence;
+ if(G.HonroEvidenceQuests?.fieldActive(b)){
+  if(id===22)rows=[at('ledger-case','paired-records'),at('upper-register','paired-records')];
+  if(id===25)rows=[1,2,3,4,5].map(i=>at('stake-arrival-'+i,'household-cargo',{item:i,progress:f?.events['stake-arrival-'+i]?.progress||0}));
+  if(id===19&&d['send-3'])rows.push(at('old-soul','old-inscription',{progress:f?.events['old-soul']?.progress||0}));
+  if(id===26){rows=[at('investigation-record','investigation')];const npc=b.units.find(u=>u.id==='act3-resident');if(npc&&!d['artisan-resident'])rows.push({key:'artisan-resident',kind:'amounts',x:npc.x+22,y:npc.y-npc.h*.4});}
+ }
+ const custody=f?.cargo||{};
+ rows=rows.filter(r=>r&&(r.kind==='household-cargo'||!Object.values(custody).some(q=>q.source===r.key)));
+ for(const [key,q]of Object.entries(custody)){if(q.phase==='dropped'){rows.push({key,kind:'carried-case',x:q.x,y:q.y,phase:q.phase});continue;}if(id===25&&q.id==='25:household-tally'&&(f.events['stake-arrival-5']?.progress||0)<1)continue;const u=b.units.find(u=>u.id===q.actor);if(!u||u.dead&&q.phase!=='dropped')continue;const p=['placing','packing'].includes(q.phase)?q.progress:q.phase==='laid'||q.phase==='dropped'?1:0;rows.push({key,kind:'carried-case',x:p?(u.x+(u.facing||1)*24)*(1-p)+q.x*p:u.x+(u.facing||1)*24,y:p?(u.y-u.h*.44)*(1-p)+q.y*p:u.y-u.h*.44,phase:q.phase});}
+
+ return rows;
+}
+// Closed, human-scale bundles identify an investigation without publishing its text.
+// The authored marker, target radius and acquisition policy remain untouched.
+const documents=new Set(['paired-records','cargo-tag','folded-plan','family-tags','investigation','amounts','family-manifest','shared-evidence','petition','approval','suppression','signed-letter','torn-record','work-log','transport-map']);
+function bundle(c,x,y,kind){
+ c.save();c.translate(x,y);c.fillStyle='#101b19aa';c.beginPath();c.ellipse(0,0,25,5,0,0,Math.PI*2);c.fill();
+ const folded=kind==='folded-plan'||kind==='transport-map';
+ c.fillStyle=folded?'#69634e':'#3c4941';c.strokeStyle='#92947a';c.lineWidth=1;
+ c.beginPath();c.moveTo(-20,-3);c.lineTo(-18,-17);c.lineTo(17,-19);c.lineTo(21,-5);c.closePath();c.fill();c.stroke();
+ c.strokeStyle='#b1a682';c.beginPath();c.moveTo(-17,-5);c.lineTo(18,-7);c.moveTo(-17,-8);c.lineTo(17,-10);c.stroke();
+ c.strokeStyle='#716147';c.lineWidth=3;c.beginPath();c.moveTo(0,-18);c.lineTo(2,-5);c.stroke();
+ c.fillStyle='#99715b';c.fillRect(-2,-15,6,5);c.restore();
+}
+function household(c,d){const x=d.x,y=d.y,p=d.progress||0,n=d.item;
+ c.save();c.translate(x,y);c.fillStyle='#303b32';c.strokeStyle='#97896a';c.lineWidth=2;c.fillRect(-44,-26,88,25);c.strokeRect(-44,-26,88,25);
+ // Identical cut marks belong to the boxes, not a giant readable label.
+ c.strokeStyle='#c8b68a';for(let i=0;i<2;i++){c.beginPath();c.moveTo(-35+i*7,-18);c.lineTo(-35+i*7,-8);c.stroke();}
+ c.save();c.beginPath();c.rect(-43,-70,86,70);c.clip();c.fillStyle='#a79370';c.strokeStyle='#d0c3a1';
+ if(n===1||n===5){c.beginPath();c.ellipse(3,-35,22,14,0,0,Math.PI*2);c.fill();c.stroke();c.fillStyle='#434d3e';c.beginPath();c.ellipse(3,-43,18,5,0,0,Math.PI*2);c.fill();}
+ if(n===2||n===4){c.lineWidth=5;c.beginPath();c.moveTo(-20,-20);c.lineTo(13,-60);c.stroke();c.fillStyle='#8c9b8b';c.fillRect(2,-62,27,12);}
+ if(n===3){c.fillStyle='#858171';c.beginPath();c.moveTo(-28,-23);c.lineTo(-22,-48);c.lineTo(18,-43);c.lineTo(29,-23);c.closePath();c.fill();c.stroke();c.strokeStyle='#cfbe93';c.beginPath();c.moveTo(-18,-33);c.lineTo(18,-30);c.stroke();}
+ c.restore();c.save();c.translate(p*54,-p*16);c.rotate(p*.35);c.fillStyle='#4e5947';c.beginPath();c.moveTo(-47,-28);c.lineTo(-40,-59);c.lineTo(39,-57);c.lineTo(47,-28);c.closePath();c.fill();c.strokeStyle='#969177';c.stroke();c.restore();c.restore();
+}
+function inscription(c,d){const x=d.x,y=d.y,p=d.progress||0;c.save();c.translate(x,y);c.fillStyle='#59615a';c.strokeStyle='#8a9280';c.lineWidth=2;c.beginPath();c.moveTo(-46,0);c.lineTo(-38,-35);c.lineTo(40,-32);c.lineTo(48,0);c.closePath();c.fill();c.stroke();c.strokeStyle='#cabda0';c.lineWidth=2;for(let i=0;i<3;i++){c.beginPath();c.moveTo(-24+i*22,-25);c.lineTo(-24+i*22,-10);c.lineTo(-16+i*22,-10);c.stroke();}c.fillStyle='#354c3e';c.fillRect(-36+p*76,-31,76*(1-p),25);
+ // The surviving soul wears a long crossed robe, unlike the short work coats of the recently released.
+ c.globalAlpha=.45+p*.2;c.translate(75-p*18,-6);c.fillStyle='#c1cec0';c.beginPath();c.ellipse(0,-88,9,12,0,0,Math.PI*2);c.fill();c.beginPath();c.moveTo(-12,-74);c.lineTo(12,-74);c.lineTo(22,-6);c.quadraticCurveTo(0,6,-25,-6);c.closePath();c.fill();c.strokeStyle='#63796d';c.beginPath();c.moveTo(-10,-72);c.lineTo(8,-54);c.lineTo(-5,-29);c.moveTo(10,-72);c.lineTo(-6,-55);c.stroke();c.strokeStyle='#c1cec0';c.lineWidth=6;c.beginPath();c.moveTo(-9,-64);c.lineTo(-15-p*22,-42-p*7);c.stroke();c.restore();}
+
+function draw(scene,e){const b=e.b,rows=evidence(b);if(!rows.length)return;const c=scene.ctx;c.save();c.lineCap='round';for(const d of rows){const x=d.x,y=d.y-5;if(Number.isFinite(scene.viewLeft)&&x<scene.viewLeft-350||Number.isFinite(scene.viewRight)&&x>scene.viewRight+350)continue;
+  if(d.kind==='household-cargo'){household(c,{...d,y});continue;}
+  if(d.kind==='old-inscription'){inscription(c,{...d,y});continue;}
+  if(['mourning-hammer','mourning-bowl','farewell-place'].includes(d.kind)){c.strokeStyle='#b6b09b';c.lineWidth=2;c.beginPath();c.ellipse(x,y-1,32,5,0,0,Math.PI*2);c.stroke();if(d.kind==='mourning-hammer'){c.save();c.translate(x,y);c.scale(.43,.43);c.translate(-x,-y);c.strokeStyle='#bca075';c.lineWidth=12;c.beginPath();c.moveTo(x-24,y-8);c.lineTo(x+14,y-72);c.stroke();c.fillStyle='#7e9293';c.strokeStyle='#c3cbba';c.lineWidth=2;c.beginPath();c.moveTo(x-17,y-93);c.lineTo(x+48,y-77);c.lineTo(x+41,y-48);c.lineTo(x-24,y-65);c.closePath();c.fill();c.stroke();c.restore();}if(d.kind==='mourning-bowl'){c.save();c.translate(x,y);c.scale(.35,.35);c.translate(-x,-y);c.fillStyle='#c8b17c';c.strokeStyle='#e1d6ae';c.lineWidth=2;c.beginPath();c.moveTo(x-40,y-25);c.quadraticCurveTo(x-30,y+2,x,y+1);c.quadraticCurveTo(x+31,y+1,x+40,y-25);c.closePath();c.fill();c.stroke();c.fillStyle='#5b6354';c.beginPath();c.ellipse(x,y-25,40,12,0,0,Math.PI*2);c.fill();c.stroke();c.restore();}continue;}
+  if(d.kind==='transport-traces'){c.strokeStyle='#706b55';c.lineWidth=5;c.beginPath();c.moveTo(x-110,y-8);c.lineTo(x-79,y-33);c.moveTo(x-91,y-4);c.lineTo(x-63,y-29);c.stroke();c.strokeStyle='#b7b199';c.lineWidth=2;for(let i=0;i<5;i++){c.beginPath();c.moveTo(x-107+i*9,y-12);c.lineTo(x-96+i*9,y-28);c.stroke();}c.strokeStyle='#a98f64';c.lineWidth=9;c.beginPath();c.moveTo(x+17,y-4);c.lineTo(x+43,y-32);c.moveTo(x+53,y-45);c.lineTo(x+74,y-69);c.stroke();c.strokeStyle='#d1bd83';c.lineWidth=3;c.beginPath();c.moveTo(x+40,y-30);c.lineTo(x+49,y-32);c.moveTo(x+48,y-43);c.lineTo(x+58,y-43);c.stroke();}
+  if(d.kind==='released-soul'){c.save();c.globalAlpha=.42;c.fillStyle='#c0d3c2';c.beginPath();c.ellipse(x,y-65,17,28,0,0,Math.PI*2);c.fill();c.beginPath();c.moveTo(x-21,y-40);c.quadraticCurveTo(x-42,y-5,x,y-8);c.quadraticCurveTo(x+35,y-12,x+21,y-40);c.fill();c.restore();continue;}
+  if(d.kind==='family-tags'||d.kind==='cargo-tag'){
+   // Household tools remain visible physical evidence; no world text or reader.
+   c.strokeStyle='#8c795a';c.lineWidth=8;c.beginPath();c.moveTo(x-84,y-1);c.lineTo(x-44,y-64);c.moveTo(x-69,y-27);c.lineTo(x-22,y-43);c.stroke();c.fillStyle='#aaa07f';c.beginPath();c.ellipse(x+64,y-13,30,10,0,0,Math.PI*2);c.fill();
+  }
+  if(documents.has(d.kind)||d.kind==='carried-case')bundle(c,x,y,d.kind);
+ }
+ c.restore();}
+G.HonroAct23StoryArt={draw,evidence};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/narrative-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+const S=G.HonroScene.prototype,terrain=S.terrain;
+S.terrain=function(c,t){if(this.battle?.honroNarrativeRevision===1&&t.honroBinding)return;return terrain.call(this,c,t);};
+const unit=S.unit;S.unit=function(c,u,active,charge){if(G.HonroNarrativeRevision.bodyBound(this.battle,u)||u.honroVisualOnly){this.unitBody(c,{...u,side:2},charge||0);c.save();c.font=`600 ${12/this.scale}px sans-serif`;c.textAlign='center';c.fillStyle='#dccbac';c.fillText(u.name||'',u.x,u.y-u.h-18);c.restore();return;}return unit.call(this,c,u,active,charge);};
+const markers=S.tacticalUnitMarkers;S.tacticalUnitMarkers=function(c,b,units){return markers.call(this,c,b,units.filter(u=>!G.HonroNarrativeRevision.bodyBound(b,u)&&!u.honroVisualOnly));};
+function draw(scene,e){const b=e.b;if(b.honroNarrativeRevision!==1||b.honroCustom)return;
+ // These are members of the existing protected procession, not extra combat
+ // bodies or independently invulnerable civilians. The convoy owns their fate.
+ for(const u of b.honroConvoyActors||[])scene.unit(scene.ctx,u,false,0);
+}
+G.HonroNarrativeArt={draw};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/quest-target-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+const S=G.HonroScene.prototype,body=S.unitBody;
+// The two hostile objectives share this body with legacy terrain saves.
+// Draw inside the original record bounds; hit geometry and HP remain in data.
+function fastening(c,t){
+ const knot=t.id==='bier-knot-0'||t.id==='bier-knot-1',chain=t.id==='upper-chain';
+ if(!knot&&!chain)return false;if(t.broken)return true;
+ c.save();c.translate(t.x,t.y);c.scale(t.w/100,t.h/100);c.lineJoin='round';c.lineCap='round';
+ const shape=(d,fill,stroke='#172421',width=3)=>{const p=new Path2D(d);c.fillStyle=fill;c.fill(p);if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke(p);}};
+ if(knot){
+  shape('M8 12L39 5 45 91 14 96Z','#70624a');
+  shape('M47 7L88 13 94 94 51 89Z','#8b7957');
+  shape('M47 7L58 10 62 90 51 89Z','#4d4e3b',null);
+  shape('M8 15L18 12 22 92 14 96Z','#a49269',null);
+  // Taut paired ropes wrap the load and converge on an uneven square knot.
+  shape('M8 22L15 16 90 75 85 84Z','#a58e65');
+  shape('M82 16L91 22 17 84 9 77Z','#b1a17b');
+  shape('M38 41L53 34 66 48 56 64 37 59 32 48Z','#6c5140','#201f1b',3);
+  shape('M39 44L52 40 59 49 52 57 42 54Z','#b8a27a');
+  shape('M50 57L60 58 72 89 61 83Z','#9b8563');
+  shape('M36 61L43 64 35 94 27 98Z','#827355');
+  shape('M65 28L78 31 74 57 63 53Z','#c1b18b','#5b4b3a',1.5);
+  shape('M69 34L73 35 69 40 73 47 67 49Z','#814f40',null);
+ }else{
+  // Dressed stone socket with an iron staple, pin and short load-bearing links.
+  shape('M7 36L25 20 82 25 95 43 91 94 15 96Z','#59645b');
+  shape('M7 36L25 20 82 25 72 39Z','#90917a');
+  shape('M72 39L95 43 91 94 70 87Z','#303f3d');
+  shape('M23 45L68 43 73 82 26 86Z','#343c36','#a2a185',2);
+  c.strokeStyle='#182523';c.lineWidth=13;c.beginPath();c.moveTo(39,67);c.lineTo(37,47);c.quadraticCurveTo(38,30,50,30);c.quadraticCurveTo(64,31,62,47);c.lineTo(61,65);c.stroke();
+  c.strokeStyle='#a5a68b';c.lineWidth=6;c.stroke();
+  shape('M25 66L72 62 75 69 27 75Z','#96977e');
+  c.strokeStyle='#182523';c.lineWidth=12;c.beginPath();c.ellipse(50,24,8,16,-.3,0,Math.PI*2);c.stroke();
+  c.strokeStyle='#a3a486';c.lineWidth=5;c.stroke();
+  c.strokeStyle='#263731';c.lineWidth=2;c.beginPath();c.moveTo(14,43);c.lineTo(20,80);c.stroke();
+ }
+ c.restore();return true;
+}
+const terrain=S.terrain;S.terrain=function(c,t){if(fastening(c,t))return;return terrain.call(this,c,t);};
+G.HonroQuestTargetArt={fastening};
+S.unitBody=function(c,u,...args){if(!u.honroObjectiveTarget)return body.call(this,c,u,...args);const t=this.battle?.honroQuestTargets?.find(t=>t.id===u.id);if(!t||u.dead)return;
+ // Draw the original artwork in the unit layer too, so body outlines and
+ // hit flashes use the same silhouette as the visible hostile objective.
+ const b=this.battle;if(b.honroNarrativeRevision===1&&!b.honroCustom){
+  if(t.id==='cliff-cleat'){if(G.HonroStage5Waterfall.active(b))G.HonroStage5WaterfallArt.targetBody(c,t);else G.HonroAct1StoryArt.cleat(c,t);return;}
+  if(t.id==='sodan-binding'){G.HonroAct1StoryArt.bindingBody(c,t,b.honroState?.sodanBinding?.hitCount||0,this.time||0);return;}
+ }
+ this.terrain(c,t);G.HonroObjectDamage?.draw(c,t,this.scale);
+};
+const unit=S.unit;
+S.unit=function(c,u,...args){if(!u.honroObjectiveTarget)return unit.call(this,c,u,...args);if(u.dead)return;
+ this.unitOutline?.(c,u);if(this.hitFlashVisible?.(u)??u.hurt>0)this.hitBody(c,u,0);else this.unitBody(c,u,0);
+ const z=1/Math.max(.05,this.scale||1),width=92;c.save();c.translate(u.x,u.y-u.h-12*z);c.scale(z,z);
+ c.fillStyle='#102227';c.fillRect(-width/2-2,-2,width+4,10);c.fillStyle='#c76a62';c.fillRect(-width/2,0,width*Math.max(0,u.hp/u.maxHp),6);
+ c.textAlign='center';c.font='600 11px sans-serif';c.lineWidth=3;c.strokeStyle='#102227';
+ for(const [text,y]of [[u.name,-19],[Math.ceil(u.hp)+' / '+Math.ceil(u.maxHp),-6]]){c.strokeText(text,0,y,220);c.fillStyle='#f1ded0';c.fillText(text,0,y,220);}
+ c.restore();
+};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/story-anomaly-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Local, read-only scenery. The episode runtimes own projectile motion and the
+// solo fall. None of these shapes are substitute platforms or body collisions.
+const clamp=v=>Math.max(0,Math.min(1,v));
+function active(b){return !b?.honroCustom&&b?.honroStoryAnomalyRevision===1&&b.honroStoryAnomalyEnvironment?.revision===1;}
+function time(scene){return G.HonroEnvironmentArt?.time?.(scene)??scene.time??0;}
+function visible(scene,q,pad=300){const {w,h}=scene.size(),z=Math.max(.05,scene.scale);return q.x+pad>=scene.x-w/z/2&&q.x-pad<=scene.x+w/z/2&&q.y+pad>=scene.y-h/z/2&&q.y-pad<=scene.y+h/z/2;}
+function path(c,points,color){c.fillStyle=color;c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();c.fill();}
+function stroke(c,points,color,width){c.strokeStyle=color;c.lineWidth=width;c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.stroke();}
+// Shift a small authored, empty background window of the actual transport
+// pier. We reuse the current canvas, so it remains the same masonry/material
+// rather than introducing unsupported floating scenery or fake platforms.
+function recess(c,scene,q,deep=false){if(!q||!visible(scene,q)||!Number.isFinite(c.canvas?.width))return;const {x,y,w,h}=q,shift=deep?76:22,view=scene.size(),z=Math.max(.05,scene.scale),d=view.d||1,left=x-w/2;
+ const sx=(left-scene.x)*z*d+view.w*d/2,sy=(y-scene.y)*z*d+view.h*d/2;
+ c.save();c.beginPath();c.moveTo(left,y+10);c.lineTo(left+w,y);c.lineTo(left+w,y+h-8);c.lineTo(left,y+h);c.closePath();c.clip();
+ c.drawImage(c.canvas,sx,sy,w*z*d,h*z*d,left+shift,y,w,h);c.restore();
+}
+// One water bead follows a visible bend. The source and lower lip are always
+// present; the brief sideways motion is a background warning, never damage.
+function drip(c,scene,q,deep=false){if(!q||!visible(scene,q))return;const z=Math.max(.05,scene.scale),t=time(scene),phase=(t%5.8)/5.8,p=clamp(phase*2.7),bend=.58,down=q.height*Math.min(p,bend),side=q.turn*clamp((p-bend)/(1-bend)),x=q.x+side,y=q.y+down+(p>bend?(p-bend)*q.height*.13:0);
+ stroke(c,[[q.x-18,q.y-5],[q.x+8,q.y],[q.x+24,q.y-8]],'#6d81706b',3);
+ if(phase>.49)return;
+ const alpha=Math.sin(Math.min(1,phase/.49)*Math.PI),tail=Math.max(6,2.2/z);c.save();c.globalAlpha=alpha;
+ stroke(c,p>bend?[[x-tail*2,y-1],[x,y]]:[[x,y-tail*2],[x,y]],deep?'#b7d3bfc7':'#a0bfb6b0',Math.max(3,1.7/z));c.restore();
+}
+function bell(c,scene,b){const a=G.HonroBellAnomaly,zone=a?.zone?.(b);if(!zone||a?.active&&!a.active(b))return;const q=zone.bounds||zone,w=q.w||q.width||q.rx*2,h=q.h||q.height||q.ry*2,x=q.rx?q.x-q.rx:q.x,y=q.ry?q.y-q.ry:q.y;if(![x,y,w,h].every(Number.isFinite))return;if(!visible(scene,{x:x+w/2,y:y+h/2},Math.max(w,h)))return;
+ const z=Math.max(.05,scene.scale),pulse=.5+.12*Math.sin(time(scene)*1.2);c.save();c.globalAlpha=pulse;c.strokeStyle='#a7d2c0';c.lineWidth=1.25/z;
+ // Two incomplete arcs follow the actual ellipse boundary. They show a local
+ // disturbance, with no sealed circle, glyph or invented collision surface.
+ for(const start of [-.88,Math.PI-.88]){c.beginPath();c.ellipse(x+w/2,y+h/2,w/2,h/2,0,start,start+1.76);c.stroke();}
+ c.strokeStyle='#9fc3b066';c.lineWidth=1/z;for(let i=0;i<3;i++){const yy=y+h*(.27+i*.22);c.beginPath();c.moveTo(x+w*.17,yy);c.quadraticCurveTo(x+w*.5,yy-h*.07,x+w*.83,yy-h*.02);c.stroke();}c.restore();
+}
+function seam(c,scene,b){const authored=b.honroMap?.act3?.voidEncounter?.seam;if(!authored||b.honroAct3Void?.state!=='FALLING')return;const visual=G.HonroAct3Void?.visual?.(b),q=visual?.origin?{...authored,...visual.origin}:authored;if(!visible(scene,q))return;const p=clamp(visual?.progress??b.honroAct3Void?.fallProgress??.5),x=q.x-q.w/2,y=q.y,w=q.w,dx=p*76,dy=p*112;
+ // This is the visual face of the episode's temporary scripted transition.
+ // The episode freezes ordinary physics and restores the original support.
+ path(c,[[x,y-2],[x+w,y-2],[x+w,y+100],[x,y+100]],'#081922');
+ path(c,[[x+dx,y+dy],[x+w+dx,y+dy+17],[x+w+dx,y+dy+64],[x+dx,y+dy+53]],'#49625e');
+ stroke(c,[[x+dx,y+dy],[x+w+dx,y+dy+17]],'#c5c2a0',Math.max(4,1.8/Math.max(.05,scene.scale)));
+}
+function draw(c,scene,b){if(!active(b))return;const q=b.honroStoryAnomalyEnvironment;c.save();
+ if(q.kind==='waterworks-first-sign'||q.kind==='waterworks-deep'){recess(c,scene,q.recess,q.kind==='waterworks-deep');recess(c,scene,q.deepRecess,true);drip(c,scene,q.drip,q.kind==='waterworks-deep');if(q.kind==='waterworks-deep')seam(c,scene,b);}
+ else if(q.kind==='bell-approach'){recess(c,scene,q.recess,false);}
+ else if(q.kind==='bell-projectiles')bell(c,scene,b);
+ else if(q.kind==='funeral-echo'&&time(scene)<4.5&&visible(scene,q.echo)){const p=clamp(time(scene)/4.5),{x,y,w}=q.echo;c.globalAlpha=Math.sin(p*Math.PI)*.24;stroke(c,[[x-w*.5,y],[x-w*.1,y-19],[x+w*.5,y-7]],'#c7d9bf',2/Math.max(.05,scene.scale));}
+ c.restore();}
+G.HonroStoryAnomalyArt={active,draw,recess,drip,seam,bell,time};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/visual-hierarchy.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Last presentation hook: stage-specific landmark overrides obey the same
+// semantic contract as common elements. Terrain/actors/mission overlays never
+// enter a decorative context. Depth changes replace, rather than stack, tone.
+const S=G.HonroScene.prototype,V=G.HonroVisualStyle;
+for(const name of ['terrain','unitBody']){const draw=S[name];S[name]=function(c,...args){return draw.call(this,V.context(c,'gameplay'),...args);};}
+const landmark=S.landmark;S.landmark=function(c,l){const role=V.classify(l,this.battle);return landmark.call(this,V.context(c,role==='gameplay'?'gameplay':V.depth(l)),l);};
+const background=S.background;S.background=function(c,w,h,b){return background.call(this,V.context(c,'L2'),w,h,b);};
+const key=S._worldCacheKey;S._worldCacheKey=function(b,w){return key.call(this,b,w)+':'+V.key();};
+// Saturation is now applied to individual background paints at their actual
+// distance. The old screen-wide pass would flatten that distance hierarchy.
+S.backgroundReadability=function(){};
+G.HonroVisualHierarchy={classify:V.classify,style:V.STYLE};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/authored-far-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Distance-only provider. Terrain, camera, placements and battle data are owned
+// by the unchanged vector renderers. Paintings are demand decoded, never tiled.
+const S=G.HonroScene.prototype,E=G.HonroEnvironment,manifest=G.HONRO_AUTHORED_FAR,cache=new Map(),MAX=3;
+const keyFor=n=>manifest?.stages[n]?.key||null;
+function request(key){
+ if(cache.has(key)){const item=cache.get(key);cache.delete(key);cache.set(key,item);return item;}
+ const src=manifest?.images[key];if(!src||typeof Image==='undefined')return null;
+ while(cache.size>=MAX){const first=cache.keys().next().value,old=cache.get(first);if(old.canvas)old.canvas.width=1;if(old.image){old.image.onload=null;old.image.onerror=null;old.image.src='';}cache.delete(first);}
+ const item={image:new Image(),canvas:null,error:false};cache.set(key,item);item.image.decoding='async';
+ item.image.onerror=()=>{item.error=true;};
+ item.image.onload=()=>{
+  if(cache.get(key)!==item)return;
+  const image=item.image,cv=document.createElement('canvas'),c=cv.getContext('2d');
+  cv.width=Math.min(2048,image.naturalWidth);cv.height=Math.round(cv.width*image.naturalHeight/image.naturalWidth);
+  const dark=['bellRear','depotRear'].includes(key),interior=key.endsWith('-interior');
+  c.filter=dark?'saturate(.55) contrast(.65) brightness(.66)':interior?'saturate(.42) contrast(.58) brightness(.68)':'saturate(.50) contrast(.76) brightness(.80)';
+  c.drawImage(image,0,0,cv.width,cv.height);c.filter='none';c.fillStyle=dark||interior?'#152a3b44':'#263c4524';c.fillRect(0,0,cv.width,cv.height);
+  item.canvas=cv;image.onload=null;image.onerror=null;item.image=null;
+ };
+ item.image.src=src;return item;
+}
+function layers(scene,w,h,b){
+ const spec=manifest?.stages[b?.honroStage];if(!spec)return [];
+ const out=[{key:spec.key,alpha:1}];
+ if(spec.enclosed){
+  // Existing ceilings delimit the enclosed portion; never change their shape.
+  const roofs=b.terrain.filter(t=>t.honroCeiling&&!t.broken);
+  if(roofs.length){const left=Math.min(...roofs.map(t=>t.x)),right=Math.max(...roofs.map(t=>t.x+t.w));out.push({key:spec.enclosed,left:(left-scene.x)*scene.scale+w/2,right:(right-scene.x)*scene.scale+w/2,fade:Math.max(1,500*scene.scale)});}
+ }
+ return out.map(l=>{const canvas=request(l.key)?.canvas;return{...l,canvas,frame:canvas&&E.act1BackdropFrame(scene,w,h,b,canvas.width,canvas.height)};});
+}
+const previous=S.background,landmark=S.landmark;
+S.landmark=function(c,l){
+ if(this.battle?.honroStage===18&&request('bellRear')?.canvas&&['sb-art-rear-cavern','sb-art-rear-rock-roots'].includes(l.id))return;
+ return landmark.call(this,c,l);
+};
+const worldKey=S._worldCacheKey;
+S._worldCacheKey=function(b,w){return worldKey.call(this,b,w)+(b.honroStage===18?':rear-image:'+!!request('bellRear')?.canvas:'');};
+S.background=function(c,w,h,b){
+ if(b?.honroCustom)return previous.call(this,c,w,h,b);
+ const ls=layers(this,w,h,b);if(!ls.length||ls.some(l=>!l.canvas))return previous.call(this,c,w,h,b);
+ const raw=G.HonroVisualStyle.raw(c),paint=cc=>{
+  for(const l of ls){const f=l.frame;cc.save();
+   if(l.left!==undefined){
+    // Soft transition strips use only image opacity, no repeating textures or
+    // opaque gradient filler. At full enclosure the image is fully opaque.
+    const count=24,step=l.fade/count;
+    cc.beginPath();cc.rect(l.left+l.fade,0,Math.max(0,l.right-l.left-2*l.fade),h);cc.clip();cc.drawImage(l.canvas,f.x,f.y,f.w,f.h);cc.restore();
+    for(let i=0;i<count;i++){cc.save();cc.globalAlpha=(i+.5)/count;cc.beginPath();cc.rect(l.left+i*step,0,step+.5,h);cc.rect(l.right-(i+1)*step,0,step+.5,h);cc.clip();cc.drawImage(l.canvas,f.x,f.y,f.w,f.h);cc.restore();}continue;
+   }
+   cc.drawImage(l.canvas,f.x,f.y,f.w,f.h);cc.restore();
+  }
+ };
+ const signature=ls.map(l=>[l.key,l.frame.x,l.frame.y,l.frame.w,l.frame.h,l.left,l.right,l.fade].join(',')).join('|');
+ if(!this._screenRaster(raw,['authored-far',w,h,signature].join(':'),w,h,paint,'_screenBackgroundCache',false))paint(raw);
+ // These stages previously drew authored room rocks, hanging clues and lights
+ // in background(). Keep that pass, omitting only its old sky/flat cave base.
+ if([11,13,14,15,16,17,19,20].includes(b.honroStage))G.HonroAct2SpatialArt.background(c,b,this,w,h,true);
+ this.environmentStats={...this.environmentStats,groups:this.environmentStats?.groups||0,cachedPaths:this.environmentStats?.cachedPaths||0,visibleAssets:ls.length,backgroundAnimatedPrimitives:0,authoredFar:ls.map(l=>l.key)};
+ if([11,13,14,15,16,17,19,20,22,24,25,26,28,29].includes(b.honroStage))G.HonroEnvironmentRenderer.customSpatialScenery(this,c,w,h,b);
+};
+G.HonroAuthoredFarArt={keyFor,manifest,ready:n=>{const s=manifest?.stages[n];return !!s&&[s.key,s.enclosed].filter(Boolean).every(k=>!!request(k)?.canvas);},frames:(scene,w,h,b)=>layers(scene,w,h,b).map(({canvas,...l})=>l),stats:()=>({entries:cache.size,maxEntries:MAX,keys:[...cache.keys()],errors:[...cache.entries()].filter(([,v])=>v.error).map(([k])=>k),canvasBytes:[...cache.values()].reduce((n,v)=>n+(v.canvas?v.canvas.width*v.canvas.height*4:0),0)})};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
