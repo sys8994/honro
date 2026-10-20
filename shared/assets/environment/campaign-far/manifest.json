@@ -15,7 +15,7 @@
     "town-wall": "town-wall.webp",
     "root-interior": "root-interior.webp",
     "archive-interior": "archive-interior.webp",
-    "workshop-interior": "workshop-interior.webp"
+    "workshop-yard": "workshop-yard.webp"
   },
   "stages": {
     "1": {
@@ -122,8 +122,8 @@
       "kind": "interior"
     },
     "26": {
-      "key": "workshop-interior",
-      "kind": "interior"
+      "key": "workshop-yard",
+      "kind": "outdoor"
     },
     "27": {
       "key": "depotRear",

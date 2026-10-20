@@ -13,10 +13,15 @@ with sync_playwright() as pw:
  p=b.new_page(viewport={'width':1440,'height':900});errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
  p.goto(url);p.wait_for_function('window.HonroApp && window.HonroAuthoredFarArt',timeout=90000)
  rows=[]
- for sid in range(1,31):
+ for sid in ([int(n) for n in sys.argv[3].split(",")] if len(sys.argv)>3 else range(1,31)):
   p.evaluate('''async sid=>{await HonroCampaignLoader.ensureStage(sid);let a=HonroApp;a.frame=()=>{};a.isOpen=()=>true;a.profile.settings.music=false;a.profile.settings.sound=false;a.debugMode=true;for(let n=1;n<sid;n++)a.profile.cleared[n]=true;a.launch(sid);}''',sid)
   p.wait_for_function('(sid)=>HonroApp.engine?.b.honroStage===sid',arg=sid)
-  p.evaluate('''()=>{let a=HonroApp;a.dialogue=null;a.turnNotice=null;a.close();let s=a.scene,b=a.engine.b,u=b.units.find(u=>u.team==='player'||u.side===0);Object.assign(s,{manual:true,storyTween:null,goalFocus:null,x:u.x+600,y:u.y-230,scale:.65});s.render(a.engine,0,'',.6,false,0);}''')
+  # Close through the game story action so its DOM and staging are released.
+  for _ in range(20):
+   if not p.evaluate('!!HonroApp.dialogue'):break
+   p.locator('[data-action="dialogue-skip"]').click()
+  assert not p.evaluate('!!HonroApp.dialogue')
+  p.evaluate('''()=>{let a=HonroApp;HonroStory.tick(a,performance.now()+3000);a.dialogue=null;a.turnNotice=null;a.close();let s=a.scene,b=a.engine.b,u=b.units.find(u=>u.team==='player'||u.side===0);Object.assign(s,{manual:true,storyTween:null,goalFocus:null,x:u.x+600,y:u.y-230,scale:.65});s.render(a.engine,0,'',.6,false,0);}''')
   p.wait_for_function('(sid)=>HonroAuthoredFarArt.ready(sid)',arg=sid)
   for width,height in [(1440,900),(1920,720),(390,844)]:
    p.set_viewport_size({'width':width,'height':height});p.wait_for_timeout(100)
@@ -27,5 +32,11 @@ with sync_playwright() as pw:
     p.locator('#battlecanvas').screenshot(path=str(out/f'{label}-stage{sid:02}-{width}-{view}.png'));rows.append(row);print(f'stage{sid:02} {width} {view}',flush=True)
   if sid in [7,12,13,14,15,16,17,18,19,20,22,25,26,27,29]:
    p.set_viewport_size({'width':1440,'height':900});p.evaluate("()=>{let a=HonroApp,s=a.scene,b=a.engine.b;Object.assign(s,{x:b.width/2,y:b.height/2,scale:.22});s.render(a.engine,0,'',.6,false,0);}");p.locator('#battlecanvas').screenshot(path=str(out/f'{label}-stage{sid:02}-center.png'))
+  if sid in [12,13,20]:
+   p.set_viewport_size({'width':1440,'height':900})
+   for depth in [0,.5,1]:
+    transition=p.evaluate('''depth=>{let a=HonroApp,s=a.scene,b=a.engine.b,t=b.terrain.find(t=>t.honroCeiling&&!t.broken);if(!t)return null;Object.assign(s,{x:t.x+t.w/2,y:t.y+t.h-600+depth*600,scale:.35,storyTween:null,cinematic:null});s.render(a.engine,0,'',.6,false,0);const {w,h}=s.size();return{x:s.x,y:s.y,depth,frames:HonroAuthoredFarArt.frames(s,w,h,b)};}''',depth)
+    p.locator('#battlecanvas').screenshot(path=str(out/f'{label}-stage{sid:02}-transition-{depth}.png'))
+    rows.append({'stage':sid,'transition':transition})
  p.set_viewport_size({'width':1440,'height':900});p.evaluate('''()=>{let a=HonroApp;a.debugRestStage=3;HonroRestJourney.showRest(a);}''');p.wait_for_timeout(800);p.screenshot(path=str(out/f'{label}-rest03.png'))
  (out/f'{label}-result.json').write_text(json.dumps({'url':url,'rows':rows,'errors':errors},indent=2));print(json.dumps({'rows':len(rows),'errors':errors,'out':str(out)}));b.close();assert not errors,errors

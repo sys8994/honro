@@ -3806,3 +3806,8 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 - `review/act3-role-layout/`에 통합 Native 캡처 10장과 21/27장 대표 실행 근거를 저장한다. 정상 완주·전체 verify는 실행하지 않는다.
 
 - 최종 Chromium 21/27 캠페인 진입에서 저작 적 좌표 일치(26/15체), 초기 몸/비행 여유, 짧은 보행·기본 점프·착지 통과. 준비 프로필 검사이며 정상 완주가 아니다. 브라우저 오류 없음.
+
+### 2026-10-20 — 26장 원경의 지상 장소 복원
+- 원인: skyVisible:false/hiddenWaterworks를 동굴로 해석해 지상 서사와 다른 종유 동굴 회화를 배정했다. act3-content의 «묘역 기록실과 불탄 공방» 및 act3-journey의 «묘역 옆 지상길»이 장소 판단 근거다.
+- 수정: 묘역·소나무 숲·불탄 지상 공방 회화로 원경만 교체. 지형·배치·충돌·scene 플래그는 보존한다.
+- 검증: 일반 빌드 및 수정 장과 요청된 전환부의 대화 닫힌 브라우저 캡처. 부모 미술 검수 대기, master/Pages 미반영.
