@@ -1,24 +1,24 @@
 {
-  "scope": "Latest scale correction: desktop/mobile closeup and overview captured; actor and nearby prop ratios measured. No full game/skill/save checks.",
+  "scope": "Stage1 art forms only: actual desktop closeup, overview and mobile closeup. One correction after first render. No game/skill/save/full verification or separate reviewer.",
   "reference": "game/docs/art-references/stage1-balanced-20261019/balanced.png; actual pixels inspected",
   "screenshots": {
-    "normal.png": "CURRENT: 1440x960 closeup; actor 115.2px visible height",
-    "mobile.png": "CURRENT: 390x844 closeup; actor 46.8px visible height",
-    "overview.png": "CURRENT: 1440x960 overview; original minimum zoom preserved"
+    "normal.png": "CURRENT art forms: 1440x960 closeup; unchanged 115.2px actor framing",
+    "overview.png": "CURRENT art forms: 1440x960 overview; original minimum zoom",
+    "mobile.png": "CURRENT art forms: 390x844 closeup; unchanged 46.8px actor framing"
   },
   "pageErrors": [],
   "httpErrors": [],
   "foregroundRasterImageCount": 0,
   "foregroundFilterCount": 0,
-  "foregroundPathDefinitions": 554,
+  "foregroundPathDefinitions": 506,
   "files": {
     "foreground.svg": {
-      "raw": 173457,
-      "gzip": 59182
+      "raw": 136564,
+      "gzip": 31860
     },
     "index.html": {
-      "raw": 174321,
-      "gzip": 59938
+      "raw": 137428,
+      "gzip": 32596
     },
     "study.js": {
       "raw": 4316,
@@ -48,7 +48,7 @@
       467.0240478515625
     ]
   },
-  "visualReview": "Compared updated normal/overview with 180c5555 actual pixels. Reauthored main crown silhouettes, curved bark plates and knots, branching connections, individual granite exposures, narrow crevices, soil mantles and root clutches; cooler atmospheric blend. Final result still reads as simplified vector illustration: subordinate pines and some shrub/rock forms remain visibly stylized, and broad lower soil planes remain less articulated than the painted reference. Do not label final art quality as approved.",
+  "visualReview": "Actual desktop closeup, overview and mobile inspected, followed by one art correction. Repeated round foliage masses replaced by sparse horizontal needle-group silhouettes with branch gaps; trunks/branches made more curved and tapered; arbitrary soil panels removed in favor of gullies, buried exposures and a root/stone seam. One floating ridge crown was connected. Limits remain: needle groups still read as designed graphic motifs, some bare branches are angular, some soil expanses remain flat, and the granite volumes remain stylized. The requested high art standard has NOT been judged met. Do not propagate this study as an approved standard to other stages/rest areas.",
   "baselineCommit": "180c5555e347a0ef55398a9a537968a952081994",
   "baselineFunctionalChecks": {
     "note": "These results belong to 180c5555. Camera JS and actor scale have not changed; no repeated functional tests in this art-only correction.",
@@ -60,5 +60,26 @@
     "desktopPanZoom": true,
     "mobilePinchThenPan": true
   },
-  "latestScaleEvidence": "scale-checks.json"
+  "latestScaleEvidence": "scale-checks.json",
+  "artFormsPass": {
+    "baseline": "b18beafb9a6cea2f326ce0fddd4b7ec16f1a0ff0",
+    "correctionCountAfterFirstRender": 1,
+    "preserved": [
+      "study.js camera and 12% closeup actor size",
+      "H=103.5 and approved actor original",
+      "ordinary prop scale corrections",
+      "contact line overlay and overview camera",
+      "continuous mountain outline and opaque lower coverage",
+      "independent original far.webp"
+    ],
+    "addedMediumForms": [
+      "root-gully-exposure",
+      "left-basal-exposure",
+      "mid-toe-bedrock",
+      "shoulder-gap-exposure",
+      "thin root entering the root-gully exposure seam"
+    ],
+    "adoptedAutoTrace": false,
+    "artGoalMet": false
+  }
 }
