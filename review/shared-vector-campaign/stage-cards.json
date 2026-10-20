@@ -2035,7 +2035,7 @@
       "next": 28
     },
     "goal": "석대들을 축지진목으로 이어 가족 번호 대조",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "운반로 장부→두 동행의 4개 실제 축지 도착→가족별 적재 명세→합류 출구. 출구 allHeroes:true, 설오 추락/복귀 씬과 두 사람 M09 도착 판정·복구 체크포인트 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -2046,7 +2046,7 @@
         "cls": "mage"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "설오와 담허가 비어 있는 축지 창을 확보해 수몰 하역장과 봉인통로를 함께 건너고, 설오의 추락 뒤 같은 동선으로 돌아와 적재 명세를 챙길 수 있는가?",
     "size": [
       8200,
       7200
@@ -2055,7 +2055,13 @@
     "place": "검은 지하 집하장",
     "preservedIds": {
       "objectives": [
-        "campaign-objective"
+        "depot-route-ledger",
+        "stake-arrival-1",
+        "stake-arrival-2",
+        "stake-arrival-3",
+        "stake-arrival-4",
+        "family-manifest",
+        "deep-depot-exit"
       ],
       "markers": [
         "stake-arrival-1",
@@ -2070,17 +2076,73 @@
     },
     "enemyBudget": {
       "initial": 15,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 3,
+      "activeLimit": 2
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기15 고정·정예/전력/XP·유한 증원·행동 상한 유지. 입구 하역 전위/후위와 하역 경사 도구 사이 여백, 봉인통로 사격점과 명세 호위 간격을 비대칭으로 조정한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "이미 개편된 하역 경사·수몰 작업대·회수창과 4개 실제 축지 연결, 전망 복귀길, 설오 추락 trigger/return pose를 보존한다. 새 발판이나 축지 우회는 추가하지 않는다.",
+    "activeObjectives": [
+      {
+        "id": "depot-route-ledger",
+        "label": "첫 진목을 설치하고 현장 운반 번호 확인",
+        "kind": "evidence",
+        "evidenceAction": "stake"
+      },
+      {
+        "id": "stake-arrival-1",
+        "label": "두 동행이 수몰 하역대에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-2",
+        "label": "두 동행이 맞은편 봉인통로에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-3",
+        "label": "두 동행이 회수 점검창에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-4",
+        "label": "두 동행이 윗층 대조대에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "family-manifest",
+        "label": "가족별 적재 명세 챙기기",
+        "kind": "interact"
+      },
+      {
+        "id": "deep-depot-exit",
+        "label": "합류할 출구로 이동",
+        "kind": "reach",
+        "allHeroes": true
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행. 실제 첫 연결 M09 실탄→두 동행 E 사용→stake-arrival-1 완료 통과. 추락 씬 재생·나머지 축지 연결 전수는 미실행(원본 보존)."
   },
   {
     "stage": 28,

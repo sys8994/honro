@@ -69,13 +69,13 @@ export const PLACE_ENCOUNTERS={
  ],
  27:[
   q('entry-hauling-remnants','입구 하역 도구 셋을 문간에 결집하고 첫 기록 작업면 동쪽에 등불을 둔다.','depot-route-ledger',[
-   m('minecart',860,'gallery-0:collision:0'),m('lantern',1260,'gallery-0:collision:0'),m('picks',970,'gallery-0:collision:0')]),
+   m('minecart',800,'gallery-0:collision:0'),m('lantern',1320,'gallery-0:collision:0'),m('picks',1015,'gallery-0:collision:0')]),
   q('lower-loading-store','수몰 하역 경사면의 정예 수레와 양쪽 도구. 사격·도착창은 비운다.','stake-arrival-1',[
-   m('minecart',5160,'stage27-depot-r1:cargo-incline:collision:0',true),m('picks',5400,'stage27-depot-r1:cargo-incline:collision:0'),m('picks',4940,'stage27-depot-r1:cargo-incline:collision:0')]),
-  q('sealed-manifest-store','봉인통로 문간 전위와 바로 위 지붕 사수쌍. 진목 도착면은 비운다.','stake-arrival-2',[
-   m('possessedGuard',6670,'gallery-3:collision:0',true),m('lantern',7040,'far-passage-roof:collision:0',false,'sealed-manifest-upper'),m('picks',6780,'gallery-3:collision:0'),m('possessedArcher',7150,'far-passage-roof:collision:0',false,'sealed-manifest-upper')]),
-  q('high-numbered-store','명세 보관실의 정예 도구쌍과 가까운 처마 등불. 명세와 출구는 비운다.','family-manifest',[
-   m('picks',2140,'gallery-7:collision:0',true),m('lantern',2020,'ledger-room-roof:collision:0',false,'high-numbered-upper'),m('picks',2230,'gallery-7:collision:0')]),
+   m('minecart',5120,'stage27-depot-r1:cargo-incline:collision:0',true),m('picks',5390,'stage27-depot-r1:cargo-incline:collision:0'),m('picks',4970,'stage27-depot-r1:cargo-incline:collision:0')]),
+  q('sealed-manifest-store','봉인통로 문간 전위와 바로 위 지붕의 서로 떨어진 등불과 사수. 진목 도착면은 비운다.','stake-arrival-2',[
+   m('possessedGuard',6590,'gallery-3:collision:0',true),m('lantern',7040,'far-passage-roof:collision:0',false,'sealed-manifest-upper'),m('picks',6740,'gallery-3:collision:0'),m('possessedArcher',7220,'far-passage-roof:collision:0',false,'sealed-manifest-upper')]),
+  q('high-numbered-store','명세 보관실의 정예 도구와 동쪽의 떨어진 호위과 가까운 처마 등불. 명세와 출구는 비운다.','family-manifest',[
+   m('picks',2095,'gallery-7:collision:0',true),m('lantern',2020,'ledger-room-roof:collision:0',false,'high-numbered-upper'),m('picks',2240,'gallery-7:collision:0')]),
   q('loading-return-pressure','진목 도착면 대신 하역장 진입과 귀환 회랑 바깥 공중에서 접근을 예고한다.','stake-arrival-2',[
    m('crow',4070,undefined,false,undefined,3950),m('lantern',5730,undefined,false,undefined,4510)])
  ],
