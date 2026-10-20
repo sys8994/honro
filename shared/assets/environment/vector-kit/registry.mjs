@@ -18,6 +18,9 @@ export const PALETTES={
  city:{earth:{base:'#78715d',light:'#a59a80',shade:'#4f554c'},rock:{base:'#858b7e',light:'#b0b3a0',shade:'#545e58',accent:'#83866c'},wood:{base:'#685844',light:'#a08b69',shade:'#3b4035',ridge:'#93805e'},grass:{base:'#6a7254',light:'#949b72'}},
  ash:{earth:{base:'#615a4c',light:'#8c7e66',shade:'#383e38'},rock:{base:'#73796f',light:'#989f8f',shade:'#46544d',accent:'#71745b'},wood:{base:'#4d4940',light:'#7c735d',shade:'#303933',ridge:'#746a55'},grass:{base:'#59634a',light:'#7f8760'}},
  ink:{earth:{base:'#525b58',light:'#74877b',shade:'#2c3e44'},rock:{base:'#596e73',light:'#879e99',shade:'#2d474f',accent:'#697a6e'},wood:{base:'#505548',light:'#80836c',shade:'#2d3b38',ridge:'#777b62'},grass:{base:'#415c4b',light:'#718566'}},
+ // Buried inclusions stay opaque; reduced contrast comes from material colour.
+ 'wet-depth':{earth:{base:'#5c6651',light:'#69715a',shade:'#4d5c4d'},rock:{base:'#66766e',light:'#859184',shade:'#465c55',accent:'#68765c',contact:'#354b47'}},
+ 'cave-depth':{rock:{base:'#607174',light:'#798784',shade:'#40565b',accent:'#61716a',contact:'#30484e'}},
  forest:{},
  cool:{rock:{base:'#728379',light:'#9aa89a',shade:'#465e56'},grass:{base:'#496346',light:'#7b8a60'},wood:{base:'#6c6652',light:'#9a9277'}},
  dry:{earth:{base:'#827054',light:'#b19b73'},grass:{base:'#687047',light:'#9a9b65'},rock:{accent:'#85855b'}},
@@ -489,4 +492,4 @@ asset('rock.contact-cleft','겹친 암석 사이의 접촉 틈','rock','rock',[-
 
 export const ASSETS=assets;
 export const FAMILIES={rock:'암반',stone:'작은 돌',grass:'풀',shrub:'덤불',trunk:'소나무 줄기',branch:'가지',crown:'수관',root:'뿌리',wall:'벽',door:'문',pier:'잔교 부재',column:'한옥 기둥',beam:'보',eave:'처마',masonry:'석축',earth:'흙 사면'};
-export const REGISTRY_VERSION='shared-vector-kit-3-interior-4';
+export const REGISTRY_VERSION='shared-vector-kit-3-interior-5';
