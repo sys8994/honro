@@ -1,0 +1,1369 @@
+import {yieldIfNeeded} from "./load-data.60b63bd7d9d5af82.js";
+// shared/runtime/evidence-quests.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// A new campaign authoring revision. Never infer this from an old live save.
+const H=G.HONRO_CONTENT,clone=v=>JSON.parse(JSON.stringify(v)),ids=[3,16,17,19,22,23,24,25,26,27,28,29,30];
+const active=b=>!!b&&!b.honroCustom&&b.honroEvidenceRevision===1;
+const changes={
+16:{witness:{kind:'evidence',afterEvidence:'clear-rescue-threat',label:'구조한 노승의 증언과 열쇠 확인'},record:{kind:'evidence',afterEvidence:'hall',label:'개방한 기록실의 이송 기록 확보'}},
+17:{'clear-lift':{kind:'evidence',afterEvidence:'hold-hoist',label:'복구한 인양축 보호 완료'},notes:{kind:'evidence',afterEvidence:'clear-lift',label:'작업대의 일지 보관'}},
+19:{'old-soul':{label:'천도한 자리의 각인을 닦아 확인'}},
+22:{'ledger-case':{label:'중층 기록함을 꺼내 통로 열기'},'upper-register':{label:'상층 호적함 구출'}},
+23:{'dispatch-bundle':{label:'짐꾼의 운송 묶음을 풀고 출발 돕기',target:'act3-carrier',startsEscort:true},'carrier-start':{kind:'evidence',afterEvidence:'dispatch-bundle',label:'짐꾼과 기록 호송 시작'}},
+24:{'family-crest':{label:'휘겸으로 가문 출입문의 문장 확인'},'shrine-seal':{label:'담허로 사당 출입로 개방'},'land-register':{kind:'evidence',evidenceAction:'entrances',label:'설오·담허는 물길 입구, 휘겸·소단은 기록실 입구 확인'}},
+25:{'household-tally':{kind:'evidence',afterEvidence:'stake-arrival-5',label:'다섯 도착지 물증과 가족 번호 대조'}},
+26:{'investigation-record':{kind:'evidence',afterEvidence:'hidden-latch',label:'열린 기록실의 조사 원본 확보'},'casting-tally':{kind:'evidence',afterEvidence:'artisan-resident',label:'구조한 주민의 공방 장부 보관'}},
+27:{'depot-route-ledger':{kind:'evidence',evidenceAction:'stake',label:'첫 진목을 설치하고 현장 운반 번호 확인'}},
+28:{'petition-record':{label:'불길에서 청원·결재 기록함 구출'},'closure-order':{kind:'evidence',afterEvidence:'petition-record',label:'구출한 기록함의 폐쇄 승인 확인'},'suppression-order':{kind:'evidence',afterEvidence:'closure-order',label:'구출한 기록함의 사후 은폐 기록 확인'}},
+29:{'hyeonmuk-letter':{kind:'evidence',afterEvidence:'old-seal',label:'봉인 안의 현묵 기록 보관'}},
+30:{'transport-map':{kind:'reach',radius:260,label:'나루에서 강 방향·끊긴 옛길을 기존 기록과 대조'}}
+};
+const guides={
+3:'움막의 기록함에서 홍만의 장부를 챙기세요. 홍만이 남긴 행선지를 동행과 확인합니다.',
+16:'노승을 구조하고 가까운 위협을 막으세요. 증언과 열쇠를 확인한 뒤 법당 기록실을 열면 이송 기록도 함께 확보합니다.',
+23:'살아 있는 짐꾼 곁에서 운송 묶음을 풀고 출발을 도우세요. 운송 기록을 함께 확보합니다. 석교를 지나 짐꾼과 하역장 출구에 도착하세요.',
+17:'작업장을 확보하고 버팀목을 세우세요. 인양틀을 제압하고 축을 복원한 뒤 5라운드 보호하면 완료됩니다. 작업대의 일지에서 종지기가 한 일을 확인합니다.',
+24:'휘겸으로 문장을 확인하고 담허로 사당 봉인을 푸세요. 설오·담허는 물길 입구, 휘겸·소단은 지상 기록실 입구를 확인하면 보호지 원본을 함께 확보합니다. 출구에서 두 팀으로 나뉘며, 합류 전에는 장 사이 자동 회복이 없습니다.',
+25:'진목으로 길을 이어 다섯 도착지에 두 동행이 함께 도착하세요. 각 장소의 생활 물품과 번호를 관찰하고 끝에서 가족 번호를 대조한 뒤 출구로 이동하세요.',
+26:'숨은 기록실을 열어 조사 원본을 확보하고 공방 주민을 구조하세요. 주민의 장부를 함께 챙긴 뒤 출구로 이동하세요.',
+27:'첫 진목을 설치해 현장 운반 번호와 어긋난 길을 확인하세요. 네 도착지에 두 동행이 함께 도착한 뒤 끝 창고의 가족 명세를 확보하고 이탈하세요.',
+28:'12번째 적 턴 종료 전에 설오로 수문을, 휘겸으로 차단막을 조작하세요. 네 사람이 중앙에 합류한 뒤 기록함을 구출하고 출구로 이동하세요. 승인·현장 살해·사후 은폐의 책임은 구분해서 확인합니다.',
+29:'담허의 봉인 해체를 두 적 턴 지키면 현묵의 글도 함께 확보합니다. 현묵의 현재 행방은 알 수 없습니다. 높은 수문길 또는 점검다리 출구로 이탈하세요.',
+30:'나루에서 강 방향과 끊긴 옛길을 이미 얻은 기록과 대조하세요. 나루를 적 턴 3회 지킨 뒤 살아 있는 동행 전원이 옛길 입구에 모이세요.'
+};
+const goals={17:'인양축을 복구하고 5라운드 보호',24:'사당을 열고 두 조사팀의 출입로를 확인',27:'진목을 설치해 네 도착지를 지나 가족 명세 확보',30:'나루 지형과 기존 기록을 대조하고 방어 후 집결'};
+function reviseContent(original){const st=clone(original);for(const s of st.steps||[])Object.assign(s,changes[st.id]?.[s.id]||{});if(guides[st.id])st.guide=guides[st.id];if(goals[st.id])st.goal=goals[st.id];
+ if(st.id===16){const rows=st.beats.witness;st.beats.witness=[
+  ['승려','이번에 종 안에 갇힌 사람들은 바로 죽지 않았습니다. 사흘 동안 종을 두드리며 물을 달라고 했어요.'],
+  ['승려','인양틀은 움직일 수 있었습니다. 그런데 종지기가 인양축을 빼고 문을 잠갔어요.'],
+  ['휘겸','그 증언을 적어 두겠소. 뒤편 작업굴에서 빠진 축을 직접 확인합시다.'],
+  rows.find(r=>r[0]==='노승'),rows.at(-1)
+ ].filter(Boolean);st.beats.record.push(['담허','이건 칠십 년 전의 이송 기록이네. 방금 들은 종지기 사건과는 따로 보아야 하네.']);}
+ if(st.id===17)st.beats['clear-lift']=[];
+
+ if(st.id===25){const observations=['적재대의 생활 물품에 번호가 남아 있다.','같은 가족 번호가 서로 다른 물품에 붙어 있다.','물길 너머에도 같은 운송 번호가 이어진다.','끝 창고 쪽 물품에서도 같은 표식이 보인다.','다섯 도착지의 물품 번호를 대조할 수 있게 되었다.'];for(let i=1;i<=5;i++){const key='stake-arrival-'+i;st.beats[key]=[...(st.beats[key]||[]),['서술',observations[i-1],{kind:'narration'}]];}}
+ if(st.id===27)st.beats['depot-route-ledger']=[['담허','진목을 세웠네. 현장 물품의 운반 번호는 이어지는데 눈앞의 길은 맞지 않아. 끝 창고의 명세와 대조하세.']];
+ if(st.id===30)st.beats['transport-map']=[['서술','나루의 강 방향과 끊긴 옛길을, 지금까지 확보한 이송 기록과 대조한다.',{kind:'narration'}],...st.beats['transport-map']];
+
+ return requiredContent(st);
+}
+
+// Presentation-only compatibility: old saved goal IDs, flags and dialogue indices stay intact.
+function requiredContent(original){const st=clone(original);if(st.guide)st.guide=cleanText(st.guide);
+ if(st.id===19&&st.beats?.['old-soul']&&!st.beats['old-soul'].some(r=>r[0]==='소단'))st.beats['old-soul'].unshift(['소단','종 밑에 오래된 혼이 아직 남았어요. 방금 떠난 희생자들과 옷차림이 달라요.']);
+ if(st.id===22&&st.beats){st.beats['ledger-case']=[['휘겸','보고에는 사술 혐의자를 제압하다 다수가 죽었다고 적혀 있소. 같은 해의 호적도 찾아봅시다.']];st.beats['upper-register']=[['설오','이 호적에 적힌 사람들은 농가의 주민과 아이, 노인입니다. 방금 찾은 보고와 맞지 않아요.'],['휘겸','누가 무슨 일을 겪었는지 아직 단정할 수 없소. 두 기록의 이름부터 맞춰 봅시다.']];st.beats['compare-ledgers']=[['설오','같은 주민들을 가리키는데 두 기록의 설명은 다릅니다.'],['휘겸','보고만 믿을 수 없겠군. 현장 증언을 찾아봅시다.']];if(!st.steps?.some(q=>q.id==='upper-register'))st.beats['compare-ledgers'].unshift(['설오','호적에는 농가의 주민과 아이, 노인이 적혀 있습니다. 사술 혐의자를 제압했다는 보고와 맞지 않아요.']);}
+ if(st.id===29&&st.beats?.['hyeonmuk-letter']&&!st.beats['hyeonmuk-letter'].some(r=>r[1].includes('현묵의 서명과 문하 표식'))){const rows=st.beats['hyeonmuk-letter'];rows.splice(rows.length-1,0,['담허','현묵의 서명과 문하 표식이 있네. 내가 배운 법맥과 이어지지만, 지금 어디 있는지는 알 수 없어.']);}
+ return st;
+}
+const contentFor=G.HonroObjectiveRevision.contentFor;
+G.HonroObjectiveRevision.contentFor=function(b,st){const out=contentFor(b,st);return b?.honroCustom?out:requiredContent(out);};
+const author=G.HonroStoryCanonV1.author;
+G.HonroStoryCanonV1.author=function(project){const p=author(project);return {...p,stages:p.stages.map(original=>{const id=original.metadata?.stageId;if(!original.metadata?.campaign||!ids.includes(id))return original;const st=clone(original),content=reviseContent(H.stages[id-1]);st.initialState??={};Object.assign(st.initialState,{honroEvidenceRevision:1,honroFieldEvidenceVersion:1,honroNarrativeContent:content});if(content.steps)st.initialState[id<21?'honroAct2Steps':'honroAct3Steps']=clone(content.steps);for(const m of st.markers||[]){const s=content.steps?.find(s=>s.id===m.id);if(s){m.label=s.label;if(s.target)m.target=s.target;}if(id===3&&m.action==='ledger')m.label='움막 기록함 챙기기';}return st;})};};
+const prepareFresh=G.HonroNarrativeRevision.prepareFresh;
+G.HonroNarrativeRevision.prepareFresh=function(b){const content=active(b)&&b.honroNarrativeContent;prepareFresh(b);if(content){b.honroNarrativeContent=content;if(content.steps)b[b.honroStage<21?'honroAct2Steps':'honroAct3Steps']=clone(content.steps);}};
+function satisfied(b,s){if(!active(b)||s.kind!=='evidence')return null;const a=b.honroState?.[b.honroStage<21?'act2':'act3'];if(s.afterEvidence){if(fieldActive(b)&&b.honroStage===26&&s.id==='investigation-record')return !!a?.done?.[s.afterEvidence]&&living(b).some(u=>pickupNear(u,site(b,s.id)));return !!a?.done?.[s.afterEvidence];}if(s.evidenceAction==='stake')return (b.stakes||[]).some(q=>q.skill==='M09'&&q.side===0&&(q.expires===undefined||q.expires>b.round));if(s.evidenceAction==='entrances')return !!b.honroState.evidenceEntrances?.water&&!!b.honroState.evidenceEntrances?.archive;return false;}
+const entrances=[{id:'water',marker:'split-route-a',classes:['archer','mage'],label:'설오·담허 · 물길 출입로'},{id:'archive',marker:'split-route-b',classes:['knight','occultist'],label:'휘겸·소단 · 지상 기록실 출입로'}];
+function observe(app){const b=app.engine.b;repairMissing(app);recoverCargo(app);if(!active(b)||b.honroStage!==24||!b.honroState.act3?.done['shrine-seal']||app.dialogue||app.modal?.classList.contains('open'))return;const mem=b.honroState.evidenceEntrances??={};for(const q of entrances){const m=b.honroMarkers.find(m=>m.id===q.marker);if(m&&q.classes.every(cls=>b.units.some(u=>u.cls===cls&&u.side===0&&!u.dead&&u.hp>0&&G.HonroAct3.sameFloor(u,m,115))))mem[q.id]=true;}}
+function targets(b,s){if(fieldActive(b)){const missing=Object.values(field(b).cargo).filter(q=>q.recoveredMissing&&q.phase==='dropped');if(missing.length)return missing.map(q=>({id:q.id,kind:'exit',x:q.x,y:q.y,label:'누락된 기록함 회수 · 가까이 이동'}));}if(!active(b)||s?.evidenceAction!=='entrances')return null;return entrances.filter(q=>!b.honroState.evidenceEntrances?.[q.id]).map(q=>{const m=b.honroMarkers.find(m=>m.id===q.marker);return {...m,id:q.marker,kind:'exit',label:q.label};});}
+// Field evidence belongs to the successful action and its physical actor, never a speaker cue.
+const fieldActive=b=>active(b)&&b.honroFieldEvidenceVersion===1;
+const field=b=>(b.honroState.fieldEvidence??={version:1,cargo:{},events:{}});
+const living=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall&&!u.dead&&u.hp>0);
+const near=(u,p,r=220)=>!!u&&!!p&&Math.abs(u.y-p.y)<100&&Math.hypot(u.x-p.x,u.y-p.y)<r;
+const site=(b,id)=>b.honroMarkers?.find(m=>m.id===id);
+// Acquisition uses precisely the same inclusive horizontal/height metric as Act3.use.
+const pickupNear=(u,p)=>!!u&&!!p&&G.HonroAct3.sameFloor(u,p);
+const acquisitions={22:['ledger-case','upper-register'],25:['household-tally'],26:['investigation-record','casting-tally'],27:['family-manifest'],28:['petition-record'],29:['hyeonmuk-letter']};
+const cargoId=(b,id)=>acquisitions[b.honroStage]?.includes(id)?b.honroStage+':'+id:null;
+function eventActor(b,p,actor){if(actor)return pickupNear(actor,p)?actor:null;return living(b).filter(u=>pickupNear(u,p)).sort((a,c)=>Math.abs(a.x-p.x)-Math.abs(c.x-p.x))[0];}
+function saveCargo(app,q){app.profile.honroFieldCargo??={};app.profile.honroFieldCargo[q.id]=clone({...q,phase:'carry',progress:0});}
+function collect(app,id,source,actor){const b=app.engine.b,f=field(b);if(f.cargo[id])return f.cargo[id];if(!pickupNear(actor,source))return null;
+ const q={id,sourceStage:b.honroStage,source:source.id||id,origin:{x:source.x,y:source.y},actor:actor.id,ownerClass:actor.cls,phase:'carry',progress:0,proof:{round:b.round,x:actor.x,y:actor.y}};f.cargo[id]=q;saveCargo(app,q);return q;
+}
+function pairReady(b){if(!fieldActive(b)||b.honroStage!==22)return true;const f=field(b),m=site(b,'compare-ledgers'),qs=['22:ledger-case','22:upper-register'].map(id=>f.cargo[id]);return qs.every(q=>q&&q.phase==='carry'&&near(b.units.find(u=>u.id===q.actor),m,420))&&near(b.units.find(u=>u.id===qs[0].actor),b.units.find(u=>u.id===qs[1].actor),180);}
+// A completed goal is proof of prior acquisition, not proof of an arbitrary carrier.
+// Restore an existing saved receipt, otherwise leave its missing case at the source
+// for physical recovery. Never clear/replay goals, rewards, story or checkpoints.
+function repairMissing(app){const b=app.engine?.b;if(!fieldActive(b))return;const f=field(b),done=b.honroState.act3?.done||{};
+ for(const goal of acquisitions[b.honroStage]||[]){const id=cargoId(b,goal);if(!done[goal]||f.cargo[id])continue;
+  const old=app.profile.honroFieldCargo?.[id],owner=old&&living(b).find(u=>u.cls===old.ownerClass);
+  if(old?.proof&&owner){f.cargo[id]={...clone(old),actor:owner.id,phase:'carry',progress:0};}
+  else{const source=goal==='casting-tally'?b.units.find(u=>u.id==='act3-resident'):site(b,goal==='household-tally'?'stake-arrival-5':goal==='hyeonmuk-letter'?'old-seal':goal);if(!source)continue;
+   f.cargo[id]={id,sourceStage:b.honroStage,source:source.id,origin:{x:source.x,y:source.y},actor:null,ownerClass:null,phase:'dropped',progress:1,x:source.x,y:source.y,recoveredMissing:true,proof:{completedGoal:goal,round:b.honroState.act3.checkpoints?.find(q=>q.id===goal)?.round??null}};
+  }b.sceneVersion++;app.dirty=true;
+ }
+}
+function recoverCargo(app){const b=app.engine.b;if(!fieldActive(b))return;for(const q of Object.values(field(b).cargo)){const owner=b.units.find(u=>u.id===q.actor);if(q.phase==='carry'&&owner&&(owner.dead||owner.hp<=0)){q.phase='dropped';q.x=owner.x;q.y=owner.y;b.sceneVersion++;app.dirty=true;}if(q.phase==='dropped'){const u=living(b).find(u=>q.recoveredMissing?pickupNear(u,q):near(u,q,110));if(u){q.actor=u.id;q.ownerClass=u.cls;q.phase='carry';if(q.recoveredMissing)q.proof={...q.proof,recoveredAt:{round:b.round,x:u.x,y:u.y}};saveCargo(app,q);b.sceneVersion++;app.dirty=true;}}}}
+function prepareComplete(app,s,actor){const b=app.engine.b;if(!fieldActive(b))return true;onComplete(app,s,actor);const id=cargoId(b,s.id);return !id||!!field(b).cargo[id];}
+function onComplete(app,s,actor){const b=app.engine.b;if(!fieldActive(b))return;const f=field(b);if(f.events[s.id]&&(!cargoId(b,s.id)||f.cargo[cargoId(b,s.id)]))return;
+ let p=site(b,s.id),u=eventActor(b,p,actor),ids=[];
+ if(s.id==='casting-tally'){const r=f.events['artisan-resident'];p=b.units.find(v=>v.id==='act3-resident');u=r&&b.units.find(v=>v.id===r.actor);}
+ if(s.id==='artisan-resident'){p=b.units.find(v=>v.id===s.target);u=eventActor(b,p,actor);}
+ if(b.honroStage===28&&s.id==='party-reunion'){
+  for(const id of ['25:household-tally','26:investigation-record','26:casting-tally','27:family-manifest']){const old=app.profile.honroFieldCargo?.[id],owner=old&&living(b).find(v=>v.cls===old.ownerClass);if(old&&(b.honroRecordCourtRevision===1?!!owner&&G.HonroAct3.sameFloor(owner,p,440):near(owner,p,260))){f.cargo[id]={...clone(old),actor:owner.id,phase:'carry',progress:0};ids.push(id);}}
+ }else if(b.honroStage===22&&s.id==='compare-ledgers')ids=['22:ledger-case','22:upper-register'].filter(id=>f.cargo[id]);
+ else if(['ledger-case','upper-register','investigation-record','casting-tally','family-manifest','petition-record','hyeonmuk-letter'].includes(s.id)){
+  if(s.id==='hyeonmuk-letter'){p=site(b,'old-seal');u=eventActor(b,p,actor);}const q=p&&collect(app,b.honroStage+':'+s.id,p,u);if(q)ids=[q.id];
+ }
+ if(b.honroStage===25&&/^stake-arrival-[1-5]$/.test(s.id)){const group=living(b).filter(v=>near(v,p,220));if(group.length!==2)return;u=group[0];}
+ if(s.id==='household-tally'&&b.honroStage===25){const last=f.events['stake-arrival-5'];p=site(b,'stake-arrival-5');u=last&&b.units.find(v=>v.id===last.actor);const q=collect(app,'25:household-tally',p,u);if(q)ids=[q.id];}
+ if(!u&&ids.length)u=b.units.find(v=>v.id===f.cargo[ids[0]].actor);
+ if(!u||!p||(!ids.length&&!pickupNear(u,p)))return;
+ f.events[s.id]={actor:u.id,source:{x:p.x,y:p.y},cargo:ids,progress:0,round:b.round};b.sceneVersion++;
+}
+function fieldDirections(b,goal){if(!fieldActive(b))return[];const e=field(b).events[goal];if(!e)return[];const inspect=goal==='old-soul'||/^stake-arrival-/.test(goal),compare=goal==='compare-ledgers'||goal==='party-reunion';if(!inspect&&!compare&&!e.cargo.length)return[];const at=site(b,goal),walk=compare?[...new Set(e.cargo.map(id=>field(b).cargo[id]?.actor).filter(Boolean))].map((id,i)=>({type:'move',actor:id,to:{x:at.x-65+i*55,y:at.y},duration:900,maxDistance:goal==='party-reunion'&&b.honroRecordCourtRevision===1?600:450,focus:false})):[];return [...walk,{type:'look',actor:e.actor,at:e.source,pose:inspect?'kneel':'inspect',duration:650,camera:true},{type:'field-evidence',goal,actor:e.actor,compare,duration:1100},...(compare?[{type:'look',actor:e.actor,at:at,pose:'inspect',duration:1200},{type:'field-evidence',goal,actor:e.actor,compare:true,pack:true,duration:650}]:[])];}
+function animateField(app,step,progress){const b=app.engine.b;if(!fieldActive(b))return;const f=field(b),e=f.events[step.goal];if(!e)return;const actor=b.units.find(u=>u.id===e.actor);if(!near(actor,e.source,step.compare?420:260)&&!e.cargo.length)return;
+ if(step.compare){const qs=e.cargo.map(id=>f.cargo[id]).filter(Boolean),at=site(b,step.goal);if(!qs.length||!qs.every(q=>near(b.units.find(u=>u.id===q.actor),at,180)))return;
+  for(const [i,q]of qs.entries()){const u=b.units.find(v=>v.id===q.actor);q.phase=step.pack?(progress<1?'packing':'carry'):(progress<1?'placing':'laid');q.progress=step.pack?1-progress:progress;q.x=u.x+(u.facing||1)*(25+i*20);q.y=u.y;if(step.pack&&progress===1)saveCargo(app,q);}
+ }
+ e.progress=Math.max(e.progress,progress);b.sceneVersion++;
+}
+
+const summaries={
+'hongman-ledger':'장부에 북쪽 산사람 열셋, 그중 아이 둘이 적혀 있다. 연목 주막에서 하룻밤을 묵고 다음 날 북문으로 향했다.',
+ 'temple-transfer':'칠십 년 전 대종을 밖에서 옮겨 왔다. 타종을 금하고 인양로와 바깥길을 봉쇄했지만, 출처는 잘려 나갔다.',
+ 'keeper-work-log':'일지에는 산 사람의 혼을 청동에 붙이려 문을 잠그고 인양축을 뺐다고 적혀 있다. 사흘째 두드림이 멎었다.',
+ 'bell-transfer-marks':'종 받침에 무명사에서 잠운사로 옮겼다는 표식과 왕실 봉인이 남아 있다. 그 곁에 저문골이라는 이름이 새겨져 있다.',
+ 'city-incident':'보고에는 사술 혐의자를 제압하던 중 다수가 죽었다고 적혀 있다.',
+ 'city-register':'같은 해의 호적에는 농가의 주민과 아이, 노인이 적혀 있다. 사건 보고의 설명과 맞지 않는다.',
+ 'dispatch-tag':'운송 표찰은 저문골의 시신과 생활 금속을 무명사로 보냈음을 가리킨다.',
+ 'land-plan':'약도에는 저문골 보호지의 묘역 기록실과 공방이 표시돼 있다. 아래 물길은 관아 뒤뜰로 이어진다.',
+ 'ancestor-investigation':'선조의 현장 조사에는 조직적 저항이 없었으며, 대도사가 주민 전원을 살해했다고 적혀 있다.',
+ 'casting-comparison':'저문골에서 거둔 금속량과 무명사에서 종을 만들 때 쓴 양이 거의 같다. 유골과 재는 통상 장례와 다르게 처리됐다.',
+ 'family-manifest':'적재 명세에는 가족 번호마다 이름과 살림 물품이 함께 적혀 있다.',
+ 'erased-petition':'휘겸의 가문은 조사를 청원한 뒤 작위를 빼앗기고 추방당했다. 청원서의 가문 문장도 지워져 있다.',
+ 'closure-approval':'왕실 고위 관리가 폐쇄와 제압을 승인했다. 이 결재에는 주민을 죽이라는 명령은 없다.',
+ 'later-suppression':'학살이 보고된 뒤에도 조사를 막은 기록이 남아 있다.',
+ 'hyeonmuk-letter':'현묵은 스승에게 들린 혼이 없었다고 썼다. 스승은 저편의 울림을 답이라 여겼고, 타종 뒤 무명사의 이치가 어그러졌다.',
+ 'old-route-map':'기존 기록의 운송로와 나루의 강 방향이 맞는다. 저문골의 시신·금속은 무명사로, 묵종은 잠운사로 옮겨졌고 옛길은 막혔다.'
+};
+function cleanText(text){return String(text).replace(/\n?원문은 여정의 기록에서 선택해 읽을 수 있다\./g,'').replace(/핵심 단서를 확인한 뒤 원문은 여정의 기록에서 다시 읽을 수 있습니다\./g,'홍만이 남긴 행선지를 동행과 확인합니다.').replace(/일지 원문은 여정의 기록에서 선택해 읽습니다\./g,'작업대의 일지에서 종지기가 한 일을 확인합니다.');}
+// Acquired evidence is delivered in the event. Legacy archive fields remain inert.
+function present(app,lines){return lines.map(row=>{const [who,text,meta={}]=row,{evidenceOriginal,...safe}=meta;const id=meta.documentId;const oldDocument=meta.kind==='document'||who==='기록';if(meta.evidenceOriginal?.id==='original-19-old-soul')return ['서술','소단은 종 밑에 남은 혼의 옷차림이 방금 떠난 희생자들과 다르다고 짚었다. '+summaries['bell-transfer-marks'],{...safe,kind:'narration'}];if(!oldDocument)return [who,cleanText(text),safe];return ['서술',summaries[id]||cleanText(text).replace(/\n/g,' · '),{...safe,kind:'narration'}];});}
+G.HonroEvidenceQuests={version:1,baseAuthor:author,active,ids,changes,reviseContent,requiredContent,satisfied,observe,targets,present,cleanText,fieldActive,field,onComplete,prepareComplete,repairMissing,pickupNear,pairReady,fieldDirections,animateField};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/runtime/camera.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+G.HonroCamera={
+ // Keep the established tall-view framing, but bound the upward offset in
+ // screen pixels so a short landscape canvas cannot put the actor below it.
+ followY(unit,height,scale){return unit.y-Math.min(unit.h*2,Math.max(1,height)*.28/Math.max(.001,scale));},
+ // On an automatic resize, leave the upper 30% clear for the battle header.
+ // The existing follow target puts the feet at or above 78%; protect the
+ // actual painted stature plus its health bar in the remaining 48% band.
+ fitFollowScale(unit,height,scale){const stature=G.HonroPartyPresentationHeight?.(unit)||unit.h;return Math.min(scale,Math.max(1,height)*.48/Math.max(1,stature+16));},
+ // activeMarker's solid arrow spans +/-16 screen px and 7..48 px above
+ // the HP baseline, including stroke and its two-pixel idle bob. Move only
+ // far enough sideways to clear the real header; retain the fitted zoom.
+ avoidHeaderX(unit,x,y,width,height,scale,header){
+  if(!header)return x;const k=scale/Math.max(.16,scale),half=16*k,gap=6,sx=width/2+(unit.x-x)*scale,hp=height/2+(unit.y-(G.HonroPartyPresentationHeight?.(unit)||unit.h)-12-y)*scale;
+  if(sx+half<=header.left-gap||sx-half>=header.right+gap||hp-7*k<=header.top-gap||hp-48*k>=header.bottom+gap)return x;
+  const options=[header.left-gap-half,header.right+gap+half].filter(v=>v>=half+gap&&v<=width-half-gap&&Math.abs(v-sx)<=Math.min(64,width*.12)).sort((a,b)=>Math.abs(a-sx)-Math.abs(b-sx));
+  return options.length?x+(sx-options[0])/scale:x;
+ },
+ world(view,width,height,x,y){const z=view.scale??view.zoom;return{x:view.x+(x-width/2)/z,y:view.y+(y-height/2)/z};},
+ screen(view,width,height,p){const z=view.scale??view.zoom;return{x:(p.x-view.x)*z+width/2,y:(p.y-view.y)*z+height/2};},
+ axis(center,span,min,max){return span>=max-min?(min+max)/2:Math.max(min+span/2,Math.min(max-span/2,center));}
+};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/bounds.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Simulation keeps its existing 0..width / 0..height coordinates. Neither
+// camera focus nor visual coverage is a collision or projectile boundary.
+const POLICY=Object.freeze({desiredTacticalWorldWidth:6800,minActorScreenHeight:3.75,
+ smallestActorWorldHeight:66,maxZoom:1.65,focusSide:320,focusAbove:1800,focusBelow:240,overscanMargin:240});
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function play(source){return source.playBounds||source.honroPlayBounds||{left:0,top:0,right:source.width,bottom:source.height};}
+function terrain(source){return source.terrainBounds||source.honroTerrainBounds||play(source);}
+function focus(source){const p=play(source),authored=(source.camera||source.honroCamera)?.focusBounds;
+ return authored?{...authored}:{left:p.left-POLICY.focusSide,top:p.top-POLICY.focusAbove,right:p.right+POLICY.focusSide,bottom:p.bottom+POLICY.focusBelow};}
+function zoomLimits(width){const tactical=Math.max(1,width)/POLICY.desiredTacticalWorldWidth,
+ readability=POLICY.minActorScreenHeight/POLICY.smallestActorWorldHeight;
+ return{min:Math.min(POLICY.maxZoom,Math.max(tactical,readability)),max:POLICY.maxZoom,tactical,readability};}
+function viewport(view,w,h){const z=view.scale??view.zoom;return{left:view.x-w/(2*z),right:view.x+w/(2*z),top:view.y-h/(2*z),bottom:view.y+h/(2*z)};}
+function visual(source,w,h,scale=zoomLimits(w).min){const f=focus(source),z=Math.min(scale,zoomLimits(w).min),
+ mx=w/(2*z)+POLICY.overscanMargin,my=h/(2*z)+POLICY.overscanMargin;
+ return{left:f.left-mx,right:f.right+mx,top:f.top-my,bottom:f.bottom+my};}
+function constrain(view,source){const f=focus(source);view.x=clamp(view.x,f.left,f.right);view.y=clamp(view.y,f.top,f.bottom);return view;}
+function validate(st){const p0=play(st);if(p0.left!==0||p0.top!==0||p0.right!==st.width||p0.bottom!==st.height)return[{level:'err',text:st.id+': playBounds must match the stable simulation coordinate system'}];const f=st.camera?.focusBounds;if(!f)return[];const p=play(st),valid=['left','right','top','bottom'].every(k=>Number.isFinite(f[k]))&&f.left<=p.left&&f.right>=p.right&&f.top<=p.top&&f.bottom>=p.bottom;
+ return valid?[]:[{level:'err',text:st.id+': camera.focusBounds must be finite and contain Play Bounds'}];}
+G.HonroBounds={POLICY,play,terrain,focus,zoomLimits,viewport,visual,constrain,validate};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/environment.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// World coordinates remain the game's existing units. A 1.8 m actor is roughly
+// 108 world units; only scenery authored in metres uses this conversion.
+const REFERENCE_SCALE=.66,WORLD_UNITS_PER_METER=60,D0_METERS=18;
+const PRESETS={
+ forest:{depths:{L1:0,L2:4,L3:14,L4:72},sky:true,tone:{L2:.74,L3:.53,L4:.29}},
+ valley:{depths:{L1:0,L2:6,L3:22,L4:96},sky:true,tone:{L2:.76,L3:.52,L4:.32}},
+ enclosed:{depths:{L1:0,L2:4,L3:13},sky:false,tone:{L2:.44,L3:.31}}
+};
+const SCENE_PRESETS={forest:'forest',temple:'enclosed',gate:'forest',river:'forest',valley:'valley',bridge:'valley',tree:'forest',shrine:'forest'};
+const LAYERS=['L1','L2','L3','L4','L5'];
+function preset(st){return PRESETS[st.environment?.preset||SCENE_PRESETS[st.backdrop]];}
+function depth(st,layer){if(layer==='L5')return null;return preset(st)?.depths[layer];}
+function factor(d,scale){const z=scale/REFERENCE_SCALE;return z/(1+z*d/D0_METERS);}
+function ratio(st,layer,scale){const d=depth(st,layer);if(d===undefined||d===null)throw Error('Unavailable finite scenery layer '+layer);return factor(d,scale)/(scale/REFERENCE_SCALE);}
+function screen(view,width,height,st,layer,p){const zoom=view.scale??view.zoom,s=zoom*ratio(st,layer,zoom);return{x:width/2+(p.x-view.x)*s,y:height/2+(p.y-view.y)*zoom};}
+function world(view,width,height,st,layer,p){const zoom=view.scale??view.zoom,s=zoom*ratio(st,layer,zoom);return{x:view.x+(p.x-width/2)/s,y:view.y+(p.y-height/2)/zoom};}
+function vectorScale(asset,instance,st,scale){const r=asset.reference,b=r.bounds;return WORLD_UNITS_PER_METER*r.heightM/(b.h)*(instance.scale??1)*scale*ratio(st,instance.depthLayer,scale);}
+function screenBounds(asset,instance,view,w,h,st){const q=placementScreen(view,w,h,st,instance),z=vectorScale(asset,instance,st,view.scale??view.zoom),b=asset.reference.bounds,a=asset.reference.foot,angle=instance.rotation||0,cs=Math.cos(angle),sn=Math.sin(angle),points=[[b.x,b.y],[b.x+b.w,b.y],[b.x+b.w,b.y+b.h],[b.x,b.y+b.h]].map(([x,y])=>({x:q.x+((x-a.x)*cs-(y-a.y)*sn)*z,y:q.y+((x-a.x)*sn+(y-a.y)*cs)*z})),xs=points.map(p=>p.x),ys=points.map(p=>p.y);return{x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys)};}
+function classifyLegacyElement(e){return 'L1';} // v3 map landmarks are attached to the authored battlefield, even `back`.
+const ENV_ASSETS=[
+ {id:'env:ridge',name:'먹빛 산등성이',category:'environment',visual:[{points:[{x:-800,y:0},{x:-730,y:-92},{x:-600,y:-157},{x:-510,y:-128},{x:-330,y:-294},{x:-202,y:-222},{x:-30,y:-366},{x:150,y:-273},{x:320,y:-331},{x:470,y:-194},{x:590,y:-221},{x:800,y:-45},{x:800,y:0}],fill:'#26373a',stroke:'#536560',lineWidth:1}],reference:{heightM:20,bounds:{x:-800,y:-366,w:1600,h:366},foot:{x:0,y:0},scaleRange:[.8,1.2],backgroundRange:[.8,1.2]}},
+ {id:'env:cliff',name:'절벽 암면',category:'environment',visual:[{points:[{x:-200,y:0},{x:-192,y:-112},{x:-162,y:-188},{x:-94,y:-240},{x:-51,y:-207},{x:-15,y:-308},{x:63,y:-273},{x:101,y:-235},{x:165,y:-181},{x:190,y:-83},{x:205,y:700},{x:-200,y:700}],fill:'#374442',stroke:'#718076',lineWidth:1},{points:[{x:-157,y:-179},{x:-94,y:-240},{x:-51,y:-207},{x:-78,y:-99},{x:-126,y:-53}],fill:'#4a5550'},{points:[{x:31,y:-270},{x:99,y:-235},{x:146,y:-173},{x:84,y:-101}],fill:'#293736'}],reference:{heightM:20,bounds:{x:-200,y:-308,w:405,h:1008},foot:{x:0,y:0},scaleRange:[.75,1.25],backgroundRange:[.75,1.25]}},
+ {id:'env:cloud',name:'밤구름',category:'environment',visual:[{points:[{x:-260,y:0},{x:-211,y:-30},{x:-157,y:-41},{x:-109,y:-76},{x:-20,y:-68},{x:38,y:-89},{x:139,y:-70},{x:196,y:-36},{x:260,y:0},{x:128,y:12},{x:12,y:7},{x:-150,y:15}],fill:'#263337'}],reference:{heightM:9,bounds:{x:-260,y:-89,w:520,h:104},foot:{x:0,y:0},scaleRange:[.8,1.2],backgroundRange:[.8,1.2]}}
+];
+function visualBounds(a){const pts=(a.visual||[]).flatMap(s=>s.points||[]);if(!pts.length)return a.bounds||{x:-100,y:-160,w:200,h:160};const xs=pts.map(p=>p.x),ys=pts.map(p=>p.y),x=Math.min(...xs),y=Math.min(...ys);return{x,y,w:Math.max(...xs)-x,h:Math.max(...ys)-y};}
+function referenceForLegacyAsset(a){const b=visualBounds(a),id=a.id||'',kind=a.kind||'';
+ const heightM=id==='ancient_pine'?8:id==='dead_pine'?7.2:kind==='greatTree'?24:/Pine|pines|Tree|deadPines/i.test(kind)?9:/waterfall/i.test(kind)?15:/cliff/i.test(kind)?10:/hall|warehouse|Houses|Shrine|Gate|tower|Wall|Dock|Scaffold/i.test(kind)?5:a.category==='tree'?8:a.category==='architecture'?4.5:a.category==='rock'?2:a.category==='branch'?2:a.category==='vegetation'?.7:a.category==='prop'?1.5:4;
+ return{heightM,bounds:b,foot:a.renderer==='landmark'?{x:a.anchor?.x||0,y:a.anchor?.y||0}:{x:a.anchor?.x||0,y:b.y+b.h},scaleRange:a.category==='native'?[.3,5]:a.category==='vegetation'?[.25,2]:[.4,4.5],backgroundRange:[.7,1.3]};
+}
+function legacyPlacements(st){const p=preset(st),out=[],sid=st.metadata?.stageId||1,wide=st.width,tall=st.height>4000;
+ const hash=n=>{const t=Math.sin(n*17.917+sid*61.13)*43758.5453;return t-Math.floor(t);};
+ const add=(layer,assetId,x,y,scale,group)=>out.push({id:`scenery-${st.id}-${out.length}`,assetId,depthLayer:layer,x:Math.round(x),y:Math.round(y),scale:+scale.toFixed(3),rotation:0,group});
+ for(const layer of ['L3','L2'])if(p.depths[layer]!==undefined){const enclosed=!p.sky,step=enclosed?(layer==='L2'?1500:1000):(layer==='L2'?650:320),low=-4200,high=wide+4200;
+  for(let i=Math.floor(low/step);i<=Math.ceil(high/step);i++){
+   const x=i*step+(hash(i*11+(layer==='L2'?1:2))-.5)*step*.22,y=st.height*(layer==='L2'?.61:.53)+(hash(i*7+13)-.5)*110;
+   const assetId=enclosed?'env:cliff':hash(i*19+29)<(sid===4?.38:.23)?'dead_pine':'ancient_pine';
+   add(layer,assetId,x,y,.85+hash(i*13+41)*.30,`${layer}-grove-${Math.floor(i/5)}`);
+   if(tall&&i%2===0)add(layer,assetId,x+step*.28,st.height*.31+(hash(i*23+7)-.5)*100,.83+hash(i*17+3)*.25,`${layer}-upper-${Math.floor(i/5)}`);
+  }
+ }
+ if(p.depths.L4!==undefined){if(st.environment?.preset==='valley'||SCENE_PRESETS[st.backdrop]==='valley')for(let i=-2;i<=Math.ceil(wide/4600)+2;i++)
+  add('L4','env:ridge',i*4600,st.height*.47+(hash(i*7+99)-.5)*70,.90+hash(i*11+43)*.18,'distant-ridge');
+  for(let i=-3;i<=Math.ceil(wide/2200)+3;i++)add('L4','env:cloud',i*2200+850,st.height*.12+(hash(i*5+79)-.5)*120,.85+hash(i*9+17)*.25,'night-clouds');
+ }return out;
+}
+function upgradeLegacy(project){for(const a of ENV_ASSETS)if(!project.library.some(v=>v.id===a.id))project.library.push(JSON.parse(JSON.stringify({...a,collision:[],anchor:{x:0,y:0},sockets:[],tags:['environment'],params:{}})));
+ for(const a of project.library)if(!a.reference)a.reference=referenceForLegacyAsset(a);
+ for(const st of project.stages){st.environment??={preset:SCENE_PRESETS[st.backdrop],placements:legacyPlacements(st)};for(const e of st.elements||[])e.depthLayer??=classifyLegacyElement(e);}
+ return upgradeComposition(project);
+}
+// Finite groups share the battlefield's vertical camera response. Depth changes
+// their horizontal pan and apparent size, never the camera-height response.
+const VERSION=4,VERTICAL_MODES=['WORLD','SKY'];
+const COVERAGE={minZoom:.16,maxViewport:{w:2560,h:1440},margin:240};
+const FINISH={L1:{haze:0,detail:1},L2:{haze:.18,detail:1},L3:{haze:.48,detail:.5},L4:{haze:.76,detail:.2}};
+// The painted SKY is a distant panorama, not a finite WORLD support. Its small
+// camera drift is deliberately independent of the L1-L4 projection and zoom.
+const ACT1_FAR={saturation:.45,brightness:{mountains:.80,gorge:.76,dawn:1,act3:.86},veil:'#1b2730',veilOpacity:.08,panX:.025,panY:.0035,marginX:.022,marginY:.007};
+function act1Mood(stage){const n=Number(stage);if(!Number.isInteger(n)||n<1||n>10)return null;const t=(n-1)/9;
+ return{stage:n,variant:n<6?'mountains':'gorge',tint:mixColor('#83968f','#52627e',t),opacity:.03+t*.12};}
+function campaignMood(stage){const first=act1Mood(stage);if(first)return first;const n=Number(stage);if(n>=21&&n<=30)return{stage:n,variant:'act3',tint:mixColor('#9ba58e','#52667e',(n-21)/9),opacity:.025+(n-21)/9*.10};if(![11,12,20].includes(n))return null;
+ return{stage:n,variant:n===12?'gorge':n===20?'dawn':'mountains',tint:n===20?'#d7c9a9':'#899b92',opacity:n===12?.06:.025};}
+function act1BackdropFrame(view,w,h,b,iw=1600,ih=900){const mx=w*ACT1_FAR.marginX,my=h*ACT1_FAR.marginY,
+ s=Math.max((w+2*mx)/iw,(h+2*my)/ih),dw=iw*s,dh=ih*s,
+ offsetX=-mx*Math.tanh(((view.x??b.width*.5)-b.width*.5)*ACT1_FAR.panX/mx),
+ offsetY=-my*Math.tanh(((view.y??b.height*.5)-b.height*.5)*ACT1_FAR.panY/my),anchor=w/h>=.9?.98:.5;
+ return{x:-mx-(dw-w-2*mx)*anchor+offsetX,y:-my-(dh-h-2*my)*.28+offsetY,w:dw,h:dh,offsetX,offsetY};}
+const ATMOSPHERES={
+ forest:{skyTop:'#0c1920',skyBottom:'#47564c',ambientTint:'#3e5147',hazeColor:'#56695f',hazeStrength:.65,nearFogColor:'#687c69',farFogColor:'#83918a',keyLightColor:'#d1c19a',keyLightDirection:[.76,.13],glowColor:'#d7cca7',shadowTint:'#142728',waterBaseColor:'#233d40',waterHighlightColor:'#9bb5a7',waterfallFoamColor:'#c0d0bb',mistStrength:.30,mistSpeed:9,lightStrength:.12},
+ valley:{skyTop:'#101f2b',skyBottom:'#66777b',ambientTint:'#41575f',hazeColor:'#738a90',hazeStrength:.78,nearFogColor:'#8aa6a8',farFogColor:'#a1afb0',keyLightColor:'#d2d9cc',keyLightDirection:[.68,.09],glowColor:'#dae4d6',shadowTint:'#1b303c',waterBaseColor:'#334b4d',waterHighlightColor:'#ced4c5',waterfallFoamColor:'#dce0d0',mistStrength:.43,mistSpeed:13,lightStrength:.16},
+ enclosed:{skyTop:'#090f16',skyBottom:'#242e34',ambientTint:'#25333b',hazeColor:'#37424d',hazeStrength:.7,nearFogColor:'#667b7b',farFogColor:'#495c66',keyLightColor:'#ccb790',keyLightDirection:[.28,.04],glowColor:'#dab786',shadowTint:'#101c28',waterBaseColor:'#1b303a',waterHighlightColor:'#789393',waterfallFoamColor:'#9cafa8',mistStrength:.35,mistSpeed:5,lightStrength:.22},
+ temple:{skyTop:'#211f2b',skyBottom:'#776c65',ambientTint:'#544f51',hazeColor:'#7c7774',hazeStrength:.67,nearFogColor:'#aa9e8d',farFogColor:'#968d86',keyLightColor:'#dbc196',keyLightDirection:[.72,.15],glowColor:'#e1be88',shadowTint:'#2c2b35',waterBaseColor:'#3a484b',waterHighlightColor:'#b6b9a6',waterfallFoamColor:'#c9cbb7',mistStrength:.25,mistSpeed:6,lightStrength:.14},
+ burned:{skyTop:'#211c24',skyBottom:'#60554b',ambientTint:'#514b44',hazeColor:'#766c60',hazeStrength:.70,nearFogColor:'#918572',farFogColor:'#8c8279',keyLightColor:'#d3ae80',keyLightDirection:[.81,.12],glowColor:'#d4ad81',shadowTint:'#272a2c',waterBaseColor:'#344449',waterHighlightColor:'#9faeaa',waterfallFoamColor:'#b6c1b7',mistStrength:.22,mistSpeed:8,lightStrength:.10},
+ otherworld:{skyTop:'#21192f',skyBottom:'#655161',ambientTint:'#554053',hazeColor:'#806b80',hazeStrength:.76,nearFogColor:'#a3889e',farFogColor:'#917f99',keyLightColor:'#c3b4ca',keyLightDirection:[.68,.17],glowColor:'#d0b6bf',shadowTint:'#242436',waterBaseColor:'#373649',waterHighlightColor:'#b5a6bd',waterfallFoamColor:'#cbbdcf',mistStrength:.31,mistSpeed:7,lightStrength:.13}
+};
+const ATMOSPHERE_BY_SCENE={forest:'forest',river:'forest',valley:'valley',bridge:'valley',gate:'burned',tree:'enclosed',temple:'enclosed',shrine:'temple'};
+const clamp=(n,a=0,b=1)=>Math.max(a,Math.min(b,n)),smooth=t=>(t=clamp(t))*t*(3-2*t),copy=x=>JSON.parse(JSON.stringify(x));
+function mixColor(a,b,t){const rgb=s=>[1,3,5].map(i=>parseInt(s.slice(i,i+2),16));const aa=rgb(a),bb=rgb(b);return '#'+aa.map((v,i)=>Math.round(v+(bb[i]-v)*clamp(t)).toString(16).padStart(2,'0')).join('');}
+function atmosphere(st,zone){const env=st.environment||{},base=env.atmosphere||{};return{...ATMOSPHERES[base.preset||ATMOSPHERE_BY_SCENE[st.backdrop]||'forest'],...base.overrides,...zone?.atmosphere};}
+function zoneWeights(st,y){const zones=st.environment?.zones||[];const raw=zones.map((z,i)=>{let w=1;if(i)w*=smooth((y-(z.from-z.blend))/(2*z.blend));if(i<zones.length-1)w*=1-smooth((y-(z.to-z.blend))/(2*z.blend));return{zone:z,weight:w};}),sum=raw.reduce((n,r)=>n+r.weight,0);return raw.map(r=>({...r,weight:sum?r.weight/sum:0}));}
+function atmosphereAt(st,y){const base=atmosphere(st),rows=zoneWeights(st,y);if(!rows.length)return base;const out={};for(const k of Object.keys(base)){if(typeof base[k]==='number')out[k]=rows.reduce((n,r)=>n+atmosphere(st,r.zone)[k]*r.weight,0);else if(typeof base[k]==='string'){const values=rows.map(r=>({v:atmosphere(st,r.zone)[k],w:r.weight}));out[k]='#'+[1,3,5].map(i=>Math.round(values.reduce((n,r)=>n+parseInt(r.v.slice(i,i+2),16)*r.w,0)).toString(16).padStart(2,'0')).join('');}else if(Array.isArray(base[k]))out[k]=base[k].map((_,i)=>rows.reduce((n,r)=>n+atmosphere(st,r.zone)[k][i]*r.weight,0));else out[k]=base[k];}return out;}
+function assetRole(a){const id=a.id||'',k=a.kind||id;let role=a.environmentRole;
+ if(!role)role=id==='env:cloud'?'cloud':id==='env:ridge'?'ridge':id==='env:cliff'?'cliff':id==='env:forest'?'forest':/waterfall/i.test(k)?'waterfall':/lantern|bell/i.test(k)?'light':/tree|pine/i.test(a.category+' '+k)?'tree':/rock|scree|cliff|stone/i.test(a.category+' '+k)?'rock':/architecture|hall|gate|shrine|hut|warehouse|tower|house/i.test(a.category+' '+k)?'building':/branch|fallenTree/i.test(a.category+' '+k)?'branch':/vegetation|fern|reed|grass/i.test(a.category+' '+k)?'vegetation':'prop';
+ return{role,rooted:!['cloud','ridge','cliff','forest','branch'].includes(role),animation:role==='waterfall'?'flow':role==='light'?'glow':'static',strategy:role==='waterfall'?'cached-body/live-flow':'cached-vector'};
+}
+function surfaceY(surface,x){const pts=surface.points;if(x<=pts[0].x)return pts[0].y;for(let i=1;i<pts.length;i++)if(x<=pts[i].x){const a=pts[i-1],b=pts[i];return a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x);}return pts.at(-1).y;}
+function groupOf(st,e){return st.environment?.groups?.find(g=>g.id===e.groupId);}
+function supportOf(st,e){return st.environment?.surfaces?.find(s=>s.id===e.supportId);}
+function placementPosition(st,e){const g=groupOf(st,e),sf=supportOf(st,e);return{x:(g?.x||0)+e.x,y:(g?.y||0)+(sf?surfaceY(sf,e.x):0)+e.y};}
+function groupTransform(view,w,h,st,g){if(g.verticalMode==='SKY')return{x:w*g.x,y:h*g.y,scale:1,opacity:1};const zoom=view.scale??view.zoom,s=zoom*ratio(st,g.depthLayer,zoom);
+ return{x:w/2+(g.x-view.x)*s,y:h/2+(g.y-view.y)*zoom,scale:s,opacity:1};
+}
+function placementScreen(view,w,h,st,e){const g=groupOf(st,e);if(!g)return screen(view,w,h,st,e.depthLayer,e);const t=groupTransform(view,w,h,st,g),sf=supportOf(st,e);return{x:t.x+e.x*t.scale,y:t.y+((sf?surfaceY(sf,e.x):0)+e.y)*t.scale};}
+function groupWorld(view,w,h,st,groupId,p){const g=st.environment.groups.find(g=>g.id===groupId),t=groupTransform(view,w,h,st,g);return{x:(p.x-t.x)/t.scale,y:(p.y-t.y)/t.scale};}
+function coveragePad(st,layer){const s=COVERAGE.minZoom*ratio(st,layer,COVERAGE.minZoom);return Math.ceil((COVERAGE.maxViewport.w/2+COVERAGE.margin)/s);}
+// The far ridge is one authored landform per height band, not a row of ridge
+// stamps. Broad peaks leave sky between them and remain legible at minimum zoom.
+function mountainHeight(x,width,seed){const w=Math.max(width,3600),peaks=[[-.16,.35,690],[.28,.31,1200],[.73,.27,950],[1.16,.37,620]];
+ return 250+peaks.reduce((height,[center,spread,rise])=>height+rise*Math.exp(-Math.pow((x/w-center-(seed%3-1)*.025)/spread,2)),0);
+}
+// The valley has one cropped, rain-dark granite peak. Its broad shoulders and
+// abrupt vertical crown are composed deliberately, rather than sampled noise.
+const GRANITE_PROFILE=[[-.55,420],[-.28,600],[0,1050],[.14,1330],[.29,1510],[.37,1740],[.43,2110],[.475,2020],[.51,2260],[.55,1900],[.62,1650],[.71,1250],[.83,1160],[1,1290],[1.25,760],[1.6,460]];
+function graniteHeight(x,width){const u=x/Math.max(width,3600);for(let i=1;i<GRANITE_PROFILE.length;i++)if(u<=GRANITE_PROFILE[i][0]){const [ax,ay]=GRANITE_PROFILE[i-1],[bx,by]=GRANITE_PROFILE[i],t=clamp((u-ax)/(bx-ax));return ay+(by-ay)*t;}return GRANITE_PROFILE.at(-1)[1];}
+function scenicPurpose(sid,backdrop,band,layer){
+ if(sid>=13&&sid<=19){if(layer==='L3')return true;if(layer==='L2')return [14,16,18,19].includes(sid)&&band>0;return false;}
+ if(layer==='L4')return !['tree','temple'].includes(backdrop)&&(['valley','bridge'].includes(backdrop)?band===0:band<2);
+ if(layer==='L3')return sid===3||sid===7||[2,5,6,8,9,10].includes(sid)&&band>0;
+ if(layer==='L2')return sid===3||sid===7&&band===2||[2,5,6].includes(sid)&&band>0;
+ return false;
+}
+function makeEnvironment(st,options={}){const sid=st.metadata?.stageId||1,presetName=options.preset||SCENE_PRESETS[st.backdrop]||'forest',env={version:VERSION,preset:presetName,atmosphere:{preset:sid===10?'otherworld':ATMOSPHERE_BY_SCENE[st.backdrop]||'forest'},zones:[],groups:[],surfaces:[],placements:[]},source={...st,environment:env},enclosed=presetName==='enclosed'||st.backdrop==='tree',vertical=st.height>=3300;
+ if(enclosed)env.skyVisible=false;
+ const cuts=vertical?[0,st.height*.37,st.height*.67,st.height]:[0,st.height],names=vertical?['upper-ridge','slope','valley-bottom']:['landscape'];
+ const rng=n=>{const r=Math.sin(n*127.1+sid*311.7)*43758.5453;return r-Math.floor(r);};
+ for(let i=0;i<cuts.length-1;i++)env.zones.push({id:names[i],from:cuts[i],to:cuts[i+1],blend:Math.min(320,st.height*.075),atmosphere:{mistStrength:ATMOSPHERES[env.atmosphere.preset].mistStrength*(i===2?1.25:i===0&&vertical?.7:1)}});
+ const add=(g,assetId,x,supportId,scale=1,y=0)=>env.placements.push({id:`scenery-${st.id}-${env.placements.length}`,assetId,depthLayer:g.depthLayer,groupId:g.id,...(supportId?{supportId}:{}),x:Math.round(x),y,scale,rotation:0});
+ // Each band occupies a fixed world height. Long supported terrain overlaps the
+ // adjacent bands; a camera pan never moves or fades a band independently.
+ for(const [band,zone] of env.zones.entries())for(const layer of ['L4','L3','L2']){
+  if(PRESETS[presetName].depths[layer]===undefined||enclosed&&layer==='L4'||vertical&&band===env.zones.length-1&&layer==='L4'||!scenicPurpose(sid,st.backdrop,band,layer))continue;
+  const span=zone.to-zone.from,base=vertical?(band===0?zone.to-Math.min(300,span*.20):band===env.zones.length-1?zone.from-160:zone.from+span*.55):st.height*.49;
+  const lift=layer==='L4'?(vertical?100:st.height*.07):enclosed?(layer==='L3'?200:250):vertical&&band===0?(layer==='L2'?120:150):layer==='L3'?470:260;
+  const g={id:`${zone.id}-${layer}`,depthLayer:layer,verticalMode:'WORLD',zoneId:zone.id,x:0,y:Math.round(base+lift)};env.groups.push(g);
+  const granite=layer==='L4'&&['valley','bridge'].includes(st.backdrop),pad=coveragePad(source,layer),step=layer==='L4'?700:layer==='L3'?1100:650,points=[];
+  const xs=[];for(let x=-pad;x<=st.width+pad+step;x+=step)xs.push(x);
+  if(granite)for(const [u] of GRANITE_PROFILE)if(u>=0&&u<=1)xs.push(Math.round(u*st.width));
+  xs.sort((a,b)=>a-b);
+  for(const [i,x] of xs.entries()){
+   const u=clamp(x/Math.max(1,st.width)),valley=!enclosed&&['valley','bridge'].includes(st.backdrop)?-Math.abs(u-.52)*1250:0;
+   const roll=Math.sin(u*5.4+band*.7+sid*.31)*155+Math.sin(u*9.8+sid*.7)*68;
+   const height=layer==='L4'?470:layer==='L3'?260:125;
+   points.push({x,y:layer==='L4'?Math.round(-(granite?graniteHeight(x,st.width):mountainHeight(x,st.width,sid+band))+(granite?0:Math.sin(x/1300+sid*.7)*24)):Math.round(-height+valley*(layer==='L2'?.60:1)+roll*(layer==='L3'?1.2:1)+rng(i+band*23+layer.charCodeAt(1)*19)*24)});
+  }
+  const foothill=!enclosed&&layer==='L3'&&['valley','bridge'].includes(st.backdrop);
+  const sf={id:g.id+'-support',groupId:g.id,kind:granite?'ink-granite':foothill?'ink-foothill':layer==='L4'?'ink-mountain':enclosed?'cave-wall':zone.id==='valley-bottom'?'cliff':'rear-ground',...(granite||foothill?{compositionWidth:st.width,inkVariant:band}:{}),points,bottom:st.height+Math.ceil(COVERAGE.maxViewport.h/(COVERAGE.minZoom*ratio(source,layer,COVERAGE.minZoom)))+2200};env.surfaces.push(sf);
+  if(layer==='L4')continue;
+  const stride=layer==='L3'?Math.max(2300,st.width*.48):Math.max(2200,st.width*.55);
+  for(let x=Math.ceil(-pad/stride)*stride,i=0;x<st.width+pad;x+=stride,i++){
+   if(enclosed&&layer==='L2'&&i%3===band%3)add(g,'env:rock',x,sf.id,1);
+   else if(enclosed&&layer==='L3'&&i%3===band%3)add(g,'env:cliff',x,sf.id,.95);
+   else if(layer==='L3'&&!enclosed&&[3,9].includes(sid)&&i%3===band%3)add(g,'env:forest',x,sf.id,1);
+   else if(layer==='L2'&&!enclosed&&sid===3&&i%3===0)add(g,'ancient_pine',Math.min(sf.points.at(-1).x,x+Math.round(rng(i+7)*330)),sf.id,1);
+   else if(layer==='L2'&&!enclosed&&sid!==3&&i%3===band%3)add(g,'env:rock',x,sf.id,1);
+  }
+  if(layer==='L3'&&!enclosed&&['shrine','temple'].includes(st.backdrop))add(g,'env:shrine',st.width*.67,sf.id);
+  if(layer==='L3'&&!enclosed&&['valley','bridge'].includes(st.backdrop))for(const x of [st.width*.16,st.width*.83])add(g,'env:cliff',x,sf.id,.9);
+  if(layer==='L2'&&enclosed&&sid===7)add(g,'lantern',st.width*.58,sf.id,1);
+  if(layer==='L2'&&['valley','bridge'].includes(st.backdrop))add(g,'env:waterfall',st.width*.70,sf.id,1);
+ }
+ return env;
+}
+function makePlacements(st){return makeEnvironment(st).placements;}
+function resize(st){const env=st.environment;if(!env?.zones)return;const oldHeight=env.zones.at(-1).to,k=st.height/oldHeight;for(const z of env.zones){z.from*=k;z.to*=k;z.blend*=k;}for(const g of env.groups)if(g.verticalMode!=='SKY')g.y*=k;for(const sf of env.surfaces){const g=env.groups.find(g=>g.id===sf.groupId);if(!g)continue;const pad=coveragePad(st,g.depthLayer);sf.points[0].x=Math.min(sf.points[0].x,-pad-g.x);sf.points.at(-1).x=Math.max(sf.points.at(-1).x,st.width+pad-g.x);sf.bottom*=k;}}
+function place(st,asset,c){const env=st.environment,layer=c.depthLayer||'L2',candidates=env.groups.filter(g=>g.depthLayer===layer&&g.verticalMode!=='SKY');let g=c.groupId?candidates.find(g=>g.id===c.groupId):candidates.find(g=>g.zoneId===c.zoneId)||candidates[0];if(!g)throw Error('Choose an existing scenic group on '+layer);
+ const sf=c.supportId?env.surfaces.find(s=>s.id===c.supportId&&s.groupId===g.id):env.surfaces.find(s=>s.groupId===g.id);if(c.supportId&&!sf)throw Error('Invalid support or mismatched scenic group');if(assetRole(asset).rooted&&!sf)throw Error('Rooted scenery needs a support surface');
+ return{id:c.id,assetId:asset.id,depthLayer:layer,groupId:g.id,...(sf?{supportId:sf.id}:{}),x:c.localX??(c.x||0)-g.x,y:c.offsetY??0,scale:c.scale??1,rotation:c.rotationRadians??(c.rotation||0)*Math.PI/180};
+}
+function upgradeComposition(project){for(const a of [...ENV_ASSETS,...COMPOSITION_ASSETS])if(!project.library.some(v=>v.id===a.id))project.library.push(copy({...a,collision:[],anchor:{x:0,y:0},sockets:[],tags:['environment'],params:{}}));
+ for(const st of project.stages){if(st.environment?.version===VERSION)continue;const old=st.environment;st.environment=makeEnvironment(st,{preset:PRESETS[old?.preset]?old.preset:undefined});if(ATMOSPHERES[old?.atmosphere?.preset])st.environment.atmosphere=copy(old.atmosphere);if(old?.hiddenLayers)st.environment.hiddenLayers=copy(old.hiddenLayers);if(old?.skyVisible===false)st.environment.skyVisible=false;
+  for(const zone of st.environment.zones){const previous=old?.zones?.find(z=>z.id===zone.id);if(previous?.atmosphere)zone.atmosphere={...zone.atmosphere,...copy(previous.atmosphere)};}
+  for(const group of old?.groups||[])if(!st.environment.groups.some(g=>g.id===group.id)&&!old.zones?.some(z=>group.id===`${z.id}-${group.depthLayer}`)){
+   const oldZone=old.zones?.find(z=>z.id===group.zoneId),mid=oldZone?(oldZone.from+oldZone.to)/2:st.height*.5,zone=st.environment.zones.find(z=>z.id===group.zoneId)||st.environment.zones.find(z=>z.from<=mid&&mid<=z.to)||st.environment.zones[0],anchor=st.environment.groups.find(g=>g.zoneId===zone?.id&&g.depthLayer===group.depthLayer);
+   const migrated={...copy(group),zoneId:zone?.id,verticalMode:group.verticalMode==='SKY'?'SKY':'WORLD',y:group.verticalMode==='WORLD'||group.verticalMode==='SKY'?group.y:(anchor?.y||0)+group.y};
+   st.environment.groups.push(migrated);(st.environment.migrationNotes??=[]).push(`${group.id}: authored group anchored at world y=${migrated.y}`);
+  }
+  for(const surface of old?.surfaces||[])if(!st.environment.surfaces.some(s=>s.id===surface.id)&&st.environment.groups.some(g=>g.id===surface.groupId))st.environment.surfaces.push(copy(surface));
+  const custom=(old?.placements||[]).filter(e=>!e.id?.startsWith(`scenery-${st.id}-`));
+  // A newly sparse map may omit a depth that an older authored scene used.
+  // Restore a support for that depth before reattaching custom scenery.
+  for(const e of custom)if(!st.environment.groups.some(g=>g.depthLayer===e.depthLayer)&&PRESETS[st.environment.preset]?.depths[e.depthLayer]!==undefined){
+   const previous=old?.groups?.find(g=>g.id===e.groupId),zone=st.environment.zones.find(z=>z.id===previous?.zoneId)||st.environment.zones[0],pad=coveragePad(st,e.depthLayer),id=previous?.id||`${zone.id}-${e.depthLayer}`;
+   const group=previous?{...copy(previous),verticalMode:'WORLD',zoneId:zone.id}:{id,depthLayer:e.depthLayer,verticalMode:'WORLD',zoneId:zone.id,x:0,y:Math.round((zone.from+zone.to)/2)};
+   st.environment.groups.push(group);
+   const support=old?.surfaces?.find(s=>s.groupId===id),bottom=st.height+Math.ceil(COVERAGE.maxViewport.h/(COVERAGE.minZoom*ratio(st,e.depthLayer,COVERAGE.minZoom)))+2200;
+   st.environment.surfaces.push(support?copy(support):{id:id+'-support',groupId:id,kind:'rear-ground',points:[{x:-pad,y:-120},{x:st.width+pad,y:-120}],bottom});
+   (st.environment.migrationNotes??=[]).push(`${e.id}: restored authored ${e.depthLayer} support`);
+  }
+  for(const e of custom){const a=project.library.find(a=>a.id===e.assetId);if(a&&st.environment.groups.some(g=>g.depthLayer===e.depthLayer)){const oldGroup=old?.groups?.find(g=>g.id===e.groupId),placed=place(st,a,{...e,zoneId:oldGroup?.zoneId,localX:e.x,offsetY:old?.version>=2?e.y:0,rotationRadians:e.rotation||0});st.environment.placements.push(placed);(st.environment.migrationNotes??=[]).push(`${e.id}: attached to ${placed.supportId}; old backdrop position replaced by world support`);}else{st.environment.placements.push(e);(st.environment.migrationNotes??=[]).push(`${e.id}: unresolved legacy scenery; choose support/group explicitly`);}}
+ }
+ project.environmentVersion=VERSION;return project;
+}
+function environmentAsset(id,name,role,heightM,pts,extra=[]){const a={id,name,category:'environment',environmentRole:role,visual:[{points:pts.map(([x,y])=>({x,y})),fill:'#334b46'},...extra],collision:[],anchor:{x:0,y:0},sockets:[],tags:['environment'],params:{}};const b=visualBounds(a);a.reference={heightM,bounds:b,foot:{x:0,y:0},scaleRange:[.7,1.3],backgroundRange:[.7,1.3]};return a;}
+const plane=(points,fill)=>({points:points.map(([x,y])=>({x,y})),fill});
+const COMPOSITION_ASSETS=[
+ environmentAsset('env:forest','능선 숲 덩어리','forest',12,[[-500,0],[-500,-64],[-442,-112],[-405,-97],[-373,-190],[-348,-146],[-291,-176],[-243,-255],[-216,-211],[-162,-232],[-132,-328],[-97,-252],[-44,-286],[-9,-237],[35,-252],[76,-203],[141,-225],[183,-161],[240,-204],[284,-148],[354,-163],[394,-92],[460,-110],[500,-56],[500,0]],[
+  plane([[-500,-64],[-405,-97],[-373,-190],[-348,-146],[-291,-176],[-243,-255],[-216,-211],[-162,-232],[-132,-328],[-97,-252],[-44,-286],[-9,-237],[35,-252],[76,-203],[141,-225],[183,-161],[240,-204],[284,-148],[354,-163],[394,-92],[460,-110],[500,-56],[365,-105],[185,-115],[-12,-140],[-211,-112],[-390,-76]],'#4c6656'),
+  plane([[-500,-7],[-383,-30],[-275,-17],[-148,-61],[-10,-43],[120,-79],[280,-48],[500,-18],[500,0],[-500,0]],'#223b39'),
+  plane([[-362,-100],[-299,-166],[-254,-145],[-220,-209],[-170,-189],[-132,-272],[-74,-220],[-13,-222],[37,-193],[68,-203],[132,-161],[160,-116],[-32,-139],[-222,-129]],'#71806a'),
+  plane([[65,-115],[145,-195],[187,-155],[239,-197],[284,-140],[344,-154],[390,-88],[259,-108],[163,-98]],'#314d48')]),
+ environmentAsset('env:rock','능선 화강암','rock',3.5,[[-105,0],[-119,-48],[-67,-123],[-12,-140],[74,-115],[117,-48],[95,0]],[
+  plane([[-105,0],[-119,-48],[-67,-123],[-12,-140],[74,-115],[117,-48],[95,0]],'#263c3c'),
+  plane([[-119,-48],[-67,-123],[-44,-101],[-54,-71],[-81,-19],[-105,0]],'#60736a'),
+  plane([[-67,-123],[-12,-140],[74,-115],[42,-100],[14,-113],[-25,-104]],'#697c6f'),
+  plane([[74,-115],[117,-48],[95,0],[34,-4],[31,-79]],'#30484a'),
+  plane([[-35,-100],[14,-113],[31,-79],[9,-51],[-15,-27],[-59,-41]],'#465e56'),
+  plane([[-12,-140],[2,-119],[-4,-83],[17,-52],[8,-77],[-8,-113]],'#203738'),
+  plane([[31,-79],[42,-100],[55,-84],[47,-41],[26,-18],[33,-49]],'#172f32'),
+  plane([[-105,0],[-81,-19],[-15,-27],[34,-4],[95,0]],'#1b3134')]),
+ environmentAsset('env:shrine','먼 산신당','building',6,[[-160,0],[-157,-19],[-112,-26],[-112,-153],[-172,-142],[-142,-164],[-70,-190],[0,-222],[76,-184],[138,-161],[169,-149],[110,-152],[110,-26],[153,-19],[158,0]],[
+  plane([[-112,-153],[34,-153],[34,-26],[-112,-26]],'#716b5b'),
+  plane([[34,-153],[110,-152],[110,-26],[34,-26]],'#474e4a'),
+  plane([[-172,-142],[-142,-164],[-70,-190],[0,-222],[76,-184],[138,-161],[169,-149],[100,-159],[0,-204],[-106,-163]],'#51605b'),
+  plane([[-142,-164],[-70,-190],[0,-222],[76,-184],[0,-202],[-77,-174]],'#829081'),
+  plane([[-156,-19],[-112,-26],[110,-26],[153,-19],[158,0],[-160,0]],'#2c3c3c'),
+  plane([[-22,-113],[24,-113],[24,-27],[-22,-27]],'#202d2e'),
+  plane([[-160,-145],[-112,-153],[110,-152],[169,-149],[147,-138],[-144,-138]],'#293b3d')]),
+ environmentAsset('env:waterfall','절벽 물줄기','waterfall',18,[[-100,0],[-91,520],[-128,540],[118,540],[88,519],[48,0]])
+];
+ENV_ASSETS[0].visual.push(
+ plane([[-800,0],[-730,-92],[-600,-157],[-510,-128],[-330,-294],[-202,-222],[-30,-366],[150,-273],[320,-331],[470,-194],[590,-221],[800,-45],[800,0],[570,-85],[320,-119],[35,-153],[-205,-112],[-500,-68]],'#52676a'),
+ plane([[-800,0],[-575,-27],[-342,-18],[-130,-67],[105,-38],[310,-80],[560,-37],[800,0]],'#1c3038'),
+ plane([[-330,-294],[-202,-222],[-30,-366],[150,-273],[320,-331],[262,-210],[90,-206],[-78,-179],[-244,-180]],'#7c8580'),
+ plane([[150,-273],[320,-331],[470,-194],[590,-221],[675,-126],[500,-145],[356,-160]],'#334c56')
+);
+ENV_ASSETS[1].visual.push(
+ plane([[-162,-188],[-94,-240],[-51,-207],[-78,-99],[-137,-62]],'#829084'),
+ plane([[31,-270],[101,-235],[165,-181],[122,-99],[84,-101]],'#536963'),
+ plane([[-200,700],[-162,420],[-124,98],[-78,-99],[-48,200],[-6,700]],'#293b3d')
+);
+function validateComposition(st,byId,error){const env=st.environment||{},groups=env.groups||[],surfaces=env.surfaces||[],zones=env.zones||[];
+ if(env.version!==VERSION)error(`${st.id}: missing composition version`);
+ if(!ATMOSPHERES[env.atmosphere?.preset])error(`${st.id}: missing environment atmosphere preset`);
+ const checkAtmosphere=(value,label)=>{for(const [k,v]of Object.entries(value||{})){const base=ATMOSPHERES.forest[k];if(base===undefined||typeof base==='string'&&!/^#[0-9a-f]{6}$/i.test(v)||typeof base==='number'&&(!Number.isFinite(v)||v<0||v>(k==='mistSpeed'?40:1))||Array.isArray(base)&&(!Array.isArray(v)||v.length!==2||v.some(n=>!Number.isFinite(n)||n<0||n>1)))error(`${st.id}/${label}: invalid atmosphere ${k}`);}};checkAtmosphere(env.atmosphere?.overrides,'preset');for(const z of zones)checkAtmosphere(z.atmosphere,z.id);
+ const unique=(items,label)=>{const ids=new Set();for(const a of items){if(!a.id||ids.has(a.id))error(`${st.id}: duplicate/missing ${label} ${a.id}`);ids.add(a.id);}};unique(groups,'scenic group');unique(surfaces,'support');unique(zones,'zone');
+ unique([...groups,...surfaces,...zones,...(env.placements||[]),...(st.elements||[]),...(st.units||[]),...(st.terrains||[]),...(st.events||[]),...(st.markers||[])],'environment/content ID');
+ if(!zones.length||zones[0].from!==0||zones.at(-1).to!==st.height)error(`${st.id}: invalid zone coverage`);
+ zones.forEach((z,i)=>{if(!Number.isFinite(z.from)||!Number.isFinite(z.to)||!(z.to>z.from)||!(z.blend>0)||z.blend>(z.to-z.from)/2||i&&Math.abs(z.from-zones[i-1].to)>.001)error(`${st.id}/${z.id}: invalid zone transition`);});
+ for(const g of groups){if(!VERTICAL_MODES.includes(g.verticalMode))error(`${st.id}/${g.id}: unsupported vertical mode`);if(g.zoneId&&!zones.some(z=>z.id===g.zoneId))error(`${st.id}/${g.id}: invalid background zone`);if(!Number.isFinite(g.x)||!Number.isFinite(g.y)||depth(st,g.depthLayer)===undefined)error(`${st.id}/${g.id}: invalid scenic group depth/position`);if(g.verticalMode==='SKY'&&g.depthLayer!=='L5'||g.depthLayer==='L5'&&g.verticalMode!=='SKY')error(`${st.id}/${g.id}: SKY requires L5`);}
+ for(const sf of surfaces){const g=groups.find(g=>g.id===sf.groupId);if(!g){error(`${st.id}/${sf.id}: invalid scenic group`);continue;}if(!Array.isArray(sf.points)||sf.points.length<2||sf.points.some((p,i)=>!Number.isFinite(p.x)||!Number.isFinite(p.y)||i&&p.x<=sf.points[i-1].x)||!Number.isFinite(sf.bottom)||sf.bottom<=Math.max(...(sf.points||[]).map(p=>p.y))){error(`${st.id}/${sf.id}: invalid support geometry`);continue;}if(g.verticalMode==='WORLD'&&zones.some(z=>g.id===`${z.id}-${g.depthLayer}`)&&sf.id===g.id+'-support'){const pad=coveragePad(st,g.depthLayer),s=COVERAGE.minZoom*ratio(st,g.depthLayer,COVERAGE.minZoom),bottomScreen=COVERAGE.maxViewport.h/2+(g.y-st.height)*COVERAGE.minZoom+sf.bottom*s;if(sf.points[0].x+g.x>-pad||sf.points.at(-1).x+g.x<st.width+pad||bottomScreen<COVERAGE.maxViewport.h+COVERAGE.margin)error(`${st.id}/${sf.id}: background coverage insufficient for max zoom`);}}
+ for(const e of env.placements||[]){const a=byId.get(e.assetId),g=groups.find(g=>g.id===e.groupId),sf=surfaces.find(s=>s.id===e.supportId);if(!g)error(`${st.id}/${e.id}: invalid scenic group`);else if(g.depthLayer!==e.depthLayer)error(`${st.id}/${e.id}: child depth differs from scenic group`);if(e.supportId&&!sf)error(`${st.id}/${e.id}: invalid support id`);if(sf&&sf.groupId!==e.groupId)error(`${st.id}/${e.id}: support belongs to another group`);if(a&&assetRole(a).rooted&&!sf)error(`${st.id}/${e.id}: rooted object without support`);if(sf&&(e.x<sf.points[0]?.x||e.x>sf.points.at(-1)?.x))error(`${st.id}/${e.id}: root outside support`);if(a&&assetRole(a).rooted&&Math.abs(e.y)>WORLD_UNITS_PER_METER*a.reference?.heightM*.025)error(`${st.id}/${e.id}: root detached from support by attachment offset`);if(!Number.isFinite(e.rotation))error(`${st.id}/${e.id}: invalid orientation`);if('verticalMode'in e)error(`${st.id}/${e.id}: vertical mode belongs to scenic group`);}
+ const visit=(o,path)=>{if(!o||typeof o!=='object')return;for(const [k,v]of Object.entries(o)){if(/^(parallax|parallaxX|parallaxY|depthPan|yFactor|zoomFactor)$/i.test(k))error(`${path}: old arbitrary parallax factor ${k}`);if(typeof v==='object')visit(v,path+'/'+k);}};visit(env,st.id);
+}
+function validate(project){const issues=[],error=text=>issues.push({level:'err',text}),byId=new Map(project.library.map(a=>[a.id,a]));
+ for(const a of project.library){const r=a.reference,b=r?.bounds;
+  if(!r||!Number.isFinite(r.heightM)||r.heightM<=0||!b||!Number.isFinite(b.x)||!Number.isFinite(b.y)||!(b.w>0)||!(b.h>0)||!Number.isFinite(r.foot?.x)||!Number.isFinite(r.foot?.y))error(`${a.id}: missing/invalid reference height, bounds or foot`);
+  if(!Array.isArray(r?.scaleRange)||r.scaleRange.length!==2||!(r.scaleRange[0]>0)||r.scaleRange[1]<r.scaleRange[0])error(`${a.id}: invalid physical scale range`);
+  if(!Array.isArray(r?.backgroundRange)||r.backgroundRange.length!==2||!(r.backgroundRange[0]>0)||r.backgroundRange[1]<r.backgroundRange[0]||r.backgroundRange[0]<r.scaleRange?.[0]||r.backgroundRange[1]>r.scaleRange?.[1])error(`${a.id}: missing/invalid background scale range`);
+  if(b)for(const point of (a.visual||[]).flatMap(s=>s.points||[]))if(point.x<b.x-.001||point.x>b.x+b.w+.001||point.y<b.y-.001||point.y>b.y+b.h+.001){error(`${a.id}: vector extends outside reference bounds`);break;}
+ }
+ for(const st of project.stages){const p=preset(st),ids=new Set();if(!p)error(`${st.id}: missing/invalid environment preset`);
+  for(const e of st.elements||[]){if(e.depthLayer!=='L1')error(`${st.id}/${e.id}: battlefield element must be L1`);if(!st.layers?.some(l=>l.id===e.layer))error(`${st.id}/${e.id}: unregistered draw layer ${e.layer}`);const a=byId.get(e.assetId);if(a?.reference&&(!Number.isFinite(e.scale)||e.scale<a.reference.scaleRange[0]||e.scale>a.reference.scaleRange[1]))error(`${st.id}/${e.id}: scale outside ${a.id} range`);}
+  for(const e of st.environment?.placements||[]){const a=byId.get(e.assetId);if(!a)error(`${st.id}/${e.id}: missing scenery asset ${e.assetId}`);if(!e.id||ids.has(e.id)||st.elements.some(x=>x.id===e.id))error(`${st.id}/${e.id}: duplicate/missing scenery ID`);ids.add(e.id);
+   if(!st.layers?.some(l=>l.id===e.depthLayer))error(`${st.id}/${e.id}: unregistered editor layer ${e.depthLayer}`);
+   if(!e.id||!LAYERS.includes(e.depthLayer)||e.depthLayer==='L1'||e.depthLayer==='L5'||p?.depths[e.depthLayer]===undefined)error(`${st.id}/${e.id}: invalid scenery layer ${e.depthLayer}`);
+   if(a?.collision?.length||a?.interactionType)error(`${st.id}/${e.id}: interactive/colliding scenery outside L1`);
+   if(!Number.isFinite(e.x)||!Number.isFinite(e.y))error(`${st.id}/${e.id}: invalid scenery position`);
+   const range=a?.reference?.backgroundRange;if(a?.reference&&(!Number.isFinite(e.scale)||e.scale<a.reference.scaleRange[0]||e.scale>a.reference.scaleRange[1]||range&&(e.scale<range[0]||e.scale>range[1])))error(`${st.id}/${e.id}: scale outside ${a.id} background range`);
+  }
+  if(!st.environment||!Array.isArray(st.environment.placements))error(`${st.id}: missing scenery placements`);
+  validateComposition(st,byId,error);
+ }
+ return issues;
+}
+G.HonroEnvironment={VERSION,REFERENCE_SCALE,WORLD_UNITS_PER_METER,D0_METERS,PRESETS,SCENE_PRESETS,LAYERS,preset,depth,factor,ratio,screen,world,vectorScale,screenBounds,classifyLegacyElement,referenceForLegacyAsset,makePlacements,makeEnvironment,resize,upgradeLegacy,upgradeComposition,validate,VERTICAL_MODES,COVERAGE,FINISH,ACT1_FAR,act1Mood,campaignMood,act1BackdropFrame,ATMOSPHERES,ATMOSPHERE_BY_SCENE,mixColor,atmosphere,atmosphereAt,zoneWeights,assetRole,surfaceY,groupOf,supportOf,placementPosition,placementScreen,groupTransform,groupWorld,coveragePad,place,generatedAssets:()=>copy([...ENV_ASSETS,...COMPOSITION_ASSETS])};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/geometry.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+const C=G.HONRO_CORE,M=G.HonroMapEngine,cache=new WeakMap();
+const clone=x=>JSON.parse(JSON.stringify(x));
+const seeded=s=>{let x=(s|0)||1;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return(x>>>0)/4294967296;};};
+function distance(p,a,b){const dx=b.x-a.x,dy=b.y-a.y,n=dx*dx+dy*dy,t=n?Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/n)):0;return Math.hypot(p.x-a.x-dx*t,p.y-a.y-dy*t);}
+function simplify(points,epsilon=0){if(!epsilon||points.length<=2)return points.map(p=>({...p}));let max=0,index=-1;for(let i=1;i<points.length-1;i++){const d=distance(points[i],points[0],points.at(-1));if(d>max){max=d;index=i;}}if(max<=epsilon)return[{...points[0]},{...points.at(-1)}];return[...simplify(points.slice(0,index+1),epsilon).slice(0,-1),...simplify(points.slice(index),epsilon)];}
+function simplifyClosed(points,epsilon=0){if(!epsilon||points.length<=3)return points.map(p=>({...p}));let pivot=1,max=0;for(let i=1;i<points.length;i++){const d=Math.hypot(points[0].x-points[i].x,points[0].y-points[i].y);if(d>max){max=d;pivot=i;}}const out=[...simplify(points.slice(0,pivot+1),epsilon).slice(0,-1),...simplify([...points.slice(pivot),points[0]],epsilon).slice(0,-1)];return out.length>=3?out:points.map(p=>({...p}));}
+function derive(t){
+ if(t.type==='solid')return t.points||[];
+ const c=[...(t.control||[])].sort((a,b)=>a.x-b.x);if(c.length<2)return c;
+ if(t.detail?.interpolation==='linear'&&!t.detail?.roughness&&!t.detail?.optimizeEpsilon)return c;
+ const spacing=Math.max(6,t.detail?.spacing||24),rough=t.detail?.roughness||0,eps=Math.max(0,+t.detail?.optimizeEpsilon||0);
+ const sig=JSON.stringify([c,t.detail]);if(cache.get(t)?.sig===sig)return cache.get(t).points;
+ const r=seeded(t.detail?.seed||1),raw=[];
+ for(let i=0;i<c.length-1;i++){const a=c[i],b=c[i+1],n=Math.max(1,Math.ceil(Math.abs(b.x-a.x)/spacing));for(let k=0;k<n;k++){const u=k/n,sm=t.detail?.interpolation==='linear'?u:u*u*(3-2*u),micro=(r()*2-1)*rough*Math.sin(Math.PI*u)+Math.sin((a.x+k*37)*.017)*rough*.26;raw.push({x:a.x+(b.x-a.x)*u,y:a.y+(b.y-a.y)*sm+micro});}}
+ raw.push({...c.at(-1)});const points=eps?simplify(raw,eps):raw;cache.set(t,{sig,points});return points;
+}
+// The explicit platform authoring tool defaults to one-way; solid polygons
+// and every explicit false keep full collision, regardless of shape/material.
+const oneWay=t=>t.oneWay===undefined?t.type==='platform':t.oneWay===true;
+function terrain(t,height=3200,world=false){
+ if(!world&&t.playProjection)t=G.HonroTerrainDomain.projection(t);
+ const pts=derive(t).map(p=>[p.x,p.y]),opt={...(t.properties||{}),mat:t.baseMaterial||t.properties?.mat||'rock',oneWay:oneWay(t),indestructible:!t.breakable};
+ if(opt.mat==='soil')opt.mat='earth';
+ const out=t.type==='ground'?M.ground(t.id,pts,t.floor??height+180,opt):t.type==='platform'?M.ribbon(t.id,pts,t.thickness??80,opt):M.solid(t.id,pts,opt);
+ // Carry gameplay flags that are not geometry. No coordinate quantization occurs.
+ Object.assign(out,t.properties||{});out.mat=opt.mat;out.oneWay=opt.oneWay;out.indestructible=opt.indestructible;
+ return out;
+}
+function surfaces(t,x,height){return C.terrainSurfaces(terrain(t,height),x).filter(h=>Math.abs(h.slope)<=1.35).map(h=>h.y);}
+function nearest(st,x,y=Infinity){const ts=st.terrains.map(t=>terrain(t,st.height)),hit=M.surfaceY(ts,x,Number.isFinite(y)?y:undefined);return hit?{terrain:st.terrains.find(t=>t.id===hit.t.id),y:hit.y,d:Number.isFinite(y)?Math.abs(hit.y-y):hit.y}:null;}
+function material(st,m,compiled){
+ if(m.points)return clone(m);
+ const support=m.terrainId||m.support,ts=compiled||st.terrains.map(t=>terrain(t,st.height));
+ const t=ts.find(t=>t.id===support),a=Math.max(t?.x??0,Math.min(m.x1,m.x2)),b=Math.min(t?t.x+t.w:st.width,Math.max(m.x1,m.x2)),surface=[],depth=m.depth??24,n=Math.max(2,Math.ceil((b-a)/(m.step||24)));
+ for(let i=0;i<=n;i++){const x=a+(b-a)*i/n,hit=M.surfaceY(ts,x,m.reference,support);if(hit)surface.push([x,hit.y]);}
+ if(surface.length<2)return{...m,points:[],surface:[]};
+ if(m.kind==='water'||m.kind==='shallow-water'){
+  const level=m.surfaceY??Math.min(surface[0][1],surface.at(-1)[1])-depth;
+  return{...m,kind:'water-pool',support,attached:true,surface:[[a,level],[b,level]],bottom:surface,points:[[a,level],[b,level],...surface.slice().reverse()]};
+ }
+ const kinds={grass:'grass-mass',moss:'moss-mass',rock:'exposed-rock-mass',mud:'mud-mass',scree:'scree-mass',soil:'mud-mass',charred:'charred-soil',stone:'stone-road'};
+ return{...m,kind:kinds[m.kind]||m.kind,support,attached:true,surface,points:[...surface,...surface.slice().reverse().map(([x,y])=>[x,y+depth])]};
+}
+function transformPoint(p,asset,inst){const z=inst.scale??1,a=inst.rotation||0,x=(p.x-(asset.anchor?.x||0))*z,y=(p.y-(asset.anchor?.y||0))*z;return{x:inst.x+x*Math.cos(a)-y*Math.sin(a),y:inst.y+x*Math.sin(a)+y*Math.cos(a)};}
+function shapes(asset,inst){return(asset.visual||[]).map(sh=>({...sh,points:(sh.points||[]).map(p=>transformPoint(p,asset,inst))}));}
+function collision(asset,inst){return(asset.collision||[]).map((pts,i)=>M.solid(`${inst.id}:collision:${i}`,pts.map(p=>{const q=transformPoint(p,asset,inst);return[q.x,q.y];}),{mat:asset.material||'wood',oneWay:!!asset.oneWay,indestructible:!asset.breakable,climbable:!!asset.climbable,hp:asset.hp??360,route:false,surfaceKind:asset.material||'wood'}));}
+G.HonroGeometry={derive,oneWay,terrain,surfaces,nearest,material,shapes,transformPoint,collision,simplify,simplifyClosed,seeded};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/terrain-domain.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Canonical world polygons are the only geographical source. Battle collision
+// is a bounded projection, never the source of an independently painted skirt.
+const clone=x=>JSON.parse(JSON.stringify(x)),EPS=1e-7;
+function dedupe(ps){return ps.filter((p,i)=>{const a=ps[(i+ps.length-1)%ps.length];return Math.hypot(p.x-a.x,p.y-a.y)>EPS;});}
+function clip(points,b){let ps=points.map(p=>({...p}));for(const [axis,n,less]of [['x',b.left,false],['x',b.right,true],['y',b.top,false],['y',b.bottom,true]]){const next=[],inside=p=>less?p[axis]<=n+EPS:p[axis]>=n-EPS;for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length],ai=inside(a),zi=inside(z);if(ai)next.push(a);if(ai!==zi){const f=(n-a[axis])/(z[axis]-a[axis]);next.push({x:a.x+(z.x-a.x)*f,y:a.y+(z.y-a.y)*f,[axis]:n});}}ps=next;}return dedupe(ps);}
+function projection(t){const q=t.playProjection;if(!q)return t;let points=clip(t.points,q.bounds),start=points.findIndex(p=>Math.abs(p.x-q.start.x)<EPS&&Math.abs(p.y-q.start.y)<EPS);if(start>0)points=[...points.slice(start),...points.slice(0,start)];return{...t,points};}
+function worldBounds(st){return st.terrainBounds||{left:0,top:0,right:st.width,bottom:st.height};}
+function extend(points,st,ceiling=false){
+ const box=worldBounds(st),ys=points.map(p=>p.y),base=ceiling?Math.min(...ys):Math.max(...ys),closes=ceiling?base<=EPS:base>=st.height-EPS;
+ const partialRoof=ceiling&&!(points.some(p=>Math.abs(p.x)<EPS)&&points.some(p=>Math.abs(p.x-st.width)<EPS)),onBase=p=>closes&&Math.abs(p.y-base)<EPS,side=p=>Math.abs(p.x)<EPS?-1:Math.abs(p.x-st.width)<EPS?1:0;
+ const outer=p=>({x:side(p)?side(p)<0?box.left:box.right:p.x,y:onBase(p)?ceiling?(partialRoof?(side(p)?-1800:0):box.top):box.bottom:p.y});
+ // Broad authored shoulders, not periodic noise. Roof/floor share the profile
+ // so the exterior tunnel stays open. Chapters 18/19 occupy the same vault.
+ const profiles=[[0,-130,-360,-220,-510],[0,180,-70,-460,-260],[0,-80,240,40,-320],[0,-230,-90,-410,-620],[0,100,-260,-80,-380]],profile=s=>profiles[(((st.metadata?.stageId===19?18:st.metadata?.stageId)||1)+(s<0?1:3))%profiles.length];
+ const land=(d,s)=>{const stops=[0,800,2300,4100,6000],ys=profile(s);let i=0;while(i<stops.length-2&&d>stops[i+1])i++;const u=Math.max(0,Math.min(1,(d-stops[i])/(stops[i+1]-stops[i]))),f=u*u*(3-2*u);return ys[i]+(ys[i+1]-ys[i])*f;};
+ const run=(p,neighbor,s)=>{const edge=s<0?0:st.width,end=s<0?box.left:box.right,extent=Math.abs(end-edge),dx=Math.abs(p.x-neighbor.x),slope=dx>EPS?Math.max(-.45,Math.min(.45,(p.y-neighbor.y)/dx)):0,out=[];for(let d=0;d<extent;d+=500)out.push({x:edge+s*d,y:p.y+slope*300*(1-Math.exp(-d/300))+land(d,s)});out.push({x:end,y:p.y+slope*300*(1-Math.exp(-extent/300))+land(extent,s)});return out;};
+ const out=[];for(let i=0;i<points.length;i++){const a=points[i],z=points[(i+1)%points.length],s=side(a);
+  if(s&&s===side(z)&&Math.abs(a.x-z.x)<EPS){const prev=points[(i+points.length-1)%points.length],next=points[(i+2)%points.length],ar=onBase(a)?[outer(a)]:run(a,prev,s),zr=onBase(z)?[outer(z)]:run(z,next,s).reverse();out.push(...ar,...zr);}
+  else if(partialRoof&&onBase(a)&&onBase(z)){const mouth=side(a)?z:a,far=side(a)?outer(a):outer(z),ridge=[[0,0],[.10,-280],[.23,-950],[.41,-1900],[.70,-1700],[1,-1800]].map(([u,y])=>({x:mouth.x+(far.x-mouth.x)*u,y}));out.push(...(side(a)?ridge.reverse():ridge));}
+  else{out.push(onBase(a)?outer(a):{...a});if(onBase(a)&&!onBase(z))out.push({...a});if(!onBase(a)&&onBase(z))out.push({...z});}
+ }
+ const result=dedupe(out),start=result.findIndex(p=>Math.abs(p.x-points[0].x)<EPS&&Math.abs(p.y-points[0].y)<EPS);return start>0?[...result.slice(start),...result.slice(0,start)]:result;
+}
+function author(project){const p=clone(project);p.version=6;for(const st of p.stages){if(st.terrainBounds)continue;
+ st.playBounds={left:0,top:0,right:st.width,bottom:st.height};st.terrainBounds={left:-6000,top:-24000,right:st.width+6000,bottom:st.height+24000};st.terrainDomainVersion=1;
+ const simulationBottom=Math.max(st.height,...st.terrains.map(t=>{const q=G.HonroGeometry.terrain(t,st.height);return q.y+q.h;}));
+ for(let i=0;i<st.terrains.length;i++){const t=st.terrains[i],raw=G.HonroGeometry.terrain(t,st.height);if(raw.oneWay||t.breakable||raw.honroElementCollision)continue;if(!(raw.x<=EPS||raw.x+raw.w>=st.width-EPS||raw.honroCeiling&&raw.y<=EPS||raw.y+raw.h>=st.height-EPS))continue;
+  const points=extend(raw.vertices,st,!!raw.honroCeiling);if(JSON.stringify(points)===JSON.stringify(raw.vertices))continue;
+  const q={...t,type:'solid',points,playProjection:{bounds:{left:0,top:0,right:st.width,bottom:simulationBottom},start:{...raw.vertices[0]}}};delete q.control;delete q.floor;delete q.thickness;st.terrains[i]=q;
+ }
+}return p;}
+function validate(st){const out=[],fail=text=>out.push({level:'err',text:st.id+': '+text}),box=v=>v&&typeof v==='object'&&!Array.isArray(v)&&['left','top','right','bottom'].every(k=>Number.isFinite(v[k])&&Math.abs(v[k])<=100000)&&v.right>v.left&&v.bottom>v.top;
+ if(!st.terrainBounds){if(st.playBounds||st.terrainDomainVersion||(st.terrains||[]).some(t=>t.playProjection))fail('incomplete terrain domain');return out;}
+ const v=st.terrainBounds,p=st.playBounds;if(st.terrainDomainVersion!==1)fail('unsupported terrain domain');if(!box(p)||!box(v)||p.left!==0||p.top!==0||p.right!==st.width||p.bottom!==st.height||v.left>=p.left||v.top>=p.top||v.right<=p.right||v.bottom<=p.bottom){fail('terrainBounds must strictly contain the stable playBounds');return out;}
+ for(const t of st.terrains||[]){const q=t.playProjection;
+  if(!Object.prototype.hasOwnProperty.call(t,'playProjection')){const ps=t.points||t.control;if(!G.HonroGeometry.oneWay(t)&&Array.isArray(ps)&&ps.some(a=>a&&(a.x<p.left||a.x>p.right||a.y<p.top||a.y>p.bottom+512)))fail(t.id+' extended solid requires playProjection');continue;}
+  const points=t.points,validPoints=Array.isArray(points)&&points.length>=3&&points.length<=4096&&points.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=v.left-EPS&&p.x<=v.right+EPS&&p.y>=v.top-EPS&&p.y<=v.bottom+EPS);
+  if(t.type!=='solid'||!validPoints||!q||typeof q!=='object'||!box(q.bounds)||!q.start||!Number.isFinite(q.start.x)||!Number.isFinite(q.start.y)||q.bounds.left!==p.left||q.bounds.right!==p.right||q.bounds.top!==p.top||q.bounds.bottom<p.bottom||q.bounds.bottom>v.bottom)fail(t.id+' invalid play projection');else if(clip(points,q.bounds).length<3)fail(t.id+' empty play projection');
+ }return out;
+}
+const renders=new WeakMap(),validBattles=new WeakMap();
+function active(b){if(!b||b.honroTerrainDomainVersion!==1)return false;const prior=validBattles.get(b);if(prior?.source===b.honroWorldTerrain&&prior.bounds===b.honroTerrainBounds&&prior.play===b.honroPlayBounds&&prior.version===b.sceneVersion&&prior.width===b.width&&prior.height===b.height)return prior.valid;
+ const box=v=>v&&['left','top','right','bottom'].every(k=>Number.isFinite(v[k])&&Math.abs(v[k])<=100000)&&v.right>v.left&&v.bottom>v.top,p=b.honroPlayBounds,v=b.honroTerrainBounds,ts=b.honroWorldTerrain;
+ const validProjection=t=>{if(!Object.prototype.hasOwnProperty.call(t,'honroDomainProjection'))return true;const q=t.honroDomainProjection;return !!(q&&typeof q==='object'&&!Array.isArray(q)&&box(q.bounds)&&q.bounds.left===p.left&&q.bounds.right===p.right&&q.bounds.top===p.top&&q.bounds.bottom>=p.bottom&&q.bounds.bottom<=v.bottom&&q.start&&Number.isFinite(q.start.x)&&Number.isFinite(q.start.y));};
+ const valid=!!(box(p)&&box(v)&&p.left===0&&p.top===0&&p.right===b.width&&p.bottom===b.height&&v.left<p.left&&v.right>p.right&&v.top<p.top&&v.bottom>p.bottom&&Array.isArray(ts)&&ts.length<=512&&ts.every(t=>t&&typeof t.id==='string'&&validProjection(t)&&[t.x,t.y,t.w,t.h].every(Number.isFinite)&&t.w>0&&t.h>0&&Array.isArray(t.vertices)&&t.vertices.length>=3&&t.vertices.length<=4096&&t.vertices.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y)&&p.x>=v.left-EPS&&p.x<=v.right+EPS&&p.y>=v.top-EPS&&p.y<=v.bottom+EPS)));
+ validBattles.set(b,{source:ts,bounds:v,play:p,version:b.sceneVersion,width:b.width,height:b.height,valid});return valid;
+}
+function render(b){if(!active(b))return b.terrain||[];let q=renders.get(b);if(q?.version===b.sceneVersion&&q.source===b.honroWorldTerrain&&q.count===b.terrain.length)return q.terrain;
+ const live=new Map(b.terrain.map(t=>[t.id,t])),terrain=[];for(const world of b.honroWorldTerrain){const t=live.get(world.id);if(!t)continue;let shape=world;
+  // Existing restoration events update the collision projection. Re-form the
+  // complete mass from that changed surface, including after save/reload.
+  if(world.honroDomainProjection){const base=projection({points:world.vertices,playProjection:world.honroDomainProjection}).points;if(JSON.stringify(base)!==JSON.stringify(t.vertices)){const points=extend(t.vertices,{width:b.width,height:b.height,terrainBounds:b.honroTerrainBounds,metadata:{stageId:b.honroStage}},!!t.honroCeiling);shape=G.HonroMapEngine.solid(t.id,points.map(p=>[p.x,p.y]));}}
+  terrain.push({...world,...t,vertices:shape.vertices,x:shape.x,y:shape.y,w:shape.w,h:shape.h,honroDomain:true});live.delete(world.id);
+ }terrain.push(...live.values());q={version:b.sceneVersion,source:b.honroWorldTerrain,count:b.terrain.length,terrain};renders.set(b,q);return terrain;
+}
+// Material artwork is a view of the canonical mass, just as collision is a
+// projection of it. Keep the authored local detail; replace only the old solid
+// underpaint and continue large strata in world coordinates. Never write these
+// derived vectors into battle/save state or invent a second terrain silhouette.
+const materialViews=new WeakMap();
+const materialSpecs={
+ 'eup21:foundations':{terrain:'a3-foundation',deep:3650},
+ 'family24:terrain-material':{terrain:'a3-foundation',deep:3300},
+ 'family24:deep-foundation-masonry':{terrain:'a3-foundation',detail:true},
+ 'family24:retaining-earth-faces':{terrain:'a3-foundation',detail:true},
+ 'stage26-witness:earth-and-footing-planes':{terrain:'a3-foundation',deep:3100},
+ 'stage29:record-actual-stone-faces':{terrain:'a3-foundation',deep:7000},
+ 'stage29:record-far-river-bank':{panorama:true},
+ 'a3-waterworks-v3:25:masonry-vault':{vault:true},
+ 'a3-waterworks-v3:27:masonry-vault':{vault:true},
+ 'a3-maintenance25:dark-shell':{rear:true},
+ 'stage27-depot-r4:misconnected-rear':{rear:true}
+};
+const pathString=ps=>'M'+ps.map(p=>p.x+' '+p.y).join('L')+'Z';
+// All extended polygon nodes were authored with absolute M/L commands. Curved
+// architectural paths remain byte-for-byte unchanged.
+function paintPolygon(d){if(!d||/[^MLZ0-9.eE+\-,\s]/.test(d))return null;const ns=d.match(/[-+]?(?:\d*\.)?\d+(?:e[-+]?\d+)?/gi)?.map(Number);return ns&&ns.length>=6&&ns.length%2===0?Array.from({length:ns.length/2},(_,i)=>({x:ns[i*2],y:ns[i*2+1]})):null;}
+function buriedVault(l,b){
+ const asset=clone(l.asset),vector=asset.vector,original=paintPolygon(vector.root.children[0]?.d);
+ if(!original||original.length!==7)return l;
+ const {left,right,top}=b.honroTerrainBounds,w=b.width;
+ // Keep every underside vertex, including the two end vertices, unchanged.
+ // Only the formerly exposed top/side faces merge into the surrounding rock.
+ const lower=[{x:right,y:1470},{x:w+3800,y:1640},{x:w+1800,y:1430},{x:w+600,y:1690},...original.slice(2),{x:-500,y:1830},{x:-1900,y:1490},{x:-3500,y:1680},{x:left,y:1550}];
+ const full=[{x:left,y:top},{x:right,y:top},...lower];
+ const node=(points,fill)=>({tag:'path',d:pathString(points),fill});
+ vector.gradients={
+  'buried-vault-rock':{type:'linear',x1:0,y1:-3800,x2:0,y2:1900,stops:[{offset:0,color:'#081b23',opacity:1},{offset:.64,color:'#12292f',opacity:1},{offset:1,color:'#263c3d',opacity:1}]},
+  'buried-vault-west':{type:'linear',x1:0,y1:-2100,x2:0,y2:1800,stops:[{offset:0,color:'#0b2027',opacity:1},{offset:1,color:'#304740',opacity:1}]}
+ };
+ vector.root.children=[node(full,'url(#buried-vault-rock)'),
+  node([{x:left,y:-3100},{x:w*.12,y:-2400},{x:w*.39,y:280},{x:w*.17,y:1740},...lower.slice(lower.findIndex(p=>p.x===0))],'url(#buried-vault-west)'),
+  node([{x:w*.46,y:-2500},{x:right,y:-3800},...lower.slice(0,lower.findIndex(p=>p.x===w*.45)+1),{x:w*.61,y:410}],'#142b30'),
+  node([{x:left,y:1150},{x:-3000,y:800},{x:-1200,y:1080},{x:0,y:1320},{x:w*.17,y:1400},{x:w*.45,y:1260},{x:w*.78,y:1390},{x:w,y:1280},{x:w+600,y:1480},{x:w+1800,y:1100},{x:right,y:1200},...lower],'#2d4443')];
+ asset.bounds={x:left,y:top,w:right-left,h:1900-top};vector.viewBox=[left,top,right-left,1900-top];
+ return{...l,asset,honroTerrainMaterialClip:new Path2D(pathString(full))};
+}
+function materialLandmarks(b){
+ if(!active(b)||b.honroCustom||b.honroStage<21||b.honroStage>30)return b.honroLandmarks||[];
+ const source=b.honroLandmarks||[],terrain=render(b),old=materialViews.get(b);
+ if(old?.source===source&&old.terrain===terrain&&old.version===b.sceneVersion)return old.landmarks;
+ const bounds=b.honroTerrainBounds,landmarks=source.map(l=>{
+  const spec=materialSpecs[l.asset?.id];if(!spec||!l.asset.vector||l.x||l.y||(l.scale??1)!==1||l.rotation)return l;
+  if(spec.vault)return buriedVault(l,b);
+  const mass=terrain.find(t=>t.id===spec.terrain&&!t.broken);if(!spec.rear&&!spec.panorama&&!mass)return l;
+  const asset=clone(l.asset),vector=asset.vector,children=vector.root.children;
+  if(spec.panorama){
+   const sides=[[[2430,3200],[2110,3200]],[[2540,3040],[2320,3040]],[[2670,3070],[2590,3070]]];
+   for(let i=0;i<3;i++)for(const [j,edge]of [-1800,9000].entries()){const [top,bottom]=sides[i][j],outer=j?bounds.right:bounds.left,dy=j?-100:140;children[i].d+=' '+pathString([{x:edge,y:top},{x:outer,y:top+dy},{x:outer,y:bottom},{x:edge,y:bottom}]);}
+   asset.bounds={x:bounds.left,y:1660,w:bounds.right-bounds.left,h:1540};vector.viewBox=[asset.bounds.x,1660,asset.bounds.w,1540];return{...l,asset};
+  }
+  const full=spec.rear?[{x:bounds.left,y:bounds.top},{x:bounds.right,y:bounds.top},{x:bounds.right,y:bounds.bottom},{x:bounds.left,y:bounds.bottom}]:mass.vertices;
+  const clipPath=new Path2D(pathString(full));
+  // The record-court artwork also dresses its actual upper stone roads.
+  if(b.honroStage===29)for(const t of terrain)if(t!==mass&&!t.broken&&t.mat!=='wood')clipPath.addPath(new Path2D(pathString(t.vertices)));
+  if(!spec.detail)children[0]={...children[0],d:pathString(full)};
+  if(spec.deep===7000){const key='domain-deep-base';vector.gradients[key]={type:'linear',x1:0,y1:7000,x2:0,y2:13200,stops:[{offset:0,color:children[0].fill,opacity:1},{offset:1,color:'#14272b',opacity:1}]};children[0].fill='url(#'+key+')';}
+  for(let i=spec.detail?0:1;i<children.length;i++){
+   const node=children[i],ps=paintPolygon(node.d);if(!ps){
+    // One broad curved soil bed reaches Stage21's eastern contour. Continue
+    // its terminal face without flattening or stretching its approved curve.
+    if(b.honroStage===21&&node.fill==='#314d41'){
+     const edge=b.width,strip=[{x:edge-1,y:2860},{x:edge,y:2860},{x:edge,y:3200},{x:edge-1,y:3200}],continued=extend(strip,{width:b.width,height:3650,terrainBounds:bounds,metadata:{stageId:21}});
+     node.d+=' '+pathString(continued);
+    }
+    continue;
+   }
+   if(spec.rear){
+    // The shaft's broad rear rock wash continues out of the authored building
+    // footprint. Its inner throat, arch voids, posts and waterline stay local.
+    if((b.honroStage===25&&[1,2,6].includes(i))||(b.honroStage===27&&i===1)){
+     const xs=ps.map(p=>p.x),ys=ps.map(p=>p.y),left=Math.min(...xs),right=Math.max(...xs),bottom=Math.max(...ys);
+     for(const p of ps){if(p.x===left&&left===-300)p.x=bounds.left;if(p.x===right&&right>5000)p.x=bounds.right;if(p.y===bottom)p.y=bounds.bottom;}
+     node.d=pathString(ps);
+    }
+    continue;
+   }
+   // Extend only strata which actually cross a material/domain edge. Local
+   // outcrops, masonry blocks and all architectural openings stay authored.
+   if(spec.deep===7000){for(const p of ps)if(p.y>=7000-EPS)p.y=bounds.bottom;}
+   const field=spec.deep===7000&&i>=2&&i<=4,origin=field?-2000:0,width=field&&i<4?11200:b.width-origin;
+   const shifted=ps.map(p=>({x:p.x-origin,y:p.y})),next=extend(shifted,{width,height:spec.deep||b.height,terrainBounds:{...bounds,left:bounds.left-origin,right:bounds.right-origin},metadata:{stageId:b.honroStage}}).map(p=>({x:p.x+origin,y:p.y}));
+   if(JSON.stringify(next)!==JSON.stringify(ps)||spec.deep===7000)node.d=pathString(next);
+   if(spec.deep===7000&&i<=3&&/^#[0-9a-f]{6}$/i.test(node.fill)){
+    const key='domain-deep-'+i;vector.gradients[key]={type:'linear',x1:0,y1:7000,x2:0,y2:13200,stops:[{offset:0,color:node.fill,opacity:1},{offset:1,color:'#14272b',opacity:1}]};node.fill='url(#'+key+')';
+   }
+  }
+  // Preserve every old gradient sample, then gently bury the same material
+  // into deeper shadow. The field never restarts at a polygon or play edge.
+  for(const [name,gradient] of Object.entries(vector.gradients||{}))if(!name.startsWith('domain-deep-')&&!spec.rear&&gradient.type==='linear'&&gradient.x1===gradient.x2&&gradient.y2>gradient.y1){
+   const start=gradient.y1,end=gradient.y2,deep=end+5200;
+   gradient.stops=gradient.stops.map(s=>({...s,offset:s.offset*(end-start)/(deep-start)}));
+   gradient.stops.push({offset:1,color:b.honroStage===21?'#192f2b':'#14272b',opacity:1});gradient.y2=deep;
+  }
+  asset.bounds={x:bounds.left,y:bounds.top,w:bounds.right-bounds.left,h:bounds.bottom-bounds.top};vector.viewBox=[asset.bounds.x,asset.bounds.y,asset.bounds.w,asset.bounds.h];
+  return{...l,asset,honroTerrainMaterialClip:clipPath};
+ });
+ materialViews.set(b,{source,terrain,version:b.sceneVersion,landmarks});return landmarks;
+}
+// Visual water coverage is independent of the conductive/contact polygon.
+// The same pool surface continues outside the stable simulation rectangle;
+// its old bottom is a color/depth sample, never a visible rectangular edge.
+const waterViews=new WeakMap();
+function materialWaterZone(b,z){
+ if(!active(b)||b.honroCustom||![25,27].includes(b.honroStage)||z.id!=='deep-basin-water')return z;
+ let views=waterViews.get(b);if(!views){views=new WeakMap();waterViews.set(b,views);}let prior=views.get(z);if(prior?.bounds===b.honroTerrainBounds)return prior.zone;
+ const bounds=b.honroTerrainBounds,top=z.surface[0][1],bottom=Math.max(...z.points.map(p=>p[1]));
+ const zone={...z,points:[[bounds.left,top],[bounds.right,top],[bounds.right,bounds.bottom],[bounds.left,bounds.bottom]],surface:[[bounds.left,top],[bounds.right,top]],bottom:[[bounds.left,bounds.bottom],[bounds.right,bounds.bottom]],honroWaterPaintBottom:bottom,honroWaterPaintLeft:Math.min(...z.points.map(p=>p[0])),honroWaterPaintRight:Math.max(...z.points.map(p=>p[0])),honroCarvedBasin:true};
+ views.set(z,{bounds,zone});return zone;
+}
+G.HonroTerrainDomain={VERSION:1,render,active,author,projection,clip,extend,worldBounds,validate,materialLandmarks,materialWaterZone};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/stage7-reentry.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// One shared authoring/migration recipe. This low exposed root is deliberately
+// one-way like the existing branches: adding it cannot embed a saved body or
+// change any old support. No world bounds, actor placement or mission reset.
+const ID='root-reentry',REVISION=1;
+const BASE={
+ 'root-floor':{mat:'rock',oneWay:false,points:[[0,4480],[3600,4480],[3600,5200],[0,5200]]},
+ 'tier-low':{mat:'wood',oneWay:true,points:[[180,4200],[1150,3850],[1900,3500],[1900,3595],[1150,3945],[180,4295]]}
+};
+function terrain(){return{id:ID,name:'아랫뿌리 발디딤',type:'solid',points:[[20,4480],[170,4300],[470,4300],[930,4480],[930,4520],[20,4520]].map(([x,y])=>({x,y})),baseMaterial:'wood',oneWay:true,breakable:false,properties:{hp:99999,maxHp:99999,route:true,surfaceKind:'wood',artSeed:1},layer:'terrain',detail:{spacing:18,roughness:0,seed:1,optimizeEpsilon:0}};}
+function matches(items,compiled=false){return Object.entries(BASE).every(([id,base])=>{
+ const source=items?.find(t=>t.id===id),t=!compiled&&source&&G.HonroTerrainDomain?G.HonroTerrainDomain.projection(source):source,ps=compiled?t?.vertices:t?.points;
+ return t&&!t.broken&&(compiled?t.indestructible:!t.breakable)&&(compiled?t.mat:t.baseMaterial)===base.mat&&t.oneWay===base.oneWay&&ps?.length===base.points.length&&ps.every((p,i)=>p.x===base.points[i][0]&&p.y===base.points[i][1]);
+});}
+function villageTerrains(st){return st?.design?.stage7Village?.version===1?(st.design.stage7Village.reentry||[]).map(t=>JSON.parse(JSON.stringify(t))):[];}
+function applyProject(project){
+ const st=project.stages?.find(s=>s.id==='stage-7'&&s.metadata?.stageId===7&&s.metadata?.campaign===true);
+ const roots=villageTerrains(st);if(roots.length){for(const t of roots)if(!st.terrains.some(q=>q.id===t.id))st.terrains.push(t);return project;}
+ if(st?.width===3600&&st.height===5000&&matches(st.terrains)&&!st.terrains.some(t=>t.id===ID))st.terrains.push(terrain());
+ return project;
+}
+function upgradeBattle(b){
+ // The redesigned village owns an explicit two-root recipe. Restore only a
+ // missing authored reentry on an otherwise exact current campaign snapshot.
+ if(b?.honroStage===7&&b.honroStage7VillageRevision===1&&b.mode==='campaign'&&b.honroMapOrigin==='campaign'&&b.honroCanonical===true&&!b.honroCustom){
+  const st=G.HONRO_PROJECT?.stages?.find(s=>s.id==='stage-7'),roots=villageTerrains(st),ids=new Set(roots.map(t=>t.id)),missing=roots.filter(t=>!b.terrain.some(q=>q.id===t.id));if(!missing.length||JSON.stringify(b.honroMap)!==JSON.stringify(st?.design)||JSON.stringify(b.honroMapAnchors)!==JSON.stringify(st?.anchors))return false;
+  const full=G.HonroMaps.compile(st,G.HONRO_PROJECT).terrain,sig=ts=>JSON.stringify(ts.filter(t=>!ids.has(t.id)).map(t=>({id:t.id,vertices:t.vertices,mat:t.mat,oneWay:!!t.oneWay,indestructible:!!t.indestructible})));
+  if(sig(b.terrain)!==sig(full))return false;for(const root of missing)b.terrain.push(JSON.parse(JSON.stringify(full.find(t=>t.id===root.id))));b.honroStage7ReentryRevision=2;b.sceneVersion=(b.sceneVersion||0)+1;return true;
+ }
+
+ // Historical/imported/custom layouts keep their saved map. Only the current
+ // canonical scene with exact lower-ground signatures accepts this additive fix.
+ if(b?.mode!=='campaign'||b.honroMapOrigin!=='campaign'||b.honroStage!==7||b.honroCanonical!==true||b.honroCustom!==false||b.honroAuthoredId!=='stage-7'||b.width!==3600||b.height!==5000||b.honroMap?.act1Scene?.version!==1||!matches(b.terrain,true)||b.terrain.some(t=>t.id===ID))return false;
+ // Origin is positive, but require the full current canonical map fingerprint
+ // as well. Unmarked historical exports are intentionally not auto-upgraded:
+ // an old custom export can otherwise be indistinguishable from campaign.
+ const st=G.HONRO_PROJECT?.stages?.find(s=>s.id==='stage-7'&&s.metadata?.campaign===true);
+ if(!st||!G.HonroMaps?.compile)return false;
+ const signature=ts=>JSON.stringify(ts.filter(t=>t.id!==ID).map(t=>({id:t.id,vertices:t.vertices,mat:t.mat,oneWay:!!t.oneWay,indestructible:!!t.indestructible})));
+ if(signature(b.terrain)!==signature(G.HonroMaps.compile(st,G.HONRO_PROJECT).terrain)||JSON.stringify(b.honroMapAnchors)!==JSON.stringify(st.anchors)||JSON.stringify(b.honroMap)!==JSON.stringify(st.design))return false;
+ b.terrain.push(G.HonroGeometry.terrain(terrain(),b.height));
+ b.honroStage7ReentryRevision=REVISION;b.sceneVersion=(b.sceneVersion||0)+1;
+ return true;
+}
+G.HonroStage7Reentry={id:ID,revision:REVISION,terrain,matches,villageTerrains,villageRevision:2,applyProject,upgradeBattle};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/platform-passages.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Reviewed authored passages, never a shape/material/name heuristic. Workshop
+// edits and unidentified historical layouts keep their own saved collision.
+const targets={8:['west-eave','east-eave'],9:['west-gallery','east-gallery'],10:['west-gallery','east-gallery']},links={10:['gallery-link-west','gallery-link-east']},clone=v=>JSON.parse(JSON.stringify(v));
+const linkPoints={'gallery-link-west':[[1190,2350],[1420,2320],[1420,2356],[1190,2386]],'gallery-link-east':[[3510,2320],[3790,2280],[3790,2316],[3510,2356]]};
+function upgradeBattle(b){
+ const sid=b?.honroStage,ids=targets[sid];
+ if(!ids||b.mode!=='campaign'||b.honroMapOrigin!=='campaign'||b.honroCanonical!==true||b.honroCustom!==false||b.honroAuthoredId!=='stage-'+sid)return false;
+ const p=G.HONRO_PROJECT,st=p?.stages?.find(s=>s.id===b.honroAuthoredId&&s.metadata?.campaign===true);
+ if(!st||b.width!==st.width||b.height!==st.height||JSON.stringify(b.honroMapAnchors)!==JSON.stringify(st.anchors)||JSON.stringify(b.honroMap)!==JSON.stringify(st.design))return false;
+ if(b.honroTerrainDomainVersion===1&&(!b.honroWorldTerrain||JSON.stringify(b.honroPlayBounds)!==JSON.stringify(st.playBounds)||JSON.stringify(b.honroTerrainBounds)!==JSON.stringify(st.terrainBounds)))return false;
+ const expected=G.HonroMaps.compile(st,p),added=new Set(links[sid]||[]);
+ // A later author edit must not silently expand this additive save recipe.
+ for(const id of added){const t=expected.terrain.find(t=>t.id===id);if(!t||!t.oneWay||!t.indestructible||t.mat!=='wood'||JSON.stringify(t.vertices)!==JSON.stringify(linkPoints[id].map(([x,y])=>({x,y}))))return false;}
+ const shape=t=>({id:t.id,x:t.x,y:t.y,w:t.w,h:t.h,vertices:t.vertices,mat:t.mat,indestructible:!!t.indestructible,oneWay:ids.includes(t.id)?true:!!t.oneWay,slope:t.slope,honroElementId:t.honroElementId,honroElementCollision:!!t.honroElementCollision});
+ const same=(a,z)=>JSON.stringify(shape(a))===JSON.stringify(shape(z));
+ function matches(old,current){
+  if(!Array.isArray(old)||!Array.isArray(current))return false;
+  if(ids.some(id=>{const a=old.find(t=>t.id===id),z=current.find(t=>t.id===id);return !a||!z||typeof a.oneWay!=='boolean'||z.oneWay!==true;}))return false;
+  for(const t of old.filter(t=>added.has(t.id))){const ref=current.find(a=>a.id===t.id);if(!ref||!same(t,ref))return false;}
+  return JSON.stringify(old.filter(t=>!added.has(t.id)).map(shape))===JSON.stringify(current.filter(t=>!added.has(t.id)).map(shape));
+ }
+ if(!matches(b.terrain,expected.terrain)||b.honroWorldTerrain&&!matches(b.honroWorldTerrain,expected.worldTerrain))return false;
+ let changed=false;
+ for(const [old,current]of [[b.terrain,expected.terrain],[b.honroWorldTerrain,expected.worldTerrain]]){
+  if(!old)continue;
+  for(const id of ids){const t=old.find(t=>t.id===id);if(!t.oneWay){t.oneWay=true;changed=true;}}
+  for(const id of added)if(!old.some(t=>t.id===id)){old.push(clone(current.find(t=>t.id===id)));changed=true;}
+ }
+ if(changed){b.honroPlatformPassageRevision=1;b.sceneVersion=(b.sceneVersion||0)+1;}
+ return changed;
+}
+G.HonroPlatformPassages={targets,links,upgradeBattle};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/open-structures.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+const rows=G.HONRO_OPEN_STRUCTURES.rows,clone=v=>JSON.parse(JSON.stringify(v));
+const stageRows=id=>rows.filter(r=>r.stage===id),assetRows=rows.filter(r=>r.kind==='asset');
+const stable=v=>JSON.stringify(v,(_,x)=>x&&typeof x==='object'&&!Array.isArray(x)?Object.fromEntries(Object.keys(x).sort().map(k=>[k,x[k]])):x);
+function flags(t){t.oneWay=true;delete t.honroCeiling;delete t.honroLocationCeiling;}
+function authoredStage(s){const q=clone(s);for(const r of stageRows(s.metadata?.stageId).filter(r=>r.kind==='terrain')){const t=q.terrains.find(t=>t.id===r.id);if(t){t.oneWay=true;delete t.properties.honroCeiling;delete t.properties.honroLocationCeiling;}}return q;}
+function upgradeProject(project){
+ const current=G.HONRO_PROJECT;if(!project||!current||project===current)return false;
+ // Only exact unedited canonical stage+asset copies in an existing autosave.
+ // A shared asset used by even one modified/custom stage is left untouched.
+ const sameStage=s=>{const e=current.stages.find(q=>q.id===s.id);return e&&s.metadata?.campaign===true&&stable(authoredStage(s))===stable(authoredStage(e));};
+ let changed=false;
+ for(const r of assetRows){const a=project.library?.find(a=>a.id===r.id),e=current.library.find(a=>a.id===r.id);if(!a||!e||a.oneWay!==false)continue;const users=project.stages.filter(s=>s.elements.some(v=>v.assetId===a.id));if(!users.length||!users.every(sameStage)||stable({...a,oneWay:true})!==stable(e))continue;a.oneWay=true;changed=true;}
+ for(const s of project.stages||[]){if(!sameStage(s))continue;for(const r of stageRows(s.metadata.stageId).filter(r=>r.kind==='terrain')){const t=s.terrains.find(t=>t.id===r.id);if(t&&!t.oneWay){t.oneWay=true;delete t.properties.honroCeiling;delete t.properties.honroLocationCeiling;changed=true;}}}
+ return changed;
+}
+function upgradeBattle(b){
+ const sid=b?.honroStage,selected=stageRows(sid);
+ if(!selected.length||b.mode!=='campaign'||b.honroMapOrigin!=='campaign'||b.honroCanonical!==true||b.honroCustom!==false||b.honroAuthoredId!=='stage-'+sid)return false;
+ const p=G.HONRO_PROJECT,s=p.stages.find(s=>s.id===b.honroAuthoredId&&s.metadata?.campaign===true);if(!s||b.width!==s.width||b.height!==s.height||stable(b.honroMapAnchors)!==stable(s.anchors)||stable(b.honroMap)!==stable(s.design))return false;
+ if(b.honroTerrainDomainVersion===1&&(!b.honroWorldTerrain||stable(b.honroPlayBounds)!==stable(s.playBounds)||stable(b.honroTerrainBounds)!==stable(s.terrainBounds)))return false;
+ const expected=G.HonroMaps.compile(s,p),ids=new Set(selected.flatMap(r=>r.kind==='terrain'?[r.id]:expected.terrain.filter(t=>t.honroElementId===r.elementId).map(t=>t.id)));
+ const shape=t=>{const q={id:t.id,x:t.x,y:t.y,w:t.w,h:t.h,vertices:t.vertices,mat:t.mat,indestructible:!!t.indestructible,oneWay:!!t.oneWay,slope:t.slope,honroElementId:t.honroElementId,honroElementCollision:!!t.honroElementCollision,honroCeiling:!!t.honroCeiling,honroLocationCeiling:!!t.honroLocationCeiling};if(ids.has(t.id)){q.oneWay=true;q.honroCeiling=false;q.honroLocationCeiling=false;}return q;};
+ const matches=(a,z)=>Array.isArray(a)&&Array.isArray(z)&&stable(a.map(shape))===stable(z.map(shape));
+ if(!matches(b.terrain,expected.terrain)||b.honroWorldTerrain&&!matches(b.honroWorldTerrain,expected.worldTerrain))return false;
+ let changed=false;for(const list of [b.terrain,b.honroWorldTerrain])for(const t of list||[])if(ids.has(t.id)&&!t.oneWay){flags(t);changed=true;}
+ if(changed){for(const e of [...b.honroElements||[],...b.honroLandmarks||[]])if(e.asset&&selected.some(r=>r.kind==='asset'&&r.id===e.asset.id))e.asset.oneWay=true;b.honroOpenStructureRevision=1;b.sceneVersion=(b.sceneVersion||0)+1;}
+ return changed;
+}
+G.HonroOpenStructures={rows,upgradeProject,upgradeBattle};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/projectile-targets.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// The waterfall's breakable ring hangs under solid rock. It is not a walking
+// platform. Only its exact canonical old flag is repaired on campaign Continue.
+const stageId=5,targetId='cliff-cleat',points=[{x:3278,y:2255.529411764706},{x:3362,y:2255.529411764706},{x:3362,y:2403.529411764706},{x:3278,y:2403.529411764706}];
+function upgradeBattle(b){
+ if(b?.honroStage!==stageId||b.mode!=='campaign'||b.honroMapOrigin!=='campaign'||b.honroCanonical!==true||b.honroCustom!==false||b.honroAuthoredId!=='stage-5')return false;
+ const p=G.HONRO_PROJECT,st=p?.stages?.find(s=>s.id==='stage-5'&&s.metadata?.campaign===true),authored=st?.terrains.find(t=>t.id===targetId);
+ if(!authored||authored.oneWay!==false||authored.properties?.device!=='ward'||!authored.properties?.honroSeal||JSON.stringify(authored.points)!==JSON.stringify(points))return false;
+ if(b.width!==st.width||b.height!==st.height||JSON.stringify(b.honroMapAnchors)!==JSON.stringify(st.anchors)||JSON.stringify(b.honroMap)!==JSON.stringify(st.design))return false;
+ if(b.honroTerrainDomainVersion===1&&(!b.honroWorldTerrain||JSON.stringify(b.honroPlayBounds)!==JSON.stringify(st.playBounds)||JSON.stringify(b.honroTerrainBounds)!==JSON.stringify(st.terrainBounds)))return false;
+ const expected=G.HonroMaps.compile(st,p),shape=t=>({id:t.id,x:t.x,y:t.y,w:t.w,h:t.h,vertices:t.vertices,mat:t.mat,oneWay:t.id===targetId?false:!!t.oneWay,indestructible:!!t.indestructible,device:t.device,honroSeal:!!t.honroSeal,honroElementId:t.honroElementId,honroElementCollision:!!t.honroElementCollision});
+ const matches=(old,current)=>Array.isArray(old)&&Array.isArray(current)&&old.some(t=>t.id===targetId&&typeof t.oneWay==='boolean')&&JSON.stringify(old.map(shape))===JSON.stringify(current.map(shape));
+ if(!matches(b.terrain,expected.terrain)||b.honroWorldTerrain&&!matches(b.honroWorldTerrain,expected.worldTerrain))return false;
+ let changed=false;for(const terrain of [b.terrain,b.honroWorldTerrain]){const t=terrain?.find(t=>t.id===targetId);if(t?.oneWay){t.oneWay=false;changed=true;}}
+ if(changed)b.sceneVersion=(b.sceneVersion||0)+1;
+ return changed;
+}
+G.HonroProjectileTargets={stageId,targetId,upgradeBattle};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/visual-style.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Rendering-only policy. L1 is a projection depth, not an interaction role.
+// Keep alpha, geometry and gameplay paints independent; distant contrast is bounded.
+const STYLE=Object.freeze({version:2,saturation:Object.freeze({L1:.82,L2:.66,L3:.48,L4:.32,SKY:.28}),contrast:Object.freeze({L1:1,L2:.97,L3:.88,L4:.84,SKY:.80}),tonePivot:64,outline:'#12232bd9',outlinePixels:1.15,materialWidth:6,terrain:Object.freeze({edgeInk:'#101d23d9',topLight:'#c7d0bd',woodLight:'#c8b994',edgePixels:1.5,topInkPixels:2.6,topLightPixels:1.2})});
+const colors=new Map(),contexts=new WeakMap(),metadata=new WeakMap(),images=new WeakMap(),brushes=new Map();
+function color(value,layer='L1'){
+ if(typeof value!=='string')return value;const amount=STYLE.saturation[layer]??STYLE.saturation.L1,contrast=STYLE.contrast[layer]??1,key=amount+':'+contrast+':'+value;if(colors.has(key))return colors.get(key);
+ let rgb,alpha='',match;if((match=/^#([\da-f]{6})([\da-f]{2})?$/i.exec(value))){rgb=[0,2,4].map(i=>parseInt(match[1].slice(i,i+2),16));alpha=match[2]||'';}
+ else if((match=/^rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)(?:\s*,\s*([\d.]+))?\s*\)$/i.exec(value))){rgb=match.slice(1,4).map(Number);alpha=match[4]===undefined?'':Math.round(Number(match[4])*255).toString(16).padStart(2,'0');}
+ else return value;
+ const y=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722,light=STYLE.tonePivot+(y-STYLE.tonePivot)*contrast,result='#'+rgb.map(v=>Math.round(light+(v-y)*amount*contrast).toString(16).padStart(2,'0')).join('')+alpha;
+ if(colors.size>=4096)colors.clear();colors.set(key,result);return result;
+}
+function depth(inst,asset=inst?.asset){const declared=inst?.visualDepth||asset?.visualDepth||asset?.params?.visualDepth;if(Object.hasOwn(STYLE.saturation,declared))return declared;if(inst?.depthLayer&&inst.depthLayer!=='L1')return inst.depthLayer;return asset?.environmentRole==='mountain'?'L3':asset?.environmentRole==='forest'?'L2':'L1';}
+// CSS contrast pivots around 127.5. Pair it with brightness to use the same
+// restrained 64/255 atmospheric pivot as the cached vector palettes.
+function filter(layer='SKY',brightness=1){const k=STYLE.contrast[layer]??1,b=k+STYLE.tonePivot/127.5*(1-k);return `saturate(${STYLE.saturation[layer]??1}) contrast(${k/b}) brightness(${b*brightness})`;}
+function raw(c){return metadata.get(c)?.raw||c;}
+function role(c){return metadata.get(c)?.layer||null;}
+function image(source,layer='SKY'){
+ if(!source?.complete||!source.naturalWidth||typeof document==='undefined')return source;
+ let rows=images.get(source);if(!rows){rows=new Map();images.set(source,rows);}const key=STYLE.version+':'+layer;if(rows.has(key))return rows.get(key);
+ const cv=document.createElement('canvas');cv.width=source.naturalWidth;cv.height=source.naturalHeight;const c=cv.getContext('2d');c.filter=filter(layer);c.drawImage(source,0,0);c.filter='none';rows.set(key,cv);return cv;
+}
+// Legacy trees/braces use a wide open stroke as the material itself. Preserve
+// that silhouette as a cached filled ribbon, never as a contour. Fine lines,
+// filled/closed paths and authored Path2D contour strokes are all omitted.
+function brush(paths,width,cap){const key=JSON.stringify([paths,width,cap]);if(brushes.has(key))return brushes.get(key);const p=new Path2D(),r=width/2;
+ for(const pts of paths)for(let i=1;i<pts.length;i++){const a=pts[i-1],z=pts[i],dx=z[0]-a[0],dy=z[1]-a[1],len=Math.hypot(dx,dy);if(!len)continue;const nx=-dy*r/len,ny=dx*r/len;p.moveTo(a[0]+nx,a[1]+ny);p.lineTo(a[0]-nx,a[1]-ny);p.lineTo(z[0]-nx,z[1]-ny);p.lineTo(z[0]+nx,z[1]+ny);p.closePath();if(cap==='round')for(const v of [a,z]){p.moveTo(v[0]+r,v[1]);p.arc(v[0],v[1],r,0,Math.PI*2);}}
+ if(brushes.size>=512)brushes.delete(brushes.keys().next().value);brushes.set(key,p);return p;
+}
+function context(input,layer='L1'){
+ const c=raw(input);let rows=contexts.get(c);if(!rows){rows=new Map();contexts.set(c,rows);}if(rows.has(layer))return rows.get(layer);
+ const gameplay=layer==='gameplay',methods=new Map();let paths=[],points=null,closed=false,filled=false;
+ const add=(x,y)=>{if(!points){points=[];paths.push(points);}points.push([x,y]);};
+ const track=(name,a)=>{
+  if(name==='beginPath'){paths=[];points=null;closed=false;filled=false;}else if(name==='moveTo'){points=[];paths.push(points);add(...a);}else if(name==='lineTo')add(...a);else if(name==='closePath'||name==='rect'||name==='roundRect')closed=true;
+  else if(name==='quadraticCurveTo'||name==='bezierCurveTo'){const start=points?.at(-1);if(start)for(let i=1;i<=12;i++){const t=i/12,u=1-t;if(name==='quadraticCurveTo')add(u*u*start[0]+2*u*t*a[0]+t*t*a[2],u*u*start[1]+2*u*t*a[1]+t*t*a[3]);else add(u*u*u*start[0]+3*u*u*t*a[0]+3*u*t*t*a[2]+t*t*t*a[4],u*u*u*start[1]+3*u*u*t*a[1]+3*u*t*t*a[3]+t*t*t*a[5]);}}
+  else if(name==='arc'||name==='ellipse'){const ellipse=name==='ellipse',[x,y,rx]=a,ry=ellipse?a[3]:rx,rot=ellipse?a[4]:0,start=a[ellipse?5:3],end=a[ellipse?6:4],ccw=a[ellipse?7:5];let span=end-start;if(Math.abs(span)>=Math.PI*2)closed=true;else{if(!ccw&&span<0)span+=Math.PI*2;if(ccw&&span>0)span-=Math.PI*2;}for(let i=0;i<=24;i++){const theta=start+span*i/24,xx=rx*Math.cos(theta),yy=ry*Math.sin(theta);add(x+xx*Math.cos(rot)-yy*Math.sin(rot),y+xx*Math.sin(rot)+yy*Math.cos(rot));}}
+ };
+ const proxy=new Proxy(c,{
+  get(_,name){if(name==='honroVisualLayer')return layer;const value=c[name];if(typeof value!=='function')return value;if(methods.has(name))return methods.get(name);let fn;
+   if(!gameplay&&['createLinearGradient','createRadialGradient','createConicGradient'].includes(name))fn=(...args)=>{const gradient=c[name](...args),stop=gradient.addColorStop.bind(gradient);gradient.addColorStop=(at,paint)=>stop(at,color(paint,layer));return gradient;};
+   else if(!gameplay&&name==='stroke')fn=(path)=>{if(path||closed||filled||c.lineWidth<STYLE.materialWidth||!points)return;c.save();c.fillStyle=c.strokeStyle;c.fill(brush(paths,c.lineWidth,c.lineCap));c.restore();};
+   else if(!gameplay&&(name==='strokeRect'||name==='strokeText'))fn=()=>{};
+   else if(!gameplay&&name==='fill')fn=(...args)=>{if(!args.length||typeof args[0]==='string')filled=true;return c.fill(...args);};
+   else if(!gameplay&&name==='drawImage')fn=(source,...args)=>c.drawImage(image(source,layer),...args);
+   else if(!gameplay&&['beginPath','moveTo','lineTo','closePath','rect','roundRect','quadraticCurveTo','bezierCurveTo','arc','ellipse'].includes(name))fn=(...args)=>{track(name,args);return c[name](...args);};
+   else fn=value.bind(c);methods.set(name,fn);return fn;
+  },set(_,name,value){c[name]=!gameplay&&['fillStyle','strokeStyle','shadowColor'].includes(name)?color(value,layer):value;return true;}
+ });metadata.set(proxy,{raw:c,layer});rows.set(layer,proxy);return proxy;
+}
+function contextLike(source,target){const layer=role(source);return layer?context(target,layer):target;}
+// Compatibility only: shipped maps/saves predate explicit visualRole and
+// gameplayLinks. New official/custom assets never need an entry in this table.
+const legacyMissionAssets=Object.freeze({11:['s11-art-ritual-clearing'],12:['sq-art-waymark','quest-upper-quarry-mouth'],15:['a2-15-0','quest-new-cut-marks','quest-upper-water-mouth'],17:['s17-art-main-hoist','s17-art-control-drive-link'],19:['sb-old-soul-stone'],30:['sf-art-map-stone']});
+function legacyGameplay(inst,b,asset){const id=inst.id,kind=asset?.kind||inst.kind;
+ if(asset?.id==='act2:bell'&&[18,19].includes(b?.honroStage))return true;
+ if(inst.stage18Bell?.terrainIds?.some(tid=>b?.terrain?.some(t=>t.id===tid))||inst.stage30FerryBody||inst.honroEscortYardCargo)return true;
+ if(legacyMissionAssets[b?.honroStage]?.includes(id)||asset?.id==='act2:ritual'||asset?.id==='act2:old-soul-stone')return true;
+ if(kind==='receiverStone'&&b?.honroMarkers?.some(m=>(m.type==='receiver'||m.action==='receiver')&&Math.hypot(m.x-inst.x,m.y-inst.y)<5))return true;
+ if(b?.honroStage===5&&['cliffShrine','spiritKnot'].includes(kind)){const t=G.HonroQuestTargets.records(b).find(t=>t.id==='cliff-cleat');if(t&&Math.hypot(inst.x-(t.x+t.w/2),inst.y-(t.y+t.h))<5)return true;}
+ return !!(id==='sb-bell-body'&&b?.honroBellRevision===1||id===(b?.honroEscortYardSpec?.cargo?.elementId||'sy-art-cargo')&&b?.honroStage===23||id==='sf-art-settled-barge'&&b?.honroStage===30);
+}
+function classify(inst,b,asset=inst?.asset){
+ if(!inst)return'decoration';const id=inst.id;
+ // Actual collision/interaction/mission links win over any decorative hint.
+ if(asset?.collision?.length||asset?.interactionType||inst.collisionIds?.length)return'gameplay';
+ if(id&&b?.terrain?.some(t=>t.honroElementId===id))return'gameplay';
+ if(id&&(b?.honroMarkers?.some(m=>m.elementId===id||m.targetId===id)||b?.honroObjectives?.some(o=>o.targetId===id)))return'gameplay';
+ if(asset?.params?.terrainId&&b?.terrain?.some(t=>t.id===asset.params.terrainId))return'gameplay';
+ if(typeof asset?.params?.collisionSource==='string'&&asset.params.collisionSource.split(',').some(tid=>b?.terrain?.some(t=>t.id===tid)))return'gameplay';
+ for(const links of [inst.gameplayLinks,asset?.gameplayLinks,asset?.params?.gameplayLinks])if(links&&[['terrainIds',b?.terrain],['unitIds',b?.units],['markerIds',b?.honroMarkers],['objectiveIds',b?.honroObjectives]].some(([key,rows])=>Array.isArray(links[key])&&links[key].some(id=>typeof id==='string'&&rows?.some(row=>row.id===id))))return'gameplay';
+ const declared=inst.visualRole||asset?.visualRole||asset?.params?.visualRole;
+ if(declared==='gameplay'||declared==='decoration')return declared;
+ return legacyGameplay(inst,b,asset)?'gameplay':'decoration';
+}
+G.HonroVisualStyle={STYLE,color,depth,filter,raw,role,context,contextLike,image,classify,stats:()=>({colors:colors.size,brushes:brushes.size}),key:()=>`visual-${STYLE.version}-${Object.values(STYLE.saturation).join('-')}-${Object.values(STYLE.contrast).join('-')}-${STYLE.tonePivot}-${STYLE.outline}-${STYLE.outlinePixels}-${STYLE.materialWidth}`};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/vector-art.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+const VERSION=1,cache=new WeakMap(),validPaint=s=>s===undefined||s==='none'||/^#[\da-f]{6}([\da-f]{2})?$/i.test(s)||/^url\(#[\w-]+\)$/.test(s);
+function validate(vector){const errors=[];if(!vector||vector.version!==VERSION)return['Unsupported vector asset version'];if(vector.gradients!==undefined&&(!vector.gradients||typeof vector.gradients!=='object'||Array.isArray(vector.gradients)))return['Invalid vector gradient table'];const v=vector.viewBox;if(!Array.isArray(v)||v.length!==4||v.some(n=>!Number.isFinite(n))||v[2]<=0||v[3]<=0)errors.push('Invalid vector bounds');let n=0;
+ const walk=(node,depth=0)=>{if(!node||!['g','path'].includes(node.tag)||depth>24||++n>512){errors.push('Invalid or excessive vector tree');return;}if(!validPaint(node.fill)||!validPaint(node.stroke))errors.push('Unsafe vector paint');if(node.tag==='g'&&node.opacity!==undefined&&node.opacity!==1)errors.push('Group opacity requires isolated compositing and is not supported');for(const color of [node.fill,node.stroke])if(color?.startsWith('url(')&&!Object.hasOwn(vector.gradients||{},color.slice(5,-1)))errors.push('Missing vector gradient');if(node.fillRule!==undefined&&!['nonzero','evenodd'].includes(node.fillRule))errors.push('Invalid fill rule');if(node.lineJoin!==undefined&&!['round','bevel','miter'].includes(node.lineJoin))errors.push('Invalid line join');if(node.lineCap!==undefined&&!['round','butt','square'].includes(node.lineCap))errors.push('Invalid line cap');if(node.opacity!==undefined&&(!Number.isFinite(node.opacity)||node.opacity<0||node.opacity>1))errors.push('Invalid vector opacity');if(node.lineWidth!==undefined&&(!Number.isFinite(node.lineWidth)||node.lineWidth<0||node.lineWidth>100))errors.push('Invalid vector stroke');if(node.transform&&(!Array.isArray(node.transform)||node.transform.length!==6||node.transform.some(n=>!Number.isFinite(n))))errors.push('Invalid vector transform');if(node.tag==='path'){if(typeof node.d!=='string'||node.d.length>60000||/[^mMzZlLhHvVcCsSqQtTaA0-9.eE+\-,\s]/.test(node.d))errors.push('Invalid vector path');}else if(!Array.isArray(node.children))errors.push('Invalid vector children');else node.children.forEach(c=>walk(c,depth+1));};walk(vector.root);
+ for(const g of Object.values(vector.gradients||{})){if(!['linear','radial'].includes(g.type)||!Array.isArray(g.stops)||g.stops.length<2||g.stops.length>16){errors.push('Invalid vector gradient');continue;}const keys=g.type==='linear'?['x1','y1','x2','y2']:['cx','cy','r',...['fx','fy'].filter(k=>g[k]!==undefined)];if(keys.some(k=>!Number.isFinite(g[k]))||g.type==='radial'&&g.r<=0)errors.push('Invalid gradient coordinates');let previous=-1;for(const s of g.stops){if(!Number.isFinite(s.offset)||s.offset<previous||s.offset<0||s.offset>1||!/^#[\da-f]{6}$/i.test(s.color)||!Number.isFinite(s.opacity)||s.opacity<0||s.opacity>1)errors.push('Invalid vector stop');previous=s.offset;}}
+ if(vector.source!==undefined&&(typeof vector.source!=='string'||vector.source.length>300000||/<\?|<!|\bon\w+\s*=|href\s*=|style\s*=|<\s*(?:script|image|foreignObject|use)\b/i.test(vector.source)))errors.push('Unsafe vector source');return errors;
+}
+function prepare(vector){let data=cache.get(vector);if(data)return data;const errors=validate(vector);if(errors.length)throw Error(errors.join('; '));let count=0;const walk=node=>{if(node.tag==='path'){count++;return{...node,path:new Path2D(node.d)};}return{...node,children:node.children.map(walk)};};data={root:walk(vector.root),pathCount:count};cache.set(vector,data);return data;}
+function draw(c,asset,inst){if(!asset.vector)return false;const data=prepare(asset.vector),gradients=Object.create(null);
+ c.save();c.translate(inst.x||0,inst.y||0);c.rotate(inst.rotation||0);c.scale(inst.scale??1,inst.scale??1);c.translate(-(asset.anchor?.x||0),-(asset.anchor?.y||0));
+ const paint=color=>{if(!color?.startsWith('url('))return color;const id=color.slice(5,-1),m=c.getTransform(),key=id+':'+[m.a,m.b,m.c,m.d,m.e,m.f].join(',');if(gradients[key])return gradients[key];const g=asset.vector.gradients[id],v=g.type==='linear'?c.createLinearGradient(g.x1,g.y1,g.x2,g.y2):c.createRadialGradient(g.fx??g.cx,g.fy??g.cy,0,g.cx,g.cy,g.r);for(const s of g.stops)v.addColorStop(s.offset,s.color+Math.round(s.opacity*255).toString(16).padStart(2,'0'));return gradients[key]=v;};
+ // Gameplay-only silhouette underpaint. Draw it before every face so internal
+ // facet edges are covered by their original fills, rather than cartoon ink.
+ if(c.honroVisualLayer==='gameplay'){
+  const silhouette=(node,inherited={fill:'#000000',stroke:'none'},opacity=1)=>{c.save();if(node.transform)c.transform(...node.transform);const style={...inherited,...node},alpha=opacity*(node.opacity??1);if(node.tag==='path'&&style.fill!=='none'&&alpha>=.95&&!/^#[\da-f]{6}(?:[0-9a-e][\da-f]|f[0-9a-e])$/i.test(style.fill)){const m=c.getTransform(),scale=Math.max(.05,Math.hypot(m.a,m.b));c.strokeStyle=G.HonroVisualStyle.STYLE.outline;c.lineWidth=G.HonroVisualStyle.STYLE.outlinePixels/scale;c.lineJoin='round';c.stroke(node.path);}else if(node.tag==='g')for(const child of node.children)silhouette(child,style,alpha);c.restore();};silhouette(data.root);
+ }
+ const walk=(node,inherited={fill:'#000000',stroke:'none',lineWidth:1})=>{c.save();if(node.transform)c.transform(...node.transform);c.globalAlpha*=node.opacity??1;const style={...inherited,...node};if(node.tag==='path'){if(style.fill!=='none'){c.fillStyle=paint(style.fill);c.fill(node.path,style.fillRule||'nonzero');}if(style.stroke!=='none'){c.strokeStyle=paint(style.stroke);c.lineWidth=style.lineWidth;c.lineJoin=style.lineJoin||'miter';c.lineCap=style.lineCap||'butt';c.miterLimit=4;c.setLineDash([]);c.stroke(node.path);}}else for(const child of node.children)walk(child,style);c.restore();};walk(data.root);c.restore();return true;
+}
+G.HonroVectorArt={VERSION,validate,prepare,draw};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/space-layout.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+// Read-only validation shared by authoring, runtime imports and Workshop.
+// Visual annotations may outlive a deleted decoration; physical surface and
+// prerequisite references may not. Drawing code never trusts collection types.
+function validateSpace(st){
+ const s=st?.design?.space;if(!s)return['Missing design.space'];
+ if(s.version!==1)return['Unsupported spatial layout version'];
+ const errors=[],fail=m=>errors.push((st.id||'stage')+': '+m);
+ const required=['rooms','surfaces','connections','routes','encounterSites'];
+ const optional=['landmarks','scenery','lights','views','water'];
+ if(!required.every(k=>Array.isArray(s[k]))||!s.sites||typeof s.sites!=='object'||Array.isArray(s.sites))return['Invalid spatial layout collections'];
+ for(const k of optional)if(s[k]!==undefined&&!Array.isArray(s[k]))fail('Invalid spatial '+k+' collection');
+ if(errors.length)return errors;
+ if(!Array.isArray(st.terrains)||!Array.isArray(st.units))return['Missing canonical spatial content'];
+ for(const k of [...required,...optional])if((s[k]||[]).some(v=>!v||typeof v!=='object'||Array.isArray(v)))fail('Invalid '+k+' record');
+ if(errors.length)return errors;
+ const terrains=new Map(st.terrains.map(t=>[t.id,t])),surfaces=new Map(s.surfaces.map(v=>[v.id,v]));
+ const rooms=new Set(s.rooms.map(v=>v.id)),routes=new Set(s.routes.map(v=>v.id));
+ const validId=id=>typeof id==='string'&&id.length>0&&id.length<=200;
+ const unique=(xs,label)=>{const ids=xs.map(v=>v.id);if(ids.some(id=>!validId(id)))fail('Missing '+label+' ID');if(new Set(ids).size!==ids.length)fail('Duplicate '+label+' ID');};
+ for(const k of [...required,'landmarks','scenery','lights','views','water'])unique(s[k]||[],k);
+ if(!Number.isInteger(s.geometryRevision)||s.geometryRevision<1)fail('Invalid spatial geometry revision');
+ if(st.initialState?.honroAct2GeometryRevision!==undefined&&st.initialState.honroAct2GeometryRevision!==s.geometryRevision)fail('Spatial revision mismatch');
+ const finite=p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y);
+ const inWorld=p=>finite(p)&&p.x>=-1e-5&&p.x<=st.width+1e-5&&p.y>=-1e-5&&p.y<=st.height+1e-5;
+ const anchor=(p,label,requiredSurface=true)=>{
+  if(!finite(p))fail(label+' has non-finite anchor');else if(!inWorld(p))fail(label+' anchor is outside playable bounds');
+  if(requiredSurface&&(!validId(p?.surfaceId)||!surfaces.has(p.surfaceId)))fail(label+' references missing surface '+p?.surfaceId);
+ };
+ const requirements=(list,label)=>{if(list===undefined)return;if(!Array.isArray(list)){fail(label+' has invalid prerequisites');return;}
+  for(const r of list){if(!r||!terrains.has(r.terrainId))fail(label+' references missing prerequisite terrain '+r?.terrainId);if(!['broken','restored'].includes(r?.state))fail(label+' has invalid prerequisite state');if(r?.objectiveId!==undefined&&!validId(r.objectiveId))fail(label+' has invalid prerequisite objective');}
+ };
+ for(const surface of s.surfaces){
+  const t=terrains.get(surface.terrainId);if(!t){fail('Missing terrain '+surface.terrainId);continue;}
+  const points=t.playProjection&&G.HonroTerrainDomain?G.HonroTerrainDomain.projection(t).points:t.points;
+  if(!Array.isArray(points)||!Array.isArray(surface.edgeIndices)||!surface.edgeIndices.length||surface.edgeIndices.some(j=>!Number.isInteger(j)||j<0||j>=points.length))fail('Invalid edges on '+surface.id);
+  if(!Array.isArray(surface.roomIds)||!surface.roomIds.length||surface.roomIds.some(id=>!rooms.has(id)))fail('Missing room on '+surface.id);
+ }
+ for(const r of s.rooms){
+  if(!finite(r.bounds)||![r.bounds.w,r.bounds.h].every(n=>Number.isFinite(n)&&n>=0))fail('Invalid bounds '+r.id);
+  if(!Array.isArray(r.terrainIds)||!Array.isArray(r.ceilingIds)){fail('Invalid room surfaces '+r.id);continue;}
+  for(const id of [...r.terrainIds,...r.ceilingIds])if(!terrains.has(id))fail('Missing room terrain '+id);
+  if(!['open','cave','transition'].includes(r.sky))fail('Invalid room sky mode '+r.id);
+ }
+ for(const route of s.routes){
+  if(!['required','optional-jump','optional-walk','return'].includes(route.kind))fail('Invalid route kind '+route.id);
+  if(!Array.isArray(route.anchors)||route.anchors.length<2){fail('Short route '+route.id);continue;}
+  route.anchors.forEach(p=>anchor(p,route.id));requirements(route.requires,route.id);
+ }
+ for(const c of s.connections){
+  if(!rooms.has(c.from)||!rooms.has(c.to))fail('Broken room connection '+c.id);
+  if(!routes.has(c.routeId))fail('Missing route '+c.routeId);
+  if(!['walk','gated-walk','optional-jump'].includes(c.kind))fail('Invalid connection kind '+c.id);
+  anchor(c.entry,c.id);anchor(c.exit,c.id);requirements(c.requires,c.id);
+ }
+ for(const [id,site] of Object.entries(s.sites)){
+  if(!site||typeof site!=='object'){fail('Invalid site '+id);continue;}
+  if(!rooms.has(site.roomId))fail('Missing site room '+id);anchor(site,id);anchor(site.standing,id+' standing');
+  if(site.target){anchor(site.target,id+' target',false);if(!terrains.has(site.target.terrainId))fail('Missing target '+id);}
+ }
+ for(const e of s.encounterSites){
+  if(!st.units.some(u=>u.id===e.unitId))fail('Missing encounter unit '+e.unitId);anchor(e,e.id);if(!rooms.has(e.roomId))fail('Missing encounter room '+e.id);
+ }
+ for(const k of ['landmarks','scenery'])for(const v of s[k]||[]){
+  if(!finite(v)||!Number.isFinite(v.scale)||v.scale<=0)fail('Invalid '+k+' transform '+v.id);
+  if(v.roomId!==undefined&&!rooms.has(v.roomId))fail('Missing '+k+' room '+v.id);
+  if(v.surfaceId!==undefined&&!surfaces.has(v.surfaceId))fail('Missing '+k+' surface '+v.id);
+  for(const key of ['assetId','elementId','kind'])if(v[key]!==undefined&&!validId(v[key]))fail('Invalid '+k+' '+key+' '+v.id);
+  if(v.footOffset!==undefined&&!Number.isFinite(v.footOffset))fail('Invalid '+k+' foot offset '+v.id);
+ }
+ for(const v of s.lights||[]){if(!finite(v)||v.radius!==undefined&&(!Number.isFinite(v.radius)||v.radius<=0))fail('Invalid light '+v.id);if(v.roomId!==undefined&&!rooms.has(v.roomId))fail('Missing light room '+v.id);if(v.color!==undefined&&(typeof v.color!=='string'||!/^#[\da-f]{6}([\da-f]{2})?$/i.test(v.color)))fail('Invalid light color '+v.id);}
+ for(const v of s.views||[]){if(!finite(v)||!Number.isFinite(v.zoom)||v.zoom<=0)fail('Invalid view '+v.id);if(v.roomId!==undefined&&!rooms.has(v.roomId))fail('Missing view room '+v.id);}
+ for(const v of s.water||[]){if(!terrains.has(v.terrainId)||!surfaces.has(v.surfaceId)||!rooms.has(v.roomId))fail('Invalid water reference '+v.id);}
+ const cross=(a,b,c)=>(b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x);
+ for(const t of st.terrains){const ps=t.points;if(!Array.isArray(ps)){fail('Missing canonical polygon '+t.id);continue;}for(let i=0;i<ps.length;i++)for(let j=i+2;j<ps.length;j++){if(i===0&&j===ps.length-1)continue;const a=ps[i],b=ps[(i+1)%ps.length],c=ps[j],d=ps[(j+1)%ps.length];if(cross(a,b,c)*cross(a,b,d)<-1e-6&&cross(c,d,a)*cross(c,d,b)<-1e-6)fail('Self-intersection '+t.id+' edges '+i+'/'+j);}}
+ return errors;
+}
+function validate(st){try{return validateSpace(st);}catch(error){return[(st?.id||'stage')+': malformed spatial metadata ('+error.message+')'];}}
+G.HonroSpaceLayout={VERSION:1,validate};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/schema.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+const VERSION=6,clone=x=>JSON.parse(JSON.stringify(x)),C=G.HONRO_CORE;
+// Validation also runs in the standalone legacy importer, before Geometry is
+// loaded. Keep this pure default aligned with Geometry.oneWay (tested in a VM).
+const terrainOneWay=t=>t.oneWay===undefined?t.type==='platform':t.oneWay===true;
+const arrays=['terrains','materials','elements','units','events','encounters','objectives','markers','layers'];
+function layers(){return['far','mid','back','structural-back','terrain','interactive','prop','units','events','front','L2','L3','L4','L5'].map(id=>({id,name:id,visible:true,locked:false}));}
+function emptyStage(id='stage-new',name='새 스테이지',width=5000,height=3200){const st={id,name,width,height,backdrop:'forest',metadata:{stageId:1,campaign:false},terrains:[],materials:[],elements:[],units:[],events:[],encounters:[],objectives:[],markers:[],layers:layers(),meta:{notes:'',seed:12031},initialState:{}};st.environment=G.HonroEnvironment.makeEnvironment(st);return st;}
+// ACT1 scenery annotations follow the authoritative editable instances. This
+// runs for command edits and direct Workshop drag/property/delete commits alike.
+function reconcileAct1Scene(st,library=[]){
+ const scene=st.design?.act1Scene;if(!scene||scene.version!==1)return;
+ const elements=new Map((st.elements||[]).map(e=>[e.id,e])),colliding=id=>{const e=elements.get(id),a=e&&library.find(a=>a.id===e.assetId);return !!(a?.collision?.length||a?.interactionType);},terrains=new Set((st.terrains||[]).map(t=>t.id));
+ if(Array.isArray(scene.scenery))scene.scenery=scene.scenery.filter(r=>!r||typeof r!=='object'||typeof r.id!=='string'||elements.has(r.id)&&!colliding(r.id)&&terrains.has(r.supportId)).map(r=>{
+  if(!r||typeof r!=='object')return r;const e=elements.get(r.id);if(!e)return r;
+  const changed=e.x!==r.x||e.y!==r.y||(e.scale??1)!==r.scale||e.assetId!==r.assetId;
+  if(!changed)return r;const nearest=G.HonroGeometry?.nearest(st,e.x,e.y);
+  return{...r,assetId:e.assetId,x:e.x,y:e.y,scale:e.scale??1,supportId:nearest?.terrain?.id||r.supportId,footOffset:0,rootContacts:[]};
+ });
+ if(Array.isArray(scene.replaced))scene.replaced=scene.replaced.filter(id=>typeof id!=='string'||elements.has(id)&&!colliding(id));
+ if(Array.isArray(scene.rocks))scene.rocks=scene.rocks.filter(r=>!r||typeof r!=='object'||!r.supportId||terrains.has(r.supportId));
+}
+function normalize(input){
+ const p=clone(input);if(!p||!Array.isArray(p.stages)||!Array.isArray(p.library))throw Error('Expected a HONRO project with stages and library');
+ if(p.version>VERSION)throw Error('Unsupported future map version '+p.version);
+ // v4 already has WORLD composition; only v1–v3 need legacy geometry/environment handling.
+ const legacy=(p.version||1)<4;
+ if(legacy){for(const st of p.stages)st.backdrop=({ravine:'valley',village:'gate'})[st.backdrop]||st.backdrop||'forest';G.HonroEnvironment.upgradeLegacy(p);}
+ else if((p.environmentVersion||1)<G.HonroEnvironment.VERSION)G.HonroEnvironment.upgradeComposition(p);
+ p.schema='honro-map';p.version=VERSION;p.settings={grid:40,snap:true,autosave:true,adaptiveLOD:true,...p.settings};p.activeStageId??=p.stages[0]?.id;
+ for(const a of p.library){a.visual??=[];a.collision??=[];a.anchor??={x:0,y:0};a.sockets??=[];a.tags??=[];a.params??={};}
+ for(const st of p.stages){st.metadata??={stageId:1,campaign:false};st.meta??={notes:''};st.initialState??={};for(const a of arrays)st[a]??=a==='layers'?layers():[];if(legacy)for(const l of ['L2','L3','L4','L5'])if(!st.layers.some(x=>x.id===l))st.layers.push({id:l,name:l,visible:true,locked:false});for(const t of st.terrains)t.detail??={spacing:18,roughness:0,seed:1,optimizeEpsilon:0};}
+ for(const st of p.stages)reconcileAct1Scene(st,p.library);
+ return p;
+}
+function validate(project){
+ const out=[],issue=(level,text)=>out.push({level,text});
+ if(project.schema!=='honro-map'||project.version!==VERSION)issue('err','Unsupported canonical map schema');
+ const unique=(items,label)=>{const ids=new Set();for(const o of items){if(!o.id||ids.has(o.id))issue('err',`${label}: missing/duplicate ID ${o.id}`);ids.add(o.id);}return ids;};
+ const assets=unique(project.library,'library');unique(project.stages,'stages');
+ if(!project.stages.length||!project.stages.some(s=>s.id===project.activeStageId))issue('err','Missing active stage');
+ for(const a of project.library){
+  if(a.vector){if(!G.HonroVectorArt)issue('err',`${a.id}: vector renderer schema unavailable`);else for(const error of G.HonroVectorArt.validate(a.vector))issue('err',`${a.id}: ${error}`);}
+  for(const pts of [...(a.visual||[]).map(s=>s.points||[]),...(a.collision||[])])if(pts.some(p=>!Number.isFinite(p.x)||!Number.isFinite(p.y)))issue('err',`${a.id}: invalid asset coordinates`);
+ }
+ for(const st of project.stages){
+  if(st.design?.space){if(!G.HonroSpaceLayout)issue('err',`${st.id}: spatial schema unavailable`);else for(const error of G.HonroSpaceLayout.validate(st))issue('err',error);}
+  if(st.design?.act1Scene){
+   const scene=st.design.act1Scene,terrainIds=new Set((st.terrains||[]).map(t=>t.id)),elements=new Map((st.elements||[]).map(e=>[e.id,e])),label=st.id+': ACT1 scene';
+   if(scene.version!==1)issue('err',label+' unsupported version');
+   for(const name of ['scenery','rocks','replaced','lights'])if(!Array.isArray(scene[name])||scene[name].length>128)issue('err',label+' invalid '+name);
+   for(const r of Array.isArray(scene.rocks)?scene.rocks:[]){if(!r||typeof r!=='object'){issue('err',label+' invalid rock record');continue;}if(!terrainIds.has(r.supportId)||![r.x,r.y,r.width,r.height].every(Number.isFinite)||r.width<=0||r.height<=0||r.width>st.width*4||r.height>st.height*4||!['shoulder','buttress'].includes(r.kind))issue('err',label+' invalid rock/support '+r.id);}
+   for(const r of Array.isArray(scene.scenery)?scene.scenery:[]){if(!r||typeof r!=='object'){issue('err',label+' invalid scenery record');continue;}const e=elements.get(r.id),a=e&&project.library.find(a=>a.id===e.assetId);if(!e||!a||a.collision?.length||!terrainIds.has(r.supportId)||![r.x,r.y,r.scale].every(Number.isFinite)||r.scale<=0||r.scale>8||e.x!==r.x||e.y!==r.y||e.assetId!==r.assetId)issue('err',label+' invalid scenery/support '+r.id);}
+   for(const id of Array.isArray(scene.replaced)?scene.replaced:[]){const e=elements.get(id),a=e&&project.library.find(a=>a.id===e.assetId);if(!e||a?.collision?.length||a?.interactionType)issue('err',label+' cannot hide missing or interactive/colliding landmark '+id);}
+   for(const r of Array.isArray(scene.lights)?scene.lights:[])if(!r||typeof r!=='object'||![r.x,r.y].every(Number.isFinite)||r.radius!==undefined&&(!Number.isFinite(r.radius)||r.radius<=0||r.radius>2000))issue('err',label+' invalid light');
+  }
+  if(!Number.isFinite(st.width)||!Number.isFinite(st.height)||st.width<=0||st.height<=0)issue('err',`${st.id}: invalid dimensions`);
+  out.push(...G.HonroBounds.validate(st));
+  out.push(...(G.HonroTerrainDomain?.validate(st)||[]));
+  if(!['forest','temple','gate','river','valley','bridge','tree','shrine'].includes(st.backdrop))issue('err',`${st.id}: unknown backdrop ${st.backdrop}`);
+  // Standalone map/environment tools may load the schema without game content.
+  if(!Number.isInteger(st.metadata.stageId)||st.metadata.stageId<1||st.metadata.stageId>(G.HONRO_CONTENT?.stages?.length??20))issue('err',`${st.id}: stageId must reference an implemented campaign stage`);
+  const ids=unique(arrays.filter(k=>k!=='layers').flatMap(k=>st[k]||[]),st.id),terrainIds=new Set(st.terrains.map(t=>t.id));
+  for(const t of st.terrains){if(t.oneWay!==undefined&&typeof t.oneWay!=='boolean')issue('err',`${t.id}: oneWay must be boolean`);if(terrainOneWay(t)&&t.properties?.honroCeiling)issue('err',`${t.id}: a solid ceiling cannot be a one-way platform`);const pts=t.type==='solid'?t.points:t.control;if(!Array.isArray(pts)||pts.length<(t.type==='solid'?3:2)||pts.some(p=>!p||!Number.isFinite(p.x)||!Number.isFinite(p.y)))issue('err',`${t.id}: invalid polygon`);}
+  for(const e of st.elements){if(!assets.has(e.assetId))issue('err',`${e.id}: missing asset ${e.assetId}`);if(!Number.isFinite(e.x)||!Number.isFinite(e.y))issue('err',`${e.id}: invalid position`);}
+  for(const m of st.materials)if((m.terrainId||m.support)&&!terrainIds.has(m.terrainId||m.support))issue('err',`${m.id}: missing support`);
+  for(const u of st.units){if(!G.HonroUnits.has(u.kind))issue('err',`${u.id}: unknown unit ${u.kind}`);if(!Number.isFinite(u.x)||!Number.isFinite(u.y))issue('err',`${u.id}: invalid position`);if(!(u.team in G.HonroUnits.teams))issue('err',`${u.id}: unknown team`);}
+  if(!st.units.some(u=>u.team==='player'))issue('warn',`${st.id}: Player start가 없습니다.`);
+  for(const e of st.encounters)for(const id of e.unitIds||[])if(!ids.has(id))issue('err',`${e.id}: missing member ${id}`);
+ }
+ if(project.environmentVersion!==G.HonroEnvironment.VERSION)issue('err','Missing environment schema version');
+ out.push(...G.HonroEnvironment.validate(project));
+ return out.length?out:[{level:'ok',text:'구조 오류 없음'}];
+}
+function serialize(p){return JSON.stringify(p,null,2);}
+function finalize(input){const p=normalize(input),errors=validate(p).filter(x=>x.level==='err');if(errors.length)throw Error(errors.map(x=>x.text).join('\n'));return p;}
+G.HonroMaps={VERSION,clone,layers,emptyStage,normalize,validate,serialize,finalize,reconcileAct1Scene};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/units.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+const C=G.HONRO_CORE,H=G.HONRO_CONTENT,clone=x=>JSON.parse(JSON.stringify(x));
+const teams={player:0,enemy:1,ally:2,npc:2};
+function catalog(){return[
+ ...Object.keys(H.hero).map(kind=>({kind,name:H.hero[kind].name,team:'player'})),
+ ...Object.entries(G.HonroWorld.archetypes).map(([kind,d])=>({kind,name:d.name,team:'enemy'})),
+ ...['porter','guard','archer','healer','ritualist','daoist','medium','scout'].map(role=>({kind:'ally:'+role,name:'동맹 · '+role,team:'ally'})),
+ ...['bier','civilian','gate'].map(kind=>({kind:'object:'+kind,name:kind,team:'npc'})),
+ {kind:'boss:bier',name:'빈 상여',team:'enemy'},{kind:'boss:sodan',name:'소단',team:'enemy'}];}
+function has(kind){return catalog().some(x=>x.kind===kind);}
+function kindOf(u){if(u.side===0)return u.cls;if(u.id==='boss')return u.honroFinalBoss?'boss:sodan':'boss:bier';if(u.honroAlly||u.allyRole)return'ally:'+(u.allyRole||'guard');if(u.side===2)return'object:'+(u.honroType||'civilian');return G.HonroWorld.archetypes[u.honroVariant]?u.honroVariant:G.HonroWorld.archetypes[u.honroType]?u.honroType:'human';}
+function create(record,b,profile,st){
+ if(!has(record.kind))throw Error('Unknown unit definition '+record.kind);
+ const side=teams[record.team]??record.side??1;
+ let u;
+ if(record.runtimeTemplate){
+  const {runtimeTemplate,kind,team,stageOverrides,...data}=record;u=clone(data);
+ }else if(H.hero[record.kind]){
+  u=C.makeUnit(record.kind,side,record.x,record.y,{id:record.id,name:H.hero[record.kind].name,h:92,r:22,loadout:[...profile.loadouts[record.kind]],tune:profile.tuning[record.kind]??.5});
+ }else if(G.HonroWorld.archetypes[record.kind])u=G.HonroWorld.createEnemy(b,st,record.x,record.kind,record.spawnIndex??0,record.y,true);
+ else if(record.kind.startsWith('ally:'))u=G.HonroWorld.ally(b,st,record.id,record.kind.slice(5),record.x,record.y);
+ else if(record.kind.startsWith('boss:')){
+  const source=(G.HONRO_PROJECT?.unitTemplates||G.HONRO_PROJECT?.stages.flatMap(s=>s.units||[]))?.find(u=>u.kind===record.kind);if(!source)throw Error('Missing boss definition');u=clone(source);delete u.runtimeTemplate;
+ }else u=C.makeUnit('knight',side,record.x,record.y,{id:record.id,name:record.kind.slice(7),honroType:record.kind.slice(7),fixed:true,loadout:[],hp:1450,maxHp:1450,r:50,h:110,honroCivilian:true});
+ Object.assign(u,{id:record.id,x:record.x,y:record.y,side,spawnX:record.x,spawnY:record.y});
+ if(!record.runtimeTemplate||side!==record.side){
+  u.honroAlly=record.team==='ally';u.honroCivilian=record.team==='npc';
+  if(u.honroAlly){u.allyRole??='guard';u.allyState??='follow';u.awake=true;}
+ }
+ if(side===0&&H.hero[u.cls]){
+  u.loadout=[...profile.loadouts[u.cls]];u.tune=profile.tuning[u.cls]??.5;C.applyHero(u,b.heroes[u.cls],true);u.h=92;u.acted=false;u.cooldowns={};
+ }else if(side===1&&u.combatBaseHp!==undefined){const d=C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal;u.honroDifficulty=b.difficulty;u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;u.xpGranted=0;}
+ if(record.facing!==undefined)u.facing=record.facing;
+ if(record.label)u.name=record.label;
+ if(record.encounterGroup!==undefined)u.honroCluster=record.encounterGroup;
+ if(record.behavior){u.honroBehavior=record.behavior;if(record.behavior==='aggressive'){u.awake=true;u.aggroUntil=999;}if(record.behavior==='stationary')u.fixed=true;}
+ if(record.boss!==undefined)u.boss=record.boss;
+ if(record.miniboss!==undefined)u.honroMidboss=record.miniboss;
+ if(record.levelOverride!==undefined){u.level=record.levelOverride;if(side===0){const h=clone(b.heroes[u.cls]);h.xp=C.xpAtLevel(u.level);C.applyHero(u,h,true);}}
+ if(record.rank!==undefined)for(const id of u.loadout)u.ranks[id]=record.rank;
+ Object.assign(u,clone(record.stageOverrides||{}));return u;
+}
+function record(kind,id,x,y,team){const d=catalog().find(d=>d.kind===kind);if(!d)throw Error('Unknown unit '+kind);return{id,kind,team:team||d.team,x,y,facing:1};}
+G.HonroUnits={catalog,has,kindOf,create,record,teams};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/compiler.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+const C=G.HONRO_CORE,M=G.HonroMaps,Q=G.HonroGeometry,clone=M.clone;
+const renderLayer=layer=>({far:'back',interactive:'prop',terrain:'prop',units:'front',events:'front'})[layer]||layer||'back';
+function profileFor(st){const p=C.defaults(),sid=st.metadata?.stageId||1;p.recruited=[...new Set(st.units.filter(u=>u.team==='player').map(u=>G.HONRO_CONTENT.hero[u.kind]?u.kind:u.cls).filter(Boolean))];if(!p.recruited.length)p.recruited=['archer'];for(const c of p.recruited)p.heroes[c].xp=G.HonroProgression.xpAt(G.HonroProgression.plan(sid).entryLevel);return p;}
+function compile(st,project){
+ if(st.pending)throw Error('Chapter data is not prepared: '+st.id);
+ const terrain=st.terrains.map(t=>Q.terrain(t,st.height)),elements=[],landmarks=[];
+ for(const instance of st.elements){
+  const asset=project.library.find(a=>a.id===instance.assetId);if(!asset)throw Error('Missing element '+instance.assetId);
+  const e=clone(instance);if(e.snap){const hit=G.HonroMapEngine.surfaceY(terrain,e.x,e.y);if(hit)e.y=hit.y;}
+  if(asset.renderer==='landmark'){
+   const {assetId,scale,rotation,snap,depthLayer,...native}=e;
+   // Native landmarks have no embedded asset. Preserve only the common
+   // author-declared presentation semantics when compiling that route.
+   const semantics={};for(const key of ['visualRole','visualDepth','gameplayLinks']){const value=e[key]??asset[key]??asset.params?.[key];if(value!==undefined)semantics[key]=clone(value);}
+   landmarks.push({...native,...semantics,layer:renderLayer(native.layer),kind:asset.kind,size:scale??e.size??1,rotation:rotation||0});
+  }else{
+   const collision=Q.collision(asset,e);for(const t of collision){t.honroElementId=e.id;t.honroElementCollision=true;}terrain.push(...collision);
+   const element={...e,kind:'canonical-element',asset:clone(asset),collisionIds:collision.map(t=>t.id)};
+   elements.push(element);landmarks.push({...element,layer:renderLayer(e.layer)});
+  }
+ }
+ const worldTerrain=st.terrainBounds?st.terrains.map(t=>({...Q.terrain(t,st.height,true),...(t.playProjection?{honroDomainProjection:clone(t.playProjection)}:{})})):null;
+ return{terrain,worldTerrain,landmarks,elements,materials:st.materials.map(m=>Q.material(st,m,terrain))};
+}
+function createBattle(st,project,profile=profileFor(st),options={}){
+ const sid=st.metadata?.stageId||1,content=G.HonroSplitCampaign?.content(profile,sid)||G.HONRO_CONTENT.stages[sid-1],b=C.createBattle(1,clone(profile),'practice',{party:['archer'],distance:900});
+ Object.assign(b,clone(st.initialState||{}));
+ const map=compile(st,project);
+ Object.assign(b,{stage:sid,honroStage:sid,honroRevision:20,honroMapRevision:20,honroLayoutRevision:G.HonroLayouts.revision,
+  honroMapOrigin:options.origin==='campaign'?'campaign':'workshop',honroCanonical:true,honroAuthoredId:st.id,honroCustom:st.metadata?.campaign!==true,honroBackdrop:st.backdrop,
+  honroEnvironment:{...clone(st.environment),placements:st.environment.placements.map(e=>({...clone(e),asset:clone(project.library.find(a=>a.id===e.assetId))}))},
+  mode:'campaign',width:st.width,height:st.height,vertical:st.height>st.width*1.08,honroCamera:clone(st.camera||{}),
+  difficulty:profile.settings.difficulty,heroes:clone(profile.heroes),startXP:Object.fromEntries(Object.entries(profile.heroes).map(([c,h])=>[c,h.xp])),
+  session:'honro-map-'+st.id+'-'+Date.now(),sceneVersion:st.initialState?.sceneVersion??80,
+  terrain:map.terrain,...(map.worldTerrain?{honroWorldTerrain:map.worldTerrain,honroPlayBounds:clone(st.playBounds),honroTerrainBounds:clone(st.terrainBounds),honroTerrainDomainVersion:1}:{}),honroLandmarks:map.landmarks,honroElements:map.elements,honroSurfaceZones:map.materials,
+  honroMapAnchors:clone(st.anchors||{}),honroMap:clone(st.design||{}),honroRoute:clone(st.routes||[]),honroDetailStats:clone(st.detailStats||{}),
+  honroMarkers:clone(st.markers||[]),honroEvents:clone(st.events.filter(e=>e.when)),honroAuthoredEvents:clone(st.events.filter(e=>!e.when)),honroObjectives:clone(st.objectives),
+  projectiles:[],units:[],events:[],fields:[],drafts:[],waters:map.materials.filter(z=>z.conductive&&z.kind==='water-pool').map(z=>({x:z.surface[0][0],y:z.surface[0][1],w:z.surface[1][0]-z.surface[0][0],depth:Math.max(...z.bottom.map(p=>p[1]))-z.surface[0][1],bottom:z.bottom.map(([x,y])=>({x,y})),frozen:0,kind:'water'})),zones:[],decor:[],queue:[],phase:'aim',round:1,side:0,
+  honroState:clone(st.initialState?.honroState||{flags:{},collected:[],hold:0,lastRound:1,rescued:false,combatLog:[]})});
+ delete b.volley;delete b.summonTurn;delete b.honroGrowth;
+ for(const e of b.honroAuthoredEvents){
+  if(e.type==='interaction')b.honroMarkers.push({...clone(e),action:'authored',authoredAction:e.action});
+  else if(e.type==='objective')b.honroObjectives.push({...clone(e),type:e.objectiveType||'reach'});
+  else b.honroEvents.push({...clone(e),when:{region:{x:e.x,y:e.y,radius:e.radius||160,width:e.width,height:e.height}},action:e.action||(e.type==='spawn'?{type:'spawn',n:e.count||1,x:e.x,kind:e.unit?.kind||'hound'}:null),text:e.label,once:true});
+ }
+ for(const e of map.elements)if(e.asset.interactionType){
+  const sockets=e.asset.sockets.length?e.asset.sockets:[{id:'anchor',x:e.asset.anchor.x,y:e.asset.anchor.y}];
+  for(const socket of sockets){const position=Q.transformPoint(socket,e.asset,e);b.honroMarkers.push({id:`${e.id}:socket:${socket.id}`,type:'interaction',action:'authored',label:e.asset.name,elementId:e.id,...position});}
+ }
+ b.units=st.units.map(u=>G.HonroUnits.create(u,b,profile,content));
+ for(const [i,group] of st.encounters.entries())if(group.behavior)for(const id of group.unitIds){const u=b.units.find(u=>u.id===id);if(u){u.group=i+1;u.honroCluster=group.key||group.id;if(group.behavior==='aggressive'){u.awake=true;u.aggroUntil=999;}if(group.behavior==='stationary')u.fixed=true;}}
+ G.HonroSplitCampaign?.initialize(b,profile);
+ if(!options.legacyBalance)G.HonroEncounters.balance(b);
+ b.active=b.units.find(u=>u.side===0&&!u.summoned)?.id||b.units[0]?.id;
+ b.honroActiveLimit=st.initialState?.honroActiveLimit??content.active;b.enemyLimit=b.honroActiveLimit;
+ b.honroCounters={initialEnemies:b.units.filter(u=>u.side===1).length,allyActions:0,spawned:0};
+ G.HonroAct3?.initialize(b);
+ G.HonroAct3Encounters?.initialize(b);
+ G.HonroProgression.initialize(b,profile);
+ // Compile the same initial elite roster for Game, Stage View and Playtest.
+ // attach() remains idempotent for saved battles and later reinforcement waves.
+ if(b.honroAct2Revision>=2)for(const u of b.units)if(u.side===1)G.HonroAct2?.tuneEncounter(u,b.honroStage);
+ G.HonroRouteBranches?.prepareFresh(b,profile);
+ G.HonroNarrativeRevision?.prepareFresh(b);
+ G.HonroStoryStaging?.prepareFresh(b);
+ G.HonroAct1Roster?.applyBattleDefense(b);
+ G.HonroQuestTargets?.migrate(b);
+ G.HonroCampaignMapRevision?.stamp(b);
+ return b;
+}
+// Imported legacy Workshop projects are normalized once; exported data is always v3.
+function importSpec(spec,id='imported-stage',project=G.HONRO_PROJECT){
+ const width=spec.dimensions[0],height=spec.dimensions[1],st=M.emptyStage(id,spec.design?.title||'Imported stage',width,height),map=G.HonroMapEngine.compile({id:1,w:width,h:height},spec);
+ st.backdrop=({ravine:'valley',village:'gate'})[spec.backdrop?.kind]||spec.backdrop?.kind||'forest';st.design=clone(spec.design||{});st.anchors=map.anchors;st.routes=map.routes;
+ st.environment=G.HonroEnvironment.makeEnvironment(st);
+ st.terrains=map.terrain.map(t=>{const {vertices,x,y,w,h,id,mat,oneWay,indestructible,...properties}=t;return{id,name:id,type:'solid',points:vertices,baseMaterial:mat,oneWay,breakable:!indestructible,properties,layer:'terrain'};});
+ st.materials=map.surfaceZones.map(m=>({...m,terrainId:m.support}));
+ st.elements=(spec.editorData?.elements?clone(spec.editorData.elements):map.landmarks.map((l,i)=>({...l,id:l.id||`landmark-scatter-${i}`,assetId:project.library.some(a=>a.id===l.kind)?l.kind:'builtin:'+l.kind,scale:l.size||1,rotation:l.rotation||0,snap:false}))).map(e=>({...e,depthLayer:'L1'}));
+ st.units=(spec.editorData?.units||map.enemySpawns.map((s,i)=>G.HonroUnits.record(s.kind,'imported-foe-'+i,s.x,s.y,'enemy')));
+ if(!st.units.some(u=>u.team==='player')){const x=map.anchors?.spawn?.x??220,y=G.HonroMapEngine.surfaceY(map.terrain,x)?.y??height/2;st.units.unshift(G.HonroUnits.record('archer','imported-player',x,y));}
+ st.events=clone(spec.editorData?.events||[]);return st;
+}
+Object.assign(M,{compile,createBattle,profileFor,importSpec});
+})(globalThis);
+
+})();
+await yieldIfNeeded();
+// shared/map/commands.js
+(()=>{
+'use strict';
+(function(G){'use strict';
+const M=G.HonroMaps,Q=G.HonroGeometry,clone=M.clone;
+const uid=prefix=>prefix+'-'+(globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+Math.random().toString(36).slice(2));
+const aliases={createTerrain:'terrain.add',editTerrain:'terrain.moveNode',simplifyTerrain:'terrain.optimize',roughenTerrain:'terrain.roughen',paintMaterial:'material.paint',placeElement:'element.place',scatterElements:'element.scatter',placeUnit:'unit.place',createEncounter:'encounter.add',createTrigger:'event.place',createObjective:'objective.add'};
+const points=arr=>(arr||[]).map(p=>Array.isArray(p)?{x:p[0],y:p[1]}:{...p});
+const collections=['terrains','materials','elements','units','events','encounters','objectives','markers'];
+function target(st,id){for(const key of collections){const o=st[key]?.find(x=>x.id===id);if(o)return{key,o};}for(const key of ['placements','surfaces','groups','zones']){const o=st.environment?.[key]?.find(x=>x.id===id);if(o)return{key:key==='placements'?'scenery':key,o};}throw Error('Object not found '+id);}
+function apply(input,commands){
+ const p=clone(input);
+ for(const original of commands){const c={...original,op:aliases[original.op]||original.op},st=p.stages.find(s=>s.id===(c.stageId||p.activeStageId));if(!st)throw Error('Stage not found');
+  switch(c.op){
+  case'world.set':{const changed=['width','height','backdrop'].some(k=>c[k]!==undefined&&c[k]!==st[k]);for(const k of ['width','height','backdrop','name'])if(c[k]!==undefined)st[k]=c[k];if(changed)G.HonroEnvironment.resize(st);break;}
+  case'stage.update':for(const k of ['metadata','anchors','routes','design','detailStats','initialState','meta','environment','camera'])if(c.values?.[k]!==undefined)st[k]=clone(c.values[k]);break;
+  case'object.update':{const {o}=target(st,c.id);for(const [k,v] of Object.entries(c.values||{})){if(k==='id')throw Error('Use rename to change an ID');o[k]=clone(v);}break;}
+  case'asset.add':if(p.library.some(a=>a.id===c.asset?.id))throw Error('Duplicate asset '+c.asset.id);p.library.push(clone(c.asset));break;
+  case'terrain.add':case'terrain.addSolid':{
+   const solid=c.op==='terrain.addSolid'||c.type==='solid',t={id:c.id||uid('terrain'),name:c.name||'Terrain',type:solid?'solid':c.type||'ground',baseMaterial:c.material||'soil',breakable:!!c.breakable,oneWay:c.oneWay??(!solid&&c.type==='platform'),layer:'terrain',detail:{spacing:c.spacing??18,roughness:c.roughness??0,seed:c.seed??42,optimizeEpsilon:c.optimizeEpsilon??0}};
+   if(c.properties)t.properties=clone(c.properties);
+   if(solid)t.points=points(c.points);else{t.control=points(c.control);t.floor=c.floor??st.height+180;t.thickness=c.thickness??80;}st.terrains.push(t);break;
+  }
+  case'terrain.moveNode':{const t=target(st,c.id).o,ps=t.type==='solid'?t.points:t.control;if(!ps?.[c.index])throw Error('Terrain node not found');for(const k of ['x','y'])if(c[k]!==undefined)ps[c.index][k]=c[k];break;}
+  case'terrain.optimize':{const t=target(st,c.id).o;if(t.type==='solid')t.points=Q.simplifyClosed(t.points,c.epsilon??0);else{t.detail??={};t.detail.optimizeEpsilon=c.epsilon??0;}break;}
+  case'terrain.roughen':{const t=target(st,c.id).o;if(t.type==='solid'){const r=Q.seeded(c.seed??1);t.points=t.points.map(v=>({x:v.x,y:v.y+(r()-.5)*2*(c.roughness??0)}));}else{t.detail??={};t.detail.roughness=c.roughness??0;t.detail.seed=c.seed??1;}break;}
+  case'material.paint':st.materials.push({id:c.id||uid('material'),terrainId:c.terrainId,x1:c.x1,x2:c.x2,reference:c.reference,kind:c.kind||'grass',depth:c.depth??25,alpha:c.alpha??.9,...(c.points?{points:clone(c.points)}:{})});break;
+  case'element.place':{
+   const a=p.library.find(a=>a.id===c.assetId);if(!a)throw Error('Unknown asset '+c.assetId);
+   const e={id:c.id||uid('element'),assetId:a.id,x:c.x,y:c.y??0,rotation:(c.rotation||0)*Math.PI/180,scale:c.scale??1,layer:c.layer||a.layer||(a.collision.length?'interactive':'back'),depthLayer:'L1',snap:c.snap!==false};
+   if(e.snap){const sf=Q.nearest(st,e.x,c.y);if(sf)e.y=sf.y;}st.elements.push(e);break;
+  }
+  case'scenery.place':{
+   const a=p.library.find(a=>a.id===c.assetId);if(!a)throw Error('Unknown scenery asset '+c.assetId);
+   st.environment.placements.push(G.HonroEnvironment.place(st,a,{...c,id:c.id||uid('scenery')}));break;
+  }
+  case'environment.set':st.environment.atmosphere=clone(c.atmosphere);break;
+  case'scenic.add':st.environment.groups.push(clone(c.group));break;
+  case'support.add':st.environment.surfaces.push(clone(c.surface));break;
+  case'zone.update':{const z=st.environment.zones.find(z=>z.id===c.id);if(!z)throw Error('Zone not found');Object.assign(z,clone(c.values));break;}
+  case'scenery.attach':{const e=target(st,c.id).o,a=p.library.find(a=>a.id===e.assetId),old=G.HonroEnvironment.groupOf(st,e),group=c.groupId?st.environment.groups.find(g=>g.id===c.groupId):st.environment.groups.find(g=>g.depthLayer===(c.depthLayer||e.depthLayer)&&g.zoneId===(c.zoneId||old?.zoneId));if(!group)throw Error('Scenic group not found');const next=G.HonroEnvironment.place(st,a,{id:e.id,scale:e.scale,depthLayer:group.depthLayer,groupId:group.id,supportId:c.supportId,localX:c.localX??e.x,offsetY:c.offsetY??0,rotation:e.rotation*180/Math.PI});Object.assign(e,next);break;}
+  case'element.scatter':{
+   const r=Q.seeded(c.seed??1),ids=c.assetIds||[c.assetId];
+   for(let i=0;i<(c.count??8);i++){const a=p.library.find(a=>a.id===ids[i%ids.length]);if(!a)throw Error('Unknown scatter asset');const x=(c.x1??0)+r()*((c.x2??st.width)-(c.x1??0)),sf=Q.nearest(st,x,c.y??st.height/2);if(!sf)continue;
+    st.elements.push({id:uid('element'),assetId:a.id,x,y:sf.y,rotation:(r()-.5)*(c.rotationVariance??.3),scale:(c.minScale??.7)+r()*((c.maxScale??1.4)-(c.minScale??.7)),layer:c.layer||a.layer||(a.collision.length?'interactive':'back'),depthLayer:'L1',snap:true,scatter:true});}
+   break;
+  }
+  case'unit.place':{
+   const u=G.HonroUnits.record(c.kind||'hound',c.id||uid('unit'),c.x,c.y??0,c.team);
+   if(c.snap!==false){const sf=Q.nearest(st,c.x,c.y);if(sf)u.y=sf.y;}
+   for(const k of ['facing','rank','levelOverride','encounterGroup','behavior','boss','miniboss','stageOverrides','label'])if(c[k]!==undefined)u[k]=clone(c[k]);
+   st.units.push(u);break;
+  }
+  case'unit.update':{
+   const {o:u}=target(st,c.id),kind=c.kind||c.values?.kind;if(kind&&kind!==u.kind){const fresh=G.HonroUnits.record(kind,u.id,u.x,u.y,c.team||c.values?.team||u.team);for(const k of Object.keys(u))delete u[k];Object.assign(u,fresh);}
+   for(const [k,v] of Object.entries(c.values||{}))u[k]=clone(v);break;
+  }
+  case'element.move':case'unit.move':case'move':{
+   const {o,key}=target(st,c.id);const dx=c.dx??(c.x!==undefined?c.x-(o.x??0):0),dy=c.dy??(c.y!==undefined?c.y-(o.y??0):0);
+   if(o.points||o.control){for(const q of o.points||o.control){q.x+=dx;q.y+=dy;}if(o.floor!==undefined)o.floor+=dy;}
+   else{if(c.x!==undefined)o.x=c.x;else if(o.x!==undefined)o.x+=dx;if(c.y!==undefined)o.y=c.y;else if(o.y!==undefined)o.y+=dy;}
+   if(c.rotation!==undefined)o.rotation=c.rotation*Math.PI/180;if(c.scale!==undefined)o.scale=c.scale;
+   if(key==='scenery'&&o.supportId)o.y=c.offsetY??0;
+   if(c.snap&&o.x!==undefined){const sf=Q.nearest(st,o.x,o.y);if(sf)o.y=sf.y;}break;
+  }
+  case'rotate':case'scale':{const {key,o}=target(st,c.id);if(key!=='elements')throw Error('rotate/scale require an element instance');if(c.op==='rotate')o.rotation=(c.degrees??c.rotation??0)*Math.PI/180;else o.scale=c.factor??c.scale??1;break;}
+  case'event.place':st.events.push({id:c.id||uid('event'),type:c.type||'trigger',x:c.x,y:c.y,label:c.label||c.type||'Trigger',radius:c.radius??160,...(c.when?{when:clone(c.when)}:{}),...(c.action?{action:clone(c.action)}:{}),...(c.lines?{lines:clone(c.lines)}:{}),...(c.unit?{unit:clone(c.unit)}:{})});break;
+  case'objective.add':st.objectives.push({id:c.id||uid('objective'),type:c.type||'clear',label:c.label||'목표',x:c.x,y:c.y,radius:c.radius??160,targetId:c.targetId,flag:c.flag,required:c.required!==false});break;
+  case'encounter.add':st.encounters.push({id:c.id||uid('encounter'),key:c.key||c.id,unitIds:clone(c.unitIds||[]),behavior:c.behavior||'guard'});break;
+  case'asset.optimize':{const a=p.library.find(a=>a.id===c.id);if(!a)throw Error('Missing asset');if(a.vector)throw Error('SVG path assets must be edited in their original source; polygon optimization is not supported');a.visual=a.visual.map(sh=>({...sh,points:Q.simplifyClosed(sh.points,c.epsilon??2)}));if(a.collisionMode!=='independent'&&a.collision.length)a.collision=clone(a.visual.map(sh=>sh.points));break;}
+  case'asset.update':{const a=p.library.find(a=>a.id===c.id);if(!a)throw Error('Missing asset');Object.assign(a,clone(c.values));break;}
+  case'rename':{
+   target(st,c.id);if(!c.newId||collections.some(k=>st[k].some(o=>o.id===c.newId))||['placements','groups','surfaces','zones'].some(k=>st.environment[k].some(o=>o.id===c.newId)))throw Error('ID must be nonempty and unique');
+   const visit=o=>{if(!o||typeof o!=='object')return;for(const k of Object.keys(o)){if(o[k]===c.id)o[k]=c.newId;else visit(o[k]);}};visit(st);break;
+  }
+  case'element.delete':case'delete':{
+   target(st,c.id);for(const k of collections)st[k]=st[k].filter(o=>o.id!==c.id);for(const k of ['placements','surfaces','groups','zones'])st.environment[k]=st.environment[k].filter(o=>o.id!==c.id);
+   st.materials=st.materials.filter(m=>(m.terrainId||m.support)!==c.id);for(const e of st.encounters)e.unitIds=e.unitIds.filter(id=>id!==c.id);break;
+  }
+  default:throw Error('Unknown command '+c.op);
+  }
+ }
+ return M.finalize(p);
+}
+G.HonroCommands={apply,aliases};
+})(globalThis);
+
+})();
+await yieldIfNeeded();
