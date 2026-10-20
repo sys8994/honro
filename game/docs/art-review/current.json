@@ -39,7 +39,9 @@
     "shared/assets/environment/ferry-scene/foreground.json",
     "shared/assets/environment/ferry-scene/provenance.json",
     "tools/environment/derive-ferry-foreground.py",
-    "tools/environment/capture-vector-art-candidate.py"
+    "tools/environment/capture-vector-art-candidate.py",
+    "tools/environment/derive-ferry-foreground-fidelity.py",
+    "game/art-studies/ferry-foreground-authoring/reference.png"
   ],
   "stages": [
     1,

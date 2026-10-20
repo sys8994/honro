@@ -2313,6 +2313,160 @@
       ],
       "regressions": [],
       "resolutions": []
+    },
+    {
+      "id": "ferry-fidelity-r31",
+      "sourceHash": "sha256:f4bac7853a06a5a716d0b96448b21e108ca520473b9645e5b9e4467e52eebd92",
+      "sourceState": {
+        "path": "game/docs/art-review/vector-correction-v2/sources/ferry-fidelity-r31-state.json",
+        "sha256": "e9c53952ccfa84a968639ba31e083e60f0f72f487231f2394a11db564529d67e"
+      },
+      "stages": [
+        3
+      ],
+      "focusCriteria": [
+        "composition",
+        "hierarchy",
+        "grounding",
+        "materials",
+        "readability"
+      ],
+      "changes": "용량 목표를 제거하고 원본1672px/48색/경계0.55px로 같은 원본의 네이티브 충실도를 검증했다. 이 단계는 같은 원본에서 경로 보존 가능성을 검증하며 완성 장면은 아니다.",
+      "captures": [
+        {
+          "id": "ferry-fidelity-r31-stage03-normal",
+          "stage": 3,
+          "view": "normal",
+          "sourceHash": "sha256:f4bac7853a06a5a716d0b96448b21e108ca520473b9645e5b9e4467e52eebd92",
+          "camera": {
+            "x": 3100,
+            "y": 1550,
+            "scale": 0.65
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-normal.png",
+            "sha256": "a9029e96f6fdc7470a2a21ecc6facbb65a16861874b7b6b32bfc10eee267d6c8"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/captures.json",
+            "sha256": "436010d04da3bf0183124027b88e328a1f4ede4b4732439d81d896b36fb2e34c"
+          }
+        },
+        {
+          "id": "ferry-fidelity-r31-stage03-wide",
+          "stage": 3,
+          "view": "wide",
+          "sourceHash": "sha256:f4bac7853a06a5a716d0b96448b21e108ca520473b9645e5b9e4467e52eebd92",
+          "camera": {
+            "x": 2100,
+            "y": 1450,
+            "scale": 0.21176470588235294
+          },
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-wide.png",
+            "sha256": "8a3374b664004e27befe1cedd43202f4ae83fb9dbf808b878a682c3568e9b0d3"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/captures.json",
+            "sha256": "436010d04da3bf0183124027b88e328a1f4ede4b4732439d81d896b36fb2e34c"
+          }
+        },
+        {
+          "id": "ferry-fidelity-r31-mobile-stage03-mobile",
+          "stage": 3,
+          "view": "mobile",
+          "sourceHash": "sha256:f4bac7853a06a5a716d0b96448b21e108ca520473b9645e5b9e4467e52eebd92",
+          "camera": {
+            "x": 3100,
+            "y": 1400,
+            "scale": 0.4
+          },
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "screenshot": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31-mobile/stage03-mobile.png",
+            "sha256": "6ff0c7842a5b122acf920f521439b80a1b08f54400ecac6a5f5643b1fdfb3eb0"
+          },
+          "receipt": {
+            "path": "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31-mobile/captures.json",
+            "sha256": "7b204279d19c6d3afc503e0aeba555ec99c6b1d95d4b5db109f458760452e6cf"
+          }
+        }
+      ],
+      "criteria": [
+        {
+          "id": "composition",
+          "status": "fail",
+          "evidence": "동일 원본·투영·실제 인물 배율에서 48색 네이티브 경로를 비교했다. 전경 암반 덩어리는 돌아왔지만 전체 구도는 원본의 줄무늬 암반 배치를 그대로 따르며 양 끝 사각 경계가 노출되어 FAIL이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31-mobile/stage03-mobile.png",
+            "game/art-studies/ferry-foreground-authoring/reference.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "hierarchy",
+          "status": "fail",
+          "evidence": "r30의 거대 위장 색면보다 중간 암면과 접촉 틈이 살아났다. 그러나 큰 형태/중간 형태/국소 디테일의 장면 설계와 과도한 작은 색 경계 문제는 남아 있다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31-mobile/stage03-mobile.png",
+            "game/art-studies/ferry-foreground-authoring/reference.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "grounding",
+          "status": "fail",
+          "evidence": "지면 아래 지질은 연결되나 보행선이 큰 암면을 잘라 지나가고 건축 기단의 접촉 가림이 부족하다. 경계와 가림의 수작업 수정이 필요하다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31-mobile/stage03-mobile.png",
+            "game/art-studies/ferry-foreground-authoring/reference.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "materials",
+          "status": "fail",
+          "evidence": "같은 원본에서 암반 재질을 네이티브 경로로 보존할 가능성은 확인했다. 평균RGB오차13.58→6.23, 큰형태오차8.88→3.26으로 줄었으나 계단형 경계·색띠 때문에 현재 장면의 재질 합격은 아니다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31-mobile/stage03-mobile.png",
+            "game/art-studies/ferry-foreground-authoring/reference.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        },
+        {
+          "id": "readability",
+          "status": "fail",
+          "evidence": "정상·실제 최소 줌·모바일을 열었다. r30보다 현저히 명확하지만 경계 계단, 거대한 암면의 보행면 절단, 최소 줌의 사각 끝 때문에 FAIL이다.",
+          "refs": [
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-normal.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31/stage03-wide.png",
+            "game/docs/art-review/vector-correction-v2/evidence/ferry-fidelity-r31-mobile/stage03-mobile.png",
+            "game/art-studies/ferry-foreground-authoring/reference.png",
+            "game/docs/art-references/image-first-20261019/1000047660.png"
+          ]
+        }
+      ],
+      "regressions": [],
+      "resolutions": []
     }
   ],
   "final": null

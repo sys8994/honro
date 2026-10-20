@@ -1,0 +1,139 @@
+{
+  "type": "comparison-only original raster reference versus native; source-diagnostic is not deployable artwork",
+  "url": "http://127.0.0.1:8841/_local/preview/ferry-fidelity-r31/HONRO.html",
+  "errors": [],
+  "rows": [
+    {
+      "variant": "source-diagnostic",
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": [
+        1440,
+        960
+      ],
+      "renderMilliseconds": [
+        81.5,
+        8.900000005960464,
+        1.2999999970197678
+      ],
+      "tileCount": 12,
+      "tileRgbaBytes": 12780288,
+      "pathParseBenchmarkMs": null,
+      "pure": true
+    },
+    {
+      "variant": "source-diagnostic",
+      "view": "wide",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.21176470588235294
+      },
+      "viewport": [
+        1440,
+        960
+      ],
+      "renderMilliseconds": [
+        99.10000000149012,
+        10.200000002980232,
+        3
+      ],
+      "tileCount": 20,
+      "tileRgbaBytes": 21300480,
+      "pathParseBenchmarkMs": null,
+      "pure": true
+    },
+    {
+      "variant": "source-diagnostic",
+      "view": "mobile",
+      "camera": {
+        "x": 3100,
+        "y": 1400,
+        "scale": 0.4
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "renderMilliseconds": [
+        65.70000000298023,
+        4,
+        0.8999999985098839
+      ],
+      "tileCount": 6,
+      "tileRgbaBytes": 6390144,
+      "pathParseBenchmarkMs": null,
+      "pure": true
+    },
+    {
+      "variant": "native-48",
+      "view": "normal",
+      "camera": {
+        "x": 3100,
+        "y": 1550,
+        "scale": 0.65
+      },
+      "viewport": [
+        1440,
+        960
+      ],
+      "renderMilliseconds": [
+        1377.6000000014901,
+        8.799999997019768,
+        1.2000000029802322
+      ],
+      "tileCount": 12,
+      "tileRgbaBytes": 12780288,
+      "pathParseBenchmarkMs": 22.899999998509884,
+      "pure": true
+    },
+    {
+      "variant": "native-48",
+      "view": "wide",
+      "camera": {
+        "x": 2100,
+        "y": 1450,
+        "scale": 0.21176470588235294
+      },
+      "viewport": [
+        1440,
+        960
+      ],
+      "renderMilliseconds": [
+        591.7000000029802,
+        15.799999997019768,
+        4
+      ],
+      "tileCount": 20,
+      "tileRgbaBytes": 21300480,
+      "pathParseBenchmarkMs": 38.899999998509884,
+      "pure": true
+    },
+    {
+      "variant": "native-48",
+      "view": "mobile",
+      "camera": {
+        "x": 3100,
+        "y": 1400,
+        "scale": 0.4
+      },
+      "viewport": [
+        390,
+        844
+      ],
+      "renderMilliseconds": [
+        802.1000000014901,
+        7.799999997019768,
+        1.3000000044703484
+      ],
+      "tileCount": 6,
+      "tileRgbaBytes": 6390144,
+      "pathParseBenchmarkMs": 43.100000001490116,
+      "pure": true
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "variant": "r30",
+    "meanAbsoluteRGB": 13.580317055560357,
+    "PSNRdB": 22.09875959133749,
+    "broadFormMAE_sigma3": 8.876280847765946,
+    "luminanceEdgeMAE": 46.68675774226445
+  },
+  {
+    "variant": "palette-only",
+    "meanAbsoluteRGB": 3.8059431921994147,
+    "PSNRdB": 32.52610656895245,
+    "broadFormMAE_sigma3": 1.9740606591466003,
+    "luminanceEdgeMAE": 14.815401969824986
+  },
+  {
+    "variant": "regions-merged",
+    "meanAbsoluteRGB": 6.2161152325311395,
+    "PSNRdB": 26.43140384665997,
+    "broadFormMAE_sigma3": 2.935404972535577,
+    "luminanceEdgeMAE": 28.829310604291393
+  },
+  {
+    "variant": "native",
+    "meanAbsoluteRGB": 6.233086853206826,
+    "PSNRdB": 26.5846875289243,
+    "broadFormMAE_sigma3": 3.2608243968493444,
+    "luminanceEdgeMAE": 29.110880804198935
+  }
+]

@@ -1,0 +1,205 @@
+{
+  "version": 1,
+  "config": {
+    "path": "game/docs/art-review/current.json",
+    "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-fidelity-r31-state.json.files/scope-config.json",
+    "sha256": "7d409cffc6c518dab6af107f9d5016a8be0a1b7ce8511fefc9b726396972fc52"
+  },
+  "files": [
+    {
+      "path": "game/art-studies/ferry-foreground-authoring/reference.png",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "ae19ec782732ebf81c8771ae76f29d04a0097dd784d104db75cde34101817594"
+    },
+    {
+      "path": "game/art-studies/rock-outcrop-quality/rock-fan.svg",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "5136abff952124aa3fcf7ed5416ad2ab929c28aea6c54b07670494e7e8d3ea4b"
+    },
+    {
+      "path": "game/art-studies/rock-outcrop-quality/rock-shelf.svg",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "c064e0049a6f1139525412ce0680386a73e996dbec7e7349c99f46d3b9e52db7"
+    },
+    {
+      "path": "game/art-studies/rock-outcrop-quality/rock-shoulder.svg",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "26745b1f14cd4f3840181647c77f08b800ea5e25a01b5497f645dd3ea96f1b11"
+    },
+    {
+      "path": "game/src/journey.css",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "ead378cd3458d2a3ffd30af9f5d1a6271ab1fac77df895f40bcefe7990cc7c22"
+    },
+    {
+      "path": "shared/assets/environment/ferry-scene/foreground.json",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-fidelity-r31-state.json.files/sources/shared/assets/environment/ferry-scene/foreground.json",
+      "sha256": "2241fc1bbcd80ae2e1b940182de869fe684af61406ab6b69bb7290539dd789cd"
+    },
+    {
+      "path": "shared/assets/environment/ferry-scene/foreground.svg",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-fidelity-r31-state.json.files/sources/shared/assets/environment/ferry-scene/foreground.svg",
+      "sha256": "f2aa8524da392d4c8c492be1eaee4c6bb93cd9d2bdf0972f6e3c087be4b095fc"
+    },
+    {
+      "path": "shared/assets/environment/ferry-scene/provenance.json",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-fidelity-r31-state.json.files/sources/shared/assets/environment/ferry-scene/provenance.json",
+      "sha256": "3696c0a7d61248b77e44bcdbb7659b4d7500414bccf2c9cdc59455a9beaa150a"
+    },
+    {
+      "path": "shared/assets/environment/vector-campaign-parts.json",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "2b538e44a83703571abd4e2a2158e85af391289bb2cbccda865c0a664db44a37"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/architecture.mjs",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "c5b87709bfc85feb3da17d64beaf4b8711f2434ce2a0eb7e925b0b524c64ade0"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/campaign.mjs",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "378ed953755cd23279b7d70a8c9b8b59a601071ac7984b94d8c6052fdc7419e1"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/compositions.mjs",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "72ac92352e4ea65393f9b64eba800fb6176a6a574a176f58565bb9abef8d1f08"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/registry.mjs",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "8da8409eac5947a57849bc74b9c380f71df3f2800628be32f57dcdbb28d4843d"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/rest.mjs",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "fef818ac3360d178e1329665123b57cc185646cb01602b2d74f6a6b2eae07401"
+    },
+    {
+      "path": "shared/build.mjs",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "75469373795b50485c1e889e3dd33f5c09e8f44d8dc3152bffbedbd8cd0320fc"
+    },
+    {
+      "path": "shared/data/campaign.json",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "8f2b3b9f20feda7734b7a0be5dea6c03d62a6620e71be16e5df42c0efc99cda2"
+    },
+    {
+      "path": "shared/map/terrain-domain.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "18d401230a46483b71113943ffb7e78c04631bd7e4ae2e505401f2965bd0bdc1"
+    },
+    {
+      "path": "shared/map/vector-art.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "c2a8200b80b6519a91689898931a35f8c927381fd8fabed994d30f7cfda421e6"
+    },
+    {
+      "path": "shared/map/visual-style.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "b3d1fe996205ca5a935ed3ec16c5a377d314d9737094bbff92afd769b6045dfb"
+    },
+    {
+      "path": "shared/runtime/act1-spatial-art.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "ef2149c8409b37db54ca7d181849a25a86e7c3c420659377f3df22c2679e8950"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "deecb16aac810bcb7dba1e37cd0008fb9c3e3647b617292c86502c410b5ec2e0"
+    },
+    {
+      "path": "shared/runtime/city-gate-art.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "526f26667b0d184e64558333bad081ed62ee863deab91739c954845576038c14"
+    },
+    {
+      "path": "shared/runtime/environment-art.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "29a12578c121012e76b59b7fde85c69d570db63a45193000f35617eb7e0464b6"
+    },
+    {
+      "path": "shared/runtime/environment-renderer.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "ddff3b2dcc90b1a38cf7287501c1d29e0443e02de2cf2c1e59940a5c649b6473"
+    },
+    {
+      "path": "shared/runtime/forest-pine-art.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "2a0ea8d60f55809843dc6c3a914d2abaaeabed61a45973cebd2d43b8d5e4b1d9"
+    },
+    {
+      "path": "shared/runtime/journey-art.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "1345931d8c016b38398dd2c412290af2640f264b0d92c00d0b55dd233044e2d9"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "c3e13adb8565f07b486da94a801cba3c3c3bab588a5d46ed60759d427d18b358"
+    },
+    {
+      "path": "shared/runtime/rest-journey.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "501157a171800dc6f25bb64646f58b4afc4f8537ac176ccaaa2982d80825b78b"
+    },
+    {
+      "path": "shared/runtime/stage1-vector-front.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "77d1c197ddb65c068b85affcf17aca550cc586f9251000ebeaab9ab20a18ebf6"
+    },
+    {
+      "path": "shared/runtime/stage3-vector-front.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "e032aa865db8aab7688b65bf0abb3e3c908a84305d1eb7e96280742f4025b11c"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-art.js",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-fidelity-r31-state.json.files/sources/shared/runtime/vector-campaign-art.js",
+      "sha256": "404a20855b30bd069758d7f4a13ea0e39e009dde586c87522f8421063d1ab7cb"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-config.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "c154b88056b5a5d53e5127d75576cfb61d0ccbbcca2dd84e7d48b1880bf569ac"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-materials.js",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "0ee52291c2ac8398d882f2766b5f7690d702ea53107e45055194224a468b2857"
+    },
+    {
+      "path": "tools/environment/capture-vector-art-candidate.py",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "177a9d8c45e3f52d8262c794e57d94e8c1632c31ddfabcabb7f037a9c181ffce"
+    },
+    {
+      "path": "tools/environment/derive-ferry-foreground-fidelity.py",
+      "snapshot": "game/docs/art-review/vector-correction-v2/sources/ferry-fidelity-r31-state.json.files/sources/tools/environment/derive-ferry-foreground-fidelity.py",
+      "sha256": "2306a16d3b5a7ecb9ef6a8e7bbc2b24418355fb7076f6b6f48010d2ef336b7c3"
+    },
+    {
+      "path": "tools/environment/derive-ferry-foreground.py",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "465e63c0d1fdca8faaa399099a6b316c0279190b2684df493d35e7b10e3d12a7"
+    },
+    {
+      "path": "tools/environment/extract-vector-campaign-parts.py",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "1e38f53dd033a1b579c0cbe0b63e4c1b151194a629218f1671dd6f5276c3d2df"
+    },
+    {
+      "path": "tools/environment/rest-backdrop-assets.mjs",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "35724820250619fd60d656f3af37584eec5614e0715c1804c96851cd51a6c6c5"
+    },
+    {
+      "path": "tools/environment/vector-kit-runtime.mjs",
+      "gitCommit": "46865c645d3f07de7031d24d6287803931c0e0b4",
+      "sha256": "ab0f6c70093a3132d4509519faaf420612ac1587b8f5cf6449d4dd0d071390ee"
+    }
+  ]
+}
