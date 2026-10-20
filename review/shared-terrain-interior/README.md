@@ -1,6 +1,6 @@
 # 공통 지형 내부 미술 — 소스 분리 작업
 
-**최신 집중 보완:** [landforms-3 결과와 두 카메라 비교](REFINEMENT.md). 아래 내용과 `after-*` 이미지는 첫 커밋 `bf9b83ae`의 기록이다.
+**최신 보완:** [landforms-4 장소별 지질 군집과 두 카메라 비교](PLACED_GEOLOGY.md). 이전 [landforms-3](REFINEMENT.md) 및 아래 `after-*` 이미지는 각 revision의 기록이다.
 
 기준: `1fb64610be98f9d6b4e7c273d08fc64b80c9d886` · 브랜치: `art/shared-terrain-interior`
 

@@ -24,7 +24,46 @@ function material(t,style){return t.mat==='wood'||t.surfaceKind==='branch'?'wood
 function canvasPaint(c,p){if(p.type==='color')return p.value;const g=c.createLinearGradient(...p.from,...p.to);for(const [offset,color] of p.stops)g.addColorStop(offset,color);return g;}
 function contextView(c){const m=c.getTransform();return{x:-m.e/m.a,y:-m.f/m.d,w:c.canvas.width/m.a,h:c.canvas.height/m.d};}
 // A bounded landform composition follows exposed faces, not the extended map box.
-const INTERIOR_REVISION='landforms-3';
+const INTERIOR_REVISION='landforms-4';
+// Named geological assemblies use common opaque members. The points express place,
+// not a grid: wet bank / alluvial toe / runoff, and bedrock under a standing ledge.
+const GEOLOGY_GROUPS={
+ 'wet-bank':[
+  ['earth.wet-cutbank',0,0,1,0,'major'],['rock.contact-cleft',75,150,.85,-6],
+  ['stone.bank-slab',-260,132,.95,8],['stone.silt-nodule',35,235,.9,-7],['stone.buried-block',315,136,.72,-17],
+  ['earth.wet-bank-cover',0,0,1,0]],
+ 'alluvial-toe':[
+  ['earth.alluvial-toe',0,0,.9,-8,'major'],['stone.silt-nodule',-150,118,.85,13],
+  ['stone.bank-slab',185,140,.78,-19],['earth.toe-cover',0,0,.9,-8]],
+ 'runoff-cut':[
+  ['earth.drain-scarp',0,0,.95,-6,'major'],['rock.contact-cleft',145,200,.8,16],
+  ['stone.buried-block',115,200,.88,13],['stone.bank-slab',-135,240,.8,-16],['stone.silt-nodule',342,375,.7,3],
+  ['earth.runoff-cover',0,0,.95,-6]],
+ 'ledge-shoulder':[
+  ['rock.compact-shoulder',0,25,.92,2,'major'],['rock.contact-cleft',159,163,.9,8],
+  ['stone.bank-slab',-178,174,.92,11],['stone.buried-block',172,166,.9,-15],['stone.silt-nodule',45,246,.78,7],
+  ['rock.shoulder-cover',0,25,.92,2]],
+ 'bedded-pocket':[
+  ['rock.bedded-shelf',0,0,.86,9,'major'],['rock.contact-cleft',58,157,.8,-14],
+  ['stone.bank-slab',-94,157,1.02,-14],['stone.silt-nodule',219,126,.88,15],
+  ['rock.shelf-cover',0,0,.86,9]],
+ 'broken-socket':[
+  ['rock.bedded-shelf',0,28,.68,-13,'major'],['rock.contact-cleft',18,183,.88,-8],
+  ['stone.buried-block',-27,205,.94,17],['stone.silt-nodule',182,142,.72,-9],['rock.shelf-cover',0,28,.68,-13]],
+};
+const GEOLOGICAL_PLACEMENTS={
+ 3:[
+  {id:'pier-wet-bank',support:'ferry-ground',x:560,dy:8,group:'wet-bank'},
+  {id:'shore-rise-deposition',support:'ferry-ground',x:2260,dy:8,group:'alluvial-toe'},
+  {id:'right-slope-runoff',support:'ferry-ground',x:3190,dy:4,group:'runoff-cut'},
+ ],
+ 18:[
+  {id:'standing-ledge-shoulder',support:'act2-floor',x:430,dy:8,group:'ledge-shoulder'},
+  {id:'ledge-bedded-pocket',support:'act2-floor',x:1130,dy:10,group:'bedded-pocket'},
+  {id:'slope-broken-socket',support:'act2-floor',x:1960,dy:6,group:'broken-socket'},
+ ],
+};
+
 function hash01(text){let h=2166136261;for(const c of text){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return(h>>>0)/4294967295;}
 function clipFace(face,box){let lo=0,hi=1;const dx=face.z.x-face.a.x,dy=face.z.y-face.a.y;
  for(const [p,q] of [[-dx,face.a.x-box.left],[dx,box.right-face.a.x],[-dy,face.a.y-box.top],[dy,box.bottom-face.a.y]]){if(Math.abs(p)<1e-8){if(q<0)return null;}else{const t=q/p;if(p<0)lo=Math.max(lo,t);else hi=Math.min(hi,t);if(lo>hi)return null;}}
@@ -70,9 +109,9 @@ function composeInterior(b,records,style){
    // A low asymmetric shoulder carries the primary plane; most of the depth stays quiet.
    // Narrow supports get only a small buried lobe, never an enlarged cliff motif.
    const primary=r.t.w>1400&&c.depth>680,rotation=Math.max(-22,Math.min(22,angle*.45+(round%2?9:-8)));
-   if(primary){add('major',r,'rock.stratified-mass',c.x-180,c.y-80,round===0?.9:.68,rotation,round===0?.78:.56);majors++;}
+   if(primary){add('major',r,'rock.stratified-mass',c.x-180,c.y-80,round===0?.9:.68,rotation,1);majors++;}
    if(middles<middleLimit){const side=c.seed>.5?1:-1,x=c.x+(primary?side*380:0),y=c.y+55;
-    if(inside(x,y+110,r.points)){add('middle',r,'rock.buried-lobe',x,y,primary?.82:.65,rotation+(primary?-13:7),.68);middles++;}
+    if(inside(x,y+110,r.points)){add('middle',r,'rock.buried-lobe',x,y,primary?.82:.65,rotation+(primary?-13:7),1);middles++;}
    }
    continue;
   }
@@ -84,12 +123,25 @@ function composeInterior(b,records,style){
  // Roots belong to existing tree feet, never to arbitrary empty soil cells.
  const roots=[...(style.scenery||[]).filter(p=>/^pine\./.test(p.assetId)).map(p=>{const a=b.honroMapAnchors?.[p.anchor]||{},x=p.x??a.x,t=b.terrain.find(t=>t.id===p.support&&!t.broken);return t&&Number.isFinite(x)?{x,y:C.topAt(t,x,t.y),support:t.id}:null;}),...(b.honroLandmarks||[]).filter(l=>/rooted-pine|ancientPine|giantPine/.test(l.asset?.id||l.kind||'')).map(l=>({x:l.x,y:l.y}))].filter(Boolean);
  if(!cave&&!city&&style.palette!=='wet')for(const tree of roots){if(near===5)break;const r=[...records.values()].find(r=>r.mat==='earth'&&(!tree.support||tree.support===r.t.id)&&inside(tree.x,tree.y+80,r.points));if(!r)continue;add('middle',r,'earth.root-scarp',tree.x,tree.y+10,.78,0,.8);near++;}
+ // Explicit place composition replaces only the authored support/region. It is
+ // still clipped to the canonical geology and cannot create collision or terrain.
+ const placements=GEOLOGICAL_PLACEMENTS[b.honroStage]||[],replaced=new Set();
+ for(const point of placements){const r=records.get(point.support);if(!r)continue;
+  if(!replaced.has(point.support)){r.features=r.features.filter(f=>b.honroStage===18&&f.instance.transform.x>3000);replaced.add(point.support);}
+  const y=C.topAt(r.t,point.x,r.t.y)+(point.dy||0);
+  for(const [i,part]of GEOLOGY_GROUPS[point.group].entries()){const [assetId,dx,dy,scale,rotation,level='structure']=part;
+   r.features.push({level,instance:{id:r.t.id+'/geology/'+point.id+'/'+i,assetId,palette:style.palette,opacity:1,transform:{x:point.x+dx,y:y+dy,scale,rotation}}});
+  }
+ }
+ // Preserve authored clusters first while keeping the complete map composition bounded.
+ let remaining=limit-[...records.values()].reduce((n,r)=>n+r.features.filter(f=>f.instance.id.includes('/geology/')).length,0);
+ for(const r of records.values())r.features=r.features.filter(f=>f.instance.id.includes('/geology/')||remaining-- > 0);
  // One world-space composition per material crosses adjacent collision polygons.
  // Each polygon clips the same nodes, so an internal seam cannot cut a soil shoulder.
  const byMaterial=new Map();for(const r of records.values()){if(!byMaterial.has(r.mat))byMaterial.set(r.mat,{features:[],scenes:{}});byMaterial.get(r.mat).features.push(...r.features);}
- for(const group of byMaterial.values())for(const level of ['major','middle'])group.scenes[level]=K.compileScene({instances:group.features.filter(p=>p.level===level).map(p=>p.instance)});
+ for(const group of byMaterial.values())for(const level of ['major','structure','middle'])group.scenes[level]=K.compileScene({instances:group.features.filter(p=>p.level===level).map(p=>p.instance)});
  for(const r of records.values())r.partsByLOD=byMaterial.get(r.mat).scenes;
- return{limit,major:majors,middle:middles+near,roots:near,total:majors+middles+near,regions:plans.length,revision:INTERIOR_REVISION};
+ const features=[...records.values()].flatMap(r=>r.features);return{limit,major:features.filter(f=>f.level==='major').length,middle:features.filter(f=>f.level!=='major').length,roots:near,total:features.length,regions:plans.length,authoredGroups:placements.length,revision:INTERIOR_REVISION};
 }
 
 function prepare(b){
@@ -126,7 +178,7 @@ function paintTerrain(c,t,b){
  c.save();c.fillStyle=canvasPaint(c,K.paintFor(r.asset,'body',q.style.palette));c.fill(r.path);
  c.save();c.clip(r.path);
  if(['cave','ink'].includes(q.style.palette)&&r.mat==='rock'&&r.t.y>=0&&r.t.h>900){const top=Math.min(...r.tops.map(f=>Math.min(f.a.y,f.z.y)));if(Number.isFinite(top)){const shade=K.paintFor(r.asset,'shade',q.style.palette).value,g=c.createLinearGradient(0,top+250,0,top+1450);g.addColorStop(0,shade+'00');g.addColorStop(1,shade+'66');c.fillStyle=g;c.fill(r.path);}}
- const view=contextView(c),density=Math.abs(c.getTransform().a);K.drawCanvas(c,r.partsByLOD.major,{viewBounds:view});if(density>=.45)K.drawCanvas(c,r.partsByLOD.middle,{viewBounds:view});
+ const view=contextView(c),density=Math.abs(c.getTransform().a);K.drawCanvas(c,r.partsByLOD.major,{viewBounds:view});K.drawCanvas(c,r.partsByLOD.structure,{viewBounds:view});if(density>=.45)K.drawCanvas(c,r.partsByLOD.middle,{viewBounds:view});
  c.save();c.globalAlpha*=r.mat==='earth'?.17:.11;c.fillStyle=canvasPaint(c,K.paintFor(r.asset,'light',q.style.palette));c.fill(r.topPlane);c.restore();
  // Small, broad grain faces follow a timber member; no repeating texture pass.
  if(r.mat==='wood'){c.strokeStyle=K.paintFor(r.asset,'light',q.style.palette).stops[0][1];c.globalAlpha=.22;c.lineWidth=3;const top=r.tops[0];if(top){c.beginPath();c.moveTo(top.a.x+6,top.a.y+8);c.quadraticCurveTo((top.a.x+top.z.x)/2,(top.a.y+top.z.y)/2+13,top.z.x-6,top.z.y+8);c.stroke();}}c.restore();
