@@ -1321,7 +1321,7 @@
       "next": 22
     },
     "goal": "주민 구조와 길목 방어 후 성문 안 출구에 도착",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "gate-resident 구조 → refuge-hold 같은 층 길목 2턴 방어 → city-exit 진입. 보호 주민 상실·출전 동행 전멸의 현행 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1340,7 +1340,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "주민 옆 지상 방어를 유지하면서 장터·관아 처마로 사격 위치를 바꾸고 다시 길목으로 내려올 수 있는가?",
     "size": [
       6400,
       3200
@@ -1348,7 +1348,11 @@
     "vertical": false,
     "place": "읍성 성문 아래",
     "preservedIds": {
-      "objectives": [],
+      "objectives": [
+        "gate-resident",
+        "refuge-hold",
+        "city-exit"
+      ],
       "markers": [
         "gate-resident",
         "refuge-hold",
@@ -1362,17 +1366,53 @@
     },
     "enemyBudget": {
       "initial": 26,
-      "change": false
+      "change": "좌표만 변경; 종류·정예·능력/XP 원본 예산·유한 증원 유지",
+      "elites": 5,
+      "finite": 7,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "실제 지형은 보존. 수레·성문·장터·마구간·관아의 동일 ID 26체를 비대칭 전위/후위/고지 군집으로 재배치.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 one-way 순환로 보존, 장터 경로 최소 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 아군·주민 원본 그대로",
+      "4": "반복 간격 교정; 초기 몸/비행 여유 통과",
+      "5": "목표·증원 이벤트 ID/정의 그대로; 길목 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 short-wall-cover / market-loading-choice / office-side-choice와 one-way 지붕이 이미 연결되어 추가 지형 불필요. 장터 순환 기본 점프 5회·무피해 통과.",
+    "sourceOfTruth": [
+      "shared/runtime/act3-objectives.js: steps(b)",
+      "compiled campaign honroAct3Steps",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "activeObjectives": [
+      {
+        "id": "gate-resident",
+        "label": "수레 아래 주민 구하기",
+        "kind": "rescue",
+        "target": "act3-resident"
+      },
+      {
+        "id": "refuge-hold",
+        "label": "주민이 물러날 동안 길목 지키기",
+        "kind": "hold",
+        "rounds": 2,
+        "wave": {
+          "kind": "hound",
+          "count": 2
+        },
+        "radius": 520,
+        "contestRadius": 230
+      },
+      {
+        "id": "city-exit",
+        "label": "읍성 안으로 진입",
+        "kind": "reach"
+      }
+    ],
+    "validation": "장별 초기 확인: 단일 장터 순환로, refuge-hold 지지면, 초기 전원 몸/공중 여유 통과. Native Scene 캡처 확인. 정상 완주·브라우저·Pages·전체 verify 미실행.",
+    "integrationValidation": "a00810bf 기반 최종 Chromium 캠페인 진입: 저작 적 좌표 일치·초기 몸/비행 여유·짧은 보행/기본 점프/착지 통과. 준비 프로필이며 정상 완주 확인이 아니다. review/act3-role-layout/browser.json"
   },
   {
     "stage": 22,
@@ -1385,7 +1425,7 @@
       "next": 23
     },
     "goal": "사건 보고와 호적을 확보·대조하고 관창 출구에 도착",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "하층 봉인→사건 보고→호적→상층 대조 방어→서고 출구의 활성 5단계. 두 기록 운반자가 같은 층에서 접근해야 하는 대조 조건과 보호/전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1404,7 +1444,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "휘겸이 하층 봉인을 열고 두 기록을 각각 회수하는 동안, 계단과 서쪽 회랑 중 어느 사선을 확보해 상층 대조대로 모일 것인가?",
     "size": [
       4800,
       6600
@@ -1412,7 +1452,13 @@
     "vertical": true,
     "place": "관청의 옛 장부",
     "preservedIds": {
-      "objectives": [],
+      "objectives": [
+        "archive-seal",
+        "ledger-case",
+        "upper-register",
+        "compare-ledgers",
+        "archive-exit"
+      ],
       "markers": [
         "archive-seal",
         "ledger-case",
@@ -1429,17 +1475,63 @@
     },
     "enemyBudget": {
       "initial": 30,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 7,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기 30체/정예7/유한9/행동3 유지. 봉인 앞 단독 경계·입구 전위·궁수 후열과 가까운 서쪽 회랑의 서로 다른 간격을 명시 저작한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "하층→보고고→호적각→대조대의 4100 높이 연결과 선택 서쪽 회랑이 이미 충분하다. 기존 두 판문과 상층 대조마당을 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "archive-seal",
+        "label": "하층 서고 봉인 열기",
+        "kind": "interact",
+        "requiredClass": "knight",
+        "opens": "archive-door"
+      },
+      {
+        "id": "ledger-case",
+        "label": "중층 기록함을 꺼내 통로 열기",
+        "kind": "interact",
+        "opens": "upper-door"
+      },
+      {
+        "id": "upper-register",
+        "label": "상층 호적함 구출",
+        "kind": "interact"
+      },
+      {
+        "id": "compare-ledgers",
+        "label": "상층에서 사건 보고와 호적 대조",
+        "kind": "hold",
+        "rounds": 2,
+        "wave": {
+          "kind": "lantern",
+          "count": 2
+        },
+        "radius": 460,
+        "contestRadius": 230
+      },
+      {
+        "id": "archive-exit",
+        "label": "옛 관창으로 나가기",
+        "kind": "reach"
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "장별 초기 확인: 단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행."
   },
   {
     "stage": 23,
@@ -1452,7 +1544,7 @@
       "next": 24
     },
     "goal": "악귀가 막은 하역길을 열고 짐꾼과 운송 기록을 지켜 통과",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "반출 묶음 확보→운반자 출발→중앙 석교→동쪽 하역장 호송. 기존 운반자 생존·근접 동행·진행 저장과 동행 전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1471,7 +1563,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "기록 운반자가 낮은 석교로 나아갈 때 누가 같은 층을 호위하고 누가 창고 지붕·낮은 측면의 사수를 먼저 밀어낼 것인가?",
     "size": [
       9800,
       6200
@@ -1480,7 +1572,10 @@
     "place": "하역장과 사라진 짐",
     "preservedIds": {
       "objectives": [
-        "campaign-objective"
+        "dispatch-bundle",
+        "carrier-start",
+        "dock-mid",
+        "dock-exit"
       ],
       "markers": [
         "dispatch-bundle",
@@ -1541,17 +1636,55 @@
     },
     "enemyBudget": {
       "initial": 40,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 10,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기40/정예10·기존 유한 증원·행동 상한·전력/XP 예산 유지. 반출문·창고·석교·선별장 전위를 크기가 다른 소군집과 단독 후위로 나누고 위층 사격쌍의 동일 간격을 해소한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 점프 없는 운반길, west-upper-approach 지붕 우회와 중앙 측면이 이미 연결되어 있다. 호송 NPC 보행면·석교 접합·화물 동작은 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "dispatch-bundle",
+        "label": "짐꾼의 운송 묶음을 풀고 출발 돕기",
+        "kind": "interact",
+        "target": "act3-carrier",
+        "startsEscort": true
+      },
+      {
+        "id": "carrier-start",
+        "label": "짐꾼과 기록 호송 시작",
+        "kind": "evidence",
+        "target": "act3-carrier",
+        "startsEscort": true,
+        "afterEvidence": "dispatch-bundle"
+      },
+      {
+        "id": "dock-mid",
+        "label": "짐꾼을 석교까지 호송",
+        "kind": "escort",
+        "target": "act3-carrier"
+      },
+      {
+        "id": "dock-exit",
+        "label": "짐꾼과 지상 하역장 벗어나기",
+        "kind": "escort",
+        "target": "act3-carrier"
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "장별 초기 확인: 단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행."
   },
   {
     "stage": 24,
@@ -1564,7 +1697,7 @@
       "next": 25
     },
     "goal": "옛 문장을 따라 잠긴 사당과 토지 장부 확인",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "휘겸의 문장→담허의 사당 봉인 해제→보호지 토지문서→지상/지하 두 조사길 출발. 현행 순서·필수 동행·분할 이벤트·전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1583,7 +1716,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "휘겸의 문장을 확인한 뒤 정원 회랑으로 사당 문지기의 측면을 잡아 담허의 봉인 해제 작업면을 확보할 수 있는가?",
     "size": [
       7000,
       3300
@@ -1592,7 +1725,10 @@
     "place": "문장이 남은 사당",
     "preservedIds": {
       "objectives": [
-        "campaign-objective"
+        "family-crest",
+        "shrine-seal",
+        "land-register",
+        "garden-exit"
       ],
       "markers": [
         "family-crest",
@@ -1610,17 +1746,52 @@
     },
     "enemyBudget": {
       "initial": 26,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 6,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기26·정예/전력/XP·유한 증원·행동 상한 유지. 종택 문간의 단독 전위, 정원 군집과 동쪽 후위를 서로 다른 간격에 두고 회랑 사수 쌍 반복을 없앤다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 정원 one-way 회랑과 사당 담장 앞 접근, 봉인으로 열리는 shrine-door 및 양쪽 퇴칸이 이미 연결되어 있다. 사당과 두 조사길 지형은 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "family-crest",
+        "label": "휘겸으로 가문 출입문의 문장 확인",
+        "kind": "interact",
+        "requiredClass": "knight"
+      },
+      {
+        "id": "shrine-seal",
+        "label": "담허로 사당 출입로 개방",
+        "kind": "interact",
+        "requiredClass": "mage",
+        "opens": "shrine-door"
+      },
+      {
+        "id": "land-register",
+        "label": "설오·담허는 물길 입구, 휘겸·소단은 기록실 입구 확인",
+        "kind": "evidence",
+        "evidenceAction": "entrances"
+      },
+      {
+        "id": "garden-exit",
+        "label": "지상과 지하 두 조사길로 출발",
+        "kind": "reach"
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "장별 초기 확인: 단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행."
   },
   {
     "stage": 25,
@@ -1633,7 +1804,7 @@
       "next": 26
     },
     "goal": "축지진목으로 물길을 건너 생활물품의 번호 확인",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "입구 봉인→다섯 실제 축지 도착→가구별 수량 대조→출구. 각 도착의 실제 두 동행 M09 사용과 출구 allHeroes:true, 실수 시 현행 체크포인트 복구를 보존한다.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1644,7 +1815,7 @@
         "cls": "mage"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "설오와 담허가 수문 정비실의 열린 발사창에서 진목을 건너 보내 두 사람 모두 착지하고, 다음 발사창의 압박을 함께 걷어낼 수 있는가?",
     "size": [
       5600,
       6800
@@ -1653,7 +1824,14 @@
     "place": "지하 수문과 묶인 이름",
     "preservedIds": {
       "objectives": [
-        "campaign-objective"
+        "depot-entry-seal",
+        "stake-arrival-1",
+        "stake-arrival-2",
+        "stake-arrival-3",
+        "stake-arrival-4",
+        "stake-arrival-5",
+        "household-tally",
+        "waterworks-exit"
       ],
       "markers": [
         "stake-arrival-1",
@@ -1669,17 +1847,81 @@
     },
     "enemyBudget": {
       "initial": 15,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 3,
+      "activeLimit": 2
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기15 고정·정예/전력/XP·유한 증원·행동2 유지. 첫 작업면과 전망대의 도구쌍을 단독 경계·떨어진 호위로 나누고 검문실·정비실 후위 간격을 달리한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 수직 수문축·정비실 천장·전망 복귀길·지붕 접근과 M09 발사창 5개를 보존한다. 일반 보행은 같은 작업면의 선택이며 층간 축지 퍼즐을 대체하지 않는다.",
+    "activeObjectives": [
+      {
+        "id": "depot-entry-seal",
+        "label": "담허와 수로 봉인 살피기",
+        "kind": "interact",
+        "requiredClass": "mage"
+      },
+      {
+        "id": "stake-arrival-1",
+        "label": "두 동행이 동쪽 정비실에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-2",
+        "label": "두 동행이 중앙 점검창에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-3",
+        "label": "두 동행이 상층 물받이에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-4",
+        "label": "두 동행이 맞은편 검문실에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-5",
+        "label": "두 동행이 상층 봉인회랑에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "household-tally",
+        "label": "다섯 도착지 물증과 가족 번호 대조",
+        "kind": "evidence",
+        "afterEvidence": "stake-arrival-5"
+      },
+      {
+        "id": "waterworks-exit",
+        "label": "안쪽 집하장 입구로 이동",
+        "kind": "reach",
+        "allHeroes": true
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "장별 초기 확인: 단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행. 실제 첫 발사창의 M09 실탄→설오/담허 E 진입→stake-arrival-1 완료도 통과(이전 목표는 명시 fixture)."
   },
   {
     "stage": 26,
@@ -1692,7 +1934,7 @@
       "next": 27
     },
     "goal": "선조의 조사문서와 공방 작업기록 확보",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "휘겸의 기록실 개방→선조 조사 기록→주민 구조→수거량/주조량 대조→두 동행 귀환. 주민 보호와 출구 allHeroes:true, 분할 팀·전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-knight",
@@ -1703,7 +1945,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "휘겸과 소단이 작업장 바닥의 도구·수레를 밀지, 낮은 작업다락의 사선을 먼저 걷어낼지 선택해 주민에게 접근하고 함께 귀환할 수 있는가?",
     "size": [
       7000,
       3300
@@ -1712,7 +1954,11 @@
     "place": "지상 공방과 증언",
     "preservedIds": {
       "objectives": [
-        "campaign-objective"
+        "hidden-latch",
+        "investigation-record",
+        "artisan-resident",
+        "casting-tally",
+        "workshop-exit"
       ],
       "markers": [
         "hidden-latch",
@@ -1725,17 +1971,59 @@
     },
     "enemyBudget": {
       "initial": 18,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 4,
+      "activeLimit": 2
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기18 고정·정예/전력/XP·유한 증원·행동2 유지. 기록실 호위 간격을 벌리고 작업장 전위/수레/다락 후위를 비대칭 배치하며 강둑 전위쌍 반복을 해소한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 west-work-ramp→work-loft→east-work-ramp의 짧은 상층 선택과 열린 지상 통로가 충분하다. 기록실 문·주민 퇴칸·출구 지형을 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "hidden-latch",
+        "label": "휘겸으로 기록실 열기",
+        "kind": "interact",
+        "requiredClass": "knight",
+        "opens": "hidden-door"
+      },
+      {
+        "id": "investigation-record",
+        "label": "열린 기록실의 조사 원본 확보",
+        "kind": "evidence",
+        "afterEvidence": "hidden-latch"
+      },
+      {
+        "id": "artisan-resident",
+        "label": "작업기록을 지킨 주민 구조",
+        "kind": "rescue",
+        "target": "act3-resident"
+      },
+      {
+        "id": "casting-tally",
+        "label": "구조한 주민의 공방 장부 보관",
+        "kind": "evidence",
+        "afterEvidence": "artisan-resident"
+      },
+      {
+        "id": "workshop-exit",
+        "label": "관아 뒤뜰로 돌아가기",
+        "kind": "reach",
+        "allHeroes": true
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "장별 초기 확인: 단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행."
   },
   {
     "stage": 27,
@@ -1748,7 +2036,7 @@
       "next": 28
     },
     "goal": "석대들을 축지진목으로 이어 가족 번호 대조",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "운반로 장부→두 동행의 4개 실제 축지 도착→가족별 적재 명세→합류 출구. 출구 allHeroes:true, 설오 추락/복귀 씬과 두 사람 M09 도착 판정·복구 체크포인트 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1759,7 +2047,7 @@
         "cls": "mage"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "설오와 담허가 비어 있는 축지 창을 확보해 수몰 하역장과 봉인통로를 함께 건너고, 설오의 추락 뒤 같은 동선으로 돌아와 적재 명세를 챙길 수 있는가?",
     "size": [
       8200,
       7200
@@ -1768,7 +2056,13 @@
     "place": "검은 지하 집하장",
     "preservedIds": {
       "objectives": [
-        "campaign-objective"
+        "depot-route-ledger",
+        "stake-arrival-1",
+        "stake-arrival-2",
+        "stake-arrival-3",
+        "stake-arrival-4",
+        "family-manifest",
+        "deep-depot-exit"
       ],
       "markers": [
         "stake-arrival-1",
@@ -1783,17 +2077,74 @@
     },
     "enemyBudget": {
       "initial": 15,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 3,
+      "activeLimit": 2
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기15 고정·정예/전력/XP·유한 증원·행동 상한 유지. 입구 하역 전위/후위와 하역 경사 도구 사이 여백, 봉인통로 사격점과 명세 호위 간격을 비대칭으로 조정한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "이미 개편된 하역 경사·수몰 작업대·회수창과 4개 실제 축지 연결, 전망 복귀길, 설오 추락 trigger/return pose를 보존한다. 새 발판이나 축지 우회는 추가하지 않는다.",
+    "activeObjectives": [
+      {
+        "id": "depot-route-ledger",
+        "label": "첫 진목을 설치하고 현장 운반 번호 확인",
+        "kind": "evidence",
+        "evidenceAction": "stake"
+      },
+      {
+        "id": "stake-arrival-1",
+        "label": "두 동행이 수몰 하역대에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-2",
+        "label": "두 동행이 맞은편 봉인통로에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-3",
+        "label": "두 동행이 회수 점검창에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-4",
+        "label": "두 동행이 윗층 대조대에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "family-manifest",
+        "label": "가족별 적재 명세 챙기기",
+        "kind": "interact"
+      },
+      {
+        "id": "deep-depot-exit",
+        "label": "합류할 출구로 이동",
+        "kind": "reach",
+        "allHeroes": true
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "장별 초기 확인: 단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행. 실제 첫 연결 M09 실탄→두 동행 E 사용→stake-arrival-1 완료 통과. 추락 씬 재생·나머지 축지 연결 전수는 미실행(원본 보존).",
+    "integrationValidation": "a00810bf 기반 최종 Chromium 캠페인 진입: 저작 적 좌표 일치·초기 몸/비행 여유·짧은 보행/기본 점프/착지 통과. 준비 프로필이며 정상 완주 확인이 아니다. review/act3-role-layout/browser.json"
   },
   {
     "stage": 28,
@@ -1806,7 +2157,7 @@
       "next": 29
     },
     "goal": "불길을 막고 합류해 청원서와 은폐 기록 확보",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "차단막/수문 병행→두 조사팀 합류→청원서→폐쇄 승인문→은폐 지시문→관아 출구. 기존 소각 제한·분할 합류·문 개방·전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1825,7 +2176,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "양쪽 조사팀이 제한시간 안에 차단막과 수문을 나눠 처리한 뒤 중앙에서 합류하고, 양쪽 짧은 처마로 기록각 수비의 측면을 잡을 수 있는가?",
     "size": [
       7200,
       3400
@@ -1834,7 +2185,13 @@
     "place": "불타는 기록 마당",
     "preservedIds": {
       "objectives": [
-        "campaign-objective"
+        "fire-screen",
+        "water-release",
+        "party-reunion",
+        "petition-record",
+        "closure-order",
+        "suppression-order",
+        "office-exit"
       ],
       "markers": [
         "fire-screen",
@@ -1851,17 +2208,73 @@
     },
     "enemyBudget": {
       "initial": 20,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 5,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기20·정예/전력/XP·유한 증원·행동 상한 유지. 제한시간 초반 양쪽 두 경비는 그대로 두고 합류 후 마당과 기록 회랑의 전위/호위/상층 사수를 비대칭 간격으로 교정한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 서쪽 서비스 처마·동쪽 하역 처마와 낮은 지상길, 중앙 합류마당이 충분하다. 화재 문/수문·양쪽 출발·기록각 지붕 one-way를 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "fire-screen",
+        "label": "휘겸으로 서쪽 불길 막기",
+        "kind": "interact",
+        "requiredClass": "knight",
+        "opens": "fire-door",
+        "parallelGroup": "fire-control"
+      },
+      {
+        "id": "water-release",
+        "label": "설오로 동쪽 수문 열기",
+        "kind": "interact",
+        "requiredClass": "archer",
+        "opens": "water-gate",
+        "parallelGroup": "fire-control"
+      },
+      {
+        "id": "party-reunion",
+        "label": "네 동행이 뒤뜰에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 440
+      },
+      {
+        "id": "petition-record",
+        "label": "불길에서 청원·결재 기록함 구출",
+        "kind": "interact"
+      },
+      {
+        "id": "closure-order",
+        "label": "구출한 기록함의 폐쇄 승인 확인",
+        "kind": "evidence",
+        "afterEvidence": "petition-record"
+      },
+      {
+        "id": "suppression-order",
+        "label": "구출한 기록함의 사후 은폐 기록 확인",
+        "kind": "evidence",
+        "afterEvidence": "closure-order"
+      },
+      {
+        "id": "office-exit",
+        "label": "기록을 가지고 봉쇄 벗어나기",
+        "kind": "reach"
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "장별 초기 확인: 단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행."
   },
   {
     "stage": 29,
@@ -1874,7 +2287,7 @@
       "next": 30
     },
     "goal": "현묵의 글을 확보하고 높은 수문길 또는 점검다리로 이탈",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "옛 봉인 방어→현묵의 글→상층 또는 하층 퇴로 하나 선택. 활성 route-exit의 두 경로 선택, 유한 증원·담허 봉인 역할·전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1893,7 +2306,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "담허가 봉인을 풀고 현묵의 글을 확보한 뒤 상층 수문길의 고지 사수와 낮은 정비교 차단 중 어느 압박을 피해 나루로 빠져나갈 것인가?",
     "size": [
       7200,
       3500
@@ -1901,7 +2314,11 @@
     "vertical": false,
     "place": "현묵의 기록 공간",
     "preservedIds": {
-      "objectives": [],
+      "objectives": [
+        "old-seal",
+        "hyeonmuk-letter",
+        "route-exit"
+      ],
       "markers": [
         "old-seal",
         "wave-old-seal",
@@ -1919,17 +2336,53 @@
     },
     "enemyBudget": {
       "initial": 27,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 7,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기27·정예/전력/XP·유한 증원·행동 상한 유지. 창고/점검교/높은 수문길의 100 간격 전위를 단독 경계와 밀집 호위로 나누고 사격 후열·두 퇴로 후위를 서로 다르게 배치한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 상층 오름/수문길 A와 낮은 점검교 B가 서로 다른 사격 높이와 탈출면을 제공한다. 두 경로·출구 선택·기존 점프 발판을 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "old-seal",
+        "label": "담허의 옛 봉인 해체 지키기",
+        "kind": "hold",
+        "rounds": 2,
+        "wave": {
+          "kind": "ghost",
+          "count": 2
+        },
+        "radius": 460,
+        "contestRadius": 230,
+        "requiredClass": "mage",
+        "opens": "old-door"
+      },
+      {
+        "id": "hyeonmuk-letter",
+        "label": "봉인 안의 현묵 기록 보관",
+        "kind": "evidence",
+        "afterEvidence": "old-seal"
+      },
+      {
+        "id": "route-exit",
+        "kind": "route",
+        "label": "높은 수문길 또는 아래 점검다리로 이탈"
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides"
+    ],
+    "validation": "장별 초기 확인: 단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행."
   },
   {
     "stage": 30,
@@ -1942,7 +2395,7 @@
       "next": "campaign ending"
     },
     "goal": "세 기록을 대조하고 나루 방어 후 동행 전원 집결",
-    "victoryAndFailure": "Existing battle objectives and chapter controllers unchanged; no new condition authored.",
+    "victoryAndFailure": "세 운송기록 확인→ferry-hold 3턴 방어→생존 동행 전원 old-road 집결(allHeroes:true). 별도 호송 NPC는 활성 데이터에 없으며 현행 동행 집결을 보존한다. 배의 점유 대기/내려앉기·전멸 실패 판정 유지.",
     "currentParticipants": [
       {
         "id": "p-archer",
@@ -1961,7 +2414,7 @@
         "cls": "occultist"
       }
     ],
-    "combatQuestion": "Existing chapter objective and tactical situation retained.",
+    "combatQuestion": "네 동행이 낮은 여울과 높은 곶 중 진입로를 고르고 나루 방어면의 층별 사선을 밀어낸 뒤, 내려앉은 배 또는 기존 고지 길로 함께 옛길에 모일 수 있는가?",
     "size": [
       11200,
       7200
@@ -1969,7 +2422,11 @@
     "vertical": false,
     "place": "남겨진 길과 마지막 나루",
     "preservedIds": {
-      "objectives": [],
+      "objectives": [
+        "transport-map",
+        "ferry-hold",
+        "old-road"
+      ],
       "markers": [
         "transport-map",
         "ferry-hold",
@@ -1984,16 +2441,53 @@
     },
     "enemyBudget": {
       "initial": 40,
-      "change": false
+      "change": "좌표만 변경; ID·종류·정예·전력/XP 원본 예산·유한 증원 유지",
+      "elites": 10,
+      "activeLimit": 3
     },
-    "changeScope": "Shared rendering/materials; no collision, roster, story or event edits.",
+    "changeScope": "초기40/정예10·전력/XP·유한 증원·행동 상한 유지. 여울의 돌격조와 단독 후위, 곶 문간/안쪽 호위, 나루 지상/마루, 높은 둔덕/낮은 상륙길을 서로 다른 간격으로 저작한다.",
     "sopStages": {
-      "1": "preserved; render geometry purity checked",
-      "2": "shared renderer active; inspection for representative stages",
-      "3": "preserved; render unit purity checked",
-      "4": "preserved; no encounter rewrite",
-      "5": "preserved; render event purity checked, no chapter completion claim",
-      "6": "preserved; no new dialogue/scene"
-    }
+      "1": "기존 지형·문·one-way 보존; 단일 관련 경로 확인",
+      "2": "공통 미술/registry 미변경; Native 결과 확인",
+      "3": "초기 동행/NPC 원본 보존",
+      "4": "명시 좌표 군집 교정; 몸/공중 여유·한 군집 실탄 확인",
+      "5": "목표·증원 정의/ID 그대로; 관련 이벤트 지지면 확인",
+      "6": "대사·씬 변경 없음"
+    },
+    "terrainDecision": "기존 낮은 여울→나루 계단, 높은 곶 우회, 배의 안전한 내려앉기와 낮은 퇴로/고지 귀환길이 충분하다. 나루·배 충돌 상태 전이와 집결면 지형을 보존한다.",
+    "activeObjectives": [
+      {
+        "id": "transport-map",
+        "label": "나루에서 강 방향·끊긴 옛길을 기존 기록과 대조",
+        "kind": "reach",
+        "radius": 260
+      },
+      {
+        "id": "ferry-hold",
+        "label": "일행이 빠져나갈 나루 지키기",
+        "kind": "hold",
+        "rounds": 3,
+        "wave": {
+          "kind": "hound",
+          "count": 3
+        },
+        "radius": 540,
+        "contestRadius": 230
+      },
+      {
+        "id": "old-road",
+        "label": "생존한 동행과 옛길 입구에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 440
+      }
+    ],
+    "sourceOfTruth": [
+      "compiled fresh campaign honroAct3Steps",
+      "shared/runtime/act3-objectives.js and chapter-specific controllers",
+      "shared/runtime/act3-content.js / objective-revision.js overrides",
+      "shared/runtime/stage30-ferry.js: transition/pressureEnemies; no separate escort NPC"
+    ],
+    "validation": "장별 초기 확인: 단일 격리 이동 경로·관련 이벤트 지지면·초기 몸/비행 여유·한 군집 실탄 명중 통과. Native Scene 캡처 확인. 정상 완주·브라우저·전체 verify·Pages 미실행. 배 내려앉기 상태 전이·동행 전원 최종 집결의 실제 플레이는 미실행; 원본 컨트롤러와 데이터 보존."
   }
 ]

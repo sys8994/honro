@@ -1,0 +1,63 @@
+{
+  "scope": "Production Chromium campaign entry with prepared profile; short actual engine walk/jump and authored enemy poses for 21/27 only. Not normal-resource traversal or chapter completion.",
+  "baseURL": "http://127.0.0.1:37053",
+  "errors": [],
+  "rows": [
+    {
+      "file": "stage-21-browser.png",
+      "stage": 21,
+      "party": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ],
+      "initial": 26,
+      "authoredPoses": true,
+      "mismatches": [],
+      "blocked": [],
+      "moved": true,
+      "jumped": true,
+      "landed": true,
+      "start": {
+        "x": 240,
+        "y": 2810,
+        "hp": 815
+      },
+      "end": {
+        "x": 176.66666666666686,
+        "y": 2810,
+        "hp": 815
+      },
+      "custom": false,
+      "summary": "0/3 · 수레 아래 주민 구하기"
+    },
+    {
+      "file": "stage-27-browser.png",
+      "stage": 27,
+      "party": [
+        "archer",
+        "mage"
+      ],
+      "initial": 15,
+      "authoredPoses": true,
+      "mismatches": [],
+      "blocked": [],
+      "moved": true,
+      "jumped": true,
+      "landed": true,
+      "start": {
+        "x": 300,
+        "y": 4700,
+        "hp": 815
+      },
+      "end": {
+        "x": 236.6666666666665,
+        "y": 4700,
+        "hp": 815
+      },
+      "custom": false,
+      "summary": "0/7 · 첫 진목을 설치하고 현장 운반 번호 확인"
+    }
+  ]
+}
