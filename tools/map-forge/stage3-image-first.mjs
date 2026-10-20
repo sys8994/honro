@@ -16,6 +16,19 @@ const points=a=>a.map(([x,y])=>({x:x*SCALE,y:y*SCALE}));
 function at(x,id='ferry-ground'){const ps=profiles[id];for(let i=1;i<ps.length;i++){const a=ps[i-1],b=ps[i];if(x>=a[0]&&x<=b[0])return(a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0]))*SCALE;}throw Error('Stage3 source contact outside '+id+' '+x);}
 const contact=(x,support='ferry-ground')=>({x:x*SCALE,y:at(x,support),support});
 const air=(x,y)=>({x:x*SCALE,y:y*SCALE});
+/** The flock owns the pier mouth, not a diagonal flight line across the bank.
+ * One western scout and a three-height pocket leave the warehouse approach open.
+ * Counts, clone identity, attention group and combat statistics are unchanged. */
+export const STAGE3_FERRY_FLOCK={
+ 'foe-1-cluster':{...air(915,405),role:'잔교 끝 절벽 입구의 높은 측면 엄호'},
+ 'foe-4-cluster':{...air(790,475),role:'중앙 잔교 바로 위의 낮은 접근 견제'}
+};
+export function applyStage3FerryFlock(project){
+ const s=project.stages.find(s=>s.metadata?.stageId===3);if(!s)return project;
+ const roster=s.design?.stage3ImageFirst?.runtimeRoster;if(!roster)throw Error('Apply Stage3 image-first author before ferry flock patch');
+ for(const [id,{x,y}]of Object.entries(STAGE3_FERRY_FLOCK))Object.assign(roster[id],{x,y});
+ return project;
+}
 export function applyStage3ImageFirst(project){const s=project.stages.find(s=>s.metadata?.stageId===3);if(!s)return project;const prior=new Map(s.terrains.map(t=>[t.id,t]));s.width=WIDTH*SCALE;s.height=HEIGHT*SCALE;s.playBounds={left:0,top:0,right:s.width,bottom:s.height};s.terrainBounds={...s.playBounds};s.terrainDomainVersion=1;s.camera={...s.camera,focusBounds:{left:0,top:-1000,right:s.width,bottom:s.height}};
  s.terrains=Object.entries(profiles).map(([id,line])=>{const floor=id==='ferry-ground',wood=/^dock|^cargo-step-2$|roof/.test(id),soil=floor||id==='ferry-side-gangway';return{...prior.get(id),id,name:prior.get(id)?.name||id,type:'solid',layer:'terrain',baseMaterial:wood?'wood':soil?'soil':'rock',oneWay:!floor,breakable:false,points:points(floor?[...line,[WIDTH,HEIGHT],[0,HEIGHT]]:[...line,...line.toReversed().map(([x,y])=>[x,y+10])]),detail:{spacing:20,roughness:0,optimizeEpsilon:0,seed:3},properties:{...prior.get(id)?.properties,surfaceKind:wood?'wood':soil?'soil':'rock',honroWalkEdges:line.slice(1).map((_,i)=>i)}};});
  // Posts, rocks behind the path and the intact house are painted scenery;
@@ -29,5 +42,5 @@ export function applyStage3ImageFirst(project){const s=project.stages.find(s=>s.
  const originalWater=s.materials.find(m=>m.id==='ferry-water');s.materials=[{...originalWater,id:'ferry-water',kind:'water',support:'ferry-ground',terrainId:'ferry-ground',conductive:true,x1:0,x2:760*SCALE,surfaceY:642*SCALE,depth:90*SCALE,reference:750*SCALE,step:24,alpha:.2,surface:undefined,bottom:undefined,points:undefined}];
  s.routes=[s.anchors.start,contact(260,'ferry-side-gangway'),contact(360,'dock-west'),contact(590,'dock-west'),contact(660,'dock-mid'),contact(875,'dock-east'),contact(1000),contact(1240),contact(1470),s.anchors.ledger,s.anchors.exit];s.design.act1Scene={version:2,scenery:[],rocks:[],replaced:[]};delete s.design.stage3Hanok;delete s.design.forestChoice;
  s.design.stage3ImageFirst={storyThread:{from:air(1588,313),at:air(1620,315),to:air(1673,313),tail:air(1622,330)},revision:1,quietLayers:1,far:'quietFar',image:'stage3QuietNear',source:{width:WIDTH,height:HEIGHT},transform:{x:0,y:0,scale:SCALE},artBounds:{left:0,top:0,right:s.width,bottom:s.height},runtimeRoster:{'foe-0-cluster':contact(1090),'foe-3-cluster':contact(1200),'foe-1-cluster':air(1340,255),'foe-4-cluster':air(1110,370),'foe-2-cluster':contact(1640),'foe-5-cluster':contact(1885)},routes:{main:s.routes,roof:[contact(1770),contact(1820,'cargo-step-2'),contact(1810,'warehouse-roof'),contact(1725,'warehouse-roof')]},waterClip:points([[0,682],[200,674],[300,690],[430,709],[620,730],[725,740],[640,770],[350,752],[130,724],[0,735]])};
- Object.assign(s.initialState,{width:s.width,height:s.height,routePoints:s.routes});delete s.initialState.honroStage3HanokRevision;return project;
+ Object.assign(s.initialState,{width:s.width,height:s.height,routePoints:s.routes});delete s.initialState.honroStage3HanokRevision;return applyStage3FerryFlock(project);
 }

@@ -94,7 +94,7 @@ export function applyStage17Worksite(project){
   ['ws-brace-cart','minecart','ws-west-work-buttress',2565,0,false,'brace-rear','west','lane-pressure'],
   ['ws-brace-captain','stoneLantern','ws-west-work-buttress',2680,0,true,'brace-rear','west','elite-rear-fire'],
   ['a2-enemy-4','picks','ws-west-lower-steps',2930,0,false,'brace-overwatch','west','upper-melee-screen'],
-  ['ws-brace-bat','bat','ws-west-lower-steps',2845,-190,false,'brace-overwatch','west','air-flank'],
+  ['ws-brace-bat','bat','ws-west-lower-steps',2845,-160,false,'brace-overwatch','west','air-flank'],
   ['a2-enemy-5','minecart','ws-west-work-buttress',3500,0,false,'west-cart-line','middle','lane-pressure'],
   ['a2-enemy-6','minecart','ws-west-work-buttress',3630,0,false,'west-cart-line','middle','lane-pressure'],
   ['ws-west-cart-screen','picks','ws-west-work-buttress',3390,0,false,'west-cart-line','middle','melee-screen'],
