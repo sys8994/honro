@@ -4,9 +4,9 @@ Preserves source sampling, palette and geometric error as separate outputs.
 from pathlib import Path
 from PIL import Image,ImageFilter
 from scipy import ndimage as nd
-import numpy as np,json,hashlib,gzip,sys,time
+import numpy as np,json,hashlib,gzip,sys,time,os
 ROOT=Path(__file__).resolve().parents[2]
-SOURCE=ROOT/'game/art-studies/ferry-foreground-authoring/reference.png'
+SOURCE=Path(os.environ.get('HONRO_FERRY_SOURCE',str(ROOT/'game/art-studies/ferry-foreground-authoring/reference.png')))
 OUT=Path(sys.argv[1]) if len(sys.argv)>1 else ROOT/'_local/reports/ferry-fidelity'
 OUT.mkdir(parents=True,exist_ok=True)
 COLORS=int(sys.argv[2]) if len(sys.argv)>2 else 48
@@ -19,7 +19,8 @@ im=Image.open(SOURCE).convert('RGB');SW,SH=im.size;W,H=SW,SH
 # Keep original sampling. A 3px median suppresses isolated image compression /
 # painted speckles without shrinking the entire source before derivation.
 a=np.array(im.filter(ImageFilter.MedianFilter(3)))
-q=Image.fromarray(a).quantize(colors=COLORS,method=Image.Quantize.MEDIANCUT,dither=Image.Dither.NONE)
+palette_source=os.environ.get('HONRO_FERRY_PALETTE')
+q=Image.fromarray(a).quantize(palette=Image.open(palette_source),dither=Image.Dither.NONE) if palette_source else Image.fromarray(a).quantize(colors=COLORS,method=Image.Quantize.MEDIANCUT,dither=Image.Dither.NONE)
 indices=np.array(q);palette=np.array(q.getpalette(),dtype=int).reshape(-1,3)
 Image.fromarray(palette[indices].astype(np.uint8)).save(OUT/'palette-only.png')
 merge_stats=[]

@@ -41,7 +41,14 @@
     "tools/environment/derive-ferry-foreground.py",
     "tools/environment/capture-vector-art-candidate.py",
     "tools/environment/derive-ferry-foreground-fidelity.py",
-    "game/art-studies/ferry-foreground-authoring/reference.png"
+    "game/art-studies/ferry-foreground-authoring/reference.png",
+    "tools/environment/compile-ferry-sections.py",
+    "game/art-studies/ferry-section-authoring/sections.json",
+    "game/art-studies/ferry-section-authoring/material-palette.png",
+    "game/art-studies/ferry-section-authoring/west.png",
+    "game/art-studies/ferry-section-authoring/landing.png",
+    "game/art-studies/ferry-section-authoring/shoulder.png",
+    "game/art-studies/ferry-section-authoring/ridge.png"
   ],
   "stages": [
     1,
