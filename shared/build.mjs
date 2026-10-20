@@ -1,4 +1,5 @@
 import {restBackdropData} from '../tools/environment/rest-backdrop-assets.mjs';
+import {captureAuthoredScenery,restoreAuthoredScenery} from '../tools/environment/restore-authored-scenery.mjs';
 import {vectorKitRuntime} from '../tools/environment/vector-kit-runtime.mjs';
 import {applyStage3HanokTerrain} from '../tools/map-forge/stage3-hanok-terrain.mjs';
 import {applyStage4GateDefense} from '../tools/map-forge/stage4-gate-defense.mjs';
@@ -52,7 +53,6 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   data('HONRO_BGM_TRACKS',bgm.map(f=>'assets/bgm/'+f));
   code('engine/core',await buildCore());
   code('shared/environment-vector-kit',await vectorKitRuntime());
-  await file('shared/runtime/vector-campaign-config.js');
   data('HONRO_BALANCE',JSON.parse(await read('game/config/balance.json')));
   data('HONRO_NARRATIVE_V0',JSON.parse(await read('shared/data/narrative-legacy-v0.json')));
   data('HONRO_SPLIT_V1',JSON.parse(await read('shared/data/split-campaign-v1.json')));
@@ -78,10 +78,12 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   project=applyPlaceEncounters(project);
   applyStage9LocationPaint(project);
   applyStage10LocationPaint(project);
+  const authoredScenery=captureAuthoredScenery(project);
   applyStage1ImageFirst(project);
   applyStage2ImageFirst(project);
   applyStage3ImageFirst(project);
   applyStage4ImageFirst(project);
+  restoreAuthoredScenery(project,authoredScenery);
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();
@@ -116,24 +118,6 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
     await file('shared/assets/actors/actors.runtime.js');
     for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','story-act23-art','narrative-art','quest-target-art','story-anomaly-art','visual-hierarchy'])await file(`shared/runtime/${name}.js`);
   }
-  if(render)await file('shared/runtime/stage21-painted-art.js');
-  if(render)await file('shared/runtime/painted-pilots-art.js');
-  if(render)await file('shared/runtime/stage1-location-art.js');
-  if(render)await file('shared/runtime/stage2-location-art.js');
-  if(render)await file('shared/runtime/stage3-location-art.js');
-  if(render)await file('shared/runtime/stage4-location-art.js');
-  if(render)await file('shared/runtime/stage5-location-art.js');
-  if(render)await file('shared/runtime/stage6-location-art.js');
-  if(render)await file('shared/runtime/stage7-location-art.js');
-  if(render)await file('shared/runtime/stage8-location-art.js');
-  if(render)await file('shared/runtime/stage9-location-art.js');
-  if(render)await file('shared/runtime/stage10-location-art.js');
-  if(render)await file('shared/runtime/quiet-layered-art.js');
-  if(render)await file('shared/runtime/stage1-image-first-art.js');
-  if(render)await file('shared/runtime/stage2-image-first-art.js');
-  if(render)await file('shared/runtime/stage3-image-first-art.js');
-  if(render)await file('shared/runtime/stage4-image-first-art.js');
-  if(render)await file('shared/runtime/vector-campaign-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
     for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main']){
@@ -146,7 +130,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
 }
 
 // Keep the same authoring order for native consumers and the external web loader.
-export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1','HonroVectorCampaignArt'];
+export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1'];
 export const authorProjectExpression=value=>projectAuthors.reduce((value,name)=>`${name}.author(${value})`,value);
 export async function runtimeParts(options={}) {
   return (await runtimeEntries(options)).map(entry=>entry.code);
