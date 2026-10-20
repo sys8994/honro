@@ -1,0 +1,250 @@
+{
+  "runtimeCommit": "913299720502080dfb3ecffb90553ca1ddceb022",
+  "buildEntry": "web/entries/game.5089b8b7fda5695d.html",
+  "stages": [
+    7,
+    22,
+    26,
+    12,
+    13,
+    20
+  ],
+  "standardViews": 42,
+  "centerViews": 6,
+  "transitionViews": 9,
+  "dialogue": "Closed with game dialogue-skip action; turn banner expired with story tick.",
+  "stage26": {
+    "key": "workshop-yard",
+    "kind": "outdoor"
+  },
+  "files": [
+    {
+      "file": "stage07-1440-max-in.png",
+      "sha256": "d54cd8b13bf903e918da311be2f27adcb22d4ae233ccb47870d675987c115e7d"
+    },
+    {
+      "file": "stage07-1440-max-out.png",
+      "sha256": "12e90ef46226060612ffce2a07d78188276d33502deafb086734fb43f63d9bfc"
+    },
+    {
+      "file": "stage07-1440-normal.png",
+      "sha256": "156cc9c6e6a899bdc6c49189ff98d3a3d8d589b69c5a90049808774bd29a8e53"
+    },
+    {
+      "file": "stage07-1920-max-out.png",
+      "sha256": "e34cdbb615755553046ea5bdaae2c4704d27122bfb04c320461707edca0da361"
+    },
+    {
+      "file": "stage07-1920-normal.png",
+      "sha256": "19777773abb9187000e2164c226a3206098163dee227ae67d320a47c9ee81513"
+    },
+    {
+      "file": "stage07-390-max-out.png",
+      "sha256": "a9e753e554aeec6d2feb2c557b10add8fb82857275df28a642362857acec959f"
+    },
+    {
+      "file": "stage07-390-normal.png",
+      "sha256": "75b88f9aa48655ede5f190b334980df79373a2cb2169148b072c60d6cadaca20"
+    },
+    {
+      "file": "stage07-center.png",
+      "sha256": "6640e909583ae4371b1fd749c137fe1b01bab491c9cf78c0708b41cb89496475"
+    },
+    {
+      "file": "stage12-1440-max-in.png",
+      "sha256": "843cae2801e875a575c0d2f3f340d0cd1fa7a2c545bbe52a0620b691a86bcbed"
+    },
+    {
+      "file": "stage12-1440-max-out.png",
+      "sha256": "6625ab8f789d5d035e81f7db1de945c14b3e5e18907b9fee53aeb51b2ae2eb1d"
+    },
+    {
+      "file": "stage12-1440-normal.png",
+      "sha256": "19730ead0de91a6fd8a79297715d04c0a2a989c849109c9a4c7a27571b2a0234"
+    },
+    {
+      "file": "stage12-1920-max-out.png",
+      "sha256": "b7d8e30d7937bb995a424cc9f0a9fcbd58715a5ed0358a7e6174d839bb572db6"
+    },
+    {
+      "file": "stage12-1920-normal.png",
+      "sha256": "5d2715da5eae1072b19b61742f981affe09d931a5a646d689562fefb8feded52"
+    },
+    {
+      "file": "stage12-390-max-out.png",
+      "sha256": "78dc727f210132679775efb01dd275cf02579bfd609810bcc9fa7138f9838663"
+    },
+    {
+      "file": "stage12-390-normal.png",
+      "sha256": "5f17e50beafc405a33a940339b055f00ae6a7cc1c13ef66ff54284a96a9a1065"
+    },
+    {
+      "file": "stage12-center.png",
+      "sha256": "af22acb51bdd6dcf2783cb0af5fdafffc61486d5d3b04c7858dc9d0fa2707ee2"
+    },
+    {
+      "file": "stage12-transition-0.5.png",
+      "sha256": "5493c28e5195abd771c654cdbddbcd99f5cb60dfc8994a52b2ea645c15c37fa4"
+    },
+    {
+      "file": "stage12-transition-0.png",
+      "sha256": "39e4a6e2d0aaa7fc8497a3e434da4ccd925f6a0ab515f0e15d8d6f3997d29ed0"
+    },
+    {
+      "file": "stage12-transition-1.png",
+      "sha256": "a0def823183049019463ac23c826fb5332e0d24350cbf91201e1bd9069452c48"
+    },
+    {
+      "file": "stage13-1440-max-in.png",
+      "sha256": "62be379646ee7318e7beb58a37379a60b53661cc97a39cf9c570aa5b07f69488"
+    },
+    {
+      "file": "stage13-1440-max-out.png",
+      "sha256": "bc910a863e371f5a27ba5c0812f318f6b44eb35ecaf56af0d11a45ce99ae6255"
+    },
+    {
+      "file": "stage13-1440-normal.png",
+      "sha256": "46d6dc23ba598d6aa41f243ebd577f31dec42e5b60ad29300e481927badf31fb"
+    },
+    {
+      "file": "stage13-1920-max-out.png",
+      "sha256": "c36c0ec2aa2b2156d30eef35bf253791acfa5dabc1bb927e172300b784ecb352"
+    },
+    {
+      "file": "stage13-1920-normal.png",
+      "sha256": "5102bff226ec27a0670c06482e5fa026ff484c3644a681c2faf6e2a4e003ace7"
+    },
+    {
+      "file": "stage13-390-max-out.png",
+      "sha256": "fdedcea69ed5102403691b9b7f8f23d0e729681554b48d62e1d3cffa135a85d1"
+    },
+    {
+      "file": "stage13-390-normal.png",
+      "sha256": "8fe1479a45c53b092c1dcba41021a27b8e2de3c54ba21d210e7f210d9aa65da5"
+    },
+    {
+      "file": "stage13-center.png",
+      "sha256": "ca79622609ab60e30542a5b8cf46f3b84431370a7e150a7c7f6f27e259315efb"
+    },
+    {
+      "file": "stage13-transition-0.5.png",
+      "sha256": "ff56768720fa576f32e557e59004f433d7aab48fadf03d92590878bd16d9cd04"
+    },
+    {
+      "file": "stage13-transition-0.png",
+      "sha256": "a12f044f90c0e6f987d78d5b4b0f9b091b11b29daa14e93168ea757c0e28f9b4"
+    },
+    {
+      "file": "stage13-transition-1.png",
+      "sha256": "dd6be86924db04280ec2db820df09a3818a51bba5e7e58cc690a664e12eebb74"
+    },
+    {
+      "file": "stage20-1440-max-in.png",
+      "sha256": "0e4885f8f22c9fd4ef06c87400a4011ac891c255c5353650c7d4fc77c5fd479c"
+    },
+    {
+      "file": "stage20-1440-max-out.png",
+      "sha256": "509875c32177b8f6cda5d006f0403fa858ae95450dc5df33f51c9ca45bc2fdaa"
+    },
+    {
+      "file": "stage20-1440-normal.png",
+      "sha256": "63d901f978aba189cac919141fee89f0e7a3da94563806ed1a2020aa590a69d1"
+    },
+    {
+      "file": "stage20-1920-max-out.png",
+      "sha256": "ff50691f5ac4db9eef6ceb8c22b59886980e2c210203eafe8453a8b3da7c5f62"
+    },
+    {
+      "file": "stage20-1920-normal.png",
+      "sha256": "46e0dc56c231d29ef4bb3f7cb1da0efcbc4e5ea67b646e391421203872696c5d"
+    },
+    {
+      "file": "stage20-390-max-out.png",
+      "sha256": "f4e3b4af915f36ad8668bf1ae3d826e437a0ecd95a29c8d30c981f4b8cd9b909"
+    },
+    {
+      "file": "stage20-390-normal.png",
+      "sha256": "dfc565abddc0aebea1b822f9b48b746643dfe628b5225d17151968bebe1d27d1"
+    },
+    {
+      "file": "stage20-center.png",
+      "sha256": "8527526baa1ea4c29d6632dec39ed2813d2b6e31a2b9bfd367aee37822b6d220"
+    },
+    {
+      "file": "stage20-transition-0.5.png",
+      "sha256": "66884a4e11285912c2b386b836cc25e15a8bc77b4abebcd9b8a320d1706e14cf"
+    },
+    {
+      "file": "stage20-transition-0.png",
+      "sha256": "bfbbf0c54a0cf1d033ab73fe5af026bf5c53e26cba0abc3af2a045185d647a8b"
+    },
+    {
+      "file": "stage20-transition-1.png",
+      "sha256": "b685cd5b566c0c5086799734a48dda2287f5f4865c1e2ad393bda9e370cf5804"
+    },
+    {
+      "file": "stage22-1440-max-in.png",
+      "sha256": "bc8887086bf625ce29847aca4d08778acf9001d47f8fbe776004f4c457aa3b66"
+    },
+    {
+      "file": "stage22-1440-max-out.png",
+      "sha256": "01c1cffb42c48dd3892ec82e1c2489a899cb107c50ff3a7a0f098c0f195f049c"
+    },
+    {
+      "file": "stage22-1440-normal.png",
+      "sha256": "0c4be42da3a7ca8dfd7ba56f4db02322f3b2324afe073250f51eaf93cf5e9e6c"
+    },
+    {
+      "file": "stage22-1920-max-out.png",
+      "sha256": "89b71c943770bb1d837f6bc285c059d848aa88b6db799b15a05247c2c7a94984"
+    },
+    {
+      "file": "stage22-1920-normal.png",
+      "sha256": "3aabb37c5877dd596fc633d03dd8b7b82a7b9f82bf6da7a323fcac686d8dd5ef"
+    },
+    {
+      "file": "stage22-390-max-out.png",
+      "sha256": "d5f656670e8c63a1f4a32e473a70823c8f90f91d526ea42a08b4d3233aba9502"
+    },
+    {
+      "file": "stage22-390-normal.png",
+      "sha256": "a96b1eba02d1bcfe01eb3bddd5fd819a64142b87233f45ce133997ef8b4bb458"
+    },
+    {
+      "file": "stage22-center.png",
+      "sha256": "a239cc5654d0236a05061198be879be478012793eac57003672635e543420732"
+    },
+    {
+      "file": "stage26-1440-max-in.png",
+      "sha256": "494d876ab83d7544b46b7479b6aadad6e91bc313c63c83a91e6d3ba72e9694b5"
+    },
+    {
+      "file": "stage26-1440-max-out.png",
+      "sha256": "953181ec519948f0686ea8dd1c98b65d8ce9c5d87e3084dd46d0b7f7d883d06b"
+    },
+    {
+      "file": "stage26-1440-normal.png",
+      "sha256": "3acb65b58f200169a81bb8594df3e1ddc15a026505b9e7f6aea996958e49bd0a"
+    },
+    {
+      "file": "stage26-1920-max-out.png",
+      "sha256": "095c395bf20ef5240272d6b7942dba1901bbe5742602c6019cb57f9324dc3641"
+    },
+    {
+      "file": "stage26-1920-normal.png",
+      "sha256": "da08e80ef192b3ea9aaee2c4ec656de86073ec73e301abce926d7425f63a290d"
+    },
+    {
+      "file": "stage26-390-max-out.png",
+      "sha256": "4bd986dcd16e8bec170aabba28fd11a7863abba66310dea1390ff131a4f43051"
+    },
+    {
+      "file": "stage26-390-normal.png",
+      "sha256": "d4b39b0e8d356de83801d5074e94915eb6329f5c48cf4bb6b3d88811f43e03ab"
+    },
+    {
+      "file": "stage26-center.png",
+      "sha256": "8f3425438069f1a43619127a98fdb7c2a498edd0345f4f53c9c8c9d7298f772a"
+    }
+  ]
+}
