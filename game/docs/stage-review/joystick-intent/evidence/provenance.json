@@ -1,0 +1,16 @@
+{
+  "base": "27efe8eb",
+  "implementationCommit": "1a808154450f502976afbd6cfc52ac6deae7b22e",
+  "sourceSha256": {
+    "shared/engine/src/math.ts": "998cb9913e21e3734039aed7d6898a2aba39ad32907ff66db17d6a03c2addddf",
+    "shared/engine/src/main.ts": "89a96810be20c4c9d28cb795efe3eaff4bff0d22cf6c409e8e5ae95b2616cc70",
+    "shared/engine/src/engine.ts": "d46217b1d8da9c8db77f329719809c6986407239aa66d1bd8944701b548d9634",
+    "shared/runtime/main.js": "fbb1b6e3b76c1c8f7cc357f565e96cae651532085de90f7c1cc2bf5eed42d24b",
+    "shared/runtime/ui-bridge.js": "39fa22476dbd9ed4a7ba17e9c7d3d1ee9e78209d520746e3ce898d19d5b04b80",
+    "game/src/hud.css": "d0f45c17375d9481b18768bca2771df2e5597e5f871212d1e4575ae322ff392b"
+  },
+  "htmlSha256": "684a598a1781854ae98c0563d4c64f465a58b89343ee3b1b12e01227acad3309",
+  "buildCommand": "npm run build",
+  "buildArtifactsCommitted": false,
+  "reason": "parent will rebuild after integrating parallel source branches; no master/Pages mutation"
+}
