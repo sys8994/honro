@@ -20,7 +20,7 @@ with sync_playwright() as p:
     page.wait_for_function('document.querySelector("#act-ending").dataset.art==="landscape"')
     saved = page.evaluate('JSON.stringify(HonroApp.profile)')
     held = []
-    page.route(page.evaluate('originalPortrait'), lambda route: held.append(route))
+    page.route('**/'+page.evaluate('originalPortrait'), lambda route: held.append(route))
     page.set_viewport_size({'width':390,'height':844})
     page.wait_for_timeout(200)
     assert len(held)==1

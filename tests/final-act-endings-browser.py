@@ -1,23 +1,25 @@
 """Final integration browser evidence. Terminal flow fixtures are explicitly separate
 from the genuine normal-run checkpoint traversal below. No image transforms."""
 from pathlib import Path
-import json, hashlib, subprocess, sys, os
+import json, hashlib, subprocess, sys, os, re
+from browser_support import launch
+from story_browser_server import story_base_url
 from playwright.sync_api import sync_playwright
-OUT=Path(os.environ.get('HONRO_ENDING_OUT','game/docs/stage-review/final-integration-20261021/evidence/browser'));OUT.mkdir(parents=True,exist_ok=True)
+OUT=Path(os.environ.get('HONRO_ENDING_OUT','game/docs/stage-review/fresh-responsive-art-20261022/evidence/flow'));OUT.mkdir(parents=True,exist_ok=True)
 VIEW="()=>JSON.stringify(Object.fromEntries(['heroes','loadouts','cleared','honroGrowth','recruited','party','record'].map(k=>[k,HonroApp.profile[k]??null])))"
 rows=[];errors=[];requests=[];failed=[]
 def capture(page,path):
- page.screenshot(path=path)
- if page.viewport_size['width']==1440:
-  page.screenshot(path=str(Path(path).with_suffix('.q85.jpg')),type='jpeg',quality=85)
+ target=Path(path).with_suffix('.jpg')
+ page.screenshot(path=str(target),type='jpeg',quality=85)
+ assert target.stat().st_size<1000000
 
 with sync_playwright() as p:
- browser=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+ browser=launch(p)
  page=browser.new_page(viewport={'width':1440,'height':900},has_touch=True,accept_downloads=True)
  page.on('pageerror',lambda e:errors.append(str(e)))
- page.on('request',lambda r:requests.append(r.url) if '/endings/act-' in r.url else None)
+ page.on('request',lambda r:requests.append(r.url) if re.search(r'/ending-\d+-|/endings/act-',r.url) else None)
  page.on('response',lambda r:failed.append({'url':r.url,'status':r.status}) if r.status>=400 else None)
- page.goto('http://127.0.0.1:8000/HONRO.html');page.wait_for_function('!!globalThis.HonroApp',timeout=120000)
+ page.goto(story_base_url()+'/HONRO.html');page.wait_for_function('!!globalThis.HonroApp',timeout=120000)
  assert not requests,'no ending-image preload at title'
  for stage in ([] if '--checkpoint-only' in sys.argv else [10,20,30]):
   page.set_viewport_size({'width':1440,'height':900})
@@ -112,7 +114,7 @@ with sync_playwright() as p:
  page.evaluate('while(HonroApp.dialogue.index<HonroApp.dialogue.lines.length-1)HonroStory.next(HonroApp)')
  page.wait_for_timeout(500);capture(page,path=str(OUT/'final-safe-outro-last.png'))
  assert '일행 곁에 앉았다.' in page.locator('#story-line').inner_text()
- page.evaluate('HonroStory.finish(HonroApp)');page.wait_for_selector('#act-ending');page.wait_for_function('document.querySelector(".act-ending-art").naturalWidth===1672');page.wait_for_timeout(400)
+ page.evaluate('HonroStory.finish(HonroApp)');page.wait_for_selector('#act-ending');page.wait_for_function('''()=>{const n=document.querySelector('.act-ending-art');return n.complete&&n.naturalWidth===850&&document.querySelector('#act-ending').dataset.art==='portrait'}''');page.wait_for_timeout(400)
  capture(page,path=str(OUT/'final-real-checkpoint-act1.png'))
  (OUT/'checkpoint-traversal.json').write_text(json.dumps({'source':str(checkpoint),'scope':'actual normal-run checkpoint continuation; combat before checkpoint is recorded separately','start':start,'end':end,'input':'keyboard d via real browser frame until withdrawal; no coordinate/resource writes'},ensure_ascii=False))
  # Separate final combined review: real checkpoint result must preserve rewards
