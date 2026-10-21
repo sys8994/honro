@@ -1,0 +1,14 @@
+{
+  "testedMergeSource": "395075159b48ae83fc1c4a835b637a957481a169",
+  "baseMaster": "ee73add57bc27357abdbe2d1c606c9017e393351",
+  "includedBranch": "codex/skill-modal-preview-audit",
+  "stage2And12BranchesIncluded": false,
+  "rebuiltFromMergedSource": true,
+  "modalChecks": 31,
+  "A13Executions": 4,
+  "selectedA09O10O16Executions": 6,
+  "persistenceChecks": 11,
+  "pageerrors": 0,
+  "entire84Rerun": false,
+  "note": "Only source merge was tested; following evidence/test-documentation commit does not change runtime. Local browser verification does not establish public Pages availability."
+}

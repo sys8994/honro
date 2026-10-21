@@ -215,7 +215,9 @@
     "test:body-sweep": "node tests/body-sweep.mjs && node tests/body-sweep-production.mjs",
     "test:sodan-radial": "node tests/sodan-radial-order.mjs",
     "capture:eater-revision": "python tests/eater-revision-browser.py",
-    "capture:sodan-radial": "python tests/sodan-radial-browser.py"
+    "capture:sodan-radial": "python tests/sodan-radial-browser.py",
+    "test:skill-preview-audit": "node tests/skill-preview-audit.mjs && python -X utf8 tests/skill-preview-audit-browser.py",
+    "test:skill-modal-shell": "python -X utf8 tests/skill-modal-shell-browser.py && node tests/camp-skill-ux.mjs"
   },
   "devDependencies": {
     "@napi-rs/canvas": "0.1.100",

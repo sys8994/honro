@@ -1,0 +1,2068 @@
+{
+  "ids": [
+    "A09",
+    "O10",
+    "O16"
+  ],
+  "rows": [
+    {
+      "snapshot": {
+        "camera": {
+          "scale": 0.7738636363636363,
+          "x": 705,
+          "y": 942.4999990529756,
+          "actorPixels": 100.60227272727272
+        },
+        "id": "A09",
+        "cast": "A09",
+        "age": 3.2333333333333267,
+        "fired": true,
+        "follow": true,
+        "turns": 1,
+        "kind": "turn-once",
+        "rank": 8,
+        "initial": {
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999
+            }
+          ],
+          "hero": {
+            "hp": 900,
+            "focus": 9999,
+            "x": 360,
+            "y": 1000,
+            "maxHp": 1200,
+            "maxFocus": 9999,
+            "armor": 0.2,
+            "move": 3000,
+            "critChance": 0.11,
+            "critMultiplier": 1.975
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 1080,
+              "y": 1000,
+              "hp": 2400
+            }
+          ]
+        },
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999,
+            "broken": false
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9976,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "x": 360,
+          "y": 1000,
+          "critChance": 0.11,
+          "critMultiplier": 1.975,
+          "dead": false
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 1080,
+            "y": 1000,
+            "hp": 2279,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          }
+        ],
+        "metrics": {
+          "events": [
+            "spark",
+            "arrow",
+            "message",
+            "change",
+            "save",
+            "ring",
+            "arrowhit",
+            "text"
+          ],
+          "modes": [
+            "turnArrow"
+          ],
+          "geometry": [],
+          "geometryDetails": [],
+          "maxProjectiles": 1,
+          "returning": false,
+          "wraithReturn": false,
+          "apex": false,
+          "prepared": false,
+          "enthrall": false,
+          "manifest": false,
+          "earthbind": false,
+          "captured": false,
+          "prisonCross": false,
+          "effectBoost": 0,
+          "projectiles": [
+            1
+          ],
+          "followups": [],
+          "secondary": [],
+          "bounces": 0,
+          "damage": 121,
+          "hits": [
+            {
+              "target": "preview-target-0",
+              "damage": 121,
+              "source": "p0",
+              "skill": "A09"
+            }
+          ],
+          "orbiters": 0,
+          "sharedDamage": 0,
+          "heroHpMin": 900,
+          "heroHpMax": 900,
+          "guard": false,
+          "counter": false,
+          "traps": 0,
+          "curse": 0,
+          "soulBoost": false,
+          "shield": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false,
+          "lastStand": false,
+          "remnants": 0,
+          "expiry": 0,
+          "jump": 0,
+          "retreat": 0,
+          "summons": 0,
+          "stakes": 0,
+          "casts": [
+            {
+              "id": "A09",
+              "side": 0,
+              "cost": 23,
+              "time": 0.6500000000000004
+            }
+          ],
+          "expiryRecovered": 0
+        },
+        "ally": null,
+        "jumpCost": null,
+        "control": null
+      },
+      "checks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for A09",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "id": "A09",
+      "width": 1280,
+      "coreAt": 1.7166666666666655,
+      "milestones": {},
+      "missingMilestones": [],
+      "renderChecks": []
+    },
+    {
+      "snapshot": {
+        "camera": {
+          "scale": 0.9898305084745763,
+          "x": 585,
+          "y": 907.5,
+          "actorPixels": 128.67796610169492
+        },
+        "id": "O10",
+        "cast": "O10",
+        "age": 3.3333333333333264,
+        "fired": true,
+        "follow": true,
+        "turns": 0,
+        "kind": "earthbound",
+        "rank": 8,
+        "initial": {
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999
+            }
+          ],
+          "hero": {
+            "hp": 900,
+            "focus": 9999,
+            "x": 360,
+            "y": 1000,
+            "maxHp": 1200,
+            "maxFocus": 9999,
+            "armor": 0.22999999999999998,
+            "move": 3000,
+            "critChance": 0.08249999999999999,
+            "critMultiplier": 1.73
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 840,
+              "y": 1000,
+              "hp": 125
+            }
+          ]
+        },
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999,
+            "broken": false
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "x": 360,
+          "y": 1000,
+          "critChance": 0.08249999999999999,
+          "critMultiplier": 1.73,
+          "dead": false
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 0,
+            "maxHp": 125,
+            "armor": 0,
+            "curse": 0,
+            "dead": true,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          }
+        ],
+        "metrics": {
+          "events": [
+            "rune",
+            "spiritCast",
+            "message",
+            "change",
+            "save",
+            "spiritImpact",
+            "text",
+            "ring",
+            "burst",
+            "hit",
+            "down",
+            "spark"
+          ],
+          "modes": [
+            "curseEarth",
+            "spiritBolt"
+          ],
+          "geometry": [],
+          "geometryDetails": [],
+          "maxProjectiles": 1,
+          "returning": false,
+          "wraithReturn": false,
+          "apex": true,
+          "prepared": false,
+          "enthrall": false,
+          "manifest": false,
+          "earthbind": true,
+          "captured": false,
+          "prisonCross": false,
+          "effectBoost": 0,
+          "projectiles": [
+            1,
+            2
+          ],
+          "followups": [],
+          "secondary": [],
+          "bounces": 0,
+          "damage": 125,
+          "hits": [
+            {
+              "target": "preview-target-0",
+              "damage": 117,
+              "source": "p0",
+              "skill": "O10"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 8,
+              "source": "p0",
+              "skill": "O01"
+            }
+          ],
+          "orbiters": 0,
+          "sharedDamage": 0,
+          "heroHpMin": 900,
+          "heroHpMax": 900,
+          "guard": false,
+          "counter": false,
+          "traps": 0,
+          "curse": 0,
+          "soulBoost": false,
+          "shield": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false,
+          "lastStand": false,
+          "remnants": 0,
+          "expiry": 0,
+          "jump": 0,
+          "retreat": 0,
+          "summons": 1,
+          "stakes": 0,
+          "casts": [
+            {
+              "id": "O10",
+              "side": 0,
+              "cost": 88,
+              "time": 0.6500000000000004
+            },
+            {
+              "id": "O01",
+              "side": 0,
+              "cost": 0,
+              "time": 1.2333333333333338
+            }
+          ],
+          "expiryRecovered": 0
+        },
+        "ally": null,
+        "jumpCost": null,
+        "control": null
+      },
+      "checks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for O10",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "id": "O10",
+      "width": 1280,
+      "coreAt": 1.816666666666665,
+      "milestones": {},
+      "missingMilestones": [],
+      "renderChecks": []
+    },
+    {
+      "snapshot": {
+        "camera": {
+          "scale": 0.9898274695958925,
+          "x": 559.9992890084642,
+          "y": 907.4998477570457,
+          "actorPixels": 128.67757104746602
+        },
+        "id": "O16",
+        "cast": "O16",
+        "age": 3.7999999999999914,
+        "fired": true,
+        "follow": false,
+        "turns": 0,
+        "kind": "converge",
+        "rank": 8,
+        "initial": {
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999
+            }
+          ],
+          "hero": {
+            "hp": 900,
+            "focus": 9999,
+            "x": 360,
+            "y": 1000,
+            "maxHp": 1200,
+            "maxFocus": 9999,
+            "armor": 0.22999999999999998,
+            "move": 3000,
+            "critChance": 0.08249999999999999,
+            "critMultiplier": 1.73
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 760,
+              "y": 1000,
+              "hp": 2400
+            },
+            {
+              "id": "preview-target-1",
+              "x": 790,
+              "y": 1000,
+              "hp": 2400
+            }
+          ]
+        },
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999,
+            "broken": false
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9903,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "x": 360,
+          "y": 1000,
+          "critChance": 0.08249999999999999,
+          "critMultiplier": 1.73,
+          "dead": false
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 760,
+            "y": 1000,
+            "hp": 1610,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          },
+          {
+            "id": "preview-target-1",
+            "x": 790,
+            "y": 1000,
+            "hp": 2095,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          }
+        ],
+        "metrics": {
+          "events": [
+            "rune",
+            "spiritCast",
+            "message",
+            "change",
+            "save",
+            "ring",
+            "spiritSummon",
+            "spiritImpact",
+            "text"
+          ],
+          "modes": [
+            "spiritConverge",
+            "convergeSpirit"
+          ],
+          "geometry": [],
+          "geometryDetails": [],
+          "maxProjectiles": 14,
+          "returning": false,
+          "wraithReturn": false,
+          "apex": false,
+          "prepared": false,
+          "enthrall": false,
+          "manifest": false,
+          "earthbind": false,
+          "captured": false,
+          "prisonCross": false,
+          "effectBoost": 0,
+          "projectiles": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "followups": [],
+          "secondary": [],
+          "bounces": 0,
+          "damage": 1095,
+          "hits": [
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 58,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 58,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 32,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 32,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 32,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            }
+          ],
+          "orbiters": 0,
+          "sharedDamage": 0,
+          "heroHpMin": 900,
+          "heroHpMax": 900,
+          "guard": false,
+          "counter": false,
+          "traps": 0,
+          "curse": 0,
+          "soulBoost": false,
+          "shield": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false,
+          "lastStand": false,
+          "remnants": 0,
+          "expiry": 0,
+          "jump": 0,
+          "retreat": 0,
+          "summons": 0,
+          "stakes": 0,
+          "casts": [
+            {
+              "id": "O16",
+              "side": 0,
+              "cost": 96,
+              "time": 0.6500000000000004
+            }
+          ],
+          "expiryRecovered": 0
+        },
+        "ally": null,
+        "jumpCost": null,
+        "control": null
+      },
+      "checks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for O16",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "id": "O16",
+      "width": 1280,
+      "coreAt": 2.28333333333333,
+      "milestones": {
+        "converging": {
+          "camera": {
+            "scale": 0.5875525161651994,
+            "x": 468.008664101176,
+            "y": 1008.4720282742497,
+            "actorPixels": 76.38182710147592
+          },
+          "id": "O16",
+          "cast": "O16",
+          "age": 2.166666666666664,
+          "fired": true,
+          "follow": false,
+          "turns": 0,
+          "kind": "converge",
+          "rank": 8,
+          "initial": {
+            "terrain": [
+              {
+                "id": "preview-floor",
+                "mat": "rock",
+                "hp": 99999
+              }
+            ],
+            "hero": {
+              "hp": 900,
+              "focus": 9999,
+              "x": 360,
+              "y": 1000,
+              "maxHp": 1200,
+              "maxFocus": 9999,
+              "armor": 0.22999999999999998,
+              "move": 3000,
+              "critChance": 0.08249999999999999,
+              "critMultiplier": 1.73
+            },
+            "targets": [
+              {
+                "id": "preview-target-0",
+                "x": 760,
+                "y": 1000,
+                "hp": 2400
+              },
+              {
+                "id": "preview-target-1",
+                "x": 790,
+                "y": 1000,
+                "hp": 2400
+              }
+            ]
+          },
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999,
+              "broken": false
+            }
+          ],
+          "hero": {
+            "hp": 900,
+            "focus": 9903,
+            "maxHp": 1200,
+            "maxFocus": 9999,
+            "x": 360,
+            "y": 1000,
+            "critChance": 0.08249999999999999,
+            "critMultiplier": 1.73,
+            "dead": false
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 760,
+              "y": 1000,
+              "hp": 2308,
+              "maxHp": 2400,
+              "armor": 0,
+              "curse": 0,
+              "dead": false,
+              "type": "beast",
+              "grounded": true,
+              "flying": false
+            },
+            {
+              "id": "preview-target-1",
+              "x": 790,
+              "y": 1000,
+              "hp": 2400,
+              "maxHp": 2400,
+              "armor": 0,
+              "curse": 0,
+              "dead": false,
+              "type": "beast",
+              "grounded": true,
+              "flying": false
+            }
+          ],
+          "metrics": {
+            "events": [
+              "rune",
+              "spiritCast",
+              "message",
+              "change",
+              "save",
+              "ring",
+              "spiritSummon",
+              "spiritImpact",
+              "text"
+            ],
+            "modes": [
+              "spiritConverge",
+              "convergeSpirit"
+            ],
+            "geometry": [],
+            "geometryDetails": [],
+            "maxProjectiles": 14,
+            "returning": false,
+            "wraithReturn": false,
+            "apex": false,
+            "prepared": false,
+            "enthrall": false,
+            "manifest": false,
+            "earthbind": false,
+            "captured": false,
+            "prisonCross": false,
+            "effectBoost": 0,
+            "projectiles": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "followups": [],
+            "secondary": [],
+            "bounces": 0,
+            "damage": 92,
+            "hits": [
+              {
+                "target": "preview-target-0",
+                "damage": 34,
+                "source": "p0",
+                "skill": "O16"
+              },
+              {
+                "target": "preview-target-0",
+                "damage": 58,
+                "source": "p0",
+                "skill": "O16"
+              }
+            ],
+            "orbiters": 0,
+            "sharedDamage": 0,
+            "heroHpMin": 900,
+            "heroHpMax": 900,
+            "guard": false,
+            "counter": false,
+            "traps": 0,
+            "curse": 0,
+            "soulBoost": false,
+            "shield": 0,
+            "jucheon": 0,
+            "jucheonReady": false,
+            "harmony": false,
+            "lastStand": false,
+            "remnants": 0,
+            "expiry": 0,
+            "jump": 0,
+            "retreat": 0,
+            "summons": 0,
+            "stakes": 0,
+            "casts": [
+              {
+                "id": "O16",
+                "side": 0,
+                "cost": 96,
+                "time": 0.6500000000000004
+              }
+            ],
+            "expiryRecovered": 0
+          },
+          "ally": null,
+          "jumpCost": null,
+          "control": null
+        }
+      },
+      "missingMilestones": [],
+      "renderChecks": []
+    },
+    {
+      "snapshot": {
+        "camera": {
+          "scale": 0.31022727272727274,
+          "x": 705,
+          "y": 942.4999990529756,
+          "actorPixels": 40.32954545454545
+        },
+        "id": "A09",
+        "cast": "A09",
+        "age": 3.2333333333333267,
+        "fired": true,
+        "follow": true,
+        "turns": 1,
+        "kind": "turn-once",
+        "rank": 8,
+        "initial": {
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999
+            }
+          ],
+          "hero": {
+            "hp": 900,
+            "focus": 9999,
+            "x": 360,
+            "y": 1000,
+            "maxHp": 1200,
+            "maxFocus": 9999,
+            "armor": 0.2,
+            "move": 3000,
+            "critChance": 0.11,
+            "critMultiplier": 1.975
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 1080,
+              "y": 1000,
+              "hp": 2400
+            }
+          ]
+        },
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999,
+            "broken": false
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9976,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "x": 360,
+          "y": 1000,
+          "critChance": 0.11,
+          "critMultiplier": 1.975,
+          "dead": false
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 1080,
+            "y": 1000,
+            "hp": 2279,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          }
+        ],
+        "metrics": {
+          "events": [
+            "spark",
+            "arrow",
+            "message",
+            "change",
+            "save",
+            "ring",
+            "arrowhit",
+            "text"
+          ],
+          "modes": [
+            "turnArrow"
+          ],
+          "geometry": [],
+          "geometryDetails": [],
+          "maxProjectiles": 1,
+          "returning": false,
+          "wraithReturn": false,
+          "apex": false,
+          "prepared": false,
+          "enthrall": false,
+          "manifest": false,
+          "earthbind": false,
+          "captured": false,
+          "prisonCross": false,
+          "effectBoost": 0,
+          "projectiles": [
+            1
+          ],
+          "followups": [],
+          "secondary": [],
+          "bounces": 0,
+          "damage": 121,
+          "hits": [
+            {
+              "target": "preview-target-0",
+              "damage": 121,
+              "source": "p0",
+              "skill": "A09"
+            }
+          ],
+          "orbiters": 0,
+          "sharedDamage": 0,
+          "heroHpMin": 900,
+          "heroHpMax": 900,
+          "guard": false,
+          "counter": false,
+          "traps": 0,
+          "curse": 0,
+          "soulBoost": false,
+          "shield": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false,
+          "lastStand": false,
+          "remnants": 0,
+          "expiry": 0,
+          "jump": 0,
+          "retreat": 0,
+          "summons": 0,
+          "stakes": 0,
+          "casts": [
+            {
+              "id": "A09",
+              "side": 0,
+              "cost": 23,
+              "time": 0.6500000000000004
+            }
+          ],
+          "expiryRecovered": 0
+        },
+        "ally": null,
+        "jumpCost": null,
+        "control": null
+      },
+      "checks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for A09",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "id": "A09",
+      "width": 360,
+      "coreAt": 1.7166666666666655,
+      "milestones": {},
+      "missingMilestones": [],
+      "renderChecks": []
+    },
+    {
+      "snapshot": {
+        "camera": {
+          "scale": 0.4265625,
+          "x": 585,
+          "y": 907.5,
+          "actorPixels": 55.453125
+        },
+        "id": "O10",
+        "cast": "O10",
+        "age": 3.3333333333333264,
+        "fired": true,
+        "follow": true,
+        "turns": 0,
+        "kind": "earthbound",
+        "rank": 8,
+        "initial": {
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999
+            }
+          ],
+          "hero": {
+            "hp": 900,
+            "focus": 9999,
+            "x": 360,
+            "y": 1000,
+            "maxHp": 1200,
+            "maxFocus": 9999,
+            "armor": 0.22999999999999998,
+            "move": 3000,
+            "critChance": 0.08249999999999999,
+            "critMultiplier": 1.73
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 840,
+              "y": 1000,
+              "hp": 125
+            }
+          ]
+        },
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999,
+            "broken": false
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "x": 360,
+          "y": 1000,
+          "critChance": 0.08249999999999999,
+          "critMultiplier": 1.73,
+          "dead": false
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 0,
+            "maxHp": 125,
+            "armor": 0,
+            "curse": 0,
+            "dead": true,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          }
+        ],
+        "metrics": {
+          "events": [
+            "rune",
+            "spiritCast",
+            "message",
+            "change",
+            "save",
+            "spiritImpact",
+            "text",
+            "ring",
+            "burst",
+            "hit",
+            "down",
+            "spark"
+          ],
+          "modes": [
+            "curseEarth",
+            "spiritBolt"
+          ],
+          "geometry": [],
+          "geometryDetails": [],
+          "maxProjectiles": 1,
+          "returning": false,
+          "wraithReturn": false,
+          "apex": true,
+          "prepared": false,
+          "enthrall": false,
+          "manifest": false,
+          "earthbind": true,
+          "captured": false,
+          "prisonCross": false,
+          "effectBoost": 0,
+          "projectiles": [
+            1,
+            2
+          ],
+          "followups": [],
+          "secondary": [],
+          "bounces": 0,
+          "damage": 125,
+          "hits": [
+            {
+              "target": "preview-target-0",
+              "damage": 117,
+              "source": "p0",
+              "skill": "O10"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 8,
+              "source": "p0",
+              "skill": "O01"
+            }
+          ],
+          "orbiters": 0,
+          "sharedDamage": 0,
+          "heroHpMin": 900,
+          "heroHpMax": 900,
+          "guard": false,
+          "counter": false,
+          "traps": 0,
+          "curse": 0,
+          "soulBoost": false,
+          "shield": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false,
+          "lastStand": false,
+          "remnants": 0,
+          "expiry": 0,
+          "jump": 0,
+          "retreat": 0,
+          "summons": 1,
+          "stakes": 0,
+          "casts": [
+            {
+              "id": "O10",
+              "side": 0,
+              "cost": 88,
+              "time": 0.6500000000000004
+            },
+            {
+              "id": "O01",
+              "side": 0,
+              "cost": 0,
+              "time": 1.2333333333333338
+            }
+          ],
+          "expiryRecovered": 0
+        },
+        "ally": null,
+        "jumpCost": null,
+        "control": null
+      },
+      "checks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for O10",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "id": "O10",
+      "width": 360,
+      "coreAt": 1.816666666666665,
+      "milestones": {},
+      "missingMilestones": [],
+      "renderChecks": []
+    },
+    {
+      "snapshot": {
+        "camera": {
+          "scale": 0.4627109693008236,
+          "x": 559.9992739620463,
+          "y": 907.4998093118063,
+          "actorPixels": 60.15242600910707
+        },
+        "id": "O16",
+        "cast": "O16",
+        "age": 3.7999999999999914,
+        "fired": true,
+        "follow": false,
+        "turns": 0,
+        "kind": "converge",
+        "rank": 8,
+        "initial": {
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999
+            }
+          ],
+          "hero": {
+            "hp": 900,
+            "focus": 9999,
+            "x": 360,
+            "y": 1000,
+            "maxHp": 1200,
+            "maxFocus": 9999,
+            "armor": 0.22999999999999998,
+            "move": 3000,
+            "critChance": 0.08249999999999999,
+            "critMultiplier": 1.73
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 760,
+              "y": 1000,
+              "hp": 2400
+            },
+            {
+              "id": "preview-target-1",
+              "x": 790,
+              "y": 1000,
+              "hp": 2400
+            }
+          ]
+        },
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999,
+            "broken": false
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9903,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "x": 360,
+          "y": 1000,
+          "critChance": 0.08249999999999999,
+          "critMultiplier": 1.73,
+          "dead": false
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 760,
+            "y": 1000,
+            "hp": 1610,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          },
+          {
+            "id": "preview-target-1",
+            "x": 790,
+            "y": 1000,
+            "hp": 2095,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          }
+        ],
+        "metrics": {
+          "events": [
+            "rune",
+            "spiritCast",
+            "message",
+            "change",
+            "save",
+            "ring",
+            "spiritSummon",
+            "spiritImpact",
+            "text"
+          ],
+          "modes": [
+            "spiritConverge",
+            "convergeSpirit"
+          ],
+          "geometry": [],
+          "geometryDetails": [],
+          "maxProjectiles": 14,
+          "returning": false,
+          "wraithReturn": false,
+          "apex": false,
+          "prepared": false,
+          "enthrall": false,
+          "manifest": false,
+          "earthbind": false,
+          "captured": false,
+          "prisonCross": false,
+          "effectBoost": 0,
+          "projectiles": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "followups": [],
+          "secondary": [],
+          "bounces": 0,
+          "damage": 1095,
+          "hits": [
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 58,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 58,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 32,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 32,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 32,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 34,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-0",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            },
+            {
+              "target": "preview-target-1",
+              "damage": 19,
+              "source": "p0",
+              "skill": "O16"
+            }
+          ],
+          "orbiters": 0,
+          "sharedDamage": 0,
+          "heroHpMin": 900,
+          "heroHpMax": 900,
+          "guard": false,
+          "counter": false,
+          "traps": 0,
+          "curse": 0,
+          "soulBoost": false,
+          "shield": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false,
+          "lastStand": false,
+          "remnants": 0,
+          "expiry": 0,
+          "jump": 0,
+          "retreat": 0,
+          "summons": 0,
+          "stakes": 0,
+          "casts": [
+            {
+              "id": "O16",
+              "side": 0,
+              "cost": 96,
+              "time": 0.6500000000000004
+            }
+          ],
+          "expiryRecovered": 0
+        },
+        "ally": null,
+        "jumpCost": null,
+        "control": null
+      },
+      "checks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for O16",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "id": "O16",
+      "width": 360,
+      "coreAt": 2.28333333333333,
+      "milestones": {
+        "converging": {
+          "camera": {
+            "scale": 0.33107522177302273,
+            "x": 442.7069891579469,
+            "y": 988.8443086095231,
+            "actorPixels": 43.039778830492956
+          },
+          "id": "O16",
+          "cast": "O16",
+          "age": 2.166666666666664,
+          "fired": true,
+          "follow": false,
+          "turns": 0,
+          "kind": "converge",
+          "rank": 8,
+          "initial": {
+            "terrain": [
+              {
+                "id": "preview-floor",
+                "mat": "rock",
+                "hp": 99999
+              }
+            ],
+            "hero": {
+              "hp": 900,
+              "focus": 9999,
+              "x": 360,
+              "y": 1000,
+              "maxHp": 1200,
+              "maxFocus": 9999,
+              "armor": 0.22999999999999998,
+              "move": 3000,
+              "critChance": 0.08249999999999999,
+              "critMultiplier": 1.73
+            },
+            "targets": [
+              {
+                "id": "preview-target-0",
+                "x": 760,
+                "y": 1000,
+                "hp": 2400
+              },
+              {
+                "id": "preview-target-1",
+                "x": 790,
+                "y": 1000,
+                "hp": 2400
+              }
+            ]
+          },
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999,
+              "broken": false
+            }
+          ],
+          "hero": {
+            "hp": 900,
+            "focus": 9903,
+            "maxHp": 1200,
+            "maxFocus": 9999,
+            "x": 360,
+            "y": 1000,
+            "critChance": 0.08249999999999999,
+            "critMultiplier": 1.73,
+            "dead": false
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 760,
+              "y": 1000,
+              "hp": 2308,
+              "maxHp": 2400,
+              "armor": 0,
+              "curse": 0,
+              "dead": false,
+              "type": "beast",
+              "grounded": true,
+              "flying": false
+            },
+            {
+              "id": "preview-target-1",
+              "x": 790,
+              "y": 1000,
+              "hp": 2400,
+              "maxHp": 2400,
+              "armor": 0,
+              "curse": 0,
+              "dead": false,
+              "type": "beast",
+              "grounded": true,
+              "flying": false
+            }
+          ],
+          "metrics": {
+            "events": [
+              "rune",
+              "spiritCast",
+              "message",
+              "change",
+              "save",
+              "ring",
+              "spiritSummon",
+              "spiritImpact",
+              "text"
+            ],
+            "modes": [
+              "spiritConverge",
+              "convergeSpirit"
+            ],
+            "geometry": [],
+            "geometryDetails": [],
+            "maxProjectiles": 14,
+            "returning": false,
+            "wraithReturn": false,
+            "apex": false,
+            "prepared": false,
+            "enthrall": false,
+            "manifest": false,
+            "earthbind": false,
+            "captured": false,
+            "prisonCross": false,
+            "effectBoost": 0,
+            "projectiles": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "followups": [],
+            "secondary": [],
+            "bounces": 0,
+            "damage": 92,
+            "hits": [
+              {
+                "target": "preview-target-0",
+                "damage": 34,
+                "source": "p0",
+                "skill": "O16"
+              },
+              {
+                "target": "preview-target-0",
+                "damage": 58,
+                "source": "p0",
+                "skill": "O16"
+              }
+            ],
+            "orbiters": 0,
+            "sharedDamage": 0,
+            "heroHpMin": 900,
+            "heroHpMax": 900,
+            "guard": false,
+            "counter": false,
+            "traps": 0,
+            "curse": 0,
+            "soulBoost": false,
+            "shield": 0,
+            "jucheon": 0,
+            "jucheonReady": false,
+            "harmony": false,
+            "lastStand": false,
+            "remnants": 0,
+            "expiry": 0,
+            "jump": 0,
+            "retreat": 0,
+            "summons": 0,
+            "stakes": 0,
+            "casts": [
+              {
+                "id": "O16",
+                "side": 0,
+                "cost": 96,
+                "time": 0.6500000000000004
+              }
+            ],
+            "expiryRecovered": 0
+          },
+          "ally": null,
+          "jumpCost": null,
+          "control": null
+        }
+      },
+      "missingMilestones": [],
+      "renderChecks": []
+    }
+  ],
+  "errors": []
+}

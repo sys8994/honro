@@ -1,0 +1,2715 @@
+[
+  {
+    "id": "O06",
+    "rank": 1,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": true
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "observed unique effect for O06",
+        "ok": true
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "O06",
+      "cast": "O06",
+      "age": 23.99999999999992,
+      "fired": true,
+      "follow": false,
+      "turns": 0,
+      "kind": "weakness",
+      "rank": 1,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "armor": 0.11,
+          "move": 3000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 800,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-1",
+            "x": 970,
+            "y": 1000,
+            "hp": 2400
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 857,
+        "focus": 9999,
+        "maxHp": 1200,
+        "maxFocus": 9999,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 800,
+          "y": 1000,
+          "hp": 2381,
+          "maxHp": 2400,
+          "armor": 0.13,
+          "curse": 2,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-1",
+          "x": 970,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [
+          "rune",
+          "spiritCast",
+          "message",
+          "change",
+          "save",
+          "spiritImpact",
+          "text",
+          "spark",
+          "sword",
+          "arrowhit"
+        ],
+        "modes": [
+          "curseWeak",
+          "arrow"
+        ],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 1,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": true,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": false,
+        "earthbind": false,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [
+          1,
+          2
+        ],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 19,
+        "hits": [
+          {
+            "target": "preview-target-0",
+            "damage": 19,
+            "source": "p0",
+            "skill": "O06"
+          },
+          {
+            "target": "p0",
+            "damage": 43,
+            "source": "preview-target-0",
+            "skill": "LA01"
+          }
+        ],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 857,
+        "heroHpMax": 900,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 3,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 0,
+        "stakes": 0,
+        "casts": [
+          {
+            "id": "O06",
+            "side": 0,
+            "cost": 47,
+            "time": 0.6500000000000004
+          },
+          {
+            "id": "LA01",
+            "side": 1,
+            "cost": 0,
+            "time": 1.4166666666666665
+          }
+        ]
+      },
+      "ally": null,
+      "control": null
+    }
+  },
+  {
+    "id": "O06",
+    "rank": 8,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": true
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "observed unique effect for O06",
+        "ok": true
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "O06",
+      "cast": "O06",
+      "age": 23.99999999999992,
+      "fired": true,
+      "follow": false,
+      "turns": 0,
+      "kind": "weakness",
+      "rank": 8,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "armor": 0.11,
+          "move": 3000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 800,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-1",
+            "x": 970,
+            "y": 1000,
+            "hp": 2400
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 857,
+        "focus": 9999,
+        "maxHp": 1200,
+        "maxFocus": 9999,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 800,
+          "y": 1000,
+          "hp": 2368,
+          "maxHp": 2400,
+          "armor": 0.13,
+          "curse": 6,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-1",
+          "x": 970,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [
+          "rune",
+          "spiritCast",
+          "message",
+          "change",
+          "save",
+          "spiritImpact",
+          "text",
+          "spark",
+          "sword",
+          "arrowhit"
+        ],
+        "modes": [
+          "curseWeak",
+          "arrow"
+        ],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 1,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": true,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": false,
+        "earthbind": false,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [
+          1,
+          2
+        ],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 32,
+        "hits": [
+          {
+            "target": "preview-target-0",
+            "damage": 32,
+            "source": "p0",
+            "skill": "O06"
+          },
+          {
+            "target": "p0",
+            "damage": 43,
+            "source": "preview-target-0",
+            "skill": "LA01"
+          }
+        ],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 857,
+        "heroHpMax": 900,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 7,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 0,
+        "stakes": 0,
+        "casts": [
+          {
+            "id": "O06",
+            "side": 0,
+            "cost": 31,
+            "time": 0.6500000000000004
+          },
+          {
+            "id": "LA01",
+            "side": 1,
+            "cost": 0,
+            "time": 1.4166666666666665
+          }
+        ]
+      },
+      "ally": null,
+      "control": null
+    }
+  },
+  {
+    "id": "O08",
+    "rank": 1,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": true
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "observed unique effect for O08",
+        "ok": true
+      },
+      {
+        "name": "non spirit sight ally can guide to manifested spirit only after cast",
+        "ok": true
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "O08",
+      "cast": "O08",
+      "age": 23.99999999999992,
+      "fired": true,
+      "follow": false,
+      "turns": 0,
+      "kind": "manifest",
+      "rank": 1,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "armor": 0.11,
+          "move": 3000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 830,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-1",
+            "x": 955,
+            "y": 1000,
+            "hp": 2400
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 900,
+        "focus": 9940,
+        "maxHp": 1200,
+        "maxFocus": 9999,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 830,
+          "y": 1000,
+          "hp": 2369,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "ghost",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-1",
+          "x": 955,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "ghost",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [
+          "rune",
+          "spiritCast",
+          "message",
+          "change",
+          "save",
+          "spiritImpact",
+          "spark",
+          "text"
+        ],
+        "modes": [
+          "curseManifest"
+        ],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 1,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": true,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": true,
+        "earthbind": false,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [
+          1
+        ],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 31,
+        "hits": [
+          {
+            "target": "preview-target-0",
+            "damage": 31,
+            "source": "p0",
+            "skill": "O08"
+          }
+        ],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 900,
+        "heroHpMax": 900,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 0,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 0,
+        "stakes": 0,
+        "casts": [
+          {
+            "id": "O08",
+            "side": 0,
+            "cost": 59,
+            "time": 0.6500000000000004
+          }
+        ]
+      },
+      "ally": {
+        "hp": 300,
+        "focus": 20,
+        "move": 100
+      },
+      "control": null
+    }
+  },
+  {
+    "id": "O08",
+    "rank": 8,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": true
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "observed unique effect for O08",
+        "ok": true
+      },
+      {
+        "name": "non spirit sight ally can guide to manifested spirit only after cast",
+        "ok": true
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "O08",
+      "cast": "O08",
+      "age": 23.99999999999992,
+      "fired": true,
+      "follow": false,
+      "turns": 0,
+      "kind": "manifest",
+      "rank": 8,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "armor": 0.11,
+          "move": 3000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 830,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-1",
+            "x": 955,
+            "y": 1000,
+            "hp": 2400
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 900,
+        "focus": 9960,
+        "maxHp": 1200,
+        "maxFocus": 9999,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 830,
+          "y": 1000,
+          "hp": 2347,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "ghost",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-1",
+          "x": 955,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "ghost",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [
+          "rune",
+          "spiritCast",
+          "message",
+          "change",
+          "save",
+          "spiritImpact",
+          "spark",
+          "text"
+        ],
+        "modes": [
+          "curseManifest"
+        ],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 1,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": true,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": true,
+        "earthbind": false,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [
+          1
+        ],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 53,
+        "hits": [
+          {
+            "target": "preview-target-0",
+            "damage": 53,
+            "source": "p0",
+            "skill": "O08"
+          }
+        ],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 900,
+        "heroHpMax": 900,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 0,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 0,
+        "stakes": 0,
+        "casts": [
+          {
+            "id": "O08",
+            "side": 0,
+            "cost": 39,
+            "time": 0.6500000000000004
+          }
+        ]
+      },
+      "ally": {
+        "hp": 300,
+        "focus": 20,
+        "move": 100
+      },
+      "control": null
+    }
+  },
+  {
+    "id": "O10",
+    "rank": 1,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": true
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "observed unique effect for O10",
+        "ok": true
+      },
+      {
+        "name": "does not fire at dead target or new friendly earth spirit",
+        "ok": false
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "O10",
+      "cast": "O10",
+      "age": 23.99999999999992,
+      "fired": true,
+      "follow": true,
+      "turns": 0,
+      "kind": "earthbound",
+      "rank": 1,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "armor": 0.11,
+          "move": 3000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 45
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 900,
+        "focus": 9999,
+        "maxHp": 1200,
+        "maxFocus": 9999,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 840,
+          "y": 1000,
+          "hp": 0,
+          "maxHp": 45,
+          "armor": 0,
+          "curse": 0,
+          "dead": true,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [
+          "rune",
+          "spiritCast",
+          "message",
+          "change",
+          "save",
+          "spiritImpact",
+          "text",
+          "burst",
+          "down",
+          "ring",
+          "spark"
+        ],
+        "modes": [
+          "curseEarth"
+        ],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 1,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": true,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": false,
+        "earthbind": true,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [
+          1
+        ],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 45,
+        "hits": [
+          {
+            "target": "preview-target-0",
+            "damage": 45,
+            "source": "p0",
+            "skill": "O10"
+          },
+          {
+            "target": "summon-2",
+            "damage": 69,
+            "source": "p0",
+            "skill": "O10"
+          }
+        ],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 900,
+        "heroHpMax": 900,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 0,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 1,
+        "stakes": 0,
+        "casts": [
+          {
+            "id": "O10",
+            "side": 0,
+            "cost": 133,
+            "time": 0.6500000000000004
+          }
+        ]
+      },
+      "ally": null,
+      "control": null
+    }
+  },
+  {
+    "id": "O10",
+    "rank": 8,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": true
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "observed unique effect for O10",
+        "ok": true
+      },
+      {
+        "name": "does not fire at dead target or new friendly earth spirit",
+        "ok": false
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "O10",
+      "cast": "O10",
+      "age": 23.99999999999992,
+      "fired": true,
+      "follow": true,
+      "turns": 0,
+      "kind": "earthbound",
+      "rank": 8,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "armor": 0.11,
+          "move": 3000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 45
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 900,
+        "focus": 9999,
+        "maxHp": 1200,
+        "maxFocus": 9999,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 840,
+          "y": 1000,
+          "hp": 0,
+          "maxHp": 45,
+          "armor": 0,
+          "curse": 0,
+          "dead": true,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [
+          "rune",
+          "spiritCast",
+          "message",
+          "change",
+          "save",
+          "spiritImpact",
+          "text",
+          "burst",
+          "down",
+          "ring",
+          "spark"
+        ],
+        "modes": [
+          "curseEarth"
+        ],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 1,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": true,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": false,
+        "earthbind": true,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [
+          1
+        ],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 45,
+        "hits": [
+          {
+            "target": "preview-target-0",
+            "damage": 45,
+            "source": "p0",
+            "skill": "O10"
+          },
+          {
+            "target": "summon-2",
+            "damage": 116,
+            "source": "p0",
+            "skill": "O10"
+          }
+        ],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 900,
+        "heroHpMax": 900,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 0,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 1,
+        "stakes": 0,
+        "casts": [
+          {
+            "id": "O10",
+            "side": 0,
+            "cost": 88,
+            "time": 0.6500000000000004
+          }
+        ]
+      },
+      "ally": null,
+      "control": null
+    }
+  },
+  {
+    "id": "O11",
+    "rank": 1,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": true
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "observed unique effect for O11",
+        "ok": true
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "O11",
+      "cast": "O11",
+      "age": 23.99999999999992,
+      "fired": true,
+      "follow": false,
+      "turns": 0,
+      "kind": "summon",
+      "rank": 1,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "armor": 0.11,
+          "move": 3000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-1",
+            "x": 955,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-2",
+            "x": 1070,
+            "y": 1000,
+            "hp": 2400
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 900,
+        "focus": 9944,
+        "maxHp": 1200,
+        "maxFocus": 9999,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 840,
+          "y": 1000,
+          "hp": 2372,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-1",
+          "x": 955,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-2",
+          "x": 1070,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [
+          "rune",
+          "spiritCast",
+          "message",
+          "change",
+          "save",
+          "spiritSummon",
+          "ring",
+          "spark",
+          "hit",
+          "text",
+          "line",
+          "slash",
+          "sword"
+        ],
+        "modes": [
+          "summonStalker"
+        ],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 1,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": true,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": false,
+        "earthbind": false,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [
+          1
+        ],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 28,
+        "hits": [
+          {
+            "target": "preview-target-0",
+            "damage": 28,
+            "source": "summon-2"
+          }
+        ],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 900,
+        "heroHpMax": 900,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 0,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 1,
+        "stakes": 0,
+        "casts": [
+          {
+            "id": "O11",
+            "side": 0,
+            "cost": 55,
+            "time": 0.6500000000000004
+          }
+        ]
+      },
+      "ally": null,
+      "control": null
+    }
+  },
+  {
+    "id": "O11",
+    "rank": 8,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": true
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "observed unique effect for O11",
+        "ok": true
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "O11",
+      "cast": "O11",
+      "age": 23.99999999999992,
+      "fired": true,
+      "follow": false,
+      "turns": 0,
+      "kind": "summon",
+      "rank": 8,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "armor": 0.11,
+          "move": 3000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-1",
+            "x": 955,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-2",
+            "x": 1070,
+            "y": 1000,
+            "hp": 2400
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 900,
+        "focus": 9963,
+        "maxHp": 1200,
+        "maxFocus": 9999,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 840,
+          "y": 1000,
+          "hp": 2362,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-1",
+          "x": 955,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-2",
+          "x": 1070,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [
+          "rune",
+          "spiritCast",
+          "message",
+          "change",
+          "save",
+          "spiritSummon",
+          "ring",
+          "spark",
+          "hit",
+          "text",
+          "line",
+          "slash",
+          "sword"
+        ],
+        "modes": [
+          "summonStalker"
+        ],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 1,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": true,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": false,
+        "earthbind": false,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [
+          1
+        ],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 38,
+        "hits": [
+          {
+            "target": "preview-target-0",
+            "damage": 38,
+            "source": "summon-2"
+          }
+        ],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 900,
+        "heroHpMax": 900,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 0,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 1,
+        "stakes": 0,
+        "casts": [
+          {
+            "id": "O11",
+            "side": 0,
+            "cost": 36,
+            "time": 0.6500000000000004
+          }
+        ]
+      },
+      "ally": null,
+      "control": null
+    }
+  },
+  {
+    "id": "O12",
+    "rank": 1,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": true
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "observed unique effect for O12",
+        "ok": true
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "O12",
+      "cast": "O12",
+      "age": 23.99999999999992,
+      "fired": true,
+      "follow": false,
+      "turns": 0,
+      "kind": "summon",
+      "rank": 1,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "armor": 0.11,
+          "move": 3000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-1",
+            "x": 955,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-2",
+            "x": 1070,
+            "y": 1000,
+            "hp": 2400
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 900,
+        "focus": 9937,
+        "maxHp": 1200,
+        "maxFocus": 9999,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 840,
+          "y": 1000,
+          "hp": 2373,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-1",
+          "x": 955,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-2",
+          "x": 1070,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [
+          "rune",
+          "spiritCast",
+          "message",
+          "change",
+          "save",
+          "spiritSummon",
+          "ring",
+          "spark",
+          "spiritImpact",
+          "text",
+          "burst"
+        ],
+        "modes": [
+          "summonLantern",
+          "summonBolt"
+        ],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 1,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": true,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": false,
+        "earthbind": false,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [
+          1,
+          3
+        ],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 27,
+        "hits": [
+          {
+            "target": "preview-target-0",
+            "damage": 27,
+            "source": "summon-2",
+            "skill": "O12"
+          }
+        ],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 900,
+        "heroHpMax": 900,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 0,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 1,
+        "stakes": 0,
+        "casts": [
+          {
+            "id": "O12",
+            "side": 0,
+            "cost": 62,
+            "time": 0.6500000000000004
+          }
+        ]
+      },
+      "ally": null,
+      "control": null
+    }
+  },
+  {
+    "id": "O12",
+    "rank": 8,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": true
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "observed unique effect for O12",
+        "ok": true
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "O12",
+      "cast": "O12",
+      "age": 23.99999999999992,
+      "fired": true,
+      "follow": false,
+      "turns": 0,
+      "kind": "summon",
+      "rank": 8,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 900,
+          "focus": 9999,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "armor": 0.11,
+          "move": 3000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-1",
+            "x": 955,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-2",
+            "x": 1070,
+            "y": 1000,
+            "hp": 2400
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 900,
+        "focus": 9958,
+        "maxHp": 1200,
+        "maxFocus": 9999,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 840,
+          "y": 1000,
+          "hp": 2326,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-1",
+          "x": 955,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-2",
+          "x": 1070,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [
+          "rune",
+          "spiritCast",
+          "message",
+          "change",
+          "save",
+          "spiritSummon",
+          "ring",
+          "spark",
+          "spiritImpact",
+          "text",
+          "burst"
+        ],
+        "modes": [
+          "summonLantern",
+          "summonBolt"
+        ],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 2,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": true,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": false,
+        "earthbind": false,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [
+          1,
+          3,
+          4
+        ],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 74,
+        "hits": [
+          {
+            "target": "preview-target-0",
+            "damage": 37,
+            "source": "summon-2",
+            "skill": "O12"
+          },
+          {
+            "target": "preview-target-0",
+            "damage": 37,
+            "source": "summon-2",
+            "skill": "O12"
+          }
+        ],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 900,
+        "heroHpMax": 900,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 0,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 1,
+        "stakes": 0,
+        "casts": [
+          {
+            "id": "O12",
+            "side": 0,
+            "cost": 41,
+            "time": 0.6500000000000004
+          }
+        ]
+      },
+      "ally": null,
+      "control": null
+    }
+  },
+  {
+    "id": "OP04",
+    "rank": 1,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": false
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "real passive trigger and unlearned comparison: passive-expiry",
+        "ok": false
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "OP04",
+      "cast": "O11",
+      "age": 23.99999999999992,
+      "fired": false,
+      "follow": false,
+      "turns": 0,
+      "kind": "passive-expiry",
+      "rank": 1,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 345,
+          "focus": 50,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 460,
+          "maxFocus": 144,
+          "armor": 0.11,
+          "move": 1150,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-1",
+            "x": 955,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-2",
+            "x": 1070,
+            "y": 1000,
+            "hp": 2400
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 345,
+        "focus": 50,
+        "maxHp": 460,
+        "maxFocus": 144,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 840,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-1",
+          "x": 955,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-2",
+          "x": 1070,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [],
+        "modes": [],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 0,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": false,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": false,
+        "earthbind": false,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 0,
+        "hits": [],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 345,
+        "heroHpMax": 345,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 0,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 0,
+        "stakes": 0,
+        "casts": []
+      },
+      "ally": null,
+      "control": {
+        "camera": {
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "actorPixels": 130
+        },
+        "id": "OP04",
+        "cast": "O11",
+        "age": 23.99999999999992,
+        "fired": false,
+        "follow": false,
+        "turns": 0,
+        "kind": "passive-expiry",
+        "rank": 0,
+        "initial": {
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999
+            }
+          ],
+          "hero": {
+            "hp": 345,
+            "focus": 50,
+            "x": 360,
+            "y": 1000,
+            "maxHp": 460,
+            "maxFocus": 144,
+            "armor": 0.11,
+            "move": 1150,
+            "critChance": 0.06,
+            "critMultiplier": 1.55
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 840,
+              "y": 1000,
+              "hp": 2400
+            },
+            {
+              "id": "preview-target-1",
+              "x": 955,
+              "y": 1000,
+              "hp": 2400
+            },
+            {
+              "id": "preview-target-2",
+              "x": 1070,
+              "y": 1000,
+              "hp": 2400
+            }
+          ]
+        },
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999,
+            "broken": false
+          }
+        ],
+        "hero": {
+          "hp": 345,
+          "focus": 50,
+          "maxHp": 460,
+          "maxFocus": 144,
+          "x": 360,
+          "y": 1000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55,
+          "dead": false
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 2400,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          },
+          {
+            "id": "preview-target-1",
+            "x": 955,
+            "y": 1000,
+            "hp": 2400,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          },
+          {
+            "id": "preview-target-2",
+            "x": 1070,
+            "y": 1000,
+            "hp": 2400,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          }
+        ],
+        "metrics": {
+          "events": [],
+          "modes": [],
+          "geometry": [],
+          "geometryDetails": [],
+          "maxProjectiles": 0,
+          "returning": false,
+          "wraithReturn": false,
+          "apex": false,
+          "prepared": false,
+          "enthrall": false,
+          "manifest": false,
+          "earthbind": false,
+          "captured": false,
+          "prisonCross": false,
+          "effectBoost": 0,
+          "projectiles": [],
+          "followups": [],
+          "secondary": [],
+          "bounces": 0,
+          "damage": 0,
+          "hits": [],
+          "orbiters": 0,
+          "sharedDamage": 0,
+          "heroHpMin": 345,
+          "heroHpMax": 345,
+          "guard": false,
+          "counter": false,
+          "traps": 0,
+          "curse": 0,
+          "soulBoost": false,
+          "shield": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false,
+          "lastStand": false,
+          "remnants": 0,
+          "expiry": 0,
+          "jump": 0,
+          "retreat": 0,
+          "summons": 0,
+          "stakes": 0,
+          "casts": []
+        },
+        "ally": null,
+        "control": null
+      }
+    }
+  },
+  {
+    "id": "OP04",
+    "rank": 8,
+    "checks": [
+      {
+        "name": "selected scenario fired a real skill",
+        "ok": false
+      },
+      {
+        "name": "finite actor/target state",
+        "ok": true
+      },
+      {
+        "name": "real passive trigger and unlearned comparison: passive-expiry",
+        "ok": false
+      }
+    ],
+    "snapshot": {
+      "camera": {
+        "scale": 1,
+        "x": 0,
+        "y": 0,
+        "actorPixels": 130
+      },
+      "id": "OP04",
+      "cast": "O11",
+      "age": 23.99999999999992,
+      "fired": false,
+      "follow": false,
+      "turns": 0,
+      "kind": "passive-expiry",
+      "rank": 8,
+      "initial": {
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999
+          }
+        ],
+        "hero": {
+          "hp": 345,
+          "focus": 50,
+          "x": 360,
+          "y": 1000,
+          "maxHp": 460,
+          "maxFocus": 144,
+          "armor": 0.11,
+          "move": 1150,
+          "critChance": 0.06,
+          "critMultiplier": 1.55
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-1",
+            "x": 955,
+            "y": 1000,
+            "hp": 2400
+          },
+          {
+            "id": "preview-target-2",
+            "x": 1070,
+            "y": 1000,
+            "hp": 2400
+          }
+        ]
+      },
+      "terrain": [
+        {
+          "id": "preview-floor",
+          "mat": "rock",
+          "hp": 99999,
+          "broken": false
+        }
+      ],
+      "hero": {
+        "hp": 345,
+        "focus": 50,
+        "maxHp": 460,
+        "maxFocus": 144,
+        "x": 360,
+        "y": 1000,
+        "critChance": 0.06,
+        "critMultiplier": 1.55,
+        "dead": false
+      },
+      "targets": [
+        {
+          "id": "preview-target-0",
+          "x": 840,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-1",
+          "x": 955,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        },
+        {
+          "id": "preview-target-2",
+          "x": 1070,
+          "y": 1000,
+          "hp": 2400,
+          "maxHp": 2400,
+          "armor": 0,
+          "curse": 0,
+          "dead": false,
+          "type": "beast",
+          "grounded": true,
+          "flying": false
+        }
+      ],
+      "metrics": {
+        "events": [],
+        "modes": [],
+        "geometry": [],
+        "geometryDetails": [],
+        "maxProjectiles": 0,
+        "returning": false,
+        "wraithReturn": false,
+        "apex": false,
+        "prepared": false,
+        "enthrall": false,
+        "manifest": false,
+        "earthbind": false,
+        "captured": false,
+        "prisonCross": false,
+        "effectBoost": 0,
+        "projectiles": [],
+        "followups": [],
+        "secondary": [],
+        "bounces": 0,
+        "damage": 0,
+        "hits": [],
+        "orbiters": 0,
+        "sharedDamage": 0,
+        "heroHpMin": 345,
+        "heroHpMax": 345,
+        "guard": false,
+        "counter": false,
+        "traps": 0,
+        "curse": 0,
+        "soulBoost": false,
+        "shield": 0,
+        "jucheon": 0,
+        "jucheonReady": false,
+        "harmony": false,
+        "lastStand": false,
+        "remnants": 0,
+        "expiry": 0,
+        "jump": 0,
+        "retreat": 0,
+        "summons": 0,
+        "stakes": 0,
+        "casts": []
+      },
+      "ally": null,
+      "control": {
+        "camera": {
+          "scale": 1,
+          "x": 0,
+          "y": 0,
+          "actorPixels": 130
+        },
+        "id": "OP04",
+        "cast": "O11",
+        "age": 23.99999999999992,
+        "fired": false,
+        "follow": false,
+        "turns": 0,
+        "kind": "passive-expiry",
+        "rank": 0,
+        "initial": {
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999
+            }
+          ],
+          "hero": {
+            "hp": 345,
+            "focus": 50,
+            "x": 360,
+            "y": 1000,
+            "maxHp": 460,
+            "maxFocus": 144,
+            "armor": 0.11,
+            "move": 1150,
+            "critChance": 0.06,
+            "critMultiplier": 1.55
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 840,
+              "y": 1000,
+              "hp": 2400
+            },
+            {
+              "id": "preview-target-1",
+              "x": 955,
+              "y": 1000,
+              "hp": 2400
+            },
+            {
+              "id": "preview-target-2",
+              "x": 1070,
+              "y": 1000,
+              "hp": 2400
+            }
+          ]
+        },
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999,
+            "broken": false
+          }
+        ],
+        "hero": {
+          "hp": 345,
+          "focus": 50,
+          "maxHp": 460,
+          "maxFocus": 144,
+          "x": 360,
+          "y": 1000,
+          "critChance": 0.06,
+          "critMultiplier": 1.55,
+          "dead": false
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 840,
+            "y": 1000,
+            "hp": 2400,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          },
+          {
+            "id": "preview-target-1",
+            "x": 955,
+            "y": 1000,
+            "hp": 2400,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          },
+          {
+            "id": "preview-target-2",
+            "x": 1070,
+            "y": 1000,
+            "hp": 2400,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          }
+        ],
+        "metrics": {
+          "events": [],
+          "modes": [],
+          "geometry": [],
+          "geometryDetails": [],
+          "maxProjectiles": 0,
+          "returning": false,
+          "wraithReturn": false,
+          "apex": false,
+          "prepared": false,
+          "enthrall": false,
+          "manifest": false,
+          "earthbind": false,
+          "captured": false,
+          "prisonCross": false,
+          "effectBoost": 0,
+          "projectiles": [],
+          "followups": [],
+          "secondary": [],
+          "bounces": 0,
+          "damage": 0,
+          "hits": [],
+          "orbiters": 0,
+          "sharedDamage": 0,
+          "heroHpMin": 345,
+          "heroHpMax": 345,
+          "guard": false,
+          "counter": false,
+          "traps": 0,
+          "curse": 0,
+          "soulBoost": false,
+          "shield": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false,
+          "lastStand": false,
+          "remnants": 0,
+          "expiry": 0,
+          "jump": 0,
+          "retreat": 0,
+          "summons": 0,
+          "stakes": 0,
+          "casts": []
+        },
+        "ally": null,
+        "control": null
+      }
+    }
+  }
+]

@@ -313,6 +313,17 @@
             G.HonroAct23StoryArt?.draw(this,e);
             G.HonroNarrativeArt?.draw(this,e);
             if(b.honroStage===10&&b.honroState?.sodanCoop)this.finaleRitual(c,b);
+            // Persisted residual charms are real battle objects, not impact FX.
+            for (const trap of b.occultTraps || []) {
+                if(trap.expires<b.round)continue;
+                c.save();c.translate(trap.x,trap.y);
+                const size=Math.max(1,.65/this.scale);c.scale(size,size);
+                E(c,0,-2,23,5,'rgba(186,160,208,.28)');
+                P(c,[[-8,-25],[8,-25],[8,-4],[-8,-4]],'#d4c79f','#51405f',1.5);
+                L(c,-4,-20,4,-14,'#72557f',2);L(c,4,-20,-4,-9,'#72557f',2);
+                c.scale(1/size,1/size);c.font=`${12/this.scale}px serif`;c.textAlign='center';c.fillStyle='#dfcaef';
+                c.fillText(`잔부 ${trap.expires-b.round+1}턴`,0,-30*size);c.restore();
+            }
             for (const z of b.zones || []) {
                 if (z.dead)
                     continue;

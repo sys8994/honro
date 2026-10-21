@@ -6,7 +6,7 @@ p.heroes.archer.ranks={A14:2,A05:1,A02:1};p.loadouts.archer=['A01','A14','A05','
 g.HonroUI={...g.HonroUI,camp:(p,c,header,b)=>C.campView(p,c,{},header,b),talent:(p,id)=>C.talentView(p,id,'').replace('id="skill-preview"','id="previewcanvas"'),slotLibrary:(p,c,i,id)=>C.slotLibrary(p,c,i,'',id),equipChoice:(p,c,id,i)=>C.equipChoiceView(p,c,id,'',i)};
 g.HonroSkillPreview={setup:(app,id,hero)=>({id,h:plain(hero)})};
 const app=h.load(p),dialog={scrollTop:0},canvas=g.document.getElementById('previewcanvas');canvas.replaceWith=()=>{};
-app.modal.querySelector=selector=>selector==='.dialog'?dialog:selector.includes('talent-dialog')?(/talent-dialog|ultimate-dialog/.test(app.modal.innerHTML)?dialog:null):{focus(){}};
+app.modal.querySelector=selector=>selector==='.dialog'||selector==='.skill-modal-body'?dialog:selector.includes('talent-dialog')?(/talent-dialog|ultimate-dialog/.test(app.modal.innerHTML)?dialog:null):{focus(){}};
 app.showCamp('archer');g.document.getElementById('armory').scrollTop=135;app.branch=1;
 const before=plain(app.profile.loadouts.archer);
 click('slot',{slot:'1'});assert.match(app.modal.innerHTML,/현재 장착/);assert.match(app.modal.innerHTML,/기력/);
