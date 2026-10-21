@@ -263,7 +263,7 @@ function cooperationDefense(){return scene('cooperation-defense','함께 막는 
  ['소단','밖에서 계속 들어오니… 원혼을 아무리 붙잡아도 줄지 않았군요.'],
  ['소단','(돌단에 무릎을 꿇는다) 매듭을 풀게요. 앞을 부탁해요.'],
  ['설오','다가오는 것들은 제가 막겠습니다.'],
- ['안내','양옆 진이 혼을 받는 동안 소단을 보호하세요. 여섯 번의 적 턴이 지나면 의식이 끝납니다.',{kind:'guide'}]]);}
+ ['안내','양옆 진이 혼을 받는 동안 소단을 보호하세요. 여섯 번의 적 턴이 지나면 의식이 끝납니다.',{kind:'guide'}]]).map(([who,text,meta],i)=>[who,text,{...meta,...(i<2?{camera:{id:`10:defense-east:${i}`,intent:'situation',targets:[{anchor:'eastHall'},{anchor:'outerEast'}],padding:80,maxScale:.72}}:{})}]);}
 function finaleMidpoint(){return scene('finale-midpoint','놓치지 않는 손',[
  ['소단','(몸을 낮춰 매듭을 붙든다) 매듭은 반쯤 풀렸어요. 그런데 밖에서 새 원혼이 자꾸 밀려와요. 손이 떨려요.'],
  ['설오','제 목소리 들립니까? 여기서 지키고 있습니다. 매듭에 집중하십시오.'],

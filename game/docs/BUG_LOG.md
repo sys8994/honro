@@ -4088,3 +4088,8 @@ Workshop Map은 Workshop JSON을 `map-import` → `launchMap`으로 실행하는
 
 ### 2026-10-21 저장 검사 계약 master 통합
 - 부모의909015f8 전체 diff 검토 후 최신master145ab2f에 테스트2개·문서2개만 통합(9c0f66d7). sp-balance-app-resume 원본23장 그룹과 campaign-map-revision8그룹을 통합 소스에서 재확인해 통과했다. fixture SHA086290aa… 동일. 런타임·기존 배포 스킬UI·생성물·2장/12장 작업은 변경하지 않았고 게임빌드/브라우저 검수는 미실행. 자동 Pages 상태는 최종 인계에서 별도 보고한다.
+
+### 2026-10-21 · 대사 카메라의 이동 연속성과 중간 구도
+- 원인: 명시 구도 fitting이 매 프레임 Scene 좌표/줌을 바로 덮어쓰고 legacy storyTween을 초기화해 페이지 전환이 순간 이동했다. 방향 연출의1.05 확대와 분산된10장 양쪽 진/동행 동시 포함도 과도한 확대 또는 축소를 만들었다.
+- 변경: targetFrame 계산과 현재 화면의 중심/로그 줌 응답을 분리했다. 약310ms에99.5% 접근하는 하나의 임계 감쇠 응답을 쓰며 빠른 다음/이전은 현재 위치와 속도로 재지정한다. active framing 동안 follow/resize zoom/legacy tween/경계 clamp가 경쟁하지 않는다. 유형별 중간 줌 상한은 이전 저장의 높은 값에도 적용하고 reduced motion과 대화 종료 복귀도 존중한다.10장 동쪽 위협 소개와 소단 주변의 실제 근접 수비 집단을 구분하며 지형/사건/대사 원문은 보존한다.
+- 확인: story-framing의 실제 App/Engine 대역 검사8그룹(목표/저장/별칭/10장 집단/시간 응답/빠른 재지정/reduced motion 포함) 통과. Chromium 유형별·예외 장면 캡처와 전 대사 정책 목록 검사는 진행 중이다. 전체 미술 합격/캠페인 완주/공개 배포 주장이 아니며 부모 검수 전 master에는 반영하지 않는다.
