@@ -23,11 +23,12 @@ const transform=()=>{const m=c.getTransform();return[m.a,m.b,m.c,m.d,m.e,m.f];},
 for(const t of ts){
  if(!t.honroRavine)continue;
  const a=art.prepare(t,b);assert.equal(a,art.prepare(t,b),'prepare cache must reuse paths');
- maxPreparedPaths=Math.max(maxPreparedPaths,a.plates.length+a.bands.length+a.grooves.length+a.moss.length+2);
+ maxPreparedPaths=Math.max(maxPreparedPaths,a.plates.length+a.bands.length+a.grooves.length+a.moss.length+(a.faces?.length||0)+(a.beds?.length||0)+(a.exposures?.length||0)*3+2);
  assert.equal(art.terrain(c,t,b),true);drawn++;
  assert.deepEqual(transform(),beforeTransform,'material pass leaked its Canvas transform');
  assert.equal(c.globalAlpha,1,'material pass leaked alpha');
 }
+for(const id of ['act2-floor','rv-west-shoulder','rv-west-stone-arch','rv-west-rock-crown','rv-ritual-buttress','rv-lower-west-shelf','rv-lower-refuge-rock','rv-east-tower','rv-north-trace'])assert.ok(art.prepare(ts.find(t=>t.id===id),b).faces?.length>=5,id+' uses its connected landform faces');
 assert.ok(drawn>=30);assert.ok(maxPreparedPaths<150,'unbounded material path count');
 assert.equal(JSON.stringify(b),original,'rendering changed the live battle');
 const t=ts.find(t=>t.honroRavine),old=art.prepare(t,b),next={...b,sceneVersion:(b.sceneVersion||0)+1};assert.notEqual(art.prepare(t,next),old,'scene invalidation must reprepare live geometry');
