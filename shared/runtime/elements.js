@@ -41,9 +41,22 @@ function terrainFaceClip(t,b,inset){
  const path=points=>{const p=new Path2D();points.forEach((v,i)=>i?p.lineTo(v.x,v.y):p.moveTo(v.x,v.y));p.closePath();return p;};
  const q={solid:path(ps),inset:path(ps.map(p=>({x:p.x,y:p.y+(walk.some(v=>Math.abs(v.x-p.x)<.01&&Math.abs(v.y-p.y)<.01)?inset:0)})))};cache.paths.set(inset,q);return q;
 }
-function drawTerrainFaces(c,t,b,scene){
- if(t.broken||!b?.honroTerrainAttachments?.length)return;for(const inst of b.honroTerrainAttachments){if(inst.terrainId!==t.id)continue;const q=terrainFaceClip(t,b,inst.walkClearance??24);c.save();c.clip(q.solid);c.clip(q.inset);draw(c,inst.asset,inst,scene);c.restore();}
+// Optional burial of an inserted asset's ground datum. Paint the unchanged
+// asset into a bounded cache, then mask only its base; never erase the host.
+const faceImages=new Map(),FACE_IMAGE_BYTES=16*1024*1024;let faceImageBytes=0,faceImageBuilds=0;
+function drawBuriedFace(c,inst,b,scene){
+ const a=inst.asset,box=a.bounds||a.reference.bounds,points=[[box.x,box.y],[box.x+box.w,box.y],[box.x+box.w,box.y+box.h],[box.x,box.y+box.h]].map(([x,y])=>Q.transformPoint({x,y},a,inst));
+ const x=Math.min(...points.map(p=>p.x)),y=Math.min(...points.map(p=>p.y)),w=Math.max(...points.map(p=>p.x))-x,h=Math.max(...points.map(p=>p.y))-y;
+ const ratio=Math.min(Math.max(.5,Math.min(2,Math.ceil((scene.scale||1)*4)/4)),Math.sqrt(2e6/(w*h))),key=ratio.toFixed(4)+':'+inst.embedFade+':'+b.sceneVersion+':'+(G.HonroVisualStyle?.key()||'');
+ let q=faceImages.get(inst);if(q?.key!==key){if(q){faceImageBytes-=q.bytes;faceImages.delete(inst);}const cv=document.createElement('canvas');cv.width=Math.ceil(w*ratio);cv.height=Math.ceil(h*ratio);const cc=cv.getContext('2d');cc.setTransform(ratio,0,0,ratio,-x*ratio,-y*ratio);draw(cc,a,inst,scene);
+  const foot=Q.transformPoint(a.reference.foot,a,inst);cc.setTransform(1,0,0,1,0,0);const mask=cc.createLinearGradient(0,(foot.y-inst.embedFade-y)*ratio,0,(Math.max(foot.y,y+h)-y)*ratio);mask.addColorStop(0,'rgba(0,0,0,1)');mask.addColorStop(1,'rgba(0,0,0,0)');cc.globalCompositeOperation='destination-in';cc.fillStyle=mask;cc.fillRect(0,0,cv.width,cv.height);
+  q={key,canvas:cv,x,y,w,h,bytes:cv.width*cv.height*4};while(faceImages.size&&faceImageBytes+q.bytes>FACE_IMAGE_BYTES){const first=faceImages.keys().next().value;faceImageBytes-=faceImages.get(first).bytes;faceImages.delete(first);}faceImageBuilds++;faceImageBytes+=q.bytes;
+ }else faceImages.delete(inst);faceImages.set(inst,q);(G.HonroVisualStyle?.raw(c)||c).drawImage(q.canvas,q.x,q.y,q.w,q.h);
 }
-G.HonroTerrainAttachments={draw:drawTerrainFaces,clip:terrainFaceClip};
+function drawTerrainFaces(c,t,b,scene){
+ if(t.broken||!b?.honroTerrainAttachments?.length)return;for(const inst of b.honroTerrainAttachments){if(inst.terrainId!==t.id)continue;const q=terrainFaceClip(t,b,inst.walkClearance??24);c.save();c.clip(q.solid);c.clip(q.inset);if(inst.embedFade>0)drawBuriedFace(c,inst,b,scene);else draw(c,inst.asset,inst,scene);c.restore();}
+}
+function coversBlock(t,b,span){return(b.honroTerrainAttachments||[]).some(inst=>{if(!inst.replaceBlocks||inst.terrainId!==t.id)return false;const a=inst.asset,r=a.bounds||a.reference.bounds,xs=[[r.x,r.y],[r.x+r.w,r.y],[r.x+r.w,r.y+r.h],[r.x,r.y+r.h]].map(([x,y])=>Q.transformPoint({x,y},a,inst).x);return Math.max(...xs)>span[0]&&Math.min(...xs)<span[1];});}
+G.HonroTerrainAttachments={coversBlock,draw:drawTerrainFaces,clip:terrainFaceClip,stats:()=>({bytes:faceImageBytes,maxBytes:FACE_IMAGE_BYTES,entries:faceImages.size,builds:faceImageBuilds})};
 G.HonroElements={draw,nativeLandmark};
 })(globalThis);

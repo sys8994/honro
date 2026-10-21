@@ -4,14 +4,14 @@ const renderLayer=layer=>({far:'back',interactive:'prop',terrain:'prop',units:'f
 function profileFor(st){const p=C.defaults(),sid=st.metadata?.stageId||1;p.recruited=[...new Set(st.units.filter(u=>u.team==='player').map(u=>G.HONRO_CONTENT.hero[u.kind]?u.kind:u.cls).filter(Boolean))];if(!p.recruited.length)p.recruited=['archer'];for(const c of p.recruited)p.heroes[c].xp=G.HonroProgression.xpAt(G.HonroProgression.plan(sid).entryLevel);return p;}
 // Pure visual instances embedded in an existing solid. They never compile
 // asset collision, targets or additional walking surfaces.
-function terrainAttachments(st,project,terrain){return(st.design?.space?.terrainAttachments||[]).map(spec=>{
+function terrainAttachments(st,project,terrain,worldTerrain){return(st.design?.space?.terrainAttachments||[]).map(spec=>{
  const asset=project.library.find(a=>a.id===spec.assetId),host=terrain.find(t=>t.id===spec.terrainId);
- if(!asset||!host||host.oneWay||asset.interactionType)throw Error('Invalid terrain attachment '+spec.id);
+ if(!asset||!host||host.oneWay||asset.interactionType||spec.embedFade!==undefined&&(!Number.isFinite(spec.embedFade)||spec.embedFade<0||spec.embedFade>1000))throw Error('Invalid terrain attachment '+spec.id);
  const ps=C.poly(host),edge=spec.anchor?.edge,u=ps[edge],v=ps[(edge+1)%ps.length],along=spec.anchor?.along;
  if(!host.honroWalkEdges?.includes(edge)||!u||!v||!Number.isFinite(along)||along<0||along>1)throw Error('Invalid face anchor '+spec.id);
  const x=u.x+(v.x-u.x)*along,walkY=u.y+(v.y-u.y)*along,scale=spec.scale??1,range=asset.reference?.scaleRange||[.1,8];
  if(!Number.isFinite(scale)||scale<range[0]||scale>range[1]||!['surface','base'].includes(spec.depthMode)||!Number.isFinite(spec.walkClearance)||spec.walkClearance<4||spec.walkClearance>120||!Number.isFinite(spec.inset)||spec.inset<0)throw Error('Invalid face scale/inset '+spec.id);
- let datum=walkY;if(spec.depthMode==='base'){const hits=[];for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(Math.abs(z.x-a.x)<.001||x<Math.min(a.x,z.x)||x>Math.max(a.x,z.x))continue;const y=a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x);if(y>walkY+.1)hits.push(y);}if(!hits.length)throw Error('Missing solid base '+spec.id);datum=Math.min(...hits);}
+ let datum=walkY;if(spec.depthMode==='base'){const section=C.poly(worldTerrain?.find(t=>t.id===host.id)||host),hits=[];for(let i=0;i<section.length;i++){const a=section[i],z=section[(i+1)%section.length];if(Math.abs(z.x-a.x)<.001||x<Math.min(a.x,z.x)||x>Math.max(a.x,z.x))continue;const y=a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x);if(y>walkY+.1)hits.push(y);}if(!hits.length)throw Error('Missing solid base '+spec.id);datum=Math.min(...hits);}
  const rotation=spec.rotation||0,cs=Math.cos(rotation),sn=Math.sin(rotation),foot=asset.reference?.foot||{x:0,y:0},fx=(foot.x-(asset.anchor?.x||0))*scale,fy=(foot.y-(asset.anchor?.y||0))*scale;
  return{...clone(spec),kind:'terrain-face',x:x-fx*cs+fy*sn,y:datum+spec.inset-fx*sn-fy*cs,scale,rotation,depthLayer:'L1',visualRole:'scenery',asset:clone(asset),surfaceAnchor:{x,y:walkY,datum}};
 });}
@@ -34,7 +34,7 @@ function compile(st,project){
   }
  }
  const worldTerrain=st.terrainBounds?st.terrains.map(t=>({...Q.terrain(t,st.height,true),...(t.playProjection?{honroDomainProjection:clone(t.playProjection)}:{})})):null;
- return{terrain,worldTerrain,landmarks,elements,terrainAttachments:terrainAttachments(st,project,terrain),materials:st.materials.map(m=>Q.material(st,m,terrain))};
+ return{terrain,worldTerrain,landmarks,elements,terrainAttachments:terrainAttachments(st,project,terrain,worldTerrain),materials:st.materials.map(m=>Q.material(st,m,terrain))};
 }
 function createBattle(st,project,profile=profileFor(st),options={}){
  const sid=st.metadata?.stageId||1,content=G.HonroSplitCampaign?.content(profile,sid)||G.HONRO_CONTENT.stages[sid-1],b=C.createBattle(1,clone(profile),'practice',{party:['archer'],distance:900});

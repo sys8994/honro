@@ -1,3 +1,11 @@
+## 2026-10-21 — 12장 기존 공통 자산 전면 부착 실험 (미술 미충족·master 보류)
+
+b7a177ea의 실패한 jointed-granite 선택은 비활성화했다(8322de2c). 공통 terrainAttachments에 실제 walk-edge 앵커·surface/base datum·inset·uniform scale·live-solid clip·walk rim 보호를 추가했다. 기존 자산의 collision은 이 시각 경로에서 발행하지 않는다. base는 Play Bounds 투영 폐쇄가 아닌 canonical world solid 단면을 따른다. 원래 공통 SVG/도형을 변경하지 않고 기본 에셋 painter를 사용한다. 선택적 하단 burial은 16MiB/자산2M픽셀 한도의 공통 캐시에 합성하며, native/브라우저 gradient 좌표 차이는 픽셀 좌표 마스크로 수정했다. 부착과 겹치는 기존 room block만 선택적으로 생략한다. 모든 신규 경로에 장 번호/sq 분기나 새 미술 polygon 없음.
+
+기존 valley-granite와 rock-column을 두 구간에 배치하고5회 화면 교정했다. 원래 바위의 앞/옆면은 확인하지만 자산의 완결된 바위 외곽/소나무가 반복되어 연속 절벽·하부 지지·암턱 접합 표현은 여전히 미충족이다. 신규 절벽 자산을 중복 제작하거나2장의 미승인 모듈을 가져오지 않았다. stage-review/stage12-quarry/FACE_ATTACHMENTS.md에 원본·판정·연결 가능한 공통 API와 부족 구간을 기록한다. 코드/API 완료를 미술 합격으로 주장하지 않는다.
+
+검증은 관련 물리/스토리/배우/보상/revision/기존 모든 요소와 다른29장/Library 동일성, 컴파일 물리 동일, solid clip/보행면 보호·기존 자산 실제 호출·JSON 저장 안전성·cache 반복 재사용/한도·대표6장 native static pixel 동일, author2회·build·실제 V3 A/B terminal Continue 보존이다. 전투 완주를 재실행한 검사가 아니다. master/Pages/13장 보류 유지. 최신 master의 스킬 UI는 통합/덮어쓰기하지 않았다.
+
 ## 2026-10-21 — 선택형 공통 암반 재질 시험 (미술 실패·통합 보류)
 
 Act2 공통 terrain painter에 jointed-granite 선택형 재질을 추가했다. canonical space.terrainMaterials에서만 선택하며 새 공통 함수에는 장 번호·sq ID·절대 좌표나 장별 면 목록이 없다. 실제 보행면의 각도 변화와 인접 구간 길이로 3–5개 구간을 선택하고, 기존 공통 ROCK_FORMS의 내부 면만 실제 solid의 상/하 단면과 층리 기준에 변형한다. 공통 암반 외곽은 그리지 않으며 모든 새 면은 기존 solid 안에서 clip한다. 12장의 상부와 길표 구역만 선택했다. 승인 rooted-pine 유지. 수레 좌표는 그대로 두고 가리던 장식 잔석 한 개를 같은 실제 경사면 오른쪽으로 옮기고 축소·접지했다.

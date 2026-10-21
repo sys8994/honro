@@ -90,7 +90,7 @@ function terrain(c,t,b){if(G.HonroStage11LandscapeArt?.terrain(c,t,b))return;con
   // Preserve the broad fracture paths. Stronger paired light/shadow values
   // describe granite planes, rather than adding small polygon texture.
   q.facets.forEach((p,i)=>{c.fillStyle=['#7481901d','#0b182940','#9098a819','#07142342'][i%4];c.fill(p);});
-  for(const block of q.blocks){if(q.rockMasses&&block.span[1]>q.rockMasses.left&&block.span[0]<q.rockMasses.right)continue;c.fillStyle=q.ceiling?'#414c59':'#5b6572';c.fill(block.body);c.fillStyle=q.ceiling?'#192532':'#273443';c.fill(block.side);c.fillStyle='#091521a3';c.fill(block.contact);}
+  for(const block of q.blocks){if(G.HonroTerrainAttachments?.coversBlock(t,b,block.span))continue;if(q.rockMasses&&block.span[1]>q.rockMasses.left&&block.span[0]<q.rockMasses.right)continue;c.fillStyle=q.ceiling?'#414c59':'#5b6572';c.fill(block.body);c.fillStyle=q.ceiling?'#192532':'#273443';c.fill(block.side);c.fillStyle='#091521a3';c.fill(block.contact);}
   // One coherent light direction, shallow caps and narrow contact shadows.
   // The enclosing live-solid clip above also clips every material sub-plane.
   for(const mass of q.rockMasses?.masses||[]){

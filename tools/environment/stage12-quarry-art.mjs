@@ -16,13 +16,10 @@ export const QUARRY_COMMON_ASSETS={
 // Existing shared art is inserted into the host's front exposure. These
 // anchors are real walking edges; inset is a datum below that surface/base.
 export const QUARRY_FACE_ATTACHMENTS=[
- {id:'quarry-face-north-west',assetId:'act1-scene:valley-granite',terrainId:'sq-north-quarry',anchor:{edge:1,along:.75},depthMode:'base',inset:80,scale:1.05,walkClearance:28},
- {id:'quarry-face-north-neck',assetId:'env:cliff',terrainId:'sq-north-quarry',anchor:{edge:5,along:.8},depthMode:'surface',inset:280,scale:1.1,walkClearance:28},
- {id:'quarry-face-north-crown',assetId:'mockup-granite-large',terrainId:'sq-north-quarry',anchor:{edge:3,along:.65},depthMode:'surface',inset:540,scale:1.8,walkClearance:28},
- {id:'quarry-face-north-toe',assetId:'mockup-granite-shelf',terrainId:'sq-north-quarry',anchor:{edge:7,along:.4},depthMode:'base',inset:60,scale:1.5,walkClearance:28},
- {id:'quarry-face-sign-joint',assetId:'env:cliff',terrainId:'sq-lower-ground',anchor:{edge:15,along:.65},depthMode:'surface',inset:250,scale:1,walkClearance:28},
- {id:'quarry-face-sign-granite',assetId:'act1-scene:valley-granite',terrainId:'sq-lower-ground',anchor:{edge:17,along:.4},depthMode:'surface',inset:680,scale:1,walkClearance:28},
- {id:'quarry-face-sign-foot',assetId:'mockup-granite-large',terrainId:'sq-lower-ground',anchor:{edge:16,along:.5},depthMode:'surface',inset:900,scale:1.5,walkClearance:28}
+ {id:'quarry-face-north-west',assetId:'act1-scene:valley-granite',terrainId:'sq-north-quarry',anchor:{edge:1,along:.75},depthMode:'base',inset:80,scale:1.3,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-north-crown',assetId:'act1-scene:valley-granite',terrainId:'sq-north-quarry',anchor:{edge:4,along:.95},depthMode:'base',inset:130,scale:1.55,walkClearance:28,replaceBlocks:true,embedFade:120},
+ {id:'quarry-face-north-toe',assetId:'act2:rock-column',terrainId:'sq-north-quarry',anchor:{edge:8,along:.6},depthMode:'base',inset:90,scale:.9,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-sign-granite',assetId:'act1-scene:valley-granite',terrainId:'sq-lower-ground',anchor:{edge:17,along:.4},depthMode:'surface',inset:900,scale:1.4,walkClearance:28,replaceBlocks:true,embedFade:160}
 ];
 export function applyStage12QuarryArt(project,{sourceStage}={}){
  const s=project.stages.find(s=>s.metadata?.stageId===12),source=sourceStage||s;

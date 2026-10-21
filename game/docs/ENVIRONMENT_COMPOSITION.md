@@ -65,3 +65,15 @@ Workshop에서 에셋을 고르고 Depth → Zone/Group → Support를 선택한
 ## 2026-10-18 사용자 정정: 장소와 실제 지형의 공동 설계
 
 자연스러운 장소·그림·한옥 구조를 먼저 설계한 뒤 실제 terrain/platform을 맞춘다. 기존 벡터 다각형을 보존하기 위해 원화를 세로 조각으로 잘라 늘이지 않는다. 전투 컨셉·퀘스트 연결·일반 이동 접근성은 유지하며 밟는 지붕은 one-way 발판이다. 개편된 장의 진행 중 전투만 revision/restart 계약으로 폐기하고 성장·SP·장착·전체 클리어 기록을 보존한다. 전 장 공통 원칙이지만 구현은 부모가 지정한 한 장씩 진행한다.
+
+## 지형 전면의 시각 부착 (terrainAttachments)
+
+상면 소품과 달리, 기존 solid 내부에 드러난 암면/벽면은 `stage.design.space.terrainAttachments`로 지정한다. 공통 compiler가 `honroTerrainAttachments`로 해석하고, 최종 공통 terrain hook이 원래 asset painter를 actual solid clip 안에서 호출한다. 물리 polygon·asset collision·이벤트를 추가하지 않는다. `assetId`는 활성 Library의 기존 자산이고 uniform scale은 해당 reference.scaleRange 안이어야 한다.
+
+- `terrainId`, `anchor:{edge,along}`: 실제 honroWalkEdges의 edge와0–1 보간 위치.
+- `depthMode:'surface'|'base'`, `inset`: 보행면 또는 canonical world solid의 해당 수직 단면 하단에서 아래 방향으로 이동한 자산 foot datum. 기능 좌표를 옮기는 값이 아니다.
+- `walkClearance`: 표시된 실제 보행면 안쪽의 보호 폭(월드 단위,4–120). 원래 solid와 보행면 inset을 함께 clip하므로 통로를 덮거나 새 턱을 만들지 않는다.
+- `embedFade`(선택): 자산 밑동을 묻는 합성 폭(0–1000 월드 단위). 원본 SVG/도형은 유지한다. 16MiB LRU/자산2M픽셀 한도로 정적 cache를 만들고 native/브라우저에서 같은 픽셀 좌표 마스크를 사용한다.
+- `replaceBlocks`(선택): 이 자산의 범위와 겹친 기존 Act2 room 장식 block만 생략한다. 실제 지형이나 보행 테두리를 숨기지 않는다.
+
+이 경로는 게임·Stage View·Playtest의 동일 번들을 사용한다. 같은 revision 구전투는 기존 시각 스냅샷을 유지하며 강제 치환하지 않는다. 공통 API 연결과 장별 미술 합격은 별개다. 현재12장 배치는 연속 암면/지지 연결의 미술 미충족 실험으로 기록되어 있으며 신규 자산 승인을 뜻하지 않는다.

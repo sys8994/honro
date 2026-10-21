@@ -64,6 +64,8 @@ function validate(project){
   const faces=st.design?.space?.terrainAttachments||[];if(!Array.isArray(faces)||faces.length>32)issue('err',st.id+': invalid terrainAttachments');
   for(const f of Array.isArray(faces)?faces:[]){const a=project.library.find(a=>a.id===f.assetId),t=st.terrains.find(t=>t.id===f.terrainId),range=a?.reference?.scaleRange||[.1,8];
    if(!f.id||ids.has(f.id))issue('err',st.id+': duplicate face ID '+f.id);ids.add(f.id);
+   if(f.replaceBlocks!==undefined&&typeof f.replaceBlocks!=='boolean')issue('err',st.id+': invalid face underpaint '+f.id);
+   if(f.embedFade!==undefined&&(!Number.isFinite(f.embedFade)||f.embedFade<0||f.embedFade>1000))issue('err',st.id+': invalid face burial '+f.id);
    if(!a||a.interactionType||!t||terrainOneWay(t)||t.properties?.honroCeiling||!t.properties?.honroWalkEdges?.includes(f.anchor?.edge)||!Number.isFinite(f.anchor?.along)||f.anchor.along<0||f.anchor.along>1||!['surface','base'].includes(f.depthMode)||!Number.isFinite(f.inset)||f.inset<0||!Number.isFinite(f.scale)||f.scale<range[0]||f.scale>range[1]||!Number.isFinite(f.walkClearance)||f.walkClearance<4||f.walkClearance>120)issue('err',st.id+': invalid terrain face '+f.id);
   }
   for(const t of st.terrains){if(t.oneWay!==undefined&&typeof t.oneWay!=='boolean')issue('err',`${t.id}: oneWay must be boolean`);if(terrainOneWay(t)&&t.properties?.honroCeiling)issue('err',`${t.id}: a solid ceiling cannot be a one-way platform`);const pts=t.type==='solid'?t.points:t.control;if(!Array.isArray(pts)||pts.length<(t.type==='solid'?3:2)||pts.some(p=>!p||!Number.isFinite(p.x)||!Number.isFinite(p.y)))issue('err',`${t.id}: invalid polygon`);}
