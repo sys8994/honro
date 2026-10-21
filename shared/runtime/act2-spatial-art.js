@@ -12,7 +12,46 @@ const polygon=points=>{const p=new Path2D();points.forEach(([x,y],i)=>i?p.lineTo
 function roundedPolygon(points,radius=28,roundIndices=null){const p=new Path2D(),cuts=points.map((v,i)=>{const a=points[(i+points.length-1)%points.length],z=points[(i+1)%points.length],da=Math.hypot(v[0]-a[0],v[1]-a[1]),dz=Math.hypot(z[0]-v[0],z[1]-v[1]),r=roundIndices&&!roundIndices.has(i)?0:Math.min(radius,da*.14,dz*.14);return{v,enter:[v[0]+(a[0]-v[0])*r/(da||1),v[1]+(a[1]-v[1])*r/(da||1)],exit:[v[0]+(z[0]-v[0])*r/(dz||1),v[1]+(z[1]-v[1])*r/(dz||1)]};});p.moveTo(...cuts[0].exit);for(let i=1;i<=cuts.length;i++){const q=cuts[i%cuts.length];p.lineTo(...q.enter);p.quadraticCurveTo(...q.v,...q.exit);}p.closePath();return p;}
 function pointIn(x,y,pts){let inside=false;for(let i=0,j=pts.length-1;i<pts.length;j=i++){const a=pts[i],z=pts[j];if((a.y>y)!==(z.y>y)&&x<(z.x-a.x)*(y-a.y)/(z.y-a.y)+a.x)inside=!inside;}return inside;}
 function surfaceEdges(t,b){const original=t.honroDomain?b.terrain.find(v=>v.id===t.id)||t:t,ps=C.poly(original),space=b.honroMap.space,ref=space.surfaces?.find(s=>s.terrainId===t.id),indices=ref?.edgeIndices||t.honroWalkEdges||[];const edges=indices.map(i=>[ps[i],ps[(i+1)%ps.length]]).filter(p=>p[0]&&p[1]&&(!t.honroDomain||!(Math.abs(p[0].x-p[1].x)<.001&&(p[0].x===0||p[0].x===b.width))));if(t.honroDomain){const ws=C.poly(t);for(let i=0;i<ws.length;i++){const a=ws[i],z=ws[(i+1)%ws.length],outside=Math.max(a.x,z.x)<=0||Math.min(a.x,z.x)>=b.width;if(outside&&Math.abs(z.x-a.x)>.001&&(t.honroCeiling?z.x<a.x:z.x>a.x)&&Math.abs((z.y-a.y)/(z.x-a.x))<1.36)edges.push([a,z]);}}return edges;}
-function prepareTerrain(t,b){let q=terrainCache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion)return q;const ps=C.poly(t),shape=polygon(ps.map(p=>[p.x,p.y])),surface=surfaceEdges(t,b),rim=new Path2D(),facets=[],blocks=[],wedges=[],masonry=[],lip=[],ceiling=!!t.honroCeiling,timber=!!(t.oneWay&&t.optional&&t.honroSurfaceRole==='shelf'&&(!t.honroRavine||t.honroRavineTree));
+// Optional shared granite material. All anchors come from the live walking
+// profile; named rooms only limit the section of a continuous ground mass.
+function rockMaterial(t,b){return b.honroMap.space.terrainMaterials?.find(m=>m.variant==='jointed-granite'&&m.terrainIds?.includes(t.id));}
+function prepareRockMasses(t,b,surface,material){
+ if(!material||t.oneWay||t.honroCeiling||surface.length<2)return null;
+ const count=Math.max(3,Math.min(5,material.massCount||4)),scale=Math.max(.5,Math.min(1.5,material.reliefScale||1));
+ const human=b.units.find(u=>u.team==='player'||u.side===0)?.h||92,solid=C.poly(t);
+ const rooms=(b.honroMap.space.rooms||[]).filter(r=>material.roomIds?.includes(r.id));
+ const left=Math.max(b.honroPlayBounds?.left||0,...(rooms.length?[Math.min(...rooms.map(r=>r.bounds.x))]:[t.x]));
+ const right=Math.min(b.honroPlayBounds?.right||b.width,...(rooms.length?[Math.max(...rooms.map(r=>r.bounds.x+r.bounds.w))]:[t.x+t.w]));
+ const edges=surface.filter(([a,z])=>z.x>a.x&&z.x>left&&a.x<right).sort((a,z)=>a[0].x-z[0].x);
+ if(!edges.length||right-left<human*3)return null;
+ const at=x=>{const e=edges.find(([a,z])=>x>=a.x-.001&&x<=z.x+.001)||edges.reduce((a,z)=>Math.abs(z[0].x-x)<Math.abs(a[0].x-x)?z:a);return e[0].y+(e[1].y-e[0].y)*(x-e[0].x)/(e[1].x-e[0].x);};
+ const vertices=edges.flat().filter(p=>p.x>=left&&p.x<=right),lo=vertices[0]?.x,hi=vertices.at(-1)?.x,span=hi-lo,minSpan=Math.max(human*2.7,span/(count*1.9));
+ const points=[{x:lo,y:at(lo)},...edges.flat().filter(p=>p.x>lo&&p.x<hi),{x:hi,y:at(hi)}].filter((p,i,a)=>!i||Math.abs(p.x-a[i-1].x)>.01);
+ const bends=points.slice(1,-1).map((p,j)=>{const a=points[j],z=points[j+2],before=Math.atan2(p.y-a.y,p.x-a.x),after=Math.atan2(z.y-p.y,z.x-p.x);return{x:p.x,score:Math.abs(after-before)*Math.sqrt((p.x-a.x)*(z.x-p.x)),turn:after-before};}).filter(p=>p.x-lo>=minSpan&&hi-p.x>=minSpan).sort((a,z)=>z.score-a.score);
+ const cuts=[lo,hi];for(const p of bends){if(cuts.length>=count+1)break;if(cuts.every(x=>Math.abs(x-p.x)>=minSpan))cuts.push(p.x);}cuts.sort((a,z)=>a-z);
+ // Never invent evenly spaced joints on a featureless plane.
+ if(cuts.length<3)return null;
+ const floor=(x,y)=>{const hits=[];for(let i=0;i<solid.length;i++){const a=solid[i],z=solid[(i+1)%solid.length];if(Math.abs(z.x-a.x)<.01||x<Math.min(a.x,z.x)||x>Math.max(a.x,z.x))continue;const yy=a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x);if(yy>y+human*.1)hits.push(yy);}return hits.length?Math.min(...hits):y+human*10;};
+ const dip=material.beddingSlope??.12,masses=[],spanMid=(lo+hi)/2,relief=Math.min(span*.48,human*10)*scale;
+ const finite=[lo+span*.18,spanMid,hi-span*.12].every(x=>floor(x,at(x))-at(x)<human*18);
+ const bed=x=>at(spanMid)+relief+(x-spanMid)*dip;
+ const bottom=x=>finite?floor(x,at(x)):bed(x);
+ const boundary=(x0,x1)=>[{x:x0,y:bottom(x0)},...(finite?solid.filter(p=>p.x>x0&&p.x<x1&&p.y>at(p.x)+human*.1):[]),{x:x1,y:bottom(x1)}].sort((a,z)=>a.x-z.x);
+ for(let i=1;i<cuts.length;i++){
+  const x0=cuts[i-1],x1=cuts[i],w=x1-x0,y0=at(x0),y1=at(x1),ridge=[{x:x0,y:y0},...points.filter(p=>p.x>x0&&p.x<x1),{x:x1,y:y1}],lower=boundary(x0,x1);
+  const cap=p=>Math.min(human*.16,(bottom(p.x)-p.y)*.08),capRidge=ridge.map(p=>[p.x,p.y+cap(p)]);
+  // Reuse the existing common granite's internal facets only. Its outline
+  // is never painted: the live solid remains the sole exterior silhouette.
+  const turn=bends.find(p=>Math.abs(p.x-x0)<.01)?.turn||0,formName=turn<-.15?'quarry':turn>.15?'shoulder':'wall',form=ROCK_FORMS[formName];
+  const minX=Math.min(...form.outline.map(p=>p[0])),maxX=Math.max(...form.outline.map(p=>p[0])),minY=Math.min(...form.outline.map(p=>p[1])),maxY=Math.max(...form.outline.map(p=>p[1]));
+  const horizon=x=>{const top=at(x),low=bottom(x),bedY=Math.min(...points.map(p=>p.y))+relief*.55+(x-spanMid)*dip;return Math.max(top+(low-top)*.20,Math.min(top+(low-top)*.80,bedY));};
+  const warp=ps=>polygon(ps.map(([u,v])=>{const x=x0+(u-minX)/(maxX-minX)*w,f=Math.max(0,Math.min(1,(v-minY)/(maxY-minY))),top=at(x),low=bottom(x),bed=horizon(x);return[x,f<.5?top+(bed-top)*f*2:bed+(low-bed)*(f-.5)*2];}));
+  const faces=[...new Map(form.faces.map(f=>[JSON.stringify(f),f])).values()].map(warp),contacts=form.seams.map(warp);
+  masses.push({body:polygon([...ridge.map(p=>[p.x,p.y]),...lower.reverse().map(p=>[p.x,p.y])]),faces,contacts,formName,cap:polygon([...ridge.map(p=>[p.x,p.y]),...capRidge.reverse()]),x0,x1,top:Math.min(...ridge.map(p=>p.y)),bottom:Math.max(...lower.map(p=>p.y)),depth:bottom((x0+x1)/2)-at((x0+x1)/2),finite,anchor:{x:x0,y:y0},end:{x:x1,y:y1}});
+ }
+ return{variant:material.variant,left:lo,right:hi,masses,anchors:cuts.map(x=>({x,y:at(x)})),beddingSlope:dip};
+}
+function prepareTerrain(t,b){const material=rockMaterial(t,b),materialKey=material?JSON.stringify(material):'';let q=terrainCache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion&&q.materialKey===materialKey)return q;const ps=C.poly(t),shape=polygon(ps.map(p=>[p.x,p.y])),surface=surfaceEdges(t,b),rim=new Path2D(),facets=[],blocks=[],wedges=[],masonry=[],lip=[],ceiling=!!t.honroCeiling,timber=!!(t.oneWay&&t.optional&&t.honroSurfaceRole==='shelf'&&(!t.honroRavine||t.honroRavineTree));
  const peers=G.HonroTerrainDomain.render(b).filter(s=>s.id!==t.id&&!s.broken&&!s.oneWay&&!s.honroElementCollision),buried=(x,y)=>peers.some(s=>x>s.x&&x<s.x+s.w&&y>s.y&&y<s.y+s.h&&pointIn(x,y,C.poly(s)));
  for(const [a,z]of surface){if(buried((a.x+z.x)/2,(a.y+z.y)/2+(ceiling?-3:3)))continue;rim.moveTo(a.x,a.y);rim.lineTo(z.x,z.y);if(!ceiling)lip.push(polygon([[a.x,a.y],[z.x,z.y],[z.x,z.y+18],[a.x,a.y+18]]));}
  // Three or four unequal broad fracture planes per physical mass. These have
@@ -29,14 +68,15 @@ function prepareTerrain(t,b){let q=terrainCache.get(t);if(q?.source===t.vertices
   for(const [j,room]of named.entries()){if(room.bounds.w<650)continue;const landmarks=(b.honroMap.space.scenery||[]).filter(v=>v.roomId===room.id&&/house|temple|hoist|bell|sluice/.test(v.assetId));const center=landmarks.length?landmarks.reduce((n,l)=>n+l.x,0)/landmarks.length:room.bounds.x+room.bounds.w*[.30,.67,.46][j%3],bw=Math.min(room.bounds.w*.82,landmarks.some(l=>/temple|bell/.test(l.assetId))?1750:1250),x0=Math.max(t.x,center-bw*.53),x1=Math.min(t.x+t.w,center+bw*.47),depth=ceiling?330+(j%3)*90:500+(j%3)*170,dir=ceiling?-1:1;
    const ridge=[x0,x0+(x1-x0)*.31,x0+(x1-x0)*.72,x1].map(x=>[x,at(x)]),a=ridge[0],z=ridge.at(-1),cut=x0+(x1-x0)*(.64-(j%2)*.13);
    const lower=[[x1-(x1-x0)*.12,z[1]+dir*depth*.63],[cut,a[1]+dir*depth],[x0+(x1-x0)*.07,a[1]+dir*depth*.79]];
-   blocks.push({body:roundedPolygon([...ridge,...lower],30),side:roundedPolygon([[cut,at(cut)],[...z],lower[0],lower[1],[cut-(x1-x0)*.07,a[1]+dir*depth*.44]],24),contact:polygon([[cut-12,at(cut)+dir*15],[cut+12,at(cut)+dir*15],[cut-(x1-x0)*.055,a[1]+dir*depth*.44],[lower[1][0]+12,lower[1][1]],[lower[1][0]-10,lower[1][1]],[cut-(x1-x0)*.085,a[1]+dir*depth*.44]])});
+   blocks.push({span:[x0,x1],body:roundedPolygon([...ridge,...lower],30),side:roundedPolygon([[cut,at(cut)],[...z],lower[0],lower[1],[cut-(x1-x0)*.07,a[1]+dir*depth*.44]],24),contact:polygon([[cut-12,at(cut)+dir*15],[cut+12,at(cut)+dir*15],[cut-(x1-x0)*.055,a[1]+dir*depth*.44],[lower[1][0]+12,lower[1][1]],[lower[1][0]-10,lower[1][1]],[cut-(x1-x0)*.085,a[1]+dir*depth*.44]])});
   }
  }
  if([18,19].includes(b.honroStage)&&t.honroSurfaceRole==='floor'){const bell=(b.honroMap.space.landmarks||[]).find(l=>l.kind==='bell');if(bell)for(const side of [-1,1]){const cx=bell.x+side*650,left=cx-270,right=cx+270,top=[left,left+130,right-120,right].map(x=>[x,at(x)]),a=top[0],z=top.at(-1),depth=side<0?470:620,lower=[[right-80,z[1]+depth*.68],[cx+side*70,(a[1]+z[1])/2+depth],[left+55,a[1]+depth*.64]];wedges.push({body:polygon([...top,...lower]),side:polygon([[cx,at(cx)],[...z],lower[0],lower[1],[cx-45,at(cx)+depth*.4]]),contact:polygon([[cx-13,at(cx)+14],[cx+12,at(cx)+14],[cx-28,at(cx)+depth*.4],[lower[1][0]+12,lower[1][1]],[lower[1][0]-13,lower[1][1]],[cx-64,at(cx)+depth*.4]])});}}
  if(b.honroStage===16&&t.honroSurfaceRole==='floor'){const hall=b.honroMap.space.sites?.hall,hx=hall?.x??hall?.position?.x;const hy=Number.isFinite(hx)?at(hx):NaN,flat=surface.filter(([a,z])=>Math.abs(a.y-hy)<.5&&Math.abs(z.y-hy)<.5&&Math.abs((a.x+z.x)/2-hx)<1800);if(flat.length){const l=Math.min(...flat.flat().map(v=>v.x)),r=Math.max(...flat.flat().map(v=>v.x));for(const [i,depth]of [8,55,111].entries()){masonry.push({body:polygon([[l+18-i*13,hy+depth],[r-18+i*13,hy+depth],[r-10+i*13,hy+depth+43],[l+10-i*13,hy+depth+43]]),edge:polygon([[l+18-i*13,hy+depth],[r-18+i*13,hy+depth],[r-18+i*13,hy+depth+5],[l+18-i*13,hy+depth+5]])});}}}
  const joints=new Path2D();if(timber&&!t.honroRavine)for(let i=1;i<=3;i++){const x=t.x+t.w*[.24,.57,.81][i-1];joints.moveTo(x,at(x)+6);joints.lineTo(x-3,Math.min(t.y+t.h,at(x)+t.h*.86));}
  const authoredPlanes=(b.honroMap.space.terrainPlanes||[]).filter(p=>p.terrainId===t.id).map(p=>({fill:p.fill,path:polygon(p.points)}));
- q={source:t.vertices,version:b.sceneVersion,shape,rim,facets,blocks,wedges,masonry,lip,ceiling,timber,joints,authoredPlanes};terrainCache.set(t,q);return q;
+ const rockMasses=prepareRockMasses(t,b,surface,material);
+ q={source:t.vertices,version:b.sceneVersion,materialKey,rockMasses,shape,rim,facets,blocks,wedges,masonry,lip,ceiling,timber,joints,authoredPlanes};terrainCache.set(t,q);return q;
 }
 function rock(c,b){const g=c.createLinearGradient(0,0,0,b.height+1300);g.addColorStop(0,'#333d49');g.addColorStop(.34,'#454d59');g.addColorStop(.69,'#323c49');g.addColorStop(1,'#152331');return g;}
 function terrain(c,t,b){if(G.HonroStage11LandscapeArt?.terrain(c,t,b))return;const q=prepareTerrain(t,b);c.save();
@@ -50,7 +90,17 @@ function terrain(c,t,b){if(G.HonroStage11LandscapeArt?.terrain(c,t,b))return;con
   // Preserve the broad fracture paths. Stronger paired light/shadow values
   // describe granite planes, rather than adding small polygon texture.
   q.facets.forEach((p,i)=>{c.fillStyle=['#7481901d','#0b182940','#9098a819','#07142342'][i%4];c.fill(p);});
-  for(const block of q.blocks){c.fillStyle=q.ceiling?'#414c59':'#5b6572';c.fill(block.body);c.fillStyle=q.ceiling?'#192532':'#273443';c.fill(block.side);c.fillStyle='#091521a3';c.fill(block.contact);}
+  for(const block of q.blocks){if(q.rockMasses&&block.span[1]>q.rockMasses.left&&block.span[0]<q.rockMasses.right)continue;c.fillStyle=q.ceiling?'#414c59':'#5b6572';c.fill(block.body);c.fillStyle=q.ceiling?'#192532':'#273443';c.fill(block.side);c.fillStyle='#091521a3';c.fill(block.contact);}
+  // One coherent light direction, shallow caps and narrow contact shadows.
+  // The enclosing live-solid clip above also clips every material sub-plane.
+  for(const mass of q.rockMasses?.masses||[]){
+   c.fillStyle=A.gradient(c,0,mass.top,0,mass.bottom,[[0,'#677d85'],[.58,'#4a616e'],[1,mass.finite?'#394e5b':'#394e5b00']]);c.fill(mass.body);
+  }
+  for(const mass of q.rockMasses?.masses||[]){
+   for(const [i,face]of mass.faces.entries()){c.fillStyle=i%2?A.gradient(c,0,mass.top,0,mass.bottom,[[0,'#283f4b'],[.65,'#253e4c'],[1,mass.finite?'#1c3340':'#1c334000']]):A.gradient(c,0,mass.top,0,mass.bottom,[[0,'#80918f'],[.60,'#617a80'],[1,mass.finite?'#425f6c':'#425f6c00']]);c.fill(face);}
+   c.fillStyle=A.gradient(c,0,mass.top,0,mass.bottom,[[0,'#101e2bb0'],[.66,'#101e2b99'],[1,mass.finite?'#101e2baa':'#101e2b00']]);for(const contact of mass.contacts)c.fill(contact);
+   c.fillStyle='#8a9a91';c.fill(mass.cap);
+  }
   for(const wedge of q.wedges){c.fillStyle='#75828da6';c.fill(wedge.body);c.fillStyle='#142431d4';c.fill(wedge.side);c.fillStyle='#091722bf';c.fill(wedge.contact);}
   for(const [i,row]of q.masonry.entries()){c.fillStyle=i%2?'#414c56':'#53616c';c.fill(row.body);c.fillStyle='#8c98924f';c.fill(row.edge);}
   // Optional broad authored planes remain clipped to the CURRENT solid.
@@ -158,5 +208,5 @@ function bellBindings(c,b){if(!active(b)||![18,19].includes(b.honroStage))return
 }
 const oldLandmarkLayer=G.HonroScene.prototype._landmarkLayer;
 G.HonroScene.prototype._landmarkLayer=function(c,landmarks,layer){oldLandmarkLayer.call(this,c,landmarks,layer);if(layer==='structural-back')bellBindings(c,this.battle);};
-G.HonroAct2SpatialArt={active,background,terrain,prepareTerrain,prepareRooms,surfaceEdges,rock,enclosure,element,appearanceKey,bellBindings,images,ready:b=>b?(!openSky(b)||!!(imageFor(b)?.complete&&imageFor(b)?.naturalWidth)):Object.values(images).every(i=>i.complete&&i.naturalWidth)};
+G.HonroAct2SpatialArt={rockMaterial,prepareRockMasses,active,background,terrain,prepareTerrain,prepareRooms,surfaceEdges,rock,enclosure,element,appearanceKey,bellBindings,images,ready:b=>b?(!openSky(b)||!!(imageFor(b)?.complete&&imageFor(b)?.naturalWidth)):Object.values(images).every(i=>i.complete&&i.naturalWidth)};
 })(globalThis);

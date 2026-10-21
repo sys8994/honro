@@ -10,7 +10,7 @@ export const QUARRY_COMMON_ASSETS={
  'sq-art-waymark':{assetId:'builtin:receiverStone',scale:1.8},
  'sq-art-abandoned-cart':{assetId:'cart',scale:1.6},
  'sq-art-remaining-pillar':{assetId:'act2:rock-column',scale:.4},
- 'sq-art-carrier-rubble':{assetId:'act2:rock-bank',scale:1.6},
+ 'sq-art-carrier-rubble':{assetId:'act2:rock-bank',scale:1.15},
  ...Object.fromEntries([1.4,1.25,1.4,1,1.15,1.25].map((scale,i)=>['sq-art-natural-stone-'+i,{assetId:'act2:rock-bank',scale}]))
 };
 export function applyStage12QuarryArt(project,{sourceStage}={}){
@@ -22,6 +22,13 @@ export function applyStage12QuarryArt(project,{sourceStage}={}){
   const a=project.library.find(a=>a.id===spec.assetId);if(!a||a.collision?.length)throw Error('Missing/nondecorative common asset '+spec.assetId);
   if(spec.scale<a.reference.scaleRange[0]||spec.scale>a.reference.scaleRange[1])throw Error('Asset scale outside original range');
   Object.assign(e,spec);
+  // Only the loose decorative load moves. Keep the cart, objective and all
+  // functional coordinates fixed; put this shared rock beside the wheel bay.
+  if(e.id==='sq-art-carrier-rubble'){
+   const cart=decorative.find(e=>e.id==='sq-art-abandoned-cart'),t=s.terrains.find(t=>t.id===cart.stage12Support.terrainId),x=cart.stage12Support.x+300;
+   const i=t.properties.honroWalkEdges.find(i=>t.points[i].x<=x&&x<=t.points[i+1].x),u=t.points[i],v=t.points[i+1];
+   e.stage12Support={terrainId:t.id,x,y:u.y+(v.y-u.y)*(x-u.x)/(v.x-u.x)};e.rotation=Math.atan2(v.y-u.y,v.x-u.x);
+  }
   if(e.id==='sq-art-abandoned-cart'){const t=s.terrains.find(t=>t.id===e.stage12Support.terrainId),x=e.stage12Support.x;for(const i of t.properties.honroWalkEdges){const u=t.points[i],v=t.points[i+1];if(u.x<=x&&x<=v.x){e.rotation=Math.atan2(v.y-u.y,v.x-u.x);break;}}}
   const fx=(a.reference.foot.x||0)-(a.anchor?.x||0),fy=(a.reference.foot.y||0)-(a.anchor?.y||0),cs=Math.cos(e.rotation||0),sn=Math.sin(e.rotation||0);
   e.x=e.stage12Support.x-(fx*cs-fy*sn)*e.scale;e.y=e.stage12Support.y-(fx*sn+fy*cs)*e.scale;
