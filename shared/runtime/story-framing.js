@@ -61,7 +61,7 @@ function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return li
    'soul-released':[{actor:'occultist'}],'royal-gate-open':[{actor:'objective'}]
   })[source]||[{actor:b.active}];camera={intent:'situation',targets,padding:75,maxScale:.85};}
   if(meta.eventSource==='relic-found'){const u=app.engine.active,m=b.honroMarkers.filter(m=>m.type==='relic').sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];if(m)camera={intent:'object-introduction',targets:[{marker:m.id}],padding:65,maxScale:.85};}
-  if(kind==='guide')camera={intent:'objective',targets:[{objective:meta.focus&&G.HonroObjectives.focus(app,meta.focus)?meta.focus:'current'}],padding:100,maxScale:.75};
+  if(kind==='guide')camera={intent:'objective',targets:meta.sceneTarget?[{actor:meta.sceneTarget}]:[{objective:meta.focus&&G.HonroObjectives.focus(app,meta.focus)?meta.focus:'current'}],padding:100,maxScale:.75};
   const cue=options.staging?.cues?.[index]?.find(s=>s.camera||s.type==='look'&&!s.actor);
   if(cue&&kind!=='guide'&&!scenePolicy){const at=cue.at||{actor:cue.actor};if(at)camera={intent:'object-introduction',targets:[at],padding:65,maxScale:cue.scale||.9};}
   camera.targets=camera.targets.flatMap(t=>t.markers?t.markers.map(marker=>({marker})):t.between?t.between.map(actor=>({actor})):t);
