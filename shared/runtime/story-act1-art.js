@@ -73,6 +73,38 @@ function bindingBody(c,a,hitCount=0,t=0){if(a.broken)return;const p={x:a.x+a.w/2
    for(let i=0;i<3;i++){c.beginPath();c.ellipse(0,0,31+i*4,48-i*5,i*Math.PI/3,0,Math.PI*2);c.stroke();}
    knot(c,{x:0,y:0},Math.max(0,(1-ratio)*13));c.restore();
 }
+// A purely visual handcart at the witness's authored refuge. No collision or
+// mission data is added; its wheels follow the existing local ground slope.
+function witnessCart(b){
+ if(b.honroCustom||b.honroStage!==1)return null;
+ const p=anchor(b,'woodcutter');if(!p)return null;
+ const surface=x=>G.HonroMapEngine.surfaceY(b.terrain,x,p.y)?.y??p.y;
+ const left=surface(p.x-49),right=surface(p.x+49),angle=Math.atan2(right-left,98);
+ return{x:p.x,y:(left+right)/2,angle,w:176,h:87};
+}
+function cartFront(scene,e){
+ const b=e.b,p=witnessCart(b);if(!p)return;const c=scene.ctx;
+ const hidden=b.honroStaging?.hidden?.['npc-woodcutter'];
+ // The hidden cast remains absent from targeting, AI and minimap. Only the
+ // visible head/shoulder behind the cart is painted before the authored reveal.
+ if(alive(hidden))scene.unitBody(c,{...hidden,hurt:0,honroScenePose:{kind:'listen',time:0}},0);
+ c.save();c.translate(p.x,p.y);c.rotate(p.angle);c.lineJoin='round';
+ const path=(pts,fill,stroke='#302d25',width=2)=>{c.beginPath();pts.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke();}};
+ c.fillStyle='#17231c55';c.beginPath();c.ellipse(0,1,86,7,0,0,Math.PI*2);c.fill();
+ path([[-55,-24],[96,-24],[105,-18],[-57,-17]],'#69553d');
+ // Bundled cut timber and a tied sack give a clear loaded-cart silhouette.
+ for(const [x,y,r]of [[-36,-52,13],[-12,-60,14],[15,-53,14],[42,-49,12]]){
+  path([[x-8,y-r],[x+28,y-r+7],[x+29,y+r],[x-8,y+r]],'#665840');
+  c.fillStyle='#b39a6a';c.strokeStyle='#50452f';c.lineWidth=2;c.beginPath();c.ellipse(x-8,y,r*.55,r,0,0,Math.PI*2);c.fill();c.stroke();
+  c.beginPath();c.ellipse(x-8,y,r*.23,r*.58,0,0,Math.PI*2);c.stroke();
+ }
+ path([[25,-52],[31,-72],[49,-78],[63,-68],[67,-47]],'#9c9972');
+ path([[-70,-46],[58,-43],[72,-29],[-62,-31]],'#a28b62');
+ path([[-62,-31],[72,-29],[70,-18],[-60,-19]],'#695439');
+ for(const x of [-51,-15,24,62])path([[x,-51],[x+5,-50],[x+5,-20],[x,-20]],'#7b6847');
+ for(const x of [-49,49]){c.fillStyle='#716044';c.strokeStyle='#302f28';c.lineWidth=4;c.beginPath();c.arc(x,-17,17,0,Math.PI*2);c.fill();c.stroke();c.fillStyle='#24312d';c.beginPath();c.arc(x,-17,11,0,Math.PI*2);c.fill();c.strokeStyle='#b49b6c';c.lineWidth=2.5;for(let i=0;i<6;i++){const a=i*Math.PI/3;c.beginPath();c.moveTo(x,-17);c.lineTo(x+Math.cos(a)*13,-17+Math.sin(a)*13);c.stroke();}c.fillStyle='#c5aa72';c.beginPath();c.arc(x,-17,4,0,Math.PI*2);c.fill();}
+ c.restore();
+}
 function draw(scene,e){const b=e.b;if(G.HonroStage5Waterfall?.active(b))return G.HonroStage5WaterfallArt?.evidence(scene,e);if(b.honroCustom||b.honroNarrativeRevision!==1)return;const d=evidence(b);if(!d)return;const c=scene.ctx,t=time(scene,b);c.save();c.lineCap='round';
  for(const m of b.honroMarkers||[])if(m.type==='receiver')floorArray(c,m,t,m.action==='ritual'?d.receiving:!!m.collected);
  if(d.kind==='eave'){const p=d.at,w=Math.sin(t*10)*5;curve(c,d.from||{x:p.x-90,y:p.y-10},d.to||{x:p.x+100,y:p.y-4},w);knot(c,{x:p.x,y:p.y+w/2});curve(c,{x:p.x,y:p.y},d.tail||{x:p.x+5+w,y:p.y+45},4);}
@@ -122,5 +154,5 @@ if(G.HonroScene){const S=G.HonroScene.prototype,damage=S.objectDamage,terrain=S.
  S.landmark=function(c,l,...args){if(replacedLandmark(this.battle,l))return;return landmark.call(this,c,l,...args);};
  S.objectDamage=function(c,b,...args){const replaced=t=>b.honroStage===10&&t.id==='sodan-binding'||b.honroStage===5&&t.id==='cliff-cleat';return damage.call(this,c,fresh(b)?{...b,terrain:G.HonroQuestTargets.records(b).filter(t=>!replaced(t))}:b,...args);};
 }
-G.HonroAct1StoryArt={draw,evidence,threadAttachment,marker:markerArt,replacedLandmark,cleat,cleatDamageStage,floorArray,bindingBody};
+G.HonroAct1StoryArt={cartFront,witnessCart,draw,evidence,threadAttachment,marker:markerArt,replacedLandmark,cleat,cleatDamageStage,floorArray,bindingBody};
 })(globalThis);

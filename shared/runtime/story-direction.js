@@ -2,7 +2,7 @@
 // Authored blocking, not random movement or inferred gestures from punctuation.
 // Story text, triggers, combat and recruitment still belong to their owners.
 const cast={
- 1:{actor:'npc-woodcutter',scene:'event-1-witness',dx:-32,caption:'수레 뒤에 몸을 숨겼던 나무꾼이 설오의 목소리를 듣고 조심스럽게 나온다.'},
+ 1:{actor:'npc-woodcutter',scene:'event-1-witness',dx:-100,caption:'수레 뒤에 몸을 숨겼던 나무꾼이 설오의 목소리를 듣고 조심스럽게 나온다.'},
  3:{actor:'npc-hwigyeom',entry:true,dx:-64,caption:'나루에 남은 검객이 물가에서 한 걸음 나와 일행의 앞길을 막는다.'},
  4:{actor:'npc-chunrye',speaker:'춘례',dx:42,caption:'춘례가 피란문 안에서 걸어 나와 붕대를 쥔 손을 보인다.'}
 };
