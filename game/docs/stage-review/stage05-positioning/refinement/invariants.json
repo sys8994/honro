@@ -1,0 +1,28 @@
+{
+  "baseCandidate": "ab36c34c",
+  "approvedMaster": "bafc275c",
+  "allStage5TerrainExact": true,
+  "other29StagesExact": true,
+  "libraryExact": true,
+  "allowedDataChangesOnly": [
+    "foe-5 x1758→1778/y2686 and spawn",
+    "ritualEast recommended x1690→1640",
+    "four approved geology instances/composition v2"
+  ],
+  "joystickSourcesExact": {
+    "shared/engine/src/main.ts": true,
+    "shared/engine/src/math.ts": true,
+    "shared/engine/src/engine.ts": true,
+    "shared/runtime/main.js": true,
+    "shared/runtime/ui-bridge.js": true,
+    "game/src/hud.css": true
+  },
+  "normalEastBodyGap": 78.02519561351392,
+  "normalEastBodyGapAfterResponse": 56.684714195556126,
+  "ritualBoundsUnchanged": [
+    125,
+    80
+  ],
+  "newFullCompletionRuns": 0,
+  "unapprovedCommonBalanceImported": false
+}

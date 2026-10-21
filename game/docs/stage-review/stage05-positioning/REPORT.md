@@ -1,5 +1,7 @@
 # 5장 위치 선택 후보 검증
 
+후속 제한 교정은 [REFINEMENT.md](REFINEMENT.md)를 본다. 아래는 ab36c34c 이전 진단/구현 기록이다.
+
 후보 코드 `6021c6f7` (`a0ff8b54` 기능 → `52129ef2` 승인 master27efe8eb 병합 → 공통 재질/빌드). 브랜치 `candidate/stage05-positioning`. master/배포 미반영이며 부모의 전략·실제 픽셀 판정을 기다린다. 진단 `2b983a2f` 이후의 구현 후보다. 초기12는 부모 실험 시작점이며 사용자 확정 숫자로 취급하지 않는다.
 
 사용자 기준: “지형에 따라서 플레이 스타일이 크게 달라지고”, “발사 만큼이나 지형 이동도 매우 큰 재미요소”, “특정 캐릭터가 특정 장소로 이동을 하면 게임적으로 큰 보상”. 얕은 발판이나 화면 밖 동굴의 존재만으로 통과시키지 않았다. AGENTS, honro-environment SKILL, STAGE_PRODUCTION_SOP, MAP_ART_PIPELINE, ENCOUNTER_PLACEMENT/ACCEPTANCE를 읽고 적용했다.
