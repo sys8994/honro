@@ -8,6 +8,9 @@ function balance(b){
  for(const u of originals){
   u.combatBaseHp=(u.combatBaseHp??u.maxHp/(G.HONRO_CORE.DIFFICULTIES[b.difficulty]?.hp||1))*.6;
   u.hp=u.maxHp=Math.max(1,Math.round(u.maxHp*.6));
+  // Stage5's explicit candidate owns its final twelve positions. Keep the
+  // shared HP/difficulty rounding and finite-wave doubling, without clones.
+  if(b.honroStage===5&&b.honroStage5PositioningRevision===1)continue;
   const v=structuredClone(u);v.id=u.id+'-cluster';v.x+=u.r*2+24;
   const authored=[1,2,3,4,6,7,10].includes(b.honroStage)&&b.honroMap?.positioning?.clusterPositions?.[v.id];if(authored)Object.assign(v,authored);
   v.spawnX=v.x;v.damageBy={};v.xpGranted=0;
