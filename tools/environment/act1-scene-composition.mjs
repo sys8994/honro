@@ -56,7 +56,7 @@ export async function applyAct1SceneComposition(project){
    place(st,'west-rock-foot','env:rock',650,2860,1.1,'canyon-ground');
    place(st,'valley-rock-foot','env:rock',1430,2860,.7,'canyon-ground');
    place(st,'east-rock-foot','env:rock',3950,2860,.85,'canyon-ground');
-   st.design.geologyComposition={version:1,rearDatums:[
+   st.design.geologyComposition={version:2,rearDatums:[
     {id:'west-outer-foot',x:-930,y:2830},{id:'east-outer-foot',x:5700,y:2830},
     {id:'west-distant-foot',x:-2770,y:2830},{id:'east-distant-foot',x:7420,y:2830}
    ],instances:[
