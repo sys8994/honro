@@ -42,3 +42,9 @@
 실제 화면 모음 `art-and-bier-event.png`: Library `libfile_7595cb187d0481918a2680e22febb399`, file `file_00000000d0c881fd861fcd4cc751e4c4`. 정상 사건 전후를 포함하지만 브라우저 전투 완주나 전체 미술 완성의 증거가 아니다.
 
 검사 통과: build2, stage7-reentry, stage8-current-preservation(전30장/library·동일revision 전투/성장·author 안전거부), pre-image-terrain-restoration, stage8-bier-renderer-isolation160건, git diff --check. 변경된 map revision이 없으므로 이 미술 변경 자체로 기존 정상 전투를 폐기하지 않는다. 전30장 실제 전투·공개 Pages 픽셀 검수·성능 벤치마크는 수행하지 않았다. 공개403/Pages 설정 API 제한을 재시도하지 않았다.
+
+### 최종 판단: 후보 보존, 통합 미완
+
+최종 정책v4를 새 전투부터 실행한 결과32라운드 패배, 상여HP779로 종료했다(`clean-policy-failed.json`, `clean-policy-trace.json`). 두 결박 파괴,25라운드 중앙 도착 및 유한 증원, 실제 이동/사격/첫 결박 후 exact Continue는 확인했다. 외부 live 쓰기0, 복구0이다. 그러나 정상 자원 승리·보상·9장 출구 연결은 통과하지 못했다. 정상 rank1/stat6 자동 정책의 실패이며 모든 합법 빌드에서 불가능하다는 결론은 아니다. 테스트를 통과시키기 위한 난이도·적·자원 변경을 하지 않았다.
+
+요청된 전체 내부 완료 기준 미충족이므로 master 반영과 Pages 배포는 보류한다. 이는 접근 거부가 아니라 검증 실패다. 다른 장이나 인트로/로더는 수정하지 않았다. 다음 단계는 정상 자원 전투 정책/실제 플레이에서 생존·위치 선택을 확인하여 승리와 출구를 검증하는 것이다. 기존 구조가 유지된 넓은 암벽 면은 이번 교정 뒤에도 단순한 각면 스타일이 남으며, 이를 전면 지형 재설계나 전구간 미술 완성으로 부르지 않는다.
