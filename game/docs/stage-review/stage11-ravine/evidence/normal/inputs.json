@@ -1,0 +1,37 @@
+{
+  "entry-profile": {
+    "originalPath": "/tmp/stage11-entry-profile.json",
+    "sha256": "751d50597ed51d0abb96c89c940b6f5a0b70c65b502137b05e6813107f8e6760",
+    "gzip": "normal/entry-profile.json.gz"
+  },
+  "initial": {
+    "originalPath": "/tmp/stage11-normal/initial.json",
+    "sha256": "8893afeef298dcd8a016d77c0d9d0c764426733da4cd2b5aee9e86437e51515e",
+    "gzip": "normal/initial.json.gz"
+  },
+  "round7": {
+    "originalPath": "/tmp/stage11-round7-continue.json",
+    "sha256": "a77241b648c8fe5cdcd5b843fdade4c9cd58ee39c574cba656445c715df8438c",
+    "gzip": "normal/round7.json.gz"
+  },
+  "round33": {
+    "originalPath": "/tmp/stage11-paused-continue.json",
+    "sha256": "5cdc73639fc3aa1f6e0616c2e159187a3ba9db71dded7cb2428687455c6a2ea5",
+    "gzip": "normal/round33.json.gz"
+  },
+  "round41": {
+    "originalPath": "/tmp/stage11-rescue-continue.json",
+    "sha256": "7c04a4ffad63aa023a37432c56686e641ef67a7a9244c69135c14b30939dd077",
+    "gzip": "normal/round41.json.gz"
+  },
+  "round47": {
+    "originalPath": "/tmp/stage11-descent-continue.json",
+    "sha256": "729aae14a02473eb2b73c730e07711c77599c55d411c14edc3e60a918817583e",
+    "gzip": "normal/round47.json.gz"
+  },
+  "terminal": {
+    "originalPath": "/tmp/stage11-normal-descent/checkpoint.json",
+    "sha256": "560519d97300edf0f7350ece6fd514a5399c80eccdf23d188863e3d90cf92e1a",
+    "gzip": "normal/terminal.json.gz"
+  }
+}

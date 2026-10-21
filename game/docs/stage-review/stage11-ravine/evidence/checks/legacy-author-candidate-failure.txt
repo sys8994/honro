@@ -1,0 +1,22 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Runtime bundle must use canonical Stage11
++ actual - expected
+
++ 'e567eb435c62d9dc6ec175d87eb8fbf55d875f20d2bfedcc352c82a573b5a505'
+- 'c6b194d8adadf67c69077702281694878f54fd8670e801603bb90575bcbeed89'
+
+    at file:///workspace/honro/tests/stage11-ravine-authoring.mjs:16:9
+    at check (file:///workspace/honro/tests/stage11-ravine-authoring.mjs:12:25)
+    at file:///workspace/honro/tests/stage11-ravine-authoring.mjs:14:1 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 'e567eb435c62d9dc6ec175d87eb8fbf55d875f20d2bfedcc352c82a573b5a505',
+  expected: 'c6b194d8adadf67c69077702281694878f54fd8670e801603bb90575bcbeed89',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

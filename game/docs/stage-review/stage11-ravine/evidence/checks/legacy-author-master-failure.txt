@@ -1,0 +1,22 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'c75ee963a0b6f5eac39340b58a3286de14f9f04f1c798862b1fc3c48df266793'
+- '8834fa761ef826c73a80097e1eae9ea01229f42c9a2ede052d75217f2d57df5d'
+
+    at file:///tmp/honro-stage10-decorations/tests/stage11-ravine-authoring.mjs:15:9
+    at check (file:///tmp/honro-stage10-decorations/tests/stage11-ravine-authoring.mjs:12:25)
+    at file:///tmp/honro-stage10-decorations/tests/stage11-ravine-authoring.mjs:14:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'c75ee963a0b6f5eac39340b58a3286de14f9f04f1c798862b1fc3c48df266793',
+  expected: '8834fa761ef826c73a80097e1eae9ea01229f42c9a2ede052d75217f2d57df5d',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
