@@ -31,3 +31,13 @@
 Library 이미지 업로드는 `hosted apps tools/call request failed: network`로 실패했다. 캡처를 이 Git 경로에 보관했으므로 부모가 파일을 받아 첨부할 수 있다. Library 성공으로 기록하지 않는다. 실제 휴대폰 하드웨어가 아닌 Chromium 터치 에뮬레이션이다. 전체 캠페인 전투·전체 verify는 실행하지 않았다.
 
 master/Pages는 인트로·음악 작업의 선행 통합 순서를 기다린다. 이 결과는 통합 전 보고이며 사용자 승인 대기가 아니다. 부모는 최신 원본을 병합한 다음 공유 HTML/web을 다시 빌드해야 한다.
+
+## 최신 master 통합 — 2026-10-21
+
+부모가 인트로·음악 선행 통합과 캡처를 확인한 뒤 스킬 복원 통합을 지시했다. `eab4fdbbeba902e7e996ea73b57e2211bc2c5318`을 병합하고 생성 파일 충돌 4개는 최신 master 참조를 기준으로 원본 재빌드했다. 통합 구현은 `d757d31c32cced5a7e1bab4d6bf9fc2bd0043c61`이며 master push가 확인됐다. 동일 소스에서 build/camp-skill-ux/web-split/music-titles와 실제 브라우저 139개 확인을 다시 통과했다. [통합 브라우저 결과](integrated/checks.json), [모바일 상단 버튼](integrated/restored-modal-360.png), [데스크톱 상단 버튼](integrated/restored-modal-1280.png), [투자 바 모바일](integrated/restored-invested-390.png).
+
+인트로·음악·곡명 소스는 선행 master와 동일하며 숫자 접두사 없는 승인 곡명 검사도 통과했다. 기존 23장 성장 회귀 테스트는 변경하지 않았으며, 수정 전 master에서도 실패하는 별도 이슈라는 앞선 기록을 유지한다.
+
+기존 Pages 배포 `39543275258`이 master push로 시작됐다. 이 실행 환경에서 공개 `https://sys8994.github.io/honro/HONRO.html` 읽기는 `Tunnel connection failed: 403 Forbidden`으로 차단됐다. 같은 주소를 다른 경로로 우회하지 않았고, 공개 Pages 실제 화면 검증을 통과로 기록하지 않는다. CLI의 Pages/Actions API 읽기 역시 403이었으므로 해당 요청을 반복하지 않았다. GitHub 연결의 커밋 check-runs와 해당 workflow jobs 조회로 배포를 추적한다. 배포 최종 결과와 최종 SHA는 인계 응답에서 별도로 확인한다. 위 캡처들은 최신 통합 빌드의 실제 로컬 Chromium 화면이다.
+
+통합 브라우저에서 [인트로 오버레이](integrated/intro-preserved-390.png)의 상단 공간 미예약을 computed position으로 확인했다. 실제 설정 버튼 터치로 음악을 깨운 뒤 들리는 스트림의 우하단 표시가 `떠나지 못한 이들을 위해`라는 순수 승인 제목임을 확인하고 [모닥불과 곡명](integrated/camp-with-approved-music-title-390.png)을 캡처했다. [결과](integrated/intro-music-preservation.json).
