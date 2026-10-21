@@ -15,3 +15,24 @@ def browser_path():
 def launch(playwright):
     return playwright.chromium.launch(executable_path=browser_path(), headless=True,
         args=['--no-sandbox', '--disable-dev-shm-usage', '--enable-precise-memory-info'])
+
+# Focused UI audits serve the same built modules as production, on an ephemeral port.
+from contextlib import contextmanager
+from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
+from threading import Thread
+from functools import partial
+
+@contextmanager
+def serve_game():
+    class QuietHandler(SimpleHTTPRequestHandler):
+        def log_message(self, *_args):
+            pass
+    server = ThreadingHTTPServer(('127.0.0.1', 0), partial(QuietHandler, directory=str(ROOT)))
+    thread = Thread(target=server.serve_forever, daemon=True)
+    thread.start()
+    try:
+        yield f'http://127.0.0.1:{server.server_port}'
+    finally:
+        server.shutdown()
+        server.server_close()
+        thread.join(timeout=2)

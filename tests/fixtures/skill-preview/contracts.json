@@ -1,0 +1,1720 @@
+{
+  "registered": 84,
+  "active": 64,
+  "passive": 20,
+  "skills": [
+    {
+      "id": "M01",
+      "name": "기파",
+      "cls": "mage",
+      "basic": true,
+      "passive": false,
+      "mode": "qiPulse",
+      "effectAndCondition": "기력을 쓰지 않는 기본 기파입니다. 닿은 곳에 작은 충격을 냅니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "single"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "기파 착탄 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / M01"
+    },
+    {
+      "id": "A01",
+      "name": "평사",
+      "cls": "archer",
+      "basic": true,
+      "passive": false,
+      "mode": "arrow",
+      "effectAndCondition": "곧게 날아가는 기본 사격입니다. 기력을 쓰지 않습니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "single"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "직접 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / A01"
+    },
+    {
+      "id": "S00",
+      "name": "평참",
+      "cls": "knight",
+      "basic": true,
+      "passive": false,
+      "mode": "melee",
+      "effectAndCondition": "선택한 방향을 좁게 벱니다. 빠르게 놓으면 기력을 아끼고 수세를 취하며, 오래 모으면 더 멀고 강하게 벱니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "melee",
+        "positions": [
+          455,
+          510
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "전방 근접 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / S00"
+    },
+    {
+      "id": "O01",
+      "name": "혼령탄",
+      "cls": "occultist",
+      "basic": true,
+      "passive": false,
+      "mode": "spiritBolt",
+      "effectAndCondition": "중력과 바람의 영향을 적게 받는 혼령탄을 날립니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "single"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "혼령탄 비행·명중",
+      "assertion": "tests/skill-preview-expectations.mjs / O01"
+    },
+    {
+      "id": "M06",
+      "name": "화호",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "gourdFire",
+      "effectAndCondition": "폭발 후 불꽃 파편을 흩뿌립니다. 같은 적은 파편에 최대 두 번 맞습니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "delayed-burst",
+        "positions": [
+          820,
+          930,
+          1020
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "secondary 화염 파편·피해",
+      "assertion": "tests/skill-preview-expectations.mjs / M06"
+    },
+    {
+      "id": "M02",
+      "name": "빙호",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "gourdIce",
+      "effectAndCondition": "적과 지형에서 튀는 호리병입니다. 비행 중 발사를 다시 누르면 터집니다. 재입력이 없으면 충전량에 따라 3.2~6.4초 뒤 폭발하고 맞은 적을 한 턴 느리게 만듭니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "bounce-ice"
+      },
+      "inputPolicy": "실제 반사 후 표적 근처에서 detonateIceGourd 1회",
+      "observables": "bounces>0, detonate 입력, frostChip",
+      "assertion": "tests/skill-preview-expectations.mjs / M02"
+    },
+    {
+      "id": "M04",
+      "name": "뇌호",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "gourdThunder",
+      "effectAndCondition": "폭발점 주변의 적마다 번개가 한 번씩 닿습니다. 번개는 사이의 벽과 다른 적을 통과합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "lightning",
+        "positions": [
+          760,
+          870,
+          1000
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "lightningBolt 및 군집 다중 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / M04"
+    },
+    {
+      "id": "M13",
+      "name": "연폭호",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "gourdBurst",
+      "effectAndCondition": "첫 폭발 주변에 작은 폭발이 연달아 생깁니다. 같은 적은 후속 폭발에 최대 세 번 맞습니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "delayed-burst",
+        "positions": [
+          820,
+          930,
+          1020
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "secondary 연폭·다중 표적",
+      "assertion": "tests/skill-preview-expectations.mjs / M13"
+    },
+    {
+      "id": "M05",
+      "name": "천뢰호",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "gourdSky",
+      "effectAndCondition": "착탄 후 잠시 뒤 위에서 천뢰가 내려칩니다. 천장이나 위쪽 지형에 막힐 수 있습니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "sky"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "표식 뒤 lightningBolt·착탄 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / M05"
+    },
+    {
+      "id": "M03",
+      "name": "원호파",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "waveArc",
+      "effectAndCondition": "닿은 자리에서 진행 방향의 양옆으로 원호가 펼쳐집니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "arc"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "실제 arc geometry와 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / M03"
+    },
+    {
+      "id": "M11",
+      "name": "반탄파",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "waveBounce",
+      "effectAndCondition": "첫 발은 하나입니다. 경지별 반사·분열 순서에 따라 최대 12개로 퍼지고 반사마다 위력 82%를 유지합니다. 예상선은 첫 반사 뒤까지만 보입니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "reflection"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "반사 횟수·경지별 분열 ID·피해",
+      "assertion": "tests/skill-preview-expectations.mjs / M11"
+    },
+    {
+      "id": "M12",
+      "name": "삼재파",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "waveTriangle",
+      "effectAndCondition": "발사점과 두 번의 반사점이 삼각형을 만듭니다. 경계와 내부를 함께 공격합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "reflection"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "triangle geometry와 경계/내부 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / M12"
+    },
+    {
+      "id": "M14",
+      "name": "동심파",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "waveRing",
+      "effectAndCondition": "충전한 만큼 큰 원주를 공격합니다. 중심은 비어 있으며 너무 넓히면 피해가 줄어듭니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "ring",
+        "positions": [
+          660,
+          80,
+          440
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "ring geometry·원주 2명 명중/중심 무피해",
+      "assertion": "tests/skill-preview-expectations.mjs / M14"
+    },
+    {
+      "id": "M15",
+      "name": "팔괘파",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "waveBagua",
+      "effectAndCondition": "착탄점에 팔각형과 여덟 기선을 펼칩니다. 중심의 추가 피해가 크고 같은 적은 최대 세 기선에 맞습니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "bagua",
+        "positions": [
+          840,
+          920,
+          1000
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "bagua geometry·군집 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / M15"
+    },
+    {
+      "id": "M07",
+      "name": "파진목",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "stakeBlast",
+      "effectAndCondition": "적이 다가오면 주위에 충격을 내는 진목입니다. 유지되는 동안 매 턴 다시 발동합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "trap",
+        "positions": [
+          980
+        ],
+        "movable": true,
+        "enemy": true
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "진목 설치 후 실제 적 밟음 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / M07"
+    },
+    {
+      "id": "M10",
+      "name": "회생진목",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "stakeHeal",
+      "effectAndCondition": "진목을 밟은 아군의 체력·기력·이동력을 회복합니다. 아군마다 한 턴에 한 번 이용합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "healing-stake"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "동행의 실제 HP/기력 증가",
+      "assertion": "tests/skill-preview-expectations.mjs / M10"
+    },
+    {
+      "id": "M08",
+      "name": "유인진목",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "stakePull",
+      "effectAndCondition": "적 턴이 되면 표시된 범위 안의 적이 진목 쪽으로 이동합니다. 벽을 통과하지 않으며 보스는 유인되지 않습니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "lure",
+        "positions": [
+          1040
+        ],
+        "movable": true,
+        "enemy": true
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "적이 진목 방향으로 이동",
+      "assertion": "tests/skill-preview-expectations.mjs / M08"
+    },
+    {
+      "id": "M09",
+      "name": "축지진목",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "stakeGate",
+      "effectAndCondition": "발밑과 착탄점에 진목 한 쌍을 만듭니다. 진목 위에서 상호작용하면 건너갑니다. 각 동행은 한 턴에 한 번 이용하며 새 진목은 오래된 것을 교체합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "gate"
+      },
+      "inputPolicy": "진목 한 쌍 설치 후 useGate",
+      "observables": "2진목 설치, useGate, 실제 좌표 이동",
+      "assertion": "tests/skill-preview-expectations.mjs / M09"
+    },
+    {
+      "id": "M99",
+      "name": "오방봉진",
+      "cls": "mage",
+      "basic": false,
+      "passive": false,
+      "mode": "stakeSeal",
+      "effectAndCondition": "진 안의 적을 느리게 하고 이동력을 줄입니다. 경계를 넘는 적에게 한 턴에 한 번 피해를 주며 안으로 밀어냅니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "prison",
+        "positions": [
+          980
+        ],
+        "movable": true,
+        "enemy": true
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "진목 crossed 기록과 경계 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / M99"
+    },
+    {
+      "id": "MP01",
+      "name": "법맥",
+      "cls": "mage",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "호리병의 후속 효과와 파문·진목의 효력을 높입니다.",
+      "source": "shared/engine/src/skillMechanics.ts: geometryBoost/redesignImpact",
+      "scenario": {
+        "kind": "passive-secondary",
+        "positions": [
+          820,
+          930,
+          1020
+        ],
+        "cast": "M06",
+        "label": "폭발 뒤 불꽃 파편의 위력 비교",
+        "metric": "damage"
+      },
+      "inputPolicy": "M06 실제 시전; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "동일 조건 실제 누적 피해 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-secondary"
+    },
+    {
+      "id": "MP02",
+      "name": "기해",
+      "cls": "mage",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "담을 수 있는 기력과 매 턴 회복량을 늘립니다.",
+      "source": "shared/engine/src/progression.ts: heroStats; passiveBalance.ts",
+      "scenario": {
+        "kind": "passive-mana",
+        "cast": "M01",
+        "label": "기력 최대량과 턴 회복 비교",
+        "metric": "mana",
+        "turns": true
+      },
+      "inputPolicy": "실제 아군 차례에 M01; 적 차례는 대기; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "최대 기력과 실제 다음 턴 기력 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-mana"
+    },
+    {
+      "id": "MP04",
+      "name": "기맥전도",
+      "cls": "mage",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "도술이 적에게 명중하면 가까운 동행 한 명에게 방호를 줍니다. 가까운 동행이 없으면 자신에게 적용되며, 한 행동에 한 번 발동합니다.",
+      "source": "shared/engine/src/engine.ts: hurt",
+      "scenario": {
+        "kind": "passive-ward",
+        "cast": "M01",
+        "label": "명중 뒤 가까운 동행에게 방호",
+        "metric": "shield",
+        "ally": true
+      },
+      "inputPolicy": "M01 실제 시전; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "명중 후 실제 동행 shield 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-ward"
+    },
+    {
+      "id": "MP03",
+      "name": "회기",
+      "cls": "mage",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "공격 도술이 모든 적을 빗나가면 쓴 기력 일부를 돌려받습니다. 진목 설치는 제외합니다.",
+      "source": "shared/engine/src/skillMechanics.ts: finishRedesign",
+      "scenario": {
+        "kind": "passive-refund",
+        "positions": [
+          1600
+        ],
+        "cast": "M06",
+        "label": "적을 빗나간 도술의 기력 환급",
+        "metric": "focus",
+        "miss": true
+      },
+      "inputPolicy": "M06 실제 시전; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "빗나감 후 실제 기력 환급 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-refund"
+    },
+    {
+      "id": "MP05",
+      "name": "주천",
+      "cls": "mage",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "기력을 쓰는 도술로 주천을 채웁니다. 완성 후 다음 도술 한 번의 비용은 줄고 효과는 강해집니다. 무료 도술은 주천을 채우지 않습니다.",
+      "source": "shared/engine/src/combatPassives.ts: beginPlayerCast/jucheonBoost",
+      "scenario": {
+        "kind": "passive-circulation",
+        "positions": [
+          820,
+          930,
+          1020
+        ],
+        "cast": "M06",
+        "label": "기력을 쌓아 주천을 완성하고 다음 도술 강화",
+        "metric": "jucheon",
+        "sequence": [
+          "M06",
+          "M06",
+          "M06",
+          "M06",
+          "M06",
+          "M06",
+          "M06",
+          "M06"
+        ],
+        "turns": true
+      },
+      "inputPolicy": "실제 아군 차례에 M06 → M06 → M06 → M06 → M06 → M06 → M06 → M06; 적 차례는 대기; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "누적 소비·jucheonReady·다음 cast effectBoost",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-circulation"
+    },
+    {
+      "id": "A14",
+      "name": "급소시",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "windArrow",
+      "effectAndCondition": "치명타 확률과 피해가 높은 정밀 사격입니다. 멀리서 맞힐수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "distance",
+        "positions": [
+          1500
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "1000 이상 거리의 표적 명중",
+      "assertion": "tests/skill-preview-expectations.mjs / A14"
+    },
+    {
+      "id": "A02",
+      "name": "관통시",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "pierce",
+      "effectAndCondition": "적과 얇은 목재를 꿰뚫습니다. 관통할 때마다 피해가 조금 줄어듭니다. 멀리서 맞힐수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "line",
+        "positions": [
+          720,
+          790,
+          860,
+          930,
+          1000
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "목재 뒤 표적/일렬 적 다중 명중",
+      "assertion": "tests/skill-preview-expectations.mjs / A02"
+    },
+    {
+      "id": "A06",
+      "name": "회기시",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "recoveryArrow",
+      "effectAndCondition": "적에게 준 피해 일부를 체력과 기력으로 되돌려 받습니다. 한 번에 회복할 수 있는 양에는 한도가 있습니다. 멀리서 맞힐수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "recovery",
+        "focus": 120,
+        "maxFocus": 400
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "시전 전후 실제 체력·기력",
+      "assertion": "tests/skill-preview-expectations.mjs / A06"
+    },
+    {
+      "id": "A10",
+      "name": "정심",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "prepare",
+      "effectAndCondition": "한 행동을 써서 집중합니다. 두 턴 안에 다음 절명 사격 한 번의 피해·치명타·방어 관통이 강화됩니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "prepare"
+      },
+      "inputPolicy": "prepare → A14 강화 사격",
+      "observables": "prepared 상태 → 후속 절명 사격",
+      "assertion": "tests/skill-preview-expectations.mjs / A10"
+    },
+    {
+      "id": "A99",
+      "name": "절명시",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "executeArrow",
+      "effectAndCondition": "멀리서 치명타를 내면 체력이 낮은 일반 적을 즉시 쓰러뜨립니다. 보스에게는 잃은 체력에 비례한 추가 피해를 줍니다. 멀리서 맞힐수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "execution",
+        "positions": [
+          1680
+        ],
+        "hp": 500,
+        "maxHp": 2400
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "약해진 일반 적의 원거리 치명타와 처치",
+      "assertion": "tests/skill-preview-expectations.mjs / A99"
+    },
+    {
+      "id": "A11",
+      "name": "급락시",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "dropArrow",
+      "effectAndCondition": "최고점을 지난 화살이 빠르게 떨어집니다. 높은 곳에서 떨어져 맞힐수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "apex",
+        "positions": [
+          1050
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "apex 이후 낙하와 명중",
+      "assertion": "tests/skill-preview-expectations.mjs / A11"
+    },
+    {
+      "id": "A09",
+      "name": "전로시",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "turnArrow",
+      "effectAndCondition": "비행 중 발사 버튼이나 전장 클릭으로 한 번 꺾을 수 있습니다. 꺾은 뒤 명중하면 추가 피해를 줍니다. 높은 곳에서 떨어져 맞힐수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "turn-once",
+        "positions": [
+          1080
+        ],
+        "heights": [
+          0
+        ],
+        "turnLift": 0
+      },
+      "inputPolicy": "올려 쏨 → 실제 비행 .48초 뒤 turnArrow 1회 (황색/청록은 실제 좌표)",
+      "observables": "turns=1, 전후 속도·실제 좌표, 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / A09"
+    },
+    {
+      "id": "A13",
+      "name": "추혼시",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "homing",
+      "effectAndCondition": "사선이 열린 적을 따라갑니다. 벽은 통과하지 못합니다. 높은 곳에서 떨어져 맞힐수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "offset",
+        "positions": [
+          1000
+        ],
+        "heights": [
+          180
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "실제 높은 발판의 표적에 유도 명중",
+      "assertion": "tests/skill-preview-expectations.mjs / A13"
+    },
+    {
+      "id": "A12",
+      "name": "귀환시",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "return",
+      "effectAndCondition": "돌아오는 길에도 적을 관통합니다. 같은 적을 다시 맞히면 귀환 피해가 더 강해집니다. 높은 곳에서 떨어져 맞힐수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "return",
+        "positions": [
+          430
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "returning, 같은 적의 나감/귀환 2회 명중",
+      "assertion": "tests/skill-preview-expectations.mjs / A12"
+    },
+    {
+      "id": "A15",
+      "name": "칠성추혼",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "seekRain",
+      "effectAndCondition": "최고점에서 일곱 추적 화살로 갈라집니다. 한 적에게 최대 네 발이 맞으며 연속 명중 피해는 줄어듭니다. 높은 곳에서 떨어져 맞힐수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "apex",
+        "positions": [
+          820,
+          1000,
+          1190
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "seekChild 7분열·다중 표적 명중",
+      "assertion": "tests/skill-preview-expectations.mjs / A15"
+    },
+    {
+      "id": "A05",
+      "name": "격퇴시",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "push",
+      "effectAndCondition": "맞은 적을 밀쳐 뒤의 적과 충돌시킵니다. 뒤로 이어질수록 충격은 약해집니다. 빠르게 충돌할수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "push",
+        "positions": [
+          790,
+          875,
+          1010
+        ],
+        "movable": true
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "주 표적 밀림과 뒤 표적 충돌 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / A05"
+    },
+    {
+      "id": "A04",
+      "name": "산개사",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "triple",
+      "effectAndCondition": "여러 화살을 부채꼴로 동시에 쏩니다. 연속 시위의 추가 사격에도 적용됩니다. 빠르게 충돌할수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "spread",
+        "positions": [
+          1050,
+          1050,
+          1050
+        ],
+        "heights": [
+          80,
+          130,
+          180
+        ],
+        "flying": [
+          0,
+          1,
+          2
+        ],
+        "targetHeight": 42,
+        "targetRadius": 18
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "실제 3발 이상 + 비행종 둘 이상 명중",
+      "assertion": "tests/skill-preview-expectations.mjs / A04"
+    },
+    {
+      "id": "A07",
+      "name": "쇄암시",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "breakArrow",
+      "effectAndCondition": "직격 주변에도 충격을 주며, 파괴 가능한 지형에 4.5배의 피해를 줍니다. 빠르게 충돌할수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "break"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "목재 HP/파괴와 주변 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / A07"
+    },
+    {
+      "id": "A03",
+      "name": "연환시",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "chainArrow",
+      "effectAndCondition": "명중한 적에서 가까운 다른 적으로 튕깁니다. 도약할 때마다 피해가 줄어듭니다. 빠르게 충돌할수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "ground-chain",
+        "positions": [
+          760,
+          840,
+          920
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "두 적 이상으로 chain 도약",
+      "assertion": "tests/skill-preview-expectations.mjs / A03"
+    },
+    {
+      "id": "A08",
+      "name": "철화",
+      "cls": "archer",
+      "basic": false,
+      "passive": false,
+      "mode": "ironFlower",
+      "effectAndCondition": "명중한 자리에서 1.5초 동안 짧은 파편을 쏟습니다. 한 적이 받는 파편 피해는 직격 피해의 65%까지입니다. 빠르게 충돌할수록 피해가 증가합니다.",
+      "source": "shared/engine/src/skillMechanics.ts/projectileGrowth.ts/engine.ts",
+      "scenario": {
+        "kind": "fragments"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "secondary 파편과 추가 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / A08"
+    },
+    {
+      "id": "AP04",
+      "name": "궁세",
+      "cls": "archer",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "거리·낙차·충돌 속력에 따른 궁술의 피해 보너스를 높입니다.",
+      "source": "shared/engine/src/skillMechanics.ts: trajectoryMultiplier/redesignConditionBonuses",
+      "scenario": {
+        "kind": "passive-trajectory",
+        "positions": [
+          1400
+        ],
+        "cast": "A14",
+        "label": "먼 표적의 거리 보너스 비교",
+        "metric": "damage"
+      },
+      "inputPolicy": "A14 실제 시전; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "동일 조건 실제 누적 피해 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-trajectory"
+    },
+    {
+      "id": "AP02",
+      "name": "급소 간파",
+      "cls": "archer",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "모든 화살의 치명타 확률과 배율을 높입니다.",
+      "source": "shared/engine/src/progression.ts: criticalStats; skillMechanics.ts: critProfile",
+      "scenario": {
+        "kind": "passive-critical",
+        "positions": [
+          1500
+        ],
+        "cast": "A14",
+        "label": "급소 확률·배율을 높인 정밀 사격",
+        "metric": "critical"
+      },
+      "inputPolicy": "A14 실제 시전; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "치명 확률·배율과 동일 RNG의 실제 피해 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-critical"
+    },
+    {
+      "id": "AP01",
+      "name": "연속 시위",
+      "cls": "archer",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "첫 사격 뒤 추가 화살을 이어 쏩니다. 뒤따르는 화살일수록 피해가 낮습니다.",
+      "source": "shared/engine/src/engine.ts: fire/volley",
+      "scenario": {
+        "kind": "passive-volley",
+        "cast": "A01",
+        "label": "한 발 뒤 이어지는 후속 사격",
+        "metric": "followups"
+      },
+      "inputPolicy": "A01 실제 시전; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "미습득 비교 대비 실제 후속 projectile 수",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-volley"
+    },
+    {
+      "id": "AP03",
+      "name": "이탈보",
+      "cls": "archer",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "사격이 끝난 뒤 남은 행동으로 이동·도약할 수 있습니다.",
+      "source": "shared/engine/src/skillMechanics.ts: finishRedesign",
+      "scenario": {
+        "kind": "passive-retreat",
+        "cast": "A01",
+        "label": "사격을 마친 뒤 이탈보로 후퇴",
+        "metric": "retreat",
+        "turns": true
+      },
+      "inputPolicy": "실제 아군 차례에 A01; 적 차례는 대기; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "사격 후 실제 후퇴 거리 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-retreat"
+    },
+    {
+      "id": "AP05",
+      "name": "살흔",
+      "cls": "archer",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "같은 적을 다시 맞히면 지난 내 턴의 직접 화살 피해 일부가 되살아납니다. 후속 화살과 파편은 상처를 중복 발동시키지 않습니다.",
+      "source": "shared/engine/src/combatPassives.ts: arrowTurn/recordSalheun",
+      "scenario": {
+        "kind": "passive-history",
+        "cast": "A01",
+        "label": "다음 내 턴에 같은 적의 살흔을 재현",
+        "metric": "damage",
+        "sequence": [
+          "A01",
+          "A01"
+        ],
+        "turns": true
+      },
+      "inputPolicy": "실제 아군 차례에 A01 → A01; 적 차례는 대기; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "동일 조건 실제 누적 피해 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-history"
+    },
+    {
+      "id": "S03",
+      "name": "횡참",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "meleeWide",
+      "effectAndCondition": "전방을 넓게 벱니다. 오래 힘을 모으면 사거리와 피해가 증가합니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "melee",
+        "positions": [
+          455,
+          510
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "전방 군집 광역 베기",
+      "assertion": "tests/skill-preview-expectations.mjs / S03"
+    },
+    {
+      "id": "S05",
+      "name": "회신참",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "meleeTurn",
+      "effectAndCondition": "앞과 뒤를 한 번씩 벱니다. 아주 가까운 적은 두 번 맞을 수 있습니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "turn",
+        "positions": [
+          465,
+          260
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "앞/뒤 두 표적 베기",
+      "assertion": "tests/skill-preview-expectations.mjs / S05"
+    },
+    {
+      "id": "S07",
+      "name": "연참",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "meleeCombo",
+      "effectAndCondition": "한 적을 연속으로 벱니다. 도중에 쓰러뜨리면 가까운 다른 적에게 이어갑니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "combo",
+        "positions": [
+          455,
+          520,
+          585
+        ],
+        "hp": 25
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "처치한 뒤 다른 적으로 이어지는 연격",
+      "assertion": "tests/skill-preview-expectations.mjs / S07"
+    },
+    {
+      "id": "S08",
+      "name": "응수세",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "counterStance",
+      "effectAndCondition": "자세를 잡으며 최대 체력의 2~5.5%를 회복하고 받는 피해를 25~35% 줄입니다. 적의 차례에 전방의 적들을 한 번 반격하며, 피격 뒤에는 반격 사거리와 각도가 조금 넓어집니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "counter",
+        "positions": [
+          555
+        ],
+        "enemy": true
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "회복·martialGuard·적 공격 뒤 반격",
+      "assertion": "tests/skill-preview-expectations.mjs / S08"
+    },
+    {
+      "id": "S02",
+      "name": "사생참",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "lifeSlash",
+      "effectAndCondition": "현재 체력의 약 ⅓을 먼저 쓰고 그 힘을 일격에 더합니다. 적 방어의 35%를 무시합니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "life"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "자신 HP 소비와 대상 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / S02"
+    },
+    {
+      "id": "S01",
+      "name": "도약참",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "warriorLeap",
+      "effectAndCondition": "몸을 날려 적을 베고 착지한 자리에 남습니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "rush"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "몸의 실제 비행·착지 좌표와 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / S01"
+    },
+    {
+      "id": "S06",
+      "name": "회풍참",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "warriorSweep",
+      "effectAndCondition": "비행 경로의 적을 한 번씩 베며 통과합니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "sweep",
+        "positions": [
+          500,
+          560,
+          620
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "이동 경로 두 적 이상 베기",
+      "assertion": "tests/skill-preview-expectations.mjs / S06"
+    },
+    {
+      "id": "S04",
+      "name": "파산격",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "warriorDive",
+      "effectAndCondition": "비행 중 발사를 다시 누르면 급강하합니다. 높이 떨어질수록 충격이 강하며 재입력하지 않으면 약한 착지 공격이 됩니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "rush"
+      },
+      "inputPolicy": "비행 중 manualDive 1회",
+      "observables": "manualDive 입력과 급강하 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / S04"
+    },
+    {
+      "id": "S15",
+      "name": "쇄진돌격",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "warriorDrive",
+      "effectAndCondition": "지상의 적을 함께 밀며 전진합니다. 공중의 적은 베고 지나갑니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "ground-air",
+        "positions": [
+          700,
+          760
+        ],
+        "heights": [
+          0,
+          80
+        ],
+        "flying": [
+          1
+        ],
+        "movable": true
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "지상 운반/실제 bat 통과 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / S15"
+    },
+    {
+      "id": "S13",
+      "name": "파진연격",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "warriorFollow",
+      "effectAndCondition": "돌파하고 착지한 뒤 평참이나 검술을 한 번 더 씁니다. 후속 검술 전에는 이동할 수 없습니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "rush"
+      },
+      "inputPolicy": "착지 meleeFollow ready 후 S00 1회",
+      "observables": "착지 후 허용된 S00 후속 입력",
+      "assertion": "tests/skill-preview-expectations.mjs / S13"
+    },
+    {
+      "id": "S09",
+      "name": "월영참",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "bladeMoon",
+      "effectAndCondition": "전방으로 반달 모양의 검기를 날립니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "single"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "검기 비행과 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / S09"
+    },
+    {
+      "id": "S10",
+      "name": "견인참",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "bladePull",
+      "effectAndCondition": "맞은 자를 앞으로 끌어옵니다. 적은 가까이 오면 다시 베고, 아군은 피해 없이 옮깁니다. 벽과 절벽 앞에서는 멈춥니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "pull",
+        "positions": [
+          830
+        ],
+        "movable": true
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "피격 적의 당김 좌표와 후속 베기",
+      "assertion": "tests/skill-preview-expectations.mjs / S10"
+    },
+    {
+      "id": "S11",
+      "name": "관통참",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "bladePierce",
+      "effectAndCondition": "지나가는 모든 적을 한 번씩 관통합니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "line",
+        "positions": [
+          720,
+          790,
+          860,
+          930,
+          1000
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "일렬 다중 관통",
+      "assertion": "tests/skill-preview-expectations.mjs / S11"
+    },
+    {
+      "id": "S14",
+      "name": "파열참",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "bladeBurst",
+      "effectAndCondition": "첫 적이나 지형에 닿으면 진행 방향과 수직인 짧은 검압이 펼쳐집니다. 가까운 군집을 한 번 베며 벽에 가로막힙니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "burst-blade",
+        "positions": [
+          840,
+          865,
+          890
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "실제 inkLine 검압·군집 타격",
+      "assertion": "tests/skill-preview-expectations.mjs / S14"
+    },
+    {
+      "id": "S12",
+      "name": "회륜검기",
+      "cls": "knight",
+      "basic": false,
+      "passive": false,
+      "mode": "bladeOrbit",
+      "effectAndCondition": "공전하는 여러 검기를 함께 날립니다. 각 검기는 같은 적을 최대 두 번 맞힙니다.",
+      "source": "shared/engine/src/warriorMechanics.ts/warriorData.ts",
+      "scenario": {
+        "kind": "orbit"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "실제 orbit.blades 5~9개와 반복 명중",
+      "assertion": "tests/skill-preview-expectations.mjs / S12"
+    },
+    {
+      "id": "SP01",
+      "name": "검세",
+      "cls": "knight",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "검술의 각도와 축세, 돌격 피해, 검기의 크기·속도를 강화합니다.",
+      "source": "shared/engine/src/warriorMechanics.ts; progression.ts",
+      "scenario": {
+        "kind": "passive-sword",
+        "positions": [
+          455,
+          510
+        ],
+        "cast": "S03",
+        "label": "힘을 모은 검술의 사거리·피해 비교",
+        "metric": "damage"
+      },
+      "inputPolicy": "S03 실제 시전; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "동일 조건 실제 누적 피해 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-sword"
+    },
+    {
+      "id": "SP02",
+      "name": "단련",
+      "cls": "knight",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "최대 체력과 방어를 높이고 밀림을 줄입니다.",
+      "source": "shared/engine/src/progression.ts: heroStats; engine.ts: hurt/impulse",
+      "scenario": {
+        "kind": "passive-durability",
+        "positions": [
+          660
+        ],
+        "cast": "S00",
+        "label": "같은 적 공격에 대한 체력·방어 비교",
+        "metric": "durability",
+        "incoming": true
+      },
+      "inputPolicy": "실제 LA01 적 공격으로 시작; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "동일 적 공격의 HP/방어 적용 차이",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-durability"
+    },
+    {
+      "id": "SP03",
+      "name": "경신",
+      "cls": "knight",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "이동과 도약을 강화하고 점프의 이동력 소모를 줄입니다.",
+      "source": "shared/engine/src/progression.ts: heroStats; engine.ts: jump/jumpCost",
+      "scenario": {
+        "kind": "passive-mobility",
+        "positions": [
+          455,
+          510
+        ],
+        "cast": "S00",
+        "label": "실제 도약 높이·소모 이동력 비교",
+        "metric": "jump"
+      },
+      "inputPolicy": "실제 jump 후 착지/공격; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "실제 도약 최고점·jumpCost 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-mobility"
+    },
+    {
+      "id": "SP04",
+      "name": "연세",
+      "cls": "knight",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "검술·돌격·검기를 이어 쓰면 합세가 완성됩니다. 기력을 회복하고 다음 기예의 비용·피해와 잠시 받는 피해를 랭크에 따라 강화합니다.",
+      "source": "shared/engine/src/combatPassives.ts: beginPlayerCast/passiveCost",
+      "scenario": {
+        "kind": "passive-harmony",
+        "positions": [
+          470,
+          700,
+          920
+        ],
+        "cast": "S03",
+        "label": "검술 → 돌격 → 검기 → 합세 강화",
+        "metric": "harmony",
+        "sequence": [
+          "S03",
+          "S01",
+          "S09",
+          "S03"
+        ],
+        "turns": true
+      },
+      "inputPolicy": "실제 아군 차례에 S03 → S01 → S09 → S03; 적 차례는 대기; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "3계통 시전→harmony→강화 4번째 시전",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-harmony"
+    },
+    {
+      "id": "SP05",
+      "name": "불굴",
+      "cls": "knight",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "전투마다 한 번 치명적인 피해를 버팁니다. 직후에는 잠시 받는 피해가 줄어듭니다.",
+      "source": "shared/engine/src/engine.ts: hurt",
+      "scenario": {
+        "kind": "passive-last-stand",
+        "positions": [
+          660
+        ],
+        "cast": "S00",
+        "label": "치명적인 한 발을 불굴로 버티기",
+        "metric": "lastStand",
+        "incoming": true,
+        "lowHealth": true
+      },
+      "inputPolicy": "실제 LA01 적 공격으로 시작; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "같은 치명 공격의 사망/불굴 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-last-stand"
+    },
+    {
+      "id": "O02",
+      "name": "투과령",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "phaseWraith",
+      "effectAndCondition": "지형과 적을 통과하며 피해를 남긴 뒤 폭발합니다. 오래 충전할수록 더 늦게 터집니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "phase-wall"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "벽 통과·통과한 적 피해·폭발",
+      "assertion": "tests/skill-preview-expectations.mjs / O02"
+    },
+    {
+      "id": "O03",
+      "name": "역천령",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "reverseGhost",
+      "effectAndCondition": "거꾸로 솟아오른 혼이 원혼비로 갈라져 아래를 덮칩니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "reverse-rain",
+        "positions": [
+          1000,
+          1130,
+          1260
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "reverseGhost → spiritRain 및 군집 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / O03"
+    },
+    {
+      "id": "O04",
+      "name": "황천창",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "spiritLance",
+      "effectAndCondition": "벽을 통과하고 처음 닿은 적에게 강한 피해를 줍니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "phase-wall"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "벽 뒤 첫 적 명중",
+      "assertion": "tests/skill-preview-expectations.mjs / O04"
+    },
+    {
+      "id": "O05",
+      "name": "회귀망령",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "wraithReturn",
+      "effectAndCondition": "나갈 때 적을 관통해 28% 피해를 남기고 지형에서 멈춥니다. 실제 궤적을 거꾸로 따라 첫 적에 닿으면 95% 위력으로 폭발하며, 나갈 때 맞힌 적은 폭발 피해가 30% 증가합니다. 지형에 닿지 않으면 최대 3.4초 뒤 사라집니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "reverse-path",
+        "positions": [
+          840,
+          970
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "wraithState outbound/manifest/return·귀환 폭발",
+      "assertion": "tests/skill-preview-expectations.mjs / O05"
+    },
+    {
+      "id": "O16",
+      "name": "만혼귀결",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "spiritConverge",
+      "effectAndCondition": "대표 혼령이 닿은 곳을 귀결점으로 삼습니다. 흩어져 돌아온 혼령이 경로와 귀결점에 피해를 줍니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "converge",
+        "positions": [
+          760,
+          870
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "convergeSpirit 실제 외향/귀결 궤적·다중 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / O16"
+    },
+    {
+      "id": "O06",
+      "name": "쇠망부",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "curseWeak",
+      "effectAndCondition": "공격력과 방어력을 낮추는 부적입니다. 경지가 높을수록 오래 갑니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "weakness",
+        "positions": [
+          800,
+          970
+        ],
+        "enemy": true
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "curseTurns/curseArmor 변화 및 적 반응",
+      "assertion": "tests/skill-preview-expectations.mjs / O06"
+    },
+    {
+      "id": "O07",
+      "name": "증오부",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "curseBetray",
+      "effectAndCondition": "맞은 적이 같은 편에게도 공격 대상으로 보입니다. 경지가 높을수록 오래 갑니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "betrayal",
+        "positions": [
+          800,
+          975
+        ],
+        "enemy": true
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "curseTurns/betrayal 및 적의 대상 변경",
+      "assertion": "tests/skill-preview-expectations.mjs / O07"
+    },
+    {
+      "id": "O08",
+      "name": "현형부",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "curseManifest",
+      "effectAndCondition": "작은 범위의 적을 현형합니다. 숨은 혼령도 다른 동료에게 보입니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "manifest",
+        "positions": [
+          830,
+          955
+        ]
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "숨은 ghost의 manifested/reveal 상태",
+      "assertion": "tests/skill-preview-expectations.mjs / O08"
+    },
+    {
+      "id": "O09",
+      "name": "섭혼부",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "curseEnthrall",
+      "effectAndCondition": "보스가 아닌 적을 잠시 동맹으로 돌립니다. 직접 행동한 횟수만큼 효력이 소모됩니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "enthrall",
+        "positions": [
+          800,
+          1060
+        ],
+        "enemy": true
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "enthrall 후 동맹 공격",
+      "assertion": "tests/skill-preview-expectations.mjs / O09"
+    },
+    {
+      "id": "O10",
+      "name": "지박부",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "curseEarth",
+      "effectAndCondition": "넓은 범위에 지박주를 남깁니다. 저주받은 적이 죽으면 그 자리에 지박령이 생깁니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "earthbound",
+        "positions": [
+          840
+        ],
+        "hp": 45
+      },
+      "inputPolicy": "지박 후 O01로 처치",
+      "observables": "earthbind 이후 실제 처치·earthbound 생성",
+      "assertion": "tests/skill-preview-expectations.mjs / O10"
+    },
+    {
+      "id": "O11",
+      "name": "배회령",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "summonStalker",
+      "effectAndCondition": "배회령이 소단의 행동 직후 가까운 적을 쫓아 공격합니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "summon"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "실제 소환→접근→공격",
+      "assertion": "tests/skill-preview-expectations.mjs / O11"
+    },
+    {
+      "id": "O12",
+      "name": "등불귀",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "summonLantern",
+      "effectAndCondition": "등불귀가 소단의 행동 직후 먼 적에게 추적탄을 보냅니다. 높은 경지에서는 최대 두 적을 노립니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "summon"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "실제 소환→summonBolt→피해",
+      "assertion": "tests/skill-preview-expectations.mjs / O12"
+    },
+    {
+      "id": "O13",
+      "name": "호혼령",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "summonWarden",
+      "effectAndCondition": "호혼령이 소단의 행동 직후 범위 안 동행을 방호하고 체력·기력을 회복합니다. 여러 호혼령이 있어도 회복은 동행마다 턴당 한 번이며, 실제 적 피해로 잃은 체력의 회복만 기여 경험치에 반영됩니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "warden"
+      },
+      "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
+      "observables": "소환 후 동행 HP/기력·shield",
+      "assertion": "tests/skill-preview-expectations.mjs / O13"
+    },
+    {
+      "id": "O14",
+      "name": "먹귀",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "summonEater",
+      "effectAndCondition": "지형에 닿으면 주변 일반·정예 적을 한 번 삼킵니다. 2~4턴 동안 아군이 먹귀에 가한 HP 피해를 포획 적 각각에 전달합니다. 남은 먹귀 HP를 넘는 피해는 전달하지 않으며, 죽거나 만료되면 생존자를 방출합니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "eater",
+        "positions": [
+          830,
+          970
+        ]
+      },
+      "inputPolicy": "포획 뒤 O01로 먹귀 공격",
+      "observables": "eaterCapturedBy와 먹귀 실피해의 전달",
+      "assertion": "tests/skill-preview-expectations.mjs / O14"
+    },
+    {
+      "id": "O15",
+      "name": "반향령",
+      "cls": "occultist",
+      "basic": false,
+      "passive": false,
+      "mode": "summonEcho",
+      "effectAndCondition": "소단이 지정한 목표를 각자의 자리에서 함께 겨눕니다. 부적과 초혼은 반향하지 않습니다.",
+      "source": "shared/engine/src/engine.ts/occultMechanics.ts/returningWraith.ts/eaterMechanics.ts",
+      "scenario": {
+        "kind": "echo"
+      },
+      "inputPolicy": "반향령 설치 뒤 O01",
+      "observables": "소환 후 O01 입력·echo 동시 발사",
+      "assertion": "tests/skill-preview-expectations.mjs / O15"
+    },
+    {
+      "id": "OP01",
+      "name": "잔부",
+      "cls": "occultist",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "빗나간 부적은 잠시 함정으로 남습니다. 섭혼부와 지박부에는 적용되지 않습니다.",
+      "source": "shared/engine/src/engine.ts: occultImpact/tickOccultZones",
+      "scenario": {
+        "kind": "passive-trap",
+        "positions": [
+          980
+        ],
+        "enemy": true,
+        "cast": "O06",
+        "label": "빗나간 부적을 밟은 적에게 잔부 발동",
+        "metric": "trap",
+        "movable": true,
+        "miss": true
+      },
+      "inputPolicy": "O06 빗나감 후 적이 잔부 쪽으로 실제 걷기; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "실제 occultTraps→접촉 curse→피해",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-trap"
+    },
+    {
+      "id": "OP02",
+      "name": "혼맥",
+      "cls": "occultist",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "자신의 주박·지박이 남은 적을 소환령과 섭혼한 적이 우선 찾고 더 강하게 공격합니다.",
+      "source": "shared/engine/src/engine.ts: stepSummonTurn/hurt",
+      "scenario": {
+        "kind": "passive-mark-priority",
+        "positions": [
+          1000,
+          500
+        ],
+        "enemy": true,
+        "cast": "O06",
+        "label": "주박한 적을 배회령이 우선 추적",
+        "metric": "marked",
+        "sequence": [
+          "O06",
+          "O11"
+        ],
+        "turns": true,
+        "goal": 650
+      },
+      "inputPolicy": "실제 아군 차례에 O06 → O11; 적 차례는 대기; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "주박 적의 실제 소환 우선 추적·강화 피해",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-mark-priority"
+    },
+    {
+      "id": "OP03",
+      "name": "분혼",
+      "cls": "occultist",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "방호 뒤 남은 피해의 일부를 가까운 소환령과 나눕니다. 한 공격에서 나눌 수 있는 피해에는 한도가 있습니다.",
+      "source": "shared/engine/src/engine.ts: hurt",
+      "scenario": {
+        "kind": "passive-share",
+        "cast": "O13",
+        "goal": 600,
+        "label": "소환령을 부른 뒤 적 공격의 피해 분담",
+        "metric": "share",
+        "incomingAfter": true,
+        "enemy": true,
+        "positions": [
+          920
+        ]
+      },
+      "inputPolicy": "실제 소환 후 적이 주인에게 LA01 발사; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "소환령 HP/shield가 실제 분담한 피해와 주인 HP 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-share"
+    },
+    {
+      "id": "OP04",
+      "name": "매듭보전",
+      "cls": "occultist",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "수명이 끝난 소환령에게서 기력을 돌려받고 다음 초혼 비용을 줄입니다.",
+      "source": "shared/engine/src/engine.ts: expireSummon",
+      "scenario": {
+        "kind": "passive-expiry",
+        "cast": "O11",
+        "label": "턴을 보내 자연 소멸한 소환령의 기력 회수",
+        "metric": "expiry",
+        "turns": true
+      },
+      "inputPolicy": "실제 아군 차례에 O11; 적 차례는 대기; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "자연 만료 뒤 nextSummonDiscount/기력 비교",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-expiry"
+    },
+    {
+      "id": "OP05",
+      "name": "잔혼",
+      "cls": "occultist",
+      "basic": false,
+      "passive": true,
+      "mode": "passive",
+      "effectAndCondition": "영향 아래 쓰러진 적의 잔혼 셋을 모아 다음 기예 하나를 강화합니다.",
+      "source": "shared/engine/src/engine.ts: hurt; occultMechanics.ts: beginOccultCast",
+      "scenario": {
+        "kind": "passive-remnants",
+        "positions": [
+          780,
+          810,
+          840,
+          1100
+        ],
+        "hp": 25,
+        "cast": "O10",
+        "survivorHp": 2400,
+        "label": "적 셋의 잔혼을 모아 다음 혼행 강화",
+        "metric": "remnants",
+        "sequence": [
+          "O10",
+          "O01"
+        ],
+        "turns": true
+      },
+      "inputPolicy": "실제 아군 차례에 O10 → O01; 적 차례는 대기; 같은 입력의 미습득 별도 엔진과 비교",
+      "observables": "실제 3처치→잔혼3→다음 projectile soulBoost·피해",
+      "assertion": "tests/skill-preview-expectations.mjs / passive-remnants"
+    }
+  ]
+}

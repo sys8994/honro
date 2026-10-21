@@ -379,7 +379,6 @@
         }
         talent(id,context=null){const sk=S[id];if(!sk)return;const cls=sk.cls;this.cls=cls;const roster=this.training&&this.engine?{...this.profile,heroes:this.engine.b.heroes}:this.profile;const h=roster.heroes[cls];this.open(G.HonroUI.talent(roster,id),'detail '+(sk.ultimate?'ultimate-dialog':'talent-dialog'));
             this.detailSkill=id;
-            if(sk.passive)return;
             const canvas=$('previewcanvas');
             if(context?.preview&&context.canvas&&canvas){canvas.replaceWith(context.canvas);this.preview=context.preview;this.preview.h=clone(h);return;}
             this.prepareSkillPreview(id,h,canvas);

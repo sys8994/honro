@@ -1,16 +1,16 @@
 """Real UI regression for the restored pre-workbench camp and top modal controls."""
 import json,os
 from playwright.sync_api import sync_playwright
-from browser_support import launch,ROOT
+from browser_support import launch,ROOT,serve_game
 OUT=ROOT/os.environ.get('HONRO_SKILL_OUT','_local/reports/skill-ui-restore');OUT.mkdir(parents=True,exist_ok=True)
 checks=[]
 def check(name,ok,detail=None):
  assert ok,(name,detail)
  checks.append({'name':name,'detail':detail});print('PASS',name,flush=True)
 SETUP="""()=>{const a=HonroApp,C=HONRO_CORE;a.profile.settings.music=false;a.profile.settings.sound=false;a.updateAudio();a.profile.recruited=[...C.CLASS_IDS];a.profile.party=[...C.CLASS_IDS];for(const c of C.CLASS_IDS){const h=a.profile.heroes[c];h.xp=C.xpAtLevel(30);h.ranks={[C.baseSkill(c)]:1};h.statTraining=2;for(const n of C.TALENTS.filter(n=>n.cls===c))h.ranks[n.id]=1;a.profile.loadouts[c]=[C.baseSkill(c),...C.TALENTS.filter(n=>n.cls===c&&!n.passive).slice(0,3).map(n=>n.id)];}a.showCamp('archer');window.profileBefore=JSON.stringify(a.profile);} """
-with sync_playwright() as pw:
+with sync_playwright() as pw, serve_game() as base_url:
  b=launch(pw);p=b.new_page(viewport={'width':390,'height':844},has_touch=True);errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
- p.goto(os.environ.get('HONRO_SKILL_URL','http://localhost:8002/HONRO.html'));p.wait_for_function('window.HonroApp');p.evaluate(SETUP)
+ p.goto(os.environ.get('HONRO_SKILL_URL',base_url+'/HONRO.html'));p.wait_for_function('window.HonroApp');p.evaluate(SETUP)
  for width in [360,390,1280]:
   p.set_viewport_size({'width':width,'height':844})
   for cls in ['archer','mage','knight','occultist']:
@@ -27,12 +27,12 @@ with sync_playwright() as pw:
    sid=p.evaluate('([c,branch])=>HONRO_CORE.TALENTS.filter(n=>n.cls===c&&n.branch===branch).at(-1).id',[cls,branch])
    p.evaluate('c=>HonroApp.showCamp(c)',cls)
    p.locator(f'.tree-node[data-skill="{sid}"]').click()
-   controls=p.locator('.skill-detail-controls');dialog=p.locator('.talent-dialog')
+   controls=p.locator('.skill-detail-controls');dialog=p.locator('.skill-modal-body')
    check(cls+f'/{branch}: buttons precede summary and preview',controls.is_visible() and p.evaluate("document.querySelector('.skill-detail-controls').compareDocumentPosition(document.querySelector('.skill-modal-grid'))&Node.DOCUMENT_POSITION_FOLLOWING"))
    p.locator('[data-action=train]').click()
    check(cls+f'/{branch}: modal plus updates rank and bar',p.evaluate('id=>HonroApp.profile.heroes[HONRO_CORE.SKILLS[id].cls].ranks[id]',sid)==2 and p.locator('.rank-banner .rank-track i.on').count()==2)
    dialog.evaluate('e=>e.scrollTop=e.scrollHeight')
-   check(cls+f'/{branch}: top controls remain visible while scrolling',controls.bounding_box()['y']>=dialog.bounding_box()['y']-2 and controls.bounding_box()['y']+controls.bounding_box()['height']<=dialog.bounding_box()['y']+dialog.bounding_box()['height'])
+   check(cls+f'/{branch}: top controls remain visible while scrolling',controls.bounding_box()['y']>=p.locator('.talent-dialog').bounding_box()['y']-2 and controls.bounding_box()['y']+controls.bounding_box()['height']<=dialog.bounding_box()['y']+1)
    p.locator('[data-action=rank-minus-detail]').click()
    check(cls+f'/{branch}: modal refund returns one SP',p.evaluate('id=>HonroApp.profile.heroes[HONRO_CORE.SKILLS[id].cls].ranks[id]',sid)==1)
    p.evaluate('HonroApp.close()')
@@ -58,7 +58,7 @@ with sync_playwright() as pw:
  for width in [360,390,1280]:
   p.set_viewport_size({'width':width,'height':844});p.evaluate("HonroApp.talent('A14')");p.wait_for_function('HonroApp.preview?.fired')
   p.screenshot(path=str(OUT/f'restored-modal-{width}.png'))
-  check(f'{width}: modal fits viewport and scrolls',p.locator('.talent-dialog').evaluate("e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.bottom<=innerHeight&&e.scrollWidth<=e.clientWidth+1&&getComputedStyle(e).overflowY==='auto'}"))
+  check(f'{width}: modal fits viewport and scrolls',p.locator('.talent-dialog').evaluate("e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.bottom<=innerHeight&&e.scrollWidth<=e.clientWidth+1&&getComputedStyle(e).overflowY==='hidden'&&getComputedStyle(e.querySelector('.skill-modal-body')).overflowY==='auto'}"))
   p.evaluate('HonroApp.close()')
  check('no browser exceptions',not errors,errors);b.close()
 (OUT/'checks.json').write_text(json.dumps({'checks':checks,'errors':errors},ensure_ascii=False,indent=2))

@@ -43,7 +43,7 @@ def suite(page,shell):
     check(shell+': manual steering, detonation, dive and followup execute at both ranks',all(r['follow'] for r in results if r['id'] in {'M02','A09','S04','S13','A10'}))
     check(shell+': isolated previews never change campaign progression or local saves',all(r['unchanged'] for r in results))
     check(shell+': obsolete preview captions removed',page.locator('.preview-label').count()==0)
-    keep=page.evaluate(r'''()=>{const a=HonroApp;a.talent('M02');const canvas=a.preview.canvas,dialog=document.querySelector('.talent-dialog');dialog.scrollTop=150;const scroll=dialog.scrollTop;for(let i=0;i<460;i++)HonroSkillPreview.tick(a,a.preview,1/60);return{canvas:canvas===a.preview.canvas,dialog:dialog===document.querySelector('.talent-dialog'),scroll:dialog.scrollTop===scroll,cycle:a.preview.cycle};}''')
+    keep=page.evaluate(r'''()=>{const a=HonroApp;a.talent('M02');const canvas=a.preview.canvas,dialog=document.querySelector('.skill-modal-body');dialog.scrollTop=150;const scroll=dialog.scrollTop;for(let i=0;i<460;i++)HonroSkillPreview.tick(a,a.preview,1/60);return{canvas:canvas===a.preview.canvas,dialog:dialog===document.querySelector('.skill-modal-body'),scroll:dialog.scrollTop===scroll,cycle:a.preview.cycle};}''')
     check(shell+': replay preserves the dialog, canvas and scroll position',keep['canvas'] and keep['dialog'] and keep['scroll'] and keep['cycle']==1,keep)
     page.evaluate('HonroApp.close()')
     # Real training battlefield and shared status renderer (including enemy and allied actors).
@@ -72,8 +72,8 @@ with sync_playwright() as pw:
         mobile=[p.evaluate('id=>auditPreview(id,1,3.8)',id) for id in p.evaluate('previewIds')]
         check('Mobile '+label+': every skill starts with visible actors and retains readable figures',all(r['visible'] and r['minPixels']>=25 for r in mobile),mobile)
         p.evaluate("HonroApp.talent('A14');for(let i=0;i<60;i++)HonroSkillPreview.tick(HonroApp,HonroApp.preview,1/60)")
-        check('Mobile '+label+': skill detail fits and its controls remain scrollable',p.evaluate("(()=>{const d=document.querySelector('.talent-dialog'),r=d.getBoundingClientRect();d.scrollTop=d.scrollHeight;return r.left>=0&&r.right<=innerWidth&&r.bottom<=innerHeight&&d.scrollWidth<=d.clientWidth+1&&getComputedStyle(d).overflowY==='auto'&&[...document.querySelectorAll('.effect-row')].every(row=>row.scrollWidth<=row.clientWidth+1)})()"))
-        p.evaluate("document.querySelector('.talent-dialog').scrollTop=0");p.screenshot(path=str(OUT/('detail-'+label+'.png')))
+        check('Mobile '+label+': skill detail fits and its controls remain scrollable',p.evaluate("(()=>{const d=document.querySelector('.talent-dialog'),r=d.getBoundingClientRect();d.querySelector('.skill-modal-body').scrollTop=d.querySelector('.skill-modal-body').scrollHeight;return r.left>=0&&r.right<=innerWidth&&r.bottom<=innerHeight&&d.scrollWidth<=d.clientWidth+1&&getComputedStyle(d).overflowY==='hidden'&&getComputedStyle(d.querySelector('.skill-modal-body')).overflowY==='auto'&&[...document.querySelectorAll('.effect-row')].every(row=>row.scrollWidth<=row.clientWidth+1)})()"))
+        p.evaluate("document.querySelector('.skill-modal-body').scrollTop=0");p.screenshot(path=str(OUT/('detail-'+label+'.png')))
         p.evaluate("HonroApp.close();Object.assign(HonroApp.engine.active,{bound:2,stun:1,shield:80});HonroApp.updateHUD(true);HonroApp.scene.render(HonroApp.engine,.1,'',.5,false)");p.locator('#combat-status .status-trigger').click()
         check('Mobile '+label+': status details remain visible within viewport',p.locator('#unit-info').is_visible() and p.evaluate("(()=>{const r=document.querySelector('#unit-info').getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight})()"))
         p.screenshot(path=str(OUT/('status-'+label+'.png')));p.locator('#unit-info .unit-info-close').click()
