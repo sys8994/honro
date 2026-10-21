@@ -1,0 +1,71 @@
+{
+  "sha": "047000d999a22f082e38f9007dac1baee93358d5",
+  "scope": "Normal-resource starting battles; prepared unlocks and manual camera only, not completion.",
+  "sourceHashes": {
+    "shared/engine/src/enemyAI.ts": "fa1d21262b3945556d3e7c58d406d9bd7504a77e4f86bb0243c6374b8eaa29a3",
+    "shared/engine/src/engine.ts": "26faf72c9d6ba92e5183401bdf61a1a3889cc0c9000a83fc5c6aa170bcd48565",
+    "shared/runtime/terrain-space.js": "3ddb6ae1c21924cc4252cd228d27758fe9785f21036c1fc82cb4819bc7e3cd76",
+    "shared/engine/src/locomotion.ts": "84ff07ebce43625be87f5e78244e55ccb6a368f49941c401cc81c5dbe39f2545",
+    "shared/runtime/stage2-airborne.js": "b69b4c32523a6395f8e088d5955dc0fd4c20c1e368a7299736fca7d023019890"
+  },
+  "rows": [
+    {
+      "stage": 2,
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3370,
+          "y": 1010,
+          "awake": false
+        },
+        {
+          "id": "foe-4",
+          "x": 3190,
+          "y": 1150,
+          "awake": false
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3460,
+          "y": 882,
+          "awake": false
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3398,
+          "y": 1150,
+          "awake": false
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 2660,
+          "y": 2342.75,
+          "awake": false
+        },
+        {
+          "id": "foe-4",
+          "x": 2698.128648059828,
+          "y": 2098.1682356909046,
+          "awake": false
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 2916.276877526612,
+          "y": 2310.75,
+          "awake": false
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 2950,
+          "y": 2055.75,
+          "awake": false
+        }
+      ]
+    }
+  ]
+}

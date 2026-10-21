@@ -26,3 +26,7 @@
 - 실제 Chromium 정상 시작 자원·생산 방어 입력·가상 시계로2장4라운드 도달,54개 경계·큐상한3. 화면과 trace를 `evidence/after/browser/`에 저장. 전후 초기 실제 화면은 `evidence/before/screens/`, `evidence/after/screens/`.
 
 10장 작업은 아직 미완이며 이 수정 브랜치에 합치지 않는다. master/Pages 통합은 부모의 선행 스킬/UI 작업 순서 조정 대기다. 공개403/API제한은 재시도하지 않았다. 사용자 첨부Library libfile_8c5741432178819199b6a78ef5a986b6은 식별했으나 materialize helper가 download failed를 반환하여 원본을 직접 보지 못했다. 동일한 초기 발판 겹침은 로컬 실제 화면에서 별도로 재현·확인했다.
+
+## 최신 UI/스킬 master 보존 준비
+
+origin/master1ebd7985를 작업 브랜치에 병합했다. 인트로·main·bgm·campUI·music-titles 원본은 그 master와 동일하며 생성물 충돌은 최신 master의 manifest에서 공통 빌드로 재생성했다. 통합 빌드·공통 배치/저장 검사·web-split(30장/845에셋/248파일/타이틀·임베디드 저장·Workshop 직접문서) 및 실제2/3장 초기 캡처 통과. 통합3장 화면을 직접 열어 재확인했다. master 자체의 병합·push·배포는 부모 통합 순서 대기다.

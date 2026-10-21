@@ -1,0 +1,13 @@
+diff --git a/shared/runtime/rest-journey.js b/shared/runtime/rest-journey.js
+index 44700c30..0d6d3541 100644
+--- a/shared/runtime/rest-journey.js
++++ b/shared/runtime/rest-journey.js
+@@ -67,7 +67,7 @@ function mountRestCamera(app,scene){const world=scene?.querySelector?.('.rest-wo
+ function drawPeople(time=0,canvases=document.querySelectorAll('canvas[data-rest-person]')){for(const cv of canvases){const ctx=cv.getContext('2d');ctx.clearRect(0,0,cv.width,cv.height);ctx.save();ctx.translate(110,282);ctx.scale(2.21,2.21);drawActor(ctx,cv.dataset.restPerson,time);ctx.restore();}}
+ function paintMotion(m,time){drawPeople(time,m.people);for(const {node,kind,phase}of m.art){const attrs=G.HonroJourneyArt.motionFrame(kind,time,phase);for(const [key,value]of Object.entries(attrs))node.setAttribute(key,value);}m.draws++;}
+ function stopMotion(app){app.restMotion?.scene?._restCamera?.cancel();app.restMotion=null;}
+-function startMotion(app){const time=app.restMotion?.time||0;stopMotion(app);layoutRest();const scene=document.querySelector('.rest-landscape');if(!scene)return;mountRestCamera(app,scene);const m=app.restMotion={scene,time,age:0,draws:0,paused:!!document.hidden,reduced:!!reducedMotion?.matches,people:[...document.querySelectorAll('canvas[data-rest-person]')],art:[...scene.querySelectorAll('[data-rest-motion]')].map(node=>({node,kind:node.dataset.restMotion,phase:Number(node.dataset.restPhase)||0}))};paintMotion(m,m.reduced?0:m.time);}
++function startMotion(app){const time=app.restMotion?.time||0;stopMotion(app);const scene=document.querySelector('.rest-landscape');if(!scene)return;mountRestCamera(app,scene);const m=app.restMotion={scene,time,age:0,draws:0,paused:!!document.hidden,reduced:!!reducedMotion?.matches,people:[...document.querySelectorAll('canvas[data-rest-person]')],art:[...scene.querySelectorAll('[data-rest-motion]')].map(node=>({node,kind:node.dataset.restMotion,phase:Number(node.dataset.restPhase)||0}))};paintMotion(m,m.reduced?0:m.time);}
+ // The App already owns one rAF. Reuse its clamped dt, retain DOM handles only
+ // while this rest screen exists, and redraw at 24 Hz (20 Hz on narrow screens).
+ // No second rAF, timers, observers or per-entry listeners need cancellation.

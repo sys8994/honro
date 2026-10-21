@@ -119,59 +119,6 @@
 .honro .talent-heading{padding-right:28px}
 .honro .skill-detail-actions button{min-height:38px;white-space:normal}
 
-/* Camp workbench: slots first, one selected branch, and readable decision data. */
-.honro .camp-v5 .camp-scroll{padding:16px 24px 30px;background:#191e19}
-.honro .camp-v5 .armory-shell{max-width:1120px}
-.honro .camp-v5 .hero-tabs{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 14px}
-.honro .camp-v5 .hero-tab{min-height:64px;padding:5px 12px 5px 4px;border-radius:5px;background:#242a22;box-shadow:none}
-.honro .camp-v5 .hero-tab.active{background:#32362a;border-color:#a99b6b}
-.honro .camp-v5 .hero-tab img{width:38px;height:48px}
-.honro .camp-v5 .hero-tab strong{font-size:14px}
-.honro .camp-v5 .hero-tab small{font-size:11px}
-.honro .camp-v5 .point-dot{position:static;margin-left:auto;background:none;border:0;color:#d3c58b;font-size:11px;white-space:nowrap;padding:0}
-.honro .camp-v5 .equipped-panel{padding:14px 16px;margin:0 0 10px;border-radius:5px;background:#23291f;box-shadow:none}
-.honro .camp-v5 .section-caption{margin-bottom:10px}
-.honro .camp-points{font-size:11px;color:#b8bba8}
-.honro .camp-points b{font-size:22px;color:#dfd3a3;margin-right:4px}
-.honro .camp-v5 .loadout-cards{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.honro .camp-v5 .slot-card{padding:10px 12px;min-height:96px;border-radius:4px;background:#2b3026;box-shadow:none}
-.honro .camp-v5 .slot-tag{font-size:9px}
-.honro .camp-v5 .slot-main{gap:9px;margin:6px 0}
-.honro .camp-v5 .slot-info strong{font-size:13px}
-.honro .camp-v5 .slot-info small{font-size:10px}
-.honro .camp-v5 .slot-foot .rank-track{display:none}
-.honro .camp-training{margin:0 0 12px;border:1px solid #59604b66;border-radius:4px;background:#24291f}
-.honro .camp-training>summary{padding:10px 13px;cursor:pointer;color:#c9cbb7;font-size:12px}
-.honro .camp-training>summary span{float:right;color:#aeb39c;font-size:11px}
-.honro .camp-training .hero-summary{margin:0;padding:12px;box-shadow:none;border:0;border-radius:0;background:none}
-.honro .camp-training .summary-identity>img{display:none}
-.honro .camp-training .stat-invest-panel{margin:0;padding:12px;border:0;border-top:1px solid #59604b66;border-radius:0;background:none}
-.honro .camp-v5 .ultimate-panel{display:flex;align-items:center;gap:14px;padding:10px 13px;margin:0 0 12px;border-radius:4px;box-shadow:none;background:#252923}
-.honro .camp-v5 .ultimate-core{flex:1;gap:8px}
-.honro .camp-v5 .ultimate-core h3{font-size:13px;margin:0}
-.honro .camp-v5 .ultimate-progress{flex:0 1 100px;margin:0}
-.honro .camp-v5 .ultimate-actions{margin:0}
-.honro .camp-v5 .tree-tools{margin:14px 0 8px}
-.honro .camp-v5 .tree-grid{display:block}
-.honro .camp-v5 .branch{display:none;border-radius:4px;background:#22271f;padding:8px 12px;box-shadow:none}
-.honro .camp-v5 .branch.mobile-current{display:block}
-.honro .camp-v5 .branch-head{display:none}
-.honro .camp-v5 .branch-tabs{display:flex;gap:6px;margin:0;border-bottom:1px solid #60664d}
-.honro .camp-v5 .branch-tabs button{flex:1;padding:11px 8px;border-radius:4px 4px 0 0;background:#272c23;color:#aeb39e;border-color:transparent;font-size:12px}
-.honro .camp-v5 .branch-tabs button.active{color:#e2d6a4;border-bottom:2px solid #c4b378;background:#33372b}
-.honro .camp-v5 .branch-nodes{gap:0}
-.honro .camp-v5 .tree-node{display:flex;align-items:center;gap:12px;min-height:99px;border:0;border-bottom:1px solid #51584366;border-radius:0;background:none;box-shadow:none;padding:12px 100px 12px 2px}
-.honro .camp-v5 .tree-node:after{display:none}
-.honro .camp-v5 .node-tier{display:none}
-.honro .camp-v5 .node-body{flex:1;min-width:0}
-.honro .camp-v5 .node-name{font-size:14px}
-.honro .camp-v5 .node-effect{display:block;font-size:12px;color:#b8bfab;line-height:1.6;margin:4px 0;max-width:760px;white-space:normal;word-break:keep-all;overflow-wrap:anywhere}
-.honro .camp-v5 .node-sub{display:inline-flex;gap:4px;font-size:11px;margin:0}
-.honro .camp-v5 .node-cost{margin-left:10px;font-size:11px;color:#aebbaa}
-.honro .camp-v5 .node-stepper{right:4px;top:50%;transform:translateY(-50%);display:flex;flex-direction:row;gap:4px;width:auto}
-.honro .camp-v5 .node-stepper>span{display:none}
-.honro .camp-v5 .rank-step{width:34px;height:38px;border-radius:4px}
-.honro .camp-v5 .passive-summary{margin:10px 0;padding:10px 12px;border-radius:4px;background:#24291f}
 /* The title and its actions share one sticky surface above the real preview. */
 .honro #modal .skill-detail-controls,.honro #overlay .skill-detail-controls{position:sticky;top:-1px;z-index:4;background:#20271f;padding:10px 0 8px;border-bottom:1px solid #6a71574d}
 .honro .skill-detail-controls .talent-heading{margin:0;padding-right:34px}
@@ -200,29 +147,6 @@
 .honro .equip-dialog .equip-option em{flex:none;font-size:10px}
 .honro .equip-comparison>.btn{margin:0 8px 8px 0;min-height:42px}
 @media(max-width:620px){
- .honro .camp-v5 .camp-scroll{padding:12px 10px 24px}
- .honro .camp-v5 .hero-tabs{gap:4px;margin-bottom:10px}
- .honro .camp-v5 .hero-tab{padding:8px 3px;min-height:54px;display:block;text-align:center}
- .honro .camp-v5 .hero-tab img,.honro .camp-v5 .hero-tab .point-dot{display:none}
- .honro .camp-v5 .hero-tab strong{font-size:12px}
- .honro .camp-v5 .hero-tab small{font-size:9px}
- .honro .camp-v5 .equipped-panel{padding:10px 8px}
- .honro .camp-v5 .loadout-cards{gap:4px}
- .honro .camp-v5 .slot-card{padding:8px 3px;min-height:104px;text-align:center}
- .honro .camp-v5 .slot-main{flex-direction:column;gap:5px;margin:5px 0}
- .honro .camp-v5 .slot-tag{font-size:8px;align-self:center}
- .honro .camp-v5 .slot-info strong{font-size:11px}
- .honro .camp-v5 .slot-info small{display:none}
- .honro .camp-v5 .slot-foot{justify-content:center;font-size:9px}
- .honro .camp-v5 .slot-foot>svg{display:none}
- .honro .camp-v5 .ultimate-panel{gap:8px}
- .honro .camp-v5 .ultimate-panel>.ultimate-progress{display:none}
- .honro .camp-v5 .tree-node{gap:8px;padding-right:82px;min-height:110px}
- .honro .camp-v5 .node-name{font-size:12px}
- .honro .camp-v5 .node-effect{font-size:11px}
- .honro .camp-v5 .node-cost{display:block;margin:3px 0 0}
- .honro .camp-v5 .rank-step{width:32px;height:38px}
- .honro .camp-v5 .branch-tabs button{font-size:11px;padding:10px 3px}
  .honro .loadout-compare{grid-template-columns:1fr;gap:8px}
  .honro .loadout-compare-card{padding:10px}
  .honro .equip-dialog .swap-cards{gap:4px}
@@ -233,10 +157,6 @@
  .honro .skill-detail-controls .skill-detail-actions button{font-size:11px;padding:8px}
 }
 @media(orientation:landscape) and (max-height:540px){
- .honro .camp-v5 .hero-tab{min-height:45px;padding-top:3px;padding-bottom:3px}
- .honro .camp-v5 .hero-tab img{width:28px;height:34px}
- .honro .camp-v5 .slot-card{min-height:78px;padding-top:6px;padding-bottom:6px}
- .honro .camp-v5 .camp-scroll{padding-top:10px}
  .honro #modal .dialog.talent-dialog,.honro #modal .dialog.ultimate-dialog{padding:14px 18px}
  .honro .skill-detail-controls{padding-top:4px!important}
  .honro .skill-detail-controls .talent-heading h2{font-size:20px}
