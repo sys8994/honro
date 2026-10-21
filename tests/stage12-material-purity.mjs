@@ -13,6 +13,7 @@ const original=JSON.stringify(b),ts=g.HonroTerrainDomain.render(b),c=canvas(1400
 c.setTransform(.08,0,0,.08,10,20);const matrix=()=>{const m=c.getTransform();return[m.a,m.b,m.c,m.d,m.e,m.f];},before=matrix();let drawn=0;
 for(const t of ts){if(!t.honroQuarry)continue;assert.equal(art.prepare(t,b),art.prepare(t,b));assert(art.terrain(c,t,b));assert.deepEqual(matrix(),before);assert.equal(c.globalAlpha,1);drawn++;}
 assert(drawn>=10);assert.equal(JSON.stringify(b),original,'Painting may not change physics, objectives or saved state');
+const l=b.honroLandmarks.find(l=>l.id==='sq-art-recessed-mother-rock');assert(l);art.rear(c,l);assert.deepEqual(matrix(),before,'Rear bearing pass leaks no transform');assert.equal(c.globalAlpha,1);assert.equal(JSON.stringify(b),original,'Rear drawing is not collision or saved state');
 const t=ts.find(t=>t.honroQuarry),q=art.prepare(t,b);assert.notEqual(art.prepare(t,{...b,sceneVersion:(b.sceneVersion||0)+1}),q);
 assert.equal(art.terrain(c,t,{...b,honroQuarryRevision:undefined}),false);
 console.log(JSON.stringify({pass:true,drawn,purity:true,cache:true,invalidation:true,optOut:true}));

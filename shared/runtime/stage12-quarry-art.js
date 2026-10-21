@@ -12,6 +12,32 @@ const forms=[
 // Bedrock follows each workface's slope and cut, rather than scaling the same
 // three accents across the entire lower ground or a cave's underside.
 const exposures={
+ 'sq-north-quarry':[
+  ['#99aa91aa','M5330 3760L5800 3700 6160 3590 6050 3780 5890 3880 5630 3900 5480 3850 5330 3880Z'],
+  ['#a0ac91a0','M6250 3550L6740 3540 7130 3370 7510 3310 7690 3310 7800 3400 7600 3550 7460 3760 7080 3810 6850 3940 6610 3830 6470 3650Z'],
+  ['#526f70cc','M6050 3780L6250 3590 6470 3650 6610 3830 6850 3940 6800 4140 6530 4060 6070 4080 5780 3990 5890 3880Z'],
+  ['#789184a0','M6880 3950L7100 3850 7460 3810 7590 3590 7840 3480 8080 3630 8170 3820 8020 4050 7750 4220 7500 4280 7290 4160 7060 4140Z'],
+  ['#345560cc','M5790 3990L6070 4080 6530 4060 6810 4140 7010 4150 7130 4230 7320 4230 7500 4320 7740 4370 8020 4260 8110 4100 8300 4040 8500 4120 8660 4050 8660 4300 5590 4200Z'],
+  ['#24434fbb','M7540 3340L7510 3550 7420 3750 7190 3910 7180 4080 7240 4110 7260 3940 7510 3790 7600 3570 7630 3330Z'],
+  ['#a3ac913e','M7900 3510L8070 3640 8130 3800 8040 3930 7850 4010 7890 3890 7970 3770 7920 3670Z']
+ ],
+ 'sq-west-quarry':[
+  ['#99a98eaa','M3300 4390L3700 4290 4090 4110 4240 4080 4160 4260 3930 4340 3780 4470 3490 4510 3300 4500Z'],
+  ['#9eaa8fa0','M4430 4080L4850 3910 5190 3890 5320 4070 5180 4210 4970 4260 4790 4430 4550 4390 4470 4250Z'],
+  ['#647f76bb','M3930 4360L4160 4300 4320 4150 4470 4250 4550 4390 4790 4430 4700 4610 4250 4570 3770 4590Z'],
+  ['#345660dd','M3300 4470L3500 4510 3780 4470 3930 4420 4240 4480 4500 4460 4700 4610 5160 4720 5650 4760 5920 4650 5820 4820 3300 4700Z'],
+  ['#496b6aaa','M5180 4210L5320 4100 5450 4210 5750 4410 5920 4540 5650 4660 5490 4520 5330 4460 5250 4350Z'],
+  ['#284954bb','M4850 3940L4740 4150 4800 4320 4680 4560 4740 4580 4870 4320 4800 4140 4920 3920Z']
+ ],
+ 'sq-back-road':[
+  ['#94a58aaa','M7110 4660L7510 4610 7920 4470 8000 4520 7860 4610 7660 4650 7510 4720 7220 4730 7110 4770Z'],
+  ['#5b7974bb','M8000 4520L8210 4520 8460 4390 8730 4280 8940 4270 8940 4380 8660 4450 8490 4560 8220 4640 7920 4640Z'],
+  ['#294b57aa','M7570 4610L7640 4610 7590 4670 7470 4770 7420 4780 7490 4680Z']
+ ],
+ 'sq-west-turn-high':[['#91a48ea0','M3120 4520H3260V4537L3225 4551 3165 4542 3120 4554Z'],['#385c63bb','M3120 4554L3165 4542 3225 4551 3260 4537V4590H3120Z']],
+ 'sq-west-turn-low':[['#829b87bb','M3270 4650H3380V4664L3345 4685 3295 4673 3270 4682Z']],
+ 'sq-inner-joint':[['#91a58ddd','M6020 4670H6160V4680L6120 4692 6060 4684 6020 4690Z']],
+ 'sq-east-turn':[['#8a9f8cbb','M8730 4130H8880V4140L8820 4158 8770 4145 8730 4155Z']],
  'sq-lower-ground':[
   ['#8b9c915e','M1300 5320L2210 5110 2910 4910 3470 4830 3570 4980 3260 5230 2810 5340 2490 5550 1800 5600 1410 5470Z'],
   ['#9daa9266','M3830 4990L4330 5060 4860 5030 5300 4980 5530 5050 5280 5230 4780 5290 4610 5450 4190 5430 3920 5300Z'],
@@ -37,6 +63,9 @@ const exposures={
   ['#84998c40','M8180 5090L8730 5140 9050 5270 9010 5350 8660 5310 8400 5330 8150 5250Z']
  ],
  'sq-cave-buttress':[
+  ['#81998a88','M7470 4700L7770 4630 8040 4550 8290 4500 8440 4570 8230 4710 7990 4800 7870 5000 7630 5070 7470 5020Z'],
+  ['#4e6f70aa','M7470 4750L7560 4780 7660 4930 7630 5070 7800 5330 7910 5410 7800 5390 7470 5120Z'],
+  ['#355661aa','M7900 4830L8090 4770 8240 4660 8350 4670 8260 4900 8080 5100 8150 5290 8070 5460 7910 5290 7860 5080Z'],
   ['#203e4e88','M7500 4890L7790 5050 7990 5270 8300 5340 8550 5220 8710 4980 9070 4890 9300 5230 9050 5450 8490 5580 7990 5540 7760 5330 7480 5130Z']
  ]
 };
@@ -44,26 +73,30 @@ for(const id in exposures)exposures[id]=exposures[id].map(([color,d])=>({color,p
 function prepare(t,b){let q=cache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion)return q;const ps=C.poly(t),indices=t.honroWalkEdges||[],edges=indices.map(i=>[ps[i],ps[(i+1)%ps.length]]).filter(([a,z])=>a&&z&&Math.abs(a.x-z.x)>.001),rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y+7);rim.lineTo(z.x,z.y+7);}let key=0;for(const ch of t.id)key+=ch.charCodeAt(0);q={source:t.vertices,version:b.sceneVersion,shape:path(ps),edges,rim,forms:forms[key%forms.length]};cache.set(t,q);return q;}
 function terrain(c,t,b){if(!active(b)||!t.honroQuarry)return false;const q=prepare(t,b);c.save();c.clip(q.shape);const gradient=c.createLinearGradient(t.x,t.y,t.x+t.w*.16,t.y+Math.min(t.h,2400));gradient.addColorStop(0,t.honroCeiling?'#586a6c':'#98a397');gradient.addColorStop(.27,'#72898a');gradient.addColorStop(.64,'#45666d');gradient.addColorStop(1,'#203c4e');c.fillStyle=gradient;c.fill(q.shape);
  if(t.honroQuarryVeil){c.fillStyle='#28484e';c.fill(q.shape);c.strokeStyle='#a2af9388';c.lineWidth=4;c.beginPath();c.moveTo(t.x+t.w*.3,t.y+70);c.lineTo(t.x+t.w*.65,t.y+t.h*.31);c.lineTo(t.x+t.w*.35,t.y+t.h*.64);c.lineTo(t.x+t.w*.68,t.y+t.h-48);c.stroke();}
- else{c.save();c.translate(t.x,t.y);c.scale(t.w/1000,Math.min(t.h,2300)/1000);if(t.id!=='sq-lower-ground'&&!t.honroCeiling)for(const[i,color]of ['#c1c2a92f','#17384789','#1838475c'].entries()){c.fillStyle=color;c.fill(q.forms[i]);}c.restore();c.strokeStyle='#d0d2b16f';c.lineWidth=15;c.stroke(q.rim);
-  // Three authored broad faces distinguish the work areas. No repeated
-  // rectangular tile/stamp detail: the rock's cut and shadow have a direction.
-  const panels=t.id==='sq-north-quarry'?[
-   [[5350,3762],[5800,3715],[6260,3560],[6400,3650],[6250,3900],[6000,4020],[5590,3910]],
-   [[6740,3550],[7130,3390],[7510,3320],[7790,3410],[7730,3720],[7500,4030],[7290,4170],[7000,3990]],
-   [[7900,3500],[8270,3720],[8610,3980],[8550,4140],[8220,4190],[7990,3990]]
-  ]:t.id==='sq-west-quarry'?[
-   [[3320,4395],[3720,4310],[4090,4135],[4260,4190],[4210,4410],[3890,4510],[3470,4480]],
-   [[4520,4070],[4850,3935],[5180,3910],[5330,4080],[5160,4270],[4920,4580],[4680,4530]],
-   [[5410,4180],[5730,4410],[5900,4530],[5630,4660],[5400,4560],[5240,4370]]
-  ]:[];
-  for(const [i,ps] of panels.entries()){c.fillStyle=['#bec3a736','#aebaa837','#213f5066'][i];c.fill(path(ps));}
-  const seams=t.id==='sq-north-quarry'?[[[7560,3350],[7520,3600],[7680,3800],[7560,4050],[7310,4210]],[[6190,3590],[6090,3750],[6200,3920],[6030,4030]]]:t.id==='sq-west-quarry'?[[[4850,3935],[4780,4150],[4870,4330],[4700,4570]],[[4080,4140],[3980,4320],[4070,4480]]]:[];
-  for(const ps of seams){c.lineWidth=13;c.strokeStyle='#1a3b4977';c.beginPath();ps.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.stroke();c.save();c.translate(-7,-9);c.lineWidth=3;c.strokeStyle='#c3c5a43d';c.stroke();c.restore();}
+ else{c.save();c.translate(t.x,t.y);c.scale(t.w/1000,Math.min(t.h,2300)/1000);if(!exposures[t.id]&&!t.honroCeiling)for(const[i,color]of ['#c1c2a92f','#17384789','#1838475c'].entries()){c.fillStyle=color;c.fill(q.forms[i]);}c.restore();c.strokeStyle='#d0d2b16f';c.lineWidth=t.honroSurfaceRole==='short-fracture'?4:10;c.stroke(q.rim);
   if(t.id==='sq-lower-ground'){c.fillStyle='#b2ae8138';c.fill(path([[6060,4822],[6210,4805],[6510,4805],[6930,4805],[6990,4825],[6560,4835],[6250,4830],[6060,4850]]));}
 
   for(const face of exposures[t.id]||[]){c.fillStyle=face.color;c.fill(face.path);}
  }c.restore();return true;}
 const baseTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return baseTerrain.call(this,c,t);};
+// The existing rear-only landmark is the bearing rock behind the real lanes.
+// Its irregular buttresses have no bright top/rim and never enter collision.
+// Keep this drawing inside the landmark's published bounds for world tiles.
+const rearFaces=[
+ ['#29464f','M3200 4490L3300 4440 3730 4410 4130 4340 4580 4340 4980 4430 5440 4420 5710 4590 5520 4740 5360 4950 5140 4900 4770 4870 4350 5030 4020 4990 3820 4930 3490 4840 3350 4660 3280 4580 3200 4590Z'],
+ ['#496564','M3300 4500L3500 4530 3780 4480 4110 4440 4300 4520 4220 4700 4350 5010 4090 4950 3970 4790 3720 4720 3510 4630 3380 4660Z'],
+ ['#1e3d49','M4420 4470L4780 4540 4960 4490 5360 4580 5520 4700 5360 4950 5120 4890 4970 4720 4770 4720 4580 4830 4510 4660Z'],
+ ['#38575d','M3200 4500L3260 4510 3300 4570 3290 4650 3350 4690 3460 4800 3510 4810 3490 4860 3380 4770 3240 4700 3250 4590 3200 4570Z'],
+ ['#284650','M5430 3860L5840 3910 6150 3980 6460 3970 6750 4100 7100 4050 7420 4230 7770 4150 8130 4250 8540 4070 8650 4300 8530 4480 8620 4700 8660 6015 8390 5990 8250 5560 8190 5110 7970 4770 7730 4710 7440 4760 7160 4710 7030 4910 6820 4780 6580 4760 6280 4690 6010 4810 5650 4884 5480 4860 5660 4540 5590 4200Z'],
+ ['#456363','M5570 4090L5840 4140 6140 4100 6380 4220 6340 4450 6090 4580 5940 4800 5650 4884 5720 4650 5830 4450 5760 4280Z'],
+ ['#1d3c48','M6600 4160L6900 4200 7070 4130 7270 4260 7400 4480 7210 4650 7030 4910 6790 4770 6920 4580 6900 4400Z'],
+ ['#3e5d61','M7900 4350L8130 4330 8440 4200 8510 4370 8360 4590 8300 4900 8410 5160 8380 5530 8540 5840 8660 6015 8410 5980 8250 5560 8190 5110 8080 4880 8090 4610Z'],
+ ['#2a4852','M8230 3250L8840 3220 9250 3340 9600 3270 10040 3340 10580 3270 10900 3310 10780 3790 10820 4250 10600 4550 10550 6370 10210 6210 10100 5750 9880 5450 9650 5720 9440 6140 9160 5980 9260 5510 9150 5120 8880 4420 8700 3920 8540 3630Z'],
+ ['#456265','M8900 3380L9230 3460 9450 3400 9640 3550 9680 3900 9500 4350 9540 4660 9750 5060 9640 5370 9440 6140 9280 5970 9380 5630 9410 5340 9240 5030 9280 4690 9140 4380 9040 3970Z'],
+ ['#1d3c48','M9960 3400L10330 3450 10630 3340 10500 3790 10550 4140 10270 4520 10200 4850 10460 5290 10350 5630 10550 6370 10210 6210 10030 5860 10000 5530 9820 5200 9920 4810 10020 4500 10130 4060Z']
+].map(([color,d])=>({color,path:new Path2D(d)}));
+function rear(c,l){c.save();c.translate(l.x||0,l.y||0);c.rotate(l.rotation||0);c.scale(l.scale??1,l.scale??1);for(const f of rearFaces){c.fillStyle=f.color;c.fill(f.path);}c.restore();}
+const landmark=S.landmark;S.landmark=function(c,l){if(active(this.battle)&&l.id==='sq-art-recessed-mother-rock'){rear(c,l);return;}return landmark.call(this,c,l);};
 const skyAsset=b=>b.honroMap?.quarryArt?.backdropAsset;
 function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1080;const c=G.HonroVisualStyle?.context(cv.getContext('2d'),'SKY')||cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});skyCache.set(asset,cv);return cv;}
 const background=S.background;S.background=function(c,w,h,b){if(!active(b)||!skyAsset(b))return background.call(this,c,w,h,b);const cv=skyRaster(skyAsset(b)),frame=G.HonroEnvironment.act1BackdropFrame(this,w,h,b,cv.width,cv.height);c.drawImage(cv,frame.x,frame.y,frame.w,frame.h);this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0};};
@@ -71,6 +104,15 @@ const shoe=new Path2D('M-26-3Q-20-17-2-19Q18-17 25-6L20 0Q-1 6-24 2Z'),lace=new 
 function storyProp(c,b){if(!active(b)||!b.honroState?.quarry?.shoePlaced)return;const m=b.honroMarkers.find(m=>m.id==='sign');if(!m)return;c.save();c.translate(m.x+44,m.y-9);c.fillStyle='#ac9b6c';c.fill(shoe);c.strokeStyle='#574f38';c.lineWidth=2;c.stroke(shoe);c.stroke(lace);c.restore();}
 const live=S.liveWater;S.liveWater=function(c,b){const out=live?.call(this,c,b);storyProp(c,b);return out;};
 // Shared exposed-edge generation still owns every walkable edge and union.
-const omitReadability=(group,b)=>active(b)&&group.id==='sq-turning-veil'&&!!group.broken;
-G.HonroStage12QuarryArt={active,prepare,terrain,skyAsset,skyRaster,storyProp,omitReadability};
+const ownsEdge=id=>!!exposures[id];
+const omitReadability=(group,b)=>active(b)&&(ownsEdge(group.id)||group.id==='sq-turning-veil'&&!!group.broken);
+const readability=S.terrainReadability;S.terrainReadability=function(c,b,view){const out=readability.call(this,c,b,view);if(!active(b))return out;
+ const q=G.HonroTerrainReadability.prepare(b),style=G.HonroTerrainReadability.STYLE,raster=this._staticCacheBuild?this._worldRasterScale(b,this.canvas.clientWidth):this.scale,unit=1/Math.max(.05,raster);
+ c.save();c.lineJoin='round';for(const group of q.groups){if(!ownsEdge(group.id))continue;const box=group.bounds;if(view&&(box.right<view.left||box.left>view.right||box.bottom<view.top||box.top>view.bottom))continue;
+  // Every physical edge is still shown. Recessed contacts need less ink than
+  // the bright playable contour; hiding the collision underside is forbidden.
+  c.strokeStyle='#172e37bb';c.lineWidth=.8*unit;c.stroke(group.edge);c.strokeStyle=style.edgeInk;c.lineWidth=style.topInkPixels*unit;c.stroke(group.top);c.strokeStyle=style.topLight;c.lineWidth=style.topLightPixels*unit;c.stroke(group.top);
+ }c.restore();return out;
+};
+G.HonroStage12QuarryArt={active,prepare,terrain,rear,skyAsset,skyRaster,storyProp,omitReadability};
 })(globalThis);
