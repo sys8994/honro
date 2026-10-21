@@ -101,6 +101,8 @@ body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d
  .honro-title .title-actions{width:230px}
  .honro-title .footer{margin-top:auto}
 }
+/* The audible-track label is fixed below this footer, including home-indicator screens. */
+.honro-title .footer{padding-bottom:max(28px,calc(env(safe-area-inset-bottom) + 24px))}
 @media(prefers-reduced-motion:reduce){.honro-title *{animation:none!important;transition:none!important}}
 
 [data-startup-progress]{display:block;color:#c4c5b7;font-size:12px;text-align:center;margin-top:8px}.campaign-loading{position:fixed;z-index:10000;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);max-width:calc(100vw - 32px);padding:12px 18px;border:1px solid #758079;background:#142426;color:#e6e6d8;border-radius:8px;box-shadow:0 6px 24px #0008}.campaign-loading button{padding:7px 12px;margin-left:6px;color:inherit;background:#314441;border:1px solid #839087;border-radius:4px}
@@ -117,4 +119,4 @@ G.HonroStartup={
 };
 document.addEventListener('click',event=>{const button=event.target.closest?.('[data-startup-start],[data-startup-retry]');if(!button)return;if(button.hasAttribute('data-startup-retry'))location.reload();else if(!ready)button.textContent='준비 중';});
 })(globalThis);
-</script><script type="module" src="web/entries/game.78dbdfa9daddb5f2.js"></script></body></html>
+</script><script type="module" src="web/entries/game.00e44c2a91694213.js"></script></body></html>
