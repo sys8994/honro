@@ -19,5 +19,10 @@ for(const name of ['initial','sign-action','gate-open','round11','terminal']){
  app.stopBattle();const same=plain(app.profile),expected=plain(same.honroBattle);const resumed=h.load(same);resumed.continue();assert.deepEqual(plain(resumed.engine.b),expected,'Same revision retains exact battle');
  rows.push({name,oldRound:saved.b.round,oldPhase:saved.b.phase,newRound:1,growthAndSP:true,equipment:true,campaign:true,sameRevisionExact:true});
 }
+const completed=JSON.parse(await readFile(base+'victory-profile.json','utf8')).profile;
+assert(completed.cleared[12]);const continued=h.load(plain(completed));
+for(const key of ['cleared','heroes','loadouts','recruited'])assert.deepEqual(plain(continued.profile[key]),completed[key],'Already completed12 '+key);
+continued.launch(13);h.finish(continued);assert.equal(continued.engine.b.honroStage,13);assert.equal(continued.engine.b.honroEntryVariant.choice,'B');
+rows.push({name:'already completed original12',growthAndSP:true,equipment:true,campaign:true,nextStage:13,route:'B'});
 const workshop={...plain(h.load(h.profileThrough(11)).profile.honroBattle||{}),mode:'campaign',honroStage:12,honroRevision:20,honroCustom:true,honroMapOrigin:'workshop'};assert.equal(g.HonroCampaignMapRevision.obsolete(workshop),false);
 await mkdir('/tmp/stage12-v3/checks',{recursive:true});await writeFile('/tmp/stage12-v3/checks/save.json',JSON.stringify({pass:true,rows,workshopExcluded:true,scope:'Production App with DOM/storage doubles; original genuine saves remain byte-for-byte untouched.'},null,2));console.log('PASS genuine old12 saves restart only battle, growth/SP/loadouts/progress preserved; same revision exact');

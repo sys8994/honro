@@ -1,0 +1,48 @@
+{
+  "scope": "Actual native-play saves viewed via production browser Continue, then real outcome/Stage13 UI.\nThese are frozen genuine saved battles, not a browser replay of the entire11 rounds.\nNo actor pose, HP, resource or objective corrections are made.\n",
+  "sha": "2a36b00e108371335eacb66bcd468a343165ed6a",
+  "renderSourceSha256": "63e420be461436a6a80ee117ac27f4c8fd034ccc044e4dc8017f43e5b05d91f3",
+  "rows": [
+    {
+      "round": 1,
+      "phase": "aim",
+      "done": {},
+      "label": "entry",
+      "input": "/tmp/stage12-v3/final-normal-upper/initial.json",
+      "inputSha256": "c66147b7ea883579d3c848ccb697b9f36ab03f133867f20498cc33a6c99e5ac3"
+    },
+    {
+      "round": 6,
+      "phase": "review",
+      "done": {
+        "sign": true
+      },
+      "label": "sign-action",
+      "input": "/tmp/stage12-v3/final-normal-upper/sign-action.json",
+      "inputSha256": "f110dad168e385ba84ff8ceeba5731d7b27b7850b2879105f89c43fd2ea5ac9e"
+    },
+    {
+      "round": 7,
+      "phase": "aim",
+      "done": {
+        "sign": true
+      },
+      "label": "gate-open",
+      "input": "/tmp/stage12-v3/final-normal-upper/gate-open.json",
+      "inputSha256": "3b810ea2a70c801c0bfb462e2a51547925713fa10e1fbb6f2e611412ec771e61"
+    },
+    {
+      "round": 17,
+      "phase": "won",
+      "done": {
+        "sign": true,
+        "route-exit": true
+      },
+      "label": "upper-victory",
+      "input": "/tmp/stage12-v3/final-normal-upper/terminal.json",
+      "inputSha256": "e3b086afd6aa563672f812320b99b3f46e2156acac8cb1037a4a826e3f07e18b"
+    }
+  ],
+  "nextStage": 13,
+  "errors": []
+}

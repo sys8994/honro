@@ -1,0 +1,537 @@
+{
+  "sourceCommit": "4b0465b134eda0dae6522e61a4fb21cb5be8efe6",
+  "beforeCommit": "72679f45ecfba64a808806fa43dca329a7a622cc",
+  "branch": "stage/act2-ch12-geology-v3",
+  "runtimeSourcesUnchangedSinceFinal": true,
+  "finalProjectSha256": "afc453d8d139a6eab6a4721d56721cb8dc6b1b4a4ec1b0dde0656205b745cf62",
+  "artParentJudgment": "pending; master and Pages untouched",
+  "scope": "Three focused reviews of interim edits, then separate final source review. Unviewed exploratory/before captures are explicitly false. Native normal input policy is distinct from frozen production-browser Continue screenshots.",
+  "normal": {
+    "B": {
+      "round": 8,
+      "survivors": 4,
+      "enemies": 34,
+      "inputs": 81
+    },
+    "A": {
+      "round": 17,
+      "survivors": 4,
+      "enemies": 28,
+      "inputs": 155
+    }
+  },
+  "files": [
+    {
+      "path": "evidence/geology-v3/before/stage12-center-overview.png",
+      "sha256": "a1d1a0eab98f10a2ad629e76451bbbe1ccda06f72e046f25d372dc8a9228e27d",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": false,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-east-boundary.png",
+      "sha256": "b3e0bacd498430fe8a2b05fcd0425303557e4a19c01e250ef1aab9d007c2bcbf",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": false,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-inner-ledge.png",
+      "sha256": "4e639d5eeda71c948b31256c971f0ce5c5a0fa5d99933df090e3ca69236a4546",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-joint-maxzoom.png",
+      "sha256": "66ccbf50bfd125fed544d4d38c572336775f05bf744d82ada01ab30ec0713b4b",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-mobile-joint.png",
+      "sha256": "edfdc6366875220a4ae59859776c3e251ae7f5db32d8228ec1f671507a006691",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-mobile-north.png",
+      "sha256": "ca6d63d71c315a8803e324b1ad81e141e414f3dff47d9320775254d690fada15",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-mobile-right.png",
+      "sha256": "9311a45eaa3b53ab015e9a2ce7e2e6ff5d1ea287c0134d984f7f06b7f343ad6b",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-north-face.png",
+      "sha256": "74e1a6c9d21bcd7201dba4a7103cdbcf7f0947761126b51b634f689c8718ece0",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-right-wall.png",
+      "sha256": "a9365038aaa70e6a54b334d6a11c56def517f7a1a2330191c68c2f194d96e847",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-sign-normal.png",
+      "sha256": "160e5362f032c3bac48b174702256aeb4ae7eec493c98451ad49159ab79412ec",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": false,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-upper-exit.png",
+      "sha256": "d975161da6e7f13bba053bf72f74694cd79acc605e6b87e3b30a37cddf70843a",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": false,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-west-face.png",
+      "sha256": "af388874d02da3417de7e212a3741abfba1859be589d54ffc97fc8f8da51045c",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": false,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-west-ledges.png",
+      "sha256": "bafff7d0947ca3e5684d5803ff4239b05623c0834b9f4086ff2819d835b9ffb5",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/before/stage12-west-overview.png",
+      "sha256": "1c24f2fd3df1c0e1ad472a03a90d8fec4afe976727bc0a156dab135fcc9f6757",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": false,
+      "set": "before"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-center-overview.png",
+      "sha256": "81f22d7e90a4cda8190de42bb124cd59aa2e3833771067655363d467ee8c3bc9",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-east-boundary.png",
+      "sha256": "dae5f2c1c2894461e5f7639414cb4801dfe4c35596444ed19b671b74e39f001f",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-inner-ledge.png",
+      "sha256": "5616cd2f307fbb98fe43febea02e13953cef88abc536a78441babb7393879ff5",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-joint-maxzoom.png",
+      "sha256": "b9c78a6e9d4c72d482e69b273e5d3fc46b6f513e382b3be6e9b0b8485b399a4e",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-mobile-joint.png",
+      "sha256": "954898ae6a6bdf6c171cf04f5da49588bde0525b2152c3f91233d96dd8438ba6",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-mobile-north.png",
+      "sha256": "4f7a138b944355266b1099c4e0b5f23ebf3c067cd6c3e9157f891f337793ae5d",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-mobile-right.png",
+      "sha256": "8fc458e35ff27228c204ef7b3f577f0b0ca42e24d4a78f57b7a7660c9a3ca0d7",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-north-face.png",
+      "sha256": "319516a33ac17061d14d8e3ad22df01621e5fe8467166890b1863e0135a40acc",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-right-wall.png",
+      "sha256": "f3ad775d1d45c80ac7901b5834814bff72b5c9400fbf67078cb52feaba45374d",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-sign-normal.png",
+      "sha256": "ff94cbc2e2f863027bc3f13aa9b097b3bfd5ef8623dce2c71baee7b7889dfadf",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-upper-exit.png",
+      "sha256": "3dffb6227b85ebd973c6bdd5329ed105f9937ea46f45bf861b6da928d2841867",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-west-face.png",
+      "sha256": "d968c5f443976ea22e622249824b9e9d3fc687efc9d93a601af4ddb20178622c",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-west-ledges.png",
+      "sha256": "a2c54ed59105ad5cc61c048373c83486adadf3a8f3b63d6759a0a7492a54bdaa",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/final/stage12-west-overview.png",
+      "sha256": "dd6772fb765a3c152cdf7d2d747bc8dd8ab1100bc4d520af95eb05ef872732b6",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "final"
+    },
+    {
+      "path": "evidence/geology-v3/focus1/stage12-center-overview.png",
+      "sha256": "34f6096cb195915c7dc8bca09ee2dca2da14f0fb035f8ce7f619cee920492c5e",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus1"
+    },
+    {
+      "path": "evidence/geology-v3/focus1/stage12-inner-ledge.png",
+      "sha256": "0a1077cc7358f312e5c059b1ba41b3167b4690e1acdae2137ab3100abbdcb6f1",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": false,
+      "set": "focus1"
+    },
+    {
+      "path": "evidence/geology-v3/focus1/stage12-mobile-joint.png",
+      "sha256": "318cf00a6d489b9c997db33d2bcf8a0108284914448ded49eacdb07abba90c71",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": false,
+      "set": "focus1"
+    },
+    {
+      "path": "evidence/geology-v3/focus1/stage12-mobile-north.png",
+      "sha256": "947e193f8716743fe0688654ce192d17e3e0d8a7afe55b45ab79ea30884c445f",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": false,
+      "set": "focus1"
+    },
+    {
+      "path": "evidence/geology-v3/focus1/stage12-mobile-right.png",
+      "sha256": "a3a1f158e0b0ae11129d88d08dfd1a69cb6b877d45517bddfadf648af1cb044e",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": false,
+      "set": "focus1"
+    },
+    {
+      "path": "evidence/geology-v3/focus1/stage12-north-face.png",
+      "sha256": "d51d8e16488979d9e015ffaf8526ecf478f512940aa21d43129abcf719abfcd6",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus1"
+    },
+    {
+      "path": "evidence/geology-v3/focus1/stage12-right-wall.png",
+      "sha256": "9b2191a3280f94695b4033125cff96228f75d3a1bdd1ee16b76d91a357743858",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus1"
+    },
+    {
+      "path": "evidence/geology-v3/focus1/stage12-west-face.png",
+      "sha256": "27abc30b31ab7c2204716b54178b9178e510a5f32f6529674452869f510478cb",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": false,
+      "set": "focus1"
+    },
+    {
+      "path": "evidence/geology-v3/focus1/stage12-west-ledges.png",
+      "sha256": "2e8cb6f36c035b9d8b1562fc6d0cb6d9e2af2f2c34b61e6bf316102c71b6dc8c",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus1"
+    },
+    {
+      "path": "evidence/geology-v3/focus1/stage12-west-overview.png",
+      "sha256": "8f25fbef4c7c113382cdb4df7dd2ec41c676e81d9ad04118cb73cf829da0be6f",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": false,
+      "set": "focus1"
+    },
+    {
+      "path": "evidence/geology-v3/focus2/stage12-inner-ledge.png",
+      "sha256": "756cfabb6cf5213ca7a85bb44559f1e39857d0d66e3fe3de23979d0f3e05fefb",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus2"
+    },
+    {
+      "path": "evidence/geology-v3/focus2/stage12-north-face.png",
+      "sha256": "4a1c84998074c1ba5a2fed1f6d83b17a27c0249b27829a27a5ae3622c32a8cbb",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus2"
+    },
+    {
+      "path": "evidence/geology-v3/focus2/stage12-right-wall.png",
+      "sha256": "e172e49a9b1672fbb6e448868070e863aa307e018c8f92373cc70543193047d4",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus2"
+    },
+    {
+      "path": "evidence/geology-v3/focus2/stage12-west-face.png",
+      "sha256": "6c10c58c0c5965f5a46209ef123bdfeb7be96009b3573e10e58d2169e21c1015",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus2"
+    },
+    {
+      "path": "evidence/geology-v3/focus2/stage12-west-ledges.png",
+      "sha256": "e485216be825a485cf7751064ab587786993b26327eda5c602a60c4d3e200fa0",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus2"
+    },
+    {
+      "path": "evidence/geology-v3/focus3/stage12-east-boundary.png",
+      "sha256": "495258753d178e01169c654c060205551f7e704f1f2faff41636b3edb46371dd",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus3"
+    },
+    {
+      "path": "evidence/geology-v3/focus3/stage12-joint-maxzoom.png",
+      "sha256": "7ef135cedecd08bf34e8d8b1a873b9eccbb7e6a6841081b12262b9e7974b6ca8",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus3"
+    },
+    {
+      "path": "evidence/geology-v3/focus3/stage12-landscape-gate.png",
+      "sha256": "3bdc4455854d3bb6187a713c46e077f7c06d8df7b2d7804c7b5b78a916eb43fb",
+      "width": 844,
+      "height": 233,
+      "directlyViewed": true,
+      "set": "focus3"
+    },
+    {
+      "path": "evidence/geology-v3/focus3/stage12-mobile-joint.png",
+      "sha256": "6855a9199218e766403ae296b0145bcef801ace804116de58a4b450c75172808",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true,
+      "set": "focus3"
+    },
+    {
+      "path": "evidence/geology-v3/focus3/stage12-mobile-north.png",
+      "sha256": "73c43147ea5a38ff8459ce3afec7f20e18f36ea41f5fee1c3a62169987d4f23e",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true,
+      "set": "focus3"
+    },
+    {
+      "path": "evidence/geology-v3/focus3/stage12-mobile-right.png",
+      "sha256": "3a2258fe530575811e85f64cf3d56b8a2d79579e5a77c1928333af5a24ecefed",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true,
+      "set": "focus3"
+    },
+    {
+      "path": "evidence/geology-v3/focus3/stage12-west-overview.png",
+      "sha256": "3baacd88d4528befdff8bb6806f192397115897b98fe948ea9672313bfeeb697",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "focus3"
+    },
+    {
+      "path": "evidence/geology-v3/progress-lower/entry.png",
+      "sha256": "ebef79a294060ba6fc535cfedb29c12926b6dbcde651563649b363df71bd168d",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "progress-lower"
+    },
+    {
+      "path": "evidence/geology-v3/progress-lower/gate-open.png",
+      "sha256": "e7e370d71ad5fc938d30f24c5e47f2cf77f1863ca7f6fa94121243a8ba15452c",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "progress-lower"
+    },
+    {
+      "path": "evidence/geology-v3/progress-lower/lower-victory.png",
+      "sha256": "3b3e0712b6f728fbb3de6ed98cc209894a5faacbb517deddaa871f2ced2627ab",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "progress-lower"
+    },
+    {
+      "path": "evidence/geology-v3/progress-lower/rest-before13.png",
+      "sha256": "323f906590369f5a174bea6f6b683e27c2c6490d574624de7bec755d77fe405d",
+      "width": 1440,
+      "height": 900,
+      "directlyViewed": true,
+      "set": "progress-lower"
+    },
+    {
+      "path": "evidence/geology-v3/progress-lower/result.png",
+      "sha256": "b56ebe00c263b5cae221d343ae59ad3a1360ab9fa8bd10f5db54e8aa5fcb12b1",
+      "width": 1440,
+      "height": 900,
+      "directlyViewed": true,
+      "set": "progress-lower"
+    },
+    {
+      "path": "evidence/geology-v3/progress-lower/sign-action.png",
+      "sha256": "e30a26c300a93c51b7a97e735d50242a0de7145bf3782febd46d2d37417a5232",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "progress-lower"
+    },
+    {
+      "path": "evidence/geology-v3/progress-lower/stage13-entry.png",
+      "sha256": "3aad29047221d0fdf922c7f42ce7d594695053518cc36f7df8b1c9116bd452eb",
+      "width": 1440,
+      "height": 900,
+      "directlyViewed": true,
+      "set": "progress-lower"
+    },
+    {
+      "path": "evidence/geology-v3/progress-upper/entry.png",
+      "sha256": "ebef79a294060ba6fc535cfedb29c12926b6dbcde651563649b363df71bd168d",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "progress-upper"
+    },
+    {
+      "path": "evidence/geology-v3/progress-upper/gate-open.png",
+      "sha256": "ef28aea49629a64678c7611cf92c59c18c09d88b7454239c6dc6d30318ba081e",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "progress-upper"
+    },
+    {
+      "path": "evidence/geology-v3/progress-upper/rest-before13.png",
+      "sha256": "323f906590369f5a174bea6f6b683e27c2c6490d574624de7bec755d77fe405d",
+      "width": 1440,
+      "height": 900,
+      "directlyViewed": true,
+      "set": "progress-upper"
+    },
+    {
+      "path": "evidence/geology-v3/progress-upper/result.png",
+      "sha256": "25edaaf19a9980dcdab2067844f20b5c830227f94cd78a57e09acfd99d71dddd",
+      "width": 1440,
+      "height": 900,
+      "directlyViewed": true,
+      "set": "progress-upper"
+    },
+    {
+      "path": "evidence/geology-v3/progress-upper/sign-action.png",
+      "sha256": "e30a26c300a93c51b7a97e735d50242a0de7145bf3782febd46d2d37417a5232",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "progress-upper"
+    },
+    {
+      "path": "evidence/geology-v3/progress-upper/stage13-entry.png",
+      "sha256": "0f3fb61b0f05d24e0c97a0422212b0c6adc3899a5dcbe97a8ca34599b61f1ba5",
+      "width": 1440,
+      "height": 900,
+      "directlyViewed": true,
+      "set": "progress-upper"
+    },
+    {
+      "path": "evidence/geology-v3/progress-upper/upper-victory.png",
+      "sha256": "7bfd680dcd99aa3ef603882d1791adfb8affaf359a9fdb506f15067a8c7260a1",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true,
+      "set": "progress-upper"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "pass": true,
+  "scope": "Isolated real projectiles; supported setup, other heroes removed; genuine11 ranks/loadout. No resources added, no enemy removed, no normal-combat claim.",
+  "rows": [
+    {
+      "support": "sq-lower-ground",
+      "x": 5900,
+      "y": 4766,
+      "target": "sq-f7",
+      "aim": {
+        "angle": 33.4237993859351,
+        "power": 0.39973766212354417
+      },
+      "contacts": [
+        {
+          "unit": "sq-f7",
+          "x": 5998,
+          "y": 4647.481968915004
+        }
+      ],
+      "damage": [
+        {
+          "id": "sq-f7",
+          "damage": 160
+        }
+      ]
+    },
+    {
+      "support": "sq-back-road",
+      "x": 7600,
+      "y": 4579.268292682927,
+      "target": "sq-g2",
+      "aim": {
+        "angle": 13.694490781666635,
+        "power": 0.683322795747404
+      },
+      "contacts": [
+        {
+          "unit": "sq-g2",
+          "x": 7998,
+          "y": 4458.038532387537
+        }
+      ],
+      "damage": [
+        {
+          "id": "sq-g2",
+          "damage": 160
+        }
+      ]
+    },
+    {
+      "support": "sq-west-quarry",
+      "x": 4500,
+      "y": 4054.090909090909,
+      "target": "sq-c1",
+      "aim": {
+        "angle": 40,
+        "power": 0.45
+      },
+      "contacts": [
+        {
+          "unit": "sq-c1",
+          "x": 5089.031173164074,
+          "y": 3812.294117647059
+        }
+      ],
+      "damage": [
+        {
+          "id": "sq-c1",
+          "damage": 160
+        }
+      ]
+    },
+    {
+      "support": "sq-north-quarry",
+      "x": 7000,
+      "y": 3426.6666666666665,
+      "target": "sq-b1",
+      "aim": {
+        "angle": 80,
+        "power": 0.6
+      },
+      "contacts": [
+        {
+          "unit": "sq-b1",
+          "x": 7475.88314776034,
+          "y": 3224.5789473684213
+        }
+      ],
+      "damage": [
+        {
+          "id": "sq-b1",
+          "damage": 160
+        }
+      ]
+    },
+    {
+      "support": "sq-back-road",
+      "x": 7600,
+      "kind": "north underside solid",
+      "aim": {
+        "angle": 90,
+        "power": 0.35
+      },
+      "contacts": [
+        {
+          "terrain": "sq-north-quarry",
+          "x": 7600,
+          "y": 4419.13198718172
+        }
+      ],
+      "damage": []
+    }
+  ]
+}

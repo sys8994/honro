@@ -1,0 +1,56 @@
+{
+  "label": "geology-v3-focus2",
+  "url": "http://127.0.0.1:8842/HONRO.html",
+  "renderSourceSha256": "ab51fb26f340384f4d19549d004aa58997325c1a4728665fd03a483e7e0a92bc",
+  "sha": "72679f45ecfba64a808806fa43dca329a7a622cc",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M shared/runtime/campaign-map-revision.js\n M shared/runtime/stage12-quarry-art.js\n M tests/stage12-current-fullplay.mjs\n M tools/map-forge/stage12-quarry-geometry.mjs\n D web/data/campaign.39c682f35567495b.json\n D web/data/chapter-12.fb46e1460a5ea9e5.json\n D web/entries/game.209bd9a916be72a7.js\n D web/entries/game.3fadcf91cd6768a8.html\n D web/entries/game.8aebd0b4f26b05b0.html\n D web/entries/game.a97a458a085c262d.js\n D web/entries/game.d7325a4702e70423.js\n D web/entries/game.dc7b6e1cc20c68ed.html\n D web/entries/workshop.6f49320a369816de.js\n D web/entries/workshop.ca53ad34f3d2ea4a.js\n D web/entries/workshop.e019381bdea89ee4.js\n M web/manifest.json\n D web/runtime/campaign.0001d8c577f4fb67.js\n D web/runtime/ordered-common-12.23e3cd82d72d0242.js\n D web/runtime/ordered-common-12.f4140497ec592e86.js\n D web/runtime/ordered-common-4.c5090650bf2f632b.js\n?? tests/stage12-geology-save.mjs\n?? web/data/campaign.c0f6cd9c2a1054fb.json\n?? web/data/campaign.e2f86fa7f3c6967a.json\n?? web/data/campaign.e9617f44df6d7648.json\n?? web/data/chapter-12.437bb89820f24f07.json\n?? web/data/chapter-12.9db0e886b0f0387a.json\n?? web/data/chapter-12.b4ec71603574e769.json\n?? web/entries/game.0767e9aea0d45234.js\n?? web/entries/game.1b7b865ab84a317a.html\n?? web/entries/game.22e374c4fb3a4691.js\n?? web/entries/game.54ed9fa0ce812a84.js\n?? web/entries/game.743f0752807f8ad6.html\n?? web/entries/game.a406dd2a46f4207a.html\n?? web/entries/workshop.07c06377a139433d.js\n?? web/entries/workshop.cb18783a1439702f.js\n?? web/entries/workshop.dc96b6b6a446c119.js\n?? web/runtime/campaign.197077256a3d459b.js\n?? web/runtime/campaign.37b0302f2e143424.js\n?? web/runtime/campaign.bdb0054de6c7167a.js\n?? web/runtime/ordered-common-12.9aebfcc4ed53d986.js\n?? web/runtime/ordered-common-12.f9aba2434de61f45.js\n?? web/runtime/ordered-common-4.d912596f58110b93.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "north-face",
+      "camera": {
+        "x": 7350,
+        "y": 3850,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 12,
+      "view": "west-face",
+      "camera": {
+        "x": 4330,
+        "y": 4480,
+        "scale": 0.6
+      }
+    },
+    {
+      "stage": 12,
+      "view": "right-wall",
+      "camera": {
+        "x": 7480,
+        "y": 4870,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "west-ledges",
+      "camera": {
+        "x": 3300,
+        "y": 4590,
+        "scale": 0.9
+      }
+    },
+    {
+      "stage": 12,
+      "view": "inner-ledge",
+      "camera": {
+        "x": 6070,
+        "y": 4640,
+        "scale": 0.85
+      }
+    }
+  ],
+  "errors": []
+}

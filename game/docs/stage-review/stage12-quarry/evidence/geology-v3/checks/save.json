@@ -1,0 +1,65 @@
+{
+  "pass": true,
+  "rows": [
+    {
+      "name": "initial",
+      "oldRound": 1,
+      "oldPhase": "aim",
+      "newRound": 1,
+      "growthAndSP": true,
+      "equipment": true,
+      "campaign": true,
+      "sameRevisionExact": true
+    },
+    {
+      "name": "sign-action",
+      "oldRound": 10,
+      "oldPhase": "review",
+      "newRound": 1,
+      "growthAndSP": true,
+      "equipment": true,
+      "campaign": true,
+      "sameRevisionExact": true
+    },
+    {
+      "name": "gate-open",
+      "oldRound": 10,
+      "oldPhase": "aim",
+      "newRound": 1,
+      "growthAndSP": true,
+      "equipment": true,
+      "campaign": true,
+      "sameRevisionExact": true
+    },
+    {
+      "name": "round11",
+      "oldRound": 11,
+      "oldPhase": "aim",
+      "newRound": 1,
+      "growthAndSP": true,
+      "equipment": true,
+      "campaign": true,
+      "sameRevisionExact": true
+    },
+    {
+      "name": "terminal",
+      "oldRound": 11,
+      "oldPhase": "won",
+      "newRound": 1,
+      "growthAndSP": true,
+      "equipment": true,
+      "campaign": true,
+      "sameRevisionExact": true
+    },
+    {
+      "name": "already completed original12",
+      "growthAndSP": true,
+      "equipment": true,
+      "campaign": true,
+      "nextStage": 13,
+      "route": "B"
+    }
+  ],
+  "workshopExcluded": true,
+  "scope": "Production App with DOM/storage doubles; original genuine saves remain byte-for-byte untouched."
+}
