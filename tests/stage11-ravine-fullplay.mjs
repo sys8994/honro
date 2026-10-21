@@ -34,7 +34,9 @@ let q;if(!resume)q=fixture(g,11,{profile});else{
 }
 const {b,e,app,st,events}=q;g.HonroAct2.attach(app,e);app.updateHUD=()=>{};
 const runtimeSha256=createHash('sha256').update((await runtimeParts({vector:false,render:false})).join('\n')).digest('hex'),testScriptSha256=createHash('sha256').update(await readFile(new URL(import.meta.url))).digest('hex'),checkoutCommit=execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim();
-const provenance={entryProfile:entryPath||null,entryProfileSha256:entry?hash(entry):null,runtimeSha256,testScriptSha256,checkoutCommit,productionCommit:process.env.HONRO_FULLPLAY_PRODUCTION_COMMIT||null};
+// Legacy entryProfileSha256 hashes the in-memory entry object after camp preparation.
+// Keep it for old records; raw file identity is explicit and stable across Continue.
+const provenance={entryFileSha256:entryPath?createHash('sha256').update(await readFile(entryPath)).digest('hex'):null,entryProfile:entryPath||null,entryProfileSha256:entry?hash(entry):null,runtimeSha256,testScriptSha256,checkoutCommit,productionCommit:process.env.HONRO_FULLPLAY_PRODUCTION_COMMIT||null};
 const initialRecord=resume?JSON.parse(await readFile(process.env.HONRO_FULLPLAY_INITIAL,'utf8')):null;
 const canonical=g.HONRO_PROJECT.stages[10],sourceHash=hash(g.HONRO_PROJECT),a=g.HonroAct2.memory(b),initial=resume?initialRecord.initial:JSON.parse(JSON.stringify({battle:b,profile}));
 if(!entry&&!resume)assert(initial.battle.units.filter(u=>u.side===0).every(u=>u.level===10));if(!resume){assert.equal(Object.keys(a.done).length,0);assert.equal(b.round,1);assert.equal(e.alive(1).length,canonical.units.filter(u=>u.team==='enemy').length);}
@@ -73,6 +75,9 @@ function advance(u,point,enemy=false){
  // Walk beyond the end of an overlapping one-way trunk before turning back.
  // A human can see this edge; proximity to the lower contour is not a drop.
  if(e.surface(u.x,u.y-5,u.y+5)?.t?.id==='rv-saddle-fallen-trunk'&&u.x>7900&&point.y>u.y+30){const start={x:u.x,y:u.y};for(let i=0;i<240&&e.canAct()&&u.moveLeft>12&&u.x<8135;i++){e.move(1,DT);tick();}for(let i=0;i<240&&e.canAct()&&!e.grounded(u);i++)tick();actions.push({op:'move',round:b.round,hero:u.cls,from:start,to:{x:u.x,y:u.y},goal:{id:'manual-fallen-trunk-end',x:8135,y:6790}});navigation.delete(u.id);}
+ // The descent's one-way trunk overlaps the refuge floor. Walk to its real
+ // right-hand meeting before returning west; a vertical graph edge is not a drop.
+ if(e.surface(u.x,u.y-5,u.y+5)?.t?.id==='rv-root-east-descent'&&point.y>u.y+30){const start={x:u.x,y:u.y};for(let i=0;i<300&&e.canAct()&&u.moveLeft>12&&u.x<11025;i++){e.move(1,DT);tick();}for(let i=0;i<240&&e.canAct()&&!e.grounded(u);i++)tick();actions.push({op:'move',input:'descent-tip-return',round:b.round,hero:u.cls,from:start,to:{x:u.x,y:u.y},support:e.surface(u.x,u.y-5,u.y+5)?.t?.id});navigation.delete(u.id);}
  let nav=navigation.get(u.id);const changed=!nav||dist(nav.point,point)>180||nav.point.id!==point.id||nav.enemy!==enemy||nav.index>=nav.links.length&&(enemy||dist(u,nav.goal)>70);if(changed){const route=routeTo(u,point,{enemy});if(!route)return{blocked:'no graph route'};nav={...route,enemy,index:0,air:null};navigation.set(u.id,nav);if(nav.start.distance>400)navEvents.push({round:b.round,hero:u.cls,kind:'off-route',position:{x:u.x,y:u.y},nearest:nav.start});}
  let still=0,moved=0;const origin={x:u.x,y:u.y};for(let n=0;n<1300&&e.canAct()&&u.moveLeft>12;n++){
   if(nav.air){const target=nav.air;if(Math.abs(u.x-target.x)>3)e.move(Math.sign(target.x-u.x)*.35,DT);tick();if(e.grounded(u)){navEvents.push({round:b.round,hero:u.cls,kind:'jump-land',x:u.x,y:u.y,support:e.surface(u.x,u.y-5,u.y+5)?.t?.id,expected:target.support});nav.air=null;nav.index++;}continue;}
@@ -109,9 +114,10 @@ for(let n=0;n<actionLimit&&!['won','lost'].includes(b.phase);n++){
  const manualAim=manualPolicy.fire?.[u.cls];if(manualAim&&(!manualAim.target||!e.unit(manualAim.target)?.dead)){assert(u.loadout.includes(manualAim.skill),'Manual aim uses an equipped skill');assert(Number.isFinite(manualAim.angle)&&manualAim.angle>=-90&&manualAim.angle<=270&&manualAim.power>=.13&&manualAim.power<=1,'Manual aim is within UI input limits');const hpBefore=e.unit(manualAim.target)?.hp;if(e.fire(manualAim.skill,manualAim.angle,manualAim.power)){actions.push({op:'fire',input:'manual-aim',round:b.round,hero:u.cls,...manualAim,hpBefore});continue;}}
  if(healStake(u))continue;
  let foes=e.alive(1).filter(v=>g.HonroAct2.visible(b,v)||v.id===spirit?.id).filter(v=>!(weak&&v.id===spirit?.id));
- const priority=v=>current?.kind==='clear'&&current.cohorts!=='all'?Number(v.honroCohort===current.cohorts)*10000:current?.kind==='hold'?Number(dist(v,m)<current.contestRadius+150)*10000:spirit?Number(v.id===spirit.id)*10000:0;
+ const guards=m&&current?.kind==='interact'?g.HonroAct2.interactionThreats(b,m):[],guardIds=new Set(guards.map(v=>v.id));
+ const priority=v=>guardIds.has(v.id)?20000:current?.kind==='clear'&&current.cohorts!=='all'?Number(v.honroCohort===current.cohorts)*10000:current?.kind==='hold'?Number(dist(v,m)<current.contestRadius+150)*10000:spirit?Number(v.id===spirit.id)*10000:0;
  foes.sort((a,z)=>priority(z)-priority(a)||dist(a,u)-dist(z,u));
- const local=foes.filter(v=>dist(v,u)<1500),objectiveRush=!!m&&(current.requiredClass===u.cls||current.kind==='rescue'&&u.cls==='occultist'||m.action&&g.HonroAct2.eligibility(app,m).ok||current.id==='knot-east'||!!manualPolicy.goals?.[u.cls]);let fired=false;
+ const local=foes.filter(v=>dist(v,u)<1500),objectiveRush=!!m&&(current.requiredClass===u.cls&&dist(u,m)>330||current.kind==='rescue'&&(dist(u,m)>1000||u.cls==='occultist')||m.action&&g.HonroAct2.eligibility(app,m).ok||current.id==='knot-east'&&dist(u,m)>420||!!manualPolicy.goals?.[u.cls]);let fired=false;
  if(!objectiveRush)for(const target of local.slice(0,4))if(fireAt(u,target)){fired=true;break;}
  if(fired)continue;
  const heal=(b.stakes||[]).filter(s=>s.skill==='M10'&&s.expires>b.round&&dist(s,u)<1600&&s.usedRounds?.[u.id]!==b.round).sort((a,z)=>dist(a,u)-dist(z,u))[0];
