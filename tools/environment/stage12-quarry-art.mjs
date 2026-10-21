@@ -16,6 +16,7 @@ export const QUARRY_COMMON_ASSETS={
 // Existing shared art is inserted into the host's front exposure. These
 // anchors are real walking or explicitly named solid boundary edges.
 export const QUARRY_FACE_ATTACHMENTS=[
+ {id:'quarry-face-west-workface',assetId:'geology:granite-foundation',terrainId:'sq-west-quarry',anchor:{edge:2,along:.7},depthMode:'base',inset:70,scale:.9,walkClearance:28,replaceBlocks:true},
  {id:'quarry-face-north-foundation',assetId:'geology:granite-foundation',terrainId:'sq-north-quarry',anchor:{edge:3,along:.6},depthMode:'base',inset:140,scale:1.05,walkClearance:28,replaceBlocks:true},
  {id:'quarry-face-north-west',assetId:'geology:granite-vertical',terrainId:'sq-north-quarry',anchor:{edge:1,along:.9},depthMode:'base',inset:80,scale:.9,walkClearance:28,replaceBlocks:true},
  {id:'quarry-face-north-crown',assetId:'geology:granite-vertical-cleft',terrainId:'sq-north-quarry',anchor:{edge:5,along:.3},depthMode:'base',inset:140,scale:1,walkClearance:28,replaceBlocks:true},
@@ -26,6 +27,14 @@ export const QUARRY_FACE_ATTACHMENTS=[
  {id:'quarry-face-sign-granite',assetId:'geology:granite-vertical-cleft',terrainId:'sq-lower-ground',anchor:{edge:17,along:.05},depthMode:'surface',inset:1600,scale:1.05,walkClearance:28,replaceBlocks:true},
  {id:'quarry-face-sign-neck',assetId:'geology:granite-ledge-neck',terrainId:'sq-lower-ground',anchor:{edge:17,along:.05},depthMode:'surface',inset:610,scale:1,walkClearance:28,replaceBlocks:true,embedFade:180}
 ];
+// Feet/socket contacts sit on the actual lower return terrain. These three
+// unequal rear masses support the left workface and the north mass's east root;
+// the central return and cave opening retain sky/air on either side.
+export const QUARRY_REAR_GEOLOGY={version:1,renderLayer:'back',visualDepth:'L2',brightness:.74,instances:[
+ {id:'quarry-rear-west-foot',assetId:'geology:granite-foundation',scale:.9,support:{terrainId:'sq-lower-ground',at:4130/11200,offsetY:50}},
+ {id:'quarry-rear-north-root',assetId:'geology:granite-vertical',scale:.9,socket:'lower-rear',support:{terrainId:'sq-lower-ground',at:7800/11200}},
+ {id:'quarry-rear-north-foot',assetId:'geology:granite-foundation',scale:1.1,support:{terrainId:'sq-lower-ground',at:7800/11200,offsetY:60}}
+]};
 export function applyStage12QuarryArt(project,{sourceStage}={}){
  const s=project.stages.find(s=>s.metadata?.stageId===12),source=sourceStage||s;
  if(s?.initialState?.honroQuarryRevision!==1)throw Error('Quarry art requires existing revision1 geography');
@@ -49,7 +58,8 @@ export function applyStage12QuarryArt(project,{sourceStage}={}){
  s.elements=[...s.elements.filter(e=>!e.id.startsWith('sq-art-')),...decorative];
  s.environment=clone(source.environment);
  s.design.space.terrainAttachments=clone(QUARRY_FACE_ATTACHMENTS);
+ s.design.geologyComposition=clone(QUARRY_REAR_GEOLOGY);
  const art=clone(source.design.quarryArt);delete art.commonPilot;delete art.backdropAsset;
- Object.assign(art,{source:'shared-terrain-and-existing-common-assets',artAssetIds:[...s.elements,...QUARRY_FACE_ATTACHMENTS].map(e=>e.assetId),commonFull:{revision:1,assets:clone(QUARRY_COMMON_ASSETS),retiredDecorativeIds:['sq-art-recessed-mother-rock'],unfulfilled:[{id:'sq-art-cutting-tools',assetId:'stage12:quarry-fallen-cutting-tools',reason:'No matching shared fallen-pickaxe prop found; existing narrative tool drawing retained.'}]}});
+ Object.assign(art,{source:'shared-terrain-and-existing-common-assets',artAssetIds:[...s.elements,...QUARRY_FACE_ATTACHMENTS,...QUARRY_REAR_GEOLOGY.instances].map(e=>e.assetId),commonFull:{revision:1,assets:clone(QUARRY_COMMON_ASSETS),retiredDecorativeIds:['sq-art-recessed-mother-rock'],unfulfilled:[{id:'sq-art-cutting-tools',assetId:'stage12:quarry-fallen-cutting-tools',reason:'No matching shared fallen-pickaxe prop found; existing narrative tool drawing retained.'}]}});
  s.design.quarryArt=art;return project;
 }
