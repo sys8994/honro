@@ -109,7 +109,8 @@ function* planFlight(e:Engine,u:Unit,target:Unit,attackFailed=false):Generator<v
  for(const p of top)p.score+=yield* shotOpportunity(e,u,target,p);
  let best=top.sort((a,b)=>b.score-a.score)[0];
  if(best.score<stay+3){
-  if(!attackFailed)return;
+  const far=Math.hypot(u.x-target.x,u.y-target.y)>preferredRange(u)[1]+90;
+  if(!attackFailed&&!far)return;
   // After a real failed shot, ordinary range preferences must not veto a
   // safe small approach. Keep hazard and territory rules, and the same budget.
   const before=Math.hypot(u.x-target.x,u.y-target.y),danger=dangerAt(e,u,start);
@@ -118,6 +119,26 @@ function* planFlight(e:Engine,u:Unit,target:Unit,attackFailed=false):Generator<v
   best=approach.sort((a,b)=>Math.hypot(a.x-target.x,a.y-target.y)-Math.hypot(b.x-target.x,b.y-target.y)||a.cost-b.cost)[0];
  }
  return {round:e.b.round,targetId:target.id,path:best.path,index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:'공중 사선 확보'};
+}
+/** Queue-independent roost motion is scheduled once at the enemy boundary.
+ * It never wakes an actor or adds an attack. Unalerted birds stay near their
+ * authored roost; alerted reserves may make one small, paid approach. */
+export function planWaitingFlights(e:Engine){
+ const b=e.b,eligible=new Set(e.combatEnemies().map(u=>u.id));
+ for(const u of b.units){
+  if(!flyingEnemy(u)||u.dead||u.hp<=0||u.eaterCapturedBy||u.carriedBy!==undefined||u.aiMove||b.queue.includes(u.id)||(u.stun||0)>0||u.stunnedRound===b.round)continue;
+  const target=eligible.has(u.id)?targetFor(e,u):undefined,budget=Math.min(u.moveLeft,96);if(budget<2)continue;
+  let goal:Vec|undefined;
+  if(target&&Math.hypot(u.x-target.x,u.y-target.y)>preferredRange(u)[1]+90){
+   const dx=target.x-u.x,dy=target.y-target.h*.5-u.y,d=Math.hypot(dx,dy);
+   for(const turn of [0,Math.PI/6,-Math.PI/6,Math.PI/3,-Math.PI/3]){const a=Math.atan2(dy,dx)+turn,p={x:u.x+Math.cos(a)*Math.min(budget,d),y:u.y+Math.sin(a)*Math.min(budget,d)};if(routeGuardAllows(e,u,p)&&flightLeg(e,u,p)){goal=p;break;}}
+  }
+  if(!goal){
+   const seed=[...u.id].reduce((v,c)=>v+c.charCodeAt(0),0),anchor=eligible.has(u.id)?u:{x:u.spawnX,y:u.spawnY};
+   for(let i=0;i<8;i++){const a=(seed+b.round*3+i)*Math.PI/4,p={x:anchor.x+Math.cos(a)*32,y:anchor.y+Math.sin(a)*24};if(Math.hypot(p.x-u.x,p.y-u.y)>=8&&Math.hypot(p.x-u.x,p.y-u.y)<=budget&&routeGuardAllows(e,u,p)&&flightLeg(e,u,p)){goal=p;break;}}
+  }
+  if(goal)u.aiMove={round:b.round,targetId:target?.id||'',path:[{...goal,jump:false}],waitingFlight:true,index:0,elapsed:0,stalled:0,lastX:u.x,lastY:u.y,jumping:false,intent:target?'공중 예비대 접근':'횃대 주변 비행'};
+ }
 }
 function advanceFlight(e:Engine,u:Unit,dt:number){
  const p=u.aiMove!;p.elapsed+=dt;
