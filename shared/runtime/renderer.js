@@ -308,7 +308,7 @@
             }
             this.eaterReleaseFx=(this.eaterReleaseFx||[]).filter(f=>this.time-f.start<.7);
             for(const f of this.eaterReleaseFx){if(f.text==='rupture')this.eaterRupture(c,f);const p=Math.max(0,(this.time-f.start)/.7),r=Math.min(260,f.size||160);c.save();c.globalAlpha=(1-p)*.6;c.strokeStyle='#b3bfa9';c.lineWidth=(3-2*p)/this.scale;c.beginPath();c.ellipse(f.x,f.y,r*p,r*p*.62,0,0,Math.PI*2);c.stroke();for(let i=0;i<9;i++){const a=i*2.399,rr=r*(.15+.8*p);c.beginPath();c.moveTo(f.x+Math.cos(a)*rr*.6,f.y+Math.sin(a)*rr*.55);c.quadraticCurveTo(f.x+Math.cos(a+.15)*rr,f.y+Math.sin(a+.15)*rr*.6,f.x+Math.cos(a)*rr,f.y+Math.sin(a)*rr*.62);c.stroke();}c.restore();}
-            G.HONRO_CORE.drawStakes(c,e,this.time);
+            G.HONRO_CORE.drawStakes(c,e,this.time,this.scale,selected);
             G.HonroAct1StoryArt?.draw(this,e);
             G.HonroAct23StoryArt?.draw(this,e);
             G.HonroNarrativeArt?.draw(this,e);

@@ -1,0 +1,348 @@
+{
+  "ids": [
+    "M09"
+  ],
+  "rows": [
+    {
+      "snapshot": {
+        "camera": {
+          "scale": 0.8011764705882353,
+          "x": 690,
+          "y": 907.5,
+          "actorPixels": 104.15294117647059
+        },
+        "id": "M09",
+        "cast": "M09",
+        "age": 3.566666666666659,
+        "fired": true,
+        "follow": true,
+        "turns": 0,
+        "kind": "gate",
+        "rank": 8,
+        "initial": {
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999
+            }
+          ],
+          "hero": {
+            "hp": 900,
+            "focus": 9999,
+            "x": 360,
+            "y": 1000,
+            "maxHp": 1200,
+            "maxFocus": 9999,
+            "armor": 0.18,
+            "move": 3000,
+            "critChance": 0.055,
+            "critMultiplier": 1.65
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 1050,
+              "y": 1000,
+              "hp": 2400
+            }
+          ]
+        },
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999,
+            "broken": false
+          }
+        ],
+        "hero": {
+          "hp": 996,
+          "focus": 9999,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "x": 783.0855476798008,
+          "y": 1000,
+          "critChance": 0.055,
+          "critMultiplier": 1.65,
+          "dead": false
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 1050,
+            "y": 1000,
+            "hp": 2400,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          }
+        ],
+        "metrics": {
+          "events": [
+            "spark",
+            "fire",
+            "message",
+            "change",
+            "save",
+            "ceramic",
+            "ring"
+          ],
+          "modes": [
+            "stakeGate"
+          ],
+          "geometry": [],
+          "geometryDetails": [],
+          "maxProjectiles": 1,
+          "returning": false,
+          "wraithReturn": false,
+          "apex": true,
+          "prepared": false,
+          "enthrall": false,
+          "manifest": false,
+          "earthbind": false,
+          "captured": false,
+          "prisonCross": false,
+          "effectBoost": 0,
+          "projectiles": [
+            1
+          ],
+          "followups": [],
+          "secondary": [],
+          "bounces": 0,
+          "damage": 0,
+          "hits": [],
+          "orbiters": 0,
+          "sharedDamage": 0,
+          "heroHpMin": 900,
+          "heroHpMax": 996,
+          "guard": false,
+          "counter": false,
+          "traps": 0,
+          "curse": 0,
+          "soulBoost": false,
+          "shield": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false,
+          "lastStand": false,
+          "remnants": 0,
+          "expiry": 0,
+          "jump": 0,
+          "retreat": 0,
+          "summons": 0,
+          "stakes": 2,
+          "casts": [
+            {
+              "id": "M09",
+              "side": 0,
+              "cost": 29,
+              "time": 0.6500000000000004
+            }
+          ],
+          "expiryRecovered": 0
+        },
+        "ally": null,
+        "jumpCost": null,
+        "control": null
+      },
+      "checks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for M09",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "id": "M09",
+      "width": 1280,
+      "coreAt": 2.0499999999999976,
+      "milestones": {},
+      "missingMilestones": [],
+      "renderChecks": []
+    },
+    {
+      "snapshot": {
+        "camera": {
+          "scale": 0.3211764705882353,
+          "x": 690,
+          "y": 907.5,
+          "actorPixels": 41.752941176470586
+        },
+        "id": "M09",
+        "cast": "M09",
+        "age": 3.566666666666659,
+        "fired": true,
+        "follow": true,
+        "turns": 0,
+        "kind": "gate",
+        "rank": 8,
+        "initial": {
+          "terrain": [
+            {
+              "id": "preview-floor",
+              "mat": "rock",
+              "hp": 99999
+            }
+          ],
+          "hero": {
+            "hp": 900,
+            "focus": 9999,
+            "x": 360,
+            "y": 1000,
+            "maxHp": 1200,
+            "maxFocus": 9999,
+            "armor": 0.18,
+            "move": 3000,
+            "critChance": 0.055,
+            "critMultiplier": 1.65
+          },
+          "targets": [
+            {
+              "id": "preview-target-0",
+              "x": 1050,
+              "y": 1000,
+              "hp": 2400
+            }
+          ]
+        },
+        "terrain": [
+          {
+            "id": "preview-floor",
+            "mat": "rock",
+            "hp": 99999,
+            "broken": false
+          }
+        ],
+        "hero": {
+          "hp": 996,
+          "focus": 9999,
+          "maxHp": 1200,
+          "maxFocus": 9999,
+          "x": 783.0855476798008,
+          "y": 1000,
+          "critChance": 0.055,
+          "critMultiplier": 1.65,
+          "dead": false
+        },
+        "targets": [
+          {
+            "id": "preview-target-0",
+            "x": 1050,
+            "y": 1000,
+            "hp": 2400,
+            "maxHp": 2400,
+            "armor": 0,
+            "curse": 0,
+            "dead": false,
+            "type": "beast",
+            "grounded": true,
+            "flying": false
+          }
+        ],
+        "metrics": {
+          "events": [
+            "spark",
+            "fire",
+            "message",
+            "change",
+            "save",
+            "ceramic",
+            "ring"
+          ],
+          "modes": [
+            "stakeGate"
+          ],
+          "geometry": [],
+          "geometryDetails": [],
+          "maxProjectiles": 1,
+          "returning": false,
+          "wraithReturn": false,
+          "apex": true,
+          "prepared": false,
+          "enthrall": false,
+          "manifest": false,
+          "earthbind": false,
+          "captured": false,
+          "prisonCross": false,
+          "effectBoost": 0,
+          "projectiles": [
+            1
+          ],
+          "followups": [],
+          "secondary": [],
+          "bounces": 0,
+          "damage": 0,
+          "hits": [],
+          "orbiters": 0,
+          "sharedDamage": 0,
+          "heroHpMin": 900,
+          "heroHpMax": 996,
+          "guard": false,
+          "counter": false,
+          "traps": 0,
+          "curse": 0,
+          "soulBoost": false,
+          "shield": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false,
+          "lastStand": false,
+          "remnants": 0,
+          "expiry": 0,
+          "jump": 0,
+          "retreat": 0,
+          "summons": 0,
+          "stakes": 2,
+          "casts": [
+            {
+              "id": "M09",
+              "side": 0,
+              "cost": 29,
+              "time": 0.6500000000000004
+            }
+          ],
+          "expiryRecovered": 0
+        },
+        "ally": null,
+        "jumpCost": null,
+        "control": null
+      },
+      "checks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for M09",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "id": "M09",
+      "width": 360,
+      "coreAt": 2.0499999999999976,
+      "milestones": {},
+      "missingMilestones": [],
+      "renderChecks": []
+    }
+  ],
+  "errors": []
+}

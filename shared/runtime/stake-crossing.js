@@ -79,6 +79,7 @@ function attach(app,e){if(!active(e.b)||e.honroStakeAttached)return;e.honroStake
   if(c&&!flexible(b)&&Object.keys(s.crossed).length){e.message('두 동행이 모두 건넌 뒤 다음 진목을 설치하세요.');return false;}
   const ok=fire(id,...args);if(ok&&c){s.attempted=true;s.pairSeen=false;s.crossed={};}return ok;
  };
+ const previousGateReason=e.gateDestinationReason;e.gateDestinationReason=function(point,from,to){const b=e.b,c=current(b);if(c&&!flexible(b)&&(!inside(from,c.fromZone)||!inside(to,c.landing)||!inside(point,c.landing)))return '출발 석대와 다음 석대를 잇는 진목 한 쌍이 필요합니다.';return previousGateReason?.(point,from,to);};
  const use=e.useGate.bind(e);e.useGate=function(){const b=e.b,c=current(b),u=e.active,s=b.honroStakeCrossing;if(!c)return use();if(flexible(b)){const ok=use();if(ok){tick(app);app.profile.honroBattle=clone(b);app.persist?.();}return ok;}const from=e.gateCandidate(),to=(b.stakes||[]).find(z=>z.skill==='M09'&&z.side===0&&z.id!==from?.id);
   if(!inside(from,c.fromZone)||!inside(to,c.landing)){e.message('출발 석대와 다음 석대를 잇는 진목 한 쌍이 필요합니다.');return false;}
   const ok=use();if(ok&&inside(u,c.landing)){G.HonroObjectiveContributions?.arrive(b,'cross:'+c.markerId+':'+u.cls,[u],p=>inside(p,c.landing),10);s.crossed[u.cls]=true;app.dirty=true;tick(app);app.profile.honroBattle=clone(b);app.persist?.();}return ok;

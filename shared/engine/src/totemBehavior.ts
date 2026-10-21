@@ -5,10 +5,18 @@ import type {Battle,Unit,Projectile} from './types';
 import {passiveRank} from './progression';
 import {clamp} from './math';
 import {SKILLS} from './data';
+import {passiveTuning} from './passiveBalance';
+import {shatterStakeDimensions} from './mageGeometry';
+import {GATE_ACTIVATION_RADIUS} from './gateTravel';
 type Stake=NonNullable<Battle['stakes']>[number];
 const hostile=(z:Stake,u:Unit)=>!u.dead&&u.side!==z.side&&u.side!==2;
-export function stakeBoost(e:Engine,z:Stake){const caster=e.unit(z.owner);return caster?(1+passiveRank(caster,'MP01')*.02)*(1+(z.effectBoost||0)):1;}
-export function stakeContact(z:Stake,u:Unit,boost:number){return Math.min(Math.hypot(u.x-z.x,u.y-z.y),Math.hypot(u.x-z.x,u.y-u.h*.5-z.y))<45*Math.min(1.25,boost)+u.r;}
+export function stakeBoost(e:Engine,z:Stake){const caster=e.unit(z.owner);return caster?(1+passiveTuning(passiveRank(caster,'MP01')).geometry/3)*(1+(z.effectBoost||0)):1;}
+export function stakeContact(z:Stake,u:Unit,boost:number){return Math.min(Math.hypot(u.x-z.x,u.y-z.y),Math.hypot(u.x-z.x,u.y-u.h*.5-z.y))<(z.skill==='M07'?shatterStakeDimensions(z.rank).trigger:45)*Math.min(1.25,boost)+u.r;}
+export function stakeRanges(e:Engine,z:Stake){
+ const caster=e.unit(z.owner),boost=caster?(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(z.effectBoost||0)):1;
+ const shatter=shatterStakeDimensions(z.rank);
+ return {trigger:z.skill==='M09'?GATE_ACTIVATION_RADIUS:(z.skill==='M07'?shatter.trigger:45)*Math.min(1.25,boost),effect:z.skill==='M07'?shatter.effect:z.skill==='M08'?lureRadius(e,z):z.skill==='M99'?220:z.skill==='M09'?GATE_ACTIVATION_RADIUS:45*Math.min(1.25,boost)};
+}
 export function lureRadius(e:Engine,z:Stake){return (260+15*(z.rank-1))*stakeBoost(e,z);}
 export function lureStakeFor(e:Engine,u:Unit){
  if(u.dead||u.hp<=0||u.eaterCapturedBy||u.carriedBy!==undefined||u.summoned||u.boss||u.stunnedRound===e.b.round||(u.stun||0)>0||u.side!==1||e.b.side!==u.side||u.fixed&&!['bat','crow','lantern'].includes((u as any).honroType))return undefined;
@@ -21,7 +29,7 @@ export function triggerOffensiveStake(e:Engine,z:Stake,nearby:Unit[],p:Projectil
  const fresh=nearby.filter(u=>z.usedRounds![u.id]!==b.round);if(!fresh.length)return;
  z.lastTriggerRound=b.round;
  if(z.skill==='M07'){
-  const x=z.x,y=z.y-20,radius=95;
+  const x=z.x,y=z.y-20,radius=stakeRanges(e,z).effect;
   e.fx('burst',x,y,p.color,radius);e.fx('ring',x,y,p.color,radius);e.emit('sound',{name:'hit',value:radius});
   for(const u of b.units){
    if(u.dead||z.usedRounds[u.id]===b.round)continue;

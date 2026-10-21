@@ -58,7 +58,7 @@ export function spBuildAxes(h:HeroProgress,cls:ClassId,s:SpScenario=SP_SCENARIOS
  if(cls==='mage'){
   offense*=1+s.secondaryShare*t('MP01').gourdSecondary+s.geometryHit*t('MP01').geometry;
   cost*=1-s.missRate*.85*t('MP03').missRefund; // Stakes cannot trigger a miss refund.
-  survival*=1+Math.min(.25,t('MP04').ward)*s.wardUse/s.incomingHpPerTurn;
+  survival*=1+Math.min(t('MP04').wardCap,t('MP04').ward)*s.wardUse/s.incomingHpPerTurn;
   const rank=r('MP05');if(rank){
    const paid=Math.ceil(JUCHEON_THRESHOLD[rank-1]/s.castCost),cycle=paid+1;
    // A short encounter cannot claim a complete cycle it has not reached.

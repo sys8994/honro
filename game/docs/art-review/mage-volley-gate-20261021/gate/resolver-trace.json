@@ -1,0 +1,712 @@
+{
+  "groups": 10,
+  "radius": 220,
+  "trace": [
+    {
+      "case": "exact support, no planning mutation, real arrival, lock, save and reversed next turn",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1000,
+        "y": 1000,
+        "distance": 0,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "exact support, no planning mutation, real arrival, lock, save and reversed next turn",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1000,
+        "y": 1000,
+        "distance": 0,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "exact support, no planning mutation, real arrival, lock, save and reversed next turn",
+      "actor": {
+        "x": 1000,
+        "y": 1000,
+        "gateTurn": "1:0"
+      },
+      "ok": false,
+      "reason": "이번 턴 축지 사용 완료",
+      "from": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "to": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      }
+    },
+    {
+      "case": "exact support, no planning mutation, real arrival, lock, save and reversed next turn",
+      "actor": {
+        "x": 1000,
+        "y": 1000,
+        "gateTurn": "1:0"
+      },
+      "ok": false,
+      "reason": "이번 턴 축지 사용 완료",
+      "from": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "to": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      }
+    },
+    {
+      "case": "occupied anchor finds the nearest body-width clearance deterministically",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1042.1,
+        "y": 1000,
+        "distance": 42.09999999999991,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "occupied anchor finds the nearest body-width clearance deterministically",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1042.1,
+        "y": 1000,
+        "distance": 42.09999999999991,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "occupied anchor finds the nearest body-width clearance deterministically",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1042.1,
+        "y": 1000,
+        "distance": 42.09999999999991,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "long low ceiling escapes beyond old 96 range without landing on its roof",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1151.1,
+        "y": 1000,
+        "distance": 151.0999999999999,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "long low ceiling escapes beyond old 96 range without landing on its roof",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1151.1,
+        "y": 1000,
+        "distance": 151.0999999999999,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "all candidate surfaces are considered, including lower one-way support",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1000,
+        "y": 1000,
+        "distance": 0,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "sloping support keeps full head/width clearance and exact contact",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1000,
+        "y": 1000,
+        "distance": 0,
+        "slope": 0.5,
+        "support": "slope"
+      }
+    },
+    {
+      "case": "sloping support keeps full head/width clearance and exact contact",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1000,
+        "y": 1000,
+        "distance": 0,
+        "slope": 0.5,
+        "support": "slope"
+      }
+    },
+    {
+      "case": "full-width ceiling obstruction and no support fail without cost/turn use",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 머리·몸체 여유 부족",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "full-width ceiling obstruction and no support fail without cost/turn use",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 머리·몸체 여유 부족",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "full-width ceiling obstruction and no support fail without cost/turn use",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 가까운 지지면 없음",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "full-width ceiling obstruction and no support fail without cost/turn use",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 가까운 지지면 없음",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "a valid floor in another room cannot be reached through the separating wall",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 머리·몸체 여유 부족",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "a valid floor in another room cannot be reached through the separating wall",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 머리·몸체 여유 부족",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "lethal lava/deep water and stage5 wet-cliff restriction remain unavailable",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 위험한 물·낙사 구역",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "lethal lava/deep water and stage5 wet-cliff restriction remain unavailable",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 위험한 물·낙사 구역",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "lethal lava/deep water and stage5 wet-cliff restriction remain unavailable",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 위험한 물·낙사 구역",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "lethal lava/deep water and stage5 wet-cliff restriction remain unavailable",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 위험한 물·낙사 구역",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "lethal lava/deep water and stage5 wet-cliff restriction remain unavailable",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 깊은 소와 젖은 절벽에는 축지진목의 발디딤을 이을 수 없습니다.",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 2700,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "lethal lava/deep water and stage5 wet-cliff restriction remain unavailable",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 깊은 소와 젖은 절벽에는 축지진목의 발디딤을 이을 수 없습니다.",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 2700,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "authored destination restriction participates in both readiness and execution",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 988,
+        "y": 1000,
+        "distance": 12,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "authored destination restriction participates in both readiness and execution",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 988,
+        "y": 1000,
+        "distance": 12,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "authored destination restriction participates in both readiness and execution",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 지정 구역 금지",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "authored destination restriction participates in both readiness and execution",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "도착지 없음 · 지정 구역 금지",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      }
+    },
+    {
+      "case": "finite expiry, old missing expiry and own-side pair isolation",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "가까운 축지진목 한 쌍이 필요합니다."
+    },
+    {
+      "case": "finite expiry, old missing expiry and own-side pair isolation",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "가까운 축지진목 한 쌍이 필요합니다."
+    },
+    {
+      "case": "finite expiry, old missing expiry and own-side pair isolation",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1000,
+        "y": 1000,
+        "distance": 0,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "finite expiry, old missing expiry and own-side pair isolation",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": true,
+      "reason": "축지진목 사용",
+      "from": {
+        "x": 400,
+        "y": 1000,
+        "id": 20
+      },
+      "to": {
+        "x": 1000,
+        "y": 1000,
+        "id": 21
+      },
+      "spot": {
+        "x": 1000,
+        "y": 1000,
+        "distance": 0,
+        "slope": 0,
+        "support": "floor"
+      }
+    },
+    {
+      "case": "finite expiry, old missing expiry and own-side pair isolation",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "가까운 축지진목 한 쌍이 필요합니다."
+    },
+    {
+      "case": "finite expiry, old missing expiry and own-side pair isolation",
+      "actor": {
+        "x": 400,
+        "y": 1000
+      },
+      "ok": false,
+      "reason": "가까운 축지진목 한 쌍이 필요합니다."
+    }
+  ]
+}

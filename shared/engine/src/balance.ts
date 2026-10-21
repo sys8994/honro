@@ -13,6 +13,8 @@ export const ENEMY_GLOBAL_STAT = .85;
 export const MANA_COST_MULTIPLIER = 1.95;
 /** Damheo's offensive cast budget; applied once before descendants inherit damage. */
 export const PLAYER_MAGE_DAMAGE_MULTIPLIER = 1.20;
+/** Additional player-only tuning; legacy side-zero NPC budgets stay at 1.20. */
+export const PLAYER_MAGE_OFFENSE_BOOST = 1.18;
 export const DIFFICULTIES = {
  explorer: {name:'탐험', hp:.90, damage:.78, active:6, aim:4.4},
  story: {name:'원정', hp:1.05, damage:.92, active:8, aim:3.4},
