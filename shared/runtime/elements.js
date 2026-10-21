@@ -38,6 +38,9 @@ const faceClips=new WeakMap();
 function terrainFaceClip(t,b,inset){
  let cache=faceClips.get(t);if(!cache||cache.source!==t.vertices||cache.version!==b.sceneVersion||cache.physical!==b.terrain){cache={source:t.vertices,version:b.sceneVersion,physical:b.terrain,paths:new Map()};faceClips.set(t,cache);}if(cache.paths.has(inset))return cache.paths.get(inset);
  const C=G.HONRO_CORE,ps=C.poly(t),physical=b.terrain.find(v=>v.id===t.id)||t,base=C.poly(physical),walk=(physical.honroWalkEdges||[]).flatMap(i=>[base[i],base[(i+1)%base.length]]).filter(Boolean);
+ // The common terrain painter continues its rim beyond the play projection.
+ // Protect that displayed edge too; it is absent from physical walk vertices.
+ if(t.honroDomain)for(const [a,z]of G.HonroAct2SpatialArt?.surfaceEdges(t,b)||[])if(Math.max(a.x,z.x)<=0||Math.min(a.x,z.x)>=b.width)walk.push(a,z);
  const path=points=>{const p=new Path2D();points.forEach((v,i)=>i?p.lineTo(v.x,v.y):p.moveTo(v.x,v.y));p.closePath();return p;};
  const q={solid:path(ps),inset:path(ps.map(p=>({x:p.x,y:p.y+(walk.some(v=>Math.abs(v.x-p.x)<.01&&Math.abs(v.y-p.y)<.01)?inset:0)})))};cache.paths.set(inset,q);return q;
 }

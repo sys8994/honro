@@ -17,6 +17,9 @@ export const QUARRY_COMMON_ASSETS={
 // Existing shared art is inserted into the host's front exposure. These
 // anchors are real walking or explicitly named solid boundary edges.
 export const QUARRY_FACE_ATTACHMENTS=[
+ {id:'quarry-face-old-road-west',assetId:'geology:granite-foundation',terrainId:'sq-old-road',anchor:{edge:1,along:.8},depthMode:'base',inset:80,scale:.95,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-old-road-crown',assetId:'geology:granite-vertical',terrainId:'sq-old-road',anchor:{edge:4,along:.9},depthMode:'base',inset:120,scale:.85,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-old-road-east',assetId:'geology:granite-vertical-cleft',terrainId:'sq-old-road',anchor:{edge:6,along:.65},depthMode:'base',inset:70,scale:.9,walkClearance:28,replaceBlocks:true},
  {id:'quarry-face-west-workface',assetId:'geology:granite-foundation',terrainId:'sq-west-quarry',anchor:{edge:2,along:.7},depthMode:'base',inset:70,scale:.9,walkClearance:28,replaceBlocks:true},
  {id:'quarry-face-north-foundation',assetId:'geology:granite-foundation',terrainId:'sq-north-quarry',anchor:{edge:3,along:.6},depthMode:'base',inset:140,scale:1.05,walkClearance:28,replaceBlocks:true},
  {id:'quarry-face-north-west',assetId:'geology:granite-vertical',terrainId:'sq-north-quarry',anchor:{edge:1,along:.9},depthMode:'base',inset:80,scale:.9,walkClearance:28,replaceBlocks:true},
