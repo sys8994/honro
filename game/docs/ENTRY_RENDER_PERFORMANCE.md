@@ -49,6 +49,8 @@ ready는 준비 marker 관측, 클릭 후는 실제 trusted click capture부터 
 
 실험 코드를 되돌린 최종 실행 상태에서390×844/1280×800 각각 새 시작·21장 이어하기의 정상/최대 줌을 확인했다. 쉼터 wheel 최대1.35, 전투 공용 zoom 경로 최대1.65, 실제 이미지 원경 readiness, audio running,21장/3턴 및 저장된21장 유지, 현재장만 준비([1] 또는[21]), pageerror0을 확인했다. 대화는 실제 대화 넘기기 버튼으로 완료했고 전투 스크린샷은 실제 턴 배너가 사라진 뒤 촬영했다. 검사 때문에 그림·HUD를 숨기지 않았다. 저장 세부 항목·실패 재시도 검사는 기준 SHA 통합 때 통과한 startup stage-checks 결과를 재사용한다. 이번에는 실행 변경이 없으므로 전장 검사를 반복하지 않았다.
 
-Library 업로드는 기존 반복 network 오류 이후 더 시도하지 않았다. 사용자 요청에 따라 민감정보 없는 게임 화면만 Git evidence로 제공한다. [evidence 폴더](evidence/entry-render-2026-10-21/)에8장의 PNG, checks.json, paired.json(원시40회), paired-summary.json, experiments.json, 미적용candidate.patch를 저장했다. 이는 로컬 실제 화면이며 Pages 직접 검증 사진이 아니다. 공개사이트403은 다시 시도하지 않았다.
+Library 업로드는 기존 반복 network 오류 이후 더 시도하지 않았다. 사용자 요청에 따라 민감정보 없는 게임 화면만 Git evidence로 제공한다. [evidence 폴더](evidence/entry-render-2026-10-21/)에9장의 PNG, checks.json, paired.json(원시40회), paired-summary.json, experiments.json, 미적용candidate.patch를 저장했다. 이는 로컬 실제 화면이며 Pages 직접 검증 사진이 아니다. 공개사이트403은 다시 시도하지 않았다.
 
 재현: `tools/testing/entry-render-performance.py`는 HONRO_ENTRY_BEFORE/HONRO_ENTRY_CANDIDATE에 고정 배포물 루트, HONRO_ENTRY_SAVE에 synthetic 저장 JSON 경로를 받는다. REPS 기본5이며 출력은 `_local/reports/entry-render/paired.json`이다. 세부 Canvas/메서드 계측은 `tools/testing/entry-render-profile.py`에 같은 HONRO_ENTRY_SAVE를 전달한다. 실제 원시 계측과 사진 재현 스크립트는 `_local/reports/entry-render/`에도 보존했다.
+
+버튼 제거 확인용 [세로 인트로 PNG](evidence/entry-render-2026-10-21/verified-title.png)를 추가했다. 390×844 로컬 Chromium에서 실행 SHA `583f3c5cadf3ea1c2d436be7a57c2483761c551e` 통합 검수 때 촬영한 원본이며, 하단 왼쪽 Workshop Map 버튼이 없고 중앙 새 시작 버튼이 표시된다. 원본 `_local/reports/intro-audit/verified-title.png`와 바이트가 동일하다. 이후 후속 실험은 모두 되돌렸으므로 이 브랜치의 실행 코드와도 같다. 공개 Pages 직접 촬영 또는 최신 9장 작업 검수 이미지로 해석하지 않는다.
