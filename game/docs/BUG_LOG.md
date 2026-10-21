@@ -3857,3 +3857,11 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 ## 인트로 개발 진입점 정리 (2026-10-21)
 
 Workshop Map은 Workshop JSON을 `map-import` → `launchMap`으로 실행하는 개발 진입점이다. 타이틀 버튼만 제거하고 hidden input·핸들러·launchMap·편집기/Playtest는 보존했다. 타이틀 렌더와 빌드/실제 화면 검증은 로딩 감사와 함께 수행한다.
+
+## 인트로 37개 준비 항목과 원경 요청 감사 (2026-10-21)
+
+- 기준 `544825ee77930756dd28ce056ab15e12bb885278`. 37은 순차 실행 모듈 수이며, 맵/이미지 37개가 아니다. 엔진 967,465B 및 구 분할 원정 호환 JSON 653,520B가 큰 항목이다. 새 방문은 1장, 이어하기는 저장 장만 준비한다.
+- SVG 원문 hydration은 실제 원문 소비자인 ACT1 쉼터 경로만 사용한다. 원경 Image는 첫 소비 시 생성하며 2막 캐시 준비 검사는 현재 전투의 원경만 기다린다. 첫 그림 표시 대기 중 제한된 필수 fetch/modulepreload를 먼저 시작하되 실행 순서는 보존한다. 데이터·그래픽 189개 해시 불변, 진행률 숨김/데이터 삭제 없음.
+- 로컬 Chromium 모바일 모사 CPU4배/40ms/2MiB/s, 조건별 3회 중앙값: cold 새 시작 ready 2977→2840ms, 저장21장 3552→3517ms. 요청97→85, cold 전송 약28KB 감소. warm 새 시작848→712ms이나 저장21장은995→1015ms. 클릭 후 진입은 cold 새 시작397→400ms/21장1715→1834ms로 개선되지 않았다. 실기·Pages·통계적 우위 증거가 아니다.
+- 집중 브라우저 검사: 타이틀 버튼 제거/개발API 보존, 새 시작/audio running, 11장·20장 원경, 요청실패 재시도·취소, 21장 HP/round/성장/장착/완료 보존, 이전 HTML/콘텐츠 해시 캐시 호환 통과. 빌드·web-split·retention·ordered-runtime 통과. 기존 title-redesign 정적 검사는 현재와 다른 옛 game/build.mjs 계약을 검사해 실패하며 수정 범위 밖으로 남겼다. Workshop/embedded 초기화는 확인했으나 기존 Playtest 전투 전체 정상화나 전 장 완주는 주장하지 않는다.
+- 상세 목록·측정·남은 제한은 `game/docs/INTRO_LOADING_AUDIT.md`, 실제 화면/원시 측정은 `_local/reports/intro-audit/`에 둔다. 전용 브랜치에서 push하고 통합 순서 조정을 위해 master 병합 전에 대기한다.

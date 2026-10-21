@@ -1,7 +1,10 @@
 (function(G){'use strict';
 const Scene=G.HonroScene,E=G.HonroEnvironment,A=G.HonroEnvironmentArt,prepared=new WeakMap(),battleEnvironments=new WeakMap();
 const V=G.HonroVisualStyle,act1Images={},act1Tones=new Map();
-if(typeof Image!=='undefined')for(const [key,src] of Object.entries(G.HONRO_ACT1_FAR_DATA||{})){const img=new Image();img.src=src;act1Images[key]=img;}
+// Register URLs without downloading/decoding every act's fallback at the title.
+// Existing consumers trigger only the image they actually draw; retain the same
+// Image object/readiness semantics for native, Workshop and cached scenes.
+if(typeof Image!=='undefined')for(const [key,src] of Object.entries(G.HONRO_ACT1_FAR_DATA||{}))Object.defineProperty(act1Images,key,{configurable:true,enumerable:true,get(){const image=new Image();image.decoding='async';Object.defineProperty(act1Images,key,{value:image,enumerable:true});image.src=src;return image;}});
 const imageReady=img=>!!(img?.complete&&img.naturalWidth),act1ImageFor=stage=>act1Images[E.campaignMood(stage)?.variant];
 const act1Ready=stage=>stage===undefined?['mountains','gorge','dawn'].every(k=>imageReady(act1Images[k])):imageReady(act1ImageFor(stage));
 function tonedBackdrop(stage){const mood=E.campaignMood(stage),key=mood.variant,cacheKey=key+':'+(V?.key()||'legacy');if(act1Tones.has(cacheKey))return act1Tones.get(cacheKey);
@@ -122,8 +125,8 @@ function customSpatialScenery(scene,c,w,h,b,painted21=false){const env=ensureBat
 Scene.prototype.background=function(c,w,h,b){if(G.HonroStage21Painted?.background(c,w,h,b,this)){
  this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0,...A.stats()};customSpatialScenery(this,c,w,h,b,true);return;
 }if(G.HonroAct2SpatialArt?.active(b)){
- const key=[this._worldCacheKey(b,w),this.x,this.y,this.scale,G.HonroAct2SpatialArt.ready()].join(':');
- const cached=G.HonroAct2SpatialArt.ready()&&this._screenRaster(c,key,w,h,cc=>{G.HonroAct2SpatialArt.background(cc,b,this,w,h);this._screenBackgroundStats={...this.environmentStats};},'_screenBackgroundCache',false);
+ const key=[this._worldCacheKey(b,w),this.x,this.y,this.scale,G.HonroAct2SpatialArt.ready(b)].join(':');
+ const cached=G.HonroAct2SpatialArt.ready(b)&&this._screenRaster(c,key,w,h,cc=>{G.HonroAct2SpatialArt.background(cc,b,this,w,h);this._screenBackgroundStats={...this.environmentStats};},'_screenBackgroundCache',false);
  if(cached)this.environmentStats={...this._screenBackgroundStats};else G.HonroAct2SpatialArt.background(c,b,this,w,h);
  customSpatialScenery(this,c,w,h,b);return;}const env=ensureBattle(b),painted=(b.honroStage<21||env.skyVisible!==false)&&E.campaignMood(b.honroStage)&&act1Ready(b.honroStage);if(painted){paintedSky(c,w,h,b,this);
   // The authored far painting replaces only the generated backdrop. Workshop
