@@ -1,0 +1,1 @@
+import"./shared-runtime-title-markup.1ce572555f2e782e.js";const art=globalThis.HONRO_TITLE_ART;globalThis.HONRO_TITLE_LOGO=art.logo;globalThis.HONRO_TITLE_HANJA=art.hanja;globalThis.HONRO_TITLE_SCENE=globalThis.HonroTitleMarkup.scene(art);

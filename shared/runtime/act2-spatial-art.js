@@ -3,7 +3,10 @@
 // polygons. Every visible rim is a physical edge; only the rear ink masses and
 // the overscan extension are visual-only. Old saves never enter this branch.
 const C=G.HONRO_CORE,A=G.HonroEnvironmentArt,E=G.HonroEnvironment,terrainCache=new WeakMap(),roomCache=new WeakMap(),images={};
-if(typeof Image!=='undefined')for(const [key,src]of Object.entries(G.HONRO_ACT2_FAR_DATA||{})){const image=new Image();image.src=src;images[key]=image;}
+// Register URLs without downloading/decoding every act's fallback at the title.
+// Existing consumers trigger only the image they actually draw; retain the same
+// Image object/readiness semantics for native, Workshop and cached scenes.
+if(typeof Image!=='undefined')for(const [key,src] of Object.entries(G.HONRO_ACT2_FAR_DATA||{}))Object.defineProperty(images,key,{configurable:true,enumerable:true,get(){const image=new Image();image.decoding='async';Object.defineProperty(images,key,{value:image,enumerable:true});image.src=src;return image;}});
 const active=b=>b?.honroStage>=11&&b.honroStage<=20&&b.honroMap?.space?.version===1;
 const polygon=points=>{const p=new Path2D();points.forEach(([x,y],i)=>i?p.lineTo(x,y):p.moveTo(x,y));p.closePath();return p;};
 function roundedPolygon(points,radius=28,roundIndices=null){const p=new Path2D(),cuts=points.map((v,i)=>{const a=points[(i+points.length-1)%points.length],z=points[(i+1)%points.length],da=Math.hypot(v[0]-a[0],v[1]-a[1]),dz=Math.hypot(z[0]-v[0],z[1]-v[1]),r=roundIndices&&!roundIndices.has(i)?0:Math.min(radius,da*.14,dz*.14);return{v,enter:[v[0]+(a[0]-v[0])*r/(da||1),v[1]+(a[1]-v[1])*r/(da||1)],exit:[v[0]+(z[0]-v[0])*r/(dz||1),v[1]+(z[1]-v[1])*r/(dz||1)]};});p.moveTo(...cuts[0].exit);for(let i=1;i<=cuts.length;i++){const q=cuts[i%cuts.length];p.lineTo(...q.enter);p.quadraticCurveTo(...q.v,...q.exit);}p.closePath();return p;}
@@ -103,7 +106,9 @@ function prepareRooms(b){const space=b.honroMap.space;let q=roomCache.get(b);if(
  }
  q={source:space,version:b.sceneVersion,rooms};roomCache.set(b,q);return q;
 }
-function background(c,b,scene,w,h,overPainting=false){if(!active(b))return false;const n=b.honroStage,open=[11,12,13,20].includes(n),img=images[n===11&&b.honroStage11LandscapeRevision===1?'stage11-ravine-readable':n===11&&b.honroMap?.ravine?.version>=1?'stage11-ravine':n===20?'dawn':'clouded'];
+const openSky=b=>[11,12,13,20].includes(b?.honroStage);
+const imageFor=b=>images[b.honroStage===11&&b.honroStage11LandscapeRevision===1?'stage11-ravine-readable':b.honroStage===11&&b.honroMap?.ravine?.version>=1?'stage11-ravine':b.honroStage===20?'dawn':'clouded'];
+function background(c,b,scene,w,h,overPainting=false){if(!active(b))return false;const n=b.honroStage,open=openSky(b),img=open&&!overPainting?imageFor(b):null;
  if(!overPainting){if(open){const sky=c.createLinearGradient(0,0,0,h);sky.addColorStop(0,n===20?'#3b4d5a':'#2f3d4e');sky.addColorStop(1,n===20?'#88908a':'#617079');c.fillStyle=sky;c.fillRect(0,0,w,h);if(img?.complete&&img.naturalWidth){const q=E.act1BackdropFrame(scene,w,h,b,img.naturalWidth,img.naturalHeight);c.drawImage(G.HonroVisualStyle?.image(img,'SKY')||img,q.x,q.y,q.w,q.h);}}
  else{const dark=c.createLinearGradient(0,0,0,h);dark.addColorStop(0,'#0a121d');dark.addColorStop(.66,'#101c28');dark.addColorStop(1,'#172630');c.fillStyle=dark;c.fillRect(0,0,w,h);}}
  const q=prepareRooms(b),extent=caveExtent(b),left=scene.x-w/scene.scale/2,right=scene.x+w/scene.scale/2,top=scene.y-h/scene.scale/2,bottom=scene.y+h/scene.scale/2;
@@ -153,5 +158,5 @@ function bellBindings(c,b){if(!active(b)||![18,19].includes(b.honroStage))return
 }
 const oldLandmarkLayer=G.HonroScene.prototype._landmarkLayer;
 G.HonroScene.prototype._landmarkLayer=function(c,landmarks,layer){oldLandmarkLayer.call(this,c,landmarks,layer);if(layer==='structural-back')bellBindings(c,this.battle);};
-G.HonroAct2SpatialArt={active,background,terrain,prepareTerrain,prepareRooms,surfaceEdges,rock,enclosure,element,appearanceKey,bellBindings,images,ready:()=>Object.values(images).every(i=>i.complete&&i.naturalWidth)};
+G.HonroAct2SpatialArt={active,background,terrain,prepareTerrain,prepareRooms,surfaceEdges,rock,enclosure,element,appearanceKey,bellBindings,images,ready:b=>b?(!openSky(b)||!!(imageFor(b)?.complete&&imageFor(b)?.naturalWidth)):Object.values(images).every(i=>i.complete&&i.naturalWidth)};
 })(globalThis);

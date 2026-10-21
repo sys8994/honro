@@ -19,13 +19,13 @@ function workerParse(buffer){if(typeof Worker==='undefined')return Promise.resol
  }catch{retireParser();return Promise.resolve(parseBuffer(buffer));}
 }
 function request(file,text=false,priority='auto'){const url=new URL(file,root).href,key=url+'|'+text;if(!requests.has(key)){const pending=fetch(url,{priority}).then(async response=>{if(!response.ok)throw Error('Load failed: '+response.status+' '+url);if(text)return response.text();if(Number(response.headers.get('content-length'))>400000||file.includes('campaign-library.'))return workerParse(await response.arrayBuffer());return response.json();});requests.set(key,pending);pending.catch(()=>{if(requests.get(key)===pending)requests.delete(key);});}return requests.get(key);}
-function hydrate(value,refs){const pending=[];
- const asset=record=>{if(!record?.$honroAsset)return record;const file=record.$honroAsset;let url=assetURLs.get(file);if(!url){url=new URL(file,root).href;assetURLs.set(file,url);}if(file.endsWith('.svg')){globalThis.HONRO_SVG_SOURCES??=Object.create(null);pending.push(request(file,true).then(text=>{globalThis.HONRO_SVG_SOURCES[url]=text;}));}return url;};
+function hydrate(value,refs,{svgSources=true}={}){const pending=[];
+ const asset=record=>{if(!record?.$honroAsset)return record;const file=record.$honroAsset;let url=assetURLs.get(file);if(!url){url=new URL(file,root).href;assetURLs.set(file,url);}if(svgSources&&file.endsWith('.svg')){globalThis.HONRO_SVG_SOURCES??=Object.create(null);pending.push(request(file,true).then(text=>{globalThis.HONRO_SVG_SOURCES[url]=text;}));}return url;};
  if(refs){for(const path of refs){if(!path.length){value=asset(value);continue;}let parent=value;for(let i=0;i<path.length-1;i++)parent=parent[path[i]];const key=path.at(-1);parent[key]=asset(parent[key]);}}
  else {const visit=node=>{if(!node||typeof node!=='object')return node;if(node.$honroAsset)return asset(node);for(const key in node){const child=node[key];if(child&&typeof child==='object')node[key]=visit(child);}return node;};value=visit(value);}
  return pending.length?Promise.all(pending).then(()=>value):value;
 }
-export async function loadData(file,refs){return hydrate(await request(file),refs);}
+export async function loadData(file,refs,options){return hydrate(await request(file),refs,options);}
 // Fetch only known required JSON while earlier scripts execute. Registration and
 // SVG hydration still happen at the original ordered import boundary.
 export function prefetchData(files){for(const file of files)void request(file).catch(()=>{});}

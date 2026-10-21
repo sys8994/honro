@@ -1,0 +1,2 @@
+import {loadData,loadProject} from "./load-data.0a232e94ad0af727.js";
+globalThis.HONRO_AUTHORED_FAR=await loadData("web/data/HONRO_AUTHORED_FAR.f922b0b5e5066247.json",[["images","forestFar"],["images","valleyFar"],["images","stillNight"],["images","dawn"],["images","bellRear"],["images","townSky"],["images","depotRear"],["images","cave-settlement"],["images","cave-waterwork"],["images","cave-entrance"],["images","town-river"],["images","town-wall"],["images","root-interior"],["images","archive-interior"],["images","workshop-yard"]],{"svgSources":false});

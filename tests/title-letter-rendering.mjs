@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import sharp from 'sharp';
-const root='shared/assets/environment/title/',main=await readFile('shared/runtime/main.js','utf8');
+const root='shared/assets/environment/title/',main=await readFile('shared/runtime/title-markup.js','utf8');
 const defs=main.match(/<defs><filter id="honro-title-ink"[\s\S]*?<\/defs>/)[0];
 const expected={
  'hanja-wordmark.png':'4bc7d957ebc4d57be206a70070cc53e9921822c865a30ada027456c2f5857111',

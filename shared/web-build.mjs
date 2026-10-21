@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import {root,runtimeEntries,projectAuthors} from './build.mjs';
 import {writeGenerated} from './write-generated.mjs';
 import sharp from 'sharp';
+import {minify} from 'terser';
 
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 const hash=body=>createHash('sha256').update(body).digest('hex');
@@ -47,6 +48,11 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   let previous;try{previous=JSON.parse(await read('web/manifest.json'));}catch(e){if(e.code!=='ENOENT')throw e;}
   const files=new Map();
   async function emit(folder,name,extension,body){
+    // Strip comments/whitespace only. Keep names, statements and patch order;
+    // do not fold expressions, mangle properties or move execution boundaries.
+    if(extension==='js'&&(folder==='runtime'||folder==='entries')){
+      body=(await minify(body,{module:true,compress:false,mangle:false,format:{comments:false}})).code+'\n';
+    }
     const bytes=Buffer.isBuffer(body)?body:Buffer.from(body),sha256=hash(bytes);
     const stem=name.replace(/\.[cm]?js$/,'').replace(/[^a-zA-Z0-9_-]+/g,'-');
     const file=`web/${folder}/${stem}.${sha256.slice(0,16)}.${extension}`;
@@ -81,7 +87,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   const dataModule=async(name,values)=>{
     const records=[];
     for(const [global,value]of Object.entries(values)){const external=await externalize(value,global.toLowerCase());records.push([global,await json(global,external),assetPaths(external)]);}
-    const file=await emit('runtime',name,'js',loaderImport+records.map(([global,file,refs])=>`globalThis.${global}=await loadData(${quote(file)},${quote(refs)});`).join('\n')+'\n');
+    const file=await emit('runtime',name,'js',loaderImport+records.map(([global,file,refs])=>`globalThis.${global}=await loadData(${quote(file)},${quote(refs)},${quote({svgSources:global==='HONRO_ACT1_FAR_DATA'})});`).join('\n')+'\n');
     moduleData.set(file,records.map(([,file])=>file));return file;
   };
   const entries=await runtimeEntries({vector,app:true}),common=[],gameOnly=[],optionalModules={};
@@ -167,12 +173,13 @@ globalThis.HONRO_TITLE_SCENE=globalThis.HonroTitleMarkup.scene(art);
     const optionalSource=game?`globalThis.HONRO_OPTIONAL_MODULES={${Object.entries(optionalModules).map(([name,entry])=>`${quote(name)}:{url:${urlExpression(placeholder,entry.file)},global:${quote(entry.global)}}`).join(',')}};\n${await read('shared/runtime/optional-runtime-loader.js')}\n`:'';
     return emit('entries',name,'js',`import {prefetchProject,prefetchData,yieldIfNeeded} from ${quote(relative(placeholder,loader))};\n${game?"globalThis.HONRO_EMBEDDED=new URLSearchParams(location.search).get('embedded')==='1';\n":''}${playtest?'globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL='+quote(playtest)+';\n':''}${optionalSource}const modules=[${urls.join(',\n')}].filter(file=>!${game}||globalThis.HONRO_EMBEDDED||globalThis.HONRO_PROJECT_MODE==='full'||!Object.values(globalThis.HONRO_OPTIONAL_MODULES).some(entry=>entry.url===file));
 globalThis.HONRO_READY=(async()=>{try{
-${game?`await globalThis.HonroStartup?.firstPaint();\nlet styleError;const stylesReady=Promise.all(${quote(styles)}.map(file=>new Promise((resolve,reject)=>{const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('../../'+file,import.meta.url).href;link.onload=resolve;link.onerror=()=>reject(Error('Style load failed: '+file));document.head.append(link);}))).catch(error=>{styleError=error;});`:''}
+${game?`let styleError;const stylesReady=Promise.all(${quote(styles)}.map(file=>new Promise((resolve,reject)=>{const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('../../'+file,import.meta.url).href;link.onload=resolve;link.onerror=()=>reject(Error('Style load failed: '+file));document.head.append(link);}))).catch(error=>{styleError=error;});`:''}
+// Start bounded network work while the title paints; execute only after firstPaint.
 const dataHints={${dataHints}},preloaded=new Set();
 if(!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject(${quote(projectManifest)});
 for(let i=0;i<modules.length;i++){
  for(let n=i;n<Math.min(modules.length,i+12);n++){const href=modules[n];if(preloaded.has(href))continue;preloaded.add(href);prefetchData(dataHints[href]||[]);const link=document.createElement('link');link.rel='modulepreload';link.href=href;link.fetchPriority='low';document.head.append(link);}
- ${game?'if(i===modules.length-1){await stylesReady;if(styleError)throw styleError;}':''}
+ ${game?'if(i===0)await globalThis.HonroStartup?.firstPaint();if(i===modules.length-1){await stylesReady;if(styleError)throw styleError;}':''}
  const file=modules[i];await import(file);globalThis.HonroStartup?.progress(file.includes('ordered-common')?'게임 규칙과 풍경 준비':file.includes('ordered-game')?'동행과 조작 준비':file.includes('game-art')||file.includes('title-')?'첫 화면 준비':'장소 자료 준비',i+1,modules.length);await yieldIfNeeded();
 }
 ${game?"await globalThis.HONRO_APP_READY;globalThis.HonroStartup?.ready();\nif(location.hash==='#autostage2')HonroApp.launch(2);":''}}

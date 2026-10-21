@@ -8,7 +8,7 @@
 - 캐릭터 도감: [혼로의 얼굴들](tools/character-catalog.html)에서 실제 렌더러의 인물·동작·등장 근거와 검수 의견을 봅니다. [수집/검증 범위](game/docs/CHARACTER_CATALOG.md).
 - 편집기: 루트 `HONRO_WORKSHOP.html`을 엽니다. 기본 프로젝트는 Stage 1~30(1막·2막·3막)이며, 1·2는 목업을 반영한 숲길·분지 개편판입니다.
 - 실행 자산: `web/` 전체와 `assets/bgm/`을 HTML과 함께 같은 디렉터리 구조로 배포합니다. HTML·CSS·실행 모듈·캠페인 JSON·그래픽은 역할별 파일로 분리됩니다.
-- 편집한 맵 실행: Workshop의 Project JSON을 내보낸 뒤 게임 타이틀의 `Workshop Map`으로 가져옵니다. 캠페인 저장과 분리해 실행합니다.
+- 편집한 맵 실행: `HONRO_WORKSHOP.html`의 Playtest에서 실행합니다. 개발용 `HonroApp.launchMap(project, project.activeStageId)`와 JSON 가져오기 핸들러는 유지하며, 일반 게임 타이틀에는 Workshop Map 버튼을 표시하지 않습니다. 캠페인 저장과 분리해 실행합니다.
 - Playtest: 실제 게임 HUD와 조작을 사용합니다. 시작 위치·선택 유닛·현재 카메라에서 시작하고 Stop으로 편집에 복귀합니다.
 - 길 위의 쉼터: 일반 여정은 지역별 쉼터에서 이어집니다. 모닥불로 모든 동행의 능력치·기예를 준비하고, 동행을 눌러 선택 대화를 나누며, 오른쪽 이정표로 다음 장소에 진입합니다. 장면 설명은 쉼터의 필수 대화로 전달합니다. 여정첩은 지상·지하 지리와 지난 전투 다시 걷기를 위한 보조 메뉴입니다. [화면·대사·저장 계약](game/docs/REST_JOURNEY.md).
 - 필수 사건과 대화: 단서는 기록함 확보·구조·현장 대조 같은 행동과 짧은 필수 장면으로 전달합니다. 별도 선택 원문 읽기는 없습니다. 대화창은 `이전 / 대화 넘기기 / 다음`으로 제어하며, 저장한 장면은 같은 위치에서 이어집니다. [1막 이야기 구성과 검증](game/docs/STORY_REWRITE_IMPLEMENTATION_NOTES.md).

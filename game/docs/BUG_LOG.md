@@ -3860,3 +3860,27 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 ## 2026-10-21 — 8장 기존 전술 지형의 미술 보완
 
 기존 결박2/상여 이동과 배수로·상단 능선·동쪽 마당 동선은 보존했다. Stage8 전용 벡터 renderer에 연결된 암반 선반/절리/큰 명암면과 짧은 목재 받침을 추가하고 원경 이미지 및 전30장 데이터는 그대로 둔다. 지형/사건/단위 변경이 없어 revision도 유지한다. 옛 이미지 paint CLI는 쓰기 전에 거부하며, 순수 역사 재저작 도구의 다른 장 변경 guard는 유지한다. 현행 전투 검증은 실제 완료 보상 진입 및 QuestTargets actor를 사용한다. 초기 로더/인트로는 수정하지 않는다. 검수 및 정상 자원 결과: stage-review/stage08-bier/REVIEW.md.
+
+## 인트로 개발 진입점 정리 (2026-10-21)
+
+Workshop Map은 Workshop JSON을 `map-import` → `launchMap`으로 실행하는 개발 진입점이다. 타이틀 버튼만 제거하고 hidden input·핸들러·launchMap·편집기/Playtest는 보존했다. 타이틀 렌더와 빌드/실제 화면 검증은 로딩 감사와 함께 수행한다.
+
+## 인트로 37개 준비 항목과 원경 요청 감사 (2026-10-21)
+
+- 기준 `544825ee77930756dd28ce056ab15e12bb885278`. 37은 순차 실행 모듈 수이며, 맵/이미지 37개가 아니다. 엔진 967,465B 및 구 분할 원정 호환 JSON 653,520B가 큰 항목이다. 새 방문은 1장, 이어하기는 저장 장만 준비한다.
+- SVG 원문 hydration은 실제 원문 소비자인 ACT1 쉼터 경로만 사용한다. 원경 Image는 첫 소비 시 생성하며 2막 캐시 준비 검사는 현재 전투의 원경만 기다린다. 첫 그림 표시 대기 중 제한된 필수 fetch/modulepreload를 먼저 시작하되 실행 순서는 보존한다. 데이터·그래픽 189개 해시 불변, 진행률 숨김/데이터 삭제 없음.
+- 로컬 Chromium 모바일 모사 CPU4배/40ms/2MiB/s, 조건별 3회 중앙값: cold 새 시작 ready 2977→2840ms, 저장21장 3552→3517ms. 요청97→85, cold 전송 약28KB 감소. warm 새 시작848→712ms이나 저장21장은995→1015ms. 클릭 후 진입은 cold 새 시작397→400ms/21장1715→1834ms로 개선되지 않았다. 실기·Pages·통계적 우위 증거가 아니다.
+- 집중 브라우저 검사: 타이틀 버튼 제거/개발API 보존, 새 시작/audio running, 11장·20장 원경, 요청실패 재시도·취소, 21장 HP/round/성장/장착/완료 보존, 이전 HTML/콘텐츠 해시 캐시 호환 통과. 빌드·web-split·retention·ordered-runtime 통과. 기존 title-redesign 정적 검사는 현재와 다른 옛 game/build.mjs 계약을 검사해 실패하며 수정 범위 밖으로 남겼다. Workshop/embedded 초기화는 확인했으나 기존 Playtest 전투 전체 정상화나 전 장 완주는 주장하지 않는다.
+- 상세 목록·측정·남은 제한은 `game/docs/INTRO_LOADING_AUDIT.md`, 실제 화면/원시 측정은 `_local/reports/intro-audit/`에 둔다. 전용 브랜치에서 push하고 통합 순서 조정을 위해 master 병합 전에 대기한다.
+
+### 후속: 실제 타이틀 정적 계약 복구
+
+544825ee 별도 worktree에서 title-redesign은 옛 game/build.mjs의 이미지 문자열 assertion, title-letter-rendering은 main.js에서 사라진 filter 추출에서 각각 실패함을 재현했다. 검사의 소스를 현재 web-build/title-markup으로 옮기고, DOM double의 가짜 startup marker를 제거했다. 기존 PNG identity·alpha/ink·6화면비·5저장분기·반복진입·접근성 검증을 유지하고 개발 버튼 부재/hidden input 보존을 반영했다. `npm run test:title` 두 검사 모두 통과했다.
+
+### 후속: 준비 임계 경로와 안전한 JS 축소
+
+- 준비 중 최대 resource window 중첩36개로 다운로드는 이미 병렬이다. 21장 cold의 큰 의존성은 엔진967,465B(응답완료2544ms), 현재장 asset JSON1,328,987B(2684ms), 구분할호환 JSON653,520B(2107ms)였다. 실행은 전역/patch캡처 순서 때문에 직렬이며 큰JSON은 worker를 유지한다. 편집기 app/테스트 파일은 Game초기 목록에 없다.
+- Terser5.51.2를 고정해 module출력의 주석·공백만 축소했다(compress:false,mangle:false). 37개 JS raw2,789,636→2,337,992B, gzip6 880,435→768,790B, Brotli11 713,023→632,629B. 요청/실행 경계·동작·데이터를 옮기지 않는다. 원본은 읽을 수 있는 소스 파일에 보존한다.
+- CPU4배/40ms/2MiB/s 조건별3회 중앙값. 원기준→최종: 무압축 cold 새방문2977→2636ms/21장이어서3552→3349ms; gzip cold1652→1401ms/1737→1525ms. gzip warm768→657ms/969→972ms. gzip cold 클릭후411→435ms/1692→1734ms로 개선 없음. 압축서는 gzip6을 로컬서버에서 부여한 별도 조건이며 실제Pages헤더는 CONNECT403으로 확인이 거부돼 중단했다.
+- 별도 프로파일:21장 continue462ms(중첩 mount416/HUD294/초상화203), 첫 render541ms. 프로파일러 없는 첫프레임 계측은 render378ms(배경60/지형tile97/가림silhouette46). 서로 다른 run·중첩 시간이라 합산하지 않는다. 이는 클릭 뒤 현재 화면의 실제 생성/합성 비용이며 대기화면으로 이동시키지 않았다. 공용 renderer의 pixel/pose/cache를 바꾸면8장 포함 전장미술·가림정책 회귀 위험이 있어 본 로딩 작업에서는 더 변경하지 않는다.
+- build/web-split/ordered-runtime/retention/실제브라우저 retry·원경·저장회귀 및 타이틀두검사 통과. data/graphics189개 해시 불변. 측정원본은 `_local/reports/intro-audit/{cpu-summary,first-frame,compression,minified,gzip-before,gzip-after}.json`.
