@@ -85,7 +85,8 @@ function transition(app){const b=app.engine?.b;if(!active(b)||cleanup(app))retur
 function cancelSlide(app){const b=app.engine.b,m=memory(b);if(m.status!=='sliding')return;m.status='waiting';m.elapsed=0;m.reason='경사가 다시 움직입니다. 안전한 다음 행동 끝까지 기다립니다.';b.sceneVersion=(b.sceneVersion||0)+1;app.dirty=true;if(ownedScene(app)){G.HonroStory.finish(app);delete b.honroStaging.once[SCENE];G.HonroStory.save(app);}}
 function syncScene(app){const b=app.engine?.b;if(!active(b)||!ownedScene(app))return;const m=memory(b),s=app.dialogue.staging;if(m.status!=='sliding')return;
  if(!safeMotion(app,{scene:true})||occupants(b).length){if(!cargoPaused(app))cancelSlide(app);return;}
- m.elapsed=s.complete?m.duration:Math.min(m.duration,(s.elapsed||0)/1000);if(s.complete)commit(app);
+ const cue=s.cue,steps=s.cues?.[cue?.index]||[],complete=s.manualReader?(app.dialogue.index>0||!!cue&&steps.every((_,i)=>cue.done[i])):s.complete;
+ m.elapsed=complete?m.duration:Math.min(m.duration,(s.manualReader?cue?.elapsed||0:s.elapsed||0)/1000);if(complete)commit(app);
 }
 function skip(app){if(!active(app.engine?.b)||!ownedScene(app)||memory(app.engine.b).status!=='sliding'||!safeMotion(app,{scene:true})||occupants(app.engine.b).length)return false;return G.HonroStoryStaging.skipMotion(app);}
 let sceneInstalled=false;

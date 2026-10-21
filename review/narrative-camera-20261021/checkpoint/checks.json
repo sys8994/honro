@@ -1,0 +1,59 @@
+{
+  "source": "f77c436bf7f0de7088300a2631f92f410648c576",
+  "chapters": 30,
+  "sequences": 270,
+  "screenshots": 1492,
+  "targetContainmentFailures": 0,
+  "pageErrors": [],
+  "missingTargets": [
+    {
+      "stage": 27,
+      "sequence": "staging-act3-party-reunion-v1",
+      "page": 0,
+      "viewport": "desktop",
+      "missing": [
+        {
+          "marker": "party-reunion"
+        }
+      ],
+      "fallback": "current-objective"
+    },
+    {
+      "stage": 27,
+      "sequence": "staging-act3-party-reunion-v1",
+      "page": 1,
+      "viewport": "desktop",
+      "missing": [
+        {
+          "speaker": "휘겸"
+        }
+      ],
+      "fallback": "current-objective"
+    },
+    {
+      "stage": 27,
+      "sequence": "staging-act3-party-reunion-v1",
+      "page": 0,
+      "viewport": "mobile",
+      "missing": [
+        {
+          "marker": "party-reunion"
+        }
+      ],
+      "fallback": "current-objective"
+    },
+    {
+      "stage": 27,
+      "sequence": "staging-act3-party-reunion-v1",
+      "page": 1,
+      "viewport": "mobile",
+      "missing": [
+        {
+          "speaker": "휘겸"
+        }
+      ],
+      "fallback": "current-objective"
+    }
+  ],
+  "status": "checkpoint; special dialogue catalog extension and full evidence packaging remain"
+}

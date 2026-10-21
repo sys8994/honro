@@ -18,6 +18,7 @@ function point(b,p,context={}){
  return q&&Number.isFinite(q.x)&&Number.isFinite(q.y)?{...q,x:q.x+(p.dx||0),y:q.y+(p.dy||0)}:null;
 }
 function register(d){if(!d?.id||!Array.isArray(d.steps)||d.steps.at(-1)?.type!=='dialogue'||d.steps.slice(0,-1).some(s=>!['move','look','fx','field-evidence'].includes(s.type)))throw Error('A staged scene needs visual steps followed by dialogue');registry.set(d.id,clone(d));}
+function list(){return [...registry.values()].map(clone);}
 function describe(id){const d=registry.get(id);return d?clone(d):null;}
 function prepareFresh(b){
  if(b.honroCustom)return;
@@ -34,8 +35,9 @@ function prepareFresh(b){
  s.hidden[u.id]=u;b.units=b.units.filter(v=>v!==u);if(b.honroStage===9)s.entrance=ID;
 }
 function reveal(b,id){const s=state(b);let u=actor(b,id);if(u)return u;u=s.hidden[id];if(!alive(u))return null;G.HONRO_CORE.migrateEnemySkills(u);b.units.push(u);delete s.hidden[id];return u;}
+function matchesSplit(b,d){return !d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit);}
 function request(app,id,context={}){
- const b=app.engine?.b,d=registry.get(id);if(!b||!d||d.stage&&d.stage!==b.honroStage||!G.HonroStory)return false;
+ const b=app.engine?.b,d=registry.get(id);if(!b||!d||d.stage&&d.stage!==b.honroStage||!matchesSplit(b,d)||!G.HonroStory)return false;
  const s=state(b);if(s.once[id])return false;s.once[id]='queued';
  G.HonroStory.queue(app,[['서술',d.title,{storyId:id,storyTitle:d.title,stagingRequest:{id,context:clone(context)}}]]);return true;
 }
@@ -44,7 +46,7 @@ function opening(app,lines,options){
  const b=app.engine?.b;if(options.staging)return{lines,options};let r=lines[0]?.[2]?.stagingRequest;
  if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.freshOnly||b.honroStaging.outcomeScenes?.includes(d.id))&&(!d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit))&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
  if(!r)return{lines,options};
- const def=(!b?.honroNarrativeRevision&&r.id===ID?G.HONRO_NARRATIVE_V0?.firstReceiverScene:null)||registry.get(r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||state(b).once[r.id]==='done')return{lines:[],options};
+ const def=(!b?.honroNarrativeRevision&&r.id===ID?G.HONRO_NARRATIVE_V0?.firstReceiverScene:null)||registry.get(r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||!matchesSplit(b,def)||state(b).once[r.id]==='done')return{lines:[],options};
  state(b).once[r.id]='running';
  const staging={id:def.id,steps:clone(def.steps),context:clone(r.context||{}),cursor:0,elapsed:0,applied:{},results:{},position:def.position||'before',waitForDialogue:def.position==='after',complete:def.position==='after'};
  const dialogue=def.steps.filter(s=>s.type==='dialogue').flatMap(s=>s.lines||lines).map(([who,text,meta={}])=>[who,text,{storyId:def.id,storyTitle:def.title,...meta,stagingScene:def.id}]);
@@ -56,6 +58,31 @@ function directed(app,lines,options){
  s.cues=d.cues;s.context={...s.context,...d.context};s.directionVersion=2;
  if(!options.staging)state(app.engine.b).once[s.id]='running';
  return{lines:lines.map(([who,text,meta={}])=>[who,text,{...meta,stagingScene:s.id,...(who==='서술'?{presentation:'inline'}:{})}]),options:{...options,staging:s}};
+}
+// Authored scene captions are reading pages. Only their visual cues use time.
+// Keep them on the ordinary dialogue cursor so back/skip/Continue share one lock.
+function reader(lines,options){
+ const s=options.staging;if(!s||s.manualReader)return{lines,options};
+ const pages=[],motions=[];
+ for(const [index,step]of s.steps.entries()){
+  if(step.type==='dialogue')continue;
+  const caption=step.caption||pages.at(-1)?.text||'';
+  if(!pages.length||pages.at(-1).text!==caption)pages.push({text:caption,steps:[],indices:[]});
+  pages.at(-1).steps.push(step);pages.at(-1).indices.push(index);
+ }
+ if(!pages.some(p=>p.text))return{lines,options};
+ const base=lines[0]?.[2]||{},narration=pages.map(p=>['서술',p.text,{kind:'narration',presentation:'inline',storyId:base.storyId||s.id,storyTitle:base.storyTitle||options.title,stagingScene:s.id}]);
+ for(const p of pages){let delay=0;motions.push(p.steps.map(step=>{const cue={...step,delay};delay+=step.duration||0;return cue;}));}
+ const after=s.position==='after',offset=after?0:pages.length,oldIndex=options.index??0,oldComplete=s.complete,oldWaiting=s.waitForDialogue;
+ const oldCues=s.cues||lines.map(()=>[]),cues=after?[...oldCues,...motions]:[...motions,...oldCues];
+ let index=oldIndex+offset;
+ if(options.index!==undefined&&!oldComplete&&!oldWaiting){const page=Math.max(0,pages.findIndex(p=>p.indices.includes(s.cursor)));index=(after?lines.length:0)+page;}
+ else if(after&&options.index!==undefined&&oldIndex>=lines.length)index=lines.length;
+ const prior=s.cue,oldRead=s.readThrough;
+ s.cues=cues;s.manualReader=1;s.steps=[{type:'dialogue'}];s.cursor=0;s.elapsed=0;s.complete=true;s.waitForDialogue=false;s.position='before';
+ delete s.cue;
+ if(options.index!==undefined){s.readThrough=index-1;if(prior&&oldComplete){s.cue={...prior,index:prior.index+offset};s.readThrough=Math.max(s.readThrough,(oldRead??prior.index)+offset);}}
+ return{lines:after?[...lines,...narration]:[...narration,...lines],options:{...options,...(options.index!==undefined?{index}:{})}};
 }
 function canSpeak(app,who,meta){const b=app.engine?.b,s=b?.honroStaging;if(!s)return false;if(!(meta?.stagingScene&&s.once[meta.stagingScene]==='running')&&!G.HonroStoryDirection?.hiddenSpeech(b,meta))return false;return Object.values(s.hidden||{}).some(u=>u.name===who&&alive(u));}
 function active(app){return app.dialogue?.staging;}
@@ -200,5 +227,5 @@ register({id:'act3-split-departure-v2',stage:24,on:'outcome',position:'after',re
  {type:'move',actor:'occultist',towards:{marker:'split-route-b'},distance:28,duration:350,caption:'소단이 휘겸을 따라 몸을 돌린다.'},
  {type:'dialogue'}
 ]});
-G.HonroStoryStaging={register,describe,request,prepareFresh,receiver,opening,directed,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,lineStart,lineEnd,focusLine,point,actor,ID};
+G.HonroStoryStaging={reader,list,matchesSplit,register,describe,request,prepareFresh,receiver,opening,directed,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,lineStart,lineEnd,focusLine,point,actor,ID};
 })(globalThis);

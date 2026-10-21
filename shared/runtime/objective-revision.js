@@ -66,7 +66,7 @@ H.stages[26].beats['party-reunion']=[
 ];
 }
 let registeredStaging=null;
-function registerScenes(){const staging=G.HonroStoryStaging;if(!staging||registeredStaging===staging)return;for(const version of [1,2]){const stage=version===1?27:28,content=version===1?G.HONRO_SPLIT_V1?.content.find(s=>s.id===27):H.stages[27];staging.register({id:'act3-party-reunion-v'+version,stage,title:'다시 모인 기록',steps:[{type:'look',at:{marker:'party-reunion'},duration:450,caption:'두 조사팀이 서로 가져온 기록을 펼친다.'},{type:'dialogue',lines:content?.beats?.['party-reunion']||[]}]});}registeredStaging=staging;}
+function registerScenes(){const staging=G.HonroStoryStaging;if(!staging||registeredStaging===staging)return;for(const version of [1,2]){const stage=version===1?27:28,content=version===1?G.HONRO_SPLIT_V1?.content.find(s=>s.id===27):H.stages[27];staging.register({id:'act3-party-reunion-v'+version,stage,requireSplit:version,title:'다시 모인 기록',steps:[{type:'look',at:{marker:'party-reunion'},duration:450,caption:'두 조사팀이 서로 가져온 기록을 펼친다.'},{type:'dialogue',lines:content?.beats?.['party-reunion']||[]}]});}registeredStaging=staging;}
 function stageScene(app,s){if(s.id!=='party-reunion'||!G.HonroStoryStaging)return false;registerScenes();const id='act3-party-reunion-v'+(app.engine.b.honroSplit?.version===1?1:2);if(app.engine.b.honroStaging?.once?.[id])return true;return G.HonroStoryStaging.request(app,id);}
 // Stale focus cues must never point at a deleted device.
 for(const id of [12,15,20,21,22,23,27])for(const row of H.stages[id-1].story||[])if(row[2]?.focus==='seal')row[2].focus='interact';

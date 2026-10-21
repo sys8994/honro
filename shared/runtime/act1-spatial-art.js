@@ -141,6 +141,57 @@ const FORMS={
  shoulder:{outline:[[-.66,.16],[-.61,-.17],[-.47,-.31],[-.30,-.35],[-.29,-.64],[-.14,-.76],[.08,-.78],[.25,-.62],[.31,-.35],[.48,-.27],[.64,.16]],faces:[[[ -.29,-.64],[-.14,-.76],[.02,-.73],[.09,-.52],[-.11,-.21],[-.29,-.30]],[[.09,-.52],[.25,-.62],[.31,-.35],[.48,-.27],[.58,.12],[.12,.15],[-.03,-.1]],[[-.6,-.15],[-.46,-.3],[-.29,-.30],[-.11,-.21],[-.24,.15],[-.57,.15]]]},
  buttress:{outline:[[-.61,.15],[-.58,-.27],[-.47,-.35],[-.40,-.65],[-.25,-.78],[-.20,-.93],[.03,-1],[.21,-.94],[.34,-.77],[.32,-.42],[.48,-.29],[.59,.15]],faces:[[[ -.20,-.93],[.03,-1],[.15,-.86],[.08,-.55],[-.05,-.39],[-.2,-.1],[-.31,-.21],[-.31,-.66]],[[.15,-.86],[.21,-.94],[.34,-.77],[.32,-.42],[.21,-.32],[.08,-.55]],[[-.57,-.23],[-.40,-.65],[-.25,-.78],[-.31,-.21],[-.22,.15],[-.55,.15]],[[.01,-.4],[.21,-.32],[.48,-.29],[.59,.15],[.16,.15],[.14,-.09]]]}
 };
+// Stage10's guardian tree keeps its original silhouette and playable branches.
+// These are accumulated Korean courtyard offerings: tied cords, looped knots
+// and weathered cloth strips, attached to the same tree in its local space.
+let guardianOfferingsCache;
+function prepareGuardianOfferings(){if(guardianOfferingsCache)return guardianOfferingsCache;
+ const routes=[
+  [-650,-1255,-95,-1060,92,[.12,.31,.38,.57,.64,.72,.91]],
+  [-126,-1268,235,-1193,69,[.19,.42,.51,.67,.84]],
+  [80,-1080,589,-1000,118,[.11,.24,.43,.49,.55,.73,.89]],
+  [-414,-1185,-84,-664,93,[.17,.23,.48,.59,.67,.84]],
+  [-52,-766,367,-870,106,[.11,.34,.42,.51,.75,.9]],
+  [-390,-280,-83,-590,50,[.12,.28,.39,.5,.56,.72,.87]],
+  [62,-513,279,-663,50,[.14,.3,.41,.48,.65,.85]],
+  [-108,-594,99,-565,31,[.12,.24,.36,.55,.69,.82,.9]],
+  [-119,-414,132,-388,36,[.09,.18,.33,.46,.63,.73,.84,.92]],
+  [-132,-235,128,-263,28,[.1,.2,.32,.71,.82,.93]],
+  [-727,-1286,-445,-1238,52,[.22,.51,.8]],
+  [527,-1038,801,-1061,46,[.18,.61,.85]]
+ ];
+ const lengths=[136,211,94,163,124,188,108,233,151,176,119],widths=[13,17,10,15,12,19,11],colors=['#b6ad91','#c0beaa','#a79d7e','#c9c5ae','#ada68b','#bdb89f','#845c50'];
+ const ropes=[],knots=[],cloth=[];
+ const knot=(x,y,large)=>{const p=new Path2D(),inner=new Path2D(),r=large?20:13,kind=knots.length%4;
+  const loops=kind===0?[[-.3,0,.87,.53,-.4],[.3,.06,.68,.46,.65]]:kind===1?[[0,0,.72,.91,.21]]:kind===2?[[-.24,-.11,.72,.52,-.8],[.22,.12,.73,.52,.4],[0,.2,.38,.67,-.1]]:[[0,0,.86,.58,-.18]];
+  for(const[dx,dy,rx,ry,angle]of loops){const cx=x+dx*r,cy=y+dy*r,ring=(q,xx,yy,reverse=false)=>{q.moveTo(cx+xx*Math.cos(angle),cy+xx*Math.sin(angle));q.ellipse(cx,cy,xx,yy,angle,0,Math.PI*2,reverse);};ring(p,rx*r,ry*r);ring(p,rx*r*.43,ry*r*.4,true);ring(inner,rx*r*.82,ry*r*.78);ring(inner,rx*r*.53,ry*r*.5,true);}
+  // Broad crossing wraps make the loop a tied cord mass, not a repeated bow icon.
+  p.moveTo(x-6,y-10);p.lineTo(x+5,y-8);p.lineTo(x+8,y+10);p.lineTo(x-5,y+12);p.closePath();
+  inner.moveTo(x-3,y-9);inner.lineTo(x+1,y-8);inner.lineTo(x+4,y+10);inner.lineTo(x,y+11);inner.closePath();
+  knots.push({body:p,light:inner});};
+ for(const [i,[ax,ay,bx,by,sag,sites]]of routes.entries()){
+  const cx=(ax+bx)/2,cy=(ay+by)/2+sag,ribbon=width=>{const p=new Path2D();p.moveTo(ax,ay-width/2);p.quadraticCurveTo(cx,cy-width/2,bx,by-width/2);p.lineTo(bx,by+width/2);p.quadraticCurveTo(cx,cy+width/2,ax,ay+width/2);p.closePath();return p;};ropes.push({body:ribbon(10),light:ribbon(5.5)});knot(ax,ay,i<10);knot(bx,by,i<10);
+  for(const [j,t]of sites.entries()){
+   const x=ax+(bx-ax)*t,y=(1-t)*(1-t)*ay+2*(1-t)*t*cy+t*t*by;
+   // Dense lower trunk bunches stop above Sodan's head and binding panel.
+   const length=Math.min(lengths[(i*3+j)%lengths.length],i===9?70+(j%3)*15:i===5||i===6?130:240),w=widths[(i+j*2)%widths.length],lean=[-13,8,-6,17,-3][(i+j)%5],p=new Path2D();
+   p.moveTo(x-w*.5,y-5);p.lineTo(x+w*.5,y-3);p.quadraticCurveTo(x+w*.7+lean*.3,y+length*.38,x+w*.25+lean,y+length-7);p.lineTo(x+lean-w*.12,y+length);p.lineTo(x+lean-w*.25,y+length-11);p.lineTo(x+lean-w*.62,y+length-4);p.quadraticCurveTo(x-w*.52+lean*.1,y+length*.4,x-w*.5,y-5);p.closePath();
+   const fold=new Path2D();fold.moveTo(x+w*.06,y+13);fold.quadraticCurveTo(x+lean*.4,y+length*.43,x+lean-w*.17,y+length-15);fold.lineTo(x+lean-w*.17-2,y+length-15);fold.quadraticCurveTo(x+lean*.4-2,y+length*.43,x+w*.06-2,y+13);fold.closePath();
+   cloth.push({body:p,fold,color:colors[(i*2+j)%colors.length]});
+   if(j===1||j===4||i>=7&&i<10&&j%2===0)knot(x,y+3,j===4);
+  }
+ }
+ return guardianOfferingsCache={ropes,knots,cloth};
+}
+function drawGuardianOfferings(c,l){
+ const guardianOfferings=prepareGuardianOfferings();
+ c=G.HonroVisualStyle?.context(c,'L1')||c;c.save();c.translate(l.x,l.y);c.rotate(l.rotation||0);c.scale(l.scale??1,l.scale??1);c.lineJoin='round';c.lineCap='round';
+ for(const p of guardianOfferings.ropes){c.fillStyle='#303b30';c.fill(p.body);c.fillStyle='#aa9c77';c.fill(p.light);}
+ for(const t of guardianOfferings.cloth){c.fillStyle=t.color;c.fill(t.body);c.fillStyle='#514d3a66';c.fill(t.fold);}
+ for(const k of guardianOfferings.knots){c.fillStyle='#394234';c.fill(k.body);c.fillStyle='#b4a17c';c.fill(k.light);}
+ c.restore();
+}
+
 function prepareScene(b){let q=sceneCache.get(b);if(q?.source===b.honroMap.act1Scene&&q.version===b.sceneVersion)return q;const art=b.honroMap.act1Scene,rocks=[];
  for(const r of art.rocks||[]){const t=b.terrain.find(t=>t.id===r.supportId&&!t.broken);if(!t)continue;const form=FORMS[r.kind]||FORMS.shoulder,base=liveTop(b,r.supportId,r.x,r.y),foundations=b.terrain.filter(t=>!t.broken&&!t.oneWay&&!t.honroElementCollision&&t.y+t.h>=b.height),foot=px=>{const hits=foundations.filter(t=>px>=t.x&&px<=t.x+t.w).map(t=>C.topAt(t,px,b.height)).filter(Number.isFinite);return hits.length?Math.max(base,Math.min(...hits)):b.height;},map=points=>poly(points.map(([x,y])=>{const px=r.x+x*r.width;return[px,y>=0?foot(px)+y*r.height+55:base+y*r.height];}));rocks.push({...r,shape:map(form.outline),faces:form.faces.map(map)});}
  const shelfNecks=[];
@@ -190,6 +241,6 @@ const oldBackground=S.background;S.background=function(c,w,h,b){oldBackground.ca
  for(const light of b.honroMap.act1Scene.lights||[])A.glow(c,light.x,light.y,light.radius||200,(light.radius||200)*.8,'#bc9458',.1);c.restore();if(this.environmentStats){this.environmentStats.act1Spatial=true;this.environmentStats.cachedPaths+=q.rocks.length*4+q.shelfNecks.length*2;}
 };
 const oldLayer=S._landmarkLayer;S._landmarkLayer=function(c,landmarks,layer){oldLayer.call(this,c,landmarks,layer);if(layer==='structural-back'&&active(this.battle))supports(c,this.battle);};
-const oldLandmark=S.landmark;S.landmark=function(c,l){if(active(this.battle)){const q=prepareScene(this.battle);if(q.replaced.has(l.id))return;const record=q.scenery.get(l.id);if(record&&!this.battle.terrain.some(t=>t.id===record.supportId&&!t.broken))return;}oldLandmark.call(this,c,l);};
-G.HonroAct1SpatialArt={active,prepareTerrain,prepareScene,groundGradient,supports};
+const oldLandmark=S.landmark;S.landmark=function(c,l){if(active(this.battle)){const q=prepareScene(this.battle);if(q.replaced.has(l.id))return;const record=q.scenery.get(l.id);if(record&&!this.battle.terrain.some(t=>t.id===record.supportId&&!t.broken))return;}oldLandmark.call(this,c,l);if(active(this.battle)&&this.battle.honroStage===10&&l.id==='a1-scene-10-guardian-tree')drawGuardianOfferings(c,l);};
+G.HonroAct1SpatialArt={active,prepareTerrain,prepareScene,groundGradient,supports,prepareGuardianOfferings,drawGuardianOfferings};
 })(globalThis);

@@ -1,0 +1,80 @@
+{
+  "label": "final-95c76e36",
+  "url": "http://127.0.0.1:8856/HONRO.html",
+  "loadedModules": [
+    "http://127.0.0.1:8856/web/entries/game.49ef73fde6d40ea2.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-1.e4e4afbdd8ad843d.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-2.5ce8d31fcc4b1b6f.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-3.b8b84250e4ae01f2.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-4.c5090650bf2f632b.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-5.92018b2cd97d931a.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-6.9e65925ab202c4c3.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-7.9ffe5a571061b7c3.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-8.88eb90585b53f81a.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-9.3fca0f69327629c7.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-10.fc6304b0a3f1e39a.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-11.ceb05c0dc4784d67.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-12.0776e2b852327672.js",
+    "http://127.0.0.1:8856/web/runtime/ordered-common-13.d9c5c3ce79941a3b.js"
+  ],
+  "sha": "95c76e368ee1df556ce89b7e0806eaed1f893b25",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 10,
+      "view": "overview",
+      "camera": {
+        "x": 2500,
+        "y": 1600,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 10,
+      "view": "normal",
+      "camera": {
+        "x": 2500,
+        "y": 2000,
+        "scale": 0.7
+      }
+    },
+    {
+      "stage": 10,
+      "view": "close-knots",
+      "camera": {
+        "x": 2500,
+        "y": 1750,
+        "scale": 1.1
+      }
+    },
+    {
+      "stage": 10,
+      "view": "upper-cords",
+      "camera": {
+        "x": 2500,
+        "y": 1050,
+        "scale": 0.7
+      }
+    },
+    {
+      "stage": 10,
+      "view": "mobile",
+      "camera": {
+        "x": 2500,
+        "y": 1900,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 10,
+      "view": "landscape",
+      "camera": {
+        "x": 2500,
+        "y": 1800,
+        "scale": 0.6
+      }
+    }
+  ],
+  "errors": []
+}
