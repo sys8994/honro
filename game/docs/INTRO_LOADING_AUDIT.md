@@ -95,3 +95,5 @@ ready는 document data-honro-ready 관측, 첫 그림은 표시 가능한 title 
 사용자 원본 Library `libfile_88af52b502d08191b50787bf5ac618b4`는 ID조회성공, local materialization 다운로드실패여서 원본픽셀은 직접대조하지못했다. 제공된스크린샷설명과현재코드로용도를추적했다. 아래새스크린샷은실제수정본 로컬Chromium화면이다.
 
 원시측정·전체리소스별 디스크/응답/전송바이트·시작/종료시각은 `_local/reports/intro-audit/{before,final,summary}.json`, `requests.csv`, `modules37.csv`, `trace-summary.json`, `regressions.json`에 있다. 같은디렉터리probe.py로재현한다. 코드수정본 SHA와문서커밋 SHA는구분한다. master/Pages에는아직반영하지않았다.
+
+실제 타이틀·쉼터·11장 스크린샷 3장과 전체 초기 요청 부록을 포함한 [Library PDF 보고서](https://chatgpt.com/api/library/files/libfile_42196569e88081918d529be604512763/download)를 저장했다. Library ID: `libfile_42196569e88081918d529be604512763`. 로컬 보고서의 file:// 브라우저 열기는 `ERR_BLOCKED_BY_ADMINISTRATOR`로 거부되어 중단했고, 독립 PDF 작성 도구로 생성·렌더 확인했다. 이 거부는 게임 로컬 HTTP 검증이나 공개 Pages 접근 결과가 아니다.
