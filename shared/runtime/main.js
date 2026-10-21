@@ -846,7 +846,7 @@
             // outro/result screens and ESC. Combat phase is not a navigation state.
             const b=this.engine?.b,inBattle=this.screen==='battle'&&!!b;
             const session=inBattle?(this.training?(this.trainingMusicSession||b.session):b.session):undefined;
-            this.audio?.update(inBattle?'battle':'main',document.hidden||!!G.HonroAct3Void?.blocked(this),session);
+            this.audio?.update(inBattle?'battle':'main',document.hidden||!!G.HonroAct3Void?.blocked(this),session,inBattle&&(b.honroStage===9||b.honroStage===10)?4:undefined);
             this.updateMusicLabel();
         }
         updateMusicLabel(){
@@ -858,7 +858,7 @@
             if(!audio){if(!label.hidden)label.hidden=true;return;}
             const source=audio.currentSrc||audio.src;
             if(source!==this.musicLabelSource){
-                label.textContent=G.HonroMusicTitles.titleFor(source);
+                label.textContent='배경음 - '+G.HonroMusicTitles.titleFor(source);
                 this.musicLabelSource=source;
             }
             if(label.hidden)label.hidden=false;

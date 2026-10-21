@@ -4093,3 +4093,8 @@ Workshop Map은 Workshop JSON을 `map-import` → `launchMap`으로 실행하는
 - 원인: 명시 구도 fitting이 매 프레임 Scene 좌표/줌을 바로 덮어쓰고 legacy storyTween을 초기화해 페이지 전환이 순간 이동했다. 방향 연출의1.05 확대와 분산된10장 양쪽 진/동행 동시 포함도 과도한 확대 또는 축소를 만들었다.
 - 변경: targetFrame 계산과 현재 화면의 중심/로그 줌 응답을 분리했다. 약310ms에99.5% 접근하는 하나의 임계 감쇠 응답을 쓰며 빠른 다음/이전은 현재 위치와 속도로 재지정한다. active framing 동안 follow/resize zoom/legacy tween/경계 clamp가 경쟁하지 않는다. 유형별 중간 줌 상한은 이전 저장의 높은 값에도 적용하고 reduced motion과 대화 종료 복귀도 존중한다.10장 동쪽 위협 소개와 소단 주변의 실제 근접 수비 집단을 구분하며 지형/사건/대사 원문은 보존한다.
 - 확인: story-framing의 실제 App/Engine 대역 검사8그룹(목표/저장/별칭/10장 집단/시간 응답/빠른 재지정/reduced motion 포함) 통과. Chromium 유형별·예외 장면 캡처와 전 대사 정책 목록 검사는 진행 중이다. 전체 미술 합격/캠페인 완주/공개 배포 주장이 아니며 부모 검수 전 master에는 반영하지 않는다.
+
+### 2026-10-21 ·9·10장 첫 전투곡과 표시 접두어
+- 새 battle playlist/session 경계에서만 명시 첫 곡(index4,05)을 적용한다.9/10장의 새 진입·retry·Continue는05로 시작하고 ended 뒤에는02→03→04→05의 기존 순환을 유지한다. 다른 장의05 순환도 보존한다. AudioEngine에 선택적 첫 곡 인자만 전달하며 main.ts는 수정하지 않았다.
+- 반복 프레임·unlock·pause에서 같은 미디어와 seek를 보존한다. 표시 제목 메타데이터와 파일명은 그대로 두고 실제 우하단 라벨에만 '배경음 - '을 붙였다. 정확한 제목은 '산 자와 남은 자'다.
+- audio/music-titles 단위 검사와 Chromium 실제 MP3 스트림20전환(9/10 진입·순환·retry·Continue, 일반3장 순환·타이틀 복귀), 반복120업데이트/unlock/visibility pause 및 desktop/390px 라벨을 확인했다. 오류0. ended/visibility는 경계 검사용 합성 이벤트이며 전체 곡 청취·실기기·정상 캠페인 완주 검수는 아니다. 생성물은 양쪽 원본을 통합해 재빌드했고 최종 집중 검수 후 별도 커밋한다.
