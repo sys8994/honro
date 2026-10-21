@@ -48,7 +48,7 @@ for(let turn=0;turn<Number(process.env.HONRO_FULLPLAY_ACTION_LIMIT||260)&&!['won
  const interact=()=>m?.action&&g.HonroInteractions.eligibility(app,m).ok&&audit.production(()=>g.HonroInteractions.use(app,m));
  if(interact()){record({op:'E',hero:u.cls,target:m.id});await save('sign-action');continue;}
  if(healStake(u))continue;
- const destination=goal.id==='route-exit'?b.honroMarkers.find(v=>v.id==='route-lower-exit'):m;
+ const destination=goal.id==='route-exit'?b.honroMarkers.find(v=>v.id===(process.env.HONRO_STAGE12_EXIT==='upper'?'route-upper-exit':'route-lower-exit')):m;
  const guards=goal.id==='sign'?g.HonroAct2.interactionThreats(b,m):[],ids=new Set(guards.map(v=>v.id));
  const foes=e.alive(1).filter(v=>g.HonroAct2.visible(b,v)).sort((a,z)=>Number(ids.has(z.id))-Number(ids.has(a.id))||dist(a,u)-dist(z,u));
  let fired=false;
