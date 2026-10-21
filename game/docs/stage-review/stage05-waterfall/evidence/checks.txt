@@ -1,0 +1,28 @@
+
+## build-final
+
+> build
+> node workshop/build.mjs
+
+{"gameBytes":16431,"workshopBytes":3947,"files":247,"playtest":"web/entries/game.0913249ca63b657c.html?embedded=1"}
+Built Game, Workshop and the direct Playtest document with shared external modules
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+
+## probes-final
+PASS all30/library exact; both heroes ritual/shot/return; closed drag and open target hit
+
+## continue
+PASS old5 Continue/import and new retry boundary
+
+## stage4
+PASS both heroes west defense return; three projectiles; other29/library/walkable tops/events/markers/units unchanged
+
+## save
+PASS [
+  'Stages 5–10 exactly match the pre-image baseline, including geometry and dependent placements',
+  'Stages 1/2/3/4/8 replace image-era battles, preserve profile, and keep same-revision Continue exact'
+]

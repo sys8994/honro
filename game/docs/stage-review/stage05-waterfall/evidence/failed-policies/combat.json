@@ -1,0 +1,217 @@
+{
+  "method": "Production Engine inputs, legal chapter1–4 completion-reward fixture; normal resources and AI, no position/resource resets.",
+  "start": {
+    "heroes": [
+      {
+        "cls": "archer",
+        "hp": 469,
+        "maxHp": 469,
+        "focus": 118,
+        "level": 4,
+        "loadout": [
+          "A01"
+        ]
+      },
+      {
+        "cls": "mage",
+        "hp": 503,
+        "maxHp": 503,
+        "focus": 153,
+        "level": 4,
+        "loadout": [
+          "M01"
+        ]
+      }
+    ],
+    "enemies": 20
+  },
+  "end": {
+    "phase": "lost",
+    "round": 8,
+    "heroes": [
+      {
+        "id": "p-archer",
+        "hp": 227,
+        "maxHp": 469,
+        "focus": 118,
+        "x": 291.060919669057,
+        "y": 2520
+      }
+    ],
+    "ritual": null,
+    "target": [
+      {
+        "hp": 520,
+        "broken": false
+      }
+    ],
+    "enemies": 17,
+    "flags": {
+      "sector-0": true
+    }
+  },
+  "ticks": 13024,
+  "log": [
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 1,
+      "x": 330,
+      "y": 2520,
+      "target": "foe-2",
+      "angle": 26.103704821870192,
+      "power": 0.8060194858596513
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 1,
+      "x": 440,
+      "y": 2520,
+      "target": "foe-0",
+      "angle": -7.130935605441435,
+      "power": 0.6297253439971793
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 2,
+      "x": 330,
+      "y": 2520,
+      "target": "foe-0",
+      "angle": 41.21100041736009,
+      "power": 0.1477709878783788
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 2,
+      "x": 399.87726542417727,
+      "y": 2520,
+      "target": "foe-0",
+      "angle": -11.31236233426937,
+      "power": 0.3846503375986336
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 3,
+      "x": 347.0898482368404,
+      "y": 2520,
+      "target": "foe-0",
+      "angle": -7.398028232987414,
+      "power": 0.37743997635252663
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 3,
+      "x": 363.66940313953893,
+      "y": 2520,
+      "target": "foe-0",
+      "angle": -7.688566878367067,
+      "power": 0.5300932356323214
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 4,
+      "x": 347.0898482368404,
+      "y": 2520,
+      "target": "foe-4",
+      "angle": -6.897395964318151,
+      "power": 0.6779328785530048
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 4,
+      "x": 363.66940313953893,
+      "y": 2520,
+      "target": "foe-4",
+      "angle": -9.414299750246531,
+      "power": 0.6289020526815718
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 5,
+      "x": 347.0898482368404,
+      "y": 2520,
+      "target": "foe-4",
+      "angle": -6.867471769532248,
+      "power": 0.6834852264839908
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 5,
+      "x": 363.66940313953893,
+      "y": 2520,
+      "target": "foe-4",
+      "angle": -8.541517230641658,
+      "power": 0.6486446281810782
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 6,
+      "x": 347.03173178239535,
+      "y": 2520,
+      "target": "foe-8",
+      "angle": 14.909322018160415,
+      "power": 0.6815608013140012
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 6,
+      "x": 359.94110436790174,
+      "y": 2520,
+      "target": "foe-8",
+      "angle": 18.476615726492728,
+      "power": 0.7030372909583203
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 7,
+      "x": 314.7652485750079,
+      "y": 2520,
+      "target": "foe-8",
+      "angle": -3.5762110548705524,
+      "power": 0.5822998458538322
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 7,
+      "x": 318.1042192831419,
+      "y": 2520,
+      "target": "foe-8",
+      "angle": -1.5810328823864823,
+      "power": 0.5833623018281187
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 8,
+      "x": 291.060919669057,
+      "y": 2520,
+      "target": "foe-8",
+      "angle": -4.129291481486003,
+      "power": 0.6103159087541408
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 8,
+      "x": 293.6062248931614,
+      "y": 2520,
+      "target": "foe-4-cluster",
+      "angle": -5.610350726923271,
+      "power": 0.650739734575616
+    }
+  ],
+  "runtimeSourceSha": "509ed75a69f8b1e79adbf8c23dcb8a5293a57bbc"
+}

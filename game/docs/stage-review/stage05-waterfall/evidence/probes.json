@@ -1,0 +1,188 @@
+[
+  {
+    "label": "ritual-shot-return",
+    "cls": "archer",
+    "passed": true,
+    "failure": null,
+    "start": {
+      "x": 330,
+      "y": 2520,
+      "hp": 485,
+      "round": 1
+    },
+    "end": {
+      "x": 333.2953183999695,
+      "y": 2520,
+      "support": "valley-floor",
+      "round": 4,
+      "moveLeft": 1030.04166666667
+    },
+    "counts": {
+      "ticks": 1801,
+      "jumps": 0,
+      "waits": 3,
+      "walkCost": 3919.5453183999625,
+      "jumpCost": 0,
+      "damage": 0,
+      "invalid": 0
+    },
+    "movementCost": 3919.5453183999625,
+    "turnEquivalent": 3.1507599022507735,
+    "events": [
+      {
+        "op": "wait",
+        "x": 1431.6631956465224,
+        "y": 2691.6631956465226,
+        "support": "valley-floor",
+        "round": 1,
+        "moveLeft": 8.585317186806371
+      },
+      {
+        "op": "wait",
+        "x": 1640.9068115128557,
+        "y": 2710,
+        "support": "valley-floor",
+        "round": 2,
+        "moveLeft": 8.827697746550129
+      },
+      {
+        "op": "wait",
+        "x": 544.004621991368,
+        "y": 2537.219199909666,
+        "support": "valley-floor",
+        "round": 3,
+        "moveLeft": 8.999999999981807
+      }
+    ],
+    "poses": [
+      {
+        "goal": {
+          "x": 1590
+        },
+        "x": 1586.5678425927272,
+        "y": 2710,
+        "support": "valley-floor",
+        "round": 2,
+        "moveLeft": 1081.5000000000027
+      },
+      {
+        "goal": {
+          "x": 2120
+        },
+        "x": 2115.3514276370765,
+        "y": 2590,
+        "support": "valley-floor",
+        "round": 2,
+        "moveLeft": 517.9943644132127
+      },
+      {
+        "goal": {
+          "x": 330
+        },
+        "x": 333.2953183999695,
+        "y": 2520,
+        "support": "valley-floor",
+        "round": 4,
+        "moveLeft": 1030.04166666667
+      }
+    ]
+  },
+  {
+    "label": "ritual-shot-return",
+    "cls": "mage",
+    "passed": true,
+    "failure": null,
+    "start": {
+      "x": 440,
+      "y": 2520,
+      "hp": 518,
+      "round": 1
+    },
+    "end": {
+      "x": 334.98538995986036,
+      "y": 2520,
+      "support": "valley-floor",
+      "round": 4,
+      "moveLeft": 1226.2500000000002
+    },
+    "counts": {
+      "ticks": 1866,
+      "jumps": 0,
+      "waits": 3,
+      "walkCost": 3805.88538995975,
+      "jumpCost": 0,
+      "damage": 0,
+      "invalid": 0
+    },
+    "movementCost": 3805.88538995975,
+    "turnEquivalent": 3.0109852768668905,
+    "events": [
+      {
+        "op": "wait",
+        "x": 1554.9406700626166,
+        "y": 2710,
+        "support": "valley-floor",
+        "round": 1,
+        "moveLeft": 7.712489716923585
+      },
+      {
+        "op": "wait",
+        "x": 1487.205216406044,
+        "y": 2710,
+        "support": "valley-floor",
+        "round": 2,
+        "moveLeft": 7.968786989889281
+      },
+      {
+        "op": "wait",
+        "x": 372.73538995986013,
+        "y": 2520,
+        "support": "valley-floor",
+        "round": 3,
+        "moveLeft": 8.183333333352408
+      }
+    ],
+    "poses": [
+      {
+        "goal": {
+          "x": 1590
+        },
+        "x": 1585.1406700626164,
+        "y": 2710,
+        "support": "valley-floor",
+        "round": 2,
+        "moveLeft": 1233.8000000000002
+      },
+      {
+        "goal": {
+          "x": 2120
+        },
+        "x": 2114.3664991969426,
+        "y": 2590,
+        "support": "valley-floor",
+        "round": 2,
+        "moveLeft": 669.8521203232297
+      },
+      {
+        "goal": {
+          "x": 330
+        },
+        "x": 334.98538995986036,
+        "y": 2520,
+        "support": "valley-floor",
+        "round": 4,
+        "moveLeft": 1226.2500000000002
+      }
+    ]
+  },
+  {
+    "open": false,
+    "damage": 0,
+    "wet": true
+  },
+  {
+    "open": true,
+    "damage": 106,
+    "wet": false
+  }
+]

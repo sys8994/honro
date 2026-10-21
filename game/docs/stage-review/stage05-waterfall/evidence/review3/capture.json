@@ -1,0 +1,80 @@
+{
+  "sha": "4201e0fdeec415ee6cf8dfd9cce511bd09d32113",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n D web/entries/game.30c53d86b417d230.html\n D web/entries/game.ad6be498eaf95623.js\n D web/entries/workshop.c4dba19bbaad43ec.js\n M web/manifest.json\n D web/runtime/ordered-common-12.76a49730abe0c64a.js\n?? game/docs/stage-review/stage05-waterfall/evidence/\n?? tests/stage5-refinement.mjs\n?? tools/testing/stage5-refinement-browser.py\n?? tools/testing/stage5-refinement-capture.py\n?? tools/testing/stage5-refinement-controller.js\n?? web/entries/game.0913249ca63b657c.html\n?? web/entries/game.e8b8f30ca010fed4.js\n?? web/entries/workshop.71339d2c3fd8ff10.js\n?? web/runtime/ordered-common-12.d1cf05f022eaec74.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Open/released water is an explicit visual-state fixture. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 5,
+      "view": "normal-shore",
+      "camera": {
+        "x": 1700,
+        "y": 2600,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 5,
+      "view": "zoom-cave",
+      "camera": {
+        "x": 4220,
+        "y": 2280,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 5,
+      "view": "maxout",
+      "camera": {
+        "x": 2900,
+        "y": 2500,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 5,
+      "view": "mobile-ritual",
+      "camera": {
+        "x": 1590,
+        "y": 2560,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 5,
+      "view": "mobile-cave",
+      "camera": {
+        "x": 4120,
+        "y": 2250,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 5,
+      "view": "landscape-cave",
+      "camera": {
+        "x": 4100,
+        "y": 2250,
+        "scale": 0.35
+      }
+    },
+    {
+      "stage": 5,
+      "view": "water-open",
+      "camera": {
+        "x": 4000,
+        "y": 2260,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 5,
+      "view": "water-released",
+      "camera": {
+        "x": 4000,
+        "y": 2260,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

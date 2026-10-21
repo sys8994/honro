@@ -1,0 +1,35 @@
+{
+  "sha": "509ed75a69f8b1e79adbf8c23dcb8a5293a57bbc",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/runtime/authored-far-art.js\n M shared/runtime/stage5-waterfall-art.js\n D web/data/campaign.5e0fd62065d90cb8.json\n D web/data/chapter-04.ff97f9f6129d41d6.json\n D web/entries/game.6ce12db6b9a9561f.js\n D web/entries/game.cc3a42efa8cfd006.html\n D web/entries/workshop.deceb97c8a42e4fc.js\n M web/manifest.json\n D web/runtime/campaign.32753afcc029e409.js\n D web/runtime/ordered-common-12.2af502cf9c178ba9.js\n D web/runtime/ordered-common-4.d2eed4d37d673a54.js\n?? web/entries/game.30c53d86b417d230.html\n?? web/entries/game.ad6be498eaf95623.js\n?? web/entries/workshop.c4dba19bbaad43ec.js\n?? web/runtime/ordered-common-12.76a49730abe0c64a.js\n",
+  "scope": "Local production browser, frozen debug scene; overview uses diagnostic fit-to-map zoom, not gameplay minimum; no chapter completion.",
+  "rows": [
+    {
+      "stage": 5,
+      "view": "west",
+      "camera": {
+        "x": 1700,
+        "y": 2780,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 5,
+      "view": "fall",
+      "camera": {
+        "x": 3800,
+        "y": 2400,
+        "scale": 0.4
+      }
+    },
+    {
+      "stage": 5,
+      "view": "lake",
+      "camera": {
+        "x": 3000,
+        "y": 3350,
+        "scale": 0.35
+      }
+    }
+  ],
+  "errors": []
+}
