@@ -21,3 +21,6 @@
 @media(max-height:440px){.act-ending-copy{bottom:max(6%,calc(env(safe-area-inset-bottom) + 12px));font-size:16px;line-height:1.6;max-width:760px}.sodan-withdrawal{gap:8px}}
 @media(prefers-reduced-motion:reduce){.cut-fade,.withdrawal-party{animation:none}}
 .sodan-withdrawal canvas,.sodan-safe-backdrop canvas{width:min(92vw,520px);height:auto;max-height:35vh;object-fit:contain;padding:0}.sodan-safe-backdrop canvas{position:absolute;top:22%;left:50%;transform:translateX(-50%)}
+
+/* The new bell finial sits near the top edge; keep it in short landscape crops. */
+@media(orientation:landscape) and (max-height:440px){.act-ending[data-stage="20"][data-art="landscape"] .act-ending-art{object-position:center top}}

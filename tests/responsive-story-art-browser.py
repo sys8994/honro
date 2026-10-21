@@ -19,6 +19,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 SIZES = [(320, 568), (390, 844), (412, 915), (844, 390), (1440, 900)]
 rows = []
 errors = []
+network = []
 VIEW = "JSON.stringify(HonroApp.profile)"
 
 
@@ -29,17 +30,20 @@ def stable_image(page):
 
 def capture(page, name, selectors):
     result = page.evaluate('''selectors=>{
-      const rect=n=>{const b=n.getBoundingClientRect();return {x:b.x,y:b.y,width:b.width,height:b.height,right:b.right,bottom:b.bottom}};
+      const rect=n=>{const b=n.getBoundingClientRect();return {x:b.x,y:b.y,width:b.width,height:b.height,right:b.right,bottom:b.bottom,scrollHeight:n.scrollHeight,clientHeight:n.clientHeight}};
       const image=document.querySelector('.act-ending-art,.title-painting img');
       return {viewport:[innerWidth,innerHeight],overflow:document.documentElement.scrollWidth>innerWidth,
        image:{src:image.currentSrc,width:image.naturalWidth,height:image.naturalHeight,fit:getComputedStyle(image).objectFit,position:getComputedStyle(image).objectPosition},
        boxes:selectors.flatMap(s=>[...document.querySelectorAll(s)].map(n=>({selector:s,...rect(n)}))),
+       text:document.querySelector('.act-ending-copy')?.textContent,
        stage:document.querySelector('#act-ending')?.dataset.stage,cut:document.querySelector('#act-ending')?.dataset.cut};
     }''', selectors)
     assert not result['overflow'], result
     w, h = result['viewport']
     for box in result['boxes']:
         assert box['x'] >= -1 and box['y'] >= -1 and box['right'] <= w + 1 and box['bottom'] <= h + 1, (name, box)
+        if box['selector'] == '.act-ending-copy':
+            assert box['scrollHeight'] <= box['clientHeight'] + 1, (name, 'copy clipped inside scrolling box', box)
     page.screenshot(path=str(OUT / f'{name}.jpg'), type='jpeg', quality=85)
     assert (OUT / f'{name}.jpg').stat().st_size < 1000000
     result['screenshot'] = f'{name}.jpg'
@@ -110,6 +114,7 @@ with sync_playwright() as p:
             assert page.evaluate(VIEW) == saved_title
             page.set_viewport_size({'width': width, 'height': height})
             page.wait_for_function('(portrait)=>document.querySelector(".title-painting img").currentSrc.includes(portrait?"title-portrait.":"title-landscape.")', arg=width <= height)
+            assert len([u for u in requests if re.search(r'/title-(?:portrait|landscape)\.', u)]) == 2, 'title rotation should fetch each direction once'
         for stage in [10, 20, 30]:
             show_ending(page, stage, 2 if args.round in ['2', '3', 'final'] else 0)
             data = page.evaluate('HONRO_ACT_ENDINGS')
@@ -180,11 +185,12 @@ with sync_playwright() as p:
                 page.wait_for_function('HonroApp.screen==="rest"')
                 assert page.locator('#act-ending').count() == 0
                 assert page.evaluate("JSON.stringify(Object.fromEntries(['heroes','loadouts','honroGrowth','recruited','cleared','record'].map(k=>[k,HonroApp.profile[k]??null])))") == settled
+        network.append({'viewport':[width,height], 'initialTitleRequests':title_sources, 'initialEndingRequests':0, 'initialCLS':initial_shifts, 'storyImageRequests':[u.split('/')[-1] for u in requests if re.search(r'/ending-\d+-|/title-(?:portrait|landscape)\.', u)], 'httpFailures':[r for r in responses if r[1] >= 400]})
         assert not [r for r in responses if r[1] >= 400], responses
         assert not errors, errors
         context.close()
     browser.close()
-report = {'round':args.round, 'rows': rows, 'errors': errors,
+report = {'round':args.round, 'rows': rows, 'errors': errors, 'network':network,
           'sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
           'scope':'Real Chromium with actual freshly supplied built images. Pending-ending and saved-profile fixtures; no normal combat run. Visual judgments are recorded separately in README.md.'}
 (OUT / 'checks.json').write_text(json.dumps(report, ensure_ascii=False, indent=2))

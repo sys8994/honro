@@ -4211,3 +4211,9 @@ Workshop Map은 Workshop JSON을 `map-import` → `launchMap`으로 실행하는
 ### 2026-10-21 · 신규 대사/음악 브랜치의 최신 조이스틱 master 호환
 - 최종 원격 점검에서 P0 조이스틱 입력이 master bafc275c10c7a256692425641d7f0e4f69c002ca에 통합된 것을 확인해 작업 브랜치에 보존했다. 원본은 충돌 없이 병합됐고 생성 rename/HTML/manifest만 최신 원본 재빌드로 해결했다. 카메라·방향/대사 메타데이터·BgmPlayer/AudioEngine 코드는 직전 검수와 동일하다. main.ts는 최신 master와 같고 main.js의 우리 차이는 첫 곡 인자/표시 접두어 두 줄뿐이다.
 - 통합 소스에서 story-framing8그룹/audio/joystick-intent120범위/charge-input126키보드·포인터/248생성파일 계약 통과. 실제 witness20초·Continue·모바일 한 입력 한 페이지·중복 방지, 실제 MP3 스트림20전환, desktop/mobile compositor115프레임을 다시 확인했다. 이 단위는 입력 변경과 대사/음악의 호환 확인이며 전80화면/769정책 미술 재검수는 아니다. master 추가 쓰기/Pages는 부모 검수 전 보류다.
+
+## 2026-10-22 — 새 인트로·막 엔딩 방향별 그림 최종 통합
+
+- 새 독립 가로·세로 8개 그림과 인트로 JPEG 2개를 원본 바이트 그대로 연결했다. `feat/responsive-story-art`의 현재 방향 선택·캐시·회전·지연/실패 보호를 사용한다. 거부된 그림 브랜치는 사용하지 않았다.
+- 새 실제 화면 검수에서 낮은 가로의 2막 종 상단 장식 crop 및 짧은 세로 인트로의 두 재개 버튼과 등불 근접을 발견했다. 해당 화면의 CSS object-position만 top으로 조정한다.
+- 별도 로고·본문·기획·성장·보상·지형·저장 형식은 보존한다. 검증과 남은 한계는 [실제 캡처 검수](stage-review/fresh-responsive-art-20261022/evidence/README.md)에 기록한다. 최종 부모 검수 전 master 병합/Pages 배포는 하지 않는다.
