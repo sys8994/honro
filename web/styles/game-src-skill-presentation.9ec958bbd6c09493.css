@@ -1,0 +1,246 @@
+/* Shared game and Workshop skill detail. A single scroll surface keeps all controls reachable. */
+.honro .skill-mechanics{color:#c8d7cf;font-size:12px;line-height:1.7;margin:10px 0 16px;padding-left:12px;border-left:2px solid #9aab8860;word-break:keep-all;overflow-wrap:anywhere}
+.honro .existence-info{margin:11px 0 16px;padding:9px 10px;border:1px solid #7084794d;border-radius:7px;background:#10232a8c;color:#d5ddd2}
+.honro .existence-caption{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;font-weight:700}
+.honro .existence-caption small{color:#aab8ac;font-size:10px;font-weight:400}
+.honro .existence-parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}
+.honro .existence-part{display:grid;grid-template-columns:14px minmax(0,1fr);align-items:center;column-gap:5px;font-size:10px}
+.honro .existence-part b{grid-row:span 2;font-size:11px}
+.honro .existence-part i{height:4px;overflow:hidden;border-radius:3px;background:#61716b55}
+.honro .existence-part em{display:block;height:100%;width:var(--existence-width);background:#c7a98d}
+.honro .existence-part:nth-child(2) em{background:#9bbfba}
+.honro .existence-part:nth-child(3) em{background:#bd9dcb}
+.honro .existence-part strong{font-weight:600;color:#ced9ce;font-variant-numeric:tabular-nums}
+.honro .dialog.talent-dialog,.honro .dialog.ultimate-dialog{width:min(760px,94vw);height:auto;max-height:92dvh;overflow:auto;overscroll-behavior:contain}
+.honro .talent-dialog .skill-modal-grid,.honro .ultimate-dialog .skill-modal-grid{display:block;height:auto}
+.honro .skill-modal-grid>section{display:block;min-height:0}
+.honro .skill-preview-shell{margin:14px 0 18px!important;box-shadow:none}
+.honro .skill-preview-shell canvas,.honro #previewcanvas{display:block;width:100%;height:clamp(230px,36vw,320px)!important;max-height:none!important;aspect-ratio:auto!important;object-fit:fill}
+.honro .effect-heading,.honro .effect-row{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:8px;padding:9px 12px;overflow-wrap:anywhere}
+.honro .effect-compare.at-max .effect-heading,.honro .effect-compare.at-max .effect-row{grid-template-columns:1.3fr 1fr}
+.honro .effect-compare.at-max .effect-heading>:nth-child(2),.honro .effect-compare.at-max .effect-row>:nth-child(2){display:none}
+@media(orientation:landscape) and (max-height:540px){
+ .honro .dialog.talent-dialog,.honro .dialog.ultimate-dialog{width:min(880px,96vw);height:auto;max-height:94dvh;padding:20px}
+ .honro .skill-desc,.honro .skill-mechanics{font-size:12px}
+ .honro .skill-preview-shell canvas,.honro #previewcanvas{height:250px!important}
+ .honro .talent-dialog .effect-heading,.honro .talent-dialog .effect-row{font-size:11px}
+ .honro .talent-dialog .skill-modal-grid,.honro .ultimate-dialog .skill-modal-grid{display:grid;grid-template-columns:minmax(180px,.65fr) minmax(250px,1.35fr);align-items:start;gap:16px}
+ .honro .skill-modal-stats{grid-column:1/-1}
+ .honro .skill-modal-preview .skill-preview-shell{margin:0!important}
+ .honro .talent-dialog .passive-detail .skill-modal-grid{display:block}
+}
+@media(max-width:540px) and (orientation:portrait){
+ .honro .dialog.talent-dialog,.honro .dialog.ultimate-dialog{width:96vw;padding:18px 14px}
+ .honro .effect-heading,.honro .effect-row{gap:5px;padding:9px 8px;font-size:10px}
+}
+/* Status is read in the field first. Details stay available to touch and keyboard users. */
+.honro #app .honro-compact-hud .hud-roster{position:relative}
+.honro #app .honro-compact-hud .combat-status{display:block!important;position:relative;margin:2px 0 0;min-height:0;line-height:1.25;font-size:10px}
+/* Keep the touch/keyboard status details reachable beside the joystick on short landscape phones. */
+@media (orientation:landscape) and (min-width:560px) and (max-width:899px) and (max-height:550px){
+ .honro #app .honro-compact-hud .combat-status{position:absolute!important;left:calc(var(--joystick-size) + 12px)!important;top:42px!important;margin:0!important;z-index:4}
+ .honro #app .honro-compact-hud .status-details .status-trigger{min-height:20px;padding:1px 5px}
+}
+.honro .status-details{position:relative;width:max-content;max-width:100%}
+.honro .status-details .status-trigger{font:inherit;line-height:inherit;margin:0;cursor:pointer;display:flex;align-items:center;gap:5px;max-width:100%;min-height:24px;border:1px solid #63817570;border-radius:5px;padding:3px 7px;background:#10282ddd;color:#d6e0d2;white-space:nowrap}
+.honro .status-details .status-trigger::after{content:'⌃';color:#9daea4;margin-left:3px}
+.honro .status-details .status-trigger:focus-visible{outline:2px solid #edcd82;outline-offset:2px}
+.honro .status-glyph{display:inline-flex;align-items:center;gap:3px;color:var(--status-color);font-weight:600}
+.honro .status-glyph svg{width:15px;height:15px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.honro .status-popover{position:absolute;bottom:calc(100% + 7px);left:0;z-index:15;width:min(290px,85vw);max-height:min(320px,55dvh);overflow:auto;padding:12px;background:#10232af5;border:1px solid #6b8377;border-radius:9px;box-shadow:0 6px 24px #0009;color:#d7ded6;font-size:12px;line-height:1.6;white-space:normal}
+.honro .status-popover>strong{display:block;margin-bottom:7px;color:#f0dfb6}
+.honro .status-popover p{margin:4px 0}
+.honro .status-popover .status-entry{display:flex;gap:7px;margin:6px 0;align-items:flex-start}
+.honro .status-popover .status-entry svg{flex:none;margin-top:2px}
+.honro .status-reason{padding-top:7px;border-top:1px solid #718a7040;color:#b9c8c0}
+.honro #app .combat-status .status-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media(max-width:540px),(orientation:landscape) and (max-height:540px){
+ .honro .status-details .status-trigger{min-height:24px;padding:2px 5px;font-size:10px}
+ .honro .status-popover{max-height:48dvh}
+}
+
+/* Portrait keeps status details reachable in the same row as the party. */
+@media(orientation:portrait) and (max-width:899px){
+ .honro #app .battle{--hud-roster-height:40px}
+ .honro #app .honro-compact-hud .hud-roster{display:grid!important;grid-template-columns:minmax(0,1fr) 36px!important;grid-template-rows:var(--hud-roster-height)!important;gap:6px!important;align-items:center!important}
+ .honro #app .honro-compact-hud .hero-switches{grid-column:1!important;grid-row:1!important;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;overflow:visible!important}
+ .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{width:100%!important;min-width:0!important;max-width:none!important;flex:none!important;padding-right:2px!important}
+ .honro #app .honro-compact-hud .combat-status{grid-column:2!important;grid-row:1!important;margin:0!important;justify-self:end!important}
+ .honro #app .honro-compact-hud .status-details .status-trigger{width:36px;height:36px;min-height:36px;padding:0;flex-direction:column;justify-content:center;gap:1px}
+ .honro #app .honro-compact-hud .status-details .status-trigger>.status-glyph{font-size:0;gap:0}
+ .honro #app .honro-compact-hud .status-details .status-trigger>.status-glyph svg{width:18px;height:18px}
+ .honro #app .honro-compact-hud .status-details .status-trigger::after{content:'상태';display:block;margin:0;font-size:8px;line-height:9px;color:#b7cbbf}
+ .honro #app .honro-compact-hud .status-popover{left:auto;right:0;max-width:calc(100vw - 32px)}
+}
+
+/* Legacy roster children spanned both columns; keep compact portrait placement explicit. */
+@media(orientation:portrait) and (max-width:899px){
+ .honro #app .honro-compact-hud .ally-chip span{flex:1;line-height:1.25!important}
+ .honro #app .honro-compact-hud .ally-chip strong,.honro #app .honro-compact-hud .ally-chip small{margin:0!important;line-height:1.25!important}
+}
+@media(orientation:portrait) and (max-width:380px){
+ .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{gap:2px!important}
+ .honro #app .honro-compact-hud .ally-chip canvas.portrait{width:24px!important}
+ .honro #app .honro-compact-hud .ally-chip[aria-label*=전투불능] small{font-size:7px!important}
+}
+
+/* Live passive state shares the existing status button; it never sits over a portrait.
+   Short labels preserve the 36px target and the unchanged HUD row reservation. */
+@media(orientation:portrait) and (max-width:899px){
+ .honro #app .honro-compact-hud .status-trigger[data-passive]>.status-glyph{display:none}
+ .honro #app .honro-compact-hud .status-trigger[data-passive]::after{content:attr(data-passive-label)}
+ .honro #app .honro-compact-hud .combat-passives{width:28px;height:20px;justify-content:center}
+ .honro #app .honro-compact-hud .combat-passives .passive-full{display:none}
+ .honro #app .honro-compact-hud .combat-passives .passive-short{display:inline;font-size:7px;line-height:12px}
+ .honro #app .honro-compact-hud .combat-passives .jucheon-state{gap:1px;padding:0;background:none;line-height:18px}
+ .honro #app .honro-compact-hud .combat-passives .jucheon-state svg{width:13px;height:13px;flex:none}
+ .honro #app .honro-compact-hud .combat-passives .sword-chain{gap:2px;padding:0;background:none;line-height:16px}
+ .honro #app .honro-compact-hud .combat-passives .sword-chain i{font-size:0;line-height:16px}
+ .honro #app .honro-compact-hud .combat-passives .sword-chain i::before{content:attr(data-short);font-size:7px}
+ .honro #app .honro-compact-hud .combat-status[data-limited=true] .status-trigger[data-passive]{border-color:#d6ab75}
+}
+
+/* Small portrait-phone trim: keep type and action sizes; reclaim only six pixels.
+   Move the real joystick hit box with its ring/knob, but counter-offset the wind
+   gauge so its screen position stays fixed and its gap grows from2px to6px. */
+@media(orientation:portrait) and (max-width:560px){
+ .honro #app .battle{--hud-roster-height:36px;--hud-vitals-height:18px;--joystick-lift:4px}
+ .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{height:var(--hud-roster-height)!important;min-height:var(--hud-roster-height)!important}
+ .honro #app .honro-compact-hud .ally-chip canvas.portrait{height:30px!important}
+ .honro #app .honro-compact-hud .meter{height:16px!important}
+ .honro #app .honro-compact-hud #joystick{top:calc(0px - var(--joystick-lift))!important}
+ .honro #app .honro-compact-hud .joystick .wind-gauge{top:calc(100% + 2px + var(--joystick-lift))!important}
+}
+
+/* Detail owns vertical scrolling; legacy panel clipping must not trap wheel input. */
+.honro #modal .dialog.talent-dialog,.honro #modal .dialog.ultimate-dialog{height:auto!important;max-height:92dvh!important;overflow-x:hidden!important;overflow-y:auto!important;touch-action:pan-y}
+.honro #modal .talent-detail,.honro #modal .skill-modal-grid,.honro #modal .skill-modal-summary,.honro #modal .skill-modal-stats,.honro #modal .effect-compare{height:auto;max-height:none;overflow:visible}
+.honro .skill-detail-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;margin:12px 0}
+.honro .talent-heading{padding-right:28px}
+.honro .skill-detail-actions button{min-height:38px;white-space:normal}
+
+/* Camp workbench: slots first, one selected branch, and readable decision data. */
+.honro .camp-v5 .camp-scroll{padding:16px 24px 30px;background:#191e19}
+.honro .camp-v5 .armory-shell{max-width:1120px}
+.honro .camp-v5 .hero-tabs{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:0 0 14px}
+.honro .camp-v5 .hero-tab{min-height:64px;padding:5px 12px 5px 4px;border-radius:5px;background:#242a22;box-shadow:none}
+.honro .camp-v5 .hero-tab.active{background:#32362a;border-color:#a99b6b}
+.honro .camp-v5 .hero-tab img{width:38px;height:48px}
+.honro .camp-v5 .hero-tab strong{font-size:14px}
+.honro .camp-v5 .hero-tab small{font-size:11px}
+.honro .camp-v5 .point-dot{position:static;margin-left:auto;background:none;border:0;color:#d3c58b;font-size:11px;white-space:nowrap;padding:0}
+.honro .camp-v5 .equipped-panel{padding:14px 16px;margin:0 0 10px;border-radius:5px;background:#23291f;box-shadow:none}
+.honro .camp-v5 .section-caption{margin-bottom:10px}
+.honro .camp-points{font-size:11px;color:#b8bba8}
+.honro .camp-points b{font-size:22px;color:#dfd3a3;margin-right:4px}
+.honro .camp-v5 .loadout-cards{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.honro .camp-v5 .slot-card{padding:10px 12px;min-height:96px;border-radius:4px;background:#2b3026;box-shadow:none}
+.honro .camp-v5 .slot-tag{font-size:9px}
+.honro .camp-v5 .slot-main{gap:9px;margin:6px 0}
+.honro .camp-v5 .slot-info strong{font-size:13px}
+.honro .camp-v5 .slot-info small{font-size:10px}
+.honro .camp-v5 .slot-foot .rank-track{display:none}
+.honro .camp-training{margin:0 0 12px;border:1px solid #59604b66;border-radius:4px;background:#24291f}
+.honro .camp-training>summary{padding:10px 13px;cursor:pointer;color:#c9cbb7;font-size:12px}
+.honro .camp-training>summary span{float:right;color:#aeb39c;font-size:11px}
+.honro .camp-training .hero-summary{margin:0;padding:12px;box-shadow:none;border:0;border-radius:0;background:none}
+.honro .camp-training .summary-identity>img{display:none}
+.honro .camp-training .stat-invest-panel{margin:0;padding:12px;border:0;border-top:1px solid #59604b66;border-radius:0;background:none}
+.honro .camp-v5 .ultimate-panel{display:flex;align-items:center;gap:14px;padding:10px 13px;margin:0 0 12px;border-radius:4px;box-shadow:none;background:#252923}
+.honro .camp-v5 .ultimate-core{flex:1;gap:8px}
+.honro .camp-v5 .ultimate-core h3{font-size:13px;margin:0}
+.honro .camp-v5 .ultimate-progress{flex:0 1 100px;margin:0}
+.honro .camp-v5 .ultimate-actions{margin:0}
+.honro .camp-v5 .tree-tools{margin:14px 0 8px}
+.honro .camp-v5 .tree-grid{display:block}
+.honro .camp-v5 .branch{display:none;border-radius:4px;background:#22271f;padding:8px 12px;box-shadow:none}
+.honro .camp-v5 .branch.mobile-current{display:block}
+.honro .camp-v5 .branch-head{display:none}
+.honro .camp-v5 .branch-tabs{display:flex;gap:6px;margin:0;border-bottom:1px solid #60664d}
+.honro .camp-v5 .branch-tabs button{flex:1;padding:11px 8px;border-radius:4px 4px 0 0;background:#272c23;color:#aeb39e;border-color:transparent;font-size:12px}
+.honro .camp-v5 .branch-tabs button.active{color:#e2d6a4;border-bottom:2px solid #c4b378;background:#33372b}
+.honro .camp-v5 .branch-nodes{gap:0}
+.honro .camp-v5 .tree-node{display:flex;align-items:center;gap:12px;min-height:99px;border:0;border-bottom:1px solid #51584366;border-radius:0;background:none;box-shadow:none;padding:12px 100px 12px 2px}
+.honro .camp-v5 .tree-node:after{display:none}
+.honro .camp-v5 .node-tier{display:none}
+.honro .camp-v5 .node-body{flex:1;min-width:0}
+.honro .camp-v5 .node-name{font-size:14px}
+.honro .camp-v5 .node-effect{display:block;font-size:12px;color:#b8bfab;line-height:1.6;margin:4px 0;max-width:760px;white-space:normal;word-break:keep-all;overflow-wrap:anywhere}
+.honro .camp-v5 .node-sub{display:inline-flex;gap:4px;font-size:11px;margin:0}
+.honro .camp-v5 .node-cost{margin-left:10px;font-size:11px;color:#aebbaa}
+.honro .camp-v5 .node-stepper{right:4px;top:50%;transform:translateY(-50%);display:flex;flex-direction:row;gap:4px;width:auto}
+.honro .camp-v5 .node-stepper>span{display:none}
+.honro .camp-v5 .rank-step{width:34px;height:38px;border-radius:4px}
+.honro .camp-v5 .passive-summary{margin:10px 0;padding:10px 12px;border-radius:4px;background:#24291f}
+/* The title and its actions share one sticky surface above the real preview. */
+.honro #modal .skill-detail-controls,.honro #overlay .skill-detail-controls{position:sticky;top:-1px;z-index:4;background:#20271f;padding:10px 0 8px;border-bottom:1px solid #6a71574d}
+.honro .skill-detail-controls .talent-heading{margin:0;padding-right:34px}
+.honro .skill-detail-controls .skill-detail-actions{margin:10px 0 0;gap:6px}
+.honro .skill-detail-controls .skill-detail-actions button{min-height:42px;padding:8px 12px;font-size:12px}
+.honro #modal .dialog.equip-dialog{width:min(800px,96vw);max-height:92dvh;overflow:auto;background:#20271f}
+.honro .equip-dialog h2{font-size:21px;margin:0 0 16px;padding-right:24px}
+.honro .loadout-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+.honro .loadout-compare-card{border:1px solid #69735580;border-radius:5px;background:#2b3226;padding:13px;min-width:0}
+.honro .loadout-compare-card>small{font-size:11px;color:#afb99e}
+.honro .compare-skill-name{display:flex;align-items:center;gap:8px;margin:9px 0}
+.honro .loadout-compare-card p{font-size:12px;line-height:1.7;margin:8px 0;color:#c4cbb7;word-break:keep-all;overflow-wrap:anywhere}
+.honro .loadout-compare-card>span{font-size:11px;color:#cfc493}
+.honro .equip-swap-note{font-size:12px;color:#d8c793}
+.honro .equip-swap-note:empty{display:none}
+.honro .equip-dialog .swap-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.honro .swap-choice{min-width:0;border:2px solid transparent;border-radius:6px}
+.honro .swap-choice.selected{border-color:#d1bf82}
+.honro .swap-choice .slot-card{width:100%;height:100%;padding:10px;min-height:110px;box-shadow:none}
+.honro .swap-choice .rank-track{display:none}
+.honro .equip-dialog .equip-library{display:block;margin-top:20px}
+.honro .equip-dialog .equip-option{width:100%;min-width:0;gap:10px;margin:0;border:1px solid transparent;border-bottom-color:#5b664b66;border-radius:0;padding:12px 8px;background:none;text-align:left}
+.honro .equip-dialog .equip-option.selected{border:1px solid #c5b47a;background:#39402d}
+.honro .equip-dialog .equip-option>span{min-width:0;flex:1}
+.honro .equip-dialog .equip-option small{white-space:normal;word-break:keep-all;line-height:1.6;margin-top:4px;color:#b7c0aa}
+.honro .equip-dialog .equip-option em{flex:none;font-size:10px}
+.honro .equip-comparison>.btn{margin:0 8px 8px 0;min-height:42px}
+@media(max-width:620px){
+ .honro .camp-v5 .camp-scroll{padding:12px 10px 24px}
+ .honro .camp-v5 .hero-tabs{gap:4px;margin-bottom:10px}
+ .honro .camp-v5 .hero-tab{padding:8px 3px;min-height:54px;display:block;text-align:center}
+ .honro .camp-v5 .hero-tab img,.honro .camp-v5 .hero-tab .point-dot{display:none}
+ .honro .camp-v5 .hero-tab strong{font-size:12px}
+ .honro .camp-v5 .hero-tab small{font-size:9px}
+ .honro .camp-v5 .equipped-panel{padding:10px 8px}
+ .honro .camp-v5 .loadout-cards{gap:4px}
+ .honro .camp-v5 .slot-card{padding:8px 3px;min-height:104px;text-align:center}
+ .honro .camp-v5 .slot-main{flex-direction:column;gap:5px;margin:5px 0}
+ .honro .camp-v5 .slot-tag{font-size:8px;align-self:center}
+ .honro .camp-v5 .slot-info strong{font-size:11px}
+ .honro .camp-v5 .slot-info small{display:none}
+ .honro .camp-v5 .slot-foot{justify-content:center;font-size:9px}
+ .honro .camp-v5 .slot-foot>svg{display:none}
+ .honro .camp-v5 .ultimate-panel{gap:8px}
+ .honro .camp-v5 .ultimate-panel>.ultimate-progress{display:none}
+ .honro .camp-v5 .tree-node{gap:8px;padding-right:82px;min-height:110px}
+ .honro .camp-v5 .node-name{font-size:12px}
+ .honro .camp-v5 .node-effect{font-size:11px}
+ .honro .camp-v5 .node-cost{display:block;margin:3px 0 0}
+ .honro .camp-v5 .rank-step{width:32px;height:38px}
+ .honro .camp-v5 .branch-tabs button{font-size:11px;padding:10px 3px}
+ .honro .loadout-compare{grid-template-columns:1fr;gap:8px}
+ .honro .loadout-compare-card{padding:10px}
+ .honro .equip-dialog .swap-cards{gap:4px}
+ .honro .swap-choice .slot-card{padding:7px 4px;min-height:104px}
+ .honro .swap-choice .slot-main{flex-direction:column;align-items:flex-start;gap:5px}
+ .honro .swap-choice .slot-info strong{font-size:11px}
+ .honro .swap-choice .slot-info small{display:none}
+ .honro .skill-detail-controls .skill-detail-actions button{font-size:11px;padding:8px}
+}
+@media(orientation:landscape) and (max-height:540px){
+ .honro .camp-v5 .hero-tab{min-height:45px;padding-top:3px;padding-bottom:3px}
+ .honro .camp-v5 .hero-tab img{width:28px;height:34px}
+ .honro .camp-v5 .slot-card{min-height:78px;padding-top:6px;padding-bottom:6px}
+ .honro .camp-v5 .camp-scroll{padding-top:10px}
+ .honro #modal .dialog.talent-dialog,.honro #modal .dialog.ultimate-dialog{padding:14px 18px}
+ .honro .skill-detail-controls{padding-top:4px!important}
+ .honro .skill-detail-controls .talent-heading h2{font-size:20px}
+ .honro .skill-detail-controls .skill-detail-actions{margin-top:6px}
+}
+/* Keep the icon compact; only the explanatory text takes the available row width. */
+.honro .equip-dialog .equip-option>.skill-stamp{flex:0 0 36px;width:36px;min-width:36px;height:36px}

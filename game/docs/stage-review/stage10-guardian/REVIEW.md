@@ -36,3 +36,7 @@
 공중 적 회귀의 현재-data fixture는 의도적으로 변경된10장 후보9188df59에 맞춰 갱신하고 이전d7244a8a hash/출처를 남겼다. 먼저 별도10장 검사에서 다른29장/library 불변을 확인했으며 공중 배치/구저장 검사를 다시 통과했다. 역사guardian Stage1 실패 기대값은 바꾸지 않았다.
 
 최종 overview/보호 시작/승리3장의 Library 저장 요청은 `hosted apps tools/call request failed: network`로 실패했다. 확인된ID가 없고 요청 결과를 확정할 수 없어 중복 요청하지 않았다. 원본 화면은 이 브랜치의 `evidence/final/`과 `evidence/browser/`에 보존했다.
+
+## 타이틀 CSS 통합 회귀
+
+최신master5a1627e39fab2fb7badea7573b1544008dc5e3ad를 병합했다. title.css/main/bgm/campUI/music-titles는 그 master 원본과 동일하다. 공통 빌드 재생성 후 실제 정상 자원 보호 체크포인트→19라운드 승리→소단 합류→11장 진입을 다시 확인했다. 7개 핵심 지형 캡처가9188df59 최종 검수본과 PNG바이트까지 동일하고 중앙 화면을 직접 열어 확인했다. 타이틀의24개 loading/ready/new/continue 레이아웃·자산 표시 크기·가로 유지·저장 버튼/설정 검사를 통과했으며390세로 ready 화면도 직접 확인했다. 공개 사이트/CLI API제한은 재시도하지 않았다.
