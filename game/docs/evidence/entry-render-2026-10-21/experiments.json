@@ -1,0 +1,162 @@
+[
+  {
+    "experiment": "profile-before",
+    "kind": "new",
+    "entryMedian": 322.20000000018626,
+    "entrySamples": [
+      322.20000000018626,
+      373.39999999990687,
+      298.70000000018626
+    ],
+    "methodsMedian": {
+      "showRest": 284.20000000018626,
+      "drawPortraits": 0,
+      "getImageData": 19.299999999813735,
+      "unit": 29.200000000186265
+    }
+  },
+  {
+    "experiment": "profile-before",
+    "kind": "continue21",
+    "entryMedian": 1079.1000000000931,
+    "entrySamples": [
+      1079.1000000000931,
+      1013.3000000002794,
+      1141.8999999999069
+    ],
+    "methodsMedian": {
+      "showRest": 0,
+      "drawPortraits": 166.5,
+      "getImageData": 25.200000000186265,
+      "unit": 71.19999999925494
+    }
+  },
+  {
+    "experiment": "profile-bounds",
+    "kind": "new",
+    "entryMedian": 355.3000000002794,
+    "entrySamples": [
+      355.3000000002794,
+      360.79999999981374,
+      347.10000000009313
+    ],
+    "methodsMedian": {
+      "showRest": 318.09999999962747,
+      "drawPortraits": 0,
+      "getImageData": 23.199999999720603,
+      "unit": 32
+    }
+  },
+  {
+    "experiment": "profile-bounds",
+    "kind": "continue21",
+    "entryMedian": 1031.6000000000931,
+    "entrySamples": [
+      1031.6000000000931,
+      1040.1000000000931,
+      973.1999999997206
+    ],
+    "methodsMedian": {
+      "showRest": 0,
+      "drawPortraits": 153,
+      "getImageData": 26.59999999962747,
+      "unit": 66.10000000009313
+    }
+  },
+  {
+    "experiment": "profile-layout",
+    "kind": "new",
+    "entryMedian": 336,
+    "entrySamples": [
+      351,
+      336,
+      312.5
+    ],
+    "methodsMedian": {
+      "showRest": 293.39999999990687,
+      "drawPortraits": 0,
+      "getImageData": 22.09999999962747,
+      "unit": 27.5
+    }
+  },
+  {
+    "experiment": "profile-layout",
+    "kind": "continue21",
+    "entryMedian": 1123.3000000002794,
+    "entrySamples": [
+      1123.3000000002794,
+      1110.3000000002794,
+      1328.7999999998137
+    ],
+    "methodsMedian": {
+      "showRest": 0,
+      "drawPortraits": 170.39999999990687,
+      "getImageData": 29.399999999441206,
+      "unit": 73.39999999990687
+    }
+  },
+  {
+    "experiment": "profile-readback",
+    "kind": "new",
+    "entryMedian": 335.90000000037253,
+    "entrySamples": [
+      335.90000000037253,
+      333.29999999981374,
+      368
+    ],
+    "methodsMedian": {
+      "showRest": 297.60000000009313,
+      "drawPortraits": 0,
+      "getImageData": 24.199999999720603,
+      "unit": 31.100000000093132
+    }
+  },
+  {
+    "experiment": "profile-readback",
+    "kind": "continue21",
+    "entryMedian": 1174.5,
+    "entrySamples": [
+      1174.5,
+      1188.6000000000931,
+      1165.1000000000931
+    ],
+    "methodsMedian": {
+      "showRest": 0,
+      "drawPortraits": 193.8000000002794,
+      "getImageData": 32.799999999813735,
+      "unit": 78.10000000102445
+    }
+  },
+  {
+    "experiment": "profile-reuse",
+    "kind": "new",
+    "entryMedian": 361.60000000009313,
+    "entrySamples": [
+      434.89999999990687,
+      361.60000000009313,
+      335.40000000037253
+    ],
+    "methodsMedian": {
+      "showRest": 317.20000000018626,
+      "drawPortraits": 0,
+      "getImageData": 24.199999999720603,
+      "unit": 31.799999999813735
+    }
+  },
+  {
+    "experiment": "profile-reuse",
+    "kind": "continue21",
+    "entryMedian": 1130.7999999998137,
+    "entrySamples": [
+      1211.1999999997206,
+      1130.7999999998137,
+      973.2999999998137
+    ],
+    "methodsMedian": {
+      "showRest": 0,
+      "drawPortraits": 173.60000000009313,
+      "getImageData": 32.299999999348074,
+      "unit": 64.40000000037253
+    }
+  }
+]

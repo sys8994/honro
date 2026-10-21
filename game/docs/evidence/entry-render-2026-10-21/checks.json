@@ -1,0 +1,62 @@
+[
+  {
+    "kind": "new",
+    "width": 390,
+    "audio": "running",
+    "state": {
+      "screen": "rest",
+      "stage": null,
+      "round": null,
+      "prepared": [
+        1
+      ],
+      "storedBattle": null
+    },
+    "errors": []
+  },
+  {
+    "kind": "continue21",
+    "width": 390,
+    "audio": "running",
+    "state": {
+      "screen": "battle",
+      "stage": 21,
+      "round": 3,
+      "prepared": [
+        21
+      ],
+      "storedBattle": 21
+    },
+    "errors": []
+  },
+  {
+    "kind": "new",
+    "width": 1280,
+    "audio": "running",
+    "state": {
+      "screen": "rest",
+      "stage": null,
+      "round": null,
+      "prepared": [
+        1
+      ],
+      "storedBattle": null
+    },
+    "errors": []
+  },
+  {
+    "kind": "continue21",
+    "width": 1280,
+    "audio": "running",
+    "state": {
+      "screen": "battle",
+      "stage": 21,
+      "round": 3,
+      "prepared": [
+        21
+      ],
+      "storedBattle": 21
+    },
+    "errors": []
+  }
+]
