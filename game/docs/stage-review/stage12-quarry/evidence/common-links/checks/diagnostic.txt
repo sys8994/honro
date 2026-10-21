@@ -1,0 +1,76 @@
+STAGE 1 act1 true spatial false
+forest-floor surface 203 rooms  blocks null planes 3
+pine-branch-west surface 55 rooms  blocks null planes 2
+ridge-east-extension surface 78 rooms  blocks null planes 2
+pine-branch-east surface 23 rooms  blocks null planes 2
+fc-choice-1-low-pine-root surface 4 rooms  blocks null planes 2
+STAGE 11 act1 false spatial true
+act2-floor surface 32 rooms west-entry,west-crown,west-canopy,saddle-crossfire,ritual-court,root-underpass,lower-refuge,ravine-canopy,east-overlook,north-return blocks 10 planes 4
+rv-west-shoulder surface 7 rooms west-entry,west-crown blocks 2 planes 4
+rv-ritual-reflection-ledge surface 3 rooms saddle-crossfire,ritual-court blocks 0 planes 4
+rv-ritual-reflection-wall surface 2 rooms saddle-crossfire,ritual-court blocks 2 planes 4
+rv-refuge-mouth-ceiling surface 2 rooms ritual-court,lower-refuge,ravine-canopy blocks 3 planes 4
+rv-east-upper-fire-bay surface 2 rooms east-overlook blocks 0 planes 4
+rv-west-stone-arch surface 4 rooms west-crown blocks 1 planes 4
+rv-west-rock-crown surface 4 rooms west-canopy,saddle-crossfire blocks 2 planes 4
+rv-ritual-buttress surface 8 rooms ritual-court,root-underpass,lower-refuge,ravine-canopy blocks 4 planes 4
+rv-lower-west-shelf surface 4 rooms root-underpass blocks 1 planes 4
+rv-lower-refuge-rock surface 6 rooms root-underpass,lower-refuge,ravine-canopy,north-return blocks 4 planes 4
+rv-east-tower surface 5 rooms east-overlook,north-return blocks 2 planes 4
+rv-north-trace surface 18 rooms lower-refuge,north-return blocks 2 planes 4
+rv-west-main-root surface 2 rooms west-crown,ritual-court blocks 0 planes 4
+rv-west-climbing-trunk surface 3 rooms west-crown,west-canopy blocks 0 planes 4
+rv-west-umbrella surface 4 rooms west-canopy blocks 0 planes 4
+rv-west-low-bough surface 2 rooms west-crown,west-canopy blocks 0 planes 4
+rv-saddle-canopy-crossing surface 4 rooms west-canopy,saddle-crossfire blocks 0 planes 4
+rv-saddle-canopy-landing surface 2 rooms east-overlook blocks 0 planes 4
+rv-ritual-root-socket surface 3 rooms saddle-crossfire,ritual-court blocks 0 planes 4
+rv-saddle-fallen-trunk surface 4 rooms west-canopy,saddle-crossfire,ritual-court blocks 0 planes 4
+rv-saddle-swept-bough surface 2 rooms west-canopy,saddle-crossfire blocks 0 planes 4
+rv-saddle-broken-arm surface 2 rooms saddle-crossfire blocks 0 planes 4
+rv-root-west-return surface 4 rooms west-crown,ritual-court,root-underpass blocks 0 planes 4
+rv-root-east-descent surface 3 rooms ritual-court,lower-refuge,ravine-canopy blocks 0 planes 4
+rv-root-arch surface 4 rooms ritual-court,root-underpass,lower-refuge,ravine-canopy blocks 0 planes 4
+rv-east-rising-root surface 2 rooms ritual-court,east-overlook blocks 0 planes 4
+rv-east-cliff-return surface 2 rooms east-overlook,north-return blocks 0 planes 4
+rv-east-windswept-bough surface 3 rooms east-overlook blocks 0 planes 4
+rv-east-canopy-access surface 1 rooms east-overlook blocks 0 planes 4
+rv-east-lower-arm surface 2 rooms east-overlook,north-return blocks 0 planes 4
+STAGE 12 act1 false spatial true
+sq-old-road surface 19 rooms quarry-A blocks 1 planes 4
+sq-north-quarry surface 11 rooms quarry-B blocks 1 planes 4
+sq-west-quarry surface 8 rooms quarry-C blocks 1 planes 4
+sq-west-turn-high surface 1 rooms quarry-D blocks 0 planes 4
+sq-west-turn-low surface 1 rooms quarry-D blocks 0 planes 4
+sq-lower-ground surface 49 rooms quarry-E,quarry-F blocks 2 planes 4
+sq-inner-joint surface 1 rooms quarry-C blocks 0 planes 4
+sq-back-road surface 6 rooms quarry-G blocks 1 planes 4
+sq-east-turn surface 1 rooms quarry-G blocks 0 planes 4
+sq-cave-buttress surface 0 rooms quarry-H blocks 0 planes 4
+sq-cave-roof surface 12 rooms quarry-H blocks 1 planes 4
+sq-turning-veil surface 0 rooms quarry-H blocks 0 planes 4
+STAGE 13 act1 false spatial true
+act2-floor surface 130 rooms sunken-forecourt,mason-ledge,stone-threshold,low-gallery,inner-pocket blocks 5 planes 4
+cave-roof surface 70 rooms stone-threshold,low-gallery,inner-pocket blocks 3 planes 4
+forecourt-shot-ledge surface 1 rooms  blocks 0 planes 4
+gate-gate surface 0 rooms  blocks 0 planes 4
+tactical-entry-shoulder surface 4 rooms sunken-forecourt blocks 1 planes 4
+tactical-entry-west-ramp surface 2 rooms sunken-forecourt blocks 0 planes 4
+tactical-mason-return surface 2 rooms sunken-forecourt blocks 0 planes 4
+tactical-inner-gallery surface 4 rooms low-gallery blocks 1 planes 4
+tactical-inner-west-ramp surface 2 rooms low-gallery blocks 0 planes 4
+tactical-inner-east-ramp surface 2 rooms low-gallery blocks 0 planes 4
+STAGE 15 act1 false spatial true
+act2-floor surface 130 rooms wet-approach,sluice-neck,open-shaft,carved-groove,temple-stair blocks 5 planes 4
+cave-roof surface 129 rooms wet-approach,sluice-neck,open-shaft,carved-groove,temple-stair,dry-shoulder blocks 5 planes 4
+dry-shoulder surface 1 rooms dry-shoulder blocks 0 planes 4
+fc15-west-arch surface 71 rooms open-shaft blocks 1 planes 4
+fc15-east-arch surface 41 rooms temple-stair blocks 1 planes 4
+fc15-west-shoulder surface 2 rooms open-shaft blocks 0 planes 4
+fc15-crown-return surface 1 rooms open-shaft blocks 0 planes 4
+fc15-water-toe surface 2 rooms carved-groove blocks 0 planes 4
+fc15-east-access surface 1 rooms temple-stair blocks 0 planes 4
+fc15-dry-basin-rim surface 4 rooms carved-groove blocks 0 planes 4
+fc15-drained-ledge surface 4 rooms  blocks 0 planes 4
+fc15-safe-crown-descent surface 5 rooms  blocks 0 planes 4
+cart wheel min gaps [ 3.7535392828467593, 0 ]

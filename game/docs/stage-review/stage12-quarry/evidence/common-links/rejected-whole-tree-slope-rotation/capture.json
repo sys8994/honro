@@ -1,0 +1,47 @@
+{
+  "label": "common-links-grounded-pines",
+  "url": "http://127.0.0.1:8860/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "dc8f128a0873131205e69e8edd456b89debc1785",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M tests/stage12-common-full.mjs\n M tools/environment/stage12-quarry-art.mjs\n M tools/map-forge/stage12-quarry-geometry.mjs\n D web/data/campaign.5d1fad6a7a3066a6.json\n D web/data/campaign.c0552e9ad36baaff.json\n D web/data/chapter-12.6dee6e8398f66e56.json\n D web/data/chapter-12.e81e2caacc143a6d.json\n D web/entries/game.45b7adc6df3817fe.html\n D web/entries/game.6030220a2b1c9278.html\n D web/entries/game.7e1ecb93fd7ae7c3.js\n D web/entries/game.9df24521296547e9.js\n D web/entries/workshop.66c49a61611dc61f.js\n D web/entries/workshop.ad7f42597a4beaac.js\n M web/manifest.json\n D web/runtime/campaign.5ddc6c682f9955a7.js\n D web/runtime/campaign.d34326b9729fa8ed.js\n?? tools/testing/stage12-common-links.mjs\n?? web/data/campaign.5f788e18bdd7f28e.json\n?? web/data/campaign.76d592bcf2366629.json\n?? web/data/chapter-12.88162a924008edd5.json\n?? web/data/chapter-12.edf156b153c2f844.json\n?? web/entries/game.28504c7989d74966.js\n?? web/entries/game.5a085dc4f29a32a9.js\n?? web/entries/game.a035bddedebe9ec4.html\n?? web/entries/game.d0bebce07680c423.html\n?? web/entries/workshop.a1113cc0bca84942.js\n?? web/entries/workshop.e31bfd1cfb46d515.js\n?? web/runtime/campaign.488d8f4fd7d95f96.js\n?? web/runtime/campaign.991755218690182f.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "central-normal",
+      "camera": {
+        "x": 6400,
+        "y": 4800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "old-road-party",
+      "camera": {
+        "x": 10200,
+        "y": 2200,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "carrier-cart",
+      "camera": {
+        "x": 7730,
+        "y": 3250,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 12,
+      "view": "central-mobile",
+      "camera": {
+        "x": 6300,
+        "y": 4600,
+        "scale": 0.55
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,62 @@
+{
+  "stages": [
+    {
+      "stage": 1,
+      "act1Active": true,
+      "spatialActive": false,
+      "terrains": [
+        {
+          "id": "forest-floor",
+          "renderer": "Act1SpatialArt",
+          "edges": 251,
+          "planes": 3,
+          "features": [
+            {
+              "x": 240,
+              "width": 1100,
+              "height": 470
+            },
+            {
+              "x": 2880,
+              "width": 1200,
+              "height": 750
+            },
+            {
+              "x": 3850,
+              "width": 1200,
+              "height": 650
+            }
+          ]
+        },
+        {
+          "id": "pine-branch-west",
+          "renderer": "Act1SpatialArt",
+          "edges": 4,
+          "planes": 2,
+          "features": []
+        },
+        {
+          "id": "ridge-east-extension",
+          "renderer": "Act1SpatialArt",
+          "edges": 78,
+          "planes": 2,
+          "features": []
+        },
+        {
+          "id": "pine-branch-east",
+          "renderer": "Act1SpatialArt",
+          "edges": 4,
+          "planes": 2,
+          "features": []
+        },
+        {
+          "id": "fc-choice-1-low-pine-root",
+          "renderer": "Act1SpatialArt",
+          "edges": 4,
+          "planes": 2,
+          "features": []
+        }
+      ]
+    }
+  ]
+}

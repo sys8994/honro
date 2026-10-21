@@ -1,0 +1,3495 @@
+{
+  "stages": [
+    {
+      "stage": 1,
+      "act1Active": true,
+      "spatialActive": false,
+      "terrains": [
+        {
+          "id": "forest-floor",
+          "renderer": "Act1SpatialArt",
+          "edges": 203,
+          "planes": 3,
+          "features": [
+            {
+              "x": 240,
+              "width": 1100,
+              "height": 470
+            },
+            {
+              "x": 2880,
+              "width": 1200,
+              "height": 750
+            },
+            {
+              "x": 3850,
+              "width": 1200,
+              "height": 650
+            }
+          ]
+        },
+        {
+          "id": "pine-branch-west",
+          "renderer": "Act1SpatialArt",
+          "edges": 55,
+          "planes": 2,
+          "features": []
+        },
+        {
+          "id": "ridge-east-extension",
+          "renderer": "Act1SpatialArt",
+          "edges": 78,
+          "planes": 2,
+          "features": []
+        },
+        {
+          "id": "pine-branch-east",
+          "renderer": "Act1SpatialArt",
+          "edges": 23,
+          "planes": 2,
+          "features": []
+        },
+        {
+          "id": "fc-choice-1-low-pine-root",
+          "renderer": "Act1SpatialArt",
+          "edges": 4,
+          "planes": 2,
+          "features": []
+        }
+      ]
+    },
+    {
+      "stage": 11,
+      "act1Active": false,
+      "spatialActive": true,
+      "terrains": [
+        {
+          "id": "act2-floor",
+          "oneWay": false,
+          "surfaceCount": 32,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "namedRooms": [
+            {
+              "id": "west-entry",
+              "bounds": {
+                "x": 0,
+                "y": 5750,
+                "w": 2000,
+                "h": 1700
+              }
+            },
+            {
+              "id": "west-crown",
+              "bounds": {
+                "x": 1800,
+                "y": 5700,
+                "w": 2900,
+                "h": 2800
+              }
+            },
+            {
+              "id": "west-canopy",
+              "bounds": {
+                "x": 1800,
+                "y": 4050,
+                "w": 4700,
+                "h": 1750
+              }
+            },
+            {
+              "id": "saddle-crossfire",
+              "bounds": {
+                "x": 5450,
+                "y": 4700,
+                "w": 2800,
+                "h": 1950
+              }
+            },
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            },
+            {
+              "id": "root-underpass",
+              "bounds": {
+                "x": 3950,
+                "y": 8050,
+                "w": 4000,
+                "h": 1800
+              }
+            },
+            {
+              "id": "lower-refuge",
+              "bounds": {
+                "x": 7950,
+                "y": 8300,
+                "w": 3400,
+                "h": 1700
+              }
+            },
+            {
+              "id": "ravine-canopy",
+              "bounds": {
+                "x": 7400,
+                "y": 7700,
+                "w": 3400,
+                "h": 1500
+              }
+            },
+            {
+              "id": "east-overlook",
+              "bounds": {
+                "x": 9250,
+                "y": 4050,
+                "w": 4200,
+                "h": 2550
+              }
+            },
+            {
+              "id": "north-return",
+              "bounds": {
+                "x": 11100,
+                "y": 5250,
+                "w": 4900,
+                "h": 4900
+              }
+            }
+          ],
+          "blocks": 10,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-west-shoulder",
+          "oneWay": false,
+          "surfaceCount": 7,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "namedRooms": [
+            {
+              "id": "west-entry",
+              "bounds": {
+                "x": 0,
+                "y": 5750,
+                "w": 2000,
+                "h": 1700
+              }
+            },
+            {
+              "id": "west-crown",
+              "bounds": {
+                "x": 1800,
+                "y": 5700,
+                "w": 2900,
+                "h": 2800
+              }
+            }
+          ],
+          "blocks": 2,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-ritual-reflection-ledge",
+          "oneWay": true,
+          "surfaceCount": 3,
+          "edgeIndices": [
+            0,
+            1,
+            2
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2
+          ],
+          "namedRooms": [
+            {
+              "id": "saddle-crossfire",
+              "bounds": {
+                "x": 5450,
+                "y": 4700,
+                "w": 2800,
+                "h": 1950
+              }
+            },
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-ritual-reflection-wall",
+          "oneWay": false,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "saddle-crossfire",
+              "bounds": {
+                "x": 5450,
+                "y": 4700,
+                "w": 2800,
+                "h": 1950
+              }
+            },
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            }
+          ],
+          "blocks": 2,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-refuge-mouth-ceiling",
+          "oneWay": false,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            },
+            {
+              "id": "lower-refuge",
+              "bounds": {
+                "x": 7950,
+                "y": 8300,
+                "w": 3400,
+                "h": 1700
+              }
+            },
+            {
+              "id": "ravine-canopy",
+              "bounds": {
+                "x": 7400,
+                "y": 7700,
+                "w": 3400,
+                "h": 1500
+              }
+            }
+          ],
+          "blocks": 3,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-east-upper-fire-bay",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "east-overlook",
+              "bounds": {
+                "x": 9250,
+                "y": 4050,
+                "w": 4200,
+                "h": 2550
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-west-stone-arch",
+          "oneWay": false,
+          "surfaceCount": 4,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [
+            {
+              "id": "west-crown",
+              "bounds": {
+                "x": 1800,
+                "y": 5700,
+                "w": 2900,
+                "h": 2800
+              }
+            }
+          ],
+          "blocks": 1,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-west-rock-crown",
+          "oneWay": false,
+          "surfaceCount": 4,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [
+            {
+              "id": "west-canopy",
+              "bounds": {
+                "x": 1800,
+                "y": 4050,
+                "w": 4700,
+                "h": 1750
+              }
+            },
+            {
+              "id": "saddle-crossfire",
+              "bounds": {
+                "x": 5450,
+                "y": 4700,
+                "w": 2800,
+                "h": 1950
+              }
+            }
+          ],
+          "blocks": 2,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-ritual-buttress",
+          "oneWay": false,
+          "surfaceCount": 8,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "namedRooms": [
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            },
+            {
+              "id": "root-underpass",
+              "bounds": {
+                "x": 3950,
+                "y": 8050,
+                "w": 4000,
+                "h": 1800
+              }
+            },
+            {
+              "id": "lower-refuge",
+              "bounds": {
+                "x": 7950,
+                "y": 8300,
+                "w": 3400,
+                "h": 1700
+              }
+            },
+            {
+              "id": "ravine-canopy",
+              "bounds": {
+                "x": 7400,
+                "y": 7700,
+                "w": 3400,
+                "h": 1500
+              }
+            }
+          ],
+          "blocks": 4,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-lower-west-shelf",
+          "oneWay": false,
+          "surfaceCount": 4,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [
+            {
+              "id": "root-underpass",
+              "bounds": {
+                "x": 3950,
+                "y": 8050,
+                "w": 4000,
+                "h": 1800
+              }
+            }
+          ],
+          "blocks": 1,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-lower-refuge-rock",
+          "oneWay": false,
+          "surfaceCount": 6,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "namedRooms": [
+            {
+              "id": "root-underpass",
+              "bounds": {
+                "x": 3950,
+                "y": 8050,
+                "w": 4000,
+                "h": 1800
+              }
+            },
+            {
+              "id": "lower-refuge",
+              "bounds": {
+                "x": 7950,
+                "y": 8300,
+                "w": 3400,
+                "h": 1700
+              }
+            },
+            {
+              "id": "ravine-canopy",
+              "bounds": {
+                "x": 7400,
+                "y": 7700,
+                "w": 3400,
+                "h": 1500
+              }
+            },
+            {
+              "id": "north-return",
+              "bounds": {
+                "x": 11100,
+                "y": 5250,
+                "w": 4900,
+                "h": 4900
+              }
+            }
+          ],
+          "blocks": 4,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-east-tower",
+          "oneWay": false,
+          "surfaceCount": 5,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "namedRooms": [
+            {
+              "id": "east-overlook",
+              "bounds": {
+                "x": 9250,
+                "y": 4050,
+                "w": 4200,
+                "h": 2550
+              }
+            },
+            {
+              "id": "north-return",
+              "bounds": {
+                "x": 11100,
+                "y": 5250,
+                "w": 4900,
+                "h": 4900
+              }
+            }
+          ],
+          "blocks": 2,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-north-trace",
+          "oneWay": false,
+          "surfaceCount": 18,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "namedRooms": [
+            {
+              "id": "lower-refuge",
+              "bounds": {
+                "x": 7950,
+                "y": 8300,
+                "w": 3400,
+                "h": 1700
+              }
+            },
+            {
+              "id": "north-return",
+              "bounds": {
+                "x": 11100,
+                "y": 5250,
+                "w": 4900,
+                "h": 4900
+              }
+            }
+          ],
+          "blocks": 2,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-west-main-root",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "west-crown",
+              "bounds": {
+                "x": 1800,
+                "y": 5700,
+                "w": 2900,
+                "h": 2800
+              }
+            },
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-west-climbing-trunk",
+          "oneWay": true,
+          "surfaceCount": 3,
+          "edgeIndices": [
+            0,
+            1,
+            2
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2
+          ],
+          "namedRooms": [
+            {
+              "id": "west-crown",
+              "bounds": {
+                "x": 1800,
+                "y": 5700,
+                "w": 2900,
+                "h": 2800
+              }
+            },
+            {
+              "id": "west-canopy",
+              "bounds": {
+                "x": 1800,
+                "y": 4050,
+                "w": 4700,
+                "h": 1750
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-west-umbrella",
+          "oneWay": true,
+          "surfaceCount": 4,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [
+            {
+              "id": "west-canopy",
+              "bounds": {
+                "x": 1800,
+                "y": 4050,
+                "w": 4700,
+                "h": 1750
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-west-low-bough",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "west-crown",
+              "bounds": {
+                "x": 1800,
+                "y": 5700,
+                "w": 2900,
+                "h": 2800
+              }
+            },
+            {
+              "id": "west-canopy",
+              "bounds": {
+                "x": 1800,
+                "y": 4050,
+                "w": 4700,
+                "h": 1750
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-saddle-canopy-crossing",
+          "oneWay": true,
+          "surfaceCount": 4,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [
+            {
+              "id": "west-canopy",
+              "bounds": {
+                "x": 1800,
+                "y": 4050,
+                "w": 4700,
+                "h": 1750
+              }
+            },
+            {
+              "id": "saddle-crossfire",
+              "bounds": {
+                "x": 5450,
+                "y": 4700,
+                "w": 2800,
+                "h": 1950
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-saddle-canopy-landing",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "east-overlook",
+              "bounds": {
+                "x": 9250,
+                "y": 4050,
+                "w": 4200,
+                "h": 2550
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-ritual-root-socket",
+          "oneWay": true,
+          "surfaceCount": 3,
+          "edgeIndices": [
+            0,
+            1,
+            2
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2
+          ],
+          "namedRooms": [
+            {
+              "id": "saddle-crossfire",
+              "bounds": {
+                "x": 5450,
+                "y": 4700,
+                "w": 2800,
+                "h": 1950
+              }
+            },
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-saddle-fallen-trunk",
+          "oneWay": true,
+          "surfaceCount": 4,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [
+            {
+              "id": "west-canopy",
+              "bounds": {
+                "x": 1800,
+                "y": 4050,
+                "w": 4700,
+                "h": 1750
+              }
+            },
+            {
+              "id": "saddle-crossfire",
+              "bounds": {
+                "x": 5450,
+                "y": 4700,
+                "w": 2800,
+                "h": 1950
+              }
+            },
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-saddle-swept-bough",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "west-canopy",
+              "bounds": {
+                "x": 1800,
+                "y": 4050,
+                "w": 4700,
+                "h": 1750
+              }
+            },
+            {
+              "id": "saddle-crossfire",
+              "bounds": {
+                "x": 5450,
+                "y": 4700,
+                "w": 2800,
+                "h": 1950
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-saddle-broken-arm",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "saddle-crossfire",
+              "bounds": {
+                "x": 5450,
+                "y": 4700,
+                "w": 2800,
+                "h": 1950
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-root-west-return",
+          "oneWay": true,
+          "surfaceCount": 4,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [
+            {
+              "id": "west-crown",
+              "bounds": {
+                "x": 1800,
+                "y": 5700,
+                "w": 2900,
+                "h": 2800
+              }
+            },
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            },
+            {
+              "id": "root-underpass",
+              "bounds": {
+                "x": 3950,
+                "y": 8050,
+                "w": 4000,
+                "h": 1800
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-root-east-descent",
+          "oneWay": true,
+          "surfaceCount": 3,
+          "edgeIndices": [
+            0,
+            1,
+            2
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2
+          ],
+          "namedRooms": [
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            },
+            {
+              "id": "lower-refuge",
+              "bounds": {
+                "x": 7950,
+                "y": 8300,
+                "w": 3400,
+                "h": 1700
+              }
+            },
+            {
+              "id": "ravine-canopy",
+              "bounds": {
+                "x": 7400,
+                "y": 7700,
+                "w": 3400,
+                "h": 1500
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-root-arch",
+          "oneWay": true,
+          "surfaceCount": 4,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            },
+            {
+              "id": "root-underpass",
+              "bounds": {
+                "x": 3950,
+                "y": 8050,
+                "w": 4000,
+                "h": 1800
+              }
+            },
+            {
+              "id": "lower-refuge",
+              "bounds": {
+                "x": 7950,
+                "y": 8300,
+                "w": 3400,
+                "h": 1700
+              }
+            },
+            {
+              "id": "ravine-canopy",
+              "bounds": {
+                "x": 7400,
+                "y": 7700,
+                "w": 3400,
+                "h": 1500
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-east-rising-root",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "ritual-court",
+              "bounds": {
+                "x": 5350,
+                "y": 6600,
+                "w": 4200,
+                "h": 1950
+              }
+            },
+            {
+              "id": "east-overlook",
+              "bounds": {
+                "x": 9250,
+                "y": 4050,
+                "w": 4200,
+                "h": 2550
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-east-cliff-return",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "east-overlook",
+              "bounds": {
+                "x": 9250,
+                "y": 4050,
+                "w": 4200,
+                "h": 2550
+              }
+            },
+            {
+              "id": "north-return",
+              "bounds": {
+                "x": 11100,
+                "y": 5250,
+                "w": 4900,
+                "h": 4900
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-east-windswept-bough",
+          "oneWay": true,
+          "surfaceCount": 3,
+          "edgeIndices": [
+            0,
+            1,
+            2
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2
+          ],
+          "namedRooms": [
+            {
+              "id": "east-overlook",
+              "bounds": {
+                "x": 9250,
+                "y": 4050,
+                "w": 4200,
+                "h": 2550
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-east-canopy-access",
+          "oneWay": true,
+          "surfaceCount": 1,
+          "edgeIndices": [
+            0
+          ],
+          "walkEdges": [
+            0
+          ],
+          "namedRooms": [
+            {
+              "id": "east-overlook",
+              "bounds": {
+                "x": 9250,
+                "y": 4050,
+                "w": 4200,
+                "h": 2550
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "rv-east-lower-arm",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "east-overlook",
+              "bounds": {
+                "x": 9250,
+                "y": 4050,
+                "w": 4200,
+                "h": 2550
+              }
+            },
+            {
+              "id": "north-return",
+              "bounds": {
+                "x": 11100,
+                "y": 5250,
+                "w": 4900,
+                "h": 4900
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        }
+      ]
+    },
+    {
+      "stage": 12,
+      "act1Active": false,
+      "spatialActive": true,
+      "terrains": [
+        {
+          "id": "sq-old-road",
+          "oneWay": false,
+          "surfaceCount": 19,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "namedRooms": [
+            {
+              "id": "quarry-A",
+              "bounds": {
+                "x": 9300,
+                "y": 1830,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 1,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "sq-north-quarry",
+          "oneWay": false,
+          "surfaceCount": 11,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "namedRooms": [
+            {
+              "id": "quarry-B",
+              "bounds": {
+                "x": 6700,
+                "y": 2760,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 1,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "sq-west-quarry",
+          "oneWay": false,
+          "surfaceCount": 8,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "namedRooms": [
+            {
+              "id": "quarry-C",
+              "bounds": {
+                "x": 4220,
+                "y": 3344.1176470588234,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 1,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "sq-west-turn-high",
+          "oneWay": false,
+          "surfaceCount": 1,
+          "edgeIndices": [
+            0
+          ],
+          "walkEdges": [
+            0
+          ],
+          "namedRooms": [
+            {
+              "id": "quarry-D",
+              "bounds": {
+                "x": 2810,
+                "y": 3735.3846153846152,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "sq-west-turn-low",
+          "oneWay": false,
+          "surfaceCount": 1,
+          "edgeIndices": [
+            0
+          ],
+          "walkEdges": [
+            0
+          ],
+          "namedRooms": [
+            {
+              "id": "quarry-D",
+              "bounds": {
+                "x": 2810,
+                "y": 3735.3846153846152,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "sq-lower-ground",
+          "oneWay": false,
+          "surfaceCount": 49,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "namedRooms": [
+            {
+              "id": "quarry-E",
+              "bounds": {
+                "x": 3430,
+                "y": 4480,
+                "w": 1800,
+                "h": 1100
+              }
+            },
+            {
+              "id": "quarry-F",
+              "bounds": {
+                "x": 5620,
+                "y": 4250,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 2,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "sq-inner-joint",
+          "oneWay": false,
+          "surfaceCount": 1,
+          "edgeIndices": [
+            0
+          ],
+          "walkEdges": [
+            0
+          ],
+          "namedRooms": [
+            {
+              "id": "quarry-C",
+              "bounds": {
+                "x": 4220,
+                "y": 3344.1176470588234,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "sq-back-road",
+          "oneWay": false,
+          "surfaceCount": 6,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "namedRooms": [
+            {
+              "id": "quarry-G",
+              "bounds": {
+                "x": 7325,
+                "y": 3970,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 1,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "sq-east-turn",
+          "oneWay": false,
+          "surfaceCount": 1,
+          "edgeIndices": [
+            0
+          ],
+          "walkEdges": [
+            0
+          ],
+          "namedRooms": [
+            {
+              "id": "quarry-G",
+              "bounds": {
+                "x": 7325,
+                "y": 3970,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "sq-cave-buttress",
+          "oneWay": false,
+          "surfaceCount": 0,
+          "edgeIndices": null,
+          "walkEdges": [],
+          "namedRooms": [
+            {
+              "id": "quarry-H",
+              "bounds": {
+                "x": 7450,
+                "y": 5397.75,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "sq-cave-roof",
+          "oneWay": false,
+          "surfaceCount": 12,
+          "edgeIndices": null,
+          "walkEdges": [],
+          "namedRooms": [
+            {
+              "id": "quarry-H",
+              "bounds": {
+                "x": 7450,
+                "y": 5397.75,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 1,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "sq-turning-veil",
+          "oneWay": false,
+          "surfaceCount": 0,
+          "edgeIndices": null,
+          "walkEdges": [],
+          "namedRooms": [
+            {
+              "id": "quarry-H",
+              "bounds": {
+                "x": 7450,
+                "y": 5397.75,
+                "w": 1800,
+                "h": 1100
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        }
+      ]
+    },
+    {
+      "stage": 13,
+      "act1Active": false,
+      "spatialActive": true,
+      "terrains": [
+        {
+          "id": "act2-floor",
+          "oneWay": false,
+          "surfaceCount": 130,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105
+          ],
+          "namedRooms": [
+            {
+              "id": "sunken-forecourt",
+              "bounds": {
+                "x": 0,
+                "y": 0,
+                "w": 1850,
+                "h": 3332.5
+              }
+            },
+            {
+              "id": "mason-ledge",
+              "bounds": {
+                "x": 1850,
+                "y": 0,
+                "w": 1350,
+                "h": 3665
+              }
+            },
+            {
+              "id": "stone-threshold",
+              "bounds": {
+                "x": 3200,
+                "y": 0,
+                "w": 1400,
+                "h": 4092
+              }
+            },
+            {
+              "id": "low-gallery",
+              "bounds": {
+                "x": 4600,
+                "y": 3387.1111111111113,
+                "w": 1500,
+                "h": 1073.8888888888887
+              }
+            },
+            {
+              "id": "inner-pocket",
+              "bounds": {
+                "x": 6100,
+                "y": 2910,
+                "w": 2100,
+                "h": 1840
+              }
+            }
+          ],
+          "blocks": 5,
+          "facets": 4,
+          "authoredPlanes": 12
+        },
+        {
+          "id": "cave-roof",
+          "oneWay": false,
+          "surfaceCount": 70,
+          "edgeIndices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59
+          ],
+          "namedRooms": [
+            {
+              "id": "stone-threshold",
+              "bounds": {
+                "x": 3200,
+                "y": 0,
+                "w": 1400,
+                "h": 4092
+              }
+            },
+            {
+              "id": "low-gallery",
+              "bounds": {
+                "x": 4600,
+                "y": 3387.1111111111113,
+                "w": 1500,
+                "h": 1073.8888888888887
+              }
+            },
+            {
+              "id": "inner-pocket",
+              "bounds": {
+                "x": 6100,
+                "y": 2910,
+                "w": 2100,
+                "h": 1840
+              }
+            }
+          ],
+          "blocks": 3,
+          "facets": 4,
+          "authoredPlanes": 5
+        },
+        {
+          "id": "forecourt-shot-ledge",
+          "oneWay": true,
+          "surfaceCount": 1,
+          "edgeIndices": [
+            0
+          ],
+          "walkEdges": [
+            0
+          ],
+          "namedRooms": [],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "gate-gate",
+          "oneWay": false,
+          "surfaceCount": 0,
+          "edgeIndices": null,
+          "namedRooms": [],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "tactical-entry-shoulder",
+          "oneWay": false,
+          "surfaceCount": 4,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [
+            {
+              "id": "sunken-forecourt",
+              "bounds": {
+                "x": 0,
+                "y": 0,
+                "w": 1850,
+                "h": 3332.5
+              }
+            }
+          ],
+          "blocks": 1,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "tactical-entry-west-ramp",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "sunken-forecourt",
+              "bounds": {
+                "x": 0,
+                "y": 0,
+                "w": 1850,
+                "h": 3332.5
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "tactical-mason-return",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "sunken-forecourt",
+              "bounds": {
+                "x": 0,
+                "y": 0,
+                "w": 1850,
+                "h": 3332.5
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "tactical-inner-gallery",
+          "oneWay": false,
+          "surfaceCount": 4,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [
+            {
+              "id": "low-gallery",
+              "bounds": {
+                "x": 4600,
+                "y": 3387.1111111111113,
+                "w": 1500,
+                "h": 1073.8888888888887
+              }
+            }
+          ],
+          "blocks": 1,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "tactical-inner-west-ramp",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "low-gallery",
+              "bounds": {
+                "x": 4600,
+                "y": 3387.1111111111113,
+                "w": 1500,
+                "h": 1073.8888888888887
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "tactical-inner-east-ramp",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "low-gallery",
+              "bounds": {
+                "x": 4600,
+                "y": 3387.1111111111113,
+                "w": 1500,
+                "h": 1073.8888888888887
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        }
+      ]
+    },
+    {
+      "stage": 15,
+      "act1Active": false,
+      "spatialActive": true,
+      "terrains": [
+        {
+          "id": "act2-floor",
+          "oneWay": false,
+          "surfaceCount": 130,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105
+          ],
+          "namedRooms": [
+            {
+              "id": "wet-approach",
+              "bounds": {
+                "x": 0,
+                "y": 2870,
+                "w": 1800,
+                "h": 930
+              }
+            },
+            {
+              "id": "sluice-neck",
+              "bounds": {
+                "x": 1800,
+                "y": 2477.1428571428573,
+                "w": 1350,
+                "h": 1589.9999999999995
+              }
+            },
+            {
+              "id": "open-shaft",
+              "bounds": {
+                "x": 3150,
+                "y": 1470,
+                "w": 2150,
+                "h": 3067.8378378378375
+              }
+            },
+            {
+              "id": "carved-groove",
+              "bounds": {
+                "x": 5300,
+                "y": 1678,
+                "w": 1250,
+                "h": 3112
+              }
+            },
+            {
+              "id": "temple-stair",
+              "bounds": {
+                "x": 6550,
+                "y": 2483.3333333333335,
+                "w": 1450,
+                "h": 2012.1383647798734
+              }
+            }
+          ],
+          "blocks": 5,
+          "facets": 4,
+          "authoredPlanes": 4
+        },
+        {
+          "id": "cave-roof",
+          "oneWay": false,
+          "surfaceCount": 129,
+          "edgeIndices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107
+          ],
+          "namedRooms": [
+            {
+              "id": "wet-approach",
+              "bounds": {
+                "x": 0,
+                "y": 2870,
+                "w": 1800,
+                "h": 930
+              }
+            },
+            {
+              "id": "sluice-neck",
+              "bounds": {
+                "x": 1800,
+                "y": 2477.1428571428573,
+                "w": 1350,
+                "h": 1589.9999999999995
+              }
+            },
+            {
+              "id": "open-shaft",
+              "bounds": {
+                "x": 3150,
+                "y": 1470,
+                "w": 2150,
+                "h": 3067.8378378378375
+              }
+            },
+            {
+              "id": "carved-groove",
+              "bounds": {
+                "x": 5300,
+                "y": 1678,
+                "w": 1250,
+                "h": 3112
+              }
+            },
+            {
+              "id": "temple-stair",
+              "bounds": {
+                "x": 6550,
+                "y": 2483.3333333333335,
+                "w": 1450,
+                "h": 2012.1383647798734
+              }
+            },
+            {
+              "id": "dry-shoulder",
+              "bounds": {
+                "x": 2720,
+                "y": 3448.3333333333335,
+                "w": 360,
+                "h": 300
+              }
+            }
+          ],
+          "blocks": 5,
+          "facets": 4,
+          "authoredPlanes": 5
+        },
+        {
+          "id": "dry-shoulder",
+          "oneWay": true,
+          "surfaceCount": 1,
+          "edgeIndices": [
+            0
+          ],
+          "walkEdges": [
+            0
+          ],
+          "namedRooms": [
+            {
+              "id": "dry-shoulder",
+              "bounds": {
+                "x": 2720,
+                "y": 3448.3333333333335,
+                "w": 360,
+                "h": 300
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "fc15-west-arch",
+          "oneWay": false,
+          "surfaceCount": 71,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70
+          ],
+          "namedRooms": [
+            {
+              "id": "open-shaft",
+              "bounds": {
+                "x": 3150,
+                "y": 1470,
+                "w": 2150,
+                "h": 3067.8378378378375
+              }
+            }
+          ],
+          "blocks": 1,
+          "facets": 4,
+          "authoredPlanes": 24
+        },
+        {
+          "id": "fc15-east-arch",
+          "oneWay": false,
+          "surfaceCount": 41,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "namedRooms": [
+            {
+              "id": "temple-stair",
+              "bounds": {
+                "x": 6550,
+                "y": 2483.3333333333335,
+                "w": 1450,
+                "h": 2012.1383647798734
+              }
+            }
+          ],
+          "blocks": 1,
+          "facets": 4,
+          "authoredPlanes": 11
+        },
+        {
+          "id": "fc15-west-shoulder",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "open-shaft",
+              "bounds": {
+                "x": 3150,
+                "y": 1470,
+                "w": 2150,
+                "h": 3067.8378378378375
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "fc15-crown-return",
+          "oneWay": true,
+          "surfaceCount": 1,
+          "edgeIndices": [
+            0
+          ],
+          "walkEdges": [
+            0
+          ],
+          "namedRooms": [
+            {
+              "id": "open-shaft",
+              "bounds": {
+                "x": 3150,
+                "y": 1470,
+                "w": 2150,
+                "h": 3067.8378378378375
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "fc15-water-toe",
+          "oneWay": true,
+          "surfaceCount": 2,
+          "edgeIndices": [
+            0,
+            1
+          ],
+          "walkEdges": [
+            0,
+            1
+          ],
+          "namedRooms": [
+            {
+              "id": "carved-groove",
+              "bounds": {
+                "x": 5300,
+                "y": 1678,
+                "w": 1250,
+                "h": 3112
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "fc15-east-access",
+          "oneWay": true,
+          "surfaceCount": 1,
+          "edgeIndices": [
+            0
+          ],
+          "walkEdges": [
+            0
+          ],
+          "namedRooms": [
+            {
+              "id": "temple-stair",
+              "bounds": {
+                "x": 6550,
+                "y": 2483.3333333333335,
+                "w": 1450,
+                "h": 2012.1383647798734
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "fc15-dry-basin-rim",
+          "oneWay": true,
+          "surfaceCount": 4,
+          "edgeIndices": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [
+            {
+              "id": "carved-groove",
+              "bounds": {
+                "x": 5300,
+                "y": 1678,
+                "w": 1250,
+                "h": 3112
+              }
+            }
+          ],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "fc15-drained-ledge",
+          "oneWay": false,
+          "surfaceCount": 4,
+          "edgeIndices": null,
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "namedRooms": [],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        },
+        {
+          "id": "fc15-safe-crown-descent",
+          "oneWay": true,
+          "surfaceCount": 5,
+          "edgeIndices": null,
+          "walkEdges": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "namedRooms": [],
+          "blocks": 0,
+          "facets": 4,
+          "authoredPlanes": 0
+        }
+      ]
+    }
+  ],
+  "cart": {
+    "instance": {
+      "id": "sq-art-abandoned-cart",
+      "assetId": "cart",
+      "x": 7744.792100965721,
+      "y": 3305.2582825168724,
+      "scale": 1.6,
+      "rotation": 0.504165961479153,
+      "snap": false,
+      "depthLayer": "L1",
+      "layer": "back",
+      "stage12Support": {
+        "terrainId": "sq-north-quarry",
+        "x": 7730,
+        "y": 3332.0689655172414
+      }
+    },
+    "reference": {
+      "heightM": 1.5,
+      "bounds": {
+        "x": -65,
+        "y": -78,
+        "w": 130,
+        "h": 97.1378528495226
+      },
+      "foot": {
+        "x": 0,
+        "y": 19.137852849522602
+      },
+      "scaleRange": [
+        0.4,
+        4.5
+      ],
+      "backgroundRange": [
+        0.7,
+        1.3
+      ]
+    },
+    "wheels": [
+      {
+        "wheel": 0,
+        "points": [
+          {
+            "x": 7704.48535807889,
+            "y": 3252.4544907704912,
+            "surfaceY": 3317.991921698698,
+            "gap": 65.53743092820696
+          },
+          {
+            "x": 7723.297649849949,
+            "y": 3256.7298426853363,
+            "surfaceY": 3328.371117158593,
+            "gap": 71.64127447325654
+          },
+          {
+            "x": 7720.524305470123,
+            "y": 3275.3241925036896,
+            "surfaceY": 3326.8409961214475,
+            "gap": 51.51680361775789
+          },
+          {
+            "x": 7723.585352154116,
+            "y": 3293.5580073104697,
+            "surfaceY": 3328.52984946434,
+            "gap": 34.97184215387006
+          },
+          {
+            "x": 7710.985894952505,
+            "y": 3308.0778168193037,
+            "surfaceY": 3321.578424801382,
+            "gap": 13.500607982078236
+          },
+          {
+            "x": 7692.170290118773,
+            "y": 3307.4438621619934,
+            "surfaceY": 3311.19740144484,
+            "gap": 3.7535392828467593
+          },
+          {
+            "x": 7678.397473961692,
+            "y": 3299.738780732913,
+            "surfaceY": 3310,
+            "gap": 10.2612192670872
+          },
+          {
+            "x": 7662.39655582083,
+            "y": 3293.4871867830116,
+            "surfaceY": 3310,
+            "gap": 16.512813216988434
+          },
+          {
+            "x": 7657.673289433351,
+            "y": 3276.5457183827457,
+            "surfaceY": 3310,
+            "gap": 33.45428161725431
+          },
+          {
+            "x": 7658.665400937272,
+            "y": 3257.7401031908316,
+            "surfaceY": 3310,
+            "gap": 52.25989680916837
+          },
+          {
+            "x": 7671.87382016218,
+            "y": 3243.2753071997327,
+            "surfaceY": 3310,
+            "gap": 66.72469280026735
+          },
+          {
+            "x": 7691.015995493961,
+            "y": 3248.0520873177966,
+            "surfaceY": 3310.5605492380473,
+            "gap": 62.50846192025074
+          }
+        ],
+        "minGap": 3.7535392828467593
+      },
+      {
+        "wheel": 1,
+        "points": [
+          {
+            "x": 7810.956696245934,
+            "y": 3311.1947168002475,
+            "surfaceY": 3376.734728963274,
+            "gap": 65.5400121630264
+          },
+          {
+            "x": 7824.294631676245,
+            "y": 3318.77548033213,
+            "surfaceY": 3384.093589890342,
+            "gap": 65.3181095582122
+          },
+          {
+            "x": 7826.694696888249,
+            "y": 3334.0722251610055,
+            "surfaceY": 3385.4177638004135,
+            "gap": 51.345538639408005
+          },
+          {
+            "x": 7830.524014528828,
+            "y": 3352.5586486206557,
+            "surfaceY": 3387.530490774526,
+            "gap": 34.97184215387006
+          },
+          {
+            "x": 7813.983627788891,
+            "y": 3361.0666170879645,
+            "surfaceY": 3378.404760159388,
+            "gap": 17.338143071423474
+          },
+          {
+            "x": 7798.675868587503,
+            "y": 3368.004004658095,
+            "surfaceY": 3369.9590999103466,
+            "gap": 1.9550952522517946
+          },
+          {
+            "x": 7783.235123188829,
+            "y": 3361.4400679662504,
+            "surfaceY": 3361.4400679662504,
+            "gap": 0
+          },
+          {
+            "x": 7770.1484266932885,
+            "y": 3351.4558569307865,
+            "surfaceY": 3354.2198216238835,
+            "gap": 2.763964693097023
+          },
+          {
+            "x": 7767.990854790058,
+            "y": 3335.2131496335865,
+            "surfaceY": 3353.029437125549,
+            "gap": 17.816287491962612
+          },
+          {
+            "x": 7770.094377156223,
+            "y": 3319.2181590357704,
+            "surfaceY": 3354.1900011896405,
+            "gap": 34.97184215387006
+          },
+          {
+            "x": 7778.481587552192,
+            "y": 3302.2453626215015,
+            "surfaceY": 3358.8174276150025,
+            "gap": 56.572064993501044
+          },
+          {
+            "x": 7797.361037431103,
+            "y": 3300.3521640270433,
+            "surfaceY": 3369.2336758240567,
+            "gap": 68.88151179701345
+          }
+        ],
+        "minGap": 0
+      }
+    ],
+    "overlap": [
+      {
+        "part": 0,
+        "probes": 1675,
+        "coveredByTerrain": {
+          "sq-old-road": 206
+        },
+        "coveredByLaterElements": {
+          "sq-art-carrier-rubble": 829
+        },
+        "totalCovered": 887,
+        "visible": 788
+      },
+      {
+        "part": 1,
+        "probes": 320,
+        "coveredByTerrain": {},
+        "coveredByLaterElements": {
+          "sq-art-carrier-rubble": 79
+        },
+        "totalCovered": 79,
+        "visible": 241
+      },
+      {
+        "part": 2,
+        "probes": 303,
+        "coveredByTerrain": {},
+        "coveredByLaterElements": {
+          "sq-art-carrier-rubble": 290
+        },
+        "totalCovered": 290,
+        "visible": 13
+      }
+    ]
+  }
+}
