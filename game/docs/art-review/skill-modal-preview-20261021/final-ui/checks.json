@@ -1,0 +1,230 @@
+[
+  {
+    "name": "360 start: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 0
+    }
+  },
+  {
+    "name": "360 middle: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 49
+    }
+  },
+  {
+    "name": "360 end: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 98
+    }
+  },
+  {
+    "name": "360: header plus and body scroll retained",
+    "data": null
+  },
+  {
+    "name": "360: header refund",
+    "data": null
+  },
+  {
+    "name": "360: fixed X closes",
+    "data": null
+  },
+  {
+    "name": "390 start: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 0
+    }
+  },
+  {
+    "name": "390 middle: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 27
+    }
+  },
+  {
+    "name": "390 end: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 54
+    }
+  },
+  {
+    "name": "390: header plus and body scroll retained",
+    "data": null
+  },
+  {
+    "name": "390: header refund",
+    "data": null
+  },
+  {
+    "name": "390: fixed X closes",
+    "data": null
+  },
+  {
+    "name": "1280 start: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 0
+    }
+  },
+  {
+    "name": "1280 middle: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 51
+    }
+  },
+  {
+    "name": "1280 end: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 102
+    }
+  },
+  {
+    "name": "1280: header plus and body scroll retained",
+    "data": null
+  },
+  {
+    "name": "1280: header refund",
+    "data": null
+  },
+  {
+    "name": "1280: fixed X closes",
+    "data": null
+  },
+  {
+    "name": "844 start: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 0
+    }
+  },
+  {
+    "name": "844 middle: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 174
+    }
+  },
+  {
+    "name": "844 end: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 348
+    }
+  },
+  {
+    "name": "844: header plus and body scroll retained",
+    "data": null
+  },
+  {
+    "name": "844: header refund",
+    "data": null
+  },
+  {
+    "name": "844: fixed X closes",
+    "data": null
+  },
+  {
+    "name": "A09: actual turn exactly once, both trajectories, hit, grounded",
+    "data": {
+      "turns": 1,
+      "follow": true,
+      "before": 30,
+      "after": 35,
+      "damage": 56,
+      "grounded": true,
+      "secondInput": false
+    }
+  },
+  {
+    "name": "long title and locked zero state fit fixed header",
+    "data": null
+  },
+  {
+    "name": "maximum plus disabled and refund reachable",
+    "data": null
+  },
+  {
+    "name": "SP exhausted disables plus without hiding points",
+    "data": null
+  },
+  {
+    "name": "equipped long-title header controls remain 44px with body space",
+    "data": null
+  },
+  {
+    "name": "asymmetric safe area reserves space on all four edges",
+    "data": null
+  },
+  {
+    "name": "no browser exceptions",
+    "data": []
+  }
+]

@@ -1,0 +1,419 @@
+{
+  "ids": [
+    "M03",
+    "M12",
+    "M14",
+    "M15"
+  ],
+  "rows": [
+    {
+      "id": "M03",
+      "width": 1280,
+      "emission": {
+        "kind": "arc",
+        "sampled": 13,
+        "inside": 13,
+        "lit": 0,
+        "litFraction": 0,
+        "insideFraction": 1,
+        "age": 1.2500000000000004,
+        "scale": 0.7827586206896552
+      },
+      "visible": {
+        "kind": "arc",
+        "sampled": 13,
+        "inside": 13,
+        "lit": 13,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 1.3833333333333333,
+        "scale": 0.7827586206896552
+      },
+      "linger": {
+        "kind": "arc",
+        "sampled": 13,
+        "inside": 13,
+        "lit": 13,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 1.5833333333333326,
+        "scale": 0.7827586206896552
+      },
+      "combatChecks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for M03",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "pixelAssertion": true
+    },
+    {
+      "id": "M12",
+      "width": 1280,
+      "emission": {
+        "kind": "triangle",
+        "sampled": 117,
+        "inside": 117,
+        "lit": 7,
+        "litFraction": 0.05982905982905983,
+        "insideFraction": 1,
+        "age": 2.499999999999996,
+        "scale": 0.6293103448275862
+      },
+      "visible": {
+        "kind": "triangle",
+        "sampled": 117,
+        "inside": 117,
+        "lit": 117,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 2.633333333333329,
+        "scale": 0.6293103448275862
+      },
+      "linger": {
+        "kind": "triangle",
+        "sampled": 117,
+        "inside": 117,
+        "lit": 117,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 2.833333333333328,
+        "scale": 0.6293103448275862
+      },
+      "combatChecks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for M12",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "pixelAssertion": true
+    },
+    {
+      "id": "M14",
+      "width": 1280,
+      "emission": {
+        "kind": "ring",
+        "sampled": 218,
+        "inside": 218,
+        "lit": 11,
+        "litFraction": 0.05045871559633028,
+        "insideFraction": 1,
+        "age": 0.6500000000000004,
+        "scale": 0.45625
+      },
+      "visible": {
+        "kind": "ring",
+        "sampled": 218,
+        "inside": 218,
+        "lit": 218,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 0.7833333333333341,
+        "scale": 0.45625
+      },
+      "linger": {
+        "kind": "ring",
+        "sampled": 218,
+        "inside": 218,
+        "lit": 218,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 0.9833333333333347,
+        "scale": 0.45625
+      },
+      "combatChecks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for M14",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "pixelAssertion": true
+    },
+    {
+      "id": "M15",
+      "width": 1280,
+      "emission": {
+        "kind": "bagua",
+        "sampled": 303,
+        "inside": 303,
+        "lit": 8,
+        "litFraction": 0.026402640264026403,
+        "insideFraction": 1,
+        "age": 2.199999999999997,
+        "scale": 0.48867693400198947
+      },
+      "visible": {
+        "kind": "bagua",
+        "sampled": 303,
+        "inside": 303,
+        "lit": 303,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 2.33333333333333,
+        "scale": 0.48867693400198947
+      },
+      "linger": {
+        "kind": "bagua",
+        "sampled": 303,
+        "inside": 303,
+        "lit": 303,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 2.533333333333329,
+        "scale": 0.48867693400198947
+      },
+      "combatChecks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for M15",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "pixelAssertion": true
+    },
+    {
+      "id": "M03",
+      "width": 360,
+      "emission": {
+        "kind": "arc",
+        "sampled": 13,
+        "inside": 13,
+        "lit": 2,
+        "litFraction": 0.15384615384615385,
+        "insideFraction": 1,
+        "age": 1.2500000000000004,
+        "scale": 0.3137931034482759
+      },
+      "visible": {
+        "kind": "arc",
+        "sampled": 13,
+        "inside": 13,
+        "lit": 13,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 1.3833333333333333,
+        "scale": 0.3137931034482759
+      },
+      "linger": {
+        "kind": "arc",
+        "sampled": 13,
+        "inside": 13,
+        "lit": 13,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 1.5833333333333326,
+        "scale": 0.3137931034482759
+      },
+      "combatChecks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for M03",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "pixelAssertion": true
+    },
+    {
+      "id": "M12",
+      "width": 360,
+      "emission": {
+        "kind": "triangle",
+        "sampled": 117,
+        "inside": 117,
+        "lit": 17,
+        "litFraction": 0.1452991452991453,
+        "insideFraction": 1,
+        "age": 2.499999999999996,
+        "scale": 0.29356254901855205
+      },
+      "visible": {
+        "kind": "triangle",
+        "sampled": 117,
+        "inside": 117,
+        "lit": 117,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 2.633333333333329,
+        "scale": 0.296915493765759
+      },
+      "linger": {
+        "kind": "triangle",
+        "sampled": 117,
+        "inside": 117,
+        "lit": 112,
+        "litFraction": 0.9572649572649573,
+        "insideFraction": 1,
+        "age": 2.833333333333328,
+        "scale": 0.2981217720704422
+      },
+      "combatChecks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for M12",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "pixelAssertion": true
+    },
+    {
+      "id": "M14",
+      "width": 360,
+      "emission": {
+        "kind": "ring",
+        "sampled": 218,
+        "inside": 218,
+        "lit": 19,
+        "litFraction": 0.0871559633027523,
+        "insideFraction": 1,
+        "age": 0.6500000000000004,
+        "scale": 0.315625
+      },
+      "visible": {
+        "kind": "ring",
+        "sampled": 218,
+        "inside": 218,
+        "lit": 218,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 0.7833333333333341,
+        "scale": 0.315625
+      },
+      "linger": {
+        "kind": "ring",
+        "sampled": 218,
+        "inside": 218,
+        "lit": 217,
+        "litFraction": 0.9954128440366973,
+        "insideFraction": 1,
+        "age": 0.9833333333333347,
+        "scale": 0.315625
+      },
+      "combatChecks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for M14",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "pixelAssertion": true
+    },
+    {
+      "id": "M15",
+      "width": 360,
+      "emission": {
+        "kind": "bagua",
+        "sampled": 303,
+        "inside": 303,
+        "lit": 14,
+        "litFraction": 0.0462046204620462,
+        "insideFraction": 1,
+        "age": 2.199999999999997,
+        "scale": 0.29346485608447875
+      },
+      "visible": {
+        "kind": "bagua",
+        "sampled": 303,
+        "inside": 303,
+        "lit": 303,
+        "litFraction": 1,
+        "insideFraction": 1,
+        "age": 2.33333333333333,
+        "scale": 0.29346485608447875
+      },
+      "linger": {
+        "kind": "bagua",
+        "sampled": 303,
+        "inside": 303,
+        "lit": 302,
+        "litFraction": 0.9966996699669967,
+        "insideFraction": 1,
+        "age": 2.533333333333329,
+        "scale": 0.29346485608447875
+      },
+      "combatChecks": [
+        {
+          "name": "selected scenario fired a real skill",
+          "ok": true
+        },
+        {
+          "name": "finite actor/target state",
+          "ok": true
+        },
+        {
+          "name": "observed unique effect for M15",
+          "ok": true
+        }
+      ],
+      "grounded": true,
+      "unchanged": true,
+      "pixelAssertion": true
+    }
+  ],
+  "errors": []
+}
