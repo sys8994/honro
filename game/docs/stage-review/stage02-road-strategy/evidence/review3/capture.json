@@ -1,0 +1,63 @@
+{
+  "sha": "18edfeace576f71695cab291e7722d5ffa54da0c",
+  "renderSha256": "f96be8bf9b83dd7177eb69d07e0c00f24356ed7221de1a55dec19f1417507e04",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "upper-close",
+      "camera": {
+        "x": 1100,
+        "y": 850,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 2,
+      "view": "water-road",
+      "camera": {
+        "x": 2340,
+        "y": 2910,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 2,
+      "view": "east-boughs",
+      "camera": {
+        "x": 3460,
+        "y": 1580,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-bough",
+      "camera": {
+        "x": 1450,
+        "y": 1030,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-road",
+      "camera": {
+        "x": 2340,
+        "y": 2940,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "landscape",
+      "camera": {
+        "x": 2150,
+        "y": 1600,
+        "scale": 0.3
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,36 @@
+{
+  "runtimeSourceSha": "499305b051278e25538b3f606c11e1bb7479104e",
+  "runtimeSourceEqualsCheckpoint": true,
+  "comparisonSourceShas": [
+    "ee73add57bc27357abdbe2d1c606c9017e393351",
+    "27efe8ebdab24e147494196a515641e0629e4656"
+  ],
+  "sourceFiles": [
+    {
+      "file": "shared/data/campaign.json",
+      "sha256": "b888da70c3e01b779240bd6e2a8cdf45bcb3c31d0c6cb72b28c31fa469cb90d3"
+    },
+    {
+      "file": "shared/engine/src/enemyAI.ts",
+      "sha256": "987097905bfc6ec4fc57f76a99b33cfe6872b78cd5d6f36e4e607bbd0647dc59"
+    },
+    {
+      "file": "shared/runtime/campaign-map-revision.js",
+      "sha256": "9f945f6a8a40612f8ae37a5c641f21cd4b81d938e2aefdcb010ff3d9557dabf3"
+    },
+    {
+      "file": "shared/runtime/stage2-layered-road-art.js",
+      "sha256": "f96be8bf9b83dd7177eb69d07e0c00f24356ed7221de1a55dec19f1417507e04"
+    },
+    {
+      "file": "tools/environment/act1-scene-composition.mjs",
+      "sha256": "fede0e9d734a8d197b7f690442e3e260c66fbabb859b1f8da3634d3cad774d48"
+    },
+    {
+      "file": "web/manifest.json",
+      "sha256": "a1f00b9bc162a9b4b8d70c313e1f43130d307bb8291751c1744c5c56840e4c31"
+    }
+  ],
+  "normalWin": "New final-source production browser run, round15; no prior21 reuse",
+  "masterIntegration": "Held for parent screen review; bafc275c joystick must be preserved"
+}

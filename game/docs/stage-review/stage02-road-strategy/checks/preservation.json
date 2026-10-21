@@ -1,0 +1,52 @@
+{
+  "baseSha": "27efe8ebdab24e147494196a515641e0629e4656",
+  "runtimeSourceSha": "499305b051278e25538b3f606c11e1bb7479104e",
+  "other29RawUnchanged": true,
+  "rawLibraryUnchanged": true,
+  "sourcePreservation": [
+    {
+      "file": "shared/runtime/main.js",
+      "equalToBase": true,
+      "sha256": "fcd928a969beb8c0accdf7dc990b47fc35d858180b9e683c095ddefe25bdabd4"
+    },
+    {
+      "file": "shared/engine/src/main.ts",
+      "equalToBase": true,
+      "sha256": "61e250ac040940281c7b007f4f54073b021dfee0bc72c94c56accd712e1ac9ba"
+    },
+    {
+      "file": "shared/engine/src/engine.ts",
+      "equalToBase": true,
+      "sha256": "26faf72c9d6ba92e5183401bdf61a1a3889cc0c9000a83fc5c6aa170bcd48565"
+    },
+    {
+      "file": "shared/runtime/skill-preview.js",
+      "equalToBase": true,
+      "sha256": "7fc6a24c51d7c3a9a15d74180713cf959ed07dc46cf0751ca38ad37cff249261"
+    },
+    {
+      "file": "shared/runtime/renderer.js",
+      "equalToBase": true,
+      "sha256": "3670f611676b9eab6d0a79f0016e35c2d6289532a89f5563fe0813521b0853a5"
+    },
+    {
+      "file": "shared/engine/src/campUI.ts",
+      "equalToBase": true,
+      "sha256": "342dfbf377e1199f7cefb3cc53131755c07e4bdc74fabf8ea4fefecb06598b7e"
+    },
+    {
+      "file": "game/src/skill-presentation.css",
+      "equalToBase": true,
+      "sha256": "d533fe7e6ea357658d959b0bac3ea9e69bb028db30c2f62ac5c5aa8f95deab8b"
+    },
+    {
+      "file": "tests/stage23-escort-old-save.mjs",
+      "equalToBase": true,
+      "sha256": "dc30b470d99a3d05362f5f984b8c3e247a8868effeca83994f6636cbccc7ebf1"
+    }
+  ],
+  "latestMasterInputNotice": "Parent reports bafc275c10c7a256692425641d7f0e4f69c002ca joystick P0. This candidate is not merged with it. Preserve Engine.face and both input main sources at integration, rebuild originals.",
+  "flightRegionStages": [
+    2
+  ]
+}

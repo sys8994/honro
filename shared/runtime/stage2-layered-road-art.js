@@ -4,9 +4,9 @@
 const S=G.HonroScene.prototype,cache=new WeakMap(),active=b=>G.HonroStage2LayeredRoad.active(b);
 function prepare(b){const data=b.honroMap.stage2LayeredRoad;let q=cache.get(data);if(q)return q;
  const cliffs=data.rearCliffs.map(p=>G.HonroMapEngine.solid(p.id,p.points.map(p=>[p.x,p.y]),{mat:'rock',surfaceKind:'cliff',indestructible:true}));
- q={cliffs};cache.set(data,q);return q;
+ const mask=new Path2D();for(const t of cliffs){const p=G.HONRO_CORE.poly(t);mask.moveTo(p[0].x,p[0].y);for(const v of p.slice(1))mask.lineTo(v.x,v.y);mask.closePath();}q={cliffs,mask};cache.set(data,q);return q;
 }
-function rear(c,b){if(!active(b))return;for(const t of prepare(b).cliffs)G.HonroAct1SpatialArt.drawTerrainMaterial(c,t,b,{walkRim:false});G.HonroGeologyArt.draw(this,c,b);}
+function rear(c,b){if(!active(b))return;for(const t of prepare(b).cliffs)G.HonroAct1SpatialArt.drawTerrainMaterial(c,t,b,{walkRim:false});c.save();c.clip(prepare(b).mask);G.HonroGeologyArt.draw(this,c,b,v=>!v.attachment.terrainId||v.asset.params.geologyModule!=='granite-ledge-neck'&&v.asset.category!=='tree');c.restore();G.HonroGeologyArt.draw(this,c,b,v=>v.asset.params.geologyModule==='granite-ledge-neck'||v.asset.category==='tree');}
 const layer=S._landmarkLayer;S._landmarkLayer=function(c,ls,name){if(name==='back'&&active(this.battle))rear.call(this,c,this.battle);return layer.call(this,c,ls,name);};
 const terrain=S.terrain;S.terrain=function(c,t){if(active(this.battle)&&!t.honroElementCollision&&!t.broken&&(t.mat==='rock'||t.surfaceKind==='branch')){const raster=this._staticCacheBuild?this._worldRasterScale(this.battle,this.canvas.clientWidth):this.scale;G.HonroGeologyArt.drawSurface(this,c,t,this.battle,1/Math.max(.05,raster));return;}return terrain.call(this,c,t);};
 const omitReadability=(group,b)=>active(b)&&b.terrain.some(t=>t.id===group.id&&(t.mat==='rock'||t.surfaceKind==='branch'));

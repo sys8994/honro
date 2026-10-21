@@ -26,7 +26,11 @@ export function flightBounds(u:Unit,p:Vec=u){
  const winged=['bat','crow'].includes((u as any).honroType),rx=winged?Math.max(u.r+8,u.h*1.15):u.r+8;
  return {left:p.x-rx,right:p.x+rx,head:p.y-(winged?u.h*1.35:u.h+8),feet:p.y+(winged?u.h*.25:8)};
 }
-function flightWorldClear(e:Engine,u:Unit,p:Vec){const r=flightBounds(u,p);return r.left>=0&&r.right<=e.b.width&&r.head>=12&&r.feet<=e.b.height;}
+function flightWorldClear(e:Engine,u:Unit,p:Vec){const r=flightBounds(u,p),region=(e.b as any).honroMap?.flightRegion;
+ // Optional authored world airspace is independent of projectile/ground
+ // collision. Apply the full animated envelope to patrol, approach and recoil.
+ if(region&&(r.left<region.left||r.right>region.right||r.head<region.top||r.feet>region.bottom))return false;
+ return r.left>=0&&r.right<=e.b.width&&r.head>=12&&r.feet<=e.b.height;}
 function actorBounds(v:Unit){return flyingEnemy(v)?flightBounds(v):{left:v.x-v.r-5,right:v.x+v.r+5,head:v.y-v.h-4,feet:v.y+4};}
 function boxOverlap(a:ReturnType<typeof flightBounds>,z:ReturnType<typeof flightBounds>){return Math.max(0,Math.min(a.right,z.right)-Math.max(a.left,z.left))*Math.max(0,Math.min(a.feet,z.feet)-Math.max(a.head,z.head));}
 /** Friendly ground AI must not walk a large body into a reserved wing span.

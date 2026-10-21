@@ -1,0 +1,692 @@
+{
+  "runtimeSourceSha": "499305b051278e25538b3f606c11e1bb7479104e",
+  "normalResources": true,
+  "method": "Production browser Engine move/drop/fire/defend and missionTick. Legal chapter1 entry fixture. No position, HP, movement, item or objective writes. Not keyboard manual play.",
+  "start": {
+    "hp": 376,
+    "maxHp": 376,
+    "focus": 99,
+    "level": 1,
+    "items": {
+      "heal": 3,
+      "focus": 3,
+      "cleanse": 2,
+      "ward": 2
+    }
+  },
+  "end": {
+    "phase": "won",
+    "round": 15,
+    "x": 1767.9018473701958,
+    "y": 2956.5242304791473,
+    "hp": 376,
+    "move": 1128,
+    "carX": 4100,
+    "carHp": 1700,
+    "enemies": 0,
+    "flags": {
+      "sector-0": true,
+      "event:procession-seen": true,
+      "event:road-pressure": true,
+      "event:sniper-seen": true,
+      "event:right-cliff": true,
+      "event:last-flight": true
+    }
+  },
+  "routeIndex": 9,
+  "shots": 11,
+  "waits": 4,
+  "airSafety": [
+    {
+      "scope": "entire world flight rectangle, actual common rear renderer at 1px/world unit",
+      "opaquePixels": 0,
+      "region": {
+        "left": 1880,
+        "right": 2780,
+        "top": 220,
+        "bottom": 2890,
+        "reason": "Central open gorge; full animated wings remain outside rear cliff silhouettes. Paid movement and attack cap unchanged."
+      }
+    }
+  ],
+  "routeLog": [
+    {
+      "op": "route",
+      "index": 0,
+      "x": 1594.1603809769936,
+      "y": 781.1373051003824,
+      "hp": 326,
+      "round": 3,
+      "move": 884.0000000000039,
+      "carX": 180,
+      "carHp": 1700,
+      "support": "left-tree-branch-upper"
+    },
+    {
+      "op": "route",
+      "index": 1,
+      "x": 1105.5007178430617,
+      "y": 738.6060112877949,
+      "hp": 326,
+      "round": 4,
+      "move": 637.458333333333,
+      "carX": 180,
+      "carHp": 1700,
+      "support": "left-tree-branch-upper"
+    },
+    {
+      "op": "route",
+      "index": 2,
+      "x": 1444.901129711709,
+      "y": 1116.219783557639,
+      "hp": 326,
+      "round": 4,
+      "move": 291.76948262044266,
+      "carX": 180,
+      "carHp": 1700,
+      "support": "left-tree-branch-middle"
+    },
+    {
+      "op": "route",
+      "index": 3,
+      "x": 1056.9972159548238,
+      "y": 1037.454533327361,
+      "hp": 289,
+      "round": 5,
+      "move": 764.5416666666638,
+      "carX": 740,
+      "carHp": 1700,
+      "support": "left-tree-branch-middle"
+    },
+    {
+      "op": "route",
+      "index": 4,
+      "x": 1500,
+      "y": 1833.113047858942,
+      "hp": 289,
+      "round": 5,
+      "move": 307.61950797127156,
+      "carX": 740,
+      "carHp": 1700,
+      "support": "left-tree-branch-lower"
+    },
+    {
+      "op": "route",
+      "index": 5,
+      "x": 1355.7479840300953,
+      "y": 1820.058908054671,
+      "hp": 289,
+      "round": 5,
+      "move": 162.74450797127454,
+      "carX": 740,
+      "carHp": 1700,
+      "support": "left-tree-branch-lower"
+    },
+    {
+      "op": "route",
+      "index": 6,
+      "x": 1050,
+      "y": 2495,
+      "hp": 330,
+      "round": 6,
+      "move": 974.402430421602,
+      "carX": 1300,
+      "carHp": 1700,
+      "support": "left-descent-stone-low"
+    },
+    {
+      "op": "route",
+      "index": 7,
+      "x": 1460,
+      "y": 2944.3667763157896,
+      "hp": 330,
+      "round": 6,
+      "move": 552.5332534591304,
+      "carX": 1300,
+      "carHp": 1700,
+      "support": "canyon-ground"
+    },
+    {
+      "op": "route",
+      "index": 8,
+      "x": 1823.4443505909176,
+      "y": 2949.843149243106,
+      "hp": 330,
+      "round": 6,
+      "move": 171.11320618800153,
+      "carX": 1300,
+      "carHp": 1700,
+      "support": "canyon-ground"
+    }
+  ],
+  "airTurns": [
+    {
+      "round": 1,
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "air": [
+        {
+          "id": "foe-1",
+          "x": 2200,
+          "y": 800,
+          "awake": false,
+          "move": 550,
+          "aiMove": {
+            "round": 1,
+            "targetId": "",
+            "path": [
+              {
+                "x": 2177.3725830020303,
+                "y": 816.9705627484772,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0,
+            "stalled": 0,
+            "lastX": 2200,
+            "lastY": 800,
+            "jumping": false,
+            "intent": "횃대 주변 비행"
+          }
+        },
+        {
+          "id": "foe-4",
+          "x": 2440,
+          "y": 1220,
+          "awake": false,
+          "move": 550,
+          "aiMove": {
+            "round": 1,
+            "targetId": "",
+            "path": [
+              {
+                "x": 2439.9999999999986,
+                "y": 1196,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0,
+            "stalled": 0,
+            "lastX": 2440,
+            "lastY": 1220,
+            "jumping": false,
+            "intent": "횃대 주변 비행"
+          }
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 2500,
+          "y": 840,
+          "awake": false,
+          "move": 550,
+          "aiMove": {
+            "round": 1,
+            "targetId": "",
+            "path": [
+              {
+                "x": 2500.0000000000023,
+                "y": 864,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0,
+            "stalled": 0,
+            "lastX": 2500,
+            "lastY": 840,
+            "jumping": false,
+            "intent": "횃대 주변 비행"
+          }
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 2150,
+          "y": 1350,
+          "awake": false,
+          "move": 550,
+          "aiMove": {
+            "round": 1,
+            "targetId": "",
+            "path": [
+              {
+                "x": 2127.3725830020294,
+                "y": 1333.0294372515236,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0,
+            "stalled": 0,
+            "lastX": 2150,
+            "lastY": 1350,
+            "jumping": false,
+            "intent": "횃대 주변 비행"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "queue": [
+        "foe-4-cluster",
+        "foe-4",
+        "foe-1-cluster"
+      ],
+      "air": [
+        {
+          "id": "foe-4",
+          "x": 2439.9999999999986,
+          "y": 1196,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 2500.0000000000023,
+          "y": 864,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 2127.3725830020294,
+          "y": 1333.0294372515236,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "air": [
+        {
+          "id": "foe-4",
+          "x": 2197.5128869403716,
+          "y": 1056.000000000009,
+          "awake": true,
+          "move": 550,
+          "aiMove": {
+            "round": 3,
+            "targetId": "p-archer",
+            "path": [
+              {
+                "x": 2146.6463681177097,
+                "y": 974.5838022082686,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0,
+            "stalled": 0,
+            "lastX": 2197.5128869403716,
+            "lastY": 1056.000000000009,
+            "jumping": false,
+            "intent": "공중 예비대 접근"
+          }
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 2360.500000000002,
+          "y": 622.3789123441406,
+          "awake": true,
+          "move": 550,
+          "aiMove": {
+            "round": 3,
+            "targetId": "p-archer",
+            "path": [
+              {
+                "x": 2392.500000000002,
+                "y": 622.3789123441401,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0,
+            "stalled": 0,
+            "lastX": 2360.500000000002,
+            "lastY": 622.3789123441406,
+            "jumping": false,
+            "intent": "공중 예비대 접근"
+          }
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 1987.3725830020294,
+          "y": 1090.5423241918809,
+          "awake": true,
+          "move": 550,
+          "aiMove": {
+            "round": 3,
+            "targetId": "p-archer",
+            "path": [
+              {
+                "x": 1964.74516600406,
+                "y": 1107.5128869403582,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0,
+            "stalled": 0,
+            "lastX": 1987.3725830020294,
+            "lastY": 1090.5423241918809,
+            "jumping": false,
+            "intent": "공중 예비대 접근"
+          }
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "queue": [
+        "foe-5",
+        "foe-4-cluster",
+        "foe-4"
+      ],
+      "air": [
+        {
+          "id": "foe-4",
+          "x": 2146.64636811771,
+          "y": 974.5838022082692,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 2392.000000000002,
+          "y": 622.3789123441401,
+          "awake": true,
+          "move": 550,
+          "aiMove": {
+            "round": 4,
+            "targetId": "p-archer",
+            "path": [
+              {
+                "x": 2369.3725830020326,
+                "y": 639.3494750926172,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0,
+            "stalled": 0,
+            "lastX": 2392.000000000002,
+            "lastY": 622.3789123441401,
+            "jumping": false,
+            "intent": "공중 예비대 접근"
+          }
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 1964.74516600406,
+          "y": 1107.5128869403582,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "queue": [
+        "foe-1-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "air": [
+        {
+          "id": "foe-4",
+          "x": 2007.1463681177102,
+          "y": 974.5838022082692,
+          "awake": true,
+          "move": 550,
+          "aiMove": {
+            "round": 5,
+            "targetId": "p-archer",
+            "path": [
+              {
+                "x": 1996.9538865664936,
+                "y": 1070.0411922827318,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0,
+            "stalled": 0,
+            "lastX": 2007.1463681177102,
+            "lastY": 974.5838022082692,
+            "jumping": false,
+            "intent": "공중 예비대 접근"
+          }
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 2369.3725830020326,
+          "y": 639.3494750926172,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "air": [
+        {
+          "id": "foe-4",
+          "x": 1996.9538865664936,
+          "y": 1070.0411922827311,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 2126.885469942405,
+          "y": 779.3494750926083,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "queue": [
+        "foe-2",
+        "foe-1-cluster",
+        "foe-4"
+      ],
+      "air": [
+        {
+          "id": "foe-4",
+          "x": 2136.9538865664936,
+          "y": 1312.5283053423739,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 2126.885469942405,
+          "y": 1059.3494750926084,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "queue": [
+        "foe-1-cluster"
+      ],
+      "air": [
+        {
+          "id": "foe-1-cluster",
+          "x": 2126.885469942405,
+          "y": 1339.3494750926084,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 9,
+      "queue": [
+        "foe-1-cluster"
+      ],
+      "air": [
+        {
+          "id": "foe-1-cluster",
+          "x": 2196.635469942405,
+          "y": 1460.1600189205376,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 10,
+      "queue": [
+        "event-58",
+        "event-59",
+        "foe-1-cluster"
+      ],
+      "air": [
+        {
+          "id": "foe-1-cluster",
+          "x": 2196.635469942405,
+          "y": 1740.1600189205376,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 11,
+      "queue": [
+        "sniper-crow-65",
+        "sniper-crow-66",
+        "event-59"
+      ],
+      "air": [
+        {
+          "id": "sniper-crow-65",
+          "x": 2223.593303509768,
+          "y": 2850.579553136452,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        },
+        {
+          "id": "sniper-crow-66",
+          "x": 2383.593303509768,
+          "y": 2666.579553136452,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 12,
+      "queue": [
+        "event-58",
+        "sniper-crow-66",
+        "sniper-crow-65"
+      ],
+      "air": [
+        {
+          "id": "sniper-crow-65",
+          "x": 2512.864882489568,
+          "y": 2845.179553136452,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        },
+        {
+          "id": "sniper-crow-66",
+          "x": 2383.593303509768,
+          "y": 2386.579553136452,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 13,
+      "queue": [
+        "sniper-crow-65"
+      ],
+      "air": [
+        {
+          "id": "sniper-crow-65",
+          "x": 2521.5992069813533,
+          "y": 2559.779553136452,
+          "awake": true,
+          "move": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 14,
+      "queue": [],
+      "air": []
+    }
+  ],
+  "snapshotLabels": [
+    "entry-high",
+    "airborne-warning",
+    "air-turn-2",
+    "route-0",
+    "route-1",
+    "route-2",
+    "air-turn-4",
+    "route-3",
+    "route-4",
+    "route-5",
+    "route-6",
+    "route-7",
+    "route-8",
+    "air-turn-6",
+    "wave-entry-sniper-crow-65",
+    "wave-entry-sniper-crow-66",
+    "wave-moved-sniper-crow-65",
+    "wave-moved-sniper-crow-66",
+    "convoy-arrival"
+  ]
+}

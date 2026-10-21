@@ -1,0 +1,565 @@
+{
+  "scope": "Isolated production movement and real projectiles; finite resources except isolated turn readiness. Normal combat is separate.",
+  "routes": [
+    {
+      "label": "High -> long upper -> distinct middle firing bough -> lower -> convoy",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 290,
+        "y": 590.8695652173913,
+        "hp": 395,
+        "round": 1
+      },
+      "end": {
+        "x": 1826.281921439847,
+        "y": 2949.8100442498685,
+        "support": "canyon-ground",
+        "round": 4,
+        "moveLeft": 234.52982096495376
+      },
+      "counts": {
+        "ticks": 2751,
+        "jumps": 0,
+        "waits": 3,
+        "walkCost": 4280.6906046269805,
+        "jumpCost": 0,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 4280.6906046269805,
+      "turnEquivalent": 3.7682135604110742,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1399.571573916201,
+          "y": 766.390192171974,
+          "support": "left-tree-branch-upper",
+          "round": 1,
+          "moveLeft": 9.618412097864816
+        },
+        {
+          "op": "drop",
+          "x": 1103.8190042776575,
+          "y": 738.420737759403,
+          "support": "left-tree-branch-upper",
+          "round": 2,
+          "moveLeft": 446.25000127207903
+        },
+        {
+          "op": "wait",
+          "x": 1360.8372833529145,
+          "y": 1095.9809023884593,
+          "support": "left-tree-branch-middle",
+          "round": 2,
+          "moveLeft": 9.63843965681329
+        },
+        {
+          "op": "drop",
+          "x": 1054.8569309676107,
+          "y": 1036.5663791380564,
+          "support": "left-tree-branch-middle",
+          "round": 3,
+          "moveLeft": 823.4166666666661
+        },
+        {
+          "op": "drop",
+          "x": 1354.2711000583777,
+          "y": 1819.9088375865772,
+          "support": "left-tree-branch-lower",
+          "round": 3,
+          "moveLeft": 221.35605598665103
+        },
+        {
+          "op": "wait",
+          "x": 1144.9010287727301,
+          "y": 2115.3693890419586,
+          "support": "left-descent-stone-mid",
+          "round": 3,
+          "moveLeft": 9.522722653325905
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 1600,
+            "support": "left-tree-branch-upper"
+          },
+          "x": 1595.3406496081527,
+          "y": 781.2192728370018,
+          "support": "left-tree-branch-upper",
+          "round": 2,
+          "moveLeft": 939.6666679387512
+        },
+        {
+          "goal": {
+            "x": 1100,
+            "support": "left-tree-branch-upper",
+            "drop": true
+          },
+          "x": 1103.8190042776575,
+          "y": 738.420737759403,
+          "support": "left-tree-branch-upper",
+          "round": 2,
+          "moveLeft": 446.25000127207903
+        },
+        {
+          "goal": {
+            "x": 1450,
+            "support": "left-tree-branch-middle"
+          },
+          "x": 1446.2255267771052,
+          "y": 1116.5522072210533,
+          "support": "left-tree-branch-middle",
+          "round": 2,
+          "moveLeft": 97.47177299014567
+        },
+        {
+          "goal": {
+            "x": 1050,
+            "support": "left-tree-branch-middle",
+            "drop": true
+          },
+          "x": 1054.8569309676107,
+          "y": 1036.5663791380564,
+          "support": "left-tree-branch-middle",
+          "round": 3,
+          "moveLeft": 823.4166666666661
+        },
+        {
+          "goal": {
+            "x": 1500,
+            "support": "left-tree-branch-lower"
+          },
+          "x": 1498.3097709920535,
+          "y": 1833.0193827753783,
+          "support": "left-tree-branch-lower",
+          "round": 3,
+          "moveLeft": 366.022722653316
+        },
+        {
+          "goal": {
+            "x": 1350,
+            "support": "left-tree-branch-lower",
+            "drop": true
+          },
+          "x": 1354.2711000583777,
+          "y": 1819.9088375865772,
+          "support": "left-tree-branch-lower",
+          "round": 3,
+          "moveLeft": 221.35605598665103
+        },
+        {
+          "goal": {
+            "x": 1050,
+            "support": "left-descent-stone-low"
+          },
+          "x": 1050,
+          "y": 2495,
+          "support": "left-descent-stone-low",
+          "round": 4,
+          "moveLeft": 1040.6883567632592
+        },
+        {
+          "goal": {
+            "x": 1460,
+            "support": "canyon-ground"
+          },
+          "x": 1459.214156370866,
+          "y": 2944.1418802771886,
+          "support": "canyon-ground",
+          "round": 4,
+          "moveLeft": 619.6050234299246
+        },
+        {
+          "goal": {
+            "x": 1830,
+            "support": "canyon-ground"
+          },
+          "x": 1826.281921439847,
+          "y": 2949.8100442498685,
+          "support": "canyon-ground",
+          "round": 4,
+          "moveLeft": 234.52982096495376
+        }
+      ]
+    },
+    {
+      "label": "Entire undulating wet escort road without a jump",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 180,
+        "y": 2974.1690962099124,
+        "hp": 395,
+        "round": 1
+      },
+      "end": {
+        "x": 4096.066841510566,
+        "y": 2629.9042361411266,
+        "support": "canyon-ground",
+        "round": 4,
+        "moveLeft": 455.9763479074475
+      },
+      "counts": {
+        "ticks": 1925,
+        "jumps": 0,
+        "waits": 3,
+        "walkCost": 4060.2162126442636,
+        "jumpCost": 0,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 4060.2162126442636,
+      "turnEquivalent": 3.574133990003753,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1283.237594033116,
+          "y": 2951.909936513105,
+          "support": "canyon-ground",
+          "round": 1,
+          "moveLeft": 9.448620967507404
+        },
+        {
+          "op": "wait",
+          "x": 2378.2600362580065,
+          "y": 3005,
+          "support": "canyon-ground",
+          "round": 2,
+          "moveLeft": 9.219286305269492
+        },
+        {
+          "op": "wait",
+          "x": 3475.844599094626,
+          "y": 2816.4651939360847,
+          "support": "canyon-ground",
+          "round": 3,
+          "moveLeft": 9.139532175499623
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 4100,
+            "support": "canyon-ground"
+          },
+          "x": 4096.066841510566,
+          "y": 2629.9042361411266,
+          "support": "canyon-ground",
+          "round": 4,
+          "moveLeft": 455.9763479074475
+        }
+      ]
+    },
+    {
+      "label": "Optional right root approach -> lower rear firing shoulder",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 2920,
+        "y": 2940.5096641831337,
+        "hp": 395,
+        "round": 1
+      },
+      "end": {
+        "x": 3438.3780671609934,
+        "y": 2476.641104479432,
+        "support": "right-descent-stone-low",
+        "round": 2,
+        "moveLeft": 918.9166666666583
+      },
+      "counts": {
+        "ticks": 468,
+        "jumps": 2,
+        "waits": 1,
+        "walkCost": 553.0273251834668,
+        "jumpCost": 150,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 703.0273251834668,
+      "turnEquivalent": 0.6188620820276997,
+      "events": [
+        {
+          "op": "jump",
+          "x": 2920,
+          "y": 2940.5096641831337,
+          "support": "canyon-ground",
+          "round": 1,
+          "moveLeft": 1061
+        },
+        {
+          "op": "wait",
+          "x": 3296.2947338276517,
+          "y": 2625.1930801576495,
+          "support": "right-climbing-root",
+          "round": 1,
+          "moveLeft": 650.0560081498749
+        },
+        {
+          "op": "jump",
+          "x": 3296.2947338276517,
+          "y": 2625.1930801576495,
+          "support": "right-climbing-root",
+          "round": 2,
+          "moveLeft": 1061
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 2920,
+            "support": "canyon-ground",
+            "jumpTo": {
+              "x": 3030,
+              "support": "right-climbing-root"
+            },
+            "delay": 16
+          },
+          "x": 2920,
+          "y": 2940.5096641831337,
+          "support": "canyon-ground",
+          "round": 1,
+          "moveLeft": 1136
+        },
+        {
+          "jump": {
+            "x": 3030,
+            "support": "right-climbing-root"
+          },
+          "x": 3028.5000000000064,
+          "y": 2763.269911504422,
+          "support": "right-climbing-root",
+          "round": 1,
+          "moveLeft": 952.4999999999936
+        },
+        {
+          "goal": {
+            "x": 3300,
+            "support": "right-climbing-root",
+            "jumpTo": {
+              "x": 3440,
+              "support": "right-descent-stone-low"
+            }
+          },
+          "x": 3296.2947338276517,
+          "y": 2625.1930801576495,
+          "support": "right-climbing-root",
+          "round": 1,
+          "moveLeft": 650.0560081498749
+        },
+        {
+          "jump": {
+            "x": 3440,
+            "support": "right-descent-stone-low"
+          },
+          "x": 3438.3780671609934,
+          "y": 2476.641104479432,
+          "support": "right-descent-stone-low",
+          "round": 2,
+          "moveLeft": 918.9166666666583
+        }
+      ]
+    }
+  ],
+  "shots": [
+    {
+      "name": "upper",
+      "from": {
+        "x": 1595.3406496081527,
+        "y": 781.2192728370018
+      },
+      "target": "foe-1",
+      "damage": 74,
+      "aim": {
+        "angle": 2.0495953554514483,
+        "power": 0.6988459392217239
+      },
+      "movementCost": 1322.7149199633836,
+      "turnEquivalent": 1.16436172531988
+    },
+    {
+      "name": "middle",
+      "from": {
+        "x": 1446.2255267771052,
+        "y": 1116.5522072210533
+      },
+      "target": "foe-1",
+      "damage": 74,
+      "aim": {
+        "angle": 28.509435837479593,
+        "power": 0.7841330825031738
+      },
+      "movementCost": 2164.909814911996,
+      "turnEquivalent": 1.9057304708732359
+    },
+    {
+      "name": "east-low-shoulder",
+      "from": {
+        "x": 3438.3780671609934,
+        "y": 2476.641104479432
+      },
+      "target": "foe-1",
+      "damage": 74,
+      "aim": {
+        "angle": 114.02875965499477,
+        "power": 0.9718326639731611
+      }
+    }
+  ],
+  "other29AndLibraryUnchanged": true,
+  "flight": [
+    {
+      "id": "foe-1",
+      "x": 2200,
+      "y": 800,
+      "bounds": {
+        "left": 2108,
+        "right": 2292,
+        "head": 692,
+        "feet": 820
+      }
+    },
+    {
+      "id": "foe-4",
+      "x": 2440,
+      "y": 1220,
+      "bounds": {
+        "left": 2364.1,
+        "right": 2515.9,
+        "head": 1130.9,
+        "feet": 1236.5
+      }
+    },
+    {
+      "id": "foe-1-cluster",
+      "x": 2500,
+      "y": 840,
+      "bounds": {
+        "left": 2408,
+        "right": 2592,
+        "head": 732,
+        "feet": 860
+      }
+    },
+    {
+      "id": "foe-4-cluster",
+      "x": 2150,
+      "y": 1350,
+      "bounds": {
+        "left": 2074.1,
+        "right": 2225.9,
+        "head": 1260.9,
+        "feet": 1366.5
+      }
+    }
+  ],
+  "water": [
+    {
+      "x": 2140.1239231627414,
+      "y": 2970,
+      "w": 516.6963690686453,
+      "depth": 35,
+      "bottom": [
+        {
+          "x": 2140.1239231627414,
+          "y": 2970.049931786542
+        },
+        {
+          "x": 2163.6101217567707,
+          "y": 2981.8509740077193
+        },
+        {
+          "x": 2187.0963203508,
+          "y": 2992.475196337974
+        },
+        {
+          "x": 2210.5825189448296,
+          "y": 3000.449925692599
+        },
+        {
+          "x": 2234.068717538859,
+          "y": 3004.302488986889
+        },
+        {
+          "x": 2257.554916132888,
+          "y": 3005
+        },
+        {
+          "x": 2281.0411147269174,
+          "y": 3005
+        },
+        {
+          "x": 2304.5273133209466,
+          "y": 3005
+        },
+        {
+          "x": 2328.013511914976,
+          "y": 3005
+        },
+        {
+          "x": 2351.4997105090056,
+          "y": 3005
+        },
+        {
+          "x": 2374.985909103035,
+          "y": 3005
+        },
+        {
+          "x": 2398.472107697064,
+          "y": 3005
+        },
+        {
+          "x": 2421.9583062910933,
+          "y": 3005
+        },
+        {
+          "x": 2445.4445048851226,
+          "y": 3005
+        },
+        {
+          "x": 2468.930703479152,
+          "y": 3005
+        },
+        {
+          "x": 2492.4169020731815,
+          "y": 3004.873112641158
+        },
+        {
+          "x": 2515.9031006672108,
+          "y": 3003.4688081549225
+        },
+        {
+          "x": 2539.38929926124,
+          "y": 3000.02824715514
+        },
+        {
+          "x": 2562.8754978552693,
+          "y": 2995.0567480469067
+        },
+        {
+          "x": 2586.3616964492985,
+          "y": 2989.0596292353193
+        },
+        {
+          "x": 2609.847895043328,
+          "y": 2982.5422091254763
+        },
+        {
+          "x": 2633.3340936373575,
+          "y": 2976.0247890156334
+        },
+        {
+          "x": 2656.8202922313867,
+          "y": 2970.0208254809963
+        }
+      ],
+      "frozen": 0,
+      "kind": "water"
+    }
+  ]
+}
