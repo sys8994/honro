@@ -11,3 +11,9 @@ fresh 상여x180/설오x290, 실제 고지 화살 명중, 의도한 하강과 �
 visual의 전체/일반/모바일3장과 navigation의 실제R3 및 R21 화면을 직접 열었다. 이미지 생성/래스터 편집은 없다. 보존한 나머지 UI 캡처는 기존 검증 스크립트의 보상/쉼터/다음 장 증거다. 핵심 앞 도로/뒤 절벽 분리와 보행면/지지 접합의 승인 범위를 반영하며, 전략 다양성·미술 완벽·전 지형 문제의 영구 해결을 주장하지 않는다.
 
 발행 상태는 별도로 확인한다. Actions 목록 CLI 조회(gh run list, sys8994/honro)는 Forbidden으로 거부되어 재시도/우회하지 않았다. 이 기록은 로컬 통합 검증이며 Git push 성공·Pages 실행 성공·공개 화면 검증은 서로 구분해 최종 결과로 보고한다. Pages 설정 API는 호출하지 않는다.
+
+## 원격 반영과 공개 확인 제한
+
+검증 및 증거 커밋445579d7bf3aa229f7e3821f3edf67f14f87a244를 기존 master edf712e9에서 비강제 push했고 ls-remote로 같은 SHA를 확인했다. 이후 추가되는 이 발행 기록은 문서/검증 결과만이며 런타임과 빌드 산출물은 바꾸지 않는다.
+
+공개 Pages `https://sys8994.github.io/honro/`에 새 Chromium으로 한 번 일반 접속했으나 `net::ERR_TUNNEL_CONNECTION_FAILED`로 문서를 받지 못했다. 재시도·대체 경로·Pages 설정 API 호출은 없다. Actions 목록 조회의 Forbidden과 이 공개 연결 실패 때문에 이번 master의 Pages run ID/완료 상태 및 공개 화면은 **미확인**이다. Git master 반영 성공을 배포 성공으로 간주하지 않는다. 정확한 공개 시도 결과는 checks/public-check.json에 보존한다.
