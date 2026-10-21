@@ -3843,3 +3843,8 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 ## 2026-10-21 — Stage5 canonical author replay safety
 - Follow-up reproduced the same idempotence failure on509ed75a: the canonical waterfall author still invoked retired image-terrain paint, producing47 Stage5-only geometry/placement changes. Remove that call; stop the retired writer before file writes; skip no-op canonical CLI writes.
 - Existing lake37-probe and authoring contracts pass without relaxed assertions; new replay safety checks canonical/runtime all30 twice and retired CLI refusal. Actual canonical CLI leaves campaign bytes unchanged. Runtime, campaign, balance and rendered assets remain identical tobe830a46. See stage05-waterfall/AUTHOR_REPLAY_AUDIT.md.
+
+## 2026-10-21 — Stage6 broken bridge readability and escort roles
+- Preserve both broken upper spans and lower rescue geography. Timber decks/watch stand follow unchanged landing tops; original piers receive knee braces. Remove two decorative low bridges that suggested a false second floor.
+- Keep initial/wave budgets and story; place duplicate actors by upper air, pier approach, east lookout/road roles. Pursuit enters behind the carrier. Revision6 2→3 restarts only this changed battle.
+- Retired image bridge CLI now refuses before writes: it otherwise flattens the restored valley and remaps actors. Current build author is repeatable and preserves other29/library. Review and final play evidence: stage-review/stage06-bridge/REVIEW.md.

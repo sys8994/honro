@@ -1,3 +1,2 @@
-import {readFile,writeFile} from 'node:fs/promises';
-import {applyStage6BrokenBridge} from './stage6-broken-bridge.mjs';
-const file='shared/data/campaign.json',p=JSON.parse(await readFile(file,'utf8'));applyStage6BrokenBridge(p);await writeFile(file,JSON.stringify(p)+'\n');console.log('Authored Stage6 bridge and continuous lower road only');
+// Retired image-terrain author: it flattens the restored vector rescue road.
+throw new Error('Stage6 image-terrain author retired. Current vector refinements are applied by shared/build.mjs via stage6-positioning.mjs; campaign.json was not written.');

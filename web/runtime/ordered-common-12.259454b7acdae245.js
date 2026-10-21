@@ -695,7 +695,7 @@ function ferryDeck(c,t,q){
  if(!roof){c.fillStyle='#343c30';c.fill(q.ferryBeam);}c.fillStyle=roof?'#687b79':'#a49a78';c.fill(q.ferryCap);c.strokeStyle=roof?'#182c30':'#242e23';c.lineWidth=3;for(const p of q.ferryJoints)c.stroke(p);
  c.strokeStyle=roof?'#9aaba3':'#b7ac84';c.lineWidth=2.5;c.stroke(q.rim);c.restore();
 }
-const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===4&&b.honroMap?.positioning&&t.surfaceKind==='defenseDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===3&&b.honroMap?.positioning&&(t.id==='warehouse-roof'||t.mat==='wood'&&/^(dock-|cargo-step-)/.test(t.id))){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
+const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===6&&b.honroMap?.positioning&&t.surfaceKind==='bridgeDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===4&&b.honroMap?.positioning&&t.surfaceKind==='defenseDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===3&&b.honroMap?.positioning&&(t.id==='warehouse-roof'||t.mat==='wood'&&/^(dock-|cargo-step-)/.test(t.id))){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
  if(guardianBranch(b,t)){
   // Use the authored collision silhouette and bright walkable top. The bark
   // palette never changes resistance or the one-way projectile passage rule.
@@ -727,6 +727,19 @@ function supports(c,b){if(G.HonroStage3LocationArt?.active(b)&&G.HonroStage3Loca
  // Real optional decks receive visibly open timber trestles. Gaps remain gaps;
  // these narrow, darker members are scenery and never suggest extra floor.
  if(![3,4,6,8,9,10].includes(b.honroStage))return;
+ // Stage 6's surviving deck spans are carried by the original stone piers.
+ // Two knee braces per pier make their cantilevers readable without painting
+ // another floor or closing either broken span.
+ if(b.honroStage===6&&b.honroMap?.positioning){
+  c.save();c.lineCap='butt';
+  for(const [id,x]of [['bridge-west',2010],['bridge-mid',3150],['bridge-east',4530]]){
+   const t=b.terrain.find(t=>t.id===id);if(!t)continue;const y=C.topAt(t,x,t.y)+38;
+   for(const side of [-1,1]){const end=Math.max(t.x+25,Math.min(t.x+t.w-25,x+side*290)),ey=C.topAt(t,end,t.y)+38;
+    c.strokeStyle='#27372f';c.lineWidth=24;c.beginPath();c.moveTo(x+side*35,y+285);c.lineTo(end,ey);c.stroke();
+    c.strokeStyle='#82795b';c.lineWidth=7;c.beginPath();c.moveTo(x+side*35-3,y+275);c.lineTo(end-3,ey+2);c.stroke();
+   }
+  }c.restore();
+ }
  const floors=b.terrain.filter(t=>!t.broken&&!t.oneWay&&!t.honroElementCollision&&t.y+t.h>=b.height);
  for(const t of b.terrain){if(guardianBranch(b,t)||t.broken||t.honroSeal||t.honroElementCollision||(!t.oneWay&&!/gallery|eave|tier-|ramp-|bridge-/.test(t.id))||t.w<190)continue;
   const under=(x,y)=>{const hits=floors.flatMap(f=>C.terrainSurfaces(f,x)).filter(p=>p.y>y+24);return hits.length?Math.min(...hits.map(p=>p.y)):b.height;};
@@ -764,7 +777,8 @@ function cutAt(a,z,p,q,cuts){const dx=z.x-a.x,dy=z.y-a.y,ex=q.x-p.x,ey=q.y-p.y,d
  else if(Math.abs(cross(p.x-a.x,p.y-a.y,dx,dy))<1e-6)for(const v of [p,q]){const t=((v.x-a.x)*dx+(v.y-a.y)*dy)/len2;if(t>0&&t<1)cuts.push(t);}
 }
 function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prior=cache.get(b);if(prior?.source===ts&&prior.version===b.sceneVersion)return prior;
- const solids=ts.filter(t=>!t.broken).map(t=>({t,ps:C.poly(t)})),groups=[];
+ // The waterfall is rendered by its flowing sheet, not a rock-edge outline.
+ const solids=ts.filter(t=>!t.broken&&!(G.HonroStage5Waterfall?.active(b)&&t.id==='waterfall-veil')).map(t=>({t,ps:C.poly(t)})),groups=[];
  for(const {t,ps}of solids){
   // Some legacy sprite hitboxes deliberately enclose empty air. Outlining
   // those would create a floating wireframe, so retain their authored rim.
@@ -1463,7 +1477,7 @@ function terrain(c,t,b){let q=cache.get(t);if(!q||q.vertices!==t.vertices){q={ve
  }c.restore();c.save();c.strokeStyle='#162c33';c.lineWidth=3;c.stroke(q.path);c.restore();}
 const oldTerrain=S.terrain;S.terrain=function(c,t,...args){if(active(this.battle)&&t.indestructible&&t.id!=='waterfall-veil'&&!t.honroElementCollision){terrain(c,t,this.battle);return;}if(active(this.battle)&&t.id==='waterfall-veil')return;return oldTerrain.call(this,c,t,...args);};
 const oldLandmark=S.landmark;S.landmark=function(c,l,...args){if(active(this.battle)&&l.kind==='waterfall')return;return oldLandmark.call(this,c,l,...args);};
-function caveBackground(c,w,h,b,scene){if(!active(b))return;c.save();c.translate(w/2,h/2);c.scale(scene.scale,scene.scale);c.translate(-scene.x+(b.honroStage5LakeRevision===1?900:0),-scene.y);c.beginPath();c.rect(2870,2000,900,405);c.clip();c.fillStyle='#14252d';c.fill(P('M2920 2100Q3260 1990 3570 2110L3710 2300 3660 2520 2900 2590Z'));c.fillStyle='#273c3e';c.fill(P('M3020 2160L3260 2120 3570 2170 3600 2290 3500 2400 3030 2430Z'));c.restore();}
+function caveBackground(c,w,h,b,scene){if(!active(b))return;c.save();c.translate(w/2,h/2);c.scale(scene.scale,scene.scale);c.translate(-scene.x+(b.honroStage5LakeRevision===1?900:0),-scene.y);const mouth=P('M3070 2140L3540 2100 3660 2240 3630 2405 3060 2405Z');c.clip(mouth);c.fillStyle='#14252d';c.fill(mouth);c.fillStyle='#273c3e';c.fill(P('M3020 2160L3260 2120 3570 2170 3600 2290 3500 2400 3030 2430Z'));c.restore();}
 const oldBackground=S.background;S.background=function(c,w,h,b){oldBackground.call(this,c,w,h,b);caveBackground(c,w,h,b,this);};
 const oldWater=S.liveWater;S.liveWater=function(c,b){if(!active(b))return oldWater.call(this,c,b);oldWater.call(this,c,{...b,honroLandmarks:b.honroLandmarks.filter(l=>l.kind!=='waterfall'),honroSurfaceZones:b.honroSurfaceZones.filter(z=>!['stage5-downstream','stage5-plunge-pool','stage5-headwater'].includes(z.id))});const time=A.time(this),a=G.HonroEnvironment.atmosphereAt({backdrop:b.honroBackdrop,environment:b.honroEnvironment},this.y),open=!!G.HonroQuestTargets.records(b).find(t=>t.id==='waterfall-veil')?.honroWaterOpen,shape=open?opened:closed;const downstream=b.honroSurfaceZones.find(z=>z.id==='stage5-downstream');if(downstream){c.save();c.clip(A.poolData(downstream).clip);c.fillStyle=A.gradient(c,0,3300,0,3460,[[0,'#3f63635c'],[1,'#17343aaa']]);c.fillRect(-6000,3300,8400,180);c.restore();}
  const head=b.honroSurfaceZones.find(z=>z.id==='stage5-headwater');if(head){c.save();c.clip(A.poolData(head).clip);c.fillStyle=A.gradient(c,0,1220,0,1350,[[0,'#a8c4b980'],[1,'#315859dd']]);c.fillRect(2960,1220,8000,150);c.strokeStyle='#adcdbd70';c.lineWidth=4;for(let i=0;i<8;i++){const x=3070+i*260-(time*60%260);c.beginPath();c.moveTo(x,1240+i%3*13);c.quadraticCurveTo(x+50,1232+i%3*13,x+135,1244+i%3*13);c.stroke();}c.restore();}

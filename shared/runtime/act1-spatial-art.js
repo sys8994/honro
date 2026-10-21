@@ -117,7 +117,7 @@ function ferryDeck(c,t,q){
  if(!roof){c.fillStyle='#343c30';c.fill(q.ferryBeam);}c.fillStyle=roof?'#687b79':'#a49a78';c.fill(q.ferryCap);c.strokeStyle=roof?'#182c30':'#242e23';c.lineWidth=3;for(const p of q.ferryJoints)c.stroke(p);
  c.strokeStyle=roof?'#9aaba3':'#b7ac84';c.lineWidth=2.5;c.stroke(q.rim);c.restore();
 }
-const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===4&&b.honroMap?.positioning&&t.surfaceKind==='defenseDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===3&&b.honroMap?.positioning&&(t.id==='warehouse-roof'||t.mat==='wood'&&/^(dock-|cargo-step-)/.test(t.id))){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
+const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===6&&b.honroMap?.positioning&&t.surfaceKind==='bridgeDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===4&&b.honroMap?.positioning&&t.surfaceKind==='defenseDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===3&&b.honroMap?.positioning&&(t.id==='warehouse-roof'||t.mat==='wood'&&/^(dock-|cargo-step-)/.test(t.id))){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
  if(guardianBranch(b,t)){
   // Use the authored collision silhouette and bright walkable top. The bark
   // palette never changes resistance or the one-way projectile passage rule.
@@ -149,6 +149,19 @@ function supports(c,b){if(G.HonroStage3LocationArt?.active(b)&&G.HonroStage3Loca
  // Real optional decks receive visibly open timber trestles. Gaps remain gaps;
  // these narrow, darker members are scenery and never suggest extra floor.
  if(![3,4,6,8,9,10].includes(b.honroStage))return;
+ // Stage 6's surviving deck spans are carried by the original stone piers.
+ // Two knee braces per pier make their cantilevers readable without painting
+ // another floor or closing either broken span.
+ if(b.honroStage===6&&b.honroMap?.positioning){
+  c.save();c.lineCap='butt';
+  for(const [id,x]of [['bridge-west',2010],['bridge-mid',3150],['bridge-east',4530]]){
+   const t=b.terrain.find(t=>t.id===id);if(!t)continue;const y=C.topAt(t,x,t.y)+38;
+   for(const side of [-1,1]){const end=Math.max(t.x+25,Math.min(t.x+t.w-25,x+side*290)),ey=C.topAt(t,end,t.y)+38;
+    c.strokeStyle='#27372f';c.lineWidth=24;c.beginPath();c.moveTo(x+side*35,y+285);c.lineTo(end,ey);c.stroke();
+    c.strokeStyle='#82795b';c.lineWidth=7;c.beginPath();c.moveTo(x+side*35-3,y+275);c.lineTo(end-3,ey+2);c.stroke();
+   }
+  }c.restore();
+ }
  const floors=b.terrain.filter(t=>!t.broken&&!t.oneWay&&!t.honroElementCollision&&t.y+t.h>=b.height);
  for(const t of b.terrain){if(guardianBranch(b,t)||t.broken||t.honroSeal||t.honroElementCollision||(!t.oneWay&&!/gallery|eave|tier-|ramp-|bridge-/.test(t.id))||t.w<190)continue;
   const under=(x,y)=>{const hits=floors.flatMap(f=>C.terrainSurfaces(f,x)).filter(p=>p.y>y+24);return hits.length?Math.min(...hits.map(p=>p.y)):b.height;};
