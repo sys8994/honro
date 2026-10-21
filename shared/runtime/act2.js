@@ -212,7 +212,7 @@ function firstSpiritEncounter(app,heroes){const e=app.engine,b=e?.b,key='act2:fi
  const guidance=soulGuide+(manifest?' 현형부를 맞히면 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':lamp?' 원혼등불에 다가가 밝히면 주변 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':' 소단을 선택해 혼령을 상대하세요.');
  app.profile.seen??={};
  app.profile.seen[key]=true;
- const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id};
+ const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id,...(!manifest&&lamp?{sceneLamp:lamp.id}:{}),exposureMethod:manifest?'manifest':lamp?'lamp':'soul'};
  G.HonroStory.queue(app,[
   ['설오',b.honroNarrativeRevision===1?'저기 움직이는 것이 보입니까? 윤곽이 자꾸 흩어집니다.':'저기, 돌 틈을 보세요. 무언가 움직였는데 화살이 허공을 지나갔어요.',meta],
   ['휘겸',b.honroNarrativeRevision===1?'발소리도 그림자도 없소. 눈앞에서 윤곽만 흔들리는군.':'발소리도 그림자도 없소. 그런데 등잔 불꽃은 저쪽으로 기울었소.',meta],

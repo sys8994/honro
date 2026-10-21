@@ -1,0 +1,1027 @@
+{
+  "calls": [
+    {
+      "file": "act2.js",
+      "line": 123,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(G.HonroAct2Content.scene('act2-'+app.stage.id+'-'+id,app.stage.name,lines))",
+      "historical": false
+    },
+    {
+      "file": "act2.js",
+      "line": 127,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id})",
+      "historical": false
+    },
+    {
+      "file": "act2.js",
+      "line": 134,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event('종의 잔울림을 따라 '+G.HonroWorld.archetypes[kind].name+' 등장')",
+      "historical": false
+    },
+    {
+      "file": "act2.js",
+      "line": 139,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event('원혼등불 · 주변의 혼이 두 턴 동안 형태를 드러낸다.')",
+      "historical": false
+    },
+    {
+      "file": "act2.js",
+      "line": 140,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event('낙석을 치웠다. 인양축에 다시 접근할 수 있다.',{kind:'narration',source:'brace-restored'})",
+      "historical": false
+    },
+    {
+      "file": "act2.js",
+      "line": 162,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event('혼이 임시 그릇을 떠나 바깥 길로 흘러간다.',{kind:'narration',source:'soul-released'})",
+      "historical": false
+    },
+    {
+      "file": "act2.js",
+      "line": 192,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event('버팀목 없이 돌이 무너졌다. 안전 지지대를 세우고 낙석을 치워야 한다.',{kind:'narration',source:'quarry-collapse'})",
+      "historical": false
+    },
+    {
+      "file": "act2.js",
+      "line": 216,
+      "receiver": "G.HonroStory",
+      "method": "queue",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.queue(app,[\n  ['설오',b.honroNarrativeRevision===1?'저기 움직이는 것이 보입니까? 윤곽이 자꾸 흩어집니다.':'저기, 돌 틈을 보세요. 무언가 움직였는데 화살이 허공을 지나갔어요.',meta],\n  ['휘겸',b.honroNarrativeRevision===1?'발소리도 그림자도 없소. 눈앞에서 윤곽만 흔들리는군.':'발소리도 그림자도 없소. 그런데 등잔 불꽃은 저쪽으로 기울었소.',meta],\n  ['소단','혼이에요. 두 분 눈에는 흐려도 제 눈에는 보여요. 아직 길을 찾지 못한 혼이 저기 있어요.',meta],\n  ['설오','어떻게 맞서면 되나요?',meta],\n  ['소단',reply,meta],\n  ['안내',guidance,{...meta,kind:'guide',guideTitle:manifest||lamp?'혼령과 현형':'혼령과 혼 공격'}]\n ])",
+      "historical": false
+    },
+    {
+      "file": "act3-objectives.js",
+      "line": 53,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(G.HonroAct3Content.scene(`act3-${b.honroStage}-${s.id}`,app.stage.name,lines.map(([who,text,meta={}])=>[who,text,{...meta,evidenceGoal:s.id}])))",
+      "historical": false
+    },
+    {
+      "file": "act3-objectives.js",
+      "line": 53,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(s.label+' · 완료',{kind:'narration',source:'objective:'+s.id})",
+      "historical": false
+    },
+    {
+      "file": "act3-objectives.js",
+      "line": 75,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event('성문 동쪽에서 산개 둘이 다가옵니다. 다음 행동 동안 주민 곁 방어 위치를 살피세요.')",
+      "historical": false
+    },
+    {
+      "file": "act3-objectives.js",
+      "line": 78,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event('길목에 '+n+'명의 위협이 다가온다.')",
+      "historical": false
+    },
+    {
+      "file": "act3-void.js",
+      "line": 59,
+      "receiver": "G.HonroStory",
+      "method": "start",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.start(app,lines,{title:'검은 집하장'})",
+      "historical": false
+    },
+    {
+      "file": "act3-void.js",
+      "line": 59,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines?.(lines)",
+      "historical": false
+    },
+    {
+      "file": "act3-void.js",
+      "line": 102,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event?.('설오도 명세가 놓인 심부 석대로 와야 합니다. 이어 둔 길로 합류하세요.')",
+      "historical": false
+    },
+    {
+      "file": "allies.js",
+      "line": 8,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event('남은 호위가 상여채를 이어받았다.',{kind:'narration',source:'escort-handoff'})",
+      "historical": false
+    },
+    {
+      "file": "allies.js",
+      "line": 73,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event('호위대가 길을 막은 뿌리를 잘라냈다.',{kind:'narration',source:'escort-road-cleared'})",
+      "historical": false
+    },
+    {
+      "file": "bell-anomaly.js",
+      "line": 37,
+      "receiver": "G.HonroStory",
+      "method": "start",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.start(app,script,{title:'묵종 곁의 빈자리',bellAnomaly:true})",
+      "historical": false
+    },
+    {
+      "file": "bell-anomaly.js",
+      "line": 37,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines?.(script)",
+      "historical": false
+    },
+    {
+      "file": "encounter-density.js",
+      "line": 67,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(ev.warning)",
+      "historical": false
+    },
+    {
+      "file": "encounters.js",
+      "line": 77,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(ev.warning)",
+      "historical": false
+    },
+    {
+      "file": "encounters.js",
+      "line": 101,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(lines)",
+      "historical": false
+    },
+    {
+      "file": "encounters.js",
+      "line": 101,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(ev.text,{kind:'narration',source:'encounter:'+ev.id})",
+      "historical": false
+    },
+    {
+      "file": "encounters.js",
+      "line": 107,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(lines)",
+      "historical": false
+    },
+    {
+      "file": "interactions.js",
+      "line": 11,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(m.lines)",
+      "historical": false
+    },
+    {
+      "file": "interactions.js",
+      "line": 11,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(m.label,{kind:'narration',source:'interaction:'+m.id})",
+      "historical": false
+    },
+    {
+      "file": "interactions.js",
+      "line": 12,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(lines)",
+      "historical": false
+    },
+    {
+      "file": "interactions.js",
+      "line": 12,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(waterfallText(b,'담허가 받이진을 유지한다. 설오로 바꾸어 열린 물틈의 고리쇠를 노리자.'),{kind:'narration',source:'ritual-held'})",
+      "historical": false
+    },
+    {
+      "file": "interactions.js",
+      "line": 16,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(lines)",
+      "historical": false
+    },
+    {
+      "file": "interactions.js",
+      "line": 16,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(m.action==='ledger'?'홍만의 장부를 찾았다.':m.action==='receiver'?'받이진을 세웠다.':'들린 사람에게서 원혼을 떼어냈다.',{kind:'narration',source:'interaction:'+m.id})",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 294,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify('이 환경에서는 자동 기록이 제한돼. 설정에서 기록 파일을 보관해줘.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 415,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify('지형 윤곽선 설정을 저장하지 못했습니다.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 426,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify('미니맵 설정을 저장하지 못했습니다.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 449,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify(enabled?'디버그 모드 · 모든 스테이지를 검수할 수 있습니다.':'일반 여정으로 돌아왔습니다.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 479,
+      "receiver": "G.HonroStory",
+      "method": "start",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:map.name,after:'entry'})",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 489,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify('아직 준비되지 않은 길입니다.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 495,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify('아직 이어지지 않은 길이야.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 529,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify('분할 재플레이 · 지난 분기 기록 없이 현재 성장과 입장 준비값으로 시작합니다.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 537,
+      "receiver": "G.HonroStory",
+      "method": "start",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:st.name,after:'entry'})",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 552,
+      "receiver": "G.HonroStory",
+      "method": "start",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.start(this,b.honroStory.lines,b.honroStory)",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 573,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify('지형이 개편되어 현재 장 입구에서 다시 시작합니다. 성장과 장착은 유지됩니다.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 626,
+      "receiver": "G.HonroStory",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "G.HonroStory.event(this,text,options)",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 630,
+      "receiver": "G.HonroStory",
+      "method": "queue",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.queue(this,[[who,text]])",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 631,
+      "receiver": "G.HonroStory",
+      "method": "queue",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.queue(this,lines)",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 638,
+      "receiver": "G.HonroStory",
+      "method": "start",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.start(this,(G.HonroObjectiveRevision?.contentFor(this.engine.b,this.stage)||this.stage).outro,{title:this.stage.name,after:'outcome'})",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 836,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify('이 브라우저에서는 전체화면 전환이 제한돼.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 1171,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify(err.message||'맵을 읽을 수 없습니다.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 1191,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify('기록을 불러왔어.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 1194,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify(err.message || '기록을 읽을 수 없어.')",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 1199,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify(candidate.name+' · '+(candidate.stunnedRound===this.engine.b.round?status:'행동 완료 · '+(status||'다음 아군 턴에 행동할 수 있습니다')))",
+      "historical": false
+    },
+    {
+      "file": "main.js",
+      "line": 1284,
+      "receiver": "this",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "this.notify('진행을 멈췄어. 오류 기록과 함께 새로고침해줘.')",
+      "historical": false
+    },
+    {
+      "file": "mission.js",
+      "line": 14,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(`${front.label}에서 짐승, ${rear.label}에서 까마귀가 몰려온다 · ${index+1}차 습격`)",
+      "historical": false
+    },
+    {
+      "file": "mission.js",
+      "line": 24,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(G.HonroStoryContent.cooperationDefense?.()||[])",
+      "historical": false
+    },
+    {
+      "file": "mission.js",
+      "line": 24,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(G.HONRO_NARRATIVE_V0?.cooperation||G.HonroStoryContent.cooperation())",
+      "historical": false
+    },
+    {
+      "file": "mission.js",
+      "line": 31,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(G.HonroNarrativeRevision?.active(b)?G.HonroStoryContent.finaleMidpoint():G.HONRO_NARRATIVE_V0?.finaleMidpoint||G.HonroStoryContent.finaleMidpoint())",
+      "historical": false
+    },
+    {
+      "file": "mission.js",
+      "line": 55,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(`${site.label}에서 들린 짐승이 나타났다.`)",
+      "historical": false
+    },
+    {
+      "file": "mission.js",
+      "line": 72,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(m.label)",
+      "historical": false
+    },
+    {
+      "file": "mission.js",
+      "line": 79,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event('길에 남은 기록을 주웠다.',{kind:'narration',source:'relic-found'})",
+      "historical": false
+    },
+    {
+      "file": "mission.js",
+      "line": 83,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(G.HonroStage5Waterfall?.active(b)?'담허가 물길진에서 벗어나 낙수가 다시 화살을 쓸어 내린다.':'담허가 받이진에서 벗어나 물틈이 다시 닫혔다.',{kind:'narration',source:'ritual-released'})",
+      "historical": false
+    },
+    {
+      "file": "mission.js",
+      "line": 87,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event('뒤처진 피란민이 일행을 따라오기 시작한다.',{kind:'narration',source:'refugee-following'})",
+      "historical": false
+    },
+    {
+      "file": "mission.js",
+      "line": 92,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(hs.hold>=st.holdRounds?'왕문이 열렸다.':'왕문 의식 · '+hs.hold+'/'+st.holdRounds,hs.hold>=st.holdRounds?{kind:'narration',source:'royal-gate-open'}:{})",
+      "historical": false
+    },
+    {
+      "file": "narrative-revision.js",
+      "line": 38,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(def.warning||'지나온 길에서 들림이 움직인다. 다음 행동으로 사선을 살피세요.')",
+      "historical": false
+    },
+    {
+      "file": "narrative-revision.js",
+      "line": 51,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event('물이 빠진 바위 가장자리가 드러났다. 아래 물길로 걸어갈 수 있다.',{kind:'narration',source:'drain-revealed'})",
+      "historical": false
+    },
+    {
+      "file": "narrative-revision.js",
+      "line": 59,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(G.HonroStoryContent.cooperation())",
+      "historical": false
+    },
+    {
+      "file": "narrative-revision.js",
+      "line": 66,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(t.broken?'바깥 주박이 느슨해졌다. 소단이 양옆 진을 살핀다.':'붉은 매듭이 풀린다.',t.broken?{kind:'narration',source:'sodan-binding-loosened'}:{})",
+      "historical": false
+    },
+    {
+      "file": "rest-journey.js",
+      "line": 78,
+      "receiver": "G.HonroStory",
+      "method": "start",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.start(app,[...(G.HonroStoryFraming?.arrival(app,context)||context),...lines],{title,after:'entry',journeyInterludeId:need?id:null})",
+      "historical": false
+    },
+    {
+      "file": "rest-journey.js",
+      "line": 87,
+      "receiver": "G.HonroStory",
+      "method": "start",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.start(app,lines,{id:saved.id,index:saved.index||0,title:location(app.profile).restName,after:'rest',restKind:saved.kind,restClass:saved.cls,restCompleted:saved.completed,restDescription:saved.description===true,restEvidenceRevision:saved.evidenceRevision||0})",
+      "historical": false
+    },
+    {
+      "file": "rest-journey.js",
+      "line": 89,
+      "receiver": "G.HonroStory",
+      "method": "start",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.start(app,mapLines,{id:mapId,index:p.honroMapStory?.id===mapId?p.honroMapStory.index:0,title:location(p).restName,after:'rest',restKind:'map',restCompleted:completed})",
+      "historical": false
+    },
+    {
+      "file": "rest-journey.js",
+      "line": 90,
+      "receiver": "G.HonroStory",
+      "method": "start",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.start(app,lines,{id,title:location(p).restName,after:'rest',restKind:'arrival',restDescription:true,restEvidenceRevision:p.honroEvidenceRevision||0})",
+      "historical": false
+    },
+    {
+      "file": "rest-journey.js",
+      "line": 94,
+      "receiver": "G.HonroStory",
+      "method": "start",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.start(app,lines,{id:talkId(next,cls),title:`${(restNext(app)||data().ending).restName} · ${speakerId(cls)}`,after:'rest',restKind:'optional',restClass:cls})",
+      "historical": false
+    },
+    {
+      "file": "rest-journey.js",
+      "line": 155,
+      "receiver": "app",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "app.notify('저장된 전투가 바뀌었습니다. 진입할 길을 다시 골라주세요.')",
+      "historical": false
+    },
+    {
+      "file": "route-branches.js",
+      "line": 28,
+      "receiver": "app",
+      "method": "sayLines",
+      "classification": "character-dialogue",
+      "source": "app.sayLines(r.lines)",
+      "historical": false
+    },
+    {
+      "file": "route-branches.js",
+      "line": 28,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(r.label||m?.label||step.label,{kind:'narration',source:'route:'+step.id})",
+      "historical": false
+    },
+    {
+      "file": "split-campaign.js",
+      "line": 115,
+      "receiver": "app",
+      "method": "notify",
+      "classification": "operational-notice",
+      "source": "app.notify('두 조사팀은 쉬지 않고 합류합니다. 현재 장을 이어가거나 다시 걸어주세요.')",
+      "historical": false
+    },
+    {
+      "file": "stage11-ravine-encounters.js",
+      "line": 31,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(ev.warning)",
+      "historical": false
+    },
+    {
+      "file": "stage11-ravine-encounters.js",
+      "line": 145,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(exact?(n===0?'의식대 서쪽 낮은 턱에서 잔향 셋이 모입니다. 다음 행동 뒤 들어오며, 입구 주변이 막히면 기다립니다.':'의식대 동쪽 낮은 턱에서 마지막 잔향 셋이 모입니다. 다음 행동 뒤 들어오며, 입구 주변이 막히면 기다립니다.'):n===0?'서쪽 매듭에서 잔향 셋이 뭉칩니다. 다음 행동 뒤에 들어오니 먼저 자리를 잡으세요.':'남은 잔향 셋은 동쪽 입구에서 모입니다. 이번 무리가 지나면 새 잔향은 없습니다.')",
+      "historical": false
+    },
+    {
+      "file": "stage11-ravine-encounters.js",
+      "line": 153,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event('분리된 주민이 가까운 짐 뒤로 몸을 피합니다.',{kind:'narration',source:'resident-shelters'})",
+      "historical": false
+    },
+    {
+      "file": "stage12-quarry.js",
+      "line": 40,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event('길표 뒤의 내리막이 이어졌다. 동굴까지 돌아 나올 수 있다.',{kind:'narration',source:'quarry-gate-open'})",
+      "historical": false
+    },
+    {
+      "file": "stage12-quarry.js",
+      "line": 43,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(at.warning||'바위길에서 수레바퀴가 울린다. 다음 행동 뒤 진입로를 살피세요.')",
+      "historical": false
+    },
+    {
+      "file": "stage12-quarry.js",
+      "line": 48,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(at.warning||'바위길에서 수레바퀴가 울린다. 다음 행동 뒤 길목을 살피세요.')",
+      "historical": false
+    },
+    {
+      "file": "stage14-vertical.js",
+      "line": 98,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(at.warning||'피난 다리 진입로에서 도구 부딪치는 소리가 들린다. 다음 행동 동안 대비하세요.')",
+      "historical": false
+    },
+    {
+      "file": "stage16-temple.js",
+      "line": 12,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(at.side==='west'?'서쪽 돌계단의 꺼진 석등이 흔들린다. 다음 움직임에 대비하세요.':'동쪽 회랑에서 돌이 끌리는 소리가 난다. 법당 측면을 살피세요.')",
+      "historical": false
+    },
+    {
+      "file": "stage17-worksite.js",
+      "line": 13,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(at.side==='west'?'서쪽 인양 바닥에서 수레 바퀴가 굴러온다. 다음 움직임에 대비하세요.':'복구문 너머 궤도에서 쇠바퀴가 울린다. 동쪽 진입로를 살피세요.')",
+      "historical": false
+    },
+    {
+      "file": "stage18-bell.js",
+      "line": 45,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event('대종이 받침에 멎었다. 아래 귀환길과 동쪽 측면길이 열려 있다.',{kind:'narration',source:'bell-settled'})",
+      "historical": false
+    },
+    {
+      "file": "stage18-bell.js",
+      "line": 56,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event('사슬의 장력이 풀린다. 종 가장자리의 황토빛 쓸림면을 비우세요. 아래 푸른 바닥과 양쪽 귀환길은 안전합니다. 각 동행에게 이동 기회가 남습니다.')",
+      "historical": false
+    },
+    {
+      "file": "stage18-bell.js",
+      "line": 67,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event('청동 입술이 받침돌을 향해 천천히 내려온다.')",
+      "historical": false
+    },
+    {
+      "file": "stage18-bell.js",
+      "line": 71,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(source==='keeper-retaliation'?'동쪽 정비문에서 곡괭이 넷이 들린다. 다음 행동 뒤 들어올 마지막 보복조다.':entryFor(b,source).side==='west'?'서쪽 암틈에서 종울림이 모인다. 다음 행동 뒤 억제진으로 들어온다.':'종입술 바깥에서 잔울림이 엉긴다. 다음 행동 뒤 들어올 틈을 살피세요.')",
+      "historical": false
+    },
+    {
+      "file": "stage2-airborne.js",
+      "line": 17,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(text)",
+      "historical": false
+    },
+    {
+      "file": "stage22-vertical.js",
+      "line": 54,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(at.warning)",
+      "historical": false
+    },
+    {
+      "file": "stage23-escort.js",
+      "line": 58,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(m.reason,{kind:'narration',source:'cargo-settled'})",
+      "historical": false
+    },
+    {
+      "file": "stage23-escort.js",
+      "line": 75,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(m.reason)",
+      "historical": false
+    },
+    {
+      "file": "stage30-ferry.js",
+      "line": 55,
+      "receiver": "app",
+      "method": "event",
+      "classification": "manual-or-conditional-narration",
+      "source": "app.event(m.reason,{kind:'narration',source:'ferry-settled'})",
+      "historical": false
+    },
+    {
+      "file": "stage30-ferry.js",
+      "line": 63,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event('배를 매단 줄이 느슨해진다. 배와 바깥 둔덕을 비우세요. 원래 고지 길은 그대로 남습니다.')",
+      "historical": false
+    },
+    {
+      "file": "stage30-ferry.js",
+      "line": 73,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(m.reason)",
+      "historical": false
+    },
+    {
+      "file": "stage30-ferry.js",
+      "line": 80,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(at.warning||'여울 쪽에서 산개 세 마리의 발소리가 들린다. 다음 행동 뒤 진입로를 살피세요.')",
+      "historical": false
+    },
+    {
+      "file": "stage5-waterfall-geometry.js",
+      "line": 9,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(kind==='crow'?'사격턱 위 둥지에서 날갯짓이 가까워진다. 주박목이 풀리면 날아들 기세다.':'젖은 돌길 풀숲에서 짐승이 움직인다. 주박목이 풀릴 때를 기다리는 듯하다.')",
+      "historical": false
+    },
+    {
+      "file": "stage8-bier.js",
+      "line": 118,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event(text)",
+      "historical": false
+    },
+    {
+      "file": "stake-crossing.js",
+      "line": 55,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event?.(reason+' 두 동행과 자원을 구간 출발 때로 되돌렸습니다.')",
+      "historical": false
+    },
+    {
+      "file": "stake-crossing.js",
+      "line": 104,
+      "receiver": "app",
+      "method": "event",
+      "classification": "tactical-or-forwarded-event",
+      "source": "app.event?.(current(b)?'두 동행이 건넜습니다. 다음 석대에 새 진목을 설치하세요.':'두 동행이 물길을 건넜습니다. 기록 조사로 이어갑니다.')",
+      "historical": false
+    },
+    {
+      "file": "story-staging.js",
+      "line": 42,
+      "receiver": "G.HonroStory",
+      "method": "queue",
+      "classification": "reader-or-staging-api",
+      "source": "G.HonroStory.queue(app,[['서술',d.title,{storyId:id,storyTitle:d.title,stagingRequest:{id,context:clone(context)}}]])",
+      "historical": false
+    }
+  ],
+  "captions": [
+    {
+      "file": "objective-revision.js",
+      "line": 69,
+      "text": "두 조사팀이 서로 가져온 기록을 펼친다."
+    },
+    {
+      "file": "stage23-escort.js",
+      "line": 94,
+      "text": "큰 화물묶음이 빈 하역경사를 한 번 미끄러져 낮은 받침에 멎는다."
+    },
+    {
+      "file": "story-direction.js",
+      "line": 5,
+      "text": "수레 뒤에 몸을 숨겼던 나무꾼이 설오의 목소리에 수레 곁으로 몸을 내민다."
+    },
+    {
+      "file": "story-direction.js",
+      "line": 6,
+      "text": "나루에 남은 검객이 물가에서 한 걸음 나와 일행의 앞길을 막는다."
+    },
+    {
+      "file": "story-direction.js",
+      "line": 7,
+      "text": "춘례가 피란문 안에서 걸어 나와 붕대를 쥔 손을 보인다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 187,
+      "text": "첫 받이진으로 붉은 실에 붙잡힌 원혼 일부가 옮겨 간다. 위쪽에서 방울이 짧게 울린다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 188,
+      "text": "방울 소리가 난 사당 문간으로 시선이 향한다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 189,
+      "text": "붉은 실에 손이 감긴 소단이 매듭을 붙든 채 문턱으로 나온다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 190,
+      "text": "방울 소리가 멎는다. 소단은 줄을 놓지 않은 채 아래를 살핀다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 204,
+      "text": "소단은 붉은 실을 놓지 않은 채 사당 안쪽으로 몸을 돌린다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 205,
+      "text": "소단이 윗마당 나무로 이어지는 길을 향해 물러난다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 206,
+      "text": "소단이 향한 길은 윗마당의 나무로 이어진다. 일행은 소단과 거리를 두고 뒤따를 준비를 한다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 212,
+      "text": "휘겸과 담허가 사당 뒤 기록실로 이어지는 길을 살핀다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 213,
+      "text": "휘겸이 기록실 쪽으로 걸음을 옮긴다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 214,
+      "text": "담허가 휘겸과 같은 길을 향한다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 215,
+      "text": "설오와 소단은 성 밖 공방으로 이어지는 길을 확인한다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 216,
+      "text": "설오가 공방 쪽으로 걸음을 옮긴다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 217,
+      "text": "소단도 같은 방향으로 몸을 돌린다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 222,
+      "text": "설오와 담허가 사당 아래 수로의 끊긴 길을 살핀다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 223,
+      "text": "설오가 수로 쪽으로 걸음을 옮긴다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 224,
+      "text": "담허가 설오와 함께 지하 길을 향한다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 225,
+      "text": "휘겸과 소단은 묘역 기록실과 지상 공방으로 이어지는 길을 확인한다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 226,
+      "text": "휘겸이 지상 기록실 쪽으로 향한다."
+    },
+    {
+      "file": "story-staging.js",
+      "line": 227,
+      "text": "소단이 휘겸을 따라 몸을 돌린다."
+    }
+  ],
+  "scope": "Source references, not execution coverage. Historical V0 and internal reader calls are labeled. Native scenario execution is recorded separately."
+}

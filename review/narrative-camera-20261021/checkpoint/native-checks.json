@@ -1,0 +1,30 @@
+{
+  "trigger": {
+    "start": {
+      "x": 3060,
+      "y": 1510.3578741256274
+    },
+    "end": {
+      "x": 3102.5304371894067,
+      "y": 1494.3526018123935
+    },
+    "phase": "review",
+    "dialogue": null,
+    "eventLog": null
+  },
+  "idleSeconds": 20,
+  "touchKeyboardPageSequence": [
+    0,
+    1,
+    0,
+    1,
+    2
+  ],
+  "continueExact": true,
+  "eventCount": 1,
+  "errors": [],
+  "limits": [
+    "Round 4/start position are explicit fixtures; threshold crossing uses the real Engine walk and defend/actor-end trigger.",
+    "Viewport emulation with native Chromium touch, not physical phone testing."
+  ]
+}
