@@ -67,7 +67,7 @@
         storyScale(){const {w,h}=this.size(),short=Math.min(w,h),base=Math.max(.55,Math.min(.82,.55+(short-390)*.00045));return h>w*1.1?base*.9:base;}
         storyFocus(id,duration=500,targetScale=null,close=false){this.storyTween={kind:'unit',id,start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},targetScale:close?Math.max(.3,Math.min(1.15,targetScale||1.05)):Math.min(targetScale??Infinity,this.storyScale())};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
         storyFocusPoint(x,y,duration=500,targetScale=null){const {h}=this.size(),scale=targetScale==null?this.storyScale():Math.max(.3,Math.min(1.15,targetScale));this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x,y:y-h*.10/scale,scale},manual:false};this.manual=false;this.speakerId=null;this.speakerUntil=0;}
-        storyRelease(camera,duration=450){if(!camera)return;this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x:camera.x,y:camera.y,scale:camera.scale},manual:camera.manual};}
+        storyRelease(camera,duration=450){if(!camera)return;if(G.matchMedia?.('(prefers-reduced-motion: reduce)').matches)duration=1;this.storyTween={kind:'static',start:performance.now(),duration,from:{x:this.x,y:this.y,scale:this.scale},to:{x:camera.x,y:camera.y,scale:camera.scale},manual:camera.manual};}
         event(ev) { if (this.arcFx) { this.arcFx.event(ev); return; } if (ev.type === 'fx') this.effects.push({ ...ev, life: 0 }); }
         size() { const r = this.canvas.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 1.7), w = Math.max(1, r.width), h = Math.max(1, r.height); if (this.canvas.width !== Math.round(w * d) || this.canvas.height !== Math.round(h * d)) {
             this.canvas.width = Math.round(w * d);
@@ -197,7 +197,7 @@
             if(resized||this._cameraWidth===undefined){const root=this.canvas.closest?.('.battle'),view=this.canvas.getBoundingClientRect(),rects=['.battle-info','.battle-head>button'].map(selector=>root?.querySelector(selector)?.getBoundingClientRect()).filter(r=>r&&r.width>0&&r.height>0);this._cameraHeader=rects.length?{left:Math.min(...rects.map(r=>r.left))-view.left,right:Math.max(...rects.map(r=>r.right))-view.left,top:Math.min(...rects.map(r=>r.top))-view.top,bottom:Math.max(...rects.map(r=>r.bottom))-view.top}:null;}
             // A resize preserves horizontal world span, bounded by readability.
             // Editor inspection and skill demonstrations may use wider views.
-            if(!this.editorView&&!this.skillPreview&&this._cameraWidth&&this._cameraWidth!==w){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,Math.min(limits.max,this.scale*w/this._cameraWidth));}
+            if(!this.storyFrame&&!this.editorView&&!this.skillPreview&&this._cameraWidth&&this._cameraWidth!==w){const limits=G.HonroBounds.zoomLimits(w);this.scale=Math.max(limits.min,Math.min(limits.max,this.scale*w/this._cameraWidth));}
             this._cameraWidth=w;this._cameraHeight=h;
             this.time += effectDt;
             const walkDt=effectDt>0?dt:0;this.walkTime=(this.walkTime||0)+walkDt;
@@ -210,7 +210,7 @@
             c.setTransform(d, 0, 0, d, 0, 0);
             c.clearRect(0, 0, w, h);
             const u = e.active,reviewing=b.phase==='review'||b.phase==='ally'&&b.honroState?.allyQueue?.phase==='after'||b.phase==='summon'&&b.summonTurn?.stage==='wait'&&!b.projectiles.length;
-            if (!this.manual && u) {
+            if (!this.storyFrame && !this.manual && u) {
                 const now=performance.now(),focus=this.focusId&&now<this.focusUntil?[...b.units,...(b.honroConvoyActors||[])].find(v=>v.id===this.focusId):null;
                 const speaking=this.speakerId&&now<this.speakerUntil?[...b.units,...(b.honroConvoyActors||[])].find(v=>v.id===this.speakerId):null;
                 const actorFollow=!this.editorView&&!this.skillPreview&&!this.storyTween&&!this.goalFocus&&!speaking&&!focus&&!reviewing&&!b.projectiles?.length;
@@ -229,15 +229,15 @@
                 // End invisible follow tails instead of changing raster keys forever.
                 if(actorFollow){if(Math.abs(tx-this.x)*this.scale<.02)this.x=tx;if(Math.abs(ty-this.y)*this.scale<.02)this.y=ty;}
             }
-            if(this.storyTween){
+            if(!this.storyFrame&&this.storyTween){
                 const tw=this.storyTween,now=performance.now(),raw=Math.max(0,Math.min(1,(now-tw.start)/tw.duration)),ease=raw*raw*(3-2*raw);
                 let to=tw.to;
                 if(tw.kind==='unit'){const v=[...b.units,...(b.honroConvoyActors||[])].find(v=>v.id===tw.id&&!v.dead);if(v){const sc=tw.targetScale??this.storyScale(),mid=v.y-v.h*.48;to={x:v.x,y:mid-h*.12/sc,scale:sc};}}
                 if(to){this.x=tw.from.x+(to.x-tw.from.x)*ease;this.y=tw.from.y+(to.y-tw.from.y)*ease;this.scale=tw.from.scale+(to.scale-tw.from.scale)*ease;}
                 if(raw>=1){if(tw.kind==='unit'){this.storyTween={...tw,from:to,to,duration:1,start:now-1};}else{this.manual=!!tw.manual;this.storyTween=null;}}
             }
-            if(this.goalFocus&&!this.storyTween){this.x=this.goalFocus.x;this.y=this.goalFocus.y-h*.10/this.scale;}
-            else if(!this.storyTween&&!this.skillPreview){G.HonroBounds.constrain(this,b);}
+            if(!this.storyFrame){if(this.goalFocus&&!this.storyTween){this.x=this.goalFocus.x;this.y=this.goalFocus.y-h*.10/this.scale;}
+            else if(!this.storyTween&&!this.skillPreview){G.HonroBounds.constrain(this,b);}}
             G.HonroStoryFraming?.apply(this,e);
             if(this.background)this.background(c,w,h,b);
             this.backgroundReadability?.(c,w,h,b);

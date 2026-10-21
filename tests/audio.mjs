@@ -87,5 +87,18 @@ check('Track 05 fails over to 02 and exhausted battle tracks stop retrying',()=>
  m.current.error={code:4};m.current.emit('error');assert.equal(m.current.src,'02');for(let i=0;i<3;i++){m.current.error={code:4};m.current.emit('error');}
  const a=m.current,starts=m.starts;for(let i=0;i<50;i++)m.select('battle','one');assert.equal(m.current,a);assert.equal(m.starts,starts);assert.equal(m.errors.length,4);m.dispose();
 });
+check('Authored 05 opening is session-only and resumes ordinary rotation without seeking on updates',()=>{
+ for(const stage of [9,10]){
+  const m=sessionMusic();m.unlock();m.select('battle',`stage-${stage}`,4);assert.equal(m.current.src,'05');assert.equal(m.current.loop,false);
+  const audio=m.current;audio.time=27;const starts=m.starts,seeks=audio.seeks;
+  for(let i=0;i<120;i++)m.select('battle',`stage-${stage}`,4);
+  m.setPaused(true);m.setPaused(false);m.unlock();m.select('battle',`stage-${stage}`,4);
+  assert.equal(m.current,audio);assert.equal(audio.currentTime,27);assert.equal(audio.seeks,seeks);assert.equal(m.starts,starts+1,'only resume starts playback again');
+  audio.emit('ended');assert.equal(m.current.src,'02');m.select('battle',`stage-${stage}`,4);assert.equal(m.current.src,'02','opening must not override an ended-track rotation');
+  m.select('battle',`stage-${stage}-retry`,4);assert.equal(m.current.src,'05');assert.equal(m.current.currentTime,0);
+  m.current.time=13;m.select('main');m.select('battle',`stage-${stage}-restored`,4);assert.equal(m.current.src,'05');assert.equal(m.current.currentTime,0);
+  m.current.emit('ended');m.current.emit('ended');m.current.emit('ended');assert.equal(m.current.src,'04');m.current.emit('ended');assert.equal(m.current.src,'05');m.dispose();
+ }
+});
 await mkdir('_local/reports',{recursive:true});
 await writeFile('_local/reports/audio-unit.json',JSON.stringify({passed:checks.length,checks},null,2)+'\n');

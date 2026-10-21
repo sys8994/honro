@@ -1,0 +1,6475 @@
+{
+  "source": "df588060967274224bf7ae35a446e42aef3b9db2",
+  "rows": [
+    {
+      "index": 0,
+      "text": "동쪽 전각을 보시오! 들린 짐승들이 문밖에서 넘어오오!",
+      "framing": {
+        "id": "10:defense-east:0",
+        "intent": "situation",
+        "targets": [
+          {
+            "anchor": "eastHall"
+          },
+          {
+            "anchor": "outerEast"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3520,
+            "y": 2530,
+            "w": 60,
+            "h": 100
+          },
+          {
+            "x": 4630,
+            "y": 2807.4074074074074,
+            "w": 60,
+            "h": 100
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 141,
+          "w": 1220,
+          "h": 463.953125
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72
+        },
+        "targetCamera": {
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 1280,
+        "h": 669.1875
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "desktop",
+      "image": "defense-desktop-00.png"
+    },
+    {
+      "index": 1,
+      "text": "지금 온 원혼은 당신의 망에서 빠진 게 아닙니다. 저 문밖에서 짐승의 몸에 붙어 들어왔어요.",
+      "framing": {
+        "id": "10:defense-east:1",
+        "intent": "situation",
+        "targets": [
+          {
+            "anchor": "eastHall"
+          },
+          {
+            "anchor": "outerEast"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3520,
+            "y": 2530,
+            "w": 60,
+            "h": 100
+          },
+          {
+            "x": 4630,
+            "y": 2807.4074074074074,
+            "w": 60,
+            "h": 100
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 141,
+          "w": 1220,
+          "h": 463.953125
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72
+        },
+        "targetCamera": {
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 1280,
+        "h": 669.1875
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "desktop",
+      "image": "defense-desktop-01.png"
+    },
+    {
+      "index": 2,
+      "text": "밖에서 계속 들어오니… 원혼을 아무리 붙잡아도 줄지 않았군요.",
+      "framing": {
+        "id": "10:cooperation-defense:2",
+        "intent": "situation",
+        "targets": [
+          {
+            "nearbyAllies": "boss"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 2268,
+            "y": 2055.788872180451,
+            "w": 484,
+            "h": 228.7111278195489
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 141,
+          "w": 1220,
+          "h": 463.953125
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72
+        },
+        "targetCamera": {
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 1280,
+        "h": 669.1875
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "desktop",
+      "image": "defense-desktop-02.png"
+    },
+    {
+      "index": 3,
+      "text": "(돌단에 무릎을 꿇는다) 매듭을 풀게요. 앞을 부탁해요.",
+      "framing": {
+        "id": "10:cooperation-defense:3",
+        "intent": "situation",
+        "targets": [
+          {
+            "nearbyAllies": "boss"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 2268,
+            "y": 2055.788872180451,
+            "w": 484,
+            "h": 228.7111278195489
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 141,
+          "w": 1220,
+          "h": 463.953125
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72
+        },
+        "targetCamera": {
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 1280,
+        "h": 669.1875
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "desktop",
+      "image": "defense-desktop-03.png"
+    },
+    {
+      "index": 4,
+      "text": "다가오는 것들은 제가 막겠습니다.",
+      "framing": {
+        "id": "10:cooperation-defense:4",
+        "intent": "situation",
+        "targets": [
+          {
+            "nearbyAllies": "boss"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 2268,
+            "y": 2055.788872180451,
+            "w": 484,
+            "h": 228.7111278195489
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 141,
+          "w": 1220,
+          "h": 463.953125
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72
+        },
+        "targetCamera": {
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 1280,
+        "h": 669.1875
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "desktop",
+      "image": "defense-desktop-04.png"
+    },
+    {
+      "index": 5,
+      "text": "양옆 진이 혼을 받는 동안 소단을 보호하세요. 여섯 번의 적 턴이 지나면 의식이 끝납니다.",
+      "framing": {
+        "id": "10:cooperation-defense:5",
+        "intent": "objective",
+        "targets": [
+          {
+            "objective": "current"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 2215,
+            "y": 2025,
+            "w": 96,
+            "h": 126
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 253,
+          "w": 1220,
+          "h": 386.1875
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72
+        },
+        "targetCamera": {
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 1280,
+        "h": 669.1875
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "desktop",
+      "image": "defense-desktop-05.png"
+    },
+    {
+      "index": 0,
+      "text": "동쪽 전각을 보시오! 들린 짐승들이 문밖에서 넘어오오!",
+      "framing": {
+        "id": "10:defense-east:0",
+        "intent": "situation",
+        "targets": [
+          {
+            "anchor": "eastHall"
+          },
+          {
+            "anchor": "outerEast"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3520,
+            "y": 2530,
+            "w": 60,
+            "h": 100
+          },
+          {
+            "x": 4630,
+            "y": 2807.4074074074074,
+            "w": 60,
+            "h": 100
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 128,
+          "w": 362,
+          "h": 491.5
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195
+        },
+        "targetCamera": {
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "mobile",
+      "image": "defense-mobile-00.png"
+    },
+    {
+      "index": 1,
+      "text": "지금 온 원혼은 당신의 망에서 빠진 게 아닙니다. 저 문밖에서 짐승의 몸에 붙어 들어왔어요.",
+      "framing": {
+        "id": "10:defense-east:1",
+        "intent": "situation",
+        "targets": [
+          {
+            "anchor": "eastHall"
+          },
+          {
+            "anchor": "outerEast"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3520,
+            "y": 2530,
+            "w": 60,
+            "h": 100
+          },
+          {
+            "x": 4630,
+            "y": 2807.4074074074074,
+            "w": 60,
+            "h": 100
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 112,
+          "w": 362,
+          "h": 482.75
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195
+        },
+        "targetCamera": {
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "mobile",
+      "image": "defense-mobile-01.png"
+    },
+    {
+      "index": 2,
+      "text": "밖에서 계속 들어오니… 원혼을 아무리 붙잡아도 줄지 않았군요.",
+      "framing": {
+        "id": "10:cooperation-defense:2",
+        "intent": "situation",
+        "targets": [
+          {
+            "nearbyAllies": "boss"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 2268,
+            "y": 2055.788872180451,
+            "w": 484,
+            "h": 228.7111278195489
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 112,
+          "w": 362,
+          "h": 507.5
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714
+        },
+        "targetCamera": {
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "mobile",
+      "image": "defense-mobile-02.png"
+    },
+    {
+      "index": 3,
+      "text": "(돌단에 무릎을 꿇는다) 매듭을 풀게요. 앞을 부탁해요.",
+      "framing": {
+        "id": "10:cooperation-defense:3",
+        "intent": "situation",
+        "targets": [
+          {
+            "nearbyAllies": "boss"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 2268,
+            "y": 2055.788872180451,
+            "w": 484,
+            "h": 228.7111278195489
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 112,
+          "w": 362,
+          "h": 507.5
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714
+        },
+        "targetCamera": {
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "mobile",
+      "image": "defense-mobile-03.png"
+    },
+    {
+      "index": 4,
+      "text": "다가오는 것들은 제가 막겠습니다.",
+      "framing": {
+        "id": "10:cooperation-defense:4",
+        "intent": "situation",
+        "targets": [
+          {
+            "nearbyAllies": "boss"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 2268,
+            "y": 2055.788872180451,
+            "w": 484,
+            "h": 228.7111278195489
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 112,
+          "w": 362,
+          "h": 521.609375
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714
+        },
+        "targetCamera": {
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "mobile",
+      "image": "defense-mobile-04.png"
+    },
+    {
+      "index": 5,
+      "text": "양옆 진이 혼을 받는 동안 소단을 보호하세요. 여섯 번의 적 턴이 지나면 의식이 끝납니다.",
+      "framing": {
+        "id": "10:cooperation-defense:5",
+        "intent": "objective",
+        "targets": [
+          {
+            "objective": "current"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 2215,
+            "y": 2025,
+            "w": 96,
+            "h": 126
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 280,
+          "w": 362,
+          "h": 353.609375
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72
+        },
+        "targetCamera": {
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72
+        },
+        "reducedMotion": false
+      },
+      "viewport": {
+        "w": 390,
+        "h": 647.609375
+      },
+      "contained": true,
+      "overflow": false,
+      "stage": 10,
+      "scene": "cooperationDefense",
+      "device": "mobile",
+      "image": "defense-mobile-05.png"
+    }
+  ],
+  "traces": [
+    {
+      "scene": "defense",
+      "device": "desktop",
+      "page": 0,
+      "frames": [
+        {
+          "t": 1276.2,
+          "x": 3301.9484538163238,
+          "y": 2393.2819836985072,
+          "scale": 0.7200155567599993,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1326.2,
+          "x": 3768.819010767193,
+          "y": 2551.4800497411666,
+          "scale": 0.7200065124762458,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1359.5,
+          "x": 3917.5151744734126,
+          "y": 2601.8654192532604,
+          "scale": 0.720003631936574,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1376.2,
+          "x": 3985.0518818256587,
+          "y": 2624.7500846727135,
+          "scale": 0.7200023236203802,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1409.5,
+          "x": 4011.434250405884,
+          "y": 2633.689692503788,
+          "scale": 0.7200018125436963,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1426.2,
+          "x": 4038.2130521336826,
+          "y": 2642.7636308389556,
+          "scale": 0.7200012937877189,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1442.9,
+          "x": 4055.2920915328014,
+          "y": 2648.5508259459953,
+          "scale": 0.720000962934657,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1459.5,
+          "x": 4069.231071081771,
+          "y": 2653.2740186477517,
+          "scale": 0.7200006929105629,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1476.2,
+          "x": 4079.1886554446373,
+          "y": 2656.6481243076805,
+          "scale": 0.7200005000135993,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1492.9,
+          "x": 4089.8899998904685,
+          "y": 2660.274251443312,
+          "scale": 0.7200002927086745,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1509.5,
+          "x": 4094.640663265702,
+          "y": 2661.884003326768,
+          "scale": 0.7200002006795174,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1526.2,
+          "x": 4098.080979783314,
+          "y": 2663.0497470464306,
+          "scale": 0.7200001340342156,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1542.8,
+          "x": 4100.946468527164,
+          "y": 2664.0207116334986,
+          "scale": 0.720000078524397,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1576.2,
+          "x": 4102.1113894009,
+          "y": 2664.4154425210522,
+          "scale": 0.7200000559577256,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1592.8,
+          "x": 4103.005959730544,
+          "y": 2664.7185657186533,
+          "scale": 0.7200000386282446,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1609.5,
+          "x": 4103.589603912553,
+          "y": 2664.916332271879,
+          "scale": 0.7200000273219781,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1626.2,
+          "x": 4104.202359857792,
+          "y": 2665.123963282337,
+          "scale": 0.7200000154517632,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1676.2,
+          "x": 4104.675172939452,
+          "y": 2665.284174959867,
+          "scale": 0.7200000062925002,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1692.9,
+          "x": 4104.78391846843,
+          "y": 2665.3210231442704,
+          "scale": 0.7200000041858984,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1709.6,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1742.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1792.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1809.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1826.2,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1842.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1859.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1876.1,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 1892.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        }
+      ]
+    },
+    {
+      "scene": "defense",
+      "device": "desktop",
+      "page": 1,
+      "frames": [
+        {
+          "t": 2659.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2676.1,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2692.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2709.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2726.1,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2742.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2759.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2776.1,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2792.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2809.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2826.1,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2842.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2859.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2876.2,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2892.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2909.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2926.2,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2942.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2959.4,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2976.1,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 2992.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3009.4,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3026.1,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3042.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3059.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3076.1,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3092.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3109.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3126.2,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3142.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3159.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3176.1,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3192.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3209.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3226.1,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3242.8,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3259.5,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3276.2,
+          "x": 4105,
+          "y": 2665.394241898148,
+          "scale": 0.72,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2665.394241898148,
+            "scale": 0.72
+          }
+        }
+      ]
+    },
+    {
+      "scene": "defense",
+      "device": "desktop",
+      "page": 2,
+      "frames": [
+        {
+          "t": 3726.1,
+          "x": 2692.443003529501,
+          "y": 2179.5815576058903,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3759.4,
+          "x": 2614.1705629509515,
+          "y": 2152.66176282339,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3776.1,
+          "x": 2581.013203032548,
+          "y": 2141.258140834151,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3809.4,
+          "x": 2555.825988892262,
+          "y": 2132.595645698089,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3826.1,
+          "x": 2541.3684646230736,
+          "y": 2127.623351701468,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3842.7,
+          "x": 2531.381014671336,
+          "y": 2124.1884249109653,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3859.5,
+          "x": 2524.428223690844,
+          "y": 2121.7971911002264,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3876.1,
+          "x": 2520.056882143163,
+          "y": 2120.2937804934027,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3892.8,
+          "x": 2516.2084672058177,
+          "y": 2118.9702170579776,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3926.1,
+          "x": 2513.572341334181,
+          "y": 2118.0635892978007,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3942.8,
+          "x": 2512.359496201388,
+          "y": 2117.6464623775664,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3959.4,
+          "x": 2511.554941288341,
+          "y": 2117.369756387688,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 3976.1,
+          "x": 2511.0496941699394,
+          "y": 2117.195989623278,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4009.4,
+          "x": 2510.623215975694,
+          "y": 2117.04931340642,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4026.1,
+          "x": 2510.358657938432,
+          "y": 2116.9583254671334,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4059.4,
+          "x": 2510.2031614142957,
+          "y": 2116.904846433029,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4076.1,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4109.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4126.1,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4142.8,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4159.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4176,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4192.8,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4209.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4226.1,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4242.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4259.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4276.1,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4292.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4309.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4326.1,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4342.8,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4359.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        }
+      ]
+    },
+    {
+      "scene": "defense",
+      "device": "desktop",
+      "page": 3,
+      "frames": [
+        {
+          "t": 4826.1,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4842.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4859.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4876.1,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4892.8,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4909.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4926,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4942.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4959.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4976,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 4992.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5009.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5026,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5042.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5059.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5076.1,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5092.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5109.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5126,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5142.8,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5159.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5176.1,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5192.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5209.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5226,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5242.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5259.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5276,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5292.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5309.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5326.1,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5342.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5359.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5376,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5392.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5409.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 5426,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        }
+      ]
+    },
+    {
+      "scene": "defense",
+      "device": "desktop",
+      "page": 4,
+      "frames": [
+        {
+          "t": 6109.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6126,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6142.6,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6159.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6176,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6192.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6209.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6226,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6242.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6259.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6276,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6292.6,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6309.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6326,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6342.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6359.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6376,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6392.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6409.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6426,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6442.6,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6459.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6476,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6492.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6509.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6526,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6542.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6559.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6576,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6592.6,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6609.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6626,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6642.7,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6659.3,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6676,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6692.6,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 6709.4,
+          "x": 2510,
+          "y": 2116.83497428467,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2116.83497428467,
+            "scale": 0.72
+          }
+        }
+      ]
+    },
+    {
+      "scene": "defense",
+      "device": "desktop",
+      "page": 5,
+      "frames": [
+        {
+          "t": 7292.7,
+          "x": 2376.9683264706396,
+          "y": 2017.8981416490706,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7309.3,
+          "x": 2339.055961251678,
+          "y": 1989.7023801963644,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7325.9,
+          "x": 2316.8932232698617,
+          "y": 1973.2197558687851,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7359.3,
+          "x": 2300.407095062768,
+          "y": 1960.9588764559264,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7375.9,
+          "x": 2285.132597144302,
+          "y": 1949.5990972089298,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7392.7,
+          "x": 2278.180724230525,
+          "y": 1944.4289278144772,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7426,
+          "x": 2273.3789987675655,
+          "y": 1940.857842103178,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7442.6,
+          "x": 2269.884094789169,
+          "y": 1938.2586510923861,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7459.3,
+          "x": 2267.5489929019027,
+          "y": 1936.5220151584138,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7476,
+          "x": 2265.8634167004384,
+          "y": 1935.2684372238175,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7509.3,
+          "x": 2264.8699576498784,
+          "y": 1934.5295929380327,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7525.9,
+          "x": 2264.2399400441427,
+          "y": 1934.0610432704048,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7559.3,
+          "x": 2263.589923682553,
+          "y": 1933.5776203511043,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7575.9,
+          "x": 2263.341029907719,
+          "y": 1933.392515848609,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7592.6,
+          "x": 2263.2356360548883,
+          "y": 1933.3141335077598,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7609.2,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7642.6,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7659.3,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7675.9,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7692.6,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7709.3,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7725.9,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7742.6,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7759.2,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7776,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7792.6,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7809.2,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7826,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7842.6,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7859.2,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7875.9,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7892.6,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 7909.3,
+          "x": 2263,
+          "y": 1933.138888888889,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1933.138888888889,
+            "scale": 0.72
+          }
+        }
+      ]
+    },
+    {
+      "scene": "defense",
+      "device": "mobile",
+      "page": 0,
+      "frames": [
+        {
+          "t": 8275.9,
+          "x": 2589.3866794824953,
+          "y": 2030.9281027329134,
+          "scale": 0.6060011266576497,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8292.6,
+          "x": 2961.8540061533504,
+          "y": 2154.855432448634,
+          "scale": 0.4977891753395768,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8325.9,
+          "x": 3421.525245275857,
+          "y": 2307.797248099242,
+          "scale": 0.3904960442611018,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8359.3,
+          "x": 3616.447301483082,
+          "y": 2372.651715051737,
+          "scale": 0.35229777769148857,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8375.9,
+          "x": 3726.111171104464,
+          "y": 2409.139077983521,
+          "scale": 0.332474031136101,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8392.6,
+          "x": 3827.0671365780286,
+          "y": 2442.729147028872,
+          "scale": 0.3152120222610925,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8409.2,
+          "x": 3901.365457669916,
+          "y": 2467.449684579312,
+          "scale": 0.30308324908893913,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8425.9,
+          "x": 3956.8457699987425,
+          "y": 2485.9090942144057,
+          "scale": 0.29433176660497484,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8442.6,
+          "x": 3997.641513337187,
+          "y": 2499.4826540240397,
+          "scale": 0.2880582702020026,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8459.2,
+          "x": 4028.0610756329615,
+          "y": 2509.603850855266,
+          "scale": 0.2834675886241467,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8475.9,
+          "x": 4050.3352932921366,
+          "y": 2517.0149286018186,
+          "scale": 0.2801526029267567,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8492.6,
+          "x": 4070.4432403934807,
+          "y": 2523.7052448037994,
+          "scale": 0.2771933223224701,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8509.3,
+          "x": 4077.046053660475,
+          "y": 2525.902132847924,
+          "scale": 0.2762284219844119,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8525.9,
+          "x": 4085.269363474906,
+          "y": 2528.6381925067303,
+          "scale": 0.2750314059173456,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8542.6,
+          "x": 4091.054809752766,
+          "y": 2530.5631262045054,
+          "scale": 0.27419236427274707,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8559.2,
+          "x": 4095.1685438101276,
+          "y": 2531.9318478087494,
+          "scale": 0.27359732235958395,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8576,
+          "x": 4098.099197161616,
+          "y": 2532.9069347980394,
+          "scale": 0.2731741981109134,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8592.6,
+          "x": 4100.156056117417,
+          "y": 2533.591292914153,
+          "scale": 0.2728776221180652,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8609.3,
+          "x": 4101.6062847554695,
+          "y": 2534.0738129896654,
+          "scale": 0.2726687089765895,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8625.9,
+          "x": 4102.641787388921,
+          "y": 2534.418345428052,
+          "scale": 0.27251963720068034,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8642.6,
+          "x": 4103.3498007704275,
+          "y": 2534.6539156418403,
+          "scale": 0.2724177579512193,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8659.3,
+          "x": 4103.851942991976,
+          "y": 2534.8209884028533,
+          "scale": 0.272345525520374,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8675.9,
+          "x": 4104.200651888634,
+          "y": 2534.937010827685,
+          "scale": 0.2722953755196549,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8692.6,
+          "x": 4104.446586354274,
+          "y": 2535.0188381436114,
+          "scale": 0.27226001170396374,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8709.2,
+          "x": 4104.616478203044,
+          "y": 2535.0753645598925,
+          "scale": 0.27223558501633544,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8725.9,
+          "x": 4104.73333991146,
+          "y": 2535.114246787763,
+          "scale": 0.27221878416137113,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8742.5,
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8759.2,
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8775.9,
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8792.5,
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8809.2,
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8825.9,
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8842.6,
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8859.3,
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8875.9,
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 8892.5,
+          "x": 4105,
+          "y": 2535.202969932985,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:0",
+          "target": {
+            "x": 4105,
+            "y": 2535.202969932985,
+            "scale": 0.2721804511278195
+          }
+        }
+      ]
+    },
+    {
+      "scene": "defense",
+      "device": "mobile",
+      "page": 1,
+      "frames": [
+        {
+          "t": 9309.2,
+          "x": 4105,
+          "y": 2565.30174590535,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9325.9,
+          "x": 4105,
+          "y": 2576.47182333354,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9342.6,
+          "x": 4105,
+          "y": 2583.6645011677033,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9359.2,
+          "x": 4105,
+          "y": 2590.2755438576223,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9375.9,
+          "x": 4105,
+          "y": 2594.800976841205,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9392.5,
+          "x": 4105,
+          "y": 2599.1570206531223,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9409.2,
+          "x": 4105,
+          "y": 2601.8949051919835,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9425.9,
+          "x": 4105,
+          "y": 2604.0984327380565,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9442.5,
+          "x": 4105,
+          "y": 2605.775008868137,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9459.2,
+          "x": 4105,
+          "y": 2607.020888071402,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9475.8,
+          "x": 4105,
+          "y": 2607.8488067798594,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9492.5,
+          "x": 4105,
+          "y": 2608.4862469781997,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9509.2,
+          "x": 4105,
+          "y": 2608.9554501687076,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9525.9,
+          "x": 4105,
+          "y": 2609.272797853804,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9542.5,
+          "x": 4105,
+          "y": 2609.5041022681608,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9559.2,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9575.9,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9592.5,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9609.2,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9625.9,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9675.8,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9692.5,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9709.2,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9725.9,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9759.2,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9775.9,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        },
+        {
+          "t": 9909.2,
+          "x": 4105,
+          "y": 2610.06139534735,
+          "scale": 0.2721804511278195,
+          "id": "10:defense-east:1",
+          "target": {
+            "x": 4105,
+            "y": 2610.06139534735,
+            "scale": 0.2721804511278195
+          }
+        }
+      ]
+    },
+    {
+      "scene": "defense",
+      "device": "mobile",
+      "page": 2,
+      "frames": [
+        {
+          "t": 10459.1,
+          "x": 2542.413805475448,
+          "y": 2101.4393508729536,
+          "scale": 0.5221358666265467,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10475.9,
+          "x": 2534.105757726958,
+          "y": 2098.735080064575,
+          "scale": 0.5239475418715575,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10492.5,
+          "x": 2524.218595616127,
+          "y": 2095.516807290579,
+          "scale": 0.526111756616074,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10509.2,
+          "x": 2520.8029016654978,
+          "y": 2094.404998389057,
+          "scale": 0.526861498380775,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10525.9,
+          "x": 2516.9182817638907,
+          "y": 2093.1405540190217,
+          "scale": 0.527715467573407,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10542.5,
+          "x": 2515.3268018681297,
+          "y": 2092.6225270703912,
+          "scale": 0.52806572757854,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10559.2,
+          "x": 2514.176506760469,
+          "y": 2092.248105837529,
+          "scale": 0.5283190343962065,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10575.8,
+          "x": 2512.964005906015,
+          "y": 2091.8534366246045,
+          "scale": 0.5285861711027894,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10592.5,
+          "x": 2511.652133635745,
+          "y": 2091.4264220006867,
+          "scale": 0.5288753533328301,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10609.2,
+          "x": 2511.219566328792,
+          "y": 2091.285621276345,
+          "scale": 0.5289707408763975,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10625.9,
+          "x": 2510.94349295263,
+          "y": 2091.1957593503275,
+          "scale": 0.5290316281674904,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10642.5,
+          "x": 2510.7120992597174,
+          "y": 2091.120440668017,
+          "scale": 0.5290826668652645,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10659.1,
+          "x": 2510.5311899999415,
+          "y": 2091.0615546763875,
+          "scale": 0.5291225735996862,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10709.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10725.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10742.5,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10759.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10775.9,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10792.5,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10809.2,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10825.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10842.4,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10859.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10875.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10892.5,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10909.2,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10925.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10942.5,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10959.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10975.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 10992.5,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11009.2,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11025.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11042.5,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11059.2,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11075.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:2",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        }
+      ]
+    },
+    {
+      "scene": "defense",
+      "device": "mobile",
+      "page": 3,
+      "frames": [
+        {
+          "t": 11492.5,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11509.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11525.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11542.4,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11559.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11575.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11592.5,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11609.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11625.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11642.4,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11659.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11675.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11692.4,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11709.2,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11725.7,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11742.4,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11759.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11775.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11792.5,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11809.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11825.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11842.5,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11859.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11875.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11892.5,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11909.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11925.8,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11942.4,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11959.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11975.7,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 11992.4,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12009.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12025.7,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12042.4,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12059.1,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12075.7,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12092.4,
+          "x": 2510,
+          "y": 2090.8886522504467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:3",
+          "target": {
+            "x": 2510,
+            "y": 2090.8886522504467,
+            "scale": 0.5292397660818714
+          }
+        }
+      ]
+    },
+    {
+      "scene": "defense",
+      "device": "mobile",
+      "page": 4,
+      "frames": [
+        {
+          "t": 12592.4,
+          "x": 2510,
+          "y": 2086.3222316154506,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12609.1,
+          "x": 2510,
+          "y": 2084.490788252606,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12625.7,
+          "x": 2510,
+          "y": 2082.887578330106,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12642.4,
+          "x": 2510,
+          "y": 2081.642490674792,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12659.1,
+          "x": 2510,
+          "y": 2080.610107118524,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12675.8,
+          "x": 2510,
+          "y": 2079.821489072639,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12692.4,
+          "x": 2510,
+          "y": 2079.209216975161,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12709.1,
+          "x": 2510,
+          "y": 2078.755529307278,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12725.7,
+          "x": 2510,
+          "y": 2078.432796539902,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12742.4,
+          "x": 2510,
+          "y": 2078.1887794378467,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12759.1,
+          "x": 2510,
+          "y": 2078.0080353350427,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12775.7,
+          "x": 2510,
+          "y": 2077.879086915765,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12792.4,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12809.1,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12825.8,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12842.4,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12859.1,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12875.8,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12892.4,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12909.1,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12925.8,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12942.4,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12959.1,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12975.7,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 12992.4,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13009.1,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13025.8,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13042.4,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13059.1,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13075.7,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13092.4,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13109.1,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13125.7,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13142.4,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13159.1,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13175.8,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        },
+        {
+          "t": 13192.3,
+          "x": 2510,
+          "y": 2077.5588007311094,
+          "scale": 0.5292397660818714,
+          "id": "10:cooperation-defense:4",
+          "target": {
+            "x": 2510,
+            "y": 2077.5588007311094,
+            "scale": 0.5292397660818714
+          }
+        }
+      ]
+    },
+    {
+      "scene": "defense",
+      "device": "mobile",
+      "page": 5,
+      "frames": [
+        {
+          "t": 13542.4,
+          "x": 2357.223080368501,
+          "y": 1969.7607528078845,
+          "scale": 0.6402323011804828,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13559,
+          "x": 2334.409709913373,
+          "y": 1953.6638396907465,
+          "scale": 0.6586952211748581,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13575.7,
+          "x": 2316.51047562112,
+          "y": 1941.0342977371627,
+          "scale": 0.6735531028434074,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13592.4,
+          "x": 2302.6816446905023,
+          "y": 1931.2767965192004,
+          "scale": 0.6852613027125938,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13609,
+          "x": 2292.0651767509103,
+          "y": 1923.7859103140856,
+          "scale": 0.6943876624543787,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13625.7,
+          "x": 2284.092466052503,
+          "y": 1918.1604359163957,
+          "scale": 0.7013211625148866,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13642.4,
+          "x": 2278.270377087915,
+          "y": 1914.0524212586076,
+          "scale": 0.7064280641872301,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13659,
+          "x": 2273.9970289335674,
+          "y": 1911.0371844659944,
+          "scale": 0.7102001224781367,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13675.7,
+          "x": 2270.8514965520462,
+          "y": 1908.8177245421712,
+          "scale": 0.7129895279435137,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13692.4,
+          "x": 2268.5940482072338,
+          "y": 1907.2248888871175,
+          "scale": 0.7149981455264107,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13709,
+          "x": 2266.9631648686263,
+          "y": 1906.074151977927,
+          "scale": 0.7164527820141522,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13725.7,
+          "x": 2265.8161852825406,
+          "y": 1905.2648532914102,
+          "scale": 0.7174775816016522,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13742.4,
+          "x": 2264.9913775750206,
+          "y": 1904.6828762428013,
+          "scale": 0.7182154340562934,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13759.1,
+          "x": 2264.398630498616,
+          "y": 1904.264639130136,
+          "scale": 0.7187461594010963,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13775.7,
+          "x": 2263.984165716087,
+          "y": 1903.9721964326568,
+          "scale": 0.7191174898778584,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13792.3,
+          "x": 2263.6925428885334,
+          "y": 1903.7664299358853,
+          "scale": 0.719378877818854,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13809,
+          "x": 2263.4822466819173,
+          "y": 1903.6180467860383,
+          "scale": 0.7195674298833142,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13825.7,
+          "x": 2263.3373714695795,
+          "y": 1903.5158241131364,
+          "scale": 0.7196973540828709,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13842.3,
+          "x": 2263.2361471461213,
+          "y": 1903.4444011226908,
+          "scale": 0.719788146053649,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13859,
+          "x": 2263.164332351524,
+          "y": 1903.3937292365952,
+          "scale": 0.7198525664375505,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13875.7,
+          "x": 2263.1141962450392,
+          "y": 1903.3583536417568,
+          "scale": 0.7198975436971298,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13892.3,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13909,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13925.7,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13942.4,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13959.1,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13975.7,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 13992.4,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 14009.1,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 14025.7,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 14042.3,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 14059,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 14075.7,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 14092.3,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 14109,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 14125.7,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        },
+        {
+          "t": 14142.4,
+          "x": 2263,
+          "y": 1903.2777777777778,
+          "scale": 0.72,
+          "id": "10:cooperation-defense:5",
+          "target": {
+            "x": 2263,
+            "y": 1903.2777777777778,
+            "scale": 0.72
+          }
+        }
+      ]
+    },
+    {
+      "scene": "rapid-next-back",
+      "boundaries": [
+        {
+          "action": "dialogue-next",
+          "before": {
+            "x": 347,
+            "y": 1457.8080875018206,
+            "scale": 0.1981617176874766
+          },
+          "after": {
+            "x": 347,
+            "y": 1457.8080875018206,
+            "scale": 0.1981617176874766
+          }
+        },
+        {
+          "action": "dialogue-next",
+          "before": {
+            "x": 347,
+            "y": 1449.0166804349321,
+            "scale": 0.1998034214889647
+          },
+          "after": {
+            "x": 347,
+            "y": 1449.0166804349321,
+            "scale": 0.1998034214889647
+          }
+        },
+        {
+          "action": "dialogue-prev",
+          "before": {
+            "x": 322.2095972220163,
+            "y": 1021.793417924499,
+            "scale": 0.3658683146063662
+          },
+          "after": {
+            "x": 322.2095972220163,
+            "y": 1021.793417924499,
+            "scale": 0.3658683146063662
+          }
+        },
+        {
+          "action": "dialogue-next",
+          "before": {
+            "x": 326.64036726402327,
+            "y": 1095.3316328581607,
+            "scale": 0.32924387400078864
+          },
+          "after": {
+            "x": 326.64036726402327,
+            "y": 1095.3316328581607,
+            "scale": 0.32924387400078864
+          }
+        },
+        {
+          "action": "dialogue-next",
+          "before": {
+            "x": 314.388072491104,
+            "y": 886.1108173562957,
+            "scale": 0.4431781422338338
+          },
+          "after": {
+            "x": 314.388072491104,
+            "y": 886.1108173562957,
+            "scale": 0.4431781422338338
+          }
+        }
+      ],
+      "frames": [
+        {
+          "t": 15392.3,
+          "x": 347,
+          "y": 1457.5807522143011,
+          "scale": 0.19820399981027595,
+          "id": "2:arrival:1",
+          "target": {
+            "x": 347,
+            "y": 1441.1746851460796,
+            "scale": 0.20127930616633563
+          }
+        },
+        {
+          "t": 15409,
+          "x": 347,
+          "y": 1455.9237377697305,
+          "scale": 0.1985124608191657,
+          "id": "2:arrival:1",
+          "target": {
+            "x": 347,
+            "y": 1441.1746851460796,
+            "scale": 0.20127930616633563
+          }
+        },
+        {
+          "t": 15425.7,
+          "x": 347,
+          "y": 1453.1437038437637,
+          "scale": 0.19903105587496392,
+          "id": "2:arrival:1",
+          "target": {
+            "x": 347,
+            "y": 1441.1746851460796,
+            "scale": 0.20127930616633563
+          }
+        },
+        {
+          "t": 15442.3,
+          "x": 347,
+          "y": 1451.189561079869,
+          "scale": 0.19939639759577013,
+          "id": "2:arrival:1",
+          "target": {
+            "x": 347,
+            "y": 1441.1746851460796,
+            "scale": 0.20127930616633563
+          }
+        },
+        {
+          "t": 15458.9,
+          "x": 347,
+          "y": 1449.0166804349321,
+          "scale": 0.1998034214889647,
+          "id": "2:arrival:1",
+          "target": {
+            "x": 347,
+            "y": 1441.1746851460796,
+            "scale": 0.20127930616633563
+          }
+        },
+        {
+          "t": 15475.6,
+          "x": 345.67544872644646,
+          "y": 1425.3559133538092,
+          "scale": 0.2065285814771567,
+          "id": "2:arrival:2",
+          "target": {
+            "x": 290,
+            "y": 470.596729836995,
+            "scale": 0.8
+          }
+        },
+        {
+          "t": 15492.3,
+          "x": 335.72331127497574,
+          "y": 1253.6398326131264,
+          "scale": 0.2633506895080281,
+          "id": "2:arrival:2",
+          "target": {
+            "x": 290,
+            "y": 470.596729836995,
+            "scale": 0.8
+          }
+        },
+        {
+          "t": 15525.6,
+          "x": 322.2095972220163,
+          "y": 1021.793417924499,
+          "scale": 0.3658683146063662,
+          "id": "2:arrival:2",
+          "target": {
+            "x": 290,
+            "y": 470.596729836995,
+            "scale": 0.8
+          }
+        },
+        {
+          "t": 15542.3,
+          "x": 320.67395671828143,
+          "y": 995.4550187704219,
+          "scale": 0.37979371238542065,
+          "id": "2:arrival:1",
+          "target": {
+            "x": 347,
+            "y": 1441.1746851460796,
+            "scale": 0.20127930616633563
+          }
+        },
+        {
+          "t": 15559,
+          "x": 318.91129259918586,
+          "y": 965.0841314430286,
+          "scale": 0.39648396111939654,
+          "id": "2:arrival:1",
+          "target": {
+            "x": 347,
+            "y": 1441.1746851460796,
+            "scale": 0.20127930616633563
+          }
+        },
+        {
+          "t": 15575.6,
+          "x": 319.3298380896901,
+          "y": 971.6160087825873,
+          "scale": 0.3927060474177242,
+          "id": "2:arrival:1",
+          "target": {
+            "x": 347,
+            "y": 1441.1746851460796,
+            "scale": 0.20127930616633563
+          }
+        },
+        {
+          "t": 15592.3,
+          "x": 322.46537906408196,
+          "y": 1024.5724141411392,
+          "scale": 0.3641480879375584,
+          "id": "2:arrival:1",
+          "target": {
+            "x": 347,
+            "y": 1441.1746851460796,
+            "scale": 0.20127930616633563
+          }
+        },
+        {
+          "t": 15609,
+          "x": 326.64036726402327,
+          "y": 1095.3316328581607,
+          "scale": 0.32924387400078864,
+          "id": "2:arrival:1",
+          "target": {
+            "x": 347,
+            "y": 1441.1746851460796,
+            "scale": 0.20127930616633563
+          }
+        },
+        {
+          "t": 15625.7,
+          "x": 327.36660823109924,
+          "y": 1107.6372107414998,
+          "scale": 0.3235242247283931,
+          "id": "2:arrival:2",
+          "target": {
+            "x": 290,
+            "y": 470.596729836995,
+            "scale": 0.8
+          }
+        },
+        {
+          "t": 15642.3,
+          "x": 327.6854254130135,
+          "y": 1112.9624355459018,
+          "scale": 0.3210679703010934,
+          "id": "2:arrival:2",
+          "target": {
+            "x": 290,
+            "y": 470.596729836995,
+            "scale": 0.8
+          }
+        },
+        {
+          "t": 15658.9,
+          "x": 324.92279862126503,
+          "y": 1065.7289838672514,
+          "scale": 0.3433375299684545,
+          "id": "2:arrival:2",
+          "target": {
+            "x": 290,
+            "y": 470.596729836995,
+            "scale": 0.8
+          }
+        },
+        {
+          "t": 15675.6,
+          "x": 319.3826275656743,
+          "y": 971.2446281022255,
+          "scale": 0.3926723264506456,
+          "id": "2:arrival:2",
+          "target": {
+            "x": 290,
+            "y": 470.596729836995,
+            "scale": 0.8
+          }
+        },
+        {
+          "t": 15692.3,
+          "x": 314.388072491104,
+          "y": 886.1108173562957,
+          "scale": 0.4431781422338338,
+          "id": "2:arrival:2",
+          "target": {
+            "x": 290,
+            "y": 470.596729836995,
+            "scale": 0.8
+          }
+        },
+        {
+          "t": 15709,
+          "x": 313.62567278627597,
+          "y": 875.0342971173586,
+          "scale": 0.4510888238043981,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15725.6,
+          "x": 314.68708717881384,
+          "y": 893.8831239080523,
+          "scale": 0.439503631845521,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15742.3,
+          "x": 316.1388318104497,
+          "y": 919.5216474398994,
+          "scale": 0.42416264636534107,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15759,
+          "x": 323.83372139102033,
+          "y": 1054.6281903665902,
+          "scale": 0.3514673196239466,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15792.3,
+          "x": 330.26914664260136,
+          "y": 1167.2554012313278,
+          "scale": 0.30037612899066896,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15809,
+          "x": 336.31097685947304,
+          "y": 1272.8541760124237,
+          "scale": 0.2592046852183664,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15842.3,
+          "x": 339.71392311034083,
+          "y": 1332.2871062133556,
+          "scale": 0.23855636358413557,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15858.9,
+          "x": 341.4598116415045,
+          "y": 1362.768352766768,
+          "scale": 0.2286106493312601,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15875.6,
+          "x": 343.6053474332252,
+          "y": 1400.2167228999947,
+          "scale": 0.21695525222599693,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15892.3,
+          "x": 344.06619731141416,
+          "y": 1408.2588720073886,
+          "scale": 0.21453045566942763,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15909,
+          "x": 344.8635284903201,
+          "y": 1422.171413000677,
+          "scale": 0.2103991904709592,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15925.6,
+          "x": 345.4613135085831,
+          "y": 1432.6007796129554,
+          "scale": 0.2073542243699843,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15942.3,
+          "x": 345.8991508932099,
+          "y": 1440.238766848571,
+          "scale": 0.20515205434727712,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15958.9,
+          "x": 346.21400651756045,
+          "y": 1445.7308554266542,
+          "scale": 0.20358295245185284,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15975.6,
+          "x": 346.44080708376094,
+          "y": 1449.686668507535,
+          "scale": 0.20246014527273629,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 15992.3,
+          "x": 346.6042483194229,
+          "y": 1452.5371821414944,
+          "scale": 0.20165486447596143,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16008.9,
+          "x": 346.7207235859552,
+          "y": 1454.568456487623,
+          "scale": 0.2010829521841703,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16025.6,
+          "x": 346.8046691566241,
+          "y": 1456.0323479806034,
+          "scale": 0.20067177845898224,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16042.2,
+          "x": 346.86225848569273,
+          "y": 1457.036575167768,
+          "scale": 0.20039019053072182,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16058.9,
+          "x": 346.90410044114054,
+          "y": 1457.7661721303325,
+          "scale": 0.20018585116641416,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16075.6,
+          "x": 346.9320664122267,
+          "y": 1458.253794898378,
+          "scale": 0.20004939428553395,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16092.3,
+          "x": 346.9528806636522,
+          "y": 1458.6167054197913,
+          "scale": 0.19994789484971492,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16108.9,
+          "x": 346.9734496908644,
+          "y": 1458.9753258177168,
+          "scale": 0.1998476429966365,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16125.6,
+          "x": 346.97734552357366,
+          "y": 1459.0432473996361,
+          "scale": 0.19982866084462658,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16142.3,
+          "x": 346.984084977859,
+          "y": 1459.1607437225991,
+          "scale": 0.19979582779128618,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16158.9,
+          "x": 346.98905131657136,
+          "y": 1459.247325201952,
+          "scale": 0.1997716365722228,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16175.6,
+          "x": 346.992310301886,
+          "y": 1459.3041399335234,
+          "scale": 0.19975576363315103,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16192.2,
+          "x": 346.9946640693268,
+          "y": 1459.3451729000064,
+          "scale": 0.19974430042648358,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16209,
+          "x": 347,
+          "y": 1459.438188288448,
+          "scale": 0.19971831649377186,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16225.6,
+          "x": 347,
+          "y": 1459.438188288448,
+          "scale": 0.19971831649377186,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16242.3,
+          "x": 347,
+          "y": 1459.438188288448,
+          "scale": 0.19971831649377186,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16259,
+          "x": 347,
+          "y": 1459.438188288448,
+          "scale": 0.19971831649377186,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16275.6,
+          "x": 347,
+          "y": 1459.438188288448,
+          "scale": 0.19971831649377186,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        },
+        {
+          "t": 16292.2,
+          "x": 347,
+          "y": 1459.438188288448,
+          "scale": 0.19971831649377186,
+          "id": "2:entry:story-0",
+          "target": {
+            "x": 347,
+            "y": 1459.438188288448,
+            "scale": 0.19971831649377186
+          }
+        }
+      ]
+    }
+  ],
+  "failures": [],
+  "errors": [],
+  "checks": [
+    "native next/back retarget continuity",
+    "resize",
+    "reduced motion",
+    "Continue preserves row metadata",
+    "skip releases framing and playback camera"
+  ],
+  "limits": [
+    "Inspection fixtures and viewport-emulated touch, not physical devices or normal campaign completion."
+  ]
+}

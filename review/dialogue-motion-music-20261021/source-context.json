@@ -1,0 +1,16 @@
+{
+  "runtimeSource": "df588060967274224bf7ae35a446e42aef3b9db2",
+  "buildSource": "4a39f3c07d5a68ddaee8565c2db53e8738eceac0",
+  "baseMaster": "27efe8ebdab24e147494196a515641e0629e4656",
+  "sourceHashes": {
+    "shared/runtime/story-framing.js": "04f6f576811c66ea9a7d8d4474688c19744dd6cfbc6c7ca3aed78d7dc3ae41e6",
+    "shared/runtime/renderer.js": "8ff463dea50c54d8fc3285cedefb367212b87e5f8de0d2003137c30279199b50",
+    "shared/runtime/story-content.js": "eeb9f08275e98cbf256fea8518bc2b88ba709ab8d15a48ad5c2fdbc4ae452920",
+    "shared/runtime/story-direction.js": "9c73c65e6b52db27a06e7364a79acc95b3a26707874aeba8f9ded12da7f79cd2",
+    "shared/runtime/main.js": "ef173a5a273575ef7832577e9519f143b1cd3bdd93c5c5402734817735ed831b",
+    "shared/engine/src/bgm.ts": "c447626fdfdd80c6706a69df17d6f3a36b698498d9029d2485d11bd30e680f5b",
+    "shared/engine/src/sound-design.ts": "feea4cb15944b9e6ce7d444f8fe1d9f48caef2ae4aa71ea37abf60c0e775f256"
+  },
+  "captureContext": "Music checks captured a dirty worktree based on 27efe8eb before source commits; those exact runtime edits are committed in df588060. Final generated source matches this runtime. Pan capture helper changed to native compositor streaming after the build; no product runtime changed.",
+  "nativePanFrames": 109
+}

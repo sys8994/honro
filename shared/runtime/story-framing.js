@@ -13,10 +13,13 @@ const policies={
  '2:outcome':{intent:'conversation',allowOffscreenSpeaker:true,targets:[{actor:'objective'},{actor:'npc-damheo'},{actor:'npc-yeonsil'}],padding:45,maxScale:1},
  '8:entry':{intent:'object-introduction',targets:[{anchor:'bier'},{actor:'archer'}],padding:75,maxScale:.75},
  '9:entry':{intent:'situation',targets:[{anchor:'sodan'},{anchor:'receiverWest'},{anchor:'receiverEast'}],padding:60,maxScale:.8},
- '10:cooperation':{intent:'situation',targets:[{actor:'boss'},{actor:'mage'},{anchor:'receiverWest'},{anchor:'receiverEast'}],padding:45,maxScale:.8},
- '10:finale-midpoint':{intent:'conversation',targets:[{actor:'boss'},{actor:'archer'},{actor:'mage'}],padding:40,maxScale:1},
+ '10:cooperation':{intent:'situation',targets:[{nearbyAllies:'boss'}],padding:100,maxScale:.72},
+ '10:finale-midpoint':{intent:'situation',targets:[{nearbyAllies:'boss'}],padding:90,maxScale:.72},
 };
 const alive=u=>u&&!u.dead&&u.hp>0;
+// World framing stays at a readable middle distance, including old saved rows
+// and blocking cues that used to request a 1.05 close-up.
+const scaleLimits=Object.freeze({portrait:.82,conversation:.78,'object-introduction':.8,situation:.72,objective:.72});
 function actor(b,id){return b.units.find(u=>u.id===id)||b.honroConvoyActors?.find(u=>u.id===id)||Object.values(b.honroStaging?.hidden||{}).find(u=>u.id===id)||b.units.find(u=>u.cls===id&&u.side===0&&!u.summoned);}
 function speakerId(app,name){const aliases={11:{'주민':'resident-4'},23:{'짐꾼':'act3-carrier'}},bound=aliases[app.engine.b.honroStage]?.[name];if(bound&&alive(actor(app.engine.b,bound)))return bound;const u=G.HonroStoryDirection?.speaker(app,name)||app.speakerUnits?.(name)?.find(alive)||app.engine.b.units.find(u=>u.name===name&&alive(u))||Object.values(app.engine.b.honroStaging?.hidden||{}).find(u=>u.name===name&&alive(u));return u?.id;}
 // These are authored story-row identities, before interludes/deferred pages
@@ -70,6 +73,7 @@ function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return li
  });
 }
 function bounds(app,target){const b=app.engine.b;
+ if(target.nearbyAllies){const center=actor(b,target.nearbyAllies);if(!alive(center))return null;const parts=b.units.filter(u=>alive(u)&&(u.id===center.id||u.side===0&&Math.hypot(u.x-center.x,u.y-center.y)<=950)).map(u=>bounds(app,{actor:u.id}));const x=Math.min(...parts.map(p=>p.x)),y=Math.min(...parts.map(p=>p.y));return{x,y,w:Math.max(...parts.map(p=>p.x+p.w))-x,h:Math.max(...parts.map(p=>p.y+p.h))-y};}
  if(target.terrainGroup==='bell'){const ids=b.honroMap?.design?.bell?.bodyIds||['sb-bell-crown','sb-bell-west-wall','sb-bell-east-wall','sb-bell-east-lip','sb-bell-east-yoke'],parts=(b.honroWorldTerrain||b.terrain).filter(t=>ids.includes(t.id)&&!t.broken);if(!parts.length)return null;const x=Math.min(...parts.map(t=>t.x)),y=Math.min(...parts.map(t=>t.y)),right=Math.max(...parts.map(t=>t.x+t.w)),bottom=Math.max(...parts.map(t=>t.y+t.h));return{x,y,w:right-x,h:bottom-y};}
  if(target.cart){const p=G.HonroAct1StoryArt?.witnessCart(b);return p?{x:p.x-p.w/2,y:p.y-p.h,w:p.w,h:p.h}:null;}
  let u;if(target.speaker)u=actor(b,speakerId(app,target.speaker));else if(target.actor)u=actor(b,target.actor);
@@ -87,27 +91,44 @@ function safeRect(scene){const {w,h}=scene.size(),canvas=scene.canvas.getBoundin
  if(panel?.height){if(panel.top-canvas.top<h*.45)top=Math.max(top,panel.bottom-canvas.top+14);else bottom=Math.min(bottom,panel.top-canvas.top-14);}
  return{x:pad,y:top,w:Math.max(80,w-pad*2),h:Math.max(30,bottom-top)};
 }
-function apply(scene,e){const f=scene.storyFrame;if(!f)return;const {app,camera}=f,{w,h}=scene.size();
+function targetFrame(scene,e){const f=scene.storyFrame;if(!f)return;const {app,camera}=f,{w,h}=scene.size();
  const signature=[w,h,camera.id,G.document.querySelector('#story-line')?.textContent].join(':');if(f.layout!==signature){f.rect=safeRect(scene);f.layout=signature;}
  const boxes=camera.targets.map(t=>bounds(app,t)),missing=camera.targets.filter((_,i)=>!boxes[i]);let valid=boxes.filter(Boolean),fallback=null;
  if(!valid.length){const goal=G.HonroObjectives.state(e.b,app.stage).targets[0],u=e.active;fallback=goal?'current-objective':'active-actor';valid=[goal?bounds(app,{objective:'current'}):u?bounds(app,{actor:u.id}):null].filter(Boolean);}
  if(!valid.length)return;
  const pad=camera.padding??45,x=Math.min(...valid.map(p=>p.x))-pad,y=Math.min(...valid.map(p=>p.y))-pad,right=Math.max(...valid.map(p=>p.x+p.w))+pad,bottom=Math.max(...valid.map(p=>p.y+p.h))+pad,rect=f.rect;
- const scale=Math.max(.025,Math.min(camera.maxScale||1,rect.w/Math.max(1,right-x),rect.h/Math.max(1,bottom-y)));
+ const scale=Math.max(.025,Math.min(camera.maxScale||1,scaleLimits[camera.intent]||.8,rect.w/Math.max(1,right-x),rect.h/Math.max(1,bottom-y)));
  let cx=(x+right)/2-(rect.x+rect.w/2-w/2)/scale,cy=(y+bottom)/2-(rect.y+rect.h/2-h/2)/scale;
  const focus=G.HonroBounds.focus(e.b),rangeX=[Math.max(focus.left,right-(rect.x+rect.w-w/2)/scale),Math.min(focus.right,x-(rect.x-w/2)/scale)],rangeY=[Math.max(focus.top,bottom-(rect.y+rect.h-h/2)/scale),Math.min(focus.bottom,y-(rect.y-h/2)/scale)];
  const boundary={overscanX:rangeX[0]>rangeX[1],overscanY:rangeY[0]>rangeY[1]};
  if(!boundary.overscanX)cx=Math.max(rangeX[0],Math.min(rangeX[1],cx));if(!boundary.overscanY)cy=Math.max(rangeY[0],Math.min(rangeY[1],cy));
- // Targets may move during authored cues. Fit their current union on every frame;
- // only DOM layout is cached. This has no gameplay-camera clamp or fixed zoom.
- scene.x=cx;scene.y=cy;scene.scale=scale;scene.manual=true;scene.goalFocus=null;scene.storyTween=null;
- scene.storyFrameReport={id:camera.id,intent:camera.intent,targets:camera.targets,missing,fallback,boxes:valid,rect,boundary,camera:{x:cx,y:cy,scale}};
+ return{id:camera.id,intent:camera.intent,targets:camera.targets,missing,fallback,boxes:valid,rect,boundary,camera:{x:cx,y:cy,scale}};
 }
-function focus(app,meta){if(!app.scene||!meta.camera)return false;app.scene.storyFrame={app,camera:meta.camera};return true;}
-function clear(scene){if(scene){scene.storyFrame=null;scene.storyFrameReport=null;}}
+function apply(scene,e,now=performance.now()){
+ const f=scene.storyFrame,plan=targetFrame(scene,e);if(!f||!plan)return;
+ const goal=plan.camera,m=f.motion,dt=Math.max(0,(now-m.time)/1000),reduced=G.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+ // One critically damped response owns both center and logarithmic zoom. About
+ // 99.5% of a stationary change is covered in 310ms. Retarget the live response,
+ // retaining velocity and current screen; there is no queue or old-page tween.
+ const z=Math.log(goal.scale),spring=(value,velocity,target)=>{const delta=value-target,k=velocity+24*delta,decay=Math.exp(-24*dt);return[target+(delta+k*dt)*decay,(velocity-24*k*dt)*decay];};
+ if(reduced||dt>1){m.x=goal.x;m.y=goal.y;m.z=z;m.vx=m.vy=m.vz=0;}
+ else{[m.x,m.vx]=spring(m.x,m.vx,goal.x);[m.y,m.vy]=spring(m.y,m.vy,goal.y);[m.z,m.vz]=spring(m.z,m.vz,z);}
+ if(Math.hypot(m.x-goal.x,m.y-goal.y)*goal.scale<.15&&Math.abs(m.z-z)<.0001){m.x=goal.x;m.y=goal.y;m.z=z;m.vx=m.vy=m.vz=0;}
+ m.time=now;scene.x=m.x;scene.y=m.y;scene.scale=reduced?goal.scale:Math.exp(m.z);
+ scene.storyFrameReport={...plan,targetCamera:goal,camera:{x:scene.x,y:scene.y,scale:scene.scale},reducedMotion:!!reduced};
+}
+function focus(app,meta){const scene=app.scene;if(!scene||!meta.camera)return false;
+ const previous=scene.storyFrame;if(previous?.app===app&&previous.camera.id===meta.camera.id){previous.camera=meta.camera;return true;}
+ const velocity=previous?.motion;
+ scene.storyFrame={app,camera:meta.camera,motion:{x:Number.isFinite(scene.x)?scene.x:0,y:Number.isFinite(scene.y)?scene.y:0,z:Math.log(Math.max(.025,scene.scale||.7)),vx:velocity?.vx||0,vy:velocity?.vy||0,vz:velocity?.vz||0,time:performance.now()}};
+ // Cancel legacy focus once when ownership changes. Renderer excludes legacy
+ // follow, resize zoom and bounds clamping while this response is active.
+ scene.storyTween=null;scene.goalFocus=null;scene.manual=true;return true;
+}
+function clear(scene){if(scene){scene.storyFrame=null;scene.storyFrameReport=null;scene.storyTween=null;}}
 function highlight(scene,e){if(scene.storyFrame?.camera.intent!=='objective')return;const c=scene.ctx,r=scene.storyFrameReport;if(!r)return;c.save();c.strokeStyle='#f0d58c';c.lineWidth=2/scene.scale;
  for(const box of r.boxes){c.beginPath();c.ellipse(box.x+box.w/2,box.y+box.h-4,Math.max(42,box.w*.7),14,0,0,Math.PI*2);c.stroke();const x=box.x+box.w/2,y=box.y-18;c.beginPath();c.moveTo(x-9/scene.scale,y-10/scene.scale);c.lineTo(x,y);c.lineTo(x+9/scene.scale,y-10/scene.scale);c.stroke();}
  const exit=e.b.honroMapAnchors?.exit,first=r.boxes[0];if(exit&&first){const x=first.x+first.w/2,y=first.y+first.h,dx=exit.x-x,dy=exit.y-y,len=Math.hypot(dx,dy);if(len>100){const k=Math.min(110/scene.scale,len*.35)/len,tx=x+dx*k,ty=y+dy*k;c.setLineDash([7/scene.scale,5/scene.scale]);c.beginPath();c.moveTo(x,y);c.lineTo(tx,ty);c.stroke();c.setLineDash([]);const a=Math.atan2(dy,dx),n=10/scene.scale;c.beginPath();c.moveTo(tx-Math.cos(a-.5)*n,ty-Math.sin(a-.5)*n);c.lineTo(tx,ty);c.lineTo(tx-Math.cos(a+.5)*n,ty-Math.sin(a+.5)*n);c.stroke();}}
  c.restore();}
-G.HonroStoryFraming={arrival,authorEntry,highlight,bind,focus,clear,apply,bounds,openings,policies,safeRect};
+G.HonroStoryFraming={arrival,authorEntry,highlight,bind,focus,clear,apply,targetFrame,bounds,openings,policies,scaleLimits,safeRect};
 })(globalThis);
