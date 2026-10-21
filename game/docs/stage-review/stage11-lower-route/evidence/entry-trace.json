@@ -1,0 +1,569 @@
+{
+  "commands": [
+    {
+      "op": "wait",
+      "round": 41,
+      "phase": "aim",
+      "x": 8769.330771786164,
+      "y": 7144.665385893082,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 14.59202051853555,
+      "maxMove": 1514,
+      "support": "rv-ritual-buttress",
+      "alive": 42
+    },
+    {
+      "op": "wait-other",
+      "hero": "archer",
+      "round": 41,
+      "phase": "aim",
+      "x": 8769.330771786164,
+      "y": 7144.665385893082,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 14.59202051853555,
+      "maxMove": 1514,
+      "support": "rv-ritual-buttress",
+      "alive": 42
+    },
+    {
+      "op": "wait-other",
+      "hero": "knight",
+      "round": 41,
+      "phase": "aim",
+      "x": 8769.330771786164,
+      "y": 7144.665385893082,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 14.59202051853555,
+      "maxMove": 1514,
+      "support": "rv-ritual-buttress",
+      "alive": 42
+    },
+    {
+      "op": "wait-other",
+      "hero": "occultist",
+      "round": 41,
+      "phase": "aim",
+      "x": 8769.330771786164,
+      "y": 7144.665385893082,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 14.59202051853555,
+      "maxMove": 1514,
+      "support": "rv-ritual-buttress",
+      "alive": 42
+    },
+    {
+      "op": "wait",
+      "round": 42,
+      "phase": "aim",
+      "x": 9993.74810564389,
+      "y": 8002.498332966623,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 14.326695257749453,
+      "maxMove": 1514,
+      "support": "rv-root-east-descent",
+      "alive": 42
+    },
+    {
+      "op": "wait-other",
+      "hero": "archer",
+      "round": 42,
+      "phase": "aim",
+      "x": 9993.74810564389,
+      "y": 8002.498332966623,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 14.326695257749453,
+      "maxMove": 1514,
+      "support": "rv-root-east-descent",
+      "alive": 42
+    },
+    {
+      "op": "wait-other",
+      "hero": "knight",
+      "round": 42,
+      "phase": "aim",
+      "x": 9993.74810564389,
+      "y": 8002.498332966623,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 14.326695257749453,
+      "maxMove": 1514,
+      "support": "rv-root-east-descent",
+      "alive": 42
+    },
+    {
+      "op": "wait-other",
+      "hero": "occultist",
+      "round": 42,
+      "phase": "aim",
+      "x": 9993.74810564389,
+      "y": 8002.498332966623,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 14.326695257749453,
+      "maxMove": 1514,
+      "support": "rv-root-east-descent",
+      "alive": 42
+    },
+    {
+      "op": "wait",
+      "round": 43,
+      "phase": "aim",
+      "x": 11129.128654103388,
+      "y": 8539.609942127629,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 12.67500000011585,
+      "maxMove": 1514,
+      "support": "rv-north-trace",
+      "alive": 42
+    },
+    {
+      "op": "wait-other",
+      "hero": "archer",
+      "round": 43,
+      "phase": "aim",
+      "x": 11129.128654103388,
+      "y": 8539.609942127629,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 12.67500000011585,
+      "maxMove": 1514,
+      "support": "rv-north-trace",
+      "alive": 42
+    },
+    {
+      "op": "wait-other",
+      "hero": "knight",
+      "round": 43,
+      "phase": "aim",
+      "x": 11129.128654103388,
+      "y": 8539.609942127629,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 12.67500000011585,
+      "maxMove": 1514,
+      "support": "rv-north-trace",
+      "alive": 42
+    },
+    {
+      "op": "wait-other",
+      "hero": "occultist",
+      "round": 43,
+      "phase": "aim",
+      "x": 11129.128654103388,
+      "y": 8539.609942127629,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 12.67500000011585,
+      "maxMove": 1514,
+      "support": "rv-north-trace",
+      "alive": 42
+    }
+  ],
+  "samples": [
+    {
+      "index": 0,
+      "goal": {
+        "x": 7600,
+        "y": 6830,
+        "i": 0
+      },
+      "start": {
+        "round": 41,
+        "phase": "aim",
+        "x": 7371.487895027022,
+        "y": 6810.413248145173,
+        "hp": 688.5999999999997,
+        "focus": 201,
+        "moveLeft": 1514,
+        "maxMove": 1514,
+        "support": "rv-ritual-buttress",
+        "alive": 42
+      },
+      "end": {
+        "round": 41,
+        "phase": "aim",
+        "x": 7588.578545231222,
+        "y": 6829.021018162676,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 1298.7966666666816,
+        "maxMove": 1514,
+        "support": "rv-ritual-buttress",
+        "alive": 42
+      },
+      "failed": null
+    },
+    {
+      "index": 1,
+      "goal": {
+        "x": 8050,
+        "y": 6760,
+        "i": 1
+      },
+      "start": {
+        "round": 41,
+        "phase": "aim",
+        "x": 7588.578545231222,
+        "y": 6829.021018162676,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 1298.7966666666816,
+        "maxMove": 1514,
+        "support": "rv-ritual-buttress",
+        "alive": 42
+      },
+      "end": {
+        "round": 41,
+        "phase": "aim",
+        "x": 8038.109039806478,
+        "y": 6761.849704918993,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 843.9553970494463,
+        "maxMove": 1514,
+        "support": "rv-ritual-buttress",
+        "alive": 42
+      },
+      "failed": null
+    },
+    {
+      "index": 2,
+      "goal": {
+        "x": 8400,
+        "y": 6960,
+        "i": 2
+      },
+      "start": {
+        "round": 41,
+        "phase": "aim",
+        "x": 8038.109039806478,
+        "y": 6761.849704918993,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 843.9553970494463,
+        "maxMove": 1514,
+        "support": "rv-ritual-buttress",
+        "alive": 42
+      },
+      "end": {
+        "round": 41,
+        "phase": "aim",
+        "x": 8388.082803680687,
+        "y": 6953.1901735318215,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 441.2420205186081,
+        "maxMove": 1514,
+        "support": "rv-ritual-buttress",
+        "alive": 42
+      },
+      "failed": null
+    },
+    {
+      "index": 3,
+      "goal": {
+        "x": 9000,
+        "y": 7260,
+        "i": 3
+      },
+      "start": {
+        "round": 41,
+        "phase": "aim",
+        "x": 8388.082803680687,
+        "y": 6953.1901735318215,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 441.2420205186081,
+        "maxMove": 1514,
+        "support": "rv-ritual-buttress",
+        "alive": 42
+      },
+      "end": {
+        "round": 42,
+        "phase": "aim",
+        "x": 8988.695003226865,
+        "y": 7254.3475016134325,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 1268.743333333292,
+        "maxMove": 1514,
+        "support": "rv-ritual-buttress",
+        "alive": 42
+      },
+      "failed": null
+    },
+    {
+      "index": 4,
+      "goal": {
+        "x": 9500,
+        "y": 7600,
+        "i": 4
+      },
+      "start": {
+        "round": 42,
+        "phase": "aim",
+        "x": 8988.695003226865,
+        "y": 7254.3475016134325,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 1268.743333333292,
+        "maxMove": 1514,
+        "support": "rv-ritual-buttress",
+        "alive": 42
+      },
+      "end": {
+        "round": 42,
+        "phase": "aim",
+        "x": 9488.1918372602,
+        "y": 7591.970449336935,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 665.7348839005198,
+        "maxMove": 1514,
+        "support": "rv-ritual-buttress",
+        "alive": 42
+      },
+      "failed": null
+    },
+    {
+      "index": 5,
+      "goal": {
+        "x": 9900,
+        "y": 7920,
+        "i": 5
+      },
+      "start": {
+        "round": 42,
+        "phase": "aim",
+        "x": 9488.1918372602,
+        "y": 7591.970449336935,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 665.7348839005198,
+        "maxMove": 1514,
+        "support": "rv-ritual-buttress",
+        "alive": 42
+      },
+      "end": {
+        "round": 42,
+        "phase": "aim",
+        "x": 9888.513046039725,
+        "y": 7910.81043683178,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 153.91584405382412,
+        "maxMove": 1514,
+        "support": "rv-root-east-descent",
+        "alive": 42
+      },
+      "failed": null
+    },
+    {
+      "index": 6,
+      "goal": {
+        "x": 10400,
+        "y": 8360,
+        "i": 6
+      },
+      "start": {
+        "round": 42,
+        "phase": "aim",
+        "x": 9888.513046039725,
+        "y": 7910.81043683178,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 153.91584405382412,
+        "maxMove": 1514,
+        "support": "rv-root-east-descent",
+        "alive": 42
+      },
+      "end": {
+        "round": 43,
+        "phase": "aim",
+        "x": 10388.573367977328,
+        "y": 8349.944563820049,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 988.0666666668453,
+        "maxMove": 1514,
+        "support": "rv-root-east-descent",
+        "alive": 42
+      },
+      "failed": null
+    },
+    {
+      "index": 7,
+      "goal": {
+        "x": 11000,
+        "y": 8630,
+        "i": 7
+      },
+      "start": {
+        "round": 43,
+        "phase": "aim",
+        "x": 10388.573367977328,
+        "y": 8349.944563820049,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 988.0666666668453,
+        "maxMove": 1514,
+        "support": "rv-root-east-descent",
+        "alive": 42
+      },
+      "end": {
+        "round": 43,
+        "phase": "aim",
+        "x": 10988.32370105701,
+        "y": 8624.745665475655,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 327.6983333335304,
+        "maxMove": 1514,
+        "support": "rv-root-east-descent",
+        "alive": 42
+      },
+      "failed": null
+    },
+    {
+      "index": 8,
+      "goal": {
+        "x": 11200,
+        "y": 8490,
+        "i": 8
+      },
+      "start": {
+        "round": 43,
+        "phase": "aim",
+        "x": 10988.32370105701,
+        "y": 8624.745665475655,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 327.6983333335304,
+        "maxMove": 1514,
+        "support": "rv-root-east-descent",
+        "alive": 42
+      },
+      "end": {
+        "round": 43,
+        "phase": "aim",
+        "x": 11188.482006745005,
+        "y": 8498.062595278496,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 85.12500000013218,
+        "maxMove": 1514,
+        "support": "rv-north-trace",
+        "alive": 42
+      },
+      "failed": null
+    },
+    {
+      "index": 9,
+      "goal": {
+        "x": 10800,
+        "y": 8650,
+        "i": 9
+      },
+      "start": {
+        "round": 43,
+        "phase": "aim",
+        "x": 11188.482006745005,
+        "y": 8498.062595278496,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 85.12500000013218,
+        "maxMove": 1514,
+        "support": "rv-north-trace",
+        "alive": 42
+      },
+      "end": {
+        "round": 44,
+        "phase": "aim",
+        "x": 10811.873237038275,
+        "y": 8648.812676296173,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 1167.3133333332735,
+        "maxMove": 1514,
+        "support": "rv-lower-refuge-rock",
+        "alive": 42
+      },
+      "failed": null
+    },
+    {
+      "index": 10,
+      "goal": {
+        "x": 10350,
+        "y": 8724,
+        "i": 10
+      },
+      "start": {
+        "round": 44,
+        "phase": "aim",
+        "x": 10811.873237038275,
+        "y": 8648.812676296173,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 1167.3133333332735,
+        "maxMove": 1514,
+        "support": "rv-lower-refuge-rock",
+        "alive": 42
+      },
+      "end": {
+        "round": 44,
+        "phase": "aim",
+        "x": 10361.498169799426,
+        "y": 8737.700366040115,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 708.1950000000187,
+        "maxMove": 1514,
+        "support": "rv-lower-refuge-rock",
+        "alive": 42
+      },
+      "failed": null
+    },
+    {
+      "index": 11,
+      "goal": {
+        "x": 9700,
+        "y": 8839,
+        "i": 11
+      },
+      "start": {
+        "round": 44,
+        "phase": "aim",
+        "x": 10361.498169799426,
+        "y": 8737.700366040115,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 708.1950000000187,
+        "maxMove": 1514,
+        "support": "rv-lower-refuge-rock",
+        "alive": 42
+      },
+      "end": {
+        "round": 44,
+        "phase": "aim",
+        "x": 9711.95603830573,
+        "y": 8835.372684619837,
+        "hp": 714,
+        "focus": 217,
+        "moveLeft": 49.43666666681087,
+        "maxMove": 1514,
+        "support": "rv-lower-refuge-rock",
+        "alive": 42
+      },
+      "failed": null
+    }
+  ],
+  "frames": 5389,
+  "walked": 5293.520080157258
+}

@@ -1,0 +1,88 @@
+{
+  "baseline": "90d77eed11b7f16dceb3e59e84e1cb42046e8055",
+  "protectedMaster": "bafc275c10c7a256692425641d7f0e4f69c002ca",
+  "captureCheckout": "90d77eed11b7f16dceb3e59e84e1cb42046e8055",
+  "captureSourceHashesMatchWorkingSource": true,
+  "finalActiveFilesEqualTestedBuild": true,
+  "originalUpperRootVerticesPreserved": true,
+  "changedTerrainIds": [
+    "rv-root-west-return"
+  ],
+  "unchangedStageFields": [
+    "units",
+    "events",
+    "markers",
+    "elements",
+    "environment",
+    "anchors",
+    "routes"
+  ],
+  "unchangedLibrary": true,
+  "unchangedOtherStages": true,
+  "protectedStages": {
+    "stage-2": "8bbf9ec59f3c2655144bcc6ff1703054d4b478ebf634800b1c34744e1d1e1079",
+    "stage-5": "5adf0da7bda360adf18ad728b1c9af1d1549eeb4305efab9484be1c88580abad",
+    "stage-12": "9bb0e59f9274e4ea8742342a169728bbd807fd8d54083876e97a50e4118b69b7"
+  },
+  "sourceHashes": {
+    "tools/map-forge/stage11-ravine.mjs": "b9d45a8487bc7bec6206ae38b203060bfcc62607c80bfbb93471f9e4e2531a49",
+    "shared/runtime/stage11-landscape-art.js": "c3dcbaa9c909e55ebe80f0ae86d8c142d1876cfbe06d31ed118fd02e09968bc6",
+    "shared/runtime/campaign-map-revision.js": "6138be7e06cba31fd1bc5c76111e97273131887d4b4fc352626f8dc926b712dc",
+    "shared/data/campaign.json": "ee1c2d30054ac650dc3bdf204e7c05470846206805a1b01111419ea4d0b8bd08"
+  },
+  "inputScope": "real failed saves with explicit test-only authored root geometry rebase; all actors/resources/mission retained",
+  "checks": [
+    "two failed-checkpoint recoveries",
+    "stage11 revision profile preservation/same-revision/Workshop",
+    "author idempotence",
+    "campaign-map-revision8",
+    "web-split248",
+    "landscape purity/cache",
+    "Chromium actual keyboard2 and visual4",
+    "render battle/growth immutability"
+  ],
+  "testSources": {
+    "tests/stage11-fall-recovery.mjs": "ab695d1298b2b5116406731f2b52fb5ba11404767f6dd533e60965c7912b038c",
+    "tools/testing/stage11-lower-route-browser.py": "8ea1d85355c362bbd039c5bb4c4cc7b9d116c53c3c732416bf4841b1e7ce80a4"
+  },
+  "pngPixels": {
+    "focus2-restored-ritual.png": [
+      1440,
+      770
+    ],
+    "before-west-stall.png": [
+      1440,
+      770
+    ],
+    "before-lower-shelf.png": [
+      1440,
+      770
+    ],
+    "focus3-mobile-contact.png": [
+      390,
+      648
+    ],
+    "keyboard-lower-jump.png": [
+      1440,
+      770
+    ],
+    "before-floor.png": [
+      1440,
+      770
+    ],
+    "focus1-new-root.png": [
+      1440,
+      770
+    ],
+    "final-recovery-overview.png": [
+      1440,
+      770
+    ],
+    "keyboard-upper-jump.png": [
+      1440,
+      770
+    ]
+  },
+  "reviewedSourceCommit": "0744c66f60f95520acd8a947544e3d8086c956d9",
+  "capturedWorkingSourceEqualsCommit": true
+}
