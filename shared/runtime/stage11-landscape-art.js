@@ -19,8 +19,8 @@ function rockBlock(c,p){
  c.fillStyle=grad(c,0,0,700,790,[[0,'#aab5a0'],[.53,'#8e9e8d'],[1,'#607c75']]);c.fill(r.light);
  c.fillStyle=grad(c,600,0,910,610,[[0,'#a7b09b'],[.6,'#7d9287'],[1,'#526f6c']]);c.fill(r.face);
  c.fillStyle=grad(c,500,280,420,900,[[0,'#789082'],[.48,'#607c75'],[1,'#4a6668']]);c.fill(r.foot);
- c.fillStyle=grad(c,940,60,795,870,[[0,'#506d6b'],[.6,'#35515a'],[1,'#324f59']]);c.fill(r.shade);
- if(p.rift){c.fillStyle='#233f47a8';c.fill(r.joint);}if(p.variant!==1){c.fillStyle='#36565a88';c.fill(r.bed);}c.fillStyle='#c4c4a928';c.fill(r.wash);c.restore();
+ c.save();if(p.connected&&!p.deep)c.globalAlpha*=.68;c.fillStyle=grad(c,940,60,795,870,[[0,'#506d6b'],[.6,'#35515a'],[1,'#324f59']]);c.fill(r.shade);c.restore();
+ if(p.rift){c.fillStyle='#233f47a8';c.fill(r.joint);}if(!p.connected){if(p.variant!==1){c.fillStyle='#36565a88';c.fill(r.bed);}c.fillStyle='#c4c4a928';c.fill(r.wash);}c.restore();
 }
 // Authored exposures follow the actual landform rather than a row of stones.
 // Their component planes share continuous bedrock; no repeated boulder body or
