@@ -1,3 +1,5 @@
+> 부모가 이 범위의 실제 화면을 승인한 뒤의 통합 검증은 [../../stage02-layered-road/master-integration/REVIEW.md](../../stage02-layered-road/master-integration/REVIEW.md)를 따른다.
+
 # 돌 윗면 접합 후보 — 부모 픽셀 검수 대기
 
 실행 소스9572faf1610659da4f6d3b05de79a7f4d77a3dfe. 이전8f37500d의 선만 남은 상태와 비교한다. master/Pages는 반영하지 않았다.

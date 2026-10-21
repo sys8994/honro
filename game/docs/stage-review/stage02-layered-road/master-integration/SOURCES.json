@@ -1,0 +1,29 @@
+{
+  "masterBase": "edf712e910a08d73dd4490dfe017060308bcfa0f",
+  "approvedCandidate": "d03ca76c07f8e2a740d4544bfb3cbba74c70f690",
+  "renderedMerge": "6ec0e32bfebaa66b8309a4015ff100e38c94411e",
+  "runtimeEqualsApprovedCandidate": true,
+  "sourceSha256": {
+    "shared/runtime/geology-art.js": "80d830b6a3435c4432684ef39bce98b5f37f8d67be4b3faf16ca09820a0b6924",
+    "shared/runtime/stage2-layered-road-art.js": "9fa33d7bbfb1b1c6ad9e8547e474b473b7b40095972c8d3e38a152c33b60553b",
+    "shared/runtime/act1-spatial-art.js": "d16b57b9efb49dacacf19bde6e97dc7d7cccc97b448b92a8eb6c5369cbdbae13",
+    "shared/runtime/terrain-readability.js": "ec74e456edda68a703dfb0c119ed1876cff5ac69051c40a719e2f50f7a12d59b",
+    "tools/environment/build-geology-art.mjs": "e1ed70052d2d09c31310563df92b7165ffac767b37fdafe4afeaf513f6ccdd4a",
+    "tools/environment/act1-scene-composition.mjs": "67774e24bbfd8d053ce6fa9d1cacd7c2218156da1b13f2e8f9d996297532f3f7",
+    "shared/data/campaign.json": "87dbed483ba0e3191a817926963afaf0cde303116bf1f988e04d84d854c1b7d9",
+    "web/manifest.json": "0c58c829df75ff968dcfb6520035bb219b97b70feb8dcb0552b4f28ebf8de860"
+  },
+  "pngSha256": {
+    "navigation/actual-mid-continue.png": "a7fdbca4bc9705174826653defe58876245adb3e4611487ac5766e6bd764fff6",
+    "navigation/entry-dialogue.png": "06d153da1aeb11f1e78111c7cfce79779c01cd72782b26c737d7cc531aa18384",
+    "navigation/rest-before3.png": "6efa07fa9d6798d576f515530f60e6ec97e062b99f7d5f6443ea7e6d4b159bd8",
+    "navigation/result.png": "ca40e102c920b847d132e76c03b1e7d7d793ddcf96fca990e8e189da7e780009",
+    "navigation/stage02-real-r21-won.png": "1ce3543ec45be49193844251b5f09673e24d6619fb5c2670e405096de3b70628",
+    "navigation/stage3-entry.png": "ba7699e988fbe7a1c25b28ea81a150ee04ac55f71d82902377fa00e0c5acfb47",
+    "visual/stage02-mobile.png": "6f6e894fc673f40ae31b2c5203988c682f5f2e62fb807d95375703896a9b9aec",
+    "visual/stage02-normal.png": "e62c1ddaa57ed5eb0b42a231d2b7eb6ff2a429d70455d6467a2167adb802adb2",
+    "visual/stage02-overview.png": "e443c1180686f0cef6bbaedf1560ef25fccc7c8e30f50e09f0647fd61977788b"
+  },
+  "newNormal21CombatRun": false,
+  "retainedNormal21Victory": true
+}
