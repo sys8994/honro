@@ -1,0 +1,23 @@
+"""Focused native-browser walk/actor-boundary/input/Continue and art checks."""
+import sys,json
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+from browser_support import launch,ROOT
+OUT=ROOT/'_local/reports/narrative-woodcutter';OUT.mkdir(parents=True,exist_ok=True)
+SETUP=r'''()=>{const a=HonroApp;a.profile=HONRO_TOOLS.fresh();a.launch(1);while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;const b=a.engine.b,u=a.engine.active;b.round=4;b.honroState.lastRound=4;u.x=3060;u.y=HonroWorld.top(b,u.x,b.honroMapAnchors.woodcutter.y+140);u.acted=false;u.moveLeft=u.maxMove;
+ const start={x:u.x,y:u.y};for(let i=0;i<60&&u.x<=3101;i++)a.engine.walk(u,1,1/120,true);a.missionTick(1/120);a.defend();return{start,end:{x:u.x,y:u.y},phase:b.phase,dialogue:a.dialogue?.lines[0]?.[1],eventLog:b.honroState.eventLog};}'''
+with sync_playwright() as p:
+ browser=launch(p);ctx=browser.new_context(viewport={'width':1440,'height':900},has_touch=True);page=ctx.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.goto('http://localhost:8014/HONRO.html');page.wait_for_function('window.HonroApp',timeout=120000)
+ trigger=page.evaluate(SETUP);print(trigger,flush=True);assert trigger['end']['x']>3100;page.wait_for_function("HonroApp.dialogue?.lines[0]?.[1]?.includes('수레 뒤')")
+ for name,delay in [('trigger',0),('sheltered',350),('emerging',650),('emerged',1600)]:
+  page.wait_for_timeout(delay);page.screenshot(path=str(OUT/f'final-{name}-desktop.png'))
+ before=page.evaluate('JSON.stringify({round:HonroApp.engine.b.round,time:HonroApp.engine.b.time,index:HonroApp.dialogue.index})');page.wait_for_timeout(20000);assert before==page.evaluate('JSON.stringify({round:HonroApp.engine.b.round,time:HonroApp.engine.b.time,index:HonroApp.dialogue.index})');page.screenshot(path=str(OUT/'final-idle-20s.png'))
+ page.get_by_role('button',name='다음',exact=True).tap();assert page.evaluate('HonroApp.dialogue.index')==1;page.screenshot(path=str(OUT/'final-first-speech.png'));page.get_by_role('button',name='이전',exact=True).tap();assert page.evaluate('HonroApp.dialogue.index')==0
+ page.evaluate('HonroStory.save(HonroApp)');saved=page.evaluate('JSON.stringify({index:HonroApp.dialogue.index,lines:HonroApp.dialogue.lines,readThrough:HonroApp.dialogue.staging.readThrough,done:HonroApp.dialogue.staging.cue.done,x:HonroApp.engine.b.units.find(u=>u.id==="npc-woodcutter").x})');page.reload();page.wait_for_function('window.HonroApp',timeout=120000);page.locator('[data-action="continue"]').click();page.wait_for_function('HonroApp.dialogue');assert page.evaluate('JSON.stringify({index:HonroApp.dialogue.index,lines:HonroApp.dialogue.lines,readThrough:HonroApp.dialogue.staging.readThrough,done:HonroApp.dialogue.staging.cue.done,x:HonroApp.engine.b.units.find(u=>u.id==="npc-woodcutter").x})')==saved
+ page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(700);page.screenshot(path=str(OUT/'final-caption-mobile.png'));page.get_by_role('button',name='다음',exact=True).tap();assert page.evaluate('HonroApp.dialogue.index')==1;page.keyboard.press('Space');assert page.evaluate('HonroApp.dialogue.index')==2;page.get_by_role('button',name='대화 넘기기',exact=True).tap();assert page.evaluate('!HonroApp.dialogue');page.wait_for_timeout(500);assert page.evaluate("HonroApp.engine.b.honroState.eventLog.filter(x=>x.id==='witness').length") ==1
+ # Stable post-dialogue camera inspection uses the real supported witness body.
+ for label,size,scale in [('normal',{'width':1440,'height':900},.82),('close',{'width':1440,'height':900},1.15),('maximum-out',{'width':1440,'height':900},None),('mobile',{'width':390,'height':844},.82)]:
+  page.set_viewport_size(size);page.evaluate('''z=>{const a=HonroApp,s=a.scene,p=a.engine.b.honroMapAnchors.woodcutter;s.storyTween=null;s.goalFocus=null;s.manual=true;s.x=p.x-20;s.y=p.y-60;s.scale=z??HonroBounds.zoomLimits(innerWidth).min;}''',scale);page.wait_for_timeout(400);page.screenshot(path=str(OUT/f'final-cart-{label}.png'))
+ assert not errors,errors
+ (OUT/'native-checks.json').write_text(json.dumps({'trigger':trigger,'idleSeconds':20,'touchKeyboardPageSequence':[0,1,0,1,2],'continueExact':True,'eventCount':1,'errors':errors,'limits':['Round 4/start position are explicit fixtures; threshold crossing uses the real Engine walk and defend/actor-end trigger.','Viewport emulation with native Chromium touch, not physical phone testing.']},ensure_ascii=False,indent=2))
+ ctx.close();browser.close()

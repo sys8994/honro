@@ -18,6 +18,7 @@ function point(b,p,context={}){
  return q&&Number.isFinite(q.x)&&Number.isFinite(q.y)?{...q,x:q.x+(p.dx||0),y:q.y+(p.dy||0)}:null;
 }
 function register(d){if(!d?.id||!Array.isArray(d.steps)||d.steps.at(-1)?.type!=='dialogue'||d.steps.slice(0,-1).some(s=>!['move','look','fx','field-evidence'].includes(s.type)))throw Error('A staged scene needs visual steps followed by dialogue');registry.set(d.id,clone(d));}
+function list(){return [...registry.values()].map(clone);}
 function describe(id){const d=registry.get(id);return d?clone(d):null;}
 function prepareFresh(b){
  if(b.honroCustom)return;
@@ -225,5 +226,5 @@ register({id:'act3-split-departure-v2',stage:24,on:'outcome',position:'after',re
  {type:'move',actor:'occultist',towards:{marker:'split-route-b'},distance:28,duration:350,caption:'소단이 휘겸을 따라 몸을 돌린다.'},
  {type:'dialogue'}
 ]});
-G.HonroStoryStaging={reader,register,describe,request,prepareFresh,receiver,opening,directed,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,lineStart,lineEnd,focusLine,point,actor,ID};
+G.HonroStoryStaging={reader,list,register,describe,request,prepareFresh,receiver,opening,directed,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,lineStart,lineEnd,focusLine,point,actor,ID};
 })(globalThis);

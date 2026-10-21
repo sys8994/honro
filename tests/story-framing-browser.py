@@ -11,15 +11,19 @@ CATALOG=r'''()=>{const a=HonroApp,b=a.engine.b,st=a.stage,seq=[];
  add('entry',a.dialogue?.lines||[],{title:st.name,after:'entry',compiled:true,staging:a.dialogue?.staging});
  for(const [i,q]of (b.honroState.deferredStory||[]).entries())add('deferred-'+i,q.lines,{title:st.name});
  add('outcome',st.outro,{title:st.name,after:'outcome'});
- for(const ev of b.honroEvents||[])add('event-'+ev.id,HonroStoryContent.eventLines(a,ev),{title:st.name});
+ for(const ev of b.honroEvents||[]){const lines=HonroStoryContent.eventLines(a,ev);add('event-'+ev.id,lines.length?lines:ev.text?[['서술',ev.text,{kind:'narration',eventSource:'encounter:'+ev.id}]]:[],{title:st.name});}
  for(const [id,lines]of Object.entries(st.beats||{}))add('beat-'+id,lines.map(([w,t,m={}])=>[w,t,{...m,storyId:`act${st.act}-${st.id}-${id}`,storyTitle:st.name,...(st.act===3?{evidenceGoal:id}:{})}]),{title:st.name});
  const walk=(v,path)=>{if(!v||typeof v!=='object')return;if(Array.isArray(v)&&v.length&&v.every(l=>Array.isArray(l)&&typeof l[0]==='string'&&typeof l[1]==='string')){add(path,v,{title:st.name});return;}for(const [k,x]of Object.entries(v))walk(x,path+'-'+k);};
  walk(st.storyFollowups,'followup');walk(b.honroEntryVariant,'entry-variant');walk(b.honroRouteSpec,'route');
  const map=HONRO_PROJECT.stages.find(m=>m.metadata.stageId===st.id);walk(map?.interactions,'map-interaction');walk(map?.initialState?.honroEntryVariants,'authored-entry-variant');
  for(const m of b.honroMarkers||[])if(['ledger','ritual','receiver','rescue'].includes(m.action))for(const count of m.action==='receiver'?[1,2]:[0]){const old=b.honroState.receivers;b.honroState.receivers=count;add('interaction-'+m.id+'-'+count,HonroStoryContent.interaction(a,m),{title:st.name});b.honroState.receivers=old;}
  if(st.id===10)for(const name of ['cooperation','cooperationDefense','finaleMidpoint'])add(name,HonroStoryContent[name](),{title:st.name});
- const ids=st.id===9?['act1-sodan-first-receiver-v1','act1-sodan-upper-yard-departure-v1']:st.id===24?['act3-split-departure-v1','act3-split-departure-v2']:st.id===28?['act3-party-reunion-v2']:[];
+ const ids=HonroStoryStaging.list().filter(d=>d.stage===st.id).map(d=>d.id);
  for(const id of ids){const def=HonroStoryStaging.describe(id);if(def)add('staging-'+id,[['서술',def.title,{stagingRequest:{id,context:{marker:b.honroMarkers.find(m=>m.action==='receiver')?.id}}}]],{title:def.title});}
+ const narrative={2:[['escort-handoff','남은 호위가 상여채를 이어받았다.'],['escort-road-cleared','호위대가 길을 막은 뿌리를 잘라냈다.']],5:[['ritual-held','담허가 받이진을 유지한다.'],['ritual-released','담허가 물길진에서 벗어나 낙수가 다시 화살을 쓸어 내린다.']],6:[['refugee-following','뒤처진 피란민이 일행을 따라오기 시작한다.']],10:[['sodan-binding-loosened','바깥 주박이 느슨해졌다. 소단이 양옆 진을 살핀다.']],11:[['resident-shelters','분리된 주민이 가까운 짐 뒤로 몸을 피합니다.']],12:[['quarry-gate-open','길표 뒤의 내리막이 이어졌다. 동굴까지 돌아 나올 수 있다.']],15:[['drain-revealed','물이 빠진 바위 가장자리가 드러났다. 아래 물길로 걸어갈 수 있다.']],17:[['brace-restored','낙석을 치웠다. 인양축에 다시 접근할 수 있다.'],['quarry-collapse','버팀목 없이 돌이 무너졌다. 안전 지지대를 세우고 낙석을 치워야 한다.']],18:[['bell-settled','대종이 받침에 멎었다. 아래 귀환길과 동쪽 측면길이 열려 있다.']],19:[['soul-released','혼이 임시 그릇을 떠나 바깥 길로 흘러간다.']],23:[['cargo-settled','큰 화물묶음이 낮은 턱에 멎었다. 위 창고의 사선과 아래 엄폐가 바뀌었다.']],30:[['ferry-settled','배가 여울에 멎었다. 낮은 퇴로로도 돌아갈 수 있다.']]};
+ for(const [source,text]of narrative[st.id]||[])add('narration-'+source,[['서술',text,{kind:'narration',eventSource:source}]],{title:st.name});
+ for(const step of st.steps||[])if(!st.beats?.[step.id]?.length)add('objective-'+step.id,[['서술',step.label+' · 완료',{kind:'narration',eventSource:'objective:'+step.id}]],{title:st.name});
+ for(const m of b.honroMarkers||[])if(m.type==='relic')add('narration-relic-'+m.id,[['서술','길에 남은 기록을 주웠다.',{kind:'narration',eventSource:'relic-found'}]],{title:st.name});
  return seq;}'''
 PREP=r'''q=>{const a=HonroApp;a.dialogue=null;HonroStoryFraming.clear(a.scene);a.turnNotice=null;a.modal.classList.remove('open');a.canSpeak=()=>true;
  // Restore each fresh stage inspection snapshot. Completed actors are exposed
@@ -27,7 +31,7 @@ PREP=r'''q=>{const a=HonroApp;a.dialogue=null;HonroStoryFraming.clear(a.scene);a
  a.engine.b=JSON.parse(JSON.stringify(window.framingBase));a.scene.battle=a.engine.b;
  const options=JSON.parse(JSON.stringify(q.options));delete options.compiled;
  if(q.options.compiled){options.index=0;options.staging=JSON.parse(JSON.stringify(q.options.staging||null));}
- const b=a.engine.b;if(q.key.startsWith('event-')){const ev=b.honroEvents.find(ev=>'event-'+ev.id===q.key),x=ev?.when?.progress,u=a.engine.active;if(Number.isFinite(x)&&u){u.x=x+5;u.y=HonroWorld.top(b,u.x,u.y);}}for(const [id,u]of Object.entries(b.honroStaging?.hidden||{})){if(!b.units.some(v=>v.id===id))b.units.push(u);delete b.honroStaging.hidden[id];}
+ const b=a.engine.b;if(q.key.startsWith('narration-relic-')){const m=b.honroMarkers.find(m=>'narration-relic-'+m.id===q.key),u=a.engine.active;if(m&&u){u.x=m.x;u.y=m.y;}}if(q.key.startsWith('event-')){const ev=b.honroEvents.find(ev=>'event-'+ev.id===q.key),x=ev?.when?.progress,u=a.engine.active;if(Number.isFinite(x)&&u){u.x=x+5;u.y=HonroWorld.top(b,u.x,u.y);}}for(const [id,u]of Object.entries(b.honroStaging?.hidden||{})){if(!b.units.some(v=>v.id===id))b.units.push(u);delete b.honroStaging.hidden[id];}
  HonroStory.start(a,q.lines,options);return a.dialogue?.lines.length||0;}'''
 FRAME=r'''()=>{const a=HonroApp,s=a.scene,d=a.dialogue;if(!d)return null;
  HonroStoryStaging.lineEnd(a);a.updateHUD(true);s.render(a.engine,0,a.selected,0,false,0,true);

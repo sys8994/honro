@@ -32,15 +32,30 @@ function authorEntry(st){if(st.id!==2)return;const plans={
  st.story=st.story.map(([who,text,meta={}],i)=>[who,text,{...meta,...(plans[i]?{camera:{...plans[i],id:`2:entry:story-${i}`}}:{})}]);
 }
 function sceneKey(app,lines,options){const id=lines[0]?.[2]?.storyId||options.id||options.after||'runtime';return id.replace(/^act1-v6:/,'').replace(new RegExp('^(entry|outcome)-'+app.stage.id+'$'),'$1');}
+function conversation(app,who,subjects){
+ const primary={speaker:who},p=bounds(app,primary),near=subjects.map(t=>({target:t,box:bounds(app,t)})).filter(v=>v.box&&p&&Math.abs(v.box.x-p.x)+Math.abs(v.box.y-p.y)>1).map(v=>({...v,distance:Math.hypot(v.box.x-p.x,v.box.y-p.y)})).filter(v=>v.distance<=950).sort((a,b)=>a.distance-b.distance).slice(0,2);
+ return{intent:near.length?'conversation':'portrait',targets:[primary,...near.map(v=>v.target)],padding:40,maxScale:1.05,participants:subjects};
+}
 function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return lines;
  const b=app.engine.b,key=sceneKey(app,lines,options),stage=b.honroStage,names=[...new Set(lines.filter(l=>G.HonroStory.speakerPresentation(l[0],l[2]).kind==='character').map(l=>l[0]))];
  const subjects=names.map(n=>speakerId(app,n)?{actor:speakerId(app,n)}:{speaker:n});
  return lines.map(([who,text,meta={}],index)=>{
   if(meta.camera)return[who,text,meta];
   const kind=G.HonroStory.speakerPresentation(who,meta).kind,scenePolicy=Object.entries(policies).find(([id])=>id.startsWith(stage+':')&&(key===id.slice(id.indexOf(':')+1)||key.endsWith(':'+id.slice(id.indexOf(':')+1))||key.includes(id.slice(id.indexOf(':')+1))))?.[1];
-  let camera=scenePolicy?{...scenePolicy}:kind==='character'?{intent:subjects.length>1?'conversation':'portrait',targets:subjects.length?subjects:[{speaker:who}],padding:40,maxScale:1.05}:{intent:'situation',targets:subjects.length?subjects:[openings[stage]||{objective:'current'}],padding:65,maxScale:.8};
+  let camera=scenePolicy?{...scenePolicy}:kind==='character'?conversation(app,who,subjects):{intent:'situation',targets:subjects.length?subjects:[openings[stage]||{objective:'current'}],padding:65,maxScale:.8};
   // An explicit authored objective overrides scene-wide conversational framing.
   if(meta.focus)camera={intent:'object-introduction',targets:[{objective:meta.focus}],padding:85,maxScale:.85};
+  if(meta.eventSource){const source=meta.eventSource,targets=source.startsWith('objective:')||source.startsWith('interaction:')||source.startsWith('route:')?[{marker:source.slice(source.indexOf(':')+1)}]:({
+   'escort-handoff':[{actor:'objective'}],'escort-road-cleared':[{actor:'objective'}],
+   'ritual-held':[{marker:'receiver-5'},{anchor:'cleat'}],'ritual-released':[{marker:'receiver-5'},{anchor:'cleat'}],
+   'refugee-following':[{actor:'objective'}],'resident-shelters':[{actor:'resident-4'}],
+   'drain-revealed':[{marker:'sluice'}],'quarry-gate-open':[{marker:'route-lower-exit'}],
+   'brace-restored':[{anchor:'repair'}],'quarry-collapse':[{anchor:'brace'}],
+   'sodan-binding-loosened':[{actor:'boss'}],'bell-settled':[{anchor:'bell'}],
+   'cargo-settled':[{x:4230,y:4290}],'ferry-settled':[{objective:'current'}],
+   'soul-released':[{actor:'occultist'}],'royal-gate-open':[{actor:'objective'}]
+  })[source]||[{actor:b.active}];camera={intent:'situation',targets,padding:75,maxScale:.85};}
+  if(meta.eventSource==='relic-found'){const u=app.engine.active,m=b.honroMarkers.filter(m=>m.type==='relic').sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];if(m)camera={intent:'object-introduction',targets:[{marker:m.id}],padding:65,maxScale:.85};}
   if(kind==='guide')camera={intent:'objective',targets:[{objective:meta.focus&&G.HonroObjectives.focus(app,meta.focus)?meta.focus:'current'}],padding:100,maxScale:.75};
   const cue=options.staging?.cues?.[index]?.find(s=>s.camera||s.type==='look'&&!s.actor);
   if(cue&&kind!=='guide'&&!scenePolicy){const at=cue.at||{actor:cue.actor};if(at)camera={intent:'object-introduction',targets:[at],padding:65,maxScale:cue.scale||.9};}
@@ -60,10 +75,10 @@ function bounds(app,target){const b=app.engine.b;
  return{x:p.x+(target.dx||0)-(p.w?0:30),y:p.y+(target.dy||0)-(p.h?0:90),w:p.w||60,h:p.h||100};
 }
 function safeRect(scene){const {w,h}=scene.size(),canvas=scene.canvas.getBoundingClientRect(),pad=w<600?14:30;let top=pad,bottom=h-pad;
- const header=G.document.querySelector('.battle-head')?.getBoundingClientRect?.();if(header?.height)top=Math.max(top,header.bottom-canvas.top+12);
+ for(const selector of ['.battle-head','.minimap-dock','.allied-roster']){const header=G.document.querySelector(selector)?.getBoundingClientRect?.();if(header?.height)top=Math.max(top,header.bottom-canvas.top+12);}
  const panel=G.document.querySelector('#dialogue-root .story-scene,#dialogue-root .story-guide')?.getBoundingClientRect?.();
  if(panel?.height){if(panel.top-canvas.top<h*.45)top=Math.max(top,panel.bottom-canvas.top+14);else bottom=Math.min(bottom,panel.top-canvas.top-14);}
- return{x:pad,y:top,w:Math.max(80,w-pad*2),h:Math.max(90,bottom-top)};
+ return{x:pad,y:top,w:Math.max(80,w-pad*2),h:Math.max(30,bottom-top)};
 }
 function apply(scene,e){const f=scene.storyFrame;if(!f)return;const {app,camera}=f,{w,h}=scene.size();
  const signature=[w,h,camera.id,G.document.querySelector('#story-line')?.textContent].join(':');if(f.layout!==signature){f.rect=safeRect(scene);f.layout=signature;}
@@ -72,11 +87,14 @@ function apply(scene,e){const f=scene.storyFrame;if(!f)return;const {app,camera}
  if(!valid.length)return;
  const pad=camera.padding??45,x=Math.min(...valid.map(p=>p.x))-pad,y=Math.min(...valid.map(p=>p.y))-pad,right=Math.max(...valid.map(p=>p.x+p.w))+pad,bottom=Math.max(...valid.map(p=>p.y+p.h))+pad,rect=f.rect;
  const scale=Math.max(.025,Math.min(camera.maxScale||1,rect.w/Math.max(1,right-x),rect.h/Math.max(1,bottom-y)));
- const cx=(x+right)/2-(rect.x+rect.w/2-w/2)/scale,cy=(y+bottom)/2-(rect.y+rect.h/2-h/2)/scale;
+ let cx=(x+right)/2-(rect.x+rect.w/2-w/2)/scale,cy=(y+bottom)/2-(rect.y+rect.h/2-h/2)/scale;
+ const focus=G.HonroBounds.focus(e.b),rangeX=[Math.max(focus.left,right-(rect.x+rect.w-w/2)/scale),Math.min(focus.right,x-(rect.x-w/2)/scale)],rangeY=[Math.max(focus.top,bottom-(rect.y+rect.h-h/2)/scale),Math.min(focus.bottom,y-(rect.y-h/2)/scale)];
+ const boundary={overscanX:rangeX[0]>rangeX[1],overscanY:rangeY[0]>rangeY[1]};
+ if(!boundary.overscanX)cx=Math.max(rangeX[0],Math.min(rangeX[1],cx));if(!boundary.overscanY)cy=Math.max(rangeY[0],Math.min(rangeY[1],cy));
  // Targets may move during authored cues. Fit their current union on every frame;
  // only DOM layout is cached. This has no gameplay-camera clamp or fixed zoom.
  scene.x=cx;scene.y=cy;scene.scale=scale;scene.manual=true;scene.goalFocus=null;scene.storyTween=null;
- scene.storyFrameReport={id:camera.id,intent:camera.intent,targets:camera.targets,missing,fallback,boxes:valid,rect,camera:{x:cx,y:cy,scale}};
+ scene.storyFrameReport={id:camera.id,intent:camera.intent,targets:camera.targets,missing,fallback,boxes:valid,rect,boundary,camera:{x:cx,y:cy,scale}};
 }
 function focus(app,meta){if(!app.scene||!meta.camera)return false;app.scene.storyFrame={app,camera:meta.camera};return true;}
 function clear(scene){if(scene){scene.storyFrame=null;scene.storyFrameReport=null;}}
