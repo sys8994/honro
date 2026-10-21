@@ -117,9 +117,13 @@ function terrain(c,t,b){
 function routeSigns(c,b,scene){
  if(!active(b))return;const unit=1/Math.max(.05,scene.scale);
  c.save();c.font=`600 ${12*unit}px sans-serif`;c.textAlign='center';c.textBaseline='middle';
- for(const s of [{x:4030,y:8892,text:'점프로 뿌리 진입 · 의식터 ↑'},{x:6750,y:8852,text:'← 서측 회귀 · 선택   |   주민 암대 →'}]){
-  const width=c.measureText(s.text).width+20*unit;c.fillStyle='#172a30e8';c.fillRect(s.x-width/2,s.y-37*unit,width,25*unit);c.fillStyle='#e1d5ae';c.fillText(s.text,s.x,s.y-24*unit);
-  c.strokeStyle='#d3c49b';c.lineWidth=2*unit;c.beginPath();c.moveTo(s.x,s.y-12*unit);c.lineTo(s.x,s.y);c.stroke();
+ const signs=[{x:4030,y:8892,text:'점프로 뿌리 진입 · 의식터 ↑'},{x:6750,y:8852,text:'← 서측 회귀 · 선택   |   주민 암대 →'}];
+ if(b.honroStage11FallRecoveryRevision===1)signs.push({x:3490,y:9400,lift:110,labelDx:-180,text:'뿌리로 복귀 ↑'});
+ for(const s of signs){
+  const width=c.measureText(s.text).width+20*unit,y=s.y-(s.lift||0),x=s.x+(s.labelDx||0),w=scene.canvas.clientWidth,h=scene.canvas.clientHeight,sx=(x-scene.x)*scene.scale+w/2,sy=(y-scene.y)*scene.scale+h/2-24;
+  if(sx-width*scene.scale/2<8||sx+width*scene.scale/2>w-8||sy-13<8||sy+12>h-8)continue;
+  c.fillStyle='#172a30e8';c.fillRect(x-width/2,y-37*unit,width,25*unit);c.fillStyle='#e1d5ae';c.fillText(s.text,x,y-24*unit);
+  c.strokeStyle='#d3c49b';c.lineWidth=2*unit;c.beginPath();c.moveTo(x,y-12*unit);c.lineTo(s.x,s.y);c.stroke();
  }
  c.restore();
 }

@@ -72,7 +72,10 @@ export function createRavineTerrains(){
  branch('rv-saddle-broken-arm','saddle',[[7270,5684.25],[7700,5490],[8220,5560]],105),
  // Left descent plus the right descent and lower shelf make an actual
  // repeatable circuit around the ritual vault, with an explicit fork jump.
- branch('rv-root-west-return','ravine',[[4000,8900],[4400,8380],[4800,7860],[5200,7340],[5400,7080]],150),
+ // The old root ended over 1000px above the fall bed and trapped a fallen
+ // actor between the shoulder ceiling and shelf wall. Extend this same root
+ // to a head-clear floor contact; its original upper walking line is exact.
+ branch('rv-root-west-return','ravine',[[3500,heightOn(RAVINE_FLOOR,3500)],[4000,8900],[4400,8380],[4800,7860],[5200,7340],[5400,7080]],150),
  branch('rv-root-east-descent','ravine',[[9500,7600],[9900,7920],[10400,8360],[11000,8630]],170),
  branch('rv-root-arch','ravine',[[7600,8680],[7950,8630],[8450,8540],[8950,8660],[9300,8847.142857142857]],180),
  branch('rv-east-rising-root','east',[[8350,6801.428571428572],[8900,6090],[9500,5314]],185),
@@ -104,7 +107,7 @@ export function applyStage11Ravine(project){
  const st=project.stages.find(s=>s.metadata?.stageId===11);if(!st)return project;
  const old=clone(st),ts=createRavineTerrains();st.width=16000;st.height=12000;st.terrains=ts;st.materials=[];
  delete st.terrainBounds;delete st.playBounds;delete st.terrainDomainVersion;
- st.initialState={...old.initialState,honroRavineVersion:RAVINE_VERSION,honroAct2GeometryRevision:6};
+ st.initialState={...old.initialState,honroRavineVersion:RAVINE_VERSION,honroAct2GeometryRevision:7,honroStage11FallRecoveryRevision:1};
  const top=id=>{const t=ts.find(t=>t.id===id);if(!t)throw Error('Unknown ravine surface '+id);return t.points.slice(0,t.properties.honroWalkEdges.length+1).map(p=>[p.x,p.y]);};
  const surface=(id,x)=>({x,y:heightOn(top(id),x),surfaceId:id});
  const walk=(id,from,to)=>{const ps=top(id),siteXs={'rv-west-shoulder':[3600,3880],'rv-ritual-buttress':[7370],'rv-lower-refuge-rock':[9700,10350],'rv-north-trace':[15040]}[id]||[],xs=[...new Set([from,...[...ps.map(p=>p[0]),...siteXs].filter(x=>x>Math.min(from,to)&&x<Math.max(from,to)),to])].sort((a,b)=>from<=to?a-b:b-a);return xs.map(x=>surface(id,x));};
@@ -125,7 +128,7 @@ export function applyStage11Ravine(project){
  const a=surface,floor=x=>a('act2-floor',x);
  const nodes={spawn:floor(400),west:a('rv-west-shoulder',3600),westClear:a('rv-west-shoulder',3880),east:a('rv-ritual-buttress',7370),hold:a('rv-ritual-buttress',7370),resident:a('rv-lower-refuge-rock',9700),clear:a('rv-lower-refuge-rock',10350),trace:a('rv-north-trace',15040)};
  const markerNodes={'knot-west':'west','clear-west':'westClear','knot-east':'east','hold-knots':'hold',resident:'resident','clear-road':'clear',trace:'trace'};
- const space={version:1,geometryRevision:6,sharedSpaceId:null,topologyId:'stacked-ravine-stone-vaults',rooms:zones.map(z=>({id:z.id,terrainIds:ts.filter(t=>t.id==='act2-floor'||t.points.some(p=>p.x>=z.box[0]&&p.x<=z.box[0]+z.box[2]&&p.y>=z.box[1]&&p.y<=z.box[1]+z.box[3])).map(t=>t.id),ceilingIds:[],bounds:{x:z.box[0],y:z.box[1],w:z.box[2],h:z.box[3]},sky:'open',landmarkIds:[]})),surfaces:ts.map(t=>({id:t.id,terrainId:t.id,role:t.properties.honroSurfaceRole,edgeIndices:clone(t.properties.honroWalkEdges),roomIds:[roomFor(t.points[0].x,t.points[0].y)]})),connections:[],routes:[],sites:{},encounterSites:[],scenery:[],landmarks:[],lights:[],views:[]};
+ const space={version:1,geometryRevision:7,sharedSpaceId:null,topologyId:'stacked-ravine-stone-vaults',rooms:zones.map(z=>({id:z.id,terrainIds:ts.filter(t=>t.id==='act2-floor'||t.points.some(p=>p.x>=z.box[0]&&p.x<=z.box[0]+z.box[2]&&p.y>=z.box[1]&&p.y<=z.box[1]+z.box[3])).map(t=>t.id),ceilingIds:[],bounds:{x:z.box[0],y:z.box[1],w:z.box[2],h:z.box[3]},sky:'open',landmarkIds:[]})),surfaces:ts.map(t=>({id:t.id,terrainId:t.id,role:t.properties.honroSurfaceRole,edgeIndices:clone(t.properties.honroWalkEdges),roomIds:[roomFor(t.points[0].x,t.points[0].y)]})),connections:[],routes:[],sites:{},encounterSites:[],scenery:[],landmarks:[],lights:[],views:[]};
  // Exposed cover crests are part of the walked contour, never buried anchors.
  const westAcross=(from=1300,to=4600)=>walk('rv-west-shoulder',from,to);
  const ritualAcross=(from=5400,to=9500)=>walk('rv-ritual-buttress',from,to);
@@ -140,6 +143,9 @@ export function applyStage11Ravine(project){
  {id:'root-arch-loop',from:'lower-refuge',to:'ravine-canopy',anchors:join([{...a('rv-lower-refuge-rock',7600),jumpTo:{x:7640,support:'rv-root-arch'}}],walk('rv-root-arch',7640,9300),[a('rv-lower-refuge-rock',9440)],walk('rv-lower-refuge-rock',9200,7600))}
  ];
  space.routes.push({id:'main',kind:'required',defaultJump:true,anchors:main,requires:[]});
+ const recovery=join([floor(3450),{...floor(3490),jumpTo:{x:3540,support:'rv-root-west-return'}}],walk('rv-root-west-return',3540,4000),[{...a('rv-lower-west-shelf',4030),jumpTo:{x:4080,support:'rv-root-west-return'}}],walk('rv-root-west-return',4080,5400),[a('rv-ritual-buttress',5500)]);
+ space.routes.push({id:'fall-bed-recovery',kind:'optional-jump',defaultJump:true,anchors:recovery,requires:[]});
+ space.connections.push({id:'fall-bed-recovery',from:'root-underpass',to:'ritual-court',kind:'optional-jump',routeId:'fall-bed-recovery',entry:recovery[0],exit:recovery.at(-1),requires:[]});
  for(const l of loops){space.routes.push({id:l.id,kind:'optional-jump',defaultJump:true,anchors:l.anchors,requires:[]});space.connections.push({id:l.id,from:l.from,to:l.to,kind:'optional-jump',routeId:l.id,entry:l.anchors[0],exit:l.anchors.at(-1),requires:[]});}
  const shortcut=join([{...a('rv-west-rock-crown',6460),jumpTo:{x:6520,support:'rv-saddle-canopy-crossing'}}],walk('rv-saddle-canopy-crossing',6520,8750).map((p,i,ps)=>i===ps.length-1?{...p,jumpTo:{x:8840,support:'rv-saddle-canopy-landing'}}:p),walk('rv-saddle-canopy-landing',8840,9500),[a('rv-east-tower',9650)]);
  space.routes.push({id:'fallen-trunk-shortcut',kind:'optional-jump',defaultJump:true,anchors:shortcut,requires:[]});

@@ -1,0 +1,146 @@
+[
+  {
+    "label": "refuge",
+    "source": "required-entry/checkpoint.json",
+    "hero": {
+      "x": 9711.95603830573,
+      "y": 8835.372684619837,
+      "hp": 714,
+      "focus": 217,
+      "moveLeft": 49.43666666681087
+    },
+    "support": "rv-lower-refuge-rock",
+    "jumpCost": 75,
+    "alive": 42,
+    "predictions": [
+      {
+        "target": "rv11-refuge-two-levels-0",
+        "x": 9810.164666196797,
+        "y": 8682.9174060895,
+        "distance": 181.34923916026918,
+        "best": null
+      },
+      {
+        "target": "rv11-refuge-two-levels-2",
+        "x": 9512.366989197586,
+        "y": 8841.075228880069,
+        "distance": 199.6704974074368,
+        "best": {
+          "angle": 179.1214006189678,
+          "power": 0.5209010388226011,
+          "enemyDamage": 139.9394304,
+          "net": 139.9394304,
+          "risk": 0
+        }
+      },
+      {
+        "target": "resident-spirit-4",
+        "x": 9955,
+        "y": 8684,
+        "distance": 286.3285821657735,
+        "best": null
+      },
+      {
+        "target": "rv11-refuge-east-guard-3",
+        "x": 10159.118435695618,
+        "y": 8778.176312860876,
+        "distance": 450.80553965303164,
+        "best": null
+      },
+      {
+        "target": "rv11-refuge-east-guard-1",
+        "x": 10302.572386201822,
+        "y": 8749.485522759636,
+        "distance": 596.8285138752316,
+        "best": null
+      },
+      {
+        "target": "rv11-refuge-two-levels-1",
+        "x": 9049.131198146384,
+        "y": 8838.684839860978,
+        "distance": 662.833115576315,
+        "best": {
+          "angle": 170.3493068415482,
+          "power": 0.7870832156117334,
+          "enemyDamage": 139.9394304,
+          "net": 139.9394304,
+          "risk": 0
+        }
+      }
+    ],
+    "fire": {
+      "skill": "M01",
+      "angle": 179.1214006189678,
+      "power": 0.5209010388226011,
+      "enemyDamage": 139.9394304,
+      "net": 139.9394304,
+      "risk": 0,
+      "accepted": true,
+      "focusSpent": 0,
+      "damage": [
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "damage": 85
+        }
+      ]
+    }
+  },
+  {
+    "label": "west",
+    "source": "fall-bed/checkpoint-5.json",
+    "hero": {
+      "x": 5311.775395917424,
+      "y": 8801.177539591743,
+      "hp": 745,
+      "focus": 245,
+      "moveLeft": 625.8025000000939
+    },
+    "support": "rv-lower-west-shelf",
+    "jumpCost": 75,
+    "alive": 37,
+    "predictions": [
+      {
+        "target": "rv11-ritual-court-guard-4",
+        "x": 6033.834615807898,
+        "y": 6880.794835031804,
+        "distance": 2051.6430608177893,
+        "best": null
+      },
+      {
+        "target": "event-294",
+        "x": 6369.2643420338245,
+        "y": 6779.220697389853,
+        "distance": 2281.7958591612473,
+        "best": null
+      },
+      {
+        "target": "rv11-saddle-crossfire-4",
+        "x": 6480,
+        "y": 6396,
+        "distance": 2673.8787785800014,
+        "best": null
+      },
+      {
+        "target": "event-228",
+        "x": 7940.388255145377,
+        "y": 8288.075654172677,
+        "distance": 2678.223125230449,
+        "best": null
+      },
+      {
+        "target": "event-293",
+        "x": 7154.661105023167,
+        "y": 6791.828094716271,
+        "distance": 2726.4836196917713,
+        "best": null
+      },
+      {
+        "target": "event-290",
+        "x": 7008.740842203715,
+        "y": 6638.688873669443,
+        "distance": 2748.8268326928196,
+        "best": null
+      }
+    ]
+  }
+]
