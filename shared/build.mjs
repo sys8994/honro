@@ -1,3 +1,4 @@
+import {applyCommonCartArt} from '../tools/environment/common-cart-art.mjs';
 import {applyGeologyArt} from '../tools/environment/build-geology-art.mjs';
 import {applyStage10Positioning} from '../tools/map-forge/stage10-positioning.mjs';
 import {applyStage7Positioning} from '../tools/map-forge/stage7-positioning.mjs';
@@ -58,6 +59,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands'])await file(`shared/map/${name}.js`);
   let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
   project=await applyGeologyArt(project);
+  project=applyCommonCartArt(project);
   project=await authorAct23QuestRedesign(project);
   applyOpenStructures(project);
   project=applyCityTacticalRoutes(project);
@@ -109,7 +111,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
     data('HONRO_AUTHORED_FAR',far);
     await file('shared/assets/monsters/monsters.runtime.js');
     await file('shared/assets/actors/actors.runtime.js');
-    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','geology-art','stage2-layered-road-art','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','stage5-positioning-art','story-act23-art','narrative-art','quest-target-art','story-anomaly-art','visual-hierarchy'])await file(`shared/runtime/${name}.js`);
+    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','geology-art','geology-rear-support','stage2-layered-road-art','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','stage5-positioning-art','story-act23-art','narrative-art','quest-target-art','story-anomaly-art','visual-hierarchy'])await file(`shared/runtime/${name}.js`);
   }
   if(render)await file('shared/runtime/authored-far-art.js');
   if(app){

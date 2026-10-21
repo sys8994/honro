@@ -8,14 +8,14 @@ VIEW="()=>JSON.stringify(Object.fromEntries(['heroes','loadouts','cleared','honr
 rows=[];errors=[];requests=[];failed=[]
 with sync_playwright() as p:
  browser=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
- page=browser.new_page(viewport={'width':1280,'height':720},has_touch=True,accept_downloads=True)
+ page=browser.new_page(viewport={'width':1440,'height':900},has_touch=True,accept_downloads=True)
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('request',lambda r:requests.append(r.url) if '/endings/act-' in r.url else None)
  page.on('response',lambda r:failed.append({'url':r.url,'status':r.status}) if r.status>=400 else None)
  page.goto('http://127.0.0.1:8000/HONRO.html');page.wait_for_function('!!globalThis.HonroApp',timeout=120000)
  assert not requests,'no ending-image preload at title'
  for stage in ([] if '--checkpoint-only' in sys.argv else [10,20,30]):
-  page.set_viewport_size({'width':1280,'height':720})
+  page.set_viewport_size({'width':1440,'height':900})
   page.evaluate('''async id=>{await HonroCampaignLoader.ensureStage(id);const a=HonroApp;
    a.stopBattle();a.close();a.profile.honroActEnding=null;a.profile.seen={};a.profile.cleared={};
    for(let i=1;i<id;i++)a.profile.cleared[i]={visits:1,rounds:6};
@@ -28,9 +28,9 @@ with sync_playwright() as p:
   page.wait_for_selector('#act-ending');page.wait_for_function('document.querySelector(".act-ending-art").naturalWidth===1672')
   assert page.locator('#act-ending').get_attribute('data-cut')=='1'
   assert page.locator('#act-ending button,.story-portrait').count()==0
-  page.wait_for_timeout(500);page.screenshot(path=str(OUT/f'focus1-act{stage//10}-landscape.png'))
+  page.wait_for_timeout(500);page.screenshot(path=str(OUT/f'focus1-act{stage//10}-landscape.png'));page.screenshot(path=str(OUT/f'focus1-act{stage//10}-landscape-q85.jpg'),type="jpeg",quality=85)
   dimensions=page.locator('.act-ending-art').evaluate('(n)=>({width:n.naturalWidth,height:n.naturalHeight,src:n.getAttribute("src"),fit:getComputedStyle(n).objectFit})')
-  assert dimensions['height']==941 and dimensions['fit']=='contain'
+  assert dimensions['height']==941 and dimensions['fit']=='cover'
   before=page.evaluate(VIEW)
   # Completed outcome guard must apply even while an ending is on screen.
   page.evaluate('for(let i=0;i<3;i++)HonroApp.outcome()')
@@ -77,7 +77,7 @@ with sync_playwright() as p:
   rows.append({'stage':stage,'image':dimensions,'flow':'touch/click/Enter/Space; 4 cuts/title/rest','pendingCut2ReloadAndFileImport':True,'outcomeGuard':True,'settledReload':True,'scope':'terminal battle fixture, not a normal combat run'})
  (OUT/'flow-summary.json').write_text(json.dumps({'rows':rows,'errors':errors,'httpFailures':failed,'initialLazyLoad':True},ensure_ascii=False,indent=2)) if rows else None
  # Continue original genuine normal21 save under combined SP/HP/beast migrations.
- page.emulate_media(reduced_motion='no-preference');page.set_viewport_size({'width':1280,'height':720})
+ page.emulate_media(reduced_motion='no-preference');page.set_viewport_size({'width':1440,'height':900})
  checkpoint=Path(os.environ.get('HONRO_ENDING_CHECKPOINT','game/docs/stage-review/act-endings/evidence/normal-21-escape-save.json'))
  live=json.loads(checkpoint.read_text())['profile']
  page.evaluate('p=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(p))',live)

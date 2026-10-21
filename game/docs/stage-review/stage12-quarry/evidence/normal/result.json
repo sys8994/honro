@@ -1,0 +1,139 @@
+{
+  "sourceHash": "9af61283f7611ca3125448406a029af261a9086ecef0da49a1b900f390a46516",
+  "entryFile": "/tmp/stage11-integration-transition/victory-profile.json",
+  "entryFileSha256": "ab5f11de3ea79b5955978c07050b01bb6d7d557404a85f8110c09a95c5679421",
+  "checkoutCommit": "ee73add57bc27357abdbe2d1c606c9017e393351",
+  "runnerSha256": "35a540cc6abcfd3f5547b84950b624230ce01d82b5404d3c924fd7db68afd9a3",
+  "scope": "Normal resources from genuine11 growth; production App/Engine input policy, DOM/storage/clock doubles, not browser fullplay",
+  "phase": "won",
+  "round": 11,
+  "stopReason": null,
+  "goals": {
+    "sign": true,
+    "route-exit": true
+  },
+  "route": {
+    "revision": 1,
+    "selectedRoute": "B",
+    "sourceRun": "honro-map-stage-12-1792565818701",
+    "fromStage": 12,
+    "toStage": 13,
+    "exitId": "route-lower-exit",
+    "round": 11
+  },
+  "gate": {
+    "version": 1,
+    "gate": "open",
+    "openCount": 1,
+    "warnings": {
+      "hold-road-0": {
+        "serial": 88,
+        "round": 10,
+        "side": "west-return",
+        "offered": {
+          "p-knight": true,
+          "p-occultist": true,
+          "p-archer": true,
+          "p-mage": true
+        },
+        "opportunity": {
+          "id": "p-knight",
+          "round": 10,
+          "serial": 89
+        }
+      }
+    },
+    "entries": {},
+    "alert": {
+      "B-front": true,
+      "B-support": true,
+      "G-road": true,
+      "G-high": true,
+      "F-front": true,
+      "F-support": true,
+      "F-west": true,
+      "E-hinge": true,
+      "C-hinge": true
+    },
+    "signInteractorId": "p-mage",
+    "signRequestSerial": 87,
+    "signMageNear": true,
+    "signLines": [
+      [
+        "서술",
+        "길표 밑에 작은 짚신 한 짝이 있었다. 설오는 젖지 않게 마른 돌 위에 옮겼다."
+      ],
+      [
+        "설오",
+        "주인을 만나면 이곳에 두었다고 알려 주겠습니다."
+      ],
+      [
+        "담허",
+        "돌림진이네. 사람이 길을 틀어놓은 진이지. 이 획은 내가 배운 것과 같은 뿌리야."
+      ],
+      [
+        "서술",
+        "담허가 겹친 획 하나를 풀었다. 돌탑 뒤로 내리막이 이어지고, 낮은 종소리에 수레바퀴가 돌아섰다."
+      ],
+      [
+        "소단",
+        "종소리 뒤에 혼이 수레로 들어갔어요."
+      ],
+      [
+        "휘겸",
+        "위쪽 작업굴 입구를 들린 수레가 막았소. 수레를 제압하면 그쪽으로 빠져나갈 수 있겠소."
+      ],
+      [
+        "설오",
+        "아래 길도 열렸습니다. 바위 그늘로 내려갈 수 있겠습니다."
+      ]
+    ],
+    "shoePlaced": true,
+    "signStoryId": "direction-v2:act2-v1:act2-12-sign",
+    "openedRound": 10,
+    "openedSerial": 88
+  },
+  "heroes": [
+    {
+      "cls": "archer",
+      "hp": 685,
+      "maxHp": 725,
+      "x": 7844.716564465038,
+      "y": 5650.8774606915495
+    },
+    {
+      "cls": "mage",
+      "hp": 749,
+      "maxHp": 749,
+      "x": 6554.832619644694,
+      "y": 4800
+    },
+    {
+      "cls": "knight",
+      "hp": 1270,
+      "maxHp": 1270,
+      "x": 8215.083818605282,
+      "y": 5883.664813837509
+    },
+    {
+      "cls": "occultist",
+      "hp": 689.3999999999999,
+      "maxHp": 784,
+      "x": 7739.085798290234,
+      "y": 5572.802546562347
+    }
+  ],
+  "remainingEnemies": 31,
+  "items": {
+    "heal": 3,
+    "focus": 3,
+    "cleanse": 2,
+    "ward": 2
+  },
+  "inputCount": 110,
+  "frames": 30756,
+  "audit": {
+    "externalWrites": [],
+    "recoveries": []
+  }
+}
