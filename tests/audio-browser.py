@@ -2,6 +2,7 @@ import json
 from urllib.parse import unquote, urlsplit
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch
+from story_browser_server import story_base_url
 checks=[];errors=[]
 def check(name,ok,detail=None):
     assert ok,(name,detail)
@@ -19,10 +20,10 @@ with sync_playwright() as p:
     for mobile in [False,True]:
         page=browser.new_page(viewport={'width':844 if mobile else 1365,'height':390 if mobile else 768},is_mobile=mobile,has_touch=mobile)
         page.on('pageerror',lambda e:errors.append(str(e)))
-        page.goto((ROOT/'HONRO.html').as_uri());page.wait_for_function('window.HonroApp')
+        page.goto(story_base_url()+'/HONRO.html');page.wait_for_function('window.HonroApp')
         prefix='mobile' if mobile else 'desktop'
-        check(prefix+' autoplay initially locked',page.evaluate('!HonroApp.audio.music.unlocked&&HonroApp.audio.music.starts===0&&HonroApp.audio.music.current?.paused'))
-        check(prefix+' no track label before playback',page.locator('#bgm-now-playing').is_hidden())
+        check(prefix+' title prepares main stream with at most one startup attempt',page.evaluate('HonroApp.audio.music.status().track===1&&HonroApp.audio.music.starts<=1'))
+        check(prefix+' no extra preloaded tracks',page.evaluate('!HonroApp.audio.music.outgoing'))
         page.locator('[data-action="settings"]').first.click()
         page.wait_for_function('HonroApp.audio.music.current?.currentTime>.15')
         status=page.evaluate('HonroApp.audio.music.status()');check(prefix+' actual MP3 playback after trusted input',status['track']==1 and not status['errors'],status)
@@ -44,11 +45,11 @@ with sync_playwright() as p:
         check(prefix+' tiny noninteractive label at bottom right',placement['fontSize']=='9px' and placement['pointerEvents']=='none' and 0<=placement['right']<=12 and 0<=placement['bottom']<=8,placement)
         page.screenshot(path=str(ROOT/f'_local/reports/bgm-{prefix}-entry.png'))
         page.evaluate('''()=>{const a=HonroApp;for(let i=1;i<=10;i++)a.profile.cleared[i]={};if(a.dialogue)HonroStory.finish(a);a.turnNotice=null;}''')
-        for track in [3,4,2]:
+        for track in [3,4,5,2]:
             page.evaluate("HonroApp.audio.music.current.dispatchEvent(new Event('ended'))")
             page.wait_for_function('track=>HonroApp.audio.music.status().track===track&&HonroApp.audio.music.current.currentTime>.05',arg=track)
             check_label(page,prefix+f' playlist label follows track {track:02}',track)
-        check(prefix+' actual battle streams cycle 02/03/04',True)
+        check(prefix+' actual battle streams cycle 02/03/04/05',True)
         page.evaluate("HonroApp.audio.music.current.dispatchEvent(new Event('ended'));window.trackBefore=HonroApp.audio.music.current;HonroApp.launch(2)")
         page.wait_for_timeout(500)
         check(prefix+' new stage advances from the last battle song',page.evaluate('HonroApp.audio.music.current!==trackBefore&&HonroApp.audio.music.status().track===4'))
@@ -56,16 +57,16 @@ with sync_playwright() as p:
         page.evaluate("HonroApp.engine.b.units.find(u=>u.side===1).boss=true;HonroApp.engine.b.units.find(u=>u.side===1).awake=true")
         check(prefix+' earlier-stage boss does not take finale theme',page.evaluate('HonroApp.audio.music.status().track===4'))
         page.evaluate('HonroApp.engine.b.honroStage=10;HonroApp.updateAudio()')
-        page.wait_for_function('HonroApp.audio.music.status().track===5&&HonroApp.audio.music.current.currentTime>.1')
+        page.wait_for_function('HonroApp.audio.music.status().track===4&&HonroApp.audio.music.current.currentTime>.1')
         page.wait_for_timeout(500);check(prefix+' boss transition ends with one stream',page.evaluate('HonroApp.audio.music.status().playing')==1)
-        check_label(page,prefix+' boss label matches actual MP3',5)
+        check_label(page,prefix+' boss retains current ordinary song',4)
         page.evaluate('if(HonroApp.dialogue)HonroStory.finish(HonroApp);HonroApp.pause();window.pausedMusic=HonroApp.audio.music.current')
         page.wait_for_timeout(100);before=page.evaluate('pausedMusic.currentTime');page.wait_for_timeout(250)
         check(prefix+' pause menu keeps music playing',page.evaluate('pausedMusic.currentTime')>before+.1)
         check(prefix+' pause menu keeps track label',page.locator('#bgm-now-playing').is_visible())
         page.evaluate('HonroApp.close()');page.wait_for_timeout(350)
         check(prefix+' resume retains stream and time',page.evaluate('HonroApp.audio.music.current===pausedMusic&&pausedMusic.currentTime')>before)
-        check_label(page,prefix+' resume restores track label',5)
+        check_label(page,prefix+' resume restores track label',4)
         page.evaluate('HonroApp.showMap()');page.wait_for_function('HonroApp.audio.music.status().track===1');page.wait_for_timeout(500)
         check(prefix+' battle exit returns to Main Theme',page.evaluate('HonroApp.audio.music.status().playing')==1)
         check_label(page,prefix+' map label returns to actual Main Theme',1)
@@ -83,14 +84,14 @@ with sync_playwright() as p:
         if not mobile:
             for stage in range(1,11):
                 page.evaluate('(stage)=>HonroApp.launch(stage)',stage)
-                # Normal battle songs rotate; only the act-one finale uses 05.
-                track=[2,3,4,2,3,4,2,3,4,5][stage-1]
+                # All stages, including the act-one finale, share four battle songs.
+                track=[2,3,4,5,2,3,4,5,2,3][stage-1]
                 page.wait_for_function('track=>HonroApp.audio.music.status().track===track&&HonroApp.audio.music.current.currentTime>.05',arg=track)
                 check_label(page,f'stage {stage:02} entry uses expected actual MP3',track)
         check(prefix+' no media errors',not page.evaluate('HonroApp.audio.music.errors'),page.evaluate('HonroApp.audio.music.errors'))
         page.close()
     editor=browser.new_page(viewport={'width':1365,'height':768});editor.on('pageerror',lambda e:errors.append(str(e)))
-    editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri());editor.wait_for_function('window.HonroWorkshopAPI')
+    editor.goto(story_base_url()+'/HONRO_WORKSHOP.html');editor.wait_for_function('window.HonroWorkshopAPI')
     check('Edit mode creates no audio engine',editor.evaluate('typeof HonroApp==="undefined"'))
     editor.click('[data-tab="play"]');editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
     play=editor.frames[1]

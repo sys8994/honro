@@ -1,4 +1,6 @@
 export type MusicState='main'|'battle'|'boss'|'silent';
+// Track 05 now participates in every ordinary battle playlist.
+const BATTLE_TRACK_COUNT=4;
 
 /** Streaming BGM channel owned by AudioEngine. Never decodes an MP3 into an AudioBuffer. */
 export class BgmPlayer {
@@ -42,13 +44,13 @@ export class BgmPlayer {
         // Direct encounter changes within one playlist keep the existing order.
         const freshEncounter=(state==='battle'||state==='boss')&&battleSession!==undefined&&battleSession!==this.battleSession;
         if(freshEncounter){
-            if(!playlistChanged&&this.battleSelected)this.battleIndex=(this.battleIndex+1)%3;
+            if(!playlistChanged&&this.battleSelected)this.battleIndex=(this.battleIndex+1)%BATTLE_TRACK_COUNT;
             this.battleSession=battleSession;this.battleSelected=false;
             this.restartRequested=true;
         }
         this.state=state;
         if(state==='battle')this.battleSelected=true;
-        if(state==='battle')for(let n=0;n<3&&this.failed.has(1+this.battleIndex);n++)this.battleIndex=(this.battleIndex+1)%3;
+        if(state==='battle')for(let n=0;n<BATTLE_TRACK_COUNT&&this.failed.has(1+this.battleIndex);n++)this.battleIndex=(this.battleIndex+1)%BATTLE_TRACK_COUNT;
         const track=state==='main'?0:state==='boss'?4:state==='battle'?1+this.battleIndex:-1;
         if(track<0){this.silence();return;}
         const prepareTitle=state==='main'&&this.enabled&&this.volume>0&&!this.paused&&(typeof document==='undefined'||!document.hidden);
@@ -60,9 +62,9 @@ export class BgmPlayer {
         this.restartRequested=false;this.track=track;const audio=this.current=this.makeAudio();audio.preload=prepareTitle?'auto':'metadata';audio.src=this.tracks[track];
         this.firstPlay=true;this.startupFade=false;
         audio.loop=state!=='battle';audio.volume=0;this.requested=false;this.transitionStart=performance.now();
-        audio.addEventListener('ended',()=>{if(audio!==this.current||this.state!=='battle')return;this.battleIndex=(this.battleIndex+1)%3;this.select('battle');});
+        audio.addEventListener('ended',()=>{if(audio!==this.current||this.state!=='battle')return;this.battleIndex=(this.battleIndex+1)%BATTLE_TRACK_COUNT;this.select('battle');});
         audio.addEventListener('error',()=>{if(audio!==this.current)return;this.errors.push(`BGM ${track+1}: ${audio.error?.code||'media error'}`);this.failed.add(track);this.preloadFailed=track===0&&!this.gestureUnlocked;this.requested=false;
-            if(this.state==='battle'&&[1,2,3].some(i=>!this.failed.has(i))){this.battleIndex=(this.battleIndex+1)%3;this.select('battle');}});
+            if(this.state==='battle'&&[1,2,3,4].some(i=>!this.failed.has(i))){this.battleIndex=(this.battleIndex+1)%BATTLE_TRACK_COUNT;this.select('battle');}});
         this.tryStartup();this.applyPause();
     }
     setPaused(paused:boolean){if(this.paused===paused)return;this.paused=paused;this.applyPause();}
