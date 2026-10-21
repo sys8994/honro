@@ -1,5 +1,5 @@
 """Normal-resource starting battles; prepared unlocks and manual camera only, not completion."""
-import json,shutil,sys,subprocess
+import hashlib,json,shutil,sys,subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 out=Path(sys.argv[1]);out.mkdir(parents=True,exist_ok=True)
@@ -12,4 +12,4 @@ with sync_playwright() as pw:
    p.locator('[data-action="dialogue-skip"]').click()
   p.wait_for_function('sid=>HonroAuthoredFarArt.ready(sid)',arg=sid)
   row=p.evaluate('''v=>{let a=HonroApp,s=a.scene;HonroStory.tick(a,performance.now()+5000);a.close();Object.assign(s,{manual:true,x:v.x,y:v.y,scale:.9,storyTween:null,cinematic:null});s.render(a.engine,0,'',.6,false,0);return{stage:v.sid,flyers:a.engine.b.units.filter(u=>u.fixed&&['bat','crow'].includes(u.honroType)).map(u=>({id:u.id,x:u.x,y:u.y,awake:u.awake}))};}''',{'sid':sid,'x':x,'y':y});rows.append(row);p.locator('#battlecanvas').screenshot(path=str(out/f'stage{sid:02}.png'))
- (out/'capture.json').write_text(json.dumps({'sha':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'scope':__doc__,'rows':rows},indent=2));b.close()
+ (out/'capture.json').write_text(json.dumps({'sha':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'scope':__doc__,'sourceHashes':{f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ['shared/engine/src/enemyAI.ts','shared/engine/src/engine.ts','shared/runtime/terrain-space.js','shared/engine/src/locomotion.ts','shared/runtime/stage2-airborne.js']},'rows':rows},indent=2));b.close()

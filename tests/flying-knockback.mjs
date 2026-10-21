@@ -18,22 +18,24 @@ check('Bat, crow and lantern receive small push, pull, and vertical recoil witho
   const pose={x:u.x,y:u.y};for(let i=0;i<120;i++)e.stepUnits(C.STEP);assert.deepEqual({x:u.x,y:u.y},pose,'no gravity or continued drift');
  }
 });
+// Start with 8px clearance from the animated 92px half-span /108px head envelope.
+// The old 545px wall already intersected the rendered wings at x500.
 check('Thin walls, ceiling, floor, map edges, other actors and polygon terrain stop the full body',()=>{
  for(const [name,terrain,vx,vy] of [
-  ['thin wall',[solid('wall',545,0,1,1000)],280,0],
-  ['ceiling',[solid('ceiling',0,302,1600,1)],0,-330],
-  ['floor',[solid('floor',0,420,1600,1)],0,330],
-  ['one-way flight obstruction',[solid('platform',0,420,1600,1,{oneWay:true})],0,330],
-  ['polygon wall',[solid('polygon',545,0,1,1000,{vertices:[{x:545,y:0},{x:546,y:0},{x:546,y:1000},{x:545,y:1000}]})],280,0]
+  ['thin wall',[solid('wall',600,0,1,1000)],280,0],
+  ['ceiling',[solid('ceiling',0,284,1600,1)],0,-330],
+  ['floor',[solid('floor',0,428,1600,1)],0,330],
+  ['one-way flight obstruction',[solid('platform',0,428,1600,1,{oneWay:true})],0,330],
+  ['polygon wall',[solid('polygon',600,0,1,1000,{vertices:[{x:600,y:0},{x:601,y:0},{x:601,y:1000},{x:600,y:1000}]})],280,0]
  ]){const {e,b,u}=arena();b.terrain=terrain;e.impulse(u,vx,vy);assert(C.flightClear(e,u,u),name+' legal final body');assert(Math.abs(u.x-500)<13&&Math.abs(u.y-400)<13,name+' stopped before wall');}
- for(const [x,y,vx,vy] of [[35,400,-500,0],[1565,400,500,0],[500,102,0,-500],[500,990,0,500]]){
+ for(const [x,y,vx,vy] of [[94,400,-500,0],[1506,400,500,0],[500,122,0,-500],[500,978,0,500]]){
   const {e,u}=arena();Object.assign(u,{x,y});e.impulse(u,vx,vy);assert(C.flightClear(e,u,u),'map bounds');
  }
- const {e,b,u}=arena();b.units.push(C.makeUnit('knight',1,575,400,{id:'other',h:80,r:25}));e.impulse(u,280,0);assert(C.flightClear(e,u,u));assert(u.x<=515);
+ const {e,b,u}=arena();b.units.push(C.makeUnit('knight',1,630,400,{id:'other',h:80,r:25}));e.impulse(u,280,0);assert(C.flightClear(e,u,u));assert(u.x<=515);
 });
 check('Concave cave air is not treated as the polygon bounding mass',()=>{
- const {e,b,u}=arena();b.terrain=[solid('cave',400,100,300,600,{vertices:[{x:400,y:100},{x:700,y:100},{x:700,y:700},{x:650,y:700},{x:650,y:180},{x:450,y:180},{x:450,y:700},{x:400,y:700}]})];
- assert(C.flightClear(e,u,u),'clear body inside cave opening');e.impulse(u,280,-130);assert(u.x>500);assert(C.flightClear(e,u,u));
+ const {e,b,u}=arena();u.x=550;b.terrain=[solid('cave',400,100,300,600,{vertices:[{x:400,y:100},{x:700,y:100},{x:700,y:700},{x:650,y:700},{x:650,y:180},{x:450,y:180},{x:450,y:700},{x:400,y:700}]})];
+ assert(C.flightClear(e,u,u),'clear body inside cave opening');e.impulse(u,280,-130);assert(u.x>550);assert(C.flightClear(e,u,u));
 });
 check('Stationary bosses, NPCs, dead enemies and floating summons remain immune',()=>{
  for(const patch of [{boss:1},{honroType:'gate',boss:1},{honroType:'bier'},{side:2,honroAlly:true},{dead:true},{summonFloating:true}]){

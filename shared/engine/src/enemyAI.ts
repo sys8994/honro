@@ -19,21 +19,37 @@ export function routeGuardAllows(e:Engine,u:Unit,p:Vec){
  const distance=Math.hypot(p.x-guard.x,p.y-guard.y),now=Math.hypot(u.x-guard.x,u.y-guard.y);
  return distance<=guard.radius||distance<now;
 }
-/** Full body clearance, including slopes and thin ceilings. Used by both planning and motion. */
+/** Conservative animated flight envelope, separate from projectile hit radius.
+ * Bat/crow source rigs use [-94,-117,188,132] at baseHeight100. Include
+ * flapping/moving/hit poses and a small gutter; never shrink the combat target. */
+export function flightBounds(u:Unit,p:Vec=u){
+ const winged=['bat','crow'].includes((u as any).honroType),rx=winged?Math.max(u.r+8,u.h*1.15):u.r+8;
+ return {left:p.x-rx,right:p.x+rx,head:p.y-(winged?u.h*1.35:u.h+8),feet:p.y+(winged?u.h*.25:8)};
+}
+function flightWorldClear(e:Engine,u:Unit,p:Vec){const r=flightBounds(u,p);return r.left>=0&&r.right<=e.b.width&&r.head>=12&&r.feet<=e.b.height;}
+function actorBounds(v:Unit){return flyingEnemy(v)?flightBounds(v):{left:v.x-v.r-5,right:v.x+v.r+5,head:v.y-v.h-4,feet:v.y+4};}
+function boxOverlap(a:ReturnType<typeof flightBounds>,z:ReturnType<typeof flightBounds>){return Math.max(0,Math.min(a.right,z.right)-Math.max(a.left,z.left))*Math.max(0,Math.min(a.feet,z.feet)-Math.max(a.head,z.head));}
+/** Friendly ground AI must not walk a large body into a reserved wing span.
+ * Player locomotion and hostile contact retain their existing rules. Existing
+ * overlap may decrease, so a valid exit is never blocked by this reservation. */
+export function groundFlightClear(e:Engine,u:Unit,p:Vec,from:Vec=u){
+ if(u.side!==1||u.fixed||u.enthrall)return true;
+ const box=(q:Vec)=>({left:q.x-u.r-5,right:q.x+u.r+5,head:q.y-u.h-4,feet:q.y+4});
+ return e.b.units.every(v=>!flyingEnemy(v)||v.id===u.id||v.dead||v.hp<=0||v.enthrall||v.eaterCapturedBy||(()=>{const r=flightBounds(v),before=boxOverlap(box(from),r),after=boxOverlap(box(p),r);return after<=1e-6||after<before-1e-6;})());
+}
 function flightSpaceClear(e:Engine,u:Unit,p:Vec){
- const pad=8,left=p.x-u.r-pad,right=p.x+u.r+pad,head=p.y-u.h-pad,feet=p.y+pad;
- if(left<0||right>e.b.width||head<12||feet>e.b.height)return false;
- return e.b.units.every(v=>v.id===u.id||v.dead||v.honroObjectiveTarget||!!v.eaterCapturedBy||Math.abs(v.x-p.x)>=u.r+v.r+10||feet<=v.y-v.h-4||head>=v.y+4);
+ if(!flightWorldClear(e,u,p))return false;const r=flightBounds(u,p);
+ return e.b.units.every(v=>v.id===u.id||v.dead||v.honroObjectiveTarget||!!v.eaterCapturedBy||boxOverlap(r,actorBounds(v))<=1e-6);
 }
 export function flightClear(e:Engine,u:Unit,p:Vec){
- return flightSpaceClear(e,u,p)&&!e.b.terrain.some(t=>!t.broken&&terrainRectIntersects(t,p.x-u.r-8,p.y-u.h-8,2*u.r+16,u.h+16,0));
+ const r=flightBounds(u,p);return flightSpaceClear(e,u,p)&&!e.b.terrain.some(t=>!t.broken&&terrainRectIntersects(t,r.left,r.head,r.right-r.left,r.feet-r.head,0));
 }
 /** Exact clipped overlap area, used only to leave an already invalid terrain pose.
  * Each short step must reduce every existing overlap and enter no new solid. */
 function flightOverlap(u:Unit,p:Vec,t:Terrain){
- if(p.x+u.r+8<=t.x||p.x-u.r-8>=t.x+t.w||p.y+8<=t.y||p.y-u.h-8>=t.y+t.h)return 0;
+ const r=flightBounds(u,p);if(r.right<=t.x||r.left>=t.x+t.w||r.feet<=t.y||r.head>=t.y+t.h)return 0;
  let points=poly(t);
- for(const [axis,edge,sign] of [['x',p.x-u.r-8,1],['x',p.x+u.r+8,-1],['y',p.y-u.h-8,1],['y',p.y+8,-1]] as const){
+ for(const [axis,edge,sign] of [['x',r.left,1],['x',r.right,-1],['y',r.head,1],['y',r.feet,-1]] as const){
   const clipped:Vec[]=[];
   for(let i=0;i<points.length;i++){
    const a=points[i],b=points[(i+1)%points.length],da=(a[axis]-edge)*sign,db=(b[axis]-edge)*sign;
@@ -45,13 +61,17 @@ function flightOverlap(u:Unit,p:Vec,t:Terrain){
  return Math.abs(polygonArea(points));
 }
 function flightEscapeStep(e:Engine,u:Unit,from:Vec,to:Vec){
- if(!flightSpaceClear(e,u,to))return false;
- for(const t of e.b.terrain){
-  if(t.broken)continue;
-  const before=flightOverlap(u,from,t),after=flightOverlap(u,to,t);
-  if(after>1e-6&&(before<1e-6||after>=before-1e-6))return false;
+ if(!flightWorldClear(e,u,to))return false;let reducing=false;
+ for(const v of e.b.units){
+  if(v.id===u.id||v.dead||v.honroObjectiveTarget||v.eaterCapturedBy)continue;
+  const before=boxOverlap(flightBounds(u,from),actorBounds(v)),after=boxOverlap(flightBounds(u,to),actorBounds(v));
+  if(after>before+1e-6)return false;if(after<before-1e-6)reducing=true;
  }
- return true;
+ for(const t of e.b.terrain){
+  if(t.broken)continue;const before=flightOverlap(u,from,t),after=flightOverlap(u,to,t);
+  if(after>before+1e-6)return false;if(after<before-1e-6)reducing=true;
+ }
+ return reducing;
 }
 function* planFlightEscape(e:Engine,u:Unit,target:Unit,budget:number,lured=false):Generator<void,AIMovePlan|undefined,unknown>{
  if(flightClear(e,u,u))return;
@@ -60,7 +80,7 @@ function* planFlightEscape(e:Engine,u:Unit,target:Unit,budget:number,lured=false
  // nearest exit on the body's current side of a deck rather than crossing it.
  for(let i=0;i<16;i++){
   const angle=i*Math.PI/8;let from:Vec=u;
-  for(let cost=2;cost<=Math.min(96,budget,bestCost);cost+=2){
+  for(let cost=2;cost<=Math.min(192,budget,bestCost);cost+=2){
    const to={x:u.x+Math.cos(angle)*cost,y:u.y+Math.sin(angle)*cost};
    if(!lured&&!routeGuardAllows(e,u,to)||!flightEscapeStep(e,u,from,to))break;
    if(flightClear(e,u,to)){if(cost<bestCost){best=to;bestCost=cost;}break;}
@@ -126,8 +146,9 @@ function* planFlight(e:Engine,u:Unit,target:Unit,attackFailed=false):Generator<v
 export function planWaitingFlights(e:Engine){
  const b=e.b,eligible=new Set(e.combatEnemies().map(u=>u.id));
  for(const u of b.units){
-  if(!flyingEnemy(u)||u.dead||u.hp<=0||u.eaterCapturedBy||u.carriedBy!==undefined||u.aiMove||b.queue.includes(u.id)||(u.stun||0)>0||u.stunnedRound===b.round)continue;
+  if(!flyingEnemy(u)||u.boss||u.dead||u.hp<=0||u.summonFloating||u.summoned||u.enthrall||u.eaterCapturedBy||u.carriedBy!==undefined||u.aiMove||b.queue.includes(u.id)||(u.stun||0)>0||u.stunnedRound===b.round)continue;
   const target=eligible.has(u.id)?targetFor(e,u):undefined,budget=Math.min(u.moveLeft,96);if(budget<2)continue;
+  if(!flightClear(e,u,u)){const escape=finishPlanning(planFlightEscape(e,u,target||u,Math.min(192,u.moveLeft)));if(escape)u.aiMove={...escape,waitingFlight:true};continue;}
   let goal:Vec|undefined;
   if(target&&Math.hypot(u.x-target.x,u.y-target.y)>preferredRange(u)[1]+90){
    const dx=target.x-u.x,dy=target.y-target.h*.5-u.y,d=Math.hypot(dx,dy);
@@ -145,14 +166,14 @@ function advanceFlight(e:Engine,u:Unit,dt:number){
  const stop=()=>{delete u.aiMove;u.vx=u.vy=0;u.moving=0;e.b.turnAge=0;};
  const next=p.path[p.index];if(!next||p.round!==e.b.round||p.elapsed>3||u.dead||u.moveLeft<=0){stop();return;}
  const dx=next.x-u.x,dy=next.y-u.y,d=Math.hypot(dx,dy);
- if(d<1){stop();return;}
+ if(d<(p.flightEscape?1e-6:1)){stop();return;}
  let left=Math.min(d,180*dt,u.moveLeft);
  while(left>1e-6){const step=Math.min(4,left),at={x:u.x+dx/d*step,y:u.y+dy/d*step};
   if((p.lureStakeId===undefined&&!routeGuardAllows(e,u,at))||!(p.flightEscape?flightEscapeStep(e,u,u,at):flightClear(e,u,at))){stop();return;}
   u.x=at.x;u.y=at.y;u.moveLeft=Math.max(0,u.moveLeft-step);left-=step;
  }
  u.moving=.12;if(Math.abs(dx)>1)u.facing=Math.sign(dx);u.vx=u.vy=0;
- if(Math.hypot(next.x-u.x,next.y-u.y)<1||u.moveLeft<=0)stop();
+ if(Math.hypot(next.x-u.x,next.y-u.y)<(p.flightEscape?1e-6:1)||u.moveLeft<=0)stop();
 }
 
 /** First-impact estimate, using live blast falloff, armor, shields and coalition friendly-fire cost.
@@ -248,7 +269,7 @@ function* traceTravelSteps(e:Engine,u:Unit,from:Vec,to:Vec,budget:number):Genera
   if(Math.abs(ghost.x-to.x)<8&&Math.abs(ghost.y-to.y)<8&&e.grounded(ghost))return {cost:budget-ghost.moveLeft,jump:jumpUsed,...(jumpUsed?{jumpX}: {})};
   const oldX=ghost.x,oldY=ghost.y,dir=Math.abs(to.x-ghost.x)<5?0:Math.sign(to.x-ghost.x);
   if(dir&&!e.walk(ghost,dir,STEP)&&!ghost.jumping){if(!startJump())return null;firstJump=true;}
-  if(!e.integrateBody(ghost,STEP,true))return null;
+  const airBefore={x:ghost.x,y:ghost.y};if(!e.integrateBody(ghost,STEP,true)||!groundFlightClear(e,ghost,ghost,airBefore))return null;
   if(ghost.y>Math.max(from.y,to.y)+110||(dangerAt(e,u,ghost)>=250&&dangerAt(e,u,ghost)>initialDanger+1))return null;
   if(ghost.moveLeft<=0&&(!ghost.jumping||Math.abs(ghost.x-to.x)>10))return null;
   if(Math.hypot(ghost.x-oldX,ghost.y-oldY)<.01)stall++;else stall=0;
