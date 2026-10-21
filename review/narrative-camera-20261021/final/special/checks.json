@@ -1,0 +1,1072 @@
+{
+  "rows": [
+    {
+      "scene": "reverse-shot-sequence",
+      "page": 3,
+      "label": "desktop",
+      "image": "stage02-page03-desktop.png",
+      "framing": {
+        "id": "2:arrival:2",
+        "intent": "portrait",
+        "targets": [
+          {
+            "actor": "archer"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 268,
+            "y": 466.2542013619697,
+            "w": 44,
+            "h": 134.61536385542166
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 139,
+          "w": 1380,
+          "h": 482.8125
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 290,
+          "y": 538.7962582896805,
+          "scale": 0.8
+        }
+      }
+    },
+    {
+      "scene": "reverse-shot-sequence",
+      "page": 3,
+      "label": "mobile",
+      "image": "stage02-page03-mobile.png",
+      "framing": {
+        "id": "2:arrival:2",
+        "intent": "portrait",
+        "targets": [
+          {
+            "actor": "archer"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 268,
+            "y": 466.2542013619697,
+            "w": 44,
+            "h": 134.61536385542166
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 128,
+          "w": 362,
+          "h": 505.609375
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 290,
+          "y": 462.3118832896805,
+          "scale": 0.8
+        }
+      }
+    },
+    {
+      "scene": "reverse-shot-sequence",
+      "page": 4,
+      "label": "desktop",
+      "image": "stage02-page04-desktop.png",
+      "framing": {
+        "id": "2:entry:story-0",
+        "intent": "situation",
+        "targets": [
+          {
+            "actor": "objective"
+          },
+          {
+            "actor": "npc-damheo"
+          },
+          {
+            "actor": "archer"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 1182,
+            "y": 2828.601094739644,
+            "w": 116,
+            "h": 138
+          },
+          {
+            "x": 1518,
+            "y": 2859.594767303134,
+            "w": 44,
+            "h": 126.37975903614459
+          },
+          {
+            "x": 268,
+            "y": 466.2542013619697,
+            "w": 44,
+            "h": 134.61536385542166
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 113,
+          "w": 1380,
+          "h": 591.953125
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 915,
+          "y": 1616.5593007088241,
+          "scale": 0.22256216920290298
+        }
+      }
+    },
+    {
+      "scene": "reverse-shot-sequence",
+      "page": 4,
+      "label": "mobile",
+      "image": "stage02-page04-mobile.png",
+      "framing": {
+        "id": "2:entry:story-0",
+        "intent": "situation",
+        "targets": [
+          {
+            "actor": "objective"
+          },
+          {
+            "actor": "npc-damheo"
+          },
+          {
+            "actor": "archer"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 1182,
+            "y": 2828.601094739644,
+            "w": 116,
+            "h": 138
+          },
+          {
+            "x": 1518,
+            "y": 2859.594767303134,
+            "w": 44,
+            "h": 126.37975903614459
+          },
+          {
+            "x": 268,
+            "y": 466.2542013619697,
+            "w": 44,
+            "h": 134.61536385542166
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 128,
+          "w": 362,
+          "h": 491.5
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 915,
+          "y": 1455.8385494180845,
+          "scale": 0.18479386549944612
+        }
+      }
+    },
+    {
+      "scene": "reverse-shot-sequence",
+      "page": 5,
+      "label": "desktop",
+      "image": "stage02-page05-desktop.png",
+      "framing": {
+        "id": "2:entry:story-1",
+        "intent": "object-introduction",
+        "targets": [
+          {
+            "actor": "objective"
+          },
+          {
+            "actor": "npc-damheo"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 1182,
+            "y": 2828.601094739644,
+            "w": 116,
+            "h": 138
+          },
+          {
+            "x": 1518,
+            "y": 2859.594767303134,
+            "w": 44,
+            "h": 126.37975903614459
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 113,
+          "w": 1380,
+          "h": 591.953125
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 1372,
+          "y": 2880.1957966505724,
+          "scale": 0.9
+        }
+      }
+    },
+    {
+      "scene": "reverse-shot-sequence",
+      "page": 5,
+      "label": "mobile",
+      "image": "stage02-page05-mobile.png",
+      "framing": {
+        "id": "2:entry:story-1",
+        "intent": "object-introduction",
+        "targets": [
+          {
+            "actor": "objective"
+          },
+          {
+            "actor": "npc-damheo"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 1182,
+            "y": 2828.601094739644,
+            "w": 116,
+            "h": 138
+          },
+          {
+            "x": 1518,
+            "y": 2859.594767303134,
+            "w": 44,
+            "h": 126.37975903614459
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 128,
+          "w": 362,
+          "h": 491.5
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 1372,
+          "y": 2836.922867514599,
+          "scale": 0.7098039215686275
+        }
+      }
+    },
+    {
+      "scene": "reverse-shot-sequence",
+      "page": 6,
+      "label": "desktop",
+      "image": "stage02-page06-desktop.png",
+      "framing": {
+        "id": "2:entry:story-2",
+        "intent": "conversation",
+        "targets": [
+          {
+            "actor": "objective"
+          },
+          {
+            "actor": "npc-damheo"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 1182,
+            "y": 2828.601094739644,
+            "w": 116,
+            "h": 138
+          },
+          {
+            "x": 1518,
+            "y": 2859.594767303134,
+            "w": 44,
+            "h": 126.37975903614459
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 113,
+          "w": 1380,
+          "h": 591.953125
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 1372,
+          "y": 2880.1957966505724,
+          "scale": 0.9
+        }
+      }
+    },
+    {
+      "scene": "reverse-shot-sequence",
+      "page": 6,
+      "label": "mobile",
+      "image": "stage02-page06-mobile.png",
+      "framing": {
+        "id": "2:entry:story-2",
+        "intent": "conversation",
+        "targets": [
+          {
+            "actor": "objective"
+          },
+          {
+            "actor": "npc-damheo"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 1182,
+            "y": 2828.601094739644,
+            "w": 116,
+            "h": 138
+          },
+          {
+            "x": 1518,
+            "y": 2859.594767303134,
+            "w": 44,
+            "h": 126.37975903614459
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 128,
+          "w": 362,
+          "h": 491.5
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 1372,
+          "y": 2838.3025722797925,
+          "scale": 0.724
+        }
+      }
+    },
+    {
+      "scene": "reverse-shot-sequence",
+      "page": 7,
+      "label": "desktop",
+      "image": "stage02-page07-desktop.png",
+      "framing": {
+        "id": "2:entry:story-3",
+        "intent": "portrait",
+        "targets": [
+          {
+            "actor": "archer"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 268,
+            "y": 466.2542013619697,
+            "w": 44,
+            "h": 134.61536385542166
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 113,
+          "w": 1380,
+          "h": 591.953125
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 290,
+          "y": 509.1790707896805,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "scene": "reverse-shot-sequence",
+      "page": 7,
+      "label": "mobile",
+      "image": "stage02-page07-mobile.png",
+      "framing": {
+        "id": "2:entry:story-3",
+        "intent": "portrait",
+        "targets": [
+          {
+            "actor": "archer"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 268,
+            "y": 466.2542013619697,
+            "w": 44,
+            "h": 134.61536385542166
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 128,
+          "w": 362,
+          "h": 491.5
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 290,
+          "y": 483.6165707896805,
+          "scale": 1
+        }
+      }
+    },
+    {
+      "scene": "supported-v1-reunion",
+      "page": 1,
+      "label": "desktop",
+      "image": "legacy27-page01-desktop.jpg",
+      "framing": {
+        "id": "27:act3-party-reunion-v1:0",
+        "intent": "object-introduction",
+        "targets": [
+          {
+            "marker": "party-reunion"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3370,
+            "y": 2710,
+            "w": 60,
+            "h": 100
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 78,
+          "w": 1380,
+          "h": 540.7915649414062
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 3400,
+          "y": 2800.219963921441,
+          "scale": 0.9
+        }
+      }
+    },
+    {
+      "scene": "supported-v1-reunion",
+      "page": 1,
+      "label": "mobile",
+      "image": "legacy27-page01-mobile.jpg",
+      "framing": {
+        "id": "27:act3-party-reunion-v1:0",
+        "intent": "object-introduction",
+        "targets": [
+          {
+            "marker": "party-reunion"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3370,
+            "y": 2710,
+            "w": 60,
+            "h": 100
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 92,
+          "w": 362,
+          "h": 541.609375
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 3400,
+          "y": 2716.6666666666665,
+          "scale": 0.9
+        }
+      }
+    },
+    {
+      "scene": "supported-v1-reunion",
+      "page": 2,
+      "label": "desktop",
+      "image": "legacy27-page02-desktop.jpg",
+      "framing": {
+        "id": "27:act3-party-reunion-v1:1",
+        "intent": "conversation",
+        "targets": [
+          {
+            "speaker": "휘겸"
+          },
+          {
+            "actor": "p-mage"
+          },
+          {
+            "actor": "p-archer"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3395.5,
+            "y": 2665.7821818316506,
+            "w": 44,
+            "h": 144.21781816834914
+          },
+          {
+            "x": 3360.5,
+            "y": 2681.4340240963857,
+            "w": 44,
+            "h": 128.56597590361446
+          },
+          {
+            "x": 3325.5,
+            "y": 2675.3846361445785,
+            "w": 44,
+            "h": 134.61536385542166
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 78,
+          "w": 1380,
+          "h": 598.90625
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 3382.5,
+          "y": 2744.6916861539207,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "scene": "supported-v1-reunion",
+      "page": 2,
+      "label": "mobile",
+      "image": "legacy27-page02-mobile.jpg",
+      "framing": {
+        "id": "27:act3-party-reunion-v1:1",
+        "intent": "conversation",
+        "targets": [
+          {
+            "speaker": "휘겸"
+          },
+          {
+            "actor": "p-mage"
+          },
+          {
+            "actor": "p-archer"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3395.5,
+            "y": 2665.7821818316506,
+            "w": 44,
+            "h": 144.21781816834914
+          },
+          {
+            "x": 3360.5,
+            "y": 2681.4340240963857,
+            "w": 44,
+            "h": 128.56597590361446
+          },
+          {
+            "x": 3325.5,
+            "y": 2675.3846361445785,
+            "w": 44,
+            "h": 134.61536385542166
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 92,
+          "w": 362,
+          "h": 502.75
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 3382.5,
+          "y": 2719.2526980586827,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "scene": "supported-v1-reunion",
+      "page": 3,
+      "label": "desktop",
+      "image": "legacy27-page03-desktop.jpg",
+      "framing": {
+        "id": "27:act3-party-reunion-v1:2",
+        "intent": "conversation",
+        "targets": [
+          {
+            "speaker": "설오"
+          },
+          {
+            "actor": "p-mage"
+          },
+          {
+            "actor": "p-knight"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3325.5,
+            "y": 2675.3846361445785,
+            "w": 44,
+            "h": 134.61536385542166
+          },
+          {
+            "x": 3360.5,
+            "y": 2681.4340240963857,
+            "w": 44,
+            "h": 128.56597590361446
+          },
+          {
+            "x": 3395.5,
+            "y": 2665.7821818316506,
+            "w": 44,
+            "h": 144.21781816834914
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 78,
+          "w": 1380,
+          "h": 598.90625
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 3382.5,
+          "y": 2744.6916861539207,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "scene": "supported-v1-reunion",
+      "page": 3,
+      "label": "mobile",
+      "image": "legacy27-page03-mobile.jpg",
+      "framing": {
+        "id": "27:act3-party-reunion-v1:2",
+        "intent": "conversation",
+        "targets": [
+          {
+            "speaker": "설오"
+          },
+          {
+            "actor": "p-mage"
+          },
+          {
+            "actor": "p-knight"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3325.5,
+            "y": 2675.3846361445785,
+            "w": 44,
+            "h": 134.61536385542166
+          },
+          {
+            "x": 3360.5,
+            "y": 2681.4340240963857,
+            "w": 44,
+            "h": 128.56597590361446
+          },
+          {
+            "x": 3395.5,
+            "y": 2665.7821818316506,
+            "w": 44,
+            "h": 144.21781816834914
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 92,
+          "w": 362,
+          "h": 502.75
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 3382.5,
+          "y": 2719.2526980586827,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "scene": "supported-v1-reunion",
+      "page": 4,
+      "label": "desktop",
+      "image": "legacy27-page04-desktop.jpg",
+      "framing": {
+        "id": "27:act3-party-reunion-v1:3",
+        "intent": "conversation",
+        "targets": [
+          {
+            "speaker": "담허"
+          },
+          {
+            "actor": "p-archer"
+          },
+          {
+            "actor": "p-knight"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3360.5,
+            "y": 2681.4340240963857,
+            "w": 44,
+            "h": 128.56597590361446
+          },
+          {
+            "x": 3325.5,
+            "y": 2675.3846361445785,
+            "w": 44,
+            "h": 134.61536385542166
+          },
+          {
+            "x": 3395.5,
+            "y": 2665.7821818316506,
+            "w": 44,
+            "h": 144.21781816834914
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 78,
+          "w": 1380,
+          "h": 626.953125
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 3382.5,
+          "y": 2731.3360313920157,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "scene": "supported-v1-reunion",
+      "page": 4,
+      "label": "mobile",
+      "image": "legacy27-page04-mobile.jpg",
+      "framing": {
+        "id": "27:act3-party-reunion-v1:3",
+        "intent": "conversation",
+        "targets": [
+          {
+            "speaker": "담허"
+          },
+          {
+            "actor": "p-archer"
+          },
+          {
+            "actor": "p-knight"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 3360.5,
+            "y": 2681.4340240963857,
+            "w": 44,
+            "h": 128.56597590361446
+          },
+          {
+            "x": 3325.5,
+            "y": 2675.3846361445785,
+            "w": 44,
+            "h": 134.61536385542166
+          },
+          {
+            "x": 3395.5,
+            "y": 2665.7821818316506,
+            "w": 44,
+            "h": 144.21781816834914
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 92,
+          "w": 362,
+          "h": 527.5
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 3382.5,
+          "y": 2707.466983772968,
+          "scale": 1.05
+        }
+      }
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 1,
+      "label": "desktop",
+      "image": "void-page01-desktop.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "담허 어른? 들리십니까?"
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 1,
+      "label": "mobile",
+      "image": "void-page01-mobile.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "담허 어른? 들리십니까?"
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 2,
+      "label": "desktop",
+      "image": "void-page02-desktop.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": ""
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 2,
+      "label": "mobile",
+      "image": "void-page02-mobile.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": ""
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 3,
+      "label": "desktop",
+      "image": "void-page03-desktop.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "여긴 어디입니까? 방금 걷던 길이 보이지 않습니다."
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 3,
+      "label": "mobile",
+      "image": "void-page03-mobile.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "여긴 어디입니까? 방금 걷던 길이 보이지 않습니다."
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 4,
+      "label": "desktop",
+      "image": "void-page04-desktop.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "……돌아가라."
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 4,
+      "label": "mobile",
+      "image": "void-page04-mobile.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "……돌아가라."
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 5,
+      "label": "desktop",
+      "image": "void-page05-desktop.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "거기 누가 있습니까?"
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 5,
+      "label": "mobile",
+      "image": "void-page05-mobile.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "거기 누가 있습니까?"
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 6,
+      "label": "desktop",
+      "image": "void-page06-desktop.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": ""
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 6,
+      "label": "mobile",
+      "image": "void-page06-mobile.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": ""
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 7,
+      "label": "desktop",
+      "image": "void-page07-desktop.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "담허 어른에게 돌아가려면 어디로 가야 합니까?"
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 7,
+      "label": "mobile",
+      "image": "void-page07-mobile.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "담허 어른에게 돌아가려면 어디로 가야 합니까?"
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 8,
+      "label": "desktop",
+      "image": "void-page08-desktop.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "돌아가라."
+    },
+    {
+      "scene": "bespoke-void-manual-scene",
+      "page": 8,
+      "label": "mobile",
+      "image": "void-page08-mobile.jpg",
+      "worldCamera": "intentional isolated experience, unchanged",
+      "text": "돌아가라."
+    }
+  ],
+  "legacySetup": {
+    "opened": true,
+    "version": 1,
+    "marker": {
+      "id": "party-reunion",
+      "type": "act3",
+      "x": 3400,
+      "y": 2800,
+      "label": "두 조사팀이 중앙 뜰에 모이기"
+    },
+    "actors": [
+      {
+        "id": "p-archer",
+        "x": 3347.5,
+        "y": 2800
+      },
+      {
+        "id": "p-mage",
+        "x": 3382.5,
+        "y": 2800
+      },
+      {
+        "id": "p-knight",
+        "x": 3417.5,
+        "y": 2800
+      },
+      {
+        "id": "p-occultist",
+        "x": 3452.5,
+        "y": 2800
+      }
+    ]
+  },
+  "v1RejectedInCurrentV2": true,
+  "voidManualPages": 8,
+  "errors": [],
+  "limits": [
+    "Explicit in-range group and legacy profile are inspection fixtures; no normal campaign completion is claimed.",
+    "Void timing advances through the original presentation frame function; battle simulation is paused."
+  ]
+}
