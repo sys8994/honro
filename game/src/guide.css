@@ -1,8 +1,9 @@
-.story-guide{width:min(660px,calc(100vw - 28px));max-height:calc(100dvh - 36px);overflow:auto;padding:28px 32px;border:2px solid #c9ac6a;border-radius:10px;background:linear-gradient(135deg,#203943,#10242c);box-shadow:0 12px 60px #000b;color:#f5ecd6;margin:auto}
-.guide-overlay{display:flex;align-items:center;justify-content:center;background:#061116ae}
-.guide-kicker{color:#f3cc75;font-size:13px;letter-spacing:.08em;font-weight:800}
-.story-guide h2{font-size:23px;margin:10px 0 18px}.story-guide p{font-size:18px;line-height:1.8;white-space:pre-line}.story-guide .story-actions{margin-top:22px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
-@media(max-width:600px){.story-guide{padding:20px}.story-guide p{font-size:16px}.story-guide h2{font-size:20px}}
+.story-guide{box-sizing:border-box;width:min(880px,100%);max-height:34dvh;overflow:auto;padding:12px 18px;border:1px solid #b6a16c;border-left:4px solid #d6bd7d;border-radius:4px 10px 10px 4px;background:#122c32f5;box-shadow:0 4px 18px #0005;color:#f5ecd6;margin:0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 18px}
+.guide-overlay{display:flex;align-items:flex-start;justify-content:center;background:transparent!important;padding:var(--guide-top,82px) 18px 0}
+.guide-kicker{color:#c9b981;font-size:11px;grid-column:1}
+.story-guide h2{font-size:17px;margin:0;grid-column:1}.story-guide p{font-size:16px;line-height:1.5;margin:3px 0 0;grid-column:1;word-break:keep-all}
+.story-guide .story-actions{grid-column:2;grid-row:1/4;align-self:center;margin:0;padding:0;display:flex;gap:8px}.story-guide .story-actions button{min-height:42px;padding:7px 13px}
+@media(max-width:600px){.guide-overlay{padding-left:10px;padding-right:10px}.story-guide{padding:10px 12px;gap:3px 8px}.story-guide h2{font-size:15px}.story-guide p{font-size:14px}.story-guide .story-actions{grid-row:4;grid-column:1/-1;justify-content:flex-end;margin-top:5px}.story-guide .story-actions button{min-height:38px;font-size:12px}}
 
 /* Brief world-space staging keeps the action visible; uses Story's input lock. */
 .staging-overlay{background:transparent!important;display:flex;align-items:flex-end;justify-content:center;padding:18px;pointer-events:auto}

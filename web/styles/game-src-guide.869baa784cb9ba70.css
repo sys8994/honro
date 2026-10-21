@@ -1,0 +1,23 @@
+.story-guide{box-sizing:border-box;width:min(880px,100%);max-height:34dvh;overflow:auto;padding:12px 18px;border:1px solid #b6a16c;border-left:4px solid #d6bd7d;border-radius:4px 10px 10px 4px;background:#122c32f5;box-shadow:0 4px 18px #0005;color:#f5ecd6;margin:0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 18px}
+.guide-overlay{display:flex;align-items:flex-start;justify-content:center;background:transparent!important;padding:var(--guide-top,82px) 18px 0}
+.guide-kicker{color:#c9b981;font-size:11px;grid-column:1}
+.story-guide h2{font-size:17px;margin:0;grid-column:1}.story-guide p{font-size:16px;line-height:1.5;margin:3px 0 0;grid-column:1;word-break:keep-all}
+.story-guide .story-actions{grid-column:2;grid-row:1/4;align-self:center;margin:0;padding:0;display:flex;gap:8px}.story-guide .story-actions button{min-height:42px;padding:7px 13px}
+@media(max-width:600px){.guide-overlay{padding-left:10px;padding-right:10px}.story-guide{padding:10px 12px;gap:3px 8px}.story-guide h2{font-size:15px}.story-guide p{font-size:14px}.story-guide .story-actions{grid-row:4;grid-column:1/-1;justify-content:flex-end;margin-top:5px}.story-guide .story-actions button{min-height:38px;font-size:12px}}
+
+/* Brief world-space staging keeps the action visible; uses Story's input lock. */
+.staging-overlay{background:transparent!important;display:flex;align-items:flex-end;justify-content:center;padding:18px;pointer-events:auto}
+.staging-cue{width:min(680px,100%);padding:12px 18px;background:#0a1c25e8;border:1px solid #b49c6580;border-radius:8px;color:#e9dfc8;box-shadow:0 4px 20px #0008}
+.staging-cue p{font-size:15px;line-height:1.6;margin:0}.staging-cue .story-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
+@media(max-height:500px){.staging-overlay{padding:8px}.staging-cue{padding:8px 12px}.staging-cue p{font-size:13px}.staging-cue .story-actions{margin-top:2px}}
+
+/* Keep the authored world action visible above a compact dialogue strip. */
+.cinematic-story{padding:12px 24px;background:linear-gradient(0deg,#030b10df,transparent 45%)}
+.cinematic-story .story-scene{width:min(980px,100%);grid-template-columns:96px minmax(0,1fr);gap:18px;padding:14px 20px;animation:none}
+.cinematic-story .story-portrait{height:118px;margin:0;align-self:start}
+.cinematic-story .story-copy h2{font-size:20px;margin:7px 0}
+.cinematic-story .story-copy p{min-height:0;font-size:17px;line-height:1.65}
+.cinematic-story .story-actions{padding-top:10px;gap:8px}
+.cinematic-story .story-actions button{min-height:38px;padding:6px 12px}
+@media(max-width:650px){.cinematic-story{padding:8px}.cinematic-story .story-scene{grid-template-columns:60px minmax(0,1fr);gap:10px;padding:10px}.cinematic-story .story-portrait{height:82px}.cinematic-story .story-copy p{font-size:15px}.cinematic-story .story-copy h2{font-size:18px}}
+@media(orientation:landscape) and (max-height:550px){.cinematic-story .story-scene{grid-template-columns:64px minmax(0,1fr);padding:8px 12px}.cinematic-story .story-portrait{height:82px}.cinematic-story .story-copy p{font-size:14px;line-height:1.5}.cinematic-story .story-actions{padding-top:6px}}
