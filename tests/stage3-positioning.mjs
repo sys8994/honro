@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';import{readFile,mkdir,writeFile}from'node:fs/promises';
+import{runtime,battlefield}from'../game/tests/helpers.mjs';import{drive,isolate}from'./tactical-finite-driver.mjs';
+const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE,routes=[],shots=[];
+for(const cls of ['archer','mage'])for(const route of ['upper','lower']){
+ const q=battlefield(g,3),u=isolate(q,cls),pts=[{x:900},{x:1080,jumpTo:{x:1320}},...(route==='upper'?[{x:1800},{x:2300},{x:3000}]:[{x:1600,drop:true},{x:2300},{x:2700},{x:3070,jumpTo:{x:3330,support:'place3-stone-mud:collision:0'}}]),{x:3350},{x:3900},...(route==='upper'?[{x:4380,jumpTo:{x:4520,support:'cargo-step-1'}},{x:4650,jumpTo:{x:4780,support:'cargo-step-2'}},{x:4860,jumpTo:{x:5050,support:'warehouse-roof'}},{x:5550,drop:true}]:[{x:4400},{x:4800},{x:5250}]),{x:5650}];
+ const r=drive(g,q,u,pts,{label:route});routes.push(r);assert(r.passed,cls+route+JSON.stringify(r.failure));
+}
+for(const [cls,support,x,target]of [['archer','dock-east',2800,'midboss-stage3'],['mage','ferry-ground',2620,'foe-3-cluster'],['archer','cargo-step-2',4850,'foe-5-cluster']]){
+ const q=battlefield(g,3),u=q.e.heroesAlive().find(u=>u.cls===cls),enemy=q.e.unit(target),id=cls==='mage'?'M01':'A01';q.e.select(u.id);Object.assign(u,{x,y:C.topAt(q.b.terrain.find(t=>t.id===support),x),vx:0,vy:0});assert(C.validTerrainContactPose(q.b.terrain,u));
+ let aim;const candidates=q.e.shotSeeds(u,C.SKILLS[id],enemy);for(let angle=-75;angle<=80;angle+=5)for(let power=.2;power<=1.001;power+=.05)candidates.push({angle,power});
+ for(const p of candidates){const hit=q.e.predict(u,C.SKILLS[id],p.angle,p.power,enemy,false);if(hit.unit===target){aim=p;break;}}assert(aim,target+' trajectory');
+ const hp=enemy.hp,shield=enemy.shield||0;assert(q.e.fire(id,aim.angle,aim.power));for(let i=0;i<1800&&q.b.projectiles.length;i++)for(const p of [...q.b.projectiles])if(q.b.projectiles.includes(p))q.e.stepProjectile(p,C.STEP);const damage=hp-enemy.hp+shield-(enemy.shield||0);assert(damage>0);shots.push({cls,support,x,target,skill:id,damage,aim});
+}
+if(process.env.HONRO_BASELINE){const before=JSON.parse(await readFile(process.env.HONRO_BASELINE,'utf8')),plain=x=>JSON.parse(JSON.stringify(x)),stage=g.HONRO_PROJECT.stages[2];assert.deepEqual(plain(g.HONRO_PROJECT.library),before.library);assert.deepEqual(plain(g.HONRO_PROJECT.stages.filter((s,i)=>i!==2)),before.stages.filter((s,i)=>i!==2));assert.deepEqual(plain(stage.terrains.filter(t=>t.id!=='warehouse-roof')),before.stages[2].terrains.filter(t=>t.id!=='warehouse-roof'));assert.deepEqual(plain(stage.events),before.stages[2].events);assert.deepEqual(plain(stage.markers),before.stages[2].markers);}
+await mkdir('_local/reports/stage3-positioning',{recursive:true});await writeFile('_local/reports/stage3-positioning/routes-shots.json',JSON.stringify({scope:'Isolated finite route inputs and supported prepared-position actual projectiles; not normal combat completion.',routes,shots},null,2));console.log('PASS both heroes upper/lower to ledger; three actual projectiles; other29/library and stage3 floor/events/markers unchanged');
