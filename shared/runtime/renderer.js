@@ -238,6 +238,7 @@
             }
             if(this.goalFocus&&!this.storyTween){this.x=this.goalFocus.x;this.y=this.goalFocus.y-h*.10/this.scale;}
             else if(!this.storyTween&&!this.skillPreview){G.HonroBounds.constrain(this,b);}
+            G.HonroStoryFraming?.apply(this,e);
             if(this.background)this.background(c,w,h,b);
             this.backgroundReadability?.(c,w,h,b);
             this.weatherParticles(c,b,w,h,effectDt);
@@ -334,6 +335,7 @@
             }
             G.HonroAct1StoryArt?.cartFront(this,e);
             if(!this.skillPreview){this.occludedUnitSilhouettes(c,b,visibleUnits,charging?power:0);this.tacticalUnitMarkers(c,b,visibleUnits);}
+            G.HonroStoryFraming?.highlight(this,e);
             this.terrainHealth(c,b,w,h);
             G.HONRO_CORE.drawCombatPassives(c,e,this.time);
             this.reviewSummary=reviewing?Object.entries(b.reviewDamage||{}).filter(([id,damage])=>damage>0&&e.unit(id)&&(!G.HonroAct2||G.HonroAct2.visible(b,e.unit(id)))).map(([id,damage])=>({attacker:u?.name||'',target:e.unit(id),damage:Math.round(damage)})):[];

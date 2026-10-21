@@ -76,10 +76,10 @@ function reader(lines,options){
  let index=oldIndex+offset;
  if(options.index!==undefined&&!oldComplete&&!oldWaiting){const page=Math.max(0,pages.findIndex(p=>p.indices.includes(s.cursor)));index=(after?lines.length:0)+page;}
  else if(after&&options.index!==undefined&&oldIndex>=lines.length)index=lines.length;
- const prior=s.cue;
+ const prior=s.cue,oldRead=s.readThrough;
  s.cues=cues;s.manualReader=1;s.steps=[{type:'dialogue'}];s.cursor=0;s.elapsed=0;s.complete=true;s.waitForDialogue=false;s.position='before';
  delete s.cue;
- if(options.index!==undefined){s.readThrough=index-1;if(prior&&oldComplete){s.cue={...prior,index:prior.index+offset};s.readThrough=Math.max(s.readThrough,(s.readThroughBefore??prior.index)+offset);}}
+ if(options.index!==undefined){s.readThrough=index-1;if(prior&&oldComplete){s.cue={...prior,index:prior.index+offset};s.readThrough=Math.max(s.readThrough,(oldRead??prior.index)+offset);}}
  return{lines:after?[...lines,...narration]:[...narration,...lines],options:{...options,...(options.index!==undefined?{index}:{})}};
 }
 function canSpeak(app,who,meta){const b=app.engine?.b,s=b?.honroStaging;if(!s)return false;if(!(meta?.stagingScene&&s.once[meta.stagingScene]==='running')&&!G.HonroStoryDirection?.hiddenSpeech(b,meta))return false;return Object.values(s.hidden||{}).some(u=>u.name===who&&alive(u));}
