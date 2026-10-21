@@ -10,7 +10,7 @@ const policies={
  '1:event-1-cart':{intent:'situation',targets:[{anchor:'cart'}],padding:100,maxScale:.8},
  '1:event-1-more':{intent:'situation',targets:[{actor:'foe-1-cluster'}],padding:80,maxScale:.8},
  '1:event-1-ridge':{intent:'situation',targets:[{anchor:'ridge'}],padding:100,maxScale:.75},
- '2:outcome':{intent:'conversation',targets:[{actor:'objective'},{actor:'npc-damheo'},{actor:'npc-yeonsil'}],padding:45,maxScale:1},
+ '2:outcome':{intent:'conversation',allowOffscreenSpeaker:true,targets:[{actor:'objective'},{actor:'npc-damheo'},{actor:'npc-yeonsil'}],padding:45,maxScale:1},
  '8:entry':{intent:'object-introduction',targets:[{anchor:'bier'},{actor:'archer'}],padding:75,maxScale:.75},
  '9:entry':{intent:'situation',targets:[{anchor:'sodan'},{anchor:'receiverWest'},{anchor:'receiverEast'}],padding:60,maxScale:.8},
  '10:cooperation':{intent:'situation',targets:[{actor:'boss'},{actor:'mage'},{anchor:'receiverWest'},{anchor:'receiverEast'}],padding:45,maxScale:.8},
@@ -29,7 +29,7 @@ function arrival(app,lines){const stage=app.stage.id;return lines.map(([who,text
  });}
 function authorEntry(st){if(st.id!==2){const plan=entryObjects[st.id];if(plan)st.story=st.story.map(([who,text,meta={}],i)=>[who,text,{...meta,...(plan[i]?{camera:{id:`${st.id}:entry:story-${i}`,intent:'object-introduction',targets:plan[i],padding:st.id===13?180:80,maxScale:.85}}:{})}]);return;}const plans={
  0:{intent:'situation',targets:[{actor:'objective'},{actor:'npc-damheo'},{actor:'archer'}],padding:70,maxScale:.8},
- 1:{intent:'object-introduction',targets:[{actor:'objective'},{actor:'npc-damheo'}],padding:65,maxScale:.9},
+ 1:{intent:'object-introduction',shot:'reverse',reason:'앞의 높이차 조망 뒤 설오의 시선으로 상여와 응답자를 보여 준다. 설오는 초상으로 유지한다.',targets:[{actor:'objective'},{actor:'npc-damheo'}],padding:65,maxScale:.9},
  2:{intent:'conversation',targets:[{actor:'objective'},{actor:'npc-damheo'}],padding:60,maxScale:.9},
  3:{intent:'portrait',targets:[{actor:'archer'}],padding:40,maxScale:1},
  4:{intent:'object-introduction',targets:[{actor:'objective'},{actor:'npc-damheo'}],padding:65,maxScale:.9},
@@ -41,11 +41,12 @@ function conversation(app,who,subjects){
  const primary={speaker:who},p=bounds(app,primary),near=subjects.map(t=>({target:t,box:bounds(app,t)})).filter(v=>v.box&&p&&Math.abs(v.box.x-p.x)+Math.abs(v.box.y-p.y)>1).map(v=>({...v,distance:Math.hypot(v.box.x-p.x,v.box.y-p.y)})).filter(v=>v.distance<=950).sort((a,b)=>a.distance-b.distance).slice(0,2);
  return{intent:near.length?'conversation':'portrait',targets:[primary,...near.map(v=>v.target)],padding:40,maxScale:1.05,participants:subjects};
 }
+function speakerPolicy(who,meta,camera){const kind=G.HonroStory.speakerPresentation(who,meta).kind;return{...camera,speakerPolicy:kind!=='character'?'none':camera.allowOffscreenSpeaker||!['portrait','conversation'].includes(camera.intent)?'context-portrait':'world'};}
 function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return lines;
  const b=app.engine.b,key=sceneKey(app,lines,options),stage=b.honroStage,names=[...new Set(lines.filter(l=>G.HonroStory.speakerPresentation(l[0],l[2]).kind==='character').map(l=>l[0]))];
  const subjects=names.map(n=>speakerId(app,n)?{actor:speakerId(app,n)}:{speaker:n});
  return lines.map(([who,text,meta={}],index)=>{
-  if(meta.camera)return[who,text,meta];
+  if(meta.camera)return[who,text,{...meta,camera:speakerPolicy(who,meta,meta.camera)}];
   const kind=G.HonroStory.speakerPresentation(who,meta).kind,scenePolicy=Object.entries(policies).find(([id])=>id.startsWith(stage+':')&&(key===id.slice(id.indexOf(':')+1)||key.endsWith(':'+id.slice(id.indexOf(':')+1))||key.includes(id.slice(id.indexOf(':')+1))))?.[1];
   let camera=scenePolicy?{...scenePolicy}:kind==='character'?conversation(app,who,subjects):{intent:'situation',targets:subjects.length?subjects:[openings[stage]||{objective:'current'}],padding:65,maxScale:.8};
   // An explicit authored objective overrides scene-wide conversational framing.
@@ -65,7 +66,7 @@ function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return li
   const cue=options.staging?.cues?.[index]?.find(s=>s.camera||s.type==='look'&&!s.actor);
   if(cue&&kind!=='guide'&&!scenePolicy){const at=cue.at||{actor:cue.actor};if(at)camera={intent:'object-introduction',targets:[at],padding:65,maxScale:cue.scale||.9};}
   camera.targets=camera.targets.flatMap(t=>t.markers?t.markers.map(marker=>({marker})):t.between?t.between.map(actor=>({actor})):t);
-  return[who,text,{...meta,camera:{...camera,id:`${stage}:${key}:${index}`}}];
+  return[who,text,{...meta,camera:speakerPolicy(who,meta,{...camera,id:`${stage}:${key}:${index}`})}];
  });
 }
 function bounds(app,target){const b=app.engine.b;

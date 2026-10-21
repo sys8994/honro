@@ -35,8 +35,9 @@ function prepareFresh(b){
  s.hidden[u.id]=u;b.units=b.units.filter(v=>v!==u);if(b.honroStage===9)s.entrance=ID;
 }
 function reveal(b,id){const s=state(b);let u=actor(b,id);if(u)return u;u=s.hidden[id];if(!alive(u))return null;G.HONRO_CORE.migrateEnemySkills(u);b.units.push(u);delete s.hidden[id];return u;}
+function matchesSplit(b,d){return !d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit);}
 function request(app,id,context={}){
- const b=app.engine?.b,d=registry.get(id);if(!b||!d||d.stage&&d.stage!==b.honroStage||!G.HonroStory)return false;
+ const b=app.engine?.b,d=registry.get(id);if(!b||!d||d.stage&&d.stage!==b.honroStage||!matchesSplit(b,d)||!G.HonroStory)return false;
  const s=state(b);if(s.once[id])return false;s.once[id]='queued';
  G.HonroStory.queue(app,[['서술',d.title,{storyId:id,storyTitle:d.title,stagingRequest:{id,context:clone(context)}}]]);return true;
 }
@@ -45,7 +46,7 @@ function opening(app,lines,options){
  const b=app.engine?.b;if(options.staging)return{lines,options};let r=lines[0]?.[2]?.stagingRequest;
  if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.freshOnly||b.honroStaging.outcomeScenes?.includes(d.id))&&(!d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit))&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
  if(!r)return{lines,options};
- const def=(!b?.honroNarrativeRevision&&r.id===ID?G.HONRO_NARRATIVE_V0?.firstReceiverScene:null)||registry.get(r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||state(b).once[r.id]==='done')return{lines:[],options};
+ const def=(!b?.honroNarrativeRevision&&r.id===ID?G.HONRO_NARRATIVE_V0?.firstReceiverScene:null)||registry.get(r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||!matchesSplit(b,def)||state(b).once[r.id]==='done')return{lines:[],options};
  state(b).once[r.id]='running';
  const staging={id:def.id,steps:clone(def.steps),context:clone(r.context||{}),cursor:0,elapsed:0,applied:{},results:{},position:def.position||'before',waitForDialogue:def.position==='after',complete:def.position==='after'};
  const dialogue=def.steps.filter(s=>s.type==='dialogue').flatMap(s=>s.lines||lines).map(([who,text,meta={}])=>[who,text,{storyId:def.id,storyTitle:def.title,...meta,stagingScene:def.id}]);
@@ -226,5 +227,5 @@ register({id:'act3-split-departure-v2',stage:24,on:'outcome',position:'after',re
  {type:'move',actor:'occultist',towards:{marker:'split-route-b'},distance:28,duration:350,caption:'소단이 휘겸을 따라 몸을 돌린다.'},
  {type:'dialogue'}
 ]});
-G.HonroStoryStaging={reader,list,register,describe,request,prepareFresh,receiver,opening,directed,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,lineStart,lineEnd,focusLine,point,actor,ID};
+G.HonroStoryStaging={reader,list,matchesSplit,register,describe,request,prepareFresh,receiver,opening,directed,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,lineStart,lineEnd,focusLine,point,actor,ID};
 })(globalThis);

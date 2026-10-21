@@ -19,7 +19,7 @@ CATALOG=r'''()=>{const a=HonroApp,b=a.engine.b,st=a.stage,seq=[];
  for(const m of b.honroMarkers||[])if(['ledger','ritual','receiver','rescue'].includes(m.action))for(const count of m.action==='receiver'?[1,2]:[0]){const old=b.honroState.receivers;b.honroState.receivers=count;add('interaction-'+m.id+'-'+count,HonroStoryContent.interaction(a,m),{title:st.name});b.honroState.receivers=old;}
  if(st.id===10)for(const name of ['cooperation','cooperationDefense','finaleMidpoint'])add(name,HonroStoryContent[name](),{title:st.name});
  const ids=HonroStoryStaging.list().filter(d=>d.stage===st.id).map(d=>d.id);
- for(const id of ids){const def=HonroStoryStaging.describe(id);if(def)add('staging-'+id,[['서술',def.title,{stagingRequest:{id,context:{marker:b.honroMarkers.find(m=>m.action==='receiver')?.id}}}]],{title:def.title});}
+ for(const id of ids){const def=HonroStoryStaging.describe(id);if(def&&!HonroStoryStaging.matchesSplit(b,def)){seq.push({key:'staging-'+id,lines:[],options:{},excluded:'incompatible split version',requiredVersion:def.requireSplit,currentVersion:b.honroSplit?.version});continue;}if(def)add('staging-'+id,[['서술',def.title,{stagingRequest:{id,context:{marker:b.honroMarkers.find(m=>m.action==='receiver')?.id}}}]],{title:def.title});}
  if(st.id===18)for(const status of ['suspended','settled'])add('bell-anomaly-'+status,HonroBellAnomaly.lines.map(([w,t])=>[w,status==='settled'?t.replace('우선 저 종부터 안전하게 내려야 해.','우선 남은 혼부터 살펴야 해.'):t,{storyId:'bell-anomaly-18',source:'bell-anomaly',storyTitle:'묵종 곁의 빈자리'}]),{title:'묵종 곁의 빈자리'});
  if(st.id===27)add('void-return',HonroAct3Void.returnLines.map(([w,t])=>[w,t,{storyId:HonroAct3Void.KEY+'-return',storyTitle:st.name}]),{title:st.name});
  if(st.id===11){const saved=JSON.stringify(a.engine.b),profile=JSON.stringify(a.profile),dialogue=a.dialogue;
@@ -41,7 +41,8 @@ PREP=r'''q=>{const a=HonroApp;a.dialogue=null;HonroStoryFraming.clear(a.scene);a
 FRAME=r'''()=>{const a=HonroApp,s=a.scene,d=a.dialogue;if(!d)return null;
  HonroStoryStaging.lineEnd(a);a.updateHUD(true);s.render(a.engine,0,a.selected,0,false,0,true);
  const r=s.storyFrameReport||null,{w,h}=s.size();const include=r?r.boxes.every(p=>{const x=(p.x-s.x)*s.scale+w/2,y=(p.y-s.y)*s.scale+h/2;return x>=r.rect.x-1&&y>=r.rect.y-1&&x+p.w*s.scale<=r.rect.x+r.rect.w+1&&y+p.h*s.scale<=r.rect.y+r.rect.h+1;}):false;
- return{index:d.index,who:d.lines[d.index]?.[0],text:d.lines[d.index]?.[1],meta:d.lines[d.index]?.[2],framing:r,included:include,viewport:{w:innerWidth,h:innerHeight},overflow:document.documentElement.scrollWidth>innerWidth};}'''
+ const who=d.lines[d.index]?.[0],meta=d.lines[d.index]?.[2]||{},speaker=HonroStoryFraming.bounds(a,{speaker:who}),onScreen=speaker&&r?(()=>{const x=(speaker.x-s.x)*s.scale+w/2,y=(speaker.y-s.y)*s.scale+h/2;return x>=r.rect.x-1&&y>=r.rect.y-1&&x+speaker.w*s.scale<=r.rect.x+r.rect.w+1&&y+speaker.h*s.scale<=r.rect.y+r.rect.h+1;})():null,portrait=!!document.querySelector('#dialogue-root .story-portrait')&&document.getElementById('story-speaker')?.textContent?.trim()===who,policy=meta.camera?.speakerPolicy||'none',speakerPass=policy==='none'||onScreen===true||policy==='context-portrait'&&portrait;
+ return{worldSpeakerContained:onScreen,speakerPolicy:policy,speakerPortrait:portrait,speakerPass,index:d.index,who:d.lines[d.index]?.[0],text:d.lines[d.index]?.[1],meta:d.lines[d.index]?.[2],framing:r,included:include,viewport:{w:innerWidth,h:innerHeight},overflow:document.documentElement.scrollWidth>innerWidth};}'''
 def run():
  with sync_playwright() as p:
   browser=launch(p);ctx=browser.new_context(viewport={'width':1280,'height':800});page=ctx.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.goto('http://localhost:8014/HONRO.html');page.wait_for_function('window.HonroApp',timeout=120000)
@@ -65,5 +66,7 @@ def run():
    (OUT/'inventory.json').write_text(json.dumps({'catalog':catalog,'pages':allrows,'errors':errors},ensure_ascii=False,indent=2))
    print(f'stage {sid}: {len(seqs)} sequences, {len([r for r in allrows if r["stage"]==sid])} captures',flush=True)
   browser.close()
-  print('DONE',len(allrows),'missing',sum(bool(r.get('framing',{}).get('missing')) for r in allrows),'failed',sum(not r['included'] for r in allrows),'errors',errors,flush=True)
+  print('DONE',len(allrows),'missing',sum(bool(r.get('framing',{}).get('missing')) for r in allrows),'failed',sum(not r['included'] for r in allrows),'speakerFailures',sum(not r.get('speakerPass',True) for r in allrows),'errors',errors,flush=True)
+  assert not errors
+  assert all(r['included'] and not r['overflow'] and r.get('speakerPass',True) for r in allrows)
 if __name__=='__main__':run()
