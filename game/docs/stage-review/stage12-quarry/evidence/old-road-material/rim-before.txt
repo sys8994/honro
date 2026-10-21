@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Walking rim remains clear: sq-old-road at 11450,2541.130174408446
+
+255 !== 0
+
+    at file:///workspace/honro-stage12/tests/terrain-face-attachments.mjs:22:279 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 255,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

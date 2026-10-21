@@ -1,0 +1,51 @@
+{
+  "pass": true,
+  "baseline": "c7adfd9a620810788fe4ea1cfe0d2af65a367a79",
+  "onlyThreeOldRoadVisualReferencesAndAssetListChanged": true,
+  "physicsWalkEdgesStoryFunctionalCoordinatesCartGroundingAndLibraryExact": true,
+  "other29Exact": true,
+  "attachments": [
+    {
+      "id": "quarry-face-old-road-west",
+      "assetId": "geology:granite-foundation",
+      "terrainId": "sq-old-road",
+      "anchor": {
+        "edge": 1,
+        "along": 0.8
+      },
+      "depthMode": "base",
+      "inset": 80,
+      "scale": 0.95,
+      "walkClearance": 28,
+      "replaceBlocks": true
+    },
+    {
+      "id": "quarry-face-old-road-crown",
+      "assetId": "geology:granite-vertical",
+      "terrainId": "sq-old-road",
+      "anchor": {
+        "edge": 4,
+        "along": 0.9
+      },
+      "depthMode": "base",
+      "inset": 120,
+      "scale": 0.85,
+      "walkClearance": 28,
+      "replaceBlocks": true
+    },
+    {
+      "id": "quarry-face-old-road-east",
+      "assetId": "geology:granite-vertical-cleft",
+      "terrainId": "sq-old-road",
+      "anchor": {
+        "edge": 6,
+        "along": 0.65
+      },
+      "depthMode": "base",
+      "inset": 70,
+      "scale": 0.9,
+      "walkClearance": 28,
+      "replaceBlocks": true
+    }
+  ]
+}

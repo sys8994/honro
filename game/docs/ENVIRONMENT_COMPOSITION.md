@@ -94,3 +94,6 @@ terrainAttachments.anchor.kind는 기본 walk, 명시 boundary를 지원한다. 
 ### 공통 단일 빈 수레
 
 `tools/environment/common-cart-art.mjs`의 builtin:singleRefugeeCart는 기존 art-dark rc18Cart의 공통 empty native 경로다. 기본 refugeeCarts2대는 그대로다. 단일 옵션만 실제 바퀴/살 재질 stroke와 얕은 빈 짐칸을 보존하며 gameplay 역할을 붙이지 않는다. native bounds(-60,-59,168,79), foot(0,20), uniform scale 범위를 사용해 부착한다.12장의 적용에서는 원래 지지점을 보관하고 장식만+20world 이동하여 두 바퀴를 한 실제 경사에 맞췄다. 구전투 landmark를 강제 이관하지 않는다.
+
+
+terrainAttachments의 walk 보호는 physical 정점뿐 아니라 honroDomain의 play 범위 밖에서 공통 terrain painter가 이어 그리는 표시 surface edge도 포함한다. physical collision이나 외곽을 바꾸지 않는다. 보호 clip은 부착 인스턴스가 있는 opt-in 경로에서만 사용하며 기존 공통 surfaceEdges를 참조한다.12장 old-road의 x11450 보호 실패와 교정 증거는 OLD_ROAD_MATERIAL 기록에 있다.

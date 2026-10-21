@@ -1,3 +1,9 @@
+## 2026-10-21 — 12장 old-road 암면 공통 연결과 표시 rim 보호 (부모 최종 검수 대기)
+
+오른쪽 상단 old-road의 독립된 큰 회색 면에 기존 공통 foundation/vertical/vertical-cleft3개를 실제 edge/base anchor로 연결했다. 공통 원본·수레·후방 지지·소나무·물리·기능 좌표는 그대로다. 초기 검사에서 play projection 밖 x11450의 표시 rim에 attachment가 칠해지는 실패를 확인했다. terrainFaceClip이 physical walk 정점만 보호하던 원인이며, honroDomain 밖의 기존 common surface edge도 같은 보호에 포함했다. 새 path 미술·collider·rim·장별 renderer 분기는 없다. assert는 유지하고 실패 위치 메시지만 보완했다.
+
+old-road solid 외부sample0/rim28점 무채색·render purity/cache·비선택 대표 정적 픽셀·author2회/build·실제 기존 상하 terminal Continue(landmark/element 포함)가 통과했다. 수정 전후9구도와 원본27PNG를 stage-review/stage12-quarry/OLD_ROAD_MATERIAL.md에 기록했다. 최종9컷을 직접 열어 인접 공통 암반과의 재질 일관성 및 수레/보행/빈 통로 보존을 확인했고, 길표·서쪽·상하3화면은 PNG 동일이다. 큰 면 크기를 이유로 전체 재설계하지 않았다. 최신 master bafc275c/타 브랜치 통합은 가져오지 않았으며 부모 확인 전 master/Pages/13장 보류다.
+
 ## 2026-10-21 — 12장 버려진 수레를 공통 상세 단일 빈 수레로 연결 (부모 최종 검수 대기)
 
 단순 Library cart가 큰 갈색 판과 단색 바퀴로 보이던 원인은 자산 선택이었다. 기존 art-dark의 rc18Cart를 재사용하는 공통 singleRefugeeCart native와 metadata/foot/bounds를 등록했다. 공통 empty 옵션에 얕은 짐칸 안쪽/옆면·차대·연결을 보완하고 authored 바퀴 rim/spoke 재질 선을 보존했다. 기본 refugeeCarts2대의 원래 적재 그림/호출은 유지하며 raw/L1 렌더6조건 픽셀이 수정 전과 같다.12장 전용 수레 도형이나 가짜 적 unit은 없다.
