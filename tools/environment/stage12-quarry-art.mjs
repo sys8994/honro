@@ -23,7 +23,8 @@ export const QUARRY_FACE_ATTACHMENTS=[
  {id:'quarry-face-back-neck',assetId:'geology:granite-ledge-neck',terrainId:'sq-back-road',anchor:{edge:2,along:.25},depthMode:'surface',inset:500,scale:1,walkClearance:28,replaceBlocks:true},
  {id:'quarry-face-cave-buttress',assetId:'geology:granite-vertical',terrainId:'sq-cave-buttress',anchor:{kind:'boundary',edge:0,along:.55},depthMode:'surface',inset:1300,scale:.85,walkClearance:28,replaceBlocks:true},
  {id:'quarry-face-lower-foundation',assetId:'geology:granite-foundation',terrainId:'sq-lower-ground',anchor:{edge:17,along:.935},depthMode:'surface',inset:2200,scale:1.1,walkClearance:28,replaceBlocks:true,embedFade:200},
- {id:'quarry-face-sign-granite',assetId:'geology:granite-vertical-cleft',terrainId:'sq-lower-ground',anchor:{edge:17,along:.05},depthMode:'surface',inset:1600,scale:1.05,walkClearance:28,replaceBlocks:true}
+ {id:'quarry-face-sign-granite',assetId:'geology:granite-vertical-cleft',terrainId:'sq-lower-ground',anchor:{edge:17,along:.05},depthMode:'surface',inset:1600,scale:1.05,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-sign-neck',assetId:'geology:granite-ledge-neck',terrainId:'sq-lower-ground',anchor:{edge:17,along:.05},depthMode:'surface',inset:610,scale:1,walkClearance:28,replaceBlocks:true,embedFade:180}
 ];
 export function applyStage12QuarryArt(project,{sourceStage}={}){
  const s=project.stages.find(s=>s.metadata?.stageId===12),source=sourceStage||s;
