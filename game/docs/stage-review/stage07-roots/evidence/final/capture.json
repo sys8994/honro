@@ -1,0 +1,89 @@
+{
+  "sha": "5b1a4a52453504724ac9c48474ff39e25e4f4650",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 7,
+      "view": "normal-lower",
+      "camera": {
+        "x": 1400,
+        "y": 3900,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 7,
+      "view": "normal-middle",
+      "camera": {
+        "x": 2300,
+        "y": 2850,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 7,
+      "view": "normal-crown",
+      "camera": {
+        "x": 1850,
+        "y": 1550,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 7,
+      "view": "zoom-fork",
+      "camera": {
+        "x": 2190,
+        "y": 3260,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 7,
+      "view": "maxout-lower",
+      "camera": {
+        "x": 1800,
+        "y": 3520,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 7,
+      "view": "maxout-upper",
+      "camera": {
+        "x": 1800,
+        "y": 1800,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 7,
+      "view": "mobile-middle",
+      "camera": {
+        "x": 3000,
+        "y": 2860,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 7,
+      "view": "mobile-root",
+      "camera": {
+        "x": 1450,
+        "y": 2110,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 7,
+      "view": "landscape-crown",
+      "camera": {
+        "x": 1800,
+        "y": 1430,
+        "scale": 0.35
+      }
+    }
+  ],
+  "errors": []
+}

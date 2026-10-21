@@ -25,3 +25,25 @@
 - 역사 stage7-reentry 검사는 기준 master에서도 동일한 Stage1 해시 assertion에서 중단한다. 테스트를 완화하지 않고 현행 App 저장/주민 실패 검사를 별도로 수행한다.
 
 최종 소스의 종합 화면/정상 플레이 결과는 아래에 추가한다. 중간 review 화면의 작업 트리와 최종 SHA를 혼용하지 않는다.
+
+## 최종 종합 결과
+
+- 런타임/빌드 SHA: `5b1a4a52453504724ac9c48474ff39e25e4f4650`.
+- 동일 소스의 최종9개 카메라 화면과 주민3명 구조 전후6장/결과 UI를 직접 열어 확인했다. 기존 거대 나무/집/이미지 원경과 수직 회귀 구조를 보존했다. 좁은 가로 화면의 HUD 가림은 기존 동작이며 변경하지 않았다.
+- 정상 자원 실제 실행66라운드 승리: 설오561/561, 담허473/569, 휘겸897/897; 주민3명 각각600HP. 완료 기록/다음 쉼터 버튼 확인. 적5명 생존; 전멸 목표가 아니다. 1–6장 합법 보상으로 만든 진입 fixture이며 이전6장 연속 전투 완주 저장은 아니다.
+- 산개4 실제 생성: (1485,3693.67), (1595,3642.33), (1705,3591), (1943,3462.28). 마지막 개체는 연결된 ramp-1에 배치되어 바닥4480 추락 문제가 해소됐다. 까마귀4는 상부 가지 위 y1860–1966 공중, 두 사건 pending 없음. 기존 장기 체류 habitat 증원은 보존했다.
+- 자동 정책이 가까운 적을 오래 상대하므로66라운드를 보편적 난이도/최적 경로 수치로 보지 않는다. 추가 기믹/대사 변경 없이 실제 구조를 완료했다.
+- Library: `libfile_c1851dcae8c4819187b8d9cb0ef9cc46`, file `file_00000000ab6081f5b58818fd9989a14a`, 이름 `HONRO-stage07-5b1a4a52.png`.
+- 화면: `evidence/final/`, `evidence/final-combat/`, 요약 `evidence/stage07-contact-sheet.png`. baseline은 e7b8a19, review1–3은 수정 중 작업 트리다.
+
+통과 검사:
+
+- `npm run build`
+- `HONRO_BASELINE=/tmp/stage7-master-baseline.json node tests/stage7-positioning.mjs`: 세 인물 유한 지그재그 동선/2점프, 사선3건 실제 투사체, 주민 피해 없음, 다른29장/library/스토리 보존.
+- `node tests/stage7-current-state.mjs`: 준비된 접근 상태에서 실제 구조 상호작용, export/continue 구조 상태 및 성장 보존, 주민 사망 시 패배. 별도 비어 있는 전투 fixture에서 각4명 증원 접지/공중 clearance. 정상 적 활성 증원은 위 browser 실행에서 확인.
+- `node tests/stage7-author-safety.mjs`, `node tests/stage6-author-safety.mjs`, `node tests/stage5-author-replay-safety.mjs`: 현재 author 반복 안정성 및 폐기 CLI 쓰기 전 거부.
+- `node tests/pre-image-terrain-restoration.mjs`: 7장 구revision 전투 폐기/동revision 유지/성장 유지, 미개편 복원장 동일.
+- 최종 browser capture9개와 normal combat: pageerror 없음.
+- `git diff --check`.
+
+미통과/미실행: `tests/stage7-reentry.mjs`는 기준e7b8a19와 동일한 Stage1 역사 해시 assertion 실패. 현재 검사를 완화하지 않았다. 모든 기예/난이도/전체30장 전투 완주/성능 벤치마크는 미실행. 큰 줄기의 기존 단순화와 장식 집 표현까지 전면 재설계한 것은 아니다. 공개 사이트403과 Actions/Pages API 접근 제한은 우회·재시도하지 않았으며, master push와 실제 배포 성공/공개 화면 검증을 구분한다.
