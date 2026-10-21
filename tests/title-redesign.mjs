@@ -8,7 +8,8 @@ assert(build.includes('portrait.jpg')&&build.includes('landscape.jpg'),'format f
 assert(!build.includes('title-first-ferry.svg')&&!build.includes('title-wordmark.svg'),'old tree/H artwork no longer consumed');
 assert(css.includes('prefers-reduced-motion:reduce')&&css.includes('focus-visible'));
 assert(!css.includes('title-arrive')&&!css.includes('animation:title'),'no entrance delay or moving backdrop');
-assert(css.includes('pointer-events:none')&&css.includes('object-position:right bottom'));
+assert(css.includes('pointer-events:none')&&css.includes('.honro-title .title-painting img{object-position:center}'),'authored portrait uses its own center');
+assert(css.includes('@media(orientation:portrait) and (max-height:650px){.honro-title .title-painting img{object-position:center top}}'),'short portrait keeps the ferry and lantern below resume actions');
 assert(main.includes('onerror="this.hidden=true;this.nextElementSibling.hidden=false"'),'readable logo failure fallback');
 assert(main.includes('aria-label="혼로"')&&main.includes('class="title-hanja" aria-hidden="true"')&&main.includes('class="title-hangul" aria-hidden="true"'));
 assert(!main.includes('class="title-roman"'),'exactly two title tiers, no legacy Roman third tier');
@@ -22,7 +23,14 @@ assert(css.includes('aspect-ratio:575/550')&&css.includes('left:-91.304347826%')
 assert(!css.includes('rotate('),'the whole word must never rotate');
 assert(main.includes('feTurbulence type="fractalNoise"')&&main.includes('feComposite in2="SourceGraphic" operator="in"'),'stationary organic ink colors only the approved alpha');
 let bytes=0;for(const file of ['landscape.webp','portrait.webp','landscape.jpg','portrait.jpg','wordmark.png','hanja-wordmark.png'])bytes+=(await stat('shared/assets/environment/title/'+file)).size;
-assert(bytes<1650000,`title art encoded budget: ${bytes}`);
+// Measure all six delivered variants, including both JPEG format fallbacks.
+// Archival PNG logos are not sent to the browser: web-build emits lossless WebP.
+// Keep the original 1.65MB cap while checking the bytes actually consumed.
+const manifest=JSON.parse(await readFile('web/manifest.json','utf8'));
+const delivered=manifest.files.filter(f=>/^web\/graphics\/title-(?:landscape|portrait|landscapeFallback|portraitFallback|logo|hanja)\./.test(f.path));
+assert.equal(delivered.length,6,'all title variants must be present in the current build');
+let deliveredBytes=0;for(const file of delivered){const size=(await stat(file.path)).size;assert.equal(size,file.bytes);deliveredBytes+=size;}
+assert(deliveredBytes<1650000,`all six delivered title variants encoded budget: ${deliveredBytes}`);
 const h=await appHarness();
 // This harness has no generated startup DOM; query only the actual first-paint marker.
 const originalQuery=h.g.document.getElementById('app').querySelector;
@@ -55,4 +63,4 @@ for(const c of [
 }
 h.g.HONRO_TITLE_HANJA='';a.showTitle();assert(a.root.innerHTML.includes('<span class="title-logo-fallback">魂路</span>'));assert(a.root.innerHTML.includes('honro-logo-hangul'));
 h.g.HONRO_TITLE_LOGO='';a.showTitle();assert(a.root.innerHTML.includes('<span class="title-reading-fallback">혼</span>')&&a.root.innerHTML.includes('<span class="title-reading-fallback">로</span>')); assert(!a.root.innerHTML.includes('class="honro-logo '),'both missing images retain exact readable two-tier text');
-console.log(`PASS title contracts: confirmed 魂路 + upright lower-right 혼/로 + alpha-preserving ash ink; separate art + fallback + accessibility + no delay; 5 save-state branches and repeat entry; ${bytes} encoded bytes. Browser and art approval are separate.`);
+console.log(`PASS title contracts: confirmed 魂路 + upright lower-right 혼/로 + alpha-preserving ash ink; separate art + fallback + accessibility + no delay; 5 save-state branches and repeat entry; ${deliveredBytes} delivered bytes (${bytes} archival source bytes). Browser and art approval are separate.`);
