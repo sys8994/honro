@@ -1,0 +1,21 @@
+
+> test:stage2-airborne
+> node tests/stage2-airborne.mjs && node tests/stage2-wave-opportunity.mjs
+
+PASS Fresh stage2 retains all count/stat/terrain/objective budgets; all 29 other chapter builds exactly unchanged
+PASS A warning during flight cannot count that already-started attack; only a subsequent selectable player action releases it
+PASS A warning during an already-held charge also waits for a genuinely new player action
+PASS Default Game/Stage View/Playtest match, while unversioned Workshop imports retain legacy behavior
+PASS Actual ground engagement -> one warning -> next completed player action -> four roost actors eligible under unchanged cap3
+PASS Custom/workshop, other maps and terminal battles never acquire warning/activation
+PASS Continue mount unchanged; exact invalid historical clone only can recover64px without healing, moving valid actors or replaying repair
+PASS Production App export/Continue repeat preserves live policy and complete battle snapshot exactly
+PASS Both original2+2 waves: warning, genuinely new input, safe boundary, occupied wait, atomic resume, full-body air clearance and one-time entry
+PASS Death/victory cancel pending warnings without publishing or consuming any wave
+PASS Legacy completed events are exact no-ops
+PASS Pending warning remains pending and unchanged across repeated production App export/Continue
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
