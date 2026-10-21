@@ -2,9 +2,58 @@
 
 기준 master: `544825ee77930756dd28ce056ab15e12bb885278`. 실행 수정 SHA: `a1061dc4ae71803dfa37718f554f1f3511f8fbad`. 작업 브랜치: `codex/intro-loading-audit`. master 병합·Pages 발행은 통합 순서 조정을 위해 대기 중이다.
 
+## 후속 이력 조사 — 빨랐던 버전과 로딩 도입의 구분
+
+사용자가 기억한 빠른 구조는 실제로 존재한다. 다만 단일 원인으로 “이미지 지형 잔존” 또는 “37개 진행률”을 지목할 수 없다. 9월25일의 10장·간단한 지도 진입 구조에서 10월의 30장·새 쉼터·초상화·진행 호환 구조로 커지는 동안 이미 지연이 증가했다. 외부 모듈 분리는 별도의 cold 회귀를 만들었고, 뒤의 진행률 UI는 기존 대기를 더 일찍 보여주면서 실제 총 준비는 줄였다.
+
+### 도입 커밋과 코드 근거
+
+- `0d2ffc43af6dbbaa3fcba4d4cb5f624e4bb3f5bc`: 10장 단일 HTML, 2,663,674B(gzip6 911,504B). 새 시작 도착 화면은 map이다.
+- `669224a1e0e00d43bf4df32e6be056af28eff695`: 30장/첫 나루 타이틀, HTML6,881,524B(gzip1,744,191B).
+- `c0ab53444c4f73535bea2bbd43156482beb3c21d`: 한자 타이틀 시점 HTML14,289,719B(gzip4,170,323B). 이 사이 지형·장면·서사·전투 기능이 여러 커밋에서 증가했다. 이 증가 전부를 타이틀 변경 하나의 비용으로 돌리지 않는다.
+- `7deec60fb782632122f3558d0316d1b82ed3035a`: 분리 직전 HTML15,728,541B(gzip4,410,200B), 모든30장 포함.
+- `e2d3b861d1cea8d24488099490436dbd8f6cd96a`: 외부 모듈/JSON/CSS/그림 분리. `loadProject`가 base/library/30장 모두를 Promise.all로 준비하고, `hydrate`가 원시값을 포함한 객체/배열 전체를 async 재귀 복사한다. bootstrap은 모든 모듈을 preload한 뒤 순서대로 await import한다. 이때부터 외부 요청·복원 완료가 App 생성의 장벽이다. 단순히37개를 순서대로 fetch한 것은 아니다.
+- `1ef6a1af600da4279c30aced31d377aceca9495b`: 정적 타이틀을 일찍 표시하고 준비 중 버튼·firstPaint 장벽 도입. 동시에 worker/asset-path hydration/yield 및 제한12 preload로 비용을 줄인다. firstPaint는 그림 또는 상한1200ms 및 두 rAF를 기다리며, 매번1200ms를 고정 대기하는 타이머가 아니다. 이 시점에도30장 준비.
+- `4d99ec4a75ec47881221e86576863ed4076aee2f`: 숫자 모듈 진행률과 현재 장 중심 로딩. 이 SHA를 사전 로딩이 없던 빠른 버전으로 취급하면 안 된다.
+- `ca3ffb3b2372ea0e672b8891a6e49fa1c3a7b9b1`: 약159개 스크립트를 순서 의존 경계별 그룹으로 묶는다. 이후 분리/추가된 메타와 선택 코드 경계까지 반영한 현재 숫자가37이다.
+- `2aa7a04e87aece99d850b07d59e96c4b68446c49` 및 `5aa8d716ababc006488ead4133314073442a8d21`은 이미지 대응/벡터 복원 비교점이다. 외부 로딩·30장 증가·진행률 도입은 앞에서 이미 발생했다. 벡터 복원은 단일 HTML 구조로 되돌리는 변경이 아니다.
+
+### 동일 조건 역사 재측정
+
+각 커밋의 배포된 HONRO.html/web/음원을 git archive로 추출하고 재빌드하지 않았다. Chromium/390×844/CPU4/40ms/2MiB/s, gzip6 사전 압축, 각 cold/warm3회 중앙값. cold는 새 context, warm은 같은 context 두 번째 방문이다. HTML에도 max-age600을 부여한 실험 서버이며 실제 Pages의 압축·프로토콜·캐시를 재현했다고 주장하지 않는다. gzip 분리 직전/직후를 포함해 같은 조건으로 비교했다.
+
+ready는 App과 타이틀 액션이 존재하는 시각, title은 타이틀 그림이 사용 가능한 시각이다. 아래 장면까지 시간은 각 표본의 max(title,ready)+클릭 뒤 두rAF 시간이며 사람이 클릭하기까지의 대기는 제외한다. split 버전은 App보다 그림이 늦어 ready만으로 실제 화면 진입을 평가하면 지연을 과소평가한다. 이력 스크립트의 초기 totalToScene 필드는 ready+entry였으므로 split/pre-ui의 해석에 쓰지 않고 이 정의로 재산출했다. 9월25일 map과 이후 rest는 서로 다른 작업이므로 기능이 같은 순수 회귀비로 해석하지 않는다. 이어하기21장 전후 비교는 위 현행 변경 표를 사용한다.
+
+| 버전 | cold title/ready ms | warm ready ms | cold 장면까지 ms | warm 장면까지 ms |
+|---|---:|---:|---:|---:|
+| 9/25 0d2ffc43 (10장) | 836/836 | 506 | 1043 | 604 |
+| 10/8 669224a1 (30장) | 1815/1816 | 1254 | 2430 | 1648 |
+| 10/13 c0ab5344 | 3791/3791 | 2698 | 4456 | 3070 |
+| 분리 직전 7deec60f | 4467/4467 | 3338 | 5055 | 3823 |
+| 분리 직후 e2d3b861 | 6063/4962 | 2571 | 6629 | 2969 |
+| UI 직전 a25675f9 | 6587/5157 | 2509 | 7132 | 2881 |
+| 준비 UI 1ef6a1af | 368/3636 | 1809 | 4141 | 2200 |
+| 현재 장 로딩 4d99ec4a | 379/2897 | 1138 | 3447 | 1504 |
+| 이미지 대응 2aa7a04e | 367/2945 | 1302 | 3461 | 1737 |
+| 벡터 복원 5aa8d716 | 367/1622 | 749 | 2025 | 1051 |
+| 기준 master544825ee | 373/1602 | 754 | 2034 | 1038 |
+| 이번 수정15e8373d | 410/1415 | 651 | 1830 | 942 |
+
+무압축 별도3회도 조사했다. 분리 직전→직후 cold ready9971→9208ms지만 그림까지9971→10310ms, 장면까지10491→10833ms다. warm 장면9599→2913ms로 분리 캐시가 유리했다. 무압축 단일15.7MB HTML은 이 환경에서 warm에도 본문이 다시 전송됐으므로 단순히“재방문=전송0”으로 처리하지 않았다. gzip 일부 inline 표본은 ready 시점 navigation responseEnd/loadingFinished가 아직0이어서 전송0을 캐시 적중으로 해석하지 않았다. 벡터 복원→master→이번 수정 무압축 cold ready는2974→2965→2621ms, warm785→805→707ms였다.
+
+따라서 관측된 과거 cold 회귀는 (a) 기능·데이터 증가와 (b) e2d3b861의 외부 요청/전체 hydration 장벽이다. 준비 UI 도입 전후나 벡터 복원 후의 지속적인 악화는 이번 표본에서 확인되지 않았다. 이후 현재장 로딩/그룹화/worker 등의 개선이 과거 장벽을 이미 크게 줄였지만, 전역 등록 코드와 저장 호환자료의 초기 처리는 남아 있다. 현재 필요한 이미지 원경과 벡터 미술을 삭제하거나 10장 버전으로 돌아가는 것은 동등한 최적화가 아니다.
+
+### 추가 실험과 적용하지 않은 변경
+
+모든37모듈을 즉시 preload하는 실험을 gzip/무압축·새 시작/21장·cold/warm 각3회 수행했다. 새 시작 gzip ready 중앙값1415ms로 기존 제한12의1401ms보다 개선되지 않았고, 무압축2825ms로2636ms보다 느렸다. 다운로드 병렬성 부족을 해결한다는 가설이 지지되지 않아 실험 코드를 전부 되돌렸다. 이미 요청들이 겹치며 대량 선행 요청은 대역폭 경쟁을 늘릴 수 있다. 다른 표본의 작은 차이를 개선으로 채택하지 않았다.
+
+현재 장에 필요한 요청 우선화·불필요한 원경 초기 요청 제거·JS 전달량 축소는 적용하고 검증했다. 남은 클릭 뒤 렌더/HUD/초상화 비용은 위 프로파일에 수치로 남겼다. 저장 호환 전역을 기능별로 재설계하거나 renderer 캐시를 바꾸는 것은 이 인트로 작업 및 동시8장 변경과 독립적으로 검증해야 하므로 이번에 성급히 적용하지 않았다. 과거의 모든 속도를 회복했다거나 클릭 후 진입까지 해결했다는 결론은 아니다.
+
+재현 도구: `tools/testing/loading-history-browser.py`. snapshot 경로는 HONRO_HISTORY_ROOT, 기준은 HONRO_BASELINE_ROOT, 출력은 HONRO_HISTORY_OUT으로 지정한다. `REPS=3 RUN=repeated python tools/testing/loading-history-browser.py inline split ui chapter restored baseline current`이며 ENCODING=identity로 무압축을 선택한다. 폴더별 SHA는 위 표와 대응한다. 원시 기록은 history-early/repeated/identity/boundaries.json, 확장 preload는 window-all-gzip/identity.json에 보존했다. 기존 원시값은 수정하지 않았다.
+
 ## 후속 최종 결과 — 임계 경로와 압축 검증
 
-실행 수정 최종 SHA: `15e8373df54285d3883b29b45ca7f2d3b0ba04fa`. 앞의 표는 첫 번째 요청 정리 단계의 기록이며, 아래 결과가 후속 코드 축소까지 포함한 최종 비교다. 원본 master는 동일하다. 지형/스테이지/그림 데이터 189개는 그대로다.
+실행 수정 최종 SHA: `15e8373df54285d3883b29b45ca7f2d3b0ba04fa`. 뒤의 첫 번째 단계 표는 요청 정리만 수행한 기록이며, 아래 결과가 후속 코드 축소까지 포함한 최종 비교다. 원본 master는 동일하다. 지형/스테이지/그림 데이터 189개는 그대로다.
 
 Terser 5.51.2를 고정하고 compress:false/mangle:false로 JS 주석·공백만 줄였다. 코드 이름·순서·전역 등록·비동기 완료 경계를 보존한다. 37개 모듈 합계 raw 2,789,636→2,337,992B(-16.2%), gzip6 880,435→768,790B(-12.7%), Brotli11 713,023→632,629B(-11.3%)다. Brotli는 파일 크기 계산만 했고 실제 네트워크 반복 검사는 gzip으로 수행했다. 읽을 수 있는 원본 JS는 저장소에 그대로 있으며 배포본은 한 줄로 축소된다.
 
@@ -127,7 +176,7 @@ ready는 document data-honro-ready 관측, 첫 그림은 표시 가능한 title 
 
 `npm run build`, `tests/web-split.mjs`, `tests/web-build-retention.mjs`, `tests/ordered-runtime-groups.mjs`, `tools/testing/intro-loading-browser.py`, `tools/testing/startup-browser.py stage-checks` 통과. actual title에 Workshop버튼0, hidden input/API존재, 초기ACT2 SVG요청0, ACT1Image 미생성 확인. 새 시작/audio context running,11장/20장 원경·단일 이미지객체 재사용, 초기SVG실패→그림/재시도→ready,12장 실패시전투/profile/save불변→재시도, 늦게온21장 요청취소,21장HP/round/성장/장착/완료/author보존,여정첩/다음장전환,기존HTML→retained assets로ready를 확인했다. native/embedded와Workshop초기화도 보존했다.
 
-기존 `tests/title-redesign.mjs`는현재빌드가아닌 game/build.mjs의 옛portrait/landscape문자열계약에서 실패한다. 이번에 해당 검사/옛builder는수정하지않았고 실제브라우저타이틀검사로보완했다. WorkshopPlaytest전투의 기존schema문제를 수리하거나 전 장 정상완주를 검증한 것이 아니다. Android실기/느린모바일망/통계적효과/최종Pages는 미확인이다. 공개사이트 접근은 이번브랜치작업에서 시도하지 않았으며 로컬결과를배포검증으로표시하지 않는다.
+기존 `tests/title-redesign.mjs`는현재빌드가아닌 game/build.mjs의 옛portrait/landscape문자열계약에서 실패한다. 이번에 해당 검사/옛builder는수정하지않았고 실제브라우저타이틀검사로보완했다. WorkshopPlaytest전투의 기존schema문제를 수리하거나 전 장 정상완주를 검증한 것이 아니다. Android실기/느린모바일망/통계적효과/최종Pages는 미확인이다. 첫 단계에서는 공개사이트 접근을 시도하지 않았으며, 후속 요청은 CONNECT tunnel403으로 거부됐다. 로컬결과를배포검증으로표시하지 않는다.
 
 사용자 원본 Library `libfile_88af52b502d08191b50787bf5ac618b4`는 ID조회성공, local materialization 다운로드실패여서 원본픽셀은 직접대조하지못했다. 제공된스크린샷설명과현재코드로용도를추적했다. 아래새스크린샷은실제수정본 로컬Chromium화면이다.
 
@@ -137,4 +186,4 @@ ready는 document data-honro-ready 관측, 첫 그림은 표시 가능한 title 
 
 후속 optional-checks도 통과했다: 초기 선택모듈 요청0, preview/훈련 실패 후 재시도·화면/저장 보존·복원, embedded engine 진입 확인. Library의 후속 PDF 교체와 독립 PNG 3개 저장은 prepared upload helper의 hosted apps 호출 network 오류로 실패했다. 조회상 기존 PDF의 file ID/size/modified_at은 그대로이며 새 PNG는 검색되지 않았다. 따라서 위 Library 링크는 첫 단계 PDF이고, 후속 최종 결과는 이 저장소 문서와 로컬 갱신 PDF가 최신이다. 해당 batch는 중복 제출하거나 직접 업로드로 우회하지 않았다.
 
-2026-10-21 사용자 후속 설명에 따라 작업을 종료하지 않고, 사전 로딩 이전·도입 직후·벡터 복원 후의 실제 성능 회귀를 Git 이력과 같은 실행 조건으로 추적 중이다. master 통합 대기는 유지한다.
+2026-10-21 후속 이력 조사를 위에 반영했다. master 통합 대기는 유지한다.
