@@ -1,0 +1,49 @@
+{
+  "checks": [
+    {
+      "name": "A09 increase and pips",
+      "ok": true
+    },
+    {
+      "name": "A09 refund restores growth exactly",
+      "ok": true
+    },
+    {
+      "name": "A09 equipment applies",
+      "ok": true
+    },
+    {
+      "name": "A09 X closes modal",
+      "ok": true
+    },
+    {
+      "name": "A09 exact profile survives save and reload",
+      "ok": true
+    },
+    {
+      "name": "O16 increase and pips",
+      "ok": true
+    },
+    {
+      "name": "O16 refund restores growth exactly",
+      "ok": true
+    },
+    {
+      "name": "O16 equipment applies",
+      "ok": true
+    },
+    {
+      "name": "O16 X closes modal",
+      "ok": true
+    },
+    {
+      "name": "O16 exact profile survives save and reload",
+      "ok": true
+    },
+    {
+      "name": "no browser exceptions",
+      "ok": true
+    }
+  ],
+  "errors": []
+}
