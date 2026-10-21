@@ -1,0 +1,45 @@
+{
+  "sha": "cc1d6b6af7cfd4c05a4dbcc6449cf99f13f75753",
+  "renderSha256": "42d4ba683aedd4bc1c096847d6608e437491b5e6df5ca9e5cd9b5a5fd8904c10",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/assets/environment/geology-granite-foundation.svg\n M shared/assets/environment/geology-granite-ledge-neck.svg\n M shared/assets/environment/geology-granite-vertical.svg\n M shared/build.mjs\n M shared/runtime/stage2-layered-road-art.js\n M tests/stage2-layered-art-invariants.mjs\n M tools/environment/act1-scene-composition.mjs\n D web/data/campaign-library.4362d55269aa378f.json\n D web/data/campaign-library.5e87b616cb247ab0.json\n D web/data/campaign.0774711aa8cd3b24.json\n D web/data/campaign.393b2d4cba4a06cb.json\n D web/data/campaign.f370391021d6405e.json\n D web/data/chapter-02-assets.37517e5f3dc66819.json\n D web/data/chapter-02.8c5a99f96e4bbb9e.json\n D web/entries/game.340861e7adb25494.js\n D web/entries/game.7073f253aca2d36e.js\n D web/entries/game.97427487cbe2ace9.html\n D web/entries/game.ae996d9a9147f43e.html\n D web/entries/game.b8ecdb01f975a0d6.html\n D web/entries/game.ff9eae09893574a9.js\n D web/entries/workshop.4b27b941d5f90e89.js\n D web/entries/workshop.ac5ee73e20b6dcbe.js\n D web/entries/workshop.bc66007b9832b91c.js\n M web/manifest.json\n D web/runtime/campaign.91510dc9eb68f512.js\n D web/runtime/campaign.a88ffb6466f8d8fd.js\n D web/runtime/campaign.ca1f006bf837cd47.js\n D web/runtime/ordered-common-12.c5c21c10269a7c1c.js\n D web/runtime/ordered-common-13.9952d5a55bf9882a.js\n?? shared/runtime/geology-art.js\n?? web/data/campaign-library.15f29afd9a0568e7.json\n?? web/data/campaign-library.e31a9e3a2bde9a69.json\n?? web/data/campaign.53fae512bea8c218.json\n?? web/data/campaign.8e2ed8ad7f618472.json\n?? web/data/campaign.dc78504c536d680b.json\n?? web/data/chapter-02-assets.18e6a9af918321c0.json\n?? web/data/chapter-02-assets.1c67855525344e04.json\n?? web/data/chapter-02-assets.49c275d4c95e9360.json\n?? web/data/chapter-02.4e3f491f8a311e59.json\n?? web/data/chapter-02.86efff2dc280f042.json\n?? web/entries/game.2e4d4458c30d1ec9.html\n?? web/entries/game.47aed30e5b876492.js\n?? web/entries/game.968e7e81a90de37d.html\n?? web/entries/game.9fb60f472f98aeee.js\n?? web/entries/game.aa1a0e3d1c96bb2a.js\n?? web/entries/game.ed5f852570107c68.html\n?? web/entries/workshop.14c32e3676e7bc45.js\n?? web/entries/workshop.324237cfe05f90eb.js\n?? web/entries/workshop.c45e319b615f75f1.js\n?? web/runtime/campaign.13216962cf83a539.js\n?? web/runtime/campaign.34c0d8c101ac085c.js\n?? web/runtime/campaign.ff77f767e7937086.js\n?? web/runtime/ordered-common-12.4748565fb097da85.js\n?? web/runtime/ordered-common-12.c530646fb64f18f8.js\n?? web/runtime/ordered-common-13.9e4311eb34dfc2df.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "road-start",
+      "camera": {
+        "x": 700,
+        "y": 2780,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "high-start",
+      "camera": {
+        "x": 1000,
+        "y": 800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "road-exit",
+      "camera": {
+        "x": 3600,
+        "y": 2780,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

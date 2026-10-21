@@ -1,0 +1,7 @@
+{
+  "build": "\n> build\n> node workshop/build.mjs\n\n{\"gameBytes\":16909,\"workshopBytes\":3947,\"files\":248,\"playtest\":\"web/entries/game.20939a8cbcaf7756.html?embedded=1\"}\nBuilt Game, Workshop and the direct Playtest document with shared external modules\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.0\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0\nnpm notice To update run: npm install -g npm@12.2.0\nnpm notice\n",
+  "web-split": "{\"checks\":[\"All generated hashes and byte counts\",\"Native campaign input equals reconstructed chapters and library\",\"Native Game and embedded Game enter title\",\"Embedded persist preserves campaign storage\",\"Workshop uses direct iframe document\"],\"files\":248,\"stages\":30,\"library\":850}\n",
+  "geology-composition": "PASS native-size shared socket/datum composition, cached pure views, three assets reused at translated chapter12 specimen coordinates; no chapter12 map change\n",
+  "render-invariants": "PASS common assets + Stage1 exact pixels; native fresh/real R3/real R21 state purity, zero warmed art path allocation, shared render cache reuse; all campaign/gameplay sources preserved\n",
+  "same-save-representative": "PASS same real round3 save representative\n"
+}

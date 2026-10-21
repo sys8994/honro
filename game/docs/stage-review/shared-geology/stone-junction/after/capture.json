@@ -1,0 +1,36 @@
+{
+  "sha": "8f37500d9f05d7d3e51fdcbc122d4e545017f81d",
+  "renderSha256": "9fa33d7bbfb1b1c6ad9e8547e474b473b7b40095972c8d3e38a152c33b60553b",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/runtime/geology-art.js\n M tests/stage2-layered-art-invariants.mjs\n M tools/environment/act1-scene-composition.mjs\n M tools/environment/build-geology-art.mjs\n D web/data/campaign-library.60d9127de3d9ab91.json\n D web/data/campaign-library.76d7fbc8caa01235.json\n D web/data/campaign.683e5c3a5a40216f.json\n D web/data/campaign.8c7b336a45652299.json\n D web/data/campaign.e8ec8853ebe7a5ae.json\n D web/data/chapter-02-assets.9bffd45f98c632a1.json\n D web/data/chapter-02-assets.b672c3198fcffe75.json\n D web/data/chapter-02.5d09ff38a9f62fa0.json\n D web/data/chapter-02.5df2f8780114abc3.json\n D web/data/chapter-02.ac8fe69d0dcd673a.json\n D web/entries/game.20939a8cbcaf7756.html\n D web/entries/game.2c2a7284ce6ad2cc.js\n D web/entries/game.4820ead8ebb23fde.html\n D web/entries/game.66e96c6091cae9c5.js\n D web/entries/game.b2804a94f3786f37.js\n D web/entries/game.db53b22efd239474.html\n D web/entries/workshop.4ef892040a9abc20.js\n D web/entries/workshop.850127268fb545db.js\n D web/entries/workshop.fd2ebbbeffd84a52.js\n M web/manifest.json\n D web/runtime/campaign.62fbc69775c215ce.js\n D web/runtime/campaign.8405c9cc3737b2e9.js\n D web/runtime/campaign.d1b3bb60dc099be4.js\n D web/runtime/ordered-common-12.0905e67315482e57.js\n D web/runtime/ordered-common-12.b442556c6220644c.js\n D web/runtime/ordered-common-12.ef9aba58c5b98564.js\n?? game/docs/stage-review/shared-geology/stone-junction/\n?? web/data/campaign-library.c022227296153d84.json\n?? web/data/campaign-library.e75d10211561b0f8.json\n?? web/data/campaign-library.f39fa729d7a0f0fe.json\n?? web/data/campaign.237e780cbeeb1fe2.json\n?? web/data/campaign.4b917a9962cdd171.json\n?? web/data/campaign.8bddf0dcb5c5b39c.json\n?? web/data/chapter-02-assets.21eec26062d79a7b.json\n?? web/data/chapter-02-assets.58fd407691cb2b98.json\n?? web/data/chapter-02-assets.ade28c28dcdf2ea0.json\n?? web/data/chapter-02.f6968bd389e0a4df.json\n?? web/entries/game.02874518b0dd447e.html\n?? web/entries/game.1b945014bc316dae.js\n?? web/entries/game.25beb00f6f7d41ff.js\n?? web/entries/game.38a43ac7b9e3d018.js\n?? web/entries/game.6eea12d722ad80d2.html\n?? web/entries/game.b51f2246b92ef040.html\n?? web/entries/workshop.0d2cdf3a00e53c3e.js\n?? web/entries/workshop.334f51a088862e23.js\n?? web/entries/workshop.ecb9a46b4bb284f6.js\n?? web/runtime/campaign.40c6702bdc78f662.js\n?? web/runtime/campaign.48241f7eb39723a5.js\n?? web/runtime/campaign.fe55c9d70b8d68f8.js\n?? web/runtime/ordered-common-12.cd055ee7a2d91352.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "west-ledge-close",
+      "camera": {
+        "x": 1100,
+        "y": 1350,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 2,
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-hero",
+      "camera": {
+        "x": 290,
+        "y": 520,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

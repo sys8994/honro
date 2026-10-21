@@ -3,13 +3,13 @@
 // a convoy alert; shared proximity, targeting, flight, weapons and cap stay intact.
 const E=G.HonroEncounters,A=G.HonroAllies,C=G.HONRO_CORE;
 const ids=new Set(['foe-1','foe-4','foe-1-cluster','foe-4-cluster']);
-const active=b=>b?.honroStage===2&&b.honroCanonical&&(b.honroMapOrigin==='campaign'||b.honroStage2AirborneRevision===1)&&!b.honroCustom&&b.honroLayoutRevision===1&&b.honroEscortGoalX===3340;
+const active=b=>b?.honroStage===2&&b.honroCanonical&&(b.honroMapOrigin==='campaign'||b.honroStage2AirborneRevision===1)&&!b.honroCustom&&b.honroLayoutRevision===1&&(b.honroEscortGoalX===3340||b.honroStage2LayeredRevision===1&&b.honroEscortGoalX===4100);
 const roost=u=>!!u&&ids.has(u.id)&&u.side===1&&u.honroCluster==='shelf-roost'&&u.honroType===(u.id.startsWith('foe-1')?'crow':'bat')&&u.fixed;
 const alive=u=>u&&!u.dead&&u.hp>0;
 const stopped=app=>app.done||['won','lost'].includes(app.engine.b.phase);
 const serial=b=>b.honroState.actorTurnSerial||0;
 const responses=b=>{const m=b.honroState.stage2Airborne;return m?[m,...Object.values(m.waves||{})]:[];};
-function author(project){const s=project.stages?.find(s=>s.metadata?.stageId===2);if(s?.initialState?.honroEscortGoalX===3340&&s.units?.some(u=>u.id==='foe-1'&&u.x===3370&&u.y===1010))s.initialState.honroStage2AirborneRevision=1;return project;}
+function author(project){const s=project.stages?.find(s=>s.metadata?.stageId===2);if((s?.initialState?.honroEscortGoalX===3340||s?.initialState?.honroStage2LayeredRevision===1)&&s.units?.some(u=>u.id==='foe-1'&&u.x===3370&&u.y===1010))s.initialState.honroStage2AirborneRevision=1;return project;}
 // Retained API for old diagnostic callers. Flight clearance is now shared by
 // generation and paid movement; do not relocate one historical clone on load.
 function repair(){return false;}

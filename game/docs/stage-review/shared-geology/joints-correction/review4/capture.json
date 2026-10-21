@@ -1,0 +1,36 @@
+{
+  "sha": "429045e49ececbcfbfe9d6767b2192ea09b54acb",
+  "renderSha256": "9fa33d7bbfb1b1c6ad9e8547e474b473b7b40095972c8d3e38a152c33b60553b",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M game/docs/BUG_LOG.md\n M index.html\n M shared/runtime/geology-art.js\n M shared/runtime/stage2-layered-road-art.js\n M tests/stage2-layered-art-invariants.mjs\n D web/data/campaign-library.3867e2efb988f373.json\n D web/data/campaign.d105391e259c62c0.json\n D web/data/chapter-02-assets.c4e40c9ff5a6c7f9.json\n D web/entries/game.072924cb933b6d96.html\n D web/entries/game.73092c46514be171.js\n D web/entries/workshop.b38bf8767c30afb9.js\n M web/manifest.json\n D web/runtime/campaign.538ea53b1cebfcaa.js\n D web/runtime/ordered-common-12.c13aae5b07bfc98d.js\n?? web/entries/game.082c6352a53fbf62.html\n?? web/entries/game.bd99ee2be711b06f.js\n?? web/entries/workshop.fe2cb1b6d210d176.js\n?? web/runtime/ordered-common-12.413cf4654667a97a.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "high-close",
+      "camera": {
+        "x": 650,
+        "y": 700,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 2,
+      "view": "east-close",
+      "camera": {
+        "x": 3500,
+        "y": 2200,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,63 @@
+{
+  "sha": "bbe8acea8fa403b1f16df31a86dbae4c1f6d2069",
+  "renderSha256": "9fa33d7bbfb1b1c6ad9e8547e474b473b7b40095972c8d3e38a152c33b60553b",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/runtime/geology-art.js\n M tests/stage2-layered-art-invariants.mjs\n M tools/environment/act1-scene-composition.mjs\n M tools/environment/build-geology-art.mjs\n D web/entries/game.6724064de81c54c4.js\n D web/entries/game.bb966eccc1aff65c.html\n D web/entries/workshop.ffd7571d418a01c2.js\n M web/manifest.json\n D web/runtime/ordered-common-12.1f5b1cf8fb9bde9c.js\n?? web/data/campaign-library.76d7fbc8caa01235.json\n?? web/data/campaign.683e5c3a5a40216f.json\n?? web/data/chapter-02-assets.9bffd45f98c632a1.json\n?? web/data/chapter-02.5df2f8780114abc3.json\n?? web/entries/game.20939a8cbcaf7756.html\n?? web/entries/game.b2804a94f3786f37.js\n?? web/entries/workshop.4ef892040a9abc20.js\n?? web/runtime/campaign.d1b3bb60dc099be4.js\n?? web/runtime/ordered-common-12.ef9aba58c5b98564.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "west-ledge-close",
+      "camera": {
+        "x": 1100,
+        "y": 1350,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 2,
+      "view": "east-ledge-close",
+      "camera": {
+        "x": 3500,
+        "y": 2200,
+        "scale": 0.85
+      }
+    },
+    {
+      "stage": 2,
+      "view": "normal",
+      "camera": {
+        "x": 1000,
+        "y": 800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-hero",
+      "camera": {
+        "x": 290,
+        "y": 520,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.057352941176470586
+      }
+    }
+  ],
+  "errors": []
+}

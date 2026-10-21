@@ -1,0 +1,273 @@
+{
+  "scope": "Isolated finite Engine routes, actual high-start projectile, source equality, fresh spawn clearance. Not normal combat.",
+  "routes": [
+    {
+      "label": "High start -> intentional descent -> east road exit",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 290,
+        "y": 588.5294117647059,
+        "hp": 395,
+        "round": 1
+      },
+      "end": {
+        "x": 4094.685972270385,
+        "y": 2860,
+        "support": "canyon-ground",
+        "round": 5,
+        "moveLeft": 1063.6666666666624
+      },
+      "counts": {
+        "ticks": 3137,
+        "jumps": 0,
+        "waits": 4,
+        "walkCost": 4580.1615665644895,
+        "jumpCost": 0,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 4580.1615665644895,
+      "turnEquivalent": 4.031832364933529,
+      "events": [
+        {
+          "op": "drop",
+          "x": 944.2184210601686,
+          "y": 912.6338345886196,
+          "support": "left-tree-branch-upper",
+          "round": 1,
+          "moveLeft": 447.93024579920655
+        },
+        {
+          "op": "wait",
+          "x": 1362.3150968133068,
+          "y": 1617.2584908886922,
+          "support": "left-tree-branch-middle",
+          "round": 1,
+          "moveLeft": 9.236249591865683
+        },
+        {
+          "op": "drop",
+          "x": 1254.7264521996021,
+          "y": 1603.2251894173394,
+          "support": "left-tree-branch-middle",
+          "round": 2,
+          "moveLeft": 1027.500000000003
+        },
+        {
+          "op": "drop",
+          "x": 1446.403200747718,
+          "y": 2302.640320074772,
+          "support": "left-tree-branch-lower",
+          "round": 2,
+          "moveLeft": 343.47635740215105
+        },
+        {
+          "op": "wait",
+          "x": 1769.7053342413208,
+          "y": 2519.891438931013,
+          "support": "left-descent-stone-low",
+          "round": 2,
+          "moveLeft": 7.6021838438375795
+        },
+        {
+          "op": "wait",
+          "x": 2896.019305603648,
+          "y": 2860,
+          "support": "canyon-ground",
+          "round": 3,
+          "moveLeft": 9.666666666624906
+        },
+        {
+          "op": "wait",
+          "x": 4022.3526389370472,
+          "y": 2860,
+          "support": "canyon-ground",
+          "round": 4,
+          "moveLeft": 9.666666666600577
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 790,
+            "support": "left-tree-branch-upper"
+          },
+          "x": 788.7647347400568,
+          "y": 890.1851236535344,
+          "support": "left-tree-branch-upper",
+          "round": 1,
+          "moveLeft": 605.5855328438782
+        },
+        {
+          "goal": {
+            "x": 950,
+            "support": "left-tree-branch-upper",
+            "drop": true
+          },
+          "x": 944.2184210601686,
+          "y": 912.6338345886196,
+          "support": "left-tree-branch-upper",
+          "round": 1,
+          "moveLeft": 447.93024579920655
+        },
+        {
+          "goal": {
+            "x": 1370,
+            "support": "left-tree-branch-middle"
+          },
+          "x": 1370,
+          "y": 1618.2608695652175,
+          "support": "left-tree-branch-middle",
+          "round": 1,
+          "moveLeft": 16.986249591865665
+        },
+        {
+          "goal": {
+            "x": 1250,
+            "support": "left-tree-branch-middle",
+            "drop": true
+          },
+          "x": 1254.7264521996021,
+          "y": 1603.2251894173394,
+          "support": "left-tree-branch-middle",
+          "round": 2,
+          "moveLeft": 1027.500000000003
+        },
+        {
+          "goal": {
+            "x": 1010,
+            "support": "left-tree-branch-lower"
+          },
+          "x": 1010,
+          "y": 2253.75,
+          "support": "left-tree-branch-lower",
+          "round": 2,
+          "moveLeft": 782.6430240688159
+        },
+        {
+          "goal": {
+            "x": 1450,
+            "support": "left-tree-branch-lower",
+            "drop": true
+          },
+          "x": 1446.403200747718,
+          "y": 2302.640320074772,
+          "support": "left-tree-branch-lower",
+          "round": 2,
+          "moveLeft": 343.47635740215105
+        },
+        {
+          "goal": {
+            "x": 1830,
+            "support": "canyon-ground"
+          },
+          "x": 1829.1026389369379,
+          "y": 2860,
+          "support": "canyon-ground",
+          "round": 3,
+          "moveLeft": 1076.5833333333348
+        },
+        {
+          "goal": {
+            "x": 4100,
+            "support": "canyon-ground"
+          },
+          "x": 4094.685972270385,
+          "y": 2860,
+          "support": "canyon-ground",
+          "round": 5,
+          "moveLeft": 1063.6666666666624
+        }
+      ]
+    },
+    {
+      "label": "Continuous front road, no jumps",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 180,
+        "y": 2860,
+        "hp": 395,
+        "round": 1
+      },
+      "end": {
+        "x": 4096.333333333429,
+        "y": 2860,
+        "support": "canyon-ground",
+        "round": 4,
+        "moveLeft": 598.6666666666351
+      },
+      "counts": {
+        "ticks": 1870,
+        "jumps": 0,
+        "waits": 3,
+        "walkCost": 3916.3333333334213,
+        "jumpCost": 0,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 3916.3333333334213,
+      "turnEquivalent": 3.4474765258216737,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1306.333333333331,
+          "y": 2860,
+          "support": "canyon-ground",
+          "round": 1,
+          "moveLeft": 9.666666666677202
+        },
+        {
+          "op": "wait",
+          "x": 2432.666666666665,
+          "y": 2860,
+          "support": "canyon-ground",
+          "round": 2,
+          "moveLeft": 9.666666666665833
+        },
+        {
+          "op": "wait",
+          "x": 3559.0000000000646,
+          "y": 2860,
+          "support": "canyon-ground",
+          "round": 3,
+          "moveLeft": 9.666666666600577
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 4100,
+            "y": 2860,
+            "support": "canyon-ground"
+          },
+          "x": 4096.333333333429,
+          "y": 2860,
+          "support": "canyon-ground",
+          "round": 4,
+          "moveLeft": 598.6666666666351
+        }
+      ]
+    }
+  ],
+  "shots": [
+    {
+      "from": {
+        "x": 290,
+        "y": 588.5294117647059
+      },
+      "target": "foe-1",
+      "damage": 74,
+      "aim": {
+        "angle": 17.64651795889549,
+        "power": 0.9475094314084264
+      }
+    }
+  ],
+  "other29Unchanged": true,
+  "libraryUnchanged": true,
+  "authorIdempotent": true
+}

@@ -1,0 +1,132 @@
+{
+  "scope": "Native Canvas. Actual prior normal-play snapshots retained, no new combat claim. Full production render state purity, cache reuse and all campaign data exact equal ddb32fa0.",
+  "rows": [
+    {
+      "id": "fresh",
+      "highShot": {
+        "target": "foe-1",
+        "damage": 74,
+        "aim": {
+          "angle": 17.64651795889549,
+          "power": 0.9475094314084264
+        }
+      },
+      "statePure": true,
+      "fullSceneFirstAllocationDelta": 587,
+      "artLoopPathAllocations": 0,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 23.910014999999476,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 4,
+        "bgHits": 0,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 1,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "warmCache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 23.910014999999476,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 9,
+        "bgHits": 4,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 2,
+        "screenHits": 9,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 1024000,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      }
+    },
+    {
+      "id": "real-round3",
+      "highShot": null,
+      "statePure": true,
+      "fullSceneFirstAllocationDelta": 321,
+      "artLoopPathAllocations": 0,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 15.213065000000825,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 4,
+        "bgHits": 0,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 2,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 1024000,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "warmCache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 15.213065000000825,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 9,
+        "bgHits": 5,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 2,
+        "screenHits": 10,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 1024000,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      }
+    },
+    {
+      "id": "real-round21-win",
+      "highShot": null,
+      "statePure": true,
+      "fullSceneFirstAllocationDelta": 320,
+      "artLoopPathAllocations": 0,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 11.492735000000721,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 4,
+        "bgHits": 0,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 2,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 1024000,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "warmCache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 11.492735000000721,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 9,
+        "bgHits": 5,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 2,
+        "screenHits": 10,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 1024000,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      }
+    }
+  ]
+}

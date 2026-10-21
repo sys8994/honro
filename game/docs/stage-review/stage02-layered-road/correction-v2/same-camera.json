@@ -1,0 +1,34 @@
+[
+  {
+    "view": "overview",
+    "camera": {
+      "x": 2150,
+      "y": 1650,
+      "scale": 0.21176470588235294
+    },
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "before": "before/stage02-overview.png",
+    "beforeEvidenceCommit": "ddb32fa02f77c17941a523e0132833c2160863c9",
+    "after": "final/stage02-overview.png",
+    "afterSourceCommit": "d047ec792981c7c41d775bc9ae8a9cd53fc1f78e"
+  },
+  {
+    "view": "road-start",
+    "camera": {
+      "x": 700,
+      "y": 2780,
+      "scale": 0.65
+    },
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "before": "before/stage02-road-start.png",
+    "beforeEvidenceCommit": "ddb32fa02f77c17941a523e0132833c2160863c9",
+    "after": "final/stage02-road-start.png",
+    "afterSourceCommit": "d047ec792981c7c41d775bc9ae8a9cd53fc1f78e"
+  }
+]
