@@ -1,0 +1,54 @@
+{
+  "runtimeAndArtCommit": "283bc7994ba9842cfe68fb718d86e14e4e90343a",
+  "master": "bafc275c10c7a256692425641d7f0e4f69c002ca",
+  "reviewedIntegration": "1a87b16ff85e3fe72933683e2419a009572a67e1",
+  "endingSource": "05ea5b1de796922b1a13dee0e55a57d267d48da2",
+  "outcomeGuard": "4d26b130 preserved before outro/preload",
+  "preserved": [
+    {
+      "path": "shared/engine/src/engine.ts",
+      "sha256": "5ec0d73e878f864801af2e02ec106469c48fb1f4b6c2f5f1db3f56c7cde7292d",
+      "sameAsReviewedCandidates": true
+    },
+    {
+      "path": "shared/engine/src/enemyAI.ts",
+      "sha256": "c471c04a0c4409349240d296bc124179ed2e5586d9a24e139e8b3525b71add93",
+      "sameAsReviewedCandidates": true
+    },
+    {
+      "path": "shared/engine/src/main.ts",
+      "sha256": "89a96810be20c4c9d28cb795efe3eaff4bff0d22cf6c409e8e5ae95b2616cc70",
+      "sameAsReviewedCandidates": true
+    },
+    {
+      "path": "shared/engine/src/math.ts",
+      "sha256": "998cb9913e21e3734039aed7d6898a2aba39ad32907ff66db17d6a03c2addddf",
+      "sameAsReviewedCandidates": true
+    },
+    {
+      "path": "shared/runtime/story-framing.js",
+      "sha256": "04f6f576811c66ea9a7d8d4474688c19744dd6cfbc6c7ca3aed78d7dc3ae41e6",
+      "sameAsReviewedCandidates": true
+    },
+    {
+      "path": "shared/runtime/audio.js",
+      "sha256": "17766ff2d11115a59b6e5b1a4b1188d718a3ad21e663c236f673f364faffe6fa",
+      "sameAsReviewedCandidates": true
+    },
+    {
+      "path": "shared/data/campaign.json",
+      "sha256": "ba6afd5111e53fdb8bd61906a343e1cbc147843887cb2fa7af89521d291df078",
+      "sameAsReviewedCandidates": true
+    },
+    {
+      "path": "game/src/hud.css",
+      "sha256": "d0f45c17375d9481b18768bca2771df2e5597e5f871212d1e4575ae322ff392b",
+      "sameAsReviewedCandidates": true
+    }
+  ],
+  "newNormal10Count": 1,
+  "priorEvidence": "../integration-20261021 and ../act-endings; prior successes not relabeled as new",
+  "masterOrPagesWritten": false,
+  "originalPNGs": "parent Library version1; no download requested or retried; supplied decoded WebP exact checksums",
+  "screenshots": "direct Chromium PNG, no editing/collage/recompression"
+}

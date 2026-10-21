@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'archer' !== 'knight'
+
+    at file:///workspace/honro/tests/final-stage10-checkpoint.mjs:8:121 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'archer',
+  expected: 'knight',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

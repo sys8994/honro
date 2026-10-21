@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/honro/tests/final-act-endings-browser.py", line 88, in <module>
+    assert page.evaluate('HonroApp.engine.active.cls')=='knight'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

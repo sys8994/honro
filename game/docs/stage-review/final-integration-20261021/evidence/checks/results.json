@@ -1,0 +1,69 @@
+[
+  {
+    "label": "typecheck",
+    "command": [
+      "npm",
+      "--prefix",
+      "game",
+      "run",
+      "typecheck"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "withdrawal",
+    "command": [
+      "node",
+      "tests/sodan-withdrawal.mjs"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "stage10-save",
+    "command": [
+      "node",
+      "tests/stage10-save-preservation.mjs"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "wording",
+    "command": [
+      "node",
+      "tests/sodan-protection-wording.mjs"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "joystick-intent",
+    "command": [
+      "node",
+      "tests/joystick-intent.mjs"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "charge",
+    "command": [
+      "node",
+      "tests/charge-input.mjs"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "combined-migration",
+    "command": [
+      "node",
+      "tests/reviewed-integration-20261021.mjs"
+    ],
+    "exit": 0
+  },
+  {
+    "label": "web-split",
+    "command": [
+      "node",
+      "tests/web-split.mjs"
+    ],
+    "exit": 0
+  }
+]
