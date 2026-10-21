@@ -1,10 +1,11 @@
 """Enumerate authored battle sequences and capture every displayed page.
 Positions/progress are inspection fixtures, never a normal campaign playthrough.
 """
-import sys,json,html,os
+import sys,json,html,os,subprocess,hashlib
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import launch,ROOT
+SOURCE=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
 OUT=ROOT/'_local/reports/story-framing';OUT.mkdir(parents=True,exist_ok=True)
 CATALOG=r'''()=>{const a=HonroApp,b=a.engine.b,st=a.stage,seq=[];
  const add=(key,lines,options={})=>{if(lines?.length)seq.push({key,lines:JSON.parse(JSON.stringify(lines)),options});};
@@ -61,9 +62,9 @@ def run():
      for i in range(count):
       row=page.evaluate(FRAME)
       if not row:break
-      name=f'{qi:02}-{i:02}-{label}.jpg';page.screenshot(path=str(stage_dir/name),type='jpeg',quality=48);row.update({'stage':sid,'sequence':q['key'],'sequenceIndex':qi,'label':label,'image':f'stage-{sid:02}/{name}'});allrows.append(row)
+      name=f'{qi:02}-{i:02}-{label}.jpg';page.screenshot(path=str(stage_dir/name),type='jpeg',quality=48);row.update({'source':SOURCE,'stage':sid,'sequence':q['key'],'sequenceIndex':qi,'label':label,'image':f'stage-{sid:02}/{name}'});allrows.append(row)
       if i+1<count:page.evaluate('HonroStory.next(HonroApp)')
-   (OUT/'inventory.json').write_text(json.dumps({'catalog':catalog,'pages':allrows,'errors':errors},ensure_ascii=False,indent=2))
+   (OUT/'inventory.json').write_text(json.dumps({'source':SOURCE,'catalog':catalog,'pages':allrows,'errors':errors},ensure_ascii=False,indent=2))
    print(f'stage {sid}: {len(seqs)} sequences, {len([r for r in allrows if r["stage"]==sid])} captures',flush=True)
   browser.close()
   print('DONE',len(allrows),'missing',sum(bool(r.get('framing',{}).get('missing')) for r in allrows),'failed',sum(not r['included'] for r in allrows),'speakerFailures',sum(not r.get('speakerPass',True) for r in allrows),'errors',errors,flush=True)

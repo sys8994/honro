@@ -79,8 +79,8 @@ function witnessCart(b){
  if(b.honroCustom||b.honroStage!==1)return null;
  const p=anchor(b,'woodcutter');if(!p)return null;
  const surface=x=>G.HonroMapEngine.surfaceY(b.terrain,x,p.y)?.y??p.y;
- const left=surface(p.x-49),right=surface(p.x+49),angle=Math.atan2(right-left,98);
- return{x:p.x,y:(left+right)/2,angle,w:176,h:87};
+ const scale=.72,x=p.x,left=surface(x-49*scale),right=surface(x+49*scale),angle=Math.atan2(right-left,98*scale);
+ return{x,y:(left+right)/2,angle,scale,w:176*scale,h:87*scale};
 }
 function cartFront(scene,e){
  const b=e.b,p=witnessCart(b);if(!p)return;const c=scene.ctx;
@@ -88,7 +88,7 @@ function cartFront(scene,e){
  // The hidden cast remains absent from targeting, AI and minimap. Only the
  // visible head/shoulder behind the cart is painted before the authored reveal.
  if(alive(hidden))scene.unitBody(c,{...hidden,hurt:0,honroScenePose:{kind:'listen',time:0}},0);
- c.save();c.translate(p.x,p.y);c.rotate(p.angle);c.lineJoin='round';
+ c.save();c.translate(p.x,p.y);c.rotate(p.angle);c.scale(p.scale,p.scale);c.lineJoin='round';
  const path=(pts,fill,stroke='#302d25',width=2)=>{c.beginPath();pts.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));c.closePath();c.fillStyle=fill;c.fill();if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke();}};
  c.fillStyle='#17231c55';c.beginPath();c.ellipse(0,1,86,7,0,0,Math.PI*2);c.fill();
  path([[-55,-24],[96,-24],[105,-18],[-57,-17]],'#69553d');
