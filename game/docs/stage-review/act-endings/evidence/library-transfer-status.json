@@ -41,5 +41,52 @@
     "No image bytes were received, opened, edited, converted, or used as visual acceptance evidence.",
     "Version 0 was rejected by the user and is excluded.",
     "The signed URL result itself was normal; the actual supported download step failed."
-  ]
+  ],
+  "diagnosis": {
+    "classification": "failed_cause_unknown",
+    "confirmed": "All three version1 supported-helper executions exited1 with only the captured output: library file transfer failed: download failed.",
+    "httpStatus": null,
+    "proxyError": null,
+    "permissionError": null,
+    "separateStderrAvailable": false,
+    "networkOnlyFailureConfirmed": false,
+    "permissionDenialConfirmed": false,
+    "libraryPrepareResult": {
+      "warnings": [],
+      "unavailableItemCount": 0,
+      "providedVersion1Transfers": 3,
+      "structuredHTTPOrPermissionErrorPresent": false
+    },
+    "recordedExecutionResults": [
+      {
+        "act": 1,
+        "chunkId": "2fd47f",
+        "exitCode": 1,
+        "capturedOutput": "library file transfer failed: download failed\n"
+      },
+      {
+        "act": 2,
+        "chunkId": "757a1b",
+        "exitCode": 1,
+        "capturedOutput": "library file transfer failed: download failed\n"
+      },
+      {
+        "act": 3,
+        "chunkId": "80925e",
+        "exitCode": 1,
+        "capturedOutput": "library file transfer failed: download failed\n"
+      }
+    ],
+    "earlierSeparateObservation": {
+      "scope": "Earlier direct transfer attempt for rejected version0; not the version1 supported-helper execution.",
+      "capturedException": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>",
+      "interpretation": "A proxy tunnel rejection was observed for that earlier separate attempt only. It does not establish the cause of the version1 helper failures."
+    },
+    "investigationLimits": [
+      "Existing captured execution output and structured preparation metadata only.",
+      "No new download, helper invocation, URL request, credential inspection, or helper implementation inspection.",
+      "No signed URL, token, or credential retained in this evidence.",
+      "No replacement generation or version0 substitution."
+    ]
+  }
 }

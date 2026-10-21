@@ -34,3 +34,9 @@
 - 이미지 미술·실제공개Pages·전30장 전투·사람 전체 플레이 검수는 수행하지 않았다.
 
 최종 저장 검수에서 진행 중 전투의 `honroNarrativeContent`와 `honroStory`가 구문을 동결한다는 것을 확인했다. 안전한10장 후일담에 한해 부모 확정5개의 정확한 옛 문장만 현재 canonical 문구로 투영한다. 실제21턴 원본 저장으로 첫/마지막 줄을 렌더했고,모든 다른 줄/metadata/대사 cursor/자원은 불변 및 투영은 idempotent임을 확인했다. 이미 완료한 막을 강제 재생하지 않는다.
+
+## 기존 실패 출력의 원인 분류 (추가 요청 없음)
+
+v1 지원 helper3회는 실행 도구의 합산 출력에 `library file transfer failed: download failed` 한 줄과 exit1만 남겼다. 별도 stderr/HTTP 상태/프록시 오류/permission 코드가 제공되지 않았다. 준비 결과에는 unavailable item0·warnings없음·version1 transfer3개가 있었고,공개 오류 메타데이터도 없었다. 따라서 **지원 helper 다운로드 실패는 확정,하위 원인은 불명**이다. 단순 네트워크 장애나 권한거부로 확정하지 않는다.
+
+이전 반려된v0의 별개 직접 전송에서는 `URLError: <urlopen error Tunnel connection failed: 403 Forbidden>`가 관찰됐으나,이를 v1 지원 helper 실패의 원인으로 동일시할 증거는 없다. 추가 전송/재시도/URL요청/helper내부 확인/자격정보 확인은 하지 않았다. 서명URL·토큰은 증거에 포함하지 않았다. 원본 미생성으로 이미지 연결/픽셀 검수 차단 상태는 유지한다.
