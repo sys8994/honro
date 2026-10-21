@@ -9,7 +9,9 @@ spec=importlib.util.spec_from_file_location("framing_catalog",ROOT/"tests/story-
 catalog=importlib.util.module_from_spec(spec);spec.loader.exec_module(catalog)
 CATALOG,PREP=catalog.CATALOG,catalog.PREP
 
-OUT=ROOT/'_local/reports/dialogue-camera-motion';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/os.environ.get('HONRO_MOTION_OUT','_local/reports/dialogue-camera-motion');OUT.mkdir(parents=True,exist_ok=True)
+if os.environ.get('HONRO_DEFENDER_FIXTURE')=='1':
+ PREP=PREP.replace('HonroStory.start(a,q.lines,options);',"if(q.key==='cooperationDefense'){const boss=b.units.find(u=>u.id==='boss');for(const [cls,dx]of [['archer',-210],['mage',-70],['knight',230]]){const u=b.units.find(u=>u.side===0&&u.cls===cls);if(u&&boss){u.x=boss.x+dx;u.y=HonroWorld.top(b,u.x,boss.y+250);}}}HonroStory.start(a,q.lines,options);")
 TRACE=r'''ms=>{window.cameraTrace=[];const until=performance.now()+ms;function take(t){const s=HonroApp.scene,r=s.storyFrameReport;cameraTrace.push({t,x:s.x,y:s.y,scale:s.scale,id:r?.id,target:r?.targetCamera});if(t<until)requestAnimationFrame(take);}requestAnimationFrame(take);}'''
 SNAP=r'''()=>{const a=HonroApp,s=a.scene,r=s.storyFrameReport,{w,h}=s.size();return{index:a.dialogue?.index,text:a.dialogue?.lines[a.dialogue.index]?.[1],framing:r,viewport:{w,h},contained:!!r&&r.boxes.every(p=>{const x=(p.x-s.x)*s.scale+w/2,y=(p.y-s.y)*s.scale+h/2;return x>=r.rect.x-1&&y>=r.rect.y-1&&x+p.w*s.scale<=r.rect.x+r.rect.w+1&&y+p.h*s.scale<=r.rect.y+r.rect.h+1;}),overflow:document.documentElement.scrollWidth>innerWidth};}'''
 
@@ -25,7 +27,9 @@ def run():
    page.wait_for_function('id=>HonroApp.engine?.b.honroStage===id&&HonroApp.dialogue',arg=sid,timeout=120000)
    seq=page.evaluate(CATALOG);page.evaluate('window.framingBase=JSON.parse(JSON.stringify(HonroApp.engine.b))');return seq
   rows=[];traces=[]
+  selected={int(x) for x in os.environ.get('HONRO_MOTION_STAGES','1,2,3,10,19,28').split(',')}
   for sid,key,label in [(1,'event-witness','cart'),(2,'entry','cliff'),(3,'entry','moving-arrival'),(10,'cooperationDefense','defense'),(19,'entry','act2'),(28,'entry','act3')]:
+   if sid not in selected:continue
    seq=stage(sid);q=next(q for q in seq if q['key']==key)
    for device,size in [('desktop',{'width':1280,'height':800}),('mobile',{'width':390,'height':844})]:
     page.set_viewport_size(size);count=page.evaluate(PREP,q)
