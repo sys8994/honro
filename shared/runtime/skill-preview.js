@@ -101,6 +101,7 @@ function setup(app,selectedId,h,canvas,options={}){
  else if(id==='O03')aim={angle:-30,power:.42};
  else if(id==='O05')aim={angle:0,power:.75};
  else if(id==='A11')aim={angle:68,power:.65};
+ else if(id==='A13')aim={angle:65,power:.55};
  else if(id==='A03')aim={angle:0,power:.8};
  else if(id==='A15')aim={angle:62,power:.52};
  else if(id==='M11')aim={angle:30,power:.72};

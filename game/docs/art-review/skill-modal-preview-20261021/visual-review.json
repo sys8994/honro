@@ -1,7 +1,7 @@
 {
   "registered": 84,
   "functionalPass": 84,
-  "currentPixelConfirmed": 83,
+  "currentPixelConfirmed": 84,
   "currentPixelUnconfirmed": 0,
   "currentPixelFailed": 0,
   "confirmedIds": [
@@ -36,6 +36,7 @@
     "A99",
     "A11",
     "A09",
+    "A13",
     "A12",
     "A15",
     "A05",
@@ -88,23 +89,6 @@
     "OP03",
     "OP04",
     "OP05"
-  ],
-  "previouslyViewedButNotSignedOff": [
-    "A04",
-    "A07",
-    "A09",
-    "A12",
-    "A99",
-    "AP02",
-    "AP03",
-    "M11",
-    "MP02",
-    "O03",
-    "OP02",
-    "OP03",
-    "OP04",
-    "OP05",
-    "SP03"
   ],
   "rows": [
     {
@@ -658,19 +642,44 @@
       "id": "A13",
       "name": "추혼시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "partial",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "고지 표적의 실제 발판 접지·상승 비행·명중75 및 360px를 확인했다. 그러나 이 화면은 적 추적과 낙하 보너스를 충분히 보여주지 못해 완전 시각 통과를 철회한다. 선택 네이티브 조준 탐색에서는 65도/힘.55로 경지1·8 명중 및 최고점 대비 낙하291/281을 확인했으나 아직 제품 시연 설정/궤적 표시/최종 캡처에 반영하지 않았다.",
-      "coreCapture": "archer-focused/A13-1280-core.png",
-      "mobileVisibleCapture": "archer-focused/A13-360-core.png",
+      "note": "65도/힘0.55의 실제 발사 → 최고점의 수평 비행 → 표적 쪽으로 휘는 유도·낙하 → 실제 발판 접지 표적 명중49/84를 경지1/8·1280/360에서 각각 직접 확인. 엔진 steer 원함수를 한 번 실행한 입력/반환 벡터만 관찰한 누적 방향 보정46.66/75.89도, 최고점 이후 낙하291.05/281.17. 반환값·좌표·명중·전투수치를 변경하지 않음. 높은 탄도의 작은 화살은 단일 정지화면만으로 해석하기 어려워 apex→steering→descent→hit 순서와 실제 벡터 기록을 함께 제공. 벽 차단·이동 표적·모든 경지의 수치 비교는 별도 미시연.",
+      "coreCapture": "a13-homing/A13-r8-1280-descent.png",
+      "mobileVisibleCapture": "a13-homing/A13-r8-360-hit.png",
       "reviewedFrames": [
-        "audit/A13-start.png",
-        "audit/A13-core.png",
-        "audit/A13-result-1280.png",
-        "archer-focused/A13-1280-flight.png",
-        "audit/A13-result-360.png"
+        "a13-homing/A13-r1-1280-start.png",
+        "a13-homing/A13-r1-1280-apex.png",
+        "a13-homing/A13-r1-1280-steering.png",
+        "a13-homing/A13-r1-1280-descent.png",
+        "a13-homing/A13-r1-1280-hit.png",
+        "a13-homing/A13-r1-1280-result.png",
+        "a13-homing/A13-r1-1280-modal.png",
+        "a13-homing/A13-r1-360-start.png",
+        "a13-homing/A13-r1-360-apex.png",
+        "a13-homing/A13-r1-360-steering.png",
+        "a13-homing/A13-r1-360-descent.png",
+        "a13-homing/A13-r1-360-hit.png",
+        "a13-homing/A13-r1-360-result.png",
+        "a13-homing/A13-r1-360-modal.png",
+        "a13-homing/A13-r8-1280-start.png",
+        "a13-homing/A13-r8-1280-apex.png",
+        "a13-homing/A13-r8-1280-steering.png",
+        "a13-homing/A13-r8-1280-descent.png",
+        "a13-homing/A13-r8-1280-hit.png",
+        "a13-homing/A13-r8-1280-result.png",
+        "a13-homing/A13-r8-1280-modal.png",
+        "a13-homing/A13-r8-360-start.png",
+        "a13-homing/A13-r8-360-apex.png",
+        "a13-homing/A13-r8-360-steering.png",
+        "a13-homing/A13-r8-360-descent.png",
+        "a13-homing/A13-r8-360-hit.png",
+        "a13-homing/A13-r8-360-result.png",
+        "a13-homing/A13-r8-360-modal.png"
       ],
-      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
+      "mobileLimit": "360px 원본에서 최고점·유도·낙하·명중 및 모달을 직접 확인. 높은 탄도에서는 화살이 작아 연속 핵심 프레임과 실엔진 관찰값으로 보조. 결과를 그려 넣거나 카메라/화살 크기를 바꾸지 않음.",
+      "functionalEvidence": "a13-homing/checks.json",
+      "priorPartialResolved": "28e309be의 고지 단순 명중 partial을 시연 초기 발사 입력 한 줄과 실제 관찰/캡처로 해소."
     },
     {
       "id": "A12",
@@ -1635,6 +1644,23 @@
     }
   ],
   "currentPixelReviewed": 84,
-  "currentPixelPartial": 1,
-  "reviewScope": "84 registered skills reviewed individually at original capture size; confirmed means the primary effect is visible, not every numerical variant or secondary condition. Per-skill limits are explicit."
+  "currentPixelPartial": 0,
+  "reviewScope": "84 registered skills reviewed individually at original capture size; confirmed means the primary effect is visible, not every numerical variant or secondary condition. Per-skill limits are explicit.",
+  "historicalStagePreviouslyViewedButNotSignedOff": [
+    "A04",
+    "A07",
+    "A09",
+    "A12",
+    "A99",
+    "AP02",
+    "AP03",
+    "M11",
+    "MP02",
+    "O03",
+    "OP02",
+    "OP03",
+    "OP04",
+    "OP05",
+    "SP03"
+  ]
 }
