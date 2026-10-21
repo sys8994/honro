@@ -3,7 +3,7 @@ import { AtlasController, type AtlasView } from './atlasControls';
 import { ATLAS_WIDTH, ATLAS_HEIGHT, ATLAS_REGIONS, STAGE_PLACES, HUBS, type HubId } from './atlasLayout';
 import type { Profile, Battle, ClassId, Event, Unit, Skill } from './types';
 import { CLASSES, SKILLS, STAGES, THEMES, ITEM_INFO } from './data';
-import { clamp, STEP, escapeHTML, topAt, AIM_MIN, AIM_MAX, swipeAxis, joystickAxes } from './math';
+import { clamp, STEP, escapeHTML, topAt, AIM_MIN, AIM_MAX, swipeAxis, joystickGesture, JoystickState } from './math';
 import { createBattle, upgradeBattle } from './world';
 import { Engine } from './engine';
 import { Renderer } from './art';
@@ -94,7 +94,7 @@ class App {
         y: number;
     } | null = null;
     private spaceAction: 'jump' | 'fire' | null = null;
-    private stick: {id:number;originX:number;originY:number;x:number;y:number;range:number;horizontalEngaged?:boolean}|null=null;
+    private stick: (JoystickState & {id:number;originX:number;originY:number;range:number;unit:Unit;round:number})|null=null;
     private lastPhysicsMode = '';
     private previewSkillId = '';
     private previewStarted = 0;
@@ -671,7 +671,7 @@ class App {
                     break;
                 case 'wait':
                     this.closeModal();
-                    this.cancelCharge();
+                    this.cancelCharge(); this.releaseStick();
                     this.engine?.cancelMovement();
                     this.engine?.wait();
                     this.save();
@@ -848,7 +848,7 @@ class App {
             this.accumulator = 0;
             // Native media channels are re-armed by the next real user gesture.
         } });
-        window.addEventListener('pagehide', () => { this.cancelCharge(); this.save(); });
+        window.addEventListener('pagehide', () => { this.cancelCharge(); this.resetTouches(); this.save(); });
         window.addEventListener('resize', () => { this.last = performance.now(); this.syncOrientationGate(); });
         window.addEventListener('orientationchange', () => { this.cancelCharge(); this.resetTouches(); this.keys.clear(); window.setTimeout(()=>this.syncOrientationGate(),80); });
         document.addEventListener('fullscreenchange', () => { this.syncOrientationGate(); if(document.fullscreenElement) void this.lockOrientation(false); });
@@ -932,8 +932,15 @@ class App {
         this.updateHUD();
     } }
     resetTouches() { this.canvasTouches.clear(); this.moveTouches.clear(); this.releaseStick(); this.pinch = null; this.gestureBlocked = false; this.gesture = null; this.spaceAction = null; this.pressStart = null; clearTimeout(this.pressTimer); }
-    releaseStick(){this.stick=null;$('swipe-pad')?.classList.remove('held');if($('stick-knob'))$('stick-knob').style.transform='translate(0px,0px)';}
-    paintStick(){const pad=$('swipe-pad'),knob=$('stick-knob');if(!pad||!knob)return;const x=this.stick?.x||0,y=this.stick?.y||0,r=Math.max(22,Math.min(pad.clientWidth,pad.clientHeight)*.27);knob.style.transform=`translate(${x*r}px,${-y*r}px)`;}
+    releaseStick(){
+        const pointer=this.stick;this.stick=null;
+        const pad=$('swipe-pad');pad?.classList.remove('held');
+        if($('stick-knob'))$('stick-knob').style.transform='translate(0px,0px)';
+        const label=pad?.querySelector('.stick-label');if(label)label.textContent='MOVE / AIM';
+        if(pointer&&pad?.hasPointerCapture(pointer.id))pad.releasePointerCapture(pointer.id);
+    }
+    validateStick(){const p=this.stick;if(p&&(!this.engine?.canAct()||this.paused||this.engine.active!==p.unit||this.engine.b.round!==p.round))this.releaseStick();}
+    paintStick(){const pad=$('swipe-pad'),knob=$('stick-knob');if(!pad||!knob)return;const x=this.stick?.visualX||0,y=this.stick?.visualY||0,r=Math.max(22,Math.min(pad.clientWidth,pad.clientHeight)*.27);knob.style.transform=`translate(${x*r}px,${-y*r}px)`;const label=pad.querySelector('.stick-label');if(label)label.textContent=this.stick?.intent==='aimOnly'?'조준':this.stick?.intent==='moveAim'?'MOVE-AIM':'MOVE / AIM';}
     canvasPoint(ev: PointerEvent) { const canvas = $('battle-canvas'), r = canvas.getBoundingClientRect(); return { x: ev.clientX - r.left, y: ev.clientY - r.top }; }
     pinchMetrics() { const a = [...this.canvasTouches.values()]; if (a.length < 2)
         return null; return { distance: Math.max(8, Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y)), x: (a[0].x + a[1].x) / 2, y: (a[0].y + a[1].y) / 2 }; }
@@ -955,7 +962,7 @@ class App {
             return;
         }
         const pad=target.closest<HTMLElement>('#swipe-pad');
-        if(pad){ev.preventDefault();if(!this.stick&&this.engine?.canAct()){const r=pad.getBoundingClientRect();this.stick={id:ev.pointerId,originX:r.left+r.width/2,originY:r.top+r.height/2,x:0,y:0,range:Math.max(32,Math.min(r.width,r.height)*.42)};this.capture(pad,ev.pointerId);pad.classList.add('held');this.pointerMove(ev);}return;}
+        if(pad){ev.preventDefault();if(!this.stick&&this.engine?.canAct()){const r=pad.getBoundingClientRect();this.stick={id:ev.pointerId,originX:ev.clientX,originY:ev.clientY,...joystickGesture(0,0,Math.max(32,Math.min(r.width,r.height)*.42)),range:Math.max(32,Math.min(r.width,r.height)*.42),unit:this.engine.active!,round:this.engine.b.round};this.capture(pad,ev.pointerId);pad.classList.add('held');this.pointerMove(ev);}return;}
         const jump = target.closest<HTMLElement>('#jump');
         if (jump) {
             ev.preventDefault();
@@ -996,7 +1003,12 @@ class App {
         this.gesture = { id: ev.pointerId, x: p.x, y: p.y, lastX: p.x, lastY: p.y, kind: 'pan', moved: false, worldX: world.x, worldY: world.y };
     }
     pointerMove(ev: PointerEvent) {
-        if(this.stick?.id===ev.pointerId){ev.preventDefault();if(this.paused||!this.engine?.canAct()){this.releaseStick();return;}const axes=joystickAxes(ev.clientX-this.stick.originX,this.stick.originY-ev.clientY,this.stick.range,!!this.stick.horizontalEngaged);this.stick.x=axes.x;this.stick.y=axes.y;this.stick.horizontalEngaged=axes.moving;this.paintStick();return;}
+        if(this.stick?.id===ev.pointerId){
+            ev.preventDefault();this.validateStick();const p=this.stick;if(!p)return;
+            const axes=joystickGesture(ev.clientX-p.originX,p.originY-ev.clientY,p.range,p);
+            if(axes.facingIntent&&axes.facingIntent!==p.facingIntent)this.engine!.face(axes.facingIntent);
+            Object.assign(p,axes);this.paintStick();return;
+        }
         if (this.pressStart && Math.hypot(ev.clientX - this.pressStart.x, ev.clientY - this.pressStart.y) > 9) {
             clearTimeout(this.pressTimer);
             this.pressTimer = 0;
@@ -1077,6 +1089,7 @@ class App {
         this.last = now;
         try {
             const e = this.engine;
+            this.validateStick();
             if (this.screen === 'battle' && e && this.renderer) {
                 if (!this.paused) {
                     if (e.canAct()) {
@@ -1098,7 +1111,7 @@ class App {
                             const d=Number(this.keys.has('ArrowRight'))-Number(this.keys.has('ArrowLeft'))+(this.stick?.x||0);
                             if(Math.abs(d)>.02){e.move(clamp(d,-1,1),STEP);this.renderer.follow();}
                         }
-                        const before=e.b.phase;e.tick(STEP);
+                        const before=e.b.phase;e.tick(STEP);this.validateStick();
                         if(e.b.phase==='review'&&before!=='review'){this.accumulator=0;this.releaseStick();break;}
                         this.accumulator -= STEP;
                         steps++;
@@ -1131,7 +1144,7 @@ class App {
             console.error(err);
             this.cancelCharge();
             this.paused = true;
-            this.keys.clear();
+            this.resetTouches(); this.keys.clear();
             this.overlay.innerHTML = `<section class="dialog" role="dialog" aria-modal="true"><h2>전투를 안전하게 중단했습니다</h2><p>마지막 자동 저장부터 다시 이어갈 수 있습니다.</p><div class="dialog-actions"><button class="btn primary" onclick="location.reload()">다시 불러오기</button></div><details><summary>오류 내용</summary><pre>${esc(String(err))}</pre></details></section>`;
             this.overlay.classList.add('open');
             return;

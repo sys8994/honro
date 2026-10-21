@@ -2,7 +2,24 @@
 
 하부 서측을 팬하면 주민 구역 밖의 긴 암대와 더 낮은 추락받이가 같은 밝은 보행 rim으로 보여 용도와 복귀점이 읽히지 않았다. 실제 정상 Continue 후 적/자원을 유지한 담허가 동측 내리막으로 주민 암대에 진입하고, 다른 정상 체크포인트에서 서측 암대→기본 점프1회→회귀 뿌리→의식 암대로 돌아감을 확인했다. 깊은 act2-floor는 주동선이 아니며 의도적 낙하 후 서쪽 복귀가 (2486,8219)에서 실패했다. 이를 접근 가능한 회귀로로 판정하지 않는다.
 
-기존 collision·적·이벤트·진행/성장/SP/보상을 보존하고, 깊은 추락받이의 밝은 rim만 끄며 실제 회귀 갈림길/점프 접점에 짧은 지리 표식2개를 둔다. build, landscape-art, terrain-readability, web-split과 생산 Chromium5화면의 렌더/성장 불변·오류0을 확인했다. 실제 주민 암대에서 M01은 기존 적에게85피해/기력0소모, 서측 중앙에서는 가까운6적 기본파 유효 사선이 없어 공격 이득을 주장하지 않는다. 기존 ravine-tactics는 변경 전부터 현행53적과 과거45적 고정값이 달라 선행 조건에서 실패한다. 원 첨부는 Library에서 식별됐으나 저장소 바이트 전송이 프록시403으로 차단돼 직접 이미지 대조는 미완료다. [현재 하부 경로 계약](STAGE11_LOWER_ROUTES.md), `_local/reports/stage11-lower-review/`에 원본 PNG/trace를 보존하며 부모 검수 전 master/Pages는 미반영이다.
+기존 collision·적·이벤트·진행/성장/SP/보상을 보존하고, 깊은 추락받이의 밝은 rim만 끄며 실제 회귀 갈림길/점프 접점에 짧은 지리 표식2개를 둔다. build, landscape-art, terrain-readability, web-split과 생산 Chromium5화면의 렌더/성장 불변·오류0을 확인했다. 실제 주민 암대에서 M01은 기존 적에게85피해/기력0소모, 서측 중앙에서는 가까운6적 기본파 유효 사선이 없어 공격 이득을 주장하지 않는다. 기존 ravine-tactics는 변경 전부터 현행53적과 과거45적 고정값이 달라 선행 조건에서 실패한다. 작업 도중 추가된 최신 master bafc275c의 승인 P0 조이스틱 입력도 원본 그대로 통합하고 재빌드·web-split·입력120판정·필수 진입/선택 복귀를 재확인했다. 원 첨부는 Library에서 식별됐으나 저장소 바이트 전송이 프록시403으로 차단돼 직접 이미지 대조는 미완료다. [현재 하부 경로 계약](STAGE11_LOWER_ROUTES.md), `_local/reports/stage11-lower-review/`에 원본 PNG/trace를 보존하며 부모 검수 전 master/Pages는 미반영이다.
+
+## 2026-10-21 — 승인된 P0 조이스틱 master 통합
+
+- 부모가 입력 구현·최종 검수·390px 실제 캡처를 승인해 최신 master `27efe8eb`에 승인 입력 `adda49d2`만 병합하고 Game/Workshop/embedded 생성물을 재빌드했다. 미승인 병렬 소스는 포함하지 않는다.
+- 빌드·typecheck·의도/물리120·충전126·S13 14·web-split 및 실제 생성 문서 입력255판정이 통과했다. [통합 증거·대표 PNG/trace](stage-review/joystick-intent/master-integration/README.md). 역사 runtime-contracts는 unchanged shared/build.mjs 승인 해시에서 기존 master와 똑같이 실패했으며 로그를 분리 보존한다. 실폰/Safari는 미검증이다. 원격 SHA/Pages/공개 페이지 접근 결과는 최종 배포 보고와 구분한다.
+
+## 2026-10-21 — P0 조이스틱 최종 집중·브라우저 검수 (master 미병합)
+
+- 의도/방향/생명주기 집중 검수와 종합 검수 통과. 실제 생성 Game 문서의 Chromium CDP touch→PointerEvent/캡처→production frame/물리 경로로 255개 판정, 429 상태, 614 이벤트를 기록했다. 320/360/390px 세로·844px 가로에서 상/하 양쪽 19/20/21도, 45도→조준+미세 이동, 중앙 통과, release, tiny jitter, cancel/캡처/blur/pause/동행/턴, 다중 터치 발사·점프와 PC 회귀를 확인했다. aimOnly 보행 호출 0·좌표/이동도 보존, 방향 반사 높낮이 유지, 별도 낙하/충격의 정상 물리를 확인했다.
+- 증거: `_local/reports/joystick-intent/review.md`, `input-trace.json`, `mobile-{320,360,390,844}-aim-only.png`, 소스/빌드 provenance. [계약·실행 방법](MOBILE_JOYSTICK_INPUT.md). 실제 휴대기기·Safari·OS 회전은 미검증이며 합성 입력을 실장치 검증으로 표시하지 않는다. 입력 소스만 원격 저장하고 master/Pages는 부모 최종 검수까지 보류한다.
+
+## 2026-10-21 — P0 모바일 첫 조이스틱 의도 고정 (입력 전용 브랜치)
+
+- 원인: 두 App이 매 pointermove의 수평축을 재평가했으므로 수직 조준 시작 후 기울임이 보행으로 바뀌었다. 실제 Game은 `shared/runtime/main.js`를 사용하므로 TS main/math만 고치면 공개 조작에는 적용되지 않는다.
+- 변경: 공통 reducer로 시작점 기준 최초 `max(.18 × range, 8 CSS px)`와 상/하 ±20°를 한 번 판정한다. aimOnly 이동축은 끝까지 0, raw 노브는 별도로 움직인다. 방향만 .60/.35 히스테리시스와 이동 없는 `Engine.face`로 바꾸고 보행과 같은 발사 높낮이를 보존한다. moveAim 수평은 .12/.10으로 미세 이동을 유지한다. 취소/캡처 손실/blur/pause/동행/턴 경계에서 상태를 비운다.
+- 확인: typecheck, 순수 의도/물리 120조합, 기존 방향 전환 14조건과 키보드/포인터 충전 126조건 통과. 모바일 브라우저 PointerEvent와 3개 집중 검수/종합 결과는 아래 후속 검증 기록에 남긴다. [현재 계약](MOBILE_JOYSTICK_INPUT.md).
+- 범위: 입력 소스·검사·문서만 저장한다. 생성물은 로컬 검증용이며 부모 최종 통합에서 다시 빌드한다. master 병합·Pages 배포·실장치 검증은 수행하지 않는다.
 
 ## 2026-10-21 — 부모 검수 승인2장 layered road 통합 검증
 
