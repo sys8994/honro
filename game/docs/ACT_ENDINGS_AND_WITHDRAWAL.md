@@ -5,7 +5,7 @@
 ## 이미지 경로
 
 `shared/assets/endings/act-1.webp`, `act-2.webp`, `act-3.webp`.
-`shared/runtime/act-endings-content.js`의 `image`만 바꾸어 교체 가능하다. 제목/초기 로더에 이미지 preload를 추가하지 않는다. 해당 막의 승리 후일담 진입 때만 요청하며 실패하면 어두운 배경과 텍스트로 계속한다. 가로·세로 모두 contain으로 원본 전체를 보존한다. 원본 version1 PNG는 부모 Library에 보존되어 있다. 이번 작업은 다운로드를 재시도하지 않고 부모가 직접 커밋한05ea5b1d의 base64 운반본을 복호화했다. 세 WebP는1672×941이며 지정 SHA256/바이트458682·471910·560200과 모두 일치한다. 이미지 생성·편집·재압축은 하지 않았다. 실제 원본 pixels의 붉은 매듭/거목/방울,녹청 묵종/석회 동굴,먹빛 기록/황토 강변을 직접 확인했다. 운반본은 정상 삭제하며05ea5b1d에서 복구할 수 있다. 정확한 해시는 [image-integrity.json](stage-review/final-integration-20261021/evidence/image-integrity.json), 최종 브라우저 검수는 [최종 통합 보고서](stage-review/final-integration-20261021/README.md)에 기록한다.
+`shared/runtime/act-endings-content.js`의 `image`만 바꾸어 교체 가능하다. 제목/초기 로더에 이미지 preload를 추가하지 않는다. 해당 막의 승리 후일담 진입 때만 요청하며 실패하면 어두운 배경과 텍스트로 계속한다. 화면 전체를 `cover`로 채운다. 세로는 1막78%·2막30%·3막72% 수평 focal point로 거목/붉은 매듭, 녹청 종/동굴, 기록/강변을 우선한다. 가로는 중앙 구도를 유지하고3막의 수직 초점만58%로 둔다. 하단25vh 안의 좁은 음영에 plain text를 겹치며 전체 tint나 letterbox를 추가하지 않는다. 이전 contain/세로74% 높이는 부모 반려로 폐기했다. 원본 version1 PNG는 부모 Library에 보존되어 있다. 이번 작업은 다운로드를 재시도하지 않고 부모가 직접 커밋한05ea5b1d의 base64 운반본을 복호화했다. 세 WebP는1672×941이며 지정 SHA256/바이트458682·471910·560200과 모두 일치한다. 이미지 생성·편집·재압축은 하지 않았다. 실제 원본 pixels의 붉은 매듭/거목/방울,녹청 묵종/석회 동굴,먹빛 기록/황토 강변을 직접 확인했다. 운반본은 정상 삭제하며05ea5b1d에서 복구할 수 있다. 정확한 해시는 [image-integrity.json](stage-review/final-integration-20261021/evidence/image-integrity.json), 최신 화면 교정·12장 통합과 브라우저 검수는 [release candidate 보고서](stage-review/release-candidate-20261021/README.md)에 기록한다. 앞선 contain 화면/검수와 아래 초기 후보 기록은 역사 자료다.
 
 과거 후보의 Library helper 실패와 fallback-only 검사는 아래 역사 기록이며, 이번 성공한 저장소 전달/이미지 검수와 구분한다.
 

@@ -1,0 +1,31 @@
+{
+  "pass": true,
+  "baseline": "728712f3db6157076fd7edd7ef0f90770069a6b5",
+  "rows": [
+    {
+      "stage": 1,
+      "sha256": "ed023a0cf473c38eddce62c75b1188b01e4182c13c0e56e8fb7192c067e7d4c6"
+    },
+    {
+      "stage": 2,
+      "sha256": "9abc5ed9eb84298279ee0464cc00d8ba3dc5699b13fdda9e9f67d75ff0609a69"
+    },
+    {
+      "stage": 5,
+      "sha256": "be46a4771e2e66b27aa5b9318d263c27db48c1a04fa2c4ad311d5ea1c7537916"
+    },
+    {
+      "stage": 11,
+      "sha256": "1b3caacc0cb63476ff2fbb583d70e0084a8b7a8b332a29e02a7d66851fca6d21"
+    },
+    {
+      "stage": 13,
+      "sha256": "3469fe1b9252f842393c8a098ad6cc528be1a8adb8e6ed5838205bc265fee3f3"
+    },
+    {
+      "stage": 30,
+      "sha256": "b457778003bf51ad5cb6f954437469eb9a80600994dcba6c62ab359a7ba2a352"
+    }
+  ],
+  "scope": "Native static common terrain/landmark comparison on latest unchanged chapter data; not browser/full combat"
+}

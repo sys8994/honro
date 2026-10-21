@@ -1,0 +1,115 @@
+{
+  "pass": true,
+  "baseline": "030902fb2da76192612051ee50c81059a4b30098",
+  "integrationDataScopeCheckedSeparately": true,
+  "compiledPhysicsAndStateExact": true,
+  "defaultPairPixelHashes": [
+    {
+      "raw": false,
+      "size": 0.7,
+      "rotation": 0,
+      "sha256": "853e874bf664c536f4fb09dd633b391e15d5ecf34d470497c2450a4a3f7d944f"
+    },
+    {
+      "raw": false,
+      "size": 1.6,
+      "rotation": 0.3,
+      "sha256": "514795049189dfffcc6ce3e4cf3358e797e12eec4e2901febc08cf6acaffeb6c"
+    },
+    {
+      "raw": false,
+      "size": 2.4,
+      "rotation": -0.15,
+      "sha256": "7e2532913cd9f3a84a941002dae98a6bdf95ed72671089ee7900269e6b6a41ba"
+    },
+    {
+      "raw": true,
+      "size": 0.7,
+      "rotation": 0,
+      "sha256": "65bc4480b39a25a04fd70ff65d714309f05e752d5aecd66626f0d6859321caa3"
+    },
+    {
+      "raw": true,
+      "size": 1.6,
+      "rotation": 0.3,
+      "sha256": "06e3856f0df29fdb3aeb86c1629616f4b5d16f1c1d07d1e97c64056a7d23f925"
+    },
+    {
+      "raw": true,
+      "size": 2.4,
+      "rotation": -0.15,
+      "sha256": "943fbff551b2953d31fae454603d3bc2c8a258a9b8b3b25ff6f956f74a7b3f66"
+    }
+  ],
+  "oneEmptyCartArcs": 2,
+  "cart": {
+    "id": "sq-art-abandoned-cart",
+    "assetId": "builtin:singleRefugeeCart",
+    "x": 7765.458474973163,
+    "y": 3315.0849623870045,
+    "scale": 1.6,
+    "rotation": 0.504165961479153,
+    "snap": false,
+    "depthLayer": "L1",
+    "layer": "back",
+    "stage12Support": {
+      "terrainId": "sq-north-quarry",
+      "x": 7750,
+      "y": 3343.103448275862
+    },
+    "stage12CartSourceSupport": {
+      "terrainId": "sq-north-quarry",
+      "x": 7730,
+      "y": 3332.0689655172414
+    }
+  },
+  "reference": {
+    "heightM": 1.3166666666666667,
+    "bounds": {
+      "x": -60,
+      "y": -59,
+      "w": 168,
+      "h": 79
+    },
+    "foot": {
+      "x": 0,
+      "y": 20
+    },
+    "scaleRange": [
+      0.7,
+      2.4
+    ],
+    "backgroundRange": [
+      0.7,
+      1.3
+    ]
+  },
+  "wheels": [
+    {
+      "center": {
+        "x": 7713.624276078776,
+        "y": 3286.4867836866533
+      },
+      "contact": {
+        "x": 7698.165801105613,
+        "y": 3314.5052695755107
+      },
+      "gap": 0,
+      "sampledMinGap": 0.00007160537916206522
+    },
+    {
+      "center": {
+        "x": 7815.891749573107,
+        "y": 3342.9102173386973
+      },
+      "contact": {
+        "x": 7800.433274599944,
+        "y": 3370.9287032275547
+      },
+      "gap": 4.547473508864641e-13,
+      "sampledMinGap": 0.00007160537916206522
+    }
+  ],
+  "renderPure": true,
+  "scope": "Existing rc18Cart shared single empty option; no enemy unit, collision, functional coordinates, story or rewards changed."
+}

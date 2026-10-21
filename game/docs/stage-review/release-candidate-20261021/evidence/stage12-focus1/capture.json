@@ -1,0 +1,50 @@
+{
+  "label": "focus1",
+  "url": "http://127.0.0.1:8000/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "8afb034e3f2ace33f35d6e5efa52d24167940a35",
+  "workingTree": " M tests/final-act-endings-browser.py\n?? game/docs/stage-review/release-candidate-20261021/\n?? tests/release-candidate-cart.mjs\n?? tests/release-candidate-faces.mjs\n?? tests/release-candidate-stage12-browser.py\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      },
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 12,
+      "view": "west-overview",
+      "camera": {
+        "x": 3800,
+        "y": 4100,
+        "scale": 0.21176470588235294
+      },
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 12,
+      "view": "rear-root",
+      "camera": {
+        "x": 7300,
+        "y": 4700,
+        "scale": 0.55
+      },
+      "viewport": [
+        1440,
+        900
+      ]
+    }
+  ],
+  "errors": []
+}

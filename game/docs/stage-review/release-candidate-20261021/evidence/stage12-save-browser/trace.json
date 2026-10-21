@@ -1,0 +1,46 @@
+{
+  "pass": true,
+  "sha": "8afb034e3f2ace33f35d6e5efa52d24167940a35",
+  "rows": [
+    {
+      "name": "lower-initial",
+      "round": 1,
+      "phase": "aim",
+      "currentContinueExactAfterEmptyHUDWarningInitialization": true
+    },
+    {
+      "name": "lower-sign-action",
+      "round": 6,
+      "phase": "review",
+      "currentContinueExactAfterEmptyHUDWarningInitialization": true
+    },
+    {
+      "name": "lower-gate-open",
+      "round": 7,
+      "phase": "aim",
+      "currentContinueExactAfterEmptyHUDWarningInitialization": true,
+      "browserDownloadFileInputAndContinueExact": true
+    },
+    {
+      "name": "lower-terminal",
+      "round": 8,
+      "phase": "won",
+      "currentContinueExactAfterEmptyHUDWarningInitialization": true,
+      "rewardOnce": true,
+      "nextStage": 13,
+      "entry": "B"
+    },
+    {
+      "name": "upper-terminal",
+      "round": 17,
+      "phase": "won",
+      "currentContinueExactAfterEmptyHUDWarningInitialization": true,
+      "rewardOnce": true,
+      "nextStage": 13,
+      "entry": "A"
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "scope": "Browser Continue and export/import of migrated genuine chapter12 normal saves.\nFrozen saved scenes are distinct from actual native input continuation; no combat replay.\n"
+}

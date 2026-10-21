@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/honro/tests/release-candidate-stage12-save-browser.py", line 33, in <module>
+    v=load(name);capture(name,x,y,zoom);row={'name':name,'round':v['b']['round'],'phase':v['b']['phase'],'exactCurrentContinue':True}
+      ^^^^^^^^^^
+  File "/workspace/honro/tests/release-candidate-stage12-save-browser.py", line 24, in load
+    expected={k:v['b'].get(k) for k in keys};assert actual==expected,(name,'Continue changed current snapshot')
+                                                    ^^^^^^^^^^^^^^^^
+AssertionError: ('lower-initial', 'Continue changed current snapshot')

@@ -1,0 +1,8 @@
+file:///workspace/honro/tests/release-candidate-cart.mjs:10
+const e=s.elements.find(e=>e.id===id),a=now.library.find(a=>a.id===assetId),priorCart=before.elements.find(e=>e.id===id);assert.equal(e.rotation,priorCart.rotation);assert.deepEqual(e.stage12CartSourceSupport,priorCart.stage12Support);assert.equal(e.stage12Support.x-priorCart.stage12Support.x,20);assert.equal(e.scale,priorCart.scale);assert.equal(a.collision.length,0);
+                                                                                      ^
+
+ReferenceError: before is not defined
+    at file:///workspace/honro/tests/release-candidate-cart.mjs:10:87
+
+Node.js v24.19.0

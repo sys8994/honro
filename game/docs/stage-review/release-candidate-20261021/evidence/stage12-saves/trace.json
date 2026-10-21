@@ -1,0 +1,3373 @@
+{
+  "pass": true,
+  "scope": "Existing genuine normal saves with current production migrations; bounded legal move/defend/near-enemy progression, no fresh full chapter completion. Browser coverage separate.",
+  "rows": [
+    {
+      "route": "lower",
+      "name": "initial",
+      "round": 1,
+      "phase": "aim",
+      "positionTerrainDecorativeExact": true,
+      "currentMigrationsThenSecondContinueExact": true
+    },
+    {
+      "route": "lower",
+      "name": "sign-action",
+      "round": 6,
+      "phase": "review",
+      "positionTerrainDecorativeExact": true,
+      "currentMigrationsThenSecondContinueExact": true
+    },
+    {
+      "route": "lower",
+      "name": "gate-open",
+      "round": 7,
+      "phase": "aim",
+      "positionTerrainDecorativeExact": true,
+      "currentMigrationsThenSecondContinueExact": true
+    },
+    {
+      "route": "lower",
+      "name": "checkpoint",
+      "round": 8,
+      "phase": "aim",
+      "positionTerrainDecorativeExact": true,
+      "currentMigrationsThenSecondContinueExact": true
+    },
+    {
+      "route": "upper",
+      "name": "checkpoint",
+      "round": 17,
+      "phase": "aim",
+      "positionTerrainDecorativeExact": true,
+      "currentMigrationsThenSecondContinueExact": true
+    },
+    {
+      "route": "lower",
+      "name": "terminal",
+      "round": 8,
+      "phase": "won",
+      "positionTerrainDecorativeExact": true,
+      "currentMigrationsThenSecondContinueExact": true
+    },
+    {
+      "route": "upper",
+      "name": "terminal",
+      "round": 17,
+      "phase": "won",
+      "positionTerrainDecorativeExact": true,
+      "currentMigrationsThenSecondContinueExact": true
+    }
+  ],
+  "play": [
+    {
+      "route": "lower",
+      "name": "initial",
+      "fromRound": 1,
+      "toRound": 3,
+      "phase": "aim",
+      "frames": 851,
+      "inputs": [
+        {
+          "op": "left",
+          "frames": 90,
+          "id": "p-archer",
+          "before": {
+            "x": 10100,
+            "y": 2380,
+            "moveLeft": 1531
+          },
+          "after": {
+            "x": 9851.944962538795,
+            "y": 2446.9772788514974,
+            "moveLeft": 1268.5000000000282
+          }
+        },
+        {
+          "op": "defend",
+          "round": 1,
+          "id": "p-archer"
+        },
+        {
+          "op": "defend",
+          "round": 1,
+          "id": "p-mage"
+        },
+        {
+          "op": "defend",
+          "round": 1,
+          "id": "p-knight"
+        },
+        {
+          "op": "defend",
+          "round": 1,
+          "id": "p-occultist"
+        },
+        {
+          "op": "defend",
+          "round": 2,
+          "id": "p-archer"
+        },
+        {
+          "op": "defend",
+          "round": 2,
+          "id": "p-mage"
+        },
+        {
+          "op": "defend",
+          "round": 2,
+          "id": "p-knight"
+        },
+        {
+          "op": "defend",
+          "round": 2,
+          "id": "p-occultist"
+        }
+      ],
+      "events": [
+        {
+          "round": 1,
+          "text": "설오 · 숨을 고르며 방어"
+        },
+        {
+          "round": 1,
+          "text": "담허 · 숨을 고르며 방어"
+        },
+        {
+          "round": 1,
+          "text": "휘겸 · 숨을 고르며 방어"
+        },
+        {
+          "round": 1,
+          "text": "소단 · 숨을 고르며 방어"
+        },
+        {
+          "round": 2,
+          "text": "설오 · 숨을 고르며 방어"
+        },
+        {
+          "round": 2,
+          "text": "담허 · 숨을 고르며 방어"
+        },
+        {
+          "round": 2,
+          "text": "휘겸 · 숨을 고르며 방어"
+        },
+        {
+          "round": 2,
+          "text": "소단 · 숨을 고르며 방어"
+        }
+      ],
+      "actorChanges": [
+        {
+          "id": "p-archer",
+          "side": 0,
+          "hpBefore": 692,
+          "hp": 692,
+          "x": 9851.944962538795,
+          "y": 2446.9772788514974
+        },
+        {
+          "id": "sq-b5",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 7411.853171663211,
+          "y": 3152.2177978531895
+        },
+        {
+          "id": "sq-b7",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 7301.806377368106,
+          "y": 3042.8345860020204
+        },
+        {
+          "id": "sq-c3",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 5067.519411338819,
+          "y": 3654.1776464142113
+        },
+        {
+          "id": "sq-d5",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 3711.806377368109,
+          "y": 4084.939849159916
+        },
+        {
+          "id": "sq-e5",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 5277.148748315592,
+          "y": 4903.714285714286
+        },
+        {
+          "id": "sq-f5",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 6770.146828336789,
+          "y": 4603.734143778488
+        },
+        {
+          "id": "sq-f8",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 6122.519411338819,
+          "y": 4398.295293473035
+        },
+        {
+          "id": "sq-g3",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 8226.62741699797,
+          "y": 4374.095011022015
+        }
+      ],
+      "audit": {
+        "externalWrites": [],
+        "recoveries": [],
+        "movement": [
+          {
+            "round": 1,
+            "frame": 0,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10097.083333333334,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 1,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10094.166666666668,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 2,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10091.250000000002,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 3,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10088.333333333336,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 4,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10085.41666666667,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 5,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10082.500000000004,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 6,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10079.583333333338,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 7,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10076.666666666672,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 8,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10073.750000000005,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 9,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10070.83333333334,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 10,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10067.916666666673,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 11,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10065.000000000007,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 12,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10062.083333333341,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 13,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10059.166666666675,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 14,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10056.25000000001,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 15,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10053.333333333343,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 16,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10050.416666666677,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 17,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10047.500000000011,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 18,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10044.583333333345,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 19,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10041.666666666679,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 20,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10038.750000000013,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 21,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10035.833333333347,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 22,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10032.91666666668,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 23,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10030.000000000015,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 24,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10027.083333333348,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 25,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10024.166666666682,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 26,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10021.250000000016,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 27,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10018.33333333335,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 28,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10015.416666666684,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 29,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10012.500000000018,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 30,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10009.583333333352,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 31,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10006.666666666686,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 32,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10003.75000000002,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 33,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666660603,
+            "x": 10000.833333333354,
+            "y": 2380
+          },
+          {
+            "round": 1,
+            "frame": 34,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.9166666666674246,
+            "x": 9998.101858494105,
+            "y": 2380.8586830621907
+          },
+          {
+            "round": 1,
+            "frame": 35,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9995.444460385826,
+            "y": 2382.060839349269
+          },
+          {
+            "round": 1,
+            "frame": 36,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9992.787062277548,
+            "y": 2383.262995636347
+          },
+          {
+            "round": 1,
+            "frame": 37,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9990.12966416927,
+            "y": 2384.4651519234258
+          },
+          {
+            "round": 1,
+            "frame": 38,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9987.472266060991,
+            "y": 2385.667308210504
+          },
+          {
+            "round": 1,
+            "frame": 39,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9984.814867952713,
+            "y": 2386.869464497582
+          },
+          {
+            "round": 1,
+            "frame": 40,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9982.157469844435,
+            "y": 2388.0716207846604
+          },
+          {
+            "round": 1,
+            "frame": 41,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9979.500071736156,
+            "y": 2389.273777071739
+          },
+          {
+            "round": 1,
+            "frame": 42,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9976.842673627878,
+            "y": 2390.475933358817
+          },
+          {
+            "round": 1,
+            "frame": 43,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9974.1852755196,
+            "y": 2391.6780896458954
+          },
+          {
+            "round": 1,
+            "frame": 44,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9971.527877411321,
+            "y": 2392.8802459329736
+          },
+          {
+            "round": 1,
+            "frame": 45,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9968.870479303043,
+            "y": 2394.0824022200522
+          },
+          {
+            "round": 1,
+            "frame": 46,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9966.213081194765,
+            "y": 2395.2845585071304
+          },
+          {
+            "round": 1,
+            "frame": 47,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9963.555683086486,
+            "y": 2396.4867147942086
+          },
+          {
+            "round": 1,
+            "frame": 48,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9960.898284978208,
+            "y": 2397.688871081287
+          },
+          {
+            "round": 1,
+            "frame": 49,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9958.24088686993,
+            "y": 2398.891027368365
+          },
+          {
+            "round": 1,
+            "frame": 50,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9955.583488761651,
+            "y": 2400.0931836554437
+          },
+          {
+            "round": 1,
+            "frame": 51,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9952.926090653373,
+            "y": 2401.295339942522
+          },
+          {
+            "round": 1,
+            "frame": 52,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9950.268692545094,
+            "y": 2402.4974962296
+          },
+          {
+            "round": 1,
+            "frame": 53,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9947.611294436816,
+            "y": 2403.6996525166783
+          },
+          {
+            "round": 1,
+            "frame": 54,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9944.953896328538,
+            "y": 2404.901808803757
+          },
+          {
+            "round": 1,
+            "frame": 55,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9942.29649822026,
+            "y": 2406.103965090835
+          },
+          {
+            "round": 1,
+            "frame": 56,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9939.639100111981,
+            "y": 2407.3061213779133
+          },
+          {
+            "round": 1,
+            "frame": 57,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9936.981702003703,
+            "y": 2408.5082776649915
+          },
+          {
+            "round": 1,
+            "frame": 58,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9934.324303895424,
+            "y": 2409.71043395207
+          },
+          {
+            "round": 1,
+            "frame": 59,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9931.666905787146,
+            "y": 2410.9125902391484
+          },
+          {
+            "round": 1,
+            "frame": 60,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9929.009507678868,
+            "y": 2412.1147465262266
+          },
+          {
+            "round": 1,
+            "frame": 61,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9926.35210957059,
+            "y": 2413.3169028133048
+          },
+          {
+            "round": 1,
+            "frame": 62,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9923.69471146231,
+            "y": 2414.5190591003834
+          },
+          {
+            "round": 1,
+            "frame": 63,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9921.037313354032,
+            "y": 2415.7212153874616
+          },
+          {
+            "round": 1,
+            "frame": 64,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9918.379915245754,
+            "y": 2416.92337167454
+          },
+          {
+            "round": 1,
+            "frame": 65,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9915.722517137476,
+            "y": 2418.125527961618
+          },
+          {
+            "round": 1,
+            "frame": 66,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9913.065119029197,
+            "y": 2419.3276842486966
+          },
+          {
+            "round": 1,
+            "frame": 67,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9910.407720920919,
+            "y": 2420.529840535775
+          },
+          {
+            "round": 1,
+            "frame": 68,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9907.75032281264,
+            "y": 2421.731996822853
+          },
+          {
+            "round": 1,
+            "frame": 69,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9905.092924704362,
+            "y": 2422.9341531099312
+          },
+          {
+            "round": 1,
+            "frame": 70,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9902.435526596084,
+            "y": 2424.1363093970094
+          },
+          {
+            "round": 1,
+            "frame": 71,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9899.778128487806,
+            "y": 2425.338465684088
+          },
+          {
+            "round": 1,
+            "frame": 72,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9897.120730379527,
+            "y": 2426.5406219711663
+          },
+          {
+            "round": 1,
+            "frame": 73,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9894.463332271249,
+            "y": 2427.7427782582445
+          },
+          {
+            "round": 1,
+            "frame": 74,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9891.80593416297,
+            "y": 2428.9449345453227
+          },
+          {
+            "round": 1,
+            "frame": 75,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9889.148536054692,
+            "y": 2430.1470908324013
+          },
+          {
+            "round": 1,
+            "frame": 76,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9886.491137946414,
+            "y": 2431.3492471194795
+          },
+          {
+            "round": 1,
+            "frame": 77,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9883.833739838135,
+            "y": 2432.5514034065577
+          },
+          {
+            "round": 1,
+            "frame": 78,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9881.176341729857,
+            "y": 2433.753559693636
+          },
+          {
+            "round": 1,
+            "frame": 79,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9878.518943621579,
+            "y": 2434.9557159807146
+          },
+          {
+            "round": 1,
+            "frame": 80,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9875.8615455133,
+            "y": 2436.1578722677928
+          },
+          {
+            "round": 1,
+            "frame": 81,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9873.204147405022,
+            "y": 2437.360028554871
+          },
+          {
+            "round": 1,
+            "frame": 82,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9870.546749296744,
+            "y": 2438.562184841949
+          },
+          {
+            "round": 1,
+            "frame": 83,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9867.889351188465,
+            "y": 2439.764341129028
+          },
+          {
+            "round": 1,
+            "frame": 84,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9865.231953080187,
+            "y": 2440.966497416106
+          },
+          {
+            "round": 1,
+            "frame": 85,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9862.574554971909,
+            "y": 2442.168653703184
+          },
+          {
+            "round": 1,
+            "frame": 86,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9859.91715686363,
+            "y": 2443.3708099902624
+          },
+          {
+            "round": 1,
+            "frame": 87,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9857.259758755352,
+            "y": 2444.572966277341
+          },
+          {
+            "round": 1,
+            "frame": 88,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9854.602360647074,
+            "y": 2445.7751225644192
+          },
+          {
+            "round": 1,
+            "frame": 89,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 9851.944962538795,
+            "y": 2446.9772788514974
+          }
+        ]
+      }
+    },
+    {
+      "route": "lower",
+      "name": "sign-action",
+      "fromRound": 6,
+      "toRound": 9,
+      "phase": "aim",
+      "frames": 3062,
+      "inputs": [
+        {
+          "op": "left",
+          "frames": 90,
+          "id": "p-archer",
+          "before": {
+            "x": 5892.13996125305,
+            "y": 4518.695264487626,
+            "moveLeft": 1531
+          },
+          "after": {
+            "x": 5680.471332750583,
+            "y": 4363.6475551670555,
+            "moveLeft": 1268.4999999999682
+          }
+        },
+        {
+          "op": "defend",
+          "round": 7,
+          "id": "p-archer"
+        },
+        {
+          "op": "defend",
+          "round": 7,
+          "id": "p-mage"
+        },
+        {
+          "op": "defend",
+          "round": 7,
+          "id": "p-knight"
+        },
+        {
+          "op": "defend",
+          "round": 7,
+          "id": "p-occultist"
+        },
+        {
+          "op": "defend",
+          "round": 8,
+          "id": "p-archer"
+        },
+        {
+          "op": "defend",
+          "round": 8,
+          "id": "p-mage"
+        },
+        {
+          "op": "defend",
+          "round": 8,
+          "id": "p-knight"
+        },
+        {
+          "op": "defend",
+          "round": 8,
+          "id": "p-occultist"
+        }
+      ],
+      "events": [
+        {
+          "round": 6,
+          "text": "곡괭이 군집 · 쪼개는 날"
+        },
+        {
+          "round": 6,
+          "text": "정예 공명혼 · 빈 종의 울림"
+        },
+        {
+          "round": 7,
+          "text": "설오 · 숨을 고르며 방어"
+        },
+        {
+          "round": 7,
+          "text": "담허 · 숨을 고르며 방어"
+        },
+        {
+          "round": 7,
+          "text": "휘겸 · 숨을 고르며 방어"
+        },
+        {
+          "round": 7,
+          "text": "소단 · 숨을 고르며 방어"
+        },
+        {
+          "round": 7,
+          "text": "정예 곡괭이 군집 · 쪼개는 날"
+        },
+        {
+          "round": 7,
+          "text": "들린 산박쥐 · 메아리침"
+        },
+        {
+          "round": 7,
+          "text": "들린 산박쥐 · 울림비명"
+        },
+        {
+          "round": 8,
+          "text": "설오 · 숨을 고르며 방어"
+        },
+        {
+          "round": 8,
+          "text": "담허 · 숨을 고르며 방어"
+        },
+        {
+          "round": 8,
+          "text": "휘겸 · 숨을 고르며 방어"
+        },
+        {
+          "round": 8,
+          "text": "소단 · 숨을 고르며 방어"
+        },
+        {
+          "round": 8,
+          "text": "들린 운반수레 · 철륜 파편"
+        },
+        {
+          "round": 8,
+          "text": "공명혼 · 빈 종의 울림"
+        },
+        {
+          "round": 8,
+          "text": "곡괭이 군집 · 쪼개는 날"
+        }
+      ],
+      "actorChanges": [
+        {
+          "id": "p-archer",
+          "side": 0,
+          "hpBefore": 599,
+          "hp": 655,
+          "x": 5701.398810215134,
+          "y": 4377.5992068100895
+        },
+        {
+          "id": "p-mage",
+          "side": 0,
+          "hpBefore": 657,
+          "hp": 661,
+          "x": 6502.647628348036,
+          "y": 4800
+        },
+        {
+          "id": "p-knight",
+          "side": 0,
+          "hpBefore": 1226,
+          "hp": 1270,
+          "x": 6502.602516074118,
+          "y": 4800
+        },
+        {
+          "id": "p-occultist",
+          "side": 0,
+          "hpBefore": 739,
+          "hp": 750,
+          "x": 6499.743757172749,
+          "y": 4800
+        },
+        {
+          "id": "sq-b1",
+          "side": 1,
+          "hpBefore": 601,
+          "hp": 601,
+          "x": 7252.236122863314,
+          "y": 3350.699559547898
+        },
+        {
+          "id": "sq-c1",
+          "side": 1,
+          "hpBefore": 1251,
+          "hp": 1251,
+          "x": 5182.024877662534,
+          "y": 3890.4691248433805
+        },
+        {
+          "id": "sq-c2",
+          "side": 1,
+          "hpBefore": 807,
+          "hp": 807,
+          "x": 5562.845827431215,
+          "y": 3730.275000753462
+        },
+        {
+          "id": "sq-c3",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 5241.713557850151,
+          "y": 3711.0130316763784
+        },
+        {
+          "id": "sq-c6",
+          "side": 1,
+          "hpBefore": 777,
+          "hp": 755,
+          "x": 5805.4897718499915,
+          "y": 4452.433354944111
+        },
+        {
+          "id": "sq-d5",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 3680.1015462804544,
+          "y": 4108.815302202728
+        },
+        {
+          "id": "sq-e1",
+          "side": 1,
+          "hpBefore": 1251,
+          "hp": 1251,
+          "x": 6023.843590757718,
+          "y": 4670
+        },
+        {
+          "id": "sq-e2",
+          "side": 1,
+          "hpBefore": 807,
+          "hp": 807,
+          "x": 6146.596727948517,
+          "y": 4670
+        },
+        {
+          "id": "sq-e5",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 5286.521331317622,
+          "y": 4886.743722965808
+        },
+        {
+          "id": "sq-f8",
+          "side": 1,
+          "hpBefore": 426.81021897810217,
+          "hp": 426.81021897810217,
+          "x": 5955.750009768545,
+          "y": 4239.336418969989
+        },
+        {
+          "id": "sq-g3",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 8204.799999999987,
+          "y": 4367.665573770484
+        }
+      ],
+      "audit": {
+        "externalWrites": [],
+        "recoveries": [],
+        "movement": [
+          {
+            "round": 7,
+            "frame": 808,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5889.8230842402,
+            "y": 4516.923535007211
+          },
+          {
+            "round": 7,
+            "frame": 809,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5887.5062072273495,
+            "y": 4515.151805526797
+          },
+          {
+            "round": 7,
+            "frame": 810,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5885.189330214499,
+            "y": 4513.380076046382
+          },
+          {
+            "round": 7,
+            "frame": 811,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5882.872453201649,
+            "y": 4511.608346565967
+          },
+          {
+            "round": 7,
+            "frame": 812,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5880.555576188798,
+            "y": 4509.836617085552
+          },
+          {
+            "round": 7,
+            "frame": 813,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5878.238699175948,
+            "y": 4508.064887605136
+          },
+          {
+            "round": 7,
+            "frame": 814,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5875.921822163097,
+            "y": 4506.293158124721
+          },
+          {
+            "round": 7,
+            "frame": 815,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5873.604945150247,
+            "y": 4504.521428644306
+          },
+          {
+            "round": 7,
+            "frame": 816,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5871.288068137396,
+            "y": 4502.749699163891
+          },
+          {
+            "round": 7,
+            "frame": 817,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5868.971191124546,
+            "y": 4500.977969683477
+          },
+          {
+            "round": 7,
+            "frame": 818,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5866.654314111695,
+            "y": 4499.2062402030615
+          },
+          {
+            "round": 7,
+            "frame": 819,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5864.337437098845,
+            "y": 4497.434510722646
+          },
+          {
+            "round": 7,
+            "frame": 820,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5862.0205600859945,
+            "y": 4495.662781242231
+          },
+          {
+            "round": 7,
+            "frame": 821,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5859.703683073144,
+            "y": 4493.891051761816
+          },
+          {
+            "round": 7,
+            "frame": 822,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5857.386806060294,
+            "y": 4492.119322281401
+          },
+          {
+            "round": 7,
+            "frame": 823,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5855.069929047443,
+            "y": 4490.347592800986
+          },
+          {
+            "round": 7,
+            "frame": 824,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5852.753052034593,
+            "y": 4488.5758633205705
+          },
+          {
+            "round": 7,
+            "frame": 825,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5850.436175021742,
+            "y": 4486.804133840155
+          },
+          {
+            "round": 7,
+            "frame": 826,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5848.119298008892,
+            "y": 4485.032404359741
+          },
+          {
+            "round": 7,
+            "frame": 827,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5845.802420996041,
+            "y": 4483.260674879326
+          },
+          {
+            "round": 7,
+            "frame": 828,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5843.485543983191,
+            "y": 4481.488945398911
+          },
+          {
+            "round": 7,
+            "frame": 829,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5841.16866697034,
+            "y": 4479.717215918496
+          },
+          {
+            "round": 7,
+            "frame": 830,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5838.85178995749,
+            "y": 4477.9454864380805
+          },
+          {
+            "round": 7,
+            "frame": 831,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5836.5349129446395,
+            "y": 4476.173756957665
+          },
+          {
+            "round": 7,
+            "frame": 832,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5834.218035931789,
+            "y": 4474.40202747725
+          },
+          {
+            "round": 7,
+            "frame": 833,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5831.901158918939,
+            "y": 4472.630297996835
+          },
+          {
+            "round": 7,
+            "frame": 834,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5829.584281906088,
+            "y": 4470.858568516421
+          },
+          {
+            "round": 7,
+            "frame": 835,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5827.267404893238,
+            "y": 4469.086839036006
+          },
+          {
+            "round": 7,
+            "frame": 836,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5824.950527880387,
+            "y": 4467.31510955559
+          },
+          {
+            "round": 7,
+            "frame": 837,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5822.633650867537,
+            "y": 4465.543380075175
+          },
+          {
+            "round": 7,
+            "frame": 838,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5820.316773854686,
+            "y": 4463.77165059476
+          },
+          {
+            "round": 7,
+            "frame": 839,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5817.999896841836,
+            "y": 4461.999921114345
+          },
+          {
+            "round": 7,
+            "frame": 840,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5815.683019828985,
+            "y": 4460.22819163393
+          },
+          {
+            "round": 7,
+            "frame": 841,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5813.366142816135,
+            "y": 4458.456462153515
+          },
+          {
+            "round": 7,
+            "frame": 842,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5811.0492658032845,
+            "y": 4456.6847326730995
+          },
+          {
+            "round": 7,
+            "frame": 843,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5808.732388790434,
+            "y": 4454.913003192685
+          },
+          {
+            "round": 7,
+            "frame": 844,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5806.415511777584,
+            "y": 4453.14127371227
+          },
+          {
+            "round": 7,
+            "frame": 845,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5804.098634764733,
+            "y": 4451.369544231855
+          },
+          {
+            "round": 7,
+            "frame": 846,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5801.781757751883,
+            "y": 4449.59781475144
+          },
+          {
+            "round": 7,
+            "frame": 847,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5799.464880739032,
+            "y": 4447.826085271025
+          },
+          {
+            "round": 7,
+            "frame": 848,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5797.148003726182,
+            "y": 4446.054355790609
+          },
+          {
+            "round": 7,
+            "frame": 849,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5794.831126713331,
+            "y": 4444.282626310194
+          },
+          {
+            "round": 7,
+            "frame": 850,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5792.514249700481,
+            "y": 4442.510896829779
+          },
+          {
+            "round": 7,
+            "frame": 851,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5790.19737268763,
+            "y": 4440.739167349365
+          },
+          {
+            "round": 7,
+            "frame": 852,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5787.88049567478,
+            "y": 4438.96743786895
+          },
+          {
+            "round": 7,
+            "frame": 853,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5785.5636186619295,
+            "y": 4437.1957083885345
+          },
+          {
+            "round": 7,
+            "frame": 854,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5783.246741649079,
+            "y": 4435.423978908119
+          },
+          {
+            "round": 7,
+            "frame": 855,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5780.929864636229,
+            "y": 4433.652249427704
+          },
+          {
+            "round": 7,
+            "frame": 856,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5778.612987623378,
+            "y": 4431.880519947289
+          },
+          {
+            "round": 7,
+            "frame": 857,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5776.296110610528,
+            "y": 4430.108790466874
+          },
+          {
+            "round": 7,
+            "frame": 858,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5773.979233597677,
+            "y": 4428.337060986459
+          },
+          {
+            "round": 7,
+            "frame": 859,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5771.662356584827,
+            "y": 4426.565331506044
+          },
+          {
+            "round": 7,
+            "frame": 860,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5769.345479571976,
+            "y": 4424.793602025629
+          },
+          {
+            "round": 7,
+            "frame": 861,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5767.028602559126,
+            "y": 4423.021872545214
+          },
+          {
+            "round": 7,
+            "frame": 862,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5764.711725546275,
+            "y": 4421.250143064799
+          },
+          {
+            "round": 7,
+            "frame": 863,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5762.394848533425,
+            "y": 4419.478413584384
+          },
+          {
+            "round": 7,
+            "frame": 864,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5760.0779715205745,
+            "y": 4417.706684103969
+          },
+          {
+            "round": 7,
+            "frame": 865,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5757.761094507724,
+            "y": 4415.9349546235535
+          },
+          {
+            "round": 7,
+            "frame": 866,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5755.444217494874,
+            "y": 4414.163225143138
+          },
+          {
+            "round": 7,
+            "frame": 867,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5753.127340482023,
+            "y": 4412.391495662723
+          },
+          {
+            "round": 7,
+            "frame": 868,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5750.810463469173,
+            "y": 4410.619766182309
+          },
+          {
+            "round": 7,
+            "frame": 869,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666667197,
+            "x": 5748.422106788179,
+            "y": 4408.94807119212
+          },
+          {
+            "round": 7,
+            "frame": 870,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5745.995293429693,
+            "y": 4407.330195619796
+          },
+          {
+            "round": 7,
+            "frame": 871,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5743.568480071208,
+            "y": 4405.712320047472
+          },
+          {
+            "round": 7,
+            "frame": 872,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5741.141666712722,
+            "y": 4404.0944444751485
+          },
+          {
+            "round": 7,
+            "frame": 873,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5738.714853354237,
+            "y": 4402.4765689028245
+          },
+          {
+            "round": 7,
+            "frame": 874,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5736.288039995751,
+            "y": 4400.8586933305005
+          },
+          {
+            "round": 7,
+            "frame": 875,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5733.861226637266,
+            "y": 4399.240817758177
+          },
+          {
+            "round": 7,
+            "frame": 876,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5731.43441327878,
+            "y": 4397.622942185853
+          },
+          {
+            "round": 7,
+            "frame": 877,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5729.0075999202945,
+            "y": 4396.005066613529
+          },
+          {
+            "round": 7,
+            "frame": 878,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5726.580786561809,
+            "y": 4394.387191041206
+          },
+          {
+            "round": 7,
+            "frame": 879,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5724.153973203323,
+            "y": 4392.769315468882
+          },
+          {
+            "round": 7,
+            "frame": 880,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5721.727159844838,
+            "y": 4391.151439896558
+          },
+          {
+            "round": 7,
+            "frame": 881,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5719.300346486352,
+            "y": 4389.533564324235
+          },
+          {
+            "round": 7,
+            "frame": 882,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5716.873533127867,
+            "y": 4387.915688751911
+          },
+          {
+            "round": 7,
+            "frame": 883,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5714.446719769381,
+            "y": 4386.297813179587
+          },
+          {
+            "round": 7,
+            "frame": 884,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5712.019906410896,
+            "y": 4384.679937607264
+          },
+          {
+            "round": 7,
+            "frame": 885,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5709.59309305241,
+            "y": 4383.06206203494
+          },
+          {
+            "round": 7,
+            "frame": 886,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5707.1662796939245,
+            "y": 4381.444186462616
+          },
+          {
+            "round": 7,
+            "frame": 887,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5704.739466335439,
+            "y": 4379.826310890293
+          },
+          {
+            "round": 7,
+            "frame": 888,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5702.312652976953,
+            "y": 4378.208435317969
+          },
+          {
+            "round": 7,
+            "frame": 889,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5699.885839618468,
+            "y": 4376.590559745645
+          },
+          {
+            "round": 7,
+            "frame": 890,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5697.459026259982,
+            "y": 4374.972684173322
+          },
+          {
+            "round": 7,
+            "frame": 891,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5695.032212901497,
+            "y": 4373.354808600998
+          },
+          {
+            "round": 7,
+            "frame": 892,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5692.605399543011,
+            "y": 4371.736933028674
+          },
+          {
+            "round": 7,
+            "frame": 893,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5690.178586184526,
+            "y": 4370.119057456351
+          },
+          {
+            "round": 7,
+            "frame": 894,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5687.75177282604,
+            "y": 4368.501181884027
+          },
+          {
+            "round": 7,
+            "frame": 895,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5685.324959467554,
+            "y": 4366.883306311703
+          },
+          {
+            "round": 7,
+            "frame": 896,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.916666666666515,
+            "x": 5682.898146109069,
+            "y": 4365.26543073938
+          },
+          {
+            "round": 7,
+            "frame": 897,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.91666666666697,
+            "x": 5680.471332750583,
+            "y": 4363.6475551670555
+          }
+        ]
+      }
+    },
+    {
+      "route": "upper",
+      "name": "checkpoint",
+      "fromRound": 17,
+      "toRound": 19,
+      "phase": "aim",
+      "frames": 1157,
+      "inputs": [
+        {
+          "op": "left",
+          "frames": 90,
+          "id": "p-archer",
+          "before": {
+            "x": 8670.43770805484,
+            "y": 4306.303155977657,
+            "moveLeft": 1570
+          },
+          "after": {
+            "x": 8425.944357326021,
+            "y": 4411.155139781738,
+            "moveLeft": 1306.7083333333603
+          }
+        },
+        {
+          "op": "defend",
+          "round": 17,
+          "id": "p-archer"
+        },
+        {
+          "op": "defend",
+          "round": 17,
+          "id": "p-mage"
+        },
+        {
+          "op": "defend",
+          "round": 17,
+          "id": "p-knight"
+        },
+        {
+          "op": "defend",
+          "round": 17,
+          "id": "p-occultist"
+        },
+        {
+          "op": "defend",
+          "round": 18,
+          "id": "p-archer"
+        },
+        {
+          "op": "defend",
+          "round": 18,
+          "id": "p-mage"
+        },
+        {
+          "op": "defend",
+          "round": 18,
+          "id": "p-knight"
+        },
+        {
+          "op": "defend",
+          "round": 18,
+          "id": "p-occultist"
+        }
+      ],
+      "events": [
+        {
+          "round": 17,
+          "text": "설오 · 숨을 고르며 방어"
+        },
+        {
+          "round": 17,
+          "text": "담허 · 숨을 고르며 방어"
+        },
+        {
+          "round": 17,
+          "text": "휘겸 · 숨을 고르며 방어"
+        },
+        {
+          "round": 17,
+          "text": "소단 · 숨을 고르며 방어"
+        },
+        {
+          "round": 17,
+          "text": "들린 산박쥐 · 울림비명"
+        },
+        {
+          "round": 18,
+          "text": "설오 · 숨을 고르며 방어"
+        },
+        {
+          "round": 18,
+          "text": "담허 · 숨을 고르며 방어"
+        },
+        {
+          "round": 18,
+          "text": "휘겸 · 숨을 고르며 방어"
+        },
+        {
+          "round": 18,
+          "text": "소단 · 숨을 고르며 방어"
+        },
+        {
+          "round": 18,
+          "text": "들린 산박쥐 · 울림비명"
+        }
+      ],
+      "actorChanges": [
+        {
+          "id": "p-archer",
+          "side": 0,
+          "hpBefore": 725,
+          "hp": 725,
+          "x": 8440.523933197286,
+          "y": 4403.257869518136
+        },
+        {
+          "id": "p-occultist",
+          "side": 0,
+          "hpBefore": 746,
+          "hp": 784,
+          "x": 8670.265179684464,
+          "y": 4306.373445313737
+        },
+        {
+          "id": "sq-d5",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 3712,
+          "y": 4084.999999999999
+        },
+        {
+          "id": "sq-e5",
+          "side": 1,
+          "hpBefore": 438,
+          "hp": 438,
+          "x": 5277.768531399655,
+          "y": 4903.2494842442675
+        },
+        {
+          "id": "sq-g3",
+          "side": 1,
+          "hpBefore": 76.72992700729927,
+          "hp": 76.72992700729927,
+          "x": 8038.146130833675,
+          "y": 4433.53633546829
+        }
+      ],
+      "audit": {
+        "externalWrites": [],
+        "recoveries": [],
+        "movement": [
+          {
+            "round": 17,
+            "frame": 0,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8667.698018157189,
+            "y": 4307.41932593596
+          },
+          {
+            "round": 17,
+            "frame": 1,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8664.958328259538,
+            "y": 4308.535495894263
+          },
+          {
+            "round": 17,
+            "frame": 2,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8662.218638361886,
+            "y": 4309.651665852565
+          },
+          {
+            "round": 17,
+            "frame": 3,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8659.478948464235,
+            "y": 4310.767835810867
+          },
+          {
+            "round": 17,
+            "frame": 4,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8656.739258566584,
+            "y": 4311.88400576917
+          },
+          {
+            "round": 17,
+            "frame": 5,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8653.999568668933,
+            "y": 4313.000175727472
+          },
+          {
+            "round": 17,
+            "frame": 6,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8651.259878771281,
+            "y": 4314.116345685774
+          },
+          {
+            "round": 17,
+            "frame": 7,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8648.52018887363,
+            "y": 4315.232515644077
+          },
+          {
+            "round": 17,
+            "frame": 8,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8645.780498975979,
+            "y": 4316.348685602379
+          },
+          {
+            "round": 17,
+            "frame": 9,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8643.040809078328,
+            "y": 4317.464855560681
+          },
+          {
+            "round": 17,
+            "frame": 10,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8640.301119180676,
+            "y": 4318.581025518984
+          },
+          {
+            "round": 17,
+            "frame": 11,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8637.561429283025,
+            "y": 4319.697195477286
+          },
+          {
+            "round": 17,
+            "frame": 12,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8634.821739385374,
+            "y": 4320.813365435589
+          },
+          {
+            "round": 17,
+            "frame": 13,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8632.082049487723,
+            "y": 4321.929535393891
+          },
+          {
+            "round": 17,
+            "frame": 14,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8629.342359590071,
+            "y": 4323.045705352193
+          },
+          {
+            "round": 17,
+            "frame": 15,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8626.60266969242,
+            "y": 4324.161875310496
+          },
+          {
+            "round": 17,
+            "frame": 16,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8623.862979794769,
+            "y": 4325.2780452687975
+          },
+          {
+            "round": 17,
+            "frame": 17,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8621.123289897118,
+            "y": 4326.3942152271
+          },
+          {
+            "round": 17,
+            "frame": 18,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8618.383599999466,
+            "y": 4327.510385185403
+          },
+          {
+            "round": 17,
+            "frame": 19,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8615.643910101815,
+            "y": 4328.626555143705
+          },
+          {
+            "round": 17,
+            "frame": 20,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8612.904220204164,
+            "y": 4329.742725102007
+          },
+          {
+            "round": 17,
+            "frame": 21,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8610.164530306512,
+            "y": 4330.85889506031
+          },
+          {
+            "round": 17,
+            "frame": 22,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8607.424840408861,
+            "y": 4331.975065018612
+          },
+          {
+            "round": 17,
+            "frame": 23,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8604.68515051121,
+            "y": 4333.091234976914
+          },
+          {
+            "round": 17,
+            "frame": 24,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8601.945460613559,
+            "y": 4334.207404935217
+          },
+          {
+            "round": 17,
+            "frame": 25,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8599.205770715907,
+            "y": 4335.323574893519
+          },
+          {
+            "round": 17,
+            "frame": 26,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8596.466080818256,
+            "y": 4336.439744851821
+          },
+          {
+            "round": 17,
+            "frame": 27,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8593.726390920605,
+            "y": 4337.555914810124
+          },
+          {
+            "round": 17,
+            "frame": 28,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8590.986701022954,
+            "y": 4338.672084768426
+          },
+          {
+            "round": 17,
+            "frame": 29,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8588.247011125302,
+            "y": 4339.788254726729
+          },
+          {
+            "round": 17,
+            "frame": 30,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8585.507321227651,
+            "y": 4340.904424685031
+          },
+          {
+            "round": 17,
+            "frame": 31,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8582.76763133,
+            "y": 4342.020594643333
+          },
+          {
+            "round": 17,
+            "frame": 32,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8580.027941432349,
+            "y": 4343.136764601636
+          },
+          {
+            "round": 17,
+            "frame": 33,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8577.288251534697,
+            "y": 4344.252934559938
+          },
+          {
+            "round": 17,
+            "frame": 34,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8574.548561637046,
+            "y": 4345.36910451824
+          },
+          {
+            "round": 17,
+            "frame": 35,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8571.808871739395,
+            "y": 4346.485274476543
+          },
+          {
+            "round": 17,
+            "frame": 36,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8569.069181841744,
+            "y": 4347.601444434845
+          },
+          {
+            "round": 17,
+            "frame": 37,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8566.329491944092,
+            "y": 4348.717614393147
+          },
+          {
+            "round": 17,
+            "frame": 38,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8563.589802046441,
+            "y": 4349.83378435145
+          },
+          {
+            "round": 17,
+            "frame": 39,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8560.85011214879,
+            "y": 4350.949954309753
+          },
+          {
+            "round": 17,
+            "frame": 40,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8558.110422251139,
+            "y": 4352.066124268054
+          },
+          {
+            "round": 17,
+            "frame": 41,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8555.370732353487,
+            "y": 4353.182294226357
+          },
+          {
+            "round": 17,
+            "frame": 42,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8552.631042455836,
+            "y": 4354.29846418466
+          },
+          {
+            "round": 17,
+            "frame": 43,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8549.891352558185,
+            "y": 4355.414634142961
+          },
+          {
+            "round": 17,
+            "frame": 44,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8547.151662660533,
+            "y": 4356.530804101264
+          },
+          {
+            "round": 17,
+            "frame": 45,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8544.411972762882,
+            "y": 4357.646974059567
+          },
+          {
+            "round": 17,
+            "frame": 46,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8541.672282865231,
+            "y": 4358.763144017869
+          },
+          {
+            "round": 17,
+            "frame": 47,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8538.93259296758,
+            "y": 4359.879313976171
+          },
+          {
+            "round": 17,
+            "frame": 48,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8536.192903069928,
+            "y": 4360.995483934474
+          },
+          {
+            "round": 17,
+            "frame": 49,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8533.453213172277,
+            "y": 4362.111653892776
+          },
+          {
+            "round": 17,
+            "frame": 50,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8530.713523274626,
+            "y": 4363.227823851078
+          },
+          {
+            "round": 17,
+            "frame": 51,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8527.973833376975,
+            "y": 4364.343993809381
+          },
+          {
+            "round": 17,
+            "frame": 52,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8525.234143479323,
+            "y": 4365.460163767683
+          },
+          {
+            "round": 17,
+            "frame": 53,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8522.494453581672,
+            "y": 4366.576333725985
+          },
+          {
+            "round": 17,
+            "frame": 54,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8519.75476368402,
+            "y": 4367.692503684288
+          },
+          {
+            "round": 17,
+            "frame": 55,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8517.01507378637,
+            "y": 4368.80867364259
+          },
+          {
+            "round": 17,
+            "frame": 56,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8514.275383888718,
+            "y": 4369.924843600893
+          },
+          {
+            "round": 17,
+            "frame": 57,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8511.535693991067,
+            "y": 4371.041013559195
+          },
+          {
+            "round": 17,
+            "frame": 58,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8508.796004093416,
+            "y": 4372.157183517497
+          },
+          {
+            "round": 17,
+            "frame": 59,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8506.056314195765,
+            "y": 4373.2733534758
+          },
+          {
+            "round": 17,
+            "frame": 60,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8503.316624298113,
+            "y": 4374.389523434102
+          },
+          {
+            "round": 17,
+            "frame": 61,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8500.576934400462,
+            "y": 4375.505693392404
+          },
+          {
+            "round": 17,
+            "frame": 62,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8497.83724450281,
+            "y": 4376.621863350707
+          },
+          {
+            "round": 17,
+            "frame": 63,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8495.09755460516,
+            "y": 4377.738033309009
+          },
+          {
+            "round": 17,
+            "frame": 64,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8492.357864707508,
+            "y": 4378.854203267311
+          },
+          {
+            "round": 17,
+            "frame": 65,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8489.618174809857,
+            "y": 4379.970373225614
+          },
+          {
+            "round": 17,
+            "frame": 66,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8486.878484912206,
+            "y": 4381.086543183917
+          },
+          {
+            "round": 17,
+            "frame": 67,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8484.138795014554,
+            "y": 4382.202713142218
+          },
+          {
+            "round": 17,
+            "frame": 68,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8481.399105116903,
+            "y": 4383.318883100521
+          },
+          {
+            "round": 17,
+            "frame": 69,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8478.659415219252,
+            "y": 4384.4350530588235
+          },
+          {
+            "round": 17,
+            "frame": 70,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8475.9197253216,
+            "y": 4385.551223017125
+          },
+          {
+            "round": 17,
+            "frame": 71,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8473.18003542395,
+            "y": 4386.667392975428
+          },
+          {
+            "round": 17,
+            "frame": 72,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8470.440345526298,
+            "y": 4387.7835629337305
+          },
+          {
+            "round": 17,
+            "frame": 73,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8467.700655628647,
+            "y": 4388.899732892033
+          },
+          {
+            "round": 17,
+            "frame": 74,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333332803,
+            "x": 8464.962938341092,
+            "y": 4390.020075065242
+          },
+          {
+            "round": 17,
+            "frame": 75,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333333485,
+            "x": 8462.361699606754,
+            "y": 4391.429079379675
+          },
+          {
+            "round": 17,
+            "frame": 76,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8459.760460872416,
+            "y": 4392.838083694108
+          },
+          {
+            "round": 17,
+            "frame": 77,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333333485,
+            "x": 8457.159222138078,
+            "y": 4394.247088008541
+          },
+          {
+            "round": 17,
+            "frame": 78,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333333485,
+            "x": 8454.55798340374,
+            "y": 4395.6560923229745
+          },
+          {
+            "round": 17,
+            "frame": 79,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8451.956744669402,
+            "y": 4397.065096637407
+          },
+          {
+            "round": 17,
+            "frame": 80,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333333485,
+            "x": 8449.355505935064,
+            "y": 4398.47410095184
+          },
+          {
+            "round": 17,
+            "frame": 81,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333333485,
+            "x": 8446.754267200726,
+            "y": 4399.883105266274
+          },
+          {
+            "round": 17,
+            "frame": 82,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333333485,
+            "x": 8444.153028466388,
+            "y": 4401.292109580707
+          },
+          {
+            "round": 17,
+            "frame": 83,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333333485,
+            "x": 8441.55178973205,
+            "y": 4402.70111389514
+          },
+          {
+            "round": 17,
+            "frame": 84,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8438.950550997712,
+            "y": 4404.110118209573
+          },
+          {
+            "round": 17,
+            "frame": 85,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333333485,
+            "x": 8436.349312263374,
+            "y": 4405.519122524006
+          },
+          {
+            "round": 17,
+            "frame": 86,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333333485,
+            "x": 8433.748073529036,
+            "y": 4406.928126838439
+          },
+          {
+            "round": 17,
+            "frame": 87,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.95833333333303,
+            "x": 8431.146834794697,
+            "y": 4408.337131152872
+          },
+          {
+            "round": 17,
+            "frame": 88,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333333485,
+            "x": 8428.54559606036,
+            "y": 4409.746135467305
+          },
+          {
+            "round": 17,
+            "frame": 89,
+            "id": "p-archer",
+            "cls": "archer",
+            "op": "walk",
+            "cost": 2.958333333333485,
+            "x": 8425.944357326021,
+            "y": 4411.155139781738
+          }
+        ]
+      }
+    }
+  ],
+  "outcomes": [
+    {
+      "route": "lower",
+      "actualOriginalWinRound": 8,
+      "nextStage": 13,
+      "rewardOutcomeOnce": true,
+      "growthSPAndLoadoutsCarry": true
+    },
+    {
+      "route": "upper",
+      "actualOriginalWinRound": 17,
+      "nextStage": 13,
+      "rewardOutcomeOnce": true,
+      "growthSPAndLoadoutsCarry": true
+    }
+  ]
+}

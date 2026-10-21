@@ -6,6 +6,11 @@ from playwright.sync_api import sync_playwright
 OUT=Path(os.environ.get('HONRO_ENDING_OUT','game/docs/stage-review/final-integration-20261021/evidence/browser'));OUT.mkdir(parents=True,exist_ok=True)
 VIEW="()=>JSON.stringify(Object.fromEntries(['heroes','loadouts','cleared','honroGrowth','recruited','party','record'].map(k=>[k,HonroApp.profile[k]??null])))"
 rows=[];errors=[];requests=[];failed=[]
+def capture(page,path):
+ page.screenshot(path=path)
+ if page.viewport_size['width']==1440:
+  page.screenshot(path=str(Path(path).with_suffix('.q85.jpg')),type='jpeg',quality=85)
+
 with sync_playwright() as p:
  browser=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
  page=browser.new_page(viewport={'width':1440,'height':900},has_touch=True,accept_downloads=True)
@@ -28,7 +33,7 @@ with sync_playwright() as p:
   page.wait_for_selector('#act-ending');page.wait_for_function('document.querySelector(".act-ending-art").naturalWidth===1672')
   assert page.locator('#act-ending').get_attribute('data-cut')=='1'
   assert page.locator('#act-ending button,.story-portrait').count()==0
-  page.wait_for_timeout(500);page.screenshot(path=str(OUT/f'focus1-act{stage//10}-landscape.png'));page.screenshot(path=str(OUT/f'focus1-act{stage//10}-landscape-q85.jpg'),type="jpeg",quality=85)
+  page.wait_for_timeout(500);capture(page,path=str(OUT/f'focus1-act{stage//10}-landscape.png'))
   dimensions=page.locator('.act-ending-art').evaluate('(n)=>({width:n.naturalWidth,height:n.naturalHeight,src:n.getAttribute("src"),fit:getComputedStyle(n).objectFit})')
   assert dimensions['height']==941 and dimensions['fit']=='cover'
   before=page.evaluate(VIEW)
@@ -54,24 +59,24 @@ with sync_playwright() as p:
   assert page.locator('#act-ending').get_attribute('data-cut')=='2' and before==page.evaluate(VIEW)
   page.wait_for_timeout(380);page.keyboard.press('Enter');assert page.locator('#act-ending').get_attribute('data-cut')=='3'
   # Long copy and bright foreground parchment contrast at normal desktop distance.
-  page.wait_for_timeout(400);page.screenshot(path=str(OUT/f'focus2-act{stage//10}-copy.png'))
+  page.wait_for_timeout(400);capture(page,path=str(OUT/f'focus2-act{stage//10}-copy.png'))
   for width,height in [(390,844),(320,568),(844,390)]:
    page.set_viewport_size({'width':width,'height':height});page.wait_for_timeout(400)
    box=page.locator('.act-ending-copy').bounding_box();assert box['x']>=0 and box['y']>=0 and box['x']+box['width']<=width+1 and box['y']+box['height']<=height+1
    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
-   page.screenshot(path=str(OUT/f'focus3-act{stage//10}-{width}x{height}.png'))
+   capture(page,path=str(OUT/f'focus3-act{stage//10}-{width}x{height}.png'))
   page.set_viewport_size({'width':390,'height':844});page.emulate_media(reduced_motion='reduce')
   page.wait_for_timeout(380);page.keyboard.press('Space');assert page.locator('#act-ending').get_attribute('data-cut')=='4'
   assert page.locator('.act-ending-copy').evaluate('(n)=>getComputedStyle(n).animationName')=='none'
   page.wait_for_timeout(380);page.keyboard.press('Enter');assert page.locator('#act-ending').get_attribute('data-cut')=='title'
   if stage==30:assert '준비 중' in page.locator('#act-ending').inner_text()
-  page.screenshot(path=str(OUT/f'act{stage//10}-next-title.png'))
+  capture(page,path=str(OUT/f'act{stage//10}-next-title.png'))
   page.wait_for_timeout(380);page.locator('#act-ending').click(position={'x':30,'y':30});page.wait_for_function('HonroApp.screen==="rest"')
   assert page.evaluate('HonroApp.engine===null&&HonroApp.profile.honroBattle===null')
   if stage==30:assert page.evaluate('HONRO_CONTENT.nextAct.available===false')
   page.evaluate('for(let i=0;HonroApp.dialogue&&i<30;i++)HonroStory.finish(HonroApp)')
   # Rest may recruit Sodan once; capture settled profile before the final reload.
-  settled=page.evaluate(VIEW);page.screenshot(path=str(OUT/f'act{stage//10}-rest.png'))
+  settled=page.evaluate(VIEW);capture(page,path=str(OUT/f'act{stage//10}-rest.png'))
   page.reload();page.wait_for_function('!!globalThis.HonroApp',timeout=120000);page.evaluate('HonroApp.continue()')
   assert page.locator('#act-ending').count()==0 and settled==page.evaluate(VIEW)
   rows.append({'stage':stage,'image':dimensions,'flow':'touch/click/Enter/Space; 4 cuts/title/rest','pendingCut2ReloadAndFileImport':True,'outcomeGuard':True,'settledReload':True,'scope':'terminal battle fixture, not a normal combat run'})
@@ -85,8 +90,8 @@ with sync_playwright() as p:
  page.wait_for_function('HonroApp.screen==="battle"&&!!HonroApp.engine');page.wait_for_timeout(2000)
  assert '출구' in page.locator('#objective-text').inner_text()
  start=page.evaluate('JSON.parse(JSON.stringify(HonroApp.engine.b))')
- page.screenshot(path=str(OUT/'checkpoint-exit-desktop.png'))
- page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(500);page.screenshot(path=str(OUT/'checkpoint-exit-mobile.png'))
+ capture(page,path=str(OUT/'checkpoint-exit-desktop.png'))
+ page.set_viewport_size({'width':390,'height':844});page.wait_for_timeout(500);capture(page,path=str(OUT/'checkpoint-exit-mobile.png'))
  for _ in range(3):
   if page.evaluate('HonroApp.engine.active.cls')=='knight':break
   page.keyboard.press('Tab')
@@ -97,7 +102,7 @@ with sync_playwright() as p:
  finally:page.keyboard.up('d')
  page.wait_for_function('!!HonroApp.dialogue',timeout=15000)
  assert '…이제 손을 놔도 돼요?' in page.locator('#story-line').inner_text()
- page.wait_for_timeout(500);page.screenshot(path=str(OUT/'final-safe-outro-first.png'))
+ page.wait_for_timeout(500);capture(page,path=str(OUT/'final-safe-outro-first.png'))
  end=page.evaluate('JSON.parse(JSON.stringify(HonroApp.engine.b))')
  assert end['phase']=='won' and end['honroState']['sodanWithdrawal']['phase']=='safe'
  assert len([u for u in end['units'] if u['side']==1 and not u.get('dead')])>0
@@ -105,10 +110,10 @@ with sync_playwright() as p:
  assert start['items']==end['items']
  assert len(start['units'])==len(end['units'])
  page.evaluate('while(HonroApp.dialogue.index<HonroApp.dialogue.lines.length-1)HonroStory.next(HonroApp)')
- page.wait_for_timeout(500);page.screenshot(path=str(OUT/'final-safe-outro-last.png'))
+ page.wait_for_timeout(500);capture(page,path=str(OUT/'final-safe-outro-last.png'))
  assert '일행 곁에 앉았다.' in page.locator('#story-line').inner_text()
  page.evaluate('HonroStory.finish(HonroApp)');page.wait_for_selector('#act-ending');page.wait_for_function('document.querySelector(".act-ending-art").naturalWidth===1672');page.wait_for_timeout(400)
- page.screenshot(path=str(OUT/'final-real-checkpoint-act1.png'))
+ capture(page,path=str(OUT/'final-real-checkpoint-act1.png'))
  (OUT/'checkpoint-traversal.json').write_text(json.dumps({'source':str(checkpoint),'scope':'actual normal-run checkpoint continuation; combat before checkpoint is recorded separately','start':start,'end':end,'input':'keyboard d via real browser frame until withdrawal; no coordinate/resource writes'},ensure_ascii=False))
  # Separate final combined review: real checkpoint result must preserve rewards
  # across duplicate outcome, pending reload, four cuts, title and the next rest.
@@ -120,11 +125,11 @@ with sync_playwright() as p:
  assert before==page.evaluate(VIEW) and page.locator('#act-ending').get_attribute('data-cut')=='2'
  for key,cut in [('Enter','3'),('Space','4'),('Enter','title')]:
   page.wait_for_timeout(380);page.keyboard.press(key);assert page.locator('#act-ending').get_attribute('data-cut')==cut
- page.wait_for_timeout(400);page.screenshot(path=str(OUT/'final-real-next-title.png'))
+ page.wait_for_timeout(400);capture(page,path=str(OUT/'final-real-next-title.png'))
  page.wait_for_timeout(380);page.keyboard.press('Space');page.wait_for_function('HonroApp.screen==="rest"')
  page.evaluate('for(let i=0;HonroApp.dialogue&&i<30;i++)HonroStory.finish(HonroApp)')
  assert page.evaluate('HonroApp.profile.recruited.includes("occultist")')
- page.screenshot(path=str(OUT/'final-real-next-rest.png'))
+ capture(page,path=str(OUT/'final-real-next-rest.png'))
  settled=page.evaluate(VIEW);page.reload();page.wait_for_function('!!globalThis.HonroApp',timeout=120000);page.evaluate('HonroApp.continue()')
  assert settled==page.evaluate(VIEW) and page.locator('#act-ending').count()==0
  assert not errors,errors
