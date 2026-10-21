@@ -3865,3 +3865,7 @@ Workshop Map은 Workshop JSON을 `map-import` → `launchMap`으로 실행하는
 - 로컬 Chromium 모바일 모사 CPU4배/40ms/2MiB/s, 조건별 3회 중앙값: cold 새 시작 ready 2977→2840ms, 저장21장 3552→3517ms. 요청97→85, cold 전송 약28KB 감소. warm 새 시작848→712ms이나 저장21장은995→1015ms. 클릭 후 진입은 cold 새 시작397→400ms/21장1715→1834ms로 개선되지 않았다. 실기·Pages·통계적 우위 증거가 아니다.
 - 집중 브라우저 검사: 타이틀 버튼 제거/개발API 보존, 새 시작/audio running, 11장·20장 원경, 요청실패 재시도·취소, 21장 HP/round/성장/장착/완료 보존, 이전 HTML/콘텐츠 해시 캐시 호환 통과. 빌드·web-split·retention·ordered-runtime 통과. 기존 title-redesign 정적 검사는 현재와 다른 옛 game/build.mjs 계약을 검사해 실패하며 수정 범위 밖으로 남겼다. Workshop/embedded 초기화는 확인했으나 기존 Playtest 전투 전체 정상화나 전 장 완주는 주장하지 않는다.
 - 상세 목록·측정·남은 제한은 `game/docs/INTRO_LOADING_AUDIT.md`, 실제 화면/원시 측정은 `_local/reports/intro-audit/`에 둔다. 전용 브랜치에서 push하고 통합 순서 조정을 위해 master 병합 전에 대기한다.
+
+### 후속: 실제 타이틀 정적 계약 복구
+
+544825ee 별도 worktree에서 title-redesign은 옛 game/build.mjs의 이미지 문자열 assertion, title-letter-rendering은 main.js에서 사라진 filter 추출에서 각각 실패함을 재현했다. 검사의 소스를 현재 web-build/title-markup으로 옮기고, DOM double의 가짜 startup marker를 제거했다. 기존 PNG identity·alpha/ink·6화면비·5저장분기·반복진입·접근성 검증을 유지하고 개발 버튼 부재/hidden input 보존을 반영했다. `npm run test:title` 두 검사 모두 통과했다.
