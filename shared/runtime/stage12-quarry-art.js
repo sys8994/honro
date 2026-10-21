@@ -19,13 +19,13 @@ const exposures={
   ['#789184a0','M6880 3950L7100 3850 7460 3810 7590 3590 7840 3480 8080 3630 8170 3820 8020 4050 7750 4220 7500 4280 7290 4160 7060 4140Z'],
   ['#345560cc','M5790 3990L6070 4080 6530 4060 6810 4140 7010 4150 7130 4230 7320 4230 7500 4320 7740 4370 8020 4260 8110 4100 8300 4040 8500 4120 8660 4050 8660 4300 5590 4200Z'],
   ['#24434fbb','M7540 3340L7510 3550 7420 3750 7190 3910 7180 4080 7240 4110 7260 3940 7510 3790 7600 3570 7630 3330Z'],
-  ['#a3ac913e','M7900 3510L8070 3640 8130 3800 8040 3930 7850 4010 7890 3890 7970 3770 7920 3670Z']
-  ,['#a4af9388','M6240 3570L6590 3560 6720 3620 6650 3720 6460 3770 6290 3710 6190 3730Z']
-  ,['#2a4c5766','M6190 3730L6290 3710 6460 3770 6650 3720 6720 3620 6800 3650 6720 3810 6480 3860 6260 3790 6160 3810Z']
-  ,['#b1b59877','M7130 3390L7490 3340 7660 3330 7710 3410 7590 3500 7450 3640 7240 3680 7290 3560Z']
-  ,['#45676588','M7210 3710L7440 3680 7560 3580 7610 3610 7500 3800 7310 3850 7100 3810Z']
-  ,['#9aa78d88','M7470 3900L7710 3800 7920 3740 8000 3830 7920 3960 7740 4030 7550 4010 7380 4120 7290 4100Z']
-  ,['#24465188','M7380 4120L7550 4010 7740 4030 7920 3960 8000 3830 8050 3900 7980 4060 7760 4120 7550 4090 7410 4190 7280 4180Z']
+  ['#a3ac913e','M7900 3510L8070 3640 8130 3800 8040 3930 7850 4010 7890 3890 7970 3770 7920 3670Z'],
+  ['#a4af9388','M6240 3570L6590 3560 6720 3620 6650 3720 6460 3770 6290 3710 6190 3730Z'],
+  ['#2a4c5766','M6190 3730L6290 3710 6460 3770 6650 3720 6720 3620 6800 3650 6720 3810 6480 3860 6260 3790 6160 3810Z'],
+  ['#b1b59877','M7130 3390L7490 3340 7660 3330 7710 3410 7590 3500 7450 3640 7240 3680 7290 3560Z'],
+  ['#45676588','M7210 3710L7440 3680 7560 3580 7610 3610 7500 3800 7310 3850 7100 3810Z'],
+  ['#9aa78d88','M7470 3900L7710 3800 7920 3740 8000 3830 7920 3960 7740 4030 7550 4010 7380 4120 7290 4100Z'],
+  ['#24465188','M7380 4120L7550 4010 7740 4030 7920 3960 8000 3830 8050 3900 7980 4060 7760 4120 7550 4090 7410 4190 7280 4180Z']
  ],
  'sq-west-quarry':[
   ['#99a98eaa','M3300 4390L3700 4290 4090 4110 4240 4080 4160 4260 3930 4340 3780 4470 3490 4510 3300 4500Z'],
@@ -81,9 +81,12 @@ const exposures={
  ]
 };
 for(const id in exposures)exposures[id]=exposures[id].map(([color,d])=>({color,path:new Path2D(d)}));
-function prepare(t,b){let q=cache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion)return q;const ps=C.poly(t),indices=t.honroWalkEdges||[],edges=indices.map(i=>[ps[i],ps[(i+1)%ps.length]]).filter(([a,z])=>a&&z&&Math.abs(a.x-z.x)>.001),rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y+7);rim.lineTo(z.x,z.y+7);}let key=0;for(const ch of t.id)key+=ch.charCodeAt(0);q={source:t.vertices,version:b.sceneVersion,shape:path(ps),edges,rim,forms:forms[key%forms.length]};cache.set(t,q);return q;}
+function prepare(t,b){let q=cache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion)return q;const ps=C.poly(t),indices=t.honroWalkEdges||[],edges=indices.map(i=>[ps[i],ps[(i+1)%ps.length]]).filter(([a,z])=>a&&z&&Math.abs(a.x-z.x)>.001),rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y+7);rim.lineTo(z.x,z.y+7);}let key=0;for(const ch of t.id)key+=ch.charCodeAt(0);q={source:t.vertices,version:b.sceneVersion,shape:path(ps),edges,rim,forms:forms[key%forms.length]};if(t.honroQuarryVeil){const x=t.x,y=t.y,w=t.w,h=t.h;q.veilFaces=[
+ {color:'#87967f',path:path([[x,y],[x+w*.6,y],[x+w*.44,y+h*.26],[x+w*.63,y+h*.43],[x+w*.34,y+h*.61],[x,y+h*.67]])},
+ {color:'#2c4b55',path:path([[x+w*.72,y],[x+w,y],[x+w,y+h],[x+w*.45,y+h],[x+w*.6,y+h*.77],[x+w*.35,y+h*.61],[x+w*.7,y+h*.44],[x+w*.52,y+h*.24]])},
+ {color:'#6c8376',path:path([[x,y+h*.72],[x+w*.3,y+h*.66],[x+w*.51,y+h*.8],[x+w*.36,y+h],[x,y+h]])}];}cache.set(t,q);return q;}
 function terrain(c,t,b){if(!active(b)||!t.honroQuarry)return false;const q=prepare(t,b);c.save();c.clip(q.shape);const gradient=c.createLinearGradient(t.x,t.y,t.x+t.w*.16,t.y+Math.min(t.h,2400));gradient.addColorStop(0,t.honroCeiling?'#586a6c':'#98a397');gradient.addColorStop(.27,'#72898a');gradient.addColorStop(.64,'#45666d');gradient.addColorStop(1,'#203c4e');c.fillStyle=gradient;c.fill(q.shape);
- if(t.honroQuarryVeil){c.fillStyle='#28484e';c.fill(q.shape);c.strokeStyle='#a2af9388';c.lineWidth=4;c.beginPath();c.moveTo(t.x+t.w*.3,t.y+70);c.lineTo(t.x+t.w*.65,t.y+t.h*.31);c.lineTo(t.x+t.w*.35,t.y+t.h*.64);c.lineTo(t.x+t.w*.68,t.y+t.h-48);c.stroke();}
+ if(t.honroQuarryVeil){c.fillStyle='#536f6c';c.fill(q.shape);for(const f of q.veilFaces){c.fillStyle=f.color;c.fill(f.path);}c.strokeStyle='#b9b79288';c.lineWidth=4;c.beginPath();c.moveTo(t.x+t.w*.3,t.y+70);c.lineTo(t.x+t.w*.65,t.y+t.h*.31);c.lineTo(t.x+t.w*.35,t.y+t.h*.64);c.lineTo(t.x+t.w*.68,t.y+t.h-48);c.stroke();}
  else{c.save();c.translate(t.x,t.y);c.scale(t.w/1000,Math.min(t.h,2300)/1000);if(!exposures[t.id]&&!t.honroCeiling)for(const[i,color]of ['#c1c2a92f','#17384789','#1838475c'].entries()){c.fillStyle=color;c.fill(q.forms[i]);}c.restore();c.strokeStyle='#d0d2b16f';c.lineWidth=t.honroSurfaceRole==='short-fracture'?4:10;c.stroke(q.rim);
   if(t.id==='sq-lower-ground'){c.fillStyle='#b2ae8138';c.fill(path([[6060,4822],[6210,4805],[6510,4805],[6930,4805],[6990,4825],[6560,4835],[6250,4830],[6060,4850]]));}
 
