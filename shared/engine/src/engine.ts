@@ -559,6 +559,12 @@ export class Engine {
     turnArrow(point?:Vec){return turnArrow(this,point);}
     useGate(){return useGate(this);}
     gateCandidate(){return gateCandidate(this);}
+    /** Turn without spending movement or changing velocity; mirror elevation just
+     * like walking, so the facing-relative aim controls keep the same muzzle pitch. */
+    face(direction:number) { if(!this.canAct()||!Number.isFinite(direction)||!direction)return;
+        const u=this.active!,facing=Math.sign(direction);
+        if(facing!==u.facing){u.angle=clamp(180-u.angle,AIM_MIN,AIM_MAX);u.facing=facing;}
+    }
     move(direction: number, dt: number) { if (!this.canAct())
         return; const u = this.active!;
         // S13's grounded bonus action permits turning, but never locomotion.

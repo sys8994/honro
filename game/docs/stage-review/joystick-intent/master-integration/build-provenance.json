@@ -1,0 +1,21 @@
+{
+  "baseMaster": "27efe8ebdab24e147494196a515641e0629e4656",
+  "approvedInputTip": "adda49d20c4456780834d96bd8f8109b2a4e73c2",
+  "mergeConflict": false,
+  "unapprovedParallelSourcesMerged": false,
+  "sha256": {
+    "HONRO.html": "684a598a1781854ae98c0563d4c64f465a58b89343ee3b1b12e01227acad3309",
+    "HONRO_WORKSHOP.html": "cea3e3da23355d799b67e8553924f6bebedb4f8b0e6c5719ecf69c635b6602ee",
+    "index.html": "684a598a1781854ae98c0563d4c64f465a58b89343ee3b1b12e01227acad3309",
+    "web/manifest.json": "0c1d01891bf607d75730172dc05592d8780cf79da73f3485ed96e03d42da8ec9",
+    "shared/engine/src/math.ts": "998cb9913e21e3734039aed7d6898a2aba39ad32907ff66db17d6a03c2addddf",
+    "shared/engine/src/main.ts": "89a96810be20c4c9d28cb795efe3eaff4bff0d22cf6c409e8e5ae95b2616cc70",
+    "shared/engine/src/engine.ts": "d46217b1d8da9c8db77f329719809c6986407239aa66d1bd8944701b548d9634",
+    "shared/runtime/main.js": "fbb1b6e3b76c1c8f7cc357f565e96cae651532085de90f7c1cc2bf5eed42d24b",
+    "shared/runtime/ui-bridge.js": "39fa22476dbd9ed4a7ba17e9c7d3d1ee9e78209d520746e3ce898d19d5b04b80",
+    "game/src/hud.css": "d0f45c17375d9481b18768bca2771df2e5597e5f871212d1e4575ae322ff392b"
+  },
+  "command": "npm run build",
+  "publicBrowserVerified": false,
+  "physicalTouchDeviceVerified": false
+}

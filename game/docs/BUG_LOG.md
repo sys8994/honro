@@ -1,3 +1,20 @@
+## 2026-10-21 — 승인된 P0 조이스틱 master 통합
+
+- 부모가 입력 구현·최종 검수·390px 실제 캡처를 승인해 최신 master `27efe8eb`에 승인 입력 `adda49d2`만 병합하고 Game/Workshop/embedded 생성물을 재빌드했다. 미승인 병렬 소스는 포함하지 않는다.
+- 빌드·typecheck·의도/물리120·충전126·S13 14·web-split 및 실제 생성 문서 입력255판정이 통과했다. [통합 증거·대표 PNG/trace](stage-review/joystick-intent/master-integration/README.md). 역사 runtime-contracts는 unchanged shared/build.mjs 승인 해시에서 기존 master와 똑같이 실패했으며 로그를 분리 보존한다. 실폰/Safari는 미검증이다. 원격 SHA/Pages/공개 페이지 접근 결과는 최종 배포 보고와 구분한다.
+
+## 2026-10-21 — P0 조이스틱 최종 집중·브라우저 검수 (master 미병합)
+
+- 의도/방향/생명주기 집중 검수와 종합 검수 통과. 실제 생성 Game 문서의 Chromium CDP touch→PointerEvent/캡처→production frame/물리 경로로 255개 판정, 429 상태, 614 이벤트를 기록했다. 320/360/390px 세로·844px 가로에서 상/하 양쪽 19/20/21도, 45도→조준+미세 이동, 중앙 통과, release, tiny jitter, cancel/캡처/blur/pause/동행/턴, 다중 터치 발사·점프와 PC 회귀를 확인했다. aimOnly 보행 호출 0·좌표/이동도 보존, 방향 반사 높낮이 유지, 별도 낙하/충격의 정상 물리를 확인했다.
+- 증거: `_local/reports/joystick-intent/review.md`, `input-trace.json`, `mobile-{320,360,390,844}-aim-only.png`, 소스/빌드 provenance. [계약·실행 방법](MOBILE_JOYSTICK_INPUT.md). 실제 휴대기기·Safari·OS 회전은 미검증이며 합성 입력을 실장치 검증으로 표시하지 않는다. 입력 소스만 원격 저장하고 master/Pages는 부모 최종 검수까지 보류한다.
+
+## 2026-10-21 — P0 모바일 첫 조이스틱 의도 고정 (입력 전용 브랜치)
+
+- 원인: 두 App이 매 pointermove의 수평축을 재평가했으므로 수직 조준 시작 후 기울임이 보행으로 바뀌었다. 실제 Game은 `shared/runtime/main.js`를 사용하므로 TS main/math만 고치면 공개 조작에는 적용되지 않는다.
+- 변경: 공통 reducer로 시작점 기준 최초 `max(.18 × range, 8 CSS px)`와 상/하 ±20°를 한 번 판정한다. aimOnly 이동축은 끝까지 0, raw 노브는 별도로 움직인다. 방향만 .60/.35 히스테리시스와 이동 없는 `Engine.face`로 바꾸고 보행과 같은 발사 높낮이를 보존한다. moveAim 수평은 .12/.10으로 미세 이동을 유지한다. 취소/캡처 손실/blur/pause/동행/턴 경계에서 상태를 비운다.
+- 확인: typecheck, 순수 의도/물리 120조합, 기존 방향 전환 14조건과 키보드/포인터 충전 126조건 통과. 모바일 브라우저 PointerEvent와 3개 집중 검수/종합 결과는 아래 후속 검증 기록에 남긴다. [현재 계약](MOBILE_JOYSTICK_INPUT.md).
+- 범위: 입력 소스·검사·문서만 저장한다. 생성물은 로컬 검증용이며 부모 최종 통합에서 다시 빌드한다. master 병합·Pages 배포·실장치 검증은 수행하지 않는다.
+
 ## 2026-10-21 — 부모 검수 승인2장 layered road 통합 검증
 
 승인 후보 d03ca76c를 master edf712e9와 통합했다.2장 전면 연속 호위로/뒤 절벽/왼쪽 상여 출발, 공통 화강암/뿌리/얕은 보행면 접합을 반영한다.5장 진단과12장 후보는 제외하며 스킬UI·84개 미리보기·23장 저장 검사 소스와 다른29장 원본은 master 그대로다. build와2장 경로/고지 사격/author/저장 및 현재 렌더, 실제R3 Continue와 기존 정상R21 승리 저장의 보상·담허 합류·3장 연결을 확인했다.21라운드 전투 자체는 재사용하며 새 완주나 전략 다양성 검증으로 확대하지 않는다. 최종 원본 PNG/검사는 stage02-layered-road/master-integration에 보존한다.
@@ -4104,3 +4121,7 @@ Workshop Map은 Workshop JSON을 `map-import` → `launchMap`으로 실행하는
 - 구도 가독성:1장 수레/실제 상황 설명,2장 절벽,10장 동쪽 위협/소단과 실제 근접 수비 집단,19/28장 대화를 직접 확인했다. 집단 배치는 실제 지지면을 쓰는 검사 fixture이며 정상 전투 완주가 아니다. 유형별80화면과 별도 집단12화면의 대상 포함/overflow/pageerror는0이다.30장276시퀀스(현행 맵과 버전이 다른 구형2개 제외)769페이지의 정책/줌 상한을 목록 검사했으며 전 장 미술 합격이나1,500화면 재검수로 부르지 않는다.
 - 음악 상태: 실제 MP3 스트림20전환,9/10 우선05·retry·Continue·일반 장05순환·반복 업데이트/unlock/숨김 복귀·정확한 접두어·390px 표시를 확인했다. 음악 제목 메타데이터는 그대로다.
 - 최종 종합: 실제 witness 보행/방어 경계→설명20초 유지·1입력1페이지·이전/Continue/넘기기·중복 방지 통과. 수동 자막/대화 조작/정지 피드백과 최종 원본 빌드/생성248파일 계약 통과. main.ts·지형·물리·성장·대사 원문은 미수정이다. 중간 실행 연결 단절로 빈 응답을 보낸 로컬 서버만 복구했고 최종 검사에서는 오류0이다. 기존 전체 검사의 무관한 실패와 실기기/전 캠페인 미검수는 이전 보고대로이며 master/공개 배포는 부모 검수 전 보류다.
+
+### 2026-10-21 · 신규 대사/음악 브랜치의 최신 조이스틱 master 호환
+- 최종 원격 점검에서 P0 조이스틱 입력이 master bafc275c10c7a256692425641d7f0e4f69c002ca에 통합된 것을 확인해 작업 브랜치에 보존했다. 원본은 충돌 없이 병합됐고 생성 rename/HTML/manifest만 최신 원본 재빌드로 해결했다. 카메라·방향/대사 메타데이터·BgmPlayer/AudioEngine 코드는 직전 검수와 동일하다. main.ts는 최신 master와 같고 main.js의 우리 차이는 첫 곡 인자/표시 접두어 두 줄뿐이다.
+- 통합 소스에서 story-framing8그룹/audio/joystick-intent120범위/charge-input126키보드·포인터/248생성파일 계약 통과. 실제 witness20초·Continue·모바일 한 입력 한 페이지·중복 방지, 실제 MP3 스트림20전환, desktop/mobile compositor115프레임을 다시 확인했다. 이 단위는 입력 변경과 대사/음악의 호환 확인이며 전80화면/769정책 미술 재검수는 아니다. master 추가 쓰기/Pages는 부모 검수 전 보류다.
