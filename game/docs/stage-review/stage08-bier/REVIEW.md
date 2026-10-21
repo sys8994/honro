@@ -22,3 +22,5 @@
 - 기존8장 fullplay는 옛 XP8644에 고정되어 현재 완료 보상7512에서 중단한다. 현행 보상을 실제 완료 API로 얻는 별도 진입 helper를 추가하고 기존 역사 기본값은 유지한다. 이전7장 연속 전투 기록이 아니다.
 - 현재 결박은 일반 피격 actor로 변환되어 있는데 옛 controller는 terrain만 검색했다. production QuestTargets.records와 actor 공격을 사용하도록 수정했다. 플레이어/목표 HP 강제 변경은 없다.
 - 옛 이미지 author CLI는 현재 지형 덮어쓰기를 예방하도록 쓰기 전에 중단한다. 순수 역사 author는 현재 restored raw 입력에서 다른 장 변경 guard로 거부되며 입력을 변형하지 않는다. 이 guard를 완화하지 않는다. 현재 미술 author는 renderer이므로 빌드 전후 전30장/library가 기준과 동일해야 한다.
+
+렌더 회귀 검사의 이전 실패도 정합화했다. build.mjs의 `parts.push(await read(...))` 정규식은 현행 `await file(...)` 목록을 읽도록 갱신하고, 새 `_landmarkLayer` 받침 wrapper를 비교 대상에 추가했다. Stage23 비교 소스 해시는 기존 master544825ee 파일과 대조해 갱신했다(마지막 해당 소스 변경9fbd16d7). 양쪽 비교는 동일한 현재 파일이며 지형/배경/목표/랜드마크 RGBA, 컨텍스트, 전체 전투 불변 검사160건 통과. 다른 장 렌더 픽셀 회귀 검사이지 전30장 실화면 완주 주장이 아니다.
