@@ -1,0 +1,35 @@
+{
+  "won": true,
+  "round": 2,
+  "heroes": [
+    {
+      "cls": "archer",
+      "hp": 572,
+      "maxHp": 627
+    },
+    {
+      "cls": "mage",
+      "hp": 678,
+      "maxHp": 678
+    },
+    {
+      "cls": "knight",
+      "hp": 1052,
+      "maxHp": 1102
+    }
+  ],
+  "shots": 3,
+  "actualDamage": 9,
+  "continues": [
+    {
+      "round": 1,
+      "exact": true
+    }
+  ],
+  "receivers": 2,
+  "itemsUsed": [],
+  "nextStage": 10,
+  "externalWrites": 0,
+  "recoveries": 0,
+  "scope": "Native production normal inputs from actual Stage8 victory profile; not full browser combat"
+}
