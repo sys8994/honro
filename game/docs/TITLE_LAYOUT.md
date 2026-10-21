@@ -21,4 +21,4 @@
 
 원본 그림6개의 기준/현재 SHA256은 [preservation.json](evidence/title-portrait-layout-2026-10-21/preservation.json),24개 배치 좌표는 [checks.json](evidence/title-portrait-layout-2026-10-21/checks.json)에 있다. [같은 폴더](evidence/title-portrait-layout-2026-10-21/)의 PNG는 실제 브라우저 캡처이며 원본 미술 에셋 수정물이 아니다. 재현 명령은 `python tools/testing/title-portrait-layout-browser.py`이다. 저장 전투는 현재 런타임으로 별도 브라우저 context에서 생성하며 외부/개인 저장 fixture를 사용하지 않는다.
 
-master 통합은 적 버그 작업의 선행 통합 뒤 담당 조정자가 진행한다.
+적 버그 master `ec1b66d45539d9d1fa4fa79ce5dc40599490991b`을 보존하여 통합한 뒤 재빌드·기존 title 검사·24개 배치 검사를 다시 통과했다. 적 버그 실행 코드와 원본 이미지·지형 데이터는 해당 master와 동일하다. 통합 후 좌표 결과는 [integrated-checks.json](evidence/title-portrait-layout-2026-10-21/integrated-checks.json)에 보존한다. 초기 캡처 PNG는 그대로 두고 통합 후 실제 캡처는 `_local/reports/title-portrait-layout/integrated/`에 저장했다. 검수 도구의 `HONRO_TITLE_LAYOUT_OUT`으로 별도 출력 경로를 지정할 수 있다.

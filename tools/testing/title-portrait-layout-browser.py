@@ -1,12 +1,12 @@
 """Check CSS-only title placement against the fixed previous master stylesheet."""
-import json,re,subprocess,sys
+import json,os,re,subprocess,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tests'))
 from browser_support import launch
 from story_browser_server import story_base_url
 from playwright.sync_api import sync_playwright
 BASE='1ebd7985e21487329cc079102eeaa3bfd945da3b'
-OUT=ROOT/'game/docs/evidence/title-portrait-layout-2026-10-21';OUT.mkdir(parents=True,exist_ok=True)
+OUT=Path(os.environ.get('HONRO_TITLE_LAYOUT_OUT',str(ROOT/'game/docs/evidence/title-portrait-layout-2026-10-21')));OUT.mkdir(parents=True,exist_ok=True)
 old_css=subprocess.check_output(['git','show',BASE+':game/src/title.css'],cwd=ROOT,text=True)
 rows=[]
 measure='''()=>{const rect=e=>{const r=e.getBoundingClientRect();return {x:r.x,y:r.y,w:r.width,h:r.height,bottom:r.bottom,right:r.right}},title=document.querySelector('.honro-title'),brand=title.querySelector('.title-brand'),img=title.querySelector('.title-painting img');return {logo:rect(brand),tagline:rect(title.querySelector('.title-tagline')),buttons:[...title.querySelectorAll('.title-actions>button')].map(e=>({...rect(e),text:e.textContent})),settings:rect(title.querySelector('[data-action=settings]')),footer:rect(title.querySelector('.footer')),background:{fit:getComputedStyle(img).objectFit,position:getComputedStyle(img).objectPosition,url:img.currentSrc},logoStyle:{filter:getComputedStyle(brand.querySelector('.title-hanja')).filter,color:getComputedStyle(brand).color}}}'''

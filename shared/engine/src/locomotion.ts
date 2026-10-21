@@ -1,3 +1,4 @@
+import {groundFlightClear} from './enemyAI';
 import type {Terrain,Unit,Vec} from './types';
 import {clamp,poly,topAt,terrainSurfaces,terrainSlopeAt,terrainRectIntersects,terrainContains,segmentTerrain,segmentProjectileTerrain,segRect,AIM_MIN,AIM_MAX} from './math';
 
@@ -131,6 +132,7 @@ export function walkTerrain(e:any,u:Unit,direction:number,dt:number,requireSuppo
     if(support&&Math.abs(terrainSlopeAt(support.t,nx,support.y))>1.35)support=null;
     if(requireSupport&&!support)break;
     const ny=support?support.y:u.y;
+    if(!groundFlightClear(e,u,{x:nx,y:ny}))break;
     // Sweep the feet even when both endpoints have support in the SAME solid.
     // Endpoint-only checks can cut through a narrow ridge or a cave wall, and
     // skipping the entire support polygon also skips those blocking faces.

@@ -20,7 +20,7 @@ import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, 
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
 import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier} from './existence';
 import {lureStakeFor} from './totemBehavior';
-import { planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, FLY_MOVE_BUDGET } from './enemyAI';
+import { planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, poly, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
 import { createBattle, groundY, makeEnemy, makeUnit } from './world';
 import { grantXP, applyHero, levelOf, TALENT_MAP, passiveBonus, recommendedLevel, equippedRank, passiveRank, skillDamageFactor, skillRadiusFactor, skillManaFactor, volleyCount, volleyDamage, knockbackResistance, ultimateUnlocked } from './progression';
@@ -1773,7 +1773,7 @@ export class Engine {
             u.moving = Math.max(0, (u.moving || 0) - dt);
             u.landing = Math.max(0, (u.landing || 0) - dt);
             if(u.summonFloating){u.vx=u.vy=0;}
-            if(flyingEnemy(u)&&!u.dead&&u.aiMove&&this.b.phase==='enemy'&&(u.aiMove.lureStakeId!==undefined||this.b.active===u.id&&!u.acted)){advanceEnemyMove(this,u,dt);continue;}
+            if(flyingEnemy(u)&&!u.dead&&u.aiMove&&this.b.phase==='enemy'&&(u.aiMove.waitingFlight||u.aiMove.lureStakeId!==undefined||this.b.active===u.id&&!u.acted)){advanceEnemyMove(this,u,dt);continue;}
             if (u.dead || u.airborne || u.fixed || u.summonFloating || u.carriedBy!==undefined){
                 delete u.platformDrop;continue;
             }
@@ -2064,7 +2064,9 @@ export class Engine {
             b.queue = enemies.map(u => u.id);
             for (const u of this.actors(1))
                 u.acted = !b.queue.includes(u.id);
+            planWaitingFlights(this);
             if (!enemies.length) {
+                if(b.units.some(u=>u.aiMove?.waitingFlight)){b.active='';b.phase='enemy';b.turnAge=0;this.emit('change');return;}
                 if(this.actors(1).some(u=>u.lureRound!==b.round&&lureStakeFor(this,u))){b.active='';b.phase='enemy';b.turnAge=0;this.emit('change');return;}
                 this.endTeam();
                 return;
@@ -2165,7 +2167,7 @@ export class Engine {
         const b=this.b;
         if(yield* planEnemyLuresSteps(this)){this.emit('change');this.emit('save');return;}
         const u=this.active;
-        if(!u&&b.queue.length===0){this.endTeam();return;}
+        if(!u&&b.queue.length===0){if(b.units.some(v=>v.aiMove?.waitingFlight))return;this.endTeam();return;}
         if(!u||u.dead||u.eaterCapturedBy||u.summonKind==='eater'){this.finishAction();return;}
         if(u.aiMove||u.moveTarget!==undefined)return;
         if(!this.heroesAlive().length){this.checkEnd();return;}
