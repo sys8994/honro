@@ -16,9 +16,10 @@ function surfacePaths(t,b){const q=G.HonroAct1SpatialArt.prepareTerrain(t,b),old
  p.moveTo(x+w*.73,y);p.lineTo(x+w,y);p.lineTo(x+w,y+h);p.lineTo(x+w*.57,y+h);p.quadraticCurveTo(x+w*.75,y+h*.55,x+w*.73,y);p.closePath();
  light.moveTo(x,y);light.lineTo(x+w*.37,y);light.quadraticCurveTo(x+w*.28,y+h*.17,x+w*.11,y+h*.31);light.lineTo(x,y+h*.48);light.closePath();
  const v={source:q,side:p,light};faceCache.set(t,v);return v;}
-function drawSurface(scene,c,t,b,unit=1,rearPaint){const p=surfacePaths(t,b),q=p.source,wood=t.mat==='wood';c.save();if(wood||!rearPaint){c.fillStyle=wood?PALETTE.wood:PALETTE.front;c.fill(q.shape);}c.clip(q.shape);
- if(wood){c.fillStyle='#26342e';c.fill(p.side);c.fillStyle=PALETTE.woodLight;c.fill(p.light);}
- else if(rearPaint)rearPaint();else draw(scene,c,b,v=>{if(v.asset.category!=='rock')return false;const a=v.asset.bounds,z=v.scale;return v.x+(a.x+a.w)*z>=t.x&&v.x+a.x*z<=t.x+t.w&&v.y+(a.y+a.h)*z>=t.y&&v.y+a.y*z<=t.y+t.h;});
+// Paint the actual solid ledge; joined rear geology remains unclipped.
+// A camera-domain extension must not turn into a new flat cap/skirt.
+function drawSurface(scene,c,t,b,unit=1){const p=surfacePaths(t,b),q=p.source,native=b.terrain.find(v=>v.id===t.id)||t,body=G.HonroAct1SpatialArt.prepareTerrain(native,b),wood=t.mat==='wood';c.save();c.fillStyle=wood?PALETTE.wood:PALETTE.front;c.fill(body.shape);c.clip(body.shape);
+ if(wood){c.fillStyle='#26342e';c.fill(p.side);c.fillStyle=PALETTE.woodLight;c.fill(p.light);}else draw(scene,c,b,v=>v.asset.category==='rock'&&v.attachment.terrainId===t.id&&v.asset.params.geologyModule==='granite-ledge-neck');
  c.restore();c.save();c.strokeStyle=wood?'#a5a583':PALETTE.rim;c.lineWidth=1.05*unit;c.lineJoin='round';c.stroke(q.rim);c.restore();}
 G.HonroGeologyArt={composition,prepare,draw,drawSurface,PALETTE};
 })(globalThis);
