@@ -59,6 +59,8 @@ S.background=function(c,w,h,b){
  };
  const signature=ls.map(l=>[l.key,l.frame.x,l.frame.y,l.frame.w,l.frame.h,l.alpha].join(',')).join('|');
  if(!this._screenRaster(raw,['authored-far',w,h,signature].join(':'),w,h,paint,'_screenBackgroundCache',false))paint(raw);
+ // Stage 5's local cave wall must remain in front of the distant painting.
+ if(b.honroStage===5)G.HonroStage5WaterfallArt?.caveBackground(c,w,h,b,this);
  // These stages previously drew authored room rocks, hanging clues and lights
  // in background(). Keep that pass, omitting only its old sky/flat cave base.
  if([11,13,14,15,16,17,19,20].includes(b.honroStage))G.HonroAct2SpatialArt.background(c,b,this,w,h,true);

@@ -1,5 +1,5 @@
 import {prefetchProject,prefetchData,yieldIfNeeded} from "../runtime/load-data.60b63bd7d9d5af82.js";
-globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL="web/entries/game.13fd5d64f046cde7.html?embedded=1";
+globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL="web/entries/game.30c53d86b417d230.html?embedded=1";
 const modules=[new URL("../runtime/ordered-common-1.b90980f983e0304d.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-title-markup.3976b37b0afc8917.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.8183477a4872f6a6.js",import.meta.url).href,
@@ -28,7 +28,7 @@ new URL("../runtime/HONRO_AUTHORED_FAR.c9728fddbd7f2de9.js",import.meta.url).hre
 new URL("../runtime/shared-assets-monsters-monsters-runtime.63ca9e9192ae871d.js",import.meta.url).href,
 new URL("../runtime/shared-assets-actors-actors-runtime.c11822d74d18722f.js",import.meta.url).href,
 new URL("../runtime/ordered-common-11.42c3d3bd61f34f59.js",import.meta.url).href,
-new URL("../runtime/ordered-common-12.f8df1a7e43eb5aaf.js",import.meta.url).href,
+new URL("../runtime/ordered-common-12.76a49730abe0c64a.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage-rules.425c10ceb6d4b5ec.js",import.meta.url).href,
 new URL("../runtime/workshop-app.3dcb579d65e74da0.js",import.meta.url).href].filter(file=>!false||globalThis.HONRO_EMBEDDED||globalThis.HONRO_PROJECT_MODE==='full'||!Object.values(globalThis.HONRO_OPTIONAL_MODULES).some(entry=>entry.url===file));
 globalThis.HONRO_READY=(async()=>{try{

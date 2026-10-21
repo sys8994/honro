@@ -51,7 +51,7 @@ new URL("../runtime/HONRO_AUTHORED_FAR.c9728fddbd7f2de9.js",import.meta.url).hre
 new URL("../runtime/shared-assets-monsters-monsters-runtime.63ca9e9192ae871d.js",import.meta.url).href,
 new URL("../runtime/shared-assets-actors-actors-runtime.c11822d74d18722f.js",import.meta.url).href,
 new URL("../runtime/ordered-common-11.42c3d3bd61f34f59.js",import.meta.url).href,
-new URL("../runtime/ordered-common-12.f8df1a7e43eb5aaf.js",import.meta.url).href,
+new URL("../runtime/ordered-common-12.63e566034d7bd73a.js",import.meta.url).href,
 new URL("../runtime/ordered-game-13.1f4ef1e6791e4c7a.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage-rules.425c10ceb6d4b5ec.js",import.meta.url).href,
 new URL("../runtime/ordered-game-14.2cc2000c3beadcc4.js",import.meta.url).href,

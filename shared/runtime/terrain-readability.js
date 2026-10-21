@@ -10,7 +10,8 @@ function cutAt(a,z,p,q,cuts){const dx=z.x-a.x,dy=z.y-a.y,ex=q.x-p.x,ey=q.y-p.y,d
  else if(Math.abs(cross(p.x-a.x,p.y-a.y,dx,dy))<1e-6)for(const v of [p,q]){const t=((v.x-a.x)*dx+(v.y-a.y)*dy)/len2;if(t>0&&t<1)cuts.push(t);}
 }
 function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prior=cache.get(b);if(prior?.source===ts&&prior.version===b.sceneVersion)return prior;
- const solids=ts.filter(t=>!t.broken).map(t=>({t,ps:C.poly(t)})),groups=[];
+ // The waterfall is rendered by its flowing sheet, not a rock-edge outline.
+ const solids=ts.filter(t=>!t.broken&&!(G.HonroStage5Waterfall?.active(b)&&t.id==='waterfall-veil')).map(t=>({t,ps:C.poly(t)})),groups=[];
  for(const {t,ps}of solids){
   // Some legacy sprite hitboxes deliberately enclose empty air. Outlining
   // those would create a floating wireframe, so retain their authored rim.

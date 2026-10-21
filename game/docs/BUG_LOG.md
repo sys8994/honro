@@ -3834,3 +3834,8 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 - Preserve the existing basin, six landing tops, eight-turn evacuation, NPCs and event IDs. Replace rock-thick galleries on timber trestles with shallow wood decks; add connected cut-bank faces rather than repeated texture.
 - Keep fourteen initial foes and existing waves; distribute clones among ground pressure, burned gallery, east reserve and elevated crossfire. Revision4 invalidates only the changed battle.
 - Finite two-hero west climb/return and three real projectile checks pass. Normal-resource browser ground defense and upper-gallery defense both win round9. Final-source screenshots and outcome evidence recorded in stage04-positioning review. This is a targeted refinement, not a replacement of the whole basin or an all-skills campaign clear.
+
+## 2026-10-21 — Stage5 waterfall cave background continuity
+- The image-distance provider skipped Stage5's local cave backing, exposing sky through the objective chamber. Restore that local pass after the distance painting; clip it to the cave mouth so it cannot protrude when water bends aside.
+- Exclude the fluid sheet from the solid-terrain readability pass. Its old body outline otherwise remains a floating wireframe beside the open waterfall. Actual fluid/body physics are unchanged.
+- All30 authored stages and library remain exact; no map revision or battle invalidation. Focused movement/closed-drag/open-hit and old Continue checks pass. Normal-resource production browser achieved objective completion round35; basic-only policies can be dangerous and are not a universal difficulty certification. See stage05-waterfall review for failures and final-source evidence.

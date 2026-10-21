@@ -651,6 +651,16 @@ stage1Beds.push(
  ['#81927d33',[[3740,1330],[3760,1230],[3790,1227],[3752,1338],[3686,1440],[3678,1465],[3670,1438]]]
 );
 const stage1BedPaths=stage1Beds.map(([color,points])=>({color,path:poly(points),top:Math.min(...points.map(p=>p[1])),bottom:Math.max(...points.map(p=>p[1]))}));
+// Gate basin cut banks: connected tilted beds follow the two downhill shoulders.
+const stage4BedPaths=[
+ ['#4e6056',[[1200,2270],[1390,2380],[1580,2485],[1740,2600],[1700,2670],[1515,2560],[1420,2490],[1300,2450]]],
+ ['#344b44',[[1300,2450],[1420,2490],[1515,2560],[1700,2670],[1820,2730],[1740,2850],[1530,2730],[1450,2590],[1260,2540]]],
+ ['#586b5c',[[2510,2610],[2700,2507],[2880,2405],[3070,2280],[3180,2240],[3130,2320],[2980,2425],[2910,2520],[2710,2600],[2590,2670]]],
+ ['#3a5149',[[2590,2670],[2710,2600],[2910,2520],[2980,2425],[3130,2320],[3220,2310],[3160,2450],[3030,2570],[2960,2720],[2720,2810]]],
+ ['#5c6b5c',[[3180,2240],[3370,2155],[3560,2070],[3740,1995],[3890,1960],[3800,2040],[3650,2110],[3540,2210],[3370,2270],[3220,2310],[3130,2320]]],
+ ['#42584c',[[3220,2310],[3370,2270],[3540,2210],[3650,2110],[3800,2040],[3890,1960],[4140,1905],[4090,2010],[3900,2110],[3770,2260],[3510,2390],[3360,2450],[3160,2450]]],
+ ['#293f3b',[[3510,2390],[3770,2260],[3900,2110],[4090,2010],[4210,1990],[4110,2180],[3960,2290],[3830,2480],[3520,2570],[3360,2450]]]
+].map(([color,points])=>({color,path:poly(points)}));
 function livingBough(c,t,q){
  c.save();c.fillStyle='#283d31';c.fill(q.shape);c.clip(q.shape);
  const top=q.edges.length?[q.edges[0][0],...q.edges.map(e=>e[1])]:[];
@@ -698,6 +708,7 @@ const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.hon
  for(const [i,p]of q.cliffPlanes.entries()){c.fillStyle=['#a2b4bb28','#081e294f','#82979f24','#0e27335c'][i];c.fill(p);}
  for(const [i,f]of q.planes.entries()){c.fillStyle=q.wood?'#a5a27e1e':i%2?'#a2b0b71e':'#b0b9ba23';c.fill(f.lit);c.fillStyle=q.wood?'#16292369':'#10243155';c.fill(f.shadow);c.strokeStyle=q.wood?'#20352b50':'#172c3655';c.lineWidth=5;c.stroke(f.contact);}
  if(b.honroStage===1&&b.honroMap?.positioning&&['forest-floor','ridge-east-extension'].includes(t.id))for(const f of stage1BedPaths){c.fillStyle=f.color.length===7?A.gradient(c,0,f.top,0,f.bottom,[[0,f.color],[.65,f.color],[1,'#344b43']]):f.color;c.fill(f.path);}
+ if(b.honroStage===4&&b.honroMap?.positioning&&t.id==='gate-basin')for(const f of stage4BedPaths){c.fillStyle=f.color;c.fill(f.path);}
  for(const cap of q.caps){c.fillStyle=q.wood?'#bdad781d':t.mat==='earth'?'#87927637':'#b9c2bc24';c.fill(cap);}c.strokeStyle='#1a2b2960';c.lineWidth=3;for(const j of q.joints)c.stroke(j);
  c.strokeStyle=q.wood?'#b7b298':/^climb-/.test(t.id)?'#95aaa3':'#b4c6c1';c.lineWidth=/^climb-/.test(t.id)?2:3.5;c.lineJoin='round';c.stroke(q.rim);c.restore();};
 const FORMS={
@@ -1452,7 +1463,8 @@ function terrain(c,t,b){let q=cache.get(t);if(!q||q.vertices!==t.vertices){q={ve
  }c.restore();c.save();c.strokeStyle='#162c33';c.lineWidth=3;c.stroke(q.path);c.restore();}
 const oldTerrain=S.terrain;S.terrain=function(c,t,...args){if(active(this.battle)&&t.indestructible&&t.id!=='waterfall-veil'&&!t.honroElementCollision){terrain(c,t,this.battle);return;}if(active(this.battle)&&t.id==='waterfall-veil')return;return oldTerrain.call(this,c,t,...args);};
 const oldLandmark=S.landmark;S.landmark=function(c,l,...args){if(active(this.battle)&&l.kind==='waterfall')return;return oldLandmark.call(this,c,l,...args);};
-const oldBackground=S.background;S.background=function(c,w,h,b){oldBackground.call(this,c,w,h,b);if(!active(b))return;c.save();c.translate(w/2,h/2);c.scale(this.scale,this.scale);c.translate(-this.x+(b.honroStage5LakeRevision===1?900:0),-this.y);c.fillStyle='#14252d';c.fill(P('M2920 2100Q3260 1990 3570 2110L3710 2300 3660 2520 2900 2590Z'));c.fillStyle='#273c3e';c.fill(P('M3020 2160L3260 2120 3570 2170 3600 2290 3500 2400 3030 2430Z'));c.restore();};
+function caveBackground(c,w,h,b,scene){if(!active(b))return;c.save();c.translate(w/2,h/2);c.scale(scene.scale,scene.scale);c.translate(-scene.x+(b.honroStage5LakeRevision===1?900:0),-scene.y);c.fillStyle='#14252d';c.fill(P('M2920 2100Q3260 1990 3570 2110L3710 2300 3660 2520 2900 2590Z'));c.fillStyle='#273c3e';c.fill(P('M3020 2160L3260 2120 3570 2170 3600 2290 3500 2400 3030 2430Z'));c.restore();}
+const oldBackground=S.background;S.background=function(c,w,h,b){oldBackground.call(this,c,w,h,b);caveBackground(c,w,h,b,this);};
 const oldWater=S.liveWater;S.liveWater=function(c,b){if(!active(b))return oldWater.call(this,c,b);oldWater.call(this,c,{...b,honroLandmarks:b.honroLandmarks.filter(l=>l.kind!=='waterfall'),honroSurfaceZones:b.honroSurfaceZones.filter(z=>!['stage5-downstream','stage5-plunge-pool','stage5-headwater'].includes(z.id))});const time=A.time(this),a=G.HonroEnvironment.atmosphereAt({backdrop:b.honroBackdrop,environment:b.honroEnvironment},this.y),open=!!G.HonroQuestTargets.records(b).find(t=>t.id==='waterfall-veil')?.honroWaterOpen,shape=open?opened:closed;const downstream=b.honroSurfaceZones.find(z=>z.id==='stage5-downstream');if(downstream){c.save();c.clip(A.poolData(downstream).clip);c.fillStyle=A.gradient(c,0,3300,0,3460,[[0,'#3f63635c'],[1,'#17343aaa']]);c.fillRect(-6000,3300,8400,180);c.restore();}
  const head=b.honroSurfaceZones.find(z=>z.id==='stage5-headwater');if(head){c.save();c.clip(A.poolData(head).clip);c.fillStyle=A.gradient(c,0,1220,0,1350,[[0,'#a8c4b980'],[1,'#315859dd']]);c.fillRect(2960,1220,8000,150);c.strokeStyle='#adcdbd70';c.lineWidth=4;for(let i=0;i<8;i++){const x=3070+i*260-(time*60%260);c.beginPath();c.moveTo(x,1240+i%3*13);c.quadraticCurveTo(x+50,1232+i%3*13,x+135,1244+i%3*13);c.stroke();}c.restore();}
  const basin=b.honroSurfaceZones.find(z=>z.id==='stage5-plunge-pool');if(basin){c.save();c.clip(A.poolData(basin).clip);c.fillStyle=A.gradient(c,0,3300,0,b.honroStage5LakeRevision===1?4300:3820,[[0,'#487d78cc'],[.16,'#234f5c'],[.55,'#102e43'],[1,'#071c2c']]);c.fillRect(basin.x1||2290,3300,(basin.x2||3970)-(basin.x1||2290),1100);A.glow(c,2960,3330,450,100,'#bdddd0',.25);c.strokeStyle='#80aba54d';c.lineWidth=3;for(let i=0;i<7;i++){c.beginPath();c.ellipse(2940+Math.sin(i*4)*120,3320+i*25,200+i*26,8+i*2,0,0,Math.PI);c.stroke();}c.restore();}c.save();c.translate(b.honroStage5LakeRevision===1?900:0,0);c.save();c.clip(shape);
@@ -1470,7 +1482,7 @@ function evidence(scene,e){const b=e.b,c=scene.ctx,t=G.HonroQuestTargets.records
  // The complete wood slab represents the attackable rectangle, without hollow holes.
  if(!t.honroQuestTarget)targetBody(c,t);
  c.save();c.strokeStyle=t.broken?'#8c63504d':'#ad6657';c.lineWidth=3;c.beginPath();c.moveTo(t.x-210,t.y+55);c.quadraticCurveTo(t.x-90,t.y+(t.broken?150:50),t.x+t.w/2,t.y+66);c.lineTo(t.x+230,t.y+24);c.stroke();c.restore();}
-G.HonroStage5WaterfallArt={active,evidence,terrain,targetBody};
+G.HonroStage5WaterfallArt={active,evidence,terrain,targetBody,caveBackground};
 })(globalThis);
 
 })();
@@ -1773,6 +1785,8 @@ S.background=function(c,w,h,b){
  };
  const signature=ls.map(l=>[l.key,l.frame.x,l.frame.y,l.frame.w,l.frame.h,l.alpha].join(',')).join('|');
  if(!this._screenRaster(raw,['authored-far',w,h,signature].join(':'),w,h,paint,'_screenBackgroundCache',false))paint(raw);
+ // Stage 5's local cave wall must remain in front of the distant painting.
+ if(b.honroStage===5)G.HonroStage5WaterfallArt?.caveBackground(c,w,h,b,this);
  // These stages previously drew authored room rocks, hanging clues and lights
  // in background(). Keep that pass, omitting only its old sky/flat cave base.
  if([11,13,14,15,16,17,19,20].includes(b.honroStage))G.HonroAct2SpatialArt.background(c,b,this,w,h,true);
