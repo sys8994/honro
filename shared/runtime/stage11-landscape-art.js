@@ -3,6 +3,9 @@
 // fracture to the live collider; old battles and every other stage are untouched.
 const C=G.HONRO_CORE,cache=new WeakMap();
 const active=b=>b?.honroStage===11&&b.honroStage11LandscapeRevision===1;
+// The exposed low bed catches falls. Its western entry is the only part of
+// that bed used by the authored route; the deep ravine is not another road.
+const walkRim=(t,b,a,z)=>!active(b)||t.id!=='act2-floor'||Math.max(a.x,z.x)<=1500.01;
 const path=d=>new Path2D(d),P=ps=>{const p=new Path2D();ps.forEach((v,i)=>i?p.lineTo(v.x??v[0],v.y??v[1]):p.moveTo(v.x??v[0],v.y??v[1]));p.closePath();return p;};
 const grad=(c,x,y,xx,yy,colors)=>{const g=c.createLinearGradient(x,y,xx,yy);colors.forEach(([u,k])=>g.addColorStop(u,k));return g;};
 const hash=s=>{let h=11;for(const c of s)h=(h*31+c.charCodeAt(0))>>>0;return h;};
@@ -42,7 +45,7 @@ function prepare(t,b){
  const ps=C.poly(t),shape=P(ps),edges=G.HonroAct2SpatialArt.surfaceEdges(t,b),seed=hash(t.id),wood=!!t.honroRavineTree;
  const at=x=>{const e=edges.find(([a,z])=>x>=Math.min(a.x,z.x)-.01&&x<=Math.max(a.x,z.x)+.01);return e?e[0].y+(e[1].y-e[0].y)*(x-e[0].x)/(e[1].x-e[0].x||1):t.y;};
  const bottom=x=>{const ys=[];for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x)&&Math.abs(a.x-z.x)>.01)ys.push(a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x));}return Math.max(at(x)+10,...ys);};
- const rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y);rim.lineTo(z.x,z.y);}
+ const rim=new Path2D();for(const[a,z]of edges)if(walkRim(t,b,a,z)){rim.moveTo(a.x,a.y);rim.lineTo(z.x,z.y);}
  q={vertices:t.vertices,version:b.sceneVersion,shape,rim,wood,edges,plates:[],grooves:[],moss:[],bands:[],top:at,bottom};
  if(wood){
   const start=Math.min(...edges.flat().map(v=>v.x)),end=Math.max(...edges.flat().map(v=>v.x)),width=end-start;
@@ -109,5 +112,18 @@ function terrain(c,t,b){
  }
  c.restore();return true;
 }
-G.HonroStage11LandscapeArt={active,prepare,terrain};
+// Geographical signs stay on the two actual junctions. They do not create a
+// quest, reward or traversability claim for the fall bed below the shelf.
+function routeSigns(c,b,scene){
+ if(!active(b))return;const unit=1/Math.max(.05,scene.scale);
+ c.save();c.font=`600 ${12*unit}px sans-serif`;c.textAlign='center';c.textBaseline='middle';
+ for(const s of [{x:4030,y:8892,text:'점프로 뿌리 진입 · 의식터 ↑'},{x:6750,y:8852,text:'← 서측 회귀 · 선택   |   주민 암대 →'}]){
+  const width=c.measureText(s.text).width+20*unit;c.fillStyle='#172a30e8';c.fillRect(s.x-width/2,s.y-37*unit,width,25*unit);c.fillStyle='#e1d5ae';c.fillText(s.text,s.x,s.y-24*unit);
+  c.strokeStyle='#d3c49b';c.lineWidth=2*unit;c.beginPath();c.moveTo(s.x,s.y-12*unit);c.lineTo(s.x,s.y);c.stroke();
+ }
+ c.restore();
+}
+const live=G.HonroScene.prototype.liveWater;
+G.HonroScene.prototype.liveWater=function(c,b){const result=live?.call(this,c,b);routeSigns(c,b,this);return result;};
+G.HonroStage11LandscapeArt={active,prepare,terrain,walkRim,routeSigns};
 })(globalThis);
