@@ -124,7 +124,13 @@ function terrain(c,t,b){if(!active(b)||!t.honroQuarry)return false;const q=prepa
 
   for(const face of exposures[t.id]||[]){c.fillStyle=face.color;c.fill(face.path);}
  }c.restore();return true;}
-const baseTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return baseTerrain.call(this,c,t);};
+// Internal one-area comparison: clips only select which EXISTING painter runs.
+// These paths are masks, never additional rock artwork or collision sources.
+const pilotMasks=new WeakMap();
+function pilot(b){const p=active(b)&&b.honroMap?.quarryArt?.commonPilot;if(!p)return null;let q=pilotMasks.get(p);if(!q){const r=p.bounds,world=b.honroTerrainBounds,inside=new Path2D(),outside=new Path2D();inside.rect(r.left,r.top,r.right-r.left,r.bottom-r.top);outside.rect(world.left,world.top,world.right-world.left,world.bottom-world.top);outside.addPath(inside);q={spec:p,inside,outside};pilotMasks.set(p,q);}return q;}
+const baseTerrain=S.terrain;S.terrain=function(c,t){const q=pilot(this.battle);
+ if(q&&q.spec.terrainIds.includes(t.id)){c.save();c.clip(q.outside,'evenodd');terrain(c,t,this.battle);c.restore();c.save();c.clip(q.inside);baseTerrain.call(this,c,t);c.restore();return;}
+ if(terrain(c,t,this.battle))return;return baseTerrain.call(this,c,t);};
 // The existing rear-only landmark is the bearing rock behind the real lanes.
 // Its irregular buttresses have no bright top/rim and never enter collision.
 // Keep this drawing inside the landmark's published bounds for world tiles.
@@ -142,7 +148,7 @@ const rearFaces=[
  ['#1d3c48','M9960 3400L10330 3450 10630 3340 10500 3790 10550 4140 10270 4520 10200 4850 10460 5290 10350 5630 10550 6370 10210 6210 10030 5860 10000 5530 9820 5200 9920 4810 10020 4500 10130 4060Z']
 ].map(([color,d])=>({color,path:new Path2D(d)}));
 function rear(c,l){c.save();const alpha=c.globalAlpha;c.translate(l.x||0,l.y||0);c.rotate(l.rotation||0);c.scale(l.scale??1,l.scale??1);for(const [i,f] of rearFaces.entries()){c.globalAlpha=alpha*(i<8?.58:.29);c.fillStyle=f.color;c.fill(f.path);}c.restore();}
-const landmark=S.landmark;S.landmark=function(c,l){if(active(this.battle)&&l.id==='sq-art-recessed-mother-rock'){rear(c,l);return;}return landmark.call(this,c,l);};
+const landmark=S.landmark;S.landmark=function(c,l){if(active(this.battle)&&l.id==='sq-art-recessed-mother-rock'){const q=pilot(this.battle);c.save();if(q)c.clip(q.outside,'evenodd');rear(c,l);c.restore();return;}return landmark.call(this,c,l);};
 const skyAsset=b=>b.honroMap?.quarryArt?.backdropAsset;
 function skyRaster(asset){let q=skyCache.get(asset);if(q)return q;const cv=G.document.createElement('canvas'),[x,y,w,h]=asset.vector.viewBox;cv.width=1800;cv.height=1080;const c=G.HonroVisualStyle?.context(cv.getContext('2d'),'SKY')||cv.getContext('2d');c.scale(cv.width/w,cv.height/h);c.translate(-x,-y);G.HonroVectorArt.draw(c,asset,{x:0,y:0,scale:1,rotation:0});skyCache.set(asset,cv);return cv;}
 const background=S.background;S.background=function(c,w,h,b){if(!active(b)||!skyAsset(b))return background.call(this,c,w,h,b);const cv=skyRaster(skyAsset(b)),frame=G.HonroEnvironment.act1BackdropFrame(this,w,h,b,cv.width,cv.height);c.drawImage(cv,frame.x,frame.y,frame.w,frame.h);this.environmentStats={groups:0,visibleAssets:1,cachedPaths:0,backgroundAnimatedPrimitives:0,animatedPrimitives:0};};

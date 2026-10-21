@@ -62,6 +62,7 @@ export async function authorStage12Quarry(project,g,{roster='density38e10',art=t
   s.elements.push(...quest.elements.filter(e=>!e.id.startsWith('sq-art-')));
   for(const u of s.units){const guard=quest.units.find(q=>q.id===u.id)?.stageOverrides?.honroRouteGuard;if(guard)u.stageOverrides.honroRouteGuard=clone(guard);}
  }
+ if(quest?.design?.quarryArt?.commonPilot){const {applyStage12CommonPilot}=await import('../environment/stage12-common-pilot.mjs');applyStage12CommonPilot(p);}
  // A stage author must not normalize every chapter through today's schema:
  // that would reapply old scene normalization to already restored Act1 maps.
  const out=g.HonroTerrainDomain.author(p),errors=g.HonroMaps.validate(out).filter(e=>e.level==='err');if(errors.length)throw Error(errors.map(e=>e.text).join('\n'));
