@@ -1,0 +1,44 @@
+{
+  "sha": "671ec7becd224ca1c197b8356676767c33955337",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/build.mjs\n M shared/runtime/act1-spatial-art.js\n M shared/runtime/campaign-map-revision.js\n M shared/runtime/encounters.js\n M tests/pre-image-terrain-restoration.mjs\n D web/data/campaign.ec4845153f24a5a2.json\n D web/data/chapter-02.5d81f636ab0e340d.json\n D web/entries/game.2df83bf1568e2ba7.html\n D web/entries/game.4cd1f8f6557d4db1.js\n D web/entries/workshop.87c089535f5391bb.js\n M web/manifest.json\n D web/runtime/campaign.3bc03eaa4cdd9b2e.js\n D web/runtime/ordered-common-12.2c77d7cc9f8e6661.js\n?? game/docs/stage-review/stage03-positioning/\n?? tools/map-forge/stage3-positioning.mjs\n?? tools/testing/stage3-positioning-browser.py\n?? tools/testing/stage3-positioning-controller.js\n?? web/data/campaign.5e0fd62065d90cb8.json\n?? web/data/chapter-03.73b3994c15646e8f.json\n?? web/entries/game.c0e0fab826023beb.html\n?? web/entries/game.cd2910d0e342cdb1.js\n?? web/entries/workshop.e7a451d97ac85756.js\n?? web/runtime/campaign.32753afcc029e409.js\n?? web/runtime/ordered-common-12.2e46698f617c7032.js\n?? web/runtime/ordered-common-4.d2eed4d37d673a54.js\n",
+  "scope": "Local production browser, frozen debug scene; overview uses diagnostic fit-to-map zoom, not gameplay minimum; no chapter completion.",
+  "rows": [
+    {
+      "stage": 3,
+      "view": "dock",
+      "camera": {
+        "x": 2300,
+        "y": 2200,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 3,
+      "view": "cargo",
+      "camera": {
+        "x": 4800,
+        "y": 1600,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 3,
+      "view": "roof",
+      "camera": {
+        "x": 5550,
+        "y": 1480,
+        "scale": 0.75
+      }
+    },
+    {
+      "stage": 3,
+      "view": "lowland",
+      "camera": {
+        "x": 3200,
+        "y": 2300,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,1169 @@
+{
+  "scope": "Isolated finite route inputs and supported prepared-position actual projectiles; not normal combat completion.",
+  "routes": [
+    {
+      "label": "upper",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 330,
+        "y": 1752.282,
+        "hp": 425,
+        "round": 1
+      },
+      "end": {
+        "x": 5645.235332613766,
+        "y": 1612,
+        "support": "ferry-ground",
+        "round": 6,
+        "moveLeft": 307.24317573111813
+      },
+      "counts": {
+        "ticks": 3235,
+        "jumps": 5,
+        "waits": 5,
+        "walkCost": 5493.801922641594,
+        "jumpCost": 375,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 5868.801922641594,
+      "turnEquivalent": 5.007510172902384,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1064.1821751809782,
+          "y": 1978.412539026581,
+          "support": "ferry-ground",
+          "round": 1,
+          "moveLeft": 389.29405197737026
+        },
+        {
+          "op": "jump",
+          "x": 1064.1821751809782,
+          "y": 1978.412539026581,
+          "support": "ferry-ground",
+          "round": 2,
+          "moveLeft": 1097
+        },
+        {
+          "op": "jump",
+          "x": 1079.9321751809782,
+          "y": 1940.3245515033013,
+          "support": "place3-stone-west:collision:0",
+          "round": 2,
+          "moveLeft": 1006.25
+        },
+        {
+          "op": "budget-exhausted-coast",
+          "x": 2075.9377675210853,
+          "y": 2085.5572515509193,
+          "round": 2,
+          "moveLeft": 8.738171010878744
+        },
+        {
+          "op": "wait",
+          "x": 2075.9377675210853,
+          "y": 2096.419791130484,
+          "support": "dock-mid",
+          "round": 2,
+          "moveLeft": 8.738171010878744
+        },
+        {
+          "op": "wait",
+          "x": 3237.9843025548607,
+          "y": 2139.8790581532917,
+          "support": "dock-east",
+          "round": 3,
+          "moveLeft": 9.12070259641288
+        },
+        {
+          "op": "wait",
+          "x": 4285.364907760322,
+          "y": 1988.792492732847,
+          "support": "ferry-ground",
+          "round": 4,
+          "moveLeft": 9.397863651031226
+        },
+        {
+          "op": "jump",
+          "x": 4374.089398422341,
+          "y": 1943.4180292308822,
+          "support": "ferry-ground",
+          "round": 5,
+          "moveLeft": 997.1788312628669
+        },
+        {
+          "op": "jump",
+          "x": 4646.3531223381015,
+          "y": 1740.1444973404762,
+          "support": "cargo-step-1",
+          "round": 5,
+          "moveLeft": 649.1762686646779
+        },
+        {
+          "op": "wait",
+          "x": 4856.119600154241,
+          "y": 1574.3866740712178,
+          "support": "cargo-step-2",
+          "round": 5,
+          "moveLeft": 439.4041123915478
+        },
+        {
+          "op": "jump",
+          "x": 4856.119600154241,
+          "y": 1574.3866740712178,
+          "support": "cargo-step-2",
+          "round": 6,
+          "moveLeft": 1097
+        },
+        {
+          "op": "drop",
+          "x": 5545.485332613766,
+          "y": 1368.9184705564896,
+          "support": "warehouse-roof",
+          "round": 6,
+          "moveLeft": 406.99317573111813
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 900
+          },
+          "x": 895.4947435671352,
+          "y": 1878.4762254521047,
+          "support": "ferry-ground",
+          "round": 1,
+          "moveLeft": 586.2945873772796
+        },
+        {
+          "goal": {
+            "x": 1080,
+            "jumpTo": {
+              "x": 1320
+            }
+          },
+          "x": 1079.9321751809782,
+          "y": 1940.3245515033013,
+          "support": "place3-stone-west:collision:0",
+          "round": 2,
+          "moveLeft": 1081.25
+        },
+        {
+          "jump": {
+            "x": 1320
+          },
+          "x": 1318.8071751809782,
+          "y": 2040.4923766425363,
+          "support": "dock-west",
+          "round": 2,
+          "moveLeft": 767.375
+        },
+        {
+          "goal": {
+            "x": 1800
+          },
+          "x": 1795.6140066798182,
+          "y": 2042.3742671119878,
+          "support": "dock-west",
+          "round": 2,
+          "moveLeft": 289.6150504680637
+        },
+        {
+          "goal": {
+            "x": 2300
+          },
+          "x": 2296.189277869027,
+          "y": 2090.4761686885277,
+          "support": "dock-mid",
+          "round": 3,
+          "moveLeft": 951.499358749028
+        },
+        {
+          "goal": {
+            "x": 3000
+          },
+          "x": 2994.1200240101393,
+          "y": 2129.1658186183663,
+          "support": "dock-east",
+          "round": 3,
+          "moveLeft": 253.248745302295
+        },
+        {
+          "goal": {
+            "x": 3350
+          },
+          "x": 3348.2306775590246,
+          "y": 2258.6538783371193,
+          "support": "place3-stone-mud:collision:0",
+          "round": 4,
+          "moveLeft": 1061.7500000000002
+        },
+        {
+          "goal": {
+            "x": 3900
+          },
+          "x": 3894.985749841892,
+          "y": 2181,
+          "support": "ferry-ground",
+          "round": 4,
+          "moveLeft": 453.947598951415
+        },
+        {
+          "goal": {
+            "x": 4380,
+            "jumpTo": {
+              "x": 4520,
+              "support": "cargo-step-1"
+            }
+          },
+          "x": 4374.089398422341,
+          "y": 1943.4180292308822,
+          "support": "ferry-ground",
+          "round": 5,
+          "moveLeft": 1072.1788312628669
+        },
+        {
+          "jump": {
+            "x": 4520,
+            "support": "cargo-step-1"
+          },
+          "x": 4518.464398422341,
+          "y": 1749.7559335962765,
+          "support": "cargo-step-1",
+          "round": 5,
+          "moveLeft": 852.8038312628669
+        },
+        {
+          "goal": {
+            "x": 4650,
+            "jumpTo": {
+              "x": 4780,
+              "support": "cargo-step-2"
+            }
+          },
+          "x": 4646.3531223381015,
+          "y": 1740.1444973404762,
+          "support": "cargo-step-1",
+          "round": 5,
+          "moveLeft": 724.1762686646779
+        },
+        {
+          "jump": {
+            "x": 4780,
+            "support": "cargo-step-2"
+          },
+          "x": 4780,
+          "y": 1575,
+          "support": "cargo-step-2",
+          "round": 5,
+          "moveLeft": 515.5293910027793
+        },
+        {
+          "goal": {
+            "x": 4860,
+            "jumpTo": {
+              "x": 5050,
+              "support": "warehouse-roof"
+            }
+          },
+          "x": 4856.119600154241,
+          "y": 1574.3866740712178,
+          "support": "cargo-step-2",
+          "round": 5,
+          "moveLeft": 439.4041123915478
+        },
+        {
+          "jump": {
+            "x": 5050,
+            "support": "warehouse-roof"
+          },
+          "x": 5050,
+          "y": 1375,
+          "support": "warehouse-roof",
+          "round": 6,
+          "moveLeft": 903.1196001542412
+        },
+        {
+          "goal": {
+            "x": 5550,
+            "drop": true
+          },
+          "x": 5545.485332613766,
+          "y": 1368.9184705564896,
+          "support": "warehouse-roof",
+          "round": 6,
+          "moveLeft": 406.99317573111813
+        },
+        {
+          "goal": {
+            "x": 5650
+          },
+          "x": 5645.235332613766,
+          "y": 1612,
+          "support": "ferry-ground",
+          "round": 6,
+          "moveLeft": 307.24317573111813
+        }
+      ]
+    },
+    {
+      "label": "lower",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 330,
+        "y": 1752.282,
+        "hp": 425,
+        "round": 1
+      },
+      "end": {
+        "x": 5646.012786922982,
+        "y": 1612,
+        "support": "ferry-ground",
+        "round": 6,
+        "moveLeft": 649.4805411303136
+      },
+      "counts": {
+        "ticks": 3079,
+        "jumps": 3,
+        "waits": 5,
+        "walkCost": 5593.959520842649,
+        "jumpCost": 225,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 5818.959520842649,
+      "turnEquivalent": 4.964982526316254,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1064.1821751809782,
+          "y": 1978.412539026581,
+          "support": "ferry-ground",
+          "round": 1,
+          "moveLeft": 389.29405197737026
+        },
+        {
+          "op": "jump",
+          "x": 1064.1821751809782,
+          "y": 1978.412539026581,
+          "support": "ferry-ground",
+          "round": 2,
+          "moveLeft": 1097
+        },
+        {
+          "op": "jump",
+          "x": 1079.9321751809782,
+          "y": 1940.3245515033013,
+          "support": "place3-stone-west:collision:0",
+          "round": 2,
+          "moveLeft": 1006.25
+        },
+        {
+          "op": "drop",
+          "x": 1596.4535127541762,
+          "y": 2030.916281020334,
+          "support": "dock-west",
+          "round": 2,
+          "moveLeft": 489.1177008157913
+        },
+        {
+          "op": "wait",
+          "x": 2049.976378121849,
+          "y": 2461.6781743425845,
+          "support": "ferry-ground",
+          "round": 2,
+          "moveLeft": 8.505566871094231
+        },
+        {
+          "op": "wait",
+          "x": 3065.2717266372856,
+          "y": 2439.5557618396915,
+          "support": "ferry-ground",
+          "round": 3,
+          "moveLeft": 148.064655163142
+        },
+        {
+          "op": "jump",
+          "x": 3065.2717266372856,
+          "y": 2439.5557618396915,
+          "support": "ferry-ground",
+          "round": 4,
+          "moveLeft": 1097
+        },
+        {
+          "op": "wait",
+          "x": 4061.6317475168157,
+          "y": 2096.7968091652624,
+          "support": "ferry-ground",
+          "round": 4,
+          "moveLeft": 9.733920616110272
+        },
+        {
+          "op": "wait",
+          "x": 5142.2189144654285,
+          "y": 1685.0406269910814,
+          "support": "ferry-ground",
+          "round": 5,
+          "moveLeft": 7.961743399320761
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 900
+          },
+          "x": 895.4947435671352,
+          "y": 1878.4762254521047,
+          "support": "ferry-ground",
+          "round": 1,
+          "moveLeft": 586.2945873772796
+        },
+        {
+          "goal": {
+            "x": 1080,
+            "jumpTo": {
+              "x": 1320
+            }
+          },
+          "x": 1079.9321751809782,
+          "y": 1940.3245515033013,
+          "support": "place3-stone-west:collision:0",
+          "round": 2,
+          "moveLeft": 1081.25
+        },
+        {
+          "jump": {
+            "x": 1320
+          },
+          "x": 1318.8071751809782,
+          "y": 2040.4923766425363,
+          "support": "dock-west",
+          "round": 2,
+          "moveLeft": 767.375
+        },
+        {
+          "goal": {
+            "x": 1600,
+            "drop": true
+          },
+          "x": 1596.4535127541762,
+          "y": 2030.916281020334,
+          "support": "dock-west",
+          "round": 2,
+          "moveLeft": 489.1177008157913
+        },
+        {
+          "goal": {
+            "x": 2300
+          },
+          "x": 2294.1515739749557,
+          "y": 2486.4918503249637,
+          "support": "ferry-ground",
+          "round": 3,
+          "moveLeft": 925.1990044457579
+        },
+        {
+          "goal": {
+            "x": 2700
+          },
+          "x": 2695.8014431316096,
+          "y": 2476.6353724968158,
+          "support": "ferry-ground",
+          "round": 3,
+          "moveLeft": 520.8919252195759
+        },
+        {
+          "goal": {
+            "x": 3070,
+            "jumpTo": {
+              "x": 3330,
+              "support": "place3-stone-mud:collision:0"
+            }
+          },
+          "x": 3065.2717266372856,
+          "y": 2439.5557618396915,
+          "support": "ferry-ground",
+          "round": 3,
+          "moveLeft": 148.064655163142
+        },
+        {
+          "jump": {
+            "x": 3330,
+            "support": "place3-stone-mud:collision:0"
+          },
+          "x": 3330,
+          "y": 2253.068499183006,
+          "support": "place3-stone-mud:collision:0",
+          "round": 4,
+          "moveLeft": 832.2717266372856
+        },
+        {
+          "goal": {
+            "x": 3350
+          },
+          "x": 3345.0590947486744,
+          "y": 2257.6821924270857,
+          "support": "place3-stone-mud:collision:0",
+          "round": 4,
+          "moveLeft": 816.5217266372852
+        },
+        {
+          "goal": {
+            "x": 3900
+          },
+          "x": 3896.25462522317,
+          "y": 2181,
+          "support": "ferry-ground",
+          "round": 4,
+          "moveLeft": 204.08297442445536
+        },
+        {
+          "goal": {
+            "x": 4400
+          },
+          "x": 4394.8385555062705,
+          "y": 1930.5921142635186,
+          "support": "ferry-ground",
+          "round": 5,
+          "moveLeft": 798.8276639353887
+        },
+        {
+          "goal": {
+            "x": 4800
+          },
+          "x": 4795.310286341585,
+          "y": 1793.8856736535079,
+          "support": "ferry-ground",
+          "round": 5,
+          "moveLeft": 373.16152109165887
+        },
+        {
+          "goal": {
+            "x": 5250
+          },
+          "x": 5246.0189061063575,
+          "y": 1623.6548596090736,
+          "support": "ferry-ground",
+          "round": 6,
+          "moveLeft": 1051.1055411303125
+        },
+        {
+          "goal": {
+            "x": 5650
+          },
+          "x": 5646.012786922982,
+          "y": 1612,
+          "support": "ferry-ground",
+          "round": 6,
+          "moveLeft": 649.4805411303136
+        }
+      ]
+    },
+    {
+      "label": "upper",
+      "cls": "mage",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 440,
+        "y": 1763.883,
+        "hp": 454,
+        "round": 1
+      },
+      "end": {
+        "x": 5645.273743167182,
+        "y": 1612,
+        "support": "ferry-ground",
+        "round": 6,
+        "moveLeft": 326.164381397348
+      },
+      "counts": {
+        "ticks": 3346,
+        "jumps": 5,
+        "waits": 5,
+        "walkCost": 5386.934100091014,
+        "jumpCost": 375,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 5761.934100091014,
+      "turnEquivalent": 4.83383733229112,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1064.7546741109898,
+          "y": 1978.7909926248149,
+          "support": "ferry-ground",
+          "round": 1,
+          "moveLeft": 519.5475804099027
+        },
+        {
+          "op": "jump",
+          "x": 1064.7546741109898,
+          "y": 1978.7909926248149,
+          "support": "ferry-ground",
+          "round": 2,
+          "moveLeft": 1117
+        },
+        {
+          "op": "jump",
+          "x": 1079.3546741109901,
+          "y": 1941.4367757862415,
+          "support": "place3-stone-west:collision:0",
+          "round": 2,
+          "moveLeft": 1027.3999999999996
+        },
+        {
+          "op": "wait",
+          "x": 2097.14910291857,
+          "y": 2094.818935628787,
+          "support": "dock-mid",
+          "round": 2,
+          "moveLeft": 8.082288160431744
+        },
+        {
+          "op": "budget-exhausted-coast",
+          "x": 3278.9667508200996,
+          "y": 2143.397734395462,
+          "round": 3,
+          "moveLeft": 9.393881184377413
+        },
+        {
+          "op": "wait",
+          "x": 3278.9667508200996,
+          "y": 2255.7342352988353,
+          "support": "place3-stone-mud:collision:0",
+          "round": 3,
+          "moveLeft": 9.393881184377413
+        },
+        {
+          "op": "wait",
+          "x": 4338.412149813695,
+          "y": 1964.0764068650915,
+          "support": "ferry-ground",
+          "round": 4,
+          "moveLeft": 7.904706002369743
+        },
+        {
+          "op": "jump",
+          "x": 4374.269565484019,
+          "y": 1943.3022068334262,
+          "support": "ferry-ground",
+          "round": 5,
+          "moveLeft": 1075.5107017964287
+        },
+        {
+          "op": "jump",
+          "x": 4645.82292792888,
+          "y": 1740.156023305894,
+          "support": "cargo-step-1",
+          "round": 5,
+          "moveLeft": 728.2398076485898
+        },
+        {
+          "op": "wait",
+          "x": 4855.084171893306,
+          "y": 1574.4058486686424,
+          "support": "cargo-step-2",
+          "round": 5,
+          "moveLeft": 518.9730627545226
+        },
+        {
+          "op": "jump",
+          "x": 4855.084171893306,
+          "y": 1574.4058486686424,
+          "support": "cargo-step-2",
+          "round": 6,
+          "moveLeft": 1117
+        },
+        {
+          "op": "drop",
+          "x": 5545.507076500513,
+          "y": 1368.919429845611,
+          "support": "warehouse-roof",
+          "round": 6,
+          "moveLeft": 425.93104806401715
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 900
+          },
+          "x": 895.6610528547973,
+          "y": 1878.556100107207,
+          "support": "ferry-ground",
+          "round": 1,
+          "moveLeft": 717.0499012962041
+        },
+        {
+          "goal": {
+            "x": 1080,
+            "jumpTo": {
+              "x": 1320
+            }
+          },
+          "x": 1079.3546741109901,
+          "y": 1941.4367757862415,
+          "support": "place3-stone-west:collision:0",
+          "round": 2,
+          "moveLeft": 1102.3999999999996
+        },
+        {
+          "jump": {
+            "x": 1320
+          },
+          "x": 1320,
+          "y": 2040.3333333333333,
+          "support": "dock-west",
+          "round": 2,
+          "moveLeft": 786.7546741109898
+        },
+        {
+          "goal": {
+            "x": 1800
+          },
+          "x": 1795.9944294632717,
+          "y": 2042.3996286308848,
+          "support": "dock-west",
+          "round": 2,
+          "moveLeft": 309.81683834551535
+        },
+        {
+          "goal": {
+            "x": 2300
+          },
+          "x": 2294.061146676618,
+          "y": 2090.43747539412,
+          "support": "dock-mid",
+          "round": 3,
+          "moveLeft": 994.8995009297854
+        },
+        {
+          "goal": {
+            "x": 3000
+          },
+          "x": 2994.5313834331623,
+          "y": 2129.173297880603,
+          "support": "dock-east",
+          "round": 3,
+          "moveLeft": 294.0965697406369
+        },
+        {
+          "goal": {
+            "x": 3350
+          },
+          "x": 3346.0216258146147,
+          "y": 2257.977085523268,
+          "support": "place3-stone-mud:collision:0",
+          "round": 4,
+          "moveLeft": 1121.4333333333318
+        },
+        {
+          "goal": {
+            "x": 3900
+          },
+          "x": 3896.4118365272407,
+          "y": 2181,
+          "support": "ferry-ground",
+          "round": 4,
+          "moveLeft": 509.57440964589216
+        },
+        {
+          "goal": {
+            "x": 4380,
+            "jumpTo": {
+              "x": 4520,
+              "support": "cargo-step-1"
+            }
+          },
+          "x": 4374.269565484019,
+          "y": 1943.3022068334262,
+          "support": "ferry-ground",
+          "round": 5,
+          "moveLeft": 1150.5107017964287
+        },
+        {
+          "jump": {
+            "x": 4520,
+            "support": "cargo-step-1"
+          },
+          "x": 4520,
+          "y": 1749.5,
+          "support": "cargo-step-1",
+          "round": 5,
+          "moveLeft": 929.7802672804478
+        },
+        {
+          "goal": {
+            "x": 4650,
+            "jumpTo": {
+              "x": 4780,
+              "support": "cargo-step-2"
+            }
+          },
+          "x": 4645.82292792888,
+          "y": 1740.156023305894,
+          "support": "cargo-step-1",
+          "round": 5,
+          "moveLeft": 803.2398076485898
+        },
+        {
+          "jump": {
+            "x": 4780,
+            "support": "cargo-step-2"
+          },
+          "x": 4779.6562612622165,
+          "y": 1575,
+          "support": "cargo-step-2",
+          "round": 5,
+          "moveLeft": 594.4064743152531
+        },
+        {
+          "goal": {
+            "x": 4860,
+            "jumpTo": {
+              "x": 5050,
+              "support": "warehouse-roof"
+            }
+          },
+          "x": 4855.084171893306,
+          "y": 1574.4058486686424,
+          "support": "cargo-step-2",
+          "round": 5,
+          "moveLeft": 518.9730627545226
+        },
+        {
+          "jump": {
+            "x": 5050,
+            "support": "warehouse-roof"
+          },
+          "x": 5049.750838559978,
+          "y": 1375.0498322880046,
+          "support": "warehouse-roof",
+          "round": 6,
+          "moveLeft": 922.3333333333285
+        },
+        {
+          "goal": {
+            "x": 5550,
+            "drop": true
+          },
+          "x": 5545.507076500513,
+          "y": 1368.919429845611,
+          "support": "warehouse-roof",
+          "round": 6,
+          "moveLeft": 425.93104806401715
+        },
+        {
+          "goal": {
+            "x": 5650
+          },
+          "x": 5645.273743167182,
+          "y": 1612,
+          "support": "ferry-ground",
+          "round": 6,
+          "moveLeft": 326.164381397348
+        }
+      ]
+    },
+    {
+      "label": "lower",
+      "cls": "mage",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 440,
+        "y": 1763.883,
+        "hp": 454,
+        "round": 1
+      },
+      "end": {
+        "x": 5644.395974755446,
+        "y": 1612,
+        "support": "ferry-ground",
+        "round": 6,
+        "moveLeft": 710.1999999999784
+      },
+      "counts": {
+        "ticks": 3185,
+        "jumps": 3,
+        "waits": 5,
+        "walkCost": 5482.760198013437,
+        "jumpCost": 225,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 5707.760198013437,
+      "turnEquivalent": 4.788389427863621,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1064.7546741109898,
+          "y": 1978.7909926248149,
+          "support": "ferry-ground",
+          "round": 1,
+          "moveLeft": 519.5475804099027
+        },
+        {
+          "op": "jump",
+          "x": 1064.7546741109898,
+          "y": 1978.7909926248149,
+          "support": "ferry-ground",
+          "round": 2,
+          "moveLeft": 1117
+        },
+        {
+          "op": "jump",
+          "x": 1079.3546741109901,
+          "y": 1941.4367757862415,
+          "support": "place3-stone-west:collision:0",
+          "round": 2,
+          "moveLeft": 1027.3999999999996
+        },
+        {
+          "op": "drop",
+          "x": 1594.3741503954395,
+          "y": 2030.7499320316351,
+          "support": "dock-west",
+          "round": 2,
+          "moveLeft": 511.78676162930714
+        },
+        {
+          "op": "wait",
+          "x": 2070.642545168879,
+          "y": 2463.9746442716228,
+          "support": "ferry-ground",
+          "round": 2,
+          "moveLeft": 7.7969567743982635
+        },
+        {
+          "op": "wait",
+          "x": 3064.9050982698495,
+          "y": 2439.690558869452,
+          "support": "ferry-ground",
+          "round": 3,
+          "moveLeft": 189.2487779697758
+        },
+        {
+          "op": "jump",
+          "x": 3064.9050982698495,
+          "y": 2439.690558869452,
+          "support": "ferry-ground",
+          "round": 4,
+          "moveLeft": 1117
+        },
+        {
+          "op": "wait",
+          "x": 4079.4257050287765,
+          "y": 2088.193789159249,
+          "support": "ferry-ground",
+          "round": 4,
+          "moveLeft": 8.766693612943392
+        },
+        {
+          "op": "wait",
+          "x": 5175.354418414727,
+          "y": 1664.4112019857519,
+          "support": "ferry-ground",
+          "round": 5,
+          "moveLeft": 8.679793219581342
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 900
+          },
+          "x": 895.6610528547973,
+          "y": 1878.556100107207,
+          "support": "ferry-ground",
+          "round": 1,
+          "moveLeft": 717.0499012962041
+        },
+        {
+          "goal": {
+            "x": 1080,
+            "jumpTo": {
+              "x": 1320
+            }
+          },
+          "x": 1079.3546741109901,
+          "y": 1941.4367757862415,
+          "support": "place3-stone-west:collision:0",
+          "round": 2,
+          "moveLeft": 1102.3999999999996
+        },
+        {
+          "jump": {
+            "x": 1320
+          },
+          "x": 1320,
+          "y": 2040.3333333333333,
+          "support": "dock-west",
+          "round": 2,
+          "moveLeft": 786.7546741109898
+        },
+        {
+          "goal": {
+            "x": 1600,
+            "drop": true
+          },
+          "x": 1594.3741503954395,
+          "y": 2030.7499320316351,
+          "support": "dock-west",
+          "round": 2,
+          "moveLeft": 511.78676162930714
+        },
+        {
+          "goal": {
+            "x": 2300
+          },
+          "x": 2294.514219262771,
+          "y": 2486.4980052213764,
+          "support": "ferry-ground",
+          "round": 3,
+          "moveLeft": 965.6298063904351
+        },
+        {
+          "goal": {
+            "x": 2700
+          },
+          "x": 2695.8595403515424,
+          "y": 2476.6255427699657,
+          "support": "ferry-ground",
+          "round": 3,
+          "moveLeft": 561.6265017595033
+        },
+        {
+          "goal": {
+            "x": 3070,
+            "jumpTo": {
+              "x": 3330,
+              "support": "place3-stone-mud:collision:0"
+            }
+          },
+          "x": 3064.9050982698495,
+          "y": 2439.690558869452,
+          "support": "ferry-ground",
+          "round": 3,
+          "moveLeft": 189.2487779697758
+        },
+        {
+          "jump": {
+            "x": 3330,
+            "support": "place3-stone-mud:collision:0"
+          },
+          "x": 3315.538431603189,
+          "y": 2248.637871610454,
+          "support": "place3-stone-mud:collision:0",
+          "round": 4,
+          "moveLeft": 866.3666666666604
+        },
+        {
+          "goal": {
+            "x": 3350
+          },
+          "x": 3345.7841055005247,
+          "y": 2257.9043158191967,
+          "support": "place3-stone-mud:collision:0",
+          "round": 4,
+          "moveLeft": 834.7333333333287
+        },
+        {
+          "goal": {
+            "x": 3900
+          },
+          "x": 3896.18081121556,
+          "y": 2181,
+          "support": "ferry-ground",
+          "round": 4,
+          "moveLeft": 223.01025795129402
+        },
+        {
+          "goal": {
+            "x": 4400
+          },
+          "x": 4394.554300661668,
+          "y": 1930.7234873775324,
+          "support": "ferry-ground",
+          "round": 5,
+          "moveLeft": 838.9615053312281
+        },
+        {
+          "goal": {
+            "x": 4800
+          },
+          "x": 4795.407035545637,
+          "y": 1793.8685234343072,
+          "support": "ferry-ground",
+          "round": 5,
+          "moveLeft": 412.8839601028722
+        },
+        {
+          "goal": {
+            "x": 5250
+          },
+          "x": 5244.659070674355,
+          "y": 1624.2683342549392,
+          "support": "ferry-ground",
+          "round": 6,
+          "moveLeft": 1111.6999999999928
+        },
+        {
+          "goal": {
+            "x": 5650
+          },
+          "x": 5644.395974755446,
+          "y": 1612,
+          "support": "ferry-ground",
+          "round": 6,
+          "moveLeft": 710.1999999999784
+        }
+      ]
+    }
+  ],
+  "shots": [
+    {
+      "cls": "archer",
+      "support": "dock-east",
+      "x": 2800,
+      "target": "foe-4",
+      "skill": "A01",
+      "damage": 79,
+      "aim": {
+        "angle": -50,
+        "power": 0.2
+      }
+    },
+    {
+      "cls": "mage",
+      "support": "ferry-ground",
+      "x": 2620,
+      "target": "foe-3-cluster",
+      "skill": "M01",
+      "damage": 51,
+      "aim": {
+        "angle": 8.236183352952697,
+        "power": 0.6446404408442377
+      }
+    },
+    {
+      "cls": "archer",
+      "support": "cargo-step-2",
+      "x": 4850,
+      "target": "foe-5-cluster",
+      "skill": "A01",
+      "damage": 87,
+      "aim": {
+        "angle": 22.44758140752057,
+        "power": 0.7748502132028581
+      }
+    }
+  ]
+}

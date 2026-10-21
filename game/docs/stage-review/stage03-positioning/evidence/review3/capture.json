@@ -1,0 +1,80 @@
+{
+  "sha": "9b2f2b675c65e68ea34efb6dc8f3cb94d8e3dcbe",
+  "workingTree": "?? tools/testing/stage3-positioning-capture.py\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 3,
+      "view": "normal-dock",
+      "camera": {
+        "x": 2300,
+        "y": 2200,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 3,
+      "view": "zoom-roof",
+      "camera": {
+        "x": 5350,
+        "y": 1480,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 3,
+      "view": "maxout",
+      "camera": {
+        "x": 3250,
+        "y": 1830,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 3,
+      "view": "mobile-entry",
+      "camera": {
+        "x": 330,
+        "y": 1600,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 3,
+      "view": "mobile-dock",
+      "camera": {
+        "x": 2250,
+        "y": 2250,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 3,
+      "view": "mobile-cargo",
+      "camera": {
+        "x": 4790,
+        "y": 1640,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 3,
+      "view": "landscape-dock",
+      "camera": {
+        "x": 2350,
+        "y": 2250,
+        "scale": 0.35
+      }
+    },
+    {
+      "stage": 3,
+      "view": "landscape-roof",
+      "camera": {
+        "x": 5300,
+        "y": 1480,
+        "scale": 0.35
+      }
+    }
+  ],
+  "errors": []
+}

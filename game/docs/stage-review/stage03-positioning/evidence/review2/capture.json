@@ -1,0 +1,44 @@
+{
+  "sha": "38908fb9bc7f58c04863976c89a9b92af9edfe9d",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/runtime/act1-spatial-art.js\n M tools/testing/stage3-positioning-controller.js\n D web/data/campaign.6cd77de3258c6112.json\n D web/data/chapter-02.cfb3727279ee0f03.json\n D web/entries/game.cae25925e963117f.js\n D web/entries/game.e65bb19da5fe127c.html\n D web/entries/workshop.8b2f11bbda1adb74.js\n M web/manifest.json\n D web/runtime/campaign.4aec8b54e489775c.js\n?? tests/stage3-positioning.mjs\n?? web/entries/game.6ce12db6b9a9561f.js\n?? web/entries/game.cc3a42efa8cfd006.html\n?? web/entries/workshop.deceb97c8a42e4fc.js\n?? web/runtime/ordered-common-12.2af502cf9c178ba9.js\n",
+  "scope": "Local production browser, frozen debug scene; overview uses diagnostic fit-to-map zoom, not gameplay minimum; no chapter completion.",
+  "rows": [
+    {
+      "stage": 3,
+      "view": "dock",
+      "camera": {
+        "x": 2300,
+        "y": 2200,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 3,
+      "view": "cargo",
+      "camera": {
+        "x": 4800,
+        "y": 1600,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 3,
+      "view": "roof",
+      "camera": {
+        "x": 5550,
+        "y": 1480,
+        "scale": 0.75
+      }
+    },
+    {
+      "stage": 3,
+      "view": "lowland",
+      "camera": {
+        "x": 3200,
+        "y": 2300,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

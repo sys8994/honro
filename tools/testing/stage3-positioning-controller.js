@@ -4,7 +4,7 @@
  mage:[{x:900},{x:1080,jumpTo:1320},{x:1600,drop:true},{x:2050},{x:2700},{x:3070,jumpTo:3330},{x:3500},{x:3900},{x:4400},{x:4800},{x:5250},{x:5650}]
  },state={},start={heroes:e.heroesAlive().map(u=>({id:u.id,cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,level:u.level,loadout:u.loadout})),items:structuredClone(b.items),enemies:e.alive(1).length};let ticks=0;
  function capture(label,u){if(images[label])return;const s=a.scene;Object.assign(s,{x:u.x+160,y:u.y-160,scale:.65,manual:true,storyTween:null,cinematic:null});s.render(e,0,'',.6,false,0);images[label]=document.querySelector('#battlecanvas').toDataURL('image/png');}
- function step(){if(a.dialogue)HonroStory.finish(a);e.tick(C.STEP);if(!a.dialogue)a.missionTick(C.STEP);ticks++;}
+ function step(){if(a.dialogue)HonroStory.finish(a);e.tick(C.STEP);if(!a.dialogue)a.missionTick(C.STEP);ticks++;if(ticks%60===0)a.scene.render(e,1,'',.6,false,1);}
  function aim(u){const id=u.cls==='mage'?'M01':'A01',targets=e.alive(1).filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<1900).sort((v,w)=>Math.hypot(v.x-u.x,v.y-u.y)-Math.hypot(w.x-u.x,w.y-u.y));for(const v of targets)for(const p of e.shotSeeds(u,C.SKILLS[id],v)){const r=e.predict(u,C.SKILLS[id],p.angle,p.power,v,false),hit=e.unit(r.unit);if(hit?.side===1)return{id,p,v:hit};}}
  for(let n=0;n<220000&&!['won','lost'].includes(b.phase)&&b.round<90;n++){
   const u=e.active;

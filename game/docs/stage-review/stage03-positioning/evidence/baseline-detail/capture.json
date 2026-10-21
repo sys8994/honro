@@ -1,0 +1,44 @@
+{
+  "sha": "671ec7becd224ca1c197b8356676767c33955337",
+  "workingTree": "",
+  "scope": "Local production browser, frozen debug scene; overview uses diagnostic fit-to-map zoom, not gameplay minimum; no chapter completion.",
+  "rows": [
+    {
+      "stage": 3,
+      "view": "dock",
+      "camera": {
+        "x": 2300,
+        "y": 2200,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 3,
+      "view": "cargo",
+      "camera": {
+        "x": 4800,
+        "y": 1600,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 3,
+      "view": "roof",
+      "camera": {
+        "x": 5550,
+        "y": 1480,
+        "scale": 0.75
+      }
+    },
+    {
+      "stage": 3,
+      "view": "lowland",
+      "camera": {
+        "x": 3200,
+        "y": 2300,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}
