@@ -1,0 +1,1051 @@
+{
+  "scope": "Actual integration win files, production App save path with DOM/storage doubles; not another combat run",
+  "rows": [
+    {
+      "stage": 2,
+      "source": "_local/reports/integration-20261021/stage2-normal/profile-terminal.json",
+      "repeat": 2,
+      "profile": {
+        "heroes": {
+          "mage": {
+            "xp": 675,
+            "ranks": {
+              "M01": 1,
+              "MP01": 1,
+              "MP02": 1,
+              "M06": 1,
+              "M03": 1,
+              "M07": 1,
+              "M02": 1,
+              "M11": 1
+            },
+            "statTraining": 0,
+            "kills": 0,
+            "damage": 0,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "archer": {
+            "xp": 296,
+            "ranks": {
+              "A01": 1
+            },
+            "statTraining": 2,
+            "kills": 7,
+            "damage": 704,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "knight": {
+            "xp": 0,
+            "ranks": {
+              "S00": 1
+            },
+            "statTraining": 0,
+            "kills": 0,
+            "damage": 0,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "occultist": {
+            "xp": 0,
+            "ranks": {
+              "O01": 1,
+              "O06": 1
+            },
+            "statTraining": 0,
+            "kills": 0,
+            "damage": 0,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "occultRevision": 1
+          }
+        },
+        "loadouts": {
+          "mage": [
+            "M01",
+            "M02",
+            "M03",
+            "M06"
+          ],
+          "archer": [
+            "A01"
+          ],
+          "knight": [
+            "S00"
+          ],
+          "occultist": [
+            "O01",
+            "O06"
+          ]
+        },
+        "cleared": {
+          "1": true,
+          "2": {
+            "visits": 1,
+            "rounds": 16
+          }
+        },
+        "honroGrowth": {
+          "version": 4,
+          "stages": {
+            "1": {
+              "policy": 3,
+              "combat": {},
+              "cleared": true,
+              "limit": {
+                "start": 0,
+                "end": 180,
+                "total": 180,
+                "combat": 72
+              }
+            },
+            "2": {
+              "combat": {},
+              "cleared": true,
+              "limit": {
+                "start": 180,
+                "end": 450,
+                "total": 270,
+                "combat": 108
+              },
+              "contribution": {
+                "version": 4,
+                "rewardBalance": 1,
+                "sequence": 115,
+                "total": 270,
+                "combatLimit": 108,
+                "actors": [
+                  "archer"
+                ],
+                "factors": {
+                  "archer": 1
+                },
+                "owners": {
+                  "p-archer": "archer"
+                },
+                "enemies": {
+                  "foe-0": {
+                    "id": "foe-0",
+                    "hp": 128,
+                    "weight": 1,
+                    "progress": 128,
+                    "damage": {
+                      "_system": 100
+                    },
+                    "support": {},
+                    "threats": {},
+                    "wounds": {},
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-1": {
+                    "id": "foe-1",
+                    "hp": 79,
+                    "weight": 0.78,
+                    "progress": 79,
+                    "damage": {
+                      "archer": 78
+                    },
+                    "support": {},
+                    "threats": {},
+                    "wounds": {},
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-2": {
+                    "id": "foe-2",
+                    "hp": 128,
+                    "weight": 1,
+                    "progress": 128,
+                    "damage": {
+                      "_system": 100
+                    },
+                    "support": {},
+                    "threats": {
+                      "ally-baeksan:9": 22
+                    },
+                    "wounds": {
+                      "ally-baeksan": [
+                        {
+                          "hp": 0,
+                          "unit": 0.1890359168241966
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-3": {
+                    "id": "foe-3",
+                    "hp": 128,
+                    "weight": 1,
+                    "progress": 128,
+                    "damage": {
+                      "_system": 100
+                    },
+                    "support": {},
+                    "threats": {
+                      "ally-baeksan:0": 23
+                    },
+                    "wounds": {
+                      "ally-baeksan": [
+                        {
+                          "hp": 0,
+                          "unit": 0.1890359168241966
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-4": {
+                    "id": "foe-4",
+                    "hp": 70,
+                    "weight": 0.68,
+                    "progress": 70,
+                    "damage": {
+                      "archer": 68
+                    },
+                    "support": {
+                      "archer": 0.3617021276595745
+                    },
+                    "threats": {
+                      "p-archer:0": 19
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 0,
+                          "unit": 0.18085106382978725
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-5": {
+                    "id": "foe-5",
+                    "hp": 128,
+                    "weight": 1,
+                    "progress": 128,
+                    "damage": {
+                      "_system": 51.5625,
+                      "archer": 48.4375
+                    },
+                    "support": {},
+                    "threats": {},
+                    "wounds": {},
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-0-cluster": {
+                    "id": "foe-0-cluster",
+                    "hp": 128,
+                    "weight": 1,
+                    "progress": 128,
+                    "damage": {
+                      "_system": 100
+                    },
+                    "support": {},
+                    "threats": {
+                      "ally-baeksan:0": 23,
+                      "ally-baeksan:7": 23
+                    },
+                    "wounds": {
+                      "ally-baeksan": [
+                        {
+                          "hp": 0,
+                          "unit": 0.1890359168241966
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-1-cluster": {
+                    "id": "foe-1-cluster",
+                    "hp": 79,
+                    "weight": 0.78,
+                    "progress": 79,
+                    "damage": {
+                      "archer": 78
+                    },
+                    "support": {
+                      "archer": 0.2074468085106383
+                    },
+                    "threats": {
+                      "p-archer:0": 14,
+                      "ally-baeksan:0": 11
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 0,
+                          "unit": 0.2074468085106383
+                        }
+                      ],
+                      "ally-baeksan": [
+                        {
+                          "hp": 0,
+                          "unit": 0.14744801512287334
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-2-cluster": {
+                    "id": "foe-2-cluster",
+                    "hp": 128,
+                    "weight": 1,
+                    "progress": 128,
+                    "damage": {
+                      "archer": 100
+                    },
+                    "support": {
+                      "archer": 0.5319148936170213
+                    },
+                    "threats": {
+                      "p-archer:9": 27
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 0,
+                          "unit": 0.26595744680851063
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-3-cluster": {
+                    "id": "foe-3-cluster",
+                    "hp": 128,
+                    "weight": 1,
+                    "progress": 128,
+                    "damage": {
+                      "_system": 100
+                    },
+                    "support": {},
+                    "threats": {
+                      "npc-yeonsil:0": 26
+                    },
+                    "wounds": {
+                      "npc-yeonsil": [
+                        {
+                          "hp": 0,
+                          "unit": 0.30864197530864196
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-4-cluster": {
+                    "id": "foe-4-cluster",
+                    "hp": 70,
+                    "weight": 0.68,
+                    "progress": 70,
+                    "damage": {
+                      "archer": 68
+                    },
+                    "support": {
+                      "archer": 0.3617021276595745
+                    },
+                    "threats": {
+                      "p-archer:0": 21
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 0,
+                          "unit": 0.18085106382978725
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-5-cluster": {
+                    "id": "foe-5-cluster",
+                    "hp": 128,
+                    "weight": 1,
+                    "progress": 128,
+                    "damage": {
+                      "archer": 56.25,
+                      "_system": 43.75
+                    },
+                    "support": {},
+                    "threats": {
+                      "ally-baeksan:8": 23
+                    },
+                    "wounds": {
+                      "ally-baeksan": [
+                        {
+                          "hp": 0,
+                          "unit": 0.1890359168241966
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "wave:road-pressure:0": {
+                    "id": "wave:road-pressure:0",
+                    "hp": 145,
+                    "weight": 1.25,
+                    "progress": 145,
+                    "damage": {
+                      "_system": 124.99999999999999
+                    },
+                    "support": {},
+                    "threats": {
+                      "npc-yeonsil:0": 24,
+                      "npc-yeonsil:6": 24
+                    },
+                    "wounds": {
+                      "npc-yeonsil": [
+                        {
+                          "hp": 0,
+                          "unit": 0.38580246913580246
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "wave:road-pressure:1": {
+                    "id": "wave:road-pressure:1",
+                    "hp": 116,
+                    "weight": 1,
+                    "progress": 116,
+                    "damage": {
+                      "archer": 62.06896551724138,
+                      "_system": 37.93103448275862
+                    },
+                    "support": {},
+                    "threats": {
+                      "npc-damheo:0": 0
+                    },
+                    "wounds": {},
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "wave:sniper-seen:0": {
+                    "id": "wave:sniper-seen:0",
+                    "hp": 71,
+                    "weight": 0.78,
+                    "progress": 71,
+                    "damage": {
+                      "archer": 78
+                    },
+                    "support": {
+                      "archer": 0.4148936170212766
+                    },
+                    "threats": {
+                      "p-archer:0": 16
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 0,
+                          "unit": 0.2074468085106383
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "wave:sniper-seen:1": {
+                    "id": "wave:sniper-seen:1",
+                    "hp": 71,
+                    "weight": 0.78,
+                    "progress": 71,
+                    "damage": {
+                      "_system": 76.90140845070424,
+                      "archer": 1.0985915492957747
+                    },
+                    "support": {
+                      "archer": 0.4148936170212766
+                    },
+                    "threats": {
+                      "p-archer:0": 12,
+                      "p-archer:9": 12
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 0,
+                          "unit": 0.2074468085106383
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  }
+                },
+                "objectives": {},
+                "objectiveEvidence": {
+                  "terrain": {},
+                  "escorts": {},
+                  "arrivals": {}
+                },
+                "paid": {
+                  "archer": 116
+                },
+                "spent": 116,
+                "forfeited": 154,
+                "combatSpent": 102,
+                "completed": true,
+                "systemForfeited": 154,
+                "capDiscarded": {
+                  "archer": 0
+                }
+              },
+              "policy": 4
+            }
+          }
+        },
+        "recruited": [
+          "archer",
+          "mage"
+        ],
+        "party": [
+          "archer",
+          "mage"
+        ],
+        "record": [
+          {
+            "place": "상여 위의 높은 길",
+            "text": "담허 · 위에 활 든 양반! 사람을 돕겠다면 상여 앞으로 내려오는 놈들부터 막아주시게.\n설오 · 위에서 돕겠습니다! 어른은 누구십니까? 행렬을 맡고 계신 겁니까?\n담허 · 담허라 하네. 상여가 지나는 길목만 열어 주면 되네. 뒤쪽은 호위들이 맡고 있어.\n설오 · 설오입니다. 높은 놈들은 여기서 쏘겠습니다. 아래로 붙으면 내려가 돕지요.\n담허 · 짐승이 쓰러져도 그 옆을 비워 두게. 몸에서 빠져나온 혼이 다른 사람이나 짐승에게 붙을 수 있으니.\n설오 · 나무꾼이 본 일과 같군요. 자세한 이야기는 사람들을 빼낸 뒤 듣겠습니다."
+          },
+          {
+            "place": "상여 위의 높은 길",
+            "text": "담허 · 상여가 안전한 곳에 닿았네. 도와줘서 고맙네, 설오.\n설오 · 쓰러진 짐승 곁을 비워 두라고 하셨지요. 왜 그렇습니까?\n담허 · 짐승의 몸에서 빠진 혼이 다른 사람에게 붙을 수 있네. 그래서 사람 없는 쪽에 진을 펴고 내가 받아 두는 걸세.\n설오 · 그릇이 깨져도 끝난 게 아니군요.\n담허 · 그래. 오늘은 장례를 끝낼 틈부터 만들어야 했어.\n연실 · 아버지, 이제 쉬세요. 길을 열어주신 분들도 계시잖아요.\n설오 · 실례지만 망자의 성함을 여쭤도 됩니까?\n연실 · 홍만이에요. 연목 나루에서 배를 모셨어요.\n설오 · ……연목 나루의 홍만.\n서술 · 설오는 상여를 바라보다가 활을 내려놓았다.\n연실 · 아버지를 아세요?\n설오 · 오늘 처음 뵈려고 왔습니다. 몇 해 전 북쪽 산사람들을 태웠다는 말을 듣고요. 사라진 제 고향 사람들입니다.\n연실 · 그 기록은 버리지 말라고 하셨어요. 사람과 짐을 적은 장부가 나루 움막에 있어요.\n설오 · 배를 태운 뒤 어디로 갔는지도 적혀 있을까요?\n연실 · 제가 내용을 다 보진 못했어요. 하지만 아버지는 아프실 때도 그 장부를 자꾸 찾으셨어요.\n설오 · 고맙습니다. 살아 계실 때 왔어야 했는데.\n담허 · 장부를 보러 갈 때 나도 함께 가지.\n설오 · 장례는 끝났는데, 괜찮으십니까?\n담허 · 오늘 이 길에서 만난 들림이 지난달 내가 이 고을에서 본 것보다 많아. 그릇을 옮겨 다니는 속도도 심상치 않고. 이유를 확인해야겠네.\n설오 · 저는 사람들의 행방을, 어른은 들림이 늘어난 까닭을 찾는 거군요. 나루부터 보겠습니다."
+          }
+        ]
+      }
+    },
+    {
+      "stage": 5,
+      "source": "_local/reports/stage5-positioning/fullplay.json",
+      "repeat": 2,
+      "profile": {
+        "heroes": {
+          "mage": {
+            "xp": 3230,
+            "ranks": {
+              "M01": 1,
+              "M03": 1,
+              "M11": 1
+            },
+            "statTraining": 0,
+            "kills": 1,
+            "damage": 663,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "archer": {
+            "xp": 2464,
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 1
+            },
+            "statTraining": 0,
+            "kills": 0,
+            "damage": 683,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "knight": {
+            "xp": 4066,
+            "ranks": {
+              "S00": 1,
+              "SP01": 1,
+              "SP02": 1,
+              "SP03": 1,
+              "S03": 2,
+              "S01": 2,
+              "S09": 2,
+              "S05": 2,
+              "S06": 2
+            },
+            "statTraining": 0,
+            "kills": 0,
+            "damage": 0,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "occultist": {
+            "xp": 0,
+            "ranks": {
+              "O01": 1,
+              "O06": 1
+            },
+            "statTraining": 0,
+            "kills": 0,
+            "damage": 0,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "occultRevision": 1
+          }
+        },
+        "loadouts": {
+          "mage": [
+            "M01",
+            "M03",
+            "M11"
+          ],
+          "archer": [
+            "A01",
+            "A14",
+            "A02"
+          ],
+          "knight": [
+            "S00",
+            "S01",
+            "S03",
+            "S05"
+          ],
+          "occultist": [
+            "O01",
+            "O06"
+          ]
+        },
+        "cleared": {
+          "1": {
+            "visits": 1,
+            "rounds": 0
+          },
+          "2": {
+            "visits": 1,
+            "rounds": 0
+          },
+          "3": {
+            "visits": 1,
+            "rounds": 0
+          },
+          "4": {
+            "visits": 1,
+            "rounds": 0
+          },
+          "5": {
+            "visits": 1,
+            "rounds": 9
+          }
+        },
+        "honroGrowth": {
+          "version": 4,
+          "stages": {
+            "1": {
+              "policy": 3,
+              "combat": {},
+              "cleared": true,
+              "limit": {
+                "start": 0,
+                "end": 180,
+                "total": 180,
+                "combat": 72
+              }
+            },
+            "2": {
+              "policy": 3,
+              "combat": {},
+              "cleared": true,
+              "limit": {
+                "start": 180,
+                "end": 450,
+                "total": 270,
+                "combat": 108
+              }
+            },
+            "3": {
+              "policy": 3,
+              "combat": {},
+              "cleared": true,
+              "limit": {
+                "start": 675,
+                "end": 1137,
+                "total": 462,
+                "combat": 185
+              }
+            },
+            "4": {
+              "policy": 3,
+              "combat": {},
+              "cleared": true,
+              "limit": {
+                "start": 1137,
+                "end": 1868,
+                "total": 731,
+                "combat": 292
+              }
+            },
+            "5": {
+              "combat": {},
+              "cleared": true,
+              "limit": {
+                "start": 1643,
+                "end": 2709,
+                "total": 1066,
+                "combat": 426
+              },
+              "contribution": {
+                "version": 4,
+                "rewardBalance": 1,
+                "sequence": 36,
+                "total": 2132,
+                "combatLimit": 852,
+                "actors": [
+                  "archer",
+                  "mage"
+                ],
+                "factors": {
+                  "archer": 1,
+                  "mage": 1
+                },
+                "owners": {
+                  "p-archer": "archer",
+                  "p-mage": "mage"
+                },
+                "enemies": {
+                  "foe-0": {
+                    "id": "foe-0",
+                    "hp": 268,
+                    "weight": 1,
+                    "progress": 268,
+                    "damage": {
+                      "mage": 100
+                    },
+                    "support": {},
+                    "threats": {},
+                    "wounds": {},
+                    "controls": {},
+                    "defeated": true,
+                    "settled": true
+                  },
+                  "foe-1": {
+                    "id": "foe-1",
+                    "hp": 268,
+                    "weight": 1,
+                    "progress": 208,
+                    "damage": {
+                      "mage": 77.61194029850746
+                    },
+                    "support": {},
+                    "threats": {},
+                    "wounds": {},
+                    "controls": {},
+                    "defeated": false,
+                    "settled": false
+                  },
+                  "foe-2": {
+                    "id": "foe-2",
+                    "hp": 145,
+                    "weight": 0.68,
+                    "progress": 89,
+                    "damage": {
+                      "archer": 41.73793103448276
+                    },
+                    "support": {
+                      "archer": 3.8857142857142852
+                    },
+                    "threats": {
+                      "p-archer:6": 26
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 0,
+                          "unit": 0.14945054945054945
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": false,
+                    "settled": false
+                  },
+                  "foe-3": {
+                    "id": "foe-3",
+                    "hp": 268,
+                    "weight": 1,
+                    "progress": 0,
+                    "damage": {},
+                    "support": {
+                      "archer": 9.010989010989011
+                    },
+                    "threats": {
+                      "p-archer:0": 41
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 0,
+                          "unit": 0.21978021978021978
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": false,
+                    "settled": false
+                  },
+                  "foe-4": {
+                    "id": "foe-4",
+                    "hp": 268,
+                    "weight": 1,
+                    "progress": 187,
+                    "damage": {
+                      "mage": 69.77611940298507
+                    },
+                    "support": {},
+                    "threats": {},
+                    "wounds": {},
+                    "controls": {},
+                    "defeated": false,
+                    "settled": false
+                  },
+                  "foe-5": {
+                    "id": "foe-5",
+                    "hp": 268,
+                    "weight": 1,
+                    "progress": 0,
+                    "damage": {},
+                    "support": {},
+                    "threats": {},
+                    "wounds": {},
+                    "controls": {},
+                    "defeated": false,
+                    "settled": false
+                  },
+                  "foe-6": {
+                    "id": "foe-6",
+                    "hp": 268,
+                    "weight": 1,
+                    "progress": 0,
+                    "damage": {},
+                    "support": {
+                      "archer": 7.027606539801662
+                    },
+                    "threats": {
+                      "p-archer:0": 41
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 9.024390243902438,
+                          "unit": 0.21978021978021978
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": false,
+                    "settled": false
+                  },
+                  "foe-7": {
+                    "id": "foe-7",
+                    "hp": 166,
+                    "weight": 0.78,
+                    "progress": 34,
+                    "damage": {
+                      "_system": 15.975903614457831
+                    },
+                    "support": {
+                      "archer": 3.942857142857143
+                    },
+                    "threats": {
+                      "p-archer:0": 21,
+                      "p-archer:2": 21
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 19,
+                          "unit": 0.17142857142857143
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": false,
+                    "settled": false
+                  },
+                  "foe-8": {
+                    "id": "foe-8",
+                    "hp": 268,
+                    "weight": 1,
+                    "progress": 116,
+                    "damage": {
+                      "archer": 27.611940298507463,
+                      "_system": 15.671641791044774
+                    },
+                    "support": {
+                      "archer": 9.89010989010989
+                    },
+                    "threats": {
+                      "p-archer:2": 45
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 0,
+                          "unit": 0.21978021978021978
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": false,
+                    "settled": false
+                  },
+                  "foe-9": {
+                    "id": "foe-9",
+                    "hp": 268,
+                    "weight": 1,
+                    "progress": 0,
+                    "damage": {},
+                    "support": {
+                      "archer": 9.67032967032967
+                    },
+                    "threats": {
+                      "p-archer:0": 44
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 0,
+                          "unit": 0.21978021978021978
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": false,
+                    "settled": false
+                  },
+                  "foe-10": {
+                    "id": "foe-10",
+                    "hp": 145,
+                    "weight": 0.68,
+                    "progress": 0,
+                    "damage": {},
+                    "support": {
+                      "archer": 3.0056166056166056
+                    },
+                    "threats": {
+                      "p-archer:0": 27
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 6.888888888888889,
+                          "unit": 0.14945054945054945
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": false,
+                    "settled": false
+                  },
+                  "foe-11": {
+                    "id": "foe-11",
+                    "hp": 166,
+                    "weight": 0.78,
+                    "progress": 0,
+                    "damage": {},
+                    "support": {
+                      "archer": 0.5142857142857142
+                    },
+                    "threats": {
+                      "p-archer:0": 28
+                    },
+                    "wounds": {
+                      "p-archer": [
+                        {
+                          "hp": 25,
+                          "unit": 0.17142857142857143
+                        }
+                      ]
+                    },
+                    "controls": {},
+                    "defeated": false,
+                    "settled": false
+                  }
+                },
+                "objectives": {
+                  "goal:terrain:cliff-cleat": {
+                    "archer": 12,
+                    "mage": 7.999999999999999
+                  }
+                },
+                "objectiveEvidence": {
+                  "terrain": {
+                    "cliff-cleat": {
+                      "maxDamage": 520,
+                      "maxHp": 520,
+                      "weights": {
+                        "p-archer": 312,
+                        "p-mage": 207.99999999999997
+                      }
+                    }
+                  },
+                  "escorts": {},
+                  "arrivals": {}
+                },
+                "paid": {
+                  "archer": 596,
+                  "mage": 1362
+                },
+                "spent": 1958,
+                "forfeited": 174,
+                "combatSpent": 50,
+                "completed": true,
+                "systemForfeited": 174,
+                "capDiscarded": {
+                  "archer": 0,
+                  "mage": 0
+                }
+              },
+              "policy": 4
+            }
+          }
+        },
+        "recruited": [
+          "archer",
+          "mage",
+          "knight"
+        ],
+        "party": [
+          "archer",
+          "mage",
+          "knight"
+        ],
+        "record": [
+          {
+            "place": "폭포 틈의 한 발",
+            "text": "설오 · 마을에서 본 줄입니다. 저 쇠고리에 걸려 있군요.\n담허 · 집으로 이어진 실의 매듭이 벌어지는군. 저 안에 붙들린 혼이 빠져나오겠어.\n설오 · 함부로 끊지 말라고 하셨지요.\n담허 · 그래. 먼저 이쪽에 받이진을 펴겠네. 고리를 풀 때 나온 원혼이 사람에게 가지 않게 이 진으로 받는 거야.\n담허 · 이 진으로 다른 줄의 원혼까지 받을 수 있는 건 아니네. 폭포의 줄을 풀고 나면 나머지도 확인하세.\n설오 · 알겠습니다. 준비하시면 쇠고리만 노리겠습니다."
+          },
+          {
+            "place": "폭포 틈의 한 발",
+            "text": "설오 · 폭포 쪽 실은 더 당겨지지 않습니다. 그런데 옆으로 이어진 줄은….\n담허 · 다른 쪽은 아직 당겨지고 있네. 물길 밖으로 나가 살펴보세.\n설오 · 방울이 울렸습니다. 산에서 들렸다는 종과는 다르군요.\n설오 · 휘겸은 남은 운반대를 찾으러 간다고 했지요. 다리 쪽에도 저 실이 이어집니다.\n담허 · 혼자서는 다친 사람을 옮기며 길까지 지키기 어렵겠네. 우리도 그쪽으로 가세."
+          }
+        ]
+      }
+    }
+  ]
+}

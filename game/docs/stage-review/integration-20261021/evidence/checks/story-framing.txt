@@ -1,0 +1,8 @@
+PASS Chapter 2 conversation explicitly frames the bier and Damheo, based on scene/index metadata
+PASS Explicit objective references use the full real actor bounds, and missing targets have a recorded fallback
+PASS Manual page save retains explicit framing; completion clears it and preserves the original playback camera
+PASS Scripted spirit aliases and a real lamp marker remain explicit camera subjects
+PASS Chapter 10 separates eastern arrivals from the nearby ritual defenders
+PASS Center and zoom approach one target in 250–450ms without a first-frame snap
+PASS Rapid next/back retargets the current frame and velocity, without a queue or stale target
+PASS Reduced motion resolves the target directly; saved high zoom metadata respects middle-distance limits

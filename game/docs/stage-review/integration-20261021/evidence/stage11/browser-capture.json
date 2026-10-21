@@ -1,0 +1,202 @@
+{
+  "scope": "Production browser captures of genuine failed-checkpoint recovery saves.\nRun node tests/stage11-fall-recovery.mjs and build first. No actor/resource writes.\nKeyboard checks replay only the two jump junctions from actual reached saves;\nthe complete native input traces are separate and retain all enemies.\n",
+  "url": "http://127.0.0.1:8014/HONRO.html",
+  "checkout": "9292a1352d0a2418ffbe7c4a6d7f23b5b8d68e89",
+  "sourceSha256": {
+    "tools/map-forge/stage11-ravine.mjs": "b9d45a8487bc7bec6206ae38b203060bfcc62607c80bfbb93471f9e4e2531a49",
+    "shared/runtime/stage11-landscape-art.js": "c3dcbaa9c909e55ebe80f0ae86d8c142d1876cfbe06d31ed118fd02e09968bc6",
+    "shared/runtime/campaign-map-revision.js": "56b24c339ddd09844b77e9189a9d41c3547ab82dc847a1c9a0486a62e97d59b0",
+    "shared/data/campaign.json": "ba6afd5111e53fdb8bd61906a343e1cbc147843887cb2fa7af89521d291df078"
+  },
+  "rows": [
+    {
+      "camera": {
+        "x": 3650,
+        "y": 9180,
+        "scale": 0.48
+      },
+      "width": 1440,
+      "height": 900,
+      "round": 60,
+      "purity": true,
+      "label": "focus1-new-root",
+      "pngSha256": "6ec7e834fb358a9394435ff0e7213c9e90519e8d5806036187c21ce842b255a9",
+      "input": "west-jump-land.json",
+      "hero": {
+        "round": 60,
+        "x": 3537.1512048368963,
+        "y": 9373.739355049294,
+        "hp": 692,
+        "focus": 247,
+        "moveLeft": 375.0399999999113,
+        "support": "rv-root-west-return",
+        "alive": 37
+      }
+    },
+    {
+      "camera": {
+        "x": 5400,
+        "y": 7210,
+        "scale": 0.5
+      },
+      "width": 1440,
+      "height": 900,
+      "round": 62,
+      "purity": true,
+      "label": "focus2-restored-ritual",
+      "pngSha256": "bf37a82ff02014e03bdbfe4abf57b6a8c02c0af33da544f61ad25fdd4e07e64a",
+      "input": "west-ritual.json",
+      "hero": {
+        "round": 62,
+        "x": 5488.027632829542,
+        "y": 7052.334172539287,
+        "hp": 692,
+        "focus": 247,
+        "moveLeft": 391.9975000001792,
+        "support": "rv-ritual-buttress",
+        "alive": 37
+      }
+    },
+    {
+      "camera": {
+        "x": 3515,
+        "y": 9315,
+        "scale": 0.5
+      },
+      "width": 390,
+      "height": 844,
+      "round": 60,
+      "purity": true,
+      "label": "focus3-mobile-contact",
+      "pngSha256": "9524a717d9e7ad01d6ea30327c2aaeef4b6420492e7b770499e762e8b18c7e2b",
+      "input": "west-takeoff.json",
+      "hero": {
+        "round": 60,
+        "x": 3478.0187048368884,
+        "y": 9385.904358631633,
+        "hp": 692,
+        "focus": 247,
+        "moveLeft": 509.1724999999192,
+        "support": "act2-floor",
+        "alive": 37
+      }
+    },
+    {
+      "camera": {
+        "x": 4000,
+        "y": 8750,
+        "scale": 0.24
+      },
+      "width": 1440,
+      "height": 900,
+      "round": 62,
+      "purity": true,
+      "label": "final-recovery-overview",
+      "pngSha256": "98508f0311fb87cca2ab4069769d6a135f81011cac372a862e9774c2749c96f8",
+      "input": "east-new-root.json",
+      "hero": {
+        "round": 62,
+        "x": 3788.3684305602787,
+        "y": 9116.61113577948,
+        "hp": 692,
+        "focus": 247,
+        "moveLeft": 1118.2837499999707,
+        "support": "rv-root-west-return",
+        "alive": 37
+      }
+    },
+    {
+      "camera": {
+        "x": 3543.4187048368863,
+        "y": 9247.32438446107,
+        "scale": 0.6
+      },
+      "width": 1440,
+      "height": 900,
+      "round": 60,
+      "purity": true,
+      "label": "keyboard-lower-jump",
+      "pngSha256": "1c7795c3cb2d905627c693103f7ec13f3a4fbb4d44108844ff5e5df1a806160c"
+    },
+    {
+      "camera": {
+        "x": 4081.2362739492655,
+        "y": 8674.392843865955,
+        "scale": 0.6
+      },
+      "width": 1440,
+      "height": 900,
+      "round": 61,
+      "purity": true,
+      "label": "keyboard-upper-jump",
+      "pngSha256": "ea62ef5590f15059375394b32ae9cca7ab26e8b323c41722d16324529980c6af"
+    }
+  ],
+  "keyboard": [
+    {
+      "input": "west-takeoff.json",
+      "keys": [
+        "Control",
+        "ArrowRight"
+      ],
+      "before": {
+        "round": 60,
+        "x": 3478.0187048368884,
+        "y": 9385.904358631633,
+        "hp": 692,
+        "focus": 247,
+        "moveLeft": 509.1724999999192,
+        "support": "act2-floor",
+        "alive": 37
+      },
+      "afterKey": {
+        "vy": -660,
+        "moveLeft": 434.1724999999192,
+        "jumping": true
+      },
+      "landing": {
+        "x": 3543.4187048368863,
+        "y": 9367.32438446107,
+        "hp": 692,
+        "focus": 247,
+        "moveLeft": 368.77249999992137,
+        "grounded": true,
+        "support": "rv-root-west-return",
+        "alive": 37
+      }
+    },
+    {
+      "input": "west-upper-takeoff.json",
+      "keys": [
+        "Control",
+        "ArrowRight"
+      ],
+      "before": {
+        "round": 61,
+        "x": 4018.5612739492676,
+        "y": 8895.050326946863,
+        "hp": 692,
+        "focus": 247,
+        "moveLeft": 1261.8174999999817,
+        "support": "rv-lower-west-shelf",
+        "alive": 37
+      },
+      "afterKey": {
+        "vy": -660,
+        "moveLeft": 1186.8174999999817,
+        "jumping": true
+      },
+      "landing": {
+        "x": 4081.2362739492655,
+        "y": 8794.392843865955,
+        "hp": 692,
+        "focus": 247,
+        "moveLeft": 1124.1424999999838,
+        "grounded": true,
+        "support": "rv-root-west-return",
+        "alive": 37
+      }
+    }
+  ],
+  "errors": []
+}

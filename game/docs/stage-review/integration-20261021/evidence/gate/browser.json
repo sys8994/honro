@@ -1,0 +1,117 @@
+{
+  "checks": [
+    {
+      "name": "1280: real stage5 slope arrival",
+      "ok": true
+    },
+    {
+      "name": "1280: occupied button matches the ready plan",
+      "ok": true
+    },
+    {
+      "name": "1280: occupied pointer lands on the planned valid pose and preserves growth",
+      "ok": true
+    },
+    {
+      "name": "1280: saved reentry preserves same-turn lock",
+      "ok": true
+    },
+    {
+      "name": "1280: next turn E returns through the same pair",
+      "ok": true
+    },
+    {
+      "name": "1280: ceiling button matches the ready plan",
+      "ok": true
+    },
+    {
+      "name": "1280: ceiling pointer lands on the planned valid pose and preserves growth",
+      "ok": true
+    },
+    {
+      "name": "1280: blocked plan disables the actual context button",
+      "ok": true
+    },
+    {
+      "name": "1280: disabled pointer does not consume state",
+      "ok": true
+    },
+    {
+      "name": "390: real stage5 slope arrival",
+      "ok": true
+    },
+    {
+      "name": "390: occupied button matches the ready plan",
+      "ok": true
+    },
+    {
+      "name": "390: occupied pointer lands on the planned valid pose and preserves growth",
+      "ok": true
+    },
+    {
+      "name": "390: saved reentry preserves same-turn lock",
+      "ok": true
+    },
+    {
+      "name": "390: next turn E returns through the same pair",
+      "ok": true
+    },
+    {
+      "name": "390: ceiling button matches the ready plan",
+      "ok": true
+    },
+    {
+      "name": "390: ceiling pointer lands on the planned valid pose and preserves growth",
+      "ok": true
+    },
+    {
+      "name": "390: blocked plan disables the actual context button",
+      "ok": true
+    },
+    {
+      "name": "390: disabled pointer does not consume state",
+      "ok": true
+    },
+    {
+      "name": "360: real stage5 slope arrival",
+      "ok": true
+    },
+    {
+      "name": "360: occupied button matches the ready plan",
+      "ok": true
+    },
+    {
+      "name": "360: occupied pointer lands on the planned valid pose and preserves growth",
+      "ok": true
+    },
+    {
+      "name": "360: saved reentry preserves same-turn lock",
+      "ok": true
+    },
+    {
+      "name": "360: next turn E returns through the same pair",
+      "ok": true
+    },
+    {
+      "name": "360: ceiling button matches the ready plan",
+      "ok": true
+    },
+    {
+      "name": "360: ceiling pointer lands on the planned valid pose and preserves growth",
+      "ok": true
+    },
+    {
+      "name": "360: blocked plan disables the actual context button",
+      "ok": true
+    },
+    {
+      "name": "360: disabled pointer does not consume state",
+      "ok": true
+    },
+    {
+      "name": "No browser exceptions",
+      "ok": true
+    }
+  ],
+  "errors": []
+}

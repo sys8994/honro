@@ -1,0 +1,78 @@
+[
+  {
+    "test": "joystick-intent",
+    "exit": 0
+  },
+  {
+    "test": "charge-input",
+    "exit": 0
+  },
+  {
+    "test": "combo-landing-turn",
+    "exit": 0
+  },
+  {
+    "test": "volley-followup-tuning",
+    "exit": 0
+  },
+  {
+    "test": "damheo-damage-balance",
+    "exit": 0
+  },
+  {
+    "test": "damheo-geometry-passives",
+    "exit": 0
+  },
+  {
+    "test": "gate-arrival-resolver",
+    "exit": 0
+  },
+  {
+    "test": "airborne-beast-melee",
+    "exit": 0
+  },
+  {
+    "test": "flying-knockback",
+    "exit": 0
+  },
+  {
+    "test": "airborne-waiting-motion",
+    "exit": 0
+  },
+  {
+    "test": "stage2-road-strategy",
+    "exit": 1
+  },
+  {
+    "test": "stage5-positioning",
+    "exit": 1
+  },
+  {
+    "test": "stage5-refinement",
+    "exit": 1
+  },
+  {
+    "test": "stage2-layered-save",
+    "exit": 1
+  },
+  {
+    "test": "sp-balance-app-resume",
+    "exit": 0
+  },
+  {
+    "test": "act1-defense-resume",
+    "exit": 0
+  },
+  {
+    "test": "story-framing",
+    "exit": 0
+  },
+  {
+    "test": "audio",
+    "exit": 0
+  },
+  {
+    "test": "web-split",
+    "exit": 0
+  }
+]

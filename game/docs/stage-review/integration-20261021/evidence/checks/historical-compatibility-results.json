@@ -1,0 +1,26 @@
+[
+  {
+    "test": "existence-damage",
+    "exit": 1
+  },
+  {
+    "test": "existence-variety",
+    "exit": 1
+  },
+  {
+    "test": "stage2-airborne",
+    "exit": 1
+  },
+  {
+    "test": "current-runtime-contracts",
+    "exit": 1
+  },
+  {
+    "test": "campaign-map-revision",
+    "exit": 0
+  },
+  {
+    "test": "web-split",
+    "exit": 0
+  }
+]

@@ -1,0 +1,17 @@
+TURN 1 archer 330 2520 455 enemies 12
+TURN 1 mage 440 2520 486 enemies 12
+TURN 2 archer 1108 2250 394 enemies 12
+TURN 2 mage 1489 2768 486 enemies 12
+TURN 3 archer 2059 2590 267 enemies 12
+TURN 3 mage 1489 2768 486 enemies 18
+TURN 4 archer 2367 2777 219 enemies 18
+TURN 4 mage 1489 2768 486 enemies 18
+TURN 5 archer 2367 2777 219 enemies 18
+TURN 5 mage 1489 2768 486 enemies 18
+TURN 6 archer 2367 2777 191 enemies 18
+TURN 6 mage 1489 2768 486 enemies 18
+TURN 7 archer 2367 2777 340 enemies 18
+TURN 7 mage 1489 2768 486 enemies 18
+TURN 8 archer 2410 2850 316 enemies 18
+TURN 8 mage 1489 2768 486 enemies 18
+RESULT {"round":9,"phase":"won","heroes":[{"id":"p-archer","x":2408.5762492991703,"y":2846.053412086834,"hp":293,"focus":114,"moveLeft":1208,"maxMove":1208,"support":"valley-floor"},{"id":"p-mage","x":1489.3701709810127,"y":2767.8187777246835,"hp":518,"focus":152,"moveLeft":1264,"maxMove":1264,"support":"stage5-ritual-stone"}],"births":[{"frame":1866,"round":3,"id":"event-9","source":"lower-beasts","x":95,"y":2520,"hp":248,"elite":false},{"frame":1866,"round":3,"id":"event-10","source":"lower-beasts","x":195,"y":2520,"hp":310,"elite":true},{"frame":1866,"round":3,"id":"event-11","source":"lower-beasts","x":295,"y":2520,"hp":248,"elite":false},{"frame":1866,"round":3,"id":"event-12","source":"lower-beasts","x":395,"y":2520,"hp":248,"elite":false},{"frame":1866,"round":3,"id":"event-13","source":"lower-beasts","x":495,"y":2520,"hp":248,"elite":false},{"frame":1866,"round":3,"id":"event-14","source":"lower-beasts","x":595,"y":2610.25,"hp":248,"elite":false}],"completed":true}

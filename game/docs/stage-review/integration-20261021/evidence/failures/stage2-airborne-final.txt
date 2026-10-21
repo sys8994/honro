@@ -1,0 +1,18 @@
+PASS Fresh stage2 retains all count/stat/terrain/objective budgets; all 29 other chapter builds exactly unchanged
+PASS A warning during flight cannot count that already-started attack; only a subsequent selectable player action releases it
+PASS A warning during an already-held charge also waits for a genuinely new player action
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Default authored Stage View/Playtest opt-in
+    at file:///workspace/honro/tests/stage2-airborne.mjs:24:2 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

@@ -1,0 +1,28 @@
+PASS 1280: real stage5 slope arrival
+PASS 1280: occupied button matches the ready plan
+PASS 1280: occupied pointer lands on the planned valid pose and preserves growth
+PASS 1280: saved reentry preserves same-turn lock
+PASS 1280: next turn E returns through the same pair
+PASS 1280: ceiling button matches the ready plan
+PASS 1280: ceiling pointer lands on the planned valid pose and preserves growth
+PASS 1280: blocked plan disables the actual context button
+PASS 1280: disabled pointer does not consume state
+PASS 390: real stage5 slope arrival
+PASS 390: occupied button matches the ready plan
+PASS 390: occupied pointer lands on the planned valid pose and preserves growth
+PASS 390: saved reentry preserves same-turn lock
+PASS 390: next turn E returns through the same pair
+PASS 390: ceiling button matches the ready plan
+PASS 390: ceiling pointer lands on the planned valid pose and preserves growth
+PASS 390: blocked plan disables the actual context button
+PASS 390: disabled pointer does not consume state
+PASS 360: real stage5 slope arrival
+PASS 360: occupied button matches the ready plan
+PASS 360: occupied pointer lands on the planned valid pose and preserves growth
+PASS 360: saved reentry preserves same-turn lock
+PASS 360: next turn E returns through the same pair
+PASS 360: ceiling button matches the ready plan
+PASS 360: ceiling pointer lands on the planned valid pose and preserves growth
+PASS 360: blocked plan disables the actual context button
+PASS 360: disabled pointer does not consume state
+PASS No browser exceptions
