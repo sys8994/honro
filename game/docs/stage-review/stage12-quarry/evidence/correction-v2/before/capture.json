@@ -1,0 +1,56 @@
+{
+  "label": "rejected-b8-detail",
+  "url": "http://127.0.0.1:8871/HONRO.html",
+  "renderSourceSha256": "e416537e9b0e799b1cdf74fe7945012ef81a249120825ab1dd3c07c0114727b3",
+  "sha": "b8db573fd1e63b3652a5e596c5801f51b525e4c2",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "north-face",
+      "camera": {
+        "x": 7350,
+        "y": 3850,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 12,
+      "view": "west-face",
+      "camera": {
+        "x": 4330,
+        "y": 4480,
+        "scale": 0.6
+      }
+    },
+    {
+      "stage": 12,
+      "view": "right-wall",
+      "camera": {
+        "x": 7480,
+        "y": 4870,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "west-ledges",
+      "camera": {
+        "x": 3300,
+        "y": 4590,
+        "scale": 0.9
+      }
+    },
+    {
+      "stage": 12,
+      "view": "inner-ledge",
+      "camera": {
+        "x": 6070,
+        "y": 4640,
+        "scale": 0.85
+      }
+    }
+  ],
+  "errors": []
+}
