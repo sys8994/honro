@@ -1,0 +1,71 @@
+{
+  "sha": "d7244a8adc9a5419f8771dd9f80b94464359fbd8",
+  "workingTree": "?? tools/testing/stage10-refinement-capture.py\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 10,
+      "view": "overview",
+      "camera": {
+        "x": 2500,
+        "y": 2400,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 10,
+      "view": "west",
+      "camera": {
+        "x": 1430,
+        "y": 2490,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 10,
+      "view": "center",
+      "camera": {
+        "x": 2470,
+        "y": 2060,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 10,
+      "view": "east",
+      "camera": {
+        "x": 3750,
+        "y": 2480,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 10,
+      "view": "zoom-binding",
+      "camera": {
+        "x": 2260,
+        "y": 2100,
+        "scale": 1.2
+      }
+    },
+    {
+      "stage": 10,
+      "view": "mobile-tree",
+      "camera": {
+        "x": 2470,
+        "y": 2100,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 10,
+      "view": "landscape-tree",
+      "camera": {
+        "x": 2470,
+        "y": 2150,
+        "scale": 0.6
+      }
+    }
+  ],
+  "errors": []
+}
