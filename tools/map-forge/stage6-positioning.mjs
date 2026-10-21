@@ -25,6 +25,8 @@ export function applyStage6Positioning(project){
  },roles:['서쪽 잔교 공중4','중앙 끊어진 교량 공중2','교각 전위3/동측 차단2','운반대 앞2','동쪽 망대1/아래길2/공중4']};
  // "Following from behind" must enter the road behind the rescued carrier,
  // not the eastern exit in front of it. Existing trigger/count are preserved.
+ const crows=s.events.find(e=>e.id==='bridge-crows');Object.assign(crows.action,{x:3150,y:1600,requireFlightClearance:true,maxDistance:550,spacing:145});
+ const boars=s.events.find(e=>e.id==='bridge-boars');Object.assign(boars.action,{x:5100,y:top('lower-road',5100),support:'lower-road',spacing:145,maxDistance:550});
  const pursuit=s.events.find(e=>e.id==='pursuit');Object.assign(pursuit.action,{x:3540,y:top('lower-road',3540),support:'lower-road',spacing:145,maxDistance:500});
  return project;
 }
