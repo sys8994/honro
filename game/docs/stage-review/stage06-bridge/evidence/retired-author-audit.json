@@ -1,0 +1,43 @@
+{
+  "scope": "Pure retired helper on an in-memory baseline copy; canonical source not written",
+  "baseline": "f3da96c09d17c8b43efc8b502da63e61125d508e",
+  "changedStages": [
+    6
+  ],
+  "libraryUnchanged": true,
+  "removedTerrains": [
+    "pier-west",
+    "pier-east"
+  ],
+  "changedTerrains": [
+    "lower-road",
+    "debris-step-1",
+    "debris-step-2",
+    "debris-step-3",
+    "bridge-west",
+    "bridge-mid",
+    "bridge-east",
+    "lower-lookout",
+    "pier-west",
+    "pier-east",
+    "fc-choice-6-bridge-exit-pine"
+  ],
+  "changedUnits": [
+    "p-archer",
+    "p-mage",
+    "p-knight",
+    "foe-0",
+    "foe-1",
+    "foe-2",
+    "foe-3",
+    "foe-4",
+    "foe-5",
+    "foe-6",
+    "foe-7",
+    "foe-8",
+    "foe-9",
+    "objective",
+    "ally-ropeguard",
+    "midboss-stage6"
+  ]
+}

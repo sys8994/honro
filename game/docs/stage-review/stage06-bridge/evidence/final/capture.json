@@ -1,0 +1,71 @@
+{
+  "sha": "80120a1bb34b1d5105f9dafd3f0bdc1db540a42e",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 6,
+      "view": "normal-west",
+      "camera": {
+        "x": 1700,
+        "y": 2170,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 6,
+      "view": "normal-rescue",
+      "camera": {
+        "x": 3500,
+        "y": 2800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 6,
+      "view": "zoom-deck",
+      "camera": {
+        "x": 2010,
+        "y": 1980,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 6,
+      "view": "maxout",
+      "camera": {
+        "x": 3300,
+        "y": 2350,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 6,
+      "view": "mobile-rescue",
+      "camera": {
+        "x": 4100,
+        "y": 2770,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 6,
+      "view": "mobile-east",
+      "camera": {
+        "x": 4800,
+        "y": 2530,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 6,
+      "view": "landscape-east",
+      "camera": {
+        "x": 5000,
+        "y": 2480,
+        "scale": 0.35
+      }
+    }
+  ],
+  "errors": []
+}

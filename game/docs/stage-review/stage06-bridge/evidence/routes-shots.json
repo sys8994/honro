@@ -1,0 +1,1272 @@
+{
+  "scope": "Isolated finite Engine routes and supported prepared-position actual projectiles; not normal combat completion.",
+  "routes": [
+    {
+      "label": "lower-rescue-exit",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 330,
+        "y": 2410.047,
+        "hp": 515,
+        "round": 1
+      },
+      "end": {
+        "x": 6375.802848716554,
+        "y": 2257.7351266407804,
+        "support": "lower-road",
+        "round": 6,
+        "moveLeft": 1266.2500000000002
+      },
+      "counts": {
+        "ticks": 3017,
+        "jumps": 1,
+        "waits": 5,
+        "walkCost": 6296.675768555094,
+        "jumpCost": 75,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 6371.675768555094,
+      "turnEquivalent": 4.977871694183667,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1533.1216280470767,
+          "y": 2741.0213594066145,
+          "support": "lower-road",
+          "round": 1,
+          "moveLeft": 8.526488971360838
+        },
+        {
+          "op": "wait",
+          "x": 2767.947104624635,
+          "y": 2982.8782367182125,
+          "support": "lower-road",
+          "round": 2,
+          "moveLeft": 8.665158126468192
+        },
+        {
+          "op": "wait",
+          "x": 4016.934831052726,
+          "y": 2940,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 8.898530999552108
+        },
+        {
+          "op": "jump",
+          "x": 4425.6124091226375,
+          "y": 2874.896413991446,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 784.0812338362941
+        },
+        {
+          "op": "wait",
+          "x": 5157.630307171201,
+          "y": 2638.695202222997,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 7.734651680589629
+        },
+        {
+          "op": "wait",
+          "x": 6362.728928079083,
+          "y": 2261.993659153877,
+          "support": "lower-road",
+          "round": 5,
+          "moveLeft": 8.249401666918109
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 1250
+          },
+          "x": 1250,
+          "y": 2648.342176470588,
+          "support": "lower-road",
+          "round": 1,
+          "moveLeft": 308.5270425750156
+        },
+        {
+          "goal": {
+            "x": 2450
+          },
+          "x": 2446.6654671468914,
+          "y": 2953.1500890977723,
+          "support": "lower-road",
+          "round": 2,
+          "moveLeft": 333.2356078393913
+        },
+        {
+          "goal": {
+            "x": 3230
+          },
+          "x": 3225.50211183655,
+          "y": 3005.638438204575,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 817.8358239935585
+        },
+        {
+          "goal": {
+            "x": 4100
+          },
+          "x": 4096.684831052726,
+          "y": 2940,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 1200.2500000000005
+        },
+        {
+          "goal": {
+            "x": 4430,
+            "jumpTo": {
+              "x": 4650
+            }
+          },
+          "x": 4425.6124091226375,
+          "y": 2874.896413991446,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 859.0812338362941
+        },
+        {
+          "jump": {
+            "x": 4650
+          },
+          "x": 4620.8624091226375,
+          "y": 2661.4745744754514,
+          "support": "place6-east-rock:collision:0",
+          "round": 4,
+          "moveLeft": 588.8312338362941
+        },
+        {
+          "goal": {
+            "x": 4770
+          },
+          "x": 4765.472709382741,
+          "y": 2634.167781060889,
+          "support": "place6-east-rock:collision:0",
+          "round": 4,
+          "moveLeft": 437.54129575328614
+        },
+        {
+          "goal": {
+            "x": 5200
+          },
+          "x": 5195.49339844318,
+          "y": 2622.1601737795395,
+          "support": "lower-road",
+          "round": 5,
+          "moveLeft": 1238.656883921994
+        },
+        {
+          "goal": {
+            "x": 6380
+          },
+          "x": 6375.802848716554,
+          "y": 2257.7351266407804,
+          "support": "lower-road",
+          "round": 6,
+          "moveLeft": 1266.2500000000002
+        }
+      ]
+    },
+    {
+      "label": "west-deck-return",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 330,
+        "y": 2410.047,
+        "hp": 515,
+        "round": 1
+      },
+      "end": {
+        "x": 1245.7101280874735,
+        "y": 2647.030106528872,
+        "support": "lower-road",
+        "round": 4,
+        "moveLeft": 1263.5
+      },
+      "counts": {
+        "ticks": 2193,
+        "jumps": 3,
+        "waits": 3,
+        "walkCost": 3157.884579159152,
+        "jumpCost": 225,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 3382.884579159152,
+      "turnEquivalent": 2.6428785774680876,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1105.0775376329768,
+          "y": 2395.3516044547873,
+          "support": "debris-step-1",
+          "round": 1,
+          "moveLeft": 453.64039050584927
+        },
+        {
+          "op": "jump",
+          "x": 1105.0775376329768,
+          "y": 2395.3516044547873,
+          "support": "debris-step-1",
+          "round": 2,
+          "moveLeft": 1205
+        },
+        {
+          "op": "jump",
+          "x": 1275.0998671906893,
+          "y": 2214.490013280931,
+          "support": "debris-step-2",
+          "round": 2,
+          "moveLeft": 959.5
+        },
+        {
+          "op": "jump",
+          "x": 1395.9420800105627,
+          "y": 2048.4487348140324,
+          "support": "debris-step-3",
+          "round": 2,
+          "moveLeft": 763.5000000000019
+        },
+        {
+          "op": "wait",
+          "x": 2142.4202590970744,
+          "y": 1877.7593134746865,
+          "support": "bridge-west",
+          "round": 2,
+          "moveLeft": 9.992840514053075
+        },
+        {
+          "op": "drop",
+          "x": 1405.3610246471178,
+          "y": 1956.2886042646894,
+          "support": "bridge-west",
+          "round": 3,
+          "moveLeft": 427.4952258946085
+        },
+        {
+          "op": "drop",
+          "x": 1284.6916263578594,
+          "y": 2056.689509158677,
+          "support": "debris-step-3",
+          "round": 3,
+          "moveLeft": 306.495225894611
+        },
+        {
+          "op": "drop",
+          "x": 1110,
+          "y": 2395,
+          "support": "debris-step-1",
+          "round": 3,
+          "moveLeft": 130.98218982095045
+        },
+        {
+          "op": "budget-exhausted-coast",
+          "x": 1229.9316390748427,
+          "y": 2471.0559446654393,
+          "round": 3,
+          "moveLeft": 9.98218982095051
+        },
+        {
+          "op": "wait",
+          "x": 1229.9316390748427,
+          "y": 2642.2042092570377,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 9.98218982095051
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 1110,
+            "jumpTo": {
+              "x": 1180,
+              "support": "debris-step-2"
+            }
+          },
+          "x": 1105.0775376329768,
+          "y": 2395.3516044547873,
+          "support": "debris-step-1",
+          "round": 1,
+          "moveLeft": 453.64039050584927
+        },
+        {
+          "jump": {
+            "x": 1180,
+            "support": "debris-step-2"
+          },
+          "x": 1179.3275376329768,
+          "y": 2224.0672462367024,
+          "support": "debris-step-2",
+          "round": 2,
+          "moveLeft": 1130.75
+        },
+        {
+          "goal": {
+            "x": 1280,
+            "jumpTo": {
+              "x": 1340,
+              "support": "debris-step-3"
+            }
+          },
+          "x": 1275.0998671906893,
+          "y": 2214.490013280931,
+          "support": "debris-step-2",
+          "round": 2,
+          "moveLeft": 1034.5
+        },
+        {
+          "jump": {
+            "x": 1340,
+            "support": "debris-step-3"
+          },
+          "x": 1338.3498671906893,
+          "y": 2052.714824652541,
+          "support": "debris-step-3",
+          "round": 2,
+          "moveLeft": 896.25
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "jumpTo": {
+              "x": 1510,
+              "support": "bridge-west"
+            }
+          },
+          "x": 1395.9420800105627,
+          "y": 2048.4487348140324,
+          "support": "debris-step-3",
+          "round": 2,
+          "moveLeft": 838.5000000000019
+        },
+        {
+          "jump": {
+            "x": 1510,
+            "support": "bridge-west"
+          },
+          "x": 1508.6920800105627,
+          "y": 1927.5855333303994,
+          "support": "bridge-west",
+          "round": 2,
+          "moveLeft": 650.7500000000019
+        },
+        {
+          "goal": {
+            "x": 2200
+          },
+          "x": 2194.3729123893827,
+          "y": 1883.3256691845768,
+          "support": "bridge-west",
+          "round": 3,
+          "moveLeft": 1227.7500000000005
+        },
+        {
+          "goal": {
+            "x": 1500
+          },
+          "x": 1503.3989719519643,
+          "y": 1929.0558411244544,
+          "support": "bridge-west",
+          "round": 3,
+          "moveLeft": 529.2452258946081
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "drop": true
+          },
+          "x": 1405.3610246471178,
+          "y": 1956.2886042646894,
+          "support": "bridge-west",
+          "round": 3,
+          "moveLeft": 427.4952258946085
+        },
+        {
+          "goal": {
+            "x": 1280,
+            "drop": true
+          },
+          "x": 1284.6916263578594,
+          "y": 2056.689509158677,
+          "support": "debris-step-3",
+          "round": 3,
+          "moveLeft": 306.495225894611
+        },
+        {
+          "goal": {
+            "x": 1110,
+            "drop": true
+          },
+          "x": 1110,
+          "y": 2395,
+          "support": "debris-step-1",
+          "round": 3,
+          "moveLeft": 130.98218982095045
+        },
+        {
+          "goal": {
+            "x": 1250
+          },
+          "x": 1245.7101280874735,
+          "y": 2647.030106528872,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 1263.5
+        }
+      ]
+    },
+    {
+      "label": "lower-rescue-exit",
+      "cls": "mage",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 440,
+        "y": 2430.033,
+        "hp": 550,
+        "round": 1
+      },
+      "end": {
+        "x": 6374.3219818398475,
+        "y": 2258.2174853698025,
+        "support": "lower-road",
+        "round": 5,
+        "moveLeft": 204.47189763696554
+      },
+      "counts": {
+        "ticks": 3018,
+        "jumps": 1,
+        "waits": 4,
+        "walkCost": 6182.909487427796,
+        "jumpCost": 75,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 6257.909487427796,
+      "turnEquivalent": 4.813776528790612,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1660.2378301201034,
+          "y": 2774.0270653478988,
+          "support": "lower-road",
+          "round": 1,
+          "moveLeft": 9.08904762336061
+        },
+        {
+          "op": "wait",
+          "x": 2917.4041186529557,
+          "y": 2998.437383525388,
+          "support": "lower-road",
+          "round": 2,
+          "moveLeft": 9.92074309693575
+        },
+        {
+          "op": "wait",
+          "x": 4186.679555170776,
+          "y": 2940,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 9.904330450589839
+        },
+        {
+          "op": "jump",
+          "x": 4425.406769670892,
+          "y": 2874.9605190664183,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 974.0413576868214
+        },
+        {
+          "op": "wait",
+          "x": 5330.624296089919,
+          "y": 2566.1931335339864,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 8.704493764307749
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 1250
+          },
+          "x": 1249.2146319420237,
+          "y": 2648.1019693401504,
+          "support": "lower-road",
+          "round": 1,
+          "moveLeft": 441.9169907489378
+        },
+        {
+          "goal": {
+            "x": 2450
+          },
+          "x": 2446.0596885639384,
+          "y": 2953.0366481496058,
+          "support": "lower-road",
+          "round": 2,
+          "moveLeft": 485.85802518164684
+        },
+        {
+          "goal": {
+            "x": 3230
+          },
+          "x": 3226.381297315019,
+          "y": 3005.692301244329,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 987.7055136778544
+        },
+        {
+          "goal": {
+            "x": 4100
+          },
+          "x": 4094.5795551707747,
+          "y": 2940,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 102.00433045059157
+        },
+        {
+          "goal": {
+            "x": 4430,
+            "jumpTo": {
+              "x": 4650
+            }
+          },
+          "x": 4425.406769670892,
+          "y": 2874.9605190664183,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 1049.0413576868214
+        },
+        {
+          "jump": {
+            "x": 4650
+          },
+          "x": 4619.84010300423,
+          "y": 2661.7609347327084,
+          "support": "place6-east-rock:collision:0",
+          "round": 4,
+          "moveLeft": 779.6080243534834
+        },
+        {
+          "goal": {
+            "x": 4770
+          },
+          "x": 4764.126679208684,
+          "y": 2633.7553943654057,
+          "support": "place6-east-rock:collision:0",
+          "round": 4,
+          "moveLeft": 628.6642164614834
+        },
+        {
+          "goal": {
+            "x": 5200
+          },
+          "x": 5194.233146881694,
+          "y": 2622.743596120063,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 157.1651741658667
+        },
+        {
+          "goal": {
+            "x": 6380
+          },
+          "x": 6374.3219818398475,
+          "y": 2258.2174853698025,
+          "support": "lower-road",
+          "round": 5,
+          "moveLeft": 204.47189763696554
+        }
+      ]
+    },
+    {
+      "label": "west-deck-return",
+      "cls": "mage",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 440,
+        "y": 2430.033,
+        "hp": 550,
+        "round": 1
+      },
+      "end": {
+        "x": 1249.9825448884783,
+        "y": 2648.336837773391,
+        "support": "lower-road",
+        "round": 3,
+        "moveLeft": 31.0666669012561
+      },
+      "counts": {
+        "ticks": 2101,
+        "jumps": 3,
+        "waits": 2,
+        "walkCost": 3050.250969590703,
+        "jumpCost": 225,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 3275.250969590703,
+      "turnEquivalent": 2.519423822762079,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1106.1361537237333,
+          "y": 2395.2759890197335,
+          "support": "debris-step-1",
+          "round": 1,
+          "moveLeft": 585.1836574156077
+        },
+        {
+          "op": "jump",
+          "x": 1106.1361537237333,
+          "y": 2395.2759890197335,
+          "support": "debris-step-1",
+          "round": 2,
+          "moveLeft": 1225
+        },
+        {
+          "op": "jump",
+          "x": 1274.1885620299631,
+          "y": 2214.5811437970037,
+          "support": "debris-step-2",
+          "round": 2,
+          "moveLeft": 981.4778203903977
+        },
+        {
+          "op": "jump",
+          "x": 1394.276448809971,
+          "y": 2048.572114902965,
+          "support": "debris-step-3",
+          "round": 2,
+          "moveLeft": 786.2361537237282
+        },
+        {
+          "op": "wait",
+          "x": 2164.8823377172525,
+          "y": 1880.16596475542,
+          "support": "bridge-west",
+          "round": 2,
+          "moveLeft": 8.498706092441683
+        },
+        {
+          "op": "drop",
+          "x": 1405.8745682509639,
+          "y": 1956.145953263621,
+          "support": "bridge-west",
+          "round": 3,
+          "moveLeft": 468.5416669012675
+        },
+        {
+          "op": "drop",
+          "x": 1285.9614313421623,
+          "y": 2056.5954495302103,
+          "support": "debris-step-3",
+          "round": 3,
+          "moveLeft": 348.300000234598
+        },
+        {
+          "op": "drop",
+          "x": 1110.2641742891878,
+          "y": 2394.981130407915,
+          "support": "debris-step-1",
+          "round": 3,
+          "moveLeft": 171.77500023459294
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 1110,
+            "jumpTo": {
+              "x": 1180,
+              "support": "debris-step-2"
+            }
+          },
+          "x": 1106.1361537237333,
+          "y": 2395.2759890197335,
+          "support": "debris-step-1",
+          "round": 1,
+          "moveLeft": 585.1836574156077
+        },
+        {
+          "jump": {
+            "x": 1180,
+            "support": "debris-step-2"
+          },
+          "x": 1180,
+          "y": 2224,
+          "support": "debris-step-2",
+          "round": 2,
+          "moveLeft": 1151.1361537237333
+        },
+        {
+          "goal": {
+            "x": 1280,
+            "jumpTo": {
+              "x": 1340,
+              "support": "debris-step-3"
+            }
+          },
+          "x": 1274.1885620299631,
+          "y": 2214.5811437970037,
+          "support": "debris-step-2",
+          "round": 2,
+          "moveLeft": 1056.4778203903977
+        },
+        {
+          "jump": {
+            "x": 1340,
+            "support": "debris-step-3"
+          },
+          "x": 1338.146895363298,
+          "y": 2052.7298596027185,
+          "support": "debris-step-3",
+          "round": 2,
+          "moveLeft": 917.5194870570629
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "jumpTo": {
+              "x": 1510,
+              "support": "bridge-west"
+            }
+          },
+          "x": 1394.276448809971,
+          "y": 2048.572114902965,
+          "support": "debris-step-3",
+          "round": 2,
+          "moveLeft": 861.2361537237282
+        },
+        {
+          "jump": {
+            "x": 1510,
+            "support": "bridge-west"
+          },
+          "x": 1509.4014488099738,
+          "y": 1927.388486441674,
+          "support": "bridge-west",
+          "round": 2,
+          "moveLeft": 671.1111537237255
+        },
+        {
+          "goal": {
+            "x": 2200
+          },
+          "x": 2195.407628742593,
+          "y": 1883.436531650992,
+          "support": "bridge-west",
+          "round": 3,
+          "moveLeft": 1269.2999999999986
+        },
+        {
+          "goal": {
+            "x": 1500
+          },
+          "x": 1504.474567669757,
+          "y": 1928.7570645361786,
+          "support": "bridge-west",
+          "round": 3,
+          "moveLeft": 570.8750002345969
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "drop": true
+          },
+          "x": 1405.8745682509639,
+          "y": 1956.145953263621,
+          "support": "bridge-west",
+          "round": 3,
+          "moveLeft": 468.5416669012675
+        },
+        {
+          "goal": {
+            "x": 1280,
+            "drop": true
+          },
+          "x": 1285.9614313421623,
+          "y": 2056.5954495302103,
+          "support": "debris-step-3",
+          "round": 3,
+          "moveLeft": 348.300000234598
+        },
+        {
+          "goal": {
+            "x": 1110,
+            "drop": true
+          },
+          "x": 1110.2641742891878,
+          "y": 2394.981130407915,
+          "support": "debris-step-1",
+          "round": 3,
+          "moveLeft": 171.77500023459294
+        },
+        {
+          "goal": {
+            "x": 1250
+          },
+          "x": 1249.9825448884783,
+          "y": 2648.336837773391,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 31.0666669012561
+        }
+      ]
+    },
+    {
+      "label": "lower-rescue-exit",
+      "cls": "knight",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 550,
+        "y": 2448.545,
+        "hp": 850,
+        "round": 1
+      },
+      "end": {
+        "x": 6375.101382471208,
+        "y": 2257.9636133277872,
+        "support": "lower-road",
+        "round": 5,
+        "moveLeft": 636.4915912347503
+      },
+      "counts": {
+        "ticks": 2852,
+        "jumps": 1,
+        "waits": 4,
+        "walkCost": 6071.470315408182,
+        "jumpCost": 75,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 6146.470315408182,
+      "turnEquivalent": 4.421921090221714,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1852.5046513031748,
+          "y": 2828.3307151454087,
+          "support": "lower-road",
+          "round": 1,
+          "moveLeft": 9.949032639651543
+        },
+        {
+          "op": "wait",
+          "x": 3206.984956432913,
+          "y": 3004.503990124993,
+          "support": "lower-road",
+          "round": 2,
+          "moveLeft": 8.057077024535875
+        },
+        {
+          "op": "wait",
+          "x": 4426.406645356846,
+          "y": 2874.6488225253765,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 140.76013404354174
+        },
+        {
+          "op": "jump",
+          "x": 4426.406645356846,
+          "y": 2874.6488225253765,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 1315
+        },
+        {
+          "op": "wait",
+          "x": 5653.52993962552,
+          "y": 2457.587588408011,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 8.271849649340695
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 1250
+          },
+          "x": 1248.58331385956,
+          "y": 2647.9088788478107,
+          "support": "lower-road",
+          "round": 1,
+          "moveLeft": 644.4352751449645
+        },
+        {
+          "goal": {
+            "x": 2450
+          },
+          "x": 2445.470288753953,
+          "y": 2952.9262743675417,
+          "support": "lower-road",
+          "round": 2,
+          "moveLeft": 777.4557831943723
+        },
+        {
+          "goal": {
+            "x": 3230
+          },
+          "x": 3225.9078108443628,
+          "y": 3005.6632932349653,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 1371.0416666666688
+        },
+        {
+          "goal": {
+            "x": 4100
+          },
+          "x": 4094.576886678076,
+          "y": 2940,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 484.8687777101004
+        },
+        {
+          "goal": {
+            "x": 4430,
+            "jumpTo": {
+              "x": 4650
+            }
+          },
+          "x": 4426.406645356846,
+          "y": 2874.6488225253765,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 140.76013404354174
+        },
+        {
+          "jump": {
+            "x": 4650
+          },
+          "x": 4621.406645356824,
+          "y": 2661.32212735103,
+          "support": "place6-east-rock:collision:0",
+          "round": 4,
+          "moveLeft": 1120.0000000000218
+        },
+        {
+          "goal": {
+            "x": 4770
+          },
+          "x": 4766.396888472907,
+          "y": 2634.4509241644937,
+          "support": "place6-east-rock:collision:0",
+          "round": 4,
+          "moveLeft": 968.3086660809782
+        },
+        {
+          "goal": {
+            "x": 5200
+          },
+          "x": 5194.806063049041,
+          "y": 2622.4783696355325,
+          "support": "lower-road",
+          "round": 4,
+          "moveLeft": 498.9405983323416
+        },
+        {
+          "goal": {
+            "x": 6380
+          },
+          "x": 6375.101382471208,
+          "y": 2257.9636133277872,
+          "support": "lower-road",
+          "round": 5,
+          "moveLeft": 636.4915912347503
+        }
+      ]
+    },
+    {
+      "label": "west-deck-return",
+      "cls": "knight",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 550,
+        "y": 2448.545,
+        "hp": 850,
+        "round": 1
+      },
+      "end": {
+        "x": 1249.0166666666628,
+        "y": 2648.04142107843,
+        "support": "lower-road",
+        "round": 3,
+        "moveLeft": 458.41350493716504
+      },
+      "counts": {
+        "ticks": 2001,
+        "jumps": 3,
+        "waits": 2,
+        "walkCost": 2935.6948778209,
+        "jumpCost": 225,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 3160.6948778209,
+      "turnEquivalent": 2.2738812070653958,
+      "events": [
+        {
+          "op": "jump",
+          "x": 1105.2321388675703,
+          "y": 2395.3405615094593,
+          "support": "debris-step-1",
+          "round": 1,
+          "moveLeft": 712.9769418116302
+        },
+        {
+          "op": "wait",
+          "x": 1275.3732649130425,
+          "y": 2214.462673508696,
+          "support": "debris-step-2",
+          "round": 1,
+          "moveLeft": 542.3519418116309
+        },
+        {
+          "op": "jump",
+          "x": 1275.3732649130425,
+          "y": 2214.462673508696,
+          "support": "debris-step-2",
+          "round": 2,
+          "moveLeft": 1315
+        },
+        {
+          "op": "jump",
+          "x": 1394.0186700330696,
+          "y": 2048.59120962718,
+          "support": "debris-step-3",
+          "round": 2,
+          "moveLeft": 1121.2065982463773
+        },
+        {
+          "op": "wait",
+          "x": 1893.5048170475202,
+          "y": 1874.525517511602,
+          "support": "bridge-west",
+          "round": 2,
+          "moveLeft": 8.539675430306652
+        },
+        {
+          "op": "drop",
+          "x": 1405.6302374265556,
+          "y": 1956.2138229370678,
+          "support": "bridge-west",
+          "round": 3,
+          "moveLeft": 891.6666666666608
+        },
+        {
+          "op": "drop",
+          "x": 1284.088229852149,
+          "y": 2056.7342051961373,
+          "support": "debris-step-3",
+          "round": 3,
+          "moveLeft": 769.7916666666642
+        },
+        {
+          "op": "drop",
+          "x": 1111.5732967570657,
+          "y": 2394.8876216602093,
+          "support": "debris-step-1",
+          "round": 3,
+          "moveLeft": 596.4583333333289
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 1110,
+            "jumpTo": {
+              "x": 1180,
+              "support": "debris-step-2"
+            }
+          },
+          "x": 1105.2321388675703,
+          "y": 2395.3405615094593,
+          "support": "debris-step-1",
+          "round": 1,
+          "moveLeft": 787.9769418116302
+        },
+        {
+          "jump": {
+            "x": 1180,
+            "support": "debris-step-2"
+          },
+          "x": 1178.3571388675682,
+          "y": 2224.164286113243,
+          "support": "debris-step-2",
+          "round": 1,
+          "moveLeft": 639.8519418116323
+        },
+        {
+          "goal": {
+            "x": 1280,
+            "jumpTo": {
+              "x": 1340,
+              "support": "debris-step-3"
+            }
+          },
+          "x": 1275.3732649130425,
+          "y": 2214.462673508696,
+          "support": "debris-step-2",
+          "round": 1,
+          "moveLeft": 542.3519418116309
+        },
+        {
+          "jump": {
+            "x": 1340,
+            "support": "debris-step-3"
+          },
+          "x": 1340,
+          "y": 2052.5925925925926,
+          "support": "debris-step-3",
+          "round": 2,
+          "moveLeft": 1250.3732649130425
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "jumpTo": {
+              "x": 1510,
+              "support": "bridge-west"
+            }
+          },
+          "x": 1394.0186700330696,
+          "y": 2048.59120962718,
+          "support": "debris-step-3",
+          "round": 2,
+          "moveLeft": 1196.2065982463773
+        },
+        {
+          "jump": {
+            "x": 1510,
+            "support": "bridge-west"
+          },
+          "x": 1510,
+          "y": 1927.2222222222222,
+          "support": "bridge-west",
+          "round": 2,
+          "moveLeft": 1005.2252682794469
+        },
+        {
+          "goal": {
+            "x": 2200
+          },
+          "x": 2196.0586639474263,
+          "y": 1883.5062854229386,
+          "support": "bridge-west",
+          "round": 2,
+          "moveLeft": 311.8801512989858
+        },
+        {
+          "goal": {
+            "x": 1500
+          },
+          "x": 1504.7922889593074,
+          "y": 1928.6688086224146,
+          "support": "bridge-west",
+          "round": 3,
+          "moveLeft": 994.5833333333301
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "drop": true
+          },
+          "x": 1405.6302374265556,
+          "y": 1956.2138229370678,
+          "support": "bridge-west",
+          "round": 3,
+          "moveLeft": 891.6666666666608
+        },
+        {
+          "goal": {
+            "x": 1280,
+            "drop": true
+          },
+          "x": 1284.088229852149,
+          "y": 2056.7342051961373,
+          "support": "debris-step-3",
+          "round": 3,
+          "moveLeft": 769.7916666666642
+        },
+        {
+          "goal": {
+            "x": 1110,
+            "drop": true
+          },
+          "x": 1111.5732967570657,
+          "y": 2394.8876216602093,
+          "support": "debris-step-1",
+          "round": 3,
+          "moveLeft": 596.4583333333289
+        },
+        {
+          "goal": {
+            "x": 1250
+          },
+          "x": 1249.0166666666628,
+          "y": 2648.04142107843,
+          "support": "lower-road",
+          "round": 3,
+          "moveLeft": 458.41350493716504
+        }
+      ]
+    }
+  ],
+  "shots": [
+    {
+      "cls": "archer",
+      "support": "bridge-west",
+      "x": 2200,
+      "target": "foe-0-cluster",
+      "damage": 101,
+      "aim": {
+        "angle": 85.19479211150094,
+        "power": 0.3069962070522607
+      }
+    },
+    {
+      "cls": "mage",
+      "support": "lower-road",
+      "x": 2650,
+      "target": "midboss-stage6",
+      "damage": 44,
+      "aim": {
+        "angle": 8,
+        "power": 0.8000000000000002
+      }
+    },
+    {
+      "cls": "archer",
+      "support": "lower-lookout",
+      "x": 5000,
+      "target": "foe-9-cluster",
+      "damage": 105,
+      "aim": {
+        "angle": -24,
+        "power": 0.7000000000000001
+      }
+    }
+  ]
+}

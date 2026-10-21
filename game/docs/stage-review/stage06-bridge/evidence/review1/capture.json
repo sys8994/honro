@@ -1,0 +1,35 @@
+{
+  "sha": "f3da96c09d17c8b43efc8b502da63e61125d508e",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/build.mjs\n M shared/runtime/act1-spatial-art.js\n M shared/runtime/campaign-map-revision.js\n M shared/runtime/encounters.js\n M tools/map-forge/apply-stage6-broken-bridge.mjs\n D web/entries/game.485ba3bfc79ad4b7.html\n D web/entries/game.be51894f3d0a99d1.js\n D web/entries/workshop.551442182c66b370.js\n M web/manifest.json\n D web/runtime/ordered-common-12.3927875ee27bb8f5.js\n?? tools/map-forge/stage6-positioning.mjs\n?? web/data/campaign.05ac18f9a52ad056.json\n?? web/data/chapter-06-assets.b2a592a57043955d.json\n?? web/data/chapter-06.17cb199495b9c586.json\n?? web/entries/game.0c112812f1827bbb.html\n?? web/entries/game.40c12e1be18eb848.js\n?? web/entries/workshop.addd3a212a3177e8.js\n?? web/runtime/campaign.3b934cffb06521cc.js\n?? web/runtime/ordered-common-12.921c7752a3fe74fb.js\n?? web/runtime/ordered-common-4.6e3bb937eb647b2b.js\n",
+  "scope": "Local production browser, frozen debug scene; overview uses diagnostic fit-to-map zoom, not gameplay minimum; no chapter completion.",
+  "rows": [
+    {
+      "stage": 6,
+      "view": "west",
+      "camera": {
+        "x": 1700,
+        "y": 2400,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 6,
+      "view": "bridge",
+      "camera": {
+        "x": 3300,
+        "y": 2350,
+        "scale": 0.45
+      }
+    },
+    {
+      "stage": 6,
+      "view": "east",
+      "camera": {
+        "x": 5000,
+        "y": 2400,
+        "scale": 0.55
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,1013 @@
+{
+  "method": "Production browser Engine inputs; legal chapter1–5 completion-reward fixture, normal resources and live AI, no teleports/healing resets.",
+  "start": {
+    "heroes": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "hp": 500,
+        "maxHp": 500,
+        "focus": 124,
+        "level": 5,
+        "loadout": [
+          "A01"
+        ]
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "hp": 536,
+        "maxHp": 536,
+        "focus": 161,
+        "level": 5,
+        "loadout": [
+          "M01"
+        ]
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "hp": 942,
+        "maxHp": 942,
+        "focus": 144,
+        "level": 6,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03",
+          "S05"
+        ]
+      }
+    ],
+    "items": {
+      "heal": 3,
+      "focus": 3,
+      "cleanse": 2,
+      "ward": 2
+    },
+    "enemies": 21
+  },
+  "end": {
+    "phase": "won",
+    "round": 24,
+    "heroes": [
+      {
+        "id": "p-archer",
+        "hp": 348,
+        "maxHp": 500,
+        "focus": 124,
+        "x": 1787.0457413250226,
+        "y": 2809.061864446134
+      },
+      {
+        "id": "p-mage",
+        "hp": 394,
+        "maxHp": 536,
+        "focus": 161,
+        "x": 1787.0576783371366,
+        "y": 2809.066572544147
+      },
+      {
+        "id": "p-knight",
+        "hp": 942,
+        "maxHp": 942,
+        "focus": 144,
+        "x": 6374.30014483196,
+        "y": 2258.224598278826
+      }
+    ],
+    "rescued": true,
+    "objective": [
+      {
+        "id": "objective",
+        "hp": 1742,
+        "dead": false,
+        "x": 6314,
+        "y": 2278.981823529412
+      },
+      {
+        "id": "midboss-stage6",
+        "hp": 0,
+        "dead": true,
+        "x": 2486.8665076240145,
+        "y": 2955.1807310872077
+      }
+    ],
+    "events": [
+      {
+        "id": "midboss-stage6-seen",
+        "when": {
+          "progress": 1800
+        },
+        "action": null,
+        "text": "부러진 교각에 박힌 장승이 뿌리째 돌아선다.",
+        "lines": [
+          [
+            "휘겸",
+            "저걸 쓰러뜨려야 운반대가 교각 아래를 지나갈 수 있소."
+          ]
+        ],
+        "once": true
+      },
+      {
+        "id": "bridge-crows",
+        "when": {
+          "progress": 1450
+        },
+        "action": {
+          "type": "spawn",
+          "n": 4,
+          "x": 3150,
+          "kind": "crow",
+          "y": 1600,
+          "requireFlightClearance": true,
+          "maxDistance": 550,
+          "spacing": 145
+        },
+        "text": "까마귀 떼가 나무다리 위로 내려온다.",
+        "lines": [],
+        "once": true
+      },
+      {
+        "id": "bridge-boars",
+        "when": {
+          "progress": 3150
+        },
+        "action": {
+          "type": "spawn",
+          "n": 4,
+          "x": 5100,
+          "kind": "boar",
+          "y": 2656.371,
+          "support": "lower-road",
+          "spacing": 145,
+          "maxDistance": 550
+        },
+        "text": "들린 멧돼지들이 다리 기둥을 들이받는다.",
+        "lines": [],
+        "once": true
+      },
+      {
+        "id": "pursuit",
+        "when": {
+          "rescued": true
+        },
+        "action": {
+          "type": "spawn",
+          "n": 4,
+          "x": 3540,
+          "kind": "hound",
+          "y": 2996.942470588235,
+          "support": "lower-road",
+          "spacing": 145,
+          "maxDistance": 500
+        },
+        "text": "부상자를 옮기자 뒤쪽 산개들이 따라붙는다.",
+        "lines": [],
+        "once": true
+      }
+    ],
+    "eventLog": [
+      {
+        "id": "midboss-stage6-seen",
+        "phase": "aim",
+        "round": 2,
+        "side": 0,
+        "teamEnds": [
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "id": "bridge-crows",
+        "phase": "aim",
+        "round": 11,
+        "side": 0,
+        "teamEnds": [
+          10,
+          10,
+          0
+        ]
+      },
+      {
+        "id": "bridge-boars",
+        "phase": "aim",
+        "round": 21,
+        "side": 0,
+        "teamEnds": [
+          20,
+          20,
+          0
+        ]
+      }
+    ],
+    "pending": [
+      "pursuit"
+    ],
+    "populationCap": 22,
+    "spawned": [
+      {
+        "id": "event-48",
+        "source": "bridge-crows",
+        "x": 2932.5,
+        "y": 1647.2058823529412
+      },
+      {
+        "id": "event-49",
+        "source": "bridge-crows",
+        "x": 3077.5,
+        "y": 1570.735294117647
+      },
+      {
+        "id": "event-50",
+        "source": "bridge-crows",
+        "x": 3222.5,
+        "y": 1496.590909090909
+      },
+      {
+        "id": "event-51",
+        "source": "bridge-crows",
+        "x": 3367.5,
+        "y": 1679.7727272727273
+      },
+      {
+        "id": "event-99",
+        "source": "bridge-boars",
+        "x": 4882.5,
+        "y": 2700.6401836945306
+      },
+      {
+        "id": "event-100",
+        "source": "bridge-boars",
+        "x": 5027.5,
+        "y": 2691.6821470588234
+      },
+      {
+        "id": "event-101",
+        "source": "bridge-boars",
+        "x": 5172.5,
+        "y": 2632.8047647058825
+      },
+      {
+        "id": "event-102",
+        "source": "bridge-boars",
+        "x": 5413.5,
+        "y": 2537.539852941177
+      }
+    ],
+    "enemies": 19,
+    "flags": {
+      "sector-0": true,
+      "event:midboss-stage6-seen": true,
+      "sector-1": true,
+      "sector-2": true,
+      "sector-3": true,
+      "event:bridge-crows": true,
+      "event:bridge-boars": true
+    }
+  },
+  "ticks": 43774,
+  "poses": [
+    {
+      "actor": "p-archer",
+      "goal": 1250,
+      "x": 1246.110499921849,
+      "y": 2647.15256143198,
+      "round": 2
+    },
+    {
+      "actor": "p-mage",
+      "goal": 1250,
+      "x": 1245.3183145275739,
+      "y": 2646.910269199184,
+      "round": 2
+    },
+    {
+      "actor": "p-knight",
+      "goal": 1250,
+      "x": 1245.1208077503027,
+      "y": 2646.849861170453,
+      "round": 2
+    },
+    {
+      "actor": "p-knight",
+      "goal": 2450,
+      "x": 2439.009708907939,
+      "y": 2951.7164357828483,
+      "round": 2
+    },
+    {
+      "actor": "p-knight",
+      "goal": 3100,
+      "x": 3089.1836023992764,
+      "y": 3009.823192781485,
+      "round": 3
+    },
+    {
+      "actor": "p-knight",
+      "goal": 3850,
+      "x": 3840.0059512384096,
+      "y": 2989.372468803998,
+      "round": 3
+    },
+    {
+      "actor": "p-knight",
+      "goal": 4100,
+      "x": 4089.7524061215886,
+      "y": 2940,
+      "round": 3
+    },
+    {
+      "actor": "p-knight",
+      "goal": 4850,
+      "x": 4838.56489973606,
+      "y": 2664.3676550968507,
+      "round": 4
+    },
+    {
+      "actor": "p-knight",
+      "goal": 5350,
+      "x": 5339.610573282867,
+      "y": 2562.2712263202634,
+      "round": 4
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6368.12242647386,
+      "y": 2260.236849631287,
+      "round": 5
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6370.697592660029,
+      "y": 2259.398047772647,
+      "round": 5
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6373.272758846198,
+      "y": 2258.5592459140066,
+      "round": 5
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6375.847925032366,
+      "y": 2257.7204440553664,
+      "round": 5
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6375.847925032366,
+      "y": 2257.7204440553664,
+      "round": 6
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6375.847925032366,
+      "y": 2257.7204440553664,
+      "round": 7
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6375.847925032366,
+      "y": 2257.7204440553664,
+      "round": 8
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6375.847925032366,
+      "y": 2257.7204440553664,
+      "round": 9
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6377.553016109556,
+      "y": 2257.165049389042,
+      "round": 10
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6377.553016109556,
+      "y": 2257.165049389042,
+      "round": 11
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6377.553016109556,
+      "y": 2257.165049389042,
+      "round": 12
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6377.553016109556,
+      "y": 2257.165049389042,
+      "round": 13
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6377.553016109556,
+      "y": 2257.165049389042,
+      "round": 14
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6378.222873998137,
+      "y": 2256.9468584058795,
+      "round": 15
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6378.222873998137,
+      "y": 2256.9468584058795,
+      "round": 16
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6378.222873998137,
+      "y": 2256.9468584058795,
+      "round": 17
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6378.222873998137,
+      "y": 2256.9468584058795,
+      "round": 18
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6378.222873998137,
+      "y": 2256.9468584058795,
+      "round": 19
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6374.30014483196,
+      "y": 2258.224598278826,
+      "round": 20
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6374.30014483196,
+      "y": 2258.224598278826,
+      "round": 21
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6374.30014483196,
+      "y": 2258.224598278826,
+      "round": 22
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6374.30014483196,
+      "y": 2258.224598278826,
+      "round": 23
+    },
+    {
+      "actor": "p-knight",
+      "goal": 6380,
+      "x": 6374.30014483196,
+      "y": 2258.224598278826,
+      "round": 24
+    }
+  ],
+  "log": [
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 2,
+      "x": 1903.0831308719337,
+      "y": 2838.0852713443514,
+      "target": "foe-5",
+      "skill": "A01",
+      "angle": 5.491655697615209,
+      "power": 0.7433661926095202
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 2,
+      "x": 1903.6794000804302,
+      "y": 2838.195651297242,
+      "target": "foe-5",
+      "skill": "M01",
+      "angle": 16.111192721051488,
+      "power": 0.821858852681472
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 3,
+      "x": 1903.0831308719337,
+      "y": 2838.0852713443514,
+      "target": "midboss-stage6",
+      "skill": "A01",
+      "angle": 5.29264709596007,
+      "power": 0.7917181502976274
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 3,
+      "x": 1903.6794000804302,
+      "y": 2838.195651297242,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": 14.892923697565312,
+      "power": 0.9312745254093445
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 4,
+      "x": 1903.0831308719337,
+      "y": 2838.0852713443514,
+      "target": "midboss-stage6",
+      "skill": "A01",
+      "angle": 5.563686967572498,
+      "power": 0.7587948857119899
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 4,
+      "x": 1903.6794000804302,
+      "y": 2838.195651297242,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": 15.950411636448578,
+      "power": 0.8574665461457781
+    },
+    {
+      "op": "land",
+      "actor": "p-knight",
+      "round": 4,
+      "x": 4642.840390729344,
+      "y": 2655.3182771066263
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 5,
+      "x": 1903.0831308719337,
+      "y": 2838.0852713443514,
+      "target": "midboss-stage6",
+      "skill": "A01",
+      "angle": 5.655556621928989,
+      "power": 0.7745723200746529
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 5,
+      "x": 1903.6794000804302,
+      "y": 2838.195651297242,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": 15.791730193872676,
+      "power": 0.8936447585496321
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 6,
+      "x": 1902.051010624302,
+      "y": 2837.8942076726285,
+      "target": "foe-1-cluster",
+      "skill": "A01",
+      "angle": -0.40485027700071025,
+      "power": 0.7094512232264367
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 6,
+      "x": 1902.5552486582533,
+      "y": 2837.9875510310308,
+      "target": "foe-1-cluster",
+      "skill": "M01",
+      "angle": 6.908641974561322,
+      "power": 0.7361761557269245
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 7,
+      "x": 1922.151153312487,
+      "y": 2845.6547045192983,
+      "target": "foe-1-cluster",
+      "skill": "A01",
+      "angle": -0.2652901857328754,
+      "power": 0.7403297657622082
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 7,
+      "x": 1922.5870351744245,
+      "y": 2845.7855417248566,
+      "target": "foe-1-cluster",
+      "skill": "M01",
+      "angle": 6.511600116734722,
+      "power": 0.8073469151686633
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 8,
+      "x": 1889.5047416545756,
+      "y": 2835.571671881585,
+      "target": "foe-5",
+      "skill": "A01",
+      "angle": -0.3197091565972803,
+      "power": 0.7200164110986469
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 8,
+      "x": 1889.704046582422,
+      "y": 2835.608566740875,
+      "target": "foe-5",
+      "skill": "M01",
+      "angle": 6.97724255655038,
+      "power": 0.7604498962211031
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 9,
+      "x": 1877.562628669552,
+      "y": 2833.360976024887,
+      "target": "foe-1",
+      "skill": "A01",
+      "angle": -0.23889348423782508,
+      "power": 0.730789552758227
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 9,
+      "x": 1877.7059858861023,
+      "y": 2833.3875139755037,
+      "target": "foe-1",
+      "skill": "M01",
+      "angle": 7.028967598870298,
+      "power": 0.7852118919764509
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 10,
+      "x": 1877.562628669552,
+      "y": 2833.360976024887,
+      "target": "foe-1",
+      "skill": "A01",
+      "angle": -0.24267878877846064,
+      "power": 0.7109937535466948
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 10,
+      "x": 1877.7059858861023,
+      "y": 2833.3875139755037,
+      "target": "foe-1",
+      "skill": "M01",
+      "angle": 7.275190019395207,
+      "power": 0.7395427903148445
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 11,
+      "x": 1857.8588663721473,
+      "y": 2829.4417147722206,
+      "target": "midboss-stage6",
+      "skill": "A01",
+      "angle": -8.312571322278657,
+      "power": 0.6526295867643866
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 11,
+      "x": 1857.932323073394,
+      "y": 2829.456957037729,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": -4.637861846393628,
+      "power": 0.6666952879974768
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 12,
+      "x": 1839.28347547871,
+      "y": 2825.5873211618323,
+      "target": "midboss-stage6",
+      "skill": "A01",
+      "angle": -7.906272890822464,
+      "power": 0.6537646259083968
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 12,
+      "x": 1839.3261797791695,
+      "y": 2825.5961823041775,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": -3.8757718640563352,
+      "power": 0.6556469119019486
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 13,
+      "x": 1829.530242446504,
+      "y": 2823.0134056286156,
+      "target": "midboss-stage6",
+      "skill": "A01",
+      "angle": -7.654886845089092,
+      "power": 0.6674551786111091
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 13,
+      "x": 1829.5655692513922,
+      "y": 2823.023739758069,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": -3.3089299358960966,
+      "power": 0.6786123035155125
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 14,
+      "x": 1808.3655887813231,
+      "y": 2816.8221219417364,
+      "target": "midboss-stage6",
+      "skill": "A01",
+      "angle": -7.04350244046156,
+      "power": 0.6646036508617231
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 14,
+      "x": 1808.3908461771935,
+      "y": 2816.829510472893,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": -2.3307719516380727,
+      "power": 0.6630729499851088
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 15,
+      "x": 1808.3655887813231,
+      "y": 2816.8221219417364,
+      "target": "midboss-stage6",
+      "skill": "A01",
+      "angle": -6.354592698674868,
+      "power": 0.6886882765751601
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 15,
+      "x": 1808.3908461771935,
+      "y": 2816.829510472893,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": -1.5767127593536887,
+      "power": 0.7162962118469259
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 16,
+      "x": 1787.0457413250226,
+      "y": 2809.061864446134,
+      "target": "midboss-stage6",
+      "skill": "A01",
+      "angle": -8.994553184165058,
+      "power": 0.5632932212561825
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 16,
+      "x": 1787.0576783371366,
+      "y": 2809.066572544147,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": -6.739709760485804,
+      "power": 0.5551211366899609
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 17,
+      "x": 1787.0457413250226,
+      "y": 2809.061864446134,
+      "target": "foe-0-cluster",
+      "skill": "A01",
+      "angle": 93.00538708982405,
+      "power": 0.9215945614732608
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 17,
+      "x": 1787.0576783371366,
+      "y": 2809.066572544147,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": 8.95220106932895,
+      "power": 0.5738448526353129
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 18,
+      "x": 1787.0457413250226,
+      "y": 2809.061864446134,
+      "target": "foe-9",
+      "skill": "A01",
+      "angle": -0.8142501162902116,
+      "power": 0.4964591742648351
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 18,
+      "x": 1787.0576783371366,
+      "y": 2809.066572544147,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": 2.8331255723991218,
+      "power": 0.7189647604578818
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 19,
+      "x": 1787.0457413250226,
+      "y": 2809.061864446134,
+      "target": "foe-4-cluster",
+      "skill": "A01",
+      "angle": 46.01463516299321,
+      "power": 0.8163983255517117
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 19,
+      "x": 1787.0576783371366,
+      "y": 2809.066572544147,
+      "target": "foe-4-cluster",
+      "skill": "M01",
+      "angle": 49.257643702117576,
+      "power": 0.967573338345265
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 20,
+      "x": 1787.0457413250226,
+      "y": 2809.061864446134,
+      "target": "foe-4-cluster",
+      "skill": "A01",
+      "angle": 46.49528768889796,
+      "power": 0.806167688938971
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 20,
+      "x": 1787.0576783371366,
+      "y": 2809.066572544147,
+      "target": "foe-8",
+      "skill": "M01",
+      "angle": 99.48666632877281,
+      "power": 0.9544945534527736
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 21,
+      "x": 1787.0457413250226,
+      "y": 2809.061864446134,
+      "target": "foe-9",
+      "skill": "A01",
+      "angle": -6.656671410711305,
+      "power": 0.6824793053989382
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 21,
+      "x": 1787.0576783371366,
+      "y": 2809.066572544147,
+      "target": "foe-8",
+      "skill": "M01",
+      "angle": 98.31660416490938,
+      "power": 0.9536199679321337
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 22,
+      "x": 1787.0457413250226,
+      "y": 2809.061864446134,
+      "target": "foe-0-cluster",
+      "skill": "A01",
+      "angle": 79.08338637274497,
+      "power": 0.9210462373600014
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 22,
+      "x": 1787.0576783371366,
+      "y": 2809.066572544147,
+      "target": "foe-0-cluster",
+      "skill": "M01",
+      "angle": 84.5896528881904,
+      "power": 0.9461830731463053
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 23,
+      "x": 1787.0457413250226,
+      "y": 2809.061864446134,
+      "target": "midboss-stage6",
+      "skill": "A01",
+      "angle": -5.536886246444244,
+      "power": 0.6984224174324577
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 23,
+      "x": 1787.0576783371366,
+      "y": 2809.066572544147,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": -0.38999103575068106,
+      "power": 0.7314252797923015
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 24,
+      "x": 1787.0457413250226,
+      "y": 2809.061864446134,
+      "target": "midboss-stage6",
+      "skill": "A01",
+      "angle": -4.333925332744111,
+      "power": 0.6937315026012777
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 24,
+      "x": 1787.0576783371366,
+      "y": 2809.066572544147,
+      "target": "midboss-stage6",
+      "skill": "M01",
+      "angle": 1.4588698444287926,
+      "power": 0.711994033763382
+    }
+  ],
+  "runtimeSourceSha": "80120a1bb34b1d5105f9dafd3f0bdc1db540a42e"
+}
