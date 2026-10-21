@@ -88,12 +88,16 @@ function livingBough(c,t,q){
  c.restore();
 }
 function canyonBough(c,t,q){
- c.save();c.fillStyle='#344638';c.fill(q.shape);c.clip(q.shape);
- const top=q.edges.length?[q.edges[0][0],...q.edges.map(e=>e[1])]:[];
- c.fillStyle='#71816a';c.fill(poly([...top.map(p=>[p.x,p.y]),...top.slice().reverse().map(p=>[p.x,p.y+14])]));
- c.strokeStyle='#21382b';c.lineWidth=4;c.beginPath();
- top.forEach((p,i)=>i?c.lineTo(p.x,p.y+28):c.moveTo(p.x,p.y+28));c.stroke();
- c.strokeStyle='#93a17c';c.lineWidth=1.6;c.stroke(q.rim);c.restore();
+ if(!q.canyonLit){
+  const top=q.edges.length?[q.edges[0][0],...q.edges.map(e=>e[1])]:[],ps=C.poly(t);
+  const inner=top.map(p=>{const hits=[p.y+8];for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(a.x!==z.x&&p.x>=Math.min(a.x,z.x)&&p.x<=Math.max(a.x,z.x))hits.push(a.y+(z.y-a.y)*(p.x-a.x)/(z.x-a.x));}return[p.x,p.y+(Math.max(...hits)-p.y)*.4];});
+  q.canyonLit=poly([...top.map(p=>[p.x,p.y]),...inner.reverse()]);
+  const right=t.id.startsWith('right'),kx=t.x+t.w*(right?.72:.28),ky=C.topAt(t,kx,t.y)+24;
+  q.canyonKnot=new Path2D();q.canyonKnot.moveTo(kx-110,ky+13);q.canyonKnot.bezierCurveTo(kx-40,ky+28,kx-20,ky-17,kx+24,ky-5);q.canyonKnot.bezierCurveTo(kx+55,ky+10,kx+80,ky+16,kx+120,ky+14);
+ }
+ c.save();c.fillStyle='#354a38';c.fill(q.shape);c.clip(q.shape);c.fillStyle='#65745d';c.fill(q.canyonLit);
+ c.strokeStyle='#263b2c88';c.lineWidth=4;c.stroke(q.canyonKnot);
+ c.strokeStyle='#8d9b76';c.lineWidth=1.6;c.stroke(q.rim);c.restore();
 }
 const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
  if(guardianBranch(b,t)){
