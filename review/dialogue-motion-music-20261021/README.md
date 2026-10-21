@@ -1,8 +1,10 @@
 # 대사 카메라 이동·9/10장 음악 검수
 
+최신 통합: [조이스틱 master 호환 검수](integration/README.md). 소스 `3e97e1df6fb3985a98fb4442c40d4894d7aa4c8a`, master `bafc275c…` 보존, 원본 compositor115프레임 재확인. 아래 최초 집중 검수의 출처도 그대로 남겼다.
+
 기준 master `27efe8ebdab24e147494196a515641e0629e4656`, 런타임 `df588060967274224bf7ae35a446e42aef3b9db2`, 재빌드 `4a39f3c07d5a68ddaee8565c2db53e8738eceac0`. 부모 검수 전 master/Pages 미반영이다. `source-context.json`에 캡처 시점의 미커밋 상태와 현재 원본 해시를 구분했다.
 
-전체 원본 Library ZIP: `libfile_2ce48e13127c8191927cc79ffa20f87c` (47,290,840 bytes), 저장 성공.
+전체 원본 Library ZIP: `libfile_2ce48e13127c8191927cc79ffa20f87c` (최신 통합 추가본 포함, v1), 저장 성공.
 
 [화면·네이티브 연속 프레임 재생](index.html), [카메라 시계열 CSV](camera-timeline.csv), [전체 정책 CSV](policy-catalog.csv), [정책 원본](policy-catalog.json).
 
