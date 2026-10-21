@@ -642,7 +642,15 @@ stage1Beds.push(
  ['#86937e24',[[4180,1110],[4325,1085],[4465,1110],[4530,1160],[4415,1125],[4270,1128],[4185,1140]]],
  ['#84927c2b',[[4650,1210],[4790,1190],[4920,1150],[5060,1165],[5030,1185],[4880,1200],[4800,1235],[4655,1228]]]
 );
-const stage1BedPaths=stage1Beds.map(([color,points])=>({color,path:poly(points)}));
+stage1Beds.push(
+ ['#293f38',[[3390,1355],[3380,1470],[3340,1550],[3355,1630],[3335,1690],[3365,1640],[3356,1552],[3400,1478],[3402,1350]]],
+ ['#29423b',[[3760,1230],[3740,1330],[3670,1438],[3678,1530],[3654,1600],[3690,1533],[3686,1440],[3752,1338],[3770,1228]]],
+ ['#2b443c',[[4190,1015],[4160,1135],[4180,1210],[4130,1340],[4135,1410],[4150,1343],[4196,1210],[4174,1134],[4202,1018]]],
+ ['#263f38',[[4830,1080],[4810,1160],[4740,1235],[4750,1290],[4770,1239],[4825,1170],[4840,1080]]],
+ ['#80907844',[[3380,1470],[3390,1355],[3420,1351],[3400,1478],[3356,1552],[3355,1575],[3340,1550]]],
+ ['#81927d33',[[3740,1330],[3760,1230],[3790,1227],[3752,1338],[3686,1440],[3678,1465],[3670,1438]]]
+);
+const stage1BedPaths=stage1Beds.map(([color,points])=>({color,path:poly(points),top:Math.min(...points.map(p=>p[1])),bottom:Math.max(...points.map(p=>p[1]))}));
 function livingBough(c,t,q){
  c.save();c.fillStyle='#283d31';c.fill(q.shape);c.clip(q.shape);
  const top=q.edges.length?[q.edges[0][0],...q.edges.map(e=>e[1])]:[];
@@ -657,7 +665,15 @@ function livingBough(c,t,q){
  c.strokeStyle='#6f7a5844';c.lineWidth=3;c.beginPath();c.moveTo(knot.x-190,knot.y+19);c.bezierCurveTo(knot.x-80,knot.y+35,knot.x-55,knot.y-16,knot.x+50,knot.y-3);c.bezierCurveTo(knot.x+100,knot.y+8,knot.x+175,knot.y+25,knot.x+220,knot.y+28);c.stroke();
  c.restore();
 }
-const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
+function canyonBough(c,t,q){
+ c.save();c.fillStyle='#344638';c.fill(q.shape);c.clip(q.shape);
+ const top=q.edges.length?[q.edges[0][0],...q.edges.map(e=>e[1])]:[];
+ c.fillStyle='#71816a';c.fill(poly([...top.map(p=>[p.x,p.y]),...top.slice().reverse().map(p=>[p.x,p.y+14])]));
+ c.strokeStyle='#21382b';c.lineWidth=4;c.beginPath();
+ top.forEach((p,i)=>i?c.lineTo(p.x,p.y+28):c.moveTo(p.x,p.y+28));c.stroke();
+ c.strokeStyle='#93a17c';c.lineWidth=1.6;c.stroke(q.rim);c.restore();
+}
+const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
  if(guardianBranch(b,t)){
   // Use the authored collision silhouette and bright walkable top. The bark
   // palette never changes resistance or the one-way projectile passage rule.
@@ -669,7 +685,7 @@ const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.hon
  const roof=/^(west-eave|east-eave|west-gallery|east-gallery|altar-platform)$/.test(t.id);c.fillStyle=/^climb-/.test(t.id)?'#405460':roof?'#2b3e48':q.wood?A.gradient(c,0,t.y,0,t.y+t.h,[[0,'#6b6d5b'],[.28,'#484d41'],[1,'#26352e']]):groundGradient(c,t,b);c.fill(q.shape);c.clip(q.shape);
  for(const [i,p]of q.cliffPlanes.entries()){c.fillStyle=['#a2b4bb28','#081e294f','#82979f24','#0e27335c'][i];c.fill(p);}
  for(const [i,f]of q.planes.entries()){c.fillStyle=q.wood?'#a5a27e1e':i%2?'#a2b0b71e':'#b0b9ba23';c.fill(f.lit);c.fillStyle=q.wood?'#16292369':'#10243155';c.fill(f.shadow);c.strokeStyle=q.wood?'#20352b50':'#172c3655';c.lineWidth=5;c.stroke(f.contact);}
- if(b.honroStage===1&&b.honroMap?.positioning&&['forest-floor','ridge-east-extension'].includes(t.id))for(const f of stage1BedPaths){c.fillStyle=f.color;c.fill(f.path);}
+ if(b.honroStage===1&&b.honroMap?.positioning&&['forest-floor','ridge-east-extension'].includes(t.id))for(const f of stage1BedPaths){c.fillStyle=f.color.length===7?A.gradient(c,0,f.top,0,f.bottom,[[0,f.color],[.65,f.color],[1,'#344b43']]):f.color;c.fill(f.path);}
  for(const cap of q.caps){c.fillStyle=q.wood?'#bdad781d':t.mat==='earth'?'#87927637':'#b9c2bc24';c.fill(cap);}c.strokeStyle='#1a2b2960';c.lineWidth=3;for(const j of q.joints)c.stroke(j);
  c.strokeStyle=q.wood?'#b7b298':/^climb-/.test(t.id)?'#95aaa3':'#b4c6c1';c.lineWidth=/^climb-/.test(t.id)?2:3.5;c.lineJoin='round';c.stroke(q.rim);c.restore();};
 const FORMS={

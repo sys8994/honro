@@ -19,7 +19,7 @@ export async function appHarness(){
  g.HONRO_STORY_PORTRAITS=new Proxy({}, {get:()=>({src:'data:image/png;base64,',class:'archer'})});
  vm.runInContext(await readFile('game/vendor/ui/fa.js','utf8'),g);
  for(const file of ['journey-art','rest-journey','story','training'])vm.runInContext(await readFile(`shared/runtime/${file}.js`,'utf8'),g);
- const source=await readFile('shared/runtime/main.js','utf8'),hook='G.HonroApp = new App();';assert.equal(source.split(hook).length,2);
+ const source=await readFile('shared/runtime/main.js','utf8'),hook=/    const app=new App\(\),loader=G.HonroCampaignLoader[\s\S]*?(?=    G.HONRO_TOOLS)/;assert.equal((source.match(hook)||[]).length,1);
  vm.runInContext(source.replace(hook,'G.AppRegression={App,fresh};'),g);const {App,fresh}=g.AppRegression;
  for(const name of ['inputs','updateHUD','updateAudio','updateChargeDisplay','cancelInput','drawPortraits'])App.prototype[name]=function(){};
  App.prototype.notify=function(text){this.lastNotice=text;};

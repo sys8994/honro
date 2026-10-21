@@ -33,12 +33,12 @@ new URL("../runtime/HONRO_NARRATIVE_V0.c81f5e9266d6d06a.js",import.meta.url).hre
 new URL("../runtime/HONRO_SPLIT_V1.fe1bd10ce56181e2.js",import.meta.url).href,
 new URL("../runtime/HONRO_OPEN_STRUCTURES.10ceeb69a6df342c.js",import.meta.url).href,
 new URL("../runtime/HONRO_WATERWORKS_V2.9735a0c493b64ee7.js",import.meta.url).href,
-new URL("../runtime/ordered-common-4.d393503783f1a0d6.js",import.meta.url).href,
+new URL("../runtime/ordered-common-4.dca147e8e5280d79.js",import.meta.url).href,
 new URL("../runtime/ordered-common-5.33efaaf98b2f6071.js",import.meta.url).href,
 new URL("../runtime/ordered-common-6.acf03aa763ca027f.js",import.meta.url).href,
 new URL("../runtime/ordered-common-7.41ebd8c9ffc412fd.js",import.meta.url).href,
 new URL("../runtime/ordered-common-8.be150d154838fc77.js",import.meta.url).href,
-new URL("../runtime/campaign.3946e91d6f276c07.js",import.meta.url).href,
+new URL("../runtime/campaign.3bc03eaa4cdd9b2e.js",import.meta.url).href,
 new URL("../runtime/ordered-common-9.9864947017dc6137.js",import.meta.url).href,
 new URL("../runtime/party-alias.b19b3e88a3b965c3.js",import.meta.url).href,
 new URL("../runtime/ordered-common-10.4546edfd464ff837.js",import.meta.url).href,
@@ -51,7 +51,7 @@ new URL("../runtime/HONRO_AUTHORED_FAR.c9728fddbd7f2de9.js",import.meta.url).hre
 new URL("../runtime/shared-assets-monsters-monsters-runtime.63ca9e9192ae871d.js",import.meta.url).href,
 new URL("../runtime/shared-assets-actors-actors-runtime.c11822d74d18722f.js",import.meta.url).href,
 new URL("../runtime/ordered-common-11.42c3d3bd61f34f59.js",import.meta.url).href,
-new URL("../runtime/ordered-common-12.1f43ee64949fa83e.js",import.meta.url).href,
+new URL("../runtime/ordered-common-12.2c77d7cc9f8e6661.js",import.meta.url).href,
 new URL("../runtime/ordered-game-13.1f4ef1e6791e4c7a.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage-rules.425c10ceb6d4b5ec.js",import.meta.url).href,
 new URL("../runtime/ordered-game-14.2cc2000c3beadcc4.js",import.meta.url).href,
@@ -63,7 +63,7 @@ globalThis.HONRO_READY=(async()=>{try{
 await globalThis.HonroStartup?.firstPaint();
 let styleError;const stylesReady=Promise.all(["web/styles/game-vendor-ui-arcfall-layout.1f32e36e2a18d5f7.css","web/styles/game-vendor-style.3661f7f5254538f8.css","web/styles/game-src-hud.24def713b6266561.css","web/styles/game-src-presentation.67f428fcefcc01d3.css","web/styles/game-src-controls.17c60131092f54c2.css","web/styles/game-src-unit-info.a60fa5389408ecc4.css","web/styles/game-src-training.14cb5dad15d2ff89.css","web/styles/game-src-guide.3d713683085e2ae7.css","web/styles/game-src-skill-presentation.9ec958bbd6c09493.css","web/styles/game-src-journey.ead378cd3458d2a3.css","web/styles/game-src-title.fce8cc484f3f2b0a.css","web/styles/game-src-fonts.9251c095ef93d0b1.css","web/styles/game-src-act3-void.bc0568cbc4ae56e4.css"].map(file=>new Promise((resolve,reject)=>{const link=document.createElement('link');link.rel='stylesheet';link.href=new URL('../../'+file,import.meta.url).href;link.onload=resolve;link.onerror=()=>reject(Error('Style load failed: '+file));document.head.append(link);}))).catch(error=>{styleError=error;});
 const dataHints={[new URL("../runtime/game-art.0884251f5e4a011a.js",import.meta.url).href]:["web/data/HONRO_TITLE_ART.bac34e5d294496b2.json","web/data/HONRO_STAGE_INTRO_ART.2fd23f2b329a0e27.json","web/data/HONRO_STORY_PORTRAITS.159ad9f6f88f53a2.json"],[new URL("../runtime/HONRO_BGM_TRACKS.8183477a4872f6a6.js",import.meta.url).href]:["web/data/HONRO_BGM_TRACKS.1fda0fbf388636f0.json"],[new URL("../runtime/HONRO_BALANCE.ead88f3d9b670254.js",import.meta.url).href]:["web/data/HONRO_BALANCE.e066899ab958f2b8.json"],[new URL("../runtime/HONRO_NARRATIVE_V0.c81f5e9266d6d06a.js",import.meta.url).href]:["web/data/HONRO_NARRATIVE_V0.1b1a16777125d7dc.json"],[new URL("../runtime/HONRO_SPLIT_V1.fe1bd10ce56181e2.js",import.meta.url).href]:["web/data/HONRO_SPLIT_V1.8a0557450bffb24e.json"],[new URL("../runtime/HONRO_OPEN_STRUCTURES.10ceeb69a6df342c.js",import.meta.url).href]:["web/data/HONRO_OPEN_STRUCTURES.bd10fa99a7eaab14.json"],[new URL("../runtime/HONRO_WATERWORKS_V2.9735a0c493b64ee7.js",import.meta.url).href]:["web/data/HONRO_WATERWORKS_V2.7d653f087d5ae12f.json"],[new URL("../runtime/party-alias.b19b3e88a3b965c3.js",import.meta.url).href]:["web/data/HONRO_PARTY.16d29c28ac7225c7.json","web/data/HONRO_PARTY_ART.62c967e06066946d.json"],[new URL("../runtime/HONRO_ACT1_FAR_DATA.c067a494dcc5f919.js",import.meta.url).href]:["web/data/HONRO_ACT1_FAR_DATA.a7bedbfe9c843e9f.json"],[new URL("../runtime/HONRO_ACT2_FAR_DATA.852b2a988d0764bf.js",import.meta.url).href]:["web/data/HONRO_ACT2_FAR_DATA.55de354dd4cecfc3.json"],[new URL("../runtime/HONRO_REST_BACKDROPS.a6937a62382f4091.js",import.meta.url).href]:["web/data/HONRO_REST_BACKDROPS.59a3076127863c24.json"],[new URL("../runtime/HONRO_STAGE21_PAINTED.f43a09de9ac8b0ed.js",import.meta.url).href]:["web/data/HONRO_STAGE21_PAINTED.4df0062da3191cc0.json"],[new URL("../runtime/HONRO_PAINTED_PILOTS.92a7a1bab144051e.js",import.meta.url).href]:["web/data/HONRO_PAINTED_PILOTS.6d84c3845b695bb3.json"],[new URL("../runtime/HONRO_AUTHORED_FAR.c9728fddbd7f2de9.js",import.meta.url).href]:["web/data/HONRO_AUTHORED_FAR.f922b0b5e5066247.json"],[new URL("../runtime/shared-assets-monsters-monsters-runtime.63ca9e9192ae871d.js",import.meta.url).href]:["web/data/HONRO_MONSTERS.fbfeb788663e09e1.json"],[new URL("../runtime/shared-assets-actors-actors-runtime.c11822d74d18722f.js",import.meta.url).href]:["web/data/HONRO_ACTORS.ac87812035ed3e58.json"]},preloaded=new Set();
-if(!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject("web/data/campaign.d8f5eeb891b932f6.json");
+if(!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject("web/data/campaign.ec4845153f24a5a2.json");
 for(let i=0;i<modules.length;i++){
  for(let n=i;n<Math.min(modules.length,i+12);n++){const href=modules[n];if(preloaded.has(href))continue;preloaded.add(href);prefetchData(dataHints[href]||[]);const link=document.createElement('link');link.rel='modulepreload';link.href=href;link.fetchPriority='low';document.head.append(link);}
  if(i===modules.length-1){await stylesReady;if(styleError)throw styleError;}

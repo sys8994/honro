@@ -1,3 +1,4 @@
+import {applyStage2Positioning} from '../tools/map-forge/stage2-positioning.mjs';
 import {applyStage1Positioning} from '../tools/map-forge/stage1-positioning.mjs';
 import {restBackdropData} from '../tools/environment/rest-backdrop-assets.mjs';
 import {vectorKitRuntime} from '../tools/environment/vector-kit-runtime.mjs';
@@ -60,6 +61,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   project=applyStage28RecordCourt(project);
   project=applyPlaceEncounters(project);
   project=applyStage1Positioning(project);
+  project=applyStage2Positioning(project);
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();

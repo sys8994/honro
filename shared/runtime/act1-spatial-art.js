@@ -87,7 +87,15 @@ function livingBough(c,t,q){
  c.strokeStyle='#6f7a5844';c.lineWidth=3;c.beginPath();c.moveTo(knot.x-190,knot.y+19);c.bezierCurveTo(knot.x-80,knot.y+35,knot.x-55,knot.y-16,knot.x+50,knot.y-3);c.bezierCurveTo(knot.x+100,knot.y+8,knot.x+175,knot.y+25,knot.x+220,knot.y+28);c.stroke();
  c.restore();
 }
-const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
+function canyonBough(c,t,q){
+ c.save();c.fillStyle='#344638';c.fill(q.shape);c.clip(q.shape);
+ const top=q.edges.length?[q.edges[0][0],...q.edges.map(e=>e[1])]:[];
+ c.fillStyle='#71816a';c.fill(poly([...top.map(p=>[p.x,p.y]),...top.slice().reverse().map(p=>[p.x,p.y+14])]));
+ c.strokeStyle='#21382b';c.lineWidth=4;c.beginPath();
+ top.forEach((p,i)=>i?c.lineTo(p.x,p.y+28):c.moveTo(p.x,p.y+28));c.stroke();
+ c.strokeStyle='#93a17c';c.lineWidth=1.6;c.stroke(q.rim);c.restore();
+}
+const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
  if(guardianBranch(b,t)){
   // Use the authored collision silhouette and bright walkable top. The bark
   // palette never changes resistance or the one-way projectile passage rule.
