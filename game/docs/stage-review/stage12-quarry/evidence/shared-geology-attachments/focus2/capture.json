@@ -1,0 +1,110 @@
+{
+  "label": "geology-focus2-contact",
+  "url": "http://127.0.0.1:8873/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "3ab07d859f5017e98bfffc757079f48754cacc70",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M shared/map/compiler.js\n M shared/map/schema.js\n M tests/terrain-face-attachments.mjs\n M tools/environment/stage12-quarry-art.mjs\n D web/data/campaign-library.4362d55269aa378f.json\n D web/data/campaign-library.60d9127de3d9ab91.json\n D web/data/campaign.403033f377ec4329.json\n D web/data/campaign.c5d6d13ea08a87be.json\n D web/entries/game.11d746efa7f3f829.html\n D web/entries/game.301b828fcbc3e38f.js\n D web/entries/game.8506693be5f0e7f2.html\n D web/entries/game.953db1d35caf5dd5.js\n D web/entries/workshop.3b20e5b908b98ab3.js\n D web/entries/workshop.fc81da4f781bc9b4.js\n M web/manifest.json\n D web/runtime/campaign.90e9a484d0d60ab7.js\n D web/runtime/campaign.bf9457f593f28023.js\n D web/runtime/ordered-common-12.ea1d726ffaf25f40.js\n D web/runtime/ordered-common-13.cc109c20fb1b6c98.js\n?? web/data/campaign-shared.89b677aef537f53e.json\n?? web/data/campaign.9f83c2d17b58e3a0.json\n?? web/data/campaign.a1aa06bf1f394e29.json\n?? web/data/chapter-04-assets.22e3c4ce270b9a9d.json\n?? web/data/chapter-12-assets.c10dd1419d029f9a.json\n?? web/data/chapter-12.5ba857400610e2f3.json\n?? web/data/chapter-12.8f265e5072d05657.json\n?? web/entries/game.0d3668f8bd7b4796.js\n?? web/entries/game.12c316ff05c4a258.js\n?? web/entries/game.2c3a348469c6aeaa.html\n?? web/entries/game.78fdecbedfaabd4c.html\n?? web/entries/workshop.3cc16383e0ab89a4.js\n?? web/entries/workshop.fc91b1ada6a15b1f.js\n?? web/runtime/campaign.1ee72eaeb7b770aa.js\n?? web/runtime/campaign.b96bca6470d2dc9a.js\n?? web/runtime/ordered-common-8.dc90e28c045aca22.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "upper-normal",
+      "camera": {
+        "x": 6800,
+        "y": 3800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-normal",
+      "camera": {
+        "x": 6500,
+        "y": 4900,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-mobile",
+      "camera": {
+        "x": 6900,
+        "y": 3800,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-mobile",
+      "camera": {
+        "x": 6520,
+        "y": 4800,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-max",
+      "camera": {
+        "x": 6800,
+        "y": 3800,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-max",
+      "camera": {
+        "x": 6520,
+        "y": 4900,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "carrier-normal",
+      "camera": {
+        "x": 7850,
+        "y": 3550,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "lower-joint",
+      "camera": {
+        "x": 7340,
+        "y": 5170,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "carrier-mobile",
+      "camera": {
+        "x": 7800,
+        "y": 3500,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-toe",
+      "camera": {
+        "x": 8400,
+        "y": 4120,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

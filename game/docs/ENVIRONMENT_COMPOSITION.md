@@ -77,3 +77,10 @@ Workshop에서 에셋을 고르고 Depth → Zone/Group → Support를 선택한
 - `replaceBlocks`(선택): 이 자산의 범위와 겹친 기존 Act2 room 장식 block만 생략한다. 실제 지형이나 보행 테두리를 숨기지 않는다.
 
 이 경로는 게임·Stage View·Playtest의 동일 번들을 사용한다. 같은 revision 구전투는 기존 시각 스냅샷을 유지하며 강제 치환하지 않는다. 공통 API 연결과 장별 미술 합격은 별개다. 현재12장 배치는 연속 암면/지지 연결의 미술 미충족 실험으로 기록되어 있으며 신규 자산 승인을 뜻하지 않는다.
+
+
+### 연결형 공통 geology 자산과 solid boundary 앵커
+
+`tools/environment/build-geology-art.mjs`와 `shared/runtime/geology-art.js`는 원본 bbe8acea의 공통 자산/렌더 경로다. `register-geology-art.mjs`는 원본 미술을 수정하지 않고 backgroundRange를 native scaleRange 안으로 제한한다. 등록 후 원래 builder를 다시 호출해 제한을 덮어쓰지 않는다. 12장에서는 geologyComposition 배치와 중복하지 않고 기존 terrainAttachments asset painter 경로로 사용한다.
+
+terrainAttachments.anchor.kind는 기본 walk, 명시 boundary를 지원한다. boundary는 실제 solid 외곽 edge/along을 참조하며 비보행 ceiling solid의 시각 부착에도 쓸 수 있다. collision·target·walk edge를 만들지 않고 원래 solid 내부 clip을 유지한다. 일반 walk 앵커로 비보행 지형을 참조하는 것은 계속 오류다. 새 모듈의 native 범위 내 uniform scale만 사용한다. 기술 연결이나 검사 통과는 미술 합격 근거가 아니며12장 후보의 남은 큰 면/접합/가림 한계는 GEOLOGY_ATTACHMENTS 검수 기록을 따른다.

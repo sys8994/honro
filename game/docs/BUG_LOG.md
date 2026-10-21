@@ -1,3 +1,11 @@
+## 2026-10-21 — 12장 연결형 공통 암반 부착 후보 (미술 합격 보류)
+
+최신 master edf712e9의 스킬 UI·저장 검사와 Stage12 후보를 별도 브랜치에서 병합·재빌드했다. 부모가 연결을 허용한 bbe8acea의 공통 geology SVG5개/builder/renderer는 원본7파일을 byte exact로 가져왔으며2장 지도·배치는 가져오지 않았다. 원본 ledge-neck의 backgroundRange 상한1.1이 scaleRange 상한1을 넘어 author 검증이 실패했다. 원본을 덮어쓰거나 gate를 완화하지 않고 register-geology-art 어댑터에서 두 범위의 교집합만 등록한다. 향후 공통 원본 등록을 합칠 때 이 호환성을 보존해야 한다.
+
+Stage12의 terrainAttachments9개가 원본 공통 asset painter를 사용한다. 실제 비보행 ceiling solid에는 명시적 boundary edge 앵커를 추가했다. 장/지형 ID 분기나 새 미술 도형, 충돌·보행면 생성은 없다. 상부 빈 띠·전면의 소나무 반복은 개선했지만 모바일 큰 면, 길표 목 모듈의 독립 덩어리 인상, 기존 수레 가림·서쪽 면은 미충족이다. 공통 원본은 재제작하지 않았고 실패색면옵션도 계속 비활성이다. 4회 집중 화면 교정과 최종 clean source11컷은 stage-review/stage12-quarry/GEOLOGY_ATTACHMENTS.md에 남긴다. 미술 합격·배포 가능 판정이 아니다.
+
+관련 검사: 원래 Library/다른29장과 Stage12의 물리·서사·동선·보상·revision·기존장식 동일, 실제9개 VectorArt painter/clip/walk 보호94점/purity/cache·대표6장 native 정적 픽셀 동일, author2회/build/실제 V3 상하 terminal Continue 보존. clip 검사의 픽셀 footprint와 경계 안티앨리어싱을 구분해 실제 외부 sample0을 확인했다. 신규 정상전투 완주를 주장하지 않는다. master/Pages/13장 보류 유지.
+
 ## 2026-10-21 — 12장 기존 공통 자산 전면 부착 실험 (미술 미충족·master 보류)
 
 b7a177ea의 실패한 jointed-granite 선택은 비활성화했다(8322de2c). 공통 terrainAttachments에 실제 walk-edge 앵커·surface/base datum·inset·uniform scale·live-solid clip·walk rim 보호를 추가했다. 기존 자산의 collision은 이 시각 경로에서 발행하지 않는다. base는 Play Bounds 투영 폐쇄가 아닌 canonical world solid 단면을 따른다. 원래 공통 SVG/도형을 변경하지 않고 기본 에셋 painter를 사용한다. 선택적 하단 burial은 16MiB/자산2M픽셀 한도의 공통 캐시에 합성하며, native/브라우저 gradient 좌표 차이는 픽셀 좌표 마스크로 수정했다. 부착과 겹치는 기존 room block만 선택적으로 생략한다. 모든 신규 경로에 장 번호/sq 분기나 새 미술 polygon 없음.

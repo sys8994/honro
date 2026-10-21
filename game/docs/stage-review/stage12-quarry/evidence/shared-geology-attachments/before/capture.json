@@ -1,0 +1,110 @@
+{
+  "label": "geology-before",
+  "url": "http://127.0.0.1:8873/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "64e9c8a5288572c039c26d4f78d7b6461bab4767",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "upper-normal",
+      "camera": {
+        "x": 6800,
+        "y": 3800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-normal",
+      "camera": {
+        "x": 6500,
+        "y": 4900,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-mobile",
+      "camera": {
+        "x": 6900,
+        "y": 3800,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-mobile",
+      "camera": {
+        "x": 6520,
+        "y": 4800,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-max",
+      "camera": {
+        "x": 6800,
+        "y": 3800,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-max",
+      "camera": {
+        "x": 6520,
+        "y": 4900,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "carrier-normal",
+      "camera": {
+        "x": 7850,
+        "y": 3550,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "lower-joint",
+      "camera": {
+        "x": 7340,
+        "y": 5170,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "carrier-mobile",
+      "camera": {
+        "x": 7800,
+        "y": 3500,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-toe",
+      "camera": {
+        "x": 8400,
+        "y": 4120,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

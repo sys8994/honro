@@ -1,0 +1,51 @@
+{
+  "reviewedSource": "bbe8acea8fa403b1f16df31a86dbae4c1f6d2069",
+  "sourceFiles": [
+    {
+      "file": "tools/environment/build-geology-art.mjs",
+      "sha256": "a5b0df541e379928e4ec7ce91d927605b3edb6c6899aad8c280937e56d47fedf",
+      "reviewedSourceExact": true
+    },
+    {
+      "file": "shared/runtime/geology-art.js",
+      "sha256": "170a9121f8f4327709d7566822416ff605994b9652fe1926b5bc1f206ea6bea1",
+      "reviewedSourceExact": true
+    },
+    {
+      "file": "shared/assets/environment/geology-granite-vertical.svg",
+      "sha256": "0b7c801527a3897e9a03bf3ba9a6b147a230b9ca5ec7e25e02f5d774cd951116",
+      "reviewedSourceExact": true
+    },
+    {
+      "file": "shared/assets/environment/geology-granite-foundation.svg",
+      "sha256": "304503fe442b0ea2277026fb5bcc1b625dfb6720bec68e688f32350a0eed513b",
+      "reviewedSourceExact": true
+    },
+    {
+      "file": "shared/assets/environment/geology-granite-vertical-cleft.svg",
+      "sha256": "7221291e87cac5a40504d72c6050b54bbd69d900310341c37167d79b0cb23af0",
+      "reviewedSourceExact": true
+    },
+    {
+      "file": "shared/assets/environment/geology-granite-ledge-neck.svg",
+      "sha256": "10de5bc66e64170d2c32e32950900f801a89c887c8783fbdef6390d65a40aa60",
+      "reviewedSourceExact": true
+    },
+    {
+      "file": "shared/assets/environment/wood-pine-wall-root.svg",
+      "sha256": "3996fa6189268b429ee1458978fde15ace3f27cc8dcfdcf8f3fed056b1712381",
+      "reviewedSourceExact": true
+    }
+  ],
+  "other29CanonicalStagesExact": true,
+  "preexistingLibraryExact": true,
+  "newLibraryIds": [
+    "geology:granite-vertical",
+    "geology:granite-vertical-cleft",
+    "geology:granite-foundation",
+    "wood:pine-wall-root",
+    "geology:granite-ledge-neck"
+  ],
+  "adapter": "register-geology-art.mjs intersects backgroundRange with native scaleRange; ledge-neck upper bound 1.1 becomes1; no scaleRange or visual edit",
+  "masterUiAndSaveCheckSourcesExact": true
+}
