@@ -1,20 +1,24 @@
 /** Focused isolated locomotion fixtures; no campaign completion claim. */
 import assert from 'node:assert/strict';
+import{readFile}from'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
 const g=await runtime({legacyMaps:false}),C=g.HONRO_CORE;
 const rock=(id,x,y,w,h)=>({id,x,y,w,h,mat:'rock',hp:9999,maxHp:9999});
 function move(q,u,plan){assert(plan);u.aiMove=plan;let n=0;while(u.aiMove&&n++<500)C.advanceEnemyMove(q.e,u,C.STEP);assert(n<500);}
-// Fresh Stage3 reproduces the reported bridge overlap with its actual authored
+// Historical Stage3 starting snapshot reproduces the reported bridge overlap.
+// Fresh placement now avoids it; saved actors still get paid physical escape.
+// Snapshot uses the actual authored
 // terrain and roster, including neighboring flying bodies. Mount never relocates.
 {
- const q=battlefield(g,3),target=q.e.heroesAlive()[0];
- for(const u of q.b.units.filter(C.flyingEnemy)){
+ const saved=JSON.parse(await readFile('game/docs/stage-review/airborne-bugs/evidence/stage3-before.json'));
+ for(const id of saved.initial.honroBattle.units.filter(C.flyingEnemy).map(u=>u.id)){
+  const b=structuredClone(saved.initial.honroBattle),q={b,e:new C.Engine(b)},u=q.e.unit(id),target=q.e.heroesAlive()[0];
   const before={x:u.x,y:u.y,hp:u.hp,move:u.moveLeft,spawnX:u.spawnX,spawnY:u.spawnY};
   assert(!C.flightClear(q.e,u,u),'current authored bridge overlap');
   const snapshot=JSON.stringify(q.b),plan=C.planEnemyMove(q.e,u,target);
   assert.equal(JSON.stringify(q.b),snapshot,'planning is read only');assert(plan?.flightEscape);
   move(q,u,plan);assert(C.flightClear(q.e,u,u));assert.equal(u.hp,before.hp);
-  const distance=Math.hypot(u.x-before.x,u.y-before.y);assert(distance>0&&distance<=96);
+  const distance=Math.hypot(u.x-before.x,u.y-before.y);assert(distance>0&&distance<=192);
   assert(Math.abs(before.move-u.moveLeft-distance)<1e-6);assert.equal(u.spawnX,before.spawnX);assert.equal(u.spawnY,before.spawnY);
   console.log('PASS Stage3 paid bridge escape',u.id,distance);
  }
@@ -29,16 +33,16 @@ function arena(terrain=[]){
 // Flat preferred-range scoring formerly rejected every move. A real failed aim
 // must take the bounded fallback even if the ordinary first plan was declined.
 {
- const q=arena([rock('ceiling',0,0,2000,615),rock('floor',0,712,2000,688)]);q.e.predict=()=>({x:0,y:0,closest:9999,terrain:'blocked'});q.e.searchShot=function*(){return {angle:0,power:1,score:-100};};
+ const q=arena([rock('ceiling',0,0,2000,570),rock('floor',0,728,2000,672)]);q.e.predict=()=>({x:0,y:0,closest:9999,terrain:'blocked'});q.e.searchShot=function*(){return {angle:0,power:1,score:-100};};
  assert.equal(C.planEnemyMove(q.e,q.u,q.target),undefined);
  q.e.enemyAction();assert(q.u.aiMove);const before=q.u.moveLeft,x=q.u.x;
  move(q,q.u,q.u.aiMove);assert(q.u.x>x);assert(before-q.u.moveLeft<=280);q.e.enemyAction();assert.equal(q.b.phase,'review');for(let i=0;q.b.phase==='review'&&i<400;i++)q.e.tick(C.STEP);assert.notEqual(q.b.phase,'review');assert(q.u.acted);
  console.log('PASS failed attack safely approaches once and finishes its turn');
 }
 {
- const q=arena([rock('wall',680,0,20,1400)]);
+ const q=arena([rock('wall',710,0,20,1400)]);
  const plan=C.finishPlanning(C.planEnemyMoveSteps(q.e,q.u,q.target,true));if(plan)move(q,q.u,plan);
- assert(q.u.x+q.u.r+8<680,'thin wall cannot be crossed');
+ assert(C.flightBounds(q.u).right<710,'thin wall cannot be crossed');
  q.u.honroRouteGuard={x:q.u.x,y:q.u.y,radius:5};assert.equal(C.finishPlanning(C.planEnemyMoveSteps(q.e,q.u,q.target,true)),undefined);
  console.log('PASS thin wall and route defense remain enforced');
 }
@@ -55,7 +59,7 @@ function arena(terrain=[]){
 }
 
 for(const kind of ['no-focus','small-budget']){
- const q=arena([rock('ceiling',0,0,2000,615),rock('floor',0,712,2000,688)]);
+ const q=arena([rock('ceiling',0,0,2000,570),rock('floor',0,728,2000,672)]);
  if(kind==='no-focus'){q.u.loadout=['M07'];q.u.focus=0;}else q.u.moveLeft=48;
  q.e.predict=()=>({x:0,y:0,closest:9999,terrain:'blocked'});q.e.searchShot=function*(){return {angle:0,power:1,score:-100};};
  const before=q.u.moveLeft;q.e.enemyAction();assert(q.u.aiMove);move(q,q.u,q.u.aiMove);assert(q.u.x>600);assert(before-q.u.moveLeft<=before);

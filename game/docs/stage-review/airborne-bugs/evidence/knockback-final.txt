@@ -1,0 +1,7 @@
+PASS Bat, crow and lantern receive small push, pull, and vertical recoil without gravity or spending movement
+PASS Thin walls, ceiling, floor, map edges, other actors and polygon terrain stop the full body
+PASS Concave cave air is not treated as the polygon bounding mass
+PASS Stationary bosses, NPCs, dead enemies and floating summons remain immune
+PASS Actual A05 direct impact and ordinary blast both displace a surviving flying target
+PASS Recoil cancels a stale flight path and survives serialized engine resume and stage sanitation
+Flying knockback: 6 production-engine groups passed.

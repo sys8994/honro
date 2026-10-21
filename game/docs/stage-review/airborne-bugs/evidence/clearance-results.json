@@ -1,0 +1,222 @@
+{
+  "scope": "Fresh actual stages2/3; four actual reinforcements each; isolated enemy boundary for invalid old save, no normal victory claim",
+  "rows": [
+    {
+      "kind": "fresh",
+      "sid": 2,
+      "id": "foe-1",
+      "x": 3370,
+      "y": 1010,
+      "bounds": {
+        "left": 3278,
+        "right": 3462,
+        "head": 902,
+        "feet": 1030
+      }
+    },
+    {
+      "kind": "fresh",
+      "sid": 2,
+      "id": "foe-4",
+      "x": 3190,
+      "y": 1150,
+      "bounds": {
+        "left": 3114.1,
+        "right": 3265.9,
+        "head": 1060.9,
+        "feet": 1166.5
+      }
+    },
+    {
+      "kind": "fresh",
+      "sid": 2,
+      "id": "foe-1-cluster",
+      "x": 3460,
+      "y": 882,
+      "bounds": {
+        "left": 3368,
+        "right": 3552,
+        "head": 774,
+        "feet": 902
+      }
+    },
+    {
+      "kind": "fresh",
+      "sid": 2,
+      "id": "foe-4-cluster",
+      "x": 3398,
+      "y": 1150,
+      "bounds": {
+        "left": 3322.1,
+        "right": 3473.9,
+        "head": 1060.9,
+        "feet": 1166.5
+      }
+    },
+    {
+      "kind": "reinforcement",
+      "sid": 2,
+      "id": "event-1",
+      "x": 3212,
+      "y": 1278.0474144600903
+    },
+    {
+      "kind": "reinforcement",
+      "sid": 2,
+      "id": "event-2",
+      "x": 3196,
+      "y": 1015.2108759751665
+    },
+    {
+      "kind": "reinforcement",
+      "sid": 2,
+      "id": "event-3",
+      "x": 3270.6416000920667,
+      "y": 867.4062208432525
+    },
+    {
+      "kind": "reinforcement",
+      "sid": 2,
+      "id": "event-4",
+      "x": 3420,
+      "y": 746.3894368932038
+    },
+    {
+      "kind": "fresh",
+      "sid": 3,
+      "id": "foe-1",
+      "x": 2660,
+      "y": 2342.75,
+      "bounds": {
+        "left": 2568,
+        "right": 2752,
+        "head": 2234.75,
+        "feet": 2362.75
+      }
+    },
+    {
+      "kind": "fresh",
+      "sid": 3,
+      "id": "foe-4",
+      "x": 2698.128648059828,
+      "y": 2098.1682356909046,
+      "bounds": {
+        "left": 2622.2286480598277,
+        "right": 2774.028648059828,
+        "head": 2009.0682356909047,
+        "feet": 2114.6682356909046
+      }
+    },
+    {
+      "kind": "fresh",
+      "sid": 3,
+      "id": "foe-1-cluster",
+      "x": 2916.276877526612,
+      "y": 2310.75,
+      "bounds": {
+        "left": 2824.276877526612,
+        "right": 3008.276877526612,
+        "head": 2202.75,
+        "feet": 2330.75
+      }
+    },
+    {
+      "kind": "fresh",
+      "sid": 3,
+      "id": "foe-4-cluster",
+      "x": 2950,
+      "y": 2055.75,
+      "bounds": {
+        "left": 2874.1,
+        "right": 3025.9,
+        "head": 1966.65,
+        "feet": 2072.25
+      }
+    },
+    {
+      "kind": "reinforcement",
+      "sid": 3,
+      "id": "event-1",
+      "x": 2740,
+      "y": 1877.5849056603774
+    },
+    {
+      "kind": "reinforcement",
+      "sid": 3,
+      "id": "event-2",
+      "x": 2820,
+      "y": 1724
+    },
+    {
+      "kind": "reinforcement",
+      "sid": 3,
+      "id": "event-3",
+      "x": 2900,
+      "y": 1894
+    },
+    {
+      "kind": "reinforcement",
+      "sid": 3,
+      "id": "event-4",
+      "x": 2980,
+      "y": 1745.909090909091
+    },
+    {
+      "kind": "ground-air-reservation",
+      "enemyStoppedAt": 662.8333333333323,
+      "playerPassedTo": 711.1666666666649
+    },
+    {
+      "kind": "paid-old-save-escape",
+      "id": "foe-1",
+      "from": {
+        "x": 2660,
+        "y": 2278.75
+      },
+      "to": {
+        "x": 2565.764287683856,
+        "y": 2317.783710101236
+      },
+      "cost": 102
+    },
+    {
+      "kind": "paid-old-save-escape",
+      "id": "foe-4",
+      "from": {
+        "x": 2870,
+        "y": 2183.75
+      },
+      "to": {
+        "x": 2796.81444814718,
+        "y": 2110.56444814718
+      },
+      "cost": 103.5
+    },
+    {
+      "kind": "paid-old-save-escape",
+      "id": "foe-1-cluster",
+      "from": {
+        "x": 2750,
+        "y": 2278.75
+      },
+      "to": {
+        "x": 2750,
+        "y": 2379.25
+      },
+      "cost": 100.5
+    },
+    {
+      "kind": "paid-old-save-escape",
+      "id": "foe-4-cluster",
+      "from": {
+        "x": 2950,
+        "y": 2183.75
+      },
+      "to": {
+        "x": 3022.1248916810277,
+        "y": 2111.6251083189723
+      },
+      "cost": 101.99999999998289
+    }
+  ]
+}

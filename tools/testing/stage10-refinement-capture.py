@@ -24,7 +24,7 @@ with sync_playwright() as pw:
   p.evaluate('''()=>{let a=HonroApp;HonroStory.tick(a,performance.now()+3000);a.dialogue=null;a.turnNotice=null;a.close();let s=a.scene,b=a.engine.b,u=b.units.find(u=>u.team==='player'||u.side===0);Object.assign(s,{manual:true,storyTween:null,goalFocus:null,x:u.x+600,y:u.y-230,scale:.65});s.render(a.engine,0,'',.6,false,0);}''')
   p.wait_for_function('(sid)=>HonroAuthoredFarArt.ready(sid)',arg=sid)
   p.set_viewport_size({'width':1440,'height':900})
-  for view,x,y,zoom,width,height in [('overview',2500,2400,0,1440,900),('west',1430,2490,.65,1440,900),('center',2470,2060,.8,1440,900),('east',3750,2480,.65,1440,900),('zoom-binding',2260,2100,1.2,1440,900),('mobile-tree',2470,2100,.55,390,844),('landscape-tree',2470,2150,.6,844,390)]:
+  for view,x,y,zoom,width,height in [('overview',2500,2000,0,1440,900),('west',1430,2490,.65,1440,900),('center',2470,2060,.8,1440,900),('east',3750,2480,.65,1440,900),('zoom-binding',2260,2100,1.2,1440,900),('mobile-tree',2470,2100,.55,390,844),('landscape-tree',2470,1990,.6,844,390)]:
    p.set_viewport_size({'width':width,'height':height})
    p.evaluate("()=>HonroApp.scene.render(HonroApp.engine,0,'',.6,false,0)")
    row=p.evaluate("""v=>{const a=HonroApp,s=a.scene,b=a.engine.b;Object.assign(s,{x:v.x,y:v.y,scale:v.zoom||HonroBounds.zoomLimits(s.size().w).min,manual:true,storyTween:null,cinematic:null});s.render(a.engine,0,'',.6,false,0);return{stage:b.honroStage,view:v.view,camera:{x:s.x,y:s.y,scale:s.scale}};}""",{'view':view,'x':x,'y':y,'zoom':zoom})
