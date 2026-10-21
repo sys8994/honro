@@ -57,6 +57,31 @@ function directed(app,lines,options){
  if(!options.staging)state(app.engine.b).once[s.id]='running';
  return{lines:lines.map(([who,text,meta={}])=>[who,text,{...meta,stagingScene:s.id,...(who==='서술'?{presentation:'inline'}:{})}]),options:{...options,staging:s}};
 }
+// Authored scene captions are reading pages. Only their visual cues use time.
+// Keep them on the ordinary dialogue cursor so back/skip/Continue share one lock.
+function reader(lines,options){
+ const s=options.staging;if(!s||s.manualReader)return{lines,options};
+ const pages=[],motions=[];
+ for(const [index,step]of s.steps.entries()){
+  if(step.type==='dialogue')continue;
+  const caption=step.caption||pages.at(-1)?.text||'';
+  if(!pages.length||pages.at(-1).text!==caption)pages.push({text:caption,steps:[],indices:[]});
+  pages.at(-1).steps.push(step);pages.at(-1).indices.push(index);
+ }
+ if(!pages.some(p=>p.text))return{lines,options};
+ const base=lines[0]?.[2]||{},narration=pages.map(p=>['서술',p.text,{kind:'narration',presentation:'inline',storyId:base.storyId||s.id,storyTitle:base.storyTitle||options.title,stagingScene:s.id}]);
+ for(const p of pages){let delay=0;motions.push(p.steps.map(step=>{const cue={...step,delay};delay+=step.duration||0;return cue;}));}
+ const after=s.position==='after',offset=after?0:pages.length,oldIndex=options.index??0,oldComplete=s.complete,oldWaiting=s.waitForDialogue;
+ const oldCues=s.cues||lines.map(()=>[]),cues=after?[...oldCues,...motions]:[...motions,...oldCues];
+ let index=oldIndex+offset;
+ if(options.index!==undefined&&!oldComplete&&!oldWaiting){const page=Math.max(0,pages.findIndex(p=>p.indices.includes(s.cursor)));index=(after?lines.length:0)+page;}
+ else if(after&&options.index!==undefined&&oldIndex>=lines.length)index=lines.length;
+ const prior=s.cue;
+ s.cues=cues;s.manualReader=1;s.steps=[{type:'dialogue'}];s.cursor=0;s.elapsed=0;s.complete=true;s.waitForDialogue=false;s.position='before';
+ delete s.cue;
+ if(options.index!==undefined){s.readThrough=index-1;if(prior&&oldComplete){s.cue={...prior,index:prior.index+offset};s.readThrough=Math.max(s.readThrough,(s.readThroughBefore??prior.index)+offset);}}
+ return{lines:after?[...lines,...narration]:[...narration,...lines],options:{...options,...(options.index!==undefined?{index}:{})}};
+}
 function canSpeak(app,who,meta){const b=app.engine?.b,s=b?.honroStaging;if(!s)return false;if(!(meta?.stagingScene&&s.once[meta.stagingScene]==='running')&&!G.HonroStoryDirection?.hiddenSpeech(b,meta))return false;return Object.values(s.hidden||{}).some(u=>u.name===who&&alive(u));}
 function active(app){return app.dialogue?.staging;}
 function snapshot(app){const s=active(app),c=app.scene;if(s&&c&&[c.x,c.y,c.scale].every(Number.isFinite))s.currentCamera={x:c.x,y:c.y,scale:c.scale,manual:!!c.manual};}
@@ -200,5 +225,5 @@ register({id:'act3-split-departure-v2',stage:24,on:'outcome',position:'after',re
  {type:'move',actor:'occultist',towards:{marker:'split-route-b'},distance:28,duration:350,caption:'소단이 휘겸을 따라 몸을 돌린다.'},
  {type:'dialogue'}
 ]});
-G.HonroStoryStaging={register,describe,request,prepareFresh,receiver,opening,directed,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,lineStart,lineEnd,focusLine,point,actor,ID};
+G.HonroStoryStaging={reader,register,describe,request,prepareFresh,receiver,opening,directed,canSpeak,draw,tick,skipMotion,finish,snapshot,restore,lineStart,lineEnd,focusLine,point,actor,ID};
 })(globalThis);
