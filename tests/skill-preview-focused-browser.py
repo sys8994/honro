@@ -12,6 +12,10 @@ milestones={
  'A12':{'outbound':'auditP.b.projectiles.some(q=>!q.returning&&q.x>650)','returning':'auditP.b.projectiles.some(q=>q.returning&&q.x>650)'},
  'A13':{'flight':'auditP.b.projectiles.some(q=>q.x>650&&q.x<900)'},
  'A15':{'split':'auditP.b.projectiles.filter(q=>q.child).length>1'},
+ 'M02':{'bounce':'auditP.b.projectiles.some(q=>q.bounces>0)'},
+ 'M06':{'secondary':'auditP.b.projectiles.some(q=>q.secondary&&q.age>.12)'},
+ 'MP01':{'secondary':'auditP.b.projectiles.some(q=>q.secondary&&q.age>.12)'},
+ 'MP02':{'regeneration':'auditP.b.round>=2&&auditP.hero.focus>auditP.initial.hero.focus'},
 }
 rows=[];errors=[]
 with sync_playwright() as pw,serve_game() as base_url:
@@ -29,6 +33,8 @@ with sync_playwright() as pw,serve_game() as base_url:
       shell.screenshot(path=str(OUT/f'{id}-{width}-{label}.png'));captured[label]=p.evaluate('HonroSkillPreview.snapshot(auditP)');del pending[label]
     if status['ok'] and core is None:
      core=status['age'];shell.screenshot(path=str(OUT/f'{id}-{width}-core.png'))
+     if id in ['M04','M05']:
+      p.evaluate('t=>advanceAudit(t)',core+.12);shell.screenshot(path=str(OUT/f'{id}-{width}-visible.png'))
     if core is not None and status['age']>core+1.5 and not pending:break
    shell.screenshot(path=str(OUT/f'{id}-{width}-result.png'));r=p.evaluate('finishAudit()');r.update({'id':id,'width':width,'coreAt':core,'milestones':captured,'missingMilestones':list(pending)});rows.append(r);print(id,width,core,'missing',list(pending),flush=True)
    (OUT/('checks-'+ '-'.join(ids)+'.json')).write_text(json.dumps({'ids':ids,'rows':rows,'errors':errors},ensure_ascii=False,indent=2))

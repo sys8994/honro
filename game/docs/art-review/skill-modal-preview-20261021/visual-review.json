@@ -1,15 +1,32 @@
 {
   "registered": 84,
   "functionalPass": 84,
-  "currentPixelConfirmed": 25,
-  "currentPixelUnconfirmed": 59,
+  "currentPixelConfirmed": 42,
+  "currentPixelUnconfirmed": 42,
   "currentPixelFailed": 0,
   "confirmedIds": [
+    "M01",
     "A01",
+    "M06",
+    "M02",
+    "M04",
+    "M13",
+    "M05",
     "M03",
+    "M11",
     "M12",
     "M14",
     "M15",
+    "M07",
+    "M10",
+    "M08",
+    "M09",
+    "M99",
+    "MP01",
+    "MP02",
+    "MP04",
+    "MP03",
+    "MP05",
     "A14",
     "A02",
     "A06",
@@ -53,11 +70,18 @@
       "id": "M01",
       "name": "기파",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "무기력 기본 기파 조준 → 작은 충격과 첫 적29 피해 → 체력 감소.",
       "coreCapture": "audit/M01-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/M01-start.png",
+        "audit/M01-core.png",
+        "audit/M01-result-1280.png",
+        "audit/M01-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "A01",
@@ -100,51 +124,94 @@
       "id": "M06",
       "name": "화호",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/M06-core.png",
-      "mobileVisibleCapture": null
+      "note": "화호 조준 → 첫 명중70 → 실제 후속 폭발과 치명112. 불꽃이 커진 프레임을 추가 촬영.",
+      "coreCapture": "mage-focused/M06-1280-secondary.png",
+      "mobileVisibleCapture": "mage-focused/M06-360-secondary.png",
+      "reviewedFrames": [
+        "audit/M06-start.png",
+        "audit/M06-core.png",
+        "audit/M06-result-1280.png",
+        "audit/M06-result-360.png",
+        "mage-focused/M06-1280-secondary.png",
+        "mage-focused/M06-360-secondary.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M02",
       "name": "빙호",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/M02-core.png",
-      "mobileVisibleCapture": null
+      "note": "높은 탄도 → 실제 바닥 반사 빙호(추가 캡처) → 재입력 폭발/두 표적 빙결. 360px 반사 순간의 병은 매우 작으므로 별도 폭발과 빙결 상태를 함께 봐야 함.",
+      "coreCapture": "mage-focused/M02-1280-bounce.png",
+      "mobileVisibleCapture": "mage-focused/M02-360-bounce.png",
+      "reviewedFrames": [
+        "audit/M02-start.png",
+        "audit/M02-core.png",
+        "audit/M02-result-1280.png",
+        "audit/M02-result-360.png",
+        "mage-focused/M02-1280-bounce.png",
+        "mage-focused/M02-360-bounce.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M04",
       "name": "뇌호",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/M04-core.png",
-      "mobileVisibleCapture": null
+      "note": "밀집 표적 준비 → 실제 세 표적을 잇는 번개/89·32·32 → 체력 감소. emission 직후 대신 +.12초로 촬영해 연결이 보임.",
+      "coreCapture": "mage-focused/M04-1280-visible.png",
+      "mobileVisibleCapture": "mage-focused/M04-360-visible.png",
+      "reviewedFrames": [
+        "audit/M04-start.png",
+        "audit/M04-core.png",
+        "audit/M04-result-1280.png",
+        "audit/M04-result-360.png",
+        "mage-focused/M04-1280-visible.png",
+        "mage-focused/M04-360-visible.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M13",
       "name": "연폭호",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "밀집 표적과 폭발 예상범위 → 첫 두 명중 → 여러 후속 폭발과 세 적192 피해.",
       "coreCapture": "audit/M13-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/M13-start.png",
+        "audit/M13-core.png",
+        "audit/M13-result-1280.png",
+        "audit/M13-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M05",
       "name": "천뢰호",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/M05-core.png",
-      "mobileVisibleCapture": null
+      "note": "착탄 예상 범위 → 실제 하늘에서 내려오는 천뢰/217·148 → 체력 감소. 상단 번개의 시작은 캔버스 밖으로 이어짐.",
+      "coreCapture": "mage-focused/M05-1280-visible.png",
+      "mobileVisibleCapture": "mage-focused/M05-360-visible.png",
+      "reviewedFrames": [
+        "audit/M05-start.png",
+        "audit/M05-core.png",
+        "audit/M05-result-1280.png",
+        "audit/M05-result-360.png",
+        "mage-focused/M05-1280-visible.png",
+        "mage-focused/M05-360-visible.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M03",
@@ -152,19 +219,33 @@
       "functionalAssertions": "passed",
       "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "원호파: 충돌점 양옆의 곡선",
+      "note": "조준의 양옆 원호 → 실제 가시 프레임의 굵은 원호/92 명중 → 소멸과 체력 감소.",
       "coreCapture": "geometry-visible/M03-1280-visible.png",
-      "mobileVisibleCapture": "geometry-visible/M03-360-visible.png"
+      "mobileVisibleCapture": "geometry-visible/M03-360-visible.png",
+      "reviewedFrames": [
+        "audit/M03-start.png",
+        "audit/M03-core.png",
+        "audit/M03-result-1280.png",
+        "audit/M03-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M11",
       "name": "반탄파",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "벽을 향한 궤도 → 벽 접촉점에서 분리와 적80 피해 → 두 표적160 피해. 저랭크는 분리가 없고 실제 반사만 적용됨.",
       "coreCapture": "audit/M11-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/M11-start.png",
+        "audit/M11-core.png",
+        "audit/M11-result-1280.png",
+        "audit/M11-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M12",
@@ -172,9 +253,16 @@
       "functionalAssertions": "passed",
       "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "삼재파: 천장 반사점과 두 접점의 넓은 삼각형",
+      "note": "벽·천장 반사 경로 → 높은 삼각형과 세 적80 피해 → 도형 소멸 후 체력 감소.",
       "coreCapture": "geometry-visible/M12-1280-visible.png",
-      "mobileVisibleCapture": "geometry-visible/M12-360-visible.png"
+      "mobileVisibleCapture": "geometry-visible/M12-360-visible.png",
+      "reviewedFrames": [
+        "audit/M12-start.png",
+        "audit/M12-core.png",
+        "audit/M12-result-1280.png",
+        "audit/M12-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M14",
@@ -182,9 +270,16 @@
       "functionalAssertions": "passed",
       "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "동심파: 원주의 타격과 중심의 빈 영역",
+      "note": "원주 두 적/안쪽 한 적 → 실제 원주 타격112·112, 안쪽 무피해 → 두 외곽만 체력 감소.",
       "coreCapture": "geometry-visible/M14-1280-visible.png",
-      "mobileVisibleCapture": "geometry-visible/M14-360-visible.png"
+      "mobileVisibleCapture": "geometry-visible/M14-360-visible.png",
+      "reviewedFrames": [
+        "audit/M14-start.png",
+        "audit/M14-core.png",
+        "audit/M14-result-1280.png",
+        "audit/M14-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M15",
@@ -192,109 +287,192 @@
       "functionalAssertions": "passed",
       "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "팔괘파: 팔각형 외곽·기선·기호",
+      "note": "밀집 적과 팔각 예측 → 실제 팔각형·기선·괘와 세 적791 피해 → 도형 소멸.",
       "coreCapture": "geometry-visible/M15-1280-visible.png",
-      "mobileVisibleCapture": "geometry-visible/M15-360-visible.png"
+      "mobileVisibleCapture": "geometry-visible/M15-360-visible.png",
+      "reviewedFrames": [
+        "audit/M15-start.png",
+        "audit/M15-core.png",
+        "audit/M15-result-1280.png",
+        "audit/M15-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M07",
       "name": "파진목",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "접지된 지상 적과 착지 진목 → 적이 밟아63 피해 → 적이 진목을 지나 이동.",
       "coreCapture": "audit/M07-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/M07-start.png",
+        "audit/M07-core.png",
+        "audit/M07-result-1280.png",
+        "audit/M07-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M10",
       "name": "회생진목",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/M10-core.png",
-      "mobileVisibleCapture": null
+      "note": "손상된 동행과 지면 준비 → 실제 진목 이용 체력300→468/기력20→50/이동100→424 → 회복 유지. 진목은 동행 발 뒤에 일부 가림.",
+      "coreCapture": "mage-focused/M10-1280-core.png",
+      "mobileVisibleCapture": "mage-focused/M10-360-core.png",
+      "reviewedFrames": [
+        "audit/M10-start.png",
+        "audit/M10-core.png",
+        "audit/M10-result-1280.png",
+        "audit/M10-result-360.png",
+        "mage-focused/M10-1280-core.png",
+        "mage-focused/M10-360-core.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M08",
       "name": "유인진목",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "먼 적과 진목 설치 → 유인 진목 표시 → 실제 적이 왼쪽으로 이동하여 진목에 접근. 적의 이후 사격23도 보임.",
       "coreCapture": "audit/M08-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/M08-start.png",
+        "audit/M08-core.png",
+        "audit/M08-result-1280.png",
+        "audit/M08-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M09",
       "name": "축지진목",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "출발 위치 → 두 진목과 도사 위치 변경/방호 → 변경 위치 유지. 두 진목 이동 완료 관찰줄 확인.",
       "coreCapture": "audit/M09-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/M09-start.png",
+        "audit/M09-core.png",
+        "audit/M09-result-1280.png",
+        "audit/M09-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "M99",
       "name": "오방봉진",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "적과 봉쇄진 착지 준비 → 적의 경계 통과 피해158/빙결 → 적이 진 안에 이동하고 빙결 상태 유지. 마법 진목의 공중 꼭짓점은 실제 스킬 구조.",
       "coreCapture": "audit/M99-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/M99-start.png",
+        "audit/M99-core.png",
+        "audit/M99-result-1280.png",
+        "audit/M99-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "MP01",
       "name": "법맥",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/MP01-core.png",
-      "mobileVisibleCapture": null
+      "note": "같은 화호 조건 → 실제 불꽃 후속 파편/미적용256→적용314 → 피해차 유지. 파편 보이는 추가 프레임 확인.",
+      "coreCapture": "mage-focused/MP01-1280-secondary.png",
+      "mobileVisibleCapture": "mage-focused/MP01-360-secondary.png",
+      "reviewedFrames": [
+        "audit/MP01-start.png",
+        "audit/MP01-core.png",
+        "audit/MP01-result-1280.png",
+        "audit/MP01-result-360.png",
+        "mage-focused/MP01-1280-secondary.png",
+        "mage-focused/MP01-360-secondary.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "MP02",
       "name": "기해",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/MP02-core.png",
-      "mobileVisibleCapture": null
+      "note": "최대 기력240→298/초기84→104 → 실제 다음 턴 회복100→127.92(추가 캡처) → 회복 수치 유지. 기존 core는 회복 전에 찍혔으므로 별도 프레임이 필수.",
+      "coreCapture": "mage-focused/MP02-1280-regeneration.png",
+      "mobileVisibleCapture": "mage-focused/MP02-360-regeneration.png",
+      "reviewedFrames": [
+        "audit/MP02-start.png",
+        "audit/MP02-core.png",
+        "audit/MP02-result-1280.png",
+        "audit/MP02-result-360.png",
+        "mage-focused/MP02-1280-regeneration.png",
+        "mage-focused/MP02-360-regeneration.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "MP04",
       "name": "기맥전도",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "가까운 손상 동행 → 명중 직후 동행 방호막/아이콘/0→222 → 방호 유지.",
       "coreCapture": "audit/MP04-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/MP04-start.png",
+        "audit/MP04-core.png",
+        "audit/MP04-result-1280.png",
+        "audit/MP04-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "MP03",
       "name": "회기",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "빗나가도록 조준 → 먼 적은 무피해·도사 회기 문자 → 미적용208/적용231.68 기력.",
       "coreCapture": "audit/MP03-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/MP03-start.png",
+        "audit/MP03-core.png",
+        "audit/MP03-result-1280.png",
+        "audit/MP03-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "MP05",
       "name": "주천",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "화호 사용 전 누적0 → 실제 반복 소비78·주천 완성/강화 발사 → 실제 큰 폭발 치명383. 중간 3회는 스냅샷으로 보조하며 이미지에 모든 소비 순간을 나열하지 않음.",
       "coreCapture": "audit/MP05-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/MP05-start.png",
+        "audit/MP05-core.png",
+        "audit/MP05-result-1280.png",
+        "audit/MP05-result-360.png"
+      ],
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
     },
     {
       "id": "A14",
