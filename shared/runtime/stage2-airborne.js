@@ -10,14 +10,10 @@ const stopped=app=>app.done||['won','lost'].includes(app.engine.b.phase);
 const serial=b=>b.honroState.actorTurnSerial||0;
 const responses=b=>{const m=b.honroState.stage2Airborne;return m?[m,...Object.values(m.waves||{})]:[];};
 function author(project){const s=project.stages?.find(s=>s.metadata?.stageId===2);if(s?.initialState?.honroEscortGoalX===3340&&s.units?.some(u=>u.id==='foe-1'&&u.x===3370&&u.y===1010))s.initialState.honroStage2AirborneRevision=1;return project;}
-function repair(e,u){
- // Exact historical clone placement: retain legitimate moved/knocked saves.
- if(!active(e.b)||!roost(u)||u.id!=='foe-1-cluster'||!alive(u)||u.x!==3460||u.y!==1010||u.spawnX!==3460||u.spawnY!==1010||C.flightClear(e,u,u))return false;
- const p=G.HonroTerrain.place(e.b,u,{flying:true,maxDistance:128,clearance:18,accept:(x,y)=>C.flightClear(e,u,{x,y})});
- if(!p)return false;
- Object.assign(u,p,{vx:0,vy:0});delete u.aiMove;delete u.moveTarget;return true;
-}
-const balance=E.balance;E.balance=function(b){const out=balance(b);if(active(b)){for(const u of b.units)repair({b},u);b.honroStage2AirborneRevision=1;}return out;};
+// Retained API for old diagnostic callers. Flight clearance is now shared by
+// generation and paid movement; do not relocate one historical clone on load.
+function repair(){return false;}
+const balance=E.balance;E.balance=function(b){const out=balance(b);if(active(b)){b.honroStage2AirborneRevision=1;}return out;};
 function warning(app,text){const e=app.engine,b=e.b;app.event(text);app.dirty=true;return{warning:{round:b.round,serial:serial(b),inProgress:b.phase!=='aim'||!!b.projectiles.length||!!app.charging||!!e.active?.retreat},released:false};}
 function prepare(app){const e=app.engine,b=e.b;if(!active(b)||stopped(app)||app.dialogue||!e.alive(1).some(roost)||b.honroState.stage2Airborne?.warning)return;
  const engaged=b.units.some(u=>u.side===1&&!roost(u)&&(u.dead||u.hp<u.maxHp))||(e.unit('objective')?.x||0)>=1520;
@@ -49,7 +45,6 @@ const attach=A.attach;A.attach=function(app,e){const out=attach(app,e),b=e.b;if(
  const finish=e.finishAction.bind(e);e.finishAction=function(...args){if(b.phase==='aim')offer(opportunity(app));release(app);return finish(...args);};
  const refresh=e.refreshActivation.bind(e);e.refreshActivation=function(){refresh();if(!stopped(app)&&b.honroState.stage2Airborne?.released)for(const u of e.alive(1).filter(roost))u.awake=true;};
  const combat=e.combatEnemies.bind(e);e.combatEnemies=function(){const list=combat();if(stopped(app)||!b.honroState.stage2Airborne?.released)return list;return [...new Set([...list,...e.alive(1).filter(roost)])];};
- const enemy=e.enemyAction.bind(e);e.enemyAction=function(){if(!stopped(app)&&roost(e.active)&&!e.active.acted)repair(e,e.active);return enemy();};
  const tick=e.tick.bind(e);e.tick=function(...args){const out=tick(...args);if(stopped(app))for(const m of responses(b))if(m.warning&&!m.entry&&!m.released)m.cancelled=b.phase;return out;};return out;
 };
 G.HonroStage2Airborne={author,active,roost,repair,prepare,opportunity,safeEntry,waveEvent};

@@ -116,6 +116,8 @@ export interface ForceField {
 }
 export interface AIMovePlan {
     flightEscape?: boolean;
+    /** Enemy-phase reserve movement, without an attack queue slot. */
+    waitingFlight?: boolean;
     /** Forced M08 movement may run outside the attack queue; saved across Continue. */
     lureStakeId?:number;
     round:number;

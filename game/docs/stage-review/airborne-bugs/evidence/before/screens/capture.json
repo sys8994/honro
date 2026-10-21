@@ -1,0 +1,64 @@
+{
+  "sha": "d7244a8adc9a5419f8771dd9f80b94464359fbd8",
+  "scope": "Normal-resource starting battles; prepared unlocks and manual camera only, not completion.",
+  "rows": [
+    {
+      "stage": 2,
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3370,
+          "y": 1010,
+          "awake": false
+        },
+        {
+          "id": "foe-4",
+          "x": 3190,
+          "y": 1150,
+          "awake": false
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3460,
+          "y": 1010,
+          "awake": false
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3270,
+          "y": 1150,
+          "awake": false
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 2660,
+          "y": 2278.75,
+          "awake": false
+        },
+        {
+          "id": "foe-4",
+          "x": 2870,
+          "y": 2183.75,
+          "awake": false
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 2750,
+          "y": 2278.75,
+          "awake": false
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 2950,
+          "y": 2183.75,
+          "awake": false
+        }
+      ]
+    }
+  ]
+}

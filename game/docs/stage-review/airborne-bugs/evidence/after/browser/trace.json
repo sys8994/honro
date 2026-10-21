@@ -1,0 +1,2541 @@
+{
+  "scope": "Actual Chromium production inputs, normal starting resources, virtual clock; no completion claim.",
+  "sourceHashes": {
+    "shared/engine/src/enemyAI.ts": "fa1d21262b3945556d3e7c58d406d9bd7504a77e4f86bb0243c6374b8eaa29a3",
+    "shared/engine/src/engine.ts": "26faf72c9d6ba92e5183401bdf61a1a3889cc0c9000a83fc5c6aa170bcd48565",
+    "shared/runtime/terrain-space.js": "3ddb6ae1c21924cc4252cd228d27758fe9785f21036c1fc82cb4819bc7e3cd76",
+    "shared/engine/src/locomotion.ts": "84ff07ebce43625be87f5e78244e55ccb6a368f49941c401cc81c5dbe39f2545",
+    "shared/runtime/stage2-airborne.js": "b69b4c32523a6395f8e088d5955dc0fd4c20c1e368a7299736fca7d023019890"
+  },
+  "sha": "b6bbc2a6a33bbcaa83665de35dfea5aad8dc651d",
+  "rows": [
+    {
+      "round": 1,
+      "phase": "review",
+      "active": "p-archer",
+      "queue": [],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3370,
+          "y": 1010,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3190,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3460,
+          "y": 882,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3398,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "ally",
+      "active": "p-archer",
+      "queue": [],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3370,
+          "y": 1010,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3190,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3460,
+          "y": 882,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3398,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "ally",
+      "active": "ally-bokman",
+      "queue": [],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3370,
+          "y": 1010,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3190,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3460,
+          "y": 882,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3398,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "ally",
+      "active": "ally-baeksan",
+      "queue": [],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3370,
+          "y": 1010,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3190,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3460,
+          "y": 882,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3398,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "ally",
+      "active": "npc-damheo",
+      "queue": [],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3370,
+          "y": 1010,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3190,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3460,
+          "y": 882,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3398,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "ally",
+      "active": "npc-yeonsil",
+      "queue": [],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3370,
+          "y": 1010,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3190,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3460,
+          "y": 882,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3398,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "transition",
+      "active": "p-archer",
+      "queue": [],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3370,
+          "y": 1010,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3190,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3460,
+          "y": 882,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3398,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "enemy",
+      "active": "foe-3",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3370,
+          "y": 1010,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": {
+            "round": 1,
+            "targetId": "",
+            "path": [
+              {
+                "x": 3347.3725830020303,
+                "y": 1026.970562748477,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0.12499999999999999,
+            "stalled": 0,
+            "lastX": 3370,
+            "lastY": 1010,
+            "jumping": false,
+            "intent": "\ud683\ub300 \uc8fc\ubcc0 \ube44\ud589"
+          }
+        },
+        {
+          "id": "foe-4",
+          "x": 3190,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": {
+            "round": 1,
+            "targetId": "",
+            "path": [
+              {
+                "x": 3189.9999999999986,
+                "y": 1126,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0.10833333333333332,
+            "stalled": 0,
+            "lastX": 3190,
+            "lastY": 1150,
+            "jumping": false,
+            "intent": "\ud683\ub300 \uc8fc\ubcc0 \ube44\ud589"
+          }
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3460,
+          "y": 882,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": {
+            "round": 1,
+            "targetId": "",
+            "path": [
+              {
+                "x": 3428,
+                "y": 882.0000000000003,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0.175,
+            "stalled": 0,
+            "lastX": 3460,
+            "lastY": 882,
+            "jumping": false,
+            "intent": "\ud683\ub300 \uc8fc\ubcc0 \ube44\ud589"
+          }
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3398,
+          "y": 1150,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": {
+            "round": 1,
+            "targetId": "",
+            "path": [
+              {
+                "x": 3375.3725830020294,
+                "y": 1133.0294372515236,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0.15833333333333333,
+            "stalled": 0,
+            "lastX": 3398,
+            "lastY": 1150,
+            "jumping": false,
+            "intent": "\ud683\ub300 \uc8fc\ubcc0 \ube44\ud589"
+          }
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "flight",
+      "active": "foe-3",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 529,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 532,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 521.7157287525354,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "review",
+      "active": "foe-3",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 529,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 532,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 521.7157287525354,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "enemy",
+      "active": "foe-0-cluster",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 529,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 532,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 521.7157287525354,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "flight",
+      "active": "foe-0-cluster",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 529,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 532,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 521.7157287525354,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "review",
+      "active": "foe-0-cluster",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 529,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 532,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 521.7157287525354,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "enemy",
+      "active": "foe-3-cluster",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 529,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 532,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 521.7157287525354,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "flight",
+      "active": "foe-3-cluster",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 529,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 532,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 521.7157287525354,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "review",
+      "active": "foe-3-cluster",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 529,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 532,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 521.7157287525354,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "phase": "transition",
+      "active": "foe-3-cluster",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 529,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 532,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 521.7157287525354,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "aim",
+      "active": "p-archer",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "review",
+      "active": "p-archer",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "ally",
+      "active": "p-archer",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "ally",
+      "active": "ally-bokman",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "ally",
+      "active": "ally-baeksan",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "ally",
+      "active": "npc-damheo",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "ally",
+      "active": "npc-yeonsil",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "transition",
+      "active": "p-archer",
+      "queue": [
+        "foe-3",
+        "foe-0-cluster",
+        "foe-3-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": false,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "enemy",
+      "active": "foe-2-cluster",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3353.2000000000007,
+          "y": 1022.5999999999997,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": {
+            "round": 2,
+            "targetId": "ally-baeksan",
+            "path": [
+              {
+                "x": 3385.2000000000007,
+                "y": 1022.6,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0.175,
+            "stalled": 0,
+            "lastX": 3353.2000000000007,
+            "lastY": 1022.5999999999997,
+            "jumping": false,
+            "intent": "\uacf5\uc911 \uc608\ube44\ub300 \uc811\uadfc"
+          }
+        },
+        {
+          "id": "foe-4",
+          "x": 3189.9999999999995,
+          "y": 1132,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": {
+            "round": 2,
+            "targetId": "ally-baeksan",
+            "path": [
+              {
+                "x": 3127.919124987396,
+                "y": 1205.2254392794575,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0.5333333333333339,
+            "stalled": 0,
+            "lastX": 3189.9999999999995,
+            "lastY": 1132,
+            "jumping": false,
+            "intent": "\uacf5\uc911 \uc608\ube44\ub300 \uc811\uadfc"
+          }
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3428.5,
+          "y": 882.0000000000003,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": {
+            "round": 2,
+            "targetId": "ally-baeksan",
+            "path": [
+              {
+                "x": 3334.174243242919,
+                "y": 864.1491845507268,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0.5333333333333339,
+            "stalled": 0,
+            "lastX": 3428.5,
+            "lastY": 882.0000000000003,
+            "jumping": false,
+            "intent": "\uacf5\uc911 \uc608\ube44\ub300 \uc811\uadfc"
+          }
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3375.3725830020294,
+          "y": 1133.0294372515236,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": {
+            "round": 2,
+            "targetId": "ally-baeksan",
+            "path": [
+              {
+                "x": 3407.3725830020294,
+                "y": 1133.0294372515232,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0.175,
+            "stalled": 0,
+            "lastX": 3375.3725830020294,
+            "lastY": 1133.0294372515236,
+            "jumping": false,
+            "intent": "\uacf5\uc911 \uc608\ube44\ub300 \uc811\uadfc"
+          }
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "flight",
+      "active": "foe-2-cluster",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 454.00000000000273,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "review",
+      "active": "foe-2-cluster",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 454.00000000000273,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "enemy",
+      "active": "foe-2",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 454.00000000000273,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "flight",
+      "active": "foe-2",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 454.00000000000273,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "review",
+      "active": "foe-2",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 454.00000000000273,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "enemy",
+      "active": "foe-5-cluster",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 454.00000000000273,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "flight",
+      "active": "foe-5-cluster",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 454.00000000000273,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "review",
+      "active": "foe-5-cluster",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 454.00000000000273,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "phase": "transition",
+      "active": "foe-5-cluster",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 454.00000000000273,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 518.5,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "aim",
+      "active": "p-archer",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "review",
+      "active": "p-archer",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "ally",
+      "active": "p-archer",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "ally",
+      "active": "ally-bokman",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "ally",
+      "active": "ally-baeksan",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "ally",
+      "active": "npc-damheo",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "ally",
+      "active": "npc-yeonsil",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "transition",
+      "active": "p-archer",
+      "queue": [
+        "foe-2-cluster",
+        "foe-2",
+        "foe-5-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "enemy",
+      "active": "foe-4",
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3384.7000000000007,
+          "y": 1022.6,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": {
+            "round": 3,
+            "targetId": "ally-baeksan",
+            "path": [
+              {
+                "x": 3290.307609632568,
+                "y": 1005.1049538233766,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0.5333333333333339,
+            "stalled": 0,
+            "lastX": 3384.7000000000007,
+            "lastY": 1022.6,
+            "jumping": false,
+            "intent": "\uacf5\uc911 \uc608\ube44\ub300 \uc811\uadfc"
+          }
+        },
+        {
+          "id": "foe-4",
+          "x": 3127.919124987397,
+          "y": 1205.2254392794566,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3406.8725830020294,
+          "y": 1133.0294372515232,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": {
+            "round": 3,
+            "targetId": "ally-baeksan",
+            "path": [
+              {
+                "x": 3315.264677674477,
+                "y": 1161.7346925456006,
+                "jump": false
+              }
+            ],
+            "waitingFlight": true,
+            "index": 0,
+            "elapsed": 0.5333333333333339,
+            "stalled": 0,
+            "lastX": 3406.8725830020294,
+            "lastY": 1133.0294372515232,
+            "jumping": false,
+            "intent": "\uacf5\uc911 \uc608\ube44\ub300 \uc811\uadfc"
+          }
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "flight",
+      "active": "foe-4",
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3290.3076096325713,
+          "y": 1005.1049538233772,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 2885.43201192777,
+          "y": 1345.2254392794475,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3315.264677674483,
+          "y": 1161.7346925455986,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "review",
+      "active": "foe-4",
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3290.3076096325713,
+          "y": 1005.1049538233772,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 2885.43201192777,
+          "y": 1345.2254392794475,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3315.264677674483,
+          "y": 1161.7346925455986,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "enemy",
+      "active": "foe-5",
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3290.3076096325713,
+          "y": 1005.1049538233772,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 2885.43201192777,
+          "y": 1345.2254392794475,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3315.264677674483,
+          "y": 1161.7346925455986,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "flight",
+      "active": "foe-5",
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3290.3076096325713,
+          "y": 1005.1049538233772,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 2885.43201192777,
+          "y": 1345.2254392794475,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3315.264677674483,
+          "y": 1161.7346925455986,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "review",
+      "active": "foe-5",
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3290.3076096325713,
+          "y": 1005.1049538233772,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 2885.43201192777,
+          "y": 1345.2254392794475,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3315.264677674483,
+          "y": 1161.7346925455986,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "enemy",
+      "active": "foe-1-cluster",
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3290.3076096325713,
+          "y": 1005.1049538233772,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 2885.43201192777,
+          "y": 1345.2254392794475,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3334.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3315.264677674483,
+          "y": 1161.7346925455986,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "flight",
+      "active": "foe-1-cluster",
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3290.3076096325713,
+          "y": 1005.1049538233772,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 2885.43201192777,
+          "y": 1345.2254392794475,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3054.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3315.264677674483,
+          "y": 1161.7346925455986,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "review",
+      "active": "foe-1-cluster",
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3290.3076096325713,
+          "y": 1005.1049538233772,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 2885.43201192777,
+          "y": 1345.2254392794475,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3054.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3315.264677674483,
+          "y": 1161.7346925455986,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "phase": "transition",
+      "active": "foe-1-cluster",
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3290.3076096325713,
+          "y": 1005.1049538233772,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 2885.43201192777,
+          "y": 1345.2254392794475,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3054.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 0,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3315.264677674483,
+          "y": 1161.7346925455986,
+          "awake": true,
+          "moveLeft": 454,
+          "aiMove": null
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "phase": "aim",
+      "active": "p-archer",
+      "queue": [
+        "foe-4",
+        "foe-5",
+        "foe-1-cluster"
+      ],
+      "flyers": [
+        {
+          "id": "foe-1",
+          "x": 3290.3076096325713,
+          "y": 1005.1049538233772,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4",
+          "x": 2885.43201192777,
+          "y": 1345.2254392794475,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 3054.174243242919,
+          "y": 864.1491845507268,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 3315.264677674483,
+          "y": 1161.7346925455986,
+          "awake": true,
+          "moveLeft": 550,
+          "aiMove": null
+        }
+      ]
+    }
+  ]
+}
