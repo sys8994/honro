@@ -1,0 +1,174 @@
+{
+  "status": "internal comparison; quality incomplete; parent review pending",
+  "sourceCommit": "d2dce0b9b22175c62605a5cf35c3f771374fdbbe",
+  "baseline": "8a494854cbb54451491c6f556fc8b577816b57ef",
+  "views": [
+    [
+      "central-normal",
+      6400,
+      4800,
+      0.65,
+      1440,
+      900
+    ],
+    [
+      "central-max",
+      6210,
+      4500,
+      1.65,
+      1440,
+      900
+    ],
+    [
+      "central-mobile",
+      6300,
+      4600,
+      0.55,
+      390,
+      844
+    ],
+    [
+      "central-context",
+      6400,
+      4800,
+      0.4,
+      1440,
+      900
+    ]
+  ],
+  "commonAssets": [
+    "builtin:ravinePine",
+    "act2:rock-bank"
+  ],
+  "physics": {
+    "pass": true,
+    "baseline": "8a494854cbb54451491c6f556fc8b577816b57ef",
+    "libraryExact": true,
+    "other29Exact": true,
+    "physicsAndStoryExact": true,
+    "terrainSha256": "5032b7a5537faacc5079ccae97d1aed2b59ab9715b94078e265ccbbb64de39e9",
+    "compiledPhysicsExact": true,
+    "commonTerrainCalls": [
+      "sq-lower-ground",
+      "sq-inner-joint"
+    ],
+    "sharedShapeCalls": [
+      "act2:rock-bank"
+    ],
+    "pineKind": "ravinePine",
+    "assetScaleBounds": true,
+    "renderPurity": true,
+    "pilot": {
+      "revision": 1,
+      "bounds": {
+        "left": 5700,
+        "top": 4250,
+        "right": 7100,
+        "bottom": 6800
+      },
+      "terrainIds": [
+        "sq-lower-ground",
+        "sq-inner-joint"
+      ],
+      "assets": {
+        "sq-art-bent-waymark-pine": {
+          "assetId": "builtin:ravinePine",
+          "scale": 0.48
+        },
+        "sq-art-natural-stone-3": {
+          "assetId": "act2:rock-bank",
+          "scale": 1
+        }
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "evidence/common-pilot/after-final/stage12-central-context.png",
+      "sha256": "22b4be34cb3d3bac6cb8b1bbaab6f4a9670446fee2696a88be60835495099c66",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true
+    },
+    {
+      "path": "evidence/common-pilot/after-final/stage12-central-max.png",
+      "sha256": "20b9d226ff711e3f25337efcc296964fe2e02218d1d223dba0cd28c9b55bab54",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true
+    },
+    {
+      "path": "evidence/common-pilot/after-final/stage12-central-mobile.png",
+      "sha256": "97866be78537962ad8fd306c2a45d73d56f5d74928a089ef208ecdbaa145267f",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true
+    },
+    {
+      "path": "evidence/common-pilot/after-final/stage12-central-normal.png",
+      "sha256": "42e41da577353099ce4065bcb2f27cc0de2c355b786879c062bf8d1bd88139a1",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true
+    },
+    {
+      "path": "evidence/common-pilot/before/stage12-central-context.png",
+      "sha256": "d2215f21735cd672087a6978f3a1e0da89639e9059d049e11d5dca2f68d1b9fa",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true
+    },
+    {
+      "path": "evidence/common-pilot/before/stage12-central-max.png",
+      "sha256": "4e458ae2b78a2c6d3cd25d451d966c6b3829161cdb928c97af8f331db925e16c",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true
+    },
+    {
+      "path": "evidence/common-pilot/before/stage12-central-mobile.png",
+      "sha256": "ab21a534f439e9687e240380b216770692c92b80bfd9dc6c6803a975f9bc699b",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true
+    },
+    {
+      "path": "evidence/common-pilot/before/stage12-central-normal.png",
+      "sha256": "f4a5c1ae3f16ee6e502ea875cc17819904ec8cb15cfe10de567b550ff1e1c604",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true
+    },
+    {
+      "path": "evidence/common-pilot/interim-granite-rejected/stage12-central-context.png",
+      "sha256": "50cae9145b7ca919cb4938a5d17475c7029e11746ba6e8401a52a90d7b9ca07f",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true
+    },
+    {
+      "path": "evidence/common-pilot/interim-granite-rejected/stage12-central-max.png",
+      "sha256": "952014cd78e66ede6b0570b2da3103060c7af1b7c96fa0eafc4725d79ab5f590",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true
+    },
+    {
+      "path": "evidence/common-pilot/interim-granite-rejected/stage12-central-mobile.png",
+      "sha256": "3de00c9130015d3b456e9a8208f199dc9a2fc89c1f86605fdcb38823e8049ec6",
+      "width": 390,
+      "height": 648,
+      "directlyViewed": true
+    },
+    {
+      "path": "evidence/common-pilot/interim-granite-rejected/stage12-central-normal.png",
+      "sha256": "72a8ff440edb34ade7bb23226fdd14a4f18fc65ff541d04cb78708a9450411ed",
+      "width": 1440,
+      "height": 770,
+      "directlyViewed": true
+    }
+  ],
+  "baselineServerCommit": "10d7442d60a4faa0da6db6c9b6ea6eb8d4ae7da9",
+  "baselineTreeEqualsV3": true,
+  "baselineRecapturePixelsExact": true
+}

@@ -1,0 +1,47 @@
+{
+  "label": "common-pilot-final",
+  "url": "http://127.0.0.1:8857/HONRO.html",
+  "renderSourceSha256": "be7905dd65c79f4ef0b7f0825ab777f72135f3ab2a3414e2081eda43d5d5ed02",
+  "sha": "d2dce0b9b22175c62605a5cf35c3f771374fdbbe",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "central-normal",
+      "camera": {
+        "x": 6400,
+        "y": 4800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "central-max",
+      "camera": {
+        "x": 6210,
+        "y": 4500,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "central-mobile",
+      "camera": {
+        "x": 6300,
+        "y": 4600,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "central-context",
+      "camera": {
+        "x": 6400,
+        "y": 4800,
+        "scale": 0.4
+      }
+    }
+  ],
+  "errors": []
+}

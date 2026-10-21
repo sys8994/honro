@@ -1,0 +1,47 @@
+{
+  "label": "common-pilot",
+  "url": "http://127.0.0.1:8857/HONRO.html",
+  "renderSourceSha256": "be7905dd65c79f4ef0b7f0825ab777f72135f3ab2a3414e2081eda43d5d5ed02",
+  "sha": "8a494854cbb54451491c6f556fc8b577816b57ef",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M shared/runtime/stage12-quarry-art.js\n M tools/map-forge/apply-stage12-quarry.mjs\n D web/data/campaign.7dc065eb96e23b85.json\n D web/data/campaign.ab2d00ab2d9d2ed9.json\n D web/data/chapter-12.c657e1c748218b8c.json\n D web/data/chapter-12.e21b91ea1b58e942.json\n D web/entries/game.3488e4723825e92e.js\n D web/entries/game.7b8d99c49c3258b3.js\n D web/entries/game.be81fb2e29762bc0.html\n D web/entries/game.d3e168509bf1f856.html\n D web/entries/workshop.96f2a27d355eb20d.js\n D web/entries/workshop.a5843572f133bf91.js\n M web/manifest.json\n D web/runtime/campaign.2122d6d9ab7e97a5.js\n D web/runtime/campaign.2b546877ee4e35e0.js\n D web/runtime/ordered-common-12.99dd837848aa863c.js\n D web/runtime/ordered-common-12.e6fdf6762f01ae23.js\n D web/runtime/ordered-common-13.46e78f17db464e80.js\n?? tests/stage12-common-pilot.mjs\n?? tools/environment/stage12-common-pilot.mjs\n?? web/data/campaign-shared.67fff7540f1b5000.json\n?? web/data/campaign.2f0ee55f41d9426f.json\n?? web/data/campaign.c8ff8e9b57e5192d.json\n?? web/data/chapter-04-assets.43d781614f6ec078.json\n?? web/data/chapter-12.60801a7c95ffaf11.json\n?? web/data/chapter-12.9bf519f5d1e5c2a1.json\n?? web/entries/game.238e5277cd9721de.html\n?? web/entries/game.9611a4c15fd5843e.js\n?? web/entries/game.dc4aea14f587c22d.js\n?? web/entries/game.fe09e2a6b821e8c8.html\n?? web/entries/workshop.353ff2e0ea86f595.js\n?? web/entries/workshop.b01f6dafe1cb5914.js\n?? web/runtime/campaign.20c3811bbff03feb.js\n?? web/runtime/campaign.b860aff6cd0778ed.js\n?? web/runtime/ordered-common-12.63ebcc8b3e26008d.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "central-normal",
+      "camera": {
+        "x": 6400,
+        "y": 4800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "central-max",
+      "camera": {
+        "x": 6210,
+        "y": 4500,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "central-mobile",
+      "camera": {
+        "x": 6300,
+        "y": 4600,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "central-context",
+      "camera": {
+        "x": 6400,
+        "y": 4800,
+        "scale": 0.4
+      }
+    }
+  ],
+  "errors": []
+}

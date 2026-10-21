@@ -1,0 +1,42 @@
+{
+  "pass": true,
+  "baseline": "8a494854cbb54451491c6f556fc8b577816b57ef",
+  "libraryExact": true,
+  "other29Exact": true,
+  "physicsAndStoryExact": true,
+  "terrainSha256": "5032b7a5537faacc5079ccae97d1aed2b59ab9715b94078e265ccbbb64de39e9",
+  "compiledPhysicsExact": true,
+  "commonTerrainCalls": [
+    "sq-lower-ground",
+    "sq-inner-joint"
+  ],
+  "sharedShapeCalls": [
+    "act2:rock-bank"
+  ],
+  "pineKind": "ravinePine",
+  "assetScaleBounds": true,
+  "renderPurity": true,
+  "pilot": {
+    "revision": 1,
+    "bounds": {
+      "left": 5700,
+      "top": 4250,
+      "right": 7100,
+      "bottom": 6800
+    },
+    "terrainIds": [
+      "sq-lower-ground",
+      "sq-inner-joint"
+    ],
+    "assets": {
+      "sq-art-bent-waymark-pine": {
+        "assetId": "builtin:ravinePine",
+        "scale": 0.48
+      },
+      "sq-art-natural-stone-3": {
+        "assetId": "act2:rock-bank",
+        "scale": 1
+      }
+    }
+  }
+}
