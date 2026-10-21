@@ -1,0 +1,741 @@
+{
+  "status": "INCOMPLETE_ART_FAIL_PARENT_REVIEW",
+  "branch": "stage/act2-ch12-common-full",
+  "sourceSha": "0e585709bf8c17bf2b98904060aa40378f816b16",
+  "baselineSha": "8a494854cbb54451491c6f556fc8b577816b57ef",
+  "baselineCaptureSha": "10d7442d60a4faa0da6db6c9b6ea6eb8d4ae7da9",
+  "baselineTree": "344c6754db949ab3dcf2a2c2e20bdadf73d8e6ce",
+  "approvedReferenceSha": "51e0b2b290bb787183868853a7e4fa9a503b0288",
+  "approvedReferencePath": "game/docs/stage-review/stage01-positioning/evidence/refined-final/stage01-normal.png",
+  "physicsTerrainSha256": "5032b7a5537faacc5079ccae97d1aed2b59ab9715b94078e265ccbbb64de39e9",
+  "assets": [
+    {
+      "id": "sq-art-waymark",
+      "assetId": "builtin:receiverStone",
+      "x": 6520,
+      "y": 4800,
+      "scale": 1.8,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-lower-ground",
+        "x": 6520,
+        "y": 4800
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-abandoned-cart",
+      "assetId": "cart",
+      "x": 7744.792100965721,
+      "y": 3305.2582825168724,
+      "scale": 1.6,
+      "rotation": 0.504165961479153,
+      "support": {
+        "terrainId": "sq-north-quarry",
+        "x": 7730,
+        "y": 3332.0689655172414
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-cutting-tools",
+      "assetId": "stage12:quarry-fallen-cutting-tools",
+      "x": 4870,
+      "y": 3908.823529411765,
+      "scale": 0.45,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-west-quarry",
+        "x": 4870,
+        "y": 3908.823529411765
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-remaining-pillar",
+      "assetId": "act2:rock-column",
+      "x": 4500,
+      "y": 4054.090909090909,
+      "scale": 0.4,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-west-quarry",
+        "x": 4500,
+        "y": 4054.090909090909
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-carrier-rubble",
+      "assetId": "act2:rock-bank",
+      "x": 7810,
+      "y": 3292.312149043777,
+      "scale": 1.6,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-north-quarry",
+        "x": 7810,
+        "y": 3376.206896551724
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-bent-waymark-pine",
+      "assetId": "builtin:ravinePine",
+      "x": 6210,
+      "y": 4710.625,
+      "scale": 0.48,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-lower-ground",
+        "x": 6210,
+        "y": 4710.625
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-old-road-pine",
+      "assetId": "builtin:ancientPine",
+      "x": 9840,
+      "y": 2452.3809523809523,
+      "scale": 2.4,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-old-road",
+        "x": 9840,
+        "y": 2452.3809523809523
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-western-pine",
+      "assetId": "builtin:ravinePine",
+      "x": 4140,
+      "y": 4103.181818181818,
+      "scale": 0.49,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-west-quarry",
+        "x": 4140,
+        "y": 4103.181818181818
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-rear-root-pine",
+      "assetId": "builtin:ancientPine",
+      "x": 8500,
+      "y": 4375.740740740741,
+      "scale": 1.6,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-back-road",
+        "x": 8500,
+        "y": 4375.740740740741
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-natural-stone-0",
+      "assetId": "act2:rock-bank",
+      "x": 8790,
+      "y": 2796.5920959305463,
+      "scale": 1.4,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-old-road",
+        "x": 8790,
+        "y": 2870
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-natural-stone-1",
+      "assetId": "act2:rock-bank",
+      "x": 4600,
+      "y": 3953.8322285094164,
+      "scale": 1.25,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-west-quarry",
+        "x": 4600,
+        "y": 4019.375
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-natural-stone-2",
+      "assetId": "act2:rock-bank",
+      "x": 4370,
+      "y": 4954.32794498715,
+      "scale": 1.4,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-lower-ground",
+        "x": 4370,
+        "y": 5027.735849056604
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-natural-stone-3",
+      "assetId": "act2:rock-bank",
+      "x": 6060,
+      "y": 4617.565782807533,
+      "scale": 1,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-lower-ground",
+        "x": 6060,
+        "y": 4670
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-natural-stone-4",
+      "assetId": "act2:rock-bank",
+      "x": 7850,
+      "y": 4433.603089253053,
+      "scale": 1.15,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-back-road",
+        "x": 7850,
+        "y": 4493.90243902439
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "sq-art-natural-stone-5",
+      "assetId": "act2:rock-bank",
+      "x": 8100,
+      "y": 5763.457228509416,
+      "scale": 1.25,
+      "rotation": 0,
+      "support": {
+        "terrainId": "sq-lower-ground",
+        "x": 8100,
+        "y": 5829
+      },
+      "layer": "back",
+      "depthLayer": "L1"
+    },
+    {
+      "id": "quest-upper-quarry-mouth",
+      "assetId": "quest-redesign:opening",
+      "x": 8660,
+      "y": 4310.555555555556,
+      "scale": 1,
+      "rotation": 0,
+      "support": null,
+      "layer": "back",
+      "depthLayer": "L1"
+    }
+  ],
+  "retiredDecorativeIds": [
+    "sq-art-recessed-mother-rock"
+  ],
+  "unfulfilled": [
+    {
+      "id": "sq-art-cutting-tools",
+      "assetId": "stage12:quarry-fallen-cutting-tools",
+      "reason": "No matching shared fallen-pickaxe prop found; existing narrative tool drawing retained."
+    }
+  ],
+  "artFailures": [
+    "sq-north-quarry x5320..8652.5/y3310..4470: huge empty planes and unsupported massif reading",
+    "sq-lower-ground around x5740..7140/y4800+: empty front dominates normal and portrait",
+    "sq-west-quarry: common facet front/side/contact separation weaker than approved reference",
+    "sq-back-road x7110..8937.5/y4270..4840: hard right face and narrow shelf still separate-looking",
+    "ancientPine/ravinePine: sparser crowns and weaker trunk/crown support than approved stage1",
+    "sq-art-abandoned-cart around x7730: common cart remains partly occluded by existing rock-bank and overhead terrain",
+    "receiverStone preserves marker identity but tilted layered glyph appearance remains unmet",
+    "same-revision saved battles preserve their existing embedded decoration assets; no retroactive visual migration"
+  ],
+  "checks": {
+    "pass": true,
+    "baseline": "8a494854cbb54451491c6f556fc8b577816b57ef",
+    "terrainSha256": "5032b7a5537faacc5079ccae97d1aed2b59ab9715b94078e265ccbbb64de39e9",
+    "physicsStoryEventsRevisionActorsEnvironmentExact": true,
+    "compiledPhysicsExact": true,
+    "libraryExact": true,
+    "other29Exact": true,
+    "commonTerrainCalls": [
+      "sq-old-road",
+      "sq-north-quarry",
+      "sq-west-quarry",
+      "sq-west-turn-high",
+      "sq-west-turn-low",
+      "sq-lower-ground",
+      "sq-inner-joint",
+      "sq-back-road",
+      "sq-east-turn",
+      "sq-cave-buttress",
+      "sq-cave-roof",
+      "sq-turning-veil"
+    ],
+    "commonShapeCalls": [
+      "cart",
+      "act2:rock-column",
+      "act2:rock-bank",
+      "act2:rock-bank",
+      "act2:rock-bank",
+      "act2:rock-bank",
+      "act2:rock-bank",
+      "act2:rock-bank",
+      "act2:rock-bank"
+    ],
+    "assets": [
+      {
+        "id": "sq-art-bent-waymark-pine",
+        "assetId": "builtin:ravinePine",
+        "scale": 0.48,
+        "rotation": 0,
+        "compiledKind": "ravinePine"
+      },
+      {
+        "id": "sq-art-old-road-pine",
+        "assetId": "builtin:ancientPine",
+        "scale": 2.4,
+        "rotation": 0,
+        "compiledKind": "ancientPine"
+      },
+      {
+        "id": "sq-art-western-pine",
+        "assetId": "builtin:ravinePine",
+        "scale": 0.49,
+        "rotation": 0,
+        "compiledKind": "ravinePine"
+      },
+      {
+        "id": "sq-art-rear-root-pine",
+        "assetId": "builtin:ancientPine",
+        "scale": 1.6,
+        "rotation": 0,
+        "compiledKind": "ancientPine"
+      },
+      {
+        "id": "sq-art-waymark",
+        "assetId": "builtin:receiverStone",
+        "scale": 1.8,
+        "rotation": 0,
+        "compiledKind": "receiverStone"
+      },
+      {
+        "id": "sq-art-abandoned-cart",
+        "assetId": "cart",
+        "scale": 1.6,
+        "rotation": 0.504165961479153,
+        "compiledKind": "canonical-element"
+      },
+      {
+        "id": "sq-art-remaining-pillar",
+        "assetId": "act2:rock-column",
+        "scale": 0.4,
+        "rotation": 0,
+        "compiledKind": "canonical-element"
+      },
+      {
+        "id": "sq-art-carrier-rubble",
+        "assetId": "act2:rock-bank",
+        "scale": 1.6,
+        "rotation": 0,
+        "compiledKind": "canonical-element"
+      },
+      {
+        "id": "sq-art-natural-stone-0",
+        "assetId": "act2:rock-bank",
+        "scale": 1.4,
+        "rotation": 0,
+        "compiledKind": "canonical-element"
+      },
+      {
+        "id": "sq-art-natural-stone-1",
+        "assetId": "act2:rock-bank",
+        "scale": 1.25,
+        "rotation": 0,
+        "compiledKind": "canonical-element"
+      },
+      {
+        "id": "sq-art-natural-stone-2",
+        "assetId": "act2:rock-bank",
+        "scale": 1.4,
+        "rotation": 0,
+        "compiledKind": "canonical-element"
+      },
+      {
+        "id": "sq-art-natural-stone-3",
+        "assetId": "act2:rock-bank",
+        "scale": 1,
+        "rotation": 0,
+        "compiledKind": "canonical-element"
+      },
+      {
+        "id": "sq-art-natural-stone-4",
+        "assetId": "act2:rock-bank",
+        "scale": 1.15,
+        "rotation": 0,
+        "compiledKind": "canonical-element"
+      },
+      {
+        "id": "sq-art-natural-stone-5",
+        "assetId": "act2:rock-bank",
+        "scale": 1.25,
+        "rotation": 0,
+        "compiledKind": "canonical-element"
+      }
+    ],
+    "renderPurity": true,
+    "scope": "Shared renderer/asset connection and V3 state identity only; no art acceptance or new normal win claimed"
+  },
+  "savedBattleContinue": {
+    "pass": true,
+    "scope": "Actual V3 terminal saves Continue unchanged; no replay or additional win claimed",
+    "rows": [
+      {
+        "route": "lower",
+        "phase": "won",
+        "revision": 1,
+        "physicalResourcesAndStoryExact": true
+      },
+      {
+        "route": "upper",
+        "phase": "won",
+        "revision": 1,
+        "physicalResourcesAndStoryExact": true
+      }
+    ]
+  },
+  "masterPushed": false,
+  "pagesRequested": false,
+  "stage13Started": false,
+  "screens": [
+    {
+      "folder": "focus1-structure",
+      "sourceSha": "393f87ee10202add24d2939c98ab9f0040825c5e",
+      "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M shared/runtime/stage12-quarry-art.js\n M tools/environment/stage12-quarry-art.mjs\n M tools/map-forge/apply-stage12-quarry.mjs\n D web/data/campaign-shared.67fff7540f1b5000.json\n D web/data/campaign.2f0ee55f41d9426f.json\n D web/data/campaign.c8ff8e9b57e5192d.json\n D web/data/chapter-04-assets.43d781614f6ec078.json\n D web/data/chapter-12-assets.14797ad42b455ec4.json\n D web/data/chapter-12.60801a7c95ffaf11.json\n D web/data/chapter-12.9bf519f5d1e5c2a1.json\n D web/entries/game.238e5277cd9721de.html\n D web/entries/game.9611a4c15fd5843e.js\n D web/entries/game.dc4aea14f587c22d.js\n D web/entries/game.fe09e2a6b821e8c8.html\n D web/entries/workshop.353ff2e0ea86f595.js\n D web/entries/workshop.b01f6dafe1cb5914.js\n M web/manifest.json\n D web/runtime/campaign.20c3811bbff03feb.js\n D web/runtime/campaign.b860aff6cd0778ed.js\n?? web/data/campaign-shared.89b677aef537f53e.json\n?? web/data/campaign.7406f858a31d85d5.json\n?? web/data/campaign.c0552e9ad36baaff.json\n?? web/data/chapter-01-assets.560d0608c6a8609b.json\n?? web/data/chapter-12-assets.81fff07ef851cdf0.json\n?? web/data/chapter-12.3f9390562ea0b7c1.json\n?? web/data/chapter-12.e81e2caacc143a6d.json\n?? web/entries/game.2dbaa1112ee09725.js\n?? web/entries/game.45b7adc6df3817fe.html\n?? web/entries/game.9df24521296547e9.js\n?? web/entries/game.ad2ea20e8270d1de.html\n?? web/entries/workshop.66c49a61611dc61f.js\n?? web/entries/workshop.856436b20739d51a.js\n?? web/runtime/campaign.5ddc6c682f9955a7.js\n?? web/runtime/campaign.b6f00d3f75c9890f.js\n?? web/runtime/ordered-common-12.25c79cda6c8ca1c6.js\n?? web/runtime/ordered-common-13.d9c5c3ce79941a3b.js\n",
+      "views": [
+        {
+          "stage": 12,
+          "view": "west-overview",
+          "camera": {
+            "x": 3800,
+            "y": 4100,
+            "scale": 0.21176470588235294
+          }
+        },
+        {
+          "stage": 12,
+          "view": "center-overview",
+          "camera": {
+            "x": 6500,
+            "y": 4200,
+            "scale": 0.21176470588235294
+          }
+        },
+        {
+          "stage": 12,
+          "view": "east-overview",
+          "camera": {
+            "x": 9500,
+            "y": 4300,
+            "scale": 0.21176470588235294
+          }
+        }
+      ],
+      "directlyOpenedAll": true
+    },
+    {
+      "folder": "focus2-assets",
+      "sourceSha": "393f87ee10202add24d2939c98ab9f0040825c5e",
+      "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M shared/runtime/stage12-quarry-art.js\n M tools/environment/stage12-quarry-art.mjs\n M tools/map-forge/apply-stage12-quarry.mjs\n D web/data/campaign-shared.67fff7540f1b5000.json\n D web/data/campaign-shared.f3b2de1fda808805.json\n D web/data/campaign.2f0ee55f41d9426f.json\n D web/data/campaign.3c373fbf5beee102.json\n D web/data/campaign.c8ff8e9b57e5192d.json\n D web/data/chapter-01-assets.750f3b99b3a7ff3a.json\n D web/data/chapter-04-assets.43d781614f6ec078.json\n D web/data/chapter-12-assets.14797ad42b455ec4.json\n D web/data/chapter-12-assets.76d223767b6c9f16.json\n D web/data/chapter-12.60801a7c95ffaf11.json\n D web/data/chapter-12.9bf519f5d1e5c2a1.json\n D web/data/chapter-12.ec650ecc46cf0be8.json\n D web/entries/game.238e5277cd9721de.html\n D web/entries/game.54b79cb41e2fb675.html\n D web/entries/game.9611a4c15fd5843e.js\n D web/entries/game.bb7972f8b47da597.js\n D web/entries/game.dc4aea14f587c22d.js\n D web/entries/game.fe09e2a6b821e8c8.html\n D web/entries/workshop.353ff2e0ea86f595.js\n D web/entries/workshop.b01f6dafe1cb5914.js\n D web/entries/workshop.c8a72905f364796d.js\n M web/manifest.json\n D web/runtime/campaign.20c3811bbff03feb.js\n D web/runtime/campaign.6f8c1908e5234f5d.js\n D web/runtime/campaign.b860aff6cd0778ed.js\n D web/runtime/ordered-common-12.63ebcc8b3e26008d.js\n D web/runtime/ordered-common-13.9952d5a55bf9882a.js\n?? tests/stage12-common-full.mjs\n?? web/data/campaign-shared.89b677aef537f53e.json\n?? web/data/campaign.5d1fad6a7a3066a6.json\n?? web/data/campaign.7dba58485a3122e3.json\n?? web/data/campaign.c0552e9ad36baaff.json\n?? web/data/chapter-01-assets.560d0608c6a8609b.json\n?? web/data/chapter-12-assets.81fff07ef851cdf0.json\n?? web/data/chapter-12.6dee6e8398f66e56.json\n?? web/data/chapter-12.81eb5d5ec055b868.json\n?? web/data/chapter-12.e81e2caacc143a6d.json\n?? web/entries/game.45b7adc6df3817fe.html\n?? web/entries/game.6030220a2b1c9278.html\n?? web/entries/game.7e1ecb93fd7ae7c3.js\n?? web/entries/game.94a9bc42fc5dd88e.js\n?? web/entries/game.9df24521296547e9.js\n?? web/entries/game.a4ba2686f101d40b.html\n?? web/entries/workshop.66c49a61611dc61f.js\n?? web/entries/workshop.7f46c29503d4eff3.js\n?? web/entries/workshop.ad7f42597a4beaac.js\n?? web/runtime/campaign.125c39af6fa6d762.js\n?? web/runtime/campaign.5ddc6c682f9955a7.js\n?? web/runtime/campaign.d34326b9729fa8ed.js\n?? web/runtime/ordered-common-12.25c79cda6c8ca1c6.js\n?? web/runtime/ordered-common-13.d9c5c3ce79941a3b.js\n",
+      "views": [
+        {
+          "stage": 12,
+          "view": "central-normal",
+          "camera": {
+            "x": 6400,
+            "y": 4800,
+            "scale": 0.65
+          }
+        },
+        {
+          "stage": 12,
+          "view": "old-road-party",
+          "camera": {
+            "x": 10200,
+            "y": 2200,
+            "scale": 0.65
+          }
+        },
+        {
+          "stage": 12,
+          "view": "carrier-cart",
+          "camera": {
+            "x": 7730,
+            "y": 3250,
+            "scale": 0.8
+          }
+        },
+        {
+          "stage": 12,
+          "view": "western-pine",
+          "camera": {
+            "x": 4500,
+            "y": 4030,
+            "scale": 0.65
+          }
+        }
+      ],
+      "directlyOpenedAll": true
+    },
+    {
+      "folder": "focus3-camera",
+      "sourceSha": "0e585709bf8c17bf2b98904060aa40378f816b16",
+      "workingTree": "",
+      "views": [
+        {
+          "stage": 12,
+          "view": "central-max",
+          "camera": {
+            "x": 6210,
+            "y": 4500,
+            "scale": 1.65
+          }
+        },
+        {
+          "stage": 12,
+          "view": "central-mobile",
+          "camera": {
+            "x": 6300,
+            "y": 4600,
+            "scale": 0.55
+          }
+        },
+        {
+          "stage": 12,
+          "view": "gate-landscape",
+          "camera": {
+            "x": 7480,
+            "y": 4870,
+            "scale": 0.55
+          }
+        },
+        {
+          "stage": 12,
+          "view": "western-mobile",
+          "camera": {
+            "x": 4140,
+            "y": 4010,
+            "scale": 0.55
+          }
+        }
+      ],
+      "directlyOpenedAll": true
+    },
+    {
+      "folder": "final",
+      "sourceSha": "0e585709bf8c17bf2b98904060aa40378f816b16",
+      "workingTree": "",
+      "views": [
+        {
+          "stage": 12,
+          "view": "west-overview",
+          "camera": {
+            "x": 3800,
+            "y": 4100,
+            "scale": 0.21176470588235294
+          }
+        },
+        {
+          "stage": 12,
+          "view": "center-overview",
+          "camera": {
+            "x": 6500,
+            "y": 4200,
+            "scale": 0.21176470588235294
+          }
+        },
+        {
+          "stage": 12,
+          "view": "east-overview",
+          "camera": {
+            "x": 9500,
+            "y": 4300,
+            "scale": 0.21176470588235294
+          }
+        },
+        {
+          "stage": 12,
+          "view": "central-normal",
+          "camera": {
+            "x": 6400,
+            "y": 4800,
+            "scale": 0.65
+          }
+        },
+        {
+          "stage": 12,
+          "view": "old-road-party",
+          "camera": {
+            "x": 10200,
+            "y": 2200,
+            "scale": 0.65
+          }
+        },
+        {
+          "stage": 12,
+          "view": "carrier-cart",
+          "camera": {
+            "x": 7730,
+            "y": 3250,
+            "scale": 0.8
+          }
+        },
+        {
+          "stage": 12,
+          "view": "central-max",
+          "camera": {
+            "x": 6210,
+            "y": 4500,
+            "scale": 1.65
+          }
+        },
+        {
+          "stage": 12,
+          "view": "central-mobile",
+          "camera": {
+            "x": 6300,
+            "y": 4600,
+            "scale": 0.55
+          }
+        }
+      ],
+      "directlyOpenedAll": true
+    },
+    {
+      "folder": "before-v3",
+      "sourceSha": "10d7442d60a4faa0da6db6c9b6ea6eb8d4ae7da9",
+      "workingTree": "",
+      "views": [
+        {
+          "stage": 12,
+          "view": "west-overview",
+          "camera": {
+            "x": 3800,
+            "y": 4100,
+            "scale": 0.21176470588235294
+          }
+        },
+        {
+          "stage": 12,
+          "view": "center-overview",
+          "camera": {
+            "x": 6500,
+            "y": 4200,
+            "scale": 0.21176470588235294
+          }
+        },
+        {
+          "stage": 12,
+          "view": "east-overview",
+          "camera": {
+            "x": 9500,
+            "y": 4300,
+            "scale": 0.21176470588235294
+          }
+        },
+        {
+          "stage": 12,
+          "view": "central-normal",
+          "camera": {
+            "x": 6400,
+            "y": 4800,
+            "scale": 0.65
+          }
+        },
+        {
+          "stage": 12,
+          "view": "old-road-party",
+          "camera": {
+            "x": 10200,
+            "y": 2200,
+            "scale": 0.65
+          }
+        },
+        {
+          "stage": 12,
+          "view": "carrier-cart",
+          "camera": {
+            "x": 7730,
+            "y": 3250,
+            "scale": 0.8
+          }
+        },
+        {
+          "stage": 12,
+          "view": "central-max",
+          "camera": {
+            "x": 6210,
+            "y": 4500,
+            "scale": 1.65
+          }
+        },
+        {
+          "stage": 12,
+          "view": "central-mobile",
+          "camera": {
+            "x": 6300,
+            "y": 4600,
+            "scale": 0.55
+          }
+        }
+      ],
+      "directlyOpenedAll": true
+    }
+  ],
+  "screenshotSha256": {
+    "final/stage12-central-mobile.png": "9e1a8e52c52fbb2d9f1d649fd392722761e353d44f399c3e5e1b041259df7c76",
+    "final/stage12-central-normal.png": "b1226bd943fc86a462dc299bb84bd640a3b47077cbca07cb9e9284a7bcf6ed71",
+    "final/stage12-central-max.png": "56a949beea163bb5165e9acd930ea89ef59440c093d0eaa0a288a5e40939a955",
+    "final/stage12-west-overview.png": "59d34905e10dc451aa11544d7436031657c6cd25288eddced9847faeb8550d76",
+    "final/stage12-center-overview.png": "d5b5c0a9f752c516e472b087a35c9a524e5f7c51c7d4b12f28da5f8884fcbf8a",
+    "final/stage12-old-road-party.png": "f3bea5a9b0149784c92974094d9995180c24a4c07fc1ac3d42e5f142aa3726d8",
+    "final/stage12-east-overview.png": "e238c85659ad19b20c61bddfa5a61663579ef2f35cb5b9845a62430273efa9a0",
+    "final/stage12-carrier-cart.png": "59861b8f01822f26f5eecb3336971b2f7a082805f2567219bddf34d13f62fb4e",
+    "before-v3/stage12-central-mobile.png": "ab21a534f439e9687e240380b216770692c92b80bfd9dc6c6803a975f9bc699b",
+    "before-v3/stage12-central-normal.png": "f4a5c1ae3f16ee6e502ea875cc17819904ec8cb15cfe10de567b550ff1e1c604",
+    "before-v3/stage12-central-max.png": "4e458ae2b78a2c6d3cd25d451d966c6b3829161cdb928c97af8f331db925e16c",
+    "before-v3/stage12-west-overview.png": "dd6772fb765a3c152cdf7d2d747bc8dd8ab1100bc4d520af95eb05ef872732b6",
+    "before-v3/stage12-center-overview.png": "81f22d7e90a4cda8190de42bb124cd59aa2e3833771067655363d467ee8c3bc9",
+    "before-v3/stage12-old-road-party.png": "993c086fa9eec1e0f9f58007b09d98a8b633badd926d2e6fe223b891d80a11f0",
+    "before-v3/stage12-east-overview.png": "5896bda637e895a072a3712ec15e0b8e8860474d119eeae986e9dae71f641202",
+    "before-v3/stage12-carrier-cart.png": "8256bca63ba8549b7e522885eb9e1c137b2fbaf2bbec8eb278b8ca0657d1acc0",
+    "focus2-assets/stage12-central-normal.png": "b1226bd943fc86a462dc299bb84bd640a3b47077cbca07cb9e9284a7bcf6ed71",
+    "focus2-assets/stage12-old-road-party.png": "f3bea5a9b0149784c92974094d9995180c24a4c07fc1ac3d42e5f142aa3726d8",
+    "focus2-assets/stage12-western-pine.png": "493b4d4b1dab832a3303fc9d0e471ab6c23b91f1169ee2a7e5174a5a6d937f91",
+    "focus2-assets/stage12-carrier-cart.png": "59861b8f01822f26f5eecb3336971b2f7a082805f2567219bddf34d13f62fb4e",
+    "reference/stage01-normal-51e0b2b.png": "297382d4c7b605283a6ff27035eb3d61df6cc2dcc548321d1010a2c475161e3d",
+    "focus3-camera/stage12-central-mobile.png": "9e1a8e52c52fbb2d9f1d649fd392722761e353d44f399c3e5e1b041259df7c76",
+    "focus3-camera/stage12-central-max.png": "56a949beea163bb5165e9acd930ea89ef59440c093d0eaa0a288a5e40939a955",
+    "focus3-camera/stage12-western-mobile.png": "b9dded671be5d053d6a12a0be913eb07b69fe7a95f898cdc0bf9ec6c5b76b3a6",
+    "focus3-camera/stage12-gate-landscape.png": "70176a2cbf4a52a31db2a94172da57f94d0fecb34d74a4660eb7f36dfe545790",
+    "focus1-structure/stage12-west-overview.png": "ee56955a93c55905a68894a3de147ed890e497cb830ae7e9fc697b017a942815",
+    "focus1-structure/stage12-center-overview.png": "8d2e98f5c3c371566e065f91f0b6cbdb26845d45f49ef2544fa49d48af15a489",
+    "focus1-structure/stage12-east-overview.png": "3f7aa49a1107c426faa36ebee1bc94176c3955c5f835880af78066dddc8cdb65"
+  }
+}

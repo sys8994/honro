@@ -1,0 +1,47 @@
+{
+  "label": "full-common-pine-choice",
+  "url": "http://127.0.0.1:8860/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "393f87ee10202add24d2939c98ab9f0040825c5e",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M shared/runtime/stage12-quarry-art.js\n M tools/environment/stage12-quarry-art.mjs\n M tools/map-forge/apply-stage12-quarry.mjs\n D web/data/campaign-shared.67fff7540f1b5000.json\n D web/data/campaign-shared.f3b2de1fda808805.json\n D web/data/campaign.2f0ee55f41d9426f.json\n D web/data/campaign.3c373fbf5beee102.json\n D web/data/campaign.c8ff8e9b57e5192d.json\n D web/data/chapter-01-assets.750f3b99b3a7ff3a.json\n D web/data/chapter-04-assets.43d781614f6ec078.json\n D web/data/chapter-12-assets.14797ad42b455ec4.json\n D web/data/chapter-12-assets.76d223767b6c9f16.json\n D web/data/chapter-12.60801a7c95ffaf11.json\n D web/data/chapter-12.9bf519f5d1e5c2a1.json\n D web/data/chapter-12.ec650ecc46cf0be8.json\n D web/entries/game.238e5277cd9721de.html\n D web/entries/game.54b79cb41e2fb675.html\n D web/entries/game.9611a4c15fd5843e.js\n D web/entries/game.bb7972f8b47da597.js\n D web/entries/game.dc4aea14f587c22d.js\n D web/entries/game.fe09e2a6b821e8c8.html\n D web/entries/workshop.353ff2e0ea86f595.js\n D web/entries/workshop.b01f6dafe1cb5914.js\n D web/entries/workshop.c8a72905f364796d.js\n M web/manifest.json\n D web/runtime/campaign.20c3811bbff03feb.js\n D web/runtime/campaign.6f8c1908e5234f5d.js\n D web/runtime/campaign.b860aff6cd0778ed.js\n D web/runtime/ordered-common-12.63ebcc8b3e26008d.js\n D web/runtime/ordered-common-13.9952d5a55bf9882a.js\n?? tests/stage12-common-full.mjs\n?? web/data/campaign-shared.89b677aef537f53e.json\n?? web/data/campaign.5d1fad6a7a3066a6.json\n?? web/data/campaign.7dba58485a3122e3.json\n?? web/data/campaign.c0552e9ad36baaff.json\n?? web/data/chapter-01-assets.560d0608c6a8609b.json\n?? web/data/chapter-12-assets.81fff07ef851cdf0.json\n?? web/data/chapter-12.6dee6e8398f66e56.json\n?? web/data/chapter-12.81eb5d5ec055b868.json\n?? web/data/chapter-12.e81e2caacc143a6d.json\n?? web/entries/game.45b7adc6df3817fe.html\n?? web/entries/game.6030220a2b1c9278.html\n?? web/entries/game.7e1ecb93fd7ae7c3.js\n?? web/entries/game.94a9bc42fc5dd88e.js\n?? web/entries/game.9df24521296547e9.js\n?? web/entries/game.a4ba2686f101d40b.html\n?? web/entries/workshop.66c49a61611dc61f.js\n?? web/entries/workshop.7f46c29503d4eff3.js\n?? web/entries/workshop.ad7f42597a4beaac.js\n?? web/runtime/campaign.125c39af6fa6d762.js\n?? web/runtime/campaign.5ddc6c682f9955a7.js\n?? web/runtime/campaign.d34326b9729fa8ed.js\n?? web/runtime/ordered-common-12.25c79cda6c8ca1c6.js\n?? web/runtime/ordered-common-13.d9c5c3ce79941a3b.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "central-normal",
+      "camera": {
+        "x": 6400,
+        "y": 4800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "old-road-party",
+      "camera": {
+        "x": 10200,
+        "y": 2200,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "carrier-cart",
+      "camera": {
+        "x": 7730,
+        "y": 3250,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 12,
+      "view": "western-pine",
+      "camera": {
+        "x": 4500,
+        "y": 4030,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

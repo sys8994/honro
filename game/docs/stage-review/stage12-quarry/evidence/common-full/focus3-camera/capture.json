@@ -1,0 +1,47 @@
+{
+  "label": "full-common-focus3-final-source",
+  "url": "http://127.0.0.1:8860/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "0e585709bf8c17bf2b98904060aa40378f816b16",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "central-max",
+      "camera": {
+        "x": 6210,
+        "y": 4500,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "central-mobile",
+      "camera": {
+        "x": 6300,
+        "y": 4600,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "gate-landscape",
+      "camera": {
+        "x": 7480,
+        "y": 4870,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "western-mobile",
+      "camera": {
+        "x": 4140,
+        "y": 4010,
+        "scale": 0.55
+      }
+    }
+  ],
+  "errors": []
+}
