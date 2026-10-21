@@ -54,7 +54,7 @@ export async function authorStage12Quarry(project,g,{roster='density38e10',art=t
  s.initialState.honroQuarryContent=content;s.initialState.honroAct2Steps=clone(old.stage.initialState.honroAct2Steps);s.initialState.honroState=clone(old.stage.initialState.honroState);
  const entry=(surfaceId,x,side,warning,alternates=[])=>({x,y:quarryY(surfaceId,x),support:surfaceId,spacing:130,side,warning,alternates:alternates.map(x=>({x,y:quarryY(surfaceId,x),support:surfaceId,spacing:130,side}))});
  s.initialState.honroQuarrySpec={gateTerrainId:'sq-turning-veil',entries:{'hold-road-0':entry('sq-lower-ground',5480,'west-return','아래 회귀길에서 수레 셋의 바퀴가 울린다. 다음 행동 뒤 서쪽 진입로를 살피세요.',[5180]),'hold-road-3':entry('sq-back-road',7520,'rear-road','길표 뒤의 높은 바윗길에서 수레 셋이 돌아 나온다. 다음 행동 뒤 뒤쪽 굽이를 살피세요.',[7780]),'hold-road-6':entry('sq-lower-ground',5960,'west-return','아래 회귀길의 안쪽 굽이에서 마지막 수레 둘이 올라온다. 다음 행동 뒤 서쪽 운반길을 살피세요.',[5700])}};
- authorQuarryEncounters(g,s,{roster});if(art){const {applyStage12QuarryArt}=await import('../environment/stage12-quarry-art.mjs');await applyStage12QuarryArt(p);}
+ authorQuarryEncounters(g,s,{roster});if(art){const {applyStage12QuarryArt}=await import('../environment/stage12-quarry-art.mjs');await applyStage12QuarryArt(p,{sourceStage:current});}
  // Later objective/narrative authors own the two exits, their guard duty,
  // entrance landmark and per-run prose. Geometry/encounter replay must not
  // restore the retired mandatory defense and extermination contract.
@@ -62,7 +62,7 @@ export async function authorStage12Quarry(project,g,{roster='density38e10',art=t
   s.elements.push(...quest.elements.filter(e=>!e.id.startsWith('sq-art-')));
   for(const u of s.units){const guard=quest.units.find(q=>q.id===u.id)?.stageOverrides?.honroRouteGuard;if(guard)u.stageOverrides.honroRouteGuard=clone(guard);}
  }
- if(quest?.design?.quarryArt?.commonPilot){const {applyStage12CommonPilot}=await import('../environment/stage12-common-pilot.mjs');applyStage12CommonPilot(p);}
+ if(s.design.quarryArt?.commonFull)s.design.quarryArt.artAssetIds=s.elements.map(e=>e.assetId);
  // A stage author must not normalize every chapter through today's schema:
  // that would reapply old scene normalization to already restored Act1 maps.
  const out=g.HonroTerrainDomain.author(p),errors=g.HonroMaps.validate(out).filter(e=>e.level==='err');if(errors.length)throw Error(errors.map(e=>e.text).join('\n'));

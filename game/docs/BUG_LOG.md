@@ -1,3 +1,9 @@
+## 2026-10-21 — 12장 전체 공통 렌더 연결 후보 (미술 미충족·통합 보류)
+
+비교용 직사각 마스크와 12장 전용 terrain forms/exposures/rearFaces·소나무 패스를 제거했다. V3 지형 전체는 기존 Act2SpatialArt 경로를 사용하며 장식 14개는 활성 ancientPine/ravinePine/receiverStone/cart/act2 rock-bank/rock-column ID를 직접 참조한다. 지지 접점은 원래 좌표를 유지하고 reference.foot을 보정했다. 수레는 기존 지지 경사로 회전한다. 전용 후면 모암 장식 1개만 퇴역했고, 맞는 공통 도구가 없어 쓰러진 곡괭이와 서사 신발 그림은 미충족 예외로 보존한다. 기존 Library 정의는 저장 호환을 위해 변경하지 않았다.
+
+V3 물리·행위자·이벤트·환경·revision과 타29장, 컴파일 물리 동일성·실제 공통 호출·렌더 순수성, author 2회 동일성 및 build 확인. 실제 승인 기준 51e0b2b 1장과 비교했으며 거대한 빈 암면, 빈약한 수관, 수레 가림 때문에 미술 합격이 아니다. 정상 전투 완주를 이번 시각 연결 검사로 재주장하지 않는다. 상세 증거는 stage-review/stage12-quarry/COMMON_FULL.md에 남긴다. 부모 지시로 master/Pages/13장은 보류한다.
+
 ## 2026-10-21 — 스킬 UI 복원과 최신 인트로·곡명 통합
 
 부모의 선행 통합 완료 확인 후 `eab4fdbbeba902e7e996ea73b57e2211bc2c5318` master를 스킬 복원 브랜치에 병합했다. 충돌은 생성 HTML/index/manifest 4개에만 있었으며 최신 master 참조를 기준으로 원본에서 `npm run build`를 다시 실행했다. 인트로·음악·곡명 원본은 해당 master와 바이트 동일하다. build·camp-skill-ux·web-split·music-titles·실제 브라우저 139개 확인을 다시 통과했다. 통합 캡처/결과는 `art-review/skill-ui-restore-20261021/integrated/`에 있다. 기존 23장 성장 회귀 실패는 여전히 별도 이슈이며 검사를 숨기거나 assertion을 약화하지 않았다. master push 후 Pages 배포 및 실제 공개 화면을 확인한다.
