@@ -57,14 +57,17 @@ export async function applyAct1SceneComposition(project){
    place(st,'valley-rock-foot','env:rock',1430,2860,.7,'canyon-ground');
    place(st,'east-rock-foot','env:rock',3950,2860,.85,'canyon-ground');
    st.design.geologyComposition={version:1,rearDatums:[
-    {id:'west-outer-foot',x:-930,y:2830},{id:'east-outer-foot',x:5700,y:2830}
+    {id:'west-outer-foot',x:-930,y:2830},{id:'east-outer-foot',x:5700,y:2830},
+    {id:'west-distant-foot',x:-2770,y:2830},{id:'east-distant-foot',x:7420,y:2830}
    ],instances:[
-    {id:'geology-west-outer',assetId:'geology:granite-vertical',scale:1.1,support:{datumId:'west-outer-foot'}},
+    {id:'geology-west-distant',assetId:'geology:granite-vertical',scale:1.04,support:{datumId:'west-distant-foot'}},
+    {id:'geology-east-distant',assetId:'geology:granite-vertical-cleft',scale:1.1,support:{datumId:'east-distant-foot'}},
+    {id:'geology-west-outer',assetId:'geology:granite-vertical-cleft',scale:1.1,support:{datumId:'west-outer-foot'}},
     {id:'geology-east-outer',assetId:'geology:granite-vertical',scale:1.06,support:{datumId:'east-outer-foot'}},
     {id:'geology-west-outer-foot',assetId:'geology:granite-foundation',scale:1,support:{datumId:'west-outer-foot'}},
     {id:'geology-east-outer-foot',assetId:'geology:granite-foundation',scale:1,support:{datumId:'east-outer-foot'}},
     {id:'geology-west-ridge',assetId:'geology:granite-vertical',scale:1,support:{terrainId:'canyon-ground',at:.15}},
-    {id:'geology-east-ridge',assetId:'geology:granite-vertical',scale:.97,support:{terrainId:'canyon-ground',at:.95}},
+    {id:'geology-east-ridge',assetId:'geology:granite-vertical-cleft',scale:1.04,support:{terrainId:'canyon-ground',at:.95}},
     {id:'geology-west-foot',assetId:'geology:granite-foundation',scale:1,support:{terrainId:'canyon-ground',at:.16}},
     {id:'geology-east-foot',assetId:'geology:granite-foundation',scale:.9,support:{terrainId:'canyon-ground',at:.94}},
     ...[
@@ -72,7 +75,8 @@ export async function applyAct1SceneComposition(project){
      ['west-middle','left-descent-stone-mid',.5,.85],['west-lower','left-descent-stone-low',.5,.7],
      ['east-crown','right-cliff-ground',.5,1],['east-middle','right-descent-stone-mid',.5,.85],
      ['east-lower','right-descent-stone-low',.5,.78]
-    ].map(([id,terrainId,at,scale])=>({id:'geology-'+id,assetId:'geology:granite-ledge-neck',scale,socket:'ledge-back',support:{terrainId,at,offsetY:100*scale}}))
+    ].map(([id,terrainId,at,scale])=>({id:'geology-'+id,assetId:'geology:granite-ledge-neck',scale,socket:'ledge-back',support:{terrainId,at,offsetY:58*scale}})),
+    ...['left-tree-branch-upper','left-tree-branch-middle','left-tree-branch-lower','right-tree-branch-upper','right-tree-branch-lower'].map((terrainId,i)=>({id:'geology-root-'+terrainId,assetId:'wood:pine-wall-root',scale:i===1?1.2:1,mirrorX:terrainId.startsWith('right'),socket:'root-mouth',support:{terrainId,at:terrainId.startsWith('right')?1:0,offsetY:0}}))
    ]};
    st.design.stage2LayeredCommonArt={version:1,cliffMaterial:'rock/cliff',pineAssetId:'act1-scene:rooted-pine',footAssetId:'env:rock'};
    continue;

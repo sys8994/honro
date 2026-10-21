@@ -4,11 +4,21 @@
 const cache=new WeakMap();
 function composition(b){if(b.honroMap?.geologyComposition)return b.honroMap.geologyComposition;if(b.honroCustom||!b.honroCanonical||b.honroCampaignMapRevision!==G.HonroCampaignMapRevision.current(b.honroStage))return null;return G.HONRO_PROJECT.stages.find(s=>s.metadata?.stageId===b.honroStage)?.design?.geologyComposition||null;}
 function prepare(b){const source=composition(b);if(!source)return{views:[]};const old=cache.get(b);if(old?.source===source&&old.version===b.sceneVersion&&old.terrain===b.terrain)return old;const views=[];
- for(const i of source.instances){const asset=G.HONRO_PROJECT.library.find(a=>a.id===i.assetId),t=b.terrain.find(t=>t.id===i.support.terrainId&&!t.broken),datum=source.rearDatums?.find(d=>d.id===i.support.datumId);if(!asset||(!t&&!datum))continue;const scale=i.scale??1,[lo,hi]=asset.reference.scaleRange;if(scale<lo||scale>hi)throw Error('Geology scale outside native contract: '+i.id);const socket=i.socket?asset.sockets.find(s=>s.id===i.socket):asset.reference.foot;if(!socket)throw Error('Missing geology socket: '+i.id);const contactX=datum?datum.x:t.x+t.w*i.support.at,contactY=datum?datum.y:G.HONRO_CORE.topAt(t,contactX,t.y),x=contactX-socket.x*scale,y=contactY+(i.support.offsetY||0)-socket.y*scale;
-  views.push({id:i.id,kind:'canonical-element',asset,assetId:asset.id,x,y,scale,rotation:0,layer:'back',depthLayer:'L1',attachment:{terrainId:t?.id,datumId:datum?.id,contactX,contactY,socket:i.socket||'foot'}});
+ for(const i of source.instances){const asset=G.HONRO_PROJECT.library.find(a=>a.id===i.assetId),t=b.terrain.find(t=>t.id===i.support.terrainId&&!t.broken),datum=source.rearDatums?.find(d=>d.id===i.support.datumId);if(!asset||(!t&&!datum))continue;const scale=i.scale??1,[lo,hi]=asset.reference.scaleRange;if(scale<lo||scale>hi)throw Error('Geology scale outside native contract: '+i.id);const socket=i.socket?asset.sockets.find(s=>s.id===i.socket):asset.reference.foot;if(!socket)throw Error('Missing geology socket: '+i.id);const contactX=datum?datum.x:t.x+t.w*i.support.at,contactY=datum?datum.y:G.HONRO_CORE.topAt(t,contactX,t.y),x=contactX-socket.x*scale*(i.mirrorX?-1:1),y=contactY+(i.support.offsetY||0)-socket.y*scale;
+  views.push({id:i.id,kind:'canonical-element',asset,assetId:asset.id,x,y,scale,mirrorX:!!i.mirrorX,rotation:0,layer:'back',depthLayer:'L1',attachment:{terrainId:t?.id,datumId:datum?.id,contactX,contactY,socket:i.socket||'foot'}});
  }
  const q={source,version:b.sceneVersion,terrain:b.terrain,views};cache.set(b,q);return q;
 }
-function draw(scene,c,b){for(const view of prepare(b).views)scene.landmark(c,view);}
-G.HonroGeologyArt={composition,prepare,draw};
+function draw(scene,c,b,accept){for(const view of prepare(b).views){if(accept&&!accept(view))continue;if(view.mirrorX){c.save();c.translate(view.x*2,0);c.scale(-1,1);scene.landmark(c,view);c.restore();}else scene.landmark(c,view);}}
+const faceCache=new WeakMap(),PALETTE=Object.freeze({front:'#5e727c',side:'#344d5a',light:'#687b84',rim:'#9ba89e',wood:'#3c463b',woodLight:'#6d7060'});
+function surfacePaths(t,b){const q=G.HonroAct1SpatialArt.prepareTerrain(t,b),old=faceCache.get(t);if(old?.source===q)return old;const native=b.terrain.find(p=>p.id===t.id)||t,{x,y,w,h}=native,p=new Path2D(),light=new Path2D();
+ // Broad wood faces use the actual source cap, never a camera-expanded bbox.
+ p.moveTo(x+w*.73,y);p.lineTo(x+w,y);p.lineTo(x+w,y+h);p.lineTo(x+w*.57,y+h);p.quadraticCurveTo(x+w*.75,y+h*.55,x+w*.73,y);p.closePath();
+ light.moveTo(x,y);light.lineTo(x+w*.37,y);light.quadraticCurveTo(x+w*.28,y+h*.17,x+w*.11,y+h*.31);light.lineTo(x,y+h*.48);light.closePath();
+ const v={source:q,side:p,light};faceCache.set(t,v);return v;}
+function drawSurface(scene,c,t,b,unit=1,rearPaint){const p=surfacePaths(t,b),q=p.source,wood=t.mat==='wood';c.save();if(wood||!rearPaint){c.fillStyle=wood?PALETTE.wood:PALETTE.front;c.fill(q.shape);}c.clip(q.shape);
+ if(wood){c.fillStyle='#26342e';c.fill(p.side);c.fillStyle=PALETTE.woodLight;c.fill(p.light);}
+ else if(rearPaint)rearPaint();else draw(scene,c,b,v=>{if(v.asset.category!=='rock')return false;const a=v.asset.bounds,z=v.scale;return v.x+(a.x+a.w)*z>=t.x&&v.x+a.x*z<=t.x+t.w&&v.y+(a.y+a.h)*z>=t.y&&v.y+a.y*z<=t.y+t.h;});
+ c.restore();c.save();c.strokeStyle=wood?'#a5a583':PALETTE.rim;c.lineWidth=1.05*unit;c.lineJoin='round';c.stroke(q.rim);c.restore();}
+G.HonroGeologyArt={composition,prepare,draw,drawSurface,PALETTE};
 })(globalThis);
