@@ -10,7 +10,7 @@ def check(name,ok,detail=None):
 
 def check_label(page,name,track):
     page.wait_for_function(r'''()=>{const a=HonroApp,m=a.audio.music,l=document.getElementById('bgm-now-playing');
-        return !l.hidden&&m.current?.currentTime>.05&&l.textContent==='BGM · '+decodeURIComponent(new URL(m.current.currentSrc).pathname.split('/').pop()).replace(/\.mp3$/i,'');}''')
+        return !l.hidden&&m.current?.currentTime>.05&&l.textContent===HonroMusicTitles.titleFor(m.current.currentSrc);}''')
     source=page.evaluate('HonroApp.audio.music.current.currentSrc')
     filename=unquote(urlsplit(source).path.rsplit('/',1)[-1])
     check(name,filename.startswith(f'{track:02} '),page.locator('#bgm-now-playing').inner_text())

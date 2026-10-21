@@ -859,9 +859,7 @@
             if(!audio){if(!label.hidden)label.hidden=true;return;}
             const source=audio.currentSrc||audio.src;
             if(source!==this.musicLabelSource){
-                let name=source.split('/').pop().split(/[?#]/)[0];
-                try{name=decodeURIComponent(name);}catch{/* Keep a malformed filename readable. */}
-                label.textContent=`BGM · ${name.replace(/\.mp3$/i,'')}`;
+                label.textContent=G.HonroMusicTitles.titleFor(source);
                 this.musicLabelSource=source;
             }
             if(label.hidden)label.hidden=false;

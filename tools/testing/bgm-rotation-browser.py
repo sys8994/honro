@@ -13,6 +13,7 @@ with sync_playwright() as p:
   c=b.new_context(viewport={'width':width,'height':height},is_mobile=width<700,has_touch=width<700);pg=c.new_page();errors=[];pg.on('pageerror',lambda e:errors.append(str(e)));pg.goto(story_base_url()+'/HONRO.html');pg.wait_for_function('document.documentElement.dataset.honroReady');pg.get_by_role('button',name='설정',exact=True).click()
   def playing(n):
    pg.wait_for_function('n=>HonroApp.audio.music.status().track===n&&HonroApp.audio.music.current.currentTime>.05&&!HonroApp.audio.music.current.paused',arg=n)
+   pg.wait_for_function('(title)=>document.getElementById("bgm-now-playing").textContent===title',arg=['떠나지 못한 이들을 위해','고갯길의 징조','머리 위의 불길','재가 흩날리는 밤','산 자와 남은 자'][n-1])
    return pg.evaluate('HonroApp.audio.music.current.currentSrc')
   playing(1);pg.locator('#modal button.close').click();pg.evaluate('HonroApp.debugMode=true;HonroApp.launch(1)');playing(2)
   order=[2]
