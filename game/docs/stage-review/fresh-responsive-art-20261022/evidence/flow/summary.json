@@ -1,0 +1,72 @@
+{
+  "sourceCommit": "d79bb74b0e2fed478c98e5b71eb4ba45b2765fe6",
+  "rows": [
+    {
+      "stage": 10,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "web/graphics/ending-10-image.6a631739bb1b7338.webp",
+        "fit": "cover"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    },
+    {
+      "stage": 20,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "web/graphics/ending-20-image.63c3c8526af3bdfe.webp",
+        "fit": "cover"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    },
+    {
+      "stage": 30,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "web/graphics/ending-30-image.81e1aac5338adfcf.webp",
+        "fit": "cover"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    }
+  ],
+  "initialLazyLoad": true,
+  "imageRequests": [
+    "http://127.0.0.1:37807/web/graphics/ending-10-image.6a631739bb1b7338.webp",
+    "http://127.0.0.1:37807/web/graphics/ending-10-image.6a631739bb1b7338.webp",
+    "http://127.0.0.1:37807/web/graphics/ending-10-portraitImage.5520e02971f9a436.webp",
+    "http://127.0.0.1:37807/web/graphics/ending-20-image.63c3c8526af3bdfe.webp",
+    "http://127.0.0.1:37807/web/graphics/ending-20-image.63c3c8526af3bdfe.webp",
+    "http://127.0.0.1:37807/web/graphics/ending-20-portraitImage.ba7ff960c89ed370.webp",
+    "http://127.0.0.1:37807/web/graphics/ending-30-image.81e1aac5338adfcf.webp",
+    "http://127.0.0.1:37807/web/graphics/ending-30-image.81e1aac5338adfcf.webp",
+    "http://127.0.0.1:37807/web/graphics/ending-30-portraitImage.51fd29f411387d85.webp",
+    "http://127.0.0.1:37807/web/graphics/ending-10-portraitImage.5520e02971f9a436.webp",
+    "http://127.0.0.1:37807/web/graphics/ending-10-portraitImage.5520e02971f9a436.webp"
+  ],
+  "pageerrors": [],
+  "httpFailures": [],
+  "checkpointTraversal": {
+    "source": "game/docs/stage-review/act-endings/evidence/normal-21-escape-save.json",
+    "round": 21,
+    "passed": true
+  },
+  "limits": [
+    "Chromium synthetic desktop/touch events, not physical devices/Safari.",
+    "Act20/30 terminal flow setup is a fixture, not a combat proof."
+  ]
+}

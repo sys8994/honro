@@ -1,6 +1,8 @@
 # 새 인트로·막 엔딩 실제 브라우저 검수
 
-상태: 통합 브랜치에서 검수 진행 중. master 병합과 Pages 배포는 하지 않았다. 새 그림의 최종 부모 미술 판정은 별도다.
+상태: 새 그림 통합, 3회 집중 미술 검수와 별도 최종 종합 검수 및 관련 실제 브라우저 기능 검사 완료. `integration/fresh-responsive-art-20261022`에 커밋·푸시했다. master 병합과 Pages 배포는 하지 않았다. 부모의 최종 미술 판정을 기다리는 상태이며 작업 차단은 없다.
+
+최종 화면부터 확인: [세로 인트로](final/intro-390x844.jpg) · [세로 1막](final/act1-390x844.jpg) · [세로 2막](final/act2-390x844.jpg) · [세로 3막](final/act3-390x844.jpg) · [가로 인트로](final/intro-1440x900.jpg) · [가로 1막](final/act1-1440x900.jpg) · [가로 2막](final/act2-1440x900.jpg) · [가로 3막](final/act3-1440x900.jpg).
 
 ## 기준과 보존
 
@@ -51,3 +53,54 @@ python -X utf8 tests/responsive-story-art-browser.py --round 2
 `npm run test:title`은 이전 구현의 세로 `right bottom` 문자열과 전체 아카이브 원본 PNG를 합산하던 기준 때문에 처음 실패했다. 새 그림은 별도 세로 중심 구도를 쓰므로 중심 및 짧은 세로 top 초점을 명시 검사한다. 용량은 실제 빌드가 보내는 6개 이미지(양 방향 WebP/JPEG와 기존 lossless WebP 로고 모두)로 측정하고 기존 1,650,000바이트 상한을 유지했다. 실제 전달 합계 1,440,828바이트, 아카이브 원본 합계 2,350,349바이트다. PNG 로고 identity/alpha/획/톤과 5개 저장 분기는 기존 강도를 유지해 통과했다. 의도한 측정 대상의 변경이며 원본 합계가 옛 상한을 통과했다고 기록하지 않는다.
 
 `web-split`, `web-build-retention`, `ordered-runtime-groups`도 통과했다. 캠페인 복원 값·생성 파일 해시·이전 배포 보존·실행 모듈 순서 검사를 포함한다.
+
+
+## 별도 최종 종합 검수
+
+최종 실행·검사 소스 `d79bb74b0e2fed478c98e5b71eb4ba45b2765fe6`, 미술/CSS 변경은 `9ae7fdac`. 이후 실행 소스와 에셋은 바꾸지 않았다. 새 브라우저 컨텍스트에서 같은 다섯 크기의 인트로·세 막 긴 문구·다음 막 제목을 35장 다시 촬영했고, **35장을 모두 직접 열어** 앞선 수정의 회귀와 구도/문구를 종합 판정했다. `final/checks.json`에 실제 natural 크기, 선택 URL, object-position, 본문, DOM/내부 scroll 범위, 초기 CLS 및 요청 기록이 있다.
+
+- 320×568의 긴 3막 본문은 세 줄이며 장부 아래에 있다. 인트로의 두 재개 버튼 아래로 등불과 배를 분리하는 수정도 통과했다.
+- 844×390의 종 상단 장식과 출구 계단은 보존되고, 세 막의 긴 문구는 주요 물체 아래의 어두운 면에 있다. 가로·세로 모두 나무+문+방울 / 종+탈출길 / 장부+옛길 / 배+등불을 식별했다.
+- 별도 로고의 획·한글 세로 읽기와 기존 먹빛 톤은 유지된다. 본문과 다음 막 제목의 밝은 획이 배경의 돌/물/풀 질감에 묻히는 간섭은 보이지 않았다. 장부의 먼 잔글씨를 읽는 화면은 아니며 종·바위의 세부 질감 자체가 제거됐다고 주장하지 않는다.
+- 모든 크기에서 초기 CLS 0, 시작 인트로 현재 방향 1건·엔딩 0건. 막 첫 진입 해당 방향만 1건. `3/checks.json`은 회전 때 추가 1건, 복귀 때 0건을 별도로 확인한다. final의 요청 목록에는 컷 저장 후 의도적으로 수행한 페이지 새로고침의 재요청도 포함된다.
+- 각 막×다섯 크기에서 컷 2 저장→새로고침→Continue, 진입 클릭 방지·터치 한 컷·중복 클릭 방지·Enter/Space·reduced motion, 다음 막 제목→쉼터, 완료 막 재생 방지 및 안정화된 쉼터 재진입의 성장/장착/보상/기록 불변 통과. 임의 테스트 프로필을 실제 캠페인 완주로 기록하지 않는다.
+
+### 실제 보상 경계와 정상 플레이 체크포인트
+
+`python -X utf8 tests/final-act-endings-browser.py` 통과. `flow/summary.json`, `flow/flow-summary.json`, `flow/checkpoint-traversal.json`과 실제 화면을 보존했다.
+
+- 세 막 실제 outcome 경로의 terminal battle fixture에서 중복 outcome, 컷 2 새로고침, 실제 파일 내보내기/가져오기, 네 컷·제목·쉼터, XP/SP/장착/방문 기록 보존을 확인했다. 이 세팅을 정상 전투 승리로 간주하지 않는다.
+- 저장소의 기존 정상 플레이 `normal-21-escape-save.json`을 가져온 뒤 **휘겸 선택 및 키보드 d**로 출구에 도달했다. 배우 좌표·HP·자원을 새로 쓰지 않았다. safe outro→새 세로 1막 그림→다음 막 제목→소단을 포함한 쉼터→재개까지 통과했다. 기존 체크포인트 이전 전투는 이번에 재실행하지 않았다.
+- 실제 체크포인트 엔딩: [새 1막](flow/final-real-checkpoint-act1.jpg), [2막 제목](flow/final-real-next-title.jpg), [다음 쉼터](flow/final-real-next-rest.jpg).
+
+### 최종 대표 화면
+
+| 화면 | 세로 390×844 | 가로 1440×900 | 짧은 세로 320×568 | 낮은 가로 844×390 |
+|---|---|---|---|---|
+| 인트로 | [보기](final/intro-390x844.jpg) | [보기](final/intro-1440x900.jpg) | [두 재개 버튼](final/intro-320x568.jpg) | [보기](final/intro-844x390.jpg) |
+| 1막 긴 문구 | [보기](final/act1-390x844.jpg) | [보기](final/act1-1440x900.jpg) | [보기](final/act1-320x568.jpg) | [보기](final/act1-844x390.jpg) |
+| 2막 긴 문구 | [보기](final/act2-390x844.jpg) | [보기](final/act2-1440x900.jpg) | [보기](final/act2-320x568.jpg) | [초점 수정 후](final/act2-844x390.jpg) |
+| 3막 긴 문구 | [보기](final/act3-390x844.jpg) | [보기](final/act3-1440x900.jpg) | [세 줄 본문](final/act3-320x568.jpg) | [보기](final/act3-844x390.jpg) |
+
+412×915의 네 화면과 다섯 크기별 각 막의 다음 제목도 `final/`에 같은 파일명 규칙으로 있다. `*-next-title-*`는 다음 막 제목, `3/*-rotated-from-*`는 표기 크기에서 가로세로를 뒤집은 실제 화면이다. 이전 두 회차의 수정 전 증거도 그대로 남겼다.
+
+### 완료한 관련 검사와 한계
+
+- `npm run build`, `npm run test:title`, `node tests/web-split.mjs`, `node tests/web-build-retention.mjs`, `node tests/ordered-runtime-groups.mjs` 통과.
+- 실제 Chromium `responsive-story-art-browser.py --round 1 / 2 / 3 / final`: 각각 20 / 35 / 30 / 35장, races 4장 및 별도 outcome/checkpoint 검사를 통과했다.
+- [asset-integrity.json](asset-integrity.json): 부모 공급 커밋의 10개 이미지와 활성 빌드 파일 SHA-256/바이트 동일, 최신 별도 로고 두 원본 동일. `main.js`, `shared/data`, `shared/map`, `shared/engine`, `game/config`는 기준 master와 변경 없음.
+- 전체 verify·전 장 완주·실물 휴대전화·Safari·실제 Pages는 이번 범위에서 실행하지 않았다. 부모의 새 그림 최종 미술 승인도 대신하지 않는다. 추가 권한 요청이나 접근 제한 우회는 하지 않았다.
+- master 병합/배포는 명시적 요청에 따라 보류했다. 부모 검수 후 통합 브랜치 HEAD를 검토해 진행하면 된다.
+
+최종 재현 추가 명령:
+
+```sh
+python -X utf8 tests/responsive-story-art-browser.py --round 3
+python -X utf8 tests/responsive-story-art-races-browser.py
+python -X utf8 tests/responsive-story-art-browser.py --round final
+python -X utf8 tests/final-act-endings-browser.py
+npm run test:title
+node tests/web-split.mjs
+node tests/web-build-retention.mjs
+node tests/ordered-runtime-groups.mjs
+```

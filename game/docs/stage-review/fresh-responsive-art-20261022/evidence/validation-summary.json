@@ -1,0 +1,25 @@
+{
+  "sourceCommit": "d79bb74b0e2fed478c98e5b71eb4ba45b2765fe6",
+  "build": "PASS npm run build",
+  "focusedReviews": {
+    "1": 20,
+    "2": 35,
+    "3": 30,
+    "final": 35
+  },
+  "races": "PASS delayed fresh bytes, cache, exit guard, intentional HTTP 404 fallbacks",
+  "flow": "PASS outcome fixtures and genuine existing checkpoint continuation",
+  "static": [
+    "npm run test:title",
+    "node tests/web-split.mjs",
+    "node tests/web-build-retention.mjs",
+    "node tests/ordered-runtime-groups.mjs"
+  ],
+  "noMasterMerge": true,
+  "noPagesDeploy": true,
+  "limits": [
+    "Chromium emulation, not physical devices or Safari",
+    "Checkpoint prior combat not replayed",
+    "Parent final art approval pending"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "rows": [
+    {
+      "stage": 10,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "web/graphics/ending-10-image.6a631739bb1b7338.webp",
+        "fit": "cover"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    },
+    {
+      "stage": 20,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "web/graphics/ending-20-image.63c3c8526af3bdfe.webp",
+        "fit": "cover"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    },
+    {
+      "stage": 30,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "web/graphics/ending-30-image.81e1aac5338adfcf.webp",
+        "fit": "cover"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "initialLazyLoad": true
+}

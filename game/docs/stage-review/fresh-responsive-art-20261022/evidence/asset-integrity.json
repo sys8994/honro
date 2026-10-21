@@ -1,0 +1,116 @@
+{
+  "sourceCommit": "d79bb74b0e2fed478c98e5b71eb4ba45b2765fe6",
+  "suppliedArtCommit": "cee74f6e237af09ac35ba2e4d54bd9aad2f70ef7",
+  "assets": [
+    {
+      "source": "shared/assets/endings/act-1-portrait.webp",
+      "bytes": 479486,
+      "sha256": "5520e02971f9a436fb3ae262ec6290524aa14b4e4befdfaccd51af0573387c2a",
+      "identicalToSuppliedCommit": true,
+      "builtPaths": [
+        "web/graphics/ending-10-portraitImage.5520e02971f9a436.webp"
+      ]
+    },
+    {
+      "source": "shared/assets/endings/act-1.webp",
+      "bytes": 442588,
+      "sha256": "6a631739bb1b733849652c0895d5e2bbb621859e85e08d02d243b3e38a6efd4d",
+      "identicalToSuppliedCommit": true,
+      "builtPaths": [
+        "web/graphics/ending-10-image.6a631739bb1b7338.webp"
+      ]
+    },
+    {
+      "source": "shared/assets/endings/act-2-portrait.webp",
+      "bytes": 440842,
+      "sha256": "ba7ff960c89ed37028c867ee4c0fc654651e9cae5d9d104fcd3870581b0ae48d",
+      "identicalToSuppliedCommit": true,
+      "builtPaths": [
+        "web/graphics/ending-20-portraitImage.ba7ff960c89ed370.webp"
+      ]
+    },
+    {
+      "source": "shared/assets/endings/act-2.webp",
+      "bytes": 422342,
+      "sha256": "63c3c8526af3bdfe0edda6a26e6d2c8de95772965ee75479dec7d8d9719d9127",
+      "identicalToSuppliedCommit": true,
+      "builtPaths": [
+        "web/graphics/ending-20-image.63c3c8526af3bdfe.webp"
+      ]
+    },
+    {
+      "source": "shared/assets/endings/act-3-portrait.webp",
+      "bytes": 482120,
+      "sha256": "51fd29f411387d85faf0137b3033d2ba72b59596aa46c3aaeef17501313f546b",
+      "identicalToSuppliedCommit": true,
+      "builtPaths": [
+        "web/graphics/ending-30-portraitImage.51fd29f411387d85.webp"
+      ]
+    },
+    {
+      "source": "shared/assets/endings/act-3.webp",
+      "bytes": 400452,
+      "sha256": "81e1aac5338adfcfc742488320b6c6a0a80e81eafb9a4ff02cefa332c9d5c98c",
+      "identicalToSuppliedCommit": true,
+      "builtPaths": [
+        "web/graphics/ending-30-image.81e1aac5338adfcf.webp"
+      ]
+    },
+    {
+      "source": "shared/assets/environment/title/landscape.jpg",
+      "bytes": 312361,
+      "sha256": "c96458261eb87261ced74de1cc32aaa897801a280a48d4cffd552c212d8eb6c6",
+      "identicalToSuppliedCommit": true,
+      "builtPaths": [
+        "web/graphics/title-landscapeFallback.c96458261eb87261.jpg"
+      ]
+    },
+    {
+      "source": "shared/assets/environment/title/landscape.webp",
+      "bytes": 154366,
+      "sha256": "e7a766053bfbf2762399717c8d0f9668967b4f629c9e59901a539fbac465357a",
+      "identicalToSuppliedCommit": true,
+      "builtPaths": [
+        "web/graphics/title-landscape.e7a766053bfbf276.webp"
+      ]
+    },
+    {
+      "source": "shared/assets/environment/title/portrait.jpg",
+      "bytes": 404007,
+      "sha256": "a6c66058555fc805a9ad13f1eb0696cb089bd943998607b96acf5e176fc659dc",
+      "identicalToSuppliedCommit": true,
+      "builtPaths": [
+        "web/graphics/title-portraitFallback.a6c66058555fc805.jpg"
+      ]
+    },
+    {
+      "source": "shared/assets/environment/title/portrait.webp",
+      "bytes": 221562,
+      "sha256": "f8314e8d1733e8a577baff632a5f39d5c47caba50d3bbde948a3f65efa96b9c6",
+      "identicalToSuppliedCommit": true,
+      "builtPaths": [
+        "web/graphics/title-portrait.f8314e8d1733e8a5.webp"
+      ]
+    }
+  ],
+  "logos": [
+    {
+      "source": "shared/assets/environment/title/wordmark.png",
+      "sha256": "696d0c688d361feefa4a66902ac0e8c327d77a1c05a4c45593e01683d9f8d5c0",
+      "identicalToMaster": true
+    },
+    {
+      "source": "shared/assets/environment/title/hanja-wordmark.png",
+      "sha256": "4bc7d957ebc4d57be206a70070cc53e9921822c865a30ada027456c2f5857111",
+      "identicalToMaster": true
+    }
+  ],
+  "unchangedFromMaster": [
+    "shared/runtime/main.js",
+    "shared/data",
+    "shared/map",
+    "shared/engine",
+    "game/config"
+  ],
+  "scope": "Source and emitted bytes; retained older releases in web/ are not active assets."
+}
