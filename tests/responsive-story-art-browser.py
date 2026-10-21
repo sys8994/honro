@@ -1,11 +1,11 @@
-"""Focused real-browser reviews; pending-ending fixtures are not combat proof.
-Round 3 uses the unchanged existing intro portrait as a transport fixture only.
-Parent-supplied ending art still requires a separate final visual review.
+"""Fresh supplied story art in real Chromium; pending-ending fixtures are not combat proof.
+All rounds load the actual built art, without substituted portrait responses.
 """
 import argparse
 import hashlib
 import json
 import re
+import subprocess
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch
@@ -14,7 +14,7 @@ from story_browser_server import story_base_url
 parser = argparse.ArgumentParser()
 parser.add_argument('--round', choices=['1', '2', '3', 'final'], required=True)
 args = parser.parse_args()
-OUT = ROOT / '_local/reports/responsive-story-art' / args.round
+OUT = ROOT / 'game/docs/stage-review/fresh-responsive-art-20261022/evidence' / args.round
 OUT.mkdir(parents=True, exist_ok=True)
 SIZES = [(320, 568), (390, 844), (412, 915), (844, 390), (1440, 900)]
 rows = []
@@ -40,20 +40,20 @@ def capture(page, name, selectors):
     w, h = result['viewport']
     for box in result['boxes']:
         assert box['x'] >= -1 and box['y'] >= -1 and box['right'] <= w + 1 and box['bottom'] <= h + 1, (name, box)
-    page.screenshot(path=str(OUT / f'{name}.png'))
-    result['screenshot'] = f'{name}.png'
+    page.screenshot(path=str(OUT / f'{name}.jpg'), type='jpeg', quality=85)
+    assert (OUT / f'{name}.jpg').stat().st_size < 1000000
+    result['screenshot'] = f'{name}.jpg'
     rows.append(result)
     return result
 
 
-def show_ending(page, stage, index=0, fixture=False):
-    page.evaluate('''({stage,index,fixture})=>{
+def show_ending(page, stage, index=0):
+    page.evaluate('''({stage,index})=>{
       const a=HonroApp;a.stopBattle();a.close();a.profile.honroBattle=null;delete a.profile.honroJourney;
       a.profile.cleared[stage]||={visits:1,rounds:6};
       delete a.profile.seen['act-ending-v1:'+stage];a.profile.honroActEnding={stage,index};
-      if(fixture)HONRO_ACT_ENDINGS[stage].portraitImage='/__portrait-fixture/act-'+stage+'.webp';
       HonroActEndings.show(a);
-    }''', dict(stage=stage, index=index, fixture=fixture))
+    }''', dict(stage=stage, index=index))
     stable_image(page)
 
 
@@ -72,8 +72,6 @@ with sync_playwright() as p:
         if args.round in ['2', 'final']:
             insets = {'top': 44, 'bottom': 34, 'left': 0, 'right': 0} if width < height else {'top': 0, 'bottom': 21, 'left': 44, 'right': 44}
             context.new_cdp_session(page).send('Emulation.setSafeAreaInsetsOverride', {'insets': insets})
-        if args.round == '3':
-            page.route('**/__portrait-fixture/*.webp', lambda route: route.fulfill(path=str(ROOT / 'shared/assets/environment/title/portrait.webp'), content_type='image/webp'))
         page.goto(base + '/HONRO.html')
         page.wait_for_function('!!globalThis.HonroApp', timeout=120000)
         stable_image(page)
@@ -113,12 +111,13 @@ with sync_playwright() as p:
             page.set_viewport_size({'width': width, 'height': height})
             page.wait_for_function('(portrait)=>document.querySelector(".title-painting img").currentSrc.includes(portrait?"title-portrait.":"title-landscape.")', arg=width <= height)
         for stage in [10, 20, 30]:
-            fixture = args.round == '3'
-            show_ending(page, stage, 2 if args.round in ['2', 'final'] else 0, fixture)
+            show_ending(page, stage, 2 if args.round in ['2', '3', 'final'] else 0)
             data = page.evaluate('HONRO_ACT_ENDINGS')
-            if not fixture:
-                expected = 'portrait' if width <= height and data[str(stage)].get('portraitImage') else 'landscape'
-                assert page.locator('#act-ending').get_attribute('data-art') == expected
+            expected = 'portrait' if width <= height else 'landscape'
+            assert data[str(stage)].get('portraitImage'), 'fresh portrait must be built'
+            assert page.locator('#act-ending').get_attribute('data-art') == expected
+            art_path = ROOT / f'shared/assets/endings/act-{stage//10}{"-portrait" if expected == "portrait" else ""}.webp'
+            assert hashlib.sha256(art_path.read_bytes()).hexdigest()[:16] in page.locator('.act-ending-art').get_attribute('src')
             result = capture(page, f'act{stage//10}-{width}x{height}', ['.act-ending-copy'])
             assert result['image']['fit'] == 'cover'
             if args.round in ['2', 'final']:
@@ -126,11 +125,11 @@ with sync_playwright() as p:
                 assert box['x'] >= insets['left'] and box['right'] <= width - insets['right']
                 assert box['y'] >= insets['top'] and box['bottom'] <= height - insets['bottom']
             # No other ending and no hidden direction are fetched on this screen.
-            this_requests = [u for u in requests if re.search(r'/ending-'+str(stage)+r'-|/__portrait-fixture/act-'+str(stage), u)]
+            this_requests = [u for u in requests if re.search(r'/ending-'+str(stage)+r'-', u)]
             assert len(this_requests) == 1, this_requests
             before = page.evaluate(VIEW)
-            if fixture:
-                assert ('/__portrait-fixture/' in result['image']['src']) == (width <= height)
+            if args.round == '3':
+                assert ('-portraitImage.' in result['image']['src']) == (width <= height)
                 page.set_viewport_size({'width': height, 'height': width})
                 page.wait_for_function('(portrait)=>document.querySelector("#act-ending").dataset.art===(portrait?"portrait":"landscape")', arg=height <= width)
                 stable_image(page)
@@ -139,7 +138,7 @@ with sync_playwright() as p:
                 page.wait_for_function('(portrait)=>document.querySelector("#act-ending").dataset.art===(portrait?"portrait":"landscape")', arg=width <= height)
                 stable_image(page)
                 # A decoded orientation reused from the module cache makes no new network request.
-                assert len([u for u in requests if re.search(r'/ending-'+str(stage)+r'-|/__portrait-fixture/act-'+str(stage), u)]) == 2
+                assert len([u for u in requests if re.search(r'/ending-'+str(stage)+r'-', u)]) == 2
             assert page.evaluate(VIEW) == before, 'rotation modified saved data'
             if args.round in ['2', 'final']:
                 page.evaluate('HonroApp.profile.honroActEnding.index=4;HonroActEndings.show(HonroApp)')
@@ -186,6 +185,7 @@ with sync_playwright() as p:
         context.close()
     browser.close()
 report = {'round':args.round, 'rows': rows, 'errors': errors,
-          'scope':'Real Chromium; pending-ending and saved-profile fixtures. Round 3 portrait is unchanged intro art used only as a transport fixture. No new painting/art approval or normal combat run.'}
+          'sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+          'scope':'Real Chromium with actual freshly supplied built images. Pending-ending and saved-profile fixtures; no normal combat run. Visual judgments are recorded separately in README.md.'}
 (OUT / 'checks.json').write_text(json.dumps(report, ensure_ascii=False, indent=2))
 print(f'PASS round {args.round}: {len(rows)} actual viewport screenshots, lazy requests, orientation, layout and applicable save/input checks')
