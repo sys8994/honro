@@ -1,0 +1,872 @@
+{
+  "registered": 84,
+  "functionalPass": 84,
+  "currentPixelConfirmed": 4,
+  "currentPixelUnconfirmed": 80,
+  "currentPixelFailed": 0,
+  "confirmedIds": [
+    "M03",
+    "M12",
+    "M14",
+    "M15"
+  ],
+  "previouslyViewedButNotSignedOff": [
+    "A04",
+    "A07",
+    "A09",
+    "A12",
+    "A99",
+    "AP02",
+    "AP03",
+    "M11",
+    "MP02",
+    "O03",
+    "OP02",
+    "OP03",
+    "OP04",
+    "OP05",
+    "SP03"
+  ],
+  "rows": [
+    {
+      "id": "M01",
+      "name": "기파",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M01-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A01",
+      "name": "평사",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A01-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S00",
+      "name": "평참",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S00-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O01",
+      "name": "혼령탄",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O01-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "M06",
+      "name": "화호",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M06-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "M02",
+      "name": "빙호",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M02-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "M04",
+      "name": "뇌호",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M04-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "M13",
+      "name": "연폭호",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M13-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "M05",
+      "name": "천뢰호",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M05-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "M03",
+      "name": "원호파",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "confirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "원호파: 충돌점 양옆의 곡선",
+      "coreCapture": "geometry-visible/M03-1280-visible.png",
+      "mobileVisibleCapture": "geometry-visible/M03-360-visible.png"
+    },
+    {
+      "id": "M11",
+      "name": "반탄파",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M11-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "M12",
+      "name": "삼재파",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "confirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "삼재파: 천장 반사점과 두 접점의 넓은 삼각형",
+      "coreCapture": "geometry-visible/M12-1280-visible.png",
+      "mobileVisibleCapture": "geometry-visible/M12-360-visible.png"
+    },
+    {
+      "id": "M14",
+      "name": "동심파",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "confirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "동심파: 원주의 타격과 중심의 빈 영역",
+      "coreCapture": "geometry-visible/M14-1280-visible.png",
+      "mobileVisibleCapture": "geometry-visible/M14-360-visible.png"
+    },
+    {
+      "id": "M15",
+      "name": "팔괘파",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "confirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "팔괘파: 팔각형 외곽·기선·기호",
+      "coreCapture": "geometry-visible/M15-1280-visible.png",
+      "mobileVisibleCapture": "geometry-visible/M15-360-visible.png"
+    },
+    {
+      "id": "M07",
+      "name": "파진목",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M07-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "M10",
+      "name": "회생진목",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M10-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "M08",
+      "name": "유인진목",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M08-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "M09",
+      "name": "축지진목",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M09-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "M99",
+      "name": "오방봉진",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/M99-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "MP01",
+      "name": "법맥",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/MP01-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "MP02",
+      "name": "기해",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/MP02-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "MP04",
+      "name": "기맥전도",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/MP04-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "MP03",
+      "name": "회기",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/MP03-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "MP05",
+      "name": "주천",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/MP05-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A14",
+      "name": "급소시",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A14-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A02",
+      "name": "관통시",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A02-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A06",
+      "name": "회기시",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A06-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A10",
+      "name": "정심",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A10-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A99",
+      "name": "절명시",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A99-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A11",
+      "name": "급락시",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A11-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A09",
+      "name": "전로시",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A09-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A13",
+      "name": "추혼시",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A13-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A12",
+      "name": "귀환시",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A12-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A15",
+      "name": "칠성추혼",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A15-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A05",
+      "name": "격퇴시",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A05-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A04",
+      "name": "산개사",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A04-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A07",
+      "name": "쇄암시",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A07-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A03",
+      "name": "연환시",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A03-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "A08",
+      "name": "철화",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/A08-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "AP04",
+      "name": "궁세",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/AP04-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "AP02",
+      "name": "급소 간파",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/AP02-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "AP01",
+      "name": "연속 시위",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/AP01-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "AP03",
+      "name": "이탈보",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/AP03-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "AP05",
+      "name": "살흔",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/AP05-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S03",
+      "name": "횡참",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S03-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S05",
+      "name": "회신참",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S05-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S07",
+      "name": "연참",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S07-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S08",
+      "name": "응수세",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S08-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S02",
+      "name": "사생참",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S02-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S01",
+      "name": "도약참",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S01-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S06",
+      "name": "회풍참",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S06-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S04",
+      "name": "파산격",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S04-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S15",
+      "name": "쇄진돌격",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S15-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S13",
+      "name": "파진연격",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S13-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S09",
+      "name": "월영참",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S09-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S10",
+      "name": "견인참",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S10-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S11",
+      "name": "관통참",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S11-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S14",
+      "name": "파열참",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S14-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "S12",
+      "name": "회륜검기",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/S12-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "SP01",
+      "name": "검세",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/SP01-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "SP02",
+      "name": "단련",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/SP02-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "SP03",
+      "name": "경신",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/SP03-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "SP04",
+      "name": "연세",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/SP04-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "SP05",
+      "name": "불굴",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/SP05-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O02",
+      "name": "투과령",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O02-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O03",
+      "name": "역천령",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O03-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O04",
+      "name": "황천창",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O04-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O05",
+      "name": "회귀망령",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O05-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O16",
+      "name": "만혼귀결",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O16-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O06",
+      "name": "쇠망부",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O06-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O07",
+      "name": "증오부",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O07-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O08",
+      "name": "현형부",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O08-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O09",
+      "name": "섭혼부",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O09-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O10",
+      "name": "지박부",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O10-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O11",
+      "name": "배회령",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O11-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O12",
+      "name": "등불귀",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O12-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O13",
+      "name": "호혼령",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O13-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O14",
+      "name": "먹귀",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O14-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "O15",
+      "name": "반향령",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/O15-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "OP01",
+      "name": "잔부",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": false,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/OP01-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "OP02",
+      "name": "혼맥",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/OP02-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "OP03",
+      "name": "분혼",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/OP03-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "OP04",
+      "name": "매듭보전",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/OP04-core.png",
+      "mobileVisibleCapture": null
+    },
+    {
+      "id": "OP05",
+      "name": "잔혼",
+      "functionalAssertions": "passed",
+      "currentPixelSignoff": "unconfirmed",
+      "historicalCaptureViewedWithoutCurrentSignoff": true,
+      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "coreCapture": "audit/OP05-core.png",
+      "mobileVisibleCapture": null
+    }
+  ]
+}
