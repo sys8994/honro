@@ -3869,3 +3869,11 @@ Workshop Map은 Workshop JSON을 `map-import` → `launchMap`으로 실행하는
 ### 후속: 실제 타이틀 정적 계약 복구
 
 544825ee 별도 worktree에서 title-redesign은 옛 game/build.mjs의 이미지 문자열 assertion, title-letter-rendering은 main.js에서 사라진 filter 추출에서 각각 실패함을 재현했다. 검사의 소스를 현재 web-build/title-markup으로 옮기고, DOM double의 가짜 startup marker를 제거했다. 기존 PNG identity·alpha/ink·6화면비·5저장분기·반복진입·접근성 검증을 유지하고 개발 버튼 부재/hidden input 보존을 반영했다. `npm run test:title` 두 검사 모두 통과했다.
+
+### 후속: 준비 임계 경로와 안전한 JS 축소
+
+- 준비 중 최대 resource window 중첩36개로 다운로드는 이미 병렬이다. 21장 cold의 큰 의존성은 엔진967,465B(응답완료2544ms), 현재장 asset JSON1,328,987B(2684ms), 구분할호환 JSON653,520B(2107ms)였다. 실행은 전역/patch캡처 순서 때문에 직렬이며 큰JSON은 worker를 유지한다. 편집기 app/테스트 파일은 Game초기 목록에 없다.
+- Terser5.51.2를 고정해 module출력의 주석·공백만 축소했다(compress:false,mangle:false). 37개 JS raw2,789,636→2,337,992B, gzip6 880,435→768,790B, Brotli11 713,023→632,629B. 요청/실행 경계·동작·데이터를 옮기지 않는다. 원본은 읽을 수 있는 소스 파일에 보존한다.
+- CPU4배/40ms/2MiB/s 조건별3회 중앙값. 원기준→최종: 무압축 cold 새방문2977→2636ms/21장이어서3552→3349ms; gzip cold1652→1401ms/1737→1525ms. gzip warm768→657ms/969→972ms. gzip cold 클릭후411→435ms/1692→1734ms로 개선 없음. 압축서는 gzip6을 로컬서버에서 부여한 별도 조건이며 실제Pages헤더는 CONNECT403으로 확인이 거부돼 중단했다.
+- 별도 프로파일:21장 continue462ms(중첩 mount416/HUD294/초상화203), 첫 render541ms. 프로파일러 없는 첫프레임 계측은 render378ms(배경60/지형tile97/가림silhouette46). 서로 다른 run·중첩 시간이라 합산하지 않는다. 이는 클릭 뒤 현재 화면의 실제 생성/합성 비용이며 대기화면으로 이동시키지 않았다. 공용 renderer의 pixel/pose/cache를 바꾸면8장 포함 전장미술·가림정책 회귀 위험이 있어 본 로딩 작업에서는 더 변경하지 않는다.
+- build/web-split/ordered-runtime/retention/실제브라우저 retry·원경·저장회귀 및 타이틀두검사 통과. data/graphics189개 해시 불변. 측정원본은 `_local/reports/intro-audit/{cpu-summary,first-frame,compression,minified,gzip-before,gzip-after}.json`.

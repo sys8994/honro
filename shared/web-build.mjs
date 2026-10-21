@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import {root,runtimeEntries,projectAuthors} from './build.mjs';
 import {writeGenerated} from './write-generated.mjs';
 import sharp from 'sharp';
+import {minify} from 'terser';
 
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 const hash=body=>createHash('sha256').update(body).digest('hex');
@@ -47,6 +48,11 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   let previous;try{previous=JSON.parse(await read('web/manifest.json'));}catch(e){if(e.code!=='ENOENT')throw e;}
   const files=new Map();
   async function emit(folder,name,extension,body){
+    // Strip comments/whitespace only. Keep names, statements and patch order;
+    // do not fold expressions, mangle properties or move execution boundaries.
+    if(extension==='js'&&(folder==='runtime'||folder==='entries')){
+      body=(await minify(body,{module:true,compress:false,mangle:false,format:{comments:false}})).code+'\n';
+    }
     const bytes=Buffer.isBuffer(body)?body:Buffer.from(body),sha256=hash(bytes);
     const stem=name.replace(/\.[cm]?js$/,'').replace(/[^a-zA-Z0-9_-]+/g,'-');
     const file=`web/${folder}/${stem}.${sha256.slice(0,16)}.${extension}`;

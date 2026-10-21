@@ -1,0 +1,1 @@
+import{loadData,loadProject}from"./load-data.6f01d18416c3198e.js";globalThis.HONRO_ACT1_FAR_DATA=await loadData("web/data/HONRO_ACT1_FAR_DATA.a7bedbfe9c843e9f.json",[["mountains"],["gorge"],["dawn"],["act3"]],{svgSources:true});
