@@ -1,0 +1,74 @@
+{
+  "label": "face-attachment-baseline",
+  "url": "http://127.0.0.1:8872/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "8322de2c59061eb6d91214daebae4bb0fadbb15a",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "upper-normal",
+      "camera": {
+        "x": 6800,
+        "y": 3800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-normal",
+      "camera": {
+        "x": 6500,
+        "y": 4900,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-mobile",
+      "camera": {
+        "x": 6900,
+        "y": 3800,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-mobile",
+      "camera": {
+        "x": 6520,
+        "y": 4800,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-max",
+      "camera": {
+        "x": 6800,
+        "y": 3800,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-max",
+      "camera": {
+        "x": 6520,
+        "y": 4900,
+        "scale": 1.65
+      }
+    }
+  ],
+  "errors": []
+}

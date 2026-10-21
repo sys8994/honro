@@ -1,0 +1,74 @@
+{
+  "label": "terrain-faces-focus2",
+  "url": "http://127.0.0.1:8872/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "771a4f9d30b5d1d5711e35696e4b44e6339fc50b",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M shared/map/compiler.js\n M shared/map/schema.js\n M shared/runtime/elements.js\n M tools/environment/stage12-quarry-art.mjs\n D web/data/campaign-shared.89b677aef537f53e.json\n D web/data/campaign.d37b85d832000b55.json\n D web/data/chapter-02-assets.ee3cb5e5486f4c56.json\n D web/data/chapter-04-assets.22e3c4ce270b9a9d.json\n D web/data/chapter-12.cd5cbbd445fbac2d.json\n D web/entries/game.261519eb732d46f0.html\n D web/entries/game.a7652b4d1c463d69.js\n D web/entries/workshop.bd418629d79e63a7.js\n M web/manifest.json\n D web/runtime/campaign.0545ad8788722942.js\n D web/runtime/ordered-common-11.8249d90aa3fad9e9.js\n D web/runtime/ordered-common-12.6aa72939659ef9fa.js\n D web/runtime/ordered-common-13.1c19678ad5f95288.js\n D web/runtime/ordered-common-8.88eb90585b53f81a.js\n?? web/data/campaign.2efc72c80313dfd0.json\n?? web/data/chapter-12.03f71b0f37c52c0c.json\n?? web/entries/game.48b0495de28c5e70.js\n?? web/entries/game.b43ddc3a09491ce0.html\n?? web/entries/workshop.6f79d67abb31c664.js\n?? web/runtime/campaign.bb38f6af559ef322.js\n?? web/runtime/ordered-common-11.44bb0fed3ca21683.js\n?? web/runtime/ordered-common-8.88eea97d09838667.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "upper-normal",
+      "camera": {
+        "x": 6800,
+        "y": 3800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-normal",
+      "camera": {
+        "x": 6500,
+        "y": 4900,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-mobile",
+      "camera": {
+        "x": 6900,
+        "y": 3800,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-mobile",
+      "camera": {
+        "x": 6520,
+        "y": 4800,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-max",
+      "camera": {
+        "x": 6800,
+        "y": 3800,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-max",
+      "camera": {
+        "x": 6520,
+        "y": 4900,
+        "scale": 1.65
+      }
+    }
+  ],
+  "errors": []
+}
