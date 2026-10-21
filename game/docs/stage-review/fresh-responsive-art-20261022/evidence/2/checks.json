@@ -1,0 +1,1213 @@
+{
+  "round": "2",
+  "rows": [
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/title-portrait.f8314e8d1733e8a5.webp",
+        "width": 852,
+        "height": 1846,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".honro-logo-wrap",
+          "x": 48,
+          "y": 96,
+          "width": 224,
+          "height": 121.078125,
+          "right": 272,
+          "bottom": 217.078125
+        },
+        {
+          "selector": ".title-hangul",
+          "x": 265.265625,
+          "y": 154.109375,
+          "width": 25.75,
+          "height": 49.25,
+          "right": 291.015625,
+          "bottom": 203.359375
+        },
+        {
+          "selector": ".title-tagline",
+          "x": 97,
+          "y": 227.078125,
+          "width": 125.984375,
+          "height": 17,
+          "right": 222.984375,
+          "bottom": 244.078125
+        },
+        {
+          "selector": ".title-actions",
+          "x": 32,
+          "y": 257.9375,
+          "width": 256,
+          "height": 97,
+          "right": 288,
+          "bottom": 354.9375
+        },
+        {
+          "selector": ".honro-title>.top button",
+          "x": 260,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "right": 304,
+          "bottom": 88
+        },
+        {
+          "selector": ".honro-title .footer",
+          "x": 0,
+          "y": 482,
+          "width": 320,
+          "height": 86,
+          "right": 320,
+          "bottom": 568
+        }
+      ],
+      "stage": null,
+      "cut": null,
+      "screenshot": "intro-320x568.jpg"
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-10-portraitImage.5520e02971f9a436.webp",
+        "width": 850,
+        "height": 1850,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 19.1875,
+          "y": 463.21875,
+          "width": 281.625,
+          "height": 52.78125,
+          "right": 300.8125,
+          "bottom": 516
+        }
+      ],
+      "stage": "10",
+      "cut": "3",
+      "screenshot": "act1-320x568.jpg"
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-10-portraitImage.5520e02971f9a436.webp",
+        "width": 850,
+        "height": 1850,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 17.25,
+          "y": 227.671875,
+          "width": 285.5,
+          "height": 112.640625,
+          "right": 302.75,
+          "bottom": 340.3125
+        }
+      ],
+      "stage": "10",
+      "cut": "title",
+      "screenshot": "act1-next-title-320x568.jpg"
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-20-portraitImage.ba7ff960c89ed370.webp",
+        "width": 852,
+        "height": 1846,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 19.1875,
+          "y": 463.21875,
+          "width": 281.625,
+          "height": 52.78125,
+          "right": 300.8125,
+          "bottom": 516
+        }
+      ],
+      "stage": "20",
+      "cut": "3",
+      "screenshot": "act2-320x568.jpg"
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-20-portraitImage.ba7ff960c89ed370.webp",
+        "width": 852,
+        "height": 1846,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 32.34375,
+          "y": 227.671875,
+          "width": 255.3125,
+          "height": 112.640625,
+          "right": 287.65625,
+          "bottom": 340.3125
+        }
+      ],
+      "stage": "20",
+      "cut": "title",
+      "screenshot": "act2-next-title-320x568.jpg"
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-30-portraitImage.51fd29f411387d85.webp",
+        "width": 852,
+        "height": 1847,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 19.1875,
+          "y": 436.828125,
+          "width": 281.625,
+          "height": 79.171875,
+          "right": 300.8125,
+          "bottom": 516
+        }
+      ],
+      "stage": "30",
+      "cut": "3",
+      "screenshot": "act3-320x568.jpg"
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-30-portraitImage.51fd29f411387d85.webp",
+        "width": 852,
+        "height": 1847,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 43.34375,
+          "y": 208.671875,
+          "width": 233.3125,
+          "height": 150.640625,
+          "right": 276.65625,
+          "bottom": 359.3125
+        }
+      ],
+      "stage": "30",
+      "cut": "title",
+      "screenshot": "act3-next-title-320x568.jpg"
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/title-portrait.f8314e8d1733e8a5.webp",
+        "width": 852,
+        "height": 1846,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".honro-logo-wrap",
+          "x": 47.5,
+          "y": 126.59375,
+          "width": 295,
+          "height": 159.453125,
+          "right": 342.5,
+          "bottom": 286.046875
+        },
+        {
+          "selector": ".title-hangul",
+          "x": 333.640625,
+          "y": 203.125,
+          "width": 33.921875,
+          "height": 64.875,
+          "right": 367.5625,
+          "bottom": 268
+        },
+        {
+          "selector": ".title-tagline",
+          "x": 125.703125,
+          "y": 305.046875,
+          "width": 138.578125,
+          "height": 18.6875,
+          "right": 264.28125,
+          "bottom": 323.734375
+        },
+        {
+          "selector": ".title-actions",
+          "x": 55,
+          "y": 362.90625,
+          "width": 280,
+          "height": 105,
+          "right": 335,
+          "bottom": 467.90625
+        },
+        {
+          "selector": ".honro-title>.top button",
+          "x": 330,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "right": 374,
+          "bottom": 88
+        },
+        {
+          "selector": ".honro-title .footer",
+          "x": 0,
+          "y": 758,
+          "width": 390,
+          "height": 86,
+          "right": 390,
+          "bottom": 844
+        }
+      ],
+      "stage": null,
+      "cut": null,
+      "screenshot": "intro-390x844.jpg"
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-10-portraitImage.5520e02971f9a436.webp",
+        "width": 850,
+        "height": 1850,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 23.390625,
+          "y": 735.40625,
+          "width": 343.21875,
+          "height": 56.59375,
+          "right": 366.609375,
+          "bottom": 792
+        }
+      ],
+      "stage": "10",
+      "cut": "3",
+      "screenshot": "act1-390x844.jpg"
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-10-portraitImage.5520e02971f9a436.webp",
+        "width": 850,
+        "height": 1850,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 49.765625,
+          "y": 365.296875,
+          "width": 290.453125,
+          "height": 113.390625,
+          "right": 340.21875,
+          "bottom": 478.6875
+        }
+      ],
+      "stage": "10",
+      "cut": "title",
+      "screenshot": "act1-next-title-390x844.jpg"
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-20-portraitImage.ba7ff960c89ed370.webp",
+        "width": 852,
+        "height": 1846,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 23.390625,
+          "y": 735.40625,
+          "width": 343.21875,
+          "height": 56.59375,
+          "right": 366.609375,
+          "bottom": 792
+        }
+      ],
+      "stage": "20",
+      "cut": "3",
+      "screenshot": "act2-390x844.jpg"
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-20-portraitImage.ba7ff960c89ed370.webp",
+        "width": 852,
+        "height": 1846,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 65.171875,
+          "y": 365.296875,
+          "width": 259.65625,
+          "height": 113.390625,
+          "right": 324.828125,
+          "bottom": 478.6875
+        }
+      ],
+      "stage": "20",
+      "cut": "title",
+      "screenshot": "act2-next-title-390x844.jpg"
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-30-portraitImage.51fd29f411387d85.webp",
+        "width": 852,
+        "height": 1847,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 23.390625,
+          "y": 735.40625,
+          "width": 343.21875,
+          "height": 56.59375,
+          "right": 366.609375,
+          "bottom": 792
+        }
+      ],
+      "stage": "30",
+      "cut": "3",
+      "screenshot": "act3-390x844.jpg"
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-30-portraitImage.51fd29f411387d85.webp",
+        "width": 852,
+        "height": 1847,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 76.40625,
+          "y": 346.296875,
+          "width": 237.1875,
+          "height": 151.390625,
+          "right": 313.59375,
+          "bottom": 497.6875
+        }
+      ],
+      "stage": "30",
+      "cut": "title",
+      "screenshot": "act3-next-title-390x844.jpg"
+    },
+    {
+      "viewport": [
+        412,
+        915
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/title-portrait.f8314e8d1733e8a5.webp",
+        "width": 852,
+        "height": 1846,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".honro-logo-wrap",
+          "x": 58.5,
+          "y": 137.25,
+          "width": 295,
+          "height": 159.453125,
+          "right": 353.5,
+          "bottom": 296.703125
+        },
+        {
+          "selector": ".title-hangul",
+          "x": 344.640625,
+          "y": 213.78125,
+          "width": 33.921875,
+          "height": 64.875,
+          "right": 378.5625,
+          "bottom": 278.65625
+        },
+        {
+          "selector": ".title-tagline",
+          "x": 136.703125,
+          "y": 315.703125,
+          "width": 138.578125,
+          "height": 18.6875,
+          "right": 275.28125,
+          "bottom": 334.390625
+        },
+        {
+          "selector": ".title-actions",
+          "x": 66,
+          "y": 393.4375,
+          "width": 280,
+          "height": 105,
+          "right": 346,
+          "bottom": 498.4375
+        },
+        {
+          "selector": ".honro-title>.top button",
+          "x": 352,
+          "y": 44,
+          "width": 44,
+          "height": 44,
+          "right": 396,
+          "bottom": 88
+        },
+        {
+          "selector": ".honro-title .footer",
+          "x": 0,
+          "y": 829,
+          "width": 412,
+          "height": 86,
+          "right": 412,
+          "bottom": 915
+        }
+      ],
+      "stage": null,
+      "cut": null,
+      "screenshot": "intro-412x915.jpg"
+    },
+    {
+      "viewport": [
+        412,
+        915
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-10-portraitImage.5520e02971f9a436.webp",
+        "width": 850,
+        "height": 1850,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 24.71875,
+          "y": 803.1875,
+          "width": 362.5625,
+          "height": 59.8125,
+          "right": 387.28125,
+          "bottom": 863
+        }
+      ],
+      "stage": "10",
+      "cut": "3",
+      "screenshot": "act1-412x915.jpg"
+    },
+    {
+      "viewport": [
+        412,
+        915
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-10-portraitImage.5520e02971f9a436.webp",
+        "width": 850,
+        "height": 1850,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 53.875,
+          "y": 399.8125,
+          "width": 304.234375,
+          "height": 115.375,
+          "right": 358.109375,
+          "bottom": 515.1875
+        }
+      ],
+      "stage": "10",
+      "cut": "title",
+      "screenshot": "act1-next-title-412x915.jpg"
+    },
+    {
+      "viewport": [
+        412,
+        915
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-20-portraitImage.ba7ff960c89ed370.webp",
+        "width": 852,
+        "height": 1846,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 24.71875,
+          "y": 803.1875,
+          "width": 362.5625,
+          "height": 59.8125,
+          "right": 387.28125,
+          "bottom": 863
+        }
+      ],
+      "stage": "20",
+      "cut": "3",
+      "screenshot": "act2-412x915.jpg"
+    },
+    {
+      "viewport": [
+        412,
+        915
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-20-portraitImage.ba7ff960c89ed370.webp",
+        "width": 852,
+        "height": 1846,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 70.15625,
+          "y": 399.8125,
+          "width": 271.671875,
+          "height": 115.375,
+          "right": 341.828125,
+          "bottom": 515.1875
+        }
+      ],
+      "stage": "20",
+      "cut": "title",
+      "screenshot": "act2-next-title-412x915.jpg"
+    },
+    {
+      "viewport": [
+        412,
+        915
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-30-portraitImage.51fd29f411387d85.webp",
+        "width": 852,
+        "height": 1847,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 24.71875,
+          "y": 803.1875,
+          "width": 362.5625,
+          "height": 59.8125,
+          "right": 387.28125,
+          "bottom": 863
+        }
+      ],
+      "stage": "30",
+      "cut": "3",
+      "screenshot": "act3-412x915.jpg"
+    },
+    {
+      "viewport": [
+        412,
+        915
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-30-portraitImage.51fd29f411387d85.webp",
+        "width": 852,
+        "height": 1847,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 82.03125,
+          "y": 380.8125,
+          "width": 247.921875,
+          "height": 153.375,
+          "right": 329.953125,
+          "bottom": 534.1875
+        }
+      ],
+      "stage": "30",
+      "cut": "title",
+      "screenshot": "act3-next-title-412x915.jpg"
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/title-landscape.e7a766053bfbf276.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "70% 65%"
+      },
+      "boxes": [
+        {
+          "selector": ".honro-logo-wrap",
+          "x": 60,
+          "y": 39.546875,
+          "width": 220,
+          "height": 118.90625,
+          "right": 280,
+          "bottom": 158.453125
+        },
+        {
+          "selector": ".title-hangul",
+          "x": 273.390625,
+          "y": 96.609375,
+          "width": 25.296875,
+          "height": 48.375,
+          "right": 298.6875,
+          "bottom": 144.984375
+        },
+        {
+          "selector": ".title-tagline",
+          "x": 60,
+          "y": 167.453125,
+          "width": 121.984375,
+          "height": 17,
+          "right": 181.984375,
+          "bottom": 184.453125
+        },
+        {
+          "selector": ".title-actions",
+          "x": 60,
+          "y": 196.453125,
+          "width": 240,
+          "height": 92,
+          "right": 300,
+          "bottom": 288.453125
+        },
+        {
+          "selector": ".honro-title>.top button",
+          "x": 756,
+          "y": 8,
+          "width": 44,
+          "height": 44,
+          "right": 800,
+          "bottom": 52
+        },
+        {
+          "selector": ".honro-title .footer",
+          "x": 0,
+          "y": 328,
+          "width": 844,
+          "height": 62,
+          "right": 844,
+          "bottom": 390
+        }
+      ],
+      "stage": null,
+      "cut": null,
+      "screenshot": "intro-844x390.jpg"
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-10-image.6a631739bb1b7338.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 67.515625,
+          "y": 331.40625,
+          "width": 708.96875,
+          "height": 25.59375,
+          "right": 776.484375,
+          "bottom": 357
+        }
+      ],
+      "stage": "10",
+      "cut": "3",
+      "screenshot": "act1-844x390.jpg"
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-10-image.6a631739bb1b7338.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 218.859375,
+          "y": 150.75,
+          "width": 406.28125,
+          "height": 88.5,
+          "right": 625.140625,
+          "bottom": 239.25
+        }
+      ],
+      "stage": "10",
+      "cut": "title",
+      "screenshot": "act1-next-title-844x390.jpg"
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-20-image.63c3c8526af3bdfe.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 67.515625,
+          "y": 331.40625,
+          "width": 708.96875,
+          "height": 25.59375,
+          "right": 776.484375,
+          "bottom": 357
+        }
+      ],
+      "stage": "20",
+      "cut": "3",
+      "screenshot": "act2-844x390.jpg"
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-20-image.63c3c8526af3bdfe.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 237.046875,
+          "y": 150.75,
+          "width": 369.90625,
+          "height": 88.5,
+          "right": 606.953125,
+          "bottom": 239.25
+        }
+      ],
+      "stage": "20",
+      "cut": "title",
+      "screenshot": "act2-next-title-844x390.jpg"
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-30-image.81e1aac5338adfcf.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 58%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 67.515625,
+          "y": 331.40625,
+          "width": 708.96875,
+          "height": 25.59375,
+          "right": 776.484375,
+          "bottom": 357
+        }
+      ],
+      "stage": "30",
+      "cut": "3",
+      "screenshot": "act3-844x390.jpg"
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-30-image.81e1aac5338adfcf.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 58%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 250.3125,
+          "y": 131.75,
+          "width": 343.375,
+          "height": 126.5,
+          "right": 593.6875,
+          "bottom": 258.25
+        }
+      ],
+      "stage": "30",
+      "cut": "title",
+      "screenshot": "act3-next-title-844x390.jpg"
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/title-landscape.e7a766053bfbf276.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "70% 65%"
+      },
+      "boxes": [
+        {
+          "selector": ".honro-logo-wrap",
+          "x": 100.796875,
+          "y": 200.203125,
+          "width": 390,
+          "height": 210.796875,
+          "right": 490.796875,
+          "bottom": 411
+        },
+        {
+          "selector": ".title-hangul",
+          "x": 479.09375,
+          "y": 301.375,
+          "width": 44.84375,
+          "height": 85.78125,
+          "right": 523.9375,
+          "bottom": 387.15625
+        },
+        {
+          "selector": ".title-tagline",
+          "x": 100.796875,
+          "y": 434,
+          "width": 187.5625,
+          "height": 23.796875,
+          "right": 288.359375,
+          "bottom": 457.796875
+        },
+        {
+          "selector": ".title-actions",
+          "x": 100.796875,
+          "y": 492.796875,
+          "width": 280,
+          "height": 107,
+          "right": 380.796875,
+          "bottom": 599.796875
+        },
+        {
+          "selector": ".honro-title>.top button",
+          "x": 1352,
+          "y": 8,
+          "width": 44,
+          "height": 44,
+          "right": 1396,
+          "bottom": 52
+        },
+        {
+          "selector": ".honro-title .footer",
+          "x": 0,
+          "y": 828,
+          "width": 1440,
+          "height": 72,
+          "right": 1440,
+          "bottom": 900
+        }
+      ],
+      "stage": null,
+      "cut": null,
+      "screenshot": "intro-1440x900.jpg"
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-10-image.6a631739bb1b7338.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 260,
+          "y": 818.5,
+          "width": 920,
+          "height": 42.5,
+          "right": 1180,
+          "bottom": 861
+        }
+      ],
+      "stage": "10",
+      "cut": "3",
+      "screenshot": "act1-1440x900.jpg"
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-10-image.6a631739bb1b7338.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 467.734375,
+          "y": 397.09375,
+          "width": 504.515625,
+          "height": 105.796875,
+          "right": 972.25,
+          "bottom": 502.890625
+        }
+      ],
+      "stage": "10",
+      "cut": "title",
+      "screenshot": "act1-next-title-1440x900.jpg"
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-20-image.63c3c8526af3bdfe.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 260,
+          "y": 818.5,
+          "width": 920,
+          "height": 42.5,
+          "right": 1180,
+          "bottom": 861
+        }
+      ],
+      "stage": "20",
+      "cut": "3",
+      "screenshot": "act2-1440x900.jpg"
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-20-image.63c3c8526af3bdfe.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 50%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 492.171875,
+          "y": 397.09375,
+          "width": 455.65625,
+          "height": 105.796875,
+          "right": 947.828125,
+          "bottom": 502.890625
+        }
+      ],
+      "stage": "20",
+      "cut": "title",
+      "screenshot": "act2-next-title-1440x900.jpg"
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-30-image.81e1aac5338adfcf.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 58%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 260,
+          "y": 776,
+          "width": 920,
+          "height": 85,
+          "right": 1180,
+          "bottom": 861
+        }
+      ],
+      "stage": "30",
+      "cut": "3",
+      "screenshot": "act3-1440x900.jpg"
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "overflow": false,
+      "image": {
+        "src": "http://127.0.0.1:46327/web/graphics/ending-30-image.81e1aac5338adfcf.webp",
+        "width": 1672,
+        "height": 941,
+        "fit": "cover",
+        "position": "50% 58%"
+      },
+      "boxes": [
+        {
+          "selector": ".act-ending-copy",
+          "x": 509.984375,
+          "y": 378.09375,
+          "width": 420.015625,
+          "height": 143.796875,
+          "right": 930,
+          "bottom": 521.890625
+        }
+      ],
+      "stage": "30",
+      "cut": "title",
+      "screenshot": "act3-next-title-1440x900.jpg"
+    }
+  ],
+  "errors": [],
+  "sourceCommit": "c84c459ad7ec541dbd8b8d66c3c075b909707926",
+  "scope": "Real Chromium with actual freshly supplied built images. Pending-ending and saved-profile fixtures; no normal combat run. Visual judgments are recorded separately in README.md."
+}
