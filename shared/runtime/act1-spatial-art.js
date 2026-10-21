@@ -97,7 +97,7 @@ function livingBough(c,t,q){
  c.strokeStyle='#6f7a5844';c.lineWidth=3;c.beginPath();c.moveTo(knot.x-190,knot.y+19);c.bezierCurveTo(knot.x-80,knot.y+35,knot.x-55,knot.y-16,knot.x+50,knot.y-3);c.bezierCurveTo(knot.x+100,knot.y+8,knot.x+175,knot.y+25,knot.x+220,knot.y+28);c.stroke();
  c.restore();
 }
-function canyonBough(c,t,q){
+function canyonBough(c,t,q,root=false){
  if(!q.canyonLit){
   const top=q.edges.length?[q.edges[0][0],...q.edges.map(e=>e[1])]:[],ps=C.poly(t);
   const inner=top.map(p=>{const hits=[p.y+8];for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(a.x!==z.x&&p.x>=Math.min(a.x,z.x)&&p.x<=Math.max(a.x,z.x))hits.push(a.y+(z.y-a.y)*(p.x-a.x)/(z.x-a.x));}return[p.x,p.y+(Math.max(...hits)-p.y)*.4];});
@@ -105,7 +105,11 @@ function canyonBough(c,t,q){
   const right=t.id.startsWith('right'),kx=t.x+t.w*(right?.72:.28),ky=C.topAt(t,kx,t.y)+24;
   q.canyonKnot=new Path2D();q.canyonKnot.moveTo(kx-110,ky+13);q.canyonKnot.bezierCurveTo(kx-40,ky+28,kx-20,ky-17,kx+24,ky-5);q.canyonKnot.bezierCurveTo(kx+55,ky+10,kx+80,ky+16,kx+120,ky+14);
  }
- c.save();c.fillStyle='#354a38';c.fill(q.shape);c.clip(q.shape);c.fillStyle='#65745d';c.fill(q.canyonLit);
+ c.save();c.fillStyle=root?'#303e31':'#354a38';c.fill(q.shape);c.clip(q.shape);c.fillStyle=root?'#6d7258':'#65745d';c.fill(q.canyonLit);
+ if(root){
+  if(!q.rootGrain){q.rootGrain=new Path2D();const xs=[.06,.27,.53,.79,.96].map(v=>t.x+t.w*v);q.rootGrain.moveTo(xs[0],C.topAt(t,xs[0],t.y)+24);for(let i=1;i<xs.length;i++){const x=xs[i],prev=xs[i-1],y=C.topAt(t,x,t.y)+27;q.rootGrain.quadraticCurveTo((prev+x)/2,C.topAt(t,(prev+x)/2,t.y)+43,x,y);}}
+  c.strokeStyle='#273b2d88';c.lineWidth=7;c.stroke(q.rootGrain);c.strokeStyle='#8a8c6638';c.lineWidth=2;c.stroke(q.rootGrain);
+ }
  c.strokeStyle='#263b2c88';c.lineWidth=4;c.stroke(q.canyonKnot);
  c.strokeStyle='#8d9b76';c.lineWidth=1.6;c.stroke(q.rim);c.restore();
 }
@@ -117,7 +121,7 @@ function ferryDeck(c,t,q){
  if(!roof){c.fillStyle='#343c30';c.fill(q.ferryBeam);}c.fillStyle=roof?'#687b79':'#a49a78';c.fill(q.ferryCap);c.strokeStyle=roof?'#182c30':'#242e23';c.lineWidth=3;for(const p of q.ferryJoints)c.stroke(p);
  c.strokeStyle=roof?'#9aaba3':'#b7ac84';c.lineWidth=2.5;c.stroke(q.rim);c.restore();
 }
-const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===6&&b.honroMap?.positioning&&t.surfaceKind==='bridgeDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===4&&b.honroMap?.positioning&&t.surfaceKind==='defenseDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===3&&b.honroMap?.positioning&&(t.id==='warehouse-roof'||t.mat==='wood'&&/^(dock-|cargo-step-)/.test(t.id))){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
+const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===7&&b.honroMap?.positioning&&t.mat==='wood'&&!t.honroElementCollision){canyonBough(c,t,prepareTerrain(t,b),true);return;}if(b?.honroStage===6&&b.honroMap?.positioning&&t.surfaceKind==='bridgeDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===4&&b.honroMap?.positioning&&t.surfaceKind==='defenseDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===3&&b.honroMap?.positioning&&(t.id==='warehouse-roof'||t.mat==='wood'&&/^(dock-|cargo-step-)/.test(t.id))){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
  if(guardianBranch(b,t)){
   // Use the authored collision silhouette and bright walkable top. The bark
   // palette never changes resistance or the one-way projectile passage rule.
@@ -146,6 +150,14 @@ function prepareScene(b){let q=sceneCache.get(b);if(q?.source===b.honroMap.act1S
  q={source:art,version:b.sceneVersion,rocks,shelfNecks,replaced:new Set(art.replaced||[]),scenery:new Map((art.scenery||[]).map(s=>[s.id,s]))};sceneCache.set(b,q);return q;
 }
 function supports(c,b){if(G.HonroStage3LocationArt?.active(b)&&G.HonroStage3LocationArt.ready(b)||G.HonroStage4LocationArt?.active(b)&&G.HonroStage4LocationArt.ready(b)||G.HonroStage6LocationArt?.active(b)&&G.HonroStage6LocationArt.ready(b))return;c=G.HonroVisualStyle?.context(c,'L1')||c;
+ // The three homes keep their original anchors. Short rear legs bridge
+ // their level sills to the sloped living bough; no extra walkable floor.
+ if(b.honroStage===7&&b.honroMap?.positioning){c.save();c.strokeStyle='#303b2d';c.lineWidth=15;
+  for(const [support,x,y,width]of [['tier-low',1180,3836,410],['tier-mid',3000,3000,390],['tier-crown',1730,1396.3333333333333,450]]){
+   const t=b.terrain.find(t=>t.id===support);if(!t)continue;
+   for(const dx of [-width*.45,-width*.15,width*.32]){const px=x+dx,foot=C.topAt(t,px,y);if(foot<=y+8)continue;c.beginPath();c.moveTo(px,y-5);c.lineTo(px,foot+12);c.stroke();c.strokeStyle='#78816a66';c.lineWidth=3;c.beginPath();c.moveTo(px-4,y);c.lineTo(px-4,foot);c.stroke();c.strokeStyle='#303b2d';c.lineWidth=15;}
+  }c.restore();
+ }
  // Real optional decks receive visibly open timber trestles. Gaps remain gaps;
  // these narrow, darker members are scenery and never suggest extra floor.
  if(![3,4,6,8,9,10].includes(b.honroStage))return;

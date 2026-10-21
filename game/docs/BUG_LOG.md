@@ -3848,3 +3848,7 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 - Preserve both broken upper spans and lower rescue geography. Timber decks/watch stand follow unchanged landing tops; original piers receive knee braces. Remove two decorative low bridges that suggested a false second floor.
 - Keep initial/wave budgets and story; place duplicate actors by upper air, pier approach, east lookout/road roles. Pursuit enters behind the carrier. Revision6 2→3 restarts only this changed battle.
 - Retired image bridge CLI now refuses before writes: it otherwise flattens the restored valley and remaps actors. Current build author is repeatable and preserves other29/library. Review and final play evidence: stage-review/stage06-bridge/REVIEW.md.
+
+## 2026-10-21 — 7장 뿌리 경로와 재생성 안전
+
+아래 측면 가지가 ramp-1 아래로 교차해 끝에서 추락하는 문제를 접합으로 교정했다. 주요 지그재그와 주민3명/스토리는 유지하고, 속빈 뿌리의 판 같은 하부와 목재 가독성, 역할별 clone 배치/증원 지지면을 보완했다. Stage7 revision2→3으로 구전투만 폐기한다. 폐기 이미지 author CLI의 나무→언덕 덮어쓰기를 쓰기 전에 차단했다. 세 인물 유한 상행 및 실탄3건, 다른29장 보존, author 재실행을 확인했다. 역사 stage7-reentry는 기준 master에도 있는 Stage1 해시 오류로 중단하며 현행 저장 검사를 별도로 기록한다. 상세/최종 화면은 stage-review/stage07-roots/REVIEW.md.

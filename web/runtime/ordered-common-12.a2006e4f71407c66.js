@@ -675,7 +675,7 @@ function livingBough(c,t,q){
  c.strokeStyle='#6f7a5844';c.lineWidth=3;c.beginPath();c.moveTo(knot.x-190,knot.y+19);c.bezierCurveTo(knot.x-80,knot.y+35,knot.x-55,knot.y-16,knot.x+50,knot.y-3);c.bezierCurveTo(knot.x+100,knot.y+8,knot.x+175,knot.y+25,knot.x+220,knot.y+28);c.stroke();
  c.restore();
 }
-function canyonBough(c,t,q){
+function canyonBough(c,t,q,root=false){
  if(!q.canyonLit){
   const top=q.edges.length?[q.edges[0][0],...q.edges.map(e=>e[1])]:[],ps=C.poly(t);
   const inner=top.map(p=>{const hits=[p.y+8];for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(a.x!==z.x&&p.x>=Math.min(a.x,z.x)&&p.x<=Math.max(a.x,z.x))hits.push(a.y+(z.y-a.y)*(p.x-a.x)/(z.x-a.x));}return[p.x,p.y+(Math.max(...hits)-p.y)*.4];});
@@ -683,7 +683,11 @@ function canyonBough(c,t,q){
   const right=t.id.startsWith('right'),kx=t.x+t.w*(right?.72:.28),ky=C.topAt(t,kx,t.y)+24;
   q.canyonKnot=new Path2D();q.canyonKnot.moveTo(kx-110,ky+13);q.canyonKnot.bezierCurveTo(kx-40,ky+28,kx-20,ky-17,kx+24,ky-5);q.canyonKnot.bezierCurveTo(kx+55,ky+10,kx+80,ky+16,kx+120,ky+14);
  }
- c.save();c.fillStyle='#354a38';c.fill(q.shape);c.clip(q.shape);c.fillStyle='#65745d';c.fill(q.canyonLit);
+ c.save();c.fillStyle=root?'#303e31':'#354a38';c.fill(q.shape);c.clip(q.shape);c.fillStyle=root?'#6d7258':'#65745d';c.fill(q.canyonLit);
+ if(root){
+  if(!q.rootGrain){q.rootGrain=new Path2D();const xs=[.06,.27,.53,.79,.96].map(v=>t.x+t.w*v);q.rootGrain.moveTo(xs[0],C.topAt(t,xs[0],t.y)+24);for(let i=1;i<xs.length;i++){const x=xs[i],prev=xs[i-1],y=C.topAt(t,x,t.y)+27;q.rootGrain.quadraticCurveTo((prev+x)/2,C.topAt(t,(prev+x)/2,t.y)+43,x,y);}}
+  c.strokeStyle='#273b2d88';c.lineWidth=7;c.stroke(q.rootGrain);c.strokeStyle='#8a8c6638';c.lineWidth=2;c.stroke(q.rootGrain);
+ }
  c.strokeStyle='#263b2c88';c.lineWidth=4;c.stroke(q.canyonKnot);
  c.strokeStyle='#8d9b76';c.lineWidth=1.6;c.stroke(q.rim);c.restore();
 }
@@ -695,7 +699,7 @@ function ferryDeck(c,t,q){
  if(!roof){c.fillStyle='#343c30';c.fill(q.ferryBeam);}c.fillStyle=roof?'#687b79':'#a49a78';c.fill(q.ferryCap);c.strokeStyle=roof?'#182c30':'#242e23';c.lineWidth=3;for(const p of q.ferryJoints)c.stroke(p);
  c.strokeStyle=roof?'#9aaba3':'#b7ac84';c.lineWidth=2.5;c.stroke(q.rim);c.restore();
 }
-const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===6&&b.honroMap?.positioning&&t.surfaceKind==='bridgeDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===4&&b.honroMap?.positioning&&t.surfaceKind==='defenseDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===3&&b.honroMap?.positioning&&(t.id==='warehouse-roof'||t.mat==='wood'&&/^(dock-|cargo-step-)/.test(t.id))){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
+const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===7&&b.honroMap?.positioning&&t.mat==='wood'&&!t.honroElementCollision){canyonBough(c,t,prepareTerrain(t,b),true);return;}if(b?.honroStage===6&&b.honroMap?.positioning&&t.surfaceKind==='bridgeDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===4&&b.honroMap?.positioning&&t.surfaceKind==='defenseDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===3&&b.honroMap?.positioning&&(t.id==='warehouse-roof'||t.mat==='wood'&&/^(dock-|cargo-step-)/.test(t.id))){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
  if(guardianBranch(b,t)){
   // Use the authored collision silhouette and bright walkable top. The bark
   // palette never changes resistance or the one-way projectile passage rule.
@@ -724,6 +728,14 @@ function prepareScene(b){let q=sceneCache.get(b);if(q?.source===b.honroMap.act1S
  q={source:art,version:b.sceneVersion,rocks,shelfNecks,replaced:new Set(art.replaced||[]),scenery:new Map((art.scenery||[]).map(s=>[s.id,s]))};sceneCache.set(b,q);return q;
 }
 function supports(c,b){if(G.HonroStage3LocationArt?.active(b)&&G.HonroStage3LocationArt.ready(b)||G.HonroStage4LocationArt?.active(b)&&G.HonroStage4LocationArt.ready(b)||G.HonroStage6LocationArt?.active(b)&&G.HonroStage6LocationArt.ready(b))return;c=G.HonroVisualStyle?.context(c,'L1')||c;
+ // The three homes keep their original anchors. Short rear legs bridge
+ // their level sills to the sloped living bough; no extra walkable floor.
+ if(b.honroStage===7&&b.honroMap?.positioning){c.save();c.strokeStyle='#303b2d';c.lineWidth=15;
+  for(const [support,x,y,width]of [['tier-low',1180,3836,410],['tier-mid',3000,3000,390],['tier-crown',1730,1396.3333333333333,450]]){
+   const t=b.terrain.find(t=>t.id===support);if(!t)continue;
+   for(const dx of [-width*.45,-width*.15,width*.32]){const px=x+dx,foot=C.topAt(t,px,y);if(foot<=y+8)continue;c.beginPath();c.moveTo(px,y-5);c.lineTo(px,foot+12);c.stroke();c.strokeStyle='#78816a66';c.lineWidth=3;c.beginPath();c.moveTo(px-4,y);c.lineTo(px-4,foot);c.stroke();c.strokeStyle='#303b2d';c.lineWidth=15;}
+  }c.restore();
+ }
  // Real optional decks receive visibly open timber trestles. Gaps remain gaps;
  // these narrow, darker members are scenery and never suggest extra floor.
  if(![3,4,6,8,9,10].includes(b.honroStage))return;
@@ -1731,83 +1743,6 @@ const key=S._worldCacheKey;S._worldCacheKey=function(b,w){return key.call(this,b
 // distance. The old screen-wide pass would flatten that distance hierarchy.
 S.backgroundReadability=function(){};
 G.HonroVisualHierarchy={classify:V.classify,style:V.STYLE};
-})(globalThis);
-
-})();
-await yieldIfNeeded();
-// shared/runtime/authored-far-art.js
-(()=>{
-'use strict';
-(function(G){'use strict';
-// Distance-only provider. Terrain, camera, placements and battle data are owned
-// by the unchanged vector renderers. Paintings are demand decoded, never tiled.
-const S=G.HonroScene.prototype,E=G.HonroEnvironment,manifest=G.HONRO_AUTHORED_FAR,cache=new Map(),MAX=3;
-const keyFor=n=>manifest?.stages[n]?.key||null;
-function request(key){
- if(cache.has(key)){const item=cache.get(key);cache.delete(key);cache.set(key,item);return item;}
- const src=manifest?.images[key];if(!src||typeof Image==='undefined')return null;
- while(cache.size>=MAX){const first=cache.keys().next().value,old=cache.get(first);if(old.canvas)old.canvas.width=1;if(old.image){old.image.onload=null;old.image.onerror=null;old.image.src='';}cache.delete(first);}
- const item={image:new Image(),canvas:null,error:false};cache.set(key,item);item.image.decoding='async';
- item.image.onerror=()=>{item.error=true;};
- item.image.onload=()=>{
-  if(cache.get(key)!==item)return;
-  const image=item.image,cv=document.createElement('canvas'),c=cv.getContext('2d');
-  cv.width=Math.min(2048,image.naturalWidth);cv.height=Math.round(cv.width*image.naturalHeight/image.naturalWidth);
-  const dark=['bellRear','depotRear'].includes(key),interior=key.endsWith('-interior');
-  c.filter=dark?'saturate(.55) contrast(.65) brightness(.66)':interior?'saturate(.42) contrast(.58) brightness(.68)':'saturate(.50) contrast(.76) brightness(.80)';
-  c.drawImage(image,0,0,cv.width,cv.height);c.filter='none';c.fillStyle=dark||interior?'#152a3b44':'#263c4524';c.fillRect(0,0,cv.width,cv.height);
-  item.canvas=cv;image.onload=null;image.onerror=null;item.image=null;
- };
- item.image.src=src;return item;
-}
-function layers(scene,w,h,b){
- const spec=manifest?.stages[b?.honroStage];if(!spec)return [];
- const out=[{key:spec.key,alpha:1}];
- if(spec.enclosed){
-  // Camera depth blends whole paintings: no vertical pasted-image seam, and
-  // an upper outdoor path is never enclosed merely because a roof lies below.
-  const roofs=b.terrain.filter(t=>t.honroCeiling&&!t.broken),smooth=v=>{v=Math.max(0,Math.min(1,v));return v*v*(3-2*v);};
-  let alpha=0;
-  for(const t of roofs)alpha=Math.max(alpha,smooth((scene.x-t.x+200)/700)*smooth((t.x+t.w-scene.x+200)/700)*smooth((scene.y-(t.y+t.h-600))/600));
-  if(alpha>0)out.push({key:spec.enclosed,alpha});
- }
- return out.map(l=>{const canvas=request(l.key)?.canvas;return{...l,canvas,frame:canvas&&E.act1BackdropFrame(scene,w,h,b,canvas.width,canvas.height)};});
-}
-const previous=S.background,landmark=S.landmark,cardAssets=new WeakMap();
-// Remove only opaque backing washes from non-colliding distance cards. Keep
-// their architecture, rock contours, lamps and every physical/world landmark.
-const backingCounts={'stage16:temple-rear-cavern-courts':1,'stage17:worksite-rear-cavern':1,'stage18:bell-rear-cavern':2,'a3-maintenance25:dark-shell':5,'stage27-depot-r4:misconnected-rear':2};
-S.landmark=function(c,l){
- if(this.battle?.honroStage===18&&request('bellRear')?.canvas&&['sb-art-rear-cavern','sb-art-rear-rock-roots'].includes(l.id))return;
- const count=backingCounts[l.asset?.id],n=this.battle?.honroStage;
- if(count&&[16,17,19,25,27].includes(n)&&!l.asset.collision?.length&&request(keyFor(n))?.canvas){
-  let asset=cardAssets.get(l.asset);if(!asset){asset={...l.asset,vector:{...l.asset.vector,root:{...l.asset.vector.root,children:l.asset.vector.root.children.slice(count)}}};cardAssets.set(l.asset,asset);}
-  return landmark.call(this,c,{...l,asset});
- }
- return landmark.call(this,c,l);
-};
-const worldKey=S._worldCacheKey;
-S._worldCacheKey=function(b,w){return worldKey.call(this,b,w)+([16,17,18,19,25,27].includes(b.honroStage)?':rear-image:'+!!request(keyFor(b.honroStage))?.canvas:'');};
-S.background=function(c,w,h,b){
- if(b?.honroCustom)return previous.call(this,c,w,h,b);
- const ls=layers(this,w,h,b);if(!ls.length||ls.some(l=>!l.canvas))return previous.call(this,c,w,h,b);
- const raw=G.HonroVisualStyle.raw(c),paint=cc=>{
-  for(const l of ls){const f=l.frame;cc.save();
-   cc.globalAlpha=l.alpha;
-   cc.drawImage(l.canvas,f.x,f.y,f.w,f.h);cc.restore();
-  }
- };
- const signature=ls.map(l=>[l.key,l.frame.x,l.frame.y,l.frame.w,l.frame.h,l.alpha].join(',')).join('|');
- if(!this._screenRaster(raw,['authored-far',w,h,signature].join(':'),w,h,paint,'_screenBackgroundCache',false))paint(raw);
- // Stage 5's local cave wall must remain in front of the distant painting.
- if(b.honroStage===5)G.HonroStage5WaterfallArt?.caveBackground(c,w,h,b,this);
- // These stages previously drew authored room rocks, hanging clues and lights
- // in background(). Keep that pass, omitting only its old sky/flat cave base.
- if([11,13,14,15,16,17,19,20].includes(b.honroStage))G.HonroAct2SpatialArt.background(c,b,this,w,h,true);
- this.environmentStats={...this.environmentStats,groups:this.environmentStats?.groups||0,cachedPaths:this.environmentStats?.cachedPaths||0,visibleAssets:ls.length,backgroundAnimatedPrimitives:0,authoredFar:ls.map(l=>l.key)};
- if([11,13,14,15,16,17,19,20,22,24,25,26,28,29].includes(b.honroStage))G.HonroEnvironmentRenderer.customSpatialScenery(this,c,w,h,b);
-};
-G.HonroAuthoredFarArt={keyFor,manifest,ready:n=>{const s=manifest?.stages[n];return !!s&&[s.key,s.enclosed].filter(Boolean).every(k=>!!request(k)?.canvas);},frames:(scene,w,h,b)=>layers(scene,w,h,b).map(({canvas,...l})=>l),stats:()=>({entries:cache.size,maxEntries:MAX,keys:[...cache.keys()],errors:[...cache.entries()].filter(([,v])=>v.error).map(([k])=>k),canvasBytes:[...cache.values()].reduce((n,v)=>n+(v.canvas?v.canvas.width*v.canvas.height*4:0),0)})};
 })(globalThis);
 
 })();

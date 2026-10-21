@@ -1053,7 +1053,7 @@ await yieldIfNeeded();
 (()=>{
 'use strict';
 (function(G){'use strict';
-const clone=x=>structuredClone(x),REVISIONS=Object.freeze({1:7,2:6,3:4,4:4,5:2,6:3,7:2,8:2,9:2,10:2,...Object.fromEntries(Array.from({length:10},(_,i)=>[21+i,1])),29:2});
+const clone=x=>structuredClone(x),REVISIONS=Object.freeze({1:7,2:6,3:4,4:4,5:2,6:3,7:3,8:2,9:2,10:2,...Object.fromEntries(Array.from({length:10},(_,i)=>[21+i,1])),29:2});
 // Increment only the chapters whose authored geography/encounters are replaced.
 // Workshop projects and their protected campaign owner are outside this contract.
 const current=id=>REVISIONS[id]||0;
@@ -1492,7 +1492,7 @@ function balance(b){
   u.combatBaseHp=(u.combatBaseHp??u.maxHp/(G.HONRO_CORE.DIFFICULTIES[b.difficulty]?.hp||1))*.6;
   u.hp=u.maxHp=Math.max(1,Math.round(u.maxHp*.6));
   const v=structuredClone(u);v.id=u.id+'-cluster';v.x+=u.r*2+24;
-  const authored=[1,2,3,4,6].includes(b.honroStage)&&b.honroMap?.positioning?.clusterPositions?.[v.id];if(authored)Object.assign(v,authored);
+  const authored=[1,2,3,4,6,7].includes(b.honroStage)&&b.honroMap?.positioning?.clusterPositions?.[v.id];if(authored)Object.assign(v,authored);
   v.spawnX=v.x;v.damageBy={};v.xpGranted=0;
   const kind=v.honroVariant||v.honroType,flying=!!G.HonroWorld.archetypes[kind]?.flying;
   const spot=G.HonroTerrain.place({...b,units:[...b.units,...added]},v,{flying,maxDistance:700});

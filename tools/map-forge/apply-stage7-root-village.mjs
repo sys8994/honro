@@ -1,1 +1,2 @@
-import {readFile,writeFile} from 'node:fs/promises';import {applyStage7RootVillage} from './stage7-root-village.mjs';const file='shared/data/campaign.json',p=JSON.parse(await readFile(file,'utf8'));applyStage7RootVillage(p);await writeFile(file,JSON.stringify(p)+'\n');console.log('Authored Stage7 grounded village and reentry roots only');
+// Historical image hillside author replaces the restored inhabited tree.
+throw new Error('Stage7 image-terrain author retired. Use the vector stage7-positioning.mjs build author; campaign.json was not written.');

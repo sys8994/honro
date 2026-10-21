@@ -1,5 +1,5 @@
 import {prefetchProject,prefetchData,yieldIfNeeded} from "../runtime/load-data.60b63bd7d9d5af82.js";
-globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL="web/entries/game.107ab1b328190cd0.html?embedded=1";
+globalThis.HONRO_PROJECT_MODE="full";globalThis.HONRO_PLAYTEST_URL="web/entries/game.1b35cf1f0fae8799.html?embedded=1";
 const modules=[new URL("../runtime/ordered-common-1.b90980f983e0304d.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-title-markup.3976b37b0afc8917.js",import.meta.url).href,
 new URL("../runtime/HONRO_BGM_TRACKS.8183477a4872f6a6.js",import.meta.url).href,
@@ -10,12 +10,12 @@ new URL("../runtime/HONRO_NARRATIVE_V0.c81f5e9266d6d06a.js",import.meta.url).hre
 new URL("../runtime/HONRO_SPLIT_V1.fe1bd10ce56181e2.js",import.meta.url).href,
 new URL("../runtime/HONRO_OPEN_STRUCTURES.10ceeb69a6df342c.js",import.meta.url).href,
 new URL("../runtime/HONRO_WATERWORKS_V2.9735a0c493b64ee7.js",import.meta.url).href,
-new URL("../runtime/ordered-common-4.6e3bb937eb647b2b.js",import.meta.url).href,
+new URL("../runtime/ordered-common-4.a145bf1136fe3cec.js",import.meta.url).href,
 new URL("../runtime/ordered-common-5.33efaaf98b2f6071.js",import.meta.url).href,
 new URL("../runtime/ordered-common-6.acf03aa763ca027f.js",import.meta.url).href,
 new URL("../runtime/ordered-common-7.41ebd8c9ffc412fd.js",import.meta.url).href,
 new URL("../runtime/ordered-common-8.be150d154838fc77.js",import.meta.url).href,
-new URL("../runtime/campaign.e34a20848cbd2612.js",import.meta.url).href,
+new URL("../runtime/campaign.d7753bc8c8e1a6e9.js",import.meta.url).href,
 new URL("../runtime/ordered-common-9.9864947017dc6137.js",import.meta.url).href,
 new URL("../runtime/party-alias.b19b3e88a3b965c3.js",import.meta.url).href,
 new URL("../runtime/ordered-common-10.4546edfd464ff837.js",import.meta.url).href,
@@ -28,13 +28,13 @@ new URL("../runtime/HONRO_AUTHORED_FAR.c9728fddbd7f2de9.js",import.meta.url).hre
 new URL("../runtime/shared-assets-monsters-monsters-runtime.63ca9e9192ae871d.js",import.meta.url).href,
 new URL("../runtime/shared-assets-actors-actors-runtime.c11822d74d18722f.js",import.meta.url).href,
 new URL("../runtime/ordered-common-11.42c3d3bd61f34f59.js",import.meta.url).href,
-new URL("../runtime/ordered-common-12.259454b7acdae245.js",import.meta.url).href,
+new URL("../runtime/ordered-common-12.f8b7a2a37fc2e0c8.js",import.meta.url).href,
 new URL("../runtime/shared-runtime-stage-rules.425c10ceb6d4b5ec.js",import.meta.url).href,
 new URL("../runtime/workshop-app.3dcb579d65e74da0.js",import.meta.url).href].filter(file=>!false||globalThis.HONRO_EMBEDDED||globalThis.HONRO_PROJECT_MODE==='full'||!Object.values(globalThis.HONRO_OPTIONAL_MODULES).some(entry=>entry.url===file));
 globalThis.HONRO_READY=(async()=>{try{
 
 const dataHints={[new URL("../runtime/HONRO_BGM_TRACKS.8183477a4872f6a6.js",import.meta.url).href]:["web/data/HONRO_BGM_TRACKS.1fda0fbf388636f0.json"],[new URL("../runtime/HONRO_BALANCE.ead88f3d9b670254.js",import.meta.url).href]:["web/data/HONRO_BALANCE.e066899ab958f2b8.json"],[new URL("../runtime/HONRO_NARRATIVE_V0.c81f5e9266d6d06a.js",import.meta.url).href]:["web/data/HONRO_NARRATIVE_V0.1b1a16777125d7dc.json"],[new URL("../runtime/HONRO_SPLIT_V1.fe1bd10ce56181e2.js",import.meta.url).href]:["web/data/HONRO_SPLIT_V1.8a0557450bffb24e.json"],[new URL("../runtime/HONRO_OPEN_STRUCTURES.10ceeb69a6df342c.js",import.meta.url).href]:["web/data/HONRO_OPEN_STRUCTURES.bd10fa99a7eaab14.json"],[new URL("../runtime/HONRO_WATERWORKS_V2.9735a0c493b64ee7.js",import.meta.url).href]:["web/data/HONRO_WATERWORKS_V2.7d653f087d5ae12f.json"],[new URL("../runtime/party-alias.b19b3e88a3b965c3.js",import.meta.url).href]:["web/data/HONRO_PARTY.16d29c28ac7225c7.json","web/data/HONRO_PARTY_ART.62c967e06066946d.json"],[new URL("../runtime/HONRO_ACT1_FAR_DATA.c067a494dcc5f919.js",import.meta.url).href]:["web/data/HONRO_ACT1_FAR_DATA.a7bedbfe9c843e9f.json"],[new URL("../runtime/HONRO_ACT2_FAR_DATA.852b2a988d0764bf.js",import.meta.url).href]:["web/data/HONRO_ACT2_FAR_DATA.55de354dd4cecfc3.json"],[new URL("../runtime/HONRO_REST_BACKDROPS.a6937a62382f4091.js",import.meta.url).href]:["web/data/HONRO_REST_BACKDROPS.59a3076127863c24.json"],[new URL("../runtime/HONRO_STAGE21_PAINTED.f43a09de9ac8b0ed.js",import.meta.url).href]:["web/data/HONRO_STAGE21_PAINTED.4df0062da3191cc0.json"],[new URL("../runtime/HONRO_PAINTED_PILOTS.92a7a1bab144051e.js",import.meta.url).href]:["web/data/HONRO_PAINTED_PILOTS.6d84c3845b695bb3.json"],[new URL("../runtime/HONRO_AUTHORED_FAR.c9728fddbd7f2de9.js",import.meta.url).href]:["web/data/HONRO_AUTHORED_FAR.f922b0b5e5066247.json"],[new URL("../runtime/shared-assets-monsters-monsters-runtime.63ca9e9192ae871d.js",import.meta.url).href]:["web/data/HONRO_MONSTERS.fbfeb788663e09e1.json"],[new URL("../runtime/shared-assets-actors-actors-runtime.c11822d74d18722f.js",import.meta.url).href]:["web/data/HONRO_ACTORS.ac87812035ed3e58.json"]},preloaded=new Set();
-if(!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject("web/data/campaign.0c99bc6c3dc1da5e.json");
+if(!globalThis.HONRO_EMBEDDED&&globalThis.HONRO_PROJECT_MODE!=='full')prefetchProject("web/data/campaign.b95445ef7cedeb5d.json");
 for(let i=0;i<modules.length;i++){
  for(let n=i;n<Math.min(modules.length,i+12);n++){const href=modules[n];if(preloaded.has(href))continue;preloaded.add(href);prefetchData(dataHints[href]||[]);const link=document.createElement('link');link.rel='modulepreload';link.href=href;link.fetchPriority='low';document.head.append(link);}
  
