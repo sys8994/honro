@@ -1,5 +1,5 @@
 (function(G){'use strict';
-// Image contract: original PNGs stay in _local/archive/act-ending-originals;
+// Image contract: parent Library preserves version1 original PNGs;
 // supplied art is compressed to these paths without repainting or cropping.
 G.HONRO_ACT_ENDINGS={
  10:{image:'shared/assets/endings/act-1.webp',nextTitle:'제 2막 · 울리지 않는 종',lines:[

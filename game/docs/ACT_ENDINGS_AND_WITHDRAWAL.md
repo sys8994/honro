@@ -5,9 +5,9 @@
 ## 이미지 경로
 
 `shared/assets/endings/act-1.webp`, `act-2.webp`, `act-3.webp`.
-`shared/runtime/act-endings-content.js`의 `image`만 바꾸어 교체 가능하다. 제목/초기 로더에 이미지 preload를 추가하지 않는다. 해당 막의 승리 후일담 진입 때만 요청하며 실패하면 어두운 배경과 텍스트로 계속한다. 가로·세로 모두 contain으로 원본 전체를 보존한다. 원본 PNG는 `_local/archive/act-ending-originals/`에 보존하며 최종 공급 이미지의 Library ID/해시를 이 문서에 기록한다.
+`shared/runtime/act-endings-content.js`의 `image`만 바꾸어 교체 가능하다. 제목/초기 로더에 이미지 preload를 추가하지 않는다. 해당 막의 승리 후일담 진입 때만 요청하며 실패하면 어두운 배경과 텍스트로 계속한다. 가로·세로 모두 contain으로 원본 전체를 보존한다. 원본 version1 PNG는 부모 Library에 보존되어 있다. 이번 작업은 다운로드를 재시도하지 않고 부모가 직접 커밋한05ea5b1d의 base64 운반본을 복호화했다. 세 WebP는1672×941이며 지정 SHA256/바이트458682·471910·560200과 모두 일치한다. 이미지 생성·편집·재압축은 하지 않았다. 실제 원본 pixels의 붉은 매듭/거목/방울,녹청 묵종/석회 동굴,먹빛 기록/황토 강변을 직접 확인했다. 운반본은 정상 삭제하며05ea5b1d에서 복구할 수 있다. 정확한 해시는 [image-integrity.json](stage-review/final-integration-20261021/evidence/image-integrity.json), 최종 브라우저 검수는 [최종 통합 보고서](stage-review/final-integration-20261021/README.md)에 기록한다.
 
-부모의 최초 세 이미지는 사용자 반려로 **적용 제외**다. 교체 원본은 version 1로 확인했다. 처음에는 서명 URL 반환을 전송 차단으로 잘못 해석했으나, 부모 지시에 따라 현재 Library skill의 materialization 문서와 원문 helper 두 파일을 읽고 별도 임시 폴더에 저장한 뒤 정상 전송 단계를 실행했다. 최신 version1 transfer object를 변경 없이 stdin으로 전달해 `materialize`를 각 파일에1회 실행했으며 세 건 모두 종료 코드1 / `library file transfer failed: download failed`였다. 원본 파일이 생성되지 않아 실제 pixels/WebP 연결은 미완료다. helper 실패 뒤 추가 다운로드/우회는 하지 않았다.
+과거 후보의 Library helper 실패와 fallback-only 검사는 아래 역사 기록이며, 이번 성공한 저장소 전달/이미지 검수와 구분한다.
 
 ## 부모 확정 시간 순서 문구
 
