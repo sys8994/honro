@@ -4038,3 +4038,6 @@ Workshop Map은 Workshop JSON을 `map-import` → `launchMap`으로 실행하는
 - master145ab2f에서 기존 sp-balance-app-resume 실패를 재현했다. 원본은 23장 지도 revision이 없어 현행1로 전투를 재시작(round16→1)하는데, 검사는 SP 보정만 일어났다고 보고 전투 전체 동일성을 요구했다. 네 동행 XP/SP/배분/수련/장착·1–22장 완료·지급 장부는 보존됐고 이 fixture의 아이템도 동일했다. 런타임 저장 결함으로 판정하지 않는다.
 - SP adapter 원본 비파생 상태 동일성은 유지하고, 지도 재시작은 정확한 load 변경과 canonical 현행 새 진입 전체로 검사한다. 현행지도+옛SP probe의 실제 App Continue, 아이템소모/상처/실제 비행탄 포함3회 전체 객체 불변, retry와 완료 보상 중복 방지를 추가했다. import 타이틀의 removeAttribute 누락은 DOM 대역만 보완했다.
 - 해당 검사와 기존 campaign-map-revision8그룹 통과. fixture SHA086290aa… 전후 동일, 원본/런타임/생성 HTML 변경 없음. 외부16장 옵션 입력·실브라우저·정상완주는 미실행. 상세 전후 필드와 한계: STAGE23_SAVE_RESUME_CONTRACT.md. 별도 브랜치, master 통합 전 부모 검토 대기.
+
+### 2026-10-21 저장 검사 계약 master 통합
+- 부모의909015f8 전체 diff 검토 후 최신master145ab2f에 테스트2개·문서2개만 통합(9c0f66d7). sp-balance-app-resume 원본23장 그룹과 campaign-map-revision8그룹을 통합 소스에서 재확인해 통과했다. fixture SHA086290aa… 동일. 런타임·기존 배포 스킬UI·생성물·2장/12장 작업은 변경하지 않았고 게임빌드/브라우저 검수는 미실행. 자동 Pages 상태는 최종 인계에서 별도 보고한다.

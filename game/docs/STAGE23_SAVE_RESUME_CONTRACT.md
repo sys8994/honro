@@ -37,6 +37,6 @@ SP만 직접 적용하면 변경 leaf는 41개(네 캐릭터의 실제 파생값
 
 - `node tests/sp-balance-app-resume.mjs`: 원본 23장 그룹 통과. 선택적 `HONRO_GROWTH_SAVE` 외부16장 입력은 제공되지 않아 실행하지 않았다.
 - `node tests/campaign-map-revision.mjs`: 같은 revision 정확 재개, 없는 revision 재시작, 미동기화 XP/장부 보존, 분할 원정과 import, Workshop 제외의 기존8개 관련 그룹 통과.
-- 원본 fixture 해시는 전후 동일하고 Git diff가 없다. 런타임·맵·스킬 UI·생성 HTML을 변경하지 않았으므로 빌드·전체 검증·배포는 실행하지 않는다. master 통합은 부모 검토 전 보류한다.
+- 원본 fixture 해시는 전후 동일하고 Git diff가 없다. 런타임·맵·스킬 UI·생성 HTML을 변경하지 않았으므로 빌드·전체 검증·배포는 실행하지 않는다. 부모의 909015f8 전체 diff 검토 후 최신 master 145ab2f에 해당 네 파일만 통합했다. 통합 소스 9c0f66d7에서 위 두 검사만 다시 실행해 통과했다. 게임 빌드·브라우저 검수는 추가하지 않았으며 자동 Pages 실행 결과는 최종 인계 보고를 따른다.
 - `_local/reports/stage23-resume/continue-diff.json`에 최초 필드별 전후값, `_local/reports/stage23-resume/profile-diff.json`에 프로필 비교, `_local/reports/growth-release/normal-save-comparison.json`에 수정 뒤 파생 수치·실제 변경 경로·검사 결과를 남긴다.
 - App/게임 로직은 실제 소스지만 DOM·storage·렌더·프레임은 대역이다. 아이템/상처와 승리 경계는 명시적 probe이며 실제 브라우저 플레이·23장 정상 완주 증거로 표현하지 않는다.
