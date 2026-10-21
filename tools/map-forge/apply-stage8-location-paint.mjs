@@ -1,1 +1,3 @@
-import {readFile,writeFile} from 'node:fs/promises';import {applyStage8LocationPaint} from './stage8-location-paint.mjs';const file='shared/data/campaign.json',p=JSON.parse(await readFile(file,'utf8'));applyStage8LocationPaint(p);await writeFile(file,JSON.stringify(p)+'\n');console.log('Authored Stage8 paint, support poses and bier route metadata only');
+// Historical image-terrain author. Current Stage8 uses reviewed vector terrain
+// and an independent image backdrop. Never overwrite its map from this CLI.
+throw new Error('Stage8 image-terrain author retired; current vector artwork lives in shared/runtime/stage8-bier-art.js. No files written.');

@@ -3856,3 +3856,7 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 ## 2026-10-21 — 7장 역사 이관 검사의 현재 캠페인 결합 제거
 
 의도된 1–7장 개편 뒤 stage7-reentry가 무관한 Stage1 전체 해시에서 중단했다. 현재 전투에 대한 이관 거부 검사는 그대로 실행하고, 옛 전투 이관 입력은 기존 SHA 고정 역사 fixture를 직접 사용하도록 분리했다. 역사 manifest/hash·출처 제한·6종 변형 거부·단위/상태/아이템 보존·반복 적용 검사는 변경하지 않았으며 전체 검사 통과. 현재 master의 해시를 역사 기준으로 덮어쓰지 않았다.
+
+## 2026-10-21 — 8장 기존 전술 지형의 미술 보완
+
+기존 결박2/상여 이동과 배수로·상단 능선·동쪽 마당 동선은 보존했다. Stage8 전용 벡터 renderer에 연결된 암반 선반/절리/큰 명암면과 짧은 목재 받침을 추가하고 원경 이미지 및 전30장 데이터는 그대로 둔다. 지형/사건/단위 변경이 없어 revision도 유지한다. 옛 이미지 paint CLI는 쓰기 전에 거부하며, 순수 역사 재저작 도구의 다른 장 변경 guard는 유지한다. 현행 전투 검증은 실제 완료 보상 진입 및 QuestTargets actor를 사용한다. 초기 로더/인트로는 수정하지 않는다. 검수 및 정상 자원 결과: stage-review/stage08-bier/REVIEW.md.

@@ -7,6 +7,7 @@ import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {runtimeParts} from '../shared/build.mjs';
 import {appHarness,plain} from './app-regression-helpers.mjs';
+import {currentBierEntryProfile} from './stage8-current-entry-helper.mjs';
 import {bierEntryProfile} from './stage8-bier-entry-helper.mjs';
 import {representativeTargets,representativeMelee,representativeBladePrediction,analyzeWaits} from './stage18-bell-fullplay-helper.mjs';
 import {escortNavigator} from './stage8-bier-fullplay-helper.mjs';
@@ -17,8 +18,8 @@ const out=process.env.HONRO_FULLPLAY_OUT||'_local/reports/encounter-density/stag
 const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical',basicOnly=process.env.HONRO_FULLPLAY_BASIC_ONLY==='1',representativeAttacks=!basicOnly,policy='bier-regional-rally-v1';
 assert(['canonical','density36e9','candidate28e5','oldBudget20e0'].includes(rosterMode));
 if(rosterMode!=='canonical')g.HONRO_PROJECT=await authorStage8Bier(plain(g.HONRO_PROJECT),g,{roster:rosterMode});
-const stage=g.HONRO_PROJECT.stages[7],fixture=bierEntryProfile(g,{basicOnly}),parts=await runtimeParts({vector:false,render:false}),sourceHash=hash(g.HONRO_PROJECT),runtimeSha256=hash(parts.join('\n'));
-const provenance={policy,rosterMode,basicOnly,sourceHash,runtimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url))),navigatorSha256:hash(await readFile('tests/stage8-bier-fullplay-helper.mjs')),entrySha256:hash(await readFile('tests/stage8-bier-entry-helper.mjs')),sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),dirty:execFileSync('git',['status','--short'],{encoding:'utf8'}).trim()};
+const stage=g.HONRO_PROJECT.stages[7],fixture=(process.env.HONRO_FULLPLAY_CURRENT_ENTRY==='1'?currentBierEntryProfile:bierEntryProfile)(g,{basicOnly}),parts=await runtimeParts({vector:false,render:false}),sourceHash=hash(g.HONRO_PROJECT),runtimeSha256=hash(parts.join('\n'));
+const provenance={policy,rosterMode,basicOnly,sourceHash,runtimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url))),navigatorSha256:hash(await readFile('tests/stage8-bier-fullplay-helper.mjs')),entrySha256:hash(await readFile(process.env.HONRO_FULLPLAY_CURRENT_ENTRY==='1'?'tests/stage8-current-entry-helper.mjs':'tests/stage8-bier-entry-helper.mjs')),sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),dirty:execFileSync('git',['status','--short'],{encoding:'utf8'}).trim()};
 const resume=process.env.HONRO_FULLPLAY_CONTINUE?JSON.parse(await readFile(process.env.HONRO_FULLPLAY_CONTINUE,'utf8')):null;
 if(resume){assert.equal(resume.sourceHash,sourceHash);assert.equal(resume.runtimeSha256,runtimeSha256);for(const k of ['controllerSha256','navigatorSha256','entrySha256','policy','basicOnly','rosterMode'])assert.equal(resume.provenance[k],provenance[k]);}
 let virtualMs=resume?.virtualMs||0;g.performance={now:()=>virtualMs};let app=h.load(resume?.profile||{...plain(g.AppRegression.fresh()),...plain(fixture.profile)});if(resume)app.continue();else app.launch(8);let e=app.engine,b=e.b;if(resume)assert.deepEqual(plain(b),resume.profile.honroBattle,'Exact whole battle external Continue');
@@ -71,7 +72,7 @@ function attack(u,target){const missed=missedAtPose(u,target);if(missed&&!repres
  }finally{attackPlanningMs+=performance.now()-begin;}}
 
 
-function attackSeal(u,t){if(!t||t.broken)return false;const begin=performance.now();try{const s=C.SKILLS[basic[u.cls]],target={x:t.x+t.w/2,y:t.y+t.h/2,h:0,r:Math.min(t.w,t.h)/2};if(distance(u,target)>1850)return false;
+function attackSeal(u,t){if(!t||t.broken)return false;const actor=e.unit(t.id);if(actor?.honroObjectiveTarget)return attack(u,actor);const begin=performance.now();try{const s=C.SKILLS[basic[u.cls]],target={x:t.x+t.w/2,y:t.y+t.h/2,h:0,r:Math.min(t.w,t.h)/2};if(distance(u,target)>1850)return false;
  if(u.cls==='knight'){
   // The new authored seals explicitly accept the ordinary sword sector. The
   // first controller incorrectly excluded the knight from this existing input.
@@ -80,7 +81,7 @@ function attackSeal(u,t){if(!t||t.broken)return false;const begin=performance.no
   return false;
  }
  const aims=e.shotSeeds(u,s,target);for(const aim of aims){const p=e.predict(u,s,aim.angle,aim.power,undefined,false);if(p.terrain===t.id&&e.fire(s.id,aim.angle,aim.power)){record({op:'fire-seal',hero:u.cls,skill:s.id,target:t.id,hpBefore:t.hp,angle:aim.angle,power:aim.power,from:{x:u.x,y:u.y}});return true;}}return false;}finally{attackPlanningMs+=performance.now()-begin;}}
-const seals=()=>b.terrain.filter(t=>t.honroSeal),goal=()=>{const left=seals().filter(t=>!t.broken).sort((a,z)=>a.x-z.x);return left[0]||(!e.unit('boss')?.dead?e.unit('boss'):null);};
+const seals=()=>g.HonroQuestTargets.records(b).filter(t=>t.honroSeal),goal=()=>{const left=seals().filter(t=>!t.broken).sort((a,z)=>a.x-z.x);return left[0]||(!e.unit('boss')?.dead?e.unit('boss'):null);};
 function destination(u,target){if(target?.honroSeal){const site=Object.values(stage.design.space.sites).find(s=>s.objectiveId===target.id),p=site?.standing;if(p){const x=p.x-(u.cls==='mage'?130:u.cls==='archer'?230:0),t=b.terrain.find(t=>t.id===p.surfaceId),y=t?C.topAt(t,x):p.y,pose=Number.isFinite(y)&&C.validTerrainContactPose(b.terrain,{...u,x,y})?{...p,x,y}:p;return{id:target.id+'-approach',...pose};}}if(target)return{...target,surfaceId:nav.surface(target),approachRange:u.cls==='knight'?100:520};return null;}
 await writeFile(`${out}/initial.json`,JSON.stringify({provenance,initial,training:fixture.training,readiness:fixture.readiness},null,2));if(!resume)await save('initial-export');
 const started=performance.now(),actionLimit=Number(process.env.HONRO_FULLPLAY_ACTION_LIMIT||450),roundLimit=Number(process.env.HONRO_FULLPLAY_ROUND_LIMIT||65);let lastSignature='',stalled=0;

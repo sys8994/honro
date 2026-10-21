@@ -684,6 +684,10 @@ function canyonBough(c,t,q,root=false){
   q.canyonKnot=new Path2D();q.canyonKnot.moveTo(kx-110,ky+13);q.canyonKnot.bezierCurveTo(kx-40,ky+28,kx-20,ky-17,kx+24,ky-5);q.canyonKnot.bezierCurveTo(kx+55,ky+10,kx+80,ky+16,kx+120,ky+14);
  }
  c.save();c.fillStyle=root?'#303e31':'#354a38';c.fill(q.shape);c.clip(q.shape);c.fillStyle=root?'#6d7258':'#65745d';c.fill(q.canyonLit);
+ if(root){
+  if(!q.rootGrain){q.rootGrain=new Path2D();const xs=[.06,.27,.53,.79,.96].map(v=>t.x+t.w*v);q.rootGrain.moveTo(xs[0],C.topAt(t,xs[0],t.y)+24);for(let i=1;i<xs.length;i++){const x=xs[i],prev=xs[i-1],y=C.topAt(t,x,t.y)+27;q.rootGrain.quadraticCurveTo((prev+x)/2,C.topAt(t,(prev+x)/2,t.y)+43,x,y);}}
+  c.strokeStyle='#273b2d88';c.lineWidth=7;c.stroke(q.rootGrain);c.strokeStyle='#8a8c6638';c.lineWidth=2;c.stroke(q.rootGrain);
+ }
  c.strokeStyle='#263b2c88';c.lineWidth=4;c.stroke(q.canyonKnot);
  c.strokeStyle='#8d9b76';c.lineWidth=1.6;c.stroke(q.rim);c.restore();
 }
@@ -1128,8 +1132,41 @@ await yieldIfNeeded();
 const S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap(),skyCache=new WeakMap();
 const active=b=>b?.honroStage===8&&!b.honroCustom&&b.honroStage8BierRevision===1;
 function path(ps){const p=new Path2D();ps.forEach((v,i)=>i?p.lineTo(v.x??v[0],v.y??v[1]):p.moveTo(v.x??v[0],v.y??v[1]));p.closePath();return p;}
+// Large connected bedding shelves and offset vertical faces. Authored per mass,
+// cached once; no rock stamps, triangulation, or new collision surfaces.
+const beds={
+ 's8-west-shoulder':[
+ ['#6f7c70',[[3190,3630],[3490,3370],[3820,3100],[4160,2910],[4580,2680],[4520,2870],[4190,3070],[3850,3220],[3550,3470],[3400,3640]]],
+ ['#4b605c',[[3400,3640],[3550,3470],[3850,3220],[4190,3070],[4520,2870],[4490,3150],[4210,3330],[3960,3390],[3800,3620],[3510,3780]]],
+ ['#7b8373',[[3850,3220],[4190,3070],[4490,3150],[4210,3200],[3970,3310],[3830,3340]]],
+ ['#5e7068',[[4210,3330],[4490,3150],[4690,2910],[4740,3290],[4580,3520],[4600,3770],[4350,3870],[4150,3740],[3960,3760],[3960,3390]]],
+ ['#354f4e',[[4740,3290],[4890,3140],[4950,3450],[4840,3690],[4930,4030],[4820,4340],[4610,4440],[4630,4100],[4600,3770],[4580,3520]]],
+ ['#718074',[[3960,3760],[4150,3740],[4350,3870],[4600,3770],[4560,3840],[4350,3960],[4150,3840],[4000,3870]]],
+ ['#526760',[[4150,3840],[4350,3960],[4560,3840],[4630,4100],[4500,4330],[4250,4440],[4020,4240]]],
+ ['#7a8577',[[4250,4440],[4500,4330],[4820,4340],[4770,4420],[4500,4400],[4310,4510]]]],
+ 's8-east-shoulder':[
+ ['#758075',[[5430,2630],[5610,2710],[5830,2920],[6040,3240],[5880,3290],[5690,3080],[5510,2980]]],
+ ['#526962',[[5510,2980],[5690,3080],[5880,3290],[6040,3240],[6110,3420],[5900,3510],[5650,3280],[5530,3340]]],
+ ['#829082',[[5650,3280],[5900,3510],[6110,3420],[6080,3490],[5880,3590],[5650,3360]]],
+ ['#3c5652',[[5430,3000],[5510,2980],[5530,3340],[5650,3360],[5580,3560],[5610,3910],[5540,4210],[5420,4390],[5440,3980],[5390,3620]]],
+ ['#687c70',[[5480,3580],[5580,3560],[5610,3910],[5520,3860],[5490,4040],[5440,3980]]]],
+ 's8-ground':[
+ ['#55695f',[[950,4280],[1610,4130],[2280,3920],[2670,3930],[2800,4230],[2520,4340],[2170,4280],[1750,4450],[1370,4490]]],
+ ['#738171',[[1610,4130],[2280,3920],[2670,3930],[2610,4000],[2310,4020],[1770,4230],[1450,4310]]],
+ ['#3c5651',[[2170,4280],[2520,4340],[2800,4230],[3020,4550],[2880,4820],[2510,4770],[2330,4530]]],
+ ['#687b6e',[[6720,4390],[7190,4050],[7600,3790],[7860,3490],[8070,3280],[8330,3300],[8200,3470],[7890,3640],[7630,3950],[7260,4210],[7020,4500]]],
+ ['#3c5652',[[7020,4500],[7260,4210],[7630,3950],[7890,3640],[8200,3470],[8130,3790],[7810,4050],[7660,4390],[7310,4690],[7000,4830]]],
+ ['#7d8977',[[7260,4210],[7630,3950],[7810,4050],[7660,4100],[7430,4330],[7210,4380]]],
+ ['#617368',[[8130,3790],[8200,3470],[8330,3300],[8680,3170],[9140,3200],[9240,3380],[8990,3450],[8650,3380],[8480,3630]]],
+ ['#425c55',[[8480,3630],[8650,3380],[8990,3450],[9240,3380],[9390,3690],[9130,3920],[8770,3850],[8550,4050]]]],
+ 's8-court':[
+ ['#728477',[[6200,4250],[6600,3890],[6990,3580],[7420,3111],[7600,3000],[7800,3000],[7730,3090],[7520,3180],[7170,3590],[6790,3840],[6550,4080],[6370,4200]]],
+ ['#3e5753',[[6370,4200],[6550,4080],[6790,3840],[7170,3590],[7520,3180],[7730,3090],[7680,3280],[7300,3520],[6870,3880],[6540,4110]]]]
+};
+const bedPaths=new Map();
+function rockBeds(c,id){let rows=bedPaths.get(id);if(!rows){rows=(beds[id]||[]).map(([color,points])=>({color,p:path(points)}));bedPaths.set(id,rows);}for(const row of rows){c.fillStyle=row.color;c.fill(row.p);}}
 function shape(t,b){let q=cache.get(t);if(q?.source===t.vertices&&q.version===b.sceneVersion)return q;const ps=C.poly(t),contour=t.id==='s8-ground'?b.honroMap?.bier?.primaryContour:null,pairs=contour?contour.slice(1).map((z,i)=>[contour[i],z].map(p=>({x:p[0],y:p[1]}))):(t.honroWalkEdges||[]).map(i=>[ps[i],ps[(i+1)%ps.length]]),edges=pairs.filter(([a,z])=>a&&z&&Math.abs(a.x-z.x)>.001),rim=new Path2D();for(const[a,z]of edges){rim.moveTo(a.x,a.y+5);rim.lineTo(z.x,z.y+5);}q={source:t.vertices,version:b.sceneVersion,body:path(ps),edges,rim};cache.set(t,q);return q;}
-function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('s8-'))return false;const q=shape(t,b),earth=t.id==='s8-ground',wood=t.mat==='wood',branch=/branch/.test(t.id),stone=/reflector|cover|stone/.test(t.id),top=earth?2600:t.y,depth=earth?3000:Math.min(800,Math.max(40,t.h));c.save();c.clip(q.body);const gr=c.createLinearGradient(0,top,0,top+depth);gr.addColorStop(0,wood?'#a69b72':earth?'#77836a':'#8d987c');gr.addColorStop(.42,wood?'#6e6849':earth?'#586d54':'#637e62');gr.addColorStop(1,wood?'#3c5039':earth?'#2d4b42':'#354f42');c.fillStyle=gr;c.fill(q.body);
+function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('s8-'))return false;const q=shape(t,b),earth=t.id==='s8-ground',wood=t.mat==='wood',branch=/branch/.test(t.id),stone=/reflector|cover|stone/.test(t.id),top=earth?2600:t.y,depth=earth?3000:Math.min(800,Math.max(40,t.h));c.save();c.clip(q.body);const gr=c.createLinearGradient(0,top,0,top+depth);gr.addColorStop(0,wood?'#908367':earth?'#6c7868':'#7a877c');gr.addColorStop(.42,wood?'#605d47':earth?'#4d6357':'#536c64');gr.addColorStop(1,wood?'#35483c':earth?'#2a4440':'#304a46');c.fillStyle=gr;c.fill(q.body);
  if(earth){
   // Broad asymmetrical sediment faces, not repeated geometric stamps. The
   // exposed earth mass and a dressed human-sized stone stay distinct scales.
@@ -1165,8 +1202,13 @@ function terrain(c,t,b){if(!active(b)||!t.id?.startsWith('s8-'))return false;con
   // courses on the two tactical covers. No full-world tiling or tiny noise.
   c.strokeStyle='#385643a6';c.lineWidth=3;const rows=Math.max(1,Math.ceil(t.h/58));for(let i=1;i<rows;i++){const y=t.y+t.h*i/rows;c.beginPath();c.moveTo(t.x,y);c.lineTo(t.x+t.w,y+2);c.stroke();if(i%2){c.beginPath();c.moveTo(t.x+t.w*.48,y);c.lineTo(t.x+t.w*.5,y-t.h/rows);c.stroke();}}c.fillStyle='#bbc1a255';c.fill(path([[t.x,t.y],[t.x+12,t.y],[t.x+14,t.y+t.h],[t.x,t.y+t.h]]));
  }
+ if(!wood)rockBeds(c,t.id);
  c.strokeStyle=wood?'#d2bf8e99':'#d0c8a494';c.lineWidth=earth?8:6;c.stroke(q.rim);c.restore();return true;}
 const oldTerrain=S.terrain;S.terrain=function(c,t){if(terrain(c,t,this.battle))return;return oldTerrain.call(this,c,t);};
+const landmarkLayer=S._landmarkLayer;
+S._landmarkLayer=function(c,list,layer){const out=landmarkLayer.call(this,c,list,layer),b=this.battle;if(!active(b)||layer!=='structural-back')return out;
+ const beams=[[[5590,4430],[5680,4412]],[[5590,4350],[5680,4276]],[[5590,4465],[5780,4412]],[[7810,3135],[7940,3027]],[[8320,3135],[8230,3027]]];
+ c.save();for(const[a,z]of beams){const dx=z[0]-a[0],dy=z[1]-a[1],len=Math.hypot(dx,dy),nx=-dy/len*10,ny=dx/len*10;c.fillStyle='#384b40';c.fill(path([[a[0]-nx,a[1]-ny],[z[0]-nx,z[1]-ny],[z[0]+nx,z[1]+ny],[a[0]+nx,a[1]+ny]]));c.strokeStyle='#7a8060';c.lineWidth=3;c.beginPath();c.moveTo(...a);c.lineTo(...z);c.stroke();}c.restore();return out;};
 // Preserve the quiet compact names of the two bindings without durability UI.
 const sealId=id=>id==='bier-knot-0'||id==='bier-knot-1',oldHealth=S.terrainHealth;
 S.terrainHealth=function(c,b,w,h){
@@ -1739,83 +1781,6 @@ const key=S._worldCacheKey;S._worldCacheKey=function(b,w){return key.call(this,b
 // distance. The old screen-wide pass would flatten that distance hierarchy.
 S.backgroundReadability=function(){};
 G.HonroVisualHierarchy={classify:V.classify,style:V.STYLE};
-})(globalThis);
-
-})();
-await yieldIfNeeded();
-// shared/runtime/authored-far-art.js
-(()=>{
-'use strict';
-(function(G){'use strict';
-// Distance-only provider. Terrain, camera, placements and battle data are owned
-// by the unchanged vector renderers. Paintings are demand decoded, never tiled.
-const S=G.HonroScene.prototype,E=G.HonroEnvironment,manifest=G.HONRO_AUTHORED_FAR,cache=new Map(),MAX=3;
-const keyFor=n=>manifest?.stages[n]?.key||null;
-function request(key){
- if(cache.has(key)){const item=cache.get(key);cache.delete(key);cache.set(key,item);return item;}
- const src=manifest?.images[key];if(!src||typeof Image==='undefined')return null;
- while(cache.size>=MAX){const first=cache.keys().next().value,old=cache.get(first);if(old.canvas)old.canvas.width=1;if(old.image){old.image.onload=null;old.image.onerror=null;old.image.src='';}cache.delete(first);}
- const item={image:new Image(),canvas:null,error:false};cache.set(key,item);item.image.decoding='async';
- item.image.onerror=()=>{item.error=true;};
- item.image.onload=()=>{
-  if(cache.get(key)!==item)return;
-  const image=item.image,cv=document.createElement('canvas'),c=cv.getContext('2d');
-  cv.width=Math.min(2048,image.naturalWidth);cv.height=Math.round(cv.width*image.naturalHeight/image.naturalWidth);
-  const dark=['bellRear','depotRear'].includes(key),interior=key.endsWith('-interior');
-  c.filter=dark?'saturate(.55) contrast(.65) brightness(.66)':interior?'saturate(.42) contrast(.58) brightness(.68)':'saturate(.50) contrast(.76) brightness(.80)';
-  c.drawImage(image,0,0,cv.width,cv.height);c.filter='none';c.fillStyle=dark||interior?'#152a3b44':'#263c4524';c.fillRect(0,0,cv.width,cv.height);
-  item.canvas=cv;image.onload=null;image.onerror=null;item.image=null;
- };
- item.image.src=src;return item;
-}
-function layers(scene,w,h,b){
- const spec=manifest?.stages[b?.honroStage];if(!spec)return [];
- const out=[{key:spec.key,alpha:1}];
- if(spec.enclosed){
-  // Camera depth blends whole paintings: no vertical pasted-image seam, and
-  // an upper outdoor path is never enclosed merely because a roof lies below.
-  const roofs=b.terrain.filter(t=>t.honroCeiling&&!t.broken),smooth=v=>{v=Math.max(0,Math.min(1,v));return v*v*(3-2*v);};
-  let alpha=0;
-  for(const t of roofs)alpha=Math.max(alpha,smooth((scene.x-t.x+200)/700)*smooth((t.x+t.w-scene.x+200)/700)*smooth((scene.y-(t.y+t.h-600))/600));
-  if(alpha>0)out.push({key:spec.enclosed,alpha});
- }
- return out.map(l=>{const canvas=request(l.key)?.canvas;return{...l,canvas,frame:canvas&&E.act1BackdropFrame(scene,w,h,b,canvas.width,canvas.height)};});
-}
-const previous=S.background,landmark=S.landmark,cardAssets=new WeakMap();
-// Remove only opaque backing washes from non-colliding distance cards. Keep
-// their architecture, rock contours, lamps and every physical/world landmark.
-const backingCounts={'stage16:temple-rear-cavern-courts':1,'stage17:worksite-rear-cavern':1,'stage18:bell-rear-cavern':2,'a3-maintenance25:dark-shell':5,'stage27-depot-r4:misconnected-rear':2};
-S.landmark=function(c,l){
- if(this.battle?.honroStage===18&&request('bellRear')?.canvas&&['sb-art-rear-cavern','sb-art-rear-rock-roots'].includes(l.id))return;
- const count=backingCounts[l.asset?.id],n=this.battle?.honroStage;
- if(count&&[16,17,19,25,27].includes(n)&&!l.asset.collision?.length&&request(keyFor(n))?.canvas){
-  let asset=cardAssets.get(l.asset);if(!asset){asset={...l.asset,vector:{...l.asset.vector,root:{...l.asset.vector.root,children:l.asset.vector.root.children.slice(count)}}};cardAssets.set(l.asset,asset);}
-  return landmark.call(this,c,{...l,asset});
- }
- return landmark.call(this,c,l);
-};
-const worldKey=S._worldCacheKey;
-S._worldCacheKey=function(b,w){return worldKey.call(this,b,w)+([16,17,18,19,25,27].includes(b.honroStage)?':rear-image:'+!!request(keyFor(b.honroStage))?.canvas:'');};
-S.background=function(c,w,h,b){
- if(b?.honroCustom)return previous.call(this,c,w,h,b);
- const ls=layers(this,w,h,b);if(!ls.length||ls.some(l=>!l.canvas))return previous.call(this,c,w,h,b);
- const raw=G.HonroVisualStyle.raw(c),paint=cc=>{
-  for(const l of ls){const f=l.frame;cc.save();
-   cc.globalAlpha=l.alpha;
-   cc.drawImage(l.canvas,f.x,f.y,f.w,f.h);cc.restore();
-  }
- };
- const signature=ls.map(l=>[l.key,l.frame.x,l.frame.y,l.frame.w,l.frame.h,l.alpha].join(',')).join('|');
- if(!this._screenRaster(raw,['authored-far',w,h,signature].join(':'),w,h,paint,'_screenBackgroundCache',false))paint(raw);
- // Stage 5's local cave wall must remain in front of the distant painting.
- if(b.honroStage===5)G.HonroStage5WaterfallArt?.caveBackground(c,w,h,b,this);
- // These stages previously drew authored room rocks, hanging clues and lights
- // in background(). Keep that pass, omitting only its old sky/flat cave base.
- if([11,13,14,15,16,17,19,20].includes(b.honroStage))G.HonroAct2SpatialArt.background(c,b,this,w,h,true);
- this.environmentStats={...this.environmentStats,groups:this.environmentStats?.groups||0,cachedPaths:this.environmentStats?.cachedPaths||0,visibleAssets:ls.length,backgroundAnimatedPrimitives:0,authoredFar:ls.map(l=>l.key)};
- if([11,13,14,15,16,17,19,20,22,24,25,26,28,29].includes(b.honroStage))G.HonroEnvironmentRenderer.customSpatialScenery(this,c,w,h,b);
-};
-G.HonroAuthoredFarArt={keyFor,manifest,ready:n=>{const s=manifest?.stages[n];return !!s&&[s.key,s.enclosed].filter(Boolean).every(k=>!!request(k)?.canvas);},frames:(scene,w,h,b)=>layers(scene,w,h,b).map(({canvas,...l})=>l),stats:()=>({entries:cache.size,maxEntries:MAX,keys:[...cache.keys()],errors:[...cache.entries()].filter(([,v])=>v.error).map(([k])=>k),canvasBytes:[...cache.values()].reduce((n,v)=>n+(v.canvas?v.canvas.width*v.canvas.height*4:0),0)})};
 })(globalThis);
 
 })();
