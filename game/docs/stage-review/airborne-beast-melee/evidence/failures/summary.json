@@ -1,0 +1,35 @@
+{
+  "overallStatus": "failed (three known failures; not a pass)",
+  "rows": [
+    {
+      "test": "tests/existence-damage.mjs",
+      "baselineCommit": "27efe8ebdab24e147494196a515641e0629e4656",
+      "status": "failed",
+      "exitCode": 1,
+      "assertion": "unclassified S14, line20",
+      "log": "existence-damage-baseline.txt",
+      "testSha256UnchangedSinceBaseline": "52e7ecde1ffe6a4f7b62ded197e2a44c5efdd5489cadb025d8ed18ee65f1b4bc",
+      "capture": "Narrow baseline reproduction during evidence preservation"
+    },
+    {
+      "test": "tests/existence-variety.mjs",
+      "baselineCommit": "27efe8ebdab24e147494196a515641e0629e4656",
+      "status": "failed",
+      "exitCode": 1,
+      "assertion": "reviewed attack delta mismatch, line8",
+      "log": "existence-variety-baseline.txt",
+      "testSha256UnchangedSinceBaseline": "6a5ae8b90cb46d2590e283a813dec8a9060cc6b424ca07248dc6d21bbc84c56d",
+      "capture": "Narrow baseline reproduction during evidence preservation"
+    },
+    {
+      "test": "tests/stage2-airborne.mjs",
+      "baselineCommit": "27efe8ebdab24e147494196a515641e0629e4656",
+      "status": "failed",
+      "exitCode": 1,
+      "assertion": "plan?.flightEscape historical clone, line40",
+      "log": "stage2-airborne-baseline.txt",
+      "testSha256UnchangedSinceBaseline": "925384d97b29f5e514ad7f5b45028b040e6bca56995abbcd18cf3cda62ac3f29",
+      "capture": "Existing captured baseline run"
+    }
+  ]
+}

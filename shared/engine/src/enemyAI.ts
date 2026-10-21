@@ -1,5 +1,6 @@
 /** Bounded tactical movement. Every candidate is tested with the same locomotion/contact code
  * as a real unit. Planning cannot damage, teleport, change RNG, or mutate the live roster. */
+import {beastKind,beastReach,beastContact} from './beastMelee';
 import type {Engine} from './engine';
 import type {Unit,Skill,Vec,Terrain,AIMovePlan} from './types';
 import {SKILLS} from './data';
@@ -221,6 +222,7 @@ export function targetFor(e:Engine,u:Unit):Unit|undefined{
 }
 function preferredRange(u:Unit):[number,number]{
  const kind=(u as any).honroType;
+ if(beastKind(u))return [u.r+22,u.r+55];
  if(kind==='beast'||kind==='mourner')return [80,250];
  if(kind==='warden')return [150,390];
  if(kind==='ghost')return [420,760];
@@ -299,6 +301,7 @@ function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
   if(e.b.terrain.some(t=>!t.broken&&!t.oneWay&&t.id!==foot.t.id&&x>t.x-4&&x<t.x+t.w+4&&y-8>topAt(t,clamp(x,t.x,t.x+t.w))&&y-u.h<t.y+t.h))return;
   found.push({x,y});
  };
+ if(beastKind(u))for(const sign of [-1,1]){const x=target.x+sign*(u.r+target.r+beastReach(u)*.5),g=e.surface(x,target.y-45,target.y+45);if(g)add(x,g.y);}
  const offsets=[-500,-340,-210,-90,90,210,340,500];
  for(const dx of offsets){const x=u.x+Math.sign(dx)*Math.min(Math.abs(dx),u.moveLeft-5),g=e.surface(x,u.y-190,u.y+190);if(g)add(x,g.y);}
  for(const t of e.b.terrain){
@@ -333,6 +336,7 @@ function* waterfallShotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<
  return best;
 }
 function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
+ if(beastKind(u)){const ghost={...u,...p,facing:target.x>=p.x?1:-1};return beastContact(e,ghost,target)?100:-Math.min(100,Math.hypot(p.x-target.x,p.y-target.y)*.2);}
  if(waterfallTactics(e))return yield* waterfallShotOpportunity(e,u,target,p);
  if(Math.hypot(p.x-target.x,p.y-target.y)>1900)return -90;
  const ghost:Unit={...u,x:p.x,y:p.y,vx:0,vy:0};

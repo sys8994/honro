@@ -1,0 +1,20 @@
+Baseline commit: 27efe8ebdab24e147494196a515641e0629e4656
+Command: node tests/existence-damage.mjs
+Exit code: 1
+Status: FAILED (not passed)
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: unclassified S14
+    at file:///tmp/honro-beast-baseline/tests/existence-damage.mjs:20:2 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

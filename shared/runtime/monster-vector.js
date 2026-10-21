@@ -10,6 +10,10 @@ function pose(a,time,state={}){
  apply('idle',((time%a.clips.idle.duration)+a.clips.idle.duration)%a.clips.idle.duration/a.clips.idle.duration);
  if(state.move)apply('move',((time%a.clips.move.duration)+a.clips.move.duration)%a.clips.move.duration/a.clips.move.duration);
  if(state.attack!==undefined)apply('attack',clamp(state.attack,0,1));
+ if(state.beast&&result.body){const t=clamp(state.attack,0,1),coil=t<.27?-t/.27:t<.65?-1+(t-.27)/.38*2:(1-t)/.35;
+  result.body.rotate+=coil*(state.beast==='boar'?7:4);result.body.x+=Math.max(0,coil)*(state.beast==='boar'?9:5);
+  if(result.head)result.head.rotate+=coil*(state.beast==='boar'?9:5);
+ }
  if(state.hit!==undefined)apply('hit',clamp(state.hit,0,1));
  if(state.jump!==undefined)apply('jump_fall',clamp(state.jump,0,1));
  // Keep the existing enemy archer's aim response; the hand and bow share this joint.
@@ -17,7 +21,10 @@ function pose(a,time,state={}){
  if(a.aimPart&&Number.isFinite(state.aim))result[a.aimPart].rotate-=(state.aim<90?state.aim:180-state.aim)*(a.aimScale||.45);
  return result;
 }
-function state(u){return{move:(u.moving||0)>.01&&!u.airborne&&!u.jumping,attack:u.anim>.44?clamp((1-u.anim)/.56,0,1):undefined,hit:u.hurt>.4?clamp((.7-u.hurt)/.3,0,1):undefined,aim:u.angle};}
+function state(u){if(u.beastAction){const t=u.beastAction.elapsed;
+ // Map preparation, the brief snap and recovery onto the existing full-body attack rig.
+ const attack=t<.42?t/.42*.27:t<.64?.27+(t-.42)/.22*.38:.65+Math.min(1,(t-.64)/.42)*.35;
+ return{move:false,attack,beast:u.honroVariant,aim:u.angle};}return{move:(u.moving||0)>.01&&!u.airborne&&!u.jumping,attack:u.anim>.44?clamp((1-u.anim)/.56,0,1):undefined,hit:u.hurt>.4?clamp((.7-u.hurt)/.3,0,1):undefined,aim:u.angle};}
 function drawVector(c,id,{time=0,state:st={},pixels=128,mode='paint',detail}={}){
  const q=compile(id),a=q.asset,poses=pose(a,time,st),lod=detail??(pixels>=120?2:pixels>=48?1:0);
  for(const p of q.parts){c.save();for(const joint of p.chain){const v=poses[joint.id],[x,y]=joint.pivot;c.translate(x+v.x,y+v.y);c.rotate(v.rotate*Math.PI/180);c.scale(v.scaleX,v.scaleY);c.translate(-x,-y);}

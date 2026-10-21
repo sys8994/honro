@@ -1,0 +1,94 @@
+{
+  "reconstructed": true,
+  "status": "passed",
+  "completedAt": "2026-10-21T16:37:55.446Z",
+  "source": {
+    "shared/runtime/main.js": "fcd928a969beb8c0accdf7dc990b47fc35d858180b9e683c095ddefe25bdabd4",
+    "shared/runtime/rest-journey.js": "877ab7d6ebdbb10cd9022fa8b1b5fb327cd498c9ce5d9072f6da3672a9b7417c",
+    "shared/runtime/progression.js": "168ea610751aa299ac3e98c4dd242aa0d02d088a43b2cca6e0f19459db59e40e"
+  },
+  "checks": [
+    {
+      "review": "air-save",
+      "repeatImports": 3,
+      "birds": 4,
+      "deadPreserved": true,
+      "bossPreserved": true
+    },
+    {
+      "kind": "bat",
+      "hp": 139,
+      "response": {
+        "form": 1.15,
+        "qi": 1.06,
+        "soul": 1.1
+      },
+      "A01": 1.1463999999999999
+    },
+    {
+      "kind": "crow",
+      "hp": 159,
+      "response": {
+        "form": 1.15,
+        "qi": 1.04,
+        "soul": 1.08
+      },
+      "A01": 1.1456
+    },
+    {
+      "kind": "lantern",
+      "hp": 205,
+      "response": {
+        "form": 0.7,
+        "qi": 1.1,
+        "soul": 1.34
+      },
+      "A01": 0.716
+    },
+    {
+      "review": "contact-motion",
+      "kind": "hound",
+      "hpLoss": 18,
+      "peakTravel": 2.4166666666666288,
+      "moveSpent": 2.4166666666666288
+    },
+    {
+      "review": "contact-motion",
+      "kind": "boar",
+      "hpLoss": 18,
+      "peakTravel": 31.666666666666515,
+      "moveSpent": 31.666666666666515
+    },
+    {
+      "review": "contact-motion",
+      "kind": "stag",
+      "hpLoss": 18,
+      "peakTravel": 2.4166666666666288,
+      "moveSpent": 2.4166666666666288
+    },
+    {
+      "review": "terrain-range",
+      "name": "wall",
+      "hpLoss": 0
+    },
+    {
+      "review": "terrain-range",
+      "name": "upper-floor",
+      "hpLoss": 0
+    },
+    {
+      "review": "terrain-range",
+      "name": "out-of-range",
+      "hpLoss": 0
+    },
+    {
+      "review": "AI",
+      "approach": 328.66666666667584,
+      "hpLoss": 18
+    }
+  ],
+  "limits": [
+    "DOM/storage/rendering are doubles.",
+    "Terminal battle states and XP are explicit fixtures, not normal campaign or browser proof."
+  ]
+}

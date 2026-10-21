@@ -151,6 +151,7 @@ export interface Unit {
     bladeScreen?: {round:number;rank:number;hits:number;facing:number};
     bladeStored?: number;
     meleeFollow?: 'landing'|'ready'|'spent';
+    beastAction?: {skill:string;target:string;elapsed:number;damage:number;shot:number;facing:number;travel:number;struck:boolean};
     meleeAction?: {skill:string;elapsed:number;index:number;damage:number;range:number;power:number;shot:number;target?:string;lifeCost?:number;angle?:number;span?:number};
     mageWardShot?: number;
     retreat?: boolean;

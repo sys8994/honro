@@ -1,0 +1,225 @@
+{
+  "method": "Byte-identical copies of existing artifacts; no new PNGs, recompression or synthesized frames. Original _local paths in the copied run reports remain provenance; this manifest maps them to repository paths.",
+  "sourceRuntimeCommit": "536c663e9b0b8f89711b3ef1d61c1ab31c0249c1",
+  "baseMaster": "27efe8ebdab24e147494196a515641e0629e4656",
+  "files": [
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/bat-flight-after.png",
+      "preserved": "browser/bat-flight-after.png",
+      "bytes": 314979,
+      "sha256": "50969b0aaccf1625a727981d9856af376c41dc45fbfd443eb0708fceee765ca8"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/bat-flight-before.png",
+      "preserved": "browser/bat-flight-before.png",
+      "bytes": 315350,
+      "sha256": "a434332fb7e76f380e0225491b4b8a5efd2ed7a24a3840a8f0caa960fa3a4711"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/bat-flight-trace.json",
+      "preserved": "browser/bat-flight-trace.json",
+      "bytes": 32948,
+      "sha256": "4332b744340dcfb0331ac96b2ae47050aa20af2723fd77bba898933ddf516390"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/boar-charge-1-prepare.png",
+      "preserved": "browser/boar-charge-1-prepare.png",
+      "bytes": 304242,
+      "sha256": "e2b36f35b1e6a7e864d60d38b8f36d434dd854b13a0dafe1481c647b01310c38"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/boar-charge-2-contact.png",
+      "preserved": "browser/boar-charge-2-contact.png",
+      "bytes": 305661,
+      "sha256": "1f21fa50f5569931257b6371f721652585bb5decb3bb95504ce63fb457a97fb4"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/boar-charge-3-recover.png",
+      "preserved": "browser/boar-charge-3-recover.png",
+      "bytes": 304718,
+      "sha256": "416cd7827fe1bd53ea48b330bc8211e9caf27f03ece8ead73d3938e6c402ff95"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/boar-charge-trace.json",
+      "preserved": "browser/boar-charge-trace.json",
+      "bytes": 74089,
+      "sha256": "726ce51008f2f77ec73385278db092a8ca0b1023deedce4f780c41f91ebfe609"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/boar-wall-trace.json",
+      "preserved": "browser/boar-wall-trace.json",
+      "bytes": 132362,
+      "sha256": "71448ec75931a9340314cb55aa2d68fb27ff5d810239f5a7a45fb3a560d4294c"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/boar-wall.png",
+      "preserved": "browser/boar-wall.png",
+      "bytes": 320005,
+      "sha256": "c2f055fb87a448efb5232b7bd1d606f29f3d73238d4e7dc1b99962ab0774bcff"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/canonical-stage1-enemy-turn.png",
+      "preserved": "browser/canonical-stage1-enemy-turn.png",
+      "bytes": 436243,
+      "sha256": "ef640e8385dc313c94409fb5d658cb5429dcfc47ce37bb350dfc3b5ccd74f44b"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/canonical-stage1-trace.json",
+      "preserved": "browser/canonical-stage1-trace.json",
+      "bytes": 1872988,
+      "sha256": "90474b4d37d1ee9847d9c44d5e75bbc32bd589cff9026325aaa5018526cfb169"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/crow-flight-after.png",
+      "preserved": "browser/crow-flight-after.png",
+      "bytes": 319551,
+      "sha256": "2a78fecea4f98ec255f6f7acbe0aa2b8d7486aa6cea07cc3e82d5d5bef5589a9"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/crow-flight-before.png",
+      "preserved": "browser/crow-flight-before.png",
+      "bytes": 317956,
+      "sha256": "3f48a74d651ed1caa63997c5b678d3615896d3bf3436fb6be02d629a8433c50c"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/crow-flight-trace.json",
+      "preserved": "browser/crow-flight-trace.json",
+      "bytes": 35091,
+      "sha256": "46f3d0c5a661a6061b8a02a1bd853db38d2f107544731c4c66276c5ce7697770"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/hound-approach-1-prepare.png",
+      "preserved": "browser/hound-approach-1-prepare.png",
+      "bytes": 294895,
+      "sha256": "c099f3c961c50757ce082f6777607e66abb2fcf2cab699a01184bbb8fe71a21d"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/hound-approach-2-contact.png",
+      "preserved": "browser/hound-approach-2-contact.png",
+      "bytes": 295694,
+      "sha256": "d509aec1d0816c11930bf5c0b3d2f7576bdba04a4a595e79ed54a2612085ac89"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/hound-approach-3-recover.png",
+      "preserved": "browser/hound-approach-3-recover.png",
+      "bytes": 294574,
+      "sha256": "538934c9342cdec0faf3af0cda04932c745a1df54735d3a640910cd9666f3dd6"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/hound-approach-trace.json",
+      "preserved": "browser/hound-approach-trace.json",
+      "bytes": 99517,
+      "sha256": "2afc8f3fbaa060e81eae9f29d45ec2fc2a42cf65872484f072ef58b4339b7001"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/hound-unreachable-trace.json",
+      "preserved": "browser/hound-unreachable-trace.json",
+      "bytes": 140142,
+      "sha256": "d67612290480444d435ba58f1606e4187363472cef37518440be6639c94449e2"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/hound-unreachable.png",
+      "preserved": "browser/hound-unreachable.png",
+      "bytes": 302035,
+      "sha256": "9ba6d1027e9a40f55ea73bcc0bab849ee38fb194e9738e1721a111608101d4d5"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/lantern-flight-after.png",
+      "preserved": "browser/lantern-flight-after.png",
+      "bytes": 315648,
+      "sha256": "f2a041ded29b8b6e96dcb40189b28f8a0f8ddf449e952dfd716c8dbb105b0d46"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/lantern-flight-before.png",
+      "preserved": "browser/lantern-flight-before.png",
+      "bytes": 316227,
+      "sha256": "10537639f3d65e4d03cdbd4353ad10e0141c9d0f2318f4f08e6b463352b9aebe"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/lantern-flight-trace.json",
+      "preserved": "browser/lantern-flight-trace.json",
+      "bytes": 32952,
+      "sha256": "4720bc442e7ad2fe1da4a19641f20d1fbca3797dc9d2e5a67a2ffe7dd71ecd80"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/stag-approach-1-prepare.png",
+      "preserved": "browser/stag-approach-1-prepare.png",
+      "bytes": 295466,
+      "sha256": "caf855e346904bb1d3ca568fe4329758d6a04b65ee3d7c354be340dfd17c83a2"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/stag-approach-2-contact.png",
+      "preserved": "browser/stag-approach-2-contact.png",
+      "bytes": 295931,
+      "sha256": "9d120a85e83a07e39f6186724d04db9e5a4310d6b92e70af9d2071b8681b4b47"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/stag-approach-3-recover.png",
+      "preserved": "browser/stag-approach-3-recover.png",
+      "bytes": 296754,
+      "sha256": "b9b3b7a00ff937d5808a6b19cb1e8995df75cee67242e87f84c5c30a24ed2625"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/stag-approach-trace.json",
+      "preserved": "browser/stag-approach-trace.json",
+      "bytes": 99859,
+      "sha256": "c01a9e26e223f9b242bc780879ea4afd86ad70f24bec132813b45a5c1cff6892"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/stag-upper-trace.json",
+      "preserved": "browser/stag-upper-trace.json",
+      "bytes": 175992,
+      "sha256": "18dab38f0ce0502128048e9f79760d8802cd88b824ff1cca42754321a57f9f77"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/stag-upper.png",
+      "preserved": "browser/stag-upper.png",
+      "bytes": 304347,
+      "sha256": "d8cf90695b7e4a7c145c44a1bb1050abb02fd7187bcf6a585d64888e9407d2d2"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/browser/summary.json",
+      "preserved": "browser/summary.json",
+      "bytes": 6086,
+      "sha256": "b00208dc41ea1a4abf4bf3d3a0a667aea66c1cabbdce5bd4e50c09785bee089f"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/final-review.json",
+      "preserved": "final-review.json",
+      "bytes": 4156,
+      "sha256": "0d152efcbf359b474a3671eeff8d85e22033cbe0eb247f8d962f67e21008511d"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/stage2-baseline-failure.txt",
+      "preserved": "failures/stage2-airborne-baseline.txt",
+      "bytes": 1045,
+      "sha256": "937672b89a41a0c971b0dfd303b652f524d897fc0e98283ce49d33951c86aadb"
+    },
+    {
+      "source": "_local/reports/airborne-beast-melee/summary.json",
+      "preserved": "summary.json",
+      "bytes": 2109,
+      "sha256": "d03f32a164bf629477c4dfe4bb4f1b0b786758d54dece22f7d2129246f99713f"
+    }
+  ],
+  "supplementalFiles": [
+    {
+      "preserved": "damage-calculation.json",
+      "method": "Focused production scalar replay; generated for the damage explanation, not new browser evidence.",
+      "bytes": 2327,
+      "sha256": "4847ca9b100fc470489a86f0bc3f44abf53ad4dc629e9ca662dbd563ddb13b37"
+    },
+    {
+      "preserved": "failures/existence-damage-baseline.txt",
+      "method": "Narrow failure reproduction on unchanged base master.",
+      "bytes": 482,
+      "sha256": "8536893e46ffa3f203f7179479dae18a7b7f35945d074ec48cb31564d925beb4"
+    },
+    {
+      "preserved": "failures/existence-variety-baseline.txt",
+      "method": "Narrow failure reproduction on unchanged base master.",
+      "bytes": 632,
+      "sha256": "d8d1abef3eae10c91181f1c673e377c0c8e97fc885360f6aa2393277e26f727c"
+    }
+  ]
+}
