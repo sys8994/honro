@@ -1,8 +1,8 @@
 """Real UI regression for the restored pre-workbench camp and top modal controls."""
-import json
+import json,os
 from playwright.sync_api import sync_playwright
 from browser_support import launch,ROOT
-OUT=ROOT/'_local/reports/skill-ui-restore';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/os.environ.get('HONRO_SKILL_OUT','_local/reports/skill-ui-restore');OUT.mkdir(parents=True,exist_ok=True)
 checks=[]
 def check(name,ok,detail=None):
  assert ok,(name,detail)
@@ -10,7 +10,7 @@ def check(name,ok,detail=None):
 SETUP="""()=>{const a=HonroApp,C=HONRO_CORE;a.profile.settings.music=false;a.profile.settings.sound=false;a.updateAudio();a.profile.recruited=[...C.CLASS_IDS];a.profile.party=[...C.CLASS_IDS];for(const c of C.CLASS_IDS){const h=a.profile.heroes[c];h.xp=C.xpAtLevel(30);h.ranks={[C.baseSkill(c)]:1};h.statTraining=2;for(const n of C.TALENTS.filter(n=>n.cls===c))h.ranks[n.id]=1;a.profile.loadouts[c]=[C.baseSkill(c),...C.TALENTS.filter(n=>n.cls===c&&!n.passive).slice(0,3).map(n=>n.id)];}a.showCamp('archer');window.profileBefore=JSON.stringify(a.profile);} """
 with sync_playwright() as pw:
  b=launch(pw);p=b.new_page(viewport={'width':390,'height':844},has_touch=True);errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
- p.goto('http://localhost:8002/HONRO.html');p.wait_for_function('window.HonroApp');p.evaluate(SETUP)
+ p.goto(os.environ.get('HONRO_SKILL_URL','http://localhost:8002/HONRO.html'));p.wait_for_function('window.HonroApp');p.evaluate(SETUP)
  for width in [360,390,1280]:
   p.set_viewport_size({'width':width,'height':844})
   for cls in ['archer','mage','knight','occultist']:
