@@ -1,0 +1,8 @@
+/** Shared native-scale geology. Assets are reusable by any chapter; no stage coords. */
+import{readFile}from'node:fs/promises';import{compileSVG}from'./build-act2-art.mjs';
+export const GEOLOGY_ASSETS=Object.freeze({
+ 'geology:granite-vertical':{file:'geology-granite-vertical.svg',name:'풍화 화강암 수직 능선',heightM:2330/60,scaleRange:[.85,1.1],sockets:[{id:'upper-rear',x:-230,y:-1840},{id:'middle-rear',x:-80,y:-1210},{id:'lower-rear',x:150,y:-540}]},
+ 'geology:granite-foundation':{file:'geology-granite-foundation.svg',name:'넓은 화강암 절벽 밑동',heightM:870/60,scaleRange:[.85,1.15],sockets:[{id:'mass-seat',x:0,y:-680}]},
+ 'geology:granite-ledge-neck':{file:'geology-granite-ledge-neck.svg',name:'암턱 뒤의 화강암 연결 어깨',heightM:560/60,scaleRange:[.65,1],sockets:[{id:'ledge-back',x:0,y:-460}]}
+});
+export async function applyGeologyArt(project){for(const[id,s]of Object.entries(GEOLOGY_ASSETS)){const source=await readFile(new URL('../../shared/assets/environment/'+s.file,import.meta.url),'utf8'),vector=compileSVG(source),[x,y,w,h]=vector.viewBox,bounds={x,y,w,h};let a=project.library.find(a=>a.id===id);if(!a){a={id};project.library.push(a);}Object.assign(a,{name:s.name,category:'rock',visual:[],collision:[],anchor:{x:0,y:0},sockets:s.sockets,vector,bounds,tags:['shared-geology','granite','outdoor','rear-only','pure-svg'],params:{rearOnly:true,noWalkRim:true,collisionSource:'none',geologyModule:id.split(':')[1],attachment:'foot datum on rear support; socket aligns behind real contact edge'},reference:{heightM:s.heightM,bounds,foot:{x:0,y:0},scaleRange:s.scaleRange,backgroundRange:[.85,1.1]}});}return project;}

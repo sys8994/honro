@@ -1,3 +1,4 @@
+import {applyGeologyArt} from '../tools/environment/build-geology-art.mjs';
 import {applyStage10Positioning} from '../tools/map-forge/stage10-positioning.mjs';
 import {applyStage7Positioning} from '../tools/map-forge/stage7-positioning.mjs';
 import {applyStage6Positioning} from '../tools/map-forge/stage6-positioning.mjs';
@@ -56,6 +57,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   await file('shared/runtime/camera.js');
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands'])await file(`shared/map/${name}.js`);
   let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
+  project=await applyGeologyArt(project);
   project=await authorAct23QuestRedesign(project);
   applyOpenStructures(project);
   project=applyCityTacticalRoutes(project);

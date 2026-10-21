@@ -1,0 +1,113 @@
+{
+  "scope": "Production Scene.landmark -> shared vector renderer, native-scale assets and same actual hero reference. No stage geometry changed.",
+  "rows": [
+    {
+      "file": "vertical-whole.png",
+      "assetId": "geology:granite-vertical",
+      "width": 2240,
+      "height": 2520,
+      "worldScale": 0.98,
+      "view": {
+        "x": 0,
+        "y": -1135
+      },
+      "actorHeight": 92,
+      "bounds": {
+        "x": -1040,
+        "y": -2330,
+        "w": 2080,
+        "h": 2360
+      }
+    },
+    {
+      "file": "vertical-upper.png",
+      "assetId": "geology:granite-vertical",
+      "width": 1600,
+      "height": 1100,
+      "worldScale": 1,
+      "view": {
+        "x": 0,
+        "y": -1800
+      },
+      "actorHeight": 92,
+      "bounds": {
+        "x": -1040,
+        "y": -2330,
+        "w": 2080,
+        "h": 2360
+      }
+    },
+    {
+      "file": "vertical-lower.png",
+      "assetId": "geology:granite-vertical",
+      "width": 1600,
+      "height": 1100,
+      "worldScale": 1,
+      "view": {
+        "x": 0,
+        "y": -510
+      },
+      "actorHeight": 92,
+      "bounds": {
+        "x": -1040,
+        "y": -2330,
+        "w": 2080,
+        "h": 2360
+      }
+    },
+    {
+      "file": "foundation-whole.png",
+      "assetId": "geology:granite-foundation",
+      "width": 2400,
+      "height": 1100,
+      "worldScale": 1,
+      "view": {
+        "x": 0,
+        "y": -360
+      },
+      "actorHeight": 92,
+      "bounds": {
+        "x": -1120,
+        "y": -870,
+        "w": 2240,
+        "h": 900
+      }
+    },
+    {
+      "file": "neck-whole.png",
+      "assetId": "geology:granite-ledge-neck",
+      "width": 1200,
+      "height": 900,
+      "worldScale": 1,
+      "view": {
+        "x": 0,
+        "y": -210
+      },
+      "actorHeight": 92,
+      "bounds": {
+        "x": -350,
+        "y": -560,
+        "w": 700,
+        "h": 590
+      }
+    },
+    {
+      "file": "approved-granite-reference.png",
+      "assetId": "act1-scene:valley-granite",
+      "width": 1600,
+      "height": 1000,
+      "worldScale": 1,
+      "view": {
+        "x": 0,
+        "y": -250
+      },
+      "actorHeight": 92,
+      "bounds": {
+        "x": -580,
+        "y": -610,
+        "w": 1170,
+        "h": 632
+      }
+    }
+  ]
+}
