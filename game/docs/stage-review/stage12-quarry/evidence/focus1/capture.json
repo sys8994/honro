@@ -1,0 +1,38 @@
+{
+  "label": "focus1",
+  "url": "http://127.0.0.1:8870/HONRO.html",
+  "renderSourceSha256": "067ccb4b02b2ea3ad2fc34646b2338e5d806a345b245c899a02115b2ccc3bed2",
+  "sha": "ee73add57bc27357abdbe2d1c606c9017e393351",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/runtime/stage12-quarry-art.js\n D web/entries/game.81d586afc6b47595.html\n D web/entries/game.fcb8097622458b1e.js\n D web/entries/workshop.a4c36c37057214d8.js\n M web/manifest.json\n D web/runtime/ordered-common-12.b15a0db406c8a678.js\n?? game/docs/stage-review/stage12-quarry/\n?? tests/stage12-author-preservation.mjs\n?? tests/stage12-current-fullplay.mjs\n?? tests/stage12-material-purity.mjs\n?? tools/testing/stage12-refinement-capture.py\n?? web/entries/game.097d4d810e770b36.js\n?? web/entries/game.1a33c20be7c8758e.html\n?? web/entries/workshop.7ac0e6c8bc9bc333.js\n?? web/runtime/ordered-common-12.cb3d78bbf8ddf9d4.js\n?? web/runtime/ordered-common-13.46e78f17db464e80.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "west-overview",
+      "camera": {
+        "x": 3800,
+        "y": 4100,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "east-overview",
+      "camera": {
+        "x": 9500,
+        "y": 4300,
+        "scale": 0.21176470588235294
+      }
+    }
+  ],
+  "errors": []
+}

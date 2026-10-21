@@ -1,0 +1,83 @@
+{
+  "label": "baseline",
+  "url": "http://127.0.0.1:8870/HONRO.html",
+  "renderSourceSha256": "1c193e0f01ba1f8d67e5e3d0872b967d12ebb5d3cbe8e279acd7f4cb8d5162cb",
+  "sha": "ee73add57bc27357abdbe2d1c606c9017e393351",
+  "workingTree": "?? tools/testing/stage12-refinement-capture.py\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "west-overview",
+      "camera": {
+        "x": 3800,
+        "y": 4100,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "east-overview",
+      "camera": {
+        "x": 9500,
+        "y": 4300,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "carrier-normal",
+      "camera": {
+        "x": 7500,
+        "y": 3250,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "cut-normal",
+      "camera": {
+        "x": 4850,
+        "y": 4090,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-normal",
+      "camera": {
+        "x": 6520,
+        "y": 4660,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "cave-normal",
+      "camera": {
+        "x": 8500,
+        "y": 5500,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "mobile-sign",
+      "camera": {
+        "x": 6520,
+        "y": 4660,
+        "scale": 0.55
+      }
+    }
+  ],
+  "errors": []
+}

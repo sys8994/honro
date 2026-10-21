@@ -1,0 +1,134 @@
+{
+  "reviewedAtUtc": "2026-10-21T07:13:07.198848+00:00",
+  "sourceCommit": "d55d5f6eb28e4f26c7aa3b66c997b74c4e23ce09",
+  "rendererSha256": "e416537e9b0e799b1cdf74fe7945012ef81a249120825ab1dd3c07c0114727b3",
+  "status": "Local limited refinement reviewed; parent screen decision pending; Stage12 not merged/deployed",
+  "focusedReviews": {
+    "focus1": "3 overview images; initial lower-ground strip/flatness identified and corrected",
+    "focus2": "4 normal/detail images; cut faces, landmark and ceiling underside",
+    "focus3": "5 camera/mobile images plus actual gate states; broad sign face corrected afterward and rechecked in final"
+  },
+  "finalImages": [
+    {
+      "path": "evidence/final/stage12-cave-normal.png",
+      "sha256": "736f671438e6998f95f4d3a712647c6fe32e90711e9875edc916f26702911ee3",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final/stage12-center-overview.png",
+      "sha256": "6656ead3d260289d7e6d541596060d13a0e8ede8c27d8491bc0766fb4990439e",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final/stage12-descent-normal.png",
+      "sha256": "dd202ca10ed5646a993d71f3dd819ba3dd0ade4f77d43c65b3bc3f6fe4ffb5ac",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final/stage12-east-boundary.png",
+      "sha256": "684cfedb8f144a616437638bacfa1e63978b8c3f837fa6363bafab0b467f34f7",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final/stage12-east-overview.png",
+      "sha256": "2d9281f0abb933a420027cf08c2067ad9e47f81521b18a23d0fa5f9218c39427",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final/stage12-mobile-descent.png",
+      "sha256": "b05c6c56791ef04349582a97544ce757dfbbe0800d367149c49b05dd3fa86302",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final/stage12-mobile-sign.png",
+      "sha256": "8958d5d458b8d0c4036dce127ba2e55e8d9b9571ac7328e256fd78f3fe355663",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final/stage12-sign-maxzoom.png",
+      "sha256": "35b354237192db5d7a0d83c0ac8b542012e53194625383936b470b9906c9b4bd",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final/stage12-sign-normal.png",
+      "sha256": "2d41194acd808efa74d6808be6268ec451be6a09019d04ec7bf5aa53dc158f15",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final/stage12-upper-exit.png",
+      "sha256": "5f55e11dca47e3331ebfd444536d41ea634a6d42ab01066eb923be36da1ab0d8",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final/stage12-west-boundary.png",
+      "sha256": "23c116bc8983f048f58e29040944a6af72c4445f4ae0fb6232cd15e3026297ab",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final/stage12-west-overview.png",
+      "sha256": "6c98800e495de78eb1fccf954ea606ef53a1191bc8a2201346f19a675e090079",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final-progress/entry.png",
+      "sha256": "89f91b1b44de0b48e3c3d1261002f9308981b1cd50a490e0bf72f9da728ff02d",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final-progress/gate-open.png",
+      "sha256": "e5c56c87eb32efb483c5c924460f16627eeab32de0e33337aee9381d3755e605",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final-progress/lower-victory.png",
+      "sha256": "b603f538174fbc0f686fadafc89d94a1010f8275adf456176b11513ae3867a67",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final-progress/rest-before13.png",
+      "sha256": "323f906590369f5a174bea6f6b683e27c2c6490d574624de7bec755d77fe405d",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final-progress/result.png",
+      "sha256": "81bf742dfc5f3a9f8c25fd782b78616d1ff6e071db0d2f55f60504f26979ecc1",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final-progress/sign-action.png",
+      "sha256": "9960cdf409dc9ed88aecaa703045b0540290f518ef73b80c67ebbe3a33799945",
+      "directPixelReview": true
+    },
+    {
+      "path": "evidence/final-progress/stage13-entry.png",
+      "sha256": "a86115567ee69aa75b84fb094b941e32f650eb997f769778598ba0d116410205",
+      "directPixelReview": true
+    }
+  ],
+  "normalPlay": {
+    "round": 11,
+    "goals": [
+      "sign",
+      "route-exit"
+    ],
+    "route": "B",
+    "survived": 4,
+    "enemiesRemaining": 31,
+    "externalLiveWrites": 0,
+    "recoveries": 0,
+    "scope": "Actual prior Stage11 victory profile, production native inputs; DOM/storage/clock doubles. Final browser renders genuine saved states; no full browser replay."
+  },
+  "remaining": [
+    "Existing slab-like quarry silhouettes/common planar faces and simple western noncombat exterior remain",
+    "Upper route normal-resource combat victory not executed; both exit geometry paths verified in8 isolated class/route probes",
+    "No all29-stage fullplay or public Pages visual verification",
+    "No new Library ID; original PNGs stored on remote branch"
+  ],
+  "masterIntegrated": false,
+  "baselineDirectViewed": [
+    "stage12-center-overview.png",
+    "stage12-west-overview.png",
+    "stage12-sign-normal.png",
+    "stage12-cave-normal.png"
+  ]
+}

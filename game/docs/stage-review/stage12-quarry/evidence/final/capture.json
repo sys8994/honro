@@ -1,0 +1,119 @@
+{
+  "label": "final",
+  "url": "http://127.0.0.1:8870/HONRO.html",
+  "renderSourceSha256": "e416537e9b0e799b1cdf74fe7945012ef81a249120825ab1dd3c07c0114727b3",
+  "sha": "d55d5f6eb28e4f26c7aa3b66c997b74c4e23ce09",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "west-overview",
+      "camera": {
+        "x": 3800,
+        "y": 4100,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "east-overview",
+      "camera": {
+        "x": 9500,
+        "y": 4300,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-normal",
+      "camera": {
+        "x": 6520,
+        "y": 4660,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "cave-normal",
+      "camera": {
+        "x": 8500,
+        "y": 5500,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "descent-normal",
+      "camera": {
+        "x": 8350,
+        "y": 5780,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-maxzoom",
+      "camera": {
+        "x": 6520,
+        "y": 4950,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "mobile-sign",
+      "camera": {
+        "x": 6520,
+        "y": 4660,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "mobile-descent",
+      "camera": {
+        "x": 8350,
+        "y": 5780,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "west-boundary",
+      "camera": {
+        "x": 400,
+        "y": 5300,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "east-boundary",
+      "camera": {
+        "x": 11000,
+        "y": 6000,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-exit",
+      "camera": {
+        "x": 8660,
+        "y": 4300,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

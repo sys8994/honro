@@ -1,0 +1,56 @@
+{
+  "label": "focus3",
+  "url": "http://127.0.0.1:8870/HONRO.html",
+  "renderSourceSha256": "00c91093546d156f94adbbd49328bb0e3771fe066411090e7ff7c98792a49167",
+  "sha": "858e4a74e4188968d3caada2caf92e358d8e33d6",
+  "workingTree": "?? tests/stage12-current-fullplay.mjs\n?? tests/stage12-current-traversal.mjs\n?? tests/stage12-normal-transition.mjs\n?? tools/testing/stage12-normal-browser.py\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "mobile-sign",
+      "camera": {
+        "x": 6520,
+        "y": 4660,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "mobile-descent",
+      "camera": {
+        "x": 8350,
+        "y": 5780,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "landscape-gate",
+      "camera": {
+        "x": 7430,
+        "y": 4900,
+        "scale": 0.6
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-maxzoom",
+      "camera": {
+        "x": 6520,
+        "y": 4780,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-exit",
+      "camera": {
+        "x": 8660,
+        "y": 4300,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}
