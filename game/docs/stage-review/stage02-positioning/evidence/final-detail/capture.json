@@ -1,0 +1,44 @@
+{
+  "sha": "324c1631d9a04b993057c4b8f10530df34b1fb23",
+  "workingTree": " M tools/testing/stage2-positioning-browser.py\n?? tools/testing/stage2-positioning-capture.py\n",
+  "scope": "Local production browser, frozen debug scene; overview uses diagnostic fit-to-map zoom, not gameplay minimum; no chapter completion.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "joint",
+      "camera": {
+        "x": 800,
+        "y": 760,
+        "scale": 0.9
+      }
+    },
+    {
+      "stage": 2,
+      "view": "lower",
+      "camera": {
+        "x": 1350,
+        "y": 1810,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 2,
+      "view": "roost",
+      "camera": {
+        "x": 3550,
+        "y": 1270,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "convoy",
+      "camera": {
+        "x": 2320,
+        "y": 2800,
+        "scale": 0.6
+      }
+    }
+  ],
+  "errors": []
+}

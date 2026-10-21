@@ -13,7 +13,7 @@ with sync_playwright() as pw:
  p=b.new_page(viewport={'width':1440,'height':900});errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
  p.goto(url);p.wait_for_function('window.HonroApp && window.HonroAuthoredFarArt',timeout=90000)
  rows=[]
- profile=json.loads(Path(sys.argv[4] if len(sys.argv)>4 else '_local/reports/stage2-airborne/fullplay/trace.json').read_text())['profile']
+ profile=json.loads(Path(sys.argv[4] if len(sys.argv)>4 else 'game/docs/stage-review/stage02-positioning/evidence/entry-profile.json').read_text())['profile']
  p.evaluate('(profile)=>{HonroApp.profile=profile}',profile)
  for sid in ([int(n) for n in sys.argv[3].split(",")] if len(sys.argv)>3 else [2]):
   p.evaluate('''async sid=>{await HonroCampaignLoader.ensureStage(sid);let a=HonroApp;a.frame=()=>{};a.profile.settings.music=false;a.profile.settings.sound=false;a.debugMode=false;for(let n=1;n<sid;n++)a.profile.cleared[n]=true;a.launch(sid);}''',sid)
@@ -26,9 +26,13 @@ with sync_playwright() as pw:
   p.evaluate('''()=>{let a=HonroApp;HonroStory.tick(a,performance.now()+3000);a.dialogue=null;a.turnNotice=null;a.close();let s=a.scene,b=a.engine.b,u=b.units.find(u=>u.team==='player'||u.side===0);Object.assign(s,{manual:true,storyTween:null,goalFocus:null,x:u.x+600,y:u.y-230,scale:.65});s.render(a.engine,0,'',.6,false,0);}''')
   p.wait_for_function('(sid)=>HonroAuthoredFarArt.ready(sid)',arg=sid)
 
-  result=p.evaluate((ROOT/'tools/testing/stage2-positioning-controller.js').read_text());print(json.dumps(result['end']));images=result.pop('images',{});[(out/(name+'.png')).write_bytes(__import__('base64').b64decode(data.split(',')[1])) for name,data in images.items()];(out/'combat.json').write_text(json.dumps(result,indent=2,ensure_ascii=False))
+  result=p.evaluate((ROOT/'tools/testing/stage2-positioning-controller.js').read_text());result['runtimeSourceSha']=__import__('subprocess').check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip();print(json.dumps(result['end']));images=result.pop('images',{});[(out/(name+'.png')).write_bytes(__import__('base64').b64decode(data.split(',')[1])) for name,data in images.items()];(out/'combat.json').write_text(json.dumps(result,indent=2,ensure_ascii=False))
   p.evaluate("""()=>{let a=HonroApp,s=a.scene,u=a.engine.b.units.find(u=>u.side===0);Object.assign(s,{x:u.x,y:u.y-180,scale:.65,manual:true,storyTween:null,cinematic:null});s.render(a.engine,0,'',.6,false,0);}""")
   p.locator('#battlecanvas').screenshot(path=str(out/'stage02-exit.png'))
+  p.set_viewport_size({'width':390,'height':844})
+  p.evaluate("""()=>{let a=HonroApp,s=a.scene,u=a.engine.b.units.find(u=>u.side===0);s.render(a.engine,0,'',.6,false,0);Object.assign(s,{x:u.x,y:u.y-150,scale:.65,manual:true,storyTween:null,cinematic:null});s.render(a.engine,0,'',.6,false,0);}""")
+  p.locator('#battlecanvas').screenshot(path=str(out/'stage02-mobile-player.png'))
+  p.set_viewport_size({'width':1440,'height':900})
   outcome=p.evaluate('''()=>{let a=HonroApp;a.outcome();for(let i=0;i<12&&a.dialogue;i++)HonroStory.finish(a);return{phase:a.engine.b.phase,done:a.done,cleared:a.profile.cleared[2],lastStage:a.profile.lastStage,hero:a.profile.heroes.archer,continueText:document.querySelector('[data-action="result-continue"]')?.textContent};}''')
   (out/'outcome.json').write_text(json.dumps(outcome,indent=2,ensure_ascii=False));print(outcome['phase'],outcome['done'],outcome.get('cleared'),outcome.get('continueText'))
   p.screenshot(path=str(out/'stage02-result.png'))

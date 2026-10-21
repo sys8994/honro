@@ -1,0 +1,80 @@
+{
+  "sha": "324c1631d9a04b993057c4b8f10530df34b1fb23",
+  "workingTree": " M tools/testing/stage2-positioning-browser.py\n?? tools/testing/stage2-positioning-capture.py\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "normal",
+      "camera": {
+        "x": 1100,
+        "y": 850,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "zoom",
+      "camera": {
+        "x": 1100,
+        "y": 850,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 2,
+      "view": "maxout",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-entry",
+      "camera": {
+        "x": 290,
+        "y": 450,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-upper",
+      "camera": {
+        "x": 1100,
+        "y": 900,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-convoy",
+      "camera": {
+        "x": 2300,
+        "y": 2750,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 2,
+      "view": "landscape-upper",
+      "camera": {
+        "x": 1000,
+        "y": 900,
+        "scale": 0.35
+      }
+    },
+    {
+      "stage": 2,
+      "view": "landscape-convoy",
+      "camera": {
+        "x": 2400,
+        "y": 2780,
+        "scale": 0.35
+      }
+    }
+  ],
+  "errors": []
+}

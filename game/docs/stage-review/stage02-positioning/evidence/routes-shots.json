@@ -1,0 +1,255 @@
+{
+  "scope": "Finite isolated route inputs and prepared-position real projectiles. Separate normal browser combat required.",
+  "routes": [
+    {
+      "label": "upper",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 290,
+        "y": 590.8695652173914,
+        "hp": 395,
+        "round": 1
+      },
+      "end": {
+        "x": 1444.7318110438168,
+        "y": 770.173880457845,
+        "support": "left-tree-branch-upper",
+        "round": 2,
+        "moveLeft": 1089.5000000000002
+      },
+      "counts": {
+        "ticks": 572,
+        "jumps": 0,
+        "waits": 1,
+        "walkCost": 1173.2026207349206,
+        "jumpCost": 0,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 1173.2026207349206,
+      "turnEquivalent": 1.0327487858582047,
+      "events": [
+        {
+          "op": "wait",
+          "x": 1398.3945426620242,
+          "y": 766.2892396819399,
+          "support": "left-tree-branch-upper",
+          "round": 1,
+          "moveLeft": 9.297379265077357
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 1450,
+            "support": "left-tree-branch-upper"
+          },
+          "x": 1444.7318110438168,
+          "y": 770.173880457845,
+          "support": "left-tree-branch-upper",
+          "round": 2,
+          "moveLeft": 1089.5000000000002
+        }
+      ]
+    },
+    {
+      "label": "middle",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 290,
+        "y": 590.8695652173914,
+        "hp": 395,
+        "round": 1
+      },
+      "end": {
+        "x": 1395.1897699955755,
+        "y": 1104.078276033736,
+        "support": "left-tree-branch-middle",
+        "round": 1,
+        "moveLeft": 9.275226403346158
+      },
+      "counts": {
+        "ticks": 550,
+        "jumps": 0,
+        "waits": 0,
+        "walkCost": 1126.724773596654,
+        "jumpCost": 0,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 1126.724773596654,
+      "turnEquivalent": 0.9918351880252235,
+      "events": [
+        {
+          "op": "drop",
+          "x": 1195.12856655181,
+          "y": 748.0608373702895,
+          "support": "left-tree-branch-upper",
+          "round": 1,
+          "moveLeft": 213.3807125984102
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 1200,
+            "drop": true
+          },
+          "x": 1195.12856655181,
+          "y": 748.0608373702895,
+          "support": "left-tree-branch-upper",
+          "round": 1,
+          "moveLeft": 213.3807125984102
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "support": "left-tree-branch-middle"
+          },
+          "x": 1395.1897699955755,
+          "y": 1104.078276033736,
+          "support": "left-tree-branch-middle",
+          "round": 1,
+          "moveLeft": 9.275226403346158
+        }
+      ]
+    },
+    {
+      "label": "lower",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 290,
+        "y": 590.8695652173914,
+        "hp": 395,
+        "round": 1
+      },
+      "end": {
+        "x": 1444.5523035847416,
+        "y": 1829.4645086735368,
+        "support": "left-tree-branch-lower",
+        "round": 2,
+        "moveLeft": 1079.1666666666683
+      },
+      "counts": {
+        "ticks": 881,
+        "jumps": 0,
+        "waits": 1,
+        "walkCost": 1183.5955236572051,
+        "jumpCost": 0,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 1183.5955236572051,
+      "turnEquivalent": 1.0418974680081032,
+      "events": [
+        {
+          "op": "drop",
+          "x": 995.0737713153889,
+          "y": 724.1482247345645,
+          "support": "left-tree-branch-upper",
+          "round": 1,
+          "moveLeft": 414.8807125984109
+        },
+        {
+          "op": "drop",
+          "x": 1075.4609987707024,
+          "y": 1045.1164503880818,
+          "support": "left-tree-branch-middle",
+          "round": 1,
+          "moveLeft": 321.8211430094498
+        },
+        {
+          "op": "budget-exhausted-coast",
+          "x": 1388.0443321040266,
+          "y": 1509.158857532939,
+          "round": 1,
+          "moveLeft": 9.237809676125664
+        },
+        {
+          "op": "wait",
+          "x": 1388.0443321040266,
+          "y": 1823.4110200766474,
+          "support": "left-tree-branch-lower",
+          "round": 1,
+          "moveLeft": 9.237809676125664
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 1000,
+            "drop": true
+          },
+          "x": 995.0737713153889,
+          "y": 724.1482247345645,
+          "support": "left-tree-branch-upper",
+          "round": 1,
+          "moveLeft": 414.8807125984109
+        },
+        {
+          "goal": {
+            "x": 1080,
+            "drop": true
+          },
+          "x": 1075.4609987707024,
+          "y": 1045.1164503880818,
+          "support": "left-tree-branch-middle",
+          "round": 1,
+          "moveLeft": 321.8211430094498
+        },
+        {
+          "goal": {
+            "x": 1450,
+            "support": "left-tree-branch-lower"
+          },
+          "x": 1444.5523035847416,
+          "y": 1829.4645086735368,
+          "support": "left-tree-branch-lower",
+          "round": 2,
+          "moveLeft": 1079.1666666666683
+        }
+      ]
+    }
+  ],
+  "shots": [
+    {
+      "support": "left-tree-branch-upper",
+      "x": 1450,
+      "y": 770.5936675461742,
+      "target": "foe-1",
+      "damage": 74,
+      "aim": {
+        "angle": 10,
+        "power": 0.85
+      }
+    },
+    {
+      "support": "left-tree-branch-middle",
+      "x": 1400,
+      "y": 1105.216,
+      "target": "foe-1",
+      "damage": 74,
+      "aim": {
+        "angle": 18.416467363215073,
+        "power": 0.908788124360253
+      }
+    },
+    {
+      "support": "left-tree-branch-lower",
+      "x": 1450,
+      "y": 1830,
+      "target": "foe-5",
+      "damage": 75,
+      "aim": {
+        "angle": -15.13472759154349,
+        "power": 0.9278157710408252
+      }
+    }
+  ]
+}

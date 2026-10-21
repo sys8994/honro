@@ -1,0 +1,37 @@
+{
+  "sha": "working-stage2-review1",
+  "scope": "Local production browser, frozen debug scene; overview uses diagnostic fit-to-map zoom, not gameplay minimum; no chapter completion.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "normal",
+      "camera": {
+        "x": 690,
+        "y": 410.86956521739137,
+        "scale": 0.65
+      },
+      "minimumZoom": 0.21176470588235294
+    },
+    {
+      "stage": 2,
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.22143276515151514
+      },
+      "minimumZoom": 0.21176470588235294
+    },
+    {
+      "stage": 2,
+      "view": "midplay",
+      "camera": {
+        "x": 2150,
+        "y": 2310,
+        "scale": 0.65
+      },
+      "minimumZoom": 0.21176470588235294
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,174 @@
+{
+  "method": "Production browser Engine move/drop/fire/wait and missionTick; normal profile from legal chapter1 reward fixture, no teleports/resource resets. Not keyboard manual play.",
+  "start": {
+    "hp": 376,
+    "maxHp": 376,
+    "focus": 99,
+    "level": 1,
+    "items": {
+      "heal": 3,
+      "focus": 3,
+      "cleanse": 2,
+      "ward": 2
+    },
+    "enemies": 12
+  },
+  "end": {
+    "phase": "won",
+    "round": 16,
+    "hp": 254,
+    "focus": 99,
+    "x": 1248.805760067948,
+    "y": 1072.1364882936643,
+    "carX": 3340,
+    "carHp": 1700,
+    "enemies": 0,
+    "flags": {
+      "sector-0": true,
+      "event:procession-seen": true,
+      "event:road-pressure": true,
+      "event:sniper-seen": true,
+      "event:right-cliff": true,
+      "event:last-flight": true
+    }
+  },
+  "poses": [
+    {
+      "x": 990.8778969054639,
+      "y": 723.4986572357084,
+      "round": 1
+    },
+    {
+      "x": 1381.4449408796918,
+      "y": 1100.8273251471967,
+      "round": 2
+    }
+  ],
+  "ticks": 24787,
+  "shots": 12,
+  "waits": 4,
+  "log": [
+    {
+      "op": "drop",
+      "round": 1,
+      "x": 990.8778969054639
+    },
+    {
+      "op": "fire",
+      "round": 1,
+      "x": 1374.0246709119717,
+      "y": 1099.0722699896141,
+      "target": "foe-1",
+      "angle": 18.420364454750867,
+      "power": 0.9104647203308965
+    },
+    {
+      "op": "fire",
+      "round": 3,
+      "x": 1381.4449408796918,
+      "y": 1100.8273251471967,
+      "target": "foe-1",
+      "angle": 18.46435714088201,
+      "power": 0.9065437766869213
+    },
+    {
+      "op": "fire",
+      "round": 6,
+      "x": 1340.7589606891747,
+      "y": 1091.467644641871,
+      "target": "foe-4",
+      "angle": 4.64101065465898,
+      "power": 0.9749842396218835
+    },
+    {
+      "op": "fire",
+      "round": 7,
+      "x": 1324.130412955919,
+      "y": 1087.7298363035695,
+      "target": "foe-4",
+      "angle": 7.591908905305539,
+      "power": 0.8047816664108622
+    },
+    {
+      "op": "fire",
+      "round": 8,
+      "x": 1312.9993133467465,
+      "y": 1085.2277586957687,
+      "target": "foe-4-cluster",
+      "angle": 12.690026747221507,
+      "power": 0.7839996443840017
+    },
+    {
+      "op": "fire",
+      "round": 9,
+      "x": 1298.9600560042147,
+      "y": 1082.2010917888872,
+      "target": "foe-4-cluster",
+      "angle": 10.902973341371148,
+      "power": 0.7666705962631619
+    },
+    {
+      "op": "fire",
+      "round": 10,
+      "x": 1298.9600560042147,
+      "y": 1082.2010917888872,
+      "target": "foe-1-cluster",
+      "angle": -16.751329680110814,
+      "power": 0.8978466161568545
+    },
+    {
+      "op": "fire",
+      "round": 11,
+      "x": 1298.9600560042147,
+      "y": 1082.2010917888872,
+      "target": "foe-1-cluster",
+      "angle": -16.26533940954655,
+      "power": 0.9398950688982011
+    },
+    {
+      "op": "checkpoint",
+      "round": 12,
+      "phase": "ally",
+      "x": 1298.9600560042147,
+      "y": 1082.2010917888872,
+      "hp": 293,
+      "carX": 2360
+    },
+    {
+      "op": "fire",
+      "round": 13,
+      "x": 1277.40316992765,
+      "y": 1077.6633672697703,
+      "target": "sniper-crow-78",
+      "angle": 12.57530436388915,
+      "power": 0.7502350461065657
+    },
+    {
+      "op": "fire",
+      "round": 14,
+      "x": 1266.2117518678467,
+      "y": 1075.3075737681818,
+      "target": "sniper-crow-79",
+      "angle": 37.28203928568071,
+      "power": 0.8241345566491027
+    },
+    {
+      "op": "fire",
+      "round": 15,
+      "x": 1258.2715092017418,
+      "y": 1073.7122571200546,
+      "target": "sniper-crow-79",
+      "angle": 36.19553721548091,
+      "power": 0.8513869270084261
+    },
+    {
+      "op": "fire",
+      "round": 16,
+      "x": 1248.805760067948,
+      "y": 1072.1364882936643,
+      "target": "sniper-crow-78",
+      "angle": 27.911803729931727,
+      "power": 0.8188508120250857
+    }
+  ]
+}
