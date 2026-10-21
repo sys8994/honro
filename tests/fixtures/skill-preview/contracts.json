@@ -1390,7 +1390,7 @@
         "kind": "converge",
         "positions": [
           760,
-          870
+          790
         ]
       },
       "inputPolicy": "선택 스킬의 실제 e.fire → 엔진 tick·적/소환 차례",
@@ -1493,8 +1493,7 @@
         "kind": "earthbound",
         "positions": [
           840
-        ],
-        "hp": 45
+        ]
       },
       "inputPolicy": "지박 후 O01로 처치",
       "observables": "earthbind 이후 실제 처치·earthbound 생성",
@@ -1701,7 +1700,6 @@
           840,
           1100
         ],
-        "hp": 25,
         "cast": "O10",
         "survivorHp": 2400,
         "label": "적 셋의 잔혼을 모아 다음 혼행 강화",
@@ -1710,7 +1708,8 @@
           "O10",
           "O01"
         ],
-        "turns": true
+        "turns": true,
+        "hp": 25
       },
       "inputPolicy": "실제 아군 차례에 O10 → O01; 적 차례는 대기; 같은 입력의 미습득 별도 엔진과 비교",
       "observables": "실제 3처치→잔혼3→다음 projectile soulBoost·피해",

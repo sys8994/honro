@@ -10,7 +10,7 @@ define('M06 M13','delayed-burst',{positions:[820,930,1020]});define('M02','bounc
 define('M07','trap',{positions:[980],movable:true,enemy:true});define('M08','lure',{positions:[1040],movable:true,enemy:true});define('M10','healing-stake');define('M09','gate');define('M99','prison',{positions:[980],movable:true,enemy:true});
 define('S00 S03','melee',{positions:[455,510]});define('S05','turn',{positions:[465,260]});define('S07','combo',{positions:[455,520,585],hp:25});define('S08','counter',{positions:[555],enemy:true});define('S02','life');
 define('S01 S04 S13','rush');define('S06','sweep',{positions:[500,560,620]});define('S15','ground-air',{positions:[700,760],heights:[0,80],flying:[1],movable:true});define('S10','pull',{positions:[830],movable:true});define('S14','burst-blade',{positions:[840,865,890]});define('S12','orbit');
-define('O02 O04','phase-wall');define('O03','reverse-rain',{positions:[1000,1130,1260]});define('O05','reverse-path',{positions:[840,970]});define('O06','weakness',{positions:[800,970],enemy:true});define('O07','betrayal',{positions:[800,975],enemy:true});define('O08','manifest',{positions:[830,955]});define('O09','enthrall',{positions:[800,1060],enemy:true});define('O10','earthbound',{positions:[840],hp:45});define('O11 O12','summon');define('O13','warden');define('O14','eater',{positions:[830,970]});define('O15','echo');define('O16','converge',{positions:[760,870]});
+define('O02 O04','phase-wall');define('O03','reverse-rain',{positions:[1000,1130,1260]});define('O05','reverse-path',{positions:[840,970]});define('O06','weakness',{positions:[800,970],enemy:true});define('O07','betrayal',{positions:[800,975],enemy:true});define('O08','manifest',{positions:[830,955]});define('O09','enthrall',{positions:[800,1060],enemy:true});define('O10','earthbound',{positions:[840]});define('O11 O12','summon');define('O13','warden');define('O14','eater',{positions:[830,970]});define('O15','echo');define('O16','converge',{positions:[760,790]});
 function shortShot(e,u,s,target){
  const seeds=e.shotSeeds(u,s,target).filter(a=>a.angle<45||a.angle>135).sort((a,b)=>b.power-a.power);
  for(const a of seeds){const hit=e.predict(u,s,a.angle,a.power,undefined,false);if(hit.unit===target.id||hit.closest<target.r)return a;}
@@ -48,16 +48,15 @@ function setup(app,selectedId,h,canvas,options={}){
  if(passive?.metric==='critical'||id==='A99')b.rng=0;
  // Reproducible demo seed: the normal critical roll still decides the result.
  if(id==='A14'&&!passive)b.rng=7;
- if(passive){const stats=C.heroStats(profile.heroes[s.cls],s.cls);Object.assign(hero,{maxHp:stats.hp,hp:passive.lowHealth?15:Math.round(stats.hp*.75),maxFocus:stats.mp,focus:passive.metric==='mana'?Math.round(stats.mp*.35):stats.mp,attack:stats.attack,maxMove:stats.move,moveLeft:stats.move,regen:stats.regen,armor:stats.armor,critChance:stats.critChance,critMultiplier:stats.critMultiplier});if(passive.turns||passive.lowHealth)b.mode='campaign';if(passive.lowHealth)b.practiceCombat=false;}
+ if(passive){const stats=C.heroStats(profile.heroes[s.cls],s.cls);Object.assign(hero,{maxHp:stats.hp,hp:passive.lowHealth?15:Math.round(stats.hp*.75),maxFocus:stats.mp,focus:['mana','expiry'].includes(passive.metric)?Math.round(stats.mp*.35):stats.mp,attack:stats.attack,maxMove:stats.move,moveLeft:stats.move,regen:stats.regen,armor:stats.armor,critChance:stats.critChance,critMultiplier:stats.critMultiplier});if(passive.turns||passive.lowHealth)b.mode='campaign';if(passive.lowHealth)b.practiceCombat=false;}
  const close=s.branch==='sword',ring=id==='M14',bounce=['M11','M12'].includes(id),positions=[...(scenario.positions||(close?[460,560]:[840,955,1070]))];
  if(id==='S05')positions[1]=260;
  if(id==='S10')positions.splice(0,positions.length,830);
  if(id==='O03')positions.splice(0,positions.length,1000,1130,1260);
- if(id==='O16')positions.splice(0,positions.length,760,870);
  if(id==='M10'||id==='M09'||id==='O13'||id==='O15')positions.splice(0,positions.length,1050);if(id==='O14')positions.splice(0,positions.length,800);
  for(const [i,x] of positions.entries()){const u=C.makeUnit('knight',1,x,floor-(scenario.heights?.[i]||0),{id:'preview-target-'+i,name:'표적',h:115,r:27,honroType:'beast',honroVariant:'hound',hp:scenario.hp||2400,maxHp:scenario.maxHp||scenario.hp||2400,armor:0,attack:.5,awake:true,fixed:!scenario.movable,loadout:['LA01'],focus:9999,maxFocus:9999});if(id==='A99')u.existenceDefense={form:1,qi:1,soul:1};if(scenario.survivorHp&&i===positions.length-1)u.hp=u.maxHp=scenario.survivorHp;if(passive?.incomingAfter)u.attack=4;if(scenario.flying?.includes(i))Object.assign(u,{honroType:'bat',honroVariant:'bat',fixed:true,h:scenario.targetHeight||65,r:scenario.targetRadius||25});b.units.push(u);}
- if(id==='M10'||id==='O13'||passive?.ally){const ally=C.makeUnit('knight',0,passive?.ally?650:780,floor,{id:'preview-ally',name:'동행',h:130,hp:300,maxHp:1200,focus:20,maxFocus:200,moveLeft:100,maxMove:900,acted:true,loadout:['S00'],ranks:{S00:1}});b.units.push(ally);}
- if(id==='O16')for(const [i,x] of [250,540].entries())b.units.push(C.makeUnit('occultist',0,x,floor-130,{id:'preview-echo-'+i,name:'반향령',summoned:true,summonOwner:hero.id,summonKind:'echo',summonRank:8,summonExpires:8,acted:true,fixed:true,summonFloating:true,h:65,r:20,hp:180,maxHp:180,attack:0,loadout:[],ranks:{...hero.ranks}}));
+ if(id==='O06'&&!passive)b.units[1].armor=.35;
+ if(id==='M10'||id==='O13'||id==='O08'||passive?.ally){const ally=C.makeUnit('knight',0,id==='O08'?180:passive?.ally?650:780,floor,{id:'preview-ally',name:'동행',h:130,hp:300,maxHp:1200,focus:20,maxFocus:200,moveLeft:100,maxMove:900,acted:true,loadout:['S00'],ranks:{S00:1}});b.units.push(ally);}
  if(bounce)b.terrain.push({id:'preview-wall',x:1140,y:620,w:40,h:380,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
  if(['O02','O04','O05'].includes(id))b.terrain.push({id:'preview-phase-wall',x:id==='O05'?1270:690,y:540,w:35,h:460,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
  if(id==='M12')b.terrain.push({id:'preview-reflect-ceiling',x:650,y:570,w:530,h:35,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
@@ -73,6 +72,7 @@ function setup(app,selectedId,h,canvas,options={}){
   if(event.name==='skillGeometry'&&pr.bounds){const points=C.geometryPaths(JSON.parse(event.text)).flat();for(const p of points){pr.bounds.left=Math.min(pr.bounds.left,p.x-20);pr.bounds.right=Math.max(pr.bounds.right,p.x+20);pr.bounds.top=Math.min(pr.bounds.top,p.y-20);pr.bounds.bottom=Math.max(pr.bounds.bottom,p.y+20);}}
  },true);pr.e.checkEnd=()=>false;
  pr.metrics={events:new Set(),modes:new Set(),geometry:new Set(),geometryDetails:[],maxProjectiles:0,returning:false,wraithReturn:false,apex:false,prepared:false,enthrall:false,manifest:false,earthbind:false,captured:false,prisonCross:false,effectBoost:0,projectiles:new Set(),followups:new Set(),secondary:new Set(),bounces:0,damage:0,hits:[],orbiters:0,sharedDamage:0,heroHpMin:hero.hp,heroHpMax:hero.hp,guard:false,counter:false,traps:0,curse:0,soulBoost:false,shield:0,jucheon:0,jucheonReady:false,harmony:false,lastStand:false,remnants:0,expiry:0,jump:0,retreat:0,summons:0,stakes:0,casts:[]};
+ pr.metrics.expiryRecovered=0;const expireSummon=pr.e.expireSummon.bind(pr.e);pr.e.expireSummon=(target)=>{const owner=pr.e.unit(target.summonOwner),focus=owner?.focus||0,result=expireSummon(target);if(result&&owner)pr.metrics.expiryRecovered+=Math.max(0,owner.focus-focus);return result;};
  const hurt=pr.e.hurt.bind(pr.e);pr.e.hurt=(target,...args)=>{const hp=target.hp,shield=target.shield;const result=hurt(target,...args);const actual=hp-target.hp;if(target.summoned&&String(args[1]).startsWith('preview-target'))pr.metrics.sharedDamage+=Math.max(0,actual)+Math.max(0,shield-target.shield);if(actual>0){pr.metrics.hits.push({target:target.id,damage:actual,source:args[1],skill:args[3]?.skill});if(target.id.startsWith('preview-target'))pr.metrics.damage+=actual;}return result;};
  const enemyAction=pr.e.enemyAction.bind(pr.e),fire=pr.e.fire.bind(pr.e);
  pr.e.fire=(...args)=>{const side=b.side,focus=pr.e.active?.focus,ok=fire(...args);if(ok){pr.metrics.casts.push({id:args[0],side,cost:focus-(pr.e.active?.focus??focus),time:pr.age});if(side===1)pr.enemyActions++;}return ok;};
@@ -100,19 +100,21 @@ function setup(app,selectedId,h,canvas,options={}){
  else if(id==='A10')aim={angle:0,power:.5};
  else if(id==='O03')aim={angle:-30,power:.42};
  else if(id==='O05')aim={angle:0,power:.75};
- else if(id==='O16')aim={angle:20,power:.4};
  else if(id==='A11')aim={angle:68,power:.65};
  else if(id==='A03')aim={angle:0,power:.8};
  else if(id==='A15')aim={angle:62,power:.52};
  else if(id==='M11')aim={angle:30,power:.72};
  else if(id==='M12')aim={angle:45,power:.8};
  else if(id==='S11'||id==='S12')aim={angle:8,power:.75};
- else if(s.branch==='stake'||['O13','O14','O15'].includes(id)){
+ else if(s.branch==='stake'||['O11','O12','O13','O14','O15'].includes(id)){
   // Aim at the ground, not a body: the same prediction and actual landing create the stake.
-  const goal=passive?.goal??(id==='M09'?780:id==='M10'||['O13','O14','O15'].includes(id)?760:840);
+  const goal=passive?.goal??(['O11','O12'].includes(id)?650:id==='M09'?780:id==='M10'||['O13','O14','O15'].includes(id)?760:840);
   aim=groundAim(pr.e,hero,s,goal,floor);
  }else aim=shortShot(pr.e,hero,s,target);
  pr.aim=aim;hero.angle=aim.angle;hero.lastPower=aim.power;
+ if(passive?.metric==='expiry')hero.focus=Math.min(hero.maxFocus,pr.e.manaCost(s,hero,aim.power)+10);
+ // Survive the charm itself, then die to the real follow-up: avoid creating a spirit inside the still-resolving charm blast.
+ if(selectedId==='O10'){const target=b.units[1];target.existenceDefense={form:1,qi:1,soul:1};target.hp=target.maxHp=Math.ceil(pr.e.effective(s,hero).damage)+8;}
  // Fit live actors first; expand only for flight that actually happens (e.g. an apex split).
  pr.bounds={left:Math.min(hero.x-95,...positions.map(x=>x-55)),right:Math.max(hero.x+100,...positions.map(x=>x+65),bounce?1180:0),top:floor-240,bottom:floor+55};
  pr.flightRight=pr.bounds.right+180;
@@ -146,7 +148,7 @@ function tick(app,p,dt){
   if(p.id==='A10'&&p.age>1.8&&!p.follow){p.follow=true;ready(p,'A14');const aim=shortShot(e,u,C.SKILLS.A14,b.units[1]);e.fire('A14',aim.angle,aim.power);}
   if(p.id==='M09'&&b.stakes.length===2&&!p.follow){ready(p,p.id);p.follow=e.useGate();}
 
-  if(p.id==='O10'&&!p.follow&&!b.projectiles.length&&b.units[1]?.earthbind){p.follow=true;ready(p,'O01');const aim=shortShot(e,u,C.SKILLS.O01,b.units[1]);e.fire('O01',aim.angle,aim.power);}
+  if(p.id==='O10'&&!p.follow&&!b.projectiles.length&&b.units[1]?.earthbind){p.follow=true;if(!b.units[1].dead&&b.units[1].hp>0){ready(p,'O01');const aim=shortShot(e,u,C.SKILLS.O01,b.units[1]);e.fire('O01',aim.angle,aim.power);}}
   if(p.id==='O14'&&!p.follow){const eater=b.units.find(v=>v.summonKind==='eater'&&!v.dead);if(eater&&b.units.some(v=>v.eaterCapturedBy===eater.id)){p.follow=true;ready(p,'O01');const aim=shortShot(e,u,C.SKILLS.O01,eater);e.fire('O01',aim.angle,aim.power);}}
   if(p.id==='O15'&&!p.follow&&!b.projectiles.length&&b.units.some(v=>v.summonKind==='echo')&&p.age>2.5){p.follow=true;ready(p,'O01');const aim=shortShot(e,u,C.SKILLS.O01,b.units[1]);e.fire('O01',aim.angle,aim.power);}
   p.acc+=dt;for(let n=0;n<16&&p.acc>=C.STEP;n++,p.acc-=C.STEP){
@@ -188,8 +190,8 @@ function describe(p){const m=p.metrics,q=p.control,number=x=>Math.round(x*100)/1
  case 'jucheon':return `소비 기력 누적 ${number(m.jucheon)}${m.jucheonReady?' · 주천 완성':''}${m.effectBoost?' · 강화 도술 발사':''}`;
  case 'harmony':return `${m.harmony?'합세 완성':'검술·돌격·검기를 준비'} · 누적 피해 ${compare(c.damage,m.damage)}`;
  case 'trap':return `잔부 ${m.traps?'생성':'준비'} · 주박 ${m.curse}턴 · 피해 ${compare(c.damage,m.damage)}`;
- case 'expiry':return `자연 소멸 후 다음 초혼 비용 ${m.expiry?Math.round(m.expiry*100)+'% 감소':'대기'}`;
- case 'share':return `남은 체력 ${compare(q.hero.hp,p.hero.hp)} · 소환령이 피해를 분담`;
+ case 'expiry':return `소멸 회수 기력 +${number(m.expiryRecovered)} · 다음 초혼 비용 ${m.expiry?Math.round(m.expiry*100)+'% 감소':'대기'}`;
+ case 'share':return `남은 체력 ${compare(q.hero.hp,p.hero.hp)} · 소환령 분담 ${number(m.sharedDamage)}`;
  case 'remnants':return `모은 잔혼 ${m.remnants}/3${m.soulBoost?' · 다음 혼행 강화':''} · 피해 ${compare(c.damage,m.damage)}`;
  default:return `누적 피해 ${compare(c.damage,m.damage)}`;}}
  if(p.id==='A09')return `${p.turns?'한 번 꺾음 · 황색: 이전 / 청록: 이후':'올려 쏜 뒤 한 번 꺾습니다'} · 명중 피해 ${number(m.damage)}`;
@@ -199,6 +201,9 @@ function describe(p){const m=p.metrics,q=p.control,number=x=>Math.round(x*100)/1
  if(p.id==='S08')return `체력 ${compare(p.initial.hero.hp,p.hero.hp)} · ${m.counter?'반격 발동':m.guard?'방어 준비':'회복·방어 전'} · 피해 ${number(m.damage)}`;
  if(p.id==='S04')return `${p.follow?'추가 입력으로 급강하':'도약 후 추가 입력 대기'} · 피해 ${number(m.damage)}`;
  if(p.id==='S13')return `${p.follow?'착지 후 후속 베기 입력':'착지 후 후속 입력 대기'} · 피해 ${number(m.damage)}`;
+ if(p.id==='O06'){const t=p.b.units[1];return `공격 위력 ${compare(p.e.effective(C.SKILLS.LA01,{...t,curseAttack:0}).damage,p.e.effective(C.SKILLS.LA01,t).damage)} · 방어 ${compare(t.armor*100,Math.max(0,t.armor-(t.curseArmor||0))*100)}% · ${t.curseTurns||0}턴`;}
+ if(p.id==='O08'){const ally=p.b.units.find(v=>v.id==='preview-ally');return `소단은 혼령을 봅니다 · 동행의 자동조준 ${p.e.guidanceTarget(ally,p.b.units[1])?'가능':'불가'} · 현형 ${m.manifest?'발동':'전'}`;}
+ if(p.id==='O14')return `포획 ${p.b.units.filter(v=>v.eaterCapturedBy).length}명 · 포획 적에게 전달한 피해 ${number(m.damage)}`;
  if(p.id==='M10'||p.id==='O13'){const ally=p.b.units.find(v=>v.id==='preview-ally');return `동행 체력 300 → ${number(ally?.hp||300)} · 기력 20 → ${number(ally?.focus||20)}${p.id==='M10'?` · 이동력 100 → ${number(ally?.moveLeft||100)}`:` · 방호 ${number(m.shield)}`}`;}
  if(p.id==='M09')return `진목 ${m.stakes}/2 · ${p.follow?'이동 완료':'두 진목 사이를 건너갑니다'}`;
  return `${p.scenario.kind} · 명중 ${new Set(m.hits.filter(v=>v.target.startsWith('preview-target')).map(v=>v.target)).size}명 · 피해 ${number(m.damage)}${m.summons?' · 소환 '+m.summons:''}`;

@@ -1,13 +1,14 @@
 {
   "registered": 84,
   "functionalPass": 84,
-  "currentPixelConfirmed": 63,
-  "currentPixelUnconfirmed": 21,
+  "currentPixelConfirmed": 83,
+  "currentPixelUnconfirmed": 0,
   "currentPixelFailed": 0,
   "confirmedIds": [
     "M01",
     "A01",
     "S00",
+    "O01",
     "M06",
     "M02",
     "M04",
@@ -35,7 +36,6 @@
     "A99",
     "A11",
     "A09",
-    "A13",
     "A12",
     "A15",
     "A05",
@@ -67,7 +67,27 @@
     "SP02",
     "SP03",
     "SP04",
-    "SP05"
+    "SP05",
+    "O02",
+    "O03",
+    "O04",
+    "O05",
+    "O16",
+    "O06",
+    "O07",
+    "O08",
+    "O09",
+    "O10",
+    "O11",
+    "O12",
+    "O13",
+    "O14",
+    "O15",
+    "OP01",
+    "OP02",
+    "OP03",
+    "OP04",
+    "OP05"
   ],
   "previouslyViewedButNotSignedOff": [
     "A04",
@@ -142,11 +162,19 @@
       "id": "O01",
       "name": "혼령탄",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "혼령탄 조준 → 실제 탄/첫 적22 피해 → 체력 감소. 중력·바람 약함의 수치 차이는 무풍 한 장면에서 비교하지 않음.",
       "coreCapture": "audit/O01-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/O01-start.png",
+        "audit/O01-core.png",
+        "audit/O01-result-1280.png",
+        "audit/O01-result-360.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "No scene change since original audit."
     },
     {
       "id": "M06",
@@ -630,9 +658,9 @@
       "id": "A13",
       "name": "추혼시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "confirmed",
+      "currentPixelSignoff": "partial",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "실제 발판에 접지된 높은 표적 → 상승 비행 → 발판 위 표적75 명중. 이동 표적 추적 여부 자체는 정지 표적으로 평가하지 않음.",
+      "note": "고지 표적의 실제 발판 접지·상승 비행·명중75 및 360px를 확인했다. 그러나 이 화면은 적 추적과 낙하 보너스를 충분히 보여주지 못해 완전 시각 통과를 철회한다. 선택 네이티브 조준 탐색에서는 65도/힘.55로 경지1·8 명중 및 최고점 대비 낙하291/281을 확인했으나 아직 제품 시연 설정/궤적 표시/최종 캡처에 반영하지 않았다.",
       "coreCapture": "archer-focused/A13-1280-core.png",
       "mobileVisibleCapture": "archer-focused/A13-360-core.png",
       "reviewedFrames": [
@@ -1205,201 +1233,408 @@
       "id": "O02",
       "name": "투과령",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O02-core.png",
-      "mobileVisibleCapture": null
+      "note": "벽을 가로지르는 조준 → 실제 벽 통과와 첫 적 관통30 → 후속 폭발로 두 적75/20 누적95. 폭발 캡처 추가. 충전별 지연 비교는 별도 미시연.",
+      "coreCapture": "occult-focused/O02-1280-explosion.png",
+      "mobileVisibleCapture": "occult-focused/O02-360-explosion.png",
+      "reviewedFrames": [
+        "audit/O02-start.png",
+        "audit/O02-core.png",
+        "audit/O02-result-1280.png",
+        "audit/O02-result-360.png",
+        "occult-focused/O02-1280-explosion.png",
+        "occult-focused/O02-360-explosion.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "O03",
       "name": "역천령",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "거꾸로 솟는 예측선 → 위에서 갈라진 여러 원혼비/두 적 명중 → 세 적43/54/21.",
       "coreCapture": "audit/O03-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/O03-start.png",
+        "audit/O03-core.png",
+        "audit/O03-result-1280.png",
+        "audit/O03-result-360.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "No scene change since original audit."
     },
     {
       "id": "O04",
       "name": "황천창",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O04-core.png",
-      "mobileVisibleCapture": null
+      "note": "벽 전방 준비 → 실제 벽 뒤로 나온 창과 연결 궤적(추가) → 첫 적112 피해/다음 적 무피해.",
+      "coreCapture": "occult-focused/O04-1280-through-wall.png",
+      "mobileVisibleCapture": "occult-focused/O04-360-through-wall.png",
+      "reviewedFrames": [
+        "audit/O04-start.png",
+        "audit/O04-core.png",
+        "audit/O04-result-1280.png",
+        "audit/O04-result-360.png",
+        "occult-focused/O04-1280-through-wall.png",
+        "occult-focused/O04-360-through-wall.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "O05",
       "name": "회귀망령",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O05-core.png",
-      "mobileVisibleCapture": null
+      "note": "출발·지상 표적 → 두 적 외향 관통31·31 후 벽에서 정지/왼쪽으로 되돌아오는 망령(추가) → 실제 귀환 폭발88·148. 곡선 복귀 전체는 정지 연속 프레임과 실엔진 returning 상태를 함께 확인.",
+      "coreCapture": "occult-focused/O05-1280-returning.png",
+      "mobileVisibleCapture": "occult-focused/O05-360-returning.png",
+      "reviewedFrames": [
+        "audit/O05-start.png",
+        "audit/O05-core.png",
+        "audit/O05-result-1280.png",
+        "audit/O05-result-360.png",
+        "occult-focused/O05-1280-returning.png",
+        "occult-focused/O05-360-returning.png",
+        "occult-focused/O05-1280-return-hit.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "O16",
       "name": "만혼귀결",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O16-core.png",
-      "mobileVisibleCapture": null
+      "note": "선택한 기예만으로 밀집 접지 표적 준비 → 실제 혼령14개가 흩어졌다 귀결점으로 모이는 궤적/두 적 명중 → 누적1095. 기존 선행 반향령은 경로·시야를 혼란시켜 제거했고, 실제 e.bestShot 계열 조준을 사용. 밀집 숫자는 겹침, 아래 지형으로 흐르는 혼령은 실제 all-phase 발사체.",
+      "coreCapture": "occult-focused/O16-1280-converging.png",
+      "mobileVisibleCapture": "occult-focused/O16-360-converging.png",
+      "reviewedFrames": [
+        "audit/O16-start.png",
+        "audit/O16-core.png",
+        "audit/O16-result-1280.png",
+        "audit/O16-result-360.png",
+        "occult-focused/O16-1280-start.png",
+        "occult-focused/O16-1280-converging.png",
+        "occult-focused/O16-360-converging.png",
+        "occult-focused/O16-1280-core.png",
+        "occult-focused/O16-360-core.png",
+        "occult-focused/O16-1280-result.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "O06",
       "name": "쇠망부",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O06-core.png",
-      "mobileVisibleCapture": null
+      "note": "방어가 있는 지상 적 → 실제 부적 명중/공격 위력67.04→59·방어35→22%/7턴 → 쇠약 아이콘 유지. 시연 표적의 방어만 .35 설정하여 실제 방어 감소가 보이게 함.",
+      "coreCapture": "occult-focused/O06-1280-core.png",
+      "mobileVisibleCapture": "occult-focused/O06-360-core.png",
+      "reviewedFrames": [
+        "audit/O06-start.png",
+        "audit/O06-core.png",
+        "audit/O06-result-1280.png",
+        "audit/O06-result-360.png",
+        "occult-focused/O06-1280-core.png",
+        "occult-focused/O06-360-core.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "O07",
       "name": "증오부",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "같은 편 두 적 → 저주받은 적에게 뒤 적의 실제 공격/52 등 피해 → 배신·저주 아이콘 유지. 관찰만으로 공격 소유자를 판별하기 어려워 실제 hits.source도 보조 근거로 사용.",
       "coreCapture": "audit/O07-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/O07-start.png",
+        "audit/O07-core.png",
+        "audit/O07-result-1280.png",
+        "audit/O07-result-360.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "No scene change since original audit."
     },
     {
       "id": "O08",
       "name": "현형부",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O08-core.png",
-      "mobileVisibleCapture": null
+      "note": "소단과 영안 없는 동행/숨은 혼령 → 현형 표식·동행 자동조준 불가→가능 → 현형 지속. 소단은 원래 혼령을 보므로 그림을 강제로 숨기지 않았으며 동행의 실제 e.guidanceTarget 결과로 차이를 표시.",
+      "coreCapture": "occult-focused/O08-1280-core.png",
+      "mobileVisibleCapture": "occult-focused/O08-360-core.png",
+      "reviewedFrames": [
+        "audit/O08-start.png",
+        "audit/O08-core.png",
+        "audit/O08-result-1280.png",
+        "audit/O08-result-360.png",
+        "occult-focused/O08-1280-start.png",
+        "occult-focused/O08-1280-core.png",
+        "occult-focused/O08-360-core.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "O09",
       "name": "섭혼부",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "적 두 종류 준비 → 첫 적이 녹색 아군 체력바로 전환하여 다른 적을 공격20 → 반격27과 섭혼 지속. 보스/만료횟수 별도 분기 미시연.",
       "coreCapture": "audit/O09-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/O09-start.png",
+        "audit/O09-core.png",
+        "audit/O09-result-1280.png",
+        "audit/O09-result-360.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "No scene change since original audit."
     },
     {
       "id": "O10",
       "name": "지박부",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O10-core.png",
-      "mobileVisibleCapture": null
+      "note": "부적에 견디도록 실제 위력+8HP인 중립 내성 표적 준비 → 지박주 적용 후 실제 혼령탄 처치 → 같은 자리에 만HP 지박령 생성/유지. 원래 저HP 장면은 부적 폭발 도중 생긴 아군 지박령도 맞는 엔진 동작이 드러났으므로 시연 순서를 수정했다. 전투 로직은 수정하지 않음.",
+      "coreCapture": "occult-focused/O10-1280-core.png",
+      "mobileVisibleCapture": "occult-focused/O10-360-core.png",
+      "reviewedFrames": [
+        "audit/O10-start.png",
+        "audit/O10-core.png",
+        "audit/O10-result-1280.png",
+        "audit/O10-result-360.png",
+        "occult-focused/O10-1280-start.png",
+        "occult-focused/O10-1280-core.png",
+        "occult-focused/O10-360-core.png",
+        "occult-focused/O10-1280-result.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "O11",
       "name": "배회령",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O11-core.png",
-      "mobileVisibleCapture": null
+      "note": "적과 떨어진 실제 지면에 배회령 출현(추가) → 본체와 적을 잇는 실제 공격38 → 배회령 유지. 가까운 적 추적은 한 적만 때리는 기존 엔진 행동을 사용.",
+      "coreCapture": "occult-focused/O11-1280-summoned.png",
+      "mobileVisibleCapture": "occult-focused/O11-360-summoned.png",
+      "reviewedFrames": [
+        "audit/O11-start.png",
+        "audit/O11-core.png",
+        "audit/O11-result-1280.png",
+        "audit/O11-result-360.png",
+        "occult-focused/O11-1280-summoned.png",
+        "occult-focused/O11-360-summoned.png",
+        "occult-focused/O11-1280-core.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "O12",
       "name": "등불귀",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O12-core.png",
-      "mobileVisibleCapture": null
+      "note": "실제 떠 있는 등불귀가 적 앞 지면 위치에서 출현 → 추적탄이 등불에서 분리된 비행(추가) → 실제 적74 피해. 비행이 짧아 .03초 구간을 사용, .15초 캡처는 늦어서 실패했음.",
+      "coreCapture": "occult-focused/O12-1280-summon-shot.png",
+      "mobileVisibleCapture": "occult-focused/O12-360-summon-shot.png",
+      "reviewedFrames": [
+        "audit/O12-start.png",
+        "audit/O12-core.png",
+        "audit/O12-result-1280.png",
+        "audit/O12-result-360.png",
+        "occult-focused/O12-1280-summon-shot.png",
+        "occult-focused/O12-360-summon-shot.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "O13",
       "name": "호혼령",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O13-core.png",
-      "mobileVisibleCapture": null
+      "note": "손상 동행과 소환 준비 → 실제 방호막/HP300→372·기력20→34·방호28 → 회복 지속. 회복 기여 경험치/턴당 1회 제한은 별도 시각 분기 미시연.",
+      "coreCapture": "occult-focused/O13-1280-core.png",
+      "mobileVisibleCapture": "occult-focused/O13-360-core.png",
+      "reviewedFrames": [
+        "audit/O13-start.png",
+        "audit/O13-core.png",
+        "audit/O13-result-1280.png",
+        "audit/O13-result-360.png",
+        "occult-focused/O13-1280-core.png",
+        "occult-focused/O13-360-core.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "O14",
       "name": "먹귀",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O14-core.png",
-      "mobileVisibleCapture": null
+      "note": "지상 늑대 준비 → 먹귀 출현·늑대 소실/포획1 → 실제 먹귀 피격15와 포획 적 전달 피해15. 숨은 포획 적을 따로 그려 결과를 위조하지 않고 실제 HP 감소로 표시. 방출/만료 분기 미시연.",
+      "coreCapture": "occult-focused/O14-1280-core.png",
+      "mobileVisibleCapture": "occult-focused/O14-360-core.png",
+      "reviewedFrames": [
+        "audit/O14-start.png",
+        "audit/O14-core.png",
+        "audit/O14-result-1280.png",
+        "audit/O14-result-360.png",
+        "occult-focused/O14-1280-core.png",
+        "occult-focused/O14-360-core.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "O15",
       "name": "반향령",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/O15-core.png",
-      "mobileVisibleCapture": null
+      "note": "반향령 소환 → 시전자와 공중 반향령 각 자리에서 실제 혼령탄 두 발(추가) → 첫 명중19/다음41 누적. 부적/초혼 제외 분기는 별도 미시연.",
+      "coreCapture": "occult-focused/O15-1280-echo-shot.png",
+      "mobileVisibleCapture": "occult-focused/O15-360-echo-shot.png",
+      "reviewedFrames": [
+        "audit/O15-start.png",
+        "audit/O15-core.png",
+        "audit/O15-result-1280.png",
+        "audit/O15-result-360.png",
+        "occult-focused/O15-1280-echo-shot.png",
+        "occult-focused/O15-360-echo-shot.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "OP01",
       "name": "잔부",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/OP01-core.png",
-      "mobileVisibleCapture": null
+      "note": "빗나간 부적 → 실제 지면에 잔부4턴 부적 표시(추가) → 적이 밟아113/주박2턴·표시 소실. 실제 renderer에 occultTraps가 전혀 없던 결함을 수정; 픽셀153/72와 실제 발동을 각각 확인.",
+      "coreCapture": "occult-focused/OP01-1280-trap.png",
+      "mobileVisibleCapture": "occult-focused/OP01-360-trap.png",
+      "reviewedFrames": [
+        "audit/OP01-start.png",
+        "audit/OP01-core.png",
+        "audit/OP01-result-1280.png",
+        "audit/OP01-result-360.png",
+        "occult-focused/OP01-1280-trap.png",
+        "occult-focused/OP01-360-trap.png",
+        "occult-focused/OP01-1280-core.png",
+        "occult-focused/OP01-360-core.png",
+        "occult-focused/OP01-1280-result.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "OP02",
       "name": "혼맥",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "가까운 무주박 적/먼 주박 적 → 중간 배회령이 먼 주박 적에게 실제 공격203 → 적용267→340 피해 비교. 실제 summon 소유 hits와 우선 표적 ID를 보조로 대조.",
       "coreCapture": "audit/OP02-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/OP02-start.png",
+        "audit/OP02-core.png",
+        "audit/OP02-result-1280.png",
+        "audit/OP02-result-360.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "No scene change since original audit."
     },
     {
       "id": "OP03",
       "name": "분혼",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/OP03-core.png",
-      "mobileVisibleCapture": null
+      "note": "호혼령과 손상 동행 → 적의 실제 공격에서 시전자72 피격·소환령 방호 소모 → 남은HP 대조650/적용703·실제 분담43. 분담 HP/방호 감소만 계측하며 결과를 강제하지 않음.",
+      "coreCapture": "occult-focused/OP03-1280-core.png",
+      "mobileVisibleCapture": "occult-focused/OP03-360-core.png",
+      "reviewedFrames": [
+        "audit/OP03-start.png",
+        "audit/OP03-core.png",
+        "audit/OP03-result-1280.png",
+        "audit/OP03-result-360.png",
+        "occult-focused/OP03-1280-core.png",
+        "occult-focused/OP03-360-core.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "OP04",
       "name": "매듭보전",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/OP04-core.png",
-      "mobileVisibleCapture": null
+      "note": "배회령이 실제 출현한 장면(추가) → 자연 만료로 소실 → 실제 expireSummon이 돌려준 기력88·다음 초혼42% 할인. 대조 엔진도 턴 회복하여 나중에 현재MP가 같아질 수 있어 순간 회수량을 계측. 저레벨에서도 발사 가능한 실제 비용+10 기력으로 시작.",
+      "coreCapture": "occult-focused/OP04-1280-alive-summon.png",
+      "mobileVisibleCapture": "occult-focused/OP04-360-alive-summon.png",
+      "reviewedFrames": [
+        "audit/OP04-start.png",
+        "audit/OP04-core.png",
+        "audit/OP04-result-1280.png",
+        "audit/OP04-result-360.png",
+        "occult-focused/OP04-1280-alive-summon.png",
+        "occult-focused/OP04-1280-core.png",
+        "occult-focused/OP04-360-core.png",
+        "occult-focused/OP04-1280-result.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "audit/ captures precede focused fixture repairs; current repaired effects use occult-focused/ frames."
     },
     {
       "id": "OP05",
       "name": "잔혼",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "저HP 세 적/생존자 준비 → 실제 세 처치로 잔혼3/3·다음 혼행234 → 대조179/적용309 누적피해. 원래3적 소실과 실제 soulBoost를 같이 확인.",
       "coreCapture": "audit/OP05-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/OP05-start.png",
+        "audit/OP05-core.png",
+        "audit/OP05-result-1280.png",
+        "audit/OP05-result-360.png"
+      ],
+      "mobileLimit": "기존 360px 원본 결과와 추가 핵심 프레임을 직접 확인. 작은 소환령/긴 거리 배우/밀집 숫자에는 판독 한계가 있으며 관찰줄은 실제 상태를 줄바꿈하여 표시.",
+      "historicalFrames": "No scene change since original audit."
     }
-  ]
+  ],
+  "currentPixelReviewed": 84,
+  "currentPixelPartial": 1,
+  "reviewScope": "84 registered skills reviewed individually at original capture size; confirmed means the primary effect is visible, not every numerical variant or secondary condition. Per-skill limits are explicit."
 }

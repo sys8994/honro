@@ -25,7 +25,7 @@ export function auditPreview(s){
    'passive-trap':()=>m.traps>0&&m.curse>0&&m.damage>c.damage,
    'passive-mark-priority':()=>m.summons>0&&m.curse>0&&m.damage>c.damage,
    'passive-share':()=>m.sharedDamage>0&&s.hero.hp>b.hero.hp,
-   'passive-expiry':()=>m.summons>0&&m.expiry>0&&!c.expiry,
+   'passive-expiry':()=>m.summons>0&&m.expiry>0&&!c.expiry&&m.expiryRecovered>0&&!c.expiryRecovered,
    'passive-remnants':()=>m.remnants===3&&m.soulBoost&&m.damage>c.damage
   };
   add('real passive trigger and unlearned comparison: '+metric,specific[metric]?.());return checks;
