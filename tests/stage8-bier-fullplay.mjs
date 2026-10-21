@@ -14,13 +14,13 @@ import {auditQuarryEngine} from './stage12-quarry-fullplay-helper.mjs';
 import {authorStage8Bier} from '../tools/map-forge/stage8-bier.mjs';
 const hash=v=>createHash('sha256').update(typeof v==='string'||Buffer.isBuffer(v)?v:JSON.stringify(v)).digest('hex'),h=await appHarness(),{g,C}=h;
 const out=process.env.HONRO_FULLPLAY_OUT||'_local/reports/stage8-bier/fullplay';await mkdir(out,{recursive:true});
-const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical',basicOnly=process.env.HONRO_FULLPLAY_BASIC_ONLY==='1',representativeAttacks=!basicOnly,policy='bier-objectives-first-v3';
+const rosterMode=process.env.HONRO_FULLPLAY_ROSTER||'canonical',basicOnly=process.env.HONRO_FULLPLAY_BASIC_ONLY==='1',representativeAttacks=!basicOnly,policy='bier-objectives-first-v4';
 assert(['canonical','candidate28e5','oldBudget20e0'].includes(rosterMode));
 if(rosterMode!=='canonical')g.HONRO_PROJECT=await authorStage8Bier(plain(g.HONRO_PROJECT),g,{roster:rosterMode});
 const stage=g.HONRO_PROJECT.stages[7],fixture=(process.env.HONRO_FULLPLAY_CURRENT_ENTRY==='1'?currentBierEntryProfile:bierEntryProfile)(g,{basicOnly}),parts=await runtimeParts({vector:false,render:false}),sourceHash=hash(g.HONRO_PROJECT),runtimeSha256=hash(parts.join('\n'));
 const provenance={policy,rosterMode,basicOnly,sourceHash,runtimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url))),navigatorSha256:hash(await readFile('tests/stage8-bier-fullplay-helper.mjs')),entrySha256:hash(await readFile(process.env.HONRO_FULLPLAY_CURRENT_ENTRY==='1'?'tests/stage8-current-entry-helper.mjs':'tests/stage8-bier-entry-helper.mjs')),sourceCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),dirty:execFileSync('git',['status','--short'],{encoding:'utf8'}).trim()};
 const resume=process.env.HONRO_FULLPLAY_CONTINUE?JSON.parse(await readFile(process.env.HONRO_FULLPLAY_CONTINUE,'utf8')):null;
-if(resume){assert.equal(resume.sourceHash,sourceHash);assert.equal(resume.runtimeSha256,runtimeSha256);for(const k of ['controllerSha256','navigatorSha256','entrySha256','policy','basicOnly','rosterMode'])assert.equal(resume.provenance[k],provenance[k]);}
+if(resume){assert.equal(resume.sourceHash,sourceHash);assert.equal(resume.runtimeSha256,runtimeSha256);for(const k of ['navigatorSha256','entrySha256','basicOnly','rosterMode'])assert.equal(resume.provenance[k],provenance[k]);if(process.env.HONRO_FULLPLAY_POLICY_CONTINUE==='1')provenance.previousPolicies=[...(resume.provenance.previousPolicies||[]),{...resume.provenance,continuedRound:resume.profile.honroBattle.round,reason:'Ordinary policy change: fight an enemy obstruction instead of treating it as a hero blocking the bier.'}];else for(const k of ['controllerSha256','policy'])assert.equal(resume.provenance[k],provenance[k]);}
 let virtualMs=resume?.virtualMs||0;g.performance={now:()=>virtualMs};let app=h.load(resume?.profile||{...plain(g.AppRegression.fresh()),...plain(fixture.profile)});if(resume)app.continue();else app.launch(8);let e=app.engine,b=e.b;if(resume)assert.deepEqual(plain(b),resume.profile.honroBattle,'Exact whole battle external Continue');
 assert.equal(b.honroStage8BierRevision,1);assert.equal(b.difficulty,'normal');const initial=resume?.initial||plain({battle:b,profile:app.profile});
 const actions=resume?.actions||[],rounds=resume?.rounds||[],turns=resume?.turns||[],damage=resume?.damage||[],births=resume?.births||[],continues=resume?.continues||[],notices=resume?.notices||[],resources=resume?.resources||[],enemyActions=resume?.enemyActions||[];
@@ -80,7 +80,7 @@ function attackSeal(u,t){if(!t||t.broken)return false;const actor=e.unit(t.id);i
   return false;
  }
  const aims=e.shotSeeds(u,s,target);for(const aim of aims){const p=e.predict(u,s,aim.angle,aim.power,undefined,false);if(p.terrain===t.id&&e.fire(s.id,aim.angle,aim.power)){record({op:'fire-seal',hero:u.cls,skill:s.id,target:t.id,hpBefore:t.hp,angle:aim.angle,power:aim.power,from:{x:u.x,y:u.y}});return true;}}return false;}finally{attackPlanningMs+=performance.now()-begin;}}
-const seals=()=>g.HonroQuestTargets.records(b).filter(t=>t.honroSeal),goal=()=>{const left=seals().filter(t=>!t.broken).sort((a,z)=>a.x-z.x);return left[0]||(!e.unit('boss')?.dead?e.unit('boss'):null);};
+const seals=()=>g.HonroQuestTargets.records(b).filter(t=>t.honroSeal),goal=()=>{const left=seals().filter(t=>!t.broken).sort((a,z)=>a.x-z.x);const obstruction=b.honroState.stage8Bier?.blockers?.find(v=>v.kind==='enemy'&&!e.unit(v.id)?.dead);return left[0]||(obstruction?e.unit(obstruction.id):null)||(!e.unit('boss')?.dead?e.unit('boss'):null);};
 function destination(u,target){if(target?.honroSeal){const site=Object.values(stage.design.space.sites).find(s=>s.objectiveId===target.id),p=site?.standing;if(p){const x=p.x-(u.cls==='mage'?130:u.cls==='archer'?230:0),t=b.terrain.find(t=>t.id===p.surfaceId),y=t?C.topAt(t,x):p.y,pose=Number.isFinite(y)&&C.validTerrainContactPose(b.terrain,{...u,x,y})?{...p,x,y}:p;return{id:target.id+'-approach',...pose};}}if(target)return{...target,surfaceId:nav.surface(target),approachRange:u.cls==='knight'?100:520};return null;}
 await writeFile(`${out}/initial.json`,JSON.stringify({provenance,initial,training:fixture.training,readiness:fixture.readiness},null,2));if(!resume)await save('initial-export');
 const started=performance.now(),actionLimit=Number(process.env.HONRO_FULLPLAY_ACTION_LIMIT||450),roundLimit=Number(process.env.HONRO_FULLPLAY_ROUND_LIMIT||65);let lastSignature='',stalled=0;
@@ -93,14 +93,14 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
  const movement=b.honroState.stage8Bier;
  // React to the actual warning by using the authored lower return. This is an
  // ordinary voluntary movement choice, never a new mission prerequisite.
- if(['announced','blocked'].includes(movement?.status)&&!e.unit('boss')?.dead){
+ if((movement?.status==='announced'||movement?.status==='blocked'&&movement.blockers?.some(v=>v.kind==='hero'&&v.id===u.id))&&!e.unit('boss')?.dead){
   const point=stage.design.bier.nodes[u.x>6200?'E':'G'];
   if(point&&distance(u,point)>180){const before={x:u.x,y:u.y,moveLeft:u.moveLeft};nav.advance(u,{id:'give-bier-road-'+u.cls,...point});record({op:'clear-bier-road',hero:u.cls,from:before,to:{x:u.x,y:u.y},movementCost:before.moveLeft-u.moveLeft});if(!ready())continue;}
  }
  let target=goal(),fired=false;const nearby=()=>e.alive(1).filter(v=>v.id!==target?.id&&distance(v,u)<1350&&Math.abs(v.y-u.y)<650).sort((a,z)=>distance(a,u)-distance(z,u));
  for(const v of nearby().filter(v=>distance(v,u)<300).slice(0,2))if(attack(u,v)){fired=true;break;}if(fired)continue;
  if(target?.honroSeal&&attackSeal(u,target))continue;if(target?.side===1&&distance(u,target)<1800&&attack(u,target))continue;
- const givingRoad=['announced','blocked'].includes(b.honroState.stage8Bier?.status),point=givingRoad?null:destination(u,target);if(point&&ready())nav.advance(u,point,!!target?.side);if(!ready())continue;target=goal();
+ const givingRoad=movement?.status==='announced'||movement?.status==='blocked'&&movement.blockers?.some(v=>v.kind==='hero'&&v.id===u.id),point=givingRoad?null:destination(u,target);if(point&&ready())nav.advance(u,point,!!target?.side);if(!ready())continue;target=goal();
  if(target?.honroSeal&&attackSeal(u,target))continue;if(target?.side===1&&distance(u,target)<1800&&attack(u,target))continue;
  for(const v of nearby().slice(0,3))if(attack(u,v)){fired=true;break;}if(fired)continue;
  const before={hp:u.hp,focus:u.focus};record({op:'defend',hero:u.cls,reason:'no-safe-shot-after-objective-position'});liveAudit.production(()=>app.defend());resources.push({round:b.round,frame:frames,hero:u.cls,op:'defend',before,after:{hp:u.hp,focus:u.focus}});
