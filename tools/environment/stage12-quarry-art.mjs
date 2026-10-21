@@ -14,12 +14,16 @@ export const QUARRY_COMMON_ASSETS={
  ...Object.fromEntries([1.4,1.25,1.4,1,1.15,1.25].map((scale,i)=>['sq-art-natural-stone-'+i,{assetId:'act2:rock-bank',scale}]))
 };
 // Existing shared art is inserted into the host's front exposure. These
-// anchors are real walking edges; inset is a datum below that surface/base.
+// anchors are real walking or explicitly named solid boundary edges.
 export const QUARRY_FACE_ATTACHMENTS=[
- {id:'quarry-face-north-west',assetId:'act1-scene:valley-granite',terrainId:'sq-north-quarry',anchor:{edge:1,along:.75},depthMode:'base',inset:80,scale:1.3,walkClearance:28,replaceBlocks:true},
- {id:'quarry-face-north-crown',assetId:'act1-scene:valley-granite',terrainId:'sq-north-quarry',anchor:{edge:4,along:.95},depthMode:'base',inset:130,scale:1.55,walkClearance:28,replaceBlocks:true,embedFade:120},
- {id:'quarry-face-north-toe',assetId:'act2:rock-column',terrainId:'sq-north-quarry',anchor:{edge:8,along:.6},depthMode:'base',inset:90,scale:.9,walkClearance:28,replaceBlocks:true},
- {id:'quarry-face-sign-granite',assetId:'act1-scene:valley-granite',terrainId:'sq-lower-ground',anchor:{edge:17,along:.4},depthMode:'surface',inset:900,scale:1.4,walkClearance:28,replaceBlocks:true,embedFade:160}
+ {id:'quarry-face-north-foundation',assetId:'geology:granite-foundation',terrainId:'sq-north-quarry',anchor:{edge:3,along:.6},depthMode:'base',inset:140,scale:1.05,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-north-west',assetId:'geology:granite-vertical',terrainId:'sq-north-quarry',anchor:{edge:1,along:.9},depthMode:'base',inset:80,scale:.9,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-north-crown',assetId:'geology:granite-vertical-cleft',terrainId:'sq-north-quarry',anchor:{edge:5,along:.3},depthMode:'base',inset:140,scale:1,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-north-toe',assetId:'geology:granite-ledge-neck',terrainId:'sq-north-quarry',anchor:{edge:9,along:.35},depthMode:'base',inset:60,scale:.8,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-back-neck',assetId:'geology:granite-ledge-neck',terrainId:'sq-back-road',anchor:{edge:2,along:.25},depthMode:'surface',inset:500,scale:1,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-cave-buttress',assetId:'geology:granite-vertical',terrainId:'sq-cave-buttress',anchor:{kind:'boundary',edge:0,along:.55},depthMode:'surface',inset:1300,scale:.85,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-lower-foundation',assetId:'geology:granite-foundation',terrainId:'sq-lower-ground',anchor:{edge:17,along:.935},depthMode:'surface',inset:2200,scale:1.1,walkClearance:28,replaceBlocks:true,embedFade:200},
+ {id:'quarry-face-sign-granite',assetId:'geology:granite-vertical-cleft',terrainId:'sq-lower-ground',anchor:{edge:17,along:.05},depthMode:'surface',inset:1600,scale:1.05,walkClearance:28,replaceBlocks:true}
 ];
 export function applyStage12QuarryArt(project,{sourceStage}={}){
  const s=project.stages.find(s=>s.metadata?.stageId===12),source=sourceStage||s;

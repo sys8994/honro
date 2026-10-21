@@ -8,7 +8,7 @@ function terrainAttachments(st,project,terrain,worldTerrain){return(st.design?.s
  const asset=project.library.find(a=>a.id===spec.assetId),host=terrain.find(t=>t.id===spec.terrainId);
  if(!asset||!host||host.oneWay||asset.interactionType||spec.embedFade!==undefined&&(!Number.isFinite(spec.embedFade)||spec.embedFade<0||spec.embedFade>1000))throw Error('Invalid terrain attachment '+spec.id);
  const ps=C.poly(host),edge=spec.anchor?.edge,u=ps[edge],v=ps[(edge+1)%ps.length],along=spec.anchor?.along;
- if(!host.honroWalkEdges?.includes(edge)||!u||!v||!Number.isFinite(along)||along<0||along>1)throw Error('Invalid face anchor '+spec.id);
+ if(!['walk','boundary'].includes(spec.anchor?.kind||'walk')||spec.anchor?.kind!=='boundary'&&!host.honroWalkEdges?.includes(edge)||!Number.isInteger(edge)||edge<0||edge>=ps.length||!u||!v||!Number.isFinite(along)||along<0||along>1)throw Error('Invalid face anchor '+spec.id);
  const x=u.x+(v.x-u.x)*along,walkY=u.y+(v.y-u.y)*along,scale=spec.scale??1,range=asset.reference?.scaleRange||[.1,8];
  if(!Number.isFinite(scale)||scale<range[0]||scale>range[1]||!['surface','base'].includes(spec.depthMode)||!Number.isFinite(spec.walkClearance)||spec.walkClearance<4||spec.walkClearance>120||!Number.isFinite(spec.inset)||spec.inset<0)throw Error('Invalid face scale/inset '+spec.id);
  let datum=walkY;if(spec.depthMode==='base'){const section=C.poly(worldTerrain?.find(t=>t.id===host.id)||host),hits=[];for(let i=0;i<section.length;i++){const a=section[i],z=section[(i+1)%section.length];if(Math.abs(z.x-a.x)<.001||x<Math.min(a.x,z.x)||x>Math.max(a.x,z.x))continue;const y=a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x);if(y>walkY+.1)hits.push(y);}if(!hits.length)throw Error('Missing solid base '+spec.id);datum=Math.min(...hits);}
