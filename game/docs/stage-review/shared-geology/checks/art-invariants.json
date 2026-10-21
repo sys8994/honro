@@ -1,0 +1,252 @@
+{
+  "stage1Pixels": [
+    "ffe5339cb4950d1901c51198b3ce8146c4875200fdde340176dd7818767821c8",
+    "ffe5339cb4950d1901c51198b3ce8146c4875200fdde340176dd7818767821c8"
+  ],
+  "commonAssets": [
+    {
+      "id": "a1-scene-2-upper-rooted-pine",
+      "assetId": "act1-scene:rooted-pine",
+      "supportId": "left-high-ground",
+      "x": 420,
+      "y": 610.5916129032258,
+      "scale": 0.92,
+      "footOffset": 11.559354838709716,
+      "rootContacts": [
+        {
+          "x": 358.36,
+          "y": 592.0729032258065,
+          "supportId": "left-high-ground"
+        },
+        {
+          "x": 420,
+          "y": 599.0322580645161,
+          "supportId": "left-high-ground"
+        },
+        {
+          "x": 481.64,
+          "y": 605.9916129032258,
+          "supportId": "left-high-ground"
+        }
+      ],
+      "visualOnly": true
+    },
+    {
+      "id": "a1-scene-2-middle-rooted-pine",
+      "assetId": "act1-scene:rooted-pine",
+      "supportId": "left-descent-stone-high",
+      "x": 1180,
+      "y": 1272.5927272727274,
+      "scale": 0.68,
+      "footOffset": 11.683636363636333,
+      "rootContacts": [
+        {
+          "x": 1134.44,
+          "y": 1252.6254545454547,
+          "supportId": "left-descent-stone-high"
+        },
+        {
+          "x": 1180,
+          "y": 1260.909090909091,
+          "supportId": "left-descent-stone-high"
+        },
+        {
+          "x": 1225.56,
+          "y": 1269.1927272727273,
+          "supportId": "left-descent-stone-high"
+        }
+      ],
+      "visualOnly": true
+    },
+    {
+      "id": "a1-scene-2-east-rooted-pine",
+      "assetId": "act1-scene:rooted-pine",
+      "supportId": "right-cliff-ground",
+      "x": 3950,
+      "y": 627.8307692307692,
+      "scale": 1.15,
+      "footOffset": 11.676923076923003,
+      "rootContacts": [
+        {
+          "x": 3872.95,
+          "y": 622.0807692307692,
+          "supportId": "right-cliff-ground"
+        },
+        {
+          "x": 3950,
+          "y": 616.1538461538462,
+          "supportId": "right-cliff-ground"
+        },
+        {
+          "x": 4027.05,
+          "y": 610.2269230769231,
+          "supportId": "right-cliff-ground"
+        }
+      ],
+      "visualOnly": true
+    },
+    {
+      "id": "a1-scene-2-west-rock-foot",
+      "assetId": "env:rock",
+      "supportId": "canyon-ground",
+      "x": 650,
+      "y": 2860,
+      "scale": 1.1,
+      "footOffset": 0,
+      "rootContacts": [],
+      "visualOnly": true
+    },
+    {
+      "id": "a1-scene-2-valley-rock-foot",
+      "assetId": "env:rock",
+      "supportId": "canyon-ground",
+      "x": 1430,
+      "y": 2860,
+      "scale": 0.7,
+      "footOffset": 0,
+      "rootContacts": [],
+      "visualOnly": true
+    },
+    {
+      "id": "a1-scene-2-east-rock-foot",
+      "assetId": "env:rock",
+      "supportId": "canyon-ground",
+      "x": 3950,
+      "y": 2860,
+      "scale": 0.85,
+      "footOffset": 0,
+      "rootContacts": [],
+      "visualOnly": true
+    }
+  ],
+  "scope": "Native Canvas. Actual prior normal-play snapshots retained, no new combat claim. Full production render state purity, cache reuse and all campaign data exact equal ddb32fa0.",
+  "rows": [
+    {
+      "id": "fresh",
+      "highShot": {
+        "target": "foe-1",
+        "damage": 74,
+        "aim": {
+          "angle": 17.64651795889549,
+          "power": 0.9475094314084264
+        }
+      },
+      "statePure": true,
+      "fullSceneFirstAllocationDelta": 527,
+      "artLoopPathAllocations": 0,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 16.048633999999765,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 4,
+        "bgHits": 0,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 1,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 0,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "warmCache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 16.048633999999765,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 9,
+        "bgHits": 4,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 2,
+        "screenHits": 9,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 1024000,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      }
+    },
+    {
+      "id": "real-round3",
+      "highShot": null,
+      "statePure": true,
+      "fullSceneFirstAllocationDelta": 313,
+      "artLoopPathAllocations": 0,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 11.0334440000006,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 4,
+        "bgHits": 0,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 2,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 1024000,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "warmCache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 11.0334440000006,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 9,
+        "bgHits": 5,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 2,
+        "screenHits": 10,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 1024000,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      }
+    },
+    {
+      "id": "real-round21-win",
+      "highShot": null,
+      "statePure": true,
+      "fullSceneFirstAllocationDelta": 303,
+      "artLoopPathAllocations": 0,
+      "cache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 12.030426000001171,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 4,
+        "bgHits": 0,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 2,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 1024000,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "warmCache": {
+        "worldBuilds": 1,
+        "worldBuildMs": 12.030426000001171,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 9,
+        "bgHits": 5,
+        "domainCanvasAllocations": 4,
+        "domainTileBuilds": 4,
+        "screenBuilds": 2,
+        "screenHits": 10,
+        "screenWorldBytes": 1024000,
+        "screenBackgroundBytes": 1024000,
+        "worldBytes": 4260096,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      }
+    }
+  ]
+}
