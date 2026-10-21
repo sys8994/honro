@@ -1,3 +1,9 @@
+## 2026-10-21 — 12장 공통 room 참조 진단과 승인 소나무 비교 (통합 보류)
+
+공통 prepareTerrain 실제 cache를 조사했다. 상부 sq-north-quarry는 surface11/room B/block1로 누락이 아니며, sq-inner-joint는 surface1이라 의도대로 block0이다. 하부는 기존 길표/교전 구역 F가 실제 sq-lower-ground를 참조하지 않아 E block1만 있었다. 기존 room F terrainIds와 하부 surface roomIds만 정정하여 block2를 활성화했다. 임의 room/terrainPlanes·지형·물리·이벤트 변경 없음. 승인1장 화면의 실제 act1-scene:rooted-pine을 기존4곳에 같은 높이·접점으로 참조했다. builtin ancientPine의 별도 native 그림과 구별한다. 전체 나무 경사 회전 시험은 과도한 기울기로 제외했다.
+
+수레 회전 후 실제 두 바퀴의 표면 최소 간격은 3.7535/0 world이며 묻힘이 없었다. 같은 위치의 잔석/상부 지형 가림을 확인했고 전경으로 강제 이동하지 않았다. 빌드·실제 common 호출/물리 동일성·author2회와 관련 화면만 확인했다. 큰 빈 암면·수레 가림이 남아 미술 합격 아님. stage-review/stage12-quarry/COMMON_LINKS.md 참조. master/Pages/13장 보류 유지.
+
 ## 2026-10-21 — 12장 전체 공통 렌더 연결 후보 (미술 미충족·통합 보류)
 
 비교용 직사각 마스크와 12장 전용 terrain forms/exposures/rearFaces·소나무 패스를 제거했다. V3 지형 전체는 기존 Act2SpatialArt 경로를 사용하며 장식 14개는 활성 ancientPine/ravinePine/receiverStone/cart/act2 rock-bank/rock-column ID를 직접 참조한다. 지지 접점은 원래 좌표를 유지하고 reference.foot을 보정했다. 수레는 기존 지지 경사로 회전한다. 전용 후면 모암 장식 1개만 퇴역했고, 맞는 공통 도구가 없어 쓰러진 곡괭이와 서사 신발 그림은 미충족 예외로 보존한다. 기존 Library 정의는 저장 호환을 위해 변경하지 않았다.

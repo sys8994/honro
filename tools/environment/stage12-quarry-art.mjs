@@ -3,10 +3,10 @@
 const clone=v=>JSON.parse(JSON.stringify(v));
 export const STAGE12_ART_PREFIX='stage12:quarry-'; // Legacy save/library identity only.
 export const QUARRY_COMMON_ASSETS={
- 'sq-art-bent-waymark-pine':{assetId:'builtin:ravinePine',scale:.48},
- 'sq-art-old-road-pine':{assetId:'builtin:ancientPine',scale:2.4},
- 'sq-art-western-pine':{assetId:'builtin:ravinePine',scale:.49},
- 'sq-art-rear-root-pine':{assetId:'builtin:ancientPine',scale:1.6},
+ 'sq-art-bent-waymark-pine':{assetId:'act1-scene:rooted-pine',scale:.69,rotation:0},
+ 'sq-art-old-road-pine':{assetId:'act1-scene:rooted-pine',scale:.77,rotation:0},
+ 'sq-art-western-pine':{assetId:'act1-scene:rooted-pine',scale:.7,rotation:0},
+ 'sq-art-rear-root-pine':{assetId:'act1-scene:rooted-pine',scale:.52,rotation:0},
  'sq-art-waymark':{assetId:'builtin:receiverStone',scale:1.8},
  'sq-art-abandoned-cart':{assetId:'cart',scale:1.6},
  'sq-art-remaining-pillar':{assetId:'act2:rock-column',scale:.4},
