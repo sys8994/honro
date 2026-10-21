@@ -1,0 +1,81 @@
+{
+  "sha": "0f2635e8d470e48c82719aa99e5384df0196dbed",
+  "renderSha256": "e501b1c18edb459e863b1f7f1f0035beb2c77b3633ea373b477ed3b90a88dcfb",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "road-start",
+      "camera": {
+        "x": 620,
+        "y": 2780,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "road-middle",
+      "camera": {
+        "x": 2150,
+        "y": 2760,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "road-right",
+      "camera": {
+        "x": 3670,
+        "y": 2750,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "cliff-base-close",
+      "camera": {
+        "x": 1550,
+        "y": 2540,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-road-start",
+      "camera": {
+        "x": 300,
+        "y": 2730,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-road-right",
+      "camera": {
+        "x": 4050,
+        "y": 2750,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 2,
+      "view": "wide-overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.2823529411764706
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.057352941176470586
+      }
+    }
+  ],
+  "errors": []
+}
