@@ -55,10 +55,7 @@ export function authorStage12QuarryGeometry(g,project){const p=clone(project),i=
  // The sign cordon F shares the existing lower-ground mass with E. The
  // layout stores that continuous physical polygon in E; F still needs its
  // real visual room/surface reference, without adding a new plane or solid.
- st.design.space.terrainMaterials=[
-  {variant:'jointed-granite',terrainIds:['sq-north-quarry'],massCount:3,reliefScale:1,beddingSlope:.12},
-  {variant:'jointed-granite',terrainIds:['sq-lower-ground'],roomIds:['quarry-F'],massCount:3,reliefScale:1,beddingSlope:.12}
- ];
+
  st.design.space.rooms.find(r=>r.id==='quarry-F').terrainIds=['sq-lower-ground'];
  st.design.space.surfaces.find(r=>r.terrainId==='sq-lower-ground').roomIds.push('quarry-F');
  st.routes=routes.filter(r=>['AB','BC','CD','DE','EF'].includes(r.id)).flatMap(r=>r.anchors.map(({x,y,surfaceId})=>({x,y,surfaceId})));st.anchors={spawn:quarryPose('sq-old-road',10100),start:clone(nodes.A),exit:clone(nodes.H)};
