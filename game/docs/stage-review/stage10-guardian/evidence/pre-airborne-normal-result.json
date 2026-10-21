@@ -1,0 +1,60 @@
+{
+  "won": true,
+  "round": 16,
+  "heroes": [
+    {
+      "cls": "archer",
+      "hp": 429,
+      "maxHp": 659
+    },
+    {
+      "cls": "mage",
+      "hp": 506,
+      "maxHp": 714
+    },
+    {
+      "cls": "knight",
+      "hp": 1123,
+      "maxHp": 1214
+    }
+  ],
+  "shots": 46,
+  "actualDamage": 138,
+  "continues": [
+    {
+      "round": 12,
+      "exact": true
+    }
+  ],
+  "coopHold": 6,
+  "itemsUsed": [
+    {
+      "round": 7,
+      "frame": 14312,
+      "op": "item",
+      "kind": "heal",
+      "hero": "mage",
+      "before": 3,
+      "after": 2
+    },
+    {
+      "round": 13,
+      "frame": 25477,
+      "op": "item",
+      "kind": "heal",
+      "hero": "archer",
+      "before": 2,
+      "after": 1
+    }
+  ],
+  "recruited": [
+    "archer",
+    "mage",
+    "knight",
+    "occultist"
+  ],
+  "nextStage": 11,
+  "externalWrites": 0,
+  "recoveries": 0,
+  "scope": "Native production normal inputs from actual Stage9 victory profile; not browser/human play"
+}
