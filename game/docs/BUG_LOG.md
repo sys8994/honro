@@ -1,3 +1,9 @@
+## 2026-10-21 — 매립 암턱의 얕은 돌 윗면/전면 접합 (master 미반영)
+
+실제 walk edge를 전면 lip로 삼고 공통 surfaceJunction(depth36/lip30/inset.08, 자산 배율 적용)으로 얕은 윗면과 작은 앞면만 만든다. 깊은 slab 중복 칠 제거는 유지한다. ledge-seat 소켓은 원본 SVG의 실제 crest(0,-533.75)에 있으며 지지 모듈의 뒤쪽 접합점이 top plane의 rear edge와 맞도록 배치한다. 장별 절대좌표 도형·모듈 늘리기·물리 변경은 없다. 나무 밑동이 앞면 아래로 남지 않도록 공통 lip 깊이를 조정했다.
+
+근접/전체/모바일 실제3장을 다시 열어 확인했다. 보행 rim·shallow top·작은 lip의 픽셀, 실제 SVG crest/socket 정렬, 더 깊은 매립 body 중복 칠 생략, 노출부 재질, 목재 픽셀 동일, fresh/실제R3/R21 렌더/저장 불변과 warm 캐시를 확인했다. 전체 전투는 반복하지 않았다. stone-junction 증거를 보존하고 부모의 최종 화면 판단 전 master/Pages를 보류한다.
+
 ## 2026-10-21 — 매립 암턱의 물리 slab 중복 칠 제거 (master 미반영)
 
 공통 surfaceAttachment.mode=embedded와 자산의 opaque surfaceCoverage 메타데이터로 매립면을 구분한다. 이미 그려진 실제 공통 암반의 불투명 몸체 안에서는 slab의 추가 색면을 생략하고 기존 walk rim을 남긴다. 덮이지 않는 노출부/exposed 면은 공통 재질로 채운다. 겹친 지원 몸체의 바깥을 각각 clip해 교집합으로 처리하므로 겹침이 구멍으로 취소되지 않는다. coverage/exclusion Path2D는 캐시하며 렌더러에 장 번호/지형 ID 예외를 추가하지 않았다.
