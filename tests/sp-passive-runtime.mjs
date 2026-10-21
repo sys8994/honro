@@ -12,7 +12,7 @@ function arena(cls='occultist'){
 for(const t of C.TALENTS.filter(t=>t.passive))for(let r=1;r<=8;r++)assert.notEqual(JSON.stringify(C.skillEffectRows(t.id,r)),JSON.stringify(C.skillEffectRows(t.id,r-1)),`${t.id} rank ${r} is a display-only plateau`);
 // Base stats and late volley share the exact runtime coefficient contract.
 for(let r=1;r<=8;r++){
- assert.equal(C.volleyDamage(r),.42+.02*Math.min(4,r-1)+.045*Math.max(0,r-5));
+ assert.equal(C.volleyDamage(r),(.42+.02*Math.min(4,r-1)+.045*Math.max(0,r-5))*.75);
  const h={...C.freshHero('mage'),xp:C.xpAtLevel(20),ranks:{M01:1,MP02:r},statTraining:10},s=C.heroStats(h,'mage');
  assert.equal(s.regen,14+Math.floor(19*.6)+r*.5+s.mp*.005*r);
  const a=arena('mage');C.applyHero(a.u,h,false);a.u.focus=0;a.b.phase='aim';a.b.active=a.u.id;a.b.side=0;a.e.wait();assert(a.u.focus>0,'empty MP must still regenerate');

@@ -843,14 +843,12 @@
       "functionalAssertions": "passed",
       "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "한 발 전 후속0 → 첫 피해와 다음 화살 → 실제 후속4발/추가 피해.",
-      "coreCapture": "audit/AP01-core.png",
-      "mobileVisibleCapture": "audit/AP01-result-360.png",
+      "note": "2026-10-21 후속 피해 ×0.75 적용 후 실제 5발 시연. 본 화살/발사 수/간격 유지, 같은 표적 총 피해477→402. rank1/4/8 실제 발사 계수는 volley-followup-tuning 검사로 별도 확인.",
+      "coreCapture": "../mage-volley-gate-20261021/ap01-after/AP01-1280-core.png",
+      "mobileVisibleCapture": "../mage-volley-gate-20261021/ap01-after/AP01-360-complete-volley.png",
       "reviewedFrames": [
-        "audit/AP01-start.png",
-        "audit/AP01-core.png",
-        "audit/AP01-result-1280.png",
-        "audit/AP01-result-360.png"
+        "../mage-volley-gate-20261021/ap01-after/AP01-360-complete-volley.png",
+        "../mage-volley-gate-20261021/ap01-after/AP01-1280-complete-volley.png"
       ],
       "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },

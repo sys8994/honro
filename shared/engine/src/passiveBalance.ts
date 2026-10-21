@@ -9,7 +9,7 @@ export function passiveTuning(rank:number){
  return {
   gourdSecondary:.09*r, geometry:.06*r,
   manaRegenFlat:.5*r, manaRegenMax:.005*r,
-  volleyFirst:.42+.02*Math.min(4,Math.max(0,r-1))+.045*Math.max(0,r-5),
+  volleyFirst:(.42+.02*Math.min(4,Math.max(0,r-1))+.045*Math.max(0,r-5))*.75,
   retreat:r?.12+.06*(r-1):0,
   jucheonExtraEffect:.02*Math.max(0,r-1),
   trapDamage:r?.265+.080*(r-1):0,

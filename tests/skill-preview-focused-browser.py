@@ -7,6 +7,7 @@ ids=sys.argv[1:]
 assert ids,'Pass the affected skill IDs explicitly'
 OUT=ROOT/'_local/reports/skill-preview-focused';OUT.mkdir(parents=True,exist_ok=True)
 milestones={
+ 'AP01':{'complete-volley':'auditP.age>4.5&&!auditP.b.volley&&!auditP.b.projectiles.length'},
  'A10':{'prepared':'!!auditP.hero.prepared'},
  'A11':{'apex':'auditP.b.projectiles.some(q=>q.apex)'},
  'A12':{'outbound':'auditP.b.projectiles.some(q=>!q.returning&&q.x>650)','returning':'auditP.b.projectiles.some(q=>q.returning&&q.x>650)'},
