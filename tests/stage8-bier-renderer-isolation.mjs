@@ -33,6 +33,9 @@ let previous,wrapped,changed;const methods=['terrain','background','terrainHealt
 for(const name of renderNames){const source=await text('shared/runtime/'+name+'.js');if(name==='stage8-bier-art')previous=Object.getOwnPropertyDescriptors(g.HonroScene.prototype);vm.runInContext(source,g);if(name==='stage8-bier-art'){wrapped=Object.getOwnPropertyDescriptors(g.HonroScene.prototype);changed=Object.keys(wrapped).filter(k=>wrapped[k].value!==previous[k]?.value);}}
 assert(previous&&wrapped);assert(changed.includes('terrain')&&changed.includes('background'));assert(changed.every(k=>methods.includes(k)),'Every new8 Scene wrapper has an explicit comparison adapter');
 const stone=await text('shared/runtime/stage23-escort-art.js');assert.equal(hash(stone),'3dd8c296e7a822c075f9091092ef62b241d694f355954f745868b3ac1bc7d549','Both sides use unchanged master544825ee Stage23 source');
+// Native comparison deliberately requests its fixture backgrounds through the
+// production lazy getters before decoding; title loading remains lazy.
+Object.values(g.HonroAct1Background.images);Object.values(g.HonroAct2SpatialArt.images);
 await new Promise(resolve=>setTimeout(resolve,20));assert(images.length>0&&images.every(i=>i.complete&&i.naturalWidth>0),'Current background images decode before either paint');
 const original8=JSON.parse(await text('tests/fixtures/stage8-bier/before-stage8.json')).battle,cases=[{id:'old8-unrevisioned',b:structuredClone(original8)}];
 for(const id of [11,12,16,17,18,23,30]){const profile=g.HONRO_CORE.defaults();profile.recruited=g.HonroStageRules.stageParty(id);const stage=g.HONRO_PROJECT.stages[id-1],b=g.HonroMaps.createBattle(stage,g.HONRO_PROJECT,profile,{origin:'campaign'});g.HonroStageRules.sanitizeStageBattle(b);cases.push({id:'other'+id,b});}
