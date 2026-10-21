@@ -1,0 +1,69 @@
+{
+  "sourceCommit": "536c663e9b0b8f89711b3ef1d61c1ab31c0249c1",
+  "baseMaster": "27efe8eb",
+  "sourceHashes": {
+    "shared/engine/src/beastMelee.ts": "5a3957c5b86941c649232040eabf49ff6cd87b69546770c9902c7a820407941b",
+    "shared/engine/src/enemyAI.ts": "79525e0d37914bfd018772c18169c8415b6040b6f1b3cc3674b1bc9833dd8a0f",
+    "shared/engine/src/engine.ts": "a3fd3ec8f83b6cd9adddcfedba6e329a0c91464b85604a0611752ad879e9c09e",
+    "shared/engine/src/existence.ts": "ff6d1a78e8fda0dcdc6d0aafdb66dad934407ef4d4f80e8a7e114e8981520d15",
+    "shared/engine/src/skillMechanics.ts": "9004ec7a44cc4a79a23815149a6850b0fa3555f124af39e968d6c951c9801874",
+    "shared/engine/src/store.ts": "2c9160a75725f8a859b1f4f36cdd717216f183a79ae6a292a719bde4d8570b62",
+    "shared/engine/src/types.ts": "0f977345443632c2d9a3bf7f15e5521a41ae81bd7fca8fad2ec3d8e5d5bac91b",
+    "shared/map/units.js": "adca4400d697da7d2859c8331e4f2590119e9803bd6e5887f0575c685b4c0222",
+    "shared/runtime/monster-vector.js": "1ab13910466bf1c608f86066b02c9e323fca238cf6ef01d6450b2eca9e0a8534",
+    "shared/runtime/progression.js": "168ea610751aa299ac3e98c4dd242aa0d02d088a43b2cca6e0f19459db59e40e",
+    "shared/runtime/world.js": "5c3487b2b027199a032c6ad62e301600c2466a6148b8259bca12b32d5a1c9d23",
+    "tests/airborne-beast-melee-browser.py": "0c49fd495d52b07fe8c519650d0748ce67d5f86e260f5ba7401756ce4538c769",
+    "tests/airborne-beast-melee.mjs": "346b7e441a989fba27d5d8a20ed40350232f397b6f2d224c97330b6eca981706"
+  },
+  "buildEntry": "web/entries/game.dd7330ec138cd955.html",
+  "reviews": [
+    "airborne numbers and repeated save migration",
+    "melee geometry, latch, budgets, interrupted action save validation",
+    "production browser motion and actual AI",
+    "final source, common build and related integration"
+  ],
+  "passed": [
+    "airborne-beast-melee.mjs",
+    "airborne-beast-melee-browser.py",
+    "game typecheck",
+    "npm run build",
+    "flying-knockback.mjs",
+    "act1-defense-resume.mjs",
+    "web-split.mjs",
+    "lure-enemy-turn.mjs"
+  ],
+  "existingFailuresReproducedOnBaseMaster": {
+    "existence-damage.mjs": "unclassified S14 (line20)",
+    "existence-variety.mjs": "reviewed attack delta mismatch (line8)",
+    "stage2-airborne.mjs": "historical clone plan?.flightEscape (line40)"
+  },
+  "browserMethod": "production browser, prepared skirmish at normal entry stats and lethal damage; real AI and Scene; no damage overrides",
+  "browserRows": 10,
+  "browserErrors": [],
+  "rawPngFiles": [
+    "_local/reports/airborne-beast-melee/browser/bat-flight-after.png",
+    "_local/reports/airborne-beast-melee/browser/bat-flight-before.png",
+    "_local/reports/airborne-beast-melee/browser/boar-charge-1-prepare.png",
+    "_local/reports/airborne-beast-melee/browser/boar-charge-2-contact.png",
+    "_local/reports/airborne-beast-melee/browser/boar-charge-3-recover.png",
+    "_local/reports/airborne-beast-melee/browser/boar-wall.png",
+    "_local/reports/airborne-beast-melee/browser/canonical-stage1-enemy-turn.png",
+    "_local/reports/airborne-beast-melee/browser/crow-flight-after.png",
+    "_local/reports/airborne-beast-melee/browser/crow-flight-before.png",
+    "_local/reports/airborne-beast-melee/browser/hound-approach-1-prepare.png",
+    "_local/reports/airborne-beast-melee/browser/hound-approach-2-contact.png",
+    "_local/reports/airborne-beast-melee/browser/hound-approach-3-recover.png",
+    "_local/reports/airborne-beast-melee/browser/hound-unreachable.png",
+    "_local/reports/airborne-beast-melee/browser/lantern-flight-after.png",
+    "_local/reports/airborne-beast-melee/browser/lantern-flight-before.png",
+    "_local/reports/airborne-beast-melee/browser/stag-approach-1-prepare.png",
+    "_local/reports/airborne-beast-melee/browser/stag-approach-2-contact.png",
+    "_local/reports/airborne-beast-melee/browser/stag-approach-3-recover.png",
+    "_local/reports/airborne-beast-melee/browser/stag-upper.png"
+  ],
+  "limits": [
+    "prepared skirmish at ordinary entry resources, plus canonical stage1 representative movement and enemy action; no full campaign completion claim",
+    "master and Pages intentionally held for parent review"
+  ]
+}

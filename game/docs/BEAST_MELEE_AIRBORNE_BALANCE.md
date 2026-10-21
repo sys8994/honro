@@ -25,6 +25,20 @@ A01 배합 .96형/.04기에서 `반응=.96×형+.04×기`. 동일 갑옷·기타
 
 렌더는 기존 vector attack clip의 머리/턱/목과 산개 lunge를 준비/접촉/회복 시간에 맞춘다. 기존 body joint에 작은 기울임/전진을 더해 멧돼지의 몸 낮추기와 밀침을 드러낸다. 새 이미지/rig 에셋을 만들지 않는다.
 
+## 왜 세 종이 각각18 피해인가
+
+이번 브라우저 사례는 세 종 모두 같은1장 진입 기준, 같은 상대, 같은 공격 경지1을 사용했다. 기존 `HonroProgression.tuneEnemy()`는 `referenceHp × targetIncomingHpFraction`을 평균1타 예산으로 삼고 `mean(skill.damage × skillBalanceFactor)`로 종별 공격 배율을 역산한다. 세 신규 근접 기술의 기본 damage는32이며, 실제 공격 배율은 기술별 보정계수를 상쇄하도록 각각 달라진다.
+
+| 종 | 기술 보정계수 | 실제 u.attack | 방어 전 effective.damage |
+|---|---|---|---|
+| 산개 | 2.1123073250 | .2934728692 | 19.8369565217 |
+| 멧돼지 | 2.0872533092 | .2969955245 | 19.8369565217 |
+| 사슴 | 2.0528212736 | .3019770397 | 19.8369565217 |
+
+1장 기준 HP365, `targetIncomingHpFraction=.05`, 기준/실제 상대 갑옷 .08이다. 일반 난이도의 피해 배율은 `combatBaseAttack` 계산과 실제 attack 적용에서 상쇄된다. 따라서 `effective.damage = 365 × .05 / (1−.08) = 19.8369565217`이고, 실제 형/기 반응1·치명1·조건1·갑옷 .92를 거치면 `Math.round(19.8369565217 × .92) = Math.round(18.25) = 18`이다. 방어막은0이다. [production 수치 계산과 damage layer 원본](stage-review/airborne-beast-melee/evidence/damage-calculation.json), [실제 브라우저 초기 능력치·18 HP 감소](stage-review/airborne-beast-melee/evidence/browser/summary.json)를 함께 확인할 수 있다.
+
+18을 타격 코드에 상수로 넣거나 HP를18씩 강제로 차감한 결과가 아니다. 같은 진입 기준으로1타 예산을 맞추던 기존 성장 보정을 따른 결과다. 종의 차이는 준비 후 접근/접촉 거리, 멧돼지의 짧은 돌진, 몸/머리/턱 모션에서 드러난다. 다른 장·난이도·갑옷·상태·정예 및 기존 저장의 유지된 attack까지 항상 같은 피해라는 뜻은 아니다. 이번 보존 작업에서 공격 수치를 새로 조정하지 않았다.
+
 ## 집중 검수와 종합 검수
 
 1. **공중 수치·저장:** 실제 App Continue/export/import 3회, 신규 factory/기존 runtimeTemplate, 생존 비율·사망·보스·명시 qi/soul·성장 ledger·행동 상한 보존. 새 miniboss 제외와 보상 weight 확인.
@@ -34,9 +48,9 @@ A01 배합 .96형/.04기에서 `반응=.96×형+.04×기`. 동일 갑옷·기타
 
 명령: `node tests/airborne-beast-melee.mjs`, `python tests/airborne-beast-melee-browser.py`, `npm --prefix game run typecheck`, `npm run build`, `node tests/flying-knockback.mjs`, `node tests/act1-defense-resume.mjs`, `node tests/web-split.mjs`, `node tests/lure-enemy-turn.mjs`.
 
-자동 결과와 원본 PNG/trace는 Git 제외 경로 `_local/reports/airborne-beast-melee/`에 있다. 브라우저는 `browser/summary.json`, 세 종 `*-1-prepare.png`/`*-2-contact.png`/`*-3-recover.png`, `*-trace.json`, `canonical-stage1-trace.json`을 남긴다. 이는 준비 skirmish와 대표 원본 캠페인 구간의 확인이며 전체 캠페인 정상 완주 증거가 아니다.
+부모 픽셀 검수를 위한 원본 PNG19장(세 종3프레임씩9컷 포함), 전체 관련 trace, 브라우저 summary, 저장 이전 결과, 최종 검수는 [저장소 검수 갤러리](stage-review/airborne-beast-melee/README.md)에 보존했다. [보존 manifest](stage-review/airborne-beast-melee/evidence/preservation-manifest.json)가 기존 `_local/reports/airborne-beast-melee/` 원본과 복사본의 바이트 동일성을 연결한다. 브라우저는 `browser/summary.json`, 세 종 `*-1-prepare.png`/`*-2-contact.png`/`*-3-recover.png`, `*-trace.json`, `canonical-stage1-trace.json`을 남긴다. 이는 준비 skirmish와 대표 원본 캠페인 구간의 확인이며 전체 캠페인 정상 완주 증거가 아니다.
 
-기존 검사 한계: `existence-damage.mjs`는 unclassified S14, `existence-variety.mjs`는 과거 attack delta fixture 차이, `stage2-airborne.mjs`는 역사 clone의 `plan?.flightEscape` assertion에서 실패한다. 세 실패 모두 수정 전 master27efe8eb의 별도 worktree에서 같은 위치/내용으로 재현했다. 관련 코드/검사 기준을 임의로 고치지 않았다. stage2 검사의 앞선 배치/기회/상한/호스트/기타 장 보존 사례는 통과했다.
+기존 검사 한계: `existence-damage.mjs`는 unclassified S14, `existence-variety.mjs`는 과거 attack delta fixture 차이, `stage2-airborne.mjs`는 역사 clone의 `plan?.flightEscape` assertion에서 실패한다. 세 실패 모두 수정 전 master27efe8eb의 별도 worktree에서 같은 위치/내용으로 재현했다. [실패 summary와 원본 로그3개](stage-review/airborne-beast-melee/README.md#기존-실패3개--통과-아님)에 연결했으며 세 검사 상태는 모두 **실패**다. 관련 코드/검사 기준을 임의로 고치지 않았다. stage2 검사의 앞선 배치/기회/상한/호스트/기타 장 보존 사례는 통과했다.
 
 ## 통합 시 주의
 

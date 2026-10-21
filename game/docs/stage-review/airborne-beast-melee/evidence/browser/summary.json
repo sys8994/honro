@@ -1,0 +1,301 @@
+{
+  "method": "production browser, prepared skirmish at normal entry stats and lethal damage; real AI and Scene; no damage overrides",
+  "rows": [
+    {
+      "kind": "hound",
+      "scenario": "approach",
+      "initial": {
+        "hero": {
+          "hp": 365,
+          "maxHp": 365,
+          "attack": 1.75,
+          "focus": 96
+        },
+        "enemy": {
+          "hp": 126,
+          "maxHp": 126,
+          "attack": 0.29347286919892035,
+          "move": 550,
+          "loadout": [
+            "HBM01"
+          ]
+        }
+      },
+      "hits": [
+        {
+          "time": 1.5666666666666635,
+          "id": "p-archer",
+          "owner": "foe-1",
+          "skill": "HBM01",
+          "hpLoss": 18,
+          "shieldLoss": 0,
+          "attacker": {
+            "x": 1328.6666666666758,
+            "y": 1400
+          },
+          "target": {
+            "x": 1400,
+            "y": 1400
+          }
+        }
+      ],
+      "end": {
+        "x": 1328.6666666666758,
+        "move": 221.33333333332416,
+        "hp": 347
+      }
+    },
+    {
+      "kind": "boar",
+      "scenario": "charge",
+      "initial": {
+        "hero": {
+          "hp": 365,
+          "maxHp": 365,
+          "attack": 1.75,
+          "focus": 96
+        },
+        "enemy": {
+          "hp": 126,
+          "maxHp": 126,
+          "attack": 0.29699552448804667,
+          "move": 550,
+          "loadout": [
+            "HBM02"
+          ]
+        }
+      },
+      "hits": [
+        {
+          "time": 0.6500000000000001,
+          "id": "p-archer",
+          "owner": "foe-1",
+          "skill": "HBM02",
+          "hpLoss": 18,
+          "shieldLoss": 0,
+          "attacker": {
+            "x": 1063.5833333333342,
+            "y": 1400
+          },
+          "target": {
+            "x": 1145,
+            "y": 1400
+          }
+        }
+      ],
+      "end": {
+        "x": 1063.5833333333342,
+        "move": 486.41666666666583,
+        "hp": 347
+      }
+    },
+    {
+      "kind": "stag",
+      "scenario": "approach",
+      "initial": {
+        "hero": {
+          "hp": 365,
+          "maxHp": 365,
+          "attack": 1.75,
+          "focus": 96
+        },
+        "enemy": {
+          "hp": 126,
+          "maxHp": 126,
+          "attack": 0.30197703973576245,
+          "move": 550,
+          "loadout": [
+            "HBM03"
+          ]
+        }
+      },
+      "hits": [
+        {
+          "time": 1.5333333333333303,
+          "id": "p-archer",
+          "owner": "foe-1",
+          "skill": "HBM03",
+          "hpLoss": 18,
+          "shieldLoss": 0,
+          "attacker": {
+            "x": 1319.0000000000089,
+            "y": 1400
+          },
+          "target": {
+            "x": 1400,
+            "y": 1400
+          }
+        }
+      ],
+      "end": {
+        "x": 1319.0000000000089,
+        "move": 230.99999999999113,
+        "hp": 347
+      }
+    },
+    {
+      "kind": "boar",
+      "scenario": "wall",
+      "initial": {
+        "hero": {
+          "hp": 365,
+          "maxHp": 365,
+          "attack": 1.75,
+          "focus": 96
+        },
+        "enemy": {
+          "hp": 126,
+          "maxHp": 126,
+          "attack": 0.29699552448804667,
+          "move": 550,
+          "loadout": [
+            "HBM02"
+          ]
+        }
+      },
+      "hits": [],
+      "end": {
+        "x": 1000,
+        "move": 550,
+        "hp": 365,
+        "intent": "멧돼지 돌진"
+      }
+    },
+    {
+      "kind": "stag",
+      "scenario": "upper",
+      "initial": {
+        "hero": {
+          "hp": 365,
+          "maxHp": 365,
+          "attack": 1.75,
+          "focus": 96
+        },
+        "enemy": {
+          "hp": 126,
+          "maxHp": 126,
+          "attack": 0.30197703973576245,
+          "move": 550,
+          "loadout": [
+            "HBM03"
+          ]
+        }
+      },
+      "hits": [
+        {
+          "time": 1.549999999999997,
+          "id": "p-archer",
+          "owner": "foe-1",
+          "skill": "HBM03",
+          "hpLoss": 18,
+          "shieldLoss": 0,
+          "attacker": {
+            "x": 1149.833333333337,
+            "y": 1290
+          },
+          "target": {
+            "x": 1080,
+            "y": 1290
+          }
+        }
+      ],
+      "end": {
+        "x": 1149.833333333337,
+        "move": 550,
+        "hp": 347,
+        "intent": "뿔 받기"
+      }
+    },
+    {
+      "kind": "hound",
+      "scenario": "unreachable",
+      "initial": {
+        "hero": {
+          "hp": 365,
+          "maxHp": 365,
+          "attack": 1.75,
+          "focus": 96
+        },
+        "enemy": {
+          "hp": 126,
+          "maxHp": 126,
+          "attack": 0.29347286919892035,
+          "move": 550,
+          "loadout": [
+            "HBM01"
+          ]
+        }
+      },
+      "hits": [],
+      "end": {
+        "x": 1493.0000000000143,
+        "move": 550,
+        "hp": 365,
+        "intent": "깨물기"
+      }
+    },
+    {
+      "kind": "bat",
+      "start": {
+        "x": 1000,
+        "y": 1150,
+        "move": 550
+      },
+      "end": {
+        "x": 1214.5,
+        "y": 1150,
+        "move": 65.5,
+        "fixed": true
+      },
+      "travel": 214.5
+    },
+    {
+      "kind": "crow",
+      "start": {
+        "x": 1000,
+        "y": 1150,
+        "move": 550
+      },
+      "end": {
+        "x": 1185.7624491117567,
+        "y": 1042.75,
+        "move": 65.5,
+        "fixed": true
+      },
+      "travel": 214.49999999999537
+    },
+    {
+      "kind": "lantern",
+      "start": {
+        "x": 1000,
+        "y": 1150,
+        "move": 550
+      },
+      "end": {
+        "x": 1214.5,
+        "y": 1150,
+        "move": 65.5,
+        "fixed": true
+      },
+      "travel": 214.5
+    },
+    {
+      "mode": "campaign",
+      "round": 4,
+      "hero": {
+        "hp": 365,
+        "maxHp": 365,
+        "x": 755.3771432306122,
+        "y": 1503.5452534736244
+      },
+      "hits": [],
+      "events": [
+        "설오 · 방어하며 대기",
+        "설오 · 방어하며 대기",
+        "설오 · 방어하며 대기",
+        "들린 산개 · 깨물기"
+      ]
+    }
+  ],
+  "errors": []
+}

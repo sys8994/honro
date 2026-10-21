@@ -1,0 +1,91 @@
+{
+  "method": "Focused numerical replay of production effective()/hurt() at the same ordinary stage1 entry stats; existing browser PNG/trace remain the gameplay evidence.",
+  "referenceHp": 365,
+  "targetIncomingHpFraction": 0.05,
+  "rows": [
+    {
+      "kind": "hound",
+      "skill": "HBM01",
+      "skillDamage": 32,
+      "balanceFactor": 2.112307325022835,
+      "attack": 0.29347286919892035,
+      "effectiveDamage": 19.83695652173913,
+      "target": {
+        "armor": 0.08,
+        "existence": {
+          "form": 1,
+          "qi": 1,
+          "soul": 0.88
+        }
+      },
+      "damageTrace": {
+        "skill": "HBM01",
+        "source": "foe-1",
+        "target": "p-archer",
+        "skillDamage": 19.83695652173913,
+        "conditionMultiplier": 1,
+        "criticalMultiplier": 1,
+        "existenceMultiplier": 1,
+        "defenseMultiplier": 0.92,
+        "finalDamage": 18
+      },
+      "hpLoss": 18
+    },
+    {
+      "kind": "boar",
+      "skill": "HBM02",
+      "skillDamage": 32,
+      "balanceFactor": 2.087253309196911,
+      "attack": 0.29699552448804667,
+      "effectiveDamage": 19.836956521739125,
+      "target": {
+        "armor": 0.08,
+        "existence": {
+          "form": 1,
+          "qi": 1,
+          "soul": 0.88
+        }
+      },
+      "damageTrace": {
+        "skill": "HBM02",
+        "source": "foe-1",
+        "target": "p-archer",
+        "skillDamage": 19.836956521739125,
+        "conditionMultiplier": 1,
+        "criticalMultiplier": 1,
+        "existenceMultiplier": 1,
+        "defenseMultiplier": 0.92,
+        "finalDamage": 18
+      },
+      "hpLoss": 18
+    },
+    {
+      "kind": "stag",
+      "skill": "HBM03",
+      "skillDamage": 32,
+      "balanceFactor": 2.0528212735868268,
+      "attack": 0.30197703973576245,
+      "effectiveDamage": 19.836956521739125,
+      "target": {
+        "armor": 0.08,
+        "existence": {
+          "form": 1,
+          "qi": 1,
+          "soul": 0.88
+        }
+      },
+      "damageTrace": {
+        "skill": "HBM03",
+        "source": "foe-1",
+        "target": "p-archer",
+        "skillDamage": 19.836956521739125,
+        "conditionMultiplier": 1,
+        "criticalMultiplier": 1,
+        "existenceMultiplier": 1,
+        "defenseMultiplier": 0.92,
+        "finalDamage": 18
+      },
+      "hpLoss": 18
+    }
+  ]
+}
