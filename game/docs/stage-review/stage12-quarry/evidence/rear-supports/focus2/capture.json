@@ -1,0 +1,47 @@
+{
+  "label": "rear-support-focus2-depth",
+  "url": "http://127.0.0.1:8874/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "97bcf6029bc9d3999fa356bfc0b3d60296e7251a",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/build.mjs\n M shared/data/campaign.json\n M tools/environment/stage12-quarry-art.mjs\n M tools/map-forge/apply-stage12-quarry.mjs\n D web/data/campaign.3105dafad0dbecb1.json\n D web/data/campaign.911acbf05e907256.json\n D web/data/chapter-12.1bf35a6059533fb5.json\n D web/data/chapter-12.31a4f8b8cea25d48.json\n D web/entries/game.57e5eaa5a37b1f85.html\n D web/entries/game.8e6d5aae3b4ac7a5.js\n D web/entries/game.da73f1c9af6f9934.html\n D web/entries/game.e7fd73222a7f0fb6.js\n D web/entries/workshop.6dbeb2e5ba4ab6d7.js\n D web/entries/workshop.712db9f03903f230.js\n M web/manifest.json\n D web/runtime/campaign.c38b65d3b31e1d64.js\n D web/runtime/campaign.f61aa170d4eb014d.js\n?? shared/runtime/geology-rear-support.js\n?? web/data/campaign.16105246ce9055cc.json\n?? web/data/campaign.1776544d05672b13.json\n?? web/data/chapter-12.2c82eafa6d424e64.json\n?? web/data/chapter-12.d44df09f10be5a48.json\n?? web/entries/game.2c798fa1216973d4.html\n?? web/entries/game.6de0855a42c7b16b.js\n?? web/entries/game.e5f233b8c42b25b8.html\n?? web/entries/game.f9434a7ab2f82cbf.js\n?? web/entries/workshop.cc826b3d21a3b072.js\n?? web/entries/workshop.ebbcf22c8ff22056.js\n?? web/runtime/campaign.73add59eaed71b8f.js\n?? web/runtime/campaign.966867a16f28fc64.js\n?? web/runtime/ordered-common-12.3d35f25d0c036781.js\n?? web/runtime/ordered-common-12.fe353717d5c064b7.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "sign-normal",
+      "camera": {
+        "x": 6500,
+        "y": 4900,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "carrier-normal",
+      "camera": {
+        "x": 7850,
+        "y": 3550,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "lower-joint",
+      "camera": {
+        "x": 7340,
+        "y": 5170,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-toe",
+      "camera": {
+        "x": 8400,
+        "y": 4120,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

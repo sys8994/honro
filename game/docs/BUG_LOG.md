@@ -1,3 +1,11 @@
+## 2026-10-21 — 12장 후방 지지 암반 연결 후보 (부모 미술 검수 대기)
+
+solid 내부 전면 부착만으로는 상부/서쪽 mass 아래의 하늘이 이어져 공중 플랫폼처럼 보였다. 기존 geology foundation2/vertical1을 실제 lower-ground foot/socket에 연결하고 L1 back에서 기존 공통 GeologyArt로 그린다. source renderLayer='back' 조합만 선택하는 공통 hook을 추가했으며 새 collider·walk rim·장 번호 분기·거대 반투명 path는 없다. L1 투영은 유지하고 L2 시각 톤/brightness.74, 앞 지형/배우/조준선의 기존 순서로 깊이를 구별한다. 중앙 아치 여백은 남긴다. 서쪽 전면도 기존 foundation1개로 같은 지질에 연결했다.
+
+2장 publication 확정 master27efe8eb의 공통 builder/renderer를 원본 그대로 동기화했다. SVG5개도 byte exact이며2장 campaign/map/배치는 가져오지 않았다. 기존 스킬 UI·12장 물리/서사/이벤트/보상/revision/장식은 보존한다. source fdddaf84의 집중3회와 별도 최종14컷, 실제 정상 gate-open 저장 Continue4컷을 stage-review/stage12-quarry/REAR_SUPPORTS.md에 기록했다. 지지 연속성은 개선됐으나 모바일 큰 면·기존 가림 등 전체 미술 한계가 남으므로 부모 확인 전 master/Pages/13장은 보류한다.
+
+최소 검사: physics/story/배우/자원/다른29장 동일, actual support socket·opaque bridge2점/중앙sky 여백·rear rim0·state purity·준비cache/월드cache key, 서쪽 전면clip/보행rim 보호, author2회/build/기존 상하 terminal Continue. 정상 gate-open의 실제 선택A01 prediction은 rear 조합 제거 사본과 동일하고 렌더/예측은 battle JSON을 바꾸지 않았다. 새 발사·자원 보정·신규 완주는 없다. 수레 wheel gap3.7535/0, 잔석 겹침0이며 원래 old-road 몸체 가림만 남아 장식 좌표를 옮기지 않았다.
+
 ## 2026-10-21 — 12장 연결형 공통 암반 부착 후보 (미술 합격 보류)
 
 최신 master edf712e9의 스킬 UI·저장 검사와 Stage12 후보를 별도 브랜치에서 병합·재빌드했다. 부모가 연결을 허용한 bbe8acea의 공통 geology SVG5개/builder/renderer는 원본7파일을 byte exact로 가져왔으며2장 지도·배치는 가져오지 않았다. 원본 ledge-neck의 backgroundRange 상한1.1이 scaleRange 상한1을 넘어 author 검증이 실패했다. 원본을 덮어쓰거나 gate를 완화하지 않고 register-geology-art 어댑터에서 두 범위의 교집합만 등록한다. 향후 공통 원본 등록을 합칠 때 이 호환성을 보존해야 한다.

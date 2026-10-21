@@ -84,3 +84,8 @@ Workshop에서 에셋을 고르고 Depth → Zone/Group → Support를 선택한
 `tools/environment/build-geology-art.mjs`와 `shared/runtime/geology-art.js`는 원본 bbe8acea의 공통 자산/렌더 경로다. `register-geology-art.mjs`는 원본 미술을 수정하지 않고 backgroundRange를 native scaleRange 안으로 제한한다. 등록 후 원래 builder를 다시 호출해 제한을 덮어쓰지 않는다. 12장에서는 geologyComposition 배치와 중복하지 않고 기존 terrainAttachments asset painter 경로로 사용한다.
 
 terrainAttachments.anchor.kind는 기본 walk, 명시 boundary를 지원한다. boundary는 실제 solid 외곽 edge/along을 참조하며 비보행 ceiling solid의 시각 부착에도 쓸 수 있다. collision·target·walk edge를 만들지 않고 원래 solid 내부 clip을 유지한다. 일반 walk 앵커로 비보행 지형을 참조하는 것은 계속 오류다. 새 모듈의 native 범위 내 uniform scale만 사용한다. 기술 연결이나 검사 통과는 미술 합격 근거가 아니며12장 후보의 남은 큰 면/접합/가림 한계는 GEOLOGY_ATTACHMENTS 검수 기록을 따른다.
+
+
+### L1 후방 지지 geology의 선택형 공통 호출
+
+`design.geologyComposition.renderLayer='back'`이면 `geology-rear-support.js`가 원본 GeologyArt의 support/foot/socket 조합을 기존 back landmark보다 먼저 그린다. 기본/다른 조합은 자동으로 이 경로에 추가하지 않는다. 기존2장 전용 호출과 중복하지 않는다. 지지 모듈은 실제 solid 밖으로 이어질 수 있으며 물리/보행rim이 없는 뒤쪽 암반이다. 실제 terrain/rim·배우·조준선·표식은 앞에 남긴다. source.visualDepth는 기존 시각 톤만 선택하며 투영 깊이는 L1, source.brightness(.5–1)는 불투명 모듈의 정적 paint filter다. source.version/brightness/depth는 월드 타일 cache key에 포함되고 새로운 거대 bitmap cache는 없다. 시각 cache와 prepared view는 battle 밖에 유지한다.12장 후보는3개 지지와 열린 중앙 아치로 구성했으며 장 전체 미술 승인과 구분한다.

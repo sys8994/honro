@@ -1,0 +1,271 @@
+{
+  "sha": "fdddaf84acad950488357a4bc6c09470ecd1eab0",
+  "scope": "Existing real V3 gate-open saves Continue and frozen rendering/actual current-skill prediction; no actor/resource correction, no shot fired, no new completion.",
+  "rows": [
+    {
+      "round": 7,
+      "phase": "aim",
+      "selected": "A01",
+      "playerPos": [
+        {
+          "id": "p-archer",
+          "x": 7192.035488882653,
+          "y": 5032.55505232291
+        },
+        {
+          "id": "p-mage",
+          "x": 6500.85032010689,
+          "y": 4800
+        },
+        {
+          "id": "p-knight",
+          "x": 6500.7816218001835,
+          "y": 4800
+        },
+        {
+          "id": "p-occultist",
+          "x": 6496.121218375811,
+          "y": 4800
+        }
+      ],
+      "prediction": {
+        "active": "p-archer",
+        "skill": "A01",
+        "angle": -30.706842695873323,
+        "power": 0.6330216233506047,
+        "endpoint": {
+          "x": 8074.055015943573,
+          "y": 5813.354894099375
+        },
+        "sameWithoutRear": true
+      },
+      "route": "lower",
+      "view": "normal",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "camera": {
+        "x": 7300,
+        "y": 4800,
+        "scale": 0.55,
+        "cache": {
+          "worldBuilds": 1,
+          "worldBuildMs": 48.79999998956919,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 0,
+          "bgHits": 0,
+          "domainCanvasAllocations": 12,
+          "domainTileBuilds": 12,
+          "screenWorldBytes": 0,
+          "screenBackgroundBytes": 0,
+          "worldBytes": 12780288,
+          "worldScale": 0.5946035575013605,
+          "backgroundBytes": 0
+        }
+      },
+      "input": "game/docs/stage-review/stage12-quarry/evidence/geology-v3/normal-lower/gate-open.json.gz",
+      "inputSha256": "22028687612510df36be6f04999bc5781491c58d891528aab03300aec0e73b50"
+    },
+    {
+      "round": 7,
+      "phase": "aim",
+      "selected": "A01",
+      "playerPos": [
+        {
+          "id": "p-archer",
+          "x": 7192.035488882653,
+          "y": 5032.55505232291
+        },
+        {
+          "id": "p-mage",
+          "x": 6500.85032010689,
+          "y": 4800
+        },
+        {
+          "id": "p-knight",
+          "x": 6500.7816218001835,
+          "y": 4800
+        },
+        {
+          "id": "p-occultist",
+          "x": 6496.121218375811,
+          "y": 4800
+        }
+      ],
+      "prediction": {
+        "active": "p-archer",
+        "skill": "A01",
+        "angle": -30.706842695873323,
+        "power": 0.6330216233506047,
+        "endpoint": {
+          "x": 8074.055015943573,
+          "y": 5813.354894099375
+        },
+        "sameWithoutRear": true
+      },
+      "route": "lower",
+      "view": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "camera": {
+        "x": 7300,
+        "y": 4800,
+        "scale": 0.10833333333333334,
+        "cache": {
+          "worldBuilds": 2,
+          "worldBuildMs": 59.899999994784594,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 0,
+          "bgHits": 0,
+          "domainCanvasAllocations": 16,
+          "domainTileBuilds": 16,
+          "screenWorldBytes": 0,
+          "screenBackgroundBytes": 0,
+          "worldBytes": 4260096,
+          "worldScale": 0.125,
+          "backgroundBytes": 0
+        }
+      },
+      "input": "game/docs/stage-review/stage12-quarry/evidence/geology-v3/normal-lower/gate-open.json.gz",
+      "inputSha256": "22028687612510df36be6f04999bc5781491c58d891528aab03300aec0e73b50"
+    },
+    {
+      "round": 7,
+      "phase": "aim",
+      "selected": "A01",
+      "playerPos": [
+        {
+          "id": "p-archer",
+          "x": 7220.481240044929,
+          "y": 4646.189844994384
+        },
+        {
+          "id": "p-mage",
+          "x": 6500.85032010689,
+          "y": 4800
+        },
+        {
+          "id": "p-knight",
+          "x": 6500.7816218001835,
+          "y": 4800
+        },
+        {
+          "id": "p-occultist",
+          "x": 6496.121218375811,
+          "y": 4800
+        }
+      ],
+      "prediction": {
+        "active": "p-archer",
+        "skill": "A01",
+        "angle": -30.706842695873323,
+        "power": 0.6330216233506047,
+        "endpoint": {
+          "x": 7296.013299213787,
+          "y": 4633.724990942665
+        },
+        "sameWithoutRear": true
+      },
+      "route": "upper",
+      "view": "normal",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "camera": {
+        "x": 7300,
+        "y": 4800,
+        "scale": 0.55,
+        "cache": {
+          "worldBuilds": 1,
+          "worldBuildMs": 25.100000001490116,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 0,
+          "bgHits": 0,
+          "domainCanvasAllocations": 12,
+          "domainTileBuilds": 12,
+          "screenWorldBytes": 0,
+          "screenBackgroundBytes": 0,
+          "worldBytes": 12780288,
+          "worldScale": 0.5946035575013605,
+          "backgroundBytes": 0
+        }
+      },
+      "input": "game/docs/stage-review/stage12-quarry/evidence/geology-v3/normal-upper/gate-open.json.gz",
+      "inputSha256": "47196a97ebf242b4cc9c567c5e092b6c2155d04a002847e661e235afbe2cdeb9"
+    },
+    {
+      "round": 7,
+      "phase": "aim",
+      "selected": "A01",
+      "playerPos": [
+        {
+          "id": "p-archer",
+          "x": 7220.481240044929,
+          "y": 4646.189844994384
+        },
+        {
+          "id": "p-mage",
+          "x": 6500.85032010689,
+          "y": 4800
+        },
+        {
+          "id": "p-knight",
+          "x": 6500.7816218001835,
+          "y": 4800
+        },
+        {
+          "id": "p-occultist",
+          "x": 6496.121218375811,
+          "y": 4800
+        }
+      ],
+      "prediction": {
+        "active": "p-archer",
+        "skill": "A01",
+        "angle": -30.706842695873323,
+        "power": 0.6330216233506047,
+        "endpoint": {
+          "x": 7296.013299213787,
+          "y": 4633.724990942665
+        },
+        "sameWithoutRear": true
+      },
+      "route": "upper",
+      "view": "mobile",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "camera": {
+        "x": 7300,
+        "y": 4800,
+        "scale": 0.10833333333333334,
+        "cache": {
+          "worldBuilds": 2,
+          "worldBuildMs": 35.399999994784594,
+          "bgBuilds": 0,
+          "bgBuildMs": 0,
+          "worldHits": 0,
+          "bgHits": 0,
+          "domainCanvasAllocations": 16,
+          "domainTileBuilds": 16,
+          "screenWorldBytes": 0,
+          "screenBackgroundBytes": 0,
+          "worldBytes": 4260096,
+          "worldScale": 0.125,
+          "backgroundBytes": 0
+        }
+      },
+      "input": "game/docs/stage-review/stage12-quarry/evidence/geology-v3/normal-upper/gate-open.json.gz",
+      "inputSha256": "47196a97ebf242b4cc9c567c5e092b6c2155d04a002847e661e235afbe2cdeb9"
+    }
+  ],
+  "errors": []
+}
