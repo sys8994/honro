@@ -1,3 +1,4 @@
+import {beastKind,beastLaneClear,beastReach,startBeastCast,tickBeasts} from './beastMelee';
 import {initializeReturningWraith,stepReturningWraith} from './returningWraith';
 import {captureEater,releaseEater,migrateEaters,eaterTuning} from './eaterMechanics';
 import {waterfallSheet,insideWater,advanceWaterfall,ensureWaterfallBody} from './waterfallPhysics';
@@ -18,7 +19,7 @@ import { skillBalanceFactor } from './balanceModel';
 import { evaluateStageEnd } from './stageRules';
 import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, Profile } from './types';
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
-import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier} from './existence';
+import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier,migrateAirborneBalance} from './existence';
 import {lureStakeFor} from './totemBehavior';
 import { planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, poly, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
@@ -75,7 +76,7 @@ export class Engine {
             if(next.done)return next;
         }
     }
-    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units)migrateEnemySkills(u); this.onEvent = onEvent; migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
+    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
     } }
@@ -493,6 +494,7 @@ export class Engine {
         b.shot++;
         b.shotDamage = {}; b.reviewDamage={}; b.reviewFocus=undefined;
         b.shots += u.side === 0 ? 1 : 0;
+        if(beastKind(u))return startBeastCast(this,u,s,e.damage,targetFor(this,u));
         const origin = this.projectileOrigin(u, s, u.angle);
         const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; if(s.id==='O05')initializeReturningWraith(p);projectileCredit(b,p,u);b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
@@ -2153,6 +2155,7 @@ export class Engine {
         if (u.boss) {
             u.intent = u.boss === 5 ? (this.b.round % 2 ? '도약 준비' : '방어 태세') : u.boss === 6 ? '낙성 인장' : this.b.round % 2 ? '장갑 · 포격' : '노출 · 공격';
         }
+        else if(beastKind(u))u.intent=SKILLS[u.loadout[0]]?.name||'접근';
         else
             u.intent = ENEMIES[u.role]?.intent || '대기';
     } }
@@ -2183,6 +2186,15 @@ export class Engine {
         }
         // All decisions below use the position reached by walking/jumping, not a planned position.
         target=targetFor(this,u)||target;
+        if(beastKind(u)){
+            const sk=SKILLS[u.loadout[0]];
+            const distance=Math.abs(target.x-u.x)-u.r-target.r;
+            if(sk&&distance<=beastReach(u)+Math.min(u.moveLeft,beastKind(u)==='boar'?72:24)&&Math.abs(target.y-u.y)<=45&&this.grounded(u)&&beastLaneClear(this,u,target)){
+                u.facing=target.x>=u.x?1:-1;
+                if(this.fire(sk.id,u.facing>0?0:180,.5,true))return;
+            }
+            u.shield=Math.max(u.shield,Math.round(u.maxHp*.08));u.shieldUntil=b.teamEnds[0]+1;u.intent='접근 불가 · 경계';this.finishAction();return;
+        }
         if(u.role==='healer'){
             const hurt=this.actors(1).filter(v=>!v.summoned&&!v.honroObjectiveTarget&&Math.hypot(v.x-u.x,v.y-u.y)<720&&v.hp<v.maxHp-40).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];
             if(hurt){const n=Math.min(hurt.maxHp-hurt.hp,Math.round(hurt.maxHp*.22));hurt.hp+=n;this.fx('ring',hurt.x,hurt.y-hurt.h*.5,'#9ae0b7',60);this.fx('text',hurt.x,hurt.y-hurt.h-10,'#acefc3',18,'+'+n);this.message(`${u.name} · 아군 회복`);this.emit('sound',{name:'heal'});this.finishAction();return;}
@@ -2261,7 +2273,7 @@ export class Engine {
         this.counter++;
         b.turnAge += dt;
         this.stepUnits(dt);
-        tickRedesign(this,dt);this.tickOccult();tickWarrior(this,dt);cleanupPassiveHistory(this);
+        tickRedesign(this,dt);this.tickOccult();tickWarrior(this,dt);tickBeasts(this,dt);cleanupPassiveHistory(this);
         for (const z of b.zones) {
             if (z.attached) {
                 const u = this.unit(z.attached);
@@ -2280,7 +2292,7 @@ export class Engine {
             for (const p of [...b.projectiles])
                 if (b.projectiles.includes(p))
                     this.stepProjectile(p, dt);
-            if (!b.projectiles.length && !b.volley && !b.units.some(u=>u.meleeAction) && !this.settleBusy())
+            if (!b.projectiles.length && !b.volley && !b.units.some(u=>u.meleeAction||u.beastAction) && !this.settleBusy())
                 b.resolveAge += dt;
             else
                 b.resolveAge = 0;

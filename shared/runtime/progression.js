@@ -49,20 +49,21 @@ function tuneEnemy(st,u,kind){
   const difficulty=C.DIFFICULTIES[u.honroDifficulty]||mult;
   u.maxHp=u.hp=Math.round(u.combatBaseHp*difficulty.hp);u.attack=u.combatBaseAttack*difficulty.damage;
   u.honroXpWeight=weight*(u.elite?1.25:1);u.xpBudget=0;u.xpGranted=0;
+  delete u.honroAirborneBalanceRevision;C.migrateAirborneBalance(u);
 }
 function tuneMidboss(b,st,u){
   const p=plan(st.id),r=referenceStats(st),d=C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal,n=C.DIFFICULTIES.normal,hits=p.midBossHits||5.5;
   const mean=u.loadout.reduce((sum,id)=>{const sk=C.SKILLS[id];return sum+sk.damage*C.skillBalanceFactor(sk);},0)/Math.max(1,u.loadout.length);
   u.combatBaseHp=r.shot*hits/Math.max(.45,1-(u.armor||0))/n.hp;
   u.combatBaseAttack=r.hp*(p.targetIncomingHpFraction*1.55)/Math.max(1,mean*(1-r.armor)*n.damage);
-  u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;u.honroXpWeight=3.2;u.elite=true;u.honroMidboss=true;
+  u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;u.honroXpWeight=3.2;u.elite=true;u.honroMidboss=true;delete u.honroAirborneBalanceRevision;
 }
 function tuneBoss(b,st,u){
   const p=plan(st.id),r=referenceStats(st),d=C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal,n=C.DIFFICULTIES.normal;
   const mean=u.loadout.reduce((sum,id)=>{const s=C.SKILLS[id];return sum+s.damage*C.skillBalanceFactor(s);},0)/u.loadout.length;
   u.combatBaseHp=r.shot/.96*.82*p.bossHits/n.hp;
   u.combatBaseAttack=r.hp*p.bossIncomingHpFraction/(mean*(1-r.armor)*n.damage);
-  u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;u.honroXpWeight=5;
+  u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;u.honroXpWeight=5;delete u.honroAirborneBalanceRevision;
 }
 function actionWeight(a){if(!a)return 0;if(a.type==='multi')return(a.actions||[]).reduce((n,a)=>n+actionWeight(a),0);if(a.type==='sniperAmbush')return a.n*.78;if(a.type==='spawn')return(a.n+(a.act3Authored&&a.elite ? .6 : 0))*({bat:.68,crow:.78,lantern:.8,shade:1.15,beast:1.25,warden:1.6,mourner:1.45}[a.kind]||1);return 0;}
 const validLimit=limit=>limit&&['start','end','total','combat'].every(key=>Number.isFinite(limit[key])&&limit[key]>=0)&&limit.end>=limit.start;

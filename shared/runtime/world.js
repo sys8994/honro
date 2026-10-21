@@ -3,6 +3,9 @@ const C=G.HONRO_CORE,H=G.HONRO_CONTENT,clone=x=>JSON.parse(JSON.stringify(x)),cl
 // Monster attacks are authored as monster skills.  Human seal troops may reuse martial techniques,
 // but beasts/spirits do not masquerade as player classes just to borrow their buttons.
 const MONSTER_SKILLS={
+ HBM01:{id:'HBM01',enemyOnly:true,cls:'knight',name:'깨물기',tag:'산개 · 근접',desc:'턱을 벌리고 가까운 상대를 한 번 깨문다.',cost:0,damage:32,radius:24,mode:'beastBite',icon:'break',color:'#8b8b6d',speed:1,wind:0,terrain:0},
+ HBM02:{id:'HBM02',enemyOnly:true,cls:'knight',name:'멧돼지 돌진',tag:'멧돼지 · 근접',desc:'몸을 낮춘 뒤 짧게 달려 접촉한 상대를 들이받는다.',cost:0,damage:32,radius:28,mode:'beastRam',icon:'break',color:'#8b8b6d',speed:1,wind:0,terrain:0},
+ HBM03:{id:'HBM03',enemyOnly:true,cls:'knight',name:'뿔 받기',tag:'숫사슴 · 근접',desc:'뿔을 숙여 가까운 상대를 한 번 들이받는다.',cost:0,damage:32,radius:34,mode:'beastGore',icon:'break',color:'#8b8b6d',speed:1,wind:0,terrain:0},
  HBT01:{id:'HBT01',cls:'mage',name:'울림비명',tag:'박쥐 · 초음파',desc:'앞쪽 공기를 떨게 하는 짧고 빠른 초음파. 직접 피해는 낮고 폭발 반경이 넓다.',cost:0,damage:18,radius:92,mode:'honroSonic',icon:'resonance',color:'#a9beb0',speed:.994,wind:.10,terrain:.15,gravity:.08},
  HBT02:{id:'HBT02',cls:'mage',name:'메아리침',tag:'박쥐 · 반향',desc:'가느다란 반향 덩어리를 직선에 가깝게 쏜다.',cost:0,damage:23,radius:26,mode:'honroEchoNeedle',icon:'resonance',color:'#869f9d',speed:.896,wind:.12,terrain:.10,gravity:.12},
  HGS01:{id:'HGS01',cls:'occultist',name:'망자의 한숨',tag:'행렬귀 · 저중력',desc:'느리게 떠가는 한숨이 닿은 곳의 기운을 흐린다.',cost:0,damage:25,radius:56,mode:'honroDeadBreath',icon:'rune',color:'#a99ab4',speed:.82,wind:.15,terrain:.20,gravity:.22},
@@ -25,11 +28,11 @@ Object.assign(C.SKILLS,MONSTER_SKILLS);
 const ARCHETYPES={
  ghost:{name:'떠도는 혼',role:'fire',look:'ghost',cls:'occultist',skills:['HGS01','HGS02'],hp:102,attack:.50,h:105,r:21,intent:'망자의 한숨'},
  shade:{name:'매듭진 수의귀',role:'ice',look:'shade',cls:'occultist',skills:['HSH01','HSH02'],hp:126,attack:.51,h:115,r:22,intent:'수의가시와 매듭실'},
- hound:{name:'들린 산개',role:'leaper',look:'beast',variant:'hound',cls:'knight',skills:['HBR01','HBR02'],hp:108,attack:.54,h:88,r:32,intent:'빠른 돌진과 흙파편'},
- boar:{name:'들린 멧돼지',role:'leaper',look:'beast',variant:'boar',cls:'knight',skills:['HBR01','HBR02'],hp:154,attack:.64,h:108,r:41,intent:'무거운 돌진과 흙울음'},
- stag:{name:'들린 숫사슴',role:'leaper',look:'beast',variant:'stag',cls:'knight',skills:['HBR01','HBR02'],hp:132,attack:.58,h:116,r:38,intent:'뿔 돌진과 뿌리쐐기'},
- bat:{name:'들린 산박쥐',role:'storm',look:'bat',cls:'mage',skills:['HBT01','HBT02'],hp:70,attack:.38,h:66,r:28,flying:true,intent:'초음파와 반향'},
- crow:{name:'들린 까마귀',role:'bow',look:'crow',cls:'archer',skills:['HCW01','HCW02'],hp:88,attack:.47,h:80,r:33,flying:true,intent:'썩은깃과 검은깃비'},
+ hound:{name:'들린 산개',role:'leaper',look:'beast',variant:'hound',cls:'knight',skills:['HBM01'],hp:108,attack:.54,h:88,r:32,intent:'접근 후 깨물기'},
+ boar:{name:'들린 멧돼지',role:'leaper',look:'beast',variant:'boar',cls:'knight',skills:['HBM02'],hp:154,attack:.64,h:108,r:41,intent:'몸을 낮춘 뒤 짧은 돌진'},
+ stag:{name:'들린 숫사슴',role:'leaper',look:'beast',variant:'stag',cls:'knight',skills:['HBM03'],hp:132,attack:.58,h:116,r:38,intent:'뿔을 낮춘 뒤 들이받기'},
+ bat:{name:'들린 산박쥐',role:'storm',look:'bat',cls:'mage',skills:['HBT01','HBT02'],hp:56,attack:.38,h:66,r:28,flying:true,intent:'초음파와 반향'},
+ crow:{name:'들린 까마귀',role:'bow',look:'crow',cls:'archer',skills:['HCW01','HCW02'],hp:70,attack:.47,h:80,r:33,flying:true,intent:'썩은깃과 검은깃비'},
  human:{name:'들린 사람',role:'bow',look:'human',cls:'archer',skills:['A01','A02'],hp:116,attack:.50,h:91,r:21,intent:'불규칙한 사격'},
  lantern:{name:'혼을 삼킨 등불',role:'fire',look:'lantern',cls:'occultist',skills:['HLN01','HLN02'],hp:94,attack:.53,h:92,r:25,flying:true,intent:'혼불과 혼무'},
  warden:{name:'들린 장승',role:'guard',look:'warden',cls:'knight',skills:['HWD01','HWD02'],hp:194,attack:.65,h:146,r:32,intent:'장승못과 터줏바람'},
@@ -53,8 +56,8 @@ function selectInitialSpawns(spawns,cap){
  return out;
 }
 function top(b,x,reference,support){return G.HonroMapEngine.surfaceY(b.terrain,x,reference,support)?.y??b.height-150;}
-function createEnemy(b,st,x,kind,index,y,absolute=false){const def=ARCHETYPES[kind]||ARCHETYPES.ghost,u=C.makeEnemy({role:def.role,x,y:y??top(b,x)},b.terrain,C.STAGES[st.id-1],index);const mult=C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal;
- Object.assign(u,{id:'foe-'+index,name:def.name,honroType:def.look,h:def.h,r:def.r,x,y:y??top(b,x),awake:false,aggroUntil:0,group:Math.floor(x/(st.w/4)),fixed:!!def.flying,elite:st.id===1?false:index%11===10,cls:def.cls||u.cls,loadout:[...(def.skills||u.loadout)],intent:def.intent||u.intent,honroVariant:def.variant||kind});u.ranks={...u.ranks};for(const sid of u.loadout)u.ranks[sid]=Math.max(1,Math.min(4,1+Math.floor((st.level-1)/3)));
+function createEnemy(b,st,x,kind,index,y,absolute=false,boss=false){const def=ARCHETYPES[kind]||ARCHETYPES.ghost,u=C.makeEnemy({role:def.role,x,y:y??top(b,x)},b.terrain,C.STAGES[st.id-1],index);const mult=C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal;
+ Object.assign(u,{id:'foe-'+index,name:def.name,honroType:def.look,h:def.h,r:def.r,x,y:y??top(b,x),awake:false,aggroUntil:0,group:Math.floor(x/(st.w/4)),fixed:!!def.flying,elite:st.id===1?false:index%11===10,cls:def.cls||u.cls,loadout:[...(def.skills||u.loadout)],intent:def.intent||u.intent,honroVariant:def.variant||kind,...(boss?{honroMidboss:true}:{})});u.ranks={...u.ranks};for(const sid of u.loadout)u.ranks[sid]=Math.max(1,Math.min(4,1+Math.floor((st.level-1)/3)));
  if(def.flying&&!absolute)u.y-=170+(index%3)*85;
  C.migrateEnemySkills(u);u.armor=u.elite?.12:.04;u.spawnX=u.x;u.spawnY=u.y;u.honroDifficulty=b.difficulty;u.level=Math.floor(G.HonroProgression.plan(st.id).entryLevel);G.HonroProgression.tuneEnemy(st,u,kind);G.HonroProgression.enemyXP(b,u);C.migrateEnemySkills(u);if(def.act2)G.HonroAct2.configureEnemy(u,def);if(def.act3Fiend){u.honroAct3Fiend=true;u.existenceDefense={...C.MONSTER_EXISTENCE.human};}G.HonroAct1Roster?.applyDefense(b,u);return u;
 }
@@ -72,7 +75,7 @@ function ally(b,st,id,role,x,y){
  for(const sid of loadout)u.ranks[sid]=Math.max(1,Math.min(4,1+Math.floor((level-1)/2)));
  C.migrateEnemySkills(u);return u;
 }
-function midboss(b,st,id,name,kind,x,y){const u=createEnemy(b,st,x,kind,900+st.id,y,true);Object.assign(u,{id,name,awake:true,aggroUntil:999,group:-3,honroMidboss:true,elite:true});u.armor=Math.max(u.armor||0,.14);G.HonroProgression.tuneMidboss(b,st,u);u.spawnX=u.x;u.spawnY=u.y;return u;}
+function midboss(b,st,id,name,kind,x,y){const u=createEnemy(b,st,x,kind,900+st.id,y,true,true);Object.assign(u,{id,name,awake:true,aggroUntil:999,group:-3,honroMidboss:true,elite:true});u.armor=Math.max(u.armor||0,.14);G.HonroProgression.tuneMidboss(b,st,u);u.spawnX=u.x;u.spawnY=u.y;return u;}
 
 function trainingWorld(st,profile,cls,skill,legacy){
  const b=legacy(st,profile,true,cls,skill);Object.assign(b,{width:6000,height:2300,practiceCombat:true,practiceWind:7,enemyLimit:2,honroRevision:20,terrain:[],waters:[],drafts:[],decor:[],honroLandmarks:[],honroSurfaceZones:[]});
@@ -108,7 +111,7 @@ function trainingWorld(st,profile,cls,skill,legacy){
  for(const [group,station] of stations.entries())for(const [kind,x,airY] of station.targets){
   const i=index++,u=createEnemy(b,{...st,w:b.width},x,kind,i,airY??top(b,x,2200),airY!==undefined),elite=station.id==='elite',hp=elite?3400:130+(i%4)*45;
   u.name=elite?'정예 산지기 · 수련':u.name+' · 수련';
-  Object.assign(u,{hp,maxHp:hp,attack:elite?1.05:.72,armor:elite?.12:.04,elite,awake:true,aggroUntil:0,group,honroTrainingStation:station.id,cooldowns:{},focus:180,maxFocus:180});b.units.push(u);
+  Object.assign(u,{hp,maxHp:hp,attack:elite?1.05:.72,armor:elite?.12:.04,elite,awake:true,aggroUntil:0,group,honroTrainingStation:station.id,cooldowns:{},focus:180,maxFocus:180});if(['bat','crow'].includes(kind))u.combatBaseHp=hp/(C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal).hp;delete u.honroAirborneBalanceRevision;C.migrateAirborneBalance(u);b.units.push(u);
  }
  b.active=hero.id;b.sceneVersion++;return b;
 }

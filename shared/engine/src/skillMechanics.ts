@@ -1,3 +1,4 @@
+import {migrateBeastSkills} from './beastMelee';
 import {validTerrainContactPose} from './locomotion';
 import {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
 export {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
@@ -72,6 +73,7 @@ export function recordRedesignDamage(e:Engine,p:Projectile|undefined,src:Unit,ta
  e.emit('fx',{name:'inkLine',x:p.x,y:p.y,x2:src.x,y2:src.y-src.h*.5,color:'#bfc9c6',size:1});
 }
 export function migrateEnemySkills(u:Unit){
+ migrateBeastSkills(u);
  if(u.side===0&&!u.summoned)return;
  u.loadout=u.loadout.map(id=>SKILLS['L'+id]?.enemyOnly?'L'+id:id);
  for(const id of Object.keys(u.ranks))if(SKILLS['L'+id]?.enemyOnly){u.ranks['L'+id]=u.ranks[id];delete u.ranks[id];}

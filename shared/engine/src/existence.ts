@@ -27,6 +27,7 @@ const attackRows:[string,ExistenceVector][]=[
  // The summoning spell does no damage; these are the actual summoned attacks.
  ['O11',mix(.35,.10,.55)],['O12',mix(0,.14,.86)],['O14',mix(0,.12,.88)],
  ['HBR01 HBR02 HWD01 HMO02',mix(.82,.18,0)],
+ ['HBM01 HBM02 HBM03',mix(.96,.04,0)],
  ['HWD02 HBT01 HBT02',mix(.25,.75,0)],
  ['HCW01 HCW02',mix(.85,.15,0)],
  ['HGS01 HGS02 HLN01 HLN02 HSH01 HSH02 HMO01',mix(.04,.20,.76)],
@@ -57,7 +58,7 @@ export const MONSTER_EXISTENCE:Record<string,ExistenceVector>={
  bow:mix(1,1,.78),crossbow:mix(1,1,.78),slinger:mix(1,1,.78),guard:mix(1,1,.78),leaper:mix(1,1,.78),
  fire:mix(1,1,.78),frost:mix(1,1,.78),storm:mix(1,1,.78),bomber:mix(1,1,.78),healer:mix(1,1,.78),ward:mix(1,1,.78),ballista:mix(.92,1,.55),
  human:mix(1,1,.88),possessedGuard:mix(1,1,.88),possessedArcher:mix(1,1,.88),gateMaster:mix(1,1,.88),archerMaster:mix(1,1,.88),archiveFiend:mix(1,1,.88),kilnFiend:mix(1,1,.88),hound:mix(.94,1.03,1.08),boar:mix(.96,1.03,1.08),stag:mix(.94,1.04,1.08),
- bat:mix(.90,1.06,1.10),crow:mix(.92,1.04,1.08),ghost:mix(.20,1.05,1.32),shade:mix(.24,1.05,1.28),lantern:mix(.18,1.10,1.34),
+ bat:mix(1.15,1.06,1.10),crow:mix(1.15,1.04,1.08),ghost:mix(.20,1.05,1.32),shade:mix(.24,1.05,1.28),lantern:mix(.18,1.10,1.34),
  warden:mix(.82,1.08,1.20),mourner:mix(.78,1.05,1.25),golem:mix(.83,1.06,1.23),medium:mix(1,1.08,1.16),
  minecart:mix(1,.95,.82),picks:mix(1,.95,.82),waterwheel:mix(1,.95,.82),stoneLantern:mix(1,.95,.82),hoist:mix(1,.95,.82),keeper:mix(1,.95,.82),
  resonance:mix(.06,.40,1.32),echo:mix(.06,.40,1.32),bellCluster:mix(.06,.40,1.32),monkVessel:mix(.06,.40,1.32),
@@ -70,8 +71,10 @@ export const MONSTER_EXISTENCE:Record<string,ExistenceVector>={
  'summon-echo':mix(.22,1.08,1.26),'summon-earthbound':mix(.64,1.03,1.18)
 };
 
-export function defenseForUnit(u:Pick<Unit,'side'|'role'|'honroVariant'|'honroType'|'boss'|'summonKind'|'existenceDefense'>):ExistenceVector{
+export function defenseForUnit(u:Pick<Unit,'side'|'role'|'honroVariant'|'honroType'|'boss'|'summonKind'|'existenceDefense'|'honroMidboss'>):ExistenceVector{
  if(u.existenceDefense)return u.existenceDefense;
+ const bird=u.honroVariant||u.honroType;
+ if((u.boss||u.honroMidboss)&&['bat','crow'].includes(bird||''))return bird==='bat'?mix(.90,1.06,1.10):mix(.92,1.04,1.08);
  if(u.summonKind)return MONSTER_EXISTENCE['summon-'+u.summonKind]||NEUTRAL_EXISTENCE;
  if(u.side===0)return MONSTER_EXISTENCE.human;
  if(u.side===2)return MONSTER_EXISTENCE[u.honroType||'']||MONSTER_EXISTENCE.human;
@@ -111,4 +114,18 @@ export function calculateDamage(layers:DamageLayers){
  const skillDamage=finiteNonnegative(layers.skillDamage),conditionMultiplier=Math.max(0,1+layers.conditionBonuses.reduce((sum,b)=>sum+(Number.isFinite(b)?b:0),0));
  const criticalMultiplier=finiteNonnegative(layers.criticalMultiplier,1),existenceMultiplier=finiteNonnegative(layers.existenceMultiplier,1),defenseMultiplier=finiteNonnegative(layers.defenseMultiplier,1);
  return {skillDamage,conditionMultiplier,criticalMultiplier,existenceMultiplier,defenseMultiplier,finalDamage:skillDamage*conditionMultiplier*criticalMultiplier*existenceMultiplier*defenseMultiplier};
+}
+
+/** Per-unit marker survives templates, clones, reinforcements and repeated Continue.
+ * Scale the stored difficulty-independent base too; never retune XP or progression. */
+export function migrateAirborneBalance(u:Unit){
+ const kind=u.honroVariant||u.honroType;
+ if(u.side!==1||u.summoned||u.boss||u.honroMidboss||(u as any).honroFinalBoss||!['bat','crow'].includes(kind||'')||(u as any).honroAirborneBalanceRevision===1)return;
+ const factor=kind==='bat'?56/70:70/88,oldMax=u.maxHp;
+ u.maxHp=Math.max(1,Math.round(oldMax*factor));
+ u.hp=u.dead||u.hp<=0?0:u.hp/oldMax*u.maxHp;
+ if(Number.isFinite(u.combatBaseHp))u.combatBaseHp!*=factor;
+ // Explicit custom responses remain authored. Upgrade only the old species form.
+ if(u.existenceDefense&&Math.abs(u.existenceDefense.form-(kind==='bat'?.90:.92))<1e-8)u.existenceDefense={...u.existenceDefense,form:1.15};
+ (u as any).honroAirborneBalanceRevision=1;
 }
