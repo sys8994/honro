@@ -32,5 +32,18 @@ Scene.prototype.landmark=function(c,l){
 };
 const terrain=Scene.prototype.terrain;
 Scene.prototype.terrain=function(c,t){if(!t.honroElementCollision)terrain.call(this,c,t);};
+// Terrain-face assets share the ordinary asset painter, with two canonical
+// clips: the live solid and an inset of its actual walking rim.
+const faceClips=new WeakMap();
+function terrainFaceClip(t,b,inset){
+ let cache=faceClips.get(t);if(!cache||cache.source!==t.vertices||cache.version!==b.sceneVersion||cache.physical!==b.terrain){cache={source:t.vertices,version:b.sceneVersion,physical:b.terrain,paths:new Map()};faceClips.set(t,cache);}if(cache.paths.has(inset))return cache.paths.get(inset);
+ const C=G.HONRO_CORE,ps=C.poly(t),physical=b.terrain.find(v=>v.id===t.id)||t,base=C.poly(physical),walk=(physical.honroWalkEdges||[]).flatMap(i=>[base[i],base[(i+1)%base.length]]).filter(Boolean);
+ const path=points=>{const p=new Path2D();points.forEach((v,i)=>i?p.lineTo(v.x,v.y):p.moveTo(v.x,v.y));p.closePath();return p;};
+ const q={solid:path(ps),inset:path(ps.map(p=>({x:p.x,y:p.y+(walk.some(v=>Math.abs(v.x-p.x)<.01&&Math.abs(v.y-p.y)<.01)?inset:0)})))};cache.paths.set(inset,q);return q;
+}
+function drawTerrainFaces(c,t,b,scene){
+ if(t.broken||!b?.honroTerrainAttachments?.length)return;for(const inst of b.honroTerrainAttachments){if(inst.terrainId!==t.id)continue;const q=terrainFaceClip(t,b,inst.walkClearance??24);c.save();c.clip(q.solid);c.clip(q.inset);draw(c,inst.asset,inst,scene);c.restore();}
+}
+G.HonroTerrainAttachments={draw:drawTerrainFaces,clip:terrainFaceClip};
 G.HonroElements={draw,nativeLandmark};
 })(globalThis);

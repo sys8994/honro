@@ -61,6 +61,11 @@ function validate(project){
   // Standalone map/environment tools may load the schema without game content.
   if(!Number.isInteger(st.metadata.stageId)||st.metadata.stageId<1||st.metadata.stageId>(G.HONRO_CONTENT?.stages?.length??20))issue('err',`${st.id}: stageId must reference an implemented campaign stage`);
   const ids=unique(arrays.filter(k=>k!=='layers').flatMap(k=>st[k]||[]),st.id),terrainIds=new Set(st.terrains.map(t=>t.id));
+  const faces=st.design?.space?.terrainAttachments||[];if(!Array.isArray(faces)||faces.length>32)issue('err',st.id+': invalid terrainAttachments');
+  for(const f of Array.isArray(faces)?faces:[]){const a=project.library.find(a=>a.id===f.assetId),t=st.terrains.find(t=>t.id===f.terrainId),range=a?.reference?.scaleRange||[.1,8];
+   if(!f.id||ids.has(f.id))issue('err',st.id+': duplicate face ID '+f.id);ids.add(f.id);
+   if(!a||a.interactionType||!t||terrainOneWay(t)||t.properties?.honroCeiling||!t.properties?.honroWalkEdges?.includes(f.anchor?.edge)||!Number.isFinite(f.anchor?.along)||f.anchor.along<0||f.anchor.along>1||!['surface','base'].includes(f.depthMode)||!Number.isFinite(f.inset)||f.inset<0||!Number.isFinite(f.scale)||f.scale<range[0]||f.scale>range[1]||!Number.isFinite(f.walkClearance)||f.walkClearance<4||f.walkClearance>120)issue('err',st.id+': invalid terrain face '+f.id);
+  }
   for(const t of st.terrains){if(t.oneWay!==undefined&&typeof t.oneWay!=='boolean')issue('err',`${t.id}: oneWay must be boolean`);if(terrainOneWay(t)&&t.properties?.honroCeiling)issue('err',`${t.id}: a solid ceiling cannot be a one-way platform`);const pts=t.type==='solid'?t.points:t.control;if(!Array.isArray(pts)||pts.length<(t.type==='solid'?3:2)||pts.some(p=>!p||!Number.isFinite(p.x)||!Number.isFinite(p.y)))issue('err',`${t.id}: invalid polygon`);}
   for(const e of st.elements){if(!assets.has(e.assetId))issue('err',`${e.id}: missing asset ${e.assetId}`);if(!Number.isFinite(e.x)||!Number.isFinite(e.y))issue('err',`${e.id}: invalid position`);}
   for(const m of st.materials)if((m.terrainId||m.support)&&!terrainIds.has(m.terrainId||m.support))issue('err',`${m.id}: missing support`);

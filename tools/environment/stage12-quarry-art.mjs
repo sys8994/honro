@@ -13,6 +13,17 @@ export const QUARRY_COMMON_ASSETS={
  'sq-art-carrier-rubble':{assetId:'act2:rock-bank',scale:1.15},
  ...Object.fromEntries([1.4,1.25,1.4,1,1.15,1.25].map((scale,i)=>['sq-art-natural-stone-'+i,{assetId:'act2:rock-bank',scale}]))
 };
+// Existing shared art is inserted into the host's front exposure. These
+// anchors are real walking edges; inset is a datum below that surface/base.
+export const QUARRY_FACE_ATTACHMENTS=[
+ {id:'quarry-face-north-west',assetId:'act1-scene:valley-granite',terrainId:'sq-north-quarry',anchor:{edge:1,along:.75},depthMode:'base',inset:80,scale:1.05,walkClearance:28},
+ {id:'quarry-face-north-neck',assetId:'env:cliff',terrainId:'sq-north-quarry',anchor:{edge:5,along:.8},depthMode:'surface',inset:280,scale:1.1,walkClearance:28},
+ {id:'quarry-face-north-crown',assetId:'mockup-granite-large',terrainId:'sq-north-quarry',anchor:{edge:3,along:.65},depthMode:'surface',inset:540,scale:1.8,walkClearance:28},
+ {id:'quarry-face-north-toe',assetId:'mockup-granite-shelf',terrainId:'sq-north-quarry',anchor:{edge:7,along:.4},depthMode:'base',inset:60,scale:1.5,walkClearance:28},
+ {id:'quarry-face-sign-joint',assetId:'env:cliff',terrainId:'sq-lower-ground',anchor:{edge:15,along:.65},depthMode:'surface',inset:250,scale:1,walkClearance:28},
+ {id:'quarry-face-sign-granite',assetId:'act1-scene:valley-granite',terrainId:'sq-lower-ground',anchor:{edge:17,along:.4},depthMode:'surface',inset:680,scale:1,walkClearance:28},
+ {id:'quarry-face-sign-foot',assetId:'mockup-granite-large',terrainId:'sq-lower-ground',anchor:{edge:16,along:.5},depthMode:'surface',inset:900,scale:1.5,walkClearance:28}
+];
 export function applyStage12QuarryArt(project,{sourceStage}={}){
  const s=project.stages.find(s=>s.metadata?.stageId===12),source=sourceStage||s;
  if(s?.initialState?.honroQuarryRevision!==1)throw Error('Quarry art requires existing revision1 geography');
@@ -35,7 +46,8 @@ export function applyStage12QuarryArt(project,{sourceStage}={}){
  }
  s.elements=[...s.elements.filter(e=>!e.id.startsWith('sq-art-')),...decorative];
  s.environment=clone(source.environment);
+ s.design.space.terrainAttachments=clone(QUARRY_FACE_ATTACHMENTS);
  const art=clone(source.design.quarryArt);delete art.commonPilot;delete art.backdropAsset;
- Object.assign(art,{source:'shared-terrain-and-existing-common-assets',artAssetIds:s.elements.map(e=>e.assetId),commonFull:{revision:1,assets:clone(QUARRY_COMMON_ASSETS),retiredDecorativeIds:['sq-art-recessed-mother-rock'],unfulfilled:[{id:'sq-art-cutting-tools',assetId:'stage12:quarry-fallen-cutting-tools',reason:'No matching shared fallen-pickaxe prop found; existing narrative tool drawing retained.'}]}});
+ Object.assign(art,{source:'shared-terrain-and-existing-common-assets',artAssetIds:[...s.elements,...QUARRY_FACE_ATTACHMENTS].map(e=>e.assetId),commonFull:{revision:1,assets:clone(QUARRY_COMMON_ASSETS),retiredDecorativeIds:['sq-art-recessed-mother-rock'],unfulfilled:[{id:'sq-art-cutting-tools',assetId:'stage12:quarry-fallen-cutting-tools',reason:'No matching shared fallen-pickaxe prop found; existing narrative tool drawing retained.'}]}});
  s.design.quarryArt=art;return project;
 }

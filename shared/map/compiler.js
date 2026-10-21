@@ -2,6 +2,19 @@
 const C=G.HONRO_CORE,M=G.HonroMaps,Q=G.HonroGeometry,clone=M.clone;
 const renderLayer=layer=>({far:'back',interactive:'prop',terrain:'prop',units:'front',events:'front'})[layer]||layer||'back';
 function profileFor(st){const p=C.defaults(),sid=st.metadata?.stageId||1;p.recruited=[...new Set(st.units.filter(u=>u.team==='player').map(u=>G.HONRO_CONTENT.hero[u.kind]?u.kind:u.cls).filter(Boolean))];if(!p.recruited.length)p.recruited=['archer'];for(const c of p.recruited)p.heroes[c].xp=G.HonroProgression.xpAt(G.HonroProgression.plan(sid).entryLevel);return p;}
+// Pure visual instances embedded in an existing solid. They never compile
+// asset collision, targets or additional walking surfaces.
+function terrainAttachments(st,project,terrain){return(st.design?.space?.terrainAttachments||[]).map(spec=>{
+ const asset=project.library.find(a=>a.id===spec.assetId),host=terrain.find(t=>t.id===spec.terrainId);
+ if(!asset||!host||host.oneWay||asset.interactionType)throw Error('Invalid terrain attachment '+spec.id);
+ const ps=C.poly(host),edge=spec.anchor?.edge,u=ps[edge],v=ps[(edge+1)%ps.length],along=spec.anchor?.along;
+ if(!host.honroWalkEdges?.includes(edge)||!u||!v||!Number.isFinite(along)||along<0||along>1)throw Error('Invalid face anchor '+spec.id);
+ const x=u.x+(v.x-u.x)*along,walkY=u.y+(v.y-u.y)*along,scale=spec.scale??1,range=asset.reference?.scaleRange||[.1,8];
+ if(!Number.isFinite(scale)||scale<range[0]||scale>range[1]||!['surface','base'].includes(spec.depthMode)||!Number.isFinite(spec.walkClearance)||spec.walkClearance<4||spec.walkClearance>120||!Number.isFinite(spec.inset)||spec.inset<0)throw Error('Invalid face scale/inset '+spec.id);
+ let datum=walkY;if(spec.depthMode==='base'){const hits=[];for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(Math.abs(z.x-a.x)<.001||x<Math.min(a.x,z.x)||x>Math.max(a.x,z.x))continue;const y=a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x);if(y>walkY+.1)hits.push(y);}if(!hits.length)throw Error('Missing solid base '+spec.id);datum=Math.min(...hits);}
+ const rotation=spec.rotation||0,cs=Math.cos(rotation),sn=Math.sin(rotation),foot=asset.reference?.foot||{x:0,y:0},fx=(foot.x-(asset.anchor?.x||0))*scale,fy=(foot.y-(asset.anchor?.y||0))*scale;
+ return{...clone(spec),kind:'terrain-face',x:x-fx*cs+fy*sn,y:datum+spec.inset-fx*sn-fy*cs,scale,rotation,depthLayer:'L1',visualRole:'scenery',asset:clone(asset),surfaceAnchor:{x,y:walkY,datum}};
+});}
 function compile(st,project){
  if(st.pending)throw Error('Chapter data is not prepared: '+st.id);
  const terrain=st.terrains.map(t=>Q.terrain(t,st.height)),elements=[],landmarks=[];
@@ -21,7 +34,7 @@ function compile(st,project){
   }
  }
  const worldTerrain=st.terrainBounds?st.terrains.map(t=>({...Q.terrain(t,st.height,true),...(t.playProjection?{honroDomainProjection:clone(t.playProjection)}:{})})):null;
- return{terrain,worldTerrain,landmarks,elements,materials:st.materials.map(m=>Q.material(st,m,terrain))};
+ return{terrain,worldTerrain,landmarks,elements,terrainAttachments:terrainAttachments(st,project,terrain),materials:st.materials.map(m=>Q.material(st,m,terrain))};
 }
 function createBattle(st,project,profile=profileFor(st),options={}){
  const sid=st.metadata?.stageId||1,content=G.HonroSplitCampaign?.content(profile,sid)||G.HONRO_CONTENT.stages[sid-1],b=C.createBattle(1,clone(profile),'practice',{party:['archer'],distance:900});
@@ -33,7 +46,7 @@ function createBattle(st,project,profile=profileFor(st),options={}){
   mode:'campaign',width:st.width,height:st.height,vertical:st.height>st.width*1.08,honroCamera:clone(st.camera||{}),
   difficulty:profile.settings.difficulty,heroes:clone(profile.heroes),startXP:Object.fromEntries(Object.entries(profile.heroes).map(([c,h])=>[c,h.xp])),
   session:'honro-map-'+st.id+'-'+Date.now(),sceneVersion:st.initialState?.sceneVersion??80,
-  terrain:map.terrain,...(map.worldTerrain?{honroWorldTerrain:map.worldTerrain,honroPlayBounds:clone(st.playBounds),honroTerrainBounds:clone(st.terrainBounds),honroTerrainDomainVersion:1}:{}),honroLandmarks:map.landmarks,honroElements:map.elements,honroSurfaceZones:map.materials,
+  terrain:map.terrain,...(map.terrainAttachments.length?{honroTerrainAttachments:map.terrainAttachments}:{}),...(map.worldTerrain?{honroWorldTerrain:map.worldTerrain,honroPlayBounds:clone(st.playBounds),honroTerrainBounds:clone(st.terrainBounds),honroTerrainDomainVersion:1}:{}),honroLandmarks:map.landmarks,honroElements:map.elements,honroSurfaceZones:map.materials,
   honroMapAnchors:clone(st.anchors||{}),honroMap:clone(st.design||{}),honroRoute:clone(st.routes||[]),honroDetailStats:clone(st.detailStats||{}),
   honroMarkers:clone(st.markers||[]),honroEvents:clone(st.events.filter(e=>e.when)),honroAuthoredEvents:clone(st.events.filter(e=>!e.when)),honroObjectives:clone(st.objectives),
   projectiles:[],units:[],events:[],fields:[],drafts:[],waters:map.materials.filter(z=>z.conductive&&z.kind==='water-pool').map(z=>({x:z.surface[0][0],y:z.surface[0][1],w:z.surface[1][0]-z.surface[0][0],depth:Math.max(...z.bottom.map(p=>p[1]))-z.surface[0][1],bottom:z.bottom.map(([x,y])=>({x,y})),frozen:0,kind:'water'})),zones:[],decor:[],queue:[],phase:'aim',round:1,side:0,
