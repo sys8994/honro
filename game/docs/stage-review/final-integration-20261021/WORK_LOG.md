@@ -17,3 +17,8 @@
 - 정상21턴 checkpoint를 final SP/공중/근접 migration으로 Continue, 두 번째 native Continue exact,브라우저 실제Tab+D로 grounded 출구→4인 철수→안전 후일담 현재문구→이미지1막을 확인했다. 기존 전체21턴 완주를 다시 수행한 기록이 아니다.
 - 타입/철수/저장/문구/조이스틱/충전/통합27장 보존·SP/air/map6순열×3·web-split을 새 실행해 통과했다. 기존 전체2/5장 완주와 기존 실패5종은 재실행하지 않았다.
 - 새로운10장 전체 정상 run은 새 AI/밸런스의 전체 방어 영향 확인을 위해9장 실제 승리 저장에서 단1회 진행한다. 원본 단계별 profile/trace를 최종 폴더에 직접 기록한다.
+
+- 新 정상10장 단1회22턴 승리,16턴 Continue exact,실탄62/피해141회,회복약3,소단552(보상 레벨업 후),적26생존,실제 휘겸4847.30/2904.34출구,외부쓰기/강제복구0. 과거21턴 결과와 분리한다. 다음11장/소단 합류·성장 보존도 native 생산 경로로 통과.
+- 별도 최종 종합: 최종 runtime283bc799에서 fb108b99 검수 소스/개선된 검사만 사용해 세 막 전체 흐름을 다시 검사했고,이번 새 정상22턴 checkpoint를 실제Tab+D로 철수시켰다. 현재형 후일담 첫/끝→실제 이미지→4컷/제목→2막 휴식터/소단 합류·중복outcome·pendingreload·완료reload 불변. pageerror0/HTTP실패0. 최종 PNG8개를 실제 열어 인물/현재문구/1막이미지/제목/휴식터/3막밝은기록 대비/4막경계/모바일출구를 직접 확인했다.
+- 기존2/5장 실제승리 profile도 이번 runtime에서 native outcome반복과 실제브라우저 download/fileinput2×2를 새 확인했다. 전체전투는 반복하지 않았다. 대표19개 joystick CDP/productionframe 판정도 새 PASS.
+- 이번 추가 검사 실패는 test fixture의 잘못된 active 및 짧은 presentation 시간뿐이며 교정 후 해당항목 PASS. 과거 기준선 실패는 기존보고서 그대로 미해결/미재실행으로 구분한다.

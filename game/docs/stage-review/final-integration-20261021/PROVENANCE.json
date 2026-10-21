@@ -50,5 +50,36 @@
   "priorEvidence": "../integration-20261021 and ../act-endings; prior successes not relabeled as new",
   "masterOrPagesWritten": false,
   "originalPNGs": "parent Library version1; no download requested or retried; supplied decoded WebP exact checksums",
-  "screenshots": "direct Chromium PNG, no editing/collage/recompression"
+  "screenshots": "direct Chromium PNG, no editing/collage/recompression",
+  "normal10": {
+    "count": 1,
+    "round": 22,
+    "continues": [
+      {
+        "round": 16,
+        "exact": true
+      }
+    ],
+    "shots": 62,
+    "damageEvents": 141,
+    "heals": 3,
+    "remainingEnemies": 26,
+    "bossHpAfterResultLevelUp": 552,
+    "scoutExit": [
+      4847.301159597026,
+      2904.3444873924823
+    ],
+    "externalWrites": 0,
+    "recoveries": 0,
+    "scope": "production native App and Engine, DOM/clock/audio/presentation doubles; final browser independently continues actual round22 checkpoint",
+    "runtimeFreeze": "runtime and canonical map bytes equal283bc799 throughout; git HEAD advanced only evidence/tests/docs during execution"
+  },
+  "finalBrowser": {
+    "flowSource": "terminal fixtures at10/20/30 for all-cut touch/click/keyboard/reload/import/reward boundary",
+    "actualCheckpoint": "normal10/round-22.json",
+    "allThreeImagesLoaded": true,
+    "pageerrors": 0,
+    "httpFailures": 0,
+    "distinctFinalReview": true
+  }
 }

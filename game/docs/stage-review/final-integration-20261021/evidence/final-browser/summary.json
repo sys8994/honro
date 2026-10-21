@@ -1,0 +1,70 @@
+{
+  "sourceCommit": "fb108b99f774faa69b990ac8199933d7a1757157",
+  "rows": [
+    {
+      "stage": 10,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "shared/assets/endings/act-1.webp",
+        "fit": "contain"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    },
+    {
+      "stage": 20,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "shared/assets/endings/act-2.webp",
+        "fit": "contain"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    },
+    {
+      "stage": 30,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "shared/assets/endings/act-3.webp",
+        "fit": "contain"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    }
+  ],
+  "initialLazyLoad": true,
+  "imageRequests": [
+    "http://127.0.0.1:8000/shared/assets/endings/act-1.webp",
+    "http://127.0.0.1:8000/shared/assets/endings/act-1.webp",
+    "http://127.0.0.1:8000/shared/assets/endings/act-2.webp",
+    "http://127.0.0.1:8000/shared/assets/endings/act-2.webp",
+    "http://127.0.0.1:8000/shared/assets/endings/act-3.webp",
+    "http://127.0.0.1:8000/shared/assets/endings/act-3.webp",
+    "http://127.0.0.1:8000/shared/assets/endings/act-1.webp",
+    "http://127.0.0.1:8000/shared/assets/endings/act-1.webp"
+  ],
+  "pageerrors": [],
+  "httpFailures": [],
+  "limits": [
+    "Chromium synthetic desktop/touch events, not physical devices/Safari.",
+    "Act20/30 terminal flow setup is a fixture, not a combat proof."
+  ],
+  "checkpointTraversal": {
+    "source": "game/docs/stage-review/final-integration-20261021/evidence/normal10/round-22.json",
+    "round": 22,
+    "passed": true
+  },
+  "metadataCorrection": "The generic checkpoint label replaces an originalNormal21 variable name; raw normal22 trace and PNGs unchanged."
+}

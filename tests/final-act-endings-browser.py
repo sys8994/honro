@@ -1,5 +1,5 @@
 """Final integration browser evidence. Terminal flow fixtures are explicitly separate
-from the original normal21 checkpoint traversal below. No image transforms."""
+from the genuine normal-run checkpoint traversal below. No image transforms."""
 from pathlib import Path
 import json, hashlib, subprocess, sys, os
 from playwright.sync_api import sync_playwright
@@ -78,7 +78,8 @@ with sync_playwright() as p:
  (OUT/'flow-summary.json').write_text(json.dumps({'rows':rows,'errors':errors,'httpFailures':failed,'initialLazyLoad':True},ensure_ascii=False,indent=2)) if rows else None
  # Continue original genuine normal21 save under combined SP/HP/beast migrations.
  page.emulate_media(reduced_motion='no-preference');page.set_viewport_size({'width':1280,'height':720})
- live=json.loads(Path('game/docs/stage-review/act-endings/evidence/normal-21-escape-save.json').read_text())['profile']
+ checkpoint=Path(os.environ.get('HONRO_ENDING_CHECKPOINT','game/docs/stage-review/act-endings/evidence/normal-21-escape-save.json'))
+ live=json.loads(checkpoint.read_text())['profile']
  page.evaluate('p=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(p))',live)
  page.reload();page.wait_for_function('!!globalThis.HonroApp',timeout=120000);page.evaluate('HonroApp.continue()')
  page.wait_for_function('HonroApp.screen==="battle"&&!!HonroApp.engine');page.wait_for_timeout(2000)
@@ -108,10 +109,27 @@ with sync_playwright() as p:
  assert '일행 곁에 앉았다.' in page.locator('#story-line').inner_text()
  page.evaluate('HonroStory.finish(HonroApp)');page.wait_for_selector('#act-ending');page.wait_for_function('document.querySelector(".act-ending-art").naturalWidth===1672');page.wait_for_timeout(400)
  page.screenshot(path=str(OUT/'final-real-checkpoint-act1.png'))
- (OUT/'checkpoint-traversal.json').write_text(json.dumps({'source':'committed original normal21 escape checkpoint, not fresh normal fullplay','start':start,'end':end,'input':'keyboard d via real browser frame until withdrawal; no coordinate/resource writes'},ensure_ascii=False))
+ (OUT/'checkpoint-traversal.json').write_text(json.dumps({'source':str(checkpoint),'scope':'actual normal-run checkpoint continuation; combat before checkpoint is recorded separately','start':start,'end':end,'input':'keyboard d via real browser frame until withdrawal; no coordinate/resource writes'},ensure_ascii=False))
+ # Separate final combined review: real checkpoint result must preserve rewards
+ # across duplicate outcome, pending reload, four cuts, title and the next rest.
+ before=page.evaluate(VIEW);page.evaluate('HonroApp.outcome();HonroApp.outcome()')
+ assert before==page.evaluate(VIEW) and page.evaluate('!HonroApp.dialogue&&HonroApp.profile.honroBattle===null')
+ page.wait_for_timeout(380);page.touchscreen.tap(30,30)
+ assert page.locator('#act-ending').get_attribute('data-cut')=='2'
+ page.reload();page.wait_for_function('!!globalThis.HonroApp',timeout=120000);page.evaluate('HonroApp.continue()');page.wait_for_selector('#act-ending')
+ assert before==page.evaluate(VIEW) and page.locator('#act-ending').get_attribute('data-cut')=='2'
+ for key,cut in [('Enter','3'),('Space','4'),('Enter','title')]:
+  page.wait_for_timeout(380);page.keyboard.press(key);assert page.locator('#act-ending').get_attribute('data-cut')==cut
+ page.wait_for_timeout(400);page.screenshot(path=str(OUT/'final-real-next-title.png'))
+ page.wait_for_timeout(380);page.keyboard.press('Space');page.wait_for_function('HonroApp.screen==="rest"')
+ page.evaluate('for(let i=0;HonroApp.dialogue&&i<30;i++)HonroStory.finish(HonroApp)')
+ assert page.evaluate('HonroApp.profile.recruited.includes("occultist")')
+ page.screenshot(path=str(OUT/'final-real-next-rest.png'))
+ settled=page.evaluate(VIEW);page.reload();page.wait_for_function('!!globalThis.HonroApp',timeout=120000);page.evaluate('HonroApp.continue()')
+ assert settled==page.evaluate(VIEW) and page.locator('#act-ending').count()==0
  assert not errors,errors
  assert not failed,failed
  browser.close()
-summary={'sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'rows':rows,'initialLazyLoad':True,'imageRequests':requests,'pageerrors':errors,'httpFailures':failed,'originalNormal21CheckpointTraversal':'passed','limits':['Chromium synthetic desktop/touch events, not physical devices/Safari.','Act20/30 terminal flow setup is a fixture, not a combat proof.']}
+summary={'sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'rows':rows,'initialLazyLoad':True,'imageRequests':requests,'pageerrors':errors,'httpFailures':failed,'checkpointTraversal':{'source':str(checkpoint),'round':start['round'],'passed':True},'limits':['Chromium synthetic desktop/touch events, not physical devices/Safari.','Act20/30 terminal flow setup is a fixture, not a combat proof.']}
 (OUT/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
 print('PASS genuine checkpoint keyboard extraction/safe outro' if '--checkpoint-only' in sys.argv else 'PASS final original-image loading/composition viewports, touch/click/Enter/Space, guard, cut2 reload/export/import, rewards/equipment/XP/SP/visits, Act4 boundary, genuine checkpoint keyboard extraction/safe outro')
