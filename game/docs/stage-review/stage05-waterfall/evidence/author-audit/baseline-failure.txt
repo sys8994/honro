@@ -1,0 +1,33 @@
+Actual isolated worktree509ed75a: node tests/stage5-lake.mjs exited1.
+Full log SHA256 5159c358574ff0208396d1c47ae8660db1dd1515c15b55aedb034d84b6811f50
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Canonical author is idempotent
++ actual - expected
+... Skipped lines
+
+  {
+    activeStageId: 'stage-1',
+    environmentVersion: 4,
+    library: [
+      {
+...
+          basin: {
++           support: 'ritual-overlook',
+-           support: 'valley-floor',
+            x: 1760,
++           y: 2573.529411764706
+-           y: 2697.3684210526317
+[full object diff omitted]
+    activeStageId: 'stage-1',
+    settings: { grid: 40, snap: true, autosave: true, adaptiveLOD: true },
+    meta: { source: 'RC21', notes: 'Lossless compiled geometry migration' },
+    environmentVersion: 4
+  },
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

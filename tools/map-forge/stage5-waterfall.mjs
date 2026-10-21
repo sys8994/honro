@@ -1,5 +1,4 @@
 import {authorStage5Lake} from './stage5-lake.mjs';
-import {applyStage5WaterfallPaint} from './stage5-waterfall-paint.mjs';
 /** Fresh Stage 5 only. No live-save mutation: old battles keep their snapshots. */
 const clone=v=>JSON.parse(JSON.stringify(v));
 const points=a=>a.map(([x,y])=>({x,y}));
@@ -57,6 +56,7 @@ export function authorStage5Waterfall(project,g,{lake=true}={}){
  result.stages.find(q=>q.id==='stage-5').materials.find(m=>m.id==='stage5-headwater').points=[[3000,1220],[10400,1220],[10400,1294],[4400,1240],[4080,1250],[3770,1280],[3480,1290],[3290,1320],[3000,1340]];
  const head=result.stages.find(q=>q.id==='stage-5').materials.find(m=>m.id==='stage5-headwater');Object.assign(head,{kind:'water-pool',surface:[[3000,1220],[10400,1220]],bottom:[[3000,1340],[3290,1320],[3480,1290],[3770,1280],[4080,1250],[4400,1240],[10400,1294]],honroCarvedBasin:true});
  if(lake)for(const key of ['points','surface','bottom'])head[key]=head[key].map(([x,y])=>[x+900,y]);
- applyStage5WaterfallPaint(result);
+ // The image-terrain paint experiment was reverted. Canonical vector replay
+ // must not reapply its collision, marker or enemy-placement changes.
  const scoped={...result,stages:result.stages.filter(s=>s.id==='stage-5'),activeStageId:'stage-5'};g.HonroMaps.finalize(scoped);return result;
 }

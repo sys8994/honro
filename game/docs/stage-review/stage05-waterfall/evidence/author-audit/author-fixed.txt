@@ -1,0 +1,12 @@
+{
+  scope: 'Production compiler, not browser UI',
+  canonicalStage5: '0b7e89b35ccc8ce1606a20b554f04b506108f6f0473736ceb6548e947547603f',
+  wholeProject: '8834fa761ef826c73a80097e1eae9ea01229f42c9a2ede052d75217f2d57df5d',
+  generatorExact: true,
+  runtimeExact: true,
+  originalEnemyStatsAndAuthoredCountExact: true,
+  otherStagesExact: true,
+  gameWorkshopClosedAndOpenEqual: true,
+  serializedImportEqual: true,
+  legacySetOpenNoOp: true
+}

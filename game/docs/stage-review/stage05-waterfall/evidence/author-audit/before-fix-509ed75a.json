@@ -1,0 +1,352 @@
+[
+  {
+    "p": "/stages/4/metadata/waterfallPaintTerrainRevision",
+    "after": 1
+  },
+  {
+    "p": "/stages/4/terrains/1/points",
+    "before": "length 4",
+    "after": "length 10"
+  },
+  {
+    "p": "/stages/4/terrains/1/baseMaterial",
+    "before": "rock",
+    "after": "wood"
+  },
+  {
+    "p": "/stages/4/terrains/1/properties/surfaceKind",
+    "before": "wet",
+    "after": "branch"
+  },
+  {
+    "p": "/stages/4/terrains/2/points",
+    "before": "length 4",
+    "after": "length 9"
+  },
+  {
+    "p": "/stages/4/terrains/2/oneWay",
+    "before": true,
+    "after": false
+  },
+  {
+    "p": "/stages/4/terrains/3/points",
+    "before": "length 45",
+    "after": "length 64"
+  },
+  {
+    "p": "/stages/4/elements/0/y",
+    "before": 2710,
+    "after": 2523.125
+  },
+  {
+    "p": "/stages/4/elements/3/y",
+    "before": 2582.608695652174,
+    "after": 2586.608695652174
+  },
+  {
+    "p": "/stages/4/units/3/x",
+    "before": 1760,
+    "after": 1770
+  },
+  {
+    "p": "/stages/4/units/3/y",
+    "before": 2697.3684210526317,
+    "after": 2581.176470588235
+  },
+  {
+    "p": "/stages/4/units/3/spawnX",
+    "before": 1760,
+    "after": 1770
+  },
+  {
+    "p": "/stages/4/units/3/spawnY",
+    "before": 2697.3684210526317,
+    "after": 2581.176470588235
+  },
+  {
+    "p": "/stages/4/units/5/y",
+    "before": 2535,
+    "after": 2521.875
+  },
+  {
+    "p": "/stages/4/units/5/spawnY",
+    "before": 2535,
+    "after": 2521.875
+  },
+  {
+    "p": "/stages/4/units/6/x",
+    "before": 1050,
+    "after": 550
+  },
+  {
+    "p": "/stages/4/units/6/y",
+    "before": 2520,
+    "after": 2539.5652173913045
+  },
+  {
+    "p": "/stages/4/units/6/spawnX",
+    "before": 1050,
+    "after": 550
+  },
+  {
+    "p": "/stages/4/units/6/spawnY",
+    "before": 2520,
+    "after": 2539.5652173913045
+  },
+  {
+    "p": "/stages/4/units/7/x",
+    "before": 1830,
+    "after": 1050
+  },
+  {
+    "p": "/stages/4/units/7/y",
+    "before": 2653.157894736842,
+    "after": 2520
+  },
+  {
+    "p": "/stages/4/units/7/spawnX",
+    "before": 1830,
+    "after": 1050
+  },
+  {
+    "p": "/stages/4/units/7/spawnY",
+    "before": 2653.157894736842,
+    "after": 2520
+  },
+  {
+    "p": "/stages/4/units/10/x",
+    "before": 1180,
+    "after": 1240
+  },
+  {
+    "p": "/stages/4/units/10/y",
+    "before": 2490,
+    "after": 2500
+  },
+  {
+    "p": "/stages/4/units/10/spawnX",
+    "before": 1180,
+    "after": 1240
+  },
+  {
+    "p": "/stages/4/units/10/spawnY",
+    "before": 2490,
+    "after": 2500
+  },
+  {
+    "p": "/stages/4/units/11/x",
+    "before": 2020,
+    "after": 650
+  },
+  {
+    "p": "/stages/4/units/11/y",
+    "before": 2590,
+    "after": 2578.695652173913
+  },
+  {
+    "p": "/stages/4/units/11/spawnX",
+    "before": 2020,
+    "after": 650
+  },
+  {
+    "p": "/stages/4/units/11/spawnY",
+    "before": 2590,
+    "after": 2578.695652173913
+  },
+  {
+    "p": "/stages/4/markers/1/y",
+    "before": 2710,
+    "after": 2523.125
+  },
+  {
+    "p": "/stages/4/markers/1/support",
+    "before": "valley-floor",
+    "after": "ritual-overlook"
+  },
+  {
+    "p": "/stages/4/markers/2/y",
+    "before": 2630,
+    "after": 2625.714285714286
+  },
+  {
+    "p": "/stages/4/markers/6/y",
+    "before": 2710,
+    "after": 2523.125
+  },
+  {
+    "p": "/stages/4/markers/6/support",
+    "before": "valley-floor",
+    "after": "ritual-overlook"
+  },
+  {
+    "p": "/stages/4/markers/7/x",
+    "before": 1760,
+    "after": 1880
+  },
+  {
+    "p": "/stages/4/markers/7/y",
+    "before": 2697.3684210526317,
+    "after": 2621.5789473684213
+  },
+  {
+    "p": "/stages/4/markers/8/y",
+    "before": 2535,
+    "after": 2521.25
+  },
+  {
+    "p": "/stages/4/initialState/honroStage5PaintRevision",
+    "after": 1
+  },
+  {
+    "p": "/stages/4/anchors/receiver/y",
+    "before": 2710,
+    "after": 2523.125
+  },
+  {
+    "p": "/stages/4/anchors/receiver/support",
+    "before": "valley-floor",
+    "after": "ritual-overlook"
+  },
+  {
+    "p": "/stages/4/anchors/basin/y",
+    "before": 2697.3684210526317,
+    "after": 2573.529411764706
+  },
+  {
+    "p": "/stages/4/anchors/basin/support",
+    "before": "valley-floor",
+    "after": "ritual-overlook"
+  },
+  {
+    "p": "/stages/4/anchors/roost/y",
+    "before": 2535,
+    "after": 2521.25
+  },
+  {
+    "p": "/stages/4/anchors/westOverlook",
+    "after": {
+      "x": 820,
+      "y": 2425.8,
+      "support": "west-overlook"
+    }
+  },
+  {
+    "p": "/stages/4/design/stage5Paint",
+    "after": {
+      "version": 1,
+      "cliff": {
+        "image": "cliff5",
+        "x": 3730,
+        "y": 1080,
+        "width": 2500,
+        "height": 3750
+      },
+      "cave": [
+        [
+          3970,
+          2140
+        ],
+        [
+          4025,
+          2123
+        ],
+        [
+          4080,
+          2116
+        ],
+        [
+          4120,
+          2103
+        ],
+        [
+          4180,
+          2095
+        ],
+        [
+          4240,
+          2102
+        ],
+        [
+          4310,
+          2081
+        ],
+        [
+          4375,
+          2096
+        ],
+        [
+          4428,
+          2127
+        ],
+        [
+          4460,
+          2163
+        ],
+        [
+          4490,
+          2188
+        ],
+        [
+          4505,
+          2230
+        ],
+        [
+          4493,
+          2268
+        ],
+        [
+          4500,
+          2300
+        ],
+        [
+          4478,
+          2336
+        ],
+        [
+          4440,
+          2374
+        ],
+        [
+          4400,
+          2395
+        ],
+        [
+          4350,
+          2407
+        ],
+        [
+          4300,
+          2416
+        ],
+        [
+          4250,
+          2408
+        ],
+        [
+          4190,
+          2410
+        ],
+        [
+          4130,
+          2414
+        ],
+        [
+          4055,
+          2408
+        ],
+        [
+          3960,
+          2405
+        ]
+      ],
+      "tree": {
+        "x": 660,
+        "height": 630,
+        "foot": 0.54
+      },
+      "westBranch": "west-overlook",
+      "receiverRock": "ritual-overlook",
+      "flowOffset": 900
+    }
+  }
+]
