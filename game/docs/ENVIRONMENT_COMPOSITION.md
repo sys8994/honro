@@ -89,3 +89,8 @@ terrainAttachments.anchor.kind는 기본 walk, 명시 boundary를 지원한다. 
 ### L1 후방 지지 geology의 선택형 공통 호출
 
 `design.geologyComposition.renderLayer='back'`이면 `geology-rear-support.js`가 원본 GeologyArt의 support/foot/socket 조합을 기존 back landmark보다 먼저 그린다. 기본/다른 조합은 자동으로 이 경로에 추가하지 않는다. 기존2장 전용 호출과 중복하지 않는다. 지지 모듈은 실제 solid 밖으로 이어질 수 있으며 물리/보행rim이 없는 뒤쪽 암반이다. 실제 terrain/rim·배우·조준선·표식은 앞에 남긴다. source.visualDepth는 기존 시각 톤만 선택하며 투영 깊이는 L1, source.brightness(.5–1)는 불투명 모듈의 정적 paint filter다. source.version/brightness/depth는 월드 타일 cache key에 포함되고 새로운 거대 bitmap cache는 없다. 시각 cache와 prepared view는 battle 밖에 유지한다.12장 후보는3개 지지와 열린 중앙 아치로 구성했으며 장 전체 미술 승인과 구분한다.
+
+
+### 공통 단일 빈 수레
+
+`tools/environment/common-cart-art.mjs`의 builtin:singleRefugeeCart는 기존 art-dark rc18Cart의 공통 empty native 경로다. 기본 refugeeCarts2대는 그대로다. 단일 옵션만 실제 바퀴/살 재질 stroke와 얕은 빈 짐칸을 보존하며 gameplay 역할을 붙이지 않는다. native bounds(-60,-59,168,79), foot(0,20), uniform scale 범위를 사용해 부착한다.12장의 적용에서는 원래 지지점을 보관하고 장식만+20world 이동하여 두 바퀴를 한 실제 경사에 맞췄다. 구전투 landmark를 강제 이관하지 않는다.

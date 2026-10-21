@@ -1,0 +1,74 @@
+{
+  "label": "detailed-cart-focus",
+  "url": "http://127.0.0.1:8875/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "030902fb2da76192612051ee50c81059a4b30098",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/build.mjs\n M shared/data/campaign.json\n M shared/runtime/art-dark.js\n M tools/environment/stage12-quarry-art.mjs\n D web/data/campaign.16105246ce9055cc.json\n D web/data/chapter-12.2c82eafa6d424e64.json\n D web/entries/game.2c798fa1216973d4.html\n D web/entries/game.f9434a7ab2f82cbf.js\n D web/entries/workshop.ebbcf22c8ff22056.js\n M web/manifest.json\n D web/runtime/campaign.966867a16f28fc64.js\n D web/runtime/ordered-common-12.3d35f25d0c036781.js\n?? tools/environment/common-cart-art.mjs\n?? web/data/campaign-library.3d7c128af2c8aed8.json\n?? web/data/campaign.95563e5a0545ab7e.json\n?? web/data/chapter-12-assets.a036e30e39639266.json\n?? web/data/chapter-12.81727336d59ef7fe.json\n?? web/entries/game.ad7d9ab7252d06b1.js\n?? web/entries/game.ffc0cba2ee1e0cb4.html\n?? web/entries/workshop.c53f3a2cf93e1258.js\n?? web/runtime/campaign.4a827c7730bf0d0e.js\n?? web/runtime/ordered-common-11.b113e7a84c35edb1.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-mobile",
+      "camera": {
+        "x": 6520,
+        "y": 4800,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "carrier-normal",
+      "camera": {
+        "x": 7850,
+        "y": 3550,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "carrier-mobile",
+      "camera": {
+        "x": 7800,
+        "y": 3500,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "west-normal",
+      "camera": {
+        "x": 4300,
+        "y": 4670,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "root-joint",
+      "camera": {
+        "x": 7300,
+        "y": 4700,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "cart-close",
+      "camera": {
+        "x": 7750,
+        "y": 3310,
+        "scale": 1.2
+      }
+    }
+  ],
+  "errors": []
+}

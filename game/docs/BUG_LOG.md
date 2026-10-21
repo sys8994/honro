@@ -1,3 +1,9 @@
+## 2026-10-21 — 12장 버려진 수레를 공통 상세 단일 빈 수레로 연결 (부모 최종 검수 대기)
+
+단순 Library cart가 큰 갈색 판과 단색 바퀴로 보이던 원인은 자산 선택이었다. 기존 art-dark의 rc18Cart를 재사용하는 공통 singleRefugeeCart native와 metadata/foot/bounds를 등록했다. 공통 empty 옵션에 얕은 짐칸 안쪽/옆면·차대·연결을 보완하고 authored 바퀴 rim/spoke 재질 선을 보존했다. 기본 refugeeCarts2대의 원래 적재 그림/호출은 유지하며 raw/L1 렌더6조건 픽셀이 수정 전과 같다.12장 전용 수레 도형이나 가짜 적 unit은 없다.
+
+12장 장식만 새 asset으로 참조하고 두 바퀴의 경사 접지를 위해 원래 부착점7730에서+20world 이동했다. 원래 지지점/회전을 보존하며 잔석8030과 기능 좌표/지형/서사/동선/이벤트/보상/성장/revision은 동일하다. wheel gap0/4.55e-13, 원주 비매립·render purity·author2회/build·기존 실제 상하 terminal Continue(landmarks/elements 포함) 동일 검사를 통과했다. 별도 최종 일반/모바일/근접/전체/길표/서쪽/상하7컷을 직접 열었고 뒤3화면은 수정 전 PNG와 같다. 구체 판 수레 결함 교정으로 판정하되 부모 최종 확인 전 master/Pages/13장은 보류한다. 증거는 stage-review/stage12-quarry/DETAILED_CART.md와 원본28PNG다.
+
 ## 2026-10-21 — 12장 후방 지지 암반 연결 후보 (부모 미술 검수 대기)
 
 solid 내부 전면 부착만으로는 상부/서쪽 mass 아래의 하늘이 이어져 공중 플랫폼처럼 보였다. 기존 geology foundation2/vertical1을 실제 lower-ground foot/socket에 연결하고 L1 back에서 기존 공통 GeologyArt로 그린다. source renderLayer='back' 조합만 선택하는 공통 hook을 추가했으며 새 collider·walk rim·장 번호 분기·거대 반투명 path는 없다. L1 투영은 유지하고 L2 시각 톤/brightness.74, 앞 지형/배우/조준선의 기존 순서로 깊이를 구별한다. 중앙 아치 여백은 남긴다. 서쪽 전면도 기존 foundation1개로 같은 지질에 연결했다.
