@@ -8,7 +8,7 @@ let replacements=0;
 const cores=[];
 for(const baseline of [true,false]){
  const g=vm.createContext({console,performance,structuredClone});
- for(let source of sources){if(baseline)source=source.replace(/exports\.PLAYER_MAGE_DAMAGE_MULTIPLIER = 1\.20;/g,m=>{replacements++;return m.replace('1.20','1');});vm.runInContext(source,g);}
+ for(let source of sources){if(baseline)source=source.replace(/exports\.PLAYER_MAGE_OFFENSE_BOOST = 1\.18;/g,m=>{replacements++;return m.replace('1.18','1');});vm.runInContext(source,g);}
  cores.push(g.HONRO_CORE);
 }
 assert.equal(replacements,1,'baseline changes only the newly introduced scalar to its previous identity');
@@ -52,26 +52,26 @@ const ids=Object.values(cores[1].SKILLS).filter(s=>s.cls==='mage'&&s.redesigned&
 assert.equal(ids.length,16);
 for(const rank of [1,8])for(const id of ids){
  const fs=cores.map(C=>arena(C,id,rank));
- near(fs[1].p.damage,fs[0].p.damage*1.2,`${id} SP${rank} launch`);
+ near(fs[1].p.damage,fs[0].p.damage*1.18,`${id} SP${rank} launch`);
  const before=fs.map(f=>({speed:f.e.effective(f.C.SKILLS[id],f.u).speed,radius:f.p.blast,cost:f.e.manaCost(f.C.SKILLS[id],f.u),attack:f.u.attack,effectBoost:f.p.effectBoost}));assert.deepEqual(before[0],before[1]);
  const results=fs.map(strike);assert.equal(results[1].hits.length,results[0].hits.length,`${id} hit count`);
  if(!['M10','M09'].includes(id))assert(results[0].hits.length>0,`${id} must exercise real HP damage`);
- for(let i=0;i<results[0].hits.length;i++){const a=results[0].hits[i],b=results[1].hits[i];near(b.raw,a.raw*1.2,`${id} SP${rank} hit ${i}`);assert(Math.abs(b.hp-a.hp*1.2)<=1.2,`${id} rounded HP damage`);}
+ for(let i=0;i<results[0].hits.length;i++){const a=results[0].hits[i],b=results[1].hits[i];near(b.raw,a.raw*1.18,`${id} SP${rank} hit ${i}`);assert(Math.abs(b.hp-a.hp*1.18)<=1.18,`${id} rounded HP damage`);}
  assert.deepEqual(results[0].slowed,results[1].slowed,`${id} CC unchanged`);assert.equal(results[0].moveLeft,results[1].moveLeft);
- if(results[0].stake)for(let i=0;i<results[0].stake.length;i++){near(results[1].stake[i].damage,results[0].stake[i].damage*1.2,id+' stored damage');assert.equal(results[1].stake[i].expires,results[0].stake[i].expires);}
+ if(results[0].stake)for(let i=0;i<results[0].stake.length;i++){near(results[1].stake[i].damage,results[0].stake[i].damage*1.18,id+' stored damage');assert.equal(results[1].stake[i].expires,results[0].stake[i].expires);}
  assert.equal(results[0].hp,results[1].hp,`${id} healing unchanged`);assert.equal(results[0].focus,results[1].focus);
  rows.push({id,rank,hits:results[1].hits.length,launchBefore:fs[0].p.damage,launchAfter:fs[1].p.damage});
 }
-// Each live reflection generation inherits one 1.20, rather than 1.20^generation.
+// Each live reflection generation inherits one 1.18, rather than 1.18^generation.
 for(let rank=1;rank<=8;rank++){
  const fs=cores.map(C=>arena(C,'M11',rank));
  for(let generation=0;generation<fs[1].C.waveReflectionPlan(rank).length;generation++){
   for(const f of fs)for(const p of [...f.b.projectiles])f.e.impact(p,terrain(f));
   assert.equal(fs[0].b.projectiles.length,fs[1].b.projectiles.length);
-  for(let i=0;i<fs[0].b.projectiles.length;i++)near(fs[1].b.projectiles[i].damage,fs[0].b.projectiles[i].damage*1.2,'reflection inheritance');
+  for(let i=0;i<fs[0].b.projectiles.length;i++)near(fs[1].b.projectiles[i].damage,fs[0].b.projectiles[i].damage*1.18,'reflection inheritance');
  }
  for(const f of fs)for(const p of [...f.b.projectiles])f.e.impact(p,contact(f,p));
- for(let i=0;i<fs[0].hits.length;i++)near(fs[1].hits[i].raw,fs[0].hits[i].raw*1.2,'terminal reflection HP hit');
+ for(let i=0;i<fs[0].hits.length;i++)near(fs[1].hits[i].raw,fs[0].hits[i].raw*1.18,'terminal reflection HP hit');
 }
 // Scope: all other classes, enemy/neutral mages, summoned actors and legacy enemy skill copies.
 for(const [cls,side,summoned] of [['archer',0,false],['knight',0,false],['occultist',0,false],['mage',1,false],['mage',2,false],['mage',0,true]]){
@@ -79,6 +79,10 @@ for(const [cls,side,summoned] of [['archer',0,false],['knight',0,false],['occult
 }
 for(const id of Object.values(cores[1].SKILLS).filter(s=>s.cls==='mage'&&(s.enemyOnly||!s.redesigned)).map(s=>s.id)){
  const values=cores.map(C=>{const f=arena(C);return f.e.effective(C.SKILLS[id],f.u);});assert.deepEqual(plain(values[0]),plain(values[1]),id+' legacy/NPC skill unchanged');
+}
+// Side-zero campaign NPC mages retain their existing budget, without the new player boost.
+for(const flag of ['honroAlly','honroCivilian','enthrall']){
+ const values=cores.map(C=>{const f=arena(C);f.u[flag]=true;return f.e.effective(C.SKILLS.M01,f.u);});assert.deepEqual(plain(values[0]),plain(values[1]),flag+' existing NPC budget');
 }
 // Resuming old projectiles and installed stakes never rewrites their persisted damage.
 for(const id of ['M11','M07']){

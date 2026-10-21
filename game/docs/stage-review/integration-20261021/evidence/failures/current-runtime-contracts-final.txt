@@ -1,0 +1,25 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Approved current file shared/build.mjs
++ actual - expected
+
++ '8c17a3a3a8ddbc3602311d2d668effd4c0e15207bc465d73c9a4f17aa483a773'
+- '3942fa9bdacce8b434e3847ccfd68a88c4f6bac8dfa5c193ea974aff6a1e0a68'
+
+    at assertExactFollowupDelta (file:///workspace/honro/tests/ui-followup-source-delta.mjs:6:9)
+    at beforeAct3Source (file:///workspace/honro/tests/act3-environment-final-history.mjs:58:213)
+    at file:///workspace/honro/tests/act3-environment-final-history.mjs:59:108
+    at Array.flatMap (<anonymous>)
+    at beforeAct3Sources (file:///workspace/honro/tests/act3-environment-final-history.mjs:59:82)
+    at file:///workspace/honro/tests/current-runtime-contracts.mjs:27:77 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '8c17a3a3a8ddbc3602311d2d668effd4c0e15207bc465d73c9a4f17aa483a773',
+  expected: '3942fa9bdacce8b434e3847ccfd68a88c4f6bac8dfa5c193ea974aff6a1e0a68',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

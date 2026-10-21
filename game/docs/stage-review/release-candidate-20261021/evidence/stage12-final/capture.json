@@ -1,0 +1,141 @@
+{
+  "label": "final-comprehensive",
+  "url": "http://127.0.0.1:8000/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "71643fdeccd480337b6987b76d504947556ca167",
+  "workingTree": "?? game/docs/stage-review/release-candidate-20261021/evidence/endings-final/\n?? game/docs/stage-review/release-candidate-20261021/evidence/stage12-final/\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      },
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 12,
+      "view": "west-overview",
+      "camera": {
+        "x": 3800,
+        "y": 4100,
+        "scale": 0.21176470588235294
+      },
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 12,
+      "view": "rear-root",
+      "camera": {
+        "x": 7300,
+        "y": 4700,
+        "scale": 0.55
+      },
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 12,
+      "view": "old-road-normal",
+      "camera": {
+        "x": 9250,
+        "y": 3000,
+        "scale": 0.65
+      },
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 12,
+      "view": "old-road-east",
+      "camera": {
+        "x": 10800,
+        "y": 2850,
+        "scale": 0.55
+      },
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 12,
+      "view": "carrier-normal",
+      "camera": {
+        "x": 7850,
+        "y": 3550,
+        "scale": 0.65
+      },
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 12,
+      "view": "cart-close",
+      "camera": {
+        "x": 7750,
+        "y": 3310,
+        "scale": 1.2
+      },
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 12,
+      "view": "carrier-mobile",
+      "camera": {
+        "x": 7800,
+        "y": 3500,
+        "scale": 0.55
+      },
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "stage": 12,
+      "view": "sign-mobile",
+      "camera": {
+        "x": 6520,
+        "y": 4800,
+        "scale": 0.55
+      },
+      "viewport": [
+        320,
+        568
+      ]
+    },
+    {
+      "stage": 12,
+      "view": "carrier-landscape",
+      "camera": {
+        "x": 7800,
+        "y": 3300,
+        "scale": 0.55
+      },
+      "viewport": [
+        844,
+        390
+      ]
+    }
+  ],
+  "errors": []
+}

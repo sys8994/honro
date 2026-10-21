@@ -1,0 +1,15 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: {"label":"ritual-shot-return","cls":"archer","passed":false,"failure":{"message":"blocked at {\"x\":1817.194893680221,\"y\":2661.245330307229,\"support\":\"valley-floor\",\"round\":3,\"moveLeft\":1166.2916666666667} goal {\"x\":2120}","x":1817.194893680221,"y":2661.245330307229,"support":"valley-floor","round":3,"moveLeft":1166.2916666666667,"last":{"goal":{"x":1590},"x":1585.9949374870525,"y":2650,"support":"stage5-ritual-stone","round":2,"moveLeft":1076.0833333333323}},"start":{"x":330,"y":2520,"hp":485,"round":1},"end":{"x":1817.194893680221,"y":2661.245330307229,"support":"valley-floor","round":3,"moveLeft":1166.2916666666667},"counts":{"ticks":1290,"jumps":3,"waits":2,"walkCost":1674.8999707784121,"jumpCost":225,"damage":0,"invalid":0},"movementCost":1899.8999707784121,"turnEquivalent":1.5272507803684985,"events":[{"op":"wait","x":1481.274579303798,"y":2778.3430469050627,"support":"stage5-ritual-stone","round":1,"moveLeft":8.291461400134517},{"op":"jump","x":1818.22942308932,"y":2660.5919433120084,"support":"valley-floor","round":2,"moveLeft":737.9335678214546},{"op":"jump","x":1817.3100807910982,"y":2661.1725805529904,"support":"valley-floor","round":2,"moveLeft":660.2252344881214},{"op":"wait","x":1817.2276401422928,"y":2661.2246483311833,"support":"valley-floor","round":2,"moveLeft":657.5169011547881},{"op":"jump","x":1817.2276401422928,"y":2661.2246483311833,"support":"valley-floor","round":3,"moveLeft":1169}],"poses":[{"goal":{"x":1590},"x":1585.9949374870525,"y":2650,"support":"stage5-ritual-stone","round":2,"moveLeft":1076.0833333333323}]}
+    at file:///tmp/honro-integration-stage5-baseline/tests/stage5-refinement.mjs:1:610 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

@@ -1,9 +1,12 @@
+import {gateSource} from './gateTravel';
+import {migrateBeastSkills} from './beastMelee';
 import {validTerrainContactPose} from './locomotion';
 import {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
 export {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
 import {passiveTuning} from './passiveBalance';
 import {healed} from './contribution';
-import {triggerOffensiveStake} from './totemBehavior';
+import {triggerOffensiveStake,stakeRanges} from './totemBehavior';
+import {waveArcDimensions,MAGE_AREA_SCALE} from './mageGeometry';
 import {jucheonBoost} from './combatPassives';
 import type {Battle,Unit,Projectile,Skill,Vec,Profile} from './types';
 import type {Engine,Collision,Prediction} from './engine';
@@ -72,6 +75,7 @@ export function recordRedesignDamage(e:Engine,p:Projectile|undefined,src:Unit,ta
  e.emit('fx',{name:'inkLine',x:p.x,y:p.y,x2:src.x,y2:src.y-src.h*.5,color:'#bfc9c6',size:1});
 }
 export function migrateEnemySkills(u:Unit){
+ migrateBeastSkills(u);
  if(u.side===0&&!u.summoned)return;
  u.loadout=u.loadout.map(id=>SKILLS['L'+id]?.enemyOnly?'L'+id:id);
  for(const id of Object.keys(u.ranks))if(SKILLS['L'+id]?.enemyOnly){u.ranks['L'+id]=u.ranks[id];delete u.ranks[id];}
@@ -155,7 +159,8 @@ export function baguaVertices(g:Pick<SkillGeometry,'x'|'y'|'radius'|'angle'>):Ve
 }
 export function skillGeometry(s:Skill,r:number,x:number,y:number,angle:number,power=.5,contacts?:Vec[],origin?:Vec,boost=1):SkillGeometry{
  const kind=s.mode==='waveArc'?'arc':s.mode==='waveRing'?'ring':s.mode==='waveTriangle'?'triangle':'bagua';
- const g:SkillGeometry={kind,x,y,radius:kind==='arc'?150:kind==='ring'?180+720*power:220+(r-1)*10,thickness:(kind==='arc'?30+2*(r-1):kind==='ring'?34+16*(r-1)/7:20+2*(r-1))*boost,angle,span:rad(52+6*(r-1))};
+ const arc=waveArcDimensions(r);
+ const g:SkillGeometry={kind,x,y,radius:kind==='arc'?arc.radius:kind==='ring'?180+720*power:220+(r-1)*10,thickness:(kind==='arc'?arc.thickness:(kind==='ring'?34+16*(r-1)/7:20+2*(r-1))*MAGE_AREA_SCALE)*boost,angle,span:rad(arc.span)};
  // The impact lies ON the crescent. Its tangent is perpendicular to incoming velocity.
  if(kind==='arc'){g.impact={x,y};g.x-=Math.cos(angle)*g.radius;g.y-=Math.sin(angle)*g.radius;}
  if(kind==='triangle')g.points=[origin!,...(contacts||[])];
@@ -357,18 +362,11 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
 }
 
 export function gateCandidate(e:Engine,u=e.active){
- if(!u||u.dead||u.side!==0||u.retreat)return undefined;const gates=(e.b.stakes||[]).filter(s=>s.skill==='M09'&&s.side===u.side&&(s.expires===undefined||s.expires>e.b.round));if(gates.length!==2)return undefined;
- return gates.find(s=>Math.hypot(u.x-s.x,u.y-s.y)<=55&&Math.abs(u.y-s.y)<50);
+ return gateSource(e,u);
 }
 export function useGate(e:Engine,u=e.active){
- const from=gateCandidate(e,u);if(!from||!u||!e.canAct())return false;
- const token=`${e.b.round}:${e.b.teamEnds[0]}`;if(u.gateTurn===token)return false;
- const to=e.b.stakes!.find(s=>s.skill==='M09'&&s.side===u.side&&s.id!==from.id)!;
- // Feet stand on the exact-x support, as in walking and scripted placement.
- // A body's lower corners overlap a slope; that contact is not an arrival wall.
- const spot=[0,-24,24,-48,48,-72,72,-96,96].map(offset=>{const x=clamp(to.x+offset,25,e.b.width-25),floor=e.surface(x,to.y-80,to.y+100);return floor?{x,y:floor.y,support:floor.t}:null;}).find(v=>v&&validTerrainContactPose(e.b.terrain,{...u,x:v.x,y:v.y})&&!e.b.units.some(t=>!t.dead&&!t.eaterCapturedBy&&t.id!==u.id&&Math.abs(t.x-v.x)<t.r+u.r&&Math.abs(t.y-v.y)<u.h));
- if(spot&&(e.b as any).honroStage===5&&(e.b as any).honroStage5LakeRevision===1&&!(e.b as any).honroCustom&&(spot.x>2380||spot.y>3000)){e.message('깊은 소와 젖은 절벽에는 축지진목의 발디딤을 이을 수 없습니다.');return false;}
- if(!spot){e.message('도착 진목 주변에 설 자리가 없습니다.');return false;}
+ const plan=e.gateResolution(u);if(!plan.ok||!plan.spot||!plan.to||!u){e.message(plan.reason);return false;}
+ const {to,spot}=plan,token=`${e.b.round}:${e.b.teamEnds[0]}`;
  const {x,y}=spot,fromPoint={x:u.x,y:u.y};u.x=x;u.y=y;u.vx=u.vy=0;u.airborne=false;u.jumping=false;delete u.moveTarget;u.gateTurn=token;
  const r=to.rank,caster=e.unit(to.owner),boost=caster?(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(to.effectBoost||0)):1;
  if(r>=2)u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*(r===2?.08:.10)*boost);
@@ -398,7 +396,7 @@ export function tickRedesign(e:Engine,dt:number){
   z.expires??=b.round+stakeDuration(z.skill,z.rank);
   if(z.expires!==undefined&&b.round>=z.expires){b.stakes=b.stakes!.filter(s=>s.id!==z.id);continue;}
   if(z.skill==='M09')continue;
-  const caster=e.unit(z.owner);if(!caster)continue;const boost=(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(z.effectBoost||0)),trigger=45*Math.min(1.25,boost);
+  const caster=e.unit(z.owner);if(!caster)continue;const boost=(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(z.effectBoost||0)),trigger=stakeRanges(e,z).trigger;
   const nearby=b.units.filter(u=>!u.dead&&!u.eaterCapturedBy&&(z.skill==='M10'?u.side===z.side||((u as any).honroAlly&&z.side===0):enemy(z,u))&&Math.min(Math.hypot(u.x-z.x,u.y-z.y),Math.hypot(u.x-z.x,u.y-u.h*.5-z.y))<trigger+u.r);
   const p={owner:z.owner,side:z.side,skill:z.skill,skillRank:z.rank,shot:z.shot,x:z.x,y:z.y,damage:z.damage,hit:[],id:z.id,vx:0,vy:0,prevVy:0,age:0,radius:3,blast:95,wind:0,mode:'stake',color:'#b9c4b1',bounces:0,pierces:0,apex:true,phase:0,body:false,returnX:z.x,returnY:z.y,trail:[],child:false,rolled:0} as Projectile;
   if(z.skill==='M07'||z.skill==='M08'){triggerOffensiveStake(e,z,nearby,p,boost);continue;}
@@ -422,7 +420,7 @@ export function tickRedesign(e:Engine,dt:number){
  if(e.active?.retreat&&e.active.moveLeft<=.5&&!e.settleBusy())e.finishAction(true);
 }
 
-export interface SkillPrediction extends Prediction {time:number;geometry?:SkillGeometry;contacts:Vec[];secondaryRadius?:number;secondaryPoint?:Vec;paths?:Vec[][];}
+export interface SkillPrediction extends Prediction {time:number;geometry?:SkillGeometry;contacts:Vec[];secondaryRadius?:number;secondaryPoint?:Vec;triggerRadius?:number;paths?:Vec[][];}
 /** Replay the actual arrow step on an isolated battle: apex, curved return, LOS,
  * piercing, chains and split children cannot diverge into a second physics loop. */
 function arrowPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:number,representative=false,ignoreUnits=false):SkillPrediction{
@@ -482,6 +480,7 @@ export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:nu
  }
  points.push({x:p.x,y:p.y});
  const geometry=arc||bagua||s.mode==='waveTriangle'?skillGeometry(s,r,p.x,p.y,arc?Math.atan2(p.vy,p.vx):-rad(angle),power,contacts,origin,geometryBoost(u,s)):undefined;
- const secondaryPoint=s.id==='M05'?skyStrikePoint(e,{x:p.x,y:p.y},u.id):undefined;
- return {x:p.x,y:p.y,unit:contact?.unit?.id,terrain:contact?.terrain?.id,terrainAtEnd,points,time,closest,contacts,apex,geometry,secondaryPoint,secondaryRadius:s.branch==='gourd'?(s.id==='M04'?260+10*(r-1):s.id==='M13'?240:s.id==='M05'?e.effective(s,u).radius:180):s.branch==='stake'?45*geometryBoost(u,s):undefined};
+ const secondaryPoint=s.id==='M05'?skyStrikePoint(e,{x:p.x,y:p.y},u.id):s.id==='M07'?{x:p.x,y:p.y-20}:undefined;
+ const ranges=s.branch==='stake'?stakeRanges(e,{id:0,skill:s.id,owner:u.id,side:u.side,x:p.x,y:p.y,rank:r,damage:0,shot:0,effectBoost:jucheonBoost(u,s)}):undefined;
+ return {x:p.x,y:p.y,unit:contact?.unit?.id,terrain:contact?.terrain?.id,terrainAtEnd,points,time,closest,contacts,apex,geometry,secondaryPoint,triggerRadius:ranges&&s.id!=='M09'?ranges.trigger:undefined,secondaryRadius:s.branch==='gourd'?(s.id==='M04'?260+10*(r-1):s.id==='M13'?240:e.effective(s,u).radius):ranges?.effect};
 }

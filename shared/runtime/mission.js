@@ -30,7 +30,7 @@ function finale(app){const e=app.engine,b=e.b,hs=b.honroState,sodan=e.unit('boss
  if(!app.actorBoundary)return;
  if(b.teamEnds[1]>hs.finaleLastEnemyEnd){const delta=b.teamEnds[1]-hs.finaleLastEnemyEnd,previous=hs.coopHold||0;hs.finaleLastEnemyEnd=b.teamEnds[1];hs.finaleDefenseTurns+=delta;hs.coopHold=Math.min(FINALE_TURNS,hs.finaleDefenseTurns);if(previous<3&&hs.coopHold>=3)app.sayLines(G.HonroNarrativeRevision?.active(b)?G.HonroStoryContent.finaleMidpoint():G.HONRO_NARRATIVE_V0?.finaleMidpoint||G.HonroStoryContent.finaleMidpoint());}
  // An unusually early conversion must not leave empty rounds until the campaign pacing floor.
- if(!G.HonroObjectives.state(b,app.stage).complete&&hs.finaleWave<hs.finaleDefenseTurns&&rush(app,hs.finaleDefenseTurns))hs.finaleWave=hs.finaleDefenseTurns;
+ if(hs.finaleDefenseTurns<FINALE_TURNS&&hs.finaleWave<hs.finaleDefenseTurns&&rush(app,hs.finaleDefenseTurns))hs.finaleWave=hs.finaleDefenseTurns;
 }
 function reinforceHold(app,boundary){
  const e=app.engine,b=e.b,hs=b.honroState,st=app.stage;
@@ -95,7 +95,7 @@ function tick(app,dt){
  G.HonroEncounters.update(app,dt,{progress,height,broken:G.HonroQuestTargets.records(b).filter(t=>t.honroSeal&&t.broken).length,collected:b.honroMarkers.filter(m=>m.type==='relic'&&m.collected).length});
  reinforceHold(app,boundary);
  if(st.objective==='overwatch'&&obj&&!obj.dead&&!e.alive(1).length&&!G.HonroEncounters.pending(b)&&!b.projectiles.length){obj.x=Math.min(b.honroEscortGoalX,obj.x+dt*180);obj.y=G.HonroWorld.top(b,obj.x,obj.y);}
- if(st.id===10)finale(app);
+ if(st.id===10){finale(app);G.HonroSodanWithdrawal.tick(app);}
  if(st.objective==='arrival'){const exit=b.honroMarkers.find(m=>m.type==='exit')||b.honroMapAnchors?.exit||{x:b.width-180},arrived=heroes.filter(u=>u.x>=exit.x-120);if(arrived.length)G.HonroObjectiveContributions?.arrive(b,'arrival',[arrived.find(u=>u.id===b.active)||arrived[0]],p=>p.x>=exit.x-120);}
  G.HonroObjectiveContributions?.observe(b,heroes);
  app.checkMission(e);

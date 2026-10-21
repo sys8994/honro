@@ -1,5 +1,6 @@
 /** Bounded tactical movement. Every candidate is tested with the same locomotion/contact code
  * as a real unit. Planning cannot damage, teleport, change RNG, or mutate the live roster. */
+import {beastKind,beastReach,beastContact} from './beastMelee';
 import type {Engine} from './engine';
 import type {Unit,Skill,Vec,Terrain,AIMovePlan} from './types';
 import {SKILLS} from './data';
@@ -26,7 +27,11 @@ export function flightBounds(u:Unit,p:Vec=u){
  const winged=['bat','crow'].includes((u as any).honroType),rx=winged?Math.max(u.r+8,u.h*1.15):u.r+8;
  return {left:p.x-rx,right:p.x+rx,head:p.y-(winged?u.h*1.35:u.h+8),feet:p.y+(winged?u.h*.25:8)};
 }
-function flightWorldClear(e:Engine,u:Unit,p:Vec){const r=flightBounds(u,p);return r.left>=0&&r.right<=e.b.width&&r.head>=12&&r.feet<=e.b.height;}
+function flightWorldClear(e:Engine,u:Unit,p:Vec){const r=flightBounds(u,p),region=(e.b as any).honroMap?.flightRegion;
+ // Optional authored world airspace is independent of projectile/ground
+ // collision. Apply the full animated envelope to patrol, approach and recoil.
+ if(region&&(r.left<region.left||r.right>region.right||r.head<region.top||r.feet>region.bottom))return false;
+ return r.left>=0&&r.right<=e.b.width&&r.head>=12&&r.feet<=e.b.height;}
 function actorBounds(v:Unit){return flyingEnemy(v)?flightBounds(v):{left:v.x-v.r-5,right:v.x+v.r+5,head:v.y-v.h-4,feet:v.y+4};}
 function boxOverlap(a:ReturnType<typeof flightBounds>,z:ReturnType<typeof flightBounds>){return Math.max(0,Math.min(a.right,z.right)-Math.max(a.left,z.left))*Math.max(0,Math.min(a.feet,z.feet)-Math.max(a.head,z.head));}
 /** Friendly ground AI must not walk a large body into a reserved wing span.
@@ -217,6 +222,7 @@ export function targetFor(e:Engine,u:Unit):Unit|undefined{
 }
 function preferredRange(u:Unit):[number,number]{
  const kind=(u as any).honroType;
+ if(beastKind(u))return [u.r+22,u.r+55];
  if(kind==='beast'||kind==='mourner')return [80,250];
  if(kind==='warden')return [150,390];
  if(kind==='ghost')return [420,760];
@@ -295,6 +301,7 @@ function candidates(e:Engine,u:Unit,target:Unit):Vec[]{
   if(e.b.terrain.some(t=>!t.broken&&!t.oneWay&&t.id!==foot.t.id&&x>t.x-4&&x<t.x+t.w+4&&y-8>topAt(t,clamp(x,t.x,t.x+t.w))&&y-u.h<t.y+t.h))return;
   found.push({x,y});
  };
+ if(beastKind(u))for(const sign of [-1,1]){const x=target.x+sign*(u.r+target.r+beastReach(u)*.5),g=e.surface(x,target.y-45,target.y+45);if(g)add(x,g.y);}
  const offsets=[-500,-340,-210,-90,90,210,340,500];
  for(const dx of offsets){const x=u.x+Math.sign(dx)*Math.min(Math.abs(dx),u.moveLeft-5),g=e.surface(x,u.y-190,u.y+190);if(g)add(x,g.y);}
  for(const t of e.b.terrain){
@@ -329,6 +336,7 @@ function* waterfallShotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<
  return best;
 }
 function* shotOpportunity(e:Engine,u:Unit,target:Unit,p:Vec):Generator<void,number,unknown>{
+ if(beastKind(u)){const ghost={...u,...p,facing:target.x>=p.x?1:-1};return beastContact(e,ghost,target)?100:-Math.min(100,Math.hypot(p.x-target.x,p.y-target.y)*.2);}
  if(waterfallTactics(e))return yield* waterfallShotOpportunity(e,u,target,p);
  if(Math.hypot(p.x-target.x,p.y-target.y)>1900)return -90;
  const ghost:Unit={...u,x:p.x,y:p.y,vx:0,vy:0};

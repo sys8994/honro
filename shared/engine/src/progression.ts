@@ -1,3 +1,5 @@
+import {GATE_SEARCH_RADIUS} from './gateTravel';
+import {waveArcDimensions,shatterStakeDimensions,MAGE_AREA_SCALE} from './mageGeometry';
 import {waveReflectionPlan,WAVE_REFLECTION_DECAY} from './waveReflection';
 import {HERO_ARMOR_CAP,passiveTuning,durabilityPower} from './passiveBalance';
 import {SALHEUN_TURNS,SALHEUN_RATIO,JUCHEON_DISCOUNT,JUCHEON_EFFECT,JUCHEON_THRESHOLD,COMBO_HITS,ORBIT_BLADES} from './warriorData';
@@ -6,7 +8,7 @@ import { STAGE_PLACES } from './atlasLayout';
 import type { ClassId, HeroProgress, Roster, Profile, Unit } from './types';
 import { SKILLS, CLASSES } from './data';
 import { clamp } from './math';
-import { MANA_COST_MULTIPLIER } from './balance';
+import { MANA_COST_MULTIPLIER,PLAYER_MAGE_DAMAGE_MULTIPLIER,PLAYER_MAGE_OFFENSE_BOOST } from './balance';
 import { skillBalanceFactor } from './balanceModel';
 import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_POWER,ECHO_LIMIT,SPIRIT_TURNS,MANIFEST_TURNS,WEAK_TURNS,BETRAY_TURNS} from './occultData';
 export const CLASS_IDS: ClassId[] = ['mage', 'archer', 'knight', 'occultist'];
@@ -54,7 +56,7 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
  const s=SKILLS[id];if(!s)return [];const r=clamp(rank,0,8),p=rankPower(r),pct=(v:number)=>`${+(v*100).toFixed(1)}%`,num=(v:number)=>`${+v.toFixed(1)}`;
  const row=(label:string,value:string):EffectRow=>({label,value});
  if(!s.passive){
-  const rr=s.basic?1:Math.max(1,r),dmg=Math.round(s.damage*skillBalanceFactor(s)*skillDamageFactor(rr)*10)/10,mp=Math.round(s.cost*skillManaFactor(rr)*MANA_COST_MULTIPLIER),rad=s.redesigned?({A07:70,M03:150,M15:220+(rr-1)*10,M07:95,M10:45,M08:260+(rr-1)*15,M09:45,M99:220} as Record<string,number>)[id]??Math.round(s.radius*skillRadiusFactor(rr)):Math.round(s.radius*skillRadiusFactor(rr));
+  const rr=s.basic?1:Math.max(1,r),dmg=Math.round(s.damage*skillBalanceFactor(s)*skillDamageFactor(rr)*(s.cls==='mage'&&s.redesigned&&!s.enemyOnly?PLAYER_MAGE_DAMAGE_MULTIPLIER*PLAYER_MAGE_OFFENSE_BOOST:1)*10)/10,mp=Math.round(s.cost*skillManaFactor(rr)*MANA_COST_MULTIPLIER),rad=s.redesigned?({A07:70,M03:waveArcDimensions(rr).radius,M15:220+(rr-1)*10,M07:shatterStakeDimensions(rr).effect,M10:45,M08:260+(rr-1)*15,M09:45,M99:220} as Record<string,number>)[id]??Math.round(s.radius*skillRadiusFactor(rr)*(s.cls==='mage'&&s.branch==='gourd'?MAGE_AREA_SCALE:1)):Math.round(s.radius*skillRadiusFactor(rr));
   const mix=(a:number,b:number)=>a+(b-a)*(rr-1)/7;
   if(s.martial){
    const melee=s.branch==='sword',extra:Record<string,EffectRow[]>={
@@ -93,15 +95,15 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
    M04:[row('번개 거리',`${260+10*(rr-1)}`),row('번개 피해',num(dmg*.45)),row('번개 명중','범위 안의 적마다 1회')],
    M13:[row('후속 폭발',`${6+rr}회 · 약 1초`),row('속성·전개','불 · 첫 폭발 주변 공중에 무작위 연쇄'),row('후속 폭발 피해',num(dmg*14/48)),row('후속 폭발 반경','55 · 분포 반경 240'),row('대상별 후속 명중','최대 3회')],
    M05:[row('낙뢰 대기','착탄 후 0.35초'),row('낙뢰 차폐','상부 지형에 가로막힘')],
-   M03:[row('발동','적·지형 접촉 시'),row('펼침 방향','충돌 지점에서 진행 방향의 양옆'),row('원호 각도',`${52+6*(rr-1)}°`),row('원호 두께',`${30+2*(rr-1)}`)],
+   M03:[row('발동','적·지형 접촉 시'),row('펼침 방향','충돌 지점에서 진행 방향의 양옆'),row('원호 각도',`${waveArcDimensions(rr).span}°`),row('원호 길이',num(waveArcDimensions(rr).radius*waveArcDimensions(rr).span*Math.PI/180)),row('원호 두께',num(waveArcDimensions(rr).thickness))],
    M11:[row('반사 분열',waveReflectionPlan(rr).map(n=>`×${n}`).join(' → ')),row('최대 동시 파동',`${waveReflectionPlan(rr).reduce((a,n)=>a*n,1)}개`),row('반사 위력',`매번 ${Math.round(WAVE_REFLECTION_DECAY*100)}% 유지`)],
-   M12:[row('삼각형 완성','발사점과 지형 반사점 2곳'),row('경계 두께',`${20+2*(rr-1)}`),row('내부 피해',num(dmg*16/38)),row('중복 명중','최대 2변')],
-   M14:[row('원주 반경','충전에 따라 180~900'),row('원주 두께',num(mix(34,50))),row('원주 피해','반경 220까지 100% · 확대 시 감소'),row('최소 피해','28% · 원 안쪽 피해 없음')],
-   M15:[row('외곽 경계','팔각형'),row('중심 추가 피해',num(dmg*62/34)),row('기선 두께',`${20+2*(rr-1)}`),row('중복 명중','최대 3선')],
-   M07:[row('기동 거리','45 · 적이 접근하면 폭발')],
+   M12:[row('삼각형 완성','발사점과 지형 반사점 2곳'),row('경계 두께',num((20+2*(rr-1))*MAGE_AREA_SCALE)),row('내부 피해',num(dmg*16/38)),row('중복 명중','최대 2변')],
+   M14:[row('원주 반경','충전에 따라 180~900'),row('원주 두께',num(mix(34,50)*MAGE_AREA_SCALE)),row('원주 피해','반경 220까지 100% · 확대 시 감소'),row('최소 피해','28% · 원 안쪽 피해 없음')],
+   M15:[row('외곽 경계','팔각형'),row('중심 추가 피해',num(dmg*62/34)),row('기선 두께',num((20+2*(rr-1))*MAGE_AREA_SCALE)),row('중복 명중','최대 3선')],
+   M07:[row('감지 거리',num(shatterStakeDimensions(rr).trigger)),row('폭발 반경',num(shatterStakeDimensions(rr).effect)),row('기동','적이 접근하면 폭발 · 대상마다 턴당 1회')],
    M10:[row('체력 회복',pct(.06+.01*rr)),row('기력 회복',pct(.07+.01*rr)),row('이동력 회복',pct(.12+.03*rr)),row('사용 횟수','아군마다 매 턴 1회')],
    M08:[row('기동 거리','45 · 적이 접근하면 발동'),row('끌어당김','벽에 가로막힘')],
-   M09:[row('첫 설치','발밑·착탄점에 한 쌍'),row('동시 설치','2개 · 초과 시 오래된 진목 교체'),row('이동','진목 위에서 E · 턴당 1회'),row('도착 기력 회복',rr<2?'없음':rr===2?'8%':'10%'),row('도착 체력 회복',rr<4?'없음':rr===4?'6%':'8%'),row('도착 이동력 회복',rr<6?'없음':rr===6?'16%':'24%'),row('도착 방호',rr===8?'적 행동 종료까지':'없음')],
+   M09:[row('첫 설치','발밑·착탄점에 한 쌍'),row('동시 설치','2개 · 초과 시 오래된 진목 교체'),row('이동','진목 위에서 E · 턴당 1회'),row('도착 탐색',`${GATE_SEARCH_RADIUS} 거리 안 가장 가까운 유효 접지`),row('도착 불가','비용·턴 사용 없이 이유 표시'),row('도착 기력 회복',rr<2?'없음':rr===2?'8%':'10%'),row('도착 체력 회복',rr<4?'없음':rr===4?'6%':'8%'),row('도착 이동력 회복',rr<6?'없음':rr===6?'16%':'24%'),row('도착 방호',rr===8?'적 행동 종료까지':'없음')],
    M99:[row('봉쇄 유지',`${stakeDuration(id,rr)}턴`),row('경계 피해',num(dmg*22/35)+' · 턴당 1회'),row('내부 감속','45%'),row('내부 이동력 감소','35%')],
    O05:[row('나가는 피해','28%'),row('귀환 폭발','95% · 첫 유효 적 1회'),row('흔적 보너스','폭발 피해 +30%'),row('회귀','실제 발사 궤적 역순'),row('지형 미접촉','최대 3.4초 뒤 소멸')],
    O06:[row('쇠약 유지',`${WEAK_TURNS[rr-1]}턴`)],O07:[row('증오 유지',`${BETRAY_TURNS[rr-1]}턴`)],
@@ -117,7 +119,7 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
  }
  const t=passiveTuning(r),d=durabilityPower(r);
  const rows:Record<string,EffectRow[]>={
- MP01:[row('호리병 2차 효과',pct(t.gourdSecondary)),row('파문 두께·진목 효력',pct(t.geometry))],MP02:[row('최대 기력',pct(.03*r)),row('턴 회복',num(t.manaRegenFlat)+' + 최대 기력의 '+pct(t.manaRegenMax))],MP03:[row('미스 환급',pct(t.missRefund))],MP04:[row('동행 방호',pct(t.ward)),row('한도',pct(.25)),row('발동','명중한 행동마다 1회')],MP05:[row('완성에 필요한 소비 기력',num(JUCHEON_THRESHOLD[Math.max(0,r-1)])),row('완성 후 비용 감소',pct(r?JUCHEON_DISCOUNT[r-1]:0)),row('도술 효과 강화',pct(r?JUCHEON_EFFECT[r-1]+t.jucheonExtraEffect:0)),row('파문 범위 확대 상한','5%'),row('무료 도술','주천 충전 없음')],
+ MP01:[row('호리병 2차 효과',pct(t.gourdSecondary)),row('파문 두께·진목 효력',pct(t.geometry))],MP02:[row('최대 기력',pct(t.maxMana)),row('턴 회복',num(t.manaRegenFlat)+' + 최대 기력의 '+pct(t.manaRegenMax))],MP03:[row('미스 환급',pct(t.missRefund))],MP04:[row('동행 방호',pct(t.ward)),row('한도',pct(t.wardCap)),row('발동','명중한 행동마다 1회')],MP05:[row('완성에 필요한 소비 기력',num(JUCHEON_THRESHOLD[Math.max(0,r-1)])),row('완성 후 비용 감소',pct(r?JUCHEON_DISCOUNT[r-1]:0)),row('도술 효과 강화',pct(r?JUCHEON_EFFECT[r-1]+t.jucheonExtraEffect:0)),row('파문 범위 확대 상한','5%'),row('무료 도술','주천 충전 없음')],
  AP01:[row('추가 발사',`${Math.min(5,r)}발`),row('첫 후속타',pct(volleyDamage(r))),row('후속 감쇠','66%')],AP02:[row('추가 치명 확률',pct(t.criticalChance)+'p'),row('추가 치명 배율','+'+t.criticalMultiplier.toFixed(2))],AP03:[row('후퇴 이동력',pct(t.retreat))],AP04:[row('계통 위력 가산','+'+pct(t.trajectory)+'p')],AP05:[row('기억하는 과거 내 턴',`${r?SALHEUN_TURNS[r-1]:0}턴`),row('직전 직접 피해 재현',pct(r?SALHEUN_RATIO[r-1]:0)),row('이전 턴마다 감쇠','55%'),row('발동 제한','한 행동 · 대상마다 1회'),row('후속/파편 화살','연속 시위·철화 자탄 제외')],
  SP01:[row('베기 각도 확대',num(.5*r)+'°'),row('최대 축세 추가 위력',pct(t.swordCharge)),row('최대 축세 추가 사거리',pct(t.swordReach)),row('돌격 위력',pct(t.rushDamage)),row('검기 속도·크기',pct(t.bladeGeometry))],SP02:[row('최대 HP',pct(.05*d)),row('피해 감소',pct(.03*d)),row('전체 방어 상한',pct(HERO_ARMOR_CAP)),row('밀치기 저항',pct(knockbackResistance(r)))],SP03:[row('이동 거리',pct(.10*p)),row('점프 높이 계수',pct((1+.02*r)**2-1)),row('돌격 속도',pct(.015*r)),row('점프 소비',num(Math.max(25,75-5*r)))],SP04:[row('합세 조건','서로 다른 세 계통 · 같은 계통 반복 시 유지'),row('합세 기력 회복',pct(t.harmonyRecovery)),row('다음 기예 비용',pct(t.harmonyDiscount)+' 감소'),row('다음 기예 피해',pct(t.harmonyDamage)+' 증가'),row('합세 수세',pct(t.harmonyGuard)+' 피해 감소 · 다음 내 턴까지')],SP05:[row('불굴 잔여 HP',pct(t.lastStandHp)),row('발동 횟수','전투당 1회'),row('회복 자세',pct(t.lastStandGuard)+' 피해 감소 · 다음 내 턴까지')],
  OP01:[row('잔부 유지',`${1+Math.floor(r/3)}턴`),row('잔부 효과',pct(t.trapDamage))],OP02:[row('주박 대상 우선 탐색',`${t.markedPriority} 거리`),row('주박 대상 소환 피해',pct(t.markedSummonDamage)),row('조건','자신의 주박·지박이 남은 적 · 소환령/섭혼 대상')],OP03:[row('피해 분담',pct(t.soulShare)),row('공격당 분담 한도',pct(t.soulShareCap)+' 최대 HP'),row('조건','340 거리 안 소환령 · 방호 후 남은 피해 · 소환령 HP 한도')],OP04:[row('자연 소멸 기력 회수',pct(t.expiryRecovery)),row('다음 초혼 비용 감소',pct(t.expiryDiscount))],OP05:[row('잔혼 최대','3개'),row('다음 혼행 피해',pct(t.remnantDamage))]
@@ -236,7 +238,7 @@ export function stakeDuration(id:string,rank=1){return (id==='M09'?6:id==='M10'?
 export function heroStats(h:HeroProgress,cls:ClassId,loadout:string[]=[]){const level=levelOf(h),i=CLASS_IDS.indexOf(cls),L=level-1;
  const rank=(id:string)=>TALENT_MAP[id]?.cls===cls?rankPower(h.ranks[id]||0):0,vitality=cls==='knight'?durabilityPower(h.ranks.SP02||0):0,mobility=0,leap=rank('SP03'),defense=vitality;
  const hpBase=[390,365,610,460][i], hpGain=[32,30,48,36][i], armorBase=[.06,.08,.22,.11][i];
- const gain=STAT_GAINS[cls],invested=(key:StatKey)=>statTrainingRank(h)*gain[key],hp=(hpBase+L*hpGain)*(1+vitality*.05)*(1+invested('hp')),atkBase=[1.75,1.75,1.75,1.86][i],atkGain=[.18,.18,.18,.19][i],crit=criticalStats(cls,level,h.ranks),mp=Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?(h.ranks.MP02||0)*.03:0))*(1+invested('mp')));
+ const gain=STAT_GAINS[cls],invested=(key:StatKey)=>statTrainingRank(h)*gain[key],hp=(hpBase+L*hpGain)*(1+vitality*.05)*(1+invested('hp')),atkBase=[1.75,1.75,1.75,1.86][i],atkGain=[.18,.18,.18,.19][i],crit=criticalStats(cls,level,h.ranks),mp=Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?passiveTuning(h.ranks.MP02||0).maxMana:0))*(1+invested('mp')));
  return {...crit,critChance:Math.min(.75,crit.critChance+invested('critChance')),critMultiplier:Math.min(3.5,crit.critMultiplier+invested('critMultiplier')),level,hp:Math.round(hp),mp,attack:(atkBase+L*atkGain)*(1+invested('attack')),armor:Math.min(HERO_ARMOR_CAP,armorBase+L*.008+defense*.03+invested('armor')),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)*(1+invested('move'))),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?passiveTuning(h.ranks.MP02||0).manaRegenFlat+mp*passiveTuning(h.ranks.MP02||0).manaRegenMax:0)};}
 export function applyHero(u:Unit,h:HeroProgress,full=false){const s=heroStats(h,u.cls,u.loadout),dh=s.hp-u.maxHp,dm=s.mp-u.maxFocus,oldMove=u.maxMove;u.level=s.level;u.hp=u.dead?0:full?s.hp:clamp(u.hp+Math.max(0,dh),0,s.hp);u.maxHp=s.hp;u.focus=full?s.mp:clamp(u.focus+Math.max(0,dm),0,s.mp);u.maxFocus=s.mp;u.attack=s.attack;u.armor=s.armor;u.critChance=s.critChance;u.critMultiplier=s.critMultiplier;u.maxMove=s.move;u.walkSpeed=s.speed;u.regen=s.regen;u.moveLeft=full?s.move:Math.min(s.move,u.moveLeft+Math.max(0,s.move-oldMove));u.ranks={...h.ranks};}
 export function grantXP(h: HeroProgress, amount: number) { const before = levelOf(h); const actual = Math.max(0, Math.min(XP_CAP - h.xp, Math.round(amount))); h.xp += actual; return { actual, before, after: levelOf(h) }; }

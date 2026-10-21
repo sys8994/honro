@@ -1,0 +1,275 @@
+{
+  "sha": "499305b051278e25538b3f606c11e1bb7479104e",
+  "scope": "Final-source render purity and flight-silhouette checks using genuine saves.\nNo combat replay, battle writes, positional repair or reward grant in this tool.\n",
+  "rows": [
+    {
+      "label": "fresh",
+      "round": 1,
+      "phase": "aim",
+      "mapRevision": 8,
+      "statePure": true,
+      "cold": {
+        "worldBuilds": 1,
+        "worldBuildMs": 45.30000004172325,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 8,
+        "bgHits": 0,
+        "domainCanvasAllocations": 8,
+        "domainTileBuilds": 8,
+        "screenBuilds": 2,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "warm": {
+        "worldBuilds": 1,
+        "worldBuildMs": 45.30000004172325,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 13,
+        "bgHits": 5,
+        "domainCanvasAllocations": 8,
+        "domainTileBuilds": 8,
+        "screenBuilds": 2,
+        "screenHits": 10,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "flightRegion": {
+        "left": 1880,
+        "right": 2780,
+        "top": 220,
+        "bottom": 2890,
+        "reason": "Central open gorge; full animated wings remain outside rear cliff silhouettes. Paid movement and attack cap unchanged."
+      },
+      "opaquePixels": 0,
+      "cliffAlphaProbes": [
+        255,
+        255
+      ],
+      "birds": [
+        {
+          "id": "foe-1",
+          "x": 2200,
+          "y": 800,
+          "bounds": {
+            "left": 2108,
+            "right": 2292,
+            "head": 692,
+            "feet": 820
+          }
+        },
+        {
+          "id": "foe-4",
+          "x": 2440,
+          "y": 1220,
+          "bounds": {
+            "left": 2364.1,
+            "right": 2515.9,
+            "head": 1130.9,
+            "feet": 1236.5
+          }
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 2500,
+          "y": 840,
+          "bounds": {
+            "left": 2408,
+            "right": 2592,
+            "head": 732,
+            "feet": 860
+          }
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 2150,
+          "y": 1350,
+          "bounds": {
+            "left": 2074.1,
+            "right": 2225.9,
+            "head": 1260.9,
+            "feet": 1366.5
+          }
+        }
+      ],
+      "hero": {
+        "x": 290,
+        "y": 590.8695652173913,
+        "hp": 376
+      },
+      "car": {
+        "x": 180,
+        "y": 2974.1468253968255,
+        "hp": 1700
+      }
+    },
+    {
+      "label": "actual-r3",
+      "round": 3,
+      "phase": "aim",
+      "mapRevision": 8,
+      "statePure": true,
+      "cold": {
+        "worldBuilds": 1,
+        "worldBuildMs": 28.30000001192093,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 9,
+        "bgHits": 0,
+        "domainCanvasAllocations": 9,
+        "domainTileBuilds": 9,
+        "screenBuilds": 2,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 9585216,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "warm": {
+        "worldBuilds": 1,
+        "worldBuildMs": 28.30000001192093,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 14,
+        "bgHits": 5,
+        "domainCanvasAllocations": 9,
+        "domainTileBuilds": 9,
+        "screenBuilds": 2,
+        "screenHits": 10,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 9585216,
+        "worldScale": 0.68,
+        "backgroundBytes": 0
+      },
+      "flightRegion": {
+        "left": 1880,
+        "right": 2780,
+        "top": 220,
+        "bottom": 2890,
+        "reason": "Central open gorge; full animated wings remain outside rear cliff silhouettes. Paid movement and attack cap unchanged."
+      },
+      "opaquePixels": 0,
+      "cliffAlphaProbes": [
+        255,
+        255
+      ],
+      "birds": [
+        {
+          "id": "foe-4",
+          "x": 2197.5128869403716,
+          "y": 1056.000000000009,
+          "bounds": {
+            "left": 2121.6128869403715,
+            "right": 2273.4128869403717,
+            "head": 966.9000000000091,
+            "feet": 1072.500000000009
+          }
+        },
+        {
+          "id": "foe-1-cluster",
+          "x": 2360.500000000002,
+          "y": 622.3789123441406,
+          "bounds": {
+            "left": 2268.500000000002,
+            "right": 2452.500000000002,
+            "head": 514.3789123441406,
+            "feet": 642.3789123441406
+          }
+        },
+        {
+          "id": "foe-4-cluster",
+          "x": 1987.3725830020294,
+          "y": 1090.5423241918809,
+          "bounds": {
+            "left": 1911.4725830020293,
+            "right": 2063.2725830020295,
+            "head": 1001.4423241918809,
+            "feet": 1107.0423241918809
+          }
+        }
+      ],
+      "hero": {
+        "x": 1594.1603809769936,
+        "y": 781.1373051003824,
+        "hp": 326
+      },
+      "car": {
+        "x": 180,
+        "y": 2974.1468253968255,
+        "hp": 1700
+      }
+    },
+    {
+      "label": "actual-win",
+      "round": 15,
+      "phase": "won",
+      "mapRevision": 8,
+      "statePure": true,
+      "cold": {
+        "worldBuilds": 1,
+        "worldBuildMs": 37.30000002682209,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 15,
+        "bgHits": 0,
+        "domainCanvasAllocations": 15,
+        "domainTileBuilds": 15,
+        "screenBuilds": 2,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 15975360,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "warm": {
+        "worldBuilds": 1,
+        "worldBuildMs": 37.30000002682209,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 20,
+        "bgHits": 5,
+        "domainCanvasAllocations": 15,
+        "domainTileBuilds": 15,
+        "screenBuilds": 2,
+        "screenHits": 10,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 15975360,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "flightRegion": {
+        "left": 1880,
+        "right": 2780,
+        "top": 220,
+        "bottom": 2890,
+        "reason": "Central open gorge; full animated wings remain outside rear cliff silhouettes. Paid movement and attack cap unchanged."
+      },
+      "opaquePixels": 0,
+      "cliffAlphaProbes": [
+        255,
+        255
+      ],
+      "birds": [],
+      "hero": {
+        "x": 1767.9018473701958,
+        "y": 2956.5242304791473,
+        "hp": 376
+      },
+      "car": {
+        "x": 4100,
+        "y": 2630,
+        "hp": 1700
+      }
+    }
+  ],
+  "errors": []
+}

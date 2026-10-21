@@ -1,0 +1,24 @@
+{
+  "pass": true,
+  "rows": [
+    {
+      "name": "initial",
+      "oldRound": 1,
+      "newRound": 1,
+      "preservedCurrentNormalizedGrowthSPAndEquipment": true
+    },
+    {
+      "name": "gate-open",
+      "oldRound": 10,
+      "newRound": 1,
+      "preservedCurrentNormalizedGrowthSPAndEquipment": true
+    },
+    {
+      "name": "terminal",
+      "oldRound": 11,
+      "newRound": 1,
+      "preservedCurrentNormalizedGrowthSPAndEquipment": true
+    }
+  ],
+  "scope": "Original obsolete battle restarts only12; active same-revision snapshots tested separately"
+}

@@ -1,0 +1,47 @@
+{
+  "sha": "499305b051278e25538b3f606c11e1bb7479104e",
+  "runtimeUrl": "http://127.0.0.1:8872/HONRO.html",
+  "label": "strategy-east-root-review",
+  "renderSha256": "f96be8bf9b83dd7177eb69d07e0c00f24356ed7221de1a55dec19f1417507e04",
+  "workingTree": " M tools/testing/stage2-layered-capture.py\n?? game/docs/stage-review/stage02-road-strategy/\n?? tools/testing/stage2-strategy-render.py\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "east-root",
+      "camera": {
+        "x": 3210,
+        "y": 2640,
+        "scale": 0.7
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-east-root",
+      "camera": {
+        "x": 3230,
+        "y": 2690,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "east-root-zoom",
+      "camera": {
+        "x": 3260,
+        "y": 2570,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 2,
+      "view": "landscape-east-root",
+      "camera": {
+        "x": 3180,
+        "y": 2690,
+        "scale": 0.45
+      }
+    }
+  ],
+  "errors": []
+}

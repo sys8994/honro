@@ -1,0 +1,550 @@
+{
+  "scope": "Actual Chromium production candidate. Native ordinary-input checkpoints restored through Continue for pose comparison; fresh overview. Camera-only framing. Not a browser-continuous combat run.",
+  "rows": [
+    {
+      "name": "review1-overview",
+      "viewport": [
+        1440,
+        900
+      ],
+      "camera": {
+        "x": 2100,
+        "y": 2650,
+        "scale": 0.38
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 330,
+            "y": 2520,
+            "hp": 455,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 440,
+            "y": 2520,
+            "hp": 486,
+            "moveLeft": 1228
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    },
+    {
+      "name": "review2-junction",
+      "viewport": [
+        1100,
+        760
+      ],
+      "camera": {
+        "x": 1910,
+        "y": 2720,
+        "scale": 0.8
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 330,
+            "y": 2520,
+            "hp": 455,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 440,
+            "y": 2520,
+            "hp": 486,
+            "moveLeft": 1228
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    },
+    {
+      "name": "review2-upper",
+      "viewport": [
+        1100,
+        760
+      ],
+      "camera": {
+        "x": 1120,
+        "y": 2340,
+        "scale": 0.72
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 1108.4268275673755,
+            "y": 2250,
+            "hp": 394,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 426.64374285105157,
+            "y": 2520,
+            "hp": 486,
+            "moveLeft": 1228
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    },
+    {
+      "name": "review2-lower",
+      "viewport": [
+        1100,
+        760
+      ],
+      "camera": {
+        "x": 1120,
+        "y": 2660,
+        "scale": 0.72
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 1198.314477450214,
+            "y": 2790,
+            "hp": 401,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 424.25415812759667,
+            "y": 2520,
+            "hp": 478,
+            "moveLeft": 1228
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    },
+    {
+      "name": "review2-ritual-west",
+      "viewport": [
+        1100,
+        760
+      ],
+      "camera": {
+        "x": 1590,
+        "y": 2620,
+        "scale": 1.1
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 324.3988754741483,
+            "y": 2520,
+            "hp": 417,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 1489.1521787418949,
+            "y": 2768.1021676355367,
+            "hp": 458,
+            "moveLeft": 1228
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    },
+    {
+      "name": "review2-ritual-east",
+      "viewport": [
+        1100,
+        760
+      ],
+      "camera": {
+        "x": 1590,
+        "y": 2620,
+        "scale": 1.1
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 324.3988754741483,
+            "y": 2520,
+            "hp": 417,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 1639.974804386486,
+            "y": 2673.9848826318917,
+            "hp": 458,
+            "moveLeft": 1012.3802622693165
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    },
+    {
+      "name": "review3-mobile-upper",
+      "viewport": [
+        844,
+        390
+      ],
+      "camera": {
+        "x": 1100,
+        "y": 2240,
+        "scale": 0.5
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 1108.4268275673755,
+            "y": 2250,
+            "hp": 394,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 426.64374285105157,
+            "y": 2520,
+            "hp": 486,
+            "moveLeft": 1228
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder"
+      ]
+    },
+    {
+      "name": "review3-mobile-air",
+      "viewport": [
+        844,
+        390
+      ],
+      "camera": {
+        "x": 1100,
+        "y": 2030,
+        "scale": 0.35
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 1108.4268275673755,
+            "y": 2250,
+            "hp": 394,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 426.64374285105157,
+            "y": 2520,
+            "hp": 486,
+            "moveLeft": 1228
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder"
+      ]
+    },
+    {
+      "name": "review3-mobile-lower",
+      "viewport": [
+        844,
+        390
+      ],
+      "camera": {
+        "x": 1200,
+        "y": 2710,
+        "scale": 0.5
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 1198.314477450214,
+            "y": 2790,
+            "hp": 401,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 424.25415812759667,
+            "y": 2520,
+            "hp": 478,
+            "moveLeft": 1228
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    },
+    {
+      "name": "review3-mobile-ritual",
+      "viewport": [
+        390,
+        844
+      ],
+      "camera": {
+        "x": 1590,
+        "y": 2610,
+        "scale": 0.6
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 324.3988754741483,
+            "y": 2520,
+            "hp": 417,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 1639.974804386486,
+            "y": 2673.9848826318917,
+            "hp": 458,
+            "moveLeft": 1012.3802622693165
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    },
+    {
+      "name": "review3-mobile-ritual-response",
+      "viewport": [
+        390,
+        844
+      ],
+      "camera": {
+        "x": 1590,
+        "y": 2610,
+        "scale": 0.6
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 300.63596742240566,
+            "y": 2520,
+            "hp": 435,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 1661.3152858044439,
+            "y": 2686.7891714826665,
+            "hp": 404,
+            "moveLeft": 1228
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    },
+    {
+      "name": "final-review-cave-closed",
+      "viewport": [
+        1100,
+        760
+      ],
+      "camera": {
+        "x": 4220,
+        "y": 2300,
+        "scale": 0.85
+      },
+      "state": {
+        "count": 12,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 330,
+            "y": 2520,
+            "hp": 455,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 440,
+            "y": 2520,
+            "hp": 486,
+            "moveLeft": 1228
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    },
+    {
+      "name": "final-review-cave-open",
+      "viewport": [
+        1100,
+        760
+      ],
+      "camera": {
+        "x": 4220,
+        "y": 2300,
+        "scale": 0.85
+      },
+      "state": {
+        "count": 18,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 2418.8389042277186,
+            "y": 2866.1840044466785,
+            "hp": 455,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 1491.9018599691847,
+            "y": 2764.5275820400598,
+            "hp": 421,
+            "moveLeft": 1228
+          }
+        ],
+        "revision": 3,
+        "phase": "aim",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    },
+    {
+      "name": "final-review-won",
+      "viewport": [
+        1100,
+        760
+      ],
+      "camera": {
+        "x": 4220,
+        "y": 2300,
+        "scale": 0.85
+      },
+      "state": {
+        "count": 18,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 2440.0642998781427,
+            "y": 2907.818434376357,
+            "hp": 339,
+            "moveLeft": 1208
+          },
+          {
+            "id": "p-mage",
+            "x": 1470.4562641024775,
+            "y": 2780,
+            "hp": 518,
+            "moveLeft": 1264
+          }
+        ],
+        "revision": 3,
+        "phase": "won",
+        "geologyViews": 4
+      },
+      "actualGeologyDraws": [
+        "valley-floor",
+        "stage5-west-shoulder",
+        "stage5-ritual-stone"
+      ]
+    }
+  ],
+  "errors": []
+}

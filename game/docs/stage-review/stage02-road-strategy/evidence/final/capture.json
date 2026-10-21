@@ -1,0 +1,29 @@
+{
+  "sha": "499305b051278e25538b3f606c11e1bb7479104e",
+  "runtimeUrl": "http://127.0.0.1:8872/HONRO.html",
+  "label": "strategy-final-shore",
+  "renderSha256": "f96be8bf9b83dd7177eb69d07e0c00f24356ed7221de1a55dec19f1417507e04",
+  "workingTree": " M game/docs/BUG_LOG.md\n M tools/testing/stage2-layered-capture.py\n?? game/docs/stage-review/stage02-road-strategy/\n?? tools/testing/stage2-strategy-east-route.py\n?? tools/testing/stage2-strategy-render.py\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "water-close",
+      "camera": {
+        "x": 2340,
+        "y": 2910,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-shore",
+      "camera": {
+        "x": 2180,
+        "y": 2940,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

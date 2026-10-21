@@ -1,0 +1,1386 @@
+{
+  "environment": "Headless Chromium; CDP touch emulation; not a physical device",
+  "checks": [
+    {
+      "name": "45 degree start allows fine movement while aiming up",
+      "data": {
+        "x": 395.71717670201696,
+        "y": 1400,
+        "budget": 1908.2828232979844,
+        "angle": 56.799707789706076,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0.04161028579925922,
+          "y": 0.9694421826836273,
+          "visualX": 0.15000004755449167,
+          "visualY": 0.9800008965055471,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 2,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 47,
+        "label": "MOVE-AIM",
+        "knob": "translate(2.7px, -17.64px)"
+      }
+    },
+    {
+      "name": "45 degree start can aim vertically with zero lateral command",
+      "data": {
+        "x": 395.71717670201696,
+        "y": 1400,
+        "budget": 1908.2828232979844,
+        "angle": 73.3330411230392,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0,
+          "y": 1,
+          "visualX": 0,
+          "visualY": 1,
+          "moving": false,
+          "facingIntent": 0
+        },
+        "pointer": 2,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 47,
+        "label": "MOVE-AIM",
+        "knob": "translate(0px, -18px)"
+      }
+    },
+    {
+      "name": "aim lock leaves falling and knockback live",
+      "data": {
+        "x": 375.91687127736236,
+        "y": 1114.7784395800522,
+        "budget": 1964,
+        "angle": 64.66666666666649,
+        "facing": 1,
+        "vx": 119.46117957828685,
+        "vy": 95.7902971934484,
+        "intent": "aimOnly",
+        "axes": {
+          "intent": "aimOnly",
+          "x": 0,
+          "y": 1,
+          "visualX": 0,
+          "visualY": 1,
+          "moving": false,
+          "facingIntent": 0
+        },
+        "pointer": 3,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 0,
+        "label": "조준",
+        "knob": "translate(0px, -18px)"
+      }
+    },
+    {
+      "name": "second stick touch preserves owner",
+      "data": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 60.53333333333319,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "aimOnly",
+        "axes": {
+          "intent": "aimOnly",
+          "x": 0,
+          "y": 1,
+          "visualX": 0,
+          "visualY": 1,
+          "moving": false,
+          "facingIntent": 0
+        },
+        "pointer": 4,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 0,
+        "label": "조준",
+        "knob": "translate(0px, -18px)"
+      }
+    },
+    {
+      "name": "second touch charges while aim pointer stays locked",
+      "data": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 68.79999999999976,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "aimOnly",
+        "axes": {
+          "intent": "aimOnly",
+          "x": 0,
+          "y": 1,
+          "visualX": 0,
+          "visualY": 1,
+          "moving": false,
+          "facingIntent": 0
+        },
+        "pointer": 4,
+        "fire": 6,
+        "charging": true,
+        "moveCalls": 0,
+        "label": "조준",
+        "knob": "translate(0px, -18px)"
+      }
+    },
+    {
+      "name": "stick cancel preserves fire pointer",
+      "data": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 68.79999999999976,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": null,
+        "axes": {
+          "x": 0,
+          "y": 0
+        },
+        "pointer": null,
+        "fire": 6,
+        "charging": true,
+        "moveCalls": 0,
+        "label": "MOVE / AIM",
+        "knob": "translate(0px, 0px)"
+      }
+    },
+    {
+      "name": "fire release still fires after stick cancel",
+      "data": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 68.79999999999976,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": null,
+        "axes": {
+          "x": 0,
+          "y": 0
+        },
+        "pointer": null,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 0,
+        "label": "MOVE / AIM",
+        "knob": "translate(0px, 0px)"
+      }
+    },
+    {
+      "name": "jump uses its normal cost and keeps stick owner",
+      "data": {
+        "x": 340,
+        "y": 1289.0194342540483,
+        "budget": 1889,
+        "angle": 60.53333333333319,
+        "facing": 1,
+        "vx": 0,
+        "vy": -458.3100802738451,
+        "intent": "aimOnly",
+        "axes": {
+          "intent": "aimOnly",
+          "x": 0,
+          "y": 1,
+          "visualX": 0,
+          "visualY": 1,
+          "moving": false,
+          "facingIntent": 0
+        },
+        "pointer": 7,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 0,
+        "label": "조준",
+        "knob": "translate(0px, -18px)"
+      }
+    },
+    {
+      "name": "jump release preserves stick",
+      "data": {
+        "x": 340,
+        "y": 1218.3138847138375,
+        "budget": 1889,
+        "angle": 68.79999999999976,
+        "facing": 1,
+        "vx": 0,
+        "vy": -257.2243613158721,
+        "intent": "aimOnly",
+        "axes": {
+          "intent": "aimOnly",
+          "x": 0,
+          "y": 1,
+          "visualX": 0,
+          "visualY": 1,
+          "moving": false,
+          "facingIntent": 0
+        },
+        "pointer": 7,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 0,
+        "label": "조준",
+        "knob": "translate(0px, -18px)"
+      }
+    },
+    {
+      "name": "PC ArrowLeft movement",
+      "data": {
+        "x": 251.45833333333292,
+        "y": 1400,
+        "budget": 1875.4583333333314,
+        "angle": 136,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": null,
+        "axes": {
+          "x": 0,
+          "y": 0
+        },
+        "pointer": null,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 25,
+        "label": "MOVE / AIM",
+        "knob": ""
+      }
+    },
+    {
+      "name": "PC ArrowRight movement",
+      "data": {
+        "x": 425.00000000000045,
+        "y": 1400,
+        "budget": 1878.9999999999982,
+        "angle": 44,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": null,
+        "axes": {
+          "x": 0,
+          "y": 0
+        },
+        "pointer": null,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 24,
+        "label": "MOVE / AIM",
+        "knob": ""
+      }
+    },
+    {
+      "name": "PC a movement",
+      "data": {
+        "x": 254.99999999999957,
+        "y": 1400,
+        "budget": 1878.9999999999982,
+        "angle": 136,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": null,
+        "axes": {
+          "x": 0,
+          "y": 0
+        },
+        "pointer": null,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 24,
+        "label": "MOVE / AIM",
+        "knob": ""
+      }
+    },
+    {
+      "name": "PC d movement",
+      "data": {
+        "x": 425.00000000000045,
+        "y": 1400,
+        "budget": 1878.9999999999982,
+        "angle": 44,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": null,
+        "axes": {
+          "x": 0,
+          "y": 0
+        },
+        "pointer": null,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 24,
+        "label": "MOVE / AIM",
+        "knob": ""
+      }
+    },
+    {
+      "name": "PC -1 ArrowUp retains elevation rule",
+      "data": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 136.73333333333312,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": null,
+        "axes": {
+          "x": 0,
+          "y": 0
+        },
+        "pointer": null,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 0,
+        "label": "MOVE / AIM",
+        "knob": ""
+      }
+    },
+    {
+      "name": "PC -1 ArrowDown retains elevation rule",
+      "data": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 153.26666666666688,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": null,
+        "axes": {
+          "x": 0,
+          "y": 0
+        },
+        "pointer": null,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 0,
+        "label": "MOVE / AIM",
+        "knob": ""
+      }
+    },
+    {
+      "name": "PC 1 ArrowUp retains elevation rule",
+      "data": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 43.26666666666682,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": null,
+        "axes": {
+          "x": 0,
+          "y": 0
+        },
+        "pointer": null,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 0,
+        "label": "MOVE / AIM",
+        "knob": ""
+      }
+    },
+    {
+      "name": "PC 1 ArrowDown retains elevation rule",
+      "data": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 26.733333333333178,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": null,
+        "axes": {
+          "x": 0,
+          "y": 0
+        },
+        "pointer": null,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 0,
+        "label": "MOVE / AIM",
+        "knob": ""
+      }
+    },
+    {
+      "name": "browser pointer events are trusted CDP touch synthesis",
+      "data": null
+    },
+    {
+      "name": "no browser exceptions",
+      "data": []
+    }
+  ],
+  "states": [
+    {
+      "tag": "diagonal-before-fine-aim",
+      "x": 392.1803024090802,
+      "y": 1400,
+      "budget": 1911.8196975909211,
+      "angle": 48.7856524128548,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": "moveAim",
+      "axes": {
+        "intent": "moveAim",
+        "x": 0.6405766024644174,
+        "y": 0.5789095660711483,
+        "visualX": 0.7070001224838298,
+        "visualY": 0.7070008978288025,
+        "moving": true,
+        "facingIntent": 0
+      },
+      "pointer": 2,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 23,
+      "label": "MOVE-AIM",
+      "knob": "translate(12.726px, -12.726px)"
+    },
+    {
+      "tag": "diagonal-fine-aim",
+      "x": 395.71717670201696,
+      "y": 1400,
+      "budget": 1908.2828232979844,
+      "angle": 56.799707789706076,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": "moveAim",
+      "axes": {
+        "intent": "moveAim",
+        "x": 0.04161028579925922,
+        "y": 0.9694421826836273,
+        "visualX": 0.15000004755449167,
+        "visualY": 0.9800008965055471,
+        "moving": true,
+        "facingIntent": 0
+      },
+      "pointer": 2,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 47,
+      "label": "MOVE-AIM",
+      "knob": "translate(2.7px, -17.64px)"
+    },
+    {
+      "tag": "diagonal-now-vertical",
+      "x": 395.71717670201696,
+      "y": 1400,
+      "budget": 1908.2828232979844,
+      "angle": 65.06637445637266,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": "moveAim",
+      "axes": {
+        "intent": "moveAim",
+        "x": 0,
+        "y": 1,
+        "visualX": 0,
+        "visualY": 1,
+        "moving": false,
+        "facingIntent": 0
+      },
+      "pointer": 2,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 47,
+      "label": "MOVE-AIM",
+      "knob": "translate(0px, -18px)"
+    },
+    {
+      "tag": "diagonal-vertical-held",
+      "x": 395.71717670201696,
+      "y": 1400,
+      "budget": 1908.2828232979844,
+      "angle": 73.3330411230392,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": "moveAim",
+      "axes": {
+        "intent": "moveAim",
+        "x": 0,
+        "y": 1,
+        "visualX": 0,
+        "visualY": 1,
+        "moving": false,
+        "facingIntent": 0
+      },
+      "pointer": 2,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 47,
+      "label": "MOVE-AIM",
+      "knob": "translate(0px, -18px)"
+    },
+    {
+      "tag": "impulse-before",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 52.266666666666595,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": "aimOnly",
+      "axes": {
+        "intent": "aimOnly",
+        "x": 0,
+        "y": 1,
+        "visualX": 0,
+        "visualY": 1,
+        "moving": false,
+        "facingIntent": 0
+      },
+      "pointer": 3,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "조준",
+      "knob": "translate(0px, -18px)"
+    },
+    {
+      "tag": "impulse-after",
+      "x": 375.91687127736236,
+      "y": 1114.7784395800522,
+      "budget": 1964,
+      "angle": 64.66666666666649,
+      "facing": 1,
+      "vx": 119.46117957828685,
+      "vy": 95.7902971934484,
+      "intent": "aimOnly",
+      "axes": {
+        "intent": "aimOnly",
+        "x": 0,
+        "y": 1,
+        "visualX": 0,
+        "visualY": 1,
+        "moving": false,
+        "facingIntent": 0
+      },
+      "pointer": 3,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "조준",
+      "knob": "translate(0px, -18px)"
+    },
+    {
+      "tag": "multitouch-base",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 52.266666666666595,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": "aimOnly",
+      "axes": {
+        "intent": "aimOnly",
+        "x": 0,
+        "y": 1,
+        "visualX": 0,
+        "visualY": 1,
+        "moving": false,
+        "facingIntent": 0
+      },
+      "pointer": 4,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "조준",
+      "knob": "translate(0px, -18px)"
+    },
+    {
+      "tag": "multitouch-second-stick",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 60.53333333333319,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": "aimOnly",
+      "axes": {
+        "intent": "aimOnly",
+        "x": 0,
+        "y": 1,
+        "visualX": 0,
+        "visualY": 1,
+        "moving": false,
+        "facingIntent": 0
+      },
+      "pointer": 4,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "조준",
+      "knob": "translate(0px, -18px)"
+    },
+    {
+      "tag": "multi-fire-down",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 68.79999999999976,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": "aimOnly",
+      "axes": {
+        "intent": "aimOnly",
+        "x": 0,
+        "y": 1,
+        "visualX": 0,
+        "visualY": 1,
+        "moving": false,
+        "facingIntent": 0
+      },
+      "pointer": 4,
+      "fire": 6,
+      "charging": true,
+      "moveCalls": 0,
+      "label": "조준",
+      "knob": "translate(0px, -18px)"
+    },
+    {
+      "tag": "multi-stick-cancel",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 68.79999999999976,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": 6,
+      "charging": true,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": "translate(0px, 0px)"
+    },
+    {
+      "tag": "multi-fire-release",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 68.79999999999976,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": "translate(0px, 0px)"
+    },
+    {
+      "tag": "multi-jump-before",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 52.266666666666595,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": "aimOnly",
+      "axes": {
+        "intent": "aimOnly",
+        "x": 0,
+        "y": 1,
+        "visualX": 0,
+        "visualY": 1,
+        "moving": false,
+        "facingIntent": 0
+      },
+      "pointer": 7,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "조준",
+      "knob": "translate(0px, -18px)"
+    },
+    {
+      "tag": "multi-jump-down",
+      "x": 340,
+      "y": 1289.0194342540483,
+      "budget": 1889,
+      "angle": 60.53333333333319,
+      "facing": 1,
+      "vx": 0,
+      "vy": -458.3100802738451,
+      "intent": "aimOnly",
+      "axes": {
+        "intent": "aimOnly",
+        "x": 0,
+        "y": 1,
+        "visualX": 0,
+        "visualY": 1,
+        "moving": false,
+        "facingIntent": 0
+      },
+      "pointer": 7,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "조준",
+      "knob": "translate(0px, -18px)"
+    },
+    {
+      "tag": "multi-jump-release",
+      "x": 340,
+      "y": 1218.3138847138375,
+      "budget": 1889,
+      "angle": 68.79999999999976,
+      "facing": 1,
+      "vx": 0,
+      "vy": -257.2243613158721,
+      "intent": "aimOnly",
+      "axes": {
+        "intent": "aimOnly",
+        "x": 0,
+        "y": 1,
+        "visualX": 0,
+        "visualY": 1,
+        "moving": false,
+        "facingIntent": 0
+      },
+      "pointer": 7,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "조준",
+      "knob": "translate(0px, -18px)"
+    },
+    {
+      "tag": "pc-before",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 44,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-ArrowLeft",
+      "x": 251.45833333333292,
+      "y": 1400,
+      "budget": 1875.4583333333314,
+      "angle": 136,
+      "facing": -1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 25,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-before",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 44,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-ArrowRight",
+      "x": 425.00000000000045,
+      "y": 1400,
+      "budget": 1878.9999999999982,
+      "angle": 44,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 24,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-before",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 44,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-a",
+      "x": 254.99999999999957,
+      "y": 1400,
+      "budget": 1878.9999999999982,
+      "angle": 136,
+      "facing": -1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 24,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-before",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 44,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-d",
+      "x": 425.00000000000045,
+      "y": 1400,
+      "budget": 1878.9999999999982,
+      "angle": 44,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 24,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-aim-before",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 145,
+      "facing": -1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-aim-ArrowUp",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 136.73333333333312,
+      "facing": -1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-aim-before",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 145,
+      "facing": -1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-aim-ArrowDown",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 153.26666666666688,
+      "facing": -1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-aim-before",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 35,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-aim-ArrowUp",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 43.26666666666682,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-aim-before",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 35,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    },
+    {
+      "tag": "pc-aim-ArrowDown",
+      "x": 340,
+      "y": 1400,
+      "budget": 1964,
+      "angle": 26.733333333333178,
+      "facing": 1,
+      "vx": 0,
+      "vy": 0,
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "pointer": null,
+      "fire": null,
+      "charging": false,
+      "moveCalls": 0,
+      "label": "MOVE / AIM",
+      "knob": ""
+    }
+  ],
+  "pointerEvents": [
+    {
+      "type": "pointerdown",
+      "id": 2,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 770.796875,
+      "trusted": true,
+      "target": ""
+    },
+    {
+      "type": "pointermove",
+      "id": 2,
+      "pointerType": "touch",
+      "x": 79.87064361572266,
+      "y": 749.9262084960938,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointermove",
+      "id": 2,
+      "pointerType": "touch",
+      "x": 63.428001403808594,
+      "y": 741.8672485351562,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointermove",
+      "id": 2,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointerup",
+      "id": 2,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "lostpointercapture",
+      "id": 2,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointerdown",
+      "id": 3,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 770.796875,
+      "trusted": true,
+      "target": ""
+    },
+    {
+      "type": "pointermove",
+      "id": 3,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointerup",
+      "id": 3,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "lostpointercapture",
+      "id": 3,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointerdown",
+      "id": 4,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 770.796875,
+      "trusted": true,
+      "target": ""
+    },
+    {
+      "type": "pointermove",
+      "id": 4,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointerdown",
+      "id": 5,
+      "pointerType": "touch",
+      "x": 63,
+      "y": 770.796875,
+      "trusted": true,
+      "target": ""
+    },
+    {
+      "type": "pointerup",
+      "id": 5,
+      "pointerType": "touch",
+      "x": 63,
+      "y": 770.796875,
+      "trusted": true,
+      "target": ""
+    },
+    {
+      "type": "lostpointercapture",
+      "id": 5,
+      "pointerType": "touch",
+      "x": 63,
+      "y": 770.796875,
+      "trusted": true,
+      "target": ""
+    },
+    {
+      "type": "pointerdown",
+      "id": 6,
+      "pointerType": "touch",
+      "x": 339,
+      "y": 782.5,
+      "trusted": true,
+      "target": "fire"
+    },
+    {
+      "type": "pointercancel",
+      "id": 4,
+      "pointerType": "touch",
+      "x": 0,
+      "y": 0,
+      "trusted": false,
+      "target": "joystick"
+    },
+    {
+      "type": "lostpointercapture",
+      "id": 4,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointerup",
+      "id": 4,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": ""
+    },
+    {
+      "type": "pointerup",
+      "id": 6,
+      "pointerType": "touch",
+      "x": 339,
+      "y": 782.5,
+      "trusted": true,
+      "target": "fire"
+    },
+    {
+      "type": "lostpointercapture",
+      "id": 6,
+      "pointerType": "touch",
+      "x": 339,
+      "y": 782.5,
+      "trusted": true,
+      "target": "fire"
+    },
+    {
+      "type": "pointerdown",
+      "id": 7,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 770.796875,
+      "trusted": true,
+      "target": ""
+    },
+    {
+      "type": "pointermove",
+      "id": 7,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointerdown",
+      "id": 8,
+      "pointerType": "touch",
+      "x": 312.5,
+      "y": 736.609375,
+      "trusted": true,
+      "target": ""
+    },
+    {
+      "type": "pointerup",
+      "id": 8,
+      "pointerType": "touch",
+      "x": 312.5,
+      "y": 736.609375,
+      "trusted": true,
+      "target": ""
+    },
+    {
+      "type": "lostpointercapture",
+      "id": 8,
+      "pointerType": "touch",
+      "x": 312.5,
+      "y": 736.609375,
+      "trusted": true,
+      "target": ""
+    },
+    {
+      "type": "pointerup",
+      "id": 7,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "lostpointercapture",
+      "id": 7,
+      "pointerType": "touch",
+      "x": 59,
+      "y": 741.27685546875,
+      "trusted": true,
+      "target": "joystick"
+    }
+  ],
+  "errors": []
+}

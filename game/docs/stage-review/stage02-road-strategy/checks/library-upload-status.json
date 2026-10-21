@@ -1,0 +1,20 @@
+{
+  "status": "denied",
+  "action": "PUT PNG bytes to returned Library upload URLs via authorized parallel upload CLI",
+  "files": [
+    "HONRO-stage02-strategy-overview.png",
+    "HONRO-stage02-strategy-normal.png",
+    "HONRO-stage02-strategy-water.png",
+    "HONRO-stage02-strategy-actual-r3.png"
+  ],
+  "reason": "Put: Forbidden",
+  "confirmedTransfers": 0,
+  "expectedTransfers": 4,
+  "taskUploadWorkersStopped": true,
+  "finalizeUploadsCalled": false,
+  "confirmedLibraryFileIds": [],
+  "retryOrAlternateRoute": false,
+  "preserved": "Original PNG files remain in this review directory and the remote work branch",
+  "attemptedRenderSourceSha": "ec1c7b3fe2f8b6856c36ba35ed476c59e35f5650",
+  "finalRenderSourceSha": "499305b051278e25538b3f606c11e1bb7479104e"
+}

@@ -1,0 +1,133 @@
+{
+  "runtimeCommit": "4d26b130d5ad5998388c3e5ddad45d0112530e60",
+  "baseMaster": "bafc275c10c7a256692425641d7f0e4f69c002ca",
+  "masterOrPagesChanged": false,
+  "normalCombatRuns": {
+    "stage2": {
+      "count": 1,
+      "recordedHead": "fd254f6fc6810c095c4273d752d3c3cc5ba94ecd",
+      "end": {
+        "phase": "won",
+        "round": 16,
+        "x": 1804.6481380637663,
+        "y": 2950.4841322475213,
+        "hp": 376,
+        "move": 1128,
+        "carX": 4100,
+        "carHp": 1700,
+        "enemies": 0,
+        "flags": {
+          "sector-0": true,
+          "event:procession-seen": true,
+          "event:road-pressure": true,
+          "event:sniper-seen": true,
+          "event:right-cliff": true,
+          "event:last-flight": true
+        }
+      },
+      "scope": "actual browser Engine policy; working integration source compiled before build-savepoint9af48c40; not manual keyboard play"
+    },
+    "stage5": {
+      "count": 1,
+      "round": 9,
+      "heals": 1,
+      "scope": "native production App normal inputs with DOM/render/clock doubles; no resource/actor/target overrides"
+    }
+  },
+  "replayPolicy": "No repeat of complete Stage2/5 combats after narrow Stage11, preview opt-in, reference-only geology or completed-outcome guard changes. Raw normal artifacts keep their execution provenance; final render and real download/import tests are separate.",
+  "unchangedGameplayProofAgainst9af48c40": [
+    {
+      "path": "shared/engine/src/engine.ts",
+      "sha256": "5ec0d73e878f864801af2e02ec106469c48fb1f4b6c2f5f1db3f56c7cde7292d",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/engine/src/enemyAI.ts",
+      "sha256": "c471c04a0c4409349240d296bc124179ed2e5586d9a24e139e8b3525b71add93",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/engine/src/existence.ts",
+      "sha256": "ff6d1a78e8fda0dcdc6d0aafdb66dad934407ef4d4f80e8a7e114e8981520d15",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/engine/src/skillMechanics.ts",
+      "sha256": "6c884aa830a3dc0d05bb909eec99b03cbf3aed0505d806120c9b4e2f86317064",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/engine/src/world.ts",
+      "sha256": "c98bd190016e0e330341b05388a208a99e961ac5a84d4c4f608b0e2750d92782",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/engine/src/progression.ts",
+      "sha256": "9f65add5a36aac0cee963efd63dc3b17f31941f379ce97820d55e9bb6469b44e",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/engine/src/passiveBalance.ts",
+      "sha256": "68d37bfd0710d22506c2fc076c21fdb84d6f18ebbeecd11fd747ceb6324941c8",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/engine/src/gateTravel.ts",
+      "sha256": "7ef5a27feb1397b90da6bc217f2c04950477f2ca86901b35417973553a872ef1",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/engine/src/mageGeometry.ts",
+      "sha256": "4f78543768aee3cb7e60082875647ba5fccf825b838458581a34d758edcbb62e",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/runtime/progression.js",
+      "sha256": "168ea610751aa299ac3e98c4dd242aa0d02d088a43b2cca6e0f19459db59e40e",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/runtime/world.js",
+      "sha256": "5c3487b2b027199a032c6ad62e301600c2466a6148b8259bca12b32d5a1c9d23",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/map/units.js",
+      "sha256": "adca4400d697da7d2859c8331e4f2590119e9803bd6e5887f0575c685b4c0222",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "shared/runtime/stage5-positioning.js",
+      "sha256": "a9619cb481593a7a8917916f33e49a605da058df733d3734de0dad29f28be624",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "tools/map-forge/stage5-positioning.mjs",
+      "sha256": "f025efa8e48b3084acf1c49a9dc212854093f56a2fcd7fb8e500027a0a50caa8",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "tools/map-forge/stage2-layered-road.mjs",
+      "sha256": "d7e658ed9d63adba1f5ca860072c7f76efe852af321cfd4c0fbdbd36aaf28d5d",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "tools/testing/stage5-positioning-play.mjs",
+      "sha256": "86c0719499b3bd199024eae5ffde775d8c9fdd6a9c051374d5ccc32107baddcb",
+      "sameAsInitialCombinedRuntime": true
+    },
+    {
+      "path": "tools/testing/stage2-layered-controller.js",
+      "sha256": "ff9041a4576c2404e8616fdc00fd22e9e7b13405fd5824633f700a9d2803ad82",
+      "sameAsInitialCombinedRuntime": true
+    }
+  ],
+  "normalStage2AndStage5CanonicalMapsUnchangedSince9af48c40": true,
+  "productionFrameByteIdenticalSince9af48c40": true,
+  "latestWebManifestSha256": "0a02ddd6558d8e84268a1963d9a1224345cc87b9a2765b5084511bcf407523e4",
+  "limits": [
+    "Physical devices/Safari not tested",
+    "Stage11 geometry-rebase fixture, explorer checkpoints, and ordinary obsolete-map restart are different evidence",
+    "No new public Pages deployment requested or attempted"
+  ]
+}

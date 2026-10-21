@@ -1,0 +1,515 @@
+{
+  "pass": true,
+  "scope": "Candidate integration, save-order fixtures and real App save path; not normal combat.",
+  "rows": [
+    {
+      "check": "three approved map sources; Stage2/5 authors and other27/library exact",
+      "pass": true
+    },
+    {
+      "check": "shared ledge background metadata stays within unchanged physical native-scale range",
+      "pass": true
+    },
+    {
+      "check": "Stage5 fresh merged HP/defense, initial12/cap4+20",
+      "difficulty": "explorer",
+      "stats": [
+        {
+          "id": "foe-0",
+          "kind": "hound",
+          "hp": 185,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-1",
+          "kind": "boar",
+          "hp": 185,
+          "base": 205.88897818483193,
+          "form": 0.96
+        },
+        {
+          "id": "foe-2",
+          "kind": "bat",
+          "hp": 101,
+          "base": 112.00360413254857,
+          "form": 1.15
+        },
+        {
+          "id": "foe-3",
+          "kind": "human",
+          "hp": 185,
+          "base": 205.88897818483193,
+          "form": 1
+        },
+        {
+          "id": "foe-4",
+          "kind": "hound",
+          "hp": 185,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-5",
+          "kind": "stag",
+          "hp": 185,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-6",
+          "kind": "human",
+          "hp": 185,
+          "base": 205.88897818483193,
+          "form": 1
+        },
+        {
+          "id": "foe-7",
+          "kind": "crow",
+          "hp": 115,
+          "base": 127.74475237377071,
+          "form": 1.15
+        },
+        {
+          "id": "foe-8",
+          "kind": "hound",
+          "hp": 185,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-9",
+          "kind": "stag",
+          "hp": 185,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-10",
+          "kind": "bat",
+          "hp": 101,
+          "base": 112.00360413254857,
+          "form": 1.15
+        },
+        {
+          "id": "foe-11",
+          "kind": "crow",
+          "hp": 115,
+          "base": 127.74475237377071,
+          "form": 1.15
+        }
+      ]
+    },
+    {
+      "check": "Stage5 fresh merged HP/defense, initial12/cap4+20",
+      "difficulty": "story",
+      "stats": [
+        {
+          "id": "foe-0",
+          "kind": "hound",
+          "hp": 216,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-1",
+          "kind": "boar",
+          "hp": 216,
+          "base": 205.88897818483193,
+          "form": 0.96
+        },
+        {
+          "id": "foe-2",
+          "kind": "bat",
+          "hp": 118,
+          "base": 112.00360413254857,
+          "form": 1.15
+        },
+        {
+          "id": "foe-3",
+          "kind": "human",
+          "hp": 216,
+          "base": 205.88897818483193,
+          "form": 1
+        },
+        {
+          "id": "foe-4",
+          "kind": "hound",
+          "hp": 216,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-5",
+          "kind": "stag",
+          "hp": 216,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-6",
+          "kind": "human",
+          "hp": 216,
+          "base": 205.88897818483193,
+          "form": 1
+        },
+        {
+          "id": "foe-7",
+          "kind": "crow",
+          "hp": 134,
+          "base": 127.74475237377071,
+          "form": 1.15
+        },
+        {
+          "id": "foe-8",
+          "kind": "hound",
+          "hp": 216,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-9",
+          "kind": "stag",
+          "hp": 216,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-10",
+          "kind": "bat",
+          "hp": 118,
+          "base": 112.00360413254857,
+          "form": 1.15
+        },
+        {
+          "id": "foe-11",
+          "kind": "crow",
+          "hp": 134,
+          "base": 127.74475237377071,
+          "form": 1.15
+        }
+      ]
+    },
+    {
+      "check": "Stage5 fresh merged HP/defense, initial12/cap4+20",
+      "difficulty": "normal",
+      "stats": [
+        {
+          "id": "foe-0",
+          "kind": "hound",
+          "hp": 268,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-1",
+          "kind": "boar",
+          "hp": 268,
+          "base": 205.88897818483193,
+          "form": 0.96
+        },
+        {
+          "id": "foe-2",
+          "kind": "bat",
+          "hp": 145,
+          "base": 112.00360413254857,
+          "form": 1.15
+        },
+        {
+          "id": "foe-3",
+          "kind": "human",
+          "hp": 268,
+          "base": 205.88897818483193,
+          "form": 1
+        },
+        {
+          "id": "foe-4",
+          "kind": "hound",
+          "hp": 268,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-5",
+          "kind": "stag",
+          "hp": 268,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-6",
+          "kind": "human",
+          "hp": 268,
+          "base": 205.88897818483193,
+          "form": 1
+        },
+        {
+          "id": "foe-7",
+          "kind": "crow",
+          "hp": 166,
+          "base": 127.74475237377071,
+          "form": 1.15
+        },
+        {
+          "id": "foe-8",
+          "kind": "hound",
+          "hp": 268,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-9",
+          "kind": "stag",
+          "hp": 268,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-10",
+          "kind": "bat",
+          "hp": 145,
+          "base": 112.00360413254857,
+          "form": 1.15
+        },
+        {
+          "id": "foe-11",
+          "kind": "crow",
+          "hp": 166,
+          "base": 127.74475237377071,
+          "form": 1.15
+        }
+      ]
+    },
+    {
+      "check": "Stage5 fresh merged HP/defense, initial12/cap4+20",
+      "difficulty": "veteran",
+      "stats": [
+        {
+          "id": "foe-0",
+          "kind": "hound",
+          "hp": 319,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-1",
+          "kind": "boar",
+          "hp": 319,
+          "base": 205.88897818483193,
+          "form": 0.96
+        },
+        {
+          "id": "foe-2",
+          "kind": "bat",
+          "hp": 174,
+          "base": 112.00360413254857,
+          "form": 1.15
+        },
+        {
+          "id": "foe-3",
+          "kind": "human",
+          "hp": 319,
+          "base": 205.88897818483193,
+          "form": 1
+        },
+        {
+          "id": "foe-4",
+          "kind": "hound",
+          "hp": 319,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-5",
+          "kind": "stag",
+          "hp": 319,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-6",
+          "kind": "human",
+          "hp": 319,
+          "base": 205.88897818483193,
+          "form": 1
+        },
+        {
+          "id": "foe-7",
+          "kind": "crow",
+          "hp": 198,
+          "base": 127.74475237377071,
+          "form": 1.15
+        },
+        {
+          "id": "foe-8",
+          "kind": "hound",
+          "hp": 319,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-9",
+          "kind": "stag",
+          "hp": 319,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-10",
+          "kind": "bat",
+          "hp": 174,
+          "base": 112.00360413254857,
+          "form": 1.15
+        },
+        {
+          "id": "foe-11",
+          "kind": "crow",
+          "hp": 198,
+          "base": 127.74475237377071,
+          "form": 1.15
+        }
+      ]
+    },
+    {
+      "check": "Stage5 fresh merged HP/defense, initial12/cap4+20",
+      "difficulty": "nightmare",
+      "stats": [
+        {
+          "id": "foe-0",
+          "kind": "hound",
+          "hp": 375,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-1",
+          "kind": "boar",
+          "hp": 375,
+          "base": 205.88897818483193,
+          "form": 0.96
+        },
+        {
+          "id": "foe-2",
+          "kind": "bat",
+          "hp": 204,
+          "base": 112.00360413254857,
+          "form": 1.15
+        },
+        {
+          "id": "foe-3",
+          "kind": "human",
+          "hp": 375,
+          "base": 205.88897818483193,
+          "form": 1
+        },
+        {
+          "id": "foe-4",
+          "kind": "hound",
+          "hp": 375,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-5",
+          "kind": "stag",
+          "hp": 375,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-6",
+          "kind": "human",
+          "hp": 375,
+          "base": 205.88897818483193,
+          "form": 1
+        },
+        {
+          "id": "foe-7",
+          "kind": "crow",
+          "hp": 232,
+          "base": 127.74475237377071,
+          "form": 1.15
+        },
+        {
+          "id": "foe-8",
+          "kind": "hound",
+          "hp": 375,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-9",
+          "kind": "stag",
+          "hp": 375,
+          "base": 205.88897818483193,
+          "form": 0.94
+        },
+        {
+          "id": "foe-10",
+          "kind": "bat",
+          "hp": 204,
+          "base": 112.00360413254857,
+          "form": 1.15
+        },
+        {
+          "id": "foe-11",
+          "kind": "crow",
+          "hp": 232,
+          "base": 127.74475237377071,
+          "form": 1.15
+        }
+      ]
+    },
+    {
+      "check": "ritual bounds and old gate policy marker; growth/reward weights; staged activation",
+      "pass": true
+    },
+    {
+      "check": "SP/air/map six-order repeat3 exact full-profile equality",
+      "obsolete": false,
+      "discarded": false
+    },
+    {
+      "check": "SP/air/map six-order repeat3 exact full-profile equality",
+      "obsolete": true,
+      "discarded": true
+    },
+    {
+      "check": "actual old R2 HP fractions, SP, resources, App import/export repeat2",
+      "pass": true
+    },
+    {
+      "check": "Stage2 default preview/campaign exact actors and warning opt-in; unversioned import preserved",
+      "pass": true
+    },
+    {
+      "check": "new Stage2 flightRegion plus fresh species balancing and cap3",
+      "flyers": [
+        {
+          "id": "foe-1",
+          "hp": 79,
+          "form": 1.15
+        },
+        {
+          "id": "foe-4",
+          "hp": 70,
+          "form": 1.15
+        },
+        {
+          "id": "foe-1-cluster",
+          "hp": 79,
+          "form": 1.15
+        },
+        {
+          "id": "foe-4-cluster",
+          "hp": 70,
+          "form": 1.15
+        }
+      ]
+    },
+    {
+      "check": "Stage11 original explorer save: SP/air/map six-order repeat3, exact profile and reward equality",
+      "pass": true
+    }
+  ]
+}

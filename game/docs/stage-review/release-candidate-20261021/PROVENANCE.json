@@ -1,0 +1,111 @@
+{
+  "branch": "integration/release-candidate-20261021",
+  "base": "728712f3db6157076fd7edd7ef0f90770069a6b5",
+  "approved12": "001653efe0bd0f5a80afbf5054c52c0618b681ee",
+  "latest12Implementation": "7ad53ad74aabbaa8c0aa13859cf1c08288a7392a",
+  "runtimeBuildSource": "8afb034e3f2ace33f35d6e5efa52d24167940a35",
+  "finalComprehensiveRunSource": "71643fdeccd480337b6987b76d504947556ca167",
+  "masterHeldAt": "bafc275c10c7a256692425641d7f0e4f69c002ca",
+  "pages": "held per parent final pixel approval; no public access attempted",
+  "remoteWrites": "normal non-force push to new branch only; first push71643fde confirmed",
+  "privateOtherCloudTasks": "not accessed, no instructions or reads attempted",
+  "sourceFiles": [
+    {
+      "path": "shared/build.mjs",
+      "bytes": 11089,
+      "sha256": "f80a4a7bfb230b70fba6ec8276be73ff020ddab850c865dbdde4da7fe2bda5a6"
+    },
+    {
+      "path": "shared/data/campaign.json",
+      "bytes": 8952224,
+      "sha256": "f323a3a3e31d9615a769906964609a2ffd073575570ff3577d4e8bc1ad83463a"
+    },
+    {
+      "path": "shared/map/compiler.js",
+      "bytes": 10823,
+      "sha256": "7b7115f4497cfe6e9582013d530a3cc381a7740c9d7ed47e0d1442274569c501"
+    },
+    {
+      "path": "shared/map/schema.js",
+      "bytes": 10762,
+      "sha256": "67c2e3810a90dd85ce8e4d8972f175db44051ef0ac4e08a88cc50245789018ad"
+    },
+    {
+      "path": "shared/runtime/elements.js",
+      "bytes": 6978,
+      "sha256": "b96f48edd607978c1d2f5ecce6ef2d39c902fffb96cf47aa95a14bb8e32a372e"
+    },
+    {
+      "path": "shared/runtime/art-dark.js",
+      "bytes": 48395,
+      "sha256": "2c15b7532e15436b463453a55a8e976a8d85d3ceca1a599667e6d27995b82e2d"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "bytes": 31509,
+      "sha256": "1b357a1ca29de05a1d442b72e8d168bfa694b054539f574ac56a0b168dcec319"
+    },
+    {
+      "path": "shared/runtime/geology-rear-support.js",
+      "bytes": 1257,
+      "sha256": "66e285f44cb927e23455274aa4c1a092b10eec447f86df6151945fe29126c488"
+    },
+    {
+      "path": "shared/runtime/stage12-quarry-art.js",
+      "bytes": 884,
+      "sha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f"
+    },
+    {
+      "path": "shared/runtime/campaign-map-revision.js",
+      "bytes": 2273,
+      "sha256": "64d3cd252c60663aba68c69a28f63e77c36fcdbab8a5bfa42bd81be97abc8849"
+    },
+    {
+      "path": "game/src/act-endings.css",
+      "bytes": 3373,
+      "sha256": "794fd610682674f0ea4b430be90ffa3d4ae6b19e3ee18636e7711a3f8b5f7f97"
+    },
+    {
+      "path": "tests/final-act-endings-browser.py",
+      "bytes": 12689,
+      "sha256": "ac0acec855d464ac59cf0f402355167f36492767637dd37f1d827edd375dfaf6"
+    },
+    {
+      "path": "tests/release-candidate-stage12-browser.py",
+      "bytes": 3873,
+      "sha256": "bfbe1cd1b21a4507a8a2a4fcaf80a90543235d2c20681280c68177ccbdf89eac"
+    },
+    {
+      "path": "tests/release-candidate-stage12-save-browser.py",
+      "bytes": 5329,
+      "sha256": "12ce408c9771126f3b064f8d50baee9b07a303318f0b81309926da91a6f43d0b"
+    },
+    {
+      "path": "web/manifest.json",
+      "bytes": 60957,
+      "sha256": "baf0e09778365a869caa6ccc3ff3a26e6753d7d8a501480b317e51387d7af069"
+    },
+    {
+      "path": "shared/assets/endings/act-1.webp",
+      "bytes": 458682,
+      "sha256": "bf0bc61f97eeaebeac36b769d8586a9b642433cea16a7888380d6a6a34001a71"
+    },
+    {
+      "path": "shared/assets/endings/act-2.webp",
+      "bytes": 471910,
+      "sha256": "dc73c708366e709ecf1a7c5aec0580f101a040ff745b1a4e8a6f1d774696eb1a"
+    },
+    {
+      "path": "shared/assets/endings/act-3.webp",
+      "bytes": 560200,
+      "sha256": "f301392ff96c38137ccd386c197443e163167079640c6aad88444be8db8af23b"
+    }
+  ],
+  "captureGroups": {
+    "endings-final": "71643fdeccd480337b6987b76d504947556ca167",
+    "stage12-final": "71643fdeccd480337b6987b76d504947556ca167",
+    "stage12-save-browser": "8afb034e3f2ace33f35d6e5efa52d24167940a35"
+  },
+  "review": "FINAL_REVIEW.md",
+  "evidenceManifest": "evidence/MANIFEST.json"
+}

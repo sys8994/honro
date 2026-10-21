@@ -1,40 +1,70 @@
-import {readFileSync} from 'node:fs';import {compileSVG} from './build-act2-art.mjs';import {stage11PineAsset} from './stage11-ravine-art.mjs';import {quarryY} from '../map-forge/stage12-quarry-geometry.mjs';
-export const STAGE12_ART_PREFIX='stage12:quarry-';const prefix=STAGE12_ART_PREFIX,clone=v=>JSON.parse(JSON.stringify(v));
-const path=(d,fill,stroke='',width=1)=>`<path d="${d}" fill="${fill}"${stroke?` stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round"`:''}/>`;
-const nodes=q=>1+(q.children||[]).reduce((n,q)=>n+nodes(q),0);
-function asset(key,name,body,box,{source=false,category='terrain',role='rock',extra={}}={}){const vector=compileSVG(source?body:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${box.join(' ')}">${body}</svg>`),[x,y,w,h]=vector.viewBox,count=nodes(vector.root);if(count>180)throw Error('Quarry vector budget '+key);return{id:prefix+key,name,category,environmentRole:role,vector,visual:[],collision:[],anchor:{x:0,y:0},sockets:[],bounds:{x,y,w,h},tags:['stage12-quarry','visual-only','editable-native-vector'],params:{artRevision:1,nodeCount:count,collisionSource:'authored-stage-terrain',...extra},reference:{heightM:h/60,bounds:{x,y,w,h},foot:{x:0,y:0},scaleRange:[.35,4],backgroundRange:[.35,4]}};}
-function register(p,a){const i=p.library.findIndex(v=>v.id===a.id);if(i<0)p.library.push(a);else p.library[i]=a;return a;}
-function on(p,s,a,id,support,x,scale=1){register(p,a);const y=quarryY(support,x),e={id:'sq-art-'+id,assetId:a.id,x,y,scale,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage12Support:{terrainId:support,x,y}};s.elements.push(e);return e;}
-function pine(key,height,variant){const a=clone(stage11PineAsset(key,{height,variant}));a.id=prefix+key;a.name='채석장 바위에 뿌리내린 소나무';a.tags=['stage12-quarry','visual-only','editable-native-vector'];a.params={...a.params,artRevision:1,collisionSource:'authored-stage-terrain'};return a;}
-function sign(){let b=path('M-124 3L-141-44-76-83 56-75 137-30 124 6Z','#70847c','#29454b',6);b+=path('M-141-44L-76-83 56-75 91-40 10-20-86-26Z','#abb09a');b+=path('M-71-83L-95-133-37-164 67-153 91-107 55-73Z','#768b81','#29464a',5);b+=path('M-95-133L-37-164 67-153 71-127-14-112Z','#b1b5a0');b+=path('M-34-165L-57-205-17-229 39-216 45-174Z','#809388','#334e50',5);b+=path('M-20-104L-42-184-28-264 31-258 39-178 12-107Z','#a6ad92','#324d4b',4);b+=path('M-14-234L19-226-4-207 25-195-10-169 17-147','none','#4b6158',5);b+=path('M25-228L33-207 12-184 26-169','none','#647464',3);return asset('one-waymark','겹친 획과 마른 받침돌의 길표 하나',b,[-154,-281,311,298]);}
-function cart(){let b=path('M-216-8L-132-29 144-24 237-4 215 11H-190Z','#233f46');b+=path('M-171-81L-204-148 121-160 183-79Z','#534e38','#253e3d',6);b+=path('M-204-148L-165-195 169-196 121-160Z','#928769','#384d42',5);b+=path('M121-160L169-196 222-112 183-79Z','#3d4436');b+=path('M-165-195L-145-176 124-176 151-195Z','#b0a27a');b+=path('M-204-147L-165-80M-105-150L-76-83M-8-151L13-84M91-155L108-84','none','#aa9970',9);for(const x of [-111,125]){b+=path(`M${x-44}-45a44 44 0 1 0 88 0a44 44 0 1 0-88 0Z`,'#46534b','#9a956e',10);b+=path(`M${x-29}-45H${x+29}M${x}-74V-16`,'none','#988a60',6);}b+=path('M177-80L314-108 320-94 190-65Z','#695f42');return asset('one-abandoned-cart','운반대 옆 멈춰 선 빈 수레 하나',b,[-233,-216,571,245],{category:'architecture',role:'architecture'});}
-function tools(){let b=path('M-146-1L-123-43-31-78 98-61 143-7Z','#72867c','#29454b',4)+path('M-123-43L-31-78 98-61 51-31-35-13Z','#a2aa91');b+=path('M-98-26L40-187 54-180-85-15Z','#8e7d57','#3e4e3e',5)+path('M6-179Q35-215 85-196L113-163 72-174 46-168 18-143Z','#647a76','#2c4244',5);return asset('fallen-cutting-tools','채석면에 놓인 곡괭이와 쐐기',b,[-158,-225,314,244]);}
-function stones(key=0){let b=path(key?'M-142 0L-117-67-43-127 61-100 134-29 143 3Z':'M-161 2L-137-87-55-160 22-150 144-65 164-4Z','#72887e','#29464b',5);b+=path(key?'M-117-67L-43-127 61-100 68-71-27-38Z':'M-137-87L-55-160 22-150 87-108 4-73-83-49Z','#aeb29a');b+=path(key?'M61-100L134-29 143 3 47-9 68-71Z':'M87-108L144-65 164-4 23-22 4-73Z','#425e61');return asset('weathered-stone-'+key,'채석면의 큰 자연 전석',b,[-177,-176,356,193]);}
-function rootedQuarry(st){
- // Recessed bedrock touches actual lower ground. It is deliberately darker,
- // behind all collision faces, with no bright walk rim or false platform top.
- const feet=[],foot=x=>{const y=quarryY('sq-lower-ground',x);feet.push({terrainId:'sq-lower-ground',x,y});return y;};
- const d0=foot(3490),d1=foot(4350),d2=foot(5360),b0=foot(5650),b1=foot(7030),b2=foot(8660),a0=foot(9440),a1=foot(10550);
- let body=path(`M3320 4470Q3570 4490 3810 4410L4560 4340 5410 4450 5690 4590Q5550 4650 5480 ${d2}L5360 ${d2}Q4880 4810 4350 ${d1}L3490 ${d0}Q3540 4650 3400 4570Z`,'#29464f');
- body+=path(`M3620 4500Q3890 4510 4110 4430L4560 4470 4680 4660 4350 ${d1}L4040 4770 3820 4720Z`,'#3b565b');
- body+=path(`M4560 4480L5220 4490 5550 4610 5360 ${d2}L5110 4830 4870 4720Z`,'#203e49');
- body+=path(`M5430 3860Q5840 3910 6130 3980L6760 4060Q7240 4010 7690 4160L8340 4120 8640 4060Q8580 4300 8660 ${b2}L8390 ${b2-15}Q7990 4730 7650 4730Q7310 4680 7030 ${b1}L6630 ${b1-70}Q6070 4770 5650 ${b0}L5480 ${b0-15}Q5730 4500 5570 4170Z`,'#26444f');
- body+=path(`M5860 4050L6250 4120 6560 4260 6410 4570Q6190 4700 5650 ${b0}L5660 ${b0-100}Q5890 4590 5800 4360Z`,'#39575e');
- body+=path(`M6740 4140L7270 4200 7500 4400 7310 4660 7030 ${b1}L6760 ${b1-85}Q6940 4520 6740 4370Z`,'#1c3c48');
- body+=path(`M8190 4050L8580 4100 8640 4390 8470 4740 8660 ${b2}L8360 ${b2-20}Q8080 4930 8140 4560Z`,'#36555e');
- body+=path(`M8230 3250L8840 3220Q9230 3320 9600 3270L10280 3250 10900 3310Q10800 4070 10550 ${a1}L10210 ${a1-70}Q9820 5410 9440 ${a0}L9150 ${a0-110}Q9250 5040 8880 4420Q8660 3730 8230 3250Z`,'#294751');
- body+=path(`M9060 3300L9650 3400 9810 3950 9550 4570 9780 5140 9440 ${a0}L9320 ${a0-180}Q9390 5070 9060 4320Z`,'#3a5860');
- body+=path(`M9940 3310L10600 3330 10490 4090 10260 4720 10550 ${a1}L10210 ${a1-70}Q9850 5110 9920 4570L10100 3970Z`,'#1d3b48');
- return {asset:asset('recessed-mother-rock','보행면 뒤에서 실제 기반에 닿는 채석장 모암',body,[3200,3100,7900,3700],{extra:{rearOnly:true,noWalkRim:true,collisionSource:'none',supports:feet,depthRelationship:'recessed-behind-real-solid-and-lower-ground'}}),feet};
-}
-function quarryPillar(){let b=path('M-153 1L-127-78-98-119 109-116 150-17 131 6Z','#334e51')+path('M-94-112L-117-277-67-405 24-446 106-380 104-176 78-105Z','#526e6b','#2a4449',5);b+=path('M-117-277L-67-405 24-446 28-306-19-165-94-112Z','#91a18b');b+=path('M24-446L106-380 104-176 78-105-19-165 28-306Z','#38575b');b+=path('M-91-298L-19-332 20-315-8-219-73-187Z','#afbaa033');b+=path('M-67-405L-57-373M-40-417L-35-387M-14-431L-13-404','none','#2c4a4b',7);return asset('remaining-pillar','캐내지 않고 남겨 둔 비대칭 돌기둥과 쐐기흔적',b,[-170,-459,342,478]);}
-function carrierRubble(){let b=path('M-340 0L-289-25H278L342 3Z','#2c4649');b+=path('M-288-12L-273-53 245-57 283-11Z','#594f3b','#294341',5);b+=path('M-273-53L-224-74 279-73 245-57Z','#9b8b63');b+=path('M-194-73L-216-203-148-252-14-231 49-130 13-74Z','#6f8780','#2e4c50',5);b+=path('M-216-203L-148-252-14-231 1-190-123-147Z','#aab19b');b+=path('M1-190L49-130 13-74-66-90-123-147Z','#456469');b+=path('M32-67L14-134 63-197 161-195 253-127 263-61Z','#798f85','#2e4a4d',5);b+=path('M14-134L63-197 161-195 181-154 117-129 41-108Z','#b0b69f');b+=path('M181-154L253-127 263-61 164-71 117-129Z','#446268');return asset('carrier-rubble','운반대에 모아 둔 큰 잔석과 굵은 받침목',b,[-352,-269,712,292],{category:'architecture',role:'architecture'});}
-export function applyStage12QuarryArt(project){const s=project.stages.find(s=>s.metadata?.stageId===12);if(s?.initialState?.honroQuarryRevision!==1)throw Error('Quarry art requires revision1');s.elements=s.elements.filter(e=>!e.id.startsWith('sq-art-'));
- const backdrop=register(project,asset('far-mountain','능선 허리 안개를 두른 단 하나의 먹산',readFileSync(new URL('../../shared/assets/environment/stage12-quarry-far.svg',import.meta.url),'utf8'),null,{source:true,role:'mountain',extra:{skyOnly:true,collisionSource:'none'}}));
- const rear=rootedQuarry(s);register(project,rear.asset);s.elements.push({id:'sq-art-recessed-mother-rock',assetId:rear.asset.id,x:0,y:0,scale:1,rotation:0,snap:false,depthLayer:'L1',layer:'back',stage12Supports:rear.feet});
- on(project,s,sign(),'waymark','sq-lower-ground',6520);on(project,s,cart(),'abandoned-cart','sq-north-quarry',7730,.55);on(project,s,tools(),'cutting-tools','sq-west-quarry',4870,.45);on(project,s,quarryPillar(),'remaining-pillar','sq-west-quarry',4500,.70);on(project,s,carrierRubble(),'carrier-rubble','sq-north-quarry',7810,.62);
- for(const row of [{key:'bent-waymark-pine',height:510,variant:3,support:'sq-lower-ground',x:6210},{key:'old-road-pine',height:680,variant:1,support:'sq-old-road',x:9840},{key:'western-pine',height:560,variant:2,support:'sq-west-quarry',x:4140},{key:'rear-root-pine',height:390,variant:0,support:'sq-back-road',x:8500}])on(project,s,pine(row.key,row.height,row.variant),row.key,row.support,row.x);
- for(const [i,row]of [['sq-old-road',8790,.8],['sq-west-quarry',4600,.7],['sq-lower-ground',4370,.8],['sq-lower-ground',6060,.6],['sq-back-road',7850,.65],['sq-lower-ground',8100,.72]].entries())on(project,s,stones(i%2),'natural-stone-'+i,...row);
- s.environment.placements=[];s.environment.groups=[];s.environment.surfaces=[];s.environment.skyVisible=true;s.environment.atmosphere={preset:'valley',overrides:{skyTop:'#1a303f',skyBottom:'#6d8384',hazeStrength:.19,mistStrength:.035,lightStrength:.05}};
- s.design.quarryArt={revision:1,nativeVectorOnly:true,source:'stage12-authored-terrain',backdropAsset:backdrop,artAssetIds:s.elements.map(e=>e.assetId),supports:s.elements.flatMap(e=>e.stage12Support?[{id:e.id,...e.stage12Support}]:(e.stage12Supports||[]).map(p=>({id:e.id,...p}))),budgets:{maxNodesPerAsset:180,maxSkyRasterPixels:1944000},landmarks:['sq-art-waymark','sq-art-bent-waymark-pine','sq-art-abandoned-cart']};return project;
+import {applyCommonCartArt} from './common-cart-art.mjs';
+/** Stage12 visual references only. No chapter-local pine, terrain or rock paths.
+ * Existing Library definitions and every physical field remain untouched. */
+const clone=v=>JSON.parse(JSON.stringify(v));
+export const STAGE12_ART_PREFIX='stage12:quarry-'; // Legacy save/library identity only.
+export const QUARRY_COMMON_ASSETS={
+ 'sq-art-bent-waymark-pine':{assetId:'act1-scene:rooted-pine',scale:.69,rotation:0},
+ 'sq-art-old-road-pine':{assetId:'act1-scene:rooted-pine',scale:.77,rotation:0},
+ 'sq-art-western-pine':{assetId:'act1-scene:rooted-pine',scale:.7,rotation:0},
+ 'sq-art-rear-root-pine':{assetId:'act1-scene:rooted-pine',scale:.52,rotation:0},
+ 'sq-art-waymark':{assetId:'builtin:receiverStone',scale:1.8},
+ 'sq-art-abandoned-cart':{assetId:'builtin:singleRefugeeCart',scale:1.6},
+ 'sq-art-remaining-pillar':{assetId:'act2:rock-column',scale:.4},
+ 'sq-art-carrier-rubble':{assetId:'act2:rock-bank',scale:1.15},
+ ...Object.fromEntries([1.4,1.25,1.4,1,1.15,1.25].map((scale,i)=>['sq-art-natural-stone-'+i,{assetId:'act2:rock-bank',scale}]))
+};
+// Existing shared art is inserted into the host's front exposure. These
+// anchors are real walking or explicitly named solid boundary edges.
+export const QUARRY_FACE_ATTACHMENTS=[
+ {id:'quarry-face-old-road-west',assetId:'geology:granite-foundation',terrainId:'sq-old-road',anchor:{edge:1,along:.8},depthMode:'base',inset:80,scale:.95,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-old-road-crown',assetId:'geology:granite-vertical',terrainId:'sq-old-road',anchor:{edge:4,along:.9},depthMode:'base',inset:120,scale:.85,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-old-road-east',assetId:'geology:granite-vertical-cleft',terrainId:'sq-old-road',anchor:{edge:6,along:.65},depthMode:'base',inset:70,scale:.9,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-west-workface',assetId:'geology:granite-foundation',terrainId:'sq-west-quarry',anchor:{edge:2,along:.7},depthMode:'base',inset:70,scale:.9,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-north-foundation',assetId:'geology:granite-foundation',terrainId:'sq-north-quarry',anchor:{edge:3,along:.6},depthMode:'base',inset:140,scale:1.05,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-north-west',assetId:'geology:granite-vertical',terrainId:'sq-north-quarry',anchor:{edge:1,along:.9},depthMode:'base',inset:80,scale:.9,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-north-crown',assetId:'geology:granite-vertical-cleft',terrainId:'sq-north-quarry',anchor:{edge:5,along:.3},depthMode:'base',inset:140,scale:1,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-north-toe',assetId:'geology:granite-ledge-neck',terrainId:'sq-north-quarry',anchor:{edge:9,along:.35},depthMode:'base',inset:60,scale:.8,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-back-neck',assetId:'geology:granite-ledge-neck',terrainId:'sq-back-road',anchor:{edge:2,along:.25},depthMode:'surface',inset:500,scale:1,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-cave-buttress',assetId:'geology:granite-vertical',terrainId:'sq-cave-buttress',anchor:{kind:'boundary',edge:0,along:.55},depthMode:'surface',inset:1300,scale:.85,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-lower-foundation',assetId:'geology:granite-foundation',terrainId:'sq-lower-ground',anchor:{edge:17,along:.935},depthMode:'surface',inset:2200,scale:1.1,walkClearance:28,replaceBlocks:true,embedFade:200},
+ {id:'quarry-face-sign-granite',assetId:'geology:granite-vertical-cleft',terrainId:'sq-lower-ground',anchor:{edge:17,along:.05},depthMode:'surface',inset:1600,scale:1.05,walkClearance:28,replaceBlocks:true},
+ {id:'quarry-face-sign-neck',assetId:'geology:granite-ledge-neck',terrainId:'sq-lower-ground',anchor:{edge:17,along:.05},depthMode:'surface',inset:610,scale:1,walkClearance:28,replaceBlocks:true,embedFade:180}
+];
+// Feet/socket contacts sit on the actual lower return terrain. These three
+// unequal rear masses support the left workface and the north mass's east root;
+// the central return and cave opening retain sky/air on either side.
+export const QUARRY_REAR_GEOLOGY={version:1,renderLayer:'back',visualDepth:'L2',brightness:.74,instances:[
+ {id:'quarry-rear-west-foot',assetId:'geology:granite-foundation',scale:.9,support:{terrainId:'sq-lower-ground',at:4130/11200,offsetY:50}},
+ {id:'quarry-rear-north-root',assetId:'geology:granite-vertical',scale:.9,socket:'lower-rear',support:{terrainId:'sq-lower-ground',at:7800/11200}},
+ {id:'quarry-rear-north-foot',assetId:'geology:granite-foundation',scale:1.1,support:{terrainId:'sq-lower-ground',at:7800/11200,offsetY:60}}
+]};
+export function applyStage12QuarryArt(project,{sourceStage}={}){
+ applyCommonCartArt(project);
+ const s=project.stages.find(s=>s.metadata?.stageId===12),source=sourceStage||s;
+ if(s?.initialState?.honroQuarryRevision!==1)throw Error('Quarry art requires existing revision1 geography');
+ const decorative=source.elements.filter(e=>e.id.startsWith('sq-art-')&&e.id!=='sq-art-recessed-mother-rock').map(clone);
+ if(!decorative.length)throw Error('Existing quarry placement source required; do not invent a new layout');
+ for(const e of decorative){const spec=QUARRY_COMMON_ASSETS[e.id];if(!spec)continue;
+  const a=project.library.find(a=>a.id===spec.assetId);if(!a||a.collision?.length)throw Error('Missing/nondecorative common asset '+spec.assetId);
+  if(spec.scale<a.reference.scaleRange[0]||spec.scale>a.reference.scaleRange[1])throw Error('Asset scale outside original range');
+  Object.assign(e,spec);
+  // Only the loose decorative load moves. Keep the cart, objective and all
+  // functional coordinates fixed; put this shared rock beside the wheel bay.
+  if(e.id==='sq-art-carrier-rubble'){
+   const cart=decorative.find(e=>e.id==='sq-art-abandoned-cart'),t=s.terrains.find(t=>t.id===cart.stage12Support.terrainId),x=(cart.stage12CartSourceSupport||cart.stage12Support).x+300;
+   const i=t.properties.honroWalkEdges.find(i=>t.points[i].x<=x&&x<=t.points[i+1].x),u=t.points[i],v=t.points[i+1];
+   e.stage12Support={terrainId:t.id,x,y:u.y+(v.y-u.y)*(x-u.x)/(v.x-u.x)};e.rotation=Math.atan2(v.y-u.y,v.x-u.x);
+  }
+  if(e.id==='sq-art-abandoned-cart'){e.stage12CartSourceSupport??=clone(e.stage12Support);const t=s.terrains.find(t=>t.id===e.stage12CartSourceSupport.terrainId),x=e.stage12CartSourceSupport.x+20;for(const i of t.properties.honroWalkEdges){const u=t.points[i],v=t.points[i+1];if(u.x<=x&&x<=v.x){e.stage12Support={terrainId:t.id,x,y:u.y+(v.y-u.y)*(x-u.x)/(v.x-u.x)};e.rotation=Math.atan2(v.y-u.y,v.x-u.x);break;}}}
+  const fx=(a.reference.foot.x||0)-(a.anchor?.x||0),fy=(a.reference.foot.y||0)-(a.anchor?.y||0),cs=Math.cos(e.rotation||0),sn=Math.sin(e.rotation||0);
+  e.x=e.stage12Support.x-(fx*cs-fy*sn)*e.scale;e.y=e.stage12Support.y-(fx*sn+fy*cs)*e.scale;
+ }
+ s.elements=[...s.elements.filter(e=>!e.id.startsWith('sq-art-')),...decorative];
+ s.environment=clone(source.environment);
+ s.design.space.terrainAttachments=clone(QUARRY_FACE_ATTACHMENTS);
+ s.design.geologyComposition=clone(QUARRY_REAR_GEOLOGY);
+ const art=clone(source.design.quarryArt);delete art.commonPilot;delete art.backdropAsset;
+ Object.assign(art,{source:'shared-terrain-and-existing-common-assets',artAssetIds:[...s.elements,...QUARRY_FACE_ATTACHMENTS,...QUARRY_REAR_GEOLOGY.instances].map(e=>e.assetId),commonFull:{revision:1,assets:clone(QUARRY_COMMON_ASSETS),retiredDecorativeIds:['sq-art-recessed-mother-rock'],unfulfilled:[{id:'sq-art-cutting-tools',assetId:'stage12:quarry-fallen-cutting-tools',reason:'No matching shared fallen-pickaxe prop found; existing narrative tool drawing retained.'}]}});
+ s.design.quarryArt=art;return project;
 }

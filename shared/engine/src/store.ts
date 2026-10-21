@@ -1,4 +1,5 @@
 import {poly} from './math';
+import {SP_BALANCE_REVISION} from './passiveBalance';
 import {migrateSkills,SKILL_REVISION} from './skillMechanics';
 import {validPhysics} from './physics';
 import type { Profile, Battle, ClassId, HeroProgress, Roster } from './types';
@@ -160,7 +161,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
     if(b.skillRevision!==undefined&&b.skillRevision!==SKILL_REVISION)return fail();
     if(b.martialRevision!==undefined&&b.martialRevision!==1)return fail();
     if(b.occultRevision!==undefined&&b.occultRevision!==1)return fail();
-    if(b.spBalanceRevision!==undefined&&b.spBalanceRevision!==1)return fail();
+    if(b.spBalanceRevision!==undefined&&(!Number.isInteger(b.spBalanceRevision)||b.spBalanceRevision<1||b.spBalanceRevision>SP_BALANCE_REVISION))return fail();
     const optionalNumber=(v:unknown,min=0,max=1e12)=>v===undefined||finite(v)&&(v as number)>=min&&(v as number)<=max;
     for(const u of b.units){
         if(!optionalNumber(u.arrowTurn)||u.arrowTurnToken!==undefined&&!safe(u.arrowTurnToken)||!optionalNumber(u.salheunFlash,0,1)||!optionalNumber(u.jucheon,0,108)||!optionalNumber(u.bladeStored,0,.450001))return fail();
@@ -170,6 +171,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
         if(u.wardenRecoveryRound!==undefined&&(!Number.isInteger(u.wardenRecoveryRound)||u.wardenRecoveryRound<0))return fail();
         if(u.martialGuard&&(!nums(u.martialGuard,['round','reduction'])||u.martialGuard.reduction<0||u.martialGuard.reduction>.425001||u.martialGuard.counter!==undefined&&typeof u.martialGuard.counter!=='boolean'||!optionalNumber(u.martialGuard.rank,1,8)))return fail();
         if(u.bladeScreen&&(!nums(u.bladeScreen,['round','rank','hits','facing'])||u.bladeScreen.rank<1||u.bladeScreen.rank>8||u.bladeScreen.hits<0||u.bladeScreen.hits>7||![-1,1].includes(u.bladeScreen.facing)))return fail();
+        if(u.beastAction){const a=u.beastAction;if(!['HBM01','HBM02','HBM03'].includes(a.skill)||!ids.has(a.target)||!nums(a,['elapsed','damage','shot','facing','travel'])||a.elapsed<0||a.elapsed>2||a.damage<0||a.travel<0||a.travel>72||![-1,1].includes(a.facing)||typeof a.struck!=='boolean')return fail();}
         if(u.meleeAction){const a=u.meleeAction;if(!SKILLS[a.skill]?.martial||!nums(a,['elapsed','index','damage','range','power','shot'])||a.elapsed<0||a.elapsed>5||a.index<0||a.index>8||a.damage<0||a.range<0||a.power<0||a.power>1||a.target!==undefined&&!ids.has(a.target)||!optionalNumber(a.lifeCost,0,50000))return fail();}
         if(u.mageWardShot!==undefined&&(!Number.isInteger(u.mageWardShot)||u.mageWardShot<0))return fail();
         if(u.salheun){if(!object(u.salheun))return fail();for(const [owner,h] of Object.entries(u.salheun)){if(!ids.has(owner)||!nums(h,['action','recorded','cap'])||h.recorded<0||h.cap<0||h.recorded>h.cap+.01||!Array.isArray(h.entries)||h.entries.length>5||h.entries.some(v=>!nums(v,['turn','damage'])||v.turn<0||v.damage<0)||!Array.isArray(h.projectiles)||h.projectiles.length>64||h.projectiles.some(v=>!finite(v)))return fail();}}

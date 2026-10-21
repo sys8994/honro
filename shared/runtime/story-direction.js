@@ -9,8 +9,8 @@ const cast={
 // Existing civilian/escort bodies already represent these people in the scene.
 const speakers={13:{'석공':'resident-1'},14:{'주민':'resident-2','중층 주민':'resident-2','길찬':'resident-1'},16:{'승려':'resident-1','노승':'objective'},19:{'동생을 잃은 형':'mourner-brother','언니를 잃은 동생':'mourner-sister'},20:{'주민':'objective','길찬':'convoy-gilchan','석공':'convoy-mason'}};
 function speaker(app,who){const b=app.engine?.b;if(b?.honroStaging?.cinematic!==2||b.honroCustom)return null;const fresh14=b.honroStage===14&&b.honroNarrativeRevision===1,id=fresh14&&who==='중층 주민'?(b.honroMarkers?.find(m=>m.id==='family-mid')?.target||'resident-3'):fresh14&&who==='주민'?'objective':speakers[b.honroStage]?.[who],u=b.units.find(u=>u.id===id)||b.honroConvoyActors?.find(u=>u.id===id);return u&&!u.dead&&u.hp>0?u:null;}
-const face=(actor,at,pose='point',camera=false)=>({type:'look',actor,at,pose,camera,scale:camera?1.05:undefined,duration:650});
-const shot=at=>({type:'look',at,duration:650,scale:1.05});
+const face=(actor,at,pose='point',camera=false)=>({type:'look',actor,at,pose,camera,scale:camera? .8:undefined,duration:650});
+const shot=at=>({type:'look',at,duration:650,scale:.8});
 const pose=(actor,kind,at)=>face(actor,at||{actor:'archer'},kind);
 const step=(actor,dx)=>({type:'move',actor,to:{origin:actor,dx},duration:850,focus:false});
 const toward=(actor,at,distance=48)=>({type:'move',actor,towards:at,distance,duration:950,focus:false});

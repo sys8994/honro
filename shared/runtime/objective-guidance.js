@@ -16,7 +16,7 @@ const endings={
  7:'주민 셋 구조 뒤 2라운드 동안 모두 보호하면 완료',
  8:'결박 둘과 빈 상여를 제압한 뒤 1라운드 수습하면 완료',
  9:'받이진 둘 설치 뒤 일행을 2라운드 보호하면 완료',
- 10:'협력이 시작된 소단을 적 턴 6회 동안 보호하면 완료'
+ 10:'소단을 적 턴 6회 보호한 뒤 한 명이 동쪽 안전 출구에 도착하면 일행과 함께 철수'
 };
 function ending(b,st,list){if(b.honroNarrativeRevision===1&&st.id===8)return '결박 둘과 빈 상여를 제압하면 완료';if(b.honroNarrativeRevision===1&&st.id===9)return '받이진 둘이 연결되면 완료';if(endings[st.id])return endings[st.id];const s=list.at(-1);return s?stepText(s,st.id)+'하면 완료':st.goal;}
 function failure(b,st,list,result){const parts=['동행 전원 전투불능'];const protectedUnits=b.units.filter(u=>u.honroProtected||u.id==='objective'||st.id===7&&(b.honroMarkers||[]).some(m=>m.action==='rescue'&&m.target===u.id));
@@ -65,7 +65,7 @@ function legacySteps(b,st,r){const h=b.honroState||{},out=[],add=(id,text,done=f
  case 7:marks.filter(m=>m.action==='rescue').forEach((m,i)=>add(m.id,'주민 '+(i+1)+' 곁에서 구조하세요',!!m.collected));hold('구조한 주민들을 2턴 보호하세요');break;
  case 8:seals.forEach((t,i)=>add(t.id,'상여 결박 '+(i+1)+'을 공격하세요',!!t.broken));add('boss','빈 상여를 쓰러뜨리세요',!!boss?.dead);if(b.honroNarrativeRevision!==1)hold('주변을 1턴 지키세요');break;
  case 9:marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+'을 활성화하세요',!!m.collected));if(b.honroNarrativeRevision!==1)hold('일행을 2턴 보호하세요');break;
- case 10:if(b.honroNarrativeRevision===1){add('binding','바깥 붉은 주박을 공격하세요',!!G.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding')?.broken);add('accept','소단이 힘을 맡기도록 곁을 지키세요',!!h.sodanCoop);add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',r.complete);break;}add('weaken','소단의 주박을 약화하세요',!!h.sodanCoop||!!boss&&boss.hp<=boss.maxHp*.42);marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+'을 활성화하세요',!!m.collected));add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',r.complete);break;
+ case 10:if(b.honroNarrativeRevision===1){add('binding','바깥 붉은 주박을 공격하세요',!!G.HonroQuestTargets.records(b).find(t=>t.id==='sodan-binding')?.broken);add('accept','소단이 힘을 맡기도록 곁을 지키세요',!!h.sodanCoop);add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',!!h.sodanCoop&&(h.coopHold||0)>=6);add('sodan-safe-exit','소단을 지키며 한 명으로 동쪽 안전 출구 확보',G.HonroSodanWithdrawal.complete(b));break;}add('weaken','소단의 주박을 약화하세요',!!h.sodanCoop||!!boss&&boss.hp<=boss.maxHp*.42);marks.filter(m=>m.action==='receiver').forEach((m,i)=>add(m.id,'받이진 '+(i+1)+'을 활성화하세요',!!m.collected));add('protect','소단을 지켜 주세요 · '+Math.max(0,6-(h.coopHold||0))+'턴 남음',!!h.sodanCoop&&(h.coopHold||0)>=6);add('sodan-safe-exit','소단을 지키며 한 명으로 동쪽 안전 출구 확보',G.HonroSodanWithdrawal.complete(b));break;
  default:add('current',r.summary,r.complete);
  }return out;
 }

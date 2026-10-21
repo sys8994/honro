@@ -1,0 +1,20 @@
+PASS ritual 1490 round 5 cap 4 beast casts [ [ 'foe-0', 'HBM01' ] ] damage [
+  {
+    frame: 558,
+    round: 3,
+    target: 'p-archer',
+    owner: 'foe-6',
+    loss: 19
+  },
+  {
+    frame: 647,
+    round: 3,
+    target: 'p-archer',
+    owner: 'foe-7',
+    loss: 19
+  },
+  { frame: 936, round: 4, target: 'p-archer', owner: 'foe-2', loss: 9 }
+]
+PASS ritual 1640 round 5 cap 4 beast casts [ [ 'foe-0', 'HBM01' ] ] damage [
+  { frame: 869, round: 4, target: 'p-archer', owner: 'foe-2', loss: 9 }
+]

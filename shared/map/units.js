@@ -17,7 +17,7 @@ function create(record,b,profile,st){
   const {runtimeTemplate,kind,team,stageOverrides,...data}=record;u=clone(data);
  }else if(H.hero[record.kind]){
   u=C.makeUnit(record.kind,side,record.x,record.y,{id:record.id,name:H.hero[record.kind].name,h:92,r:22,loadout:[...profile.loadouts[record.kind]],tune:profile.tuning[record.kind]??.5});
- }else if(G.HonroWorld.archetypes[record.kind])u=G.HonroWorld.createEnemy(b,st,record.x,record.kind,record.spawnIndex??0,record.y,true);
+ }else if(G.HonroWorld.archetypes[record.kind])u=G.HonroWorld.createEnemy(b,st,record.x,record.kind,record.spawnIndex??0,record.y,true,!!(record.boss||record.miniboss||record.stageOverrides?.honroMidboss||record.stageOverrides?.honroFinalBoss));
  else if(record.kind.startsWith('ally:'))u=G.HonroWorld.ally(b,st,record.id,record.kind.slice(5),record.x,record.y);
  else if(record.kind.startsWith('boss:')){
   const source=(G.HONRO_PROJECT?.unitTemplates||G.HONRO_PROJECT?.stages.flatMap(s=>s.units||[]))?.find(u=>u.kind===record.kind);if(!source)throw Error('Missing boss definition');u=clone(source);delete u.runtimeTemplate;
@@ -38,7 +38,7 @@ function create(record,b,profile,st){
  if(record.miniboss!==undefined)u.honroMidboss=record.miniboss;
  if(record.levelOverride!==undefined){u.level=record.levelOverride;if(side===0){const h=clone(b.heroes[u.cls]);h.xp=C.xpAtLevel(u.level);C.applyHero(u,h,true);}}
  if(record.rank!==undefined)for(const id of u.loadout)u.ranks[id]=record.rank;
- Object.assign(u,clone(record.stageOverrides||{}));return u;
+ Object.assign(u,clone(record.stageOverrides||{}));C.migrateAirborneBalance(u);return u;
 }
 function record(kind,id,x,y,team){const d=catalog().find(d=>d.kind===kind);if(!d)throw Error('Unknown unit '+kind);return{id,kind,team:team||d.team,x,y,facing:1};}
 G.HonroUnits={catalog,has,kindOf,create,record,teams};

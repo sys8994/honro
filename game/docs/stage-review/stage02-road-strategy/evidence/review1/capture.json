@@ -1,0 +1,36 @@
+{
+  "sha": "27efe8ebdab24e147494196a515641e0629e4656",
+  "renderSha256": "f96be8bf9b83dd7177eb69d07e0c00f24356ed7221de1a55dec19f1417507e04",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M shared/engine/src/enemyAI.ts\n M shared/runtime/campaign-map-revision.js\n M shared/runtime/stage2-layered-road-art.js\n M tools/environment/act1-scene-composition.mjs\n M tools/map-forge/stage2-layered-road.mjs\n D web/data/campaign-library.c022227296153d84.json\n D web/data/campaign.8bddf0dcb5c5b39c.json\n D web/data/chapter-02-assets.ade28c28dcdf2ea0.json\n D web/entries/game.25beb00f6f7d41ff.js\n D web/entries/game.b51f2246b92ef040.html\n D web/entries/workshop.ecb9a46b4bb284f6.js\n M web/manifest.json\n D web/runtime/campaign.fe55c9d70b8d68f8.js\n?? web/data/campaign.40917f8a66fece4b.json\n?? web/data/chapter-02.7042670b8a575325.json\n?? web/entries/game.021335a7aa68f96a.html\n?? web/entries/game.60cab8f459a5d297.js\n?? web/entries/workshop.00042ea53f28712f.js\n?? web/runtime/campaign.55a7a5a30e4e20ab.js\n?? web/runtime/ordered-common-12.dddbf1023a85f216.js\n?? web/runtime/ordered-common-2.c2ea385ae810fac3.js\n?? web/runtime/ordered-common-4.409683d0a4d0b992.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "normal",
+      "camera": {
+        "x": 1000,
+        "y": 800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile",
+      "camera": {
+        "x": 290,
+        "y": 520,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

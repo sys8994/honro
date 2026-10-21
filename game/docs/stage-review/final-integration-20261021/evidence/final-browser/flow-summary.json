@@ -1,0 +1,49 @@
+{
+  "rows": [
+    {
+      "stage": 10,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "shared/assets/endings/act-1.webp",
+        "fit": "contain"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    },
+    {
+      "stage": 20,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "shared/assets/endings/act-2.webp",
+        "fit": "contain"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    },
+    {
+      "stage": 30,
+      "image": {
+        "width": 1672,
+        "height": 941,
+        "src": "shared/assets/endings/act-3.webp",
+        "fit": "contain"
+      },
+      "flow": "touch/click/Enter/Space; 4 cuts/title/rest",
+      "pendingCut2ReloadAndFileImport": true,
+      "outcomeGuard": true,
+      "settledReload": true,
+      "scope": "terminal battle fixture, not a normal combat run"
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "initialLazyLoad": true
+}

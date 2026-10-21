@@ -1,0 +1,285 @@
+{
+  "pass": true,
+  "prior": "728712f3db6157076fd7edd7ef0f90770069a6b5",
+  "approved": "001653efe0bd0f5a80afbf5054c52c0618b681ee",
+  "other29Exact": true,
+  "stage12Exact": true,
+  "oldLibraryEntriesExact": 845,
+  "addedLibraryIds": [
+    "geology:granite-vertical",
+    "geology:granite-vertical-cleft",
+    "geology:granite-foundation",
+    "wood:pine-wall-root",
+    "geology:granite-ledge-neck",
+    "builtin:singleRefugeeCart"
+  ],
+  "preserved": [
+    {
+      "file": "shared/assets/endings/act-1.webp",
+      "sha256": "bf0bc61f97eeaebeac36b769d8586a9b642433cea16a7888380d6a6a34001a71"
+    },
+    {
+      "file": "shared/assets/endings/act-2.webp",
+      "sha256": "dc73c708366e709ecf1a7c5aec0580f101a040ff745b1a4e8a6f1d774696eb1a"
+    },
+    {
+      "file": "shared/assets/endings/act-3.webp",
+      "sha256": "f301392ff96c38137ccd386c197443e163167079640c6aad88444be8db8af23b"
+    },
+    {
+      "file": "shared/engine/src/art.ts",
+      "sha256": "078b58bef9afe800865dbb599917d47795d7321a330647740b3c8609c18ed426"
+    },
+    {
+      "file": "shared/engine/src/atlasControls.ts",
+      "sha256": "448468a248322ca5c2a0538100ae90acc73c3b0e5c080c3a73b3396853431dce"
+    },
+    {
+      "file": "shared/engine/src/atlasLayout.ts",
+      "sha256": "722a5d2b91e8329bf3ce51260a425ca0134ecba36da19208ffa229671ca4f05a"
+    },
+    {
+      "file": "shared/engine/src/audio.ts",
+      "sha256": "86395e0849ce47a6e6ff3d2b10f4c3e231da788fb0ebfd0c8ad8993caed254a4"
+    },
+    {
+      "file": "shared/engine/src/balance.ts",
+      "sha256": "690953ecf871940ca799ee84581d9e873e21696b1a3886d7eb509d41008479b3"
+    },
+    {
+      "file": "shared/engine/src/balanceModel.ts",
+      "sha256": "afcb34d9bf641080b50fcc25b619cce241ce27c3b11172f62e0c36d11d656770"
+    },
+    {
+      "file": "shared/engine/src/beastMelee.ts",
+      "sha256": "5a3957c5b86941c649232040eabf49ff6cd87b69546770c9902c7a820407941b"
+    },
+    {
+      "file": "shared/engine/src/bgm.ts",
+      "sha256": "c447626fdfdd80c6706a69df17d6f3a36b698498d9029d2485d11bd30e680f5b"
+    },
+    {
+      "file": "shared/engine/src/campUI.ts",
+      "sha256": "342dfbf377e1199f7cefb3cc53131755c07e4bdc74fabf8ea4fefecb06598b7e"
+    },
+    {
+      "file": "shared/engine/src/combatPassives.ts",
+      "sha256": "b13dcedb947da9e5d748c801b3be2bdaf02a0c83450b83ffbfa763d017a0699a"
+    },
+    {
+      "file": "shared/engine/src/contribution.ts",
+      "sha256": "1046677d6b5165e7e670c727453c2aff1b3f6f10bdc9be14cbaf641769fda81b"
+    },
+    {
+      "file": "shared/engine/src/data.ts",
+      "sha256": "337d96d72bdf81d54f98283ca6b7d57399ff7059af4074de2ead7345db97b06c"
+    },
+    {
+      "file": "shared/engine/src/eaterMechanics.ts",
+      "sha256": "1106026a31c42c74480adbae44e52972d3e635a68696370b4153d8cc5e9baba2"
+    },
+    {
+      "file": "shared/engine/src/enemyAI.ts",
+      "sha256": "c471c04a0c4409349240d296bc124179ed2e5586d9a24e139e8b3525b71add93"
+    },
+    {
+      "file": "shared/engine/src/engine.ts",
+      "sha256": "5ec0d73e878f864801af2e02ec106469c48fb1f4b6c2f5f1db3f56c7cde7292d"
+    },
+    {
+      "file": "shared/engine/src/existence.ts",
+      "sha256": "ff6d1a78e8fda0dcdc6d0aafdb66dad934407ef4d4f80e8a7e114e8981520d15"
+    },
+    {
+      "file": "shared/engine/src/gateTravel.ts",
+      "sha256": "7ef5a27feb1397b90da6bc217f2c04950477f2ca86901b35417973553a872ef1"
+    },
+    {
+      "file": "shared/engine/src/icons.ts",
+      "sha256": "be98668f30a2ee30d9e26c0385ca3beabd4648b5f7e502e80b17c0264620eb6a"
+    },
+    {
+      "file": "shared/engine/src/locomotion.ts",
+      "sha256": "84ff07ebce43625be87f5e78244e55ccb6a368f49941c401cc81c5dbe39f2545"
+    },
+    {
+      "file": "shared/engine/src/mageGeometry.ts",
+      "sha256": "4f78543768aee3cb7e60082875647ba5fccf825b838458581a34d758edcbb62e"
+    },
+    {
+      "file": "shared/engine/src/main.ts",
+      "sha256": "89a96810be20c4c9d28cb795efe3eaff4bff0d22cf6c409e8e5ae95b2616cc70"
+    },
+    {
+      "file": "shared/engine/src/mapArt.ts",
+      "sha256": "5646326c72332dc8c5dfa4f25e462ac6f95161fdbd271687a490c45ad5ef697b"
+    },
+    {
+      "file": "shared/engine/src/math.ts",
+      "sha256": "998cb9913e21e3734039aed7d6898a2aba39ad32907ff66db17d6a03c2addddf"
+    },
+    {
+      "file": "shared/engine/src/occultData.ts",
+      "sha256": "66933ccd640818adc4768002beeca909f3ab6be81166e178ce8679dfde0f82fb"
+    },
+    {
+      "file": "shared/engine/src/occultMechanics.ts",
+      "sha256": "6fc8e0af55e0cb5ecc7867dc6c077a691b79535b60150df5fb8809a22d54d6e1"
+    },
+    {
+      "file": "shared/engine/src/passiveBalance.ts",
+      "sha256": "68d37bfd0710d22506c2fc076c21fdb84d6f18ebbeecd11fd747ceb6324941c8"
+    },
+    {
+      "file": "shared/engine/src/physics.ts",
+      "sha256": "b50804ddad3ef8004c0587026586b6125525e9cab28d6001b23b985e4c1407f3"
+    },
+    {
+      "file": "shared/engine/src/progression.ts",
+      "sha256": "9f65add5a36aac0cee963efd63dc3b17f31941f379ce97820d55e9bb6469b44e"
+    },
+    {
+      "file": "shared/engine/src/projectileGrowth.ts",
+      "sha256": "869bfb5b3491eb886a036d5fb52939042469cfe918ba21069b0474e7025ae07a"
+    },
+    {
+      "file": "shared/engine/src/returningWraith.ts",
+      "sha256": "a7ba3ba27b71cc23b57e8e0a5cbb2196946d8cefc164ec84a9b1a0a361d10cab"
+    },
+    {
+      "file": "shared/engine/src/skillLore.ts",
+      "sha256": "7e1164b1bf577b662fd8106e2f231d5d09ad95e50ed77165595fc9a6920b1329"
+    },
+    {
+      "file": "shared/engine/src/skillMechanics.ts",
+      "sha256": "6c884aa830a3dc0d05bb909eec99b03cbf3aed0505d806120c9b4e2f86317064"
+    },
+    {
+      "file": "shared/engine/src/skillNotes.ts",
+      "sha256": "a717b7c21a4203aaa34120a676a2b450f4137d8edc8f5bad87ef7d390378cab6"
+    },
+    {
+      "file": "shared/engine/src/skillRedesignData.ts",
+      "sha256": "55ffdbc594c84aaa066bac107b394e74d2065608e51c4e7cad872546158a44e3"
+    },
+    {
+      "file": "shared/engine/src/skillVisuals.ts",
+      "sha256": "43ac814f7bdb9692cf1950b643b9fea0c6cb4ad604daeb62f6b3ab1b82e264e2"
+    },
+    {
+      "file": "shared/engine/src/sound-design.ts",
+      "sha256": "feea4cb15944b9e6ce7d444f8fe1d9f48caef2ae4aa71ea37abf60c0e775f256"
+    },
+    {
+      "file": "shared/engine/src/spBalanceModel.ts",
+      "sha256": "1efb4045907a89703c3df0d63d5bce3117ab963fa27a687019ae62562ffe71a9"
+    },
+    {
+      "file": "shared/engine/src/stageRules.ts",
+      "sha256": "788b454b4687c5bb94d8e570a208b5206c25ee7c69083fd7fc2ed1c3ecfe6525"
+    },
+    {
+      "file": "shared/engine/src/store.ts",
+      "sha256": "0a19f00f52ea5e2f4d21ae1d3fa7e596950c2807c78bb9712a37d2047930d674"
+    },
+    {
+      "file": "shared/engine/src/summons.ts",
+      "sha256": "c62a208f3ab0822a9e8b6a95c91a788b56b126be900d85b5bb5dccb0b9f973a2"
+    },
+    {
+      "file": "shared/engine/src/totemBehavior.ts",
+      "sha256": "9af21841dee1b5d8765b382b792f56ab719b932cfe7d9d947531cdbe9570cc7d"
+    },
+    {
+      "file": "shared/engine/src/types.ts",
+      "sha256": "0f977345443632c2d9a3bf7f15e5521a41ae81bd7fca8fad2ec3d8e5d5bac91b"
+    },
+    {
+      "file": "shared/engine/src/warriorData.ts",
+      "sha256": "07c6917ebfd5004d5fda90ff0f5030f0aa88ecf0a6b2528a700d16a7bfe96a0a"
+    },
+    {
+      "file": "shared/engine/src/warriorMechanics.ts",
+      "sha256": "a5d116b4751e2d8219172ea7cd8b079896f84e9afc7aeab1cbb2a53df52e5eee"
+    },
+    {
+      "file": "shared/engine/src/warriorVisuals.ts",
+      "sha256": "ab67f607e122045d7de524ac2691fbd5bd3bd05733d09f594dff7f47c2ea02ce"
+    },
+    {
+      "file": "shared/engine/src/waterfallPhysics.ts",
+      "sha256": "960113d8d84aeb398df79f0484b4292b19d511ee89e61b258c06e35a7323bdd9"
+    },
+    {
+      "file": "shared/engine/src/waveReflection.ts",
+      "sha256": "9c79df5ba8373dc6717983f47df8d58806ff1340854a0202aaf09fe31b0ad2bd"
+    },
+    {
+      "file": "shared/engine/src/world.ts",
+      "sha256": "c98bd190016e0e330341b05388a208a99e961ac5a84d4c4f608b0e2750d92782"
+    },
+    {
+      "file": "shared/runtime/act-endings-content.js",
+      "sha256": "886a4721e6e6e140a40c2b9e90acadd1d0e9f87663e3bec1dda114f2c32ef2a5"
+    },
+    {
+      "file": "shared/runtime/act-endings.js",
+      "sha256": "842f2906ff291420997ebfbe4a0b9f54dcb43ecd03d7db5b5611fc9f5435da7b"
+    },
+    {
+      "file": "shared/runtime/audio.js",
+      "sha256": "17766ff2d11115a59b6e5b1a4b1188d718a3ad21e663c236f673f364faffe6fa"
+    },
+    {
+      "file": "shared/runtime/camera.js",
+      "sha256": "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af"
+    },
+    {
+      "file": "shared/runtime/main.js",
+      "sha256": "b6c12071cfc9b5d63ee1bb1e38b3e8afc1948f833a1b72c99640c6a6eedcb576"
+    },
+    {
+      "file": "shared/runtime/music-titles.js",
+      "sha256": "535fb2761de224362efde67174bef5e9104a666b9941c74f7e1e7e72ae4ee283"
+    },
+    {
+      "file": "shared/runtime/sodan-withdrawal.js",
+      "sha256": "680be4d9fa41e584523d7da5d68892b7e901328dd3be5ae7b80885eec6e57bf8"
+    },
+    {
+      "file": "shared/runtime/stage11-ravine-encounters.js",
+      "sha256": "e796e590d893393d6d7880bf0c84ad01a834bd604737748ca45b5eb8ad0b311f"
+    },
+    {
+      "file": "shared/runtime/stage2-layered-road-art.js",
+      "sha256": "f96be8bf9b83dd7177eb69d07e0c00f24356ed7221de1a55dec19f1417507e04"
+    },
+    {
+      "file": "shared/runtime/stage2-layered-road.js",
+      "sha256": "92a03a388ff40faa5b7871c5b5a9679e8a59d26194ce49482e3ebc669146ad6d"
+    },
+    {
+      "file": "shared/runtime/stage5-positioning-art.js",
+      "sha256": "67ac93056023fbb5903f7ee71dc2e3b88bb5464505b7615330778eff3d8fe170"
+    },
+    {
+      "file": "shared/runtime/stage5-positioning.js",
+      "sha256": "a9619cb481593a7a8917916f33e49a605da058df733d3734de0dad29f28be624"
+    },
+    {
+      "file": "tools/environment/build-geology-art.mjs",
+      "sha256": "4c862d9a57a61607b9b2681342829c329b483c6c108cf5dd61d2798e3755f15a"
+    }
+  ],
+  "approvedCommonSourceExact": [
+    "shared/map/compiler.js",
+    "shared/map/schema.js",
+    "shared/runtime/elements.js",
+    "shared/runtime/art-dark.js",
+    "shared/runtime/geology-rear-support.js",
+    "shared/runtime/stage12-quarry-art.js",
+    "tools/environment/stage12-quarry-art.mjs",
+    "tools/map-forge/apply-stage12-quarry.mjs",
+    "tools/map-forge/stage12-quarry-geometry.mjs"
+  ]
+}

@@ -1,0 +1,9 @@
+PASS M07 waits for enemy turn; every new entrant, not one global trigger
+PASS M07 splash damage shares the same saved per-enemy ledger
+PASS M07 overlapping stakes retain independent once-per-enemy damage
+PASS M08 casting has no immediate pull, damage, or movement loss
+PASS M08 redirects normal movement then binds once at contact
+PASS M08 respects an impassable wall and never teleports
+PASS M08 boss is never redirected or bound; finite lifetime still expires
+PASS M08 flying enemies use collision-checked flight without extra distance
+8 totem turn tests passed

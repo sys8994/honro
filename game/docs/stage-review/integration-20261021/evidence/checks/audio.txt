@@ -1,0 +1,30 @@
+PASS Title tries audible streaming startup once with saved volume and the short ramp
+PASS Saved music mute and zero volume do not preload
+PASS Locked title preparation does not preload battle or boss songs
+PASS Hidden title defers preparation until it becomes visible
+PASS Paused title makes no startup attempt until resumed and selected
+PASS Preload failure retries once on input, not each frame
+PASS First input preserves an already playing Main Theme without a second start
+PASS Touch release/touchend/click unlock burst preserves one initial play and its short ramp
+PASS A real track replacement keeps the full 420 ms crossfade
+PASS Noncombat refresh does not restart Main Theme
+PASS Battle playlist cycles 02 → 03 → 04 → 05 → 02
+PASS Same encounter refresh preserves battle track and time without seeking
+PASS Boss crossfades to looping 05, only two channels
+PASS Pause/resume keeps playback position
+PASS Map exit and saved encounter reentry restart playlist beginnings
+PASS Music mute/volume affects BGM independently
+PASS Missing MP3 skips failed playlist track without throwing
+PASS Dispose releases all streams
+PASS All six playlist transitions start their first track at zero, including previously heard tracks
+PASS Within unchanged playlists, 150 repeated updates/unlocks never replace or seek audio
+PASS Direct new encounters advance once within battle, while main reentry begins at 02
+PASS Boss-only fresh encounter restarts zero once without per-frame stutter
+PASS Muted, paused and autoplay-locked playlist changes start zero on resume
+PASS Locked departure/return to currently allocated song still honors transition
+PASS Rapid switches release stale streams and cannot restore metadata offsets
+PASS Autoplay rejection waits for another gesture and preserves the prepared stream
+PASS A synchronous policy rejection is handled and waits for input
+PASS A stale startup rejection cannot relock newer gesture playback
+PASS Track 05 fails over to 02 and exhausted battle tracks stop retrying
+PASS Authored 05 opening is session-only and resumes ordinary rotation without seeking on updates

@@ -1,0 +1,24 @@
+PASS Fresh stage2 retains all count/stat/terrain/objective budgets; all 29 other chapter builds exactly unchanged
+PASS A warning during flight cannot count that already-started attack; only a subsequent selectable player action releases it
+PASS A warning during an already-held charge also waits for a genuinely new player action
+PASS Default Game/Stage View/Playtest match, while unversioned Workshop imports retain legacy behavior
+PASS Actual ground engagement -> one warning -> next completed player action -> four roost actors eligible under unchanged cap3
+PASS Custom/workshop, other maps and terminal battles never acquire warning/activation
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(plan?.flightEscape)
+
+    at file:///tmp/honro-beast-baseline/tests/stage2-airborne.mjs:40:81 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

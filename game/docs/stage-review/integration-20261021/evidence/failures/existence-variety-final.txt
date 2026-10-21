@@ -1,0 +1,24 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Only the exact reviewed attack delta is accepted
++ actual - expected
+
++ {
++   form: 0.85,
++   qi: 0.15,
++   soul: 0
++ }
+- null
+
+    at file:///workspace/honro/tests/existence-variety.mjs:8:39 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: { form: 0.85, qi: 0.15, soul: 0 },
+  expected: null,
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

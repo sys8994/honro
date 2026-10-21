@@ -1,0 +1,29 @@
+Baseline commit: 27efe8ebdab24e147494196a515641e0629e4656
+Command: node tests/existence-variety.mjs
+Exit code: 1
+Status: FAILED (not passed)
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Only the exact reviewed attack delta is accepted
++ actual - expected
+
++ {
++   form: 0.85,
++   qi: 0.15,
++   soul: 0
++ }
+- null
+
+    at file:///tmp/honro-beast-baseline/tests/existence-variety.mjs:8:39 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: { form: 0.85, qi: 0.15, soul: 0 },
+  expected: null,
+  operator: 'deepStrictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

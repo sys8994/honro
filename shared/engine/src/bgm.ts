@@ -36,7 +36,7 @@ export class BgmPlayer {
         }
     }
     unlock(){if(this.preloadFailed){this.failed.delete(0);this.silence();this.preloadFailed=false;}this.gestureUnlocked=true;this.unlocked=true;this.requested=false;this.select(this.state);this.applyPause();}
-    select(state:MusicState,battleSession?:string){
+    select(state:MusicState,battleSession?:string,firstBattleTrack?:number){
         // Different playlists start at their first song and zero seconds.
         // Repeated updates, pauses and unlocks in the same playlist never seek.
         const playlistChanged=state!==this.state;
@@ -48,6 +48,9 @@ export class BgmPlayer {
             this.battleSession=battleSession;this.battleSelected=false;
             this.restartRequested=true;
         }
+        // An authored opening is consumed only at a playlist/session boundary.
+        // Repeated frames, unlock and pause must preserve the current stream/seek.
+        if(state==='battle'&&(playlistChanged||freshEncounter)&&firstBattleTrack!==undefined&&firstBattleTrack>=1&&firstBattleTrack<=BATTLE_TRACK_COUNT)this.battleIndex=firstBattleTrack-1;
         this.state=state;
         if(state==='battle')this.battleSelected=true;
         if(state==='battle')for(let n=0;n<BATTLE_TRACK_COUNT&&this.failed.has(1+this.battleIndex);n++)this.battleIndex=(this.battleIndex+1)%BATTLE_TRACK_COUNT;

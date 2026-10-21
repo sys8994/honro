@@ -1,0 +1,20 @@
+PASS 45 degree start allows fine movement while aiming up
+PASS 45 degree start can aim vertically with zero lateral command
+PASS aim lock leaves falling and knockback live
+PASS second stick touch preserves owner
+PASS second touch charges while aim pointer stays locked
+PASS stick cancel preserves fire pointer
+PASS fire release still fires after stick cancel
+PASS jump uses its normal cost and keeps stick owner
+PASS jump release preserves stick
+PASS PC ArrowLeft movement
+PASS PC ArrowRight movement
+PASS PC a movement
+PASS PC d movement
+PASS PC -1 ArrowUp retains elevation rule
+PASS PC -1 ArrowDown retains elevation rule
+PASS PC 1 ArrowUp retains elevation rule
+PASS PC 1 ArrowDown retains elevation rule
+PASS browser pointer events are trusted CDP touch synthesis
+PASS no browser exceptions
+19 checks; evidence: /workspace/honro/_local/reports/integration-20261021/joystick

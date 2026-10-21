@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: foe-2 keeps old normal HP60% exactly
+
+145 !== 182
+
+    at file:///workspace/honro/tests/stage5-positioning.mjs:13:106 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 145,
+  expected: 182,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

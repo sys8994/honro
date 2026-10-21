@@ -1,3 +1,4 @@
+import {beastKind,beastLaneClear,beastReach,startBeastCast,tickBeasts} from './beastMelee';
 import {initializeReturningWraith,stepReturningWraith} from './returningWraith';
 import {captureEater,releaseEater,migrateEaters,eaterTuning} from './eaterMechanics';
 import {waterfallSheet,insideWater,advanceWaterfall,ensureWaterfallBody} from './waterfallPhysics';
@@ -13,12 +14,14 @@ import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIF
 import {makePhysics,environmentAt,changePhysics,duePhysics,advanceLinear,dragFor,collisionDamage,fallDamage,validPhysicsPatch} from './physics';
 import type {PhysicsPatch} from './physics';
 import {multishotProfile,volleyAngles,waveCount} from './projectileGrowth';
-import { ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER, PLAYER_MAGE_DAMAGE_MULTIPLIER } from './balance';
+import {MAGE_AREA_SCALE} from './mageGeometry';
+import {resolveGate} from './gateTravel';
+import { ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER, PLAYER_MAGE_DAMAGE_MULTIPLIER, PLAYER_MAGE_OFFENSE_BOOST } from './balance';
 import { skillBalanceFactor } from './balanceModel';
 import { evaluateStageEnd } from './stageRules';
 import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, Profile } from './types';
 import { SKILLS, STAGES, ENEMIES, CLASSES } from './data';
-import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier} from './existence';
+import {attackForHit,attackForSkill,calculateDamage,existenceMultiplier,migrateAirborneBalance} from './existence';
 import {lureStakeFor} from './totemBehavior';
 import { planEnemyLuresSteps, planEnemyMoveSteps, advanceEnemyMove, targetFor, chooseEnemyShotSteps, finishPlanning, friendlyFireRisk, shotViable, shotImpactValue, flyingEnemy, knockbackFlyingEnemy, planWaitingFlights, FLY_MOVE_BUDGET } from './enemyAI';
 import { G, STEP, WORLD_W, WORLD_H, clamp, rad, poly, segRect, segmentTerrain, segmentProjectileTerrain, topAt, terrainSurfaces, terrainSlopeAt, terrainRectIntersects, dist, AIM_MIN, AIM_MAX } from './math';
@@ -75,7 +78,7 @@ export class Engine {
             if(next.done)return next;
         }
     }
-    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units)migrateEnemySkills(u); this.onEvent = onEvent; migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
+    constructor(b: Battle, onEvent: (e: Event) => void = () => { }, fresh = false) { b.fields ??= []; b.physics ??= makePhysics(STAGES[b.stageId-1]?.physics); b.reviewDamage ??= {}; b.reviewLeft ??= 0; b.occultRevision ??= 1; this.b = b; (globalThis as any).HonroQuestTargets?.migrate(b); ensureWaterfallBody(b); for(const u of b.units){migrateEnemySkills(u);migrateAirborneBalance(u);} this.onEvent = onEvent; migrateEaters(this); this.applyPhysicsCues(); if (fresh) {
         this.refreshActivation();
         this.refreshIntents();
     } }
@@ -120,7 +123,10 @@ export class Engine {
         }
         // Scale newly cast player spells only. Existing projectiles/stakes retain their saved damage;
         // impact, reflections, secondary bursts and stake triggers must never apply this again.
-        if(u.side===0&&u.cls==='mage'&&!u.summoned&&s.cls==='mage'&&s.redesigned&&!s.enemyOnly)damage*=PLAYER_MAGE_DAMAGE_MULTIPLIER;
+        if(u.side===0&&u.cls==='mage'&&!u.summoned&&s.cls==='mage'&&s.redesigned&&!s.enemyOnly){
+            damage*=PLAYER_MAGE_DAMAGE_MULTIPLIER;
+            if(!(u as any).honroAlly&&!(u as any).honroCivilian&&!u.enthrall){damage*=PLAYER_MAGE_OFFENSE_BOOST;if(s.branch==='gourd')radius*=MAGE_AREA_SCALE;}
+        }
         if(s.redesigned&&s.cls==='mage')damage*=1+jucheonBoost(u,s);
         if(s.martial&&u.side===0){if(u.harmony)damage*=1+passiveTuning(passiveRank(u,'SP04')).harmonyDamage;if(s.branch==='rush'){damage*=1+passiveTuning(passiveRank(u,'SP01')).rushDamage;speed*=1+.015*passiveRank(u,'SP03');}if(s.branch==='blade')speed*=1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry;}
         if (u.bound > 0 && BODY.has(s.mode))
@@ -493,6 +499,7 @@ export class Engine {
         b.shot++;
         b.shotDamage = {}; b.reviewDamage={}; b.reviewFocus=undefined;
         b.shots += u.side === 0 ? 1 : 0;
+        if(beastKind(u))return startBeastCast(this,u,s,e.damage,targetFor(this,u));
         const origin = this.projectileOrigin(u, s, u.angle);
         const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; if(s.id==='O05')initializeReturningWraith(p);projectileCredit(b,p,u);b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
@@ -565,6 +572,7 @@ export class Engine {
         const u=this.active!,facing=Math.sign(direction);
         if(facing!==u.facing){u.angle=clamp(180-u.angle,AIM_MIN,AIM_MAX);u.facing=facing;}
     }
+    gateResolution(u=this.active){return resolveGate(this,u);}
     move(direction: number, dt: number) { if (!this.canAct())
         return; const u = this.active!;
         // S13's grounded bonus action permits turning, but never locomotion.
@@ -845,7 +853,7 @@ export class Engine {
                 if(damageSource==='normal'&&p&&wardRank&&src.cls==='mage'&&!src.summoned&&SKILLS[p.skill]?.cls==='mage'&&src.mageWardShot!==p.shot){
                     src.mageWardShot=p.shot;
                     const ally=this.actors(0).filter(v=>!v.summoned&&!v.enthrall&&v.id!==src.id&&Math.hypot(v.x-u.x,(v.y-v.h*.5)-(u.y-u.h*.5))<520).sort((a,b)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(b.x-u.x,b.y-u.y))[0]||src;
-                    const shieldBefore=ally.shield;ally.shield=Math.max(ally.shield,Math.min(Math.round(ally.maxHp*.25),ally.shield+Math.round(ally.maxHp*passiveTuning(wardRank).ward)));
+                    const shieldBefore=ally.shield;ally.shield=Math.max(ally.shield,Math.min(Math.round(ally.maxHp*passiveTuning(wardRank).wardCap),ally.shield+Math.round(ally.maxHp*passiveTuning(wardRank).ward)));
                     shielded(this.b,ally,src.id,shieldBefore);ally.shieldUntil=Math.max(ally.shieldUntil||0,this.b.teamEnds[1]+1);
                     this.fx('ring',ally.x,ally.y-ally.h*.5,'#b4d8d1',34);
                 }
@@ -2159,6 +2167,7 @@ export class Engine {
         if (u.boss) {
             u.intent = u.boss === 5 ? (this.b.round % 2 ? '도약 준비' : '방어 태세') : u.boss === 6 ? '낙성 인장' : this.b.round % 2 ? '장갑 · 포격' : '노출 · 공격';
         }
+        else if(beastKind(u))u.intent=SKILLS[u.loadout[0]]?.name||'접근';
         else
             u.intent = ENEMIES[u.role]?.intent || '대기';
     } }
@@ -2189,6 +2198,15 @@ export class Engine {
         }
         // All decisions below use the position reached by walking/jumping, not a planned position.
         target=targetFor(this,u)||target;
+        if(beastKind(u)){
+            const sk=SKILLS[u.loadout[0]];
+            const distance=Math.abs(target.x-u.x)-u.r-target.r;
+            if(sk&&distance<=beastReach(u)+Math.min(u.moveLeft,beastKind(u)==='boar'?72:24)&&Math.abs(target.y-u.y)<=45&&this.grounded(u)&&beastLaneClear(this,u,target)){
+                u.facing=target.x>=u.x?1:-1;
+                if(this.fire(sk.id,u.facing>0?0:180,.5,true))return;
+            }
+            u.shield=Math.max(u.shield,Math.round(u.maxHp*.08));u.shieldUntil=b.teamEnds[0]+1;u.intent='접근 불가 · 경계';this.finishAction();return;
+        }
         if(u.role==='healer'){
             const hurt=this.actors(1).filter(v=>!v.summoned&&!v.honroObjectiveTarget&&Math.hypot(v.x-u.x,v.y-u.y)<720&&v.hp<v.maxHp-40).sort((a,c)=>a.hp/a.maxHp-c.hp/c.maxHp)[0];
             if(hurt){const n=Math.min(hurt.maxHp-hurt.hp,Math.round(hurt.maxHp*.22));hurt.hp+=n;this.fx('ring',hurt.x,hurt.y-hurt.h*.5,'#9ae0b7',60);this.fx('text',hurt.x,hurt.y-hurt.h-10,'#acefc3',18,'+'+n);this.message(`${u.name} · 아군 회복`);this.emit('sound',{name:'heal'});this.finishAction();return;}
@@ -2267,7 +2285,7 @@ export class Engine {
         this.counter++;
         b.turnAge += dt;
         this.stepUnits(dt);
-        tickRedesign(this,dt);this.tickOccult();tickWarrior(this,dt);cleanupPassiveHistory(this);
+        tickRedesign(this,dt);this.tickOccult();tickWarrior(this,dt);tickBeasts(this,dt);cleanupPassiveHistory(this);
         for (const z of b.zones) {
             if (z.attached) {
                 const u = this.unit(z.attached);
@@ -2286,7 +2304,7 @@ export class Engine {
             for (const p of [...b.projectiles])
                 if (b.projectiles.includes(p))
                     this.stepProjectile(p, dt);
-            if (!b.projectiles.length && !b.volley && !b.units.some(u=>u.meleeAction) && !this.settleBusy())
+            if (!b.projectiles.length && !b.volley && !b.units.some(u=>u.meleeAction||u.beastAction) && !this.settleBusy())
                 b.resolveAge += dt;
             else
                 b.resolveAge = 0;

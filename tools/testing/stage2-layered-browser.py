@@ -5,7 +5,7 @@ import json,sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 ROOT=Path(__file__).resolve().parents[2]
-out=ROOT/'_local/reports/stage2-layered-road/combat';out.mkdir(exist_ok=True,parents=True)
+out=Path(sys.argv[5]) if len(sys.argv)>5 else ROOT/'_local/reports/stage2-layered-road/combat';out.mkdir(exist_ok=True,parents=True)
 url=sys.argv[1] if len(sys.argv)>1 else 'http://127.0.0.1:8842/HONRO.html'
 label=sys.argv[2] if len(sys.argv)>2 else 'local'
 with sync_playwright() as pw:

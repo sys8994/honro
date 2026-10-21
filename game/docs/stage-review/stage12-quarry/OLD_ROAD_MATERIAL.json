@@ -1,0 +1,219 @@
+{
+  "sourceSha": "7ad53ad74aabbaa8c0aa13859cf1c08288a7392a",
+  "beforeSha": "c7adfd9a620810788fe4ea1cfe0d2af65a367a79",
+  "branch": "stage/act2-ch12-old-road-material",
+  "masterPolicy": "No fetch/merge of bafc275c or other integration work; parent integrates source later; master/Pages held",
+  "verdict": "Requested old-road plain face corrected with unchanged shared asset shapes; final parent art review pending",
+  "sourceSha256": {
+    "tools/environment/stage12-quarry-art.mjs": "ade27ab65ff1deb98692dec970bf4aa1b054ba287816006221276e3b504447ee",
+    "shared/runtime/elements.js": "b96f48edd607978c1d2f5ecce6ef2d39c902fffb96cf47aa95a14bb8e32a372e",
+    "tests/terrain-face-attachments.mjs": "252100f618598a5cdfb76905d55cda455f0fb4848649c4be04fc3db9a5217397",
+    "shared/data/campaign.json": "4502f22ac683911934c7a416212a80f2fcef20c05bc1ca2bcd911fa83e886621"
+  },
+  "directlyOpened": {
+    "before": [
+      "old-road-normal",
+      "old-road-east",
+      "center-overview",
+      "carrier-mobile"
+    ],
+    "focus": [
+      "old-road-normal",
+      "old-road-east",
+      "carrier-mobile",
+      "center-overview"
+    ],
+    "final": "all9"
+  },
+  "pngs": {
+    "evidence/old-road-material/before/stage12-carrier-mobile.png": {
+      "sha256": "76af352e636751e2bd57f927b844e13cdd9c069291909bb4906ddc389b53e876",
+      "size": [
+        390,
+        648
+      ]
+    },
+    "evidence/old-road-material/before/stage12-carrier-normal.png": {
+      "sha256": "b19d3fabfdc34f074d19788bedcd9970dd8b4a603a59a804539730418d4963ee",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/before/stage12-cart-close.png": {
+      "sha256": "1ee9b66141632062f093f7424a504c2ace13207feed29a71895f10261dcbff26",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/before/stage12-center-overview.png": {
+      "sha256": "cb82bec1173a1b0cb6fbc419d47dc025541471f40b82cf7be4211ff6dd7190bf",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/before/stage12-old-road-east.png": {
+      "sha256": "5888c39db02a6708f36e6c3315122582263f6ac23ae02be73e038d45638b1f05",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/before/stage12-old-road-normal.png": {
+      "sha256": "2f5648ed0467162fd90f57cd531f7a2dc5cf7c643f1bad168900706d516e025e",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/before/stage12-root-joint.png": {
+      "sha256": "b04a66e9a374792b81ab00db46b7d33f8b93394f74d3cc40a11e3ea6ac5d2cf6",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/before/stage12-sign-mobile.png": {
+      "sha256": "80daab6a461b5490fb6fe2665ca549c5f508a83c28a76f372a88458023ab888c",
+      "size": [
+        390,
+        648
+      ]
+    },
+    "evidence/old-road-material/before/stage12-west-normal.png": {
+      "sha256": "c1017f1e25f231f2dbe6ff1e01b38e7e8dd7795fbbbbca322e8095356967e924",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/final/stage12-carrier-mobile.png": {
+      "sha256": "a3fc14982cee68ad040a9ff0d887f22a283cd1d77df2fc0767ab5daf3e4a8ca3",
+      "size": [
+        390,
+        648
+      ]
+    },
+    "evidence/old-road-material/final/stage12-carrier-normal.png": {
+      "sha256": "39f917c1a35b0c8b4923b67cf6715c55543e1b56cc5be3405b944ecd3f8843fa",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/final/stage12-cart-close.png": {
+      "sha256": "ee46c42caa6b8f8fe2977f5d834ce2f35098c1ce9233598138b78f13d9a6b331",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/final/stage12-center-overview.png": {
+      "sha256": "f807d52d0a605144d0b890091bf813646c48b9b6842222a919792add7a9bcbe6",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/final/stage12-old-road-east.png": {
+      "sha256": "c0cd50186c8277c2737ca24acfe4ecc92797be3a311e40aa42d6df6320c817f7",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/final/stage12-old-road-normal.png": {
+      "sha256": "8cbb0ea029ada5213c35df120500d9785cf86419844f8b76c955f9f919e3b67f",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/final/stage12-root-joint.png": {
+      "sha256": "b04a66e9a374792b81ab00db46b7d33f8b93394f74d3cc40a11e3ea6ac5d2cf6",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/final/stage12-sign-mobile.png": {
+      "sha256": "80daab6a461b5490fb6fe2665ca549c5f508a83c28a76f372a88458023ab888c",
+      "size": [
+        390,
+        648
+      ]
+    },
+    "evidence/old-road-material/final/stage12-west-normal.png": {
+      "sha256": "c1017f1e25f231f2dbe6ff1e01b38e7e8dd7795fbbbbca322e8095356967e924",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/focus/stage12-carrier-mobile.png": {
+      "sha256": "a3fc14982cee68ad040a9ff0d887f22a283cd1d77df2fc0767ab5daf3e4a8ca3",
+      "size": [
+        390,
+        648
+      ]
+    },
+    "evidence/old-road-material/focus/stage12-carrier-normal.png": {
+      "sha256": "39f917c1a35b0c8b4923b67cf6715c55543e1b56cc5be3405b944ecd3f8843fa",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/focus/stage12-cart-close.png": {
+      "sha256": "ee46c42caa6b8f8fe2977f5d834ce2f35098c1ce9233598138b78f13d9a6b331",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/focus/stage12-center-overview.png": {
+      "sha256": "f807d52d0a605144d0b890091bf813646c48b9b6842222a919792add7a9bcbe6",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/focus/stage12-old-road-east.png": {
+      "sha256": "05862c997b4e94553b17d3526ff3d78c328a18c96488a5c959ab10a8a2186c5b",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/focus/stage12-old-road-normal.png": {
+      "sha256": "8cbb0ea029ada5213c35df120500d9785cf86419844f8b76c955f9f919e3b67f",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/focus/stage12-root-joint.png": {
+      "sha256": "b04a66e9a374792b81ab00db46b7d33f8b93394f74d3cc40a11e3ea6ac5d2cf6",
+      "size": [
+        1440,
+        770
+      ]
+    },
+    "evidence/old-road-material/focus/stage12-sign-mobile.png": {
+      "sha256": "80daab6a461b5490fb6fe2665ca549c5f508a83c28a76f372a88458023ab888c",
+      "size": [
+        390,
+        648
+      ]
+    },
+    "evidence/old-road-material/focus/stage12-west-normal.png": {
+      "sha256": "c1017f1e25f231f2dbe6ff1e01b38e7e8dd7795fbbbbca322e8095356967e924",
+      "size": [
+        1440,
+        770
+      ]
+    }
+  }
+}

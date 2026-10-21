@@ -1,0 +1,114 @@
+{
+  "sourceSha": "fdddaf84acad950488357a4bc6c09470ecd1eab0",
+  "beforeSha": "97bcf6029bc9d3999fa356bfc0b3d60296e7251a",
+  "branch": "stage/act2-ch12-rear-supports",
+  "commonSyncedFromMaster": "27efe8ebdab24e147494196a515641e0629e4656",
+  "masterMerge": "No merge of Stage2 layout/data; owned common files only; skill UI ancestor edf712e9 retained",
+  "verdict": "Structural support continuity improved; final parent art approval and master/Pages still held",
+  "ownedFiles": [
+    {
+      "file": "tools/environment/build-geology-art.mjs",
+      "sha256": "e1ed70052d2d09c31310563df92b7165ffac767b37fdafe4afeaf513f6ccdd4a",
+      "masterSourceExact": true
+    },
+    {
+      "file": "shared/runtime/geology-art.js",
+      "sha256": "80d830b6a3435c4432684ef39bce98b5f37f8d67be4b3faf16ca09820a0b6924",
+      "masterSourceExact": true
+    },
+    {
+      "file": "shared/assets/environment/geology-granite-vertical.svg",
+      "sha256": "0b7c801527a3897e9a03bf3ba9a6b147a230b9ca5ec7e25e02f5d774cd951116",
+      "masterSourceExact": true
+    },
+    {
+      "file": "shared/assets/environment/geology-granite-foundation.svg",
+      "sha256": "304503fe442b0ea2277026fb5bcc1b625dfb6720bec68e688f32350a0eed513b",
+      "masterSourceExact": true
+    },
+    {
+      "file": "shared/assets/environment/geology-granite-vertical-cleft.svg",
+      "sha256": "7221291e87cac5a40504d72c6050b54bbd69d900310341c37167d79b0cb23af0",
+      "masterSourceExact": true
+    },
+    {
+      "file": "shared/assets/environment/geology-granite-ledge-neck.svg",
+      "sha256": "10de5bc66e64170d2c32e32950900f801a89c887c8783fbdef6390d65a40aa60",
+      "masterSourceExact": true
+    },
+    {
+      "file": "shared/assets/environment/wood-pine-wall-root.svg",
+      "sha256": "3996fa6189268b429ee1458978fde15ace3f27cc8dcfdcf8f3fed056b1712381",
+      "masterSourceExact": true
+    }
+  ],
+  "sourceHashes": {
+    "shared/runtime/geology-rear-support.js": "66e285f44cb927e23455274aa4c1a092b10eec447f86df6151945fe29126c488",
+    "shared/build.mjs": "ea26a2489f5d75e288870e9c599cb432f9194cbde003dc253feb8296b3dc9afc",
+    "tools/environment/stage12-quarry-art.mjs": "228fd6775c16d4d3b72e51932e6079dd66836e887ec7d6d3a115ffa83d9933f2",
+    "tools/map-forge/apply-stage12-quarry.mjs": "23e4d6eada0a0f6c1fa1956335b017d2913919756ea0596617132d5f51aaab74",
+    "shared/data/campaign.json": "5b9ea1afa39a4126890b9a40d9345b04fcd70df8767652687cb1e213c506a129",
+    "tests/stage12-rear-supports.mjs": "9395bd4fefeb50434adb6b04c030e940f805971bf819a0b02ac9b2d16a94275f"
+  },
+  "unrelatedLibraryExact": true,
+  "directlyOpened": {
+    "before": [
+      "center-overview",
+      "west-normal",
+      "root-joint",
+      "root-mobile"
+    ],
+    "focus1": "all4",
+    "focus2": "all4",
+    "focus3": "all5",
+    "final": "all14",
+    "actual-save": "all4"
+  },
+  "pngSha256": {
+    "evidence/rear-supports/actual-save/lower-mobile.png": "3c87eaac5ada7c9ee432e8a46e051e24da033968719f4ebfd62fe17a04f1f17b",
+    "evidence/rear-supports/actual-save/lower-normal.png": "155b25a4cef5e270cb3602fa70cc909e5faf62a20d011edaa78657433ebb3808",
+    "evidence/rear-supports/actual-save/upper-mobile.png": "88ae0c9f756de24dcc62a3df89ac39c1c9c4762f6807448b1aef183042ef0061",
+    "evidence/rear-supports/actual-save/upper-normal.png": "7952f6f0f23133eabda4b6223557982188bca974e28c5f5ff1d26722bed737d7",
+    "evidence/rear-supports/before/stage12-carrier-mobile.png": "715679bafa5cdc5a6bba0e77a4701cabb763f813215c8fa75edeb0818af81fc3",
+    "evidence/rear-supports/before/stage12-carrier-normal.png": "663371b1627e1b50d1a80429ee464c38eefcbff2d8ed67c3b5e0e37391dec6f6",
+    "evidence/rear-supports/before/stage12-center-overview.png": "cc9ac12b46d6a92077e06c354338fad8ba94b08a31c89408b8b3d770d552f52c",
+    "evidence/rear-supports/before/stage12-lower-joint.png": "3ee182fa1f75d25e3088ae7dd7b0f529ba5540b4ff6edcca578a9f0c287949d7",
+    "evidence/rear-supports/before/stage12-root-joint.png": "bcb437174be92e4a6c8b537f5dfa77ccb539c5e193e1a270267ecbb6d9ca4b67",
+    "evidence/rear-supports/before/stage12-root-mobile.png": "9d45370d4e1155873c28e5a28744fe8975e0f863d8ab29fda40a7ab3dddf9a61",
+    "evidence/rear-supports/before/stage12-sign-max.png": "077108dce8a6d0344427edd333770d699aae18e15d02eaf103127e5d01e7aee4",
+    "evidence/rear-supports/before/stage12-sign-mobile.png": "f81709731c30536c7b4465e8b3fe17c4da3c3aec58d28dbd16c7375dea79546f",
+    "evidence/rear-supports/before/stage12-sign-normal.png": "7f65628b70f9d449c49d32643292bb62d8c4042a2e85e1e6ced38d753a78e548",
+    "evidence/rear-supports/before/stage12-upper-max.png": "463f4dfa19b60dba52dac582f13f3c922b40254f1804eecc589a84ca8ca22ace",
+    "evidence/rear-supports/before/stage12-upper-mobile.png": "df5810f3f5ef56a5048609c98cd9564d383fd5a477053966f5c4f4a3cb4333fc",
+    "evidence/rear-supports/before/stage12-upper-normal.png": "3d12e5d259c513e641102edfcbf059f78a21590c594cd3263f57106c43052ec7",
+    "evidence/rear-supports/before/stage12-upper-toe.png": "74467a4f8acd6d7431186ad3879bff694242604e0f934aa1ff98ecf19b77eea0",
+    "evidence/rear-supports/before/stage12-west-normal.png": "ee54c32060a20d3eae36b2182bdcd40f76a67b3723af24af1adc536d66360634",
+    "evidence/rear-supports/final/stage12-carrier-mobile.png": "715679bafa5cdc5a6bba0e77a4701cabb763f813215c8fa75edeb0818af81fc3",
+    "evidence/rear-supports/final/stage12-carrier-normal.png": "663371b1627e1b50d1a80429ee464c38eefcbff2d8ed67c3b5e0e37391dec6f6",
+    "evidence/rear-supports/final/stage12-center-overview.png": "2be34bf218bd98ad66ffb6ba770ee6ad4966a8fff66956eddb32be98c6e36bbf",
+    "evidence/rear-supports/final/stage12-lower-joint.png": "83a25b8c341b96d9590c4bd255374128ecf640142e0df3d728dbe692a7d99c55",
+    "evidence/rear-supports/final/stage12-root-joint.png": "b04a66e9a374792b81ab00db46b7d33f8b93394f74d3cc40a11e3ea6ac5d2cf6",
+    "evidence/rear-supports/final/stage12-root-mobile.png": "bfe4d7de4f7363b1f4e25b4afdc1ee8c053770397f8a5358dbbbcf09b9e7f416",
+    "evidence/rear-supports/final/stage12-sign-max.png": "b51897bbb78dfc9a9df0977513d5891cd9a0d65822986aacbe06dabef403b224",
+    "evidence/rear-supports/final/stage12-sign-mobile.png": "80daab6a461b5490fb6fe2665ca549c5f508a83c28a76f372a88458023ab888c",
+    "evidence/rear-supports/final/stage12-sign-normal.png": "0112d7c2691f112e69a35d2e545a535bfd376170464354f7c2070fac93463bd6",
+    "evidence/rear-supports/final/stage12-upper-max.png": "463f4dfa19b60dba52dac582f13f3c922b40254f1804eecc589a84ca8ca22ace",
+    "evidence/rear-supports/final/stage12-upper-mobile.png": "df5810f3f5ef56a5048609c98cd9564d383fd5a477053966f5c4f4a3cb4333fc",
+    "evidence/rear-supports/final/stage12-upper-normal.png": "8dd7ddfdbed8642ce5d616b903cbabe22f9fd3c3a7d747eb9f38635861e7cbc5",
+    "evidence/rear-supports/final/stage12-upper-toe.png": "87c0c6d021ca617791cd33753af0ad8ee246deb308ae938c5c9f5565f67d27af",
+    "evidence/rear-supports/final/stage12-west-normal.png": "c1017f1e25f231f2dbe6ff1e01b38e7e8dd7795fbbbbca322e8095356967e924",
+    "evidence/rear-supports/focus1/stage12-center-overview.png": "2b60d88c6988495aff24df33dd1bb8b17fdcddab58cf10aae7f06cd4748adc65",
+    "evidence/rear-supports/focus1/stage12-root-joint.png": "b04a66e9a374792b81ab00db46b7d33f8b93394f74d3cc40a11e3ea6ac5d2cf6",
+    "evidence/rear-supports/focus1/stage12-root-mobile.png": "bfe4d7de4f7363b1f4e25b4afdc1ee8c053770397f8a5358dbbbcf09b9e7f416",
+    "evidence/rear-supports/focus1/stage12-west-normal.png": "25697558e9d89aef681a7443c5258e8f5bb322b075711aad497dd7e051c6733d",
+    "evidence/rear-supports/focus2/stage12-carrier-normal.png": "663371b1627e1b50d1a80429ee464c38eefcbff2d8ed67c3b5e0e37391dec6f6",
+    "evidence/rear-supports/focus2/stage12-lower-joint.png": "83a25b8c341b96d9590c4bd255374128ecf640142e0df3d728dbe692a7d99c55",
+    "evidence/rear-supports/focus2/stage12-sign-normal.png": "0112d7c2691f112e69a35d2e545a535bfd376170464354f7c2070fac93463bd6",
+    "evidence/rear-supports/focus2/stage12-upper-toe.png": "87c0c6d021ca617791cd33753af0ad8ee246deb308ae938c5c9f5565f67d27af",
+    "evidence/rear-supports/focus3/stage12-carrier-mobile.png": "715679bafa5cdc5a6bba0e77a4701cabb763f813215c8fa75edeb0818af81fc3",
+    "evidence/rear-supports/focus3/stage12-root-mobile.png": "bfe4d7de4f7363b1f4e25b4afdc1ee8c053770397f8a5358dbbbcf09b9e7f416",
+    "evidence/rear-supports/focus3/stage12-sign-mobile.png": "80daab6a461b5490fb6fe2665ca549c5f508a83c28a76f372a88458023ab888c",
+    "evidence/rear-supports/focus3/stage12-upper-max.png": "463f4dfa19b60dba52dac582f13f3c922b40254f1804eecc589a84ca8ca22ace",
+    "evidence/rear-supports/focus3/stage12-upper-mobile.png": "df5810f3f5ef56a5048609c98cd9564d383fd5a477053966f5c4f4a3cb4333fc"
+  }
+}

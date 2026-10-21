@@ -1,0 +1,2639 @@
+{
+  "scope": "Actual Chromium production bundle; legal reward-ledger profile; fresh R1. Camera-only framing for tactical inspection; no actor/state mutations. Not user screenshot pixel match.",
+  "state": {
+    "stage": 5,
+    "round": 1,
+    "phase": "aim",
+    "debug": false,
+    "heroes": [
+      {
+        "id": "p-archer",
+        "name": "설오",
+        "role": "archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 330,
+        "y": 2520,
+        "vx": 0,
+        "vy": 0,
+        "hp": 455,
+        "maxHp": 455,
+        "r": 22,
+        "h": 92,
+        "focus": 114,
+        "maxFocus": 114,
+        "regen": 15,
+        "level": 4,
+        "attack": 2.29,
+        "armor": 0.10400000000000001,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 1208,
+        "maxMove": 1208,
+        "walkSpeed": 320,
+        "angle": 44,
+        "lastPower": 0.55,
+        "loadout": [
+          "A01"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 330,
+        "spawnY": 2520,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "A01": 1
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "cooldowns": {},
+        "critChance": 0.08600000000000001,
+        "critMultiplier": 1.795
+      },
+      {
+        "id": "p-mage",
+        "name": "담허",
+        "role": "mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 440,
+        "y": 2520,
+        "vx": 0,
+        "vy": 0,
+        "hp": 486,
+        "maxHp": 486,
+        "r": 22,
+        "h": 92,
+        "focus": 144,
+        "maxFocus": 144,
+        "regen": 15,
+        "level": 4,
+        "attack": 2.29,
+        "armor": 0.08399999999999999,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 1228,
+        "maxMove": 1228,
+        "walkSpeed": 297,
+        "angle": 44,
+        "lastPower": 0.55,
+        "loadout": [
+          "M01"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 440,
+        "spawnY": 2520,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "M01": 1
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "cooldowns": {},
+        "critChance": 0.043000000000000003,
+        "critMultiplier": 1.53
+      }
+    ],
+    "foes": [
+      {
+        "id": "foe-0",
+        "name": "들린 산개",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 850,
+        "y": 2610,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 32,
+        "h": 88,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 850,
+        "spawnY": 2610,
+        "intent": "빠른 돌진과 흙파편",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 1,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "hound",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "receiver-guard",
+        "honroSpawnReason": "물길진을 놓을 젖은 바위에 들림이 남았다.",
+        "honroTacticalReason": "협동 기믹 전에 가까운 공간 확보.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-0"
+      },
+      {
+        "id": "foe-1",
+        "name": "들린 멧돼지",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 1728,
+        "y": 2710,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 41,
+        "h": 108,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 1728,
+        "spawnY": 2710,
+        "intent": "무거운 돌진과 흙울음",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 2,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "boar",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "basin-pocket",
+        "honroSpawnReason": "폭포 아래 혼기가 고여 짐승이 몰렸다.",
+        "honroTacticalReason": "사격턱에서 아래 군집에 광역기.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-1"
+      },
+      {
+        "id": "foe-2",
+        "name": "들린 산박쥐",
+        "role": "storm",
+        "cls": "mage",
+        "side": 1,
+        "x": 1410,
+        "y": 2180,
+        "vx": 0,
+        "vy": 0,
+        "hp": 182,
+        "maxHp": 182,
+        "r": 28,
+        "h": 66,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.8244072590207364,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBT01",
+          "HBT02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": true,
+        "spawnX": 1410,
+        "spawnY": 2180,
+        "intent": "초음파와 반향",
+        "dead": false,
+        "ranks": {
+          "HBT01": 2,
+          "HBT02": 2
+        },
+        "group": 3,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 12,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "bat",
+        "elite": false,
+        "honroVariant": "bat",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 140.0045051656857,
+        "combatBaseAttack": 0.7106959129489108,
+        "honroXpWeight": 0.68,
+        "honroCluster": "upper-roost",
+        "honroSpawnReason": "폭포 위 마른 틈을 날짐승이 둥지로 쓴다.",
+        "honroTacticalReason": "지상군과 분리된 고지 정밀 표적.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-2"
+      },
+      {
+        "id": "foe-3",
+        "name": "들린 사람",
+        "role": "bow",
+        "cls": "archer",
+        "side": 1,
+        "x": 1630,
+        "y": 2535,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 21,
+        "h": 91,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6089036669427637,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "LA01",
+          "LA02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 1630,
+        "spawnY": 2535,
+        "intent": "불규칙한 사격",
+        "dead": false,
+        "ranks": {
+          "LA01": 2,
+          "LA02": 2
+        },
+        "group": 4,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "human",
+        "elite": false,
+        "honroVariant": "human",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5249169542610032,
+        "honroXpWeight": 1,
+        "honroCluster": "cleat-guard",
+        "honroSpawnReason": "장막 뒤 주박목에 혼령이 붙었다.",
+        "honroTacticalReason": "담허 의식 후 열린 실제 사격창을 활용.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-3"
+      },
+      {
+        "id": "foe-4",
+        "name": "들린 산개",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 1050,
+        "y": 2520,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 32,
+        "h": 88,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 1050,
+        "spawnY": 2520,
+        "intent": "빠른 돌진과 흙파편",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 1,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "hound",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "receiver-guard",
+        "honroSpawnReason": "물길진을 놓을 젖은 바위에 들림이 남았다.",
+        "honroTacticalReason": "협동 기믹 전에 가까운 공간 확보.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-4"
+      },
+      {
+        "id": "foe-5",
+        "name": "들린 산개",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 1830,
+        "y": 2653.157894736842,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 32,
+        "h": 88,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 1830,
+        "spawnY": 2653.157894736842,
+        "intent": "빠른 돌진과 흙파편",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 2,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "hound",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "basin-pocket",
+        "honroSpawnReason": "폭포 아래 혼기가 고여 짐승이 몰렸다.",
+        "honroTacticalReason": "사격턱에서 아래 군집에 광역기.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-5"
+      },
+      {
+        "id": "foe-6",
+        "name": "들린 까마귀",
+        "role": "bow",
+        "cls": "archer",
+        "side": 1,
+        "x": 2250,
+        "y": 2240,
+        "vx": 0,
+        "vy": 0,
+        "hp": 209,
+        "maxHp": 209,
+        "r": 33,
+        "h": 80,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.7536906507166442,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HCW01",
+          "HCW02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": true,
+        "spawnX": 2250,
+        "spawnY": 2240,
+        "intent": "썩은깃과 검은깃비",
+        "dead": false,
+        "ranks": {
+          "HCW01": 2,
+          "HCW02": 2
+        },
+        "group": 3,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 13,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "crow",
+        "elite": false,
+        "honroVariant": "crow",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 160.5934029841689,
+        "combatBaseAttack": 0.649733319583314,
+        "honroXpWeight": 0.78,
+        "honroCluster": "upper-roost",
+        "honroSpawnReason": "폭포 위 마른 틈을 날짐승이 둥지로 쓴다.",
+        "honroTacticalReason": "지상군과 분리된 고지 정밀 표적.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-6"
+      },
+      {
+        "id": "foe-7",
+        "name": "들린 숫사슴",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 2170,
+        "y": 2590,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 38,
+        "h": 116,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6095259493202076,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 2170,
+        "spawnY": 2590,
+        "intent": "뿔 돌진과 뿌리쐐기",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 4,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "stag",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5254534045863859,
+        "honroXpWeight": 1,
+        "honroCluster": "cleat-guard",
+        "honroSpawnReason": "장막 뒤 주박목에 혼령이 붙었다.",
+        "honroTacticalReason": "담허 의식 후 열린 실제 사격창을 활용.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-7"
+      },
+      {
+        "id": "foe-8",
+        "name": "들린 숫사슴",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 1180,
+        "y": 2490,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 38,
+        "h": 116,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 1180,
+        "spawnY": 2490,
+        "intent": "뿔 돌진과 뿌리쐐기",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 1,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "stag",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "receiver-guard",
+        "honroSpawnReason": "물길진을 놓을 젖은 바위에 들림이 남았다.",
+        "honroTacticalReason": "협동 기믹 전에 가까운 공간 확보.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-8"
+      },
+      {
+        "id": "foe-9",
+        "name": "들린 산개",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 2020,
+        "y": 2590,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 32,
+        "h": 88,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 2020,
+        "spawnY": 2590,
+        "intent": "빠른 돌진과 흙파편",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 2,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "hound",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "basin-pocket",
+        "honroSpawnReason": "폭포 아래 혼기가 고여 짐승이 몰렸다.",
+        "honroTacticalReason": "사격턱에서 아래 군집에 광역기.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-9"
+      },
+      {
+        "id": "foe-0-cluster",
+        "name": "들린 산개",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 938,
+        "y": 2587.2,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 32,
+        "h": 88,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 938,
+        "spawnY": 2587.2,
+        "intent": "빠른 돌진과 흙파편",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 1,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "hound",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "receiver-guard",
+        "honroSpawnReason": "물길진을 놓을 젖은 바위에 들림이 남았다.",
+        "honroTacticalReason": "협동 기믹 전에 가까운 공간 확보.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-0-cluster"
+      },
+      {
+        "id": "foe-1-cluster",
+        "name": "들린 멧돼지",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 1738,
+        "y": 2535,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 41,
+        "h": 108,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 1738,
+        "spawnY": 2535,
+        "intent": "무거운 돌진과 흙울음",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 2,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "boar",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "basin-pocket",
+        "honroSpawnReason": "폭포 아래 혼기가 고여 짐승이 몰렸다.",
+        "honroTacticalReason": "사격턱에서 아래 군집에 광역기.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-1-cluster"
+      },
+      {
+        "id": "foe-2-cluster",
+        "name": "들린 산박쥐",
+        "role": "storm",
+        "cls": "mage",
+        "side": 1,
+        "x": 1490,
+        "y": 2052,
+        "vx": 0,
+        "vy": 0,
+        "hp": 182,
+        "maxHp": 182,
+        "r": 28,
+        "h": 66,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.8244072590207364,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBT01",
+          "HBT02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": true,
+        "spawnX": 1490,
+        "spawnY": 2052,
+        "intent": "초음파와 반향",
+        "dead": false,
+        "ranks": {
+          "HBT01": 2,
+          "HBT02": 2
+        },
+        "group": 3,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 12,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "bat",
+        "elite": false,
+        "honroVariant": "bat",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 140.0045051656857,
+        "combatBaseAttack": 0.7106959129489108,
+        "honroXpWeight": 0.68,
+        "honroCluster": "upper-roost",
+        "honroSpawnReason": "폭포 위 마른 틈을 날짐승이 둥지로 쓴다.",
+        "honroTacticalReason": "지상군과 분리된 고지 정밀 표적.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-2-cluster"
+      },
+      {
+        "id": "foe-3-cluster",
+        "name": "들린 사람",
+        "role": "bow",
+        "cls": "archer",
+        "side": 1,
+        "x": 1568,
+        "y": 2535,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 21,
+        "h": 91,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6089036669427637,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "LA01",
+          "LA02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 1568,
+        "spawnY": 2535,
+        "intent": "불규칙한 사격",
+        "dead": false,
+        "ranks": {
+          "LA01": 2,
+          "LA02": 2
+        },
+        "group": 4,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "human",
+        "elite": false,
+        "honroVariant": "human",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5249169542610032,
+        "honroXpWeight": 1,
+        "honroCluster": "cleat-guard",
+        "honroSpawnReason": "장막 뒤 주박목에 혼령이 붙었다.",
+        "honroTacticalReason": "담허 의식 후 열린 실제 사격창을 활용.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-3-cluster"
+      },
+      {
+        "id": "foe-4-cluster",
+        "name": "들린 산개",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 1298,
+        "y": 2558,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 32,
+        "h": 88,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 1298,
+        "spawnY": 2558,
+        "intent": "빠른 돌진과 흙파편",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 1,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "hound",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "receiver-guard",
+        "honroSpawnReason": "물길진을 놓을 젖은 바위에 들림이 남았다.",
+        "honroTacticalReason": "협동 기믹 전에 가까운 공간 확보.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-4-cluster"
+      },
+      {
+        "id": "foe-5-cluster",
+        "name": "들린 산개",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 1918,
+        "y": 2597.5789473684213,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 32,
+        "h": 88,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 1918,
+        "spawnY": 2597.5789473684213,
+        "intent": "빠른 돌진과 흙파편",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 2,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "hound",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "basin-pocket",
+        "honroSpawnReason": "폭포 아래 혼기가 고여 짐승이 몰렸다.",
+        "honroTacticalReason": "사격턱에서 아래 군집에 광역기.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-5-cluster"
+      },
+      {
+        "id": "foe-6-cluster",
+        "name": "들린 까마귀",
+        "role": "bow",
+        "cls": "archer",
+        "side": 1,
+        "x": 2340,
+        "y": 2112,
+        "vx": 0,
+        "vy": 0,
+        "hp": 209,
+        "maxHp": 209,
+        "r": 33,
+        "h": 80,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.7536906507166442,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HCW01",
+          "HCW02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": true,
+        "spawnX": 2340,
+        "spawnY": 2112,
+        "intent": "썩은깃과 검은깃비",
+        "dead": false,
+        "ranks": {
+          "HCW01": 2,
+          "HCW02": 2
+        },
+        "group": 3,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 13,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "crow",
+        "elite": false,
+        "honroVariant": "crow",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 160.5934029841689,
+        "combatBaseAttack": 0.649733319583314,
+        "honroXpWeight": 0.78,
+        "honroCluster": "upper-roost",
+        "honroSpawnReason": "폭포 위 마른 틈을 날짐승이 둥지로 쓴다.",
+        "honroTacticalReason": "지상군과 분리된 고지 정밀 표적.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-6-cluster"
+      },
+      {
+        "id": "foe-7-cluster",
+        "name": "들린 숫사슴",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 2270,
+        "y": 2680,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 38,
+        "h": 116,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6095259493202076,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 2270,
+        "spawnY": 2680,
+        "intent": "뿔 돌진과 뿌리쐐기",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 4,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "stag",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5254534045863859,
+        "honroXpWeight": 1,
+        "honroCluster": "cleat-guard",
+        "honroSpawnReason": "장막 뒤 주박목에 혼령이 붙었다.",
+        "honroTacticalReason": "담허 의식 후 열린 실제 사격창을 활용.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-7-cluster"
+      },
+      {
+        "id": "foe-8-cluster",
+        "name": "들린 숫사슴",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 1408,
+        "y": 2668,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 38,
+        "h": 116,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 1408,
+        "spawnY": 2668,
+        "intent": "뿔 돌진과 뿌리쐐기",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 1,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "stag",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "receiver-guard",
+        "honroSpawnReason": "물길진을 놓을 젖은 바위에 들림이 남았다.",
+        "honroTacticalReason": "협동 기믹 전에 가까운 공간 확보.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-8-cluster"
+      },
+      {
+        "id": "foe-9-cluster",
+        "name": "들린 산개",
+        "role": "leaper",
+        "cls": "knight",
+        "side": 1,
+        "x": 2364,
+        "y": 2774,
+        "vx": 0,
+        "vy": 0,
+        "hp": 268,
+        "maxHp": 268,
+        "r": 32,
+        "h": 88,
+        "focus": 122,
+        "maxFocus": 122,
+        "regen": 22,
+        "level": 5,
+        "attack": 0.6706931660653693,
+        "armor": 0.04,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 550,
+        "maxMove": 550,
+        "walkSpeed": 290,
+        "angle": 136,
+        "lastPower": 0.55,
+        "loadout": [
+          "HBR01",
+          "HBR02"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 2364,
+        "spawnY": 2774,
+        "intent": "빠른 돌진과 흙파편",
+        "dead": false,
+        "ranks": {
+          "HBR01": 2,
+          "HBR02": 2
+        },
+        "group": 2,
+        "awake": false,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 17,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroType": "beast",
+        "elite": false,
+        "honroVariant": "hound",
+        "honroDifficulty": "normal",
+        "combatBaseHp": 205.88897818483193,
+        "combatBaseAttack": 0.5781837638494564,
+        "honroXpWeight": 1,
+        "honroCluster": "basin-pocket",
+        "honroSpawnReason": "폭포 아래 혼기가 고여 짐승이 몰렸다.",
+        "honroTacticalReason": "사격턱에서 아래 군집에 광역기.",
+        "honroEncounterRole": "guard",
+        "honroContributionId": "foe-9-cluster"
+      }
+    ],
+    "terrain": [
+      {
+        "id": "valley-floor",
+        "x": 0,
+        "y": 2490,
+        "w": 5300,
+        "h": 2510,
+        "vertices": [
+          {
+            "x": 0,
+            "y": 2520
+          },
+          {
+            "x": 500,
+            "y": 2520
+          },
+          {
+            "x": 730,
+            "y": 2610
+          },
+          {
+            "x": 900,
+            "y": 2610
+          },
+          {
+            "x": 1100,
+            "y": 2490
+          },
+          {
+            "x": 1230,
+            "y": 2490
+          },
+          {
+            "x": 1450,
+            "y": 2710
+          },
+          {
+            "x": 1740,
+            "y": 2710
+          },
+          {
+            "x": 1930,
+            "y": 2590
+          },
+          {
+            "x": 2180,
+            "y": 2590
+          },
+          {
+            "x": 2380,
+            "y": 2790
+          },
+          {
+            "x": 2640,
+            "y": 3300
+          },
+          {
+            "x": 3000,
+            "y": 3700
+          },
+          {
+            "x": 3500,
+            "y": 4200
+          },
+          {
+            "x": 4200,
+            "y": 4280
+          },
+          {
+            "x": 4700,
+            "y": 4010
+          },
+          {
+            "x": 5000,
+            "y": 3770
+          },
+          {
+            "x": 5300,
+            "y": 3770
+          },
+          {
+            "x": 5300,
+            "y": 5000
+          },
+          {
+            "x": 0,
+            "y": 5000
+          }
+        ],
+        "mat": "rock",
+        "hp": 99999,
+        "maxHp": 99999,
+        "route": true,
+        "indestructible": true,
+        "oneWay": false,
+        "surfaceKind": "wet",
+        "device": null,
+        "link": null,
+        "honroSeal": null,
+        "honroBlocker": null,
+        "artSeed": 1
+      },
+      {
+        "id": "west-overlook",
+        "x": 730,
+        "y": 2440,
+        "w": 330,
+        "h": 30,
+        "vertices": [
+          {
+            "x": 730,
+            "y": 2440
+          },
+          {
+            "x": 1060,
+            "y": 2440
+          },
+          {
+            "x": 1060,
+            "y": 2470
+          },
+          {
+            "x": 730,
+            "y": 2470
+          }
+        ],
+        "mat": "rock",
+        "hp": 99999,
+        "maxHp": 99999,
+        "route": true,
+        "indestructible": true,
+        "oneWay": true,
+        "surfaceKind": "wet",
+        "device": null,
+        "link": null,
+        "honroSeal": null,
+        "honroBlocker": null,
+        "artSeed": 1
+      },
+      {
+        "id": "ritual-overlook",
+        "x": 1470,
+        "y": 2535,
+        "w": 300,
+        "h": 30,
+        "vertices": [
+          {
+            "x": 1470,
+            "y": 2535
+          },
+          {
+            "x": 1770,
+            "y": 2535
+          },
+          {
+            "x": 1770,
+            "y": 2565
+          },
+          {
+            "x": 1470,
+            "y": 2565
+          }
+        ],
+        "mat": "rock",
+        "hp": 99999,
+        "maxHp": 99999,
+        "route": true,
+        "indestructible": true,
+        "oneWay": true,
+        "surfaceKind": "wet",
+        "device": null,
+        "link": null,
+        "honroSeal": null,
+        "honroBlocker": null,
+        "artSeed": 1
+      },
+      {
+        "id": "waterfall-cliff",
+        "x": 3870,
+        "y": 1220,
+        "w": 1430,
+        "h": 3480,
+        "vertices": [
+          {
+            "x": 3900,
+            "y": 1340
+          },
+          {
+            "x": 4190,
+            "y": 1320
+          },
+          {
+            "x": 4380,
+            "y": 1290
+          },
+          {
+            "x": 4670,
+            "y": 1280
+          },
+          {
+            "x": 4980,
+            "y": 1250
+          },
+          {
+            "x": 5300,
+            "y": 1220
+          },
+          {
+            "x": 5300,
+            "y": 4700
+          },
+          {
+            "x": 4390,
+            "y": 4700
+          },
+          {
+            "x": 4550,
+            "y": 3900
+          },
+          {
+            "x": 4730,
+            "y": 3700
+          },
+          {
+            "x": 4800,
+            "y": 3280
+          },
+          {
+            "x": 4640,
+            "y": 2910
+          },
+          {
+            "x": 4470,
+            "y": 2630
+          },
+          {
+            "x": 3910,
+            "y": 2460
+          },
+          {
+            "x": 3960,
+            "y": 2405
+          },
+          {
+            "x": 4530,
+            "y": 2405
+          },
+          {
+            "x": 4560,
+            "y": 2240
+          },
+          {
+            "x": 4440,
+            "y": 2100
+          },
+          {
+            "x": 3970,
+            "y": 2140
+          },
+          {
+            "x": 3940,
+            "y": 1890
+          },
+          {
+            "x": 3870,
+            "y": 1650
+          }
+        ],
+        "mat": "rock",
+        "hp": 99999,
+        "maxHp": 99999,
+        "route": false,
+        "indestructible": true,
+        "oneWay": false,
+        "surfaceKind": "rock",
+        "device": null,
+        "link": null,
+        "honroSeal": null,
+        "honroBlocker": null,
+        "artSeed": 1
+      },
+      {
+        "id": "waterfall-veil",
+        "x": 3660.9354812861284,
+        "y": 1220,
+        "w": 451.6918335286864,
+        "h": 1360,
+        "vertices": [
+          {
+            "x": 4110,
+            "y": 1220
+          },
+          {
+            "x": 4111.890914351852,
+            "y": 1262.0920138888891
+          },
+          {
+            "x": 4112.627314814815,
+            "y": 1303.4027777777778
+          },
+          {
+            "x": 4112.3046875,
+            "y": 1343.984375
+          },
+          {
+            "x": 4111.018518518518,
+            "y": 1383.888888888889
+          },
+          {
+            "x": 4108.864293981482,
+            "y": 1423.1684027777778
+          },
+          {
+            "x": 4105.9375,
+            "y": 1461.875
+          },
+          {
+            "x": 4102.333622685185,
+            "y": 1500.0607638888887
+          },
+          {
+            "x": 4098.148148148148,
+            "y": 1537.7777777777778
+          },
+          {
+            "x": 4093.4765625,
+            "y": 1575.078125
+          },
+          {
+            "x": 4088.4143518518517,
+            "y": 1612.013888888889
+          },
+          {
+            "x": 4083.0570023148143,
+            "y": 1648.6371527777776
+          },
+          {
+            "x": 4077.5,
+            "y": 1685
+          },
+          {
+            "x": 4071.8388310185187,
+            "y": 1721.1545138888891
+          },
+          {
+            "x": 4066.168981481481,
+            "y": 1757.1527777777774
+          },
+          {
+            "x": 4060.5859375,
+            "y": 1793.046875
+          },
+          {
+            "x": 4055.1851851851857,
+            "y": 1828.8888888888891
+          },
+          {
+            "x": 4050.062210648148,
+            "y": 1864.7309027777776
+          },
+          {
+            "x": 4045.3125,
+            "y": 1900.625
+          },
+          {
+            "x": 4041.0315393518517,
+            "y": 1936.6232638888887
+          },
+          {
+            "x": 4037.3148148148157,
+            "y": 1972.7777777777778
+          },
+          {
+            "x": 4034.2578125,
+            "y": 2009.140625
+          },
+          {
+            "x": 4031.956018518518,
+            "y": 2045.7638888888887
+          },
+          {
+            "x": 4030.5049189814827,
+            "y": 2082.6996527777783
+          },
+          {
+            "x": 4030,
+            "y": 2120
+          },
+          {
+            "x": 4026.8164062500005,
+            "y": 2172.2938368055557
+          },
+          {
+            "x": 4024.7395833333335,
+            "y": 2224.184027777778
+          },
+          {
+            "x": 4023.73046875,
+            "y": 2275.68359375
+          },
+          {
+            "x": 4023.75,
+            "y": 2326.8055555555557
+          },
+          {
+            "x": 4024.759114583333,
+            "y": 2377.562934027778
+          },
+          {
+            "x": 4026.71875,
+            "y": 2427.96875
+          },
+          {
+            "x": 4029.58984375,
+            "y": 2478.036024305555
+          },
+          {
+            "x": 4033.3333333333335,
+            "y": 2527.777777777778
+          },
+          {
+            "x": 4037.91015625,
+            "y": 2577.20703125
+          },
+          {
+            "x": 4038.2154964883607,
+            "y": 2580
+          },
+          {
+            "x": 3660.9354812861284,
+            "y": 2580
+          },
+          {
+            "x": 3662.998046875,
+            "y": 2534.267578125
+          },
+          {
+            "x": 3665.0370370370374,
+            "y": 2486.1111111111113
+          },
+          {
+            "x": 3666.985749421296,
+            "y": 2438.0067274305557
+          },
+          {
+            "x": 3668.890625,
+            "y": 2389.921875
+          },
+          {
+            "x": 3670.79810474537,
+            "y": 2341.824001736111
+          },
+          {
+            "x": 3672.75462962963,
+            "y": 2293.680555555556
+          },
+          {
+            "x": 3674.806640625,
+            "y": 2245.458984375
+          },
+          {
+            "x": 3677.0005787037035,
+            "y": 2197.126736111111
+          },
+          {
+            "x": 3679.3828848379635,
+            "y": 2148.6512586805566
+          },
+          {
+            "x": 3682,
+            "y": 2100
+          },
+          {
+            "x": 3686.87767650463,
+            "y": 2066.3447627314818
+          },
+          {
+            "x": 3690.813078703704,
+            "y": 2032.8414351851852
+          },
+          {
+            "x": 3693.884765625,
+            "y": 1999.43359375
+          },
+          {
+            "x": 3696.1712962962965,
+            "y": 1966.0648148148148
+          },
+          {
+            "x": 3697.7512297453704,
+            "y": 1932.6786747685187
+          },
+          {
+            "x": 3698.703125,
+            "y": 1899.21875
+          },
+          {
+            "x": 3699.105541087963,
+            "y": 1865.6286168981483
+          },
+          {
+            "x": 3699.037037037037,
+            "y": 1831.8518518518517
+          },
+          {
+            "x": 3698.576171875,
+            "y": 1797.83203125
+          },
+          {
+            "x": 3697.8015046296296,
+            "y": 1763.5127314814815
+          },
+          {
+            "x": 3696.7915943287035,
+            "y": 1728.837528935185
+          },
+          {
+            "x": 3695.625,
+            "y": 1693.75
+          },
+          {
+            "x": 3694.3802806712965,
+            "y": 1658.1937210648152
+          },
+          {
+            "x": 3693.13599537037,
+            "y": 1622.1122685185182
+          },
+          {
+            "x": 3691.970703125,
+            "y": 1585.44921875
+          },
+          {
+            "x": 3690.962962962963,
+            "y": 1548.1481481481483
+          },
+          {
+            "x": 3690.191333912037,
+            "y": 1510.1526331018517
+          },
+          {
+            "x": 3689.734375,
+            "y": 1471.40625
+          },
+          {
+            "x": 3689.6706452546296,
+            "y": 1431.8525752314815
+          },
+          {
+            "x": 3690.078703703704,
+            "y": 1391.4351851851852
+          },
+          {
+            "x": 3691.037109375,
+            "y": 1350.09765625
+          },
+          {
+            "x": 3692.6244212962965,
+            "y": 1307.7835648148148
+          },
+          {
+            "x": 3694.9191984953713,
+            "y": 1264.4364872685187
+          },
+          {
+            "x": 3698,
+            "y": 1220
+          }
+        ],
+        "mat": "crystal",
+        "hp": 99999,
+        "maxHp": 99999,
+        "route": false,
+        "indestructible": true,
+        "oneWay": false,
+        "surfaceKind": "crystal",
+        "device": null,
+        "link": null,
+        "honroSeal": null,
+        "honroBlocker": true,
+        "artSeed": 1,
+        "honroWaterFluidVertices": [
+          {
+            "x": 4110,
+            "y": 1220
+          },
+          {
+            "x": 4111.890914351852,
+            "y": 1262.0920138888891
+          },
+          {
+            "x": 4112.627314814815,
+            "y": 1303.4027777777778
+          },
+          {
+            "x": 4112.3046875,
+            "y": 1343.984375
+          },
+          {
+            "x": 4111.018518518518,
+            "y": 1383.888888888889
+          },
+          {
+            "x": 4108.864293981482,
+            "y": 1423.1684027777778
+          },
+          {
+            "x": 4105.9375,
+            "y": 1461.875
+          },
+          {
+            "x": 4102.333622685185,
+            "y": 1500.0607638888887
+          },
+          {
+            "x": 4098.148148148148,
+            "y": 1537.7777777777778
+          },
+          {
+            "x": 4093.4765625,
+            "y": 1575.078125
+          },
+          {
+            "x": 4088.4143518518517,
+            "y": 1612.013888888889
+          },
+          {
+            "x": 4083.0570023148143,
+            "y": 1648.6371527777776
+          },
+          {
+            "x": 4077.5,
+            "y": 1685
+          },
+          {
+            "x": 4071.8388310185187,
+            "y": 1721.1545138888891
+          },
+          {
+            "x": 4066.168981481481,
+            "y": 1757.1527777777774
+          },
+          {
+            "x": 4060.5859375,
+            "y": 1793.046875
+          },
+          {
+            "x": 4055.1851851851857,
+            "y": 1828.8888888888891
+          },
+          {
+            "x": 4050.062210648148,
+            "y": 1864.7309027777776
+          },
+          {
+            "x": 4045.3125,
+            "y": 1900.625
+          },
+          {
+            "x": 4041.0315393518517,
+            "y": 1936.6232638888887
+          },
+          {
+            "x": 4037.3148148148157,
+            "y": 1972.7777777777778
+          },
+          {
+            "x": 4034.2578125,
+            "y": 2009.140625
+          },
+          {
+            "x": 4031.956018518518,
+            "y": 2045.7638888888887
+          },
+          {
+            "x": 4030.5049189814827,
+            "y": 2082.6996527777783
+          },
+          {
+            "x": 4030,
+            "y": 2120
+          },
+          {
+            "x": 4026.8164062500005,
+            "y": 2172.2938368055557
+          },
+          {
+            "x": 4024.7395833333335,
+            "y": 2224.184027777778
+          },
+          {
+            "x": 4023.73046875,
+            "y": 2275.68359375
+          },
+          {
+            "x": 4023.75,
+            "y": 2326.8055555555557
+          },
+          {
+            "x": 4024.759114583333,
+            "y": 2377.562934027778
+          },
+          {
+            "x": 4026.71875,
+            "y": 2427.96875
+          },
+          {
+            "x": 4029.58984375,
+            "y": 2478.036024305555
+          },
+          {
+            "x": 4033.3333333333335,
+            "y": 2527.777777777778
+          },
+          {
+            "x": 4037.91015625,
+            "y": 2577.20703125
+          },
+          {
+            "x": 4043.2812500000005,
+            "y": 2626.3368055555557
+          },
+          {
+            "x": 4049.407552083333,
+            "y": 2675.1801215277774
+          },
+          {
+            "x": 4056.25,
+            "y": 2723.75
+          },
+          {
+            "x": 4063.7695312500005,
+            "y": 2772.059461805556
+          },
+          {
+            "x": 4071.927083333333,
+            "y": 2820.1215277777774
+          },
+          {
+            "x": 4080.68359375,
+            "y": 2867.94921875
+          },
+          {
+            "x": 4090.0000000000005,
+            "y": 2915.555555555556
+          },
+          {
+            "x": 4099.837239583333,
+            "y": 2962.9535590277783
+          },
+          {
+            "x": 4110.15625,
+            "y": 3010.15625
+          },
+          {
+            "x": 4120.917968749999,
+            "y": 3057.176649305555
+          },
+          {
+            "x": 4132.083333333334,
+            "y": 3104.027777777778
+          },
+          {
+            "x": 4143.61328125,
+            "y": 3150.72265625
+          },
+          {
+            "x": 4155.46875,
+            "y": 3197.274305555555
+          },
+          {
+            "x": 4167.610677083334,
+            "y": 3243.695746527778
+          },
+          {
+            "x": 4180,
+            "y": 3290
+          },
+          {
+            "x": 4157.146990740741,
+            "y": 3295.9393084490744
+          },
+          {
+            "x": 4133.634259259259,
+            "y": 3301.2644675925926
+          },
+          {
+            "x": 4109.53125,
+            "y": 3305.986328125
+          },
+          {
+            "x": 4084.9074074074074,
+            "y": 3310.115740740741
+          },
+          {
+            "x": 4059.832175925926,
+            "y": 3313.663556134259
+          },
+          {
+            "x": 4034.375,
+            "y": 3316.640625
+          },
+          {
+            "x": 4008.605324074074,
+            "y": 3319.057798032407
+          },
+          {
+            "x": 3982.5925925925926,
+            "y": 3320.925925925926
+          },
+          {
+            "x": 3956.40625,
+            "y": 3322.255859375
+          },
+          {
+            "x": 3930.115740740741,
+            "y": 3323.0584490740744
+          },
+          {
+            "x": 3903.790509259259,
+            "y": 3323.3445457175926
+          },
+          {
+            "x": 3877.5,
+            "y": 3323.125
+          },
+          {
+            "x": 3851.3136574074083,
+            "y": 3322.4106626157413
+          },
+          {
+            "x": 3825.3009259259256,
+            "y": 3321.2123842592587
+          },
+          {
+            "x": 3799.53125,
+            "y": 3319.541015625
+          },
+          {
+            "x": 3774.074074074074,
+            "y": 3317.4074074074074
+          },
+          {
+            "x": 3748.998842592592,
+            "y": 3314.822410300926
+          },
+          {
+            "x": 3724.375,
+            "y": 3311.796875
+          },
+          {
+            "x": 3700.27199074074,
+            "y": 3308.341652199074
+          },
+          {
+            "x": 3676.7592592592596,
+            "y": 3304.4675925925926
+          },
+          {
+            "x": 3653.90625,
+            "y": 3300.185546875
+          },
+          {
+            "x": 3631.782407407407,
+            "y": 3295.5063657407404
+          },
+          {
+            "x": 3610.457175925927,
+            "y": 3290.44089988426
+          },
+          {
+            "x": 3590,
+            "y": 3285
+          },
+          {
+            "x": 3598.966073495371,
+            "y": 3232.1560329861113
+          },
+          {
+            "x": 3607.1452546296296,
+            "y": 3179.8524305555557
+          },
+          {
+            "x": 3614.583984375,
+            "y": 3128.056640625
+          },
+          {
+            "x": 3621.3287037037035,
+            "y": 3076.7361111111113
+          },
+          {
+            "x": 3627.4258535879626,
+            "y": 3025.8582899305557
+          },
+          {
+            "x": 3632.921875,
+            "y": 2975.390625
+          },
+          {
+            "x": 3637.863208912037,
+            "y": 2925.300564236111
+          },
+          {
+            "x": 3642.2962962962965,
+            "y": 2875.5555555555557
+          },
+          {
+            "x": 3646.267578125,
+            "y": 2826.123046875
+          },
+          {
+            "x": 3649.8234953703704,
+            "y": 2776.9704861111113
+          },
+          {
+            "x": 3653.0104890046296,
+            "y": 2728.0653211805557
+          },
+          {
+            "x": 3655.875,
+            "y": 2679.375
+          },
+          {
+            "x": 3658.4634693287044,
+            "y": 2630.8669704861113
+          },
+          {
+            "x": 3660.8223379629626,
+            "y": 2582.508680555555
+          },
+          {
+            "x": 3662.998046875,
+            "y": 2534.267578125
+          },
+          {
+            "x": 3665.0370370370374,
+            "y": 2486.1111111111113
+          },
+          {
+            "x": 3666.985749421296,
+            "y": 2438.0067274305557
+          },
+          {
+            "x": 3668.890625,
+            "y": 2389.921875
+          },
+          {
+            "x": 3670.79810474537,
+            "y": 2341.824001736111
+          },
+          {
+            "x": 3672.75462962963,
+            "y": 2293.680555555556
+          },
+          {
+            "x": 3674.806640625,
+            "y": 2245.458984375
+          },
+          {
+            "x": 3677.0005787037035,
+            "y": 2197.126736111111
+          },
+          {
+            "x": 3679.3828848379635,
+            "y": 2148.6512586805566
+          },
+          {
+            "x": 3682,
+            "y": 2100
+          },
+          {
+            "x": 3686.87767650463,
+            "y": 2066.3447627314818
+          },
+          {
+            "x": 3690.813078703704,
+            "y": 2032.8414351851852
+          },
+          {
+            "x": 3693.884765625,
+            "y": 1999.43359375
+          },
+          {
+            "x": 3696.1712962962965,
+            "y": 1966.0648148148148
+          },
+          {
+            "x": 3697.7512297453704,
+            "y": 1932.6786747685187
+          },
+          {
+            "x": 3698.703125,
+            "y": 1899.21875
+          },
+          {
+            "x": 3699.105541087963,
+            "y": 1865.6286168981483
+          },
+          {
+            "x": 3699.037037037037,
+            "y": 1831.8518518518517
+          },
+          {
+            "x": 3698.576171875,
+            "y": 1797.83203125
+          },
+          {
+            "x": 3697.8015046296296,
+            "y": 1763.5127314814815
+          },
+          {
+            "x": 3696.7915943287035,
+            "y": 1728.837528935185
+          },
+          {
+            "x": 3695.625,
+            "y": 1693.75
+          },
+          {
+            "x": 3694.3802806712965,
+            "y": 1658.1937210648152
+          },
+          {
+            "x": 3693.13599537037,
+            "y": 1622.1122685185182
+          },
+          {
+            "x": 3691.970703125,
+            "y": 1585.44921875
+          },
+          {
+            "x": 3690.962962962963,
+            "y": 1548.1481481481483
+          },
+          {
+            "x": 3690.191333912037,
+            "y": 1510.1526331018517
+          },
+          {
+            "x": 3689.734375,
+            "y": 1471.40625
+          },
+          {
+            "x": 3689.6706452546296,
+            "y": 1431.8525752314815
+          },
+          {
+            "x": 3690.078703703704,
+            "y": 1391.4351851851852
+          },
+          {
+            "x": 3691.037109375,
+            "y": 1350.09765625
+          },
+          {
+            "x": 3692.6244212962965,
+            "y": 1307.7835648148148
+          },
+          {
+            "x": 3694.9191984953713,
+            "y": 1264.4364872685187
+          },
+          {
+            "x": 3698,
+            "y": 1220
+          }
+        ]
+      }
+    ],
+    "cap": 20,
+    "camera": {
+      "x": 330,
+      "y": 2350,
+      "scale": 0.94
+    }
+  },
+  "views": [
+    {
+      "name": "turn1-landscape",
+      "camera": {
+        "x": 1360,
+        "y": 2470,
+        "scale": 0.45,
+        "round": 1
+      },
+      "viewport": [
+        844,
+        390
+      ]
+    },
+    {
+      "name": "turn1-portrait",
+      "camera": {
+        "x": 1360,
+        "y": 2470,
+        "scale": 0.2079383886255924,
+        "round": 1
+      },
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "name": "turn1-start",
+      "camera": {
+        "x": 650,
+        "y": 2400,
+        "scale": 1.2984615384615383,
+        "round": 1
+      },
+      "viewport": [
+        844,
+        390
+      ]
+    },
+    {
+      "name": "turn1-ritual",
+      "camera": {
+        "x": 1650,
+        "y": 2500,
+        "scale": 0.6,
+        "round": 1
+      },
+      "viewport": [
+        844,
+        390
+      ]
+    }
+  ],
+  "errors": []
+}

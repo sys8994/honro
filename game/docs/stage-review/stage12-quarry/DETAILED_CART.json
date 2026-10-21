@@ -1,0 +1,64 @@
+{
+  "sourceSha": "886189f8c1412f49409de63f6975a3111a9ac905",
+  "beforeSha": "030902fb2da76192612051ee50c81059a4b30098",
+  "branch": "stage/act2-ch12-detailed-cart",
+  "scope": "Common rc18Cart single empty variant and one decorative attachment only; master/Pages held for parent final review",
+  "verdict": "Specific flat-cart defect corrected in inspected normal/mobile/close views; final parent art review pending",
+  "sourceSha256": {
+    "shared/runtime/art-dark.js": "2c15b7532e15436b463453a55a8e976a8d85d3ceca1a599667e6d27995b82e2d",
+    "tools/environment/common-cart-art.mjs": "985675baa045c0c12b8c418efd2da005bced6ead4a8fc2cf143014938111ceaf",
+    "tools/environment/stage12-quarry-art.mjs": "8b34c4dcc3b5b8a44467bd559320cdb043ace3cd4a27d0bf822af5ec2725cfa5",
+    "shared/build.mjs": "5abaa4889626df36d7ce8de1d9defd0a7779371ebda7cd74615b75b4acb210ae",
+    "shared/data/campaign.json": "5fdf6f81fd4d6e55f8b7c35aa43f520c31279e3dae822ed9854c09ed262bcb46",
+    "tests/stage12-common-cart.mjs": "acbc55e75632bdd7a6a916780878b9df038f0870c1b1dbe045295a4872b8c52c",
+    "tests/stage12-common-pilot-save.mjs": "c24f864c3a9a9470e23904236631fdc7c831fb20db8aba18c1a2fef8b15239e0"
+  },
+  "directlyOpened": {
+    "before": [
+      "carrier-normal",
+      "carrier-mobile",
+      "cart-close"
+    ],
+    "focus": [
+      "carrier-normal",
+      "carrier-mobile",
+      "cart-close"
+    ],
+    "focus2": [
+      "carrier-normal",
+      "carrier-mobile",
+      "cart-close"
+    ],
+    "final": "all7"
+  },
+  "pngSha256": {
+    "evidence/detailed-cart/before/stage12-carrier-mobile.png": "715679bafa5cdc5a6bba0e77a4701cabb763f813215c8fa75edeb0818af81fc3",
+    "evidence/detailed-cart/before/stage12-carrier-normal.png": "663371b1627e1b50d1a80429ee464c38eefcbff2d8ed67c3b5e0e37391dec6f6",
+    "evidence/detailed-cart/before/stage12-cart-close.png": "9b8375898e20d47c1f0fe3101ebe9a42f299f7be42b892fd4c48ae45cdcadb67",
+    "evidence/detailed-cart/before/stage12-center-overview.png": "2be34bf218bd98ad66ffb6ba770ee6ad4966a8fff66956eddb32be98c6e36bbf",
+    "evidence/detailed-cart/before/stage12-root-joint.png": "b04a66e9a374792b81ab00db46b7d33f8b93394f74d3cc40a11e3ea6ac5d2cf6",
+    "evidence/detailed-cart/before/stage12-sign-mobile.png": "80daab6a461b5490fb6fe2665ca549c5f508a83c28a76f372a88458023ab888c",
+    "evidence/detailed-cart/before/stage12-west-normal.png": "c1017f1e25f231f2dbe6ff1e01b38e7e8dd7795fbbbbca322e8095356967e924",
+    "evidence/detailed-cart/final/stage12-carrier-mobile.png": "76af352e636751e2bd57f927b844e13cdd9c069291909bb4906ddc389b53e876",
+    "evidence/detailed-cart/final/stage12-carrier-normal.png": "b19d3fabfdc34f074d19788bedcd9970dd8b4a603a59a804539730418d4963ee",
+    "evidence/detailed-cart/final/stage12-cart-close.png": "1ee9b66141632062f093f7424a504c2ace13207feed29a71895f10261dcbff26",
+    "evidence/detailed-cart/final/stage12-center-overview.png": "cb82bec1173a1b0cb6fbc419d47dc025541471f40b82cf7be4211ff6dd7190bf",
+    "evidence/detailed-cart/final/stage12-root-joint.png": "b04a66e9a374792b81ab00db46b7d33f8b93394f74d3cc40a11e3ea6ac5d2cf6",
+    "evidence/detailed-cart/final/stage12-sign-mobile.png": "80daab6a461b5490fb6fe2665ca549c5f508a83c28a76f372a88458023ab888c",
+    "evidence/detailed-cart/final/stage12-west-normal.png": "c1017f1e25f231f2dbe6ff1e01b38e7e8dd7795fbbbbca322e8095356967e924",
+    "evidence/detailed-cart/focus/stage12-carrier-mobile.png": "587327625268890df7ee2e3859488de828bfc3bd3069ef610787ab847af839be",
+    "evidence/detailed-cart/focus/stage12-carrier-normal.png": "794885efd8664f4a589fafba85cc901303e67f644c19bc03a0b1cf7ef1b9d545",
+    "evidence/detailed-cart/focus/stage12-cart-close.png": "d83fecd2eb5b12a415a7e825309a32c758e0993e87c86fa7b99a28830f5fbe8b",
+    "evidence/detailed-cart/focus/stage12-center-overview.png": "56bf8821b2b0c71909d1e2e9bfa8a1baf10a4674fef53a53cc3781289ab85cc0",
+    "evidence/detailed-cart/focus/stage12-root-joint.png": "b04a66e9a374792b81ab00db46b7d33f8b93394f74d3cc40a11e3ea6ac5d2cf6",
+    "evidence/detailed-cart/focus/stage12-sign-mobile.png": "80daab6a461b5490fb6fe2665ca549c5f508a83c28a76f372a88458023ab888c",
+    "evidence/detailed-cart/focus/stage12-west-normal.png": "c1017f1e25f231f2dbe6ff1e01b38e7e8dd7795fbbbbca322e8095356967e924",
+    "evidence/detailed-cart/focus2/stage12-carrier-mobile.png": "76af352e636751e2bd57f927b844e13cdd9c069291909bb4906ddc389b53e876",
+    "evidence/detailed-cart/focus2/stage12-carrier-normal.png": "b19d3fabfdc34f074d19788bedcd9970dd8b4a603a59a804539730418d4963ee",
+    "evidence/detailed-cart/focus2/stage12-cart-close.png": "1ee9b66141632062f093f7424a504c2ace13207feed29a71895f10261dcbff26",
+    "evidence/detailed-cart/focus2/stage12-center-overview.png": "cb82bec1173a1b0cb6fbc419d47dc025541471f40b82cf7be4211ff6dd7190bf",
+    "evidence/detailed-cart/focus2/stage12-root-joint.png": "b04a66e9a374792b81ab00db46b7d33f8b93394f74d3cc40a11e3ea6ac5d2cf6",
+    "evidence/detailed-cart/focus2/stage12-sign-mobile.png": "80daab6a461b5490fb6fe2665ca549c5f508a83c28a76f372a88458023ab888c",
+    "evidence/detailed-cart/focus2/stage12-west-normal.png": "c1017f1e25f231f2dbe6ff1e01b38e7e8dd7795fbbbbca322e8095356967e924"
+  }
+}
