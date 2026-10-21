@@ -1,0 +1,11 @@
+PASS exact support, no planning mutation, real arrival, lock, save and reversed next turn
+PASS occupied anchor finds the nearest body-width clearance deterministically
+PASS long low ceiling escapes beyond old 96 range without landing on its roof
+PASS all candidate surfaces are considered, including lower one-way support
+PASS sloping support keeps full head/width clearance and exact contact
+PASS full-width ceiling obstruction and no support fail without cost/turn use
+PASS a valid floor in another room cannot be reached through the separating wall
+PASS lethal lava/deep water and stage5 wet-cliff restriction remain unavailable
+PASS authored destination restriction participates in both readiness and execution
+PASS finite expiry, old missing expiry and own-side pair isolation
+10 gate resolver groups passed; search radius 220

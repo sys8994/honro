@@ -1,0 +1,24 @@
+{
+  "baseMaster": "27efe8eb",
+  "latestMasterObserved": "bafc275c10c7a256692425641d7f0e4f69c002ca",
+  "masterIntegrated": false,
+  "sourceSha256": {
+    "shared/engine/src/passiveBalance.ts": "68d37bfd0710d22506c2fc076c21fdb84d6f18ebbeecd11fd747ceb6324941c8",
+    "shared/engine/src/balance.ts": "690953ecf871940ca799ee84581d9e873e21696b1a3886d7eb509d41008479b3",
+    "shared/engine/src/mageGeometry.ts": "4f78543768aee3cb7e60082875647ba5fccf825b838458581a34d758edcbb62e",
+    "shared/engine/src/gateTravel.ts": "7ef5a27feb1397b90da6bc217f2c04950477f2ca86901b35417973553a872ef1",
+    "shared/engine/src/progression.ts": "9f65add5a36aac0cee963efd63dc3b17f31941f379ce97820d55e9bb6469b44e",
+    "shared/engine/src/skillMechanics.ts": "2c97e434575052aaf83fd9a6c0f4ffb4ac7ed625582d82891be8aa41797e1243",
+    "shared/engine/src/totemBehavior.ts": "9af21841dee1b5d8765b382b792f56ab719b932cfe7d9d947531cdbe9570cc7d",
+    "shared/engine/src/skillVisuals.ts": "d71f96b59f7d46498977c014e74f87b4260698abd2690053cc7725aad48864fe",
+    "shared/engine/src/engine.ts": "111436bd0e97e97206b44d16abd23521dfa2e59c2a8234763ffa7c07a08a4a17",
+    "shared/engine/src/store.ts": "b8170608b6c0bd1c4e515197e2f3d20ca9dbc2e6fde2e81398a93c4a6a219d1d",
+    "shared/engine/src/world.ts": "c98bd190016e0e330341b05388a208a99e961ac5a84d4c4f608b0e2750d92782",
+    "shared/engine/src/warriorData.ts": "07c6917ebfd5004d5fda90ff0f5030f0aa88ecf0a6b2528a700d16a7bfe96a0a",
+    "shared/engine/src/spBalanceModel.ts": "1efb4045907a89703c3df0d63d5bce3117ab963fa27a687019ae62562ffe71a9",
+    "shared/runtime/renderer.js": "a1dbeeb1e1ccdc1454cc23ddeeac38c5c327a3b263d41a3812f6d6b113cdd49c",
+    "shared/runtime/interactions.js": "6426283a538151eda807736b205252e192390551bcd50de4c93b04f1a6e07a50",
+    "shared/runtime/stake-crossing.js": "a5b477c1ff3067f49db7e619a565c51908903d688228f136377bb99ea4b7128f",
+    "web/manifest.json": "ecc25a869095c5ce5f1a8fa910270ce32e79250b01070282e2d123d62bbb4a7d"
+  }
+}

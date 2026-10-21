@@ -1,10 +1,10 @@
-import {validTerrainContactPose} from './locomotion';
+import {gateSource} from './gateTravel';
 import {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
 export {waveReflectionPlan,WAVE_REFLECTION_DECAY,waveReflectionVelocities} from './waveReflection';
 import {passiveTuning} from './passiveBalance';
 import {healed} from './contribution';
 import {triggerOffensiveStake,stakeRanges} from './totemBehavior';
-import {waveArcDimensions,shatterStakeDimensions,MAGE_AREA_SCALE} from './mageGeometry';
+import {waveArcDimensions,MAGE_AREA_SCALE} from './mageGeometry';
 import {jucheonBoost} from './combatPassives';
 import type {Battle,Unit,Projectile,Skill,Vec,Profile} from './types';
 import type {Engine,Collision,Prediction} from './engine';
@@ -359,18 +359,11 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
 }
 
 export function gateCandidate(e:Engine,u=e.active){
- if(!u||u.dead||u.side!==0||u.retreat)return undefined;const gates=(e.b.stakes||[]).filter(s=>s.skill==='M09'&&s.side===u.side&&(s.expires===undefined||s.expires>e.b.round));if(gates.length!==2)return undefined;
- return gates.find(s=>Math.hypot(u.x-s.x,u.y-s.y)<=55&&Math.abs(u.y-s.y)<50);
+ return gateSource(e,u);
 }
 export function useGate(e:Engine,u=e.active){
- const from=gateCandidate(e,u);if(!from||!u||!e.canAct())return false;
- const token=`${e.b.round}:${e.b.teamEnds[0]}`;if(u.gateTurn===token)return false;
- const to=e.b.stakes!.find(s=>s.skill==='M09'&&s.side===u.side&&s.id!==from.id)!;
- // Feet stand on the exact-x support, as in walking and scripted placement.
- // A body's lower corners overlap a slope; that contact is not an arrival wall.
- const spot=[0,-24,24,-48,48,-72,72,-96,96].map(offset=>{const x=clamp(to.x+offset,25,e.b.width-25),floor=e.surface(x,to.y-80,to.y+100);return floor?{x,y:floor.y,support:floor.t}:null;}).find(v=>v&&validTerrainContactPose(e.b.terrain,{...u,x:v.x,y:v.y})&&!e.b.units.some(t=>!t.dead&&!t.eaterCapturedBy&&t.id!==u.id&&Math.abs(t.x-v.x)<t.r+u.r&&Math.abs(t.y-v.y)<u.h));
- if(spot&&(e.b as any).honroStage===5&&(e.b as any).honroStage5LakeRevision===1&&!(e.b as any).honroCustom&&(spot.x>2380||spot.y>3000)){e.message('깊은 소와 젖은 절벽에는 축지진목의 발디딤을 이을 수 없습니다.');return false;}
- if(!spot){e.message('도착 진목 주변에 설 자리가 없습니다.');return false;}
+ const plan=e.gateResolution(u);if(!plan.ok||!plan.spot||!plan.to||!u){e.message(plan.reason);return false;}
+ const {to,spot}=plan,token=`${e.b.round}:${e.b.teamEnds[0]}`;
  const {x,y}=spot,fromPoint={x:u.x,y:u.y};u.x=x;u.y=y;u.vx=u.vy=0;u.airborne=false;u.jumping=false;delete u.moveTarget;u.gateTurn=token;
  const r=to.rank,caster=e.unit(to.owner),boost=caster?(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(to.effectBoost||0)):1;
  if(r>=2)u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*(r===2?.08:.10)*boost);

@@ -523,7 +523,20 @@
         "audit/M09-result-1280.png",
         "audit/M09-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Shared local arrival resolver and activation guides; 84-skill signoff remains historical.",
+        "functionalAssertions": "passed",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/gate/M09-1280-core.png",
+          "../mage-volley-gate-20261021/gate/M09-360-result.png",
+          "../mage-volley-gate-20261021/gate/stage5-slope-360.png",
+          "../mage-volley-gate-20261021/gate/ceiling-1280-before.png",
+          "../mage-volley-gate-20261021/gate/ceiling-360-after.png",
+          "../mage-volley-gate-20261021/gate/blocked-390-before.png"
+        ],
+        "trace": "../mage-volley-gate-20261021/gate/resolver-trace.json"
+      }
     },
     {
       "id": "M99",

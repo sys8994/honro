@@ -1,4 +1,5 @@
 import {stakeRanges} from './totemBehavior';
+import {gateActivationOutline} from './gateTravel';
 import {drawWarriorProjectile,drawMeleeGuide} from './warriorVisuals';
 import type {Projectile,Unit,Skill} from './types';
 import type {Engine} from './engine';
@@ -175,7 +176,7 @@ export function drawStakes(c:C,e:Engine,time=0,zoom=1,selected=''){
   c.save();
   if(e.unit(z.owner)){
    const ranges=stakeRanges(e,z),chosen=e.active?.id===z.owner&&selected===z.skill,alpha=chosen?.54:.24;
-   const circle=(radius:number,y:number,trigger=false)=>{c.save();c.strokeStyle=z.side===0?(trigger?'#d7b77e':'#b9d9d3'):'#d6988b';c.globalAlpha=alpha*(trigger?.72:1);c.lineWidth=(trigger?.75:1.2)/zoom;c.setLineDash((trigger?[2,5]:[4,7]).map(n=>n/zoom));c.beginPath();c.arc(z.x,y,radius,0,Math.PI*2);c.stroke();c.restore();};
+   const circle=(radius:number,y:number,trigger=false)=>{c.save();c.strokeStyle=z.side===0?(trigger?'#d7b77e':'#b9d9d3'):'#d6988b';c.globalAlpha=alpha*(trigger?.72:1);c.lineWidth=(trigger?.75:1.2)/zoom;c.setLineDash((trigger?[2,5]:[4,7]).map(n=>n/zoom));c.beginPath();if(z.skill==='M09')gateActivationOutline(z).forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));else c.arc(z.x,y,radius,0,Math.PI*2);c.stroke();c.restore();};
    circle(ranges.effect,z.y-(z.skill==='M07'?20:0));
    if(z.skill!=='M09'&&Math.abs(ranges.trigger-ranges.effect)>.1)circle(ranges.trigger,z.y,true);
    if(chosen){c.save();c.globalAlpha=.8;c.fillStyle=z.side===0?'#d5ded1':'#dfaaa0';c.font=`${10/zoom}px serif`;c.textAlign='center';c.fillText(z.skill==='M07'?'감지 / 폭발':z.skill==='M08'?'기동 / 유인':'점선: 유효 범위',z.x,z.y+20/zoom);c.restore();}
@@ -283,7 +284,7 @@ export function drawRedesignGuide(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom=
  if(geo){c.setLineDash([4/zoom,8/zoom]);c.globalAlpha=.025;drawSkillGeometry(c,geo,true,zoom);c.globalAlpha=.4;drawSkillGeometry(c,geo,false,zoom);}
  else if(s.radius&&s.branch!=='stake'){c.globalAlpha=.4;c.setLineDash([4/zoom,8/zoom]);c.beginPath();c.arc(pr.x,pr.y,e.effective(s,u).radius,0,Math.PI*2);c.stroke();}
  if('secondaryRadius' in pr&&pr.secondaryRadius){const center='secondaryPoint' in pr&&pr.secondaryPoint?pr.secondaryPoint as {x:number;y:number}:pr;
-  c.globalAlpha=.32;c.setLineDash([4/zoom,9/zoom]);c.beginPath();c.arc(center.x,center.y,Number(pr.secondaryRadius),0,Math.PI*2);c.stroke();
+  c.globalAlpha=.32;c.setLineDash([4/zoom,9/zoom]);c.beginPath();if(s.id==='M09')gateActivationOutline(center).forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));else c.arc(center.x,center.y,Number(pr.secondaryRadius),0,Math.PI*2);c.stroke();
   if(s.id==='M05'&&center!==pr){guideStroke(c,[{x:center.x,y:center.y-140},center],zoom,CLASSES[u.cls].color,.32,.85);}
  }
  if('triggerRadius' in pr&&pr.triggerRadius&&pr.triggerRadius!==pr.secondaryRadius){c.globalAlpha=.27;c.lineWidth=.75/zoom;c.strokeStyle='#d7b77e';c.setLineDash([2/zoom,5/zoom]);c.beginPath();c.arc(pr.x,pr.y,Number(pr.triggerRadius),0,Math.PI*2);c.stroke();}

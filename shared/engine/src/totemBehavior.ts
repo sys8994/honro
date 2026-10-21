@@ -7,6 +7,7 @@ import {clamp} from './math';
 import {SKILLS} from './data';
 import {passiveTuning} from './passiveBalance';
 import {shatterStakeDimensions} from './mageGeometry';
+import {GATE_ACTIVATION_RADIUS} from './gateTravel';
 type Stake=NonNullable<Battle['stakes']>[number];
 const hostile=(z:Stake,u:Unit)=>!u.dead&&u.side!==z.side&&u.side!==2;
 export function stakeBoost(e:Engine,z:Stake){const caster=e.unit(z.owner);return caster?(1+passiveTuning(passiveRank(caster,'MP01')).geometry/3)*(1+(z.effectBoost||0)):1;}
@@ -14,7 +15,7 @@ export function stakeContact(z:Stake,u:Unit,boost:number){return Math.min(Math.h
 export function stakeRanges(e:Engine,z:Stake){
  const caster=e.unit(z.owner),boost=caster?(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(z.effectBoost||0)):1;
  const shatter=shatterStakeDimensions(z.rank);
- return {trigger:(z.skill==='M07'?shatter.trigger:45)*Math.min(1.25,boost),effect:z.skill==='M07'?shatter.effect:z.skill==='M08'?lureRadius(e,z):z.skill==='M99'?220:z.skill==='M09'?55:45*Math.min(1.25,boost)};
+ return {trigger:z.skill==='M09'?GATE_ACTIVATION_RADIUS:(z.skill==='M07'?shatter.trigger:45)*Math.min(1.25,boost),effect:z.skill==='M07'?shatter.effect:z.skill==='M08'?lureRadius(e,z):z.skill==='M99'?220:z.skill==='M09'?GATE_ACTIVATION_RADIUS:45*Math.min(1.25,boost)};
 }
 export function lureRadius(e:Engine,z:Stake){return (260+15*(z.rank-1))*stakeBoost(e,z);}
 export function lureStakeFor(e:Engine,u:Unit){

@@ -14,6 +14,7 @@ import {makePhysics,environmentAt,changePhysics,duePhysics,advanceLinear,dragFor
 import type {PhysicsPatch} from './physics';
 import {multishotProfile,volleyAngles,waveCount} from './projectileGrowth';
 import {MAGE_AREA_SCALE} from './mageGeometry';
+import {resolveGate} from './gateTravel';
 import { ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER, PLAYER_MAGE_DAMAGE_MULTIPLIER, PLAYER_MAGE_OFFENSE_BOOST } from './balance';
 import { skillBalanceFactor } from './balanceModel';
 import { evaluateStageEnd } from './stageRules';
@@ -563,6 +564,7 @@ export class Engine {
     turnArrow(point?:Vec){return turnArrow(this,point);}
     useGate(){return useGate(this);}
     gateCandidate(){return gateCandidate(this);}
+    gateResolution(u=this.active){return resolveGate(this,u);}
     move(direction: number, dt: number) { if (!this.canAct())
         return; const u = this.active!;
         // S13's grounded bonus action permits turning, but never locomotion.

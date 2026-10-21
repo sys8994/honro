@@ -1,3 +1,4 @@
+import {GATE_SEARCH_RADIUS} from './gateTravel';
 import {waveArcDimensions,shatterStakeDimensions,MAGE_AREA_SCALE} from './mageGeometry';
 import {waveReflectionPlan,WAVE_REFLECTION_DECAY} from './waveReflection';
 import {HERO_ARMOR_CAP,passiveTuning,durabilityPower} from './passiveBalance';
@@ -102,7 +103,7 @@ export function skillEffectRows(id:string,rank:number):EffectRow[]{
    M07:[row('감지 거리',num(shatterStakeDimensions(rr).trigger)),row('폭발 반경',num(shatterStakeDimensions(rr).effect)),row('기동','적이 접근하면 폭발 · 대상마다 턴당 1회')],
    M10:[row('체력 회복',pct(.06+.01*rr)),row('기력 회복',pct(.07+.01*rr)),row('이동력 회복',pct(.12+.03*rr)),row('사용 횟수','아군마다 매 턴 1회')],
    M08:[row('기동 거리','45 · 적이 접근하면 발동'),row('끌어당김','벽에 가로막힘')],
-   M09:[row('첫 설치','발밑·착탄점에 한 쌍'),row('동시 설치','2개 · 초과 시 오래된 진목 교체'),row('이동','진목 위에서 E · 턴당 1회'),row('도착 기력 회복',rr<2?'없음':rr===2?'8%':'10%'),row('도착 체력 회복',rr<4?'없음':rr===4?'6%':'8%'),row('도착 이동력 회복',rr<6?'없음':rr===6?'16%':'24%'),row('도착 방호',rr===8?'적 행동 종료까지':'없음')],
+   M09:[row('첫 설치','발밑·착탄점에 한 쌍'),row('동시 설치','2개 · 초과 시 오래된 진목 교체'),row('이동','진목 위에서 E · 턴당 1회'),row('도착 탐색',`${GATE_SEARCH_RADIUS} 거리 안 가장 가까운 유효 접지`),row('도착 불가','비용·턴 사용 없이 이유 표시'),row('도착 기력 회복',rr<2?'없음':rr===2?'8%':'10%'),row('도착 체력 회복',rr<4?'없음':rr===4?'6%':'8%'),row('도착 이동력 회복',rr<6?'없음':rr===6?'16%':'24%'),row('도착 방호',rr===8?'적 행동 종료까지':'없음')],
    M99:[row('봉쇄 유지',`${stakeDuration(id,rr)}턴`),row('경계 피해',num(dmg*22/35)+' · 턴당 1회'),row('내부 감속','45%'),row('내부 이동력 감소','35%')],
    O05:[row('나가는 피해','28%'),row('귀환 폭발','95% · 첫 유효 적 1회'),row('흔적 보너스','폭발 피해 +30%'),row('회귀','실제 발사 궤적 역순'),row('지형 미접촉','최대 3.4초 뒤 소멸')],
    O06:[row('쇠약 유지',`${WEAK_TURNS[rr-1]}턴`)],O07:[row('증오 유지',`${BETRAY_TURNS[rr-1]}턴`)],

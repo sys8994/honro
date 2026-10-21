@@ -1,0 +1,215 @@
+{
+  "scope": "Authored dimensions without MP01/MP05 situational boosts. Runtime/pixels are separate evidence.",
+  "playerDamageBefore": 1.2,
+  "playerDamageAfter": 1.416,
+  "rows": [
+    {
+      "rank": 1,
+      "volleyFirstBefore": 0.42,
+      "volleyFirstAfter": 0.315,
+      "followupCount": 1,
+      "waveArcBefore": {
+        "radius": 150,
+        "span": 52,
+        "length": 136.1356816555577,
+        "thickness": 30
+      },
+      "waveArcAfter": {
+        "radius": 150,
+        "span": 60,
+        "length": 157.07963267948966,
+        "thickness": 33.6
+      },
+      "shatterBefore": {
+        "trigger": 45,
+        "effect": 95
+      },
+      "shatterAfter": {
+        "trigger": 45.0,
+        "effect": 95.0
+      }
+    },
+    {
+      "rank": 2,
+      "volleyFirstBefore": 0.44,
+      "volleyFirstAfter": 0.33,
+      "followupCount": 2,
+      "waveArcBefore": {
+        "radius": 150,
+        "span": 58,
+        "length": 151.84364492350667,
+        "thickness": 32
+      },
+      "waveArcAfter": {
+        "radius": 155,
+        "span": 68,
+        "length": 183.95770316020233,
+        "thickness": 35.84
+      },
+      "shatterBefore": {
+        "trigger": 45,
+        "effect": 95
+      },
+      "shatterAfter": {
+        "trigger": 48.57142857142857,
+        "effect": 99.28571428571429
+      }
+    },
+    {
+      "rank": 3,
+      "volleyFirstBefore": 0.45999999999999996,
+      "volleyFirstAfter": 0.345,
+      "followupCount": 3,
+      "waveArcBefore": {
+        "radius": 150,
+        "span": 64,
+        "length": 167.55160819145564,
+        "thickness": 34
+      },
+      "waveArcAfter": {
+        "radius": 160,
+        "span": 76,
+        "length": 212.23203704251048,
+        "thickness": 38.080000000000005
+      },
+      "shatterBefore": {
+        "trigger": 45,
+        "effect": 95
+      },
+      "shatterAfter": {
+        "trigger": 52.142857142857146,
+        "effect": 103.57142857142857
+      }
+    },
+    {
+      "rank": 4,
+      "volleyFirstBefore": 0.48,
+      "volleyFirstAfter": 0.36,
+      "followupCount": 4,
+      "waveArcBefore": {
+        "radius": 150,
+        "span": 70,
+        "length": 183.25957145940458,
+        "thickness": 36
+      },
+      "waveArcAfter": {
+        "radius": 165,
+        "span": 84,
+        "length": 241.90263432641407,
+        "thickness": 40.32000000000001
+      },
+      "shatterBefore": {
+        "trigger": 45,
+        "effect": 95
+      },
+      "shatterAfter": {
+        "trigger": 55.714285714285715,
+        "effect": 107.85714285714286
+      }
+    },
+    {
+      "rank": 5,
+      "volleyFirstBefore": 0.5,
+      "volleyFirstAfter": 0.375,
+      "followupCount": 5,
+      "waveArcBefore": {
+        "radius": 150,
+        "span": 76,
+        "length": 198.96753472735355,
+        "thickness": 38
+      },
+      "waveArcAfter": {
+        "radius": 170,
+        "span": 92,
+        "length": 272.9694950119131,
+        "thickness": 42.56
+      },
+      "shatterBefore": {
+        "trigger": 45,
+        "effect": 95
+      },
+      "shatterAfter": {
+        "trigger": 59.285714285714285,
+        "effect": 112.14285714285714
+      }
+    },
+    {
+      "rank": 6,
+      "volleyFirstBefore": 0.545,
+      "volleyFirstAfter": 0.40875000000000006,
+      "followupCount": 5,
+      "waveArcBefore": {
+        "radius": 150,
+        "span": 82,
+        "length": 214.67549799530252,
+        "thickness": 40
+      },
+      "waveArcAfter": {
+        "radius": 175,
+        "span": 100,
+        "length": 305.43261909900764,
+        "thickness": 44.800000000000004
+      },
+      "shatterBefore": {
+        "trigger": 45,
+        "effect": 95
+      },
+      "shatterAfter": {
+        "trigger": 62.85714285714286,
+        "effect": 116.42857142857143
+      }
+    },
+    {
+      "rank": 7,
+      "volleyFirstBefore": 0.59,
+      "volleyFirstAfter": 0.4425,
+      "followupCount": 5,
+      "waveArcBefore": {
+        "radius": 150,
+        "span": 88,
+        "length": 230.38346126325152,
+        "thickness": 42
+      },
+      "waveArcAfter": {
+        "radius": 180,
+        "span": 108,
+        "length": 339.29200658769764,
+        "thickness": 47.040000000000006
+      },
+      "shatterBefore": {
+        "trigger": 45,
+        "effect": 95
+      },
+      "shatterAfter": {
+        "trigger": 66.42857142857143,
+        "effect": 120.71428571428572
+      }
+    },
+    {
+      "rank": 8,
+      "volleyFirstBefore": 0.635,
+      "volleyFirstAfter": 0.47625,
+      "followupCount": 5,
+      "waveArcBefore": {
+        "radius": 150,
+        "span": 94,
+        "length": 246.09142453120046,
+        "thickness": 44
+      },
+      "waveArcAfter": {
+        "radius": 185,
+        "span": 116,
+        "length": 374.5476574779831,
+        "thickness": 49.28
+      },
+      "shatterBefore": {
+        "trigger": 45,
+        "effect": 95
+      },
+      "shatterAfter": {
+        "trigger": 70.0,
+        "effect": 125.0
+      }
+    }
+  ]
+}
