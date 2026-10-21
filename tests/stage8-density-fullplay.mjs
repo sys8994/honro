@@ -72,7 +72,7 @@ function attack(u,target){const missed=missedAtPose(u,target);if(missed&&!repres
  }finally{attackPlanningMs+=performance.now()-begin;}}
 
 
-function attackSeal(u,t){if(!t||t.broken)return false;const actor=e.unit(t.id);if(actor?.honroObjectiveTarget)return attack(u,actor);const begin=performance.now();try{const s=C.SKILLS[basic[u.cls]],target={x:t.x+t.w/2,y:t.y+t.h/2,h:0,r:Math.min(t.w,t.h)/2};if(distance(u,target)>1850)return false;
+function attackSeal(u,t){if(!t||t.broken)return false;const actor=e.unit(t.id);if(actor?.honroObjectiveTarget)return distance(u,actor)<=1850&&attack(u,actor);const begin=performance.now();try{const s=C.SKILLS[basic[u.cls]],target={x:t.x+t.w/2,y:t.y+t.h/2,h:0,r:Math.min(t.w,t.h)/2};if(distance(u,target)>1850)return false;
  if(u.cls==='knight'){
   // The new authored seals explicitly accept the ordinary sword sector. The
   // first controller incorrectly excluded the knight from this existing input.
