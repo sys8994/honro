@@ -19,3 +19,10 @@
 축지 브라우저의 옛 진 중심 높이±5 support 탐색은 새5장 봉우리에서 null이었다. 테스트 fixture만 실제 진 위100px까지 상향 지지를 찾게 바꿨으며 resolver/물리/금지구역은 바꾸지 않았다. 경로 probe의 옛1690 안내도 현재 authored ritualEast=1640을 읽도록 수정했다. 이전6판본 입력 파일은 저장소의 보존 원본으로 제공해2장 저장검사도 통과했다.
 
 추가 부모 승인으로11장 lower-route 후보도 이어 통합한다.12장 및 이미지 미연결 엔딩은 계속 제외한다. 이 단위까지의2/5장 정상완주를 반복할 계획은 없다.
+
+11장 추가 통합: 원본8d786a91a05c13647f001d5f47d1d72163dee83d를9292a135로 병합했다. 2=8/5=3/11=1을 보존했고 캠페인 source는 지정2/5/11장만 바뀌어 다른27장과 Library가 정확히 동일하다. 새 통합의 실제 explorer 실패저장 두 경우에서 기본점프2회로 각각R59→62/R61→64 복귀, HP692/기력247/적37 유지. 옛 기력245→247과 공중HP/적기술 HBR→HBM은 생산 SP/적 이전의 결과이며 별도migrationChanges에 남겼다. 테스트전용 새뿌리 geometry adapter를 사용한 사실과 일반 Continue의 구판본 재시작을 구분한다. 브라우저4프레임·실제 키보드2접점도 통과했다.
+
+추가 발견과 해결:
+- 새2장 배치가 옛3370/1010 좌표 author 판정에서 빠져 기본 Stage View/Playtest가 경고 정책 opt-in을 잃었다. 명시된 승인 전략지형 revision2/flightRegion/shelf-roost의 opt-in만 추가했다. 캠페인의 기존 정책·자원·배치는 바꾸지 않았다. 기본 preview/campaign 동일 배우, 무판본 import 제외, 실제 Workshop iframe의 active=true/cap3/initial12/새flightRegion/Engine.face를 확인했다. 기존 stage2-airborne 검사는 이 새 실패를 해소한 뒤 원래의 역사 clone flightEscape 실패로 돌아왔으며 통과로 기록하지 않는다.
+- 실제 Playtest는 기존 geology:granite-ledge-neck의 physical scaleRange .65–1와 backgroundRange .85–1.1 불일치로 검증 단계에서 막혔다. 변경 전bafc의 builder도 같은 메타데이터였다. backgroundRange를 기존 physical 범위 안으로만 자르는 공통 builder 교정을 했고(.85–1), 형상·배치·충돌·이미지는 동일하다. 환경 validator는 완화하지 않았다. 실제 Workshop2장 진입을 다시 확인했다.
+- 최종 통합 전용 검사는11장까지 SP/air/map6순열×3반복에서 전체profile/보상장부가 같음을 확인했다. 구판본 폐기 시 아직persist되지 않은 최신 전투장부 version4가 profile에 회수되는 것은 보존 동작이다.

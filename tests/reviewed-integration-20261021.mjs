@@ -12,13 +12,16 @@ const h=await appHarness(),{g,C}=h,out='_local/reports/integration-20261021',row
 const read=async path=>JSON.parse(await readFile(path,'utf8'));
 const baseline=JSON.parse(execFileSync('git',['show','bafc275c:shared/data/campaign.json'],{maxBuffer:40e6})),current=await read('shared/data/campaign.json');
 assert.deepEqual(current.library,baseline.library);
-assert.deepEqual(current.stages.filter((_,i)=>![1,4].includes(i)),baseline.stages.filter((_,i)=>![1,4].includes(i)),'Only the two explicitly approved map candidates change; includes protected 10/11/12');
-for(const [index,sha]of [[1,'29f70e73'],[4,'8f4c21fa']]){const candidate=JSON.parse(execFileSync('git',['show',sha+':shared/data/campaign.json'],{maxBuffer:40e6}));assert.deepEqual(current.stages[index],candidate.stages[index]);}
-assert.equal(g.HonroCampaignMapRevision.current(2),8);assert.equal(g.HonroCampaignMapRevision.current(5),3);
+assert.deepEqual(current.stages.filter((_,i)=>![1,4,10].includes(i)),baseline.stages.filter((_,i)=>![1,4,10].includes(i)),'Only the three explicitly approved maps change; protected stage10/12 data remain exact');
+for(const [index,sha]of [[1,'29f70e73'],[4,'8f4c21fa'],[10,'8d786a91']]){const candidate=JSON.parse(execFileSync('git',['show',sha+':shared/data/campaign.json'],{maxBuffer:40e6}));assert.deepEqual(current.stages[index],candidate.stages[index]);}
+assert.equal(g.HonroCampaignMapRevision.current(2),8);assert.equal(g.HonroCampaignMapRevision.current(5),3);assert.equal(g.HonroCampaignMapRevision.current(11),1);
 assert.deepEqual(plain(authorStage5Waterfall(current,g)),current,'Stage5 author stays idempotent after combining Stage2');
 const stage2Base=structuredClone(baseline);stage2Base.stages[4]=current.stages[4];
 const stage2Rebuilt=g.HonroTerrainDomain.author(await applyAct1SceneComposition(applyStage2LayeredRoad(stage2Base,{refresh:true})));
-assert.deepEqual(plain(stage2Rebuilt.stages[1]),current.stages[1]);rows.push({check:'two approved map sources and authors; other28/library exact',pass:true});
+assert.deepEqual(plain(stage2Rebuilt.stages[1]),current.stages[1]);rows.push({check:'three approved map sources; Stage2/5 authors and other27/library exact',pass:true});
+const neck=g.HONRO_PROJECT.library.find(a=>a.id==='geology:granite-ledge-neck');
+assert.deepEqual(plain(neck.reference.scaleRange),[.65,1]);assert.deepEqual(plain(neck.reference.backgroundRange),[.85,1]);
+rows.push({check:'shared ledge background metadata stays within unchanged physical native-scale range',pass:true});
 const p=(await read('game/docs/stage-review/stage05-diagnosis/evidence/entry-profile.json')).profile;
 const historic=(await read('game/docs/stage-review/stage05-diagnosis/evidence/native.json')).initial;
 for(const [difficulty,mult]of Object.entries(C.DIFFICULTIES)){
@@ -64,7 +67,25 @@ a=h.load(plain(saved));a.continue();h.finish(a);const after=plain(a.engine.b);
 for(const u of after.units){const previous=saved.honroBattle.units.find(v=>v.id===u.id);if(u.side===1&&['bat','crow'].includes(u.honroVariant)&&!u.honroMidboss){assert(Math.abs(u.hp/u.maxHp-previous.hp/previous.maxHp)<1e-10);assert.equal(u.maxHp,Math.round(previous.maxHp*(u.honroVariant==='bat'?56/70:70/88)));}}
 for(let n=0;n<2;n++){a.export();await h.import(await h.exported());a.continue();h.finish(a);assert.deepEqual(plain(a.engine.b),after,'Full battle remains byte-exact after repeated production imports');}
 rows.push({check:'actual old R2 HP fractions, SP, resources, App import/export repeat2',pass:true});
+const stage2=g.HONRO_PROJECT.stages[1],stage2Profile=g.HonroMaps.profileFor(stage2);
+const preview=g.HonroMaps.createBattle(stage2,g.HONRO_PROJECT,stage2Profile),campaign=g.HonroMaps.createBattle(stage2,g.HONRO_PROJECT,stage2Profile,{origin:'campaign'});
+assert(g.HonroStage2Airborne.active(preview),'New approved flight-region map must opt default Stage View/Playtest into warning policy');
+assert.deepEqual(plain(preview.units),plain(campaign.units));
+const unversioned=plain(stage2);delete unversioned.initialState.honroStage2AirborneRevision;
+assert(!g.HonroStage2Airborne.active(g.HonroMaps.createBattle(unversioned,g.HONRO_PROJECT,stage2Profile)),'Unversioned imports are not opted in at mount');
+rows.push({check:'Stage2 default preview/campaign exact actors and warning opt-in; unversioned import preserved',pass:true});
 const q=battlefield(g,2),flyers=q.b.units.filter(C.flyingEnemy);assert.equal(q.b.enemyLimit,3);
 for(const u of flyers){assert(C.flightClear(q.e,u,u));assert.equal(u.honroAirborneBalanceRevision,1);assert.equal(C.defenseForUnit(u).form,1.15);}
 assert(q.b.honroMap.flightRegion);rows.push({check:'new Stage2 flightRegion plus fresh species balancing and cap3',flyers:flyers.map(u=>({id:u.id,hp:u.maxHp,form:C.defenseForUnit(u).form}))});
+// Stage11's obsolete map discard must commute with SP and bird migration too.
+const old11=JSON.parse(gunzipSync(await readFile('game/docs/stage-review/stage11-lower-route/evidence/failed-west-checkpoint.json.gz')));
+let first11;
+for(const order of orders){const profile=plain(old11.profile);profile.honroBattle=plain(old11.b);
+ const before=plain({heroes:profile.heroes,loadouts:profile.loadouts,cleared:profile.cleared});
+ for(let repeat=0;repeat<3;repeat++)for(const name of order)steps[name](profile);
+ assert.equal(profile.honroBattle,null);assert.equal(profile.honroMapRestart,11);
+ assert.deepEqual(plain({heroes:profile.heroes,loadouts:profile.loadouts,cleared:profile.cleared}),before);
+ if(!first11)first11=plain(profile);else assert.deepEqual(plain(profile),first11);
+}
+rows.push({check:'Stage11 original explorer save: SP/air/map six-order repeat3, exact profile and reward equality',pass:true});
 await mkdir(out,{recursive:true});await writeFile(out+'/combined-contracts.json',JSON.stringify({pass:true,scope:'Candidate integration, save-order fixtures and real App save path; not normal combat.',rows},null,2));console.log('PASS',rows.map(r=>r.check));

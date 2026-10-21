@@ -9,7 +9,16 @@ const alive=u=>u&&!u.dead&&u.hp>0;
 const stopped=app=>app.done||['won','lost'].includes(app.engine.b.phase);
 const serial=b=>b.honroState.actorTurnSerial||0;
 const responses=b=>{const m=b.honroState.stage2Airborne;return m?[m,...Object.values(m.waves||{})]:[];};
-function author(project){const s=project.stages?.find(s=>s.metadata?.stageId===2);if((s?.initialState?.honroEscortGoalX===3340||s?.initialState?.honroStage2LayeredRevision===1)&&s.units?.some(u=>u.id==='foe-1'&&u.x===3370&&u.y===1010))s.initialState.honroStage2AirborneRevision=1;return project;}
+function author(project){
+ const s=project.stages?.find(s=>s.metadata?.stageId===2);
+ const legacy=s?.units?.some(u=>u.id==='foe-1'&&u.x===3370&&u.y===1010);
+ // The reviewed strategic road moves the roost into its authored flight region.
+ // Its explicit map revision opts native Stage View/Playtest in without making
+ // arbitrary imported/unversioned Workshop maps acquire campaign policy.
+ const strategic=s?.metadata?.campaign===true&&s.design?.stage2LayeredRoad?.revision===2&&!!s.design?.flightRegion&&s.units?.some(u=>u.id==='foe-1'&&u.fixed&&u.honroCluster==='shelf-roost');
+ if((s?.initialState?.honroEscortGoalX===3340||s?.initialState?.honroStage2LayeredRevision===1)&&(legacy||strategic))s.initialState.honroStage2AirborneRevision=1;
+ return project;
+}
 // Retained API for old diagnostic callers. Flight clearance is now shared by
 // generation and paid movement; do not relocate one historical clone on load.
 function repair(){return false;}
