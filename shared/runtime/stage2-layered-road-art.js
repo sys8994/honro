@@ -11,8 +11,8 @@ const layer=S._landmarkLayer;S._landmarkLayer=function(c,ls,name){if(name==='bac
 // Older Continue snapshots keep their own landmarks and poses. Resolve only the
 // obsolete painted pine asset through the same approved Stage1 asset at draw.
 const legacyPines=new Set(['left-pine-upper','left-pine-lower','right-pine']),pineViews=new WeakMap(),landmark=S.landmark;
-S.landmark=function(c,l){if(active(this.battle)&&legacyPines.has(l.id)&&l.asset?.id==='builtin:ravinePine'){
- let view=pineViews.get(l);if(!view){const asset=G.HONRO_PROJECT.library.find(a=>a.id==='act1-scene:rooted-pine');view=asset?{...l,asset}:l;pineViews.set(l,view);}return landmark.call(this,c,view);
+S.landmark=function(c,l){if(active(this.battle)&&legacyPines.has(l.id)&&l.kind==='ravinePine'){
+ let view=pineViews.get(l);if(!view){const asset=G.HONRO_PROJECT.library.find(a=>a.id==='act1-scene:rooted-pine');view=asset?{...l,kind:'canonical-element',asset,scale:l.size??l.scale??1}:l;pineViews.set(l,view);}return landmark.call(this,c,view);
  }return landmark.call(this,c,l);};
 G.HonroStage2LayeredRoadArt={active,prepare,rear};
 })(globalThis);
