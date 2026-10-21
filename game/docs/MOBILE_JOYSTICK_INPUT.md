@@ -25,6 +25,6 @@ python -X utf8 tests/joystick-intent-browser.py
 
 브라우저 검사는 로컬 HTTP로 실제 생성 Game 문서를 열고 Chromium CDP touch 합성으로 브라우저 PointerEvent·캡처를 통과한다. 실제 production frame/120Hz 물리 루프를 직접 일정 간격 진행하며 좌표·이동도·이동 호출 수를 확인한다. 네 viewport의 허공터 바닥과 실제 활성 유닛을 사용하며, 동행 교체 사례만 두 번째 일반 동행 fixture를 추가해 실제 HUD 선택을 누른다. 화면 렌더링은 증거 촬영 시 실제 렌더러를 사용한다.
 
-증거는 `_local/reports/joystick-intent/`의 `input-trace.json`, `mobile-{320,360,390,844}-aim-only.png`, `review.md`에 둔다. 최종 Chromium 브라우저 검사는 255개 판정(429 상태/614 PointerEvent)을 통과했다. 의도 판정/방향 전환/생명주기 세 집중 검수와 종합 결과는 review에 별도 기록했다. 물리 장치의 손가락 감각·OS별 취소/화면 회전·Safari는 이 Chromium 합성 검증과 별도로 확인해야 한다.
+부모 화면 검수용 최소 원본은 [공유 증거 묶음](stage-review/joystick-intent/evidence/README.md)에 보존한다. 전체 증거는 `_local/reports/joystick-intent/`의 `input-trace.json`, `mobile-{320,360,390,844}-aim-only.png`, `review.md`에 둔다. 최종 Chromium 브라우저 검사는 255개 판정(429 상태/614 PointerEvent)을 통과했다. 의도 판정/방향 전환/생명주기 세 집중 검수와 종합 결과는 review에 별도 기록했다. 물리 장치의 손가락 감각·OS별 취소/화면 회전·Safari는 이 Chromium 합성 검증과 별도로 확인해야 한다.
 
 입력 전용 브랜치에서는 master/Pages를 발행하지 않는다. 병렬 지형 작업과 생성물 충돌을 피하기 위해 소스·검사·문서만 커밋하며, 부모 최종 통합 시 `npm run build`로 HTML/web을 재생성한다.
