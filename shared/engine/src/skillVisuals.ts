@@ -287,7 +287,7 @@ export function drawRedesignGuide(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom=
   c.globalAlpha=.32;c.setLineDash([4/zoom,9/zoom]);c.beginPath();if(s.id==='M09')gateActivationOutline(center).forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));else c.arc(center.x,center.y,Number(pr.secondaryRadius),0,Math.PI*2);c.stroke();
   if(s.id==='M05'&&center!==pr){guideStroke(c,[{x:center.x,y:center.y-140},center],zoom,CLASSES[u.cls].color,.32,.85);}
  }
- if('triggerRadius' in pr&&pr.triggerRadius&&pr.triggerRadius!==pr.secondaryRadius){c.globalAlpha=.27;c.lineWidth=.75/zoom;c.strokeStyle='#d7b77e';c.setLineDash([2/zoom,5/zoom]);c.beginPath();c.arc(pr.x,pr.y,Number(pr.triggerRadius),0,Math.PI*2);c.stroke();}
+ if('triggerRadius' in pr&&pr.triggerRadius&&pr.triggerRadius!==('secondaryRadius' in pr?pr.secondaryRadius:undefined)){c.globalAlpha=.27;c.lineWidth=.75/zoom;c.strokeStyle='#d7b77e';c.setLineDash([2/zoom,5/zoom]);c.beginPath();c.arc(pr.x,pr.y,Number(pr.triggerRadius),0,Math.PI*2);c.stroke();}
  if(s.id==='M04')for(const t of e.b.units.filter(t=>!t.dead&&!t.eaterCapturedBy&&t.side===1&&Math.hypot(t.x-pr.x,t.y-t.h*.5-pr.y)<=260+10*((u.ranks.M04||1)-1))){c.beginPath();c.moveTo(pr.x,pr.y);c.lineTo(t.x,t.y-t.h*.5);c.stroke();}
  c.restore();return true;
 }
