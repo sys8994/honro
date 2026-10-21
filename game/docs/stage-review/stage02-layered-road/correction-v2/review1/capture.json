@@ -1,0 +1,45 @@
+{
+  "sha": "ddb32fa02f77c17941a523e0132833c2160863c9",
+  "renderSha256": "ddfa7e76b64c1619ab2bbc3311c8270f6994784a1b4f3b8536b11361b0e63856",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/runtime/stage2-layered-road-art.js\n D web/data/campaign.58fffe67d649a2fb.json\n D web/data/chapter-02.5c867e082ff98086.json\n D web/entries/game.1452c1306168e313.html\n D web/entries/game.b843f933935c50a1.js\n D web/entries/workshop.ae4b63ed2a4f5461.js\n M web/manifest.json\n D web/runtime/campaign.8035bc593e2f22fc.js\n D web/runtime/ordered-common-12.344bd621e09bee34.js\n?? web/entries/game.1936a97ea17fa977.js\n?? web/entries/game.6f5af49f69b13dd1.html\n?? web/entries/workshop.59c94121a0b2fa94.js\n?? web/runtime/ordered-common-12.18e5cef172f0a2c0.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "road-start",
+      "camera": {
+        "x": 700,
+        "y": 2780,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "high-start",
+      "camera": {
+        "x": 1000,
+        "y": 800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "road-exit",
+      "camera": {
+        "x": 3600,
+        "y": 2780,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

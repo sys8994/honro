@@ -1,0 +1,58 @@
+{
+  "scope": "Real browser fresh entry framing, actual normal save Continue, rewards and Stage3 UI.\nFrozen native Engine combat was executed in stage2-layered-browser.py; no combat replay here.\n",
+  "sha": "d047ec792981c7c41d775bc9ae8a9cd53fc1f78e",
+  "entry": {
+    "dialogue": null,
+    "camera": {
+      "x": 347,
+      "y": 1498.7808101456078,
+      "scale": 0.22228358965464942
+    },
+    "actors": [
+      {
+        "id": "p-archer",
+        "x": 290,
+        "y": 588.5294117647059
+      },
+      {
+        "id": "objective",
+        "x": 180,
+        "y": 2860
+      },
+      {
+        "id": "npc-damheo",
+        "x": 550,
+        "y": 2860
+      }
+    ]
+  },
+  "continuedSnapshot": "route-2",
+  "continuedRound": 3,
+  "legacyNormalization": [
+    {
+      "id": "npc-damheo",
+      "before": {
+        "loadout": [
+          "M06"
+        ],
+        "ranks": {
+          "LM01": 2,
+          "LM06": 2,
+          "M06": 1
+        }
+      },
+      "after": {
+        "loadout": [
+          "LM06"
+        ],
+        "ranks": {
+          "LM01": 2,
+          "LM06": 1
+        }
+      },
+      "baseline": "Identical normalization reproduced on ee73add5; not a Stage2 geometry change"
+    }
+  ],
+  "nextStage": 3,
+  "errors": []
+}
