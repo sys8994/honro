@@ -1,0 +1,16 @@
+{
+  "baseMaster": "27efe8ebdab24e147494196a515641e0629e4656",
+  "other29StagesExact": true,
+  "libraryExact": true,
+  "stage2ResolvedAssetClosureExact": true,
+  "stage2ResolvedAssetCount": 39,
+  "stage5GameplayExactSinceNormalInputRun": {
+    "shared/runtime/encounters.js": true,
+    "shared/runtime/stage5-positioning.js": true,
+    "shared/runtime/mission.js": true,
+    "shared/runtime/interactions.js": true,
+    "shared/runtime/progression.js": true,
+    "shared/runtime/stage5-waterfall-geometry.js": true
+  },
+  "pendingParentCommonBalanceApplied": false
+}
