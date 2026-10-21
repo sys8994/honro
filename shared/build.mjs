@@ -1,3 +1,4 @@
+import {applyStage10Positioning} from '../tools/map-forge/stage10-positioning.mjs';
 import {applyStage7Positioning} from '../tools/map-forge/stage7-positioning.mjs';
 import {applyStage6Positioning} from '../tools/map-forge/stage6-positioning.mjs';
 import {applyStage4Positioning} from '../tools/map-forge/stage4-positioning.mjs';
@@ -70,6 +71,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   project=applyStage4Positioning(project);
   project=applyStage6Positioning(project);
   project=applyStage7Positioning(project);
+  project=applyStage10Positioning(project);
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){
     await buildParty();
