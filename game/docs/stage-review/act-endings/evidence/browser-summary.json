@@ -1,0 +1,43 @@
+{
+  "rows": [
+    {
+      "stage": 10,
+      "viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "result": "passed",
+      "reload": "cut 2",
+      "rewardOnce": true,
+      "next": "rest"
+    },
+    {
+      "stage": 20,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "result": "passed",
+      "reload": "cut 2",
+      "rewardOnce": true,
+      "next": "rest"
+    },
+    {
+      "stage": 30,
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "result": "passed",
+      "reload": "cut 2",
+      "rewardOnce": true,
+      "next": "rest"
+    }
+  ],
+  "errors": [],
+  "initialLazyLoad": true,
+  "limits": [
+    "Battle terminal states are fixtures, separate normal combat trace is required.",
+    "Missing art exercises safe fallback; supplied image composition requires later inspection."
+  ]
+}

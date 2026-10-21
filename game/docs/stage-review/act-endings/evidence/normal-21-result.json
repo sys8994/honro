@@ -1,0 +1,136 @@
+{
+  "won": true,
+  "round": 21,
+  "heroes": [
+    {
+      "cls": "archer",
+      "hp": 633,
+      "maxHp": 659
+    },
+    {
+      "cls": "mage",
+      "hp": 714,
+      "maxHp": 714
+    },
+    {
+      "cls": "knight",
+      "hp": 1214,
+      "maxHp": 1214
+    }
+  ],
+  "shots": 58,
+  "actualDamage": 164,
+  "continues": [
+    {
+      "round": 15,
+      "exact": true
+    }
+  ],
+  "coopHold": 6,
+  "itemsUsed": [
+    {
+      "round": 9,
+      "frame": 18612,
+      "op": "item",
+      "kind": "heal",
+      "hero": "mage",
+      "before": 3,
+      "after": 2
+    },
+    {
+      "round": 16,
+      "frame": 30566,
+      "op": "item",
+      "kind": "heal",
+      "hero": "archer",
+      "before": 2,
+      "after": 1
+    },
+    {
+      "round": 18,
+      "frame": 34533,
+      "op": "item",
+      "kind": "heal",
+      "hero": "mage",
+      "before": 1,
+      "after": 0
+    }
+  ],
+  "recruited": [
+    "archer",
+    "mage",
+    "knight",
+    "occultist"
+  ],
+  "nextStage": 11,
+  "externalWrites": 0,
+  "recoveries": 0,
+  "withdrawal": {
+    "phase": "safe",
+    "elapsed": 1.1,
+    "scout": "p-knight",
+    "party": [
+      "설오",
+      "담허",
+      "휘겸",
+      "소단"
+    ]
+  },
+  "remainingEnemies": 26,
+  "waves": [
+    {
+      "index": 0,
+      "round": 14,
+      "units": [
+        "event-76",
+        "event-77",
+        "event-78",
+        "event-79",
+        "event-80",
+        "event-81",
+        "event-82",
+        "event-83"
+      ],
+      "sources": [
+        "east",
+        "west"
+      ]
+    },
+    {
+      "index": 1,
+      "round": 14,
+      "units": [
+        "event-90",
+        "event-91",
+        "event-92",
+        "event-93",
+        "event-94"
+      ],
+      "sources": [
+        "west",
+        "east"
+      ]
+    },
+    {
+      "index": 2,
+      "round": 15,
+      "units": [
+        "event-102"
+      ],
+      "sources": [
+        "east"
+      ]
+    },
+    {
+      "index": 5,
+      "round": 18,
+      "units": [
+        "event-123"
+      ],
+      "sources": [
+        "west"
+      ]
+    }
+  ],
+  "scope": "Production normal inputs from verified Stage9 victory profile, no injected resources/positions. UI presentation doubled here and checked separately in browser."
+}

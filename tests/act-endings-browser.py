@@ -26,6 +26,11 @@ with sync_playwright() as p:
   if stage==10:
    assert page.locator('#sodan-safe-backdrop').is_visible(),'long outro needs safe off-yard screen'
    page.screenshot(path=str(OUT/'review-1-safe-outro.png'))
+   assert '…이제 손을 놔도 돼요?' in page.locator('#story-line').inner_text()
+   page.evaluate('while(HonroApp.dialogue&&HonroApp.dialogue.index<HonroApp.dialogue.lines.length-1)HonroStory.next(HonroApp)')
+   assert '일행 곁에 앉았다.' in page.locator('#story-line').inner_text()
+   page.wait_for_timeout(500)
+   page.screenshot(path=str(OUT/'review-1-safe-outro-last.png'))
   page.evaluate('for(let i=0;HonroApp.dialogue&&i<60;i++)HonroStory.finish(HonroApp)')
   page.wait_for_selector('#act-ending')
   assert page.locator('#act-ending').get_attribute('data-cut')=='1'

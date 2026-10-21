@@ -1,0 +1,45 @@
+{
+  "status": "failed",
+  "attemptsPerImage": 1,
+  "method": "Current Library resolved-reference materialization: unchanged complete transfer object on stdin to unchanged library_file_transfer.py, with library_hosted_apps.py companion.",
+  "helperExitCode": 1,
+  "helperOutput": "library file transfer failed: download failed",
+  "noFurtherDownloadAttempt": true,
+  "images": [
+    {
+      "act": 1,
+      "libraryFileId": "libfile_d5e577c00a7c8191adb29c6eedd881f2",
+      "fileId": "file_00000000b48c81f59fd2367043546e2f",
+      "fileName": "exec-fbd1d24c-3fa3-4850-83ea-14c1da7e7458.png",
+      "version": 1,
+      "expectedSizeBytes": 2673562,
+      "destination": "/workspace/honro/_local/archive/act-ending-originals-v1/exec-fbd1d24c-3fa3-4850-83ea-14c1da7e7458.png",
+      "localFileCreated": false
+    },
+    {
+      "act": 2,
+      "libraryFileId": "libfile_1905d3c9989c81919a9b8c9865396db3",
+      "fileId": "file_000000006fd081f59ab25e0606f39893",
+      "fileName": "exec-5b4c8100-3aa5-46c2-a272-71cf73db0f1e.png",
+      "version": 1,
+      "expectedSizeBytes": 2956810,
+      "destination": "/workspace/honro/_local/archive/act-ending-originals-v1/exec-5b4c8100-3aa5-46c2-a272-71cf73db0f1e.png",
+      "localFileCreated": false
+    },
+    {
+      "act": 3,
+      "libraryFileId": "libfile_ba0063fc4b808191b4a19c2d577f4feb",
+      "fileId": "file_0000000014f881f594a1e9f6f4738633",
+      "fileName": "exec-f50f301a-eb05-47d8-b640-44912db1d244.png",
+      "version": 1,
+      "expectedSizeBytes": 3198598,
+      "destination": "/workspace/honro/_local/archive/act-ending-originals-v1/exec-f50f301a-eb05-47d8-b640-44912db1d244.png",
+      "localFileCreated": false
+    }
+  ],
+  "limits": [
+    "No image bytes were received, opened, edited, converted, or used as visual acceptance evidence.",
+    "Version 0 was rejected by the user and is excluded.",
+    "The signed URL result itself was normal; the actual supported download step failed."
+  ]
+}
