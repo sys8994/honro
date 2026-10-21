@@ -1,0 +1,1901 @@
+{
+  "scope": "Isolated physical traversal; move budget renewed, no combat claim, gate never altered, start initialized once per probe; no pose corrections.",
+  "rows": [
+    {
+      "stage": 9,
+      "route": "west-covered-floor",
+      "reverse": false,
+      "cls": "archer",
+      "passed": true,
+      "failed": null,
+      "ticks": 239,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 430,
+            "y": 2553.6923076923076
+          },
+          "x": 430,
+          "y": 2553.6923076923076,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 833.4340622192042,
+          "y": 2566.6868124438406,
+          "ticks": 71,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1420,
+            "y": 2618
+          },
+          "x": 1401.5836128431215,
+          "y": 2624.4457355049076,
+          "ticks": 101,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1781.4866012804405,
+          "y": 2491.4796895518457,
+          "ticks": 70,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    {
+      "stage": 9,
+      "route": "west-covered-floor",
+      "reverse": false,
+      "cls": "mage",
+      "passed": true,
+      "failed": null,
+      "ticks": 256,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 430,
+            "y": 2553.6923076923076
+          },
+          "x": 430,
+          "y": 2553.6923076923076,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 828.5228518133698,
+          "y": 2565.704570362674,
+          "ticks": 75,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1420,
+            "y": 2618
+          },
+          "x": 1401.7344942720667,
+          "y": 2624.3929270047765,
+          "ticks": 109,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1782.3925693944823,
+          "y": 2491.162600711931,
+          "ticks": 75,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    {
+      "stage": 9,
+      "route": "west-covered-floor",
+      "reverse": false,
+      "cls": "knight",
+      "passed": true,
+      "failed": null,
+      "ticks": 242,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 430,
+            "y": 2553.6923076923076
+          },
+          "x": 430,
+          "y": 2553.6923076923076,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 833.3876625296942,
+          "y": 2566.677532505939,
+          "ticks": 72,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1420,
+            "y": 2618
+          },
+          "x": 1399.0591298870702,
+          "y": 2625.3293045395253,
+          "ticks": 102,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1778.9621183243971,
+          "y": 2492.363258586461,
+          "ticks": 71,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    {
+      "stage": 9,
+      "route": "west-covered-floor",
+      "reverse": true,
+      "cls": "archer",
+      "passed": true,
+      "failed": null,
+      "ticks": 239,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1800,
+          "y": 2485,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1420,
+            "y": 2618
+          },
+          "x": 1436.6145327990862,
+          "y": 2612.1849135203197,
+          "ticks": 67,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 869.924345598489,
+          "y": 2573.9848691196976,
+          "ticks": 101,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 430,
+            "y": 2553.6923076923076
+          },
+          "x": 449.60507614544696,
+          "y": 2551.5809917997212,
+          "ticks": 74,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    {
+      "stage": 9,
+      "route": "west-covered-floor",
+      "reverse": true,
+      "cls": "mage",
+      "passed": true,
+      "failed": null,
+      "ticks": 256,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1800,
+          "y": 2485,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1420,
+            "y": 2618
+          },
+          "x": 1439.9180370463637,
+          "y": 2611.0286870337727,
+          "ticks": 71,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 868.1919864047611,
+          "y": 2573.638397280952,
+          "ticks": 109,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 430,
+            "y": 2553.6923076923076
+          },
+          "x": 448.5776833005066,
+          "y": 2551.691634106099,
+          "ticks": 79,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    {
+      "stage": 9,
+      "route": "west-covered-floor",
+      "reverse": true,
+      "cls": "knight",
+      "passed": true,
+      "failed": null,
+      "ticks": 243,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1800,
+          "y": 2485,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1420,
+            "y": 2618
+          },
+          "x": 1441.8057537590917,
+          "y": 2610.367986184318,
+          "ticks": 67,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 866.5740282898638,
+          "y": 2573.3148056579726,
+          "ticks": 104,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 430,
+            "y": 2553.6923076923076
+          },
+          "x": 446.5394684629713,
+          "y": 2551.911134165526,
+          "ticks": 75,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    {
+      "stage": 9,
+      "route": "west-collapsed-gallery",
+      "reverse": false,
+      "cls": "archer",
+      "passed": true,
+      "failed": null,
+      "ticks": 337,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 400,
+            "y": 2556.923076923077
+          },
+          "x": 400,
+          "y": 2556.923076923077,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 470,
+            "y": 2381.7606837606836
+          },
+          "x": 463.89838654531223,
+          "y": 2383.5807376886205,
+          "ticks": 65,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 570,
+            "y": 2351.931623931624
+          },
+          "x": 553.3374755448891,
+          "y": 2356.9018983203705,
+          "ticks": 17,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 960,
+            "y": 2310
+          },
+          "x": 940.4918505387375,
+          "y": 2311.6721270966796,
+          "ticks": 68,
+          "support": "tactical-west-collapsed-gallery"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2403.5714285714284
+          },
+          "x": 1379.0950545489757,
+          "y": 2402.327086580296,
+          "ticks": 78,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 1510,
+            "y": 2410.1190476190477
+          },
+          "x": 1489.7325621995844,
+          "y": 2408.91265251188,
+          "ticks": 20,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 1630,
+            "y": 2544.5
+          },
+          "x": 1623.79255697528,
+          "y": 2546.6726050586517,
+          "ticks": 66,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1783.4619289271966,
+          "y": 2490.788324875481,
+          "ticks": 30,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "west-collapsed-gallery",
+      "reverse": false,
+      "cls": "mage",
+      "passed": true,
+      "failed": null,
+      "ticks": 352,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 400,
+            "y": 2556.923076923077
+          },
+          "x": 400,
+          "y": 2556.923076923077,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 470,
+            "y": 2381.7606837606836
+          },
+          "x": 465.1180184295905,
+          "y": 2383.2169329641647,
+          "ticks": 66,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 570,
+            "y": 2351.931623931624
+          },
+          "x": 548.6796815806234,
+          "y": 2358.291274468686,
+          "ticks": 17,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 960,
+            "y": 2310
+          },
+          "x": 942.6400425576676,
+          "y": 2311.4879963522,
+          "ticks": 74,
+          "support": "tactical-west-collapsed-gallery"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2403.5714285714284
+          },
+          "x": 1378.8950608861712,
+          "y": 2402.3151821956053,
+          "ticks": 83,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 1510,
+            "y": 2410.1190476190477
+          },
+          "x": 1493.1428451022193,
+          "y": 2409.1156455417986,
+          "ticks": 22,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 1630,
+            "y": 2544.5
+          },
+          "x": 1623.8422093285826,
+          "y": 2546.655226734996,
+          "ticks": 66,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1778.1630505944267,
+          "y": 2492.6429322919507,
+          "ticks": 31,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "west-collapsed-gallery",
+      "reverse": false,
+      "cls": "knight",
+      "passed": true,
+      "failed": null,
+      "ticks": 341,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 400,
+            "y": 2556.923076923077
+          },
+          "x": 400,
+          "y": 2556.923076923077,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 470,
+            "y": 2381.7606837606836
+          },
+          "x": 462.95249650828384,
+          "y": 2383.8628877936826,
+          "ticks": 66,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 570,
+            "y": 2351.931623931624
+          },
+          "x": 551.113884236438,
+          "y": 2357.5651747021225,
+          "ticks": 17,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 960,
+            "y": 2310
+          },
+          "x": 938.3459774540302,
+          "y": 2311.8560590753686,
+          "ticks": 69,
+          "support": "tactical-west-collapsed-gallery"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2403.5714285714284
+          },
+          "x": 1381.9601093586111,
+          "y": 2402.49762555706,
+          "ticks": 80,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 1510,
+            "y": 2410.1190476190477
+          },
+          "x": 1491.0170811856397,
+          "y": 2408.9891119753356,
+          "ticks": 20,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 1630,
+            "y": 2544.5
+          },
+          "x": 1623.1626828618596,
+          "y": 2546.893060998349,
+          "ticks": 66,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1780.5510637858952,
+          "y": 2491.8071276749365,
+          "ticks": 30,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "west-collapsed-gallery",
+      "reverse": true,
+      "cls": "archer",
+      "passed": true,
+      "failed": null,
+      "ticks": 356,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1800,
+          "y": 2485,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1630,
+            "y": 2544.5
+          },
+          "x": 1651.3423088723534,
+          "y": 2537.030191894676,
+          "ticks": 28,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1510,
+            "y": 2410.1190476190477
+          },
+          "x": 1518.5471531387157,
+          "y": 2410.6278067344474,
+          "ticks": 79,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2403.5714285714284
+          },
+          "x": 1419.555698925013,
+          "y": 2404.735458269346,
+          "ticks": 18,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 960,
+            "y": 2310
+          },
+          "x": 980.4758742830188,
+          "y": 2314.849549172294,
+          "ticks": 78,
+          "support": "tactical-west-collapsed-gallery"
+        },
+        {
+          "goal": {
+            "x": 570,
+            "y": 2351.931623931624
+          },
+          "x": 586.6362647949135,
+          "y": 2346.9691825526284,
+          "ticks": 69,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 470,
+            "y": 2381.7606837606836
+          },
+          "x": 491.6072327328626,
+          "y": 2375.315449381394,
+          "ticks": 18,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 400,
+            "y": 2556.923076923077
+          },
+          "x": 406.7896573826656,
+          "y": 2556.1918830510976,
+          "ticks": 73,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "west-collapsed-gallery",
+      "reverse": true,
+      "cls": "mage",
+      "passed": true,
+      "failed": null,
+      "ticks": 371,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1800,
+          "y": 2485,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1630,
+            "y": 2544.5
+          },
+          "x": 1650.8231867763507,
+          "y": 2537.2118846282774,
+          "ticks": 30,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1510,
+            "y": 2410.1190476190477
+          },
+          "x": 1516.16054180587,
+          "y": 2410.4857465360637,
+          "ticks": 80,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2403.5714285714284
+          },
+          "x": 1418.233869620686,
+          "y": 2404.656777953612,
+          "ticks": 19,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 960,
+            "y": 2310
+          },
+          "x": 981.3930002711621,
+          "y": 2315.0667632221175,
+          "ticks": 83,
+          "support": "tactical-west-collapsed-gallery"
+        },
+        {
+          "goal": {
+            "x": 570,
+            "y": 2351.931623931624
+          },
+          "x": 591.5605379558075,
+          "y": 2345.5003181653187,
+          "ticks": 73,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 470,
+            "y": 2381.7606837606836
+          },
+          "x": 487.10845901701646,
+          "y": 2376.6573912846675,
+          "ticks": 21,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 400,
+            "y": 2556.923076923077
+          },
+          "x": 407.84500371938566,
+          "y": 2556.0782303686815,
+          "ticks": 72,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "west-collapsed-gallery",
+      "reverse": true,
+      "cls": "knight",
+      "passed": true,
+      "failed": null,
+      "ticks": 359,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1800,
+          "y": 2485,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1630,
+            "y": 2544.5
+          },
+          "x": 1648.0388046250691,
+          "y": 2538.186418381226,
+          "ticks": 29,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1510,
+            "y": 2410.1190476190477
+          },
+          "x": 1517.140722544766,
+          "y": 2410.5440906276644,
+          "ticks": 79,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2403.5714285714284
+          },
+          "x": 1419.563431962688,
+          "y": 2404.7359185692076,
+          "ticks": 18,
+          "support": "tactical-west-rubble-return"
+        },
+        {
+          "goal": {
+            "x": 960,
+            "y": 2310
+          },
+          "x": 981.1321326600372,
+          "y": 2315.0049787879034,
+          "ticks": 79,
+          "support": "tactical-west-collapsed-gallery"
+        },
+        {
+          "goal": {
+            "x": 570,
+            "y": 2351.931623931624
+          },
+          "x": 587.2124951984919,
+          "y": 2346.7972984407916,
+          "ticks": 70,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 470,
+            "y": 2381.7606837606836
+          },
+          "x": 488.0309340043183,
+          "y": 2376.382225668797,
+          "ticks": 19,
+          "support": "tactical-west-rubble-ascent"
+        },
+        {
+          "goal": {
+            "x": 400,
+            "y": 2556.923076923077
+          },
+          "x": 404.30764395247064,
+          "y": 2556.4591768051187,
+          "ticks": 72,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "east-root-loop",
+      "reverse": false,
+      "cls": "archer",
+      "passed": true,
+      "failed": null,
+      "ticks": 361,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 2060,
+            "y": 2423.3333333333335
+          },
+          "x": 2060,
+          "y": 2423.3333333333335,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2190,
+            "y": 2219.6428571428573
+          },
+          "x": 2180.9919932247317,
+          "y": 2225.1120041135555,
+          "ticks": 73,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2340,
+            "y": 2128.5714285714284
+          },
+          "x": 2320.6072873776116,
+          "y": 2140.345575520736,
+          "ticks": 29,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2600,
+            "y": 1983.0434782608695
+          },
+          "x": 2578.1914978096356,
+          "y": 1984.9398697556837,
+          "ticks": 54,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 1979.2592592592594
+          },
+          "x": 2781.2126592225954,
+          "y": 1975.7801220782585,
+          "ticks": 36,
+          "support": "tactical-east-stone-shoulder"
+        },
+        {
+          "goal": {
+            "x": 3070,
+            "y": 2072.0833333333335
+          },
+          "x": 3050.395133428195,
+          "y": 2051.6615973210364,
+          "ticks": 50,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 3320,
+            "y": 2206.95
+          },
+          "x": 3298.961495713094,
+          "y": 2199.709248107923,
+          "ticks": 52,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 3480,
+            "y": 2379.6
+          },
+          "x": 3475.129580684083,
+          "y": 2379.989633545273,
+          "ticks": 74,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "east-root-loop",
+      "reverse": false,
+      "cls": "mage",
+      "passed": true,
+      "failed": null,
+      "ticks": 378,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 2060,
+            "y": 2423.3333333333335
+          },
+          "x": 2060,
+          "y": 2423.3333333333335,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2190,
+            "y": 2219.6428571428573
+          },
+          "x": 2183.8669376977005,
+          "y": 2223.3665021121105,
+          "ticks": 74,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2340,
+            "y": 2128.5714285714284
+          },
+          "x": 2318.9661044784934,
+          "y": 2141.3420079952,
+          "ticks": 30,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2600,
+            "y": 1983.0434782608695
+          },
+          "x": 2583.382254266044,
+          "y": 1984.4884996290396,
+          "ticks": 59,
+          "support": "tactical-east-stone-shoulder"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 1979.2592592592594
+          },
+          "x": 2778.4915362775346,
+          "y": 1975.2762104217657,
+          "ticks": 37,
+          "support": "tactical-east-stone-shoulder"
+        },
+        {
+          "goal": {
+            "x": 3070,
+            "y": 2072.0833333333335
+          },
+          "x": 3050.353217265375,
+          "y": 2051.6179346514323,
+          "ticks": 54,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 3320,
+            "y": 2206.95
+          },
+          "x": 3301.0317866260075,
+          "y": 2200.421773230451,
+          "ticks": 56,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 3480,
+            "y": 2379.6
+          },
+          "x": 3470.88572137761,
+          "y": 2380.329142289791,
+          "ticks": 75,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "east-root-loop",
+      "reverse": false,
+      "cls": "knight",
+      "passed": true,
+      "failed": null,
+      "ticks": 364,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 2060,
+            "y": 2423.3333333333335
+          },
+          "x": 2060,
+          "y": 2423.3333333333335,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2190,
+            "y": 2219.6428571428573
+          },
+          "x": 2185.0135361786624,
+          "y": 2222.6703530343834,
+          "ticks": 73,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2340,
+            "y": 2128.5714285714284
+          },
+          "x": 2322.6343261293637,
+          "y": 2139.1148734214576,
+          "ticks": 29,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2600,
+            "y": 1983.0434782608695
+          },
+          "x": 2581.9876095599107,
+          "y": 1984.6097730817469,
+          "ticks": 55,
+          "support": "tactical-east-stone-shoulder"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 1979.2592592592594
+          },
+          "x": 2782.1084686669706,
+          "y": 1975.9460127161058,
+          "ticks": 36,
+          "support": "tactical-east-stone-shoulder"
+        },
+        {
+          "goal": {
+            "x": 3070,
+            "y": 2072.0833333333335
+          },
+          "x": 3051.807534104574,
+          "y": 2053.132848025598,
+          "ticks": 51,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 3320,
+            "y": 2206.95
+          },
+          "x": 3302.308299933836,
+          "y": 2200.861106560562,
+          "ticks": 53,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 3480,
+            "y": 2379.6
+          },
+          "x": 3470.335721377616,
+          "y": 2380.373142289791,
+          "ticks": 74,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "east-root-loop",
+      "reverse": true,
+      "cls": "archer",
+      "passed": true,
+      "failed": null,
+      "ticks": 368,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 3480,
+            "y": 2379.6
+          },
+          "x": 3480,
+          "y": 2379.6,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 3320,
+            "y": 2206.95
+          },
+          "x": 3328.7791943382736,
+          "y": 2209.9715060514222,
+          "ticks": 78,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 3070,
+            "y": 2072.0833333333335
+          },
+          "x": 3088.3926830488813,
+          "y": 2091.242378175918,
+          "ticks": 48,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 1979.2592592592594
+          },
+          "x": 2818.844223290908,
+          "y": 1982.748930239057,
+          "ticks": 53,
+          "support": "tactical-east-stone-shoulder"
+        },
+        {
+          "goal": {
+            "x": 2600,
+            "y": 1983.0434782608695
+          },
+          "x": 2616.3523948951033,
+          "y": 1981.6215308786866,
+          "ticks": 36,
+          "support": "tactical-east-stone-shoulder"
+        },
+        {
+          "goal": {
+            "x": 2340,
+            "y": 2128.5714285714284
+          },
+          "x": 2357.6731005319234,
+          "y": 2117.8413318199036,
+          "ticks": 53,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2190,
+            "y": 2219.6428571428573
+          },
+          "x": 2208.0852853681236,
+          "y": 2208.6625053122107,
+          "ticks": 31,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2060,
+            "y": 2423.3333333333335
+          },
+          "x": 2067.9850411036114,
+          "y": 2422.002493149398,
+          "ticks": 76,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "east-root-loop",
+      "reverse": true,
+      "cls": "mage",
+      "passed": true,
+      "failed": null,
+      "ticks": 386,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 3480,
+            "y": 2379.6
+          },
+          "x": 3480,
+          "y": 2379.6,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 3320,
+            "y": 2206.95
+          },
+          "x": 3327.851275031433,
+          "y": 2209.652147156651,
+          "ticks": 80,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 3070,
+            "y": 2072.0833333333335
+          },
+          "x": 3088.8672949374136,
+          "y": 2091.736765559806,
+          "ticks": 51,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 1979.2592592592594
+          },
+          "x": 2817.6826348569257,
+          "y": 1982.5338212698011,
+          "ticks": 57,
+          "support": "tactical-east-stone-shoulder"
+        },
+        {
+          "goal": {
+            "x": 2600,
+            "y": 1983.0434782608695
+          },
+          "x": 2617.6827034741536,
+          "y": 1981.5058518718126,
+          "ticks": 38,
+          "support": "tactical-east-stone-shoulder"
+        },
+        {
+          "goal": {
+            "x": 2340,
+            "y": 2128.5714285714284
+          },
+          "x": 2357.9176313839407,
+          "y": 2117.6928666597505,
+          "ticks": 57,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2190,
+            "y": 2219.6428571428573
+          },
+          "x": 2208.8426887292726,
+          "y": 2208.202653271513,
+          "ticks": 33,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2060,
+            "y": 2423.3333333333335
+          },
+          "x": 2067.9377798614873,
+          "y": 2422.010370023085,
+          "ticks": 77,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "east-root-loop",
+      "reverse": true,
+      "cls": "knight",
+      "passed": true,
+      "failed": null,
+      "ticks": 371,
+      "jumps": 1,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 3480,
+            "y": 2379.6
+          },
+          "x": 3480,
+          "y": 2379.6,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 3320,
+            "y": 2206.95
+          },
+          "x": 3325.189491562018,
+          "y": 2208.736050012594,
+          "ticks": 78,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 3070,
+            "y": 2072.0833333333335
+          },
+          "x": 3088.4760021272855,
+          "y": 2091.329168882589,
+          "ticks": 48,
+          "support": "tactical-east-root-return"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 1979.2592592592594
+          },
+          "x": 2817.5695399237393,
+          "y": 1982.5128777636555,
+          "ticks": 54,
+          "support": "tactical-east-stone-shoulder"
+        },
+        {
+          "goal": {
+            "x": 2600,
+            "y": 1983.0434782608695
+          },
+          "x": 2617.966614308512,
+          "y": 1981.481163973173,
+          "ticks": 36,
+          "support": "tactical-east-stone-shoulder"
+        },
+        {
+          "goal": {
+            "x": 2340,
+            "y": 2128.5714285714284
+          },
+          "x": 2358.3912085919756,
+          "y": 2117.4053376405864,
+          "ticks": 54,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2190,
+            "y": 2219.6428571428573
+          },
+          "x": 2210.9403622162245,
+          "y": 2206.9290657972924,
+          "ticks": 31,
+          "support": "tactical-east-root-ascent"
+        },
+        {
+          "goal": {
+            "x": 2060,
+            "y": 2423.3333333333335
+          },
+          "x": 2067.7418090203055,
+          "y": 2422.043031829949,
+          "ticks": 77,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated ordinary walking and default jumps"
+    },
+    {
+      "stage": 9,
+      "route": "receiver-return",
+      "reverse": false,
+      "cls": "archer",
+      "passed": true,
+      "failed": null,
+      "ticks": 440,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 850,
+          "y": 2570,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2625
+          },
+          "x": 1378.9660271507862,
+          "y": 2632.361890497225,
+          "ticks": 94,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1780.8923772366454,
+          "y": 2491.687667967174,
+          "ticks": 74,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2300,
+            "y": 2383.3333333333335
+          },
+          "x": 2281.8735985835615,
+          "y": 2386.354400236073,
+          "ticks": 89,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 2380
+          },
+          "x": 2779.1392587084924,
+          "y": 2377.913925870849,
+          "ticks": 87,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 3380,
+            "y": 2387.6
+          },
+          "x": 3360.041473618523,
+          "y": 2389.196682110518,
+          "ticks": 101,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    {
+      "stage": 9,
+      "route": "receiver-return",
+      "reverse": false,
+      "cls": "mage",
+      "passed": true,
+      "failed": null,
+      "ticks": 471,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 850,
+          "y": 2570,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2625
+          },
+          "x": 1381.255108273464,
+          "y": 2631.5607121042876,
+          "ticks": 101,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1782.4892955646587,
+          "y": 2491.128746552369,
+          "ticks": 79,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2300,
+            "y": 2383.3333333333335
+          },
+          "x": 2282.523209314029,
+          "y": 2386.2461317809953,
+          "ticks": 95,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 2380
+          },
+          "x": 2779.5292183954075,
+          "y": 2377.952921839541,
+          "ticks": 93,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 3380,
+            "y": 2387.6
+          },
+          "x": 3360.2493806787443,
+          "y": 2389.1800495457005,
+          "ticks": 108,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    {
+      "stage": 9,
+      "route": "receiver-return",
+      "reverse": false,
+      "cls": "knight",
+      "passed": true,
+      "failed": null,
+      "ticks": 447,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 850,
+          "y": 2570,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2625
+          },
+          "x": 1382.4748940543934,
+          "y": 2631.1337870809625,
+          "ticks": 96,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1778.6594391390342,
+          "y": 2492.469196301338,
+          "ticks": 74,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2300,
+            "y": 2383.3333333333335
+          },
+          "x": 2283.6500064159154,
+          "y": 2386.058332264014,
+          "ticks": 91,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 2380
+          },
+          "x": 2779.5215962763236,
+          "y": 2377.952159627632,
+          "ticks": 88,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 3380,
+            "y": 2387.6
+          },
+          "x": 3363.581076122376,
+          "y": 2388.91351391021,
+          "ticks": 103,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    {
+      "stage": 9,
+      "route": "receiver-return",
+      "reverse": true,
+      "cls": "archer",
+      "passed": true,
+      "failed": null,
+      "ticks": 440,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 3380,
+            "y": 2387.6
+          },
+          "x": 3380,
+          "y": 2387.6,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 2380
+          },
+          "x": 2816.4753345153254,
+          "y": 2381.6475334515326,
+          "ticks": 98,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2300,
+            "y": 2383.3333333333335
+          },
+          "x": 2318.8853592272258,
+          "y": 2380.185773462129,
+          "ticks": 87,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1821.8139463179332,
+          "y": 2477.3651187887235,
+          "ticks": 88,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2625
+          },
+          "x": 1419.887596232074,
+          "y": 2618.039341318774,
+          "ticks": 74,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 869.7067826294254,
+          "y": 2573.941356525885,
+          "ticks": 98,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    {
+      "stage": 9,
+      "route": "receiver-return",
+      "reverse": true,
+      "cls": "mage",
+      "passed": true,
+      "failed": null,
+      "ticks": 471,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 3380,
+            "y": 2387.6
+          },
+          "x": 3380,
+          "y": 2387.6,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 2380
+          },
+          "x": 2820.936417918118,
+          "y": 2382.093641791812,
+          "ticks": 104,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2300,
+            "y": 2383.3333333333335
+          },
+          "x": 2318.1948834805808,
+          "y": 2380.3008527532365,
+          "ticks": 94,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1821.766753400158,
+          "y": 2477.3816363099445,
+          "ticks": 94,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2625
+          },
+          "x": 1420.5325661089632,
+          "y": 2617.813601861863,
+          "ticks": 79,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 869.4289514380167,
+          "y": 2573.8857902876034,
+          "ticks": 105,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    },
+    {
+      "stage": 9,
+      "route": "receiver-return",
+      "reverse": true,
+      "cls": "knight",
+      "passed": true,
+      "failed": null,
+      "ticks": 446,
+      "jumps": 0,
+      "damage": 0,
+      "samples": [
+        {
+          "goal": {
+            "x": 3380,
+            "y": 2387.6
+          },
+          "x": 3380,
+          "y": 2387.6,
+          "ticks": 1,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2800,
+            "y": 2380
+          },
+          "x": 2818.7970879591526,
+          "y": 2381.879708795915,
+          "ticks": 99,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 2300,
+            "y": 2383.3333333333335
+          },
+          "x": 2316.9125713795606,
+          "y": 2380.51457143674,
+          "ticks": 89,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1800,
+            "y": 2485
+          },
+          "x": 1821.342017139749,
+          "y": 2477.530294001088,
+          "ticks": 89,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 1400,
+            "y": 2625
+          },
+          "x": 1419.7302865060033,
+          "y": 2618.0943997228987,
+          "ticks": 75,
+          "support": "yard-floor"
+        },
+        {
+          "goal": {
+            "x": 850,
+            "y": 2570
+          },
+          "x": 871.8313740934058,
+          "y": 2574.366274818681,
+          "ticks": 99,
+          "support": "yard-floor"
+        }
+      ],
+      "mode": "isolated walk-only"
+    }
+  ]
+}

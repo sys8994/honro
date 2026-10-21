@@ -1,0 +1,113 @@
+{
+  "scope": "Replay normal production commands from the actual initial Stage9 export.\nNo actor/resource/goal writes. Real browser Engine inputs; fixed policy, not human difficulty approval.\n",
+  "sha": "2bf5f4b4e83fbe66f61495948f0d46e038003f25",
+  "rows": [
+    {
+      "op": "move",
+      "hero": "archer",
+      "round": 1,
+      "receivers": 0,
+      "phase": "aim"
+    },
+    {
+      "op": "interact",
+      "hero": "archer",
+      "round": 1,
+      "receivers": 1,
+      "phase": "review"
+    },
+    {
+      "op": "move",
+      "hero": "mage",
+      "round": 1,
+      "receivers": 1,
+      "phase": "aim"
+    },
+    {
+      "op": "move",
+      "hero": "mage",
+      "round": 1,
+      "receivers": 1,
+      "phase": "aim"
+    },
+    {
+      "op": "defend",
+      "hero": "mage",
+      "round": 1,
+      "receivers": 1,
+      "phase": "review"
+    },
+    {
+      "op": "move",
+      "hero": "knight",
+      "round": 1,
+      "receivers": 1,
+      "phase": "aim"
+    },
+    {
+      "op": "fire",
+      "hero": "knight",
+      "round": 1,
+      "receivers": 1,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "archer",
+      "round": 2,
+      "receivers": 1,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "mage",
+      "round": 2,
+      "receivers": 1,
+      "phase": "flight"
+    },
+    {
+      "op": "move",
+      "hero": "knight",
+      "round": 2,
+      "receivers": 1,
+      "phase": "aim"
+    },
+    {
+      "op": "interact",
+      "hero": "knight",
+      "round": 2,
+      "receivers": 2,
+      "phase": "won"
+    }
+  ],
+  "result": {
+    "phase": "won",
+    "round": 2,
+    "receivers": 2,
+    "items": {
+      "heal": 3,
+      "focus": 3,
+      "cleanse": 2,
+      "ward": 2
+    },
+    "heroes": [
+      {
+        "cls": "archer",
+        "hp": 572,
+        "maxHp": 627
+      },
+      {
+        "cls": "mage",
+        "hp": 678,
+        "maxHp": 678
+      },
+      {
+        "cls": "knight",
+        "hp": 1052,
+        "maxHp": 1102
+      }
+    ],
+    "nextStage": 10
+  },
+  "errors": []
+}

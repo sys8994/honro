@@ -51,6 +51,25 @@ function author(s,project){
   children.push({tag:'path',fill:'#19262e',d:`M${l+40} ${top[0].y+70} Q${mid.x} ${mid.y+70} ${r-25} ${top.at(-1).y+90} L${r-30} ${ground(r)-12} Q${mid.x} ${ground(mid.x)-100} ${l+40} ${ground(l)-15} Z`});
   supports.push({terrainId:floor.id,x:a,y:ay},{terrainId:floor.id,x:b,y:by});
  }
+ // Stage9: grounded, recessed bedrock and roots instead of a giant opaque
+ // doorway/pyramid. These rear faces never add collision or a walking rim.
+ if(n===9){children.length=0;const face=(fill,pts)=>children.push({tag:'path',fill,d:'M'+pts.map(p=>p.join(' ')).join(' L')+' Z'});
+  face('#34454a',[[620,2376],[812,2358],[1020,2370],[1308,2430],[1268,2585],[1100,2630],[994,2515],[775,2532],[655,2537]]);
+  face('#415357',[[655,2394],[812,2380],[871,2485],[778,2511],[655,2537]]);
+  face('#283d43',[[1100,2430],[1308,2430],[1268,2585],[1100,2630],[1150,2530]]);
+  face('#45575a',[[775,2430],[910,2412],[1050,2458],[1150,2450],[1100,2480],[945,2460],[810,2465]]);
+  face('#33474b',[[2518,2044],[2728,2020],[3004,2081],[2962,2186],[3015,2318],[2950,2392],[2838,2384],[2780,2228],[2618,2207],[2555,2339],[2460,2359],[2492,2210]]);
+  face('#3b5055',[[2518,2044],[2660,2030],[2631,2106],[2667,2195],[2608,2258],[2555,2339],[2460,2359],[2492,2210]]);
+  face('#45585c',[[2660,2030],[2728,2020],[3004,2081],[2937,2122],[2774,2084],[2631,2106]]);
+  face('#263d43',[[2833,2118],[3004,2081],[2962,2186],[3015,2318],[2950,2392],[2838,2384],[2863,2260]]);
+  face('#3f5356',[[2618,2207],[2780,2228],[2863,2260],[2838,2307],[2733,2270],[2590,2284]]);
+  // Branching buttress roots follow the two existing climb approaches and
+  // terminate behind the floor, with no bright false footholds.
+  face('#354b43',[[2165,2270],[2300,2180],[2426,2099],[2460,2120],[2390,2225],[2330,2355],[2260,2391],[2302,2263],[2200,2350],[2132,2410],[2150,2340]]);
+  face('#4b5d50',[[2165,2270],[2300,2180],[2426,2099],[2385,2150],[2292,2227],[2193,2328],[2150,2340]]);
+  face('#344a43',[[3010,2070],[3150,2168],[3345,2243],[3378,2325],[3440,2388],[3370,2390],[3300,2290],[3150,2245],[3060,2345],[2990,2395],[3030,2278],[3090,2190]]);
+  face('#485b50',[[3010,2070],[3150,2168],[3345,2243],[3330,2275],[3150,2204],[3100,2170]]);
+ }
  const bounds={x:0,y:0,w:s.width,h:s.height},viewBox=[0,0,s.width,s.height],asset={id:artId,name:'후퇴한 회랑과 암대의 접지 모암',category:'terrain',environmentRole:'rock',vector:{version:1,viewBox,gradients:{},root:{tag:'g',children},source:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox.join(' ')}">${children.map(p=>`<path fill="${p.fill}" d="${p.d}"/>`).join('')}</svg>`},visual:[],collision:[],anchor:{x:0,y:0},sockets:[],bounds,tags:['visual-only','editable-native-vector'],params:{artRevision:1,rearOnly:true,noWalkRim:true,supports},reference:{heightM:s.height/60,bounds,foot:{x:0,y:0},scaleRange:[.35,4],backgroundRange:[.35,4]}};
  const ai=project.library.findIndex(a=>a.id===artId);if(ai<0)project.library.push(asset);else project.library[ai]=asset;s.elements=s.elements.filter(e=>e.id!=='tactical-recessed-support');s.elements.push({id:'tactical-recessed-support',assetId:artId,x:0,y:0,scale:1,rotation:0,snap:false,layer:'back',depthLayer:'L1'});
  // Fixed flying sentries keep their role above the new shoulders, rather than

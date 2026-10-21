@@ -1,0 +1,71 @@
+{
+  "sha": "2bf5f4b4e83fbe66f61495948f0d46e038003f25",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M tools/map-forge/stage9-13-tactical.mjs\n D web/entries/game.81e2230bc36e2c3a.js\n D web/entries/game.bc2b02b721986140.html\n D web/entries/workshop.dcecab596fea6a0b.js\n M web/manifest.json\n D web/runtime/ordered-common-12.b29ada66bb4f7838.js\n D web/runtime/ordered-common-13.6c2a3c33433e349a.js\n?? tests/stage9-normal-play.mjs\n?? tests/stage9-refinement-preservation.mjs\n?? tools/testing/stage9-normal-browser.py\n?? web/data/campaign-library.4362d55269aa378f.json\n?? web/data/campaign.788fa76bb8c6db53.json\n?? web/data/chapter-09-assets.b153347bad0daf7d.json\n?? web/entries/game.1783d9a447663c04.html\n?? web/entries/game.b884b33626c68434.js\n?? web/entries/workshop.271535e3c7fe1149.js\n?? web/runtime/campaign.82280019fc132976.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 9,
+      "view": "overview",
+      "camera": {
+        "x": 1800,
+        "y": 2350,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 9,
+      "view": "west",
+      "camera": {
+        "x": 900,
+        "y": 2390,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 9,
+      "view": "center",
+      "camera": {
+        "x": 1850,
+        "y": 2350,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 9,
+      "view": "east",
+      "camera": {
+        "x": 2820,
+        "y": 2130,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 9,
+      "view": "zoom-west",
+      "camera": {
+        "x": 950,
+        "y": 2400,
+        "scale": 1.2
+      }
+    },
+    {
+      "stage": 9,
+      "view": "mobile-east",
+      "camera": {
+        "x": 2800,
+        "y": 2200,
+        "scale": 0.6
+      }
+    },
+    {
+      "stage": 9,
+      "view": "landscape-center",
+      "camera": {
+        "x": 1800,
+        "y": 2400,
+        "scale": 0.6
+      }
+    }
+  ],
+  "errors": []
+}
