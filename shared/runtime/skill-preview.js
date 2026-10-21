@@ -195,6 +195,10 @@ function describe(p){const m=p.metrics,q=p.control,number=x=>Math.round(x*100)/1
  if(p.id==='A09')return `${p.turns?'한 번 꺾음 · 황색: 이전 / 청록: 이후':'올려 쏜 뒤 한 번 꺾습니다'} · 명중 피해 ${number(m.damage)}`;
  if(p.id==='A06')return `체력 ${compare(p.initial.hero.hp,p.hero.hp)} · 기력 회수 +${number(Math.max(0,p.hero.focus-p.initial.hero.focus+(m.casts[0]?.cost||0)))} · 피해 ${number(m.damage)}`;
  if(p.id==='A10')return `${p.hero.prepared?'집중 준비 완료':m.prepared?'집중을 소비한 강화 사격':'집중 준비 전'} · 피해 ${number(m.damage)}`;
+ if(p.id==='S02')return `체력 ${compare(p.initial.hero.hp,p.hero.hp)} · 피해 ${number(m.damage)}`;
+ if(p.id==='S08')return `체력 ${compare(p.initial.hero.hp,p.hero.hp)} · ${m.counter?'반격 발동':m.guard?'방어 준비':'회복·방어 전'} · 피해 ${number(m.damage)}`;
+ if(p.id==='S04')return `${p.follow?'추가 입력으로 급강하':'도약 후 추가 입력 대기'} · 피해 ${number(m.damage)}`;
+ if(p.id==='S13')return `${p.follow?'착지 후 후속 베기 입력':'착지 후 후속 입력 대기'} · 피해 ${number(m.damage)}`;
  if(p.id==='M10'||p.id==='O13'){const ally=p.b.units.find(v=>v.id==='preview-ally');return `동행 체력 300 → ${number(ally?.hp||300)} · 기력 20 → ${number(ally?.focus||20)}${p.id==='M10'?` · 이동력 100 → ${number(ally?.moveLeft||100)}`:` · 방호 ${number(m.shield)}`}`;}
  if(p.id==='M09')return `진목 ${m.stakes}/2 · ${p.follow?'이동 완료':'두 진목 사이를 건너갑니다'}`;
  return `${p.scenario.kind} · 명중 ${new Set(m.hits.filter(v=>v.target.startsWith('preview-target')).map(v=>v.target)).size}명 · 피해 ${number(m.damage)}${m.summons?' · 소환 '+m.summons:''}`;

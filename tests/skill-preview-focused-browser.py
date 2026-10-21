@@ -16,6 +16,9 @@ milestones={
  'M06':{'secondary':'auditP.b.projectiles.some(q=>q.secondary&&q.age>.12)'},
  'MP01':{'secondary':'auditP.b.projectiles.some(q=>q.secondary&&q.age>.12)'},
  'MP02':{'regeneration':'auditP.b.round>=2&&auditP.hero.focus>auditP.initial.hero.focus'},
+ 'S04':{'dive':'auditP.follow&&auditP.b.projectiles.some(q=>q.body)'},
+ 'S09':{'flight':'auditP.b.projectiles.some(q=>q.x>600&&q.x<800)'},
+ 'S13':{'followup':'auditP.metrics.hits.filter(h=>h.target.startsWith("preview-target")).length>=2'},
 }
 rows=[];errors=[]
 with sync_playwright() as pw,serve_game() as base_url:

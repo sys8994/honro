@@ -1,12 +1,13 @@
 {
   "registered": 84,
   "functionalPass": 84,
-  "currentPixelConfirmed": 42,
-  "currentPixelUnconfirmed": 42,
+  "currentPixelConfirmed": 63,
+  "currentPixelUnconfirmed": 21,
   "currentPixelFailed": 0,
   "confirmedIds": [
     "M01",
     "A01",
+    "S00",
     "M06",
     "M02",
     "M04",
@@ -46,7 +47,27 @@
     "AP02",
     "AP01",
     "AP03",
-    "AP05"
+    "AP05",
+    "S03",
+    "S05",
+    "S07",
+    "S08",
+    "S02",
+    "S01",
+    "S06",
+    "S04",
+    "S15",
+    "S13",
+    "S09",
+    "S10",
+    "S11",
+    "S14",
+    "S12",
+    "SP01",
+    "SP02",
+    "SP03",
+    "SP04",
+    "SP05"
   ],
   "previouslyViewedButNotSignedOff": [
     "A04",
@@ -104,11 +125,18 @@
       "id": "S00",
       "name": "평참",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "짧은 전방 사거리 → 실제 작은 베기/두 적58 → 체력 감소. 무료 기본기.",
       "coreCapture": "audit/S00-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/S00-start.png",
+        "audit/S00-core.png",
+        "audit/S00-result-1280.png",
+        "audit/S00-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "O01",
@@ -827,201 +855,351 @@
       "id": "S03",
       "name": "횡참",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "넓은 전방 예측 → 큰 부채꼴 베기/두 적125 → 체력 감소.",
       "coreCapture": "audit/S03-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/S03-start.png",
+        "audit/S03-core.png",
+        "audit/S03-result-1280.png",
+        "audit/S03-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S05",
       "name": "회신참",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "앞뒤 지상 적 → 좌우 베기 호와 양쪽79 피해 → 양쪽 체력 감소.",
       "coreCapture": "audit/S05-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/S05-start.png",
+        "audit/S05-core.png",
+        "audit/S05-result-1280.png",
+        "audit/S05-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S07",
       "name": "연참",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "체력이 낮은 세 접지 적 → 앞 둘 연속 처치/흩어짐 → 두 시체 소실과 세 번째 생존. 모든 적 처치를 보장하는 시연이 아님.",
       "coreCapture": "audit/S07-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/S07-start.png",
+        "audit/S07-core.png",
+        "audit/S07-result-1280.png",
+        "audit/S07-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S08",
       "name": "응수세",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/S08-core.png",
-      "mobileVisibleCapture": null
+      "note": "체력900 준비 → 실제 회복 후 피격12/방어막/반격65·남은954 → 방어 소비 후 유지. 관찰줄로 회복과 반격을 명확화.",
+      "coreCapture": "sword-focused/S08-1280-core.png",
+      "mobileVisibleCapture": "sword-focused/S08-360-core.png",
+      "reviewedFrames": [
+        "audit/S08-start.png",
+        "audit/S08-core.png",
+        "audit/S08-result-1280.png",
+        "audit/S08-result-360.png",
+        "sword-focused/S08-1280-core.png",
+        "sword-focused/S08-360-core.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S02",
       "name": "사생참",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/S02-core.png",
-      "mobileVisibleCapture": null
+      "note": "시작 체력900 → 실제 체력600 소비와 큰 일격620 → 소비 상태 유지.",
+      "coreCapture": "sword-focused/S02-1280-core.png",
+      "mobileVisibleCapture": "sword-focused/S02-360-core.png",
+      "reviewedFrames": [
+        "audit/S02-start.png",
+        "audit/S02-core.png",
+        "audit/S02-result-1280.png",
+        "audit/S02-result-360.png",
+        "sword-focused/S02-1280-core.png",
+        "sword-focused/S02-360-core.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S01",
       "name": "도약참",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "멀리 있는 적을 향한 돌격 → 공중으로 전진하며102 → 가까운 위치 착지.",
       "coreCapture": "audit/S01-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/S01-start.png",
+        "audit/S01-core.png",
+        "audit/S01-result-1280.png",
+        "audit/S01-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S06",
       "name": "회풍참",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "군집 위로 높은 돌격 → 비행 중 두 적80 연속 베기 → 적 사이 착지.",
       "coreCapture": "audit/S06-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/S06-start.png",
+        "audit/S06-core.png",
+        "audit/S06-result-1280.png",
+        "audit/S06-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S04",
       "name": "파산격",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/S04-core.png",
-      "mobileVisibleCapture": null
+      "note": "높은 비행 준비 → 실제 추가 입력 급강하 순간(별도) → 착지 두 적146/85 피해. 재입력 직후 작은 캐릭터와 낙하 흔적을 확인하며 고각 카메라에서는 작게 보임.",
+      "coreCapture": "sword-focused/S04-1280-dive.png",
+      "mobileVisibleCapture": "sword-focused/S04-360-dive.png",
+      "reviewedFrames": [
+        "audit/S04-start.png",
+        "audit/S04-core.png",
+        "audit/S04-result-1280.png",
+        "audit/S04-result-360.png",
+        "sword-focused/S04-1280-dive.png",
+        "sword-focused/S04-360-dive.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S15",
       "name": "쇄진돌격",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "접지 늑대와 실제 박쥐 → 몸체 이동 중 지상 적 운반/두 종류93·96 피해 → 접지 늑대 위치 이동, 박쥐는 공중 유지.",
       "coreCapture": "audit/S15-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/S15-start.png",
+        "audit/S15-core.png",
+        "audit/S15-result-1280.png",
+        "audit/S15-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S13",
       "name": "파진연격",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/S13-core.png",
-      "mobileVisibleCapture": null
+      "note": "돌격 준비 → 착지136 피해 → 실제 후속 평참으로 두 적56씩/누적248. 후속 명중 프레임 추가.",
+      "coreCapture": "sword-focused/S13-1280-followup.png",
+      "mobileVisibleCapture": "sword-focused/S13-360-followup.png",
+      "reviewedFrames": [
+        "audit/S13-start.png",
+        "audit/S13-core.png",
+        "audit/S13-result-1280.png",
+        "audit/S13-result-360.png",
+        "sword-focused/S13-1280-followup.png",
+        "sword-focused/S13-360-followup.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S09",
       "name": "월영참",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/S09-core.png",
-      "mobileVisibleCapture": null
+      "note": "원거리 준비 → 실제 독립된 초승달 검기 비행(추가) → 원거리 첫 적82 피해.",
+      "coreCapture": "sword-focused/S09-1280-flight.png",
+      "mobileVisibleCapture": "sword-focused/S09-360-flight.png",
+      "reviewedFrames": [
+        "audit/S09-start.png",
+        "audit/S09-core.png",
+        "audit/S09-result-1280.png",
+        "audit/S09-result-360.png",
+        "sword-focused/S09-1280-flight.png",
+        "sword-focused/S09-360-flight.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S10",
       "name": "견인참",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "먼 적 → 실제 왼쪽으로 끌린 적과114 피해/수평 연결선 → 적이 시전자 바로 앞에 남음.",
       "coreCapture": "audit/S10-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/S10-start.png",
+        "audit/S10-core.png",
+        "audit/S10-result-1280.png",
+        "audit/S10-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S11",
       "name": "관통참",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "일렬 다섯 적 → 앞 둘81 관통/검기 모양 → 다섯 적 모두81/405. 밀집 숫자는 360px에서 겹침.",
       "coreCapture": "audit/S11-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/S11-start.png",
+        "audit/S11-core.png",
+        "audit/S11-result-1280.png",
+        "audit/S11-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S14",
       "name": "파열참",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "밀집 표적 → 실제 충돌점에 길게 선 검압과 두 적89 피해 → 체력 감소. 검압은 조준의 법선으로 비스듬히 보이며 화면 수직선은 아님.",
       "coreCapture": "audit/S14-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/S14-start.png",
+        "audit/S14-core.png",
+        "audit/S14-result-1280.png",
+        "audit/S14-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S12",
       "name": "회륜검기",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "기본 검기 준비 → 실제 여러 공전 칼날과 첫 적248 → 연속 명중으로 세 적1351. 도는 동작 전체는 정지 캡처에서 추론하지 않고 실엔진 orbit 스냅샷으로 보조.",
       "coreCapture": "audit/S12-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/S12-start.png",
+        "audit/S12-core.png",
+        "audit/S12-result-1280.png",
+        "audit/S12-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "SP01",
       "name": "검세",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "충전된 전방 베기 준비 → 실제 큰 베기·두 적410 → 대조 누적648/적용820. 사거리 차이는 별도 대조 화면을 겹쳐 그리지 않아 수치/엔진 계약을 보조로 사용.",
       "coreCapture": "audit/SP01-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/SP01-start.png",
+        "audit/SP01-core.png",
+        "audit/SP01-result-1280.png",
+        "audit/SP01-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "SP02",
       "name": "단련",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "최대HP1330→1696/남은998→1272 → 같은 실제 적 공격109 → 대조853/적용1163. 체력 최대량과 피격 차이를 전후 확인.",
       "coreCapture": "audit/SP02-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/SP02-start.png",
+        "audit/SP02-core.png",
+        "audit/SP02-result-1280.png",
+        "audit/SP02-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "SP03",
       "name": "경신",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "실제 점프 중인 시작 화면 → 착지 → 비교 높이213.62/287.62·소모 이동75/35. 캡처가 뛰기 전이 아니라 도약 중임을 명시.",
       "coreCapture": "audit/SP03-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/SP03-start.png",
+        "audit/SP03-core.png",
+        "audit/SP03-result-1280.png",
+        "audit/SP03-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "SP04",
       "name": "연세",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "검술 준비 → 실제 반복 검술·돌격·검기 이후 합세 문자와 강화 베기486 → 대조1123/적용1285. 중간 각 시전은 기록된 casts로 보조.",
       "coreCapture": "audit/SP04-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/SP04-start.png",
+        "audit/SP04-core.png",
+        "audit/SP04-result-1280.png",
+        "audit/SP04-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "SP05",
       "name": "불굴",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "HP15의 도사 없는 단독 검객 → 실제 치명적 피격617과 불굴/방어 아이콘 → 대조0/적용851 생존. 실전 조건의 불굴 엔진 판정이며 HP를 결과로 강제 설정하지 않음.",
       "coreCapture": "audit/SP05-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": null,
+      "reviewedFrames": [
+        "audit/SP05-start.png",
+        "audit/SP05-core.png",
+        "audit/SP05-result-1280.png",
+        "audit/SP05-result-360.png"
+      ],
+      "mobileLimit": "360px 원본 결과 확인. 고각 급강하에서는 배우가 작고 밀집 피해 숫자는 겹침. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "O02",
