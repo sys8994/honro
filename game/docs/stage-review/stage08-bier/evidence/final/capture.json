@@ -1,0 +1,98 @@
+{
+  "sha": "2b0c8c6fbf3739f08c9c341d58ecc95748c14ea7",
+  "workingTree": "?? tools/testing/stage8-saved-play-capture.py\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 8,
+      "view": "zoom-store",
+      "camera": {
+        "x": 2450,
+        "y": 3700,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 8,
+      "view": "entry",
+      "camera": {
+        "x": 1900,
+        "y": 3750,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 8,
+      "view": "west",
+      "camera": {
+        "x": 3500,
+        "y": 3660,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "court",
+      "camera": {
+        "x": 5350,
+        "y": 4020,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "crown",
+      "camera": {
+        "x": 5100,
+        "y": 2600,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "east",
+      "camera": {
+        "x": 7950,
+        "y": 2900,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "maxout-west",
+      "camera": {
+        "x": 3000,
+        "y": 3600,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 8,
+      "view": "maxout-east",
+      "camera": {
+        "x": 7200,
+        "y": 3500,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 8,
+      "view": "mobile-court",
+      "camera": {
+        "x": 5550,
+        "y": 3950,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "landscape-east",
+      "camera": {
+        "x": 8100,
+        "y": 2900,
+        "scale": 0.5
+      }
+    }
+  ],
+  "errors": []
+}

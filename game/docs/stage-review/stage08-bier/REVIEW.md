@@ -24,3 +24,13 @@
 - 옛 이미지 author CLI는 현재 지형 덮어쓰기를 예방하도록 쓰기 전에 중단한다. 순수 역사 author는 현재 restored raw 입력에서 다른 장 변경 guard로 거부되며 입력을 변형하지 않는다. 이 guard를 완화하지 않는다. 현재 미술 author는 renderer이므로 빌드 전후 전30장/library가 기준과 동일해야 한다.
 
 렌더 회귀 검사의 이전 실패도 정합화했다. build.mjs의 `parts.push(await read(...))` 정규식은 현행 `await file(...)` 목록을 읽도록 갱신하고, 새 `_landmarkLayer` 받침 wrapper를 비교 대상에 추가했다. Stage23 비교 소스 해시는 기존 master544825ee 파일과 대조해 갱신했다(마지막 해당 소스 변경9fbd16d7). 양쪽 비교는 동일한 현재 파일이며 지형/배경/목표/랜드마크 RGBA, 컨텍스트, 전체 전투 불변 검사160건 통과. 다른 장 렌더 픽셀 회귀 검사이지 전30장 실화면 완주 주장이 아니다.
+
+## 화면 검수 및 정상 진행 체크포인트
+
+- 3차 집중 검수: 모바일 중앙, 가로 동쪽, 확대 창고, 최대 축소 동쪽 및 정상 전투 첫 결박 해제 저장본을 실제 브라우저 Continue로 열어 확인했다.
+- 별도 최종 미술 검수: `evidence/final/` 10개 화면을 모두 직접 확인했다. 런타임 소스는 `2b0c8c6f`이며 이후 테스트 정합화는 이 미술/충돌/모델을 변경하지 않는다.
+- 정상 진행 검증은 아직 완료되지 않았다. 지역 집결 정책은52라운드 패배했다(`regional-policy-failed.json`). 결박1만 파괴했으며 결박2 HP332, 상여HP2578이었다. 실패를 숨기거나 밸런스를 조정하지 않았다.
+- 목표 우선 정책의 옛 Stage23 navigator는 중앙 배수로에서 단차를 평지로 잘못 인식했다. 28라운드 체크포인트까지 보존하고 중단했다(`old-navigator-stopped.json`). 기존 Stage8 전용 supported-jump helper를 재사용해 처음부터 재검증한다. 게임 지형이나 현재 자원을 수정하지 않는다.
+- 과거 `stage8-bier-seam-regression` fixture는 현행 map revision에서 전투가 재시작되어 입력 전 exact Continue에서 실패했다. 역사 fixture를 현행으로 위장하지 않으며 이번 이동의 통과 증거로 사용하지 않는다.
+- `normal-mid-browser/`는 실제 정상 자원 전투12라운드 저장을 브라우저 Continue로 렌더한 화면이다. 카메라만 수동 배치했으며 브라우저 전체 전투 완주 증거는 아니다.
+- 중간 Library: `libfile_77d335e2cc108191b9520eac5a244884` (file `file_00000000be5481f8b439969cb95c69b1`), 정상 진행 검증 미완 상태라고 표기한 실제 화면 모음.

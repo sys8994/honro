@@ -1,0 +1,194 @@
+{
+  "source": "/tmp/stage8-objectives-final/round-12.json",
+  "runtimeSha": "52b11d1653ef8b9be59f8231ba49600f35a65b41",
+  "scope": "Render genuine native normal-play exports in the production browser.\nThis is browser Continue/render evidence, not a browser combat playthrough.\n",
+  "rows": [
+    {
+      "view": "west",
+      "round": 12,
+      "phase": "aim",
+      "bier": {
+        "version": 1,
+        "status": "anchored",
+        "completedOnce": 0,
+        "sealIdsSeen": [
+          "bier-knot-0"
+        ],
+        "warnings": {
+          "stage8-first-seal": {
+            "status": "spawned",
+            "serial": 10,
+            "eligibleAfterSerial": 11,
+            "round": 2,
+            "side": "west",
+            "offered": {
+              "p-knight": {
+                "round": 2,
+                "serial": 11
+              }
+            },
+            "opportunity": {
+              "id": "p-knight",
+              "round": 2,
+              "serial": 12
+            }
+          }
+        },
+        "entries": {
+          "stage8-first-seal": {
+            "x": 3060,
+            "y": 3801.4545454545455,
+            "side": "west",
+            "ids": [
+              "event-11",
+              "event-12",
+              "event-13"
+            ],
+            "count": 3,
+            "round": 2,
+            "serial": 12
+          }
+        },
+        "offered": {},
+        "blockers": []
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 480,
+          "broken": false
+        }
+      ]
+    },
+    {
+      "view": "court",
+      "round": 12,
+      "phase": "aim",
+      "bier": {
+        "version": 1,
+        "status": "anchored",
+        "completedOnce": 0,
+        "sealIdsSeen": [
+          "bier-knot-0"
+        ],
+        "warnings": {
+          "stage8-first-seal": {
+            "status": "spawned",
+            "serial": 10,
+            "eligibleAfterSerial": 11,
+            "round": 2,
+            "side": "west",
+            "offered": {
+              "p-knight": {
+                "round": 2,
+                "serial": 11
+              }
+            },
+            "opportunity": {
+              "id": "p-knight",
+              "round": 2,
+              "serial": 12
+            }
+          }
+        },
+        "entries": {
+          "stage8-first-seal": {
+            "x": 3060,
+            "y": 3801.4545454545455,
+            "side": "west",
+            "ids": [
+              "event-11",
+              "event-12",
+              "event-13"
+            ],
+            "count": 3,
+            "round": 2,
+            "serial": 12
+          }
+        },
+        "offered": {},
+        "blockers": []
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 480,
+          "broken": false
+        }
+      ]
+    },
+    {
+      "view": "east",
+      "round": 12,
+      "phase": "aim",
+      "bier": {
+        "version": 1,
+        "status": "anchored",
+        "completedOnce": 0,
+        "sealIdsSeen": [
+          "bier-knot-0"
+        ],
+        "warnings": {
+          "stage8-first-seal": {
+            "status": "spawned",
+            "serial": 10,
+            "eligibleAfterSerial": 11,
+            "round": 2,
+            "side": "west",
+            "offered": {
+              "p-knight": {
+                "round": 2,
+                "serial": 11
+              }
+            },
+            "opportunity": {
+              "id": "p-knight",
+              "round": 2,
+              "serial": 12
+            }
+          }
+        },
+        "entries": {
+          "stage8-first-seal": {
+            "x": 3060,
+            "y": 3801.4545454545455,
+            "side": "west",
+            "ids": [
+              "event-11",
+              "event-12",
+              "event-13"
+            ],
+            "count": 3,
+            "round": 2,
+            "serial": 12
+          }
+        },
+        "offered": {},
+        "blockers": []
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 480,
+          "broken": false
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

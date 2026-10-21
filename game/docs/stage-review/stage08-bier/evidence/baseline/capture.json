@@ -1,0 +1,89 @@
+{
+  "sha": "544825ee77930756dd28ce056ab15e12bb885278",
+  "workingTree": " M tests/stage7-reentry.mjs\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 8,
+      "view": "entry",
+      "camera": {
+        "x": 1900,
+        "y": 3750,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 8,
+      "view": "west",
+      "camera": {
+        "x": 3500,
+        "y": 3660,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "court",
+      "camera": {
+        "x": 5350,
+        "y": 4020,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "crown",
+      "camera": {
+        "x": 5100,
+        "y": 2600,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "east",
+      "camera": {
+        "x": 7950,
+        "y": 2900,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "maxout-west",
+      "camera": {
+        "x": 3000,
+        "y": 3600,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 8,
+      "view": "maxout-east",
+      "camera": {
+        "x": 7200,
+        "y": 3500,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 8,
+      "view": "mobile-court",
+      "camera": {
+        "x": 5550,
+        "y": 3950,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "landscape-east",
+      "camera": {
+        "x": 8100,
+        "y": 2900,
+        "scale": 0.5
+      }
+    }
+  ],
+  "errors": []
+}

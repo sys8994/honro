@@ -1,0 +1,140 @@
+{
+  "source": "/tmp/stage8-current-play2/first-seal.json",
+  "runtimeSha": "2b0c8c6fbf3739f08c9c341d58ecc95748c14ea7",
+  "scope": "Render genuine native normal-play exports in the production browser.\nThis is browser Continue/render evidence, not a browser combat playthrough.\n",
+  "rows": [
+    {
+      "view": "west",
+      "round": 4,
+      "phase": "aim",
+      "bier": {
+        "version": 1,
+        "status": "anchored",
+        "completedOnce": 0,
+        "sealIdsSeen": [
+          "bier-knot-0"
+        ],
+        "warnings": {
+          "stage8-first-seal": {
+            "status": "announced",
+            "serial": 23,
+            "eligibleAfterSerial": 24,
+            "round": 4,
+            "side": "west",
+            "offered": {
+              "p-knight": {
+                "round": 4,
+                "serial": 24
+              }
+            }
+          }
+        },
+        "entries": {},
+        "offered": {},
+        "blockers": [],
+        "notice": "\uc11c\ucabd \ucc3d\uace0 \uc0b0\uac1c 2 \u00b7 \uae4c\ub9c8\uadc0 1 \u00b7 \ub2e4\uc74c \ud589\ub3d9 \ub05d\uc5d0 \uc548\uc804 \ud655\uc778"
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 480,
+          "broken": false
+        }
+      ]
+    },
+    {
+      "view": "court",
+      "round": 4,
+      "phase": "aim",
+      "bier": {
+        "version": 1,
+        "status": "anchored",
+        "completedOnce": 0,
+        "sealIdsSeen": [
+          "bier-knot-0"
+        ],
+        "warnings": {
+          "stage8-first-seal": {
+            "status": "announced",
+            "serial": 23,
+            "eligibleAfterSerial": 24,
+            "round": 4,
+            "side": "west",
+            "offered": {
+              "p-knight": {
+                "round": 4,
+                "serial": 24
+              }
+            }
+          }
+        },
+        "entries": {},
+        "offered": {},
+        "blockers": [],
+        "notice": "\uc11c\ucabd \ucc3d\uace0 \uc0b0\uac1c 2 \u00b7 \uae4c\ub9c8\uadc0 1 \u00b7 \ub2e4\uc74c \ud589\ub3d9 \ub05d\uc5d0 \uc548\uc804 \ud655\uc778"
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 480,
+          "broken": false
+        }
+      ]
+    },
+    {
+      "view": "east",
+      "round": 4,
+      "phase": "aim",
+      "bier": {
+        "version": 1,
+        "status": "anchored",
+        "completedOnce": 0,
+        "sealIdsSeen": [
+          "bier-knot-0"
+        ],
+        "warnings": {
+          "stage8-first-seal": {
+            "status": "announced",
+            "serial": 23,
+            "eligibleAfterSerial": 24,
+            "round": 4,
+            "side": "west",
+            "offered": {
+              "p-knight": {
+                "round": 4,
+                "serial": 24
+              }
+            }
+          }
+        },
+        "entries": {},
+        "offered": {},
+        "blockers": [],
+        "notice": "\uc11c\ucabd \ucc3d\uace0 \uc0b0\uac1c 2 \u00b7 \uae4c\ub9c8\uadc0 1 \u00b7 \ub2e4\uc74c \ud589\ub3d9 \ub05d\uc5d0 \uc548\uc804 \ud655\uc778"
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 480,
+          "broken": false
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,89 @@
+{
+  "sha": "544825ee77930756dd28ce056ab15e12bb885278",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/runtime/stage8-bier-art.js\n M tests/stage7-reentry.mjs\n M tests/stage8-density-fullplay.mjs\n D web/data/campaign.b95445ef7cedeb5d.json\n D web/data/chapter-07.1651b202eea8a137.json\n D web/entries/game.1b35cf1f0fae8799.html\n D web/entries/game.e40f594e67cbc377.js\n D web/entries/workshop.431ff62a1e4ef5ce.js\n M web/manifest.json\n D web/runtime/campaign.d7753bc8c8e1a6e9.js\n D web/runtime/ordered-common-12.f8b7a2a37fc2e0c8.js\n D web/runtime/ordered-game-13.1f4ef1e6791e4c7a.js\n D web/runtime/ordered-game-14.2cc2000c3beadcc4.js\n D web/runtime/ordered-game-15.22fb47d37d0311e7.js\n D web/runtime/ordered-game-16.58b372ab84c0b41f.js\n?? tests/stage8-current-entry-helper.mjs\n?? web/entries/game.620350fda398303b.js\n?? web/entries/game.c16813d19169d3fb.html\n?? web/entries/workshop.d674b90dd640c521.js\n?? web/runtime/ordered-common-12.aa3efb64f4fef942.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 8,
+      "view": "entry",
+      "camera": {
+        "x": 1900,
+        "y": 3750,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 8,
+      "view": "west",
+      "camera": {
+        "x": 3500,
+        "y": 3660,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "court",
+      "camera": {
+        "x": 5350,
+        "y": 4020,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "crown",
+      "camera": {
+        "x": 5100,
+        "y": 2600,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "east",
+      "camera": {
+        "x": 7950,
+        "y": 2900,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "maxout-west",
+      "camera": {
+        "x": 3000,
+        "y": 3600,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 8,
+      "view": "maxout-east",
+      "camera": {
+        "x": 7200,
+        "y": 3500,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 8,
+      "view": "mobile-court",
+      "camera": {
+        "x": 5550,
+        "y": 3950,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 8,
+      "view": "landscape-east",
+      "camera": {
+        "x": 8100,
+        "y": 2900,
+        "scale": 0.5
+      }
+    }
+  ],
+  "errors": []
+}
