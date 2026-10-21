@@ -56,10 +56,10 @@ body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d
 .honro-title .footer>span:last-child{color:#aeb8ba;letter-spacing:.1em;font-size:10px}
 /* Portrait art reserves its upper third for the mark and middle for controls; ferry stays below. */
 @media(orientation:portrait){
- .honro-title .title-painting img{object-position:right bottom}
+ .honro-title .title-painting img{object-position:center}
  .honro-title:after{background:linear-gradient(0deg,#050e169c,transparent 19%,#07131d20 56%,#07131d24)}
  .honro-title{--title-mark-top:max(15dvh,calc(env(safe-area-inset-top) + 52px))}
- .honro-title .title-main{position:static;align-items:center;width:100%;max-width:none;margin:0;padding:var(--title-mark-top) 7% 0;gap:0}
+ .honro-title .title-main{position:static;align-items:center;width:100%;max-width:none;margin:0;padding:var(--title-mark-top) max(7%,calc(env(safe-area-inset-right) + 16px)) 0 max(7%,calc(env(safe-area-inset-left) + 16px));gap:0}
  .honro-title .honro-logo-wrap{width:min(295px,79vw)}
  .honro-title .title-main .title-brand{font-size:125px}
  .honro-title .title-hangul{font-size:26px}
@@ -81,7 +81,7 @@ body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d
  .honro-title .title-actions>button{font-size:14px;min-height:46px;padding:10px 12px}
 }
 @media(orientation:landscape) and (max-height:540px){
- .honro-title .title-main{width:min(320px,43vw);margin:auto 0 auto 6vw;padding:0}
+ .honro-title .title-main{width:min(320px,43vw);margin:auto 0 auto max(6vw,calc(env(safe-area-inset-left) + 16px));padding:0}
  .honro-title .honro-logo-wrap{width:220px;max-width:100%}
  .honro-title .title-main .title-brand{font-size:95px}
  .honro-title .title-hangul{font-size:20px}
@@ -117,4 +117,4 @@ G.HonroStartup={
 };
 document.addEventListener('click',event=>{const button=event.target.closest?.('[data-startup-start],[data-startup-retry]');if(!button)return;if(button.hasAttribute('data-startup-retry'))location.reload();else if(!ready)button.textContent='준비 중';});
 })(globalThis);
-</script><script type="module" src="web/entries/game.3bb1e7d65889fe96.js"></script></body></html>
+</script><script type="module" src="web/entries/game.78dbdfa9daddb5f2.js"></script></body></html>

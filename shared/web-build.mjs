@@ -101,6 +101,22 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   }
   for(let i=0;i<entries.length;i++){
     const entry=entries[i],target=i<appStart?common:gameOnly;let file;
+    if(entry.name==='shared/runtime/act-endings-content.js'){
+      // Resolve art at build time, without fetching it at startup. Missing
+      // parent-supplied portraits retain the existing landscape presentation.
+      const context={};vm.runInNewContext(entry.code,context);
+      for(const [stage,ending]of Object.entries(context.HONRO_ACT_ENDINGS)){
+        for(const key of ['image','portraitImage']){
+          const source=ending[key];if(!source)continue;
+          let bytes;try{bytes=await readFile(path.join(root,source));}catch(error){
+            if(key!=='portraitImage'||error.code!=='ENOENT')throw error;
+            ending[key]=null;continue;
+          }
+          ending[key]=await emit('graphics',`ending-${stage}-${key}`,'webp',bytes);
+        }
+      }
+      entry.code=`globalThis.HONRO_ACT_ENDINGS=${quote(context.HONRO_ACT_ENDINGS)};`;
+    }
     if(i===appStart)await flushScripts(common);
     if(entry.optional){
       await flushScripts(target);
