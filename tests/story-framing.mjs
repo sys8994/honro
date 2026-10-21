@@ -14,4 +14,7 @@ check('Explicit objective references use the full real actor bounds, and missing
 check('Manual page save retains explicit framing; completion clears it and preserves the original playback camera',()=>{
  g.HonroStory.start(a,[['설오','검사',{camera:{id:'stored-camera',intent:'portrait',targets:[{actor:'archer'}]}}]],{title:'검사'});const d=plain(a.engine.b.honroStory);assert.equal(d.lines[0][2].camera.id,'stored-camera');assert(scene.storyFrame);g.HonroStory.finish(a);assert(!scene.storyFrame);assert(!a.dialogue);
 });
+check('Scripted spirit aliases and a real lamp marker remain explicit camera subjects',()=>{
+ const id=a.engine.b.units.find(u=>u.side===1).id,marker=a.engine.b.honroMarkers[0].id,rows=F.bind(a,[['설오','관찰',{storyId:'act2:first-spirit-encounter',sceneTarget:id}],['안내','표시된 혼과 등불',{kind:'guide',sceneTarget:id,sceneLamp:marker}]],{staging:{context:{spirit:id},cues:[[{type:'look',at:{actor:'$spirit'}}],[]]}});assert.equal(rows[0][2].camera.targets[0].actor,id);assert.deepEqual(plain(rows[1][2].camera.targets),[{actor:id},{marker}]);
+});
 await report('story-framing',checks,{limits:['App/Engine production code with DOM/Canvas doubles. Browser corpus tests contain real layout and rendered image evidence.']});
