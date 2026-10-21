@@ -78,7 +78,7 @@ export async function applyAct1SceneComposition(project){
      ['east-crown','right-cliff-ground',.5,1],['east-middle','right-descent-stone-mid',.5,.85],
      ['east-lower','right-descent-stone-low',.5,.78]
     ].map(([id,terrainId,at,scale])=>({id:'geology-'+id,assetId:'geology:granite-ledge-neck',scale,socket:'ledge-seat',surfaceAttachment:{mode:'embedded',junction:true},support:{terrainId,at}})),
-    ...['left-tree-branch-upper','left-tree-branch-middle','left-tree-branch-lower','right-tree-branch-upper','right-tree-branch-lower'].map((terrainId,i)=>({id:'geology-root-'+terrainId,assetId:'wood:pine-wall-root',scale:i===1?1.2:1,mirrorX:terrainId.startsWith('right'),socket:'root-mouth',support:{terrainId,at:terrainId.startsWith('right')?1:0,offsetY:0}}))
+    ...['left-tree-branch-upper','left-tree-branch-middle','left-tree-branch-lower','right-tree-branch-upper','right-tree-branch-lower',...(st.design.stage2LayeredRoad?.revision===2?['right-climbing-root']:[])].map((terrainId,i)=>({id:'geology-root-'+terrainId,assetId:'wood:pine-wall-root',scale:i===1?1.2:1,mirrorX:terrainId.startsWith('right'),socket:'root-mouth',support:{terrainId,at:terrainId==='right-climbing-root'?.97:terrainId.startsWith('right')?1:0,offsetY:0}}))
    ]};
    st.design.stage2LayeredCommonArt={version:1,cliffMaterial:'rock/cliff',pineAssetId:'act1-scene:rooted-pine',footAssetId:'env:rock'};
    continue;
