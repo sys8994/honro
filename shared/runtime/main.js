@@ -302,7 +302,7 @@
             G.HonroProgression.syncRoster(this.profile,this.engine.b);
             this.profile.honroBattle = clone(this.engine.b);
             this.persist();
-        } this.engine = null; this.scene = null; this.keys.clear(); this.stick = { x: 0, y: 0 }; this.charging = false; this.dialogue = null; this.banterQueue=[];this.banterCurrent=null; this.turnNotice=null;this.lastTurnNotice=null;this.storyCamera=null;document.body.classList.remove('story-lock');
+        } this.engine = null; this.scene = null; this.keys.clear(); this.releaseStick(); this.charging = false; this.dialogue = null; this.banterQueue=[];this.banterCurrent=null; this.turnNotice=null;this.lastTurnNotice=null;this.storyCamera=null;document.body.classList.remove('story-lock');
           if(this.customMap){this.profile=this.customMap.returnProfile;this.stageId=this.customMap.returnStageId;this.customMap=null;}
         }
         isOpen(st) { return this.debugMode || st.requires.every(id => this.profile.cleared[id]); }
@@ -663,7 +663,7 @@
         battleHelp() {
             if(!this.engine||this.screen!=='battle'||this.dialogue)return;
             const help=G.HonroObjectives.help(this);
-            this.open(`<h2>목표·조작 안내</h2><section class="battle-help-goal"><h3>${esc(this.training?'허공터':this.stage.name)}</h3><p class="battle-help-current">${esc(help.summary)}</p></section>${help.checklist?.length?`<section><h3>지금까지의 목표</h3><ol class="mission-checklist">${help.checklist.map(q=>`<li${q.done?' class="complete"':''}>${q.done?'✓ ':q.current?'현재 · ':''}${esc(q.text)}</li>`).join('')}</ol></section>`:''}${help.failureText?`<section><h3>실패 조건</h3><p>${esc(help.failureText)}</p></section>`:''}<section><h3>화면 둘러보기</h3><p>빈 전장을 드래그해 화면을 옮깁니다. 마우스 휠 또는 두 손가락 오므리기·벌리기로 축소·확대합니다. 미니맵을 누르거나 드래그하면 그 위치를 봅니다. 행동 가능한 동행 초상을 누르면 다시 따라갑니다.</p></section><section><h3>키보드</h3><p>← → / A D 이동 · ↑ ↓ 조준 각도 · Ctrl 도약<br>Space 누른 채 충전, 떼어 발사 · F 방어<br>Tab 행동 가능한 동행 전환 · 1–4 기예 선택 · E 상호작용</p></section><section><h3>발판과 사격</h3><p>투사체와 폭발은 동행·동맹·보호 대상에게도 피해를 줍니다. 유도탄은 적을 추적하지만 앞을 가로막은 아군에게 맞을 수 있습니다. 회복·부적의 특수 효과는 기존 대상에게만 적용됩니다.</p><p>아래 화살표는 통과 가능한 발판 위에서만 사용할 수 있습니다. 잠깐 몸을 낮춘 뒤 아래층으로 내려갑니다. 단단한 땅에서는 사용할 수 없습니다.</p><p>발판은 아래·옆으로 쏜 탄을 통과시키고, 위에서 내려오는 탄을 막습니다. 진목·소환탄도 윗면에 닿으면 놓입니다. 벽과 동굴 천장은 모든 방향의 탄을 막으며, 반사 기예는 막힌 면에서 튕깁니다.</p></section><section><h3>터치</h3><p>왼쪽 조이스틱의 좌우로 이동하고 위아래로 조준합니다. 발사 버튼을 누른 채 충전하고 떼면 발사합니다. 도약·아래로 내려가기·방어·동행·기예·상호작용은 화면의 해당 버튼을 누릅니다.</p></section><div class="actions"><button data-action="pause">일시정지 메뉴</button><button class="primary" data-action="close">돌아가기</button></div>`,'battle-help-dialog');
+            this.open(`<h2>목표·조작 안내</h2><section class="battle-help-goal"><h3>${esc(this.training?'허공터':this.stage.name)}</h3><p class="battle-help-current">${esc(help.summary)}</p></section>${help.checklist?.length?`<section><h3>지금까지의 목표</h3><ol class="mission-checklist">${help.checklist.map(q=>`<li${q.done?' class="complete"':''}>${q.done?'✓ ':q.current?'현재 · ':''}${esc(q.text)}</li>`).join('')}</ol></section>`:''}${help.failureText?`<section><h3>실패 조건</h3><p>${esc(help.failureText)}</p></section>`:''}<section><h3>화면 둘러보기</h3><p>빈 전장을 드래그해 화면을 옮깁니다. 마우스 휠 또는 두 손가락 오므리기·벌리기로 축소·확대합니다. 미니맵을 누르거나 드래그하면 그 위치를 봅니다. 행동 가능한 동행 초상을 누르면 다시 따라갑니다.</p></section><section><h3>키보드</h3><p>← → / A D 이동 · ↑ ↓ 조준 각도 · Ctrl 도약<br>Space 누른 채 충전, 떼어 발사 · F 방어<br>Tab 행동 가능한 동행 전환 · 1–4 기예 선택 · E 상호작용</p></section><section><h3>발판과 사격</h3><p>투사체와 폭발은 동행·동맹·보호 대상에게도 피해를 줍니다. 유도탄은 적을 추적하지만 앞을 가로막은 아군에게 맞을 수 있습니다. 회복·부적의 특수 효과는 기존 대상에게만 적용됩니다.</p><p>아래 화살표는 통과 가능한 발판 위에서만 사용할 수 있습니다. 잠깐 몸을 낮춘 뒤 아래층으로 내려갑니다. 단단한 땅에서는 사용할 수 없습니다.</p><p>발판은 아래·옆으로 쏜 탄을 통과시키고, 위에서 내려오는 탄을 막습니다. 진목·소환탄도 윗면에 닿으면 놓입니다. 벽과 동굴 천장은 모든 방향의 탄을 막으며, 반사 기예는 막힌 면에서 튕깁니다.</p></section><section><h3>터치</h3><p>왼쪽 조이스틱을 처음 위·아래 중심 ±20°로 밀면 손을 뗄 때까지 제자리에서 조준합니다. 크게 좌우로 밀면 바라보는 방향만 바뀝니다. 다른 방향으로 시작하면 이동하며 조준합니다. 발사 버튼을 누른 채 충전하고 떼면 발사합니다. 도약·아래로 내려가기·방어·동행·기예·상호작용은 화면의 해당 버튼을 누릅니다.</p></section><div class="actions"><button data-action="pause">일시정지 메뉴</button><button class="primary" data-action="close">돌아가기</button></div>`,'battle-help-dialog');
         }
         pause() { if(G.HonroAct3Void?.pause(this))return; this.cancelInput(); this.open(`<h2>잠시 머무르기</h2><div class="pause-menu"><button class="primary" data-action="close">${fa('crosshairs',17)}<span>돌아가기</span></button><button data-action="settings">${fa('gear',17)}<span>설정</span></button><button data-action="battle-help"><span>목표·조작 안내</span></button><button data-action="fullscreen">${fa('expand',17)}<span>전체화면</span></button>${G.HonroStakeCrossing.active(this.engine?.b)&&(G.HonroStakeCrossing.current(this.engine.b)||G.HonroStakeCrossing.flexible(this.engine.b))?'<button data-action="stake-retry"><span>현재 구간 다시 걷기</span></button>':''}<button data-action="retry">${fa('rotateRight',17)}<span>처음부터</span></button>${!this.debugMode&&G.HonroSplitCampaign.locked(this.profile)?'':`<button data-action="rest">${fa('map',17)}<span>길 위의 쉼터</span></button>`}<button data-action="map"><span>여정첩</span></button></div>`,'pause-dialog'); }
         defend() { if(!this.canInput()||this.engine.active.platformDrop&&this.engine.active.platformDrop.phase!=='land') return; this.cancelInput(); if(this.engine.active.retreat){this.engine.finishAction(true);this.updateHUD(true);return;} const u=this.engine.active,hpBefore=u.hp,shieldBefore=u.shield; u.shield=Math.max(u.shield,Math.round(u.maxHp*.12));u.shieldUntil=this.engine.b.teamEnds[1]+1;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.04));G.HonroProgression.recordHeal(this.engine.b,u,u.id,u.hp-hpBefore);G.HonroProgression.shieldAdded(this.engine.b,u,u.id,shieldBefore);u.focus=Math.min(u.maxFocus,u.focus+Math.max(u.regen,Math.round(u.maxFocus*.12)));this.engine.fx('ring',u.x,u.y-u.h*.5,'#b8c999',60);this.engine.fx('text',u.x,u.y-u.h-16,'#d8d0a8',14,'방어');this.engine.message(`${u.name} · 숨을 고르며 방어`);this.engine.finishAction();this.updateHUD(true); }
@@ -691,25 +691,25 @@
             this.scene.manual = false;
         } }
         drop() { if(this.canInput()&&this.engine.canDrop()){this.cancelInput();if(this.engine.drop()){this.scene.manual=false;this.updateHUD(true);}} }
-        cancelInput() { this.restMotion?.scene?._restCamera?.cancel(); this.keys.clear(); this.charging = false; this.stick = { x: 0, y: 0 }; this.contacts.clear(); this.firePointer = null; const k = $('stick-knob'); if (k)
+        cancelInput() { this.restMotion?.scene?._restCamera?.cancel(); this.keys.clear(); this.charging = false; this.releaseStick(); this.contacts.clear(); this.firePointer = null; const k = $('stick-knob'); if (k)
             k.style.transform = 'translate(0,0)'; }
         inputs() {
             const stick = $('joystick'), fire = $('fire'), jump = $('jump'), cv = $('battlecanvas');
-            let sid = null;
-            stick.onpointerdown = e => { e.preventDefault(); if (!this.canInput() || sid !== null)
-                return; sid = e.pointerId; stick.setPointerCapture(sid); this.updateStick(e, stick); };
-            stick.onpointermove = e => { if (e.pointerId === sid) {
+            stick.onpointerdown = e => {
                 e.preventDefault();
-                this.updateStick(e, stick);
+                if (!this.canInput() || this.stickPointer) return;
+                const r=stick.getBoundingClientRect();
+                this.stickPointer={id:e.pointerId,originX:e.clientX,originY:e.clientY,
+                    range:Math.min(r.width,r.height)*.41,unit:this.engine.active,round:this.engine.b.round};
+                this.stick=C.joystickGesture(0,0,this.stickPointer.range);
+                stick.setPointerCapture(e.pointerId);
+                this.updateStick(e,stick);
+            };
+            stick.onpointermove = e => { if (e.pointerId === this.stickPointer?.id) {
+                e.preventDefault(); this.updateStick(e,stick);
             } };
-            const endStick = e => { if (e.pointerId === sid) {
-                sid = null;
-                this.stick = { x: 0, y: 0 };
-                $('stick-knob').style.transform = 'translate(0,0)';
-            } };
-            stick.onpointerup = endStick;
-            stick.onpointercancel = endStick;
-            stick.onlostpointercapture = endStick;
+            const endStick = e => { if (e.pointerId === this.stickPointer?.id) this.releaseStick(); };
+            stick.onpointerup = stick.onpointercancel = stick.onlostpointercapture = endStick;
             fire.onpointerdown = e => { e.preventDefault(); if (this.beginCharge()) {
                 this.firePointer = e.pointerId;
                 fire.setPointerCapture(e.pointerId);
@@ -769,7 +769,30 @@
             const endMap=e=>{if(e.pointerId!==mapPointer)return;mapPointer=null;if(minimap.hasPointerCapture(e.pointerId))minimap.releasePointerCapture(e.pointerId);};
             minimap.onpointerup=minimap.onpointercancel=minimap.onlostpointercapture=endMap;
         }
-        updateStick(e, el) { const r = el.getBoundingClientRect(), dx = (e.clientX - r.left - r.width / 2) / (r.width * .41), dy = (r.top + r.height / 2 - e.clientY) / (r.height * .41), len = Math.max(1, Math.hypot(dx, dy)); let x = dx / len, y = dy / len; const threshold = Math.abs(y) > .60 ? .50 : Math.abs(y) > .35 ? .28 : .15; this.stick.x = Math.abs(x) < threshold ? 0 : Math.sign(x) * (Math.abs(x) - threshold) / (1 - threshold); this.stick.y = Math.abs(y) < .12 ? 0 : Math.sign(y) * (Math.abs(y) - .12) / .88; $('stick-knob').style.transform = `translate(${x * r.width * .25}px,${-y * r.height * .25}px)`; }
+        releaseStick() {
+            const pointer=this.stickPointer;
+            this.stickPointer=null; this.stick={x:0,y:0};
+            const el=$('joystick'),knob=$('stick-knob');
+            if(knob)knob.style.transform='translate(0,0)';
+            const label=el?.querySelector('.stick-mode');if(label)label.textContent='MOVE / AIM';
+            if(pointer&&el?.hasPointerCapture?.(pointer.id))el.releasePointerCapture(pointer.id);
+        }
+        validateStick() {
+            const p=this.stickPointer;
+            if(p&&(!this.canInput()||this.engine.active!==p.unit||this.engine.b.round!==p.round))this.releaseStick();
+        }
+        updateStick(e, el) {
+            this.validateStick();
+            const p=this.stickPointer;if(!p||p.id!==e.pointerId)return;
+            const previous=this.stick;
+            this.stick=C.joystickGesture(e.clientX-p.originX,p.originY-e.clientY,p.range,previous);
+            if(this.stick.facingIntent&&this.stick.facingIntent!==previous.facingIntent)
+                this.engine.face(this.stick.facingIntent);
+            const r=el.getBoundingClientRect();
+            $('stick-knob').style.transform=`translate(${this.stick.visualX*r.width*.25}px,${-this.stick.visualY*r.height*.25}px)`;
+            const label=el.querySelector('.stick-mode');
+            if(label)label.textContent=this.stick.intent==='aimOnly'?'조준':this.stick.intent==='moveAim'?'MOVE-AIM':'MOVE / AIM';
+        }
         updateChargeDisplay(){
             const e=this.engine,u=(e?.active?.side===0&&!e.active.summoned?e.active:null)||e?.b.units.find(v=>v.side===0&&!v.summoned&&!v.dead),button=$('fire');if(!u||!button)return;
             const previous=this.engine.b.lastShots?.[u.id]?.power||0,power=this.charging?this.power:0;
@@ -865,7 +888,8 @@
         }
         bind() {
             window.addEventListener('resize',()=>{if(this.screen==='rest')G.HonroRestJourney?.layoutRest();});
-            document.addEventListener('visibilitychange',()=>this.updateAudio());
+            document.addEventListener('visibilitychange',()=>{if(document.hidden)this.cancelInput();this.updateAudio();});
+            window.addEventListener('pagehide',()=>this.cancelInput());
             // Game text is UI, not a document. Cancel selection, dragging and long-press menus throughout the app.
             for(const type of ['selectstart','dragstart','contextmenu'])document.addEventListener(type,e=>{if(e.target?.closest?.('#app,#modal'))e.preventDefault();},{capture:true,passive:false});
             document.addEventListener('selectionchange',()=>{const selection=window.getSelection();if(selection&&!selection.isCollapsed&&(this.root.contains(selection.anchorNode)||this.modal.contains(selection.anchorNode)))selection.removeAllRanges();});
@@ -1215,6 +1239,7 @@
             try {
                 const dt = Math.min(.06, Math.max(0, (now - this.prev) / 1000));
                 this.prev = now;
+                this.validateStick();
                 if(G.HonroAct3Void?.blocked(this)){this.acc=0;G.HonroAct3Void.frame(this,dt);requestAnimationFrame(t=>this.frame(t));return;}
                 G.HonroStory.tick(this,now);
                 G.HonroRestJourney?.frame(this,dt);
@@ -1243,6 +1268,7 @@
                                 }
                             }
                             e.tick(1 / 120);
+                            this.validateStick();
                             simulated+=1/120;
                             if(!this.dialogue&&!G.HonroAct3Void?.blocked(this))this.missionTick(1 / 120);
                             this.acc -= 1 / 120;

@@ -116,15 +116,39 @@ export function escapeHTML(v: unknown) { return String(v).replace(/[&<>"']/g, c 
 export const AIM_MIN=-85, AIM_MAX=265;
 export function swipeAxis(delta:number,range=54){const x=clamp(delta/range,-1,1),a=Math.abs(x);return a<.12?0:Math.sign(x)*Math.pow((a-.12)/.88,1.35);}
 
-/** Axis intent filter. An aim-dominant stroke needs a deliberate lateral tilt to start walking.
- * Hysteresis avoids tiny finger tremor repeatedly entering/leaving move while aiming. */
+/** Movement deadzone after intent has been chosen. Vertical aim must not suppress
+ * the small lateral movement deliberately requested just outside the aim cone. */
 export function joystickAxes(dx:number,dy:number,range:number,wasMoving=false){
  const length=Math.hypot(dx,dy),r=Math.max(1,range),scale=length>r?r/length:1;
- const x=dx*scale/r,y=dy*scale/r,aimDominant=Math.abs(y)>.32;
- const engage=aimDominant?Math.max(.26,Math.abs(y)*.58):.12;
- const release=aimDominant?Math.max(.19,Math.abs(y)*.40):.10;
- const threshold=wasMoving?release:engage,moving=Math.abs(x)>threshold;
+ const x=dx*scale/r,y=dy*scale/r;
+ const threshold=wasMoving?.10:.12,moving=Math.abs(x)>threshold;
  // Keep vertical aiming independent of whether the movement axis is gated.
  const move=moving?Math.sign(x)*Math.pow((Math.abs(x)-threshold)/(1-threshold),1.1):0;
  return {x:move,y:swipeAxis(y*r,r),moving};
+}
+
+export type JoystickIntent='undecided'|'aimOnly'|'moveAim';
+export interface JoystickState {
+ intent:JoystickIntent; x:number; y:number; visualX:number; visualY:number;
+ moving:boolean; facingIntent:number;
+}
+export const JOYSTICK_AIM_CONE=20, JOYSTICK_START_RATIO=.18, JOYSTICK_START_PX=8;
+export const JOYSTICK_FACE_ENGAGE=.60, JOYSTICK_FACE_RELEASE=.35;
+/** Deltas are CSS pixels from pointerdown, never from the pad centre. Intent is
+ * latched for this pointer, including centre crossings. Facing has its own Schmitt
+ * trigger and never produces a movement command. */
+export function joystickGesture(dx:number,dy:number,range:number,previous?:JoystickState):JoystickState {
+ const r=Math.max(1,range),length=Math.hypot(dx,dy),scale=length>r?r/length:1;
+ const visualX=dx*scale/r,visualY=dy*scale/r;
+ let intent=previous?.intent||'undecided';
+ // Browser PointerEvent coordinates may round to float32: keep the inclusive
+ // 20 degree boundary stable with a 0.001 degree numerical tolerance.
+ if(intent==='undecided'&&length>=Math.max(JOYSTICK_START_RATIO*r,JOYSTICK_START_PX))
+  intent=Math.atan2(Math.abs(dx),Math.abs(dy))*180/Math.PI<=JOYSTICK_AIM_CONE+.001?'aimOnly':'moveAim';
+ const axes=joystickAxes(dx,dy,r,previous?.moving);
+ let facingIntent=previous?.facingIntent||0;
+ if(Math.abs(visualX)<JOYSTICK_FACE_RELEASE)facingIntent=0;
+ else if(Math.abs(visualX)>=JOYSTICK_FACE_ENGAGE)facingIntent=Math.sign(visualX);
+ return {intent,x:intent==='moveAim'?axes.x:0,y:intent==='undecided'?0:axes.y,
+  visualX,visualY,moving:intent==='moveAim'&&axes.moving,facingIntent:intent==='aimOnly'?facingIntent:0};
 }

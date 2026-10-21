@@ -4,6 +4,23 @@ lake 재저작이 서쪽 지형을 덮던 소유권을 stage5-positioning author
 
 같은 정상4레벨의 시작/상부/하부 실탄과 적 반응, 담허의 실제 1회 반사72 및 동쪽 원호파84, 진 유지·반대편 사선 차폐를 확인했다. 정상 App 입력 1회 완주에서 R2 예고→R3 증원6→R7 주박목 파괴→R8 승리, 아이템/체력보정/강제 제거 없이 18체가 남았다. 최신 승인 master27efe8eb를 병합했고 다른29장/라이브러리/2장 해석 자산은 동일하다. 실제 Chromium 3회 집중+최종 화면과 정상 저장/입력 trace는 stage05-positioning/REPORT.md에 보존한다. 미통합 담허/공중적/근접 밸런스는 적용하지 않았으며 그 통합 후 난이도 재검수가 남는다. 부모 전략·픽셀 승인 전 master/배포는 보류한다.
 
+## 2026-10-21 — 승인된 P0 조이스틱 master 통합
+
+- 부모가 입력 구현·최종 검수·390px 실제 캡처를 승인해 최신 master `27efe8eb`에 승인 입력 `adda49d2`만 병합하고 Game/Workshop/embedded 생성물을 재빌드했다. 미승인 병렬 소스는 포함하지 않는다.
+- 빌드·typecheck·의도/물리120·충전126·S13 14·web-split 및 실제 생성 문서 입력255판정이 통과했다. [통합 증거·대표 PNG/trace](stage-review/joystick-intent/master-integration/README.md). 역사 runtime-contracts는 unchanged shared/build.mjs 승인 해시에서 기존 master와 똑같이 실패했으며 로그를 분리 보존한다. 실폰/Safari는 미검증이다. 원격 SHA/Pages/공개 페이지 접근 결과는 최종 배포 보고와 구분한다.
+
+## 2026-10-21 — P0 조이스틱 최종 집중·브라우저 검수 (master 미병합)
+
+- 의도/방향/생명주기 집중 검수와 종합 검수 통과. 실제 생성 Game 문서의 Chromium CDP touch→PointerEvent/캡처→production frame/물리 경로로 255개 판정, 429 상태, 614 이벤트를 기록했다. 320/360/390px 세로·844px 가로에서 상/하 양쪽 19/20/21도, 45도→조준+미세 이동, 중앙 통과, release, tiny jitter, cancel/캡처/blur/pause/동행/턴, 다중 터치 발사·점프와 PC 회귀를 확인했다. aimOnly 보행 호출 0·좌표/이동도 보존, 방향 반사 높낮이 유지, 별도 낙하/충격의 정상 물리를 확인했다.
+- 증거: `_local/reports/joystick-intent/review.md`, `input-trace.json`, `mobile-{320,360,390,844}-aim-only.png`, 소스/빌드 provenance. [계약·실행 방법](MOBILE_JOYSTICK_INPUT.md). 실제 휴대기기·Safari·OS 회전은 미검증이며 합성 입력을 실장치 검증으로 표시하지 않는다. 입력 소스만 원격 저장하고 master/Pages는 부모 최종 검수까지 보류한다.
+
+## 2026-10-21 — P0 모바일 첫 조이스틱 의도 고정 (입력 전용 브랜치)
+
+- 원인: 두 App이 매 pointermove의 수평축을 재평가했으므로 수직 조준 시작 후 기울임이 보행으로 바뀌었다. 실제 Game은 `shared/runtime/main.js`를 사용하므로 TS main/math만 고치면 공개 조작에는 적용되지 않는다.
+- 변경: 공통 reducer로 시작점 기준 최초 `max(.18 × range, 8 CSS px)`와 상/하 ±20°를 한 번 판정한다. aimOnly 이동축은 끝까지 0, raw 노브는 별도로 움직인다. 방향만 .60/.35 히스테리시스와 이동 없는 `Engine.face`로 바꾸고 보행과 같은 발사 높낮이를 보존한다. moveAim 수평은 .12/.10으로 미세 이동을 유지한다. 취소/캡처 손실/blur/pause/동행/턴 경계에서 상태를 비운다.
+- 확인: typecheck, 순수 의도/물리 120조합, 기존 방향 전환 14조건과 키보드/포인터 충전 126조건 통과. 모바일 브라우저 PointerEvent와 3개 집중 검수/종합 결과는 아래 후속 검증 기록에 남긴다. [현재 계약](MOBILE_JOYSTICK_INPUT.md).
+- 범위: 입력 소스·검사·문서만 저장한다. 생성물은 로컬 검증용이며 부모 최종 통합에서 다시 빌드한다. master 병합·Pages 배포·실장치 검증은 수행하지 않는다.
+
 ## 2026-10-21 — 부모 검수 승인2장 layered road 통합 검증
 
 승인 후보 d03ca76c를 master edf712e9와 통합했다.2장 전면 연속 호위로/뒤 절벽/왼쪽 상여 출발, 공통 화강암/뿌리/얕은 보행면 접합을 반영한다.5장 진단과12장 후보는 제외하며 스킬UI·84개 미리보기·23장 저장 검사 소스와 다른29장 원본은 master 그대로다. build와2장 경로/고지 사격/author/저장 및 현재 렌더, 실제R3 Continue와 기존 정상R21 승리 저장의 보상·담허 합류·3장 연결을 확인했다.21라운드 전투 자체는 재사용하며 새 완주나 전략 다양성 검증으로 확대하지 않는다. 최종 원본 PNG/검사는 stage02-layered-road/master-integration에 보존한다.

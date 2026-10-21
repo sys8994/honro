@@ -189,3 +189,6 @@
 
 /* Experience belongs in character inspection, not a permanent HUD row. */
 .honro #app .arcfall-hud .hud-vitals{position:relative!important;padding-bottom:0!important}
+
+/* Gesture mode stays inside the existing small joystick label area. */
+.honro #app #joystick .stick-mode{position:absolute!important;top:0!important;left:50%!important;transform:translateX(-50%)!important;font-size:7px!important;line-height:10px!important;white-space:nowrap!important;color:#d8c99f!important;background:#142a31!important;border-radius:3px!important;padding:0 3px!important;pointer-events:none!important;z-index:3!important}

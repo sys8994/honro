@@ -2,15 +2,15 @@
   "version": 1,
   "game": "HONRO.html",
   "workshop": "HONRO_WORKSHOP.html",
-  "playtest": "web/entries/game.7c69ba4461015465.html?embedded=1",
+  "playtest": "web/entries/game.4721160765be96dc.html?embedded=1",
   "project": "web/data/campaign.f36110513337008e.json",
-  "gameEntry": "web/entries/game.19fb8d4c1a97daaa.js",
-  "workshopEntry": "web/entries/workshop.8c7b232359ff8358.js",
+  "gameEntry": "web/entries/game.3d94b2de328b7b26.js",
+  "workshopEntry": "web/entries/workshop.c2a3832d378958dc.js",
   "common": [
     "web/runtime/ordered-common-1.e4e4afbdd8ad843d.js",
     "web/runtime/shared-runtime-title-markup.1ce572555f2e782e.js",
     "web/runtime/HONRO_BGM_TRACKS.9cff410e5df9e22b.js",
-    "web/runtime/ordered-common-2.1a149a6771962d46.js",
+    "web/runtime/ordered-common-2.89724097a821a85b.js",
     "web/runtime/ordered-common-3.b8b84250e4ae01f2.js",
     "web/runtime/HONRO_BALANCE.cef5a995ae0ea562.js",
     "web/runtime/HONRO_NARRATIVE_V0.cc2c37f9b512d42d.js",
@@ -39,13 +39,13 @@
     "web/runtime/ordered-common-13.180a00e93cb00fcf.js"
   ],
   "gameOnly": [
-    "web/runtime/ordered-game-14.4b0d37c8a8333b84.js",
+    "web/runtime/ordered-game-14.9e9aa7a5ea5a5657.js",
     "web/runtime/shared-runtime-stage-rules.a82707894c1966d8.js",
     "web/runtime/ordered-game-15.6877ee2363d8e9d2.js",
     "web/runtime/shared-runtime-training.334d070cba9a8314.js",
     "web/runtime/shared-runtime-skill-preview.2c9971f8ef5f94d1.js",
     "web/runtime/ordered-game-16.ed5dca8d0e6ae4f5.js",
-    "web/runtime/ordered-game-17.b1e961171861681a.js"
+    "web/runtime/ordered-game-17.6bbc78da3156be7a.js"
   ],
   "optionalModules": {
     "training": {
@@ -60,7 +60,7 @@
   "styles": [
     "web/styles/game-vendor-ui-arcfall-layout.1f32e36e2a18d5f7.css",
     "web/styles/game-vendor-style.3661f7f5254538f8.css",
-    "web/styles/game-src-hud.24def713b6266561.css",
+    "web/styles/game-src-hud.d0f45c17375d9481.css",
     "web/styles/game-src-presentation.692fba8ee2eb51a8.css",
     "web/styles/game-src-controls.17c60131092f54c2.css",
     "web/styles/game-src-unit-info.a60fa5389408ecc4.css",
@@ -490,19 +490,19 @@
       "sha256": "7d653f087d5ae12f19ef78cd7356daff1c92be83786ace356b5f118eb8011f6c"
     },
     {
-      "path": "web/entries/game.19fb8d4c1a97daaa.js",
+      "path": "web/entries/game.3d94b2de328b7b26.js",
       "bytes": 9343,
-      "sha256": "19fb8d4c1a97daaa35e4f1ae235ac142b6035a43a56a9f02cedb4d7c7b561f9d"
+      "sha256": "3d94b2de328b7b260b76be2261bd76c013693dea3222bcca68ef30ef28f8e02c"
     },
     {
-      "path": "web/entries/game.7c69ba4461015465.html",
+      "path": "web/entries/game.4721160765be96dc.html",
       "bytes": 10848,
-      "sha256": "7c69ba4461015465184a154350e0887ac137de5f9c55613af5396f03b8392c8a"
+      "sha256": "4721160765be96dc2f65c9a9c4a77114a67f2cc7bc604e5d49e005ada753e8a6"
     },
     {
-      "path": "web/entries/workshop.8c7b232359ff8358.js",
+      "path": "web/entries/workshop.c2a3832d378958dc.js",
       "bytes": 6263,
-      "sha256": "8c7b232359ff835859db0f79fe02a89307a6cefeaa78655a470729ebe1ecf2d5"
+      "sha256": "c2a3832d378958dcd7d16c1b88334daa87e4a5369a852d5eb44b635bafdf8464"
     },
     {
       "path": "web/graphics/honro_act1_far_data-act3.9814017ddf006228.svg",
@@ -1135,9 +1135,9 @@
       "sha256": "180a00e93cb00fcf8efb6ff4e66b6cba2ffcdb95deed63ef5c191a31646db1f1"
     },
     {
-      "path": "web/runtime/ordered-common-2.1a149a6771962d46.js",
-      "bytes": 686813,
-      "sha256": "1a149a6771962d462dcd64e1898bcc8c1fdc764e0f3655855fe2ae8f091593d0"
+      "path": "web/runtime/ordered-common-2.89724097a821a85b.js",
+      "bytes": 688828,
+      "sha256": "89724097a821a85bed209e6db9466c5c5629b13da59f7c02ed0ae0e628863791"
     },
     {
       "path": "web/runtime/ordered-common-3.b8b84250e4ae01f2.js",
@@ -1175,9 +1175,9 @@
       "sha256": "3fca0f69327629c7ed302fcae1653dd3a00ccbfe0ace987f1b0141fd36835165"
     },
     {
-      "path": "web/runtime/ordered-game-14.4b0d37c8a8333b84.js",
-      "bytes": 38164,
-      "sha256": "4b0d37c8a8333b842ef43ffc7ddef9b2bcafc587b17c2bf98f958fea1e48cea9"
+      "path": "web/runtime/ordered-game-14.9e9aa7a5ea5a5657.js",
+      "bytes": 38268,
+      "sha256": "9e9aa7a5ea5a56579151af9795a45feefa5039012a961e7f73f1cb01e1c4e30c"
     },
     {
       "path": "web/runtime/ordered-game-15.6877ee2363d8e9d2.js",
@@ -1190,9 +1190,9 @@
       "sha256": "ed5dca8d0e6ae4f57fbb36f326b2bb61fefcfca970ba88c6e30c7d5398b62457"
     },
     {
-      "path": "web/runtime/ordered-game-17.b1e961171861681a.js",
-      "bytes": 82204,
-      "sha256": "b1e961171861681ad728546bc5ee6a08cbf26d8976dff02c591e3dd995e4c79d"
+      "path": "web/runtime/ordered-game-17.6bbc78da3156be7a.js",
+      "bytes": 83354,
+      "sha256": "6bbc78da3156be7a175064c1b85260c26d0e5164b9b423cd423f23693b923df1"
     },
     {
       "path": "web/runtime/party-alias.bb1ee691d4da84bc.js",
@@ -1265,9 +1265,9 @@
       "sha256": "869baa784cb9ba70357a384dc3bffcd5618e948e3178fff5c978291e4046ada6"
     },
     {
-      "path": "web/styles/game-src-hud.24def713b6266561.css",
-      "bytes": 23510,
-      "sha256": "24def713b6266561c0a39a3c07e953b0f6ef8c2dca6f2e543d8fb990378f0649"
+      "path": "web/styles/game-src-hud.d0f45c17375d9481.css",
+      "bytes": 23953,
+      "sha256": "d0f45c17375d9481b18768bca2771df2e5597e5f871212d1e4575ae322ff392b"
     },
     {
       "path": "web/styles/game-src-journey.ead378cd3458d2a3.css",
@@ -1317,6 +1317,41 @@
   ],
   "previousFiles": [
     {
+      "path": "web/entries/game.19fb8d4c1a97daaa.js",
+      "bytes": 9343,
+      "sha256": "19fb8d4c1a97daaa35e4f1ae235ac142b6035a43a56a9f02cedb4d7c7b561f9d"
+    },
+    {
+      "path": "web/entries/game.7c69ba4461015465.html",
+      "bytes": 10848,
+      "sha256": "7c69ba4461015465184a154350e0887ac137de5f9c55613af5396f03b8392c8a"
+    },
+    {
+      "path": "web/entries/workshop.8c7b232359ff8358.js",
+      "bytes": 6263,
+      "sha256": "8c7b232359ff835859db0f79fe02a89307a6cefeaa78655a470729ebe1ecf2d5"
+    },
+    {
+      "path": "web/runtime/ordered-common-2.1a149a6771962d46.js",
+      "bytes": 686813,
+      "sha256": "1a149a6771962d462dcd64e1898bcc8c1fdc764e0f3655855fe2ae8f091593d0"
+    },
+    {
+      "path": "web/runtime/ordered-game-14.4b0d37c8a8333b84.js",
+      "bytes": 38164,
+      "sha256": "4b0d37c8a8333b842ef43ffc7ddef9b2bcafc587b17c2bf98f958fea1e48cea9"
+    },
+    {
+      "path": "web/runtime/ordered-game-17.b1e961171861681a.js",
+      "bytes": 82204,
+      "sha256": "b1e961171861681ad728546bc5ee6a08cbf26d8976dff02c591e3dd995e4c79d"
+    },
+    {
+      "path": "web/styles/game-src-hud.24def713b6266561.css",
+      "bytes": 23510,
+      "sha256": "24def713b6266561c0a39a3c07e953b0f6ef8c2dca6f2e543d8fb990378f0649"
+    },
+    {
       "path": "web/entries/game.17523641a5c6d566.js",
       "bytes": 9343,
       "sha256": "17523641a5c6d566844a37386db05e04bbd51b6831d3dbb943c4858ac925eef8"
@@ -1335,34 +1370,46 @@
       "path": "web/runtime/ordered-common-12.aea0af6a037dac3a.js",
       "bytes": 168268,
       "sha256": "aea0af6a037dac3ae632f45c89c39b140e365b3f69d7e6b5368b59b54f6249a0"
-    },
-    {
-      "path": "web/entries/game.3a236bf1ddb9d146.html",
-      "bytes": 10848,
-      "sha256": "3a236bf1ddb9d146e5de001230b28ec6a53c0d26a8876d295c63ff12bb26918a"
-    },
-    {
-      "path": "web/entries/game.ed3bb97d1d69889d.js",
-      "bytes": 9343,
-      "sha256": "ed3bb97d1d69889d35a288813e788507b44492e1c331f02b222a62ae4df4e34b"
-    },
-    {
-      "path": "web/entries/workshop.bf590fcd267799f2.js",
-      "bytes": 6263,
-      "sha256": "bf590fcd267799f262c471a68e7b6ebe28c18aeadba3d661161e3227533278f2"
-    },
-    {
-      "path": "web/runtime/ordered-common-12.85485d319147aaf7.js",
-      "bytes": 168943,
-      "sha256": "85485d319147aaf74c7336aefa152f930a7d0f883378aad4218da6b1bde516c3"
-    },
-    {
-      "path": "web/runtime/ordered-common-13.9e4311eb34dfc2df.js",
-      "bytes": 46995,
-      "sha256": "9e4311eb34dfc2df2ae6983b6ac67b8429fadf7d364f278d3b07e3d1581a122e"
     }
   ],
   "previousGenerations": [
+    [
+      {
+        "path": "web/entries/game.19fb8d4c1a97daaa.js",
+        "bytes": 9343,
+        "sha256": "19fb8d4c1a97daaa35e4f1ae235ac142b6035a43a56a9f02cedb4d7c7b561f9d"
+      },
+      {
+        "path": "web/entries/game.7c69ba4461015465.html",
+        "bytes": 10848,
+        "sha256": "7c69ba4461015465184a154350e0887ac137de5f9c55613af5396f03b8392c8a"
+      },
+      {
+        "path": "web/entries/workshop.8c7b232359ff8358.js",
+        "bytes": 6263,
+        "sha256": "8c7b232359ff835859db0f79fe02a89307a6cefeaa78655a470729ebe1ecf2d5"
+      },
+      {
+        "path": "web/runtime/ordered-common-2.1a149a6771962d46.js",
+        "bytes": 686813,
+        "sha256": "1a149a6771962d462dcd64e1898bcc8c1fdc764e0f3655855fe2ae8f091593d0"
+      },
+      {
+        "path": "web/runtime/ordered-game-14.4b0d37c8a8333b84.js",
+        "bytes": 38164,
+        "sha256": "4b0d37c8a8333b842ef43ffc7ddef9b2bcafc587b17c2bf98f958fea1e48cea9"
+      },
+      {
+        "path": "web/runtime/ordered-game-17.b1e961171861681a.js",
+        "bytes": 82204,
+        "sha256": "b1e961171861681ad728546bc5ee6a08cbf26d8976dff02c591e3dd995e4c79d"
+      },
+      {
+        "path": "web/styles/game-src-hud.24def713b6266561.css",
+        "bytes": 23510,
+        "sha256": "24def713b6266561c0a39a3c07e953b0f6ef8c2dca6f2e543d8fb990378f0649"
+      }
+    ],
     [
       {
         "path": "web/entries/game.17523641a5c6d566.js",
@@ -1383,33 +1430,6 @@
         "path": "web/runtime/ordered-common-12.aea0af6a037dac3a.js",
         "bytes": 168268,
         "sha256": "aea0af6a037dac3ae632f45c89c39b140e365b3f69d7e6b5368b59b54f6249a0"
-      }
-    ],
-    [
-      {
-        "path": "web/entries/game.3a236bf1ddb9d146.html",
-        "bytes": 10848,
-        "sha256": "3a236bf1ddb9d146e5de001230b28ec6a53c0d26a8876d295c63ff12bb26918a"
-      },
-      {
-        "path": "web/entries/game.ed3bb97d1d69889d.js",
-        "bytes": 9343,
-        "sha256": "ed3bb97d1d69889d35a288813e788507b44492e1c331f02b222a62ae4df4e34b"
-      },
-      {
-        "path": "web/entries/workshop.bf590fcd267799f2.js",
-        "bytes": 6263,
-        "sha256": "bf590fcd267799f262c471a68e7b6ebe28c18aeadba3d661161e3227533278f2"
-      },
-      {
-        "path": "web/runtime/ordered-common-12.85485d319147aaf7.js",
-        "bytes": 168943,
-        "sha256": "85485d319147aaf74c7336aefa152f930a7d0f883378aad4218da6b1bde516c3"
-      },
-      {
-        "path": "web/runtime/ordered-common-13.9e4311eb34dfc2df.js",
-        "bytes": 46995,
-        "sha256": "9e4311eb34dfc2df2ae6983b6ac67b8429fadf7d364f278d3b07e3d1581a122e"
       }
     ]
   ]
