@@ -1,0 +1,249 @@
+{
+  "result": {
+    "scope": "Actual browser Continue of the unchanged native R4 checkpoint, then ordinary movement/fire; not a browser-continuous R1–5 run.",
+    "continued": {
+      "round": 4,
+      "phase": "review",
+      "heroes": [
+        {
+          "id": "p-archer",
+          "x": 2123.3294016281598,
+          "y": 2590,
+          "hp": 454,
+          "focus": 114,
+          "moveLeft": 1200.0000000000005,
+          "support": "valley-floor"
+        },
+        {
+          "id": "p-mage",
+          "x": 1584.0677370958124,
+          "y": 2710,
+          "hp": 486,
+          "focus": 144,
+          "moveLeft": 1228,
+          "support": "valley-floor"
+        }
+      ],
+      "foes": 20,
+      "ritual": {
+        "active": true,
+        "holderId": "p-mage"
+      }
+    },
+    "before": {
+      "position": {
+        "id": "p-archer",
+        "x": 2373.696192629855,
+        "y": 2783.696192629855,
+        "hp": 445,
+        "focus": 114,
+        "moveLeft": 895.4353655499535,
+        "support": "valley-floor"
+      },
+      "target": {
+        "x": 4220,
+        "y": 2403.529411764706,
+        "hp": 520
+      },
+      "ritual": {
+        "active": true,
+        "holderId": "p-mage"
+      }
+    },
+    "aim": {
+      "angle": 24,
+      "power": 1,
+      "hit": {
+        "x": 4175,
+        "y": 2369.5517454276237,
+        "time": 1.6916666666666667
+      }
+    },
+    "fired": true,
+    "after": {
+      "round": 5,
+      "targetHp": 343,
+      "hpLoss": 177,
+      "ritual": {
+        "active": true,
+        "holderId": "p-mage"
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "x": 2373.696192629855,
+          "y": 2783.696192629855,
+          "hp": 445,
+          "focus": 114,
+          "moveLeft": 895.4353655499535,
+          "support": "valley-floor"
+        },
+        {
+          "id": "p-mage",
+          "x": 1592.7980797970336,
+          "y": 2710,
+          "hp": 486,
+          "focus": 144,
+          "moveLeft": 1228,
+          "support": "valley-floor"
+        }
+      ]
+    },
+    "mageFire": {
+      "position": {
+        "id": "p-mage",
+        "x": 1503.6980797970368,
+        "y": 2710,
+        "hp": 486,
+        "focus": 144,
+        "moveLeft": 1138.9000000000033,
+        "support": "valley-floor"
+      },
+      "holding": {
+        "active": true,
+        "holderId": "p-mage"
+      },
+      "accepted": true,
+      "ritualAfterFire": {
+        "active": true,
+        "holderId": "p-mage"
+      },
+      "ritualAfterResolution": {
+        "active": true,
+        "holderId": "p-mage"
+      }
+    },
+    "damage": [
+      {
+        "frame": 217,
+        "round": 4,
+        "target": "foe-8-cluster",
+        "owner": "foe-4-cluster",
+        "loss": 13
+      },
+      {
+        "frame": 303,
+        "round": 4,
+        "target": "p-archer",
+        "owner": "foe-9-cluster",
+        "loss": 9
+      },
+      {
+        "frame": 303,
+        "round": 4,
+        "target": "foe-7",
+        "owner": "foe-9-cluster",
+        "loss": 12
+      },
+      {
+        "frame": 489,
+        "round": 5,
+        "target": "cliff-cleat",
+        "owner": "p-archer",
+        "loss": 177
+      },
+      {
+        "frame": 536,
+        "round": 5,
+        "target": "foe-8-cluster",
+        "owner": "p-mage",
+        "loss": 28
+      },
+      {
+        "frame": 668,
+        "round": 5,
+        "target": "p-mage",
+        "owner": "foe-8",
+        "loss": 19
+      },
+      {
+        "frame": 668,
+        "round": 5,
+        "target": "foe-3",
+        "owner": "foe-8",
+        "loss": 14
+      },
+      {
+        "frame": 779,
+        "round": 5,
+        "target": "p-mage",
+        "owner": "foe-0",
+        "loss": 19
+      },
+      {
+        "frame": 779,
+        "round": 5,
+        "target": "foe-3",
+        "owner": "foe-0",
+        "loss": 14
+      },
+      {
+        "frame": 916,
+        "round": 5,
+        "target": "p-mage",
+        "owner": "foe-4",
+        "loss": 19
+      },
+      {
+        "frame": 1045,
+        "round": 5,
+        "target": "p-mage",
+        "owner": "foe-0-cluster",
+        "loss": 31
+      },
+      {
+        "frame": 1045,
+        "round": 5,
+        "target": "foe-3",
+        "owner": "foe-0-cluster",
+        "loss": 17
+      }
+    ],
+    "log": [
+      {
+        "op": "move",
+        "from": {
+          "id": "p-archer",
+          "x": 2141.3631481471302,
+          "y": 2590,
+          "hp": 445,
+          "focus": 114,
+          "moveLeft": 1208,
+          "support": "valley-floor"
+        },
+        "to": {
+          "id": "p-archer",
+          "x": 2373.696192629855,
+          "y": 2783.696192629855,
+          "hp": 445,
+          "focus": 114,
+          "moveLeft": 895.4353655499535,
+          "support": "valley-floor"
+        }
+      },
+      {
+        "op": "move",
+        "from": {
+          "id": "p-mage",
+          "x": 1592.7980797970336,
+          "y": 2710,
+          "hp": 486,
+          "focus": 144,
+          "moveLeft": 1228,
+          "support": "valley-floor"
+        },
+        "to": {
+          "id": "p-mage",
+          "x": 1503.6980797970368,
+          "y": 2710,
+          "hp": 486,
+          "focus": 144,
+          "moveLeft": 1138.9000000000033,
+          "support": "valley-floor"
+        }
+      }
+    ],
+    "frame": 1113
+  },
+  "errors": []
+}
