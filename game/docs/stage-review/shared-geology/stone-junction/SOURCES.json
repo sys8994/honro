@@ -1,0 +1,58 @@
+{
+  "renderSource": "9572faf1610659da4f6d3b05de79a7f4d77a3dfe",
+  "beforeSource": "8f37500d9f05d7d3e51fdcbc122d4e545017f81d",
+  "sourceSha256": {
+    "shared/runtime/geology-art.js": "80d830b6a3435c4432684ef39bce98b5f37f8d67be4b3faf16ca09820a0b6924",
+    "tools/environment/act1-scene-composition.mjs": "67774e24bbfd8d053ce6fa9d1cacd7c2218156da1b13f2e8f9d996297532f3f7",
+    "tools/environment/build-geology-art.mjs": "e1ed70052d2d09c31310563df92b7165ffac767b37fdafe4afeaf513f6ccdd4a",
+    "web/manifest.json": "0c58c829df75ff968dcfb6520035bb219b97b70feb8dcb0552b4f28ebf8de860"
+  },
+  "unchangedGameSources": [
+    "shared/data/campaign.json",
+    "shared/runtime/stage2-layered-road.js",
+    "shared/runtime/stage2-airborne.js",
+    "shared/runtime/campaign-map-revision.js",
+    "shared/runtime/main.js",
+    "shared/runtime/skill-preview.js",
+    "shared/runtime/renderer.js"
+  ],
+  "svgUnchanged": true,
+  "sameCameras": [
+    {
+      "stage": 2,
+      "view": "west-ledge-close",
+      "camera": {
+        "x": 1100,
+        "y": 1350,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 2,
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-hero",
+      "camera": {
+        "x": 290,
+        "y": 520,
+        "scale": 0.65
+      }
+    }
+  ],
+  "pngSha256": {
+    "after/stage02-mobile-hero.png": "6f6e894fc673f40ae31b2c5203988c682f5f2e62fb807d95375703896a9b9aec",
+    "after/stage02-overview.png": "e443c1180686f0cef6bbaedf1560ef25fccc7c8e30f50e09f0647fd61977788b",
+    "after/stage02-stone-surface-mobile.png": "6f6e894fc673f40ae31b2c5203988c682f5f2e62fb807d95375703896a9b9aec",
+    "after/stage02-west-ledge-close.png": "284b5a057d5d3226aad295b2f900990868ac6a85c5789f6f5b5a3e77026bcb66",
+    "before/stage02-mobile-hero.png": "d4cc509d4c33c261a602f2e05c62a0a55cbf3b12cd545c539aa6b9c4d9eb73ea",
+    "before/stage02-overview.png": "1c67001d291f9abce4c3376a89021af24f84c350ea6d3804eb759ed21ddc8eec",
+    "before/stage02-west-ledge-close.png": "10dcd5531fd9e60d3698fc32249abfdb447b5a4ee4ac7b10cb55b87f17a84074"
+  }
+}

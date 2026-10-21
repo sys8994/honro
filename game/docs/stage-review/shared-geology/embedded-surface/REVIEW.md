@@ -1,3 +1,5 @@
+> 후속 얕은 돌 윗면 접합은 [../stone-junction/REVIEW.md](../stone-junction/REVIEW.md)를 따른다.
+
 # 매립 암턱 중복 칠 제거 — 좁은 수정 검토
 
 실행 소스 ad86ac0b0326b4bc4d7598eae0913d080af26c66, 이전 후보 bbe8acea8fa403b1f16df31a86dbae4c1f6d2069. master/Pages에는 반영하지 않았다.
