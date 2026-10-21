@@ -41,5 +41,5 @@ console.log('PASS only a new visible event may sound after rapid hide/show');
  const h=harness(48000);while(h.idle.length)h.idle.shift()({timeRemaining:()=>10});assert.equal(h.a.pcm.size,26);assert.equal(h.buffers.length,0);const p=h.a.wake();h.resolve();await p;h.a.play('dialogue');assert.equal(h.buffers.length,1);h.a.play('dialogue');assert.equal(h.buffers.length,1);assert.equal(h.a.voices.size,1);
 }
 console.log('PASS completed first warm creates no device buffers, then reuses one dialogue buffer');
-const main=readFileSync('shared/runtime/main.js','utf8');assert(main.includes("this.audio?.update(inBattle?(this.bossMusicSeen?'boss':'battle'):'main',document.hidden,session)"));
+const main=readFileSync('shared/runtime/main.js','utf8');assert(main.includes("this.audio?.update(inBattle?'battle':'main',document.hidden||!!G.HonroAct3Void?.blocked(this),session)"));
 console.log('PASS production App pause argument is visibility, not dialogue/ESC state');

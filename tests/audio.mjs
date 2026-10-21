@@ -27,7 +27,7 @@ check('First input preserves an already playing Main Theme without a second star
 check('Touch release/touchend/click unlock burst preserves one initial play and its short ramp',()=>{const m=sessionMusic();m.configure(true,.35);m.unlock();const a=m.current,start=m.transitionStart;a.time=.01;for(let i=0;i<3;i++)m.unlock();assert.equal(a.plays,1);assert.equal(a.seeks,0);assert.equal(m.transitionStart,start);m.tick(start+25);assert.equal(a.volume,.35);m.dispose();});
 check('A real track replacement keeps the full 420 ms crossfade',()=>{const m=sessionMusic();m.configure(true,.35);m.unlock();m.tick(m.transitionStart+25);m.select('battle','first');m.tick(m.transitionStart+210);assert.equal(m.current.volume,.175);assert.equal(m.outgoing.volume,.175);m.tick(m.transitionStart+420);assert.equal(m.current.volume,.35);assert.equal(m.outgoing,null);m.dispose();});
 check('Noncombat refresh does not restart Main Theme',()=>{const a=music.current;a.time=17;for(let i=0;i<50;i++){music.select('main');music.tick();}assert.equal(music.current,a);assert.equal(a.currentTime,17);assert.equal(a.plays,1);assert.equal(a.seeks,0);});
-check('Battle playlist cycles 02 → 03 → 04 → 02',()=>{music.select('battle','encounter-1');assert.equal(music.current.src,'02');for(const expected of ['03','04','02']){music.current.emit('ended');assert.equal(music.current.src,expected);assert.equal(music.current.loop,false);}});
+check('Battle playlist cycles 02 → 03 → 04 → 05 → 02',()=>{music.select('battle','encounter-1');assert.equal(music.current.src,'02');for(const expected of ['03','04','05','02']){music.current.emit('ended');assert.equal(music.current.src,expected);assert.equal(music.current.loop,false);}});
 check('Same encounter refresh preserves battle track and time without seeking',()=>{music.current.emit('ended');const a=music.current;a.time=13;for(let i=0;i<50;i++){music.unlock();music.select('battle','encounter-1');}assert.equal(music.current,a);assert.equal(music.battleIndex,1);assert.equal(a.currentTime,13);assert.equal(a.plays,1);assert.equal(a.seeks,0);});
 check('Boss crossfades to looping 05, only two channels',()=>{music.select('boss');assert.equal(music.current.src,'05');assert.equal(music.current.loop,true);music.tick(music.transitionStart+200);assert.ok(music.current.volume>0);assert.ok(music.outgoing.volume>0);assert.ok(audios.filter(a=>!a.paused).length<=2);music.tick(music.transitionStart+500);assert.equal(music.outgoing,null);assert.equal(audios.filter(a=>!a.paused).length,1);});
 check('Pause/resume keeps playback position',()=>{const a=music.current;a.time=22;music.setPaused(true);assert.equal(a.paused,true);music.setPaused(false);assert.equal(music.current,a);assert.equal(a.currentTime,22);assert.equal(a.paused,false);assert.equal(a.seeks,0);});
@@ -50,7 +50,7 @@ check('Within unchanged playlists, 150 repeated updates/unlocks never replace or
 check('Direct new encounters advance once within battle, while main reentry begins at 02',()=>{
  const m=sessionMusic();m.unlock();m.select('battle','one');m.current.time=31;m.select('battle','two');assert.equal(m.current.src,'03');assert.equal(m.current.currentTime,0);
  const second=m.current;for(let i=0;i<50;i++){m.unlock();m.select('battle','two');}assert.equal(m.current,second);
- m.select('battle','three');assert.equal(m.current.src,'04');m.select('battle','four');assert.equal(m.current.src,'02');m.current.emit('ended');assert.equal(m.current.src,'03');m.select('main');m.select('battle','five');assert.equal(m.current.src,'02');assert.equal(m.current.currentTime,0);m.dispose();
+ m.select('battle','three');assert.equal(m.current.src,'04');m.select('battle','four');assert.equal(m.current.src,'05');m.select('battle','fifth');assert.equal(m.current.src,'02');m.current.emit('ended');assert.equal(m.current.src,'03');m.select('main');m.select('battle','five');assert.equal(m.current.src,'02');assert.equal(m.current.currentTime,0);m.dispose();
 });
 check('Boss-only fresh encounter restarts zero once without per-frame stutter',()=>{
  const m=sessionMusic();m.unlock();m.select('boss','one');m.current.time=24;m.select('boss','two');const a=m.current;assert.equal(a.currentTime,0);a.time=3;for(let i=0;i<50;i++)m.select('boss','two');assert.equal(a.currentTime,3);assert.equal(a.seeks,1);m.dispose();
@@ -82,5 +82,10 @@ check('Rapid switches release stale streams and cannot restore metadata offsets'
  m.configure(true,.35);const a=m.current;a.play=()=>{a.paused=false;a.plays++;return Promise.resolve();};m.unlock();rejectStartup({name:'NotAllowedError'});await Promise.resolve();
  check('A stale startup rejection cannot relock newer gesture playback',()=>{assert.equal(a.plays,2);assert.equal(m.unlocked,true);assert.equal(a.paused,false);assert.equal(m.errors.length,0);m.dispose();});
 }
+check('Track 05 fails over to 02 and exhausted battle tracks stop retrying',()=>{
+ const m=sessionMusic();m.unlock();m.select('battle','one');for(let i=0;i<3;i++)m.current.emit('ended');assert.equal(m.current.src,'05');assert.equal(m.current.loop,false);
+ m.current.error={code:4};m.current.emit('error');assert.equal(m.current.src,'02');for(let i=0;i<3;i++){m.current.error={code:4};m.current.emit('error');}
+ const a=m.current,starts=m.starts;for(let i=0;i<50;i++)m.select('battle','one');assert.equal(m.current,a);assert.equal(m.starts,starts);assert.equal(m.errors.length,4);m.dispose();
+});
 await mkdir('_local/reports',{recursive:true});
 await writeFile('_local/reports/audio-unit.json',JSON.stringify({passed:checks.length,checks},null,2)+'\n');
