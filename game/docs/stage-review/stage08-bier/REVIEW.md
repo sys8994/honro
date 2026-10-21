@@ -34,3 +34,11 @@
 - 과거 `stage8-bier-seam-regression` fixture는 현행 map revision에서 전투가 재시작되어 입력 전 exact Continue에서 실패했다. 역사 fixture를 현행으로 위장하지 않으며 이번 이동의 통과 증거로 사용하지 않는다.
 - `normal-mid-browser/`는 실제 정상 자원 전투12라운드 저장을 브라우저 Continue로 렌더한 화면이다. 카메라만 수동 배치했으며 브라우저 전체 전투 완주 증거는 아니다.
 - 중간 Library: `libfile_77d335e2cc108191b9520eac5a244884` (file `file_00000000be5481f8b439969cb95c69b1`), 정상 진행 검증 미완 상태라고 표기한 실제 화면 모음.
+
+### 사건 및 정상 전투 추가 확인
+
+기존8장 전용 navigator로 처음부터 실행하여 실제 점프 입력으로 중앙 단차를 통과했다. 17라운드에 두 결박이 파괴되었으며, 적 장승 차단을 동행 차단으로 오해하던 자동 정책을20라운드 저장에서 수정했다. 이 Continue는 전체 전투 exact 비교와 게임/model/navigator/entry 해시 검사를 유지하고 정책 변경 이력을 별도로 남긴다. HP·기력·좌표 복구는 없다. 25라운드에 상여가 중앙 마당에 실제 도착하고 유한 증원이 발생했다. 26라운드 저장을 브라우저 Continue로 렌더한 `bier-settled-browser/court.png`를 직접 확인했다. 이 실행은33라운드 전원 패배(상여HP351 직전)로 종료했으므로 승리 통과가 아니다. `objectives-policy-failed.json` 및 trace에 실패를 보존한다.
+
+실제 화면 모음 `art-and-bier-event.png`: Library `libfile_7595cb187d0481918a2680e22febb399`, file `file_00000000d0c881fd861fcd4cc751e4c4`. 정상 사건 전후를 포함하지만 브라우저 전투 완주나 전체 미술 완성의 증거가 아니다.
+
+검사 통과: build2, stage7-reentry, stage8-current-preservation(전30장/library·동일revision 전투/성장·author 안전거부), pre-image-terrain-restoration, stage8-bier-renderer-isolation160건, git diff --check. 변경된 map revision이 없으므로 이 미술 변경 자체로 기존 정상 전투를 폐기하지 않는다. 전30장 실제 전투·공개 Pages 픽셀 검수·성능 벤치마크는 수행하지 않았다. 공개403/Pages 설정 API 제한을 재시도하지 않았다.

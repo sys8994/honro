@@ -1,0 +1,437 @@
+{
+  "source": "/tmp/stage8-obstruction-final/round-26.json",
+  "runtimeSha": "dad1040767bd3cfe50cb725911125a8fadd190d9",
+  "scope": "Render genuine native normal-play exports in the production browser.\nThis is browser Continue/render evidence, not a browser combat playthrough.\n",
+  "rows": [
+    {
+      "view": "west",
+      "round": 26,
+      "phase": "aim",
+      "bier": {
+        "version": 1,
+        "status": "settled",
+        "completedOnce": 1,
+        "sealIdsSeen": [
+          "bier-knot-0",
+          "bier-knot-1"
+        ],
+        "warnings": {
+          "stage8-first-seal": {
+            "status": "spawned",
+            "serial": 10,
+            "eligibleAfterSerial": 11,
+            "round": 2,
+            "side": "west",
+            "offered": {
+              "p-knight": {
+                "round": 2,
+                "serial": 11
+              }
+            },
+            "opportunity": {
+              "id": "p-knight",
+              "round": 2,
+              "serial": 12
+            }
+          },
+          "stage8-settled-crows": {
+            "status": "spawned",
+            "serial": 217,
+            "eligibleAfterSerial": 218,
+            "round": 25,
+            "side": "upper-branch",
+            "offered": {
+              "p-knight": {
+                "round": 25,
+                "serial": 218
+              }
+            },
+            "opportunity": {
+              "id": "p-knight",
+              "round": 25,
+              "serial": 219
+            }
+          }
+        },
+        "entries": {
+          "stage8-first-seal": {
+            "x": 3060,
+            "y": 3801.4545454545455,
+            "side": "west",
+            "ids": [
+              "event-11",
+              "event-12",
+              "event-13"
+            ],
+            "count": 3,
+            "round": 2,
+            "serial": 12
+          },
+          "stage8-settled-crows": {
+            "x": 6170,
+            "y": 3830,
+            "side": "upper-branch",
+            "ids": [
+              "event-144",
+              "event-145",
+              "event-146"
+            ],
+            "count": 3,
+            "round": 25,
+            "serial": 219
+          }
+        },
+        "offered": {
+          "p-mage": {
+            "round": 25,
+            "serial": 217
+          },
+          "p-knight": {
+            "round": 24,
+            "serial": 209
+          },
+          "p-archer": {
+            "round": 25,
+            "serial": 216
+          }
+        },
+        "blockers": [],
+        "bossEngaged": {
+          "round": 15,
+          "serial": 130,
+          "reason": "approach"
+        },
+        "triggerSerial": 144,
+        "announcedSerial": 144,
+        "eligibleAfterSerial": 145,
+        "announcedRound": 17,
+        "playerOpportunity": {
+          "id": "p-knight",
+          "round": 25,
+          "serial": 219
+        },
+        "reason": "\ube48 \uc0c1\uc5ec\uac00 \uc911\uc559 \uc544\ub798\ub730\uc5d0 \uba4e\uc5c8\ub2e4.",
+        "originActualPose": {
+          "x": 7313.171552468887,
+          "y": 3227.5175392839346
+        },
+        "lastValidPose": {
+          "x": 5950,
+          "y": 4250
+        },
+        "route": [
+          {
+            "id": "courtyard-primary",
+            "x": 5950,
+            "y": 4250,
+            "surfaceId": "s8-court",
+            "support": "s8-court"
+          }
+        ],
+        "routeVersion": 1,
+        "targetVariant": "courtyard-primary",
+        "completedSerial": 217,
+        "completedRound": 25
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ]
+    },
+    {
+      "view": "court",
+      "round": 26,
+      "phase": "aim",
+      "bier": {
+        "version": 1,
+        "status": "settled",
+        "completedOnce": 1,
+        "sealIdsSeen": [
+          "bier-knot-0",
+          "bier-knot-1"
+        ],
+        "warnings": {
+          "stage8-first-seal": {
+            "status": "spawned",
+            "serial": 10,
+            "eligibleAfterSerial": 11,
+            "round": 2,
+            "side": "west",
+            "offered": {
+              "p-knight": {
+                "round": 2,
+                "serial": 11
+              }
+            },
+            "opportunity": {
+              "id": "p-knight",
+              "round": 2,
+              "serial": 12
+            }
+          },
+          "stage8-settled-crows": {
+            "status": "spawned",
+            "serial": 217,
+            "eligibleAfterSerial": 218,
+            "round": 25,
+            "side": "upper-branch",
+            "offered": {
+              "p-knight": {
+                "round": 25,
+                "serial": 218
+              }
+            },
+            "opportunity": {
+              "id": "p-knight",
+              "round": 25,
+              "serial": 219
+            }
+          }
+        },
+        "entries": {
+          "stage8-first-seal": {
+            "x": 3060,
+            "y": 3801.4545454545455,
+            "side": "west",
+            "ids": [
+              "event-11",
+              "event-12",
+              "event-13"
+            ],
+            "count": 3,
+            "round": 2,
+            "serial": 12
+          },
+          "stage8-settled-crows": {
+            "x": 6170,
+            "y": 3830,
+            "side": "upper-branch",
+            "ids": [
+              "event-144",
+              "event-145",
+              "event-146"
+            ],
+            "count": 3,
+            "round": 25,
+            "serial": 219
+          }
+        },
+        "offered": {
+          "p-mage": {
+            "round": 25,
+            "serial": 217
+          },
+          "p-knight": {
+            "round": 24,
+            "serial": 209
+          },
+          "p-archer": {
+            "round": 25,
+            "serial": 216
+          }
+        },
+        "blockers": [],
+        "bossEngaged": {
+          "round": 15,
+          "serial": 130,
+          "reason": "approach"
+        },
+        "triggerSerial": 144,
+        "announcedSerial": 144,
+        "eligibleAfterSerial": 145,
+        "announcedRound": 17,
+        "playerOpportunity": {
+          "id": "p-knight",
+          "round": 25,
+          "serial": 219
+        },
+        "reason": "\ube48 \uc0c1\uc5ec\uac00 \uc911\uc559 \uc544\ub798\ub730\uc5d0 \uba4e\uc5c8\ub2e4.",
+        "originActualPose": {
+          "x": 7313.171552468887,
+          "y": 3227.5175392839346
+        },
+        "lastValidPose": {
+          "x": 5950,
+          "y": 4250
+        },
+        "route": [
+          {
+            "id": "courtyard-primary",
+            "x": 5950,
+            "y": 4250,
+            "surfaceId": "s8-court",
+            "support": "s8-court"
+          }
+        ],
+        "routeVersion": 1,
+        "targetVariant": "courtyard-primary",
+        "completedSerial": 217,
+        "completedRound": 25
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ]
+    },
+    {
+      "view": "east",
+      "round": 26,
+      "phase": "aim",
+      "bier": {
+        "version": 1,
+        "status": "settled",
+        "completedOnce": 1,
+        "sealIdsSeen": [
+          "bier-knot-0",
+          "bier-knot-1"
+        ],
+        "warnings": {
+          "stage8-first-seal": {
+            "status": "spawned",
+            "serial": 10,
+            "eligibleAfterSerial": 11,
+            "round": 2,
+            "side": "west",
+            "offered": {
+              "p-knight": {
+                "round": 2,
+                "serial": 11
+              }
+            },
+            "opportunity": {
+              "id": "p-knight",
+              "round": 2,
+              "serial": 12
+            }
+          },
+          "stage8-settled-crows": {
+            "status": "spawned",
+            "serial": 217,
+            "eligibleAfterSerial": 218,
+            "round": 25,
+            "side": "upper-branch",
+            "offered": {
+              "p-knight": {
+                "round": 25,
+                "serial": 218
+              }
+            },
+            "opportunity": {
+              "id": "p-knight",
+              "round": 25,
+              "serial": 219
+            }
+          }
+        },
+        "entries": {
+          "stage8-first-seal": {
+            "x": 3060,
+            "y": 3801.4545454545455,
+            "side": "west",
+            "ids": [
+              "event-11",
+              "event-12",
+              "event-13"
+            ],
+            "count": 3,
+            "round": 2,
+            "serial": 12
+          },
+          "stage8-settled-crows": {
+            "x": 6170,
+            "y": 3830,
+            "side": "upper-branch",
+            "ids": [
+              "event-144",
+              "event-145",
+              "event-146"
+            ],
+            "count": 3,
+            "round": 25,
+            "serial": 219
+          }
+        },
+        "offered": {
+          "p-mage": {
+            "round": 25,
+            "serial": 217
+          },
+          "p-knight": {
+            "round": 24,
+            "serial": 209
+          },
+          "p-archer": {
+            "round": 25,
+            "serial": 216
+          }
+        },
+        "blockers": [],
+        "bossEngaged": {
+          "round": 15,
+          "serial": 130,
+          "reason": "approach"
+        },
+        "triggerSerial": 144,
+        "announcedSerial": 144,
+        "eligibleAfterSerial": 145,
+        "announcedRound": 17,
+        "playerOpportunity": {
+          "id": "p-knight",
+          "round": 25,
+          "serial": 219
+        },
+        "reason": "\ube48 \uc0c1\uc5ec\uac00 \uc911\uc559 \uc544\ub798\ub730\uc5d0 \uba4e\uc5c8\ub2e4.",
+        "originActualPose": {
+          "x": 7313.171552468887,
+          "y": 3227.5175392839346
+        },
+        "lastValidPose": {
+          "x": 5950,
+          "y": 4250
+        },
+        "route": [
+          {
+            "id": "courtyard-primary",
+            "x": 5950,
+            "y": 4250,
+            "surfaceId": "s8-court",
+            "support": "s8-court"
+          }
+        ],
+        "routeVersion": 1,
+        "targetVariant": "courtyard-primary",
+        "completedSerial": 217,
+        "completedRound": 25
+      },
+      "seals": [
+        {
+          "id": "bier-knot-0",
+          "hp": 0,
+          "broken": true
+        },
+        {
+          "id": "bier-knot-1",
+          "hp": 0,
+          "broken": true
+        }
+      ]
+    }
+  ],
+  "errors": []
+}
