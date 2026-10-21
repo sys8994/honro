@@ -1,0 +1,1439 @@
+{
+  "candidateCode": "6021c6f7",
+  "masterBase": "27efe8eb",
+  "scope": "Normal native production App inputs plus immutable Chromium checkpoint renders. No browser continuous combat or statistical superiority claim.",
+  "routes": [
+    {
+      "route": "start",
+      "position": {
+        "id": "p-archer",
+        "x": 330,
+        "y": 2520,
+        "hp": 455,
+        "focus": 114,
+        "moveLeft": 1208,
+        "maxMove": 1208,
+        "support": "valley-floor"
+      },
+      "moveCost": 0,
+      "aim": {
+        "angle": 40,
+        "power": 0.6,
+        "unit": "foe-6",
+        "contacts": [],
+        "x": 1736,
+        "y": 2275.284131828366
+      },
+      "damage": [
+        {
+          "frame": 110,
+          "round": 1,
+          "target": "foe-6",
+          "owner": "p-archer",
+          "loss": 67
+        },
+        {
+          "frame": 459,
+          "round": 1,
+          "target": "p-mage",
+          "owner": "foe-3",
+          "loss": 35
+        }
+      ],
+      "log": []
+    },
+    {
+      "route": "lower",
+      "position": {
+        "id": "p-archer",
+        "x": 1198.8394232703026,
+        "y": 2790,
+        "hp": 455,
+        "focus": 114,
+        "moveLeft": 255.74712571838018,
+        "maxMove": 1208,
+        "support": "valley-floor"
+      },
+      "moveCost": 952.2528742816198,
+      "aim": {
+        "angle": -20,
+        "power": 0.3,
+        "unit": "foe-4",
+        "contacts": [],
+        "x": 1285,
+        "y": 2766.3243838262465
+      },
+      "damage": [
+        {
+          "frame": 140,
+          "round": 1,
+          "target": "foe-4",
+          "owner": "p-archer",
+          "loss": 63
+        },
+        {
+          "frame": 408,
+          "round": 1,
+          "target": "p-archer",
+          "owner": "foe-1",
+          "loss": 27
+        },
+        {
+          "frame": 485,
+          "round": 1,
+          "target": "p-mage",
+          "owner": "foe-2",
+          "loss": 8
+        },
+        {
+          "frame": 535,
+          "round": 1,
+          "target": "p-archer",
+          "owner": "foe-4",
+          "loss": 27
+        }
+      ],
+      "log": [
+        {
+          "op": "move",
+          "from": {
+            "id": "p-archer",
+            "x": 330,
+            "y": 2520,
+            "hp": 455,
+            "focus": 114,
+            "moveLeft": 1208,
+            "maxMove": 1208,
+            "support": "valley-floor"
+          },
+          "to": {
+            "id": "p-archer",
+            "x": 1198.8394232703026,
+            "y": 2790,
+            "hp": 455,
+            "focus": 114,
+            "moveLeft": 255.74712571838018,
+            "maxMove": 1208,
+            "support": "valley-floor"
+          },
+          "goal": 1200
+        }
+      ]
+    },
+    {
+      "route": "upper",
+      "position": {
+        "id": "p-archer",
+        "x": 1097.4481776360126,
+        "y": 2250,
+        "hp": 455,
+        "focus": 114,
+        "moveLeft": 303.4137923850561,
+        "maxMove": 1208,
+        "support": "stage5-west-shoulder"
+      },
+      "moveCost": 904.5862076149439,
+      "aim": {
+        "angle": -20,
+        "power": 0.6,
+        "unit": "foe-3",
+        "contacts": [],
+        "x": 1226,
+        "y": 2241.518391335792
+      },
+      "damage": [
+        {
+          "frame": 143,
+          "round": 1,
+          "target": "foe-3",
+          "owner": "p-archer",
+          "loss": 67
+        },
+        {
+          "frame": 280,
+          "round": 1,
+          "target": "p-archer",
+          "owner": "foe-2",
+          "loss": 24
+        },
+        {
+          "frame": 470,
+          "round": 1,
+          "target": "p-archer",
+          "owner": "foe-3",
+          "loss": 37
+        }
+      ],
+      "log": [
+        {
+          "op": "move",
+          "from": {
+            "id": "p-archer",
+            "x": 330,
+            "y": 2520,
+            "hp": 455,
+            "focus": 114,
+            "moveLeft": 1208,
+            "maxMove": 1208,
+            "support": "valley-floor"
+          },
+          "to": {
+            "id": "p-archer",
+            "x": 577.9999395834071,
+            "y": 2594.0999426042367,
+            "hp": 455,
+            "focus": 114,
+            "moveLeft": 930.4137923850499,
+            "maxMove": 1208,
+            "support": "valley-floor"
+          },
+          "goal": 580
+        },
+        {
+          "op": "jump",
+          "from": {
+            "id": "p-archer",
+            "x": 577.9999395834071,
+            "y": 2594.0999426042367,
+            "hp": 455,
+            "focus": 114,
+            "moveLeft": 930.4137923850499,
+            "maxMove": 1208,
+            "support": "valley-floor"
+          },
+          "accepted": true
+        },
+        {
+          "op": "move",
+          "from": {
+            "id": "p-archer",
+            "x": 577.9999395834071,
+            "y": 2594.0999426042367,
+            "hp": 455,
+            "focus": 114,
+            "moveLeft": 855.4137923850499,
+            "maxMove": 1208,
+            "support": "valley-floor"
+          },
+          "to": {
+            "id": "p-archer",
+            "x": 736.6150635626996,
+            "y": 2328.1320974552145,
+            "hp": 455,
+            "focus": 114,
+            "moveLeft": 679.4137923850546,
+            "maxMove": 1208,
+            "support": "stage5-west-shoulder"
+          },
+          "goal": 740
+        },
+        {
+          "op": "move",
+          "from": {
+            "id": "p-archer",
+            "x": 736.6150635626996,
+            "y": 2328.1320974552145,
+            "hp": 455,
+            "focus": 114,
+            "moveLeft": 679.4137923850546,
+            "maxMove": 1208,
+            "support": "stage5-west-shoulder"
+          },
+          "to": {
+            "id": "p-archer",
+            "x": 1097.4481776360126,
+            "y": 2250,
+            "hp": 455,
+            "focus": 114,
+            "moveLeft": 303.4137923850561,
+            "maxMove": 1208,
+            "support": "stage5-west-shoulder"
+          },
+          "goal": 1100
+        }
+      ]
+    }
+  ],
+  "ritual": [
+    {
+      "goal": 1490,
+      "position": {
+        "x": 1488.0538084208977,
+        "y": 2769.530049052833,
+        "hp": 436,
+        "moveLeft": 1204.5936701834423
+      },
+      "skill": "M11",
+      "aim": {
+        "angle": -40,
+        "power": 0.3,
+        "prediction": {
+          "unit": "foe-4",
+          "contacts": [
+            {
+              "x": 1510.5475050480986,
+              "y": 2730.4475117573575
+            }
+          ],
+          "x": 1358,
+          "y": 2772.1470126664317
+        }
+      },
+      "damage": [
+        {
+          "frame": 58,
+          "round": 2,
+          "target": "foe-4",
+          "owner": "p-mage",
+          "loss": 72
+        },
+        {
+          "frame": 283,
+          "round": 2,
+          "target": "p-archer",
+          "owner": "foe-0",
+          "loss": 10
+        },
+        {
+          "frame": 344,
+          "round": 2,
+          "target": "p-mage",
+          "owner": "foe-1",
+          "loss": 25
+        },
+        {
+          "frame": 440,
+          "round": 2,
+          "target": "p-archer",
+          "owner": "foe-2",
+          "loss": 23
+        }
+      ],
+      "impacts": [
+        {
+          "frame": 17,
+          "owner": "p-mage",
+          "skill": "M11",
+          "terrain": "stage5-ritual-stone",
+          "bounces": 0,
+          "x": 1510.5475050480986,
+          "y": 2730.4475117573575
+        },
+        {
+          "frame": 58,
+          "owner": "p-mage",
+          "skill": "M11",
+          "unit": "foe-4",
+          "bounces": 1,
+          "x": 1358,
+          "y": 2772.1470126664317
+        },
+        {
+          "frame": 222,
+          "owner": "foe-6",
+          "skill": "LA01",
+          "unit": "p-archer",
+          "bounces": 0,
+          "x": 349.3988754741483,
+          "y": 2447.9834963832045
+        },
+        {
+          "frame": 283,
+          "owner": "foe-0",
+          "skill": "HBR01",
+          "unit": "p-archer",
+          "bounces": 0,
+          "x": 352.3988754741483,
+          "y": 2473.822565204029
+        },
+        {
+          "frame": 344,
+          "owner": "foe-1",
+          "skill": "HBR01",
+          "unit": "p-mage",
+          "bounces": 0,
+          "x": 1460.0538084208977,
+          "y": 2707.2849828416106
+        },
+        {
+          "frame": 440,
+          "owner": "foe-2",
+          "skill": "HBT01",
+          "unit": "p-archer",
+          "bounces": 0,
+          "x": 329.3425856740479,
+          "y": 2422
+        }
+      ],
+      "ritualAfter": {
+        "active": true,
+        "holderId": "p-mage"
+      }
+    },
+    {
+      "goal": 1690,
+      "position": {
+        "x": 1689.461127913615,
+        "y": 2703.676676748169,
+        "hp": 436,
+        "moveLeft": 929.4619967958149
+      },
+      "skill": "M03",
+      "aim": {
+        "angle": -26.375247207708902,
+        "power": 0.11615268400530036,
+        "prediction": {
+          "unit": "foe-5",
+          "contacts": [],
+          "x": 1728.8808936582836,
+          "y": 2665.2635964194483
+        }
+      },
+      "damage": [
+        {
+          "frame": 17,
+          "round": 2,
+          "target": "foe-5",
+          "owner": "p-mage",
+          "loss": 84
+        },
+        {
+          "frame": 289,
+          "round": 2,
+          "target": "p-archer",
+          "owner": "foe-0",
+          "loss": 10
+        },
+        {
+          "frame": 358,
+          "round": 2,
+          "target": "p-mage",
+          "owner": "foe-1",
+          "loss": 25
+        },
+        {
+          "frame": 472,
+          "round": 2,
+          "target": "p-archer",
+          "owner": "foe-2",
+          "loss": 23
+        }
+      ],
+      "impacts": [
+        {
+          "frame": 17,
+          "owner": "p-mage",
+          "skill": "M03",
+          "unit": "foe-5",
+          "bounces": 0,
+          "x": 1728.8808936582836,
+          "y": 2665.2635964194483
+        },
+        {
+          "frame": 228,
+          "owner": "foe-6",
+          "skill": "LA01",
+          "unit": "p-archer",
+          "bounces": 0,
+          "x": 349.3988754741483,
+          "y": 2438.1505447912073
+        },
+        {
+          "frame": 289,
+          "owner": "foe-0",
+          "skill": "HBR01",
+          "unit": "p-archer",
+          "bounces": 0,
+          "x": 352.3988754741483,
+          "y": 2473.822565204029
+        },
+        {
+          "frame": 358,
+          "owner": "foe-1",
+          "skill": "HBR01",
+          "unit": "p-mage",
+          "bounces": 0,
+          "x": 1661.461127913615,
+          "y": 2640.60456154113
+        },
+        {
+          "frame": 472,
+          "owner": "foe-2",
+          "skill": "HBT01",
+          "unit": "p-archer",
+          "bounces": 0,
+          "x": 329.3425856740479,
+          "y": 2422
+        }
+      ],
+      "ritualAfter": {
+        "active": true,
+        "holderId": "p-mage"
+      }
+    }
+  ],
+  "normalRun": {
+    "completed": true,
+    "round": 8,
+    "aliveEnemies": 18,
+    "training": [
+      {
+        "cls": "mage",
+        "id": "M03"
+      },
+      {
+        "cls": "mage",
+        "id": "M11"
+      },
+      {
+        "cls": "archer",
+        "id": "A14"
+      },
+      {
+        "cls": "archer",
+        "id": "A02"
+      }
+    ],
+    "items": [],
+    "births": [
+      {
+        "frame": 1320,
+        "round": 3,
+        "id": "event-9",
+        "source": "lower-beasts",
+        "x": 95,
+        "y": 2520,
+        "hp": 248,
+        "elite": false
+      },
+      {
+        "frame": 1320,
+        "round": 3,
+        "id": "event-10",
+        "source": "lower-beasts",
+        "x": 195,
+        "y": 2520,
+        "hp": 310,
+        "elite": true
+      },
+      {
+        "frame": 1320,
+        "round": 3,
+        "id": "event-11",
+        "source": "lower-beasts",
+        "x": 295,
+        "y": 2520,
+        "hp": 248,
+        "elite": false
+      },
+      {
+        "frame": 1320,
+        "round": 3,
+        "id": "event-12",
+        "source": "lower-beasts",
+        "x": 395,
+        "y": 2520,
+        "hp": 248,
+        "elite": false
+      },
+      {
+        "frame": 1320,
+        "round": 3,
+        "id": "event-13",
+        "source": "lower-beasts",
+        "x": 495,
+        "y": 2520,
+        "hp": 248,
+        "elite": false
+      },
+      {
+        "frame": 1320,
+        "round": 3,
+        "id": "event-14",
+        "source": "lower-beasts",
+        "x": 595,
+        "y": 2610.25,
+        "hp": 248,
+        "elite": false
+      }
+    ],
+    "cleared": {
+      "visits": 1,
+      "rounds": 8
+    },
+    "records": [
+      {
+        "op": "input",
+        "frame": 16,
+        "round": 1,
+        "position": {
+          "id": "p-archer",
+          "x": 330,
+          "y": 2520,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "ritual": null
+      },
+      {
+        "op": "move",
+        "frame": 51,
+        "round": 1,
+        "from": {
+          "id": "p-archer",
+          "x": 330,
+          "y": 2520,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "to": {
+          "id": "p-archer",
+          "x": 577.9999395834071,
+          "y": 2594.0999426042367,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 930.4137923850499,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "goal": 580
+      },
+      {
+        "op": "jump",
+        "frame": 51,
+        "round": 1,
+        "position": {
+          "id": "p-archer",
+          "x": 577.9999395834071,
+          "y": 2594.0999426042367,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 930.4137923850499,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "accepted": true,
+        "cost": 75
+      },
+      {
+        "op": "move",
+        "frame": 91,
+        "round": 1,
+        "from": {
+          "id": "p-archer",
+          "x": 577.9999395834071,
+          "y": 2594.0999426042367,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 855.4137923850499,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "to": {
+          "id": "p-archer",
+          "x": 736.6150635626996,
+          "y": 2328.1320974552145,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 679.4137923850546,
+          "maxMove": 1208,
+          "support": "stage5-west-shoulder"
+        },
+        "goal": 740
+      },
+      {
+        "op": "move",
+        "frame": 138,
+        "round": 1,
+        "from": {
+          "id": "p-archer",
+          "x": 736.6150635626996,
+          "y": 2328.1320974552145,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 679.4137923850546,
+          "maxMove": 1208,
+          "support": "stage5-west-shoulder"
+        },
+        "to": {
+          "id": "p-archer",
+          "x": 1097.4481776360126,
+          "y": 2250,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 303.4137923850561,
+          "maxMove": 1208,
+          "support": "stage5-west-shoulder"
+        },
+        "goal": 1100
+      },
+      {
+        "op": "defend",
+        "frame": 138,
+        "round": 1,
+        "actor": "p-archer"
+      },
+      {
+        "op": "input",
+        "frame": 165,
+        "round": 1,
+        "position": {
+          "id": "p-mage",
+          "x": 440,
+          "y": 2520,
+          "hp": 486,
+          "focus": 144,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "valley-floor"
+        },
+        "ritual": null
+      },
+      {
+        "op": "move",
+        "frame": 318,
+        "round": 1,
+        "from": {
+          "id": "p-mage",
+          "x": 440,
+          "y": 2520,
+          "hp": 486,
+          "focus": 144,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "valley-floor"
+        },
+        "to": {
+          "id": "p-mage",
+          "x": 1489.4607130289992,
+          "y": 2767.701073062301,
+          "hp": 486,
+          "focus": 144,
+          "moveLeft": 88.72039983394163,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "goal": 1490
+      },
+      {
+        "op": "ritual",
+        "frame": 318,
+        "round": 1,
+        "position": {
+          "id": "p-mage",
+          "x": 1489.4607130289992,
+          "y": 2767.701073062301,
+          "hp": 486,
+          "focus": 144,
+          "moveLeft": 88.72039983394163,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        }
+      },
+      {
+        "op": "input",
+        "frame": 687,
+        "round": 2,
+        "position": {
+          "id": "p-archer",
+          "x": 1108.1235414511657,
+          "y": 2250,
+          "hp": 450,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "stage5-west-shoulder"
+        },
+        "ritual": {
+          "active": true,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "move",
+        "frame": 819,
+        "round": 2,
+        "from": {
+          "id": "p-archer",
+          "x": 1108.1235414511657,
+          "y": 2250,
+          "hp": 450,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "stage5-west-shoulder"
+        },
+        "to": {
+          "id": "p-archer",
+          "x": 2058.398385476457,
+          "y": 2590,
+          "hp": 450,
+          "focus": 114,
+          "moveLeft": 151.64727024199243,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "goal": 2060
+      },
+      {
+        "op": "defend",
+        "frame": 819,
+        "round": 2,
+        "actor": "p-archer"
+      },
+      {
+        "op": "input",
+        "frame": 846,
+        "round": 2,
+        "position": {
+          "id": "p-mage",
+          "x": 1494.6744620091297,
+          "y": 2760.9231993881313,
+          "hp": 431,
+          "focus": 144,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "ritual": {
+          "active": true,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "defend",
+        "frame": 846,
+        "round": 2,
+        "actor": "p-mage"
+      },
+      {
+        "op": "input",
+        "frame": 1244,
+        "round": 3,
+        "position": {
+          "id": "p-archer",
+          "x": 2054.018000374669,
+          "y": 2590,
+          "hp": 442,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "ritual": {
+          "active": true,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "move",
+        "frame": 1294,
+        "round": 3,
+        "from": {
+          "id": "p-archer",
+          "x": 2054.018000374669,
+          "y": 2590,
+          "hp": 442,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "to": {
+          "id": "p-archer",
+          "x": 2374.351044857389,
+          "y": 2784.351044857389,
+          "hp": 442,
+          "focus": 114,
+          "moveLeft": 807.1641168759638,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "goal": 2375
+      },
+      {
+        "op": "defend",
+        "frame": 1294,
+        "round": 3,
+        "actor": "p-archer"
+      },
+      {
+        "op": "input",
+        "frame": 1336,
+        "round": 3,
+        "position": {
+          "id": "p-mage",
+          "x": 1471.7543909713788,
+          "y": 2780,
+          "hp": 450,
+          "focus": 144,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "valley-floor"
+        },
+        "ritual": {
+          "active": true,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "move",
+        "frame": 1339,
+        "round": 3,
+        "from": {
+          "id": "p-mage",
+          "x": 1471.7543909713788,
+          "y": 2780,
+          "hp": 450,
+          "focus": 144,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "valley-floor"
+        },
+        "to": {
+          "id": "p-mage",
+          "x": 1489.199561636893,
+          "y": 2768.040569872039,
+          "hp": 450,
+          "focus": 144,
+          "moveLeft": 1204.9211021620622,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "goal": 1490
+      },
+      {
+        "op": "charge-fire",
+        "frame": 1388,
+        "round": 3,
+        "actor": "p-mage",
+        "position": {
+          "id": "p-mage",
+          "x": 1489.1090195889064,
+          "y": 2768.1582745344217,
+          "hp": 450,
+          "focus": 110,
+          "moveLeft": 1204.7726021620617,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "id": "M11",
+        "target": "foe-4",
+        "angle": 189.49092793692046,
+        "power": 0.46333507398040896,
+        "net": 121.35168
+      },
+      {
+        "op": "input",
+        "frame": 1699,
+        "round": 4,
+        "position": {
+          "id": "p-archer",
+          "x": 2418.8389042277186,
+          "y": 2866.1840044466785,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "ritual": {
+          "active": true,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "charge-fire",
+        "frame": 1836,
+        "round": 4,
+        "actor": "p-archer",
+        "position": {
+          "id": "p-archer",
+          "x": 2418.8389042277186,
+          "y": 2866.1840044466785,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "id": "A01",
+        "target": "cliff-cleat",
+        "angle": 29.657803183233813,
+        "power": 0.9295393411754518
+      },
+      {
+        "op": "input",
+        "frame": 1940,
+        "round": 4,
+        "position": {
+          "id": "p-mage",
+          "x": 1491.9018599691847,
+          "y": 2764.5275820400598,
+          "hp": 421,
+          "focus": 125,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "ritual": {
+          "active": true,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "charge-fire",
+        "frame": 1996,
+        "round": 4,
+        "actor": "p-mage",
+        "position": {
+          "id": "p-mage",
+          "x": 1491.9018599691847,
+          "y": 2764.5275820400598,
+          "hp": 421,
+          "focus": 93,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "id": "M03",
+        "target": "foe-4",
+        "angle": 140,
+        "power": 0.6,
+        "net": 129.27980207383843
+      },
+      {
+        "op": "input",
+        "frame": 2378,
+        "round": 5,
+        "position": {
+          "id": "p-archer",
+          "x": 2418.8389042277186,
+          "y": 2866.1840044466785,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "ritual": {
+          "active": true,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "charge-fire",
+        "frame": 2518,
+        "round": 5,
+        "actor": "p-archer",
+        "position": {
+          "id": "p-archer",
+          "x": 2418.8389042277186,
+          "y": 2866.1840044466785,
+          "hp": 455,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "id": "A01",
+        "target": "cliff-cleat",
+        "angle": 29.26914231476327,
+        "power": 0.9472286539737741
+      },
+      {
+        "op": "input",
+        "frame": 2622,
+        "round": 5,
+        "position": {
+          "id": "p-mage",
+          "x": 1488.8046718200656,
+          "y": 2768.5539266339147,
+          "hp": 404,
+          "focus": 108,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "ritual": {
+          "active": true,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "charge-fire",
+        "frame": 2671,
+        "round": 5,
+        "actor": "p-mage",
+        "position": {
+          "id": "p-mage",
+          "x": 1488.8046718200656,
+          "y": 2768.5539266339147,
+          "hp": 404,
+          "focus": 74,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "id": "M11",
+        "target": "foe-4",
+        "angle": 189.30441389955934,
+        "power": 0.46833689654856314,
+        "net": 121.35168
+      },
+      {
+        "op": "input",
+        "frame": 3085,
+        "round": 6,
+        "position": {
+          "id": "p-archer",
+          "x": 2418.8389042277186,
+          "y": 2866.1840044466785,
+          "hp": 418,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "ritual": {
+          "active": true,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "charge-fire",
+        "frame": 3220,
+        "round": 6,
+        "actor": "p-archer",
+        "position": {
+          "id": "p-archer",
+          "x": 2418.8389042277186,
+          "y": 2866.1840044466785,
+          "hp": 418,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "id": "A01",
+        "target": "cliff-cleat",
+        "angle": 30.05595032750567,
+        "power": 0.9119190539544046
+      },
+      {
+        "op": "input",
+        "frame": 3325,
+        "round": 6,
+        "position": {
+          "id": "p-mage",
+          "x": 1491.4753952161395,
+          "y": 2765.0819862190187,
+          "hp": 376,
+          "focus": 89,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "ritual": {
+          "active": true,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "charge-fire",
+        "frame": 3387,
+        "round": 6,
+        "actor": "p-mage",
+        "position": {
+          "id": "p-mage",
+          "x": 1491.4753952161395,
+          "y": 2765.0819862190187,
+          "hp": 376,
+          "focus": 55,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "id": "M11",
+        "target": "foe-4",
+        "angle": 165,
+        "power": 0.6,
+        "net": 121.35168
+      },
+      {
+        "op": "input",
+        "frame": 3839,
+        "round": 7,
+        "position": {
+          "id": "p-archer",
+          "x": 2433.867742683013,
+          "y": 2895.6636491089876,
+          "hp": 381,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "ritual": {
+          "active": true,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "charge-fire",
+        "frame": 3983,
+        "round": 7,
+        "actor": "p-archer",
+        "position": {
+          "id": "p-archer",
+          "x": 2433.867742683013,
+          "y": 2895.6636491089876,
+          "hp": 381,
+          "focus": 114,
+          "moveLeft": 1208,
+          "maxMove": 1208,
+          "support": "valley-floor"
+        },
+        "id": "A01",
+        "target": "cliff-cleat",
+        "angle": 29.57935484202758,
+        "power": 0.9756312184992768
+      },
+      {
+        "op": "input",
+        "frame": 4087,
+        "round": 7,
+        "position": {
+          "id": "p-mage",
+          "x": 1493.6540771999773,
+          "y": 2762.2496996400296,
+          "hp": 351,
+          "focus": 70,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "ritual": {
+          "active": false,
+          "holderId": "p-mage"
+        }
+      },
+      {
+        "op": "move",
+        "frame": 4087,
+        "round": 7,
+        "from": {
+          "id": "p-mage",
+          "x": 1493.6540771999773,
+          "y": 2762.2496996400296,
+          "hp": 351,
+          "focus": 70,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "to": {
+          "id": "p-mage",
+          "x": 1493.6540771999773,
+          "y": 2762.2496996400296,
+          "hp": 351,
+          "focus": 70,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "goal": 1490
+      },
+      {
+        "op": "charge-fire",
+        "frame": 4149,
+        "round": 7,
+        "actor": "p-mage",
+        "position": {
+          "id": "p-mage",
+          "x": 1493.6540771999773,
+          "y": 2762.2496996400296,
+          "hp": 351,
+          "focus": 36,
+          "moveLeft": 1228,
+          "maxMove": 1228,
+          "support": "stage5-ritual-stone"
+        },
+        "id": "M11",
+        "target": "foe-4",
+        "angle": 165,
+        "power": 0.6,
+        "net": 121.35168
+      }
+    ],
+    "hits": [
+      {
+        "frame": 469,
+        "round": 1,
+        "target": "p-mage",
+        "owner": "foe-1",
+        "loss": 26
+      },
+      {
+        "frame": 591,
+        "round": 1,
+        "target": "p-archer",
+        "owner": "foe-3",
+        "loss": 5
+      },
+      {
+        "frame": 627,
+        "round": 1,
+        "target": "p-mage",
+        "owner": "foe-4",
+        "loss": 29
+      },
+      {
+        "frame": 1176,
+        "round": 2,
+        "target": "p-archer",
+        "owner": "foe-9",
+        "loss": 13
+      },
+      {
+        "frame": 1397,
+        "round": 3,
+        "target": "foe-4",
+        "owner": "p-mage",
+        "loss": 88
+      },
+      {
+        "frame": 1529,
+        "round": 3,
+        "target": "p-mage",
+        "owner": "foe-0",
+        "loss": 29
+      },
+      {
+        "frame": 1909,
+        "round": 4,
+        "target": "cliff-cleat",
+        "owner": "p-archer",
+        "loss": 177
+      },
+      {
+        "frame": 2074,
+        "round": 4,
+        "target": "foe-0",
+        "owner": "p-mage",
+        "loss": 84
+      },
+      {
+        "frame": 2307,
+        "round": 4,
+        "target": "p-mage",
+        "owner": "event-13",
+        "loss": 17
+      },
+      {
+        "frame": 2590,
+        "round": 5,
+        "target": "cliff-cleat",
+        "owner": "p-archer",
+        "loss": 98
+      },
+      {
+        "frame": 2680,
+        "round": 5,
+        "target": "foe-4",
+        "owner": "p-mage",
+        "loss": 88
+      },
+      {
+        "frame": 2974,
+        "round": 5,
+        "target": "p-archer",
+        "owner": "foe-3",
+        "loss": 37
+      },
+      {
+        "frame": 3010,
+        "round": 5,
+        "target": "p-mage",
+        "owner": "foe-4",
+        "loss": 28
+      },
+      {
+        "frame": 3293,
+        "round": 6,
+        "target": "cliff-cleat",
+        "owner": "p-archer",
+        "loss": 177
+      },
+      {
+        "frame": 3417,
+        "round": 6,
+        "target": "foe-1",
+        "owner": "p-mage",
+        "loss": 88
+      },
+      {
+        "frame": 3508,
+        "round": 6,
+        "target": "p-mage",
+        "owner": "foe-1",
+        "loss": 25
+      },
+      {
+        "frame": 3708,
+        "round": 6,
+        "target": "p-archer",
+        "owner": "foe-7",
+        "loss": 19
+      },
+      {
+        "frame": 3753,
+        "round": 6,
+        "target": "p-archer",
+        "owner": "foe-9",
+        "loss": 18
+      },
+      {
+        "frame": 4054,
+        "round": 7,
+        "target": "cliff-cleat",
+        "owner": "p-archer",
+        "loss": 68
+      },
+      {
+        "frame": 4178,
+        "round": 7,
+        "target": "foe-1",
+        "owner": "p-mage",
+        "loss": 124
+      },
+      {
+        "frame": 4230,
+        "round": 7,
+        "target": "p-mage",
+        "owner": "foe-5",
+        "loss": 23
+      },
+      {
+        "frame": 4403,
+        "round": 7,
+        "target": "p-archer",
+        "owner": "foe-8",
+        "loss": 18
+      },
+      {
+        "frame": 4483,
+        "round": 7,
+        "target": "p-archer",
+        "owner": "foe-10",
+        "loss": 24
+      }
+    ]
+  }
+}

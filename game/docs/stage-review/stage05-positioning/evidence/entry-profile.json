@@ -1,0 +1,370 @@
+{
+  "profile": {
+    "version": 2,
+    "revision": 13,
+    "cleared": {
+      "1": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "2": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "3": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "4": {
+        "visits": 1,
+        "rounds": 0
+      }
+    },
+    "party": [
+      "archer",
+      "mage"
+    ],
+    "loadouts": {
+      "mage": [
+        "M01"
+      ],
+      "archer": [
+        "A01"
+      ],
+      "knight": [
+        "S00"
+      ],
+      "occultist": [
+        "O01",
+        "O06"
+      ]
+    },
+    "tuning": {
+      "mage": 0.5,
+      "archer": 0.5,
+      "knight": 0.5,
+      "occultist": 0.5
+    },
+    "settings": {
+      "sound": true,
+      "music": true,
+      "volume": 0.55,
+      "assist": false,
+      "shake": true,
+      "quality": "high",
+      "difficulty": "normal",
+      "speed": 1.5,
+      "playerSpeed": 1.5,
+      "orientation": "auto",
+      "musicVolume": 0.65,
+      "minimapVisible": true,
+      "debugTerrainOutline": false
+    },
+    "saved": null,
+    "lastStage": 1,
+    "mapNode": 1,
+    "tutorial": false,
+    "heroes": {
+      "mage": {
+        "xp": 1868,
+        "ranks": {
+          "M01": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "archer": {
+        "xp": 1868,
+        "ranks": {
+          "A01": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "knight": {
+        "xp": 0,
+        "ranks": {
+          "S00": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "occultist": {
+        "xp": 0,
+        "ranks": {
+          "O01": 1,
+          "O06": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "occultRevision": 1
+      }
+    },
+    "recruited": [
+      "archer",
+      "mage"
+    ],
+    "schema": 4,
+    "game": "honro",
+    "seen": {},
+    "record": [],
+    "honroFlags": {},
+    "honroGrowth": {
+      "version": 3,
+      "stages": {
+        "1": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 0,
+            "end": 180,
+            "total": 180,
+            "combat": 72
+          }
+        },
+        "2": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 180,
+            "end": 450,
+            "total": 270,
+            "combat": 108
+          }
+        },
+        "3": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 675,
+            "end": 1137,
+            "total": 462,
+            "combat": 185
+          }
+        },
+        "4": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 1137,
+            "end": 1868,
+            "total": 731,
+            "combat": 292
+          }
+        }
+      }
+    }
+  },
+  "readiness": {
+    "xp": 1868,
+    "level": 4,
+    "heroes": {
+      "mage": {
+        "xp": 1868,
+        "ranks": {
+          "M01": 1,
+          "MP01": 1,
+          "MP02": 1,
+          "M06": 1,
+          "M03": 1,
+          "M07": 1,
+          "M02": 1,
+          "M11": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "archer": {
+        "xp": 1868,
+        "ranks": {
+          "A01": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "knight": {
+        "xp": 0,
+        "ranks": {
+          "S00": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1
+      },
+      "occultist": {
+        "xp": 0,
+        "ranks": {
+          "O01": 1,
+          "O06": 1
+        },
+        "statTraining": 0,
+        "kills": 0,
+        "damage": 0,
+        "skillRevision": 1,
+        "martialRevision": 1,
+        "occultRevision": 1
+      }
+    },
+    "cleared": {
+      "1": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "2": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "3": {
+        "visits": 1,
+        "rounds": 0
+      },
+      "4": {
+        "visits": 1,
+        "rounds": 0
+      }
+    },
+    "ledger": {
+      "version": 3,
+      "stages": {
+        "1": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 0,
+            "end": 180,
+            "total": 180,
+            "combat": 72
+          }
+        },
+        "2": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 180,
+            "end": 450,
+            "total": 270,
+            "combat": 108
+          }
+        },
+        "3": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 675,
+            "end": 1137,
+            "total": 462,
+            "combat": 185
+          }
+        },
+        "4": {
+          "policy": 3,
+          "combat": {},
+          "cleared": true,
+          "limit": {
+            "start": 1137,
+            "end": 1868,
+            "total": 731,
+            "combat": 292
+          }
+        }
+      }
+    },
+    "rows": [
+      {
+        "stage": 1,
+        "limit": {
+          "start": 0,
+          "end": 180,
+          "total": 180,
+          "combat": 72
+        },
+        "xp": {
+          "archer": 180
+        },
+        "level": {
+          "archer": 1
+        }
+      },
+      {
+        "stage": 2,
+        "limit": {
+          "start": 180,
+          "end": 450,
+          "total": 270,
+          "combat": 108
+        },
+        "xp": {
+          "archer": 450,
+          "mage": 675
+        },
+        "level": {
+          "archer": 2,
+          "mage": 3
+        }
+      },
+      {
+        "stage": 3,
+        "limit": {
+          "start": 675,
+          "end": 1137,
+          "total": 462,
+          "combat": 185
+        },
+        "xp": {
+          "archer": 1137,
+          "mage": 1137
+        },
+        "level": {
+          "archer": 3,
+          "mage": 3
+        }
+      },
+      {
+        "stage": 4,
+        "limit": {
+          "start": 1137,
+          "end": 1868,
+          "total": 731,
+          "combat": 292
+        },
+        "xp": {
+          "archer": 1868,
+          "mage": 1868
+        },
+        "level": {
+          "archer": 4,
+          "mage": 4
+        }
+      }
+    ],
+    "scope": "Only a reward-ledger completion fixture of Stages1–4. It does not claim those stages were played."
+  },
+  "scope": "Legal reward ledger through4, not actual stage1–4 play; level4, basic skills, no stat investment."
+}

@@ -1,0 +1,18 @@
+/** Short ordinary-input comparisons. No HP/pose/movement/target overrides. */
+import {appHarness,plain} from '../../tests/app-regression-helpers.mjs';
+import {readFile,mkdir,writeFile} from 'node:fs/promises';
+import vm from 'node:vm';
+const out='_local/reports/stage5-refinement';await mkdir(out,{recursive:true});
+const h=await appHarness(),{g,C}=h;vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
+const profile=JSON.parse(await readFile('game/docs/stage-review/stage05-diagnosis/evidence/entry-profile.json','utf8')).profile;
+let a,e,b,now,frame,log,damage,fires,ends;g.performance={now:()=>now};
+const pos=u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,focus:u.focus,moveLeft:u.moveLeft,maxMove:u.maxMove,support:e.contactSurface(u.x,u.y-5,u.y+5)?.t.id});
+function tick(){now+=1000/60;a.frame(now);frame++;if(a.lastError)throw Error(a.lastError);}
+function settle(){for(let n=0;n<20000;n++){if(a.dialogue)g.HonroStory.finish(a);tick();if(a.canInput()||['won','lost'].includes(b.phase))return;}throw Error('input timeout');}
+function fresh(trained=false){let p=plain(profile);if(trained){for(const id of ['M03','M11']){if(!C.train(p.heroes.mage,id))throw Error(C.trainReason(p.heroes.mage,id));}p.loadouts.mage=['M01','M03','M11'];}a=h.load(p);now=0;frame=0;log=[];damage=[];fires=[];ends=[];a.launch(5);e=a.engine;b=e.b;a.scene.render=()=>{};
+ const hurt=e.hurt.bind(e);e.hurt=(u,...args)=>{let hp=u.hp,r=hurt(u,...args);if(hp>u.hp)damage.push({frame,round:b.round,target:u.id,owner:args[1],loss:hp-u.hp});return r;};const fire=e.fire.bind(e);e.fire=(...args)=>{let id=e.active.id,r=fire(...args);fires.push({frame,round:b.round,id,args,accepted:r});return r;};const finish=e.finishAction.bind(e);e.finishAction=(...args)=>{let u=e.active,r=b.round,acted=u?.acted,v=finish(...args);if(u?.side===1&&!acted&&(u.acted||b.round!==r))ends.push({round:r,id:u.id,intent:u.intent,x:u.x,y:u.y});return v;};settle();log.push({op:'fresh-stag',unit:plain(e.unit('foe-5'))});}
+function move(x){const u=e.active,from=pos(u);let stuck=0;for(let n=0;n<1800&&a.canInput()&&u.moveLeft>2&&Math.abs(u.x-x)>5;n++){let old=u.x;a.keys.add(x>u.x?'ArrowRight':'ArrowLeft');tick();a.keys.clear();stuck=Math.abs(u.x-old)<.02?stuck+1:0;if(stuck>30)break;}for(let n=0;n<600&&a.canInput()&&!e.grounded(u);n++)tick();log.push({op:'move',from,to:pos(u),goal:x});}
+function upper(){move(580);let u=e.active;log.push({op:'jump',from:pos(u),accepted:e.jump(u)});move(740);move(1100);}
+function probes(u,id){return [-40,-20,0,20,40,60,80].flatMap(angle=>[.3,.6,1].map(power=>{const p=e.predict(u,C.SKILLS[id],angle,power,undefined,false);return{angle,power,unit:p.unit,terrain:p.terrain,contacts:p.contacts,x:p.x,y:p.y};}));}
+const ritual=[];for(const goal of [1490,1640]){fresh(true);a.selectHero('p-mage');move(1490);const marker=b.honroMarkers.find(m=>m.action==='ritual'),eligible=g.HonroInteractions.eligibility(a,marker);if(eligible.ok){g.HonroInteractions.use(a,marker);settle();}if(a.canInput()&&e.active.cls==='archer'){a.defend();settle();}a.selectHero('p-mage');move(goal);let u=e.active,position=pos(u),holding=plain(b.honroState.ritual||{}),predictions={M01:probes(u,'M01'),M11:probes(u,'M11')};ritual.push({goal,eligible,position,holding,predictions,log:plain(log),damage:plain(damage),bodyGap:{stag:plain(e.unit('foe-5')),mage:plain(u),horizontal:e.unit('foe-5').x-u.x-e.unit('foe-5').r-u.r},battle:plain(b),profile:plain(a.profile)});console.log('RITUAL',goal,JSON.stringify({position,holding,eligible}));}
+await writeFile(out+'/ritual-checkpoints.json',JSON.stringify({method:'Short normal App direction/defend/E inputs from legal level4 entry; no pose/HP/move injection; fresh after placement refinement, no new full completion.',ritual},null,2));

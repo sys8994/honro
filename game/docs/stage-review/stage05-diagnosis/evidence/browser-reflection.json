@@ -1,0 +1,1190 @@
+{
+  "cases": [
+    {
+      "cls": "mage",
+      "scenario": "reflection-under",
+      "training": [
+        "M03",
+        "M11"
+      ],
+      "method": "Production App.frame movement/jump, Engine.fire actual projectile, ordinary other-hero defend and R1 enemy AI; controlled clock/render scheduling.",
+      "start": {
+        "id": "p-mage",
+        "x": 440,
+        "y": 2520,
+        "hp": 486,
+        "focus": 144,
+        "moveLeft": 1228,
+        "maxMove": 1228,
+        "support": "valley-floor"
+      },
+      "position": {
+        "id": "p-mage",
+        "x": 895.881657725094,
+        "y": 2610,
+        "hp": 486,
+        "focus": 144,
+        "moveLeft": 755.1365615703419,
+        "maxMove": 1228,
+        "support": "valley-floor"
+      },
+      "skill": {
+        "id": "M11",
+        "name": "반탄파",
+        "mode": "waveBounce",
+        "radius": 0
+      },
+      "predictions": [
+        {
+          "angle": -40,
+          "power": 0.3,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 929.587613222329,
+          "y": 2580.322654826208,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": -40,
+          "power": 0.6,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 929.587613222329,
+          "y": 2580.322654826208,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": -40,
+          "power": 1,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 929.587613222329,
+          "y": 2580.322654826208,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": -20,
+          "power": 0.3,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 937.2281330396739,
+          "y": 2567.088886306329,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": -20,
+          "power": 0.6,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 937.2281330396739,
+          "y": 2567.088886306329,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": -20,
+          "power": 1,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 937.2281330396739,
+          "y": 2567.088886306329,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 0,
+          "power": 0.3,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 939.881657725094,
+          "y": 2552.04,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 0,
+          "power": 0.6,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 939.881657725094,
+          "y": 2552.04,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 0,
+          "power": 1,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 939.881657725094,
+          "y": 2552.04,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 15,
+          "power": 0.3,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 938.382394081813,
+          "y": 2540.651962015489,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 15,
+          "power": 0.6,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 938.382394081813,
+          "y": 2540.651962015489,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 15,
+          "power": 1,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 938.382394081813,
+          "y": 2540.651962015489,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 30,
+          "power": 0.3,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 933.9867754916093,
+          "y": 2530.04,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 30,
+          "power": 0.6,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 933.9867754916093,
+          "y": 2530.04,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 30,
+          "power": 1,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 933.9867754916093,
+          "y": 2530.04,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 45,
+          "power": 0.3,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 926.9943560973021,
+          "y": 2520.927301627792,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 45,
+          "power": 0.6,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 926.9943560973021,
+          "y": 2520.927301627792,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 45,
+          "power": 1,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 926.9943560973021,
+          "y": 2520.927301627792,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 60,
+          "power": 0.3,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 917.881657725094,
+          "y": 2513.9348822334846,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 60,
+          "power": 0.6,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 917.881657725094,
+          "y": 2513.9348822334846,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 60,
+          "power": 1,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 917.881657725094,
+          "y": 2513.9348822334846,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 75,
+          "power": 0.3,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 907.2696957096049,
+          "y": 2509.539263643281,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 75,
+          "power": 0.6,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 907.2696957096049,
+          "y": 2509.539263643281,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 75,
+          "power": 1,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 907.2696957096049,
+          "y": 2509.539263643281,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 85,
+          "power": 0.3,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 900,
+          "y": 2505.060953416755,
+          "time": 0.016666666666666666,
+          "contacts": []
+        },
+        {
+          "angle": 85,
+          "power": 0.6,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 900,
+          "y": 2504.9949049692677,
+          "time": 0.008333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 85,
+          "power": 1,
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 900,
+          "y": 2504.9838351576946,
+          "time": 0.008333333333333333,
+          "contacts": []
+        }
+      ],
+      "rows": [
+        {
+          "op": "move",
+          "from": {
+            "id": "p-mage",
+            "x": 440,
+            "y": 2520,
+            "hp": 486,
+            "focus": 144,
+            "moveLeft": 1228,
+            "maxMove": 1228,
+            "support": "valley-floor"
+          },
+          "to": {
+            "id": "p-mage",
+            "x": 895.881657725094,
+            "y": 2610,
+            "hp": 486,
+            "focus": 144,
+            "moveLeft": 755.1365615703419,
+            "maxMove": 1228,
+            "support": "valley-floor"
+          },
+          "jumpAt": null
+        },
+        {
+          "op": "fire",
+          "id": "M11",
+          "aim": {
+            "angle": -40,
+            "power": 0.3,
+            "unit": "foe-0-cluster",
+            "terrain": null,
+            "x": 929.587613222329,
+            "y": 2580.322654826208,
+            "time": 0.008333333333333333,
+            "contacts": []
+          },
+          "position": {
+            "id": "p-mage",
+            "x": 895.881657725094,
+            "y": 2610,
+            "hp": 486,
+            "focus": 144,
+            "moveLeft": 755.1365615703419,
+            "maxMove": 1228,
+            "support": "valley-floor"
+          }
+        }
+      ],
+      "damage": [
+        {
+          "round": 1,
+          "frame": 79,
+          "target": "foe-0-cluster",
+          "owner": "p-mage",
+          "loss": 88
+        },
+        {
+          "round": 1,
+          "frame": 143,
+          "target": "p-mage",
+          "owner": "foe-0-cluster",
+          "loss": 19
+        },
+        {
+          "round": 1,
+          "frame": 143,
+          "target": "foe-0-cluster",
+          "owner": "foe-0-cluster",
+          "loss": 17
+        },
+        {
+          "round": 1,
+          "frame": 185,
+          "target": "p-mage",
+          "owner": "foe-0",
+          "loss": 31
+        },
+        {
+          "round": 1,
+          "frame": 185,
+          "target": "foe-0",
+          "owner": "foe-0",
+          "loss": 24
+        }
+      ],
+      "fires": [
+        {
+          "frame": 79,
+          "round": 1,
+          "actor": "p-mage",
+          "args": [
+            "M11",
+            -40,
+            0.3
+          ],
+          "accepted": true
+        },
+        {
+          "frame": 143,
+          "round": 1,
+          "actor": "foe-0-cluster",
+          "args": [
+            "HBR01",
+            155,
+            0.25,
+            true
+          ],
+          "accepted": true
+        },
+        {
+          "frame": 185,
+          "round": 1,
+          "actor": "foe-0",
+          "args": [
+            "HBR01",
+            -51.22853265880467,
+            0.17917701842427838,
+            true
+          ],
+          "accepted": true
+        },
+        {
+          "frame": 232,
+          "round": 1,
+          "actor": "foe-4",
+          "args": [
+            "HBR01",
+            154.29778149863705,
+            1,
+            true
+          ],
+          "accepted": true
+        },
+        {
+          "frame": 283,
+          "round": 1,
+          "actor": "foe-8",
+          "args": [
+            "HBR01",
+            153.5311828290578,
+            0.9955050014669541,
+            true
+          ],
+          "accepted": true
+        }
+      ],
+      "impacts": [
+        {
+          "frame": 79,
+          "owner": "p-mage",
+          "skill": "M11",
+          "unit": "foe-0-cluster",
+          "terrain": null,
+          "x": 929.587613222329,
+          "y": 2580.322654826208,
+          "bounces": 0
+        },
+        {
+          "frame": 143,
+          "owner": "foe-0-cluster",
+          "skill": "HBR01",
+          "unit": "p-mage",
+          "terrain": null,
+          "x": 912.6233819629738,
+          "y": 2519.9266886712603,
+          "bounces": 0
+        },
+        {
+          "frame": 185,
+          "owner": "foe-0",
+          "skill": "HBR01",
+          "unit": "p-mage",
+          "terrain": null,
+          "x": 867.5340376980819,
+          "y": 2576.3901974796895,
+          "bounces": 0
+        },
+        {
+          "frame": 259,
+          "owner": "foe-4",
+          "skill": "HBR01",
+          "unit": "p-archer",
+          "terrain": null,
+          "x": 358,
+          "y": 2440.348481577663,
+          "bounces": 0
+        },
+        {
+          "frame": 317,
+          "owner": "foe-8",
+          "skill": "HBR01",
+          "unit": "p-archer",
+          "terrain": null,
+          "x": 351.38195742622224,
+          "y": 2483.0876293751553,
+          "bounces": 0
+        }
+      ],
+      "ends": [
+        {
+          "id": "foe-0-cluster",
+          "round": 1,
+          "intent": "빠른 돌진과 흙파편",
+          "x": 945.3395727089802,
+          "y": 2582.796256374612
+        },
+        {
+          "id": "foe-0",
+          "round": 1,
+          "intent": "빠른 돌진과 흙파편",
+          "x": 832.1753527867593,
+          "y": 2610
+        },
+        {
+          "id": "foe-4",
+          "round": 1,
+          "intent": "빠른 돌진과 흙파편",
+          "x": 1050,
+          "y": 2520
+        },
+        {
+          "id": "foe-8",
+          "round": 1,
+          "intent": "뿔 돌진과 뿌리쐐기",
+          "x": 1180,
+          "y": 2490
+        }
+      ],
+      "end": {
+        "round": 2,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 310.0093477492239,
+            "y": 2520,
+            "hp": 455,
+            "focus": 114,
+            "moveLeft": 1208,
+            "maxMove": 1208,
+            "support": "valley-floor"
+          },
+          {
+            "id": "p-mage",
+            "x": 904.0305233191289,
+            "y": 2607.581686008523,
+            "hp": 436,
+            "focus": 125,
+            "moveLeft": 1228,
+            "maxMove": 1228,
+            "support": "valley-floor"
+          }
+        ],
+        "foes": 20,
+        "phase": "aim"
+      },
+      "frame": 366
+    },
+    {
+      "cls": "mage",
+      "scenario": "reflection-over",
+      "training": [
+        "M03",
+        "M11"
+      ],
+      "method": "Production App.frame movement/jump, Engine.fire actual projectile, ordinary other-hero defend and R1 enemy AI; controlled clock/render scheduling.",
+      "start": {
+        "id": "p-mage",
+        "x": 440,
+        "y": 2520,
+        "hp": 486,
+        "focus": 144,
+        "moveLeft": 1228,
+        "maxMove": 1228,
+        "support": "valley-floor"
+      },
+      "position": {
+        "id": "p-mage",
+        "x": 901.0755480210603,
+        "y": 2440,
+        "hp": 486,
+        "focus": 144,
+        "moveLeft": 677.6615615703417,
+        "maxMove": 1228,
+        "support": "west-overlook"
+      },
+      "skill": {
+        "id": "M11",
+        "name": "반탄파",
+        "mode": "waveBounce",
+        "radius": 0
+      },
+      "predictions": [
+        {
+          "angle": -40,
+          "power": 0.3,
+          "unit": "foe-8",
+          "terrain": null,
+          "x": 1136,
+          "y": 2414.9553284090034,
+          "time": 1.0833333333333333,
+          "contacts": [
+            {
+              "x": 960.1917325021681,
+              "y": 2434
+            }
+          ]
+        },
+        {
+          "angle": -40,
+          "power": 0.6,
+          "unit": "foe-3-cluster",
+          "terrain": null,
+          "x": 1578.5364893549395,
+          "y": 2438,
+          "time": 1.8499999999999999,
+          "contacts": [
+            {
+              "x": 962.1596186479352,
+              "y": 2434
+            }
+          ]
+        },
+        {
+          "angle": -40,
+          "power": 1,
+          "unit": "foe-2",
+          "terrain": null,
+          "x": 1376,
+          "y": 2180.2264347924265,
+          "time": 0.825,
+          "contacts": [
+            {
+              "x": 962.681890368937,
+              "y": 2434
+            }
+          ]
+        },
+        {
+          "angle": -20,
+          "power": 0.3,
+          "unit": "foe-8",
+          "terrain": null,
+          "x": 1136,
+          "y": 2397.020716367102,
+          "time": 0.875,
+          "contacts": [
+            {
+              "x": 1010.4653033399593,
+              "y": 2434
+            }
+          ]
+        },
+        {
+          "angle": -20,
+          "power": 0.6,
+          "unit": "foe-4",
+          "terrain": null,
+          "x": 1012.5638607696038,
+          "y": 2426,
+          "time": 0.15833333333333333,
+          "contacts": []
+        },
+        {
+          "angle": -20,
+          "power": 1,
+          "unit": "foe-4",
+          "terrain": null,
+          "x": 1017.9383624482684,
+          "y": 2426,
+          "time": 0.1,
+          "contacts": []
+        },
+        {
+          "angle": 0,
+          "power": 0.3,
+          "unit": "foe-4",
+          "terrain": null,
+          "x": 1080.6371548149468,
+          "y": 2426,
+          "time": 0.5333333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 0,
+          "power": 0.6,
+          "unit": "foe-8",
+          "terrain": null,
+          "x": 1136,
+          "y": 2405.466957674818,
+          "time": 0.39166666666666666,
+          "contacts": []
+        },
+        {
+          "angle": 0,
+          "power": 1,
+          "unit": "foe-8",
+          "terrain": null,
+          "x": 1136,
+          "y": 2390.6562626179634,
+          "time": 0.23333333333333334,
+          "contacts": []
+        },
+        {
+          "angle": 15,
+          "power": 0.3,
+          "unit": "foe-8",
+          "terrain": null,
+          "x": 1136,
+          "y": 2414.262383580802,
+          "time": 0.7666666666666666,
+          "contacts": []
+        },
+        {
+          "angle": 15,
+          "power": 0.6,
+          "unit": "foe-3-cluster",
+          "terrain": null,
+          "x": 1541,
+          "y": 2454.1333424458803,
+          "time": 1.225,
+          "contacts": []
+        },
+        {
+          "angle": 15,
+          "power": 1,
+          "unit": null,
+          "terrain": "valley-floor",
+          "x": 4025.730922086838,
+          "y": 4254.04447739719,
+          "time": 7.891666666666667,
+          "contacts": [
+            {
+              "x": 4292.036625517482,
+              "y": 4223.481307350875
+            }
+          ]
+        },
+        {
+          "angle": 30,
+          "power": 0.3,
+          "unit": "foe-8",
+          "terrain": null,
+          "x": 1136,
+          "y": 2372.164256135306,
+          "time": 0.8583333333333333,
+          "contacts": []
+        },
+        {
+          "angle": 30,
+          "power": 0.6,
+          "unit": "foe-1-cluster",
+          "terrain": null,
+          "x": 1713.9170112480385,
+          "y": 2421,
+          "time": 1.7416666666666667,
+          "contacts": []
+        },
+        {
+          "angle": 30,
+          "power": 1,
+          "unit": "foe-2",
+          "terrain": null,
+          "x": 1376,
+          "y": 2173.6758632333517,
+          "time": 0.6166666666666667,
+          "contacts": []
+        },
+        {
+          "angle": 45,
+          "power": 0.3,
+          "unit": "foe-8",
+          "terrain": null,
+          "x": 1165.4661848641347,
+          "y": 2368,
+          "time": 1.1666666666666667,
+          "contacts": []
+        },
+        {
+          "angle": 45,
+          "power": 0.6,
+          "unit": "foe-2",
+          "terrain": null,
+          "x": 1376,
+          "y": 2176.816600414453,
+          "time": 1.2166666666666666,
+          "contacts": []
+        },
+        {
+          "angle": 45,
+          "power": 1,
+          "unit": null,
+          "terrain": "waterfall-cliff",
+          "x": 4631.294672356772,
+          "y": 3800.7035035722038,
+          "time": 9.525,
+          "contacts": [
+            {
+              "x": 3694.4998397111563,
+              "y": 4216.189496554255
+            }
+          ]
+        },
+        {
+          "angle": 60,
+          "power": 0.3,
+          "unit": "foe-8",
+          "terrain": null,
+          "x": 1146.2888828756575,
+          "y": 2368,
+          "time": 1.425,
+          "contacts": []
+        },
+        {
+          "angle": 60,
+          "power": 0.6,
+          "unit": "foe-2",
+          "terrain": null,
+          "x": 1393.3929699206042,
+          "y": 2108,
+          "time": 1.6916666666666667,
+          "contacts": []
+        },
+        {
+          "angle": 60,
+          "power": 1,
+          "unit": null,
+          "terrain": "waterfall-cliff",
+          "x": 4757.633110264457,
+          "y": 3497.70476323147,
+          "time": 7.541666666666667,
+          "contacts": [
+            {
+              "x": 3951.3425766923096,
+              "y": 4245.5429522092445
+            }
+          ]
+        },
+        {
+          "angle": 75,
+          "power": 0.3,
+          "unit": "foe-8",
+          "terrain": null,
+          "x": 1136,
+          "y": 2474.203875276315,
+          "time": 1.9583333333333333,
+          "contacts": [
+            {
+              "x": 1134.763258784984,
+              "y": 2484
+            }
+          ]
+        },
+        {
+          "angle": 75,
+          "power": 0.6,
+          "unit": "foe-3-cluster",
+          "terrain": null,
+          "x": 1541,
+          "y": 2478.458638627414,
+          "time": 3.15,
+          "contacts": []
+        },
+        {
+          "angle": 75,
+          "power": 1,
+          "unit": "foe-6",
+          "terrain": null,
+          "x": 2211,
+          "y": 2167.1959089556094,
+          "time": 4.391666666666667,
+          "contacts": []
+        },
+        {
+          "angle": 85,
+          "power": 0.3,
+          "unit": "foe-4",
+          "terrain": null,
+          "x": 1036.0995932416008,
+          "y": 2426,
+          "time": 1.8166666666666667,
+          "contacts": []
+        },
+        {
+          "angle": 85,
+          "power": 0.6,
+          "unit": "foe-4-cluster",
+          "terrain": null,
+          "x": 1310.8350871410923,
+          "y": 2464,
+          "time": 3.2083333333333335,
+          "contacts": []
+        },
+        {
+          "angle": 85,
+          "power": 1,
+          "unit": "foe-5-cluster",
+          "terrain": null,
+          "x": 1880,
+          "y": 2548.4322968334227,
+          "time": 5.075,
+          "contacts": []
+        }
+      ],
+      "rows": [
+        {
+          "op": "move",
+          "from": {
+            "id": "p-mage",
+            "x": 440,
+            "y": 2520,
+            "hp": 486,
+            "focus": 144,
+            "moveLeft": 1228,
+            "maxMove": 1228,
+            "support": "valley-floor"
+          },
+          "to": {
+            "id": "p-mage",
+            "x": 901.0755480210603,
+            "y": 2440,
+            "hp": 486,
+            "focus": 144,
+            "moveLeft": 677.6615615703417,
+            "maxMove": 1228,
+            "support": "west-overlook"
+          },
+          "jumpAt": 690
+        },
+        {
+          "op": "fire",
+          "id": "M11",
+          "aim": {
+            "angle": -40,
+            "power": 0.3,
+            "unit": "foe-8",
+            "terrain": null,
+            "x": 1136,
+            "y": 2414.9553284090034,
+            "time": 1.0833333333333333,
+            "contacts": [
+              {
+                "x": 960.1917325021681,
+                "y": 2434
+              }
+            ]
+          },
+          "position": {
+            "id": "p-mage",
+            "x": 901.0755480210603,
+            "y": 2440,
+            "hp": 486,
+            "focus": 144,
+            "moveLeft": 677.6615615703417,
+            "maxMove": 1228,
+            "support": "west-overlook"
+          }
+        }
+      ],
+      "damage": [
+        {
+          "round": 1,
+          "frame": 135,
+          "target": "foe-8",
+          "owner": "p-mage",
+          "loss": 73
+        },
+        {
+          "round": 1,
+          "frame": 244,
+          "target": "p-mage",
+          "owner": "foe-0-cluster",
+          "loss": 27
+        },
+        {
+          "round": 1,
+          "frame": 293,
+          "target": "p-mage",
+          "owner": "foe-0",
+          "loss": 19
+        },
+        {
+          "round": 1,
+          "frame": 385,
+          "target": "p-mage",
+          "owner": "foe-4",
+          "loss": 28
+        },
+        {
+          "round": 1,
+          "frame": 454,
+          "target": "p-mage",
+          "owner": "foe-8",
+          "loss": 19
+        }
+      ],
+      "fires": [
+        {
+          "frame": 92,
+          "round": 1,
+          "actor": "p-mage",
+          "args": [
+            "M11",
+            -40,
+            0.3
+          ],
+          "accepted": true
+        },
+        {
+          "frame": 240,
+          "round": 1,
+          "actor": "foe-0-cluster",
+          "args": [
+            "HBR01",
+            3.6969088551090556,
+            0.5161324213989614,
+            true
+          ],
+          "accepted": true
+        },
+        {
+          "frame": 289,
+          "round": 1,
+          "actor": "foe-0",
+          "args": [
+            "HBR01",
+            72.14417862385152,
+            0.7043471618646524,
+            true
+          ],
+          "accepted": true
+        },
+        {
+          "frame": 382,
+          "round": 1,
+          "actor": "foe-4",
+          "args": [
+            "HBR01",
+            178.75431822366065,
+            0.5095625847637998,
+            true
+          ],
+          "accepted": true
+        },
+        {
+          "frame": 430,
+          "round": 1,
+          "actor": "foe-8",
+          "args": [
+            "HBR01",
+            132.75423089997855,
+            0.33930546371060794,
+            true
+          ],
+          "accepted": true
+        }
+      ],
+      "impacts": [
+        {
+          "frame": 97,
+          "owner": "p-mage",
+          "skill": "M11",
+          "unit": null,
+          "terrain": "west-overlook",
+          "x": 960.1917325021681,
+          "y": 2434,
+          "bounces": 0
+        },
+        {
+          "frame": 135,
+          "owner": "p-mage",
+          "skill": "M11",
+          "unit": "foe-8",
+          "terrain": null,
+          "x": 1136,
+          "y": 2414.9553284090034,
+          "bounces": 1
+        },
+        {
+          "frame": 244,
+          "owner": "foe-0-cluster",
+          "skill": "HBR01",
+          "unit": "p-mage",
+          "terrain": null,
+          "x": 873.0755480210603,
+          "y": 2384.438307142874,
+          "bounces": 0
+        },
+        {
+          "frame": 293,
+          "owner": "foe-0",
+          "skill": "HBR01",
+          "unit": "p-mage",
+          "terrain": null,
+          "x": 888.1080714643073,
+          "y": 2446,
+          "bounces": 0
+        },
+        {
+          "frame": 385,
+          "owner": "foe-4",
+          "skill": "HBR01",
+          "unit": "p-mage",
+          "terrain": null,
+          "x": 945.8524337859908,
+          "y": 2387.2228972122816,
+          "bounces": 0
+        },
+        {
+          "frame": 454,
+          "owner": "foe-8",
+          "skill": "HBR01",
+          "unit": "p-mage",
+          "terrain": null,
+          "x": 933.1652190111583,
+          "y": 2361.8714951139573,
+          "bounces": 0
+        }
+      ],
+      "ends": [
+        {
+          "id": "foe-0-cluster",
+          "round": 1,
+          "intent": "고지 확보",
+          "x": 766.4166666666694,
+          "y": 2440
+        },
+        {
+          "id": "foe-0",
+          "round": 1,
+          "intent": "빠른 돌진과 흙파편",
+          "x": 850,
+          "y": 2610
+        },
+        {
+          "id": "foe-4",
+          "round": 1,
+          "intent": "고지 확보",
+          "x": 1037.9166666666663,
+          "y": 2440
+        },
+        {
+          "id": "foe-8",
+          "round": 1,
+          "intent": "뿔 돌진과 뿌리쐐기",
+          "x": 1180,
+          "y": 2490
+        }
+      ],
+      "end": {
+        "round": 2,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 330,
+            "y": 2520,
+            "hp": 455,
+            "focus": 114,
+            "moveLeft": 1208,
+            "maxMove": 1208,
+            "support": "valley-floor"
+          },
+          {
+            "id": "p-mage",
+            "x": 898.1226327541425,
+            "y": 2440,
+            "hp": 393,
+            "focus": 125,
+            "moveLeft": 1228,
+            "maxMove": 1228,
+            "support": "west-overlook"
+          }
+        ],
+        "foes": 20,
+        "phase": "aim"
+      },
+      "frame": 520
+    }
+  ],
+  "errors": []
+}
