@@ -56,6 +56,24 @@ export async function applyAct1SceneComposition(project){
    place(st,'west-rock-foot','env:rock',650,2860,1.1,'canyon-ground');
    place(st,'valley-rock-foot','env:rock',1430,2860,.7,'canyon-ground');
    place(st,'east-rock-foot','env:rock',3950,2860,.85,'canyon-ground');
+   st.design.geologyComposition={version:1,rearDatums:[
+    {id:'west-outer-foot',x:-930,y:2830},{id:'east-outer-foot',x:5700,y:2830}
+   ],instances:[
+    {id:'geology-west-outer',assetId:'geology:granite-vertical',scale:1.1,support:{datumId:'west-outer-foot'}},
+    {id:'geology-east-outer',assetId:'geology:granite-vertical',scale:1.06,support:{datumId:'east-outer-foot'}},
+    {id:'geology-west-outer-foot',assetId:'geology:granite-foundation',scale:1,support:{datumId:'west-outer-foot'}},
+    {id:'geology-east-outer-foot',assetId:'geology:granite-foundation',scale:1,support:{datumId:'east-outer-foot'}},
+    {id:'geology-west-ridge',assetId:'geology:granite-vertical',scale:1,support:{terrainId:'canyon-ground',at:.15}},
+    {id:'geology-east-ridge',assetId:'geology:granite-vertical',scale:.97,support:{terrainId:'canyon-ground',at:.95}},
+    {id:'geology-west-foot',assetId:'geology:granite-foundation',scale:1,support:{terrainId:'canyon-ground',at:.16}},
+    {id:'geology-east-foot',assetId:'geology:granite-foundation',scale:.9,support:{terrainId:'canyon-ground',at:.94}},
+    ...[
+     ['west-crown','left-high-ground',.5,1],['west-upper','left-descent-stone-high',.45,.8],
+     ['west-middle','left-descent-stone-mid',.5,.85],['west-lower','left-descent-stone-low',.5,.7],
+     ['east-crown','right-cliff-ground',.5,1],['east-middle','right-descent-stone-mid',.5,.85],
+     ['east-lower','right-descent-stone-low',.5,.78]
+    ].map(([id,terrainId,at,scale])=>({id:'geology-'+id,assetId:'geology:granite-ledge-neck',scale,socket:'ledge-back',support:{terrainId,at,offsetY:100*scale}}))
+   ]};
    st.design.stage2LayeredCommonArt={version:1,cliffMaterial:'rock/cliff',pineAssetId:'act1-scene:rooted-pine',footAssetId:'env:rock'};
    continue;
   }

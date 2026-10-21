@@ -6,8 +6,8 @@ function prepare(b){const data=b.honroMap.stage2LayeredRoad;let q=cache.get(data
  const cliffs=data.rearCliffs.map(p=>G.HonroMapEngine.solid(p.id,p.points.map(p=>[p.x,p.y]),{mat:'rock',surfaceKind:'cliff',indestructible:true}));
  q={cliffs};cache.set(data,q);return q;
 }
-function rear(c,b){if(!active(b))return;for(const t of prepare(b).cliffs)G.HonroAct1SpatialArt.drawTerrainMaterial(c,t,b,{walkRim:false});}
-const layer=S._landmarkLayer;S._landmarkLayer=function(c,ls,name){if(name==='back'&&active(this.battle))rear(c,this.battle);return layer.call(this,c,ls,name);};
+function rear(c,b){if(!active(b))return;for(const t of prepare(b).cliffs)G.HonroAct1SpatialArt.drawTerrainMaterial(c,t,b,{walkRim:false});G.HonroGeologyArt.draw(this,c,b);}
+const layer=S._landmarkLayer;S._landmarkLayer=function(c,ls,name){if(name==='back'&&active(this.battle))rear.call(this,c,this.battle);return layer.call(this,c,ls,name);};
 // Older Continue snapshots keep their own landmarks and poses. Resolve only the
 // obsolete painted pine asset through the same approved Stage1 asset at draw.
 const legacyPines=new Set(['left-pine-upper','left-pine-lower','right-pine']),pineViews=new WeakMap(),landmark=S.landmark;
