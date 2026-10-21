@@ -46,6 +46,8 @@ function setup(app,selectedId,h,canvas,options={}){
  Object.assign(b,{width:2400,height:1400,practiceCombat:true,terrain:[{id:'preview-floor',x:0,y:floor,w:2400,h:400,mat:'rock',hp:99999,maxHp:99999,indestructible:true}],waters:[],drafts:[],fields:[],zones:[],stakes:[],projectiles:[],wind:0,honroStage:1,honroBackdrop:'forest',honroLandmarks:[],honroMarkers:[],honroSurfaceZones:[],routePoints:[],sceneVersion:b.sceneVersion+1});
  const hero=b.units.find(u=>u.side===0);b.units=[hero];Object.assign(hero,{x:360,y:floor,spawnX:360,spawnY:floor,h:130,r:23,hp:900,maxHp:1200,focus:scenario.focus??9999,maxFocus:scenario.maxFocus??9999,attack:1,acted:false,loadout:[id],ranks:{...profile.heroes[s.cls].ranks},vx:0,vy:0,airborne:false,jumping:false});
  if(passive?.metric==='critical'||id==='A99')b.rng=0;
+ // Reproducible demo seed: the normal critical roll still decides the result.
+ if(id==='A14'&&!passive)b.rng=7;
  if(passive){const stats=C.heroStats(profile.heroes[s.cls],s.cls);Object.assign(hero,{maxHp:stats.hp,hp:passive.lowHealth?15:Math.round(stats.hp*.75),maxFocus:stats.mp,focus:passive.metric==='mana'?Math.round(stats.mp*.35):stats.mp,attack:stats.attack,maxMove:stats.move,moveLeft:stats.move,regen:stats.regen,armor:stats.armor,critChance:stats.critChance,critMultiplier:stats.critMultiplier});if(passive.turns||passive.lowHealth)b.mode='campaign';if(passive.lowHealth)b.practiceCombat=false;}
  const close=s.branch==='sword',ring=id==='M14',bounce=['M11','M12'].includes(id),positions=[...(scenario.positions||(close?[460,560]:[840,955,1070]))];
  if(id==='S05')positions[1]=260;
@@ -191,6 +193,8 @@ function describe(p){const m=p.metrics,q=p.control,number=x=>Math.round(x*100)/1
  case 'remnants':return `모은 잔혼 ${m.remnants}/3${m.soulBoost?' · 다음 혼행 강화':''} · 피해 ${compare(c.damage,m.damage)}`;
  default:return `누적 피해 ${compare(c.damage,m.damage)}`;}}
  if(p.id==='A09')return `${p.turns?'한 번 꺾음 · 황색: 이전 / 청록: 이후':'올려 쏜 뒤 한 번 꺾습니다'} · 명중 피해 ${number(m.damage)}`;
+ if(p.id==='A06')return `체력 ${compare(p.initial.hero.hp,p.hero.hp)} · 기력 회수 +${number(Math.max(0,p.hero.focus-p.initial.hero.focus+(m.casts[0]?.cost||0)))} · 피해 ${number(m.damage)}`;
+ if(p.id==='A10')return `${p.hero.prepared?'집중 준비 완료':m.prepared?'집중을 소비한 강화 사격':'집중 준비 전'} · 피해 ${number(m.damage)}`;
  if(p.id==='M10'||p.id==='O13'){const ally=p.b.units.find(v=>v.id==='preview-ally');return `손상된 동행 체력 300 → ${number(ally?.hp||300)} · 방호 ${number(m.shield)}`;}
  if(p.id==='M09')return `진목 ${m.stakes}/2 · ${p.follow?'이동 완료':'두 진목 사이를 건너갑니다'}`;
  return `${p.scenario.kind} · 명중 ${new Set(m.hits.filter(v=>v.target.startsWith('preview-target')).map(v=>v.target)).size}명 · 피해 ${number(m.damage)}${m.summons?' · 소환 '+m.summons:''}`;

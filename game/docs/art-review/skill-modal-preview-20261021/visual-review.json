@@ -1,14 +1,35 @@
 {
   "registered": 84,
   "functionalPass": 84,
-  "currentPixelConfirmed": 4,
-  "currentPixelUnconfirmed": 80,
+  "currentPixelConfirmed": 25,
+  "currentPixelUnconfirmed": 59,
   "currentPixelFailed": 0,
   "confirmedIds": [
+    "A01",
     "M03",
     "M12",
     "M14",
-    "M15"
+    "M15",
+    "A14",
+    "A02",
+    "A06",
+    "A10",
+    "A99",
+    "A11",
+    "A09",
+    "A13",
+    "A12",
+    "A15",
+    "A05",
+    "A04",
+    "A07",
+    "A03",
+    "A08",
+    "AP04",
+    "AP02",
+    "AP01",
+    "AP03",
+    "AP05"
   ],
   "previouslyViewedButNotSignedOff": [
     "A04",
@@ -42,11 +63,18 @@
       "id": "A01",
       "name": "평사",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "일반 화살의 조준 → 첫 표적 명중/41 → 체력 감소를 확인. 기본 사격이며 별도 고유 발동 없음.",
       "coreCapture": "audit/A01-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/A01-result-360.png",
+      "reviewedFrames": [
+        "audit/A01-start.png",
+        "audit/A01-core.png",
+        "audit/A01-result-1280.png",
+        "audit/A01-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S00",
@@ -272,201 +300,350 @@
       "id": "A14",
       "name": "급소시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/A14-core.png",
-      "mobileVisibleCapture": null
+      "note": "먼 표적 준비 → 실제 치명 판정233 → 체력 감소. 시연 RNG만 고정했으며 확률/피해 공식과 플레이 저장 불변.",
+      "coreCapture": "archer-focused/A14-1280-core.png",
+      "mobileVisibleCapture": "archer-focused/A14-360-core.png",
+      "reviewedFrames": [
+        "audit/A14-start.png",
+        "audit/A14-core.png",
+        "audit/A14-result-1280.png",
+        "archer-focused/A14-1280-core.png",
+        "audit/A14-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A02",
       "name": "관통시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "얇은 목재와 일렬 표적 준비 → 목재 소실·연속 관통 → 다섯 표적 체력 감소. 목재 통과는 8랭크 장면이며 저랭크는 몸체 관통만.",
       "coreCapture": "audit/A02-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/A02-result-360.png",
+      "reviewedFrames": [
+        "audit/A02-start.png",
+        "audit/A02-core.png",
+        "audit/A02-result-1280.png",
+        "audit/A02-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A06",
       "name": "회기시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/A06-core.png",
-      "mobileVisibleCapture": null
+      "note": "명중 전 체력900/기력120 → 실제 명중 후 체력908.76와 소비 후 기력회수 → 유지. 회수량은 엔진 자원 차이로 표시.",
+      "coreCapture": "archer-focused/A06-1280-core.png",
+      "mobileVisibleCapture": "archer-focused/A06-360-core.png",
+      "reviewedFrames": [
+        "audit/A06-start.png",
+        "audit/A06-core.png",
+        "audit/A06-result-1280.png",
+        "archer-focused/A06-1280-core.png",
+        "audit/A06-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A10",
       "name": "정심",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/A10-core.png",
-      "mobileVisibleCapture": null
+      "note": "준비 전 → 집중 아이콘/준비 완료 → 준비 소비 후 강화 사격49. 순수 피해 우월성 비교 장면은 아니며 실제 준비 상태 전이를 확인.",
+      "coreCapture": "archer-focused/A10-1280-core.png",
+      "mobileVisibleCapture": "archer-focused/A10-360-core.png",
+      "reviewedFrames": [
+        "audit/A10-start.png",
+        "audit/A10-core.png",
+        "audit/A10-result-1280.png",
+        "archer-focused/A10-1280-prepared.png",
+        "archer-focused/A10-1280-core.png",
+        "audit/A10-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A99",
       "name": "절명시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "체력이 낮은 먼 적 → 치명846/사망 → 시체 소실. 시연 표적의 내성만 중립 설정, 게임 공식 불변.",
       "coreCapture": "audit/A99-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/A99-result-360.png",
+      "reviewedFrames": [
+        "audit/A99-start.png",
+        "audit/A99-core.png",
+        "audit/A99-result-1280.png",
+        "audit/A99-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A11",
       "name": "급락시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/A11-core.png",
-      "mobileVisibleCapture": null
+      "note": "고각 조준 → 실제 최고점의 수평 화살 → 낙하 후99 명중. 최고점 화면은 카메라가 멀어져 화살이 작음.",
+      "coreCapture": "archer-focused/A11-1280-core.png",
+      "mobileVisibleCapture": "archer-focused/A11-360-core.png",
+      "reviewedFrames": [
+        "audit/A11-start.png",
+        "audit/A11-core.png",
+        "audit/A11-result-1280.png",
+        "archer-focused/A11-1280-apex.png",
+        "audit/A11-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A09",
       "name": "전로시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "상향 조준 → 황색 전환 전/청록 전환 후 궤적과 명중121 → 꺾인 경로 유지. 추가 입력은 자동 정책에서 정확히 1회.",
       "coreCapture": "audit/A09-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/A09-result-360.png",
+      "reviewedFrames": [
+        "audit/A09-start.png",
+        "audit/A09-core.png",
+        "audit/A09-result-1280.png",
+        "audit/A09-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A13",
       "name": "추혼시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/A13-core.png",
-      "mobileVisibleCapture": null
+      "note": "실제 발판에 접지된 높은 표적 → 상승 비행 → 발판 위 표적75 명중. 이동 표적 추적 여부 자체는 정지 표적으로 평가하지 않음.",
+      "coreCapture": "archer-focused/A13-1280-core.png",
+      "mobileVisibleCapture": "archer-focused/A13-360-core.png",
+      "reviewedFrames": [
+        "audit/A13-start.png",
+        "audit/A13-core.png",
+        "audit/A13-result-1280.png",
+        "archer-focused/A13-1280-flight.png",
+        "audit/A13-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A12",
       "name": "귀환시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/A12-core.png",
-      "mobileVisibleCapture": null
+      "note": "가까운 표적 준비 → 외향 화살103 → 귀환 전환과 왼쪽 방향 귀환 화살110/누적213. 귀환 전환 직후에는 여전히 오른쪽을 향함.",
+      "coreCapture": "archer-focused/A12-1280-core.png",
+      "mobileVisibleCapture": "archer-focused/A12-360-core.png",
+      "reviewedFrames": [
+        "audit/A12-start.png",
+        "audit/A12-core.png",
+        "audit/A12-result-1280.png",
+        "archer-focused/A12-1280-outbound.png",
+        "archer-focused/A12-1280-returning.png",
+        "audit/A12-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A15",
       "name": "칠성추혼",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
-      "coreCapture": "audit/A15-core.png",
-      "mobileVisibleCapture": null
+      "note": "고각 발사 → 최고점에서 실제 자식 화살 묶음 → 분산 낙하로 두 표적 명중/후속 세 번째. 첫 분리 프레임은 묶쳐 보이므로 기존 착탄 프레임도 함께 근거로 사용.",
+      "coreCapture": "archer-focused/A15-1280-core.png",
+      "mobileVisibleCapture": "archer-focused/A15-360-core.png",
+      "reviewedFrames": [
+        "audit/A15-start.png",
+        "audit/A15-core.png",
+        "audit/A15-result-1280.png",
+        "archer-focused/A15-1280-split.png",
+        "audit/A15-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A05",
       "name": "격퇴시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "이격된 지상 표적 → 앞 적 밀림/뒤 적 충돌12 → 세 표적 군집과 추가 피해9.",
       "coreCapture": "audit/A05-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/A05-result-360.png",
+      "reviewedFrames": [
+        "audit/A05-start.png",
+        "audit/A05-core.png",
+        "audit/A05-result-1280.png",
+        "audit/A05-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A04",
       "name": "산개사",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "실제 박쥐 세 고도 → 부채꼴 다발과 두 비행 표적 명중 → 세 번째까지 피해. 지상 늑대를 공중 배치하지 않음.",
       "coreCapture": "audit/A04-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/A04-result-360.png",
+      "reviewedFrames": [
+        "audit/A04-start.png",
+        "audit/A04-core.png",
+        "audit/A04-result-1280.png",
+        "audit/A04-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A07",
       "name": "쇄암시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "발사 전 목재벽 → 목재 파괴·뒤 표적 명중52 → 목재 없음 유지.",
       "coreCapture": "audit/A07-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/A07-result-360.png",
+      "reviewedFrames": [
+        "audit/A07-start.png",
+        "audit/A07-core.png",
+        "audit/A07-result-1280.png",
+        "audit/A07-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A03",
       "name": "연환시",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "가까이 늘어선 접지 표적 → 102/73 연쇄 명중 → 세 표적 누적 피해228. 단일 정지화면만으로 이동 궤적 전체를 증명하지 않음.",
       "coreCapture": "audit/A03-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/A03-result-360.png",
+      "reviewedFrames": [
+        "audit/A03-start.png",
+        "audit/A03-core.png",
+        "audit/A03-result-1280.png",
+        "audit/A03-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "A08",
       "name": "철화",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "일반 비행 준비 → 첫 착탄180 → 파편 화살과 추가 피해274.",
       "coreCapture": "audit/A08-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/A08-result-360.png",
+      "reviewedFrames": [
+        "audit/A08-start.png",
+        "audit/A08-core.png",
+        "audit/A08-result-1280.png",
+        "audit/A08-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "AP04",
       "name": "궁세",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "먼 표적 → 같은 조건 미적용234/적용305 표시와 명중 → 차이 유지. 비교값은 별도 무학습 실엔진 결과, 대조 장면은 동시에 그리지 않음.",
       "coreCapture": "audit/AP04-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/AP04-result-360.png",
+      "reviewedFrames": [
+        "audit/AP04-start.png",
+        "audit/AP04-core.png",
+        "audit/AP04-result-1280.png",
+        "audit/AP04-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "AP02",
       "name": "급소 간파",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "실제 치명 확률11→43%, 배율1.98→2.62 → 치명672 → 체력 감소. 수치 비교는 같은 무학습 엔진의 계산 결과.",
       "coreCapture": "audit/AP02-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/AP02-result-360.png",
+      "reviewedFrames": [
+        "audit/AP02-start.png",
+        "audit/AP02-core.png",
+        "audit/AP02-result-1280.png",
+        "audit/AP02-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "AP01",
       "name": "연속 시위",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "한 발 전 후속0 → 첫 피해와 다음 화살 → 실제 후속4발/추가 피해.",
       "coreCapture": "audit/AP01-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/AP01-result-360.png",
+      "reviewedFrames": [
+        "audit/AP01-start.png",
+        "audit/AP01-core.png",
+        "audit/AP01-result-1280.png",
+        "audit/AP01-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "AP03",
       "name": "이탈보",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": true,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "사격 전 후퇴0 → 왼쪽 화살 상태 아이콘과 후퇴6.33 → 실제 위치가 왼쪽으로 크게 이동/후퇴335.",
       "coreCapture": "audit/AP03-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/AP03-result-360.png",
+      "reviewedFrames": [
+        "audit/AP03-start.png",
+        "audit/AP03-core.png",
+        "audit/AP03-result-1280.png",
+        "audit/AP03-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "AP05",
       "name": "살흔",
       "functionalAssertions": "passed",
-      "currentPixelSignoff": "unconfirmed",
+      "currentPixelSignoff": "confirmed",
       "historicalCaptureViewedWithoutCurrentSignoff": false,
-      "note": "최종 핵심 프레임의 직접 픽셀 시각 판정 미완료",
+      "note": "첫 사격 준비 → 다음 내 턴에 같은 적228 추가 피해 → 미적용362/적용456. 턴 번호 자체는 캡처에 표시되지 않아 전후 실행 스냅샷과 함께 해석.",
       "coreCapture": "audit/AP05-core.png",
-      "mobileVisibleCapture": null
+      "mobileVisibleCapture": "audit/AP05-result-360.png",
+      "reviewedFrames": [
+        "audit/AP05-start.png",
+        "audit/AP05-core.png",
+        "audit/AP05-result-1280.png",
+        "audit/AP05-result-360.png"
+      ],
+      "mobileLimit": "360px는 원래 캔버스 크기로 직접 확인. 장거리/최고점 시야에서는 배우·화살이 작고 밀집 피해 숫자는 겹칠 수 있음. 관찰줄은 줄바꿈되어 읽힘."
     },
     {
       "id": "S03",
