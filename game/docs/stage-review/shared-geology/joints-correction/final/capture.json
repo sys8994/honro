@@ -1,0 +1,126 @@
+{
+  "sha": "f46a6dc3a1af1efe54898b0826ccc6778c9b1cf5",
+  "renderSha256": "9fa33d7bbfb1b1c6ad9e8547e474b473b7b40095972c8d3e38a152c33b60553b",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "high-start",
+      "camera": {
+        "x": 1000,
+        "y": 800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "road-start",
+      "camera": {
+        "x": 700,
+        "y": 2780,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "road-exit",
+      "camera": {
+        "x": 3600,
+        "y": 2780,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-left",
+      "camera": {
+        "x": 350,
+        "y": 2720,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-right",
+      "camera": {
+        "x": 4050,
+        "y": 2730,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 2,
+      "view": "roost",
+      "camera": {
+        "x": 3500,
+        "y": 1200,
+        "scale": 0.7
+      }
+    },
+    {
+      "stage": 2,
+      "view": "wide-context",
+      "camera": {
+        "x": 2150,
+        "y": 2150,
+        "scale": 0.25
+      }
+    },
+    {
+      "stage": 2,
+      "view": "west-ledge-close",
+      "camera": {
+        "x": 1100,
+        "y": 1350,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 2,
+      "view": "east-ledge-close",
+      "camera": {
+        "x": 3500,
+        "y": 2200,
+        "scale": 0.85
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-hero",
+      "camera": {
+        "x": 290,
+        "y": 520,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.057352941176470586
+      }
+    },
+    {
+      "stage": 2,
+      "view": "landscape-road",
+      "camera": {
+        "x": 2150,
+        "y": 2790,
+        "scale": 0.25
+      }
+    }
+  ],
+  "errors": []
+}

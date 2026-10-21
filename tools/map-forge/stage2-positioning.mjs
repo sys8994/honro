@@ -1,6 +1,6 @@
 /** Keep the canyon/convoy encounter; reconnect its existing boughs to their supports. */
 export function applyStage2Positioning(project){
- const s=project.stages.find(s=>s.metadata?.stageId===2);if(!s)return project;
+ const s=project.stages.find(s=>s.metadata?.stageId===2);if(!s||s.initialState?.honroStage2LayeredRevision===1)return project;
  const smooth=ps=>ps.flatMap((p,i)=>Array.from({length:5},(_,j)=>{const a=ps[(i+ps.length-1)%ps.length],b=ps[(i+1)%ps.length],c=ps[(i+2)%ps.length],u=j/5;return Object.fromEntries(['x','y'].map(k=>[k,.5*((2*p[k])+(-a[k]+b[k])*u+(2*a[k]-5*p[k]+4*b[k]-c[k])*u*u+(-a[k]+3*p[k]-3*b[k]+c[k])*u*u*u)]));}));
  const branches={
   'left-tree-branch-upper':[[510,622],[650,650],[860,701],[1100,738],[1430,769],[1690,789],[1690,801],[1430,810],[1240,803],[1100,833],[970,814],[860,790],[740,761],[650,716],[520,683]],

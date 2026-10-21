@@ -1,0 +1,1377 @@
+[
+  {
+    "id": "rock_small",
+    "name": "작은 바위",
+    "bounds": {
+      "x": -33.522048120942145,
+      "y": -20.215323602240957,
+      "w": 65.87842372395093,
+      "h": 46.365294552916154
+    },
+    "heightM": 2,
+    "scale": [
+      0.4,
+      4.5
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "rock_large",
+    "name": "큰 바위",
+    "bounds": {
+      "x": -67.06506629600051,
+      "y": -47.128190864695696,
+      "w": 144.17296254216757,
+      "h": 99.56240805716273
+    },
+    "heightM": 2,
+    "scale": [
+      0.4,
+      4.5
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "rock_ledge",
+    "name": "평평한 암반",
+    "bounds": {
+      "x": -90,
+      "y": -32,
+      "w": 184,
+      "h": 56
+    },
+    "heightM": 2,
+    "scale": [
+      0.4,
+      4.5
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "env:cliff",
+    "name": "절벽 암면",
+    "bounds": {
+      "x": -200,
+      "y": -308,
+      "w": 405,
+      "h": 1008
+    },
+    "heightM": 20,
+    "scale": [
+      0.75,
+      1.25
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "builtin:rockPile",
+    "name": "rockPile",
+    "bounds": {
+      "x": -400,
+      "y": -650,
+      "w": 800,
+      "h": 650
+    },
+    "heightM": 4,
+    "scale": [
+      0.3,
+      5
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "builtin:ravinePine",
+    "name": "ravinePine",
+    "bounds": {
+      "x": -400,
+      "y": -650,
+      "w": 800,
+      "h": 650
+    },
+    "heightM": 9,
+    "scale": [
+      0.3,
+      5
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "builtin:cliffFace",
+    "name": "cliffFace",
+    "bounds": {
+      "x": -400,
+      "y": -650,
+      "w": 800,
+      "h": 650
+    },
+    "heightM": 10,
+    "scale": [
+      0.3,
+      5
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "builtin:cliffShrine",
+    "name": "cliffShrine",
+    "bounds": {
+      "x": -400,
+      "y": -650,
+      "w": 800,
+      "h": 650
+    },
+    "heightM": 10,
+    "scale": [
+      0.3,
+      5
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "env:rock",
+    "name": "능선 화강암",
+    "bounds": {
+      "x": -119,
+      "y": -140,
+      "w": 236,
+      "h": 140
+    },
+    "heightM": 3.5,
+    "scale": [
+      0.7,
+      1.3
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "env:waterfall",
+    "name": "절벽 물줄기",
+    "bounds": {
+      "x": -128,
+      "y": 0,
+      "w": 246,
+      "h": 540
+    },
+    "heightM": 18,
+    "scale": [
+      0.7,
+      1.3
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "mockup-granite-large",
+    "name": "화강암 · mockup-granite-large",
+    "bounds": {
+      "x": -270.3,
+      "y": -250,
+      "w": 550.8,
+      "h": 312.5
+    },
+    "heightM": 2,
+    "scale": [
+      0.4,
+      4.5
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "mockup-granite-small",
+    "name": "화강암 · mockup-granite-small",
+    "bounds": {
+      "x": -71.55,
+      "y": -130,
+      "w": 145.8,
+      "h": 162.5
+    },
+    "heightM": 2,
+    "scale": [
+      0.4,
+      4.5
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "mockup-granite-shelf",
+    "name": "화강암 · mockup-granite-shelf",
+    "bounds": {
+      "x": -190.8,
+      "y": -160,
+      "w": 388.80000000000007,
+      "h": 200
+    },
+    "heightM": 2,
+    "scale": [
+      0.4,
+      4.5
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "act2:cave-house",
+    "name": "암반 위 돌집",
+    "bounds": {
+      "x": -195,
+      "y": -240,
+      "w": 390,
+      "h": 263
+    },
+    "heightM": 3.5,
+    "scale": [
+      0.4,
+      4
+    ],
+    "vector": true,
+    "params": {}
+  },
+  {
+    "id": "act2:cave-house-lean",
+    "name": "암벽에 기댄 살림집",
+    "bounds": {
+      "x": -205,
+      "y": -220,
+      "w": 410,
+      "h": 242
+    },
+    "heightM": 3.2,
+    "scale": [
+      0.4,
+      4
+    ],
+    "vector": true,
+    "params": {}
+  },
+  {
+    "id": "act2:temple",
+    "name": "잠운사 암벽 법당",
+    "bounds": {
+      "x": -300,
+      "y": -310,
+      "w": 600,
+      "h": 342
+    },
+    "heightM": 5.2,
+    "scale": [
+      0.4,
+      4
+    ],
+    "vector": true,
+    "params": {}
+  },
+  {
+    "id": "act2:rock-column",
+    "name": "공동의 침식 암주",
+    "bounds": {
+      "x": -150,
+      "y": -755,
+      "w": 301,
+      "h": 755
+    },
+    "heightM": 10,
+    "scale": [
+      0.4,
+      4
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "act2:rock-bank",
+    "name": "암반 가장자리의 돌무더기",
+    "bounds": {
+      "x": -67.06506629600051,
+      "y": -47.128190864695696,
+      "w": 144.17296254216757,
+      "h": 99.56240805716273
+    },
+    "heightM": 2,
+    "scale": [
+      0.4,
+      4.5
+    ],
+    "vector": false,
+    "params": {}
+  },
+  {
+    "id": "act1-scene:valley-granite",
+    "name": "넓은 명암면의 계곡 화강암",
+    "bounds": {
+      "x": -580,
+      "y": -610,
+      "w": 1170,
+      "h": 632
+    },
+    "heightM": 9.8,
+    "scale": [
+      0.5,
+      2.4
+    ],
+    "vector": true,
+    "params": {}
+  },
+  {
+    "id": "stage11:ravine-rear-cliff-contact",
+    "name": "세 층 선반 뒤로 이어진 맞은편 절벽",
+    "bounds": {
+      "x": 3500,
+      "y": 4500,
+      "w": 9300,
+      "h": 6450
+    },
+    "heightM": 107.5,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 7
+    }
+  },
+  {
+    "id": "stage11:ravine-west",
+    "name": "능선을 굽어 오른 장수송",
+    "bounds": {
+      "x": -3650,
+      "y": -2465,
+      "w": 8150,
+      "h": 3800
+    },
+    "heightM": 63.333333333333336,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 34
+    }
+  },
+  {
+    "id": "stage11:ravine-saddle",
+    "name": "倒木의 뒤틀린 나이테와 횡단 줄기",
+    "bounds": {
+      "x": -20,
+      "y": -20,
+      "w": 2290,
+      "h": 666.7956294320147
+    },
+    "heightM": 11.113260490533579,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 20
+    }
+  },
+  {
+    "id": "stage11:ravine-saddle-rv-saddle-canopy-landing",
+    "name": "倒木의 뒤틀린 나이테와 횡단 줄기",
+    "bounds": {
+      "x": 2300,
+      "y": 370,
+      "w": 720,
+      "h": 382.26546497007257
+    },
+    "heightM": 6.371091082834543,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 10
+    }
+  },
+  {
+    "id": "stage11:ravine-saddle-rv-saddle-fallen-trunk",
+    "name": "倒木의 뒤틀린 나이테와 횡단 줄기",
+    "bounds": {
+      "x": -20,
+      "y": 120,
+      "w": 1640,
+      "h": 1955.8096747040108
+    },
+    "heightM": 32.59682791173351,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 20
+    }
+  },
+  {
+    "id": "stage11:ravine-saddle-rv-saddle-swept-bough",
+    "name": "倒木의 뒤틀린 나이테와 횡단 줄기",
+    "bounds": {
+      "x": -820,
+      "y": 975,
+      "w": 1540,
+      "h": 233.31373473201893
+    },
+    "heightM": 3.888562245533649,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 13
+    }
+  },
+  {
+    "id": "stage11:ravine-saddle-rv-saddle-broken-arm",
+    "name": "倒木의 뒤틀린 나이테와 횡단 줄기",
+    "bounds": {
+      "x": 750,
+      "y": 710,
+      "w": 990,
+      "h": 253.14688290604045
+    },
+    "heightM": 4.219114715100674,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 14
+    }
+  },
+  {
+    "id": "stage11:ravine-ravine",
+    "name": "아래로 길을 내어준 노송의 뿌리아치",
+    "bounds": {
+      "x": -870,
+      "y": -330,
+      "w": 1740,
+      "h": 381.2714453071985
+    },
+    "heightM": 6.354524088453308,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 22
+    }
+  },
+  {
+    "id": "stage11:ravine-ravine-rv-root-west-return",
+    "name": "아래로 길을 내어준 노송의 뿌리아치",
+    "bounds": {
+      "x": -4470,
+      "y": -1790,
+      "w": 1440,
+      "h": 1877.611852211372
+    },
+    "heightM": 31.293530870189535,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 22
+    }
+  },
+  {
+    "id": "stage11:ravine-ravine-rv-root-east-descent",
+    "name": "아래로 길을 내어준 노송의 뿌리아치",
+    "bounds": {
+      "x": 1030,
+      "y": -1270,
+      "w": 1540,
+      "h": 1107.6461181825762
+    },
+    "heightM": 18.46076863637627,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 18
+    }
+  },
+  {
+    "id": "stage11:ravine-east",
+    "name": "북녘 바람에 기운 벼랑송",
+    "bounds": {
+      "x": -4450,
+      "y": -1230,
+      "w": 9650,
+      "h": 3621.4285714285716
+    },
+    "heightM": 60.35714285714286,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 34
+    }
+  },
+  {
+    "id": "stage11:ravine-ritual-ledge-pine",
+    "name": "바위턱에 뿌리내린 비틀린 소나무",
+    "bounds": {
+      "x": -560,
+      "y": -440,
+      "w": 1110,
+      "h": 510
+    },
+    "heightM": 8.5,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 23
+    }
+  },
+  {
+    "id": "stage11:ravine-cliff-ledge-pine",
+    "name": "암벽 옆으로 처진 짧은 소나무",
+    "bounds": {
+      "x": -560,
+      "y": -440,
+      "w": 1110,
+      "h": 510
+    },
+    "heightM": 8.5,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 23
+    }
+  },
+  {
+    "id": "stage11:ravine-refuge-ledge-pine",
+    "name": "암벽 옆으로 처진 짧은 소나무",
+    "bounds": {
+      "x": -560,
+      "y": -440,
+      "w": 1110,
+      "h": 510
+    },
+    "heightM": 8.5,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 23
+    }
+  },
+  {
+    "id": "stage11:ravine-ritual-clearing",
+    "name": "서낭목과 낮은 돌무더기의 매듭 의식터",
+    "bounds": {
+      "x": -280,
+      "y": -370,
+      "w": 560,
+      "h": 430
+    },
+    "heightM": 7.166666666666667,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 26
+    }
+  },
+  {
+    "id": "stage11:ravine-refuge-bundle",
+    "name": "주민이 내려둔 광주리와 접은 짐",
+    "bounds": {
+      "x": -210,
+      "y": -143,
+      "w": 430,
+      "h": 190
+    },
+    "heightM": 3.1666666666666665,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 8
+    }
+  },
+  {
+    "id": "stage11:ravine-shoulder-rv-ritual-reflection-ledge",
+    "name": "실제 사격턱에 붙은 짧은 암석 어깨",
+    "bounds": {
+      "x": 6995,
+      "y": 6590,
+      "w": 650,
+      "h": 94.84000000000015
+    },
+    "heightM": 1.580666666666669,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 7
+    }
+  },
+  {
+    "id": "stage11:ravine-shoulder-rv-east-upper-fire-bay",
+    "name": "실제 사격턱에 붙은 짧은 암석 어깨",
+    "bounds": {
+      "x": 11275,
+      "y": 4872.142857142857,
+      "w": 430,
+      "h": 197.85714285714312
+    },
+    "heightM": 3.297619047619052,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 7
+    }
+  },
+  {
+    "id": "stage17:worksite-rear-cavern",
+    "name": "실제 천장과 바닥 사이로 이어지는 작업장 뒤 암벽",
+    "bounds": {
+      "x": -20,
+      "y": 1980,
+      "w": 11240,
+      "h": 4330
+    },
+    "heightM": 72.16666666666667,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 11
+    }
+  },
+  {
+    "id": "stage17:worksite-west-gallery",
+    "name": "인양틀과 암반에 걸어 맞춘 상부 작업 선반",
+    "bounds": {
+      "x": 4650,
+      "y": 3200,
+      "w": 1260,
+      "h": 950
+    },
+    "heightM": 15.833333333333334,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 19
+    }
+  },
+  {
+    "id": "stage17:worksite-east-gallery",
+    "name": "인양틀과 암반에 걸어 맞춘 상부 작업 선반",
+    "bounds": {
+      "x": 4650,
+      "y": 3670,
+      "w": 2290,
+      "h": 950
+    },
+    "heightM": 15.833333333333334,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 19
+    }
+  },
+  {
+    "id": "stage16:temple-rear-cavern-courts",
+    "name": "암벽 안쪽 세 깊이로 물러난 잠운사 전각과 돌계단",
+    "bounds": {
+      "x": -6025,
+      "y": 1165,
+      "w": 23050,
+      "h": 4855
+    },
+    "heightM": 80.91666666666667,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 3,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 29,
+      "depthLevels": 3,
+      "coverageSource": "full-authored-terrain-domain"
+    }
+  },
+  {
+    "id": "stage16:temple-folded-west-cloister",
+    "name": "높은 암반에 기대어 두 층으로 접힌 서회랑",
+    "bounds": {
+      "x": 2875,
+      "y": 3080,
+      "w": 1710,
+      "h": 2526.333333333333
+    },
+    "heightM": 42.10555555555555,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 3,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 99
+    }
+  },
+  {
+    "id": "stage16:temple-lower-prayer-ledge",
+    "name": "기단 아래 암반에 맞춘 낮은 기도굴 선반",
+    "bounds": {
+      "x": 4615,
+      "y": 5635,
+      "w": 680,
+      "h": 322.8888888888887
+    },
+    "heightM": 5.381481481481478,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 3,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 16
+    }
+  },
+  {
+    "id": "stage16:temple-stone-buddha-cliff-colossus",
+    "name": "법당 밖 암벽에 반쯤 묻힌 잠운사 거대 석불",
+    "bounds": {
+      "x": -1530,
+      "y": -4313.222,
+      "w": 3680,
+      "h": 4378.222
+    },
+    "heightM": 72.97036666666666,
+    "scale": [
+      1,
+      1
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "nodeCount": 79,
+      "collisionSource": "none",
+      "referenceStyle": "Korean-colossal-stone-and-rock-carved-Buddhist-sculpture"
+    }
+  },
+  {
+    "id": "stage18:bell-rear-cavern",
+    "name": "묵종 뒤의 깊은 공동과 비대칭 암벽",
+    "bounds": {
+      "x": -7000,
+      "y": -6000,
+      "w": 28000,
+      "h": 21000
+    },
+    "heightM": 350,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 3,
+      "collisionSource": "none",
+      "nodeCount": 16,
+      "rearOnly": true
+    }
+  },
+  {
+    "id": "stage18:bell-rear-rock-roots",
+    "name": "실제 돌마당 뒤에서 공동의 천장과 바닥에 이어지는 암맥",
+    "bounds": {
+      "x": 900,
+      "y": 750,
+      "w": 12600,
+      "h": 7550
+    },
+    "heightM": 125.83333333333333,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 3,
+      "collisionSource": "none",
+      "nodeCount": 13,
+      "rearOnly": true
+    }
+  },
+  {
+    "id": "stage18:bell-rear-stone-corbels",
+    "name": "전방 귀환길 뒤로 물러난 암벽 받침",
+    "bounds": {
+      "x": 4900,
+      "y": 6540,
+      "w": 4780,
+      "h": 1200
+    },
+    "heightM": 20,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 3,
+      "collisionSource": "none",
+      "nodeCount": 5,
+      "rearOnly": true
+    }
+  },
+  {
+    "id": "stage30:ferry-map-stone",
+    "name": "운송 기록을 편 닳은 화강암",
+    "bounds": {
+      "x": -201,
+      "y": -220,
+      "w": 402,
+      "h": 239
+    },
+    "heightM": 3.9833333333333334,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "authored-stage-terrain",
+      "nodeCount": 7
+    }
+  },
+  {
+    "id": "stage30:ferry-recessed-grounded-supports",
+    "name": "실제 여울·강둑에 이어지는 후퇴한 선창 암반",
+    "bounds": {
+      "x": 2400,
+      "y": 4250,
+      "w": 6500,
+      "h": 2350
+    },
+    "heightM": 39.166666666666664,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "collisionSource": "none",
+      "nodeCount": 11,
+      "rearOnly": true,
+      "supports": [
+        {
+          "terrainId": "sf-west-ford",
+          "x": 2670,
+          "y": 6246,
+          "sourceTerrainId": "sf-granite-cape",
+          "kind": "recessed-bank",
+          "rearOnly": true
+        },
+        {
+          "terrainId": "sf-west-ford",
+          "x": 5720,
+          "y": 6122.16,
+          "sourceTerrainId": "sf-granite-cape",
+          "kind": "recessed-bank",
+          "rearOnly": true
+        },
+        {
+          "terrainId": "sf-west-ford",
+          "x": 4780,
+          "y": 6185,
+          "sourceTerrainId": "sf-ferry-court",
+          "kind": "recessed-natural-quay-foot",
+          "rearOnly": true
+        },
+        {
+          "terrainId": "sf-west-ford",
+          "x": 6150,
+          "y": 6266.96,
+          "sourceTerrainId": "sf-ferry-court",
+          "kind": "recessed-natural-quay-foot",
+          "rearOnly": true
+        },
+        {
+          "terrainId": "sf-east-recovery-shore",
+          "x": 7330,
+          "y": 6440,
+          "sourceTerrainId": "sf-bank-inner",
+          "kind": "recessed-east-bank",
+          "rearOnly": true
+        },
+        {
+          "terrainId": "sf-east-recovery-shore",
+          "x": 7910,
+          "y": 5970,
+          "sourceTerrainId": "sf-bank-inner",
+          "kind": "recessed-east-bank",
+          "rearOnly": true
+        },
+        {
+          "terrainId": "sf-east-recovery-shore",
+          "x": 8430,
+          "y": 5512.22,
+          "sourceTerrainId": "sf-bank-inner",
+          "kind": "recessed-east-bank",
+          "rearOnly": true
+        }
+      ],
+      "noWalkRim": true,
+      "depthRelationship": "recessed-behind-all-authored-L1-solids"
+    }
+  },
+  {
+    "id": "stage12:quarry-recessed-mother-rock",
+    "name": "보행면 뒤에서 실제 기반에 닿는 채석장 모암",
+    "bounds": {
+      "x": 3200,
+      "y": 3100,
+      "w": 7900,
+      "h": 3700
+    },
+    "heightM": 61.666666666666664,
+    "scale": [
+      0.35,
+      4
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "nodeCount": 11,
+      "collisionSource": "none",
+      "rearOnly": true,
+      "noWalkRim": true,
+      "supports": [
+        {
+          "terrainId": "sq-lower-ground",
+          "x": 3490,
+          "y": 4799.714285714285
+        },
+        {
+          "terrainId": "sq-lower-ground",
+          "x": 4350,
+          "y": 5028.867924528302
+        },
+        {
+          "terrainId": "sq-lower-ground",
+          "x": 5360,
+          "y": 4924.285714285715
+        },
+        {
+          "terrainId": "sq-lower-ground",
+          "x": 5650,
+          "y": 4882.857142857143
+        },
+        {
+          "terrainId": "sq-lower-ground",
+          "x": 7030,
+          "y": 4854.8387096774195
+        },
+        {
+          "terrainId": "sq-lower-ground",
+          "x": 8660,
+          "y": 6014.814814814815
+        },
+        {
+          "terrainId": "sq-lower-ground",
+          "x": 9440,
+          "y": 6090.722891566265
+        },
+        {
+          "terrainId": "sq-lower-ground",
+          "x": 10550,
+          "y": 6312.272727272727
+        }
+      ],
+      "depthRelationship": "recessed-behind-real-solid-and-lower-ground"
+    }
+  },
+  {
+    "id": "stage14:vertical-household-rock-upper",
+    "name": "집터 뒤로 물러선 비대칭 자연 암벽 upper",
+    "bounds": {
+      "x": -444.6,
+      "y": -538,
+      "w": 889.1999999999999,
+      "h": 544
+    },
+    "heightM": 9.066666666666666,
+    "scale": [
+      0.35,
+      2
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "nodeCount": 5,
+      "rearOnly": true,
+      "collisionSource": "none",
+      "footXs": [
+        -390,
+        390
+      ],
+      "kind": "household-rock",
+      "noWalkRim": true
+    }
+  },
+  {
+    "id": "stage14:vertical-household-rock-market",
+    "name": "집터 뒤로 물러선 비대칭 자연 암벽 market",
+    "bounds": {
+      "x": -416.1,
+      "y": -583,
+      "w": 832.1999999999999,
+      "h": 589
+    },
+    "heightM": 9.816666666666666,
+    "scale": [
+      0.35,
+      2
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "nodeCount": 5,
+      "rearOnly": true,
+      "collisionSource": "none",
+      "footXs": [
+        -365,
+        365
+      ],
+      "kind": "household-rock",
+      "noWalkRim": true
+    }
+  },
+  {
+    "id": "stage14:vertical-household-rock-family",
+    "name": "집터 뒤로 물러선 비대칭 자연 암벽 family",
+    "bounds": {
+      "x": -644.1,
+      "y": -438,
+      "w": 1288.1999999999998,
+      "h": 444
+    },
+    "heightM": 7.4,
+    "scale": [
+      0.35,
+      2
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "nodeCount": 5,
+      "rearOnly": true,
+      "collisionSource": "none",
+      "footXs": [
+        -565,
+        565
+      ],
+      "kind": "household-rock",
+      "noWalkRim": true
+    }
+  },
+  {
+    "id": "stage14:vertical-household-rock-river",
+    "name": "집터 뒤로 물러선 비대칭 자연 암벽 river",
+    "bounds": {
+      "x": -729.6,
+      "y": -398,
+      "w": 1459.1999999999998,
+      "h": 404
+    },
+    "heightM": 6.733333333333333,
+    "scale": [
+      0.35,
+      2
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "nodeCount": 5,
+      "rearOnly": true,
+      "collisionSource": "none",
+      "footXs": [
+        -640,
+        640
+      ],
+      "kind": "household-rock",
+      "noWalkRim": true
+    }
+  },
+  {
+    "id": "stage14:vertical-home-earthen-wing",
+    "name": "암벽 마당에 붙은 작은 흙집 옆칸",
+    "bounds": {
+      "x": -151,
+      "y": -194,
+      "w": 308,
+      "h": 199
+    },
+    "heightM": 3.316666666666667,
+    "scale": [
+      0.35,
+      2
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "nodeCount": 30,
+      "rearOnly": true,
+      "collisionSource": "none",
+      "footXs": [
+        -120,
+        120
+      ],
+      "kind": "home",
+      "doorHeight": 96,
+      "lightAnchor": {
+        "x": 50,
+        "y": -69
+      },
+      "silhouette": "asymmetric-short-thatched-wing"
+    }
+  },
+  {
+    "id": "stage14:vertical-market-cove-room",
+    "name": "장터 실제 절벽 뒤 낮은 어깨와 깊은 집굴",
+    "bounds": {
+      "x": -1250,
+      "y": -1250,
+      "w": 2530,
+      "h": 2530
+    },
+    "heightM": 42.166666666666664,
+    "scale": [
+      0.35,
+      2
+    ],
+    "vector": true,
+    "params": {
+      "artRevision": 1,
+      "nodeCount": 11,
+      "rearOnly": true,
+      "collisionSource": "none",
+      "footXs": [],
+      "kind": "market-cove-room",
+      "noWalkRim": true,
+      "groundedSupports": [
+        {
+          "terrainId": "v14-market",
+          "x": 4380,
+          "y": 3850
+        },
+        {
+          "terrainId": "v14-market",
+          "x": 4840,
+          "y": 3850
+        },
+        {
+          "terrainId": "v14-market",
+          "x": 5025,
+          "y": 3850
+        }
+      ],
+      "terrainAttachments": [
+        {
+          "terrainId": "v14-market",
+          "points": [
+            {
+              "x": 5080,
+              "y": 3945
+            },
+            {
+              "x": 4970,
+              "y": 4070
+            },
+            {
+              "x": 5060,
+              "y": 4280
+            },
+            {
+              "x": 4820,
+              "y": 4390
+            },
+            {
+              "x": 4630,
+              "y": 4350
+            },
+            {
+              "x": 4500,
+              "y": 4440
+            },
+            {
+              "x": 4360,
+              "y": 4280
+            },
+            {
+              "x": 4320,
+              "y": 4080
+            },
+            {
+              "x": 4265,
+              "y": 4010
+            }
+          ],
+          "contact": "Recessed sidewall at actual solid underside; no decorative walk rim"
+        },
+        {
+          "terrainId": "v14-east-steps",
+          "points": [
+            {
+              "x": 5845,
+              "y": 4715
+            },
+            {
+              "x": 5760,
+              "y": 4780
+            },
+            {
+              "x": 5640,
+              "y": 4740
+            },
+            {
+              "x": 5550,
+              "y": 4795
+            },
+            {
+              "x": 5420,
+              "y": 4680
+            },
+            {
+              "x": 5340,
+              "y": 4590
+            },
+            {
+              "x": 5280,
+              "y": 4420
+            },
+            {
+              "x": 5200,
+              "y": 4320
+            }
+          ],
+          "contact": "Recessed sidewall at actual solid underside; no decorative walk rim"
+        }
+      ],
+      "referencePrinciple": "Stage11 attached rock mass; Stage12 recessed mother rock; close shoulder remains subordinate to actual rock face"
+    }
+  },
+  {
+    "id": "family24:terrain-material",
+    "name": "후원 흙과 암반의 큰 명암면",
+    "bounds": {
+      "x": 0,
+      "y": 2260,
+      "w": 7000,
+      "h": 1040
+    },
+    "heightM": 17.333333333333332,
+    "scale": [
+      0.35,
+      2
+    ],
+    "vector": true,
+    "params": {
+      "collisionSource": "drawn-structural-polygons"
+    }
+  }
+]

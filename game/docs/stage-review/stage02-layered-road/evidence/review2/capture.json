@@ -1,0 +1,81 @@
+{
+  "sha": "ee73add57bc27357abdbe2d1c606c9017e393351",
+  "renderSha256": "e501b1c18edb459e863b1f7f1f0035beb2c77b3633ea373b477ed3b90a88dcfb",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/build.mjs\n M shared/data/campaign.json\n M shared/runtime/campaign-map-revision.js\n M shared/runtime/stage2-airborne.js\n M tools/environment/act1-scene-composition.mjs\n M tools/map-forge/stage2-positioning.mjs\n D web/entries/game.1c3db6cd1d65fc74.js\n D web/entries/game.81d586afc6b47595.html\n D web/entries/game.870006a7a36136d6.html\n D web/entries/game.fcb8097622458b1e.js\n D web/entries/workshop.50a939226ec0cccf.js\n D web/entries/workshop.a4c36c37057214d8.js\n M web/manifest.json\n D web/runtime/ordered-common-12.104a471b2c9710b2.js\n D web/runtime/ordered-common-12.b15a0db406c8a678.js\n?? game/docs/stage-review/stage02-layered-road/\n?? shared/runtime/stage2-layered-road-art.js\n?? shared/runtime/stage2-layered-road.js\n?? tests/stage2-layered-road.mjs\n?? tools/map-forge/stage2-layered-road.mjs\n?? tools/testing/stage2-layered-browser.py\n?? tools/testing/stage2-layered-capture.py\n?? tools/testing/stage2-layered-controller.js\n?? web/data/campaign-shared.48bcb7a2fde6d487.json\n?? web/data/campaign.58fffe67d649a2fb.json\n?? web/data/campaign.63901b957bc4e1a7.json\n?? web/data/chapter-01-assets.a830202480cdf971.json\n?? web/data/chapter-02-assets.37517e5f3dc66819.json\n?? web/data/chapter-02.5c867e082ff98086.json\n?? web/data/chapter-02.9ee85faf28b9502a.json\n?? web/data/chapter-06-assets.b72a604b61a9973e.json\n?? web/entries/game.1452c1306168e313.html\n?? web/entries/game.357f7fee245b614a.html\n?? web/entries/game.7af1665b1f66c7b8.js\n?? web/entries/game.b843f933935c50a1.js\n?? web/entries/workshop.ae4b63ed2a4f5461.js\n?? web/entries/workshop.fa59fdda117f7f98.js\n?? web/runtime/campaign.73a0e08f08a1ba33.js\n?? web/runtime/campaign.8035bc593e2f22fc.js\n?? web/runtime/ordered-common-12.344bd621e09bee34.js\n?? web/runtime/ordered-common-12.8f49d89f260065af.js\n?? web/runtime/ordered-common-13.46e78f17db464e80.js\n?? web/runtime/ordered-common-4.7104ac9da4a1085e.js\n?? web/runtime/ordered-common-7.6f6f4022a3ebd47b.js\n?? web/runtime/ordered-common-8.39a32dd1fdbd7597.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "normal",
+      "camera": {
+        "x": 1100,
+        "y": 850,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "zoom",
+      "camera": {
+        "x": 1100,
+        "y": 850,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 2,
+      "view": "maxout",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-entry",
+      "camera": {
+        "x": 290,
+        "y": 450,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-upper",
+      "camera": {
+        "x": 1100,
+        "y": 900,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-convoy",
+      "camera": {
+        "x": 2300,
+        "y": 2750,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 2,
+      "view": "landscape-upper",
+      "camera": {
+        "x": 1000,
+        "y": 900,
+        "scale": 0.35
+      }
+    },
+    {
+      "stage": 2,
+      "view": "landscape-convoy",
+      "camera": {
+        "x": 2400,
+        "y": 2780,
+        "scale": 0.35
+      }
+    }
+  ],
+  "errors": []
+}

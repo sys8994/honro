@@ -25,7 +25,7 @@ function prepareTerrain(t,b){let q=terrainCache.get(t);if(q?.version===b.sceneVe
  for(const [a,z]of edges)caps.push(poly([[a.x,a.y],[z.x,z.y],[z.x,z.y+24],[a.x,a.y+24]]));
  // The canyon is a real tall collision mass. Four unequal fracture planes
  // span its entire face instead of ending in a shallow band at the crest.
- if(b.honroStage===2&&/^(left-high-ground|right-cliff-ground)$/.test(t.id)){
+ if(t.surfaceKind==='cliff'||b.honroStage===2&&/^(left-high-ground|right-cliff-ground)$/.test(t.id)){
   const mirror=t.id==='right-cliff-ground',map=ps=>poly(ps.map(([u,v])=>[t.x+(mirror?1-u:u)*t.w,t.y+v*t.h]));
   for(const ps of [ [[.05,.01],[.45,.02],[.35,.24],[.23,.37],[.26,.67],[.07,.91]], [[.45,.02],[.70,.11],[.65,.35],[.42,.52],[.31,.82],[.22,.94],[.26,.67],[.23,.37],[.35,.24]], [[.71,.11],[.94,.23],[.90,.54],[.75,.63],[.68,.94],[.36,.98],[.47,.68],[.66,.43]], [[.06,.45],[.22,.39],[.26,.67],[.16,.92],[.03,.99]] ])cliffPlanes.push(map(ps));
  }
@@ -121,7 +121,7 @@ function ferryDeck(c,t,q){
  if(!roof){c.fillStyle='#343c30';c.fill(q.ferryBeam);}c.fillStyle=roof?'#687b79':'#a49a78';c.fill(q.ferryCap);c.strokeStyle=roof?'#182c30':'#242e23';c.lineWidth=3;for(const p of q.ferryJoints)c.stroke(p);
  c.strokeStyle=roof?'#9aaba3':'#b7ac84';c.lineWidth=2.5;c.stroke(q.rim);c.restore();
 }
-const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===7&&b.honroMap?.positioning&&t.mat==='wood'&&!t.honroElementCollision){canyonBough(c,t,prepareTerrain(t,b),true);return;}if(b?.honroStage===6&&b.honroMap?.positioning&&t.surfaceKind==='bridgeDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===4&&b.honroMap?.positioning&&t.surfaceKind==='defenseDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===3&&b.honroMap?.positioning&&(t.id==='warehouse-roof'||t.mat==='wood'&&/^(dock-|cargo-step-)/.test(t.id))){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);const q=prepareTerrain(t,b);c.save();
+function drawTerrainMaterial(c,t,b,{walkRim=true}={}){const q=prepareTerrain(t,b);c.save();
  if(guardianBranch(b,t)){
   // Use the authored collision silhouette and bright walkable top. The bark
   // palette never changes resistance or the one-way projectile passage rule.
@@ -135,8 +135,9 @@ const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.hon
  for(const [i,f]of q.planes.entries()){c.fillStyle=q.wood?'#a5a27e1e':i%2?'#a2b0b71e':'#b0b9ba23';c.fill(f.lit);c.fillStyle=q.wood?'#16292369':'#10243155';c.fill(f.shadow);c.strokeStyle=q.wood?'#20352b50':'#172c3655';c.lineWidth=5;c.stroke(f.contact);}
  if(b.honroStage===1&&b.honroMap?.positioning&&['forest-floor','ridge-east-extension'].includes(t.id))for(const f of stage1BedPaths){c.fillStyle=f.color.length===7?A.gradient(c,0,f.top,0,f.bottom,[[0,f.color],[.65,f.color],[1,'#344b43']]):f.color;c.fill(f.path);}
  if(b.honroStage===4&&b.honroMap?.positioning&&t.id==='gate-basin')for(const f of stage4BedPaths){c.fillStyle=f.color;c.fill(f.path);}
- for(const cap of q.caps){c.fillStyle=q.wood?'#bdad781d':t.mat==='earth'?'#87927637':'#b9c2bc24';c.fill(cap);}c.strokeStyle='#1a2b2960';c.lineWidth=3;for(const j of q.joints)c.stroke(j);
- c.strokeStyle=q.wood?'#b7b298':/^climb-/.test(t.id)?'#95aaa3':'#b4c6c1';c.lineWidth=/^climb-/.test(t.id)?2:3.5;c.lineJoin='round';c.stroke(q.rim);c.restore();};
+ if(walkRim)for(const cap of q.caps){c.fillStyle=q.wood?'#bdad781d':t.mat==='earth'?'#87927637':'#b9c2bc24';c.fill(cap);}c.strokeStyle='#1a2b2960';c.lineWidth=3;for(const j of q.joints)c.stroke(j);
+ if(walkRim){c.strokeStyle=q.wood?'#b7b298':/^climb-/.test(t.id)?'#95aaa3':'#b4c6c1';c.lineWidth=/^climb-/.test(t.id)?2:3.5;c.lineJoin='round';c.stroke(q.rim);}c.restore();}
+const oldTerrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(b?.honroStage===7&&b.honroMap?.positioning&&t.mat==='wood'&&!t.honroElementCollision){canyonBough(c,t,prepareTerrain(t,b),true);return;}if(b?.honroStage===6&&b.honroMap?.positioning&&t.surfaceKind==='bridgeDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===4&&b.honroMap?.positioning&&t.surfaceKind==='defenseDeck'){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===3&&b.honroMap?.positioning&&(t.id==='warehouse-roof'||t.mat==='wood'&&/^(dock-|cargo-step-)/.test(t.id))){ferryDeck(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===2&&b.honroMap?.positioning&&t.surfaceKind==='branch'){canyonBough(c,t,prepareTerrain(t,b));return;}if(b?.honroStage===1&&b.honroMap?.positioning&&t.surfaceKind==='branch'){livingBough(c,t,prepareTerrain(t,b));return;}if(!active(b)||t.honroElementCollision||t.honroSeal||t.mat==='crystal'||t.surfaceKind==='branch'||!t.indestructible)return oldTerrain.call(this,c,t);return drawTerrainMaterial(c,t,b);};
 const FORMS={
  shoulder:{outline:[[-.66,.16],[-.61,-.17],[-.47,-.31],[-.30,-.35],[-.29,-.64],[-.14,-.76],[.08,-.78],[.25,-.62],[.31,-.35],[.48,-.27],[.64,.16]],faces:[[[ -.29,-.64],[-.14,-.76],[.02,-.73],[.09,-.52],[-.11,-.21],[-.29,-.30]],[[.09,-.52],[.25,-.62],[.31,-.35],[.48,-.27],[.58,.12],[.12,.15],[-.03,-.1]],[[-.6,-.15],[-.46,-.3],[-.29,-.30],[-.11,-.21],[-.24,.15],[-.57,.15]]]},
  buttress:{outline:[[-.61,.15],[-.58,-.27],[-.47,-.35],[-.40,-.65],[-.25,-.78],[-.20,-.93],[.03,-1],[.21,-.94],[.34,-.77],[.32,-.42],[.48,-.29],[.59,.15]],faces:[[[ -.20,-.93],[.03,-1],[.15,-.86],[.08,-.55],[-.05,-.39],[-.2,-.1],[-.31,-.21],[-.31,-.66]],[[.15,-.86],[.21,-.94],[.34,-.77],[.32,-.42],[.21,-.32],[.08,-.55]],[[-.57,-.23],[-.40,-.65],[-.25,-.78],[-.31,-.21],[-.22,.15],[-.55,.15]],[[.01,-.4],[.21,-.32],[.48,-.29],[.59,.15],[.16,.15],[.14,-.09]]]}
@@ -242,5 +243,5 @@ const oldBackground=S.background;S.background=function(c,w,h,b){oldBackground.ca
 };
 const oldLayer=S._landmarkLayer;S._landmarkLayer=function(c,landmarks,layer){oldLayer.call(this,c,landmarks,layer);if(layer==='structural-back'&&active(this.battle))supports(c,this.battle);};
 const oldLandmark=S.landmark;S.landmark=function(c,l){if(active(this.battle)){const q=prepareScene(this.battle);if(q.replaced.has(l.id))return;const record=q.scenery.get(l.id);if(record&&!this.battle.terrain.some(t=>t.id===record.supportId&&!t.broken))return;}oldLandmark.call(this,c,l);if(active(this.battle)&&this.battle.honroStage===10&&l.id==='a1-scene-10-guardian-tree')drawGuardianOfferings(c,l);};
-G.HonroAct1SpatialArt={active,prepareTerrain,prepareScene,groundGradient,supports,prepareGuardianOfferings,drawGuardianOfferings};
+G.HonroAct1SpatialArt={active,drawTerrainMaterial,prepareTerrain,prepareScene,groundGradient,supports,prepareGuardianOfferings,drawGuardianOfferings};
 })(globalThis);

@@ -1,0 +1,81 @@
+{
+  "sha": "0f2635e8d470e48c82719aa99e5384df0196dbed",
+  "renderSha256": "e501b1c18edb459e863b1f7f1f0035beb2c77b3633ea373b477ed3b90a88dcfb",
+  "workingTree": "?? game/docs/stage-review/stage02-layered-road/evidence/\n?? tests/stage2-layered-save.mjs\n?? tools/testing/stage2-layered-navigation.py\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "high-start",
+      "camera": {
+        "x": 1000,
+        "y": 800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "road-start",
+      "camera": {
+        "x": 700,
+        "y": 2780,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "road-exit",
+      "camera": {
+        "x": 3600,
+        "y": 2780,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-left",
+      "camera": {
+        "x": 350,
+        "y": 2720,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-right",
+      "camera": {
+        "x": 4050,
+        "y": 2730,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 2,
+      "view": "roost",
+      "camera": {
+        "x": 3500,
+        "y": 1200,
+        "scale": 0.7
+      }
+    },
+    {
+      "stage": 2,
+      "view": "wide-context",
+      "camera": {
+        "x": 2150,
+        "y": 2150,
+        "scale": 0.25
+      }
+    }
+  ],
+  "errors": []
+}

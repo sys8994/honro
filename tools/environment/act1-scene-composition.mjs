@@ -24,7 +24,7 @@ function place(st,key,assetId,x,y,scale=1,supportId){
  const hit=surfaceAt(st,x,y,supportId),id=PREFIX+st.metadata.stageId+'-'+key;
  const rooted=assetId==='rooted-pine'||assetId==='rooted-sacred',reach=(assetId==='rooted-sacred'?89:67)*scale,rootContacts=rooted?[-reach,0,reach].map(dx=>surfaceAt(st,x+dx,hit.y,supportId)):[];
  const footOffset=rooted?Math.max(0,...rootContacts.map(p=>p.y-hit.y))+5*scale:0;
- const e={id,assetId:'act1-scene:'+assetId,x,y:hit.y+footOffset,scale,rotation:0,snap:false,layer:'back',depthLayer:'L1'};st.elements.push(e);st.design.act1Scene.scenery.push({id,assetId:e.assetId,supportId:hit.supportId,x,y:e.y,scale,footOffset,rootContacts,visualOnly:true});return e;
+ const e={id,assetId:assetId.includes(':')?assetId:'act1-scene:'+assetId,x,y:hit.y+footOffset,scale,rotation:0,snap:false,layer:'back',depthLayer:'L1'};st.elements.push(e);st.design.act1Scene.scenery.push({id,assetId:e.assetId,supportId:hit.supportId,x,y:e.y,scale,footOffset,rootContacts,visualOnly:true});return e;
 }
 function rock(st,key,x,y,w,h,supportId,kind='shoulder'){const hit=surfaceAt(st,x,y,supportId);st.design.act1Scene.rocks.push({id:key,x,y:hit.y,width:w,height:h,supportId:hit.supportId,kind,visualOnly:true});}
 function suppress(st,predicate){st.design.act1Scene.replaced.push(...st.elements.filter(e=>!e.id.startsWith(PREFIX)&&predicate(e)).map(e=>e.id));}
@@ -47,6 +47,40 @@ export async function applyAct1SceneComposition(project){
  applyGuardianBranches(project);
  await applyAct1VectorArt(project);
  for(const st of project.stages){const n=st.metadata?.stageId;if(n<1||n>10)continue;
+  if(n===2&&st.initialState?.honroStage2LayeredRevision===1){
+   st.elements=st.elements.filter(e=>!e.id.startsWith(PREFIX));
+   st.design.act1Scene={...st.design.act1Scene,version:1,replaced:['left-pine-upper','left-pine-lower','right-pine'],scenery:[],rocks:[],lights:[],viewpoints:[]};
+   place(st,'upper-rooted-pine','rooted-pine',420,600,.92,'left-high-ground');
+   place(st,'middle-rooted-pine','rooted-pine',1180,1260,.68,'left-descent-stone-high');
+   place(st,'east-rooted-pine','rooted-pine',3950,610,1.15,'right-cliff-ground');
+   place(st,'west-rock-foot','env:rock',650,2860,1.1,'canyon-ground');
+   place(st,'valley-rock-foot','env:rock',1430,2860,.7,'canyon-ground');
+   place(st,'east-rock-foot','env:rock',3950,2860,.85,'canyon-ground');
+   st.design.geologyComposition={version:4,rearDatums:[
+    {id:'west-outer-foot',x:-930,y:2830},{id:'east-outer-foot',x:5700,y:2830},
+    {id:'west-distant-foot',x:-2770,y:2830},{id:'east-distant-foot',x:7420,y:2830}
+   ],instances:[
+    {id:'geology-west-distant',assetId:'geology:granite-vertical',scale:1.04,support:{datumId:'west-distant-foot'}},
+    {id:'geology-east-distant',assetId:'geology:granite-vertical-cleft',scale:1.1,support:{datumId:'east-distant-foot'}},
+    {id:'geology-west-outer',assetId:'geology:granite-vertical-cleft',scale:1.1,support:{datumId:'west-outer-foot'}},
+    {id:'geology-east-outer',assetId:'geology:granite-vertical',scale:1.06,support:{datumId:'east-outer-foot'}},
+    {id:'geology-west-outer-foot',assetId:'geology:granite-foundation',scale:1,support:{datumId:'west-outer-foot'}},
+    {id:'geology-east-outer-foot',assetId:'geology:granite-foundation',scale:1,support:{datumId:'east-outer-foot'}},
+    {id:'geology-west-ridge',assetId:'geology:granite-vertical',scale:1,support:{terrainId:'canyon-ground',at:.15}},
+    {id:'geology-east-ridge',assetId:'geology:granite-vertical-cleft',scale:1.04,support:{terrainId:'canyon-ground',at:.95}},
+    {id:'geology-west-foot',assetId:'geology:granite-foundation',scale:1,support:{terrainId:'canyon-ground',at:.16}},
+    {id:'geology-east-foot',assetId:'geology:granite-foundation',scale:.9,support:{terrainId:'canyon-ground',at:.94}},
+    ...[
+     ['west-crown','left-high-ground',.5,1],['west-upper','left-descent-stone-high',.45,.8],
+     ['west-middle','left-descent-stone-mid',.5,.85],['west-lower','left-descent-stone-low',.5,.7],
+     ['east-crown','right-cliff-ground',.5,1],['east-middle','right-descent-stone-mid',.5,.85],
+     ['east-lower','right-descent-stone-low',.5,.78]
+    ].map(([id,terrainId,at,scale])=>({id:'geology-'+id,assetId:'geology:granite-ledge-neck',scale,socket:'ledge-seat',surfaceAttachment:{mode:'embedded',junction:true},support:{terrainId,at}})),
+    ...['left-tree-branch-upper','left-tree-branch-middle','left-tree-branch-lower','right-tree-branch-upper','right-tree-branch-lower'].map((terrainId,i)=>({id:'geology-root-'+terrainId,assetId:'wood:pine-wall-root',scale:i===1?1.2:1,mirrorX:terrainId.startsWith('right'),socket:'root-mouth',support:{terrainId,at:terrainId.startsWith('right')?1:0,offsetY:0}}))
+   ]};
+   st.design.stage2LayeredCommonArt={version:1,cliffMaterial:'rock/cliff',pineAssetId:'act1-scene:rooted-pine',footAssetId:'env:rock'};
+   continue;
+  }
   if(n===8&&st.initialState?.honroStage8BierRevision===1||n===5&&st.initialState?.honroStage5WaterfallRevision===1||n===7&&st.initialState?.honroStage7VillageRevision===1)continue;
   st.elements=st.elements.filter(e=>!e.id.startsWith(PREFIX));st.design??={};st.design.act1Scene={version:1,theme:st.backdrop,places:PLACES[n],replaced:[],scenery:[],rocks:[],lights:[],viewpoints:[]};
   const add=(...args)=>place(st,...args),r=(...args)=>rock(st,...args);

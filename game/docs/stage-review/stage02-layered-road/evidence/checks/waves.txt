@@ -1,0 +1,4 @@
+PASS Both original2+2 waves: warning, genuinely new input, safe boundary, occupied wait, atomic resume, full-body air clearance and one-time entry
+PASS Death/victory cancel pending warnings without publishing or consuming any wave
+PASS Legacy completed events are exact no-ops
+PASS Pending warning remains pending and unchanged across repeated production App export/Continue

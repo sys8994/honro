@@ -1,0 +1,36 @@
+{
+  "sha": "03388581abe65f11b3b5d6f3339455b6bc7258f1",
+  "renderSha256": "42d4ba683aedd4bc1c096847d6608e437491b5e6df5ca9e5cd9b5a5fd8904c10",
+  "workingTree": "?? game/docs/stage-review/shared-geology/navigation/\n?? game/docs/stage-review/shared-geology/source-final/\n?? game/docs/stage-review/shared-geology/stage02-final/\n?? game/docs/stage-review/shared-geology/stage02-review/round3/\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "landscape-road",
+      "camera": {
+        "x": 2150,
+        "y": 2790,
+        "scale": 0.25
+      }
+    },
+    {
+      "stage": 2,
+      "view": "landscape-whole",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.12411764705882353
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-high",
+      "camera": {
+        "x": 650,
+        "y": 700,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

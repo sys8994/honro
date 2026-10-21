@@ -22,5 +22,5 @@ a.export();const saved=await h.exported(),before=plain(b);a=h.load(saved);a.cont
 const oldProfile=plain(p);oldProfile.honroBattle=historical;oldProfile.lastStage=5;a=h.load(oldProfile);a.continue();h.finish(a);
 assert.equal(a.engine.alive(1).length,12);assert.equal(a.engine.b.honroCampaignMapRevision,3);assert.equal(a.engine.b.round,1);
 assert.deepEqual(plain(a.profile.heroes),heroes,'Obsolete battle restart preserves growth/SP/ranks');assert.deepEqual(plain(a.profile.loadouts),loadouts);assert.deepEqual(plain(a.profile.cleared),cleared);
-for(const sid of [1,2,4,6,12])assert.equal(g.HonroCampaignMapRevision.current(sid),({1:7,2:6,4:4,6:3,12:0})[sid],'Only Stage5 map revision changes');
+for(const sid of [1,2,4,6,12])assert.equal(g.HonroCampaignMapRevision.current(sid),({1:7,2:7,4:4,6:3,12:0})[sid],'Only Stage5 map revision changes');
 console.log('PASS Stage5 candidate12/HP60/3 cells/cap4+20/wave6/growth and same+old revision saves');

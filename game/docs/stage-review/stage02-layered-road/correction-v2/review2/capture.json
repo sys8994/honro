@@ -1,0 +1,54 @@
+{
+  "sha": "ddb32fa02f77c17941a523e0132833c2160863c9",
+  "renderSha256": "e74db9884d7af05845d171164265888332eaa9ed47341fc51cc5c0b7db27c6a2",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/runtime/stage2-layered-road-art.js\n M shared/runtime/terrain-readability.js\n D web/data/campaign.58fffe67d649a2fb.json\n D web/data/campaign.63901b957bc4e1a7.json\n D web/data/chapter-02.5c867e082ff98086.json\n D web/data/chapter-02.9ee85faf28b9502a.json\n D web/entries/game.1452c1306168e313.html\n D web/entries/game.357f7fee245b614a.html\n D web/entries/game.7af1665b1f66c7b8.js\n D web/entries/game.b843f933935c50a1.js\n D web/entries/workshop.ae4b63ed2a4f5461.js\n D web/entries/workshop.fa59fdda117f7f98.js\n M web/manifest.json\n D web/runtime/campaign.73a0e08f08a1ba33.js\n D web/runtime/campaign.8035bc593e2f22fc.js\n D web/runtime/ordered-common-12.344bd621e09bee34.js\n?? web/entries/game.1936a97ea17fa977.js\n?? web/entries/game.28703504fcb71b8e.js\n?? web/entries/game.6f5af49f69b13dd1.html\n?? web/entries/game.d052a934f626f8ea.html\n?? web/entries/workshop.59c94121a0b2fa94.js\n?? web/entries/workshop.8a4dbfed0d702d88.js\n?? web/runtime/ordered-common-12.18e5cef172f0a2c0.js\n?? web/runtime/ordered-common-12.b3720a3d9e846e88.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 2,
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 2,
+      "view": "road-start",
+      "camera": {
+        "x": 700,
+        "y": 2780,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "ledge-close",
+      "camera": {
+        "x": 1200,
+        "y": 1300,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 2,
+      "view": "east-close",
+      "camera": {
+        "x": 3500,
+        "y": 2200,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 2,
+      "view": "mobile-start",
+      "camera": {
+        "x": 350,
+        "y": 2720,
+        "scale": 0.5
+      }
+    }
+  ],
+  "errors": []
+}
