@@ -1,0 +1,19 @@
+"""Replay normal production commands from the actual initial Stage9 export.
+No actor/resource/goal writes. Real browser Engine inputs; fixed policy, not human difficulty approval.
+"""
+import json,shutil,sys,subprocess
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+root=Path(__file__).resolve().parents[2];out=Path(sys.argv[1] if len(sys.argv)>1 else '/tmp/stage9-browser');out.mkdir(parents=True,exist_ok=True)
+initial=json.loads(Path('/tmp/stage9-normal/initial.json').read_text());trace=json.loads(Path('/tmp/stage9-normal/combat.json').read_text())['actions']
+with sync_playwright() as pw:
+ b=pw.chromium.launch(executable_path=shutil.which('chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage']);p=b.new_page(viewport={'width':1440,'height':900});errors=[];p.on('pageerror',lambda e:errors.append(str(e)));p.goto('http://127.0.0.1:8852/HONRO.html');p.wait_for_function('window.HonroApp && window.HonroAuthoredFarArt',timeout=90000)
+ p.evaluate('async()=>{await HonroCampaignLoader.ensureStage(9);HonroApp.frame=()=>{};}');p.evaluate('v=>{HonroApp.profile=v;HonroApp.continue();}',initial['profile']);p.wait_for_function('HonroAuthoredFarArt.ready(9)')
+ p.evaluate('''()=>{window.reviewMs=performance.now();performance.now=()=>window.reviewMs;window.reviewTick=()=>{const a=HonroApp;reviewMs+=HONRO_CORE.STEP*1000;if(a.dialogue){HonroStory.next(a);HonroStory.tick(a,reviewMs);return;}HonroStory.turn(a);if(HonroStory.turnPaused(a))return;a.engine.tick(HONRO_CORE.STEP);a.missionTick(HONRO_CORE.STEP);};window.reviewReady=()=>{for(let n=0;n<30000&&!HonroApp.canInput()&&!['won','lost'].includes(HonroApp.engine.b.phase);n++)reviewTick();};window.reviewPaint=()=>{let a=HonroApp,s=a.scene;Object.assign(s,{manual:true,x:2100,y:2310,scale:.7,storyTween:null,cinematic:null});s.render(a.engine,0,'',.6,false,0);};}''')
+ rows=[]
+ for i,a in enumerate(trace):
+  row=p.evaluate('''v=>{reviewReady();const a=HonroApp,e=a.engine,b=e.b,u=e.active;if(u.cls!==v.hero)throw Error('Actor mismatch '+u.cls+' / '+v.hero);let ok=true;if(v.op==='move'){const m=b.honroMarkers.find(m=>m.id===v.goal);for(let n=0;n<1400&&a.canInput()&&u.moveLeft>10&&!HonroInteractions.eligibility(a,m).ok;n++){e.move(Math.sign(m.x-u.x),HONRO_CORE.STEP);reviewTick();}}else if(v.op==='fire')ok=e.fire(v.skill,v.angle,v.power);else if(v.op==='interact')ok=HonroInteractions.use(a,b.honroMarkers.find(m=>m.id===v.id));else if(v.op==='defend')a.defend();if(ok===false)throw Error('Input rejected '+v.op+' '+JSON.stringify({x:u.x,y:u.y,phase:b.phase,can:a.canInput(),marker:b.honroMarkers.find(m=>m.id===v.id),eligibility:HonroInteractions.eligibility(a,b.honroMarkers.find(m=>m.id===v.id))}));return{op:v.op,hero:u.cls,round:b.round,receivers:b.honroState.receivers||0,phase:b.phase};}''',a);rows.append(row)
+  if a['op']=='interact':
+   p.evaluate('()=>{reviewReady();reviewPaint();}');p.locator('#battlecanvas').screenshot(path=str(out/('receiver-'+str(row['receivers'])+'.png')))
+ result=p.evaluate('''()=>{reviewReady();const a=HonroApp,b=a.engine.b;if(b.phase!=='won')throw Error('Not won: '+b.phase);const end={phase:b.phase,round:b.round,receivers:b.honroState.receivers,items:b.items,heroes:b.units.filter(u=>u.side===0).map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp}))};for(let i=0;i<80&&a.dialogue;i++){HonroStory.finish(a);HonroStory.tick(a,reviewMs+=1000);}a.outcome();for(let i=0;i<80&&a.dialogue;i++){HonroStory.finish(a);HonroStory.tick(a,reviewMs+=1000);}return end;}''');p.screenshot(path=str(out/'victory.png'));p.locator('[data-action="result-continue"]').click();p.wait_for_function('HonroApp.engine?.b.honroStage===10',timeout=90000);result['nextStage']=10
+ (out/'result.json').write_text(json.dumps({'scope':__doc__,'sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),'rows':rows,'result':result,'errors':errors},indent=2));print(result,errors);b.close()
