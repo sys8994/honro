@@ -15,7 +15,7 @@ function prepareTerrain(t,b){let q=terrainCache.get(t);if(q?.version===b.sceneVe
  const at=x=>{const e=edges.find(([a,z])=>x>=a.x&&x<=z.x);return e?e[0].y+(e[1].y-e[0].y)*(x-e[0].x)/(e[1].x-e[0].x):C.topAt(t,x,t.y);};
  // Material strata and large cut faces stay clipped inside each actual solid.
  // Unequal authored sites, rather than a fixed polygon tiling, divide masses.
- const features=(b.honroMap.act1Scene.rocks||[]).filter(r=>r.supportId===t.id);
+ const features=(b.honroMap?.act1Scene?.rocks||[]).filter(r=>r.supportId===t.id);
  const anchors=features.length?features.map(r=>({x:r.x,w:Math.min(r.width,t.w*.65),depth:Math.min(r.height*.64,t.h*.75)})):[{x:t.x+t.w*.30,w:t.w*.56,depth:Math.min(760,t.h*.76)},{x:t.x+t.w*.77,w:t.w*.39,depth:Math.min(580,t.h*.6)}];
  for(const [i,r]of anchors.entries()){const l=Math.max(t.x,r.x-r.w*.52),rr=Math.min(t.x+t.w,r.x+r.w*.48),m=l+(rr-l)*(.57-i%2*.16),y=at(l),ry=at(rr),my=at(m),d=r.depth;
   if(rr-l<45||d<18)continue;planes.push({lit:poly([[l,y],[m,my],[m-(rr-l)*.08,my+d*.24],[m-(rr-l)*.11,my+d*.59],[l+(rr-l)*.27,y+d*.72],[l+(rr-l)*.08,y+d*.43]]),shadow:poly([[m,my],[rr,ry],[rr-(rr-l)*.08,ry+d*.21],[rr-(rr-l)*.13,ry+d*.51],[m+(rr-l)*.12,my+d*.74],[m-(rr-l)*.05,my+d]]),contact:line([[m,my+9],[m-(rr-l)*.1,my+d*.58],[m-(rr-l)*.05,my+d]])});

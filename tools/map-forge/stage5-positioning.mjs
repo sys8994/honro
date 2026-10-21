@@ -31,5 +31,8 @@ export function authorStage5Positioning(s,g){
  const warning=s.events.find(e=>e.id==='lower-beasts-warning');if(warning){warning.when={progress:1550};warning.text='서쪽 낮은 돌길에서 사슴들이 몰려온다. 다음 라운드부터 빈 입구로 들어오니 물길진과 돌아올 길을 살피자.';}
  s.routes=[];s.design.title='물길진 아래와 암반 어깨 위';s.design.question='설오는 상부 사선과 낮은 접근로 중 자리를 고르고, 담허는 진 안의 바위를 사이에 두고 서로 다른 방향을 지킨다.';
  s.design.gameplay=['ritual-gate','rock-overhang-upper-shot','sheltered-lower-approach','ritual-cover-reflection','regional-alerts','deep-plunge-pool','remote-cave-target'];
+ // Approved shared granite is clipped to the canonical bodies. No rear paint
+ // is allowed to fill the playable undercut or invent a second walk surface.
+ s.design.geologyComposition={version:1,instances:[{id:'stage5-shoulder-granite',assetId:'geology:granite-ledge-neck',scale:1,socket:'ledge-back',support:{terrainId:'stage5-west-shoulder',at:.38},surfaceAttachment:{mode:'exposed'}},{id:'stage5-ritual-granite',assetId:'geology:granite-ledge-neck',scale:.65,mirrorX:true,socket:'ledge-back',support:{terrainId:'stage5-ritual-stone',at:.5},surfaceAttachment:{mode:'exposed'}}]};
  s.design.positioning={revision:1,candidate:true,initial:12,elites:0,finite:6,activeLimit:4,populationCap:20,ritualRange:{x:125,y:80},cells:cells.map(c=>({key:c.key,role:c.role})),routes:{upper:[{x:580,y:stage5LandY(580),support:'valley-floor',jumpTo:{x:740,support:'stage5-west-shoulder'}},upper(1100),upper(1740),upper(1980),floor(2375)],lower:[floor(700),floor(1200),floor(1490)],ritual:[{x:1490,y:2767,support:'stage5-ritual-stone'},{x:1590,y:2650,support:'stage5-ritual-stone'},{x:1690,y:2704,support:'stage5-ritual-stone'}]}};
 }
