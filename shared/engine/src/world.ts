@@ -372,8 +372,14 @@ export function applySpBalanceMigration(b:Battle):Battle {
     if((b.spBalanceRevision||0)<SP_BALANCE_REVISION){
         // Recalculate only playable heroes. Preserve resource fractions, progression,
         // wounds, action state, enemies, existing summons and already authored casts.
-        for(const u of b.units.filter(v=>v.side===0&&!v.summoned&&!v.enthrall)){
+        for(const u of b.units.filter(v=>v.side===0&&!v.summoned&&!v.enthrall&&!(v as any).honroAlly&&!(v as any).honroCivilian)){
             const h=b.heroes[u.cls];if(!h)continue;
+            // Revision 2 changes MP02-derived MP/regen only. Do not round HP,
+            // refresh other actors, or overwrite unrelated live combat stats.
+            if((b.spBalanceRevision||0)>=1){
+                if(u.cls==='mage'){const stats=heroStats({...h,ranks:{...u.ranks}},u.cls),fraction=u.maxFocus?clamp(u.focus/u.maxFocus,0,1):0;u.maxFocus=stats.mp;u.focus=stats.mp*fraction;u.regen=stats.regen;}
+                continue;
+            }
             const hpRatio=u.maxHp?clamp(u.hp/u.maxHp,0,1):0,mpRatio=u.maxFocus?clamp(u.focus/u.maxFocus,0,1):0,moveRatio=u.maxMove?clamp(u.moveLeft/u.maxMove,0,1):0,dead=u.dead;
             applyHero(u,{...h,ranks:{...u.ranks}},false);
             u.hp=dead?0:Math.max(1,Math.floor(u.maxHp*hpRatio));u.focus=u.maxFocus*mpRatio;u.moveLeft=u.maxMove*moveRatio;u.dead=dead;

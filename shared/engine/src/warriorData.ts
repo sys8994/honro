@@ -9,7 +9,7 @@ export const ORBIT_BLADES=[5,5,6,6,7,8,8,9];
 export const SALHEUN_TURNS=[1,1,2,2,3,3,3,4];
 export const SALHEUN_RATIO=[.12,.15,.15,.18,.18,.21,.24,.26];
 export const JUCHEON_DISCOUNT=[.50,.55,.60,.65,.75,.85,.95,1];
-export const JUCHEON_EFFECT=[.04,.05,.06,.08,.10,.12,.14,.15];
+export const JUCHEON_EFFECT=[.04,.05,.06,.08,.10,.12,.14,.15].map(v=>v*1.18);
 // Rank-scaled spell costs have a median of 38 at rank 1 and 25 at rank 8.
 // Three typical paid casts complete circulation; free casts contribute nothing.
 export const JUCHEON_THRESHOLD=[108,104,100,96,92,88,84,78];

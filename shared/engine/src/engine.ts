@@ -13,7 +13,8 @@ import {ENTHRALL_ACTIONS,ENTHRALL_POWER,ECHO_TURNS,ECHO_LIMIT,SPIRIT_TURNS,MANIF
 import {makePhysics,environmentAt,changePhysics,duePhysics,advanceLinear,dragFor,collisionDamage,fallDamage,validPhysicsPatch} from './physics';
 import type {PhysicsPatch} from './physics';
 import {multishotProfile,volleyAngles,waveCount} from './projectileGrowth';
-import { ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER, PLAYER_MAGE_DAMAGE_MULTIPLIER } from './balance';
+import {MAGE_AREA_SCALE} from './mageGeometry';
+import { ACTION_REVIEW_SECONDS, CHARGE_ACCELERATION, MAX_CHARGE_SECONDS, VOLLEY_INTERVAL, VOLLEY_SPREAD, DIFFICULTIES, MANA_COST_MULTIPLIER, PLAYER_MAGE_DAMAGE_MULTIPLIER, PLAYER_MAGE_OFFENSE_BOOST } from './balance';
 import { skillBalanceFactor } from './balanceModel';
 import { evaluateStageEnd } from './stageRules';
 import type { Battle, Unit, Projectile, Skill, Side, Terrain, Vec, Zone, Event, Profile } from './types';
@@ -120,7 +121,10 @@ export class Engine {
         }
         // Scale newly cast player spells only. Existing projectiles/stakes retain their saved damage;
         // impact, reflections, secondary bursts and stake triggers must never apply this again.
-        if(u.side===0&&u.cls==='mage'&&!u.summoned&&s.cls==='mage'&&s.redesigned&&!s.enemyOnly)damage*=PLAYER_MAGE_DAMAGE_MULTIPLIER;
+        if(u.side===0&&u.cls==='mage'&&!u.summoned&&s.cls==='mage'&&s.redesigned&&!s.enemyOnly){
+            damage*=PLAYER_MAGE_DAMAGE_MULTIPLIER;
+            if(!(u as any).honroAlly&&!(u as any).honroCivilian&&!u.enthrall){damage*=PLAYER_MAGE_OFFENSE_BOOST;if(s.branch==='gourd')radius*=MAGE_AREA_SCALE;}
+        }
         if(s.redesigned&&s.cls==='mage')damage*=1+jucheonBoost(u,s);
         if(s.martial&&u.side===0){if(u.harmony)damage*=1+passiveTuning(passiveRank(u,'SP04')).harmonyDamage;if(s.branch==='rush'){damage*=1+passiveTuning(passiveRank(u,'SP01')).rushDamage;speed*=1+.015*passiveRank(u,'SP03');}if(s.branch==='blade')speed*=1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry;}
         if (u.bound > 0 && BODY.has(s.mode))
@@ -839,7 +843,7 @@ export class Engine {
                 if(damageSource==='normal'&&p&&wardRank&&src.cls==='mage'&&!src.summoned&&SKILLS[p.skill]?.cls==='mage'&&src.mageWardShot!==p.shot){
                     src.mageWardShot=p.shot;
                     const ally=this.actors(0).filter(v=>!v.summoned&&!v.enthrall&&v.id!==src.id&&Math.hypot(v.x-u.x,(v.y-v.h*.5)-(u.y-u.h*.5))<520).sort((a,b)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(b.x-u.x,b.y-u.y))[0]||src;
-                    const shieldBefore=ally.shield;ally.shield=Math.max(ally.shield,Math.min(Math.round(ally.maxHp*.25),ally.shield+Math.round(ally.maxHp*passiveTuning(wardRank).ward)));
+                    const shieldBefore=ally.shield;ally.shield=Math.max(ally.shield,Math.min(Math.round(ally.maxHp*passiveTuning(wardRank).wardCap),ally.shield+Math.round(ally.maxHp*passiveTuning(wardRank).ward)));
                     shielded(this.b,ally,src.id,shieldBefore);ally.shieldUntil=Math.max(ally.shieldUntil||0,this.b.teamEnds[1]+1);
                     this.fx('ring',ally.x,ally.y-ally.h*.5,'#b4d8d1',34);
                 }

@@ -106,7 +106,16 @@
         "audit/M01-result-1280.png",
         "audit/M01-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M01-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M01-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M01-1280-core.png"
+        ]
+      }
     },
     {
       "id": "A01",
@@ -177,7 +186,16 @@
         "mage-focused/M06-1280-secondary.png",
         "mage-focused/M06-360-secondary.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M06-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M06-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M06-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M02",
@@ -196,7 +214,16 @@
         "mage-focused/M02-1280-bounce.png",
         "mage-focused/M02-360-bounce.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M02-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M02-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M02-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M04",
@@ -215,7 +242,16 @@
         "mage-focused/M04-1280-visible.png",
         "mage-focused/M04-360-visible.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M04-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M04-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M04-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M13",
@@ -232,7 +268,16 @@
         "audit/M13-result-1280.png",
         "audit/M13-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M13-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M13-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M13-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M05",
@@ -251,7 +296,16 @@
         "mage-focused/M05-1280-visible.png",
         "mage-focused/M05-360-visible.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M05-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M05-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M05-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M03",
@@ -268,7 +322,16 @@
         "audit/M03-result-1280.png",
         "audit/M03-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M03-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M03-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M03-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M11",
@@ -302,7 +365,16 @@
         "audit/M12-result-1280.png",
         "audit/M12-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M12-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M12-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M12-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M14",
@@ -319,7 +391,16 @@
         "audit/M14-result-1280.png",
         "audit/M14-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M14-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M14-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M14-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M15",
@@ -336,7 +417,16 @@
         "audit/M15-result-1280.png",
         "audit/M15-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M15-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M15-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M15-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M07",
@@ -353,7 +443,16 @@
         "audit/M07-result-1280.png",
         "audit/M07-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M07-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M07-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M07-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M10",
@@ -372,7 +471,16 @@
         "mage-focused/M10-1280-core.png",
         "mage-focused/M10-360-core.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M10-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M10-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M10-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M08",
@@ -389,7 +497,16 @@
         "audit/M08-result-1280.png",
         "audit/M08-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M08-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M08-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M08-1280-core.png"
+        ]
+      }
     },
     {
       "id": "M09",
@@ -423,7 +540,16 @@
         "audit/M99-result-1280.png",
         "audit/M99-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/M99-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/M99-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/M99-1280-core.png"
+        ]
+      }
     },
     {
       "id": "MP01",
@@ -442,7 +568,16 @@
         "mage-focused/MP01-1280-secondary.png",
         "mage-focused/MP01-360-secondary.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/MP01-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/MP01-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/MP01-1280-core.png"
+        ]
+      }
     },
     {
       "id": "MP02",
@@ -461,7 +596,16 @@
         "mage-focused/MP02-1280-regeneration.png",
         "mage-focused/MP02-360-regeneration.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/MP02-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/MP02-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/MP02-1280-core.png"
+        ]
+      }
     },
     {
       "id": "MP04",
@@ -478,7 +622,16 @@
         "audit/MP04-result-1280.png",
         "audit/MP04-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/MP04-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/MP04-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/MP04-1280-core.png"
+        ]
+      }
     },
     {
       "id": "MP03",
@@ -495,7 +648,16 @@
         "audit/MP03-result-1280.png",
         "audit/MP03-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/MP03-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/MP03-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/MP03-1280-core.png"
+        ]
+      }
     },
     {
       "id": "MP05",
@@ -512,7 +674,16 @@
         "audit/MP05-result-1280.png",
         "audit/MP05-result-360.png"
       ],
-      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용."
+      "mobileLimit": "원본 360px 결과를 직접 확인. 작은 병/진목·밀집 수치는 축소 시 판독 한계가 있어 관찰줄과 별도 핵심 프레임을 함께 사용.",
+      "tuningReview20261021": {
+        "scope": "Changed player damage/range/passive and stake guides only. Previous 84-skill signoff is historical; no all84 rerun.",
+        "functionalAssertions": "passed",
+        "coreCapture": "../mage-volley-gate-20261021/mage-after/MP05-1280-core.png",
+        "mobileCapture": "../mage-volley-gate-20261021/mage-after/MP05-360-result.png",
+        "directPixelViewed": [
+          "../mage-volley-gate-20261021/mage-after/MP05-1280-core.png"
+        ]
+      }
     },
     {
       "id": "A14",

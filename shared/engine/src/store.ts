@@ -1,4 +1,5 @@
 import {poly} from './math';
+import {SP_BALANCE_REVISION} from './passiveBalance';
 import {migrateSkills,SKILL_REVISION} from './skillMechanics';
 import {validPhysics} from './physics';
 import type { Profile, Battle, ClassId, HeroProgress, Roster } from './types';
@@ -160,7 +161,7 @@ function validBattle(raw: unknown,legacyXp=false,oldXp=false): Battle {
     if(b.skillRevision!==undefined&&b.skillRevision!==SKILL_REVISION)return fail();
     if(b.martialRevision!==undefined&&b.martialRevision!==1)return fail();
     if(b.occultRevision!==undefined&&b.occultRevision!==1)return fail();
-    if(b.spBalanceRevision!==undefined&&b.spBalanceRevision!==1)return fail();
+    if(b.spBalanceRevision!==undefined&&(!Number.isInteger(b.spBalanceRevision)||b.spBalanceRevision<1||b.spBalanceRevision>SP_BALANCE_REVISION))return fail();
     const optionalNumber=(v:unknown,min=0,max=1e12)=>v===undefined||finite(v)&&(v as number)>=min&&(v as number)<=max;
     for(const u of b.units){
         if(!optionalNumber(u.arrowTurn)||u.arrowTurnToken!==undefined&&!safe(u.arrowTurnToken)||!optionalNumber(u.salheunFlash,0,1)||!optionalNumber(u.jucheon,0,108)||!optionalNumber(u.bladeStored,0,.450001))return fail();

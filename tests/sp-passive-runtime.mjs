@@ -14,7 +14,7 @@ for(const t of C.TALENTS.filter(t=>t.passive))for(let r=1;r<=8;r++)assert.notEqu
 for(let r=1;r<=8;r++){
  assert.equal(C.volleyDamage(r),(.42+.02*Math.min(4,r-1)+.045*Math.max(0,r-5))*.75);
  const h={...C.freshHero('mage'),xp:C.xpAtLevel(20),ranks:{M01:1,MP02:r},statTraining:10},s=C.heroStats(h,'mage');
- assert.equal(s.regen,14+Math.floor(19*.6)+r*.5+s.mp*.005*r);
+ assert(Math.abs(s.regen-(14+Math.floor(19*.6)+r*.5*1.18+s.mp*.005*r*1.18))<1e-9);
  const a=arena('mage');C.applyHero(a.u,h,false);a.u.focus=0;a.b.phase='aim';a.b.active=a.u.id;a.b.side=0;a.e.wait();assert(a.u.focus>0,'empty MP must still regenerate');
 }
 // Rank seven and eight split different amounts, including hits below the old 14%-HP threshold.
@@ -61,7 +61,7 @@ for(let r=1;r<=8;r++){
  const fractions=b.units.filter(u=>u.side===0&&!u.summoned).map(u=>[u.id,u.hp/u.maxHp,u.focus/u.maxFocus,u.moveLeft/u.maxMove]);
  C.applySpBalanceMigration(b);assert.equal(JSON.stringify(b.heroes),allocations);assert.deepEqual(plain(spirit),ghost);assert.deepEqual(plain(b.units.filter(u=>u.side===1)),enemies);assert.deepEqual(plain(b.projectiles),projectiles);
  for(const [id,hp,mp,movement] of fractions){const u=b.units.find(u=>u.id===id),s=C.heroStats(b.heroes[u.cls],u.cls);assert.equal(u.maxHp,s.hp);assert.equal(u.armor,s.armor);assert(Math.abs(u.hp/u.maxHp-hp)<1/u.maxHp+.000001);assert(Math.abs(u.focus/u.maxFocus-mp)<1e-10);assert(Math.abs(u.moveLeft/u.maxMove-movement)<1e-10);assert.equal(u.acted,true);assert.equal(u.bound,2);}
- const once=JSON.stringify(b);C.applySpBalanceMigration(b);assert.equal(JSON.stringify(b),once);p.saved=b;const loaded=C.validate(plain(p));assert.deepEqual(plain(loaded.heroes),plain(p.heroes));assert.equal(loaded.saved.spBalanceRevision,1);
+ const once=JSON.stringify(b);C.applySpBalanceMigration(b);assert.equal(JSON.stringify(b),once);p.saved=b;const loaded=C.validate(plain(p));assert.deepEqual(plain(loaded.heroes),plain(p.heroes));assert.equal(loaded.saved.spBalanceRevision,C.SP_BALANCE_REVISION);
 }
 // Actual and displayed defense caps match; no high-level investment displays unusable 75% defense.
 for(const cls of C.CLASS_IDS){const h={...C.freshHero(cls),xp:C.xpAtLevel(30),statTraining:52,ranks:{[C.baseSkill(cls)]:1,...(cls==='knight'?{SP02:8}:{})}};assert(C.heroStats(h,cls).armor<=.70);}

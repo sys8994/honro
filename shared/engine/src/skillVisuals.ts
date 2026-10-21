@@ -1,4 +1,4 @@
-import {lureRadius} from './totemBehavior';
+import {stakeRanges} from './totemBehavior';
 import {drawWarriorProjectile,drawMeleeGuide} from './warriorVisuals';
 import type {Projectile,Unit,Skill} from './types';
 import type {Engine} from './engine';
@@ -161,8 +161,9 @@ export function drawRedesignProjectile(c:C,p:Projectile){
  c.restore();return true;
 }
 export const STAKE_STYLES:Record<string,{name:string;color:string;mark:string}>={M07:{name:'파진',color:'#ce9878',mark:'破'},M10:{name:'회생',color:'#91bd9a',mark:'生'},M08:{name:'유인',color:'#b4a4c8',mark:'引'},M09:{name:'축지',color:'#90bacb',mark:'移'},M99:{name:'오방',color:'#c9b173',mark:'封'}};
-export function drawStakes(c:C,e:Engine,time=0){
- for(const z of e.b.stakes||[]){const s=STAKE_STYLES[z.skill]||STAKE_STYLES.M07,t=time+z.id*.37,wave=Math.sin(t*2.4),draw=(x:number,y:number)=>{
+export function drawStakes(c:C,e:Engine,time=0,zoom=1,selected=''){
+ zoom=Math.max(.12,zoom);
+ for(const z of e.b.stakes||[]){if(z.expires!==undefined&&z.expires<=e.b.round)continue;const s=STAKE_STYLES[z.skill]||STAKE_STYLES.M07,t=time+z.id*.37,wave=Math.sin(t*2.4),draw=(x:number,y:number)=>{
   c.save();c.translate(x,y);c.fillStyle='#56442f';c.strokeStyle='#ac9168';c.lineWidth=1.4;c.beginPath();c.moveTo(-7,0);c.lineTo(-6,-43);c.lineTo(0,-51);c.lineTo(6,-43);c.lineTo(7,0);c.closePath();c.fill();c.stroke();
   c.fillStyle=s.color;c.fillRect(-6,-42,12,7);c.strokeStyle=s.color;c.lineWidth=2;
   if(z.skill==='M07'){c.beginPath();c.moveTo(-12,-42);c.lineTo(-8,-54);c.moveTo(12,-42);c.lineTo(8,-54);c.stroke();}
@@ -172,13 +173,17 @@ export function drawStakes(c:C,e:Engine,time=0){
   const cloth=(off:number)=>{c.fillStyle='#d6c7a0';c.beginPath();c.moveTo(off-4,-36);c.lineTo(off+5,-36);c.quadraticCurveTo(off+wave*5+7,-21,off+wave*4+2,-9);c.lineTo(off+wave*3-5,-13);c.quadraticCurveTo(off+wave*2,-24,off-4,-36);c.fill();c.fillStyle='#66523f';c.font='11px serif';c.textAlign='center';c.fillText(s.mark,off+wave,-23);};cloth(z.skill==='M09'?-9:0);if(z.skill==='M09')cloth(9);
   c.restore();};
   c.save();
-  if(z.skill==='M08'&&(z.expires===undefined||z.expires>e.b.round)&&e.unit(z.owner)){
-   c.save();c.strokeStyle=s.color;c.fillStyle=s.color;c.lineWidth=1.2;c.setLineDash([5,9]);c.beginPath();c.arc(z.x,z.y,lureRadius(e,z),0,Math.PI*2);c.globalAlpha=.025;c.fill();c.globalAlpha=.22;c.stroke();c.restore();
+  if(e.unit(z.owner)){
+   const ranges=stakeRanges(e,z),chosen=e.active?.id===z.owner&&selected===z.skill,alpha=chosen?.54:.24;
+   const circle=(radius:number,y:number,trigger=false)=>{c.save();c.strokeStyle=z.side===0?(trigger?'#d7b77e':'#b9d9d3'):'#d6988b';c.globalAlpha=alpha*(trigger?.72:1);c.lineWidth=(trigger?.75:1.2)/zoom;c.setLineDash((trigger?[2,5]:[4,7]).map(n=>n/zoom));c.beginPath();c.arc(z.x,y,radius,0,Math.PI*2);c.stroke();c.restore();};
+   circle(ranges.effect,z.y-(z.skill==='M07'?20:0));
+   if(z.skill!=='M09'&&Math.abs(ranges.trigger-ranges.effect)>.1)circle(ranges.trigger,z.y,true);
+   if(chosen){c.save();c.globalAlpha=.8;c.fillStyle=z.side===0?'#d5ded1':'#dfaaa0';c.font=`${10/zoom}px serif`;c.textAlign='center';c.fillText(z.skill==='M07'?'감지 / 폭발':z.skill==='M08'?'기동 / 유인':'점선: 유효 범위',z.x,z.y+20/zoom);c.restore();}
   }
   draw(z.x,z.y);c.strokeStyle=s.color;c.lineWidth=1.2;c.globalAlpha=.24+.08*wave;c.beginPath();c.ellipse(z.x,z.y-1,29+wave*2,7,0,t*.18,t*.18+Math.PI*1.65);c.stroke();
   c.globalAlpha=.55;for(let i=0;i<3;i++){const phase=(t*.35+i/3)%1,x=z.x+Math.sin(t+i*2.1)*16,y=z.y-12-phase*42;c.beginPath();if(z.skill==='M10'){c.ellipse(x,y,2.2,4,-.6+phase,0,Math.PI*2);}else if(z.skill==='M08'){c.moveTo(x-4,y+5);c.quadraticCurveTo(x+8,y,x,y-6);}else{c.moveTo(x-1,y+3);c.lineTo(x+2,y-2);}c.stroke();}
-  c.globalAlpha=.85;c.fillStyle=s.color;c.font='12px serif';c.textAlign='center';c.fillText(s.name,z.x,z.y-62);
-  if(z.active){c.globalAlpha=.22;const ps=[[0,-220],[220,0],[0,220],[-220,0]];for(const [x,y] of ps)draw(z.x+x,z.y+y);c.beginPath();ps.forEach(([x,y],i)=>i?c.lineTo(z.x+x,z.y+y):c.moveTo(z.x+x,z.y+y));c.closePath();c.stroke();c.setLineDash([5,12]);c.beginPath();c.arc(z.x,z.y,220,0,Math.PI*2);c.stroke();}
+  c.globalAlpha=.85;c.fillStyle=s.color;c.font='12px serif';c.textAlign='center';c.fillText(`${s.name} · ${e.unit(z.owner)?.name||(z.side===0?'동행':'적')}${z.expires===undefined?'':` · ${Math.max(0,z.expires-e.b.round)}턴`}`,z.x,z.y-62);
+  if(z.active){c.globalAlpha=.22;const ps=[[0,-220],[220,0],[0,220],[-220,0]];for(const [x,y] of ps)draw(z.x+x,z.y+y);c.beginPath();ps.forEach(([x,y],i)=>i?c.lineTo(z.x+x,z.y+y):c.moveTo(z.x+x,z.y+y));c.closePath();c.stroke();}
   c.restore();
  }
 }
@@ -279,8 +284,9 @@ export function drawRedesignGuide(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom=
  else if(s.radius&&s.branch!=='stake'){c.globalAlpha=.4;c.setLineDash([4/zoom,8/zoom]);c.beginPath();c.arc(pr.x,pr.y,e.effective(s,u).radius,0,Math.PI*2);c.stroke();}
  if('secondaryRadius' in pr&&pr.secondaryRadius){const center='secondaryPoint' in pr&&pr.secondaryPoint?pr.secondaryPoint as {x:number;y:number}:pr;
   c.globalAlpha=.32;c.setLineDash([4/zoom,9/zoom]);c.beginPath();c.arc(center.x,center.y,Number(pr.secondaryRadius),0,Math.PI*2);c.stroke();
-  if(center!==pr){guideStroke(c,[{x:center.x,y:center.y-140},center],zoom,CLASSES[u.cls].color,.32,.85);}
+  if(s.id==='M05'&&center!==pr){guideStroke(c,[{x:center.x,y:center.y-140},center],zoom,CLASSES[u.cls].color,.32,.85);}
  }
+ if('triggerRadius' in pr&&pr.triggerRadius&&pr.triggerRadius!==pr.secondaryRadius){c.globalAlpha=.27;c.lineWidth=.75/zoom;c.strokeStyle='#d7b77e';c.setLineDash([2/zoom,5/zoom]);c.beginPath();c.arc(pr.x,pr.y,Number(pr.triggerRadius),0,Math.PI*2);c.stroke();}
  if(s.id==='M04')for(const t of e.b.units.filter(t=>!t.dead&&!t.eaterCapturedBy&&t.side===1&&Math.hypot(t.x-pr.x,t.y-t.h*.5-pr.y)<=260+10*((u.ranks.M04||1)-1))){c.beginPath();c.moveTo(pr.x,pr.y);c.lineTo(t.x,t.y-t.h*.5);c.stroke();}
  c.restore();return true;
 }

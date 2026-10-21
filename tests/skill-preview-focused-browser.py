@@ -1,11 +1,12 @@
 """Selected visual-review repairs only; never rerun the entire registry implicitly."""
-import json,sys
+import json,sys,os
 from playwright.sync_api import sync_playwright
 from browser_support import launch,ROOT,serve_game
 from skill_preview_audit_support import SETUP
 ids=sys.argv[1:]
 assert ids,'Pass the affected skill IDs explicitly'
-OUT=ROOT/'_local/reports/skill-preview-focused';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/os.environ.get('HONRO_PREVIEW_OUT','_local/reports/skill-preview-focused');OUT.mkdir(parents=True,exist_ok=True)
+RANK=int(os.environ.get('HONRO_PREVIEW_RANK','8'));assert 1<=RANK<=8
 milestones={
  'AP01':{'complete-volley':'auditP.age>4.5&&!auditP.b.volley&&!auditP.b.projectiles.length'},
  'A10':{'prepared':'!!auditP.hero.prepared'},
@@ -32,12 +33,12 @@ milestones={
 }
 rows=[];errors=[]
 with sync_playwright() as pw,serve_game() as base_url:
- b=launch(pw);p=b.new_page(viewport={'width':1280,'height':1000});p.on('pageerror',lambda e:errors.append(str(e)));p.goto(base_url+'/HONRO.html');p.wait_for_function('window.HonroApp');p.evaluate(SETUP)
+ b=launch(pw);p=b.new_page(viewport={'width':1280,'height':1000});p.on('pageerror',lambda e:errors.append(str(e)));p.goto(base_url+'/HONRO.html');p.wait_for_function('window.HonroApp');p.evaluate(SETUP.replace('s.basic?1:8',f's.basic?1:{RANK}'))
  p.add_script_tag(content=(ROOT/'tests/skill-preview-expectations.mjs').read_text().replace('export function','function'))
  for width in [1280,360]:
   p.set_viewport_size({'width':width,'height':1000 if width==1280 else 800})
   for id in ids:
-   p.evaluate('id=>startSkill(id)',id);p.wait_for_function('HonroApp.preview');p.evaluate('prepareAudit();auditP.precise=true');shell=p.locator('.skill-preview-shell');shell.scroll_into_view_if_needed();p.evaluate('advanceAudit(.3)');shell.screenshot(path=str(OUT/f'{id}-{width}-start.png'))
+   p.evaluate('id=>startSkill(id)',id);p.wait_for_function('HonroApp.preview');p.evaluate('prepareAudit();auditP.precise=true');shell=p.locator('.skill-preview-shell') if p.locator('.skill-preview-shell').count() else p.locator('#previewcanvas');shell.scroll_into_view_if_needed();p.evaluate('advanceAudit(.3)');shell.screenshot(path=str(OUT/f'{id}-{width}-start.png'))
    pending=dict(milestones.get(id,{}));captured={};core=None;render_checks=[]
    for frame in range(1440):
     status=p.evaluate('''()=>{HonroSkillPreview.tick(HonroApp,auditP,1/60);return {age:auditP.age,ok:auditPreview(HonroSkillPreview.snapshot(auditP)).every(c=>c.ok)};}''')
