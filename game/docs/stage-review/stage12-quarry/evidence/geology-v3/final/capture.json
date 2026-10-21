@@ -1,0 +1,137 @@
+{
+  "label": "geology-v3-final",
+  "url": "http://127.0.0.1:8842/HONRO.html",
+  "renderSourceSha256": "63e420be461436a6a80ee117ac27f4c8fd034ccc044e4dc8017f43e5b05d91f3",
+  "sha": "4b0465b134eda0dae6522e61a4fb21cb5be8efe6",
+  "workingTree": "",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "west-overview",
+      "camera": {
+        "x": 3800,
+        "y": 4100,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "north-face",
+      "camera": {
+        "x": 7350,
+        "y": 3850,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 12,
+      "view": "west-face",
+      "camera": {
+        "x": 4330,
+        "y": 4480,
+        "scale": 0.6
+      }
+    },
+    {
+      "stage": 12,
+      "view": "right-wall",
+      "camera": {
+        "x": 7480,
+        "y": 4870,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "west-ledges",
+      "camera": {
+        "x": 3300,
+        "y": 4590,
+        "scale": 0.9
+      }
+    },
+    {
+      "stage": 12,
+      "view": "inner-ledge",
+      "camera": {
+        "x": 6070,
+        "y": 4640,
+        "scale": 0.85
+      }
+    },
+    {
+      "stage": 12,
+      "view": "mobile-north",
+      "camera": {
+        "x": 7350,
+        "y": 3800,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 12,
+      "view": "mobile-joint",
+      "camera": {
+        "x": 6070,
+        "y": 4640,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "mobile-right",
+      "camera": {
+        "x": 7480,
+        "y": 4870,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 12,
+      "view": "joint-maxzoom",
+      "camera": {
+        "x": 6070,
+        "y": 4640,
+        "scale": 1.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "east-boundary",
+      "camera": {
+        "x": 11200,
+        "y": 5400,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-normal",
+      "camera": {
+        "x": 6520,
+        "y": 4660,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "upper-exit",
+      "camera": {
+        "x": 8910,
+        "y": 4180,
+        "scale": 0.8
+      }
+    }
+  ],
+  "errors": []
+}
