@@ -1,3 +1,8 @@
+## 2026-10-21 — P0 조이스틱 최종 집중·브라우저 검수 (master 미병합)
+
+- 의도/방향/생명주기 집중 검수와 종합 검수 통과. 실제 생성 Game 문서의 Chromium CDP touch→PointerEvent/캡처→production frame/물리 경로로 255개 판정, 429 상태, 614 이벤트를 기록했다. 320/360/390px 세로·844px 가로에서 상/하 양쪽 19/20/21도, 45도→조준+미세 이동, 중앙 통과, release, tiny jitter, cancel/캡처/blur/pause/동행/턴, 다중 터치 발사·점프와 PC 회귀를 확인했다. aimOnly 보행 호출 0·좌표/이동도 보존, 방향 반사 높낮이 유지, 별도 낙하/충격의 정상 물리를 확인했다.
+- 증거: `_local/reports/joystick-intent/review.md`, `input-trace.json`, `mobile-{320,360,390,844}-aim-only.png`, 소스/빌드 provenance. [계약·실행 방법](MOBILE_JOYSTICK_INPUT.md). 실제 휴대기기·Safari·OS 회전은 미검증이며 합성 입력을 실장치 검증으로 표시하지 않는다. 입력 소스만 원격 저장하고 master/Pages는 부모 최종 검수까지 보류한다.
+
 ## 2026-10-21 — P0 모바일 첫 조이스틱 의도 고정 (입력 전용 브랜치)
 
 - 원인: 두 App이 매 pointermove의 수평축을 재평가했으므로 수직 조준 시작 후 기울임이 보행으로 바뀌었다. 실제 Game은 `shared/runtime/main.js`를 사용하므로 TS main/math만 고치면 공개 조작에는 적용되지 않는다.

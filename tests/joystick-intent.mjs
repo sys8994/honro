@@ -19,6 +19,8 @@ for(const range of [27.88,29.52,32,41,80]){
   const s=J(0,length,range);assert.equal(s.intent,length<threshold?'undecided':'aimOnly');assert.equal(s.x,0);
  }
 }
+assert.equal(J(Math.sin(20.01*Math.PI/180)*41,Math.cos(20.01*Math.PI/180)*41,41).intent,'moveAim');
+let fine=J(29,29,41);fine=J(.15*41,.98*41,41,fine);assert.equal(fine.intent,'moveAim');assert(fine.x>.01);
 let s=J(0,41,41);for(const [x,expected]of [[.59,0],[.60,1],[.59,1],[.36,1],[.34,0],[-.59,0],[-.60,-1],[-.59,-1],[.60,1]]){
  s=J(x*41,0,41,s);assert.equal(s.facingIntent,expected);assert.equal(s.x,0);assert.equal(s.intent,'aimOnly');
 }
