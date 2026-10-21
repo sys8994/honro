@@ -1,0 +1,151 @@
+{
+  "sha": "499305b051278e25538b3f606c11e1bb7479104e",
+  "scope": "Isolated production movement/render fixture for optional east access.\nThe hero is initially placed on the east road and enemies/NPCs are removed.\nThis is not a normal combat or campaign victory.\n",
+  "routes": [
+    {
+      "label": "Isolated east canyon-ground",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 2920,
+        "y": 2940.5878894767784,
+        "hp": 365,
+        "round": 1
+      },
+      "end": {
+        "x": 3029.29166666666,
+        "y": 2762.936897738449,
+        "support": "right-climbing-root",
+        "round": 1,
+        "moveLeft": 915.7083333333399
+      },
+      "counts": {
+        "ticks": 111,
+        "jumps": 1,
+        "waits": 0,
+        "walkCost": 109.29166666666015,
+        "jumpCost": 75,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 184.29166666666015,
+      "turnEquivalent": 0.16753787878787285,
+      "events": [
+        {
+          "op": "jump",
+          "x": 2920,
+          "y": 2940.5878894767784,
+          "support": "canyon-ground",
+          "round": 1,
+          "moveLeft": 1025
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 2920,
+            "support": "canyon-ground",
+            "jumpTo": {
+              "x": 3030,
+              "support": "right-climbing-root"
+            },
+            "delay": 16
+          },
+          "x": 2920,
+          "y": 2940.5878894767784,
+          "support": "canyon-ground",
+          "round": 1,
+          "moveLeft": 1100
+        },
+        {
+          "jump": {
+            "x": 3030,
+            "support": "right-climbing-root"
+          },
+          "x": 3029.29166666666,
+          "y": 2762.936897738449,
+          "support": "right-climbing-root",
+          "round": 1,
+          "moveLeft": 915.7083333333399
+        }
+      ]
+    },
+    {
+      "label": "Isolated east right-climbing-root",
+      "cls": "archer",
+      "passed": true,
+      "failure": null,
+      "start": {
+        "x": 3029.29166666666,
+        "y": 2762.936897738449,
+        "hp": 365,
+        "round": 1
+      },
+      "end": {
+        "x": 3439.7097714392594,
+        "y": 2475.8801306061373,
+        "support": "right-descent-stone-low",
+        "round": 2,
+        "moveLeft": 880.1250000000086
+      },
+      "counts": {
+        "ticks": 358,
+        "jumps": 1,
+        "waits": 1,
+        "walkCost": 444.93540693789123,
+        "jumpCost": 75,
+        "damage": 0,
+        "invalid": 0
+      },
+      "movementCost": 519.9354069378912,
+      "turnEquivalent": 0.4726685517617193,
+      "events": [
+        {
+          "op": "wait",
+          "x": 3294.834771439268,
+          "y": 2625.6327469918524,
+          "support": "right-climbing-root",
+          "round": 1,
+          "moveLeft": 615.64792639544
+        },
+        {
+          "op": "jump",
+          "x": 3294.834771439268,
+          "y": 2625.6327469918524,
+          "support": "right-climbing-root",
+          "round": 2,
+          "moveLeft": 1025
+        }
+      ],
+      "poses": [
+        {
+          "goal": {
+            "x": 3300,
+            "support": "right-climbing-root",
+            "jumpTo": {
+              "x": 3440,
+              "support": "right-descent-stone-low"
+            }
+          },
+          "x": 3294.834771439268,
+          "y": 2625.6327469918524,
+          "support": "right-climbing-root",
+          "round": 1,
+          "moveLeft": 615.64792639544
+        },
+        {
+          "jump": {
+            "x": 3440,
+            "support": "right-descent-stone-low"
+          },
+          "x": 3439.7097714392594,
+          "y": 2475.8801306061373,
+          "support": "right-descent-stone-low",
+          "round": 2,
+          "moveLeft": 880.1250000000086
+        }
+      ]
+    }
+  ]
+}
