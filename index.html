@@ -7,7 +7,7 @@ body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d
 .honro-title{width:100%;height:100dvh;position:relative;display:flex;flex-direction:column}
 .honro-title .title-bg{position:absolute}
 .honro-title:after{content:'';position:absolute;inset:0}
-.honro-title .top{display:flex;align-items:center;gap:12px;border-bottom:1px solid #68776e55;background:#111e24;flex-shrink:0}
+.honro-title .top{display:flex;align-items:center;gap:12px;border:0;background:transparent;flex-shrink:0}
 .honro-title .grow{flex:1}
 .honro-title .title-main{position:relative;z-index:2;display:flex;flex-direction:column}
 .honro-title button{font:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
@@ -25,7 +25,9 @@ body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d
 .honro-title .title-painting img{object-fit:cover;object-position:70% 65%}
 .honro-title .title-painting img[hidden],.honro-title .honro-logo[hidden]{display:none}
 .honro-title:after{background:linear-gradient(90deg,#06111b80,transparent 64%),linear-gradient(0deg,#050e16b3,transparent 24%);pointer-events:none}
-.honro-title .top{z-index:3;min-height:64px;height:64px;padding:14px 26px}
+/* Overlay controls must not reserve a header strip above the title art. */
+.honro #app .honro-title>.top{position:absolute;inset:0 0 auto;z-index:3;height:auto;min-height:0;padding:max(8px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left));border:0;background:transparent;pointer-events:none}
+.honro #app .honro-title>.top>button{pointer-events:auto;display:grid;place-items:center;width:44px;height:44px;min-width:44px;min-height:44px;padding:0}
 .honro-title .top>.icon{margin-left:auto;border-color:#c4cccf30;background:#0b182180;width:44px;height:44px;border-radius:50%}
 .honro-title .title-main{width:min(420px,40vw);max-width:none;margin:auto 0 auto clamp(32px,7vw,130px);padding:0 0 28px;gap:0;align-items:flex-start}
 .honro-title .honro-logo-wrap{width:min(390px,100%);filter:drop-shadow(0 3px 12px #0005)}
@@ -56,7 +58,6 @@ body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d
 @media(orientation:portrait){
  .honro-title .title-painting img{object-position:right bottom}
  .honro-title:after{background:linear-gradient(0deg,#050e169c,transparent 19%,#07131d20 56%,#07131d24)}
- .honro-title .top{min-height:58px;height:58px;padding:7px 16px}
  .honro-title .title-main{position:static;align-items:center;width:100%;max-width:none;margin:0;padding:clamp(8px,3.7dvh,40px) 7% 0;gap:0}
  .honro-title .honro-logo-wrap{width:min(295px,79vw)}
  .honro-title .title-main .title-brand{font-size:125px}
@@ -79,7 +80,6 @@ body.honro{font:14px system-ui,-apple-system,'Malgun Gothic',sans-serif;color:#d
  .honro-title .title-actions>button{font-size:14px;min-height:46px;padding:10px 12px}
 }
 @media(orientation:landscape) and (max-height:540px){
- .honro-title .top{min-height:48px;height:48px;padding:2px 14px}
  .honro-title .title-main{width:min(320px,43vw);margin:auto 0 auto 6vw;padding:0}
  .honro-title .honro-logo-wrap{width:220px;max-width:100%}
  .honro-title .title-main .title-brand{font-size:95px}
@@ -116,4 +116,4 @@ G.HonroStartup={
 };
 document.addEventListener('click',event=>{const button=event.target.closest?.('[data-startup-start],[data-startup-retry]');if(!button)return;if(button.hasAttribute('data-startup-retry'))location.reload();else if(!ready)button.textContent='준비 중';});
 })(globalThis);
-</script><script type="module" src="web/entries/game.f881c75c05f2ab5b.js"></script></body></html>
+</script><script type="module" src="web/entries/game.c1044768241f4771.js"></script></body></html>

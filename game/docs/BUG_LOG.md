@@ -3884,3 +3884,7 @@ Workshop Map은 Workshop JSON을 `map-import` → `launchMap`으로 실행하는
 - CPU4배/40ms/2MiB/s 조건별3회 중앙값. 원기준→최종: 무압축 cold 새방문2977→2636ms/21장이어서3552→3349ms; gzip cold1652→1401ms/1737→1525ms. gzip warm768→657ms/969→972ms. gzip cold 클릭후411→435ms/1692→1734ms로 개선 없음. 압축서는 gzip6을 로컬서버에서 부여한 별도 조건이며 실제Pages헤더는 CONNECT403으로 확인이 거부돼 중단했다.
 - 별도 프로파일:21장 continue462ms(중첩 mount416/HUD294/초상화203), 첫 render541ms. 프로파일러 없는 첫프레임 계측은 render378ms(배경60/지형tile97/가림silhouette46). 서로 다른 run·중첩 시간이라 합산하지 않는다. 이는 클릭 뒤 현재 화면의 실제 생성/합성 비용이며 대기화면으로 이동시키지 않았다. 공용 renderer의 pixel/pose/cache를 바꾸면8장 포함 전장미술·가림정책 회귀 위험이 있어 본 로딩 작업에서는 더 변경하지 않는다.
 - build/web-split/ordered-runtime/retention/실제브라우저 retry·원경·저장회귀 및 타이틀두검사 통과. data/graphics189개 해시 불변. 측정원본은 `_local/reports/intro-audit/{cpu-summary,first-frame,compression,minified,gzip-before,gzip-after}.json`.
+
+## 2026-10-21 — 인트로 상단 바 제거
+- 타이틀 전용 header를 투명 absolute overlay로 바꾸어 배경이 화면 상단부터 이어지고 헤더 높이가 본문을 밀지 않게 했다. 다른 화면 헤더는 미변경. 설정 44×44 클릭 영역·라벨·키보드 접근·safe-area 여백은 유지했다.
+- title 정적 검사 및 실제 Chromium 390×844/1280×800/844×390/320×568, safe-area top44 모사에서 설정 클릭/Enter·쉼터 헤더 보존 통과. 사진과 결과는 game/docs/evidence/intro-bar-bgm-2026-10-21. 실제 기기 또는 Pages 검증과 구분한다.
