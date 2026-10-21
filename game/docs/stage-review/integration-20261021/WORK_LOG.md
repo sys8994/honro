@@ -26,3 +26,5 @@
 - 새2장 배치가 옛3370/1010 좌표 author 판정에서 빠져 기본 Stage View/Playtest가 경고 정책 opt-in을 잃었다. 명시된 승인 전략지형 revision2/flightRegion/shelf-roost의 opt-in만 추가했다. 캠페인의 기존 정책·자원·배치는 바꾸지 않았다. 기본 preview/campaign 동일 배우, 무판본 import 제외, 실제 Workshop iframe의 active=true/cap3/initial12/새flightRegion/Engine.face를 확인했다. 기존 stage2-airborne 검사는 이 새 실패를 해소한 뒤 원래의 역사 clone flightEscape 실패로 돌아왔으며 통과로 기록하지 않는다.
 - 실제 Playtest는 기존 geology:granite-ledge-neck의 physical scaleRange .65–1와 backgroundRange .85–1.1 불일치로 검증 단계에서 막혔다. 변경 전bafc의 builder도 같은 메타데이터였다. backgroundRange를 기존 physical 범위 안으로만 자르는 공통 builder 교정을 했고(.85–1), 형상·배치·충돌·이미지는 동일하다. 환경 validator는 완화하지 않았다. 실제 Workshop2장 진입을 다시 확인했다.
 - 최종 통합 전용 검사는11장까지 SP/air/map6순열×3반복에서 전체profile/보상장부가 같음을 확인했다. 구판본 폐기 시 아직persist되지 않은 최신 전투장부 version4가 profile에 회수되는 것은 보존 동작이다.
+
+실제 두 정상 승리 profile의 완료 처리 반복/내보내기/가져오기에서 기존 `outcome()`의 done guard가 outro 시작 뒤에 있어, 완료 상태에서 반복 호출하면 outro가 다시 열리고 terminal battle이 profile에 재저장되는 것을 발견했다. 다음 import에서 XP는 추가되지 않아도 cleared.visits가 증가할 수 있었다. guard를 outro보다 먼저 두는 좁은 수정 후2장/5장 실제 승리 profile의2회 반복 결과/전체 XP·SP·장착·장부·방문 수와 terminal save 부재를 확인했다. 새 전투를 강제로 승리 처리하거나 결과 수치를 보정하지 않았다.

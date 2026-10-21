@@ -634,6 +634,9 @@
         tickBanter(){this.banterQueue=this.banterQueue.filter(q=>this.canSpeak(q.who));if(this.banterCurrent&&!this.canSpeak(this.banterCurrent.who))this.banterCurrent=null;}
         drawDialogue(){G.HonroStory.draw(this);}
         outcome(afterStory=false) {
+            // A completed result must not replay its outro and save a terminal
+            // battle back into the profile for a second clear on import.
+            if(this.done||!this.engine)return;
             if(!afterStory&&this.engine?.b.phase==='won'&&!this.dialogue){this.cancelInput();if(G.HonroStory.start(this,(G.HonroObjectiveRevision?.contentFor(this.engine.b,this.stage)||this.stage).outro,{title:this.stage.name,after:'outcome'}))return;}
             if (this.done || !this.engine)
                 return;
