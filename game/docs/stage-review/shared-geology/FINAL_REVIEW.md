@@ -1,3 +1,5 @@
+> 이 문서는 b0be715a의 이전 후보 기록이다. 최신 접합 교정과 남은 문제는 [joints-correction/REVIEW.md](joints-correction/REVIEW.md)를 본다.
+
 # 공통 화강암 /2장 검토 후보
 
 판정: **공통 자산 구현·기능 보존 검사 완료, 미술 통과 아님. master 미반영·미배포.**

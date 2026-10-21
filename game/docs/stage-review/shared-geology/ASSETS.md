@@ -19,3 +19,5 @@ shared/runtime/geology-art.js의 prepare/draw가 공통 배치 경로다. 실제
 2장 인스턴스는 tools/environment/act1-scene-composition.mjs의 design.geologyComposition에만 있다. 수직4/지지4/연결7개이며 원본 배율 범위 안에서 두 실제 절벽과 화면 외곽을 잇는다. Stage2 전용 렌더에는 색면/경로 목록을 추가하지 않는다. 세부 검수와 미해결 문제는 [FINAL_REVIEW.md](FINAL_REVIEW.md)에 기록했다. master 통합/배포는 하지 않았다.
 
 재현: node --expose-gc tools/testing/geology-modules-native.mjs OUTPUT. Native Scene/공통 벡터 출력이며 게임 HUD/전체 전투 증거가 아니다. tests/geology-modules.mjs는 기존30장/Library 무변경(3자산 등록 외), 등록 재실행·metadata·socket·zero collision을 검사하며 자동 미술 판정을 하지 않는다.
+
+접합 교정 추가: geology:granite-vertical-cleft(기존 세로 모듈과 같은 bounds/heightM/scaleRange)와 wood:pine-wall-root(bounds -20,0,350,155; heightM155/60; scale .7–1.4; root-mouth0,0)를 등록했다. 뿌리는 기존 rooted-pine 밑동에서 분리·곡선 보완한 구성품이며 실제 발판 아래에 붙는다. 활성 Library는850개다. 최신 실제 화면/한계는 [joints-correction/REVIEW.md](joints-correction/REVIEW.md)를 따른다.
