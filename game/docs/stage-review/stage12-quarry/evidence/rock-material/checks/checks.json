@@ -1,0 +1,144 @@
+{
+  "pass": true,
+  "baseline": "1c4bd9643370e13525123b392308d32a73476830",
+  "physicsStoryEventsActorsRevisionExact": true,
+  "other29DataExact": true,
+  "libraryExact": true,
+  "rootedPinesAndFunctionalElementsExact": true,
+  "renderStatePure": true,
+  "targets": [
+    {
+      "id": "sq-north-quarry",
+      "variant": "jointed-granite",
+      "anchors": [
+        {
+          "x": 5330,
+          "y": 3760
+        },
+        {
+          "x": 6740,
+          "y": 3540
+        },
+        {
+          "x": 7690,
+          "y": 3310
+        },
+        {
+          "x": 8652.5,
+          "y": 4000
+        }
+      ],
+      "masses": [
+        {
+          "x0": 5330,
+          "x1": 6740,
+          "depth": 521.3888888888891,
+          "finite": true,
+          "commonForm": "wall"
+        },
+        {
+          "x0": 6740,
+          "x1": 7690,
+          "depth": 1108.4210526315787,
+          "finite": true,
+          "commonForm": "quarry"
+        },
+        {
+          "x0": 7690,
+          "x1": 8652.5,
+          "depth": 595.5430711610488,
+          "finite": true,
+          "commonForm": "shoulder"
+        }
+      ],
+      "outsideSolidSamples": 11,
+      "renderHash": "5be2ab9e093c39ee5bde529a70589942f64dbd04cda136787cbbbf0f1310d33c"
+    },
+    {
+      "id": "sq-lower-ground",
+      "variant": "jointed-granite",
+      "anchors": [
+        {
+          "x": 5740,
+          "y": 4870
+        },
+        {
+          "x": 6320,
+          "y": 4800
+        },
+        {
+          "x": 6980,
+          "y": 4800
+        },
+        {
+          "x": 7290,
+          "y": 5140
+        }
+      ],
+      "masses": [
+        {
+          "x0": 5740,
+          "x1": 6320,
+          "depth": 815.8000000000002,
+          "finite": false,
+          "commonForm": "wall"
+        },
+        {
+          "x0": 6320,
+          "x1": 6980,
+          "depth": 760.1999999999998,
+          "finite": false,
+          "commonForm": "quarry"
+        },
+        {
+          "x0": 6980,
+          "x1": 7290,
+          "depth": 648.3999999999996,
+          "finite": false,
+          "commonForm": "shoulder"
+        }
+      ],
+      "outsideSolidSamples": 15,
+      "renderHash": "502a15577ffcf407f56a7eadd647f5c25c051fdc79034707907e134b6c975dfa"
+    }
+  ],
+  "otherAct2PixelsExact": [
+    {
+      "stage": 11,
+      "sha256": "7c1031616c2cb4c6cec9d58cfdebb14627826a1c8c26a8f613aaf9839ede021b"
+    },
+    {
+      "stage": 13,
+      "sha256": "5007b840ca22571d4fa5b62186ac65acbde14c377f07c396af8525dc9fffb843"
+    },
+    {
+      "stage": 14,
+      "sha256": "52cb82a205c780d91507b1c21bd54796acf3e0c1948468dc5c60851a8647a407"
+    },
+    {
+      "stage": 15,
+      "sha256": "81f13e77d756e8742ffddcad440d5bb8dac568e080229b69448c07d049fc8269"
+    },
+    {
+      "stage": 16,
+      "sha256": "a2f40551a7772cfa03c9b570257a2cdaa13e562561a275b25bb553fe04c6ec2a"
+    },
+    {
+      "stage": 17,
+      "sha256": "cbb215c53d2b9e8b42f6f9f4cc528c9a63a8dfad993dfeea7a712fa91a8b2d45"
+    },
+    {
+      "stage": 18,
+      "sha256": "b6a6a6355dc9789c21363b1947c9d4d39f1890615050707ed06e6695c25816fc"
+    },
+    {
+      "stage": 19,
+      "sha256": "5936a175d5681699bb1af6e5fdf0fc03fe2206e7fc8261752b426c761438fbf4"
+    },
+    {
+      "stage": 20,
+      "sha256": "6ef0096f069c25c436de666f4331c46da570aeed607fb125a0ae4ca4c3be4958"
+    }
+  ],
+  "scope": "Static native terrain/landmark pixels and material geometry only; browser art assessed separately. No combat replay."
+}

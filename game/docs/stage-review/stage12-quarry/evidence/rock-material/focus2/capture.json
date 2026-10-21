@@ -1,0 +1,47 @@
+{
+  "label": "jointed-material-focus2",
+  "url": "http://127.0.0.1:8870/HONRO.html",
+  "renderSourceSha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f",
+  "sha": "1c4bd9643370e13525123b392308d32a73476830",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M shared/runtime/act2-spatial-art.js\n M tools/map-forge/stage12-quarry-geometry.mjs\n D web/data/campaign.5f788e18bdd7f28e.json\n D web/data/campaign.76d592bcf2366629.json\n D web/data/chapter-12.88162a924008edd5.json\n D web/data/chapter-12.edf156b153c2f844.json\n D web/entries/game.28504c7989d74966.js\n D web/entries/game.5a085dc4f29a32a9.js\n D web/entries/game.a035bddedebe9ec4.html\n D web/entries/game.d0bebce07680c423.html\n D web/entries/workshop.a1113cc0bca84942.js\n D web/entries/workshop.e31bfd1cfb46d515.js\n M web/manifest.json\n D web/runtime/campaign.488d8f4fd7d95f96.js\n D web/runtime/campaign.991755218690182f.js\n?? web/data/campaign.55925730a50dacda.json\n?? web/data/chapter-12.2feeffdb9fc536a5.json\n?? web/entries/game.3a4e32dc0d18244f.html\n?? web/entries/game.58fe7fdbcbd9779f.html\n?? web/entries/game.6b93c37628a93295.js\n?? web/entries/game.a8231f320177b245.js\n?? web/entries/workshop.868a66b6fff93a08.js\n?? web/entries/workshop.e893884936d54a03.js\n?? web/runtime/campaign.55a02b0b974da29e.js\n?? web/runtime/ordered-common-12.9587d7e36d8b749c.js\n?? web/runtime/ordered-common-12.d887c493ebb17960.js\n?? web/runtime/ordered-common-13.1c19678ad5f95288.js\n?? web/runtime/ordered-common-13.ee4f0a5c3003f6dc.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 12,
+      "view": "upper-normal",
+      "camera": {
+        "x": 6800,
+        "y": 3800,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-normal",
+      "camera": {
+        "x": 6500,
+        "y": 4900,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 12,
+      "view": "center-overview",
+      "camera": {
+        "x": 6500,
+        "y": 4200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 12,
+      "view": "sign-mobile",
+      "camera": {
+        "x": 6520,
+        "y": 4800,
+        "scale": 0.55
+      }
+    }
+  ],
+  "errors": []
+}

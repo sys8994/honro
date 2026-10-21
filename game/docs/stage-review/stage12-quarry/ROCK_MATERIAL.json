@@ -1,0 +1,276 @@
+{
+  "status": "EXPERIMENTAL_MATERIAL_IMPLEMENTED_ART_FAIL",
+  "sourceSha": "4fde0124ace060d6e1abb86829cae0bf575bdea1",
+  "baseline": "1c4bd9643370e13525123b392308d32a73476830",
+  "sharedMaterialPath": "shared/runtime/act2-spatial-art.js:rockMaterial/prepareRockMasses/terrain",
+  "sharedMaterialSourceSha256": "779bcf5ebdb5239a9490e3dc10979211ca945e9547d424b2aa89f9db1b84c04f",
+  "existingCommonRockFormsUnchanged": true,
+  "existingCommonRockFormsSha256": "66e2c8b2e2c37058c670d42eb684310ada91f0cfff11f16c94cf78cfb044d0d7",
+  "newMaterialHelpersNoChapterOrTerrainIdBranches": true,
+  "selectionPath": "shared/data/campaign.json stages[11].design.space.terrainMaterials",
+  "authorPath": "tools/map-forge/stage12-quarry-geometry.mjs",
+  "checks": {
+    "pass": true,
+    "baseline": "1c4bd9643370e13525123b392308d32a73476830",
+    "physicsStoryEventsActorsRevisionExact": true,
+    "other29DataExact": true,
+    "libraryExact": true,
+    "rootedPinesAndFunctionalElementsExact": true,
+    "renderStatePure": true,
+    "targets": [
+      {
+        "id": "sq-north-quarry",
+        "variant": "jointed-granite",
+        "anchors": [
+          {
+            "x": 5330,
+            "y": 3760
+          },
+          {
+            "x": 6740,
+            "y": 3540
+          },
+          {
+            "x": 7690,
+            "y": 3310
+          },
+          {
+            "x": 8652.5,
+            "y": 4000
+          }
+        ],
+        "masses": [
+          {
+            "x0": 5330,
+            "x1": 6740,
+            "depth": 521.3888888888891,
+            "finite": true,
+            "commonForm": "wall"
+          },
+          {
+            "x0": 6740,
+            "x1": 7690,
+            "depth": 1108.4210526315787,
+            "finite": true,
+            "commonForm": "quarry"
+          },
+          {
+            "x0": 7690,
+            "x1": 8652.5,
+            "depth": 595.5430711610488,
+            "finite": true,
+            "commonForm": "shoulder"
+          }
+        ],
+        "outsideSolidSamples": 11,
+        "renderHash": "5be2ab9e093c39ee5bde529a70589942f64dbd04cda136787cbbbf0f1310d33c"
+      },
+      {
+        "id": "sq-lower-ground",
+        "variant": "jointed-granite",
+        "anchors": [
+          {
+            "x": 5740,
+            "y": 4870
+          },
+          {
+            "x": 6320,
+            "y": 4800
+          },
+          {
+            "x": 6980,
+            "y": 4800
+          },
+          {
+            "x": 7290,
+            "y": 5140
+          }
+        ],
+        "masses": [
+          {
+            "x0": 5740,
+            "x1": 6320,
+            "depth": 815.8000000000002,
+            "finite": false,
+            "commonForm": "wall"
+          },
+          {
+            "x0": 6320,
+            "x1": 6980,
+            "depth": 760.1999999999998,
+            "finite": false,
+            "commonForm": "quarry"
+          },
+          {
+            "x0": 6980,
+            "x1": 7290,
+            "depth": 648.3999999999996,
+            "finite": false,
+            "commonForm": "shoulder"
+          }
+        ],
+        "outsideSolidSamples": 15,
+        "renderHash": "502a15577ffcf407f56a7eadd647f5c25c051fdc79034707907e134b6c975dfa"
+      }
+    ],
+    "otherAct2PixelsExact": [
+      {
+        "stage": 11,
+        "sha256": "7c1031616c2cb4c6cec9d58cfdebb14627826a1c8c26a8f613aaf9839ede021b"
+      },
+      {
+        "stage": 13,
+        "sha256": "5007b840ca22571d4fa5b62186ac65acbde14c377f07c396af8525dc9fffb843"
+      },
+      {
+        "stage": 14,
+        "sha256": "52cb82a205c780d91507b1c21bd54796acf3e0c1948468dc5c60851a8647a407"
+      },
+      {
+        "stage": 15,
+        "sha256": "81f13e77d756e8742ffddcad440d5bb8dac568e080229b69448c07d049fc8269"
+      },
+      {
+        "stage": 16,
+        "sha256": "a2f40551a7772cfa03c9b570257a2cdaa13e562561a275b25bb553fe04c6ec2a"
+      },
+      {
+        "stage": 17,
+        "sha256": "cbb215c53d2b9e8b42f6f9f4cc528c9a63a8dfad993dfeea7a712fa91a8b2d45"
+      },
+      {
+        "stage": 18,
+        "sha256": "b6a6a6355dc9789c21363b1947c9d4d39f1890615050707ed06e6695c25816fc"
+      },
+      {
+        "stage": 19,
+        "sha256": "5936a175d5681699bb1af6e5fdf0fc03fe2206e7fc8261752b426c761438fbf4"
+      },
+      {
+        "stage": 20,
+        "sha256": "6ef0096f069c25c436de666f4331c46da570aeed607fb125a0ae4ca4c3be4958"
+      }
+    ],
+    "scope": "Static native terrain/landmark pixels and material geometry only; browser art assessed separately. No combat replay."
+  },
+  "cart": {
+    "source": "Actual production browser compiled landmarks and shared surfaceEdges",
+    "cart": {
+      "id": "sq-art-abandoned-cart",
+      "x": 7744.792100965721,
+      "y": 3305.2582825168724,
+      "scale": 1.6,
+      "rotation": 0.504165961479153,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "foot": {
+        "x": 0,
+        "y": 19.137852849522602
+      }
+    },
+    "rubble": {
+      "id": "sq-art-carrier-rubble",
+      "x": 8066.608860315141,
+      "y": 3460.2877094256055,
+      "scale": 1.15,
+      "rotation": 0.6524294429731211,
+      "anchor": {
+        "x": 0,
+        "y": 0
+      },
+      "foot": {
+        "x": 0,
+        "y": 52.43421719246703
+      }
+    },
+    "wheels": [
+      {
+        "wheel": 0,
+        "minGap": 3.7535392828467593
+      },
+      {
+        "wheel": 1,
+        "minGap": 0.0
+      }
+    ],
+    "rubbleMinGap": 0.0,
+    "overlapProbes": [
+      {
+        "part": 0,
+        "probes": 4301,
+        "coveredByRubble": 0
+      },
+      {
+        "part": 1,
+        "probes": 823,
+        "coveredByRubble": 0
+      },
+      {
+        "part": 2,
+        "probes": 772,
+        "coveredByRubble": 0
+      }
+    ]
+  },
+  "focusedReviews": [
+    {
+      "folder": "focus1",
+      "verdict": "FAIL: hanging rectangular extrusions"
+    },
+    {
+      "folder": "focus2",
+      "verdict": "FAIL: continuous lower outline but vertical panel rhythm"
+    },
+    {
+      "folder": "focus3",
+      "verdict": "FAIL: existing common facets mapped too thinly; camouflage-like patches"
+    },
+    {
+      "folder": "focus4",
+      "verdict": "PARTIAL, STILL FAIL: three coarser anatomy sections but flat painted silhouette reading and long vertical facets remain"
+    }
+  ],
+  "finalVerdict": "No art acceptance. Middle mass volume and contact readability remain below target, especially normal/portrait upper and sign face. No master or Pages rollout.",
+  "masterWrite": false,
+  "pagesRequest": false,
+  "stage13Started": false,
+  "pngSha256": {
+    "focus4/stage12-sign-normal.png": "a9963f332209dce7a37ef5fce0c636595762742337a08e67cde199a5d0631c7a",
+    "focus4/stage12-upper-mobile.png": "1d653ef2b63bc285454fbd9b8943a4b476616bf7ad8905271b2af46e7d6dc8c5",
+    "focus4/stage12-center-overview.png": "fa2973be8b7885e79541769172f0b5d93aed2abf034901371bc10c377551e650",
+    "focus4/stage12-upper-normal.png": "3432ef8c9472d3c37525aed97c7b6f056f4f9f872ff1af5a6cc977bc8fc41da2",
+    "focus4/stage12-sign-mobile.png": "f617f0bddd32e5cca6713888feeca7daee51945f2b18e068782553abcc682942",
+    "focus4/stage12-carrier-cart.png": "31a606e53340cb65d806299efeefdfe156d4c1772d19712fa7c8f14203fa1eed",
+    "focus1/stage12-sign-normal.png": "d1d74563a9398cbcbae678c432bbb25336071f3ca302f501ce9ca073b870f03d",
+    "focus1/stage12-center-overview.png": "4fa2695fa324aeb8321341f0d3b2e177358cea67056d4216eaa48f87bb72a2a7",
+    "focus1/stage12-upper-normal.png": "9649a8da32779a12edbfd5d0974124d37a569e351a40da755d79c5cc4e0744c2",
+    "focus1/stage12-sign-mobile.png": "66bd985b1af99d141be7030c275e08b5c84838e4969774dca8336ea36747711e",
+    "final/stage12-sign-max.png": "730d50c694b242f2b069c4400f144020f37ea3e666c6ef3e1102891ff2840bc9",
+    "final/stage12-sign-normal.png": "a9963f332209dce7a37ef5fce0c636595762742337a08e67cde199a5d0631c7a",
+    "final/stage12-upper-mobile.png": "1d653ef2b63bc285454fbd9b8943a4b476616bf7ad8905271b2af46e7d6dc8c5",
+    "final/stage12-upper-max.png": "c058ee1f24cd01cb112dcf1436f3bad9e43f567a4dc1569ce140c0f8dfc5dbb0",
+    "final/stage12-center-overview.png": "fa2973be8b7885e79541769172f0b5d93aed2abf034901371bc10c377551e650",
+    "final/stage12-upper-normal.png": "3432ef8c9472d3c37525aed97c7b6f056f4f9f872ff1af5a6cc977bc8fc41da2",
+    "final/stage12-sign-mobile.png": "f617f0bddd32e5cca6713888feeca7daee51945f2b18e068782553abcc682942",
+    "final/stage12-carrier-cart.png": "31a606e53340cb65d806299efeefdfe156d4c1772d19712fa7c8f14203fa1eed",
+    "focus3/stage12-sign-normal.png": "796ff68cb4fb8edde083647efbaefa7f389dce282d4c06728e0781216501f99d",
+    "focus3/stage12-center-overview.png": "ed8141b1420dee1ccb5f8e408d1ad752c1b68e78347ad6ab5a3dcb0ae14fada2",
+    "focus3/stage12-upper-normal.png": "8609b9079a45b149b109f049b315f0f0dff1d57ef03be0a872cde301da383dda",
+    "focus3/stage12-sign-mobile.png": "1b4d438584133277a6a86649347915ef5ce87d3df2e26c45e933d962a83657a8",
+    "before/stage12-sign-max.png": "a3d25755e1b41c2bf92e811b72da717d39f4fb790018a73607a5371e028f07dc",
+    "before/stage12-sign-normal.png": "a382e1f5843e1870f81151b250f57ef12afc8817018eeccecc72b4b8a0a76c73",
+    "before/stage12-upper-mobile.png": "055479c15f9ba7ae99055ad265802dcc0d93e1c9a2f3a47b283c5d289e044c64",
+    "before/stage12-upper-max.png": "0fe47969311c2a866a43ee5fb92e45716193e6f39ace4618432198471b84e155",
+    "before/stage12-center-overview.png": "c8a1135f383312f04cccc69ea9c6170028d93fd54b8b993a2ef99a11228538bd",
+    "before/stage12-upper-normal.png": "19187e417e20340e465c0afe9c5eb4899c1c5cf69ed4ba2c4023681be3ab1c11",
+    "before/stage12-sign-mobile.png": "9c047f1f017aa963d95f04880d9c2a483d8a675ab31d90a065bda35f245315b1",
+    "before/stage12-carrier-cart.png": "59861b8f01822f26f5eecb3336971b2f7a082805f2567219bddf34d13f62fb4e",
+    "focus2/stage12-sign-normal.png": "bfe6c22884e852987d31c85b90c4fb647a0a3cfdce5ef501a6998ea9d4c9f955",
+    "focus2/stage12-center-overview.png": "eef6919360d1477065707ca16d3c95399c748e62eae51de106f3c9a626113821",
+    "focus2/stage12-upper-normal.png": "2dfe93254bd30a6804341e48edb066d546d3dd425653da96b85717aef86418de",
+    "focus2/stage12-sign-mobile.png": "92d1ca637f6acdd23a141e62150dda82877f0ee5873f4dc38a6727cbf06696ba"
+  },
+  "all34PngDirectlyOpened": true
+}
