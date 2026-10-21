@@ -1,3 +1,4 @@
+import {applyCommonCartArt} from '../tools/environment/common-cart-art.mjs';
 import {registerGeologyArt} from '../tools/environment/register-geology-art.mjs';
 import {applyStage10Positioning} from '../tools/map-forge/stage10-positioning.mjs';
 import {applyStage7Positioning} from '../tools/map-forge/stage7-positioning.mjs';
@@ -58,6 +59,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands'])await file(`shared/map/${name}.js`);
   let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
   project=await registerGeologyArt(project);
+  project=applyCommonCartArt(project);
   project=await authorAct23QuestRedesign(project);
   applyOpenStructures(project);
   project=applyCityTacticalRoutes(project);
