@@ -1,0 +1,181 @@
+{
+  "pass": true,
+  "input": "/tmp/stage11-normal-descent/checkpoint.json",
+  "sourceHash": "9af61283f7611ca3125448406a029af261a9086ecef0da49a1b900f390a46516",
+  "round": 59,
+  "nextStage": 12,
+  "resident": 801,
+  "party": [
+    "archer",
+    "mage",
+    "knight",
+    "occultist"
+  ],
+  "combatGrowth": {
+    "mage": {
+      "xp": 16374,
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 1,
+        "M03": 2,
+        "M11": 1,
+        "M07": 1,
+        "M10": 4,
+        "M08": 1,
+        "M09": 1
+      },
+      "statTraining": 6,
+      "kills": 15,
+      "damage": 10835,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "archer": {
+      "xp": 19158,
+      "ranks": {
+        "A01": 1,
+        "A14": 1,
+        "A02": 3,
+        "A05": 1,
+        "A04": 1,
+        "A07": 1,
+        "A03": 1,
+        "A11": 1,
+        "AP04": 1,
+        "AP02": 2,
+        "AP01": 2,
+        "AP03": 1
+      },
+      "statTraining": 6,
+      "kills": 18,
+      "damage": 23350,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "knight": {
+      "xp": 22603,
+      "ranks": {
+        "S00": 1,
+        "S01": 1,
+        "S06": 1,
+        "S04": 1,
+        "S09": 3,
+        "S03": 4,
+        "S05": 3,
+        "SP01": 2
+      },
+      "statTraining": 6,
+      "kills": 27,
+      "damage": 20236,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "occultist": {
+      "xp": 17666,
+      "ranks": {
+        "O01": 1,
+        "O06": 3,
+        "OP01": 1,
+        "OP02": 1,
+        "OP03": 1,
+        "OP04": 1,
+        "O02": 4,
+        "O11": 3,
+        "O03": 4,
+        "O07": 3
+      },
+      "statTraining": 0,
+      "kills": 4,
+      "damage": 4967,
+      "skillRevision": 1,
+      "martialRevision": 1,
+      "occultRevision": 1
+    }
+  },
+  "growth": {
+    "mage": {
+      "xp": 18257,
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 1,
+        "M03": 2,
+        "M11": 1,
+        "M07": 1,
+        "M10": 4,
+        "M08": 1,
+        "M09": 1
+      },
+      "statTraining": 6,
+      "kills": 15,
+      "damage": 10835,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "archer": {
+      "xp": 22421,
+      "ranks": {
+        "A01": 1,
+        "A14": 1,
+        "A02": 3,
+        "A05": 1,
+        "A04": 1,
+        "A07": 1,
+        "A03": 1,
+        "A11": 1,
+        "AP04": 1,
+        "AP02": 2,
+        "AP01": 2,
+        "AP03": 1
+      },
+      "statTraining": 6,
+      "kills": 18,
+      "damage": 23350,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "knight": {
+      "xp": 24641,
+      "ranks": {
+        "S00": 1,
+        "S01": 1,
+        "S06": 1,
+        "S04": 1,
+        "S09": 3,
+        "S03": 4,
+        "S05": 3,
+        "SP01": 2
+      },
+      "statTraining": 6,
+      "kills": 27,
+      "damage": 20236,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "occultist": {
+      "xp": 18916,
+      "ranks": {
+        "O01": 1,
+        "O06": 3,
+        "OP01": 1,
+        "OP02": 1,
+        "OP03": 1,
+        "OP04": 1,
+        "O02": 4,
+        "O11": 3,
+        "O03": 4,
+        "O07": 3
+      },
+      "statTraining": 0,
+      "kills": 4,
+      "damage": 4967,
+      "skillRevision": 1,
+      "martialRevision": 1,
+      "occultRevision": 1
+    }
+  },
+  "scope": "Production App outcome, exact terminal Continue and campaign transition from actual normal native play. DOM/storage doubles; not a fresh browser playthrough."
+}

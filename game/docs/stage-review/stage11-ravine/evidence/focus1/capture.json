@@ -1,0 +1,89 @@
+{
+  "sha": "faf94b02153694fd14c2abe83d1e0469542e939e",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/runtime/stage11-landscape-art.js\n M tests/stage11-landscape-art.mjs\n M tests/stage11-ravine-fullplay.mjs\n D web/entries/game.16a9d878545f8bea.js\n D web/entries/game.81d586afc6b47595.html\n D web/entries/game.a25b24cc38650f97.js\n D web/entries/game.bc6f4d30ea277e0c.html\n D web/entries/game.dccd6cf21d3dec38.html\n D web/entries/game.fcb8097622458b1e.js\n D web/entries/workshop.291c4a0171d0cfb4.js\n D web/entries/workshop.5f3028b5dab8c1e8.js\n D web/entries/workshop.a4c36c37057214d8.js\n M web/manifest.json\n D web/runtime/ordered-common-11.ceb05c0dc4784d67.js\n D web/runtime/ordered-common-12.898ca94d2d7a9c9e.js\n D web/runtime/ordered-common-12.b15a0db406c8a678.js\n D web/runtime/ordered-common-12.c0d43eec69bd3a30.js\n D web/runtime/ordered-common-13.8fd25d4dab911881.js\n D web/runtime/ordered-common-13.d9c5c3ce79941a3b.js\n D web/runtime/ordered-common-5.92018b2cd97d931a.js\n D web/runtime/ordered-common-6.9e65925ab202c4c3.js\n D web/runtime/ordered-common-7.9ffe5a571061b7c3.js\n D web/runtime/ordered-game-15.60b857d25d38a798.js\n D web/runtime/ordered-game-16.cc2367a46ddd9165.js\n D web/styles/game-src-guide.3d713683085e2ae7.css\n?? web/entries/game.1c3db6cd1d65fc74.js\n?? web/entries/game.5bf7485767dffbaa.html\n?? web/entries/game.7b8ee50a355a29dc.html\n?? web/entries/game.870006a7a36136d6.html\n?? web/entries/game.a8d05d42cc139d2d.js\n?? web/entries/game.c203e7302e47b501.js\n?? web/entries/workshop.043ec23dd967fd1a.js\n?? web/entries/workshop.50a939226ec0cccf.js\n?? web/entries/workshop.570c27f295e25477.js\n?? web/runtime/ordered-common-12.104a471b2c9710b2.js\n?? web/runtime/ordered-common-12.1ebce3ef2fb608ec.js\n?? web/runtime/ordered-common-12.569aa848f02c5047.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 11,
+      "view": "west-overview",
+      "camera": {
+        "x": 3400,
+        "y": 6100,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 11,
+      "view": "court-overview",
+      "camera": {
+        "x": 8000,
+        "y": 6700,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 11,
+      "view": "lower-overview",
+      "camera": {
+        "x": 8200,
+        "y": 9000,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 11,
+      "view": "west-knot",
+      "camera": {
+        "x": 3600,
+        "y": 6100,
+        "scale": 0.6
+      }
+    },
+    {
+      "stage": 11,
+      "view": "court",
+      "camera": {
+        "x": 7370,
+        "y": 6680,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 11,
+      "view": "refuge",
+      "camera": {
+        "x": 9700,
+        "y": 8770,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 11,
+      "view": "trace",
+      "camera": {
+        "x": 15040,
+        "y": 5400,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 11,
+      "view": "mobile-court",
+      "camera": {
+        "x": 7370,
+        "y": 6680,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 11,
+      "view": "landscape-refuge",
+      "camera": {
+        "x": 9700,
+        "y": 8670,
+        "scale": 0.6
+      }
+    }
+  ],
+  "errors": []
+}

@@ -28,6 +28,7 @@ for(const t of ts){
  assert.deepEqual(transform(),beforeTransform,'material pass leaked its Canvas transform');
  assert.equal(c.globalAlpha,1,'material pass leaked alpha');
 }
+for(const id of ['act2-floor','rv-west-shoulder','rv-west-stone-arch','rv-west-rock-crown','rv-ritual-buttress','rv-lower-west-shelf','rv-lower-refuge-rock','rv-east-tower','rv-north-trace']){const q=art.prepare(ts.find(t=>t.id===id),b);assert.equal(q.connected,true,id+' has continuous bedrock');assert(q.plates.every(p=>p.connected),id+' never draws individual boulder silhouettes');}
 assert.ok(drawn>=30);assert.ok(maxPreparedPaths<150,'unbounded material path count');
 assert.equal(JSON.stringify(b),original,'rendering changed the live battle');
 const t=ts.find(t=>t.honroRavine),old=art.prepare(t,b),next={...b,sceneVersion:(b.sceneVersion||0)+1};assert.notEqual(art.prepare(t,next),old,'scene invalidation must reprepare live geometry');

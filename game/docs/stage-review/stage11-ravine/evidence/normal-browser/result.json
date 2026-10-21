@@ -1,0 +1,69 @@
+{
+  "scope": "Actual native-play saves viewed via production browser Continue, then real outcome/Stage12 UI.\nThese are frozen genuine saved battles, not a browser replay of the entire59 rounds.\nNo actor pose, HP, resource or objective corrections are made.\n",
+  "sha": "faf94b02153694fd14c2abe83d1e0469542e939e",
+  "renderSourceSha256": "3143c3feffabca8bb422fe50e9ca0f02d0600e5dddf5a5db3f34cd6f4b7bb03e",
+  "rows": [
+    {
+      "round": 1,
+      "phase": "aim",
+      "done": {},
+      "label": "west-entry",
+      "input": "/tmp/stage11-normal/initial.json",
+      "inputSha256": "8893afeef298dcd8a016d77c0d9d0c764426733da4cd2b5aee9e86437e51515e"
+    },
+    {
+      "round": 33,
+      "phase": "aim",
+      "done": {
+        "knot-west": true,
+        "clear-west": true
+      },
+      "label": "east-before",
+      "input": "/tmp/stage11-paused-continue.json",
+      "inputSha256": "5cdc73639fc3aa1f6e0616c2e159187a3ba9db71dded7cb2428687455c6a2ea5"
+    },
+    {
+      "round": 41,
+      "phase": "aim",
+      "done": {
+        "knot-west": true,
+        "clear-west": true,
+        "knot-east": true,
+        "hold-knots": true
+      },
+      "label": "protection-complete",
+      "input": "/tmp/stage11-rescue-continue.json",
+      "inputSha256": "7c04a4ffad63aa023a37432c56686e641ef67a7a9244c69135c14b30939dd077"
+    },
+    {
+      "round": 47,
+      "phase": "aim",
+      "done": {
+        "knot-west": true,
+        "clear-west": true,
+        "knot-east": true,
+        "hold-knots": true
+      },
+      "label": "descent-before",
+      "input": "/tmp/stage11-descent-continue.json",
+      "inputSha256": "729aae14a02473eb2b73c730e07711c77599c55d411c14edc3e60a918817583e"
+    },
+    {
+      "round": 59,
+      "phase": "won",
+      "done": {
+        "knot-west": true,
+        "clear-west": true,
+        "knot-east": true,
+        "hold-knots": true,
+        "resident": true,
+        "trace": true
+      },
+      "label": "trace-victory",
+      "input": "/tmp/stage11-normal-descent/checkpoint.json",
+      "inputSha256": "560519d97300edf0f7350ece6fd514a5399c80eccdf23d188863e3d90cf92e1a"
+    }
+  ],
+  "nextStage": 12,
+  "errors": []
+}

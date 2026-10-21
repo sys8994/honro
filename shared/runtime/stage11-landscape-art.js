@@ -14,13 +14,28 @@ const ROCK_BLOCKS=[
 const mix=(a,b,u)=>{const aa=[1,3,5].map(i=>parseInt(a.slice(i,i+2),16)),bb=[1,3,5].map(i=>parseInt(b.slice(i,i+2),16));return'#'+aa.map((v,i)=>Math.round(v+(bb[i]-v)*u).toString(16).padStart(2,'0')).join('');};
 function rockBlock(c,p){
  const r=ROCK_BLOCKS[p.variant%3];c.save();c.translate(p.x,p.y);c.scale(p.ww/1200,p.depth/900);
- c.fillStyle=grad(c,170,30,790,880,[[0,'#9ba696'],[.45,'#6c817b'],[1,'#314b54']]);c.fill(r.body);c.clip(r.body);
+ c.fillStyle=grad(c,170,30,790,880,[[0,'#9ba696'],[.45,'#6c817b'],[1,'#314b54']]);if(!p.connected){c.fill(r.body);c.clip(r.body);}
+ if(p.connected&&p.deep){c.save();c.scale(1,Math.max(1,p.fullDepth/p.depth));c.fillStyle=grad(c,940,60,795,870,[[0,'#506d6b'],[.6,'#35515a'],[1,'#324f59']]);c.fill(r.shade);c.restore();}
  c.fillStyle=grad(c,0,0,700,790,[[0,'#aab5a0'],[.53,'#8e9e8d'],[1,'#607c75']]);c.fill(r.light);
  c.fillStyle=grad(c,600,0,910,610,[[0,'#a7b09b'],[.6,'#7d9287'],[1,'#526f6c']]);c.fill(r.face);
  c.fillStyle=grad(c,500,280,420,900,[[0,'#789082'],[.48,'#607c75'],[1,'#4a6668']]);c.fill(r.foot);
- c.fillStyle=grad(c,940,60,795,870,[[0,'#506d6b'],[.6,'#35515a'],[1,'#324f59']]);c.fill(r.shade);
- if(p.rift){c.fillStyle='#233f47a8';c.fill(r.joint);}if(p.variant!==1){c.fillStyle='#36565a88';c.fill(r.bed);}c.fillStyle='#c4c4a928';c.fill(r.wash);c.restore();
+ c.save();if(p.connected&&!p.deep)c.globalAlpha*=.68;c.fillStyle=grad(c,940,60,795,870,[[0,'#506d6b'],[.6,'#35515a'],[1,'#324f59']]);c.fill(r.shade);c.restore();
+ if(p.rift){c.fillStyle='#233f47a8';c.fill(r.joint);}if(!p.connected){if(p.variant!==1){c.fillStyle='#36565a88';c.fill(r.bed);}c.fillStyle='#c4c4a928';c.fill(r.wash);}c.restore();
 }
+// Authored exposures follow the actual landform rather than a row of stones.
+// Their component planes share continuous bedrock; no repeated boulder body or
+// per-stone outline is drawn for these connected primary masses.
+const EXPOSURES={
+ 'act2-floor':[[-.21,.24,2,1.05],[0,.19,1,1.2],[.13,.12,0,.85],[.23,.25,2,1.1],[.44,.16,1,.95],[.57,.24,0,1.25],[.78,.22,2,1],[.98,.23,0,1.1]],
+ 'rv-west-shoulder':[[0,.33,2,1.05],[.21,.27,0,.92],[.45,.39,1,1.14],[.78,.27,2,.88]],
+ 'rv-west-stone-arch':[[0,1,2,1.15]],
+ 'rv-west-rock-crown':[[0,.48,0,1],[.35,.33,2,1.14],[.59,.44,1,.96]],
+ 'rv-ritual-buttress':[[0,.29,1,1.2],[.2,.36,0,.93],[.49,.24,2,1.12],[.68,.35,1,1.02]],
+ 'rv-lower-west-shelf':[[0,.41,0,1.1],[.28,.31,2,.9],[.54,.49,1,1.18]],
+ 'rv-lower-refuge-rock':[[0,.26,2,1.1],[.17,.35,1,.94],[.46,.23,0,1.18],[.63,.4,2,1.04]],
+ 'rv-east-tower':[[0,.39,1,.96],[.25,.29,0,1.14],[.48,.33,2,1],[.73,.3,0,1.1]],
+ 'rv-north-trace':[[0,.24,2,1.16],[.16,.31,0,.94],[.41,.34,1,1.12],[.69,.34,2,1.04]]
+};
 function smooth(ps,closed=true){const p=new Path2D();if(ps.length<2)return p;p.moveTo(...ps[0]);for(let i=1;i<ps.length;i++){const a=ps[i],z=ps[i+1];if(z)p.quadraticCurveTo(...a,(a[0]+z[0])/2,(a[1]+z[1])/2);else p.lineTo(...a);}if(closed)p.closePath();return p;}
 function prepare(t,b){
  let q=cache.get(t);if(q?.vertices===t.vertices&&q.version===b.sceneVersion)return q;
@@ -63,6 +78,7 @@ function prepare(t,b){
    if(!t.oneWay&&t.h>500&&(i+seed)%3===1)q.plates.push({x:x-ww*.17,y:y+depth*.73,ww:ww*1.22,depth:depth*1.16,variant:(i+seed+1)%3,rift:false});
    q.plates.push({x,y,ww,depth,variant:(i+seed)%3,rift:(i+seed)%3===0||w<220});
   }
+  const exposures=EXPOSURES[t.id];if(exposures){q.connected=true;q.plates=exposures.map(([u,v,variant,d],i)=>{const x=start+w*u,ww=w*v,anchor=Math.min(end-1,x+ww*.4),y=at(anchor)-Math.min(80,t.h*.035),depth=Math.max(150,Math.min(1250,ww*.9,(bottom(anchor)-y)*d));return{x,y,ww,depth,fullDepth:bottom(anchor)-y,deep:i===1||exposures.length===1,variant,rift:i===1||exposures.length===1,connected:true};});}
   // Coherent moss grows in a few damp seams, rather than flat green stickers.
   const e=edges.filter(([a,z])=>Math.abs(z.x-a.x)>100);for(const [i,[a,z]]of e.entries()){
    if((i+seed)%3===0)continue;const lo=.1+((i+seed)%3)*.13,hi=Math.min(.95,lo+.24+((i+seed)%2)*.18),x=a.x+(z.x-a.x)*lo,xx=a.x+(z.x-a.x)*hi,y=at(x),yy=at(xx),deep=t.oneWay?12:35+((i+seed)%3)*11;
@@ -84,7 +100,7 @@ function terrain(c,t,b){
  }else{
   // Continuous warm-grey bedrock is visibly separate from the cool blue rear
   // cliff. The rounded exposed faces belong to this mass, never to empty air.
-  c.fillStyle=grad(c,t.x,t.y,t.x+t.w*.1,t.y+Math.min(t.h,2800),[[0,'#929982'],[.28,'#6f7560'],[.75,'#525b48'],[1,'#414b3b']]);c.fill(q.shape);
+  c.fillStyle=grad(c,t.x,t.y,t.x+t.w*.1,t.y+Math.min(t.h,2800),q.connected?[[0,'#96a394'],[.3,'#71877e'],[.72,'#49696b'],[1,'#314e57']]:[[0,'#929982'],[.28,'#6f7560'],[.75,'#525b48'],[1,'#414b3b']]);c.fill(q.shape);
   c.fillStyle=grad(c,t.x,t.y,t.x+t.w,t.y+t.h*.23,[[0,'#b9aa7324'],[.38,'#7c775512'],[.72,'#24322c20'],[1,'#182c2b65']]);c.fill(q.shape);
   for(const p of q.plates)rockBlock(c,p);
   c.strokeStyle='#18292360';c.lineWidth=10;c.stroke(q.shape);
