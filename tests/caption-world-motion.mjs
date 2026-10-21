@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {appHarness,plain,report} from './app-regression-helpers.mjs';
 import {escortEntryProfile} from './stage23-escort-entry-helper.mjs';
-const h=await appHarness(),{g,C}=h,a=h.load(escortEntryProfile(g).profile);a.launch(23);h.finish(a);a.turnNotice=null;
+const h=await appHarness(),{g,C}=h,a=h.load({...plain(g.AppRegression.fresh()),...plain(escortEntryProfile(g).profile)});a.launch(23);h.finish(a);a.turnNotice=null;
 const b=a.engine.b,e=a.engine,S=g.HonroStage23Escort,A=g.HonroAct3,base=g.HonroMapEngine;
 // An empty offscreen sweep is a safety fixture, keeping every real actor still.
 const ts=[{...base.solid('caption-final',[[3300,500],[3740,500],[3740,640],[3300,640]]),broken:true,indestructible:true},{...base.solid('caption-stored',[[4100,500],[4540,500],[4540,640],[4100,640]]),indestructible:true}];

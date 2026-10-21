@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Scene intent is expressed with stable chapter/scene metadata and real targets.
 // Reading text is never parsed to guess a camera subject.
-const openings={1:{anchor:'start'},2:{actor:'objective'},3:{actor:'npc-hwigyeom'},4:{actor:'objective'},5:{anchor:'cleat'},6:{actor:'objective'},7:{anchor:'resident1'},8:{anchor:'bier'},9:{anchor:'sodan'},10:{actor:'boss'},11:{marker:'knot-west'},12:{marker:'sign'},13:{actor:'resident-1'},14:{marker:'family-upper'},15:{marker:'groove'},16:{actor:'resident-1'},17:{anchor:'hoist'},18:{anchor:'bell'},19:{anchor:'bell'},20:{actor:'objective'},21:{marker:'gate-resident'},22:{marker:'ledger-case'},23:{actor:'objective'},24:{marker:'family-crest'},25:{marker:'depot-entry-seal'},26:{marker:'investigation-record'},27:{marker:'depot-route-ledger'},28:{marker:'water-release'},29:{marker:'hyeonmuk-letter'},30:{marker:'transport-map'}};
+const openings={1:{anchor:'start'},2:{actor:'objective'},3:{actor:'npc-hwigyeom'},4:{actor:'objective'},5:{anchor:'cleat'},6:{actor:'objective'},7:{anchor:'resident1'},8:{anchor:'bier'},9:{anchor:'sodan'},10:{actor:'boss'},11:{marker:'knot-west'},12:{marker:'sign'},13:{actor:'resident-1'},14:{marker:'family-upper'},15:{marker:'groove'},16:{actor:'resident-1'},17:{anchor:'hoist'},18:{anchor:'bell'},19:{anchor:'bell'},20:{actor:'objective'},21:{marker:'gate-resident'},22:{marker:'ledger-case'},23:{actor:'act3-carrier'},24:{marker:'family-crest'},25:{marker:'depot-entry-seal'},26:{marker:'investigation-record'},27:{marker:'depot-route-ledger'},28:{marker:'water-release'},29:{marker:'hyeonmuk-letter'},30:{marker:'transport-map'}};
 const policies={
  '1:event-1-witness':{intent:'object-introduction',targets:[{actor:'npc-woodcutter'},{actor:'archer'},{cart:true}],padding:52,maxScale:.9},
  '2:entry':{intent:'situation',targets:[{actor:'objective'},{actor:'npc-damheo'},{actor:'archer'}],padding:70,maxScale:.8},
@@ -15,14 +15,19 @@ const policies={
  '9:entry':{intent:'situation',targets:[{anchor:'sodan'},{anchor:'receiverWest'},{anchor:'receiverEast'}],padding:60,maxScale:.8},
  '10:cooperation':{intent:'situation',targets:[{actor:'boss'},{actor:'mage'},{anchor:'receiverWest'},{anchor:'receiverEast'}],padding:45,maxScale:.8},
  '10:finale-midpoint':{intent:'conversation',targets:[{actor:'boss'},{actor:'archer'},{actor:'mage'}],padding:40,maxScale:1},
- '19:entry':{intent:'conversation',targets:[{actor:'mourner-brother'},{actor:'mourner-sister'},{actor:'occultist'},{anchor:'bell'}],padding:45,maxScale:.8}
+ '19:entry':{intent:'conversation',targets:[{actor:'mourner-brother'},{actor:'mourner-sister'}],padding:45,maxScale:.8}
 };
 const alive=u=>u&&!u.dead&&u.hp>0;
 function actor(b,id){return b.units.find(u=>u.id===id)||b.honroConvoyActors?.find(u=>u.id===id)||Object.values(b.honroStaging?.hidden||{}).find(u=>u.id===id)||b.units.find(u=>u.cls===id&&u.side===0&&!u.summoned);}
 function speakerId(app,name){const aliases={11:{'주민':'resident-4'},23:{'짐꾼':'act3-carrier'}},bound=aliases[app.engine.b.honroStage]?.[name];if(bound&&alive(actor(app.engine.b,bound)))return bound;const u=G.HonroStoryDirection?.speaker(app,name)||app.speakerUnits?.(name)?.find(alive)||app.engine.b.units.find(u=>u.name===name&&alive(u))||Object.values(app.engine.b.honroStaging?.hidden||{}).find(u=>u.name===name&&alive(u));return u?.id;}
 // These are authored story-row identities, before interludes/deferred pages
 // are composed. They remain stable whether the arrival has already been read.
-function authorEntry(st){if(st.id!==2)return;const plans={
+const entryObjects={5:{0:[{anchor:'cleat'}],1:[{marker:'receiver-5'}]},12:{0:[{marker:'sign'}],1:[{marker:'sign'}]},13:{0:[{actor:'resident-1'}],1:[{actor:'resident-1'}],3:[{actor:'resident-1'}]},15:{0:[{marker:'sluice'},{marker:'groove'}],1:[{marker:'route-upper-exit'}],2:[{marker:'groove'}]},16:{0:[{actor:'objective'},{actor:'resident-1'}],2:[{actor:'resident-1'}]},17:{0:[{anchor:'hoist'}],1:[{anchor:'brace'}]},18:{0:[{actor:'act2-keeper'}],2:[{terrainGroup:'bell'}]},21:{0:[{marker:'gate-resident'}]},22:{0:[{marker:'ledger-case'}],1:[{marker:'upper-register'}]},23:{2:[{actor:'act3-carrier'}]},24:{0:[{marker:'family-crest'}],1:[{marker:'family-crest'}],2:[{marker:'land-register'}]},25:{0:[{marker:'depot-entry-seal'}],1:[{marker:'depot-entry-seal'}]},26:{0:[{marker:'investigation-record'}],1:[{marker:'artisan-resident'}]},27:{0:[{marker:'depot-route-ledger'}],1:[{marker:'depot-route-ledger'}]},28:{0:[{marker:'fire-screen'}],1:[{marker:'water-release'}]},29:{0:[{marker:'hyeonmuk-letter'}]},30:{0:[{marker:'transport-map'}],1:[{marker:'transport-map'}]}};
+function arrival(app,lines){const stage=app.stage.id;return lines.map(([who,text,meta={}],i)=>{
+ let targets=stage===2?i===2?[{actor:'archer'}]:policies['2:entry'].targets:stage===18?[{terrainGroup:'bell'}]:stage===19&&i>0?[{actor:'mourner-brother'},{actor:'mourner-sister'}]:stage===14?[{marker:'family-upper'},{marker:'family-mid'}]:[openings[stage]||{actor:app.engine.b.active}];
+ return[who,text,{...meta,camera:{id:`${stage}:arrival:${i}`,intent:stage===1||stage===2&&i===2?'portrait':'situation',targets,padding:stage===13?180:80,maxScale:stage===1?1:.8}}];
+ });}
+function authorEntry(st){if(st.id!==2){const plan=entryObjects[st.id];if(plan)st.story=st.story.map(([who,text,meta={}],i)=>[who,text,{...meta,...(plan[i]?{camera:{id:`${st.id}:entry:story-${i}`,intent:'object-introduction',targets:plan[i],padding:st.id===13?180:80,maxScale:.85}}:{})}]);return;}const plans={
  0:{intent:'situation',targets:[{actor:'objective'},{actor:'npc-damheo'},{actor:'archer'}],padding:70,maxScale:.8},
  1:{intent:'object-introduction',targets:[{actor:'objective'},{actor:'npc-damheo'}],padding:65,maxScale:.9},
  2:{intent:'conversation',targets:[{actor:'objective'},{actor:'npc-damheo'}],padding:60,maxScale:.9},
@@ -64,6 +69,7 @@ function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return li
  });
 }
 function bounds(app,target){const b=app.engine.b;
+ if(target.terrainGroup==='bell'){const ids=b.honroMap?.design?.bell?.bodyIds||['sb-bell-crown','sb-bell-west-wall','sb-bell-east-wall','sb-bell-east-lip','sb-bell-east-yoke'],parts=(b.honroWorldTerrain||b.terrain).filter(t=>ids.includes(t.id)&&!t.broken);if(!parts.length)return null;const x=Math.min(...parts.map(t=>t.x)),y=Math.min(...parts.map(t=>t.y)),right=Math.max(...parts.map(t=>t.x+t.w)),bottom=Math.max(...parts.map(t=>t.y+t.h));return{x,y,w:right-x,h:bottom-y};}
  if(target.cart){const p=G.HonroAct1StoryArt?.witnessCart(b);return p?{x:p.x-p.w/2,y:p.y-p.h,w:p.w,h:p.h}:null;}
  let u;if(target.speaker)u=actor(b,speakerId(app,target.speaker));else if(target.actor)u=actor(b,target.actor);
  if(u&&alive(u))return{x:u.x-Math.max(u.r,22),y:u.y-(G.HonroPartyPresentationHeight?.(u)||u.h)-18,w:Math.max(u.r*2,44),h:(G.HonroPartyPresentationHeight?.(u)||u.h)+28};
@@ -102,5 +108,5 @@ function highlight(scene,e){if(scene.storyFrame?.camera.intent!=='objective')ret
  for(const box of r.boxes){c.beginPath();c.ellipse(box.x+box.w/2,box.y+box.h-4,Math.max(42,box.w*.7),14,0,0,Math.PI*2);c.stroke();const x=box.x+box.w/2,y=box.y-18;c.beginPath();c.moveTo(x-9/scene.scale,y-10/scene.scale);c.lineTo(x,y);c.lineTo(x+9/scene.scale,y-10/scene.scale);c.stroke();}
  const exit=e.b.honroMapAnchors?.exit,first=r.boxes[0];if(exit&&first){const x=first.x+first.w/2,y=first.y+first.h,dx=exit.x-x,dy=exit.y-y,len=Math.hypot(dx,dy);if(len>100){const k=Math.min(110/scene.scale,len*.35)/len,tx=x+dx*k,ty=y+dy*k;c.setLineDash([7/scene.scale,5/scene.scale]);c.beginPath();c.moveTo(x,y);c.lineTo(tx,ty);c.stroke();c.setLineDash([]);const a=Math.atan2(dy,dx),n=10/scene.scale;c.beginPath();c.moveTo(tx-Math.cos(a-.5)*n,ty-Math.sin(a-.5)*n);c.lineTo(tx,ty);c.lineTo(tx-Math.cos(a+.5)*n,ty-Math.sin(a+.5)*n);c.stroke();}}
  c.restore();}
-G.HonroStoryFraming={authorEntry,highlight,bind,focus,clear,apply,bounds,openings,policies,safeRect};
+G.HonroStoryFraming={arrival,authorEntry,highlight,bind,focus,clear,apply,bounds,openings,policies,safeRect};
 })(globalThis);
