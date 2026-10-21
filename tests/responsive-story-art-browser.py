@@ -168,10 +168,19 @@ with sync_playwright() as p:
                     page.wait_for_timeout(380);page.keyboard.press(key)
                     assert page.locator('#act-ending').get_attribute('data-cut') == cut
                 assert page.locator('.act-ending-copy').evaluate('(n)=>getComputedStyle(n).animationName') == 'none'
+                assert page.evaluate("JSON.stringify(Object.fromEntries(['heroes','loadouts','honroGrowth','recruited','cleared','record'].map(k=>[k,HonroApp.profile[k]??null])))") == protected
                 page.wait_for_timeout(380);page.keyboard.press('Enter')
                 page.wait_for_function('HonroApp.screen==="rest"')
                 assert page.evaluate('(stage)=>HonroApp.profile.seen["act-ending-v1:"+stage]&&!HonroApp.profile.honroActEnding&&HonroApp.profile.honroBattle===null', stage)
-                assert page.evaluate("JSON.stringify(Object.fromEntries(['heroes','loadouts','honroGrowth','recruited','cleared','record'].map(k=>[k,HonroApp.profile[k]??null])))") == protected
+                # Rest owns normal recruitment/story transitions; settle those
+                # before comparing a second resume for duplicate rewards.
+                page.evaluate('for(let i=0;HonroApp.dialogue&&i<60;i++)HonroStory.finish(HonroApp)')
+                settled = page.evaluate("JSON.stringify(Object.fromEntries(['heroes','loadouts','honroGrowth','recruited','cleared','record'].map(k=>[k,HonroApp.profile[k]??null])))")
+                page.reload();page.wait_for_function('!!globalThis.HonroApp', timeout=120000)
+                page.evaluate('HonroApp.continue()')
+                page.wait_for_function('HonroApp.screen==="rest"')
+                assert page.locator('#act-ending').count() == 0
+                assert page.evaluate("JSON.stringify(Object.fromEntries(['heroes','loadouts','honroGrowth','recruited','cleared','record'].map(k=>[k,HonroApp.profile[k]??null])))") == settled
         assert not [r for r in responses if r[1] >= 400], responses
         assert not errors, errors
         context.close()
