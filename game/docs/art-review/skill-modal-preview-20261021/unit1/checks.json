@@ -1,0 +1,210 @@
+[
+  {
+    "name": "360 start: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 0
+    }
+  },
+  {
+    "name": "360 middle: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 31
+    }
+  },
+  {
+    "name": "360 end: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 62
+    }
+  },
+  {
+    "name": "360: header plus and body scroll retained",
+    "data": null
+  },
+  {
+    "name": "360: header refund",
+    "data": null
+  },
+  {
+    "name": "360: fixed X closes",
+    "data": null
+  },
+  {
+    "name": "390 start: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 0
+    }
+  },
+  {
+    "name": "390 middle: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 9
+    }
+  },
+  {
+    "name": "390 end: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 18
+    }
+  },
+  {
+    "name": "390: header plus and body scroll retained",
+    "data": null
+  },
+  {
+    "name": "390: header refund",
+    "data": null
+  },
+  {
+    "name": "390: fixed X closes",
+    "data": null
+  },
+  {
+    "name": "1280 start: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 0
+    }
+  },
+  {
+    "name": "1280 middle: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 33
+    }
+  },
+  {
+    "name": "1280 end: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 66
+    }
+  },
+  {
+    "name": "1280: header plus and body scroll retained",
+    "data": null
+  },
+  {
+    "name": "1280: header refund",
+    "data": null
+  },
+  {
+    "name": "1280: fixed X closes",
+    "data": null
+  },
+  {
+    "name": "844 start: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 0
+    }
+  },
+  {
+    "name": "844 middle: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 166
+    }
+  },
+  {
+    "name": "844 end: continuous frame, visible X, body below header",
+    "data": {
+      "gap": 0,
+      "body": true,
+      "close": true,
+      "clip": true,
+      "fit": true,
+      "touch": true,
+      "scroll": 332
+    }
+  },
+  {
+    "name": "844: header plus and body scroll retained",
+    "data": null
+  },
+  {
+    "name": "844: header refund",
+    "data": null
+  },
+  {
+    "name": "844: fixed X closes",
+    "data": null
+  },
+  {
+    "name": "A09: actual turn exactly once, both trajectories, hit, grounded",
+    "data": {
+      "turns": 1,
+      "follow": true,
+      "before": 30,
+      "after": 35,
+      "damage": 56,
+      "grounded": true,
+      "secondInput": false
+    }
+  },
+  {
+    "name": "no browser exceptions",
+    "data": []
+  }
+]

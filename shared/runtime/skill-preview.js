@@ -4,12 +4,12 @@ const C=G.HONRO_CORE;
 const scenarios={};const define=(ids,kind,options={})=>ids.split(' ').forEach(id=>scenarios[id]={kind,...options});
 define('A01 M01 S09 O01','single');define('A14','distance',{positions:[720,1500]});define('A99','execution',{positions:[1680],hp:100});
 define('A02 S11','line',{positions:[720,850,985,1120,1250]});define('A06','recovery',{focus:120,maxFocus:400});define('A10','prepare');
-define('A11 A15','apex',{positions:[820,1000,1190]});define('A09 A13','offset',{positions:[820,1030,1160],heights:[0,130,55]});define('A12','return');
+define('A11 A15','apex',{positions:[820,1000,1190]});define('A13','offset',{positions:[820,1030,1160],heights:[0,130,55]});define('A12','return');define('A09','turn-once',{positions:[1080],heights:[0],turnLift:0});
 define('A05','push',{positions:[790,875,1010],movable:true});define('A04','spread',{positions:[800,900,1050],heights:[0,85,160]});define('A07','break');define('A03','ground-chain',{positions:[760,920,1070]});define('A08','fragments');
-define('M06 M13','delayed-burst',{positions:[820,930,1020]});define('M02','bounce-ice');define('M04','lightning',{positions:[760,1010,1270]});define('M05','sky');define('M03','arc');define('M11 M12','reflection');define('M14','ring',{positions:[660,80,440]});define('M15','bagua',{positions:[560,710,360],heights:[100,0,260]});
+define('M06 M13','delayed-burst',{positions:[820,930,1020]});define('M02','bounce-ice');define('M04','lightning',{positions:[760,1010,1270]});define('M05','sky');define('M03','arc');define('M11 M12','reflection');define('M14','ring',{positions:[660,80,440]});define('M15','bagua',{positions:[840,920,1000]});
 define('M07','trap',{positions:[980],movable:true,enemy:true});define('M08','lure',{positions:[1040],movable:true,enemy:true});define('M10','healing-stake');define('M09','gate');define('M99','prison',{positions:[980],movable:true,enemy:true});
 define('S00 S03','melee',{positions:[455,510]});define('S05','turn',{positions:[465,260]});define('S07','combo',{positions:[455,520,585],hp:45});define('S08','counter',{positions:[555],enemy:true});define('S02','life');
-define('S01 S06 S04 S13','rush');define('S15','ground-air',{positions:[700,925],heights:[0,80],movable:true});define('S10','pull',{positions:[830],movable:true});define('S14','burst-blade',{positions:[840,860,880],heights:[0,105,205]});define('S12','orbit');
+define('S01 S06 S04 S13','rush');define('S15','ground-air',{positions:[700,925],heights:[0,80],movable:true});define('S10','pull',{positions:[830],movable:true});define('S14','burst-blade',{positions:[840,865,890]});define('S12','orbit');
 define('O02 O04','phase-wall');define('O03','reverse-rain',{positions:[1000,1130,1260]});define('O05','reverse-path',{positions:[840,970]});define('O06','weakness',{positions:[800,970],enemy:true});define('O07','betrayal',{positions:[800,975],enemy:true});define('O08','manifest',{positions:[830,955]});define('O09','enthrall',{positions:[800,1060],enemy:true});define('O10','earthbound',{positions:[840],hp:45});define('O11 O12','summon');define('O13','warden');define('O14','eater',{positions:[830,970]});define('O15','echo');define('O16','converge',{positions:[760,870]});
 function shortShot(e,u,s,target){
  const seeds=e.shotSeeds(u,s,target).filter(a=>a.angle<45||a.angle>135).sort((a,b)=>b.power-a.power);
@@ -36,9 +36,9 @@ function setup(app,id,h,canvas){
  if(id==='A07')b.terrain.push({id:'preview-breakable',x:760,y:840,w:55,h:160,mat:'wood',hp:65,maxHp:65});
  if(id==='O08')for(const target of b.units.filter(v=>v.side===1))Object.assign(target,{honroType:'ghost',honroVariant:'ghost',spiritHidden:true});
  if(id==='O06'||id==='O07')for(const target of b.units.filter(v=>v.side===1))target.attack=1;
- for(const target of b.units.filter(v=>scenario.heights?.[Number(v.id.split('-').at(-1))])){target.fixed=true;target.summonFloating=true;}
+ for(const [i,height] of (scenario.heights||[]).entries()){if(height>0)b.terrain.push({id:'preview-platform-'+i,x:positions[i]-65,y:floor-height,w:130,h:height,mat:'rock',hp:99999,maxHp:99999,indestructible:true});}
  b.active=hero.id;b.side=0;b.phase='aim';b.queue=[];
- const pr={id,b,canvas,hero,age:0,acc:0,fired:false,follow:false,cycle:0,events:[],h:structuredClone(h),scenario,enemyActions:0,finishedAt:null};
+ const pr={id,b,canvas,hero,age:0,acc:0,fired:false,follow:false,cycle:0,trace:{before:[],after:[]},turns:0,events:[],h:structuredClone(h),scenario,enemyActions:0,finishedAt:null};
  pr.scene=new G.HonroScene(canvas);pr.scene.manual=true;pr.scene.skillPreview=true;pr.e=new C.Engine(b,event=>{
   pr.events.push(event);if(pr.events.length>300)pr.events.shift();pr.scene.event(event);
   if(event.name==='skillGeometry'&&pr.bounds){const points=C.geometryPaths(JSON.parse(event.text)).flat();for(const p of points){pr.bounds.left=Math.min(pr.bounds.left,p.x-20);pr.bounds.right=Math.max(pr.bounds.right,p.x+20);pr.bounds.top=Math.min(pr.bounds.top,p.y-20);pr.bounds.bottom=Math.max(pr.bounds.bottom,p.y+20);}}
@@ -59,6 +59,7 @@ function setup(app,id,h,canvas){
  const target=b.units[1];let aim={angle:0,power:.55};
  if(close)aim={angle:0,power:.65};
  else if(ring)aim={angle:0,power:(300-180)/720};
+ else if(id==='A09')aim={angle:25,power:.68};
  else if(id==='A10')aim={angle:0,power:.5};
  else if(id==='O03')aim={angle:-30,power:.42};
  else if(id==='O05')aim={angle:0,power:.75};
@@ -88,7 +89,7 @@ function tick(app,p,dt){
  p.age+=dt;const e=p.e,b=p.b,s=C.SKILLS[p.id],u=p.hero;
  if(!p.fired&&p.age>=.65){p.fired=e.fire(p.id,p.aim.angle,p.aim.power);p.started=p.age;}
  if(p.fired){
-  if(p.id==='A09'&&!p.follow&&b.projectiles.some(q=>q.age>.28)){p.follow=e.turnArrow({x:b.units[1].x,y:b.units[1].y-100});}
+  if(p.id==='A09'){const q=b.projectiles.find(q=>q.skill==='A09');if(q){p.trace[q.turned?'after':'before'].push({x:q.x,y:q.y});if(!p.follow&&q.age>.48){p.turnVelocity={before:{vx:q.vx,vy:q.vy}};p.follow=e.turnArrow({x:b.units[1].x,y:b.units[1].y-b.units[1].h*.5-(p.scenario.turnLift??150)});if(p.follow){p.turns++;p.turnVelocity.after={vx:q.vx,vy:q.vy};}}}}
   if(p.id==='M02'&&!p.follow&&b.projectiles.some(q=>!q.secondary&&q.bounces>0&&Math.hypot(q.x-b.units[1].x,q.y-b.units[1].y+55)<q.blast*.8)){p.follow=e.detonateIceGourd();}
   if(p.id==='S04'&&!p.follow&&b.projectiles.some(q=>q.body&&q.x>b.units[1].x-65)){p.follow=C.manualDive(e);}
   if(p.id==='S13'&&u.meleeFollow==='ready'&&!p.follow){p.follow=true;e.fire('S00',0,.55);}
@@ -111,10 +112,12 @@ function tick(app,p,dt){
  const z=Math.min(1.25,(rect.width-32)/(bounds.right-bounds.left),(rect.height-28)/(bounds.bottom-bounds.top));
  p.scene.scale=Math.max(.06,z);p.scene.x=(bounds.left+bounds.right)/2;p.scene.y=(bounds.top+bounds.bottom)/2;
  p.scene.render(e,dt,p.id,p.aim.power,!p.fired);
+ if(p.id==='A09'&&p.canvas.getContext){const c=p.canvas.getContext('2d'),r=p.canvas.getBoundingClientRect();c.save();c.setTransform(p.canvas.width/r.width,0,0,p.canvas.height/r.height,0,0);for(const [key,color] of [['before','#d1bc83'],['after','#99d7cc']]){const points=p.trace[key];if(points.length<2)continue;c.beginPath();for(const [i,v] of points.entries()){const x=r.width/2+(v.x-p.scene.x)*p.scene.scale,y=r.height/2+(v.y-p.scene.y)*p.scene.scale;i?c.lineTo(x,y):c.moveTo(x,y);}c.strokeStyle=color;c.lineWidth=2;c.stroke();}c.restore();}
+
  const noMotion=!b.projectiles.length&&!b.units.some(v=>v.meleeAction||v.aiMove||v.moveTarget!==undefined),needsFollow=['A10','M09','S13','O10','O14','O15'].includes(p.id),reaction=!p.scenario.enemy||p.enemyActions>0||p.id==='S08'&&u.martialGuard?.counter===false||['M07','M08'].includes(p.id)&&b.stakes.some(v=>v.lastTriggerRound===b.round);
  const summonDone=!s.mode.startsWith('summon')||b.units.some(v=>v.summoned&&v.summonActionRound===b.round)||p.id==='O14'&&p.follow||p.id==='O15'&&p.follow;
  if(p.fired&&p.age>2.4&&noMotion&&reaction&&summonDone&&(!needsFollow||p.follow))p.finishedAt??=p.age;
- if(p.finishedAt!==null&&p.age-p.finishedAt>1.3||p.age>22){const cycle=p.cycle+1;app.preview=setup(app,p.id,p.h,p.canvas);app.preview.cycle=cycle;}
+ if(!p.hold&&(p.finishedAt!==null&&p.age-p.finishedAt>1.3||p.age>22)){const cycle=p.cycle+1;app.preview=setup(app,p.id,p.h,p.canvas);app.preview.cycle=cycle;}
 }
 G.HonroSkillPreview={setup,tick,scenarios};
 })(globalThis);

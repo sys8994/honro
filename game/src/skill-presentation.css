@@ -164,3 +164,29 @@
 }
 /* Keep the icon compact; only the explanatory text takes the available row width. */
 .honro .equip-dialog .equip-option>.skill-stamp{flex:0 0 36px;width:36px;min-width:36px;height:36px}
+
+/* A single clipped dialog owns a fixed header and one independent scroll body. */
+.honro #modal .dialog.talent-dialog,.honro #modal .dialog.ultimate-dialog,.honro #overlay .dialog.talent-dialog,.honro #overlay .dialog.ultimate-dialog{display:flex;flex-direction:column;padding:0!important;height:min(860px,calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom)))!important;max-height:calc(100dvh - 24px - env(safe-area-inset-top) - env(safe-area-inset-bottom))!important;max-width:calc(100vw - 16px - env(safe-area-inset-left) - env(safe-area-inset-right));overflow:hidden!important;border:1px solid #64796f;border-radius:14px;background:#192d33}
+.honro .dialog .skill-modal-frame{display:flex;flex-direction:column;flex:1;min-height:0;width:100%;height:100%!important;overflow:hidden!important}
+.honro .dialog .skill-detail-controls{position:static!important;flex:none;z-index:1;padding:10px 14px!important;background:#20343a;border-bottom:1px solid #64796f66}
+.honro .skill-modal-title{display:flex;align-items:flex-start;gap:8px}
+.honro .skill-modal-title .talent-heading{flex:1;min-width:0;padding:0!important;gap:10px;margin:0!important}
+.honro .skill-modal-title h2{margin:0;font-size:21px;line-height:1.3;overflow-wrap:anywhere;word-break:keep-all;padding:0!important}
+.honro .skill-modal-title .close{position:static;order:2;flex:0 0 44px;width:44px;height:44px;min-height:44px;margin:0;transform:none;border-radius:7px}
+.honro .skill-detail-controls .rank-banner{display:flex;align-items:center;gap:10px;background:none;border:0;border-radius:0;margin:6px 0;padding:0;font-size:11px;min-width:0}
+.honro .skill-detail-controls .rank-banner>strong{font-size:17px;white-space:nowrap}
+.honro .skill-detail-controls .rank-banner>.rank-track{flex:1;max-width:200px}
+.honro .skill-detail-controls .rank-banner>span:last-child{margin-left:auto;font-size:11px;white-space:nowrap}
+.honro .skill-detail-controls .skill-detail-actions{margin:6px 0 0;gap:6px;flex-wrap:wrap!important}
+.honro .skill-detail-controls .skill-detail-actions button{min-height:44px;padding:7px 9px;font-size:12px;flex:1 0 auto}
+.honro .dialog .skill-modal-body{flex:1;min-height:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;padding:14px;scrollbar-gutter:stable;outline-offset:-3px}
+.honro .skill-modal-body .skill-modal-grid{height:auto!important;max-height:none;overflow:visible}
+.honro .skill-basic-note{display:block;font-size:11px;color:#b8c8bd;margin-top:4px}
+@media(max-width:540px){
+ .honro .dialog .skill-detail-controls{padding:8px 10px!important}
+ .honro .skill-modal-title h2{font-size:18px}
+ .honro .skill-modal-title .talent-heading>.skill-stamp{width:34px;height:38px;flex-shrink:0}
+ .honro .skill-detail-controls .ability-type{font-size:10px}
+ .honro .skill-detail-controls .skill-detail-actions button{font-size:11px;padding:6px}
+ .honro .dialog .skill-modal-body{padding:12px 10px}
+}
