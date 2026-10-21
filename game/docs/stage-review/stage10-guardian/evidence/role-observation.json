@@ -1,0 +1,144 @@
+{
+  "scope": "One normal-resource policy; actual impact counts and observed final positions, not proof of every tactic",
+  "initialClones": [
+    {
+      "id": "foe-0-cluster",
+      "x": 1180,
+      "y": 2637.5,
+      "hp": 600
+    },
+    {
+      "id": "foe-1-cluster",
+      "x": 2075,
+      "y": 1888.6153846153845,
+      "hp": 600
+    },
+    {
+      "id": "foe-2-cluster",
+      "x": 3500,
+      "y": 2445.8823529411766,
+      "hp": 600
+    },
+    {
+      "id": "foe-3-cluster",
+      "x": 1862,
+      "y": 2489.818181818182,
+      "hp": 600
+    },
+    {
+      "id": "foe-4-cluster",
+      "x": 2680,
+      "y": 1985.5384615384614,
+      "hp": 600
+    },
+    {
+      "id": "foe-5-cluster",
+      "x": 4310,
+      "y": 2855.1785714285716,
+      "hp": 600
+    },
+    {
+      "id": "foe-6-cluster",
+      "x": 1690,
+      "y": 2227.777777777778,
+      "hp": 600
+    },
+    {
+      "id": "foe-7-cluster",
+      "x": 3290,
+      "y": 2510.6382978723404,
+      "hp": 600
+    }
+  ],
+  "cloneDamageEvents": {
+    "foe-0-cluster": 7,
+    "foe-1-cluster": 2,
+    "foe-3-cluster": 2,
+    "foe-6-cluster": 1,
+    "foe-2-cluster": 2,
+    "foe-7-cluster": 2
+  },
+  "playerShotTargets": {
+    "sodan-binding": 27,
+    "foe-1": 1,
+    "foe-4": 2,
+    "foe-3-cluster": 4,
+    "foe-6-cluster": 1,
+    "foe-6": 1,
+    "foe-4-cluster": 1,
+    "foe-7": 2,
+    "event-44": 3,
+    "foe-0-cluster": 2,
+    "foe-3": 2,
+    "event-90": 1,
+    "event-45": 3,
+    "event-92": 3,
+    "event-46": 1
+  },
+  "finalClones": [
+    {
+      "id": "foe-0-cluster",
+      "x": 1173.4522251270362,
+      "y": 2639.136943718241,
+      "lastAct": 16,
+      "hp": 316,
+      "awake": true
+    },
+    {
+      "id": "foe-1-cluster",
+      "x": 2662.3790389091873,
+      "y": 1709.3234436077764,
+      "lastAct": 16,
+      "hp": 600,
+      "awake": true
+    },
+    {
+      "id": "foe-2-cluster",
+      "x": 2506.9089974463573,
+      "y": 2024.042450723532,
+      "lastAct": 18,
+      "hp": 600,
+      "awake": true
+    },
+    {
+      "id": "foe-3-cluster",
+      "x": 2258.0481764247616,
+      "y": 2288.8783206088574,
+      "lastAct": 2,
+      "hp": 0,
+      "awake": true
+    },
+    {
+      "id": "foe-4-cluster",
+      "x": 2394.31163591009,
+      "y": 1889.7106965662952,
+      "lastAct": 16,
+      "hp": 600,
+      "awake": true
+    },
+    {
+      "id": "foe-5-cluster",
+      "x": 3572.3919016631494,
+      "y": 2171.789636056845,
+      "lastAct": 17,
+      "hp": 600,
+      "awake": true
+    },
+    {
+      "id": "foe-6-cluster",
+      "x": 2297.273180875258,
+      "y": 2173.8740316643693,
+      "lastAct": 7,
+      "hp": 0,
+      "awake": true
+    },
+    {
+      "id": "foe-7-cluster",
+      "x": 2440.619031157714,
+      "y": 2206.7214359790287,
+      "lastAct": 18,
+      "hp": 0,
+      "awake": true
+    }
+  ]
+}

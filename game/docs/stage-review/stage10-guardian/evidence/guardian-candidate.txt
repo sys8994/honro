@@ -1,0 +1,29 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Exact reviewed current stage stage-1
++ actual - expected
+
++ '046fd5e504b848bccaec51fa24ac97c645a1c4e3b5eba1020e6b47b933ee441f'
+- '457c27e2c10ad51da571caccf0bee27d2edbbbdf63947aa1ff26e3e508b4ca9c'
+
+    at assertCurrentCampaign (file:///tmp/honro-stage10-continuation/tests/current-campaign-contract-helpers.mjs:21:680)
+    at campaignHistoryInput (file:///tmp/honro-stage10-continuation/tests/historical-campaign-inputs.mjs:16:2)
+    at beforeEncounterDensity (file:///tmp/honro-stage10-continuation/tests/encounter-density-history-helpers.mjs:17:118)
+    at beforeStage8Bier (file:///tmp/honro-stage10-continuation/tests/stage8-bier-history-helpers.mjs:79:63)
+    at beforeStage18Bell (file:///tmp/honro-stage10-continuation/tests/stage8-bier-history-helpers.mjs:121:61)
+    at beforeStage16BuddhaAscetic (file:///tmp/honro-stage10-continuation/tests/stage16-temple-buddha-ascetic-history-helpers.mjs:37:12)
+    at beforeStage16BuddhaRefinement (file:///tmp/honro-stage10-continuation/tests/stage16-temple-buddha-refinement-history-helpers.mjs:36:12)
+    at beforeStage16Buddha (file:///tmp/honro-stage10-continuation/tests/stage16-temple-buddha-history-helpers.mjs:44:12)
+    at beforeCurrentStage16Temple (file:///tmp/honro-stage10-continuation/tests/stage16-temple-history-helpers.mjs:63:12)
+    at beforeCurrentStage17Worksite (file:///tmp/honro-stage10-continuation/tests/stage17-worksite-history-helpers.mjs:63:12) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '046fd5e504b848bccaec51fa24ac97c645a1c4e3b5eba1020e6b47b933ee441f',
+  expected: '457c27e2c10ad51da571caccf0bee27d2edbbbdf63947aa1ff26e3e508b4ca9c',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

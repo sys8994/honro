@@ -1,0 +1,215 @@
+ROUND 1 { revision: 1, phase: 'bound', bodyHp: 5803 } 0 [
+  [ 'archer', 659, 330 ],
+  [ 'mage', 714, 440 ],
+  [ 'knight', 1158, 550 ]
+]
+ROUND 2 { revision: 1, phase: 'bound', bodyHp: 5803 } 0 [
+  [ 'archer', 583, 300 ],
+  [ 'mage', 666, 1113 ],
+  [ 'knight', 1123, 2064 ]
+]
+ROUND 3 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 2,
+  remaining: 0.9132501485442662
+} 0 [
+  [ 'archer', 583, 300 ],
+  [ 'mage', 626, 1093 ],
+  [ 'knight', 1064, 2265 ]
+]
+ROUND 4 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 3,
+  remaining: 0.8407605466428996
+} 0 [
+  [ 'archer', 583, 300 ],
+  [ 'mage', 506, 1190 ],
+  [ 'knight', 1064, 2265 ]
+]
+ROUND 5 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 4,
+  remaining: 0.768270944741533
+} 0 [
+  [ 'archer', 583, 300 ],
+  [ 'mage', 506, 1190 ],
+  [ 'knight', 1064, 2265 ]
+]
+ROUND 6 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 5,
+  remaining: 0.6957813428401664
+} 0 [
+  [ 'archer', 583, 300 ],
+  [ 'mage', 443, 1209 ],
+  [ 'knight', 1064, 2265 ]
+]
+ROUND 7 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 7,
+  remaining: 0.612893642305407
+} 0 [
+  [ 'archer', 583, 300 ],
+  [ 'mage', 395, 1182 ],
+  [ 'knight', 1038, 2273 ]
+]
+ROUND 8 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 10,
+  remaining: 0.5026737967914439
+} 0 [
+  [ 'archer', 511, 281 ],
+  [ 'mage', 364, 1182 ],
+  [ 'knight', 1038, 2273 ]
+]
+ROUND 9 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 12,
+  remaining: 0.4206773618538324
+} 0 [
+  [ 'archer', 469, 258 ],
+  [ 'mage', 328, 1163 ],
+  [ 'knight', 994, 2262 ]
+]
+ROUND 10 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 13,
+  remaining: 0.3481877599524658
+} 0 [
+  [ 'archer', 469, 258 ],
+  [ 'mage', 649, 1163 ],
+  [ 'knight', 994, 2262 ]
+]
+ROUND 11 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 14,
+  remaining: 0.2985739750445633
+} 0 [
+  [ 'archer', 433, 267 ],
+  [ 'mage', 601, 1175 ],
+  [ 'knight', 994, 2262 ]
+]
+ROUND 12 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 16,
+  remaining: 0.19578134284016638
+} 0 [
+  [ 'archer', 403, 269 ],
+  [ 'mage', 512, 1125 ],
+  [ 'knight', 965, 2257 ]
+]
+ROUND 13 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 18,
+  remaining: 0.13666072489601902
+} 0 [
+  [ 'archer', 364, 256 ],
+  [ 'mage', 512, 1125 ],
+  [ 'knight', 943, 2263 ]
+]
+ROUND 14 {
+  revision: 1,
+  phase: 'bound',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 19,
+  remaining: 0.06417112299465241
+} 0 [
+  [ 'archer', 364, 256 ],
+  [ 'mage', 512, 1125 ],
+  [ 'knight', 943, 2263 ]
+]
+ROUND 15 {
+  revision: 1,
+  phase: 'protecting',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 21,
+  remaining: 0
+} 1 [
+  [ 'archer', 331, 266 ],
+  [ 'mage', 480, 1108 ],
+  [ 'knight', 920, 2266 ]
+]
+ROUND 16 {
+  revision: 1,
+  phase: 'protecting',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 21,
+  remaining: 0
+} 2 [
+  [ 'archer', 252, 1661 ],
+  [ 'mage', 441, 1086 ],
+  [ 'knight', 1214, 2266 ]
+]
+ROUND 17 {
+  revision: 1,
+  phase: 'protecting',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 21,
+  remaining: 0
+} 3 [
+  [ 'archer', 549, 1661 ],
+  [ 'mage', 395, 1061 ],
+  [ 'knight', 1214, 2266 ]
+]
+ROUND 18 {
+  revision: 1,
+  phase: 'protecting',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 21,
+  remaining: 0
+} 4 [
+  [ 'archer', 523, 1650 ],
+  [ 'mage', 325, 1001 ],
+  [ 'knight', 1188, 2250 ]
+]
+ROUND 19 {
+  revision: 1,
+  phase: 'protecting',
+  bodyHp: 5803,
+  lastHitTime: 0,
+  hitCount: 21,
+  remaining: 0
+} 5 [
+  [ 'archer', 523, 1650 ],
+  [ 'mage', 622, 1000 ],
+  [ 'knight', 1164, 2246 ]
+]
+PASS normal10 won 19 and recruited Sodan

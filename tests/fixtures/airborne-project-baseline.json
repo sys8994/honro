@@ -1,4 +1,9 @@
 {
-  "source": "d7244a8adc9a5419f8771dd9f80b94464359fbd8",
-  "sha256": "f40454781734c6e80ba7bd598b5061fd16a2c85174aa9641e1cb51a379f9b407"
+  "source": "9188df592b007a11b79041f7144157e8eadd19b7",
+  "sha256": "9af61283f7611ca3125448406a029af261a9086ecef0da49a1b900f390a46516",
+  "previous": {
+    "source": "d7244a8adc9a5419f8771dd9f80b94464359fbd8",
+    "sha256": "f40454781734c6e80ba7bd598b5061fd16a2c85174aa9641e1cb51a379f9b407"
+  },
+  "reason": "Intentional Stage10 gallery and supported defender refinement; stage10-positioning separately verifies unchanged other29/library/original actors/story before advancing this current-data guard."
 }

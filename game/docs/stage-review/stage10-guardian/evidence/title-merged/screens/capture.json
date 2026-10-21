@@ -1,0 +1,71 @@
+{
+  "sha": "9e860a0c2eae64dab7b3535e06afbda866168d93",
+  "workingTree": "MM HONRO.html\nMM HONRO_WORKSHOP.html\nM  game/docs/BUG_LOG.md\nA  game/docs/TITLE_LAYOUT.md\nA  game/docs/evidence/title-portrait-layout-2026-10-21/1280x800-continue-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/1280x800-continue-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/1280x800-new-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/1280x800-new-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/320x480-continue-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/320x480-continue-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/320x480-new-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/320x480-new-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/360x640-continue-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/360x640-continue-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/360x640-new-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/360x640-new-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/360x780-continue-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/360x780-continue-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/360x780-new-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/360x780-new-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/390x844-continue-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/390x844-continue-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/390x844-new-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/390x844-new-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/844x390-continue-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/844x390-continue-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/844x390-new-loading.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/844x390-new-ready.png\nA  game/docs/evidence/title-portrait-layout-2026-10-21/checks.json\nA  game/docs/evidence/title-portrait-layout-2026-10-21/integrated-checks.json\nA  game/docs/evidence/title-portrait-layout-2026-10-21/preservation.json\nM  game/src/title.css\nMM index.html\nA  tools/testing/title-portrait-layout-browser.py\nD  web/data/campaign.39c682f35567495b.json\nR  web/data/campaign.1d3921b90ca7c60a.json -> web/data/campaign.788fa76bb8c6db53.json\nD  web/data/campaign.de08564bde222b90.json\nR  web/data/chapter-10.e6f52f55e53e8b71.json -> web/data/chapter-10.14be3060b849afd3.json\nD  web/data/chapter-10.38d8218e9282411a.json\nD  web/data/chapter-10.928d91e828c10dc2.json\nA  web/entries/game.05bb337d20770be2.js\nR  web/entries/game.ecdb92bb811ef0a3.js -> web/entries/game.0b13f5df00c4c956.js\nR  web/entries/game.1e6ff6f3490621fc.js -> web/entries/game.2854f72cd9680469.js\nR  web/entries/game.0d01e3bb920ca912.html -> web/entries/game.6e8e29ae9ffc82ae.html\nA  web/entries/game.86ee9cdb2a68d5b2.js\nR  web/entries/game.18bde99412aef745.html -> web/entries/game.8ed84ffbea16a0af.html\nRD web/entries/game.d6e273e17be0d044.js -> web/entries/game.c2c190b0b6cc4573.js\nRD web/entries/game.f4aaaef21aaef7fa.html -> web/entries/game.c7eb740082bb10ac.html\nA  web/entries/game.d2f4173945ed3b45.html\nA  web/entries/game.e26c036e1da347ce.html\nR  web/entries/workshop.94d910792f3096c7.js -> web/entries/workshop.0beb3267e76cab10.js\nAD web/entries/workshop.2719352cc7372ef0.js\nA  web/entries/workshop.2a60d325d08725a1.js\nR  web/entries/workshop.4252afbb6449f28d.js -> web/entries/workshop.47ee261f9a9d9e24.js\nR  web/entries/workshop.414c8916c4167fab.js -> web/entries/workshop.d8800fcab99b45c7.js\nMM web/manifest.json\nD  web/runtime/campaign.52b361f731fd8408.js\nR  web/runtime/campaign.0001d8c577f4fb67.js -> web/runtime/campaign.82280019fc132976.js\nD  web/runtime/campaign.98a7d7d60153eb95.js\nA  web/runtime/ordered-common-2.f426e722163bfc8a.js\nAD web/runtime/ordered-common-2.ff9679695b1836f2.js\nR  web/runtime/ordered-common-4.5971c536b5943dc4.js -> web/runtime/ordered-common-4.48a0c45d1a9088eb.js\nAD web/runtime/ordered-common-4.503e3131ef2b89dd.js\nD  web/runtime/ordered-common-4.c5090650bf2f632b.js\nAD web/runtime/ordered-common-7.7ad7a091c57bf47a.js\nA  web/styles/game-src-skill-presentation.9ec958bbd6c09493.css\nA  web/styles/game-src-title.e9f18fa415e5ced4.css\n?? web/data/campaign.39c682f35567495b.json\n?? web/data/chapter-10.928d91e828c10dc2.json\n?? web/entries/game.16a9d878545f8bea.js\n?? web/entries/game.bc6f4d30ea277e0c.html\n?? web/entries/workshop.5f3028b5dab8c1e8.js\n?? web/runtime/campaign.0001d8c577f4fb67.js\n?? web/runtime/ordered-common-4.c5090650bf2f632b.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 10,
+      "view": "overview",
+      "camera": {
+        "x": 2500,
+        "y": 2000,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 10,
+      "view": "west",
+      "camera": {
+        "x": 1430,
+        "y": 2490,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 10,
+      "view": "center",
+      "camera": {
+        "x": 2470,
+        "y": 2060,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 10,
+      "view": "east",
+      "camera": {
+        "x": 3750,
+        "y": 2480,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 10,
+      "view": "zoom-binding",
+      "camera": {
+        "x": 2260,
+        "y": 2100,
+        "scale": 1.2
+      }
+    },
+    {
+      "stage": 10,
+      "view": "mobile-tree",
+      "camera": {
+        "x": 2470,
+        "y": 2100,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 10,
+      "view": "landscape-tree",
+      "camera": {
+        "x": 2470,
+        "y": 1990,
+        "scale": 0.6
+      }
+    }
+  ],
+  "errors": []
+}

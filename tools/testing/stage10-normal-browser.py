@@ -1,0 +1,22 @@
+"""Actual Chromium normal inputs from a genuine normal-resource protection checkpoint.
+Full Stage10 start-to-win is native evidence; browser scope is protection->win->recruit->11.
+No actor, resource or goal edits; manual camera and virtual time only.
+"""
+import json,shutil,sys,subprocess
+from pathlib import Path
+from playwright.sync_api import sync_playwright
+out=Path(sys.argv[1] if len(sys.argv)>1 else '/tmp/stage10-browser');out.mkdir(parents=True,exist_ok=True)
+initial=json.loads(Path('/tmp/stage10-normal/initial.json').read_text());saved=json.loads(Path('/tmp/stage10-normal/protecting.json').read_text());combat=json.loads(Path('/tmp/stage10-normal/combat.json').read_text());trace=combat['actions'][len(saved['actions']):]
+with sync_playwright() as pw:
+ b=pw.chromium.launch(executable_path=shutil.which('chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage']);p=b.new_page(viewport={'width':1440,'height':900});errors=[];p.on('pageerror',lambda e:errors.append(str(e)));p.goto('http://127.0.0.1:8855/HONRO.html');p.wait_for_function('window.HonroApp && window.HonroAuthoredFarArt',timeout=90000)
+ p.evaluate('async()=>{await HonroCampaignLoader.ensureStage(10);HonroApp.frame=()=>{};}');p.evaluate('v=>{HonroApp.profile=v;HonroApp.continue();}',initial['profile']);p.wait_for_function('HonroAuthoredFarArt.ready(10)')
+ p.evaluate('''()=>{window.reviewMs=performance.now();performance.now=()=>reviewMs;window.reviewTick=()=>{const a=HonroApp;reviewMs+=HONRO_CORE.STEP*1000;if(a.dialogue){HonroStory.next(a);HonroStory.tick(a,reviewMs);return;}HonroStory.turn(a);if(HonroStory.turnPaused(a))return;a.engine.tick(HONRO_CORE.STEP);a.missionTick(HONRO_CORE.STEP);};window.reviewReady=()=>{for(let n=0;n<30000&&!HonroApp.canInput()&&!['won','lost'].includes(HonroApp.engine.b.phase);n++)reviewTick();};window.reviewPaint=()=>{const a=HonroApp,s=a.scene;HonroStory.tick(a,reviewMs+3000);a.updateHUD(true);Object.assign(s,{manual:true,x:2390,y:2120,scale:.65,storyTween:null,cinematic:null});s.render(a.engine,0,'',.6,false,0);};reviewReady();reviewPaint();}''');p.locator('#battlecanvas').screenshot(path=str(out/'binding-before.png'))
+ p.evaluate('v=>{HonroApp.profile=v;HonroApp.continue();reviewReady();reviewPaint();}',saved['profile']);p.locator('#battlecanvas').screenshot(path=str(out/'protection-start.png'));rows=[]
+ for v in trace:
+  row=p.evaluate('''v=>{reviewReady();const a=HonroApp,e=a.engine,b=e.b,u=e.active;if(['won','lost'].includes(b.phase))return{terminal:b.phase};if(u.cls!==v.hero)throw Error('Actor mismatch '+u.cls+' / '+v.hero);let ok=true;if(v.op==='move'){for(let n=0;n<1000&&a.canInput()&&u.moveLeft>10&&Math.abs(v.goal-u.x)>15;n++){e.move(Math.sign(v.goal-u.x),HONRO_CORE.STEP);reviewTick();}}else if(v.op==='fire')ok=e.fire(v.skill,v.angle,v.power);else if(v.op==='item')ok=e.item(v.kind);else if(v.op==='defend')a.defend();else throw Error('Unexpected post-protection op '+v.op);if(ok===false)throw Error('Input rejected '+v.op);return{op:v.op,hero:u.cls,round:b.round,hold:b.honroState.coopHold,phase:b.phase};}''',v);rows.append(row)
+ result=p.evaluate('''()=>{reviewReady();const a=HonroApp,b=a.engine.b;if(b.phase!=='won')throw Error('Not won '+b.phase);const end={phase:b.phase,round:b.round,hold:b.honroState.coopHold,items:b.items,heroes:b.units.filter(u=>u.side===0).map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp})),sodan:{hp:a.engine.unit('boss').hp,side:a.engine.unit('boss').side}};reviewPaint();for(let i=0;i<200&&a.dialogue;i++){HonroStory.next(a);HonroStory.tick(a,reviewMs+=1000);}a.outcome();for(let i=0;i<200&&a.dialogue;i++){HonroStory.next(a);HonroStory.tick(a,reviewMs+=1000);}return end;}''');p.screenshot(path=str(out/'victory.png'));p.locator('[data-action="result-continue"]').click();p.wait_for_function('HonroApp.screen==="rest"',timeout=90000)
+ for _ in range(120):
+  if not p.evaluate('!!HonroApp.dialogue'):break
+  p.locator('[data-action="dialogue-next"]').click()
+ assert p.evaluate('HonroApp.profile.recruited.includes("occultist")');p.screenshot(path=str(out/'sodan-recruited-rest.png'));p.locator('[data-action="journey-enter"][data-id="11"]').click();p.wait_for_function('HonroApp.engine?.b.honroStage===11',timeout=90000);result['recruited']=p.evaluate('HonroApp.profile.recruited');result['nextStage']=11
+ (out/'result.json').write_text(json.dumps({'scope':__doc__,'sha':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'rows':rows,'result':result,'errors':errors},indent=2));print('PASS browser normal checkpoint',result,errors);b.close()

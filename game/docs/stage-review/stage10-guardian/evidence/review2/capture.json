@@ -1,0 +1,71 @@
+{
+  "sha": "6f12d754e4e2b6f3a8eb651a885fe6756d7292f7",
+  "workingTree": "MM HONRO.html\nMM HONRO_WORKSHOP.html\nM  game/docs/BUG_LOG.md\nA  game/docs/stage-review/airborne-bugs/REVIEW.md\nA  game/docs/stage-review/airborne-bugs/evidence/after/browser/stage02-round2.png\nA  game/docs/stage-review/airborne-bugs/evidence/after/browser/stage02-round4.png\nA  game/docs/stage-review/airborne-bugs/evidence/after/browser/trace.json\nA  game/docs/stage-review/airborne-bugs/evidence/after/screens/capture.json\nA  game/docs/stage-review/airborne-bugs/evidence/after/screens/stage02.png\nA  game/docs/stage-review/airborne-bugs/evidence/after/screens/stage03.png\nA  game/docs/stage-review/airborne-bugs/evidence/alpha.txt\nA  game/docs/stage-review/airborne-bugs/evidence/before/screens/capture.json\nA  game/docs/stage-review/airborne-bugs/evidence/before/screens/stage02.png\nA  game/docs/stage-review/airborne-bugs/evidence/before/screens/stage03.png\nA  game/docs/stage-review/airborne-bugs/evidence/browser-motion.txt\nA  game/docs/stage-review/airborne-bugs/evidence/clearance-final.txt\nA  game/docs/stage-review/airborne-bugs/evidence/clearance-results.json\nA  game/docs/stage-review/airborne-bugs/evidence/final-build.txt\nA  game/docs/stage-review/airborne-bugs/evidence/gates-final.txt\nA  game/docs/stage-review/airborne-bugs/evidence/knockback-final.txt\nA  game/docs/stage-review/airborne-bugs/evidence/library.json\nA  game/docs/stage-review/airborne-bugs/evidence/merged/build.txt\nA  game/docs/stage-review/airborne-bugs/evidence/merged/clearance.txt\nA  game/docs/stage-review/airborne-bugs/evidence/merged/screens/capture.json\nA  game/docs/stage-review/airborne-bugs/evidence/merged/screens/stage02.png\nA  game/docs/stage-review/airborne-bugs/evidence/merged/screens/stage03.png\nA  game/docs/stage-review/airborne-bugs/evidence/merged/websplit.txt\nA  game/docs/stage-review/airborne-bugs/evidence/motion-final.txt\nA  game/docs/stage-review/airborne-bugs/evidence/motion-test.txt\nA  game/docs/stage-review/airborne-bugs/evidence/recovery-final.txt\nA  game/docs/stage-review/airborne-bugs/evidence/stage2-before.json\nA  game/docs/stage-review/airborne-bugs/evidence/stage2-final-motion.json\nA  game/docs/stage-review/airborne-bugs/evidence/stage2-waiting-motion.json\nA  game/docs/stage-review/airborne-bugs/evidence/stage3-after.json\nA  game/docs/stage-review/airborne-bugs/evidence/stage3-before.json\nA  game/docs/stage-review/airborne-bugs/evidence/visual-alpha.json\nMM index.html\nM  shared/engine/src/enemyAI.ts\nM  shared/engine/src/engine.ts\nM  shared/engine/src/locomotion.ts\nM  shared/engine/src/types.ts\n M shared/runtime/encounters.js\nM  shared/runtime/stage2-airborne.js\nM  shared/runtime/terrain-space.js\nA  tests/airborne-placement-clearance.mjs\nM  tests/airborne-recovery.mjs\nA  tests/airborne-waiting-motion.mjs\nA  tests/fixtures/airborne-project-baseline.json\nM  tests/flying-knockback.mjs\nM  tests/stage2-airborne.mjs\n M tools/map-forge/stage10-positioning.mjs\nA  tools/testing/airborne-clearance-capture.py\nA  tools/testing/airborne-motion-browser.py\nA  tools/testing/airborne-normal-trace.mjs\nA  tools/testing/airborne-visual-envelope.py\nD  web/data/campaign.de08564bde222b90.json\nD  web/data/chapter-10.e6f52f55e53e8b71.json\nR  web/entries/game.0a0919e26026552d.js -> web/entries/game.0b13f5df00c4c956.js\n D web/entries/game.6e8e29ae9ffc82ae.html\n D web/entries/game.86ee9cdb2a68d5b2.js\nR  web/entries/game.d7cb5dfc6899619b.html -> web/entries/game.8ed84ffbea16a0af.html\n D web/entries/game.c2c190b0b6cc4573.js\n D web/entries/game.c7eb740082bb10ac.html\n D web/entries/workshop.0beb3267e76cab10.js\n D web/entries/workshop.2719352cc7372ef0.js\nR  web/entries/workshop.75f8992e0c8564d3.js -> web/entries/workshop.47ee261f9a9d9e24.js\nMM web/manifest.json\nD  web/runtime/campaign.98a7d7d60153eb95.js\nA  web/runtime/ordered-common-2.5ce8d31fcc4b1b6f.js\n D web/runtime/ordered-common-2.f426e722163bfc8a.js\n D web/runtime/ordered-common-2.ff9679695b1836f2.js\nD  web/runtime/ordered-common-4.045aa4cd199a69b5.js\nA  web/runtime/ordered-common-4.48a0c45d1a9088eb.js\n D web/runtime/ordered-common-4.503e3131ef2b89dd.js\n D web/runtime/ordered-common-7.7ad7a091c57bf47a.js\nA  web/runtime/ordered-common-7.9ffe5a571061b7c3.js\n D web/styles/game-src-skill-presentation.9ec958bbd6c09493.css\n?? tests/stage10-positioning.mjs\n?? tools/testing/stage10-normal-browser.py\n?? web/data/campaign.1d3921b90ca7c60a.json\n?? web/data/campaign.de08564bde222b90.json\n?? web/data/chapter-10.38d8218e9282411a.json\n?? web/data/chapter-10.e6f52f55e53e8b71.json\n?? web/entries/game.18bde99412aef745.html\n?? web/entries/game.1e6ff6f3490621fc.js\n?? web/entries/game.ecdb92bb811ef0a3.js\n?? web/entries/game.f4aaaef21aaef7fa.html\n?? web/entries/workshop.414c8916c4167fab.js\n?? web/entries/workshop.4252afbb6449f28d.js\n?? web/runtime/campaign.52b361f731fd8408.js\n?? web/runtime/campaign.98a7d7d60153eb95.js\n?? web/runtime/ordered-common-4.5971c536b5943dc4.js\n?? web/runtime/ordered-common-4.c5090650bf2f632b.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 10,
+      "view": "overview",
+      "camera": {
+        "x": 2500,
+        "y": 2400,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 10,
+      "view": "west",
+      "camera": {
+        "x": 1430,
+        "y": 2490,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 10,
+      "view": "center",
+      "camera": {
+        "x": 2470,
+        "y": 2060,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 10,
+      "view": "east",
+      "camera": {
+        "x": 3750,
+        "y": 2480,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 10,
+      "view": "zoom-binding",
+      "camera": {
+        "x": 2260,
+        "y": 2100,
+        "scale": 1.2
+      }
+    },
+    {
+      "stage": 10,
+      "view": "mobile-tree",
+      "camera": {
+        "x": 2470,
+        "y": 2100,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 10,
+      "view": "landscape-tree",
+      "camera": {
+        "x": 2470,
+        "y": 2150,
+        "scale": 0.6
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,71 @@
+{
+  "sha": "d7244a8adc9a5419f8771dd9f80b94464359fbd8",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/build.mjs\n M shared/runtime/campaign-map-revision.js\n M tools/map-forge/apply-stage10-location-paint.mjs\n D web/data/campaign-library.476931ce56a88b72.json\n D web/data/campaign.7591bd6f8ac27e99.json\n D web/data/chapter-09-assets.f52b84a4ae3e638d.json\n D web/entries/game.e806ca96ea040c17.html\n D web/entries/game.f881c75c05f2ab5b.js\n D web/entries/workshop.fce9cee62a66b50a.js\n M web/manifest.json\n D web/runtime/campaign.c4b3aa6953debcd5.js\n?? game/docs/stage-review/stage10-guardian/\n?? tests/stage10-normal-play.mjs\n?? tools/map-forge/stage10-positioning.mjs\n?? tools/testing/stage10-refinement-capture.py\n?? web/data/campaign.de08564bde222b90.json\n?? web/data/chapter-10.e6f52f55e53e8b71.json\n?? web/entries/game.3e8deec2c092ca64.js\n?? web/entries/game.9e33c0d403eef327.html\n?? web/entries/workshop.9e44b938d59dde6e.js\n?? web/runtime/campaign.98a7d7d60153eb95.js\n?? web/runtime/ordered-common-4.045aa4cd199a69b5.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 10,
+      "view": "overview",
+      "camera": {
+        "x": 2500,
+        "y": 2400,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 10,
+      "view": "west",
+      "camera": {
+        "x": 1430,
+        "y": 2490,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 10,
+      "view": "center",
+      "camera": {
+        "x": 2470,
+        "y": 2060,
+        "scale": 0.8
+      }
+    },
+    {
+      "stage": 10,
+      "view": "east",
+      "camera": {
+        "x": 3750,
+        "y": 2480,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 10,
+      "view": "zoom-binding",
+      "camera": {
+        "x": 2260,
+        "y": 2100,
+        "scale": 1.2
+      }
+    },
+    {
+      "stage": 10,
+      "view": "mobile-tree",
+      "camera": {
+        "x": 2470,
+        "y": 2100,
+        "scale": 0.55
+      }
+    },
+    {
+      "stage": 10,
+      "view": "landscape-tree",
+      "camera": {
+        "x": 2470,
+        "y": 2150,
+        "scale": 0.6
+      }
+    }
+  ],
+  "errors": []
+}

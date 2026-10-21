@@ -1,0 +1,165 @@
+{
+  "scope": "Actual Chromium normal inputs from a genuine normal-resource protection checkpoint.\nFull Stage10 start-to-win is native evidence; browser scope is protection->win->recruit->11.\nNo actor, resource or goal edits; manual camera and virtual time only.\n",
+  "sha": "9188df592b007a11b79041f7144157e8eadd19b7",
+  "rows": [
+    {
+      "op": "move",
+      "hero": "archer",
+      "round": 15,
+      "hold": 1,
+      "phase": "aim"
+    },
+    {
+      "op": "move",
+      "hero": "archer",
+      "round": 15,
+      "hold": 1,
+      "phase": "aim"
+    },
+    {
+      "op": "fire",
+      "hero": "archer",
+      "round": 15,
+      "hold": 1,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "mage",
+      "round": 15,
+      "hold": 1,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "knight",
+      "round": 15,
+      "hold": 1,
+      "phase": "flight"
+    },
+    {
+      "op": "item",
+      "hero": "archer",
+      "round": 16,
+      "hold": 2,
+      "phase": "review"
+    },
+    {
+      "op": "fire",
+      "hero": "mage",
+      "round": 16,
+      "hold": 2,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "knight",
+      "round": 16,
+      "hold": 2,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "archer",
+      "round": 17,
+      "hold": 3,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "mage",
+      "round": 17,
+      "hold": 3,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "knight",
+      "round": 17,
+      "hold": 3,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "archer",
+      "round": 18,
+      "hold": 4,
+      "phase": "flight"
+    },
+    {
+      "op": "item",
+      "hero": "mage",
+      "round": 18,
+      "hold": 4,
+      "phase": "review"
+    },
+    {
+      "op": "fire",
+      "hero": "knight",
+      "round": 18,
+      "hold": 4,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "archer",
+      "round": 19,
+      "hold": 5,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "mage",
+      "round": 19,
+      "hold": 5,
+      "phase": "flight"
+    },
+    {
+      "op": "fire",
+      "hero": "knight",
+      "round": 19,
+      "hold": 5,
+      "phase": "flight"
+    }
+  ],
+  "result": {
+    "phase": "won",
+    "round": 19,
+    "hold": 6,
+    "items": {
+      "heal": 0,
+      "focus": 3,
+      "cleanse": 2,
+      "ward": 2
+    },
+    "heroes": [
+      {
+        "cls": "archer",
+        "hp": 480,
+        "maxHp": 659
+      },
+      {
+        "cls": "mage",
+        "hp": 590,
+        "maxHp": 714
+      },
+      {
+        "cls": "knight",
+        "hp": 1143,
+        "maxHp": 1214
+      }
+    ],
+    "sodan": {
+      "hp": 242,
+      "side": 2
+    },
+    "recruited": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "nextStage": 11
+  },
+  "errors": []
+}
