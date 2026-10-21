@@ -1,2 +1,0 @@
-import {loadData,loadProject} from "./load-data.0a232e94ad0af727.js";
-globalThis.HONRO_REST_BACKDROPS=await loadData("web/data/HONRO_REST_BACKDROPS.59a3076127863c24.json",[["images","mountain-dusk"],["images","mountain-wet-valley"],["images","mountain-still-night"],["images","cave-entrance"],["images","cave-settlement"],["images","cave-waterwork"],["images","cave-bell-chamber"],["images","town-wall"],["images","town-river"],["images","underground-channel"]],{"svgSources":false});
