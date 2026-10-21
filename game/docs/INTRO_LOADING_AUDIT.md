@@ -2,7 +2,44 @@
 
 기준 master: `544825ee77930756dd28ce056ab15e12bb885278`. 실행 수정 SHA: `a1061dc4ae71803dfa37718f554f1f3511f8fbad`. 작업 브랜치: `codex/intro-loading-audit`. master 병합·Pages 발행은 통합 순서 조정을 위해 대기 중이다.
 
-## 결론과 수정 범위
+## 후속 최종 결과 — 임계 경로와 압축 검증
+
+실행 수정 최종 SHA: `15e8373df54285d3883b29b45ca7f2d3b0ba04fa`. 앞의 표는 첫 번째 요청 정리 단계의 기록이며, 아래 결과가 후속 코드 축소까지 포함한 최종 비교다. 원본 master는 동일하다. 지형/스테이지/그림 데이터 189개는 그대로다.
+
+Terser 5.51.2를 고정하고 compress:false/mangle:false로 JS 주석·공백만 줄였다. 코드 이름·순서·전역 등록·비동기 완료 경계를 보존한다. 37개 모듈 합계 raw 2,789,636→2,337,992B(-16.2%), gzip6 880,435→768,790B(-12.7%), Brotli11 713,023→632,629B(-11.3%)다. Brotli는 파일 크기 계산만 했고 실제 네트워크 반복 검사는 gzip으로 수행했다. 읽을 수 있는 원본 JS는 저장소에 그대로 있으며 배포본은 한 줄로 축소된다.
+
+동일 CPU4배/40ms/2MiB/s,390×844모바일 모사, 조건별3회 중앙값. 무압축은 앞의 원기준과 비교했으며 gzip은 원기준 별도 checkout과 수정본을 같은 gzip6 HTTP서버에서 새로 각각3회 측정했다. 실제 Pages의 Content-Encoding 확인 요청은 CONNECT tunnel403으로 거부돼 중단했다. gzip 수치는 배포 검증이 아니다.
+
+| 조건 | 준비 ms 이전→최종 | 클릭 후 ms 이전→최종 | 준비까지 관측 전송B 이전→최종 |
+|---|---:|---:|---:|
+| 무압축 새 방문/새 시작 | 2977→2636 | 396→453 | 5,160,049→4,677,816 |
+| 무압축 재방문/새 시작 | 848→660 | 312→276 | 0→0 |
+| 무압축 새 방문/21장 | 3552→3349 | 1715→1774 | 6,506,415→6,024,182 |
+| 무압축 재방문/21장 | 995→887 | 1196→1175 | 0→0 |
+| gzip 새 방문/새 시작 | 1652→1401 | 411→435 | 1,783,799→1,641,907 |
+| gzip 재방문/새 시작 | 768→657 | 323→291 | 0→0 |
+| gzip 새 방문/21장 | 1737→1525 | 1692→1734 | 1,968,367→1,826,475 |
+| gzip 재방문/21장 | 969→972 | 1200→1149 | 0→0 |
+
+새 방문 준비는 무압축 약11.5%/5.7%, gzip 약15.2%/12.2% 줄었다. 클릭 후 cold 진입은 개선되지 않았다. 첫 그림은 gzip 새 시작289→325ms,21장335→333ms이므로 첫 그림 표시가 빨라졌다고 주장하지 않는다. 자료를 클릭 뒤나 새 대기화면으로 넘겨 준비시간을 줄인 것이 아니다.
+
+### 병목 근거와 남은 위험
+
+다운로드 resource 시간창은 최대36개가 겹쳤다. 즉37모듈을 전부 순서대로 다운로드하는 구조는 아니다. 제한된12모듈 preload와 필수 JSON fetch는 병렬이고, 전역patch가 앞 정의를 캡처하므로 평가만 순차다. 21장 cold 한 표본에서 엔진967,465B는384→2544ms, 현재장 asset JSON1,328,987B는589→2684ms, 구분할 JSON653,520B는387→2107ms를 차지했다. 준비 프로파일의 많은 idle/프로그램 구간 및 gzip 시 약2초→1초대 축소가 전송·요청 임계 경로를 뒷받침한다. 앞 trace의 compileModule 합6.43ms와 module evaluation87.52ms는 전송 대기보다 작았다. worker JSON parse는 메인 스레드 sample에 포함되지 않으므로 이를0ms로 해석하지 않는다. 4배 CPU throttle은 실제 저가 Android CPU/메모리/decoder의 등가 모델이 아니다.
+
+클릭 뒤 별도 프로파일에서21장 continue462ms, 그 안에 mount416ms/HUD294ms/초상화203ms가 포함됐고 첫 render는541ms였다. 프로파일러 없는 추가 첫프레임 계측에서는 render378ms, 그 안에 배경60ms/지형tile97ms/가림실루엣46ms가 포함됐다. 다른 run과 중첩 구간이라 합산/직접 전후 비교하지 않는다. 프로파일 전체의 silhouette self232ms는 여러 frame 합이며 첫 frame 수치가 아니다. 초기 이미지 decode는 trace상7회/35ms 규모로, 관측된 전체 진입 비용을 설명하지 못했다.
+
+이제 클릭 뒤 지배적인 일은 현재 화면의 실제 벡터그림/타일캐시/가림합성/초상화 생성이다. 이를 idle 사전작업이나 다른 대기화면으로 옮겨 속도가 개선됐다고 계산하지 않았다. raster/pose cache, 해상도 또는 가림 정책을 더 바꾸면 캐릭터 애니메이션·화면 미술·병행8장 검수에 영향을 줄 수 있다. 이번 인트로·로딩 범위를 넘어 공용 renderer를 변경하지 않고, 이 병목을 다음 작업의 구체적 근거로 남긴다. 구분할/서사 JSON의 무조건 삭제·지연도 legacy scene 등록과 진행 중 저장을 바꾸므로 적용하지 않았다.
+
+Game 초기 import 그래프에 workshop/src/app.js·테스트 파일은 없다. Workshop 앱은 별도 entry이며 Playtest의 공통 런타임만 재사용한다. training/skill-preview도 Game 초기 목록에서 제외된다. HONRO_TOOLS는 실제 개발/검수 API이며 데이터 중복 복사 없이 기존 함수·core·content 참조를 내보낸다. 후반장 patch와 호환자료는 현재 초기 등록에 포함되지만 테스트/편집기 찌꺼기로 오인해 제거하지 않았다.
+
+### 갱신된 검증
+
+원기준544825ee 별도 worktree에서 두 타이틀 검사 실패를 실제 재현했다. title-redesign은 옛 game/build.mjs 문자열 계약, title-letter-rendering은 main.js에서 이미 분리된 filter 추출이 원인이었다. 두 검사를 현재 web-build/title-markup으로 갱신했고 PNG identity·alpha/ink·6화면비·5저장분기·반복진입·접근성을 유지했다. DOM double의 가짜 startup marker도 바로잡았다. 최종 npm run test:title은 둘 다 통과한다. 앞 절의 미해결 정적 테스트 한계는 이 후속 수정으로 해소됐다.
+
+최종 minified build에서 web-split, ordered-runtime, retention, intro-loading-browser, startup stage-checks를 통과했다. 타이틀·새 시작·오디오·11/20장 원경·12장 실패/재시도·21장 취소/저장·이전 HTML cache를 확인했다. 전체verify/전장미술 전수검사는 하지 않았다. 원시파일은 compression.json, minified.json, gzip-before.json, gzip-after.json, cpu-summary.json, first-frame.json이다.
+
+## 첫 번째 단계 기록: 결론과 수정 범위
 
 Workshop Map은 `title-markup.js` → `main.js`의 `import-map` → hidden `map-import` 파일 입력 → `launchMap(project, activeStageId)` 경로다. 편집 JSON 검수용이며 일반 여정에 필요하지 않다. 타이틀 버튼만 제거했다. 개발 API·파일 입력/handler·HONRO_WORKSHOP.html·Playtest는 보존했다.
 
@@ -97,3 +134,7 @@ ready는 document data-honro-ready 관측, 첫 그림은 표시 가능한 title 
 원시측정·전체리소스별 디스크/응답/전송바이트·시작/종료시각은 `_local/reports/intro-audit/{before,final,summary}.json`, `requests.csv`, `modules37.csv`, `trace-summary.json`, `regressions.json`에 있다. 같은디렉터리probe.py로재현한다. 코드수정본 SHA와문서커밋 SHA는구분한다. master/Pages에는아직반영하지않았다.
 
 실제 타이틀·쉼터·11장 스크린샷 3장과 전체 초기 요청 부록을 포함한 [Library PDF 보고서](https://chatgpt.com/api/library/files/libfile_42196569e88081918d529be604512763/download)를 저장했다. Library ID: `libfile_42196569e88081918d529be604512763`. 로컬 보고서의 file:// 브라우저 열기는 `ERR_BLOCKED_BY_ADMINISTRATOR`로 거부되어 중단했고, 독립 PDF 작성 도구로 생성·렌더 확인했다. 이 거부는 게임 로컬 HTTP 검증이나 공개 Pages 접근 결과가 아니다.
+
+후속 optional-checks도 통과했다: 초기 선택모듈 요청0, preview/훈련 실패 후 재시도·화면/저장 보존·복원, embedded engine 진입 확인. Library의 후속 PDF 교체와 독립 PNG 3개 저장은 prepared upload helper의 hosted apps 호출 network 오류로 실패했다. 조회상 기존 PDF의 file ID/size/modified_at은 그대로이며 새 PNG는 검색되지 않았다. 따라서 위 Library 링크는 첫 단계 PDF이고, 후속 최종 결과는 이 저장소 문서와 로컬 갱신 PDF가 최신이다. 해당 batch는 중복 제출하거나 직접 업로드로 우회하지 않았다.
+
+2026-10-21 사용자 후속 설명에 따라 작업을 종료하지 않고, 사전 로딩 이전·도입 직후·벡터 복원 후의 실제 성능 회귀를 Git 이력과 같은 실행 조건으로 추적 중이다. master 통합 대기는 유지한다.
