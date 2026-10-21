@@ -33,7 +33,7 @@ import {buildActors} from '../tools/actor-forge/build.mjs';
 export const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 export const modelFiles=['action-prompts','content','story-content-v0','story-content','terrain-space','map-engine','battlefield-layouts',
-  'split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','encounters','world','act1-roster','difficulty','allies','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','story-framing','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','stage5-positioning','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage2-layered-road'];
+  'split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','encounters','world','act1-roster','difficulty','allies','sodan-withdrawal','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','story-framing','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','stage5-positioning','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage2-layered-road'];
 
 // This is the only bundle manifest. Game, Stage view and playtest use it.
 export async function runtimeEntries({vector=true,render=true,app=false}={}) {
@@ -114,7 +114,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/authored-far-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
-    for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','music-titles','audio','story','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main']){
+    for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','music-titles','audio','story','act-endings-content','act-endings','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main']){
       await file(`shared/runtime/${name}.js`);
       // Metadata only: native/full consumers retain the same scripts and order.
       if(name==='training'||name==='skill-preview')parts.at(-1).optional=name;
