@@ -3829,3 +3829,8 @@ Integrated reviewed21–30 over d7 with exact stage/source provenance and immuta
 ## 2026-10-21 · 3장 나루 처마와 상하 엄호 역할
 
 기존 잔교/저지대/화물/지붕 동선은 보존하고 지붕 보행면의 아래 두께만34로 줄여 앞면의 암판 표현을 처마로 교정했다. 목재 상판·보 재질을 구분하고 같은 예산의 적을 하부/비탈/적재대/지붕에 배정했다. 3장 map revision3→4, 성장 보존. 정상 자원 브라우저23턴 장부 확보·철수, 두 캐릭터 상하 이동/실탄, 다른29장/library 동일,1·2장 회귀 및3회+종합 실화면 확인. 전체 적 처치·전면 재설계·공개화면 합격 주장은 아니다. `stage-review/stage03-positioning/REVIEW.md` 참조.
+
+## 2026-10-21 — Stage4 gate defense positioning
+- Preserve the existing basin, six landing tops, eight-turn evacuation, NPCs and event IDs. Replace rock-thick galleries on timber trestles with shallow wood decks; add connected cut-bank faces rather than repeated texture.
+- Keep fourteen initial foes and existing waves; distribute clones among ground pressure, burned gallery, east reserve and elevated crossfire. Revision4 invalidates only the changed battle.
+- Finite two-hero west climb/return and three real projectile checks pass. Normal-resource browser ground defense and upper-gallery defense both win round9. Final-source screenshots and outcome evidence recorded in stage04-positioning review. This is a targeted refinement, not a replacement of the whole basin or an all-skills campaign clear.

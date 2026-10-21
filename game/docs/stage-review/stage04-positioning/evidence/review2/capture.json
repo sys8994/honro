@@ -1,0 +1,80 @@
+{
+  "sha": "abb9f8d17bbec293772bc82c53facd9596302fec",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/build.mjs\n M shared/runtime/act1-spatial-art.js\n M shared/runtime/campaign-map-revision.js\n M shared/runtime/encounters.js\n M tests/pre-image-terrain-restoration.mjs\n D web/data/campaign.68b30467f9b6acf4.json\n D web/data/chapter-03.c6274678e84b27b7.json\n D web/entries/game.52d67a503d2bf126.js\n D web/entries/game.b8a15472c785b03e.html\n D web/entries/workshop.5a9d4d034b510117.js\n M web/manifest.json\n D web/runtime/campaign.bd70d71f8730a58c.js\n D web/runtime/ordered-common-12.7db1dd8b79b21bee.js\n D web/runtime/ordered-common-4.dca147e8e5280d79.js\n?? game/docs/stage-review/stage04-positioning/\n?? tests/stage4-positioning.mjs\n?? tools/map-forge/stage4-positioning.mjs\n?? tools/testing/stage4-positioning-browser.py\n?? tools/testing/stage4-positioning-capture.py\n?? tools/testing/stage4-positioning-controller.js\n?? web/data/campaign.a1821dfd4e4b51ae.json\n?? web/data/chapter-04.002dbef0ae61910a.json\n?? web/entries/game.13fd5d64f046cde7.html\n?? web/entries/game.ee32cab73199e480.js\n?? web/entries/workshop.9eb873c42f42379e.js\n?? web/runtime/campaign.04a016f149bfa243.js\n?? web/runtime/ordered-common-12.f8df1a7e43eb5aaf.js\n?? web/runtime/ordered-common-4.b216dcf9c94bbeb4.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 4,
+      "view": "normal-gate",
+      "camera": {
+        "x": 1250,
+        "y": 2160,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 4,
+      "view": "zoom-gallery",
+      "camera": {
+        "x": 1400,
+        "y": 1840,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 4,
+      "view": "maxout",
+      "camera": {
+        "x": 2300,
+        "y": 2200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 4,
+      "view": "mobile-gate",
+      "camera": {
+        "x": 1030,
+        "y": 2100,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 4,
+      "view": "mobile-court",
+      "camera": {
+        "x": 2210,
+        "y": 2490,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 4,
+      "view": "mobile-watch",
+      "camera": {
+        "x": 3400,
+        "y": 1930,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 4,
+      "view": "landscape-gate",
+      "camera": {
+        "x": 1350,
+        "y": 2100,
+        "scale": 0.35
+      }
+    },
+    {
+      "stage": 4,
+      "view": "landscape-watch",
+      "camera": {
+        "x": 3550,
+        "y": 1850,
+        "scale": 0.35
+      }
+    }
+  ],
+  "errors": []
+}

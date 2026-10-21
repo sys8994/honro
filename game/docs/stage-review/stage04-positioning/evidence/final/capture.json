@@ -1,0 +1,80 @@
+{
+  "sha": "6e7cbed7f76b87a28495bf85f629747e6d32f7a7",
+  "workingTree": " M tests/pre-image-terrain-restoration.mjs\n?? game/docs/stage-review/stage04-positioning/evidence/\n?? tests/stage4-positioning.mjs\n?? tools/testing/stage4-positioning-browser.py\n?? tools/testing/stage4-positioning-capture.py\n?? tools/testing/stage4-positioning-controller.js\n",
+  "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+  "rows": [
+    {
+      "stage": 4,
+      "view": "normal-gate",
+      "camera": {
+        "x": 1250,
+        "y": 2160,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 4,
+      "view": "zoom-gallery",
+      "camera": {
+        "x": 1400,
+        "y": 1840,
+        "scale": 1.05
+      }
+    },
+    {
+      "stage": 4,
+      "view": "maxout",
+      "camera": {
+        "x": 2300,
+        "y": 2200,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "stage": 4,
+      "view": "mobile-gate",
+      "camera": {
+        "x": 1030,
+        "y": 2100,
+        "scale": 0.65
+      }
+    },
+    {
+      "stage": 4,
+      "view": "mobile-court",
+      "camera": {
+        "x": 2210,
+        "y": 2490,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 4,
+      "view": "mobile-watch",
+      "camera": {
+        "x": 3400,
+        "y": 1930,
+        "scale": 0.5
+      }
+    },
+    {
+      "stage": 4,
+      "view": "landscape-gate",
+      "camera": {
+        "x": 1350,
+        "y": 2100,
+        "scale": 0.35
+      }
+    },
+    {
+      "stage": 4,
+      "view": "landscape-watch",
+      "camera": {
+        "x": 3550,
+        "y": 1850,
+        "scale": 0.35
+      }
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,35 @@
+{
+  "sha": "abb9f8d17bbec293772bc82c53facd9596302fec",
+  "workingTree": "",
+  "scope": "Local production browser, frozen debug scene; overview uses diagnostic fit-to-map zoom, not gameplay minimum; no chapter completion.",
+  "rows": [
+    {
+      "stage": 4,
+      "view": "west",
+      "camera": {
+        "x": 1250,
+        "y": 2160,
+        "scale": 0.75
+      }
+    },
+    {
+      "stage": 4,
+      "view": "center",
+      "camera": {
+        "x": 2350,
+        "y": 2510,
+        "scale": 0.7
+      }
+    },
+    {
+      "stage": 4,
+      "view": "east",
+      "camera": {
+        "x": 3500,
+        "y": 2020,
+        "scale": 0.65
+      }
+    }
+  ],
+  "errors": []
+}

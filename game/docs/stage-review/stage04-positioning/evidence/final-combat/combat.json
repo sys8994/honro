@@ -1,0 +1,261 @@
+{
+  "method": "Production browser Engine inputs; legal chapter3 reward ledger fixture, normal resources and live AI, no teleports/healing resets.",
+  "start": {
+    "heroes": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "hp": 438,
+        "maxHp": 438,
+        "focus": 112,
+        "level": 3,
+        "loadout": [
+          "A01"
+        ]
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "hp": 470,
+        "maxHp": 470,
+        "focus": 144,
+        "level": 3,
+        "loadout": [
+          "M01"
+        ]
+      }
+    ],
+    "items": {
+      "heal": 3,
+      "focus": 3,
+      "cleanse": 2,
+      "ward": 2
+    },
+    "enemies": 14
+  },
+  "end": {
+    "phase": "won",
+    "round": 9,
+    "heroes": [
+      {
+        "id": "p-archer",
+        "hp": 383,
+        "maxHp": 438,
+        "focus": 112,
+        "x": 1932.549222820795,
+        "y": 2676.5067862762703
+      },
+      {
+        "id": "p-mage",
+        "hp": 470,
+        "maxHp": 470,
+        "focus": 144,
+        "x": 1050.2365969390848,
+        "y": 2270
+      }
+    ],
+    "gate": 3585,
+    "enemies": 22,
+    "flags": {
+      "sector-0": true,
+      "event:siege-0": true,
+      "sector-1": true,
+      "sector-2": true,
+      "event:siege-mid": true,
+      "event:siege-1": true
+    }
+  },
+  "ticks": 15246,
+  "poses": [
+    {
+      "actor": "p-archer",
+      "goal": 1790,
+      "x": 1801.4285264314792,
+      "y": 1738.1632556638883,
+      "round": 4
+    }
+  ],
+  "log": [
+    {
+      "op": "land",
+      "actor": "p-archer",
+      "round": 1,
+      "x": 1000.4365773810788,
+      "y": 2074.3956010610464
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 1,
+      "x": 741.5267852319902,
+      "y": 2274.0568305312513,
+      "target": "foe-0-cluster",
+      "skill": "M01",
+      "angle": 63.88075990901727,
+      "power": 0.5790780204533792
+    },
+    {
+      "op": "land",
+      "actor": "p-archer",
+      "round": 2,
+      "x": 1171.7691949557502,
+      "y": 1883.940009311505
+    },
+    {
+      "op": "land",
+      "actor": "p-archer",
+      "round": 2,
+      "x": 1402.2127075518708,
+      "y": 1712.3361877344387
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 2,
+      "x": 1687.49425314846,
+      "y": 1716.0221866322715,
+      "target": "foe-3-cluster",
+      "skill": "A01",
+      "angle": -17.173051128169227,
+      "power": 0.401476713430543
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 2,
+      "x": 741.5267852319902,
+      "y": 2274.0568305312513,
+      "target": "foe-3",
+      "skill": "M01",
+      "angle": 65.68415122371756,
+      "power": 0.5627912682535907
+    },
+    {
+      "op": "high-fire",
+      "round": 3,
+      "target": "foe-4-cluster"
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 3,
+      "x": 741.5267852319902,
+      "y": 2274.0568305312513,
+      "target": "event-12",
+      "skill": "M01",
+      "angle": 50.21964566177404,
+      "power": 0.9260159097761032
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 4,
+      "x": 1801.4285264314792,
+      "y": 1738.1632556638883,
+      "target": "event-11",
+      "skill": "A01",
+      "angle": 176.45529497734188,
+      "power": 0.27076111179500933
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 4,
+      "x": 741.5267852319902,
+      "y": 2274.0568305312513,
+      "target": "event-12",
+      "skill": "M01",
+      "angle": 50.64225696744997,
+      "power": 0.9020307856647258
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 5,
+      "x": 1932.8992399814788,
+      "y": 2676.61148515946,
+      "target": "event-13",
+      "skill": "A01",
+      "angle": 163.9499666916888,
+      "power": 0.39187417890849763
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 5,
+      "x": 828.803507119708,
+      "y": 2269.9273292625303,
+      "target": "event-10",
+      "skill": "M01",
+      "angle": 50.97965925769632,
+      "power": 0.8982368227024207
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 6,
+      "x": 1932.8992399814788,
+      "y": 2676.61148515946,
+      "target": "event-23",
+      "skill": "A01",
+      "angle": 163.98972834052356,
+      "power": 0.39488500651858954
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 6,
+      "x": 894.5032636057537,
+      "y": 2270,
+      "target": "event-10",
+      "skill": "M01",
+      "angle": 49.920768455803106,
+      "power": 0.9980361800353449
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 7,
+      "x": 1932.8992399814788,
+      "y": 2676.61148515946,
+      "target": "event-23",
+      "skill": "A01",
+      "angle": 163.9233344118631,
+      "power": 0.38986729501045736
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 7,
+      "x": 1028.3365969390843,
+      "y": 2270,
+      "target": "foe-4",
+      "skill": "M01",
+      "angle": 2.1759942413471802,
+      "power": 0.8048290115728481
+    },
+    {
+      "op": "fire",
+      "actor": "p-archer",
+      "round": 8,
+      "x": 1932.8587474742374,
+      "y": 2676.5993728382314,
+      "target": "event-23",
+      "skill": "A01",
+      "angle": 163.97111107740054,
+      "power": 0.393256512815985
+    },
+    {
+      "op": "fire",
+      "actor": "p-mage",
+      "round": 8,
+      "x": 1050.2365969390848,
+      "y": 2270,
+      "target": "event-10",
+      "skill": "M01",
+      "angle": 53.76244096698593,
+      "power": 0.9868545186226161
+    }
+  ],
+  "runtimeSourceSha": "6e7cbed7f76b87a28495bf85f629747e6d32f7a7"
+}
