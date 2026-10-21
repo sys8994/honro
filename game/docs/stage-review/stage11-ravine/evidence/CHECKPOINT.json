@@ -109,6 +109,14 @@
     "focus1/stage11-west-overview.png": "3fc8d2176d8b06daf86df1b5f72e235582b447f5407a10142a8caff91e0b11a6",
     "focus1/capture.json": "55b04eb26df1acabc2073ba7fa16e09fced6f834e7b4dce309557d53d12fdaee",
     "focus1/stage11-court-overview.png": "662d5deac3b30be083fa7fd485209b4b6b5936a49bf4efeb30145171a57c624c",
-    "focus1/stage11-lower-overview.png": "13c96914cd8dcf149604dd09d971c09cf79641efb254eef0bdaed22f8cbbd94c"
+    "focus1/stage11-lower-overview.png": "13c96914cd8dcf149604dd09d971c09cf79641efb254eef0bdaed22f8cbbd94c",
+    "checks/web-manifest-checkpoint.json": "68b3e795a1ef766d1c47327242519e7db5564fcade060e2da2efb6e4afb43238",
+    "checks/build-clean-published-base.txt": "0b4f455ea604381c5736fb8766a474f56431b15c262bc7d078f394a1cd7a6cc7"
+  },
+  "generatedOutputCheckpoint": {
+    "currentFiles": 248,
+    "retainedFiles": 9,
+    "missing": [],
+    "note": "Pre-checkpoint generated output retained8 unpublished experimental-generation entries whose files had been cleaned. Restored actual published master web/HTML as generator input and rebuilt from current source; did not manually remove manifest requirements or fabricate historical assets. Final comprehensive pixel review still pending."
   }
 }

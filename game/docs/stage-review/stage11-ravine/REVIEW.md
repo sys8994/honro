@@ -51,3 +51,5 @@
 `evidence/CHECKPOINT.json`과 압축 원본 입력/진행 저장, 원본 캡처, 실패 로그를 보존했다. 마지막 정상 입력 실행기 원문은 기록된 SHA와 일치함을 확인해 `normal/runner-r47.mjs.txt`에 보존했다. 이전 구간의 정확한 입력 정책 스크립트 원문은 모두 남아 있지 않으나 실제 입력/위치/자원 로그와 각 Continue 저장은 보존돼 있다. 최종 소스의 새 entryFileSha256 필드는 이후 실행용이며 기존 결과 provenance를 바꿔 쓰지 않았다.
 
 재개: `npm run build` 후 로컬 서버를 띄워 `python3 tools/testing/stage11-refinement-capture.py http://127.0.0.1:8854/HONRO.html final 11 /tmp/stage11-final`을 실행하고, 모든 최종 PNG와 실제 진행 PNG를 직접 연다. 정상 전투59라운드를 다시 장기 반복할 필요는 없다. 진행 저장 재현이 필요하면 `evidence/normal/*.json.gz`를 별도 임시 경로에 풀어 `HONRO_STAGE11_CHECKPOINT=<terminal.json> node tests/stage11-normal-transition.mjs`로 확인할 수 있다. 부모에게 실제 후보 화면/검수 결과를 보고한 뒤 통합 순서를 확인한다.
+
+체크포인트 생성물 검사에서 미공개 실험 세대의 retained 참조8개가 남아 실제 파일이 없는 문제를 발견했다. 배포된 master의 web/HTML을 생성기 입력으로 복원한 뒤 현행 원본으로 재빌드해 current248개와 retained 참조 모두 실제 파일이 있음을 확인했다. manifest 기준을 완화하거나 가짜 과거 산출물을 만들지 않았다. 최종 종합 픽셀 검수는 여전히 미완료다.
