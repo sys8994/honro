@@ -1,0 +1,94 @@
+{
+  "renderSource": "ad86ac0b0326b4bc4d7598eae0913d080af26c66",
+  "beforeSource": "bbe8acea8fa403b1f16df31a86dbae4c1f6d2069",
+  "sourceSha256": {
+    "shared/runtime/geology-art.js": "7f3cff780ec9574ec85601254a43741805b90559c1d5bbeb79ff34a7f40a40a3",
+    "tools/environment/act1-scene-composition.mjs": "d52549c967b0a500c86ca50e08ed7d72dddd27479a88e8c45e0386458b521289",
+    "tools/environment/build-geology-art.mjs": "ca3cc8abf048fa49c116843e436ee00f57d1566ad95bc23a61b033c1af8330e5",
+    "web/manifest.json": "a6b771ef86f4f014c2ab4b7f2900cacbf2010ea62b0b459ac309dbee4530824c"
+  },
+  "unchangedGameSources": [
+    "shared/data/campaign.json",
+    "shared/runtime/stage2-layered-road.js",
+    "shared/runtime/stage2-airborne.js",
+    "shared/runtime/campaign-map-revision.js",
+    "shared/runtime/main.js",
+    "shared/runtime/skill-preview.js",
+    "shared/runtime/renderer.js"
+  ],
+  "svgGeometryUnchanged": true,
+  "sameCameras": [
+    {
+      "view": "west-ledge-close",
+      "camera": {
+        "x": 1100,
+        "y": 1350,
+        "scale": 1.05
+      }
+    },
+    {
+      "view": "east-ledge-close",
+      "camera": {
+        "x": 3500,
+        "y": 2200,
+        "scale": 0.85
+      }
+    },
+    {
+      "view": "overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.21176470588235294
+      }
+    },
+    {
+      "view": "mobile-hero",
+      "camera": {
+        "x": 290,
+        "y": 520,
+        "scale": 0.65
+      }
+    },
+    {
+      "view": "mobile-overview",
+      "camera": {
+        "x": 2150,
+        "y": 1650,
+        "scale": 0.057352941176470586
+      }
+    }
+  ],
+  "committedCapture": {
+    "sha": "ad86ac0b0326b4bc4d7598eae0913d080af26c66",
+    "renderSha256": "9fa33d7bbfb1b1c6ad9e8547e474b473b7b40095972c8d3e38a152c33b60553b",
+    "workingTree": "",
+    "scope": "Local production browser, frozen scene; actual minimum gameplay zoom and portrait/landscape views. Normal combat captured separately.",
+    "rows": [
+      {
+        "stage": 2,
+        "view": "west-ledge-close",
+        "camera": {
+          "x": 1100,
+          "y": 1350,
+          "scale": 1.05
+        }
+      }
+    ],
+    "errors": []
+  },
+  "pngSha256": {
+    "after/actual-mid-continue.png": "fe370bc09d6ebb960a1d99832dc91a456cf122a5684c203e4514244ce4dc05d4",
+    "after/stage02-east-ledge-close.png": "5e5863c1408542a3bee7d62602dbdc5adee986af31bed314a7ecea7bd8204bdc",
+    "after/stage02-embedded-ledge-close.png": "10dcd5531fd9e60d3698fc32249abfdb447b5a4ee4ac7b10cb55b87f17a84074",
+    "after/stage02-mobile-hero.png": "d4cc509d4c33c261a602f2e05c62a0a55cbf3b12cd545c539aa6b9c4d9eb73ea",
+    "after/stage02-mobile-overview.png": "ff86e653c399da1d21c07e1dacce46289d7aef54c51186c6ed01c455760e3b18",
+    "after/stage02-normal.png": "9e19b9d0a66d6f4a4e2cce489dd148953759162155ea5fe64489259435508835",
+    "after/stage02-overview.png": "1c67001d291f9abce4c3376a89021af24f84c350ea6d3804eb759ed21ddc8eec",
+    "after/stage02-west-ledge-close.png": "10dcd5531fd9e60d3698fc32249abfdb447b5a4ee4ac7b10cb55b87f17a84074",
+    "before/actual-mid-continue.png": "eef368a29207e843909f98ef58484da721facfc5663f3a370ef683fff49d0444",
+    "before/stage02-east-ledge-close.png": "2cf11cd2d7e8ea165124c82765236558c47a5a099f6306230dca9fd06b472084",
+    "before/stage02-overview.png": "e42b2684e88f783d1ab3beb56a3c43cf1e4a6892f7c70dfe8eb97997349c2e7c",
+    "before/stage02-west-ledge-close.png": "9a1a360753f9dd86e401537b95257e84b02440f5d484d7f60e67a88440593d12"
+  }
+}
