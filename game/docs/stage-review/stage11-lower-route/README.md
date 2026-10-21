@@ -2,7 +2,7 @@
 
 **추락받이의 실제 갇힘을 기존 뿌리의 짧은 하부 연장으로 해결했다.** rim만 제거했던90d77eed는 부모가 승인하지 않은 이전 후보다. 현 후보는 실제 서쪽/동쪽 실패 저장을 이어서 검사해 두 경우 모두 의식 암대에 복귀했다. master/Pages는 계속 부모 검수 대기다. 이미지 생성·첨부403 우회·적 추가·자동 워프는 없다.
 
-기준 소스는90d77eed(최신 master bafc275c를 포함)다. 아래 PNG/trace와 원래 실패 체크포인트를 저장소에 보존한다. 원 첨부 대응은 [부모의 직접 관찰 출처](parent-visual-evidence.md), 이전 진입/용도 검수는 [초기 보고서](initial-review.md)에 따로 남겼다.
+기준 소스는90d77eed(최신 master bafc275c를 포함)이며 수정/검수 소스는 **0744c66f60f95520acd8a947544e3d8086c956d9**다. 촬영 당시 작업 소스·검사 소스의 SHA256이 이 커밋과 일치함을 [provenance](evidence/provenance.json)에서 확인했다. 아래 PNG/trace와 원래 실패 체크포인트를 저장소에 보존한다. 원 첨부 대응은 [부모의 직접 관찰 출처](parent-visual-evidence.md), 이전 진입/용도 검수는 [초기 보고서](initial-review.md)에 따로 남겼다.
 
 ## 지형 대응과 용도
 
