@@ -990,6 +990,9 @@
                 case 'debug-act-ending-preview':
                     G.HonroActEndings?.previewDebug(this,Number(id));
                     break;
+                case 'debug-journal-ending-preview':
+                    G.HonroActEndings?.previewJournal(this,Number(id));
+                    break;
                 case 'journey-book':
                     G.HonroRestJourney.showBook(this);
                     break;
