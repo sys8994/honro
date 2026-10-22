@@ -10,7 +10,9 @@ const live=b=>b.units.filter(u=>u.side===1&&u.summonKind!=='eater'&&!u.dead&&u.h
 const done=(b,id)=>!!b.honroState?.act2?.done?.[id];
 const pending=b=>(b.honroEvents||[]).filter(ev=>owned(ev)&&!b.honroState.flags['event:'+ev.id]);
 function blockedClear(b){
- if(!active(b))return null;
+ // The pacing contract confirms the local knot event; optional pursuit entry
+ // may not reintroduce the retired west-cohort clearance gate.
+ if(!active(b)||G.HonroAct2Pacing?.active(b))return null;
  const waiting=pending(b),foes=live(b);
  if(done(b,'knot-west')&&!done(b,'clear-west')&&!foes.some(u=>u.honroCohort==='west')&&waiting.some(ev=>(ev.action.actions||[]).some(a=>a.honroCohort==='west')))return'clear-west';
  if(!G.HonroStage11TraceExit?.active(b)&&done(b,'resident')&&!done(b,'clear-road')&&!foes.length&&waiting.length)return'clear-road';

@@ -73,3 +73,11 @@ python tools/testing/act2-pacing-capture.py 11 14 17 18
 공용 변경 충돌 위험: `shared/build.mjs` modelFiles/projectAuthors의 마지막 `act2-pacing`/`HonroAct2Pacing`, `shared/runtime/act2.js`의 선택적 satisfied hook과 자동 사건 E 차단 목록, 생성 HTML/web manifest. `stage14-vertical.js`는 저장된 방어 rounds/count를 HUD와 신규 XP 예약량에 사용한다. 부모의 공통 작업과 병합할 때 이 항목을 보존하고 최종 소스로 재빌드한다. 렌더/물리/다른 장 전용 런타임은 수정하지 않았다.
 
 구현과 관련 구간·저장 검증은 완료했으나 네 장의 새 진입→종료 전체 연속 플레이, 사람의 벽시계 소요 시간, 실제 Pages 배포는 이번 하위 작업의 완료 주장에 포함하지 않는다.
+
+### 최종 실행 기록
+
+- 주요 구현 소스: **`c4e205c51e2c4b3e11418b562d261cff7e9606f2`**, 원격 push 확인. 선행11장 단위 `0de8a17c3c8b6b1a543d99874004ae197ec1434c`도 보존했다.
+- 그 소스의 별도 최종 Chromium 종합: `HONRO_PACING_CAPTURE_FINAL_ONLY=1 python tools/testing/act2-pacing-capture.py 11 14 17 18`. [실행/카메라/키 입력 기록](evidence/final-capture.json), 페이지 오류0. 14·17·18장은 실제 Native 입력 세그먼트의 승리 전투를 브라우저에 다시 표시했다. 11장은 하부 흔적 목표를 준비한 카메라 fixture다. 11장 일시 턴 배너가 목표를 가려 배너가 자연 만료된 뒤 같은 소스를 [한 번 재촬영](evidence/final-capture-11.json)했다.
+- 최종 JPG16장 직접 열어 확인. 최대100,522bytes, 전부1MB 미만. [활성 배포 자산 확인](evidence/active-build.json): manifest의 네 chapter JSON이 원본 단계·배우 ID·pacing revision과 일치하며 참조 파일이 존재한다. 현재 빌드의 Playtest는 `web/entries/game.b90a880f0de4ca22.html?embedded=1`이다.
+- 전용 상태 검사(국소 위협·NPC 실패·기존 목표 Continue/export/재Continue·보상 중복 방지·11장 최종 E), 전용 재생성 검사4장, 네 클래스 이동 비교, 중앙/구조 교전 및14/17/18 후반 입력 세그먼트가 통과했다. 11장 최종 E fixture에서는 이전 화면 결과 모달을 닫고 정상 행동 가능 상태에서 입력했다.
+- 이 종합 뒤11장 경계 보완 한 건을 추가했다. 서쪽을 전부 제압하면 옛 blockedClear가 미입장 추격을 기다리며 자동 매듭 확인을 막을 수 있어, 새 pacing 계약11장에서만 해당 옛 대기를 끈다. 전원 제압+미입장 추격 fixture와 완료/보상 검사를 다시 확인하고 영향받는11장 종합 화면을 갱신한다. master/Pages 반영은 부모 담당이다.

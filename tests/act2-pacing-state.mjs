@@ -17,6 +17,9 @@ for(const id of[14,18]){
  foe.x=100;foe.y=100;assert(A.satisfied(b,s));const npc=b.units.find(u=>u.honroProtected);if(npc){npc.dead=true;npc.hp=0;assert(A.failure(b),'Protection failure still wins over the completed goal');}
  rows.push({id,finalEvent:'Distant survivors accepted; nearby threat blocks; E cannot bypass'});
 }
+// Even an unusually thorough west sweep cannot resurrect the old mandatory
+// pursuit-admission gate before the automatic knot confirmation can latch.
+{const q=battlefield(g,11),{b,e,app}=q;A.attach(app,e);A.memory(b).done['knot-west']=true;for(const u of b.units)if(u.side===1&&u.honroCohort==='west'){u.dead=true;u.hp=0;}const ev=b.honroEvents.find(v=>v.id==='ravine-response-west-return');delete b.honroState.flags['event:'+ev.id];b.honroState.pendingEvents=[ev.id];assert.equal(g.HonroStage11RavineEncounters.blockedClear(b),null);A.tick(app,0);assert(A.memory(b).done['clear-west']);rows.push({id:11,edge:'Full west sweep plus pending pursuit does not revive retired clearance or stall confirmation'});}
 // App's real export/load/Continue/outcome must neither repeat evidence nor XP.
 for(const id of[14,17,18]){
  const p=h.profileThrough(id-1);for(const cls of p.recruited)p.heroes[cls].xp=g.HonroProgression.xpAt(g.HonroProgression.plan(id).entryLevel);const q=battlefield(g,id,{profile:p}),b=q.b;delete b.honroAct2PacingRevision;b.honroAct2Steps=plain(baseline.stages[id].steps);p.honroBattle=plain(b);let app=h.load(p);app.continue();h.finish(app);assert(P.active(app.engine.b));const physical=plain(app.engine.b.units),ledger=plain(app.engine.b.honroGrowth);app.export();app=h.load(await h.exported());app.continue();h.finish(app);assert.deepEqual(plain(app.engine.b.units),physical);assert.deepEqual(plain(app.engine.b.honroGrowth),ledger);
