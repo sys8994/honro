@@ -1,0 +1,2271 @@
+{
+  "executionSha": "0459fe276057274129a154a7605e5f0555980ca1",
+  "browser": "154.0.8037.57",
+  "environment": "Chromium CDP touch -> trusted PointerEvents; deterministic production frames; physical device untested",
+  "checkCount": 371,
+  "trustedTouchPointerMoves": 379,
+  "errors": [],
+  "stateCount": 577,
+  "pointerEventCount": 698,
+  "allChecksPassed": true,
+  "sectorTransitions": [
+    {
+      "sx": -1,
+      "sy": -1,
+      "angle": 19,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 35.73333333333454,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -1,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 35.73333333333454,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 32.88958798790623,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": -1,
+      "angle": 20,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 32.88958798790623,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 32.88958798790623,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 30.072898194424805,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": -1,
+      "angle": 21,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 30.072898194424805,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 30.072898194424805,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 0,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 152.71546948962052,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": -1,
+      "angle": 20,
+      "before": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 152.71546948962052,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 152.71546948962052,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 155.53215928310198,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": -1,
+      "angle": 19,
+      "before": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 155.53215928310198,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 155.53215928310198,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 158.37590462853026,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": -1,
+      "angle": 21,
+      "before": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 158.37590462853026,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 158.37590462853026,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 324.84618893699405,
+        "y": 1400,
+        "budget": 1948.846188936995,
+        "angle": 161.1642723125756,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": -1,
+      "angle": 90,
+      "before": {
+        "x": 324.84618893699405,
+        "y": 1400,
+        "budget": 1948.846188936995,
+        "angle": 161.1642723125756,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 324.84618893699405,
+        "y": 1400,
+        "budget": 1948.846188936995,
+        "angle": 161.1642723125756,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -1,
+          "y": 0,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 292.9711889369939,
+        "y": 1400,
+        "budget": 1916.9711889369944,
+        "angle": 161.1642723125756,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 27,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -1,
+          "y": 0,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": -1,
+      "angle": 19,
+      "before": {
+        "x": 292.9711889369939,
+        "y": 1400,
+        "budget": 1916.9711889369944,
+        "angle": 161.1642723125756,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 27,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -1,
+          "y": 0,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 292.9711889369939,
+        "y": 1400,
+        "budget": 1916.9711889369944,
+        "angle": 161.1642723125756,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 27,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 292.9711889369939,
+        "y": 1400,
+        "budget": 1916.9711889369944,
+        "angle": 164.0080176580039,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 74,
+        "moveCalls": 27,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": -1,
+      "angle": 19,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 35.73333333333454,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -1,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 35.73333333333454,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 32.88958798790623,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": -1,
+      "angle": 20,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 32.88958798790623,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 32.88958798790623,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 30.072898194424805,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": -1,
+      "angle": 21,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 30.072898194424805,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 30.072898194424805,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 0,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 27.284530510379486,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": -1,
+      "angle": 20,
+      "before": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 27.284530510379486,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 27.284530510379486,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 24.46784071689806,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": -1,
+      "angle": 19,
+      "before": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 24.46784071689806,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9086096108005911,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 24.46784071689806,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 21.62409537146975,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": -1,
+      "angle": 21,
+      "before": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 21.62409537146975,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 21.62409537146975,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 355.1538200997187,
+        "y": 1400,
+        "budget": 1948.8461799002803,
+        "angle": 18.83572768742443,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": -1,
+      "angle": 90,
+      "before": {
+        "x": 355.1538200997187,
+        "y": 1400,
+        "budget": 1948.8461799002803,
+        "angle": 18.83572768742443,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": -0.8994734464663642,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 355.1538200997187,
+        "y": 1400,
+        "budget": 1948.8461799002803,
+        "angle": 18.83572768742443,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.9999998610122355,
+          "y": 0,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 387.0288156694835,
+        "y": 1400,
+        "budget": 1916.9711843305145,
+        "angle": 18.83572768742443,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 27,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.9999998610122355,
+          "y": 0,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": -1,
+      "angle": 19,
+      "before": {
+        "x": 387.0288156694835,
+        "y": 1400,
+        "budget": 1916.9711843305145,
+        "angle": 18.83572768742443,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 27,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.9999998610122355,
+          "y": 0,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 387.0288156694835,
+        "y": 1400,
+        "budget": 1916.9711843305145,
+        "angle": 18.83572768742443,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 27,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 387.0288156694835,
+        "y": 1400,
+        "budget": 1916.9711843305145,
+        "angle": 15.99198234199612,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 76,
+        "moveCalls": 27,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": -0.9173372082028134,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": 1,
+      "angle": 19,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 52.26666666666546,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 1,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 52.26666666666546,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 55.11041201209377,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": 1,
+      "angle": 20,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 55.11041201209377,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 55.11041201209377,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 57.927101805575184,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": 1,
+      "angle": 21,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 57.927101805575184,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 57.927101805575184,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 0,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 119.28453051037948,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": 1,
+      "angle": 20,
+      "before": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 119.28453051037948,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 119.28453051037948,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 116.46784071689807,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": 1,
+      "angle": 19,
+      "before": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 116.46784071689807,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 116.46784071689807,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 113.62409537146978,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": 1,
+      "angle": 21,
+      "before": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 113.62409537146978,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 332.423094468497,
+        "y": 1400,
+        "budget": 1956.4230944684975,
+        "angle": 113.62409537146978,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 324.84618893699405,
+        "y": 1400,
+        "budget": 1948.846188936995,
+        "angle": 110.83572768742444,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": 1,
+      "angle": 90,
+      "before": {
+        "x": 324.84618893699405,
+        "y": 1400,
+        "budget": 1948.846188936995,
+        "angle": 110.83572768742444,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -0.23770684020401533,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 324.84618893699405,
+        "y": 1400,
+        "budget": 1948.846188936995,
+        "angle": 110.83572768742444,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -1,
+          "y": 0,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 292.9711889369939,
+        "y": 1400,
+        "budget": 1916.9711889369944,
+        "angle": 110.83572768742444,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 27,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -1,
+          "y": 0,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": -1,
+      "sy": 1,
+      "angle": 19,
+      "before": {
+        "x": 292.9711889369939,
+        "y": 1400,
+        "budget": 1916.9711889369944,
+        "angle": 110.83572768742444,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 27,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": -1,
+          "y": 0,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 292.9711889369939,
+        "y": 1400,
+        "budget": 1916.9711889369944,
+        "angle": 110.83572768742444,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 27,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 292.9711889369939,
+        "y": 1400,
+        "budget": 1916.9711889369944,
+        "angle": 107.99198234199615,
+        "facing": -1,
+        "intent": "aimOnly",
+        "pointer": 78,
+        "moveCalls": 27,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": 1,
+      "angle": 19,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 52.26666666666546,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 1,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 52.26666666666546,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 55.11041201209377,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": 1,
+      "angle": 20,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 55.11041201209377,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 55.11041201209377,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 57.927101805575184,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": 1,
+      "angle": 21,
+      "before": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 57.927101805575184,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 0,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 340,
+        "y": 1400,
+        "budget": 1964,
+        "angle": 57.927101805575184,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 0,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 60.7154694896205,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": 1,
+      "angle": 20,
+      "before": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 60.7154694896205,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 60.7154694896205,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 63.53215928310192,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": 1,
+      "angle": 19,
+      "before": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 63.53215928310192,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9086096108005911,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 63.53215928310192,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 66.37590462853021,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": 1,
+      "angle": 21,
+      "before": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 66.37590462853021,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 9,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      },
+      "immediate": {
+        "x": 347.57691004985935,
+        "y": 1400,
+        "budget": 1956.4230899501401,
+        "angle": 66.37590462853021,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 9,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 355.1538200997187,
+        "y": 1400,
+        "budget": 1948.8461799002803,
+        "angle": 69.16427231257555,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": 1,
+      "angle": 90,
+      "before": {
+        "x": 355.1538200997187,
+        "y": 1400,
+        "budget": 1948.8461799002803,
+        "angle": 69.16427231257555,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.2377069819563649,
+          "y": 0.8994734464663642,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 355.1538200997187,
+        "y": 1400,
+        "budget": 1948.8461799002803,
+        "angle": 69.16427231257555,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 18,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.9999998610122355,
+          "y": 0,
+          "moving": true
+        }
+      },
+      "after": {
+        "x": 387.0288156694835,
+        "y": 1400,
+        "budget": 1916.9711843305145,
+        "angle": 69.16427231257555,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 27,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.9999998610122355,
+          "y": 0,
+          "moving": true
+        }
+      }
+    },
+    {
+      "sx": 1,
+      "sy": 1,
+      "angle": 19,
+      "before": {
+        "x": 387.0288156694835,
+        "y": 1400,
+        "budget": 1916.9711843305145,
+        "angle": 69.16427231257555,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 27,
+        "label": "MOVE-AIM",
+        "axes": {
+          "x": 0.9999998610122355,
+          "y": 0,
+          "moving": true
+        }
+      },
+      "immediate": {
+        "x": 387.0288156694835,
+        "y": 1400,
+        "budget": 1916.9711843305145,
+        "angle": 69.16427231257555,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 27,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      },
+      "after": {
+        "x": 387.0288156694835,
+        "y": 1400,
+        "budget": 1916.9711843305145,
+        "angle": 72.00801765800384,
+        "facing": 1,
+        "intent": "aimOnly",
+        "pointer": 80,
+        "moveCalls": 27,
+        "label": "조준",
+        "axes": {
+          "x": 0,
+          "y": 0.9173372082028134,
+          "moving": false
+        }
+      }
+    }
+  ],
+  "horizontalStartChecks": [
+    {
+      "name": "horizontal -1/-1 -> 21 never locks",
+      "data": {
+        "x": 237.00320698120595,
+        "y": 1400,
+        "budget": 1861.0032069812066,
+        "angle": 143.43564715745424,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": -0.2533936433583569,
+          "y": -0.8994734464663642,
+          "visualX": -0.35836793542877443,
+          "visualY": -0.9335794423007707,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 75,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 47,
+        "label": "MOVE-AIM",
+        "knob": "translate(-6.45062px, 16.8044px)"
+      }
+    },
+    {
+      "name": "horizontal -1/-1 -> 20 never locks",
+      "data": {
+        "x": 216.95901949532276,
+        "y": 1400,
+        "budget": 1840.9590194953241,
+        "angle": 150.94681994007135,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": -0.23581397042215463,
+          "y": -0.9086096108005911,
+          "visualX": -0.3420199537586166,
+          "visualY": -0.9396926897826511,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 75,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 71,
+        "label": "MOVE-AIM",
+        "knob": "translate(-6.15636px, 16.9145px)"
+      }
+    },
+    {
+      "name": "horizontal -1/-1 -> 19 never locks",
+      "data": {
+        "x": 198.40843162081455,
+        "y": 1400,
+        "budget": 1822.408431620818,
+        "angle": 158.53014086121345,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": -0.21824221028833407,
+          "y": -0.9173372082028134,
+          "visualX": -0.3255681293766673,
+          "visualY": -0.9455176872935722,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 75,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 95,
+        "label": "MOVE-AIM",
+        "knob": "translate(-5.86023px, 17.0193px)"
+      }
+    },
+    {
+      "name": "horizontal -1/-1 -> 0 never locks",
+      "data": {
+        "x": 198.40843162081455,
+        "y": 1400,
+        "budget": 1822.408431620818,
+        "angle": 166.79680752787897,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0,
+          "y": -1,
+          "visualX": 0,
+          "visualY": -1,
+          "moving": false,
+          "facingIntent": 0
+        },
+        "pointer": 75,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 95,
+        "label": "MOVE-AIM",
+        "knob": "translate(0px, 18px)"
+      }
+    },
+    {
+      "name": "horizontal -1/-1 -> 19 never locks",
+      "data": {
+        "x": 181.23965505909155,
+        "y": 1400,
+        "budget": 1805.2396550590936,
+        "angle": 174.38012844902107,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": -0.20198560660850337,
+          "y": -0.9173372082028134,
+          "visualX": -0.3255681293766673,
+          "visualY": -0.9455176872935722,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 75,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 119,
+        "label": "MOVE-AIM",
+        "knob": "translate(-5.86023px, 17.0193px)"
+      }
+    },
+    {
+      "name": "horizontal 1/-1 -> 21 never locks",
+      "data": {
+        "x": 442.99679328960957,
+        "y": 1400,
+        "budget": 1861.0032067103905,
+        "angle": 36.564352842545816,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0.2533937827682268,
+          "y": -0.8994734464663642,
+          "visualX": 0.3583680646529366,
+          "visualY": -0.9335794423007707,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 77,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 47,
+        "label": "MOVE-AIM",
+        "knob": "translate(6.45063px, 16.8044px)"
+      }
+    },
+    {
+      "name": "horizontal 1/-1 -> 20 never locks",
+      "data": {
+        "x": 463.0409807754921,
+        "y": 1400,
+        "budget": 1840.959019224508,
+        "angle": 29.053180059928692,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0.23581397042215463,
+          "y": -0.9086096108005911,
+          "visualX": 0.3420199537586166,
+          "visualY": -0.9396926897826511,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 77,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 71,
+        "label": "MOVE-AIM",
+        "knob": "translate(6.15636px, 16.9145px)"
+      }
+    },
+    {
+      "name": "horizontal 1/-1 -> 19 never locks",
+      "data": {
+        "x": 481.59156865000097,
+        "y": 1400,
+        "budget": 1822.4084313500016,
+        "angle": 21.469859138786532,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0.21824221028833407,
+          "y": -0.9173372082028134,
+          "visualX": 0.3255681293766673,
+          "visualY": -0.9455176872935722,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 77,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 95,
+        "label": "MOVE-AIM",
+        "knob": "translate(5.86023px, 17.0193px)"
+      }
+    },
+    {
+      "name": "horizontal 1/-1 -> 0 never locks",
+      "data": {
+        "x": 481.59156865000097,
+        "y": 1400,
+        "budget": 1822.4084313500016,
+        "angle": 13.203192472121074,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0,
+          "y": -1,
+          "visualX": 0,
+          "visualY": -1,
+          "moving": false,
+          "facingIntent": 0
+        },
+        "pointer": 77,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 95,
+        "label": "MOVE-AIM",
+        "knob": "translate(0px, 18px)"
+      }
+    },
+    {
+      "name": "horizontal 1/-1 -> 19 never locks",
+      "data": {
+        "x": 498.760345211724,
+        "y": 1400,
+        "budget": 1805.2396547882772,
+        "angle": 5.6198715509789166,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0.20198560660850337,
+          "y": -0.9173372082028134,
+          "visualX": 0.3255681293766673,
+          "visualY": -0.9455176872935722,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 77,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 119,
+        "label": "MOVE-AIM",
+        "knob": "translate(5.86023px, 17.0193px)"
+      }
+    },
+    {
+      "name": "horizontal -1/1 -> 21 never locks",
+      "data": {
+        "x": 237.00320698120595,
+        "y": 1400,
+        "budget": 1861.0032069812066,
+        "angle": 128.56435284254576,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": -0.2533936433583569,
+          "y": 0.8994734464663642,
+          "visualX": -0.35836793542877443,
+          "visualY": 0.9335794423007707,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 79,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 47,
+        "label": "MOVE-AIM",
+        "knob": "translate(-6.45062px, -16.8044px)"
+      }
+    },
+    {
+      "name": "horizontal -1/1 -> 20 never locks",
+      "data": {
+        "x": 216.95901949532276,
+        "y": 1400,
+        "budget": 1840.9590194953241,
+        "angle": 121.05318005992865,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": -0.23581397042215463,
+          "y": 0.9086096108005911,
+          "visualX": -0.3420199537586166,
+          "visualY": 0.9396926897826511,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 79,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 71,
+        "label": "MOVE-AIM",
+        "knob": "translate(-6.15636px, -16.9145px)"
+      }
+    },
+    {
+      "name": "horizontal -1/1 -> 19 never locks",
+      "data": {
+        "x": 198.40843162081455,
+        "y": 1400,
+        "budget": 1822.408431620818,
+        "angle": 113.46985913878655,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": -0.21824221028833407,
+          "y": 0.9173372082028134,
+          "visualX": -0.3255681293766673,
+          "visualY": 0.9455176872935722,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 79,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 95,
+        "label": "MOVE-AIM",
+        "knob": "translate(-5.86023px, -17.0193px)"
+      }
+    },
+    {
+      "name": "horizontal -1/1 -> 0 never locks",
+      "data": {
+        "x": 198.40843162081455,
+        "y": 1400,
+        "budget": 1822.408431620818,
+        "angle": 105.20319247212103,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0,
+          "y": 1,
+          "visualX": 0,
+          "visualY": 1,
+          "moving": false,
+          "facingIntent": 0
+        },
+        "pointer": 79,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 95,
+        "label": "MOVE-AIM",
+        "knob": "translate(0px, -18px)"
+      }
+    },
+    {
+      "name": "horizontal -1/1 -> 19 never locks",
+      "data": {
+        "x": 181.23965505909155,
+        "y": 1400,
+        "budget": 1805.2396550590936,
+        "angle": 97.61987155097893,
+        "facing": -1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": -0.20198560660850337,
+          "y": 0.9173372082028134,
+          "visualX": -0.3255681293766673,
+          "visualY": 0.9455176872935722,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 79,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 119,
+        "label": "MOVE-AIM",
+        "knob": "translate(-5.86023px, -17.0193px)"
+      }
+    },
+    {
+      "name": "horizontal 1/1 -> 21 never locks",
+      "data": {
+        "x": 442.99679328960957,
+        "y": 1400,
+        "budget": 1861.0032067103905,
+        "angle": 51.435647157454184,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0.2533937827682268,
+          "y": 0.8994734464663642,
+          "visualX": 0.3583680646529366,
+          "visualY": 0.9335794423007707,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 81,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 47,
+        "label": "MOVE-AIM",
+        "knob": "translate(6.45063px, -16.8044px)"
+      }
+    },
+    {
+      "name": "horizontal 1/1 -> 20 never locks",
+      "data": {
+        "x": 463.0409807754921,
+        "y": 1400,
+        "budget": 1840.959019224508,
+        "angle": 58.94681994007129,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0.23581397042215463,
+          "y": 0.9086096108005911,
+          "visualX": 0.3420199537586166,
+          "visualY": 0.9396926897826511,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 81,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 71,
+        "label": "MOVE-AIM",
+        "knob": "translate(6.15636px, -16.9145px)"
+      }
+    },
+    {
+      "name": "horizontal 1/1 -> 19 never locks",
+      "data": {
+        "x": 481.59156865000097,
+        "y": 1400,
+        "budget": 1822.4084313500016,
+        "angle": 66.53014086121344,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0.21824221028833407,
+          "y": 0.9173372082028134,
+          "visualX": 0.3255681293766673,
+          "visualY": 0.9455176872935722,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 81,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 95,
+        "label": "MOVE-AIM",
+        "knob": "translate(5.86023px, -17.0193px)"
+      }
+    },
+    {
+      "name": "horizontal 1/1 -> 0 never locks",
+      "data": {
+        "x": 481.59156865000097,
+        "y": 1400,
+        "budget": 1822.4084313500016,
+        "angle": 74.79680752787895,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0,
+          "y": 1,
+          "visualX": 0,
+          "visualY": 1,
+          "moving": false,
+          "facingIntent": 0
+        },
+        "pointer": 81,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 95,
+        "label": "MOVE-AIM",
+        "knob": "translate(0px, -18px)"
+      }
+    },
+    {
+      "name": "horizontal 1/1 -> 19 never locks",
+      "data": {
+        "x": 498.760345211724,
+        "y": 1400,
+        "budget": 1805.2396547882772,
+        "angle": 82.38012844902106,
+        "facing": 1,
+        "vx": 0,
+        "vy": 0,
+        "intent": "moveAim",
+        "axes": {
+          "intent": "moveAim",
+          "x": 0.20198560660850337,
+          "y": 0.9173372082028134,
+          "visualX": 0.3255681293766673,
+          "visualY": 0.9455176872935722,
+          "moving": true,
+          "facingIntent": 0
+        },
+        "pointer": 81,
+        "fire": null,
+        "charging": false,
+        "moveCalls": 119,
+        "label": "MOVE-AIM",
+        "knob": "translate(5.86023px, -17.0193px)"
+      }
+    }
+  ]
+}
