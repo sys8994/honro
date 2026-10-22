@@ -22,7 +22,7 @@ export async function authorStage11Ravine(project,g){
  let result=g.HonroTerrainDomain.author(project);
  const errors=g.HonroSpaceLayout.validate(result.stages.find(s=>s.metadata.stageId===11));if(errors.length)throw Error(errors.join('\n'));
  if(JSON.stringify(result.stages.filter(s=>s.metadata?.stageId!==11))!==other)throw Error('Stage 11 author touched another stage');
- return result;
+ return g.HonroAct2Pacing.author(result,[11]);
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
  const g=await runtime({legacyMaps:false}),source=await readFile('shared/data/campaign.json','utf8'),input=JSON.parse(source),p=await authorStage11Ravine(input,g);

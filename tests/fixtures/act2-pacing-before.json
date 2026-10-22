@@ -1,0 +1,248 @@
+{
+  "source": "f8cc1a823a328c46f103156e0c1ac79b6efff90d",
+  "stageHashes": [
+    "046fd5e504b848bccaec51fa24ac97c645a1c4e3b5eba1020e6b47b933ee441f",
+    "c74bf9bce4abf8ed6b93b10c3ec053a3017f6bf550c75a247e3439bac1d2b962",
+    "126058b33f39033c2dbd278e968f8f3badde03944cd61dfdc20108304be49e81",
+    "c3c66a5edb46fcd498bd6e706756b57b57bb1db6a93b62671711b062c9a7fb86",
+    "9dc7718ab9add40d791cfa3461b4696a874cfc534c4c522453394e0bf72550cc",
+    "a2812fab7d967e7374e29d8e89232a2a07e50479451208f71153073fe855a6ae",
+    "04459729392e03debbd8e5a596043df26212bf0a4bb9bfd28bac5e8f1cd9315e",
+    "973479f3e8891e6466f3e00abb6c115419d52db8c8b299c91747c99fe69a2ba8",
+    "fbb88f79fd0a940f0c1120dac0b8f56f06b5e4209d9b83621a4fde5424fcf21b",
+    "732ab7e14fed4c6008ffca06756616a48623f1e6420fe1672237ac75f1e7a9c5",
+    "bee544e3f264225e6dac9a0883bfddfca9f8d83652a5502d2fba633123a917e3",
+    "c06c02eeb21b428b7af80c33602a664ee4296a8d66e3819f8261ab93170c4214",
+    "93150da0d19000d81fa91329c87d73eef30a39addba07391762945e12e231210",
+    "7e8b58bdf0f2f7994a9a0073299260493f8eda676650e79696250cb3a6580bab",
+    "15a14d8458fdc3a874e64f033d4b8ccfc58590b9faf28cd2b39767be0f9f83f6",
+    "f76a97618f29b959508e8e4411a22182ac7f59c19c249451873e6540e6876319",
+    "08b3dfb403644bfe78aa5b4fe64a3fb6dd86aa60ab8ac9190fbe2ea606f2d29a",
+    "95fac770ba4e22d30e2633eca57afe9a9cc4f014f4b8c6da9761043c09c1a80e",
+    "7364c5cd110961d228e06d84bbe9d3413634e83f504ed615dc395036c35d4e8a",
+    "ef2448f7bed9ffb4c9807ce1aa61e3ddbf2e4cba5bdaf69f3ed45afd427152be",
+    "6fa15f07f7cc67eff736408e7057ea12b1d8e30963e55f7952ec91e8e668cb35",
+    "9c17a6361b124670d61e54aa311b34adb83cb80bff1e7245060c838f3accffea",
+    "99b43b99a832801b118dbd8cc721db978daad4895103a56ea5d6ddc0b0ccd3ac",
+    "d9856d0f6d2c86e5ec0d617b528823c6459726f2ffd20b0829d8043bacbf7bd1",
+    "30254dc3497bb43fb409428f09330e4f7451464fe22aefb9a7e6d682a15db92a",
+    "f72b038231b8ef80cc39d02e0df53f8e85c92a8bff182172ec499cd038b55f2b",
+    "daf64d6030c9b6d6acb9d797b4b8016a683339a0de9538b8532394c3a23ab3e5",
+    "10240bdb5a87501b108eb7f88c700d0c8887d2b2945d0452c4814823756bcffc",
+    "522b23a9673e6cc38f759693505570be08e414d29ba5ae5d695d804cb6496b3c",
+    "5a0e4231cdc5d7a0046415d45e2e304952e6df030de5c801f8deb915092e126f"
+  ],
+  "stage11": {
+    "terrainHash": "f12dac6eab5d2e5d7e4da68e25ab686049a78ac587cc6219b5a022d9ab2d56cd",
+    "environmentHash": "7049e185f74d0af37fc8c614755c890059e68fa204ba0b38afca02006ae6f27a",
+    "route": [
+      {
+        "x": 400,
+        "y": 6500,
+        "surfaceId": "act2-floor"
+      },
+      {
+        "x": 1300,
+        "y": 6500,
+        "surfaceId": "act2-floor"
+      },
+      {
+        "x": 1800,
+        "y": 6340,
+        "surfaceId": "rv-west-shoulder"
+      },
+      {
+        "x": 2600,
+        "y": 6120,
+        "surfaceId": "rv-west-shoulder"
+      },
+      {
+        "x": 2900,
+        "y": 5990,
+        "surfaceId": "rv-west-shoulder"
+      },
+      {
+        "x": 3200,
+        "y": 6165,
+        "surfaceId": "rv-west-shoulder"
+      },
+      {
+        "x": 3400,
+        "y": 6180,
+        "surfaceId": "rv-west-shoulder"
+      },
+      {
+        "x": 3600,
+        "y": 6234.285714285715,
+        "surfaceId": "rv-west-shoulder"
+      },
+      {
+        "x": 3880,
+        "y": 6310.285714285715,
+        "surfaceId": "rv-west-shoulder"
+      },
+      {
+        "x": 4100,
+        "y": 6370,
+        "surfaceId": "rv-west-shoulder"
+      },
+      {
+        "x": 4600,
+        "y": 6700,
+        "surfaceId": "rv-west-shoulder"
+      },
+      {
+        "x": 5000,
+        "y": 6960,
+        "surfaceId": "rv-west-main-root"
+      },
+      {
+        "x": 5400,
+        "y": 7080,
+        "surfaceId": "rv-west-main-root"
+      },
+      {
+        "x": 6100,
+        "y": 6860,
+        "surfaceId": "rv-ritual-buttress"
+      },
+      {
+        "x": 6600,
+        "y": 6710,
+        "surfaceId": "rv-ritual-buttress"
+      },
+      {
+        "x": 6900,
+        "y": 6770,
+        "surfaceId": "rv-ritual-buttress"
+      },
+      {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "surfaceId": "rv-ritual-buttress"
+      },
+      {
+        "x": 7600,
+        "y": 6830,
+        "surfaceId": "rv-ritual-buttress"
+      },
+      {
+        "x": 8050,
+        "y": 6760,
+        "surfaceId": "rv-ritual-buttress"
+      },
+      {
+        "x": 8400,
+        "y": 6960,
+        "surfaceId": "rv-ritual-buttress"
+      },
+      {
+        "x": 9000,
+        "y": 7260,
+        "surfaceId": "rv-ritual-buttress"
+      },
+      {
+        "x": 9500,
+        "y": 7600,
+        "surfaceId": "rv-ritual-buttress"
+      },
+      {
+        "x": 9900,
+        "y": 7920,
+        "surfaceId": "rv-root-east-descent"
+      },
+      {
+        "x": 10400,
+        "y": 8360,
+        "surfaceId": "rv-root-east-descent"
+      },
+      {
+        "x": 11000,
+        "y": 8630,
+        "surfaceId": "rv-root-east-descent"
+      },
+      {
+        "x": 11200,
+        "y": 8490,
+        "surfaceId": "rv-north-trace"
+      },
+      {
+        "x": 10800,
+        "y": 8650,
+        "surfaceId": "rv-lower-refuge-rock"
+      },
+      {
+        "x": 10350,
+        "y": 8740,
+        "surfaceId": "rv-lower-refuge-rock"
+      },
+      {
+        "x": 9900,
+        "y": 8830,
+        "surfaceId": "rv-lower-refuge-rock"
+      },
+      {
+        "x": 9700,
+        "y": 8835.714285714286,
+        "surfaceId": "rv-lower-refuge-rock"
+      },
+      {
+        "x": 9900,
+        "y": 8830,
+        "surfaceId": "rv-lower-refuge-rock"
+      },
+      {
+        "x": 10350,
+        "y": 8740,
+        "surfaceId": "rv-lower-refuge-rock"
+      },
+      {
+        "x": 10800,
+        "y": 8650,
+        "surfaceId": "rv-lower-refuge-rock"
+      },
+      {
+        "x": 11000,
+        "y": 8630,
+        "surfaceId": "rv-lower-refuge-rock"
+      },
+      {
+        "x": 11900,
+        "y": 8000,
+        "surfaceId": "rv-north-trace"
+      },
+      {
+        "x": 12700,
+        "y": 7150,
+        "surfaceId": "rv-north-trace"
+      },
+      {
+        "x": 13500,
+        "y": 6350,
+        "surfaceId": "rv-north-trace"
+      },
+      {
+        "x": 14400,
+        "y": 5610,
+        "surfaceId": "rv-north-trace"
+      },
+      {
+        "x": 15040,
+        "y": 5460.666666666667,
+        "surfaceId": "rv-north-trace"
+      }
+    ],
+    "resident": {
+      "objectiveId": "resident",
+      "roomId": "lower-refuge",
+      "x": 9700,
+      "y": 8835.714285714286,
+      "surfaceId": "rv-lower-refuge-rock",
+      "standing": {
+        "x": 9700,
+        "y": 8835.714285714286,
+        "surfaceId": "rv-lower-refuge-rock"
+      }
+    }
+  }
+}

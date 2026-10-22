@@ -55,7 +55,7 @@ const steps=b=>b.honroAct2Steps||(revision2(b)?(G.HonroObjectiveRevision?.stored
 const memory=b=>(b.honroState.act2??={version:1,done:{},events:{},rescued:[],checkpoints:[]});
 const marker=(b,id)=>b.honroMarkers.find(m=>m.id===id);
 const timedHoist=(b,s)=>b.honroStage===17&&!b.honroCustom&&b.honroEvidenceRevision===1&&s.id==='hold-hoist';
-function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const evidence=G.HonroEvidenceQuests?.satisfied(b,s);if(evidence!==null&&evidence!==undefined)return evidence;const special=G.HonroStage18Bell?.satisfied(b,s);if(special!==null&&special!==undefined)return special;
+function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const pacing=G.HonroAct2Pacing?.satisfied(b,s);if(pacing!==null&&pacing!==undefined)return pacing;const evidence=G.HonroEvidenceQuests?.satisfied(b,s);if(evidence!==null&&evidence!==undefined)return evidence;const special=G.HonroStage18Bell?.satisfied(b,s);if(special!==null&&special!==undefined)return special;
  if(s.kind==='route')return !!b.honroRouteChoice?.selectedRoute;
  if(s.kind==='clear'){const plan=G.HonroAct2Plan.forStage(b.honroStage);if(s.cohorts==='all'&&(plan.bossWave&&!a.events['keeper-retaliation']||plan.progressWave&&!a.events['convoy-ambush']))return false;return enemiesFor(b,s).length===0;}
  if(s.kind==='hold'){const h=a.holds?.[s.id];return !!h&&h.progress>=s.rounds&&(timedHoist(b,s)||h.spawned>=(s.wave?.count||0));}
