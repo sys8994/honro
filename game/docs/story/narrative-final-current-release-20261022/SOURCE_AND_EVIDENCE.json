@@ -1,0 +1,40 @@
+{
+  "codeAndGeneratedCommit": "be3cb71caf035b13138e0118efa8cac8594423f2",
+  "base": "5bac50f97c4d88036b31513a6f1d71d10a8ea0d6",
+  "mergedMaster": "63cc28113b36d2da92b9e1557de52620edb7db03",
+  "canonicalTextUnchangedFromBase": true,
+  "sourceSha256": {
+    "shared/build.mjs": "8b2a2b33e94e6a9bfae24a0d84384385ebb3eed02ba39992fdf5f206c3c4eb50",
+    "shared/runtime/stage11-quest-simplification.js": "0564538f4d5cdff9aac5eaa7372a4b003358c5978ec3c2ec8402cc02c50af0cb",
+    "shared/data/narrative-current.json": "5f3954567f2b7bc9f72b397fffc7a3330c4cdf2ae21fc64848b2268c7b978a0a",
+    "shared/runtime/main.js": "2e9e34444f1e2fc23075ae2edb5d8e56c3b681f5ce7b4f3b848927d5267de88c",
+    "shared/web-build.mjs": "e52afddbacaee9d6b15baa01fc63d92533682f24c1e700fd0dc02dccecc135bd",
+    "shared/web-retention.mjs": "4c403cc2f5c94fb5ab2334cc6c089c4043eeedf9b51040419c7fe85dd0cd27c5",
+    "web/manifest.json": "dd9eebcef712a02a84a6a009b9250bb4724c42ef26a0ba217f3bf7e5e96deaa7",
+    "HONRO.html": "83ad6416f66bd2a47db6fec7fc48c6ecdac09e2222b68ae963d9dc959c6e5ed8",
+    "HONRO_WORKSHOP.html": "8e92549599b578c5f327301da4a6b087d1398dee9e5cf7581f0e69b04e01aed5",
+    "index.html": "83ad6416f66bd2a47db6fec7fc48c6ecdac09e2222b68ae963d9dc959c6e5ed8"
+  },
+  "selectedImages": {
+    "review/narrative-final-current-release-20261022/stage11-arrival-390x844.jpg": {
+      "bytes": 31923,
+      "sha256": "54e0850bacf6009061dd1e9c20b57a02f1ffc5c4e35d3052a01934dd53a0db0a"
+    },
+    "review/narrative-final-current-release-20261022/stage11-entry-390x844.jpg": {
+      "bytes": 33498,
+      "sha256": "be493b191af5d90401f7a50eda2720020845c182d7a7d6800b322e23fe005b0c"
+    },
+    "review/narrative-final-current-release-20261022/stage11-round20-Continue-390x844.jpg": {
+      "bytes": 31532,
+      "sha256": "83e553395cf8abd7a633040a1b8100cb7e4f5928e4521b40c4ddecc8f68cd10c"
+    },
+    "review/narrative-final-current-release-20261022/stage10-safe-outro-390x844.jpg": {
+      "bytes": 20434,
+      "sha256": "5d46be60e38a6be41cfc6961b830369af3e036cf7203ee16457fae8e2e006679"
+    },
+    "review/narrative-final-current-release-20261022/stage27-void-390x844.jpg": {
+      "bytes": 15069,
+      "sha256": "15e7c03dea07727e6d47822ef70e20bd7bca85c1f2af77ddd1f0c7525b34adb6"
+    }
+  }
+}
