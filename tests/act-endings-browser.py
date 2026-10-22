@@ -3,14 +3,16 @@ not normal-combat proof; growth/reward code and reload are production paths."""
 from pathlib import Path
 import json
 from playwright.sync_api import sync_playwright
+from browser_support import launch
+from story_browser_server import story_base_url
 OUT=Path('_local/reports/act-endings');OUT.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as p:
- browser=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+ browser=launch(p)
  page=browser.new_page(viewport={'width':1280,'height':720})
  errors=[];images=[]
  page.on('pageerror',lambda e: errors.append(str(e)))
  page.on('request',lambda r: images.append(r.url) if '/endings/act-' in r.url else None)
- page.goto('http://127.0.0.1:8000/HONRO.html');page.wait_for_function('!!globalThis.HonroApp',timeout=120000)
+ page.goto(story_base_url()+'/HONRO.html');page.wait_for_function('!!globalThis.HonroApp',timeout=120000)
  assert not images,'ending images may not load at the title'
  rows=[]
  for stage,size in [(10,{'width':1280,'height':720}),(20,{'width':390,'height':844}),(30,{'width':320,'height':568})]:
@@ -24,7 +26,9 @@ with sync_playwright() as p:
    a.engine.b.phase='won';a.engine.b.honroState.storyQueue=[];a.engine.b.honroState.deferredStory=[];if(id===10)a.engine.b.honroState.sodanWithdrawal={phase:'safe',party:['설오','담허','휘겸','소단']};
    a.outcome();}''',stage)
   if stage==10:
-   assert page.locator('#sodan-safe-backdrop').is_visible(),'long outro needs safe off-yard screen'
+   assert page.locator('#sodan-safe-backdrop').count()==0,'safe outro stays on the actual exit terrain'
+   assert page.locator('#battlecanvas').is_visible()
+   assert page.evaluate('HonroApp.engine.b.honroState.sodanWithdrawal.worldOutro===2&&HonroApp.dialogue.lines.length===16')
    page.screenshot(path=str(OUT/'review-1-safe-outro.png'))
    assert '…이제 손을 놔도 돼요?' in page.locator('#story-line').inner_text()
    page.evaluate('while(HonroApp.dialogue&&HonroApp.dialogue.index<HonroApp.dialogue.lines.length-1)HonroStory.next(HonroApp)')
@@ -67,7 +71,7 @@ with sync_playwright() as p:
   rows.append({'stage':stage,'viewport':size,'result':'passed','reload':'cut 2','rewardOnce':True,'next':'rest'})
  # Real 6-turn completed fixture: actual input must traverse right terrain to exit.
  page.set_viewport_size({'width':1280,'height':720})
- live=json.loads(Path('_local/reports/sodan-withdrawal/normal-play/round-21.json').read_text())['profile']
+ live=json.loads(Path('game/docs/stage-review/act-endings/evidence/normal-21-escape-save.json').read_text())['profile']
  page.evaluate('p=>localStorage.setItem("honro-first-act-profile-1",JSON.stringify(p))',live)
  page.reload();page.wait_for_function('!!globalThis.HonroApp',timeout=120000);page.evaluate('HonroApp.continue()')
  page.wait_for_function('HonroApp.screen==="battle"&&!!HonroApp.engine')

@@ -4,9 +4,7 @@
 .act-ending-copy{position:absolute;bottom:max(4%,calc(env(safe-area-inset-bottom) + 18px));left:max(8%,calc(env(safe-area-inset-left) + 16px));right:max(8%,calc(env(safe-area-inset-right) + 16px));margin:0 auto;max-width:920px;max-height:calc(100% - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 48px);overflow-y:auto;text-align:center;font-family:var(--font-story,serif);font-size:clamp(17px,2vw,25px);font-weight:400;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere;text-wrap:pretty;text-shadow:0 2px 6px #000,0 0 16px #000}
 .act-ending[data-stage="30"] .act-ending-art{object-position:center 58%}.act-ending-title .act-ending-art{opacity:.2}.act-ending-title .act-ending-shade{inset:0;height:auto;background:#0c111699}.act-ending-title .act-ending-copy{position:relative;inset:auto;padding:24px;font-size:clamp(22px,3vw,34px);letter-spacing:.08em}.act-ending-copy small{display:block;margin-top:18px;font:400 14px sans-serif;letter-spacing:.12em;color:#d6ccb5}
 .cut-fade{animation:ending-cut-in 180ms ease-out both}@keyframes ending-cut-in{from{opacity:0}to{opacity:1}}
-.sodan-withdrawal,.sodan-safe-backdrop{position:fixed;inset:0;z-index:65;background:linear-gradient(150deg,#242c2d,#12191e 60%,#0c1116);color:#e9ddc1;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:24px;pointer-events:none}
-.sodan-withdrawal p{font:22px serif;letter-spacing:.1em}.sodan-withdrawal small{font-size:14px;color:#c1baa7}.withdrawal-party{display:flex;gap:22px;padding:30px;animation:withdraw-party 1s ease-in both}.withdrawal-party span{font:17px serif;border-bottom:2px solid #bba778;padding:12px 4px}.sodan-safe-backdrop{z-index:30;justify-content:flex-start;padding-top:max(7vh,env(safe-area-inset-top));font:17px serif;letter-spacing:.15em}.sodan-safe-backdrop~#dialogue-root{position:relative;z-index:70}
-@keyframes withdraw-party{from{opacity:.4;transform:translateX(-22px)}to{opacity:0;transform:translateX(65px)}}
+.sodan-withdrawal{position:fixed;top:max(18%,80px);left:50%;transform:translateX(-50%);z-index:65;padding:12px 20px;background:#111b20df;border:1px solid #948766;color:#e9ddc1;white-space:nowrap;pointer-events:none;font:17px serif}
 @media(orientation:portrait){
  .act-ending[data-stage="10"] .act-ending-art{object-position:78% center}
  .act-ending[data-stage="20"] .act-ending-art{object-position:30% center}
@@ -18,9 +16,12 @@
 /* Extended portrait compositions use their own center, never landscape focal crops. */
 .act-ending[data-art="portrait"] .act-ending-art{object-position:center}
 .act-ending-title .act-ending-copy{box-sizing:border-box;padding:max(24px,env(safe-area-inset-top)) max(24px,calc(env(safe-area-inset-right) + 16px)) max(24px,env(safe-area-inset-bottom)) max(24px,calc(env(safe-area-inset-left) + 16px))}
-@media(max-height:440px){.act-ending-copy{bottom:max(6%,calc(env(safe-area-inset-bottom) + 12px));font-size:16px;line-height:1.6;max-width:760px}.sodan-withdrawal{gap:8px}}
-@media(prefers-reduced-motion:reduce){.cut-fade,.withdrawal-party{animation:none}}
-.sodan-withdrawal canvas,.sodan-safe-backdrop canvas{width:min(92vw,520px);height:auto;max-height:35vh;object-fit:contain;padding:0}.sodan-safe-backdrop canvas{position:absolute;top:22%;left:50%;transform:translateX(-50%)}
+@media(max-height:440px){.act-ending-copy{bottom:max(6%,calc(env(safe-area-inset-bottom) + 12px));font-size:16px;line-height:1.6;max-width:760px}}
+@media(prefers-reduced-motion:reduce){.cut-fade{animation:none}}
 
 /* The new bell finial sits near the top edge; keep it in short landscape crops. */
 @media(orientation:landscape) and (max-height:440px){.act-ending[data-stage="20"][data-art="landscape"] .act-ending-art{object-position:center top}}
+
+/* Optional journal action; keep it beside the selected place, independent of its layout. */
+.honro #app .journey-ending-replay{display:inline-block;min-height:32px;margin-top:5px;padding:4px 8px;font-size:11px;line-height:1.4;background:transparent;border:1px solid #9aab9859;color:#d6cfac;border-radius:3px;touch-action:manipulation}
+.honro #app .act-ending-return{position:absolute;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));min-height:44px;padding:8px 12px;font-size:12px;background:#10191ddc;border:1px solid #c1b58c80;color:#f5efdf;z-index:2}

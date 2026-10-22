@@ -48,6 +48,7 @@ function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return li
  const b=app.engine.b,key=sceneKey(app,lines,options),stage=b.honroStage,names=[...new Set(lines.filter(l=>G.HonroStory.speakerPresentation(l[0],l[2]).kind==='character').map(l=>l[0]))];
  const subjects=names.map(n=>speakerId(app,n)?{actor:speakerId(app,n)}:{speaker:n});
  return lines.map(([who,text,meta={}],index)=>{
+  if(stage===10&&options.after==='outcome'&&G.HonroSodanWithdrawal?.complete(b))return[who,text,{...meta,camera:speakerPolicy(who,meta,{id:'10:safe-exit',intent:'conversation',targets:[{nearbyAllies:'boss'}],padding:40,maxScale:.78})}];
   if(meta.camera)return[who,text,{...meta,camera:speakerPolicy(who,meta,meta.camera)}];
   const kind=G.HonroStory.speakerPresentation(who,meta).kind,scenePolicy=Object.entries(policies).find(([id])=>id.startsWith(stage+':')&&(key===id.slice(id.indexOf(':')+1)||key.endsWith(':'+id.slice(id.indexOf(':')+1))||key.includes(id.slice(id.indexOf(':')+1))))?.[1];
   let camera=scenePolicy?{...scenePolicy}:kind==='character'?conversation(app,who,subjects):{intent:'situation',targets:subjects.length?subjects:[openings[stage]||{objective:'current'}],padding:65,maxScale:.8};

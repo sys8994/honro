@@ -1,0 +1,16 @@
+{
+  "executionSHA": "5d789f7420ef05763fb0e6f945b2517b42394526",
+  "baseSHA": "275144983f93d0de66bbe6f44ede88a82ca36b56",
+  "preservedMasterSHA": "b48423b360b2d6d6b1147c16811685f215a33513",
+  "masterIsAncestor": true,
+  "byteEqualToMaster": {
+    "shared/runtime/skill-images.js": true,
+    "shared/engine/src/icons.ts": true,
+    "shared/engine/src/main.ts": true,
+    "shared/engine/src/math.ts": true
+  },
+  "mainDiffHunks": 3,
+  "newGameArtOrTerrain": false,
+  "uiIntegration": "replayButton / act-ending-replay action / captureBook + restoreBook; see README",
+  "masterPushOrPagesDeployPerformed": false
+}
