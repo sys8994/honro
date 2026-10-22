@@ -1718,7 +1718,7 @@
                 "at": {
                   "marker": "resident"
                 },
-                "pose": "hold-bell",
+                "pose": "point",
                 "camera": false,
                 "duration": 650
               }
@@ -7341,7 +7341,7 @@
             "intent": "situation",
             "targets": [
               {
-                "marker": "resident"
+                "actor": "archer"
               }
             ],
             "padding": 80,
