@@ -68,7 +68,10 @@ with sync_playwright() as pw:
   p.evaluate((ROOT/'tools/testing/stage18-bell-render-fixture.js').read_text())
   for phase in ['suspended','lowering','settled']:
    scope=p.evaluate("""phase=>{const a=HonroApp,q=HonroStage18BellRenderFixture(a.engine.b,phase);window.__stage18FixtureEngine=new HONRO_CORE.Engine(q.battle,()=>{},false);return q.scope;}""",phase)
+   fixture_before=p.evaluate('JSON.stringify(window.__stage18FixtureEngine.b)')
    fixed('state-'+phase,7350,6900,.3);rows[-1]['mode']=scope
+   assert p.evaluate('JSON.stringify(window.__stage18FixtureEngine.b)')==fixture_before
+   rows[-1]['fullSceneStatePure']=True
    assert p.evaluate('JSON.stringify(HonroApp.engine.b)')==original
  sources=['tools/testing/stage18-bell-render-fixture.js','tools/environment/authored-rock-planes.mjs','shared/data/campaign.json','tools/environment/stage18-floor-finish.mjs','shared/runtime/act2-spatial-art.js','shared/runtime/renderer.js','shared/map/bounds.js','web/manifest.json']
  report={'sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'workingTree':subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True),'scope':'Fresh isolated debug UI; actual wheel/drag and explicitly separate fixed cameras. No combat completion/FPS claim.','rows':rows,'sourceHashes':{f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest()for f in sources if(ROOT/f).exists()},'errors':errors,'httpFailures':http};(out/'capture.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');b.close();assert not errors,errors;assert not http,http
