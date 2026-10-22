@@ -1,29 +1,14 @@
 /** Build-time only: exposed worksite bedrock, with all timber/machinery intact. */
 import {readFileSync,writeFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
-import {solidSection,createPlaneWriter,dividePolyline,shadeRock} from './authored-rock-planes.mjs';
+import {appendSectionRock} from './authored-rock-planes.mjs';
 export const STAGE17_ROCK_IDS=['act2-floor','cave-roof','ws-west-work-buttress','ws-west-machine-plinth','ws-east-hoist-buttress','ws-west-upper-rock','ws-east-upper-rock','ws-axle-footing'];
 export function applyStage17VectorFinish(project){
  const st=project.stages.find(s=>s.metadata?.stageId===17),planes=[];
  // Each section edge is authored once and reused by both touching faces.
  // Finite rock depths are fractions of the CURRENT original solid, not boxes.
- function strata(id,columns,levels,colors,{direction=1,finite=false,seams={},beds={},drifts={},crosscuts={},joints=[],lights=[]}={}){
-  const t=st.terrains.find(t=>t.id===id);if(!t)throw Error('Missing worksite rock '+id);
-  const add=createPlaneWriter(planes,id,{prefix:'v17-'+id+'-',flag:'stage17VectorFinish'}),left=Math.min(...t.points.map(p=>p.x)),right=Math.max(...t.points.map(p=>p.x));
-  const worldX=x=>finite?left+(right-left)*x:x,at=([x,d])=>{x=worldX(x);const top=solidSection(t,x,direction),depth=finite?Math.abs(solidSection(t,x,-direction)-top):1;return[x,top+direction*d*depth];};
-  const row=levels.map((ds,r)=>columns.map((x,i)=>[x+(drifts[r]?.[i]||0),ds[i]]));for(const r of row)for(let i=1;i<r.length;i++)if(r[i][0]<=r[i-1][0])throw Error('Crossing authored row '+id);const knots=[...new Set(t.points.map(p=>p.x))].sort((a,b)=>a-b);
-  function horizontal(r,j){const a=row[r][j],b=row[r][j+1],custom=beds[r+':'+j];if(custom)return[at(a),...custom.map(at),at(b)];const ax=worldX(a[0]),bx=worldX(b[0]),local=x=>finite?(x-left)/(right-left):x;return[at(a),...knots.filter(x=>x>ax&&x<bx).map(x=>at([local(x),a[1]+(b[1]-a[1])*(x-ax)/(bx-ax)])),at(b)];}
-  const sides={};for(let r=0;r<row.length-1;r++)for(let j=0;j<columns.length;j++)sides[r+':'+j]=[at(row[r][j]),...(seams[r+':'+j]||[]).map(at),at(row[r+1][j])];
-  add('mother',t.points.map(p=>[p.x,p.y]),finite?'#344c57':direction>0?'#304b55':'#223b47');
-  for(let r=0;r<row.length-1;r++)for(let j=0;j<columns.length-1;j++){
-   const l=sides[r+':'+j],z=sides[r+':'+(j+1)],tone=colors[r][j%colors[r].length],cut=crosscuts[r+':'+j];
-   if(cut){const left=dividePolyline(l,cut[0]),right=dividePolyline(z,cut[1]),joint=[left.point,...cut[2].map(at),right.point];add('cut-upper'+r+'-'+j,[...horizontal(r,j),...right.up.slice(1),...joint.slice().reverse().slice(1),...left.up.slice().reverse().slice(1)],shadeRock(tone,3));add('cut-lower'+r+'-'+j,[...joint,...right.down.slice(1),...horizontal(r+1,j).reverse().slice(1),...left.down.slice().reverse().slice(1)],shadeRock(tone,-3));}
-   else add('bed'+r+'-'+j,[...horizontal(r,j),...z.slice(1),...horizontal(r+1,j).reverse().slice(1),...l.slice().reverse().slice(1)],tone);
-  }
-  if(!finite){const last=row.length-1,bound=direction>0?Math.max(...t.points.map(p=>p.y)):Math.min(...t.points.map(p=>p.y));for(let j=0;j<columns.length-1;j++){const edge=horizontal(last,j);add('deep'+j,[...edge,[edge.at(-1)[0],bound],[edge[0][0],bound]],direction>0?(j%3?'#304b55':'#344e58'):(j%3?'#223b47':'#263f4b'));}}
-  for(const[key,w]of joints){const ps=sides[key].slice(1,-1);if(ps.length<2)throw Error('Joint missing authored turns '+id+'/'+key);add('joint'+key,[...ps,...ps.map(([x,y],i)=>[x+(i===1?w:2),y]).reverse()],direction>0?'#293f49':'#19323e');}
-  for(const[r,j,w]of lights){const ps=horizontal(r,j);add('short-seat'+r+'-'+j,[...ps,...ps.map(([x,y],i)=>[x,y-direction*(i===0||i===ps.length-1?1:w)]).reverse()],finite?'#82908a':'#758a87');}
- }
+ const strata=(id,columns,levels,colors,options={})=>appendSectionRock(planes,st.terrains.find(t=>t.id===id),{columns,levels,colors,prefix:'v17-'+id+'-',flag:'stage17VectorFinish',...options});
+
  const floorX=[-6000,-4200,-2600,-1100,0,900,1700,2220,3000,3800,4550,5250,6020,6770,7510,8120,8560,9280,10010,10800,11950,13600,15400,17200];
  strata('act2-floor',floorX,[
   floorX.map(()=>0),[600,820,470,730,490,810,400,700,460,850,520,760,430,880,510,720,460,800,540,870,590,820,520,740],
