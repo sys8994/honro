@@ -68,6 +68,7 @@ def select_last(page,stage):
     return page.evaluate(STATE),page.evaluate(VIEW)
 
 def open_preview(page):
+    page.wait_for_function('performance.now()>(HonroApp.journeyInputAfter||0)')
     page.locator('[data-action="debug-journal-ending-preview"]').click()
     page.wait_for_selector('#act-ending[data-mode="debug-journal"]');image_ready(page)
     assert page.locator('[data-ending-return]').inner_text()=='여정첩으로 돌아가기'
@@ -127,6 +128,15 @@ with sync_playwright() as p:
             page.reload();ready(page)
             assert page.evaluate('!HonroApp.endingGallery&&!HonroApp.profile.honroActEnding')
             assert stored==page.evaluate('JSON.stringify({...localStorage})')
+            # Completed debug fixtures use the special 'end' selection at stage 30.
+            page.evaluate('''()=>{const a=HonroApp;for(let id=1;id<=30;id++)a.profile.cleared[id]={visits:1,rounds:6};HonroRestJourney.showBook(a,'end',null,3);}''')
+            page.wait_for_function('document.querySelector(".journey-map-image")?.complete')
+            assert page.evaluate('HonroApp.journeySelection')=='end'
+            page.locator('.journey-records>summary').click();page.wait_for_timeout(100)
+            page.evaluate('''()=>{const a=HonroApp;globalThis.__retained={node:a.root.firstElementChild,engine:a.engine,scene:a.scene};}''')
+            state,view=page.evaluate(STATE),page.evaluate(VIEW)
+            open_preview(page);page.keyboard.press('Escape');restored(page,state,view)
+            rows.append({'stage':30,'selection':'end','viewport':[width,height],'completedDebugFixture':True,'exactReturnAndStorage':True})
         context.close()
     browser.close()
 assert not errors,errors
@@ -134,4 +144,4 @@ assert not http,http
 (OUT/(args.review+'-summary.json')).write_text(json.dumps({'executionSHA':SHA,'review':args.review,'rows':rows,
     'sourceHashes':{f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ['shared/runtime/act-endings.js','shared/runtime/main.js','shared/runtime/rest-journey.js']},
     'errors':errors,'httpFailures':http,'limits':['Chromium touch/viewport emulation, no physical mobile or combat playthrough.']},ensure_ascii=False,indent=2)+'\n')
-print('PASS',args.review,len(rows),'uncleared debug journal cases / exact DOM, view, profiles and storage')
+print('PASS',args.review,len(rows),'debug journal cases / exact DOM, view, profiles and storage')
