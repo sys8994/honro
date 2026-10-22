@@ -2,7 +2,7 @@
   "standard": "1.0",
   "class": "mage",
   "count": 21,
-  "review": "21/21 semantic and 32/48px contact sheet pass after3regenerations M08 MP03 MP04. Actual UI and final holistic review pending.",
+  "review": "21/21 semantic and 32/48px contact sheet pass after3regenerations M08 MP03 MP04. Actual UI and final holistic review pending. M05 updated for user-requested multi-target thunder; new icon semantic and thumbnail pass.",
   "icons": [
     {
       "id": "M01",
@@ -63,14 +63,14 @@
     {
       "id": "M05",
       "name": "천뢰호",
-      "effect": "착탄 후 잠시 뒤 위에서 천뢰가 내려칩니다. 천장이나 위쪽 지형에 막힐 수 있습니다.",
-      "prompt": "Create ONE square production skill icon for HONRO, mature restrained Korean dark fantasy. Art standard v1: large ink-brush silhouette with a little broad sculpted shading, NOT a detailed illustration. One primary form, at most one subordinate form. Very calm flat near-black charcoal background. Broad smooth interior color planes; no paper grain or texture overlay. Muted bone-white highlights and one subdued accent only; moderate contrast, no dazzling white or bloom. Keep the meaningful form fully inside central 78% with 10% margins, fill enough to read instantly at 32px. No face details, scenery, body anatomy, microtexture, repeating mottling, noisy brush stippling, scratches, ornate decoration, particles, sparks, lettering, readable glyphs, border, frame, numbers or UI. Not cartoon, not generic app logo. One small ritual gourd below a single HEAVY VERTICAL lightning stroke descending from above. Clear top-down delayed thunder, muted ivory-violet against charcoal, no storm landscape.",
+      "effect": "Delayed lightning individually strikes every valid enemy in range; damage +15%, each bolt width70% of previous.",
+      "prompt": "Create ONE square production skill icon for HONRO, mature restrained Korean dark fantasy. Art standard v1: large ink-brush silhouette with a little broad sculpted shading, NOT a detailed illustration. One primary form, at most one subordinate form. Very calm flat near-black charcoal background. Broad smooth interior color planes; no paper grain or texture overlay. Muted bone-white highlights and one subdued accent only; moderate contrast, no dazzling white or bloom. Keep the meaningful form fully inside central 78% with 10% margins, fill enough to read instantly at 32px. No face details, scenery, body anatomy, microtexture, repeating mottling, noisy brush stippling, scratches, ornate decoration, particles, sparks, lettering, readable glyphs, border, frame, numbers or UI. Not cartoon, not generic app logo. A small round double-bulbed gourd at bottom center anchors a FIELD OF MULTIPLE LIGHTNING STRIKES. Three separate slim violet-white vertical lightning bolts descend from above onto three small dark round target marks spaced across the lower area. Each bolt has its own endpoint. Dominant silhouette is three parallel downward bolts, NOT one branching bolt from the gourd. Bold readable zigzags with generous space. No cloud, sparks, bloom or tiny details. Keep all bolt tops inside canvas with margin. Multiple-enemy thunderfall.",
       "standard": "1.0",
-      "iteration": 1,
+      "iteration": 2,
       "status": "semantic-and-thumbnail-pass-ui-pending",
-      "sha256": "9f8e558ac52445899f1675cbaf4eed647f6e9653a7e3a5bfa971d74e29d4b5e1",
-      "bytes": 5040,
-      "sourceSha256": "c76130a0eb7840164df3537e24ee6fbd6132ceeae1364249c78ca16f8f2c3068"
+      "sha256": "5b17a55a6b0ea27b37ab5e40708bc75235c102ef927d4e6af51b4a07b279b9a4",
+      "bytes": 7408,
+      "sourceSha256": "f568ebc714f36df20e852b832fc77352d49f388bd3560c8b718cbf6ff23037c3"
     },
     {
       "id": "M03",
