@@ -7,7 +7,7 @@ from threading import Thread
 from functools import partial
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch
-OUT=ROOT/'game/docs/icon-cache-journey-navigation/evidence';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/os.environ.get('HONRO_JOURNEY_NAV_OUT','game/docs/icon-cache-journey-navigation/evidence');OUT.mkdir(parents=True,exist_ok=True)
 PASS=os.environ.get('JOURNEY_REVIEW','review1')
 @contextmanager
 def server(root):
