@@ -1,0 +1,608 @@
+{
+  "label": "candidate3-final",
+  "sha": "4016913c5b58a95a92bea33a6f52aeddb10e5e46",
+  "workingTree": "?? game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-all.json\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-central.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-final-east.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-final-lower-route.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-final-start.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-max-refuge.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-min-mobile.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-mobile-trace.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-overview.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-refuge.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-west.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-final-central.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-final-final-east.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-final-final-lower-route.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-final-final-start.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-final-max-refuge.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-final-min-mobile.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-final-mobile-trace.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-final-overview.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-final-refuge.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-final-west.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-focus-focus3.json\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-focus-max-refuge.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-focus-min-mobile.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-focus-mobile-trace.jpg\n",
+  "materialSha256": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+  "scope": "Production Chromium Scene and HUD; frozen normal entry-level battle/camera/progression fixtures, not full combat completion or real mobile hardware. 40 synchronous warm render samples/view; no concurrent load.",
+  "rows": [
+    {
+      "file": "candidate3-final-overview.jpg",
+      "group": "focus1",
+      "camera": [
+        8000,
+        7250,
+        0.115
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 124.20000000006985,
+      "medianMs": 2.799999999930151,
+      "p95Ms": 4.399999999906868,
+      "cacheBefore": {
+        "worldBuilds": 2,
+        "worldBuildMs": 58.00000000023283,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 25,
+        "bgHits": 7,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 14,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 2,
+        "worldBuildMs": 58.00000000023283,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 65,
+        "bgHits": 47,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 94,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate3-final-west.jpg",
+      "group": "focus1",
+      "camera": [
+        3200,
+        6650,
+        0.18
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 89.09999999997672,
+      "medianMs": 6.800000000046566,
+      "p95Ms": 8.70000000006985,
+      "cacheBefore": {
+        "worldBuilds": 3,
+        "worldBuildMs": 71.30000000004657,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 85,
+        "bgHits": 55,
+        "domainCanvasAllocations": 30,
+        "domainTileBuilds": 30,
+        "screenBuilds": 6,
+        "screenHits": 110,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.21022410381342863,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 3,
+        "worldBuildMs": 71.30000000004657,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 125,
+        "bgHits": 95,
+        "domainCanvasAllocations": 30,
+        "domainTileBuilds": 30,
+        "screenBuilds": 6,
+        "screenHits": 190,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.21022410381342863,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate3-final-central.jpg",
+      "group": "focus2",
+      "camera": [
+        7290,
+        7080,
+        0.43
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 58,
+      "medianMs": 0.9000000000232831,
+      "p95Ms": 1.8000000000465661,
+      "cacheBefore": {
+        "worldBuilds": 4,
+        "worldBuildMs": 82.49999999988358,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 141,
+        "bgHits": 103,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 206,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 4,
+        "worldBuildMs": 82.49999999988358,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 181,
+        "bgHits": 143,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 286,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "tileCount": 8,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate3-final-refuge.jpg",
+      "group": "focus2",
+      "camera": [
+        10350,
+        8470,
+        0.5
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 61.90000000002328,
+      "medianMs": 0.7000000000698492,
+      "p95Ms": 1.599999999976717,
+      "cacheBefore": {
+        "worldBuilds": 5,
+        "worldBuildMs": 95.49999999976717,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 201,
+        "bgHits": 151,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 302,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 5,
+        "worldBuildMs": 95.49999999976717,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 241,
+        "bgHits": 191,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 382,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate3-final-mobile-trace.jpg",
+      "group": "focus3",
+      "camera": [
+        11900,
+        7850,
+        0.36
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "limits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 37.5,
+      "medianMs": 0.2000000000698492,
+      "p95Ms": 0.8000000000465661,
+      "cacheBefore": {
+        "worldBuilds": 7,
+        "worldBuildMs": 107.69999999948777,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 254,
+        "bgHits": 198,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 12,
+        "screenHits": 396,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 7,
+        "worldBuildMs": 107.69999999948777,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 294,
+        "bgHits": 238,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 12,
+        "screenHits": 476,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "candidate3-final-max-refuge.jpg",
+      "group": "focus3",
+      "camera": [
+        10050,
+        8680,
+        1.65
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 4.599999999976717,
+      "medianMs": 1,
+      "p95Ms": 1.2999999999301508,
+      "cacheBefore": {
+        "worldBuilds": 7,
+        "worldBuildMs": 107.69999999948777,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 294,
+        "bgHits": 245,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 13,
+        "screenHits": 483,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 7,
+        "worldBuildMs": 107.69999999948777,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 294,
+        "bgHits": 285,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 13,
+        "screenHits": 523,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "candidate3-final-min-mobile.jpg",
+      "group": "focus3",
+      "camera": [
+        9000,
+        7800,
+        0.12411764705882353
+      ],
+      "viewport": [
+        844,
+        390
+      ],
+      "limits": {
+        "min": 0.12411764705882353,
+        "max": 1.65,
+        "tactical": 0.12411764705882353,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 71.30000000004657,
+      "medianMs": 0.9000000000232831,
+      "p95Ms": 1.3000000000465661,
+      "cacheBefore": {
+        "worldBuilds": 9,
+        "worldBuildMs": 119.79999999946449,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 307,
+        "bgHits": 292,
+        "domainCanvasAllocations": 70,
+        "domainTileBuilds": 70,
+        "screenBuilds": 15,
+        "screenHits": 537,
+        "screenWorldBytes": 786608,
+        "screenBackgroundBytes": 786608,
+        "worldBytes": 6390144,
+        "worldScale": 0.14865088937534013,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 9,
+        "worldBuildMs": 119.79999999946449,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 347,
+        "bgHits": 332,
+        "domainCanvasAllocations": 70,
+        "domainTileBuilds": 70,
+        "screenBuilds": 15,
+        "screenHits": 617,
+        "screenWorldBytes": 786608,
+        "screenBackgroundBytes": 786608,
+        "worldBytes": 6390144,
+        "worldScale": 0.14865088937534013,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "candidate3-final-final-lower-route.jpg",
+      "group": "final",
+      "camera": [
+        11300,
+        8100,
+        0.22
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 23.5,
+      "medianMs": 0.8000000000465661,
+      "p95Ms": 1.2999999999301508,
+      "cacheBefore": {
+        "worldBuilds": 10,
+        "worldBuildMs": 137.6999999996042,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 372,
+        "bgHits": 339,
+        "domainCanvasAllocations": 87,
+        "domainTileBuilds": 87,
+        "screenBuilds": 17,
+        "screenHits": 631,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 18105408,
+        "worldScale": 0.25,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 10,
+        "worldBuildMs": 137.6999999996042,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 412,
+        "bgHits": 379,
+        "domainCanvasAllocations": 87,
+        "domainTileBuilds": 87,
+        "screenBuilds": 17,
+        "screenHits": 711,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 18105408,
+        "worldScale": 0.25,
+        "backgroundBytes": 0
+      },
+      "tileCount": 17,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "candidate3-final-final-start.jpg",
+      "group": "final",
+      "camera": [
+        1450,
+        6370,
+        0.45
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 58.70000000006985,
+      "medianMs": 6,
+      "p95Ms": 7.199999999953434,
+      "cacheBefore": {
+        "worldBuilds": 11,
+        "worldBuildMs": 146.99999999988358,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 432,
+        "bgHits": 387,
+        "domainCanvasAllocations": 99,
+        "domainTileBuilds": 99,
+        "screenBuilds": 19,
+        "screenHits": 727,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 11,
+        "worldBuildMs": 146.99999999988358,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 472,
+        "bgHits": 427,
+        "domainCanvasAllocations": 99,
+        "domainTileBuilds": 99,
+        "screenBuilds": 19,
+        "screenHits": 807,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "candidate3-final-final-east.jpg",
+      "group": "final",
+      "camera": [
+        14600,
+        6100,
+        0.28
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 60.79999999993015,
+      "medianMs": 0.19999999995343387,
+      "p95Ms": 0.40000000002328306,
+      "cacheBefore": {
+        "worldBuilds": 12,
+        "worldBuildMs": 158.79999999993015,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 492,
+        "bgHits": 435,
+        "domainCanvasAllocations": 111,
+        "domainTileBuilds": 111,
+        "screenBuilds": 21,
+        "screenHits": 823,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.29730177875068026,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 12,
+        "worldBuildMs": 158.79999999993015,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 532,
+        "bgHits": 475,
+        "domainCanvasAllocations": 111,
+        "domainTileBuilds": 111,
+        "screenBuilds": 21,
+        "screenHits": 903,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.29730177875068026,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "trace"
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "shared/data/campaign.json": "5d4f7b87cea780b8e01801553f4d2a5367302e2d5d719aefb10e3311bc1d534d",
+    "tools/environment/stage11-fracture-fields.mjs": "17c7a42033fee6fadbc1cadf4ed4fc4444fa05c15d793a5b65e7d01f55698ebb",
+    "tools/environment/stage11-vector-finish.mjs": "fc279e63b329d3c513438639ff8fe0663504474db86373aadfabecd8b8ed84ae",
+    "shared/runtime/stage11-landscape-art.js": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+    "web/manifest.json": "4e33561c18a04cf5e041e2313bc940401fe350a061176a41e9157dd9a6ca28d4"
+  }
+}

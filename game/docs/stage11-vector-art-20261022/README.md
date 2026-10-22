@@ -125,3 +125,60 @@
 | 피난처/뿌리 접촉 보존 | [candidate2](evidence/candidate2-refuge.jpg) | [candidate3](evidence/candidate3-refuge.jpg) |
 
 선공개는 생산 Chromium의 같은 camera/viewport/상태 fixture이며 실제 전투 완주나 실기기 터치 증거가 아니다. 촬영 당시 미커밋 소스와 `sourceHashes`를 [candidate3-preview.json](evidence/candidate3-preview.json)에 기록했다. JPG 각1MB 미만. 별도 최종 종합/새 성능 채택 결과는 아래 후속 기록에 구분해 남긴다. 첫 후보의3회/성능/기존45≠43 실패를 이번 통과로 재사용하지 않는다.
+
+
+### 세 번째 후보의 집중3회와 별도 종합 · 부모 최종 채택 대기
+
+최종 미술 소스 커밋은 `4016913c`다. 첫 선공개의 미커밋 sourceHashes와 커밋 후 최종10장의 campaign/저작기/재질 renderer/생성 manifest SHA256이 모두 같음을 대조했다. 이후 미술 소스 변경은 없다. 회차는 이번에 바뀐 중앙·동쪽 및 접촉/가림 영향만 확인하며, 옛 전체 전투·전술 실패를 다시 실행하지 않았다.
+
+1. **전체 면/깊이:** 최종 선공개 `candidate3-overview.jpg`를 직접 열어 중앙의 분리된 밝은 암편 밑 캡이 없어지고 윗면에서 하단까지 같은 암체 내부의 큰/중간 명암면으로 이어지는지 확인했다. 실제 공중 틈과 경사·지지점·기존 원경은 유지한다. 다른7개 암체는 두 번째 후보 그대로여서 기존 블록 조형이 일부 남는다.
+2. **근접 재질/접합:** `candidate3-central.jpg`와 `candidate3-refuge.jpg`를 직접 열었다. 중앙에서 이웃 면이 같은 꺾인 경계를 쓰며, 일부 틈/모서리광만 남는다. 뿌리가 만나는 암벽의 어두운 입구와 돌 입술/목재 끼움이 유지되고, 차양·자리·기둥·광주리·물동이와 주민 노출이 유지됨을 보았다. 뿌리/천막/후벽 원본 소스와 데이터는 이번에 손대지 않았고 사실적인 암벽 결합을 최종 완성했다고 주장하지 않는다.
+3. **모바일·최소/최대 배율 가림:** 별도 촬영한 `candidate3-focus-mobile-trace.jpg`(390×844), `candidate3-focus-min-mobile.jpg`(844×390의 실제 min), `candidate3-focus-max-refuge.jpg`(1440×900, max1.65)를 직접 열었다. 흔적 주변의 중간 면이 끊어진 대각 암편의 독립 아래 캡 대신 같은 경사 내부 면으로 이어진다. 흔적/화살표와 통행선·주민은 가리지 않는다. 축소에서 작은 결이 사라지는 점과 기존 가로 모바일 HUD의 큰 화면 점유는 그대로이며 그 아래 픽셀을 검수했다고 하지 않는다. [실제 camera/limits/상태](evidence/candidate3-focus-focus3.json).
+
+**별도 종합:** 집중 회차 이후 새 Chromium 세션으로 `candidate3-final-*`10장을 촬영하고 전부 직접 열었다. 전체/서쪽→중앙/피난처→세로 모바일/최대/최소→아랫길/시작/동쪽 능선 순서로, 인접 재질과의 회귀·구조/공중 공간·후벽 대비·목표/배우 가림을 재확인했다. 흰 타일 이음, 새 독립 발판 외곽, 주민/목표의 새 가림은 관찰하지 못했다. 동쪽 바깥 능선은 큰 저대비 면이 남고, 중앙도 절제된 넓은 면으로 보인다. 이 조형이 충분히 유기적으로 연결됐는지에 대한 미술 최종 합격은 부모의 실제 이미지 판단이다. 기능 불변이나 검수 횟수로 합격을 대신하지 않는다.
+
+| 장소 | 최종 종합 JPG |
+|---|---|
+| 전체 | [overview](evidence/candidate3-final-overview.jpg) |
+| 서쪽 | [west](evidence/candidate3-final-west.jpg) |
+| 중앙 | [central](evidence/candidate3-final-central.jpg) |
+| 피난처/뿌리 | [refuge](evidence/candidate3-final-refuge.jpg) |
+| 동쪽 세로 모바일 | [mobile-trace](evidence/candidate3-final-mobile-trace.jpg) |
+| 최대 배율 | [max-refuge](evidence/candidate3-final-max-refuge.jpg) |
+| 가로 모바일 최소 | [min-mobile](evidence/candidate3-final-min-mobile.jpg) |
+| 아랫길/이음 | [lower-route](evidence/candidate3-final-final-lower-route.jpg) |
+| 시작 | [start](evidence/candidate3-final-final-start.jpg) |
+| 동쪽 바깥 능선 | [east](evidence/candidate3-final-final-east.jpg) |
+
+[최종 촬영 원자료](evidence/candidate3-final-all.json). 모든 세 번째 후보 JPG는1MB 미만(최대133,928 bytes)이다. 새 사진은 모두 생산 Game/Scene의 고정 카메라·진행 상태 fixture이며 정상 전투 완주·실기기 터치·GPU FPS 검사가 아니다.
+
+### 세 번째 후보의 실제 불변/정적 캐시 확인
+
+- `npm run build`, `node tests/web-split.mjs` 통과. 환경 복구 직후 root/game 개발 의존성이 없어 설치한 뒤 빌드했다. 저장소 lockfile이나 의존성 버전은 변경하지 않았다.
+- `node tests/stage11-vector-finish.mjs` 통과. master `a091c6bd` 대비 지형/충돌/배우/목표/markers/events/보상/초기 상태·다른29장 불변, 저작기 멱등·재현 통과. [candidate3-preservation.json](evidence/candidate3-preservation.json).
+- 두 번째 후보 `e18d51e1`와 추가 대조: 바뀐 재질은 `rv-ritual-buttress`, `rv-north-trace` 두 개뿐이다. 나머지7개 재질, **전체 Library(피난처·후벽 포함)**, 중앙 뿌리 접합21개 face는 정확히 같다. 선공개4개의 camera/viewport/phase/current 목표도 정확히 같다. [candidate3-delta.json](evidence/candidate3-delta.json).
+- `node tests/stage11-landscape-art.mjs` 통과. 실제31개 지형·저작재질9개, 최대 준비 경로85(두 번째89), 렌더 battle/Canvas 상태 불변, prepare 재사용/sceneVersion 무효화, 옛 전투와 다른 장 opt-out 확인. 이 수치는 미술 점수로 사용하지 않는다. [candidate3-material-cache.json](evidence/candidate3-material-cache.json).
+- 새 Chromium 촬영/측정에서 pageerror0/HTTP실패0. 기존 지형 이동36경로·키보드·2막 상태 검사는 데이터/동작 변경이 없어 재실행하지 않았다. 원본master에서도 재현한 전술 적 수45≠43 실패는 그대로이며 이번에 수리하거나 통과 처리하지 않았다.
+
+### 세 번째 후보의 전후 프레임 표본 · 두 번째 후보와 비교
+
+이 환경에서 보존된 두 번째 후보 `e18d51e1`의 HTML/web 자산을 `/tmp`로 읽기 전용 추출해 먼저 실행하고, 이어 세 번째 후보 `4016913c`를 실행했다. 다른 검사/빌드/브라우저 부하와 겹치지 않았다. camera/viewport/phase/current 목표10쌍이 같고, 화면당 warmup8회 후 `Scene.render`40회 중앙값/p95다. 첫 draw는 viewport 안정화 뒤 해당 카메라의 첫 draw이며 새 페이지 전체 로딩 시간이나 장기 전투 FPS가 아니다. [두 번째 후보 원자료](evidence/candidate2-cost-all.json), [세 번째 후보 원자료](evidence/candidate3-final-all.json), [전후 대조](evidence/candidate3-performance.json).
+
+| 화면 | 중앙값 ms 두 번째→세 번째 | p95 ms 두 번째→세 번째 | 첫 draw ms 두 번째→세 번째 |
+|---|---:|---:|---:|
+| overview.jpg | 2.7→2.8 | 4.6→4.4 | 132.0→124.2 |
+| west.jpg | 7.8→6.8 | 9.9→8.7 | 77.6→89.1 |
+| central.jpg | 0.9→0.9 | 1.4→1.8 | 51.7→58.0 |
+| refuge.jpg | 0.7→0.7 | 1.1→1.6 | 55.2→61.9 |
+| mobile-trace.jpg | 0.3→0.2 | 0.5→0.8 | 32.9→37.5 |
+| max-refuge.jpg | 1.0→1.0 | 1.5→1.3 | 3.7→4.6 |
+| min-mobile.jpg | 1.1→0.9 | 1.7→1.3 | 63.7→71.3 |
+| final-lower-route.jpg | 0.8→0.8 | 1.5→1.3 | 18.7→23.5 |
+| final-start.jpg | 6.0→6.0 | 7.1→7.2 | 58.4→58.7 |
+| final-east.jpg | 0.3→0.2 | 0.5→0.4 | 69.5→60.8 |
+
+10쌍 모두 정적 world/screen/background 캐시 bytes·tile 수 동일, warm 구간 world/tile/canvas/screen 재빌드0. 이번 표본에서 지속 비용의 큰 악화는 관찰하지 못했지만 중앙 p95 1.4→1.8ms, 피난처1.1→1.6ms, 모바일0.5→0.8ms 증가가 있다. 첫 draw도 서쪽77.6→89.1ms, 중앙51.7→58.0ms, 피난처55.2→61.9ms, 가로 최소63.7→71.3ms 등 증가했다. 이 중 미술이 동일한 서쪽/피난처도 증가하므로 단일 순차40회 표본에서 전부 재질 변경의 인과로 단정하지 않는다. p95 최고는9.9→8.7ms이며 시작 첫 draw58.4→58.7ms다. 실기기 성능 무저하나 성능 최종 채택을 자동 선언하지 않는다.
+
+**원본master→첫 후보의 시작 캐시55.3→85.0ms 증가 한계는 위 역사 기록 그대로 남는다.** 이번 비교는 같은 환경의 두 번째→세 번째 후보이며 원본master와의 새 직접 비교가 아니다. 이번 작은 표본의 시작58.7ms를 근거로 옛 캐시 한계를 해결했다고 주장하지 않는다.
+
+최종 미술/성능 채택은 부모 판단 대기다. 이번 브랜치의 구현/사진/검사/기록만 커밋·push하며 master/Pages는 변경하지 않는다. 접근 거부·결과 불명 쓰기·미커밋 구현은 없다. 정상 전체 전투·실기기 터치·Pages 배포는 미실행이다.
