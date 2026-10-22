@@ -4422,3 +4422,8 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 - 웹 빌드의 막 엔딩 데이터 추출과 파티/몬스터/배우 에셋 추출을 분리했다. 실제 Chromium 진입에서 발견한 파티 데이터 누락을 수정했다.
 - 구 revision 저장에서 아직 열지 않은 staged scene은 동결 정의를 선택한다. 이미 저장된 staging steps/cursor는 그대로 읽는다.
 - `narrative-integration-boundaries.mjs`, 분할 빌드 동등성, 실제 Chromium 대표 장면 진입 통과. master/Pages 배포는 부모 최종 통합 담당이다.
+
+### 2026-10-22 확정 서사 원고 v2 연결
+- 부모가 작성한 일곱 확정 JSON을 단일 current catalogue에 적용했다. 공급 문장을 창작/윤색하지 않고 의미 ID로 연출·이름 공개·목격 조건을 연결한다.
+- 13장 구조 후 문답, 신규/저장/legacy 경계, 구조 화자/주민 선택, 쉼터 중복 도입과 완료 후 조건 요약을 정리했다. 목표·HP·보상·분할·Workshop 원고는 유지한다.
+- 30장 데이터/6개 경로/대표 Continue, 27장 입력·복귀 회귀, build/typecheck/분할 웹 비교 통과. Chromium 2개 화면 크기에서 대표 18항목과 JPG 7장을 확인했다. 전 장 정상 플레이·실물 모바일·Pages 검수는 아니다. [소스/근거/통합 주의](story/voice-v2-editorial/INTEGRATION_REPORT.md).
