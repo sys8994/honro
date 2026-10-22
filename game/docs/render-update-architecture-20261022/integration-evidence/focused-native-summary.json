@@ -1,0 +1,19 @@
+{
+  "sourceHead": "6e968e6ca5b21ffcd4ce82d5988083243e59d83c",
+  "syntax": [
+    "main.js",
+    "combat-status.js",
+    "objectives.js",
+    "combat-feedback.js"
+  ],
+  "nativeChecks": [
+    {
+      "command": "node tests/settled-hit-summon-lifecycle.mjs",
+      "outcome": "PASS 12 actual summon lifecycle fixtures; live pause/resume/new hit/restored identity preserved"
+    },
+    {
+      "command": "node tests/stage23-road-lead-resume.mjs",
+      "outcome": "PASS full-roster ramp input, exact Continue, split input equivalence, existing arrival reward exactly once"
+    }
+  ]
+}

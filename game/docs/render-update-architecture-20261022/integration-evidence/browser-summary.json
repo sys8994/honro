@@ -1,0 +1,31 @@
+{
+  "head": "6e968e6ca5b21ffcd4ce82d5988083243e59d83c",
+  "manifestSha256": "13c1391a258592fc7e155fe74f36af948c97f8dc53bda620e2bf00ece8aefcad",
+  "htmlSha256": "d64fe0c407c59c2e0f3c70b58a6df04e7c47c6fa4b64a6cce1226df1a9c7f12e",
+  "checks": [
+    {
+      "name": "settled-browser",
+      "command": [
+        "python",
+        "tools/testing/settled-hit-summon-browser.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "paused-boundaries",
+      "command": [
+        "python",
+        "tools/testing/render-paused-boundaries.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "hud-save-pixels",
+      "command": [
+        "python",
+        "tools/testing/render-update-boundaries.py"
+      ],
+      "exitCode": 0
+    }
+  ]
+}

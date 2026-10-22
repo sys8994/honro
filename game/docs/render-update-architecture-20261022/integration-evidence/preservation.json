@@ -1,0 +1,32 @@
+{
+  "master": "a091c6bd5e64eff748f5028fb6d0080faea3da87",
+  "preservedPaths": [
+    "shared/data",
+    "shared/engine/src",
+    "shared/map",
+    "game/src",
+    "shared/runtime/stage23-escort.js",
+    "shared/runtime/act2-pacing.js",
+    "shared/runtime/act-endings.js",
+    "shared/runtime/rest-journey.js",
+    "shared/runtime/menu-ui.js"
+  ],
+  "onlyChangedRuntimeSources": [
+    "shared/runtime/combat-feedback.js",
+    "shared/runtime/combat-status.js",
+    "shared/runtime/main.js",
+    "shared/runtime/objectives.js"
+  ],
+  "note": "Source-byte preservation, not full chapter gameplay/physical device verification.",
+  "preservedMainDebugAnchorsSha256": {
+    "debug-act-ending-preview": "b07d861708856e60f1a86c6a25b46f32217f1a5402ae7c69edad88a09e76a765",
+    "debug-journal-ending-preview": "3f8905eb59bd6ed3320c25c618ad2c0c3bf1a88616753f2b21496c83c1748ca8",
+    "debug-gallery-frame-return": "9fb9b653cbe7a62c780e4a0111f6fe33c679631b06367f03c2d95e7ea789aab0"
+  },
+  "wholeSharedTreeChangedPaths": [
+    "shared/runtime/combat-feedback.js",
+    "shared/runtime/combat-status.js",
+    "shared/runtime/main.js",
+    "shared/runtime/objectives.js"
+  ]
+}
