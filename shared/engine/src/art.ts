@@ -5,6 +5,11 @@ import { THEMES, CLASSES, SKILLS } from './data';
 import { Engine } from './engine';
 import { WORLD_W, clamp, lerp, rng, topAt, poly, rad } from './math';
 type C = CanvasRenderingContext2D;
+/** Visual spacing only: never omit a ray or alter hit snapshots. O(n log n). */
+export function cheonroeVisualGaps(fxs:FX[]){
+ const rays=fxs.filter(f=>f.kind==='lightningBolt'&&f.text==='cheonroe'&&f.age<f.life).sort((a,b)=>(a.x2??a.x)-(b.x2??b.x));
+ return new Map(rays.map((f,i)=>[f,Math.min(i?Math.abs((f.x2??f.x)-(rays[i-1].x2??rays[i-1].x)):Infinity,i+1<rays.length?Math.abs((f.x2??f.x)-(rays[i+1].x2??rays[i+1].x)):Infinity)]));
+}
 /** Screen-space weather uses gameplay wind's sign and strength, plus gravity.
  * Keep displacement integrated so changing wind cannot teleport particles.
  */
@@ -261,6 +266,7 @@ export class Renderer {
 
     /** Reuse the production ARCFALL projectile/fx rendering inside other shells. */
     worldFx(c: C, dt: number, paused = false, visualDt=dt) {
+        const lightningGaps=cheonroeVisualGaps(this.fxs);
         for (const f of this.fxs) {
             if (!paused) {
                 f.age += f.kind in SKILL_FX_SECONDS ? visualDt : dt; f.x += f.vx * dt; f.y += f.vy * dt;
@@ -271,7 +277,7 @@ export class Renderer {
             else if(f.kind==='circulation')drawCirculation(c,f.x,f.y,f.size,t);
             else if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
             else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
-            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t,f.text==='cheonroe');
+            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t,f.text==='cheonroe',lightningGaps.get(f));
             if(f.kind==='inkLine')line(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.color,f.size);
             if(f.kind==='skillGeometry'&&f.text)drawInkGeometry(c,JSON.parse(f.text),t);
             if(f.kind==='inkImpact')drawInkImpact(c,f.x,f.y,f.size,t);
@@ -570,6 +576,7 @@ export class Renderer {
             roundRect(c,-42,-20,84,30,8,'#17232de8','#da9b8955');txt(c,'−'+Math.round(damage),0,0,'#ffd6bd',20,'center','800');c.restore();
         }
         // World-space feedback.
+        const lightningGaps=cheonroeVisualGaps(this.fxs);
         for (const f of this.fxs) {
             if (!paused) {
                 f.age += dt;
@@ -587,7 +594,7 @@ export class Renderer {
             else if(f.kind==='circulation')drawCirculation(c,f.x,f.y,f.size,t);
             else if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
             else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
-            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t,f.text==='cheonroe');
+            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t,f.text==='cheonroe',lightningGaps.get(f));
             if (f.kind === 'spark') {
                 line(c, f.x, f.y, f.x - f.vx * .028, f.y - f.vy * .028, f.color, f.size);
             }
