@@ -521,34 +521,9 @@
     "theme": "temple",
     "steps": [
       {
-        "id": "clear-upper",
-        "label": "상층 주민 출입로 확보",
-        "kind": "clear",
-        "cohorts": "west",
-        "defeatIds": [
-          "v14-b1",
-          "v14-b2",
-          "v14-b3",
-          "v14-b4",
-          "v14-b6"
-        ]
-      },
-      {
         "id": "family-upper",
         "label": "상층 주민 구조",
         "kind": "rescue"
-      },
-      {
-        "id": "clear-middle",
-        "label": "장터 구조 접근로 확보",
-        "kind": "clear",
-        "cohorts": "middle",
-        "defeatIds": [
-          "v14-c1",
-          "v14-c2",
-          "v14-c3",
-          "v14-c4"
-        ]
       },
       {
         "id": "family-mid",
@@ -628,32 +603,7 @@
       ],
       "lamps": [],
       "sequence": [
-        {
-          "id": "clear-upper",
-          "label": "상층 주민 출입로 확보",
-          "kind": "clear",
-          "cohorts": "west",
-          "defeatIds": [
-            "v14-b1",
-            "v14-b2",
-            "v14-b3",
-            "v14-b4",
-            "v14-b6"
-          ]
-        },
         "family-upper",
-        {
-          "id": "clear-middle",
-          "label": "장터 구조 접근로 확보",
-          "kind": "clear",
-          "cohorts": "middle",
-          "defeatIds": [
-            "v14-c1",
-            "v14-c2",
-            "v14-c3",
-            "v14-c4"
-          ]
-        },
         "family-mid",
         "family-lower",
         "bridge",
