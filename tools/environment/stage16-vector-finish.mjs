@@ -1,11 +1,11 @@
+import {shadeRock,solidSection,createPlaneWriter} from './authored-rock-planes.mjs';
 /** Stage16 build-time author only: natural bedrock below worked temple stone.
  * Unequal shared contacts and two recessed rear abutments; no runtime pass. */
 import {readFileSync,writeFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
 import {compileSVG} from './build-act2-art.mjs';
 export const STAGE16_SUPPORT_ASSET='stage16:temple-recessed-foundation';
-const n=v=>Math.round(v*100)/100;
-const shade=(hex,d)=>'#'+[1,3,5].map(i=>Math.max(0,Math.min(255,parseInt(hex.slice(i,i+2),16)+d)).toString(16).padStart(2,'0')).join('');
+const shade=shadeRock;
 const poly=(ps,fill)=>`<path d="M${ps.map(p=>p.join(' ')).join('L')}Z" fill="${fill}"/>`;
 export function applyStage16VectorFinish(project){
  const st=project.stages.find(s=>s.metadata?.stageId===16),space=st.design.space,planes=[];
@@ -29,8 +29,8 @@ export function applyStage16VectorFinish(project){
   '0:18':[.42,.6,[[9630,270],[9750,380],[9890,350]]]
  };
  function body(id,dir,rows,joins,tones,bends,clefts,ledges){
-  const t=st.terrains.find(t=>t.id===id),surface=x=>{const ys=[];for(let i=0;i<t.points.length;i++){const a=t.points[i],b=t.points[(i+1)%t.points.length];if(a.x!==b.x&&x>=Math.min(a.x,b.x)&&x<=Math.max(a.x,b.x))ys.push(a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x));}return dir>0?Math.min(...ys):Math.max(...ys);},at=([x,d])=>[x,surface(x)+dir*d],v=rows.map(r=>r.map(at));
-  const add=(key,ps,fill)=>planes.push({id:'v16-'+id+'-'+key,terrainId:id,stage16VectorFinish:true,fill,points:ps.map(p=>p.map(n))});
+  const t=st.terrains.find(t=>t.id===id),surface=x=>solidSection(t,x,dir),at=([x,d])=>[x,surface(x)+dir*d],v=rows.map(r=>r.map(at));
+  const add=createPlaneWriter(planes,id,{prefix:'v16-'+id+'-',flag:'stage16VectorFinish'});
   add('mother',t.points.map(p=>[p.x,p.y]),dir>0?'#344e54':'#203a46');
   function edge(r,i){const a=rows[r][i],b=rows[r][i+1];return[v[r][i],...(r===0?[...new Set(t.points.map(p=>p.x))].filter(x=>x>a[0]&&x<b[0]).sort((a,b)=>a-b).map(x=>[x,surface(x)]):(bends['bed'+r+':'+i]||[]).map(at)),v[r][i+1]];}
   function span(r,l,h){const ps=[v[r][l]];for(let i=l;i<h;i++)ps.push(...edge(r,i).slice(1));return ps;}

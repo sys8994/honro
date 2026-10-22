@@ -17,3 +17,7 @@ Library `libfile_979eb1e9bc4c8191afca6b4db53ddcdf`/stage17-before-center.png의 
 빌드 전에 실제 성공6544/Pages39849168900/부모 확인 updated_at2026-10-22T20:30:30Z를 등록했다. 공개 graph SHA256 b1f611a65b7a5db66bfe1498df8665a0ec4b0cec1a37374cfb55e23f50619730, 원본/현재 파일 검증·복원0. 최근7일 전체+최소2개와 구934 chapter13 JSON2개를 hash/길이로 보존하며 후보를 성공 이력으로 쓰지 않는다.
 
 집중1 입구/서쪽/인양기/동쪽/하부 연속성, 집중2 근접 보행·가교/파단 접점·배우·기계 전후, 집중3 모바일 기본/최소·실제 양끝/하단을 직접 열어 발견/교정/한계를 남긴다. 마지막 동일 clean SHA의 별도 종합을 수행한다. 자동 면 수/검사 통과는 미술 승인이 아니다. 강제 상태 fixture는 정상 전투와 구분한다. 전체30장/verify/무관한 실패 수리는 하지 않는다.
+
+## 공유 저작 처리 보존점
+
+`authored-rock-planes.mjs`로 반올림/색 명도·solid 단면·정적 면 기록만 추출했다. stage15/16 고유 mesh/좌표·팔레트/후면 자산은 그대로 두었다. `tests/authored-rock-planes-preservation.mjs`에서 두 author 각각6544 전체 campaign을 바이트까지 재현하고 반복 멱등이며 현재 두 승인 장을 exact 보존하는 것을 확인했다. runtime/common renderer는 바꾸지 않았고 이 문서 단계에서는 campaign도 쓰지 않았다.

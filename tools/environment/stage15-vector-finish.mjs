@@ -1,9 +1,9 @@
+import {shadeRock,solidSection,createPlaneWriter} from './authored-rock-planes.mjs';
 /** Stage15 visual author: shared bedrock contacts inside the existing solids.
  * Build-time data only; no image, runtime pass, collision or gameplay author. */
 import {readFileSync,writeFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
-const N=v=>Math.round(v*100)/100;
-const shade=(hex,n)=>'#'+[1,3,5].map(i=>Math.max(0,Math.min(255,parseInt(hex.slice(i,i+2),16)+n)).toString(16).padStart(2,'0')).join('');
+const shade=shadeRock;
 export function applyStage15VectorFinish(project){
  const relief={
   'act2-floor':{
@@ -30,9 +30,9 @@ export function applyStage15VectorFinish(project){
  const keep=(space.terrainPlanes||[]).filter(p=>!p.stage15VectorFinish&&p.terrainId!=='cave-roof'),planes=[];
  function rock(id,dir,rows,links,tones,kinks,bedTurns,joints,seats){
   const t=st.terrains.find(t=>t.id===id);if(!t)throw Error('Missing live solid '+id);
-  const section=x=>{const ys=t.points.flatMap((a,i)=>{const b=t.points[(i+1)%t.points.length];return a.x!==b.x&&x>=Math.min(a.x,b.x)&&x<=Math.max(a.x,b.x)?[a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x)]:[];});return dir>0?Math.min(...ys):Math.max(...ys);};
+  const section=x=>solidSection(t,x,dir);
   const at=([x,d])=>[x,section(x)+dir*d],v=rows.map(row=>row.map(at)),bound=dir>0?Math.max(...t.points.map(p=>p.y)):Math.min(...t.points.map(p=>p.y));
-  const add=(name,ps,fill)=>planes.push({id:'v15-finish-'+id+'-'+name,terrainId:id,stage15VectorFinish:true,fill,points:ps.map(p=>p.map(N))});
+  const add=createPlaneWriter(planes,id,{prefix:'v15-finish-'+id+'-',flag:'stage15VectorFinish'});
   add('mother-rock',t.points.map(p=>[p.x,p.y]),dir>0?'#304450':'#213746');
   // Each edge is defined once. Adjacent faces use it in opposite directions.
   function edge(row,j){const a=v[row][j],b=v[row][j+1],turn=bedTurns[row+':'+j];if(turn)return[a,...turn.map(at),b];if(row===0){const xs=[...new Set(t.points.map(p=>p.x))].filter(x=>x>a[0]&&x<b[0]).sort((a,b)=>a-b);return[a,...xs.map(x=>[x,section(x)]),b];}return[a,b];}
