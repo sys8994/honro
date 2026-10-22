@@ -67,9 +67,9 @@ with sync_playwright() as pw:
   fixed('water-before',5680,4420,.65)
   p.evaluate('HonroApp.frame=()=>{}');p.wait_for_timeout(80);original=p.evaluate('JSON.stringify(HonroApp.engine.b)')
   p.evaluate((ROOT/'tools/testing/stage15-drain-render-fixture.js').read_text())
-  fixture_scope=p.evaluate("""()=>{const a=HonroApp,q=HonroStage15DrainRenderFixture(a.engine.b,a.stage);window.__stage15FixtureEngine=new HONRO_CORE.Engine(q.battle,()=>{},false);return q.scope;}""")
+  fixture_scope=p.evaluate("""()=>{const a=HonroApp,q=HonroStage15DrainRenderFixture(a.engine.b,a.stage);window.__stage15FixtureEngine=new HONRO_CORE.Engine(q.battle,()=>{},false);window.__stage15FixtureContacts=q.knownContacts;return q.scope;}""")
   fixed('water-after-fixture',5680,4420,.65)
   assert p.evaluate('JSON.stringify(HonroApp.engine.b)')==original
-  rows[-1]['mode']=fixture_scope
+  rows[-1]['mode']=fixture_scope;rows[-1]['knownSeparateDrainContacts']=p.evaluate('window.__stage15FixtureContacts')
  sources=['tools/testing/stage15-drain-render-fixture.js','shared/data/campaign.json','tools/environment/stage15-vector-finish.mjs','shared/runtime/act2-spatial-art.js','shared/runtime/renderer.js','shared/map/bounds.js','web/manifest.json']
  report={'sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'workingTree':subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True),'scope':'Fresh isolated debug UI; actual wheel/drag and explicitly separate fixed cameras. No combat completion/FPS claim.','rows':rows,'sourceHashes':{f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest()for f in sources if(ROOT/f).exists()},'errors':errors,'httpFailures':http};(out/'capture.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');b.close();assert not errors,errors;assert not http,http

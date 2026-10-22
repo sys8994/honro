@@ -15,5 +15,6 @@
  // safe-actor-boundary predicate remains untouched and is not tested here.
  for(const list of [q.terrain,q.honroWorldTerrain])for(const id of q.honroDrainRevealTerrains||[]){const t=list?.find(t=>t.id===id);if(t)t.broken=false;}
  const a=A.memory(q);a.drainRevealPending=false;a.drainRevealed=true;q.sceneVersion++;
- return{battle:q,scope:'Prepared post-sluice render fixture; cloned threat setup/production water transform/revealed ledge input; actors exact; no normal completion claim'};
+ const knownContacts=q.units.filter(u=>['a2-enemy-15','a2-enemy-17'].includes(u.id)).map(u=>({id:u.id,x:u.x,y:u.y,validContact:G.HONRO_CORE.validTerrainContactPose(q.terrain,u)}));
+ return{battle:q,knownContacts,scope:'Prepared post-sluice render fixture; cloned threat setup/production water transform/revealed ledge input; actors exact; no normal completion claim'};
 };})(globalThis);
