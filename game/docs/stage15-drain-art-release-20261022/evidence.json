@@ -1,0 +1,1733 @@
+{
+  "base": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+  "branch": "integration/stage15-drain-art-release-20261022",
+  "approvedArt": "bd69ca49d39b19573d02adf310442eb33f196a23",
+  "contactRuntimeBaseline": "16ea6ae9be928cadcf2cb62709eb35968262f209",
+  "integratedArtSource": "6c697b213bd64f31f686b1a2004d95e174e21fef",
+  "nativeCheckAndBuildSource": "6fcaf694deb54908f58f1a7444d94a05f8748fa5",
+  "browserCheckSource": "a49276d37e4e42ee5cb31a71884695eab289a96b",
+  "generatedCommit": "80dbaf526b176ec937bf3655ee6344a63d26bcf4",
+  "manifestSha256": "9953aa6408cf80ccccbec9e579c458b2f994ff711af74cc41c31a167136d292d",
+  "builtEntry": "web/entries/game.a3ef88844bfd41a4.js",
+  "project": "web/data/campaign.79772371a7cedf9a.json",
+  "native": {
+    "transition": {
+      "checkedCommit": "6fcaf694deb54908f58f1a7444d94a05f8748fa5",
+      "rows": [
+        {
+          "case": "full living roster after20ticks",
+          "repeatedWholeBattleContinueExact": true
+        },
+        {
+          "case": "source living asleep roster, no activation wait",
+          "all26ActorsRetained": true,
+          "moves": [
+            {
+              "id": "a2-enemy-15",
+              "from": {
+                "x": 6210,
+                "y": 4553.207547169811
+              },
+              "to": {
+                "x": 6290,
+                "y": 4539.622641509434
+              },
+              "distance": 81.14523807224506,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            },
+            {
+              "id": "a2-enemy-17",
+              "from": {
+                "x": 5890,
+                "y": 4749.411764705882
+              },
+              "to": {
+                "x": 5874,
+                "y": 4760.235294117647
+              },
+              "distance": 19.317059531081306,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            }
+          ],
+          "radius": 192,
+          "step": 8,
+          "allResourcesAndAIUnchanged": true
+        },
+        {
+          "case": "old active invalid contact repaired once",
+          "repeatedWholeBattleContinueExact": true
+        },
+        {
+          "case": "old active save",
+          "localRepair": true,
+          "moves": [
+            {
+              "id": "a2-enemy-15",
+              "from": {
+                "x": 6210,
+                "y": 4553.207547169811
+              },
+              "to": {
+                "x": 6290,
+                "y": 4539.622641509434
+              },
+              "distance": 81.14523807224506,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            },
+            {
+              "id": "a2-enemy-17",
+              "from": {
+                "x": 5890,
+                "y": 4749.411764705882
+              },
+              "to": {
+                "x": 5874,
+                "y": 4760.235294117647
+              },
+              "distance": 19.317059531081306,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            }
+          ]
+        },
+        {
+          "case": "valid active save without stamp",
+          "repeatedWholeBattleContinueExact": true
+        },
+        {
+          "case": "player and ally occupying proposed solid",
+          "moves": [
+            {
+              "id": "a2-enemy-15",
+              "from": {
+                "x": 6210,
+                "y": 4553.207547169811
+              },
+              "to": {
+                "x": 6290,
+                "y": 4539.622641509434
+              },
+              "distance": 81.14523807224506,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            },
+            {
+              "id": "a2-enemy-17",
+              "from": {
+                "x": 5890,
+                "y": 4749.411764705882
+              },
+              "to": {
+                "x": 5802,
+                "y": 4785.333333333333
+              },
+              "distance": 95.04924561855648,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            },
+            {
+              "id": "fixture-ally",
+              "from": {
+                "x": 6110,
+                "y": 4600.588235294118
+              },
+              "to": {
+                "x": 6054,
+                "y": 4506.285714285715
+              },
+              "distance": 109.67664048711718,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            },
+            {
+              "id": "p-archer",
+              "from": {
+                "x": 5890,
+                "y": 4749.411764705882
+              },
+              "to": {
+                "x": 5890,
+                "y": 4600
+              },
+              "distance": 149.41176470588198,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            }
+          ],
+          "resourcesAndActionsExact": true
+        },
+        {
+          "case": "one blocked actor after another candidate found",
+          "atomicDefer": true,
+          "reason": "no local contact",
+          "calls": [
+            {
+              "id": "a2-enemy-15",
+              "found": true
+            },
+            {
+              "id": "a2-enemy-17",
+              "found": false
+            },
+            {
+              "id": "a2-enemy-15",
+              "found": true
+            },
+            {
+              "id": "a2-enemy-17",
+              "found": false
+            },
+            {
+              "id": "a2-enemy-15",
+              "found": true
+            },
+            {
+              "id": "a2-enemy-17",
+              "found": false
+            }
+          ]
+        },
+        {
+          "case": "blocked old-active pathological fixture",
+          "noFarFallback": true,
+          "limit": "Existing invalid pose remains unresolved rather than teleporting; no geometry is newly enabled."
+        },
+        {
+          "case": "unsafe dialogue",
+          "postponed": true
+        },
+        {
+          "case": "unsafe review",
+          "postponed": true
+        },
+        {
+          "case": "unsafe flight",
+          "postponed": true
+        },
+        {
+          "case": "unsafe charging",
+          "postponed": true
+        },
+        {
+          "case": "unsafe volley",
+          "postponed": true
+        },
+        {
+          "case": "unsafe melee",
+          "postponed": true
+        },
+        {
+          "case": "unaffected airborne actor",
+          "exact": true
+        }
+      ],
+      "scope": "Current source transition/save and adversarial occupancy/action fixtures. Not normal combat arrival or Stage15 fullplay."
+    },
+    "diagnostic": {
+      "checkedCommit": "6fcaf694deb54908f58f1a7444d94a05f8748fa5",
+      "scope": "Original full living roster; supplied completed sluice/pending reveal facts, production reveal/sanitizer and20 ordinary Engine ticks. NOT normal combat completion.",
+      "passed": true,
+      "beforeBroken": true,
+      "guardWithBroken": [],
+      "guardWithActiveClone": [
+        "a2-enemy-15",
+        "a2-enemy-17"
+      ],
+      "activated": true,
+      "newInvalid": [],
+      "sanitizerMoves": [],
+      "stillInvalidAfter20Ticks": [],
+      "after20TickPositionChanges": []
+    },
+    "routes": {
+      "base": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+      "checkedCommit": "6fcaf694deb54908f58f1a7444d94a05f8748fa5",
+      "runtimeSourceSha256": "541a5de814beef1a0571eea4c1e9dc96c30488ce89f1cdeb0f4b320007da06e3",
+      "rows": [
+        {
+          "case": "current-source",
+          "dimensions": [
+            8000,
+            6000
+          ],
+          "enemies": 22,
+          "party": 4,
+          "entryPlan": 14.4,
+          "entryXP": 48393,
+          "steps": [
+            {
+              "id": "sluice",
+              "label": "수문을 열어 낮은 길 드러내기",
+              "kind": "interact",
+              "optional": true
+            },
+            {
+              "id": "groove",
+              "label": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+              "kind": "interact"
+            },
+            {
+              "id": "route-exit",
+              "kind": "route",
+              "label": "흔적 확인 후 배수한 아랫길 또는 고지로 통과"
+            }
+          ],
+          "routeSpec": {
+            "revision": 1,
+            "toStage": 16,
+            "common": [
+              "groove"
+            ],
+            "routes": [
+              {
+                "id": "A",
+                "markerId": "route-lower-exit",
+                "requiresDone": [
+                  "sluice"
+                ],
+                "requiresTerrainActive": [
+                  "fc15-drained-ledge"
+                ]
+              },
+              {
+                "id": "B",
+                "markerId": "route-upper-exit",
+                "requiresDone": []
+              }
+            ]
+          },
+          "goal": "옛 흔적을 확인하고 배수한 낮은 길 또는 고지로 통과"
+        },
+        {
+          "case": "local interaction threat fixture",
+          "marker": "sluice",
+          "mandatoryThreatIds": [
+            "a2-enemy-5",
+            "a2-enemy-6",
+            "a2-enemy-8"
+          ],
+          "radius": 360
+        },
+        {
+          "case": "local interaction threat fixture",
+          "marker": "groove",
+          "mandatoryThreatIds": [
+            "a2-enemy-15",
+            "a2-enemy-18"
+          ],
+          "radius": 360
+        },
+        {
+          "case": "route qualification fixture",
+          "route": "A",
+          "grooveRequired": true,
+          "optionalSluiceRequired": true,
+          "repeatCommitExact": true
+        },
+        {
+          "case": "route qualification fixture",
+          "route": "B",
+          "grooveRequired": true,
+          "optionalSluiceRequired": false,
+          "repeatCommitExact": true
+        },
+        {
+          "case": "A sluice pending dialogue/review",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "A actual sluice E after staged arrival",
+          "waterDrop": 120,
+          "collisionAndWorldSupportActivated": true,
+          "duplicateERefused": true,
+          "enemiesPreparedSubdued": 22
+        },
+        {
+          "case": "A drainage activated",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "A groove dialogue",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "prepared A final arrival/outcome/16 entry",
+          "grooveRecordedViaRealE": true,
+          "routeRecordedAutomatically": true,
+          "rewardOnce": true,
+          "entryVariant": "A",
+          "entryHeroes": [
+            {
+              "cls": "archer",
+              "x": 570,
+              "y": 5480,
+              "hp": 785,
+              "focus": 180
+            },
+            {
+              "cls": "mage",
+              "x": 460,
+              "y": 5480,
+              "hp": 806,
+              "focus": 224
+            },
+            {
+              "cls": "knight",
+              "x": 680,
+              "y": 5480,
+              "hp": 1234,
+              "focus": 195
+            },
+            {
+              "cls": "occultist",
+              "x": 350,
+              "y": 5480,
+              "hp": 928,
+              "focus": 268
+            }
+          ],
+          "normalPlayCompletion": false
+        },
+        {
+          "case": "A actual16 entry",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "B groove dialogue",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "prepared B final arrival/outcome/16 entry",
+          "grooveRecordedViaRealE": true,
+          "routeRecordedAutomatically": true,
+          "rewardOnce": true,
+          "entryVariant": "B",
+          "entryHeroes": [
+            {
+              "cls": "archer",
+              "x": 2650,
+              "y": 5029.183673469388,
+              "hp": 785,
+              "focus": 180
+            },
+            {
+              "cls": "mage",
+              "x": 2750,
+              "y": 5021.0204081632655,
+              "hp": 806,
+              "focus": 224
+            },
+            {
+              "cls": "knight",
+              "x": 2850,
+              "y": 5012.857142857143,
+              "hp": 1234,
+              "focus": 195
+            },
+            {
+              "cls": "occultist",
+              "x": 3380,
+              "y": 4890.649350649351,
+              "hp": 928,
+              "focus": 268
+            }
+          ],
+          "normalPlayCompletion": false
+        },
+        {
+          "case": "B actual16 entry",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "all-party-dead fixture",
+          "genericFailure": true,
+          "stageSpecificProtectedNPCs": 0
+        }
+      ],
+      "scope": "Prepared predicate/arrival/subdued-enemy fixtures. Actual interaction/drain/production App save/outcome/entry checks; NOT normal-resource combat or whole-stage clear-time evidence."
+    },
+    "art": {
+      "pass": true,
+      "base": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+      "runtimeBase": "16ea6ae9be928cadcf2cb62709eb35968262f209",
+      "approved": "bd69ca49d39b19573d02adf310442eb33f196a23",
+      "checkedCommit": "6fcaf694deb54908f58f1a7444d94a05f8748fa5",
+      "approvedVisualExact": true,
+      "contactRuntimeByteExact": true,
+      "protectedProjectHash": "7a3fee8f55954b98004290678bfdad0450944b8d980cc50cd82f5106b4aa64d4",
+      "wholeGameplayAndOther29AndLibraryExact": true,
+      "twelveTerrainsRoutesActorsGoalsWaterNarrativeCameraUnchanged": true,
+      "originalArchAndWetPlanesExact": true,
+      "wholeSolidVisualCoverage": true,
+      "reproducible": true,
+      "idempotent": true,
+      "renderPure": true,
+      "drainVisualFixtureSourceAndActorsExact": true,
+      "drainedRenderReuseAndPurity": true,
+      "knownSeparateDrainContacts": [
+        {
+          "id": "a2-enemy-15",
+          "x": 6210,
+          "y": 4553.207547169811,
+          "validContact": false
+        },
+        {
+          "id": "a2-enemy-17",
+          "x": 5890,
+          "y": 4749.411764705882,
+          "validContact": false
+        }
+      ],
+      "builtArtEqualsCanonical": true,
+      "staticPathReuse": true,
+      "cachedDrawNewPaths": 0,
+      "sceneVersionInvalidation": true,
+      "prepared": [
+        {
+          "id": "act2-floor",
+          "planes": 103
+        },
+        {
+          "id": "cave-roof",
+          "planes": 75
+        }
+      ],
+      "publishedGraphs": 8,
+      "protectedPublishedFiles": 454,
+      "old934Chapter13": [
+        "web/data/chapter-13-assets.1387b6a1f088fc74.json",
+        "web/data/chapter-13.516170b245a8b075.json"
+      ],
+      "scope": "Visual/data/static reuse checks only. No art approval, full campaign, completion or dynamic FPS claim."
+    }
+  },
+  "logs": {
+    "build": "\n> build\n> node workshop/build.mjs\n\n{\"gameBytes\":17415,\"workshopBytes\":3947,\"files\":354,\"playtest\":\"web/entries/game.821b22b03002b781.html?embedded=1\"}\nBuilt Game, Workshop and the direct Playtest document with shared external modules\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n",
+    "typecheck": "\n> honro-game@1.0.0-rc.21 typecheck\n> tsc --project engine/tsconfig.json\n\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n",
+    "geometry": "15 A archer PASS damage 0 \n15 B archer PASS damage 0 \n15 A mage PASS damage 0 \n15 B mage PASS damage 0 \n15 A knight PASS damage 0 \n15 B knight PASS damage 0 \n15 A occultist PASS damage 0 \n15 B occultist PASS damage 0 \nScoped isolated geometry checks passed: 15\n",
+    "transition": "PASS bounded atomic transition, original/old/valid saves, player/ally, blocked group, unsafe actions and idempotency\n",
+    "diagnostic": "PASS Stage15 drainage/contact/save diagnostic {\"guardWithBroken\":[],\"guardWithActiveClone\":[\"a2-enemy-15\",\"a2-enemy-17\"],\"newInvalid\":[],\"moves\":[]}\n",
+    "routes": "Completed current15 prerequisites/local threats/drain/E/save/reward/16 A-B entry fixtures; no normal combat completion claim\n",
+    "art": "{\"pass\":true,\"base\":\"d55b6c6876a79ce041bf7473ba43b50a10389543\",\"runtimeBase\":\"16ea6ae9be928cadcf2cb62709eb35968262f209\",\"approved\":\"bd69ca49d39b19573d02adf310442eb33f196a23\",\"checkedCommit\":\"6fcaf694deb54908f58f1a7444d94a05f8748fa5\",\"approvedVisualExact\":true,\"contactRuntimeByteExact\":true,\"protectedProjectHash\":\"7a3fee8f55954b98004290678bfdad0450944b8d980cc50cd82f5106b4aa64d4\",\"wholeGameplayAndOther29AndLibraryExact\":true,\"twelveTerrainsRoutesActorsGoalsWaterNarrativeCameraUnchanged\":true,\"originalArchAndWetPlanesExact\":true,\"wholeSolidVisualCoverage\":true,\"reproducible\":true,\"idempotent\":true,\"renderPure\":true,\"drainVisualFixtureSourceAndActorsExact\":true,\"drainedRenderReuseAndPurity\":true,\"knownSeparateDrainContacts\":[{\"id\":\"a2-enemy-15\",\"x\":6210,\"y\":4553.207547169811,\"validContact\":false},{\"id\":\"a2-enemy-17\",\"x\":5890,\"y\":4749.411764705882,\"validContact\":false}],\"builtArtEqualsCanonical\":true,\"staticPathReuse\":true,\"cachedDrawNewPaths\":0,\"sceneVersionInvalidation\":true,\"prepared\":[{\"id\":\"act2-floor\",\"planes\":103},{\"id\":\"cave-roof\",\"planes\":75}],\"publishedGraphs\":8,\"protectedPublishedFiles\":454,\"old934Chapter13\":[\"web/data/chapter-13-assets.1387b6a1f088fc74.json\",\"web/data/chapter-13.516170b245a8b075.json\"],\"scope\":\"Visual/data/static reuse checks only. No art approval, full campaign, completion or dynamic FPS claim.\"}\n",
+    "browser": "PASS generated UI production sluice/reveal, original minecarts contact/resource preservation,20ticks, downloaded export/Continue twice; errors0\n"
+  },
+  "retention": {
+    "checkedCommit": "a49276d37e4e42ee5cb31a71884695eab289a96b",
+    "activeFiles": 354,
+    "protectedPublishedFiles": 454,
+    "totalCheckedFiles": 472,
+    "allHashesAndLengthsMatch": true,
+    "original934Chapter13": [
+      {
+        "path": "web/data/chapter-13-assets.1387b6a1f088fc74.json",
+        "bytes": 24657,
+        "sha256": "1387b6a1f088fc74db0214c2d751d5069ad7c298bc6cacc071f2d0b42296e07d"
+      },
+      {
+        "path": "web/data/chapter-13.516170b245a8b075.json",
+        "bytes": 57580,
+        "sha256": "516170b245a8b07515d056a25cd841526898fb4f2bc6c0c28c51d4bf9624e701"
+      }
+    ],
+    "publishedGenerations": [
+      {
+        "sourceSha": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+        "publishedAt": "2026-10-22T18:08:34Z",
+        "graphSha256": "c864a87b28e8f88476e2339229e3c58cdaa9ecaa2a8c29eeed118e3c3d7f57d9"
+      },
+      {
+        "sourceSha": "6cbda400009206180d28c61e5fc14a0b6246809a",
+        "publishedAt": "2026-10-22T17:40:00Z",
+        "graphSha256": "45467a11aba6ff3b6b5e1bad52b09a68fba18c5dd6ed996aaa4e83017426b820"
+      },
+      {
+        "sourceSha": "1f1b267c2d23bc5975af5841c560e4413291330b",
+        "publishedAt": "2026-10-22T16:46:17Z",
+        "graphSha256": "8ad60e0f7ee83147d16caf2e5a81f3c60b7ba200b5cb09f0bdf37e15c6da6249"
+      },
+      {
+        "sourceSha": "63cc28113b36d2da92b9e1557de52620edb7db03",
+        "publishedAt": "2026-10-22",
+        "graphSha256": "d0c7b149d59810240d236e7815da700f21311d0ef5a4efb656b2ba78e8bac38e"
+      },
+      {
+        "sourceSha": "fe6911c9e6c1358d9384c355d3e6fe5c6e96e9bb",
+        "publishedAt": "2026-10-22",
+        "graphSha256": "80b35631fe8a686411311d9af399d70b6f079125f480972dd16e4dbece1c5fce"
+      },
+      {
+        "sourceSha": "a23dffb5afab998646817ffd3ee9732d99ce3172",
+        "publishedAt": "2026-10-22",
+        "graphSha256": "7b87602302e0b02fe210d8d9023c875fdea65cda054d3e9477512ecc085c0941"
+      },
+      {
+        "sourceSha": "9890006179e45c7b323941a1252a3003c298751f",
+        "publishedAt": "2026-10-22",
+        "graphSha256": "8d3ea6034d68b2f8cdf7269a77b00ba9296fef623c857ebc5531ce3bd158d7d9"
+      },
+      {
+        "sourceSha": "934fcabd74767d662aee3830585ba807234934cc",
+        "publishedAt": "2026-10-22",
+        "graphSha256": "9999066fac3a298bb72279371b9e5be71356414faa3c2da1d789e2905c46f02d"
+      }
+    ],
+    "gameEntry": "web/entries/game.a3ef88844bfd41a4.js",
+    "project": "web/data/campaign.79772371a7cedf9a.json"
+  },
+  "browser": {
+    "checkedCommit": "a49276d37e4e42ee5cb31a71884695eab289a96b",
+    "scope": "Final generated UI: prepared arrival -> production sluice/reveal -> real\ndownloaded export -> Continue twice. This is not normal combat arrival/fullplay.\nFrame scheduling is paused for deterministic inspection; production story,\ninteraction, reveal, Engine ticks, export and Continue methods remain intact.\nA read-only observer delegates the production transition unchanged and captures\nits adjacent actor states; ordinary sluice/story effects are outside that scope.\n",
+    "inputScope": "Prepared arrival and local subdued facts; not normal combat arrival. No completed sluice or activated ledge is supplied.",
+    "prepared": {
+      "activeHero": "p-archer",
+      "arrival": {
+        "x": 2350,
+        "y": 3800
+      },
+      "subduedIds": [
+        "a2-enemy-5",
+        "a2-enemy-6",
+        "a2-enemy-8"
+      ]
+    },
+    "verification": {
+      "moves": [
+        {
+          "id": "a2-enemy-15",
+          "from": {
+            "x": 6210,
+            "y": 4553.207547169811
+          },
+          "to": {
+            "x": 6290,
+            "y": 4539.622641509434
+          },
+          "distance": 81.14523807224506,
+          "physicsBefore": {
+            "vx": 0,
+            "vy": 0,
+            "jumping": null,
+            "airborne": false
+          }
+        },
+        {
+          "id": "a2-enemy-17",
+          "from": {
+            "x": 5890,
+            "y": 4749.411764705882
+          },
+          "to": {
+            "x": 5874,
+            "y": 4760.235294117647
+          },
+          "distance": 19.317059531081306,
+          "physicsBefore": {
+            "vx": 0,
+            "vy": 0,
+            "jumping": null,
+            "airborne": false
+          }
+        }
+      ],
+      "all26ActorsRetained": true,
+      "protectedActorFieldsExact": true,
+      "observerScope": "Adjacent production transition call; wrapper delegates original unchanged, records copies only, then restores original function",
+      "ordinaryInteractionOrStoryChangedActors": [
+        "p-archer",
+        "p-mage",
+        "p-knight",
+        "p-occultist",
+        "a2-enemy-0",
+        "a2-enemy-1",
+        "a2-enemy-2",
+        "a2-enemy-3",
+        "a2-enemy-4",
+        "a2-enemy-5",
+        "a2-enemy-6",
+        "a2-enemy-7",
+        "a2-enemy-8",
+        "a2-enemy-9",
+        "a2-enemy-10",
+        "a2-enemy-11",
+        "a2-enemy-12",
+        "a2-enemy-13",
+        "a2-enemy-14",
+        "a2-enemy-15",
+        "a2-enemy-16",
+        "a2-enemy-17",
+        "a2-enemy-18",
+        "a2-enemy-19",
+        "a2-enemy-20",
+        "a2-enemy-21"
+      ],
+      "twentyTicksValid": true
+    },
+    "rows": [
+      {
+        "file": "drain-before.jpg",
+        "camera": "Fixed production render at6000,4470,.65; frame scheduler paused",
+        "round": 1,
+        "phase": "aim",
+        "goal": "groove",
+        "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+        "ledgeBroken": true,
+        "drain": {
+          "version": 2,
+          "done": {},
+          "events": {},
+          "rescued": [],
+          "checkpoints": [],
+          "holds": {}
+        },
+        "actors": [
+          {
+            "id": "a2-enemy-15",
+            "x": 6210,
+            "y": 4553.207547169811,
+            "hp": 1434,
+            "focus": 150,
+            "moveLeft": 750,
+            "acted": false,
+            "validContact": true
+          },
+          {
+            "id": "a2-enemy-17",
+            "x": 5890,
+            "y": 4749.411764705882,
+            "hp": 925,
+            "focus": 150,
+            "moveLeft": 750,
+            "acted": false,
+            "validContact": true
+          }
+        ]
+      },
+      {
+        "file": "drain-after.jpg",
+        "camera": "Fixed production render at6000,4470,.65; frame scheduler paused",
+        "round": 1,
+        "phase": "aim",
+        "goal": "groove",
+        "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+        "ledgeBroken": false,
+        "drain": {
+          "version": 2,
+          "done": {
+            "sluice": true
+          },
+          "events": {},
+          "rescued": [],
+          "checkpoints": [
+            {
+              "id": "sluice",
+              "round": 1
+            }
+          ],
+          "holds": {},
+          "drainRevealPending": false,
+          "viewerId": "p-mage",
+          "drainContact": {
+            "revision": 1,
+            "radius": 192,
+            "step": 8,
+            "source": "drain-event",
+            "moves": [
+              {
+                "id": "a2-enemy-15",
+                "from": {
+                  "x": 6210,
+                  "y": 4553.207547169811
+                },
+                "to": {
+                  "x": 6290,
+                  "y": 4539.622641509434
+                },
+                "distance": 81.14523807224506,
+                "physicsBefore": {
+                  "vx": 0,
+                  "vy": 0,
+                  "jumping": null,
+                  "airborne": false
+                }
+              },
+              {
+                "id": "a2-enemy-17",
+                "from": {
+                  "x": 5890,
+                  "y": 4749.411764705882
+                },
+                "to": {
+                  "x": 5874,
+                  "y": 4760.235294117647
+                },
+                "distance": 19.317059531081306,
+                "physicsBefore": {
+                  "vx": 0,
+                  "vy": 0,
+                  "jumping": null,
+                  "airborne": false
+                }
+              }
+            ]
+          },
+          "drainRevealed": true,
+          "pendingWaves": []
+        },
+        "actors": [
+          {
+            "id": "a2-enemy-15",
+            "x": 6290,
+            "y": 4539.622641509434,
+            "hp": 1434,
+            "focus": 150,
+            "moveLeft": 750,
+            "acted": false,
+            "validContact": true
+          },
+          {
+            "id": "a2-enemy-17",
+            "x": 5874,
+            "y": 4760.235294117647,
+            "hp": 925,
+            "focus": 150,
+            "moveLeft": 750,
+            "acted": false,
+            "validContact": true
+          }
+        ]
+      },
+      {
+        "case": "downloaded export/Continue 1",
+        "wholeBattleExact": true,
+        "sha256": "c5fd175ca3b2ce76ee0814b03a814ab22fff04e2c458dc4a4f025292ed101a6e"
+      },
+      {
+        "case": "downloaded export/Continue 2",
+        "wholeBattleExact": true,
+        "sha256": "c5fd175ca3b2ce76ee0814b03a814ab22fff04e2c458dc4a4f025292ed101a6e"
+      },
+      {
+        "file": "drain-continue.jpg",
+        "camera": "Fixed production render at6000,4470,.65; frame scheduler paused",
+        "round": 1,
+        "phase": "aim",
+        "goal": "groove",
+        "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+        "ledgeBroken": false,
+        "drain": {
+          "version": 2,
+          "done": {
+            "sluice": true
+          },
+          "events": {},
+          "rescued": [],
+          "checkpoints": [
+            {
+              "id": "sluice",
+              "round": 1
+            }
+          ],
+          "holds": {},
+          "drainRevealPending": false,
+          "viewerId": "p-mage",
+          "drainContact": {
+            "revision": 1,
+            "radius": 192,
+            "step": 8,
+            "source": "drain-event",
+            "moves": [
+              {
+                "id": "a2-enemy-15",
+                "from": {
+                  "x": 6210,
+                  "y": 4553.207547169811
+                },
+                "to": {
+                  "x": 6290,
+                  "y": 4539.622641509434
+                },
+                "distance": 81.14523807224506,
+                "physicsBefore": {
+                  "vx": 0,
+                  "vy": 0,
+                  "airborne": false
+                }
+              },
+              {
+                "id": "a2-enemy-17",
+                "from": {
+                  "x": 5890,
+                  "y": 4749.411764705882
+                },
+                "to": {
+                  "x": 5874,
+                  "y": 4760.235294117647
+                },
+                "distance": 19.317059531081306,
+                "physicsBefore": {
+                  "vx": 0,
+                  "vy": 0,
+                  "airborne": false
+                }
+              }
+            ]
+          },
+          "drainRevealed": true,
+          "pendingWaves": []
+        },
+        "actors": [
+          {
+            "id": "a2-enemy-15",
+            "x": 6290,
+            "y": 4539.622641509434,
+            "hp": 1434,
+            "focus": 150,
+            "moveLeft": 750,
+            "acted": false,
+            "validContact": true
+          },
+          {
+            "id": "a2-enemy-17",
+            "x": 5874,
+            "y": 4760.235294117647,
+            "hp": 925,
+            "focus": 150,
+            "moveLeft": 750,
+            "acted": false,
+            "validContact": true
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "httpFailures": [],
+    "manifestSha256": "9953aa6408cf80ccccbec9e579c458b2f994ff711af74cc41c31a167136d292d"
+  },
+  "actualUIArt": {
+    "central": {
+      "sha": "6fcaf694deb54908f58f1a7444d94a05f8748fa5",
+      "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M tests/stage15-drain-art-browser-fixture.mjs\n D web/entries/game.8f99b6ab954b1de3.js\n D web/entries/game.a8575b7b0f62bbc6.html\n D web/entries/workshop.36ef644dcd6b6e5d.js\n M web/manifest.json\n D web/styles/game-src-presentation.e7c8986bcfbf16ff.css\n?? web/data/campaign.79772371a7cedf9a.json\n?? web/data/chapter-15.006c52a5adb3e7c4.json\n?? web/entries/game.821b22b03002b781.html\n?? web/entries/game.a3ef88844bfd41a4.js\n?? web/entries/workshop.da3ebe5e3f51eb22.js\n?? web/runtime/campaign.7c3b62bcf4cb4351.js\n",
+      "scope": "Fresh isolated debug UI; actual wheel/drag and explicitly separate fixed cameras. No combat completion/FPS claim.",
+      "rows": [
+        {
+          "file": "entry-default.jpg",
+          "mode": "Actual fresh UI entry/default follow",
+          "camera": [
+            475.5907165301771,
+            3455.63109131843,
+            0.94
+          ],
+          "viewport": {
+            "left": -152.06885793790804,
+            "right": 1103.2502909982622,
+            "top": 3122.5526338716218,
+            "bottom": 3788.7095487652387
+          },
+          "goal": "groove",
+          "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+          "phase": "aim",
+          "round": 1,
+          "drain": false,
+          "ledge": true,
+          "cache": {
+            "worldBuilds": 1,
+            "worldBuildMs": 44.700000032782555,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 399,
+            "bgHits": 0,
+            "domainCanvasAllocations": 26,
+            "domainTileBuilds": 26,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "worldBytes": 25560576,
+            "worldScale": 0.68,
+            "backgroundBytes": 0
+          },
+          "heroes": [
+            {
+              "id": "p-archer",
+              "x": 320,
+              "y": 3638.4444444444443,
+              "hp": 365
+            },
+            {
+              "id": "p-mage",
+              "x": 415,
+              "y": 3646.888888888889,
+              "hp": 390
+            },
+            {
+              "id": "p-knight",
+              "x": 510,
+              "y": 3655.333333333333,
+              "hp": 641
+            },
+            {
+              "id": "p-occultist",
+              "x": 605,
+              "y": 3663.777777777778,
+              "hp": 460
+            }
+          ]
+        },
+        {
+          "file": "minimum-entry.jpg",
+          "mode": "Actual UI wheel two pages",
+          "camera": [
+            482.50125071362953,
+            3469.599154929576,
+            0.17352941176470588
+          ],
+          "viewport": {
+            "left": -2917.4987492863706,
+            "right": 3882.5012507136294,
+            "top": 1665.3300871329657,
+            "bottom": 5273.868222726186
+          },
+          "goal": "groove",
+          "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+          "phase": "aim",
+          "round": 1,
+          "drain": false,
+          "ledge": true,
+          "cache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 59.80000004917383,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 505,
+            "bgHits": 31,
+            "domainCanvasAllocations": 47,
+            "domainTileBuilds": 47,
+            "screenBuilds": 4,
+            "screenHits": 62,
+            "screenWorldBytes": 2954720,
+            "screenBackgroundBytes": 2954720,
+            "worldBytes": 12780288,
+            "worldScale": 0.21022410381342863,
+            "backgroundBytes": 0
+          },
+          "heroes": [
+            {
+              "id": "p-archer",
+              "x": 320,
+              "y": 3638.4444444444443,
+              "hp": 365
+            },
+            {
+              "id": "p-mage",
+              "x": 415,
+              "y": 3646.888888888889,
+              "hp": 390
+            },
+            {
+              "id": "p-knight",
+              "x": 510,
+              "y": 3655.333333333333,
+              "hp": 641
+            },
+            {
+              "id": "p-occultist",
+              "x": 605,
+              "y": 3663.777777777778,
+              "hp": 460
+            }
+          ]
+        },
+        {
+          "file": "center-pan.jpg",
+          "mode": "Actual horizontal camera drag after wheel",
+          "camera": [
+            3970.9369300038825,
+            3469.599154929576,
+            0.17352941176470588
+          ],
+          "viewport": {
+            "left": 570.9369300038825,
+            "right": 7370.9369300038825,
+            "top": 1665.3300871329657,
+            "bottom": 5273.868222726186
+          },
+          "goal": "groove",
+          "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+          "phase": "aim",
+          "round": 1,
+          "drain": false,
+          "ledge": true,
+          "cache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 65.00000005215406,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 1290,
+            "bgHits": 417,
+            "domainCanvasAllocations": 53,
+            "domainTileBuilds": 53,
+            "screenBuilds": 12,
+            "screenHits": 834,
+            "screenWorldBytes": 2954720,
+            "screenBackgroundBytes": 2954720,
+            "worldBytes": 19170432,
+            "worldScale": 0.21022410381342863,
+            "backgroundBytes": 0
+          },
+          "heroes": [
+            {
+              "id": "p-archer",
+              "x": 320,
+              "y": 3638.4444444444443,
+              "hp": 365
+            },
+            {
+              "id": "p-mage",
+              "x": 415,
+              "y": 3646.888888888889,
+              "hp": 390
+            },
+            {
+              "id": "p-knight",
+              "x": 510,
+              "y": 3655.333333333333,
+              "hp": 641
+            },
+            {
+              "id": "p-occultist",
+              "x": 605,
+              "y": 3663.777777777778,
+              "hp": 460
+            }
+          ]
+        },
+        {
+          "file": "overview.jpg",
+          "mode": "Fixed production camera; no gameplay actions",
+          "camera": [
+            4000,
+            3150,
+            0.12
+          ],
+          "viewport": {
+            "left": -2000,
+            "right": 10000,
+            "top": -54.94791666666697,
+            "bottom": 6354.947916666667
+          },
+          "goal": "groove",
+          "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+          "phase": "aim",
+          "round": 1,
+          "drain": false,
+          "ledge": true,
+          "cache": {
+            "worldBuilds": 5,
+            "worldBuildMs": 84.80000005662441,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 1328,
+            "bgHits": 431,
+            "domainCanvasAllocations": 77,
+            "domainTileBuilds": 77,
+            "screenBuilds": 16,
+            "screenHits": 862,
+            "screenWorldBytes": 4429440,
+            "screenBackgroundBytes": 4429440,
+            "worldBytes": 12780288,
+            "worldScale": 0.14865088937534013,
+            "backgroundBytes": 0
+          },
+          "heroes": [
+            {
+              "id": "p-archer",
+              "x": 320,
+              "y": 3638.4444444444443,
+              "hp": 365
+            },
+            {
+              "id": "p-mage",
+              "x": 415,
+              "y": 3646.888888888889,
+              "hp": 390
+            },
+            {
+              "id": "p-knight",
+              "x": 510,
+              "y": 3655.333333333333,
+              "hp": 641
+            },
+            {
+              "id": "p-occultist",
+              "x": 605,
+              "y": 3663.777777777778,
+              "hp": 460
+            }
+          ]
+        },
+        {
+          "file": "water.jpg",
+          "mode": "Fixed production camera; no gameplay actions",
+          "camera": [
+            5680,
+            4420,
+            0.5
+          ],
+          "viewport": {
+            "left": 4240,
+            "right": 7120,
+            "top": 3650.8125,
+            "bottom": 5189.1875
+          },
+          "goal": "groove",
+          "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+          "phase": "aim",
+          "round": 1,
+          "drain": false,
+          "ledge": true,
+          "cache": {
+            "worldBuilds": 6,
+            "worldBuildMs": 96.20000004768372,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 1364,
+            "bgHits": 452,
+            "domainCanvasAllocations": 92,
+            "domainTileBuilds": 92,
+            "screenBuilds": 18,
+            "screenHits": 904,
+            "screenWorldBytes": 4429440,
+            "screenBackgroundBytes": 4429440,
+            "worldBytes": 15975360,
+            "worldScale": 0.5946035575013605,
+            "backgroundBytes": 0
+          },
+          "heroes": [
+            {
+              "id": "p-archer",
+              "x": 320,
+              "y": 3638.4444444444443,
+              "hp": 365
+            },
+            {
+              "id": "p-mage",
+              "x": 415,
+              "y": 3646.888888888889,
+              "hp": 390
+            },
+            {
+              "id": "p-knight",
+              "x": 510,
+              "y": 3655.333333333333,
+              "hp": 641
+            },
+            {
+              "id": "p-occultist",
+              "x": 605,
+              "y": 3663.777777777778,
+              "hp": 460
+            }
+          ]
+        }
+      ],
+      "sourceHashes": {
+        "tools/testing/stage15-drain-render-fixture.js": "7bc823b335d41134d2c4d3169736cae4663d356f6bc285f2a10bc052cb563676",
+        "shared/data/campaign.json": "42ad61d4addd3226c3805b055bcdb029c60fb10df4c827aef5ac7abc9403dc3a",
+        "tools/environment/stage15-vector-finish.mjs": "eece464e8088b86545d247fa69037eafb9bbe2814088c425bb0d7e392bf597f8",
+        "shared/runtime/act2-spatial-art.js": "1b357a1ca29de05a1d442b72e8d168bfa694b054539f574ac56a0b168dcec319",
+        "shared/runtime/renderer.js": "0fc0aa62a304d1274b40d56515ddb4363da21b53c33552d8adb876f06e24569d",
+        "shared/map/bounds.js": "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
+        "web/manifest.json": "9953aa6408cf80ccccbec9e579c458b2f994ff711af74cc41c31a167136d292d"
+      },
+      "errors": [],
+      "httpFailures": []
+    },
+    "mobile": {
+      "sha": "ed8a248017893ab53a932f6c40c0578a35a972a5",
+      "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n D web/entries/game.8f99b6ab954b1de3.js\n D web/entries/game.a8575b7b0f62bbc6.html\n D web/entries/workshop.36ef644dcd6b6e5d.js\n M web/manifest.json\n D web/styles/game-src-presentation.e7c8986bcfbf16ff.css\n?? web/data/campaign.79772371a7cedf9a.json\n?? web/data/chapter-15.006c52a5adb3e7c4.json\n?? web/entries/game.821b22b03002b781.html\n?? web/entries/game.a3ef88844bfd41a4.js\n?? web/entries/workshop.da3ebe5e3f51eb22.js\n?? web/runtime/campaign.7c3b62bcf4cb4351.js\n",
+      "scope": "Fresh isolated debug UI; actual wheel/drag and explicitly separate fixed cameras. No combat completion/FPS claim.",
+      "rows": [
+        {
+          "file": "entry-default.jpg",
+          "mode": "Actual fresh UI entry/default follow",
+          "camera": [
+            402.1293076956285,
+            3455.7204977191295,
+            0.82
+          ],
+          "viewport": {
+            "left": 164.324429646848,
+            "right": 639.934185744409,
+            "top": 3060.836732475227,
+            "bottom": 3850.604262963032
+          },
+          "goal": "groove",
+          "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+          "phase": "aim",
+          "round": 1,
+          "drain": false,
+          "ledge": true,
+          "cache": {
+            "worldBuilds": 1,
+            "worldBuildMs": 45.29999999701977,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 221,
+            "bgHits": 0,
+            "domainCanvasAllocations": 24,
+            "domainTileBuilds": 24,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "worldBytes": 12780288,
+            "worldScale": 0.68,
+            "backgroundBytes": 0
+          },
+          "heroes": [
+            {
+              "id": "p-archer",
+              "x": 320,
+              "y": 3638.4444444444443,
+              "hp": 365
+            },
+            {
+              "id": "p-mage",
+              "x": 415,
+              "y": 3646.888888888889,
+              "hp": 390
+            },
+            {
+              "id": "p-knight",
+              "x": 510,
+              "y": 3655.333333333333,
+              "hp": 641
+            },
+            {
+              "id": "p-occultist",
+              "x": 605,
+              "y": 3663.777777777778,
+              "hp": 460
+            }
+          ]
+        },
+        {
+          "file": "minimum-entry.jpg",
+          "mode": "Actual UI wheel two pages",
+          "camera": [
+            404.6349224871514,
+            3578.695810643155,
+            0.09846531362867107
+          ],
+          "viewport": {
+            "left": -1575.7578962000173,
+            "right": 2385.02774117432,
+            "top": 290.18053996498656,
+            "bottom": 6867.211081321323
+          },
+          "goal": "groove",
+          "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+          "phase": "aim",
+          "round": 1,
+          "drain": false,
+          "ledge": true,
+          "cache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 53.20000000298023,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 273,
+            "bgHits": 32,
+            "domainCanvasAllocations": 34,
+            "domainTileBuilds": 34,
+            "screenBuilds": 4,
+            "screenHits": 64,
+            "screenWorldBytes": 1010880,
+            "screenBackgroundBytes": 1010880,
+            "worldBytes": 4260096,
+            "worldScale": 0.10511205190671431,
+            "backgroundBytes": 0
+          },
+          "heroes": [
+            {
+              "id": "p-archer",
+              "x": 320,
+              "y": 3638.4444444444443,
+              "hp": 365
+            },
+            {
+              "id": "p-mage",
+              "x": 415,
+              "y": 3646.888888888889,
+              "hp": 390
+            },
+            {
+              "id": "p-knight",
+              "x": 510,
+              "y": 3655.333333333333,
+              "hp": 641
+            },
+            {
+              "id": "p-occultist",
+              "x": 605,
+              "y": 3663.777777777778,
+              "hp": 460
+            }
+          ]
+        },
+        {
+          "file": "center-pan.jpg",
+          "mode": "Actual horizontal camera drag after wheel",
+          "camera": [
+            3936.723329381276,
+            3578.695810643155,
+            0.09846531362867107
+          ],
+          "viewport": {
+            "left": 1956.3305106941073,
+            "right": 5917.116148068445,
+            "top": 290.18053996498656,
+            "bottom": 6867.211081321323
+          },
+          "goal": "groove",
+          "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+          "phase": "aim",
+          "round": 1,
+          "drain": false,
+          "ledge": true,
+          "cache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 55.900000005960464,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 817,
+            "bgHits": 402,
+            "domainCanvasAllocations": 36,
+            "domainTileBuilds": 36,
+            "screenBuilds": 10,
+            "screenHits": 804,
+            "screenWorldBytes": 1010880,
+            "screenBackgroundBytes": 1010880,
+            "worldBytes": 6390144,
+            "worldScale": 0.10511205190671431,
+            "backgroundBytes": 0
+          },
+          "heroes": [
+            {
+              "id": "p-archer",
+              "x": 320,
+              "y": 3638.4444444444443,
+              "hp": 365
+            },
+            {
+              "id": "p-mage",
+              "x": 415,
+              "y": 3646.888888888889,
+              "hp": 390
+            },
+            {
+              "id": "p-knight",
+              "x": 510,
+              "y": 3655.333333333333,
+              "hp": 641
+            },
+            {
+              "id": "p-occultist",
+              "x": 605,
+              "y": 3663.777777777778,
+              "hp": 460
+            }
+          ]
+        },
+        {
+          "file": "left-pan.jpg",
+          "mode": "Actual west focus limit",
+          "camera": [
+            -320,
+            3578.695810643155,
+            0.09846531362867107
+          ],
+          "viewport": {
+            "left": -2300.392818687169,
+            "right": 1660.3928186871688,
+            "top": 290.18053996498656,
+            "bottom": 6867.211081321323
+          },
+          "goal": "groove",
+          "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+          "phase": "aim",
+          "round": 1,
+          "drain": false,
+          "ledge": true,
+          "cache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 55.900000005960464,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 1358,
+            "bgHits": 773,
+            "domainCanvasAllocations": 36,
+            "domainTileBuilds": 36,
+            "screenBuilds": 16,
+            "screenHits": 1546,
+            "screenWorldBytes": 1010880,
+            "screenBackgroundBytes": 1010880,
+            "worldBytes": 6390144,
+            "worldScale": 0.10511205190671431,
+            "backgroundBytes": 0
+          },
+          "heroes": [
+            {
+              "id": "p-archer",
+              "x": 320,
+              "y": 3638.4444444444443,
+              "hp": 365
+            },
+            {
+              "id": "p-mage",
+              "x": 415,
+              "y": 3646.888888888889,
+              "hp": 390
+            },
+            {
+              "id": "p-knight",
+              "x": 510,
+              "y": 3655.333333333333,
+              "hp": 641
+            },
+            {
+              "id": "p-occultist",
+              "x": 605,
+              "y": 3663.777777777778,
+              "hp": 460
+            }
+          ]
+        },
+        {
+          "file": "right-pan.jpg",
+          "mode": "Actual east focus limit",
+          "camera": [
+            8320,
+            3578.695810643155,
+            0.09846531362867107
+          ],
+          "viewport": {
+            "left": 6339.607181312831,
+            "right": 10300.392818687169,
+            "top": 290.18053996498656,
+            "bottom": 6867.211081321323
+          },
+          "goal": "groove",
+          "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+          "phase": "aim",
+          "round": 1,
+          "drain": false,
+          "ledge": true,
+          "cache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 57.70000000298023,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 2024,
+            "bgHits": 1093,
+            "domainCanvasAllocations": 38,
+            "domainTileBuilds": 38,
+            "screenBuilds": 28,
+            "screenHits": 2186,
+            "screenWorldBytes": 1010880,
+            "screenBackgroundBytes": 1010880,
+            "worldBytes": 8520192,
+            "worldScale": 0.10511205190671431,
+            "backgroundBytes": 0
+          },
+          "heroes": [
+            {
+              "id": "p-archer",
+              "x": 320,
+              "y": 3638.4444444444443,
+              "hp": 365
+            },
+            {
+              "id": "p-mage",
+              "x": 415,
+              "y": 3646.888888888889,
+              "hp": 390
+            },
+            {
+              "id": "p-knight",
+              "x": 510,
+              "y": 3655.333333333333,
+              "hp": 641
+            },
+            {
+              "id": "p-occultist",
+              "x": 605,
+              "y": 3663.777777777778,
+              "hp": 460
+            }
+          ]
+        },
+        {
+          "file": "lower-pan.jpg",
+          "mode": "Actual lower camera focus limit",
+          "camera": [
+            4048.167111734804,
+            6240,
+            0.09846531362867107
+          ],
+          "viewport": {
+            "left": 2067.774293047635,
+            "right": 6028.559930421973,
+            "top": 2951.4847293218318,
+            "bottom": 9528.515270678168
+          },
+          "goal": "groove",
+          "objectiveText": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+          "phase": "aim",
+          "round": 1,
+          "drain": false,
+          "ledge": true,
+          "cache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 57.70000000298023,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 2752,
+            "bgHits": 1557,
+            "domainCanvasAllocations": 38,
+            "domainTileBuilds": 38,
+            "screenBuilds": 36,
+            "screenHits": 3114,
+            "screenWorldBytes": 1010880,
+            "screenBackgroundBytes": 1010880,
+            "worldBytes": 8520192,
+            "worldScale": 0.10511205190671431,
+            "backgroundBytes": 0
+          },
+          "heroes": [
+            {
+              "id": "p-archer",
+              "x": 320,
+              "y": 3638.4444444444443,
+              "hp": 365
+            },
+            {
+              "id": "p-mage",
+              "x": 415,
+              "y": 3646.888888888889,
+              "hp": 390
+            },
+            {
+              "id": "p-knight",
+              "x": 510,
+              "y": 3655.333333333333,
+              "hp": 641
+            },
+            {
+              "id": "p-occultist",
+              "x": 605,
+              "y": 3663.777777777778,
+              "hp": 460
+            }
+          ]
+        }
+      ],
+      "sourceHashes": {
+        "tools/testing/stage15-drain-render-fixture.js": "7bc823b335d41134d2c4d3169736cae4663d356f6bc285f2a10bc052cb563676",
+        "shared/data/campaign.json": "42ad61d4addd3226c3805b055bcdb029c60fb10df4c827aef5ac7abc9403dc3a",
+        "tools/environment/stage15-vector-finish.mjs": "eece464e8088b86545d247fa69037eafb9bbe2814088c425bb0d7e392bf597f8",
+        "shared/runtime/act2-spatial-art.js": "1b357a1ca29de05a1d442b72e8d168bfa694b054539f574ac56a0b168dcec319",
+        "shared/runtime/renderer.js": "0fc0aa62a304d1274b40d56515ddb4363da21b53c33552d8adb876f06e24569d",
+        "shared/map/bounds.js": "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170",
+        "web/manifest.json": "9953aa6408cf80ccccbec9e579c458b2f994ff711af74cc41c31a167136d292d"
+      },
+      "errors": [],
+      "httpFailures": []
+    }
+  },
+  "selectedJpg": [
+    {
+      "path": "review/center.jpg",
+      "bytes": 90148,
+      "sha256": "3d99881d43dd7a5bdb49e94a938b9ba5f9080fc4137f2954e4a15843c55f9d28"
+    },
+    {
+      "path": "review/overview.jpg",
+      "bytes": 92880,
+      "sha256": "3271dc92dd2df884f397bd083b5829b322cf2aed92a5ec4fb41ebc9bfe01186c"
+    },
+    {
+      "path": "review/mobile.jpg",
+      "bytes": 45366,
+      "sha256": "155323f13d2be0d58fdf03c7e5603ac6bd09a3203bc7f1ac24a1d653b60a1200"
+    },
+    {
+      "path": "review/drain-before.jpg",
+      "bytes": 91082,
+      "sha256": "68efe1679484e9735420668ef98eb0cf1912b0451956f31ab7ba38cda0226e79"
+    },
+    {
+      "path": "review/drain-after.jpg",
+      "bytes": 88665,
+      "sha256": "dd4770cd6214d1dcb9ad7510b8beca43976329b4575b48b9e3cc4a940703b89a"
+    },
+    {
+      "path": "review/drain-continue.jpg",
+      "bytes": 88665,
+      "sha256": "b23c53544da9ec83959eda3ca8a1e6c4b9d9fb2d3637b03a0894f26377b08387"
+    }
+  ],
+  "limits": [
+    "Prepared pre-sluice arrival and three local subdued facts, not normal combat arrival/fullplay.",
+    "Read-only wrapper observes adjacent actual production transition and delegates its arguments/result unchanged; restored immediately afterwards.",
+    "Native art test retains its old forced-active clone only for render purity/static-cache checks, never as valid drainage evidence.",
+    "Already-active pathological saves without a192px local solution remain invalid with no distant fallback.",
+    "Debug level1 UI art screenshots are not campaign combat conditions.",
+    "Frame scheduling paused for deterministic transition/export inspection; explicit production Engine ticks/story/interaction APIs used."
+  ],
+  "browserExportDerived": {
+    "waterSurfaceDrops": [
+      [
+        120,
+        120
+      ]
+    ],
+    "allPoolDrop120": true,
+    "inputAndRealExportCompared": true
+  }
+}
