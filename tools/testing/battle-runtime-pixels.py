@@ -11,14 +11,15 @@ ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tests'))
 from browser_support import launch
 from playwright.sync_api import sync_playwright
 OUT=ROOT/'_local/reports/battle-runtime';OUT.mkdir(parents=True,exist_ok=True)
-servers=[];urls={}
+servers=[];urls={};manifests={}
 class Handler(SimpleHTTPRequestHandler):
     def log_message(self,*_):pass
     def handle(self):
         try:super().handle()
         except (BrokenPipeError,ConnectionResetError):pass
-for label,root in [('before',os.environ.get('HONRO_BATTLE_BEFORE','/tmp/honro-performance-before')),('after',ROOT)]:
+for label,root in [('before',os.environ.get('HONRO_BATTLE_BEFORE','/tmp/honro-performance-before')),('after',os.environ.get('HONRO_BATTLE_AFTER',ROOT))]:
     s=ThreadingHTTPServer(('127.0.0.1',0),partial(Handler,directory=str(root)));Thread(target=s.serve_forever,daemon=True).start();servers.append(s);urls[label]=f'http://127.0.0.1:{s.server_port}/HONRO.html'
+    manifests[label]=hashlib.sha256((Path(root)/'web/manifest.json').read_bytes()).hexdigest()
 rows=[]
 with sync_playwright() as p:
     browser=launch(p)
@@ -35,9 +36,9 @@ with sync_playwright() as p:
             contract=pg.evaluate((ROOT/'tools/testing/battle-runtime-cache-check.js').read_text()) if label=='after' else None
             pg.evaluate('''()=>{const a=HonroApp;while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;const u=a.engine.active;Object.assign(a.scene,{manual:true,x:u.x,y:u.y-140,scale:.68,time:2,storyTween:null,goalFocus:null,storyFrozen:false,focusUntil:0,speakerUntil:0});a.updateHUD(true);}''')
             pg.wait_for_function('HonroAct2SpatialArt.ready(HonroApp.engine.b)')
-            data=pg.evaluate('''()=>{const a=HonroApp,e=a.engine,s=a.scene,base={x:s.x,y:s.y};const snapshots=[];const state=()=>JSON.stringify({round:e.b.round,phase:e.b.phase,active:e.b.active,units:e.b.units,heroes:e.b.heroes,projectiles:e.b.projectiles,terrain:e.b.terrain,objectives:e.b.honroObjectives,flags:e.b.honroState,growth:e.b.honroGrowth,items:e.b.items});const before=state();
-              for(let i=0;i<180;i++){s.x=base.x+[0,650,-650,0][Math.floor(i/5)%4];s.scale=[.32,.5,.68,1,1.35,.68][Math.floor(i/5)%6];s.render(e,0,'',.6,false,0);if(i%30===29||i===0)snapshots.push({i,cache:s.renderCacheStats(),tiles:s._domainTiles?.tiles.size||0});}
-              const renderPreserved=before===state();a.profile.honroBattle=structuredClone(e.b);a.persist();a.continue();const continuePreserved=before===state()&&JSON.stringify(e.b.units)===JSON.stringify(a.engine.b.units);return{renderPreserved,continuePreserved,snapshots,round:e.b.round,error:a.lastError||null};}''')
+            data=pg.evaluate('''async frames=>{const a=HonroApp,e=a.engine,s=a.scene,base={x:s.x,y:s.y};const snapshots=[];const state=(engine=e)=>JSON.stringify({round:engine.b.round,phase:engine.b.phase,active:engine.b.active,units:engine.b.units,heroes:engine.b.heroes,projectiles:engine.b.projectiles,terrain:engine.b.terrain,objectives:engine.b.honroObjectives,flags:engine.b.honroState,growth:engine.b.honroGrowth,items:engine.b.items});const before=state();
+              for(let i=0;i<frames;i++){if(frames>180)await new Promise(requestAnimationFrame);s.x=base.x+[0,650,-650,0][Math.floor(i/5)%4];s.scale=[.32,.5,.68,1,1.35,.68][Math.floor(i/5)%6];s.render(e,0,'',.6,false,0);if(i%30===29||i===0)snapshots.push({i,cache:s.renderCacheStats(),tiles:s._domainTiles?.tiles.size||0,heap:performance.memory?.usedJSHeapSize});}
+              const renderPreserved=before===state();a.profile.honroBattle=structuredClone(e.b);a.persist();a.continue();const continuePreserved=before===state(a.engine);return{renderPreserved,continuePreserved,snapshots,round:e.b.round,error:a.lastError||null};}''',int(os.environ.get('STABILITY_FRAMES','180')))
             assert data['renderPreserved'] and data['continuePreserved'] and not data['error'] and not errors,data
             # Continue creates a new Scene. Compare the same view after recycling
             # against a fresh cache, then compare both complete shipped builds.
@@ -53,15 +54,18 @@ with sync_playwright() as p:
             pg.reload();pg.wait_for_function('document.documentElement.dataset.honroReady');pg.evaluate('HonroApp.frame=()=>{}');pg.locator('.title-actions button.primary').click();pg.wait_for_function('HonroApp.engine?.b.honroStage===11')
             restored=pg.evaluate('({units:HonroApp.engine.b.units,heroes:HonroApp.profile.heroes,loadouts:HonroApp.profile.loadouts,cleared:HonroApp.profile.cleared,round:HonroApp.engine.b.round,items:HonroApp.engine.b.items})')
             assert protected==restored,(name,label,'Storage reload must preserve battle and growth')
-            images[label]=shots;checks[label]={**data,'errors':errors,'storageReloadPreserved':True,'cacheContract':contract}
+            images[label]=shots;checks[label]={**data,'errors':errors,'storageReloadPreserved':True,'cacheContract':contract,'manifestSha256':manifests[label]}
             ctx.close()
         comparisons=[]
         for i,(left,right) in enumerate(zip(pixels['before'],pixels['after'])):
             diff=ImageChops.difference(Image.frombytes('RGBA',tuple(dimensions),left),Image.frombytes('RGBA',tuple(dimensions),right))
             max_channel=max(v[1] for v in diff.getextrema());mean=sum(ImageStat.Stat(diff).sum)/(len(left))
             comparisons.append({'view':i,'exact':left==right,'maxChannelDifference':max_channel,'meanChannelDifference':mean,'bbox':diff.convert('RGB').getbbox()})
+            if max_channel>2:
+                for label,content in [('before',left),('after',right)]:Image.frombytes('RGBA',tuple(dimensions),content).save(OUT/f'mismatch-{name}-{i}-{label}.png')
             assert max_channel<=2,(name,i,'Native-resolution alpha compositing must stay within rounding error',max_channel)
         rows.append({'save':name,'saveSha256':hashlib.sha256(raw).hexdigest(),'pixelsExact':images['before']==images['after'],'comparisons':comparisons,'pixelSha256':images,'checks':checks});print(name,json.dumps(comparisons),flush=True)
+        (OUT/os.environ.get('PIXEL_OUT','pixels.json')).write_text(json.dumps(rows,indent=2))
     browser.close()
 for s in servers:s.shutdown();s.server_close()
 (OUT/os.environ.get('PIXEL_OUT','pixels.json')).write_text(json.dumps(rows,indent=2))

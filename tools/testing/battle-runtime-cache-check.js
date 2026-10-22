@@ -8,15 +8,16 @@
     const first=s[slot].canvas;
     check(!use('blue','#0000ff'),'New content invalidates cached pixels immediately');
     check(use('blue','#0000ff'),'Stable new content is painted');
-    check(s[slot].canvas===first,'Same-size content/camera change reuses a surface');
-    check(c.getImageData(20,20,1,1).data[2]===255,'Reused buffer has new pixels');
+    check(s[slot].canvas!==first&&first.width===1&&first.height===1,'Camera/content change releases the previous surface');
+    check(c.getImageData(20,20,1,1).data[2]===255,'Replacement buffer has new pixels');
+    const second=s[slot].canvas;
     const resized=()=>s._screenRaster(c,'resized',160,60,paint('#00ff00'),slot);
-    canvas.width=160;check(!resized(),'Resize remains live');check(first.width===1&&first.height===1,'Resize releases old backing');check(resized(),'Resized stable view paints');
+    canvas.width=160;check(!resized(),'Resize remains live');check(second.width===1&&second.height===1,'Resize releases old backing');check(resized(),'Resized stable view paints');
     c.globalAlpha=.5;check(!resized(),'Non-opaque context stays live');c.globalAlpha=1;
     c.globalCompositeOperation='multiply';check(!resized(),'Non-default composition stays live');c.globalCompositeOperation='source-over';
     const large={globalAlpha:1,globalCompositeOperation:'source-over',canvas:{width:3001,height:2000},getTransform:()=>c.getTransform()};
     check(!s._screenRaster(large,'large',3001,2000,paint('#fff'),slot),'Large first view stays live');
     check(!s._screenRaster(large,'large',3001,2000,paint('#fff'),slot),'6M pixel limit prevents allocation');
     check(!s[slot].canvas,'Oversized viewport retains no old raster');
-    return {passed:true,checks:['camera/content invalidation','new pixel replacement','same-size surface reuse','resize release','alpha fallback','composite fallback','6M pixel cap'],stats:s.renderCacheStats()};
+    return {passed:true,checks:['camera/content invalidation','new pixel replacement','previous backing release','resize release','alpha fallback','composite fallback','6M pixel cap'],stats:s.renderCacheStats()};
 }
