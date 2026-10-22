@@ -44,7 +44,7 @@
 
 ## 보존 항목과 대표 사진
 
-renderer/party-rig/portraits/combat/HUD CSS·11장 승인 campaign/재질·BGM 7곡/채널·막 엔딩/보고서 소스는 기준 master와 byte 단위 일치한다. main.js의 유일한 변경은 완료 요약의 catalogue 호출이며 HUD 무변화 캐시·paused dirty는 그대로다. occlusion 개선도 renderer 동일 해시로 보존했다.
+renderer/party-rig/portraits/combat/HUD CSS·11장 승인 campaign/재질·BGM 7곡/채널·막 엔딩/보고서 lifecycle(act-endings.js, clear-report.js, clear-report-ui.js)은 기준 master와 byte 단위 일치한다. 엔딩 문구를 읽는 act-endings-content.js는 승인된 catalogue 연결로 변경됐다. main.js의 유일한 변경은 완료 요약의 catalogue 호출이며 HUD 무변화 캐시·paused dirty는 그대로다. occlusion 개선도 renderer 동일 해시로 보존했다.
 
 [2장 새 원고 · 좁은 화면](https://github.com/sys8994/honro/blob/2633e2b45fc48ed105d4ed8ae34263935d5cd0f7/review/narrative-voice-v2-release-20261022/stage2-name-390x844.jpg) · [10장 실제 안전 퇴장](https://github.com/sys8994/honro/blob/2633e2b45fc48ed105d4ed8ae34263935d5cd0f7/review/narrative-voice-v2-release-20261022/stage10-safe-outro-390x844.jpg) · [27장 공허](https://github.com/sys8994/honro/blob/2633e2b45fc48ed105d4ed8ae34263935d5cd0f7/review/narrative-voice-v2-release-20261022/stage27-void-390x844.jpg). 이번 통합으로 다시 촬영한 사진이며 10장/27장 JPG를 직접 열어 확인했다.
 
