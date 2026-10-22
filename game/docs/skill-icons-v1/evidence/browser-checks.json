@@ -1,0 +1,1093 @@
+{
+  "browser": "154.0.8037.57",
+  "mobile": true,
+  "touch": true,
+  "dpr": 1,
+  "checks": [
+    {
+      "name": "intro has no skill image requests",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "360 modal scroll 0: frame/header/body/art/touch",
+      "pass": true,
+      "data": {
+        "fit": true,
+        "body": true,
+        "touch": true,
+        "gap": 0,
+        "icon": [
+          32,
+          32
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "360 modal scroll 1: frame/header/body/art/touch",
+      "pass": true,
+      "data": {
+        "fit": true,
+        "body": true,
+        "touch": true,
+        "gap": 0,
+        "icon": [
+          32,
+          32
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "360 plus retains scroll",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "360 refund",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "modal-360.png under 1 MB",
+      "pass": true,
+      "data": {
+        "bytes": 81686
+      }
+    },
+    {
+      "name": "360 X closes",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "390 modal scroll 0: frame/header/body/art/touch",
+      "pass": true,
+      "data": {
+        "fit": true,
+        "body": true,
+        "touch": true,
+        "gap": 0,
+        "icon": [
+          32,
+          32
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "390 modal scroll 1: frame/header/body/art/touch",
+      "pass": true,
+      "data": {
+        "fit": true,
+        "body": true,
+        "touch": true,
+        "gap": 0,
+        "icon": [
+          32,
+          32
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "390 plus retains scroll",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "390 refund",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "modal-390.png under 1 MB",
+      "pass": true,
+      "data": {
+        "bytes": 89088
+      }
+    },
+    {
+      "name": "390 X closes",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "844 modal scroll 0: frame/header/body/art/touch",
+      "pass": true,
+      "data": {
+        "fit": true,
+        "body": true,
+        "touch": true,
+        "gap": 0,
+        "icon": [
+          32,
+          32
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "844 modal scroll 1: frame/header/body/art/touch",
+      "pass": true,
+      "data": {
+        "fit": true,
+        "body": true,
+        "touch": true,
+        "gap": 0,
+        "icon": [
+          32,
+          32
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "844 plus retains scroll",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "844 refund",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "modal-844.png under 1 MB",
+      "pass": true,
+      "data": {
+        "bytes": 32253
+      }
+    },
+    {
+      "name": "844 X closes",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "1280 modal scroll 0: frame/header/body/art/touch",
+      "pass": true,
+      "data": {
+        "fit": true,
+        "body": true,
+        "touch": true,
+        "gap": 0,
+        "icon": [
+          32,
+          32
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "1280 modal scroll 1: frame/header/body/art/touch",
+      "pass": true,
+      "data": {
+        "fit": true,
+        "body": true,
+        "touch": true,
+        "gap": 0,
+        "icon": [
+          32,
+          32
+        ],
+        "overflow": false
+      }
+    },
+    {
+      "name": "1280 plus retains scroll",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "1280 refund",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "modal-1280.png under 1 MB",
+      "pass": true,
+      "data": {
+        "bytes": 221150
+      }
+    },
+    {
+      "name": "1280 X closes",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "passive icon and DOM passive mark",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "passive-390.png under 1 MB",
+      "pass": true,
+      "data": {
+        "bytes": 97730
+      }
+    },
+    {
+      "name": "slot library images preserve effects and names",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "slot-library-390.png under 1 MB",
+      "pass": true,
+      "data": {
+        "bytes": 78008
+      }
+    },
+    {
+      "name": "360 HUD 32–36px art and >=44px targets",
+      "pass": true,
+      "data": {
+        "buttons": [
+          {
+            "w": 44,
+            "h": 45,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "true"
+          },
+          {
+            "w": 44,
+            "h": 45,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          },
+          {
+            "w": 44,
+            "h": 45,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          },
+          {
+            "w": 44,
+            "h": 45,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          }
+        ],
+        "joystick": {
+          "x": 16,
+          "y": 690.796875,
+          "w": 68,
+          "h": 68
+        },
+        "fire": {
+          "x": 282,
+          "y": 707.5,
+          "w": 62,
+          "h": 62
+        },
+        "hud": {
+          "x": 0,
+          "y": 603.609375,
+          "w": 360,
+          "h": 196.390625
+        },
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 603.609375
+        }
+      }
+    },
+    {
+      "name": "360 joystick bounds unchanged",
+      "pass": true,
+      "data": [
+        16,
+        690.796875,
+        68,
+        68
+      ]
+    },
+    {
+      "name": "360 fire bounds unchanged",
+      "pass": true,
+      "data": [
+        282,
+        707.5,
+        62,
+        62
+      ]
+    },
+    {
+      "name": "360 hud bounds unchanged",
+      "pass": true,
+      "data": [
+        0,
+        603.609375,
+        360,
+        196.390625
+      ]
+    },
+    {
+      "name": "360 canvas bounds unchanged",
+      "pass": true,
+      "data": [
+        0,
+        0,
+        360,
+        603.609375
+      ]
+    },
+    {
+      "name": "hud-360.png under 1 MB",
+      "pass": true,
+      "data": {
+        "bytes": 124525
+      }
+    },
+    {
+      "name": "390 HUD 32–36px art and >=44px targets",
+      "pass": true,
+      "data": {
+        "buttons": [
+          {
+            "w": 52,
+            "h": 45,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "true"
+          },
+          {
+            "w": 52,
+            "h": 45,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          },
+          {
+            "w": 52,
+            "h": 45,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          },
+          {
+            "w": 52,
+            "h": 45,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          }
+        ],
+        "joystick": {
+          "x": 20,
+          "y": 732.796875,
+          "w": 72,
+          "h": 72
+        },
+        "fire": {
+          "x": 308,
+          "y": 751.5,
+          "w": 62,
+          "h": 62
+        },
+        "hud": {
+          "x": 0,
+          "y": 647.609375,
+          "w": 390,
+          "h": 196.390625
+        },
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 647.609375
+        }
+      }
+    },
+    {
+      "name": "390 joystick bounds unchanged",
+      "pass": true,
+      "data": [
+        20,
+        732.796875,
+        72,
+        72
+      ]
+    },
+    {
+      "name": "390 fire bounds unchanged",
+      "pass": true,
+      "data": [
+        308,
+        751.5,
+        62,
+        62
+      ]
+    },
+    {
+      "name": "390 hud bounds unchanged",
+      "pass": true,
+      "data": [
+        0,
+        647.609375,
+        390,
+        196.390625
+      ]
+    },
+    {
+      "name": "390 canvas bounds unchanged",
+      "pass": true,
+      "data": [
+        0,
+        0,
+        390,
+        647.609375
+      ]
+    },
+    {
+      "name": "hud-390.png under 1 MB",
+      "pass": true,
+      "data": {
+        "bytes": 134575
+      }
+    },
+    {
+      "name": "844 HUD 32–36px art and >=44px targets",
+      "pass": true,
+      "data": {
+        "buttons": [
+          {
+            "w": 50,
+            "h": 50,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "true"
+          },
+          {
+            "w": 50,
+            "h": 50,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          },
+          {
+            "w": 50,
+            "h": 50,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          },
+          {
+            "w": 50,
+            "h": 50,
+            "art": [
+              32,
+              32
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          }
+        ],
+        "joystick": {
+          "x": 20,
+          "y": 295.25,
+          "w": 72,
+          "h": 72
+        },
+        "fire": {
+          "x": 768,
+          "y": 312,
+          "w": 56,
+          "h": 56
+        },
+        "hud": {
+          "x": 0,
+          "y": 232.5,
+          "w": 844,
+          "h": 157.5
+        },
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "w": 844,
+          "h": 232.5
+        }
+      }
+    },
+    {
+      "name": "844 joystick bounds unchanged",
+      "pass": true,
+      "data": [
+        20,
+        295.25,
+        72,
+        72
+      ]
+    },
+    {
+      "name": "844 fire bounds unchanged",
+      "pass": true,
+      "data": [
+        768,
+        312,
+        56,
+        56
+      ]
+    },
+    {
+      "name": "844 hud bounds unchanged",
+      "pass": true,
+      "data": [
+        0,
+        232.5,
+        844,
+        157.5
+      ]
+    },
+    {
+      "name": "844 canvas bounds unchanged",
+      "pass": true,
+      "data": [
+        0,
+        0,
+        844,
+        232.5
+      ]
+    },
+    {
+      "name": "hud-844.png under 1 MB",
+      "pass": true,
+      "data": {
+        "bytes": 135186
+      }
+    },
+    {
+      "name": "1280 HUD 32–36px art and >=44px targets",
+      "pass": true,
+      "data": {
+        "buttons": [
+          {
+            "w": 62,
+            "h": 54,
+            "art": [
+              36,
+              36
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "true"
+          },
+          {
+            "w": 62,
+            "h": 54,
+            "art": [
+              36,
+              36
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          },
+          {
+            "w": 62,
+            "h": 54,
+            "art": [
+              36,
+              36
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          },
+          {
+            "w": 62,
+            "h": 54,
+            "art": [
+              36,
+              36
+            ],
+            "inside": true,
+            "name": true,
+            "accessible": true,
+            "pressed": "false"
+          }
+        ],
+        "joystick": {
+          "x": 20,
+          "y": 796.59375,
+          "w": 72,
+          "h": 72
+        },
+        "fire": {
+          "x": 1194,
+          "y": 809.75,
+          "w": 66,
+          "h": 66
+        },
+        "hud": {
+          "x": 0,
+          "y": 769.1875,
+          "w": 1280,
+          "h": 130.8125
+        },
+        "canvas": {
+          "x": 0,
+          "y": 0,
+          "w": 1280,
+          "h": 769.1875
+        }
+      }
+    },
+    {
+      "name": "1280 joystick bounds unchanged",
+      "pass": true,
+      "data": [
+        20,
+        796.59375,
+        72,
+        72
+      ]
+    },
+    {
+      "name": "1280 fire bounds unchanged",
+      "pass": true,
+      "data": [
+        1194,
+        809.75,
+        66,
+        66
+      ]
+    },
+    {
+      "name": "1280 hud bounds unchanged",
+      "pass": true,
+      "data": [
+        0,
+        769.1875,
+        1280,
+        130.8125
+      ]
+    },
+    {
+      "name": "1280 canvas bounds unchanged",
+      "pass": true,
+      "data": [
+        0,
+        0,
+        1280,
+        769.1875
+      ]
+    },
+    {
+      "name": "hud-1280.png under 1 MB",
+      "pass": true,
+      "data": {
+        "bytes": 322014
+      }
+    },
+    {
+      "name": "decoded image succeeds; missing image retains visible vector",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "same URLs decode once across rerenders; failure not retried",
+      "pass": true,
+      "data": {
+        "requests": [
+          "http://127.0.0.1:44417/__skill_transport__/A01.webp",
+          "http://127.0.0.1:44417/__skill_transport__/A14.webp",
+          "http://127.0.0.1:44417/__skill_transport__/broken.webp"
+        ],
+        "status": {
+          "complete": false,
+          "cached": 3,
+          "failed": 1,
+          "active": 0,
+          "queued": 0
+        }
+      }
+    },
+    {
+      "name": "offscreen art does not load by visibility",
+      "pass": true,
+      "data": null
+    },
+    {
+      "name": "no browser exceptions",
+      "pass": true,
+      "data": []
+    }
+  ],
+  "hudGeometry": {
+    "360": {
+      "buttons": [
+        {
+          "w": 44,
+          "h": 45,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "true"
+        },
+        {
+          "w": 44,
+          "h": 45,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        },
+        {
+          "w": 44,
+          "h": 45,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        },
+        {
+          "w": 44,
+          "h": 45,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        }
+      ],
+      "joystick": {
+        "x": 16,
+        "y": 690.796875,
+        "w": 68,
+        "h": 68
+      },
+      "fire": {
+        "x": 282,
+        "y": 707.5,
+        "w": 62,
+        "h": 62
+      },
+      "hud": {
+        "x": 0,
+        "y": 603.609375,
+        "w": 360,
+        "h": 196.390625
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "w": 360,
+        "h": 603.609375
+      }
+    },
+    "390": {
+      "buttons": [
+        {
+          "w": 52,
+          "h": 45,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "true"
+        },
+        {
+          "w": 52,
+          "h": 45,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        },
+        {
+          "w": 52,
+          "h": 45,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        },
+        {
+          "w": 52,
+          "h": 45,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        }
+      ],
+      "joystick": {
+        "x": 20,
+        "y": 732.796875,
+        "w": 72,
+        "h": 72
+      },
+      "fire": {
+        "x": 308,
+        "y": 751.5,
+        "w": 62,
+        "h": 62
+      },
+      "hud": {
+        "x": 0,
+        "y": 647.609375,
+        "w": 390,
+        "h": 196.390625
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 647.609375
+      }
+    },
+    "844": {
+      "buttons": [
+        {
+          "w": 50,
+          "h": 50,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "true"
+        },
+        {
+          "w": 50,
+          "h": 50,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        },
+        {
+          "w": 50,
+          "h": 50,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        },
+        {
+          "w": 50,
+          "h": 50,
+          "art": [
+            32,
+            32
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        }
+      ],
+      "joystick": {
+        "x": 20,
+        "y": 295.25,
+        "w": 72,
+        "h": 72
+      },
+      "fire": {
+        "x": 768,
+        "y": 312,
+        "w": 56,
+        "h": 56
+      },
+      "hud": {
+        "x": 0,
+        "y": 232.5,
+        "w": 844,
+        "h": 157.5
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "w": 844,
+        "h": 232.5
+      }
+    },
+    "1280": {
+      "buttons": [
+        {
+          "w": 62,
+          "h": 54,
+          "art": [
+            36,
+            36
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "true"
+        },
+        {
+          "w": 62,
+          "h": 54,
+          "art": [
+            36,
+            36
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        },
+        {
+          "w": 62,
+          "h": 54,
+          "art": [
+            36,
+            36
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        },
+        {
+          "w": 62,
+          "h": 54,
+          "art": [
+            36,
+            36
+          ],
+          "inside": true,
+          "name": true,
+          "accessible": true,
+          "pressed": "false"
+        }
+      ],
+      "joystick": {
+        "x": 20,
+        "y": 796.59375,
+        "w": 72,
+        "h": 72
+      },
+      "fire": {
+        "x": 1194,
+        "y": 809.75,
+        "w": 66,
+        "h": 66
+      },
+      "hud": {
+        "x": 0,
+        "y": 769.1875,
+        "w": 1280,
+        "h": 130.8125
+      },
+      "canvas": {
+        "x": 0,
+        "y": 0,
+        "w": 1280,
+        "h": 769.1875
+      }
+    }
+  },
+  "limitations": "Chromium mobile emulation; no physical handset or Safari. Transport fixture reuses existing WebP and is not skill artwork."
+}

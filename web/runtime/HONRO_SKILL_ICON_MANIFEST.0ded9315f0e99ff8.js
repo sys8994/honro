@@ -1,0 +1,1 @@
+import{loadData,loadProject}from"./load-data.6f01d18416c3198e.js";globalThis.HONRO_SKILL_ICON_MANIFEST=await loadData("web/data/HONRO_SKILL_ICON_MANIFEST.f71779835a5fab45.json",[],{svgSources:false});
