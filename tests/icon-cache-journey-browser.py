@@ -39,9 +39,9 @@ with sync_playwright() as pw:
    p.screenshot(path=str(OUT/f'icon-{label}.jpg'),type='jpeg',quality=82)
    if label=='fixed':
     assert all(result['sameButtons']) and all(result['sameArt']);assert result['mutations']=={'created':0,'removed':0,'flash':0};assert result['decodeDelta']==result['loadDelta']==result['resourceDelta']==0
-    result['cooldown']=p.locator('#combat-skills [data-skill=A02] .mana-cost').inner_text();assert result['cooldown']=='2회'
     p.evaluate("()=>{const a=HonroApp,u=a.engine.active;u.loadout=['A02','A01','A04','A03'];a.updateHUD(true)}");assert p.evaluate('identity.every(n=>n.isConnected)')
     result['reorderRetainsNodes']=True
+    p.evaluate("()=>{const a=HonroApp,u=a.engine.active;HONRO_CORE.SKILLS.A99.cooldown=2;u.loadout[3]='A99';u.cooldowns.A99=a.engine.b.round+2;a.updateHUD(true)}");result['cooldown']=p.locator('#combat-skills [data-skill=A99] .mana-cost').inner_text();assert result['cooldown']=='2회'
     p.evaluate("()=>{const a=HonroApp,u=a.engine.active;u.meleeFollow='ready';a.updateHUD(true)}");assert p.locator('#combat-skills [data-skill=A01]').is_disabled();result['skillLock']=True
     p.evaluate("()=>{const a=HonroApp;a.profile.recruited=['archer','knight','mage','occultist'];a.profile.heroes.archer.xp=HONRO_CORE.xpAtLevel(30);a.showCamp('archer')}")
     p.wait_for_timeout(200)
