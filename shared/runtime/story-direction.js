@@ -73,8 +73,8 @@ const rules=[
  rule(10,'cooperation','담허','진 안으로 들어왔어',[shot({anchor:'receiverWest',dy:-45})]),
  rule(10,'outcome','소단','같이 가고',[pose('boss','listen',{actor:'archer'})]),
  // Second act: different characters inspect, ward, and protect as they speak.
- rule(11,'entry','소단','이 줄을 묶은 손',[pose('occultist','hold-bell',{marker:'knot-west'})]),
- rule(11,'entry','휘겸','길을 비우겠소',[step('knight',22),face('knight',{marker:'knot-west'},'guard')]),
+ rule(11,'entry','소단','저 아래에 사람이',[face('occultist',{marker:'resident'})]),
+ rule(11,'entry','휘겸','내가 앞을 막겠소',[step('knight',22),face('knight',{marker:'resident'},'guard')]),
  rule(12,'entry','설오','갈라진 바위',[face('archer',{marker:'sign'},'point')]),
  rule(12,'entry','담허','길이 우리를',[pose('mage','inspect',{marker:'sign'})]),
  rule(12,'sign','휘겸','위쪽 작업굴',[{type:'look',at:{markers:['route-upper-exit','route-lower-exit']},scale:.8,duration:650},face('knight',{marker:'route-upper-exit'},'point')]),

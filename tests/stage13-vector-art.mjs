@@ -8,7 +8,9 @@ import {runtimeParts} from '../shared/build.mjs';
 import {applyStage13VectorFinish} from '../tools/environment/stage13-vector-finish.mjs';
 const base='934fcabd74767d662aee3830585ba807234934cc',before=JSON.parse(execFileSync('git',['show',base+':shared/data/campaign.json'],{maxBuffer:40*1024*1024})),after=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
+const approvedOther=JSON.parse(execFileSync('git',['show','fe6911c9e6c1358d9384c355d3e6fe5c6e96e9bb:shared/data/campaign.json'],{maxBuffer:40*1024*1024}));
 const shape3=JSON.parse(execFileSync('git',['show','c32a272407a2678003c2df4cab8e85cdd38a4bdf:shared/data/campaign.json'],{maxBuffer:40*1024*1024}));
+shape3.stages[10]=structuredClone(approvedOther.stages[10]); // Preserve the separately approved Stage11 quest.
 const outsideMasses=structuredClone(after);
 outsideMasses.stages[12].design.space.terrainPlanes=shape3.stages[12].design.space.terrainPlanes;
 outsideMasses.stages[12].design.stoneFinish.planeCount=shape3.stages[12].design.stoneFinish.planeCount;
@@ -26,7 +28,7 @@ for(let x=-5700;x<=-600;x+=200)for(const depth of [80,350,800,1300,2000]){assert
 assert(!oldPlanes.some(p=>p.id!=='mother-rock-base'&&p.terrainId==='act2-floor'&&contains(p.points,-1000,topAt(-1000)+600)),'Probe detects the published missing material');
 const variants=after.stages[12].design.stoneFinish.variants,reverse=new Map(variants.map(v=>[v.id,v.baseId]));
 const protectedStage=s=>{s=structuredClone(s);delete s.design.stoneFinish;delete s.design.space.terrainPlanes;s.elements=s.elements.filter(e=>!e.stage13Finish);s.design.space.scenery=s.design.space.scenery.filter(e=>!e.stage13Finish);for(const e of [...s.elements,...s.design.space.scenery])if(reverse.has(e.assetId))e.assetId=reverse.get(e.assetId);return s;};
-for(let i=0;i<before.stages.length;i++)assert.deepEqual(i===12?protectedStage(after.stages[i]):after.stages[i],i===12?protectedStage(before.stages[i]):before.stages[i],'Protected chapter '+(i+1));
+for(let i=0;i<before.stages.length;i++)assert.deepEqual(i===12?protectedStage(after.stages[i]):after.stages[i],i===12?protectedStage(before.stages[i]):approvedOther.stages[i],'Protected chapter '+(i+1));
 assert.deepEqual(after.library.slice(0,before.library.length),before.library,'Existing common asset originals');
 assert.equal(after.library.length,before.library.length+4);assert.equal(variants.length,4);
 for(const a of after.library.slice(before.library.length)){assert(reverse.has(a.id));assert.deepEqual(a.collision,[]);assert(a.vector&&a.reference);}
@@ -34,7 +36,7 @@ for(const key of Object.keys(before))if(!['stages','library'].includes(key))asse
 assert.deepEqual(JSON.parse(JSON.stringify(applyStage13VectorFinish(structuredClone(before)))),after,'Reproducible visual delta');
 assert.deepEqual(JSON.parse(JSON.stringify(applyStage13VectorFinish(structuredClone(after)))),after,'Idempotent visual author');
 // Preserve the latest approved UI/render sources during integration.
-const runtimeBase='a23dffb5afab998646817ffd3ee9732d99ce3172';
+const runtimeBase='fe6911c9e6c1358d9384c355d3e6fe5c6e96e9bb';
 for(const f of ['shared/runtime/main.js','shared/runtime/renderer.js','shared/runtime/party-rig.js','shared/runtime/authored-far-art.js','shared/runtime/act2-spatial-art.js','shared/runtime/stage11-landscape-art.js','shared/runtime/portraits.js'])assert.equal(await readFile(f,'utf8'),execFileSync('git',['show',runtimeBase+':'+f],{maxBuffer:8*1024*1024}).toString(),f+' unchanged');
 let allocations=0;const Path2D=new Proxy(NativePath,{construct(t,args){allocations++;return Reflect.construct(t,args);}});
 const g=vm.createContext({console,performance,structuredClone,Path2D,DOMMatrix,document:{createElement:()=>createCanvas(64,64)},navigator:{userAgent:'native-stage13-art'},matchMedia:()=>({matches:true})});g.window=g;

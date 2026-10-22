@@ -1,0 +1,8230 @@
+{
+  "sourceHash": "bd348e2716df30865911e5b7b4288be1609d91bc460ccaf39e5cbeffa77bfe76",
+  "provenance": {
+    "entryFileSha256": null,
+    "entryProfile": null,
+    "entryProfileSha256": null,
+    "runtimeSha256": "3fbb1bbd109b1258564049a00b56f12f4837d904a407adb9ce92853bbe81c73a",
+    "testScriptSha256": "95b662b2d661cd898911e8f80d299ab965263905b62c8d4b81e1f4a58d693843",
+    "checkoutCommit": "c5b51319ef887943726434d84db596f07254bbd3",
+    "productionCommit": null
+  },
+  "initialProvenance": {
+    "entryFileSha256": null,
+    "entryProfile": null,
+    "entryProfileSha256": null,
+    "runtimeSha256": "3fbb1bbd109b1258564049a00b56f12f4837d904a407adb9ce92853bbe81c73a",
+    "testScriptSha256": "95b662b2d661cd898911e8f80d299ab965263905b62c8d4b81e1f4a58d693843",
+    "checkoutCommit": "c5b51319ef887943726434d84db596f07254bbd3",
+    "productionCommit": null
+  },
+  "timingScope": "seconds is this Node segment including planning pauses; early legacy continuation counters are incomplete, so neither seconds nor frames is total play-time/performance evidence",
+  "continues": [],
+  "manualPolicyLog": [],
+  "phase": "aim",
+  "round": 21,
+  "reason": "",
+  "stopReason": "bounded comparison round limit; unfinished, not a pass",
+  "seconds": 487.76144991999996,
+  "frames": 59618,
+  "initialHeroes": [
+    {
+      "cls": "archer",
+      "hp": 747,
+      "level": 12,
+      "ranks": {
+        "A01": 1,
+        "AP04": 1,
+        "AP02": 2,
+        "AP01": 2,
+        "AP03": 1,
+        "A14": 1,
+        "A02": 4,
+        "A11": 1,
+        "A09": 4,
+        "A05": 4
+      },
+      "loadout": [
+        "A01",
+        "A02",
+        "A09",
+        "A05"
+      ]
+    },
+    {
+      "cls": "mage",
+      "hp": 820,
+      "level": 12,
+      "ranks": {
+        "M01": 1,
+        "M07": 1,
+        "M10": 4,
+        "M03": 3,
+        "M11": 3,
+        "MP01": 3,
+        "MP02": 2,
+        "MP04": 2,
+        "MP03": 1
+      },
+      "loadout": [
+        "M01",
+        "M10",
+        "M03",
+        "M11"
+      ]
+    },
+    {
+      "cls": "knight",
+      "hp": 1525,
+      "level": 12,
+      "ranks": {
+        "S00": 1,
+        "S03": 4,
+        "S05": 3,
+        "S01": 1,
+        "S09": 3,
+        "SP01": 3,
+        "SP02": 3,
+        "SP04": 2
+      },
+      "loadout": [
+        "S00",
+        "S03",
+        "S05",
+        "S09"
+      ]
+    },
+    {
+      "cls": "occultist",
+      "hp": 942,
+      "level": 12,
+      "ranks": {
+        "O01": 1,
+        "O06": 1,
+        "O07": 1,
+        "O08": 3,
+        "O02": 4,
+        "O11": 3,
+        "OP01": 3,
+        "OP02": 2,
+        "OP03": 2,
+        "OP04": 1
+      },
+      "loadout": [
+        "O01",
+        "O02",
+        "O08",
+        "O11"
+      ]
+    }
+  ],
+  "initialItems": {
+    "heal": 3,
+    "focus": 3,
+    "cleanse": 2,
+    "ward": 2
+  },
+  "items": {
+    "heal": 3,
+    "focus": 3,
+    "cleanse": 2,
+    "ward": 2
+  },
+  "goal": "resident",
+  "done": {
+    "knot-west": true,
+    "clear-west": true,
+    "knot-east": true,
+    "hold-knots": true
+  },
+  "hold": {
+    "progress": 4,
+    "spawned": 6,
+    "lastRound": 19,
+    "enteredRound": 12,
+    "continuous": true,
+    "contributionGuards": [
+      "p-archer",
+      "p-mage",
+      "p-knight",
+      "p-occultist"
+    ],
+    "guarded": true,
+    "contested": false,
+    "waveRound": 13
+  },
+  "fallenHeroes": [],
+  "heroes": [
+    {
+      "cls": "archer",
+      "hp": 747,
+      "maxHp": 747,
+      "x": 10477.519088946303,
+      "y": 8394.883590025836
+    },
+    {
+      "cls": "mage",
+      "hp": 806,
+      "maxHp": 820,
+      "x": 10359.292204165227,
+      "y": 8324.1771396654
+    },
+    {
+      "cls": "knight",
+      "hp": 1525,
+      "maxHp": 1525,
+      "x": 10708.588076979893,
+      "y": 8498.864634640951
+    },
+    {
+      "cls": "occultist",
+      "hp": 886,
+      "maxHp": 942,
+      "x": 10436.15622831669,
+      "y": 8376.27030274251
+    }
+  ],
+  "resident": {
+    "id": "resident-4",
+    "name": "동굴 주민",
+    "role": "knight",
+    "cls": "knight",
+    "side": 2,
+    "x": 9745,
+    "y": 8834.42857142857,
+    "vx": 0,
+    "vy": 0,
+    "hp": 950,
+    "maxHp": 950,
+    "r": 22,
+    "h": 92,
+    "focus": 100,
+    "maxFocus": 100,
+    "regen": 14,
+    "level": 1,
+    "attack": 1.75,
+    "armor": 0.15,
+    "shield": 0,
+    "bound": 0,
+    "mark": 0,
+    "breaks": 0,
+    "acted": false,
+    "moveLeft": 900,
+    "maxMove": 900,
+    "walkSpeed": 260,
+    "angle": 44,
+    "lastPower": 0.55,
+    "loadout": [],
+    "tune": 0.5,
+    "facing": 1,
+    "hurt": 0,
+    "anim": 0,
+    "airborne": false,
+    "fixed": true,
+    "spawnX": 9745,
+    "spawnY": 8834.42857142857,
+    "intent": "",
+    "dead": false,
+    "ranks": {},
+    "group": 0,
+    "awake": true,
+    "lastAct": 0,
+    "aggroUntil": 0,
+    "xpBudget": 0,
+    "xpGranted": 0,
+    "killRewarded": false,
+    "damageBy": {},
+    "honroType": "civilian",
+    "honroCivilian": true,
+    "honroAlly": false,
+    "honroProtected": true,
+    "eaterSwallow": 0,
+    "moving": 0,
+    "landing": 0,
+    "salheunFlash": 0
+  },
+  "actions": [
+    {
+      "op": "move",
+      "round": 1,
+      "hero": "occultist",
+      "from": {
+        "x": 615,
+        "y": 6500
+      },
+      "to": {
+        "x": 2221.278158574587,
+        "y": 6224.148506391988
+      },
+      "goal": {
+        "x": 3600,
+        "y": 6234.285714285715,
+        "id": "knot-west"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 1,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-west-knot-ward-0",
+      "hpBefore": 1234,
+      "angle": 6.467892227518868,
+      "power": 0.7552828438060328
+    },
+    {
+      "op": "fire",
+      "round": 1,
+      "hero": "archer",
+      "skill": "A02",
+      "target": "rv11-entry-root-pack-0",
+      "hpBefore": 796,
+      "angle": 18,
+      "power": 0.71
+    },
+    {
+      "op": "move",
+      "round": 1,
+      "hero": "archer",
+      "from": {
+        "x": 720,
+        "y": 6500
+      },
+      "to": {
+        "x": 884.6999999999997,
+        "y": 6500
+      },
+      "goal": {
+        "x": 1710,
+        "y": 6368.8,
+        "id": "rv11-entry-root-pack-0"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 1,
+      "hero": "archer"
+    },
+    {
+      "op": "fire",
+      "round": 1,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-entry-root-pack-0",
+      "hpBefore": 282,
+      "angle": 24.915591876585243,
+      "power": 0.9642266745545808
+    },
+    {
+      "op": "move",
+      "round": 1,
+      "hero": "knight",
+      "from": {
+        "x": 880,
+        "y": 6500
+      },
+      "to": {
+        "x": 1827.6909335046662,
+        "y": 6332.384993286217
+      },
+      "goal": {
+        "x": 1840,
+        "y": 6149,
+        "id": "rv11-entry-root-pack-3"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 1,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "rv11-entry-root-pack-3",
+      "hpBefore": 495
+    },
+    {
+      "op": "move",
+      "round": 2,
+      "hero": "occultist",
+      "from": {
+        "x": 2197.529658043078,
+        "y": 6230.679344038153
+      },
+      "to": {
+        "x": 3587.6208966956474,
+        "y": 6230.925671960247
+      },
+      "goal": {
+        "x": 3600,
+        "y": 6234.285714285715,
+        "id": "knot-west"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 2,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-west-knot-ward-3",
+      "hpBefore": 916,
+      "angle": 165.4238422085213,
+      "power": 0.2453086614749166
+    },
+    {
+      "op": "move",
+      "round": 2,
+      "hero": "archer",
+      "from": {
+        "x": 884.6999999999997,
+        "y": 6500
+      },
+      "to": {
+        "x": 1287.0000000000023,
+        "y": 6500
+      },
+      "goal": {
+        "x": 1895.669836967391,
+        "y": 6313.690794833968,
+        "id": "rv11-entry-root-pack-2"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 2,
+      "hero": "archer"
+    },
+    {
+      "op": "move",
+      "round": 2,
+      "hero": "mage",
+      "from": {
+        "x": 540,
+        "y": 6500
+      },
+      "to": {
+        "x": 1377.5688143481273,
+        "y": 6475.1779794086
+      },
+      "goal": {
+        "x": 1895.669836967391,
+        "y": 6313.690794833968,
+        "id": "rv11-entry-root-pack-2"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 2,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-entry-root-pack-2",
+      "hpBefore": 282,
+      "angle": 36.92842628925304,
+      "power": 0.44892078361536747
+    },
+    {
+      "op": "move",
+      "round": 2,
+      "hero": "knight",
+      "from": {
+        "x": 1827.6909335046662,
+        "y": 6332.384993286217
+      },
+      "to": {
+        "x": 3187.175039378928,
+        "y": 6157.5187729710415
+      },
+      "goal": {
+        "x": 3308.455221211082,
+        "y": 6173.134141590831,
+        "id": "rv11-west-knot-ward-3"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 2,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "rv11-west-knot-ward-3",
+      "hpBefore": 763
+    },
+    {
+      "op": "fire",
+      "round": 3,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-west-knot-ward-4",
+      "hpBefore": 796,
+      "angle": -28.260109053629964,
+      "power": 0.22856124146743648
+    },
+    {
+      "op": "move",
+      "round": 3,
+      "hero": "archer",
+      "from": {
+        "x": 1287.0000000000023,
+        "y": 6500
+      },
+      "to": {
+        "x": 2795.3545570639853,
+        "y": 6035.346358605606
+      },
+      "goal": {
+        "x": 3600,
+        "y": 6234.285714285715,
+        "id": "knot-west"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 3,
+      "hero": "archer",
+      "skill": "A01",
+      "target": "rv11-west-knot-ward-0",
+      "hpBefore": 1136,
+      "angle": 4.236824101881299,
+      "power": 0.4627859071392503
+    },
+    {
+      "op": "wait",
+      "round": 3,
+      "hero": "archer"
+    },
+    {
+      "op": "move",
+      "round": 3,
+      "hero": "mage",
+      "from": {
+        "x": 1376.467192655056,
+        "y": 6475.530498350382
+      },
+      "to": {
+        "x": 2915.0684376138147,
+        "y": 5998.789921941392
+      },
+      "goal": {
+        "x": 3600,
+        "y": 6234.285714285715,
+        "id": "knot-west"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 3,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-west-knot-ward-3",
+      "hpBefore": 606,
+      "angle": 55,
+      "power": 0.2
+    },
+    {
+      "op": "fire",
+      "round": 3,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "rv11-west-knot-ward-3",
+      "hpBefore": 323
+    },
+    {
+      "op": "fire",
+      "round": 4,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-west-knot-ward-4",
+      "hpBefore": 693,
+      "angle": 4,
+      "power": 0.13
+    },
+    {
+      "op": "fire",
+      "round": 4,
+      "hero": "archer",
+      "skill": "A02",
+      "target": "rv11-west-knot-ward-0",
+      "hpBefore": 878,
+      "angle": 50,
+      "power": 0.2
+    },
+    {
+      "op": "wait",
+      "round": 4,
+      "hero": "archer"
+    },
+    {
+      "op": "fire",
+      "round": 4,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-west-knot-ward-0",
+      "hpBefore": 183,
+      "angle": -28.000337326319364,
+      "power": 0.49701483537280894
+    },
+    {
+      "op": "fire",
+      "round": 4,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "rv11-west-knot-ward-3",
+      "hpBefore": 166
+    },
+    {
+      "op": "fire",
+      "round": 5,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-west-knot-ward-4",
+      "hpBefore": 473,
+      "angle": -44.28922967119859,
+      "power": 0.1479609532956577
+    },
+    {
+      "op": "fire",
+      "round": 5,
+      "hero": "archer",
+      "skill": "A02",
+      "target": "rv11-west-knot-ward-1",
+      "hpBefore": 115,
+      "angle": 63,
+      "power": 0.28500000000000003
+    },
+    {
+      "op": "wait",
+      "round": 5,
+      "hero": "archer"
+    },
+    {
+      "op": "fire",
+      "round": 5,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-west-knot-ward-3",
+      "hpBefore": 9,
+      "angle": -6.175860402795197,
+      "power": 0.22808100417519253
+    },
+    {
+      "op": "move",
+      "round": 5,
+      "hero": "knight",
+      "from": {
+        "x": 3186.3132602002875,
+        "y": 6157.016068450168
+      },
+      "to": {
+        "x": 3447.3077384098333,
+        "y": 6192.840671854097
+      },
+      "goal": {
+        "x": 3542.361251333659,
+        "y": 6218.640911076279,
+        "id": "rv11-west-knot-ward-5"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 5,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "rv11-west-knot-ward-5",
+      "hpBefore": 1667
+    },
+    {
+      "op": "fire",
+      "round": 6,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-west-knot-ward-5",
+      "hpBefore": 848,
+      "angle": -8.587725567116003,
+      "power": 0.12577734822943182
+    },
+    {
+      "op": "fire",
+      "round": 6,
+      "hero": "archer",
+      "skill": "A01",
+      "target": "rv11-west-canopy-watch-0",
+      "hpBefore": 495,
+      "angle": 101.37813374002653,
+      "power": 0.8412588331242321
+    },
+    {
+      "op": "move",
+      "round": 6,
+      "hero": "archer",
+      "from": {
+        "x": 2795.3545570639853,
+        "y": 6035.346358605606
+      },
+      "to": {
+        "x": 2958.3416392465692,
+        "y": 6024.032622893832
+      },
+      "goal": {
+        "x": 3782.999525967259,
+        "y": 6283.957014191114,
+        "id": "rv11-west-knot-ward-5"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 6,
+      "hero": "archer"
+    },
+    {
+      "op": "fire",
+      "round": 6,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-west-canopy-watch-1",
+      "hpBefore": 434,
+      "angle": 36.85935301981673,
+      "power": 0.7889634621047497
+    },
+    {
+      "op": "move",
+      "round": 6,
+      "hero": "knight",
+      "from": {
+        "x": 3447.3077384098333,
+        "y": 6192.840671854097
+      },
+      "to": {
+        "x": 3680.563861306388,
+        "y": 6256.153048068877
+      },
+      "goal": {
+        "x": 3782.999525967259,
+        "y": 6283.957014191114,
+        "id": "rv11-west-knot-ward-5"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 6,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "rv11-west-knot-ward-5",
+      "hpBefore": 682
+    },
+    {
+      "op": "fire",
+      "round": 7,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-west-knot-ward-5",
+      "hpBefore": 398,
+      "angle": 156.62469358206954,
+      "power": 0.14871153147641156
+    },
+    {
+      "op": "fire",
+      "round": 7,
+      "hero": "archer",
+      "skill": "A02",
+      "target": "rv11-west-knot-ward-5",
+      "hpBefore": 158,
+      "angle": -17,
+      "power": 0.625
+    },
+    {
+      "op": "move",
+      "round": 7,
+      "hero": "archer",
+      "from": {
+        "x": 2958.3416392465692,
+        "y": 6024.032622893832
+      },
+      "to": {
+        "x": 2932.687405889885,
+        "y": 6009.067653435766
+      },
+      "goal": {
+        "x": 3352.460867617882,
+        "y": 5711.368074964152,
+        "id": "rv11-west-canopy-watch-1"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 7,
+      "hero": "archer"
+    },
+    {
+      "op": "fire",
+      "round": 7,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-west-canopy-watch-1",
+      "hpBefore": 102,
+      "angle": 82,
+      "power": 1
+    },
+    {
+      "op": "jump",
+      "round": 7,
+      "hero": "knight",
+      "to": {
+        "x": 3240,
+        "support": "rv-west-climbing-trunk"
+      }
+    },
+    {
+      "op": "move",
+      "round": 7,
+      "hero": "knight",
+      "from": {
+        "x": 3680.563861306388,
+        "y": 6256.153048068877
+      },
+      "to": {
+        "x": 3407.5318667585743,
+        "y": 5887.133544934516
+      },
+      "goal": {
+        "x": 3534.3241051092355,
+        "y": 5796.794075109669,
+        "id": "rv11-west-canopy-watch-4"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 7,
+      "hero": "knight"
+    },
+    {
+      "op": "E",
+      "round": 8,
+      "hero": "occultist",
+      "target": "knot-west",
+      "spiritBefore": null
+    },
+    {
+      "op": "move",
+      "round": 8,
+      "hero": "archer",
+      "from": {
+        "x": 2932.687405889885,
+        "y": 6009.067653435766
+      },
+      "to": {
+        "x": 4386.259169828335,
+        "y": 6558.931052086701
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 8,
+      "hero": "archer",
+      "skill": "A01",
+      "target": "rv11-west-canopy-watch-3",
+      "hpBefore": 570,
+      "angle": 133.24079246124796,
+      "power": 0.9367475318429329
+    },
+    {
+      "op": "move",
+      "round": 8,
+      "hero": "archer",
+      "from": {
+        "x": 4386.259169828335,
+        "y": 6558.931052086701
+      },
+      "to": {
+        "x": 4535.737714543554,
+        "y": 6657.586891598746
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 8,
+      "hero": "archer"
+    },
+    {
+      "op": "move",
+      "round": 8,
+      "hero": "mage",
+      "from": {
+        "x": 2915.0684376138147,
+        "y": 5998.789921941392
+      },
+      "to": {
+        "x": 4403.588383196934,
+        "y": 6570.368332909977
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 8,
+      "hero": "mage"
+    },
+    {
+      "op": "move",
+      "round": 8,
+      "hero": "knight",
+      "from": {
+        "x": 3406.736950170184,
+        "y": 5887.699923003744
+      },
+      "to": {
+        "x": 4747.882442695933,
+        "y": 4708.974076359871
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 8,
+      "hero": "knight"
+    },
+    {
+      "op": "move",
+      "round": 9,
+      "hero": "archer",
+      "from": {
+        "x": 4535.737714543554,
+        "y": 6657.586891598746
+      },
+      "to": {
+        "x": 5978.994512176929,
+        "y": 6898.030296172965
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 9,
+      "hero": "archer",
+      "skill": "A02",
+      "target": "rv11-ritual-court-guard-3",
+      "hpBefore": 1976,
+      "angle": 26,
+      "power": 0.71
+    },
+    {
+      "op": "move",
+      "round": 9,
+      "hero": "archer",
+      "from": {
+        "x": 5978.994512176929,
+        "y": 6898.030296172965
+      },
+      "to": {
+        "x": 6150.629768950304,
+        "y": 6844.811069314908
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 9,
+      "hero": "archer"
+    },
+    {
+      "op": "heal-stake",
+      "round": 9,
+      "hero": "mage",
+      "target": "p-occultist",
+      "angle": 117.9179219869486,
+      "power": 0.9652232372018738,
+      "d": 9.6872488745048,
+      "x": 3600.4909806386663,
+      "y": 6228.201887497082
+    },
+    {
+      "op": "move",
+      "round": 9,
+      "hero": "knight",
+      "from": {
+        "x": 4744.4887440970215,
+        "y": 4710.53517771537
+      },
+      "to": {
+        "x": 6425.774744622081,
+        "y": 4844.861238862118
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 9,
+      "hero": "knight"
+    },
+    {
+      "op": "move",
+      "round": 9,
+      "hero": "occultist",
+      "from": {
+        "x": 3606.2591492195947,
+        "y": 6235.9846262167475
+      },
+      "to": {
+        "x": 5059.908661300619,
+        "y": 6977.972598390186
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 9,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-saddle-crossfire-4",
+      "hpBefore": 495,
+      "angle": 26,
+      "power": 0.9650000000000001
+    },
+    {
+      "op": "move",
+      "round": 10,
+      "hero": "archer",
+      "from": {
+        "x": 6092.248399513316,
+        "y": 6862.436217295815
+      },
+      "to": {
+        "x": 7357.341128685063,
+        "y": 6809.200668173005
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 10,
+      "hero": "archer",
+      "skill": "A01",
+      "target": "rv11-ritual-court-guard-3",
+      "hpBefore": 1680,
+      "angle": 129.9892379960946,
+      "power": 0.34094329344595886
+    },
+    {
+      "op": "move",
+      "round": 10,
+      "hero": "archer",
+      "from": {
+        "x": 7357.341128685063,
+        "y": 6809.200668173005
+      },
+      "to": {
+        "x": 7537.281333501985,
+        "y": 6824.62411430017
+      },
+      "goal": {
+        "x": 7238,
+        "y": 6607.409090909091,
+        "id": "rv11-ritual-court-guard-5"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 10,
+      "hero": "archer"
+    },
+    {
+      "op": "move",
+      "round": 10,
+      "hero": "mage",
+      "from": {
+        "x": 4403.588383196934,
+        "y": 6570.368332909977
+      },
+      "to": {
+        "x": 5868.095059054065,
+        "y": 6932.884410011579
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 10,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-ritual-court-guard-3",
+      "hpBefore": 1633,
+      "angle": 42.703738815737644,
+      "power": 0.9045881710337272
+    },
+    {
+      "op": "move",
+      "round": 10,
+      "hero": "knight",
+      "from": {
+        "x": 6425.774744622081,
+        "y": 4844.861238862118
+      },
+      "to": {
+        "x": 7581.099938577352,
+        "y": 6236.374923221691
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 10,
+      "hero": "knight"
+    },
+    {
+      "op": "move",
+      "round": 10,
+      "hero": "occultist",
+      "from": {
+        "x": 5059.908661300619,
+        "y": 6977.972598390186
+      },
+      "to": {
+        "x": 6638.680416529919,
+        "y": 6717.736083305984
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 10,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-ritual-court-guard-3",
+      "hpBefore": 1404,
+      "angle": 15.783230474897017,
+      "power": 0.5063617863464787
+    },
+    {
+      "op": "fire",
+      "round": 11,
+      "hero": "archer",
+      "skill": "A01",
+      "target": "rv11-ritual-court-guard-5",
+      "hpBefore": 546,
+      "angle": 138.8524440047493,
+      "power": 0.6878713501565299
+    },
+    {
+      "op": "move",
+      "round": 11,
+      "hero": "archer",
+      "from": {
+        "x": 7537.281333501985,
+        "y": 6824.62411430017
+      },
+      "to": {
+        "x": 7716.275890626955,
+        "y": 6811.912639235807
+      },
+      "goal": {
+        "x": 7260.924581894976,
+        "y": 6605.846051234434,
+        "id": "rv11-ritual-court-guard-5"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 11,
+      "hero": "archer"
+    },
+    {
+      "op": "move",
+      "round": 11,
+      "hero": "mage",
+      "from": {
+        "x": 5868.095059054065,
+        "y": 6932.884410011579
+      },
+      "to": {
+        "x": 7357.258312063671,
+        "y": 6809.193569605458
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 11,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-ritual-court-guard-3",
+      "hpBefore": 1227,
+      "angle": 131.0211941441556,
+      "power": 0.7442165168105875
+    },
+    {
+      "op": "move",
+      "round": 11,
+      "hero": "knight",
+      "from": {
+        "x": 7583.086680144541,
+        "y": 6238.858350180676
+      },
+      "to": {
+        "x": 8015.3744775528085,
+        "y": 6709.990586299036
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 11,
+      "hero": "knight"
+    },
+    {
+      "op": "move",
+      "round": 11,
+      "hero": "occultist",
+      "from": {
+        "x": 6638.680416529919,
+        "y": 6717.736083305984
+      },
+      "to": {
+        "x": 7357.520158311267,
+        "y": 6809.216013569537
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 11,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-ritual-court-guard-3",
+      "hpBefore": 864,
+      "angle": 132.90233504011434,
+      "power": 0.29785906863382616
+    },
+    {
+      "op": "fire",
+      "round": 12,
+      "hero": "archer",
+      "skill": "A01",
+      "target": "rv11-ritual-court-guard-3",
+      "hpBefore": 647,
+      "angle": 154.00364882275227,
+      "power": 0.7748956557499026
+    },
+    {
+      "op": "move",
+      "round": 12,
+      "hero": "archer",
+      "from": {
+        "x": 7716.275890626955,
+        "y": 6811.912639235807
+      },
+      "to": {
+        "x": 7702.343448414689,
+        "y": 6814.079908024381
+      },
+      "goal": {
+        "x": 7170.260368246709,
+        "y": 6614.460944762994,
+        "id": "rv11-ritual-court-guard-3"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 12,
+      "hero": "archer"
+    },
+    {
+      "op": "fire",
+      "round": 12,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-ritual-court-guard-3",
+      "hpBefore": 427,
+      "angle": 130.32520331546627,
+      "power": 0.758110644126366
+    },
+    {
+      "op": "move",
+      "round": 12,
+      "hero": "knight",
+      "from": {
+        "x": 8017.558160378518,
+        "y": 6712.018291780052
+      },
+      "to": {
+        "x": 8136.296804081214,
+        "y": 6809.31245947498
+      },
+      "goal": {
+        "id": "manual-fallen-trunk-end",
+        "x": 8135,
+        "y": 6790
+      }
+    },
+    {
+      "op": "move",
+      "round": 12,
+      "hero": "knight",
+      "from": {
+        "x": 8136.296804081214,
+        "y": 6809.31245947498
+      },
+      "to": {
+        "x": 7382.5890320784165,
+        "y": 6811.36477417815
+      },
+      "goal": {
+        "x": 7370,
+        "y": 6810.285714285715,
+        "id": "knot-east"
+      }
+    },
+    {
+      "op": "E",
+      "round": 12,
+      "hero": "knight",
+      "target": "knot-east",
+      "spiritBefore": null
+    },
+    {
+      "op": "fire",
+      "round": 12,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-ritual-court-guard-1",
+      "hpBefore": 1234,
+      "angle": 173.1440784920966,
+      "power": 0.47921120201271167
+    },
+    {
+      "op": "fire",
+      "round": 13,
+      "hero": "archer",
+      "skill": "A01",
+      "target": "rv11-saddle-crossfire-3",
+      "hpBefore": 1275,
+      "angle": 78.07531059680684,
+      "power": 0.7691671192350332
+    },
+    {
+      "op": "move",
+      "round": 13,
+      "hero": "archer",
+      "from": {
+        "x": 7702.343448414689,
+        "y": 6814.079908024381
+      },
+      "to": {
+        "x": 7524.152390530214,
+        "y": 6823.498776331161
+      },
+      "goal": {
+        "x": 7774.62898546715,
+        "y": 6802.835491149554,
+        "id": "rv11-ritual-court-guard-6"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 13,
+      "hero": "archer"
+    },
+    {
+      "op": "fire",
+      "round": 13,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-ritual-court-guard-1",
+      "hpBefore": 1008,
+      "angle": 206.07208047311718,
+      "power": 0.08300779032620403
+    },
+    {
+      "op": "fire",
+      "round": 13,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "rv11-ritual-court-guard-1",
+      "hpBefore": 654
+    },
+    {
+      "op": "fire",
+      "round": 13,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-ritual-court-guard-6",
+      "hpBefore": 796,
+      "angle": 1.4926977981866711,
+      "power": 0.4676144253334325
+    },
+    {
+      "op": "fire",
+      "round": 14,
+      "hero": "archer",
+      "skill": "A02",
+      "target": "rv11-ritual-court-guard-6",
+      "hpBefore": 693,
+      "angle": 4.818485738665821,
+      "power": 0.39105921704935903
+    },
+    {
+      "op": "move",
+      "round": 14,
+      "hero": "archer",
+      "from": {
+        "x": 7524.152390530214,
+        "y": 6823.498776331161
+      },
+      "to": {
+        "x": 7704.144890854389,
+        "y": 6813.799683644873
+      },
+      "goal": {
+        "x": 7300.924944103598,
+        "y": 6804.36499520888,
+        "id": "rv11-ritual-court-guard-1"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 14,
+      "hero": "archer"
+    },
+    {
+      "op": "heal-stake",
+      "round": 14,
+      "hero": "mage",
+      "target": "p-archer",
+      "angle": 25,
+      "power": 0.4,
+      "d": 6.384073122032198,
+      "x": 7701.067650925943,
+      "y": 6808.206206725261
+    },
+    {
+      "op": "fire",
+      "round": 14,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "rv11-ritual-court-guard-1",
+      "hpBefore": 130
+    },
+    {
+      "op": "fire",
+      "round": 14,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-ritual-court-guard-6",
+      "hpBefore": 261,
+      "angle": 1.501559732009669,
+      "power": 0.46100058764339735
+    },
+    {
+      "op": "fire",
+      "round": 15,
+      "hero": "archer",
+      "skill": "A01",
+      "target": "rv11-saddle-crossfire-3",
+      "hpBefore": 1027,
+      "angle": 78.14536770505094,
+      "power": 0.7699710954497188
+    },
+    {
+      "op": "move",
+      "round": 15,
+      "hero": "archer",
+      "from": {
+        "x": 7704.144890854389,
+        "y": 6813.799683644873
+      },
+      "to": {
+        "x": 7524.1754135038,
+        "y": 6823.500749728897
+      },
+      "goal": {
+        "x": 7774.62898546715,
+        "y": 6802.835491149554,
+        "id": "rv11-ritual-court-guard-6"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 15,
+      "hero": "archer"
+    },
+    {
+      "op": "fire",
+      "round": 15,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-ritual-court-guard-6",
+      "hpBefore": 158,
+      "angle": 26,
+      "power": 0.54
+    },
+    {
+      "op": "move",
+      "round": 15,
+      "hero": "knight",
+      "from": {
+        "x": 7384.74206140532,
+        "y": 6811.549319549027
+      },
+      "to": {
+        "x": 7677.68499828869,
+        "y": 6817.91566693287
+      },
+      "goal": {
+        "x": 7774.62898546715,
+        "y": 6802.835491149554,
+        "id": "rv11-ritual-court-guard-6"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 15,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "rv11-ritual-court-guard-6",
+      "hpBefore": 158
+    },
+    {
+      "op": "fire",
+      "round": 15,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "event-94",
+      "hpBefore": 796,
+      "angle": 174.82654482598423,
+      "power": 0.46350277927166067
+    },
+    {
+      "op": "fire",
+      "round": 16,
+      "hero": "archer",
+      "skill": "A02",
+      "target": "event-101",
+      "hpBefore": 151,
+      "angle": 26,
+      "power": 0.28500000000000003
+    },
+    {
+      "op": "wait",
+      "round": 16,
+      "hero": "archer"
+    },
+    {
+      "op": "heal-stake",
+      "round": 16,
+      "hero": "mage",
+      "target": "p-occultist",
+      "angle": 95,
+      "power": 0.2,
+      "d": 6.446812304770867,
+      "x": 7407.60095343416,
+      "y": 6807.486652670271
+    },
+    {
+      "op": "move",
+      "round": 16,
+      "hero": "knight",
+      "from": {
+        "x": 7677.68499828869,
+        "y": 6817.91566693287
+      },
+      "to": {
+        "x": 7100.617050393317,
+        "y": 6787.19574717657
+      },
+      "goal": {
+        "x": 6991.9851445211,
+        "y": 6777.884440958951,
+        "id": "event-94"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 16,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "event-94",
+      "hpBefore": 692
+    },
+    {
+      "op": "fire",
+      "round": 16,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "event-94",
+      "hpBefore": 149,
+      "angle": 174.69488864918478,
+      "power": 0.4760103613958495
+    },
+    {
+      "op": "fire",
+      "round": 17,
+      "hero": "archer",
+      "skill": "A02",
+      "target": "event-102",
+      "hpBefore": 1234,
+      "angle": 10.673082812008186,
+      "power": 0.49995660406862574
+    },
+    {
+      "op": "wait",
+      "round": 17,
+      "hero": "archer"
+    },
+    {
+      "op": "fire",
+      "round": 17,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "event-94",
+      "hpBefore": 45,
+      "angle": 160.70882879130687,
+      "power": 0.346790112614135
+    },
+    {
+      "op": "fire",
+      "round": 17,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "rv11-ritual-court-guard-0",
+      "hpBefore": 18
+    },
+    {
+      "op": "fire",
+      "round": 17,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-saddle-crossfire-3",
+      "hpBefore": 852,
+      "angle": 36.12056463808593,
+      "power": 0.3295047962429448
+    },
+    {
+      "op": "fire",
+      "round": 18,
+      "hero": "archer",
+      "skill": "A02",
+      "target": "event-102",
+      "hpBefore": 374,
+      "angle": 10.805866307504507,
+      "power": 0.48658615810212613
+    },
+    {
+      "op": "move",
+      "round": 18,
+      "hero": "archer",
+      "from": {
+        "x": 7524.1754135038,
+        "y": 6823.500749728897
+      },
+      "to": {
+        "x": 7288.6390656703525,
+        "y": 6803.311919914601
+      },
+      "goal": {
+        "x": 7781.719549499106,
+        "y": 6588.415685831619,
+        "id": "rv11-saddle-crossfire-3"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 18,
+      "hero": "archer"
+    },
+    {
+      "op": "fire",
+      "round": 18,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-saddle-crossfire-3",
+      "hpBefore": 804,
+      "angle": 26,
+      "power": 0.9650000000000001
+    },
+    {
+      "op": "move",
+      "round": 18,
+      "hero": "knight",
+      "from": {
+        "x": 7103.706662349223,
+        "y": 6787.460571058505
+      },
+      "to": {
+        "x": 6852.4576276334665,
+        "y": 6760.491525526693
+      },
+      "goal": {
+        "x": 6742.940782152191,
+        "y": 6738.588156430438,
+        "id": "event-96"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 18,
+      "hero": "knight",
+      "skill": "S03",
+      "target": "event-96",
+      "hpBefore": 1234
+    },
+    {
+      "op": "fire",
+      "round": 18,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-saddle-crossfire-3",
+      "hpBefore": 506,
+      "angle": 35.25443798076459,
+      "power": 0.5182786309819716
+    },
+    {
+      "op": "move",
+      "round": 19,
+      "hero": "archer",
+      "from": {
+        "x": 7288.6390656703525,
+        "y": 6803.311919914601
+      },
+      "to": {
+        "x": 9065.12317510312,
+        "y": 7304.283759070121
+      },
+      "goal": {
+        "x": 9700,
+        "y": 8835.714285714286,
+        "id": "resident"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 19,
+      "hero": "archer",
+      "skill": "A02",
+      "target": "rv11-saddle-crossfire-3",
+      "hpBefore": 435,
+      "angle": 138,
+      "power": 0.8800000000000001
+    },
+    {
+      "op": "move",
+      "round": 19,
+      "hero": "archer",
+      "from": {
+        "x": 9065.12317510312,
+        "y": 7304.283759070121
+      },
+      "to": {
+        "x": 9214.714179327479,
+        "y": 7406.0056419426855
+      },
+      "goal": {
+        "x": 9700,
+        "y": 8835.714285714286,
+        "id": "resident"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 19,
+      "hero": "archer"
+    },
+    {
+      "op": "move",
+      "round": 19,
+      "hero": "mage",
+      "from": {
+        "x": 7409.382028899208,
+        "y": 6813.661316762789
+      },
+      "to": {
+        "x": 9096.954992588906,
+        "y": 7325.929394960456
+      },
+      "goal": {
+        "x": 9700,
+        "y": 8835.714285714286,
+        "id": "resident"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 19,
+      "hero": "mage",
+      "skill": "M11",
+      "target": "rv11-saddle-crossfire-2",
+      "hpBefore": 576,
+      "angle": 130,
+      "power": 0.9650000000000001
+    },
+    {
+      "op": "move",
+      "round": 19,
+      "hero": "knight",
+      "from": {
+        "x": 6853.296935026903,
+        "y": 6760.65938700538
+      },
+      "to": {
+        "x": 9255.42650632902,
+        "y": 7433.6900243037335
+      },
+      "goal": {
+        "x": 9700,
+        "y": 8835.714285714286,
+        "id": "resident"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 19,
+      "hero": "knight"
+    },
+    {
+      "op": "move",
+      "round": 19,
+      "hero": "occultist",
+      "from": {
+        "x": 7409.43819075271,
+        "y": 6813.6661306359465
+      },
+      "to": {
+        "x": 9123.402415133858,
+        "y": 7343.913642291023
+      },
+      "goal": {
+        "x": 9700,
+        "y": 8835.714285714286,
+        "id": "resident"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 19,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-refuge-two-levels-0",
+      "hpBefore": 495,
+      "angle": -68,
+      "power": 0.8800000000000001
+    },
+    {
+      "op": "move",
+      "round": 20,
+      "hero": "archer",
+      "from": {
+        "x": 9214.714179327479,
+        "y": 7406.0056419426855
+      },
+      "to": {
+        "x": 10450.096997209812,
+        "y": 8382.543648744415
+      },
+      "goal": {
+        "x": 9700,
+        "y": 8835.714285714286,
+        "id": "resident"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 20,
+      "hero": "archer"
+    },
+    {
+      "op": "move",
+      "round": 20,
+      "hero": "mage",
+      "from": {
+        "x": 9096.954992588906,
+        "y": 7325.929394960456
+      },
+      "to": {
+        "x": 10365.254346697287,
+        "y": 8329.423825093612
+      },
+      "goal": {
+        "x": 9700,
+        "y": 8835.714285714286,
+        "id": "resident"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 20,
+      "hero": "mage"
+    },
+    {
+      "op": "move",
+      "round": 20,
+      "hero": "knight",
+      "from": {
+        "x": 9255.42650632902,
+        "y": 7433.6900243037335
+      },
+      "to": {
+        "x": 10708.868803179417,
+        "y": 8498.990961430738
+      },
+      "goal": {
+        "x": 9700,
+        "y": 8835.714285714286,
+        "id": "resident"
+      }
+    },
+    {
+      "op": "wait",
+      "round": 20,
+      "hero": "knight"
+    },
+    {
+      "op": "move",
+      "round": 20,
+      "hero": "occultist",
+      "from": {
+        "x": 9123.402415133858,
+        "y": 7343.913642291023
+      },
+      "to": {
+        "x": 10416.638454809774,
+        "y": 8367.487304664399
+      },
+      "goal": {
+        "x": 9700,
+        "y": 8835.714285714286,
+        "id": "resident"
+      }
+    },
+    {
+      "op": "fire",
+      "round": 20,
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "rv11-refuge-two-levels-0",
+      "hpBefore": 240,
+      "angle": 194,
+      "power": 0.625
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "goal": "knot-west",
+      "summary": "완료 0/6 · 서쪽 혼매듭 해체 · 소단로 전환",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 176,
+          "x": 720,
+          "y": 6500,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "mage",
+          "hp": 820,
+          "maxHp": 820,
+          "focus": 263,
+          "x": 540,
+          "y": 6500,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1525,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 880,
+          "y": 6500,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "occultist",
+          "hp": 942,
+          "maxHp": 942,
+          "focus": 283,
+          "x": 615,
+          "y": 6500,
+          "support": "act2-floor"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-entry-root-pack-0",
+          "hp": 796,
+          "x": 1710,
+          "y": 6368.8
+        },
+        {
+          "id": "rv11-entry-root-pack-2",
+          "hp": 796,
+          "x": 1898,
+          "y": 6313.05
+        },
+        {
+          "id": "rv11-entry-root-pack-3",
+          "hp": 495,
+          "x": 1840,
+          "y": 6149
+        },
+        {
+          "id": "rv11-west-knot-ward-0",
+          "hp": 1234,
+          "x": 3380,
+          "y": 6178.5
+        },
+        {
+          "id": "rv11-west-knot-ward-1",
+          "hp": 796,
+          "x": 3484,
+          "y": 6202.8
+        },
+        {
+          "id": "rv11-west-knot-ward-3",
+          "hp": 916,
+          "x": 3660,
+          "y": 6250.571428571428
+        },
+        {
+          "id": "rv11-west-knot-ward-4",
+          "hp": 796,
+          "x": 3768,
+          "y": 6279.885714285714
+        },
+        {
+          "id": "rv11-west-knot-ward-5",
+          "hp": 1976,
+          "x": 3870,
+          "y": 6307.571428571428
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 495,
+          "x": 3159.148748315592,
+          "y": 5604.3
+        },
+        {
+          "id": "rv11-west-canopy-watch-1",
+          "hp": 434,
+          "x": 3360,
+          "y": 5588.775
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 796,
+          "x": 3760,
+          "y": 5600.666666666667
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3845,
+          "y": 5521.333333333333
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7750,
+          "y": 6074.5
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7840,
+          "y": 6212.142857142857
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7920,
+          "y": 6431.428571428572
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 495,
+          "x": 6480,
+          "y": 6396
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 434,
+          "x": 6580,
+          "y": 6256
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6670,
+          "y": 6434
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6850,
+          "y": 6760
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 1976,
+          "x": 7160,
+          "y": 6616
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 916,
+          "x": 7238,
+          "y": 6607.409090909091
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9597.361923697294,
+          "y": 8726.262827517112
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8870.483263405205,
+          "y": 8794.349339695891
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8910,
+          "y": 8570.4
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10570,
+          "y": 8256.5
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11780,
+          "y": 4977.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11254.354473553325,
+          "y": 4797.439070182335
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11462,
+          "y": 4784
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11690,
+          "y": 4814
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "goal": "knot-west",
+      "summary": "완료 0/6 · 서쪽 혼매듭 해체 · 소단로 전환",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 167,
+          "x": 884.6999999999997,
+          "y": 6500,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "mage",
+          "hp": 820,
+          "maxHp": 820,
+          "focus": 258.28340000000003,
+          "x": 540,
+          "y": 6500,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1490,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 1827.6909335046662,
+          "y": 6332.384993286217,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "occultist",
+          "hp": 912,
+          "maxHp": 942,
+          "focus": 269,
+          "x": 2197.529658043078,
+          "y": 6230.679344038153,
+          "support": "rv-west-shoulder"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-entry-root-pack-2",
+          "hp": 282,
+          "x": 1895.669836967391,
+          "y": 6313.690794833968
+        },
+        {
+          "id": "rv11-west-knot-ward-0",
+          "hp": 1136,
+          "x": 2958.0674634246197,
+          "y": 6023.8726869976945
+        },
+        {
+          "id": "rv11-west-knot-ward-1",
+          "hp": 796,
+          "x": 3147.298382809219,
+          "y": 6134.257389972045
+        },
+        {
+          "id": "rv11-west-knot-ward-3",
+          "hp": 916,
+          "x": 3324.0833333333544,
+          "y": 6174.3062500000015
+        },
+        {
+          "id": "rv11-west-knot-ward-4",
+          "hp": 796,
+          "x": 3768,
+          "y": 6279.885714285714
+        },
+        {
+          "id": "rv11-west-knot-ward-5",
+          "hp": 1976,
+          "x": 3870,
+          "y": 6307.571428571428
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 495,
+          "x": 3136.521331317622,
+          "y": 5587.329437251524
+        },
+        {
+          "id": "rv11-west-canopy-watch-1",
+          "hp": 434,
+          "x": 3360.0000000000014,
+          "y": 5564.775
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 796,
+          "x": 3760,
+          "y": 5600.666666666667
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3845,
+          "y": 5521.333333333333
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7772.627416997973,
+          "y": 6091.470562748475
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7840.000000000002,
+          "y": 6236.142857142857
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7897.37258300203,
+          "y": 6448.399134177049
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 495,
+          "x": 6511.5,
+          "y": 6395.999999999999
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 434,
+          "x": 6580.000000000001,
+          "y": 6232
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6692.627416997967,
+          "y": 6417.029437251521
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6850,
+          "y": 6760
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 1976,
+          "x": 7160,
+          "y": 6616
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 916,
+          "x": 7238,
+          "y": 6607.409090909091
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9597.361923697295,
+          "y": 8702.262827517112
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8932.627416997973,
+          "y": 8587.370562748474
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10592.627416997972,
+          "y": 8273.470562748476
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11779.999999999996,
+          "y": 4954.928571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11254.354473553327,
+          "y": 4821.439070182335
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11430.5,
+          "y": 4784.000000000003
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11673.199999999992,
+          "y": 4826.600000000004
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 3,
+      "goal": "knot-west",
+      "summary": "완료 0/6 · 서쪽 혼매듭 해체 · 소단로 전환",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 176,
+          "x": 1287.0000000000023,
+          "y": 6500,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "mage",
+          "hp": 796,
+          "maxHp": 820,
+          "focus": 253.56680000000003,
+          "x": 1376.467192655056,
+          "y": 6475.530498350382,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "knight",
+          "hp": 1490,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 3187.175039378928,
+          "y": 6157.5187729710415,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "occultist",
+          "hp": 863,
+          "maxHp": 942,
+          "focus": 255,
+          "x": 3587.6208966956474,
+          "y": 6230.925671960247,
+          "support": "rv-west-shoulder"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-knot-ward-0",
+          "hp": 1136,
+          "x": 2958.0674634246197,
+          "y": 6023.8726869976945
+        },
+        {
+          "id": "rv11-west-knot-ward-1",
+          "hp": 796,
+          "x": 3147.298382809219,
+          "y": 6134.257389972045
+        },
+        {
+          "id": "rv11-west-knot-ward-3",
+          "hp": 606,
+          "x": 3308.455221211082,
+          "y": 6173.134141590831
+        },
+        {
+          "id": "rv11-west-knot-ward-4",
+          "hp": 796,
+          "x": 3670.0442506290547,
+          "y": 6253.297725170743
+        },
+        {
+          "id": "rv11-west-knot-ward-5",
+          "hp": 1976,
+          "x": 3870,
+          "y": 6307.571428571428
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 495,
+          "x": 2894.0342182579843,
+          "y": 5447.3294372515265
+        },
+        {
+          "id": "rv11-west-canopy-watch-1",
+          "hp": 434,
+          "x": 3351.0882846158574,
+          "y": 5720.7105438279295
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 796,
+          "x": 3529.6924827798202,
+          "y": 5797.380039832409
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3845,
+          "y": 5521.333333333333
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7718.193622631891,
+          "y": 6074.560150840086
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7872,
+          "y": 6212.142857142856
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7919.853171663212,
+          "y": 6407.6944276500835
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 495,
+          "x": 6502.627416997973,
+          "y": 6412.970562748475
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 434,
+          "x": 6548,
+          "y": 6256.000000000004
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6670.146828336792,
+          "y": 6457.734143778486
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6850,
+          "y": 6760
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 1976,
+          "x": 7160,
+          "y": 6616
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 916,
+          "x": 7238,
+          "y": 6607.409090909091
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9619.989340695261,
+          "y": 8709.292264768634
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8878.193622631912,
+          "y": 8570.460150840094
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10538.19362263191,
+          "y": 8256.56015084009
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11802.3805190958,
+          "y": 4993.968453152293
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11231.727056555355,
+          "y": 4814.409632930811
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11489,
+          "y": 4784.000000000002
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11658.187352689423,
+          "y": 4814.155305518868
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 4,
+      "goal": "knot-west",
+      "summary": "완료 0/6 · 서쪽 혼매듭 해체 · 소단로 전환",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 176,
+          "x": 2795.3545570639853,
+          "y": 6035.346358605606,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "mage",
+          "hp": 796,
+          "maxHp": 820,
+          "focus": 248.85020000000003,
+          "x": 2915.0684376138147,
+          "y": 5998.789921941392,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "knight",
+          "hp": 1490,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 3187.175039378928,
+          "y": 6157.5187729710415,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "occultist",
+          "hp": 863,
+          "maxHp": 942,
+          "focus": 241,
+          "x": 3587.6208966956474,
+          "y": 6230.925671960247,
+          "support": "rv-west-shoulder"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-knot-ward-0",
+          "hp": 878,
+          "x": 3102.1025951494303,
+          "y": 6107.893180503835
+        },
+        {
+          "id": "rv11-west-knot-ward-1",
+          "hp": 506,
+          "x": 3147.298382809219,
+          "y": 6134.257389972045
+        },
+        {
+          "id": "rv11-west-knot-ward-3",
+          "hp": 166,
+          "x": 3308.455221211082,
+          "y": 6173.134141590831
+        },
+        {
+          "id": "rv11-west-knot-ward-4",
+          "hp": 693,
+          "x": 3670.0442506290547,
+          "y": 6253.297725170743
+        },
+        {
+          "id": "rv11-west-knot-ward-5",
+          "hp": 1911,
+          "x": 3542.361251333659,
+          "y": 6218.640911076279
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 495,
+          "x": 2871.4068012600146,
+          "y": 5464.300000000004
+        },
+        {
+          "id": "rv11-west-canopy-watch-1",
+          "hp": 434,
+          "x": 3328.4608676178864,
+          "y": 5703.739981079453
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 796,
+          "x": 3529.6924827798202,
+          "y": 5797.380039832409
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3530.0156276080133,
+          "y": 5797.453555280823
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7772.593244421808,
+          "y": 6057.540128833174
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7862.627416997973,
+          "y": 6229.113419891331
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7942.557751675473,
+          "y": 6448.274620435062
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 495,
+          "x": 6457.627416997973,
+          "y": 6412.970562748477
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 434,
+          "x": 6557.3725830020285,
+          "y": 6239.029437251524
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6647.442248324529,
+          "y": 6417.153950993507
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6850,
+          "y": 6760
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 1976,
+          "x": 7160,
+          "y": 6616
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 916,
+          "x": 7238,
+          "y": 6607.409090909091
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9597.508752034084,
+          "y": 8749.996971295599
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8932.593244421794,
+          "y": 8553.440128833177
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10592.593244421792,
+          "y": 8239.54012883318
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11748,
+          "y": 4977.428571428574
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11254.207645216531,
+          "y": 4773.704926403846
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11430.5,
+          "y": 4784.000000000004
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11712.627416997973,
+          "y": 4830.970562748475
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 5,
+      "goal": "knot-west",
+      "summary": "완료 0/6 · 서쪽 혼매듭 해체 · 소단로 전환",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 167,
+          "x": 2795.3545570639853,
+          "y": 6035.346358605606,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "mage",
+          "hp": 796,
+          "maxHp": 820,
+          "focus": 244.13360000000003,
+          "x": 2915.0684376138147,
+          "y": 5998.789921941392,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "knight",
+          "hp": 1490,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 3186.3132602002875,
+          "y": 6157.016068450168,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "occultist",
+          "hp": 814,
+          "maxHp": 942,
+          "focus": 227,
+          "x": 3587.6208966956474,
+          "y": 6230.925671960247,
+          "support": "rv-west-shoulder"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-knot-ward-1",
+          "hp": 115,
+          "x": 3147.298382809219,
+          "y": 6134.257389972045
+        },
+        {
+          "id": "rv11-west-knot-ward-3",
+          "hp": 9,
+          "x": 3308.455221211082,
+          "y": 6173.134141590831
+        },
+        {
+          "id": "rv11-west-knot-ward-4",
+          "hp": 473,
+          "x": 3654.3211794102003,
+          "y": 6249.03003441134
+        },
+        {
+          "id": "rv11-west-knot-ward-5",
+          "hp": 1911,
+          "x": 3542.361251333659,
+          "y": 6218.640911076279
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 495,
+          "x": 2628.9196882003775,
+          "y": 5324.3000000000075
+        },
+        {
+          "id": "rv11-west-canopy-watch-1",
+          "hp": 434,
+          "x": 3351.0882846158534,
+          "y": 5686.769418330974
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 796,
+          "x": 3616.692482779815,
+          "y": 5734.420349405506
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3530.0156276080133,
+          "y": 5797.453555280823
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7750.134191079814,
+          "y": 6098.256721556313
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7817.627416997973,
+          "y": 6229.113419891334
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7888.094943320275,
+          "y": 6431.457887516153
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 495,
+          "x": 6479.913233954626,
+          "y": 6372.158893307317
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 434,
+          "x": 6602.3725830020285,
+          "y": 6239.029437251521
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6701.905056679727,
+          "y": 6433.970683912421
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6850,
+          "y": 6760
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 1976,
+          "x": 7160,
+          "y": 6616
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 916,
+          "x": 7238,
+          "y": 6607.409090909091
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9597.361923697294,
+          "y": 8702.262827517112
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8910.134191079824,
+          "y": 8594.156721556294
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10570.13419107982,
+          "y": 8280.256721556294
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11802.433794366061,
+          "y": 4960.518159520181
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11254.354473553327,
+          "y": 4821.439070182335
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11489,
+          "y": 4784.000000000001
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11658.193622631912,
+          "y": 4814.060150840094
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 6,
+      "goal": "knot-west",
+      "summary": "완료 0/6 · 서쪽 혼매듭 해체 · 소단로 전환",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 158,
+          "x": 2795.3545570639853,
+          "y": 6035.346358605606,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "mage",
+          "hp": 796,
+          "maxHp": 820,
+          "focus": 239.41700000000003,
+          "x": 2915.0684376138147,
+          "y": 5998.789921941392,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "knight",
+          "hp": 1333,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 3447.3077384098333,
+          "y": 6192.840671854097,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "occultist",
+          "hp": 788,
+          "maxHp": 942,
+          "focus": 213,
+          "x": 3584.29010837012,
+          "y": 6230.021600843318,
+          "support": "rv-west-shoulder"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-knot-ward-5",
+          "hp": 848,
+          "x": 3745.2695893163313,
+          "y": 6273.716031385861
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 495,
+          "x": 2651.547105198346,
+          "y": 5341.270562748486
+        },
+        {
+          "id": "rv11-west-canopy-watch-1",
+          "hp": 434,
+          "x": 3375.0882846158534,
+          "y": 5728.338637712627
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 796,
+          "x": 3533.964110636929,
+          "y": 5797.0505711711885
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3617.015627608008,
+          "y": 5734.118747565859
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7727.448794214826,
+          "y": 6057.665801770244
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7872,
+          "y": 6212.142857142856
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7942.512084384884,
+          "y": 6414.493962311315
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 495,
+          "x": 6502.5268404306935,
+          "y": 6412.789851973657
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 434,
+          "x": 6557.3725830020285,
+          "y": 6239.0294372515245
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6647.487915615118,
+          "y": 6450.934609117254
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6850,
+          "y": 6760
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 1976,
+          "x": 7160,
+          "y": 6616
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 916,
+          "x": 7238,
+          "y": 6607.409090909091
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9619.842512358473,
+          "y": 8742.967534044077
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8887.448794214815,
+          "y": 8553.565801770224
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10547.448794214819,
+          "y": 8239.665801770227
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11780.075804038655,
+          "y": 5001.290334695406
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11223.154473553313,
+          "y": 4798.039070182331
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11430.5,
+          "y": 4784.000000000004
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11712.627416997973,
+          "y": 4830.970562748474
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 7,
+      "goal": "knot-west",
+      "summary": "완료 0/6 · 서쪽 혼매듭 해체 · 소단로 전환",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 176,
+          "x": 2958.3416392465692,
+          "y": 6024.032622893832,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "mage",
+          "hp": 796,
+          "maxHp": 820,
+          "focus": 234.70040000000003,
+          "x": 2915.0684376138147,
+          "y": 5998.789921941392,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "knight",
+          "hp": 1333,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 3680.563861306388,
+          "y": 6256.153048068877,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "occultist",
+          "hp": 762,
+          "maxHp": 942,
+          "focus": 199,
+          "x": 3584.780971203544,
+          "y": 6230.154835040962,
+          "support": "rv-west-shoulder"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-knot-ward-5",
+          "hp": 398,
+          "x": 3451.9161926339466,
+          "y": 6194.091538000643
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2409.0599921387084,
+          "y": 5201.270562748488
+        },
+        {
+          "id": "rv11-west-canopy-watch-1",
+          "hp": 102,
+          "x": 3352.460867617882,
+          "y": 5711.368074964152
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 796,
+          "x": 3676.5474439702534,
+          "y": 5678.555718961097
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3534.3241051092355,
+          "y": 5796.794075109669
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7781.914368419695,
+          "y": 6074.473574571325
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7862.627416997969,
+          "y": 6229.113419891334
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7920.104353197744,
+          "y": 6455.238821901757
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 495,
+          "x": 6448.050909753416,
+          "y": 6396.015676082043
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 434,
+          "x": 6580,
+          "y": 6232
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6669.895646802258,
+          "y": 6410.189749526817
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6850,
+          "y": 6760
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 1976,
+          "x": 7160,
+          "y": 6616
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 916,
+          "x": 7238,
+          "y": 6607.409090909091
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9597.361923697294,
+          "y": 8702.262827517112
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8941.914368419717,
+          "y": 8570.37357457133
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10601.914368419722,
+          "y": 8256.473574571335
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11761.123869018393,
+          "y": 4967.204792907309
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11254.354473553327,
+          "y": 4821.439070182334
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11493.5,
+          "y": 4783.999999999999
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11690.000000000004,
+          "y": 4838
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 8,
+      "goal": "knot-west",
+      "summary": "완료 0/6 · 서쪽 혼매듭 해체 · 소단로 전환",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 167,
+          "x": 2932.687405889885,
+          "y": 6009.067653435766,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "mage",
+          "hp": 796,
+          "maxHp": 820,
+          "focus": 229.98380000000003,
+          "x": 2915.0684376138147,
+          "y": 5998.789921941392,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "knight",
+          "hp": 1333,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 3406.736950170184,
+          "y": 5887.699923003744,
+          "support": "rv-west-climbing-trunk"
+        },
+        {
+          "cls": "occultist",
+          "hp": 762,
+          "maxHp": 942,
+          "focus": 185,
+          "x": 3584.780971203544,
+          "y": 6230.154835040962,
+          "support": "rv-west-shoulder"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2409.0599921387084,
+          "y": 5201.270562748488
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 570,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7727.495585236547,
+          "y": 6091.432231265379
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7808.1936226318885,
+          "y": 6212.203007982945
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7897.4643190018605,
+          "y": 6414.622583134379
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 495,
+          "x": 6496.746863490301,
+          "y": 6380.859684209048
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 434,
+          "x": 6612,
+          "y": 6255.999999999998
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6692.535680998138,
+          "y": 6450.805988294194
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6850,
+          "y": 6760
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 1976,
+          "x": 7160,
+          "y": 6616
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 916,
+          "x": 7238,
+          "y": 6607.409090909091
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9619.98934069526,
+          "y": 8709.292264768632
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8887.49558523657,
+          "y": 8587.332231265375
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10547.495585236575,
+          "y": 8273.432231265375
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11811.124286160539,
+          "y": 4977.252592945735
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11231.727056555355,
+          "y": 4814.409632930812
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11430.5,
+          "y": 4784.000000000004
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11712.62741699797,
+          "y": 4830.970562748477
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 9,
+      "goal": "knot-east",
+      "summary": "완료 2/6 · 동쪽 혼매듭 해체 · 같은 층으로 이동",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 176,
+          "x": 4535.737714543554,
+          "y": 6657.586891598746,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "mage",
+          "hp": 796,
+          "maxHp": 820,
+          "focus": 263,
+          "x": 4403.588383196934,
+          "y": 6570.368332909977,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "knight",
+          "hp": 1333,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 4744.4887440970215,
+          "y": 4710.53517771537,
+          "support": "rv-west-rock-crown"
+        },
+        {
+          "cls": "occultist",
+          "hp": 733,
+          "maxHp": 942,
+          "focus": 209,
+          "x": 3606.2591492195947,
+          "y": 6235.9846262167475,
+          "support": "rv-west-shoulder"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2482.7131196191785,
+          "y": 5262.843420505341
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7749.898453719541,
+          "y": 6050.684697797279
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7871.193594637838,
+          "y": 6212.14361734837
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7951.936479940116,
+          "y": 6431.40899676913
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 495,
+          "x": 6480.225224162408,
+          "y": 6419.473612187419
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 434,
+          "x": 6548,
+          "y": 6255.999999999999
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6638.063520059882,
+          "y": 6434.019574659438
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6850,
+          "y": 6760
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 1976,
+          "x": 7160,
+          "y": 6616
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 916,
+          "x": 7238,
+          "y": 6607.409090909091
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9619.989340695263,
+          "y": 8742.292264768632
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8909.898453719545,
+          "y": 8546.584697797274
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10569.898453719541,
+          "y": 8232.684697797275
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11748.124530973371,
+          "y": 4977.428224259948
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11231.727056555354,
+          "y": 4781.409632930812
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11493.5,
+          "y": 4783.999999999999
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11690.000000000004,
+          "y": 4838
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2542,
+          "y": 5952.75
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6448,
+          "y": 5558.358959175537
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 6949.665927856724,
+          "y": 5259.633435096266
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 10,
+      "goal": "knot-east",
+      "summary": "완료 2/6 · 동쪽 혼매듭 해체 · 표시 지점 가까이 이동",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 656,
+          "maxHp": 747,
+          "focus": 167,
+          "x": 6092.248399513316,
+          "y": 6862.436217295815,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "mage",
+          "hp": 796,
+          "maxHp": 820,
+          "focus": 260.28340000000003,
+          "x": 4403.588383196934,
+          "y": 6570.368332909977,
+          "support": "rv-west-shoulder"
+        },
+        {
+          "cls": "knight",
+          "hp": 1333,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 6425.774744622081,
+          "y": 4844.861238862118,
+          "support": "rv-west-rock-crown"
+        },
+        {
+          "cls": "occultist",
+          "hp": 847.20808,
+          "maxHp": 942,
+          "focus": 232.742012,
+          "x": 5059.908661300619,
+          "y": 6977.972598390186,
+          "support": "rv-west-main-root"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2562.955500574115,
+          "y": 5315.542189928177
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7772.53421547702,
+          "y": 6091.303317784414
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7840.283254675263,
+          "y": 6235.924931092545
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7897.513805076424,
+          "y": 6448.3551603668275
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 270,
+          "x": 6511.771700652446,
+          "y": 6390.07361218742
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 363,
+          "x": 6268.9827043207115,
+          "y": 6250.599999999999
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6758.874063887811,
+          "y": 6364.269574659438
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6358.101906199019,
+          "y": 6782.569428140294
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 1680,
+          "x": 7160,
+          "y": 6616
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 916,
+          "x": 7238,
+          "y": 6607.409090909091
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9597.84521929222,
+          "y": 8703.117810244163
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8932.534215477002,
+          "y": 8587.203317784382
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10592.534215477006,
+          "y": 8273.30331778438
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11811.124530972455,
+          "y": 4977.428566670322
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11253.871177958388,
+          "y": 4820.584087455258
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11430.5,
+          "y": 4784.000000000005
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11667.372583002032,
+          "y": 4830.970562748478
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2633.7710937523484,
+          "y": 5980.929182945886
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6493.547614116555,
+          "y": 5473.852066863204
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 6877.580233325929,
+          "y": 5196.232704469459
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 11,
+      "goal": "knot-east",
+      "summary": "완료 2/6 · 동쪽 혼매듭 해체 · 작업 지점의 들림부터 제압",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 656,
+          "maxHp": 747,
+          "focus": 176,
+          "x": 7537.281333501985,
+          "y": 6824.62411430017,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "mage",
+          "hp": 796,
+          "maxHp": 820,
+          "focus": 255.56680000000003,
+          "x": 5868.095059054065,
+          "y": 6932.884410011579,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "knight",
+          "hp": 1333,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 7583.086680144541,
+          "y": 6238.858350180676,
+          "support": "rv-saddle-fallen-trunk"
+        },
+        {
+          "cls": "occultist",
+          "hp": 847.20808,
+          "maxHp": 942,
+          "focus": 218.742012,
+          "x": 6638.680416529919,
+          "y": 6717.736083305984,
+          "support": "rv-ritual-buttress"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2562.955500574115,
+          "y": 5315.542189928177
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 8014.1553031328785,
+          "y": 5951.803317784414
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7817.655837677291,
+          "y": 6218.95436834407
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7897.5138050764235,
+          "y": 6424.3551603668275
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 270,
+          "x": 6543.271700652446,
+          "y": 6390.073612187418
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 363,
+          "x": 6332.315847772944,
+          "y": 6322.745082579888
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6758.874063887815,
+          "y": 6388.269574659438
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6358.101906199019,
+          "y": 6782.569428140294
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 1227,
+          "x": 7149.878214578909,
+          "y": 6617.518267813163
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 546,
+          "x": 7260.924581894976,
+          "y": 6605.846051234434
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9619.518478635071,
+          "y": 8709.16097410575
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8878.061430800417,
+          "y": 8570.418928323294
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10538.061430800422,
+          "y": 8256.518928323298
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11803.06571150478,
+          "y": 4993.523765606264
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11232.197918615537,
+          "y": 4814.540923593692
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11493.5,
+          "y": 4783.999999999998
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11712.372583002032,
+          "y": 4830.970562748477
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2726.7750062468335,
+          "y": 5957.1327071413025
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6573.712846738039,
+          "y": 5526.668120092703
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 6947.330233325929,
+          "y": 5317.043248297388
+        },
+        {
+          "id": "event-74",
+          "hp": 495,
+          "x": 7750,
+          "y": 8038.571428571429
+        },
+        {
+          "id": "event-75",
+          "hp": 433,
+          "x": 7759.534843303962,
+          "y": 8442.160094852657
+        },
+        {
+          "id": "event-76",
+          "hp": 495,
+          "x": 7970.020012118643,
+          "y": 8219.032038257812
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 12,
+      "goal": "knot-east",
+      "summary": "완료 2/6 · 동쪽 혼매듭 해체 · 표시 지점 가까이 이동",
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 656,
+          "maxHp": 747,
+          "focus": 176,
+          "x": 7716.275890626955,
+          "y": 6811.912639235807,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "mage",
+          "hp": 751,
+          "maxHp": 820,
+          "focus": 250.85020000000003,
+          "x": 7372.53951376683,
+          "y": 6810.5033868943,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "knight",
+          "hp": 1333,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 8017.558160378518,
+          "y": 6712.018291780052,
+          "support": "rv-saddle-fallen-trunk"
+        },
+        {
+          "cls": "occultist",
+          "hp": 813.20808,
+          "maxHp": 942,
+          "focus": 204.742012,
+          "x": 7372.713381739684,
+          "y": 6810.518289863401,
+          "support": "rv-ritual-buttress"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2562.955500574115,
+          "y": 5315.542189928177
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 8036.782720130844,
+          "y": 5934.832755035934
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7721.655837677291,
+          "y": 6218.95436834407
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 7920.141222074393,
+          "y": 6441.325723115305
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 270,
+          "x": 6520.644283654478,
+          "y": 6407.044174935896
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 363,
+          "x": 6343.598778631341,
+          "y": 6418.0797324782325
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6736.246646889843,
+          "y": 6371.299011910964
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6358.101906199019,
+          "y": 6782.569428140294
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1234,
+          "x": 6955,
+          "y": 6774.714285714285
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "hp": 647,
+          "x": 7170.260368246709,
+          "y": 6614.460944762994
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 378,
+          "x": 6766.839823475639,
+          "y": 6743.367964695128
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7820,
+          "y": 6795.777777777777
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9597.453702705787,
+          "y": 8750.092571474885
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8932.484472820182,
+          "y": 8553.473943893874
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10592.484472820188,
+          "y": 8239.57394389387
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11748.354897434921,
+          "y": 4977.5323046406265
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11254.262694544845,
+          "y": 4773.609326224548
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11430.5,
+          "y": 4783.999999999999
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11690.907190396,
+          "y": 4837.7149619262445
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2695.2750062468335,
+          "y": 5957.132707141303
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6625.108745473518,
+          "y": 5607.751173767136
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 7016.194949143256,
+          "y": 5383.928604806837
+        },
+        {
+          "id": "event-74",
+          "hp": 495,
+          "x": 7727.37258300203,
+          "y": 8055.541991319907
+        },
+        {
+          "id": "event-75",
+          "hp": 433,
+          "x": 7759.534843303962,
+          "y": 8164.6600948526575
+        },
+        {
+          "id": "event-76",
+          "hp": 495,
+          "x": 8029.992271330715,
+          "y": 8114.157038257812
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 13,
+      "goal": "hold-knots",
+      "summary": "완료 3/6 · 소단의 매듭 해체를 지키기 · 0/4라운드 · 진 안의 적을 밀어내세요",
+      "hold": {
+        "progress": 0,
+        "spawned": 3,
+        "lastRound": 13,
+        "enteredRound": 12,
+        "continuous": false,
+        "contributionGuards": [],
+        "guarded": true,
+        "contested": true,
+        "waveRound": 12
+      },
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 605,
+          "maxHp": 747,
+          "focus": 176,
+          "x": 7702.343448414689,
+          "y": 6814.079908024381,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "mage",
+          "hp": 751,
+          "maxHp": 820,
+          "focus": 246.13360000000003,
+          "x": 7372.53951376683,
+          "y": 6810.5033868943,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "knight",
+          "hp": 1293,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 7382.5890320784165,
+          "y": 6811.36477417815,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "occultist",
+          "hp": 813.20808,
+          "maxHp": 942,
+          "focus": 190.742012,
+          "x": 7372.713381739684,
+          "y": 6810.518289863401,
+          "support": "rv-ritual-buttress"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2562.955500574115,
+          "y": 5315.542189928177
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 8036.782720130848,
+          "y": 5958.832755035934
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7766.9896229440465,
+          "y": 6303.576161715445
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 8200.141222074393,
+          "y": 6441.325723115305
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1275,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 270,
+          "x": 6520.644283654477,
+          "y": 6383.044174935896
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 363,
+          "x": 6343.598778631346,
+          "y": 6442.0797324782325
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6767.746646889843,
+          "y": 6371.299011910961
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6358.101906199019,
+          "y": 6782.569428140294
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 1008,
+          "x": 7300.924944103598,
+          "y": 6804.36499520888
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 261,
+          "x": 6757.943475969711,
+          "y": 6741.588695193942
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 796,
+          "x": 7774.62898546715,
+          "y": 6802.835491149554
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9597.361923697292,
+          "y": 8702.262827517112
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8910.094258253152,
+          "y": 8594.228431887748
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10570.09425825315,
+          "y": 8280.328431887745
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11811.354813756145,
+          "y": 4977.429622997956
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11254.354473553329,
+          "y": 4821.439070182335
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11489,
+          "y": 4783.999999999999
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11658.050366887193,
+          "y": 4814.036297502088
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2612.6274169979692,
+          "y": 5935.779437251523
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6677.672831230542,
+          "y": 5688.081845919983
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 7083.904449924314,
+          "y": 5451.983167504548
+        },
+        {
+          "id": "event-74",
+          "hp": 495,
+          "x": 7634.660228971396,
+          "y": 8030.633771590319
+        },
+        {
+          "id": "event-75",
+          "hp": 433,
+          "x": 7791.034843303962,
+          "y": 8164.660094852657
+        },
+        {
+          "id": "event-76",
+          "hp": 495,
+          "x": 7959.696254420006,
+          "y": 8108.797933249726
+        },
+        {
+          "id": "event-94",
+          "hp": 796,
+          "x": 6500,
+          "y": 6555
+        },
+        {
+          "id": "event-95",
+          "hp": 796,
+          "x": 6580,
+          "y": 6561
+        },
+        {
+          "id": "event-96",
+          "hp": 1234,
+          "x": 6660,
+          "y": 6597
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 14,
+      "goal": "hold-knots",
+      "summary": "완료 3/6 · 소단의 매듭 해체를 지키기 · 0/4라운드 · 진 안의 적을 밀어내세요",
+      "hold": {
+        "progress": 0,
+        "spawned": 6,
+        "lastRound": 14,
+        "enteredRound": 12,
+        "continuous": false,
+        "contributionGuards": [],
+        "guarded": true,
+        "contested": true,
+        "waveRound": 13
+      },
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 479,
+          "maxHp": 747,
+          "focus": 176,
+          "x": 7524.152390530214,
+          "y": 6823.498776331161,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "mage",
+          "hp": 751,
+          "maxHp": 820,
+          "focus": 241.41700000000003,
+          "x": 7372.53951376683,
+          "y": 6810.5033868943,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "knight",
+          "hp": 1293,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 7382.5890320784165,
+          "y": 6811.36477417815,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "occultist",
+          "hp": 813.20808,
+          "maxHp": 942,
+          "focus": 176.742012,
+          "x": 7372.713381739684,
+          "y": 6810.518289863401,
+          "support": "rv-ritual-buttress"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2562.955500574115,
+          "y": 5315.542189928177
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 8031.982720130849,
+          "y": 5955.232755035935
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7766.9896229440465,
+          "y": 6297.576161715445
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 8204.941222074396,
+          "y": 6437.725723115306
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1027,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 270,
+          "x": 6525.444283654476,
+          "y": 6386.644174935895
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 363,
+          "x": 6343.598778631346,
+          "y": 6448.0797324782325
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6762.946646889844,
+          "y": 6374.899011910962
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6358.101906199019,
+          "y": 6782.569428140294
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "hp": 130,
+          "x": 7300.924944103598,
+          "y": 6804.36499520888
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 261,
+          "x": 6757.943475969711,
+          "y": 6741.588695193942
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 693,
+          "x": 7774.62898546715,
+          "y": 6802.835491149554
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9600.262644814862,
+          "y": 8707.51504771414
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8907.174946709982,
+          "y": 8588.986521919627
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10567.17494670998,
+          "y": 8275.086521919624
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11806.590261119329,
+          "y": 4981.076407632533
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11249.554473553326,
+          "y": 4817.839070182336
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11483,
+          "y": 4783.999999999999
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11663.780853944165,
+          "y": 4815.814363330429
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2609.726695880397,
+          "y": 5941.0316574485505
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6683.028279334838,
+          "y": 5690.787243414291
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 7087.982027071954,
+          "y": 5456.38468594766
+        },
+        {
+          "id": "event-74",
+          "hp": 495,
+          "x": 7639.460228971395,
+          "y": 8034.233771590318
+        },
+        {
+          "id": "event-75",
+          "hp": 433,
+          "x": 7785.206238646846,
+          "y": 8163.236238205706
+        },
+        {
+          "id": "event-76",
+          "hp": 495,
+          "x": 7965.696254420006,
+          "y": 8108.797933249726
+        },
+        {
+          "id": "event-94",
+          "hp": 796,
+          "x": 6500,
+          "y": 6555
+        },
+        {
+          "id": "event-95",
+          "hp": 796,
+          "x": 6580,
+          "y": 6561
+        },
+        {
+          "id": "event-96",
+          "hp": 1234,
+          "x": 6660,
+          "y": 6597
+        },
+        {
+          "id": "event-100",
+          "hp": 796,
+          "x": 7840,
+          "y": 6687.666666666667
+        },
+        {
+          "id": "event-101",
+          "hp": 713,
+          "x": 7920,
+          "y": 6715.222222222223
+        },
+        {
+          "id": "event-102",
+          "hp": 1234,
+          "x": 8000,
+          "y": 6732.777777777777
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 15,
+      "goal": "hold-knots",
+      "summary": "완료 3/6 · 소단의 매듭 해체를 지키기 · 0/4라운드 · 방어 중",
+      "hold": {
+        "progress": 0,
+        "spawned": 6,
+        "lastRound": 15,
+        "enteredRound": 12,
+        "continuous": true,
+        "contributionGuards": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "guarded": true,
+        "contested": false,
+        "waveRound": 13
+      },
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 498.56628,
+          "maxHp": 747,
+          "focus": 176,
+          "x": 7704.144890854389,
+          "y": 6813.799683644873,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "mage",
+          "hp": 693,
+          "maxHp": 820,
+          "focus": 238.70040000000003,
+          "x": 7392.469968016821,
+          "y": 6812.211711544299,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "knight",
+          "hp": 1254,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 7384.74206140532,
+          "y": 6811.549319549027,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "occultist",
+          "hp": 758.20808,
+          "maxHp": 942,
+          "focus": 162.742012,
+          "x": 7392.540962011168,
+          "y": 6812.217796743815,
+          "support": "rv-ritual-buttress"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2562.955500574115,
+          "y": 5315.542189928177
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 8063.482720130849,
+          "y": 5955.232755035932
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7789.617039942017,
+          "y": 6314.546724463921
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 8204.941222074402,
+          "y": 6461.725723115306
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 1027,
+          "x": 7780,
+          "y": 6485
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 270,
+          "x": 6525.444283654476,
+          "y": 6303.5057361725885
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 363,
+          "x": 6365.224228625616,
+          "y": 6541.612293185943
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6786.946646889844,
+          "y": 6333.329792529309
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6358.101906199019,
+          "y": 6782.569428140294
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 261,
+          "x": 6757.943475969711,
+          "y": 6741.588695193942
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "hp": 158,
+          "x": 7774.62898546715,
+          "y": 6802.835491149554
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9619.683986812694,
+          "y": 8709.264754833315
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8941.581311195485,
+          "y": 8570.62345891556
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10601.581311195485,
+          "y": 8256.723458915563
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11770.619137954744,
+          "y": 4966.007290263624
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11231.878557561038,
+          "y": 4814.438776984188
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11493.5,
+          "y": 4783.999999999997
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11690.000000000005,
+          "y": 4838
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2568.04595260391,
+          "y": 5935.8629400138925
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6883.366563950694,
+          "y": 5725.912243414291
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 7153.065634556832,
+          "y": 5526.954679831416
+        },
+        {
+          "id": "event-74",
+          "hp": 495,
+          "x": 7607.960228971395,
+          "y": 8034.2337715903195
+        },
+        {
+          "id": "event-75",
+          "hp": 433,
+          "x": 7762.578821648877,
+          "y": 8146.265675457229
+        },
+        {
+          "id": "event-76",
+          "hp": 495,
+          "x": 7997.196254420006,
+          "y": 8108.797933249724
+        },
+        {
+          "id": "event-94",
+          "hp": 796,
+          "x": 6991.9851445211,
+          "y": 6777.884440958951
+        },
+        {
+          "id": "event-95",
+          "hp": 796,
+          "x": 6580,
+          "y": 6716
+        },
+        {
+          "id": "event-96",
+          "hp": 1234,
+          "x": 6660,
+          "y": 6722
+        },
+        {
+          "id": "event-100",
+          "hp": 796,
+          "x": 7840,
+          "y": 6687.666666666667
+        },
+        {
+          "id": "event-101",
+          "hp": 694,
+          "x": 7920,
+          "y": 6715.222222222223
+        },
+        {
+          "id": "event-102",
+          "hp": 1234,
+          "x": 8000,
+          "y": 6732.777777777777
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 16,
+      "goal": "hold-knots",
+      "summary": "완료 3/6 · 소단의 매듭 해체를 지키기 · 1/4라운드 · 방어 중",
+      "hold": {
+        "progress": 1,
+        "spawned": 6,
+        "lastRound": 16,
+        "enteredRound": 12,
+        "continuous": true,
+        "contributionGuards": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "guarded": true,
+        "contested": false,
+        "waveRound": 13
+      },
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 589.13256,
+          "maxHp": 747,
+          "focus": 176,
+          "x": 7524.1754135038,
+          "y": 6823.500749728897,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "mage",
+          "hp": 656,
+          "maxHp": 820,
+          "focus": 233.98380000000003,
+          "x": 7409.382028899208,
+          "y": 6813.661316762789,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "knight",
+          "hp": 1438.891,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 7677.68499828869,
+          "y": 6817.91566693287,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "occultist",
+          "hp": 723.20808,
+          "maxHp": 942,
+          "focus": 148.742012,
+          "x": 7409.43819075271,
+          "y": 6813.6661306359465,
+          "support": "rv-ritual-buttress"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2562.955500574115,
+          "y": 5315.542189928177
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 8040.855303132882,
+          "y": 5972.203317784411
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7758.117039942017,
+          "y": 6314.546724463921
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 8182.313805076428,
+          "y": 6444.755160366832
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 852,
+          "x": 7778.524586308392,
+          "y": 6589.733608147788
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 270,
+          "x": 6548.0717006524455,
+          "y": 6286.535173424111
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 363,
+          "x": 6504.724228625616,
+          "y": 6541.612293185943
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6809.574063887814,
+          "y": 6350.3003552777855
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 796,
+          "x": 6850,
+          "y": 6760
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 179,
+          "x": 6756.747317791702,
+          "y": 6741.34946355834
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9598.215396149732,
+          "y": 8702.530542559734
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8887.372583002032,
+          "y": 8587.370562748478
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10547.37258300203,
+          "y": 8273.470562748476
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11811.105355068159,
+          "y": 4977.181645898158
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11254.35447355333,
+          "y": 4821.439070182335
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11430.5,
+          "y": 4784
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11712.62741699797,
+          "y": 4830.970562748476
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2622,
+          "y": 5952.749999999998
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6851.866563950694,
+          "y": 5725.91224341429
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 7190.344773367809,
+          "y": 5615.420864385225
+        },
+        {
+          "id": "event-74",
+          "hp": 495,
+          "x": 7607.960228971395,
+          "y": 8034.2337715903195
+        },
+        {
+          "id": "event-75",
+          "hp": 433,
+          "x": 7794.078821648877,
+          "y": 8146.265675457227
+        },
+        {
+          "id": "event-76",
+          "hp": 495,
+          "x": 8019.823671417976,
+          "y": 8125.768495998202
+        },
+        {
+          "id": "event-94",
+          "hp": 692,
+          "x": 6991.9851445211,
+          "y": 6777.884440958951
+        },
+        {
+          "id": "event-95",
+          "hp": 796,
+          "x": 6580,
+          "y": 6716
+        },
+        {
+          "id": "event-96",
+          "hp": 1234,
+          "x": 6660,
+          "y": 6722
+        },
+        {
+          "id": "event-101",
+          "hp": 151,
+          "x": 7920,
+          "y": 6780.222222222223
+        },
+        {
+          "id": "event-102",
+          "hp": 1234,
+          "x": 8000,
+          "y": 6767.777777777777
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 17,
+      "goal": "hold-knots",
+      "summary": "완료 3/6 · 소단의 매듭 해체를 지키기 · 2/4라운드 · 방어 중",
+      "hold": {
+        "progress": 2,
+        "spawned": 6,
+        "lastRound": 17,
+        "enteredRound": 12,
+        "continuous": true,
+        "contributionGuards": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "guarded": true,
+        "contested": false,
+        "waveRound": 13
+      },
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 589.13256,
+          "maxHp": 747,
+          "focus": 167,
+          "x": 7524.1754135038,
+          "y": 6823.500749728897,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "mage",
+          "hp": 755.4168,
+          "maxHp": 820,
+          "focus": 263,
+          "x": 7409.382028899208,
+          "y": 6813.661316762789,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "knight",
+          "hp": 1439,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 7100.617050393317,
+          "y": 6787.19574717657,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "occultist",
+          "hp": 837.41616,
+          "maxHp": 942,
+          "focus": 172.48402399999998,
+          "x": 7409.43819075271,
+          "y": 6813.6661306359465,
+          "support": "rv-ritual-buttress"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2562.955500574115,
+          "y": 5315.542189928177
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7799.234215477023,
+          "y": 6111.703317784411
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7799.68625932367,
+          "y": 6386.546724463921
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 8213.813805076428,
+          "y": 6444.755160366828
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 852,
+          "x": 7778.524586308392,
+          "y": 6589.733608147788
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 270,
+          "x": 6548.071700652445,
+          "y": 6310.535173424111
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 363,
+          "x": 6595.75407869537,
+          "y": 6572.101084507972
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6778.074063887814,
+          "y": 6350.300355277786
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "hp": 18,
+          "x": 6834.724138936513,
+          "y": 6756.9448277873025
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 34,
+          "x": 6756.273854952116,
+          "y": 6741.254770990423
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9619.989340695263,
+          "y": 8743.233390265588
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8909.85317166321,
+          "y": 8546.665856221513
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10569.853171663211,
+          "y": 8232.765856221511
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11748.105837354693,
+          "y": 4977.428157296603
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11231.873884892138,
+          "y": 4780.73436365537
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11493.5,
+          "y": 4783.999999999997
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11690.000000000005,
+          "y": 4838
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2567.5662056339215,
+          "y": 5969.660411908395
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6820.366563950694,
+          "y": 5725.912243414289
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 7214.344773367809,
+          "y": 5656.990083766878
+        },
+        {
+          "id": "event-74",
+          "hp": 495,
+          "x": 7513.033782285437,
+          "y": 8019.9170080043
+        },
+        {
+          "id": "event-75",
+          "hp": 433,
+          "x": 7724.328821648877,
+          "y": 8025.455131629298
+        },
+        {
+          "id": "event-76",
+          "hp": 495,
+          "x": 7988.323671417976,
+          "y": 8125.768495998201
+        },
+        {
+          "id": "event-94",
+          "hp": 45,
+          "x": 6991.9851445211,
+          "y": 6777.884440958951
+        },
+        {
+          "id": "event-95",
+          "hp": 796,
+          "x": 6580,
+          "y": 6716
+        },
+        {
+          "id": "event-96",
+          "hp": 1234,
+          "x": 6660,
+          "y": 6722
+        },
+        {
+          "id": "event-102",
+          "hp": 1234,
+          "x": 8000,
+          "y": 6767.777777777777
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 18,
+      "goal": "hold-knots",
+      "summary": "완료 3/6 · 소단의 매듭 해체를 지키기 · 3/4라운드 · 방어 중",
+      "hold": {
+        "progress": 3,
+        "spawned": 6,
+        "lastRound": 18,
+        "enteredRound": 12,
+        "continuous": true,
+        "contributionGuards": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "guarded": true,
+        "contested": false,
+        "waveRound": 13
+      },
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 589.13256,
+          "maxHp": 747,
+          "focus": 158,
+          "x": 7524.1754135038,
+          "y": 6823.500749728897,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "mage",
+          "hp": 820,
+          "maxHp": 820,
+          "focus": 258.28340000000003,
+          "x": 7409.382028899208,
+          "y": 6813.661316762789,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "knight",
+          "hp": 1439,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 7103.706662349223,
+          "y": 6787.460571058505,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "occultist",
+          "hp": 942,
+          "maxHp": 942,
+          "focus": 196.22603599999997,
+          "x": 7409.43819075271,
+          "y": 6813.6661306359465,
+          "support": "rv-ritual-buttress"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2562.955500574115,
+          "y": 5315.542189928177
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7821.861632474994,
+          "y": 6128.673880532888
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7777.058842325697,
+          "y": 6369.576161715447
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 637,
+          "x": 8013.761936802222,
+          "y": 6512.255160366828
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 804,
+          "x": 7781.719549499106,
+          "y": 6588.415685831619
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 270,
+          "x": 6525.444283654471,
+          "y": 6293.564610675637
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 363,
+          "x": 6595.754078695367,
+          "y": 6548.101084507972
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6800.701480885783,
+          "y": 6333.329792529309
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 34,
+          "x": 6423.953464070481,
+          "y": 6762.813960778856
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9597.50875203408,
+          "y": 8702.528683738623
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8932.557751675471,
+          "y": 8587.246049006491
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10592.557751675466,
+          "y": 8273.34604900649
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11811.105837353394,
+          "y": 4977.428565633027
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11254.35447355333,
+          "y": 4821.439070182334
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11430.5,
+          "y": 4784
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11667.372583002032,
+          "y": 4830.970562748479
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2589.9241959613423,
+          "y": 5928.88823673317
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6842.993980948662,
+          "y": 5708.941680665811
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 7214.344773367807,
+          "y": 5632.990083766878
+        },
+        {
+          "id": "event-74",
+          "hp": 495,
+          "x": 7535.661199283407,
+          "y": 8036.887570752778
+        },
+        {
+          "id": "event-75",
+          "hp": 433,
+          "x": 7755.828821648877,
+          "y": 8025.455131629299
+        },
+        {
+          "id": "event-76",
+          "hp": 495,
+          "x": 7946.754452036323,
+          "y": 8101.768495998201
+        },
+        {
+          "id": "event-95",
+          "hp": 796,
+          "x": 6580,
+          "y": 6716
+        },
+        {
+          "id": "event-96",
+          "hp": 1234,
+          "x": 6742.940782152191,
+          "y": 6738.588156430438
+        },
+        {
+          "id": "event-102",
+          "hp": 374,
+          "x": 8000,
+          "y": 6767.777777777777
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 19,
+      "goal": "resident",
+      "summary": "완료 4/6 · 주민에게 붙은 혼 분리 · 같은 층으로 이동",
+      "hold": {
+        "progress": 4,
+        "spawned": 6,
+        "lastRound": 19,
+        "enteredRound": 12,
+        "continuous": true,
+        "contributionGuards": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "guarded": true,
+        "contested": false,
+        "waveRound": 13
+      },
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 679.69884,
+          "maxHp": 747,
+          "focus": 172.472064,
+          "x": 7288.6390656703525,
+          "y": 6803.311919914601,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "mage",
+          "hp": 820,
+          "maxHp": 820,
+          "focus": 258.28340000000003,
+          "x": 7409.382028899208,
+          "y": 6813.661316762789,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "knight",
+          "hp": 1386,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 6853.296935026903,
+          "y": 6760.65938700538,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "occultist",
+          "hp": 942,
+          "maxHp": 942,
+          "focus": 219.96804799999995,
+          "x": 7409.43819075271,
+          "y": 6813.6661306359465,
+          "support": "rv-ritual-buttress"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2562.955500574115,
+          "y": 5315.542189928177
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7790.361632474994,
+          "y": 6128.673880532889
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7777.058842325694,
+          "y": 6345.576161715447
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 576,
+          "x": 8019.4299381299525,
+          "y": 6482.855160366828
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "hp": 435,
+          "x": 7781.719549499106,
+          "y": 6588.415685831619
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 270,
+          "x": 6283.823195998612,
+          "y": 6154.064610675637
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 363,
+          "x": 6618.381495693338,
+          "y": 6565.071647256447
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6940.201480885783,
+          "y": 6091.70870487345
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 34,
+          "x": 6423.953464070481,
+          "y": 6762.813960778856
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 495,
+          "x": 9619.054718064679,
+          "y": 8709.011071246983
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9300,
+          "y": 8847.142857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8836.5
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8838.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8878.094943320273,
+          "y": 8570.429316087579
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10538.094943320268,
+          "y": 8256.529316087579
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11803.061203243218,
+          "y": 4993.530859321612
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11231.727056555357,
+          "y": 4814.409632930814
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11493.5,
+          "y": 4783.999999999996
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11712.372583002032,
+          "y": 4830.970562748476
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2612.5207338701193,
+          "y": 5969.528690403593
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6884.563200330315,
+          "y": 5732.941680665811
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 7191.717356369837,
+          "y": 5616.019521018402
+        },
+        {
+          "id": "event-74",
+          "hp": 495,
+          "x": 7567.161199283407,
+          "y": 8036.887570752779
+        },
+        {
+          "id": "event-75",
+          "hp": 433,
+          "x": 7778.456238646847,
+          "y": 8042.425694377776
+        },
+        {
+          "id": "event-76",
+          "hp": 495,
+          "x": 7946.7544520363235,
+          "y": 8125.768495998201
+        },
+        {
+          "id": "event-95",
+          "hp": 796,
+          "x": 7072.7946220269,
+          "y": 6784.810967602306
+        },
+        {
+          "id": "event-96",
+          "hp": 691,
+          "x": 6742.940782152191,
+          "y": 6738.588156430438
+        }
+      ],
+      "pending": []
+    },
+    {
+      "round": 20,
+      "goal": "resident",
+      "summary": "완료 4/6 · 주민에게 붙은 혼 분리 · 같은 층으로 이동",
+      "hold": {
+        "progress": 4,
+        "spawned": 6,
+        "lastRound": 19,
+        "enteredRound": 12,
+        "continuous": true,
+        "contributionGuards": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "guarded": true,
+        "contested": false,
+        "waveRound": 13
+      },
+      "fallenHeroes": [],
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 167,
+          "x": 9214.714179327479,
+          "y": 7406.0056419426855,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "mage",
+          "hp": 820,
+          "maxHp": 820,
+          "focus": 258.28340000000003,
+          "x": 9096.954992588906,
+          "y": 7325.929394960456,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "knight",
+          "hp": 1525,
+          "maxHp": 1525,
+          "focus": 200,
+          "x": 9255.42650632902,
+          "y": 7433.6900243037335,
+          "support": "rv-ritual-buttress"
+        },
+        {
+          "cls": "occultist",
+          "hp": 942,
+          "maxHp": 942,
+          "focus": 269,
+          "x": 9123.402415133858,
+          "y": 7343.913642291023,
+          "support": "rv-ritual-buttress"
+        }
+      ],
+      "resident": 950,
+      "foes": [
+        {
+          "id": "resident-spirit-4",
+          "hp": 796,
+          "x": 9955,
+          "y": 8684
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "hp": 189,
+          "x": 2562.955500574115,
+          "y": 5315.542189928177
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "hp": 381,
+          "x": 3474.86186653424,
+          "y": 5784.906074636539
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "hp": 1976,
+          "x": 3328.9074384425817,
+          "y": 5751.701442245688
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "hp": 767,
+          "x": 7863.170491988585,
+          "y": 6191.2428023418
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "hp": 434,
+          "x": 7855.523743073904,
+          "y": 6400.886733494931
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "hp": 281,
+          "x": 8096.891492949319,
+          "y": 6539.562369123442
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "hp": 270,
+          "x": 6283.823195998612,
+          "y": 6154.064610675637
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "hp": 363,
+          "x": 6618.381495693338,
+          "y": 6565.071647256447
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "hp": 637,
+          "x": 6940.201480885783,
+          "y": 6091.70870487345
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "hp": 34,
+          "x": 6423.953464070481,
+          "y": 6762.813960778856
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "hp": 240,
+          "x": 9630.488213857516,
+          "y": 8610.927337320638
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "hp": 796,
+          "x": 9263.764786865813,
+          "y": 8848.17814894669
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "hp": 1234,
+          "x": 9020,
+          "y": 8697.42857142857
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "hp": 434,
+          "x": 8886.983263405205,
+          "y": 8794.349339695895
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "hp": 767,
+          "x": 8952.02572393862,
+          "y": 8546.429316087579
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "hp": 916,
+          "x": 10420,
+          "y": 8726
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "hp": 1976,
+          "x": 10504,
+          "y": 8709.2
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "hp": 637,
+          "x": 10592.512084384876,
+          "y": 8239.565390882744
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "hp": 1976,
+          "x": 11230,
+          "y": 5015.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "hp": 916,
+          "x": 11320,
+          "y": 5054.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "hp": 796,
+          "x": 11404,
+          "y": 5090.285714285715
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "hp": 796,
+          "x": 11500,
+          "y": 5131.428571428572
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "hp": 767,
+          "x": 11748.352640279763,
+          "y": 4977.531698766387
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "hp": 796,
+          "x": 11390,
+          "y": 4902.751322751323
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "hp": 495,
+          "x": 11254.207645216533,
+          "y": 4773.704926403849
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "hp": 434,
+          "x": 11430.5,
+          "y": 4784.000000000001
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "hp": 796,
+          "x": 11608,
+          "y": 5177.714285714285
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "hp": 767,
+          "x": 11690.907190396,
+          "y": 4837.714961926244
+        },
+        {
+          "id": "event-55",
+          "hp": 1234,
+          "x": 2521.5557061413188,
+          "y": 6141.5721808111375
+        },
+        {
+          "id": "event-56",
+          "hp": 796,
+          "x": 2609.104758388878,
+          "y": 6116.054604698153
+        },
+        {
+          "id": "event-57",
+          "hp": 495,
+          "x": 2558.0421955001757,
+          "y": 5952.762985614529
+        },
+        {
+          "id": "event-58",
+          "hp": 433,
+          "x": 6884.563200330315,
+          "y": 5732.941680665811
+        },
+        {
+          "id": "event-59",
+          "hp": 433,
+          "x": 7282.292142040258,
+          "y": 5584.204301378153
+        },
+        {
+          "id": "event-74",
+          "hp": 495,
+          "x": 7544.533782285439,
+          "y": 8053.858133501257
+        },
+        {
+          "id": "event-75",
+          "hp": 433,
+          "x": 7746.956238646847,
+          "y": 8042.425694377776
+        },
+        {
+          "id": "event-76",
+          "hp": 495,
+          "x": 8042.74957703599,
+          "y": 8126.735954677922
+        },
+        {
+          "id": "event-95",
+          "hp": 796,
+          "x": 7072.7946220269,
+          "y": 6784.810967602306
+        },
+        {
+          "id": "event-96",
+          "hp": 691,
+          "x": 6742.940782152191,
+          "y": 6738.588156430438
+        }
+      ],
+      "pending": []
+    }
+  ],
+  "navEvents": [
+    {
+      "round": 7,
+      "hero": "knight",
+      "kind": "jump-land",
+      "x": 3237.4333048707067,
+      "y": 6008.3287702796215,
+      "support": "rv-west-climbing-trunk",
+      "expected": "rv-west-climbing-trunk"
+    },
+    {
+      "round": 11,
+      "hero": "knight",
+      "kind": "blocked",
+      "x": 8015.3744775528085,
+      "y": 6709.990586299036,
+      "goal": {
+        "x": 8010,
+        "y": 6766.222222222223,
+        "surfaceId": "rv-ritual-buttress"
+      },
+      "support": "rv-saddle-fallen-trunk"
+    }
+  ],
+  "births": [
+    {
+      "round": 8,
+      "frame": 20190,
+      "inputSerial": 5899,
+      "actorTurnSerial": 71,
+      "phase": "aim",
+      "id": "event-55",
+      "source": "ravine-response-west-return",
+      "x": 2440,
+      "y": 6164,
+      "noticeCount": 3
+    },
+    {
+      "round": 8,
+      "frame": 20190,
+      "inputSerial": 5899,
+      "actorTurnSerial": 71,
+      "phase": "aim",
+      "id": "event-56",
+      "source": "ravine-response-west-return",
+      "x": 2528,
+      "y": 6139.8,
+      "noticeCount": 3
+    },
+    {
+      "round": 8,
+      "frame": 20190,
+      "inputSerial": 5899,
+      "actorTurnSerial": 71,
+      "phase": "aim",
+      "id": "event-57",
+      "source": "ravine-response-west-return",
+      "x": 2590,
+      "y": 5952.75,
+      "noticeCount": 3
+    },
+    {
+      "round": 8,
+      "frame": 21013,
+      "inputSerial": 6646,
+      "actorTurnSerial": 72,
+      "phase": "aim",
+      "id": "event-58",
+      "source": "ravine-response-saddle-wings",
+      "x": 6728,
+      "y": 5558.358959175537,
+      "noticeCount": 4
+    },
+    {
+      "round": 8,
+      "frame": 21013,
+      "inputSerial": 6646,
+      "actorTurnSerial": 72,
+      "phase": "aim",
+      "id": "event-59",
+      "source": "ravine-response-saddle-wings",
+      "x": 6970.851251684408,
+      "y": 5353.266666666666,
+      "noticeCount": 4
+    },
+    {
+      "round": 10,
+      "frame": 28369,
+      "inputSerial": 10341,
+      "actorTurnSerial": 90,
+      "phase": "aim",
+      "id": "event-74",
+      "source": "ravine-response-ravine-crosswind",
+      "x": 7750,
+      "y": 8318.57142857143,
+      "noticeCount": 6
+    },
+    {
+      "round": 10,
+      "frame": 28369,
+      "inputSerial": 10341,
+      "actorTurnSerial": 90,
+      "phase": "aim",
+      "id": "event-75",
+      "source": "ravine-response-ravine-crosswind",
+      "x": 7850,
+      "y": 8474.285714285714,
+      "noticeCount": 6
+    },
+    {
+      "round": 10,
+      "frame": 28369,
+      "inputSerial": 10341,
+      "actorTurnSerial": 90,
+      "phase": "aim",
+      "id": "event-76",
+      "source": "ravine-response-ravine-crosswind",
+      "x": 7945,
+      "y": 8311.714285714286,
+      "noticeCount": 6
+    },
+    {
+      "round": 12,
+      "frame": 36847,
+      "inputSerial": 14434,
+      "actorTurnSerial": 113,
+      "phase": "transition",
+      "id": "event-94",
+      "source": "hold-knots-0",
+      "x": 6500,
+      "y": 6555,
+      "noticeCount": 10
+    },
+    {
+      "round": 12,
+      "frame": 36847,
+      "inputSerial": 14434,
+      "actorTurnSerial": 113,
+      "phase": "transition",
+      "id": "event-95",
+      "source": "hold-knots-0",
+      "x": 6580,
+      "y": 6561,
+      "noticeCount": 10
+    },
+    {
+      "round": 12,
+      "frame": 36847,
+      "inputSerial": 14434,
+      "actorTurnSerial": 113,
+      "phase": "transition",
+      "id": "event-96",
+      "source": "hold-knots-0",
+      "x": 6660,
+      "y": 6597,
+      "noticeCount": 10
+    },
+    {
+      "round": 13,
+      "frame": 38045,
+      "inputSerial": 14519,
+      "actorTurnSerial": 120,
+      "phase": "aim",
+      "id": "event-100",
+      "source": "hold-knots-3",
+      "x": 7840,
+      "y": 6687.666666666667,
+      "noticeCount": 11
+    },
+    {
+      "round": 13,
+      "frame": 38045,
+      "inputSerial": 14519,
+      "actorTurnSerial": 120,
+      "phase": "aim",
+      "id": "event-101",
+      "source": "hold-knots-3",
+      "x": 7920,
+      "y": 6715.222222222223,
+      "noticeCount": 11
+    },
+    {
+      "round": 13,
+      "frame": 38045,
+      "inputSerial": 14519,
+      "actorTurnSerial": 120,
+      "phase": "aim",
+      "id": "event-102",
+      "source": "hold-knots-3",
+      "x": 8000,
+      "y": 6732.777777777777,
+      "noticeCount": 11
+    }
+  ],
+  "noticeLog": [
+    {
+      "round": 8,
+      "frame": 19002,
+      "inputSerial": 5134,
+      "actorTurnSerial": 69,
+      "phase": "review",
+      "actor": "p-occultist",
+      "text": "끊어진 서쪽 매듭을 되찾으려 산개 두 마리와 깃 그림자가 서쪽 굽이에서 함께 달려옵니다. 앞선 산개는 정예입니다."
+    },
+    {
+      "round": 8,
+      "frame": 19002,
+      "inputSerial": 5134,
+      "actorTurnSerial": 69,
+      "phase": "review",
+      "actor": "p-occultist",
+      "text": "서쪽 고목 아래 박쥐 두 마리가 원을 좁힙니다. 위 지원조를 먼저 끊거나 아래로 통과할 수 있습니다."
+    },
+    {
+      "round": 8,
+      "frame": 20190,
+      "inputSerial": 5899,
+      "actorTurnSerial": 71,
+      "phase": "aim",
+      "actor": "p-mage",
+      "text": "증원 진입 · 끊어진 서쪽 매듭을 되찾으려 산개 두 마리와 깃 그림자가 서쪽 굽이에서 함께 달려옵니다. 앞선 산개는 정예입니다."
+    },
+    {
+      "round": 8,
+      "frame": 21013,
+      "inputSerial": 6646,
+      "actorTurnSerial": 72,
+      "phase": "aim",
+      "actor": "p-knight",
+      "text": "증원 진입 · 서쪽 고목 아래 박쥐 두 마리가 원을 좁힙니다. 위 지원조를 먼저 끊거나 아래로 통과할 수 있습니다."
+    },
+    {
+      "round": 10,
+      "frame": 27632,
+      "inputSerial": 9850,
+      "actorTurnSerial": 89,
+      "phase": "aim",
+      "actor": "p-archer",
+      "text": "의식터 아래 뿌리 갈림길에 세 날짐승의 기척이 모입니다. 아래로 내려갈 때 이 입구를 한꺼번에 제압하세요."
+    },
+    {
+      "round": 10,
+      "frame": 28369,
+      "inputSerial": 10341,
+      "actorTurnSerial": 90,
+      "phase": "aim",
+      "actor": "p-mage",
+      "text": "증원 진입 · 의식터 아래 뿌리 갈림길에 세 날짐승의 기척이 모입니다. 아래로 내려갈 때 이 입구를 한꺼번에 제압하세요."
+    },
+    {
+      "round": 12,
+      "frame": 36470,
+      "inputSerial": 14433,
+      "actorTurnSerial": 111,
+      "phase": "aim",
+      "actor": "p-knight",
+      "text": "동쪽 혼매듭 해체 · 완료"
+    },
+    {
+      "round": 12,
+      "frame": 36470,
+      "inputSerial": 14433,
+      "actorTurnSerial": 111,
+      "phase": "review",
+      "actor": "p-knight",
+      "text": "의식대 서쪽 낮은 턱에서 잔향 셋이 모입니다. 다음 행동 뒤 들어오며, 입구 주변이 막히면 기다립니다."
+    },
+    {
+      "round": 12,
+      "frame": 36847,
+      "inputSerial": 14434,
+      "actorTurnSerial": 113,
+      "phase": "transition",
+      "actor": "p-occultist",
+      "text": "종의 잔울림을 따라 잔향혼 등장"
+    },
+    {
+      "round": 12,
+      "frame": 36847,
+      "inputSerial": 14434,
+      "actorTurnSerial": 113,
+      "phase": "transition",
+      "actor": "p-occultist",
+      "text": "의식대 동쪽 낮은 턱에서 마지막 잔향 셋이 모입니다. 다음 행동 뒤 들어오며, 입구 주변이 막히면 기다립니다."
+    },
+    {
+      "round": 13,
+      "frame": 38045,
+      "inputSerial": 14519,
+      "actorTurnSerial": 120,
+      "phase": "aim",
+      "actor": "p-mage",
+      "text": "종의 잔울림을 따라 잔향혼 등장"
+    }
+  ],
+  "scope": "Fresh canonical spawns and all original enemies/objectives; entryProfile provenance identifies actual campaign save, otherwise historical level10 camp fixture. Only normal input APIs after initialization; no items/state correction. Native engine with production App mission method, not browser or universal difficulty approval."
+}

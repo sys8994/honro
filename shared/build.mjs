@@ -38,6 +38,7 @@ const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'
 export const modelFiles=['action-prompts','content','story-content-v0','story-content','terrain-space','map-engine','battlefield-layouts',
   'clear-report','split-campaign','campaign-map-revision','stake-crossing','contribution-xp','progression','encounters','world','act1-roster','difficulty','allies','sodan-withdrawal','mission','objectives','objective-contributions','combat-status','authored','act2-content','act2-plan','act2-drama','act2','stage11-ravine-encounters','stage17-worksite','stage16-temple','act3-content','act3-encounters','act3-objectives','objective-revision','stage18-bell','stage30-ferry','stage12-quarry','stage23-escort','objective-guidance','journey-content','act3-journey','story-staging','story-direction','story-framing','stage8-bier','encounter-density','stage14-vertical','stage22-vertical','route-branches','narrative-revision','stage11-trace-exit','stage2-airborne','stage5-waterfall-geometry','stage5-waterfall','stage5-positioning','quest-targets','story-canon-v1','bell-anomaly','act3-void','evidence-quests','stage2-layered-road','act2-pacing'];
 
+modelFiles.push('stage11-quest-simplification');
 // This is the only bundle manifest. Game, Stage view and playtest use it.
 export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   const parts=[];
@@ -62,6 +63,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   data('HONRO_SPLIT_V1',JSON.parse(await read('shared/data/split-campaign-v1.json')));
   data('HONRO_OPEN_STRUCTURES',JSON.parse(await read('shared/data/open-structures.json')));
   data('HONRO_WATERWORKS_V2',JSON.parse(await read('shared/data/waterworks-v2-content.json')));
+  data('HONRO_STAGE11_QUEST_STORY',JSON.parse(await read('shared/data/stage11-quest-story-20261022.json')));
   for(const name of modelFiles)await file(`shared/runtime/${name}.js`);
   await file('shared/runtime/camera.js');
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands'])await file(`shared/map/${name}.js`);
@@ -139,7 +141,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
 }
 
 // Keep the same authoring order for native consumers and the external web loader.
-export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1','HonroAct2Pacing'];
+export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1','HonroAct2Pacing','HonroStage11Quest'];
 export const authorProjectExpression=value=>projectAuthors.reduce((value,name)=>`${name}.author(${value})`,value);
 export async function runtimeParts(options={}) {
   return (await runtimeEntries(options)).map(entry=>entry.code);
