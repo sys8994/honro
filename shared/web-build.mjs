@@ -8,6 +8,7 @@ import {root,runtimeEntries,projectAuthors} from './build.mjs';
 import {writeGenerated} from './write-generated.mjs';
 import sharp from 'sharp';
 import {minify} from 'terser';
+import {planWebAssetRetention,selectPublishedGenerations,publishedRetention} from './web-retention.mjs';
 
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 const hash=body=>createHash('sha256').update(body).digest('hex');
@@ -30,25 +31,14 @@ export function orderedScriptSource(entries,loader){
   }).join('');
 }
 
-// Keep two distinct releases for cached entrypoints; identical builds do not rotate them.
-export function planWebAssetRetention(previous,currentFiles){
-  const current=new Set(currentFiles.map(file=>file.path));
-  const safe=file=>/^web\/(runtime|entries|data|styles|graphics)\/[\w.-]+$/.test(file.path);
-  const last=previous?.files||[],older=previous?.previousFiles||[];
-  const unchanged=last.length===current.size&&last.every(file=>current.has(file.path));
-  const generations=previous?.previousGenerations||(older.length?[older]:[]);
-  const previousGenerations=(unchanged||!last.length?generations:[last,...generations]).slice(0,2).map(files=>files.filter(file=>safe(file)&&!current.has(file.path)));
-  // Published client graphs are separate from intermediate build generations.
-  const published=(previous?.publishedGenerations||[]).slice(0,2).flatMap(g=>g.files||[]);
-  const previousFiles=[...new Map([...previousGenerations.flat(),...published].filter(file=>safe(file)&&!current.has(file.path)).map(file=>[file.path,file])).values()];
-  const retained=new Set(previousFiles.map(file=>file.path));
-  const obsoleteFiles=[...new Map([...last,...older,...generations.flat()].filter(file=>safe(file)&&!current.has(file.path)&&!retained.has(file.path)).map(file=>[file.path,file])).values()];
-  return {previousFiles,previousGenerations,obsoleteFiles};
-}
+export {planWebAssetRetention} from './web-retention.mjs';
 
 // Generated files are immutable by content. Stable HTML names remain the public entrypoints.
 export async function buildWeb({vector=true,destination=path.join(root,'HONRO.html')}={}) {
   let previous;try{previous=JSON.parse(await read('web/manifest.json'));}catch(e){if(e.code!=='ENOENT')throw e;}
+  const retentionNow=Date.now(),publishedGenerations=selectPublishedGenerations(previous?.publishedGenerations,{now:retentionNow});
+  // A build must fail before cleanup if a retained original is unavailable or changed.
+  for(const g of publishedGenerations)for(const file of g.files){const bytes=await readFile(path.join(root,file.path));if(bytes.length!==file.bytes||hash(bytes)!==file.sha256)throw Error('Retained immutable asset mismatch: '+file.path);}
   const files=new Map();
   async function emit(folder,name,extension,body){
     // Strip comments/whitespace only. Keep names, statements and patch order;
@@ -243,8 +233,8 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   await writeGenerated(path.join(root,'HONRO_WORKSHOP.html'),workshopHtml);
   await writeGenerated(path.join(root,'workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
   const currentFiles=[...files.values()].sort((a,b)=>a.path.localeCompare(b.path));
-  const {previousFiles,previousGenerations,obsoleteFiles}=planWebAssetRetention(previous,currentFiles);
-  const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations,publishedGenerations:previous?.publishedGenerations?.slice(0,2)};
+  const {previousFiles,previousGenerations,obsoleteFiles}=planWebAssetRetention(previous,currentFiles,{now:retentionNow});
+  const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations,publishedRetention,publishedGenerations};
   await writeGenerated(path.join(root,'web/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
   for(const file of obsoleteFiles)try{await unlink(path.join(root,file.path));}catch(e){if(e.code!=='ENOENT')throw e;}
   await mkdir(path.join(root,'_local/reports/web-split'),{recursive:true});

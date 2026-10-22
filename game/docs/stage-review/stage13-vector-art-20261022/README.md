@@ -1,6 +1,6 @@
 # 13장 숨은 석문 · 벡터 재질/작업장 미술 보완
 
-현재 상태: shape3의 문틀은 유지하고, 부모가 미승인한 왼쪽 전경·상부/오른쪽 천장만 보완한 shape4. 실제 집중3회+별도 전체 화면 확인 완료. [최신 교정 범위·증거](#shape4--왼쪽-전경상부-천장-교정). 부모 최종 미술 판단 대기이며 master/Pages와14장은 진행하지 않는다.
+현재 상태: 부모가 shape4 `c5b51319`를 승인·master/Pages 반영했다. 이후 공개 UI 줌아웃 QA에서 별도로 발견된 왼쪽 재질 시작 경계만 교정했다. [배포 후 QA 기록](#배포-후-qa--왼쪽-재질-시작-경계). 이번 경계 수정의 공개 확인·master 반영은 부모 대기이며14장은 시작하지 않는다.
 
 ## 설계/보존 카드
 
@@ -114,3 +114,35 @@ shape3 화면 입력: campaign SHA256 `04ea9f65102bd4c2ed4aaa861a024182ff520c5ed
 실제 변경 소스는 `tools/environment/stage13-vector-finish.mjs`와 `shared/data/campaign.json`; 검증 보조는 `tests/stage13-vector-art.mjs`와 `tools/testing/stage13-vector-art-capture.py`다. 나머지 실행 차이는 이 소스에서 생성한 루트 HTML3개와 web 자산 그래프다. 선택 사진 외 자동 결과/중간 편집 화면은 `_local/reports/stage13-vector-art/`에만 보존한다. 기존 Library helper의 업로드 준비 전 네트워크 실패를 반복 시도하지 않고 Git 검토 경로로 전달한다.
 
 최종 화면 입력 SHA256: campaign `940e3ffce3f7151e6f1d29bdfb15c1758442f85aea1fa5aeba4a1e35c2556831`; 저작 `63484d4434e54f1d938b1ef5c10d68701e68f8947a61f9ef4680018ce6f10207`; web manifest `0551e2e07d42a020baf851a0f4bf70bcba5722e66e63dd2073f11a5370b0c6ee`. 네 검수의 runtime/render source는 동일하며 이 수정 커밋의 파일과 대응한다.
+
+## 배포 후 QA · 왼쪽 재질 시작 경계
+
+이 결함은 앞선 고정 구도의 미술 검수 완료와 별개다. 부모는 shape4 픽셀/보호 검사/ancestry를 확인해 master를 `c5b51319ef887943726434d84db596f07254bbd3`로 반영하고 Pages39798509695 성공·공개 진입 `game.f4a396ddd49c2dfe.js`를 확인했다. 그 뒤1180×757의 실제 UI 입장/줌아웃에서 왼쪽 사각형 같은 재질 시작을 발견했다.
+
+### 추측이 아닌 재현과 원인
+
+이번 환경의 공개 URL 열기는 `net::ERR_TUNNEL_CONNECTION_FAILED`로 실패했다. 부모 제공 `stage13-public-left-edge.png`는 Library 메타데이터/이미지 읽기 응답만 확인됐고 실제 바이트 다운로드는 `download failed`로 실패해 원본 픽셀을 보았다고 하지 않는다. 대신 원격 master/검토 브랜치가 같은 c5b51319이며 checkout의 진입 파일도 부모가 공개 확인한 f4a396ddd49c2dfe와 같은 것을 확인했다. 이 **동일 생성물**을 로컬 HTTP에서 실행했다.
+
+`tools/testing/stage13-left-edge-capture.py`는 신규 격리 브라우저에서 설정→기록·관리→검수 모드→여정첩2막13장→휴식터→진입→대화 넘기기를 실제 클릭한다. 기본뷰와610,320에서 wheel down757을2회, 실제 pointer drag의 왼쪽/아래 팬을 촬영한다. 이 네 화면에는 카메라 좌표·배율을 대입하지 않는다. 마지막 전체 맵만 별도1440×900/4100,3450,.17의 고정 비교다.
+
+[수정 전 실제 UI 줌아웃](review/left-edge-before-wheel.jpg)에서 재질 시작은 화면 **x435.56**, 설오 x577.86, 석공 x946.61로 부모 구도를 재현했다. scene은389.986/2736.045/.173529이고, 역투영한 재질 시작점은 **world x=-500**이다. world x=0의 투영은 화면x522.33으로 서로 다르다. 실제 canonical 바닥 polygon과 renderer clip은 **x=-6000**까지 이어지며 mother-rock-base도 그 전체를 채운다. 원인은 clip/월드 끝이 아니라, 서쪽 상세 저작 면이 x=-500 부근에서 끝나 바깥쪽은 기본 단색만 남은 것이다. 이전 overview의 왼쪽 view가 약-135라서 이 경계가 화면 밖에 있었음을 확인했다.
+
+### 최소 수정
+
+기존 승인161면과 상대 그리기 순서를 한 점/색도 바꾸지 않고, 그 왼쪽으로20개의 정적 공유 층면만 연결했다. 가장 안쪽 연장 면은 기존 a/h/q/A/J/S 경계와 색을 그대로 공유하므로 옛 수직 시작점이 재질 경계로 남지 않는다. 바깥쪽은 실제 polygon의 왼쪽 끝-6000까지 이어지며 상단은 canonical 지형의 언덕/골짜기 꼭짓점을 모두 따라간다. 카메라/줌 자유도, 물리 범위나 기존 지형을 좁혀 숨기지 않았다. 새 collider/Library/장식·매 프레임 geometry/texture·노이즈는 없다.
+
+실제 미술 소스 변경은 `tools/environment/stage13-vector-finish.mjs`와 그 출력 `shared/data/campaign.json`이다. 검증 보조로 `tests/stage13-vector-art.mjs`를 보강하고 실제 UI 촬영 도구 `tools/testing/stage13-left-edge-capture.py`를 추가했다. 루트 HTML/web 생성물을 재생성했다. 공유 renderer/main/bounds/물리/캐시 코드, 서사·문구, 문틀/기존 절리·배치·목표/저장/다른29장은 그대로다.
+
+### 실제 수정 후 화면과 보존 검사
+
+- [같은 UI wheel 줌아웃](review/left-edge-after-wheel.jpg): 원래 x435 부근의 수직 면 시작이 없어지고 왼쪽 층리가 이어짐. 입력은 수정 전과 같고 카메라 자유도도 같다. 프레임 타이밍에 따른 camera.x 차이는0.82world, 옛 경계의 투영은435.42다.
+- [실제 왼쪽 팬 한계](review/left-edge-after-pan.jpg)와 [왼쪽 아래 팬](review/left-edge-after-lower.jpg): 원래 focus.x=-320 제약, 보이는 왼쪽 extent=-3720에서도 갑작스러운 수직 시작 없이 연결됨. 지형은 더 왼쪽-6000까지 작성돼 있다.
+- [기본 진입뷰](review/left-edge-entry-default.jpg)와 [전체 맵](review/left-edge-overview.jpg): 보행면/배우/목표·문틀·천장과 원경 보존을 직접 확인했다. 앞선 고정 구도만 재촬영해 해결로 판정하지 않았다.
+
+`npm run build` 및 `node tests/stage13-vector-art.mjs` 통과. 승인161면 원본/순서 동일, 기존 캠페인의 terrainPlanes/planeCount 외 전부 동일, x≤-400 외곽만20면 추가, -5700..-600의130개 실제 바닥 아래 표본에서 상세 재질 coverage를 확인했다. 동일 표본의 대표 world -1000/+600은 배포본에 상세 재질이 없었음을 함께 검사한다. 재현 도구의 수정 전후4개 UI 화면에서 모든 동행/주민의 좌표·HP 및 resident 목표도 같았다.
+
+기존 공통 prepare의 source/version 무효화·객체 재사용·Canvas/battle 상태 보존과 cached material draw 새Path2D0을 확인했다. 실제 UI wheel→left pan→lower pan에서 world/screen cache hit가 증가한다. UI 화면5장의 pageerror/HTTP실패0. 이는 캐시 경로 보존이며 draw/최초 준비 비용0이나 FPS 동일을 뜻하지 않는다. 면161→181 증가이고 새로운 성능 주장은 하지 않았다. 다른 장/전체 전투·무관 실패를 재검사하지 않았다.
+
+선택 JPG6개만 전달용으로 보존하며 각1MB 미만이다. 원자료/자동 화면은 `_local/reports/stage13-left-edge/`에 둔다. 공개 URL 재검수는 현재 환경의 터널 오류로 미실행이고, 부모가 공개 QA 후 master를 업데이트한다. 이 작업은 별도 브랜치에만 보존하며 다른 변경과 병합하지 않고14장을 시작하지 않는다.
+
+경계 수정 후 실제 화면 입력 SHA256: campaign `bfa3bde1af3d02e66851e617f280a159b4c752892650d9dd67af2354bbd81fed`; 저작 `4f5e42f3b34cf482ea1c91fca6df92857c1a886c0e961eea525c3ce7f28f1ce0`; web manifest `b553432565360e5c0a19c7fa016baaa60c62d07531035329b9550886ce7dd369`.

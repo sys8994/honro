@@ -9,7 +9,8 @@ from story_browser_server import story_base_url
 parser=argparse.ArgumentParser();parser.add_argument('--out',default='_local/reports/stage11-quest-simplification/browser');args=parser.parse_args()
 out=Path(args.out);out.mkdir(parents=True,exist_ok=True);base=story_base_url();rows=[];errors=[];http=[]
 saved=json.loads(Path('_local/reports/stage11-quest-simplification/compat-dialogue-0.json').read_text())
-normal=json.loads(Path('_local/reports/stage11-quest-simplification/after/initial.json').read_text())['initial']['profile']
+# Fresh-entry UI fixture derived from the save-contract input; no fullplay output required.
+normal=json.loads(Path('_local/reports/stage11-quest-simplification/compat-dialogue-0.json').read_text());normal['honroBattle']=None
 normal['cleared']={str(i):{'visits':1,'rounds':1} for i in range(1,11)} # Entry/unlock fixture, not earlier combat evidence.
 physical='''()=>JSON.stringify(HonroApp.engine.b.units.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,focus:u.focus,moveLeft:u.moveLeft,dead:u.dead})))'''
 with sync_playwright() as pw:

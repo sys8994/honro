@@ -30,6 +30,22 @@
 
 ## 열린 클라이언트의 지연 로딩 자산 보존
 
-새 릴리스를 빌드하기 전 실제 현재 Pages에 발행된 커밋을 확인하고 `node tools/release/retain-published-web.mjs <published-SHA>`를 실행한다. Git의 해당 manifest가 가리키는 immutable 파일을 hash 검증하고, 빠진 파일은 원래 blob으로 복원한다. 이후 정상 빌드·커밋·발행한다. 발행되지 않은 작업 중간 SHA를 넣지 않는다.
+실제 성공 발행 그래프는 **최근 7일 전체와 최소 최신 2개**를 보존한다. 중간 빌드의 두 세대는 별도이며 발행을 새로 등록하거나 날짜를 갱신하지 않는다. 같은 활성 그래프의 재발행은 hash로 중복 제거하고 최신 발행 사실을 사용한다. manifest의 `publishedGenerations`는 원본 `sourceSha`, `graphSha256`, `publishedAt`, 정밀도, 성공 근거와 immutable 파일 목록을 담는다. 현재 활성 로딩 목록에 보존 파일을 넣지 않는다.
 
-최근 서로 다른 발행 그래프 두 개는 `web/manifest.json`의 `publishedGenerations`에 보존한다. 중간 빌드용 두 세대와 별도로 유지하므로 여러 번 빌드해도 실제 직전 발행 그래프가 밀려나지 않는다. 다음 실제 발행 커밋을 등록할 때만 회전하며, 같은 그래프의 재발행은 중복하지 않는다. 보존 파일은 현재 실행 연결이나 초기 다운로드 목록에 추가하지 않는다. 무기한 열린 탭의 모든 과거 세대를 보장하지는 않는다.
+새 릴리스 빌드 전 실제 성공 발행의 SHA·시간·근거로 등록한다. 아직 발행하지 않은 후보를 넣지 않는다.
+
+```sh
+node tools/release/retain-published-web.mjs <published-SHA> --published-at <ISO-UTC-timestamp> --evidence <Pages-success-reference>
+npm run build
+```
+
+정확한 시간이 없고 날짜·발행 순서만 확인된 경우 `--published-day YYYY-MM-DD --publication-order <그날의-실제-발행순번> --evidence <성공근거>`를 사용한다. 날짜를 정확한 시각으로 꾸미지 않으며 해당 UTC 날짜가 끝난 뒤 7일간 보수적으로 보호한다(최대 24시간 연장). 같은 날짜의 최신 두 개는 이 확인된 순서로 결정하고 등록 순서로 추측하지 않는다. 과거 일괄 등록은 `--history <chronological-JSON>`를 사용한다. 2026-10-22의 부모 확인 이력 입력은 `tests/fixtures/published-web-history-20261022.json`이다. 934·c5·989·e974·a23만 실제 발행이고 이후 integration 후보는 이 이력에 없다. 초기 등록을 재현하려면 다음을 실행한다.
+
+```sh
+node tools/release/retain-published-web.mjs --history tests/fixtures/published-web-history-20261022.json
+npm run build
+```
+
+등록 도구는 Git 원본 manifest와 모든 원본 blob의 SHA256/길이, 현재 파일을 **쓰기 전에 전부** 검증한다. 누락 원본/시간·성공 근거 없음/hash 불일치/기존 파일 변조는 실패하며 자동으로 다른 파일을 대체하지 않는다. 검증 성공 후 빠진 immutable 파일만 원래 바이트로 복원한다. 날짜 없는 과거 등록은 명시된 실제 이력으로만 이관한다. 원본이 없는 세대를 성공으로 기록하지 않는다.
+
+정상 빌드도 보존 파일의 존재/hash를 확인하고, 7일이 지난 그래프 중 최신 두 개에 들지 않는 파일만 정리한다. 현재 활성·다른 보호 그래프·별도 두 중간 빌드와 공유하는 파일은 남긴다. 등록/같은 빌드 반복은 멱등이며 이 반복으로 발행 날짜나 만료를 연장하지 않는다. 이번 복원 934도 이 7일 정책에 포함하며 두 슬롯 우선 선택 예외는 폐기했다. `node tests/web-build-retention.mjs`는 가짜 시계 만료와 등록 실패의 무변경/원본 검증까지 검사한다.

@@ -1,3 +1,6 @@
+## 2026-10-22 — 실제 발행 7일 전체·최소 최신2개 보존
+
+두 고정 슬롯으로는 934 또는 c5 실제 공개 진입 파일을 밀어낼 수 있어, 발행 timestamp/정밀도·순서·graph hash·원본 SHA·성공 근거를 기록하고 최근7일 전체와 최소 최신2개를 보호하도록 바꿨다. 중간 build2개는 별도로 유지하며 빌드 반복은 발행으로 세지 않는다. 원본 Git blob/hash와 현재 파일을 쓰기 전 검사해 누락/변조 등록은 실패한다. 부모 확인934→c5→989→e974→a23를 복원하고 중복을 합쳤으며 integration 후보는 발행 이력에 넣지 않았다. 가짜 시계 만료·멱등·실패 무변경 검사와 영향받은 build/웹·기존 탭 경계를 확인한다. [정책·최종 검증](facing-stage13-edge-release-20261022/SEVEN_DAY_RETENTION.md).
 ## 2026-10-22 — 11장 P0: 주민 구조 중심의 실제 퀘스트 단순화
 
 이전 pacing 뒤에도 서쪽/중앙 매듭→4회 보호→주민→별도 흔적 체인이 남아 사용자의18턴 주민 대화/20턴 진행을 늘어뜨렸다. 필수 실제 행동은 주민 분리1회로 줄이고 기존 trace 단서를 구조 뒤 자동 기록한다. 폐지한 목표의 미입장 추격/방어 요청만 막으며 이미 나온 적·HP/기력·좌표·현재 턴·성장·완료 이력은 유지한다. 지원되는 기존6/7단계 snapshot도 bounded 이행하며, 대화 중 원문/cursor를 바꾸지 않고 정상 tick/outcome으로 이어진다. 부모 확정 원고·장소 일관성 정정은 `shared/data/stage11-quest-story-20261022.json`을 정본으로 사용한다.
@@ -4475,3 +4478,9 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 ## 2026-10-22 — 최종 서사 통합의 11장 단일 원고 경계
 
 11장 quest 모듈의 별도 current JSON/행 메타데이터 재생성을 제거하고 부모 확정 catalogue의 도입·완료·도착·요약·안내를 사용한다. 마지막 model/author 순서와 resident→자동 trace만 유지하며 진행 중 honroStory/cursor는 보존한다. master 병합 충돌의 build 목록·주민 화자 연결·양쪽 이력도 복구했다. 부모 승인 11장 퀘스트 차이를 명시한 30 current/40 legacy, 확정 원고·경로 및 20턴 대화 저장/자연 완료 검사와 공통 build가 통과했다. 발행 보존 최신 master와 실제 UI 검수는 이어지는 최종 통합 단위에서 확인한다.
+## 2026-10-22 · 신규 배치 facing과 월드 조준각 일치
+
+-12장 fresh record의 facing:-1이 makeUnit의 기본 angle44를 남겨 몸은 왼쪽/활·예측·실탄은 오른쪽/HUD136°인 불일치를 만들었다. `HonroUnits.create`만 수정해 facing-only 새 배치가 같은 pitch의 반대 월드각136을 받는다.1장 우측 기본44는 그대로다. 명시 angle/pair/template와 진행 중 save는 보존하며 강제 우측 reset·Continue migration은 없다.
+- 네 동행1/12장 생성·좌우/explicit 저장·NPC/적 native 검사, 기존 aim-readout/20° joystick 검사, 실제 Chromium 키보드/터치·선택/양방향 발사·Continue/retry 및 렌더 battle 순수성이 통과했다.1장의 추가3인은 실제 지형/fresh factory QA fixture이며 정상 roster 변경이 아니다.6개 ranged 탄/2개 원래 meleeAction을 구분했다.
+- 리그/무기/초상화/Engine·조작·기존 empty-occlusion/캐시는 byte-identical. [원인·정확한 SHA·원자료·양방향 JPG·한계](spawn-facing-aim-20261022/README.md). 실기기 미검사. master/Pages는 부모 최종 검토 후 별도 배포.
+13장 배포 후 왼쪽 재질 경계 QA: shape4 c5b51319 승인·배포 뒤 부모가 실제 UI 줌아웃에서 발견했다. 같은 진입 f4a396ddd49c2dfe의 로컬 UI를1180×757에서 직접 클릭/휠 재현해 경계x435.56=world-500, world0은x522.33임을 확인했다. 실제 지형/clip은-6000까지인데 상세 면만-500에서 끝난 것이 원인이다. 승인161면을 그대로 두고 실제 바깥 지형 끝까지 같은 경계·색의 정적20면을 이어 수직 재질 시작을 제거했다. 기본 입장/실제 휠/좌측 한계·아래 팬/전체 맵을 직접 열고 공통 build·외곽coverage130표본/기존면·게임 데이터/prepare 재사용·cached draw 새Path2D0을 확인했다. 공개 URL은 터널 연결 실패, 제공 PNG는 전송 실패로 원본 픽셀 미확인이며 공개 재검수는 부모 대기다. 고정 구도 미술 완료와 별개 QA로 기록한다. master/Pages/14장 미변경. [원인·전후사진·한계](stage-review/stage13-vector-art-20261022/README.md#배포-후-qa--왼쪽-재질-시작-경계).

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/honro/tools/testing/spawn-facing-aim.py", line 70, in <module>
+    assert page.evaluate('HonroApp.beginCharge()');page.wait_for_timeout(500);shot(f'after-{uid}-charge-'+('left' if facing<0 else 'right'))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
