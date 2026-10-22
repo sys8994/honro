@@ -76,6 +76,38 @@ export function applyStage13VectorFinish(project){
   ['entry-low-shadow','#3a5666',['M','N','V','U']],['mason-low-step','#4a6773',['N','O','W','V']],
   ['central-low','#3d5969',['O','P','Q','X','W']],['east-low-step','#466370',['Q','R','Y','X']]
  ])westFace(id,fill,keys);
+ // Public UI zoom-out sees x < -500 even though the original fixed overview
+ // did not. Match the full v6 solid, not the simulation's x=0 boundary. Each
+ // nearest extension shares both its boundary and fill with the existing bed;
+ // the former straight paint start is therefore not a material edge at all.
+ const left=Math.min(...floor.points.map(p=>p.x));
+ Object.assign(westNodes,{
+  oa:[left,40],ob:[-3900,40],oc:[-2700,40],od:[-1550,40],
+  oh:[left,470],oi:[-4020,620],oj:[-2800,650],ok:[-1420,470],
+  oq:[left,1120],or:[-3820,1220],os:[-2480,1150],ot:[-1600,1020],
+  oA:[left,1810],oB:[-4140,1900],oC:[-2950,1730],oD:[-1330,1620],
+  oJ:[left,2510],oK:[-3800,2550],oL:[-2640,2380],oM:[-1710,2310],
+  oS:[left,3450],oT:[-4010,3300],oU:[-2810,3400],oV:[-1450,3260]});
+ Object.assign(westEdges,{
+  'oi>oj':[[-3590,690],[-3280,580]],'oj>ok':[[-2420,600],[-2200,685],[-1830,530]],
+  'os>ot':[[-2170,1200],[-2030,1080],[-1810,1110]],
+  'oB>oC':[[-3710,1810],[-3440,1880],[-3170,1740]],
+  'oC>oD':[[-2570,1800],[-2340,1690],[-1940,1750],[-1650,1610]],
+  'oL>oM':[[-2320,2440],[-2060,2340]],'oD>oM':[[-1410,1870],[-1310,2000],[-1560,2130]]});
+ const outsideFace=(id,fill,keys)=>{
+  const boundary=sharedFace(keys,westNodes,westEdges);
+  // The overscan's top is not one straight grade: preserve every canonical
+  // hill/valley vertex beneath the unchanged walking lip.
+  const ps=boundary.flatMap((p,i)=>{const z=boundary[(i+1)%boundary.length];return[p,...(p[1]===40&&z[1]===40&&z[0]>p[0]?floor.points.filter(v=>v.x>p[0]&&v.x<z[0]).sort((a,b)=>a.x-b.x).map(v=>[v.x,40]):[])];});
+  onFloor('west-bed-'+id,fill,ps);
+ };
+ for(const [id,fill,keys]of [
+  ['outer-west-rim','#5b7178',['oa','ob','oi','oh']],['outer-west-seat','#637980',['ob','oc','oj','oi']],['outer-entry-seat','#60777d',['oc','od','ok','oj']],['entry-continuation','#5c7379',['od','a','h','ok']],
+  ['outer-west-fold','#4d6874',['oh','oi','or','oq']],['outer-west-return','#56717b',['oi','oj','os','or']],['outer-entry-fold','#526d78',['oj','ok','ot','os']],['entry-return-continuation','#4f6974',['ok','h','q','ot']],
+  ['outer-west-deep','#435f6d',['oq','or','oB','oA']],['outer-west-deep-seat','#4e6a76',['or','os','oC','oB']],['outer-entry-deep','#496572',['os','ot','oD','oC']],['entry-bed-continuation','#465f6c',['ot','q','A','oD']],
+  ['outer-west-low','#3e5a68',['oA','oB','oK','oJ']],['outer-west-low-return','#476370',['oB','oC','oL','oK']],['outer-entry-low','#405d6c',['oC','oD','oM','oL']],['entry-shadow-continuation','#3c5766',['oD','A','J','oM']],
+  ['outer-west-bottom','#3b5665',['oJ','oK','oT','oS']],['outer-west-bottom-step','#425e6b',['oK','oL','oU','oT']],['outer-entry-bottom','#3e5969',['oL','oM','oV','oU']],['entry-low-continuation','#3b5665',['oM','J','S','oV']]
+ ])outsideFace(id,fill,keys);
  // Several finite cavities belong to the bed junctions. Each terminates into
  // the neighbouring face and has its own depth; they are not a rim on every face.
  onFloor('west-entry-recess','#2d4856',[[720,390],[840,404],[1000,346],[1110,290],[1085,342],[1020,388],[810,472],[751,447]]);
