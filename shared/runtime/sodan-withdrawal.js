@@ -23,14 +23,9 @@ function outro(b,lines){if(!active(b)||b.honroNarrativeRevision!==1||b.phase!=='
  // In-flight campaigns own a frozen narrative snapshot. Project only the five
  // approved old phrases into the safe outro; keep its cursor, metadata and all
  // other saved lines. Canonical/new phrases pass through unchanged.
- const prior=[
- [0,'(방울을 내려놓으려다 다시 쥔다) …정말 놔도 돼요?'],
- [1,'손가락 하나부터 펴보게. 그래. 자네가 놓은 원혼은 양옆 받이진으로 들어가고 있네.'],
- [4,'매듭을 풀 시간은 벌었소. 남은 것들은 경계하며 돌아갈 길을 살피겠소.'],
- [9,'새 무리는 동쪽 외문을 넘어왔소. 산길의 진흙이 여기까지 이어져 있소.'],
- [15,'소단이 손을 폈다. 일행이 기다리는 동안 잠시 숨을 고른 뒤, 방울을 챙겨 곁으로 다가왔다.']];
- const current=G.HONRO_CONTENT.stages[9].outro;
- return lines.map(row=>{const match=prior.find(([i,text])=>text===row[1]&&current[i]?.[0]===row[0]);return match?[row[0],current[match[0]][1],...row.slice(2)]:row;});
+ if(G.HonroNarrativeCatalogue.active(b))return lines;
+ const projection=G.HONRO_NARRATIVE_COMPAT.safeOutroProjection;
+ return lines.map(row=>{const match=projection.find(p=>p.from===row[1]&&p.who===row[0]);return match?[row[0],match.to,...row.slice(2)]:row;});
 }
 // Extraction ends on the existing east exit surface. Only the survivors move;
 // enemies, HP, resources and the six-turn mission remain the terminal battle.

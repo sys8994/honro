@@ -26,10 +26,11 @@ function speakerId(app,name){const aliases={11:{'주민':'resident-4'},23:{'짐�
 // are composed. They remain stable whether the arrival has already been read.
 const entryObjects={5:{0:[{anchor:'cleat'}],1:[{marker:'receiver-5'}]},12:{0:[{marker:'sign'}],1:[{marker:'sign'}]},13:{0:[{actor:'resident-1'}],1:[{actor:'resident-1'}],3:[{actor:'resident-1'}]},15:{0:[{marker:'sluice'},{marker:'groove'}],1:[{marker:'route-upper-exit'}],2:[{marker:'groove'}]},16:{0:[{actor:'objective'},{actor:'resident-1'}],2:[{actor:'resident-1'}]},17:{0:[{anchor:'hoist'}],1:[{anchor:'brace'}]},18:{0:[{actor:'act2-keeper'}],2:[{terrainGroup:'bell'}]},19:{0:[{marker:'route'}]},21:{0:[{marker:'gate-resident'}]},22:{0:[{marker:'ledger-case'}],1:[{marker:'upper-register'}]},23:{2:[{actor:'act3-carrier'}]},24:{0:[{marker:'family-crest'}],1:[{marker:'family-crest'}],2:[{marker:'land-register'}]},25:{0:[{marker:'depot-entry-seal'}],1:[{marker:'depot-entry-seal'}]},26:{0:[{marker:'investigation-record'}],1:[{marker:'artisan-resident'}]},27:{0:[{marker:'depot-route-ledger'}],1:[{marker:'depot-route-ledger'}]},28:{0:[{marker:'fire-screen'}],1:[{marker:'water-release'}]},29:{0:[{marker:'hyeonmuk-letter'}]},30:{0:[{marker:'transport-map'}],1:[{marker:'transport-map'}]}};
 function arrival(app,lines){const stage=app.stage.id;return lines.map(([who,text,meta={}],i)=>{
+ if(meta.rowId&&meta.arrivalCamera)return[who,text,{...meta,camera:meta.arrivalCamera}];
  let targets=stage===2?i===2?[{actor:'archer'}]:policies['2:entry'].targets:stage===18?[{terrainGroup:'bell'}]:stage===19&&i>0?[{actor:'mourner-brother'},{actor:'mourner-sister'}]:stage===14?[{marker:'family-upper'},{marker:'family-mid'}]:[openings[stage]||{actor:app.engine.b.active}];
  return[who,text,{...meta,camera:{id:`${stage}:arrival:${i}`,intent:stage===1||stage===2&&i===2?'portrait':'situation',targets,padding:stage===13?180:80,maxScale:stage===1?1:.8}}];
  });}
-function authorEntry(st){if(st.id!==2){const plan=entryObjects[st.id];if(plan)st.story=st.story.map(([who,text,meta={}],i)=>[who,text,{...meta,...(plan[i]?{camera:{id:`${st.id}:entry:story-${i}`,intent:'object-introduction',targets:plan[i],padding:st.id===13?180:80,maxScale:.85}}:{})}]);return;}const plans={
+function authorEntry(st){if(st.story?.some(r=>r[2]?.rowId)){st.story=st.story.map(([who,text,meta={}])=>[who,text,{...meta,...(meta.entryCamera?{camera:meta.entryCamera}:{})}]);return;}if(st.id!==2){const plan=entryObjects[st.id];if(plan)st.story=st.story.map(([who,text,meta={}],i)=>[who,text,{...meta,...(plan[i]?{camera:{id:`${st.id}:entry:story-${i}`,intent:'object-introduction',targets:plan[i],padding:st.id===13?180:80,maxScale:.85}}:{})}]);return;}const plans={
  0:{intent:'situation',targets:[{actor:'objective'},{actor:'npc-damheo'},{actor:'archer'}],padding:70,maxScale:.8},
  1:{intent:'object-introduction',shot:'reverse',reason:'앞의 높이차 조망 뒤 설오의 시선으로 상여와 응답자를 보여 준다. 설오는 초상으로 유지한다.',targets:[{actor:'objective'},{actor:'npc-damheo'}],padding:65,maxScale:.9},
  2:{intent:'conversation',targets:[{actor:'objective'},{actor:'npc-damheo'}],padding:60,maxScale:.9},
@@ -70,7 +71,7 @@ function bind(app,lines,options){if(!app.engine||app.screen!=='battle')return li
   if(cue&&kind!=='guide'&&!scenePolicy){const at=cue.at||{actor:cue.actor};if(at)camera={intent:'object-introduction',targets:[at],padding:65,maxScale:cue.scale||.9};}
   camera.targets=camera.targets.flatMap(t=>t.markers?t.markers.map(marker=>({marker})):t.between?t.between.map(actor=>({actor})):t);
   camera.targets=camera.targets.map(t=>t.actor==='$spirit'?{...t,actor:meta.sceneTarget||options.staging?.context?.spirit||t.actor}:t.marker==='$trigger'?{...t,marker:options.staging?.context?.marker||t.marker}:t.origin&&options.staging?.context?.origins?.[t.origin]?{...options.staging.context.origins[t.origin],dx:t.dx,dy:t.dy}:t);
-  return[who,text,{...meta,camera:speakerPolicy(who,meta,{...camera,id:`${stage}:${key}:${index}`})}];
+  return[who,text,{...meta,camera:speakerPolicy(who,meta,{...camera,id:meta.rowId||`${stage}:${key}:${index}`})}];
  });
 }
 function bounds(app,target){const b=app.engine.b;

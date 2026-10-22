@@ -1,3 +1,4 @@
+import {loadNarrativeData} from '../story/load-data.mjs';
 /** Read-only authoring preflight. This module is never part of a game bundle. */
 import vm from 'node:vm';
 import path from 'node:path';
@@ -81,7 +82,8 @@ export async function loadFoundationInputs(root=ROOT,{baseline=false}={}){
  // This content-only sandbox does not invoke the engine, compiler, builder,
  // profile loader, localStorage or the production app.
  const g=vm.createContext({HONRO_CORE:{SKILLS:{}},HONRO_BALANCE:plain(balance),HonroWorld:{archetypes:{}}});
- for(const name of ['content','story-content','act2-content','act2-plan','act2-drama',...(!baseline?['act3-content']:[]),'journey-content',...(!baseline?['act3-journey']:[])])
+ await loadNarrativeData(g,root);
+ for(const name of ['narrative-catalogue','content','story-content-v1','story-content','act2-content',...(!baseline?['act3-content']:[]),'journey-content',...(!baseline?['act3-journey']:[])])
   vm.runInContext(await readFile(path.join(root,'shared/runtime',name+'.js'),'utf8'),g,{filename:name+'.js'});
  const project=await json('shared/data/campaign.json');if(baseline){project.stages=project.stages.filter(s=>s.metadata.stageId<=20);project.library=project.library.filter(a=>!a.id.startsWith('a3-'));}
  return {catalog:{stages:plain(g.HONRO_CONTENT.stages),acts:plain(g.HONRO_CONTENT.acts),balance:baseline?balance.stages.filter(s=>s.id<=20):balance.stages,project,places:plain(g.HonroJourneyContent.places)},draft:await json('tools/map-forge/act3-draft.json'),nextAct:plain(g.HONRO_CONTENT.nextAct)};

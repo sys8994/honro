@@ -1,0 +1,2295 @@
+[
+  {
+    "id": 1,
+    "name": "연목 고갯길",
+    "level": 1,
+    "theme": "forest",
+    "template": 1,
+    "objective": "arrival",
+    "w": 8200,
+    "h": 2200,
+    "map": [
+      420,
+      330
+    ],
+    "requires": [],
+    "enemies": 4,
+    "active": 2
+  },
+  {
+    "id": 2,
+    "name": "상여 위의 높은 길",
+    "level": 2,
+    "theme": "valley",
+    "template": 2,
+    "objective": "overwatch",
+    "w": 3600,
+    "h": 6000,
+    "map": [
+      760,
+      520
+    ],
+    "requires": [
+      1
+    ],
+    "recruit": "mage",
+    "joinLevel": 3,
+    "enemies": 6,
+    "active": 3
+  },
+  {
+    "id": 3,
+    "name": "나루의 남은 장부",
+    "level": 3,
+    "theme": "river",
+    "template": 4,
+    "objective": "ledger",
+    "w": 9400,
+    "h": 2500,
+    "map": [
+      1080,
+      760
+    ],
+    "requires": [
+      2
+    ],
+    "enemies": 6,
+    "active": 3
+  },
+  {
+    "id": 4,
+    "name": "문 밖에 남은 사람들",
+    "level": 4,
+    "theme": "gate",
+    "template": 3,
+    "objective": "defend",
+    "w": 7600,
+    "h": 2300,
+    "map": [
+      1460,
+      700
+    ],
+    "requires": [
+      3
+    ],
+    "enemies": 7,
+    "active": 3,
+    "holdRounds": 9
+  },
+  {
+    "id": 5,
+    "name": "폭포 틈의 한 발",
+    "level": 5,
+    "theme": "valley",
+    "template": 5,
+    "objective": "seals",
+    "w": 10800,
+    "h": 3000,
+    "map": [
+      1810,
+      360
+    ],
+    "requires": [
+      4
+    ],
+    "recruit": "knight",
+    "joinLevel": 6,
+    "enemies": 10,
+    "active": 4
+  },
+  {
+    "id": 6,
+    "name": "끊어진 나무다리",
+    "level": 6,
+    "theme": "bridge",
+    "template": 6,
+    "objective": "rescue",
+    "w": 10400,
+    "h": 2800,
+    "map": [
+      2040,
+      760
+    ],
+    "requires": [
+      5
+    ],
+    "enemies": 10,
+    "active": 4
+  },
+  {
+    "id": 7,
+    "name": "살아 있는 사람을 꺼내는 법",
+    "level": 7,
+    "theme": "tree",
+    "template": 7,
+    "objective": "rescue3",
+    "w": 6000,
+    "h": 5600,
+    "map": [
+      2350,
+      760
+    ],
+    "requires": [
+      6
+    ],
+    "enemies": 11,
+    "active": 4
+  },
+  {
+    "id": 8,
+    "name": "돌아오는 빈 상여",
+    "level": 8,
+    "theme": "shrine",
+    "template": 8,
+    "objective": "bierboss",
+    "w": 10800,
+    "h": 3200,
+    "map": [
+      2600,
+      590
+    ],
+    "requires": [
+      7
+    ],
+    "enemies": 10,
+    "active": 4
+  },
+  {
+    "id": 9,
+    "name": "바람 없는 마당",
+    "level": 9,
+    "theme": "forest",
+    "template": 9,
+    "objective": "prepare",
+    "w": 7600,
+    "h": 2700,
+    "map": [
+      2840,
+      400
+    ],
+    "requires": [
+      8
+    ],
+    "enemies": 12,
+    "active": 4
+  },
+  {
+    "id": 10,
+    "name": "소단 — 놓지 못한 밤",
+    "level": 10,
+    "theme": "shrine",
+    "template": 10,
+    "objective": "sodan",
+    "w": 8800,
+    "h": 3000,
+    "map": [
+      3070,
+      220
+    ],
+    "requires": [
+      9
+    ],
+    "enemies": 8,
+    "active": 4
+  },
+  {
+    "name": "매듭을 거둔 아침",
+    "theme": "forest",
+    "steps": [
+      {
+        "id": "knot-west",
+        "label": "서쪽 혼매듭 해체",
+        "kind": "interact",
+        "requiredClass": "occultist"
+      },
+      {
+        "id": "clear-west",
+        "label": "서쪽 혼매듭 해체 확인",
+        "kind": "pacing-event",
+        "cohorts": "west",
+        "afterPacing": "knot-west"
+      },
+      {
+        "id": "knot-east",
+        "label": "동쪽 혼매듭 해체",
+        "kind": "interact"
+      },
+      {
+        "id": "hold-knots",
+        "label": "소단의 매듭 해체를 지키기",
+        "kind": "hold",
+        "rounds": 4,
+        "wave": {
+          "kind": "echo",
+          "count": 6,
+          "eliteEvery": 4
+        },
+        "radius": 680,
+        "contestRadius": 260
+      },
+      {
+        "id": "resident",
+        "label": "주민에게 붙은 혼 분리",
+        "kind": "rescue"
+      },
+      {
+        "id": "trace",
+        "label": "북쪽 혼의 흔적 조사",
+        "kind": "interact"
+      }
+    ],
+    "summary": "소단이 정식으로 동행한다. 원혼이 내려온 북쪽 산길에서 사람의 흔적도 찾기로 한다. 주민과 옛 지도에는 산 안쪽 길의 정보가 없다.",
+    "id": 11,
+    "act": 2,
+    "actStage": 1,
+    "level": 12,
+    "template": 1,
+    "objective": "act2",
+    "requires": [
+      10
+    ],
+    "active": 4,
+    "enemies": 44,
+    "map": [
+      3650,
+      240
+    ],
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "w": 16000,
+    "h": 12000,
+    "act2Plan": {
+      "size": [
+        16000,
+        12000
+      ],
+      "initial": 44,
+      "active": 4,
+      "eliteEvery": 5,
+      "rounds": [
+        30,
+        48
+      ],
+      "lamps": [],
+      "sequence": [
+        "knot-west",
+        {
+          "id": "clear-west",
+          "label": "서쪽 혼매듭 해체 확인",
+          "kind": "pacing-event",
+          "cohorts": "west",
+          "afterPacing": "knot-west"
+        },
+        "knot-east",
+        {
+          "id": "hold-knots",
+          "label": "소단의 매듭 해체를 지키기",
+          "kind": "hold",
+          "rounds": 4,
+          "wave": {
+            "kind": "echo",
+            "count": 6,
+            "eliteEvery": 4
+          },
+          "radius": 680,
+          "contestRadius": 260
+        },
+        "resident",
+        "trace"
+      ],
+      "sites": {
+        "knot-west": [
+          3600
+        ],
+        "clear-west": [
+          3880
+        ],
+        "knot-east": [
+          7370
+        ],
+        "hold-knots": [
+          7370
+        ],
+        "resident": [
+          9700
+        ],
+        "clear-road": [
+          10350
+        ],
+        "trace": [
+          15040
+        ]
+      },
+      "id": 11,
+      "revision": 2,
+      "waveCount": 6,
+      "expectedMinutes": [
+        46,
+        70
+      ]
+    }
+  },
+  {
+    "name": "돌아오는 산길",
+    "theme": "valley",
+    "steps": [
+      {
+        "id": "sign",
+        "label": "길표의 돌림진 한 축 풀기",
+        "kind": "interact"
+      },
+      {
+        "id": "route-exit",
+        "kind": "route",
+        "label": "높은 작업굴 확보 후 이동 또는 열린 내리막으로 이탈"
+      }
+    ],
+    "summary": "길을 되돌리는 돌림진의 한 축을 풀었다. 담허가 배운 법과 닮은 진 너머에 함몰지와 석문이 드러났다.",
+    "id": 12,
+    "act": 2,
+    "actStage": 2,
+    "level": 12,
+    "template": 1,
+    "objective": "act2",
+    "requires": [
+      11
+    ],
+    "active": 4,
+    "enemies": 20,
+    "map": [
+      3930,
+      320
+    ],
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "w": 8400,
+    "h": 5200,
+    "act2Plan": {
+      "size": [
+        8400,
+        5200
+      ],
+      "initial": 20,
+      "active": 4,
+      "eliteEvery": 5,
+      "rounds": [
+        30,
+        48
+      ],
+      "lamps": [],
+      "sequence": [
+        "sign",
+        {
+          "id": "route-exit",
+          "kind": "route",
+          "label": "높은 작업굴 확보 후 이동 또는 열린 내리막으로 이탈"
+        }
+      ],
+      "sites": {
+        "clear-approach": [
+          1900
+        ],
+        "rock-pin": [
+          3000
+        ],
+        "sign": [
+          4620
+        ],
+        "hold-road": [
+          4620
+        ],
+        "clear-quarry": [
+          6500
+        ],
+        "exit": [
+          7920
+        ]
+      },
+      "id": 12,
+      "revision": 2,
+      "waveCount": 0,
+      "expectedMinutes": [
+        46,
+        70
+      ]
+    }
+  },
+  {
+    "name": "숨은 석문",
+    "theme": "valley",
+    "steps": [
+      {
+        "id": "resident",
+        "label": "고립된 석공 구조",
+        "kind": "rescue"
+      },
+      {
+        "id": "gate",
+        "label": "석문 빗장 열기",
+        "kind": "interact"
+      },
+      {
+        "id": "exit",
+        "label": "마을 안쪽으로 이동",
+        "kind": "reach"
+      }
+    ],
+    "summary": "스스로 울리는 대종의 증언을 얻었다. 낮은 천장을 지나 동굴마을로 들어간다.",
+    "id": 13,
+    "act": 2,
+    "actStage": 3,
+    "level": 13,
+    "template": 1,
+    "objective": "act2",
+    "requires": [
+      12
+    ],
+    "active": 4,
+    "enemies": 22,
+    "map": [
+      4260,
+      470
+    ],
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "w": 8200,
+    "h": 6600,
+    "act2Plan": {
+      "size": [
+        8200,
+        6600
+      ],
+      "initial": 22,
+      "active": 4,
+      "eliteEvery": 4,
+      "rounds": [
+        44,
+        70
+      ],
+      "lamps": [],
+      "sequence": [
+        "resident",
+        "gate",
+        "exit"
+      ],
+      "sites": {
+        "clear-entry": [
+          1500
+        ],
+        "resident": [
+          2100
+        ],
+        "door-pin": [
+          3620
+        ],
+        "gate": [
+          4220
+        ],
+        "hold-gate": [
+          4420
+        ],
+        "clear-depth": [
+          6500
+        ],
+        "exit": [
+          7700
+        ]
+      },
+      "id": 13,
+      "revision": 2,
+      "waveCount": 0,
+      "expectedMinutes": [
+        64,
+        100
+      ]
+    }
+  },
+  {
+    "name": "해가 닿지 않는 마을",
+    "theme": "temple",
+    "steps": [
+      {
+        "id": "clear-upper",
+        "label": "상층 주민 출입로 확보",
+        "kind": "clear",
+        "cohorts": "west",
+        "defeatIds": [
+          "v14-b1",
+          "v14-b2",
+          "v14-b3",
+          "v14-b4",
+          "v14-b6"
+        ]
+      },
+      {
+        "id": "family-upper",
+        "label": "상층 주민 구조",
+        "kind": "rescue"
+      },
+      {
+        "id": "clear-middle",
+        "label": "장터 구조 접근로 확보",
+        "kind": "clear",
+        "cohorts": "middle",
+        "defeatIds": [
+          "v14-c1",
+          "v14-c2",
+          "v14-c3",
+          "v14-c4"
+        ]
+      },
+      {
+        "id": "family-mid",
+        "label": "중층 주민 구조",
+        "kind": "rescue"
+      },
+      {
+        "id": "family-lower",
+        "label": "하층 주민 구조",
+        "kind": "rescue"
+      },
+      {
+        "id": "bridge",
+        "label": "피난 다리 걸쇠 열기",
+        "kind": "interact"
+      },
+      {
+        "id": "hold-refuge",
+        "label": "피난 다리에서 주민을 지키기",
+        "kind": "hold",
+        "rounds": 4,
+        "wave": {
+          "kind": "picks",
+          "count": 6,
+          "eliteEvery": 4
+        },
+        "radius": 680,
+        "contestRadius": 260
+      },
+      {
+        "id": "clear-village",
+        "label": "피난 다리 곁의 위협 제압",
+        "kind": "pacing-secure",
+        "cohorts": "all",
+        "afterPacing": "hold-refuge",
+        "sitePacing": "hold-refuge",
+        "targetPacing": "objective",
+        "radiusPacing": 1050,
+        "heightPacing": 600
+      }
+    ],
+    "summary": "세 주민을 비살상으로 구조하고 피난 다리를 열었다. 수문 아래 작업굴로 우회한다.",
+    "id": 14,
+    "act": 2,
+    "actStage": 4,
+    "level": 13,
+    "template": 1,
+    "objective": "act2",
+    "requires": [
+      13
+    ],
+    "active": 4,
+    "enemies": 24,
+    "map": [
+      4610,
+      720
+    ],
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "w": 8600,
+    "h": 7600,
+    "act2Plan": {
+      "size": [
+        8600,
+        7600
+      ],
+      "initial": 24,
+      "active": 4,
+      "eliteEvery": 4,
+      "rounds": [
+        55,
+        88
+      ],
+      "lamps": [],
+      "sequence": [
+        {
+          "id": "clear-upper",
+          "label": "상층 주민 출입로 확보",
+          "kind": "clear",
+          "cohorts": "west",
+          "defeatIds": [
+            "v14-b1",
+            "v14-b2",
+            "v14-b3",
+            "v14-b4",
+            "v14-b6"
+          ]
+        },
+        "family-upper",
+        {
+          "id": "clear-middle",
+          "label": "장터 구조 접근로 확보",
+          "kind": "clear",
+          "cohorts": "middle",
+          "defeatIds": [
+            "v14-c1",
+            "v14-c2",
+            "v14-c3",
+            "v14-c4"
+          ]
+        },
+        "family-mid",
+        "family-lower",
+        "bridge",
+        {
+          "id": "hold-refuge",
+          "label": "피난 다리에서 주민을 지키기",
+          "kind": "hold",
+          "rounds": 4,
+          "wave": {
+            "kind": "picks",
+            "count": 6,
+            "eliteEvery": 4
+          },
+          "radius": 680,
+          "contestRadius": 260
+        },
+        {
+          "id": "clear-village",
+          "label": "피난 다리 곁의 위협 제압",
+          "kind": "pacing-secure",
+          "cohorts": "all",
+          "afterPacing": "hold-refuge",
+          "sitePacing": "hold-refuge",
+          "targetPacing": "objective",
+          "radiusPacing": 1050,
+          "heightPacing": 600
+        }
+      ],
+      "sites": {
+        "clear-upper": [
+          2000
+        ],
+        "family-upper": [
+          2600
+        ],
+        "clear-middle": [
+          4900
+        ],
+        "family-mid": [
+          5650
+        ],
+        "family-lower": [
+          5050,
+          "lower"
+        ],
+        "bridge": [
+          1850,
+          "lower"
+        ],
+        "hold-refuge": [
+          2100,
+          "lower"
+        ],
+        "clear-village": [
+          2850,
+          "lower"
+        ]
+      },
+      "id": 14,
+      "revision": 2,
+      "waveCount": 12,
+      "expectedMinutes": [
+        79,
+        124
+      ]
+    }
+  },
+  {
+    "name": "물 아래의 길",
+    "theme": "temple",
+    "steps": [
+      {
+        "id": "sluice",
+        "label": "수문을 열어 낮은 길 드러내기",
+        "kind": "interact",
+        "optional": true
+      },
+      {
+        "id": "groove",
+        "label": "작업굴 바닥 홈 조사",
+        "kind": "interact"
+      },
+      {
+        "id": "route-exit",
+        "kind": "route",
+        "label": "흔적 확인 후 배수한 아랫길 또는 고지로 통과"
+      }
+    ],
+    "summary": "막힌 상부 수직공과 오래된 인양 흔적, 최근에 파 놓은 홈과 구조 방해 흔적을 구분했다. 종은 밖에서 내려온 것으로 보인다.",
+    "id": 15,
+    "act": 2,
+    "actStage": 5,
+    "level": 14,
+    "template": 1,
+    "objective": "act2",
+    "requires": [
+      14
+    ],
+    "active": 4,
+    "enemies": 22,
+    "map": [
+      4970,
+      940
+    ],
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "w": 8000,
+    "h": 6000,
+    "act2Plan": {
+      "size": [
+        8000,
+        6000
+      ],
+      "initial": 22,
+      "active": 4,
+      "eliteEvery": 4,
+      "rounds": [
+        33,
+        53
+      ],
+      "lamps": [],
+      "sequence": [
+        {
+          "id": "sluice",
+          "label": "수문을 열어 낮은 길 드러내기",
+          "kind": "interact",
+          "optional": true
+        },
+        "groove",
+        {
+          "id": "route-exit",
+          "kind": "route",
+          "label": "흔적 확인 후 배수한 아랫길 또는 고지로 통과"
+        }
+      ],
+      "sites": {
+        "clear-water": [
+          1700
+        ],
+        "sluice": [
+          2400
+        ],
+        "hold-sluice": [
+          2550
+        ],
+        "shaft-pin": [
+          4060
+        ],
+        "clear-gallery": [
+          5820
+        ],
+        "groove": [
+          6360
+        ],
+        "exit": [
+          7510
+        ]
+      },
+      "id": 15,
+      "revision": 2,
+      "waveCount": 0,
+      "expectedMinutes": [
+        50,
+        77
+      ]
+    }
+  },
+  {
+    "name": "잠운사",
+    "theme": "temple",
+    "steps": [
+      {
+        "id": "monk",
+        "label": "들린 승려 구조",
+        "kind": "rescue"
+      },
+      {
+        "id": "clear-rescue-threat",
+        "label": "구조 자리로 다가온 위협 제압",
+        "kind": "clear",
+        "defeatIds": [
+          "a2-enemy-4",
+          "tm-court-flank",
+          "a2-enemy-5",
+          "a2-enemy-9"
+        ]
+      },
+      {
+        "id": "witness",
+        "label": "생존 승려의 증언 듣기",
+        "kind": "interact"
+      },
+      {
+        "id": "hall",
+        "label": "기록방 문 열기",
+        "kind": "interact"
+      },
+      {
+        "id": "record",
+        "label": "대종 금기 문서 조사",
+        "kind": "interact"
+      }
+    ],
+    "summary": "묵종을 외부에서 들여온 옛 이송·봉쇄 기록을 찾았다. 별개로 최근 희생자들이 사흘간 살아 있었고 종지기가 구조를 막았다는 증언을 얻었다.",
+    "id": 16,
+    "act": 2,
+    "actStage": 6,
+    "level": 15,
+    "template": 1,
+    "objective": "act2",
+    "requires": [
+      15
+    ],
+    "active": 4,
+    "enemies": 34,
+    "map": [
+      5300,
+      860
+    ],
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "w": 11000,
+    "h": 7600,
+    "act2Plan": {
+      "size": [
+        11000,
+        7600
+      ],
+      "initial": 34,
+      "active": 4,
+      "eliteEvery": 4,
+      "rounds": [
+        70,
+        130
+      ],
+      "lamps": [],
+      "sequence": [
+        "monk",
+        {
+          "id": "clear-rescue-threat",
+          "label": "구조 자리로 다가온 위협 제압",
+          "kind": "clear",
+          "defeatIds": [
+            "a2-enemy-4",
+            "tm-court-flank",
+            "a2-enemy-5",
+            "a2-enemy-9"
+          ]
+        },
+        "witness",
+        "hall",
+        "record"
+      ],
+      "sites": {
+        "clear-court": [
+          1850
+        ],
+        "monk": [
+          2500
+        ],
+        "hall": [
+          3900
+        ],
+        "hold-hall": [
+          4140
+        ],
+        "record": [
+          5280
+        ],
+        "clear-temple": [
+          6500
+        ],
+        "witness": [
+          7460
+        ]
+      },
+      "id": 16,
+      "revision": 2,
+      "waveCount": 0,
+      "expectedMinutes": [
+        100,
+        181
+      ]
+    }
+  },
+  {
+    "name": "두드리는 벽",
+    "theme": "temple",
+    "steps": [
+      {
+        "id": "clear-works",
+        "label": "버팀목 작업장 확보",
+        "kind": "clear",
+        "cohorts": "west",
+        "defeatIds": [
+          "a2-enemy-0",
+          "a2-enemy-1",
+          "ws-west-screen",
+          "a2-enemy-2",
+          "a2-enemy-3",
+          "ws-brace-cart",
+          "ws-brace-captain"
+        ]
+      },
+      {
+        "id": "brace",
+        "label": "안전 버팀목 설치",
+        "kind": "interact"
+      },
+      {
+        "id": "hoist",
+        "label": "들린 인양틀 제압",
+        "kind": "defeat",
+        "target": "act2-hoist"
+      },
+      {
+        "id": "repair",
+        "label": "인양축 복원",
+        "kind": "interact"
+      },
+      {
+        "id": "hold-hoist",
+        "label": "인양축이 돌아가는 동안 작업장 방어",
+        "kind": "hold",
+        "rounds": 3,
+        "wave": {
+          "kind": "minecart",
+          "count": 6,
+          "eliteEvery": 4
+        },
+        "radius": 680,
+        "contestRadius": 260
+      },
+      {
+        "id": "clear-lift",
+        "label": "복구한 인양축 보호 완료",
+        "kind": "pacing-event",
+        "cohorts": "all",
+        "afterPacing": "hold-hoist"
+      },
+      {
+        "id": "notes",
+        "label": "종지기의 작업 기록 조사",
+        "kind": "interact"
+      }
+    ],
+    "summary": "구조 가능한 인양로를 종지기가 의도적으로 망가뜨린 증거를 확보했다. 묵종 공동으로 들어간다.",
+    "id": 17,
+    "act": 2,
+    "actStage": 7,
+    "level": 15,
+    "template": 1,
+    "objective": "act2",
+    "requires": [
+      16
+    ],
+    "active": 3,
+    "enemies": 36,
+    "map": [
+      5550,
+      1050
+    ],
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "w": 11200,
+    "h": 8200,
+    "act2Plan": {
+      "size": [
+        11200,
+        8200
+      ],
+      "initial": 36,
+      "active": 3,
+      "eliteEvery": 4,
+      "rounds": [
+        52,
+        84
+      ],
+      "lamps": [],
+      "sequence": [
+        {
+          "id": "clear-works",
+          "label": "버팀목 작업장 확보",
+          "kind": "clear",
+          "cohorts": "west",
+          "defeatIds": [
+            "a2-enemy-0",
+            "a2-enemy-1",
+            "ws-west-screen",
+            "a2-enemy-2",
+            "a2-enemy-3",
+            "ws-brace-cart",
+            "ws-brace-captain"
+          ]
+        },
+        "brace",
+        "hoist",
+        "repair",
+        {
+          "id": "hold-hoist",
+          "label": "인양축이 돌아가는 동안 작업장 방어",
+          "kind": "hold",
+          "rounds": 3,
+          "wave": {
+            "kind": "minecart",
+            "count": 6,
+            "eliteEvery": 4
+          },
+          "radius": 680,
+          "contestRadius": 260
+        },
+        {
+          "id": "clear-lift",
+          "label": "복구한 인양축 보호 완료",
+          "kind": "pacing-event",
+          "cohorts": "all",
+          "afterPacing": "hold-hoist"
+        },
+        "notes"
+      ],
+      "sites": {
+        "clear-works": [
+          1800
+        ],
+        "brace": [
+          2500
+        ],
+        "collapse-pin": [
+          3320
+        ],
+        "hoist": [
+          4380
+        ],
+        "repair": [
+          5250
+        ],
+        "hold-hoist": [
+          5400
+        ],
+        "clear-lift": [
+          6600
+        ],
+        "notes": [
+          7840
+        ]
+      },
+      "id": 17,
+      "revision": 2,
+      "waveCount": 10,
+      "expectedMinutes": [
+        75,
+        118
+      ]
+    }
+  },
+  {
+    "name": "묵종",
+    "theme": "temple",
+    "steps": [
+      {
+        "id": "clear-wards",
+        "label": "억제진 진입 수비대 제압",
+        "kind": "clear",
+        "cohorts": "west"
+      },
+      {
+        "id": "silence",
+        "label": "공명 억제진 가동",
+        "kind": "interact",
+        "requiredClass": "mage"
+      },
+      {
+        "id": "hold-silence",
+        "label": "공명 역류를 견디며 억제진 유지",
+        "kind": "hold",
+        "rounds": 4,
+        "wave": {
+          "kind": "bellCluster",
+          "count": 8,
+          "eliteEvery": 4
+        },
+        "requiredClass": "mage",
+        "radius": 680,
+        "contestRadius": 260,
+        "parallelGroup": "bell-stabilize"
+      },
+      {
+        "id": "upper-chain",
+        "label": "장력 고정구 해제",
+        "kind": "destroy",
+        "parallelGroup": "bell-stabilize"
+      },
+      {
+        "id": "bell-descent",
+        "label": "빈 쓸림면을 확인하고 대종 내려앉히기",
+        "kind": "bell-descent"
+      },
+      {
+        "id": "leak",
+        "label": "종에서 새는 혼 분리",
+        "kind": "interact",
+        "requiredClass": "occultist"
+      },
+      {
+        "id": "keeper",
+        "label": "종지기 전투 제압",
+        "kind": "defeat",
+        "target": "act2-keeper"
+      },
+      {
+        "id": "clear-bell",
+        "label": "동쪽 퇴로 곁의 위협 제압",
+        "kind": "pacing-secure",
+        "cohorts": "all",
+        "afterPacing": "keeper",
+        "sitePacing": "clear-bell",
+        "radiusPacing": 720,
+        "heightPacing": 500
+      }
+    ],
+    "summary": "공명·고정구·누출혼을 차례로 처리하고 종지기를 제압했다. 묵종을 보존한 채 안의 혼을 수습한다.",
+    "id": 18,
+    "act": 2,
+    "actStage": 8,
+    "level": 16,
+    "template": 1,
+    "objective": "act2",
+    "requires": [
+      17
+    ],
+    "active": 3,
+    "enemies": 28,
+    "map": [
+      5820,
+      1200
+    ],
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "w": 10400,
+    "h": 7600,
+    "act2Plan": {
+      "size": [
+        10400,
+        7600
+      ],
+      "initial": 28,
+      "active": 3,
+      "eliteEvery": 4,
+      "rounds": [
+        80,
+        126
+      ],
+      "lamps": [
+        3100
+      ],
+      "sequence": [
+        {
+          "id": "clear-wards",
+          "label": "공명진을 둘러싼 정예 제압",
+          "kind": "clear",
+          "cohorts": "west"
+        },
+        "silence",
+        {
+          "id": "hold-silence",
+          "label": "공명 역류를 견디며 억제진 유지",
+          "kind": "hold",
+          "rounds": 4,
+          "wave": {
+            "kind": "bellCluster",
+            "count": 8,
+            "eliteEvery": 4
+          },
+          "requiredClass": "mage",
+          "radius": 680,
+          "contestRadius": 260
+        },
+        "upper-chain",
+        "lower-chain",
+        "leak",
+        "keeper",
+        {
+          "id": "clear-bell",
+          "label": "동쪽 퇴로 곁의 위협 제압",
+          "kind": "pacing-secure",
+          "cohorts": "all",
+          "afterPacing": "keeper",
+          "sitePacing": "clear-bell",
+          "radiusPacing": 720,
+          "heightPacing": 500
+        }
+      ],
+      "sites": {
+        "clear-wards": [
+          2400
+        ],
+        "silence": [
+          3350
+        ],
+        "hold-silence": [
+          3350
+        ],
+        "upper-chain": [
+          4850
+        ],
+        "lower-chain": [
+          6110
+        ],
+        "leak": [
+          7260
+        ],
+        "keeper": [
+          8500
+        ],
+        "clear-bell": [
+          9220
+        ]
+      },
+      "bossWave": {
+        "kind": "picks",
+        "count": 4,
+        "eliteEvery": 2
+      },
+      "id": 18,
+      "revision": 2,
+      "waveCount": 12,
+      "expectedMinutes": [
+        113,
+        175
+      ]
+    }
+  },
+  {
+    "name": "종 안의 사람들",
+    "theme": "temple",
+    "steps": [
+      {
+        "id": "route",
+        "label": "임시 천도진 열기",
+        "kind": "interact",
+        "requiredClass": "mage"
+      },
+      {
+        "id": "separate-1",
+        "label": "망치를 가져온 형과 혼 만나기",
+        "kind": "interact",
+        "requiredClass": "occultist",
+        "parallelGroup": "farewell"
+      },
+      {
+        "id": "send-1",
+        "label": "동생의 혼 보내기",
+        "kind": "interact",
+        "parallelGroup": "farewell",
+        "requiresDone": [
+          "separate-1"
+        ]
+      },
+      {
+        "id": "separate-2",
+        "label": "언니를 부르는 동생과 혼 만나기",
+        "kind": "interact",
+        "requiredClass": "occultist",
+        "parallelGroup": "farewell"
+      },
+      {
+        "id": "send-2",
+        "label": "언니의 혼 보내기",
+        "kind": "interact",
+        "parallelGroup": "farewell",
+        "requiresDone": [
+          "separate-2"
+        ]
+      },
+      {
+        "id": "separate-3",
+        "label": "이름 없는 혼 곁에 서기",
+        "kind": "interact",
+        "requiredClass": "occultist",
+        "parallelGroup": "farewell"
+      },
+      {
+        "id": "send-3",
+        "label": "이름 없는 혼 보내기",
+        "kind": "interact",
+        "parallelGroup": "farewell",
+        "requiresDone": [
+          "separate-3"
+        ]
+      },
+      {
+        "id": "old-soul",
+        "label": "종 밑의 오래된 흔적 조사",
+        "kind": "interact"
+      }
+    ],
+    "summary": "희생자들의 혼을 분리해 보냈다. 현재 희생자보다 오래된 혼, 무명사에서 온 이송 표식과 왕실 봉인, 저문골이라는 지명을 발견했다.",
+    "id": 19,
+    "act": 2,
+    "actStage": 9,
+    "level": 16,
+    "template": 1,
+    "objective": "act2",
+    "requires": [
+      18
+    ],
+    "active": 3,
+    "enemies": 0,
+    "map": [
+      6110,
+      1380
+    ],
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "w": 10400,
+    "h": 7600,
+    "act2Plan": {
+      "size": [
+        10400,
+        7600
+      ],
+      "initial": 0,
+      "active": 3,
+      "eliteEvery": 4,
+      "rounds": [
+        4,
+        8
+      ],
+      "lamps": [],
+      "sequence": [
+        "route",
+        {
+          "id": "separate-1",
+          "label": "망치를 가져온 형과 혼 만나기",
+          "kind": "interact",
+          "requiredClass": "occultist",
+          "parallelGroup": "farewell"
+        },
+        {
+          "id": "send-1",
+          "label": "동생의 혼 보내기",
+          "kind": "interact",
+          "parallelGroup": "farewell",
+          "requiresDone": [
+            "separate-1"
+          ]
+        },
+        {
+          "id": "separate-2",
+          "label": "언니를 부르는 동생과 혼 만나기",
+          "kind": "interact",
+          "requiredClass": "occultist",
+          "parallelGroup": "farewell"
+        },
+        {
+          "id": "send-2",
+          "label": "언니의 혼 보내기",
+          "kind": "interact",
+          "parallelGroup": "farewell",
+          "requiresDone": [
+            "separate-2"
+          ]
+        },
+        {
+          "id": "separate-3",
+          "label": "이름 없는 혼 곁에 서기",
+          "kind": "interact",
+          "requiredClass": "occultist",
+          "parallelGroup": "farewell"
+        },
+        {
+          "id": "send-3",
+          "label": "이름 없는 혼 보내기",
+          "kind": "interact",
+          "parallelGroup": "farewell",
+          "requiresDone": [
+            "separate-3"
+          ]
+        },
+        "old-soul"
+      ],
+      "sites": {
+        "route": [
+          1750
+        ],
+        "separate-1": [
+          3050
+        ],
+        "hold-first": [
+          3050
+        ],
+        "send-1": [
+          3260
+        ],
+        "separate-2": [
+          4900
+        ],
+        "hold-second": [
+          4900
+        ],
+        "send-2": [
+          5120
+        ],
+        "separate-3": [
+          6940
+        ],
+        "hold-last": [
+          6940
+        ],
+        "send-3": [
+          7150
+        ],
+        "clear-souls": [
+          8480
+        ],
+        "old-soul": [
+          9470
+        ]
+      },
+      "id": 19,
+      "revision": 2,
+      "waveCount": 0,
+      "expectedMinutes": [
+        10,
+        16
+      ]
+    }
+  },
+  {
+    "name": "다시 하늘 아래",
+    "theme": "valley",
+    "steps": [
+      {
+        "id": "clear-mouth",
+        "label": "출구의 매복조 제압",
+        "kind": "clear",
+        "cohorts": "west"
+      },
+      {
+        "id": "escort",
+        "label": "생존자 출발시키기",
+        "kind": "interact"
+      },
+      {
+        "id": "escort-mid",
+        "label": "생존자 행렬을 중간 쉼터까지 호송",
+        "kind": "escort"
+      },
+      {
+        "id": "hold-convoy",
+        "label": "부상자가 쉬는 동안 쉼터 방어",
+        "kind": "hold",
+        "rounds": 4,
+        "wave": {
+          "kind": "minecart",
+          "count": 6,
+          "eliteEvery": 4
+        },
+        "radius": 680,
+        "contestRadius": 260
+      },
+      {
+        "id": "clear-pass",
+        "label": "마지막 산길 매복조 전부 제압",
+        "kind": "clear",
+        "cohorts": "all"
+      },
+      {
+        "id": "escape",
+        "label": "행렬과 바깥 산길에 도착",
+        "kind": "escort"
+      }
+    ],
+    "summary": "생존자들과 하늘 아래로 돌아왔다. 연목의 들림은 가라앉았지만 종의 재각성은 미해결이다. 무명사에서 옮겨 온 종과 저문골, 왕실 봉인의 연결을 찾으러 읍성의 옛 문서고로 향한다.",
+    "id": 20,
+    "act": 2,
+    "actStage": 10,
+    "level": 17,
+    "template": 1,
+    "objective": "act2",
+    "requires": [
+      19
+    ],
+    "active": 3,
+    "enemies": 18,
+    "map": [
+      6410,
+      970
+    ],
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "w": 9000,
+    "h": 5800,
+    "act2Plan": {
+      "size": [
+        9000,
+        5800
+      ],
+      "initial": 18,
+      "active": 3,
+      "eliteEvery": 4,
+      "rounds": [
+        30,
+        48
+      ],
+      "lamps": [],
+      "sequence": [
+        {
+          "id": "clear-mouth",
+          "label": "출구의 매복조 제압",
+          "kind": "clear",
+          "cohorts": "west"
+        },
+        "escort",
+        {
+          "id": "escort-mid",
+          "label": "생존자 행렬을 중간 쉼터까지 호송",
+          "kind": "escort"
+        },
+        {
+          "id": "hold-convoy",
+          "label": "부상자가 쉬는 동안 쉼터 방어",
+          "kind": "hold",
+          "rounds": 4,
+          "wave": {
+            "kind": "minecart",
+            "count": 6,
+            "eliteEvery": 4
+          },
+          "radius": 680,
+          "contestRadius": 260
+        },
+        {
+          "id": "clear-pass",
+          "label": "마지막 산길 매복조 전부 제압",
+          "kind": "clear",
+          "cohorts": "all"
+        },
+        "escape"
+      ],
+      "sites": {
+        "clear-mouth": [
+          1700
+        ],
+        "exit-pin": [
+          2740
+        ],
+        "escort": [
+          3240
+        ],
+        "escort-mid": [
+          5200
+        ],
+        "hold-convoy": [
+          5200
+        ],
+        "clear-pass": [
+          7120
+        ],
+        "escape": [
+          8430
+        ]
+      },
+      "progressWave": {
+        "kind": "picks",
+        "count": 4,
+        "eliteEvery": 2
+      },
+      "id": 20,
+      "revision": 2,
+      "waveCount": 10,
+      "expectedMinutes": [
+        46,
+        70
+      ]
+    }
+  },
+  {
+    "name": "성문 아래",
+    "place": "성문과 장터",
+    "theme": "gate",
+    "steps": [
+      {
+        "id": "gate-resident",
+        "label": "수레 아래 주민 구하기",
+        "kind": "rescue",
+        "target": "act3-resident"
+      },
+      {
+        "id": "refuge-hold",
+        "label": "주민이 물러날 동안 길목 지키기",
+        "kind": "hold",
+        "rounds": 2,
+        "wave": {
+          "kind": "hound",
+          "count": 2
+        },
+        "radius": 520,
+        "contestRadius": 230
+      },
+      {
+        "id": "city-exit",
+        "label": "읍성 안으로 진입",
+        "kind": "reach"
+      }
+    ],
+    "summary": "성문 주민을 구했다. 인근 나루에서 읍성까지 들림이 번져 주민들이 피신했다. 저문골과 무명사의 옛 장부를 찾는다.",
+    "id": 21,
+    "act": 3,
+    "actStage": 1,
+    "level": 15,
+    "template": 1,
+    "objective": "act3",
+    "requires": [
+      20
+    ],
+    "active": 3,
+    "enemies": 18,
+    "w": 9000,
+    "h": 4200,
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "map": [
+      7000,
+      300
+    ]
+  },
+  {
+    "name": "옛 장부",
+    "place": "관아 문서고",
+    "theme": "temple",
+    "steps": [
+      {
+        "id": "archive-seal",
+        "label": "하층 서고 봉인 열기",
+        "kind": "interact",
+        "requiredClass": "knight",
+        "opens": "archive-door"
+      },
+      {
+        "id": "ledger-case",
+        "label": "중층 저문골 사건 보고 확보",
+        "kind": "interact",
+        "opens": "upper-door"
+      },
+      {
+        "id": "upper-register",
+        "label": "상층 저문골 호적 확보",
+        "kind": "interact"
+      },
+      {
+        "id": "compare-ledgers",
+        "label": "상층에서 사건 보고와 호적 대조",
+        "kind": "hold",
+        "rounds": 2,
+        "wave": {
+          "kind": "lantern",
+          "count": 2
+        },
+        "radius": 460,
+        "contestRadius": 230
+      },
+      {
+        "id": "archive-exit",
+        "label": "옛 관창으로 나가기",
+        "kind": "reach"
+      }
+    ],
+    "summary": "사건 보고와 같은 해의 호적이 어긋난다. 주민들의 삶과 사술 혐의를 대조할 현장 증언을 찾는다.",
+    "id": 22,
+    "act": 3,
+    "actStage": 2,
+    "level": 16,
+    "template": 1,
+    "objective": "act3",
+    "requires": [
+      21
+    ],
+    "active": 3,
+    "enemies": 20,
+    "w": 9000,
+    "h": 4200,
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "map": [
+      7260,
+      560
+    ]
+  },
+  {
+    "name": "사라진 짐",
+    "hiddenWaterworks": true,
+    "place": "지상 관창 하역장",
+    "theme": "river",
+    "steps": [
+      {
+        "id": "dispatch-bundle",
+        "label": "무명사 운송 묶음 확보",
+        "kind": "interact"
+      },
+      {
+        "id": "carrier-start",
+        "label": "짐꾼과 출발",
+        "kind": "interact",
+        "target": "act3-carrier",
+        "startsEscort": true
+      },
+      {
+        "id": "dock-mid",
+        "label": "짐꾼을 석교까지 호송",
+        "kind": "escort",
+        "target": "act3-carrier"
+      },
+      {
+        "id": "dock-exit",
+        "label": "짐꾼과 지상 하역장 벗어나기",
+        "kind": "escort",
+        "target": "act3-carrier"
+      }
+    ],
+    "summary": "저문골의 시신과 생활 금속이 함께 무명사로 옮겨졌음을 확인했다. 죽은 육신에 남은 수호의 사념을 돌파해 짐꾼과 운송 묶음을 지켰다.",
+    "id": 23,
+    "act": 3,
+    "actStage": 3,
+    "level": 16,
+    "template": 1,
+    "objective": "act3",
+    "requires": [
+      22
+    ],
+    "active": 3,
+    "enemies": 28,
+    "w": 9000,
+    "h": 4200,
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "map": [
+      7520,
+      820
+    ]
+  },
+  {
+    "name": "휘겸의 문장",
+    "hiddenWaterworks": true,
+    "place": "폐쇄된 저택과 사당",
+    "theme": "temple",
+    "steps": [
+      {
+        "id": "family-crest",
+        "label": "휘겸의 문장 확인",
+        "kind": "interact",
+        "requiredClass": "knight"
+      },
+      {
+        "id": "shrine-seal",
+        "label": "사당 봉인 풀기",
+        "kind": "interact",
+        "requiredClass": "mage",
+        "opens": "shrine-door"
+      },
+      {
+        "id": "land-register",
+        "label": "보호지 토지문서 확보",
+        "kind": "interact"
+      },
+      {
+        "id": "garden-exit",
+        "label": "지상과 지하 두 조사길로 출발",
+        "kind": "reach"
+      }
+    ],
+    "summary": "저문골은 휘겸 선조인 왕실 방계와 관계가 깊었다. 휘겸은 가문의 몰락과 저문골을 함께 추적한다.",
+    "id": 24,
+    "act": 3,
+    "actStage": 4,
+    "level": 17,
+    "template": 1,
+    "objective": "act3",
+    "requires": [
+      23
+    ],
+    "active": 3,
+    "enemies": 18,
+    "w": 9000,
+    "h": 4200,
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "map": [
+      7780,
+      300
+    ]
+  },
+  {
+    "name": "물 아래 묶인 이름",
+    "place": "지하 수로의 은폐 집하장",
+    "theme": "river",
+    "hiddenWaterworks": true,
+    "steps": [
+      {
+        "id": "depot-entry-seal",
+        "label": "담허와 수로 봉인 살피기",
+        "kind": "interact",
+        "requiredClass": "mage"
+      },
+      {
+        "id": "stake-arrival-1",
+        "label": "두 동행이 동쪽 정비실에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-2",
+        "label": "두 동행이 중앙 점검창에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-3",
+        "label": "두 동행이 상층 물받이에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-4",
+        "label": "두 동행이 맞은편 검문실에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-5",
+        "label": "두 동행이 상층 봉인회랑에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "household-tally",
+        "label": "생활물품의 가족 번호 확인",
+        "kind": "interact"
+      },
+      {
+        "id": "waterworks-exit",
+        "label": "안쪽 집하장 입구로 이동",
+        "kind": "reach",
+        "allHeroes": true
+      }
+    ],
+    "summary": "설오와 담허가 축지진목으로 끊긴 수로를 건넜다. 생활물품과 이름표를 가족 번호로 묶어 보관한 지하 은폐 집하장을 발견했다. 이곳이 종 주조소라는 근거는 없다.",
+    "id": 25,
+    "act": 3,
+    "actStage": 5,
+    "level": 18,
+    "template": 1,
+    "objective": "act3",
+    "requires": [
+      24
+    ],
+    "active": 2,
+    "enemies": 10,
+    "w": 9000,
+    "h": 4200,
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "map": [
+      8040,
+      560
+    ]
+  },
+  {
+    "name": "지상에 남은 증언",
+    "place": "묘역 기록실과 불탄 공방",
+    "theme": "temple",
+    "hiddenWaterworks": true,
+    "steps": [
+      {
+        "id": "hidden-latch",
+        "label": "휘겸으로 기록실 열기",
+        "kind": "interact",
+        "requiredClass": "knight",
+        "opens": "hidden-door"
+      },
+      {
+        "id": "investigation-record",
+        "label": "선조의 조사 기록 확보",
+        "kind": "interact"
+      },
+      {
+        "id": "artisan-resident",
+        "label": "작업기록을 지킨 주민 구조",
+        "kind": "rescue",
+        "target": "act3-resident"
+      },
+      {
+        "id": "casting-tally",
+        "label": "수거량과 주조량 대조",
+        "kind": "interact"
+      },
+      {
+        "id": "workshop-exit",
+        "label": "관아 뒤뜰로 돌아가기",
+        "kind": "reach",
+        "allHeroes": true
+      }
+    ],
+    "summary": "휘겸과 소단이 선조의 조사문서와 공방 기록을 확보했다. 저항하지 않은 주민들을 대도사가 현장에서 학살했고, 이후 무명사에서 대종을 주조했다. 생활 금속량은 수거량과 거의 일치하며 유골·재 처리도 비정상적이다. 정확한 공정과 목적은 미상이다.",
+    "id": 26,
+    "act": 3,
+    "actStage": 6,
+    "level": 18,
+    "template": 1,
+    "objective": "act3",
+    "requires": [
+      25
+    ],
+    "active": 2,
+    "enemies": 13,
+    "w": 9000,
+    "h": 4200,
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "map": [
+      8300,
+      820
+    ]
+  },
+  {
+    "name": "검은 집하장",
+    "place": "지하 심부의 봉인 창고",
+    "theme": "river",
+    "hiddenWaterworks": true,
+    "steps": [
+      {
+        "id": "depot-route-ledger",
+        "label": "끊긴 운반로의 순서 확인",
+        "kind": "interact"
+      },
+      {
+        "id": "stake-arrival-1",
+        "label": "두 동행이 수몰 하역대에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-2",
+        "label": "두 동행이 맞은편 봉인통로에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-3",
+        "label": "두 동행이 회수 점검창에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "stake-arrival-4",
+        "label": "두 동행이 윗층 대조대에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 150
+      },
+      {
+        "id": "family-manifest",
+        "label": "가족별 적재 명세 챙기기",
+        "kind": "interact"
+      },
+      {
+        "id": "deep-depot-exit",
+        "label": "합류할 출구로 이동",
+        "kind": "reach",
+        "allHeroes": true
+      }
+    ],
+    "summary": "거대한 인공 지하 집하장을 축지진목으로 건넜다. 가족별 이름표와 숟가락·농기구를 같은 번호로 다룬 적재 명세를 확보했다. 지상 희생자 명단과의 대조를 위해 두 기록을 합류 지점으로 가져간다.",
+    "id": 27,
+    "act": 3,
+    "actStage": 7,
+    "level": 19,
+    "template": 1,
+    "objective": "act3",
+    "requires": [
+      26
+    ],
+    "active": 2,
+    "enemies": 10,
+    "w": 9000,
+    "h": 4200,
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "map": [
+      8560,
+      300
+    ]
+  },
+  {
+    "name": "지운 이름과 남은 명령",
+    "place": "불붙은 관아 뒤뜰과 기록각",
+    "theme": "temple",
+    "hiddenWaterworks": true,
+    "steps": [
+      {
+        "id": "fire-screen",
+        "label": "휘겸으로 서쪽 불길 막기",
+        "kind": "interact",
+        "requiredClass": "knight",
+        "opens": "fire-door",
+        "parallelGroup": "fire-control"
+      },
+      {
+        "id": "water-release",
+        "label": "설오로 동쪽 수문 열기",
+        "kind": "interact",
+        "requiredClass": "archer",
+        "opens": "water-gate",
+        "parallelGroup": "fire-control"
+      },
+      {
+        "id": "party-reunion",
+        "label": "네 동행이 뒤뜰에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 440
+      },
+      {
+        "id": "petition-record",
+        "label": "지워진 조사 청원서 확보",
+        "kind": "interact"
+      },
+      {
+        "id": "closure-order",
+        "label": "당시 폐쇄 승인문 확보",
+        "kind": "interact"
+      },
+      {
+        "id": "suppression-order",
+        "label": "사후 은폐 기록 대조",
+        "kind": "interact"
+      },
+      {
+        "id": "office-exit",
+        "label": "기록을 가지고 봉쇄 벗어나기",
+        "kind": "reach"
+      }
+    ],
+    "summary": "두 팀이 합류해 지하 가족 번호와 지상 희생자 명단을 대조했다. 휘겸 선조의 조사 청원 뒤 가문 탄압이 이어졌다. 왕실 특정 고위 관리의 폐쇄·제압 승인, 대도사의 현장 학살, 사후 은폐의 책임은 구별된다. 왕의 직접 학살 명령이나 왕실 전체의 공모로 단순화하지 않는다.",
+    "id": 28,
+    "act": 3,
+    "actStage": 8,
+    "level": 20,
+    "template": 1,
+    "objective": "act3",
+    "requires": [
+      27
+    ],
+    "active": 3,
+    "enemies": 11,
+    "w": 9000,
+    "h": 4200,
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "map": [
+      8820,
+      560
+    ]
+  },
+  {
+    "name": "현묵의 글",
+    "place": "밤의 수문과 봉인 창고",
+    "theme": "river",
+    "steps": [
+      {
+        "id": "old-seal",
+        "label": "담허의 옛 봉인 해체 지키기",
+        "kind": "hold",
+        "rounds": 2,
+        "wave": {
+          "kind": "ghost",
+          "count": 2
+        },
+        "radius": 460,
+        "contestRadius": 230,
+        "requiredClass": "mage",
+        "opens": "old-door"
+      },
+      {
+        "id": "hyeonmuk-letter",
+        "label": "현묵이 남긴 글 확보",
+        "kind": "interact"
+      },
+      {
+        "id": "route-exit",
+        "kind": "route",
+        "label": "높은 수문길 또는 아래 점검다리로 이탈"
+      }
+    ],
+    "summary": "현묵의 글은 스승께 들린 혼이 없었고, 종을 울린 뒤 무명사의 이치가 어그러졌다고 전한다. 증언자의 현재 상태와 저편의 뜻은 미상이다.",
+    "id": 29,
+    "act": 3,
+    "actStage": 9,
+    "level": 20,
+    "template": 1,
+    "objective": "act3",
+    "requires": [
+      28
+    ],
+    "active": 3,
+    "enemies": 22,
+    "w": 9000,
+    "h": 4200,
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "map": [
+      9080,
+      820
+    ]
+  },
+  {
+    "name": "남겨진 길",
+    "place": "강변 나루",
+    "theme": "river",
+    "steps": [
+      {
+        "id": "transport-map",
+        "label": "세 기록으로 옛 운송로 확인",
+        "kind": "interact"
+      },
+      {
+        "id": "ferry-hold",
+        "label": "일행이 빠져나갈 나루 지키기",
+        "kind": "hold",
+        "rounds": 3,
+        "wave": {
+          "kind": "hound",
+          "count": 3
+        },
+        "radius": 540,
+        "contestRadius": 230
+      },
+      {
+        "id": "old-road",
+        "label": "생존한 동행과 옛길 입구에 모이기",
+        "kind": "reach",
+        "allHeroes": true,
+        "radius": 440
+      }
+    ],
+    "summary": "저문골·무명사·잠운사를 잇는 운송·봉쇄 기록을 확보했다. 길은 설오의 고향 곁을 지난다. 끊긴 옛길을 따라 무명사로 향한다.",
+    "id": 30,
+    "act": 3,
+    "actStage": 10,
+    "level": 21,
+    "template": 1,
+    "objective": "act3",
+    "requires": [
+      29
+    ],
+    "active": 3,
+    "enemies": 26,
+    "w": 9000,
+    "h": 4200,
+    "playableRoster": [
+      "archer",
+      "mage",
+      "knight",
+      "occultist"
+    ],
+    "map": [
+      9340,
+      300
+    ]
+  }
+]

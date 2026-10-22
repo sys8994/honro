@@ -9,14 +9,8 @@ const enabled=b=>!!b&&!b.honroCustom&&b.honroStage===27&&state(b)?.revision===RE
 const blocked=app=>enabled(app?.engine?.b||app)&&TRANSIENT.has(state(app?.engine?.b||app)?.state);
 const hero=b=>b?.units?.find(u=>u.side===0&&!u.summoned&&!u.enthrall&&u.cls==='archer');
 const inZone=(u,z)=>!!u&&!!z&&u.x>=z.left&&u.x<=z.right&&Math.abs(u.y-z.y)<125;
-const sceneLines=[
- {text:'여긴…… 누구십니까?',align:'near'},
- {text:'또 답을 들으러 왔느냐.',align:'far'},
- {text:'저는 사람을 찾고 있습니다.',align:'near'},
- {text:'그자는 달랐다. 죽은 이의 말이 아니라, 죽음 너머의 답을 원했다.',align:'far'},
- {text:'너는 아직 돌아갈 길이 있다.',align:'far'}
-];
-const returnLines=[['담허','발을 헛디뎠나? 다친 데는 없나?'],['설오','누군가 말했습니다. 저보다 먼저, 답을 구하러 온 이가 있었다고.'],['담허','……나는 아무 소리도 못 들었네. 우선 이곳부터 벗어나세.']];
+const currentScript=()=>G.HonroNarrativeCatalogue.rows('27.void.sceneLines').map(([who,text,meta])=>({text,align:meta.align}));
+const sceneLines=currentScript(),returnLines=G.HonroNarrativeCatalogue.rows('27.void.returnLines').map(r=>r.slice(0,2));
 // Only duplicate gestures are guarded. Every line is complete on first paint.
 const INPUT_GUARD=120,now=()=>G.performance?.now?.()??Date.now();
 function initializeFresh(b){if(b?.honroStage===27&&!b.honroCustom&&b.honroSplit?.version===2&&(b.honroMap?.act3?.waterworksRevision||0)>=3)b.honroAct3Void??={revision:REVISION,state:'READY'};}
@@ -31,7 +25,7 @@ function eligible(app){if(!safe(app)||state(app.engine.b).recovered)return false
  return inZone(hero(b),z);
 }
 function begin(app,reason='approach'){if(!safe(app))return false;const b=app.engine.b,s=state(b),u=hero(b);s.return={unit:clone(u),active:b.active,camera:cameraSnapshot(app.scene)};s.state='FALLING';s.fallProgress=0;s.reason=reason;delete s.recovered;
- app.cancelInput?.();app.acc=0;app.honroVoidSession={elapsed:0,line:0,lastInputAt:-Infinity,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
+ app.cancelInput?.();app.acc=0;app.honroVoidSession={lines:G.HonroNarrativeCatalogue.active(b)?sceneLines:structuredClone(G.HONRO_NARRATIVE_COMPAT.extras['27.void.sceneLines']),elapsed:0,line:0,lastInputAt:-Infinity,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
  save(app);mountOverlay(app);app.updateAudio?.();return true;
 }
 function mountOverlay(app){if(!G.document?.createElement)return;const session=app.honroVoidSession,host=G.document.createElement('section');host.className='honro-void-scene';host.setAttribute('role','dialog');host.setAttribute('aria-modal','true');host.setAttribute('aria-label','설오가 떨어진 검은 공간');host.setAttribute('aria-describedby','honro-void-instructions');host.tabIndex=-1;
@@ -44,7 +38,7 @@ function mountOverlay(app){if(!G.document?.createElement)return;const session=ap
  for(const [selector,action]of [['.honro-void-pause',pause],['.honro-void-skip',skip]])host.querySelector(selector).onclick=ev=>{ev.preventDefault();ev.stopPropagation();action(app);};
  // Reserve both speakers' longest line at the current font/viewport, even
  // while another line is displayed. The actor never shifts between cuts.
- for(const align of ['far','near']){const measure=G.document.createElement('p');measure.className='honro-void-text honro-void-measure';measure.dataset.align=align;measure.setAttribute('aria-hidden','true');measure.textContent=sceneLines.filter(l=>l.align===align).sort((a,b)=>b.text.length-a.text.length)[0].text;host.appendChild(measure);session[align+'Measure']=measure;}
+ for(const align of ['far','near']){const measure=G.document.createElement('p');measure.className='honro-void-text honro-void-measure';measure.dataset.align=align;measure.setAttribute('aria-hidden','true');measure.textContent=session.lines.filter(l=>l.align===align).sort((a,b)=>b.text.length-a.text.length)[0].text;host.appendChild(measure);session[align+'Measure']=measure;}
  if(app.root){app.root.inert=true;app.root.setAttribute?.('aria-hidden','true');}G.document.body.classList.add('honro-void-active');G.document.body.appendChild(host);host.focus?.({preventScroll:true});
  paint(app);
 }
@@ -56,14 +50,14 @@ function finish(app){if(!blocked(app))return false;const b=app.engine.b,s=state(
  // This evidence is experiential, never substituted for the manifest. It is
  // copied to later fresh entries; old in-progress content is left untouched.
  app.profile.honroStoryEvents??={};app.profile.honroStoryEvents[KEY]=true;b.honroVoidWitness=true;
- save(app);app.updateAudio?.();app.updateHUD?.(true);const lines=returnLines.map(([who,text])=>[who,text,{storyId:KEY+'-return',storyTitle:'검은 집하장'}]);
+ save(app);app.updateAudio?.();app.updateHUD?.(true);const script=G.HonroNarrativeCatalogue.active(b)?G.HonroNarrativeCatalogue.rows('27.void.returnLines'):G.HONRO_NARRATIVE_COMPAT.extras['27.void.returnLines'],lines=script.map(([who,text,meta={}])=>[who,text,{...meta,storyId:KEY+'-return',storyTitle:'검은 집하장'}]);
  // Returning is already a safe authored story boundary; waiting for another
  // combat action would postpone Damheo's response until after the manifest.
  if(G.HonroStory?.start)G.HonroStory.start(app,lines,{title:'검은 집하장'});else app.sayLines?.(lines);return true;
 }
 function abort(app){if(!blocked(app)){cleanup(app);return false;}restore(app);const s=state(app.engine.b);delete s.return;delete s.fallProgress;s.state='READY';s.recovered=true;cleanup(app);app.updateAudio?.();save(app);return true;}
 function advance(app){const session=app.honroVoidSession,s=state(app.engine?.b);if(!blocked(app)||!session||app.modal?.classList.contains('open')||s.state!=='VOID'||now()-session.lastInputAt<INPUT_GUARD)return false;
- session.lastInputAt=now();if(session.line<sceneLines.length-1)session.line++;else{s.state='RETURNING';session.returning=0;}paint(app);return true;
+ session.lastInputAt=now();if(session.line<session.lines.length-1)session.line++;else{s.state='RETURNING';session.returning=0;}paint(app);return true;
 }
 function skip(app){if(!blocked(app)||!app.honroVoidSession||state(app.engine.b).state==='RETURNING')return false;app.close?.();state(app.engine.b).state='RETURNING';app.honroVoidSession.returning=0;paint(app);return true;}
 function pause(app){if(!blocked(app))return false;const body='<div class="pause-menu"><button class="primary" data-action="close">돌아가기</button><button data-action="void-skip">장면 넘기기</button><button data-action="settings">설정</button><button data-action="void-leave">입구 화면으로 · 이 장면은 다시 걷기</button></div>';if(G.HonroMenuUI)G.HonroMenuUI.shell(app,'잠시 머무르기',body,{kind:'pause-dialog'});else app.open?.(body,'pause-dialog');return true;}
@@ -85,8 +79,8 @@ function actorImage(app,session){if(session.actorImage)return session.actorImage
  if(right<=left||bottom<=top)return null;return session.actorImage={image,left,top,width:right-left,height:bottom-top};
 }
 function paint(app){const session=app.honroVoidSession,b=app.engine?.b,s=state(b);if(!session||!session.host)return;session.host.dataset.phase=s.state;
- const falling=['FALLING','DARKENING'].includes(s.state),dark=falling?clamp((session.elapsed-TIMING.fall)/TIMING.fade):1,text=s.state==='VOID'?sceneLines[session.line].text:'';
- if(session.text.textContent!==text)session.text.textContent=text;session.text.dataset.align=sceneLines[session.line].align;
+ const falling=['FALLING','DARKENING'].includes(s.state),dark=falling?clamp((session.elapsed-TIMING.fall)/TIMING.fade):1,text=s.state==='VOID'?session.lines[session.line].text:'';
+ if(session.text.textContent!==text)session.text.textContent=text;session.text.dataset.align=session.lines[session.line].align;
  session.host.style.setProperty('--void-dark',String(dark));G.document?.body?.style?.setProperty?.('--void-hud-opacity',String(1-dark));if(dark>=1)G.document?.body?.classList.add('honro-void-dark');
  const cv=session.canvas,c=cv?.getContext?.('2d');if(!c?.setTransform)return;const w=G.innerWidth||800,h=G.innerHeight||600,dpr=Math.min(2,G.devicePixelRatio||1);if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);}c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);
  if(dark>0&&s.state!=='RETURNING'&&app.scene?.unitBody){const sprite=actorImage(app,session);if(!sprite)return;

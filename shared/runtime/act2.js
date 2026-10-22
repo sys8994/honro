@@ -208,19 +208,15 @@ function firstSpiritEncounter(app,heroes){const e=app.engine,b=e?.b,key='act2:fi
  const soul=['O01','O02','O03','O04','O05','O16'].find(usable),manifest=usable('O08');
  const lamp=(b.honroMarkers||[]).find(m=>m.id?.startsWith('spirit-lamp')&&m.action==='act2'&&!m.collected&&(!m.requiredClass||heroes.some(u=>u.cls===m.requiredClass))&&Math.hypot(spirit.x-m.x,spirit.y-m.y)<=(m.radius||1200));
  const soulGuide=soul?`소단의 ${C.SKILLS[soul].name}은 드러나지 않은 혼령도 공격할 수 있습니다.`:'소단의 혼 공격은 드러나지 않은 혼령에게도 유효합니다.';
- const reply=manifest?'혼 공격은 바로 닿아요. 현형부로 형태를 잡으면 두 분의 활과 검도 제대로 닿아요.':lamp?'제 혼 공격은 바로 닿아요. 저 원혼등불을 밝히면 두 분의 활과 검도 제대로 닿아요.':'활과 검은 잘 듣지 않아요. 제가 혼 공격으로 맞설게요.';
+ const current=G.HonroNarrativeCatalogue.active(b),reply=(current?G.HonroNarrativeCatalogue.data.values:G.HONRO_NARRATIVE_COMPAT.values)['firstSpirit.reply.'+(manifest?'manifest':lamp?'lamp':'neither')];
  const guidance=soulGuide+(manifest?' 현형부를 맞히면 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':lamp?' 원혼등불에 다가가 밝히면 주변 혼령이 드러나 동행의 활과 검도 제대로 닿습니다.':' 소단을 선택해 혼령을 상대하세요.');
  app.profile.seen??={};
  app.profile.seen[key]=true;
  const meta={storyId:key,storyTitle:'첫 혼령의 기척',sceneTarget:spirit.id,...(!manifest&&lamp?{sceneLamp:lamp.id}:{}),exposureMethod:manifest?'manifest':lamp?'lamp':'soul'};
- G.HonroStory.queue(app,[
-  ['설오',b.honroNarrativeRevision===1?'저기 움직이는 것이 보입니까? 윤곽이 자꾸 흩어집니다.':'저기, 돌 틈을 보세요. 무언가 움직였는데 화살이 허공을 지나갔어요.',meta],
-  ['휘겸',b.honroNarrativeRevision===1?'발소리도 그림자도 없소. 눈앞에서 윤곽만 흔들리는군.':'발소리도 그림자도 없소. 그런데 등잔 불꽃은 저쪽으로 기울었소.',meta],
-  ['소단','혼이에요. 두 분 눈에는 흐려도 제 눈에는 보여요. 아직 길을 찾지 못한 혼이 저기 있어요.',meta],
-  ['설오','어떻게 맞서면 되나요?',meta],
-  ['소단',reply,meta],
-  ['안내',guidance,{...meta,kind:'guide',guideTitle:manifest||lamp?'혼령과 현형':'혼령과 혼 공격'}]
- ]);
+ const observation=current?G.HonroNarrativeCatalogue.rows('firstSpirit.observation.current'):structuredClone(G.HONRO_NARRATIVE_COMPAT.extras[b.honroNarrativeRevision===1?'firstSpirit.observation.current':'firstSpirit.observation.v0']);
+ G.HonroStory.queue(app,[...observation.map(([who,text,cue={}])=>[who,text,{...meta,...cue}]),
+ ['소단',reply,{...meta,...(current?{rowId:'first-spirit.reply',spiritPart:'reply'}:{})}],
+ ['안내',guidance,{...meta,kind:'guide',guideTitle:manifest||lamp?'혼령과 현형':'혼령과 혼 공격',...(current?{rowId:'first-spirit.guide',spiritPart:'guide'}:{})}]]);
  G.HonroStory.save(app);
 }
 function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||app.modal?.classList.contains('open')||['won','lost'].includes(b.phase))return;

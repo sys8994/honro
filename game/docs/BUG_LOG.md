@@ -4412,3 +4412,7 @@ HUD의 32~36px 내부 타일과 공통 스탬프의 둥근 이중 프레임을 �
 ## BGM·승인 11장·최신 master 통합 — 2026-10-22
 
 master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별도 통합 브랜치에서 결합했다. 최종 코드/생성물551da47f. BGM30/7개hash·decode, 11장 게임 규칙/재질 prepare 불변, 실제 대표 재생과 Workshop Stop, 승인 재질PNG6개 일치·세 warm cache 경계, 통합 build/도감/web-split을 확인했다. 추가 미술·초상화 시안은 미적용. 기존 상세 계측/자동자료는 역사 커밋과 _local로 구분하고 이번 성능 계측으로 재사용하지 않았다. 사진5장은 Library의 업로드 전 네트워크 실패로 검토 브랜치 파일 전달을 사용했다. AGENTS에는 기존/연관 Codex 세션 재사용 지침만 추가했다. 정확한 SHA·빌드·사진 blob ID·한계는 [최종 통합 기록](bgm-stage11-release-20261022/README.md). master/Pages는 부모 확인 전 미변경.
+
+## 2026-10-22 — 서사 원고 선택 경계 통합
+
+현재 30장 최종 원고를 단일 catalogue로 추출하고 저장/동결 호환 선택을 한 resolver로 모았다. 중첩 contentFor wrapper와 act2 plan/drama 중복 조립을 제거하며 목표·전투·증거·pacing 판정과 V0/split-v1/waterworks-v2 및 저장 큐를 보존한다. 문구 교체 전 구조 동등성 30장/구 선택 40건과 대표 Continue를 확인했다. [연결 보고서](story/voice-v2-editorial/INTEGRATION_REPORT.md)에 단계와 한계를 남긴다.

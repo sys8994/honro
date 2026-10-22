@@ -18,17 +18,15 @@ function reviseSteps(list,id){return list.map(original=>{const s=clone(original)
  if(id===18&&s.id==='clear-bell')return{...s,kind:'pacing-secure',afterPacing:'keeper',sitePacing:'clear-bell',radiusPacing:720,heightPacing:500,label:'동쪽 퇴로 곁의 위협 제압'};
  return s;
 });}
-function content(st,id){if(!st)return st;const out=clone(st);if(out.steps)out.steps=reviseSteps(out.steps,id);if(out.act2Plan?.sequence)out.act2Plan.sequence=reviseSteps(out.act2Plan.sequence.map(s=>typeof s==='string'?{id:s}:s),id).map(s=>Object.keys(s).length===1?s.id:s);
- if(id===11){out.guide='소단으로 서쪽 혼매듭 주변의 수비를 제압하고 매듭을 푸세요. 중앙 매듭 해체를 4라운드 지킨 뒤 하부 주민을 구조하세요. 피난처 동쪽 오름길 초입의 혼 흔적을 조사하면 완료됩니다. 높은 고목과 동쪽 사격턱은 선택 접근로입니다.';out.beats??={};out.beats['clear-west']=[['소단','서쪽 매듭은 풀렸어요. 뒤쪽 기척은 남아 있지만 중앙으로 이어진 혼줄부터 끊어야 해요.']];}
- if(id===14){out.goal='세 집의 주민 구조와 피난 다리 보호';out.guide='상층 집과 장터의 구조 접근로를 확보하고 주민 세 집을 구조하세요. 광물길과 동쪽 능선은 다른 사격점으로 이어집니다. 다리 걸쇠를 열고 4라운드 보호한 뒤 등잔집 곁의 위협만 제압하면 완료됩니다.';out.beats??={};out.beats.bridge=[['휘겸','걸쇠를 열었소. 등잔집으로 다가오는 것부터 막읍시다.'],['설오','위층의 들림을 쫓아 돌아갈 필요는 없겠군요. 주민 곁의 길을 지키겠습니다.']];out.beats['hold-refuge:start']=[['담허','피난길이 안정될 때까지 네 차례 지키세. 서쪽과 동쪽 굴의 도구를 살피게.']];}
- if(id===17){out.goal='인양축을 복구하고 3라운드 보호';out.guide='작업장 접근로를 확보하고 버팀목을 세우세요. 들린 인양틀을 제압하고 축을 복원한 뒤 3라운드 보호하면 작업대 일지를 함께 확인합니다. 높은 사격턱과 옛 작업굴의 잔적을 찾아 돌아갈 필요는 없습니다.';}
- if(id===18)out.guide='억제진 진입 수비대를 제압하고 담허로 공명을 억제하세요. 4라운드 유지와 장력 고정구 해제를 병렬로 마친 뒤 쓸림면을 비워 대종을 안전하게 내립니다. 소단으로 누출혼을 나누고 동쪽 종지기를 비살상 제압하세요. 동쪽 퇴로 곁의 위협을 정리하면 완료됩니다. 먼 구역의 잔적은 선택 전투입니다.';
- return out;
+function content(st,id,current=true){if(!st)return st;const out=clone(st);if(out.steps)out.steps=reviseSteps(out.steps,id);if(out.act2Plan?.sequence)out.act2Plan.sequence=reviseSteps(out.act2Plan.sequence.map(s=>typeof s==='string'?{id:s}:s),id).map(s=>Object.keys(s).length===1?s.id:s);
+ if(current)return G.HonroNarrativeCatalogue.stage(out,id);
+ const old=G.HONRO_NARRATIVE_COMPAT.raw[id-1];out.guide=old.guide;if([14,17].includes(id))out.goal=old.goal;
+ if(id===11)out.beats['clear-west']=clone(old.beats['clear-west']);if(id===14)for(const key of ['bridge','hold-refuge:start'])out.beats[key]=clone(old.beats[key]);return out;
 }
 function upgradeBattle(b){if(!ids.includes(b?.honroStage)||b.honroCustom||b.mode!=='campaign'||b.honroMapOrigin!=='campaign'||['won','lost'].includes(b.phase)||b.honroAct2PacingRevision!==undefined||!supported(b.honroStage,b))return false;
  if(b.honroStage===11)G.HonroStage11TraceExit.upgradeBattle(b);
  const list=b.honroAct2Steps;if(!Array.isArray(list)||!expected[b.honroStage].includes(list.map(s=>s.id).join(',')))return false;
- b.honroAct2Steps=reviseSteps(list,b.honroStage);for(const key of ['honroNarrativeContent','honroVerticalStage14Content'])if(b[key])b[key]=content(b[key],b.honroStage);b.honroAct2PacingRevision=1;return true;
+ b.honroAct2Steps=reviseSteps(list,b.honroStage);for(const key of ['honroNarrativeContent','honroVerticalStage14Content'])if(b[key])b[key]=content(b[key],b.honroStage,false);b.honroAct2PacingRevision=1;return true;
 }
 function satisfied(b,s){if(!active(b))return null;const a=A.memory(b);
  if(s.kind==='pacing-event')return !!a.done[s.afterPacing];

@@ -188,14 +188,7 @@ register({id:ID,stage:9,title:'한쪽 줄이 느슨해질 때',steps:[
  {type:'look',at:{anchor:'sodan'},duration:550,caption:'방울 소리가 난 사당 문간으로 시선이 향한다.'},
  {type:'move',actor:'npc-sodan',reveal:true,to:{anchor:'sodan',dx:-76},duration:950,caption:'붉은 실에 손이 감긴 소단이 매듭을 붙든 채 문턱으로 나온다.'},
  {type:'look',actor:'npc-sodan',at:{marker:'$trigger'},pose:'hold-bell',duration:450,caption:'방울 소리가 멎는다. 소단은 줄을 놓지 않은 채 아래를 살핀다.'},
- {type:'dialogue',lines:[
-  ['소단','한쪽이… 덜 당겨요. 방금 뭘 한 거예요?'],
-  ['설오','담허 어른이 당신의 줄에 붙잡힌 원혼을 저 진으로 나눠 받았습니다. 덕수 씨 일행도 무사히 구했습니다.'],
-  ['소단','덕수 아저씨가 걸어서 나갔어요?'],
-  ['설오','예. 당신도 도우러 왔습니다.'],
-  ['소단','빈자리에 진을 놓는 건 괜찮아요. 가운데 줄은 건드리지 마요.'],
-  ['담허','알겠네. 자네가 놓으라고 할 때까지 끊지 않겠어.']
- ]}
+ {type:'dialogue',lines:G.HonroNarrativeCatalogue.rows('9.sodan-first-receiver')}
 ]});
 // Stage 10 owns the upper-yard tree. On stage 9, show the same Sodan body
 // retreating along the supported approach toward its real exit, never imply

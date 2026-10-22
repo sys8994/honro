@@ -113,7 +113,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     if(entry.name==='shared/runtime/act-endings-content.js'){
       // Resolve art at build time, without fetching it at startup. Missing
       // parent-supplied portraits retain the existing landscape presentation.
-      const context={};vm.runInNewContext(entry.code,context);
+      const context={HONRO_ACT_ENDINGS:JSON.parse(await read('shared/data/narrative-current.json')).actEndings};
       for(const [stage,ending]of Object.entries(context.HONRO_ACT_ENDINGS)){
         for(const key of ['image','portraitImage']){
           const source=ending[key];if(!source)continue;
@@ -162,7 +162,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     }else if(entry.global){
       file=await dataModule(entry.name,{[entry.global]:entry.data});
     }else if(vectorGlobals.has(entry.name)){
-      const context={};vm.runInNewContext(entry.code,context);
+      const context={HONRO_ACT_ENDINGS:JSON.parse(await read('shared/data/narrative-current.json')).actEndings};
       // HONRO_ARCHER is an alias of the already loaded party asset, not a duplicate JSON.
       delete context.HONRO_ARCHER;
       file=await dataModule(entry.name,context);

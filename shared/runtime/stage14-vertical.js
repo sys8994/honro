@@ -28,8 +28,6 @@ G.HonroProgression.initialize=function(b,profile){if(!active(b))return initializ
 };
 const cap=E.populationCap;
 E.populationCap=function(b){return active(b)&&b.honroVerticalStage14PopulationCap===55?55:cap(b);};
-const contentFor=G.HonroObjectiveRevision.contentFor;
-G.HonroObjectiveRevision.contentFor=function(b,st){return active(b)&&b.honroVerticalStage14Content?JSON.parse(JSON.stringify(b.honroVerticalStage14Content)):contentFor(b,st);};
 const entry=A.entry;
 A.entry=function(app,options={}){return active(app.engine?.b)&&app.engine.b.honroVerticalStage14Content?entry({...app,stage:G.HonroObjectiveRevision.contentFor(app.engine.b,app.stage)},options):entry(app,options);};
 

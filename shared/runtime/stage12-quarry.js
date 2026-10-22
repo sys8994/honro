@@ -24,13 +24,11 @@ G.HonroProgression.initialize=function(b,profile){if(!active(b)||b.honroGrowth)r
  for(const u of b.units)if(u.side===1)A.tuneEncounter(u,12);
  const out=initialize(b,profile);if(b.honroGrowth){const reserve=8+2*.6;b.honroGrowth.weight+=reserve;b.honroGrowth.quarryWaveWeight=reserve;b.honroGrowth.quarryRevision=1;for(const u of b.units)if(u.side===1)G.HonroProgression.enemyXP(b,u);}return out;
 };
-const contentFor=G.HonroObjectiveRevision.contentFor;
-G.HonroObjectiveRevision.contentFor=function(b,st){if(!active(b)||!b.honroQuarryContent)return contentFor(b,st);const out=clone(b.honroQuarryContent),m=b.honroState?.quarry;if(m?.signLines)out.beats.sign=clone(m.signLines);return out;};
 const entry=A.entry;A.entry=function(app,options={}){if(!active(app.engine?.b))return entry(app,options);const stage=G.HonroObjectiveRevision.contentFor(app.engine.b,app.stage);return entry({...app,stage},options);};
 const near=(u,p,r=300)=>hero(u)&&!!p&&Math.hypot(u.x-p.x,u.y-p.y)<r&&Math.abs(u.y-p.y)<150;
 const use=A.use;A.use=function(app,marker){const b=app.engine?.b;if(!active(b)||marker?.id!=='sign'||!A.eligibility(app,marker).ok)return use(app,marker);
  const m=memory(b),u=app.engine.active,mage=b.units.find(v=>v.side===0&&v.cls==='mage');
- if(!m.signInteractorId){m.signInteractorId=u?.id;m.signRequestSerial=serial(b);m.signMageNear=near(mage,marker);m.signLines=clone(b.honroQuarryContent.beats.sign);if(!m.signMageNear)for(const line of m.signLines)if(line[0]==='서술')line[1]=line[1].replace('담허가 겹친 획 하나를 풀었다.','담허의 설명을 따라 겹친 획 하나를 풀었다.');}
+ if(!m.signInteractorId){m.signInteractorId=u?.id;m.signRequestSerial=serial(b);m.signMageNear=near(mage,marker);m.signLines=clone(b.honroQuarryContent.beats.sign);if(!m.signMageNear)for(const line of m.signLines)if(line[2]?.rowId&&line[2]?.mageAbsentText)line[1]=line[2].mageAbsentText;else if(line[0]==='서술')line[1]=line[1].replace('담허가 겹친 획 하나를 풀었다.','담허의 설명을 따라 겹친 획 하나를 풀었다.');}
  m.shoePlaced=true;const out=use(app,marker);if(out&&A.memory(b).done.sign){if(m.gate==='closed')m.gate='waiting';}return out;
 };
 function gateOccupants(b){const t=b.terrain.find(t=>t.id===b.honroQuarrySpec?.gateTerrainId);if(!t||t.broken)return[];return b.units.filter(u=>alive(u)&&C.terrainRectIntersects(t,u.x-u.r-4,u.y-u.h-4,u.r*2+8,u.h+10,.01));}

@@ -49,7 +49,7 @@ const positions=(s,ids,xs,support,lifts=[])=>ids.map((id,i)=>({id,x:xs[i],y:heig
 function setEntry(s,fromStage,variants){s.initialState.honroEntryVariants={revision:1,fromStage,variants};}
 function routeSpec(s,toStage,common,routes){s.initialState.honroRouteSpec={revision:1,toStage,common,routes};s.design??={};s.design.questRoutes={revision:1,toStage,common:clone(common),routes:clone(routes)};}
 function civilian(s,id,label,x,y,extra={}){upsert(s.units,{id,kind:'object:civilian',team:'npc',x,y,facing:1,label,stageOverrides:{hp:950,maxHp:950,h:92,r:22,honroCivilian:true,fixed:true,honroProtected:false,...extra}});}
-async function narrative(name,stop){const src=await readFile(new URL(`../../shared/runtime/${name}.js`,import.meta.url),'utf8'),a=src.indexOf('const chapters=')+15,b=src.indexOf(stop,a);return JSON.parse(src.slice(a,b));}
+async function narrative(name){const compatibility=JSON.parse(await readFile(new URL('../../shared/data/narrative-compat-v1.json',import.meta.url),'utf8'));return name==='act2-drama'?compatibility.drama.chapters:compatibility.act3.chapters;}
 export async function authorAct23QuestRedesign(project,{minStage=11,maxStage=30}={}){
  const p=clone(project),chapters=await narrative('act2-drama',';\nfor(const'),act3=await narrative('act3-content',';\nconst roster');
  for(const s of p.stages){const id=s.metadata?.stageId;if(!s.metadata?.campaign||id<minStage||id>maxStage||id<11||id>30)continue;s.initialState??={};s.initialState.honroNarrativeRevision=1;
