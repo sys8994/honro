@@ -1,0 +1,29 @@
+{
+  "branchRuntime": "47abd35422157fbd1cfb2a72fd1775db38013dbc",
+  "base": "275144983f93d0de66bbe6f44ede88a82ca36b56",
+  "latestMaster": "c0e323ff3df9c5f4120e48d470c8ca80c679c57e",
+  "parallelRefs": [
+    "66b7cef9cd712b04a2f6acd9fcb23aa9adfe24d6\trefs/heads/feat/stage-clear-report",
+    "c0e323ff3df9c5f4120e48d470c8ca80c679c57e\trefs/heads/fix/joystick-aim-sector-release"
+  ],
+  "previewCommand": "git merge-tree --write-tree HEAD origin/master",
+  "actualMergePerformed": false,
+  "sharedRuntimeMainAutoMerged": true,
+  "conflictedPaths": [
+    "HONRO.html",
+    "HONRO_WORKSHOP.html",
+    "game/docs/BUG_LOG.md",
+    "index.html",
+    "web/entries/game.04706bb58b3747bc.js",
+    "web/entries/game.247a78baaca3a7b1.html",
+    "web/entries/game.371145d173ddcda3.html",
+    "web/entries/game.3e90ccbf66bca73c.js",
+    "web/entries/game.c38163be691aa93a.js",
+    "web/entries/game.d51b5d5f79bfbc1b.html",
+    "web/entries/workshop.1b5cc7c2eafefcbd.js",
+    "web/entries/workshop.a2d3c80b236845b0.js",
+    "web/entries/workshop.cbd026584df72c03.js",
+    "web/manifest.json"
+  ],
+  "resolution": "Combine BUG_LOG entries. Rebuild generated HTML/web assets after preserving both source changes; rerun focused icon/journey/joystick checks. Parent handles merge/deployment."
+}

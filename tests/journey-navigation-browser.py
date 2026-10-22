@@ -20,7 +20,7 @@ SEED="""count=>{const a=HonroApp;a.stopBattle();a.engine=null;a.close();a.dialog
 def settle(p):p.wait_for_function("document.querySelector('.journey-map-image')?.complete && document.querySelector('.journey-map-image').naturalWidth>0");p.wait_for_timeout(100)
 def shot(p,name):
  path=OUT/f'{PASS}-{name}.jpg';p.screenshot(path=str(path),type='jpeg',quality=82);assert path.stat().st_size<1000000
-GEO="""()=>{const v=document.querySelector('.journey-map-scroll').getBoundingClientRect();return [...document.querySelectorAll('.journey-pin')].map(p=>{const n=p.querySelector('i').getBoundingClientRect(),t=p.querySelector('span').getBoundingClientRect(),r=p.getBoundingClientRect(),x=n.x+n.width/2,y=n.y+n.height/2;return {id:+p.dataset.id,x,y,dx:t.x-x,dy:t.y-y,w:t.width,h:t.height,ownOverlap:Math.max(0,Math.min(n.right,t.right)-Math.max(n.left,t.left))*Math.max(0,Math.min(n.bottom,t.bottom)-Math.max(n.top,t.top)),visible:x>=v.left&&x<=v.right&&y>=v.top&&y<=v.bottom,touch:[r.width,r.height]}})}"""
+GEO="""()=>{const v=document.querySelector('.journey-map-scroll').getBoundingClientRect(),mr=document.querySelector('.journey-map').getBoundingClientRect(),def=HonroJourneyImages.definition(HonroApp.journeyAct);return [...document.querySelectorAll('.journey-pin')].map(p=>{const n=p.querySelector('i').getBoundingClientRect(),t=p.querySelector('span').getBoundingClientRect(),r=p.getBoundingClientRect(),x=n.x+n.width/2,y=n.y+n.height/2;const anchor=def.stages.find(a=>a.stageNumber===+p.dataset.id);return {id:+p.dataset.id,anchorError:Math.hypot(x-mr.x-anchor.x/def.width*mr.width,y-mr.y-anchor.y/def.height*mr.height),x,y,dx:t.x-x,dy:t.y-y,w:t.width,h:t.height,ownOverlap:Math.max(0,Math.min(n.right,t.right)-Math.max(n.left,t.left))*Math.max(0,Math.min(n.bottom,t.bottom)-Math.max(n.top,t.top)),visible:x>=v.left&&x<=v.right&&y>=v.top&&y<=v.bottom,touch:[r.width,r.height]}})}"""
 rows=[];errors=[];anchors=[];checks=[]
 with sync_playwright() as pw:
  b=launch(pw)
@@ -52,13 +52,13 @@ with sync_playwright() as pw:
    p.evaluate(SEED,29)
    for act,selected in [(1,9),(2,18),(3,25)]:
     p.set_viewport_size({'width':1280,'height':900});p.evaluate('([act,id])=>HonroRestJourney.showBook(HonroApp,id,null,act)',[act,selected]);settle(p)
-    p.locator('[data-action=journey-fit]').click();p.wait_for_timeout(60);shot(p,f'act{act}-overview')
+    p.locator('[data-action=journey-fit]').click();p.wait_for_timeout(60);assert p.locator('.journey-map').evaluate('e=>e.clientWidth<=document.querySelector(".journey-map-scroll").clientWidth+1 && e.clientHeight<=document.querySelector(".journey-map-scroll").clientHeight+1');shot(p,f'act{act}-overview')
     routes=p.locator('.journey-progress path[data-from]').evaluate_all('es=>es.map(e=>({from:+e.dataset.from,to:+e.dataset.to,d:e.getAttribute("d")}))');assert len(routes)==9;assert all(r['to']==r['from']+1 and 'C' in r['d'] and ' L' not in r['d'] for r in routes);assert p.locator('.journey-investigations').count()==0
     p.set_viewport_size({'width':390,'height':844});p.evaluate('([act,id])=>HonroRestJourney.showBook(HonroApp,id,null,act)',[act,selected]);settle(p);shot(p,f'act{act}-mobile')
     for id in range((act-1)*10+1,act*10+1):
      for zoom in [.8,1.2,1.8]:
       p.evaluate('([id,zoom])=>{const a=HonroApp;a.journeySelection=id;HonroRestJourney.zoomBook(a,zoom,195,350);HonroRestJourney.revealBook(a)}',[id,zoom]);p.wait_for_timeout(20)
-      g=next(g for g in p.evaluate(GEO) if g['id']==id);anchors.append({'act':act,'zoom':zoom,**g});assert g['ownOverlap']<1,(id,zoom,g);assert abs(g['dx'])<=g['w']+30 and abs(g['dy'])<=g['h']+30;assert min(g['touch'])>=44
+      g=next(g for g in p.evaluate(GEO) if g['id']==id);anchors.append({'act':act,'zoom':zoom,**g});assert g['anchorError']<1,(id,zoom,g);assert g['ownOverlap']<1,(id,zoom,g);assert abs(g['dx'])<=g['w']+30 and abs(g['dy'])<=g['h']+30;assert min(g['touch'])>=44
      # Selection is a UI-only operation.
     before=p.evaluate('JSON.stringify(HonroApp.profile)');p.evaluate('HonroRestJourney.selectBook(HonroApp,HonroApp.journeySelection)');assert before==p.evaluate('JSON.stringify(HonroApp.profile)')
    checks.append('all 30 anchors at 3 zooms: label proximity, no own-circle overlap, >=44px hitboxes')
