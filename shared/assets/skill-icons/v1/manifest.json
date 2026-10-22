@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "artReview": "pending",
+  "artReview": "approved",
   "icons": {
     "A01": {
       "file": "shared/assets/skill-icons/v1/A01.webp",
@@ -422,5 +422,7 @@
       "status": "ready",
       "sha256": "60a84b84dcbdcf711f00d8d2b72c09971031e64fe9fa95fae54d08b90606c81b"
     }
-  }
+  },
+  "artReviewScope": "Focused review 3: actual Chromium skill UI and HUD, 2026-10-22. Parent semantic/thumbnail reviews supplied; separate parent holistic review and deployment approval remain pending.",
+  "artReviewEvidence": "game/docs/skill-icons-v1/integration/README.md"
 }

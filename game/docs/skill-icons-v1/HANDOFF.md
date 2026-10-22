@@ -1,3 +1,5 @@
+> 이 문서는 이미지 공급 전 준비 브랜치의 기록입니다. 현재 통합 후보·실제 공급 이미지·집중 검수 3 결과는 [integration/README.md](integration/README.md)를 확인하세요.
+
 # 부모 인계 — 코드 준비 완료 / 이미지 공급 대기
 
 브랜치: `feat/all-skill-image-icons`

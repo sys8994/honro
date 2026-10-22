@@ -1,0 +1,114 @@
+[
+  {
+    "command": "npm --prefix game run typecheck",
+    "exitCode": 0,
+    "seconds": 2.52,
+    "output": "\n> honro-game@1.0.0-rc.21 typecheck\n> tsc --project engine/tsconfig.json\n\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n"
+  },
+  {
+    "command": "npm run test:cheonroe-target-lightning",
+    "exitCode": 0,
+    "seconds": 4.53,
+    "output": "\n> test:cheonroe-target-lightning\n> node tests/cheonroe-target-lightning.mjs\n\nPASS cheonroe: counts, ranks, exact boundary, delay, removed/dead/captured, ceiling/oneWay, lethal snapshot, recast, saved cast, 420 targets\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n"
+  },
+  {
+    "command": "node tests/cheonroe-visual-spacing.mjs",
+    "exitCode": 0,
+    "seconds": 1.67,
+    "output": "PASS visual-only spacing: all rays, endpoints, close jitter/fork bounds, isolated strength, default lightning unchanged\n"
+  },
+  {
+    "command": "npm run test:damheo-damage",
+    "exitCode": 0,
+    "seconds": 4.6,
+    "output": "\n> test:damheo-damage\n> node tests/damheo-damage-balance.mjs\n\nPASS Damheo damage: all 16 skills SP1/8, real HP, secondary/delayed/placed hits, all reflection generations, support/scope/save isolation\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n"
+  },
+  {
+    "command": "node tests/quest-hostile-targets.mjs",
+    "exitCode": 0,
+    "seconds": 5.49,
+    "output": "{\"status\":\"PASS\",\"inventory\":[{\"stage\":1,\"ids\":[]},{\"stage\":2,\"ids\":[]},{\"stage\":3,\"ids\":[]},{\"stage\":4,\"ids\":[]},{\"stage\":5,\"ids\":[\"cliff-cleat\"]},{\"stage\":6,\"ids\":[]},{\"stage\":7,\"ids\":[]},{\"stage\":8,\"ids\":[\"bier-knot-0\",\"bier-knot-1\"]},{\"stage\":9,\"ids\":[]},{\"stage\":10,\"ids\":[\"sodan-binding\"]},{\"stage\":11,\"ids\":[]},{\"stage\":12,\"ids\":[]},{\"stage\":13,\"ids\":[]},{\"stage\":14,\"ids\":[]},{\"stage\":15,\"ids\":[]},{\"stage\":16,\"ids\":[]},{\"stage\":17,\"ids\":[]},{\"stage\":18,\"ids\":[\"upper-chain\"]},{\"stage\":19,\"ids\":[]},{\"stage\":20,\"ids\":[]},{\"stage\":21,\"ids\":[]},{\"stage\":22,\"ids\":[]},{\"stage\":23,\"ids\":[]},{\"stage\":24,\"ids\":[]},{\"stage\":25,\"ids\":[]},{\"stage\":26,\"ids\":[]},{\"stage\":27,\"ids\":[]},{\"stage\":28,\"ids\":[]},{\"stage\":29,\"ids\":[]},{\"stage\":30,\"ids\":[]}],\"currentTargets\":5,\"legacyTargets\":14}\n"
+  },
+  {
+    "command": "node tests/quest-targets-live-combat.mjs",
+    "exitCode": 0,
+    "seconds": 3.73,
+    "output": "{\"status\":\"PASS\",\"scope\":\"Actual basic sword fire/tick; isolated authored support, normal resource spend\",\"rows\":[{\"id\":\"forward\",\"hpBefore\":240,\"hpAfter\":0,\"focusSpent\":8},{\"id\":\"behind\",\"hpBefore\":240,\"hpAfter\":240,\"focusSpent\":8},{\"id\":\"outside-sector\",\"hpBefore\":240,\"hpAfter\":240,\"focusSpent\":8},{\"id\":\"locked\",\"hpBefore\":240,\"hpAfter\":240,\"focusSpent\":8},{\"id\":\"wall\",\"hpBefore\":240,\"hpAfter\":240,\"focusSpent\":8},{\"id\":\"windup-Continue\",\"hpBefore\":240,\"hpAfter\":0}]}\n"
+  },
+  {
+    "command": "node tests/quest-targets-app-resume.mjs",
+    "exitCode": 1,
+    "seconds": 3.42,
+    "output": "evalmachine.<anonymous>:895\n            window.addEventListener('resize',()=>{if(this.screen==='rest')G.HonroRestJourney?.layoutRest();});\n            ^\n\nReferenceError: window is not defined\n    at App.bind (evalmachine.<anonymous>:895:13)\n    at new App (evalmachine.<anonymous>:291:1048)\n    at evalmachine.<anonymous>:1321:15\n    at evalmachine.<anonymous>:1327:3\n    at Script.runInContext (node:vm:149:12)\n    at Object.runInContext (node:vm:301:6)\n    at file:///workspace/honro/tests/quest-targets-app-resume.mjs:9:63\n\nNode.js v24.19.0\n"
+  },
+  {
+    "command": "node tests/projectile-platforms.mjs",
+    "exitCode": 0,
+    "seconds": 6.0,
+    "output": "PASS Swept top-only entry handles slabs, side/corner, slopes, overlap and first of multiple layers\nPASS Actual upward flight clears the slab, reaches apex and matches arrow, qi, stake and summon guides\nPASS Reflected waves share guide/live top contacts and still reflect from solid sides and ceilings\nPASS Ground installations keep the actual first valid top when an ignored slab is close overhead\nPASS Spread, emitted fragments and split arrows use the same rule; authored phasing remains\nPASS Muzzle, homing acquisition, saved flight and body/generic checks remain independently consistent\nPASS 6 projectile-platform behaviour groups\n"
+  },
+  {
+    "command": "node tests/camp-skill-ux.mjs",
+    "exitCode": 0,
+    "seconds": 3.58,
+    "output": "PASS camp skill UX: confirmed slot and skill paths, duplicate swap, refund/preview/scroll context, explicit unequip/save/combat, basic and ultimate guards, real ranked row costs\n"
+  },
+  {
+    "command": "node tests/skill-effects.mjs",
+    "exitCode": 0,
+    "seconds": 4.49,
+    "output": "PASS All 32 redesigned actions repeat without refresh, at both ranks, including capstones and retreat\nPASS Campaign capstone has no cooldown and retains retreat while practice keeps consecutive gate placements\nPASS Arc collides with the first enemy; guide equals impact and tangent is perpendicular to incoming velocity\nPASS Arc stops on a wall and old in-flight phase-through saves recover the new contact behavior\nPASS Bagua has eight straight outer sides and uses those exact sides for hit detection\nPASS Thunder and sky gourds emit branched lightning at the real damage endpoints\n"
+  },
+  {
+    "command": "npm run test:cheonroe-target-lightning:browser",
+    "exitCode": 0,
+    "seconds": 7.72,
+    "output": "\n> test:cheonroe-target-lightning:browser\n> python -X utf8 tests/cheonroe-target-lightning-browser.py\n\nPASS browser: 0/1/4/10, 1440 and 360 portrait, zoom .45/.66/1.4, offscreen targets, roof, 420 rays + expiry, no page errors\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n"
+  },
+  {
+    "command": "node tests/quest-targets-app-resume.mjs (isolated origin/master be798268 worktree)",
+    "exitCode": 1,
+    "output": "evalmachine.<anonymous>:895\n            window.addEventListener('resize',()=>{if(this.screen==='rest')G.HonroRestJourney?.layoutRest();});\n            ^\n\nReferenceError: window is not defined\n    at App.bind (evalmachine.<anonymous>:895:13)\n    at new App (evalmachine.<anonymous>:291:1048)\n    at evalmachine.<anonymous>:1321:15\n    at evalmachine.<anonymous>:1327:3\n    at Script.runInContext (node:vm:149:12)\n    at Object.runInContext (node:vm:301:6)\n    at file:///tmp/honro-master-check/tests/quest-targets-app-resume.mjs:9:63\n\nNode.js v24.19.0\n",
+    "conclusion": "Same pre-existing ReferenceError: window is not defined; no production regression demonstrated."
+  },
+  {
+    "command": "npm run build",
+    "exitCode": 0,
+    "output": "\n> build\n> node workshop/build.mjs\n\n{\"gameBytes\":17415,\"workshopBytes\":3947,\"files\":342,\"playtest\":\"web/entries/game.05e1c78923c651e3.html?embedded=1\"}\nBuilt Game, Workshop and the direct Playtest document with shared external modules\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n"
+  },
+  {
+    "command": "node tools/skill-icons/manifest.mjs",
+    "exitCode": 0,
+    "output": "{\n  \"status\": \"complete\",\n  \"complete\": true,\n  \"expected\": 84,\n  \"ready\": 84,\n  \"pending\": 0,\n  \"totalBytes\": 504894,\n  \"maxBytes\": 10326,\n  \"uniqueImages\": 84,\n  \"errors\": []\n}\n"
+  },
+  {
+    "command": "node tests/skill-image-icons.mjs",
+    "exitCode": 0,
+    "output": "PASS rejects missing ID\nPASS rejects hidden ID\nPASS rejects duplicate target\nPASS rejects wrong hash\nPASS rejects unknown state\nPASS rejects pending checksum\nPASS rejects review pending\nPASS final 84 IDs, effects/names/flags/colors unchanged, 84 supplied unique decoded images and strict completion gates\n"
+  },
+  {
+    "command": "node tests/web-split.mjs",
+    "exitCode": 0,
+    "output": "{\"checks\":[\"All generated hashes and byte counts\",\"Native campaign input equals reconstructed chapters and library\",\"Native Game and embedded Game enter title\",\"Embedded persist preserves campaign storage\",\"Workshop uses direct iframe document\"],\"files\":342,\"stages\":30,\"library\":851}\n"
+  },
+  {
+    "command": "python tests/skill-icons-integration-browser.py",
+    "exitCode": 0,
+    "output": "PASS integration actual UI: all 84, all four sizes, classes, locked/SP/selected/unavailable, real network cache/failure, lightning 1/4/10\n"
+  },
+  {
+    "command": "python tests/skill-icons-final-build-browser.py",
+    "exitCode": 0,
+    "output": "PASS final build: approved 84 mapped icons, intro zero requests, actual 404 once across 3 visits, visible SVG fallback, M05 real modal, no exceptions\n"
+  },
+  {
+    "command": "python tests/skill-icons-art-provenance.py",
+    "exitCode": 0,
+    "output": "PASS 84 source files/hash/provenance, 504894 bytes, maximum 10326, no missing/duplicate/unmapped images\n"
+  },
+  {
+    "command": "python tests/skill-icons-hud-browser.py",
+    "exitCode": 0,
+    "output": "PASS final HUD: actual training selector, 4 classes x 4 sizes x selected/unavailable, 32-36px art, >=44px controls, no exceptions\n"
+  }
+]
