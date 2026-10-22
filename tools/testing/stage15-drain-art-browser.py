@@ -2,6 +2,8 @@
 downloaded export -> Continue twice. This is not normal combat arrival/fullplay.
 Frame scheduling is paused for deterministic inspection; production story,
 interaction, reveal, Engine ticks, export and Continue methods remain intact.
+A read-only observer delegates the production transition unchanged and captures
+its adjacent actor states; ordinary sluice/story effects are outside that scope.
 """
 import json,sys,shutil,subprocess,hashlib
 from pathlib import Path
@@ -33,7 +35,7 @@ with sync_playwright() as pw:
   p.screenshot(path=str(out/(name+'.jpg')),type='jpeg',quality=85);assert(out/(name+'.jpg')).stat().st_size<1_000_000
   rows.append({'file':name+'.jpg','camera':'Fixed production render at6000,4470,.65; frame scheduler paused',**row});return row
  before=snap('drain-before');assert before['ledgeBroken'] and not before['drain']['done'].get('sluice')
- p.evaluate('''()=>{const a=HonroApp,b=a.engine.b,m=b.honroMarkers.find(m=>m.id==='sluice');window.__beforeDrainActors=structuredClone(b.units);if(!HonroInteractions.use(a,m))throw Error('Production sluice refused');if(!HonroAct2.memory(b).drainRevealPending)throw Error('No pending reveal');HonroNarrativeRevision.tick(a,0);if(!b.terrain.find(t=>t.id==='fc15-drained-ledge').broken)throw Error('Dialogue/review did not postpone reveal');}''')
+ p.evaluate('''()=>{const a=HonroApp,b=a.engine.b,m=b.honroMarkers.find(m=>m.id==='sluice');window.__beforeDrainActors=structuredClone(b.units);const original=HonroStage15Drain.transition;window.__restoreDrainObserver=()=>{HonroStage15Drain.transition=original;};HonroStage15Drain.transition=function(b){const before=structuredClone(b.units),result=original(b);if(result.ok&&result.activate)window.__observedDrain={before,after:structuredClone(b.units),result:structuredClone(result)};return result;};if(!HonroInteractions.use(a,m))throw Error('Production sluice refused');if(!HonroAct2.memory(b).drainRevealPending)throw Error('No pending reveal');HonroNarrativeRevision.tick(a,0);if(!b.terrain.find(t=>t.id==='fc15-drained-ledge').broken)throw Error('Dialogue/review did not postpone reveal');}''')
  finish();p.evaluate('HonroApp.close()')
  # Production story boundary scheduling; do not supply completion/geometry facts.
  for _ in range(180):
@@ -43,7 +45,7 @@ with sync_playwright() as pw:
  else:raise AssertionError('Production reveal did not complete within180 inspection ticks')
  finish();p.evaluate('HonroApp.close()');after=snap('drain-after')
  assert not after['ledgeBroken'] and all(a['validContact'] for a in after['actors'])
- verification=p.evaluate('''()=>{const b=HonroApp.engine.b,old=window.__beforeDrainActors,moves=HonroAct2.memory(b).drainContact.moves,changed=new Set(moves.map(m=>m.id)),protectedActor=u=>{const v=structuredClone(u);for(const k of ['x','y','vx','vy','jumping','airborne'])delete v[k];return JSON.stringify(v);};for(const u of b.units){const before=old.find(v=>v.id===u.id);if(changed.has(u.id)){if(protectedActor(u)!==protectedActor(before))throw Error('Resource/AI/action actor fields changed '+u.id);}else if(JSON.stringify(u)!==JSON.stringify(before))throw Error('Uninvolved actor changed '+u.id);}for(let i=0;i<20;i++)HonroApp.engine.tick(HONRO_CORE.STEP);for(const id of changed)if(!HONRO_CORE.validTerrainContactPose(b.terrain,b.units.find(u=>u.id===id)))throw Error('Contact invalid after20ticks');return{moves,all26ActorsRetained:b.units.length===26,protectedActorFieldsExact:true,twentyTicksValid:true};}''')
+ verification=p.evaluate('''()=>{const b=HonroApp.engine.b,observed=window.__observedDrain;if(!observed)throw Error('No production transition observed');window.__restoreDrainObserver();const old=observed.before,moves=observed.result.moves,changed=new Set(moves.map(m=>m.id)),protectedActor=u=>{const v=structuredClone(u);for(const k of ['x','y','vx','vy','jumping','airborne'])delete v[k];return JSON.stringify(v);};for(const u of observed.after){const before=old.find(v=>v.id===u.id);if(changed.has(u.id)){if(protectedActor(u)!==protectedActor(before))throw Error('Resource/AI/action actor fields changed '+u.id);}else if(JSON.stringify(u)!==JSON.stringify(before))throw Error('Uninvolved actor changed '+u.id);}for(let i=0;i<20;i++)HonroApp.engine.tick(HONRO_CORE.STEP);for(const id of changed)if(!HONRO_CORE.validTerrainContactPose(b.terrain,b.units.find(u=>u.id===id)))throw Error('Contact invalid after20ticks');return{moves,all26ActorsRetained:b.units.length===26,protectedActorFieldsExact:true,observerScope:'Adjacent production transition call; wrapper delegates original unchanged, records copies only, then restores original function',ordinaryInteractionOrStoryChangedActors:b.units.filter(u=>JSON.stringify(u)!==JSON.stringify(window.__beforeDrainActors.find(v=>v.id===u.id))).map(u=>u.id),twentyTicksValid:true};}''')
  for n in range(2):
   with p.expect_download() as download:p.evaluate('HonroApp.export()')
   path=out/('actual-export-'+str(n+1)+'.json');download.value.save_as(str(path));exported=json.loads(path.read_text())
