@@ -1,0 +1,43 @@
+$ HONRO_BASE_URL=<local server> python tests/journey-gestures-browser.py
+PASS game: all zoom and reset buttons removed
+PASS game surface: plain wheel zooms at the cursor
+PASS game surface: both zoom bounds
+PASS game underground: plain wheel zooms at the cursor
+PASS game underground: both zoom bounds
+PASS game city: plain wheel zooms at the cursor
+PASS game city: both zoom bounds
+PASS game: dragging a pin pans without selecting it
+PASS game: next click selects normally
+PASS game: keyboard selection remains usable
+PASS game: wheel outside the map leaves its zoom unchanged
+PASS game: saved battle and progression unchanged
+PASS playtest: all zoom and reset buttons removed
+PASS playtest surface: plain wheel zooms at the cursor
+PASS playtest surface: both zoom bounds
+PASS playtest underground: plain wheel zooms at the cursor
+PASS playtest underground: both zoom bounds
+PASS playtest city: plain wheel zooms at the cursor
+PASS playtest city: both zoom bounds
+PASS playtest: dragging a pin pans without selecting it
+PASS playtest: next click selects normally
+PASS playtest: keyboard selection remains usable
+PASS playtest: wheel outside the map leaves its zoom unchanged
+PASS playtest: saved battle and progression unchanged
+PASS touch-390x844: spread pinch expands at its midpoint
+PASS touch-390x844: closing pinch reaches the lower bound
+PASS touch-390x844: moving the pinch center also pans at the zoom limit
+PASS touch-390x844: one remaining finger continues panning
+PASS touch-390x844: pinch does not choose a place and releases its cursor
+PASS touch-390x844: next ordinary tap selects its pin
+PASS touch-390x844: cancellation leaves no dragging state or save changes
+PASS touch-390x844: page itself stays at its original scale
+PASS touch-844x390: spread pinch expands at its midpoint
+PASS touch-844x390: closing pinch reaches the lower bound
+PASS touch-844x390: moving the pinch center also pans at the zoom limit
+PASS touch-844x390: one remaining finger continues panning
+PASS touch-844x390: pinch does not choose a place and releases its cursor
+PASS touch-844x390: next ordinary tap selects its pin
+PASS touch-844x390: cancellation leaves no dragging state or save changes
+PASS touch-844x390: page itself stays at its original scale
+PASS No uncaught browser errors
+JOURNEY GESTURES PASS 41

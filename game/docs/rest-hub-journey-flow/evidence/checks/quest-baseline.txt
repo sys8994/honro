@@ -1,0 +1,15 @@
+$ same quest test using d3340262 main source
+evalmachine.<anonymous>:895
+            window.addEventListener('resize',()=>{if(this.screen==='rest')G.HonroRestJourney?.layoutRest();});
+            ^
+
+ReferenceError: window is not defined
+    at App.bind (evalmachine.<anonymous>:895:13)
+    at new App (evalmachine.<anonymous>:291:1048)
+    at evalmachine.<anonymous>:1321:15
+    at evalmachine.<anonymous>:1327:3
+    at Script.runInContext (node:vm:149:12)
+    at Object.runInContext (node:vm:301:6)
+    at file:///workspace/honro/tests/.tmp-baseline-quest.mjs:9:68
+
+Node.js v24.19.0

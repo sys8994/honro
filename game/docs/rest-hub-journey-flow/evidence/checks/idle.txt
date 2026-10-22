@@ -1,0 +1,8 @@
+$ node tests/rest-idle.mjs
+PASS Existing App rAF drives asynchronous party idle and retained art at capped cadence
+PASS Animation never resurrects a discarded battle or rewrites permanent progress
+PASS Hidden tabs and reduced motion freeze draws/time; resumption has no catch-up
+PASS Narrow screens cap canvas redraws to 20 Hz and invalid dt cannot jump time
+PASS Optional dialogue redraw keeps one controller, elapsed time and focus
+PASS Repeated rest/camp/book/title transitions release all motion handles without added listeners
+PASS Reduced motion at entry is static; all animated artwork attributes remain finite and bounded

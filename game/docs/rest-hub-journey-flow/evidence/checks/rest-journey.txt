@@ -1,0 +1,10 @@
+$ node tests/rest-journey.mjs
+PASS Prologue autoplays, blocks optional controls and resumes exact line
+PASS All chapters preserve speech/narration roles in the inline rest panel with no repeated interlude on entry
+PASS Saved battle is unchanged on cancelled hub return and discarded only after approval
+PASS Confirmed replay and retry retain replay navigation without duplicate growth
+PASS Stale confirmation cannot replace a newer saved session
+PASS Original-place dialogue never becomes next-place optional text after resumed victory
+PASS Sodan recruitment, optional-only actor clicks and all-companion fire are retained
+PASS Only authored urgent links skip rest and survive reload at result
+PASS All four companion labels use the right particle and destination particles stay unchanged

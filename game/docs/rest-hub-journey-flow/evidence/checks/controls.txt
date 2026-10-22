@@ -1,0 +1,9 @@
+$ node tests/rest-scene-controls.mjs
+PASS All thirty canonical act/chapter labels and ending labels
+PASS Minimal fixed actions and explicit fresh-stage route
+PASS Narration first, exact new-save index, previous, skip and revisits
+PASS Old interrupted arrival index is unchanged and does not insert a new event
+PASS New points require real stage level gain, preserve formulas, spend and reload safely
+PASS Unspent old SP alone, missing startXP, replay and debug never create cue
+PASS Mid-battle level gain survives approved rest and fresh entry without rearming spent points
+PASS Joining level repair does not masquerade as a previous battle level-up

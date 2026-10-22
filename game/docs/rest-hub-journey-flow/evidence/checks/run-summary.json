@@ -1,0 +1,39 @@
+{
+  "base": "d33402627e0c632593a388ec19e0b5370cc68439",
+  "implementationCommit": "e581d8582059e8e56e35df50576832617832f205",
+  "runtimeSHA256": {
+    "shared/runtime/main.js": "0a9b6be1bfc85ef20d7203bb0e32290fe193d94e90d98ff09cc2db0859436c14",
+    "shared/runtime/rest-journey.js": "d59c76929735442762d7252bf9097148955340e0168facd87339c2a8b305877d",
+    "game/src/journey.css": "7f94c5b05b95b19935573bf3008412078ad2afaad811f38be8bf68cff62656ab"
+  },
+  "passes": {
+    "restHub": 14,
+    "stageDeparture": 6,
+    "restJourney": 9,
+    "campPersistence": 11,
+    "campRewardBudget": 4,
+    "restControls": 8,
+    "restIdle": 7,
+    "gestureBrowser": 41,
+    "mainBrowserViewports": 4,
+    "actEndingFixtures": 3,
+    "typecheck": true,
+    "build": true,
+    "webSplit": true,
+    "atlasProof": true,
+    "layoutContract": true
+  },
+  "existingFailures": [
+    "quest-targets-app-resume window undefined; repeated with baseline main",
+    "custom-map-return-profile 17/18; same newgame reload assertion in baseline main/rest",
+    "journey-content old stage5 spoken-line expectation; unchanged source"
+  ],
+  "screenshots": 49,
+  "largestScreenshotBytes": 305984,
+  "fullVerifyRun": false,
+  "deployed": false,
+  "limits": [
+    "Synthetic campaign/terminal victory fixtures are not normal combat completion.",
+    "Parent pixel approval and master/Pages integration are pending."
+  ]
+}
