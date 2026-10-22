@@ -1,0 +1,2359 @@
+{
+  "sourceBase": "f8cc1a823a328c46f103156e0c1ac79b6efff90d",
+  "scope": "Prepared segments with normal resources, Engine move/fire/wait/tick; no full-stage or human-time claim.",
+  "routes": [
+    {
+      "cls": "archer",
+      "label": "before",
+      "maxMove": 1496,
+      "level": 12,
+      "passed": true,
+      "failed": null,
+      "frames": 3002,
+      "waits": 4,
+      "jumps": 2,
+      "rounds": 5,
+      "damage": 0,
+      "netHpChange": 0,
+      "walked": 5328.3943746729765,
+      "bounds": {
+        "minX": 9700,
+        "maxX": 15028.394374672976,
+        "minY": 5463.374645909639,
+        "maxY": 8835.714285714286
+      },
+      "samples": [
+        {
+          "index": 0,
+          "goal": {
+            "x": 9900,
+            "y": 8830
+          },
+          "x": 9888.623026715166,
+          "y": 8830.325056379566,
+          "round": 1,
+          "age": 72,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 1,
+          "goal": {
+            "x": 10350,
+            "y": 8740
+          },
+          "x": 10338.643519583862,
+          "y": 8742.271296083227,
+          "round": 1,
+          "age": 162,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 2,
+          "goal": {
+            "x": 10800,
+            "y": 8650
+          },
+          "x": 10788.435875523319,
+          "y": 8652.312824895336,
+          "round": 1,
+          "age": 162,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 3,
+          "goal": {
+            "x": 11000,
+            "y": 8630
+          },
+          "x": 10988.8648853805,
+          "y": 8631.11351146195,
+          "round": 1,
+          "age": 77,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 4,
+          "goal": {
+            "x": 11900,
+            "y": 8000
+          },
+          "x": 11888.27927116134,
+          "y": 8008.204510187062,
+          "round": 2,
+          "age": 377,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 5,
+          "goal": {
+            "x": 12700,
+            "y": 7150
+          },
+          "x": 12694.6591304469,
+          "y": 7155.674673900168,
+          "round": 3,
+          "age": 533,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 6,
+          "goal": {
+            "x": 13500,
+            "y": 6350
+          },
+          "x": 13494.014266119339,
+          "y": 6355.985733880661,
+          "round": 4,
+          "age": 519,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 7,
+          "goal": {
+            "x": 14400,
+            "y": 5610
+          },
+          "x": 14388.161776780185,
+          "y": 5619.733650202958,
+          "round": 5,
+          "age": 398,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 8,
+          "goal": {
+            "x": 15040,
+            "y": 5460.666666666667
+          },
+          "x": 15028.394374672976,
+          "y": 5463.374645909639,
+          "round": 5,
+          "age": 230,
+          "support": "rv-north-trace"
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "round": 1,
+          "x": 11069.620812986623,
+          "y": 8581.265430909363
+        },
+        {
+          "op": "wait",
+          "round": 2,
+          "x": 12165.80388848411,
+          "y": 7717.583368485633
+        },
+        {
+          "op": "jump",
+          "round": 3,
+          "x": 12673.659130446908,
+          "y": 7177.987173900161
+        },
+        {
+          "op": "wait",
+          "round": 3,
+          "x": 13093.297924622106,
+          "y": 6756.702075377894
+        },
+        {
+          "op": "jump",
+          "round": 4,
+          "x": 13473.014266119346,
+          "y": 6376.985733880654
+        },
+        {
+          "op": "wait",
+          "round": 4,
+          "x": 14089.00138605597,
+          "y": 5865.709971465091
+        }
+      ],
+      "scope": "isolated route; real move/jump/wait/tick; no actor corrections after setup; not combat"
+    },
+    {
+      "cls": "archer",
+      "label": "after",
+      "maxMove": 1496,
+      "level": 12,
+      "passed": true,
+      "failed": null,
+      "frames": 968,
+      "waits": 1,
+      "jumps": 0,
+      "rounds": 2,
+      "damage": 0,
+      "netHpChange": 0,
+      "walked": 2188.27927116134,
+      "bounds": {
+        "minX": 9700,
+        "maxX": 11888.27927116134,
+        "minY": 8008.204510187062,
+        "maxY": 8835.714285714286
+      },
+      "samples": [
+        {
+          "index": 0,
+          "goal": {
+            "x": 9900,
+            "y": 8830
+          },
+          "x": 9888.623026715166,
+          "y": 8830.325056379566,
+          "round": 1,
+          "age": 72,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 1,
+          "goal": {
+            "x": 10350,
+            "y": 8740
+          },
+          "x": 10338.643519583862,
+          "y": 8742.271296083227,
+          "round": 1,
+          "age": 162,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 2,
+          "goal": {
+            "x": 10800,
+            "y": 8650
+          },
+          "x": 10788.435875523319,
+          "y": 8652.312824895336,
+          "round": 1,
+          "age": 162,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 3,
+          "goal": {
+            "x": 11000,
+            "y": 8630
+          },
+          "x": 10988.8648853805,
+          "y": 8631.11351146195,
+          "round": 1,
+          "age": 77,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 4,
+          "goal": {
+            "x": 11900,
+            "y": 8000
+          },
+          "x": 11888.27927116134,
+          "y": 8008.204510187062,
+          "round": 2,
+          "age": 377,
+          "support": "rv-north-trace"
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "round": 1,
+          "x": 11069.620812986623,
+          "y": 8581.265430909363
+        }
+      ],
+      "scope": "isolated route; real move/jump/wait/tick; no actor corrections after setup; not combat"
+    },
+    {
+      "cls": "mage",
+      "label": "before",
+      "maxMove": 1516,
+      "level": 12,
+      "passed": true,
+      "failed": null,
+      "frames": 3152,
+      "waits": 4,
+      "jumps": 2,
+      "rounds": 5,
+      "damage": 0,
+      "netHpChange": 0,
+      "walked": 5328.337412706693,
+      "bounds": {
+        "minX": 9700,
+        "maxX": 15028.337412706693,
+        "minY": 5463.387937035105,
+        "maxY": 8835.714285714286
+      },
+      "samples": [
+        {
+          "index": 0,
+          "goal": {
+            "x": 9900,
+            "y": 8830
+          },
+          "x": 9888.643018556817,
+          "y": 8830.324485184092,
+          "round": 1,
+          "age": 77,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 1,
+          "goal": {
+            "x": 10350,
+            "y": 8740
+          },
+          "x": 10338.329705732307,
+          "y": 8742.33405885354,
+          "round": 1,
+          "age": 173,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 2,
+          "goal": {
+            "x": 10800,
+            "y": 8650
+          },
+          "x": 10788.575580234176,
+          "y": 8652.284883953165,
+          "round": 1,
+          "age": 174,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 3,
+          "goal": {
+            "x": 11000,
+            "y": 8630
+          },
+          "x": 10988.20647399093,
+          "y": 8631.179352600908,
+          "round": 1,
+          "age": 82,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 4,
+          "goal": {
+            "x": 11900,
+            "y": 8000
+          },
+          "x": 11888.168901565521,
+          "y": 8008.281768904135,
+          "round": 2,
+          "age": 402,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 5,
+          "goal": {
+            "x": 12700,
+            "y": 7150
+          },
+          "x": 12694.291537171548,
+          "y": 7156.06524175523,
+          "round": 3,
+          "age": 559,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 6,
+          "goal": {
+            "x": 13500,
+            "y": 6350
+          },
+          "x": 13494.726563973012,
+          "y": 6355.273436026988,
+          "round": 4,
+          "age": 544,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 7,
+          "goal": {
+            "x": 14400,
+            "y": 5610
+          },
+          "x": 14388.17839007083,
+          "y": 5619.719990386206,
+          "round": 5,
+          "age": 424,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 8,
+          "goal": {
+            "x": 15040,
+            "y": 5460.666666666667
+          },
+          "x": 15028.337412706693,
+          "y": 5463.387937035105,
+          "round": 5,
+          "age": 245,
+          "support": "rv-north-trace"
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "round": 1,
+          "x": 11085.002801701256,
+          "y": 8570.49803880912
+        },
+        {
+          "op": "wait",
+          "round": 2,
+          "x": 12192.607571411807,
+          "y": 7689.104455374955
+        },
+        {
+          "op": "jump",
+          "round": 3,
+          "x": 12673.790703838202,
+          "y": 7177.847377171911
+        },
+        {
+          "op": "wait",
+          "round": 3,
+          "x": 13134.956168188308,
+          "y": 6715.043831811692
+        },
+        {
+          "op": "jump",
+          "round": 4,
+          "x": 13472.540730639665,
+          "y": 6377.459269360335
+        },
+        {
+          "op": "wait",
+          "round": 4,
+          "x": 14149.34636086607,
+          "y": 5816.092992176787
+        }
+      ],
+      "scope": "isolated route; real move/jump/wait/tick; no actor corrections after setup; not combat"
+    },
+    {
+      "cls": "mage",
+      "label": "after",
+      "maxMove": 1516,
+      "level": 12,
+      "passed": true,
+      "failed": null,
+      "frames": 1026,
+      "waits": 1,
+      "jumps": 0,
+      "rounds": 2,
+      "damage": 0,
+      "netHpChange": 0,
+      "walked": 2188.168901565521,
+      "bounds": {
+        "minX": 9700,
+        "maxX": 11888.168901565521,
+        "minY": 8008.281768904135,
+        "maxY": 8835.714285714286
+      },
+      "samples": [
+        {
+          "index": 0,
+          "goal": {
+            "x": 9900,
+            "y": 8830
+          },
+          "x": 9888.643018556817,
+          "y": 8830.324485184092,
+          "round": 1,
+          "age": 77,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 1,
+          "goal": {
+            "x": 10350,
+            "y": 8740
+          },
+          "x": 10338.329705732307,
+          "y": 8742.33405885354,
+          "round": 1,
+          "age": 173,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 2,
+          "goal": {
+            "x": 10800,
+            "y": 8650
+          },
+          "x": 10788.575580234176,
+          "y": 8652.284883953165,
+          "round": 1,
+          "age": 174,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 3,
+          "goal": {
+            "x": 11000,
+            "y": 8630
+          },
+          "x": 10988.20647399093,
+          "y": 8631.179352600908,
+          "round": 1,
+          "age": 82,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 4,
+          "goal": {
+            "x": 11900,
+            "y": 8000
+          },
+          "x": 11888.168901565521,
+          "y": 8008.281768904135,
+          "round": 2,
+          "age": 402,
+          "support": "rv-north-trace"
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "round": 1,
+          "x": 11085.002801701256,
+          "y": 8570.49803880912
+        }
+      ],
+      "scope": "isolated route; real move/jump/wait/tick; no actor corrections after setup; not combat"
+    },
+    {
+      "cls": "knight",
+      "label": "before",
+      "maxMove": 1606,
+      "level": 12,
+      "passed": true,
+      "failed": null,
+      "frames": 3034,
+      "waits": 4,
+      "jumps": 2,
+      "rounds": 5,
+      "damage": 0,
+      "netHpChange": 0,
+      "walked": 5328.634353212989,
+      "bounds": {
+        "minX": 9700,
+        "maxX": 15028.634353212989,
+        "minY": 5463.318650916969,
+        "maxY": 8835.714285714286
+      },
+      "samples": [
+        {
+          "index": 0,
+          "goal": {
+            "x": 9900,
+            "y": 8830
+          },
+          "x": 9888.073251067617,
+          "y": 8830.34076425521,
+          "round": 1,
+          "age": 72,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 1,
+          "goal": {
+            "x": 10350,
+            "y": 8740
+          },
+          "x": 10338.571735750727,
+          "y": 8742.285652849854,
+          "round": 1,
+          "age": 165,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 2,
+          "goal": {
+            "x": 10800,
+            "y": 8650
+          },
+          "x": 10788.789009982862,
+          "y": 8652.242198003427,
+          "round": 1,
+          "age": 165,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 3,
+          "goal": {
+            "x": 11000,
+            "y": 8630
+          },
+          "x": 10988.497678083113,
+          "y": 8631.150232191689,
+          "round": 1,
+          "age": 77,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 4,
+          "goal": {
+            "x": 11900,
+            "y": 8000
+          },
+          "x": 11888.265071214932,
+          "y": 8008.214450149548,
+          "round": 2,
+          "age": 383,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 5,
+          "goal": {
+            "x": 12700,
+            "y": 7150
+          },
+          "x": 12694.47039640543,
+          "y": 7155.875203819231,
+          "round": 3,
+          "age": 538,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 6,
+          "goal": {
+            "x": 13500,
+            "y": 6350
+          },
+          "x": 13494.061824739549,
+          "y": 6355.938175260451,
+          "round": 4,
+          "age": 524,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 7,
+          "goal": {
+            "x": 14400,
+            "y": 5610
+          },
+          "x": 14388.583849154142,
+          "y": 5619.386612917706,
+          "round": 4,
+          "age": 405,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 8,
+          "goal": {
+            "x": 15040,
+            "y": 5460.666666666667
+          },
+          "x": 15028.634353212989,
+          "y": 5463.318650916969,
+          "round": 5,
+          "age": 233,
+          "support": "rv-north-trace"
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "round": 1,
+          "x": 11157.803756217023,
+          "y": 8519.537370648084
+        },
+        {
+          "op": "wait",
+          "round": 2,
+          "x": 12316.028009790083,
+          "y": 7557.970239598037
+        },
+        {
+          "op": "jump",
+          "round": 3,
+          "x": 12672.87456307208,
+          "y": 7178.8207767359145
+        },
+        {
+          "op": "wait",
+          "round": 3,
+          "x": 13328.127819696487,
+          "y": 6521.872180303513
+        },
+        {
+          "op": "jump",
+          "round": 4,
+          "x": 13472.4659914062,
+          "y": 6377.5340085938005
+        },
+        {
+          "op": "wait",
+          "round": 4,
+          "x": 14437.464046839108,
+          "y": 5601.258389070875
+        }
+      ],
+      "scope": "isolated route; real move/jump/wait/tick; no actor corrections after setup; not combat"
+    },
+    {
+      "cls": "knight",
+      "label": "after",
+      "maxMove": 1606,
+      "level": 12,
+      "passed": true,
+      "failed": null,
+      "frames": 980,
+      "waits": 1,
+      "jumps": 0,
+      "rounds": 2,
+      "damage": 0,
+      "netHpChange": 0,
+      "walked": 2188.2650712149316,
+      "bounds": {
+        "minX": 9700,
+        "maxX": 11888.265071214932,
+        "minY": 8008.214450149548,
+        "maxY": 8835.714285714286
+      },
+      "samples": [
+        {
+          "index": 0,
+          "goal": {
+            "x": 9900,
+            "y": 8830
+          },
+          "x": 9888.073251067617,
+          "y": 8830.34076425521,
+          "round": 1,
+          "age": 72,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 1,
+          "goal": {
+            "x": 10350,
+            "y": 8740
+          },
+          "x": 10338.571735750727,
+          "y": 8742.285652849854,
+          "round": 1,
+          "age": 165,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 2,
+          "goal": {
+            "x": 10800,
+            "y": 8650
+          },
+          "x": 10788.789009982862,
+          "y": 8652.242198003427,
+          "round": 1,
+          "age": 165,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 3,
+          "goal": {
+            "x": 11000,
+            "y": 8630
+          },
+          "x": 10988.497678083113,
+          "y": 8631.150232191689,
+          "round": 1,
+          "age": 77,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 4,
+          "goal": {
+            "x": 11900,
+            "y": 8000
+          },
+          "x": 11888.265071214932,
+          "y": 8008.214450149548,
+          "round": 2,
+          "age": 383,
+          "support": "rv-north-trace"
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "round": 1,
+          "x": 11157.803756217023,
+          "y": 8519.537370648084
+        }
+      ],
+      "scope": "isolated route; real move/jump/wait/tick; no actor corrections after setup; not combat"
+    },
+    {
+      "cls": "occultist",
+      "label": "before",
+      "maxMove": 1546,
+      "level": 12,
+      "passed": true,
+      "failed": null,
+      "frames": 3063,
+      "waits": 4,
+      "jumps": 2,
+      "rounds": 5,
+      "damage": 0,
+      "netHpChange": 0,
+      "walked": 5328.765058561246,
+      "bounds": {
+        "minX": 9700,
+        "maxX": 15028.765058561246,
+        "minY": 5463.288153002376,
+        "maxY": 8835.714285714286
+      },
+      "samples": [
+        {
+          "index": 0,
+          "goal": {
+            "x": 9900,
+            "y": 8830
+          },
+          "x": 9888.585542011897,
+          "y": 8830.326127371089,
+          "round": 1,
+          "age": 75,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 1,
+          "goal": {
+            "x": 10350,
+            "y": 8740
+          },
+          "x": 10338.828316464325,
+          "y": 8742.234336707135,
+          "round": 1,
+          "age": 166,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 2,
+          "goal": {
+            "x": 10800,
+            "y": 8650
+          },
+          "x": 10788.848657410745,
+          "y": 8652.230268517851,
+          "round": 1,
+          "age": 166,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 3,
+          "goal": {
+            "x": 11000,
+            "y": 8630
+          },
+          "x": 10988.343442688156,
+          "y": 8631.165655731184,
+          "round": 1,
+          "age": 77,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 4,
+          "goal": {
+            "x": 11900,
+            "y": 8000
+          },
+          "x": 11888.07185555633,
+          "y": 8008.349701110568,
+          "round": 2,
+          "age": 387,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 5,
+          "goal": {
+            "x": 12700,
+            "y": 7150
+          },
+          "x": 12694.33913580523,
+          "y": 7156.014668206943,
+          "round": 3,
+          "age": 543,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 6,
+          "goal": {
+            "x": 13500,
+            "y": 6350
+          },
+          "x": 13494.378879364676,
+          "y": 6355.621120635324,
+          "round": 4,
+          "age": 530,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 7,
+          "goal": {
+            "x": 14400,
+            "y": 5610
+          },
+          "x": 14388.56007102748,
+          "y": 5619.40616382185,
+          "round": 5,
+          "age": 410,
+          "support": "rv-north-trace"
+        },
+        {
+          "index": 8,
+          "goal": {
+            "x": 15040,
+            "y": 5460.666666666667
+          },
+          "x": 15028.765058561246,
+          "y": 5463.288153002376,
+          "round": 5,
+          "age": 237,
+          "support": "rv-north-trace"
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "round": 1,
+          "x": 11108.331009765794,
+          "y": 8554.168293163944
+        },
+        {
+          "op": "wait",
+          "round": 2,
+          "x": 12232.831951995673,
+          "y": 7646.3660510045975
+        },
+        {
+          "op": "jump",
+          "round": 3,
+          "x": 12673.864135805221,
+          "y": 7177.769355706952
+        },
+        {
+          "op": "wait",
+          "round": 3,
+          "x": 13198.821663813578,
+          "y": 6651.178336186422
+        },
+        {
+          "op": "jump",
+          "round": 4,
+          "x": 13473.903879364667,
+          "y": 6376.096120635333
+        },
+        {
+          "op": "wait",
+          "round": 4,
+          "x": 14241.702675503508,
+          "y": 5740.155577919339
+        }
+      ],
+      "scope": "isolated route; real move/jump/wait/tick; no actor corrections after setup; not combat"
+    },
+    {
+      "cls": "occultist",
+      "label": "after",
+      "maxMove": 1546,
+      "level": 12,
+      "passed": true,
+      "failed": null,
+      "frames": 989,
+      "waits": 1,
+      "jumps": 0,
+      "rounds": 2,
+      "damage": 0,
+      "netHpChange": 0,
+      "walked": 2188.071855556331,
+      "bounds": {
+        "minX": 9700,
+        "maxX": 11888.07185555633,
+        "minY": 8008.349701110568,
+        "maxY": 8835.714285714286
+      },
+      "samples": [
+        {
+          "index": 0,
+          "goal": {
+            "x": 9900,
+            "y": 8830
+          },
+          "x": 9888.585542011897,
+          "y": 8830.326127371089,
+          "round": 1,
+          "age": 75,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 1,
+          "goal": {
+            "x": 10350,
+            "y": 8740
+          },
+          "x": 10338.828316464325,
+          "y": 8742.234336707135,
+          "round": 1,
+          "age": 166,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 2,
+          "goal": {
+            "x": 10800,
+            "y": 8650
+          },
+          "x": 10788.848657410745,
+          "y": 8652.230268517851,
+          "round": 1,
+          "age": 166,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 3,
+          "goal": {
+            "x": 11000,
+            "y": 8630
+          },
+          "x": 10988.343442688156,
+          "y": 8631.165655731184,
+          "round": 1,
+          "age": 77,
+          "support": "rv-lower-refuge-rock"
+        },
+        {
+          "index": 4,
+          "goal": {
+            "x": 11900,
+            "y": 8000
+          },
+          "x": 11888.07185555633,
+          "y": 8008.349701110568,
+          "round": 2,
+          "age": 387,
+          "support": "rv-north-trace"
+        }
+      ],
+      "commands": [
+        {
+          "op": "wait",
+          "round": 1,
+          "x": 11108.331009765794,
+          "y": 8554.168293163944
+        }
+      ],
+      "scope": "isolated route; real move/jump/wait/tick; no actor corrections after setup; not combat"
+    }
+  ],
+  "stage11": {
+    "defense": {
+      "passed": true,
+      "initial": 1,
+      "final": 10,
+      "hold": {
+        "progress": 4,
+        "spawned": 3,
+        "lastRound": 10,
+        "enteredRound": 6,
+        "continuous": true,
+        "contributionGuards": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "guarded": true,
+        "contested": false,
+        "waveRound": 9
+      },
+      "actions": {
+        "move": 31,
+        "fire": 25,
+        "wait": 13,
+        "E": 1
+      }
+    },
+    "rescue": {
+      "passed": true,
+      "final": 7,
+      "actions": {
+        "move": 14,
+        "fire": 20,
+        "wait": 9,
+        "E": 1
+      }
+    }
+  },
+  "stage14": {
+    "after": {
+      "id": 14,
+      "scope": "Prepared final segment; earlier done flags and party poses set once; every original enemy retained. Actual normal level/resources, ordinary Engine inputs; not fresh-stage completion or human time.",
+      "phase": "won",
+      "round": 6,
+      "stop": null,
+      "initialEnemies": 43,
+      "remainingEnemies": 41,
+      "heroes": [
+        {
+          "cls": "archer",
+          "level": 13,
+          "hp": 700,
+          "maxHp": 725,
+          "focus": 168
+        },
+        {
+          "cls": "mage",
+          "level": 13,
+          "hp": 624,
+          "maxHp": 774,
+          "focus": 224
+        },
+        {
+          "cls": "knight",
+          "level": 13,
+          "hp": 1129,
+          "maxHp": 1245,
+          "focus": 171
+        },
+        {
+          "cls": "occultist",
+          "level": 13,
+          "hp": 892,
+          "maxHp": 892,
+          "focus": 258
+        }
+      ],
+      "holds": {
+        "hold-refuge": {
+          "progress": 4,
+          "spawned": 6,
+          "lastRound": 5,
+          "enteredRound": 1,
+          "continuous": true,
+          "contributionGuards": [
+            "p-archer",
+            "p-mage",
+            "p-occultist"
+          ],
+          "guarded": true,
+          "contested": false,
+          "waveRound": 2
+        }
+      },
+      "actions": {
+        "fire": 18,
+        "wait": 9,
+        "move": 5
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "goal": "hold-refuge",
+          "hold": {}
+        },
+        {
+          "round": 2,
+          "goal": "hold-refuge",
+          "hold": {
+            "hold-refuge": {
+              "progress": 1,
+              "spawned": 3,
+              "lastRound": 2,
+              "enteredRound": 1,
+              "continuous": true,
+              "contributionGuards": [
+                "p-archer",
+                "p-mage",
+                "p-occultist"
+              ],
+              "guarded": true,
+              "contested": false,
+              "waveRound": 1
+            }
+          }
+        },
+        {
+          "round": 3,
+          "goal": "hold-refuge",
+          "hold": {
+            "hold-refuge": {
+              "progress": 2,
+              "spawned": 6,
+              "lastRound": 3,
+              "enteredRound": 1,
+              "continuous": true,
+              "contributionGuards": [
+                "p-archer",
+                "p-mage",
+                "p-occultist"
+              ],
+              "guarded": true,
+              "contested": false,
+              "waveRound": 2
+            }
+          }
+        },
+        {
+          "round": 4,
+          "goal": "hold-refuge",
+          "hold": {
+            "hold-refuge": {
+              "progress": 3,
+              "spawned": 6,
+              "lastRound": 4,
+              "enteredRound": 1,
+              "continuous": true,
+              "contributionGuards": [
+                "p-archer",
+                "p-mage",
+                "p-occultist"
+              ],
+              "guarded": true,
+              "contested": false,
+              "waveRound": 2
+            }
+          }
+        },
+        {
+          "round": 5,
+          "goal": "clear-village",
+          "hold": {
+            "hold-refuge": {
+              "progress": 4,
+              "spawned": 6,
+              "lastRound": 5,
+              "enteredRound": 1,
+              "continuous": true,
+              "contributionGuards": [
+                "p-archer",
+                "p-mage",
+                "p-occultist"
+              ],
+              "guarded": true,
+              "contested": false,
+              "waveRound": 2
+            }
+          }
+        },
+        {
+          "round": 6,
+          "goal": "clear-village",
+          "hold": {
+            "hold-refuge": {
+              "progress": 4,
+              "spawned": 6,
+              "lastRound": 5,
+              "enteredRound": 1,
+              "continuous": true,
+              "contributionGuards": [
+                "p-archer",
+                "p-mage",
+                "p-occultist"
+              ],
+              "guarded": true,
+              "contested": false,
+              "waveRound": 2
+            }
+          }
+        }
+      ],
+      "births": [
+        {
+          "id": "event-3",
+          "source": "hold-refuge-0",
+          "round": 1
+        },
+        {
+          "id": "event-4",
+          "source": "hold-refuge-0",
+          "round": 1
+        },
+        {
+          "id": "event-5",
+          "source": "hold-refuge-0",
+          "round": 1
+        },
+        {
+          "id": "event-13",
+          "source": "hold-refuge-3",
+          "round": 2
+        },
+        {
+          "id": "event-14",
+          "source": "hold-refuge-3",
+          "round": 2
+        },
+        {
+          "id": "event-15",
+          "source": "hold-refuge-3",
+          "round": 2
+        }
+      ]
+    },
+    "beforeObservations": [
+      {
+        "round": 1,
+        "goal": "hold-refuge",
+        "hold": {}
+      },
+      {
+        "round": 2,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 1,
+            "spawned": 3,
+            "lastRound": 2,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 1
+          }
+        }
+      },
+      {
+        "round": 3,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 2,
+            "spawned": 6,
+            "lastRound": 3,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 2
+          }
+        }
+      },
+      {
+        "round": 4,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 3,
+            "spawned": 9,
+            "lastRound": 4,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 5,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 4,
+            "spawned": 9,
+            "lastRound": 5,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 6,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 5,
+            "spawned": 9,
+            "lastRound": 6,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 7,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 6,
+            "spawned": 9,
+            "lastRound": 7,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 8,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 7,
+            "spawned": 9,
+            "lastRound": 8,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 9,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 8,
+            "spawned": 9,
+            "lastRound": 9,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 10,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 9,
+            "spawned": 9,
+            "lastRound": 10,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 11,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 10,
+            "spawned": 9,
+            "lastRound": 11,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 12,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 11,
+            "spawned": 9,
+            "lastRound": 12,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 13,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 12,
+            "spawned": 9,
+            "lastRound": 13,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 14,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 13,
+            "spawned": 9,
+            "lastRound": 14,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 15,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 14,
+            "spawned": 9,
+            "lastRound": 15,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 16,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 15,
+            "spawned": 9,
+            "lastRound": 16,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 3
+          }
+        }
+      },
+      {
+        "round": 17,
+        "goal": "clear-village",
+        "hold": {
+          "hold-refuge": {
+            "progress": 15,
+            "spawned": 12,
+            "lastRound": 16,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 16
+          }
+        }
+      }
+    ],
+    "baselineLimit": "Stopped after identifying completed protected duration with last wave still blocked; no win or elapsed-time claim."
+  },
+  "stage17": {
+    "before": {
+      "id": 17,
+      "baseline": true,
+      "scope": "Prepared final segment; earlier done flags and party poses set once; every original enemy retained. Actual normal level/resources, ordinary Engine inputs; not fresh-stage completion or human time.",
+      "phase": "won",
+      "round": 6,
+      "stop": null,
+      "initialEnemies": 50,
+      "remainingEnemies": 59,
+      "heroes": [
+        {
+          "cls": "archer",
+          "level": 15,
+          "hp": 785,
+          "maxHp": 785,
+          "focus": 180
+        },
+        {
+          "cls": "mage",
+          "level": 15,
+          "hp": 838,
+          "maxHp": 838,
+          "focus": 239.006
+        },
+        {
+          "cls": "knight",
+          "level": 15,
+          "hp": 1272,
+          "maxHp": 1346,
+          "focus": 202
+        },
+        {
+          "cls": "occultist",
+          "level": 15,
+          "hp": 964,
+          "maxHp": 964,
+          "focus": 237
+        }
+      ],
+      "holds": {
+        "hold-hoist": {
+          "progress": 5,
+          "spawned": 6,
+          "lastRound": 6,
+          "enteredRound": 1,
+          "continuous": true,
+          "contributionGuards": [
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "guarded": true,
+          "contested": false,
+          "waveRound": 3
+        }
+      },
+      "actions": {
+        "fire": 17,
+        "wait": 8,
+        "move": 3
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "goal": "hold-hoist",
+          "hold": {},
+          "local": null,
+          "boss": null
+        },
+        {
+          "round": 2,
+          "goal": "hold-hoist",
+          "hold": {
+            "hold-hoist": {
+              "progress": 1,
+              "spawned": 3,
+              "lastRound": 2,
+              "enteredRound": 1,
+              "continuous": true,
+              "contributionGuards": [
+                "p-mage",
+                "p-knight",
+                "p-occultist"
+              ],
+              "guarded": true,
+              "contested": false,
+              "waveRound": 1
+            }
+          },
+          "local": null,
+          "boss": null
+        },
+        {
+          "round": 3,
+          "goal": "hold-hoist",
+          "hold": {
+            "hold-hoist": {
+              "progress": 2,
+              "spawned": 3,
+              "lastRound": 3,
+              "enteredRound": 1,
+              "continuous": true,
+              "contributionGuards": [
+                "p-mage",
+                "p-knight",
+                "p-occultist"
+              ],
+              "guarded": true,
+              "contested": false,
+              "waveRound": 1
+            }
+          },
+          "local": null,
+          "boss": null
+        },
+        {
+          "round": 4,
+          "goal": "hold-hoist",
+          "hold": {
+            "hold-hoist": {
+              "progress": 3,
+              "spawned": 6,
+              "lastRound": 4,
+              "enteredRound": 1,
+              "continuous": true,
+              "contributionGuards": [
+                "p-mage",
+                "p-knight",
+                "p-occultist"
+              ],
+              "guarded": true,
+              "contested": false,
+              "waveRound": 3
+            }
+          },
+          "local": null,
+          "boss": null
+        },
+        {
+          "round": 5,
+          "goal": "hold-hoist",
+          "hold": {
+            "hold-hoist": {
+              "progress": 4,
+              "spawned": 6,
+              "lastRound": 5,
+              "enteredRound": 1,
+              "continuous": true,
+              "contributionGuards": [
+                "p-mage",
+                "p-knight",
+                "p-occultist"
+              ],
+              "guarded": true,
+              "contested": false,
+              "waveRound": 3
+            }
+          },
+          "local": null,
+          "boss": null
+        }
+      ],
+      "births": [
+        {
+          "id": "event-3",
+          "source": "worksite-brace-answer",
+          "round": 1
+        },
+        {
+          "id": "event-4",
+          "source": "worksite-brace-answer",
+          "round": 1
+        },
+        {
+          "id": "event-5",
+          "source": "worksite-brace-answer",
+          "round": 1
+        },
+        {
+          "id": "event-6",
+          "source": "hold-hoist-0",
+          "round": 1
+        },
+        {
+          "id": "event-7",
+          "source": "hold-hoist-0",
+          "round": 1
+        },
+        {
+          "id": "event-8",
+          "source": "hold-hoist-0",
+          "round": 1
+        },
+        {
+          "id": "event-10",
+          "source": "worksite-axle-answer",
+          "round": 1
+        },
+        {
+          "id": "event-11",
+          "source": "worksite-axle-answer",
+          "round": 1
+        },
+        {
+          "id": "event-12",
+          "source": "worksite-axle-answer",
+          "round": 1
+        },
+        {
+          "id": "event-28",
+          "source": "hold-hoist-3",
+          "round": 3
+        },
+        {
+          "id": "event-29",
+          "source": "hold-hoist-3",
+          "round": 3
+        },
+        {
+          "id": "event-30",
+          "source": "hold-hoist-3",
+          "round": 3
+        }
+      ]
+    },
+    "after": {
+      "id": 17,
+      "baseline": false,
+      "scope": "Prepared final segment; earlier done flags and party poses set once; every original enemy retained. Actual normal level/resources, ordinary Engine inputs; not fresh-stage completion or human time.",
+      "phase": "won",
+      "round": 4,
+      "stop": null,
+      "initialEnemies": 50,
+      "remainingEnemies": 60,
+      "heroes": [
+        {
+          "cls": "archer",
+          "level": 15,
+          "hp": 785,
+          "maxHp": 785,
+          "focus": 180
+        },
+        {
+          "cls": "mage",
+          "level": 15,
+          "hp": 838,
+          "maxHp": 838,
+          "focus": 240
+        },
+        {
+          "cls": "knight",
+          "level": 15,
+          "hp": 1272,
+          "maxHp": 1346,
+          "focus": 202
+        },
+        {
+          "cls": "occultist",
+          "level": 15,
+          "hp": 964,
+          "maxHp": 964,
+          "focus": 253
+        }
+      ],
+      "holds": {
+        "hold-hoist": {
+          "progress": 3,
+          "spawned": 6,
+          "lastRound": 4,
+          "enteredRound": 1,
+          "continuous": true,
+          "contributionGuards": [
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "guarded": true,
+          "contested": false,
+          "waveRound": 3
+        }
+      },
+      "actions": {
+        "fire": 10,
+        "wait": 5,
+        "move": 2
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "goal": "hold-hoist",
+          "hold": {}
+        },
+        {
+          "round": 2,
+          "goal": "hold-hoist",
+          "hold": {
+            "hold-hoist": {
+              "progress": 1,
+              "spawned": 3,
+              "lastRound": 2,
+              "enteredRound": 1,
+              "continuous": true,
+              "contributionGuards": [
+                "p-mage",
+                "p-knight",
+                "p-occultist"
+              ],
+              "guarded": true,
+              "contested": false,
+              "waveRound": 1
+            }
+          }
+        },
+        {
+          "round": 3,
+          "goal": "hold-hoist",
+          "hold": {
+            "hold-hoist": {
+              "progress": 2,
+              "spawned": 3,
+              "lastRound": 3,
+              "enteredRound": 1,
+              "continuous": true,
+              "contributionGuards": [
+                "p-mage",
+                "p-knight",
+                "p-occultist"
+              ],
+              "guarded": true,
+              "contested": false,
+              "waveRound": 1
+            }
+          }
+        }
+      ],
+      "births": [
+        {
+          "id": "event-3",
+          "source": "worksite-brace-answer",
+          "round": 1
+        },
+        {
+          "id": "event-4",
+          "source": "worksite-brace-answer",
+          "round": 1
+        },
+        {
+          "id": "event-5",
+          "source": "worksite-brace-answer",
+          "round": 1
+        },
+        {
+          "id": "event-6",
+          "source": "hold-hoist-0",
+          "round": 1
+        },
+        {
+          "id": "event-7",
+          "source": "hold-hoist-0",
+          "round": 1
+        },
+        {
+          "id": "event-8",
+          "source": "hold-hoist-0",
+          "round": 1
+        },
+        {
+          "id": "event-10",
+          "source": "worksite-axle-answer",
+          "round": 1
+        },
+        {
+          "id": "event-11",
+          "source": "worksite-axle-answer",
+          "round": 1
+        },
+        {
+          "id": "event-12",
+          "source": "worksite-axle-answer",
+          "round": 1
+        },
+        {
+          "id": "event-28",
+          "source": "hold-hoist-3",
+          "round": 3
+        },
+        {
+          "id": "event-29",
+          "source": "hold-hoist-3",
+          "round": 3
+        },
+        {
+          "id": "event-30",
+          "source": "hold-hoist-3",
+          "round": 3
+        }
+      ]
+    }
+  },
+  "stage18": {
+    "after": {
+      "id": 18,
+      "baseline": false,
+      "scope": "Prepared final segment; earlier done flags and party poses set once; every original enemy retained. Actual normal level/resources, ordinary Engine inputs; not fresh-stage completion or human time.",
+      "phase": "won",
+      "round": 8,
+      "stop": null,
+      "initialEnemies": 56,
+      "remainingEnemies": 57,
+      "heroes": [
+        {
+          "cls": "archer",
+          "level": 16,
+          "hp": 785,
+          "maxHp": 815,
+          "focus": 186
+        },
+        {
+          "cls": "mage",
+          "level": 16,
+          "hp": 870,
+          "maxHp": 870,
+          "focus": 224
+        },
+        {
+          "cls": "knight",
+          "level": 16,
+          "hp": 1213,
+          "maxHp": 1397,
+          "focus": 193
+        },
+        {
+          "cls": "occultist",
+          "level": 16,
+          "hp": 875,
+          "maxHp": 1000,
+          "focus": 287
+        }
+      ],
+      "holds": {},
+      "actions": {
+        "fire": 21,
+        "wait": 15,
+        "move": 6
+      },
+      "rounds": [
+        {
+          "round": 1,
+          "goal": "keeper",
+          "hold": {},
+          "local": [
+            {
+              "id": "sb-g-bat-side",
+              "hp": 485
+            },
+            {
+              "id": "act2-keeper",
+              "hp": 3748
+            }
+          ],
+          "boss": {
+            "hp": 3748,
+            "maxHp": 3748
+          }
+        },
+        {
+          "round": 2,
+          "goal": "keeper",
+          "hold": {},
+          "local": [
+            {
+              "id": "sb-g-bat-side",
+              "hp": 485
+            },
+            {
+              "id": "act2-keeper",
+              "hp": 3139
+            }
+          ],
+          "boss": {
+            "hp": 3139,
+            "maxHp": 3748
+          }
+        },
+        {
+          "round": 3,
+          "goal": "keeper",
+          "hold": {},
+          "local": [
+            {
+              "id": "sb-g-bat-side",
+              "hp": 485
+            },
+            {
+              "id": "act2-keeper",
+              "hp": 2530
+            }
+          ],
+          "boss": {
+            "hp": 2530,
+            "maxHp": 3748
+          }
+        },
+        {
+          "round": 4,
+          "goal": "keeper",
+          "hold": {},
+          "local": [
+            {
+              "id": "sb-g-bat-side",
+              "hp": 485
+            },
+            {
+              "id": "act2-keeper",
+              "hp": 1315
+            },
+            {
+              "id": "event-17",
+              "hp": 893
+            },
+            {
+              "id": "event-18",
+              "hp": 1384
+            }
+          ],
+          "boss": {
+            "hp": 1315,
+            "maxHp": 3748
+          }
+        },
+        {
+          "round": 5,
+          "goal": "keeper",
+          "hold": {},
+          "local": [
+            {
+              "id": "sb-g-bat-side",
+              "hp": 485
+            },
+            {
+              "id": "act2-keeper",
+              "hp": 77
+            },
+            {
+              "id": "event-17",
+              "hp": 893
+            },
+            {
+              "id": "event-18",
+              "hp": 1384
+            }
+          ],
+          "boss": {
+            "hp": 77,
+            "maxHp": 3748
+          }
+        },
+        {
+          "round": 6,
+          "goal": "clear-bell",
+          "hold": {},
+          "local": [
+            {
+              "id": "event-17",
+              "hp": 893
+            },
+            {
+              "id": "event-18",
+              "hp": 1384
+            },
+            {
+              "id": "event-19",
+              "hp": 893
+            },
+            {
+              "id": "event-20",
+              "hp": 1384
+            }
+          ],
+          "boss": {
+            "hp": 1,
+            "maxHp": 3748,
+            "subdued": true
+          }
+        },
+        {
+          "round": 7,
+          "goal": "clear-bell",
+          "hold": {},
+          "local": [
+            {
+              "id": "event-18",
+              "hp": 680
+            },
+            {
+              "id": "event-19",
+              "hp": 718
+            },
+            {
+              "id": "event-20",
+              "hp": 1272
+            }
+          ],
+          "boss": {
+            "hp": 1,
+            "maxHp": 3748,
+            "subdued": true
+          }
+        },
+        {
+          "round": 8,
+          "goal": "clear-bell",
+          "hold": {},
+          "local": [
+            {
+              "id": "event-20",
+              "hp": 1029
+            }
+          ],
+          "boss": {
+            "hp": 1,
+            "maxHp": 3748,
+            "subdued": true
+          }
+        }
+      ],
+      "births": [
+        {
+          "id": "event-3",
+          "source": "bell-descent-answer",
+          "round": 1
+        },
+        {
+          "id": "event-4",
+          "source": "bell-descent-answer",
+          "round": 1
+        },
+        {
+          "id": "event-5",
+          "source": "bell-descent-answer",
+          "round": 1
+        },
+        {
+          "id": "event-17",
+          "source": "keeper-retaliation",
+          "round": 3
+        },
+        {
+          "id": "event-18",
+          "source": "keeper-retaliation",
+          "round": 3
+        },
+        {
+          "id": "event-19",
+          "source": "keeper-retaliation",
+          "round": 3
+        },
+        {
+          "id": "event-20",
+          "source": "keeper-retaliation",
+          "round": 3
+        }
+      ]
+    },
+    "policyLimit": "Earlier ground-only and broad-region policies stopped; those logs are not map-duration evidence. Final region follows the east exit, upper firing support remains optional."
+  },
+  "saveContracts": [
+    {
+      "id": 14,
+      "initialEnemies": 43,
+      "holdRounds": 4,
+      "waveBudget": 6,
+      "migration": "physical state and ledger preserved; idempotent"
+    },
+    {
+      "id": 17,
+      "initialEnemies": 50,
+      "holdRounds": 3,
+      "waveBudget": 6,
+      "migration": "physical state and ledger preserved; idempotent"
+    },
+    {
+      "id": 18,
+      "initialEnemies": 56,
+      "holdRounds": 4,
+      "waveBudget": 8,
+      "migration": "physical state and ledger preserved; idempotent"
+    },
+    {
+      "id": 14,
+      "finalEvent": "Distant survivors accepted; nearby threat blocks; E cannot bypass"
+    },
+    {
+      "id": 18,
+      "finalEvent": "Distant survivors accepted; nearby threat blocks; E cannot bypass"
+    },
+    {
+      "id": 14,
+      "app": "Continue/export/repeated Continue/outcome; first-clear top-up exactly once"
+    },
+    {
+      "id": 17,
+      "app": "Continue/export/repeated Continue/outcome; first-clear top-up exactly once"
+    },
+    {
+      "id": 18,
+      "app": "Continue/export/repeated Continue/outcome; first-clear top-up exactly once"
+    },
+    {
+      "id": 11,
+      "app": "Old objective snapshot with current-map stamp fixture; prepared final E pose, retained trace/optional survivors, outcome and exactly-once first-clear top-up"
+    }
+  ],
+  "regeneration": "11/14/17/18 exact steps, actor IDs, events and trace marker passed"
+}

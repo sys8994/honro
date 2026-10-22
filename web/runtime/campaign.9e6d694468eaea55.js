@@ -1,1 +1,0 @@
-import{loadCampaign}from"./load-data.6f01d18416c3198e.js";globalThis.HONRO_PROJECT=await loadCampaign("web/data/campaign.49e8f7575a3af059.json",[HonroAct1Roster,HonroObjectiveRevision,HonroNarrativeRevision,HonroStage2Airborne,HonroBellAnomaly,HonroStoryCanonV1,HonroAct2Pacing],{full:globalThis.HONRO_PROJECT_MODE==="full"||globalThis.HONRO_EMBEDDED});

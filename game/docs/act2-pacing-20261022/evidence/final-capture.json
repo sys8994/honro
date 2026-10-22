@@ -1,0 +1,89 @@
+{
+  "sha": "0de8a17c3c8b6b1a543d99874004ae197ec1434c",
+  "scope": "Normal-level real browser Scene; camera fixtures. Final-only mode renders saved actual native segment wins for14/18; other views are prepared camera/progression fixtures, not full-stage input completions.",
+  "rows": [
+    {
+      "stage": 11,
+      "label": "final-lower-route",
+      "file": "11-final-lower-route.jpg",
+      "camera": [
+        11300,
+        8100,
+        0.22
+      ],
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 14,
+      "label": "final-bridge",
+      "file": "14-final-bridge.jpg",
+      "camera": [
+        4300,
+        8170,
+        0.35
+      ],
+      "viewport": [
+        1200,
+        700
+      ]
+    },
+    {
+      "stage": 17,
+      "label": "final-worksite",
+      "file": "17-final-worksite.jpg",
+      "camera": [
+        8700,
+        4700,
+        0.25
+      ],
+      "viewport": [
+        1200,
+        700
+      ]
+    },
+    {
+      "stage": 18,
+      "label": "final-keeper",
+      "file": "18-final-keeper.jpg",
+      "camera": [
+        11200,
+        6050,
+        0.36
+      ],
+      "viewport": [
+        1440,
+        900
+      ]
+    }
+  ],
+  "keyboard": [
+    {
+      "stage": 11,
+      "startX": 720,
+      "endX": 840,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    },
+    {
+      "stage": 14,
+      "startX": 790,
+      "endX": 911.6666666666652,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    },
+    {
+      "stage": 17,
+      "startX": 320,
+      "endX": 445,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    },
+    {
+      "stage": 18,
+      "startX": 740,
+      "endX": 866.6666666666652,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    }
+  ],
+  "errors": []
+}

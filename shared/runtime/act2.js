@@ -105,7 +105,7 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
  if(m.id==='rebuild-brace')return {ok:!!a.collapse&&!a.rebuilt,reason:'낙석 치우기'};
  if(m.id.startsWith('spirit-lamp'))return {ok:true,reason:'주변 원혼등불 밝히기'};
  if(!s)return{ok:false,reason:current(b)?'먼저 '+current(b).label:'목표 완료'};
- if(['evidence','clear','hold','defeat','destroy','reach','escort','route'].includes(s.kind))return{ok:false,reason:s.label};
+ if(['evidence','clear','hold','defeat','destroy','reach','escort','route','pacing-event','pacing-secure'].includes(s.kind))return{ok:false,reason:s.label};
  if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:H.hero[s.requiredClass].name+' 필요'};
  if(revision2(b)){
   const threats=interactionThreats(b,m);

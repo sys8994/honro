@@ -244,5 +244,458 @@
         "surfaceId": "rv-lower-refuge-rock"
       }
     }
+  },
+  "stages": {
+    "14": {
+      "terrainHash": "cb9d498c8c3cf6fc4e609b3c4d93236a5ae9a4334341ec4f667e1209eea1f64f",
+      "environmentHash": "f035859182db3343eba2a2d31c2c3083db10892947f5ebc89de702b83f4b1da0",
+      "unitHash": "8a1e4874ce0e27fb31f7f8e0b6e558a560030cd6f0fc310a007082a0920f9e19",
+      "steps": [
+        {
+          "id": "clear-upper",
+          "label": "상층 가옥의 들린 도구 제압",
+          "kind": "clear",
+          "cohorts": "west"
+        },
+        {
+          "id": "family-upper",
+          "label": "상층 주민 구조",
+          "kind": "rescue"
+        },
+        {
+          "id": "clear-middle",
+          "label": "중층 장터 확보",
+          "kind": "clear",
+          "cohorts": "middle"
+        },
+        {
+          "id": "family-mid",
+          "label": "중층 주민 구조",
+          "kind": "rescue"
+        },
+        {
+          "id": "family-lower",
+          "label": "하층 주민 구조",
+          "kind": "rescue"
+        },
+        {
+          "id": "bridge",
+          "label": "피난 다리 걸쇠 열기",
+          "kind": "interact"
+        },
+        {
+          "id": "hold-refuge",
+          "label": "피난 다리에서 주민을 지키기",
+          "kind": "hold",
+          "rounds": 6,
+          "wave": {
+            "kind": "picks",
+            "count": 12,
+            "eliteEvery": 4
+          },
+          "radius": 680,
+          "contestRadius": 260
+        },
+        {
+          "id": "clear-village",
+          "label": "마을에 남은 들림 전부 제압",
+          "kind": "clear",
+          "cohorts": "all"
+        }
+      ]
+    },
+    "17": {
+      "terrainHash": "91cfa2a300dc125b4c8ee54825b60f99e2310dacdb6d8a9cc082bf6a57780bfc",
+      "environmentHash": "9587217f17800307dce4568e20250316aa38f9a25e36a941fadf5879d3f4db92",
+      "unitHash": "f1cec466aff0a6acbdbd578459f0238fb0970bdf3150045bbb97c1833f1b97e0",
+      "steps": [
+        {
+          "id": "clear-works",
+          "label": "버팀목 작업장 확보",
+          "kind": "clear",
+          "cohorts": "west"
+        },
+        {
+          "id": "brace",
+          "label": "안전 버팀목 설치",
+          "kind": "interact"
+        },
+        {
+          "id": "hoist",
+          "label": "들린 인양틀 제압",
+          "kind": "defeat",
+          "target": "act2-hoist"
+        },
+        {
+          "id": "repair",
+          "label": "인양축 복원",
+          "kind": "interact"
+        },
+        {
+          "id": "hold-hoist",
+          "label": "인양축이 돌아가는 동안 작업장 방어",
+          "kind": "hold",
+          "rounds": 5,
+          "wave": {
+            "kind": "minecart",
+            "count": 10,
+            "eliteEvery": 4
+          },
+          "radius": 680,
+          "contestRadius": 260
+        },
+        {
+          "id": "clear-lift",
+          "label": "복구한 인양축 보호 완료",
+          "kind": "evidence",
+          "cohorts": "all",
+          "afterEvidence": "hold-hoist"
+        },
+        {
+          "id": "notes",
+          "label": "작업대의 일지 보관",
+          "kind": "evidence",
+          "afterEvidence": "clear-lift"
+        }
+      ],
+      "content": {
+        "name": "두드리는 벽",
+        "theme": "temple",
+        "goal": "인양축을 복구하고 5라운드 보호",
+        "narration": [
+          "막힌 작업굴 너머로 인양틀이 보였다. 승려는 종지기가 그 축을 빼냈다고 말했다. 일행은 남은 장치를 확인하러 들어갔다."
+        ],
+        "story": [
+          [
+            "휘겸",
+            "승려 말대로라면 저 인양틀의 축이 빠져 있을 것이오. 직접 확인합시다.",
+            {
+              "storyId": "act2-v1:act2-r2-entry-17",
+              "storyTitle": "두드리는 벽"
+            }
+          ],
+          [
+            "담허",
+            "천장이 먼저 무너지겠네. 받친 돌을 치우기 전에 버팀목을 세워야 하네.",
+            {
+              "storyId": "act2-v1:act2-r2-entry-17",
+              "storyTitle": "두드리는 벽"
+            }
+          ],
+          [
+            "설오",
+            "그때 못 연 길을 지금 열겠습니다. 안에 남은 이들을 위해서라도.",
+            {
+              "storyId": "act2-v1:act2-r2-entry-17",
+              "storyTitle": "두드리는 벽"
+            }
+          ]
+        ],
+        "guide": "작업장을 확보하고 버팀목을 세우세요. 인양틀을 제압하고 축을 복원한 뒤 5라운드 보호하면 완료됩니다. 작업대의 일지에서 종지기가 한 일을 확인합니다.",
+        "steps": [
+          {
+            "id": "clear-works",
+            "label": "버팀목 작업장 확보",
+            "kind": "clear",
+            "cohorts": "west"
+          },
+          {
+            "id": "brace",
+            "label": "안전 버팀목 설치",
+            "kind": "interact"
+          },
+          {
+            "id": "hoist",
+            "label": "들린 인양틀 제압",
+            "kind": "defeat",
+            "target": "act2-hoist"
+          },
+          {
+            "id": "repair",
+            "label": "인양축 복원",
+            "kind": "interact"
+          },
+          {
+            "id": "hold-hoist",
+            "label": "인양축이 돌아가는 동안 작업장 방어",
+            "kind": "hold",
+            "rounds": 5,
+            "wave": {
+              "kind": "minecart",
+              "count": 10,
+              "eliteEvery": 4
+            },
+            "radius": 680,
+            "contestRadius": 260
+          },
+          {
+            "id": "clear-lift",
+            "label": "복구한 인양축 보호 완료",
+            "kind": "evidence",
+            "cohorts": "all",
+            "afterEvidence": "hold-hoist"
+          },
+          {
+            "id": "notes",
+            "label": "작업대의 일지 보관",
+            "kind": "evidence",
+            "afterEvidence": "clear-lift"
+          }
+        ],
+        "beats": {
+          "brace": [
+            [
+              "휘겸",
+              "버팀목이 천장을 받쳤소. 돌의 무게가 이쪽으로 쏠리지 않게 지키며 안쪽 인양틀의 축을 복원합시다."
+            ]
+          ],
+          "repair": [
+            [
+              "서술",
+              "휘겸이 복구대에서 꺼낸 축을 들어 맞댔다."
+            ],
+            [
+              "휘겸",
+              "부러진 자국이 없소. 뽑아 감췄던 축이 그대로 맞는군."
+            ],
+            [
+              "설오",
+              "축이 돌아갑니다. 이렇게 돌아갈 수 있었는데."
+            ],
+            [
+              "휘겸",
+              "고칠 수 없는 장치였다는 말은 못 하겠군. 축이 멀쩡했다는 사실을 종지기에게 따져 묻겠소."
+            ],
+            [
+              "설오",
+              "종 쪽 벽은 가까이 갈수록 뒤로 물러나는 듯합니다. 그래도 이 축으로 사람을 끌어올릴 수 있었던 건 분명합니다."
+            ]
+          ],
+          "notes": [
+            [
+              "기록",
+              "산 사람의 혼을 청동에 붙일 것\n문 잠금 · 인양축 제거\n사흘째, 두드림 멎음",
+              {
+                "kind": "document",
+                "documentTitle": "종지기 작업일지",
+                "documentId": "keeper-work-log"
+              }
+            ],
+            [
+              "소단",
+              "살아 있는지 알아보려던 게 아니었어요. 죽어 가는 걸 세고 있었어요."
+            ]
+          ],
+          "hoist": [
+            [
+              "서술",
+              "인양추가 바닥에 멎었다. 철륜 안쪽에는 손가락으로 묶었다 풀어낸 매듭들이 겹쳐 남아 있었다."
+            ],
+            [
+              "소단",
+              "이 혼은 계속 올리려고 했어요. 끝까지 저 종을 들어 올리려고요."
+            ]
+          ],
+          "hold-hoist:start": [
+            [
+              "담허",
+              "인양틀이 종의 무게를 받자, 종에 묶인 혼들이 이쪽으로 새어 나오네. 인양틀이 멎지 않게 지켜야겠어."
+            ]
+          ],
+          "clear-lift": []
+        },
+        "outro": [
+          [
+            "담허",
+            "저 종에 든 것은 이름 없는 재앙이 아니네. 나올 길을 빼앗긴 사람들이야.",
+            {
+              "storyId": "act2-v1:act2-r2-outro-17",
+              "storyTitle": "두드리는 벽"
+            }
+          ],
+          [
+            "설오",
+            "종지기에게 갑시다. 더는 그가 안에 갇힌 사람들의 운명을 정하게 두지 않겠습니다.",
+            {
+              "storyId": "act2-v1:act2-r2-outro-17",
+              "storyTitle": "두드리는 벽"
+            }
+          ]
+        ],
+        "summary": "구조 가능한 인양로를 종지기가 의도적으로 망가뜨린 증거를 확보했다. 묵종 공동으로 들어간다.",
+        "id": 17,
+        "act": 2,
+        "actStage": 7,
+        "level": 15,
+        "template": 1,
+        "objective": "act2",
+        "requires": [
+          16
+        ],
+        "active": 3,
+        "enemies": 36,
+        "map": [
+          5550,
+          1050
+        ],
+        "narrationArt": "road",
+        "storySummary": "구조 가능한 인양로를 종지기가 의도적으로 망가뜨린 증거를 확보했다. 묵종 공동으로 들어간다.",
+        "failure": [
+          [
+            "휘겸",
+            "더 밀고 갈 수는 없소. 숨을 고르고 처음부터 길을 다시 잡읍시다."
+          ]
+        ],
+        "playableRoster": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "w": 11200,
+        "h": 8200,
+        "act2Plan": {
+          "size": [
+            11200,
+            8200
+          ],
+          "initial": 36,
+          "active": 3,
+          "eliteEvery": 4,
+          "rounds": [
+            52,
+            84
+          ],
+          "lamps": [],
+          "sequence": [
+            {
+              "id": "clear-works",
+              "label": "버팀목 작업장 확보",
+              "kind": "clear",
+              "cohorts": "west"
+            },
+            "brace",
+            "hoist",
+            "repair",
+            {
+              "id": "hold-hoist",
+              "label": "인양축이 돌아가는 동안 작업장 방어",
+              "kind": "hold",
+              "rounds": 5,
+              "wave": {
+                "kind": "minecart",
+                "count": 10,
+                "eliteEvery": 4
+              },
+              "radius": 680,
+              "contestRadius": 260
+            },
+            {
+              "id": "clear-lift",
+              "label": "인양로의 잔존 들림 전부 제압",
+              "kind": "clear",
+              "cohorts": "all"
+            },
+            "notes"
+          ],
+          "sites": {
+            "clear-works": [
+              1800
+            ],
+            "brace": [
+              2500
+            ],
+            "collapse-pin": [
+              3320
+            ],
+            "hoist": [
+              4380
+            ],
+            "repair": [
+              5250
+            ],
+            "hold-hoist": [
+              5400
+            ],
+            "clear-lift": [
+              6600
+            ],
+            "notes": [
+              7840
+            ]
+          },
+          "id": 17,
+          "revision": 2,
+          "waveCount": 10,
+          "expectedMinutes": [
+            75,
+            118
+          ]
+        }
+      }
+    },
+    "18": {
+      "terrainHash": "53b94dc36af67d34509ce59d437d8e378890880c10ce12b89dbee910247fccb9",
+      "environmentHash": "15a1330a3868116ac4fa198e0acc4cea485c0ac50f6eb0601ef8d1c5ec8a6be7",
+      "unitHash": "defbe4542593bb3d63d6e14146496450603512216f7c8081cb4db54834aea282",
+      "steps": [
+        {
+          "id": "clear-wards",
+          "label": "억제진 진입 수비대 제압",
+          "kind": "clear",
+          "cohorts": "west"
+        },
+        {
+          "id": "silence",
+          "label": "공명 억제진 가동",
+          "kind": "interact",
+          "requiredClass": "mage"
+        },
+        {
+          "id": "hold-silence",
+          "label": "공명 역류를 견디며 억제진 유지",
+          "kind": "hold",
+          "rounds": 4,
+          "wave": {
+            "kind": "bellCluster",
+            "count": 8,
+            "eliteEvery": 4
+          },
+          "requiredClass": "mage",
+          "radius": 680,
+          "contestRadius": 260,
+          "parallelGroup": "bell-stabilize"
+        },
+        {
+          "id": "upper-chain",
+          "label": "장력 고정구 해제",
+          "kind": "destroy",
+          "parallelGroup": "bell-stabilize"
+        },
+        {
+          "id": "bell-descent",
+          "label": "빈 쓸림면을 확인하고 대종 내려앉히기",
+          "kind": "bell-descent"
+        },
+        {
+          "id": "leak",
+          "label": "종에서 새는 혼 분리",
+          "kind": "interact",
+          "requiredClass": "occultist"
+        },
+        {
+          "id": "keeper",
+          "label": "종지기 전투 제압",
+          "kind": "defeat",
+          "target": "act2-keeper"
+        },
+        {
+          "id": "clear-bell",
+          "label": "종에서 쏟아진 잔여 들림 제압",
+          "kind": "clear",
+          "cohorts": "all"
+        }
+      ]
+    }
   }
 }
