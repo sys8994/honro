@@ -271,7 +271,7 @@ export class Renderer {
             else if(f.kind==='circulation')drawCirculation(c,f.x,f.y,f.size,t);
             else if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
             else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
-            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
+            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t,f.text==='cheonroe');
             if(f.kind==='inkLine')line(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.color,f.size);
             if(f.kind==='skillGeometry'&&f.text)drawInkGeometry(c,JSON.parse(f.text),t);
             if(f.kind==='inkImpact')drawInkImpact(c,f.x,f.y,f.size,t);
@@ -587,7 +587,7 @@ export class Renderer {
             else if(f.kind==='circulation')drawCirculation(c,f.x,f.y,f.size,t);
             else if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
             else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
-            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
+            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t,f.text==='cheonroe');
             if (f.kind === 'spark') {
                 line(c, f.x, f.y, f.x - f.vx * .028, f.y - f.vy * .028, f.color, f.size);
             }
