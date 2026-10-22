@@ -1,0 +1,254 @@
+{
+  "label": "candidate4",
+  "sha": "8e5571afeba46680144be35df276a4d79301876a",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M tools/environment/stage11-fracture-fields.mjs\n D web/data/campaign.5eb2f4790e14dee6.json\n D web/data/chapter-11.e6043aa0e7134fbc.json\n D web/entries/game.1f970fafd66c7b15.js\n D web/entries/game.24e412cbf360c1f0.html\n D web/entries/workshop.1c8496ac28cb7bcf.js\n M web/manifest.json\n D web/runtime/campaign.f784ee66629320c0.js\n?? game/docs/stage11-vector-art-20261022/evidence/candidate4-central.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate4-mobile-trace.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate4-overview.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate4-refuge.jpg\n?? web/data/campaign.6da826ade87d9708.json\n?? web/data/chapter-11.5059f1715a8f71ea.json\n?? web/entries/game.6bac3c7d6333408f.js\n?? web/entries/game.c1d24093e3faa93f.html\n?? web/entries/workshop.64c6f2c8942e49e2.js\n?? web/runtime/campaign.a98a16a6cb6c88b9.js\n",
+  "materialSha256": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+  "scope": "Production Chromium Scene and HUD; frozen normal entry-level battle/camera/progression fixtures, not full combat completion or real mobile hardware. 40 synchronous warm render samples/view; no concurrent load.",
+  "rows": [
+    {
+      "file": "candidate4-overview.jpg",
+      "group": "focus1",
+      "camera": [
+        8000,
+        7250,
+        0.115
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 104,
+      "medianMs": 2.699999999953434,
+      "p95Ms": 3.8999999999068677,
+      "cacheBefore": {
+        "worldBuilds": 2,
+        "worldBuildMs": 50.59999999962747,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 25,
+        "bgHits": 7,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 14,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 2,
+        "worldBuildMs": 50.59999999962747,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 65,
+        "bgHits": 47,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 94,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate4-central.jpg",
+      "group": "focus2",
+      "camera": [
+        7290,
+        7080,
+        0.43
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 51,
+      "medianMs": 0.8000000000465661,
+      "p95Ms": 1.3000000000465661,
+      "cacheBefore": {
+        "worldBuilds": 3,
+        "worldBuildMs": 61.0999999998603,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 81,
+        "bgHits": 55,
+        "domainCanvasAllocations": 26,
+        "domainTileBuilds": 26,
+        "screenBuilds": 6,
+        "screenHits": 110,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 3,
+        "worldBuildMs": 61.0999999998603,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 121,
+        "bgHits": 95,
+        "domainCanvasAllocations": 26,
+        "domainTileBuilds": 26,
+        "screenBuilds": 6,
+        "screenHits": 190,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "tileCount": 8,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate4-refuge.jpg",
+      "group": "focus2",
+      "camera": [
+        10350,
+        8470,
+        0.5
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 67.60000000009313,
+      "medianMs": 0.6999999999534339,
+      "p95Ms": 1.1000000000931323,
+      "cacheBefore": {
+        "worldBuilds": 4,
+        "worldBuildMs": 71.59999999939464,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 141,
+        "bgHits": 103,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 206,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 4,
+        "worldBuildMs": 71.59999999939464,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 181,
+        "bgHits": 143,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 286,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate4-mobile-trace.jpg",
+      "group": "focus3",
+      "camera": [
+        11900,
+        7850,
+        0.36
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "limits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 32.300000000046566,
+      "medianMs": 0.20000000018626451,
+      "p95Ms": 0.4000000001396984,
+      "cacheBefore": {
+        "worldBuilds": 6,
+        "worldBuildMs": 84.8999999994412,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 194,
+        "bgHits": 150,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 300,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 6,
+        "worldBuildMs": 84.8999999994412,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 234,
+        "bgHits": 190,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 380,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "shared/data/campaign.json": "abb1d132de3cfac3a972d4efac55ca83445c1aa28b09592382f2bc4d7cb03f4e",
+    "tools/environment/stage11-fracture-fields.mjs": "3ebe2b70f11a47c92207781a3f57a971195bb871dc9d39d3a1590538b42a4325",
+    "tools/environment/stage11-vector-finish.mjs": "fc279e63b329d3c513438639ff8fe0663504474db86373aadfabecd8b8ed84ae",
+    "shared/runtime/stage11-landscape-art.js": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+    "web/manifest.json": "8846d415a164598fa88067cc08557827fddf304a1f596ba5dfb46af6555f237c"
+  }
+}

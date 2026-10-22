@@ -1,6 +1,6 @@
 # 11장 벡터 지형 미술 · 2026-10-22
 
-> **현재 상태: 부모 미술 미통과.** `69992d5b` 첫 후보는 부모가 직접 검토 후 중앙/동쪽의 중간 규모 파단면과 뿌리 접합 부족으로 반려했다. 아래 첫 후보의 검사/종합/성능 기록은 미술 합격이 아니다. 두 번째 후보 역시 부모가 독립 블록처럼 뜨는 파단면을 지적해 최종 통과하지 않았다. 현행 `materialRevision:3` 세 번째 후보는 중앙·동쪽 면 결합 보완이며 부모 최종 미술 판단 전 master/Pages에 반영하지 않는다.
+> **현재 상태: 부모 미술 미통과.** `69992d5b` 첫 후보는 부모가 직접 검토 후 중앙/동쪽의 중간 규모 파단면과 뿌리 접합 부족으로 반려했다. 아래 첫 후보의 검사/종합/성능 기록은 미술 합격이 아니다. 두 번째 후보 역시 부모가 독립 블록처럼 뜨는 파단면을 지적해 최종 통과하지 않았다. 세 번째 후보는 공유 경계 개선에도 중앙/동쪽의 중간 면이 너무 넓어 부모 미통과다. 현행 `materialRevision:3` 네 번째 후보는 그 안의 선택적 중간 분할과 다른 암체의 아래 면 톤 완화이며 부모 최종 미술 판단 전 master/Pages에 반영하지 않는다.
 
 ## 짧은 미술 설계 카드
 
@@ -182,3 +182,25 @@
 **원본master→첫 후보의 시작 캐시55.3→85.0ms 증가 한계는 위 역사 기록 그대로 남는다.** 이번 비교는 같은 환경의 두 번째→세 번째 후보이며 원본master와의 새 직접 비교가 아니다. 이번 작은 표본의 시작58.7ms를 근거로 옛 캐시 한계를 해결했다고 주장하지 않는다.
 
 최종 미술/성능 채택은 부모 판단 대기다. 이번 브랜치의 구현/사진/검사/기록만 커밋·push하며 master/Pages는 변경하지 않는다. 접근 거부·결과 불명 쓰기·미커밋 구현은 없다. 정상 전체 전투·실기기 터치·Pages 배포는 미실행이다.
+
+
+## 네 번째 후보 · 공유 경계 안의 중간 크기 조절 (부모 미술 판단 대기)
+
+세 번째 후보 `4016913c`/기록 `8e5571af`는 부모가 최종 전체/중앙/모바일/피난처4장을 직접 본 뒤 **중간 스케일이 다시 너무 넓다**고 반려했다. 앞 절의 집중/종합/수치 결과는 미술 합격이 아니다.
+
+이번에는 기존4×6 암대 구성을 전체 균등 증식하지 않는다. 중앙의 선택한8개 부모 면 안에서만 비대칭 공통 접합을 나누고 나머지 큰 면은 그대로 남긴다. 새 분할의 위/아래 끝은 기존 공유 경계의 실제 선분 위에 놓고, 두 이웃 면이 같은 꺾인 내부 경계를 함께 사용한다. 별도의 외곽/독립 돌/어두운 밑뚜껑을 더하지 않는다. 자식 면의 톤은 기존 부모 면에서 소폭만 다르게 하며 선택한 접합 일부에만 짧은 틈과 얇은 비대칭 모서리광을 둔다. 동쪽은 흔적 아래에 보이는4개 부모 면을 선택적으로 나눠 모바일 표시 크기를 조절했다. 부모가 제시한100~220px/10~16개는 미술 스케일 참고이며 도형 수의 자동 합격 조건으로 사용하지 않는다.
+
+다른7개 암체는 기존 face의 위치/점/형상/개수를 모두 보존하고, 독립 아랫면처럼 강했던 `side` 색만 `#48666a`→`#5b7474`로 완화했다. 전체 Library(피난처/후벽 포함), 목재, 중앙 뿌리 접합21개 face, gameplay/collider/목표/배우/전투, 전역 renderer/main/UI는 그대로다. 모든 새 재질 경로는 기존 정적 prepare/tile 수명으로만 준비·재사용한다.
+
+최종 선공개4장을 직접 이미지 뷰어로 열었다. 중앙에서 이전 큰 부모 면 안의 중간 접합들이 보이고, 면 하단 전체를 검게 감싸지 않는다. 동쪽 흔적 아래의 큰 경사 내부에도 작은 접합이 더 보인다. overview에서는 다른 암체의 아랫면이 완화되고 피난처/뿌리/후벽은 유지된다. 여전히 일부 큰 면을 남긴 구성이고, 이 세 크기 체계가 충분히 읽히는지는 부모가 실제 사진으로 판단한다.
+
+| 같은 카메라 | 세 번째 후보 | 네 번째 후보 |
+|---|---|---|
+| 중앙1440×900 | [candidate3](evidence/candidate3-final-central.jpg) | [candidate4](evidence/candidate4-central.jpg) |
+| 동쪽 모바일390×844 | [candidate3](evidence/candidate3-final-mobile-trace.jpg) | [candidate4](evidence/candidate4-mobile-trace.jpg) |
+| 전체 | [candidate3](evidence/candidate3-final-overview.jpg) | [candidate4](evidence/candidate4-overview.jpg) |
+| 피난처 보존 | [candidate3](evidence/candidate3-final-refuge.jpg) | [candidate4](evidence/candidate4-refuge.jpg) |
+
+[candidate4-preview.json](evidence/candidate4-preview.json)에 미커밋 sourceHashes/camera/viewport/상태를 기록했다. 네 장의 camera/viewport/phase/current 목표는 세 번째 후보와 정확히 같고 JPG 각1MB 미만이다. 새 사진은 생산 Game의 고정 fixture이며 정상 전투 완주나 실기기 터치 검사가 아니다.
+
+빌드, `stage11-vector-finish.mjs`의 master대비 gameplay/다른29장 불변과 저작기 재현/멱등, `stage11-landscape-art.mjs`의 렌더 순수성·prepare 캐시/옛 전투/다른 장 opt-out을 확인했다. [보존](evidence/candidate4-preservation.json), [캐시](evidence/candidate4-material-cache.json), [세 번째 후보 대비 범위](evidence/candidate4-delta.json). 네 번째 후보의 집중/별도 종합과 비용은 후속 절에서 실제 수행 범위만 갱신한다. 기존의 무관한 전술45≠43 실패나 다른 장 검사를 재실행/수리하지 않는다.

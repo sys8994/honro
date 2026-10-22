@@ -56,7 +56,7 @@ export const STAGE11_FRACTURE_SITES={
  'rv-north-trace':[[11120,1510,55,850,'splay'],[12200,1140,650,910,'cleft'],[13820,1100,110,690,'step'],[15030,1080,800,830,'splay']]
 };
 export function authorStage11Fractures(terrain,top){
- const colors={light:'#879b8b',mid:'#708b81',side:'#48666a',recess:'#2c4852',edge:'#b4b69b70'},faces=[];
+ const colors={light:'#879b8b',mid:'#708b81',side:'#5b7474',recess:'#2c4852',edge:'#b4b69b70'},faces=[];
  for(const[x,span,inset,depth,key]of STAGE11_FRACTURE_SITES[terrain.id]||[]){
   for(const[role,points]of FIELDS[key]){if(role==='recess'&&points.length>10)continue;faces.push({points:points.map(([u,v])=>{const xx=x+span*u/1000;return[Math.round(xx*100)/100,Math.round((top(xx)+inset+depth*v/750)*100)/100];}),fill:colors[role],depthShade:true});}
  }
@@ -100,16 +100,52 @@ export function authorStage11JoinedBeds(terrain,at){
   '#5b7879','#738a80','#607d7a','#748b7f','#567478','#69837c',
   '#627d7a','#526f74','#68837d','#577579','#637d79','#4f6d74'
  ];
- const faces=[];
- for(let r=0;r<4;r++)for(let c=0;c<6;c++){
-  const ring=[...edge(r,c),...edge(r,c+1,true).slice(1),...edge(r+1,c).reverse().slice(1),...edge(r,c,true).reverse().slice(1)];
-  faces.push({points:ring.map(p=>at(...p)),fill:tones[r*6+c],depthShade:true});
- }
- const seam=(ps,width,color)=>{
-  const pts=ps.map(p=>at(...p)),left=[],right=[];
+ // Split selected parent planes only. Boundary endpoints stay on the original
+ // shared edges; the interior joins are common to both children. Other parent
+ // planes stay broad, preserving the large shadow/light masses and rest areas.
+ const splits=north?{
+  '0,2':{top:[.48],bottom:[.64],bend:[-.05],ink:0},
+  '1,1':{top:[.62],bottom:[.41],bend:[.07],ink:0},
+  '1,2':{top:[.38],bottom:[.57],bend:[-.07]},
+  '2,1':{top:[.44],bottom:[.61],bend:[.05],ink:0}
+ }:{
+  '0,2':{top:[.43],bottom:[.59],bend:[-.07]},
+  '0,4':{top:[.58],bottom:[.43],bend:[.06]},
+  '1,1':{top:[.46],bottom:[.63],bend:[-.05],ink:0},
+  '1,2':{top:[.59],bottom:[.39],bend:[.07]},
+  '1,3':{top:[.42],bottom:[.62],bend:[-.06],ink:0},
+  '2,2':{top:[.38],bottom:[.57],bend:[.08],ink:0},
+  '2,3':{top:[.33,.72],bottom:[.25,.66],bend:[-.035,.04],ink:1},
+  '2,4':{top:[.62],bottom:[.46],bend:[-.065]}
+ };
+ const faces=[],localJoins=[];
+ const mix=(a,b,u)=>a.map((x,i)=>x+(b[i]-x)*u);
+ const splitPath=(ps,f)=>{
+  if(f<=0)return[[ps[0]],ps];if(f>=1)return[ps,[ps.at(-1)]];
+  const lengths=ps.slice(1).map((p,i)=>Math.hypot(p[0]-ps[i][0],p[1]-ps[i][1])),target=lengths.reduce((a,b)=>a+b,0)*f;
+  let sum=0;for(let i=0;i<lengths.length;i++){if(sum+lengths[i]>=target){const p=mix(ps[i],ps[i+1],(target-sum)/lengths[i]);return[[...ps.slice(0,i+1),p],[p,...ps.slice(i+1)]];}sum+=lengths[i];}
+ };
+ const segment=(ps,a,b)=>splitPath(splitPath(ps,b)[0],a/b)[1];
+ const tint=(hex,d)=>'#'+[1,3,5].map(i=>Math.max(0,Math.min(255,parseInt(hex.slice(i,i+2),16)+d)).toString(16).padStart(2,'0')).join('');
+ const seamWorld=(pts,width,color)=>{
+  const left=[],right=[];
   pts.forEach(([x,y],i)=>{const a=pts[Math.max(0,i-1)],b=pts[Math.min(pts.length-1,i+1)],d=Math.hypot(b[0]-a[0],b[1]-a[1])||1,w=i===0||i===pts.length-1?width*.2:width;left.push([x-(b[1]-a[1])/d*w,y+(b[0]-a[0])/d*w]);right.push([x+(b[1]-a[1])/d*w,y-(b[0]-a[0])/d*w]);});
   faces.push({points:[...left,...right.reverse()],fill:color,depthShade:true});
  };
+ const seam=(ps,width,color)=>seamWorld(ps.map(p=>at(...p)),width,color);
+ for(let r=0;r<4;r++)for(let c=0;c<6;c++){
+  const top=edge(r,c).map(p=>at(...p)),bottom=edge(r+1,c).map(p=>at(...p)),left=edge(r,c,true).map(p=>at(...p)),right=edge(r,c+1,true).map(p=>at(...p)),spec=splits[r+','+c],tone=tones[r*6+c];
+  if(!spec){faces.push({points:[...top,...right.slice(1),...bottom.slice().reverse().slice(1),...left.slice().reverse().slice(1)],fill:tone,depthShade:true});continue;}
+  const ts=[0,...spec.top,1],bs=[0,...spec.bottom,1],joins=[left];
+  spec.top.forEach((t,i)=>{
+   const a=splitPath(top,t)[0].at(-1),b=splitPath(bottom,spec.bottom[i])[0].at(-1),span=Math.hypot(top.at(-1)[0]-top[0][0],top.at(-1)[1]-top[0][1]),dx=span*spec.bend[i];
+   const shoulder=mix(a,b,.43),heel=mix(a,b,.65);shoulder[0]+=dx;heel[0]+=dx;
+   const join=[a,shoulder,heel,b];joins.push(join);if(spec.ink===i)localJoins.push(join);
+  });joins.push(right);
+  for(let i=0;i<ts.length-1;i++)faces.push({points:[...segment(top,ts[i],ts[i+1]),...joins[i+1].slice(1),...segment(bottom,bs[i],bs[i+1]).reverse().slice(1),...joins[i].slice().reverse().slice(1)],fill:tint(tone,[6,-6,2][i]),depthShade:true});
+ }
+ // Limited fragments of the new shared joins, with off-centre shallow edge light.
+ for(const join of localJoins){seamWorld(segment(join,.24,.72),north?8:9,'#3c5a5c');seamWorld(segment(join,.11,.34).map(([x,y])=>[x-8,y-3]),north?5:6,'#a6af9466');}
  // Broken joins coincide with the mesh. A few pale edges catch the same light.
  seam(edge(0,north?2:1,true).slice(1),12,'#34525a');
  seam(edge(1,4,true).slice(0,3),15,'#34525a');
