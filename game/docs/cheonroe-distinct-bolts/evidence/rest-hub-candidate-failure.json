@@ -1,0 +1,10 @@
+{
+  "status": "failed",
+  "command": "Existing tests/rest-hub-journey-browser.py with OUT redirected to _local/reports/cheonroe-distinct-bolts/rest-hub-browser",
+  "runtimeCommit": "95b60590897237a3e04f400371522b5c97c81b2f",
+  "completed": "First 360\u00d7800 scenario: pause/cancel/confirm/save/reload/hub/journal/selection/drag/wheel/doubleclick/new stage5 passed before switching profile to cleared19.",
+  "failedAt": "tests/rest-hub-journey-browser.py:87",
+  "action": "click [data-action=\"journey-act\"][data-id=\"2\"] after setup(page,19) and journey-book click",
+  "error": "Locator.click: Timeout 30000ms exceeded; waiting for locator [data-action=\"journey-act\"][data-id=\"2\"]",
+  "laterCoverage": "Act2 actions and subsequent viewport loops did not run. No product changes made for this unrelated fixture-switch failure."
+}

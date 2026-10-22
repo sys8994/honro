@@ -6,10 +6,10 @@ import {buildCore} from '../game/engine/build.mjs';
 const g=vm.createContext({console,performance});vm.runInContext(await buildCore(),g);const C=g.HONRO_CORE,plain=x=>JSON.parse(JSON.stringify(x));
 const rows=[];
 const correlation=(a,b)=>{const dot=a.reduce((s,v,i)=>s+v*b[i],0);return dot/Math.sqrt(a.reduce((s,v)=>s+v*v,0)*b.reduce((s,v)=>s+v*v,0));};
-for(const phase of [0,1,2])for(const spacing of [8,38,100]){
+for(const strike of [1,17])for(const phase of [0,1,2])for(const spacing of [8,38,100]){
  const paths=[],normalized=[],origins=[],directions=[],seeds=[];let reach=0,oldReach=0,minRms=Infinity,maxCorrelation=-1;
  for(let i=0;i<10;i++){
-  const x=1000+(i-4.5)*spacing,seed=C.cheonroeVisualSeed(17,'lightning-target-'+i),args=[x,-170,x,940,phase,seed],p=C.cheonroeLightningPaths(...args),old=C.lightningPaths(...args.slice(0,5));
+  const x=1000+(i-4.5)*spacing,seed=C.cheonroeVisualSeed(strike,'lightning-target-'+i),args=[x,-170,x,940,phase,seed],p=C.cheonroeLightningPaths(...args),old=C.lightningPaths(...args.slice(0,5));
   assert.deepEqual(plain(p),plain(C.cheonroeLightningPaths(...args)),'deterministic repeat');
   assert.deepEqual(plain(p.trunk[0]),{x,y:-170});assert.deepEqual(plain(p.trunk.at(-1)),{x,y:940});
   assert.equal(p.forks.length,6);assert(p.forks.every(f=>f.length===6),'all original branch segments retained');
@@ -36,9 +36,9 @@ for(const phase of [0,1,2])for(const spacing of [8,38,100]){
  assert.equal(new Set(origins.map(JSON.stringify)).size,10,'distinct branch attachment patterns');
  assert(new Set(directions.map(JSON.stringify)).size>=7,'asymmetric branch directions');
  assert(reach/oldReach>.5&&reach/oldReach<.7,'aggregate reach approximately 40% shorter');
- rows.push({phase,spacing,minPairRms:minRms,maxAbsCorrelation:maxCorrelation,branchReachRatio:reach/oldReach});
+ rows.push({strike,phase,spacing,minPairRms:minRms,maxAbsCorrelation:maxCorrelation,branchReachRatio:reach/oldReach});
 }
-// Both renderer entry points retain event seed and age it without mutating it.
+// Event ingestion retains the seed and original lifetime; browser checks cover aging.
 const renderer=new C.Renderer({getContext:()=>({})}),seed=C.cheonroeVisualSeed(17,'same-head');
 renderer.event({type:'fx',name:'lightningBolt',x:10,y:0,x2:10,y2:900,size:3.5,lightningSeed:seed});
 assert.equal(renderer.fxs[0].lightningSeed,seed);assert.equal(renderer.fxs[0].life,.9);
@@ -51,4 +51,4 @@ for(const [x,y,x2,y2] of [[10,20,10,22],[25,80,450,400],[31,20,31,20]])for(const
 }
 mkdirSync('_local/reports/cheonroe-distinct-bolts',{recursive:true});
 writeFileSync('_local/reports/cheonroe-distinct-bolts/geometry-results.json',JSON.stringify({status:'passed',rows},null,2)+'\n');
-console.log('PASS M05: 90 deterministic paths, 405 normalized pair comparisons, mixed seeds, diverse kinks/bends/branch origins, 60% branch reach, exact endpoints, phases, six branches, .9s life');
+console.log('PASS M05: 180 deterministic paths, 810 normalized pair comparisons, mixed seeds, diverse kinks/bends/branch origins, 60% branch reach, exact endpoints, phases, six branches, .9s life');

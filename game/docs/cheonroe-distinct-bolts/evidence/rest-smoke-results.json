@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "runtimeCommit": "95b60590897237a3e04f400371522b5c97c81b2f",
+  "browser": "154.0.8037.57",
+  "rows": [
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "flow": "rest → journal/select/CTA → rest → new battle → return confirmation/cancel/confirm → reload/Continue",
+      "savePreservedDuringConfirmation": true,
+      "newBattleRound": 1
+    },
+    {
+      "viewport": [
+        1280,
+        900
+      ],
+      "flow": "rest → journal/select/CTA → rest → new battle → return confirmation/cancel/confirm → reload/Continue",
+      "savePreservedDuringConfirmation": true,
+      "newBattleRound": 1
+    }
+  ],
+  "pageErrors": [],
+  "scope": "Actual Chromium/public UI on cleared4 fixture; no campaign completion or Act2 fixture-switch claim."
+}

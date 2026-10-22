@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "baseCommit": "2464b5b370114abacd9d0fa4e8dbd96274b7c621",
+  "checks": {
+    "checks": [
+      {
+        "viewport": [
+          360,
+          800
+        ],
+        "flow": "pause/cancel/confirm/reload/hub/book/select/CTA/new battle",
+        "act2": "11\u201312 surface and 13\u201320 underground",
+        "rotation": true,
+        "doubleClick": true,
+        "savePreservedBeforeApproval": true
+      },
+      {
+        "viewport": [
+          390,
+          844
+        ],
+        "flow": "pause/cancel/confirm/reload/hub/book/select/CTA/new battle",
+        "act2": "11\u201312 surface and 13\u201320 underground",
+        "rotation": true,
+        "doubleClick": true,
+        "savePreservedBeforeApproval": true
+      },
+      {
+        "viewport": [
+          844,
+          390
+        ],
+        "flow": "pause/cancel/confirm/reload/hub/book/select/CTA/new battle",
+        "act2": "11\u201312 surface and 13\u201320 underground",
+        "rotation": true,
+        "doubleClick": true,
+        "savePreservedBeforeApproval": true
+      },
+      {
+        "viewport": [
+          1280,
+          900
+        ],
+        "flow": "pause/cancel/confirm/reload/hub/book/select/CTA/new battle",
+        "act2": "11\u201312 surface and 13\u201320 underground",
+        "rotation": true,
+        "doubleClick": true,
+        "savePreservedBeforeApproval": true
+      }
+    ],
+    "errors": [],
+    "scope": "Real Chromium inputs on fixture campaign profiles; no normal combat completion or parent pixel approval claimed."
+  },
+  "scope": "Exact master core module replay; all rest/UI source/assets byte-identical; original suite with OUT redirected."
+}

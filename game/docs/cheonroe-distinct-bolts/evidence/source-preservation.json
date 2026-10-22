@@ -1,0 +1,3120 @@
+{
+  "status": "passed",
+  "baseCommit": "2464b5b370114abacd9d0fa4e8dbd96274b7c621",
+  "protectedSourceFiles": 619,
+  "icons": 84,
+  "files": [
+    {
+      "path": "game/config/balance.json",
+      "bytes": 11806,
+      "sha256": "ddc580481641c4ef1d423c9522a457c845334ef3e7a4654f1ae5a7c4a48fca5a"
+    },
+    {
+      "path": "game/config/story-portraits.json",
+      "bytes": 5234,
+      "sha256": "4bbf8860855d15f2af00c4fd484af6e1cbaaf815ba49e7ed4854ade5ad559b4b"
+    },
+    {
+      "path": "game/src/act-endings.css",
+      "bytes": 4173,
+      "sha256": "90ba24b8e13389835dc40ecbb4675b17c0b6fe36e9b42d94d0eb7f84f56fab97"
+    },
+    {
+      "path": "game/src/act3-void.css",
+      "bytes": 2051,
+      "sha256": "bc0568cbc4ae56e48989c0cbc8daad1d2eae1235d49d9465455493abafb9642b"
+    },
+    {
+      "path": "game/src/controls.css",
+      "bytes": 30272,
+      "sha256": "17c60131092f54c2274dd91bbf3b49b137653a8fc80832c7e3c840cd119388d4"
+    },
+    {
+      "path": "game/src/fonts.css",
+      "bytes": 493,
+      "sha256": "9251c095ef93d0b1caf9ac11ec13fb2671779922709378bb75b7822cd3cacca9"
+    },
+    {
+      "path": "game/src/guide.css",
+      "bytes": 3138,
+      "sha256": "869baa784cb9ba70357a384dc3bffcd5618e948e3178fff5c978291e4046ada6"
+    },
+    {
+      "path": "game/src/hud.css",
+      "bytes": 23953,
+      "sha256": "d0f45c17375d9481b18768bca2771df2e5597e5f871212d1e4575ae322ff392b"
+    },
+    {
+      "path": "game/src/journey.css",
+      "bytes": 22927,
+      "sha256": "7f94c5b05b95b19935573bf3008412078ad2afaad811f38be8bf68cff62656ab"
+    },
+    {
+      "path": "game/src/presentation.css",
+      "bytes": 15311,
+      "sha256": "692fba8ee2eb51a8d52ddcb78edb8bfbf71c8d39e43701e408284563fbbc1fdb"
+    },
+    {
+      "path": "game/src/skill-icons.css",
+      "bytes": 2959,
+      "sha256": "49d5a4761d5454c13973debfc33d4ffa3a0c0895b27731df9c263ee9da0b12db"
+    },
+    {
+      "path": "game/src/skill-presentation.css",
+      "bytes": 18354,
+      "sha256": "d533fe7e6ea357658d959b0bac3ea9e69bb028db30c2f62ac5c5aa8f95deab8b"
+    },
+    {
+      "path": "game/src/title.css",
+      "bytes": 10484,
+      "sha256": "6b29dc13abe8471b333cb89b30da3a18935e74173a56e3a5a7c9027c14c3c17d"
+    },
+    {
+      "path": "game/src/training.css",
+      "bytes": 9583,
+      "sha256": "14cb5dad15d2ff893ed16a31db874d4de635bf2477489334e7223b38acaa5656"
+    },
+    {
+      "path": "game/src/unit-info.css",
+      "bytes": 2579,
+      "sha256": "a60fa5389408ecc4895beb8361152d355b33237b1afb3fc004906267765f95e1"
+    },
+    {
+      "path": "shared/assets/actors/actors.runtime.js",
+      "bytes": 169149,
+      "sha256": "e136d5f824f3694a69db58f0052aa91f50e7284811992992accfeef55896448e"
+    },
+    {
+      "path": "shared/assets/actors/ally_archer.animation.json",
+      "bytes": 7313,
+      "sha256": "138941fa393ccaac6f7f2b31083aba05f43f575b7f6eec67a1bebd924eaed0fb"
+    },
+    {
+      "path": "shared/assets/actors/ally_archer.rig.json",
+      "bytes": 1858,
+      "sha256": "4d9618af341f59533a24d5f6981213b0288d5bc4962f01967d94e755b7330761"
+    },
+    {
+      "path": "shared/assets/actors/ally_archer.svg",
+      "bytes": 7738,
+      "sha256": "723f388d77dc0b361f4eae27f17c5ba402190db212908eb12990bdfa445db011"
+    },
+    {
+      "path": "shared/assets/actors/ally_daoist.animation.json",
+      "bytes": 7264,
+      "sha256": "d7f2e819a76a3013ef6b3d686a835be4e66d9afdf69e76505ef730716c4a46cb"
+    },
+    {
+      "path": "shared/assets/actors/ally_daoist.rig.json",
+      "bytes": 1858,
+      "sha256": "4d9618af341f59533a24d5f6981213b0288d5bc4962f01967d94e755b7330761"
+    },
+    {
+      "path": "shared/assets/actors/ally_daoist.svg",
+      "bytes": 7626,
+      "sha256": "0cb91996118ea182ac1f9f2cc44b630a7397e8f0800c907beb6a4ef672190cc6"
+    },
+    {
+      "path": "shared/assets/actors/ally_guard.animation.json",
+      "bytes": 7644,
+      "sha256": "451d7ac36752d1373c5e1d967d80dd79682e28e0088d3591f258fa479472d040"
+    },
+    {
+      "path": "shared/assets/actors/ally_guard.rig.json",
+      "bytes": 1858,
+      "sha256": "4d9618af341f59533a24d5f6981213b0288d5bc4962f01967d94e755b7330761"
+    },
+    {
+      "path": "shared/assets/actors/ally_guard.svg",
+      "bytes": 9876,
+      "sha256": "d80830103c24ed2d3af4af11bbcd7c6f027df6294ab6bdc982208a5b64c4f800"
+    },
+    {
+      "path": "shared/assets/actors/ally_healer.animation.json",
+      "bytes": 7264,
+      "sha256": "d7f2e819a76a3013ef6b3d686a835be4e66d9afdf69e76505ef730716c4a46cb"
+    },
+    {
+      "path": "shared/assets/actors/ally_healer.rig.json",
+      "bytes": 1989,
+      "sha256": "16fc0fec5132a5b0de43c4175d10f29a602637dd57b5a7a83df7c17816ccc174"
+    },
+    {
+      "path": "shared/assets/actors/ally_healer.svg",
+      "bytes": 7470,
+      "sha256": "92bf03fc1d3785730b649e6667a817d5e84bef1c4164132516427bf7229fc0c9"
+    },
+    {
+      "path": "shared/assets/actors/ally_medium.animation.json",
+      "bytes": 7586,
+      "sha256": "b304932bddacf46ed7fbca7809f0d9a50fad1e34419eb55813abda06c004ff1c"
+    },
+    {
+      "path": "shared/assets/actors/ally_medium.rig.json",
+      "bytes": 2117,
+      "sha256": "0778d5c2871b9220ff1b76d4179629722df7a40b014528092a214d9a1c60f0d1"
+    },
+    {
+      "path": "shared/assets/actors/ally_medium.svg",
+      "bytes": 8429,
+      "sha256": "bfe8379eab57e71f6e9535109b878ccd57fb84ddaabe283b35b6e4b375bb5c3a"
+    },
+    {
+      "path": "shared/assets/actors/ally_porter.animation.json",
+      "bytes": 7264,
+      "sha256": "d7f2e819a76a3013ef6b3d686a835be4e66d9afdf69e76505ef730716c4a46cb"
+    },
+    {
+      "path": "shared/assets/actors/ally_porter.rig.json",
+      "bytes": 1967,
+      "sha256": "67d88578308eec79209e43f17ac319274f55add2abdb26fcd28e98f05e5b4ca4"
+    },
+    {
+      "path": "shared/assets/actors/ally_porter.svg",
+      "bytes": 7411,
+      "sha256": "c80150db7e7c854dbc770411795d8f3398e93e34f43f3a01cf80c794c5ef69bd"
+    },
+    {
+      "path": "shared/assets/actors/ally_ritualist.animation.json",
+      "bytes": 7264,
+      "sha256": "d7f2e819a76a3013ef6b3d686a835be4e66d9afdf69e76505ef730716c4a46cb"
+    },
+    {
+      "path": "shared/assets/actors/ally_ritualist.rig.json",
+      "bytes": 1858,
+      "sha256": "4d9618af341f59533a24d5f6981213b0288d5bc4962f01967d94e755b7330761"
+    },
+    {
+      "path": "shared/assets/actors/ally_ritualist.svg",
+      "bytes": 7173,
+      "sha256": "cc34d27e04b6400f621905a52205c74dd4e08edea837e2ed2640c48ae0fe4759"
+    },
+    {
+      "path": "shared/assets/actors/ally_scout.animation.json",
+      "bytes": 7644,
+      "sha256": "451d7ac36752d1373c5e1d967d80dd79682e28e0088d3591f258fa479472d040"
+    },
+    {
+      "path": "shared/assets/actors/ally_scout.rig.json",
+      "bytes": 1858,
+      "sha256": "4d9618af341f59533a24d5f6981213b0288d5bc4962f01967d94e755b7330761"
+    },
+    {
+      "path": "shared/assets/actors/ally_scout.svg",
+      "bytes": 7256,
+      "sha256": "dfd46cac9eddb0728a18c375be59ca2c28b8d4d285acdc8b6fddb74b4b2d1ab4"
+    },
+    {
+      "path": "shared/assets/actors/bier.animation.json",
+      "bytes": 1996,
+      "sha256": "e8be7d56021834b12fa1f56da5b44836e788c557a640131d9a1dc0184fbb2d1b"
+    },
+    {
+      "path": "shared/assets/actors/bier.rig.json",
+      "bytes": 634,
+      "sha256": "59295145ed94dd87b8df811b4226e6745ece4d20bf01102f49ea9fd2dd9f93f3"
+    },
+    {
+      "path": "shared/assets/actors/bier.svg",
+      "bytes": 2373,
+      "sha256": "7eb1fffee7e6608f44a89a406edb1ebecf8347ac9ecd21c5b763eddefe5f631f"
+    },
+    {
+      "path": "shared/assets/actors/bier_boss.animation.json",
+      "bytes": 2316,
+      "sha256": "314e31e8de8e6961db5b0e1cfa174be3ae377215f8a6c6dd394c6fe0002c49b1"
+    },
+    {
+      "path": "shared/assets/actors/bier_boss.rig.json",
+      "bytes": 738,
+      "sha256": "b979af4f9cdbbb8507f91ee0f7e857825f1f9a6e23d97cca44de0f708b753e01"
+    },
+    {
+      "path": "shared/assets/actors/bier_boss.svg",
+      "bytes": 2848,
+      "sha256": "3fa617200738bb815b49fc1ad174a2caa9b89a247cbc14a53ff0860ea7496719"
+    },
+    {
+      "path": "shared/assets/actors/civilian.animation.json",
+      "bytes": 7264,
+      "sha256": "d7f2e819a76a3013ef6b3d686a835be4e66d9afdf69e76505ef730716c4a46cb"
+    },
+    {
+      "path": "shared/assets/actors/civilian.rig.json",
+      "bytes": 1858,
+      "sha256": "4d9618af341f59533a24d5f6981213b0288d5bc4962f01967d94e755b7330761"
+    },
+    {
+      "path": "shared/assets/actors/civilian.svg",
+      "bytes": 7081,
+      "sha256": "c3151fe76567e47d2db040e8c73da73f6a3032721e12bff2ad822b6a63c5bd04"
+    },
+    {
+      "path": "shared/assets/actors/colossus.animation.json",
+      "bytes": 3584,
+      "sha256": "6494edfb1a5fe1d22c81d7b509edc4fa525dbca065e37b76c4144c202203880a"
+    },
+    {
+      "path": "shared/assets/actors/colossus.rig.json",
+      "bytes": 859,
+      "sha256": "39d96709374cb06c35b95986177760712c81e096d339cc6745312ce0257b07e7"
+    },
+    {
+      "path": "shared/assets/actors/colossus.svg",
+      "bytes": 5060,
+      "sha256": "68afaf9d65bae55d61db6e283d789ccac7067e35ad9fd48175ecea1d1c26401f"
+    },
+    {
+      "path": "shared/assets/actors/gate.animation.json",
+      "bytes": 1922,
+      "sha256": "2b87007104f3a6bc27f503f3e1922f8eb6c4ef35632532661f21eea11eba3da3"
+    },
+    {
+      "path": "shared/assets/actors/gate.rig.json",
+      "bytes": 750,
+      "sha256": "bcaae2ef8a772922350e73fa8b8252d5dbd699cbcd6f65bd5d4f83ec9c2fd485"
+    },
+    {
+      "path": "shared/assets/actors/gate.svg",
+      "bytes": 3591,
+      "sha256": "b810a6305b9780c25f0aebeafbffdf0ee6e5ffbc12ee0893186682888fbc687c"
+    },
+    {
+      "path": "shared/assets/actors/stretcher.animation.json",
+      "bytes": 1633,
+      "sha256": "c771f597fc8b0756f2ab9d23379464c96e86e2644d29161f005bb875c87d9dc5"
+    },
+    {
+      "path": "shared/assets/actors/stretcher.rig.json",
+      "bytes": 542,
+      "sha256": "d25f4c207fcb1516caa67c39f9d3398d7b92ba835ca9be36709486e16073ba79"
+    },
+    {
+      "path": "shared/assets/actors/stretcher.svg",
+      "bytes": 1840,
+      "sha256": "90ea65189919679acafcb9e236cd6a9e748d7137a94e60bf4a4f5c8f250e9375"
+    },
+    {
+      "path": "shared/assets/actors/summon_charger.animation.json",
+      "bytes": 4651,
+      "sha256": "ed699467a5e10473eef6e1e8afcb6234a588b86b2868e7adb29c20dca6226d33"
+    },
+    {
+      "path": "shared/assets/actors/summon_charger.rig.json",
+      "bytes": 806,
+      "sha256": "bf002fa9452200764ed781e4edb6eb892929d22e4c26e46294f24b21f7150405"
+    },
+    {
+      "path": "shared/assets/actors/summon_charger.svg",
+      "bytes": 3094,
+      "sha256": "f51cb08a8e81c195fc7907babed99f18bbe942d3dfd482de697d31ae5c45d157"
+    },
+    {
+      "path": "shared/assets/actors/summon_earthbound.animation.json",
+      "bytes": 3578,
+      "sha256": "038d152f92cf3a8d8b32040b7d631a311462fb8856bc49b86059fc22ddc43ce8"
+    },
+    {
+      "path": "shared/assets/actors/summon_earthbound.rig.json",
+      "bytes": 579,
+      "sha256": "5d5bf1997febcd049e5cf7317bb7f0ce7caa41d09e7cf4b60a93cb82fced2425"
+    },
+    {
+      "path": "shared/assets/actors/summon_earthbound.svg",
+      "bytes": 1393,
+      "sha256": "11a6c487f21942eb0300f4939dbf9684f3b4e33c539064929530f214d7c0401c"
+    },
+    {
+      "path": "shared/assets/actors/summon_eater.animation.json",
+      "bytes": 5772,
+      "sha256": "97e33b9c6e70c8d4ff2268b0d28b7c8cb90cfa3c39c2d6c2cbd49154579ba7c2"
+    },
+    {
+      "path": "shared/assets/actors/summon_eater.rig.json",
+      "bytes": 663,
+      "sha256": "75bb6a0a3328819c80518534b7a3856e0edfc1b26545aeceb253f6ebca3b8624"
+    },
+    {
+      "path": "shared/assets/actors/summon_eater.svg",
+      "bytes": 4554,
+      "sha256": "e173323828ca2b6c65ba1c33694fdf365f14c63895dd3e9abf89483fc3a06af5"
+    },
+    {
+      "path": "shared/assets/actors/summon_echo.animation.json",
+      "bytes": 5594,
+      "sha256": "a5912ca2db9286a9ad7cbf48af48e98be03d6a95326244e7ea86b214c5fdf6ab"
+    },
+    {
+      "path": "shared/assets/actors/summon_echo.rig.json",
+      "bytes": 666,
+      "sha256": "6cea89ce0c04b6f05be7ceb87b2e9388a7ff0743dedb88343941e78a3b31f1da"
+    },
+    {
+      "path": "shared/assets/actors/summon_echo.svg",
+      "bytes": 3153,
+      "sha256": "aac4da369ce9659891a4c4b70bd7aa88b7a5efbc2841cccca4a66cb87fa55ad0"
+    },
+    {
+      "path": "shared/assets/actors/summon_host.animation.json",
+      "bytes": 5591,
+      "sha256": "544c8df96f67ddddd13e5ec1ddae09185c15ae57cc8dbc1e5219aa35e0af6e7a"
+    },
+    {
+      "path": "shared/assets/actors/summon_host.rig.json",
+      "bytes": 681,
+      "sha256": "525317706e9a62c7f202b4700f970a3636977ee99ffddb0ac62867c4f507e89e"
+    },
+    {
+      "path": "shared/assets/actors/summon_host.svg",
+      "bytes": 1904,
+      "sha256": "665b28d6b090d260f1a97e13881c398a763e80ec37a2ad2877be178f70b1ea51"
+    },
+    {
+      "path": "shared/assets/actors/summon_lantern.animation.json",
+      "bytes": 4247,
+      "sha256": "8641f8099b03d511dd7e436327925bddfb6f1ebdf5ee5ec4077c406cd0ee972d"
+    },
+    {
+      "path": "shared/assets/actors/summon_lantern.rig.json",
+      "bytes": 536,
+      "sha256": "c27c1ffefab3919b2668b914df4eb7e32335eef57a54f58f75c204a182cd34de"
+    },
+    {
+      "path": "shared/assets/actors/summon_lantern.svg",
+      "bytes": 1413,
+      "sha256": "e33f410ec67a1e0ad289a146dc70b044c490f59e08881dbaba28cd608783fb65"
+    },
+    {
+      "path": "shared/assets/actors/summon_stalker.animation.json",
+      "bytes": 4287,
+      "sha256": "0f165375cb7765d014cebe1f297ce589d354cac4845cf49a1a4856a6836b8a6c"
+    },
+    {
+      "path": "shared/assets/actors/summon_stalker.rig.json",
+      "bytes": 679,
+      "sha256": "d9cbe39b7873802e71972af373894493a3cbceccec8adb48b3985428885aeeab"
+    },
+    {
+      "path": "shared/assets/actors/summon_stalker.svg",
+      "bytes": 2706,
+      "sha256": "226e5156cd95f9edfb3901efbc9f855d76b7c81a81e346beb696baed1ce1ce83"
+    },
+    {
+      "path": "shared/assets/actors/summon_warden.animation.json",
+      "bytes": 3569,
+      "sha256": "7ed4ecec79f1486ceee93bd3a67d5d52ae50e848b0574542789ae9681607671b"
+    },
+    {
+      "path": "shared/assets/actors/summon_warden.rig.json",
+      "bytes": 564,
+      "sha256": "5de908531485cd3bac12080205bdb06f1c2e7a9fc66274e4ff5fdd073c3ad210"
+    },
+    {
+      "path": "shared/assets/actors/summon_warden.svg",
+      "bytes": 2955,
+      "sha256": "b18b0bb0a341fae48dafc5ab4009b6717d51cd946c7460e72dad28a7a1ac9dbf"
+    },
+    {
+      "path": "shared/assets/actors/woodcutter.animation.json",
+      "bytes": 7651,
+      "sha256": "cd83ff424aeb3ea01b6b1a80f6f64a2c6bf17736101aa5f4ea4e1b1e09d68ef0"
+    },
+    {
+      "path": "shared/assets/actors/woodcutter.rig.json",
+      "bytes": 1967,
+      "sha256": "67d88578308eec79209e43f17ac319274f55add2abdb26fcd28e98f05e5b4ca4"
+    },
+    {
+      "path": "shared/assets/actors/woodcutter.svg",
+      "bytes": 7325,
+      "sha256": "a52d32906eb3cf3540a66ab447d7b7f40471c57f11172c43a4dff31157e46c14"
+    },
+    {
+      "path": "shared/assets/endings/act-1-portrait.webp",
+      "bytes": 479486,
+      "sha256": "5520e02971f9a436fb3ae262ec6290524aa14b4e4befdfaccd51af0573387c2a"
+    },
+    {
+      "path": "shared/assets/endings/act-1.webp",
+      "bytes": 442588,
+      "sha256": "6a631739bb1b733849652c0895d5e2bbb621859e85e08d02d243b3e38a6efd4d"
+    },
+    {
+      "path": "shared/assets/endings/act-2-portrait.webp",
+      "bytes": 440842,
+      "sha256": "ba7ff960c89ed37028c867ee4c0fc654651e9cae5d9d104fcd3870581b0ae48d"
+    },
+    {
+      "path": "shared/assets/endings/act-2.webp",
+      "bytes": 422342,
+      "sha256": "63c3c8526af3bdfe0edda6a26e6d2c8de95772965ee75479dec7d8d9719d9127"
+    },
+    {
+      "path": "shared/assets/endings/act-3-portrait.webp",
+      "bytes": 482120,
+      "sha256": "51fd29f411387d85faf0137b3033d2ba72b59596aa46c3aaeef17501313f546b"
+    },
+    {
+      "path": "shared/assets/endings/act-3.webp",
+      "bytes": 400452,
+      "sha256": "81e1aac5338adfcfc742488320b6c6a0a80e81eafb9a4ff02cefa332c9d5c98c"
+    },
+    {
+      "path": "shared/assets/environment/act1-far-master.png",
+      "bytes": 1547455,
+      "sha256": "b83c0f0f60cbec1a94c0de36f66ad2b228265509dc493ab1a739f4418fc1d4bc"
+    },
+    {
+      "path": "shared/assets/environment/act1-far.prompt.md",
+      "bytes": 4167,
+      "sha256": "68ee1c50d470aa3ed3521ebb52816e210ffa7849c45a7ff4517623c789db74f3"
+    },
+    {
+      "path": "shared/assets/environment/act1-far.svg",
+      "bytes": 19266,
+      "sha256": "e61d8ba2f23bdb72a2b753e18d261719ac48add8fc19f1c176491a5b23d7fdb4"
+    },
+    {
+      "path": "shared/assets/environment/act1-far.webp",
+      "bytes": 68636,
+      "sha256": "07cd067d3c5c7b6b245c0c19172439b581c7075ffa7c7e1e3ea2607c02005b56"
+    },
+    {
+      "path": "shared/assets/environment/act1-gorge.svg",
+      "bytes": 22474,
+      "sha256": "38d2033f7a1bd874eb6e9a2324fc0c66cbed5150835b974792b42a8a2a49d787"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-bridge-abutment.svg",
+      "bytes": 2819,
+      "sha256": "2a835db793645397582ca082bca052428857b398e97efc5639bc1011b2a9cdd3"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-ferry-house.svg",
+      "bytes": 3714,
+      "sha256": "5d9087c85241863c2e96112a5ac467bfb5e329d481887eb8a9a1a04d55c704c0"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-guardian-tree.svg",
+      "bytes": 3747,
+      "sha256": "a6059d3cf315c43487143eb7d937f46c58b07cc32a4584df5a28ca9c5e91593a"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-pine-grove.svg",
+      "bytes": 5018,
+      "sha256": "a18f243328285700f2d8f837072a278e8fcb1c3396ad634b12c94e59ffd0640d"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-refuge-courtyard.svg",
+      "bytes": 3713,
+      "sha256": "90eb5accb876810680c7e6e7b090afa021f8392a149b85b9a540cb32588cc826"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-refuge-gate.svg",
+      "bytes": 3748,
+      "sha256": "d0a1c81c85cfe5f67c87d2b69402334f5948be4706dc3752fa10d0cf3ef90c8c"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-ritual-grove.svg",
+      "bytes": 9608,
+      "sha256": "d5cdf06c95dcf7525865324e31f98c355015deee131f7fe76ac6d99a0c5db3f5"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-ritual-hall.svg",
+      "bytes": 4520,
+      "sha256": "7f1489d509391e74f76b3e3f82848c69e3a5d8c44adbfa77c07f3be100c64356"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-root-sanctuary.svg",
+      "bytes": 15323,
+      "sha256": "086d706f0fb846dd0d0a59f8d1dc610e67c3fe85a804e0299305dd41b7293fee"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-rooted-pine.svg",
+      "bytes": 2342,
+      "sha256": "757d9fd82e2c75bdf85935c3d12526b0b87e2b5c5c12c57d723a39377ce7470e"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-rooted-sacred.svg",
+      "bytes": 5300,
+      "sha256": "1970bfb083b1bb02b3c0be238cae029d7398ff4c52154fd63bf78dd95e5b489c"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-ruined-court.svg",
+      "bytes": 3948,
+      "sha256": "f82162438d05dcbf25b45b6529d766cf2b7da7e666f5c9347185e454ebb2fbbd"
+    },
+    {
+      "path": "shared/assets/environment/act1-scene-valley-granite.svg",
+      "bytes": 4568,
+      "sha256": "474c1bd977749c9b6eaadf2d48654f3d9bb66324334b911f097ccd6f26b55072"
+    },
+    {
+      "path": "shared/assets/environment/act2-cave-home-lean.svg",
+      "bytes": 1111,
+      "sha256": "70b0f3c04247d99a25f2af446fadd7eb1cb0e33ac32088c2f4f0c82f9617fc12"
+    },
+    {
+      "path": "shared/assets/environment/act2-cave-home.svg",
+      "bytes": 1518,
+      "sha256": "b8ae36dcac64333d07c03272db15dbfd1a3cb114811c8d38b07e7b8bc1210c8e"
+    },
+    {
+      "path": "shared/assets/environment/act2-clouded-granite.svg",
+      "bytes": 2501,
+      "sha256": "86ae2f37d1af7644c36eea4235c9d765f86e7fca5526a74c9e086e405a3dc8c1"
+    },
+    {
+      "path": "shared/assets/environment/act2-dawn.svg",
+      "bytes": 19543,
+      "sha256": "a0f4c8bf917cf471d0bb9dffdf05189ce8f5e4acd96c9d8a4961e0f4ebf90297"
+    },
+    {
+      "path": "shared/assets/environment/act2-hoist-frame.svg",
+      "bytes": 1233,
+      "sha256": "1eadc89dfd5acb78c5b5d1a8eee7e05f5fca7693417d6ed8233dc23592f854ac"
+    },
+    {
+      "path": "shared/assets/environment/act2-pine.svg",
+      "bytes": 3847,
+      "sha256": "9f7186b21ff5abe51dfb51bfb5918b6bec18ca89d4fcfa98288ac45fef12c96b"
+    },
+    {
+      "path": "shared/assets/environment/act2-scene-court-wall.svg",
+      "bytes": 1674,
+      "sha256": "c504f76b0ac2fbaf29915c2543ed35e794b4d482cd293b3f1f7b10a9475bf96d"
+    },
+    {
+      "path": "shared/assets/environment/act2-scene-longhouse.svg",
+      "bytes": 1919,
+      "sha256": "40d9aceaf6679c784169399c5148ef22faea182a9495257ef8addab467c05bb4"
+    },
+    {
+      "path": "shared/assets/environment/act2-scene-market-awning.svg",
+      "bytes": 1439,
+      "sha256": "435fc881525aa4760916666818739f22acbbc8ce991ea13846a8cdf853b97c3a"
+    },
+    {
+      "path": "shared/assets/environment/act2-scene-market-walkway.svg",
+      "bytes": 1865,
+      "sha256": "47e978ef79653cf64cd1553e56b4fad3061251ba5c9cb907711b6b1c83773aa9"
+    },
+    {
+      "path": "shared/assets/environment/act2-scene-stone-threshold.svg",
+      "bytes": 1785,
+      "sha256": "3294d862f1efa312cca2eb21fc700e08f37d735126ee6fc92a9c25d1fc1143e5"
+    },
+    {
+      "path": "shared/assets/environment/act2-scene-temple-corridor.svg",
+      "bytes": 2121,
+      "sha256": "9c15f01ea64c30fc26d545796829e4202316e5ec9efa73eabee866ddb9a98772"
+    },
+    {
+      "path": "shared/assets/environment/act2-scene-upper-stair.svg",
+      "bytes": 1249,
+      "sha256": "473cf1411fc3df51448d94e72542279f0a98e81c77e677e39147258c0fdf6681"
+    },
+    {
+      "path": "shared/assets/environment/act2-scene-work-shelter.svg",
+      "bytes": 1419,
+      "sha256": "2a4089502e1e8171ab90180d045446ec6a50bc7e2f003c8a8be0179221358551"
+    },
+    {
+      "path": "shared/assets/environment/act2-sluice.svg",
+      "bytes": 895,
+      "sha256": "e750e222790dee68fcc91cb2884e1c020fbe977874cee9e956660e45ddfca46f"
+    },
+    {
+      "path": "shared/assets/environment/act2-stone-lamp.svg",
+      "bytes": 545,
+      "sha256": "8c206a9380246c48737961e16d6a8b0490ab0b12e5b804813907c294c6f583a3"
+    },
+    {
+      "path": "shared/assets/environment/act2-temple-hall.svg",
+      "bytes": 4309,
+      "sha256": "c31553e48897d5da91a210061f635851df1e06baca0cb27c659649b5ea3ba130"
+    },
+    {
+      "path": "shared/assets/environment/act2-wedged-bell.svg",
+      "bytes": 2768,
+      "sha256": "3525141353182b1542f2845b8d3648eb2aee114102c5b350adfeeff45ba5e74a"
+    },
+    {
+      "path": "shared/assets/environment/act3-architecture/archive-cutaway-frame.svg",
+      "bytes": 10476,
+      "sha256": "c42323155644148f8341db78c080f714106b89e210603dc8a555c2280dd9fce7"
+    },
+    {
+      "path": "shared/assets/environment/act3-architecture/eupseong-gate.svg",
+      "bytes": 9149,
+      "sha256": "faf650485463aeb0acd0deed490fdacb2700610563b9438711deaeda9e5b1abd"
+    },
+    {
+      "path": "shared/assets/environment/act3-architecture/ferry-loading-pavilion.svg",
+      "bytes": 6129,
+      "sha256": "84f755103450b3a2e5e85b9dff1e4b0ff4a8add589b850a6d7811ae5c90c59cf"
+    },
+    {
+      "path": "shared/assets/environment/act3-architecture/granary-loading-wall.svg",
+      "bytes": 9410,
+      "sha256": "7eb94170054f41f67b8b10a37233136351ca9018ba65ec03bf54bc2451833812"
+    },
+    {
+      "path": "shared/assets/environment/act3-architecture/mansion-open-gallery.svg",
+      "bytes": 10898,
+      "sha256": "152713dd7f6e4b722990848038a0877b4b1557f05f7463948bd616648e2ae5c9"
+    },
+    {
+      "path": "shared/assets/environment/act3-architecture/office-wall-entry.svg",
+      "bytes": 7134,
+      "sha256": "9739f52bce0f69223cc43054205c37aa19fb3e47fb9fa97876a859774b75cb03"
+    },
+    {
+      "path": "shared/assets/environment/act3-architecture/open-two-storey-gallery.svg",
+      "bytes": 7042,
+      "sha256": "6817d37dba2569adffcd3f27cb5ce7ed3d43448c7baa9ae9861e1cb3c6014f47"
+    },
+    {
+      "path": "shared/assets/environment/act3-architecture/production-manifest.json",
+      "bytes": 34584,
+      "sha256": "159a5364aaa8b4fc0ac048081f84472ef4120a71bc86cef6327f9398147f457e"
+    },
+    {
+      "path": "shared/assets/environment/act3-architecture/ruined-foundry.svg",
+      "bytes": 5257,
+      "sha256": "40a7920da51c1306714c4e987b1be9658eea6c25b213751841e0e4705025bd23"
+    },
+    {
+      "path": "shared/assets/environment/act3-architecture/sluice-pavilion.svg",
+      "bytes": 6026,
+      "sha256": "d21fee86c1d068dd09401db8c9b610279a3e53952ddb0e34b7e34534aa3cf1a5"
+    },
+    {
+      "path": "shared/assets/environment/act3-architecture/three-arch-stone-bridge.svg",
+      "bytes": 4519,
+      "sha256": "f01f1fa40034f8db2d74227d879c7c5488a67a662210b476b537e7e428bd083e"
+    },
+    {
+      "path": "shared/assets/environment/act3-far.svg",
+      "bytes": 3196,
+      "sha256": "9814017ddf0062287b1c0146f7978657b83b9fa3d031d4fd5852eb4b7fb45315"
+    },
+    {
+      "path": "shared/assets/environment/campaign-far/README.md",
+      "bytes": 1311,
+      "sha256": "7a611255f9c273fb828ff787eac1ec7fa86cc05693af8d516543c287afa392f0"
+    },
+    {
+      "path": "shared/assets/environment/campaign-far/archive-interior.webp",
+      "bytes": 114542,
+      "sha256": "92b79d8600600b4ad6b149f2b0b1f80daa6bd6f0e4711d7db237ac07314533c6"
+    },
+    {
+      "path": "shared/assets/environment/campaign-far/cave-entrance.webp",
+      "bytes": 29172,
+      "sha256": "4109fa210e0fbd60c8400ec51365513155b3f1a6d5c77760084e26dc0c446d69"
+    },
+    {
+      "path": "shared/assets/environment/campaign-far/cave-settlement.webp",
+      "bytes": 22662,
+      "sha256": "acd85fa87fd099bbcce3918e901a73ca718f7840baea0e4e9db52a9de0d572c2"
+    },
+    {
+      "path": "shared/assets/environment/campaign-far/cave-waterwork.webp",
+      "bytes": 29526,
+      "sha256": "1a10a138c7cdc0bef96f919f1215f08ec8b8340390ace934189535ca7a33a447"
+    },
+    {
+      "path": "shared/assets/environment/campaign-far/manifest.json",
+      "bytes": 2972,
+      "sha256": "63f08dcfd62fb25759b2f2ee606b8c4fdcedeedd20f2c22cd0bdf6e037f74737"
+    },
+    {
+      "path": "shared/assets/environment/campaign-far/root-interior.webp",
+      "bytes": 90092,
+      "sha256": "7b6377c64ea476da11bbcbaee6fc8c98e67692723bf8ee7f18ab60c22709def7"
+    },
+    {
+      "path": "shared/assets/environment/campaign-far/town-river.webp",
+      "bytes": 20784,
+      "sha256": "a530ef88a89d514f3674bf9ca734269b742d8bcc60825d0123a9b0ef0ee45b3f"
+    },
+    {
+      "path": "shared/assets/environment/campaign-far/town-wall.webp",
+      "bytes": 28798,
+      "sha256": "a82caa98e27ebc2099869bb6c0ab9b2f74251ed0b44d92ce4d024a84274b8159"
+    },
+    {
+      "path": "shared/assets/environment/campaign-far/workshop-interior.webp",
+      "bytes": 162972,
+      "sha256": "2f0bbe7171050f508f05b8d0ae5971c0c5d6d47f827fc64280abb71c06c2e00f"
+    },
+    {
+      "path": "shared/assets/environment/campaign-far/workshop-yard.webp",
+      "bytes": 349346,
+      "sha256": "638a9f85a4c266935baafd8ccdc1dd4f08269d521e8390c7fb988c91d30a9da6"
+    },
+    {
+      "path": "shared/assets/environment/geology-granite-foundation.svg",
+      "bytes": 2023,
+      "sha256": "304503fe442b0ea2277026fb5bcc1b625dfb6720bec68e688f32350a0eed513b"
+    },
+    {
+      "path": "shared/assets/environment/geology-granite-ledge-neck.svg",
+      "bytes": 1188,
+      "sha256": "10de5bc66e64170d2c32e32950900f801a89c887c8783fbdef6390d65a40aa60"
+    },
+    {
+      "path": "shared/assets/environment/geology-granite-vertical-cleft.svg",
+      "bytes": 5240,
+      "sha256": "7221291e87cac5a40504d72c6050b54bbd69d900310341c37167d79b0cb23af0"
+    },
+    {
+      "path": "shared/assets/environment/geology-granite-vertical.svg",
+      "bytes": 5014,
+      "sha256": "0b7c801527a3897e9a03bf3ba9a6b147a230b9ca5ec7e25e02f5d774cd951116"
+    },
+    {
+      "path": "shared/assets/environment/location-far/README.md",
+      "bytes": 2362,
+      "sha256": "31f96babf082fccc00913cd7636d3ad9b5737b2f77f5b628e4545aac9cafc327"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/approved-stage1-reference.png",
+      "bytes": 2235136,
+      "sha256": "1057bf8848ee61383df3e4f8b7dac43c92ccc98a65248e50c16bd5655559cc3b"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/cave-bell-chamber.png",
+      "bytes": 1505991,
+      "sha256": "e8bb2ed7c155ce556c9502218e681c97caf0da79c6f480ede29e20e05658b054"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/cave-entrance.png",
+      "bytes": 1618024,
+      "sha256": "dd3060eeb1f142438dc68a017f155330c3810682305294ca5fc583cae84e0f7b"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/cave-settlement.png",
+      "bytes": 1563566,
+      "sha256": "e9c7f217e97f69c98b377dbb2484826cb5ef0ed998f0e52f9d8e8b35494d75b4"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/cave-waterwork.png",
+      "bytes": 1633000,
+      "sha256": "69c0c07046553d517fefe52937f67490c65bd34ea8400d42d293d83da2aab5dd"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/mountain-dusk.png",
+      "bytes": 1505870,
+      "sha256": "3b50310c447d36e231596754765d5ffe592743aa449711fccdc5eeef4b5616fc"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/mountain-still-night.png",
+      "bytes": 1481761,
+      "sha256": "52be17cee0bdb61749cbf45d942dbc683f1c7a013d203a30bbfb50c18d0174fb"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/mountain-wet-valley.png",
+      "bytes": 1583089,
+      "sha256": "79351239eff75195984e78a4ec73682095405f87882f16dc78368302e2086a5a"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/town-river.png",
+      "bytes": 1610905,
+      "sha256": "cf155afb37168d67f250ac854317bef0caaa123339050ce991800008d91cb51e"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/town-wall.png",
+      "bytes": 1728218,
+      "sha256": "7656f619c99b1777349bf9994b85ad3f7f2494256d9d2b13eae5b071d145c6a5"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/underground-channel.png",
+      "bytes": 1573861,
+      "sha256": "a5bd1a2d023dcaad0c89c7703d10b3f69e236534fa804d7c931c535cba071c47"
+    },
+    {
+      "path": "shared/assets/environment/location-far/source/underground-deep-draft.png",
+      "bytes": 1568201,
+      "sha256": "8c1db199aa2426760ff05be0168908409663343c0e95f8acd70fa58a6fb508a3"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/bark.webp",
+      "bytes": 6996,
+      "sha256": "6eae3ab126f50d8baa907c5676345be513794b4c5e73844b609522ca4c34dc60"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/beam.webp",
+      "bytes": 18920,
+      "sha256": "d568dd1973d64b0bf6bc9f25ba686aeaeee0ad81ac2a6e58557bbee6c08585a3"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/forest-dead.webp",
+      "bytes": 111474,
+      "sha256": "9021d9318d53bd6a21a052df33dd3b01f844456df5fbc284a86129a0e8ca7cdf"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/forest-granite.webp",
+      "bytes": 54790,
+      "sha256": "fa0c8cc14d4909d38168f31e1361bc654b393e50e6cb28d9d61a3b753436150c"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/forest-log.webp",
+      "bytes": 54246,
+      "sha256": "a6b8472572e06394609998dcfdf10cbd033826938c2cb59fa6c7f807ea7a979e"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/forest-pineA.webp",
+      "bytes": 155166,
+      "sha256": "0866dbb1ed39c8b7a89c12e371f28b6d2aad2b850f97dcadf0b1648acb22c30b"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/forest-pineB.webp",
+      "bytes": 179178,
+      "sha256": "32ce4c53bab49a81098992e406c2bc643da2226e7307041d35439d241b308c31"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/forest-roots.webp",
+      "bytes": 43298,
+      "sha256": "164de68534537576b708e4c2e2f9386df818d6bf0798f33807361dfbd20101ae"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/manifest.json",
+      "bytes": 4981,
+      "sha256": "5a4e90488e4ce9f414814cc3f6d47eb975229955185a0ebe096c1919ef01ab08"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/source/forest-atlas.png",
+      "bytes": 2742028,
+      "sha256": "57e807b0cc6e00e593b1f7dedfb34e975470d08ae23a78fc4c365468887467bd"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/source/stage1-dead-clean.png",
+      "bytes": 2042558,
+      "sha256": "9dd693497d419894aec25fe6d0acde5451f9283781a1891e003b3102a5534237"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/source/stage1-far.png",
+      "bytes": 2116816,
+      "sha256": "fd6e92b55a906d4b366f5b7bf073d488b408c926e39d3508d5e0fc201cdb0d75"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/source/stage1-granite-soil.png",
+      "bytes": 3686924,
+      "sha256": "00faf8a2e54ea8c850b6ce360b34aaf42c6f7b47450124937c784022b1769582"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/source/stage1-pass-gate.png",
+      "bytes": 1592476,
+      "sha256": "3438286d4e26407bf4eb61e900cbbcec282196dc8353eb4b9e1e1f6262a5f3cb"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/source/stage1-pineA-clean.png",
+      "bytes": 2507285,
+      "sha256": "3a2f85f52f9d5a65daa5b8ae4aba2b214af0c672f05c781166696db47f757bef"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/source/stage1-pineB-clean.png",
+      "bytes": 2551407,
+      "sha256": "60912a7cab49c6af1ca73a15afc50ea61769ac2f17b1db6b42fd2324bc4f911c"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/source/stage1-wet-earth.png",
+      "bytes": 3417903,
+      "sha256": "7aca6217fe37e2a6674345d4939523eebe92b163dd748bcd26ac0f3bed841336"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/source/stage18-rear.png",
+      "bytes": 2136012,
+      "sha256": "5e35be3a2a4525516c934f0701863e150b464288d9e3c9652db53e5bfd67a151"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/source/stage27-rear.png",
+      "bytes": 2350676,
+      "sha256": "d55db82dc157bf09848a9bd06f3651f474f7c3702cbb20869923e5cd715f876f"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/source/underground-atlas.png",
+      "bytes": 1895327,
+      "sha256": "9a03ad085066846a7ff7d30d15643a11ab2bf6255076ab6658c3e3c588d44e1a"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stage1-dead-clean.webp",
+      "bytes": 343678,
+      "sha256": "c65339893479bd85e2057ed393937b56d9d1a65ceb50d6f22f4e5cb97be4228a"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stage1-far.webp",
+      "bytes": 128198,
+      "sha256": "57bce42d03a41c26b8f076dc10cf4f25dca54755110f85e5ba11e451a3dd9e7a"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stage1-granite-soil.webp",
+      "bytes": 533476,
+      "sha256": "28afd175216e09ae153a081ed03645d929f6eb13c1d8862a34ded3a774552b03"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stage1-mountain-dusk.webp",
+      "bytes": 34098,
+      "sha256": "6743ae7e7735ce55ee3a116ed1adccee15b422c9fd17ddf8686178109439073e"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stage1-pass-gate.webp",
+      "bytes": 92532,
+      "sha256": "1eb0a2d2337822ba9ae46f927b6294f420483159ec6f893c92ecfc57cb32689d"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stage1-pineA-clean.webp",
+      "bytes": 420062,
+      "sha256": "c2f9443b6ad28bd233641aec2fae270f4fe944cc6c324ad434efd6302547681f"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stage1-pineB-clean.webp",
+      "bytes": 536222,
+      "sha256": "edc38a27e2738866bc95517101ac77cf5a91798dd4aeeb91847b27c4b156ec2c"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stage1-wet-earth.webp",
+      "bytes": 321414,
+      "sha256": "fec4f73ccac2004f22d8b1e3d3d13eb51e3d1b2b837f1f9d87571c972d5273f2"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stage18-rear.webp",
+      "bytes": 130658,
+      "sha256": "6f3f751e2658edebdf9c427676ee153351a41fba422664efe558897d7e6f49c6"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stage2-wet-valley.webp",
+      "bytes": 30438,
+      "sha256": "4fd65fd6a65b0dd405f7557bd939d60d1738c713e385f2245685b5719687604f"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stage27-rear.webp",
+      "bytes": 208436,
+      "sha256": "732dcad828ddaa95dc1b25a5deb63683f20d7d3ecfd2c6ea5ec34dac8ba30c77"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/stone.webp",
+      "bytes": 64332,
+      "sha256": "064ee9999d6e44b5e2dc963f3f2a18243d9aca6a63a3ea0fbffea1d236c24923"
+    },
+    {
+      "path": "shared/assets/environment/painted-pilots/underground.webp",
+      "bytes": 380498,
+      "sha256": "24a7377d4a0e5b33c6b0b9508325c43b057659186607596804715c9774fc8ffe"
+    },
+    {
+      "path": "shared/assets/environment/quiet-layered/far.webp",
+      "bytes": 952722,
+      "sha256": "84b77e4b3d612d13b94fd33edae427e3b4c4a903199bb03edc9ae1b501c62e12"
+    },
+    {
+      "path": "shared/assets/environment/quiet-layered/stage1-near.webp",
+      "bytes": 1318238,
+      "sha256": "1ec6d00a4b7df48352aa52ac78702e9771d879a31446fab6aa01ac0e906256b8"
+    },
+    {
+      "path": "shared/assets/environment/quiet-layered/stage2-high-cliffs.webp",
+      "bytes": 1756982,
+      "sha256": "e07cce6480a96b206bce566c4cc56a815258e7d525d5c761f74ce73a737d9700"
+    },
+    {
+      "path": "shared/assets/environment/quiet-layered/stage2-near.webp",
+      "bytes": 1375820,
+      "sha256": "a4b5861526f1cc99084d687a7c0b30b84e773d87d0dedb8142c626a9a5c99413"
+    },
+    {
+      "path": "shared/assets/environment/quiet-layered/stage3-ferry.webp",
+      "bytes": 1176540,
+      "sha256": "fa245c9fcb1b735cf2abc4ec2ca7116444f9a7dcf266b0280ea954082822c3db"
+    },
+    {
+      "path": "shared/assets/environment/quiet-layered/stage4-gate.webp",
+      "bytes": 1199714,
+      "sha256": "fa5c2a85d11d36486078d97714a84a95926e4b735bb8f0242fafae8586814a29"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage1/inn.webp",
+      "bytes": 181122,
+      "sha256": "1a485856980f0e1abe0809ffb05b1f7c063067adc2f45ac6309ad98345652fbe"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage1/manifest.json",
+      "bytes": 166,
+      "sha256": "9993faf0232b7e494ab6aa72dffb9602fcd65e8ddebddb7b060a99b6d2f8b079"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage1/source/inn.png",
+      "bytes": 2558118,
+      "sha256": "b9b347fe2b88f97e24d2e8836245f44ad3ef0123769f2cff206b44ac542d9987"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage10/manifest.json",
+      "bytes": 152,
+      "sha256": "876b6467dec514d6c261c0d766e86f3285cccb5a23ea72ebce6e853bb78af775"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage10/root-stairs.webp",
+      "bytes": 245372,
+      "sha256": "ae7a809006f010a43159367354212ec98b40afd8b717282108a546f9923a5c29"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage10/source/root-stairs.png",
+      "bytes": 2338991,
+      "sha256": "638ce4b6c18905a0a242599d8a46d4fdb619e0315465fa817daacc35803b375b"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage3/manifest.json",
+      "bytes": 243,
+      "sha256": "f7412fee7ec517c7b508ad11ff275701d1f908d271d83f39a4f16750ff7324dc"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage3/source/worktable.png",
+      "bytes": 1902675,
+      "sha256": "326cceca3f520c53714192015357db279900847f39c8e204f23e66c42d42dabf"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage3/worktable.webp",
+      "bytes": 90154,
+      "sha256": "19608a647dc135ae3f38f7a3e10b672e0006b8240eb4a402a2204fe9efcbdba5"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage9/manifest.json",
+      "bytes": 145,
+      "sha256": "1453d73a4f7182b0f724ee25b2dd3ec69dbbb16bd51f681980668d185a2cf534"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage9/source/well.png",
+      "bytes": 2815241,
+      "sha256": "76a1e910bd01bb0d7134b6f53410e1e9b52e6ebf9c96d302df876c094436e4ff"
+    },
+    {
+      "path": "shared/assets/environment/rest-stage9/well.webp",
+      "bytes": 60794,
+      "sha256": "0246d57d00a369a160a0f177ba20d88b0c17ffafe6093a75c40ffc930079b47c"
+    },
+    {
+      "path": "shared/assets/environment/stage1-balanced/balanced.webp",
+      "bytes": 1329274,
+      "sha256": "38f408fd9a032c02accae6cc93952ddc6f950a9be3131bef06f01f015240e4ce"
+    },
+    {
+      "path": "shared/assets/environment/stage1-image-first/place-both-broken.webp",
+      "bytes": 445960,
+      "sha256": "1b90b924c23ee111c3efb53c502e825952c811f5222c887d8ad94d2b696f8d30"
+    },
+    {
+      "path": "shared/assets/environment/stage1-image-first/place-east-broken.webp",
+      "bytes": 467050,
+      "sha256": "f55592089375cd21c63f23582559e613c4fa3294f55d042ffd1b25d09a4981d8"
+    },
+    {
+      "path": "shared/assets/environment/stage1-image-first/place-west-broken.webp",
+      "bytes": 459502,
+      "sha256": "365ca0fbe5a2d284778e30e7a72b043ebf52d595a2d7386fa238e8d93c5d0f47"
+    },
+    {
+      "path": "shared/assets/environment/stage1-image-first/place.webp",
+      "bytes": 537130,
+      "sha256": "d32db508184d0e3fae2c78727cac2c0bf313c860e8949634a116f38ac5747ce8"
+    },
+    {
+      "path": "shared/assets/environment/stage1-sections/exit-balanced.webp",
+      "bytes": 1451608,
+      "sha256": "e0b52e41a6815d0f2c8e28a4c52f53fa54f92a3b8380b030e65c5a2f5a64c789"
+    },
+    {
+      "path": "shared/assets/environment/stage1-sections/start-balanced.webp",
+      "bytes": 1322994,
+      "sha256": "6e52c8af473d672873ff96b9779c0a8cca61fbd444b7459d0440984f7b2e54a4"
+    },
+    {
+      "path": "shared/assets/environment/stage10/gallery.webp",
+      "bytes": 174108,
+      "sha256": "633d1e5f0b56673924fdef77401edbb73eaa39ea1ab4948bb9906e3a9fb75950"
+    },
+    {
+      "path": "shared/assets/environment/stage10/manifest.json",
+      "bytes": 293,
+      "sha256": "09b3af2aecf9cfc406429206f7ada7c09bf41e89166f27baad9409e62b775b5f"
+    },
+    {
+      "path": "shared/assets/environment/stage10/source/gallery.png",
+      "bytes": 1693768,
+      "sha256": "9d2c6c822bd91b9007dc692e38f20fe580884e5f94bfb603b0c58c213e01649d"
+    },
+    {
+      "path": "shared/assets/environment/stage10/source/tree.png",
+      "bytes": 2853091,
+      "sha256": "ff81e1031d6af80e7a2a4f52580d762f25db009961993ed3da7d398a4ac2fc46"
+    },
+    {
+      "path": "shared/assets/environment/stage10/tree.webp",
+      "bytes": 774018,
+      "sha256": "15da99701523bae34dc6061bfdbd1138184eb35ba1d76a1e400ea62486223379"
+    },
+    {
+      "path": "shared/assets/environment/stage11-ravine-far-readable.svg",
+      "bytes": 3334,
+      "sha256": "6086c44708d98554eb15fe5051bc67d8788aac8dd2ea98009297d49676af5f19"
+    },
+    {
+      "path": "shared/assets/environment/stage11-ravine-far.svg",
+      "bytes": 3333,
+      "sha256": "d98826e1df41f3feadabb9113cf13b7638c07047d3aab666154a96b7469aefb6"
+    },
+    {
+      "path": "shared/assets/environment/stage12-quarry-far.svg",
+      "bytes": 1975,
+      "sha256": "807576694f184ca2c9ff841189717caa985085251279fe8331573e03e35d3466"
+    },
+    {
+      "path": "shared/assets/environment/stage18-bell-rear-cavern.svg",
+      "bytes": 4625,
+      "sha256": "5cfc8026cbea80b439ecbeb784e1b7e6a3dac0fcc737349bdec7667770c8b917"
+    },
+    {
+      "path": "shared/assets/environment/stage18-hollow-bell.svg",
+      "bytes": 13775,
+      "sha256": "1530ed9d5a674541f11479f7980faca4f4dfc2bdb9180bc829ba5588248e4a81"
+    },
+    {
+      "path": "shared/assets/environment/stage2-image-first/place.webp",
+      "bytes": 517844,
+      "sha256": "e2d6242d676f29ffa435d8ece5fe6e2bbba2cd2cc3d84c3b447170263b1b267c"
+    },
+    {
+      "path": "shared/assets/environment/stage21-painted/source/approved-reference.png",
+      "bytes": 2271418,
+      "sha256": "8e7ef14223ada42952d0cbebfce5e7b9a910cd7ceaf446b3ef9a9541705bc58e"
+    },
+    {
+      "path": "shared/assets/environment/stage21-painted/source/architecture-atlas.png",
+      "bytes": 1884041,
+      "sha256": "f9f88532f3549cecf9a40b028c96cff3cf4c71f1c56e28b835336ce22cdba49f"
+    },
+    {
+      "path": "shared/assets/environment/stage21-painted/source/bedrock.png",
+      "bytes": 3572268,
+      "sha256": "c148cefa81c415b83c32a535091e7112f679c0f3c721939356c0b0db2cbe7159"
+    },
+    {
+      "path": "shared/assets/environment/stage21-painted/source/far-panorama.png",
+      "bytes": 2020739,
+      "sha256": "19bb427361b546be5a0dee76d5f2b27fb541ad3427dfe457fa623c3a28ce8738"
+    },
+    {
+      "path": "shared/assets/environment/stage21/architecture.webp",
+      "bytes": 413390,
+      "sha256": "9908ac5f9af09170bbb39ef3756eda4805333cf1e022816da6ed0e0eeb9a5ee2"
+    },
+    {
+      "path": "shared/assets/environment/stage21/bedrock.webp",
+      "bytes": 296548,
+      "sha256": "fc7e80c55c6a7325b3e611f650017878bfb2ecc9502f0489bc638798eeaf6fd6"
+    },
+    {
+      "path": "shared/assets/environment/stage21/far.webp",
+      "bytes": 88974,
+      "sha256": "229e09a1c984bb1c9719060aaedd952dcf4be4d3d74d24c06d89488ed0ba5118"
+    },
+    {
+      "path": "shared/assets/environment/stage21/painted.json",
+      "bytes": 76826,
+      "sha256": "36cda0798b56dc52511e3c973d86a69f00595387fb4627a67de713b164dbecdc"
+    },
+    {
+      "path": "shared/assets/environment/stage21/timber.webp",
+      "bytes": 866,
+      "sha256": "05f105fabf54897ce1c364ce8a2adfb844e2c11ed4eaf0f71efd722d936876f5"
+    },
+    {
+      "path": "shared/assets/environment/stage23-yard-far.svg",
+      "bytes": 3062,
+      "sha256": "d41dc0bdda9eb84261832a799506a7ce2df62b3f9b6f04465e27c5cef15cd6d7"
+    },
+    {
+      "path": "shared/assets/environment/stage3/manifest.json",
+      "bytes": 915,
+      "sha256": "f8f63b986c157c37740ee9d294f1f1046e65b443818301fb6577f7029ce2a960"
+    },
+    {
+      "path": "shared/assets/environment/stage3/shrine.webp",
+      "bytes": 57850,
+      "sha256": "cc9917ad0d6bd3eb5330e08b5ab07872ddc6ae9c7a532d57b69d82b733a1caad"
+    },
+    {
+      "path": "shared/assets/environment/stage3/source/shrine.png",
+      "bytes": 1568429,
+      "sha256": "e19c128d0b7ba24dbdb28de5e8fabf436684369792e92b73ec22abda4da137bf"
+    },
+    {
+      "path": "shared/assets/environment/stage3/source/warehouse.png",
+      "bytes": 2137251,
+      "sha256": "370b3c6a3daf4a66b15c3340893214d767b41c64522d988a67b390b0b6567198"
+    },
+    {
+      "path": "shared/assets/environment/stage3/source/workbay.png",
+      "bytes": 2369279,
+      "sha256": "4e4d626c98a701fdb8469a17a2e668fa4b2f6327d0dcc0f3fd0bd0f34df9af79"
+    },
+    {
+      "path": "shared/assets/environment/stage3/warehouse.webp",
+      "bytes": 246758,
+      "sha256": "e15c7526d1af37bbddca39ea11255055deb1e7e1310bf6c65c205c577839dd63"
+    },
+    {
+      "path": "shared/assets/environment/stage3/workbay.webp",
+      "bytes": 146858,
+      "sha256": "bb2cbe339412ed7791c87810a5b7979d038a7f5f61884b90009f482d041e341b"
+    },
+    {
+      "path": "shared/assets/environment/stage30-ferry-far.svg",
+      "bytes": 2916,
+      "sha256": "425a160d93acfe96363d3aa370831880eb166770a3cb65caeb4fab7f8eefd16e"
+    },
+    {
+      "path": "shared/assets/environment/stage4/burned.webp",
+      "bytes": 102486,
+      "sha256": "26e705cf283ec2cb4f3b9c62c5347689dfa68723baaa6775a1fdd03ef56e13c7"
+    },
+    {
+      "path": "shared/assets/environment/stage4/gate.webp",
+      "bytes": 170954,
+      "sha256": "0e931ce976c9e2fe7fd26ab23a7c088ac3cdbfee65f2fa27e1bf7629a40262a9"
+    },
+    {
+      "path": "shared/assets/environment/stage4/manifest.json",
+      "bytes": 581,
+      "sha256": "065a1e2c8abf681af5ca82638196598764c1161afe26d250e614817f4eb3f382"
+    },
+    {
+      "path": "shared/assets/environment/stage4/source/burned.png",
+      "bytes": 1629826,
+      "sha256": "d7b10c9bbc2987ffe4b887096702398eb320d4a8a9aac02e1e6b3ddadc752a2c"
+    },
+    {
+      "path": "shared/assets/environment/stage4/source/gate.png",
+      "bytes": 1834361,
+      "sha256": "0da73d11dff3372e624cd681e4471fedce25913783bee5c3de8a743972174236"
+    },
+    {
+      "path": "shared/assets/environment/stage4/source/watch.png",
+      "bytes": 1931683,
+      "sha256": "c40c61df786fe64af5db08be7e8065b8aa6bed0e80410db64799519c9afc73e0"
+    },
+    {
+      "path": "shared/assets/environment/stage4/still-night.webp",
+      "bytes": 18634,
+      "sha256": "5094cddb7d563f7bb84ed4b423fcc18dc48cef548adbe92df2d0abe3f15d3f4f"
+    },
+    {
+      "path": "shared/assets/environment/stage4/watch.webp",
+      "bytes": 202440,
+      "sha256": "9bc92d08893b42ec8bad4859245f44dbe95a31d3d5cb435a46b202e4286ab165"
+    },
+    {
+      "path": "shared/assets/environment/stage5/cliff.webp",
+      "bytes": 616806,
+      "sha256": "91c4983107e1b18d7d4f9be7371cb7461e2f3f96fcef2a608d165ad6b24486c3"
+    },
+    {
+      "path": "shared/assets/environment/stage5/manifest.json",
+      "bytes": 382,
+      "sha256": "b2a509fb40e0c6f98534565d85334e970fa3577654b67d4a8c659f154e9fa883"
+    },
+    {
+      "path": "shared/assets/environment/stage5/source/cliff.png",
+      "bytes": 3861319,
+      "sha256": "36e5863e227be61adb6a5d3184d024c988658f3b47075b8e092af42819b14c71"
+    },
+    {
+      "path": "shared/assets/environment/stage5/source/water.png",
+      "bytes": 2486777,
+      "sha256": "e6f7410a82044eecd5da7b10e27100f0a90707d5d1297eb500641e1b3143a999"
+    },
+    {
+      "path": "shared/assets/environment/stage5/water.webp",
+      "bytes": 292272,
+      "sha256": "4306977a7dc5085cbd5f482966574374fb864ac144ab46fa29569225dd310088"
+    },
+    {
+      "path": "shared/assets/environment/stage6/bridge.webp",
+      "bytes": 253276,
+      "sha256": "042ae19f5d957e605dd65b17821ec2f849a16b9964ef37b1302687b3a345bce6"
+    },
+    {
+      "path": "shared/assets/environment/stage6/manifest.json",
+      "bytes": 278,
+      "sha256": "6cb95670c3b2e06fa62322aa61a8e109f5ec06920ba40f46546abf7f4e2057d9"
+    },
+    {
+      "path": "shared/assets/environment/stage6/source/bridge.png",
+      "bytes": 1073604,
+      "sha256": "eb4e52e3ed7f201140507349e8910e33bd72c12fb03dc996ee1fc35400a7ca3a"
+    },
+    {
+      "path": "shared/assets/environment/stage7/home.webp",
+      "bytes": 299164,
+      "sha256": "fc56b723159b754c1f0d41209ad790db05cda320d7703ac44c3933536d89cb5a"
+    },
+    {
+      "path": "shared/assets/environment/stage7/manifest.json",
+      "bytes": 293,
+      "sha256": "9493709caa7cf5ef3e693766b2bb6dec50a213dc6be2d116d7d3424694b9c4f4"
+    },
+    {
+      "path": "shared/assets/environment/stage7/source/home.png",
+      "bytes": 2980572,
+      "sha256": "ee6879210adae757f715ce125ea1db07834ac3371d4d557ced72ed9736fe51cf"
+    },
+    {
+      "path": "shared/assets/environment/stage7/source/tree.png",
+      "bytes": 2948240,
+      "sha256": "49c8ae764e811ba7b6c2995ddc8f03e87a9b8a4134290f4d9a59d66d2499fec5"
+    },
+    {
+      "path": "shared/assets/environment/stage7/tree.webp",
+      "bytes": 812178,
+      "sha256": "55663aa18eb7941000233136a9928baad95d020ea109aac16dfb7ffb3bc5059b"
+    },
+    {
+      "path": "shared/assets/environment/stage8-bier-far.svg",
+      "bytes": 2008,
+      "sha256": "0c4a81612babc935487cab742debc413bf0b258a4f0b7e35b00bc4b9503d5dc1"
+    },
+    {
+      "path": "shared/assets/environment/stage8/manifest.json",
+      "bytes": 293,
+      "sha256": "171ffc042a9bccd3736d74a0f0d798e17e3b9b0f4695a256305d67546805d412"
+    },
+    {
+      "path": "shared/assets/environment/stage8/shelter.webp",
+      "bytes": 210694,
+      "sha256": "08931b5c4512bd0869437820db54535205404d8ca91b6b415702418288b55de1"
+    },
+    {
+      "path": "shared/assets/environment/stage8/source/shelter.png",
+      "bytes": 2347197,
+      "sha256": "4498e1d120259d1c16a9ef3de2dddcdf8943a73153ea745099cf6e740957dbe8"
+    },
+    {
+      "path": "shared/assets/environment/stage8/source/store.png",
+      "bytes": 2875839,
+      "sha256": "94e5a527c2bb4006f783b80ec51447f5c22ad45d82ff1930996b23514fbaeaf9"
+    },
+    {
+      "path": "shared/assets/environment/stage8/store.webp",
+      "bytes": 308858,
+      "sha256": "8fc42c8d0f25ff3e61a4daa979e50510f1ac77aae839aa698affe5caad7a6ea2"
+    },
+    {
+      "path": "shared/assets/environment/stage9/corridor.webp",
+      "bytes": 154162,
+      "sha256": "92d4f13225641b8a8143860bec04eecfb1338eab4f1832c13e06ff5de333fd5e"
+    },
+    {
+      "path": "shared/assets/environment/stage9/gate.webp",
+      "bytes": 236736,
+      "sha256": "6c4931d3f8cdc292f5efe6796334c666819568ddc86f931d118f83fee2fa1be4"
+    },
+    {
+      "path": "shared/assets/environment/stage9/manifest.json",
+      "bytes": 439,
+      "sha256": "0533533406a846477e708a7fa35a9d6ff674d3af930e7fe0cf3300c4e4a2d7f2"
+    },
+    {
+      "path": "shared/assets/environment/stage9/roots.webp",
+      "bytes": 129456,
+      "sha256": "0c9ca0382c1df5be34f55bd1eb3418558257def45f505a0b39e259b26938c19f"
+    },
+    {
+      "path": "shared/assets/environment/stage9/source/corridor.png",
+      "bytes": 1461823,
+      "sha256": "e21a8288edc9a7f0f228ec6a0d66e950e3c68602b35eb4db3be524932f3492b7"
+    },
+    {
+      "path": "shared/assets/environment/stage9/source/gate.png",
+      "bytes": 2329373,
+      "sha256": "fdc72c6684082874d792f707a29b725351fba0f63e36bd7f4f3bf3677b628fd1"
+    },
+    {
+      "path": "shared/assets/environment/stage9/source/roots.png",
+      "bytes": 1155531,
+      "sha256": "2c068ca161e3c76564e69f117502122361fd72397dee207da912eb9a35529bfe"
+    },
+    {
+      "path": "shared/assets/environment/title-first-ferry.svg",
+      "bytes": 5326,
+      "sha256": "687bde9257f2593b6a68298211745444ced0b7a39c6a6757e52288d0402ea468"
+    },
+    {
+      "path": "shared/assets/environment/title-wordmark.svg",
+      "bytes": 703,
+      "sha256": "43afcab31dea6bb8de3d38634ee105d0e94b104cdd75e799e8635a6f81d3d86c"
+    },
+    {
+      "path": "shared/assets/environment/title/README.md",
+      "bytes": 5981,
+      "sha256": "346ac85c3c7fb107d846467fcf6514b7041d64e25ab71b849d5d5ad5d13baaf0"
+    },
+    {
+      "path": "shared/assets/environment/title/hanja-wordmark.png",
+      "bytes": 892286,
+      "sha256": "4bc7d957ebc4d57be206a70070cc53e9921822c865a30ada027456c2f5857111"
+    },
+    {
+      "path": "shared/assets/environment/title/landscape.jpg",
+      "bytes": 312361,
+      "sha256": "c96458261eb87261ced74de1cc32aaa897801a280a48d4cffd552c212d8eb6c6"
+    },
+    {
+      "path": "shared/assets/environment/title/landscape.webp",
+      "bytes": 154366,
+      "sha256": "e7a766053bfbf2762399717c8d0f9668967b4f629c9e59901a539fbac465357a"
+    },
+    {
+      "path": "shared/assets/environment/title/portrait.jpg",
+      "bytes": 404007,
+      "sha256": "a6c66058555fc805a9ad13f1eb0696cb089bd943998607b96acf5e176fc659dc"
+    },
+    {
+      "path": "shared/assets/environment/title/portrait.webp",
+      "bytes": 221562,
+      "sha256": "f8314e8d1733e8a577baff632a5f39d5c47caba50d3bbde948a3f65efa96b9c6"
+    },
+    {
+      "path": "shared/assets/environment/title/wordmark.png",
+      "bytes": 365767,
+      "sha256": "696d0c688d361feefa4a66902ac0e8c327d77a1c05a4c45593e01683d9f8d5c0"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/architecture.mjs",
+      "bytes": 7640,
+      "sha256": "e693c2eca34f5020286081cf8682a0fa84d0f700f310bf56dafbe08f7c87311d"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/campaign.mjs",
+      "bytes": 7499,
+      "sha256": "378ed953755cd23279b7d70a8c9b8b59a601071ac7984b94d8c6052fdc7419e1"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/compositions.mjs",
+      "bytes": 4657,
+      "sha256": "72ac92352e4ea65393f9b64eba800fb6176a6a574a176f58565bb9abef8d1f08"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/registry.mjs",
+      "bytes": 80481,
+      "sha256": "2c2141225e679c2f885eddbc9baa296cf5b6c58722197b53ddb0f659645c5bd4"
+    },
+    {
+      "path": "shared/assets/environment/vector-kit/rest.mjs",
+      "bytes": 8524,
+      "sha256": "fef818ac3360d178e1329665123b57cc185646cb01602b2d74f6a6b2eae07401"
+    },
+    {
+      "path": "shared/assets/environment/wood-pine-wall-root.svg",
+      "bytes": 649,
+      "sha256": "3996fa6189268b429ee1458978fde15ace3f27cc8dcfdcf8f3fed056b1712381"
+    },
+    {
+      "path": "shared/assets/monsters/archerMaster.animation.json",
+      "bytes": 4890,
+      "sha256": "6a2f12f9880b8c25b97054062cf6a847ce7a6e2448322e2705812248c5c9aca1"
+    },
+    {
+      "path": "shared/assets/monsters/archerMaster.rig.json",
+      "bytes": 1307,
+      "sha256": "a72a1381f558ea3deba45b388b892d33b561f5df8a6a333122f3f340e07c458a"
+    },
+    {
+      "path": "shared/assets/monsters/archerMaster.svg",
+      "bytes": 6275,
+      "sha256": "800d39ed2d46a4d5ffb3c9d4cb7cc639754220bd3b2d54b8cb1477471d2d6e72"
+    },
+    {
+      "path": "shared/assets/monsters/archiveFiend.animation.json",
+      "bytes": 5579,
+      "sha256": "dded69a0c8c6b29b4cbe64bce88be5e4475bde22b9fea81c57c55cfc44d39a0a"
+    },
+    {
+      "path": "shared/assets/monsters/archiveFiend.rig.json",
+      "bytes": 1431,
+      "sha256": "be93870eec29b398c0576cedbf3442397c74e8fbb8b8b76145319d0508e7dd77"
+    },
+    {
+      "path": "shared/assets/monsters/archiveFiend.svg",
+      "bytes": 6092,
+      "sha256": "034a319c84acad184918cde0059795fba2081be81132a3ce79425fa1a6cd0db2"
+    },
+    {
+      "path": "shared/assets/monsters/bat.animation.json",
+      "bytes": 4249,
+      "sha256": "1c6fbb9a71bc845e428db6192f636e5cb6f6a95ed6d0792c34c680959e06464c"
+    },
+    {
+      "path": "shared/assets/monsters/bat.rig.json",
+      "bytes": 754,
+      "sha256": "c534c3f8e1ff2ebf4f9c02a5214e63805c9599ac5127d2931237d2c8a94b64d0"
+    },
+    {
+      "path": "shared/assets/monsters/bat.svg",
+      "bytes": 3159,
+      "sha256": "47de806ee91e2f8efdbe52678ad2557070daa9539c9ed531378497906de9004a"
+    },
+    {
+      "path": "shared/assets/monsters/boar.animation.json",
+      "bytes": 3174,
+      "sha256": "216e46365390b25b228f57e9d2cefb56f353b2e099dbf17ddc66febe679f6407"
+    },
+    {
+      "path": "shared/assets/monsters/boar.rig.json",
+      "bytes": 1075,
+      "sha256": "2e50fc16f454ce8f060d2d20e533c88ef7220aa39b32a8ccf9fe436e915bd6e3"
+    },
+    {
+      "path": "shared/assets/monsters/boar.svg",
+      "bytes": 6389,
+      "sha256": "b5693ff816e33f998a690bba76c2bf8346f531ee173cad4ee6e5ca60706a2be0"
+    },
+    {
+      "path": "shared/assets/monsters/crow.animation.json",
+      "bytes": 4249,
+      "sha256": "55de5b1e635d856984f370dfddabd764c6ace84d82bbe46d4ff267f63fd85a78"
+    },
+    {
+      "path": "shared/assets/monsters/crow.rig.json",
+      "bytes": 859,
+      "sha256": "576e3700f31c7eaf38b78ab175b6861870904e93d15416ecd74536556d5ed015"
+    },
+    {
+      "path": "shared/assets/monsters/crow.svg",
+      "bytes": 3769,
+      "sha256": "314892ae1a98a073de61600b5b6890e1004ecfa681b2aad7cfd682186aeb1c9e"
+    },
+    {
+      "path": "shared/assets/monsters/gateMaster.animation.json",
+      "bytes": 4924,
+      "sha256": "83c07cb18a5af57f6ee3cd0c3b3e0111721b498ae532f0f68800dbdaddd058c0"
+    },
+    {
+      "path": "shared/assets/monsters/gateMaster.rig.json",
+      "bytes": 1200,
+      "sha256": "0a4bbf63cba386dd04765c5e1f8b8d8692c64fa32cfebf5f1989f7ea23f5a8e8"
+    },
+    {
+      "path": "shared/assets/monsters/gateMaster.svg",
+      "bytes": 5779,
+      "sha256": "d35370cdda0871facdae8872fbe946524373c4bc28b818a312706778995d2b7c"
+    },
+    {
+      "path": "shared/assets/monsters/ghost.animation.json",
+      "bytes": 3226,
+      "sha256": "498fd9a188d99ed406904420373c51791b36a5776996a1702b47facc4f39766a"
+    },
+    {
+      "path": "shared/assets/monsters/ghost.rig.json",
+      "bytes": 655,
+      "sha256": "bc1aa767153d666e357cc3c4ae56ba288d815b9cb260a9f3d470bb6405222a3d"
+    },
+    {
+      "path": "shared/assets/monsters/ghost.svg",
+      "bytes": 4296,
+      "sha256": "7a84da30e86c1642f409b07173ab975e68deb5f7d7811f25170ed42e688d2945"
+    },
+    {
+      "path": "shared/assets/monsters/hound.animation.json",
+      "bytes": 3856,
+      "sha256": "e9efe95134308427920be3e0a81ca68599cc96f6cab1d457317b77b8482c022e"
+    },
+    {
+      "path": "shared/assets/monsters/hound.rig.json",
+      "bytes": 1183,
+      "sha256": "2f45f012a5d7b82b3b15d4b24acd563556009b70351dae5f76be83933e1c291b"
+    },
+    {
+      "path": "shared/assets/monsters/hound.svg",
+      "bytes": 6045,
+      "sha256": "43d4dac4d58a71d4e50a4b80d3c206414560c6266237aea2b3a0522f9bac5bfe"
+    },
+    {
+      "path": "shared/assets/monsters/human.animation.json",
+      "bytes": 4580,
+      "sha256": "21bb227bd0fb6364f94d2c6ba45526b4ad8ab7302e51ac018b7b0cdfcad6c231"
+    },
+    {
+      "path": "shared/assets/monsters/human.rig.json",
+      "bytes": 1306,
+      "sha256": "bcaa1304a6a1674a4467e2d5c0a2dfd13cad7cf79983ee9e23306b27290042a8"
+    },
+    {
+      "path": "shared/assets/monsters/human.svg",
+      "bytes": 7172,
+      "sha256": "44a9f6288c5d0737cee014a598bc59da816c87816f27017ca6338790e5979ae8"
+    },
+    {
+      "path": "shared/assets/monsters/kilnFiend.animation.json",
+      "bytes": 4924,
+      "sha256": "83c07cb18a5af57f6ee3cd0c3b3e0111721b498ae532f0f68800dbdaddd058c0"
+    },
+    {
+      "path": "shared/assets/monsters/kilnFiend.rig.json",
+      "bytes": 1311,
+      "sha256": "f4fd21acab69bf64cf2d91dfc42ef996d3b99ebe469ea58af836d2207b7da080"
+    },
+    {
+      "path": "shared/assets/monsters/kilnFiend.svg",
+      "bytes": 5693,
+      "sha256": "0374d017a3e836fc66f832fd9c78c38b9d0ac4193dff5421426e27601074f090"
+    },
+    {
+      "path": "shared/assets/monsters/lantern.animation.json",
+      "bytes": 4076,
+      "sha256": "e251429bb8fef38d10e658b12d8a6b9c6c68712cd84618cb02a07e12f8fbe178"
+    },
+    {
+      "path": "shared/assets/monsters/lantern.rig.json",
+      "bytes": 1186,
+      "sha256": "0a45cba5e902401f30f2c07ff8cef9cf025873150e339712757fa175f7e028be"
+    },
+    {
+      "path": "shared/assets/monsters/lantern.svg",
+      "bytes": 5105,
+      "sha256": "d313bba89d182d87740d68337b76abedd5c89561a6873c6f435fc151dd51b60d"
+    },
+    {
+      "path": "shared/assets/monsters/monsters.runtime.js",
+      "bytes": 125389,
+      "sha256": "6d149baa7203a50ce919e6b882b2317a2185db467801d04fc0658be32c431a08"
+    },
+    {
+      "path": "shared/assets/monsters/mourner.animation.json",
+      "bytes": 4218,
+      "sha256": "964057f8fb2214d41d5f7b24240bfc751a9ed9440e47a26e04a762f38fab0371"
+    },
+    {
+      "path": "shared/assets/monsters/mourner.rig.json",
+      "bytes": 1774,
+      "sha256": "67f84f4c265604f499dd1f315c1c29f0dabcb718e85d2c7891124f708b1e1095"
+    },
+    {
+      "path": "shared/assets/monsters/mourner.svg",
+      "bytes": 9436,
+      "sha256": "fccc37f7313db1cb08cea4a85f3cb8a32f39c7063641f2649f7dfd67953793b7"
+    },
+    {
+      "path": "shared/assets/monsters/possessedArcher.animation.json",
+      "bytes": 4890,
+      "sha256": "6a2f12f9880b8c25b97054062cf6a847ce7a6e2448322e2705812248c5c9aca1"
+    },
+    {
+      "path": "shared/assets/monsters/possessedArcher.rig.json",
+      "bytes": 1307,
+      "sha256": "368c53484ee512fa76c13492487e5131cbbbaf0ced296a6afb1bd32fa2c36d25"
+    },
+    {
+      "path": "shared/assets/monsters/possessedArcher.svg",
+      "bytes": 5808,
+      "sha256": "92c69624d18ae93861e3b8fac401cfcb9da6b12a505343e429500333180b9c98"
+    },
+    {
+      "path": "shared/assets/monsters/possessedGuard.animation.json",
+      "bytes": 4924,
+      "sha256": "83c07cb18a5af57f6ee3cd0c3b3e0111721b498ae532f0f68800dbdaddd058c0"
+    },
+    {
+      "path": "shared/assets/monsters/possessedGuard.rig.json",
+      "bytes": 1200,
+      "sha256": "99758c43c8f783800900beea957a01deb728addd6a2f8603f3df4e9db0435539"
+    },
+    {
+      "path": "shared/assets/monsters/possessedGuard.svg",
+      "bytes": 5266,
+      "sha256": "ea5130e134bfeffe1e0d1ab3a58eefcd12acb8ac216f4d14a43c47e6aacf6673"
+    },
+    {
+      "path": "shared/assets/monsters/shade.animation.json",
+      "bytes": 3546,
+      "sha256": "473283a4c6fca9bfb83093addf9aed35c20fad0e695616a2af3a72c9b909680e"
+    },
+    {
+      "path": "shared/assets/monsters/shade.rig.json",
+      "bytes": 870,
+      "sha256": "d4dbdba728f82615fb913103dc18bb809ac7d1e3d1f9bc028c432593f431ba94"
+    },
+    {
+      "path": "shared/assets/monsters/shade.svg",
+      "bytes": 6450,
+      "sha256": "cc1c0f7123a92cbe767031a519fbe943e81076eb1af2c538e7c41776665dd938"
+    },
+    {
+      "path": "shared/assets/monsters/stag.animation.json",
+      "bytes": 3213,
+      "sha256": "da91231cdd325043374fb062d9df4eb932afa87d45627cef91948c31b214d974"
+    },
+    {
+      "path": "shared/assets/monsters/stag.rig.json",
+      "bytes": 1398,
+      "sha256": "5da445b2d4841055272d923b00a586b6a132e7dfeab8e30ca1f2f3fe660b39b1"
+    },
+    {
+      "path": "shared/assets/monsters/stag.svg",
+      "bytes": 5477,
+      "sha256": "7065aba2aafd3df2398509b92e6022a598550074370331172e22f05a155dd612"
+    },
+    {
+      "path": "shared/assets/monsters/warden.animation.json",
+      "bytes": 3821,
+      "sha256": "595c55a4af3f3b50faf82493eb4475209355a478d7a14f3a53779426764c6d5f"
+    },
+    {
+      "path": "shared/assets/monsters/warden.rig.json",
+      "bytes": 1293,
+      "sha256": "88cb84fb5a18ce2198408700f5a40900c2ebf25852e1f0276ec816a3f353b6d2"
+    },
+    {
+      "path": "shared/assets/monsters/warden.svg",
+      "bytes": 6485,
+      "sha256": "1a357f232bf79a72cb323d7da2193eed1f4a26c46c0aad05122e73faefc6626a"
+    },
+    {
+      "path": "shared/assets/party.v006.runtime.js",
+      "bytes": 63805,
+      "sha256": "3a7304eb5c01e219909266687c66e0ffc6216811cc0122995705c6c4289bf4ef"
+    },
+    {
+      "path": "shared/assets/party/damheo.animation.json",
+      "bytes": 50188,
+      "sha256": "763ae1048813180e82def3f93fca2607dc9249d5358216d39d33d2196c32c550"
+    },
+    {
+      "path": "shared/assets/party/damheo.rig.json",
+      "bytes": 6051,
+      "sha256": "3b8b7947276cd558fc3dc31749daa5b5c5c644f40e8eccdd0d4865d16887cbe7"
+    },
+    {
+      "path": "shared/assets/party/damheo.svg",
+      "bytes": 18850,
+      "sha256": "e594f21bb1715e7db71900dfd43f8626d03e89e9a338ef43664ac7ccdde0bd67"
+    },
+    {
+      "path": "shared/assets/party/hwigyeom.animation.json",
+      "bytes": 52202,
+      "sha256": "8ed877342f26e4148200f1961dde82611787018fcd0586fbeedc4c92efae9479"
+    },
+    {
+      "path": "shared/assets/party/hwigyeom.rig.json",
+      "bytes": 5790,
+      "sha256": "1287a140b9df783e27091997a18bb34fcbfe53710e9c993b9787adcb0b0b82ad"
+    },
+    {
+      "path": "shared/assets/party/hwigyeom.svg",
+      "bytes": 18218,
+      "sha256": "a2f5685d304bcceb98bf80b7c3a154fad1ec74f1dbb93bc944c2714ec9db8914"
+    },
+    {
+      "path": "shared/assets/party/party.runtime.js",
+      "bytes": 177814,
+      "sha256": "023afdc63c350615d595428eca5f59de0881e920197389d2cc68daa1e1c4f43f"
+    },
+    {
+      "path": "shared/assets/party/seol_o.animation.json",
+      "bytes": 48226,
+      "sha256": "5d2f046287da3716100b4d4d67b6f44d8ba334d83d7e5af5dc6ca07c2b914ed8"
+    },
+    {
+      "path": "shared/assets/party/seol_o.rig.json",
+      "bytes": 6373,
+      "sha256": "ecf9b0f86496478bc3897c78ba85e1a6145986f29ea934e944334af4ebe1dea8"
+    },
+    {
+      "path": "shared/assets/party/seol_o.svg",
+      "bytes": 18745,
+      "sha256": "2958813d4390db76102702c325c089e19c877486d070adefd9050aea31e7ac43"
+    },
+    {
+      "path": "shared/assets/party/sodan.animation.json",
+      "bytes": 49052,
+      "sha256": "98bdefe38ef88f2c56610c03a8820bbcb50be3076dc08547630f75307a1c0593"
+    },
+    {
+      "path": "shared/assets/party/sodan.rig.json",
+      "bytes": 6066,
+      "sha256": "27263c8a65fb02433c51c5bc653cc04f3ba192fcb5c83c44d6c78575cb557d27"
+    },
+    {
+      "path": "shared/assets/party/sodan.svg",
+      "bytes": 17558,
+      "sha256": "e0394adc94910cc13b194ee5337bfca8e167ce0cce3c466ee6e5822ce9c3db5d"
+    },
+    {
+      "path": "shared/assets/rebuild-game-adapter.mjs",
+      "bytes": 25470,
+      "sha256": "7535e4028b6570d5132db79a2456a6c3eabfed5e3f3beeb9bf6cbbaf1759cc4c"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A01.webp",
+      "bytes": 3936,
+      "sha256": "1fa04261cfcfceb8492f97253a37e4c4f90b2848bc15ffc9b64d9ac037449ad0"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A02.webp",
+      "bytes": 4456,
+      "sha256": "a8f55e024ef3fb38ee862cbc924b5f661c5c5e4d002d89f9b05ce0ace43cee9e"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A03.webp",
+      "bytes": 3934,
+      "sha256": "82568bdbd3a1b087ca0929b478d03ab5a36a932c8ab4324da69bf27db2cb07b1"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A04.webp",
+      "bytes": 7028,
+      "sha256": "347585d9aabb566ffd5aec5663d657937a9ddb1a699f4079ecba7a36c12e9930"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A05.webp",
+      "bytes": 6010,
+      "sha256": "0bec2839bdda6e7b3da6f4aa32adab50fd213b422119d2b959572e1b0072921e"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A06.webp",
+      "bytes": 5088,
+      "sha256": "2da3b0603d6aef5c981dbd7c189307faca458384979666df9d29f262524680df"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A07.webp",
+      "bytes": 6906,
+      "sha256": "8df150ab698bea6fc0c4797704226b1e8174be026b523dfc43d171d713ff9e20"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A08.webp",
+      "bytes": 6150,
+      "sha256": "eb5d1df18d52552e05260a365560987d4b8763bfbd739d565ebde46ba54ebede"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A09.webp",
+      "bytes": 4054,
+      "sha256": "a0c7cc6478a4d6cb2146236da8e74dcf79970001e5ac90b46b3f96e5d53fb732"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A10.webp",
+      "bytes": 3138,
+      "sha256": "10c4941f5876eaecfc9aec3e41790fd81f172bfd678a23a9de636fedb4feb68e"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A11.webp",
+      "bytes": 4040,
+      "sha256": "7720dd2557994f3ec2202a0aa3ab20faa429f98c80eb60b7b7b5b7b0d5466435"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A12.webp",
+      "bytes": 3654,
+      "sha256": "53e326bee86515ea2f0ccea1f6ce0dcae338197baf7fdb6b3b68cbe256529766"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A13.webp",
+      "bytes": 5990,
+      "sha256": "effc6b23f24edbac13538bece00e7ad12d045b5be114656784045c60010326ad"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A14.webp",
+      "bytes": 5614,
+      "sha256": "a54160bbaadedde466ca85a472cb64fd69de19478a67d67dbec835b15c64b208"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A15.webp",
+      "bytes": 6272,
+      "sha256": "c0b4215cf67b8d319f6404269fa152c359f871f0b369ca17ad0de55c752be87f"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/A99.webp",
+      "bytes": 5004,
+      "sha256": "fcb91f4d89edc65a562aa91e08127b7b42d5ea0a0dbc48d6431d78e9a2085a3d"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/AP01.webp",
+      "bytes": 3418,
+      "sha256": "0afb39e6a85b834793ae08fc56b49c89eea250e49c8a1450df7b34752cc2770b"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/AP02.webp",
+      "bytes": 5770,
+      "sha256": "a4d103eb85668c33840d117c21655605985165cccd4611405f7d483da9e9024e"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/AP03.webp",
+      "bytes": 4658,
+      "sha256": "01d187d2d44de6b6a0330ba58b0b12346a59b6a22cb889e75c74d113d4ef018d"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/AP04.webp",
+      "bytes": 5852,
+      "sha256": "2698d229bb2df9fac61b59dc0900ee3b6dbe7e33161c1f611d0f671b110b4c46"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/AP05.webp",
+      "bytes": 6170,
+      "sha256": "219425c37d635833dfe1cf39f8126d25dd5344667d4f5c9dcce9d21ca183b1b8"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M01.webp",
+      "bytes": 3172,
+      "sha256": "a4a99a15222b1590556ab038d2598ef84fe5de32bfa22270f822c20f203820b4"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M02.webp",
+      "bytes": 5694,
+      "sha256": "da5ed8483e1ebc546e24159d05157809f346f2f34d7e16f167ece1e7fc20ca13"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M03.webp",
+      "bytes": 5650,
+      "sha256": "1dee22422e96bc0244b94b9f2ca4fd362fbf19cd3a967ce9c497fb6de525525e"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M04.webp",
+      "bytes": 5468,
+      "sha256": "d9460adcebc0778ea02a195c035c15bd892a2c368b4b20fc8d4db4e605ab50f9"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M05.webp",
+      "bytes": 7408,
+      "sha256": "5b17a55a6b0ea27b37ab5e40708bc75235c102ef927d4e6af51b4a07b279b9a4"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M06.webp",
+      "bytes": 6434,
+      "sha256": "478944405c7e23d5fc3fb6e6c111f5768c32f079cd13ac0e58f25a99b11f1d25"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M07.webp",
+      "bytes": 5298,
+      "sha256": "aa4a4e1605fe25b53748057b838f59d9a8c506a62c50ff9a7f94cd7298075a63"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M08.webp",
+      "bytes": 4246,
+      "sha256": "1375c2072af2d2bd74b38375d85003eb7ab7c61b1e677bc25f27406c885ab923"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M09.webp",
+      "bytes": 6484,
+      "sha256": "2fc07f5d05f6fe1aba5638fe6bf3cce4838c33f6839f546afc1f85a4d56e6125"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M10.webp",
+      "bytes": 5768,
+      "sha256": "bee56d5640ac012ceb4cee7f75bb878cab115c978905e0220740703a1a32d8d6"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M11.webp",
+      "bytes": 5402,
+      "sha256": "fc2f33992c01af4ca21b0dc8d859473fe6bf8815f332393ebf91d3d24fb94cb9"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M12.webp",
+      "bytes": 8084,
+      "sha256": "dc8f84d3d6a56e05f8885d663f8ff61e4c31d0176b49a9e20b1dd6df3c002529"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M13.webp",
+      "bytes": 10326,
+      "sha256": "4d70e2a6c995d8da336a28f0e246217eb4962cc6f54106267d57f57b1bd25128"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M14.webp",
+      "bytes": 7884,
+      "sha256": "6b96f3fc63bf12d6082bd8ee39da83acc39260a9f2c3e4a792a9f77d4deeadc3"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M15.webp",
+      "bytes": 9506,
+      "sha256": "8b8b03bfdfbe1801ae52a41e025f74412217b2a846c61236a49130d21a409f54"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/M99.webp",
+      "bytes": 6272,
+      "sha256": "7058c504aa5d7c268bf129e55d44af1a27522aa5ac0c287bdf95a3324a7c141f"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/MP01.webp",
+      "bytes": 6794,
+      "sha256": "4ebcf0126d6f427edad837e899a17d1c7d9ffea293970666cd54db72b774d127"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/MP02.webp",
+      "bytes": 5254,
+      "sha256": "68457e9f34ef3e0bf0c0f143ed54da66c7be57e39d6a8b5878e1872ef8224d22"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/MP03.webp",
+      "bytes": 6070,
+      "sha256": "24fe5370e9ea546ea9d1c97c8e1124b743f3dde90476a6cf28fa584c1bebff27"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/MP04.webp",
+      "bytes": 7356,
+      "sha256": "4f312dfc1c55d06172af5651812fad48b39d969118a7a68041c7065bb51db245"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/MP05.webp",
+      "bytes": 8470,
+      "sha256": "e495d9e901f6c6a66438e9eef20380fb3322debdde968002549f58e1aed74833"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O01.webp",
+      "bytes": 4250,
+      "sha256": "dcde10cfd6448be0a78d7365a73d1c5f8c2debd72fa6d5af942657d0c87dd0b9"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O02.webp",
+      "bytes": 6416,
+      "sha256": "44249e66901f29dc44548dcb7815ef0a0015f28be20fb48d172472b18063080d"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O03.webp",
+      "bytes": 9290,
+      "sha256": "fead0476269e47bdce1a02b44f6dd5d454f3151eddb864390f68841629030237"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O04.webp",
+      "bytes": 4072,
+      "sha256": "074c9256cd60d11d16e77b1104a0d45cdfa7c7766b6ec47f156a71636820ff80"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O05.webp",
+      "bytes": 7624,
+      "sha256": "8fcd0f8db79dd977c66591b3f0368d72e24566725f4d13ae67837936c4ba4ce9"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O06.webp",
+      "bytes": 4194,
+      "sha256": "c9c5d8aa90dbb2dc6f20239957c98f996999a68eee26ce25dd5c2f8d1ded4c8f"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O07.webp",
+      "bytes": 5386,
+      "sha256": "8db521a071d77531863db8f04caaeaf323c4620445b9ca7ebe4a69451451ada7"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O08.webp",
+      "bytes": 9326,
+      "sha256": "d9f9b52d98bc2b26c25f4d5a9561e9c67f5f0de52d642b9e15fb36f91e47cd0a"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O09.webp",
+      "bytes": 6110,
+      "sha256": "d872e1a2eb17d2f974e16d66789910af79d1c9ac6a0abf48323174c522c5fb4b"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O10.webp",
+      "bytes": 6852,
+      "sha256": "b267e6cdfd1d2b802420f95da3226475d234e0bce7a123cf9cfbf00a8578cf21"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O11.webp",
+      "bytes": 8118,
+      "sha256": "82e59dac493415ee485a84853d6112f7511b84b4086e63540478ecfd60322046"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O12.webp",
+      "bytes": 5382,
+      "sha256": "8c8dad88d20d64a30a34b436661731027eefc5f7f1a647f618de15bf8bc32b99"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O13.webp",
+      "bytes": 8182,
+      "sha256": "50902b317d99e1e664250df50d219c7a8ea67a8e6c29da81d759285c8294646a"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O14.webp",
+      "bytes": 4186,
+      "sha256": "4aa30c83dc64b0c94c6fcf2e89be3467a009f8e90f2aeae2d21206d6c2fbe9dc"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O15.webp",
+      "bytes": 10266,
+      "sha256": "32fcb94159a213cd8a4bc05d912a1d410dc595ace24fd0c2d844706b0b82b0f9"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/O16.webp",
+      "bytes": 7422,
+      "sha256": "3eb2ee4db75c48cb9bf5fafb15bf2f4ee1bd7e91fc321841b94a7cce400dde07"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/OP01.webp",
+      "bytes": 5862,
+      "sha256": "7ac33357017d3c768151f0038d658c5915b7832ed52b18bb08dbd0290b22b458"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/OP02.webp",
+      "bytes": 5876,
+      "sha256": "543dde15ed059fab34de268cff625be6d4ffb5ff3aafd48786087d0e6eb48599"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/OP03.webp",
+      "bytes": 5640,
+      "sha256": "9cdcf250737b60c1d4f1700f3c72f737d3d9e797443419d15c77734ad7ee3142"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/OP04.webp",
+      "bytes": 7232,
+      "sha256": "0e84e067440635e99a3939e022cff4c735302ef7fead49fd154c1a210b90b978"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/OP05.webp",
+      "bytes": 7620,
+      "sha256": "60a84b84dcbdcf711f00d8d2b72c09971031e64fe9fa95fae54d08b90606c81b"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S00.webp",
+      "bytes": 4450,
+      "sha256": "8cdaf054f26320a17731b3934442fae8b62aafc26350d094ca0931a94539aa82"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S01.webp",
+      "bytes": 4784,
+      "sha256": "157a18dbbbe6fc1f3a77ce9cc096d230fe23a587f3fbf84bd596d87840361cbd"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S02.webp",
+      "bytes": 7978,
+      "sha256": "4e3369ff53f790307cd8cfe15ea599ecadcf3d6825a5251faea02729be5cb15e"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S03.webp",
+      "bytes": 7552,
+      "sha256": "df23f01247f3096e2f2a8eb45f2cf200dec70e4d4053611109042fe3b4f8b807"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S04.webp",
+      "bytes": 5462,
+      "sha256": "33cacbd4d530e49961c2c01165721c4d6bb65d6e51d5fd481e91dae0855cf520"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S05.webp",
+      "bytes": 4764,
+      "sha256": "c9fba3a7dbe023a34c741bbe668736cf92b24bafe90a94070be4328207d018a9"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S06.webp",
+      "bytes": 4594,
+      "sha256": "6e5d8ac1e4ecd89b74db9336adfb0d2a969841c29a0d3c44ba350708b7315395"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S07.webp",
+      "bytes": 7112,
+      "sha256": "de18f376f7180067f5099424c6b6ca0e5d46ae4c2b0f6816de3e3f3b9a710131"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S08.webp",
+      "bytes": 8064,
+      "sha256": "1f80cb476918245008b8d5e8f37cc11426faa24c4c55655ea6789b887e8e1f3f"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S09.webp",
+      "bytes": 4932,
+      "sha256": "b6eaa844563d52190a0ee85109ab088d2a690b42be98334da754fca623c5af4f"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S10.webp",
+      "bytes": 5982,
+      "sha256": "e47de9bc60c4dd4d6a537a05bf80193023e9478c2309b4f045e938758b16ff7f"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S11.webp",
+      "bytes": 2486,
+      "sha256": "52ae8b84497e3b40513db452e27e650bce29e903130a630109ceee4106d67e23"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S12.webp",
+      "bytes": 10002,
+      "sha256": "13ce7c2fe92b538eddcb55ea76c650d54562e34d664f67f14698aed188380dce"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S13.webp",
+      "bytes": 5270,
+      "sha256": "47d8229ab7ee79d1ebc35a90353790eb1fd27dbdecfce44c3dcc7a9d32bb864c"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S14.webp",
+      "bytes": 2602,
+      "sha256": "8b923b775e7bed8b03d25fcac335b6f2b679ed9066b46f78fa1440eb8a7e15fa"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/S15.webp",
+      "bytes": 4096,
+      "sha256": "c728b336cbc73be4ab5f09a4ca664a5382b0d1f78f08e7341dd7cedf060840b2"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/SP01.webp",
+      "bytes": 5524,
+      "sha256": "67e18258b454d9bd033279f2772a17512cccb2803be42891abcc767171df1b28"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/SP02.webp",
+      "bytes": 6586,
+      "sha256": "5c6a0c00eb3bd2169a643e5f138da44b6638be2bec6592c4f90fa881f93816a2"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/SP03.webp",
+      "bytes": 5030,
+      "sha256": "685dcfaf8b000418f60bdacd6059283efed3894b25134e05dddf98788b0b4933"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/SP04.webp",
+      "bytes": 7776,
+      "sha256": "72e7e34dc93fe82ac82c7b40375ead992e767d1a177861af33ccb494c1243272"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/SP05.webp",
+      "bytes": 6360,
+      "sha256": "bd3a59c60a6c65b3f3f87199fa8b864051aee11cd0012c700dbe9159490d3559"
+    },
+    {
+      "path": "shared/assets/skill-icons/v1/manifest.json",
+      "bytes": 15757,
+      "sha256": "71a08c0c3d58b00043f6faead5be0c0cbd8036ca005edb87fe5789bcb6cb0de5"
+    },
+    {
+      "path": "shared/data/campaign.json",
+      "bytes": 8952224,
+      "sha256": "f323a3a3e31d9615a769906964609a2ffd073575570ff3577d4e8bc1ad83463a"
+    },
+    {
+      "path": "shared/data/elements.json",
+      "bytes": 60214,
+      "sha256": "15f1ca17b30c595d7b405861c906fdb41cadbc355b9e05057abfd6095e85fc8a"
+    },
+    {
+      "path": "shared/data/narrative-legacy-v0.json",
+      "bytes": 219512,
+      "sha256": "83dcb6aff1f18c6bcb8e49f8e0497604277ab826d9b16165151933ed35bdbaf3"
+    },
+    {
+      "path": "shared/data/open-structures.json",
+      "bytes": 20904,
+      "sha256": "587d30090c28cb533155ce68964e051d240595c02e91d2129729c103360eef40"
+    },
+    {
+      "path": "shared/data/split-campaign-v1.json",
+      "bytes": 653519,
+      "sha256": "b97d84221b653309985a4bbb66deca94d5442169cf8c0afe4bf20802c86d5ef8"
+    },
+    {
+      "path": "shared/data/waterworks-v2-content.json",
+      "bytes": 9014,
+      "sha256": "364c1c5df996b8373312fe1c0fe48909ffcb43dfde2175ffef732e7caaba7a7e"
+    },
+    {
+      "path": "shared/map/bounds.js",
+      "bytes": 2353,
+      "sha256": "823bdb282be142b95b731c71053b500038219abe2415d031062fa994f1f50170"
+    },
+    {
+      "path": "shared/map/commands.js",
+      "bytes": 9580,
+      "sha256": "28d29bb43a3aeb23166f0151d2fdd8b3dd916db02c63ed9fac320e2fd7a8b658"
+    },
+    {
+      "path": "shared/map/compiler.js",
+      "bytes": 10823,
+      "sha256": "7b7115f4497cfe6e9582013d530a3cc381a7740c9d7ed47e0d1442274569c501"
+    },
+    {
+      "path": "shared/map/environment.js",
+      "bytes": 37928,
+      "sha256": "3db902d59075cc65c1ed35c93c0e93d17c29bc050eee4fed8e18c1d207cab456"
+    },
+    {
+      "path": "shared/map/geometry.js",
+      "bytes": 5448,
+      "sha256": "42f8157a668b7d92b07c211a741030b18cffef762310438078b442aaa71b76d1"
+    },
+    {
+      "path": "shared/map/open-structures.js",
+      "bytes": 3771,
+      "sha256": "995df813bdde6b8404a6b083edf29a998764bdac6efc1548ed491be4a53a5936"
+    },
+    {
+      "path": "shared/map/platform-passages.js",
+      "bytes": 3143,
+      "sha256": "d8f168c6d985bc4d33b881455c08b47dd07fffca139516f8ef17cd38e32c9cca"
+    },
+    {
+      "path": "shared/map/projectile-targets.js",
+      "bytes": 2215,
+      "sha256": "56da042d35c89b7c6cdcac1942290f6f59f18640a49f43800fd95817def94895"
+    },
+    {
+      "path": "shared/map/schema.js",
+      "bytes": 10762,
+      "sha256": "67c2e3810a90dd85ce8e4d8972f175db44051ef0ac4e08a88cc50245789018ad"
+    },
+    {
+      "path": "shared/map/space-layout.js",
+      "bytes": 7148,
+      "sha256": "8fd724221d6e31308aadce10e41fc96ad55aa717ff3ec28116e7a175153f9e16"
+    },
+    {
+      "path": "shared/map/stage7-reentry.js",
+      "bytes": 4572,
+      "sha256": "7f4250a3d5585a59ca2083708fccf2adf68f9a36228a708a10ad91e3db0304a1"
+    },
+    {
+      "path": "shared/map/terrain-domain.js",
+      "bytes": 18774,
+      "sha256": "18d401230a46483b71113943ffb7e78c04631bd7e4ae2e505401f2965bd0bdc1"
+    },
+    {
+      "path": "shared/map/units.js",
+      "bytes": 4151,
+      "sha256": "adca4400d697da7d2859c8331e4f2590119e9803bd6e5887f0575c685b4c0222"
+    },
+    {
+      "path": "shared/map/vector-art.js",
+      "bytes": 5893,
+      "sha256": "c2a8200b80b6519a91689898931a35f8c927381fd8fabed994d30f7cfda421e6"
+    },
+    {
+      "path": "shared/map/visual-style.js",
+      "bytes": 9909,
+      "sha256": "b3d1fe996205ca5a935ed3ec16c5a377d314d9737094bbff92afd769b6045dfb"
+    },
+    {
+      "path": "shared/runtime/act-endings-content.js",
+      "bytes": 1924,
+      "sha256": "437856e628d8c34503a8df234466ccc43666bd279945135de34338adb0493d13"
+    },
+    {
+      "path": "shared/runtime/act-endings.js",
+      "bytes": 4929,
+      "sha256": "22647f626ee50496aab1eb0b586bf67663ebfcef35f2efef565490a1cb12c18a"
+    },
+    {
+      "path": "shared/runtime/act1-roster.js",
+      "bytes": 2927,
+      "sha256": "ceeb10a02706336734b9ed571f84584a3124a503d6a1b0ea176c213533ab8d16"
+    },
+    {
+      "path": "shared/runtime/act1-spatial-art.js",
+      "bytes": 27720,
+      "sha256": "3e15ba5131828ed3ea1b8ff07bf78e501653d3b99755384431da5fff30715db0"
+    },
+    {
+      "path": "shared/runtime/act2-art.js",
+      "bytes": 22684,
+      "sha256": "5149630817a8321d9233e4df7591884b3d7bb85d0cbc027d09631ae8a5f768ec"
+    },
+    {
+      "path": "shared/runtime/act2-content.js",
+      "bytes": 25499,
+      "sha256": "b34d417d55b230c10bea8e7ecf461e85500f530f3748d43fda9fe5687659f3c2"
+    },
+    {
+      "path": "shared/runtime/act2-drama.js",
+      "bytes": 32676,
+      "sha256": "69c13bfeabede7cf2eca8ee0eee3049b76b701d87f7b28c00ed9b37429f842c3"
+    },
+    {
+      "path": "shared/runtime/act2-plan.js",
+      "bytes": 6365,
+      "sha256": "8ba1899a6df0c9cf99b04030ef4575d0cc75282029e23395e4c7bb5847b728a9"
+    },
+    {
+      "path": "shared/runtime/act2-spatial-art.js",
+      "bytes": 31509,
+      "sha256": "1b357a1ca29de05a1d442b72e8d168bfa694b054539f574ac56a0b168dcec319"
+    },
+    {
+      "path": "shared/runtime/act2.js",
+      "bytes": 27941,
+      "sha256": "4cfbc4832d431e062bbcb447965173b7651f0dce63be40295973886de3a8196b"
+    },
+    {
+      "path": "shared/runtime/act3-art.js",
+      "bytes": 5477,
+      "sha256": "14ef1006e045036e0dfca0f20c263fb4fe3a2ae7864a27a64a9db732e83d7ca8"
+    },
+    {
+      "path": "shared/runtime/act3-content.js",
+      "bytes": 33186,
+      "sha256": "b8a7213c6b43aa800db3e2fcc3387dfb36cdc6439b21d7bd2b6c677a8a3c783f"
+    },
+    {
+      "path": "shared/runtime/act3-encounters.js",
+      "bytes": 3306,
+      "sha256": "44fe64706cd601e081f66408bf82be40d18ff0ecab9a3694b90de3a4ab3de65e"
+    },
+    {
+      "path": "shared/runtime/act3-journey.js",
+      "bytes": 17967,
+      "sha256": "64e0dbcef219c06a63e2b36b5788b09fdf87c91873d7fd29cc358aee6885b75c"
+    },
+    {
+      "path": "shared/runtime/act3-objectives.js",
+      "bytes": 16430,
+      "sha256": "258b489617fabbb08dab98a2f068823236a39871db387c007f00410f8acee249"
+    },
+    {
+      "path": "shared/runtime/act3-void.js",
+      "bytes": 15260,
+      "sha256": "bdc61dd4b2da4c1b2859ec58339bf8bdf943390d5ee6db55172b301a0c243b41"
+    },
+    {
+      "path": "shared/runtime/action-prompts.js",
+      "bytes": 3718,
+      "sha256": "04ae58f62f96900936a1f203303353d393064445a63c85a4127f1b11bfac4cd7"
+    },
+    {
+      "path": "shared/runtime/actor-vector.js",
+      "bytes": 4323,
+      "sha256": "3b414d9a5eacda05ba0f1c794403170e94fa64b4bdfcd6d197aa3168375afe86"
+    },
+    {
+      "path": "shared/runtime/allies.js",
+      "bytes": 15839,
+      "sha256": "1543f8c4e8382f9561aeaaf44ff1a0772ace3f6b647df3ff90fcad05f5c184ea"
+    },
+    {
+      "path": "shared/runtime/art-dark.js",
+      "bytes": 48395,
+      "sha256": "2c15b7532e15436b463453a55a8e976a8d85d3ceca1a599667e6d27995b82e2d"
+    },
+    {
+      "path": "shared/runtime/audio.js",
+      "bytes": 85,
+      "sha256": "17766ff2d11115a59b6e5b1a4b1188d718a3ad21e663c236f673f364faffe6fa"
+    },
+    {
+      "path": "shared/runtime/authored-far-art.js",
+      "bytes": 5577,
+      "sha256": "8728755be633ff03b6340f7156a93467b7890d9735246b9d7893961391efb657"
+    },
+    {
+      "path": "shared/runtime/authored.js",
+      "bytes": 1792,
+      "sha256": "192f254fc1009c8d707edcbb1cc24c7669d95dd5e85a2129436c3626866da7b0"
+    },
+    {
+      "path": "shared/runtime/battlefield-layouts.js",
+      "bytes": 5664,
+      "sha256": "597e37bde592a3cc3aca252443096ac88832f3e29aaf67aac3360cbb8fbfb781"
+    },
+    {
+      "path": "shared/runtime/bell-anomaly.js",
+      "bytes": 7506,
+      "sha256": "48a232302f7c309a59a5b1078d6aa0c48d9809f02e798a152d56ef673d17117e"
+    },
+    {
+      "path": "shared/runtime/camera.js",
+      "bytes": 1881,
+      "sha256": "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af"
+    },
+    {
+      "path": "shared/runtime/campaign-entry.js",
+      "bytes": 2144,
+      "sha256": "9dafd0debffd73805386f2b6f71f4d2306e302a96660262d305486828b84dbbf"
+    },
+    {
+      "path": "shared/runtime/campaign-map-revision.js",
+      "bytes": 2273,
+      "sha256": "64d3cd252c60663aba68c69a28f63e77c36fcdbab8a5bfa42bd81be97abc8849"
+    },
+    {
+      "path": "shared/runtime/cave-enclosure.js",
+      "bytes": 17887,
+      "sha256": "55e5e9481c95ddb3d70bb6916ef958f05048561c44a7893aa3cf854a404c2f19"
+    },
+    {
+      "path": "shared/runtime/combat-feedback.js",
+      "bytes": 3414,
+      "sha256": "36032e6c86ee942ad2954f135d24cac5ca748322188f3f285321bc1a6e785b67"
+    },
+    {
+      "path": "shared/runtime/combat-status.js",
+      "bytes": 14102,
+      "sha256": "5a9346993bb3074f0ad0a5b172dbfbe1026a8d10f0791eb660116e644f057b70"
+    },
+    {
+      "path": "shared/runtime/content.js",
+      "bytes": 4784,
+      "sha256": "d751757170508f1fad0e0bed7ba62defc0692ea3ffebc20e4e8b59d21ba97c01"
+    },
+    {
+      "path": "shared/runtime/contribution-xp.js",
+      "bytes": 7347,
+      "sha256": "7d9c6626f92f02752034b3bb39caa03575f21c939ce2d12a1789ad3250050355"
+    },
+    {
+      "path": "shared/runtime/difficulty.js",
+      "bytes": 2301,
+      "sha256": "5c9059dc850cb54f014c71974df711ecdbe3671c017c92ff830bdc06223dbe5e"
+    },
+    {
+      "path": "shared/runtime/elements.js",
+      "bytes": 6978,
+      "sha256": "b96f48edd607978c1d2f5ecce6ef2d39c902fffb96cf47aa95a14bb8e32a372e"
+    },
+    {
+      "path": "shared/runtime/encounter-density.js",
+      "bytes": 11800,
+      "sha256": "91fcc8cc0d3f55244e035950adeda190a0958a0eb3b4a05b2d0d4a069be598e3"
+    },
+    {
+      "path": "shared/runtime/encounters.js",
+      "bytes": 10235,
+      "sha256": "3cfdaa7c4879ae837ec4511f18ad7356ba25594902cbb64c322f171573edf7cd"
+    },
+    {
+      "path": "shared/runtime/environment-art.js",
+      "bytes": 6686,
+      "sha256": "29a12578c121012e76b59b7fde85c69d570db63a45193000f35617eb7e0464b6"
+    },
+    {
+      "path": "shared/runtime/environment-renderer.js",
+      "bytes": 20746,
+      "sha256": "5faf69ebe65123baddd2d3322c7dbb3c55739c315c6599b803b8abd8a975a0ca"
+    },
+    {
+      "path": "shared/runtime/environment-vector-kit.mjs",
+      "bytes": 10315,
+      "sha256": "a676d72d71468e8b3b5ffa0cd89ab0d12cf77ab79f03743d71b184d29842d18d"
+    },
+    {
+      "path": "shared/runtime/evidence-quests.js",
+      "bytes": 22915,
+      "sha256": "6995a2241d1d0d55f3aba59d76b01f74d86586de0017cd2424e4a7cedf967c23"
+    },
+    {
+      "path": "shared/runtime/fullscreen-input.js",
+      "bytes": 2714,
+      "sha256": "f1847b60e8d5a5db4bfe3b080f891986d294f7e3889c08b9f7f1f5cbb12f6f62"
+    },
+    {
+      "path": "shared/runtime/geology-art.js",
+      "bytes": 6012,
+      "sha256": "80d830b6a3435c4432684ef39bce98b5f37f8d67be4b3faf16ca09820a0b6924"
+    },
+    {
+      "path": "shared/runtime/geology-rear-support.js",
+      "bytes": 1257,
+      "sha256": "66e285f44cb927e23455274aa4c1a092b10eec447f86df6151945fe29126c488"
+    },
+    {
+      "path": "shared/runtime/interactions.js",
+      "bytes": 7003,
+      "sha256": "6426283a538151eda807736b205252e192390551bcd50de4c93b04f1a6e07a50"
+    },
+    {
+      "path": "shared/runtime/journey-art.js",
+      "bytes": 113280,
+      "sha256": "1345931d8c016b38398dd2c412290af2640f264b0d92c00d0b55dd233044e2d9"
+    },
+    {
+      "path": "shared/runtime/journey-content.js",
+      "bytes": 30845,
+      "sha256": "8231ab140e592c4f1765aab035bce10dab3f8281ca1ec9f8ca87785fa971281d"
+    },
+    {
+      "path": "shared/runtime/main.js",
+      "bytes": 109981,
+      "sha256": "0a9b6be1bfc85ef20d7203bb0e32290fe193d94e90d98ff09cc2db0859436c14"
+    },
+    {
+      "path": "shared/runtime/map-art-polish.js",
+      "bytes": 20643,
+      "sha256": "0ec708027c11c5730d9da8c1fe2d5e0f796a1ec9c2812897cff161b331e737f7"
+    },
+    {
+      "path": "shared/runtime/map-engine.js",
+      "bytes": 9021,
+      "sha256": "255779df783a56416b8765ed52b63d9e7ceb5396272aef5b096270aa5da609af"
+    },
+    {
+      "path": "shared/runtime/mission.js",
+      "bytes": 13234,
+      "sha256": "a4c77f7f45077ac4633bec607333f623887d21506bc099e019f53fadcf7a941b"
+    },
+    {
+      "path": "shared/runtime/monster-vector.js",
+      "bytes": 6836,
+      "sha256": "e07e418068c132a03afa4f11f9e2cf14e190979d73ce7c39e1959738d8a13aee"
+    },
+    {
+      "path": "shared/runtime/music-titles.js",
+      "bytes": 732,
+      "sha256": "535fb2761de224362efde67174bef5e9104a666b9941c74f7e1e7e72ae4ee283"
+    },
+    {
+      "path": "shared/runtime/narrative-art.js",
+      "bytes": 1119,
+      "sha256": "3965ddc80da6901c38f95ed16c40e86f06de890f795b4dc29524264708153a17"
+    },
+    {
+      "path": "shared/runtime/narrative-revision.js",
+      "bytes": 8481,
+      "sha256": "8e9c0f786afb58556122ae78360a66f35e5af5ff6572a05555c2f7301ac22207"
+    },
+    {
+      "path": "shared/runtime/object-damage.js",
+      "bytes": 4728,
+      "sha256": "9cf9ff3277bd87e0edd2baa2f9aa94f63970788c731387db9cfcc317623f4a48"
+    },
+    {
+      "path": "shared/runtime/objective-contributions.js",
+      "bytes": 7562,
+      "sha256": "4d7ee345a5fda1d0c9e3d71dce8036db476f5cc0d12391188985d38d273f2b47"
+    },
+    {
+      "path": "shared/runtime/objective-guidance.js",
+      "bytes": 12328,
+      "sha256": "a987fd262fbfbac282e2325014de6c8b35886bd313ca9d2a118dfd01aae6d032"
+    },
+    {
+      "path": "shared/runtime/objective-revision.js",
+      "bytes": 16744,
+      "sha256": "99ff4e913c19d150a84f0a6532a302370ae22eade69f47346de8416c8addb847"
+    },
+    {
+      "path": "shared/runtime/objectives.js",
+      "bytes": 19601,
+      "sha256": "dfcdbc4e2a1ef8f1d445146c4e506a53ed658f6dd0c4e8358b6a8f978f41a79e"
+    },
+    {
+      "path": "shared/runtime/optional-runtime-loader.js",
+      "bytes": 1002,
+      "sha256": "36622c91cde00daaa83d1b7406c10620739083c18d29916f0f95411c9e810bf4"
+    },
+    {
+      "path": "shared/runtime/painted-pilots-art.js",
+      "bytes": 13429,
+      "sha256": "5f3b4dba02da2a8281aca0c67ac56a0549c942ff920a03f1121bdf17ab691b41"
+    },
+    {
+      "path": "shared/runtime/party-rig.js",
+      "bytes": 21570,
+      "sha256": "8ae6a0d5e5ffdd53bf57a1e9c1f43ba9ab2f59ac3c254275d4594a2d9ffbe405"
+    },
+    {
+      "path": "shared/runtime/portraits.js",
+      "bytes": 5590,
+      "sha256": "a80f33622cfde2f7826dddc64d9cd886a7e1aa2f9f8ef0c5a9ef8b88b5cf2c98"
+    },
+    {
+      "path": "shared/runtime/progression.js",
+      "bytes": 24694,
+      "sha256": "168ea610751aa299ac3e98c4dd242aa0d02d088a43b2cca6e0f19459db59e40e"
+    },
+    {
+      "path": "shared/runtime/quest-target-art.js",
+      "bytes": 3884,
+      "sha256": "b5dc73a386531756561f8825945352de274447cef5cada5e35e29c3b9776f13b"
+    },
+    {
+      "path": "shared/runtime/quest-targets.js",
+      "bytes": 4213,
+      "sha256": "5306b3cdce1ea97efcc5f22bc054abe0a826a13a72f4a7919b03cfe3b5f15560"
+    },
+    {
+      "path": "shared/runtime/quiet-layered-art.js",
+      "bytes": 9692,
+      "sha256": "c48b25614f6c42c0a9ed2230a6f2794d5f7f693ffbc2dd8d51b9ada44cac3614"
+    },
+    {
+      "path": "shared/runtime/renderer.js",
+      "bytes": 65750,
+      "sha256": "d6494a5e89840f834f69844902805039558a4d985a4105c7a6e832f75d8369ac"
+    },
+    {
+      "path": "shared/runtime/rest-journey.js",
+      "bytes": 39067,
+      "sha256": "d59c76929735442762d7252bf9097148955340e0168facd87339c2a8b305877d"
+    },
+    {
+      "path": "shared/runtime/route-branches.js",
+      "bytes": 5881,
+      "sha256": "541a5de814beef1a0571eea4c1e9dc96c30488ce89f1cdeb0f4b320007da06e3"
+    },
+    {
+      "path": "shared/runtime/skill-images.js",
+      "bytes": 2507,
+      "sha256": "ccdb34a9fd2981d90f0aa9733b181dbe1c581200bea681b1683409dfb2c00ae7"
+    },
+    {
+      "path": "shared/runtime/skill-preview.js",
+      "bytes": 33927,
+      "sha256": "7fc6a24c51d7c3a9a15d74180713cf959ed07dc46cf0751ca38ad37cff249261"
+    },
+    {
+      "path": "shared/runtime/sodan-withdrawal.js",
+      "bytes": 5063,
+      "sha256": "680be4d9fa41e584523d7da5d68892b7e901328dd3be5ae7b80885eec6e57bf8"
+    },
+    {
+      "path": "shared/runtime/split-campaign.js",
+      "bytes": 10439,
+      "sha256": "dd1edd5ecbd3cdd64096b920eb5c44baaac6325794dda9daf4bbb44297da010b"
+    },
+    {
+      "path": "shared/runtime/stage-rules.js",
+      "bytes": 3491,
+      "sha256": "a75740288bbb017cfde16ed87d2e066c71e41e3cffa5ade8ec68d8061d8bf5d5"
+    },
+    {
+      "path": "shared/runtime/stage1-image-first-art.js",
+      "bytes": 2552,
+      "sha256": "93dd6faebd03ef823c53b28bed54575b0453a785e6ba55f6220baa0ed4b695a6"
+    },
+    {
+      "path": "shared/runtime/stage1-image-first-roster.js",
+      "bytes": 801,
+      "sha256": "073426899b40b7b5cc286e51614e63830c8794b2dfa72324e2667b5cfd77ed00"
+    },
+    {
+      "path": "shared/runtime/stage1-location-art.js",
+      "bytes": 10418,
+      "sha256": "1ba3d71f3fcd1b6ce825299757de8e617b87cae17117b86669a679cbaab1445e"
+    },
+    {
+      "path": "shared/runtime/stage10-location-art.js",
+      "bytes": 6741,
+      "sha256": "3b032b8a60af82fecfd7ccb3071fab378e793f13e1fcb836f7b2087957c21557"
+    },
+    {
+      "path": "shared/runtime/stage11-landscape-art.js",
+      "bytes": 13690,
+      "sha256": "c3dcbaa9c909e55ebe80f0ae86d8c142d1876cfbe06d31ed118fd02e09968bc6"
+    },
+    {
+      "path": "shared/runtime/stage11-ravine-encounters.js",
+      "bytes": 19318,
+      "sha256": "e796e590d893393d6d7880bf0c84ad01a834bd604737748ca45b5eb8ad0b311f"
+    },
+    {
+      "path": "shared/runtime/stage11-trace-exit.js",
+      "bytes": 3005,
+      "sha256": "c7829053c84e3b5fe308a6f04e1eb8cdb7b683022a5acbca4e9112f1f0eda298"
+    },
+    {
+      "path": "shared/runtime/stage12-quarry-art.js",
+      "bytes": 884,
+      "sha256": "66e1fcf41b89158e8c34e93bc60f85cafbb2fc6ef23609e4976a68059709a44f"
+    },
+    {
+      "path": "shared/runtime/stage12-quarry.js",
+      "bytes": 13279,
+      "sha256": "8473f28be6b8188556642ce01f88c804688f3793116a65a553bfc9b63fe8d387"
+    },
+    {
+      "path": "shared/runtime/stage14-vertical.js",
+      "bytes": 14349,
+      "sha256": "bde2c80dd823dcf7b866f7af07baaaca5e593e82e9af5ef70fcb7fdd2df03bac"
+    },
+    {
+      "path": "shared/runtime/stage16-temple.js",
+      "bytes": 2700,
+      "sha256": "efb1ae64fb1e7e3d90e080abc4268c4600d815935aa716ab8e27ed374c672b25"
+    },
+    {
+      "path": "shared/runtime/stage17-worksite.js",
+      "bytes": 2745,
+      "sha256": "4f7fdae5d199de958bdddcf728b596d2f8bcd44d26fe3966487b43918f55567b"
+    },
+    {
+      "path": "shared/runtime/stage18-bell-art.js",
+      "bytes": 11175,
+      "sha256": "17259e14c122cb7457d64b1909f4aee193559ad6260f6455ed65b3aeec042079"
+    },
+    {
+      "path": "shared/runtime/stage18-bell.js",
+      "bytes": 14637,
+      "sha256": "ce9fd77d196cfd5f844703d2a02e39f791fbd5486c4d6b4b5f4d69168db86f65"
+    },
+    {
+      "path": "shared/runtime/stage2-airborne.js",
+      "bytes": 6564,
+      "sha256": "ec849f82f890cf86ed4d4134f33be542e3643b7d5f4dbbb6e2da6ec6ab000c87"
+    },
+    {
+      "path": "shared/runtime/stage2-image-first-art.js",
+      "bytes": 2875,
+      "sha256": "3fe75c8de5f3de7c2fcac41ff5f4fc0a6ba281be7dde3984b6ad4703126b0158"
+    },
+    {
+      "path": "shared/runtime/stage2-image-first-roster.js",
+      "bytes": 818,
+      "sha256": "d9cb7fd10e3b827bd45711c53cf89355f0db57a59f0a1c0561aa79e704d823c0"
+    },
+    {
+      "path": "shared/runtime/stage2-layered-road-art.js",
+      "bytes": 2600,
+      "sha256": "f96be8bf9b83dd7177eb69d07e0c00f24356ed7221de1a55dec19f1417507e04"
+    },
+    {
+      "path": "shared/runtime/stage2-layered-road.js",
+      "bytes": 385,
+      "sha256": "92a03a388ff40faa5b7871c5b5a9679e8a59d26194ce49482e3ebc669146ad6d"
+    },
+    {
+      "path": "shared/runtime/stage2-location-art.js",
+      "bytes": 13631,
+      "sha256": "75c8d8962b5ea6d50120afc61727378812a438ae6fdc592c0c4878321ca72cc1"
+    },
+    {
+      "path": "shared/runtime/stage21-painted-art.js",
+      "bytes": 11940,
+      "sha256": "035ac15db41d66498dba9a9d8d6a3dc0448466610d77180491a97c6807428d59"
+    },
+    {
+      "path": "shared/runtime/stage22-vertical.js",
+      "bytes": 12887,
+      "sha256": "87f99b5611e8cc26a3c3f4730a08779abe66a6e5d943cc2f91142db87a0afb64"
+    },
+    {
+      "path": "shared/runtime/stage23-escort-art.js",
+      "bytes": 10687,
+      "sha256": "3dd8c296e7a822c075f9091092ef62b241d694f355954f745868b3ac1bc7d549"
+    },
+    {
+      "path": "shared/runtime/stage23-escort.js",
+      "bytes": 19167,
+      "sha256": "271db6ec760265f6e567c49e713a32db99fa26e57429c067d5e2b1f6bd77d0c1"
+    },
+    {
+      "path": "shared/runtime/stage3-image-first-art.js",
+      "bytes": 2445,
+      "sha256": "29bdf64006e3f1107b73771b944e399641227ef3c6a1c4d9a50c83201eb86b8e"
+    },
+    {
+      "path": "shared/runtime/stage3-image-first-roster.js",
+      "bytes": 1065,
+      "sha256": "8d1237ceb69a6859df62b5f307db0242e173488e9f452fd135495b27d60046f3"
+    },
+    {
+      "path": "shared/runtime/stage3-location-art.js",
+      "bytes": 15164,
+      "sha256": "65cacf69c40fdb8c661548f26892655aa77246093079d7ec0b3081c6d569c5d0"
+    },
+    {
+      "path": "shared/runtime/stage30-ferry-art.js",
+      "bytes": 12229,
+      "sha256": "5f023ac8fd37c85454bffb61555eac3dc028e260f6ed77e0459ad69801bad952"
+    },
+    {
+      "path": "shared/runtime/stage30-ferry.js",
+      "bytes": 15113,
+      "sha256": "7de14655855058c994cdaea3c62fcfb66b3ee87e257ade179f33e780d7901514"
+    },
+    {
+      "path": "shared/runtime/stage4-image-first-art.js",
+      "bytes": 3065,
+      "sha256": "f42b01341a2fe3e3e12129ea32666daaeffb93d31ce12e4ba8c3f097198df6c1"
+    },
+    {
+      "path": "shared/runtime/stage4-image-first-roster.js",
+      "bytes": 1420,
+      "sha256": "28347fee297dadec9e0e530984ea2fca0555ca9a051cdb5281704b73d529fbd1"
+    },
+    {
+      "path": "shared/runtime/stage4-location-art.js",
+      "bytes": 10315,
+      "sha256": "0543b467ef3166f3b9dec5cbc8d0b00cb2161418e7b146bd154dd0473d2aeb2a"
+    },
+    {
+      "path": "shared/runtime/stage5-location-art.js",
+      "bytes": 14037,
+      "sha256": "a434fe0e8588393fc86b3e9c52d3b805cd34f1a8c4702ec0b41750f8e51e9d70"
+    },
+    {
+      "path": "shared/runtime/stage5-positioning-art.js",
+      "bytes": 1318,
+      "sha256": "67ac93056023fbb5903f7ee71dc2e3b88bb5464505b7615330778eff3d8fe170"
+    },
+    {
+      "path": "shared/runtime/stage5-positioning.js",
+      "bytes": 2079,
+      "sha256": "a9619cb481593a7a8917916f33e49a605da058df733d3734de0dad29f28be624"
+    },
+    {
+      "path": "shared/runtime/stage5-waterfall-art.js",
+      "bytes": 10131,
+      "sha256": "fa60e943a98c843481e3a9e4e64401eb9068b89f6773f63942414af785e1c2d5"
+    },
+    {
+      "path": "shared/runtime/stage5-waterfall-geometry.js",
+      "bytes": 3168,
+      "sha256": "5ef4883eefeefda03f8c6a991aa38dd9548fddf0275f52bd0dd747be78f567c5"
+    },
+    {
+      "path": "shared/runtime/stage5-waterfall.js",
+      "bytes": 5259,
+      "sha256": "73521648526d77f57bbb7b24409eb78d62de8bef11ec8db9e1c5413536e13719"
+    },
+    {
+      "path": "shared/runtime/stage6-location-art.js",
+      "bytes": 7328,
+      "sha256": "8d1af1152be631dc52b178f647d3943e86ceacdec9127c091bb23d19a196344e"
+    },
+    {
+      "path": "shared/runtime/stage7-location-art.js",
+      "bytes": 7435,
+      "sha256": "84791042e6ed119306430a2c998461c0a0a1deae3c38d354d6bf3544ace4e268"
+    },
+    {
+      "path": "shared/runtime/stage8-bier-art.js",
+      "bytes": 12987,
+      "sha256": "4abee443b58e6df3409e2d51c773c01b1c9c723edb794587057194f2cfe528e3"
+    },
+    {
+      "path": "shared/runtime/stage8-bier.js",
+      "bytes": 31779,
+      "sha256": "4abec9898397e35ef31547731674465a56d354268a06b002082728e6f2e713b1"
+    },
+    {
+      "path": "shared/runtime/stage8-location-art.js",
+      "bytes": 14109,
+      "sha256": "c7702e9cccd5e92c746f4a994ab1eb0b9a24914797dcba925e086b01a7920231"
+    },
+    {
+      "path": "shared/runtime/stage9-location-art.js",
+      "bytes": 8466,
+      "sha256": "7db9612acccfda9412c6fdb2e324e32e8d8413d529e397d87064f365454c8e9f"
+    },
+    {
+      "path": "shared/runtime/stake-crossing.js",
+      "bytes": 11628,
+      "sha256": "a5b477c1ff3067f49db7e619a565c51908903d688228f136377bb99ea4b7128f"
+    },
+    {
+      "path": "shared/runtime/startup-shell.js",
+      "bytes": 1642,
+      "sha256": "1cab2a294f817a118abd78d79d6d0862113865a1cd16208bc62ee66d2433f54a"
+    },
+    {
+      "path": "shared/runtime/story-act1-art.js",
+      "bytes": 16476,
+      "sha256": "18541d2f5f956e61215446a94dc7311aae7fb04f3bb45e99a99a4a20abf3b6d8"
+    },
+    {
+      "path": "shared/runtime/story-act23-art.js",
+      "bytes": 9333,
+      "sha256": "a2719be3ad63b88c73390c3e0b6e88c1de801fed71d43d926e6e4a16f32b1d02"
+    },
+    {
+      "path": "shared/runtime/story-anomaly-art.js",
+      "bytes": 4927,
+      "sha256": "f22797b90d9d19d42d0e9df2a7744acb0bcd3ebc9729f9e233a31d87b474d053"
+    },
+    {
+      "path": "shared/runtime/story-canon-v1.js",
+      "bytes": 7102,
+      "sha256": "7c479c773e9a697fbb307b7ae2eacdd9973cf918e9d4845463e4c52cc1b1854d"
+    },
+    {
+      "path": "shared/runtime/story-content-v0.js",
+      "bytes": 43332,
+      "sha256": "ff020be5ee8c48656d658ceacb2bc16c65cadae6cf1514e4a893c4a6988d8103"
+    },
+    {
+      "path": "shared/runtime/story-content.js",
+      "bytes": 37355,
+      "sha256": "8fcac424fcdb55bc8e01752ce9c75b11fa0ba0b6d2cbd5f31c91d6717129295e"
+    },
+    {
+      "path": "shared/runtime/story-direction.js",
+      "bytes": 17001,
+      "sha256": "9c73c65e6b52db27a06e7364a79acc95b3a26707874aeba8f9ded12da7f79cd2"
+    },
+    {
+      "path": "shared/runtime/story-framing.js",
+      "bytes": 18490,
+      "sha256": "04f6f576811c66ea9a7d8d4474688c19744dd6cfbc6c7ca3aed78d7dc3ae41e6"
+    },
+    {
+      "path": "shared/runtime/story-staging.js",
+      "bytes": 22700,
+      "sha256": "eedb0d8544f6241564973f3889ccc0d1046f370afe5f68ee1aa9b5c4b161db6f"
+    },
+    {
+      "path": "shared/runtime/story.js",
+      "bytes": 18404,
+      "sha256": "628753ed208166d29f8c47d6116c6bbc893e2ec8c61ac5ed214efaaac1a19809"
+    },
+    {
+      "path": "shared/runtime/terrain-readability.js",
+      "bytes": 4670,
+      "sha256": "0225c91226e71b73b169f534d34cbd26cf3cd6df18cb235f71f329035ad12f15"
+    },
+    {
+      "path": "shared/runtime/terrain-skirt.js",
+      "bytes": 5832,
+      "sha256": "b85570692e019d3eda81cace46c4fd6b660206f3aa72d356bb2cc9e9ad2afa50"
+    },
+    {
+      "path": "shared/runtime/terrain-space.js",
+      "bytes": 1976,
+      "sha256": "3ddb6ae1c21924cc4252cd228d27758fe9785f21036c1fc82cb4819bc7e3cd76"
+    },
+    {
+      "path": "shared/runtime/title-markup.js",
+      "bytes": 4217,
+      "sha256": "ad1ad2a97f027b799c2945c488e7c75bcec3403bf81d76961eaf6458adebbbc0"
+    },
+    {
+      "path": "shared/runtime/training.js",
+      "bytes": 9108,
+      "sha256": "e5610d9a36656f9f080ca11a78edd9f9c2fd6c4561ce7c1d10b16526040388db"
+    },
+    {
+      "path": "shared/runtime/ui-bridge.js",
+      "bytes": 6785,
+      "sha256": "39fa22476dbd9ed4a7ba17e9c7d3d1ee9e78209d520746e3ce898d19d5b04b80"
+    },
+    {
+      "path": "shared/runtime/unit-info.js",
+      "bytes": 10534,
+      "sha256": "abcf990c19dae5b811f8b744de939f825868dd38a37fb594a5d22bef636748d3"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-art.js",
+      "bytes": 31526,
+      "sha256": "f17f1902de30ec02fd4b96cae6ae36a73eae7d7e02727a0f759aa60cd0286b0c"
+    },
+    {
+      "path": "shared/runtime/vector-campaign-config.js",
+      "bytes": 461,
+      "sha256": "c154b88056b5a5d53e5127d75576cfb61d0ccbbcca2dd84e7d48b1880bf569ac"
+    },
+    {
+      "path": "shared/runtime/visual-hierarchy.js",
+      "bytes": 1219,
+      "sha256": "0c576495948d8841af6cce0e574bb1d21f008cc7c88313c6c0d54da787046fb2"
+    },
+    {
+      "path": "shared/runtime/world.js",
+      "bytes": 16230,
+      "sha256": "5c3487b2b027199a032c6ad62e301600c2466a6148b8259bca12b32d5a1c9d23"
+    }
+  ],
+  "buildActiveGraph": {
+    "filesBefore": 342,
+    "filesAfter": 342,
+    "removedReferences": [
+      "web/entries/game.6f3d15cd32745e6b.js",
+      "web/entries/game.c7c543c098eaa64f.html",
+      "web/entries/workshop.9418920c06fb576f.js",
+      "web/runtime/ordered-common-2.aaefeb760f1ec736.js"
+    ],
+    "addedReferences": [
+      "web/entries/game.33ef642463a58893.js",
+      "web/entries/game.b67db03cfc3c9c62.html",
+      "web/entries/workshop.7200d22b870b08d9.js",
+      "web/runtime/ordered-common-2.0de47a8b4271bca4.js"
+    ],
+    "sharedFilesIdentical": 338
+  }
+}
