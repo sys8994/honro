@@ -50,6 +50,9 @@ with serve_game() as url,sync_playwright() as p:
  page.wait_for_function('document.querySelector("#file-import").value===""')
  assert page.evaluate('JSON.stringify(HonroApp.engine.b)')==before
  assert page.evaluate('HonroApp.modalKind')=='settings-dialog'
+ assert '기록 파일을 읽을 수 없습니다' in page.locator('#notice').inner_text()
+ page.screenshot(path=str(out/'import-invalid-fixture-390x844.jpg'),type='jpeg',quality=80)
+ page.locator('#notice').wait_for(state='hidden')
  with page.expect_download() as download:page.click('[data-action=export]')
  saved=json.loads(__import__('pathlib').Path(download.value.path()).read_text())
  assert saved['game']=='honro' and page.evaluate('HonroApp.settingsPage')=='records'
@@ -68,6 +71,6 @@ with serve_game() as url,sync_playwright() as p:
  picker.value.set_files({'name':'valid.json','mimeType':'application/json','buffer':json.dumps(saved).encode()})
  page.wait_for_function('HonroApp.screen==="title"&&!HonroApp.engine')
  page.evaluate('HonroApp.settings("records")');page.click('[data-action=newgame]');page.click('[data-action=menu-confirm]')
- assert page.evaluate('HonroApp.screen==="title"&&Object.keys(HonroApp.profile.cleared).length===0&&HonroApp.profile.honroBattle===null')
+ assert page.evaluate('HonroApp.screen==="title"&&Object.keys(HonroApp.profile.cleared).length===0&&HonroApp.profile.honroBattle==null')
  print(json.dumps({'errors':errors,'checks':'4 viewport roots/details fit; 5% volume persistence; paused state immutable; X/Escape/cancel paths; native fullscreen success and rejection; invalid import/export/valid import; confirmed new journey'},ensure_ascii=False));assert not errors
  b.close()

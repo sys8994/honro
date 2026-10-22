@@ -862,7 +862,7 @@
             } else await G.HonroFullscreenInput.exit();
             if(status)status.textContent='';
             await this.applyOrientation();
-        } catch { if(status)status.textContent='이 브라우저에서는 전체화면 전환이 제한됩니다.';this.notify('이 브라우저에서는 전체화면 전환이 제한됩니다.'); }
+        } catch { if(status)status.textContent='이 브라우저에서는 전체화면 전환이 제한됩니다.';else this.notify('이 브라우저에서는 전체화면 전환이 제한됩니다.'); }
             this.refreshFullscreen();
         }
         async applyOrientation() { let pref = this.profile.settings.orientation; try {
@@ -1252,7 +1252,7 @@
                     this.notify('기록을 불러왔어.');
                 }
                 catch (err) {
-                    this.notify(err.message || '기록을 읽을 수 없어.');
+                    this.notify(this.debugMode?'디버그 모드를 끈 뒤 기록을 가져오세요.':'기록 파일을 읽을 수 없습니다. 혼로에서 내보낸 JSON 파일인지 확인해 주세요.');
                 }
                 el.value = '';
             } });
