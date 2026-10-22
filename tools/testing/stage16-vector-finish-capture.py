@@ -34,7 +34,7 @@ with sync_playwright() as pw:
  rows=[]
  def snap(name,mode):
   p.wait_for_timeout(180)
-  row=p.evaluate("""()=>{const a=HonroApp,s=a.scene,b=(window.__stage16FixtureEngine||a.engine).b,r=s.canvas.getBoundingClientRect();return{camera:[s.x,s.y,s.scale],viewport:HonroBounds.viewport(s,r.width,r.height),goal:HonroAct2.current(b)?.id,objectiveText:document.querySelector('#objective-text')?.textContent,phase:b.phase,round:b.round,cache:s.renderCacheStats(),heroes:b.units.filter(u=>u.side===0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp}))}}""")
+  row=p.evaluate("""()=>{const a=HonroApp,s=a.scene,b=a.engine.b,r=s.canvas.getBoundingClientRect();return{camera:[s.x,s.y,s.scale],viewport:HonroBounds.viewport(s,r.width,r.height),goal:HonroAct2.current(b)?.id,objectiveText:document.querySelector('#objective-text')?.textContent,phase:b.phase,round:b.round,cache:s.renderCacheStats(),heroes:b.units.filter(u=>u.side===0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp}))}}""")
   path=out/(name+'.jpg');p.screenshot(path=str(path),type='jpeg',quality=86);assert path.stat().st_size<1_000_000;rows.append({'file':name+'.jpg','mode':mode,**row});print(json.dumps(rows[-1],ensure_ascii=False),flush=True)
  def drag(x0,y0,x1,y1):
   p.mouse.move(x0,y0);p.mouse.down();p.mouse.move(x1,y1,steps=18);p.mouse.up();p.wait_for_timeout(160)
@@ -46,7 +46,7 @@ with sync_playwright() as pw:
    drag(cx,310,max(25,min(w-25,cx+dx)),310)
  def fixed(name,x,y,z,w=1440,h=900):
   p.set_viewport_size({'width':w,'height':h});p.wait_for_timeout(100)
-  p.evaluate("""v=>{const a=HonroApp,s=a.scene;Object.assign(s,{manual:true,x:v.x,y:v.y,scale:v.z,editorView:v.name==='overview',skillPreview:v.name==='overview',goalFocus:null,cinematic:null,storyTween:null});s.render(window.__stage16FixtureEngine||a.engine,0,'',.6,false,0)}""",dict(name=name,x=x,y=y,z=z));snap(name,'Fixed production camera; no gameplay actions')
+  p.evaluate("""v=>{const a=HonroApp,s=a.scene;Object.assign(s,{manual:true,x:v.x,y:v.y,scale:v.z,editorView:v.name==='overview',skillPreview:v.name==='overview',goalFocus:null,cinematic:null,storyTween:null});s.render(a.engine,0,'',.6,false,0)}""",dict(name=name,x=x,y=y,z=z));snap(name,'Fixed production camera; no gameplay actions')
  if group in ['ui','camera','mobile','final']:
   snap('entry-default','Actual fresh UI entry/default follow')
   p.mouse.move(min(610,p.viewport_size['width']/2),310);p.mouse.wheel(0,757);p.wait_for_timeout(120);p.mouse.wheel(0,757);p.wait_for_timeout(240);snap('minimum-entry','Actual UI wheel two pages')
@@ -56,7 +56,7 @@ with sync_playwright() as pw:
    horizontal(15000);snap('right-pan','Actual east focus limit');assert abs(rows[-1]['camera'][0]-11320)<1
    horizontal(5800)
    for i in range(8):drag(p.viewport_size['width']/2,520,p.viewport_size['width']/2,160)
-   snap('lower-pan','Actual lower camera focus limit')
+   snap('lower-pan','Actual lower camera focus limit');assert abs(rows[-1]['camera'][1]-7840)<1
  views=[('overview',5500,3650,.105,'structure'),('entry',1300,5100,.5,'structure'),('west-cloister',3700,4220,.5,'structure'),('hall',6000,4650,.35,'structure'),('east-corridor',9100,4630,.5,'structure'),('plinth-west',5100,5100,.7,'detail'),('plinth-east',7180,5050,.7,'detail'),('prayer-cave',5850,5570,.6,'detail'),('floor-near',3450,6200,.55,'detail'),('roof-near',6000,1350,.4,'detail')]
  for name,x,y,z,focus in views:
   if group=='ui' and name not in ['overview','hall']:continue

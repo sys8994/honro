@@ -5,9 +5,29 @@ import {pathToFileURL} from 'node:url';
 import {compileSVG} from './build-act2-art.mjs';
 export const STAGE16_SUPPORT_ASSET='stage16:temple-recessed-foundation';
 const n=v=>Math.round(v*100)/100;
+const shade=(hex,d)=>'#'+[1,3,5].map(i=>Math.max(0,Math.min(255,parseInt(hex.slice(i,i+2),16)+d)).toString(16).padStart(2,'0')).join('');
 const poly=(ps,fill)=>`<path d="M${ps.map(p=>p.join(' ')).join('L')}Z" fill="${fill}"/>`;
 export function applyStage16VectorFinish(project){
  const st=project.stages.find(s=>s.metadata?.stageId===16),space=st.design.space,planes=[];
+ const splits={
+  '0:5':[90,230,[[100,150],[-30,290],[210,410]]],
+  '0:6':[920,1120,[[1030,140],[930,270],[1170,460]]],
+  '0:8':[2450,2720,[[2570,180],[2460,370],[2750,580]]],
+  '0:11':[4640,4860,[[4750,180],[4630,320],[4910,450]]],
+  '0:12':[5320,5530,[[5430,180],[5320,350],[5520,540]]],
+  '0:14':[6580,6840,[[6710,170],[6580,330],[6820,510]]],
+  '0:16':[7860,8140,[[7970,180],[7830,370],[8080,570]]],
+  '0:17':[8760,8860,[[8890,160],[8720,350],[9000,570]]],
+  '0:19':[10600,10450,[[10470,170],[10610,310],[10420,470]]]
+ };
+ const layers={
+  '0:7':[.55,.42,[[1660,250],[1790,210],[1940,340]]],
+  '0:9':[.48,.58,[[3170,270],[3280,410],[3450,380]]],
+  '0:10':[.48,.55,[[3800,350],[3940,290],[4100,380]]],
+  '0:13':[.46,.59,[[5900,300],[6050,440],[6240,400]]],
+  '0:15':[.56,.44,[[7260,280],[7410,230],[7580,350]]],
+  '0:18':[.42,.6,[[9630,270],[9750,380],[9890,350]]]
+ };
  function body(id,dir,rows,joins,tones,bends,clefts,ledges){
   const t=st.terrains.find(t=>t.id===id),surface=x=>{const ys=[];for(let i=0;i<t.points.length;i++){const a=t.points[i],b=t.points[(i+1)%t.points.length];if(a.x!==b.x&&x>=Math.min(a.x,b.x)&&x<=Math.max(a.x,b.x))ys.push(a.y+(b.y-a.y)*(x-a.x)/(b.x-a.x));}return dir>0?Math.min(...ys):Math.max(...ys);},at=([x,d])=>[x,surface(x)+dir*d],v=rows.map(r=>r.map(at));
   const add=(key,ps,fill)=>planes.push({id:'v16-'+id+'-'+key,terrainId:id,stage16VectorFinish:true,fill,points:ps.map(p=>p.map(n))});
@@ -17,7 +37,18 @@ export function applyStage16VectorFinish(project){
   const contacts={};
   for(let r=0;r<joins.length;r++){
    const seams=joins[r].map(([i,j])=>{const k=r+':'+i,path=[v[r][i],...(bends[k]||[]).map(at),v[r+1][j]];contacts[k]=path;return{i,j,path};});
-   for(let i=1;i<seams.length;i++){const a=seams[i-1],b=seams[i];add('plane'+r+'-'+i,[...span(r,a.i,b.i),...b.path.slice(1),...span(r+1,a.j,b.j).reverse().slice(1),...a.path.slice().reverse().slice(1)],tones[r][(i-1)%tones[r].length]);}
+   for(let i=1;i<seams.length;i++){
+    const a=seams[i-1],b=seams[i],upper=span(r,a.i,b.i),lower=span(r+1,a.j,b.j),tone=tones[r][(i-1)%tones[r].length],cut=id==='act2-floor'?splits[r+':'+i]:null,layer=id==='act2-floor'?layers[r+':'+i]:null;
+    if(layer){
+     const divide=(ps,f)=>{const k=f*(ps.length-1),j=Math.min(ps.length-2,Math.floor(k)),v=k-j,a=ps[j],b=ps[j+1],point=[a[0]+(b[0]-a[0])*v,a[1]+(b[1]-a[1])*v];return{point,up:[...ps.slice(0,j+1),point],down:[point,...ps.slice(j+1)]};},left=divide(a.path,layer[0]),right=divide(b.path,layer[1]),joint=[left.point,...layer[2].map(at),right.point];
+     add('layer-upper'+r+'-'+i,[...upper,...right.up.slice(1),...joint.slice().reverse().slice(1),...left.up.slice().reverse().slice(1)],shade(tone,2));
+     add('layer-lower'+r+'-'+i,[...joint,...right.down.slice(1),...lower.slice().reverse().slice(1),...left.down.slice().reverse().slice(1)],shade(tone,-4));continue;
+    }
+    if(!cut){add('plane'+r+'-'+i,[...upper,...b.path.slice(1),...lower.slice().reverse().slice(1),...a.path.slice().reverse().slice(1)],tone);continue;}
+    const sample=(ps,x)=>{for(let j=1;j<ps.length;j++){const a=ps[j-1],b=ps[j];if(x>=a[0]&&x<=b[0])return[x,a[1]+(b[1]-a[1])*(x-a[0])/(b[0]-a[0])];}throw Error('Split outside authored face '+id+'/'+r+':'+i);},part=(ps,l,h)=>[sample(ps,l),...ps.filter(p=>p[0]>l&&p[0]<h),sample(ps,h)],joint=[sample(upper,cut[0]),...cut[2].map(at),sample(lower,cut[1])];
+    add('split-left'+r+'-'+i,[...part(upper,upper[0][0],cut[0]),...joint.slice(1),...part(lower,lower[0][0],cut[1]).reverse().slice(1),...a.path.slice().reverse().slice(1)],shade(tone,3));
+    add('split-right'+r+'-'+i,[...part(upper,cut[0],upper.at(-1)[0]),...b.path.slice(1),...part(lower,cut[1],lower.at(-1)[0]).reverse().slice(1),...joint.slice().reverse().slice(1)],shade(tone,-3));
+   }
   }
   const end=v.at(-1),bottom=dir>0?Math.max(...t.points.map(p=>p.y)):Math.min(...t.points.map(p=>p.y));for(let i=1;i<end.length;i++)add('deep'+i,[end[i-1],end[i],[end[i][0],bottom],[end[i-1][0],bottom]],dir>0?(i%3?'#344e54':'#384f55'):(i%3?'#203a46':'#253e49'));
   for(const[key,width]of clefts){const ps=contacts[key].slice(1,-1);if(ps.length<2)throw Error('Authored joint needs turns');add('joint'+key,[...ps,...ps.map(([x,y],i)=>[x+(i===1?width:3),y+dir*(i===1?8:0)]).reverse()],dir>0?'#2c464c':'#193440');}
@@ -72,8 +103,8 @@ export function applyStage16VectorFinish(project){
   [[[6880,5030],[7190,5060],[7310,5340],[7200,5590],[7360,5900],[7010,6010],[6820,5680],[6940,5390]],'#34494e'],
   [[[7190,5060],[7280,5000],[7400,5330],[7300,5600],[7450,5890],[7360,5900],[7200,5590],[7310,5340]],'#293f47'],
   [[[6880,5030],[6960,5200],[7040,5380],[6910,5610],[7080,5800],[7010,6010],[6820,5680],[6940,5390]],'#3a5053'],
-  [[[4800,5180],[5200,5280],[5220,5320],[4790,5230]],'#293f45'],
-  [[[6890,5150],[7240,5200],[7250,5240],[6920,5200]],'#293f45']
+  [[[4880,5050],[5320,5120],[5310,5160],[4870,5100]],'#293f45'],
+  [[[6880,5040],[7240,5080],[7250,5120],[6900,5080]],'#293f45']
  ])svg+=poly(ps,color);
  const bounds={x:4700,y:4990,w:2800,h:1100},asset={id:STAGE16_SUPPORT_ASSET,name:'잠운사 기단 뒤 낮은 대비의 지지 모암',category:'rock',environmentRole:'rock',visual:[],vector:compileSVG(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="4700 4990 2800 1100">${svg}</svg>`),collision:[],anchor:{x:0,y:0},sockets:[],tags:['stage16-temple','visual-only','editable-native-vector','recessed-back-support'],params:{artRevision:1,collisionSource:'none-recessed-background'},bounds,reference:{heightM:1100/60,bounds,foot:{x:0,y:0},scaleRange:[.35,4],backgroundRange:[.35,4]}};
  const ai=project.library.findIndex(a=>a.id===STAGE16_SUPPORT_ASSET);if(ai<0)project.library.push(asset);else project.library[ai]=asset;
