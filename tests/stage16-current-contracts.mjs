@@ -1,0 +1,23 @@
+/** Current factory and read-only/predicate diagnostics. The manipulated clones
+ * below are explicit prerequisites fixtures, never normal combat evidence. */
+import assert from 'node:assert/strict';
+import {mkdir,readFile,writeFile} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import {runtime,battlefield} from '../game/tests/helpers.mjs';
+import {current16Entry} from './stage16-current-entry-helper.mjs';
+const g=await runtime({legacyMaps:false}),f=current16Entry(g),{b}=battlefield(g,16,{profile:f.profile}),A=g.HonroAct2,C=g.HONRO_CORE,plain=x=>JSON.parse(JSON.stringify(x)),s=g.HONRO_PROJECT.stages[15],steps=A.steps(b),rows=[];
+assert.equal(b.units.filter(u=>u.side===1).length,49);assert.equal(b.units.length,55);assert.deepEqual(plain(steps.map(v=>v.id)),['monk','clear-rescue-threat','witness','hall','record']);
+const marker=id=>b.honroMarkers.find(m=>m.id===id),required=steps[1].defeatIds,local=A.interactionThreats(b,marker('monk')).map(u=>u.id);
+assert.deepEqual(plain(local),['a2-enemy-4','tm-court-flank']);assert(local.every(id=>required.includes(id)));
+rows.push({case:'actual-factory',size:[b.width,b.height],enemyCount:49,allActors:55,elites:b.units.filter(u=>u.side===1&&u.elite).length,activeLimit:b.honroActiveLimit,steps:plain(steps),markers:plain(b.honroMarkers.filter(m=>steps.some(s=>s.id===m.id))),designEncounterMetadata:plain(s.design.temple.encounters),growth:f.allocation,entryXP:f.readiness.xp,entryLevel:f.readiness.level});
+rows.push({case:'rescue/fixed gate overlap',rescueThreats:local,fixedRequiredIds:required,additionalFixedIds:required.filter(id=>!local.includes(id)).map(id=>{const u=b.units.find(u=>u.id===id);return{id,x:u.x,y:u.y,distanceFromMonk:Math.hypot(u.x-marker('monk').x,u.y-marker('monk').y)};})});
+{const q=plain(b),m=q.honroMarkers.find(m=>m.id==='monk'),spirit=q.units.find(u=>u.id===m.spiritId),occ=q.units.find(u=>u.cls==='occultist'&&u.side===0),archer=q.units.find(u=>u.cls==='archer'&&u.side===0),app={engine:{b:q,active:occ}};
+ assert(!A.eligibility(app,m).ok);for(const id of local)q.units.find(u=>u.id===id).honroSubdued=true;assert(!A.eligibility(app,m).ok,'Full HP spirit remains blocked');spirit.hp=Math.floor(spirit.maxHp*.4);assert(A.eligibility(app,m).ok,'40% and occultist');app.engine.active=archer;assert(!A.eligibility(app,m).ok);spirit.honroSubdued=true;assert(A.eligibility(app,m).ok,'Other companion may subdue instead');
+ rows.push({case:'prepared rescue predicates',localThreatBlock:true,fortyPercentThreshold:true,occultistDetachOrOtherSubdue:true,scope:'HP/subdued prerequisites on isolated clone only, not completion flow'});}
+{const q=plain(b),a=A.memory(q),w=steps.find(v=>v.id==='witness'),r=steps.find(v=>v.id==='record');assert(!A.satisfied(q,w));assert(!A.satisfied(q,r));a.done['clear-rescue-threat']=true;assert(A.satisfied(q,w));a.done.hall=true;assert(A.satisfied(q,r));assert(q.units.filter(u=>u.side===0).every(u=>Math.hypot(u.x-marker('record').x,u.y-marker('record').y)>7000));
+ rows.push({case:'prepared evidence predicates',witnessAfter:'clear-rescue-threat',recordAfter:'hall',requiresTravelToWitnessOrRecord:false,requiresRecordLocalThreats:false,scope:'Supplied done facts test predicates only; not actual acquisition/completion'});}
+for(const id of ['monk','hall'])rows.push({case:'actual initial local threat set',id,radius:360,enemies:A.interactionThreats(b,marker(id)).map(u=>u.id)});
+const invalid=b.units.filter(u=>!u.dead&&u.hp>0&&!u.fixed&&!u.honroObjectiveTarget&&!C.validTerrainContactPose(b.terrain,u)).map(u=>({id:u.id,x:u.x,y:u.y}));rows.push({case:'initial ground contacts',invalid});
+const normalized=plain(b);g.HonroStageRules.sanitizeStageBattle(normalized);assert.deepEqual(normalized,plain(b),'Normal initialized current battle sanitation exact');
+const out='_local/reports/stage16-current-pacing-20261022';await mkdir(out,{recursive:true});await writeFile(out+'/contracts.json',JSON.stringify({source:'19d9fc28623d2451e37cf665145cfdc3e2fdd51f',checkedCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),stageSourceSha256:createHash('sha256').update(JSON.stringify(s)).digest('hex'),runtimeSha256:createHash('sha256').update(await readFile('shared/runtime/act2.js')).digest('hex'),routes:s.design.space.routes.map(r=>({id:r.id,kind:r.kind,anchors:r.anchors})),rows,scope:'Current factory/read-only and explicitly prepared predicate clones, not normal combat completion.'},null,2));console.log('PASS current factory49, overlap, rescue/evidence predicates and initialized-save sanitation; initial invalid ground contacts',JSON.stringify(invalid));
