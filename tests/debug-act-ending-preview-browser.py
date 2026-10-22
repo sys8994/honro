@@ -9,12 +9,14 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--review', choices=['entry', 'exit', 'storage', 'final'], required=True)
 parser.add_argument('--out', default='_local/reports/debug-act-ending-preview')
 args = parser.parse_args()
+EXECUTION_SHA = subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()
 OUT = Path(args.out); OUT.mkdir(parents=True, exist_ok=True)
 rows, errors, http = [], [], []
 SNAP = """()=>JSON.stringify({profile:HonroApp.profile,normal:HonroApp.normalProfile,
  storage:Object.fromEntries(Object.keys(localStorage).sort().map(k=>[k,localStorage.getItem(k)])),
  battle:HonroApp.engine?.b,stageId:HonroApp.stageId,debugRestStage:HonroApp.debugRestStage,
- selected:HonroApp.selected,selectedByUnit:HonroApp.selectedByUnit,power:HonroApp.power,done:HonroApp.done})"""
+ selected:HonroApp.selected,selectedByUnit:HonroApp.selectedByUnit,power:HonroApp.power,done:HonroApp.done,
+ dirty:HonroApp.dirty,training:HonroApp.training,acc:HonroApp.acc})"""
 
 def shot(page, name):
     path = OUT / (name + '.jpg')
@@ -44,6 +46,7 @@ def debug_menu(page, live=False):
     page.locator('[data-action="settings-page"][data-id="debug"]').click()
     # Let the existing deferred battle autosave settle before the read-only baseline.
     if live: page.wait_for_function('!HonroApp.dirty')
+    if args.review == 'final': page.wait_for_timeout(3200)
     assert page.locator('#debug-ending-title').inner_text() == '막 엔딩 미리보기'
     assert page.locator('[data-action="debug-act-ending-preview"]').all_text_contents() == ['1막', '2막', '3막']
     assert page.evaluate('Object.keys(HonroApp.profile.cleared).length') == 0
@@ -93,6 +96,12 @@ with sync_playwright() as p:
         page.on('response', lambda r: http.append({'url':r.url,'status':r.status}) if r.status>=400 else None)
         page.goto(story_base_url()+'/HONRO.html'); ready(page)
         debug_menu(page, live=args.review in ['exit','storage'])
+        # Invalid context/ID requests cannot create a viewer or write state.
+        before = page.evaluate(SNAP)
+        assert page.evaluate('''()=>{const a=HonroApp,E=HonroActEndings;let ok=!E.previewDebug(a,9);
+          for(const key of ['debugMode','training','customMap']){const old=a[key];a[key]=key==='debugMode'?false:true;ok=ok&&!E.previewDebug(a,10)&&!E.debugControls(a);a[key]=old;}
+          const old=globalThis.HONRO_EMBEDDED;globalThis.HONRO_EMBEDDED=true;ok=ok&&!E.previewDebug(a,10)&&!E.debugControls(a);globalThis.HONRO_EMBEDDED=old;return ok&&!a.endingGallery;}''')
+        unchanged(page,before)
         for stage in [10,20,30]:
             before = page.evaluate(SNAP)
             # Scroll before capture, matching the actual clicked location.
@@ -152,7 +161,8 @@ with sync_playwright() as p:
 assert not errors, errors
 assert not http, http
 (OUT/(args.review+'-summary.json')).write_text(json.dumps({
-    'executionSHA':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+    'executionSHA':EXECUTION_SHA,
+    'sourceHashes':{f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ['shared/runtime/act-endings.js','shared/runtime/main.js','shared/runtime/menu-ui.js','game/src/act-endings.css']},
     'review':args.review,'rows':rows,'errors':errors,'httpFailures':http,
     'limits':['Chromium touch/viewport emulation, not physical mobile devices.','Uncleared and live combat use explicit fixtures, no combat playthrough.']
 },ensure_ascii=False,indent=2)+'\n')
