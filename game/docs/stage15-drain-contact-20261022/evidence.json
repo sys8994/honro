@@ -1,0 +1,693 @@
+{
+  "base": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+  "branch": "fix/stage15-drain-contact-20261022",
+  "runtimeSourceCommit": "91a02485c8fdd16ec8ebeebd76e0e04ce9a303c4",
+  "generatedCommit": "44866afe7a82dbe79a3b3dc743a5382073e56fb5",
+  "originalFailure": {
+    "source": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+    "evidenceCommit": "916b42ab6cdaad0018fff2c739ccd72a9d862fe7",
+    "failure": {
+      "checkedCommit": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+      "scope": "Original full living roster; supplied completed sluice/pending reveal facts, production reveal/sanitizer and20 ordinary Engine ticks. NOT normal combat completion.",
+      "passed": false,
+      "beforeBroken": true,
+      "guardWithBroken": [],
+      "guardWithActiveClone": [
+        "a2-enemy-15",
+        "a2-enemy-17"
+      ],
+      "activated": true,
+      "newInvalid": [
+        {
+          "id": "a2-enemy-15",
+          "x": 6210,
+          "y": 4553.207547169811,
+          "hp": 1434,
+          "valid": false,
+          "subdued": false
+        },
+        {
+          "id": "a2-enemy-17",
+          "x": 5890,
+          "y": 4749.411764705882,
+          "hp": 925,
+          "valid": false,
+          "subdued": false
+        }
+      ],
+      "sanitizerMoves": [
+        {
+          "id": "a2-enemy-15",
+          "before": {
+            "x": 6210,
+            "y": 4553.207547169811,
+            "hp": 1434
+          },
+          "after": {
+            "x": 6178,
+            "y": 4432.642857142857,
+            "hp": 1434
+          }
+        },
+        {
+          "id": "a2-enemy-17",
+          "before": {
+            "x": 5890,
+            "y": 4749.411764705882,
+            "hp": 925
+          },
+          "after": {
+            "x": 5858,
+            "y": 4771.058823529412,
+            "hp": 925
+          }
+        }
+      ],
+      "stillInvalidAfter20Ticks": [
+        {
+          "id": "a2-enemy-15",
+          "x": 6210,
+          "y": 4553.207547169811,
+          "hp": 1434,
+          "valid": false,
+          "subdued": false
+        },
+        {
+          "id": "a2-enemy-17",
+          "x": 5890,
+          "y": 4749.411764705882,
+          "hp": 925,
+          "valid": false,
+          "subdued": false
+        }
+      ],
+      "after20TickPositionChanges": []
+    },
+    "failedSaveCases": [
+      {
+        "case": "A drainage activated",
+        "wholeBattleContinueExact": false,
+        "positions": [
+          {
+            "id": "a2-enemy-15",
+            "before": {
+              "x": 6210,
+              "y": 4553.207547169811,
+              "hp": 1434
+            },
+            "after": {
+              "x": 6178,
+              "y": 4432.642857142857,
+              "hp": 1434
+            }
+          },
+          {
+            "id": "a2-enemy-17",
+            "before": {
+              "x": 5890,
+              "y": 4749.411764705882,
+              "hp": 925
+            },
+            "after": {
+              "x": 5858,
+              "y": 4771.058823529412,
+              "hp": 925
+            }
+          }
+        ],
+        "reason": "Recorded source save/contact difference; not hidden or repaired"
+      }
+    ]
+  },
+  "after": {
+    "transition": {
+      "checkedCommit": "91a02485c8fdd16ec8ebeebd76e0e04ce9a303c4",
+      "rows": [
+        {
+          "case": "full living roster after20ticks",
+          "repeatedWholeBattleContinueExact": true
+        },
+        {
+          "case": "source living asleep roster, no activation wait",
+          "all26ActorsRetained": true,
+          "moves": [
+            {
+              "id": "a2-enemy-15",
+              "from": {
+                "x": 6210,
+                "y": 4553.207547169811
+              },
+              "to": {
+                "x": 6290,
+                "y": 4539.622641509434
+              },
+              "distance": 81.14523807224506,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            },
+            {
+              "id": "a2-enemy-17",
+              "from": {
+                "x": 5890,
+                "y": 4749.411764705882
+              },
+              "to": {
+                "x": 5874,
+                "y": 4760.235294117647
+              },
+              "distance": 19.317059531081306,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            }
+          ],
+          "radius": 192,
+          "step": 8,
+          "allResourcesAndAIUnchanged": true
+        },
+        {
+          "case": "old active invalid contact repaired once",
+          "repeatedWholeBattleContinueExact": true
+        },
+        {
+          "case": "old active save",
+          "localRepair": true,
+          "moves": [
+            {
+              "id": "a2-enemy-15",
+              "from": {
+                "x": 6210,
+                "y": 4553.207547169811
+              },
+              "to": {
+                "x": 6290,
+                "y": 4539.622641509434
+              },
+              "distance": 81.14523807224506,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            },
+            {
+              "id": "a2-enemy-17",
+              "from": {
+                "x": 5890,
+                "y": 4749.411764705882
+              },
+              "to": {
+                "x": 5874,
+                "y": 4760.235294117647
+              },
+              "distance": 19.317059531081306,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            }
+          ]
+        },
+        {
+          "case": "valid active save without stamp",
+          "repeatedWholeBattleContinueExact": true
+        },
+        {
+          "case": "player and ally occupying proposed solid",
+          "moves": [
+            {
+              "id": "a2-enemy-15",
+              "from": {
+                "x": 6210,
+                "y": 4553.207547169811
+              },
+              "to": {
+                "x": 6290,
+                "y": 4539.622641509434
+              },
+              "distance": 81.14523807224506,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            },
+            {
+              "id": "a2-enemy-17",
+              "from": {
+                "x": 5890,
+                "y": 4749.411764705882
+              },
+              "to": {
+                "x": 5802,
+                "y": 4785.333333333333
+              },
+              "distance": 95.04924561855648,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            },
+            {
+              "id": "fixture-ally",
+              "from": {
+                "x": 6110,
+                "y": 4600.588235294118
+              },
+              "to": {
+                "x": 6054,
+                "y": 4506.285714285715
+              },
+              "distance": 109.67664048711718,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            },
+            {
+              "id": "p-archer",
+              "from": {
+                "x": 5890,
+                "y": 4749.411764705882
+              },
+              "to": {
+                "x": 5890,
+                "y": 4600
+              },
+              "distance": 149.41176470588198,
+              "physicsBefore": {
+                "vx": 0,
+                "vy": 0,
+                "airborne": false
+              }
+            }
+          ],
+          "resourcesAndActionsExact": true
+        },
+        {
+          "case": "one blocked actor after another candidate found",
+          "atomicDefer": true,
+          "reason": "no local contact",
+          "calls": [
+            {
+              "id": "a2-enemy-15",
+              "found": true
+            },
+            {
+              "id": "a2-enemy-17",
+              "found": false
+            },
+            {
+              "id": "a2-enemy-15",
+              "found": true
+            },
+            {
+              "id": "a2-enemy-17",
+              "found": false
+            },
+            {
+              "id": "a2-enemy-15",
+              "found": true
+            },
+            {
+              "id": "a2-enemy-17",
+              "found": false
+            }
+          ]
+        },
+        {
+          "case": "blocked old-active pathological fixture",
+          "noFarFallback": true,
+          "limit": "Existing invalid pose remains unresolved rather than teleporting; no geometry is newly enabled."
+        },
+        {
+          "case": "unsafe dialogue",
+          "postponed": true
+        },
+        {
+          "case": "unsafe review",
+          "postponed": true
+        },
+        {
+          "case": "unsafe flight",
+          "postponed": true
+        },
+        {
+          "case": "unsafe charging",
+          "postponed": true
+        },
+        {
+          "case": "unsafe volley",
+          "postponed": true
+        },
+        {
+          "case": "unsafe melee",
+          "postponed": true
+        },
+        {
+          "case": "unaffected airborne actor",
+          "exact": true
+        }
+      ],
+      "scope": "Current source transition/save and adversarial occupancy/action fixtures. Not normal combat arrival or Stage15 fullplay."
+    },
+    "diagnostic": {
+      "checkedCommit": "91a02485c8fdd16ec8ebeebd76e0e04ce9a303c4",
+      "scope": "Original full living roster; supplied completed sluice/pending reveal facts, production reveal/sanitizer and20 ordinary Engine ticks. NOT normal combat completion.",
+      "passed": true,
+      "beforeBroken": true,
+      "guardWithBroken": [],
+      "guardWithActiveClone": [
+        "a2-enemy-15",
+        "a2-enemy-17"
+      ],
+      "activated": true,
+      "newInvalid": [],
+      "sanitizerMoves": [],
+      "stillInvalidAfter20Ticks": [],
+      "after20TickPositionChanges": []
+    },
+    "routes": {
+      "base": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+      "checkedCommit": "91a02485c8fdd16ec8ebeebd76e0e04ce9a303c4",
+      "runtimeSourceSha256": "541a5de814beef1a0571eea4c1e9dc96c30488ce89f1cdeb0f4b320007da06e3",
+      "rows": [
+        {
+          "case": "current-source",
+          "dimensions": [
+            8000,
+            6000
+          ],
+          "enemies": 22,
+          "party": 4,
+          "entryPlan": 14.4,
+          "entryXP": 48393,
+          "steps": [
+            {
+              "id": "sluice",
+              "label": "수문을 열어 낮은 길 드러내기",
+              "kind": "interact",
+              "optional": true
+            },
+            {
+              "id": "groove",
+              "label": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+              "kind": "interact"
+            },
+            {
+              "id": "route-exit",
+              "kind": "route",
+              "label": "흔적 확인 후 배수한 아랫길 또는 고지로 통과"
+            }
+          ],
+          "routeSpec": {
+            "revision": 1,
+            "toStage": 16,
+            "common": [
+              "groove"
+            ],
+            "routes": [
+              {
+                "id": "A",
+                "markerId": "route-lower-exit",
+                "requiresDone": [
+                  "sluice"
+                ],
+                "requiresTerrainActive": [
+                  "fc15-drained-ledge"
+                ]
+              },
+              {
+                "id": "B",
+                "markerId": "route-upper-exit",
+                "requiresDone": []
+              }
+            ]
+          },
+          "goal": "옛 흔적을 확인하고 배수한 낮은 길 또는 고지로 통과"
+        },
+        {
+          "case": "local interaction threat fixture",
+          "marker": "sluice",
+          "mandatoryThreatIds": [
+            "a2-enemy-5",
+            "a2-enemy-6",
+            "a2-enemy-8"
+          ],
+          "radius": 360
+        },
+        {
+          "case": "local interaction threat fixture",
+          "marker": "groove",
+          "mandatoryThreatIds": [
+            "a2-enemy-15",
+            "a2-enemy-18"
+          ],
+          "radius": 360
+        },
+        {
+          "case": "route qualification fixture",
+          "route": "A",
+          "grooveRequired": true,
+          "optionalSluiceRequired": true,
+          "repeatCommitExact": true
+        },
+        {
+          "case": "route qualification fixture",
+          "route": "B",
+          "grooveRequired": true,
+          "optionalSluiceRequired": false,
+          "repeatCommitExact": true
+        },
+        {
+          "case": "A sluice pending dialogue/review",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "A actual sluice E after staged arrival",
+          "waterDrop": 120,
+          "collisionAndWorldSupportActivated": true,
+          "duplicateERefused": true,
+          "enemiesPreparedSubdued": 22
+        },
+        {
+          "case": "A drainage activated",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "A groove dialogue",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "prepared A final arrival/outcome/16 entry",
+          "grooveRecordedViaRealE": true,
+          "routeRecordedAutomatically": true,
+          "rewardOnce": true,
+          "entryVariant": "A",
+          "entryHeroes": [
+            {
+              "cls": "archer",
+              "x": 570,
+              "y": 5480,
+              "hp": 785,
+              "focus": 180
+            },
+            {
+              "cls": "mage",
+              "x": 460,
+              "y": 5480,
+              "hp": 806,
+              "focus": 224
+            },
+            {
+              "cls": "knight",
+              "x": 680,
+              "y": 5480,
+              "hp": 1234,
+              "focus": 195
+            },
+            {
+              "cls": "occultist",
+              "x": 350,
+              "y": 5480,
+              "hp": 928,
+              "focus": 268
+            }
+          ],
+          "normalPlayCompletion": false
+        },
+        {
+          "case": "A actual16 entry",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "B groove dialogue",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "prepared B final arrival/outcome/16 entry",
+          "grooveRecordedViaRealE": true,
+          "routeRecordedAutomatically": true,
+          "rewardOnce": true,
+          "entryVariant": "B",
+          "entryHeroes": [
+            {
+              "cls": "archer",
+              "x": 2650,
+              "y": 5029.183673469388,
+              "hp": 785,
+              "focus": 180
+            },
+            {
+              "cls": "mage",
+              "x": 2750,
+              "y": 5021.0204081632655,
+              "hp": 806,
+              "focus": 224
+            },
+            {
+              "cls": "knight",
+              "x": 2850,
+              "y": 5012.857142857143,
+              "hp": 1234,
+              "focus": 195
+            },
+            {
+              "cls": "occultist",
+              "x": 3380,
+              "y": 4890.649350649351,
+              "hp": 928,
+              "focus": 268
+            }
+          ],
+          "normalPlayCompletion": false
+        },
+        {
+          "case": "B actual16 entry",
+          "wholeBattleContinueExact": true,
+          "round": 1,
+          "route": null
+        },
+        {
+          "case": "all-party-dead fixture",
+          "genericFailure": true,
+          "stageSpecificProtectedNPCs": 0
+        }
+      ],
+      "scope": "Prepared predicate/arrival/subdued-enemy fixtures. Actual interaction/drain/production App save/outcome/entry checks; NOT normal-resource combat or whole-stage clear-time evidence."
+    }
+  },
+  "build": {
+    "sourceCommit": "91a02485c8fdd16ec8ebeebd76e0e04ce9a303c4",
+    "command": "npm run build",
+    "passed": true,
+    "log": "\n> build\n> node workshop/build.mjs\n\n{\"gameBytes\":17415,\"workshopBytes\":3947,\"files\":354,\"playtest\":\"web/entries/game.3f481bba70433538.html?embedded=1\"}\nBuilt Game, Workshop and the direct Playtest document with shared external modules\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n",
+    "generatedCommit": "44866afe7a82dbe79a3b3dc743a5382073e56fb5"
+  },
+  "typecheck": {
+    "sourceCommit": "91a02485c8fdd16ec8ebeebd76e0e04ce9a303c4",
+    "command": "npm --prefix game run typecheck",
+    "passed": true,
+    "log": "\n> honro-game@1.0.0-rc.21 typecheck\n> tsc --project engine/tsconfig.json\n\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n"
+  },
+  "isolatedGeometry": {
+    "sourceCommit": "91a02485c8fdd16ec8ebeebd76e0e04ce9a303c4",
+    "command": "node tests/act23-route-geometry.mjs 15",
+    "passed": true,
+    "log": "15 A archer PASS damage 0 \n15 B archer PASS damage 0 \n15 A mage PASS damage 0 \n15 B mage PASS damage 0 \n15 A knight PASS damage 0 \n15 B knight PASS damage 0 \n15 A occultist PASS damage 0 \n15 B occultist PASS damage 0 \nScoped isolated geometry checks passed: 15\n",
+    "limitation": "Isolated route geometry fixture with prepared movement budgets; not normal combat or full-stage completion."
+  },
+  "retention": {
+    "checkedCommit": "91a02485c8fdd16ec8ebeebd76e0e04ce9a303c4",
+    "allHashesAndLengthsMatch": true,
+    "immutableFilesChecked": 470,
+    "activeFiles": 354,
+    "baseD55ActiveFiles": 354,
+    "publishedGraphs": [
+      {
+        "sourceSha": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+        "publishedAt": "2026-10-22T18:08:34Z",
+        "graphSha256": "c864a87b28e8f88476e2339229e3c58cdaa9ecaa2a8c29eeed118e3c3d7f57d9"
+      },
+      {
+        "sourceSha": "6cbda400009206180d28c61e5fc14a0b6246809a",
+        "publishedAt": "2026-10-22T17:40:00Z",
+        "graphSha256": "45467a11aba6ff3b6b5e1bad52b09a68fba18c5dd6ed996aaa4e83017426b820"
+      },
+      {
+        "sourceSha": "1f1b267c2d23bc5975af5841c560e4413291330b",
+        "publishedAt": "2026-10-22T16:46:17Z",
+        "graphSha256": "8ad60e0f7ee83147d16caf2e5a81f3c60b7ba200b5cb09f0bdf37e15c6da6249"
+      },
+      {
+        "sourceSha": "63cc28113b36d2da92b9e1557de52620edb7db03",
+        "publishedAt": "2026-10-22",
+        "graphSha256": "d0c7b149d59810240d236e7815da700f21311d0ef5a4efb656b2ba78e8bac38e"
+      },
+      {
+        "sourceSha": "fe6911c9e6c1358d9384c355d3e6fe5c6e96e9bb",
+        "publishedAt": "2026-10-22",
+        "graphSha256": "80b35631fe8a686411311d9af399d70b6f079125f480972dd16e4dbece1c5fce"
+      },
+      {
+        "sourceSha": "a23dffb5afab998646817ffd3ee9732d99ce3172",
+        "publishedAt": "2026-10-22",
+        "graphSha256": "7b87602302e0b02fe210d8d9023c875fdea65cda054d3e9477512ecc085c0941"
+      },
+      {
+        "sourceSha": "9890006179e45c7b323941a1252a3003c298751f",
+        "publishedAt": "2026-10-22",
+        "graphSha256": "8d3ea6034d68b2f8cdf7269a77b00ba9296fef623c857ebc5531ce3bd158d7d9"
+      },
+      {
+        "sourceSha": "934fcabd74767d662aee3830585ba807234934cc",
+        "publishedAt": "2026-10-22",
+        "graphSha256": "9999066fac3a298bb72279371b9e5be71356414faa3c2da1d789e2905c46f02d"
+      }
+    ],
+    "original934Chapter13": [
+      {
+        "path": "web/data/chapter-13-assets.1387b6a1f088fc74.json",
+        "bytes": 24657,
+        "sha256": "1387b6a1f088fc74db0214c2d751d5069ad7c298bc6cacc071f2d0b42296e07d"
+      },
+      {
+        "path": "web/data/chapter-13.516170b245a8b075.json",
+        "bytes": 57580,
+        "sha256": "516170b245a8b07515d056a25cd841526898fb4f2bc6c0c28c51d4bf9624e701"
+      }
+    ],
+    "generatedEntry": "web/entries/game.90cc1c5737b022e8.js",
+    "gameplayProjectUnchanged": true
+  },
+  "scopeBoundary": {
+    "normalStage15CombatArrivalExecuted": false,
+    "normalStage15FullClearExecuted": false,
+    "humanClearTimeClaim": false,
+    "masterOrPagesWritten": false,
+    "limitations": [
+      "192px radius and 8px horizontal support sampling; nearest sampled legal support, not continuous/global optimum.",
+      "Deterministic ID-order greedy planning may defer if no bounded local proposal exists. No partial commit or distant fallback.",
+      "Already-active pathological saves with no local solution keep their unresolved invalid contacts; the affected actors are excluded from generic far recovery.",
+      "Original full roster probe supplies completed-sluice/pending facts; route/outcome fixtures additionally supply arrival poses and subdued enemies."
+    ]
+  }
+}
