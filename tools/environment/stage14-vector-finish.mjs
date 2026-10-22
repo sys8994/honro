@@ -94,8 +94,29 @@ export function applyStage14VectorFinish(project){
  // black passage holes or collision. Existing SVG preparation caches it once.
  const rear=project.library.find(a=>a.id==='stage14:vertical-cavern-depth');
  let source=rear.vector.source.replace(/<g id="v14-finish-rear-strata">[\s\S]*?<\/g>/g,'');
+ // Actual minimum-zoom outer pans expose the old SVG's x=-700/8050
+ // vertical card ends. Author those existing rear silhouettes as rock returns;
+ // no camera clamp, added collider, image mask or per-frame edge work.
+ const pathD=(id,fn)=>{const re=new RegExp('(<path id="'+id+'" d=")([^"]+)(")');source=source.replace(re,(_,a,d,z)=>a+fn(d)+z);};
+ const westReturn='L-500 8460L-590 7910L-350 7360L-490 6760L-280 6180L-430 5600L-220 4970L-390 4360L-170 3740L-340 3120L-150 2510L-330 1920L-470 1320';
+ const eastReturn='L7860 3860L7940 4440L7730 5050L7890 5630L7600 6210L7730 6840L7460 7380L7580 7900L7460 8410L7800 8810';
+ pathD('continuous-deep-cavern-vault',()=> 'M-700 800Q1850 200 3830 840Q6380 580 8050 3220'+eastReturn+'L-500 9030'+westReturn+'Z');
+ pathD('west-cavern-shoulder',d=>d.slice(0,d.indexOf('L420 '))+`L420 ${section(ground,420)[0]}L-500 ${section(ground,420)[0]+350}`+westReturn+'Z');
+ pathD('east-high-asymmetric-rock',()=>`M5450 2900Q6160 2530 6880 3050L7940 4650L7730 5050L7890 5630L7600 6210L7730 6840L7460 7380L7580 7900L7460 8410L7800 8858L7460 ${section(ground,7460)[0]}L6880 ${section(ground,6880)[0]}Q7180 7360 6510 6340Q6200 5800 6430 5070Q6150 3470 5450 2900Z`);
+ pathD('east-deep-return-recess',()=>`M7230 3640L7860 4940L7770 5490L7500 6120L7630 6710L7370 7300L7470 7870L7280 8410L7950 ${section(ground,7460)[0]+160}L7460 ${section(ground,7460)[0]}Q7730 7210 7410 6500Q7170 5380 7230 3640Z`);
  const rearLines=[[[1800,1150],[2600,1270],[3450,1080],[4300,1430],[5200,1620],[6100,2390],[7050,3400]],[[1800,2350],[2600,2500],[3450,2200],[4300,2560],[5200,2300],[6100,2930],[7050,3650]],[[1700,3500],[2580,3300],[3460,3670],[4320,3390],[5250,3620],[6200,3580],[7210,4020]],[[1850,4540],[2750,4750],[3500,4430],[4430,4690],[5330,4460],[6240,4760],[7230,4500]],[[2040,5700],[2850,5420],[3720,5850],[4510,5540],[5430,5830],[6270,5500],[7270,5890]],[[2280,6830],[3000,7110],[3850,6790],[4700,7180],[5550,6830],[6400,7120],[7280,6860]],[[2500,8300],[3300,8190],[4120,8340],[4930,8170],[5710,8330],[6500,8210],[7300,8320]]];
- const rearTones=['#243944','#263d48','#2a404b','#253d49','#2b414c','#263e49'];let rearBody='';
+ // Entry follow sees the west upper vault at normal .82, not only the
+ // central village. Its folds use offset shared contacts, not a giant lit stamp.
+ const entryLines=[
+  [[-520,1000],[60,890],[540,950],[980,820],[1450,960],[1910,850],[2370,1080],[2850,1020],[3350,1270],[3830,1440]],
+  [[-400,1450],[140,1290],[470,1360],[1060,1200],[1370,1430],[2000,1300],[2290,1500],[2940,1500],[3250,1780],[3830,1940]],
+  [[-330,2520],[10,2380],[610,2570],[910,2440],[1560,2680],[1820,2470],[2500,2770],[2780,2910],[3450,3050],[3830,3300]]
+ ];let entryBody='';
+ for(let r=0;r<2;r++)for(let i=1;i<entryLines[r].length;i++){
+  const a=entryLines[r][i-1],b=entryLines[r][i],c=entryLines[r+1][i],d=entryLines[r+1][i-1];
+  entryBody+=svgPoly('v14-rear-entry-'+r+'-'+i,[a,b,c,d],shade(r?'#203743':'#263b46',[0,3,-2,1,-3,2,0,-2,1][i-1]));
+ }
+ const rearTones=['#243944','#263d48','#2a404b','#253d49','#2b414c','#263e49'];let rearBody=entryBody;
  for(let row=0;row<rearLines.length-1;row++)for(let i=1;i<rearLines[row].length;i++){
   const edge=j=>{const a=rearLines[row][j],b=rearLines[row+1][j];return[a,...((j+row)%3===0?[[a[0]-100,a[1]+(b[1]-a[1])*.4],[b[0]+80,a[1]+(b[1]-a[1])*.7]]:[]),b];};
   const a=rearLines[row][i-1],b=rearLines[row][i],d=rearLines[row+1][i-1];
