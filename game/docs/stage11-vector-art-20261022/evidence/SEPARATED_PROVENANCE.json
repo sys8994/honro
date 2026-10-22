@@ -1,0 +1,112 @@
+{
+  "candidate34-separated.json": {
+    "sha256": "d0c3c7cbd9e6263df4e74cbb644020703eab9e1b813d7f5332234db457f949d5",
+    "targets": {
+      "candidate3": {
+        "commit": "8e5571afeba46680144be35df276a4d79301876a",
+        "note": "art-on-master1c and final28 were captured before their source commit; source hashes match the stated subsequently committed exact runtime/build files.",
+        "sourceHashes": {
+          "shared/runtime/main.js": "6f9aa353c3c98e323b4929f4362de44dd9bff413315e8098ec3082ce2a92907f",
+          "shared/runtime/renderer.js": "e73d86cd27448bd617b62df0b3befc610b4dc59b336a4a4e8e069f2c4ee363e9",
+          "shared/runtime/stage11-landscape-art.js": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+          "shared/data/campaign.json": "5d4f7b87cea780b8e01801553f4d2a5367302e2d5d719aefb10e3311bc1d534d",
+          "web/manifest.json": "4e33561c18a04cf5e041e2313bc940401fe350a061176a41e9157dd9a6ca28d4"
+        }
+      },
+      "candidate4": {
+        "commit": "f853e8666ffafd35cedbd172881c4587fb718e2a",
+        "note": "art-on-master1c and final28 were captured before their source commit; source hashes match the stated subsequently committed exact runtime/build files.",
+        "sourceHashes": {
+          "shared/runtime/main.js": "6f9aa353c3c98e323b4929f4362de44dd9bff413315e8098ec3082ce2a92907f",
+          "shared/runtime/renderer.js": "e73d86cd27448bd617b62df0b3befc610b4dc59b336a4a4e8e069f2c4ee363e9",
+          "shared/runtime/stage11-landscape-art.js": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+          "shared/data/campaign.json": "abb1d132de3cfac3a972d4efac55ca83445c1aa28b09592382f2bc4d7cb03f4e",
+          "web/manifest.json": "8846d415a164598fa88067cc08557827fddf304a1f596ba5dfb46af6555f237c"
+        }
+      }
+    },
+    "probeSourceCommit": "7cccd914dfe46fd73351cca227ea33a6568f66d3",
+    "probeHashes": {
+      "tools/testing/stage11-material-probe.py": "907325b739361c447e6b28cae24f007396ce5e1689aabc8647506c9039d6bdd0",
+      "tools/testing/stage11-material-probe.js": "1cc31c81f79fd95b5966ceb8f58a571c9f38b9941a813ac92abfe0d9cc486eaf"
+    }
+  },
+  "master1c-art-separated.json": {
+    "sha256": "aa181c693cd583dd31278b78896b78e0ab8647fbaef351e886ae4c6bcf270638",
+    "targets": {
+      "master1c": {
+        "commit": "1c397248f42f365593be3a154c06d6d1ee5b2ac5",
+        "note": "art-on-master1c and final28 were captured before their source commit; source hashes match the stated subsequently committed exact runtime/build files.",
+        "sourceHashes": {
+          "shared/runtime/main.js": "65ce4bdac2981ae26e959a8136de607c9046d11e00576902ffe3aac4e94d14c5",
+          "shared/runtime/renderer.js": "e73d86cd27448bd617b62df0b3befc610b4dc59b336a4a4e8e069f2c4ee363e9",
+          "shared/runtime/stage11-landscape-art.js": "c3dcbaa9c909e55ebe80f0ae86d8c142d1876cfbe06d31ed118fd02e09968bc6",
+          "shared/data/campaign.json": "266685498816be6a44b2121f9f5b1a0f3455a28b76d42a95ec904b8cdb9e1880",
+          "web/manifest.json": "13c1391a258592fc7e155fe74f36af948c97f8dc53bda620e2bf00ece8aefcad"
+        }
+      },
+      "art-on-master1c": {
+        "commit": "7cccd914dfe46fd73351cca227ea33a6568f66d3",
+        "note": "art-on-master1c and final28 were captured before their source commit; source hashes match the stated subsequently committed exact runtime/build files.",
+        "sourceHashes": {
+          "shared/runtime/main.js": "65ce4bdac2981ae26e959a8136de607c9046d11e00576902ffe3aac4e94d14c5",
+          "shared/runtime/renderer.js": "e73d86cd27448bd617b62df0b3befc610b4dc59b336a4a4e8e069f2c4ee363e9",
+          "shared/runtime/stage11-landscape-art.js": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+          "shared/data/campaign.json": "abb1d132de3cfac3a972d4efac55ca83445c1aa28b09592382f2bc4d7cb03f4e",
+          "web/manifest.json": "dcd936d6868d64da1893e23369dff53572fc6edf322864e27787503f9b79639c"
+        }
+      }
+    },
+    "probeSourceCommit": "7cccd914dfe46fd73351cca227ea33a6568f66d3",
+    "probeHashes": {
+      "tools/testing/stage11-material-probe.py": "907325b739361c447e6b28cae24f007396ce5e1689aabc8647506c9039d6bdd0",
+      "tools/testing/stage11-material-probe.js": "1cc31c81f79fd95b5966ceb8f58a571c9f38b9941a813ac92abfe0d9cc486eaf"
+    }
+  },
+  "final28-separated.json": {
+    "sha256": "949600cbe2e53ef29350238d1f9463bd463366e45d7ec421d61bd368686dcdc0",
+    "targets": {
+      "master28": {
+        "commit": "28b26db62da7081b49962d5116fe7ad1de542f52",
+        "note": "art-on-master1c and final28 were captured before their source commit; source hashes match the stated subsequently committed exact runtime/build files.",
+        "sourceHashes": {
+          "shared/runtime/main.js": "65ce4bdac2981ae26e959a8136de607c9046d11e00576902ffe3aac4e94d14c5",
+          "shared/runtime/renderer.js": "0fc0aa62a304d1274b40d56515ddb4363da21b53c33552d8adb876f06e24569d",
+          "shared/runtime/stage11-landscape-art.js": "c3dcbaa9c909e55ebe80f0ae86d8c142d1876cfbe06d31ed118fd02e09968bc6",
+          "shared/data/campaign.json": "266685498816be6a44b2121f9f5b1a0f3455a28b76d42a95ec904b8cdb9e1880",
+          "web/manifest.json": "36647770088653b0b2f5f32d8d8cb3259a9a31fee04db8f8bcd73c5ee34459c1"
+        }
+      },
+      "fixed-art28": {
+        "commit": "a8402d7765df416505f421b5b858f1dd4f8a55f2",
+        "note": "art-on-master1c and final28 were captured before their source commit; source hashes match the stated subsequently committed exact runtime/build files.",
+        "sourceHashes": {
+          "shared/runtime/main.js": "65ce4bdac2981ae26e959a8136de607c9046d11e00576902ffe3aac4e94d14c5",
+          "shared/runtime/renderer.js": "0fc0aa62a304d1274b40d56515ddb4363da21b53c33552d8adb876f06e24569d",
+          "shared/runtime/stage11-landscape-art.js": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+          "shared/data/campaign.json": "abb1d132de3cfac3a972d4efac55ca83445c1aa28b09592382f2bc4d7cb03f4e",
+          "web/manifest.json": "c86312c4894fd5ca5b9ebdef5e37ee19002d008b6af37b492f222a9468f4c46b"
+        }
+      },
+      "final28": {
+        "commit": "9b69f1f278dfc1b478a6a4d3750d8870e3ce9682",
+        "note": "art-on-master1c and final28 were captured before their source commit; source hashes match the stated subsequently committed exact runtime/build files.",
+        "sourceHashes": {
+          "shared/runtime/main.js": "65ce4bdac2981ae26e959a8136de607c9046d11e00576902ffe3aac4e94d14c5",
+          "shared/runtime/renderer.js": "0fc0aa62a304d1274b40d56515ddb4363da21b53c33552d8adb876f06e24569d",
+          "shared/runtime/stage11-landscape-art.js": "824cac5edfd7283fd987c0c6c16283d2cc81c4e7d7fd7c4970be30ac81b5c6b8",
+          "shared/data/campaign.json": "abb1d132de3cfac3a972d4efac55ca83445c1aa28b09592382f2bc4d7cb03f4e",
+          "web/manifest.json": "41b128f8511225527d38a78d6624de7a21a1ec35d636274300e86837e40b8e2f"
+        }
+      }
+    },
+    "probeSourceCommit": "9b69f1f278dfc1b478a6a4d3750d8870e3ce9682",
+    "probeHashes": {
+      "tools/testing/stage11-material-probe.py": "5924b39a41f8781a329c8b7e9f1a350884506bbe1c3a1a1829a616893622be4d",
+      "tools/testing/stage11-material-probe.js": "71e0d2042b28b43f650fe57688aad8acf2caad1c26140a7c3c383da20d733c21"
+    }
+  },
+  "finalSourceCommit": "9b69f1f278dfc1b478a6a4d3750d8870e3ce9682",
+  "latestParentMaster": "28b26db62da7081b49962d5116fe7ad1de542f52",
+  "fixedArtSource": "f853e8666ffafd35cedbd172881c4587fb718e2a"
+}

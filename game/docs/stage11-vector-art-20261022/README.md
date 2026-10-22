@@ -340,3 +340,6 @@
 최종 `integration-ready-*` 전체·서쪽·중앙·피난처·세로 모바일·최대·가로 최소7장을 새 생산 Chromium 세션에서 촬영하고 전부 직접 열었다. 후보4의 큰/중간 면과 접합·피난처/목재·후벽·주민/목표 가독성을 확인했고 새로운 타일 이음·가림·발판 외곽을 관찰하지 못했다. 미술 데이터는 고정했고 위 재질 픽셀 해시도 같으므로 이전 승인된 후보4를 다시 디자인하지 않는다. 파일별 camera/viewport/상태/소스 SHA256은 [integration-ready-refinement.json](evidence/integration-ready-refinement.json), 보호 소스·픽셀 해시와 actual face 합은 [separated-summary.json](evidence/separated-summary.json)에 있다.
 
 [전체](evidence/integration-ready-overview.jpg) · [서쪽](evidence/integration-ready-west.jpg) · [중앙](evidence/integration-ready-central.jpg) · [피난처](evidence/integration-ready-refuge.jpg) · [동쪽 모바일](evidence/integration-ready-mobile-trace.jpg) · [최대](evidence/integration-ready-max-refuge.jpg) · [최소](evidence/integration-ready-min-mobile.jpg). 전달 JPG는 각1MB 미만이다. 이전의 무관한45≠43 전술 검사나 다른 장 완주/정상 장기 전투는 다시 실행하지 않았다. 접근 거부/결과 불명 작업은 없다.
+
+
+최종11장 국소 최적화/통합 소스 커밋은 `9b69f1f2`이며 부모 최신master `28b26db6`를 포함한다. 분리 계측 target별 정확한 소스/빌드/helper SHA와 원자료 SHA256은 [SEPARATED_PROVENANCE.json](evidence/SEPARATED_PROVENANCE.json)에 기록했다. 캡처 당시 미커밋이었던 자료는 이후 커밋된 해당 소스의 SHA256과 실제 일치함을 대조했다. 최신 최종 사진의 sourceHashes도9b69f1f2와 모두 같다. 이 뒤 문서/인계 정보만 바꾸며 미술/런타임 재측정은 늘리지 않는다.
