@@ -56,4 +56,26 @@ MODE=measure RUN=accepted-after-1 STATES=idle,charge,pan FRAMES=240 python tools
 BASE_ROOT=/workspace/honro-occlusion-baseline python tools/testing/occlusion-boundaries.py
 ```
 
-최종 source의 공통 build를 다시 실행했고 생성 파일은 더 변경되지 않았다. 최종 픽셀 checker에는 완전히 올린 충전과 해제의 draw 구간을 추가한다. 기존 통합·전 장 검사는 반복하지 않는다. 최종 master/Pages 반영은 부모 검토 이후 별도 담당이며 이 브랜치에서는 수행하지 않는다.
+최종 source의 공통 build를 다시 실행했고 생성 파일은 더 변경되지 않았다. 최종 픽셀 checker에는 완전히 올린 충전과 해제의 draw 구간까지 포함했다. 기존 통합·전 장 검사는 반복하지 않는다. 최종 master/Pages 반영은 부모 검토 이후 별도 담당이며 이 브랜치에서는 수행하지 않는다.
+
+## 최종 품질 증거와 인계
+
+clean 실행 `03119da093abb686e68eac75ca66ca52a52473f9`(runtime/build는2d92eca6 그대로)에서 최종 checker를 실행했다. **16사례·192frame 모두 RGBA 정확 일치**, pose state/후보ID/전투 JSON도 일치했다. 완전 충전은 실제 renderer의 시간/pose 갱신으로18frame을 진행했고, 활 해제는14번째 frame에서 기존 anim 상승/충전 해제 입력 상태를 주어 전환을 대조했다. 이는 별도 scripted render fixture이며 정상 사용자 발사/전투 완주 검사는 아니다. 이 검사는 최종 production Scene 전체를 사용하되 before측 occlusion 메서드만1c397248 원본으로 대체한다.
+
+| 최종 경계 | frame | before→after mask drawImage | 결과 |
+|---|---:|---:|---|
+|정상 idle|6|78→0|RGBA·pose·state 정확 일치|
+|정상 충전 상승→완전충전|18|234→0|동일|
+|실제 겹침, 움직임/공중/피격, 최소줌/윤곽, 화면 가장자리, 큰boss/날개|각6|78→78|동일|
+|반대방향 활/충전 해제, 지팡이 hover/inspect, 검/천, 부적, portrait DPR2, landscape|각18|234→234|동일|
+|미리보기 경계|6|0→0|동일|
+
+4동행×2facing×idle/move/full-charge/airborne/hit의40 mask에서 실제 alpha가 경계를 벗어난 pixel은0이었다. arc 명령을 가진 미래 경로는 unknown을 반환하는 fallback도 확인했다. 무기·의복·팽창 여유를 줄여 빈 영역으로 둔갑시키지 않았다. body/cover 재드로잉은 그대로 유지하므로 기존 동적 pose state의 중복 draw 부작용도 바꾸지 않는다.
+
+[pixels/checks.json](evidence/pixels/checks.json)에 매 frame 비교 결과의 집계와 최종 원본/후보 RGBA hash가 있다. 각 최종 PNG는 실제 RGBA 원자료이며 디코딩 hash가 해당 두 hash와 일치함을 확인했다. 같은 이름의 JPG는 보기용(모두1MB 미만)이다. 정상 자연 App 화면은 [idle](evidence/ab/accepted-after-3-idle.jpg), [최대충전](evidence/ab/accepted-after-3-charge.jpg), [pan](evidence/ab/accepted-after-3-pan.jpg); 겹침/가림 표본은 [큰 보스](evidence/pixels/large-boss-fallback.jpg), [부적](evidence/pixels/charge-talisman.jpg), [활 해제](evidence/pixels/charge-release-bow.jpg)다.
+
+최종 build 재실행은 [final-build.txt](evidence/final-build.txt)에 보존했고 산출물 추가 변경이 없었다. source syntax3개·diff whitespace·실제 production HTML 진입/자연 입력 및 위 집중 검사만 수행했다. 보호 범위(main/camera/11장 미술/캠페인/밸런스)와 party/actor 실제 미술 JSON의 불변은 [PROVENANCE.json](evidence/PROVENANCE.json)으로 확인했다. 전체 통합/전 장 검사는 중복 실행하지 않았다.
+
+공통 범위에서만 읽는 경계 metadata가 추가됐으며 해상도·샘플 격자·동적 자세·기존3개384 canvas는 유지한다. 표본 밖의 모든 장/캐릭터/기기에서 성능이 개선된다는 주장은 하지 않는다. 실기기, GPU별 병목 분해, 장시간 누수/점증 렉은 미검사·미해결이다. 한 후보의 채택으로 종료했으며 다른 궤적/캐시/renderer 개편을 함께 넣지 않았다.
+
+변경 단위별 commit/push를 수행했다. 확인한 원격 master/integration은1c397248였고 이 작업은 쓰지 않았다. master/Pages 반영과 실제 배포 화면 검토는 **부모의 최종 검토 이후 작업**으로 남긴다. 권한 거부·미확정 원격 쓰기·기능 차단은 없다.

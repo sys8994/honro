@@ -1,0 +1,33 @@
+{
+  "executionCommit": "03119da093abb686e68eac75ca66ca52a52473f9",
+  "candidateRuntimeCommit": "2d92eca682514241ef1dbadcbc69c5d63af2abd9",
+  "baselineCommit": "1c397248f42f365593be3a154c06d6d1ee5b2ac5",
+  "protectedSourceUnchanged": {
+    "shared/data/campaign.json": "266685498816be6a44b2121f9f5b1a0f3455a28b76d42a95ec904b8cdb9e1880",
+    "shared/runtime/stage11-landscape-art.js": "c3dcbaa9c909e55ebe80f0ae86d8c142d1876cfbe06d31ed118fd02e09968bc6",
+    "shared/runtime/main.js": "65ce4bdac2981ae26e959a8136de607c9046d11e00576902ffe3aac4e94d14c5",
+    "shared/runtime/camera.js": "be3dc6bb12cfead54de292a6e6c9331be3cb51e9a9be46aa1f5d21596e60e1af",
+    "game/config/balance.json": "ddc580481641c4ef1d423c9522a457c845334ef3e7a4654f1ae5a7c4a48fca5a"
+  },
+  "assetGeometryUnchanged": {
+    "HONRO_PARTY": true,
+    "HONRO_ACTORS": true
+  },
+  "files": {
+    "shared/runtime/renderer.js": "0fc0aa62a304d1274b40d56515ddb4363da21b53c33552d8adb876f06e24569d",
+    "shared/runtime/party-rig.js": "1ccaf5044a1580218f69cae6754e969b173fc18056f1786de229916f5ba6212a",
+    "shared/assets/rebuild-game-adapter.mjs": "3ca9f379d12c0b0d6156431eb285d154f7077e29594f39cf6802444cf81e15c7",
+    "tools/testing/occlusion-probe.js": "686d16b1f7833a4a255919ca7bd67c98536f54fc3b3b880f14a1da02dd62b256",
+    "tools/testing/occlusion-render-cost.py": "1b741c17694eeca926d99b2ca715acb9a7eea8cb34e8090537391c43d3ce083a",
+    "tools/testing/occlusion-boundaries.py": "55bb8b8bd495d61a9daf9286c7c6428d3effcca945f240fe42920f05941cd853",
+    "tools/testing/occlusion-boundaries.js": "1559a964a3e641d06ee09560f6817c74c32933184fe33d6734fb4234160f3837",
+    "tests/fixtures/render-update-profile-20261022.json": "e206d33b1fdbfd16a8ee7a65140e8f67ba5e5789a1553727402944247653bc4a",
+    "HONRO.html": "203fe86e8fc6d5a5d1c6da41cbb8bcdf68b985af3b10fe5f3a5902e4f37388b4",
+    "HONRO_WORKSHOP.html": "bcb6843ad25888e2c10c8cbeb2ed1af9923ddbb45e76e5057cd25bd81b1e0006",
+    "web/manifest.json": "36647770088653b0b2f5f32d8d8cb3259a9a31fee04db8f8bcd73c5ee34459c1"
+  },
+  "limits": [
+    "No master/Pages writes. Parent review and final release remain separate.",
+    "No physical-device test or original increasing-lag resolution claim."
+  ]
+}
