@@ -1,7 +1,7 @@
 """Chromium CDP touch synthesis -> trusted browser PointerEvents -> production HUD/loop.
 This is browser emulation, not a physical touchscreen/device test.
 """
-import json, math, os
+import json, math, os, subprocess
 FOCUS=os.environ.get("HONRO_JOYSTICK_FOCUS", "")
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT, launch, serve_game
@@ -57,19 +57,51 @@ with sync_playwright() as pw,serve_game() as base:
                     expected='aimOnly' if angle<=20 else 'moveAim'
                     check(f'{w} {sx}/{sy} {angle} cone and budget',s['intent']==expected and (unchanged(a,s) and s['moveCalls']==0 if angle<=20 else abs(s['x']-a['x'])>.1 and s['budget']<a['budget']),s)
                     delta(o,0,0);centre=state('centre');delta(o,-sx,0);again=state('redrag')
-                    check(f'{w} {angle} centre keeps intent',again['intent']==expected and (unchanged(a,again) if angle<=20 else again['budget']<centre['budget']),again)
+                    check(f'{w} {angle} centre keeps intent',again['intent']==expected and (abs(again['x']-centre['x'])>.1 and again['budget']<centre['budget']),again)
                     touch('touchEnd',1)
         o=reset();start(o);a=state('threshold-down');delta(o,0,7.5/o[2]);s=state('7.5px');check(f'{w} below 8 CSS px waits',s['intent']=='undecided' and unchanged(a,s),s)
         delta(o,0,8.1/o[2]);s=state('8.1px');check(f'{w} above 8 CSS px chooses aim',s['intent']=='aimOnly' and unchanged(a,s),{'range':o[2],'threshold':max(8,o[2]*.18),**s});touch('touchEnd',1)
-        o=reset();start(o);delta(o,0,1);delta(o,-1,.2);state('mobile-aim-only');page.evaluate('paintInput()');page.screenshot(path=str(OUT/f'mobile-{w}-aim-only.png'));touch('touchEnd',1)
-    # Focus review 2: deliberate facing threshold/hysteresis, same elevation, no walk.
+        o=reset();start(o);delta(o,0,1);delta(o,-.2,1);state('mobile-aim-only');page.evaluate('paintInput()');page.screenshot(path=str(OUT/f'mobile-{w}-aim-only.png'));touch('touchEnd',1)
+    # P0 regression: same owning finger leaves/re-enters both vertical sectors.
+    # At 19/20/21 degrees test both horizontal signs and both vertical axes.
+    page.set_viewport_size({'width':390,'height':844})
+    sector_evidence=[]
+    def capture_sector(name):
+        page.evaluate('paintInput()')
+        page.screenshot(path=str(OUT/(name+'.jpg')),type='jpeg',quality=70,scale='css')
+    for sy in [-1,1]:
+        for sx in [-1,1]:
+            o=reset();start(o);delta(o,0,sy);initial=state('sector-initial')
+            if sy==1 and sx==1:capture_sector('01-vertical-start')
+            for angle in [19,20,21,20,19,21,90,19]:
+                before=state('sector-before',0);rad=math.radians(angle)
+                delta(o,sx*math.sin(rad),sy*math.cos(rad));immediate=state('sector-event',0)
+                check(f'sector {sx}/{sy} {angle} immediate axes',immediate['intent']=='aimOnly' and immediate['pointer']==initial['pointer'] and (immediate['axes']['x']==0 if angle<=20 else immediate['axes']['x']*sx>.01),immediate)
+                after=state('sector-drag',3)
+                check(f'sector {sx}/{sy} {angle} physics',unchanged(before,after) and after['moveCalls']==before['moveCalls'] if angle<=20 else (after['x']-before['x'])*sx>.1 and after['budget']<before['budget'] and after['moveCalls']>before['moveCalls'],after)
+                if angle in [19,20,21]:
+                    check(f'sector {sx}/{sy} {angle} keeps aim',abs(after['angle']-before['angle'])>.01,after)
+                sector_evidence.append({'sx':sx,'sy':sy,'angle':angle,'before':before,'immediate':immediate,'after':after})
+                if sy==1 and sx==1 and angle==90:capture_sector('02-outside-horizontal-movement')
+            if sy==1 and sx==1:capture_sector('03-reentered-aim-only')
+            touch('touchEnd',1);released=state('sector-up',0)
+            check('sector release clears initial intent',released.get('pointer') is None and released['axes']['x']==0 and released['axes']['y']==0,released)
+            # A horizontal start retains lateral movement even inside the cone.
+            o=reset();start(o);delta(o,sx,0);initial=state('horizontal-start')
+            for angle in [21,20,19,0,19]:
+                before=state('horizontal-before',0);rad=math.radians(angle)
+                delta(o,sx*math.sin(rad),sy*math.cos(rad));after=state('horizontal-to-vertical')
+                check(f'horizontal {sx}/{sy} -> {angle} never locks',after['intent']=='moveAim' and after['pointer']==initial['pointer'] and (unchanged(before,after) if angle==0 else (after['x']-before['x'])*sx>.1 and after['budget']<before['budget']),after)
+            if sy==1 and sx==1:capture_sector('04-horizontal-start-inside-sector')
+            touch('touchEnd',1)
+    # Focus review 2: deliberate facing threshold/hysteresis and same elevation before frame advancement.
     page.set_viewport_size({'width':390,'height':844})
     for sy in ([] if FOCUS else [-1,1]):
         o=reset();page.evaluate('HonroApp.engine.active.angle=35');start(o);delta(o,0,sy);a=state('face-vertical')
         for dx,expected in [(-.59,1),(-.61,-1),(-.59,-1),(-.36,-1),(-.34,-1),(.59,-1),(.61,1),(.59,1),(-.61,-1)]:
             before=state('face-before',0);delta(o,dx,0);s=state('face-after',0)
             check(f'face {sy} {dx}: deliberate turn without movement or pitch jump',s['facing']==expected and unchanged(a,s) and s['moveCalls']==0 and abs(math.sin(math.radians(before['angle']))-math.sin(math.radians(s['angle'])))<1e-7,s)
-        delta(o,0,0);delta(o,1,0);s=state('locked-even-horizontal');check('large turn keeps raw visual separate',unchanged(a,s) and s['axes']['visualX']>.99 and s['axes']['x']==0 and s['knob']!='translate(0px, 0px)',s)
+        delta(o,0,0);delta(o,1,0);s=state('locked-even-horizontal');check('large turn releases movement gate and keeps raw visual',s['budget']<a['budget'] and s['axes']['visualX']>.99 and s['axes']['x']>0 and s['knob']!='translate(0px, 0px)',s)
         touch('touchEnd',1);start(o);delta(o,-1,0);s=state('new-pointer-new-intent');check('release and opposite direction gets moveAim',s['intent']=='moveAim' and s['budget']<a['budget'],s);touch('touchEnd',1)
     # A diagonal-start gesture retains both aim and small lateral movement.
     o=reset();start(o);delta(o,.707,.707);a=state('diagonal-before-fine-aim')
@@ -117,5 +149,11 @@ with sync_playwright() as pw,serve_game() as base:
     check('browser pointer events are trusted CDP touch synthesis',any(e['trusted'] and e['pointerType']=='touch' and e['type']=='pointermove' for e in page.evaluate('inputEvents')))
     check('no browser exceptions',not errors,errors)
     (OUT/'input-trace.json').write_text(json.dumps({'environment':'Headless Chromium; CDP touch emulation; not a physical device','checks':checks,'states':traces,'pointerEvents':page.evaluate('inputEvents'),'errors':errors},ensure_ascii=False,indent=2))
+    (OUT/'sector-results.json').write_text(json.dumps({
+        'executionSha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+        'browser':browser.version,'environment':'Chromium CDP touch -> trusted PointerEvents; deterministic production frames; physical device untested',
+        'checkCount':len(checks),'checks':checks,'sectorTransitions':sector_evidence,
+        'trustedTouchPointerMoves':sum(e['trusted'] and e['pointerType']=='touch' and e['type']=='pointermove' for e in page.evaluate('inputEvents')),
+        'errors':errors},ensure_ascii=False,indent=2))
     browser.close()
 print(f'{len(checks)} checks; evidence: {OUT}')

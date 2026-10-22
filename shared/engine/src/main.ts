@@ -940,7 +940,7 @@ class App {
         if(pointer&&pad?.hasPointerCapture(pointer.id))pad.releasePointerCapture(pointer.id);
     }
     validateStick(){const p=this.stick;if(p&&(!this.engine?.canAct()||this.paused||this.engine.active!==p.unit||this.engine.b.round!==p.round))this.releaseStick();}
-    paintStick(){const pad=$('swipe-pad'),knob=$('stick-knob');if(!pad||!knob)return;const x=this.stick?.visualX||0,y=this.stick?.visualY||0,r=Math.max(22,Math.min(pad.clientWidth,pad.clientHeight)*.27);knob.style.transform=`translate(${x*r}px,${-y*r}px)`;const label=pad.querySelector('.stick-label');if(label)label.textContent=this.stick?.intent==='aimOnly'?'조준':this.stick?.intent==='moveAim'?'MOVE-AIM':'MOVE / AIM';}
+    paintStick(){const pad=$('swipe-pad'),knob=$('stick-knob');if(!pad||!knob)return;const x=this.stick?.visualX||0,y=this.stick?.visualY||0,r=Math.max(22,Math.min(pad.clientWidth,pad.clientHeight)*.27);knob.style.transform=`translate(${x*r}px,${-y*r}px)`;const label=pad.querySelector('.stick-label');if(label)label.textContent=this.stick?.intent==='aimOnly'&&!this.stick.moving?'조준':this.stick?.intent&&this.stick.intent!=='undecided'?'MOVE-AIM':'MOVE / AIM';}
     canvasPoint(ev: PointerEvent) { const canvas = $('battle-canvas'), r = canvas.getBoundingClientRect(); return { x: ev.clientX - r.left, y: ev.clientY - r.top }; }
     pinchMetrics() { const a = [...this.canvasTouches.values()]; if (a.length < 2)
         return null; return { distance: Math.max(8, Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y)), x: (a[0].x + a[1].x) / 2, y: (a[0].y + a[1].y) / 2 }; }
