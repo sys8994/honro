@@ -22,7 +22,7 @@ with sync_playwright() as pw:
   profile=json.loads((ROOT/'tests/fixtures/render-update-profile-20261022.json').read_text())
   p.add_init_script('localStorage.clear();localStorage.setItem("honro-first-act-profile-1",'+json.dumps(json.dumps(profile))+');let s=899411;Math.random=()=>((s=Math.imul(s,1664525)+1013904223>>>0)/4294967296);')
   p.goto(f'http://127.0.0.1:{server.server_port}/HONRO.html');p.wait_for_function('document.documentElement.dataset.honroReady');p.evaluate('HonroApp.frame=()=>{}');p.evaluate('HonroApp.launch(11)');p.wait_for_function('HonroApp.engine?.b.honroStage===11');p.wait_for_function('HonroAuthoredFarArt.ready(11)')
-  p.evaluate('''()=>{const a=HonroApp;while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;const u=a.engine.active;Object.assign(a.scene,{manual:true,x:u.x,y:u.y-140,scale:.68,time:2,storyTween:null,goalFocus:null,storyFrozen:false,focusUntil:0,speakerUntil:0});a.updateHUD(true);}''')
+  p.evaluate('''()=>{const a=HonroApp;while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;const banner=document.getElementById('turn-banner');if(banner)banner.hidden=true;const u=a.engine.active;Object.assign(a.scene,{manual:true,x:u.x,y:u.y-140,scale:.68,time:2,storyTween:null,goalFocus:null,storyFrozen:false,focusUntil:0,speakerUntil:0});a.updateHUD(true);}''')
   p.evaluate('document.fonts.ready');p.wait_for_timeout(800)
   p.evaluate('''()=>{window.protectedState=()=>JSON.stringify({units:HonroApp.engine.b.units,projectiles:HonroApp.engine.b.projectiles,terrain:HonroApp.engine.b.terrain,round:HonroApp.engine.b.round,heroes:HonroApp.profile.heroes,loadouts:HonroApp.profile.loadouts,cleared:HonroApp.profile.cleared,items:HonroApp.engine.b.items});window.originalState=protectedState();}''')
   def shot(name):
@@ -37,7 +37,7 @@ with sync_playwright() as pw:
   p.set_viewport_size({'width':390,'height':844});shot('mobile-idle')
   p.evaluate("HonroApp.engine.select(HonroApp.engine.b.units.find(u=>u.side===0&&u.cls==='mage').id)");shot('mobile-mage')
   p.set_viewport_size({'width':844,'height':390});shot('landscape-mage')
-  p.evaluate('''()=>{const a=HonroApp;a.profile.honroBattle=structuredClone(a.engine.b);a.persist();window.savedState=protectedState();a.stopBattle();a.continue();while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;}''')
+  p.evaluate('''()=>{const a=HonroApp;a.profile.honroBattle=structuredClone(a.engine.b);a.persist();window.savedState=protectedState();a.stopBattle();a.continue();while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;const banner=document.getElementById('turn-banner');if(banner)banner.hidden=true;}''')
   preserved=p.evaluate('protectedState()===savedState');assert preserved,(label,'Continue state')
   # Controlled presentation boundary: changing the engine query here tests label ownership only.
   explosion=p.evaluate('''()=>{const a=HonroApp,e=a.engine,f=e.iceGourdReady;e.iceGourdReady=()=>true;a.updateHUD();const label=document.querySelector('.fire-label').textContent;e.iceGourdReady=f;a.updateHUD();return label==='폭발';}''');assert explosion

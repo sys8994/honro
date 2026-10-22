@@ -1,0 +1,1500 @@
+{
+  "sourceCommit": "a091c6bd5e64eff748f5028fb6d0080faea3da87",
+  "htmlSha256": "eec8c5052e585a27a3bd07115a13570298fcdfe2a37d5cdec2511474e06bd483",
+  "manifestSha256": "bb1a2cb0ca7ee61b1918097fc7e0fd7f397fd7932581ebbb8f2d957a369a0ed5",
+  "browser": "154.0.8037.57",
+  "viewport": [
+    1280,
+    800
+  ],
+  "seed": 899411,
+  "rows": [
+    {
+      "state": "idle",
+      "counters": true,
+      "frame": {
+        "n": 90,
+        "p50": 13.099999999627471,
+        "p95": 19.09999999962747,
+        "max": 26.200000000186265,
+        "total": 1205.7999999970198
+      },
+      "raf": {
+        "n": 89,
+        "p50": 16.700000000000728,
+        "p95": 33.40000000000009,
+        "max": 33.400000000000546,
+        "total": 2199.8999999999996
+      },
+      "longtasks": [],
+      "methods": {
+        "App.updateAudio": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.40000000037252903,
+          "total": 1.599999999627471
+        },
+        "Journey.frame": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.10000000055879354
+        },
+        "Engine.tick": {
+          "n": 268,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 1,
+          "total": 34.59999999217689
+        },
+        "Scene.size": {
+          "n": 180,
+          "p50": 0,
+          "p95": 0.19999999925494194,
+          "max": 0.40000000037252903,
+          "total": 6.499999998137355
+        },
+        "StoryFraming.apply": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.09999999962747097,
+          "total": 0.09999999962747097
+        },
+        "Scene.background": {
+          "n": 90,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 5.5,
+          "total": 13.199999996460974
+        },
+        "Scene.weatherParticles": {
+          "n": 90,
+          "p50": 0.09999999962747097,
+          "p95": 0.39999999944120646,
+          "max": 0.6000000005587935,
+          "total": 10.200000000186265
+        },
+        "Scene.terrainSkirt": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.2999999998137355
+        },
+        "Scene._drawStaticWorldCached": {
+          "n": 90,
+          "p50": 0.09999999962747097,
+          "p95": 0.40000000037252903,
+          "max": 8.200000000186265,
+          "total": 17.800000000745058
+        },
+        "Scene.liveWater": {
+          "n": 90,
+          "p50": 0.10000000055879354,
+          "p95": 0.40000000037252903,
+          "max": 0.7000000001862645,
+          "total": 12.79999999795109
+        },
+        "FX.predictionGuide": {
+          "n": 90,
+          "p50": 0.10000000055879354,
+          "p95": 0.40000000037252903,
+          "max": 0.7000000001862645,
+          "total": 13.299999996088445
+        },
+        "Scene.unitBody": {
+          "n": 630,
+          "p50": 0.30000000074505806,
+          "p95": 0.7999999998137355,
+          "max": 2.400000000372529,
+          "total": 235.800000006333
+        },
+        "Scene.unit": {
+          "n": 450,
+          "p50": 0.2999999998137355,
+          "p95": 0.8999999994412065,
+          "max": 2.400000000372529,
+          "total": 172.0000000037253
+        },
+        "Scene.occludedUnitSilhouettes": {
+          "n": 90,
+          "p50": 8,
+          "p95": 11.200000000186265,
+          "max": 14,
+          "total": 748.8999999975786
+        },
+        "Scene.terrainHealth": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 0.20000000018626451,
+          "total": 1
+        },
+        "FX.worldFx": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.20000000018626451
+        },
+        "Scene.render": {
+          "n": 90,
+          "p50": 10.899999999441206,
+          "p95": 15.800000000745058,
+          "max": 25.200000000186265,
+          "total": 1033.3000000016764
+        },
+        "App.updateChargeDisplay": {
+          "n": 109,
+          "p50": 0.09999999962747097,
+          "p95": 0.20000000018626451,
+          "max": 0.599999999627471,
+          "total": 8.300000000745058
+        },
+        "App.updateSkillButtons": {
+          "n": 19,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.10000000055879354,
+          "total": 0.900000000372529
+        },
+        "Objectives.refresh": {
+          "n": 19,
+          "p50": 0.10000000055879354,
+          "p95": 0.39999999944120646,
+          "max": 0.39999999944120646,
+          "total": 2.5
+        },
+        "Interactions.refresh": {
+          "n": 19,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.10000000055879354,
+          "total": 0.10000000055879354
+        },
+        "Status.refresh": {
+          "n": 19,
+          "p50": 0.10000000055879354,
+          "p95": 0.2999999998137355,
+          "max": 0.2999999998137355,
+          "total": 2.7000000001862645
+        },
+        "Status.passives": {
+          "n": 19,
+          "p50": 0,
+          "p95": 0,
+          "max": 0,
+          "total": 0
+        },
+        "App.updateHUD": {
+          "n": 19,
+          "p50": 2.1000000005587935,
+          "p95": 3.900000000372529,
+          "max": 3.900000000372529,
+          "total": 43.100000001490116
+        }
+      },
+      "ops": {
+        "Scene.size:rect": {
+          "count": 180,
+          "same": 0
+        },
+        "Scene.background:canvas.drawImage": {
+          "count": 91,
+          "same": 0
+        },
+        "Scene.weatherParticles:canvas.fill": {
+          "count": 2340,
+          "same": 0
+        },
+        "Scene._drawStaticWorldCached:canvas.drawImage": {
+          "count": 391,
+          "same": 0
+        },
+        "Scene.liveWater:clientWidth": {
+          "count": 360,
+          "same": 0
+        },
+        "Scene.liveWater:clientHeight": {
+          "count": 360,
+          "same": 0
+        },
+        "FX.predictionGuide:canvas.fill": {
+          "count": 360,
+          "same": 0
+        },
+        "Scene.unit:canvas.fill": {
+          "count": 540,
+          "same": 0
+        },
+        "Scene.unitBody:clientWidth": {
+          "count": 1080,
+          "same": 0
+        },
+        "Scene.occludedUnitSilhouettes:canvas.drawImage": {
+          "count": 1170,
+          "same": 0
+        },
+        "Scene.render:rect": {
+          "count": 270,
+          "same": 0
+        },
+        "Scene.render:canvas.fill": {
+          "count": 90,
+          "same": 0
+        },
+        "App.updateChargeDisplay:style.setProperty": {
+          "count": 327,
+          "same": 327
+        },
+        "App.updateChargeDisplay:textContent": {
+          "count": 109,
+          "same": 109
+        },
+        "App.updateChargeDisplay:title": {
+          "count": 109,
+          "same": 109
+        },
+        "App.updateHUD:textContent": {
+          "count": 114,
+          "same": 114
+        },
+        "App.updateHUD:attribute": {
+          "count": 19,
+          "same": 19
+        },
+        "App.updateHUD:style.setProperty": {
+          "count": 57,
+          "same": 57
+        },
+        "Objectives.refresh:textContent": {
+          "count": 38,
+          "same": 38
+        },
+        "Objectives.refresh:attribute": {
+          "count": 19,
+          "same": 19
+        },
+        "Status.refresh:title": {
+          "count": 95,
+          "same": 95
+        },
+        "Status.refresh:textContent": {
+          "count": 76,
+          "same": 76
+        },
+        "Status.refresh:attribute": {
+          "count": 19,
+          "same": 19
+        },
+        "App.updateHUD:clientWidth": {
+          "count": 19,
+          "same": 0
+        },
+        "App.updateHUD:clientHeight": {
+          "count": 19,
+          "same": 0
+        },
+        "App.updateHUD:canvas.fill": {
+          "count": 1482,
+          "same": 0
+        },
+        "App.updateHUD:rect": {
+          "count": 38,
+          "same": 0
+        },
+        "App.frame:rAF": {
+          "count": 90,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 626,
+        "childList": 318,
+        "added": 318,
+        "removed": 318
+      },
+      "initial": {
+        "dom": 251,
+        "heap": 18159713,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "final": {
+        "dom": 251,
+        "heap": 23872891,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "fireTitle": "\ub204\ub978 \ucc44 \ucda9\uc804, \uc190\uc744 \ub5bc\uc5b4 \ubc1c\uc0ac",
+      "errors": []
+    },
+    {
+      "state": "charge",
+      "counters": true,
+      "frame": {
+        "n": 90,
+        "p50": 24.09999999962747,
+        "p95": 42.90000000037253,
+        "max": 54.5,
+        "total": 2210.5999999996275
+      },
+      "raf": {
+        "n": 89,
+        "p50": 33.30000000000018,
+        "p95": 66.69999999999982,
+        "max": 83.39999999999964,
+        "total": 3266.4999999999995
+      },
+      "longtasks": [
+        {
+          "at": 2523.9000000003725,
+          "ms": 56
+        },
+        {
+          "at": 2581.300000000745,
+          "ms": 72
+        },
+        {
+          "at": 2667.7000000001863,
+          "ms": 60
+        },
+        {
+          "at": 2728.300000000745,
+          "ms": 65
+        },
+        {
+          "at": 2844.9000000003725,
+          "ms": 62
+        },
+        {
+          "at": 2985.300000000745,
+          "ms": 55
+        },
+        {
+          "at": 3041.4000000003725,
+          "ms": 74
+        },
+        {
+          "at": 3999.2000000001863,
+          "ms": 63
+        },
+        {
+          "at": 5032,
+          "ms": 60
+        },
+        {
+          "at": 5092.5,
+          "ms": 50
+        }
+      ],
+      "methods": {
+        "App.updateAudio": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.10000000055879354,
+          "total": 1.799999998882413
+        },
+        "Journey.frame": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0,
+          "total": 0
+        },
+        "Engine.tick": {
+          "n": 387,
+          "p50": 0.10000000055879354,
+          "p95": 0.5,
+          "max": 2.900000000372529,
+          "total": 64.10000000707805
+        },
+        "Scene.size": {
+          "n": 270,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.5,
+          "total": 7.499999998137355
+        },
+        "StoryFraming.apply": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0,
+          "total": 0
+        },
+        "Scene.background": {
+          "n": 90,
+          "p50": 0.09999999962747097,
+          "p95": 0.599999999627471,
+          "max": 8.700000000186265,
+          "total": 19
+        },
+        "Scene.weatherParticles": {
+          "n": 90,
+          "p50": 0.09999999962747097,
+          "p95": 0.40000000037252903,
+          "max": 0.7999999998137355,
+          "total": 12.29999999795109
+        },
+        "Scene.terrainSkirt": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.20000000018626451,
+          "total": 0.39999999944120646
+        },
+        "Scene._drawStaticWorldCached": {
+          "n": 90,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 9.800000000745058,
+          "total": 17.400000003166497
+        },
+        "Scene.liveWater": {
+          "n": 90,
+          "p50": 0.10000000055879354,
+          "p95": 0.39999999944120646,
+          "max": 1,
+          "total": 13.699999997392297
+        },
+        "FX.predictionGuide": {
+          "n": 90,
+          "p50": 7.2000000001862645,
+          "p95": 15.600000000558794,
+          "max": 22.700000000186265,
+          "total": 599.9000000003725
+        },
+        "Scene.unitBody": {
+          "n": 630,
+          "p50": 0.40000000037252903,
+          "p95": 1.5,
+          "max": 5.5,
+          "total": 356.90000000130385
+        },
+        "Scene.unit": {
+          "n": 450,
+          "p50": 0.39999999944120646,
+          "p95": 1.5,
+          "max": 3.7000000001862645,
+          "total": 239.89999999664724
+        },
+        "Scene.occludedUnitSilhouettes": {
+          "n": 90,
+          "p50": 9.5,
+          "p95": 19.299999999813735,
+          "max": 25.899999999441206,
+          "total": 943.1999999983236
+        },
+        "Scene.terrainHealth": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 0.10000000055879354,
+          "total": 1.0999999977648258
+        },
+        "FX.worldFx": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.09999999962747097,
+          "total": 0.2999999988824129
+        },
+        "Scene.render": {
+          "n": 90,
+          "p50": 20.299999999813735,
+          "p95": 34.700000000186265,
+          "max": 52.60000000055879,
+          "total": 1898.9999999990687
+        },
+        "App.updateChargeDisplay": {
+          "n": 116,
+          "p50": 0.09999999962747097,
+          "p95": 0.40000000037252903,
+          "max": 2.2999999998137355,
+          "total": 19.399999998509884
+        },
+        "App.updateSkillButtons": {
+          "n": 26,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.20000000018626451,
+          "total": 1.0000000009313226
+        },
+        "Objectives.refresh": {
+          "n": 26,
+          "p50": 0.10000000055879354,
+          "p95": 0.39999999944120646,
+          "max": 1.7000000001862645,
+          "total": 4.900000001303852
+        },
+        "Interactions.refresh": {
+          "n": 26,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.19999999925494194,
+          "total": 0.39999999944120646
+        },
+        "Status.refresh": {
+          "n": 26,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 0.2999999998137355,
+          "total": 3.1999999983236194
+        },
+        "Status.passives": {
+          "n": 26,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 0.09999999962747097,
+          "total": 0.2999999988824129
+        },
+        "App.updateHUD": {
+          "n": 26,
+          "p50": 3.2000000001862645,
+          "p95": 5.599999999627471,
+          "max": 7.900000000372529,
+          "total": 87
+        },
+        "App.persist": {
+          "n": 1,
+          "p50": 4.5,
+          "p95": 4.5,
+          "max": 4.5,
+          "total": 4.5
+        }
+      },
+      "ops": {
+        "Scene.size:rect": {
+          "count": 270,
+          "same": 0
+        },
+        "Scene.background:canvas.drawImage": {
+          "count": 91,
+          "same": 0
+        },
+        "Scene.weatherParticles:canvas.fill": {
+          "count": 2340,
+          "same": 0
+        },
+        "Scene._drawStaticWorldCached:canvas.drawImage": {
+          "count": 266,
+          "same": 0
+        },
+        "Scene.liveWater:clientWidth": {
+          "count": 360,
+          "same": 0
+        },
+        "Scene.liveWater:clientHeight": {
+          "count": 360,
+          "same": 0
+        },
+        "FX.predictionGuide:canvas.fill": {
+          "count": 360,
+          "same": 0
+        },
+        "Scene.unit:canvas.fill": {
+          "count": 540,
+          "same": 0
+        },
+        "Scene.unitBody:clientWidth": {
+          "count": 1080,
+          "same": 0
+        },
+        "Scene.occludedUnitSilhouettes:canvas.drawImage": {
+          "count": 1170,
+          "same": 0
+        },
+        "Scene.render:canvas.fill": {
+          "count": 180,
+          "same": 0
+        },
+        "Scene.render:rect": {
+          "count": 270,
+          "same": 0
+        },
+        "App.updateChargeDisplay:style.setProperty": {
+          "count": 348,
+          "same": 287
+        },
+        "App.updateChargeDisplay:textContent": {
+          "count": 116,
+          "same": 57
+        },
+        "App.updateChargeDisplay:title": {
+          "count": 116,
+          "same": 116
+        },
+        "App.updateHUD:textContent": {
+          "count": 156,
+          "same": 136
+        },
+        "App.updateHUD:attribute": {
+          "count": 26,
+          "same": 26
+        },
+        "App.updateHUD:style.setProperty": {
+          "count": 78,
+          "same": 58
+        },
+        "Objectives.refresh:textContent": {
+          "count": 52,
+          "same": 52
+        },
+        "Objectives.refresh:attribute": {
+          "count": 26,
+          "same": 26
+        },
+        "Status.refresh:title": {
+          "count": 130,
+          "same": 130
+        },
+        "Status.refresh:textContent": {
+          "count": 104,
+          "same": 104
+        },
+        "Status.refresh:attribute": {
+          "count": 26,
+          "same": 26
+        },
+        "App.updateHUD:clientWidth": {
+          "count": 26,
+          "same": 0
+        },
+        "App.updateHUD:clientHeight": {
+          "count": 26,
+          "same": 0
+        },
+        "App.updateHUD:canvas.fill": {
+          "count": 2028,
+          "same": 0
+        },
+        "App.updateHUD:rect": {
+          "count": 52,
+          "same": 0
+        },
+        "App.frame:rAF": {
+          "count": 90,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 805,
+        "childList": 402,
+        "added": 402,
+        "removed": 402
+      },
+      "initial": {
+        "dom": 251,
+        "heap": 22926139,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "final": {
+        "dom": 251,
+        "heap": 47419847,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "fireTitle": "\ub204\ub978 \ucc44 \ucda9\uc804, \uc190\uc744 \ub5bc\uc5b4 \ubc1c\uc0ac",
+      "errors": []
+    },
+    {
+      "state": "pan",
+      "counters": true,
+      "frame": {
+        "n": 90,
+        "p50": 15.299999999813735,
+        "p95": 27.199999999254942,
+        "max": 194.20000000018626,
+        "total": 1628.2000000029802
+      },
+      "raf": {
+        "n": 89,
+        "p50": 33.30000000000018,
+        "p95": 50.09999999999991,
+        "max": 283.39999999999964,
+        "total": 3283.2
+      },
+      "longtasks": [
+        {
+          "at": 2721.100000000559,
+          "ms": 152
+        },
+        {
+          "at": 3517.4000000003725,
+          "ms": 58
+        },
+        {
+          "at": 4626.5,
+          "ms": 53
+        },
+        {
+          "at": 5322.600000000559,
+          "ms": 275
+        },
+        {
+          "at": 5597.9000000003725,
+          "ms": 211
+        }
+      ],
+      "methods": {
+        "App.updateAudio": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.7999999998137355,
+          "total": 2.400000000372529
+        },
+        "Journey.frame": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0,
+          "total": 0
+        },
+        "Engine.tick": {
+          "n": 342,
+          "p50": 0.10000000055879354,
+          "p95": 0.5,
+          "max": 2,
+          "total": 56.300000003539026
+        },
+        "Scene.size": {
+          "n": 180,
+          "p50": 0,
+          "p95": 0.20000000018626451,
+          "max": 0.900000000372529,
+          "total": 10.199999997392297
+        },
+        "StoryFraming.apply": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.2999999998137355
+        },
+        "Scene.background": {
+          "n": 90,
+          "p50": 0.09999999962747097,
+          "p95": 0.39999999944120646,
+          "max": 5.599999999627471,
+          "total": 15.099999994039536
+        },
+        "Scene.weatherParticles": {
+          "n": 90,
+          "p50": 0.10000000055879354,
+          "p95": 0.40000000037252903,
+          "max": 0.8999999994412065,
+          "total": 13.799999998882413
+        },
+        "Scene.terrainSkirt": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.09999999962747097,
+          "total": 0.09999999962747097
+        },
+        "Scene._drawStaticWorldCached": {
+          "n": 90,
+          "p50": 0.10000000055879354,
+          "p95": 0.5,
+          "max": 6.7999999998137355,
+          "total": 20.400000006891787
+        },
+        "Scene.liveWater": {
+          "n": 90,
+          "p50": 0.19999999925494194,
+          "p95": 0.6000000005587935,
+          "max": 1.599999999627471,
+          "total": 18.30000000167638
+        },
+        "FX.predictionGuide": {
+          "n": 90,
+          "p50": 0.19999999925494194,
+          "p95": 0.40000000037252903,
+          "max": 2.2999999998137355,
+          "total": 19.399999994784594
+        },
+        "Scene.unitBody": {
+          "n": 626,
+          "p50": 0.39999999944120646,
+          "p95": 1.1000000005587935,
+          "max": 80.20000000018626,
+          "total": 426.9000000031665
+        },
+        "Scene.unit": {
+          "n": 446,
+          "p50": 0.39999999944120646,
+          "p95": 1.2999999998137355,
+          "max": 4.2999999998137355,
+          "total": 207.70000000298023
+        },
+        "Scene.occludedUnitSilhouettes": {
+          "n": 90,
+          "p50": 8.700000000186265,
+          "p95": 15.100000000558794,
+          "max": 183,
+          "total": 1004.4000000003725
+        },
+        "Scene.terrainHealth": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 0.10000000055879354,
+          "total": 0.7999999979510903
+        },
+        "FX.worldFx": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.09999999962747097,
+          "total": 0.2999999988824129
+        },
+        "Scene.render": {
+          "n": 90,
+          "p50": 12.900000000372529,
+          "p95": 19.799999999813735,
+          "max": 191.70000000018626,
+          "total": 1352.6000000024214
+        },
+        "App.updateChargeDisplay": {
+          "n": 113,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 1,
+          "total": 12.199999997392297
+        },
+        "App.updateSkillButtons": {
+          "n": 23,
+          "p50": 0.09999999962747097,
+          "p95": 0.10000000055879354,
+          "max": 0.10000000055879354,
+          "total": 1.200000001117587
+        },
+        "Objectives.refresh": {
+          "n": 23,
+          "p50": 0.09999999962747097,
+          "p95": 0.20000000018626451,
+          "max": 0.6000000005587935,
+          "total": 3.2999999979510903
+        },
+        "Interactions.refresh": {
+          "n": 23,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 0.09999999962747097,
+          "total": 0.19999999925494194
+        },
+        "Status.refresh": {
+          "n": 23,
+          "p50": 0.10000000055879354,
+          "p95": 0.30000000074505806,
+          "max": 2.400000000372529,
+          "total": 5.400000000372529
+        },
+        "Status.passives": {
+          "n": 23,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.10000000055879354
+        },
+        "App.updateHUD": {
+          "n": 23,
+          "p50": 2.699999999254942,
+          "p95": 7.7000000001862645,
+          "max": 15.200000000186265,
+          "total": 79.69999999925494
+        }
+      },
+      "ops": {
+        "Scene.size:rect": {
+          "count": 180,
+          "same": 0
+        },
+        "Scene.background:canvas.drawImage": {
+          "count": 91,
+          "same": 0
+        },
+        "Scene.weatherParticles:canvas.fill": {
+          "count": 2340,
+          "same": 0
+        },
+        "Scene._drawStaticWorldCached:canvas.drawImage": {
+          "count": 541,
+          "same": 0
+        },
+        "Scene.liveWater:clientWidth": {
+          "count": 360,
+          "same": 0
+        },
+        "Scene.liveWater:clientHeight": {
+          "count": 360,
+          "same": 0
+        },
+        "FX.predictionGuide:canvas.fill": {
+          "count": 360,
+          "same": 0
+        },
+        "Scene.unit:canvas.fill": {
+          "count": 536,
+          "same": 0
+        },
+        "Scene.unitBody:clientWidth": {
+          "count": 1072,
+          "same": 0
+        },
+        "Scene.occludedUnitSilhouettes:canvas.drawImage": {
+          "count": 1170,
+          "same": 0
+        },
+        "Scene.render:rect": {
+          "count": 270,
+          "same": 0
+        },
+        "Scene.render:canvas.fill": {
+          "count": 90,
+          "same": 0
+        },
+        "App.updateChargeDisplay:style.setProperty": {
+          "count": 339,
+          "same": 339
+        },
+        "App.updateChargeDisplay:textContent": {
+          "count": 113,
+          "same": 113
+        },
+        "App.updateChargeDisplay:title": {
+          "count": 113,
+          "same": 113
+        },
+        "App.updateHUD:textContent": {
+          "count": 138,
+          "same": 138
+        },
+        "App.updateHUD:attribute": {
+          "count": 23,
+          "same": 23
+        },
+        "App.updateHUD:style.setProperty": {
+          "count": 69,
+          "same": 69
+        },
+        "Objectives.refresh:textContent": {
+          "count": 46,
+          "same": 46
+        },
+        "Objectives.refresh:attribute": {
+          "count": 23,
+          "same": 23
+        },
+        "Status.refresh:title": {
+          "count": 115,
+          "same": 115
+        },
+        "Status.refresh:textContent": {
+          "count": 92,
+          "same": 92
+        },
+        "Status.refresh:attribute": {
+          "count": 23,
+          "same": 23
+        },
+        "App.updateHUD:clientWidth": {
+          "count": 23,
+          "same": 0
+        },
+        "App.updateHUD:clientHeight": {
+          "count": 23,
+          "same": 0
+        },
+        "App.updateHUD:canvas.fill": {
+          "count": 1794,
+          "same": 0
+        },
+        "App.updateHUD:rect": {
+          "count": 46,
+          "same": 0
+        },
+        "App.frame:rAF": {
+          "count": 90,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 682,
+        "childList": 366,
+        "added": 366,
+        "removed": 366
+      },
+      "initial": {
+        "dom": 251,
+        "heap": 21379841,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "final": {
+        "dom": 251,
+        "heap": 18977675,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "fireTitle": "\ub204\ub978 \ucc44 \ucda9\uc804, \uc190\uc744 \ub5bc\uc5b4 \ubc1c\uc0ac",
+      "errors": []
+    },
+    {
+      "state": "pause",
+      "counters": true,
+      "frame": {
+        "n": 90,
+        "p50": 13.799999999813735,
+        "p95": 118.79999999981374,
+        "max": 997.1000000005588,
+        "total": 3375.6999999927357
+      },
+      "raf": {
+        "n": 89,
+        "p50": 33.400000000001455,
+        "p95": 350,
+        "max": 1266.6999999999998,
+        "total": 8833
+      },
+      "longtasks": [
+        {
+          "at": 3771,
+          "ms": 200
+        },
+        {
+          "at": 4072.399999999441,
+          "ms": 83
+        },
+        {
+          "at": 4268.899999999441,
+          "ms": 96
+        },
+        {
+          "at": 4426.799999999814,
+          "ms": 338
+        },
+        {
+          "at": 4774.399999999441,
+          "ms": 1232
+        },
+        {
+          "at": 6582.299999999814,
+          "ms": 224
+        },
+        {
+          "at": 7136.699999999255,
+          "ms": 163
+        },
+        {
+          "at": 7875.199999999255,
+          "ms": 165
+        },
+        {
+          "at": 8409.799999999814,
+          "ms": 58
+        },
+        {
+          "at": 8470.799999999814,
+          "ms": 126
+        },
+        {
+          "at": 9088.699999999255,
+          "ms": 386
+        },
+        {
+          "at": 10227.5,
+          "ms": 72
+        },
+        {
+          "at": 10372.199999999255,
+          "ms": 167
+        },
+        {
+          "at": 10554.199999999255,
+          "ms": 212
+        },
+        {
+          "at": 10785.199999999255,
+          "ms": 50
+        },
+        {
+          "at": 11192.599999999627,
+          "ms": 65
+        },
+        {
+          "at": 11372.099999999627,
+          "ms": 76
+        },
+        {
+          "at": 11460.599999999627,
+          "ms": 210
+        },
+        {
+          "at": 12261.5,
+          "ms": 145
+        }
+      ],
+      "methods": {
+        "App.updateAudio": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 59.299999999813735,
+          "total": 63.89999999944121
+        },
+        "Journey.frame": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.09999999962747097,
+          "total": 0.09999999962747097
+        },
+        "Scene.size": {
+          "n": 180,
+          "p50": 0,
+          "p95": 0.5,
+          "max": 170.5,
+          "total": 189.00000000279397
+        },
+        "StoryFraming.apply": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.6000000005587935,
+          "total": 0.8000000007450581
+        },
+        "Scene.background": {
+          "n": 90,
+          "p50": 0.10000000055879354,
+          "p95": 0.8999999994412065,
+          "max": 21.399999999441206,
+          "total": 38.59999999217689
+        },
+        "Scene.weatherParticles": {
+          "n": 90,
+          "p50": 0.10000000055879354,
+          "p95": 0.7000000001862645,
+          "max": 59.799999999813735,
+          "total": 75.20000000391155
+        },
+        "Scene.terrainSkirt": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.09999999962747097,
+          "total": 0.19999999925494194
+        },
+        "Scene._drawStaticWorldCached": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0.2999999998137355,
+          "max": 0.6000000005587935,
+          "total": 5.99999999627471
+        },
+        "Scene.liveWater": {
+          "n": 90,
+          "p50": 0.20000000018626451,
+          "p95": 1,
+          "max": 4,
+          "total": 30.699999993667006
+        },
+        "FX.predictionGuide": {
+          "n": 90,
+          "p50": 0.20000000018626451,
+          "p95": 1,
+          "max": 56.10000000055879,
+          "total": 84.0000000083819
+        },
+        "Scene.unitBody": {
+          "n": 630,
+          "p50": 0.39999999944120646,
+          "p95": 2.099999999627471,
+          "max": 454.80000000074506,
+          "total": 1259.8000000016764
+        },
+        "Scene.unit": {
+          "n": 450,
+          "p50": 0.39999999944120646,
+          "p95": 2.2000000001862645,
+          "max": 456.09999999962747,
+          "total": 898.2999999951571
+        },
+        "Scene.occludedUnitSilhouettes": {
+          "n": 90,
+          "p50": 8.5,
+          "p95": 25.799999999813735,
+          "max": 387.59999999962747,
+          "total": 1478.699999993667
+        },
+        "Scene.terrainHealth": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.20000000018626451,
+          "total": 1.5000000009313226
+        },
+        "FX.worldFx": {
+          "n": 90,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.10000000055879354
+        },
+        "Scene.render": {
+          "n": 90,
+          "p50": 12.5,
+          "p95": 115.3999999994412,
+          "max": 995.4000000003725,
+          "total": 3010.0999999996275
+        },
+        "App.updateChargeDisplay": {
+          "n": 121,
+          "p50": 0.09999999962747097,
+          "p95": 0.30000000074505806,
+          "max": 11.200000000186265,
+          "total": 32.0999999968335
+        },
+        "App.updateSkillButtons": {
+          "n": 31,
+          "p50": 0.09999999962747097,
+          "p95": 0.19999999925494194,
+          "max": 0.2999999998137355,
+          "total": 2.099999997764826
+        },
+        "Objectives.refresh": {
+          "n": 31,
+          "p50": 0.20000000018626451,
+          "p95": 0.900000000372529,
+          "max": 3.3999999994412065,
+          "total": 9.50000000372529
+        },
+        "Interactions.refresh": {
+          "n": 31,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.2999999998137355,
+          "total": 0.5
+        },
+        "Status.refresh": {
+          "n": 31,
+          "p50": 0.10000000055879354,
+          "p95": 0.7000000001862645,
+          "max": 0.900000000372529,
+          "total": 6
+        },
+        "Status.passives": {
+          "n": 31,
+          "p50": 0,
+          "p95": 0,
+          "max": 0,
+          "total": 0
+        },
+        "App.updateHUD": {
+          "n": 31,
+          "p50": 3,
+          "p95": 8,
+          "max": 8.5,
+          "total": 103.69999999925494
+        }
+      },
+      "ops": {
+        "Scene.size:rect": {
+          "count": 180,
+          "same": 0
+        },
+        "Scene.background:canvas.drawImage": {
+          "count": 90,
+          "same": 0
+        },
+        "Scene.weatherParticles:canvas.fill": {
+          "count": 2340,
+          "same": 0
+        },
+        "Scene._drawStaticWorldCached:canvas.drawImage": {
+          "count": 90,
+          "same": 0
+        },
+        "Scene.liveWater:clientWidth": {
+          "count": 360,
+          "same": 0
+        },
+        "Scene.liveWater:clientHeight": {
+          "count": 360,
+          "same": 0
+        },
+        "FX.predictionGuide:canvas.fill": {
+          "count": 360,
+          "same": 0
+        },
+        "Scene.unit:canvas.fill": {
+          "count": 540,
+          "same": 0
+        },
+        "Scene.unitBody:clientWidth": {
+          "count": 1080,
+          "same": 0
+        },
+        "Scene.occludedUnitSilhouettes:canvas.drawImage": {
+          "count": 1170,
+          "same": 0
+        },
+        "Scene.render:rect": {
+          "count": 270,
+          "same": 0
+        },
+        "Scene.render:canvas.fill": {
+          "count": 90,
+          "same": 0
+        },
+        "App.updateChargeDisplay:style.setProperty": {
+          "count": 363,
+          "same": 363
+        },
+        "App.updateChargeDisplay:textContent": {
+          "count": 121,
+          "same": 121
+        },
+        "App.updateChargeDisplay:title": {
+          "count": 1,
+          "same": 1
+        },
+        "App.updateHUD:textContent": {
+          "count": 186,
+          "same": 186
+        },
+        "App.updateHUD:attribute": {
+          "count": 31,
+          "same": 31
+        },
+        "App.updateHUD:style.setProperty": {
+          "count": 93,
+          "same": 93
+        },
+        "Objectives.refresh:textContent": {
+          "count": 62,
+          "same": 62
+        },
+        "Objectives.refresh:attribute": {
+          "count": 31,
+          "same": 31
+        },
+        "Status.refresh:title": {
+          "count": 155,
+          "same": 154
+        },
+        "Status.refresh:textContent": {
+          "count": 124,
+          "same": 124
+        },
+        "Status.refresh:attribute": {
+          "count": 31,
+          "same": 31
+        },
+        "App.updateHUD:clientWidth": {
+          "count": 31,
+          "same": 0
+        },
+        "App.updateHUD:clientHeight": {
+          "count": 31,
+          "same": 0
+        },
+        "App.updateHUD:canvas.fill": {
+          "count": 2418,
+          "same": 0
+        },
+        "App.updateHUD:rect": {
+          "count": 62,
+          "same": 0
+        },
+        "App.frame:rAF": {
+          "count": 90,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 768,
+        "childList": 462,
+        "added": 462,
+        "removed": 462
+      },
+      "initial": {
+        "dom": 266,
+        "heap": 22736458,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "final": {
+        "dom": 266,
+        "heap": 20341728,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "fireTitle": "\uc774\ub3d9\u00b7\ubc1c\uc0ac \uac00\ub2a5",
+      "errors": []
+    }
+  ]
+}

@@ -1,0 +1,215 @@
+{
+  "sourceCommit": "bb36f5f7e3bae45278570b2b07d0ea7a1a27b788",
+  "htmlSha256": "5b4c748f945e7dbb8ba1aa7ecbc9da1b7cfff206d5f023b6c268177e51568445",
+  "manifestSha256": "58e36164ed01939692f6b963acff05176a7c8fe0830543d355a8671a5ea2180a",
+  "browser": "154.0.8037.57",
+  "viewport": [
+    1280,
+    800
+  ],
+  "seed": 899411,
+  "rows": [
+    {
+      "state": "idle",
+      "counters": false,
+      "frame": {
+        "n": 180,
+        "p50": 12.299999999813735,
+        "p95": 21.800000000745058,
+        "max": 42.700000000186265,
+        "total": 2416.199999999255
+      },
+      "raf": {
+        "n": 179,
+        "p50": 16.699999999999818,
+        "p95": 33.40000000000009,
+        "max": 50.100000000000364,
+        "total": 4049.8
+      },
+      "longtasks": [
+        {
+          "at": 4389.9000000003725,
+          "ms": 52
+        }
+      ],
+      "methods": {},
+      "ops": {
+        "App.frame:rAF": {
+          "count": 180,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 279,
+        "childList": 0,
+        "added": 0,
+        "removed": 0
+      },
+      "initial": {
+        "dom": 251,
+        "heap": 18618822,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "final": {
+        "dom": 251,
+        "heap": 22566437,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "fireTitle": "\ub204\ub978 \ucc44 \ucda9\uc804, \uc190\uc744 \ub5bc\uc5b4 \ubc1c\uc0ac",
+      "errors": []
+    },
+    {
+      "state": "charge",
+      "counters": false,
+      "frame": {
+        "n": 180,
+        "p50": 15.099999999627471,
+        "p95": 31.200000000186265,
+        "max": 84.70000000018626,
+        "total": 3126.6999999983236
+      },
+      "raf": {
+        "n": 179,
+        "p50": 16.700000000000728,
+        "p95": 50,
+        "max": 99.89999999999964,
+        "total": 4549.800000000001
+      },
+      "longtasks": [
+        {
+          "at": 2594.5,
+          "ms": 50
+        },
+        {
+          "at": 3960.5,
+          "ms": 55
+        },
+        {
+          "at": 5838.5,
+          "ms": 56
+        },
+        {
+          "at": 5895.399999999441,
+          "ms": 97
+        }
+      ],
+      "methods": {},
+      "ops": {
+        "App.frame:rAF": {
+          "count": 180,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 385,
+        "childList": 91,
+        "added": 91,
+        "removed": 91
+      },
+      "initial": {
+        "dom": 251,
+        "heap": 20914076,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "final": {
+        "dom": 251,
+        "heap": 38697688,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "fireTitle": "\ub204\ub978 \ucc44 \ucda9\uc804, \uc190\uc744 \ub5bc\uc5b4 \ubc1c\uc0ac",
+      "errors": []
+    },
+    {
+      "state": "pause",
+      "counters": false,
+      "frame": {
+        "n": 180,
+        "p50": 10.600000000558794,
+        "p95": 15.700000000186265,
+        "max": 23.800000000745058,
+        "total": 2028.499999997206
+      },
+      "raf": {
+        "n": 179,
+        "p50": 33.30000000000018,
+        "p95": 50,
+        "max": 83.29999999999927,
+        "total": 6149.699999999997
+      },
+      "longtasks": [],
+      "methods": {},
+      "ops": {
+        "App.frame:rAF": {
+          "count": 180,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 470,
+        "childList": 0,
+        "added": 0,
+        "removed": 0
+      },
+      "initial": {
+        "dom": 266,
+        "heap": 19699323,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "final": {
+        "dom": 266,
+        "heap": 17463836,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "fireTitle": "\uc774\ub3d9\u00b7\ubc1c\uc0ac \uac00\ub2a5",
+      "errors": []
+    }
+  ]
+}
