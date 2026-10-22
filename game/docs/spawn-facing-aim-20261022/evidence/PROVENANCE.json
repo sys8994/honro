@@ -1,0 +1,27 @@
+{
+  "base": "c5b51319ef887943726434d84db596f07254bbd3",
+  "runtimeCommit": "f3ac0953724276bd7e76c38a21308d2a63dc5aaf",
+  "browserExecutionCommit": "2378eeea8542f6b59fefd136f7eb37895949bf4d",
+  "protectedSourceUnchanged": {
+    "shared/runtime/renderer.js": "0fc0aa62a304d1274b40d56515ddb4363da21b53c33552d8adb876f06e24569d",
+    "shared/runtime/party-rig.js": "1ccaf5044a1580218f69cae6754e969b173fc18056f1786de229916f5ba6212a",
+    "shared/assets/rebuild-game-adapter.mjs": "3ca9f379d12c0b0d6156431eb285d154f7077e29594f39cf6802444cf81e15c7",
+    "shared/runtime/portraits.js": "a80f33622cfde2f7826dddc64d9cd886a7e1aa2f9f8ef0c5a9ef8b88b5cf2c98",
+    "shared/runtime/monster-vector.js": "e07e418068c132a03afa4f11f9e2cf14e190979d73ce7c39e1959738d8a13aee",
+    "shared/runtime/actor-vector.js": "3b414d9a5eacda05ba0f1c794403170e94fa64b4bdfcd6d197aa3168375afe86",
+    "shared/runtime/main.js": "86d967a3a9b32735b10b0fd74fb9194ea08f61b1104d9d19b449973604998f93",
+    "shared/runtime/story-staging.js": "eedb0d8544f6241564973f3889ccc0d1046f370afe5f68ee1aa9b5c4b161db6f",
+    "shared/engine/src/world.ts": "c98bd190016e0e330341b05388a208a99e961ac5a84d4c4f608b0e2750d92782",
+    "shared/engine/src/engine.ts": "a1ff946b84983b3b80de8645d8008c7dd0321d2a98cef8b51689578fb06238c7",
+    "shared/engine/src/locomotion.ts": "84ff07ebce43625be87f5e78244e55ccb6a368f49941c401cc81c5dbe39f2545",
+    "shared/data/campaign.json": "940e3ffce3f7151e6f1d29bdfb15c1758442f85aea1fa5aeba4a1e35c2556831"
+  },
+  "files": {
+    "shared/map/units.js": "aac20b04375a6a31b50f9acb30e291dbe4906331ce8734e271167b0d8b7862c4",
+    "tests/spawn-facing-aim.mjs": "d444780405370e618e3f9640c4a2b35736f56989d2dce7a3641ab71dfbd016fe",
+    "tools/testing/spawn-facing-aim.py": "b53f09f264610b42c8237a581d580e1d2583c6e808d76de11dc1cd092d3cf6e2",
+    "HONRO.html": "af744f3d7b17907416e14b9fff0abc6470e70d44c356379dcbdfc4894d1e11a8",
+    "HONRO_WORKSHOP.html": "155f95fc29070fc43a5743369add707e1e2e43576d8e40d2b1b14ddf79aa6a5d",
+    "web/manifest.json": "1647cdefe7c0d6e7b0915813eae2fea42ce397ea4dc456cfc9859ff8d3cbc091"
+  }
+}

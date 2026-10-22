@@ -4424,3 +4424,10 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 13장 shape3 집중 보정: 부모가147b4c19의 거대한 평면/삼각 천장/붙인 사각 문틀을 미술 미승인했다. 석문 주변만 경사를 따르는 엇갈린 중간 층·서로 다른 포켓/파단/낮은 돌턱으로 묶고, 문설주/상인방의 두꺼운 석재와 접촉 그림자를 천장에 이었다. 기존12장 잔석 에셋2묶음을 비충돌 후면에 재사용했다. 공통 build·관련 재질 순수성/정적재사용·보호 데이터 대조 통과, 지정된 같은3화면(전체/석문/모바일 석공)을 직접 열어 부모 관찰과 대조했다. 공유 실행/서사 모듈 불변이며11장/전체 플레이 검사를 반복하지 않았다. 미술 종합 판단·master/Pages는 부모 대기. [사진·한계](stage-review/stage13-vector-art-20261022/README.md#부모-지적에-대한-집중-형태-보정-shape3).
 
 13장 shape4 두 암체 교정: c32a2724에서 부모가 유지 지시한 문틀/Library/장식은 그대로 두고 왼쪽 전경의 큰 삼각 단색 바탕과 상부·오른쪽 천장의 빈 면을 교체했다. 비대칭 공유 층리/중간 되접힘/일부 깊은 틈과 짧은 돌턱을 같은 모암 안에 연결했다. 첫 픽셀의 사다리꼴 반복 및 근경 뾰족한 분할을 수정한 최종 소스로 집중3회(전체/두 중간/두 근경·세로)와 별도 전체·석문·모바일을 직접 열었다. 공통 build·shape3 대비 terrainPlanes/planeCount 외 캠페인 전체 동일·렌더 순수성/prepare 재사용/cached draw 새Path2D0 통과. 면90→161 증가의 초기 준비/직접 draw 비용을 미계측 상태로 명시하며 캐시 hit를 비용0으로 해석하지 않는다. 공유 실행/서사/충돌/actor/목표 불변,11장/전체 전투를 반복하지 않았다. 부모 종합 판단 대기, master/Pages/14장 미착수. [최종 사진·검수 범위](stage-review/stage13-vector-art-20261022/README.md#shape4--왼쪽-전경상부-천장-교정).
+
+
+## 2026-10-22 · 신규 배치 facing과 월드 조준각 일치
+
+-12장 fresh record의 facing:-1이 makeUnit의 기본 angle44를 남겨 몸은 왼쪽/활·예측·실탄은 오른쪽/HUD136°인 불일치를 만들었다. `HonroUnits.create`만 수정해 facing-only 새 배치가 같은 pitch의 반대 월드각136을 받는다.1장 우측 기본44는 그대로다. 명시 angle/pair/template와 진행 중 save는 보존하며 강제 우측 reset·Continue migration은 없다.
+- 네 동행1/12장 생성·좌우/explicit 저장·NPC/적 native 검사, 기존 aim-readout/20° joystick 검사, 실제 Chromium 키보드/터치·선택/양방향 발사·Continue/retry 및 렌더 battle 순수성이 통과했다.1장의 추가3인은 실제 지형/fresh factory QA fixture이며 정상 roster 변경이 아니다.6개 ranged 탄/2개 원래 meleeAction을 구분했다.
+- 리그/무기/초상화/Engine·조작·기존 empty-occlusion/캐시는 byte-identical. [원인·정확한 SHA·원자료·양방향 JPG·한계](spawn-facing-aim-20261022/README.md). 실기기 미검사. master/Pages는 부모 최종 검토 후 별도 배포.

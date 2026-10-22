@@ -1,0 +1,4147 @@
+{
+  "passed": true,
+  "baseline": false,
+  "sourceCommit": "2378eeea8542f6b59fefd136f7eb37895949bf4d",
+  "trackedTreeDirty": false,
+  "manifestSha256": "1647cdefe7c0d6e7b0915813eae2fea42ce397ea4dc456cfc9859ff8d3cbc091",
+  "browser": "154.0.8037.57",
+  "viewport": [
+    720,
+    1560
+  ],
+  "rows": [
+    {
+      "stage": 1,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 268,
+      "y": 1520.3516392030963,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1442,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "entry-1"
+    },
+    {
+      "stage": 1,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 268,
+      "y": 1520.3516392030963,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1442,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "stage1-extra-heroes-factory-fixture"
+    },
+    {
+      "stage": 1,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 268,
+      "y": 1520.3516392030963,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1442,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "select-1-p-archer"
+    },
+    {
+      "stage": 1,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 268,
+      "y": 1520.3516392030963,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1442,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 1,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 227.74239686126424,
+      "y": 1525.153910358692,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1401.166666666666,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-1-p-archer--1"
+    },
+    {
+      "stage": 1,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 227.74239686126424,
+      "y": 1525.153910358692,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1401.166666666666,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 1,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 268,
+      "y": 1520.3516392030963,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1360.3333333333321,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-1-p-archer-1"
+    },
+    {
+      "stage": 1,
+      "cls": "mage",
+      "id": "facing-fixture-mage",
+      "x": 388,
+      "y": 1559.4263968333964,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1480,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "select-1-facing-fixture-mage"
+    },
+    {
+      "stage": 1,
+      "cls": "mage",
+      "id": "facing-fixture-mage",
+      "x": 388,
+      "y": 1559.4263968333964,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1480,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 1,
+      "cls": "mage",
+      "id": "facing-fixture-mage",
+      "x": 352.5913893558969,
+      "y": 1545.5268172145888,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1441.8499999999992,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-1-facing-fixture-mage--1"
+    },
+    {
+      "stage": 1,
+      "cls": "mage",
+      "id": "facing-fixture-mage",
+      "x": 352.5913893558969,
+      "y": 1545.5268172145888,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1441.8499999999992,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 1,
+      "cls": "mage",
+      "id": "facing-fixture-mage",
+      "x": 388.0226288163813,
+      "y": 1559.436324533753,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1403.6752892216787,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-1-facing-fixture-mage-1"
+    },
+    {
+      "stage": 1,
+      "cls": "knight",
+      "id": "facing-fixture-knight",
+      "x": 508,
+      "y": 1575.7378179245661,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1603,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "select-1-facing-fixture-knight"
+    },
+    {
+      "stage": 1,
+      "cls": "knight",
+      "id": "facing-fixture-knight",
+      "x": 508,
+      "y": 1575.7378179245661,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1603,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 1,
+      "cls": "knight",
+      "id": "facing-fixture-knight",
+      "x": 468.17635074483934,
+      "y": 1580.1525154906249,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1562.75,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-1-facing-fixture-knight--1"
+    },
+    {
+      "stage": 1,
+      "cls": "knight",
+      "id": "facing-fixture-knight",
+      "x": 468.17635074483934,
+      "y": 1580.1525154906249,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1562.75,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 1,
+      "cls": "knight",
+      "id": "facing-fixture-knight",
+      "x": 508.02726096499515,
+      "y": 1575.7342800719528,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1522.4725104271843,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-1-facing-fixture-knight-1"
+    },
+    {
+      "stage": 1,
+      "cls": "occultist",
+      "id": "facing-fixture-occultist",
+      "x": 628,
+      "y": 1550.7706960920996,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1496,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "select-1-facing-fixture-occultist"
+    },
+    {
+      "stage": 1,
+      "cls": "occultist",
+      "id": "facing-fixture-occultist",
+      "x": 628,
+      "y": 1550.7706960920996,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1496,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 1,
+      "cls": "occultist",
+      "id": "facing-fixture-occultist",
+      "x": 588.8438540098108,
+      "y": 1557.4096542021534,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1456.2166666666665,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-1-facing-fixture-occultist--1"
+    },
+    {
+      "stage": 1,
+      "cls": "occultist",
+      "id": "facing-fixture-occultist",
+      "x": 588.8438540098108,
+      "y": 1557.4096542021534,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1456.2166666666665,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 1,
+      "cls": "occultist",
+      "id": "facing-fixture-occultist",
+      "x": 622.3788949447616,
+      "y": 1551.3192218289157,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1422.081370269076,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "facing-fixture-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-1-facing-fixture-occultist-1"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10100,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1442,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "entry-12"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10100,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1442,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "select-12-p-archer"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10100,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1442,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10059.166666666675,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1401.1666666666752,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-12-p-archer--1"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10059.166666666675,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1401.1666666666752,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10100,
+      "y": 2380,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1360.3333333333503,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-12-p-archer-1"
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10220,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1480,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "select-12-p-mage"
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10220,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1480,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10181.849999999995,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1441.849999999995,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-12-p-mage--1"
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10181.849999999995,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1441.849999999995,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10214.55,
+      "y": 2380,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1409.1499999999905,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-12-p-mage-1"
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10340,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1603,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "select-12-p-knight"
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10340,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1603,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10299.75,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1562.75,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-12-p-knight--1"
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10299.75,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1562.75,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10340,
+      "y": 2380,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1522.5,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-12-p-knight-1"
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10470,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1496,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "select-12-p-occultist"
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10470,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1496,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10435.899999999994,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1461.8999999999942,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-12-p-occultist--1"
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10435.899999999994,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1461.8999999999942,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "walk-before"
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10470,
+      "y": 2380,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1427.7999999999884,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "walk-12-p-occultist-1"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10100,
+      "y": 2380,
+      "angle": 34.699999999999996,
+      "facing": 1,
+      "display": 34.699999999999996,
+      "moveLeft": 1360.3333333333503,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": -1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 34.699999999999996
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-lock"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10095.60715696387,
+      "y": 2380,
+      "angle": 149.43540000000004,
+      "facing": -1,
+      "display": 30.564599999999956,
+      "moveLeft": 1355.94049029722,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": -0.7530588061937435,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 149.43540000000004
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "locked-turn"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10073.642941783219,
+      "y": 2380,
+      "angle": 158.73540000000006,
+      "facing": -1,
+      "display": 21.264599999999945,
+      "moveLeft": 1333.976275116569,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": -1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 158.73540000000006
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-relock"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10073.642941783219,
+      "y": 2380,
+      "angle": 153.56460000000007,
+      "facing": -1,
+      "display": 26.43539999999993,
+      "moveLeft": 1333.976275116569,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": 1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 153.56460000000007
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-lock"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10086.821468136779,
+      "y": 2380,
+      "angle": 29.535399999999925,
+      "facing": 1,
+      "display": 29.535399999999925,
+      "moveLeft": 1320.7977487630087,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0.7530586487750295,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 29.535399999999925
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "locked-turn"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10099.99999449034,
+      "y": 2380,
+      "angle": 37.8,
+      "facing": 1,
+      "display": 37.8,
+      "moveLeft": 1307.6192224094484,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": 1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 37.8
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-relock"
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10214.55,
+      "y": 2380,
+      "angle": 34.70620000000002,
+      "facing": 1,
+      "display": 34.70620000000002,
+      "moveLeft": 1409.1499999999905,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": -1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 34.70620000000002
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-lock"
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10206.341659012487,
+      "y": 2380,
+      "angle": 148.4,
+      "facing": -1,
+      "display": 31.599999999999994,
+      "moveLeft": 1400.9416590124783,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": -0.7530588061937435,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 148.4
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "locked-turn"
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10194.029147531219,
+      "y": 2380,
+      "angle": 156.6708000000001,
+      "facing": -1,
+      "display": 23.3291999999999,
+      "moveLeft": 1388.62914753121,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": -1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 156.6708000000001
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-relock"
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10194.029147531219,
+      "y": 2380,
+      "angle": 149.44780000000011,
+      "facing": -1,
+      "display": 30.552199999999885,
+      "moveLeft": 1388.62914753121,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": 1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 149.44780000000011
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-lock"
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10206.341656438686,
+      "y": 2380,
+      "angle": 33.65839999999989,
+      "facing": 1,
+      "display": 33.65839999999989,
+      "moveLeft": 1376.3166386237426,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0.7530586487750295,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 33.65839999999989
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "locked-turn"
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10222.758334981976,
+      "y": 2380,
+      "angle": 41.92919999999998,
+      "facing": 1,
+      "display": 41.92919999999998,
+      "moveLeft": 1359.8999600804527,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": 1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 41.92919999999998
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-relock"
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10340,
+      "y": 2380,
+      "angle": 34.693799999999975,
+      "facing": 1,
+      "display": 34.693799999999975,
+      "moveLeft": 1522.5,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": -1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 34.693799999999975
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-lock"
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10331.33982372877,
+      "y": 2380,
+      "angle": 148.4,
+      "facing": -1,
+      "display": 31.599999999999994,
+      "moveLeft": 1513.8398237287693,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": -0.7530588061937435,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 148.4
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "locked-turn"
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10318.349559321923,
+      "y": 2380,
+      "angle": 156.67079999999996,
+      "facing": -1,
+      "display": 23.329200000000043,
+      "moveLeft": 1500.8495593219232,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": -1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 156.67079999999996
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-relock"
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10318.349559321923,
+      "y": 2380,
+      "angle": 148.4062,
+      "facing": -1,
+      "display": 31.593799999999987,
+      "moveLeft": 1500.8495593219232,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": 1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 148.4062
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-lock"
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10339.999995474209,
+      "y": 2380,
+      "angle": 34.70000000000002,
+      "facing": 1,
+      "display": 34.70000000000002,
+      "moveLeft": 1479.1991231696375,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0.7530586487750295,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 34.70000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "locked-turn"
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10352.99025716558,
+      "y": 2380,
+      "angle": 43.993800000000114,
+      "facing": 1,
+      "display": 43.993800000000114,
+      "moveLeft": 1466.208861478266,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": 1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 43.993800000000114
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "vertical-relock"
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10470,
+      "y": 2380,
+      "angle": 34.699999999999996,
+      "facing": 1,
+      "display": 34.699999999999996,
+      "moveLeft": 1427.7999999999884,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": -1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 34.699999999999996
+        }
+      ],
+      "tag": "vertical-lock"
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10465.7201157848,
+      "y": 2380,
+      "angle": 148.4,
+      "facing": -1,
+      "display": 31.599999999999994,
+      "moveLeft": 1423.5201157847878,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": -0.7530588061937435,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 148.4
+        }
+      ],
+      "tag": "locked-turn"
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10440.040810493596,
+      "y": 2380,
+      "angle": 156.66459999999995,
+      "facing": -1,
+      "display": 23.33540000000005,
+      "moveLeft": 1397.8408104935843,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": -1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 156.66459999999995
+        }
+      ],
+      "tag": "vertical-relock"
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10440.040810493596,
+      "y": 2380,
+      "angle": 152.53539999999992,
+      "facing": -1,
+      "display": 27.464600000000075,
+      "moveLeft": 1397.8408104935843,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": 1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 152.53539999999992
+        }
+      ],
+      "tag": "vertical-lock"
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10448.600577134672,
+      "y": 2380,
+      "angle": 32.629200000000026,
+      "facing": 1,
+      "display": 32.629200000000026,
+      "moveLeft": 1389.2810438525084,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0.7530586487750295,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 32.629200000000026
+        }
+      ],
+      "tag": "locked-turn"
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10461.440227096286,
+      "y": 2380,
+      "angle": 40.8938000000001,
+      "facing": 1,
+      "display": 40.8938000000001,
+      "moveLeft": 1376.4413938908947,
+      "phase": "aim",
+      "intent": "aimOnly",
+      "axes": {
+        "x": 0,
+        "y": 1
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 40.8938000000001
+        }
+      ],
+      "tag": "vertical-relock"
+    },
+    {
+      "tag": "trusted-facing-events",
+      "events": [
+        {
+          "before": {
+            "angle": 30.56459999999995,
+            "facing": 1,
+            "x": 10100,
+            "y": 2380,
+            "budget": 1360.3333333333503
+          },
+          "after": {
+            "angle": 149.43540000000004,
+            "facing": -1,
+            "x": 10100,
+            "y": 2380,
+            "budget": 1360.3333333333503
+          },
+          "trusted": true
+        },
+        {
+          "before": {
+            "angle": 150.46460000000008,
+            "facing": -1,
+            "x": 10073.642941783219,
+            "y": 2380,
+            "budget": 1333.976275116569
+          },
+          "after": {
+            "angle": 29.535399999999925,
+            "facing": 1,
+            "x": 10073.642941783219,
+            "y": 2380,
+            "budget": 1333.976275116569
+          },
+          "trusted": true
+        },
+        {
+          "before": {
+            "angle": 31.599999999999994,
+            "facing": 1,
+            "x": 10214.55,
+            "y": 2380,
+            "budget": 1409.1499999999905
+          },
+          "after": {
+            "angle": 148.4,
+            "facing": -1,
+            "x": 10214.55,
+            "y": 2380,
+            "budget": 1409.1499999999905
+          },
+          "trusted": true
+        },
+        {
+          "before": {
+            "angle": 146.3416000000001,
+            "facing": -1,
+            "x": 10194.029147531219,
+            "y": 2380,
+            "budget": 1388.62914753121
+          },
+          "after": {
+            "angle": 33.65839999999989,
+            "facing": 1,
+            "x": 10194.029147531219,
+            "y": 2380,
+            "budget": 1388.62914753121
+          },
+          "trusted": true
+        },
+        {
+          "before": {
+            "angle": 31.599999999999994,
+            "facing": 1,
+            "x": 10340,
+            "y": 2380,
+            "budget": 1522.5
+          },
+          "after": {
+            "angle": 148.4,
+            "facing": -1,
+            "x": 10340,
+            "y": 2380,
+            "budget": 1522.5
+          },
+          "trusted": true
+        },
+        {
+          "before": {
+            "angle": 145.29999999999998,
+            "facing": -1,
+            "x": 10318.349559321923,
+            "y": 2380,
+            "budget": 1500.8495593219232
+          },
+          "after": {
+            "angle": 34.70000000000002,
+            "facing": 1,
+            "x": 10318.349559321923,
+            "y": 2380,
+            "budget": 1500.8495593219232
+          },
+          "trusted": true
+        },
+        {
+          "before": {
+            "angle": 31.599999999999994,
+            "facing": 1,
+            "x": 10470,
+            "y": 2380,
+            "budget": 1427.7999999999884
+          },
+          "after": {
+            "angle": 148.4,
+            "facing": -1,
+            "x": 10470,
+            "y": 2380,
+            "budget": 1427.7999999999884
+          },
+          "trusted": true
+        },
+        {
+          "before": {
+            "angle": 147.37079999999997,
+            "facing": -1,
+            "x": 10440.040810493596,
+            "y": 2380,
+            "budget": 1397.8408104935843
+          },
+          "after": {
+            "angle": 32.629200000000026,
+            "facing": 1,
+            "x": 10440.040810493596,
+            "y": 2380,
+            "budget": 1397.8408104935843
+          },
+          "trusted": true
+        }
+      ]
+    },
+    {
+      "tag": "actual-release",
+      "cls": "archer",
+      "facing": -1,
+      "angle": 138.06460000000007,
+      "phase": "flight",
+      "power": 0.30658965601147375,
+      "skill": "A01",
+      "expected": {
+        "vx": -268.7319486992539,
+        "vy": -241.41925617650787
+      },
+      "origin": {
+        "x": 10068.756245472085,
+        "y": 2293.971723471429
+      },
+      "firstPoint": {
+        "x": 10068.756245472085,
+        "y": 2293.971723471429
+      },
+      "projectile": {
+        "x": 10068.756245472085,
+        "y": 2293.971723471429,
+        "vx": -268.7319486992539,
+        "vy": -241.41925617650787
+      },
+      "melee": null
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10099.99999449034,
+      "y": 2380,
+      "angle": 138.06460000000007,
+      "facing": -1,
+      "display": 41.93539999999993,
+      "moveLeft": 1307.6192224094484,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 138.06460000000007
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 43.9938000000001
+        }
+      ],
+      "tag": "continue-after-shot"
+    },
+    {
+      "tag": "actual-release",
+      "cls": "archer",
+      "facing": 1,
+      "angle": 41.93539999999993,
+      "phase": "flight",
+      "power": 0.3234142013116414,
+      "skill": "A01",
+      "expected": {
+        "vx": 283.47899823547084,
+        "vy": -254.667482697635
+      },
+      "origin": {
+        "x": 10131.243743508594,
+        "y": 2293.971723471429
+      },
+      "firstPoint": {
+        "x": 10131.243743508594,
+        "y": 2293.971723471429
+      },
+      "projectile": {
+        "x": 10131.243743508594,
+        "y": 2293.971723471429,
+        "vx": 283.47899823547084,
+        "vy": -254.667482697635
+      },
+      "melee": null
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10099.99999449034,
+      "y": 2380,
+      "angle": 41.93539999999993,
+      "facing": 1,
+      "display": 41.93539999999993,
+      "moveLeft": 1307.6192224094484,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999996
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 43.9938000000001
+        }
+      ],
+      "tag": "continue-after-shot"
+    },
+    {
+      "tag": "actual-release",
+      "cls": "mage",
+      "facing": -1,
+      "angle": 134.97700000000003,
+      "phase": "flight",
+      "power": 0.42074179236933307,
+      "skill": "M01",
+      "expected": {
+        "vx": -251.36883210147593,
+        "vy": -251.570724990145
+      },
+      "origin": {
+        "x": 10191.658128553816,
+        "y": 2290.9148146973253
+      },
+      "firstPoint": {
+        "x": 10191.658128553816,
+        "y": 2290.9148146973253
+      },
+      "projectile": {
+        "x": 10191.658128553816,
+        "y": 2290.9148146973253,
+        "vx": -251.36883210147593,
+        "vy": -251.570724990145
+      },
+      "melee": null
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10222.758334981976,
+      "y": 2380,
+      "angle": 134.97700000000003,
+      "facing": -1,
+      "display": 45.02299999999997,
+      "moveLeft": 1359.8999600804527,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 134.97700000000003
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 43.9938000000001
+        }
+      ],
+      "tag": "continue-after-shot"
+    },
+    {
+      "tag": "actual-release",
+      "cls": "mage",
+      "facing": 1,
+      "angle": 45.02299999999997,
+      "phase": "flight",
+      "power": 0.38127417923606594,
+      "skill": "M01",
+      "expected": {
+        "vx": 227.78922104531185,
+        "vy": -227.9721754054846
+      },
+      "origin": {
+        "x": 10253.858541410136,
+        "y": 2290.9148146973253
+      },
+      "firstPoint": {
+        "x": 10253.858541410136,
+        "y": 2290.9148146973253
+      },
+      "projectile": {
+        "x": 10253.858541410136,
+        "y": 2290.9148146973253,
+        "vx": 227.78922104531185,
+        "vy": -227.9721754054846
+      },
+      "melee": null
+    },
+    {
+      "stage": 12,
+      "cls": "mage",
+      "id": "p-mage",
+      "x": 10222.758334981976,
+      "y": 2380,
+      "angle": 45.02299999999997,
+      "facing": 1,
+      "display": 45.02299999999997,
+      "moveLeft": 1359.8999600804527,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999997
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 43.9938000000001
+        }
+      ],
+      "tag": "continue-after-shot"
+    },
+    {
+      "tag": "actual-release",
+      "cls": "knight",
+      "facing": -1,
+      "angle": 132.89999999999998,
+      "phase": "flight",
+      "power": 0.3845420666302347,
+      "skill": "S00",
+      "expected": {
+        "vx": -231.79362453166922,
+        "vy": -249.43964755267396
+      },
+      "origin": {
+        "x": 10333.93007283473,
+        "y": 2301.5287988339533
+      },
+      "firstPoint": null,
+      "projectile": null,
+      "melee": {
+        "skill": "S00",
+        "elapsed": 0,
+        "index": 0,
+        "damage": 203.95323410083105,
+        "range": 159.72623235691006,
+        "power": 0.3845420666302347,
+        "shot": 1,
+        "lifeCost": 0,
+        "angle": -2.3195425759004635,
+        "span": 0.5296275035297074
+      }
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10352.99025716558,
+      "y": 2380,
+      "angle": 132.89999999999998,
+      "facing": -1,
+      "display": 47.10000000000002,
+      "moveLeft": 1466.208861478266,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999997
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 132.89999999999998
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 43.9938000000001
+        }
+      ],
+      "tag": "continue-after-shot"
+    },
+    {
+      "tag": "actual-release",
+      "cls": "knight",
+      "facing": 1,
+      "angle": 47.10000000000002,
+      "phase": "flight",
+      "power": 0.36470242800717967,
+      "skill": "S00",
+      "expected": {
+        "vx": 219.8347203053121,
+        "vy": -236.57033390625332
+      },
+      "origin": {
+        "x": 10372.05044149643,
+        "y": 2301.5287988339533
+      },
+      "firstPoint": null,
+      "projectile": null,
+      "melee": {
+        "skill": "S00",
+        "elapsed": 0,
+        "index": 0,
+        "damage": 201.62558460752336,
+        "range": 158.91487049578163,
+        "power": 0.36470242800717967,
+        "shot": 1,
+        "lifeCost": 0,
+        "angle": -0.8220500776893297,
+        "span": 0.526164833365926
+      }
+    },
+    {
+      "stage": 12,
+      "cls": "knight",
+      "id": "p-knight",
+      "x": 10352.99025716558,
+      "y": 2380,
+      "angle": 47.10000000000002,
+      "facing": 1,
+      "display": 47.10000000000002,
+      "moveLeft": 1466.208861478266,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999997
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 43.9938000000001
+        }
+      ],
+      "tag": "continue-after-shot"
+    },
+    {
+      "tag": "actual-release",
+      "cls": "occultist",
+      "facing": -1,
+      "angle": 136.0061999999999,
+      "phase": "flight",
+      "power": 0.5095939849638089,
+      "skill": "O01",
+      "expected": {
+        "vx": -280.36464499539017,
+        "vy": -270.6863660797216
+      },
+      "origin": {
+        "x": 10432.663628480424,
+        "y": 2294.2567789466093
+      },
+      "firstPoint": {
+        "x": 10430.327285643203,
+        "y": 2292.0030874088734
+      },
+      "projectile": {
+        "x": 10432.663628480424,
+        "y": 2294.2567789466093,
+        "vx": -280.36464499539017,
+        "vy": -270.6863660797216
+      },
+      "melee": null
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10461.440227096286,
+      "y": 2380,
+      "angle": 136.0061999999999,
+      "facing": -1,
+      "display": 43.99380000000011,
+      "moveLeft": 1376.4413938908947,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999997
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136.0061999999999
+        }
+      ],
+      "tag": "continue-after-shot"
+    },
+    {
+      "tag": "actual-release",
+      "cls": "occultist",
+      "facing": 1,
+      "angle": 43.99380000000011,
+      "phase": "flight",
+      "power": 0.4706793069621245,
+      "skill": "O01",
+      "expected": {
+        "vx": 258.95485562390263,
+        "vy": -250.01564961475674
+      },
+      "origin": {
+        "x": 10490.216825712147,
+        "y": 2294.2567789466093
+      },
+      "firstPoint": {
+        "x": 10492.374755868106,
+        "y": 2292.175341226233
+      },
+      "projectile": {
+        "x": 10490.216825712147,
+        "y": 2294.2567789466093,
+        "vx": 258.95485562390263,
+        "vy": -250.01564961475674
+      },
+      "melee": null
+    },
+    {
+      "stage": 12,
+      "cls": "occultist",
+      "id": "p-occultist",
+      "x": 10461.440227096286,
+      "y": 2380,
+      "angle": 43.99380000000011,
+      "facing": 1,
+      "display": 43.99380000000011,
+      "moveLeft": 1376.4413938908947,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 41.93539999999993
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": 1,
+          "angle": 45.02299999999997
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": 1,
+          "angle": 47.10000000000002
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": 1,
+          "angle": 43.99380000000011
+        }
+      ],
+      "tag": "continue-after-shot"
+    },
+    {
+      "tag": "explicit-legacy-continue",
+      "saved": [
+        [
+          "p-archer",
+          41.93539999999993,
+          1
+        ],
+        [
+          "p-mage",
+          45.02299999999997,
+          1
+        ],
+        [
+          "p-knight",
+          47.10000000000002,
+          1
+        ],
+        [
+          "p-occultist",
+          44,
+          -1
+        ],
+        [
+          "sq-b1",
+          44,
+          1
+        ],
+        [
+          "sq-b2",
+          44,
+          1
+        ],
+        [
+          "sq-b3",
+          44,
+          1
+        ],
+        [
+          "sq-b4",
+          44,
+          1
+        ],
+        [
+          "sq-b5",
+          44,
+          1
+        ],
+        [
+          "sq-b6",
+          44,
+          1
+        ],
+        [
+          "sq-b7",
+          44,
+          1
+        ],
+        [
+          "sq-c1",
+          136,
+          -1
+        ],
+        [
+          "sq-c2",
+          136,
+          -1
+        ],
+        [
+          "sq-c3",
+          136,
+          -1
+        ],
+        [
+          "sq-c4",
+          136,
+          -1
+        ],
+        [
+          "sq-c5",
+          136,
+          -1
+        ],
+        [
+          "sq-c6",
+          136,
+          -1
+        ],
+        [
+          "sq-d1",
+          136,
+          -1
+        ],
+        [
+          "sq-d2",
+          136,
+          -1
+        ],
+        [
+          "sq-d3",
+          136,
+          -1
+        ],
+        [
+          "sq-d4",
+          136,
+          -1
+        ],
+        [
+          "sq-d5",
+          136,
+          -1
+        ],
+        [
+          "sq-d6",
+          136,
+          -1
+        ],
+        [
+          "sq-d7",
+          136,
+          -1
+        ],
+        [
+          "sq-e1",
+          136,
+          -1
+        ],
+        [
+          "sq-e2",
+          136,
+          -1
+        ],
+        [
+          "sq-e3",
+          136,
+          -1
+        ],
+        [
+          "sq-e4",
+          136,
+          -1
+        ],
+        [
+          "sq-e5",
+          136,
+          -1
+        ],
+        [
+          "sq-f1",
+          136,
+          -1
+        ],
+        [
+          "sq-f2",
+          136,
+          -1
+        ],
+        [
+          "sq-f3",
+          136,
+          -1
+        ],
+        [
+          "sq-f4",
+          136,
+          -1
+        ],
+        [
+          "sq-f5",
+          136,
+          -1
+        ],
+        [
+          "sq-f6",
+          136,
+          -1
+        ],
+        [
+          "sq-f7",
+          136,
+          -1
+        ],
+        [
+          "sq-f8",
+          136,
+          -1
+        ],
+        [
+          "sq-g1",
+          136,
+          -1
+        ],
+        [
+          "sq-g2",
+          136,
+          -1
+        ],
+        [
+          "sq-g3",
+          136,
+          -1
+        ],
+        [
+          "sq-g4",
+          136,
+          -1
+        ],
+        [
+          "sq-g5",
+          136,
+          -1
+        ]
+      ],
+      "loaded": [
+        [
+          "p-archer",
+          41.93539999999993,
+          1
+        ],
+        [
+          "p-mage",
+          45.02299999999997,
+          1
+        ],
+        [
+          "p-knight",
+          47.10000000000002,
+          1
+        ],
+        [
+          "p-occultist",
+          44,
+          -1
+        ],
+        [
+          "sq-b1",
+          44,
+          1
+        ],
+        [
+          "sq-b2",
+          44,
+          1
+        ],
+        [
+          "sq-b3",
+          44,
+          1
+        ],
+        [
+          "sq-b4",
+          44,
+          1
+        ],
+        [
+          "sq-b5",
+          44,
+          1
+        ],
+        [
+          "sq-b6",
+          44,
+          1
+        ],
+        [
+          "sq-b7",
+          44,
+          1
+        ],
+        [
+          "sq-c1",
+          136,
+          -1
+        ],
+        [
+          "sq-c2",
+          136,
+          -1
+        ],
+        [
+          "sq-c3",
+          136,
+          -1
+        ],
+        [
+          "sq-c4",
+          136,
+          -1
+        ],
+        [
+          "sq-c5",
+          136,
+          -1
+        ],
+        [
+          "sq-c6",
+          136,
+          -1
+        ],
+        [
+          "sq-d1",
+          136,
+          -1
+        ],
+        [
+          "sq-d2",
+          136,
+          -1
+        ],
+        [
+          "sq-d3",
+          136,
+          -1
+        ],
+        [
+          "sq-d4",
+          136,
+          -1
+        ],
+        [
+          "sq-d5",
+          136,
+          -1
+        ],
+        [
+          "sq-d6",
+          136,
+          -1
+        ],
+        [
+          "sq-d7",
+          136,
+          -1
+        ],
+        [
+          "sq-e1",
+          136,
+          -1
+        ],
+        [
+          "sq-e2",
+          136,
+          -1
+        ],
+        [
+          "sq-e3",
+          136,
+          -1
+        ],
+        [
+          "sq-e4",
+          136,
+          -1
+        ],
+        [
+          "sq-e5",
+          136,
+          -1
+        ],
+        [
+          "sq-f1",
+          136,
+          -1
+        ],
+        [
+          "sq-f2",
+          136,
+          -1
+        ],
+        [
+          "sq-f3",
+          136,
+          -1
+        ],
+        [
+          "sq-f4",
+          136,
+          -1
+        ],
+        [
+          "sq-f5",
+          136,
+          -1
+        ],
+        [
+          "sq-f6",
+          136,
+          -1
+        ],
+        [
+          "sq-f7",
+          136,
+          -1
+        ],
+        [
+          "sq-f8",
+          136,
+          -1
+        ],
+        [
+          "sq-g1",
+          136,
+          -1
+        ],
+        [
+          "sq-g2",
+          136,
+          -1
+        ],
+        [
+          "sq-g3",
+          136,
+          -1
+        ],
+        [
+          "sq-g4",
+          136,
+          -1
+        ],
+        [
+          "sq-g5",
+          136,
+          -1
+        ]
+      ]
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10100,
+      "y": 2380,
+      "angle": 136,
+      "facing": -1,
+      "display": 44,
+      "moveLeft": 1442,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 136
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 136
+        }
+      ],
+      "tag": "retry-fresh"
+    },
+    {
+      "tag": "render-purity",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Stage1 extra three heroes are an explicit fresh factory fixture; normal campaign1 still has only Seol-o.",
+    "Production natural App rAF, trusted keyboard/touch and actual Engine/App release, fresh entry/Continue/retry; prepared QA progress. Not normal campaign completion or physical mobile device QA."
+  ]
+}

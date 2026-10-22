@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "stage": 1,
+      "id": "p-archer",
+      "facing": 1,
+      "angle": 44
+    },
+    {
+      "stage": 12,
+      "id": "p-archer",
+      "facing": -1,
+      "angle": 136
+    },
+    {
+      "stage": 12,
+      "id": "p-mage",
+      "facing": -1,
+      "angle": 136
+    },
+    {
+      "stage": 12,
+      "id": "p-knight",
+      "facing": -1,
+      "angle": 136
+    },
+    {
+      "stage": 12,
+      "id": "p-occultist",
+      "facing": -1,
+      "angle": 136
+    }
+  ],
+  "scope": "Fresh production unit factory, authored entry, explicit pair/template preservation, Engine direction/origin, save purity. Renderer/browser checked separately."
+}
