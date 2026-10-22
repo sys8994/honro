@@ -41,7 +41,7 @@ with sync_playwright() as pw:
   for key in ['savedVector','paintVector']:info[key+'Sha256']=hashlib.sha256(info.pop(key).encode()).hexdigest()
   rows.append(dict(file=name+'.jpg',scope=scope,renderPure=True,**info))
  if group in ['shape','final']:
-  shot('mouth');shot('whole',7200,4800,.16);shot('mobile-mouth',7850,6380,.19,390,844)
+  shot('mouth');shot('whole',7200,4800,.16);shot('silhouette',7200,4500,.13);shot('mobile-mouth',7850,6380,.19,390,844)
  if group in ['states','final']:
   for phase,offset in [('suspended',0),('lowering',100),('settled',200)]:
    p.evaluate('''phase=>{const q=HonroStage18BellRenderFixture(HonroApp.engine.b,phase);window.__mouthEngine=new HONRO_CORE.Engine(q.battle,()=>{},false);}''',phase)
