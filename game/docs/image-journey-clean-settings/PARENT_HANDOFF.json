@@ -1,7 +1,7 @@
 {
-  "ready": false,
-  "candidateSha": null,
-  "waitingFor": "Final implementation report and screenshots from feat/image-journey-clean-settings",
+  "ready": true,
+  "candidateSha": "11b445dcba55613b5844d045596458ca4d06c7ec",
+  "waitingFor": null,
   "reviewedIntermediate": "4f68732bd651e23b4f007e5bd0f319e763180af7",
   "knownFindings": [
     {
@@ -26,5 +26,6 @@
     "sha": "4e496c59dd6874ed775dd783410508d194ed266a",
     "path": "game/docs/planning-20261022/CLEAR_REPORT_PLAN.md",
     "notes": "Latest approved XP addition. Actual XP recipients may include nonparticipants at split settlement; separate growth results from participating-character combat stats. Include max-level and recruit-floor exclusions."
-  }
+  },
+  "reviewNotes": "Final report and actual screenshots are available. Parent inspected map overviews, mobile map, fresh gate, rotation, pause and settings pixels. Ready for Phase 0 verification/corrections, NOT approved for master deployment yet. Recheck both known findings in final candidate despite README claims; fix if present and publish clean PHASE0_READY checkpoint before report instrumentation."
 }
