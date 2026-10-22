@@ -4416,3 +4416,5 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 ### 2026-10-22 · 승인 기본 초상4종의 UI 연결
 
 승인 PNG 원본을 유지한 lossless WebP·명시 head/bust 안전영역을 story portrait 설정에 연결한다. 정확한 주인공 identity만 승인 이미지를 쓰고 같은 클래스 NPC/적/소환은 기존 vector fallback을 유지한다. HUD·대화 canvas를 보존하고 asset당 request/decode1회, 준비 완료 때 현재 연결된 portrait만1회 그린다. 제목 preload/표정 추정/월드 배우·전투 변경은 없다. 원본의 반투명 검정/갈색 배경 잔류는 그대로이며 미술 보정하지 않았다. 실제 화면·검사·충돌 경계는 `approved-portrait-ui-20261022/README.md`.
+
+후속 초상화 보완: 이전 error 동일-key 경로는 sourceFor 캐시가 있어도 매번 drawVector로 target canvas를 clear/draw했다. 동일120회 호출에서 abort/timeout 각각120회 실제 paint를 재현했다. 기존 vector source identity와 유효 raster ratio를 공유해 정착된 폴백을 유지하고 크기/표시 원본이 달라질 때만1회 다시 그린다. 별도 actual clearRect/drawImage 계측으로 source build/request/decode와 구분한다. 부모가 승인한 seoro-base-clean PNG/metadata만 선택 반영하며 approved PNG는 그대로다. clean 파생본과 identity master의 SHA를 분리하고 인코딩 입력 대 WebP만 lossless 비교한다. 미술 생성/수정은 하지 않는다.
