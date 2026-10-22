@@ -29,14 +29,22 @@ function outro(b,lines){if(!active(b)||b.honroNarrativeRevision!==1||b.phase!=='
  const current=G.HONRO_CONTENT.stages[9].outro;
  return lines.map(row=>{const match=prior.find(([i,text])=>text===row[1]&&current[i]?.[0]===row[0]);return match?[row[0],current[match[0]][1],...row.slice(2)]:row;});
 }
-function drawParty(app,node){const cv=node.querySelector('canvas'),c=cv?.getContext('2d');if(!c||!app.scene?.human)return;const units=app.engine.b.units.filter(u=>alive(u)&&(u.side===0&&!u.summoned||u.id==='boss'));cv.width=520;cv.height=210;c.clearRect(0,0,520,210);units.forEach((u,i)=>{c.save();c.translate(260+(i-(units.length-1)/2)*105,166);const actor={...u,x:0,y:0,boss:false,side:0,hurt:0,facing:1,portraitOnly:true,moving:.7,h:108};app.scene.human(c,actor,G.HONRO_CONTENT.hero[u.cls],false,3,0);c.restore();c.fillStyle='#ded2b5';c.font='15px serif';c.textAlign='center';c.fillText(u.name,260+(i-(units.length-1)/2)*105,199);});}
-function safeBackdrop(app){if(!active(app.engine?.b)||!complete(app.engine.b)&&app.engine.b.phase!=='won')return;let node=document.getElementById('sodan-safe-backdrop');if(!node){node=document.createElement('div');node.id='sodan-safe-backdrop';node.className='sodan-safe-backdrop';node.innerHTML='<span>윗마당 밖 · 안전한 퇴로</span><canvas aria-label="철수한 소단과 일행"></canvas>';app.root.appendChild(node);drawParty(app,node);}}
+// Extraction ends on the existing east exit surface. Only the survivors move;
+// enemies, HP, resources and the six-turn mission remain the terminal battle.
+// The stamp makes old saved outros and repeated outcome calls idempotent.
+function prepareWorldOutro(app){const b=app.engine?.b;if(!active(b)||!complete(b)&&b.phase!=='won')return;
+ const s=b.honroState.sodanWithdrawal??={phase:'safe'};if(s.worldOutro===1)return;
+ const goal=exit(b),support=b.honroMapAnchors?.exit?.support,units=b.units.filter(u=>alive(u)&&(u.side===0&&!u.summoned||u.id==='boss'));
+ units.forEach((u,i)=>{const x=goal.x-390+i*110;Object.assign(u,{x,y:G.HonroWorld.top(b,x,goal.y,support),vx:0,vy:0,airborne:false,jumping:false,facing:i<2?1:-1});});
+ s.worldOutro=1;
+}
 function frame(app,dt){const b=app.engine?.b,s=b&&active(b)&&memory(b);if(!s||s.phase!=='withdrawing')return false;
- let node=document.getElementById('sodan-withdrawal');if(!node){node=document.createElement('section');node.id='sodan-withdrawal';node.className='sodan-withdrawal';node.setAttribute('role','status');node.innerHTML='<p>퇴로 확보 · 일행 철수</p><canvas class="withdrawal-party" aria-label="소단과 일행이 함께 철수"></canvas><small>소단과 일행이 함께 마당을 벗어납니다</small>';app.root.appendChild(node);drawParty(app,node);}
+ let node=document.getElementById('sodan-withdrawal');if(!node){node=document.createElement('section');node.id='sodan-withdrawal';node.className='sodan-withdrawal';node.setAttribute('role','status');node.textContent='퇴로 확보 · 일행 철수';app.root.appendChild(node);}
+ app.acc=0;app.scene?.render?.(app.engine,0,app.selected,app.power,false,0,true);
  if(document.hidden)return true;s.elapsed=Math.min(1.1,(s.elapsed||0)+dt);if(s.elapsed<1.1)return true;
  // Only presentation time advances after extraction. The live battle, survivors,
  // remaining enemies and their HP are preserved in the terminal snapshot.
- s.phase='safe';node.remove();safeBackdrop(app);save(app);app.checkMission(app.engine);app.outcome();return true;
+ s.phase='safe';node.remove();prepareWorldOutro(app);save(app);app.checkMission(app.engine);app.outcome();return true;
 }
-G.HonroSodanWithdrawal={active,ready,exit,tick,frame,complete,outro,safeBackdrop};
+G.HonroSodanWithdrawal={active,ready,exit,tick,frame,complete,outro,prepareWorldOutro};
 })(globalThis);
