@@ -137,6 +137,16 @@ with sync_playwright() as p:
             state,view=page.evaluate(STATE),page.evaluate(VIEW)
             open_preview(page);page.keyboard.press('Escape');restored(page,state,view)
             rows.append({'stage':30,'selection':'end','viewport':[width,height],'completedDebugFixture':True,'exactReturnAndStorage':True})
+            # Normal UI boundaries: reachable but uncleared vs cleared last places.
+            for stage in [10,20,30]:
+                for cleared in [stage-1,stage]:
+                    page.evaluate('''({stage,cleared})=>{const a=HonroApp;a.close();a.debugMode=false;a.profile=HONRO_TOOLS.fresh();a.normalProfile=a.profile;for(let id=1;id<=cleared;id++)a.profile.cleared[id]={visits:1,rounds:6};a.persist();HonroRestJourney.showBook(a,stage,null,stage/10);}''',{'stage':stage,'cleared':cleared})
+                    shown=stage<=cleared
+                    assert page.locator('.journey-records>summary').count()==int(shown)
+                    assert page.locator('[data-action="act-ending-replay"]').count()==int(shown)
+                    assert page.locator('[data-action="debug-journal-ending-preview"],[data-action="clear-report"]').count()==0
+                    assert page.locator('.report-missing').count()==int(shown)
+                    rows.append({'normalDisplayStage':stage,'clearedThrough':cleared,'viewport':[width,height],'recordsAndReplayShown':shown,'noFabricatedReport':True})
         context.close()
     browser.close()
 assert not errors,errors
