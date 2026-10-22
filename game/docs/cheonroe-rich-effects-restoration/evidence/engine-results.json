@@ -1,0 +1,2706 @@
+{
+  "scope": "Production engine in VM, diagnostic fixtures; no browser or art approval",
+  "rows": [
+    {
+      "label": "SP1/0",
+      "targets": 0,
+      "rays": 0,
+      "hits": [],
+      "launchBefore": 317.184,
+      "launchAfter": 364.7616,
+      "radius": 212.8
+    },
+    {
+      "label": "SP1/1",
+      "targets": 1,
+      "rays": 1,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 331.95362526315785,
+          "hp": 332
+        }
+      ],
+      "launchBefore": 317.184,
+      "launchAfter": 364.7616,
+      "radius": 212.8
+    },
+    {
+      "label": "SP1/4",
+      "targets": 4,
+      "rays": 4,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 299.2813610117703,
+          "hp": 299
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 326.9043133850447,
+          "hp": 327
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 326.9043133850447,
+          "hp": 327
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 299.2813610117703,
+          "hp": 299
+        }
+      ],
+      "launchBefore": 317.184,
+      "launchAfter": 364.7616,
+      "radius": 212.8
+    },
+    {
+      "label": "SP1/10",
+      "targets": 10,
+      "rays": 10,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 191.61989609555397,
+          "hp": 192
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 228.52614412121758,
+          "hp": 229
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 264.77841744326565,
+          "hp": 265
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 299.2813610117703,
+          "hp": 299
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 326.9043133850447,
+          "hp": 327
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 326.9043133850447,
+          "hp": 327
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 299.2813610117703,
+          "hp": 299
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 264.77841744326565,
+          "hp": 265
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 228.52614412121758,
+          "hp": 229
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 191.61989609555397,
+          "hp": 192
+        }
+      ],
+      "launchBefore": 317.184,
+      "launchAfter": 364.7616,
+      "radius": 212.8
+    },
+    {
+      "label": "SP4/0",
+      "targets": 0,
+      "rays": 0,
+      "hits": [],
+      "launchBefore": 444.05760000000004,
+      "launchAfter": 510.66624,
+      "radius": 238.33600000000004
+    },
+    {
+      "label": "SP4/1",
+      "targets": 1,
+      "rays": 1,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 469.6562715789474,
+          "hp": 470
+        }
+      ],
+      "launchBefore": 444.05760000000004,
+      "launchAfter": 510.66624,
+      "radius": 238.33600000000004
+    },
+    {
+      "label": "SP4/4",
+      "targets": 4,
+      "rays": 4,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 428.815941264713,
+          "hp": 429
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 463.3446317313059,
+          "hp": 463
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 463.3446317313059,
+          "hp": 463
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 428.815941264713,
+          "hp": 429
+        }
+      ],
+      "launchBefore": 444.05760000000004,
+      "launchAfter": 510.66624,
+      "radius": 238.33600000000004
+    },
+    {
+      "label": "SP4/10",
+      "targets": 10,
+      "rays": 10,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 294.2391101194425,
+          "hp": 294
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 340.37192015152203,
+          "hp": 340
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 385.6872618040821,
+          "hp": 386
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 428.815941264713,
+          "hp": 429
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 463.3446317313059,
+          "hp": 463
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 463.3446317313059,
+          "hp": 463
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 428.815941264713,
+          "hp": 429
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 385.6872618040821,
+          "hp": 386
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 340.37192015152203,
+          "hp": 340
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 294.2391101194425,
+          "hp": 294
+        }
+      ],
+      "launchBefore": 444.05760000000004,
+      "launchAfter": 510.66624,
+      "radius": 238.33600000000004
+    },
+    {
+      "label": "SP8/0",
+      "targets": 0,
+      "rays": 0,
+      "hits": [],
+      "launchBefore": 545.5564800000002,
+      "launchAfter": 627.3899520000001,
+      "radius": 255.36000000000004
+    },
+    {
+      "label": "SP8/1",
+      "targets": 1,
+      "rays": 1,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 580.3651882105264,
+          "hp": 580
+        }
+      ],
+      "launchBefore": 545.5564800000002,
+      "launchAfter": 627.3899520000001,
+      "radius": 255.36000000000004
+    },
+    {
+      "label": "SP8/4",
+      "targets": 4,
+      "rays": 4,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        }
+      ],
+      "launchBefore": 545.5564800000002,
+      "launchAfter": 627.3899520000001,
+      "radius": 255.36000000000004
+    },
+    {
+      "label": "SP8/10",
+      "targets": 10,
+      "rays": 10,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "launchBefore": 545.5564800000002,
+      "launchAfter": 627.3899520000001,
+      "radius": 255.36000000000004
+    },
+    {
+      "label": "strict-radius-boundary",
+      "targets": 1,
+      "rays": 1,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 263.50377984000005,
+          "hp": 264
+        }
+      ]
+    },
+    {
+      "label": "live-delay-removal-capture",
+      "rays": 5
+    },
+    {
+      "label": "ceiling-650",
+      "targets": 0,
+      "rays": 0,
+      "hits": []
+    },
+    {
+      "label": "ceiling-740",
+      "targets": 4,
+      "rays": 4,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 293.87464683154667,
+          "hp": 294
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 302.78546543726236,
+          "hp": 303
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 302.78546543726236,
+          "hp": 303
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 293.87464683154667,
+          "hp": 294
+        }
+      ]
+    },
+    {
+      "label": "ceiling-790",
+      "targets": 4,
+      "rays": 4,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 362.4102436059957,
+          "hp": 362
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 373.7172105088741,
+          "hp": 374
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 373.7172105088741,
+          "hp": 374
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 362.4102436059957,
+          "hp": 362
+        }
+      ]
+    },
+    {
+      "label": "oneWay-ceiling",
+      "targets": 1,
+      "rays": 1,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 389.41614736842104,
+          "hp": 389
+        }
+      ]
+    },
+    {
+      "label": "lethal-snapshot",
+      "targets": 10,
+      "rays": 10,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 1
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 1
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 1
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 1
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 1
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 1
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 1
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 1
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 1
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 1
+        }
+      ]
+    },
+    {
+      "label": "first-cast",
+      "targets": 10,
+      "rays": 10,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ]
+    },
+    {
+      "label": "420-no-target-cap",
+      "targets": 420,
+      "rays": 420,
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 477.33204847616645,
+          "hp": 477
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 477.8732273880021,
+          "hp": 478
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 478.4141913511482,
+          "hp": 478
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 478.9549380154961,
+          "hp": 479
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 479.4954649975162,
+          "hp": 479
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 480.035769879682,
+          "hp": 480
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 480.57585020987955,
+          "hp": 481
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 481.1157035008064,
+          "hp": 481
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 481.65532722935797,
+          "hp": 482
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 482.1947188360015,
+          "hp": 482
+        },
+        {
+          "id": "lightning-target-10",
+          "raw": 482.73387572413816,
+          "hp": 483
+        },
+        {
+          "id": "lightning-target-11",
+          "raw": 483.2727952594508,
+          "hp": 483
+        },
+        {
+          "id": "lightning-target-12",
+          "raw": 483.811474769239,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-13",
+          "raw": 484.34991154174156,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-14",
+          "raw": 484.8881028254425,
+          "hp": 485
+        },
+        {
+          "id": "lightning-target-15",
+          "raw": 485.42604582836606,
+          "hp": 485
+        },
+        {
+          "id": "lightning-target-16",
+          "raw": 485.9637377173549,
+          "hp": 486
+        },
+        {
+          "id": "lightning-target-17",
+          "raw": 486.50117561733407,
+          "hp": 487
+        },
+        {
+          "id": "lightning-target-18",
+          "raw": 487.0383566105603,
+          "hp": 487
+        },
+        {
+          "id": "lightning-target-19",
+          "raw": 487.5752777358541,
+          "hp": 488
+        },
+        {
+          "id": "lightning-target-20",
+          "raw": 488.1119359878187,
+          "hp": 488
+        },
+        {
+          "id": "lightning-target-21",
+          "raw": 488.64832831603957,
+          "hp": 489
+        },
+        {
+          "id": "lightning-target-22",
+          "raw": 489.18445162426985,
+          "hp": 489
+        },
+        {
+          "id": "lightning-target-23",
+          "raw": 489.72030276959714,
+          "hp": 490
+        },
+        {
+          "id": "lightning-target-24",
+          "raw": 490.25587856159274,
+          "hp": 490
+        },
+        {
+          "id": "lightning-target-25",
+          "raw": 490.7911757614452,
+          "hp": 491
+        },
+        {
+          "id": "lightning-target-26",
+          "raw": 491.3261910810724,
+          "hp": 491
+        },
+        {
+          "id": "lightning-target-27",
+          "raw": 491.86092118221745,
+          "hp": 492
+        },
+        {
+          "id": "lightning-target-28",
+          "raw": 492.3953626755246,
+          "hp": 492
+        },
+        {
+          "id": "lightning-target-29",
+          "raw": 492.92951211959445,
+          "hp": 493
+        },
+        {
+          "id": "lightning-target-30",
+          "raw": 493.46336602002157,
+          "hp": 493
+        },
+        {
+          "id": "lightning-target-31",
+          "raw": 493.99692082840926,
+          "hp": 494
+        },
+        {
+          "id": "lightning-target-32",
+          "raw": 494.53017294136475,
+          "hp": 495
+        },
+        {
+          "id": "lightning-target-33",
+          "raw": 495.0631186994718,
+          "hp": 495
+        },
+        {
+          "id": "lightning-target-34",
+          "raw": 495.59575438624216,
+          "hp": 496
+        },
+        {
+          "id": "lightning-target-35",
+          "raw": 496.12807622704486,
+          "hp": 496
+        },
+        {
+          "id": "lightning-target-36",
+          "raw": 496.6600803880107,
+          "hp": 497
+        },
+        {
+          "id": "lightning-target-37",
+          "raw": 497.19176297491515,
+          "hp": 497
+        },
+        {
+          "id": "lightning-target-38",
+          "raw": 497.7231200320361,
+          "hp": 498
+        },
+        {
+          "id": "lightning-target-39",
+          "raw": 498.25414754098585,
+          "hp": 498
+        },
+        {
+          "id": "lightning-target-40",
+          "raw": 498.78484141952083,
+          "hp": 499
+        },
+        {
+          "id": "lightning-target-41",
+          "raw": 499.3151975203218,
+          "hp": 499
+        },
+        {
+          "id": "lightning-target-42",
+          "raw": 499.84521162975017,
+          "hp": 500
+        },
+        {
+          "id": "lightning-target-43",
+          "raw": 500.37487946657575,
+          "hp": 500
+        },
+        {
+          "id": "lightning-target-44",
+          "raw": 500.90419668067705,
+          "hp": 501
+        },
+        {
+          "id": "lightning-target-45",
+          "raw": 501.43315885171336,
+          "hp": 501
+        },
+        {
+          "id": "lightning-target-46",
+          "raw": 501.96176148776726,
+          "hp": 502
+        },
+        {
+          "id": "lightning-target-47",
+          "raw": 502.49000002395803,
+          "hp": 502
+        },
+        {
+          "id": "lightning-target-48",
+          "raw": 503.01786982102277,
+          "hp": 503
+        },
+        {
+          "id": "lightning-target-49",
+          "raw": 503.54536616386844,
+          "hp": 504
+        },
+        {
+          "id": "lightning-target-50",
+          "raw": 504.0724842600902,
+          "hp": 504
+        },
+        {
+          "id": "lightning-target-51",
+          "raw": 504.59921923845803,
+          "hp": 505
+        },
+        {
+          "id": "lightning-target-52",
+          "raw": 505.12556614736843,
+          "hp": 505
+        },
+        {
+          "id": "lightning-target-53",
+          "raw": 505.6515199532634,
+          "hp": 506
+        },
+        {
+          "id": "lightning-target-54",
+          "raw": 506.1770755390122,
+          "hp": 506
+        },
+        {
+          "id": "lightning-target-55",
+          "raw": 506.7022277022592,
+          "hp": 507
+        },
+        {
+          "id": "lightning-target-56",
+          "raw": 507.2269711537331,
+          "hp": 507
+        },
+        {
+          "id": "lightning-target-57",
+          "raw": 507.75130051551884,
+          "hp": 508
+        },
+        {
+          "id": "lightning-target-58",
+          "raw": 508.27521031929126,
+          "hp": 508
+        },
+        {
+          "id": "lightning-target-59",
+          "raw": 508.798695004508,
+          "hp": 509
+        },
+        {
+          "id": "lightning-target-60",
+          "raw": 509.321748916563,
+          "hp": 509
+        },
+        {
+          "id": "lightning-target-61",
+          "raw": 509.8443663048978,
+          "hp": 510
+        },
+        {
+          "id": "lightning-target-62",
+          "raw": 510.3665413210699,
+          "hp": 510
+        },
+        {
+          "id": "lightning-target-63",
+          "raw": 510.8882680167784,
+          "hp": 511
+        },
+        {
+          "id": "lightning-target-64",
+          "raw": 511.40954034184375,
+          "hp": 511
+        },
+        {
+          "id": "lightning-target-65",
+          "raw": 511.9303521421434,
+          "hp": 512
+        },
+        {
+          "id": "lightning-target-66",
+          "raw": 512.4506971574993,
+          "hp": 512
+        },
+        {
+          "id": "lightning-target-67",
+          "raw": 512.9705690195175,
+          "hp": 513
+        },
+        {
+          "id": "lightning-target-68",
+          "raw": 513.4899612493801,
+          "hp": 513
+        },
+        {
+          "id": "lightning-target-69",
+          "raw": 514.0088672555845,
+          "hp": 514
+        },
+        {
+          "id": "lightning-target-70",
+          "raw": 514.5272803316341,
+          "hp": 515
+        },
+        {
+          "id": "lightning-target-71",
+          "raw": 515.0451936536737,
+          "hp": 515
+        },
+        {
+          "id": "lightning-target-72",
+          "raw": 515.5626002780732,
+          "hp": 516
+        },
+        {
+          "id": "lightning-target-73",
+          "raw": 516.0794931389541,
+          "hp": 516
+        },
+        {
+          "id": "lightning-target-74",
+          "raw": 516.5958650456607,
+          "hp": 517
+        },
+        {
+          "id": "lightning-target-75",
+          "raw": 517.1117086801736,
+          "hp": 517
+        },
+        {
+          "id": "lightning-target-76",
+          "raw": 517.6270165944635,
+          "hp": 518
+        },
+        {
+          "id": "lightning-target-77",
+          "raw": 518.1417812077842,
+          "hp": 518
+        },
+        {
+          "id": "lightning-target-78",
+          "raw": 518.6559948039047,
+          "hp": 519
+        },
+        {
+          "id": "lightning-target-79",
+          "raw": 519.1696495282757,
+          "hp": 519
+        },
+        {
+          "id": "lightning-target-80",
+          "raw": 519.6827373851345,
+          "hp": 520
+        },
+        {
+          "id": "lightning-target-81",
+          "raw": 520.1952502345399,
+          "hp": 520
+        },
+        {
+          "id": "lightning-target-82",
+          "raw": 520.7071797893419,
+          "hp": 521
+        },
+        {
+          "id": "lightning-target-83",
+          "raw": 521.2185176120801,
+          "hp": 521
+        },
+        {
+          "id": "lightning-target-84",
+          "raw": 521.7292551118114,
+          "hp": 522
+        },
+        {
+          "id": "lightning-target-85",
+          "raw": 522.2393835408664,
+          "hp": 522
+        },
+        {
+          "id": "lightning-target-86",
+          "raw": 522.7488939915286,
+          "hp": 523
+        },
+        {
+          "id": "lightning-target-87",
+          "raw": 523.2577773926405,
+          "hp": 523
+        },
+        {
+          "id": "lightning-target-88",
+          "raw": 523.7660245061296,
+          "hp": 524
+        },
+        {
+          "id": "lightning-target-89",
+          "raw": 524.2736259234554,
+          "hp": 524
+        },
+        {
+          "id": "lightning-target-90",
+          "raw": 524.7805720619766,
+          "hp": 525
+        },
+        {
+          "id": "lightning-target-91",
+          "raw": 525.286853161233,
+          "hp": 525
+        },
+        {
+          "id": "lightning-target-92",
+          "raw": 525.7924592791438,
+          "hp": 526
+        },
+        {
+          "id": "lightning-target-93",
+          "raw": 526.2973802881189,
+          "hp": 526
+        },
+        {
+          "id": "lightning-target-94",
+          "raw": 526.8016058710807,
+          "hp": 527
+        },
+        {
+          "id": "lightning-target-95",
+          "raw": 527.3051255173972,
+          "hp": 527
+        },
+        {
+          "id": "lightning-target-96",
+          "raw": 527.80792851872,
+          "hp": 528
+        },
+        {
+          "id": "lightning-target-97",
+          "raw": 528.3100039647305,
+          "hp": 528
+        },
+        {
+          "id": "lightning-target-98",
+          "raw": 528.811340738788,
+          "hp": 529
+        },
+        {
+          "id": "lightning-target-99",
+          "raw": 529.3119275134786,
+          "hp": 529
+        },
+        {
+          "id": "lightning-target-100",
+          "raw": 529.8117527460671,
+          "hp": 530
+        },
+        {
+          "id": "lightning-target-101",
+          "raw": 530.3108046738425,
+          "hp": 530
+        },
+        {
+          "id": "lightning-target-102",
+          "raw": 530.8090713093615,
+          "hp": 531
+        },
+        {
+          "id": "lightning-target-103",
+          "raw": 531.3065404355842,
+          "hp": 531
+        },
+        {
+          "id": "lightning-target-104",
+          "raw": 531.8031996009017,
+          "hp": 532
+        },
+        {
+          "id": "lightning-target-105",
+          "raw": 532.2990361140536,
+          "hp": 532
+        },
+        {
+          "id": "lightning-target-106",
+          "raw": 532.7940370389312,
+          "hp": 533
+        },
+        {
+          "id": "lightning-target-107",
+          "raw": 533.2881891892672,
+          "hp": 533
+        },
+        {
+          "id": "lightning-target-108",
+          "raw": 533.7814791232082,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-109",
+          "raw": 534.2738931377675,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-110",
+          "raw": 534.7654172631579,
+          "hp": 535
+        },
+        {
+          "id": "lightning-target-111",
+          "raw": 535.2560372570011,
+          "hp": 535
+        },
+        {
+          "id": "lightning-target-112",
+          "raw": 535.7457385984114,
+          "hp": 536
+        },
+        {
+          "id": "lightning-target-113",
+          "raw": 536.2345064819531,
+          "hp": 536
+        },
+        {
+          "id": "lightning-target-114",
+          "raw": 536.7223258114678,
+          "hp": 537
+        },
+        {
+          "id": "lightning-target-115",
+          "raw": 537.2091811937732,
+          "hp": 537
+        },
+        {
+          "id": "lightning-target-116",
+          "raw": 537.695056932226,
+          "hp": 538
+        },
+        {
+          "id": "lightning-target-117",
+          "raw": 538.1799370201514,
+          "hp": 538
+        },
+        {
+          "id": "lightning-target-118",
+          "raw": 538.6638051341374,
+          "hp": 539
+        },
+        {
+          "id": "lightning-target-119",
+          "raw": 539.1466446271887,
+          "hp": 539
+        },
+        {
+          "id": "lightning-target-120",
+          "raw": 539.6284385217427,
+          "hp": 540
+        },
+        {
+          "id": "lightning-target-121",
+          "raw": 540.1091695025441,
+          "hp": 540
+        },
+        {
+          "id": "lightning-target-122",
+          "raw": 540.588819909375,
+          "hp": 541
+        },
+        {
+          "id": "lightning-target-123",
+          "raw": 541.0673717296444,
+          "hp": 541
+        },
+        {
+          "id": "lightning-target-124",
+          "raw": 541.5448065908278,
+          "hp": 542
+        },
+        {
+          "id": "lightning-target-125",
+          "raw": 542.021105752766,
+          "hp": 542
+        },
+        {
+          "id": "lightning-target-126",
+          "raw": 542.4962500998129,
+          "hp": 542
+        },
+        {
+          "id": "lightning-target-127",
+          "raw": 542.9702201328364,
+          "hp": 543
+        },
+        {
+          "id": "lightning-target-128",
+          "raw": 543.4429959610715,
+          "hp": 543
+        },
+        {
+          "id": "lightning-target-129",
+          "raw": 543.9145572938245,
+          "hp": 544
+        },
+        {
+          "id": "lightning-target-130",
+          "raw": 544.3848834320274,
+          "hp": 544
+        },
+        {
+          "id": "lightning-target-131",
+          "raw": 544.853953259645,
+          "hp": 545
+        },
+        {
+          "id": "lightning-target-132",
+          "raw": 545.3217452349321,
+          "hp": 545
+        },
+        {
+          "id": "lightning-target-133",
+          "raw": 545.7882373815437,
+          "hp": 546
+        },
+        {
+          "id": "lightning-target-134",
+          "raw": 546.2534072794977,
+          "hp": 546
+        },
+        {
+          "id": "lightning-target-135",
+          "raw": 546.717232055993,
+          "hp": 547
+        },
+        {
+          "id": "lightning-target-136",
+          "raw": 547.1796883760826,
+          "hp": 547
+        },
+        {
+          "id": "lightning-target-137",
+          "raw": 547.6407524332052,
+          "hp": 548
+        },
+        {
+          "id": "lightning-target-138",
+          "raw": 548.1003999395765,
+          "hp": 548
+        },
+        {
+          "id": "lightning-target-139",
+          "raw": 548.5586061164444,
+          "hp": 549
+        },
+        {
+          "id": "lightning-target-140",
+          "raw": 549.0153456842106,
+          "hp": 549
+        },
+        {
+          "id": "lightning-target-141",
+          "raw": 549.4705928524223,
+          "hp": 549
+        },
+        {
+          "id": "lightning-target-142",
+          "raw": 549.9243213096389,
+          "hp": 550
+        },
+        {
+          "id": "lightning-target-143",
+          "raw": 550.3765042131774,
+          "hp": 550
+        },
+        {
+          "id": "lightning-target-144",
+          "raw": 550.8271141787444,
+          "hp": 551
+        },
+        {
+          "id": "lightning-target-145",
+          "raw": 551.276123269958,
+          "hp": 551
+        },
+        {
+          "id": "lightning-target-146",
+          "raw": 551.7235029877696,
+          "hp": 552
+        },
+        {
+          "id": "lightning-target-147",
+          "raw": 552.1692242597903,
+          "hp": 552
+        },
+        {
+          "id": "lightning-target-148",
+          "raw": 552.6132574295319,
+          "hp": 553
+        },
+        {
+          "id": "lightning-target-149",
+          "raw": 553.0555722455728,
+          "hp": 553
+        },
+        {
+          "id": "lightning-target-150",
+          "raw": 553.4961378506563,
+          "hp": 553
+        },
+        {
+          "id": "lightning-target-151",
+          "raw": 553.9349227707353,
+          "hp": 554
+        },
+        {
+          "id": "lightning-target-152",
+          "raw": 554.371894903974,
+          "hp": 554
+        },
+        {
+          "id": "lightning-target-153",
+          "raw": 554.8070215097194,
+          "hp": 555
+        },
+        {
+          "id": "lightning-target-154",
+          "raw": 555.2402691974586,
+          "hp": 555
+        },
+        {
+          "id": "lightning-target-155",
+          "raw": 555.671603915777,
+          "hp": 556
+        },
+        {
+          "id": "lightning-target-156",
+          "raw": 556.1009909413324,
+          "hp": 556
+        },
+        {
+          "id": "lightning-target-157",
+          "raw": 556.5283948678659,
+          "hp": 557
+        },
+        {
+          "id": "lightning-target-158",
+          "raw": 556.9537795952677,
+          "hp": 557
+        },
+        {
+          "id": "lightning-target-159",
+          "raw": 557.3771083187178,
+          "hp": 557
+        },
+        {
+          "id": "lightning-target-160",
+          "raw": 557.7983435179266,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-161",
+          "raw": 558.2174469464983,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-162",
+          "raw": 558.634379621441,
+          "hp": 559
+        },
+        {
+          "id": "lightning-target-163",
+          "raw": 559.0491018128548,
+          "hp": 559
+        },
+        {
+          "id": "lightning-target-164",
+          "raw": 559.461573033824,
+          "hp": 559
+        },
+        {
+          "id": "lightning-target-165",
+          "raw": 559.8717520305472,
+          "hp": 560
+        },
+        {
+          "id": "lightning-target-166",
+          "raw": 560.2795967727354,
+          "hp": 560
+        },
+        {
+          "id": "lightning-target-167",
+          "raw": 560.6850644443174,
+          "hp": 561
+        },
+        {
+          "id": "lightning-target-168",
+          "raw": 561.0881114344855,
+          "hp": 561
+        },
+        {
+          "id": "lightning-target-169",
+          "raw": 561.488693329125,
+          "hp": 561
+        },
+        {
+          "id": "lightning-target-170",
+          "raw": 561.8867649026666,
+          "hp": 562
+        },
+        {
+          "id": "lightning-target-171",
+          "raw": 562.2822801104066,
+          "hp": 562
+        },
+        {
+          "id": "lightning-target-172",
+          "raw": 562.675192081341,
+          "hp": 563
+        },
+        {
+          "id": "lightning-target-173",
+          "raw": 563.0654531115641,
+          "hp": 563
+        },
+        {
+          "id": "lightning-target-174",
+          "raw": 563.4530146582792,
+          "hp": 563
+        },
+        {
+          "id": "lightning-target-175",
+          "raw": 563.8378273344792,
+          "hp": 564
+        },
+        {
+          "id": "lightning-target-176",
+          "raw": 564.2198409043506,
+          "hp": 564
+        },
+        {
+          "id": "lightning-target-177",
+          "raw": 564.5990042794609,
+          "hp": 565
+        },
+        {
+          "id": "lightning-target-178",
+          "raw": 564.9752655157896,
+          "hp": 565
+        },
+        {
+          "id": "lightning-target-179",
+          "raw": 565.3485718116684,
+          "hp": 565
+        },
+        {
+          "id": "lightning-target-180",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-181",
+          "raw": 566.0861040816937,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-182",
+          "raw": 566.4502201597819,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-183",
+          "raw": 566.8111615086359,
+          "hp": 567
+        },
+        {
+          "id": "lightning-target-184",
+          "raw": 567.1688710440134,
+          "hp": 567
+        },
+        {
+          "id": "lightning-target-185",
+          "raw": 567.52329083462,
+          "hp": 568
+        },
+        {
+          "id": "lightning-target-186",
+          "raw": 567.8743621083979,
+          "hp": 568
+        },
+        {
+          "id": "lightning-target-187",
+          "raw": 568.2220252603184,
+          "hp": 568
+        },
+        {
+          "id": "lightning-target-188",
+          "raw": 568.5662198617609,
+          "hp": 569
+        },
+        {
+          "id": "lightning-target-189",
+          "raw": 568.9068846715647,
+          "hp": 569
+        },
+        {
+          "id": "lightning-target-190",
+          "raw": 569.2439576488385,
+          "hp": 569
+        },
+        {
+          "id": "lightning-target-191",
+          "raw": 569.5773759676148,
+          "hp": 570
+        },
+        {
+          "id": "lightning-target-192",
+          "raw": 569.9070760334362,
+          "hp": 570
+        },
+        {
+          "id": "lightning-target-193",
+          "raw": 570.2329935019623,
+          "hp": 570
+        },
+        {
+          "id": "lightning-target-194",
+          "raw": 570.5550632996824,
+          "hp": 571
+        },
+        {
+          "id": "lightning-target-195",
+          "raw": 570.8732196468235,
+          "hp": 571
+        },
+        {
+          "id": "lightning-target-196",
+          "raw": 571.1873960825358,
+          "hp": 571
+        },
+        {
+          "id": "lightning-target-197",
+          "raw": 571.4975254924416,
+          "hp": 571
+        },
+        {
+          "id": "lightning-target-198",
+          "raw": 571.8035401386292,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-199",
+          "raw": 572.1053716921682,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-200",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-201",
+          "raw": 572.6962094638426,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-202",
+          "raw": 572.9850763984633,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-203",
+          "raw": 573.2694817572361,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-204",
+          "raw": 573.5493548371793,
+          "hp": 574
+        },
+        {
+          "id": "lightning-target-205",
+          "raw": 573.8246245962364,
+          "hp": 574
+        },
+        {
+          "id": "lightning-target-206",
+          "raw": 574.0952197052633,
+          "hp": 574
+        },
+        {
+          "id": "lightning-target-207",
+          "raw": 574.3610686029781,
+          "hp": 574
+        },
+        {
+          "id": "lightning-target-208",
+          "raw": 574.6220995538918,
+          "hp": 575
+        },
+        {
+          "id": "lightning-target-209",
+          "raw": 574.8782407092264,
+          "hp": 575
+        },
+        {
+          "id": "lightning-target-210",
+          "raw": 575.1294201708184,
+          "hp": 575
+        },
+        {
+          "id": "lightning-target-211",
+          "raw": 575.375566057991,
+          "hp": 575
+        },
+        {
+          "id": "lightning-target-212",
+          "raw": 575.6166065773635,
+          "hp": 576
+        },
+        {
+          "id": "lightning-target-213",
+          "raw": 575.852470095555,
+          "hp": 576
+        },
+        {
+          "id": "lightning-target-214",
+          "raw": 576.0830852147205,
+          "hp": 576
+        },
+        {
+          "id": "lightning-target-215",
+          "raw": 576.3083808508485,
+          "hp": 576
+        },
+        {
+          "id": "lightning-target-216",
+          "raw": 576.5282863147193,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-217",
+          "raw": 576.7427313954228,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-218",
+          "raw": 576.9516464463022,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-219",
+          "raw": 577.1549624731804,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-220",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-221",
+          "raw": 577.5445252846163,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-222",
+          "raw": 577.7306381657733,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-223",
+          "raw": 577.910884405655,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-224",
+          "raw": 578.085199663158,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-225",
+          "raw": 578.2535208163973,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-226",
+          "raw": 578.415786061247,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-227",
+          "raw": 578.5719350103258,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-228",
+          "raw": 578.7219087921233,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-229",
+          "raw": 578.8656501499435,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-230",
+          "raw": 579.0031035403301,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-231",
+          "raw": 579.1342152306297,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-232",
+          "raw": 579.2589333953367,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-233",
+          "raw": 579.3772082108542,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-234",
+          "raw": 579.4889919483071,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-235",
+          "raw": 579.5942390640301,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-236",
+          "raw": 579.6929062873629,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-237",
+          "raw": 579.7849527053756,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-238",
+          "raw": 579.8703398441652,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-239",
+          "raw": 579.9490317463542,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-240",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-241",
+          "raw": 580.0861990297287,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-242",
+          "raw": 580.1446157162957,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-243",
+          "raw": 580.1962199000676,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-244",
+          "raw": 580.2409892123408,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-245",
+          "raw": 580.2789041677134,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-246",
+          "raw": 580.3099482061182,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-247",
+          "raw": 580.3341077287529,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-248",
+          "raw": 580.3513721277312,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-249",
+          "raw": 580.361733809303,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-250",
+          "raw": 580.3651882105264,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-251",
+          "raw": 580.361733809303,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-252",
+          "raw": 580.3513721277312,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-253",
+          "raw": 580.3341077287529,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-254",
+          "raw": 580.3099482061182,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-255",
+          "raw": 580.2789041677134,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-256",
+          "raw": 580.2409892123408,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-257",
+          "raw": 580.1962199000676,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-258",
+          "raw": 580.1446157162957,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-259",
+          "raw": 580.0861990297287,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-260",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-261",
+          "raw": 579.9490317463542,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-262",
+          "raw": 579.8703398441652,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-263",
+          "raw": 579.7849527053756,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-264",
+          "raw": 579.6929062873629,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-265",
+          "raw": 579.5942390640301,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-266",
+          "raw": 579.4889919483071,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-267",
+          "raw": 579.3772082108542,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-268",
+          "raw": 579.2589333953367,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-269",
+          "raw": 579.1342152306297,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-270",
+          "raw": 579.0031035403301,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-271",
+          "raw": 578.8656501499435,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-272",
+          "raw": 578.7219087921233,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-273",
+          "raw": 578.5719350103258,
+          "hp": 579
+        },
+        {
+          "id": "lightning-target-274",
+          "raw": 578.415786061247,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-275",
+          "raw": 578.2535208163973,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-276",
+          "raw": 578.085199663158,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-277",
+          "raw": 577.910884405655,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-278",
+          "raw": 577.7306381657733,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-279",
+          "raw": 577.5445252846163,
+          "hp": 578
+        },
+        {
+          "id": "lightning-target-280",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-281",
+          "raw": 577.1549624731804,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-282",
+          "raw": 576.9516464463022,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-283",
+          "raw": 576.7427313954228,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-284",
+          "raw": 576.5282863147193,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-285",
+          "raw": 576.3083808508485,
+          "hp": 576
+        },
+        {
+          "id": "lightning-target-286",
+          "raw": 576.0830852147205,
+          "hp": 576
+        },
+        {
+          "id": "lightning-target-287",
+          "raw": 575.852470095555,
+          "hp": 576
+        },
+        {
+          "id": "lightning-target-288",
+          "raw": 575.6166065773635,
+          "hp": 576
+        },
+        {
+          "id": "lightning-target-289",
+          "raw": 575.375566057991,
+          "hp": 575
+        },
+        {
+          "id": "lightning-target-290",
+          "raw": 575.1294201708184,
+          "hp": 575
+        },
+        {
+          "id": "lightning-target-291",
+          "raw": 574.8782407092264,
+          "hp": 575
+        },
+        {
+          "id": "lightning-target-292",
+          "raw": 574.6220995538918,
+          "hp": 575
+        },
+        {
+          "id": "lightning-target-293",
+          "raw": 574.3610686029781,
+          "hp": 574
+        },
+        {
+          "id": "lightning-target-294",
+          "raw": 574.0952197052633,
+          "hp": 574
+        },
+        {
+          "id": "lightning-target-295",
+          "raw": 573.8246245962364,
+          "hp": 574
+        },
+        {
+          "id": "lightning-target-296",
+          "raw": 573.5493548371793,
+          "hp": 574
+        },
+        {
+          "id": "lightning-target-297",
+          "raw": 573.2694817572361,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-298",
+          "raw": 572.9850763984633,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-299",
+          "raw": 572.6962094638426,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-300",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-301",
+          "raw": 572.1053716921682,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-302",
+          "raw": 571.8035401386292,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-303",
+          "raw": 571.4975254924416,
+          "hp": 571
+        },
+        {
+          "id": "lightning-target-304",
+          "raw": 571.1873960825358,
+          "hp": 571
+        },
+        {
+          "id": "lightning-target-305",
+          "raw": 570.8732196468235,
+          "hp": 571
+        },
+        {
+          "id": "lightning-target-306",
+          "raw": 570.5550632996824,
+          "hp": 571
+        },
+        {
+          "id": "lightning-target-307",
+          "raw": 570.2329935019623,
+          "hp": 570
+        },
+        {
+          "id": "lightning-target-308",
+          "raw": 569.9070760334362,
+          "hp": 570
+        },
+        {
+          "id": "lightning-target-309",
+          "raw": 569.5773759676148,
+          "hp": 570
+        },
+        {
+          "id": "lightning-target-310",
+          "raw": 569.2439576488385,
+          "hp": 569
+        },
+        {
+          "id": "lightning-target-311",
+          "raw": 568.9068846715647,
+          "hp": 569
+        },
+        {
+          "id": "lightning-target-312",
+          "raw": 568.5662198617609,
+          "hp": 569
+        },
+        {
+          "id": "lightning-target-313",
+          "raw": 568.2220252603184,
+          "hp": 568
+        },
+        {
+          "id": "lightning-target-314",
+          "raw": 567.874362108398,
+          "hp": 568
+        },
+        {
+          "id": "lightning-target-315",
+          "raw": 567.52329083462,
+          "hp": 568
+        },
+        {
+          "id": "lightning-target-316",
+          "raw": 567.1688710440133,
+          "hp": 567
+        },
+        {
+          "id": "lightning-target-317",
+          "raw": 566.8111615086359,
+          "hp": 567
+        },
+        {
+          "id": "lightning-target-318",
+          "raw": 566.4502201597819,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-319",
+          "raw": 566.086104081694,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-320",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-321",
+          "raw": 565.3485718116683,
+          "hp": 565
+        },
+        {
+          "id": "lightning-target-322",
+          "raw": 564.9752655157896,
+          "hp": 565
+        },
+        {
+          "id": "lightning-target-323",
+          "raw": 564.5990042794609,
+          "hp": 565
+        },
+        {
+          "id": "lightning-target-324",
+          "raw": 564.2198409043508,
+          "hp": 564
+        },
+        {
+          "id": "lightning-target-325",
+          "raw": 563.8378273344792,
+          "hp": 564
+        },
+        {
+          "id": "lightning-target-326",
+          "raw": 563.453014658279,
+          "hp": 563
+        },
+        {
+          "id": "lightning-target-327",
+          "raw": 563.0654531115641,
+          "hp": 563
+        },
+        {
+          "id": "lightning-target-328",
+          "raw": 562.675192081341,
+          "hp": 563
+        },
+        {
+          "id": "lightning-target-329",
+          "raw": 562.2822801104066,
+          "hp": 562
+        },
+        {
+          "id": "lightning-target-330",
+          "raw": 561.8867649026666,
+          "hp": 562
+        },
+        {
+          "id": "lightning-target-331",
+          "raw": 561.488693329125,
+          "hp": 561
+        },
+        {
+          "id": "lightning-target-332",
+          "raw": 561.0881114344855,
+          "hp": 561
+        },
+        {
+          "id": "lightning-target-333",
+          "raw": 560.6850644443174,
+          "hp": 561
+        },
+        {
+          "id": "lightning-target-334",
+          "raw": 560.2795967727355,
+          "hp": 560
+        },
+        {
+          "id": "lightning-target-335",
+          "raw": 559.8717520305472,
+          "hp": 560
+        },
+        {
+          "id": "lightning-target-336",
+          "raw": 559.4615730338239,
+          "hp": 559
+        },
+        {
+          "id": "lightning-target-337",
+          "raw": 559.0491018128548,
+          "hp": 559
+        },
+        {
+          "id": "lightning-target-338",
+          "raw": 558.634379621441,
+          "hp": 559
+        },
+        {
+          "id": "lightning-target-339",
+          "raw": 558.2174469464984,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-340",
+          "raw": 557.7983435179266,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-341",
+          "raw": 557.3771083187177,
+          "hp": 557
+        },
+        {
+          "id": "lightning-target-342",
+          "raw": 556.9537795952677,
+          "hp": 557
+        },
+        {
+          "id": "lightning-target-343",
+          "raw": 556.5283948678659,
+          "hp": 557
+        },
+        {
+          "id": "lightning-target-344",
+          "raw": 556.1009909413326,
+          "hp": 556
+        },
+        {
+          "id": "lightning-target-345",
+          "raw": 555.671603915777,
+          "hp": 556
+        },
+        {
+          "id": "lightning-target-346",
+          "raw": 555.2402691974585,
+          "hp": 555
+        },
+        {
+          "id": "lightning-target-347",
+          "raw": 554.8070215097194,
+          "hp": 555
+        },
+        {
+          "id": "lightning-target-348",
+          "raw": 554.371894903974,
+          "hp": 554
+        },
+        {
+          "id": "lightning-target-349",
+          "raw": 553.9349227707354,
+          "hp": 554
+        },
+        {
+          "id": "lightning-target-350",
+          "raw": 553.4961378506563,
+          "hp": 553
+        },
+        {
+          "id": "lightning-target-351",
+          "raw": 553.0555722455726,
+          "hp": 553
+        },
+        {
+          "id": "lightning-target-352",
+          "raw": 552.6132574295319,
+          "hp": 553
+        },
+        {
+          "id": "lightning-target-353",
+          "raw": 552.1692242597903,
+          "hp": 552
+        },
+        {
+          "id": "lightning-target-354",
+          "raw": 551.7235029877697,
+          "hp": 552
+        },
+        {
+          "id": "lightning-target-355",
+          "raw": 551.276123269958,
+          "hp": 551
+        },
+        {
+          "id": "lightning-target-356",
+          "raw": 550.8271141787443,
+          "hp": 551
+        },
+        {
+          "id": "lightning-target-357",
+          "raw": 550.3765042131774,
+          "hp": 550
+        },
+        {
+          "id": "lightning-target-358",
+          "raw": 549.9243213096389,
+          "hp": 550
+        },
+        {
+          "id": "lightning-target-359",
+          "raw": 549.4705928524226,
+          "hp": 549
+        },
+        {
+          "id": "lightning-target-360",
+          "raw": 549.0153456842106,
+          "hp": 549
+        },
+        {
+          "id": "lightning-target-361",
+          "raw": 548.5586061164443,
+          "hp": 549
+        },
+        {
+          "id": "lightning-target-362",
+          "raw": 548.1003999395765,
+          "hp": 548
+        },
+        {
+          "id": "lightning-target-363",
+          "raw": 547.6407524332052,
+          "hp": 548
+        },
+        {
+          "id": "lightning-target-364",
+          "raw": 547.1796883760827,
+          "hp": 547
+        },
+        {
+          "id": "lightning-target-365",
+          "raw": 546.717232055993,
+          "hp": 547
+        },
+        {
+          "id": "lightning-target-366",
+          "raw": 546.2534072794974,
+          "hp": 546
+        },
+        {
+          "id": "lightning-target-367",
+          "raw": 545.7882373815437,
+          "hp": 546
+        },
+        {
+          "id": "lightning-target-368",
+          "raw": 545.3217452349321,
+          "hp": 545
+        },
+        {
+          "id": "lightning-target-369",
+          "raw": 544.8539532596451,
+          "hp": 545
+        },
+        {
+          "id": "lightning-target-370",
+          "raw": 544.3848834320274,
+          "hp": 544
+        },
+        {
+          "id": "lightning-target-371",
+          "raw": 543.9145572938244,
+          "hp": 544
+        },
+        {
+          "id": "lightning-target-372",
+          "raw": 543.4429959610715,
+          "hp": 543
+        },
+        {
+          "id": "lightning-target-373",
+          "raw": 542.9702201328364,
+          "hp": 543
+        },
+        {
+          "id": "lightning-target-374",
+          "raw": 542.4962500998131,
+          "hp": 542
+        },
+        {
+          "id": "lightning-target-375",
+          "raw": 542.021105752766,
+          "hp": 542
+        },
+        {
+          "id": "lightning-target-376",
+          "raw": 541.5448065908276,
+          "hp": 542
+        },
+        {
+          "id": "lightning-target-377",
+          "raw": 541.0673717296444,
+          "hp": 541
+        },
+        {
+          "id": "lightning-target-378",
+          "raw": 540.588819909375,
+          "hp": 541
+        },
+        {
+          "id": "lightning-target-379",
+          "raw": 540.1091695025442,
+          "hp": 540
+        },
+        {
+          "id": "lightning-target-380",
+          "raw": 539.6284385217427,
+          "hp": 540
+        },
+        {
+          "id": "lightning-target-381",
+          "raw": 539.1466446271886,
+          "hp": 539
+        },
+        {
+          "id": "lightning-target-382",
+          "raw": 538.6638051341374,
+          "hp": 539
+        },
+        {
+          "id": "lightning-target-383",
+          "raw": 538.1799370201514,
+          "hp": 538
+        },
+        {
+          "id": "lightning-target-384",
+          "raw": 537.6950569322262,
+          "hp": 538
+        },
+        {
+          "id": "lightning-target-385",
+          "raw": 537.2091811937732,
+          "hp": 537
+        },
+        {
+          "id": "lightning-target-386",
+          "raw": 536.7223258114677,
+          "hp": 537
+        },
+        {
+          "id": "lightning-target-387",
+          "raw": 536.2345064819531,
+          "hp": 536
+        },
+        {
+          "id": "lightning-target-388",
+          "raw": 535.7457385984114,
+          "hp": 536
+        },
+        {
+          "id": "lightning-target-389",
+          "raw": 535.2560372570013,
+          "hp": 535
+        },
+        {
+          "id": "lightning-target-390",
+          "raw": 534.7654172631579,
+          "hp": 535
+        },
+        {
+          "id": "lightning-target-391",
+          "raw": 534.2738931377673,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-392",
+          "raw": 533.7814791232082,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-393",
+          "raw": 533.2881891892672,
+          "hp": 533
+        },
+        {
+          "id": "lightning-target-394",
+          "raw": 532.7940370389313,
+          "hp": 533
+        },
+        {
+          "id": "lightning-target-395",
+          "raw": 532.2990361140536,
+          "hp": 532
+        },
+        {
+          "id": "lightning-target-396",
+          "raw": 531.8031996009016,
+          "hp": 532
+        },
+        {
+          "id": "lightning-target-397",
+          "raw": 531.3065404355842,
+          "hp": 531
+        },
+        {
+          "id": "lightning-target-398",
+          "raw": 530.8090713093615,
+          "hp": 531
+        },
+        {
+          "id": "lightning-target-399",
+          "raw": 530.3108046738427,
+          "hp": 530
+        },
+        {
+          "id": "lightning-target-400",
+          "raw": 529.8117527460671,
+          "hp": 530
+        },
+        {
+          "id": "lightning-target-401",
+          "raw": 529.3119275134784,
+          "hp": 529
+        },
+        {
+          "id": "lightning-target-402",
+          "raw": 528.811340738788,
+          "hp": 529
+        },
+        {
+          "id": "lightning-target-403",
+          "raw": 528.3100039647305,
+          "hp": 528
+        },
+        {
+          "id": "lightning-target-404",
+          "raw": 527.8079285187201,
+          "hp": 528
+        },
+        {
+          "id": "lightning-target-405",
+          "raw": 527.3051255173972,
+          "hp": 527
+        },
+        {
+          "id": "lightning-target-406",
+          "raw": 526.8016058710805,
+          "hp": 527
+        },
+        {
+          "id": "lightning-target-407",
+          "raw": 526.2973802881189,
+          "hp": 526
+        },
+        {
+          "id": "lightning-target-408",
+          "raw": 525.7924592791438,
+          "hp": 526
+        },
+        {
+          "id": "lightning-target-409",
+          "raw": 525.2868531612331,
+          "hp": 525
+        },
+        {
+          "id": "lightning-target-410",
+          "raw": 524.7805720619766,
+          "hp": 525
+        },
+        {
+          "id": "lightning-target-411",
+          "raw": 524.2736259234553,
+          "hp": 524
+        },
+        {
+          "id": "lightning-target-412",
+          "raw": 523.7660245061296,
+          "hp": 524
+        },
+        {
+          "id": "lightning-target-413",
+          "raw": 523.2577773926405,
+          "hp": 523
+        },
+        {
+          "id": "lightning-target-414",
+          "raw": 522.7488939915287,
+          "hp": 523
+        },
+        {
+          "id": "lightning-target-415",
+          "raw": 522.2393835408664,
+          "hp": 522
+        },
+        {
+          "id": "lightning-target-416",
+          "raw": 521.7292551118113,
+          "hp": 522
+        },
+        {
+          "id": "lightning-target-417",
+          "raw": 521.2185176120801,
+          "hp": 521
+        },
+        {
+          "id": "lightning-target-418",
+          "raw": 520.7071797893419,
+          "hp": 521
+        },
+        {
+          "id": "lightning-target-419",
+          "raw": 520.19525023454,
+          "hp": 520
+        }
+      ]
+    }
+  ]
+}
