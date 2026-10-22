@@ -1,6 +1,6 @@
 """Built candidate UI/Continue. Prepared saved profiles are compatibility
 fixtures, not normal-resource completion evidence. Native run is separate."""
-import json,hashlib,subprocess
+import json,hashlib,subprocess,sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import launch
@@ -27,6 +27,19 @@ with sync_playwright() as pw:
         p.evaluate('HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,.6,false,0)')
         path=out/(name+'.jpg');p.screenshot(path=str(path),type='jpeg',quality=85);assert path.stat().st_size<1_000_000
         return {'path':str(path),'bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
+    if '--fullplay-only' in sys.argv:
+        measured=json.loads((root/'fullplay/checkpoint.json').read_text())
+        result=json.loads((root/'fullplay/result.json').read_text())
+        assert result['round']==21 and result['stopReason']=='requested round observation limit'
+        ctx,p=page_for(measured['profile']);p.locator('[data-action="continue"]').click();p.wait_for_function('HonroApp.engine?.b.honroStage14RescueRevision===1',timeout=90000);p.evaluate('HonroApp.close();HonroApp.updateHUD(true)')
+        assert p.evaluate('HonroApp.engine.b.round')==21
+        assert p.evaluate('HonroAct2.current(HonroApp.engine.b).id')=='bridge'
+        for key in ['units','heroes','items','terrain','honroGrowth']:
+            assert p.evaluate('key=>HonroApp.engine.b[key]',key)==measured['profile']['honroBattle'][key],key
+        rows.append({'case':'actual normal-input R21 stop snapshot','goal':p.locator('#objective-text').inner_text(),'actorsResourcesExact':True,'capture':shot(p,'measured-r21-bridge-390x844'),'runSource':result['gameSourceCommit']})
+        ctx.close();browser.close();assert not errors,errors;assert not http,http
+        (out/'fullplay-capture.json').write_text(json.dumps({'checkedCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'rows':rows,'errors':errors,'httpErrors':http,'limits':'Real built local UI loading the actual normal-input stop snapshot; no additional round played. Not Pages.'},ensure_ascii=False,indent=2))
+        print('PASS actual measured R21 stop snapshot in mobile UI, no additional action');sys.exit(0)
     normal=json.loads(json.dumps(saved));normal['honroBattle']=None
     ctx,p=page_for();p.evaluate('''async profile=>{await HonroCampaignLoader.ensureStage(14);const a=HonroApp;a.profile={...HONRO_TOOLS.fresh(),...profile};a.normalProfile=a.profile;a.launch(14);while(a.dialogue)HonroStory.finish(a);a.close();HonroStory.tick(a,performance.now()+10000);a.updateHUD(true);}''',normal)
     assert p.evaluate('HonroAct2.current(HonroApp.engine.b).id')=='family-upper'
