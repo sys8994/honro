@@ -81,3 +81,5 @@ python tools/testing/act2-pacing-capture.py 11 14 17 18
 - 최종 JPG16장 직접 열어 확인. 최대100,522bytes, 전부1MB 미만. [활성 배포 자산 확인](evidence/active-build.json): manifest의 네 chapter JSON이 원본 단계·배우 ID·pacing revision과 일치하며 참조 파일이 존재한다. 현재 빌드의 Playtest는 `web/entries/game.b90a880f0de4ca22.html?embedded=1`이다.
 - 전용 상태 검사(국소 위협·NPC 실패·기존 목표 Continue/export/재Continue·보상 중복 방지·11장 최종 E), 전용 재생성 검사4장, 네 클래스 이동 비교, 중앙/구조 교전 및14/17/18 후반 입력 세그먼트가 통과했다. 11장 최종 E fixture에서는 이전 화면 결과 모달을 닫고 정상 행동 가능 상태에서 입력했다.
 - 이 종합 뒤11장 경계 보완 한 건을 추가했다. 서쪽을 전부 제압하면 옛 blockedClear가 미입장 추격을 기다리며 자동 매듭 확인을 막을 수 있어, 새 pacing 계약11장에서만 해당 옛 대기를 끈다. 전원 제압+미입장 추격 fixture와 완료/보상 검사를 다시 확인하고 영향받는11장 종합 화면을 갱신한다. master/Pages 반영은 부모 담당이다.
+
+최종 런타임 소스는 **`be995e672d05bdf11bd9268b1ec5b9c8badd186d`**이다. 새 계약11장의 옛 추격 입장 대기만 추가로 차단했다. `tests/act2-pacing-state.mjs`에서 전원 서측 제압+미입장 추격→매듭 확인 진행과 네 장 저장/완료/보상 검사를 다시 통과했다. 해당 SHA로 다시 빌드했고 영향받는11장 종합 JPG를 다시 촬영·직접 확인했다([실행 기록](evidence/final-capture-11.json), 페이지 오류0). 14·17·18장 로직/데이터/그림은 주요 구현 SHA 이후 같아 위 종합 판정이 유지된다. 최종 Playtest 경로는 **`web/entries/game.267c0ec640d18e51.html?embedded=1`**이며 [활성 자산 기록](evidence/active-build.json)도 최종 SHA로 갱신했다. 이후 문서·검수 기록만 커밋한다.
