@@ -59,7 +59,7 @@
 - `npm run build`, `node tests/web-split.mjs`: 생산 HTML/자산 hash/재조립/embedded 저장 경계 통과. 생성 web 파일은 공통 빌더 출력이며 전역 renderer 소스 수정은 없다.
 - `node tests/stage11-vector-finish.mjs`: 원본 master와 비교해 지형·충돌·배우·markers·events·목표·보상·초기 상태·다른29장과 공통 Library 불변, 저작 delta의 재현성과 idempotence 통과. 유일한 element 변경은 기존 짐 에셋의 visual scale/layer다. [상세 hash](evidence/preservation.json).
 - `node tests/stage11-landscape-art.mjs`: 실제 Canvas 31개 지형, 새 저작 재질9개, 최대 준비 경로54, 렌더 battle 불변/prepare 재사용/sceneVersion 무효화/다른 장 및 옛 전투 opt-out 통과. [결과](evidence/material-cache.json).
-- `node tests/stage11-ravine-traversal.mjs`: 기본4인 × 6개의 기존 실제 이동/점프 경로 24개 통과. 충돌 앵커 clearance 실패0. 격리 경로 검사이며 정상 전투 완주가 아니다. [결과](evidence/traversal-summary.json).
+- `node tests/stage11-ravine-traversal.mjs`: 기본4인 × 9개의 기존 실제 이동/점프 경로 36개 통과. 충돌 앵커 clearance 실패0. 격리 경로 검사이며 정상 전투 완주가 아니다. [결과](evidence/traversal-summary.json).
 - `node tests/act2-pacing-state.mjs`: 11/14/17/18의 기존 진행·보호·묵종 동작·Continue/export/outcome·보상 exactly-once 확인 통과. 처음에는 이 checkout의 결과 출력 폴더가 없어 마지막 writeFile만 실패했고 폴더를 준비한 뒤 같은 검사를 재실행해 완료했다. 검사 소스/기대값은 변경하지 않았다. [결과](evidence/pacing-state.txt).
 - 기존 `act2-pacing-capture.py 11`의 실제 키 입력: ArrowRight + production App.frame 20회에서 x720→840, pageerror0/HTTP 실패0. [결과](evidence/keyboard.json). 새 위치로 배우를 옮겨 검사를 통과시킨 것이 아니다.
 - **기존 실패:** `stage11-ravine-tactics.mjs`는 기대 적 수45/현재43에서 멈춘다. 원본 master의 소스/데이터에서도 동일한43≠45를 확인했다. 적·전술·기대값을 바꾸지 않았다. [원본 재현](evidence/baseline-tactics.txt).
