@@ -49,9 +49,11 @@ with sync_playwright() as pw:
  for n in range(2):
   with p.expect_download() as download:p.evaluate('HonroApp.export()')
   path=out/('actual-export-'+str(n+1)+'.json');download.value.save_as(str(path));exported=json.loads(path.read_text())
-  expected=p.evaluate('HonroApp.engine.b');assert exported['honroBattle']==expected
+  # Match the production save's JSON domain: DevTools otherwise materializes
+  # undefined object fields as None, while JSON export correctly omits them.
+  expected=json.loads(p.evaluate('JSON.stringify(HonroApp.engine.b)'));assert exported['honroBattle']==expected
   p.evaluate('profile=>{const a=HonroApp;a.profile=profile;a.normalProfile=profile;a.continue();}',exported)
-  p.wait_for_function('HonroApp.engine?.b.honroStage===15');actual=p.evaluate('HonroApp.engine.b');assert actual==expected,'Whole battle changed after downloaded export/Continue'
+  p.wait_for_function('HonroApp.engine?.b.honroStage===15');actual=json.loads(p.evaluate('JSON.stringify(HonroApp.engine.b)'));assert actual==expected,'Whole battle changed after downloaded export/Continue'
   rows.append({'case':'downloaded export/Continue '+str(n+1),'wholeBattleExact':True,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()})
  snap('drain-continue');assert not errors,errors;assert not http,http
  report={'checkedCommit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'scope':__doc__,'inputScope':record['scope'],'prepared':record['prepared'],'verification':verification,'rows':rows,'errors':errors,'httpFailures':http,'manifestSha256':hashlib.sha256((ROOT/'web/manifest.json').read_bytes()).hexdigest()}
