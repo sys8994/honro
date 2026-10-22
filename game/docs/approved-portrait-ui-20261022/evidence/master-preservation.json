@@ -1,0 +1,20 @@
+{
+  "master": "c5b51319ef887943726434d84db596f07254bbd3",
+  "sourceHead": "637255dd1a29de413d52d21ff1baf4312570ed37",
+  "unchangedPaths": [
+    "shared/build.mjs",
+    "shared/data",
+    "shared/map",
+    "shared/engine/src",
+    "shared/runtime/renderer.js",
+    "shared/runtime/rest-journey.js",
+    "shared/runtime/content.js",
+    "shared/assets/rebuild-game-adapter.mjs",
+    "assets/bgm",
+    "game/src"
+  ],
+  "mainOutsideTwoPortraitMembersSha256": "86d967a3a9b32735b10b0fd74fb9194ea08f61b1104d9d19b449973604998f93",
+  "masterIsAncestor": true,
+  "note": "source preservation and fast-forward ancestry, not physical BGM playback",
+  "currentPublicFilesPreserved": 351
+}

@@ -185,7 +185,11 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   }
   const stageArt={};for(let n=1;n<=10;n++)stageArt[n]={$honroAsset:await emit('graphics',`stage-${String(n).padStart(2,'0')}`,'jpg',await readFile(path.join(root,'assets/rc11',`stage-${String(n).padStart(2,'0')}.jpg`)))};
   const portraits=JSON.parse(await read('game/config/story-portraits.json'));
-  for(const entry of Object.values(portraits))if(entry.image)entry.src={$honroAsset:await emit('graphics','portrait-'+path.parse(entry.image).name,path.extname(entry.image).slice(1),await readFile(path.resolve(root,entry.image)))};
+  for(const entry of Object.values(portraits)){
+    if(entry.image)entry.src={$honroAsset:await emit('graphics','portrait-'+path.parse(entry.image).name,path.extname(entry.image).slice(1),await readFile(path.resolve(root,entry.image)))};
+    // URLs are metadata only: portrait pixels are requested by visible UI, never title preload.
+    for(const [expression,asset]of Object.entries(entry.approvedPortrait?.expressions||{}))if(asset.file)asset.src={$honroAsset:await emit('graphics',`portrait-${entry.approvedPortrait.id}-${expression}`,'webp',await readFile(path.resolve(root,asset.file)))};
+  }
   const titleData=await dataModule('game-art',{HONRO_TITLE_ART:art,HONRO_STAGE_INTRO_ART:stageArt,HONRO_STORY_PORTRAITS:portraits});
   const titleMarkup=common.find(file=>file.includes('shared-runtime-title-markup.'));
   assert(titleMarkup,'Shared first-paint title template required');

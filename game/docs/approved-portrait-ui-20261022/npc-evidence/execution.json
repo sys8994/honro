@@ -1,0 +1,12 @@
+{
+  "integrationHead": "76238bffa38205a935e8a1aad54c4e0c164f72d4",
+  "master": "9890006179e45c7b323941a1252a3003c298751f",
+  "runtimeCommit": "eaee271225a5808bb5ddf78126fdb8ce8e1d4a7e",
+  "runtimeAndBuildUnchangedAfterRuntimeCommit": true,
+  "manifestSha256": "0823b029c38ed39878c6adff6de85f0ba335c5cad46824ae5d59c425715fa203",
+  "postCommitProductionRescueRun": "eaee271225a5808bb5ddf78126fdb8ce8e1d4a7e",
+  "npcFullProbeReportedHead": "eaee271225a5808bb5ddf78126fdb8ce8e1d4a7e",
+  "base4ProbeReportedHead": "65f735b11321a72304d0a2adbe26a3690e1de5c4",
+  "base4ProbeWorkingTreeNote": "BASE4 probe ran at 65f735b1 with final guide-top CSS and generated build already present, committed unchanged as eaee2712 during the longer NPC probe. Raw HEAD fields remain unedited. Both browser probes recorded the final manifest SHA. A separate production rescue smoke ran after eaee2712 commit. 76238bff merges only historical chapter13 JSON2, no runtime/build change.",
+  "restoredMasterResources": 2
+}

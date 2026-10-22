@@ -1,0 +1,134 @@
+{
+  "grid": "0px 337px",
+  "scene": {
+    "x": 12,
+    "y": 612,
+    "width": 366,
+    "height": 220,
+    "top": 612,
+    "right": 378,
+    "bottom": 832,
+    "left": 12
+  },
+  "scroll": [
+    361,
+    361,
+    0
+  ],
+  "children": [
+    {
+      "tag": "DIV",
+      "cl": "story-location",
+      "text": "매듭을 거둔 아침1 / 2",
+      "rect": {
+        "x": 28,
+        "y": 625,
+        "width": 337,
+        "height": 13,
+        "top": 625,
+        "right": 365,
+        "bottom": 638,
+        "left": 28
+      },
+      "grid": "2"
+    },
+    {
+      "tag": "H2",
+      "cl": "",
+      "text": "주민",
+      "rect": {
+        "x": 28,
+        "y": 648,
+        "width": 337,
+        "height": 29,
+        "top": 648,
+        "right": 365,
+        "bottom": 677,
+        "left": 28
+      },
+      "grid": "2"
+    },
+    {
+      "tag": "P",
+      "cl": "",
+      "text": "아내가 부르는 줄 알았소. 아내는 삼 년 전에 죽었는데… 그걸 알면서도 발이 멎질 않았어요.",
+      "rect": {
+        "x": 28,
+        "y": 685,
+        "width": 337,
+        "height": 74,
+        "top": 685,
+        "right": 365,
+        "bottom": 759,
+        "left": 28
+      },
+      "grid": "2"
+    },
+    {
+      "tag": "DIV",
+      "cl": "story-actions",
+      "text": "이전Space / Enter대화 넘기기다음",
+      "rect": {
+        "x": 28,
+        "y": 759,
+        "width": 0,
+        "height": 60,
+        "top": 759,
+        "right": 28,
+        "bottom": 819,
+        "left": 28
+      },
+      "grid": "1 / -1"
+    },
+    {
+      "tag": "BUTTON",
+      "cl": "ghost",
+      "text": "이전",
+      "rect": {
+        "x": -139.078125,
+        "y": 775,
+        "width": 39.265625,
+        "height": 44,
+        "top": 775,
+        "right": -99.8125,
+        "bottom": 819,
+        "left": -139.078125
+      },
+      "grid": "auto"
+    },
+    {
+      "tag": "BUTTON",
+      "cl": "ghost",
+      "text": "대화 넘기기",
+      "rect": {
+        "x": -92.8125,
+        "y": 775,
+        "width": 74.546875,
+        "height": 44,
+        "top": 775,
+        "right": -18.265625,
+        "bottom": 819,
+        "left": -92.8125
+      },
+      "grid": "auto"
+    },
+    {
+      "tag": "BUTTON",
+      "cl": "primary",
+      "text": "다음",
+      "rect": {
+        "x": -11.265625,
+        "y": 775,
+        "width": 39.265625,
+        "height": 44,
+        "top": 775,
+        "right": 28,
+        "bottom": 819,
+        "left": -11.265625
+      },
+      "grid": "auto"
+    }
+  ],
+  "executedHead": "3cf2782c598672d9598415149cb27719a83dd7c6",
+  "note": "Stage11 launch then exact two production lines through Story.start; round1 UI fixture, not the unavailable user screenshot or same round18 battle pixel A/B."
+}
