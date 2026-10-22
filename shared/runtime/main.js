@@ -539,7 +539,7 @@
     if(G.HonroRestJourney)G.HonroRestJourney.startEntry(this,st.name);else G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:st.name,after:'entry'});
             }
         }
-        mount(b,{freshReport=false,reportScope}={}) { G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);G.HonroClearReport.begin(b,{fresh:freshReport,scope:reportScope||G.HonroClearReport.scopeOf(this)});b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
+        mount(b,{freshReport=false,reportScope}={}) { G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);G.HonroClearReport.begin(b,{fresh:freshReport,scope:reportScope||G.HonroClearReport.scopeOf(this)});b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { if(this.scene?._pausedBattleFrame)this.scene._pausedBattleFrame=null;this.scene?.event(ev); if (ev.type === 'sound')
             this.audio?.play(ev.name); if (ev.type === 'save')
             this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
@@ -810,6 +810,26 @@
             setStyle(button,'--charge',power*100);setStyle(button,'--previous',previous*100);setStyle(button,'--charge-color',H.hero[u.cls]?.color||'#c8b17c');
             if(button.dataset.character!==u.id)button.dataset.character=u.id;if(button.dataset.previous!==String(previous))button.dataset.previous=previous;button.classList.toggle('charging',this.charging);
             const label=button.querySelector('.fire-label');if(label)setText(label,this.engine.iceGourdReady()?'폭발':this.charging?Math.round(power*100)+'%':'발사');
+        }
+        renderBattleFrame(e,dt,effectDt,paused){
+            const scene=this.scene,canvas=scene.canvas,now=performance.now();
+            // Only the ordinary pause menu owns a motionless base battlefield.
+            // Dialogue/camera staging, previews, training and loading keep rendering.
+            const stablePause=this.modalKind==='pause-dialog'&&this.modal.classList.contains('open')&&!this.dialogue&&!this.preview&&!this.training&&!this.customMap&&!this.done&&
+                !scene.storyFrame&&!scene.storyTween&&!scene.storyFrozen&&!scene.goalFocus&&!scene.editorView&&!scene.skillPreview&&
+                !(scene.focusUntil>now)&&!(scene.speakerUntil>now)&&dt===0&&effectDt===0&&paused&&
+                G.HonroAuthoredFarArt?.ready(e.b.honroStage)&&document.fonts?.status==='loaded'&&!scene.ctx.isContextLost?.();
+            const paint=()=>scene.render(e,dt,this.selected,this.power,this.charging,effectDt,paused);
+            if(!stablePause){scene._pausedBattleFrame=null;return paint();}
+            if(!scene._pauseContextListener){scene._pauseContextListener=true;for(const name of ['contextlost','contextrestored'])canvas.addEventListener(name,()=>{scene._pausedBattleFrame=null;});}
+            const key=()=>{const r=canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect(),mini=$('minimap')?.getBoundingClientRect();return [r.width,r.height,canvas.width,canvas.height,devicePixelRatio,innerWidth,innerHeight,hud?.top,mini?.left,mini?.top,mini?.bottom,scene.x,scene.y,scene.scale,scene.manual,scene.time,scene.walkTime,scene.hoverUnitId,scene.inspectUnitId,JSON.stringify(scene.missionTargets),
+                e.b.sceneVersion,scene._worldCacheKey(e.b,r.width),G.HonroVisualStyle?.key(),scene.viewOptions?.debugTerrainOutline,this.selected,this.power,this.charging].join('|');};
+            const signature=key(),old=scene._pausedBattleFrame;
+            if(old?.engine===e&&old.battle===e.b&&old.modal===this.modal.firstElementChild&&old.key===signature&&old.stable)return;
+            paint();
+            // Give normal raster/feedback preparation two matching paints before
+            // retaining the existing canvas. No extra image/canvas is allocated.
+            const next=key();scene._pausedBattleFrame={engine:e,battle:e.b,modal:this.modal.firstElementChild,key:next,stable:old?.engine===e&&old.battle===e.b&&old.modal===this.modal.firstElementChild&&old.key===signature&&signature===next};
         }
         updateSkillButtons(u,ids){
             const root=$('combat-skills'),e=this.engine,unused=new Set(root.children);
@@ -1359,7 +1379,7 @@
                         this.acc = 0;
                     const frozen=this.dialogue||G.HonroStory.turnPaused(this,now)||this.modal.classList.contains('open');
                     this.scene.viewOptions??={};this.scene.viewOptions.debugTerrainOutline=!!this.debugMode&&this.profile.settings.debugTerrainOutline===true;
-                    this.scene.render(e,this.dialogue||this.modal.classList.contains('open')?0:dt,this.selected,this.power,this.charging,frozen?0:this.charging?dt:simulated,!!frozen||!!this.done);
+                    this.renderBattleFrame(e,this.dialogue||this.modal.classList.contains('open')?0:dt,frozen?0:this.charging?dt:simulated,!!frozen||!!this.done);
                     G.HonroUnitInfo.tick(this);
                     this.uiAge += dt;
                     if (this.uiAge > .11) {

@@ -53,3 +53,17 @@ idle 이전 충전 표시의 style.setProperty429회·textContent143회·title14
 실제 Chromium screenshot RGB 비교7장 중 pause/mobile idle/mobile mage/landscape mage/mobile preview5장 정확 일치. desktop idle19픽셀, desktop charge5픽셀에만 최대3/255 차이가 있었다(각1,024,000픽셀). 원본 엄격 exact assertion은 이 두 장에서 실패했고, 차이 이미지와 실제 최종 화면을 따로 검사했다. 이 두 장을 정확 일치로 기록하지 않는다. AA 가장자리 잔차로 제한된 검사 기준은32pixel·3/255이며 그래픽/해상도 변경은 없다. [전체 경계 결과](evidence/pixel-checks.json), [desktop](evidence/final-desktop-idle.jpg), [mobile preview](evidence/final-mobile-preview.jpg).
 
 현재까지 이 변경으로 체감 FPS가 개선됐다는 결론은 없다. 큰 비용인 Scene.render의 정지 상태 재그리기는 다음 별도 경계로 검토한다.
+
+## 채택 2 · 기본 일시정지 전장의 명시적 재사용 경계
+
+함수별90프레임 idle 계측에서 Scene.render p50/p95=10.9/15.8ms, 그 안의 occludedUnitSilhouettes=8.0/11.2ms였다. background=0.1/0.3ms, 기존 static-world cache=0.1/0.4ms다. unitBody는 unit 및 silhouette 안에 중첩되어 합산할 수 없다. 이는 현재 보이는 소수 유닛도 겹침 mask 합성에 비용을 지불하는 사례이며, 정상 유닛/물/카메라/궤적 애니메이션을 제거할 근거는 아니다. 정적 지형 raster를 새로 바꾸는 대신 이미 정지한 **기본 pause-dialog**의 동일 전체 전장을 다시 그리는 중복을 제거했다.
+
+`App.renderBattleFrame`이 소유한다. 기본 pause-dialog가 열려 있고 dt/effectDt=0이며, 전투가 종료되지 않고 대사/미리보기/훈련/사용자 맵/editor/이야기 frame·tween·focus·goalFocus가 없으며, authored far와 폰트가 준비되고 context가 정상인 경우만 대상이다. 그 외에는 기존 Scene.render로 바로 진행하고 보유 키를 지운다. normal battle idle은 여전히 매 rAF 렌더한다.
+
+다시 그리는 조건은 Engine/battle/modal 노드 교체, Engine 이벤트, canvas CSS/물리 크기·DPR/viewport, 카메라/표시 clock, HUD top/미니맵 rect, missionTargets, hover/inspect, scene/appearance/visual-style/debug revision, 선택/충전값 및 context lost/restored다. 이미지가 준비 중이거나 폰트가 loading이면 매 프레임 기존 경로로 그린다. 두 번 일치하는 정상 paint로 raster/피격 표시를 준비한 후 같은 canvas를 유지한다. 새 bitmap/canvas cache를 만들지 않으며 Scene 당 키 하나·context listener 한 쌍만 보유한다. 모달 종료 후 정상 frame에서 즉시 제거한다.
+
+초기 prototype의 크기/카메라 키만으로는 landscape resize 뒤 목표 화살표 위치가 늦게 갱신됐다(캔버스844×233의690,106–838,158 영역). 목표 draw가 HUD/미니맵 배치도 읽기 때문이다. 이 불완전 경계를 폐기하고 해당 rect/목표 의존성을 포함했다. 최종 실제 resize3방향 및 DPR-only 변경에서는 정상 강제 재그리기와 **RGBA 정확 일치**했다.
+
+분리된 경계 검사는 유지 canvas와 정상 Scene.render의 SHA-256 정확 일치·전투 전체 JSON 불변, desktop/portrait/landscape 회전, DPR2(기존1.7 해상도 상한), 카메라·scene revision·context restore 이벤트, 실제 Engine.hurt 이벤트의 pause 피격 정리와720ms focus 보존, 준비 중 이미지 query fixture, 시간 기반 카메라 API, battle 위 실제 preview의20프레임 애니메이션, 정상 resume/충전/발사, 실제 flight 중 pause의 FX 픽셀과 상태,12회 pause 전환의 단일 canvas/DOM/타일 상한을 확인한다. 준비 query/context 이벤트 fixture는 물리적인 네트워크 실패/GPU 재설정 검사와 구분한다.
+
+최종 계측 수치는 아래에 추가한다. 일반 전투 idle의 큰 silhouette 비용 및 사용자 점증 렉은 이 수정으로 해결했다고 주장하지 않는다.

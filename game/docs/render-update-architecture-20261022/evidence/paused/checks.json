@@ -1,0 +1,329 @@
+{
+  "manifestSha256": "6440237cc601e90ee0fa7327717fd9650ba68520dbf655c9138865c4e2ec78b9",
+  "checks": [
+    {
+      "name": "retained vs normal render exact pixels",
+      "details": {
+        "skipped": 0,
+        "identical": true,
+        "before": "c121197e730f5df4811392d94431ba8b9b9c35a8d846be61658101f8b275a573",
+        "after": [
+          "c121197e730f5df4811392d94431ba8b9b9c35a8d846be61658101f8b275a573",
+          "c121197e730f5df4811392d94431ba8b9b9c35a8d846be61658101f8b275a573"
+        ],
+        "statePreserved": true,
+        "sameCanvas": true,
+        "frame": true
+      }
+    },
+    {
+      "name": "actual resize invalidates, matches normal render",
+      "details": [
+        {
+          "viewport": [
+            390,
+            844
+          ],
+          "paints": 3,
+          "identical": true,
+          "max": 0,
+          "changedChannels": 0,
+          "camera": [
+            884.6777283751895,
+            6316,
+            0.28640625
+          ],
+          "afterCamera": [
+            884.6777283751895,
+            6316,
+            0.28640625
+          ],
+          "cache": {
+            "worldBuilds": 2,
+            "worldBuildMs": 72.59999999590218,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 277,
+            "bgHits": 3,
+            "domainCanvasAllocations": 18,
+            "domainTileBuilds": 18,
+            "screenBuilds": 4,
+            "screenHits": 6
+          },
+          "afterCache": {
+            "worldBuilds": 2,
+            "worldBuildMs": 72.59999999590218,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 278,
+            "bgHits": 4,
+            "domainCanvasAllocations": 18,
+            "domainTileBuilds": 18,
+            "screenBuilds": 4,
+            "screenHits": 8
+          },
+          "pixels": [
+            390,
+            648
+          ]
+        },
+        {
+          "viewport": [
+            844,
+            390
+          ],
+          "paints": 4,
+          "identical": true,
+          "max": 0,
+          "changedChannels": 0,
+          "camera": [
+            884.6777283751895,
+            6394.968236361803,
+            0.6198125
+          ],
+          "afterCamera": [
+            884.6777283751895,
+            6394.968236361803,
+            0.6198125
+          ],
+          "cache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 76.49999999627471,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 283,
+            "bgHits": 6,
+            "domainCanvasAllocations": 21,
+            "domainTileBuilds": 21,
+            "screenBuilds": 6,
+            "screenHits": 12
+          },
+          "afterCache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 76.49999999627471,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 284,
+            "bgHits": 7,
+            "domainCanvasAllocations": 21,
+            "domainTileBuilds": 21,
+            "screenBuilds": 6,
+            "screenHits": 14
+          },
+          "pixels": [
+            844,
+            233
+          ]
+        },
+        {
+          "viewport": [
+            1280,
+            800
+          ],
+          "paints": 2,
+          "identical": true,
+          "max": 0,
+          "changedChannels": 0,
+          "camera": [
+            884.6777283751895,
+            6316,
+            0.9400000000000001
+          ],
+          "afterCamera": [
+            884.6777283751895,
+            6316,
+            0.9400000000000001
+          ],
+          "cache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 80.79999999701977,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 293,
+            "bgHits": 7,
+            "domainCanvasAllocations": 24,
+            "domainTileBuilds": 24,
+            "screenBuilds": 8,
+            "screenHits": 14
+          },
+          "afterCache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 80.79999999701977,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 294,
+            "bgHits": 8,
+            "domainCanvasAllocations": 24,
+            "domainTileBuilds": 24,
+            "screenBuilds": 8,
+            "screenHits": 16
+          },
+          "pixels": [
+            1280,
+            669
+          ]
+        }
+      ]
+    },
+    {
+      "name": "DPR-only change invalidates at existing resolution cap",
+      "details": {
+        "paints": 2,
+        "dpr": 2,
+        "width": 2176,
+        "exact": true
+      }
+    },
+    {
+      "name": "camera invalidates retained canvas",
+      "result": true
+    },
+    {
+      "name": "scene revision invalidates retained canvas",
+      "result": true
+    },
+    {
+      "name": "context restore event invalidates retained canvas",
+      "result": true
+    },
+    {
+      "name": "actual Engine hit event invalidates paused feedback",
+      "details": {
+        "paints": 8,
+        "hit": true,
+        "hidden": true,
+        "timedFocus": true
+      }
+    },
+    {
+      "name": "hit focus expiry returns to stable pause",
+      "result": true
+    },
+    {
+      "name": "pending image readiness boundary fixture",
+      "details": {
+        "count": 8,
+        "cleared": true,
+        "stable": true
+      }
+    },
+    {
+      "name": "real timed camera API remains live while paused",
+      "details": {
+        "moved": true,
+        "calls": 6,
+        "active": true,
+        "stable": true
+      }
+    },
+    {
+      "name": "preview animation and underlying non-pause modal rendering",
+      "details": {
+        "ageAdvanced": true,
+        "battlePaints": 20,
+        "retained": false
+      }
+    },
+    {
+      "name": "resume restores rendering, normal charge and shot",
+      "details": {
+        "live": true,
+        "began": true,
+        "power": 0.6847956573933922,
+        "phase": "flight",
+        "lastShot": true,
+        "paints": 31
+      }
+    },
+    {
+      "name": "pause during actual flight preserves state and FX pixels",
+      "details": {
+        "paints": 0,
+        "unchanged": true,
+        "exact": true
+      }
+    },
+    {
+      "name": "twelve pause transitions retain one canvas and bounded state",
+      "details": [
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        },
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        },
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        },
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        },
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        },
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        },
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        },
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        },
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        },
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        },
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        },
+        {
+          "dom": 266,
+          "tiles": 6,
+          "canvas": true,
+          "stable": true
+        }
+      ]
+    },
+    {
+      "name": "no browser errors",
+      "result": true
+    }
+  ],
+  "errors": []
+}

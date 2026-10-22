@@ -22,7 +22,9 @@ with sync_playwright() as p:
   page.goto(f'http://127.0.0.1:{server.server_port}/HONRO.html');page.wait_for_function('document.documentElement.dataset.honroReady')
   page.evaluate('HonroApp.launch(11)');page.wait_for_function('HonroApp.engine?.b.honroStage===11');page.wait_for_function('HonroAuthoredFarArt.ready(11)')
   page.evaluate('()=>{const a=HonroApp;while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;}');page.wait_for_timeout(900)
-  if state=='pause':page.evaluate('HonroApp.pause()')
+  if state in ['pause','pause-fixed']:
+   if state=='pause-fixed':page.evaluate('()=>{const a=HonroApp,u=a.engine.active;Object.assign(a.scene,{manual:true,x:u.x,y:u.y-140,scale:.68,storyTween:null,goalFocus:null,focusUntil:0,speakerUntil:0});}')
+   page.evaluate('HonroApp.pause()')
   elif state=='charge':page.evaluate('HonroApp.beginCharge()')
   elif state=='fire':page.evaluate('HonroApp.beginCharge()');page.wait_for_timeout(450);page.evaluate('HonroApp.releaseCharge()')
   elif state=='preview':page.evaluate("HonroApp.showCamp('archer');HonroApp.talent('A01')");page.wait_for_function('HonroApp.preview?.canvas.isConnected');page.wait_for_timeout(600)
@@ -33,5 +35,5 @@ with sync_playwright() as p:
   row['errors']=errors;rows.append(row)
   if os.environ.get('JPG')=='1':page.screenshot(path=str(OUT/(os.environ.get('RUN','baseline')+'-'+state+'.jpg')),type='jpeg',quality=90)
   print(state,json.dumps({k:row[k] for k in ['frame','raf','mutations','methods','errors']}),flush=True);ctx.close()
- meta={'sourceCommit':os.environ.get('SOURCE_SHA',subprocess.check_output(['git','rev-parse','HEAD'],cwd=BUILD,text=True).strip()),'htmlSha256':hashlib.sha256((BUILD/'HONRO.html').read_bytes()).hexdigest(),'manifestSha256':hashlib.sha256((BUILD/'web/manifest.json').read_bytes()).hexdigest(),'browser':browser.version,'viewport':[int(os.environ.get('WIDTH','1280')),int(os.environ.get('HEIGHT','800'))],'seed':899411,'rows':rows};browser.close()
+ meta={'sourceCommit':os.environ.get('SOURCE_SHA',subprocess.check_output(['git','rev-parse','HEAD'],cwd=BUILD,text=True).strip()),'htmlSha256':hashlib.sha256((BUILD/'HONRO.html').read_bytes()).hexdigest(),'manifestSha256':hashlib.sha256((BUILD/'web/manifest.json').read_bytes()).hexdigest(),'samplerSha256':hashlib.sha256((ROOT/'tools/testing/render-update-sample.js').read_bytes()).hexdigest(),'runnerSha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'trackedTreeDirty':bool(subprocess.check_output(['git','status','--porcelain','--untracked-files=no'],cwd=BUILD,text=True).strip()),'browser':browser.version,'viewport':[int(os.environ.get('WIDTH','1280')),int(os.environ.get('HEIGHT','800'))],'seed':899411,'rows':rows};browser.close()
 server.shutdown();(OUT/(os.environ.get('RUN','baseline')+'.json')).write_text(json.dumps(meta,indent=2))
