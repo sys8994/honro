@@ -10,3 +10,7 @@ export function solidSection(t,x,direction=1){
 export function createPlaneWriter(planes,terrainId,{prefix,flag}){
  return(name,points,fill)=>{if(points.length<3||points.some(p=>p.length!==2||p.some(v=>!Number.isFinite(v))))throw Error('Invalid authored plane '+prefix+name);planes.push({id:prefix+name,terrainId,[flag]:true,fill,points:points.map(p=>p.map(roundPlaneCoordinate))});};
 }
+/** Divide an authored contact at a fractional segment position. */
+export function dividePolyline(ps,f){
+ const k=f*(ps.length-1),j=Math.min(ps.length-2,Math.floor(k)),v=k-j,a=ps[j],b=ps[j+1],point=[a[0]+(b[0]-a[0])*v,a[1]+(b[1]-a[1])*v];return{point,up:[...ps.slice(0,j+1),point],down:[point,...ps.slice(j+1)]};
+}

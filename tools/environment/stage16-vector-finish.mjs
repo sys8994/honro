@@ -1,4 +1,4 @@
-import {shadeRock,solidSection,createPlaneWriter} from './authored-rock-planes.mjs';
+import {shadeRock,solidSection,createPlaneWriter,dividePolyline} from './authored-rock-planes.mjs';
 /** Stage16 build-time author only: natural bedrock below worked temple stone.
  * Unequal shared contacts and two recessed rear abutments; no runtime pass. */
 import {readFileSync,writeFileSync} from 'node:fs';
@@ -40,7 +40,7 @@ export function applyStage16VectorFinish(project){
    for(let i=1;i<seams.length;i++){
     const a=seams[i-1],b=seams[i],upper=span(r,a.i,b.i),lower=span(r+1,a.j,b.j),tone=tones[r][(i-1)%tones[r].length],cut=id==='act2-floor'?splits[r+':'+i]:null,layer=id==='act2-floor'?layers[r+':'+i]:null;
     if(layer){
-     const divide=(ps,f)=>{const k=f*(ps.length-1),j=Math.min(ps.length-2,Math.floor(k)),v=k-j,a=ps[j],b=ps[j+1],point=[a[0]+(b[0]-a[0])*v,a[1]+(b[1]-a[1])*v];return{point,up:[...ps.slice(0,j+1),point],down:[point,...ps.slice(j+1)]};},left=divide(a.path,layer[0]),right=divide(b.path,layer[1]),joint=[left.point,...layer[2].map(at),right.point];
+     const left=dividePolyline(a.path,layer[0]),right=dividePolyline(b.path,layer[1]),joint=[left.point,...layer[2].map(at),right.point];
      add('layer-upper'+r+'-'+i,[...upper,...right.up.slice(1),...joint.slice().reverse().slice(1),...left.up.slice().reverse().slice(1)],shade(tone,2));
      add('layer-lower'+r+'-'+i,[...joint,...right.down.slice(1),...lower.slice().reverse().slice(1),...left.down.slice().reverse().slice(1)],shade(tone,-4));continue;
     }
