@@ -4280,3 +4280,9 @@ HUD의 32~36px 내부 타일과 공통 스탬프의 둥근 이중 프레임을 �
 - 변경: 안전 출구의 실제 지지면에 생존 일행을 모으고 일반 16줄 대화/공통 카메라를 사용한다. 6턴 보호·출구 도달 조건·남은 적과 자원은 유지하며 철수/대화 중 전투를 멈춘다. 구 won/대화 저장도 반복 이동 없이 재개한다.
 - 확인: 빌드/typecheck, sodan-withdrawal, 실제 Chromium 390×844·844×390 정상 체크포인트 키보드 탈출/대화/reload/스킵/정지. JPG 직접 검수. 상세: `game/docs/stage10-world-outro-ending-replay/README.md`.
 - 기존 실패: dialogue-speaker-presentation의 폐기된 story-document 기대. Pages는 부모 통합 범위.
+
+## 2026-10-22 · 막 엔딩 재클리어와 독립 다시보기
+
+- 원인: 최초 승리/미열람 조건이 10·20·30장 재클리어 엔딩을 막고, 일반 여정첩에는 독립 재생 진입점이 없었다.
+- 변경: 정상 재클리어도 기존 outcome done 가드 이후 표시용 pending을 준비한다. 미열람 여부는 pending 재개를 막지 않는다. 완료한 막의 여정첩 선택부에만 작은 보조 버튼과 API를 제공한다. 독립 gallery는 메모리만 쓰고 retained journal DOM/지도뷰로 복귀한다.
+- 확인: 두 화면비 × 3개 막 × 첫/반복 12흐름 정산 각1회·pending/reload·터치/키보드, 해금 경계7개, gallery 프로필/저장 문자열 동일성·완주/Escape/닫기/Back/reload 통과. 별도 실제 맵/카메라 집중 검수와 JPG 직접 확인. 상세 및 통합 hook: `game/docs/stage10-world-outro-ending-replay/README.md`.

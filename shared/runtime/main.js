@@ -963,6 +963,9 @@
                 case 'rest':
                     G.HonroRestJourney.requestRest(this);
                     break;
+                case 'act-ending-replay':
+                    G.HonroActEndings?.replay(this,Number(id));
+                    break;
                 case 'journey-book':
                     G.HonroRestJourney.showBook(this);
                     break;

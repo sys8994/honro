@@ -26,3 +26,30 @@
 ## 한계
 
 기존 정상 플레이의 탈출 직전 체크포인트를 이어서 검사했으며 앞선 6턴 전투 전체를 새로 완주한 것은 아니다. Chromium 터치/키보드 에뮬레이션이며 실기기와 Safari는 검사하지 않았다. 새 이미지나 새 무대 연출은 만들지 않았다.
+
+## 수정 2: 재클리어 엔딩과 독립 다시보기
+
+정상 10·20·30장 승리의 `prepare(app,b,first)`에서 최초 클리어, `honroJourneyReplay`, seen 제한을 제거했다. `pending`도 seen과 독립적으로 유효한 클리어 엔딩을 재개한다. `main.outcome`의 기존 done 가드와 정산/합류/방문 횟수 경로를 유지하고, 엔딩의 표시/다음 컷은 그 경로를 호출하지 않는다. 디버그·허공터·커스텀/embedded 전투에서는 새 정상 엔딩을 준비하지 않는다. 기존 가로/세로 그림·3인칭 하단 문구·4컷·다음 막 제목·쉼터 및 실제 클리어 pending 저장/재개는 유지한다.
+
+여정첩의 이미 완료한 10·20·30장 선택부에만 작은 **막 엔딩 다시보기** 버튼이 나온다. 독립 재생은 `app.endingGallery`의 메모리 상태만 사용하며 `profile.honroActEnding`, seen, 클리어, 모집, XP, 전투 저장에 쓰지 않는다. 완주 시 다음 막 제목 뒤 원래 여정첩으로 돌아오며 쉼터/모집/클리어 정산을 호출하지 않는다.
+
+- 종료: 우측 위 여정첩 복귀 버튼, Escape, 완주 또는 브라우저 Back으로 원래 여정첩을 복원한다. 브라우저 Back용 같은 URL의 임시 history 항목은 저장 데이터와 무관하다.
+- reload/페이지 이탈: 메모리 다시보기는 폐기한다. 게임의 원래 타이틀/이어 하기 경로에서 오염 없는 기존 저장을 읽는다. 독립 다시보기를 pending 완료로 저장하거나 캠프 이동시키지 않는다.
+- 여정첩 지도 DOM을 유지하므로 원래 막/선택/층/확대/스크롤과 핀 이벤트가 돌아온다. 화면 회전 시 기존 반응형 제한으로 스크롤이 clamp될 수 있으며 프로필에는 기록하지 않는다.
+
+### 작은 API / 여정첩 축약 작업과 통합
+
+1. 선택부 원하는 위치에서 `HonroActEndings.replayButton(app, stageId)`를 한 번 넣으면 된다. 문자열은 자격이 없는 경우 빈 문자열이다. 별도 레이아웃 전면 교체는 필요 없다. 행동명은 `act-ending-replay`, 대상은 `data-id`다.
+2. `main.js` click switch의 이 행동은 `HonroActEndings.replay(app, Number(id))`를 호출한다. API도 클리어/모드/진입 화면을 다시 검증한다.
+3. `HonroRestJourney.captureBook(app)` / `restoreBook(app, context)`는 일시 뷰어의 지도 DOM/선택/카메라 복원 hook이다. 새 축약 UI도 이 두 hook의 계약을 유지하면 된다. 전투 시작/중지·쉼터·persist를 호출하지 않는다.
+4. CSS는 `act-endings.css`의 `.journey-ending-replay`, `.act-ending-return` 두 선택자에만 추가했다. `journey.css`와 아이콘 DOM 캐시는 수정하지 않는다.
+5. 클리어 보고서 작업은 `outcome`의 기존 `prepare` → 클리어 정산 저장 → `show` 순서를 유지한다. 보고서/경험치 기능을 엔딩 next/replay/finishGallery 안에 넣지 않는다. `first` 인자 계약도 유지한다.
+
+### 집중 검수 2·3
+
+- `python tests/act-ending-replay-browser.py --mode completion --out game/docs/stage10-world-outro-ending-replay/evidence/focus2-completion`: 2개 화면비 × 3개 막 × 최초/반복 = 12개 실제 Chromium 흐름 통과. complete/syncRoster/recruit/recordOutcome/split outcome 각각 1회, visits 한 번 증가, 중복 outcome 무효, 2컷 reload(기존 seen 포함), Enter/Space/터치 한 번당 한 컷, 제목/쉼터/완료 후 reload 확인.
+- `python tests/act-ending-replay-browser.py --mode gallery --out game/docs/stage10-world-outro-ending-replay/evidence/focus3-gallery`: 클리어 0/9/10/19/20/29/30 해금 경계, 두 화면비의 3개 막, 30장 end 선택, 정상 저장 전투가 있는 10장 다시보기, 완주/Escape/닫기/브라우저 Back/reload 검사 통과. 전체 profile JSON과 localStorage 원문 문자열의 동일성을 확인했다. summary에 각 해시와 지도 복귀값을 남겼다.
+- JPG 직접 확인: 재클리어 1막 세로·2막 가로, 첫클리어 3막 세로·재클리어 가로, 1막 여정첩 세로·2막 여정첩 가로, 1막 gallery 세로·3막 gallery 가로. 기존 그림과 읽기 가능한 하단 문구, 작은 보조 버튼, 명확한 복귀 버튼을 확인했다.
+- 관련 회귀: `rest-journey.mjs`, `dialogue-controls-audio.mjs`, `web-split.mjs` 통과. 앞서 실패한 `dialogue-speaker-presentation.mjs`는 별도 기준 SHA worktree에서도 동일 `story-document` assertion 실패를 재현했다. 잘못 입력한 존재하지 않는 `dialogue-controls.mjs` 명령은 검사 실패로 집계하지 않고 실제 `dialogue-controls-audio.mjs`로 교정해 통과했다.
+
+두 집중 검사 summary의 executionSHA는 1차 커밋 위 2차 작업 트리이며 sourceHashes가 실제 실행 소스를 식별한다. 최신 master를 병합한 확정 SHA에서 별도 종합 픽셀/동작 검수를 이어서 기록한다.

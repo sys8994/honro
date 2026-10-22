@@ -21,3 +21,7 @@
 
 /* The new bell finial sits near the top edge; keep it in short landscape crops. */
 @media(orientation:landscape) and (max-height:440px){.act-ending[data-stage="20"][data-art="landscape"] .act-ending-art{object-position:center top}}
+
+/* Optional journal action; keep it beside the selected place, independent of its layout. */
+.honro #app .journey-ending-replay{display:inline-block;min-height:32px;margin-top:5px;padding:4px 8px;font-size:11px;line-height:1.4;background:transparent;border:1px solid #9aab9859;color:#d6cfac;border-radius:3px;touch-action:manipulation}
+.honro #app .act-ending-return{position:absolute;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));min-height:44px;padding:8px 12px;font-size:12px;background:#10191ddc;border:1px solid #c1b58c80;color:#f5efdf;z-index:2}
