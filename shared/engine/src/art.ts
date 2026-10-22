@@ -251,8 +251,12 @@ export class Renderer {
         }
         if (kind === 'swordCut' || kind === 'circulation' || kind === 'qiBurst' || kind === 'fireBloom' || kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
             this.fxs.push({ kind: kind as FX['kind'], x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: SKILL_FX_SECONDS[kind as keyof typeof SKILL_FX_SECONDS] ?? (kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6), color, size, text: e.text, critical:e.critical, x2: e.x2, y2: e.y2 });
-        if (this.fxs.length > 370)
-            this.fxs.splice(0, this.fxs.length - 370);
+        if (this.fxs.length > 370) {
+            // Target lightning is a complete hit snapshot, never a particle budget.
+            // Keep every live ray; only decorative effects use the existing cap.
+            let excess=this.fxs.length-370;
+            this.fxs=this.fxs.filter(f=>f.kind==='lightningBolt'||excess--<=0);
+        }
     }
 
     /** Reuse the production ARCFALL projectile/fx rendering inside other shells. */

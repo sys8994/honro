@@ -325,8 +325,20 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
  if(p.maxAge&&p.age>=p.maxAge){e.remove(p);return true;}
  if(p.mode==='gourdIce'&&p.age>=(p.fuseAt??iceGourdFuse(u.lastPower))){gourdBurst(e,p);return true;}
  if(p.mode==='skyWait'){
-  if(p.age>=.35){const target=p.targetPoint!,start={x:target.x,y:Math.min(-170,target.y-600)},end=skyStrikePoint(e,target,p.owner);
-   e.emit('fx',{name:'lightningBolt',x:start.x,y:start.y,x2:end.x,y2:end.y,color:'#a8cfff',size:5});e.blast(end.x,end.y,p.blast,p.damage,p.owner,false,p);e.remove(p);
+  if(p.age>=.35){const target=p.targetPoint!,end=skyStrikePoint(e,target,p.owner);
+   // Keep the original strike center, eligibility and falloff. Snapshot before
+   // any hurt/impulse can move, kill or remove a target; visual rays never attack.
+   const targets=[...e.blastUnitTargets(end.x,end.y,p.blast,p.owner,false,p)];
+   for(const {unit:t,head:fallbackHead} of targets){
+    if(!enemy(p,t)||t.hp<=0)continue;
+    const head:Vec=(globalThis as any).HonroMonsterVisual?.headPoint(t)??fallbackHead;
+    const sky={x:head.x,y:Math.min(-170,head.y-600)};
+    // Clip the visual to the underside of overhead terrain. The original
+    // central column still decides damage; do not add per-enemy ceiling gates.
+    const ceiling=e.collision(head,sky,3,p.owner,[],false);
+    e.emit('fx',{name:'lightningBolt',x:head.x,y:ceiling?.y??sky.y,x2:head.x,y2:head.y,color:'#a8cfff',size:3.5});
+   }
+   e.blast(end.x,end.y,p.blast,p.damage,p.owner,false,p,0,undefined,targets);e.remove(p);
   }return true;
  }
  if(p.mode==='microWait'){

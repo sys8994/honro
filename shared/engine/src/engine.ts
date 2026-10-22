@@ -952,14 +952,9 @@ export class Engine {
                         this.hurt(u, 70, this.b.active,false,undefined,undefined,'environment');
         }
     }
-    blast(x: number, y: number, r: number, damage: number, owner: string, body = false, p?: Projectile, depth = 0, provenance?:Partial<Projectile>) {
-        if (depth > 8)
-            return;
-        const radius = Math.max(r, 1), s = p ? SKILLS[p.skill] : undefined;
-        if(s?.redesigned&&s.id==='M01')this.fx('qiBurst',x,y,'#e5ebdf',radius);
-        else if(s?.redesigned&&['M06','M13'].includes(s.id))this.fx('fireBloom',x,y,'#eaaa65',radius);
-        else {this.fx('burst', x, y, p?.color || '#edb16e', radius);this.fx('ring', x, y, p?.color || '#efc99b', radius);}
-        this.emit('sound', { name: radius > 105 ? 'boom' : 'hit', value: radius });
+    /** Lazy for ordinary blasts; materialized once for target-bound lightning. */
+    *blastUnitTargets(x:number,y:number,r:number,owner:string,body=false,p?:Projectile,provenance?:Partial<Projectile>){
+        const radius=Math.max(r,1);
         for (const u of this.b.units.filter(v=>!v.eaterCapturedBy)) {
             if (u.dead || !this.attackAllows(u,owner,p||provenance) || (body && u.id === owner) || ((p?.mode === 'spin'||p?.mode==='charge'||p?.mode==='cataclysmCharge') && p.hit.includes(u.id)))
                 continue;
@@ -968,12 +963,23 @@ export class Engine {
                 if(this.b.terrain.some(t=>!t.broken&&(segmentProjectileTerrain({x,y},to,t.id===sheet?.id?sheet:t,0)||terrainRectIntersects(t.id===sheet?.id?sheet:t,x-.1,y-.1,.2,.2,0))))continue;
             }
             const d = Math.hypot(u.x - x, (u.y - u.h * .45) - y);
-            if (d < radius + u.r) {
-                const factor = .42 + .58 * (1 - clamp(d / radius, 0, 1));
-                this.hurt(u, damage * factor, owner, p?.directId === u.id, p, { x, y });
-                if (!u.dead && damage > 15)
-                    this.impulse(u, Math.sign(u.x - x || 1) * (1 - d / (radius + u.r)) * 95, -45);
-            }
+            if (d < radius + u.r) yield {unit:u,distance:d,head:{x:u.x,y:u.y-u.h}};
+        }
+    }
+
+    blast(x: number, y: number, r: number, damage: number, owner: string, body = false, p?: Projectile, depth = 0, provenance?:Partial<Projectile>, unitTargets?:Iterable<{unit:Unit;distance:number;head:Vec}>) {
+        if (depth > 8)
+            return;
+        const radius = Math.max(r, 1), s = p ? SKILLS[p.skill] : undefined;
+        if(s?.redesigned&&s.id==='M01')this.fx('qiBurst',x,y,'#e5ebdf',radius);
+        else if(s?.redesigned&&['M06','M13'].includes(s.id))this.fx('fireBloom',x,y,'#eaaa65',radius);
+        else {this.fx('burst', x, y, p?.color || '#edb16e', radius);this.fx('ring', x, y, p?.color || '#efc99b', radius);}
+        this.emit('sound', { name: radius > 105 ? 'boom' : 'hit', value: radius });
+        for (const {unit:u,distance:d} of unitTargets??this.blastUnitTargets(x,y,r,owner,body,p,provenance)) {
+            const factor = .42 + .58 * (1 - clamp(d / radius, 0, 1));
+            this.hurt(u, damage * factor, owner, p?.directId === u.id, p, { x, y });
+            if (!u.dead && damage > 15)
+                this.impulse(u, Math.sign(u.x - x || 1) * (1 - d / (radius + u.r)) * 95, -45);
         }
         for (const t of [...this.b.terrain]) {
             if (t.broken || t.hp >= 9999)
