@@ -37,7 +37,9 @@ export function planWebAssetRetention(previous,currentFiles){
   const unchanged=last.length===current.size&&last.every(file=>current.has(file.path));
   const generations=previous?.previousGenerations||(older.length?[older]:[]);
   const previousGenerations=(unchanged||!last.length?generations:[last,...generations]).slice(0,2).map(files=>files.filter(file=>safe(file)&&!current.has(file.path)));
-  const previousFiles=[...new Map(previousGenerations.flat().map(file=>[file.path,file])).values()];
+  // Published client graphs are separate from intermediate build generations.
+  const published=(previous?.publishedGenerations||[]).slice(0,2).flatMap(g=>g.files||[]);
+  const previousFiles=[...new Map([...previousGenerations.flat(),...published].filter(file=>safe(file)&&!current.has(file.path)).map(file=>[file.path,file])).values()];
   const retained=new Set(previousFiles.map(file=>file.path));
   const obsoleteFiles=[...new Map([...last,...older,...generations.flat()].filter(file=>safe(file)&&!current.has(file.path)&&!retained.has(file.path)).map(file=>[file.path,file])).values()];
   return {previousFiles,previousGenerations,obsoleteFiles};
@@ -228,7 +230,7 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   await writeGenerated(path.join(root,'workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
   const currentFiles=[...files.values()].sort((a,b)=>a.path.localeCompare(b.path));
   const {previousFiles,previousGenerations,obsoleteFiles}=planWebAssetRetention(previous,currentFiles);
-  const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations};
+  const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations,publishedGenerations:previous?.publishedGenerations?.slice(0,2)};
   await writeGenerated(path.join(root,'web/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
   for(const file of obsoleteFiles)try{await unlink(path.join(root,file.path));}catch(e){if(e.code!=='ENOENT')throw e;}
   await mkdir(path.join(root,'_local/reports/web-split'),{recursive:true});

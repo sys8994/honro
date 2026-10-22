@@ -19,3 +19,10 @@ const unsafe={path:'web/runtime/../../outside.js'};
 assert.deepEqual(planWebAssetRetention({files:[unsafe,first],previousFiles:[unsafe,third]},secondFiles),{previousFiles:[first,third],previousGenerations:[[first],[third]],obsoleteFiles:[]},'Retention stays within generated asset paths');
 assert.deepEqual(planWebAssetRetention({files:thirdFiles,previousFiles:[first,second,unsafe],previousGenerations:[[second],[first,unsafe]]},[common,fourth]).obsoleteFiles,[first],'Cleanup ignores unsafe paths');
 console.log('Web asset retention: two prior distinct releases, legacy migration, identical builds, asset reuse, and safe cleanup passed.');
+
+const published={commit:'released-client',files:[first]};
+let held={files:secondFiles,publishedGenerations:[published]};
+for(const name of ['build-a','build-b','build-c','build-d']){const files=[common,asset(name)],plan=planWebAssetRetention(held,files);assert(plan.previousFiles.some(f=>f.path===first.path),'Published graph survives intermediate builds');assert(!plan.obsoleteFiles.some(f=>f.path===first.path));held={files,...plan,publishedGenerations:[published]};}
+const bounded=planWebAssetRetention({files:thirdFiles,publishedGenerations:[{files:[first,unsafe]},{files:[second]},{files:[fourth]}]},thirdFiles);
+assert.deepEqual(bounded.previousFiles,[first,second],'Only two published graphs retained, unsafe paths ignored');
+console.log('Published client graphs remain bounded and do not age on intermediate builds');
