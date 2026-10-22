@@ -4529,3 +4529,7 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 허공터 누락 원인은 ui-bridge가 별도 벡터 dataURL을 만드는 경로였다. 허공터4인/현재 인물, 모닥불 동행 탭/능력치 요약을 기존 승인 image request/decode cache와 retained canvas에 연결한다. campView의 URL 인수는 투명 template marker를 공통 host로 바꾸는 작은 adapter로 호환한다. 화면 ID crop 조건을 제거하고 portraits.js의 bust0.88/icon1 설정으로 통일한다. 상반신 UI는bust, 전투의 작은 선택 아이콘은icon이다. 원본/배포 이미지·NPC/error vector·스킬 아이콘/게임플레이/종/스테이지 원고는 불변이다. 반복 모달 개폐에서 같은 canvas를 재사용한다. 공개 dd878/424c 성공 발행을 실제 부모 확인 시각/Pages run으로 등록했고 후보 빌드는 발행으로 등록하지 않는다. 최종 검사/사진/정확한 SHA/한계는 dialogue-action-row-20261022 보고서에 보존한다. master/Pages는 부모 담당이다.
 
 공개 보호 추가: 부모 확인 a0b6b514 Pages39870152371의2026-10-22T23:15:02Z 성공과23:23 실제18장 첫목표/가까운 시작점 확인을 등록했다. 실행/build2d8d269a 이후5890c096은 이 발행 metadata만 바꾸며 활성 file graph/HTML은 동일하다. 현재 종은 a0의 기존 미술로 유지했다. 최종 통합 검사32위치+3live resize/12소비 항목/120회3상태·web/retention/native identity 통과, 사진/소비 경로/검사 한계는 [최종 기록](dialogue-action-row-20261022/README.md).
+
+## 2026-10-22 — O05 회귀망령의 지형 접촉 전 공중 소멸
+
+O05의 지형 미접촉3.4초/255점/상단 경계와 총10초 종료가 고지대 낙하를 끊었다. O05만 실제 지형 접촉까지 정상 탄도를 유지하고 저장 경로를256점 안에서 재표본화한다. 기존 관통·표식·지형 출현·역경로 첫 적 폭발은 보존하며, 월드 이탈/비정상 값·60/120초 예외 방어 및 경로 길이 기반 귀환 deadline을 둔다. 예측과미리보기의 해당 종료 조건도 일치시켰다. Native 예측/접촉·고/저각·상단 이탈 복귀·세 단계 저장·표식 피해/기력/보고서 중복0·후속 입력, 최종 UI 본게임/허공터 궤적 exact·미리보기22초 초과 후 정상 완료·build/type PASS. 캠페인/18장/상호작용/미술/허공터 버튼·초상화 불변. [원인·SHA·순차 프레임·한계](returning-wraith-fall-20261022/README.md).

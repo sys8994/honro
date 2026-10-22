@@ -1,0 +1,176 @@
+{
+  "checkedCommit": "29bba00bf3862ffc7a8f3c3064796304dbfc9b68",
+  "entry": "web/entries/game.18a3d25c3ae89390.js",
+  "rows": [
+    {
+      "mode": "campaign",
+      "initial": {
+        "prediction": {
+          "x": 5030.818315330243,
+          "y": 6194,
+          "terrain": "deep-floor"
+        },
+        "focus": 372,
+        "cost": 74
+      },
+      "samples": [
+        {
+          "age": 0,
+          "x": 3036.2523114814658,
+          "y": 2971.5447304696277,
+          "state": "outbound",
+          "alive": true,
+          "contact": null,
+          "maxPoints": 0
+        },
+        {
+          "age": 3.5083333333333235,
+          "x": 3731.3592418172357,
+          "y": 3570.421900995427,
+          "state": "outbound",
+          "alive": true,
+          "contact": null,
+          "maxPoints": 45
+        },
+        {
+          "age": 8.000000000000187,
+          "x": 4610.681436651787,
+          "y": 5127.912772573982,
+          "state": "outbound",
+          "alive": true,
+          "contact": null,
+          "maxPoints": 127
+        },
+        {
+          "age": 10.250000000000059,
+          "x": 5030.818315330243,
+          "y": 6186,
+          "state": "manifest",
+          "alive": true,
+          "contact": {
+            "age": 10.175000000000063,
+            "x": 5030.818315330243,
+            "y": 6186
+          },
+          "maxPoints": 180
+        },
+        {
+          "age": 14.016666666666511,
+          "x": 3036.2523114814658,
+          "y": 2971.5447304696277,
+          "state": "return",
+          "alive": false,
+          "contact": {
+            "age": 10.175000000000063,
+            "x": 5030.818315330243,
+            "y": 6186
+          },
+          "maxPoints": 180
+        }
+      ],
+      "trajectorySha256": "9b293c4cdae06975d42fc875b478d1f17ce531031a33ffce6d36dc14f18eaf0e",
+      "followUp": {
+        "phase": "aim",
+        "round": 1,
+        "canAct": true,
+        "follow": true,
+        "remaining": [
+          "A01"
+        ]
+      },
+      "errors": [],
+      "httpFailures": []
+    },
+    {
+      "mode": "practice",
+      "initial": {
+        "prediction": {
+          "x": 5030.818315330243,
+          "y": 6194,
+          "terrain": "deep-floor"
+        },
+        "focus": 372,
+        "cost": 74
+      },
+      "samples": [
+        {
+          "age": 0,
+          "x": 3036.2523114814658,
+          "y": 2971.5447304696277,
+          "state": "outbound",
+          "alive": true,
+          "contact": null,
+          "maxPoints": 0
+        },
+        {
+          "age": 3.5083333333333235,
+          "x": 3731.3592418172357,
+          "y": 3570.421900995427,
+          "state": "outbound",
+          "alive": true,
+          "contact": null,
+          "maxPoints": 45
+        },
+        {
+          "age": 8.000000000000187,
+          "x": 4610.681436651787,
+          "y": 5127.912772573982,
+          "state": "outbound",
+          "alive": true,
+          "contact": null,
+          "maxPoints": 127
+        },
+        {
+          "age": 10.250000000000059,
+          "x": 5030.818315330243,
+          "y": 6186,
+          "state": "manifest",
+          "alive": true,
+          "contact": {
+            "age": 10.175000000000063,
+            "x": 5030.818315330243,
+            "y": 6186
+          },
+          "maxPoints": 180
+        },
+        {
+          "age": 14.016666666666511,
+          "x": 3036.2523114814658,
+          "y": 2971.5447304696277,
+          "state": "return",
+          "alive": false,
+          "contact": {
+            "age": 10.175000000000063,
+            "x": 5030.818315330243,
+            "y": 6186
+          },
+          "maxPoints": 180
+        }
+      ],
+      "trajectorySha256": "9b293c4cdae06975d42fc875b478d1f17ce531031a33ffce6d36dc14f18eaf0e",
+      "followUp": {
+        "phase": "aim",
+        "round": 1,
+        "canAct": true,
+        "follow": true,
+        "remaining": [
+          "A01"
+        ]
+      },
+      "errors": [],
+      "httpFailures": []
+    }
+  ],
+  "preview": {
+    "at23": {
+      "same": true,
+      "alive": true,
+      "age": 23.01666666666664
+    },
+    "contact": true,
+    "cycledAfterCompletion": true,
+    "age": 37.24999999999917,
+    "returnObserved": true
+  },
+  "scope": "Prepared geometry in final production UI, real Engine fire/tick and sequential frames; no normal campaign arrival/playthrough claim."
+}

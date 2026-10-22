@@ -1,0 +1,140 @@
+{
+  "checkedCommit": "5d1c5866212517d1116dd4df622851fc3defa608",
+  "rows": [
+    {
+      "name": "low-drop",
+      "angle": -25,
+      "power": 0.3,
+      "start": 3000,
+      "contact": {
+        "age": 10.175000000000063,
+        "x": 5030.818315330243,
+        "y": 6186
+      },
+      "prediction": {
+        "x": 5030.818315330243,
+        "y": 6194,
+        "terrain": "deep-floor"
+      },
+      "completeAge": 14.016666666666511,
+      "maxPoints": 180,
+      "minY": 2971.5447304696277,
+      "earlyLimitSurvived": true,
+      "saveRestore": [
+        "outbound",
+        "manifest",
+        "return"
+      ],
+      "turnEndsAndFollowup": true
+    },
+    {
+      "name": "high-arc",
+      "angle": 80,
+      "power": 0.7,
+      "start": 3000,
+      "contact": {
+        "age": 27.67499999999907,
+        "x": 5371.588975226157,
+        "y": 6186
+      },
+      "prediction": {
+        "x": 5371.588975226157,
+        "y": 6194,
+        "terrain": "deep-floor"
+      },
+      "completeAge": 36.508333333331905,
+      "maxPoints": 255,
+      "minY": 131.62835947680756,
+      "earlyLimitSurvived": true,
+      "saveRestore": [
+        "outbound",
+        "manifest",
+        "return"
+      ],
+      "turnEndsAndFollowup": true
+    },
+    {
+      "name": "sky-return",
+      "angle": 90,
+      "power": 1,
+      "start": 800,
+      "contact": {
+        "age": 32.29999999999881,
+        "x": 3000,
+        "y": 786
+      },
+      "prediction": {
+        "x": 3000,
+        "y": 794,
+        "terrain": "launch-ledge"
+      },
+      "completeAge": 43.19166666666486,
+      "maxPoints": 255,
+      "minY": -5085.598106820061,
+      "earlyLimitSurvived": true,
+      "saveRestore": [
+        "outbound",
+        "manifest",
+        "return"
+      ],
+      "turnEndsAndFollowup": true
+    },
+    {
+      "name": "marked-return",
+      "hits": [
+        {
+          "amount": 75.54003659612931,
+          "actual": 67,
+          "burst": false,
+          "marked": false
+        },
+        {
+          "amount": 203.50962780983826,
+          "actual": 236,
+          "burst": true,
+          "marked": true
+        }
+      ],
+      "damage": 269.7858449861761,
+      "explosions": 1,
+      "reportUses": 1,
+      "reportDamage": 303
+    },
+    {
+      "name": "world-exit",
+      "age": 0.5666666666666671,
+      "x": 12171.807217288399,
+      "y": 2961.828814650208,
+      "boundedRemoval": true
+    },
+    {
+      "name": "nonfinite",
+      "age": 0.008333333333333333,
+      "x": 3000,
+      "y": 2914.64,
+      "boundedRemoval": true
+    },
+    {
+      "name": "zero-gravity",
+      "age": 60.00833333333057,
+      "x": 3000,
+      "y": 2914.64,
+      "boundedRemoval": true
+    },
+    {
+      "name": "preview",
+      "rank": 1,
+      "damage": 102,
+      "returnObserved": true,
+      "profileUnchanged": true
+    },
+    {
+      "name": "preview",
+      "rank": 8,
+      "damage": 236,
+      "returnObserved": true,
+      "profileUnchanged": true
+    }
+  ],
+  "scope": "Prepared Engine physics/combat/save fixtures and production O05 previews only; no campaign completion or human timing claim."
+}
