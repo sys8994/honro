@@ -17,5 +17,5 @@ function defer(app,id,run){
  };start();return true;
 }
 function next(app){return G.HonroJourneyContent?.next(app.profile)?.stageId||G.HonroCampaignLoader?.destination(app.profile)||1;}
-G.HonroCampaignEntry={defer,cancel,next};
+G.HonroCampaignEntry={defer,cancel,next,isPending:app=>pending.has(app)};
 })(globalThis);

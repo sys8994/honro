@@ -1,15 +1,15 @@
-import type {Battle,Unit,Projectile,ExistenceVector} from './types';
+import type {Battle,Unit,Projectile,ExistenceVector,CombatReportSource} from './types';
 import {existenceMultiplier} from './existence';
 // Optional runtime adapter: core/practice/preview consumers have no XP policy.
 const policy=()=> (globalThis as any).HonroProgression;
-export const ownerRegistered=(b:Battle,u:Unit)=>policy()?.registerOwner(b,u);
-export const environmentalLoss=(b:Battle,u:Unit,before:number)=>policy()?.recordDamage(b,u,'',Math.max(0,before-u.hp));
-export const healed=(b:Battle,u:Unit,owner:string,before:number)=>policy()?.recordHeal(b,u,owner,Math.max(0,u.hp-before));
+export const ownerRegistered=(b:Battle,u:Unit)=>{(globalThis as any).HonroClearReport?.register(b,u);policy()?.registerOwner(b,u);};
+export const environmentalLoss=(b:Battle,u:Unit,before:number)=>{const R=(globalThis as any).HonroClearReport,loss=Math.max(0,before-u.hp);R?.hit(b,u,'',loss,0,undefined,'environment');if(u.hp<=0)R?.death(b,u,'',undefined,'environment');policy()?.recordDamage(b,u,'',loss);};
+export const healed=(b:Battle,u:Unit,owner:string,before:number,skill?:string)=>{const actual=Math.max(0,u.hp-before);(globalThis as any).HonroClearReport?.heal(b,u,owner,actual,skill);policy()?.recordHeal(b,u,owner,actual);};
 export const shielded=(b:Battle,u:Unit,owner:string,before:number)=>policy()?.shieldAdded(b,u,owner,before);
 export const settled=(e:any)=>policy()?.flushContribution(e);
 export const controlled=(b:Battle,u:Unit,owner:string,token:string)=>policy()?.recordControl(b,u,owner,token);
-export function projectileCredit(b:Battle,p:Projectile,u:Unit){ownerRegistered(b,u);const q=p as any,v=u as any;q.honroContributionOwner=u.summonOwner||u.enthrall?.owner||u.id;if(u.curseAttack){q.honroWeakOwner=v.honroWeakOwner||u.curseOwner;q.honroWeakFactor=u.curseAttack;}}
-interface Receipt {hp:number;shield:number;final:number;beforeDefense:number;assists:Record<string,number>;protections:Record<string,number>;enemy?:Unit;owner:string;}
+export function projectileCredit(b:Battle,p:Projectile,u:Unit){ownerRegistered(b,u);(globalThis as any).HonroClearReport?.projectile(b,p,u);const q=p as any,v=u as any;q.honroContributionOwner=u.summonOwner||u.enthrall?.owner||u.id;if(u.curseAttack){q.honroWeakOwner=v.honroWeakOwner||u.curseOwner;q.honroWeakFactor=u.curseAttack;}}
+interface Receipt {consumed?:boolean;reportOrigin?:CombatReportSource;reportOwner?:string;reportSkill?:string;reportSource?:string;hp:number;shield:number;final:number;beforeDefense:number;assists:Record<string,number>;protections:Record<string,number>;enemy?:Unit;owner:string;}
 export function beginHit(b:Battle,u:Unit,raw:Unit|undefined,src:Unit|undefined,p:Projectile|undefined,attack:ExistenceVector|undefined,origin:string,uncapped:number,final:number,defense:number,armor:number,armorWithoutSupport:number,limit:number,normal:boolean):Receipt{
  const v=u as any,q=p as any,r=raw as any,protections:Record<string,number>={},assists:Record<string,number>={},hp=u.hp,shield=u.shield,owner=q?.honroContributionOwner||raw?.summonOwner||raw?.enthrall?.owner||raw?.id||origin;
  const rounded=(n:number)=>Math.max(0,Math.round(Math.min(limit,n)));
@@ -44,7 +44,7 @@ export function beginHit(b:Battle,u:Unit,raw:Unit|undefined,src:Unit|undefined,p
  }
  return {hp,shield,final,beforeDefense,assists,protections,enemy:raw?.side===1?raw:undefined,owner};
 }
-export function endHit(b:Battle,u:Unit,receipt:Receipt){const P=policy();if(!P?.isContributionBattle(b))return;
+export function endHit(b:Battle,u:Unit,receipt:Receipt){if(receipt.consumed)return;receipt.consumed=true;(globalThis as any).HonroClearReport?.hit(b,u,receipt.reportOwner??receipt.owner,Math.max(0,receipt.hp-u.hp),Math.max(0,receipt.shield-u.shield),receipt.reportSkill,receipt.reportSource,receipt.reportOrigin);const P=policy();if(!P?.isContributionBattle(b))return;
  const actual=Math.max(0,receipt.hp-u.hp),benefit=Object.values(receipt.assists).reduce((a,n)=>a+n,0),scale=benefit>actual?actual/benefit:1;
  for(const id of Object.keys(receipt.assists))receipt.assists[id]*=scale;
  P.recordDamage(b,u,receipt.owner,actual,receipt.assists);

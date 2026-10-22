@@ -1,0 +1,54 @@
+/* Result actions and report close stay outside their independently scrolling body. */
+.honro .dialog.result{display:flex;flex-direction:column;overflow:hidden;padding:0;width:min(620px,calc(100vw - 24px));max-height:calc(100dvh - 24px)}
+.honro .result-body{padding:24px 22px 16px;overflow-y:auto;overscroll-behavior:contain;min-height:0;text-align:left}
+.honro .result-body>.result-title{padding-right:34px;font-size:24px}
+.honro .dialog.result>.close{right:10px;top:10px;z-index:2}
+.honro .result-actions{display:grid;grid-template-columns:1fr 1fr;flex:none;padding:12px 18px 16px;margin:0;border-top:1px solid #45504a;background:#192b2e}
+.honro .result-actions>.primary{grid-column:1/-1;min-height:48px}
+.honro .clear-summary-grid,.honro .report-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:16px 0}
+.honro .clear-summary-grid>div,.honro .report-metrics>div{padding:10px 12px;border:1px solid #45504a;border-radius:5px;background:#203235;min-width:0}
+.honro :is(.clear-summary-grid,.report-metrics) dt{font-size:12px;color:#b5c1b8}
+.honro :is(.clear-summary-grid,.report-metrics) dd{margin:5px 0 0;color:#eee5ca;font-size:18px;font-variant-numeric:tabular-nums}
+.honro .report-growth-row{margin:12px 0}
+.honro .report-growth-row>div{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px}
+.honro .report-growth-row>div>strong{color:#e4d2a8;min-width:28px}
+.honro .report-growth-row>div>b{margin-left:auto;font-variant-numeric:tabular-nums}
+.honro .report-level-up{display:inline-block;margin-left:6px;color:#e4d2a8;font-size:10px;border:1px solid #9d8a62;border-radius:4px;padding:2px 4px}
+.honro .report-growth-row progress{display:block;width:100%;height:5px;margin:7px 0 4px;accent-color:#c5b17e;border:0}
+.honro .report-growth-row small{font-size:10px;color:#b5c1b8}
+.honro .report-note,.honro .report-missing{font-size:12px;line-height:1.65;color:#b5c1b8;overflow-wrap:anywhere}
+.honro .report-partial{font-size:12px;line-height:1.6;color:#e2c798;border-left:2px solid #bca472;padding-left:10px}
+.honro .dialog.clear-report{width:min(760px,calc(100vw - 24px));height:min(820px,calc(100dvh - 24px));max-height:calc(100dvh - 24px);padding:0;overflow:hidden;text-align:left}
+.honro .report-shell{height:100%;display:flex;flex-direction:column;min-height:0}
+.honro .report-header{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid #45504a;background:#192b2e}
+.honro .report-header small{font-size:12px;color:#b5c1b8}
+.honro .report-header h2{font-size:20px;margin:4px 0 0}
+.honro .report-close{width:44px;height:44px;min-height:44px;flex:none;padding:0;font-size:28px;background:transparent;color:#e4d2a8}
+.honro .report-body{min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:14px 18px 24px;scroll-padding:14px}
+.honro .report-body h3{font-size:16px;color:#e4d2a8;margin:22px 0 10px}
+.honro .report-body h4{margin:0;font-size:17px}
+.honro .report-intro{font-size:13px;color:#b5c1b8;margin:0}
+.honro .report-hero{border:1px solid #45504a;border-radius:6px;padding:14px 12px;margin:12px 0}
+.honro .report-hero .report-metrics{gap:6px;margin:12px 0}
+.honro .report-hero .report-metrics>div{padding:8px 10px}
+.honro .report-hero .report-metrics dd{font-size:16px}
+.honro .report-body summary{cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;color:#e4d2a8;font-size:13px}
+.honro .report-body summary::before{content:'▸';font-size:15px}
+.honro .report-body details[open]>summary::before{content:'▾'}
+.honro .report-skills{width:100%;table-layout:fixed;border-collapse:collapse;font-size:11px;margin-top:6px}
+.honro .report-skills th,.honro .report-skills td{padding:9px 3px;border-bottom:1px solid #45504a;text-align:right;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.honro .report-skills th:first-child{width:31%;text-align:left;color:#e4d2a8;font-weight:500}
+.honro .report-body ul{padding-left:18px;font-size:12px;line-height:1.9}
+.honro .report-method{border-top:1px solid #45504a;margin-top:22px}
+.honro .report-method p{font-size:12px;line-height:1.8;color:#b5c1b8}
+.honro .report-method small{font-size:10px;color:#9aada6;overflow-wrap:anywhere}
+.honro .journey-detail .journey-report{min-height:44px;background:#20353a;color:#e4d2a8;border:1px solid #78836f}
+.honro .rest-report{position:absolute;right:6%;top:calc(6% + 56px);z-index:4;min-height:44px;max-width:calc(100% - 24px);font-size:12px;background:#192b2ee8;border:1px solid #78836f;color:#e4d2a8}
+.honro :is(.report-close,.report-body summary,.journey-report,.rest-report):focus-visible{outline:2px solid #e4d2a8;outline-offset:2px}
+@media(max-width:420px){.honro .result-body{padding:22px 16px 12px}.honro .report-header{padding:10px 12px}.honro .report-body{padding:12px}.honro .report-hero{padding:12px 8px}}
+@media(orientation:landscape) and (max-height:500px){.honro .report-header{padding:6px 14px}.honro .result-body{padding-top:14px}.honro .result-actions{padding:8px 14px;grid-template-columns:1fr 1fr 1.5fr}.honro .result-actions>.primary{grid-column:auto}.honro .rest-report{right:12px;top:58px}}
+
+.honro .report-skills caption{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* A finished battle cannot put its turn announcement over either report view. */
+body:has(#modal.open :is(.result,.clear-report)) #turn-banner{visibility:hidden}

@@ -11,7 +11,7 @@ import {minify} from 'terser';
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 const hash=body=>createHash('sha256').update(body).digest('hex');
 const quote=JSON.stringify;
-const gameStyles=['game/vendor/ui/arcfall-layout.css','game/vendor/style.css',...['hud','presentation','controls','unit-info','training','guide','skill-presentation','journey','title','fonts','act3-void','act-endings','skill-icons'].map(n=>`game/src/${n}.css`)];
+const gameStyles=['game/vendor/ui/arcfall-layout.css','game/vendor/style.css',...['hud','presentation','controls','unit-info','training','guide','skill-presentation','journey','title','fonts','act3-void','act-endings','skill-icons','clear-report'].map(n=>`game/src/${n}.css`)];
 const vectorGlobals=new Set(['shared/assets/party/party.runtime.js','shared/assets/monsters/monsters.runtime.js','shared/assets/actors/actors.runtime.js']);
 const cssTag=file=>`<link rel="stylesheet" href="${file}">`;
 const scriptTag=file=>`<script type="module" src="${file}"></script>`;

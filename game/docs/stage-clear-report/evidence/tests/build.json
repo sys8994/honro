@@ -1,0 +1,17 @@
+[
+  {
+    "command": "npm --prefix game run typecheck",
+    "exitCode": 0,
+    "seconds": 3.26
+  },
+  {
+    "command": "npm run build",
+    "exitCode": 0,
+    "seconds": 11.6
+  },
+  {
+    "command": "node tests/web-split.mjs",
+    "exitCode": 0,
+    "seconds": 12.2
+  }
+]

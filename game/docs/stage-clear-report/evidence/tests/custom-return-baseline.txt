@@ -1,0 +1,42 @@
+PASS Repeated pause retry keeps one protected return profile and restores the suspended stage 13
+PASS Replacing custom maps, with or without an active engine, never stacks temporary return profiles
+PASS Custom export retains its QA battle contract while close/save protect the normal record
+PASS Page reload abandons a retried custom map without changing stored progress
+PASS Settings record import exits a retried custom session before installing the replacement
+PASS Import works without retry and an invalid file preserves the active custom session
+FAIL A confirmed new journey replaces the protected record after ending custom mode
+ Expected values to be strictly deep-equal:
++ actual - expected
+... Skipped lines
+
+  {
+    cleared: {},
+    game: 'honro',
+    heroes: {
+      archer: {
+...
+    },
+-   honroBattle: null,
+    honroFlags: {},
+    lastStage: 1,
+    loadouts: {
+      archer: [
+        'A01'
+...
+    tutorial: false,
+-   upgradeNotice: false,
+    version: 2
+  }
+
+PASS Result retry after both won and lost fixtures keeps the original return owner
+PASS Custom result exit, rest and journey-book return keep original completion, story and battle
+PASS Custom result return label describes the protected journey and leaves normal result wording intact
+PASS Normal battle, settings import and normal retry still preserve campaign growth and saves
+PASS Debug plus custom retries return to the same independent debug journey and export normal save
+PASS Toggling debug from a retried custom session restores normal ownership first
+PASS Custom profile overrides do not alias the protected profile or caller-owned nested values
+PASS Workshop embedded retry and Stop boundary never write campaign storage
+PASS Training entered after a custom result releases custom ownership and preserves the suspended battle
+PASS Invalid map replacement cannot release or modify the current session
+PASS Returning after retry cannot persist a QA profile on later normal navigation
+1/18 regression groups failed

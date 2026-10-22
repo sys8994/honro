@@ -281,7 +281,10 @@ export interface Unit {
     damageBy: Record<string, number>;
     cooldowns?: Record<string, number>;
 }
+/** Persisted cast provenance is independent of later capture/release allegiance. */
+export interface CombatReportSource {cls?:string|null;side?:Side;kind:string;skill:string;id?:string|null;parent?:string|null;}
 export interface Projectile {
+    honroReportSource?: CombatReportSource;
     /** Automatic continuation; inherited by child effects and serialized in flight. */
     autonomous?: boolean;
     waterfallTouched?: boolean;
@@ -365,6 +368,9 @@ export interface Projectile {
     ultimateBurst?: boolean;
 }
 export interface Zone {
+    honroReportSource?: CombatReportSource;
+    /** Original cast identity for reporting; absent in legacy zones. */
+    skill?: string;
     autonomous?: boolean;
     id: number;
     kind: 'fire' | 'frost' | 'delay' | 'bomb';

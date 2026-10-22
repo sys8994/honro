@@ -384,7 +384,7 @@ export function useGate(e:Engine,u=e.active){
  const r=to.rank,caster=e.unit(to.owner),boost=caster?(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(to.effectBoost||0)):1;
  if(r>=2)u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*(r===2?.08:.10)*boost);
  const hpBefore=u.hp;if(r>=4)u.hp=Math.min(u.maxHp,u.hp+u.maxHp*(r===4?.06:.08)*boost);
- healed(e.b,u,to.owner,hpBefore);(globalThis as any).HonroObjectiveContributions?.movement(e.b,u,to.owner,fromPoint,{x,y});
+ healed(e.b,u,to.owner,hpBefore,'M09');(globalThis as any).HonroObjectiveContributions?.movement(e.b,u,to.owner,fromPoint,{x,y});
  if(r>=6)u.moveLeft=Math.min(u.maxMove,u.moveLeft+u.maxMove*(r===6?.16:.24)*boost);
  if(r===8){u.arrivalGuard=e.b.teamEnds[1]+1;(u as any).honroArrivalGuardOwner=to.owner;}
  e.fx('ring',x,y,'#bbc4b5',28);e.emit('change');e.emit('save');return true;
@@ -416,7 +416,7 @@ export function tickRedesign(e:Engine,dt:number){
   const available=z.skill==='M10'?nearby.filter(u=>z.usedRounds?.[u.id]!==b.round):nearby;
   if(!z.active&&available.length&&(z.skill==='M10'||z.lastTriggerRound!==b.round)){
    z.lastTriggerRound=b.round;const t=available[0];
-   if(z.skill==='M10'){z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;const hpBefore=ally.hp;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank)*boost);healed(b,ally,z.owner,hpBefore);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank)*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank)*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
+   if(z.skill==='M10'){z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;const hpBefore=ally.hp;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank)*boost);healed(b,ally,z.owner,hpBefore,z.skill);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank)*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank)*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
    if(z.skill==='M99'){z.active=true;z.inside=[];z.crossed={};z.budgetTurns={};for(const v of b.units.filter(v=>enemy(z,v)&&Math.hypot(v.x-z.x,v.y-z.y)<220)){e.hurt(v,z.damage,z.owner,false,p,z);z.inside.push(v.id);}}
   }
   if(z.active){

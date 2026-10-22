@@ -35,7 +35,7 @@ export function recordSalheun(e:Engine,p:Projectile|undefined,u:Unit,t:Unit,actu
   h.projectiles.push(p.id);const eligible=Math.max(0,Math.min(actual*weight,h.cap-h.recorded));h.recorded+=eligible;
   let bucket=h.entries.find(v=>v.turn===turn);if(!bucket){bucket={turn,damage:0};h.entries.push(bucket);}bucket.damage+=eligible;
  }
- if(echo>0&&t.hp>0){t.salheunFlash=.22;e.emit('fx',{name:'inkLine',x:t.x-9,y:t.y-t.h*.55,x2:t.x+14,y2:t.y-t.h*.55-7,color:'#af8372',size:1.2});e.emit('sound',{name:'arrowhit'});e.hurt(t,echo,u.id,false,undefined,undefined,'salheun');}
+ if(echo>0&&t.hp>0){t.salheunFlash=.22;e.emit('fx',{name:'inkLine',x:t.x-9,y:t.y-t.h*.55,x2:t.x+14,y2:t.y-t.h*.55-7,color:'#af8372',size:1.2});e.emit('sound',{name:'arrowhit'});e.hurt(t,echo,u.id,false,undefined,undefined,'salheun','AP05');}
  if(t.hp<=0)delete t.salheun;
 }
 export function beginPlayerCast(e:Engine,u:Unit,s:Skill,actualKiSpent:number){

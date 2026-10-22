@@ -76,7 +76,7 @@ export function startWarriorCast(e:Engine,s:Skill,u:Unit){
   if(s.mode==='counterStance'){
    const rank=u.ranks[s.id]||1,before=u.hp;
    u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*(.02+.005*(rank-1))));
-   healed(e.b,u,u.id,before);if(u.hp>before)e.fx('ring',u.x,u.y-u.h*.5,'#b8d2bc',28);
+   healed(e.b,u,u.id,before,s.id);if(u.hp>before)e.fx('ring',u.x,u.y-u.h*.5,'#b8d2bc',28);
    u.martialGuard={round:e.b.round,reduction:.25+.10*(rank-1)/7,counter:true,rank,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;
   }
   if(s.mode==='bladeScreen'){u.bladeScreen={round:e.b.round,rank:u.ranks[s.id]||1,hits:0,facing:u.facing};stroke(e,u,110);return;}

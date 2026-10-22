@@ -1,0 +1,6 @@
+PASS production App defend consumes enemy wounds and owns its actual shield
+PASS NPC healer consumes wounds without inventing player recovery credit
+PASS authored rest and legacy camp free healing consume wounds
+PASS mission rest marker consumes wounds before subsequent self-cost recovery
+PASS checkpoint HP rollback discards healed-away wounds without refilling threat tokens
+5 real healing/reset boundaries passed

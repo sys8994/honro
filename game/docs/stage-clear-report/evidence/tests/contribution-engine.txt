@@ -1,0 +1,21 @@
+PASS effective HP damage, overkill, unequal contributors, late support and permanent individual totals
+PASS same enemy healing and checkpoint replay do not re-credit removed HP
+PASS actual falls and unknown direct HP loss remain neutral before a later hero hit
+PASS ratio-preserving enemy HP rescale cannot invent removed HP or consume later damage
+PASS nonlethal and last stand record actual final HP loss
+PASS M10 heals enemy wounds only, excluding overheal and self-funded lost HP
+PASS actual shield layers and defense split only effective prevented HP
+PASS host-ward soul defense credits the original support owner
+PASS full blade-screen interception and eater capture produce finite verified utility, never duplicate credit
+PASS partial screen protection scales with subsequent child damage rather than reusing parent damage
+PASS curse-armor and manifestation assisted damage is shared once, with no cast XP
+PASS recursive Salheun damage cannot consume the parent hit assist interval
+PASS weakening credits real enemy damage prevention without merely being hit
+PASS hard stun credits only a real action-slot opportunity, twice per enemy maximum
+PASS summon owner death/removal and later allegiance changes preserve originating credit
+PASS level-up never reapplies companion stats to an enthralled same-class enemy
+PASS NPC or environment kill plus one HP healing cannot capture an entire stage budget
+PASS no-damage goal clear uses finite real objective evidence, bounded common share
+PASS whole-stage retry, JSON reload, and cleared-stage replay preserve the v4 ledger
+PASS MAX_LEVEL redistributes by the mixed weights to non-cap companions and records full-cap budget exhaustion
+20 production-engine contribution XP scenarios passed

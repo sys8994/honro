@@ -6,7 +6,7 @@ const legacy=(profile,id)=>profile?.honroSplitCampaign?.version===1&&(!profile.h
 const content=(profile,id)=>legacy(profile,id)?G.HONRO_SPLIT_V1?.content.find(s=>s.id===id):null;
 const hero=u=>u.side===0&&!u.summoned&&!u.enthrall&&ALL.includes(u.cls);
 const active=b=>!!b&&!b.honroCustom&&[1,VERSION].includes(b.honroSplit?.version)&&b.honroStage>=24&&b.honroStage<=last(b.honroSplit);
-const fields=['shield','bound','mark','markSide','breaks','stun','curseTurns','curseDamage','curseAttack','curseArmor','curseOwner','lastStandUsed','healUsed','nextSummonDiscount','soulRemnants','jucheon','jucheonReady','swordChain','harmony','bladeStored','soulAffinityBonus','soulDefenseBonus','manifested','revealSpiritToParty','formDamageTakenBonus'];
+const fields=['shield','bound','mark','markSide','breaks','stun','curseTurns','curseDamage','curseAttack','curseArmor','curseOwner','honroDotSkill','honroDotReport','honroEarthSkill','honroEarthReport','lastStandUsed','healUsed','nextSummonDiscount','soulRemnants','jucheon','jucheonReady','swordChain','harmony','bladeStored','soulAffinityBonus','soulDefenseBonus','manifested','revealSpiritToParty','formDamageTakenBonus'];
 const clocks=['stunUntil','betrayalUntil','manifestedUntil','soulBonusUntil'];
 const nested={prepared:'expires',slowed:'expires',earthbind:'until',martialGuard:'round',bladeScreen:'round'};
 function snapshot(b,u){
@@ -92,8 +92,8 @@ function outcome(app,won){const b=app.engine?.b;if(!active(b))return;const s=b.h
 function attach(app,e){if(!active(e.b)||e.honroSplitAttached)return;e.honroSplitAttached=true;
  const next=e.newRound.bind(e);e.newRound=function(){
   for(const u of e.b.units.filter(hero))if(!u.dead){
-   if(u.honroCarriedCurse&&!u.curseOwner&&(u.curseTurns||0)>0&&u.curseDamage>0)e.hurt(u,u.curseDamage,'',false);
-   if(u.honroCarriedEarth&&u.earthbind&&!u.earthbind.owner&&u.earthbind.until>=e.b.round+1){u.slowed={factor:.24,expires:e.b.round+1};e.hurt(u,u.earthbind.damage,'',false,undefined,undefined,'normal','O10');}
+   if(u.honroCarriedCurse&&!u.curseOwner&&(u.curseTurns||0)>0&&u.curseDamage>0)e.hurt(u,u.curseDamage,'',false,undefined,undefined,'normal',undefined,{skill:u.honroDotSkill,honroReportSource:u.honroDotReport||{kind:'unresolved',skill:'unknown',id:null}});
+   if(u.honroCarriedEarth&&u.earthbind&&!u.earthbind.owner&&u.earthbind.until>=e.b.round+1){u.slowed={factor:.24,expires:e.b.round+1};e.hurt(u,u.earthbind.damage,'',false,undefined,undefined,'normal','O10',{skill:u.honroEarthSkill,honroReportSource:u.honroEarthReport||{kind:'unresolved',skill:'unknown',id:null}});}
   }
   return next();
  };

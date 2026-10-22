@@ -1,0 +1,29 @@
+PASS actual HP and shield are distinct, overkill excluded, final death once
+PASS valid multi-hits are separate HP intervals
+PASS effective heal excludes overheal and level normalization
+PASS environment final kill stays separate from XP max contributor
+PASS objective targets and summon despawn are never enemy final kills
+PASS missing old report starts partial and fresh begin starts complete
+PASS JSON Continue retains attempt; a new battle begins a new report
+PASS M05 accepted cast counts once for ten valid target HP intervals
+PASS summon keeps explicit seed owner and skill after caster removal
+PASS actual curse ticks preserve original DOT skill after caster death
+PASS friendly fire is separate; missing source IDs never become a hero
+PASS actual nonlethal and last-stand survival never create a final kill
+PASS combat + clear settlement matches actual retained XP and frozen report is immutable
+PASS level cap has actual zero XP, no phantom level beyond30
+PASS grant cumulative interval dedup and checkpoint retained XP are independent of path
+PASS actual M10 field healing excludes overheal and names the field skill
+PASS V2 and legacy V1 participant order follows the actual runtime team
+PASS reunion settlement names its paid range and real recipients only once
+PASS recruit XP floor alignment occurs after immutable reward snapshot
+PASS real unscaled time excludes modal/background/dialogue/loading and stops at victory
+PASS isolated debug, practice and custom reports cannot replace campaign latest
+PASS recursive Salheun records each HP interval once without hiding valid follow-up hits
+PASS actual soul share preserves distinct owner and summon HP intervals
+PASS actual eater capture/expiry never kills; transfer counts target HP once separately from shell
+PASS NPC final kill is separate from all participating heroes
+PASS persistent and delayed zones keep original cast skill without changing combat damage
+PASS projectile origin survives later capture/release without arbitrary hero attribution
+PASS timing explicitly ignores background and loading gaps at any playback speed
+PASS legacy in-flight provenance stays unresolved until a real new cast
