@@ -250,7 +250,7 @@ export class Renderer {
                 this.shake = Math.max(this.shake, Math.min(size / 35, 4));
         }
         if (kind === 'swordCut' || kind === 'circulation' || kind === 'qiBurst' || kind === 'fireBloom' || kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
-            this.fxs.push({ kind: kind as FX['kind'], x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: SKILL_FX_SECONDS[kind as keyof typeof SKILL_FX_SECONDS] ?? (kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6), color, size, text: e.text, critical:e.critical, x2: e.x2, y2: e.y2 });
+            this.fxs.push({ kind: kind as FX['kind'], x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: SKILL_FX_SECONDS[kind as keyof typeof SKILL_FX_SECONDS] ?? (kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6), color, size, text: e.text, critical:e.critical, lightningSeed:e.lightningSeed, x2: e.x2, y2: e.y2 });
         if (this.fxs.length > 370) {
             // Target lightning is a complete hit snapshot, never a particle budget.
             // Keep every live ray; only decorative effects use the existing cap.
@@ -271,7 +271,7 @@ export class Renderer {
             else if(f.kind==='circulation')drawCirculation(c,f.x,f.y,f.size,t);
             else if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
             else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
-            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
+            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t,f.lightningSeed);
             if(f.kind==='inkLine')line(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.color,f.size);
             if(f.kind==='skillGeometry'&&f.text)drawInkGeometry(c,JSON.parse(f.text),t);
             if(f.kind==='inkImpact')drawInkImpact(c,f.x,f.y,f.size,t);
@@ -587,7 +587,7 @@ export class Renderer {
             else if(f.kind==='circulation')drawCirculation(c,f.x,f.y,f.size,t);
             else if(f.kind==='qiBurst')drawQiBurst(c,f.x,f.y,f.size,t);
             else if(f.kind==='fireBloom')drawFireBloom(c,f.x,f.y,f.size,t);
-            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t);
+            else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t,f.lightningSeed);
             if (f.kind === 'spark') {
                 line(c, f.x, f.y, f.x - f.vx * .028, f.y - f.vy * .028, f.color, f.size);
             }

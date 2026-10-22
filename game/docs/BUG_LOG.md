@@ -4248,3 +4248,7 @@ M05는 착탄 0.35초 뒤 기존 천장 차폐 중심과 범위 피해 스냅샷
 ## 2026-10-22 — 천뢰호 복원·최신 휴식터 통합 후보
 
 승인 복원 a0189968을 최신 master62c03a0a와 병합하고 생성물을 합친 소스에서 재빌드했다. 실행 후보457822b7, master runtime/data/assets/map/config/CSS619파일·84아이콘·엔딩 보존, rich draw/대상역학·휴식터/출발·실제 Chromium/엔딩 Continue 검사를 통과했다. 옛 campaign-transition-regressions 첫 practice-save assertion은 동일 master에서도 재현되어 실패로 남긴다. 최종8JPG·명령/한계는 [통합 보고서](cheonroe-rich-effects-restoration/INTEGRATION.md)에 있다. 부모 최종 후보 signoff·master fast-forward/Pages는 대기하며 이번 작업에서 배포하지 않았다.
+
+## 2026-10-22 — 천뢰호 줄기별 변화·짧은 옆가지 후보
+
+최신 사용자 교정에 따라 M05의 시각 기하만 분리했다. 기존 모든 줄기는 같은 등분 구간·가지 시작/방향을 쓰고 선형 좌표 seed를 단일 sine noise에 넣어, 등간격 표적에서 형태의 반복이 두드러졌다. 시전 projectile ID/표적 ID를 혼합한 고정 seed와 성분별 독립 hash로 꺾임 위치·길이·좌우 패턴·진폭·가지 시작/방향을 바꾸고,6가지 뻗음은 원본 명목 길이의60%(±15%)로 조정한다. 원본의4층 빛·색·alpha·70%선폭·접점 광휘·9방전·.9초/3형태 위상과 머리 snapshot·1회 피해128.8/NPC94·.35초·차폐/범위/화면 밖 규칙을 보존한다. 기본/M04 렌더는 명령 단위로 원본과 같다. 집중 기하/역학·타입/빌드·web-split·휴식터 검사 및 실제 비교 JPG/한계는 `cheonroe-distinct-bolts/README.md`에 기록한다. 부모 최종 픽셀 검토 전 master/Pages에는 반영하지 않는다.

@@ -11,14 +11,21 @@ const plain=x=>JSON.parse(JSON.stringify(x));
 function reference(source){const exports={};vm.runInNewContext(ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2020}}).outputText,{exports,require:()=>({})});return exports;}
 const old=reference(historic(original)),initial=reference(historic(first)),reduced=reference(historic(base));
 const g=vm.createContext({console,performance});vm.runInContext(await buildCore(),g);const C=g.HONRO_CORE;
-function trace(draw,size,t,point){const strokes=[],fills=[],gradients=[];let path=[];
+function trace(draw,size,t,point,seed){const strokes=[],fills=[],gradients=[];let path=[];
  const c={save(){},restore(){},setLineDash(){},beginPath(){path=[];},moveTo(x,y){path.push([x,y]);},lineTo(x,y){path.push([x,y]);},stroke(){strokes.push({path:plain(path),width:this.lineWidth,alpha:this.globalAlpha,color:this.strokeStyle});},createRadialGradient(...args){const stops=[];gradients.push({args,stops});return {addColorStop(...v){stops.push(v);}};},arc(...args){path.push(args);},fill(){fills.push({path:plain(path),alpha:this.globalAlpha});}};
- draw(c,...point,size,t);return {strokes,fills,gradients};}
+ draw(c,...point,size,t,seed);return {strokes,fills,gradients};}
 const rows=[];
 for(const point of [[1000,-170,1000,940],[31,20,31,55],[200,180,550,650]])for(const t of [0,.02,.08,.25,.6,.98,1]){
  const actual=trace(C.drawLightningBolt,3.5,t,point),expected=trace(old.drawLightningBolt,3.5,t,point);
  assert.deepEqual(actual,expected,'same paths, color, alpha, glow, discharges and timing as original at size3.5');
  assert.deepEqual(actual,trace(initial.drawLightningBolt,3.5,t,point),'first per-target renderer preserved');
+ // M05 authorizes geometry changes only. Compare every other draw property.
+ const seed=C.cheonroeVisualSeed(17,'lightning-target-3'),m05=trace(C.drawLightningBolt,3.5,t,point,seed);
+ assert.deepEqual(m05,trace(C.drawLightningBolt,3.5,t,point,seed),'seeded repeat is exact');
+ assert.deepEqual(m05.strokes.map(({path,...style})=>style),actual.strokes.map(({path,...style})=>style),'M05 layers/width/alpha/color unchanged');
+ assert.deepEqual(m05.strokes.slice(28),actual.strokes.slice(28),'all nine contact discharges unchanged');
+ assert.deepEqual(m05.fills,actual.fills,'contact glow fill/envelope unchanged');
+ assert.deepEqual(m05.gradients,actual.gradients,'full glow radius/colors unchanged');
  const wide=trace(old.drawLightningBolt,5,t,point);
  if(actual.strokes.length){assert.equal(actual.strokes.length,37,'four layers × (trunk + six forks), nine discharges');
   for(let i=0;i<28;i++)assert(Math.abs(actual.strokes[i].width/wide.strokes[i].width-.7)<1e-12,'all trunk/fork layers exactly 30% narrower');
@@ -36,4 +43,4 @@ assert(Math.abs(C.SKILLS.M05.damage/112-1.15)<1e-12);assert.equal(C.SKILLS.LM05.
 const art=readFileSync('shared/engine/src/art.ts','utf8');assert(!art.includes('cheonroeVisualGaps'),'no gap reductions');
 mkdirSync('_local/reports/cheonroe-rich-effects',{recursive:true});
 writeFileSync('_local/reports/cheonroe-rich-effects/visual-contracts.json',JSON.stringify({original,first,base,status:'passed',rows,geometryCases:9,widthRatio:.7,fxLife:C.SKILL_FX_SECONDS.lightningBolt},null,2)+'\n');
-console.log('PASS rich effects: 21 actual command traces vs original + first implementation, 9 exact path cases, 4 trunk/fork layer ratios, unchanged sparks/M04/timing, damage and legacy values');
+console.log('PASS rich effects: 21 actual command traces vs original + first implementation, 9 exact path cases, 4 trunk/fork layer ratios, M05 geometry-only change, unchanged sparks/M04/timing, damage and legacy values');

@@ -480,6 +480,7 @@ export interface Battle {
     session: string;
 }
 export interface FX {
+    lightningSeed?: number;
     critical?: boolean;
     kind: 'swordCut' | 'circulation' | 'qiBurst' | 'fireBloom' | 'lightningBolt' | 'inkImpact' | 'inkLine' | 'skillGeometry' | 'burst' | 'ring' | 'text' | 'line' | 'meteor' | 'slash' | 'spark' | 'rune';
     x: number;
@@ -527,6 +528,7 @@ export interface Profile {
     migrated?: boolean;
 }
 export interface Event {
+    lightningSeed?: number;
     damage?: number;
     targetId?: string;
     attackId?: string;

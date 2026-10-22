@@ -1,3 +1,4 @@
+import {cheonroeVisualSeed} from './lightningGeometry';
 import {gateSource} from './gateTravel';
 import {migrateBeastSkills} from './beastMelee';
 import {validTerrainContactPose} from './locomotion';
@@ -336,7 +337,7 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
     // Clip the visual to the underside of overhead terrain. The original
     // central column still decides damage; do not add per-enemy ceiling gates.
     const ceiling=e.collision(head,sky,3,p.owner,[],false);
-    e.emit('fx',{name:'lightningBolt',x:head.x,y:ceiling?.y??sky.y,x2:head.x,y2:head.y,color:'#a8cfff',size:3.5});
+    e.emit('fx',{name:'lightningBolt',x:head.x,y:ceiling?.y??sky.y,x2:head.x,y2:head.y,color:'#a8cfff',size:3.5,lightningSeed:cheonroeVisualSeed(p.id,t.id)});
    }
    e.blast(end.x,end.y,p.blast,p.damage,p.owner,false,p,0,undefined,targets);e.remove(p);
   }return true;

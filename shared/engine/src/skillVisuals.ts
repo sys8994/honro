@@ -1,3 +1,5 @@
+import {cheonroeLightningPaths} from './lightningGeometry';
+export {cheonroeLightningPaths,cheonroeVisualSeed} from './lightningGeometry';
 import {stakeRanges} from './totemBehavior';
 import {gateActivationOutline} from './gateTravel';
 import {drawWarriorProjectile,drawMeleeGuide} from './warriorVisuals';
@@ -234,8 +236,8 @@ export function lightningPaths(x:number,y:number,x2:number,y2:number,phase=0){
  }
  return {trunk,forks};
 }
-export function drawLightningBolt(c:C,x:number,y:number,x2:number,y2:number,size:number,t:number){
- if(t>=1)return;const life=envelope(t),{trunk,forks}=lightningPaths(x,y,x2,y2,Math.min(2,Math.floor(t*7)));
+export function drawLightningBolt(c:C,x:number,y:number,x2:number,y2:number,size:number,t:number,lightningSeed?:number){
+ if(t>=1)return;const life=envelope(t),phase=Math.min(2,Math.floor(t*7)),{trunk,forks}=lightningSeed===undefined?lightningPaths(x,y,x2,y2,phase):cheonroeLightningPaths(x,y,x2,y2,phase,lightningSeed);
  c.save();c.setLineDash([]);c.lineCap='round';c.lineJoin='round';c.globalCompositeOperation='lighter';
  const stroke=(ps:{x:number;y:number}[],width:number,alpha:number,color:string)=>{c.strokeStyle=color;c.lineWidth=width;c.globalAlpha=life*alpha;c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();};
  for(const [width,alpha,col] of [[size*7,.10,'#548fe9'],[size*3,.30,'#91c3ff'],[size,.95,'#e2f3ff'],[Math.max(.8,size*.35),1,'#ffffff']] as [number,number,string][]){stroke(trunk,width,alpha,col);for(const [i,ps] of forks.entries())stroke(ps,width*.42,alpha*(.45+i*.055),col);}
