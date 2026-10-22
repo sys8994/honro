@@ -34,21 +34,21 @@ with sync_playwright() as pw:
     assert p.evaluate('HonroAct2.current(HonroApp.engine.b).id')=='resident'
     shot(p,'fresh-rescue-objective-390x844');rows.append({'case':'fresh entry mobile current objective','text':goal,'steps':p.evaluate('HonroAct2.steps(HonroApp.engine.b)')});ctx.close()
     ctx,p=page_for(saved)
-    p.locator('[data-action="continue"]').click();p.wait_for_function('HonroApp.engine?.b.honroStage===11&&HonroApp.dialogue?.index===0',timeout=90000)
+    p.locator('[data-action="continue"]').click();p.wait_for_function('HonroApp.engine?.b.honroStage===11&&HonroApp.dialogue?.index===0&&HonroApp.engine.b.honroStage11QuestRevision===1',timeout=90000)
     assert p.evaluate('HonroApp.engine.b.round')==20
     assert p.evaluate('HonroApp.dialogue.lines.map(l=>l.slice(0,2))')==[l[:2] for l in saved['honroBattle']['honroStory']['lines']]
-    before=p.evaluate(physical);p.evaluate('HonroAct2.tick(HonroApp,0)');assert p.evaluate(physical)==before
+    assert '흔적 조사' not in p.locator('#objective-text').inner_text();before=p.evaluate(physical);p.evaluate('HonroAct2.tick(HonroApp,0)');assert p.evaluate(physical)==before
     assert p.evaluate('HonroApp.engine.b.phase')=='aim';assert p.evaluate('HonroApp.dialogue.index')==0
     p.wait_for_function('HonroAuthoredFarArt.ready(11)',timeout=90000);p.evaluate('HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,.6,false,0)')
     shot(p,'round20-resident-dialogue-1of2-390x844')
-    p.locator('[data-action="dialogue-next"]').click();p.wait_for_function('HonroApp.dialogue?.index===1')
-    p.wait_for_timeout(180);p.locator('[data-action="dialogue-skip"]').click();p.wait_for_function('!HonroApp.dialogue')
+    p.keyboard.press('Enter');p.wait_for_function('HonroApp.dialogue?.index===1')
+    p.wait_for_timeout(180);p.keyboard.press('Enter');p.wait_for_function('!HonroApp.dialogue')
     p.evaluate('HonroAct2.tick(HonroApp,0)');assert p.evaluate('HonroApp.engine.b.phase')=='won';assert p.evaluate('HonroApp.engine.b.round')==20
     assert p.evaluate('HonroAct2.memory(HonroApp.engine.b).checkpoints.filter(c=>c.id==="trace").length')==1
     p.evaluate('HonroApp.outcome()')
     for _ in range(30):
         p.wait_for_timeout(180)
-        if p.evaluate('!!HonroApp.dialogue'):p.locator('[data-action="dialogue-skip"]').click()
+        if p.evaluate('!!HonroApp.dialogue'):p.keyboard.press('Enter')
         elif p.evaluate('!!HonroApp.profile.cleared[11]'):break
         else:p.evaluate('HonroApp.outcome()')
     assert p.evaluate('!!HonroApp.profile.cleared[11]')
