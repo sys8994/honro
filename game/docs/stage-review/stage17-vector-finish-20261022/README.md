@@ -21,3 +21,5 @@ Library `libfile_979eb1e9bc4c8191afca6b4db53ddcdf`/stage17-before-center.png의 
 ## 공유 저작 처리 보존점
 
 `authored-rock-planes.mjs`로 반올림/색 명도·solid 단면·정적 면 기록만 추출했다. stage15/16 고유 mesh/좌표·팔레트/후면 자산은 그대로 두었다. `tests/authored-rock-planes-preservation.mjs`에서 두 author 각각6544 전체 campaign을 바이트까지 재현하고 반복 멱등이며 현재 두 승인 장을 exact 보존하는 것을 확인했다. runtime/common renderer는 바꾸지 않았고 이 문서 단계에서는 campaign도 쓰지 않았다.
+
+공유 처리 검사 첫 실행에서 SVG compile의 빈 gradient 사전은 null prototype, JSON 입력은 일반 object인 메모리 표현 차이로 strict 비교가 실패했다. 승인 전체 JSON 바이트 비교는 이미 같았다. 검사 대상을 실제 저장 JSON으로 직렬화한 뒤 재비교하도록 교정하며 자산/런타임/저장 바이트는 바꾸지 않았다.
