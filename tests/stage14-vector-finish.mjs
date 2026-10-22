@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import vm from 'node:vm';
+import {createCanvas,Path2D as NativePath,DOMMatrix} from '@napi-rs/canvas';
+import {runtimeParts} from '../shared/build.mjs';
+import {applyStage14VectorFinish} from '../tools/environment/stage14-vector-finish.mjs';
+const base='1f1b267c2d23bc5975af5841c560e4413291330b',before=JSON.parse(execFileSync('git',['show',base+':shared/data/campaign.json'],{maxBuffer:40e6})),after=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
+const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex');
+const normalized=structuredClone(after),s=normalized.stages[13],old=before.stages[13],rearId='stage14:vertical-cavern-depth';
+delete s.design.vertical14Finish;s.design.space.terrainPlanes=old.design.space.terrainPlanes;s.design.vertical14Art.terrainPlaneIds=old.design.vertical14Art.terrainPlaneIds;
+const rear=normalized.library.find(a=>a.id===rearId),oldRear=before.library.find(a=>a.id===rearId);rear.vector=oldRear.vector;rear.params=oldRear.params;
+assert.equal(hash(normalized),hash(before),'Only Stage14 material/rear vector and their visual metadata change');
+assert.deepEqual(after.stages[13].design.space.routes,old.design.space.routes);assert.equal(old.design.space.routes.length,17);
+assert.equal(hash(JSON.parse(JSON.stringify(applyStage14VectorFinish(structuredClone(before))))),hash(after),'Reproducible source');
+assert.equal(hash(JSON.parse(JSON.stringify(applyStage14VectorFinish(structuredClone(after))))),hash(after),'Idempotent source');
+for(const f of ['shared/runtime/renderer.js','shared/runtime/main.js','shared/map/bounds.js','shared/runtime/act2.js','shared/runtime/act2-spatial-art.js','shared/runtime/stage14-vertical.js','shared/runtime/act2-pacing.js','shared/data/narrative-current.json'])assert.equal(await readFile(f,'utf8'),execFileSync('git',['show',base+':'+f],{maxBuffer:8e6}).toString(),f+' preserved');
+let allocations=0;const Path2D=new Proxy(NativePath,{construct(t,args){allocations++;return Reflect.construct(t,args);}}),g=vm.createContext({console,performance,structuredClone,Path2D,DOMMatrix,document:{createElement:()=>createCanvas(64,64)},navigator:{userAgent:'stage14-material-check'},matchMedia:()=>({matches:true})});g.window=g;
+for(const source of await runtimeParts({vector:true,render:true}))vm.runInContext(source,g);
+const p=g.HONRO_PROJECT,st=p.stages[13],b=g.HonroMaps.createBattle(st,p),art=g.HonroAct2SpatialArt,terrains=g.HonroTerrainDomain.render(b),cv=createCanvas(1440,900),c=cv.getContext('2d'),rows=[];
+assert.equal(st.design.space.terrainPlanes.length,after.stages[13].design.space.terrainPlanes.length,'Production planes');
+const original=JSON.stringify(b),prepared=[];c.setTransform(.06,0,0,.06,0,0);
+for(const t of terrains){if(t.id==='gate-bridge')continue;const q=art.prepareTerrain(t,b);assert(q.authoredPlanes.length>0,t.id);assert.equal(q,art.prepareTerrain(t,b));art.terrain(c,t,b);prepared.push([t,q]);rows.push({id:t.id,planes:q.authoredPlanes.length});}
+const asset=p.library.find(a=>a.id===rearId);assert.deepEqual(Array.from(g.HonroVectorArt.validate(asset.vector)),[]);const vector=g.HonroVectorArt.prepare(asset.vector);g.HonroVectorArt.draw(c,asset.vector);
+allocations=0;for(let i=0;i<3;i++){for(const[t,q]of prepared){assert.equal(q,art.prepareTerrain(t,b));art.terrain(c,t,b);}assert.equal(vector,g.HonroVectorArt.prepare(asset.vector));g.HonroVectorArt.draw(c,asset.vector);}assert.equal(allocations,0,'No new paths during reused material/SVG draws');const warmPaths=allocations;
+assert.equal(JSON.stringify(b),original,'Render purity');assert.equal(c.globalAlpha,1);assert(Math.abs(c.getTransform().a-.06)<1e-7);
+const[t,q]=prepared[0];assert.notEqual(q,art.prepareTerrain(t,{...b,sceneVersion:(b.sceneVersion||0)+1}));
+const manifest=JSON.parse(await readFile('web/manifest.json','utf8')),publishedFiles=new Map();
+assert(manifest.publishedGenerations.some(g=>g.sourceSha===base&&g.publishedAt==='2026-10-22T16:46:17Z'));
+for(const gen of manifest.publishedGenerations)for(const f of gen.files)publishedFiles.set(f.path,f);
+for(const f of publishedFiles.values()){const bytes=await readFile(f.path);assert.equal(bytes.length,f.bytes,f.path);assert.equal(createHash('sha256').update(bytes).digest('hex'),f.sha256,f.path);}
+const report={pass:true,base,protectedProjectHash:hash(normalized),routes17Preserved:true,geometryActorsObjectivesPacingNarrativeUnchanged:true,other29AndOtherLibraryEqual:true,renderPure:true,staticPathReuse:true,cachedDrawNewPaths:warmPaths,sceneVersionInvalidation:true,prepared:rows,publishedGraphs:manifest.publishedGenerations.length,protectedPublishedFiles:publishedFiles.size,scope:'Data equality, current production preparation/draw and published-file integrity. Not campaign completion, art approval or dynamic FPS.'};
+await mkdir('_local/reports/stage14-vector-finish',{recursive:true});await writeFile('_local/reports/stage14-vector-finish/preservation.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));

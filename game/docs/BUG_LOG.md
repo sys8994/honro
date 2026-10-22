@@ -4488,3 +4488,8 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 ## 2026-10-22 — 최신 master와 부모 서사 최종 통합
 
 5bac 확정 catalogue를 byte-identical로 유지하며 최신 master63cc의 초상/NPC/모바일·11장 단순화·방향/13장 경계·7일 발행 보호를 통합했다. 11장의 별도 원고 재생성을 catalogue 메타데이터 참조로 줄였고 마지막 quest author/진행 대화 cursor를 유지한다. 검사한 코드+생성물be3cb71c. 실제 UI는 도착1+구조4+기존 기술 안내1이며 구형 도착3행이 사라졌다. 30current/40legacy·20턴 저장·934retry A/B·10safe/27void·identity/build/web/pool/발행 보호 통과. 성공 확인한63cc만 발행 이력7번째로 등록했고 master 원본467 immutable 삭제0이다. 초기72요청/4,417,039B로 AA76 대비+14,095B, 최초 기준 대비+5.54%가 남는다. master/Pages는 미변경. [정확한 SHA·사진·검사·한계](story/narrative-final-current-release-20261022/README.md).
+
+
+## 2026-10-22 — 14장 전체 암체 정적 층리 보완 중
+
+1f1b267의 상층 거대 단색/스탬프와 후벽 판형 인상을 기존 공통 terrainPlanes·SVG compiler의 연결 층리로 교체한다. 집 기초·목교와 17경로/배우/목표/페이싱/대사·타29장/공통 렌더러를 보존했다. build·정적 prepare/Path2D 재사용·렌더 순수성·프로젝트 불변 및 공개6그래프437파일 보존 통과. 실제 외곽 팬에서 기존 후벽의 수직 끝을 발견해 후속 시각 윤곽 교정 중이며 미술/배포 완료가 아니다. [설계·회차·원자료·한계](stage-review/stage14-vector-finish-20261022/README.md).
