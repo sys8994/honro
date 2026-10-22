@@ -55,6 +55,7 @@ with sync_playwright() as p:
             page.locator('.title-actions button.primary').click()
             page.wait_for_function('HonroApp.engine?.b.honroStage===11')
             assert page.evaluate('HonroApp.engine.b.round') == saved['round'], 'Continue must preserve the checkpoint, never silently restart at entry'
+            page.wait_for_function('HonroAuthoredFarArt.ready(HonroApp.engine.b.honroStage)')
             page.evaluate('''()=>{const a=HonroApp;while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;window.savedProfile=structuredClone(a.profile);savedProfile.honroBattle=structuredClone(a.engine.b);}''')
             for scenario in os.environ.get('SCENARIOS', 'idle,zoom-in,zoom-out,pan,zoom-cycle,fire').split(','):
                 page.evaluate('''()=>{seedRandom();const a=HonroApp;a.profile=structuredClone(savedProfile);a.continue();while(a.dialogue)HonroStory.finish(a);a.turnNotice=null;a.done=false;a.dirty=false;a.prev=0;a.uiAge=0;const u=a.engine.active;Object.assign(a.scene,{manual:true,x:u.x,y:u.y-140,scale:.68,storyTween:null,goalFocus:null,storyFrozen:false,focusUntil:0,speakerUntil:0});}''')

@@ -1,0 +1,433 @@
+[
+  {
+    "save": "round15",
+    "saveSha256": "06fb9c904f9d3c3a6dee5c88e8b5bc8880489f22506d8c1b3d44ef38e10608d5",
+    "pixelsExact": true,
+    "comparisons": [
+      {
+        "view": 0,
+        "exact": true,
+        "maxChannelDifference": 0,
+        "meanChannelDifference": 0.0,
+        "bbox": null
+      },
+      {
+        "view": 1,
+        "exact": true,
+        "maxChannelDifference": 0,
+        "meanChannelDifference": 0.0,
+        "bbox": null
+      },
+      {
+        "view": 2,
+        "exact": true,
+        "maxChannelDifference": 0,
+        "meanChannelDifference": 0.0,
+        "bbox": null
+      },
+      {
+        "view": 3,
+        "exact": true,
+        "maxChannelDifference": 0,
+        "meanChannelDifference": 0.0,
+        "bbox": null
+      },
+      {
+        "view": 4,
+        "exact": true,
+        "maxChannelDifference": 0,
+        "meanChannelDifference": 0.0,
+        "bbox": null
+      },
+      {
+        "view": 5,
+        "exact": true,
+        "maxChannelDifference": 0,
+        "meanChannelDifference": 0.0,
+        "bbox": null
+      },
+      {
+        "view": 6,
+        "exact": true,
+        "maxChannelDifference": 0,
+        "meanChannelDifference": 0.0,
+        "bbox": null
+      }
+    ],
+    "pixelSha256": {
+      "before": [
+        "4c21ca0d8bcc0e6508d014f1324e5081954b343ec5b49811ba112c5f467f0b51",
+        "65a9271510d252a1034181b04960a1e83c84fce6d8d22e50b1710da32b8d0c46",
+        "73d0ae3591de61e3841e3d6884910d38030c4e927146eb5adfae392d82f31109",
+        "7c6130eb88c26755c5fad1db950c1d1b2f9be3f073850ae52494b4b6b9b9a7df",
+        "25e642b9d0d82f1b35ab37664119045198bf78c0e6883150a3859202a84c9bc1",
+        "73d0ae3591de61e3841e3d6884910d38030c4e927146eb5adfae392d82f31109",
+        "4c21ca0d8bcc0e6508d014f1324e5081954b343ec5b49811ba112c5f467f0b51"
+      ],
+      "after": [
+        "4c21ca0d8bcc0e6508d014f1324e5081954b343ec5b49811ba112c5f467f0b51",
+        "65a9271510d252a1034181b04960a1e83c84fce6d8d22e50b1710da32b8d0c46",
+        "73d0ae3591de61e3841e3d6884910d38030c4e927146eb5adfae392d82f31109",
+        "7c6130eb88c26755c5fad1db950c1d1b2f9be3f073850ae52494b4b6b9b9a7df",
+        "25e642b9d0d82f1b35ab37664119045198bf78c0e6883150a3859202a84c9bc1",
+        "73d0ae3591de61e3841e3d6884910d38030c4e927146eb5adfae392d82f31109",
+        "4c21ca0d8bcc0e6508d014f1324e5081954b343ec5b49811ba112c5f467f0b51"
+      ]
+    },
+    "checks": {
+      "before": {
+        "renderPreserved": true,
+        "continuePreserved": true,
+        "snapshots": [
+          {
+            "i": 0,
+            "cache": {
+              "worldBuilds": 1,
+              "worldBuildMs": 41.3000000002794,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 0,
+              "bgHits": 0,
+              "domainCanvasAllocations": 4,
+              "domainTileBuilds": 4,
+              "screenWorldBytes": 0,
+              "screenBackgroundBytes": 0,
+              "worldBytes": 4260096,
+              "worldScale": 0.3535533905932738,
+              "backgroundBytes": 0
+            },
+            "tiles": 4,
+            "heap": 29226868
+          },
+          {
+            "i": 29,
+            "cache": {
+              "worldBuilds": 3,
+              "worldBuildMs": 57.100000001024455,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 33,
+              "bgHits": 20,
+              "domainCanvasAllocations": 14,
+              "domainTileBuilds": 14,
+              "screenBuilds": 10,
+              "screenHits": 35,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 27106551
+          },
+          {
+            "i": 59,
+            "cache": {
+              "worldBuilds": 6,
+              "worldBuildMs": 74.29999999981374,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 74,
+              "bgHits": 40,
+              "domainCanvasAllocations": 28,
+              "domainTileBuilds": 28,
+              "screenBuilds": 20,
+              "screenHits": 70,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 18628723
+          },
+          {
+            "i": 89,
+            "cache": {
+              "worldBuilds": 9,
+              "worldBuildMs": 100.09999999869615,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 107,
+              "bgHits": 62,
+              "domainCanvasAllocations": 42,
+              "domainTileBuilds": 42,
+              "screenBuilds": 29,
+              "screenHits": 107,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 17671571
+          },
+          {
+            "i": 119,
+            "cache": {
+              "worldBuilds": 12,
+              "worldBuildMs": 118.39999999757856,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 148,
+              "bgHits": 82,
+              "domainCanvasAllocations": 56,
+              "domainTileBuilds": 56,
+              "screenBuilds": 39,
+              "screenHits": 142,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 16369735
+          },
+          {
+            "i": 149,
+            "cache": {
+              "worldBuilds": 15,
+              "worldBuildMs": 140.49999999813735,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 181,
+              "bgHits": 104,
+              "domainCanvasAllocations": 70,
+              "domainTileBuilds": 70,
+              "screenBuilds": 48,
+              "screenHits": 179,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 20659411
+          },
+          {
+            "i": 179,
+            "cache": {
+              "worldBuilds": 18,
+              "worldBuildMs": 159.39999999897555,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 222,
+              "bgHits": 124,
+              "domainCanvasAllocations": 84,
+              "domainTileBuilds": 84,
+              "screenBuilds": 58,
+              "screenHits": 214,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 19161371
+          }
+        ],
+        "round": 15,
+        "error": null,
+        "errors": [],
+        "storageReloadPreserved": true,
+        "cacheContract": null,
+        "manifestSha256": "1c5e70096bb567de36118a9525bcf0b13dfd126911d5ef025d324c9f91a700bd"
+      },
+      "after": {
+        "renderPreserved": true,
+        "continuePreserved": true,
+        "snapshots": [
+          {
+            "i": 0,
+            "cache": {
+              "worldBuilds": 1,
+              "worldBuildMs": 59.10000000009313,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 0,
+              "bgHits": 0,
+              "domainCanvasAllocations": 4,
+              "domainTileBuilds": 4,
+              "screenWorldBytes": 0,
+              "screenBackgroundBytes": 0,
+              "worldBytes": 4260096,
+              "worldScale": 0.3535533905932738,
+              "backgroundBytes": 0
+            },
+            "tiles": 4,
+            "heap": 27962372
+          },
+          {
+            "i": 29,
+            "cache": {
+              "worldBuilds": 3,
+              "worldBuildMs": 78.79999999934807,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 33,
+              "bgHits": 20,
+              "domainCanvasAllocations": 14,
+              "domainTileBuilds": 14,
+              "screenBuilds": 10,
+              "screenHits": 35,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 27981999
+          },
+          {
+            "i": 59,
+            "cache": {
+              "worldBuilds": 6,
+              "worldBuildMs": 99.09999999869615,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 74,
+              "bgHits": 40,
+              "domainCanvasAllocations": 28,
+              "domainTileBuilds": 28,
+              "screenBuilds": 20,
+              "screenHits": 70,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 19544303
+          },
+          {
+            "i": 89,
+            "cache": {
+              "worldBuilds": 9,
+              "worldBuildMs": 131.89999999850988,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 107,
+              "bgHits": 62,
+              "domainCanvasAllocations": 42,
+              "domainTileBuilds": 42,
+              "screenBuilds": 29,
+              "screenHits": 107,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 18506115
+          },
+          {
+            "i": 119,
+            "cache": {
+              "worldBuilds": 12,
+              "worldBuildMs": 150.19999999878928,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 148,
+              "bgHits": 82,
+              "domainCanvasAllocations": 56,
+              "domainTileBuilds": 56,
+              "screenBuilds": 39,
+              "screenHits": 142,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 16624451
+          },
+          {
+            "i": 149,
+            "cache": {
+              "worldBuilds": 15,
+              "worldBuildMs": 173.19999999785796,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 181,
+              "bgHits": 104,
+              "domainCanvasAllocations": 70,
+              "domainTileBuilds": 70,
+              "screenBuilds": 48,
+              "screenHits": 179,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 23337155
+          },
+          {
+            "i": 179,
+            "cache": {
+              "worldBuilds": 18,
+              "worldBuildMs": 198.0999999982305,
+              "bgBuilds": 0,
+              "bgBuildMs": 0,
+              "worldHits": 222,
+              "bgHits": 124,
+              "domainCanvasAllocations": 84,
+              "domainTileBuilds": 84,
+              "screenBuilds": 58,
+              "screenHits": 214,
+              "screenWorldBytes": 1010880,
+              "screenBackgroundBytes": 1010880,
+              "worldBytes": 6390144,
+              "worldScale": 0.68,
+              "backgroundBytes": 0
+            },
+            "tiles": 6,
+            "heap": 21871083
+          }
+        ],
+        "round": 15,
+        "error": null,
+        "errors": [],
+        "storageReloadPreserved": true,
+        "cacheContract": {
+          "passed": true,
+          "checks": [
+            "camera/content invalidation",
+            "new pixel replacement",
+            "previous backing release",
+            "resize release",
+            "alpha fallback",
+            "composite fallback",
+            "6M pixel cap"
+          ],
+          "stats": {
+            "worldBuilds": 0,
+            "worldBuildMs": 0,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 0,
+            "bgHits": 0,
+            "screenBuilds": 3,
+            "screenWorldBytes": 0,
+            "screenBackgroundBytes": 0,
+            "worldBytes": 0,
+            "worldScale": 0,
+            "backgroundBytes": 0
+          }
+        },
+        "manifestSha256": "1c5e70096bb567de36118a9525bcf0b13dfd126911d5ef025d324c9f91a700bd"
+      }
+    }
+  }
+]

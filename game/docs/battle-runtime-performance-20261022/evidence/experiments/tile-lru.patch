@@ -1,0 +1,46 @@
+diff --git a/shared/runtime/renderer.js b/shared/runtime/renderer.js
+index c32267f7..6d4047f6 100644
+--- a/shared/runtime/renderer.js
++++ b/shared/runtime/renderer.js
+@@ -138,22 +138,24 @@
+             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
+             // Pixel-aligned clips consume each gutter sample exactly once.
+             const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=b.honroTerrainBounds,
+-                pooled=!!G.HonroPaintedPresentation?.forBattle(b)?.cachedWorld,key=this._worldCacheKey(b,w),limit=pooled?(w<900?20:48):(w<900?12:24),
+-                contentKey=pooled?key.replace(`${b.width}x${b.height}:${rs.toFixed(3)}:`,`${b.width}x${b.height}:LOD:`):key;
+-            let q=this._domainTiles;if(!q||q.key!==contentKey){if(pooled&&q)for(const tile of q.tiles.values()){tile.canvas.width=1;tile.canvas.height=1;}q=this._domainTiles={key:contentKey,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
++                painted=!!G.HonroPaintedPresentation?.forBattle(b)?.cachedWorld,key=this._worldCacheKey(b,w),limit=painted?(w<900?20:48):(w<900?12:24),
++                contentKey=key.replace(`${b.width}x${b.height}:${rs.toFixed(3)}:`,`${b.width}x${b.height}:LOD:`);
++            // Keep each exact raster scale under the same bounded LRU. Zooming
++            // back must not discard every vector tile or allocate new surfaces.
++            let q=this._domainTiles;if(!q||q.key!==contentKey){if(q)for(const tile of q.tiles.values()){tile.canvas.width=1;tile.canvas.height=1;}q=this._domainTiles={key:contentKey,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
+             const minX=Math.floor(Math.max(v.left,domain.left)/size),maxX=Math.floor(Math.min(v.right,domain.right)/size),
+                 minY=Math.floor(Math.max(v.top,domain.top)/size),maxY=Math.floor(Math.min(v.bottom,domain.bottom)/size),terrain=G.HonroTerrainDomain.render(b);
+-            const wanted=pooled?new Set():null;if(pooled)for(let y=minY;y<=maxY;y++)for(let x=minX;x<=maxX;x++)wanted.add(rs+':'+x+':'+y);
++            const wanted=new Set();for(let y=minY;y<=maxY;y++)for(let x=minX;x<=maxX;x++)wanted.add(rs+':'+x+':'+y);
+             const old=this._staticCacheBuild;this._staticCacheBuild=true;
+             for(let y=minY;y<=maxY;y++)for(let x=minX;x<=maxX;x++){
+-                const id=(pooled?rs+':':'')+x+':'+y;let tile=q.tiles.get(id);if(tile){q.tiles.delete(id);q.tiles.set(id,tile);this._cacheStats.worldHits++;}
++                const id=rs+':'+x+':'+y;let tile=q.tiles.get(id);if(tile){q.tiles.delete(id);q.tiles.set(id,tile);this._cacheStats.worldHits++;}
+                 else{const start=performance.now();let cv;
+                     // Protect this frame's full working set while reusing the
+                     // oldest off-screen canvas across positions/resolutions.
+-                    if(pooled&&q.tiles.size>=limit)for(const [oldId,prior]of q.tiles)if(!wanted.has(oldId)){q.tiles.delete(oldId);cv=prior.canvas;this._cacheStats.domainCanvasReuses=(this._cacheStats.domainCanvasReuses||0)+1;break;}
+-                    if(pooled&&!cv&&q.tiles.size>=limit){const [oldId,prior]=q.tiles.entries().next().value;q.tiles.delete(oldId);cv=prior.canvas;this._cacheStats.domainCanvasReuses=(this._cacheStats.domainCanvasReuses||0)+1;}
++                    if(q.tiles.size>=limit)for(const [oldId,prior]of q.tiles)if(!wanted.has(oldId)){q.tiles.delete(oldId);cv=prior.canvas;this._cacheStats.domainCanvasReuses=(this._cacheStats.domainCanvasReuses||0)+1;break;}
++                    if(!cv&&q.tiles.size>=limit){const [oldId,prior]=q.tiles.entries().next().value;q.tiles.delete(oldId);cv=prior.canvas;this._cacheStats.domainCanvasReuses=(this._cacheStats.domainCanvasReuses||0)+1;}
+                     if(!cv){cv=this._makeLayerCanvas(px+gutter*2,px+gutter*2);this._cacheStats.domainCanvasAllocations=(this._cacheStats.domainCanvasAllocations||0)+1;}
+-                    const cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;if(pooled){cc.setTransform(1,0,0,1,0,0);cc.clearRect(0,0,cv.width,cv.height);}cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
++                    const cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(1,0,0,1,0,0);cc.clearRect(0,0,cv.width,cv.height);cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
+                     const landmarks=(G.HonroTerrainDomain.materialLandmarks(b)).filter(l=>this._landmarkVisible(l,{left,top,right:left+size,bottom:top+size}));
+                     this._landmarkLayer(cc,landmarks,'back');this._landmarkLayer(cc,landmarks,'structural-back');
+                     for(const t of terrain)if(!t.broken&&t.x+t.w>=left&&t.x<=left+size&&t.y+t.h>=top&&t.y<=top+size)this.terrain(cc,t);
+@@ -165,7 +167,7 @@
+                 c.save();c.beginPath();c.rect((sx-matrix.e)/matrix.a,(sy-matrix.f)/matrix.d,(ex-sx)/matrix.a,(ey-sy)/matrix.d);c.clip();c.drawImage(tile.canvas,0,0,px+gutter*2,px+gutter*2,tile.left-gutter/rs,tile.top-gutter/rs,size+gutter*2/rs,size+gutter*2/rs);c.restore();
+             }
+             this._staticCacheBuild=old;
+-            while(q.tiles.size>limit)q.tiles.delete(q.tiles.keys().next().value);
++            while(q.tiles.size>limit){const id=q.tiles.keys().next().value,tile=q.tiles.get(id);q.tiles.delete(id);tile.canvas.width=1;tile.canvas.height=1;}
+             this._staticWorldCache={key,rs,bytes:q.tiles.size*(px+gutter*2)**2*4};
+         }
+         renderCacheStats(){return{...this._cacheStats,screenWorldBytes:this._screenWorldCache?.bytes||0,screenBackgroundBytes:this._screenBackgroundCache?.bytes||0,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}
