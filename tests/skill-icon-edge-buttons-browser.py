@@ -34,9 +34,19 @@ def frames(p, selector, name):
     data = p.locator(selector).evaluate_all(FRAME)
     check(name, len(data)>0 and all(x['radius']=='0px' and x['imageRadius']=='0px' and x['padding']=='0px' and x['margin']=='0px' and max(map(abs,x['gap']+x['imageGap']))<.6 for x in data), data)
 
-def training(p):
+def training(p, review=False):
     p.evaluate('HonroApp.startTraining()')
     p.wait_for_selector('.training-dialog')
+    if review:
+        p.locator('[data-training-action=branch][data-value="0"]').tap()
+        frames(p,'.training-card i:has(>.skill-art),.training-detail-name i:has(>.skill-art)','허공터 선택창 단일 프레임')
+        shot(p,'training-library-390')
+        p.locator('.training-detail-name').scroll_into_view_if_needed();shot(p,'training-detail-390')
+        p.locator('[data-training-action=branch][data-value="3"]').tap()
+        p.locator('[data-training-action=skill]').first.tap()
+        frames(p,'.training-card i:has(>.skill-art),.training-detail-name i:has(>.skill-art)','허공터 상시 선택 프레임')
+        check('허공터 선택 표시와 카드 모서리 보존',p.locator('.training-card[aria-pressed=true]').evaluate("e=>getComputedStyle(e).borderRadius==='10px'&&getComputedStyle(e.querySelector('i')).borderColor==='rgb(240, 198, 109)'"))
+        shot(p,'training-passive-390')
     p.locator('[data-training-action=apply]').tap()
     p.wait_for_selector('#combat-skills .skill-button')
     hud(p)
@@ -78,7 +88,7 @@ with sync_playwright() as pw, serve_game() as base:
         p.locator('[data-action=slot][data-slot="1"]').tap()
         frames(p,'.loadout-compare-card .skill-stamp,.equip-option .skill-stamp','장착 비교 및 목록')
         shot(p,'equip-390');p.evaluate('HonroApp.close()')
-        training(p);frames(p,'#combat-skills .skill-button','전투 이미지가 버튼 내부 전체 채움');shot(p,'hud-390')
+        training(p,True);frames(p,'#combat-skills .skill-button','전투 이미지가 버튼 내부 전체 채움');shot(p,'hud-390')
     if MODE in ['state','final']:
         p.evaluate("()=>{const a=HonroApp,h=a.profile.heroes.archer;h.xp=0;h.ranks.A14=0;a.branch=HONRO_CORE.TALENT_MAP.A14.branch;a.showCamp('archer')}")
         locked=p.locator('.tree-node[data-talent=A14]');locked.scroll_into_view_if_needed()
@@ -144,7 +154,7 @@ with sync_playwright() as pw, serve_game() as base:
             p.locator('.skill-modal-body').evaluate('e=>e.scrollTop=e.scrollHeight')
             check(f'{w} 상세 닫기 조작 및 화면 내부',p.locator('.skill-detail-controls [data-action=close]').evaluate("e=>{const r=e.getBoundingClientRect();return r.width>=44&&r.height>=44&&r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight}"))
             shot(p,f'detail-{w}');p.locator('.skill-detail-controls [data-action=close]').tap()
-            p.evaluate('HonroApp.startTraining()');p.wait_for_selector('.training-dialog');p.locator('[data-training-action=apply]').tap();hud(p)
+            p.evaluate('HonroApp.startTraining()');p.wait_for_selector('.training-dialog');frames(p,'.training-card i:has(>.skill-art),.training-detail-name i:has(>.skill-art)',f'{w} 허공터 아이콘 프레임');shot(p,f'training-{w}');p.locator('[data-training-action=apply]').tap();hud(p)
     check('실행 중 자바스크립트 오류 없음',not errors,errors)
     result={'검수':MODE,'소스_SHA':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'아이콘_CSS_SHA256':hashlib.sha256((ROOT/'game/src/skill-icons.css').read_bytes()).hexdigest(),'브라우저':'Chromium '+b.version,'범위':'실제 로컬 프로덕션 빌드. 준비한 프로필과 허공터 사용. 캠페인 완주/실기기 검수가 아님.','결과':rows}
     (OUT/f'{MODE}-results.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')

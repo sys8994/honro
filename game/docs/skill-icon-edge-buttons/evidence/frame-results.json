@@ -1,6 +1,7 @@
 {
   "검수": "frame",
-  "소스_SHA": "e3c1dcf2a0a07e21227ac9a1c3f47da0e20778ba",
+  "소스_SHA": "30b36fa9a75abe6187e61401eee8cab885da18cb",
+  "아이콘_CSS_SHA256": "24504991d906e58cc68cd140cca5a8e870df491137e29406b044414b79c32238",
   "브라우저": "Chromium 154.0.8037.57",
   "범위": "실제 로컬 프로덕션 빌드. 준비한 프로필과 허공터 사용. 캠페인 완주/실기기 검수가 아님.",
   "결과": [
@@ -6151,13 +6152,368 @@
       ]
     },
     {
+      "검사": "허공터 선택창 단일 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A06",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A10",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A99",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            58,
+            58
+          ],
+          "art": [
+            56,
+            56
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "허공터 상시 선택 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "AP04",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP03",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP05",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            34,
+            34
+          ],
+          "art": [
+            32,
+            32
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "AP04",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            58,
+            58
+          ],
+          "art": [
+            56,
+            56
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "observed",
+          "imageGap": [],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "허공터 선택 표시와 카드 모서리 보존",
+      "통과": true,
+      "측정": null
+    },
+    {
       "검사": "전투 이미지가 버튼 내부 전체 채움",
       "통과": true,
       "측정": [
         {
           "id": "A01",
           "radius": "0px",
-          "border": "rgb(240, 198, 109)",
+          "border": "rgb(197, 164, 92)",
           "padding": "0px",
           "margin": "0px",
           "frame": [
@@ -6186,7 +6542,7 @@
         {
           "id": "A14",
           "radius": "0px",
-          "border": "rgb(197, 164, 92)",
+          "border": "rgb(240, 198, 109)",
           "padding": "0px",
           "margin": "0px",
           "frame": [
