@@ -225,23 +225,23 @@ export function drawInkImpact(c:C,x:number,y:number,size:number,t:number){
  c.restore();
 }
 /** Jagged trunk and forks share exact endpoints with the damage event. */
-export function lightningPaths(x:number,y:number,x2:number,y2:number,phase=0,cheonroe=false,gap=Infinity){
- const dx=x2-x,dy=y2-y,len=Math.hypot(dx,dy)||1,n=Math.max(8,Math.min(64,Math.ceil(len/28))),nx=-dy/len,ny=dx/len,seed=x*.17+y*.13+x2*.07+phase*11,amp=cheonroe?Math.min(12,Math.max(1.5,gap*.28),Math.max(4,len*.022)):Math.min(48,Math.max(11,len*.075));
+export function lightningPaths(x:number,y:number,x2:number,y2:number,phase=0){
+ const dx=x2-x,dy=y2-y,len=Math.hypot(dx,dy)||1,n=Math.max(8,Math.min(64,Math.ceil(len/28))),nx=-dy/len,ny=dx/len,seed=x*.17+y*.13+x2*.07+phase*11,amp=Math.min(48,Math.max(11,len*.075));
  const trunk=Array.from({length:n+1},(_,i)=>{const q=i/n,off=i===0||i===n?0:(noise(seed+i*1.8)*2-1)*amp*Math.sin(Math.PI*q);return{x:x+dx*q+nx*off,y:y+dy*q+ny*off};});
  const forks:{x:number;y:number}[][]=[];
- for(let i=0;i<(cheonroe?3:6);i++){const at=trunk[Math.floor(n*(.18+i*.115))],side=i%2?1:-1,reach=Math.min(cheonroe?Math.min(24,Math.max(4,gap*.6)):155,len*(cheonroe?.09:.24))*( .5+noise(seed+i+44)),ex=at.x+dx/len*reach*.4+nx*reach*side,ey=at.y+dy/len*reach*.4+ny*reach*side;
+ for(let i=0;i<6;i++){const at=trunk[Math.floor(n*(.18+i*.115))],side=i%2?1:-1,reach=Math.min(155,len*.24)*( .5+noise(seed+i+44)),ex=at.x+dx/len*reach*.4+nx*reach*side,ey=at.y+dy/len*reach*.4+ny*reach*side;
   forks.push(Array.from({length:6},(_,j)=>{const q=j/5,off=j===0||j===5?0:(noise(seed+i*9+j)*2-1)*reach*.17;return{x:at.x+(ex-at.x)*q+nx*off,y:at.y+(ey-at.y)*q+ny*off};}));
  }
  return {trunk,forks};
 }
-export function drawLightningBolt(c:C,x:number,y:number,x2:number,y2:number,size:number,t:number,cheonroe=false,gap=Infinity){
- if(t>=1)return;const life=envelope(t),{trunk,forks}=lightningPaths(x,y,x2,y2,Math.min(2,Math.floor(t*7)),cheonroe,gap);
+export function drawLightningBolt(c:C,x:number,y:number,x2:number,y2:number,size:number,t:number){
+ if(t>=1)return;const life=envelope(t),{trunk,forks}=lightningPaths(x,y,x2,y2,Math.min(2,Math.floor(t*7)));
  c.save();c.setLineDash([]);c.lineCap='round';c.lineJoin='round';c.globalCompositeOperation='lighter';
  const stroke=(ps:{x:number;y:number}[],width:number,alpha:number,color:string)=>{c.strokeStyle=color;c.lineWidth=width;c.globalAlpha=life*alpha;c.beginPath();ps.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();};
- for(const [width,alpha,col] of [[size*7,.10,'#548fe9'],[size*3,.30,'#91c3ff'],[size,.95,'#e2f3ff'],[Math.max(.8,size*.35),1,'#ffffff']] as [number,number,string][]){stroke(trunk,width,alpha,col);for(const [i,ps] of forks.entries())stroke(ps,width*.42,alpha*(cheonroe?.24:(.45+i*.055)),col);}
- const r=cheonroe?Math.min(18+size*2+t*12,Math.max(9,gap*.45)):34+size*8+t*55,glow=c.createRadialGradient(x2,y2,0,x2,y2,r);glow.addColorStop(0,'#e7f8ff');glow.addColorStop(.12,'#86bdffa0');glow.addColorStop(1,'#659cef00');c.globalAlpha=life*(cheonroe?.24:.65);c.fillStyle=glow;c.beginPath();c.arc(x2,y2,r,0,Math.PI*2);c.fill();
+ for(const [width,alpha,col] of [[size*7,.10,'#548fe9'],[size*3,.30,'#91c3ff'],[size,.95,'#e2f3ff'],[Math.max(.8,size*.35),1,'#ffffff']] as [number,number,string][]){stroke(trunk,width,alpha,col);for(const [i,ps] of forks.entries())stroke(ps,width*.42,alpha*(.45+i*.055),col);}
+ const r=34+size*8+t*55,glow=c.createRadialGradient(x2,y2,0,x2,y2,r);glow.addColorStop(0,'#e7f8ff');glow.addColorStop(.12,'#86bdffa0');glow.addColorStop(1,'#659cef00');c.globalAlpha=life*.65;c.fillStyle=glow;c.beginPath();c.arc(x2,y2,r,0,Math.PI*2);c.fill();
  // Branching discharge fans out from the contact like splintered white roots.
- for(let i=0;i<(cheonroe?4:9);i++){const a=-Math.PI+i*Math.PI/(cheonroe?3:8),d=(cheonroe?Math.min(7+noise(i+x2)*9,Math.max(4,gap*.4)):22+noise(i+x2)*35)*(1+t*.6);stroke([{x:x2,y:y2},{x:x2+Math.cos(a+.18)*d*.5,y:y2+Math.sin(a+.18)*d*.5},{x:x2+Math.cos(a)*d,y:y2+Math.sin(a)*d}],1.1, cheonroe?.24:.55,'#cce8ff');}
+ for(let i=0;i<9;i++){const a=-Math.PI+i*Math.PI/8,d=(22+noise(i+x2)*35)*(1+t*.6);stroke([{x:x2,y:y2},{x:x2+Math.cos(a+.18)*d*.5,y:y2+Math.sin(a+.18)*d*.5},{x:x2+Math.cos(a)*d,y:y2+Math.sin(a)*d}],1.1, .55,'#cce8ff');}
  c.restore();
 }
 export function drawQiBurst(c:C,x:number,y:number,size:number,t:number){
