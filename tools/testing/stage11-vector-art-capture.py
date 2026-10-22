@@ -22,7 +22,8 @@ with sync_playwright() as pw:
  p.evaluate('''()=>{const a=HonroApp;Object.getPrototypeOf(a).frame.call(a,a.prev+16.667);while(a.dialogue)HonroStory.finish(a);HonroStory.tick(a,performance.now()+3000);a.dialogue=null;a.turnNotice=null;}''')
  rows=[]
  for name,x,y,z,w,h,g in views:
-  if group!='all' and group!=g:continue
+  if group=='preview' and name not in ['overview','central','mobile-trace','refuge']:continue
+  if group not in ['all','preview'] and group!=g:continue
   p.set_viewport_size({'width':w,'height':h})
   p.wait_for_timeout(150)
   p.evaluate('HonroApp.scene.render(HonroApp.engine,0,"",.6,false,0)')

@@ -1,4 +1,5 @@
 /** Stage11 authored material data. No terrain, actor, objective or shared asset edits. */
+import {authorStage11Fractures} from './stage11-fracture-fields.mjs';
 import {compileSVG} from './build-act2-art.mjs';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
@@ -76,15 +77,6 @@ export function applyStage11VectorFinish(project){
    const lip=lower.slice(1,4);add([...lip,...lip.slice().reverse().map(([u,d],k)=>[u+.008,d+.012+k*.004])],i%2?'#37535a':'#435f61');
    if(i===0){const rim=ridge.slice(1,3);add([...rim,...rim.slice().reverse().map(([u,d])=>[u,d+.010])],'#a2ac9580');}
   });
-  // Sparse shallow breakouts are sized in world units (about 2–8 people),
-  // so the ordinary play camera sees stone grain immediately below the rim.
-  const sheets=t.id==='act2-floor'?[.205,.242]:t.id==='rv-north-trace'?[.045,.31]:t.id==='rv-lower-refuge-rock'?[.27,.64]:[.10,.57];
-  sheets.forEach((u,i)=>{
-   const x=lo+w*u,span=Math.min(i?940:710,w*.32),depth=Math.min(255,(bottom(x)-top(x))*.24),wp=(uu,v)=>{const xx=x+span*uu;return[round(xx),round(top(xx)+depth*v)];},put=(pts,fill)=>faces.push({points:pts.map(p=>wp(...p)),fill});
-   put([[0,.26],[.18,.08],[.48,.17],[.64,.03],[.92,.31],[1,.71],[.78,.85],[.52,.67],[.22,1],[.04,.76]],i?'#7e9385':'#8f9d8c');
-   put([[.04,.76],[.22,1],[.52,.67],[.78,.85],[1,.71],[.9,1.06],[.78,1.14],[.53,.91],[.24,1.25],[.08,1.03]],'#3e5e62');
-   put([[.17,.08],[.48,.17],[.64,.03],[.91,.31],[.84,.37],[.62,.15],[.47,.29],[.2,.19]],'#a4ae963d');
-  });
   // Narrow deep clefts scale in world units. Their broken, tapering branches
   // connect the major faces without outlining each slab like a diagram.
   spec.cuts.slice(1,-1).forEach((u,i)=>{
@@ -94,17 +86,21 @@ export function applyStage11VectorFinish(project){
    const side=i%2?-.12:.13;
    add([[u+d*.3,.51],[u+d*.3+side*.42,.54],[u+d*.3+side,.49],[u+d*.3+side,.50],[u+d*.3+side*.42,.558],[u+d*.3-thick,.527]],'#304d54');
   });
-  materials.push({terrainId:t.id,faces:faces.map(f=>({...f,depthShade:true}))});
+  materials.push({terrainId:t.id,faces:[...faces.map(f=>({...f,depthShade:true})),...authorStage11Fractures(t,top)]});
  }
  // Roots continue from the actual wood endpoint across the adjoining stone.
  // The live rock clip constrains the small contact fan entirely inside rock.
  const sockets=[['rv-west-shoulder',3200,6165,1],['rv-west-rock-crown',4550,4800,1],['rv-west-rock-crown',6500,4900,-1],['rv-ritual-buttress',5400,7080,1],['rv-ritual-buttress',8100,6789,-1],['rv-ritual-buttress',9500,7600,-1],['rv-east-tower',9500,5314,1],['rv-east-tower',10500,4830,1],['rv-east-tower',12200,5670,-1],['rv-lower-refuge-rock',11000,8630,-1]];
  for(const[id,x,y,dir]of sockets){const m=materials.find(m=>m.terrainId===id),p=(dx,dy)=>[round(x+dx*dir),round(y+dy)];
   const pt=(dx,dy)=>p(dx,dy).join(' '),curve=(d,fill)=>m.faces.push({d,fill});
+  curve(`M${pt(-77,8)}L${pt(6,-17)} ${pt(101,31)} ${pt(87,105)} ${pt(148,181)} ${pt(92,224)} ${pt(34,177)} ${pt(-5,103)} ${pt(-61,71)}Z`,'#162e39');
+  curve(`M${pt(-77,8)}L${pt(-61,71)} ${pt(-5,103)} ${pt(34,177)} ${pt(9,166)} ${pt(-23,113)} ${pt(-82,91)} ${pt(-107,37)}Z`,'#536f70');
+  curve(`M${pt(101,31)}L${pt(87,105)} ${pt(148,181)} ${pt(121,188)} ${pt(64,113)} ${pt(72,46)}Z`,'#3b5861');
   curve(`M${pt(-35,17)}Q${pt(-10,72)} ${pt(25,144)}L${pt(42,218)}Q${pt(75,265)} ${pt(125,279)}L${pt(83,231)} ${pt(67,176)}Q${pt(122,203)} ${pt(204,198)}Q${pt(132,183)} ${pt(88,134)}L${pt(48,78)} ${pt(8,-2)}Z`,'#213b3f');
   curve(`M${pt(-26,6)}Q${pt(-4,61)} ${pt(31,132)}L${pt(51,209)}Q${pt(82,254)} ${pt(112,264)}L${pt(75,215)} ${pt(61,156)}Q${pt(117,189)} ${pt(194,187)}Q${pt(128,175)} ${pt(84,124)}L${pt(41,66)} ${pt(8,-8)}Z`,'#68553c');
   curve(`M${pt(-8,9)}Q${pt(5,63)} ${pt(41,130)}L${pt(65,205)} ${pt(89,235)}Q${pt(65,211)} ${pt(57,177)}L${pt(33,126)}Q${pt(8,90)} ${pt(-16,35)}Z`,'#a08d61');
  }
+ for(const[id,x,y,dir]of sockets){const m=materials.find(m=>m.terrainId===id),p=(xx,yy)=>[round(x+xx*dir),round(y+yy)];m.faces.push({points:[[-63,6],[-31,19],[-13,65],[-31,78],[-56,54],[-80,31]].map(q=>p(...q)),fill:'#8d9b89'});}
  const rear=project.library.find(a=>a.id==='stage11:ravine-rear-cliff-contact');
  // Extend the existing large shadow planes with three receding bed systems.
  // Everything stays inside its old silhouette and behind foreground solids.
@@ -113,8 +109,12 @@ export function applyStage11VectorFinish(project){
   const shadow=path('M4820 8720L5430 8500 5820 8710 6230 8430 6580 8540 6940 8350 7330 8700 7770 8530 8120 8920 8520 8690 8960 9080 9390 8920 9780 9320 10280 9060 10710 9400 11280 9220 11900 9700 12200 10050 11540 9670 11020 9950 10340 9520 9760 9830 9320 9510 8840 9730 8340 9280 7900 9470 7310 9030 6830 9210 6240 8850 5770 9220 5200 9010 4560 9460Z','#294345');
   const source=rear.vector.source.replace('</svg>',extra+shadow+'</svg>');rear.vector=compileSVG(source);rear.params.vectorFinishRevision=2;rear.params.nodeCount=nodeCount(rear.vector.root);
  }
+ if(rear.params.vectorFinishRevision<3){
+  const planes=path('M4800 6500L5050 6110 5370 6080 5680 6420 5520 7000 5110 7380 4800 7240Z M9830 6230L10220 5870 10560 6030 10830 6510 10520 6940 10110 6840Z M11130 7480L11490 7020 11820 7530 11940 8300 11540 8680 11270 8410Z','#3a5050')+path('M5110 7380L5520 7000 5630 7320 5490 7900 5130 8230 4930 7940Z M10110 6840L10520 6940 10780 7380 10630 7850 10240 7540 10000 7210Z M11540 8680L11940 8300 12100 9040 11790 9400 11390 9130Z','#1b343c')+path('M5050 6110L5370 6080 5480 6240 5220 6260 4950 6550Z M10220 5870L10560 6030 10630 6220 10360 6130 10010 6410Z','#52635b');
+  rear.vector=compileSVG(rear.vector.source.replace('</svg>',planes+'</svg>'));rear.params.vectorFinishRevision=3;
+ }
  rear.params.nodeCount=nodeCount(rear.vector.root);
- st.design.ravineArt={...st.design.ravineArt,materialRevision:2,materials};
+ st.design.ravineArt={...st.design.ravineArt,materialRevision:3,materials};
  const idx=project.library.findIndex(a=>a.id==='stage11:ravine-refuge-bundle');project.library[idx]=shelterAsset(project.library[idx]);
  const e=st.elements.find(e=>e.id==='s11-art-refuge-bundle');e.scale=1;e.layer='back';
  return project;

@@ -13,8 +13,8 @@ for(let i=0;i<before.stages.length;i++)assert.deepEqual(i===10?gameplay(after.st
 const a=after.stages[10],b=before.stages[10],ea=a.elements.find(e=>e.id==='s11-art-refuge-bundle'),eb=b.elements.find(e=>e.id===ea.id);
 for(const key of new Set([...Object.keys(ea),...Object.keys(eb)]))if(!['scale','layer'].includes(key))assert.deepEqual(ea[key],eb[key],key);
 for(const key of Object.keys(after))if(!['library','stages'].includes(key))assert.deepEqual(after[key],before[key]);
-assert.equal(a.design.ravineArt.materialRevision,2);assert.equal(a.design.ravineArt.materials.length,9);
-for(const m of a.design.ravineArt.materials){assert(a.terrains.some(t=>t.id===m.terrainId));assert(m.faces.length<80);for(const f of m.faces){if(f.d)assert(!/NaN|Infinity/.test(f.d));else{assert(f.points.length>=3);assert(f.points.flat().every(Number.isFinite));}assert(/^#[\da-f]{6}([\da-f]{2})?$/i.test(f.fill));}}
+assert.equal(a.design.ravineArt.materialRevision,3);assert.equal(a.design.ravineArt.materials.length,9);
+for(const m of a.design.ravineArt.materials){assert(a.terrains.some(t=>t.id===m.terrainId));assert(m.faces.length<130);for(const f of m.faces){if(f.d)assert(!/NaN|Infinity/.test(f.d));else{assert(f.points.length>=3);assert(f.points.flat().every(Number.isFinite));}assert(/^#[\da-f]{6}([\da-f]{2})?$/i.test(f.fill));}}
 assert.deepEqual(JSON.parse(JSON.stringify(applyStage11VectorFinish(structuredClone(after)))),after,'Idempotent direct art author');
 assert.deepEqual(JSON.parse(JSON.stringify(applyStage11VectorFinish(structuredClone(before)))),after,'Reproducible delta from latest master');
 const report={pass:true,base,stage11GameplayBefore:hash(gameplay(b)),stage11GameplayAfter:hash(gameplay(a)),terrainBefore:hash(b.terrains),terrainAfter:hash(a.terrains),unitsBefore:hash(b.units),unitsAfter:hash(a.units),markersBefore:hash(b.markers),markersAfter:hash(a.markers),eventsBefore:hash(b.events),eventsAfter:hash(a.events),other29Unchanged:true,sharedAssetsUnchanged:true,changedVisualAssets:[...changedAssets],reproducible:true,idempotent:true,materials:a.design.ravineArt.materials.map(m=>({terrainId:m.terrainId,faces:m.faces.length}))};

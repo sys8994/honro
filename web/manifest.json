@@ -2,10 +2,10 @@
   "version": 1,
   "game": "HONRO.html",
   "workshop": "HONRO_WORKSHOP.html",
-  "playtest": "web/entries/game.1525587f1337c25b.html?embedded=1",
-  "project": "web/data/campaign.5c5dd188cc370859.json",
-  "gameEntry": "web/entries/game.9b07c53d150d452c.js",
-  "workshopEntry": "web/entries/workshop.3c34e5ebd2b36b25.js",
+  "playtest": "web/entries/game.0737d469b2350005.html?embedded=1",
+  "project": "web/data/campaign.989ff5edc2086ad3.json",
+  "gameEntry": "web/entries/game.03301ce14e18e338.js",
+  "workshopEntry": "web/entries/workshop.60b554189fc6a04e.js",
   "common": [
     "web/runtime/ordered-common-1.e4e4afbdd8ad843d.js",
     "web/runtime/shared-runtime-title-markup.1ce572555f2e782e.js",
@@ -24,7 +24,7 @@
     "web/runtime/ordered-common-7.bda7084193876840.js",
     "web/runtime/ordered-common-8.592630399b530555.js",
     "web/runtime/ordered-common-9.7739e1e142906c6d.js",
-    "web/runtime/campaign.b40aef7cb90ade2b.js",
+    "web/runtime/campaign.e2a99e9a1510f562.js",
     "web/runtime/ordered-common-10.3fca0f69327629c7.js",
     "web/runtime/party-alias.bb1ee691d4da84bc.js",
     "web/runtime/ordered-common-11.fc6304b0a3f1e39a.js",
@@ -37,7 +37,7 @@
     "web/runtime/shared-assets-monsters-monsters-runtime.925589721b2b001e.js",
     "web/runtime/shared-assets-actors-actors-runtime.76e6f21694730530.js",
     "web/runtime/ordered-common-12.875935b1b5dac5e1.js",
-    "web/runtime/ordered-common-13.5738d3e87e27a059.js",
+    "web/runtime/ordered-common-13.f2a0939724651afc.js",
     "web/runtime/ordered-common-14.0f6687f722ad1a67.js",
     "web/runtime/HONRO_JOURNEY_MAPS.796449ff43ada91b.js"
   ],
@@ -86,9 +86,9 @@
       "sha256": "0c57dcfe7c08d421901ffa8eeb437940b6b6d4779816207b51dca7be44c73e5e"
     },
     {
-      "path": "web/data/campaign-library.d633329b7ff5cac1.json",
-      "bytes": 6401977,
-      "sha256": "d633329b7ff5cac1b6273f5374c9c8e8f99ef773b3e0a5ed1ecc0268480ace1d"
+      "path": "web/data/campaign-library.ee2bce48c2350059.json",
+      "bytes": 6403188,
+      "sha256": "ee2bce48c2350059f5b03ae893b3758165f24fa8e0710001ca94d56aa050c227"
     },
     {
       "path": "web/data/campaign-shared.b27f15d8a7c4d170.json",
@@ -96,9 +96,9 @@
       "sha256": "b27f15d8a7c4d170f90283812279356229ee6fc85cf87a8be2b5193744beba82"
     },
     {
-      "path": "web/data/campaign.5c5dd188cc370859.json",
+      "path": "web/data/campaign.989ff5edc2086ad3.json",
       "bytes": 10854,
-      "sha256": "5c5dd188cc3708595d0f60f7ad1c557b49954ffa843dc735c79101bc533857f9"
+      "sha256": "989ff5edc2086ad30a65a34d9d8c8fc830166f97c0a7c04d725fa7e9bc4f55e7"
     },
     {
       "path": "web/data/chapter-01-assets.7c8009204ecaf50e.json",
@@ -201,14 +201,14 @@
       "sha256": "928d91e828c10dc2eb5e51bfaa843d42fb7ac0f5c66e8a6c7b498444bccb3df5"
     },
     {
-      "path": "web/data/chapter-11-assets.a094392e90a8085f.json",
-      "bytes": 72071,
-      "sha256": "a094392e90a8085f6d79a16d7b20105a078b2d09fbc1a8fd3f2d7dd008656d1c"
+      "path": "web/data/chapter-11-assets.42cba6ef8d12d168.json",
+      "bytes": 73282,
+      "sha256": "42cba6ef8d12d168d93be00bd66753362eb15efe8ff44a7e0bbc5142070d85ec"
     },
     {
-      "path": "web/data/chapter-11.dd2244d90d53db38.json",
-      "bytes": 168450,
-      "sha256": "dd2244d90d53db381108468b45e0b5f1fe27d0001b4680709a28dc6bd631dccf"
+      "path": "web/data/chapter-11.fc023ef6b3a05645.json",
+      "bytes": 205769,
+      "sha256": "fc023ef6b3a0564579a93b7d94fc091047e73f98ea02c245aa30f6c23285a7d8"
     },
     {
       "path": "web/data/chapter-12-assets.8484f5c9fb34e219.json",
@@ -506,19 +506,19 @@
       "sha256": "7d653f087d5ae12f19ef78cd7356daff1c92be83786ace356b5f118eb8011f6c"
     },
     {
-      "path": "web/entries/game.1525587f1337c25b.html",
-      "bytes": 11354,
-      "sha256": "1525587f1337c25b516d1ecc870c22899a4ff644854fca456488a60c78af8dc3"
-    },
-    {
-      "path": "web/entries/game.9b07c53d150d452c.js",
+      "path": "web/entries/game.03301ce14e18e338.js",
       "bytes": 10051,
-      "sha256": "9b07c53d150d452ce20d408d3a69e1b0b02dc6411e1cce60641b3b545e812814"
+      "sha256": "03301ce14e18e33857dc20126d25224e8f724692203c8a2c9642aa2eb7954395"
     },
     {
-      "path": "web/entries/workshop.3c34e5ebd2b36b25.js",
+      "path": "web/entries/game.0737d469b2350005.html",
+      "bytes": 11354,
+      "sha256": "0737d469b2350005abede99413eb21f503190fd5a063f33cef363834f54a2f98"
+    },
+    {
+      "path": "web/entries/workshop.60b554189fc6a04e.js",
       "bytes": 6805,
-      "sha256": "3c34e5ebd2b36b25dec4fd8772d88901ab0a6c9bc9c3990cdb0892c5b25a0c60"
+      "sha256": "60b554189fc6a04e593e3254d31697ebec44f136e091d9b9c5ad94e341ea88c6"
     },
     {
       "path": "web/graphics/ending-10-image.6a631739bb1b7338.webp",
@@ -1516,9 +1516,9 @@
       "sha256": "a6c66058555fc805a9ad13f1eb0696cb089bd943998607b96acf5e176fc659dc"
     },
     {
-      "path": "web/runtime/campaign.b40aef7cb90ade2b.js",
+      "path": "web/runtime/campaign.e2a99e9a1510f562.js",
       "bytes": 354,
-      "sha256": "b40aef7cb90ade2b9d65eadda0ae2b87f1b473d0b5edd0d8bbe2306e7e503c89"
+      "sha256": "e2a99e9a1510f562cf9d517f6d750342419a197d1a6cf883580e5ec5c69e3ac4"
     },
     {
       "path": "web/runtime/game-art.6b0819228f0ae8bc.js",
@@ -1621,9 +1621,9 @@
       "sha256": "875935b1b5dac5e1d54e6a18dbd22f33d1cc3bbae08f22909bdc7cbee8b8458a"
     },
     {
-      "path": "web/runtime/ordered-common-13.5738d3e87e27a059.js",
-      "bytes": 173260,
-      "sha256": "5738d3e87e27a059acfea414fb798aadef838bf91008d2afff64e34bafc3ee33"
+      "path": "web/runtime/ordered-common-13.f2a0939724651afc.js",
+      "bytes": 174731,
+      "sha256": "f2a0939724651afc88d42d8900b105867e5daeca51023e12b0a0b09597d0756e"
     },
     {
       "path": "web/runtime/ordered-common-14.0f6687f722ad1a67.js",
@@ -1828,119 +1828,159 @@
   ],
   "previousFiles": [
     {
-      "path": "web/data/campaign-library.af5294fcf116456b.json",
-      "bytes": 6401976,
-      "sha256": "af5294fcf116456b676d11af4ba2549e3eec6a9651f9cce014f218e16f420a5c"
-    },
-    {
-      "path": "web/data/campaign.540f28caad2b9909.json",
+      "path": "web/data/campaign.e0f6f09e4b1e5e10.json",
       "bytes": 10854,
-      "sha256": "540f28caad2b99097b710a47780d40d11cb858f98288534a27ee94935bced21f"
+      "sha256": "e0f6f09e4b1e5e1055dd330df45591bb68694cfb714c636db183dcf07e290e99"
     },
     {
-      "path": "web/data/chapter-11-assets.643991302b70aaa0.json",
-      "bytes": 72070,
-      "sha256": "643991302b70aaa0accc11d08e3bb1fc81ce024ccf0cb62c12c0e4714b245f0d"
+      "path": "web/data/chapter-11.cac68d5650e11fbd.json",
+      "bytes": 212406,
+      "sha256": "cac68d5650e11fbde1f8ce7f552f98c460e51496ed550f0c2ff2db3fa6312fa6"
     },
     {
-      "path": "web/entries/game.6a3e35bc5d243cb1.js",
+      "path": "web/entries/game.51b96bf9b8ce00de.js",
       "bytes": 10051,
-      "sha256": "6a3e35bc5d243cb186add9b75f83f00e0f9174d53e31aebddb6dc4121fd8286d"
+      "sha256": "51b96bf9b8ce00de3a99a4e7f24f29065eadd227c88a0f26230c6eac40f13ffd"
     },
     {
-      "path": "web/entries/game.bd37e5aeed5ab506.html",
+      "path": "web/entries/game.ac18260fb617fdf0.html",
       "bytes": 11354,
-      "sha256": "bd37e5aeed5ab5063073b0ab6dbd0441a330cae1a62f54b1dd6ae60789c21f99"
+      "sha256": "ac18260fb617fdf0b00d9eb93501aa55b93df4de82695abbd268cfa587cc97e9"
     },
     {
-      "path": "web/entries/workshop.a8ef237a5727043f.js",
+      "path": "web/entries/workshop.5f1c82076248a2bf.js",
       "bytes": 6805,
-      "sha256": "a8ef237a5727043ff54a84637ee93cf53f56be4f19239e15d565e1bda4640791"
+      "sha256": "5f1c82076248a2bfaaf423c30cd9d7b6cdf9d53368a57d09cc5d46df5157bda1"
     },
     {
-      "path": "web/runtime/campaign.157872f5dc3fc250.js",
+      "path": "web/runtime/campaign.cf7563ca2ee0a98c.js",
       "bytes": 354,
-      "sha256": "157872f5dc3fc250c78f783ff63b7fcdac407bf1c2cda28909fcbe6bde5b1a77"
+      "sha256": "cf7563ca2ee0a98c172b8c5a129c1771af13dce99167c62a646a4d7d22181d19"
     },
     {
-      "path": "web/entries/game.a2b08d9dec3e22ff.html",
+      "path": "web/data/campaign-library.d633329b7ff5cac1.json",
+      "bytes": 6401977,
+      "sha256": "d633329b7ff5cac1b6273f5374c9c8e8f99ef773b3e0a5ed1ecc0268480ace1d"
+    },
+    {
+      "path": "web/data/campaign.5c5dd188cc370859.json",
+      "bytes": 10854,
+      "sha256": "5c5dd188cc3708595d0f60f7ad1c557b49954ffa843dc735c79101bc533857f9"
+    },
+    {
+      "path": "web/data/chapter-11-assets.a094392e90a8085f.json",
+      "bytes": 72071,
+      "sha256": "a094392e90a8085f6d79a16d7b20105a078b2d09fbc1a8fd3f2d7dd008656d1c"
+    },
+    {
+      "path": "web/data/chapter-11.dd2244d90d53db38.json",
+      "bytes": 168450,
+      "sha256": "dd2244d90d53db381108468b45e0b5f1fe27d0001b4680709a28dc6bd631dccf"
+    },
+    {
+      "path": "web/entries/game.1525587f1337c25b.html",
       "bytes": 11354,
-      "sha256": "a2b08d9dec3e22ffdbd796c61c2bf0a43266e469a9e285c565537be81f4a8e0b"
+      "sha256": "1525587f1337c25b516d1ecc870c22899a4ff644854fca456488a60c78af8dc3"
     },
     {
-      "path": "web/entries/game.e0920184d357a113.js",
+      "path": "web/entries/game.9b07c53d150d452c.js",
       "bytes": 10051,
-      "sha256": "e0920184d357a11396afa62126d9928d8e55556b0cb4c556a899200e95f9497f"
+      "sha256": "9b07c53d150d452ce20d408d3a69e1b0b02dc6411e1cce60641b3b545e812814"
     },
     {
-      "path": "web/entries/workshop.f372928d86cb4f29.js",
+      "path": "web/entries/workshop.3c34e5ebd2b36b25.js",
       "bytes": 6805,
-      "sha256": "f372928d86cb4f29cb382e41da2086ae056249d765546d934f17bef56e108467"
+      "sha256": "3c34e5ebd2b36b25dec4fd8772d88901ab0a6c9bc9c3990cdb0892c5b25a0c60"
     },
     {
-      "path": "web/runtime/ordered-common-13.c5da3777d6924bfb.js",
-      "bytes": 173173,
-      "sha256": "c5da3777d6924bfbb773fcb78a07ada3b7d1618716796a117c9e430de59f0c7e"
+      "path": "web/runtime/campaign.b40aef7cb90ade2b.js",
+      "bytes": 354,
+      "sha256": "b40aef7cb90ade2b9d65eadda0ae2b87f1b473d0b5edd0d8bbe2306e7e503c89"
+    },
+    {
+      "path": "web/runtime/ordered-common-13.5738d3e87e27a059.js",
+      "bytes": 173260,
+      "sha256": "5738d3e87e27a059acfea414fb798aadef838bf91008d2afff64e34bafc3ee33"
     }
   ],
   "previousGenerations": [
     [
       {
-        "path": "web/data/campaign-library.af5294fcf116456b.json",
-        "bytes": 6401976,
-        "sha256": "af5294fcf116456b676d11af4ba2549e3eec6a9651f9cce014f218e16f420a5c"
-      },
-      {
-        "path": "web/data/campaign.540f28caad2b9909.json",
+        "path": "web/data/campaign.e0f6f09e4b1e5e10.json",
         "bytes": 10854,
-        "sha256": "540f28caad2b99097b710a47780d40d11cb858f98288534a27ee94935bced21f"
+        "sha256": "e0f6f09e4b1e5e1055dd330df45591bb68694cfb714c636db183dcf07e290e99"
       },
       {
-        "path": "web/data/chapter-11-assets.643991302b70aaa0.json",
-        "bytes": 72070,
-        "sha256": "643991302b70aaa0accc11d08e3bb1fc81ce024ccf0cb62c12c0e4714b245f0d"
+        "path": "web/data/chapter-11.cac68d5650e11fbd.json",
+        "bytes": 212406,
+        "sha256": "cac68d5650e11fbde1f8ce7f552f98c460e51496ed550f0c2ff2db3fa6312fa6"
       },
       {
-        "path": "web/entries/game.6a3e35bc5d243cb1.js",
+        "path": "web/entries/game.51b96bf9b8ce00de.js",
         "bytes": 10051,
-        "sha256": "6a3e35bc5d243cb186add9b75f83f00e0f9174d53e31aebddb6dc4121fd8286d"
+        "sha256": "51b96bf9b8ce00de3a99a4e7f24f29065eadd227c88a0f26230c6eac40f13ffd"
       },
       {
-        "path": "web/entries/game.bd37e5aeed5ab506.html",
+        "path": "web/entries/game.ac18260fb617fdf0.html",
         "bytes": 11354,
-        "sha256": "bd37e5aeed5ab5063073b0ab6dbd0441a330cae1a62f54b1dd6ae60789c21f99"
+        "sha256": "ac18260fb617fdf0b00d9eb93501aa55b93df4de82695abbd268cfa587cc97e9"
       },
       {
-        "path": "web/entries/workshop.a8ef237a5727043f.js",
+        "path": "web/entries/workshop.5f1c82076248a2bf.js",
         "bytes": 6805,
-        "sha256": "a8ef237a5727043ff54a84637ee93cf53f56be4f19239e15d565e1bda4640791"
+        "sha256": "5f1c82076248a2bfaaf423c30cd9d7b6cdf9d53368a57d09cc5d46df5157bda1"
       },
       {
-        "path": "web/runtime/campaign.157872f5dc3fc250.js",
+        "path": "web/runtime/campaign.cf7563ca2ee0a98c.js",
         "bytes": 354,
-        "sha256": "157872f5dc3fc250c78f783ff63b7fcdac407bf1c2cda28909fcbe6bde5b1a77"
+        "sha256": "cf7563ca2ee0a98c172b8c5a129c1771af13dce99167c62a646a4d7d22181d19"
       }
     ],
     [
       {
-        "path": "web/entries/game.a2b08d9dec3e22ff.html",
+        "path": "web/data/campaign-library.d633329b7ff5cac1.json",
+        "bytes": 6401977,
+        "sha256": "d633329b7ff5cac1b6273f5374c9c8e8f99ef773b3e0a5ed1ecc0268480ace1d"
+      },
+      {
+        "path": "web/data/campaign.5c5dd188cc370859.json",
+        "bytes": 10854,
+        "sha256": "5c5dd188cc3708595d0f60f7ad1c557b49954ffa843dc735c79101bc533857f9"
+      },
+      {
+        "path": "web/data/chapter-11-assets.a094392e90a8085f.json",
+        "bytes": 72071,
+        "sha256": "a094392e90a8085f6d79a16d7b20105a078b2d09fbc1a8fd3f2d7dd008656d1c"
+      },
+      {
+        "path": "web/data/chapter-11.dd2244d90d53db38.json",
+        "bytes": 168450,
+        "sha256": "dd2244d90d53db381108468b45e0b5f1fe27d0001b4680709a28dc6bd631dccf"
+      },
+      {
+        "path": "web/entries/game.1525587f1337c25b.html",
         "bytes": 11354,
-        "sha256": "a2b08d9dec3e22ffdbd796c61c2bf0a43266e469a9e285c565537be81f4a8e0b"
+        "sha256": "1525587f1337c25b516d1ecc870c22899a4ff644854fca456488a60c78af8dc3"
       },
       {
-        "path": "web/entries/game.e0920184d357a113.js",
+        "path": "web/entries/game.9b07c53d150d452c.js",
         "bytes": 10051,
-        "sha256": "e0920184d357a11396afa62126d9928d8e55556b0cb4c556a899200e95f9497f"
+        "sha256": "9b07c53d150d452ce20d408d3a69e1b0b02dc6411e1cce60641b3b545e812814"
       },
       {
-        "path": "web/entries/workshop.f372928d86cb4f29.js",
+        "path": "web/entries/workshop.3c34e5ebd2b36b25.js",
         "bytes": 6805,
-        "sha256": "f372928d86cb4f29cb382e41da2086ae056249d765546d934f17bef56e108467"
+        "sha256": "3c34e5ebd2b36b25dec4fd8772d88901ab0a6c9bc9c3990cdb0892c5b25a0c60"
       },
       {
-        "path": "web/runtime/ordered-common-13.c5da3777d6924bfb.js",
-        "bytes": 173173,
-        "sha256": "c5da3777d6924bfbb773fcb78a07ada3b7d1618716796a117c9e430de59f0c7e"
+        "path": "web/runtime/campaign.b40aef7cb90ade2b.js",
+        "bytes": 354,
+        "sha256": "b40aef7cb90ade2b9d65eadda0ae2b87f1b473d0b5edd0d8bbe2306e7e503c89"
+      },
+      {
+        "path": "web/runtime/ordered-common-13.5738d3e87e27a059.js",
+        "bytes": 173260,
+        "sha256": "5738d3e87e27a059acfea414fb798aadef838bf91008d2afff64e34bafc3ee33"
       }
     ]
   ]
