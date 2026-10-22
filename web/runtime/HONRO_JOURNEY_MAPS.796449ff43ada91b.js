@@ -1,0 +1,1 @@
+import{loadData,loadProject}from"./load-data.6f01d18416c3198e.js";globalThis.HONRO_JOURNEY_MAPS=await loadData("web/data/HONRO_JOURNEY_MAPS.7d250f98eb159729.json",[["acts",0,"url"],["acts",1,"url"],["acts",2,"url"]],{svgSources:false});

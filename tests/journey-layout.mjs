@@ -1,22 +1,17 @@
-/** Coordinate/markup contracts. Actual viewport and input checks live in the browser suites. */
+/** Native image anchors and live markup. Browser geometry/input remains separate. */
 import assert from 'node:assert/strict';
-import fs from 'node:fs/promises';
-import {menuRuntime,menuProfile} from '../tools/environment/atlas-proof.mjs';
-const g=await menuRuntime(),A=g.HonroJourneyArt,f=A.bookFrame;
-assert.deepEqual(JSON.parse(JSON.stringify(f)),{x:-180,y:-105,width:2160,height:1260});
-for(const layer of ['surface','underground','city']){
- const p=menuProfile(g,30),saved=JSON.stringify(p),a={profile:p,journeyAct:layer==='surface'?2:layer==='underground'?2:3,journeyLayer:layer,journeySelection:layer==='surface'?12:layer==='underground'?18:30,debugMode:true,top:()=>''};
- const html=g.HonroRestJourney.bookMarkup(a),svg=A.bookAtlas(layer);
- assert.equal(svg,A.bookAtlas(layer));assert.match(svg,/viewBox="-180 -105 2160 1260"/);assert.match(svg,/expanded-atlas-landscape/);assert.doesNotMatch(svg,/<(?:image|script|foreignObject)\b/);
- assert.match(html,/<section class="journey-map-viewport"[^>]*><div class="journey-map-scroll">/);
- assert.match(html,/<\/div><\/div><div class="journey-map-legend">/);
- for(const v of g.HonroJourneyContent.places.filter(v=>v.layer===layer&&g.HonroRestJourney.actOf(v.stageId)===a.journeyAct)){
-  assert(html.includes(`data-id="${v.stageId}" style="left:${(v.map[0]-f.x)/f.width*100}%;top:${(v.map[1]-f.y)/f.height*100}%`));
- }
- assert.equal(JSON.stringify(p),saved);
+import {readFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import sharp from 'sharp';
+import {appHarness,plain} from './app-regression-helpers.mjs';
+const h=await appHarness(),{g}=h;
+for(const def of g.HONRO_JOURNEY_MAPS.acts){
+ const bytes=await readFile(def.asset),meta=await sharp(bytes).metadata();assert.equal(meta.width,def.width);assert.equal(meta.height,def.height);assert.equal(bytes.length,def.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),def.sha256);assert.equal(def.stages.length,10);
+ const app=h.load(h.profileThrough(29));app.journeyAct=def.act;app.journeySelection=def.stages[0].stageNumber;const before=plain(app.profile),html=g.HonroRestJourney.bookMarkup(app);
+ assert.equal((html.match(/data-action="journey-select"/g)||[]).length,10);assert(!html.includes('data-action="journey-layer"'));assert(html.includes(`aspect-ratio:${def.width}/${def.height}`));
+ for(const a of def.stages){assert(a.x>0&&a.x<def.width&&a.y>0&&a.y<def.height);assert(html.includes(`data-id="${a.stageNumber}" style="left:${a.x/def.width*100}%;top:${a.y/def.height*100}%`));}
+ assert.deepEqual(plain(app.profile),before);
 }
-const css=await fs.readFile('game/src/journey.css','utf8');assert.match(css,/max\(100cqw,171\.428572cqh,897\.6px\)/);assert.match(css,/journey-map-legend\{position:absolute/);
-for(const [w,h] of [[1917,706],[2560,750],[390,480],[844,300]])for(const z of [.85,1,1.35]){
- const width=Math.max(w,h*2160/1260,897.6)*z/.85;assert(width>=w-1e-6&&width*1260/2160>=h-1e-6);
-}
-console.log('PASS expanded paper, route/pin projection, viewport fit equation, legend sibling and unchanged profile; browser layout remains separate');
+let app=h.load(h.profileThrough(0));g.HonroRestJourney.showBook(app,1);assert.equal((app.root.innerHTML.match(/data-action="journey-select"/g)||[]).length,1);assert(app.root.innerHTML.includes('journey-fog'));assert(!app.root.innerHTML.includes('폭포 절벽'));g.HonroRestJourney.showBook(app,21,null,3);assert.equal(app.journeyAct,1);
+app=h.load(h.profileThrough(24));g.HonroRestJourney.showBook(app,25,null,3);g.HonroRestJourney.selectBook(app,26);assert.equal(app.journeySelection,25);g.HonroRestJourney.travel(app,26);assert.equal(app.screen,'journey');assert(!app.engine);
+console.log('PASS three native aspect ratios, 30 supplied anchors/hash/bytes, ten canonical controls per act, no locked names/act leaks, fixed campaign order');

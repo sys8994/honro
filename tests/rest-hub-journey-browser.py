@@ -1,10 +1,11 @@
+import os
 """Actual Chromium navigation/input evidence. Progress and terminal-ending states
 are explicit fixtures, not normal campaign completion or pixel approval."""
 import json
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import launch, serve_game
-OUT=Path('game/docs/rest-hub-journey-flow/evidence');OUT.mkdir(parents=True,exist_ok=True)
+OUT=Path(os.environ.get('HONRO_JOURNEY_OUT','game/docs/rest-hub-journey-flow/evidence'));OUT.mkdir(parents=True,exist_ok=True)
 KEY='honro-first-act-profile-1'
 rows=[];errors=[]
 FINISH='for(let i=0;HonroApp.dialogue&&i<60;i++)HonroStory.finish(HonroApp)'
@@ -14,7 +15,7 @@ def shot(page,name):
     assert (OUT/(name+'.jpg')).stat().st_size<1000000
 
 def setup(page,cleared=4):
-    page.evaluate('''async cleared=>{await HonroCampaignLoader.ensureStage(Math.min(30,cleared+1));const a=HonroApp;a.stopBattle();a.close();a.debugMode=false;const p=HONRO_TOOLS.fresh();p.settings.music=false;p.settings.sound=false;p.cleared={};for(let i=1;i<=cleared;i++)p.cleared[i]={visits:1,rounds:6};p.recruited=cleared>=10?['archer','mage','knight','occultist']:cleared>=5?['archer','mage','knight']:cleared>=2?['archer','mage']:['archer'];p.party=[...p.recruited];for(const cls of p.recruited)p.heroes[cls].xp=HONRO_CORE.xpAtLevel(16);a.profile=p;a.normalProfile=p;a.stageId=cleared+1;a.debugRestStage=null;a.journeySelection=null;a.journeyAct=null;a.journeyLayer=null;a.showRest();}''',cleared)
+    page.evaluate('''async cleared=>{await HonroCampaignLoader.ensureStage(Math.min(30,cleared+1));const a=HonroApp;a.stopBattle();a.close();a.debugMode=false;const p=HONRO_TOOLS.fresh();p.settings.music=false;p.settings.sound=false;p.cleared={};for(let i=1;i<=cleared;i++)p.cleared[i]={visits:1,rounds:6};p.recruited=cleared>=10?['archer','mage','knight','occultist']:cleared>=5?['archer','mage','knight']:cleared>=2?['archer','mage']:['archer'];p.party=[...p.recruited];for(const cls of p.recruited)p.heroes[cls].xp=HONRO_CORE.xpAtLevel(16);a.profile=p;a.normalProfile=p;a.stageId=cleared+1;a.debugRestStage=null;a.journeySelection=null;a.journeyAct=null;a.journeyLayer=null;a.journeyInputAfter=0;a.showRest();}''',cleared)
     page.evaluate(FINISH)
 
 def inside(page,selector):
@@ -82,16 +83,14 @@ with sync_playwright() as p, serve_game() as base:
         page.locator('[data-action="journey-enter"]').click();page.wait_for_function('HonroApp.screen==="battle"');page.evaluate(FINISH)
         assert page.evaluate('HonroApp.engine.b.honroStage===5&&HonroApp.engine.b.round===1')
         page.evaluate('HonroApp.pause()');shot(page,f'{w}x{h}-fresh-stage')
-        # Act 2's two geography segments, and direct CTA for a stage with no rest.
+        # Act 2's unified geography, and direct CTA for a stage with no rest.
         setup(page,19);page.locator('[data-action="journey-book"]').click()
         page.locator('[data-action="journey-act"][data-id="2"]').click()
-        page.locator('[data-action="journey-layer"][data-layer="surface"]').click()
-        assert page.locator('.journey-pin').count()==2
+        assert page.locator('.journey-pin').count()==10
         assert page.locator('[data-action="journey-select"][data-id="11"]').count()==1
         assert page.locator('[data-action="journey-act"][data-id="3"]').is_disabled()
         page.locator('[data-action="journey-select"][data-id="12"]').scroll_into_view_if_needed();page.locator('[data-action="journey-select"][data-id="12"]').click()
         shot(page,f'{w}x{h}-act2-surface')
-        page.locator('[data-action="journey-layer"][data-layer="underground"]').click()
         pin=page.locator('[data-action="journey-select"][data-id="19"]');pin.scroll_into_view_if_needed();pin.click()
         assert page.locator('[data-action="journey-travel"]').inner_text()=='스테이지 진입'
         assert inside(page,'.journey-detail')

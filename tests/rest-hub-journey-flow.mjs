@@ -25,9 +25,9 @@ check('Act unlock follows canonical act endpoints and invalid actions never expo
  }
  app=load(profileThrough(0));R.showBook(app,21,'city');assert.equal(app.journeyAct,1);assert.doesNotMatch(app.root.innerHTML,/journey-city|data-journey-atlas="city"/);
 });
-check('Act 2 keeps both surface 11/12 and underground 13–20 without act-1 pins',()=>{
- app=load(profileThrough(20));app.showRest();finish(app);book(12);assert.equal(app.journeyAct,2);assert.equal(app.journeyLayer,'surface');assert.match(app.root.innerHTML,/지상 접근부/);for(const id of [11,12])assert(app.root.innerHTML.includes(`data-action="journey-select" data-id="${id}"`));assert(!app.root.innerHTML.includes('data-action="journey-select" data-id="1"'));
- click('journey-layer',{layer:'underground'});for(let id=13;id<=20;id++)assert(app.root.innerHTML.includes(`data-action="journey-select" data-id="${id}"`));assert.equal(app.journeyAct,2);
+check('Act 2 unifies surface 11/12 and underground 13–20 without act-1 pins',()=>{
+ app=load(profileThrough(20));app.showRest();finish(app);book(12);assert.equal(app.journeyAct,2);assert(!app.root.innerHTML.includes('data-action="journey-layer"'));for(let id=11;id<=20;id++)assert(app.root.innerHTML.includes(`data-action="journey-select" data-id="${id}"`));assert(!app.root.innerHTML.includes('data-action="journey-select" data-id="1"'));
+
 });
 check('Spot selection is inert; explicit CTA branches to authored rest or a fresh direct stage',()=>{
  for(const id of [1,2,9,10,18,19,24,25,26,27,28,29]){

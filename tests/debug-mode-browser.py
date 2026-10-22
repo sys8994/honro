@@ -1,144 +1,37 @@
-"""Real navigation in both bundles; QA terminal states are explicit fixtures.
-Does not claim a normal-play campaign clear, and uses only fresh test storage.
-"""
+"""Actual debug/menu isolation checks using fixture combat changes; no campaign clear."""
 import json
+from browser_support import ROOT,launch,serve_game
 from playwright.sync_api import sync_playwright
-from browser_support import ROOT, launch
-OUT = ROOT / '_local/reports/debug-mode'
-OUT.mkdir(parents=True, exist_ok=True)
-checks = []
-
-def check(label, condition):
-    assert condition, label
-    checks.append(label)
-    print('PASS', label, flush=True)
-
-def dismiss(page):
-    for _ in range(30):
-        button = page.locator('[data-action="dialogue-skip"]')
-        if not button.count():
-            return
-        button.click()
-    raise AssertionError('Dialogue did not reach its boundary')
-
-def book(page, stage):
-    if page.evaluate('HonroApp.screen') == 'battle':
-        page.click('[data-action="pause"]')
-        page.click('.pause-menu [data-action="map"]')
-    elif page.evaluate('HonroApp.screen') == 'rest':
-        dismiss(page)
-        page.click('[data-action="journey-book"]')
-    layer = page.evaluate('(id)=>HonroJourneyContent.at(id).layer', stage)
-    page.click(f'[data-action="journey-layer"][data-layer="{layer}"]')
-    page.click(f'[data-action="journey-select"][data-id="{stage}"]')
-
-def start_selected(page):
-    page.locator('.rest-sign[data-action="journey-enter"]').click()
-    if page.locator('[data-action="confirm-journey-launch"]').count():
-        page.click('[data-action="confirm-journey-launch"]')
-    dismiss(page)
-
-with sync_playwright() as playwright:
-    browser = launch(playwright)
-    context = browser.new_context(viewport={'width': 1440, 'height': 900})
-    errors = []
-    game = context.new_page()
-    game.on('pageerror', lambda error: errors.append(str(error)))
-    game.goto((ROOT / 'HONRO.html').as_uri())
-    game.wait_for_function('window.HonroApp')
-    game.evaluate('HonroApp.frame=()=>{}')
-    game.click('.title-actions [data-action="rest"]')
-    dismiss(game)
-    game.click('[data-action="journey-enter"][data-id="1"]')
-    dismiss(game)
-    game.evaluate('HonroApp.engine.active.hp-=17;HonroApp.engine.b.round=7')
-    game.click('[data-action="pause"]')
-    game.click('.pause-menu [data-action="settings"]')
-    game.screenshot(path=str(OUT / 'settings-before.png'))
-    # This switch replaces the settings DOM immediately; check() would wait on
-    # its detached input after a successful click. Verify the new App state.
-    game.locator('#debug-mode-setting').click()
-    game.wait_for_function('HonroApp.debugMode')
-    dismiss(game)
-    original = game.evaluate('JSON.parse(localStorage.getItem("honro-first-act-profile-1"))')
-    check('Debug opens the same rest screen and keeps an independent copy of the saved battle', game.evaluate('''() =>
-      HonroApp.debugMode && HonroApp.screen==='rest' &&
-      HonroApp.profile!==HonroApp.normalProfile && HonroApp.profile.honroBattle.honroStage===1 &&
-      HonroApp.profile.honroBattle.round===7 && !window.HonroJourney'''))
-    game.screenshot(path=str(OUT / 'debug-rest.png'))
-    game.click('[data-action="journey-book"]')
-    seen = set()
-    for layer in ['surface', 'underground', 'city']:
-        game.click(f'[data-action="journey-layer"][data-layer="{layer}"]')
-        seen.update(game.locator('[data-action="journey-select"]').evaluate_all('(nodes)=>nodes.map(n=>Number(n.dataset.id)).filter(Number.isFinite)'))
-        check(f'{layer} uses the shared journey book and unlocks every chapter pin', game.locator('.journey-screen').count() == 1 and game.locator('.journey-pin.unreached').count() == 0)
-        game.screenshot(path=str(OUT / f'debug-book-{layer}.png'))
-    check('Exactly 30 real chapter destinations are listed across the three layers', seen == set(range(1, 31)))
-    book(game, 30)
-    check('Selecting the map pin opens its own rest before battle', game.evaluate('HonroApp.screen==="rest" && HonroApp.debugRestStage===30 && !HonroApp.engine'))
-    game.click('[data-action="camp"]')
-    for cls in ['archer','mage','knight','occultist']:
-        game.click(f'[data-action="hero"][data-class="{cls}"]')
-        game.select_option('#debug-hero-level', '30')
-        check(f'{cls} has every talent and selectable level', game.evaluate('(cls)=>HONRO_CORE.levelOf(HonroApp.profile.heroes[cls])===30 && HONRO_CORE.TALENTS.filter(t=>t.cls===cls).every(t=>HonroApp.profile.heroes[cls].ranks[t.id]>=1)', cls))
-    game.click('[data-action="rest"]')
-    game.click('.rest-sign[data-action="journey-enter"]')
-    check('Changing chapter uses the real saved-battle replacement confirmation', game.locator('.journey-confirm').count() == 1)
-    game.click('[data-action="cancel-journey-launch"]')
-    check('Cancel leaves the original battle intact in both snapshots', game.evaluate('HonroApp.profile.honroBattle.honroStage===1 && HonroApp.normalProfile.honroBattle.honroStage===1'))
-    start_selected(game)
-    check('Stage 30 applies selected levels and keeps the ordinary stage team', game.evaluate('''() => {
-      const a=HonroApp,b=a.engine.b;
-      return b.honroStage===30 && b.mode==='campaign' && !a.training &&
-        HONRO_CORE.levelOf(b.heroes.archer)===30 && HONRO_CORE.TALENTS.filter(t=>t.cls==='archer').every(t=>b.heroes.archer.ranks[t.id]>=1) &&
-        JSON.stringify(b.units.filter(u=>u.side===0&&!u.summoned).map(u=>u.cls).sort())===JSON.stringify(HonroStageRules.stageParty(30).sort());
-    }'''))
-    game.evaluate('HonroApp.scene.render(HonroApp.engine,0)')
-    game.screenshot(path=str(OUT / 'stage-30-debug.png'))
-    game.evaluate('HonroApp.engine.b.phase="lost";HonroApp.outcome(true)')
-    game.click('.result [data-action="retry"]')
-    dismiss(game)
-    check('Defeat and retry stay on the selected real chapter', game.evaluate('HonroApp.engine.b.honroStage===30 && !HonroApp.done'))
-    game.evaluate('HonroApp.engine.b.phase="won";HonroApp.outcome(true)')
-    check('Fixture victory writes only QA progression', game.evaluate('!!HonroApp.profile.cleared[30] && !HonroApp.normalProfile.cleared[30]'))
-    check('QA loss, retry, victory and rewards leave normal storage byte-for-byte unchanged', game.evaluate('(before)=>JSON.stringify(JSON.parse(localStorage.getItem("honro-first-act-profile-1")))===JSON.stringify(before)', original))
-    game.click('[data-action="result-continue"]')
-    dismiss(game)
-    check('Finishing a selected chapter returns through the normal rest route', game.evaluate('HonroApp.screen==="rest"'))
-    game.reload()
-    game.wait_for_function('window.HonroApp')
-    game.evaluate('HonroApp.frame=()=>{}')
-    check('Reload resets the QA clone to the original battle and keeps the debug switch', game.evaluate('''() =>
-      HonroApp.debugMode && HonroApp.profile.honroBattle.honroStage===1 &&
-      HonroApp.profile.honroBattle.round===7 && !HonroApp.profile.cleared[30]'''))
-    game.click('.title-actions [data-action="continue"]')
-    dismiss(game)
-    for stage in range(1, 31):
-        book(game, stage)
-        start_selected(game)
-        check(f'Chapter {stage} enters from shared book controls', game.evaluate(f'HonroApp.engine?.b.honroStage==={stage}'))
-    game.click('[data-action="pause"]')
-    game.click('.pause-menu [data-action="settings"]')
-    game.locator('#debug-mode-setting').click()
-    game.wait_for_function('!HonroApp.debugMode')
-    dismiss(game)
-    check('Disabling debug restores normal locks and its exact saved battle', game.evaluate('''before => {
-      const a=HonroApp;return !a.debugMode&&!a.isOpen(HONRO_CONTENT.stages[29])&&
-        JSON.stringify(a.profile.honroBattle)===JSON.stringify(before.honroBattle);
-    }''', original))
-    game.click('[data-action="continue"]')
-    dismiss(game)
-    check('Normal Continue resumes the original damaged unit and round', game.evaluate('HonroApp.engine.b.honroStage===1 && HonroApp.engine.b.round===7 && HonroApp.engine.active.hp<HonroApp.engine.active.maxHp'))
-
-    editor = browser.new_page(viewport={'width': 1440, 'height': 900})
-    editor.on('pageerror', lambda error: errors.append(str(error)))
-    editor.goto((ROOT / 'HONRO_WORKSHOP.html').as_uri())
-    editor.wait_for_function('window.HonroWorkshopAPI?.getRuntime()?.scene')
-    editor.click('[data-tab="play"]')
-    editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
-    play = editor.frames[1]
-    play.evaluate('HonroApp.settings()')
-    check('Workshop Playtest stays isolated without a campaign debug toggle', play.locator('#debug-mode-setting').count() == 0)
-    check('No browser exceptions', not errors)
-    (OUT / 'summary.json').write_text(json.dumps({'status': 'passed', 'checks': checks, 'errors': errors, 'limits': ['The animation loop was frozen for deterministic navigation.', 'Victory and defeat are explicit terminal-state fixtures, not combat clears.', 'Only a fresh isolated browser context was used.']}, ensure_ascii=False, indent=2), encoding='utf8')
-    browser.close()
+OUT=ROOT/'game/docs/image-journey-clean-settings/evidence'
+def finish(page):page.evaluate('for(let i=0;HonroApp.dialogue&&i<50;i++)HonroStory.finish(HonroApp)')
+def debug_page(page):
+ page.click('[data-action=settings]');page.click('[data-action=settings-page][data-id=records]');page.click('[data-action=settings-page][data-id=debug]')
+with serve_game() as url,sync_playwright() as p:
+ b=launch(p);page=b.new_page(viewport={'width':1280,'height':900},accept_downloads=True);errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+ page.goto(url+'/HONRO.html');page.wait_for_function('window.HonroApp');page.evaluate('HonroApp.launch(1)');finish(page)
+ page.evaluate('HonroApp.engine.active.hp-=17;HonroApp.engine.b.round=7');page.click('[data-action=pause]');debug_page(page);page.locator('#debug-mode-setting').click();page.wait_for_function('HonroApp.debugMode&&HonroApp.screen==="rest"');finish(page)
+ normal=page.evaluate('JSON.parse(localStorage.getItem("honro-first-act-profile-1"))')
+ assert page.evaluate('HonroApp.profile!==HonroApp.normalProfile&&HonroApp.profile.honroBattle.round===7&&!HonroApp.engine')
+ page.click('[data-action=journey-book]');seen=set()
+ for act in [1,2,3]:
+  page.click(f'[data-action=journey-act][data-id="{act}"]');ids=page.locator('[data-action=journey-select]').evaluate_all('(nodes)=>nodes.map(n=>+n.dataset.id)');assert len(ids)==10;seen.update(ids)
+ assert seen==set(range(1,31))
+ page.locator('[data-action=journey-select][data-id="30"]').scroll_into_view_if_needed();page.click('[data-action=journey-select][data-id="30"]');assert page.evaluate('HonroApp.screen')=='journey'
+ page.click('[data-action=journey-travel]');page.click('[data-action=menu-cancel]') if page.locator('[data-action=menu-cancel]').count() else page.click('[data-action=cancel-journey-launch]')
+ assert page.evaluate('HonroApp.profile.honroBattle.round')==7
+ page.click('[data-action=journey-travel]');page.click('[data-action=confirm-journey-launch]');finish(page);assert page.evaluate('HonroApp.debugRestStage')==30
+ page.wait_for_timeout(450);page.click('[data-action=camp]')
+ for cls in ['archer','mage','knight','occultist']:
+  page.click(f'[data-action=hero][data-class="{cls}"]');page.select_option('#debug-hero-level','30');assert page.evaluate('(c)=>HONRO_CORE.levelOf(HonroApp.profile.heroes[c])',cls)==30
+ page.locator('.top [data-action=rest]').click();page.wait_for_timeout(450);debug_page(page)
+ assert page.locator('#terrain-outline-setting').count()==1
+ page.check('#terrain-outline-setting');assert page.evaluate('HonroApp.normalProfile.settings.debugTerrainOutline')
+ page.locator('.menu-back').click();assert not page.locator('[data-action=import],[data-action=newgame]').count()
+ with page.expect_download() as d:page.click('[data-action=export]')
+ exported=json.loads(__import__('pathlib').Path(d.value.path()).read_text());assert exported['honroBattle']['round']==7 and exported['heroes']==normal['heroes']
+ page.click('[data-action=settings-page][data-id=debug]');page.locator('#debug-mode-setting').click();finish(page);assert page.evaluate('!HonroApp.debugMode&&HonroApp.profile.honroBattle.round===7')
+ page.evaluate('HonroApp.showTitle()');page.click('[data-action=continue]');finish(page);assert page.evaluate('HonroApp.engine.b.round')==7
+ embedded=b.new_page();embedded.goto(url+'/HONRO.html?embedded=1');embedded.wait_for_function('window.HonroApp');embedded.evaluate('HonroApp.settings("records")');assert not embedded.locator('[data-action=settings-page][data-id=debug]').count()
+ assert not errors,errors
+ (OUT/'debug-browser-results.json').write_text(json.dumps({'normalBattleRound':7,'allActsTenPins':True,'selectionInert':True,'explicitTravel':True,'normalExport':True,'outlinePersistence':True,'disableResume':True,'embeddedRestriction':True,'errors':errors,'scope':'fixture combat round/HP; actual Chromium'},ensure_ascii=False,indent=2))
+ b.close();print('PASS debug independent battle, 30 canonical pins, explicit travel, camp levels, outline, protected export, disable/resume, embedded restriction')

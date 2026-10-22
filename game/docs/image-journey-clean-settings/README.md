@@ -11,6 +11,16 @@ Work branch: `feat/image-journey-clean-settings`. Baseline fetched and verified:
 
 Actual Chromium screenshots in `evidence/` are local runtime captures, not concept art. `settings-*` show fresh title settings; `pause-*` is fresh stage 1 after skipping entry dialogue; `fullscreen-rejected-fixture.jpg` deliberately overrides the browser request with rejection. These do not demonstrate a normal campaign clear or a real phone.
 
-Settings validation passed: build, engine typecheck, `tests/settings-menu.mjs`, `tests/fullscreen-escape.mjs`, `tests/rest-journey.mjs`, and actual Chromium `tests/settings-menu-browser.py`. Four viewport roots/details fit; paused battle data was unchanged during navigation and rejected fullscreen. The old debug-campaign-parity test still expects pin selection to navigate immediately (superseded by the baseline rest-hub behavior); it will be updated during map integration.
+Settings validation passed: build, engine typecheck, `tests/settings-menu.mjs`, `tests/fullscreen-escape.mjs`, `tests/rest-journey.mjs`, and actual Chromium `tests/settings-menu-browser.py`. Four viewport roots/details fit; paused battle data was unchanged during navigation and rejected fullscreen. Superseded layer/menu/selection assertions were updated while retaining navigation, save isolation and input coverage.
 
 Final candidate/network/pixel review records will be completed after the designated art branch contains `ART_READY.md`. No art has been generated or repainted by this implementation task.
+
+## Image journey unit
+
+Parent art merge: `4f68732b` preserves parent `f67092cc` ancestry and its `ART_READY.md`. No images were generated, repainted, or recolored here. All three actual WebP sources were opened and inspected before integration.
+
+Native-aspect image surfaces use supplied per-stage anchors, separate numbered DOM controls and labels, status/current selection and a fixed CTA. Act2 is one cutaway; no layer toggle. Act3 investigation relationships are schematic and keep canonical unlock order. Ten canonical stage buttons per fully unlocked act; the terminal camp reuses the stage30 location. Locked stage names/buttons are absent and unrevealed art is shaded. Existing act1–6 tabs and act-end gating remain authoritative.
+
+Only selected unlocked journal art is requested. Two decoded image nodes are retained; redraws reuse nodes. Decode failure retains landmarks and offers retry. Fit/recenter, bounded wheel/pinch/drag and rotation preserve native aspect and fixed-size controls. A legacy minimum button width that offset numbered circles was removed; browser geometry checks compare actual circle centers to all supplied anchors.
+
+Actual local Chromium viewport/gesture, debug, rest-hub and ending-fixture suites passed. Full review receipts, final candidate SHA and the one confirmed pre-existing narrative assertion failure are recorded in the final report update below.

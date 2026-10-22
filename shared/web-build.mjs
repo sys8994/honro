@@ -101,6 +101,9 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   }
   for(let i=0;i<entries.length;i++){
     const entry=entries[i],target=i<appStart?common:gameOnly;let file;
+    if(entry.global==='HONRO_JOURNEY_MAPS'){
+      for(const act of entry.data.acts)act.url={$honroAsset:await emit('graphics',`journey-map-act${act.act}`,'webp',await readFile(path.join(root,act.asset)))};
+    }
     if(entry.global==='HONRO_SKILL_ICON_MANIFEST'){
       for(const [id,item]of Object.entries(entry.data.icons)){
         // Emit only supplied files. URL hydration does not fetch the image.

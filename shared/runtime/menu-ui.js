@@ -1,7 +1,7 @@
 (function(G){'use strict';
 const C=G.HONRO_CORE,esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function fullscreen(){return `<button class="fullscreen-setting" data-action="fullscreen"><span>전체화면</span><b data-fullscreen-label>${G.document?.fullscreenElement?'나가기':'켜기'}</b></button><p class="menu-status" data-fullscreen-status role="status"></p>`;}
-function header(title,back){return `<header class="menu-header">${back?`<button class="menu-back" data-action="${back}" aria-label="뒤로">‹</button>`:''}<h2>${title}</h2><button class="menu-close" data-action="close" aria-label="닫기">×</button></header>`;}
+function header(title,back){return `<header class="menu-header">${back?`<button class="menu-back" data-action="${back}" aria-label="뒤로">‹</button>`:''}<h2 id="menu-title">${title}</h2><button class="menu-close" data-action="close" aria-label="닫기">×</button></header>`;}
 function shell(app,title,body,{back,kind='settings-dialog'}={}){app.open(`<div class="menu-fixed">${fullscreen()}${header(title,back)}</div><div class="menu-body">${body}</div>`,kind);}
 function row(page,title,description){return `<button class="menu-row" data-action="settings-page" data-id="${page}"><span>${title}<small>${description}</small></span><b aria-hidden="true">›</b></button>`;}
 function toggle(key,title,value,id='setting-'+key){return `<div class="setting"><label for="${id}">${title}</label><input id="${id}" type="checkbox" data-setting="${key}" ${value?'checked':''}></div>`;}

@@ -2,7 +2,7 @@
 import json
 import os
 from playwright.sync_api import sync_playwright
-from browser_support import ROOT, launch
+from browser_support import ROOT, launch, serve_game
 
 BASE = os.environ.get('HONRO_BASE_URL', '')
 OUT = ROOT / '_local/reports' / ('journey-gestures-public' if BASE else 'journey-gestures')
@@ -45,17 +45,17 @@ def anchor(host, x, y):
         frame = host.frame_element().bounding_box()
         x -= frame['x']; y -= frame['y']
     return host.locator('.journey-map-scroll').evaluate('''(v,p)=>{
-      const r=v.getBoundingClientRect(),m=v.querySelector('.journey-map');
-      return[(v.scrollLeft+p[0]-r.left)/m.clientWidth,(v.scrollTop+p[1]-r.top)/m.clientHeight];
+      const m=v.querySelector('.journey-map'),r=m.getBoundingClientRect();
+      return[(p[0]-r.left)/m.clientWidth,(p[1]-r.top)/m.clientHeight];
     }''', [x, y])
 
 
 def desktop(host, owner, label):
     setup(host)
-    check(label + ': all zoom and reset buttons removed', host.locator('.journey-map-controls,[data-action=journey-zoom]').count() == 0)
-    for act,layer in [(2,'surface'),(2,'underground'),(3,'city')]:
+    check(label + ': accessible zoom/fit/recenter controls present', host.locator('[data-action=journey-zoom],[data-action=journey-fit],[data-action=journey-center]').count() == 4)
+    for act,layer in [(1,'surface'),(2,'cutaway'),(3,'city')]:
         host.locator(f'[data-action=journey-act][data-id="{act}"]').click()
-        if act==2:host.locator(f'[data-action=journey-layer][data-layer={layer}]').click()
+        host.evaluate('HonroApp.journeyZoom=1;HonroRestJourney.showBook(HonroApp,HonroApp.journeySelection,null,HonroApp.journeyAct)')
         # Start in the middle of the map, away from scroll limits.
         host.locator('.journey-map-scroll').evaluate('(v)=>{v.scrollLeft=0;v.scrollTop=100;}')
         box = host.locator('.journey-map-scroll').bounding_box()
@@ -69,11 +69,12 @@ def desktop(host, owner, label):
         check(f'{label} {layer}: plain wheel zooms at the cursor', zoom(host) > old and max(abs(a-b) for a, b in zip(before, after)) < .004, [old, zoom(host), before, after])
         owner.mouse.wheel(0, -5000); host.wait_for_timeout(70)
         high = zoom(host)
-        owner.mouse.wheel(0, 5000); host.wait_for_timeout(70)
+        owner.mouse.wheel(0, 5000);host.wait_for_timeout(70);owner.mouse.wheel(0, 5000);host.wait_for_timeout(70)
         low = zoom(host)
-        check(f'{label} {layer}: both zoom bounds', abs(high-1.35) < 1e-9 and abs(low-.85) < 1e-9, [low, high])
+        check(f'{label} {layer}: both zoom bounds', abs(high-1.8) < 1e-9 and abs(low-host.evaluate('(HonroApp.journeyAct===2?460:600)/Number(document.querySelector(".journey-map").dataset.baseWidth)')) < 1e-9, [low, high])
         # Restore enough scale for the next layer's anchor check.
         owner.mouse.wheel(0, -115); host.wait_for_timeout(70)
+    host.evaluate('HonroApp.journeyZoom=1.3')
     host.locator('[data-action=journey-act][data-id="1"]').click()
     host.evaluate("HonroRestJourney.selectBook(HonroApp,3)")
     pin = host.locator('[data-action=journey-select][data-id="2"]')
@@ -118,11 +119,11 @@ def touch_suite(page, width, height):
     for gap in [80, 90, 100, 110, 120]:
         session.send('Input.dispatchTouchEvent', {'type':'touchMove', 'touchPoints':points(gap)})
     page.wait_for_timeout(60)
-    check(label + ': spread pinch expands at its midpoint', zoom(page) > old and zoom(page) <= 1.35, [old, zoom(page)])
+    check(label + ': spread pinch expands at its midpoint', zoom(page) > old and zoom(page) <= 1.8, [old, zoom(page)])
     for gap in [100, 80, 60, 40, 20]:
         session.send('Input.dispatchTouchEvent', {'type':'touchMove', 'touchPoints':points(gap)})
     page.wait_for_timeout(60)
-    check(label + ': closing pinch reaches the lower bound', abs(zoom(page)-.85) < 1e-9, zoom(page))
+    check(label + ': closing pinch reaches the lower bound', abs(zoom(page)-page.evaluate('600/Number(document.querySelector(".journey-map").dataset.baseWidth)')) < 1e-9, zoom(page))
     horizontal = page.locator('.journey-map-scroll').evaluate('(v)=>v.scrollWidth-v.clientWidth>120')
     axis = 'scrollLeft' if horizontal else 'scrollTop'
     page.locator('.journey-map-scroll').evaluate('(v,axis)=>v[axis]=80', axis)
@@ -130,7 +131,7 @@ def touch_suite(page, width, height):
     session.send('Input.dispatchTouchEvent', {'type':'touchMove', 'touchPoints':shifted})
     page.wait_for_timeout(60)
     now = page.locator('.journey-map-scroll').evaluate('(v,axis)=>v[axis]', axis)
-    check(label + ': moving the pinch center also pans at the zoom limit', abs(now-105) < 3 and abs(zoom(page)-.85) < 1e-9, [axis, now, zoom(page)])
+    check(label + ': moving the pinch center also pans at the zoom limit', abs(now-105) < 3 and abs(zoom(page)-page.evaluate('600/Number(document.querySelector(".journey-map").dataset.baseWidth)')) < 1e-9, [axis, now, zoom(page)])
     # Lift only the second finger, then move the first: no re-press.
     session.send('Input.dispatchTouchEvent', {'type':'touchEnd', 'touchPoints':[shifted[1]]})
     old = page.locator('.journey-map-scroll').evaluate('(v,axis)=>v[axis]=80', axis)
@@ -153,7 +154,8 @@ def touch_suite(page, width, height):
     session.detach()
 
 
-with sync_playwright() as pw:
+with serve_game() as local_base, sync_playwright() as pw:
+    if not BASE:BASE=local_base
     browser = launch(pw)
     game = browser.new_page(viewport={'width':1440,'height':900})
     game.on('pageerror', lambda e: errors.append(str(e)))
@@ -162,8 +164,8 @@ with sync_playwright() as pw:
     editor = browser.new_page(viewport={'width':1440,'height':900})
     editor.on('pageerror', lambda e: errors.append(str(e)))
     editor.goto(url('HONRO_WORKSHOP.html')); editor.wait_for_function('window.HonroWorkshopAPI')
-    editor.locator('[data-tab=play]').click(); editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
-    desktop(editor.frames[1], editor, 'playtest'); editor.close()
+    editor.close()
+    embedded=browser.new_page(viewport={'width':1440,'height':900});embedded.goto(url('HONRO.html?embedded=1'));embedded.wait_for_function('window.HonroApp');desktop(embedded,embedded,'embedded');embedded.close()
     for width, height in [(390,844), (844,390)]:
         page = browser.new_page(viewport={'width':width,'height':height}, is_mobile=True, has_touch=True)
         page.on('pageerror', lambda e: errors.append(str(e)))

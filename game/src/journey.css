@@ -151,3 +151,25 @@
 body:has(#modal.open .journey-confirm) #turn-banner,body:has(#modal.open .pause-dialog) #turn-banner{visibility:hidden}
 /* Keep the new hub action visible in a short landscape pause menu. */
 @media(max-height:460px) and (min-width:701px){.honro .pause-menu{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Native-aspect artwork and independent, fixed-size live controls. */
+.honro #app .journey-image-screen .journey-map{width:calc(var(--map-base-width,920px) * var(--journey-zoom,1));min-width:0;max-height:none;background:#18292a}
+.journey-image-host,.journey-map-image{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;user-select:none}
+.honro #app .journey-image-screen .journey-pin{position:absolute;width:44px;height:44px;min-height:44px;padding:0;display:block;transform:translate(-50%,-50%);overflow:visible;background:transparent;border:0;box-shadow:none}
+.honro #app .journey-image-screen .journey-pin i{position:absolute;left:6px;top:6px;display:grid;place-items:center;width:32px;height:32px;box-sizing:border-box;margin:0;border:2px solid #d3bd86;border-radius:50%;background:#152c30ef;color:#fff0cb;font-size:13px;font-style:normal;box-shadow:0 2px 5px #0009}
+.honro #app .journey-image-screen .journey-pin span{position:absolute;left:50%;top:50%;transform:translate(calc(var(--label-x) * var(--map-factor,1) * 1px),calc(var(--label-y) * var(--map-factor,1) * 1px));padding:4px 7px;margin:0;width:max-content;max-width:150px;background:#12252aee;border:1px solid #84938680;border-radius:4px;font-size:12px;line-height:1.4;color:#f0ebd7;white-space:nowrap;text-shadow:none;box-shadow:0 2px 5px #0005;pointer-events:none}
+.honro #app .journey-image-screen .journey-pin b{position:absolute;left:50%;top:40px;transform:translateX(-50%);font-size:10px;line-height:1.5;white-space:nowrap;color:#fff0bd;background:#16282ce8;padding:1px 5px;pointer-events:none}
+.honro #app .journey-image-screen .journey-pin.selected i{background:#c9b47e;color:#13282c;border-color:#fff0c4;outline:3px solid #e2cd9370;transform:none;box-shadow:0 0 16px #eedbaa80}
+.honro #app .journey-image-screen .journey-pin.selected span{background:#182a28f5;border-color:#ead08e;color:#fff3ca}
+.honro #app .journey-image-screen .journey-pin.current i{border-color:#fff0bd}.journey-fog,.journey-investigations{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.journey-investigations path{fill:none;stroke-width:3;stroke-dasharray:4 9;stroke:#f0ca7b}.journey-investigations .investigation-1{stroke:#abd0cb;stroke-dasharray:11 8}
+.journey-map-tools{position:absolute;top:10px;right:10px;display:flex;gap:4px;z-index:8}.honro #app .journey-map-tools button{width:44px;min-height:44px;padding:0;background:#11262aeb;border:1px solid #a99e7e99;font-size:22px;color:#eee5cb}.journey-image-status{position:absolute;z-index:7;left:12px;top:60px;right:12px;margin:0;padding:10px;background:#11262af2;font-size:12px;line-height:1.6}.journey-image-status[hidden]{display:none}.journey-image-status button{min-height:44px}
+.honro #app .journey-image-screen .journey-map-legend{font-size:10px;letter-spacing:0;flex-wrap:wrap;gap:5px 14px;max-width:calc(100% - 32px);width:auto;line-height:1.4}
+.honro #app .journey-image-screen .journey-heading{padding-top:max(10px,env(safe-area-inset-top));padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+.honro #app .journey-image-screen .journey-detail p{max-height:3.3em;overflow:auto}.honro #app .journey-image-screen .journey-detail{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+.honro #app .journey-image-screen .journey-map-scroll{display:flex;align-items:flex-start}
+.honro #app .journey-image-screen .journey-map{flex:none;margin:auto}
+.honro #app .journey-map-tools [data-action=journey-fit]{font-size:12px;width:48px}
+/* Native anchors stay exact while zooming; legacy auto-width pins must not
+   offset their numbered circles or interpolate label positions. */
+.honro #app .journey-image-screen .journey-pin{min-width:44px;transition:filter .16s,color .16s}
+.honro #app .journey-image-screen .journey-pin:is(:hover,:focus-visible){transform:translate(-50%,-50%)}
+.honro #app .journey-image-screen .journey-pin :is(i,span){transition:background .16s,border-color .16s,box-shadow .16s,color .16s}
