@@ -1,0 +1,6 @@
+PASS Completed 7 → book old pin/history → current rest 8 → actual new 8, including reload
+PASS Replay snapshot cancellation and intro Continue remain exact; confirmed hub then departure starts fresh
+PASS Legacy markerless replay preserves campaign destination and permanent progress
+PASS Debug selection waits for explicit camp CTA and keeps the normal save untouched
+PASS Explicit departures, including the same saved chapter, never render Continue
+PASS Act/direct boundaries and replay results retain automatic routing
