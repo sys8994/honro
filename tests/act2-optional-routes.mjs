@@ -7,8 +7,8 @@ import {historicalStage11Runtime} from './stage11-ravine-history-helpers.mjs';
 import assert from 'node:assert/strict';
 import {mkdir,writeFile} from 'node:fs/promises';
 import {runtime,battlefield} from '../game/tests/helpers.mjs';
-const g=historicalStage11Runtime(await runtime({legacyMaps:false})),C=g.HONRO_CORE,rows=[],shotRows=[];
 const requested=process.argv.slice(2).map(Number),ids=requested.length?requested:Array.from({length:10},(_,i)=>i+11);
+const live=await runtime({legacyMaps:false}),g=ids.includes(11)?historicalStage11Runtime(live):live,C=g.HONRO_CORE,rows=[],shotRows=[];
 const plain=x=>JSON.parse(JSON.stringify(x));
 const dt=C.STEP;
 function makeTrial(template,cls,route){
