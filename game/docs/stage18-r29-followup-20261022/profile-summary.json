@@ -1,0 +1,30 @@
+{
+  "gameSource": "793a9a953d6f82038d44dc44b51ea5a01ce996c4",
+  "profileTestCommit": "1fb59cef6f6f1d5fde20cbbf63ba15e8fd9d678b",
+  "externalTimeoutSeconds": 45,
+  "exitCode": 124,
+  "completedCallTotalsMs": {
+    "engine-mission-tick": 8.3612409999987,
+    "navigation-advance": 1880.7895280000012,
+    "navigation-build": 566.0039109999998,
+    "navigation-inspectRoute": 14.877167999999074,
+    "shoot-search": 9490.901727000004
+  },
+  "lastUnreturnedCall": [
+    {
+      "id": 13,
+      "name": "shoot-search",
+      "round": 29,
+      "active": "p-mage",
+      "frame": 56452,
+      "hero": "mage",
+      "target": "sb-b-high",
+      "preview": true,
+      "event": "enter",
+      "ms": 29737.497814
+    }
+  ],
+  "sampledTickMaxMs": 2.269578999999794,
+  "finding": "R29 mage sb-b-high preview is synchronous shoot-search. V8 bottom-up samples include production predict/shotViable/collision under repeated controller trajectory search; engine mission tick samples return ~2ms. Production prediction is used, but this is not evidence of an actual player fire/turn tick freezing. Native UI performance was not measured.",
+  "limits": "One short profiling branch, externally killed. Its gameplay actions are not used as the final continuation. Fresh navigator lacks historical rejected-link cache."
+}

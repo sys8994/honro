@@ -1,0 +1,54 @@
+{
+  "pass": true,
+  "rows": [
+    {
+      "cls": "mage",
+      "oldProposal": null,
+      "endpoint": {
+        "x": 4140,
+        "y": 6732.307692307692,
+        "surfaceId": "sb-lower-buttress-mass",
+        "id": "detour-act2-keeper"
+      },
+      "pathLength": 1252.067607590675,
+      "euclideanProgress": -480.9431562123991,
+      "endIndex": 13,
+      "stationaryGuard": [
+        {
+          "id": "p-mage:keeper:act2-keeper",
+          "attempts": 2,
+          "stationary": 2,
+          "used": [
+            "sb-lower-buttress-mass:4140.0:6732.3",
+            "sb-lower-buttress-mass:4220.0:6658.5"
+          ]
+        }
+      ]
+    },
+    {
+      "cls": "knight",
+      "oldProposal": null,
+      "endpoint": {
+        "x": 3401.6666666666665,
+        "y": 6939.666666666667,
+        "surfaceId": "sb-maintenance-rise",
+        "id": "detour-act2-keeper"
+      },
+      "pathLength": 1419.6352266955541,
+      "euclideanProgress": -1236.3301883882314,
+      "endIndex": 20,
+      "stationaryGuard": [
+        {
+          "id": "p-knight:keeper:act2-keeper",
+          "attempts": 2,
+          "stationary": 2,
+          "used": [
+            "sb-maintenance-rise:3401.7:6939.7",
+            "sb-maintenance-rise:3418.3:6932.3"
+          ]
+        }
+      ]
+    }
+  ],
+  "scope": "Read-only actual R29 graph-prefix regression. No live actor/resource/objective writes, movement or combat execution."
+}
