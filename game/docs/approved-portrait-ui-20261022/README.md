@@ -1,6 +1,6 @@
 # 승인 BASE4 초상화 UI · 최종 통합
 
-`c5b51319ef887943726434d84db596f07254bbd3`(13장 shape4 포함)를 병합했다. 실제 build/browser 검수 HEAD는 **`637255dd1a29de413d52d21ff1baf4312570ed37`**이며 이후 변경은 검사 도구·문서·증거뿐이다. 이 HEAD는 c5b51319의 후손으로 현재 master에서 fast-forward 가능하다. master/Pages는 부모 담당이며 여기서는 변경하지 않았다. 대사 통합/표정8종 branch는 가져오지 않았다.
+`c5b51319ef887943726434d84db596f07254bbd3`(13장 shape4 포함)를 병합했다. 실제 build/browser 검수 HEAD는 **`637255dd1a29de413d52d21ff1baf4312570ed37`**이다. 이후 별도 NPC 대사·모바일 버튼 보완과 최신 master 자원 복원은 [추가 인계](NPC_DIALOGUE.md)에 실행 SHA·사진·한계를 따로 기록한다. 이 HEAD는 c5b51319의 후손으로 c5b51319에서 fast-forward 가능했다. 최신 통합 ancestry는 추가 인계 문서를 따른다. master/Pages는 부모 담당이며 여기서는 변경하지 않았다. 대사 통합/표정8종 branch는 가져오지 않았다.
 
 최종 manifest SHA-256 `bb8d7f30130aded063218af46faf1044a29fba05b20d50ac488272859ad90bc0`. HTML SHA-256 `66a8caa4baeef297b2ec1c1b5c322fa22e597e5657b6d8bff4783e9fd535ff80`. 초기302 연결·사진·당시 검수는 [역사 기록](INITIAL_302.md)에 분리했다.
 
