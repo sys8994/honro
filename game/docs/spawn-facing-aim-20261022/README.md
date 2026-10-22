@@ -59,3 +59,5 @@ npm run build
 BUILD_ROOT=/workspace/honro-facing-baseline BASELINE=1 python tools/testing/spawn-facing-aim.py
 python tools/testing/spawn-facing-aim.py
 ```
+
+최종 원격 확인 중 master에 `9890006179e45c7b323941a1252a3003c298751f`의 이전13장 active-session 리소스2개 복원이 추가됐다. 이 master를 **작업 브랜치에만 merge**해 두 리소스를 보존했다. 공통 build 재실행 뒤 파일 hash가98900061과 같고, 검증한 runtime/manifest hash도 그대로임을 확인했다. 다른 작업을 덮어쓰거나 master/Pages에 push하지 않았다.
