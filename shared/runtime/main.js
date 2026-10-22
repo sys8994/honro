@@ -298,8 +298,8 @@
         } }
         notify(text) { let n = $('notice'); n.textContent = text; n.hidden = false; clearTimeout(this.noti); this.noti = setTimeout(() => n.hidden = true, 3200); }
         top(title, back = 'title') { return `<header class="top"><button class="icon ghost" data-action="${back}" aria-label="뒤로">${fa('chevronUp',17,'back-icon')}</button><h2>${esc(title)}</h2>${this.debugMode?'<span class="debug-badge">디버그 · 기록 분리</span>':''}<span class="grow"></span><button class="icon ghost" data-action="settings" aria-label="설정">${fa('gear',18)}</button></header>`; }
-        portrait(cls, size = 1) { return `<canvas class="portrait" data-portrait="${cls}" width="88" height="108"></canvas>`; }
-        drawPortraits() { for (const cv of document.querySelectorAll('canvas[data-portrait]')) G.HonroPortraits.draw(cv,null,cv.dataset.portrait); }
+        portrait(cls, size = 1) { return `<span data-portrait-host="${cls}" style="display:contents"></span>`; }
+        drawPortraits() { for(const host of document.querySelectorAll('[data-portrait-host]')){const cls=host.dataset.portraitHost;G.HonroPortraits.mount(host,null,cls,{identity:H.hero[cls]?.name,surface:'hud'});}for(const cv of document.querySelectorAll('canvas[data-portrait]'))G.HonroPortraits.draw(cv,null,cv.dataset.portrait,{identity:H.hero[cv.dataset.portrait]?.name,surface:'hud'}); }
         showTitle() { this.stopBattle(); this.close(); this.screen = 'title'; G.HonroTitleMarkup.mount(this.root,{scene:G.HONRO_TITLE_SCENE,logo:G.HONRO_TITLE_LOGO,hanja:G.HONRO_TITLE_HANJA,profile:this.profile,debugMode:this.debugMode,splitLocked:G.HonroSplitCampaign.locked(this.profile),settingsIcon:fa('gear',19)}); }
         stopBattle() { this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this); G.HonroAct3Void?.abort(this); G.HonroRestJourney?.stopMotion(this); if (this.engine && !this.training && !this.done) {
             G.HonroProgression.syncRoster(this.profile,this.engine.b);

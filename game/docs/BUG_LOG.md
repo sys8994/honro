@@ -4412,3 +4412,7 @@ HUD의 32~36px 내부 타일과 공통 스탬프의 둥근 이중 프레임을 �
 ## BGM·승인 11장·최신 master 통합 — 2026-10-22
 
 master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별도 통합 브랜치에서 결합했다. 최종 코드/생성물551da47f. BGM30/7개hash·decode, 11장 게임 규칙/재질 prepare 불변, 실제 대표 재생과 Workshop Stop, 승인 재질PNG6개 일치·세 warm cache 경계, 통합 build/도감/web-split을 확인했다. 추가 미술·초상화 시안은 미적용. 기존 상세 계측/자동자료는 역사 커밋과 _local로 구분하고 이번 성능 계측으로 재사용하지 않았다. 사진5장은 Library의 업로드 전 네트워크 실패로 검토 브랜치 파일 전달을 사용했다. AGENTS에는 기존/연관 Codex 세션 재사용 지침만 추가했다. 정확한 SHA·빌드·사진 blob ID·한계는 [최종 통합 기록](bgm-stage11-release-20261022/README.md). master/Pages는 부모 확인 전 미변경.
+
+### 2026-10-22 · 승인 기본 초상4종의 UI 연결
+
+승인 PNG 원본을 유지한 lossless WebP·명시 head/bust 안전영역을 story portrait 설정에 연결한다. 정확한 주인공 identity만 승인 이미지를 쓰고 같은 클래스 NPC/적/소환은 기존 vector fallback을 유지한다. HUD·대화 canvas를 보존하고 asset당 request/decode1회, 준비 완료 때 현재 연결된 portrait만1회 그린다. 제목 preload/표정 추정/월드 배우·전투 변경은 없다. 원본의 반투명 검정/갈색 배경 잔류는 그대로이며 미술 보정하지 않았다. 실제 화면·검사·충돌 경계는 `approved-portrait-ui-20261022/README.md`.
