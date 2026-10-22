@@ -33,7 +33,9 @@ for(const a of after.library.slice(before.library.length)){assert(reverse.has(a.
 for(const key of Object.keys(before))if(!['stages','library'].includes(key))assert.deepEqual(after[key],before[key]);
 assert.deepEqual(JSON.parse(JSON.stringify(applyStage13VectorFinish(structuredClone(before)))),after,'Reproducible visual delta');
 assert.deepEqual(JSON.parse(JSON.stringify(applyStage13VectorFinish(structuredClone(after)))),after,'Idempotent visual author');
-for(const f of ['shared/runtime/main.js','shared/runtime/renderer.js','shared/runtime/party-rig.js','shared/runtime/authored-far-art.js','shared/runtime/act2-spatial-art.js','shared/runtime/stage11-landscape-art.js','shared/runtime/portraits.js'])assert.equal(await readFile(f,'utf8'),execFileSync('git',['show',base+':'+f],{maxBuffer:8*1024*1024}).toString(),f+' unchanged');
+// Preserve the latest approved UI/render sources during integration.
+const runtimeBase='a23dffb5afab998646817ffd3ee9732d99ce3172';
+for(const f of ['shared/runtime/main.js','shared/runtime/renderer.js','shared/runtime/party-rig.js','shared/runtime/authored-far-art.js','shared/runtime/act2-spatial-art.js','shared/runtime/stage11-landscape-art.js','shared/runtime/portraits.js'])assert.equal(await readFile(f,'utf8'),execFileSync('git',['show',runtimeBase+':'+f],{maxBuffer:8*1024*1024}).toString(),f+' unchanged');
 let allocations=0;const Path2D=new Proxy(NativePath,{construct(t,args){allocations++;return Reflect.construct(t,args);}});
 const g=vm.createContext({console,performance,structuredClone,Path2D,DOMMatrix,document:{createElement:()=>createCanvas(64,64)},navigator:{userAgent:'native-stage13-art'},matchMedia:()=>({matches:true})});g.window=g;
 for(const source of await runtimeParts({vector:true,render:true}))vm.runInContext(source,g);
