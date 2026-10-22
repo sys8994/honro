@@ -33,7 +33,7 @@ assert.deepEqual(after.library.slice(0,before.library.length),before.library,'Ex
 assert.equal(after.library.length,before.library.length+4);assert.equal(variants.length,4);
 for(const a of after.library.slice(before.library.length)){assert(reverse.has(a.id));assert.deepEqual(a.collision,[]);assert(a.vector&&a.reference);}
 for(const key of Object.keys(before))if(!['stages','library'].includes(key))assert.deepEqual(after[key],before[key]);
-assert.deepEqual(JSON.parse(JSON.stringify(applyStage13VectorFinish(structuredClone(before)))),after,'Reproducible visual delta');
+assert.deepEqual(JSON.parse(JSON.stringify(applyStage13VectorFinish(structuredClone(approvedOther)))),after,'Reproducible visual delta');
 assert.deepEqual(JSON.parse(JSON.stringify(applyStage13VectorFinish(structuredClone(after)))),after,'Idempotent visual author');
 // Preserve the latest approved UI/render sources during integration.
 const runtimeBase='fe6911c9e6c1358d9384c355d3e6fe5c6e96e9bb';
