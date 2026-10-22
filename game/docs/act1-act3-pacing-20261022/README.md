@@ -96,3 +96,5 @@ python tools/testing/act1-act3-pacing-capture.py 8 22 23
 선별 검증은 `stage23-road-lead-resume.mjs`, 23장8가지 짧은 구간의 구 predicate/현 predicate 대조, `act2-pacing-state.mjs`, `web-split.mjs` 모두 통과했다. [통합 구간/저장 결과](evidence/integrated/boundary-and-resume.json), [23장 회귀](evidence/integrated/road-resume.log), [2막 상태](evidence/integrated/act2-state.log), [번들 일치](evidence/integrated/bundle.log)를 보존한다. 23장1.5초 이동0→348.827/324.500과 자원285불변, 먼/상층 동행의 정지 및 석교의 기존 이동을 다시 확인했다. 기존 역사 검사2건은 미수리·미통과로 남기며8/22장 집중 검수와 전체 플레이는 반복하지 않았다. 통합으로 새 게임 로직을 추가하지 않았으므로 생성물·연결·기존 회귀만 선별했다.
 
 Pages 설정 및 Actions 목록의 CLI 읽기는 HTTP `Forbidden`으로 거절됐다. 해당 요청은 반복하지 않았다. master 쓰기와 배포 실행의 상태는 이후 기록에서 별도로 구분한다.
+
+통합 최종 런타임/검증 소스는 **`5ceba2c114ed1851abcfe7aeb25d233be5376d39`**다. 이 커밋에서23장만 별도 Chromium 실제 화면을 캡처해 직접 확인했다. [대표 JPG](evidence/integrated/23-final-ramp-progress.jpg)와 [브라우저 입력/소스 기록](evidence/integrated/final-browser.json): 실제 ArrowRight20프레임에서 동행3220→3333.294, 이동1640→1513.333, NPC2640→2717.517, 오류0. 기존 상층 선택로·연속 경사·서로 다른 사격점·접지를 보존했다. 사진은1MB 미만이며 초기 위치/이전 단계 준비와 실제 입력 구간을 구분한다. 이후 문서·증거 커밋은 런타임을 바꾸지 않는다.

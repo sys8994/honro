@@ -1,0 +1,38 @@
+{
+  "source": "5ceba2c114ed1851abcfe7aeb25d233be5376d39",
+  "scope": "Production browser pixels; prepared camera/escort-state fixtures, real keyboard movement.",
+  "finalOnly": true,
+  "inputs": [
+    {
+      "stage": 23,
+      "scope": "Real keyboard ArrowRight, production App.frame20;23 party/NPC ramp poses and prior escort goals prepared once",
+      "start": {
+        "heroX": 3220,
+        "moveLeft": 1640,
+        "npcX": 2640
+      },
+      "end": {
+        "heroX": 3333.294110859988,
+        "moveLeft": 1513.3333333333348,
+        "npcX": 2717.517023219989
+      }
+    }
+  ],
+  "rows": [
+    {
+      "stage": 23,
+      "file": "23-final-ramp-progress.jpg",
+      "label": "final-ramp-progress",
+      "camera": [
+        3150,
+        4880,
+        0.42
+      ],
+      "viewport": [
+        1200,
+        700
+      ]
+    }
+  ],
+  "errors": []
+}
