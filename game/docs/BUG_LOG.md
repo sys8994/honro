@@ -4431,3 +4431,7 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 ### 2026-10-22 10장 실제 worldOutro 경계 보완 검수
 - 기존 문구 배치 JPG와 별개로, 여섯 방어 라운드 완료 fixture에서 정상 supported exit→withdrawal→won→worldOutro=2→outcome 경로를 검사했다. 런타임 수정은 없다.
 - 살아 있는 소단+동행 3명의 실제 동쪽 지면/안전 카메라, 원고 16줄 무누락, 마지막 줄 Continue, UI skip→막 엔딩→쉼터→상세 보고서, 1회 정산을 확인했다. 이전 fixture의 11줄은 소단 사망 처리에 따른 소단 발언 5줄 필터였다. [측정·실제 JPG·한계](story/voice-v2-editorial/INTEGRATION_REPORT.md#6-부모-검수-보완--10장-실제-안전-퇴장-경로).
+
+## 부모 서사 원고 v2·단일 현재 원천 통합 — 2026-10-22
+
+기준 master934 위에 검토 입력 caaa25e2를 병합하고 통합 소스2633e2b4에서 정상 build/도감을 재생성했다. 원고는 입력 hash 그대로다. 30장 current/40legacy·저장/row ID와 연출·카메라/퀘스트 분리·공허·보고서 단위, 실제 좁은 화면 안전퇴장16줄/4인·Continue·엔딩/보고서와27장 공허, 타입/web-split을 확인했다. 기존 story-direction의 옛 문구 기대값은 실패했고 초기 JS/JSON body+18.2%/5요청 증가를 별도 명시했다. BGM/11장 미술/HUD·paused dirty/occlusion은 보존했다. 상세는 [통합 기록](story/narrative-voice-v2-release-20261022/README.md). master/Pages는 미변경.

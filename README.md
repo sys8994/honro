@@ -1,5 +1,7 @@
 # HONRO · Game + Workshop
 
+대사 원칙 v2와 부모 원고의 별도 통합·정확한 SHA·검사 및 시작 전송량/옛 검사 한계는 [서사 통합 기록](game/docs/story/narrative-voice-v2-release-20261022/README.md)을 참고합니다.
+
 현재 BGM·승인된 11장·master 실루엣 개선을 결합한 부모 검토본은 [최종 통합 기록](game/docs/bgm-stage11-release-20261022/README.md)을 따릅니다. 아래 단독 BGM 검수의 소스/빌드와 이번 통합의 소스/빌드를 구분합니다.
 
 **스토리 제작 기준(2026-10-14):** [새 기준서와 적용 범위](game/docs/story/README.md). 두 사용자 v1.0 문서를 채택하며, 기존 구현·저장·검증 이력은 보존합니다. 4–6막은 후반 기획이며 이번 새 스테이지 구현 범위가 아닙니다.
