@@ -33,7 +33,7 @@ export function representativeMelee(g,e,u,target,id){
 /** Test-only input policy. Route graph proposes inputs; only Engine.move/jump
  * advances actors. No battle fields or movement budgets are edited here. */
 export function navigator(g,b,e,{tick,ready,record,stageId=18,routes=null}){
- const C=g.HONRO_CORE,stage=g.HONRO_PROJECT.stages[stageId-1],nodes=[],edges=[],map=new Map(),bySurface=new Map(),nav=new Map(),failed=new Map();
+ const C=g.HONRO_CORE,stage=g.HONRO_PROJECT.stages[stageId-1],nodes=[],edges=[],map=new Map(),bySurface=new Map(),nav=new Map(),failed=new Map(),issuedRoutes=new WeakSet();
  const distance=(a,z)=>Math.hypot(a.x-z.x,a.y-z.y),surface=u=>e.contactSurface(u.x,u.y-5,u.y+5)?.t?.id;
  function node(p){const key=`${p.surfaceId}:${p.x.toFixed(1)}:${p.y.toFixed(1)}`;if(map.has(key))return map.get(key);const i=nodes.length;nodes.push({...p});edges.push([]);map.set(key,i);if(!bySurface.has(p.surfaceId))bySurface.set(p.surfaceId,new Set());bySurface.get(p.surfaceId).add(i);return i;}
  function edge(a,z,mode=null){const from=node(a),to=node(z);if(from===to)return;const cost=distance(a,z)+(mode?.generated?850:mode?180:0);if(!edges[from].some(x=>x.to===to&&x.mode?.kind===mode?.kind))edges[from].push({to,cost,mode});}
@@ -63,7 +63,7 @@ export function navigator(g,b,e,{tick,ready,record,stageId=18,routes=null}){
  function route(u,point,enemy){const from=nearest(u),d=nodes.map(()=>Infinity),prev=nodes.map(()=>null),done=new Set();d[from]=0;for(let n=0;n<nodes.length;n++){let i=-1;for(let j=0;j<nodes.length;j++)if(!done.has(j)&&(i<0||d[j]<d[i]))i=j;if(i<0||!Number.isFinite(d[i]))break;done.add(i);for(const step of edges[i])if(usable[step.to]&&!failed.get(u.id)?.has(linkKey(nodes[i],nodes[step.to],step.mode))&&d[i]+step.cost<d[step.to]){d[step.to]=d[i]+step.cost;prev[step.to]={from:i,...step};}}
   const range=point.approachRange??{archer:550,mage:420,knight:75,occultist:420}[u.cls];let best=-1,score=Infinity;
   for(let i=0;i<nodes.length;i++){if(!usable[i])continue;const p=nodes[i],delta=distance(p,point),dy=Math.abs(p.y-point.y);let penalty=delta*10;if(enemy){if(delta>1700||dy>(u.cls==='knight'?300:900))continue;penalty=Math.abs(delta-range)*(point.approachRange===undefined?2:100)+Math.max(0,dy-(u.cls==='knight'?60:220))*5;}const total=d[i]+penalty;if(total<score){best=i;score=total;}}
-  if(best<0||!Number.isFinite(score))return null;const links=[];for(let i=best;i!==from;){const step=prev[i];if(!step)return null;links.push({from:nodes[step.from],point:nodes[i],mode:step.mode});i=step.from;}links.reverse();if(distance(u,nodes[from])>13)links.unshift({from:{x:u.x,y:u.y},point:nodes[from]});return{links,index:0,point:{...point},enemy,goal:nodes[best]};
+  if(best<0||!Number.isFinite(score))return null;const links=[];for(let i=best;i!==from;){const step=prev[i];if(!step)return null;links.push({from:nodes[step.from],point:nodes[i],mode:step.mode});i=step.from;}links.reverse();if(distance(u,nodes[from])>13)links.unshift({from:{x:u.x,y:u.y},point:nodes[from]});const result={links,index:0,point:{...point},enemy,goal:nodes[best]};issuedRoutes.add(result);return result;
  }
  function advance(u,point,enemy=false){let state=nav.get(u.id);if(!state||state.point.id!==point.id||distance(state.point,point)>160||state.enemy!==enemy||state.point.approachRange!==point.approachRange||state.index>=state.links.length){state=route(u,point,enemy);if(!state){record({op:'nav-blocked',hero:u.cls,reason:'no graph route',position:{x:u.x,y:u.y},goal:point});return;}nav.set(u.id,state);}const start={x:u.x,y:u.y};let still=0,recoveryCount=0;
   for(let n=0;n<1600&&ready()&&u.moveLeft>8;n++){
@@ -82,7 +82,8 @@ export function navigator(g,b,e,{tick,ready,record,stageId=18,routes=null}){
   for(let i=0;i<300&&ready()&&!e.grounded(u);i++){if(state.air&&Math.abs(u.x-state.air.x)>3)e.move(Math.sign(state.air.x-u.x)*(state.air.speed||.35),C.STEP);tick();}
   if(distance(start,u)>1)record({op:'move',hero:u.cls,from:start,to:{x:u.x,y:u.y},support:surface(u),goal:{id:point.id,x:point.x,y:point.y}});
  }
- return{advance,clear:id=>nav.delete(id),surface,nodes:nodes.length,inspectRoute:(u,p,enemy=false)=>route(u,p,enemy)};
+ function advancePrefix(u,p){if(!issuedRoutes.has(p.route)||!Number.isInteger(p.endIndex)||p.endIndex<0||p.endIndex>=p.route.links.length)throw Error('Unissued graph prefix');const links=p.route.links.slice(0,p.endIndex+1);if(distance(links.at(-1).point,p.point)>.01)throw Error('Prefix endpoint differs');nav.set(u.id,{links,index:0,point:{...p.point},enemy:false,goal:links.at(-1).point});return advance(u,p.point,false);}
+ return{advance,advancePrefix,clear:id=>nav.delete(id),surface,nodes:nodes.length,inspectRoute:(u,p,enemy=false)=>route(u,p,enemy)};
 }
 
 /** Read-only trace analysis. Input categories and HP damage are measured;
