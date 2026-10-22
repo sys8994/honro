@@ -40,7 +40,7 @@ with sync_playwright() as pw:
   p.mouse.move(x0,y0);p.mouse.down();p.mouse.move(x1,y1,steps=18);p.mouse.up();p.wait_for_timeout(160)
  def horizontal(target):
   w=p.viewport_size['width'];cx=w/2
-  for i in range(4):
+  for i in range(14):
    x,z=p.evaluate('[HonroApp.scene.x,HonroApp.scene.scale]');dx=max(-w*.55,min(w*.55,(x-target)*z))
    if abs(dx)<2:break
    drag(cx,310,max(25,min(w-25,cx+dx)),310)
@@ -52,8 +52,8 @@ with sync_playwright() as pw:
   p.mouse.move(min(610,p.viewport_size['width']/2),310);p.mouse.wheel(0,757);p.wait_for_timeout(120);p.mouse.wheel(0,757);p.wait_for_timeout(240);snap('minimum-entry','Actual UI wheel two pages')
   horizontal(4000);snap('center-pan','Actual horizontal camera drag after wheel')
   if group in ['camera','mobile']:
-   horizontal(-320);snap('left-pan','Actual west focus limit')
-   horizontal(8320);snap('right-pan','Actual east focus limit')
+   horizontal(-3000);snap('left-pan','Actual west focus limit');assert abs(rows[-1]['camera'][0]+320)<1
+   horizontal(11000);snap('right-pan','Actual east focus limit');assert abs(rows[-1]['camera'][0]-8320)<1
    horizontal(4000)
    for i in range(4):drag(p.viewport_size['width']/2,520,p.viewport_size['width']/2,160)
    snap('lower-pan','Actual lower camera focus limit')
