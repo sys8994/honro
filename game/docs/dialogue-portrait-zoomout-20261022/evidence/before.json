@@ -1,0 +1,1931 @@
+{
+  "head": "dd878c9e58213b2737f72b4ad4476b18464db83f",
+  "manifestSha256": "bd8db8b95b14e373f890a19830580fff319a0935093e78b6f9d2d2440d24ba17",
+  "portraitSourceSha256": "affd6cf2c1823954ec86690e9aeb2ecf0a9ca280b42e599fba57977306b50c53",
+  "hudPixels": [
+    "55476648fb5803d5c8a7852ae78083d0cbe1041e66f36af0eb0e69d3a9401ab4",
+    "33c07f3a3dcdfd3dc04c31a1aaa297e860b71356bc9b9f666cb0d031386fa0ac",
+    "817dd1e0ee5cb33f4612a37c879c783d4301ceb3fdc00f73a96d47d3a20c64d6",
+    "cb36a4cd91e8f3a14de08c0f0ed1ce26f4bfb11465b7303a95984235048d979f"
+  ],
+  "rows": [
+    {
+      "who": "설오",
+      "identity": "seoro",
+      "crop": {
+        "x": 198.87272727272727,
+        "y": 0,
+        "width": 592.2545454545455,
+        "height": 651.48
+      },
+      "head": {
+        "left": 265,
+        "top": 8,
+        "right": 725,
+        "bottom": 615,
+        "width": 460,
+        "height": 607
+      },
+      "pixels": "49bfa2c7d3515a3a16a41aaccb533e2f2a1be66fdef54cb55dd191b3be15efc5",
+      "text": "살아 있습니다. 내려가는 길부터 보겠습니다.",
+      "view": "mobile",
+      "geometry": {
+        "scene": [
+          12,
+          582,
+          366,
+          250
+        ],
+        "portrait": [
+          28,
+          607,
+          84,
+          100
+        ],
+        "line": [
+          122,
+          675,
+          243,
+          74
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              197.92,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              244.19,
+              775,
+              74.55,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              325.73,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "who": "담허",
+      "identity": "damheo",
+      "crop": {
+        "x": 237.2545454545455,
+        "y": 0,
+        "width": 525.490909090909,
+        "height": 578.04
+      },
+      "head": {
+        "left": 295,
+        "top": 4,
+        "right": 705,
+        "bottom": 535,
+        "width": 410,
+        "height": 531
+      },
+      "pixels": "848f7c04a85a8520ea37fde54a2dfe5707ae6ae3e1bbaee50c1e7f6cca3ecc44",
+      "text": "혼도 북쪽에서 내려오네. 나무꾼이 종소리를 들었다던 쪽이야. 지도에는 길도, 절도 없는데… 직접 가봐야겠어.",
+      "view": "mobile",
+      "geometry": {
+        "scene": [
+          12,
+          551,
+          366,
+          281
+        ],
+        "portrait": [
+          28,
+          576,
+          84,
+          100
+        ],
+        "line": [
+          122,
+          644,
+          243,
+          105
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              197.92,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              244.19,
+              775,
+              74.55,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              325.73,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "who": "휘겸",
+      "identity": "hwigyeom",
+      "crop": {
+        "x": 97.20000000000005,
+        "y": 0,
+        "width": 926.8,
+        "height": 1019.48
+      },
+      "head": {
+        "left": 130,
+        "top": 0,
+        "right": 1010,
+        "bottom": 670,
+        "width": 880,
+        "height": 670
+      },
+      "pixels": "437d4d9c4c8a626a7c3160e0b979471ce4ea7cb5ba1a776d89c82abd3d496634",
+      "text": "내가 앞을 막겠소. 주민부터 구합시다.",
+      "view": "mobile",
+      "geometry": {
+        "scene": [
+          12,
+          582,
+          366,
+          250
+        ],
+        "portrait": [
+          28,
+          607,
+          84,
+          100
+        ],
+        "line": [
+          122,
+          675,
+          243,
+          74
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              197.92,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              244.19,
+              775,
+              74.55,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              325.73,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "who": "소단",
+      "identity": "sodan",
+      "crop": {
+        "x": 182.27999999999997,
+        "y": 0,
+        "width": 625.44,
+        "height": 687.984
+      },
+      "head": {
+        "left": 205,
+        "top": 4,
+        "right": 785,
+        "bottom": 615,
+        "width": 580,
+        "height": 611
+      },
+      "pixels": "9a977e3d982fcf026eac07dda6bf253f0e0f4f20c74f7deb8a335356858468d1",
+      "text": "저 아래에 사람이 있어요. 혼이 몸을 붙잡고 있어요.",
+      "view": "mobile",
+      "geometry": {
+        "scene": [
+          12,
+          582,
+          366,
+          250
+        ],
+        "portrait": [
+          28,
+          607,
+          84,
+          100
+        ],
+        "line": [
+          122,
+          675,
+          243,
+          74
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              197.92,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              244.19,
+              775,
+              74.55,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              325.73,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "who": "설오",
+      "identity": "seoro",
+      "crop": {
+        "x": 198.87272727272727,
+        "y": 0,
+        "width": 592.2545454545455,
+        "height": 651.48
+      },
+      "head": {
+        "left": 265,
+        "top": 8,
+        "right": 725,
+        "bottom": 615,
+        "width": 460,
+        "height": 607
+      },
+      "pixels": "49bfa2c7d3515a3a16a41aaccb533e2f2a1be66fdef54cb55dd191b3be15efc5",
+      "text": "살아 있습니다. 내려가는 길부터 보겠습니다.",
+      "view": "landscape",
+      "geometry": {
+        "scene": [
+          25,
+          190,
+          794,
+          190
+        ],
+        "portrait": [
+          47,
+          208,
+          140,
+          154
+        ],
+        "line": [
+          207,
+          265,
+          593,
+          44
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              207,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              620.05,
+              319,
+              104.83,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              736.88,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "who": "담허",
+      "identity": "damheo",
+      "crop": {
+        "x": 237.2545454545455,
+        "y": 0,
+        "width": 525.490909090909,
+        "height": 578.04
+      },
+      "head": {
+        "left": 295,
+        "top": 4,
+        "right": 705,
+        "bottom": 535,
+        "width": 410,
+        "height": 531
+      },
+      "pixels": "848f7c04a85a8520ea37fde54a2dfe5707ae6ae3e1bbaee50c1e7f6cca3ecc44",
+      "text": "혼도 북쪽에서 내려오네. 나무꾼이 종소리를 들었다던 쪽이야. 지도에는 길도, 절도 없는데… 직접 가봐야겠어.",
+      "view": "landscape",
+      "geometry": {
+        "scene": [
+          25,
+          189.22,
+          794,
+          190.78
+        ],
+        "portrait": [
+          47,
+          207.61,
+          140,
+          154
+        ],
+        "line": [
+          207,
+          264.22,
+          593,
+          44.78
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              207,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              620.05,
+              319,
+              104.83,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              736.88,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "who": "휘겸",
+      "identity": "hwigyeom",
+      "crop": {
+        "x": 97.20000000000005,
+        "y": 0,
+        "width": 926.8,
+        "height": 1019.48
+      },
+      "head": {
+        "left": 130,
+        "top": 0,
+        "right": 1010,
+        "bottom": 670,
+        "width": 880,
+        "height": 670
+      },
+      "pixels": "437d4d9c4c8a626a7c3160e0b979471ce4ea7cb5ba1a776d89c82abd3d496634",
+      "text": "내가 앞을 막겠소. 주민부터 구합시다.",
+      "view": "landscape",
+      "geometry": {
+        "scene": [
+          25,
+          190,
+          794,
+          190
+        ],
+        "portrait": [
+          47,
+          208,
+          140,
+          154
+        ],
+        "line": [
+          207,
+          265,
+          593,
+          44
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              207,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              620.05,
+              319,
+              104.83,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              736.88,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "who": "소단",
+      "identity": "sodan",
+      "crop": {
+        "x": 182.27999999999997,
+        "y": 0,
+        "width": 625.44,
+        "height": 687.984
+      },
+      "head": {
+        "left": 205,
+        "top": 4,
+        "right": 785,
+        "bottom": 615,
+        "width": 580,
+        "height": 611
+      },
+      "pixels": "9a977e3d982fcf026eac07dda6bf253f0e0f4f20c74f7deb8a335356858468d1",
+      "text": "저 아래에 사람이 있어요. 혼이 몸을 붙잡고 있어요.",
+      "view": "landscape",
+      "geometry": {
+        "scene": [
+          25,
+          190,
+          794,
+          190
+        ],
+        "portrait": [
+          47,
+          208,
+          140,
+          154
+        ],
+        "line": [
+          207,
+          265,
+          593,
+          44
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              207,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              620.05,
+              319,
+              104.83,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              736.88,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    }
+  ],
+  "special": [
+    {
+      "view": "mobile",
+      "who": "설오",
+      "geometry": {
+        "scene": [
+          12,
+          12.1,
+          366,
+          820
+        ],
+        "portrait": [
+          28,
+          37.1,
+          84,
+          100
+        ],
+        "line": [
+          122,
+          105.1,
+          243,
+          1233.75
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              197.92,
+              775.1,
+              39.27,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              244.19,
+              775.1,
+              74.55,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              325.73,
+              775.1,
+              39.27,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "pixels": "49bfa2c7d3515a3a16a41aaccb533e2f2a1be66fdef54cb55dd191b3be15efc5"
+    },
+    {
+      "view": "mobile",
+      "who": "주민",
+      "geometry": {
+        "scene": [
+          12,
+          582,
+          366,
+          250
+        ],
+        "portrait": [
+          28,
+          607,
+          84,
+          100
+        ],
+        "line": [
+          122,
+          675,
+          243,
+          74
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              197.92,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              244.19,
+              775,
+              74.55,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              325.73,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "pixels": "dfa48cb1ce1db4b90ebaa5a7cd91f4ccb670882b62310a48423f1d420361f50c"
+    },
+    {
+      "view": "mobile",
+      "who": "새 주민",
+      "geometry": {
+        "scene": [
+          12,
+          12,
+          366,
+          820
+        ],
+        "portrait": null,
+        "line": [
+          28,
+          87,
+          337,
+          918.75
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              197.92,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              244.19,
+              775,
+              74.55,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              325.73,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "pixels": null
+    },
+    {
+      "view": "landscape",
+      "who": "설오",
+      "geometry": {
+        "scene": [
+          25,
+          14,
+          794,
+          366
+        ],
+        "portrait": [
+          47,
+          211.52,
+          140,
+          154
+        ],
+        "line": [
+          207,
+          89,
+          593,
+          403.03
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              207,
+              321,
+              63.13,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              620.05,
+              321,
+              104.83,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              736.88,
+              321,
+              63.13,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "pixels": "49bfa2c7d3515a3a16a41aaccb533e2f2a1be66fdef54cb55dd191b3be15efc5"
+    },
+    {
+      "view": "landscape",
+      "who": "주민",
+      "geometry": {
+        "scene": [
+          25,
+          190,
+          794,
+          190
+        ],
+        "portrait": [
+          47,
+          208,
+          140,
+          154
+        ],
+        "line": [
+          207,
+          265,
+          593,
+          44
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              207,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              620.05,
+              319,
+              104.83,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              736.88,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "pixels": "dfa48cb1ce1db4b90ebaa5a7cd91f4ccb670882b62310a48423f1d420361f50c"
+    },
+    {
+      "view": "landscape",
+      "who": "새 주민",
+      "geometry": {
+        "scene": [
+          25,
+          14.1,
+          794,
+          366
+        ],
+        "portrait": null,
+        "line": [
+          47,
+          89.1,
+          753,
+          313.47
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              47,
+              321.1,
+              63.13,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              620.05,
+              321.1,
+              104.83,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              736.88,
+              321.1,
+              63.13,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "pixels": null
+    }
+  ],
+  "checks": [
+    {
+      "name": "mobile 설오 buttons/head",
+      "passed": true,
+      "detail": {
+        "who": "설오",
+        "identity": "seoro",
+        "crop": {
+          "x": 198.87272727272727,
+          "y": 0,
+          "width": 592.2545454545455,
+          "height": 651.48
+        },
+        "head": {
+          "left": 265,
+          "top": 8,
+          "right": 725,
+          "bottom": 615,
+          "width": 460,
+          "height": 607
+        },
+        "pixels": "49bfa2c7d3515a3a16a41aaccb533e2f2a1be66fdef54cb55dd191b3be15efc5",
+        "text": "살아 있습니다. 내려가는 길부터 보겠습니다.",
+        "view": "mobile",
+        "geometry": {
+          "scene": [
+            12,
+            582,
+            366,
+            250
+          ],
+          "portrait": [
+            28,
+            607,
+            84,
+            100
+          ],
+          "line": [
+            122,
+            675,
+            243,
+            74
+          ],
+          "buttons": [
+            {
+              "action": "dialogue-prev",
+              "rect": [
+                197.92,
+                775,
+                39.27,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-skip",
+              "rect": [
+                244.19,
+                775,
+                74.55,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-next",
+              "rect": [
+                325.73,
+                775,
+                39.27,
+                44
+              ],
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "mobile 담허 buttons/head",
+      "passed": true,
+      "detail": {
+        "who": "담허",
+        "identity": "damheo",
+        "crop": {
+          "x": 237.2545454545455,
+          "y": 0,
+          "width": 525.490909090909,
+          "height": 578.04
+        },
+        "head": {
+          "left": 295,
+          "top": 4,
+          "right": 705,
+          "bottom": 535,
+          "width": 410,
+          "height": 531
+        },
+        "pixels": "848f7c04a85a8520ea37fde54a2dfe5707ae6ae3e1bbaee50c1e7f6cca3ecc44",
+        "text": "혼도 북쪽에서 내려오네. 나무꾼이 종소리를 들었다던 쪽이야. 지도에는 길도, 절도 없는데… 직접 가봐야겠어.",
+        "view": "mobile",
+        "geometry": {
+          "scene": [
+            12,
+            551,
+            366,
+            281
+          ],
+          "portrait": [
+            28,
+            576,
+            84,
+            100
+          ],
+          "line": [
+            122,
+            644,
+            243,
+            105
+          ],
+          "buttons": [
+            {
+              "action": "dialogue-prev",
+              "rect": [
+                197.92,
+                775,
+                39.27,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-skip",
+              "rect": [
+                244.19,
+                775,
+                74.55,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-next",
+              "rect": [
+                325.73,
+                775,
+                39.27,
+                44
+              ],
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "mobile 휘겸 buttons/head",
+      "passed": true,
+      "detail": {
+        "who": "휘겸",
+        "identity": "hwigyeom",
+        "crop": {
+          "x": 97.20000000000005,
+          "y": 0,
+          "width": 926.8,
+          "height": 1019.48
+        },
+        "head": {
+          "left": 130,
+          "top": 0,
+          "right": 1010,
+          "bottom": 670,
+          "width": 880,
+          "height": 670
+        },
+        "pixels": "437d4d9c4c8a626a7c3160e0b979471ce4ea7cb5ba1a776d89c82abd3d496634",
+        "text": "내가 앞을 막겠소. 주민부터 구합시다.",
+        "view": "mobile",
+        "geometry": {
+          "scene": [
+            12,
+            582,
+            366,
+            250
+          ],
+          "portrait": [
+            28,
+            607,
+            84,
+            100
+          ],
+          "line": [
+            122,
+            675,
+            243,
+            74
+          ],
+          "buttons": [
+            {
+              "action": "dialogue-prev",
+              "rect": [
+                197.92,
+                775,
+                39.27,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-skip",
+              "rect": [
+                244.19,
+                775,
+                74.55,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-next",
+              "rect": [
+                325.73,
+                775,
+                39.27,
+                44
+              ],
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "mobile 소단 buttons/head",
+      "passed": true,
+      "detail": {
+        "who": "소단",
+        "identity": "sodan",
+        "crop": {
+          "x": 182.27999999999997,
+          "y": 0,
+          "width": 625.44,
+          "height": 687.984
+        },
+        "head": {
+          "left": 205,
+          "top": 4,
+          "right": 785,
+          "bottom": 615,
+          "width": 580,
+          "height": 611
+        },
+        "pixels": "9a977e3d982fcf026eac07dda6bf253f0e0f4f20c74f7deb8a335356858468d1",
+        "text": "저 아래에 사람이 있어요. 혼이 몸을 붙잡고 있어요.",
+        "view": "mobile",
+        "geometry": {
+          "scene": [
+            12,
+            582,
+            366,
+            250
+          ],
+          "portrait": [
+            28,
+            607,
+            84,
+            100
+          ],
+          "line": [
+            122,
+            675,
+            243,
+            74
+          ],
+          "buttons": [
+            {
+              "action": "dialogue-prev",
+              "rect": [
+                197.92,
+                775,
+                39.27,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-skip",
+              "rect": [
+                244.19,
+                775,
+                74.55,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-next",
+              "rect": [
+                325.73,
+                775,
+                39.27,
+                44
+              ],
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "landscape 설오 buttons/head",
+      "passed": true,
+      "detail": {
+        "who": "설오",
+        "identity": "seoro",
+        "crop": {
+          "x": 198.87272727272727,
+          "y": 0,
+          "width": 592.2545454545455,
+          "height": 651.48
+        },
+        "head": {
+          "left": 265,
+          "top": 8,
+          "right": 725,
+          "bottom": 615,
+          "width": 460,
+          "height": 607
+        },
+        "pixels": "49bfa2c7d3515a3a16a41aaccb533e2f2a1be66fdef54cb55dd191b3be15efc5",
+        "text": "살아 있습니다. 내려가는 길부터 보겠습니다.",
+        "view": "landscape",
+        "geometry": {
+          "scene": [
+            25,
+            190,
+            794,
+            190
+          ],
+          "portrait": [
+            47,
+            208,
+            140,
+            154
+          ],
+          "line": [
+            207,
+            265,
+            593,
+            44
+          ],
+          "buttons": [
+            {
+              "action": "dialogue-prev",
+              "rect": [
+                207,
+                319,
+                63.13,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-skip",
+              "rect": [
+                620.05,
+                319,
+                104.83,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-next",
+              "rect": [
+                736.88,
+                319,
+                63.13,
+                44
+              ],
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "landscape 담허 buttons/head",
+      "passed": true,
+      "detail": {
+        "who": "담허",
+        "identity": "damheo",
+        "crop": {
+          "x": 237.2545454545455,
+          "y": 0,
+          "width": 525.490909090909,
+          "height": 578.04
+        },
+        "head": {
+          "left": 295,
+          "top": 4,
+          "right": 705,
+          "bottom": 535,
+          "width": 410,
+          "height": 531
+        },
+        "pixels": "848f7c04a85a8520ea37fde54a2dfe5707ae6ae3e1bbaee50c1e7f6cca3ecc44",
+        "text": "혼도 북쪽에서 내려오네. 나무꾼이 종소리를 들었다던 쪽이야. 지도에는 길도, 절도 없는데… 직접 가봐야겠어.",
+        "view": "landscape",
+        "geometry": {
+          "scene": [
+            25,
+            189.22,
+            794,
+            190.78
+          ],
+          "portrait": [
+            47,
+            207.61,
+            140,
+            154
+          ],
+          "line": [
+            207,
+            264.22,
+            593,
+            44.78
+          ],
+          "buttons": [
+            {
+              "action": "dialogue-prev",
+              "rect": [
+                207,
+                319,
+                63.13,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-skip",
+              "rect": [
+                620.05,
+                319,
+                104.83,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-next",
+              "rect": [
+                736.88,
+                319,
+                63.13,
+                44
+              ],
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "landscape 휘겸 buttons/head",
+      "passed": true,
+      "detail": {
+        "who": "휘겸",
+        "identity": "hwigyeom",
+        "crop": {
+          "x": 97.20000000000005,
+          "y": 0,
+          "width": 926.8,
+          "height": 1019.48
+        },
+        "head": {
+          "left": 130,
+          "top": 0,
+          "right": 1010,
+          "bottom": 670,
+          "width": 880,
+          "height": 670
+        },
+        "pixels": "437d4d9c4c8a626a7c3160e0b979471ce4ea7cb5ba1a776d89c82abd3d496634",
+        "text": "내가 앞을 막겠소. 주민부터 구합시다.",
+        "view": "landscape",
+        "geometry": {
+          "scene": [
+            25,
+            190,
+            794,
+            190
+          ],
+          "portrait": [
+            47,
+            208,
+            140,
+            154
+          ],
+          "line": [
+            207,
+            265,
+            593,
+            44
+          ],
+          "buttons": [
+            {
+              "action": "dialogue-prev",
+              "rect": [
+                207,
+                319,
+                63.13,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-skip",
+              "rect": [
+                620.05,
+                319,
+                104.83,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-next",
+              "rect": [
+                736.88,
+                319,
+                63.13,
+                44
+              ],
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "landscape 소단 buttons/head",
+      "passed": true,
+      "detail": {
+        "who": "소단",
+        "identity": "sodan",
+        "crop": {
+          "x": 182.27999999999997,
+          "y": 0,
+          "width": 625.44,
+          "height": 687.984
+        },
+        "head": {
+          "left": 205,
+          "top": 4,
+          "right": 785,
+          "bottom": 615,
+          "width": 580,
+          "height": 611
+        },
+        "pixels": "9a977e3d982fcf026eac07dda6bf253f0e0f4f20c74f7deb8a335356858468d1",
+        "text": "저 아래에 사람이 있어요. 혼이 몸을 붙잡고 있어요.",
+        "view": "landscape",
+        "geometry": {
+          "scene": [
+            25,
+            190,
+            794,
+            190
+          ],
+          "portrait": [
+            47,
+            208,
+            140,
+            154
+          ],
+          "line": [
+            207,
+            265,
+            593,
+            44
+          ],
+          "buttons": [
+            {
+              "action": "dialogue-prev",
+              "rect": [
+                207,
+                319,
+                63.13,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-skip",
+              "rect": [
+                620.05,
+                319,
+                104.83,
+                44
+              ],
+              "visible": true
+            },
+            {
+              "action": "dialogue-next",
+              "rect": [
+                736.88,
+                319,
+                63.13,
+                44
+              ],
+              "visible": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "mobile 설오 special buttons",
+      "passed": true,
+      "detail": {
+        "scene": [
+          12,
+          12.1,
+          366,
+          820
+        ],
+        "portrait": [
+          28,
+          37.1,
+          84,
+          100
+        ],
+        "line": [
+          122,
+          105.1,
+          243,
+          1233.75
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              197.92,
+              775.1,
+              39.27,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              244.19,
+              775.1,
+              74.55,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              325.73,
+              775.1,
+              39.27,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "mobile 설오 tail and fixed buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile 주민 special buttons",
+      "passed": true,
+      "detail": {
+        "scene": [
+          12,
+          582,
+          366,
+          250
+        ],
+        "portrait": [
+          28,
+          607,
+          84,
+          100
+        ],
+        "line": [
+          122,
+          675,
+          243,
+          74
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              197.92,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              244.19,
+              775,
+              74.55,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              325.73,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "mobile 새 주민 special buttons",
+      "passed": true,
+      "detail": {
+        "scene": [
+          12,
+          12,
+          366,
+          820
+        ],
+        "portrait": null,
+        "line": [
+          28,
+          87,
+          337,
+          918.75
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              197.92,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              244.19,
+              775,
+              74.55,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              325.73,
+              775,
+              39.27,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "mobile 새 주민 tail and fixed buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "landscape 설오 special buttons",
+      "passed": true,
+      "detail": {
+        "scene": [
+          25,
+          14,
+          794,
+          366
+        ],
+        "portrait": [
+          47,
+          211.52,
+          140,
+          154
+        ],
+        "line": [
+          207,
+          89,
+          593,
+          403.03
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              207,
+              321,
+              63.13,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              620.05,
+              321,
+              104.83,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              736.88,
+              321,
+              63.13,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 설오 tail and fixed buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "landscape 주민 special buttons",
+      "passed": true,
+      "detail": {
+        "scene": [
+          25,
+          190,
+          794,
+          190
+        ],
+        "portrait": [
+          47,
+          208,
+          140,
+          154
+        ],
+        "line": [
+          207,
+          265,
+          593,
+          44
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              207,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              620.05,
+              319,
+              104.83,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              736.88,
+              319,
+              63.13,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 새 주민 special buttons",
+      "passed": true,
+      "detail": {
+        "scene": [
+          25,
+          14.1,
+          794,
+          366
+        ],
+        "portrait": null,
+        "line": [
+          47,
+          89.1,
+          753,
+          313.47
+        ],
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "rect": [
+              47,
+              321.1,
+              63.13,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-skip",
+            "rect": [
+              620.05,
+              321.1,
+              104.83,
+              44
+            ],
+            "visible": true
+          },
+          {
+            "action": "dialogue-next",
+            "rect": [
+              736.88,
+              321.1,
+              63.13,
+              44
+            ],
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 새 주민 tail and fixed buttons",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "all clicks/lines reuse requests and decode",
+      "passed": true,
+      "detail": {
+        "start": {
+          "requests": 4,
+          "decodes": 4,
+          "paints": 4,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0
+        },
+        "end": {
+          "requests": 4,
+          "decodes": 4,
+          "paints": 15,
+          "fallbackPaints": 0,
+          "vectorBuilds": 1,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 1,
+          "waiters": 0
+        }
+      }
+    },
+    {
+      "name": "no browser errors",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,22 @@
+{
+  "runtimeCommit": "197a8e22ae8789eb8698870ce3d7472059dae0d4",
+  "baseline": "dd878c9e58213b2737f72b4ad4476b18464db83f",
+  "unchangedPaths": [
+    "art",
+    "shared/assets/portraits",
+    "game/config/story-portraits.json",
+    "game/src",
+    "shared/data",
+    "shared/map",
+    "shared/engine/src",
+    "shared/build.mjs",
+    "shared/runtime/main.js",
+    "shared/runtime/story.js",
+    "shared/runtime/story-direction.js"
+  ],
+  "masterCurrentPublicFilesPreserved": 354,
+  "focusedAndFinal8CanvasPixelsIdentical": true,
+  "finalManifestSha256": "154cb8873e6fe1caabbe44c9a1b71ccf20348d580cfab13abebd0d960492af96",
+  "finalPortraitSourceSha256": "4846abbc7aec6087c99caccd6cd76d08d370db59b3580e14d73f1f61083ccec6",
+  "note": "Focused/repaint probes ran on baseline HEAD plus final working-tree source/build; final UI probe ran on clean197a8e22. Both runtime source and manifest hashes match. These are crop/layout checks, not performance or physical-device evidence."
+}
