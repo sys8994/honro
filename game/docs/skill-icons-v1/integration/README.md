@@ -130,4 +130,6 @@
 
 심각한 원본 미술 실패를 발견하지 않았다. 이번 approved는 자동 검사만으로 정한 결과가 아니라, 부모의 두 선행 검수와 이 문서의 실제 tree/모달/HUD/낙뢰 화면 직접 열람 및 수정 후 재검수에 근거한다. 실물 기기·Safari·고DPR 전량 검수, 정상 캠페인 완주 및 부모의 별도 최종 종합 검수는 하지 않았다. 최대 성능이나 접근성 전체 감사를 주장하지 않는다. 진단 fixture 화면과 정상 캠페인 플레이를 구분한다.
 
-최종 빌드·검수·증거 SHA: 최종 커밋 후 영수증 갱신 예정. 이후 영수증만 추가한 문서 커밋의 SHA는 `git log -1 --format=%H -- game/docs/skill-icons-v1/integration/README.md`로 확인한다. master/Pages는 그대로 유지한다.
+최종 빌드·검수·증거 SHA: **`ad47a40ede1e9ef92cf6c5f54fcb68a6088e2b18`** ([고정 후보 커밋](https://github.com/sys8994/honro/commit/ad47a40ede1e9ef92cf6c5f54fcb68a6088e2b18)). 실제 시각 소스는 `0e02735a`에서 동결했으며 위 커밋이 최종 approved manifest·재생성 빌드·검사·실제 JPG165장을 모두 포함한다. 스크린샷 최대 파일은119,015bytes다.
+
+위 SHA를 원격 `refs/heads/integration/skill-icons-thunder-v1`에서 직접 읽어 로컬과 일치함을 확인했다. 같은 조회에서 원격 master는 여전히 `be79826869c70ae68950eb8be8a4bd7d187600dc`였다. 이 영수증을 추가한 후속 커밋은 README만 변경하며 런타임·빌드·이미지·검수 증거를 바꾸지 않는다. 후속 문서 커밋을 포함한 최종 브랜치 HEAD는 `git log -1 --format=%H -- game/docs/skill-icons-v1/integration/README.md` 및 원격 branch ref로 확인할 수 있다. master 병합과 Pages 배포는 미실행이며 부모의 별도 최종 검수를 기다린다.
