@@ -1,0 +1,60 @@
+{
+  "pass": true,
+  "base": "a091c6bd5e64eff748f5028fb6d0080faea3da87",
+  "stage11GameplayBefore": "c0b9173b4b0590e75854ea7e0653643cc71a52d2424232a7c3f8a67657c7b97b",
+  "stage11GameplayAfter": "c0b9173b4b0590e75854ea7e0653643cc71a52d2424232a7c3f8a67657c7b97b",
+  "terrainBefore": "f12dac6eab5d2e5d7e4da68e25ab686049a78ac587cc6219b5a022d9ab2d56cd",
+  "terrainAfter": "f12dac6eab5d2e5d7e4da68e25ab686049a78ac587cc6219b5a022d9ab2d56cd",
+  "unitsBefore": "ae907be3635517422ce983fe25fe47995a68193caeef944e37a99b2f7a36b92a",
+  "unitsAfter": "ae907be3635517422ce983fe25fe47995a68193caeef944e37a99b2f7a36b92a",
+  "markersBefore": "c016cc6e66d0c8fbc57d9a4280e2bcccdb89549ae61cd087d419190a17bea6af",
+  "markersAfter": "c016cc6e66d0c8fbc57d9a4280e2bcccdb89549ae61cd087d419190a17bea6af",
+  "eventsBefore": "b4ea477ce1344d9ff48d36473e6e39b80fa1210c5540b1e5621d997c876c773d",
+  "eventsAfter": "b4ea477ce1344d9ff48d36473e6e39b80fa1210c5540b1e5621d997c876c773d",
+  "other29Unchanged": true,
+  "sharedAssetsUnchanged": true,
+  "changedVisualAssets": [
+    "stage11:ravine-refuge-bundle",
+    "stage11:ravine-rear-cliff-contact"
+  ],
+  "reproducible": true,
+  "idempotent": true,
+  "materials": [
+    {
+      "terrainId": "act2-floor",
+      "faces": 26
+    },
+    {
+      "terrainId": "rv-west-shoulder",
+      "faces": 25
+    },
+    {
+      "terrainId": "rv-west-stone-arch",
+      "faces": 16
+    },
+    {
+      "terrainId": "rv-west-rock-crown",
+      "faces": 28
+    },
+    {
+      "terrainId": "rv-ritual-buttress",
+      "faces": 35
+    },
+    {
+      "terrainId": "rv-lower-west-shelf",
+      "faces": 22
+    },
+    {
+      "terrainId": "rv-lower-refuge-rock",
+      "faces": 31
+    },
+    {
+      "terrainId": "rv-east-tower",
+      "faces": 31
+    },
+    {
+      "terrainId": "rv-north-trace",
+      "faces": 32
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Localized tactics do not add enemies
+
+43 !== 45
+
+    at file:///tmp/honro-art-baseline/tests/stage11-ravine-tactics.mjs:10:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 43,
+  expected: 45,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
