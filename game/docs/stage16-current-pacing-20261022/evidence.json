@@ -1,0 +1,5751 @@
+{
+  "gameSource": "19d9fc28623d2451e37cf665145cfdc3e2fdd51f",
+  "branch": "audit/stage16-current-pacing-20261022",
+  "nativeResult": {
+    "sourceHash": "f78b869e363aa90f26f5091149a20f5326a56cd4e0151f5dbf27065be09e370d",
+    "runtimeSha256": "49c57b78bc5b3fdd5b9d17a6a8518bb40a866f5d2c43b8958bd4b9623e1dc841",
+    "gameplayProjectSha256": "cec70666ecf302d428f16f8632c81b2dcb79341b65d1f5787508c668a61aa40b",
+    "gameplayRuntimeSha256": "aa4c6ce7c0ceeccfbf286bdfd893c0717cf33d05c4cee383ad965b8fb8d43051",
+    "controllerSha256": "587fcedf72e3be9b86bbf085330d1bfa7148ede274e0ed7235b6a1926e3f3c23",
+    "helperSha256": "b06a096459bfe42f761f1e2c2319cdc3b99b8ef6c447c0e8dfd67b5770846196",
+    "checkoutCommit": "693211c99512c998ecb30e8a7ded452c1afdfdac",
+    "productionCommit": null,
+    "completedAt": "2026-10-22T20:05:48.446Z",
+    "initialEnemies": 49,
+    "enemyDefeats": 16,
+    "waveTelegraphs": [],
+    "phase": "won",
+    "round": 19,
+    "stopReason": null,
+    "winnerReason": "승려를 구하고 종 안의 사람들이 사흘 동안 살아 있었다는 증언을 들었다. 종지기는 인양축을 빼고 구조를 막았다. 별도로 칠십 년 전 대종의 외부 이송과 타종 금지 기록을 확보했다.",
+    "done": {
+      "monk": true,
+      "clear-rescue-threat": true,
+      "witness": true,
+      "hall": true,
+      "record": true
+    },
+    "seconds": 27.315202374000002,
+    "segmentTiming": {
+      "simulationSeconds": 107.68333333333334,
+      "storyPauseSeconds": 0.13333333333333333,
+      "botAttackPlanningSeconds": 7.4638375350000095,
+      "nativePhysicsWallSeconds": 17.73084742000064
+    },
+    "simulationSeconds": 209.44166666666666,
+    "storyPauseSeconds": 0.55,
+    "botAttackPlanningSeconds": 25.075591584000026,
+    "nativePhysicsWallSeconds": 33.44353698200066,
+    "controllerWallSecondsIncludingMovement": 32.67472050700002,
+    "botIdleWaitWallSeconds": 0,
+    "timingScope": "Simulation seconds counts production Engine ticks; story/turn pauses use a virtual clock; attack planning is Node wall time, excluding native physics; no human wall-time claim.",
+    "frames": 25133,
+    "inputCount": 5756,
+    "actions": 71,
+    "actionCounts": {
+      "move": 10,
+      "fire": 41,
+      "defend": 6,
+      "heal-stake": 2,
+      "jump": 4,
+      "land": 6,
+      "E": 2
+    },
+    "readinessXP": 36313,
+    "readinessLevel": 13,
+    "trainingBudget": {
+      "archer": {
+        "earned": 27,
+        "spent": 27,
+        "statTraining": 6
+      },
+      "mage": {
+        "earned": 27,
+        "spent": 27,
+        "statTraining": 6
+      },
+      "knight": {
+        "earned": 27,
+        "spent": 27,
+        "statTraining": 6
+      },
+      "occultist": {
+        "earned": 27,
+        "spent": 27,
+        "statTraining": 6
+      }
+    },
+    "initialHeroes": [
+      {
+        "cls": "archer",
+        "level": 13,
+        "hp": 790,
+        "maxHp": 790,
+        "ranks": {
+          "A01": 1,
+          "A14": 1,
+          "A02": 7,
+          "A06": 7,
+          "A05": 6
+        },
+        "loadout": [
+          "A01",
+          "A02",
+          "A06",
+          "A05"
+        ],
+        "focus": 186
+      },
+      {
+        "cls": "mage",
+        "level": 13,
+        "hp": 855,
+        "maxHp": 855,
+        "ranks": {
+          "M01": 1,
+          "M07": 1,
+          "M10": 6,
+          "M03": 1,
+          "M11": 6,
+          "M06": 1,
+          "M02": 1,
+          "M04": 5
+        },
+        "loadout": [
+          "M01",
+          "M10",
+          "M11",
+          "M04"
+        ],
+        "focus": 255
+      },
+      {
+        "cls": "knight",
+        "level": 13,
+        "hp": 1382,
+        "maxHp": 1382,
+        "ranks": {
+          "S00": 1,
+          "S01": 7,
+          "S03": 7,
+          "S05": 7
+        },
+        "loadout": [
+          "S00",
+          "S01",
+          "S03",
+          "S05"
+        ],
+        "focus": 208
+      },
+      {
+        "cls": "occultist",
+        "level": 13,
+        "hp": 999,
+        "maxHp": 999,
+        "ranks": {
+          "O01": 1,
+          "O02": 6,
+          "O03": 1,
+          "O04": 6,
+          "O06": 1,
+          "O07": 1,
+          "O08": 6
+        },
+        "loadout": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "focus": 301
+      }
+    ],
+    "initialItems": {
+      "heal": 3,
+      "focus": 3,
+      "cleanse": 2,
+      "ward": 2
+    },
+    "items": {
+      "heal": 3,
+      "focus": 3,
+      "cleanse": 2,
+      "ward": 2
+    },
+    "heroes": [
+      {
+        "cls": "archer",
+        "hp": 0,
+        "maxHp": 790,
+        "dead": true,
+        "x": 2143.0016409044865,
+        "y": 5360.819573364834
+      },
+      {
+        "cls": "mage",
+        "hp": 0,
+        "maxHp": 855,
+        "dead": true,
+        "x": 2115.2118253981566,
+        "y": 5368.044925396479
+      },
+      {
+        "cls": "knight",
+        "hp": 1250,
+        "maxHp": 1382,
+        "dead": false,
+        "x": 5557.806405027118,
+        "y": 4250
+      },
+      {
+        "cls": "occultist",
+        "hp": 922,
+        "maxHp": 999,
+        "dead": false,
+        "x": 4437.649047117668,
+        "y": 4327.928457383519
+      }
+    ],
+    "protectedResidents": [
+      {
+        "id": "resident-1",
+        "hp": 950,
+        "maxHp": 950,
+        "dead": false,
+        "resolved": true,
+        "shield": 126
+      },
+      {
+        "id": "objective",
+        "hp": 1766,
+        "maxHp": 1900,
+        "dead": false,
+        "shield": 0
+      }
+    ],
+    "deaths": [
+      {
+        "round": 5,
+        "frame": 8629,
+        "target": "p-archer",
+        "side": 0,
+        "owner": "p-occultist",
+        "amount": 149.67,
+        "remaining": 0,
+        "dead": true
+      },
+      {
+        "round": 9,
+        "frame": 12367,
+        "target": "p-mage",
+        "side": 0,
+        "owner": "p-occultist",
+        "amount": 182.80000000000004,
+        "remaining": 0,
+        "dead": true
+      }
+    ],
+    "damageTaken": 4003.4700000000003,
+    "damageDealt": 17554,
+    "births": [
+      {
+        "round": 14,
+        "frame": 16548,
+        "turn": 102,
+        "id": "event-67",
+        "source": "temple-cloister-answer",
+        "x": 3370,
+        "y": 4688.333333333333
+      },
+      {
+        "round": 14,
+        "frame": 16548,
+        "turn": 102,
+        "id": "event-68",
+        "source": "temple-cloister-answer",
+        "x": 3500,
+        "y": 4580
+      },
+      {
+        "round": 14,
+        "frame": 16548,
+        "turn": 102,
+        "id": "event-69",
+        "source": "temple-cloister-answer",
+        "x": 3430,
+        "y": 4408.333333333333
+      }
+    ],
+    "continues": [
+      {
+        "path": "_local/reports/stage16-current-pacing-20261022/interrupted-r9.json",
+        "round": 9,
+        "method": "production App Continue; exact actors/terrain/items/turn/objectives/waves/progression asserted",
+        "statePreserved": true,
+        "previousProvenance": {
+          "sourceHash": "f78b869e363aa90f26f5091149a20f5326a56cd4e0151f5dbf27065be09e370d",
+          "runtimeSha256": "49c57b78bc5b3fdd5b9d17a6a8518bb40a866f5d2c43b8958bd4b9623e1dc841",
+          "gameplayProjectSha256": "cec70666ecf302d428f16f8632c81b2dcb79341b65d1f5787508c668a61aa40b",
+          "gameplayRuntimeSha256": "aa4c6ce7c0ceeccfbf286bdfd893c0717cf33d05c4cee383ad965b8fb8d43051",
+          "controllerSha256": "71b6480deffdc0f2fdb0c62404acb2c2876dec9772a8097bdd0802361ca725f5",
+          "helperSha256": "b06a096459bfe42f761f1e2c2319cdc3b99b8ef6c447c0e8dfd67b5770846196",
+          "checkoutCommit": "e78c95c9e43590d98c6ff2467bd267918193b77e",
+          "productionCommit": null
+        },
+        "priorFrames": 12211,
+        "priorPurePlanningCounterAvailable": true
+      }
+    ],
+    "dialogueLines": 19,
+    "allocation": {
+      "archer": {
+        "earned": 27,
+        "spent": 27,
+        "remaining": 0,
+        "ranks": {
+          "A01": 1,
+          "A14": 1,
+          "A02": 7,
+          "A06": 7,
+          "A05": 6
+        },
+        "loadout": [
+          "A01",
+          "A02",
+          "A06",
+          "A05"
+        ],
+        "statTraining": 6,
+        "stats": {
+          "critChance": 0.128,
+          "critMultiplier": 2.08,
+          "level": 13,
+          "hp": 790,
+          "mp": 186,
+          "attack": 4.4965,
+          "armor": 0.19999999999999998,
+          "move": 1647,
+          "speed": 365,
+          "regen": 21
+        },
+        "stopReasons": [
+          {
+            "id": "A01",
+            "reason": "알 수 없는 기술"
+          },
+          {
+            "id": "A02",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "A06",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "A05",
+            "reason": "스킬 포인트 부족"
+          }
+        ]
+      },
+      "mage": {
+        "earned": 27,
+        "spent": 27,
+        "remaining": 0,
+        "ranks": {
+          "M01": 1,
+          "M07": 1,
+          "M10": 6,
+          "M03": 1,
+          "M11": 6,
+          "M06": 1,
+          "M02": 1,
+          "M04": 5
+        },
+        "loadout": [
+          "M01",
+          "M10",
+          "M11",
+          "M04"
+        ],
+        "statTraining": 6,
+        "stats": {
+          "critChance": 0.067,
+          "critMultiplier": 1.725,
+          "level": 13,
+          "hp": 855,
+          "mp": 255,
+          "attack": 4.379200000000001,
+          "armor": 0.186,
+          "move": 1668,
+          "speed": 342,
+          "regen": 21
+        },
+        "stopReasons": [
+          {
+            "id": "M01",
+            "reason": "알 수 없는 기술"
+          },
+          {
+            "id": "M10",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "M11",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "M04",
+            "reason": "스킬 포인트 부족"
+          }
+        ]
+      },
+      "knight": {
+        "earned": 27,
+        "spent": 27,
+        "remaining": 0,
+        "ranks": {
+          "S00": 1,
+          "S01": 7,
+          "S03": 7,
+          "S05": 7
+        },
+        "loadout": [
+          "S00",
+          "S01",
+          "S03",
+          "S05"
+        ],
+        "statTraining": 6,
+        "stats": {
+          "critChance": 0.0764,
+          "critMultiplier": 1.8340000000000003,
+          "level": 13,
+          "hp": 1382,
+          "mp": 208,
+          "attack": 4.261900000000001,
+          "armor": 0.361,
+          "move": 1864,
+          "speed": 360,
+          "regen": 21
+        },
+        "stopReasons": [
+          {
+            "id": "S00",
+            "reason": "알 수 없는 기술"
+          },
+          {
+            "id": "S01",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "S03",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "S05",
+            "reason": "스킬 포인트 부족"
+          }
+        ]
+      },
+      "occultist": {
+        "earned": 27,
+        "spent": 27,
+        "remaining": 0,
+        "ranks": {
+          "O01": 1,
+          "O02": 6,
+          "O03": 1,
+          "O04": 6,
+          "O06": 1,
+          "O07": 1,
+          "O08": 6
+        },
+        "loadout": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "statTraining": 6,
+        "stats": {
+          "critChance": 0.096,
+          "critMultiplier": 1.799,
+          "level": 13,
+          "hp": 999,
+          "mp": 301,
+          "attack": 4.636800000000001,
+          "armor": 0.23600000000000002,
+          "move": 1724,
+          "speed": 356,
+          "regen": 25
+        },
+        "stopReasons": [
+          {
+            "id": "O01",
+            "reason": "알 수 없는 기술"
+          },
+          {
+            "id": "O02",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "O04",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "O08",
+            "reason": "스킬 포인트 부족"
+          }
+        ]
+      }
+    },
+    "scope": "Historical v3 reward-ledger entry XP and prior clear fixtures; fixed legal C.train allocation before launch. Native normal-input production App/Engine with DOM/render/storage/clock doubles; no live actor/resource/objective edits. Not prior campaign fullplay, browser or human time.",
+    "stopContinueWholeBattleExact": true,
+    "nextStage": {
+      "id": 17,
+      "arrived": true,
+      "rewardOnce": true,
+      "wholeBattleContinueExact": true
+    },
+    "liveAudit": {
+      "externalWrites": [],
+      "recoveries": [],
+      "movementLogScope": "R9-resume suffix only; original checkpoint did not include the prefix audit log",
+      "movementEntries": 2398,
+      "suffixMovementCost": 5909.627288197661,
+      "suffixMovementByHero": {
+        "archer": 0,
+        "mage": 0,
+        "knight": 3033.5678227135318,
+        "occultist": 2876.0594654841298
+      }
+    }
+  },
+  "nativeRawResultSha256": "d786fa8562dcc44fd906dfc5f11b3ff15eda54ee59bb79d35ea82d3652f8bd62",
+  "contracts": {
+    "source": "19d9fc28623d2451e37cf665145cfdc3e2fdd51f",
+    "checkedCommit": "06e83e76a4a13ff9d2dd8ebdaa23e984a93cbf3d",
+    "stageSourceSha256": "fb063b747be6b76038262b0434aef6800d0f184ed9411a6a13834670ec63774c",
+    "runtimeSha256": "dc839d2a5c214409480cb7d38cb87fe45afce0f219b21cc82331e453b50c547c",
+    "routes": [
+      {
+        "id": "main",
+        "kind": "required",
+        "anchors": [
+          {
+            "x": 350,
+            "y": 5480,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 1100,
+            "y": 5480,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 1800,
+            "y": 5450,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 1800,
+            "y": 5450,
+            "surfaceId": "tm-processional-stair"
+          },
+          {
+            "x": 2300,
+            "y": 5320,
+            "surfaceId": "tm-processional-stair"
+          },
+          {
+            "x": 2510,
+            "y": 5261.2,
+            "surfaceId": "tm-processional-stair"
+          },
+          {
+            "x": 2510,
+            "y": 5261.2,
+            "surfaceId": "tm-processional-stair",
+            "jumpTo": {
+              "x": 2730,
+              "support": "tm-processional-bridge",
+              "speed": 1
+            }
+          },
+          {
+            "x": 2730,
+            "y": 5199.727272727273,
+            "surfaceId": "tm-processional-bridge"
+          },
+          {
+            "x": 2800,
+            "y": 5180,
+            "surfaceId": "tm-processional-bridge"
+          },
+          {
+            "x": 3500,
+            "y": 4850,
+            "surfaceId": "tm-processional-bridge"
+          },
+          {
+            "x": 3500,
+            "y": 4850,
+            "surfaceId": "tm-processional-upper"
+          },
+          {
+            "x": 3900,
+            "y": 4750,
+            "surfaceId": "tm-processional-upper"
+          },
+          {
+            "x": 4350,
+            "y": 4370,
+            "surfaceId": "tm-processional-upper"
+          },
+          {
+            "x": 4600,
+            "y": 4250,
+            "surfaceId": "tm-processional-upper"
+          },
+          {
+            "x": 4600,
+            "y": 4250,
+            "surfaceId": "tm-great-hall-plinth"
+          },
+          {
+            "x": 5150,
+            "y": 4250,
+            "surfaceId": "tm-great-hall-plinth"
+          },
+          {
+            "x": 5920,
+            "y": 4250,
+            "surfaceId": "tm-great-hall-plinth"
+          },
+          {
+            "x": 6700,
+            "y": 4250,
+            "surfaceId": "tm-great-hall-plinth"
+          },
+          {
+            "x": 7350,
+            "y": 4250,
+            "surfaceId": "tm-great-hall-plinth"
+          },
+          {
+            "x": 7350,
+            "y": 4250,
+            "surfaceId": "tm-east-stone-stair"
+          },
+          {
+            "x": 7850,
+            "y": 4400,
+            "surfaceId": "tm-east-stone-stair"
+          },
+          {
+            "x": 8090,
+            "y": 4520,
+            "surfaceId": "tm-east-stone-stair"
+          },
+          {
+            "x": 8090,
+            "y": 4520,
+            "surfaceId": "tm-east-stone-stair",
+            "jumpTo": {
+              "x": 8270,
+              "support": "tm-east-stone-bridge",
+              "speed": 0.8
+            }
+          },
+          {
+            "x": 8270,
+            "y": 4607.543859649123,
+            "surfaceId": "tm-east-stone-bridge"
+          },
+          {
+            "x": 8800,
+            "y": 4840,
+            "surfaceId": "tm-east-stone-bridge"
+          },
+          {
+            "x": 8800,
+            "y": 4840,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 9400,
+            "y": 4800,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 10300,
+            "y": 4750,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 10470,
+            "y": 4750,
+            "surfaceId": "act2-floor"
+          }
+        ]
+      },
+      {
+        "id": "shelter-circuit",
+        "kind": "optional-jump",
+        "anchors": [
+          {
+            "x": 2520,
+            "y": 5258.4,
+            "surfaceId": "tm-processional-stair",
+            "jumpTo": {
+              "x": 2520,
+              "support": "tm-shelter-step",
+              "speed": 0.5
+            }
+          },
+          {
+            "x": 2670,
+            "y": 5162,
+            "surfaceId": "tm-shelter-step",
+            "jumpTo": {
+              "x": 2710,
+              "support": "tm-shelter-veranda",
+              "speed": 0.5
+            }
+          },
+          {
+            "x": 2710,
+            "y": 5024.285714285715,
+            "surfaceId": "tm-shelter-veranda"
+          },
+          {
+            "x": 3130,
+            "y": 4990,
+            "surfaceId": "tm-shelter-veranda"
+          },
+          {
+            "x": 3440,
+            "y": 4866.805194805195,
+            "surfaceId": "tm-shelter-veranda"
+          },
+          {
+            "x": 3440,
+            "y": 4866.805194805195,
+            "surfaceId": "tm-shelter-veranda",
+            "dropTo": {
+              "x": 3510,
+              "support": "tm-processional-upper"
+            }
+          }
+        ]
+      },
+      {
+        "id": "west-cloister",
+        "kind": "optional-jump",
+        "anchors": [
+          {
+            "x": 3100,
+            "y": 4992.448979591837,
+            "surfaceId": "tm-shelter-veranda"
+          },
+          {
+            "x": 3020,
+            "y": 4998.9795918367345,
+            "surfaceId": "tm-shelter-veranda"
+          },
+          {
+            "x": 3020,
+            "y": 4998.979591836735,
+            "surfaceId": "tm-cloister-stair"
+          },
+          {
+            "x": 3260,
+            "y": 4780,
+            "surfaceId": "tm-cloister-stair"
+          },
+          {
+            "x": 3500,
+            "y": 4580,
+            "surfaceId": "tm-cloister-stair"
+          },
+          {
+            "x": 3720,
+            "y": 4420,
+            "surfaceId": "tm-cloister-stair"
+          },
+          {
+            "x": 3970,
+            "y": 4200,
+            "surfaceId": "tm-cloister-stair"
+          },
+          {
+            "x": 4240,
+            "y": 3960,
+            "surfaceId": "tm-cloister-stair"
+          },
+          {
+            "x": 4240,
+            "y": 3960,
+            "surfaceId": "tm-cloister-landing"
+          },
+          {
+            "x": 4540,
+            "y": 3830,
+            "surfaceId": "tm-cloister-landing"
+          },
+          {
+            "x": 4820,
+            "y": 3830,
+            "surfaceId": "tm-cloister-landing"
+          },
+          {
+            "x": 4820,
+            "y": 3830,
+            "surfaceId": "tm-hall-side-gallery"
+          },
+          {
+            "x": 5250,
+            "y": 3710,
+            "surfaceId": "tm-hall-side-gallery"
+          },
+          {
+            "x": 5530,
+            "y": 3710,
+            "surfaceId": "tm-hall-side-gallery"
+          },
+          {
+            "x": 5530,
+            "y": 3710,
+            "surfaceId": "tm-hall-side-gallery",
+            "dropTo": {
+              "x": 5690,
+              "support": "tm-hall-gallery-step"
+            }
+          },
+          {
+            "x": 5720,
+            "y": 3900,
+            "surfaceId": "tm-hall-gallery-step",
+            "dropTo": {
+              "x": 5770,
+              "support": "tm-hall-gallery-foot"
+            }
+          },
+          {
+            "x": 5790,
+            "y": 4090,
+            "surfaceId": "tm-hall-gallery-foot",
+            "dropTo": {
+              "x": 5850,
+              "support": "tm-great-hall-plinth"
+            }
+          }
+        ]
+      },
+      {
+        "id": "hall-gallery-return",
+        "kind": "optional-jump",
+        "anchors": [
+          {
+            "x": 5690,
+            "y": 4250,
+            "surfaceId": "tm-great-hall-plinth",
+            "jumpTo": {
+              "x": 5690,
+              "support": "tm-hall-gallery-foot",
+              "speed": 0.5
+            }
+          },
+          {
+            "x": 5690,
+            "y": 4090,
+            "surfaceId": "tm-hall-gallery-foot",
+            "jumpTo": {
+              "x": 5680,
+              "support": "tm-hall-gallery-step",
+              "speed": 0.5
+            }
+          },
+          {
+            "x": 5540,
+            "y": 3900,
+            "surfaceId": "tm-hall-gallery-step",
+            "jumpTo": {
+              "x": 5520,
+              "support": "tm-hall-side-gallery",
+              "speed": 0.5
+            }
+          },
+          {
+            "x": 5520,
+            "y": 3710,
+            "surfaceId": "tm-hall-side-gallery"
+          },
+          {
+            "x": 5250,
+            "y": 3710,
+            "surfaceId": "tm-hall-side-gallery"
+          },
+          {
+            "x": 4820,
+            "y": 3830,
+            "surfaceId": "tm-hall-side-gallery"
+          },
+          {
+            "x": 4820,
+            "y": 3830,
+            "surfaceId": "tm-cloister-landing"
+          },
+          {
+            "x": 4540,
+            "y": 3830,
+            "surfaceId": "tm-cloister-landing"
+          },
+          {
+            "x": 4440,
+            "y": 3873.3333333333335,
+            "surfaceId": "tm-cloister-landing"
+          },
+          {
+            "x": 4440,
+            "y": 3873.3333333333335,
+            "surfaceId": "tm-cloister-return"
+          },
+          {
+            "x": 3990,
+            "y": 3670,
+            "surfaceId": "tm-cloister-return"
+          },
+          {
+            "x": 3600,
+            "y": 3560,
+            "surfaceId": "tm-cloister-return"
+          },
+          {
+            "x": 3210,
+            "y": 3541.4285714285716,
+            "surfaceId": "tm-cloister-return"
+          },
+          {
+            "x": 3220,
+            "y": 3541.904761904762,
+            "surfaceId": "tm-cloister-return",
+            "dropTo": {
+              "x": 3130,
+              "support": "tm-cloister-turn"
+            }
+          },
+          {
+            "x": 3340,
+            "y": 3739.3333333333335,
+            "surfaceId": "tm-cloister-turn",
+            "dropTo": {
+              "x": 3430,
+              "support": "tm-cloister-foot"
+            }
+          },
+          {
+            "x": 3500,
+            "y": 3930,
+            "surfaceId": "tm-cloister-foot",
+            "dropTo": {
+              "x": 3570,
+              "support": "tm-cloister-link"
+            }
+          },
+          {
+            "x": 3670,
+            "y": 4090,
+            "surfaceId": "tm-cloister-link",
+            "dropTo": {
+              "x": 3790,
+              "support": "tm-cloister-stair"
+            }
+          }
+        ]
+      },
+      {
+        "id": "undercroft-east",
+        "kind": "optional-jump",
+        "anchors": [
+          {
+            "x": 2540,
+            "y": 5252.8,
+            "surfaceId": "tm-processional-stair",
+            "dropTo": {
+              "x": 2605,
+              "support": "act2-floor"
+            }
+          },
+          {
+            "x": 2605,
+            "y": 5344.4,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 2800,
+            "y": 5360,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 3200,
+            "y": 5520,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 3800,
+            "y": 5800,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 4800,
+            "y": 5910,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 5700,
+            "y": 5950,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 6500,
+            "y": 5960,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 7400,
+            "y": 5800,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 7400,
+            "y": 5800,
+            "surfaceId": "tm-east-undercroft-stair"
+          },
+          {
+            "x": 7700,
+            "y": 5570,
+            "surfaceId": "tm-east-undercroft-stair"
+          },
+          {
+            "x": 8030,
+            "y": 5200,
+            "surfaceId": "tm-east-undercroft-stair"
+          },
+          {
+            "x": 8330,
+            "y": 4930,
+            "surfaceId": "tm-east-undercroft-stair"
+          },
+          {
+            "x": 8620,
+            "y": 4760,
+            "surfaceId": "tm-east-undercroft-stair"
+          },
+          {
+            "x": 8620,
+            "y": 4761.0526315789475,
+            "surfaceId": "tm-east-stone-bridge"
+          },
+          {
+            "x": 8800,
+            "y": 4840,
+            "surfaceId": "tm-east-stone-bridge"
+          }
+        ]
+      },
+      {
+        "id": "undercroft-shelter-return",
+        "kind": "optional-jump",
+        "anchors": [
+          {
+            "x": 7360,
+            "y": 5807.111111111111,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 6500,
+            "y": 5960,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 5700,
+            "y": 5950,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 4800,
+            "y": 5910,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 3800,
+            "y": 5800,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 3200,
+            "y": 5520,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 2800,
+            "y": 5360,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 2605,
+            "y": 5344.4,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 2605,
+            "y": 5344.4,
+            "surfaceId": "act2-floor",
+            "jumpTo": {
+              "x": 2510,
+              "support": "tm-shelter-step",
+              "speed": 0.6
+            }
+          }
+        ]
+      },
+      {
+        "id": "archive-balcony",
+        "kind": "optional-jump",
+        "anchors": [
+          {
+            "x": 8960,
+            "y": 4829.333333333333,
+            "surfaceId": "act2-floor",
+            "jumpTo": {
+              "x": 8980,
+              "support": "tm-archive-walk",
+              "speed": 0.4
+            }
+          },
+          {
+            "x": 8980,
+            "y": 4649.482758620689,
+            "surfaceId": "tm-archive-walk"
+          },
+          {
+            "x": 9260,
+            "y": 4495,
+            "surfaceId": "tm-archive-walk"
+          },
+          {
+            "x": 9760,
+            "y": 4475,
+            "surfaceId": "tm-archive-walk"
+          },
+          {
+            "x": 10050,
+            "y": 4605.967741935484,
+            "surfaceId": "tm-archive-walk"
+          },
+          {
+            "x": 10050,
+            "y": 4605.967741935484,
+            "surfaceId": "tm-archive-walk",
+            "dropTo": {
+              "x": 10130,
+              "support": "act2-floor"
+            }
+          },
+          {
+            "x": 10130,
+            "y": 4759.444444444444,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 10300,
+            "y": 4750,
+            "surfaceId": "act2-floor"
+          },
+          {
+            "x": 10470,
+            "y": 4750,
+            "surfaceId": "act2-floor"
+          }
+        ]
+      }
+    ],
+    "rows": [
+      {
+        "case": "actual-factory",
+        "size": [
+          11000,
+          7600
+        ],
+        "enemyCount": 49,
+        "allActors": 55,
+        "elites": 13,
+        "activeLimit": 4,
+        "steps": [
+          {
+            "id": "monk",
+            "label": "들린 승려 구조",
+            "kind": "rescue"
+          },
+          {
+            "id": "clear-rescue-threat",
+            "label": "구조 자리로 다가온 위협 제압",
+            "kind": "clear",
+            "defeatIds": [
+              "a2-enemy-4",
+              "tm-court-flank",
+              "a2-enemy-5",
+              "a2-enemy-9"
+            ]
+          },
+          {
+            "id": "witness",
+            "label": "구조한 노승의 증언과 열쇠 확인",
+            "kind": "evidence",
+            "afterEvidence": "clear-rescue-threat"
+          },
+          {
+            "id": "hall",
+            "label": "기록방 문 열기",
+            "kind": "interact"
+          },
+          {
+            "id": "record",
+            "label": "개방한 기록실의 이송 기록 확보",
+            "kind": "evidence",
+            "afterEvidence": "hall"
+          }
+        ],
+        "markers": [
+          {
+            "id": "monk",
+            "type": "act2",
+            "x": 2950,
+            "y": 5004.693877551021,
+            "label": "들린 승려 구조",
+            "action": "act2",
+            "target": "resident-1",
+            "spiritId": "resident-spirit-1"
+          },
+          {
+            "id": "hall",
+            "type": "act2",
+            "x": 5650,
+            "y": 4250,
+            "label": "기록방 문 열기",
+            "action": "act2"
+          },
+          {
+            "id": "record",
+            "type": "act2",
+            "x": 9360,
+            "y": 4802.666666666667,
+            "label": "개방한 기록실의 이송 기록 확보",
+            "action": "act2"
+          },
+          {
+            "id": "witness",
+            "type": "act2",
+            "action": "act2",
+            "x": 3080,
+            "y": 4994,
+            "label": "구조한 노승의 증언과 열쇠 확인"
+          },
+          {
+            "id": "clear-rescue-threat",
+            "type": "act2",
+            "action": "act2",
+            "x": 3060,
+            "y": 4995,
+            "label": "구조 자리로 다가온 위협 제압"
+          }
+        ],
+        "designEncounterMetadata": {
+          "initial": 49,
+          "elite": 13,
+          "wave": 10,
+          "responseCount": 6,
+          "totalEnemyBudget": 65,
+          "activeLimit": 4,
+          "groups": [
+            {
+              "id": "temple-court",
+              "name": "산문과 돌계단 앞마당",
+              "units": [
+                "tm-gate-point",
+                "a2-enemy-0",
+                "a2-enemy-1",
+                "tm-gate-captain",
+                "tm-gate-bat",
+                "tm-court-point",
+                "a2-enemy-9"
+              ]
+            },
+            {
+              "id": "monk-shelter",
+              "name": "승려 쉼터와 접힌 서회랑",
+              "units": [
+                "a2-enemy-2",
+                "a2-enemy-3",
+                "a2-enemy-4",
+                "tm-court-flank",
+                "a2-enemy-5",
+                "a2-enemy-6",
+                "a2-enemy-8",
+                "a2-enemy-7",
+                "tm-cloister-guard",
+                "tm-cloister-point"
+              ]
+            },
+            {
+              "id": "great-hall",
+              "name": "대법당과 높은 석축",
+              "units": [
+                "a2-enemy-10",
+                "a2-enemy-12",
+                "a2-enemy-11",
+                "tm-hall-west-flank",
+                "tm-hall-west-lamp",
+                "tm-hall-screen",
+                "a2-enemy-13",
+                "a2-enemy-14",
+                "tm-hall-east-lamp",
+                "tm-hall-echo",
+                "a2-enemy-15",
+                "tm-gallery-lantern",
+                "tm-gallery-bat"
+              ]
+            },
+            {
+              "id": "undercroft",
+              "name": "기단 아래 기도굴",
+              "units": [
+                "tm-lower-front",
+                "tm-lower-point",
+                "tm-lower-elite",
+                "tm-lower-bat",
+                "tm-lower-flank",
+                "tm-lower-captain",
+                "a2-enemy-16"
+              ]
+            },
+            {
+              "id": "record-gallery",
+              "name": "동회랑 기록방과 증언마당",
+              "units": [
+                "tm-archive-front",
+                "a2-enemy-20",
+                "a2-enemy-21",
+                "tm-archive-point",
+                "a2-enemy-17",
+                "a2-enemy-18",
+                "a2-enemy-19",
+                "a2-enemy-22",
+                "tm-archive-seal",
+                "a2-enemy-23",
+                "tm-archive-rear"
+              ]
+            }
+          ]
+        },
+        "growth": {
+          "archer": {
+            "earned": 27,
+            "spent": 27,
+            "remaining": 0,
+            "ranks": {
+              "A01": 1,
+              "A14": 1,
+              "A02": 7,
+              "A06": 7,
+              "A05": 6
+            },
+            "loadout": [
+              "A01",
+              "A02",
+              "A06",
+              "A05"
+            ],
+            "statTraining": 6,
+            "stats": {
+              "critChance": 0.128,
+              "critMultiplier": 2.08,
+              "level": 13,
+              "hp": 790,
+              "mp": 186,
+              "attack": 4.4965,
+              "armor": 0.19999999999999998,
+              "move": 1647,
+              "speed": 365,
+              "regen": 21
+            },
+            "stopReasons": [
+              {
+                "id": "A01",
+                "reason": "알 수 없는 기술"
+              },
+              {
+                "id": "A02",
+                "reason": "스킬 포인트 부족"
+              },
+              {
+                "id": "A06",
+                "reason": "스킬 포인트 부족"
+              },
+              {
+                "id": "A05",
+                "reason": "스킬 포인트 부족"
+              }
+            ]
+          },
+          "mage": {
+            "earned": 27,
+            "spent": 27,
+            "remaining": 0,
+            "ranks": {
+              "M01": 1,
+              "M07": 1,
+              "M10": 6,
+              "M03": 1,
+              "M11": 6,
+              "M06": 1,
+              "M02": 1,
+              "M04": 5
+            },
+            "loadout": [
+              "M01",
+              "M10",
+              "M11",
+              "M04"
+            ],
+            "statTraining": 6,
+            "stats": {
+              "critChance": 0.067,
+              "critMultiplier": 1.725,
+              "level": 13,
+              "hp": 855,
+              "mp": 255,
+              "attack": 4.379200000000001,
+              "armor": 0.186,
+              "move": 1668,
+              "speed": 342,
+              "regen": 21
+            },
+            "stopReasons": [
+              {
+                "id": "M01",
+                "reason": "알 수 없는 기술"
+              },
+              {
+                "id": "M10",
+                "reason": "스킬 포인트 부족"
+              },
+              {
+                "id": "M11",
+                "reason": "스킬 포인트 부족"
+              },
+              {
+                "id": "M04",
+                "reason": "스킬 포인트 부족"
+              }
+            ]
+          },
+          "knight": {
+            "earned": 27,
+            "spent": 27,
+            "remaining": 0,
+            "ranks": {
+              "S00": 1,
+              "S01": 7,
+              "S03": 7,
+              "S05": 7
+            },
+            "loadout": [
+              "S00",
+              "S01",
+              "S03",
+              "S05"
+            ],
+            "statTraining": 6,
+            "stats": {
+              "critChance": 0.0764,
+              "critMultiplier": 1.8340000000000003,
+              "level": 13,
+              "hp": 1382,
+              "mp": 208,
+              "attack": 4.261900000000001,
+              "armor": 0.361,
+              "move": 1864,
+              "speed": 360,
+              "regen": 21
+            },
+            "stopReasons": [
+              {
+                "id": "S00",
+                "reason": "알 수 없는 기술"
+              },
+              {
+                "id": "S01",
+                "reason": "스킬 포인트 부족"
+              },
+              {
+                "id": "S03",
+                "reason": "스킬 포인트 부족"
+              },
+              {
+                "id": "S05",
+                "reason": "스킬 포인트 부족"
+              }
+            ]
+          },
+          "occultist": {
+            "earned": 27,
+            "spent": 27,
+            "remaining": 0,
+            "ranks": {
+              "O01": 1,
+              "O02": 6,
+              "O03": 1,
+              "O04": 6,
+              "O06": 1,
+              "O07": 1,
+              "O08": 6
+            },
+            "loadout": [
+              "O01",
+              "O02",
+              "O04",
+              "O08"
+            ],
+            "statTraining": 6,
+            "stats": {
+              "critChance": 0.096,
+              "critMultiplier": 1.799,
+              "level": 13,
+              "hp": 999,
+              "mp": 301,
+              "attack": 4.636800000000001,
+              "armor": 0.23600000000000002,
+              "move": 1724,
+              "speed": 356,
+              "regen": 25
+            },
+            "stopReasons": [
+              {
+                "id": "O01",
+                "reason": "알 수 없는 기술"
+              },
+              {
+                "id": "O02",
+                "reason": "스킬 포인트 부족"
+              },
+              {
+                "id": "O04",
+                "reason": "스킬 포인트 부족"
+              },
+              {
+                "id": "O08",
+                "reason": "스킬 포인트 부족"
+              }
+            ]
+          }
+        },
+        "entryXP": 36313,
+        "entryLevel": 13
+      },
+      {
+        "case": "rescue/fixed gate overlap",
+        "rescueThreats": [
+          "a2-enemy-4",
+          "tm-court-flank"
+        ],
+        "fixedRequiredIds": [
+          "a2-enemy-4",
+          "tm-court-flank",
+          "a2-enemy-5",
+          "a2-enemy-9"
+        ],
+        "additionalFixedIds": [
+          {
+            "id": "a2-enemy-5",
+            "x": 2505,
+            "y": 4933,
+            "distanceFromMonk": 450.7382966625986
+          },
+          {
+            "id": "a2-enemy-9",
+            "x": 2390,
+            "y": 5034.8,
+            "distanceFromMonk": 560.8086827153383
+          }
+        ]
+      },
+      {
+        "case": "prepared rescue predicates",
+        "localThreatBlock": true,
+        "fortyPercentThreshold": true,
+        "occultistDetachOrOtherSubdue": true,
+        "scope": "HP/subdued prerequisites on isolated clone only, not completion flow"
+      },
+      {
+        "case": "prepared evidence predicates",
+        "witnessAfter": "clear-rescue-threat",
+        "recordAfter": "hall",
+        "requiresTravelToWitnessOrRecord": false,
+        "requiresRecordLocalThreats": false,
+        "scope": "Supplied done facts test predicates only; not actual acquisition/completion"
+      },
+      {
+        "case": "actual initial local threat set",
+        "id": "monk",
+        "radius": 360,
+        "enemies": [
+          "a2-enemy-4",
+          "tm-court-flank"
+        ]
+      },
+      {
+        "case": "actual initial local threat set",
+        "id": "hall",
+        "radius": 360,
+        "enemies": [
+          "tm-hall-west-lamp"
+        ]
+      },
+      {
+        "case": "initial ground contacts",
+        "invalid": []
+      }
+    ],
+    "scope": "Current factory/read-only and explicitly prepared predicate clones, not normal combat completion."
+  },
+  "entryPreparation": {
+    "readiness": {
+      "xp": 36313,
+      "level": 13,
+      "heroes": {
+        "mage": {
+          "xp": 36313,
+          "ranks": {
+            "M01": 1,
+            "MP01": 1,
+            "MP02": 1,
+            "M06": 1,
+            "M03": 1,
+            "M07": 1,
+            "M02": 1,
+            "M11": 1
+          },
+          "statTraining": 0,
+          "kills": 0,
+          "damage": 0,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "archer": {
+          "xp": 36313,
+          "ranks": {
+            "A01": 1
+          },
+          "statTraining": 0,
+          "kills": 0,
+          "damage": 0,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "knight": {
+          "xp": 36313,
+          "ranks": {
+            "S00": 1
+          },
+          "statTraining": 0,
+          "kills": 0,
+          "damage": 0,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "occultist": {
+          "xp": 36313,
+          "ranks": {
+            "O01": 1,
+            "O06": 3,
+            "OP01": 1,
+            "OP02": 1,
+            "OP03": 1,
+            "OP04": 1,
+            "O02": 4,
+            "O11": 3,
+            "O03": 4,
+            "O07": 3
+          },
+          "statTraining": 0,
+          "kills": 0,
+          "damage": 0,
+          "skillRevision": 1,
+          "martialRevision": 1,
+          "occultRevision": 1
+        }
+      },
+      "cleared": {
+        "1": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "2": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "3": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "4": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "5": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "6": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "7": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "8": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "9": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "10": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "11": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "12": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "13": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "14": {
+          "visits": 1,
+          "rounds": 0
+        },
+        "15": {
+          "visits": 1,
+          "rounds": 0
+        }
+      },
+      "ledger": {
+        "version": 3,
+        "stages": {
+          "1": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 0,
+              "end": 180,
+              "total": 180,
+              "combat": 72
+            }
+          },
+          "2": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 180,
+              "end": 450,
+              "total": 270,
+              "combat": 108
+            }
+          },
+          "3": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 675,
+              "end": 1137,
+              "total": 462,
+              "combat": 185
+            }
+          },
+          "4": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 1137,
+              "end": 1868,
+              "total": 731,
+              "combat": 292
+            }
+          },
+          "5": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 1868,
+              "end": 2934,
+              "total": 1066,
+              "combat": 426
+            }
+          },
+          "6": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 2934,
+              "end": 4395,
+              "total": 1461,
+              "combat": 584
+            }
+          },
+          "7": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 4395,
+              "end": 7512,
+              "total": 3117,
+              "combat": 1247
+            }
+          },
+          "8": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 7512,
+              "end": 11680,
+              "total": 4168,
+              "combat": 1667
+            }
+          },
+          "9": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 11680,
+              "end": 15239,
+              "total": 3559,
+              "combat": 1424
+            }
+          },
+          "10": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 15239,
+              "end": 19439,
+              "total": 4200,
+              "combat": 1680
+            }
+          },
+          "11": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 19439,
+              "end": 22370,
+              "total": 2931,
+              "combat": 1172
+            }
+          },
+          "12": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 22370,
+              "end": 25446,
+              "total": 3076,
+              "combat": 1230
+            }
+          },
+          "13": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 25446,
+              "end": 28813,
+              "total": 3367,
+              "combat": 1347
+            }
+          },
+          "14": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 28813,
+              "end": 32486,
+              "total": 3673,
+              "combat": 1469
+            }
+          },
+          "15": {
+            "policy": 3,
+            "combat": {},
+            "cleared": true,
+            "limit": {
+              "start": 32486,
+              "end": 36313,
+              "total": 3827,
+              "combat": 1531
+            }
+          }
+        }
+      },
+      "rows": [
+        {
+          "stage": 1,
+          "limit": {
+            "start": 0,
+            "end": 180,
+            "total": 180,
+            "combat": 72
+          },
+          "xp": {
+            "archer": 180
+          }
+        },
+        {
+          "stage": 2,
+          "limit": {
+            "start": 180,
+            "end": 450,
+            "total": 270,
+            "combat": 108
+          },
+          "xp": {
+            "archer": 450,
+            "mage": 675
+          }
+        },
+        {
+          "stage": 3,
+          "limit": {
+            "start": 675,
+            "end": 1137,
+            "total": 462,
+            "combat": 185
+          },
+          "xp": {
+            "archer": 1137,
+            "mage": 1137
+          }
+        },
+        {
+          "stage": 4,
+          "limit": {
+            "start": 1137,
+            "end": 1868,
+            "total": 731,
+            "combat": 292
+          },
+          "xp": {
+            "archer": 1868,
+            "mage": 1868
+          }
+        },
+        {
+          "stage": 5,
+          "limit": {
+            "start": 1868,
+            "end": 2934,
+            "total": 1066,
+            "combat": 426
+          },
+          "xp": {
+            "archer": 2934,
+            "mage": 2934
+          }
+        },
+        {
+          "stage": 6,
+          "limit": {
+            "start": 2934,
+            "end": 4395,
+            "total": 1461,
+            "combat": 584
+          },
+          "xp": {
+            "archer": 4395,
+            "mage": 4395,
+            "knight": 4395
+          }
+        },
+        {
+          "stage": 7,
+          "limit": {
+            "start": 4395,
+            "end": 7512,
+            "total": 3117,
+            "combat": 1247
+          },
+          "xp": {
+            "archer": 7512,
+            "mage": 7512,
+            "knight": 7512
+          }
+        },
+        {
+          "stage": 8,
+          "limit": {
+            "start": 7512,
+            "end": 11680,
+            "total": 4168,
+            "combat": 1667
+          },
+          "xp": {
+            "archer": 11680,
+            "mage": 11680,
+            "knight": 11680
+          }
+        },
+        {
+          "stage": 9,
+          "limit": {
+            "start": 11680,
+            "end": 15239,
+            "total": 3559,
+            "combat": 1424
+          },
+          "xp": {
+            "archer": 15239,
+            "mage": 15239,
+            "knight": 15239
+          }
+        },
+        {
+          "stage": 10,
+          "limit": {
+            "start": 15239,
+            "end": 19439,
+            "total": 4200,
+            "combat": 1680
+          },
+          "xp": {
+            "archer": 19439,
+            "mage": 19439,
+            "knight": 19439
+          }
+        },
+        {
+          "stage": 11,
+          "limit": {
+            "start": 19439,
+            "end": 22370,
+            "total": 2931,
+            "combat": 1172
+          },
+          "xp": {
+            "archer": 22370,
+            "mage": 22370,
+            "knight": 22370,
+            "occultist": 22370
+          }
+        },
+        {
+          "stage": 12,
+          "limit": {
+            "start": 22370,
+            "end": 25446,
+            "total": 3076,
+            "combat": 1230
+          },
+          "xp": {
+            "archer": 25446,
+            "mage": 25446,
+            "knight": 25446,
+            "occultist": 25446
+          }
+        },
+        {
+          "stage": 13,
+          "limit": {
+            "start": 25446,
+            "end": 28813,
+            "total": 3367,
+            "combat": 1347
+          },
+          "xp": {
+            "archer": 28813,
+            "mage": 28813,
+            "knight": 28813,
+            "occultist": 28813
+          }
+        },
+        {
+          "stage": 14,
+          "limit": {
+            "start": 28813,
+            "end": 32486,
+            "total": 3673,
+            "combat": 1469
+          },
+          "xp": {
+            "archer": 32486,
+            "mage": 32486,
+            "knight": 32486,
+            "occultist": 32486
+          }
+        },
+        {
+          "stage": 15,
+          "limit": {
+            "start": 32486,
+            "end": 36313,
+            "total": 3827,
+            "combat": 1531
+          },
+          "xp": {
+            "archer": 36313,
+            "mage": 36313,
+            "knight": 36313,
+            "occultist": 36313
+          }
+        }
+      ],
+      "scope": "Existing Stage16 historical v3 first-clear/recruit reward-ledger fixture through15, calculated with current production reward APIs. Reachable legacy continuation case, not current v4 average allocation or prior chapters played."
+    },
+    "allocation": {
+      "archer": {
+        "earned": 27,
+        "spent": 27,
+        "remaining": 0,
+        "ranks": {
+          "A01": 1,
+          "A14": 1,
+          "A02": 7,
+          "A06": 7,
+          "A05": 6
+        },
+        "loadout": [
+          "A01",
+          "A02",
+          "A06",
+          "A05"
+        ],
+        "statTraining": 6,
+        "stats": {
+          "critChance": 0.128,
+          "critMultiplier": 2.08,
+          "level": 13,
+          "hp": 790,
+          "mp": 186,
+          "attack": 4.4965,
+          "armor": 0.19999999999999998,
+          "move": 1647,
+          "speed": 365,
+          "regen": 21
+        },
+        "stopReasons": [
+          {
+            "id": "A01",
+            "reason": "알 수 없는 기술"
+          },
+          {
+            "id": "A02",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "A06",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "A05",
+            "reason": "스킬 포인트 부족"
+          }
+        ]
+      },
+      "mage": {
+        "earned": 27,
+        "spent": 27,
+        "remaining": 0,
+        "ranks": {
+          "M01": 1,
+          "M07": 1,
+          "M10": 6,
+          "M03": 1,
+          "M11": 6,
+          "M06": 1,
+          "M02": 1,
+          "M04": 5
+        },
+        "loadout": [
+          "M01",
+          "M10",
+          "M11",
+          "M04"
+        ],
+        "statTraining": 6,
+        "stats": {
+          "critChance": 0.067,
+          "critMultiplier": 1.725,
+          "level": 13,
+          "hp": 855,
+          "mp": 255,
+          "attack": 4.379200000000001,
+          "armor": 0.186,
+          "move": 1668,
+          "speed": 342,
+          "regen": 21
+        },
+        "stopReasons": [
+          {
+            "id": "M01",
+            "reason": "알 수 없는 기술"
+          },
+          {
+            "id": "M10",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "M11",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "M04",
+            "reason": "스킬 포인트 부족"
+          }
+        ]
+      },
+      "knight": {
+        "earned": 27,
+        "spent": 27,
+        "remaining": 0,
+        "ranks": {
+          "S00": 1,
+          "S01": 7,
+          "S03": 7,
+          "S05": 7
+        },
+        "loadout": [
+          "S00",
+          "S01",
+          "S03",
+          "S05"
+        ],
+        "statTraining": 6,
+        "stats": {
+          "critChance": 0.0764,
+          "critMultiplier": 1.8340000000000003,
+          "level": 13,
+          "hp": 1382,
+          "mp": 208,
+          "attack": 4.261900000000001,
+          "armor": 0.361,
+          "move": 1864,
+          "speed": 360,
+          "regen": 21
+        },
+        "stopReasons": [
+          {
+            "id": "S00",
+            "reason": "알 수 없는 기술"
+          },
+          {
+            "id": "S01",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "S03",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "S05",
+            "reason": "스킬 포인트 부족"
+          }
+        ]
+      },
+      "occultist": {
+        "earned": 27,
+        "spent": 27,
+        "remaining": 0,
+        "ranks": {
+          "O01": 1,
+          "O02": 6,
+          "O03": 1,
+          "O04": 6,
+          "O06": 1,
+          "O07": 1,
+          "O08": 6
+        },
+        "loadout": [
+          "O01",
+          "O02",
+          "O04",
+          "O08"
+        ],
+        "statTraining": 6,
+        "stats": {
+          "critChance": 0.096,
+          "critMultiplier": 1.799,
+          "level": 13,
+          "hp": 999,
+          "mp": 301,
+          "attack": 4.636800000000001,
+          "armor": 0.23600000000000002,
+          "move": 1724,
+          "speed": 356,
+          "regen": 25
+        },
+        "stopReasons": [
+          {
+            "id": "O01",
+            "reason": "알 수 없는 기술"
+          },
+          {
+            "id": "O02",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "O04",
+            "reason": "스킬 포인트 부족"
+          },
+          {
+            "id": "O08",
+            "reason": "스킬 포인트 부족"
+          }
+        ]
+      }
+    },
+    "training": [
+      {
+        "cls": "archer",
+        "op": "unlock",
+        "id": "A14",
+        "rank": 1
+      },
+      {
+        "cls": "archer",
+        "op": "unlock",
+        "id": "A02",
+        "rank": 1
+      },
+      {
+        "cls": "archer",
+        "op": "unlock",
+        "id": "A06",
+        "rank": 1
+      },
+      {
+        "cls": "archer",
+        "op": "unlock",
+        "id": "A05",
+        "rank": 1
+      },
+      {
+        "cls": "archer",
+        "op": "stat",
+        "rank": 1
+      },
+      {
+        "cls": "archer",
+        "op": "stat",
+        "rank": 2
+      },
+      {
+        "cls": "archer",
+        "op": "stat",
+        "rank": 3
+      },
+      {
+        "cls": "archer",
+        "op": "stat",
+        "rank": 4
+      },
+      {
+        "cls": "archer",
+        "op": "stat",
+        "rank": 5
+      },
+      {
+        "cls": "archer",
+        "op": "stat",
+        "rank": 6
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A02",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A06",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A05",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A02",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A06",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A05",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A02",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A06",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A05",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A02",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A06",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A05",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A02",
+        "from": 5,
+        "to": 6
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A06",
+        "from": 5,
+        "to": 6
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A05",
+        "from": 5,
+        "to": 6
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A02",
+        "from": 6,
+        "to": 7
+      },
+      {
+        "cls": "archer",
+        "op": "rank",
+        "id": "A06",
+        "from": 6,
+        "to": 7
+      },
+      {
+        "cls": "mage",
+        "op": "unlock",
+        "id": "M07",
+        "rank": 1
+      },
+      {
+        "cls": "mage",
+        "op": "unlock",
+        "id": "M10",
+        "rank": 1
+      },
+      {
+        "cls": "mage",
+        "op": "unlock",
+        "id": "M03",
+        "rank": 1
+      },
+      {
+        "cls": "mage",
+        "op": "unlock",
+        "id": "M11",
+        "rank": 1
+      },
+      {
+        "cls": "mage",
+        "op": "unlock",
+        "id": "M06",
+        "rank": 1
+      },
+      {
+        "cls": "mage",
+        "op": "unlock",
+        "id": "M02",
+        "rank": 1
+      },
+      {
+        "cls": "mage",
+        "op": "unlock",
+        "id": "M04",
+        "rank": 1
+      },
+      {
+        "cls": "mage",
+        "op": "stat",
+        "rank": 1
+      },
+      {
+        "cls": "mage",
+        "op": "stat",
+        "rank": 2
+      },
+      {
+        "cls": "mage",
+        "op": "stat",
+        "rank": 3
+      },
+      {
+        "cls": "mage",
+        "op": "stat",
+        "rank": 4
+      },
+      {
+        "cls": "mage",
+        "op": "stat",
+        "rank": 5
+      },
+      {
+        "cls": "mage",
+        "op": "stat",
+        "rank": 6
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M10",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M11",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M04",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M10",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M11",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M04",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M10",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M11",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M04",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M10",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M11",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M04",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M10",
+        "from": 5,
+        "to": 6
+      },
+      {
+        "cls": "mage",
+        "op": "rank",
+        "id": "M11",
+        "from": 5,
+        "to": 6
+      },
+      {
+        "cls": "knight",
+        "op": "unlock",
+        "id": "S01",
+        "rank": 1
+      },
+      {
+        "cls": "knight",
+        "op": "unlock",
+        "id": "S03",
+        "rank": 1
+      },
+      {
+        "cls": "knight",
+        "op": "unlock",
+        "id": "S05",
+        "rank": 1
+      },
+      {
+        "cls": "knight",
+        "op": "stat",
+        "rank": 1
+      },
+      {
+        "cls": "knight",
+        "op": "stat",
+        "rank": 2
+      },
+      {
+        "cls": "knight",
+        "op": "stat",
+        "rank": 3
+      },
+      {
+        "cls": "knight",
+        "op": "stat",
+        "rank": 4
+      },
+      {
+        "cls": "knight",
+        "op": "stat",
+        "rank": 5
+      },
+      {
+        "cls": "knight",
+        "op": "stat",
+        "rank": 6
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S01",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S03",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S05",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S01",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S03",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S05",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S01",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S03",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S05",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S01",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S03",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S05",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S01",
+        "from": 5,
+        "to": 6
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S03",
+        "from": 5,
+        "to": 6
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S05",
+        "from": 5,
+        "to": 6
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S01",
+        "from": 6,
+        "to": 7
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S03",
+        "from": 6,
+        "to": 7
+      },
+      {
+        "cls": "knight",
+        "op": "rank",
+        "id": "S05",
+        "from": 6,
+        "to": 7
+      },
+      {
+        "cls": "occultist",
+        "op": "unlock",
+        "id": "O02",
+        "rank": 1
+      },
+      {
+        "cls": "occultist",
+        "op": "unlock",
+        "id": "O03",
+        "rank": 1
+      },
+      {
+        "cls": "occultist",
+        "op": "unlock",
+        "id": "O04",
+        "rank": 1
+      },
+      {
+        "cls": "occultist",
+        "op": "unlock",
+        "id": "O06",
+        "rank": 1
+      },
+      {
+        "cls": "occultist",
+        "op": "unlock",
+        "id": "O07",
+        "rank": 1
+      },
+      {
+        "cls": "occultist",
+        "op": "unlock",
+        "id": "O08",
+        "rank": 1
+      },
+      {
+        "cls": "occultist",
+        "op": "stat",
+        "rank": 1
+      },
+      {
+        "cls": "occultist",
+        "op": "stat",
+        "rank": 2
+      },
+      {
+        "cls": "occultist",
+        "op": "stat",
+        "rank": 3
+      },
+      {
+        "cls": "occultist",
+        "op": "stat",
+        "rank": 4
+      },
+      {
+        "cls": "occultist",
+        "op": "stat",
+        "rank": 5
+      },
+      {
+        "cls": "occultist",
+        "op": "stat",
+        "rank": 6
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O02",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O04",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O08",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O02",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O04",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O08",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O02",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O04",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O08",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O02",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O04",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O08",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O02",
+        "from": 5,
+        "to": 6
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O04",
+        "from": 5,
+        "to": 6
+      },
+      {
+        "cls": "occultist",
+        "op": "rank",
+        "id": "O08",
+        "from": 5,
+        "to": 6
+      }
+    ]
+  },
+  "initialHeroes": [
+    {
+      "id": "p-archer",
+      "name": "설오",
+      "role": "archer",
+      "cls": "archer",
+      "side": 0,
+      "x": 570,
+      "y": 5480,
+      "vx": 0,
+      "vy": 0,
+      "hp": 790,
+      "maxHp": 790,
+      "r": 22,
+      "h": 92,
+      "focus": 186,
+      "maxFocus": 186,
+      "regen": 21,
+      "level": 13,
+      "attack": 4.4965,
+      "armor": 0.19999999999999998,
+      "shield": 0,
+      "bound": 0,
+      "mark": 0,
+      "breaks": 0,
+      "acted": false,
+      "moveLeft": 1647,
+      "maxMove": 1647,
+      "walkSpeed": 365,
+      "angle": 44,
+      "lastPower": 0.55,
+      "loadout": [
+        "A01",
+        "A02",
+        "A06",
+        "A05"
+      ],
+      "tune": 0.5,
+      "facing": 1,
+      "hurt": 0,
+      "anim": 0,
+      "airborne": false,
+      "fixed": false,
+      "spawnX": 570,
+      "spawnY": 5480,
+      "intent": "",
+      "dead": false,
+      "ranks": {
+        "A01": 1,
+        "A14": 1,
+        "A02": 7,
+        "A06": 7,
+        "A05": 6
+      },
+      "group": 0,
+      "awake": true,
+      "lastAct": 0,
+      "aggroUntil": 0,
+      "xpBudget": 0,
+      "xpGranted": 0,
+      "killRewarded": false,
+      "damageBy": {},
+      "honroAlly": false,
+      "honroCivilian": false,
+      "critChance": 0.128,
+      "critMultiplier": 2.08,
+      "cooldowns": {}
+    },
+    {
+      "id": "p-mage",
+      "name": "담허",
+      "role": "mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 460,
+      "y": 5480,
+      "vx": 0,
+      "vy": 0,
+      "hp": 855,
+      "maxHp": 855,
+      "r": 22,
+      "h": 92,
+      "focus": 255,
+      "maxFocus": 255,
+      "regen": 21,
+      "level": 13,
+      "attack": 4.379200000000001,
+      "armor": 0.186,
+      "shield": 0,
+      "bound": 0,
+      "mark": 0,
+      "breaks": 0,
+      "acted": false,
+      "moveLeft": 1668,
+      "maxMove": 1668,
+      "walkSpeed": 342,
+      "angle": 44,
+      "lastPower": 0.55,
+      "loadout": [
+        "M01",
+        "M10",
+        "M11",
+        "M04"
+      ],
+      "tune": 0.5,
+      "facing": 1,
+      "hurt": 0,
+      "anim": 0,
+      "airborne": false,
+      "fixed": false,
+      "spawnX": 460,
+      "spawnY": 5480,
+      "intent": "",
+      "dead": false,
+      "ranks": {
+        "M01": 1,
+        "M07": 1,
+        "M10": 6,
+        "M03": 1,
+        "M11": 6,
+        "M06": 1,
+        "M02": 1,
+        "M04": 5
+      },
+      "group": 0,
+      "awake": true,
+      "lastAct": 0,
+      "aggroUntil": 0,
+      "xpBudget": 0,
+      "xpGranted": 0,
+      "killRewarded": false,
+      "damageBy": {},
+      "honroAlly": false,
+      "honroCivilian": false,
+      "critChance": 0.067,
+      "critMultiplier": 1.725,
+      "cooldowns": {}
+    },
+    {
+      "id": "p-knight",
+      "name": "휘겸",
+      "role": "knight",
+      "cls": "knight",
+      "side": 0,
+      "x": 680,
+      "y": 5480,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1382,
+      "maxHp": 1382,
+      "r": 22,
+      "h": 92,
+      "focus": 208,
+      "maxFocus": 208,
+      "regen": 21,
+      "level": 13,
+      "attack": 4.261900000000001,
+      "armor": 0.361,
+      "shield": 0,
+      "bound": 0,
+      "mark": 0,
+      "breaks": 0,
+      "acted": false,
+      "moveLeft": 1864,
+      "maxMove": 1864,
+      "walkSpeed": 360,
+      "angle": 44,
+      "lastPower": 0.55,
+      "loadout": [
+        "S00",
+        "S01",
+        "S03",
+        "S05"
+      ],
+      "tune": 0.5,
+      "facing": 1,
+      "hurt": 0,
+      "anim": 0,
+      "airborne": false,
+      "fixed": false,
+      "spawnX": 680,
+      "spawnY": 5480,
+      "intent": "",
+      "dead": false,
+      "ranks": {
+        "S00": 1,
+        "S01": 7,
+        "S03": 7,
+        "S05": 7
+      },
+      "group": 0,
+      "awake": true,
+      "lastAct": 0,
+      "aggroUntil": 0,
+      "xpBudget": 0,
+      "xpGranted": 0,
+      "killRewarded": false,
+      "damageBy": {},
+      "honroAlly": false,
+      "honroCivilian": false,
+      "critChance": 0.0764,
+      "critMultiplier": 1.8340000000000003,
+      "cooldowns": {}
+    },
+    {
+      "id": "p-occultist",
+      "name": "소단",
+      "role": "occultist",
+      "cls": "occultist",
+      "side": 0,
+      "x": 350,
+      "y": 5480,
+      "vx": 0,
+      "vy": 0,
+      "hp": 999,
+      "maxHp": 999,
+      "r": 22,
+      "h": 92,
+      "focus": 301,
+      "maxFocus": 301,
+      "regen": 25,
+      "level": 13,
+      "attack": 4.636800000000001,
+      "armor": 0.23600000000000002,
+      "shield": 0,
+      "bound": 0,
+      "mark": 0,
+      "breaks": 0,
+      "acted": false,
+      "moveLeft": 1724,
+      "maxMove": 1724,
+      "walkSpeed": 356,
+      "angle": 44,
+      "lastPower": 0.55,
+      "loadout": [
+        "O01",
+        "O02",
+        "O04",
+        "O08"
+      ],
+      "tune": 0.5,
+      "facing": 1,
+      "hurt": 0,
+      "anim": 0,
+      "airborne": false,
+      "fixed": false,
+      "spawnX": 350,
+      "spawnY": 5480,
+      "intent": "",
+      "dead": false,
+      "spiritSight": true,
+      "ranks": {
+        "O01": 1,
+        "O02": 6,
+        "O03": 1,
+        "O04": 6,
+        "O06": 1,
+        "O07": 1,
+        "O08": 6
+      },
+      "group": 0,
+      "awake": true,
+      "lastAct": 0,
+      "aggroUntil": 0,
+      "xpBudget": 0,
+      "xpGranted": 0,
+      "killRewarded": false,
+      "damageBy": {},
+      "honroAlly": false,
+      "honroCivilian": false,
+      "critChance": 0.096,
+      "critMultiplier": 1.799,
+      "cooldowns": {}
+    }
+  ],
+  "initialGrowthLimit": {
+    "start": 36088,
+    "end": 40398,
+    "total": 4310,
+    "combat": 1724
+  },
+  "checkpoints": [
+    {
+      "id": "monk",
+      "round": 14
+    },
+    {
+      "id": "clear-rescue-threat",
+      "round": 14
+    },
+    {
+      "id": "witness",
+      "round": 14
+    },
+    {
+      "id": "hall",
+      "round": 19
+    },
+    {
+      "id": "record",
+      "round": 19
+    }
+  ],
+  "remainingEnemies": 36,
+  "fallen": [
+    {
+      "round": 5,
+      "target": "p-archer",
+      "remaining": 0
+    },
+    {
+      "round": 9,
+      "target": "p-mage",
+      "remaining": 0
+    }
+  ],
+  "fixedDefeats": [
+    {
+      "round": 1,
+      "target": "tm-court-flank"
+    },
+    {
+      "round": 3,
+      "target": "a2-enemy-4"
+    },
+    {
+      "round": 12,
+      "target": "a2-enemy-9"
+    },
+    {
+      "round": 13,
+      "target": "a2-enemy-5"
+    }
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "goal": "monk",
+      "enemyCount": 49,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 790,
+          "maxHp": 790,
+          "x": 570,
+          "y": 5480,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "mage",
+          "hp": 855,
+          "maxHp": 855,
+          "x": 460,
+          "y": 5480,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1382,
+          "maxHp": 1382,
+          "x": 680,
+          "y": 5480,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "occultist",
+          "hp": 999,
+          "maxHp": 999,
+          "x": 350,
+          "y": 5480,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "goal": "monk",
+      "enemyCount": 48,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 681,
+          "maxHp": 790,
+          "x": 2125.519572916507,
+          "y": 5365.364911041708,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "mage",
+          "hp": 849,
+          "maxHp": 855,
+          "x": 2079.933871434394,
+          "y": 5377.217193427057,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1315,
+          "maxHp": 1382,
+          "x": 2512.3819915463487,
+          "y": 5260.533042367022,
+          "support": "tm-processional-stair"
+        },
+        {
+          "cls": "occultist",
+          "hp": 976,
+          "maxHp": 999,
+          "x": 2056.741909145557,
+          "y": 5383.247103622155,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "goal": "monk",
+      "enemyCount": 47,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 537,
+          "maxHp": 790,
+          "x": 2128.701667340727,
+          "y": 5364.537566491411,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "mage",
+          "hp": 698,
+          "maxHp": 855,
+          "x": 2097.8763391213547,
+          "y": 5372.552151828448,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 987.8399999999999,
+          "maxHp": 1382,
+          "x": 2508.489592331948,
+          "y": 5261.622914147055,
+          "support": "tm-processional-stair"
+        },
+        {
+          "cls": "occultist",
+          "hp": 905,
+          "maxHp": 999,
+          "x": 2079.5709429201743,
+          "y": 5377.311554840755,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "goal": "monk",
+      "enemyCount": 44,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 299.79999999999995,
+          "maxHp": 790,
+          "x": 2128.701667340727,
+          "y": 5364.537566491411,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "mage",
+          "hp": 769.6,
+          "maxHp": 855,
+          "x": 2099.674044628893,
+          "y": 5372.084748396488,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 958.6799999999998,
+          "maxHp": 1382,
+          "x": 2284.580720627293,
+          "y": 5324.009012636904,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "occultist",
+          "hp": 945,
+          "maxHp": 999,
+          "x": 2093.7390883983644,
+          "y": 5373.6278370164255,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "goal": "monk",
+      "enemyCount": 44,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 36.389999999999986,
+          "maxHp": 790,
+          "x": 2143.0016409044865,
+          "y": 5360.819573364834,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "mage",
+          "hp": 794,
+          "maxHp": 855,
+          "x": 2115.2118253981566,
+          "y": 5368.044925396479,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1076.5199999999998,
+          "maxHp": 1382,
+          "x": 2133.534742923687,
+          "y": 5363.280966839841,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "occultist",
+          "hp": 914,
+          "maxHp": 999,
+          "x": 2105.376673591886,
+          "y": 5370.60206486611,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "goal": "monk",
+      "enemyCount": 42,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "mage",
+          "hp": 855,
+          "maxHp": 855,
+          "x": 2115.2118253981566,
+          "y": 5368.044925396479,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1181.3599999999997,
+          "maxHp": 1382,
+          "x": 1920.189796924462,
+          "y": 5418.75065279964,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "occultist",
+          "hp": 999,
+          "maxHp": 999,
+          "x": 2105.376673591886,
+          "y": 5370.60206486611,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "goal": "monk",
+      "enemyCount": 41,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "mage",
+          "hp": 517,
+          "maxHp": 855,
+          "x": 2115.2118253981566,
+          "y": 5368.044925396479,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1120.3599999999997,
+          "maxHp": 1382,
+          "x": 1944.5042299551383,
+          "y": 5412.428900211664,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "occultist",
+          "hp": 999,
+          "maxHp": 999,
+          "x": 2105.376673591886,
+          "y": 5370.60206486611,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "goal": "monk",
+      "enemyCount": 40,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "mage",
+          "hp": 281.6,
+          "maxHp": 855,
+          "x": 2115.2118253981566,
+          "y": 5368.044925396479,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1092.3599999999997,
+          "maxHp": 1382,
+          "x": 1858.4689319119143,
+          "y": 5434.798077702902,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "occultist",
+          "hp": 999,
+          "maxHp": 999,
+          "x": 2105.376673591886,
+          "y": 5370.60206486611,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 9,
+      "goal": "monk",
+      "enemyCount": 39,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "mage",
+          "hp": 46.200000000000045,
+          "maxHp": 855,
+          "x": 2115.2118253981566,
+          "y": 5368.044925396479,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1382,
+          "maxHp": 1382,
+          "x": 2936.389089305523,
+          "y": 5005.80497230159,
+          "support": "tm-shelter-veranda"
+        },
+        {
+          "cls": "occultist",
+          "hp": 999,
+          "maxHp": 999,
+          "x": 2105.376673591886,
+          "y": 5370.60206486611,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 9,
+      "goal": "monk",
+      "enemyCount": 39,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "mage",
+          "hp": 46.200000000000045,
+          "maxHp": 855,
+          "x": 2115.2118253981566,
+          "y": 5368.044925396479,
+          "support": "act2-floor"
+        },
+        {
+          "cls": "knight",
+          "hp": 1382,
+          "maxHp": 1382,
+          "x": 2936.389089305523,
+          "y": 5005.80497230159,
+          "support": "tm-shelter-veranda"
+        },
+        {
+          "cls": "occultist",
+          "hp": 999,
+          "maxHp": 999,
+          "x": 2105.376673591886,
+          "y": 5370.60206486611,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 10,
+      "goal": "monk",
+      "enemyCount": 39,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "knight",
+          "hp": 1382,
+          "maxHp": 1382,
+          "x": 2936.389089305523,
+          "y": 5005.80497230159,
+          "support": "tm-shelter-veranda"
+        },
+        {
+          "cls": "occultist",
+          "hp": 999,
+          "maxHp": 999,
+          "x": 2105.376673591886,
+          "y": 5370.60206486611,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 11,
+      "goal": "monk",
+      "enemyCount": 39,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "knight",
+          "hp": 1382,
+          "maxHp": 1382,
+          "x": 2936.389089305523,
+          "y": 5005.80497230159,
+          "support": "tm-shelter-veranda"
+        },
+        {
+          "cls": "occultist",
+          "hp": 999,
+          "maxHp": 999,
+          "x": 2105.376673591886,
+          "y": 5370.60206486611,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 12,
+      "goal": "monk",
+      "enemyCount": 39,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "knight",
+          "hp": 1344,
+          "maxHp": 1382,
+          "x": 2952.698369361609,
+          "y": 5004.473602501093,
+          "support": "tm-shelter-veranda"
+        },
+        {
+          "cls": "occultist",
+          "hp": 999,
+          "maxHp": 999,
+          "x": 2105.376673591886,
+          "y": 5370.60206486611,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 13,
+      "goal": "monk",
+      "enemyCount": 38,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "knight",
+          "hp": 1344,
+          "maxHp": 1382,
+          "x": 2448,
+          "y": 5176.8,
+          "support": "tm-shelter-step"
+        },
+        {
+          "cls": "occultist",
+          "hp": 999,
+          "maxHp": 999,
+          "x": 2105.376673591886,
+          "y": 5370.60206486611,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 14,
+      "goal": "monk",
+      "enemyCount": 37,
+      "done": {},
+      "heroes": [
+        {
+          "cls": "knight",
+          "hp": 1344,
+          "maxHp": 1382,
+          "x": 2448,
+          "y": 5176.8,
+          "support": "tm-shelter-step"
+        },
+        {
+          "cls": "occultist",
+          "hp": 999,
+          "maxHp": 999,
+          "x": 2105.376673591886,
+          "y": 5370.60206486611,
+          "support": "act2-floor"
+        }
+      ]
+    },
+    {
+      "round": 15,
+      "goal": "hall",
+      "enemyCount": 39,
+      "done": {
+        "monk": true,
+        "clear-rescue-threat": true,
+        "witness": true
+      },
+      "heroes": [
+        {
+          "cls": "knight",
+          "hp": 1382,
+          "maxHp": 1382,
+          "x": 4142.401459579729,
+          "y": 4545.305434132673,
+          "support": "tm-processional-upper"
+        },
+        {
+          "cls": "occultist",
+          "hp": 973,
+          "maxHp": 999,
+          "x": 2934.986101644181,
+          "y": 5005.919501906597,
+          "support": "tm-shelter-veranda"
+        }
+      ]
+    },
+    {
+      "round": 16,
+      "goal": "hall",
+      "enemyCount": 39,
+      "done": {
+        "monk": true,
+        "clear-rescue-threat": true,
+        "witness": true
+      },
+      "heroes": [
+        {
+          "cls": "knight",
+          "hp": 1382,
+          "maxHp": 1382,
+          "x": 5226.07630879246,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "occultist",
+          "hp": 973,
+          "maxHp": 999,
+          "x": 2934.986101644181,
+          "y": 5005.919501906597,
+          "support": "tm-shelter-veranda"
+        }
+      ]
+    },
+    {
+      "round": 17,
+      "goal": "hall",
+      "enemyCount": 38,
+      "done": {
+        "monk": true,
+        "clear-rescue-threat": true,
+        "witness": true
+      },
+      "heroes": [
+        {
+          "cls": "knight",
+          "hp": 1361,
+          "maxHp": 1382,
+          "x": 5233.628384709597,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "occultist",
+          "hp": 947,
+          "maxHp": 999,
+          "x": 2933.2834497848544,
+          "y": 5006.058493895114,
+          "support": "tm-shelter-veranda"
+        }
+      ]
+    },
+    {
+      "round": 18,
+      "goal": "hall",
+      "enemyCount": 36,
+      "done": {
+        "monk": true,
+        "clear-rescue-threat": true,
+        "witness": true
+      },
+      "heroes": [
+        {
+          "cls": "knight",
+          "hp": 1295,
+          "maxHp": 1382,
+          "x": 5238.0898626988555,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "occultist",
+          "hp": 947,
+          "maxHp": 999,
+          "x": 2933.2834497848544,
+          "y": 5006.058493895114,
+          "support": "tm-shelter-veranda"
+        }
+      ]
+    },
+    {
+      "round": 19,
+      "goal": "hall",
+      "enemyCount": 36,
+      "done": {
+        "monk": true,
+        "clear-rescue-threat": true,
+        "witness": true
+      },
+      "heroes": [
+        {
+          "cls": "knight",
+          "hp": 1250,
+          "maxHp": 1382,
+          "x": 5557.806405027118,
+          "y": 4250,
+          "support": "tm-great-hall-plinth"
+        },
+        {
+          "cls": "occultist",
+          "hp": 922,
+          "maxHp": 999,
+          "x": 4437.649047117668,
+          "y": 4327.928457383519,
+          "support": "tm-processional-upper"
+        }
+      ]
+    }
+  ],
+  "normalInputActions": [
+    {
+      "round": 1,
+      "frame": 597,
+      "goal": {
+        "id": "tm-court-flank",
+        "x": 2660,
+        "y": 5162.666666666667
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 570,
+        "y": 5480
+      },
+      "to": {
+        "x": 2119.6088679769186,
+        "y": 5366.901694326001
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 1,
+      "frame": 597,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "a2-enemy-4",
+      "hpBefore": 936,
+      "angle": 21.578623034677584,
+      "power": 0.7704555442485741
+    },
+    {
+      "round": 1,
+      "frame": 1456,
+      "turn": 1,
+      "goal": {
+        "id": "tm-court-flank",
+        "x": 2660,
+        "y": 5162.666666666667
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "mage",
+      "from": {
+        "x": 460,
+        "y": 5480
+      },
+      "to": {
+        "x": 2084.9519912073974,
+        "y": 5375.912482286077
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 1,
+      "frame": 1456,
+      "turn": 1,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "defend",
+      "hero": "mage"
+    },
+    {
+      "round": 1,
+      "frame": 2267,
+      "turn": 2,
+      "goal": {
+        "id": "tm-court-flank",
+        "x": 2660,
+        "y": 5162.666666666667
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 680,
+        "y": 5480
+      },
+      "to": {
+        "x": 2512.3819915463487,
+        "y": 5260.533042367022
+      },
+      "support": "tm-processional-stair"
+    },
+    {
+      "round": 1,
+      "frame": 2267,
+      "turn": 2,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "tm-court-flank",
+      "hpBefore": 670,
+      "angle": 37.557388372191085,
+      "power": 1
+    },
+    {
+      "round": 1,
+      "frame": 3062,
+      "turn": 3,
+      "goal": {
+        "id": "tm-court-flank",
+        "x": 2660,
+        "y": 5162.666666666667
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 350,
+        "y": 5480
+      },
+      "to": {
+        "x": 2057.786488259018,
+        "y": 5382.9755130526555
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 1,
+      "frame": 3062,
+      "turn": 3,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "tm-court-flank",
+      "hpBefore": 83,
+      "angle": 24.36136026021047,
+      "power": 0.5415580399817963
+    },
+    {
+      "round": 2,
+      "frame": 3719,
+      "turn": 10,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "a2-enemy-4",
+      "hpBefore": 574,
+      "angle": 21.798879619786124,
+      "power": 0.7545673434314624
+    },
+    {
+      "round": 2,
+      "frame": 3894,
+      "turn": 11,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "heal-stake",
+      "hero": "mage",
+      "target": "p-knight",
+      "angle": 35,
+      "power": 0.6,
+      "d": 14.301065836783192
+    },
+    {
+      "round": 2,
+      "frame": 4130,
+      "turn": 12,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "a2-enemy-3",
+      "hpBefore": 260,
+      "angle": 49.42444745764871,
+      "power": 1
+    },
+    {
+      "round": 2,
+      "frame": 4252,
+      "turn": 13,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "a2-enemy-4",
+      "hpBefore": 335,
+      "angle": 20.235069653320313,
+      "power": 0.5347987151161026
+    },
+    {
+      "round": 3,
+      "frame": 5452,
+      "turn": 20,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "a2-enemy-4",
+      "hpBefore": 197,
+      "angle": 23.3935142859166,
+      "power": 0.5877106725995229
+    },
+    {
+      "round": 3,
+      "frame": 5669,
+      "turn": 21,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "heal-stake",
+      "hero": "mage",
+      "target": "p-archer",
+      "angle": -55,
+      "power": 0.2,
+      "d": 6.070994157772755
+    },
+    {
+      "round": 3,
+      "frame": 5769,
+      "turn": 22,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "tm-court-point",
+      "hpBefore": 119,
+      "angle": 191.58080915384016,
+      "power": 0.6669950938032492
+    },
+    {
+      "round": 3,
+      "frame": 5912,
+      "turn": 23,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "resident-spirit-1",
+      "hpBefore": 936,
+      "angle": 28.898251082548505,
+      "power": 0.75973213849866
+    },
+    {
+      "round": 4,
+      "frame": 6749,
+      "turn": 30,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A06",
+      "target": "tm-gate-captain",
+      "hpBefore": 1451,
+      "angle": 130,
+      "power": 0.2
+    },
+    {
+      "round": 4,
+      "frame": 7002,
+      "turn": 31,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "mage",
+      "skill": "M11",
+      "target": "tm-gate-captain",
+      "hpBefore": 1162,
+      "angle": 197.06593792325043,
+      "power": 0.5076435400004036
+    },
+    {
+      "round": 4,
+      "frame": 7197,
+      "turn": 32,
+      "goal": {
+        "id": 17,
+        "x": 2128.087803439042,
+        "y": 5358.497687256367
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 2284.580720627293,
+        "y": 5324.009012636904
+      },
+      "to": {
+        "x": 2118.0668583343713,
+        "y": 5367.302616833063
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 4,
+      "frame": 7197,
+      "turn": 32,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "tm-gate-captain",
+      "hpBefore": 755,
+      "angle": 198.14736374612718,
+      "power": 1
+    },
+    {
+      "round": 4,
+      "frame": 7319,
+      "turn": 33,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "resident-spirit-1",
+      "hpBefore": 936,
+      "angle": 29.236285060728722,
+      "power": 0.7514397508274002
+    },
+    {
+      "round": 5,
+      "frame": 8080,
+      "turn": 40,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A06",
+      "target": "tm-gate-captain",
+      "hpBefore": 168,
+      "angle": 122,
+      "power": 0.2
+    },
+    {
+      "round": 5,
+      "frame": 8349,
+      "turn": 41,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "mage",
+      "skill": "M11",
+      "target": "tm-gate-point",
+      "hpBefore": 936,
+      "angle": 192.38550869459138,
+      "power": 0.6085912844108283
+    },
+    {
+      "round": 5,
+      "frame": 8495,
+      "turn": 42,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "tm-gate-point",
+      "hpBefore": 604,
+      "angle": 192.97039220427106,
+      "power": 0.8898108396356771
+    },
+    {
+      "round": 5,
+      "frame": 8629,
+      "turn": 43,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "resident-spirit-1",
+      "hpBefore": 936,
+      "angle": 29.289636497161094,
+      "power": 0.7539310687704872
+    },
+    {
+      "round": 6,
+      "frame": 9205,
+      "turn": 50,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "mage",
+      "skill": "M11",
+      "target": "a2-enemy-1",
+      "hpBefore": 936,
+      "angle": 170,
+      "power": 0.455
+    },
+    {
+      "round": 6,
+      "frame": 9393,
+      "turn": 51,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "a2-enemy-1",
+      "hpBefore": 529,
+      "angle": 186.2913311918968,
+      "power": 1
+    },
+    {
+      "round": 6,
+      "frame": 9515,
+      "turn": 52,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "resident-spirit-1",
+      "hpBefore": 936,
+      "angle": 29.44502518893048,
+      "power": 0.7476556111178665
+    },
+    {
+      "round": 7,
+      "frame": 10028,
+      "turn": 58,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "mage",
+      "skill": "M11",
+      "target": "a2-enemy-0",
+      "hpBefore": 424,
+      "angle": 170,
+      "power": 0.455
+    },
+    {
+      "round": 7,
+      "frame": 10241,
+      "turn": 59,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "tm-gate-bat",
+      "hpBefore": 509,
+      "angle": 98.41773857971813,
+      "power": 0.7824451584604701
+    },
+    {
+      "round": 7,
+      "frame": 10656,
+      "turn": 60,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "resident-spirit-1",
+      "hpBefore": 936,
+      "angle": 29.186872079198032,
+      "power": 0.7581199974126327
+    },
+    {
+      "round": 8,
+      "frame": 11041,
+      "turn": 65,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "mage",
+      "skill": "M11",
+      "target": "tm-gate-bat",
+      "hpBefore": 36,
+      "angle": 121.2499986889127,
+      "power": 0.8859879900500532
+    },
+    {
+      "round": 8,
+      "frame": 11531,
+      "turn": 66,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "jump",
+      "hero": "knight",
+      "from": {
+        "x": 2506.357607420542,
+        "y": 5262.219869922248
+      },
+      "to": {
+        "kind": "jump",
+        "x": 2520,
+        "support": "tm-shelter-step",
+        "speed": 0.5
+      }
+    },
+    {
+      "round": 8,
+      "frame": 11674,
+      "turn": 66,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "land",
+      "hero": "knight",
+      "x": 2518.357607420542,
+      "y": 5172.10949283863,
+      "support": "tm-shelter-step",
+      "expected": "tm-shelter-step"
+    },
+    {
+      "round": 8,
+      "frame": 11733,
+      "turn": 66,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "jump",
+      "hero": "knight",
+      "from": {
+        "x": 2656.0519592047567,
+        "y": 5162.929869386349
+      },
+      "to": {
+        "kind": "jump",
+        "x": 2710,
+        "support": "tm-shelter-veranda",
+        "speed": 0.5
+      }
+    },
+    {
+      "round": 8,
+      "frame": 11862,
+      "turn": 66,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "land",
+      "hero": "knight",
+      "x": 2707.0519592047567,
+      "y": 5024.526370677163,
+      "support": "tm-shelter-veranda",
+      "expected": "tm-shelter-veranda"
+    },
+    {
+      "round": 8,
+      "frame": 11953,
+      "turn": 66,
+      "goal": {
+        "id": "monk",
+        "x": 2950,
+        "y": 5004.693877551021
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 1858.4689319119143,
+        "y": 5434.798077702902
+      },
+      "to": {
+        "x": 2936.389089305523,
+        "y": 5005.80497230159
+      },
+      "support": "tm-shelter-veranda"
+    },
+    {
+      "round": 8,
+      "frame": 11953,
+      "turn": 66,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "defend",
+      "hero": "knight"
+    },
+    {
+      "round": 8,
+      "frame": 12031,
+      "turn": 67,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "resident-spirit-1",
+      "hpBefore": 936,
+      "angle": 29.367143595329544,
+      "power": 0.7507921429523513
+    },
+    {
+      "round": 9,
+      "frame": 12211,
+      "turn": 71,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "defend",
+      "hero": "mage"
+    },
+    {
+      "round": 9,
+      "frame": 12289,
+      "turn": 72,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "defend",
+      "hero": "knight"
+    },
+    {
+      "round": 9,
+      "frame": 12367,
+      "turn": 73,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "resident-spirit-1",
+      "hpBefore": 936,
+      "angle": 29.289636497161094,
+      "power": 0.7539310687704872
+    },
+    {
+      "round": 10,
+      "frame": 12547,
+      "turn": 77,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "defend",
+      "hero": "knight"
+    },
+    {
+      "round": 10,
+      "frame": 12625,
+      "turn": 78,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O08",
+      "target": "resident-spirit-1",
+      "hpBefore": 936,
+      "angle": 67.83345790663273,
+      "power": 0.990179109684657
+    },
+    {
+      "round": 11,
+      "frame": 13179,
+      "turn": 82,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "resident-spirit-1",
+      "hpBefore": 749,
+      "angle": 47.976278498320276,
+      "power": 1
+    },
+    {
+      "round": 11,
+      "frame": 13301,
+      "turn": 83,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O08",
+      "target": "a2-enemy-9",
+      "hpBefore": 936,
+      "angle": 53.91005399142388,
+      "power": 0.8528364491910859
+    },
+    {
+      "round": 12,
+      "frame": 13915,
+      "turn": 89,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "a2-enemy-9",
+      "hpBefore": 749,
+      "angle": 49.27028963689348,
+      "power": 0.6580868347305838
+    },
+    {
+      "round": 12,
+      "frame": 14077,
+      "turn": 90,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "a2-enemy-9",
+      "hpBefore": 234,
+      "angle": 168.55404641610437,
+      "power": 0.5860856468989294
+    },
+    {
+      "round": 13,
+      "frame": 14538,
+      "turn": 95,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O08",
+      "target": "a2-enemy-5",
+      "hpBefore": 936,
+      "angle": 54.22823683599929,
+      "power": 0.9484826076790012
+    },
+    {
+      "round": 13,
+      "frame": 14732,
+      "turn": 96,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "a2-enemy-5",
+      "hpBefore": 749,
+      "angle": 76.44599052664967,
+      "power": 1
+    },
+    {
+      "round": 14,
+      "frame": 15205,
+      "turn": 100,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "jump",
+      "hero": "occultist",
+      "from": {
+        "x": 2591.5133651219144,
+        "y": 5343.321069209753
+      },
+      "to": {
+        "kind": "jump",
+        "x": 2510,
+        "support": "tm-shelter-step",
+        "speed": 0.6
+      }
+    },
+    {
+      "round": 14,
+      "frame": 15323,
+      "turn": 100,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "land",
+      "hero": "occultist",
+      "x": 2511.4133651219054,
+      "y": 5172.572442325206,
+      "support": "tm-shelter-step",
+      "expected": "tm-shelter-step"
+    },
+    {
+      "round": 14,
+      "frame": 15381,
+      "turn": 100,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "jump",
+      "hero": "occultist",
+      "from": {
+        "x": 2656.162057972165,
+        "y": 5162.922529468522
+      },
+      "to": {
+        "kind": "jump",
+        "x": 2710,
+        "support": "tm-shelter-veranda",
+        "speed": 0.5
+      }
+    },
+    {
+      "round": 14,
+      "frame": 15510,
+      "turn": 100,
+      "goal": "monk",
+      "missionGoal": "monk",
+      "op": "land",
+      "hero": "occultist",
+      "x": 2708.078724638824,
+      "y": 5024.442553090708,
+      "support": "tm-shelter-veranda",
+      "expected": "tm-shelter-veranda"
+    },
+    {
+      "round": 14,
+      "frame": 15603,
+      "turn": 100,
+      "goal": {
+        "id": "monk",
+        "x": 2950,
+        "y": 5004.693877551021
+      },
+      "missionGoal": "monk",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 2105.376673591886,
+        "y": 5370.60206486611
+      },
+      "to": {
+        "x": 2936.9374461240236,
+        "y": 5005.760208479672
+      },
+      "support": "tm-shelter-veranda"
+    },
+    {
+      "round": 14,
+      "frame": 15603,
+      "turn": 100,
+      "goal": "witness",
+      "missionGoal": "witness",
+      "op": "E",
+      "hero": "occultist",
+      "target": "monk"
+    },
+    {
+      "round": 14,
+      "frame": 15853,
+      "turn": 101,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "land",
+      "hero": "knight",
+      "x": 2737.24062084334,
+      "y": 5197.686734125968,
+      "support": "tm-processional-bridge",
+      "expected": "tm-processional-bridge"
+    },
+    {
+      "round": 14,
+      "frame": 16470,
+      "turn": 101,
+      "goal": {
+        "id": "tm-hall-west-lamp",
+        "x": 5340,
+        "y": 4250
+      },
+      "missionGoal": "hall",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 2448,
+        "y": 5176.8
+      },
+      "to": {
+        "x": 4142.401459579729,
+        "y": 4545.305434132673
+      },
+      "support": "tm-processional-upper"
+    },
+    {
+      "round": 14,
+      "frame": 16470,
+      "turn": 101,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "defend",
+      "hero": "knight"
+    },
+    {
+      "round": 15,
+      "frame": 17626,
+      "turn": 107,
+      "goal": {
+        "id": "tm-hall-west-lamp",
+        "x": 5340,
+        "y": 4250
+      },
+      "missionGoal": "hall",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 4142.401459579729,
+        "y": 4545.305434132673
+      },
+      "to": {
+        "x": 5226.07630879246,
+        "y": 4250
+      },
+      "support": "tm-great-hall-plinth"
+    },
+    {
+      "round": 15,
+      "frame": 17626,
+      "turn": 107,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "tm-hall-west-lamp",
+      "hpBefore": 1451,
+      "angle": 7.816979258877758,
+      "power": 1
+    },
+    {
+      "round": 15,
+      "frame": 17748,
+      "turn": 108,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "event-67",
+      "hpBefore": 936,
+      "angle": 60,
+      "power": 0.165
+    },
+    {
+      "round": 16,
+      "frame": 19343,
+      "turn": 115,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "tm-hall-west-lamp",
+      "hpBefore": 864,
+      "angle": 7.816979258877758,
+      "power": 1
+    },
+    {
+      "round": 16,
+      "frame": 19465,
+      "turn": 116,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "event-67",
+      "hpBefore": 557,
+      "angle": 76,
+      "power": 0.165
+    },
+    {
+      "round": 17,
+      "frame": 21318,
+      "turn": 123,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "tm-hall-west-lamp",
+      "hpBefore": 393,
+      "angle": 8.364365253171005,
+      "power": 1
+    },
+    {
+      "round": 17,
+      "frame": 21440,
+      "turn": 124,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "event-67",
+      "hpBefore": 178,
+      "angle": 36.97757741395062,
+      "power": 0.50835265380358
+    },
+    {
+      "round": 18,
+      "frame": 22581,
+      "turn": 131,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "a2-enemy-11",
+      "hpBefore": 1451,
+      "angle": 26.350531373336757,
+      "power": 0.959513662243643
+    },
+    {
+      "round": 18,
+      "frame": 23136,
+      "turn": 132,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "land",
+      "hero": "occultist",
+      "x": 3500.1655552702564,
+      "y": 4849.958611182436,
+      "support": "tm-processional-upper",
+      "expected": "tm-processional-upper"
+    },
+    {
+      "round": 18,
+      "frame": 23582,
+      "turn": 132,
+      "goal": {
+        "id": "a2-enemy-11",
+        "x": 5618.000000000062,
+        "y": 4090
+      },
+      "missionGoal": "hall",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 2933.2834497848544,
+        "y": 5006.058493895114
+      },
+      "to": {
+        "x": 4449.344098610683,
+        "y": 4322.314832666872
+      },
+      "support": "tm-processional-upper"
+    },
+    {
+      "round": 18,
+      "frame": 23582,
+      "turn": 132,
+      "goal": "hall",
+      "missionGoal": "hall",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "a2-enemy-11",
+      "hpBefore": 693,
+      "angle": 18,
+      "power": 0.37
+    },
+    {
+      "round": 19,
+      "frame": 25132,
+      "turn": 139,
+      "op": "E",
+      "hero": "knight",
+      "target": "hall"
+    }
+  ],
+  "acceptedSkills": [
+    {
+      "hero": "archer",
+      "skill": "A02",
+      "count": 3
+    },
+    {
+      "hero": "knight",
+      "skill": "S03",
+      "count": 9
+    },
+    {
+      "hero": "occultist",
+      "skill": "O02",
+      "count": 3
+    },
+    {
+      "hero": "mage",
+      "skill": "M10",
+      "count": 2
+    },
+    {
+      "hero": "knight",
+      "skill": "S01",
+      "count": 5
+    },
+    {
+      "hero": "occultist",
+      "skill": "O04",
+      "count": 11
+    },
+    {
+      "hero": "archer",
+      "skill": "A06",
+      "count": 2
+    },
+    {
+      "hero": "mage",
+      "skill": "M11",
+      "count": 5
+    },
+    {
+      "hero": "occultist",
+      "skill": "O08",
+      "count": 3
+    }
+  ],
+  "geometry": {
+    "checkedGameSource": "19d9fc28623d2451e37cf665145cfdc3e2fdd51f",
+    "sourceSha256": "fb063b747be6b76038262b0434aef6800d0f184ed9411a6a13834670ec63774c",
+    "scope": "Isolated route physics only. Opponents removed, start poses initialized and movement refilled; no later pose corrections. Not normal combat completion or elapsed play time.",
+    "coverage": {
+      "declaredRoutes": 7,
+      "testedRoutes": [
+        "main",
+        "shelter-circuit",
+        "west-cloister",
+        "hall-gallery-return",
+        "undercroft-east",
+        "undercroft-shelter-return",
+        "archive-balcony"
+      ],
+      "classes": [
+        "archer",
+        "mage",
+        "knight",
+        "occultist"
+      ]
+    },
+    "rows": [
+      {
+        "route": "main",
+        "cls": "archer",
+        "passed": true,
+        "failed": null,
+        "ticks": 1765,
+        "jumps": 2,
+        "drops": 0,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "main",
+        "cls": "mage",
+        "passed": true,
+        "failed": null,
+        "ticks": 1871,
+        "jumps": 2,
+        "drops": 0,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "main",
+        "cls": "knight",
+        "passed": true,
+        "failed": null,
+        "ticks": 1788,
+        "jumps": 2,
+        "drops": 0,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "main",
+        "cls": "occultist",
+        "passed": true,
+        "failed": null,
+        "ticks": 1805,
+        "jumps": 2,
+        "drops": 0,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "shelter-circuit",
+        "cls": "archer",
+        "passed": true,
+        "failed": null,
+        "ticks": 284,
+        "jumps": 2,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "shelter-circuit",
+        "cls": "mage",
+        "passed": true,
+        "failed": null,
+        "ticks": 294,
+        "jumps": 2,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "shelter-circuit",
+        "cls": "knight",
+        "passed": true,
+        "failed": null,
+        "ticks": 286,
+        "jumps": 2,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "shelter-circuit",
+        "cls": "occultist",
+        "passed": true,
+        "failed": null,
+        "ticks": 288,
+        "jumps": 2,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "west-cloister",
+        "cls": "archer",
+        "passed": true,
+        "failed": null,
+        "ticks": 798,
+        "jumps": 2,
+        "drops": 3,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "west-cloister",
+        "cls": "mage",
+        "passed": true,
+        "failed": null,
+        "ticks": 826,
+        "jumps": 2,
+        "drops": 3,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "west-cloister",
+        "cls": "knight",
+        "passed": true,
+        "failed": null,
+        "ticks": 805,
+        "jumps": 2,
+        "drops": 3,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "west-cloister",
+        "cls": "occultist",
+        "passed": true,
+        "failed": null,
+        "ticks": 809,
+        "jumps": 2,
+        "drops": 3,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "hall-gallery-return",
+        "cls": "archer",
+        "passed": true,
+        "failed": null,
+        "ticks": 957,
+        "jumps": 4,
+        "drops": 4,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "hall-gallery-return",
+        "cls": "mage",
+        "passed": true,
+        "failed": null,
+        "ticks": 988,
+        "jumps": 4,
+        "drops": 4,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "hall-gallery-return",
+        "cls": "knight",
+        "passed": true,
+        "failed": null,
+        "ticks": 963,
+        "jumps": 4,
+        "drops": 4,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "hall-gallery-return",
+        "cls": "occultist",
+        "passed": true,
+        "failed": null,
+        "ticks": 969,
+        "jumps": 4,
+        "drops": 4,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "undercroft-east",
+        "cls": "archer",
+        "passed": true,
+        "failed": null,
+        "ticks": 1192,
+        "jumps": 2,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "undercroft-east",
+        "cls": "mage",
+        "passed": true,
+        "failed": null,
+        "ticks": 1259,
+        "jumps": 2,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "undercroft-east",
+        "cls": "knight",
+        "passed": true,
+        "failed": null,
+        "ticks": 1203,
+        "jumps": 2,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "undercroft-east",
+        "cls": "occultist",
+        "passed": true,
+        "failed": null,
+        "ticks": 1215,
+        "jumps": 2,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "undercroft-shelter-return",
+        "cls": "archer",
+        "passed": true,
+        "failed": null,
+        "ticks": 877,
+        "jumps": 2,
+        "drops": 0,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "undercroft-shelter-return",
+        "cls": "mage",
+        "passed": true,
+        "failed": null,
+        "ticks": 925,
+        "jumps": 2,
+        "drops": 0,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "undercroft-shelter-return",
+        "cls": "knight",
+        "passed": true,
+        "failed": null,
+        "ticks": 887,
+        "jumps": 2,
+        "drops": 0,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "undercroft-shelter-return",
+        "cls": "occultist",
+        "passed": true,
+        "failed": null,
+        "ticks": 895,
+        "jumps": 2,
+        "drops": 0,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "archive-balcony",
+        "cls": "archer",
+        "passed": true,
+        "failed": null,
+        "ticks": 349,
+        "jumps": 1,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "archive-balcony",
+        "cls": "mage",
+        "passed": true,
+        "failed": null,
+        "ticks": 365,
+        "jumps": 1,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "archive-balcony",
+        "cls": "knight",
+        "passed": true,
+        "failed": null,
+        "ticks": 352,
+        "jumps": 1,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "archive-balcony",
+        "cls": "occultist",
+        "passed": true,
+        "failed": null,
+        "ticks": 354,
+        "jumps": 1,
+        "drops": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      }
+    ],
+    "rawSha256": "4b1a6bd4265f07147af231d363e986aaf39ff410bfa7b0a30c2f1144c1fb7287"
+  },
+  "browser": {
+    "checkedCommit": "06e83e76a4a13ff9d2dd8ebdaa23e984a93cbf3d",
+    "input": "_local/reports/stage16-current-pacing-20261022/resume/checkpoint.json",
+    "inputSha256": "6c4133117f9357d38c02c21d87f2b37580b85c828474e0f10781405c836eb0b9",
+    "wholeBattleContinueExact": true,
+    "renderPure": true,
+    "scope": "View an actual native normal-input checkpoint in final published-source UI.\nNo combat replay or art change. Freeze frame scheduling, production Continue,\nthen render at a declared inspection camera without editing gameplay state.\n",
+    "view": {
+      "round": 19,
+      "phase": "won",
+      "goal": null,
+      "done": {
+        "monk": true,
+        "clear-rescue-threat": true,
+        "witness": true,
+        "hall": true,
+        "record": true
+      },
+      "camera": [
+        5650,
+        4150,
+        0.4
+      ],
+      "heroes": [
+        {
+          "id": "p-archer",
+          "x": 2143.0016409044865,
+          "y": 5360.819573364834,
+          "hp": 0,
+          "focus": 186,
+          "moveLeft": 1647,
+          "dead": true
+        },
+        {
+          "id": "p-mage",
+          "x": 2115.2118253981566,
+          "y": 5368.044925396479,
+          "hp": 0,
+          "focus": 255,
+          "moveLeft": 1668,
+          "dead": true
+        },
+        {
+          "id": "p-knight",
+          "x": 5557.806405027118,
+          "y": 4250,
+          "hp": 1250,
+          "focus": 208,
+          "moveLeft": 1864,
+          "dead": false
+        },
+        {
+          "id": "p-occultist",
+          "x": 4437.649047117668,
+          "y": 4327.928457383519,
+          "hp": 922,
+          "focus": 209,
+          "moveLeft": 1724,
+          "dead": false
+        }
+      ],
+      "enemies": 36
+    },
+    "errors": [],
+    "httpFailures": []
+  },
+  "artifacts": [
+    {
+      "file": "tests/fixtures/stage16-current-r9-20261022.json.gz",
+      "bytes": 324994,
+      "sha256": "bc0d3ceb0148c9fc67b7ddd7f2e9dd8b8ba9b731ed9ab2a442a3f077a91e35f4"
+    },
+    {
+      "file": "tests/fixtures/stage16-current-r19-20261022.json.gz",
+      "bytes": 333371,
+      "sha256": "20843a6a86e8db3745df8a6090a8a7bf027591d3964737e1c1ec607d31ca76d1"
+    }
+  ],
+  "changesSinceGameSource": [
+    "tests/fixtures/published-web-history-20261022.json",
+    "tests/stage16-current-contracts.mjs",
+    "tests/stage16-current-entry-helper.mjs",
+    "tests/stage16-current-pacing.mjs",
+    "tools/testing/stage16-current-save-browser.py"
+  ],
+  "scope": "One split R1-R9/R9-R19 normal-input run at legal legacy-entry readiness, no human-average/new-v4-campaign growth claim. Test-only prerequisite clones and isolated geometry kept separate.",
+  "outcomeFlow": {
+    "checkedCommit": "972c1a5eaebef706b5a0198db3bd99259afb1327",
+    "source": "19d9fc28623d2451e37cf665145cfdc3e2fdd51f",
+    "round": 19,
+    "phaseAtInput": "won",
+    "goalCompleteAtInput": true,
+    "queuedAtInput": [
+      [
+        "휘겸",
+        "기록함 앞을 살펴보겠소.",
+        {
+          "rowId": "16.beats.hall:646c07f072",
+          "evidenceGoal": "hall",
+          "storyId": "act2-v1:act2-16-hall",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 140,
+          "waitActor": "p-knight",
+          "waitRound": 19
+        }
+      ],
+      [
+        "기록",
+        "칠십 년 전, 대종 외부 이송\n타종 금지 · 인양로와 바깥길 봉쇄\n출처: [잘려 나감]",
+        {
+          "kind": "document",
+          "documentTitle": "잠운사 이송 기록",
+          "documentId": "temple-transfer",
+          "rowId": "16.beats.record:b15346fb64",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 140,
+          "waitActor": "p-knight",
+          "waitRound": 19
+        }
+      ]
+    ],
+    "dialogue": [
+      [
+        "휘겸",
+        "기록함 앞을 살펴보겠소.",
+        {
+          "rowId": "16.beats.hall:646c07f072",
+          "evidenceGoal": "hall",
+          "storyId": "act2-v1:act2-16-hall",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 140,
+          "waitActor": "p-knight",
+          "waitRound": 19,
+          "camera": {
+            "intent": "portrait",
+            "targets": [
+              {
+                "speaker": "휘겸"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "id": "16.beats.hall:646c07f072",
+            "speakerPolicy": "world"
+          }
+        }
+      ],
+      [
+        "기록",
+        "칠십 년 전, 대종 외부 이송\n타종 금지 · 인양로와 바깥길 봉쇄\n출처: [잘려 나감]",
+        {
+          "kind": "document",
+          "documentTitle": "잠운사 이송 기록",
+          "documentId": "temple-transfer",
+          "rowId": "16.beats.record:b15346fb64",
+          "evidenceGoal": "record",
+          "storyId": "act2-v1:act2-16-record",
+          "storyTitle": "잠운사",
+          "delivery": "dialogue",
+          "waitForClear": false,
+          "afterAction": 140,
+          "waitActor": "p-knight",
+          "waitRound": 19,
+          "camera": {
+            "intent": "situation",
+            "targets": [
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "padding": 65,
+            "maxScale": 0.8,
+            "id": "16.beats.record:b15346fb64",
+            "speakerPolicy": "none"
+          }
+        }
+      ],
+      [
+        "휘겸",
+        "뒤편 작업굴로 갑시다. 승려가 말한 축을 찾아보겠소.",
+        {
+          "storyId": "act1-v6:outcome-16",
+          "storyTitle": "잠운사",
+          "rowId": "16.outro:c7561a06ab",
+          "camera": {
+            "intent": "portrait",
+            "targets": [
+              {
+                "speaker": "휘겸"
+              }
+            ],
+            "padding": 40,
+            "maxScale": 1.05,
+            "participants": [
+              {
+                "actor": "p-knight"
+              }
+            ],
+            "id": "16.outro:c7561a06ab",
+            "speakerPolicy": "world"
+          }
+        }
+      ]
+    ],
+    "hallIndex": 0,
+    "recordIndex": 1,
+    "recordBeforeOutro": true,
+    "naturalFinishSettledOnce": true,
+    "unchangedDoneFacts": {
+      "monk": true,
+      "clear-rescue-threat": true,
+      "witness": true,
+      "hall": true,
+      "record": true
+    },
+    "before": {
+      "done": false,
+      "act2": {
+        "version": 2,
+        "done": {
+          "monk": true,
+          "clear-rescue-threat": true,
+          "witness": true,
+          "hall": true,
+          "record": true
+        },
+        "events": {},
+        "rescued": [
+          "resident-1"
+        ],
+        "checkpoints": [
+          {
+            "id": "monk",
+            "round": 14
+          },
+          {
+            "id": "clear-rescue-threat",
+            "round": 14
+          },
+          {
+            "id": "witness",
+            "round": 14
+          },
+          {
+            "id": "hall",
+            "round": 19
+          },
+          {
+            "id": "record",
+            "round": 19
+          }
+        ],
+        "holds": {},
+        "viewerId": "p-knight",
+        "pendingWaves": []
+      },
+      "heroes": {
+        "mage": {
+          "xp": 36655,
+          "ranks": {
+            "M01": 1,
+            "M07": 1,
+            "M10": 6,
+            "M03": 1,
+            "M11": 6,
+            "M06": 1,
+            "M02": 1,
+            "M04": 5
+          },
+          "statTraining": 6,
+          "kills": 2,
+          "damage": 1606,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "archer": {
+          "xp": 36837,
+          "ranks": {
+            "A01": 1,
+            "A14": 1,
+            "A02": 7,
+            "A06": 7,
+            "A05": 6
+          },
+          "statTraining": 6,
+          "kills": 3,
+          "damage": 3667,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "knight": {
+          "xp": 37201,
+          "ranks": {
+            "S00": 1,
+            "S01": 7,
+            "S03": 7,
+            "S05": 7
+          },
+          "statTraining": 6,
+          "kills": 8,
+          "damage": 8943,
+          "skillRevision": 1,
+          "martialRevision": 1
+        },
+        "occultist": {
+          "xp": 36908,
+          "ranks": {
+            "O01": 1,
+            "O02": 6,
+            "O03": 1,
+            "O04": 6,
+            "O06": 1,
+            "O07": 1,
+            "O08": 6
+          },
+          "statTraining": 6,
+          "kills": 3,
+          "damage": 3275,
+          "skillRevision": 1,
+          "martialRevision": 1,
+          "occultRevision": 1
+        }
+      }
+    },
+    "scope": "Real terminal export; production Continue/outcome/dialogue-finish inspected. No combat replay, no invented record-marker walk, no manual reward/done injection."
+  }
+}
