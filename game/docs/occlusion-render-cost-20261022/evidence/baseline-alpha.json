@@ -1,0 +1,3160 @@
+{
+  "sourceCommit": "1c397248f42f365593be3a154c06d6d1ee5b2ac5",
+  "trackedTreeDirty": false,
+  "rendererSha256": "e73d86cd27448bd617b62df0b3befc610b4dc59b336a4a4e8e069f2c4ee363e9",
+  "manifestSha256": "13c1391a258592fc7e155fe74f36af948c97f8dc53bda620e2bf00ece8aefcad",
+  "runnerSha256": "c75ef2508488bcc8f8f413a25f4f5943572a11a99d0410ebb734f2f9add5a921",
+  "probeSha256": "09cf0e985fcd0589039eece112cd08b89f8de3e719d990dcaf833a23f2ac0794",
+  "browser": "154.0.8037.57",
+  "viewport": [
+    1280,
+    800
+  ],
+  "seed": 899411,
+  "rows": [
+    {
+      "mode": "alpha",
+      "frames": 120,
+      "total": {
+        "n": 120,
+        "p50": 5.7999999999883585,
+        "p95": 9.60000000000582,
+        "total": 752.6999999998952,
+        "max": 18
+      },
+      "phase": {},
+      "phaseSamples": {},
+      "rows": [
+        {
+          "time": 1.741666666666665,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.7583333333333315,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.791666666666665,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.8083333333333316,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.8249999999999982,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.849999999999998,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.8583333333333314,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.874999999999998,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.8916666666666646,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.924999999999998,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.9416666666666647,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.9583333333333313,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 1.9749999999999979,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.008333333333331,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.0249999999999977,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.0416666666666643,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.058333333333331,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.0749999999999975,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.091666666666664,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.1083333333333307,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.1249999999999973,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.141666666666664,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.1583333333333306,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.174999999999997,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.199999999999997,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.224999999999997,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.2416666666666636,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.25833333333333,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.274999999999997,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.30833333333333,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.3249999999999966,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.3416666666666632,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.35833333333333,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.3749999999999964,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.391666666666663,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.4083333333333297,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.4249999999999963,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.441666666666663,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.4583333333333295,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.474999999999996,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.4916666666666627,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.5083333333333293,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.524999999999996,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.5416666666666625,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.558333333333329,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.5749999999999957,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.5916666666666623,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.608333333333329,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.6249999999999956,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.641666666666662,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.6583333333333288,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.6749999999999954,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.691666666666662,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.7083333333333286,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.724999999999995,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.741666666666662,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.7583333333333284,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.774999999999995,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.7916666666666616,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.8083333333333282,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.824999999999995,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.8416666666666615,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.858333333333328,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.8749999999999947,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.8916666666666613,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.908333333333328,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.9249999999999945,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.941666666666661,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.9583333333333277,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.9749999999999943,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 2.991666666666661,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.0083333333333275,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.024999999999994,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.0416666666666607,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.0583333333333274,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.074999999999994,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.0916666666666606,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.108333333333327,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.124999999999994,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.1416666666666604,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.158333333333327,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.1749999999999936,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.19166666666666,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.208333333333327,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.2249999999999934,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.24166666666666,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.2583333333333266,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.2749999999999932,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.29166666666666,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.3083333333333265,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.324999999999993,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.3416666666666597,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.3583333333333263,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.374999999999993,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.3916666666666595,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.408333333333326,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.4249999999999927,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.4416666666666593,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.458333333333326,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.4749999999999925,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.491666666666659,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.5083333333333258,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.541666666666659,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.5583333333333256,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.574999999999992,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.591666666666659,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.6083333333333254,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.624999999999992,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.6416666666666586,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.658333333333325,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.674999999999992,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.6916666666666584,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.708333333333325,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.7249999999999917,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.7416666666666583,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.758333333333325,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.7749999999999915,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.791666666666658,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.8083333333333247,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        },
+        {
+          "time": 3.8249999999999913,
+          "id": "p-archer",
+          "cls": "archer",
+          "type": null,
+          "x": 720,
+          "y": 6500,
+          "h": 92,
+          "scale": 0.94,
+          "charge": 0,
+          "covers": [
+            {
+              "id": "p-occultist",
+              "x": 615,
+              "y": 6500,
+              "h": 92,
+              "type": null
+            }
+          ],
+          "count": 0,
+          "onScreen": 0,
+          "bounds": null,
+          "rs": 1.200577434351558,
+          "left": 560.0769542168675,
+          "top": 6250.520048578313
+        }
+      ],
+      "icons": {
+        "complete": true,
+        "cached": 84,
+        "failed": 0,
+        "active": 0,
+        "queued": 0
+      },
+      "state": "idle",
+      "errors": []
+    }
+  ]
+}
