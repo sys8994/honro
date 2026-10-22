@@ -1,11 +1,11 @@
 """Actual Canvas equality for orphan-only settled-hit cleanup in the built game."""
-import gzip,json,sys,subprocess,hashlib
+import gzip,json,sys,subprocess,hashlib,os
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tests'))
 from browser_support import launch,serve_game
 from playwright.sync_api import sync_playwright
 OUT=ROOT/'_local/reports/battle-runtime/settled-hits';OUT.mkdir(parents=True,exist_ok=True)
-old=subprocess.check_output(['git','show','b013e345:shared/runtime/combat-feedback.js'],cwd=ROOT,text=True)
+old=subprocess.check_output(['git','show',os.environ.get('HONRO_SETTLED_HIT_BEFORE_SHA','a091c6bd5e64eff748f5028fb6d0080faea3da87')+':shared/runtime/combat-feedback.js'],cwd=ROOT,text=True)
 old=old[old.index('S.settleHitFeedback=function'):old.index('S.hitFlashVisible=')]
 d=json.loads(gzip.decompress((ROOT/'game/docs/battle-runtime-performance-20261022/evidence/saves/round1.json.gz').read_bytes()));p=d['profile'];p.update(game='honro',schema=4,lastStage=11,honroBattle=d['b']);p['settings'].update(music=False,sound=False)
 with serve_game() as url,sync_playwright() as pw:
