@@ -190,7 +190,7 @@ function requestMove(app,move){
  if(G.HonroActEndings?.show(app))return;
  const b=app.engine&&!app.training?app.engine.b:active(app.profile);
  if(b){
-  app.pendingJourneyLaunch={...move,session:b.session,profile:app.profile,returnMenu:app.screen==='battle'&&app.modal?.classList.contains('open')?'pause':null};
+  app.pendingJourneyLaunch={...move,session:b.session,profile:app.profile,returnMenu:app.screen==='battle'&&app.modalKind==='pause-dialog'?'pause':null};
   const returning=move.action==='rest';
   app.open(`<h2>${returning?'휴식터로 돌아갈까요?':'스테이지에 진입할까요?'}</h2><p>진행 중인 전투는 초기화됩니다. ${returning?'휴식터로 돌아가시겠습니까?':'새 전투를 시작하시겠습니까?'}</p><p>성장과 완료 기록은 유지됩니다.</p><div class="actions"><button data-action="cancel-journey-launch">취소</button><button class="primary" data-action="confirm-journey-launch">${returning?'돌아가기':'새로 시작'}</button></div>`,'journey-confirm');return;
  }
