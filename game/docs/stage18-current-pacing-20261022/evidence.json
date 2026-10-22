@@ -1,0 +1,3552 @@
+{
+  "gameSource": "793a9a953d6f82038d44dc44b51ea5a01ce996c4",
+  "currentNativeTestSource": "33ae1fe16a87af18c68c2a9e5957c401a4e89d64",
+  "readOnlyReviewSource": "872cfbdcee4fc3d84c8b2348a87134d9c13d6d30",
+  "sourceAndGeneratedByteExactToPublic": true,
+  "entry": "web/entries/game.4fd156b0f594da4a.js",
+  "contracts": {
+    "checkedCommit": "33ae1fe16a87af18c68c2a9e5957c401a4e89d64",
+    "factory": {
+      "width": 13600,
+      "height": 9600,
+      "authoredTerrain": 65,
+      "collisionTerrain": 64,
+      "worldTerrain": 64,
+      "routes": 27,
+      "actors": 60,
+      "enemySide": 56,
+      "objectiveActors": [
+        "upper-chain"
+      ],
+      "combatEnemies": 55,
+      "heroes": 4,
+      "elites": 15,
+      "activeLimit": 3
+    },
+    "steps": [
+      {
+        "id": "clear-wards",
+        "label": "억제진 진입 수비대 제압",
+        "kind": "clear",
+        "cohorts": "west"
+      },
+      {
+        "id": "silence",
+        "label": "공명 억제진 가동",
+        "kind": "interact",
+        "requiredClass": "mage"
+      },
+      {
+        "id": "hold-silence",
+        "label": "공명 역류를 견디며 억제진 유지",
+        "kind": "hold",
+        "rounds": 4,
+        "wave": {
+          "kind": "bellCluster",
+          "count": 8,
+          "eliteEvery": 4
+        },
+        "requiredClass": "mage",
+        "radius": 680,
+        "contestRadius": 260,
+        "parallelGroup": "bell-stabilize"
+      },
+      {
+        "id": "upper-chain",
+        "label": "장력 고정구 해제",
+        "kind": "destroy",
+        "parallelGroup": "bell-stabilize"
+      },
+      {
+        "id": "bell-descent",
+        "label": "빈 쓸림면을 확인하고 대종 내려앉히기",
+        "kind": "bell-descent"
+      },
+      {
+        "id": "leak",
+        "label": "종에서 새는 혼 분리",
+        "kind": "interact",
+        "requiredClass": "occultist"
+      },
+      {
+        "id": "keeper",
+        "label": "종지기 전투 제압",
+        "kind": "defeat",
+        "target": "act2-keeper"
+      },
+      {
+        "id": "clear-bell",
+        "label": "동쪽 퇴로 곁의 위협 제압",
+        "kind": "pacing-secure",
+        "cohorts": "all",
+        "afterPacing": "keeper",
+        "sitePacing": "clear-bell",
+        "radiusPacing": 720,
+        "heightPacing": 500
+      }
+    ],
+    "initialClearWards": [
+      {
+        "id": "sb-a-front",
+        "x": 1810,
+        "y": 5511.851851851852,
+        "hp": 893
+      },
+      {
+        "id": "sb-a-side",
+        "x": 2010,
+        "y": 5497.037037037037,
+        "hp": 893
+      },
+      {
+        "id": "sb-a-lamp",
+        "x": 2170,
+        "y": 5485.185185185185,
+        "hp": 1384
+      },
+      {
+        "id": "sb-a-bat-low",
+        "x": 1695.425625842204,
+        "y": 5361.2307692307695,
+        "hp": 485
+      },
+      {
+        "id": "sb-a-bat-high",
+        "x": 1940,
+        "y": 4852.222222222223,
+        "hp": 485
+      },
+      {
+        "id": "sb-b-left",
+        "x": 2760,
+        "y": 5466.315789473684,
+        "hp": 893
+      },
+      {
+        "id": "sb-b-center",
+        "x": 2945,
+        "y": 5461.4473684210525,
+        "hp": 893
+      },
+      {
+        "id": "sb-b-screen",
+        "x": 3520,
+        "y": 5490.588235294118,
+        "hp": 893
+      },
+      {
+        "id": "sb-b-east",
+        "x": 3660,
+        "y": 5498.823529411765,
+        "hp": 1384
+      },
+      {
+        "id": "sb-a-point",
+        "x": 1910,
+        "y": 5504.444444444444,
+        "hp": 893
+      },
+      {
+        "id": "sb-a-air-screen",
+        "x": 1720,
+        "y": 4982.518518518518,
+        "hp": 485
+      },
+      {
+        "id": "sb-b-west-point",
+        "x": 2665,
+        "y": 5468.815789473684,
+        "hp": 893
+      },
+      {
+        "id": "sb-b-west-lamp",
+        "x": 2845,
+        "y": 5464.078947368421,
+        "hp": 893
+      }
+    ],
+    "interactionThreats": {
+      "silence": [
+        "sb-b-left",
+        "sb-b-center",
+        "sb-b-west-lamp"
+      ],
+      "leak": []
+    },
+    "finalLocalIds": [
+      "sb-g-bat-side",
+      "act2-keeper"
+    ],
+    "markers": [
+      {
+        "id": "clear-wards",
+        "type": "act2",
+        "x": 2020,
+        "y": 5496.2962962962965,
+        "label": "억제진 진입 수비대 제압"
+      },
+      {
+        "id": "silence",
+        "type": "act2",
+        "x": 3050,
+        "y": 5462.941176470588,
+        "label": "공명 억제진 가동",
+        "action": "act2",
+        "requiredClass": "mage"
+      },
+      {
+        "id": "wave-hold-silence",
+        "type": "act2-wave",
+        "x": 3960,
+        "y": 5541.481481481482
+      },
+      {
+        "id": "hold-silence",
+        "type": "act2",
+        "x": 3050,
+        "y": 5462.941176470588,
+        "label": "공명 역류를 견디며 억제진 유지",
+        "requiredClass": "mage"
+      },
+      {
+        "id": "marker-upper-chain",
+        "type": "act2",
+        "x": 5625,
+        "y": 4460,
+        "label": "장력 고정구 해제"
+      },
+      {
+        "id": "leak",
+        "type": "act2",
+        "x": 7620,
+        "y": 7516.2962962962965,
+        "label": "종에서 새는 혼 분리",
+        "action": "act2",
+        "requiredClass": "occultist"
+      },
+      {
+        "id": "keeper",
+        "type": "act2",
+        "x": 11480,
+        "y": 6180,
+        "label": "종지기 전투 제압"
+      },
+      {
+        "id": "clear-bell",
+        "type": "act2",
+        "x": 11860,
+        "y": 6180,
+        "label": "동쪽 퇴로 곁의 위협 제압"
+      },
+      {
+        "id": "spirit-lamp-0",
+        "type": "act2",
+        "action": "act2",
+        "label": "원혼등불 · 주변 혼령 현형",
+        "x": 3090,
+        "y": 5465.294117647059,
+        "radius": 1200
+      },
+      {
+        "id": "wave",
+        "type": "act2-wave",
+        "x": 12620,
+        "y": 6205.066666666667
+      },
+      {
+        "id": "bell-descent",
+        "type": "act2",
+        "x": 6910,
+        "y": 7185.625,
+        "surfaceId": "act2-floor",
+        "label": "빈 쓸림면을 확인하고 대종 내려앉히기"
+      },
+      {
+        "id": "spirit-lamp-1",
+        "type": "act2",
+        "action": "act2",
+        "label": "원혼등불 · 주변 혼령 현형",
+        "x": 7520,
+        "y": 7486.666666666667,
+        "surfaceId": "act2-floor",
+        "radius": 1200
+      }
+    ],
+    "standing": {
+      "suppression": {
+        "x": 3050,
+        "y": 5462.941176470588,
+        "surfaceId": "sb-suppression-court"
+      },
+      "farRelease": {
+        "x": 4210,
+        "y": 3775.7894736842104,
+        "surfaceId": "sb-west-firing-ledge"
+      },
+      "closeRelease": {
+        "x": 5500,
+        "y": 4520,
+        "surfaceId": "sb-maintenance-shelf"
+      },
+      "safeUnderBell": {
+        "x": 7480,
+        "y": 7474.814814814815,
+        "surfaceId": "act2-floor"
+      },
+      "keeper": {
+        "x": 11480,
+        "y": 6180,
+        "surfaceId": "act2-floor"
+      },
+      "eastShot": {
+        "x": 8290,
+        "y": 3461.1475409836066,
+        "surfaceId": "sb-east-resonance-ledge"
+      },
+      "reflection": {
+        "x": 3170,
+        "y": 5470,
+        "surfaceId": "sb-suppression-court"
+      },
+      "eastLowerShot": {
+        "x": 9980,
+        "y": 5860,
+        "surfaceId": "sb-east-folded-stair"
+      },
+      "eastHiddenShot": {
+        "x": 9230,
+        "y": 5220,
+        "surfaceId": "sb-return-cave-buttress"
+      }
+    },
+    "sweepPolygons": 43,
+    "descentSpec": {
+      "distance": 200,
+      "terrainIds": [
+        "sb-bell-crown",
+        "sb-bell-west-wall",
+        "sb-bell-east-wall",
+        "sb-bell-east-lip",
+        "sb-bell-east-yoke"
+      ],
+      "elementIds": [
+        "sb-bell-body"
+      ],
+      "sweepPolygons": [
+        {
+          "id": "sb-bell-crown-initial",
+          "points": [
+            {
+              "x": 6340,
+              "y": 3240
+            },
+            {
+              "x": 6520,
+              "y": 2940
+            },
+            {
+              "x": 6870,
+              "y": 2760
+            },
+            {
+              "x": 7520,
+              "y": 2790
+            },
+            {
+              "x": 7800,
+              "y": 2950
+            },
+            {
+              "x": 7990,
+              "y": 3260
+            },
+            {
+              "x": 7770,
+              "y": 3410
+            },
+            {
+              "x": 7540,
+              "y": 3120
+            },
+            {
+              "x": 6800,
+              "y": 3120
+            },
+            {
+              "x": 6580,
+              "y": 3420
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-crown-final",
+          "points": [
+            {
+              "x": 6340,
+              "y": 3440
+            },
+            {
+              "x": 6520,
+              "y": 3140
+            },
+            {
+              "x": 6870,
+              "y": 2960
+            },
+            {
+              "x": 7520,
+              "y": 2990
+            },
+            {
+              "x": 7800,
+              "y": 3150
+            },
+            {
+              "x": 7990,
+              "y": 3460
+            },
+            {
+              "x": 7770,
+              "y": 3610
+            },
+            {
+              "x": 7540,
+              "y": 3320
+            },
+            {
+              "x": 6800,
+              "y": 3320
+            },
+            {
+              "x": 6580,
+              "y": 3620
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-crown-edge-0",
+          "points": [
+            {
+              "x": 6340,
+              "y": 3240
+            },
+            {
+              "x": 6520,
+              "y": 2940
+            },
+            {
+              "x": 6520,
+              "y": 3140
+            },
+            {
+              "x": 6340,
+              "y": 3440
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-crown-edge-1",
+          "points": [
+            {
+              "x": 6520,
+              "y": 2940
+            },
+            {
+              "x": 6870,
+              "y": 2760
+            },
+            {
+              "x": 6870,
+              "y": 2960
+            },
+            {
+              "x": 6520,
+              "y": 3140
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-crown-edge-2",
+          "points": [
+            {
+              "x": 6870,
+              "y": 2760
+            },
+            {
+              "x": 7520,
+              "y": 2790
+            },
+            {
+              "x": 7520,
+              "y": 2990
+            },
+            {
+              "x": 6870,
+              "y": 2960
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-crown-edge-3",
+          "points": [
+            {
+              "x": 7520,
+              "y": 2790
+            },
+            {
+              "x": 7800,
+              "y": 2950
+            },
+            {
+              "x": 7800,
+              "y": 3150
+            },
+            {
+              "x": 7520,
+              "y": 2990
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-crown-edge-4",
+          "points": [
+            {
+              "x": 7800,
+              "y": 2950
+            },
+            {
+              "x": 7990,
+              "y": 3260
+            },
+            {
+              "x": 7990,
+              "y": 3460
+            },
+            {
+              "x": 7800,
+              "y": 3150
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-crown-edge-5",
+          "points": [
+            {
+              "x": 7990,
+              "y": 3260
+            },
+            {
+              "x": 7770,
+              "y": 3410
+            },
+            {
+              "x": 7770,
+              "y": 3610
+            },
+            {
+              "x": 7990,
+              "y": 3460
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-crown-edge-6",
+          "points": [
+            {
+              "x": 7770,
+              "y": 3410
+            },
+            {
+              "x": 7540,
+              "y": 3120
+            },
+            {
+              "x": 7540,
+              "y": 3320
+            },
+            {
+              "x": 7770,
+              "y": 3610
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-crown-edge-7",
+          "points": [
+            {
+              "x": 7540,
+              "y": 3120
+            },
+            {
+              "x": 6800,
+              "y": 3120
+            },
+            {
+              "x": 6800,
+              "y": 3320
+            },
+            {
+              "x": 7540,
+              "y": 3320
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-crown-edge-8",
+          "points": [
+            {
+              "x": 6800,
+              "y": 3120
+            },
+            {
+              "x": 6580,
+              "y": 3420
+            },
+            {
+              "x": 6580,
+              "y": 3620
+            },
+            {
+              "x": 6800,
+              "y": 3320
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-crown-edge-9",
+          "points": [
+            {
+              "x": 6580,
+              "y": 3420
+            },
+            {
+              "x": 6340,
+              "y": 3240
+            },
+            {
+              "x": 6340,
+              "y": 3440
+            },
+            {
+              "x": 6580,
+              "y": 3620
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-west-wall-initial",
+          "points": [
+            {
+              "x": 6340,
+              "y": 3240
+            },
+            {
+              "x": 6580,
+              "y": 3420
+            },
+            {
+              "x": 6440,
+              "y": 4550
+            },
+            {
+              "x": 6220,
+              "y": 6610
+            },
+            {
+              "x": 5650,
+              "y": 6610
+            },
+            {
+              "x": 5710,
+              "y": 6430
+            },
+            {
+              "x": 5880,
+              "y": 6220
+            },
+            {
+              "x": 6070,
+              "y": 4530
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-west-wall-final",
+          "points": [
+            {
+              "x": 6340,
+              "y": 3440
+            },
+            {
+              "x": 6580,
+              "y": 3620
+            },
+            {
+              "x": 6440,
+              "y": 4750
+            },
+            {
+              "x": 6220,
+              "y": 6810
+            },
+            {
+              "x": 5650,
+              "y": 6810
+            },
+            {
+              "x": 5710,
+              "y": 6630
+            },
+            {
+              "x": 5880,
+              "y": 6420
+            },
+            {
+              "x": 6070,
+              "y": 4730
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-west-wall-edge-0",
+          "points": [
+            {
+              "x": 6340,
+              "y": 3240
+            },
+            {
+              "x": 6580,
+              "y": 3420
+            },
+            {
+              "x": 6580,
+              "y": 3620
+            },
+            {
+              "x": 6340,
+              "y": 3440
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-west-wall-edge-1",
+          "points": [
+            {
+              "x": 6580,
+              "y": 3420
+            },
+            {
+              "x": 6440,
+              "y": 4550
+            },
+            {
+              "x": 6440,
+              "y": 4750
+            },
+            {
+              "x": 6580,
+              "y": 3620
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-west-wall-edge-2",
+          "points": [
+            {
+              "x": 6440,
+              "y": 4550
+            },
+            {
+              "x": 6220,
+              "y": 6610
+            },
+            {
+              "x": 6220,
+              "y": 6810
+            },
+            {
+              "x": 6440,
+              "y": 4750
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-west-wall-edge-3",
+          "points": [
+            {
+              "x": 6220,
+              "y": 6610
+            },
+            {
+              "x": 5650,
+              "y": 6610
+            },
+            {
+              "x": 5650,
+              "y": 6810
+            },
+            {
+              "x": 6220,
+              "y": 6810
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-west-wall-edge-4",
+          "points": [
+            {
+              "x": 5650,
+              "y": 6610
+            },
+            {
+              "x": 5710,
+              "y": 6430
+            },
+            {
+              "x": 5710,
+              "y": 6630
+            },
+            {
+              "x": 5650,
+              "y": 6810
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-west-wall-edge-5",
+          "points": [
+            {
+              "x": 5710,
+              "y": 6430
+            },
+            {
+              "x": 5880,
+              "y": 6220
+            },
+            {
+              "x": 5880,
+              "y": 6420
+            },
+            {
+              "x": 5710,
+              "y": 6630
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-west-wall-edge-6",
+          "points": [
+            {
+              "x": 5880,
+              "y": 6220
+            },
+            {
+              "x": 6070,
+              "y": 4530
+            },
+            {
+              "x": 6070,
+              "y": 4730
+            },
+            {
+              "x": 5880,
+              "y": 6420
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-west-wall-edge-7",
+          "points": [
+            {
+              "x": 6070,
+              "y": 4530
+            },
+            {
+              "x": 6340,
+              "y": 3240
+            },
+            {
+              "x": 6340,
+              "y": 3440
+            },
+            {
+              "x": 6070,
+              "y": 4730
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-wall-initial",
+          "points": [
+            {
+              "x": 7990,
+              "y": 3260
+            },
+            {
+              "x": 8220,
+              "y": 4510
+            },
+            {
+              "x": 8508.969696969696,
+              "y": 6000
+            },
+            {
+              "x": 8216.372549019607,
+              "y": 6000
+            },
+            {
+              "x": 8020,
+              "y": 4570
+            },
+            {
+              "x": 7770,
+              "y": 3410
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-wall-final",
+          "points": [
+            {
+              "x": 7990,
+              "y": 3460
+            },
+            {
+              "x": 8220,
+              "y": 4710
+            },
+            {
+              "x": 8508.969696969696,
+              "y": 6200
+            },
+            {
+              "x": 8216.372549019607,
+              "y": 6200
+            },
+            {
+              "x": 8020,
+              "y": 4770
+            },
+            {
+              "x": 7770,
+              "y": 3610
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-wall-edge-0",
+          "points": [
+            {
+              "x": 7990,
+              "y": 3260
+            },
+            {
+              "x": 8220,
+              "y": 4510
+            },
+            {
+              "x": 8220,
+              "y": 4710
+            },
+            {
+              "x": 7990,
+              "y": 3460
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-wall-edge-1",
+          "points": [
+            {
+              "x": 8220,
+              "y": 4510
+            },
+            {
+              "x": 8508.969696969696,
+              "y": 6000
+            },
+            {
+              "x": 8508.969696969696,
+              "y": 6200
+            },
+            {
+              "x": 8220,
+              "y": 4710
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-wall-edge-2",
+          "points": [
+            {
+              "x": 8508.969696969696,
+              "y": 6000
+            },
+            {
+              "x": 8216.372549019607,
+              "y": 6000
+            },
+            {
+              "x": 8216.372549019607,
+              "y": 6200
+            },
+            {
+              "x": 8508.969696969696,
+              "y": 6200
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-wall-edge-3",
+          "points": [
+            {
+              "x": 8216.372549019607,
+              "y": 6000
+            },
+            {
+              "x": 8020,
+              "y": 4570
+            },
+            {
+              "x": 8020,
+              "y": 4770
+            },
+            {
+              "x": 8216.372549019607,
+              "y": 6200
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-wall-edge-4",
+          "points": [
+            {
+              "x": 8020,
+              "y": 4570
+            },
+            {
+              "x": 7770,
+              "y": 3410
+            },
+            {
+              "x": 7770,
+              "y": 3610
+            },
+            {
+              "x": 8020,
+              "y": 4770
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-wall-edge-5",
+          "points": [
+            {
+              "x": 7770,
+              "y": 3410
+            },
+            {
+              "x": 7990,
+              "y": 3260
+            },
+            {
+              "x": 7990,
+              "y": 3460
+            },
+            {
+              "x": 7770,
+              "y": 3610
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-lip-initial",
+          "points": [
+            {
+              "x": 8644,
+              "y": 6290
+            },
+            {
+              "x": 8740,
+              "y": 6410
+            },
+            {
+              "x": 8820,
+              "y": 6610
+            },
+            {
+              "x": 8300,
+              "y": 6610
+            },
+            {
+              "x": 8256.078431372549,
+              "y": 6290
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-lip-final",
+          "points": [
+            {
+              "x": 8644,
+              "y": 6490
+            },
+            {
+              "x": 8740,
+              "y": 6610
+            },
+            {
+              "x": 8820,
+              "y": 6810
+            },
+            {
+              "x": 8300,
+              "y": 6810
+            },
+            {
+              "x": 8256.078431372549,
+              "y": 6490
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-lip-edge-0",
+          "points": [
+            {
+              "x": 8644,
+              "y": 6290
+            },
+            {
+              "x": 8740,
+              "y": 6410
+            },
+            {
+              "x": 8740,
+              "y": 6610
+            },
+            {
+              "x": 8644,
+              "y": 6490
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-lip-edge-1",
+          "points": [
+            {
+              "x": 8740,
+              "y": 6410
+            },
+            {
+              "x": 8820,
+              "y": 6610
+            },
+            {
+              "x": 8820,
+              "y": 6810
+            },
+            {
+              "x": 8740,
+              "y": 6610
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-lip-edge-2",
+          "points": [
+            {
+              "x": 8820,
+              "y": 6610
+            },
+            {
+              "x": 8300,
+              "y": 6610
+            },
+            {
+              "x": 8300,
+              "y": 6810
+            },
+            {
+              "x": 8820,
+              "y": 6810
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-lip-edge-3",
+          "points": [
+            {
+              "x": 8300,
+              "y": 6610
+            },
+            {
+              "x": 8256.078431372549,
+              "y": 6290
+            },
+            {
+              "x": 8256.078431372549,
+              "y": 6490
+            },
+            {
+              "x": 8300,
+              "y": 6810
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-lip-edge-4",
+          "points": [
+            {
+              "x": 8256.078431372549,
+              "y": 6290
+            },
+            {
+              "x": 8644,
+              "y": 6290
+            },
+            {
+              "x": 8644,
+              "y": 6490
+            },
+            {
+              "x": 8256.078431372549,
+              "y": 6490
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-yoke-initial",
+          "points": [
+            {
+              "x": 8510,
+              "y": 6170
+            },
+            {
+              "x": 9190,
+              "y": 6170
+            },
+            {
+              "x": 9190,
+              "y": 6290
+            },
+            {
+              "x": 8550,
+              "y": 6290
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-yoke-final",
+          "points": [
+            {
+              "x": 8510,
+              "y": 6370
+            },
+            {
+              "x": 9190,
+              "y": 6370
+            },
+            {
+              "x": 9190,
+              "y": 6490
+            },
+            {
+              "x": 8550,
+              "y": 6490
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-yoke-edge-0",
+          "points": [
+            {
+              "x": 8510,
+              "y": 6170
+            },
+            {
+              "x": 9190,
+              "y": 6170
+            },
+            {
+              "x": 9190,
+              "y": 6370
+            },
+            {
+              "x": 8510,
+              "y": 6370
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-yoke-edge-1",
+          "points": [
+            {
+              "x": 9190,
+              "y": 6170
+            },
+            {
+              "x": 9190,
+              "y": 6290
+            },
+            {
+              "x": 9190,
+              "y": 6490
+            },
+            {
+              "x": 9190,
+              "y": 6370
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-yoke-edge-2",
+          "points": [
+            {
+              "x": 9190,
+              "y": 6290
+            },
+            {
+              "x": 8550,
+              "y": 6290
+            },
+            {
+              "x": 8550,
+              "y": 6490
+            },
+            {
+              "x": 9190,
+              "y": 6490
+            }
+          ]
+        },
+        {
+          "id": "sb-bell-east-yoke-edge-3",
+          "points": [
+            {
+              "x": 8550,
+              "y": 6290
+            },
+            {
+              "x": 8510,
+              "y": 6170
+            },
+            {
+              "x": 8510,
+              "y": 6370
+            },
+            {
+              "x": 8550,
+              "y": 6490
+            }
+          ]
+        }
+      ],
+      "sweep": [
+        {
+          "id": "crown",
+          "x": 6280,
+          "y": 2600,
+          "w": 1770,
+          "h": 1010
+        },
+        {
+          "id": "west-shell",
+          "x": 5600,
+          "y": 3160,
+          "w": 1040,
+          "h": 3650
+        },
+        {
+          "id": "east-shell",
+          "x": 7720,
+          "y": 3180,
+          "w": 1150,
+          "h": 3630
+        },
+        {
+          "id": "east-lug",
+          "x": 8510,
+          "y": 6040,
+          "w": 740,
+          "h": 480
+        }
+      ],
+      "resting": {
+        "offsetY": 200,
+        "lipY": 6810,
+        "crownY": 2960,
+        "bodyCenterX": 7200
+      },
+      "safeZones": [
+        {
+          "id": "F-permanent-floor",
+          "x": 5850,
+          "y": 7060,
+          "w": 3000,
+          "h": 560
+        },
+        {
+          "id": "west-refuge",
+          "x": 2800,
+          "y": 6900,
+          "w": 2200,
+          "h": 570
+        },
+        {
+          "id": "east-refuge",
+          "x": 10000,
+          "y": 5700,
+          "w": 2300,
+          "h": 700
+        }
+      ],
+      "escapeRoutes": [
+        "under-bell-entry-return",
+        "under-bell-keeper"
+      ],
+      "entries": {
+        "hold": [
+          {
+            "x": 3970,
+            "y": 5542.962962962963,
+            "surfaceId": "sb-suppression-court",
+            "side": "west",
+            "support": "sb-suppression-court",
+            "alternates": [
+              {
+                "x": 4100,
+                "y": 5562.222222222223,
+                "surfaceId": "sb-suppression-court",
+                "support": "sb-suppression-court"
+              }
+            ]
+          },
+          {
+            "x": 5950,
+            "y": 7512.222222222223,
+            "surfaceId": "act2-floor",
+            "side": "lower-west",
+            "support": "act2-floor",
+            "alternates": [
+              {
+                "x": 5750,
+                "y": 7490,
+                "surfaceId": "act2-floor",
+                "support": "act2-floor"
+              }
+            ]
+          }
+        ],
+        "keeper": [
+          {
+            "x": 12600,
+            "y": 6204,
+            "surfaceId": "act2-floor",
+            "side": "east",
+            "support": "act2-floor",
+            "alternates": [
+              {
+                "x": 12940,
+                "y": 6225.142857142857,
+                "surfaceId": "act2-floor",
+                "support": "act2-floor"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "checks": [
+      {
+        "name": "uncompleted mage/occultist role loss explicitly fails; not a softlock",
+        "pass": true
+      },
+      {
+        "name": "completed mandatory role facts do not require dead hero again",
+        "pass": true
+      },
+      {
+        "name": "hold requires all eight admissions even if four protected rounds complete",
+        "pass": true
+      },
+      {
+        "name": "final local security needs keeper and ignores distant living opponents",
+        "pass": true
+      }
+    ],
+    "scope": "Current production factory and predicates. Role loss, hold counts and final security are restored synthetic facts; no normal combat claim."
+  },
+  "runtimeSynthetic": {
+    "checks": [
+      "fresh steps remove lower E and fixture class; old snapshot remains ordered",
+      "anchor-first and hold-first both require the second condition",
+      "all four surviving companions receive a later normal action opportunity",
+      "unit, enemy, summoned spirit and stake occupancy wait with input open",
+      "projectiles, volley, melee, summon and unstable physics cannot be interrupted",
+      "warning, occupied wait and mid-descent save resume once with exact displacement",
+      "early HP1 subdued keeper survives lowering without resurrection or reset",
+      "hostile keeper actually falls through Engine physics, reaches HP1 and completes defeat without dying"
+    ],
+    "scope": "Synthetic transition state fixtures; no route, art, normal combat or browser claim."
+  },
+  "appSaveSynthetic": {
+    "projectSha256": "2c201cf706a15381e97ae16009cca4373802a1e86d1caf3b3b91eb7b2b6ab5a6",
+    "runtimeSha256": "67776b6d275503f841d90809e57b27be1c6831686dc07a6f8e29bb5c66ab5007",
+    "rows": [
+      {
+        "case": "warning Skip and Continue",
+        "passed": true,
+        "status": "warning",
+        "warnedHeroes": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "opportunities": {
+          "p-archer": 1,
+          "p-mage": 2
+        },
+        "offset": 0,
+        "count": 0,
+        "inputOpen": true
+      },
+      {
+        "case": "waiting Skip and Continue",
+        "passed": true,
+        "status": "waiting",
+        "warnedHeroes": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "opportunities": {
+          "p-archer": 1,
+          "p-mage": 2,
+          "p-knight": 3,
+          "p-occultist": 4
+        },
+        "offset": 0,
+        "count": 0,
+        "inputOpen": true
+      },
+      {
+        "case": "revision-absent old18 production Continue",
+        "passed": true,
+        "actors": 33,
+        "terrain": 5,
+        "steps": [
+          "clear-wards",
+          "silence",
+          "hold-silence",
+          "upper-chain",
+          "lower-chain",
+          "leak",
+          "keeper",
+          "clear-bell"
+        ],
+        "dialoguePage": 1,
+        "checkedSnapshotFields": 36
+      },
+      {
+        "case": "revision-absent old19 production Continue",
+        "passed": true,
+        "actors": 23,
+        "terrain": 5,
+        "steps": [
+          "route",
+          "separate-1",
+          "hold-first",
+          "send-1",
+          "separate-2",
+          "hold-second",
+          "send-2",
+          "separate-3",
+          "hold-last",
+          "send-3",
+          "clear-souls",
+          "old-soul"
+        ],
+        "dialoguePage": 1,
+        "checkedSnapshotFields": 36
+      },
+      {
+        "case": "actual shell mid-descent production export/import/Continue",
+        "passed": true,
+        "offsetAtSave": 57.8721536351166,
+        "finalOffset": 200,
+        "count": 1
+      }
+    ],
+    "scope": "Production App, DOM click action dialogue-skip, Story, export/import/Continue. Bell prerequisite/occupancy states are explicit synthetic fixtures; old18/19 snapshots use immutable original maps/content and one real defend. DOM/render/storage/clock are test doubles. Not browser or normal fullplay."
+  },
+  "occupancySynthetic": {
+    "projectSha256": "2c201cf706a15381e97ae16009cca4373802a1e86d1caf3b3b91eb7b2b6ab5a6",
+    "scope": "Production App and Engine movement after a documented enemy-free prerequisite/position fixture. Waiting export/Continue is real. No later placement, HP/resource refill or terrain editing by the test; normal turns may refresh movement. DOM/render/storage/clock are doubles; not normal combat fullplay.",
+    "rows": [
+      {
+        "cls": "archer",
+        "files": {
+          "waiting": "_local/reports/stage18-bell/occupancy-waiting-archer.json",
+          "settled": "_local/reports/stage18-bell/occupancy-settled-archer.json"
+        },
+        "maxDescentCoordinateError": 2.7284841053187847e-12,
+        "initialSupport": "sb-bell-east-lip",
+        "start": {
+          "x": 8300,
+          "y": 6290
+        },
+        "exactUnpaddedBodySweep": true,
+        "normalWarningOpportunities": 4,
+        "waitingContinueExact": true,
+        "escaped": {
+          "x": 8173.333333333352,
+          "y": 6370,
+          "moveBefore": 1640,
+          "moveAfter": 1513.3333333333521,
+          "cost": 126.66666666664787
+        },
+        "finalSupport": "sb-east-gallery-sill",
+        "offset": 200,
+        "count": 1,
+        "audit": {
+          "externalWrites": [],
+          "recoveries": 0,
+          "damage": 0,
+          "moves": 40,
+          "ticks": 787,
+          "defends": [
+            {
+              "id": "p-archer",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-mage",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-knight",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-occultist",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-archer",
+              "round": 2,
+              "status": "waiting"
+            }
+          ]
+        }
+      },
+      {
+        "cls": "mage",
+        "files": {
+          "waiting": "_local/reports/stage18-bell/occupancy-waiting-mage.json",
+          "settled": "_local/reports/stage18-bell/occupancy-settled-mage.json"
+        },
+        "maxDescentCoordinateError": 2.7284841053187847e-12,
+        "initialSupport": "sb-bell-east-lip",
+        "start": {
+          "x": 8300,
+          "y": 6290
+        },
+        "exactUnpaddedBodySweep": true,
+        "normalWarningOpportunities": 4,
+        "waitingContinueExact": true,
+        "escaped": {
+          "x": 8172.074999999984,
+          "y": 6370,
+          "moveBefore": 1660,
+          "moveAfter": 1532.0749999999844,
+          "cost": 127.92500000001564
+        },
+        "finalSupport": "sb-east-gallery-sill",
+        "offset": 200,
+        "count": 1,
+        "audit": {
+          "externalWrites": [],
+          "recoveries": 0,
+          "damage": 0,
+          "moves": 43,
+          "ticks": 866,
+          "defends": [
+            {
+              "id": "p-archer",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-mage",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-knight",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-occultist",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-archer",
+              "round": 2,
+              "status": "waiting"
+            },
+            {
+              "id": "p-mage",
+              "round": 2,
+              "status": "waiting"
+            }
+          ]
+        }
+      },
+      {
+        "cls": "knight",
+        "files": {
+          "waiting": "_local/reports/stage18-bell/occupancy-waiting-knight.json",
+          "settled": "_local/reports/stage18-bell/occupancy-settled-knight.json"
+        },
+        "maxDescentCoordinateError": 2.7284841053187847e-12,
+        "initialSupport": "sb-bell-east-lip",
+        "start": {
+          "x": 8300,
+          "y": 6290
+        },
+        "exactUnpaddedBodySweep": true,
+        "normalWarningOpportunities": 4,
+        "waitingContinueExact": true,
+        "escaped": {
+          "x": 8175,
+          "y": 6370,
+          "moveBefore": 1750,
+          "moveAfter": 1625,
+          "cost": 125
+        },
+        "finalSupport": "sb-east-gallery-sill",
+        "offset": 200,
+        "count": 1,
+        "audit": {
+          "externalWrites": [],
+          "recoveries": 0,
+          "damage": 0,
+          "moves": 40,
+          "ticks": 944,
+          "defends": [
+            {
+              "id": "p-archer",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-mage",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-knight",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-occultist",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-archer",
+              "round": 2,
+              "status": "waiting"
+            },
+            {
+              "id": "p-mage",
+              "round": 2,
+              "status": "waiting"
+            },
+            {
+              "id": "p-knight",
+              "round": 2,
+              "status": "waiting"
+            }
+          ]
+        }
+      },
+      {
+        "cls": "occultist",
+        "files": {
+          "waiting": "_local/reports/stage18-bell/occupancy-waiting-occultist.json",
+          "settled": "_local/reports/stage18-bell/occupancy-settled-occultist.json"
+        },
+        "maxDescentCoordinateError": 2.7284841053187847e-12,
+        "initialSupport": "sb-bell-east-lip",
+        "start": {
+          "x": 8300,
+          "y": 6290
+        },
+        "exactUnpaddedBodySweep": true,
+        "normalWarningOpportunities": 4,
+        "waitingContinueExact": true,
+        "escaped": {
+          "x": 8173.241666666653,
+          "y": 6370,
+          "moveBefore": 1690,
+          "moveAfter": 1563.2416666666531,
+          "cost": 126.75833333334685
+        },
+        "finalSupport": "sb-east-gallery-sill",
+        "offset": 200,
+        "count": 1,
+        "audit": {
+          "externalWrites": [],
+          "recoveries": 0,
+          "damage": 0,
+          "moves": 41,
+          "ticks": 1022,
+          "defends": [
+            {
+              "id": "p-archer",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-mage",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-knight",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-occultist",
+              "round": 1,
+              "status": "warning"
+            },
+            {
+              "id": "p-archer",
+              "round": 2,
+              "status": "waiting"
+            },
+            {
+              "id": "p-mage",
+              "round": 2,
+              "status": "waiting"
+            },
+            {
+              "id": "p-knight",
+              "round": 2,
+              "status": "waiting"
+            },
+            {
+              "id": "p-occultist",
+              "round": 2,
+              "status": "waiting"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "actualCheckpoints": {
+    "checkedCommit": "db2f7fe5a40244281da2a38350d33e6a7fd16229",
+    "rows": [
+      {
+        "file": "_local/reports/stage18-current-pacing-20261022/continued/warning-continue.json",
+        "round": 16,
+        "phase": "aim",
+        "goal": "bell-descent",
+        "descent": {
+          "version": 1,
+          "status": "warning",
+          "offset": 0,
+          "count": 0,
+          "warnings": {
+            "hold-silence-0": {
+              "serial": 99,
+              "round": 12,
+              "offered": {
+                "p-knight": {
+                  "round": 12,
+                  "serial": 100
+                }
+              },
+              "opportunity": {
+                "id": "p-knight",
+                "round": 12,
+                "serial": 101
+              }
+            },
+            "hold-silence-3": {
+              "serial": 107,
+              "round": 13,
+              "offered": {
+                "p-archer": {
+                  "round": 13,
+                  "serial": 107
+                },
+                "p-mage": {
+                  "round": 13,
+                  "serial": 107
+                }
+              },
+              "opportunity": {
+                "id": "p-mage",
+                "round": 13,
+                "serial": 108
+              }
+            },
+            "hold-silence-6": {
+              "serial": 116,
+              "round": 14,
+              "offered": {
+                "p-archer": {
+                  "round": 14,
+                  "serial": 116
+                },
+                "p-mage": {
+                  "round": 14,
+                  "serial": 116
+                }
+              },
+              "opportunity": {
+                "id": "p-mage",
+                "round": 14,
+                "serial": 117
+              }
+            }
+          },
+          "entries": {
+            "hold-silence-0": {
+              "side": "west",
+              "x": 3970,
+              "y": 5542.962962962963,
+              "round": 12,
+              "serial": 101
+            },
+            "hold-silence-3": {
+              "side": "lower-west",
+              "x": 5950,
+              "y": 7512.222222222223,
+              "round": 13,
+              "serial": 108
+            },
+            "hold-silence-6": {
+              "side": "west",
+              "x": 3970,
+              "y": 5542.962962962963,
+              "round": 14,
+              "serial": 117
+            }
+          },
+          "opportunities": {
+            "p-archer": 135
+          },
+          "alert": {
+            "entry-roof": true,
+            "entry-front": true,
+            "entry-rear": true,
+            "court-west": true,
+            "court-east": true,
+            "court-overwatch": true,
+            "west-rise": true,
+            "court-spirits": true
+          },
+          "warnedSerial": 134,
+          "warnedRound": 16,
+          "warnedHeroes": [
+            "p-archer",
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "reason": "이동 기회 대기 · 담허·휘겸·소단",
+          "blockers": []
+        },
+        "hold": {
+          "progress": 4,
+          "spawned": 8,
+          "lastRound": 16,
+          "enteredRound": 12,
+          "continuous": true,
+          "contributionGuards": [
+            "p-mage"
+          ],
+          "guarded": true,
+          "contested": false,
+          "waveRound": 14
+        },
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 4196.9918550615685,
+            "y": 3774.420195269639,
+            "hp": 758,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-west-firing-ledge"
+          },
+          {
+            "id": "p-mage",
+            "x": 3293.9,
+            "y": 5477.288235294118,
+            "hp": 824,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-suppression-court"
+          },
+          {
+            "id": "p-knight",
+            "x": 3388.225155021955,
+            "y": 5290,
+            "hp": 1183,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-court-reflector"
+          },
+          {
+            "id": "p-occultist",
+            "x": 3036.8423610261048,
+            "y": 5462.167197707418,
+            "hp": 825,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-suppression-court"
+          }
+        ],
+        "questTargetSynced": true,
+        "wholeBattleContinueAndExportExact": true
+      },
+      {
+        "file": "_local/reports/stage18-current-pacing-20261022/continued/late-continue.json",
+        "round": 22,
+        "phase": "aim",
+        "goal": "keeper",
+        "descent": {
+          "version": 1,
+          "status": "settled",
+          "offset": 200,
+          "count": 1,
+          "warnings": {
+            "hold-silence-0": {
+              "serial": 99,
+              "round": 12,
+              "offered": {
+                "p-knight": {
+                  "round": 12,
+                  "serial": 100
+                }
+              },
+              "opportunity": {
+                "id": "p-knight",
+                "round": 12,
+                "serial": 101
+              }
+            },
+            "hold-silence-3": {
+              "serial": 107,
+              "round": 13,
+              "offered": {
+                "p-archer": {
+                  "round": 13,
+                  "serial": 107
+                },
+                "p-mage": {
+                  "round": 13,
+                  "serial": 107
+                }
+              },
+              "opportunity": {
+                "id": "p-mage",
+                "round": 13,
+                "serial": 108
+              }
+            },
+            "hold-silence-6": {
+              "serial": 116,
+              "round": 14,
+              "offered": {
+                "p-archer": {
+                  "round": 14,
+                  "serial": 116
+                },
+                "p-mage": {
+                  "round": 14,
+                  "serial": 116
+                }
+              },
+              "opportunity": {
+                "id": "p-mage",
+                "round": 14,
+                "serial": 117
+              }
+            }
+          },
+          "entries": {
+            "hold-silence-0": {
+              "side": "west",
+              "x": 3970,
+              "y": 5542.962962962963,
+              "round": 12,
+              "serial": 101
+            },
+            "hold-silence-3": {
+              "side": "lower-west",
+              "x": 5950,
+              "y": 7512.222222222223,
+              "round": 13,
+              "serial": 108
+            },
+            "hold-silence-6": {
+              "side": "west",
+              "x": 3970,
+              "y": 5542.962962962963,
+              "round": 14,
+              "serial": 117
+            }
+          },
+          "opportunities": {
+            "p-archer": 135,
+            "p-mage": 136,
+            "p-knight": 137,
+            "p-occultist": 138
+          },
+          "alert": {
+            "entry-roof": true,
+            "entry-front": true,
+            "entry-rear": true,
+            "court-west": true,
+            "court-east": true,
+            "court-overwatch": true,
+            "west-rise": true,
+            "court-spirits": true,
+            "west-crown": true,
+            "lower-front": true,
+            "lower-flank": true,
+            "maintenance-watch": true,
+            "basin-west": true,
+            "basin-east": true
+          },
+          "warnedSerial": 134,
+          "warnedRound": 16,
+          "warnedHeroes": [
+            "p-archer",
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "reason": "",
+          "blockers": [],
+          "elapsed": 0.9,
+          "duration": 0.9,
+          "startOffset": 0,
+          "completedSerial": 138,
+          "completedRound": 16
+        },
+        "hold": {
+          "progress": 4,
+          "spawned": 8,
+          "lastRound": 16,
+          "enteredRound": 12,
+          "continuous": true,
+          "contributionGuards": [
+            "p-mage"
+          ],
+          "guarded": true,
+          "contested": false,
+          "waveRound": 14
+        },
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 1550.0713932300202,
+            "y": 5231.345959262405,
+            "hp": 791,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-west-upper-rise"
+          },
+          {
+            "id": "p-mage",
+            "x": 3547.659166666667,
+            "y": 5492.215245098039,
+            "hp": 824,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-suppression-court"
+          },
+          {
+            "id": "p-knight",
+            "x": 3773.968487687698,
+            "y": 5513.921257435214,
+            "hp": 1222,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-suppression-court"
+          },
+          {
+            "id": "p-occultist",
+            "x": 7606.472535909223,
+            "y": 7512.288158787917,
+            "hp": 738,
+            "grounded": true,
+            "validBody": true,
+            "support": "act2-floor"
+          }
+        ],
+        "questTargetSynced": true,
+        "wholeBattleContinueAndExportExact": true
+      },
+      {
+        "file": "_local/reports/stage18-current-pacing-20261022/actual-post-descent.json",
+        "round": 22,
+        "phase": "aim",
+        "goal": "leak",
+        "descent": {
+          "version": 1,
+          "status": "settled",
+          "offset": 200,
+          "count": 1,
+          "warnings": {
+            "hold-silence-0": {
+              "serial": 99,
+              "round": 12,
+              "offered": {
+                "p-knight": {
+                  "round": 12,
+                  "serial": 100
+                }
+              },
+              "opportunity": {
+                "id": "p-knight",
+                "round": 12,
+                "serial": 101
+              }
+            },
+            "hold-silence-3": {
+              "serial": 107,
+              "round": 13,
+              "offered": {
+                "p-archer": {
+                  "round": 13,
+                  "serial": 107
+                },
+                "p-mage": {
+                  "round": 13,
+                  "serial": 107
+                }
+              },
+              "opportunity": {
+                "id": "p-mage",
+                "round": 13,
+                "serial": 108
+              }
+            },
+            "hold-silence-6": {
+              "serial": 116,
+              "round": 14,
+              "offered": {
+                "p-archer": {
+                  "round": 14,
+                  "serial": 116
+                },
+                "p-mage": {
+                  "round": 14,
+                  "serial": 116
+                }
+              },
+              "opportunity": {
+                "id": "p-mage",
+                "round": 14,
+                "serial": 117
+              }
+            }
+          },
+          "entries": {
+            "hold-silence-0": {
+              "side": "west",
+              "x": 3970,
+              "y": 5542.962962962963,
+              "round": 12,
+              "serial": 101
+            },
+            "hold-silence-3": {
+              "side": "lower-west",
+              "x": 5950,
+              "y": 7512.222222222223,
+              "round": 13,
+              "serial": 108
+            },
+            "hold-silence-6": {
+              "side": "west",
+              "x": 3970,
+              "y": 5542.962962962963,
+              "round": 14,
+              "serial": 117
+            }
+          },
+          "opportunities": {
+            "p-archer": 135,
+            "p-mage": 136,
+            "p-knight": 137,
+            "p-occultist": 138
+          },
+          "alert": {
+            "entry-roof": true,
+            "entry-front": true,
+            "entry-rear": true,
+            "court-west": true,
+            "court-east": true,
+            "court-overwatch": true,
+            "west-rise": true,
+            "court-spirits": true,
+            "west-crown": true,
+            "lower-front": true,
+            "lower-flank": true,
+            "maintenance-watch": true,
+            "basin-west": true
+          },
+          "warnedSerial": 134,
+          "warnedRound": 16,
+          "warnedHeroes": [
+            "p-archer",
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "reason": "",
+          "blockers": [],
+          "elapsed": 0.9,
+          "duration": 0.9,
+          "startOffset": 0,
+          "completedSerial": 138,
+          "completedRound": 16
+        },
+        "hold": {
+          "progress": 4,
+          "spawned": 8,
+          "lastRound": 16,
+          "enteredRound": 12,
+          "continuous": true,
+          "contributionGuards": [
+            "p-mage"
+          ],
+          "guarded": true,
+          "contested": false,
+          "waveRound": 14
+        },
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 1550.0713932300202,
+            "y": 5231.345959262405,
+            "hp": 791,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-west-upper-rise"
+          },
+          {
+            "id": "p-mage",
+            "x": 3547.659166666667,
+            "y": 5492.215245098039,
+            "hp": 824,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-suppression-court"
+          },
+          {
+            "id": "p-knight",
+            "x": 3773.968487687698,
+            "y": 5513.921257435214,
+            "hp": 1222,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-suppression-court"
+          },
+          {
+            "id": "p-occultist",
+            "x": 7137.560542722002,
+            "y": 7199.847533920125,
+            "hp": 738,
+            "grounded": true,
+            "validBody": true,
+            "support": "act2-floor"
+          }
+        ],
+        "questTargetSynced": true,
+        "wholeBattleContinueAndExportExact": true
+      },
+      {
+        "file": "_local/reports/stage18-current-pacing-20261022/actual-stop-r29.json",
+        "round": 29,
+        "phase": "aim",
+        "goal": "keeper",
+        "descent": {
+          "version": 1,
+          "status": "settled",
+          "offset": 200,
+          "count": 1,
+          "warnings": {
+            "hold-silence-0": {
+              "serial": 99,
+              "round": 12,
+              "offered": {
+                "p-knight": {
+                  "round": 12,
+                  "serial": 100
+                }
+              },
+              "opportunity": {
+                "id": "p-knight",
+                "round": 12,
+                "serial": 101
+              }
+            },
+            "hold-silence-3": {
+              "serial": 107,
+              "round": 13,
+              "offered": {
+                "p-archer": {
+                  "round": 13,
+                  "serial": 107
+                },
+                "p-mage": {
+                  "round": 13,
+                  "serial": 107
+                }
+              },
+              "opportunity": {
+                "id": "p-mage",
+                "round": 13,
+                "serial": 108
+              }
+            },
+            "hold-silence-6": {
+              "serial": 116,
+              "round": 14,
+              "offered": {
+                "p-archer": {
+                  "round": 14,
+                  "serial": 116
+                },
+                "p-mage": {
+                  "round": 14,
+                  "serial": 116
+                }
+              },
+              "opportunity": {
+                "id": "p-mage",
+                "round": 14,
+                "serial": 117
+              }
+            }
+          },
+          "entries": {
+            "hold-silence-0": {
+              "side": "west",
+              "x": 3970,
+              "y": 5542.962962962963,
+              "round": 12,
+              "serial": 101
+            },
+            "hold-silence-3": {
+              "side": "lower-west",
+              "x": 5950,
+              "y": 7512.222222222223,
+              "round": 13,
+              "serial": 108
+            },
+            "hold-silence-6": {
+              "side": "west",
+              "x": 3970,
+              "y": 5542.962962962963,
+              "round": 14,
+              "serial": 117
+            }
+          },
+          "opportunities": {
+            "p-archer": 135,
+            "p-mage": 136,
+            "p-knight": 137,
+            "p-occultist": 138
+          },
+          "alert": {
+            "entry-roof": true,
+            "entry-front": true,
+            "entry-rear": true,
+            "court-west": true,
+            "court-east": true,
+            "court-overwatch": true,
+            "west-rise": true,
+            "court-spirits": true,
+            "west-crown": true,
+            "lower-front": true,
+            "lower-flank": true,
+            "maintenance-watch": true,
+            "basin-west": true,
+            "basin-east": true,
+            "keeper-front": true,
+            "keeper-high": true,
+            "keeper-flank": true,
+            "keeper-body": true
+          },
+          "warnedSerial": 134,
+          "warnedRound": 16,
+          "warnedHeroes": [
+            "p-archer",
+            "p-mage",
+            "p-knight",
+            "p-occultist"
+          ],
+          "reason": "",
+          "blockers": [],
+          "elapsed": 0.9,
+          "duration": 0.9,
+          "startOffset": 0,
+          "completedSerial": 138,
+          "completedRound": 16
+        },
+        "hold": {
+          "progress": 4,
+          "spawned": 8,
+          "lastRound": 16,
+          "enteredRound": 12,
+          "continuous": true,
+          "contributionGuards": [
+            "p-mage"
+          ],
+          "guarded": true,
+          "contested": false,
+          "waveRound": 14
+        },
+        "heroes": [
+          {
+            "id": "p-archer",
+            "x": 8726.497366738167,
+            "y": 7477.2994733476335,
+            "hp": 768,
+            "grounded": true,
+            "validBody": true,
+            "support": "act2-floor"
+          },
+          {
+            "id": "p-mage",
+            "x": 4603.621460749081,
+            "y": 5950,
+            "hp": 801,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-court-cave-mouth"
+          },
+          {
+            "id": "p-knight",
+            "x": 4602.718035324539,
+            "y": 6305.183352008117,
+            "hp": 1179,
+            "grounded": true,
+            "validBody": true,
+            "support": "sb-maintenance-rise"
+          },
+          {
+            "id": "p-occultist",
+            "x": 11367.04750386019,
+            "y": 6180,
+            "hp": 599,
+            "grounded": true,
+            "validBody": true,
+            "support": "act2-floor"
+          }
+        ],
+        "questTargetSynced": true,
+        "wholeBattleContinueAndExportExact": true
+      }
+    ],
+    "scope": "Read-only actual native snapshots through production App Continue/export. No new combat execution or synthetic goal flags."
+  },
+  "postDescentBrowser": {
+    "checkedCommit": "33ae1fe16a87af18c68c2a9e5957c401a4e89d64",
+    "input": "_local/reports/stage18-current-pacing-20261022/actual-post-descent.json",
+    "inputSha256": "0b48046550bd4309cf8889241c33b0dc92acb6b939fbdae4281bc076aa00295c",
+    "wholeBattleContinueExact": true,
+    "renderPure": true,
+    "lifecycle": null,
+    "scope": "View an actual native normal-input checkpoint in final published-source UI.\nNo combat replay or art change. Freeze frame scheduling, production Continue,\nthen render at a declared inspection camera without editing gameplay state.\n",
+    "view": {
+      "round": 22,
+      "phase": "aim",
+      "goal": "leak",
+      "done": {
+        "clear-wards": true,
+        "silence": true,
+        "hold-silence": true,
+        "upper-chain": true,
+        "bell-descent": true
+      },
+      "camera": [
+        7620,
+        7416.2962962962965,
+        0.4
+      ],
+      "heroes": [
+        {
+          "id": "p-archer",
+          "x": 1550.0713932300202,
+          "y": 5231.345959262405,
+          "hp": 791,
+          "focus": 192,
+          "moveLeft": 1686,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "x": 3547.659166666667,
+          "y": 5492.215245098039,
+          "hp": 824,
+          "focus": 234,
+          "moveLeft": 1707,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "x": 3773.968487687698,
+          "y": 5513.921257435214,
+          "hp": 1222,
+          "focus": 215,
+          "moveLeft": 1905,
+          "dead": false
+        },
+        {
+          "id": "p-occultist",
+          "x": 7137.560542722002,
+          "y": 7199.847533920125,
+          "hp": 738,
+          "focus": 312,
+          "moveLeft": 1764,
+          "dead": false
+        }
+      ],
+      "enemies": 49
+    },
+    "errors": [],
+    "httpFailures": []
+  },
+  "actualStopBrowser": {
+    "checkedCommit": "db2f7fe5a40244281da2a38350d33e6a7fd16229",
+    "input": "_local/reports/stage18-current-pacing-20261022/actual-stop-r29.json",
+    "inputSha256": "02d187f6287e28675ca1a1977fa0df51caf6f8832dbd17265ac5546f796b25b7",
+    "wholeBattleContinueExact": true,
+    "renderPure": true,
+    "lifecycle": null,
+    "scope": "View an actual native normal-input checkpoint in final published-source UI.\nNo combat replay or art change. Freeze frame scheduling, production Continue,\nthen render at a declared inspection camera without editing gameplay state.\n",
+    "view": {
+      "round": 29,
+      "phase": "aim",
+      "goal": "keeper",
+      "done": {
+        "clear-wards": true,
+        "silence": true,
+        "hold-silence": true,
+        "upper-chain": true,
+        "bell-descent": true,
+        "leak": true
+      },
+      "camera": [
+        11480,
+        6080,
+        0.4
+      ],
+      "heroes": [
+        {
+          "id": "p-archer",
+          "x": 8726.497366738167,
+          "y": 7477.2994733476335,
+          "hp": 768,
+          "focus": 192,
+          "moveLeft": 1686,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "x": 4603.621460749081,
+          "y": 5950,
+          "hp": 801,
+          "focus": 264,
+          "moveLeft": 1707,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "x": 4602.718035324539,
+          "y": 6305.183352008117,
+          "hp": 1179,
+          "focus": 215,
+          "moveLeft": 1905,
+          "dead": false
+        },
+        {
+          "id": "p-occultist",
+          "x": 11367.04750386019,
+          "y": 6180,
+          "hp": 599,
+          "focus": 312,
+          "moveLeft": 1764,
+          "dead": false
+        }
+      ],
+      "enemies": 46
+    },
+    "errors": [],
+    "httpFailures": []
+  },
+  "policyProbe": {
+    "checkedCommit": "db2f7fe5a40244281da2a38350d33e6a7fd16229",
+    "input": "_local/reports/stage18-current-pacing-20261022/actual-stop-r29.json",
+    "rows": [
+      {
+        "cls": "archer",
+        "x": 8726.497366738167,
+        "y": 7477.2994733476335,
+        "routeExists": true,
+        "routeLinks": 39,
+        "forward": {
+          "x": 9707.272727272728,
+          "y": 6925.454545454545,
+          "surfaceId": "act2-floor",
+          "id": "forward-act2-keeper",
+          "progress": 1123.4509665004616,
+          "pathLength": 1162.6200688197387
+        },
+        "firstLinks": [
+          {
+            "from": {
+              "x": 8726.497366738167,
+              "y": 7477.2994733476335
+            },
+            "point": {
+              "x": 8740,
+              "y": 7480,
+              "surfaceId": "act2-floor"
+            },
+            "cost": 13.770038097394357,
+            "euclideanProgress": 10.829080099655584
+          },
+          {
+            "from": {
+              "x": 8740,
+              "y": 7480,
+              "surfaceId": "act2-floor"
+            },
+            "point": {
+              "x": 8745,
+              "y": 7478.611111111111,
+              "surfaceId": "act2-floor"
+            },
+            "mode": null,
+            "cost": 18.959355234135806,
+            "euclideanProgress": 15.91586635173644
+          },
+          {
+            "from": {
+              "x": 8745,
+              "y": 7478.611111111111,
+              "surfaceId": "act2-floor"
+            },
+            "point": {
+              "x": 8750,
+              "y": 7477.222222222223,
+              "surfaceId": "act2-floor"
+            },
+            "mode": null,
+            "cost": 24.148672370877254,
+            "euclideanProgress": 21.002284329947997
+          },
+          {
+            "from": {
+              "x": 8750,
+              "y": 7477.222222222223,
+              "surfaceId": "act2-floor"
+            },
+            "point": {
+              "x": 8838.333333333334,
+              "y": 7452.685185185185,
+              "surfaceId": "act2-floor"
+            },
+            "mode": null,
+            "cost": 115.82660845331111,
+            "euclideanProgress": 110.79941965967782
+          },
+          {
+            "from": {
+              "x": 8838.333333333334,
+              "y": 7452.685185185185,
+              "surfaceId": "act2-floor"
+            },
+            "point": {
+              "x": 8926.666666666666,
+              "y": 7428.148148148149,
+              "surfaceId": "act2-floor"
+            },
+            "mode": null,
+            "cost": 207.50454453574298,
+            "euclideanProgress": 200.4692654067976
+          },
+          {
+            "from": {
+              "x": 8926.666666666666,
+              "y": 7428.148148148149,
+              "surfaceId": "act2-floor"
+            },
+            "point": {
+              "x": 9015,
+              "y": 7403.611111111111,
+              "surfaceId": "act2-floor"
+            },
+            "mode": null,
+            "cost": 299.18248061817684,
+            "euclideanProgress": 289.99861067826987
+          },
+          {
+            "from": {
+              "x": 9015,
+              "y": 7403.611111111111,
+              "surfaceId": "act2-floor"
+            },
+            "point": {
+              "x": 9065,
+              "y": 7389.722222222223,
+              "surfaceId": "act2-floor"
+            },
+            "mode": null,
+            "cost": 351.0756519855918,
+            "euclideanProgress": 340.6076958844069
+          },
+          {
+            "from": {
+              "x": 9065,
+              "y": 7389.722222222223,
+              "surfaceId": "act2-floor"
+            },
+            "point": {
+              "x": 9100,
+              "y": 7380,
+              "surfaceId": "act2-floor"
+            },
+            "mode": null,
+            "cost": 387.4008719427824,
+            "euclideanProgress": 376.00280390096077
+          }
+        ],
+        "nearbyLivingEnemies": [
+          {
+            "id": "sb-d-spirit",
+            "hp": 327,
+            "x": 8420,
+            "y": 7196.774193548387
+          },
+          {
+            "id": "sb-f-spirit-side",
+            "hp": 893,
+            "x": 8060,
+            "y": 7177.674418604651
+          },
+          {
+            "id": "sb-f-spirit-east",
+            "hp": 1384,
+            "x": 8230,
+            "y": 7036.129032258064
+          },
+          {
+            "id": "sb-f-tool-east",
+            "hp": 837,
+            "x": 8086.883006074436,
+            "y": 7387.046253412433
+          },
+          {
+            "id": "sb-f-east-screen",
+            "hp": 699,
+            "x": 7773.975117426224,
+            "y": 7510.754023343121
+          },
+          {
+            "id": "event-96",
+            "hp": 893,
+            "x": 9673.655554272522,
+            "y": 6696.558716150505
+          },
+          {
+            "id": "event-97",
+            "hp": 1384,
+            "x": 9880,
+            "y": 6531.914893617021
+          },
+          {
+            "id": "event-98",
+            "hp": 893,
+            "x": 9785,
+            "y": 6621.86170212766
+          }
+        ]
+      },
+      {
+        "cls": "mage",
+        "x": 4603.621460749081,
+        "y": 5950,
+        "routeExists": true,
+        "routeLinks": 140,
+        "forward": null,
+        "firstLinks": [
+          {
+            "from": {
+              "x": 4600,
+              "y": 5950,
+              "surfaceId": "sb-court-cave-mouth"
+            },
+            "point": {
+              "x": 4545,
+              "y": 5950,
+              "surfaceId": "sb-court-cave-mouth"
+            },
+            "mode": null,
+            "cost": 55,
+            "euclideanProgress": -58.58721232087191
+          },
+          {
+            "from": {
+              "x": 4545,
+              "y": 5950,
+              "surfaceId": "sb-court-cave-mouth"
+            },
+            "point": {
+              "x": 4490,
+              "y": 5950,
+              "surfaceId": "sb-court-cave-mouth"
+            },
+            "mode": null,
+            "cost": 110,
+            "euclideanProgress": -113.55561531757576
+          },
+          {
+            "from": {
+              "x": 4490,
+              "y": 5950,
+              "surfaceId": "sb-court-cave-mouth"
+            },
+            "point": {
+              "x": 4400,
+              "y": 6130,
+              "surfaceId": "sb-court-cave-step"
+            },
+            "mode": {
+              "kind": "drop",
+              "x": 4400,
+              "support": "sb-court-cave-step",
+              "stepOffX": 4410
+            },
+            "cost": 311.2461179749811,
+            "euclideanProgress": -199.85386662021392
+          },
+          {
+            "from": {
+              "x": 4400,
+              "y": 6130,
+              "surfaceId": "sb-court-cave-step"
+            },
+            "point": {
+              "x": 4450,
+              "y": 6130,
+              "surfaceId": "sb-court-cave-step"
+            },
+            "mode": null,
+            "cost": 361.2461179749811,
+            "euclideanProgress": -149.85518891243646
+          },
+          {
+            "from": {
+              "x": 4450,
+              "y": 6130,
+              "surfaceId": "sb-court-cave-step"
+            },
+            "point": {
+              "x": 4500,
+              "y": 6130,
+              "surfaceId": "sb-court-cave-step"
+            },
+            "mode": null,
+            "cost": 411.2461179749811,
+            "euclideanProgress": -99.85653064944836
+          },
+          {
+            "from": {
+              "x": 4500,
+              "y": 6130,
+              "surfaceId": "sb-court-cave-step"
+            },
+            "point": {
+              "x": 4610,
+              "y": 6298.461538461538,
+              "surfaceId": "sb-maintenance-rise"
+            },
+            "mode": {
+              "kind": "drop",
+              "x": 4610,
+              "support": "sb-maintenance-rise",
+              "stepOffX": 4580
+            },
+            "cost": 612.4407748146405,
+            "euclideanProgress": 9.278553806787386
+          },
+          {
+            "from": {
+              "x": 4610,
+              "y": 6298.461538461538,
+              "surfaceId": "sb-maintenance-rise"
+            },
+            "point": {
+              "x": 4590,
+              "y": 6316.923076923077,
+              "surfaceId": "sb-maintenance-rise"
+            },
+            "mode": null,
+            "cost": 639.6589379114934,
+            "euclideanProgress": -11.069584477773788
+          },
+          {
+            "from": {
+              "x": 4590,
+              "y": 6316.923076923077,
+              "surfaceId": "sb-maintenance-rise"
+            },
+            "point": {
+              "x": 4543.333333333333,
+              "y": 6360,
+              "surfaceId": "sb-maintenance-rise"
+            },
+            "mode": null,
+            "cost": 703.1679851374827,
+            "euclideanProgress": -58.736594180807515
+          }
+        ],
+        "nearbyLivingEnemies": [
+          {
+            "id": "sb-b-high",
+            "hp": 104,
+            "x": 3800,
+            "y": 5230
+          },
+          {
+            "id": "sb-b-spirit-left",
+            "hp": 293,
+            "x": 4030,
+            "y": 5241.851851851852
+          },
+          {
+            "id": "sb-b-spirit-high",
+            "hp": 893,
+            "x": 3910,
+            "y": 4985
+          },
+          {
+            "id": "sb-e-front",
+            "hp": 817,
+            "x": 4129.604876333195,
+            "y": 7342.9475170386595
+          },
+          {
+            "id": "sb-e-screen",
+            "hp": 505,
+            "x": 4048.7056910198403,
+            "y": 7324.889663174072
+          },
+          {
+            "id": "sb-e-flank",
+            "hp": 1384,
+            "x": 4960.330236979258,
+            "y": 7344.485411458317
+          },
+          {
+            "id": "sb-e-rear",
+            "hp": 699,
+            "x": 4770,
+            "y": 7273.478260869565
+          },
+          {
+            "id": "sb-e-point",
+            "hp": 547,
+            "x": 4280,
+            "y": 7376.517857142857
+          },
+          {
+            "id": "sb-e-rear-elite",
+            "hp": 1384,
+            "x": 4865,
+            "y": 7318.913043478261
+          },
+          {
+            "id": "event-70",
+            "hp": 88,
+            "x": 4034,
+            "y": 5398.814214647371
+          },
+          {
+            "id": "event-71",
+            "hp": 1147,
+            "x": 4135.425625842204,
+            "y": 5187.259259259259
+          },
+          {
+            "id": "event-83",
+            "hp": 656,
+            "x": 3915,
+            "y": 5194.814814814815
+          },
+          {
+            "id": "event-84",
+            "hp": 201,
+            "x": 4153,
+            "y": 5381.111111111111
+          }
+        ]
+      },
+      {
+        "cls": "knight",
+        "x": 4602.718035324539,
+        "y": 6305.183352008117,
+        "routeExists": true,
+        "routeLinks": 143,
+        "forward": null,
+        "firstLinks": [
+          {
+            "from": {
+              "x": 4610,
+              "y": 6298.461538461538,
+              "surfaceId": "sb-maintenance-rise"
+            },
+            "point": {
+              "x": 4590,
+              "y": 6316.923076923077,
+              "surfaceId": "sb-maintenance-rise"
+            },
+            "mode": null,
+            "cost": 27.218163096852894,
+            "euclideanProgress": -12.945064674087917
+          },
+          {
+            "from": {
+              "x": 4590,
+              "y": 6316.923076923077,
+              "surfaceId": "sb-maintenance-rise"
+            },
+            "point": {
+              "x": 4543.333333333333,
+              "y": 6360,
+              "surfaceId": "sb-maintenance-rise"
+            },
+            "mode": null,
+            "cost": 90.72721032284217,
+            "euclideanProgress": -60.612074377121644
+          },
+          {
+            "from": {
+              "x": 4543.333333333333,
+              "y": 6360,
+              "surfaceId": "sb-maintenance-rise"
+            },
+            "point": {
+              "x": 4540,
+              "y": 6363.076923076923,
+              "surfaceId": "sb-lower-buttress-mass"
+            },
+            "mode": null,
+            "cost": 95.2635708389839,
+            "euclideanProgress": -64.02682685841683
+          },
+          {
+            "from": {
+              "x": 4540,
+              "y": 6363.076923076923,
+              "surfaceId": "sb-lower-buttress-mass"
+            },
+            "point": {
+              "x": 4460,
+              "y": 6436.923076923077,
+              "surfaceId": "sb-lower-buttress-mass"
+            },
+            "mode": null,
+            "cost": 204.13622322639424,
+            "euclideanProgress": -146.37176564643505
+          },
+          {
+            "from": {
+              "x": 4460,
+              "y": 6436.923076923077,
+              "surfaceId": "sb-lower-buttress-mass"
+            },
+            "point": {
+              "x": 4380,
+              "y": 6510.7692307692305,
+              "surfaceId": "sb-lower-buttress-mass"
+            },
+            "mode": null,
+            "cost": 313.008875613804,
+            "euclideanProgress": -229.44894047258003
+          },
+          {
+            "from": {
+              "x": 4380,
+              "y": 6510.7692307692305,
+              "surfaceId": "sb-lower-buttress-mass"
+            },
+            "point": {
+              "x": 4300,
+              "y": 6584.615384615385,
+              "surfaceId": "sb-lower-buttress-mass"
+            },
+            "mode": null,
+            "cost": 421.8815280012143,
+            "euclideanProgress": -313.2323238017916
+          },
+          {
+            "from": {
+              "x": 4300,
+              "y": 6584.615384615385,
+              "surfaceId": "sb-lower-buttress-mass"
+            },
+            "point": {
+              "x": 4220,
+              "y": 6658.461538461538,
+              "surfaceId": "sb-lower-buttress-mass"
+            },
+            "mode": null,
+            "cost": 530.754180388624,
+            "euclideanProgress": -397.69690119845654
+          },
+          {
+            "from": {
+              "x": 4220,
+              "y": 6658.461538461538,
+              "surfaceId": "sb-lower-buttress-mass"
+            },
+            "point": {
+              "x": 4140,
+              "y": 6732.307692307692,
+              "surfaceId": "sb-lower-buttress-mass"
+            },
+            "mode": null,
+            "cost": 639.6268327760343,
+            "euclideanProgress": -482.81863640871325
+          }
+        ],
+        "nearbyLivingEnemies": [
+          {
+            "id": "sb-b-high",
+            "hp": 104,
+            "x": 3800,
+            "y": 5230
+          },
+          {
+            "id": "sb-b-spirit-left",
+            "hp": 293,
+            "x": 4030,
+            "y": 5241.851851851852
+          },
+          {
+            "id": "sb-b-spirit-high",
+            "hp": 893,
+            "x": 3910,
+            "y": 4985
+          },
+          {
+            "id": "sb-e-front",
+            "hp": 817,
+            "x": 4129.604876333195,
+            "y": 7342.9475170386595
+          },
+          {
+            "id": "sb-e-screen",
+            "hp": 505,
+            "x": 4048.7056910198403,
+            "y": 7324.889663174072
+          },
+          {
+            "id": "sb-e-flank",
+            "hp": 1384,
+            "x": 4960.330236979258,
+            "y": 7344.485411458317
+          },
+          {
+            "id": "sb-e-rear",
+            "hp": 699,
+            "x": 4770,
+            "y": 7273.478260869565
+          },
+          {
+            "id": "sb-e-point",
+            "hp": 547,
+            "x": 4280,
+            "y": 7376.517857142857
+          },
+          {
+            "id": "sb-e-rear-elite",
+            "hp": 1384,
+            "x": 4865,
+            "y": 7318.913043478261
+          },
+          {
+            "id": "event-70",
+            "hp": 88,
+            "x": 4034,
+            "y": 5398.814214647371
+          },
+          {
+            "id": "event-71",
+            "hp": 1147,
+            "x": 4135.425625842204,
+            "y": 5187.259259259259
+          },
+          {
+            "id": "event-83",
+            "hp": 656,
+            "x": 3915,
+            "y": 5194.814814814815
+          },
+          {
+            "id": "event-84",
+            "hp": 201,
+            "x": 4153,
+            "y": 5381.111111111111
+          }
+        ]
+      },
+      {
+        "cls": "occultist",
+        "x": 11367.04750386019,
+        "y": 6180,
+        "routeExists": true,
+        "routeLinks": 1,
+        "forward": null,
+        "firstLinks": [
+          {
+            "from": {
+              "x": 11380,
+              "y": 6180,
+              "surfaceId": "act2-floor"
+            },
+            "point": {
+              "x": 11360,
+              "y": 6040,
+              "surfaceId": "sb-keeper-flank-step"
+            },
+            "mode": {
+              "kind": "jump",
+              "x": 11360,
+              "support": "sb-keeper-flank-step",
+              "speed": 0.2
+            },
+            "cost": 216.4213562373095,
+            "euclideanProgress": -85.24725194420472
+          }
+        ],
+        "nearbyLivingEnemies": [
+          {
+            "id": "sb-g-front",
+            "hp": 893,
+            "x": 10420,
+            "y": 6367.777777777777
+          },
+          {
+            "id": "sb-g-tool",
+            "hp": 893,
+            "x": 9967.281960448829,
+            "y": 6191.168349565206
+          },
+          {
+            "id": "sb-g-lamp-high",
+            "hp": 1384,
+            "x": 11180,
+            "y": 5920
+          },
+          {
+            "id": "sb-g-bat-high",
+            "hp": 485,
+            "x": 11055.651451459402,
+            "y": 5867.4609331656975
+          },
+          {
+            "id": "sb-g-bat-side",
+            "hp": 485,
+            "x": 11411.603039753683,
+            "y": 5950.742554946686
+          },
+          {
+            "id": "sb-g-point",
+            "hp": 893,
+            "x": 10182.7687682252,
+            "y": 6475.250847105928
+          },
+          {
+            "id": "act2-keeper",
+            "hp": 3398,
+            "x": 11299.965830374518,
+            "y": 6180
+          }
+        ]
+      }
+    ],
+    "readOnlyNavigationExact": true,
+    "freshGraphHasNoPriorControllerRejectedLinks": true,
+    "ordinaryDefendProbe": {
+      "canInputBefore": true,
+      "startActive": "p-archer",
+      "nextActive": "p-mage",
+      "ticks": 78,
+      "phase": "aim",
+      "round": 29,
+      "goal": "keeper",
+      "noGoalOrRewardInjected": true
+    },
+    "scope": "Fresh read-only navigator at an actual saved R29; its rejected-link cache is not the historical controller cache. Then one separate ordinary defend/tick branch confirms game input advances. Neither branch continues the main run or proves a win."
+  },
+  "controllerInterruption": {
+    "at": "2026-10-22T22:01:04.577316+00:00",
+    "pid": 6962,
+    "lastSavedRound": 29,
+    "lastSavedPhase": "aim",
+    "reason": "Last R29 checkpoint unchanged since21:57:41Z; process elapsed7m42s, CPU103percent, above six-minute observation budget. Bounded controller diagnosis interrupted without another battle run. R35 not reached.",
+    "signal": "SIGTERM",
+    "scope": "Final evidence stops at saved start-R29, not unpreserved in-memory partial actions."
+  },
+  "actionCounts": {
+    "forward-before-shot": 44,
+    "jump": 12,
+    "land": 18,
+    "move": 59,
+    "fire": 93,
+    "E-lamp": 7,
+    "nav-replan": 4,
+    "E": 2,
+    "drop": 10,
+    "defend": 8,
+    "fire-anchor": 2,
+    "continue": 2
+  },
+  "phaseActionCounts": {
+    "clear-wards": {
+      "rounds": [
+        1,
+        12
+      ],
+      "counts": {
+        "forward-before-shot": 27,
+        "jump": 7,
+        "land": 6,
+        "move": 27,
+        "fire": 42,
+        "E-lamp": 3,
+        "nav-replan": 1
+      }
+    },
+    "silence": {
+      "rounds": [
+        12,
+        12
+      ],
+      "counts": {
+        "E": 1
+      }
+    },
+    "hold-silence": {
+      "rounds": [
+        12,
+        15
+      ],
+      "counts": {
+        "fire": 10,
+        "E-lamp": 2,
+        "jump": 1,
+        "land": 2,
+        "move": 5,
+        "forward-before-shot": 1,
+        "drop": 1,
+        "defend": 1,
+        "fire-anchor": 1
+      }
+    },
+    "upper-chain": {
+      "rounds": [
+        16,
+        16
+      ],
+      "counts": {
+        "fire-anchor": 1
+      }
+    },
+    "bell-descent": {
+      "rounds": [
+        16,
+        16
+      ],
+      "counts": {
+        "continue": 1,
+        "E-lamp": 1,
+        "fire": 2
+      }
+    },
+    "leak": {
+      "rounds": [
+        17,
+        22
+      ],
+      "counts": {
+        "move": 12,
+        "defend": 6,
+        "fire": 14,
+        "forward-before-shot": 3,
+        "jump": 4,
+        "land": 2,
+        "nav-replan": 3,
+        "drop": 1,
+        "E": 1
+      }
+    },
+    "keeper": {
+      "rounds": [
+        22,
+        28
+      ],
+      "counts": {
+        "continue": 1,
+        "drop": 8,
+        "land": 8,
+        "move": 15,
+        "defend": 1,
+        "forward-before-shot": 13,
+        "fire": 25,
+        "E-lamp": 1
+      }
+    }
+  },
+  "oldAdapterFailures": {
+    "staleEntryAnchor": "Existing campaignEntryReadiness expects46235; production ledger45103. Current fixture uses real ledger.",
+    "staleCollisionLookup": "Old runtime/occupancy/fullplay use b.terrain.find(upper-chain); current descriptor lives in HonroQuestTargets.records and objective actor. Corrected only tests; initial normal source failed R12 then resumed saved R12, no fresh replay."
+  },
+  "routeFixtureLogs": {
+    "settledShortcut": "PASS route settled-inner-east-shortcut archer settled cost=1323.7 jumps=0 damage=0\nPASS initial-sound-window-closed settled-inner-east-shortcut archer initial cost=82.3 jumps=0 damage=0\nStage18 isolated traversal: 2 cases passed.\n",
+    "mageEntry": "PASS route entry-suppression mage initial cost=2723.9 jumps=1 damage=0\nStage18 isolated traversal: 1 cases passed.\n"
+  },
+  "limits": [
+    "No normal keeper/final-local-clear/outro/reward/19 execution.",
+    "One input policy, interrupted and continued only for target adapter correction; no policy optimization/fresh rerun.",
+    "R29 start snapshot is authoritative; unpreserved partial R29 activity excluded.",
+    "Exact busy function unprofiled; read-only detour rejection and ordinary defend probe are separate evidence.",
+    "No build/type/full30/global verify/new art/next chapter/master/Pages."
+  ]
+}
