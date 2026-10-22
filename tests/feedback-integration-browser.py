@@ -29,7 +29,12 @@ with sync_playwright() as pw,serve_game() as base:
    geom=p.evaluate('''()=>{const s=x=>{const r=document.querySelector(x).getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height}};return{head:s('.journey-heading'),foot:s('.journey-detail'),map:s('.journey-map-viewport'),screen:{w:innerWidth,h:innerHeight}}}''')
    check(f'{w} act{stage//10} map area and footer fit',geom['head']['h']<=60 and geom['foot']['h']<=100 and geom['map']['h']>=h-160,geom)
    check(f'{w} act{stage//10} curved progress routes',p.locator('.journey-progress path[data-from]').count()==9 and p.locator('.journey-progress path[data-from]').evaluate_all('xs=>xs.every(x=>/[CS]/.test(x.getAttribute("d")))'))
-   p.locator('.journey-records>summary').click();report.click();p.locator('.report-close').click();check(f'{w} historical report closes to same journal',p.evaluate('(stage)=>HonroApp.screen==="journey"&&(Number(HonroApp.journeySelection)===stage||(stage===30&&HonroApp.journeySelection==="end"))',stage))
+   p.locator('.journey-records>summary').click()
+   if stage==10:
+    controls=p.locator('.journey-record-menu button').evaluate_all('xs=>xs.map(x=>{const r=x.getBoundingClientRect();return{w:r.width,h:r.height}})')
+    check(f'{w} record actions visible and touch accessible',report.is_visible() and replay.is_visible() and all(min(x.values())>=44 for x in controls),controls);shot(p,f'focus2-record-menu-{w}x{h}')
+    p.keyboard.press('Escape');check(f'{w} Escape closes records and restores summary focus',p.locator('.journey-records').get_attribute('open') is None and p.locator('.journey-records>summary').evaluate('e=>e===document.activeElement'));p.locator('.journey-records>summary').click()
+   report.click();p.locator('.report-close').click();check(f'{w} historical report closes to same journal',p.evaluate('(stage)=>HonroApp.screen==="journey"&&(Number(HonroApp.journeySelection)===stage||(stage===30&&HonroApp.journeySelection==="end"))',stage))
    if stage==10:
     p.evaluate('HonroRestJourney.fitBook(HonroApp)');shot(p,f'focus2-map-fit-{w}x{h}')
     p.evaluate('''()=>{const a=HonroApp,v=document.querySelector('.journey-map-scroll').getBoundingClientRect();HonroRestJourney.zoomBook(a,1.35,v.x+v.width/2,v.y+v.height/2);HonroRestJourney.revealBook(a);}''');shot(p,f'focus2-map-zoom-{w}x{h}')
@@ -44,7 +49,7 @@ with sync_playwright() as pw,serve_game() as base:
    restored=p.evaluate('''()=>{const a=HonroApp,v=document.querySelector('.journey-map-scroll');return{act:a.journeyAct,selection:a.journeySelection,zoom:a.journeyZoom,left:v.scrollLeft,top:v.scrollTop,same:v===integratedMap,calls:presentationCalls}}''')
    check(f'{w} act{stage//10} gallery never settles and preserves full profile/save',before==p.evaluate('JSON.stringify(HonroApp.profile)') and storage==p.evaluate(f'localStorage.getItem("{KEY}")') and restored['calls']=={'finish':0,'complete':0},restored)
    check(f'{w} act{stage//10} original selected view and DOM restored',restored['same'] and all(restored[k]==view[k] for k in view),{'before':view,'after':restored})
-   p.evaluate('HonroClearReport.finish=restoreReportFinish;HonroProgression.complete=restoreGrowthComplete')
+   p.evaluate('()=>{HonroClearReport.finish=restoreReportFinish;HonroProgression.complete=restoreGrowthComplete;}')
   # Separate holistic view after both auxiliary actions and every act return.
   shot(p,f'holistic-journal-return-{w}x{h}')
  check('no Chromium page exceptions',not errors,errors);version=b.version;b.close()
