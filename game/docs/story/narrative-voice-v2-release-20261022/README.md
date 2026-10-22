@@ -1,51 +1,65 @@
-# 대사 원칙 v2 · 부모 원고 통합 — 2026-10-22
+# 대사 v2 통합 · 초기 필수 데이터 보완 — 2026-10-22
 
-부모 검토용 `integration/narrative-voice-v2-release-20261022`다. master/Pages는 변경하지 않았다. 초상화·13장 미술 작업은 포함하지 않았다.
+부모 검토용 `integration/narrative-voice-v2-release-20261022`다. master/Pages는 직접 변경하지 않았다. **초기 전송량 증가를 18.2%→5.2%로 줄였으며, 잔여 증가를 숨기거나 완전히 제거했다고 보고하지 않는다.**
 
-## 정확한 코드·생성물
+## 정확한 소스와 빌드
 
-- 기준 master: `934fcabd74767d662aee3830585ba807234934cc`.
-- 검토 입력: `caaa25e204a44a122cbf9e3d565cdfb9ab8cc48f`. 부모 원고/연결은 ce9028d1, 실제 10장 안전 퇴장 보완은 caaa25e2 기록을 따른다.
-- 최종 코드·정상 재빌드 HTML/web/도감·대표 사진: **`2633e2b45fc48ed105d4ed8ae34263935d5cd0f7`**. 검사는 merge 진행 중 통합 작업 트리에서 수행했고 검증된 바이트를 이 커밋에 저장했다. 이후 변경은 문서뿐이다.
-- `narrative-current.json` SHA256: `2a6e97153c37b3f6e6be5e10417b8344ec3899d280ec390d5082e80464bed2bd`. 입력 브랜치와 byte 단위로 같다. 새 대사를 창작하거나 다시 쓰지 않았다.
-- `web/manifest.json` SHA256: `035f6cd7900aefdfab313931c5b12d7c9f7091a410756cfccbb05c1f3d064bdf`.
-- Game HTML SHA256: `0047365b7706a9be3aead39244df8a2f92699a8b7e2824001d67ea921007e56c`.
-- Workshop HTML SHA256: `40ff9ef9d6f516d3c99028e459c91b65065d1416d3f699705fe5b4f8b985c257`.
+- 검토 입력 `caaa25e204a44a122cbf9e3d565cdfb9ab8cc48f`, 대사 통합/초기 증가 확인 `2633e2b4`, 배포 데이터 보완 `aabab09d`.
+- 승인된 최신 master13 `c5b51319ef887943726434d84db596f07254bbd3`를 보존한 최종 **코드·생성물 `aa76d27cf6587a2e70091777699505ba9ffc0a38`**. 생성 HTML/web/도감은 충돌한 어느 쪽을 복사하지 않고 통합 소스에서 정상 재빌드했다. 이후 변경은 문서뿐이다.
+- 현재 원고 SHA256 `2a6e97153c37b3f6e6be5e10417b8344ec3899d280ec390d5082e80464bed2bd`. current/compat/stage-contracts 원본 JSON은 부모 입력과 byte 단위 일치한다. 원고를 새로 쓰거나 호환 자료를 삭제하지 않았다.
+- 최종 manifest SHA256 `01a7af2997a7e9674dfb59095b091995b71ba69d7d68174866f12144577f5256`.
+- Game HTML SHA256 `19bcae30149920c6f373c027b268a2c222da458883a5b3d4893657f952f8c07e`.
+- Workshop HTML SHA256 `6f1f40a04318c0fc53ecb3508599cd03379c97904d6fef3b3ce29cb5f6d3bbe9`.
 
-현재 원고는 narrative-current 단일 원천, 옛 저장은 narrative-compat-v1/V0/split-v1/waterworks-v2의 명시 경계다. 제거한 current contentFor 래퍼 및 act2-drama/act2-plan 모듈은 파일/공통 빌드 목록에 재유입되지 않았다. 필요한 Act2Plan.forStage API와 옛 resolver/저장 snapshot은 보존했다. 생성물은 이전 결과를 채택하지 않고 공통 build와 도감 빌더로 다시 생성했다.
+검사는 merge 중 작업 트리에서 실행했고 보고서의 manifest와 위 커밋의 실제 파일 hash가 일치한다. 기존 부모 원고/안전 퇴장 인계는 [caaa25e2 당시 보고서](https://github.com/sys8994/honro/blob/caaa25e2/game/docs/story/voice-v2-editorial/INTEGRATION_REPORT.md)와 구분한다.
 
-## 통과한 검사
+## 작은 보완을 선택한 이유와 범위
 
-- build, 타입 검사, web-split: 356개 웹 자산 hash/byte, 30장·851 library 재조립, native/embedded 진입·저장 보호·Workshop 문서 연결.
-- narrative-catalogue-parity: 30개 비서사 기계 계약·기술 guide/goal 불변, 40개 V0/revision1/stored/split-v1/waterworks-v2 선택과 원본 저장 불변.
-- narrative-editorial-v2: 부모 원고 190개 장면/값 그룹, 30장 effective snapshot·도입·요약, 선택 대화·문서/이름 공개/목격 조건, 6개 A/B 경로, Workshop 원문 경계.
-- narrative-integration-boundaries, narrative-catalogue-save: Act2 wave API/미개봉 옛 staging, 현행/구 저장의 원문·cursor·HP/MP·쿨다운·quest marker와 prologue v7 경계.
-- **narrative-row-metadata**: 30장 111개 신규 진입 행의 row ID, 문구를 빈 fixture로 바꿔도 연출/카메라 결정 동일, 바인딩 전후 전투·퀘스트·자원 불변. 생산 원고는 변경하지 않는다.
-- act3-void-runtime 및 stage-clear-report-data/app/carry: 공허 상태·입력/저장/안전 복귀, 정산 데이터/실제 App lifecycle·이월 경계.
-- 실제 Chromium narrative-voice-browser: 390×844/1280×900의 18개 원고/메타데이터/UI 확인, 27장 5컷/긴 넷째 줄과 배우 영역 겹침0·skip 뒤 3줄 복귀. 페이지 오류0.
-- 실제 **10장 safe outro 390×844**: 정상 finale 동맹 전환 후 여섯 방어 라운드 완료 상태만 fixture로 설정, 실제 supported exit→withdrawal→frame→won/worldOutro2. 지형 위 네 명·부모 원고16줄·안전 카메라 확인, 마지막 cursor15 Continue/전투 동결, ending→rest→실제 report 버튼과 정산1회 보존. 앞선 여섯 라운드를 플레이한 검사가 아니다.
-- act-ending-replay-browser `--mode completion`: 10/20/30 완료·반복 fixture에서 엔딩 lifecycle·보고서/방문·프로필/저장 경계 통과.
+`story-content-v1`은 story 도입·퇴장·이벤트를 시작 시 const로 잡고, objective/canon/18장/연출 모듈도 compat 정의를 시작 시 동기 참조한다. content/base와 native/map author 역시 동기 경계를 사용한다. Continue/import에서만 전체 compat를 불러오게 하려면 이 초기 의존과 API 경계들을 함께 바꿔야 하므로 이번 작은 보완에서는 그렇게 하지 않았다.
 
-명령은 위 이름의 `node tests/*.mjs`, `npm --prefix game run typecheck`, `npm run build`, `node tools/character-catalog/build.mjs`, `python tests/narrative-safe-outro-browser.py`, `python tests/narrative-voice-browser.py`, `python tests/act-ending-replay-browser.py --mode completion --out _local/reports/narrative-voice-v2-integration/act-ending`, `node tests/web-split.mjs`다. 상세 로그·JSON은 `_local/reports/narrative-voice-v2-integration/`에 보관한다. 부모 입력 브랜치의 기존 보고서/증거와 이번 실행을 구분한다.
+대신 배포용 네 JSON(waterworks-v2/current/compat/stage-contracts)만 **같은 하위 객체·문자열을 참조하는 JSON pool 한 파일**로 만든다. 표준 원본은 그대로다. 브라우저는 이미 필수였던 waterworks 데이터 경계에서 복원하고 기존 네 global에 일반 JSON 객체를 넣는다. 새 동기 resolver API를 비동기로 바꾸지 않았고, 추가 request barrier나 dependency/gzip 라이브러리를 도입하지 않았다. 동일 데이터의 fetch cache와 원래 asset hydration도 유지한다.
 
-## 남은 검사 실패와 시작 전송량 증가
+`shared/json-pool.mjs`는 build용 encoder/복원기를 정의하며 복원 함수만 기존 web-loader에 포함한다. **복원 때 객체를 occurrence마다 새로 만들어** 독립적이던 원래 JSON 객체에 alias가 생기지 않는다. current/legacy 전체 deep equality, 음수/0/boolean/null/배열/리터럴 형식/잘못된 순환 참조와 객체 독립성을 검사했다. 실제 배포 loader로 복원한 네 global도 원본 JSON과 모두 같다. 최종 배포 packet은 **397,598B**다.
 
-**전체 검사가 모두 통과한 것은 아니다.** 기존 `tests/story-direction.mjs`는 첫 assertion에서 `1/entry/설오/접힌 쪽지`를 찾으며 실패했다. 이 규칙은 이제 compat에 보존된 옛 문구이고 부모의 새 1장 원문에는 없다. 해당 파일은 삭제하거나 억지로 통과시키지 않았으며 뒤의 case는 이 실행에서 미실행이다. 통합 production 소스와 해당 검사 파일은 검토 입력 caaa25e2 그대로다. 위 신규 row metadata 검사는 현재 원고의 연출·카메라/퀘스트 분리를 별도로 확인했다.
+## 같은 cold 시작의 요청·바이트
 
-캐시를 끈 새 Chromium context, 같은 로컬 **비압축 HTTP**, 타이틀 ready+400ms·사용자 입력 전의 시작 자료를 기준 master와 비교했다. 오디오/이미지는 아래 JS/JSON 합계에서 제외한다.
+새 Chromium context/캐시 disabled, 로컬 비압축 HTTP, 타이틀 ready+400ms·입력 전의 JS/JSON만 비교했다. 원래 master934와 최신 master-c5는 이 시작 조건에서 동일한 값이었다. c5 baseline은 해당 커밋의 정상 생성물을 별도 정적 root에 그대로 펼쳐 사용했으며 새 Codex 세션을 만들지 않았다.
 
-| 시작 자료 | master934 | 통합 |
-|---|---:|---:|
-| JS/JSON 요청 | 73 | 78 |
-| encoded body bytes | 4,185,192 | 4,946,860 |
-| transfer bytes | 4,207,092 | 4,970,260 |
+| 시작 JS/JSON | master-c5 | 첫 서사 통합 | 최종 pool 통합 |
+|---|---:|---:|---:|
+| 요청 수 | 73 | 78 | **72** |
+| encoded body bytes | 4,185,192 | 4,946,860 | **4,402,944** |
+| transfer bytes | 4,207,092 | 4,970,260 | **4,424,544** |
 
-**동일 URL 중복 요청은 0개지만 초기 body 전송량은 +761,668B(+18.2%), 요청은 +5개 늘었다.** 새 필수 JSON은 current 194,823B·compat 709,143B·stage-contracts 30,578B이며 각각 한 번 요청한다. 세 자료는 초기 순차 데이터 barrier에서 await되고, 현재 계약과 legacy author/resolver가 사용한다. 따라서 이 refactor가 초기 필수 로딩을 줄였다고 주장하지 않는다. 승인된 호환 경계를 임의 삭제하거나 새로운 점진 로딩 설계를 추가하지 않고 이 증가를 부모의 발행 판단에 명시한다. 실제 Pages 압축 전송량/지연·동적 FPS를 측정한 결과는 아니다. 정확한 요청 목록은 master934-network.json/integrated-network.json이다.
+동일 URL 중복 요청은 0개다. 추가 요청은 없어졌고, 기존 증가분761,668B 중 **543,916B(71.4%)**를 제거했다. 그래도 기준 대비 **217,752B(+5.2%)**가 남는다. 서로 다른 현재/호환 원문까지 지우지 않고 동일 객체·문자열의 중복만 줄인 결과다. 완전한 title 지연 제거·실제 Pages 압축 전송량/지연·동적 FPS 개선을 측정했다고 주장하지 않는다. 더 큰 lazy 경계 재설계는 이번 범위에 포함하지 않는다.
 
-## 보존 항목과 대표 사진
+## 다시 통과한 검사
 
-renderer/party-rig/portraits/combat/HUD CSS·11장 승인 campaign/재질·BGM 7곡/채널·막 엔딩/보고서 lifecycle(act-endings.js, clear-report.js, clear-report-ui.js)은 기준 master와 byte 단위 일치한다. 엔딩 문구를 읽는 act-endings-content.js는 승인된 catalogue 연결로 변경됐다. main.js의 유일한 변경은 완료 요약의 catalogue 호출이며 HUD 무변화 캐시·paused dirty는 그대로다. occlusion 개선도 renderer 동일 해시로 보존했다.
+- `narrative-json-pool` 및 실제 `narrative-json-pool-browser`: 전체 원본 deep equality/객체 독립성, 실제 네 global 복원, **옛 12장 baked 저장을 실제 file input으로 import/Continue**해 원문·cursor·HP/MP·쿨다운·quest marker 보존.
+- `narrative-catalogue-parity`: 30 current 비서사 계약·guide/goal, **40 legacy** V0/revision1/stored/12·14 baked/25·27 split 및 물길 선택, 저장 원본 불변.
+- `narrative-editorial-v2`: 부모 원고190개 대조 그룹, 30 snapshot/도입/요약·문서/이름/목격 gates, 6개 실제 A/B 경로·Workshop 경계. `narrative-integration-boundaries`: Act2 API·구 staging.
+- `narrative-catalogue-save`: 현행/구 저장 모두 Continue **및 실제 App import handler** 후 원문·cursor·vitals/쿨다운·quest marker. `narrative-row-metadata`: 30장111행의 문구와 독립된 연출/카메라·전투/퀘스트/자원 불변.
+- **수정한 story-direction 9개 case 전부 통과**. 대응은 아래 표를 따른다. `act3-void-runtime`도 통과.
+- 실제 Chromium `narrative-safe-outro-browser`: 10장 정상 supported exit→withdrawal→won/worldOutro2, 지형 위4인/16줄·마지막 cursor15 Continue·동결·엔딩/쉼터/보고서 정산1회. 여섯 방어 라운드 완료 상태는 fixture다.
+- 실제 `narrative-voice-browser`: 좁은390×844/1280×900의18개 확인, 27장5컷/긴 줄·배우 겹침0·skip 후3줄 복귀. 페이지 오류0.
+- `stage13-vector-art`: 승인 shape4/Library4옵트인·충돌/퀘스트/다른29장 보존·재현/멱등·prepare 캐시/무효화. 검사의 main 보호에는 **승인된 catalogue 요약 한 줄만** 예외로 허용하고 나머지 바이트를 그대로 비교했다.
+- build·typecheck·도감 재생성·web-split: **350개 파일·30장·855 library**, native/웹 재조립·hash/byte·embedded 저장 보호/Workshop 연결. 초기 실패였던 옛 문구 검사를 현재 원고에 맞춰 바꿨으며 최종 선택 검사에 남은 실패는 없다.
 
-[2장 새 원고 · 좁은 화면](https://github.com/sys8994/honro/blob/2633e2b45fc48ed105d4ed8ae34263935d5cd0f7/review/narrative-voice-v2-release-20261022/stage2-name-390x844.jpg) · [10장 실제 안전 퇴장](https://github.com/sys8994/honro/blob/2633e2b45fc48ed105d4ed8ae34263935d5cd0f7/review/narrative-voice-v2-release-20261022/stage10-safe-outro-390x844.jpg) · [27장 공허](https://github.com/sys8994/honro/blob/2633e2b45fc48ed105d4ed8ae34263935d5cd0f7/review/narrative-voice-v2-release-20261022/stage27-void-390x844.jpg). 이번 통합으로 다시 촬영한 사진이며 10장/27장 JPG를 직접 열어 확인했다.
+| 기존 story-direction case | 현재 의미 있는 대응 |
+|---|---|
+| 1: 모든 옛 문구가 current에 존재 | current row ID·action shape/duration/target와 4/11/15장의 고정 의미 row ID 검증. 새 metadata111행 검사는 텍스트를 빈 fixture로 바꿔도 binding/자원 불변을 추가로 담당한다. |
+| 2: 30장 실제 연출 실행 | 그대로 유지. metadata 순수 binding 검사가 덮지 않는 실제 tick·완료·pose 정리·입력/기록을 확인한다. |
+| 3: 숨은 배우/입장 | actor boundary·한 번 reveal·정확한 current cast 입장 끝점·휘겸/춘례 좌표 유지. 옛 추가24px cue의3178을 무조건 기대하지 않고 현재 authored entrance를 검사한다. |
+| 4/5: 이동 겹침·저장·느린 이동 | 옛 한국어 검색만 `11.story:add0dc3ef3`으로 교체.22px/850ms 이동·history freeze·origin/cue 저장·다음 gesture 대기 assertion은 유지했다. |
+| 6: unread event와 outcome 합류 | `15.beats.groove:6fe593174c` row ID로 바꾸고 storyId·cue index·inspect 동작을 그대로 검증한다. |
+| 7/8/9: skip, 막힌/죽은/없는 배우, old/custom, first spirit | 기존 입력/배우/자원/실제 적 포커스/스킬 비시전 검사를 그대로 유지했다. assertion을 단순 삭제하지 않았다. |
 
-전체 정상 전투 완주·모든 대사 화면 순회·실기기 성능·Pages 검수는 수행하지 않았다. master 반영과 Pages 확인은 부모가 별도로 수행한다.
+상세 결과는 `_local/reports/narrative-voice-v2-integration/`의 `final-*` 로그/JSON과 기존 network baseline 파일에만 둔다. 명령은 위 이름의 `node tests/*.mjs`, 타입/build/web-split 및 세 narrative browser 스크립트다. 원본 전체 계측/정상 전투 완주/실기기 성능 검사를 새로 수행하지 않았다.
+
+## 보존과 다음 합류 경계
+
+13장 campaign/stoneFinish 저작 소스는 **c5b51319와 byte 단위 일치**하며 shared/build의 마지막 finish 재적용을 보존했다. chapter13의 현재 원문은 narrative-current를 유지한다. renderer/party-rig/portraits/HUD 캐시·paused dirty/occlusion·BGM7곡·11장 승인 미술을 덮지 않았고 다른 초상화 작업은 미포함이다.
+
+별도 진행 중인 `fix/stage11-quest-simplification-20261022`는 아직 합치지 않았다. 이후 합류할 때 fresh stage-contracts뿐 아니라 compat/진행 중 Continue에도11장 새 기계 조건이 적용되는지 함께 확인해야 한다. 이 작업에서 임의의 새11장 원고나 단순화 코드를 만들지 않았다.
+
+대표 JPG: [새 대사](https://github.com/sys8994/honro/blob/aa76d27cf6587a2e70091777699505ba9ffc0a38/review/narrative-voice-v2-release-20261022/stage2-name-390x844.jpg) · [10장 실제 안전 퇴장](https://github.com/sys8994/honro/blob/aa76d27cf6587a2e70091777699505ba9ffc0a38/review/narrative-voice-v2-release-20261022/stage10-safe-outro-390x844.jpg) · [27장 공허](https://github.com/sys8994/honro/blob/aa76d27cf6587a2e70091777699505ba9ffc0a38/review/narrative-voice-v2-release-20261022/stage27-void-390x844.jpg). 최종 pool/13장 통합 후 다시 촬영한 선택 화면이다. master 반영과 Pages 확인은 부모가 별도로 수행한다.
