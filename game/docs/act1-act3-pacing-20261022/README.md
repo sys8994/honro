@@ -98,3 +98,7 @@ python tools/testing/act1-act3-pacing-capture.py 8 22 23
 Pages 설정 및 Actions 목록의 CLI 읽기는 HTTP `Forbidden`으로 거절됐다. 해당 요청은 반복하지 않았다. master 쓰기와 배포 실행의 상태는 이후 기록에서 별도로 구분한다.
 
 통합 최종 런타임/검증 소스는 **`5ceba2c114ed1851abcfe7aeb25d233be5376d39`**다. 이 커밋에서23장만 별도 Chromium 실제 화면을 캡처해 직접 확인했다. [대표 JPG](evidence/integrated/23-final-ramp-progress.jpg)와 [브라우저 입력/소스 기록](evidence/integrated/final-browser.json): 실제 ArrowRight20프레임에서 동행3220→3333.294, 이동1640→1513.333, NPC2640→2717.517, 오류0. 기존 상층 선택로·연속 경사·서로 다른 사격점·접지를 보존했다. 사진은1MB 미만이며 초기 위치/이전 단계 준비와 실제 입력 구간을 구분한다. 이후 문서·증거 커밋은 런타임을 바꾸지 않는다.
+
+master는 원격이 여전히 지정 기준임을 확인한 뒤 `e7fbff647c387f092f51215e9d867d664906d9bd`→**`ee878017147d391aa126916efa199bfbd4544a46`**로 비강제 fast-forward push했고 원격 조회로 성공을 확인했다. 통합 브랜치도 같은 커밋이다. 이 항목을 덧붙이는 후속 커밋은 문서만 바꾸며 실행 소스는5ceba2c1 그대로다.
+
+**배포 검증 차단:** `gh api repos/sys8994/honro/pages`와 `gh run list --repo sys8994/honro`는 HTTP `Forbidden`, 공개 `https://sys8994.github.io/honro/web/manifest.json` 읽기는 `Tunnel connection failed: 403 Forbidden`으로 거절됐다. 연결된 GitHub의 commit workflow 도구는 이 SHA에 빈 목록만 반환했고, 해당 도구는 PR 실행만 조회하는 제한이 있어 Pages run 근거로 삼지 않았다. 이 조회 요청들은 반복/우회하지 않았다. master push는 성공했지만 Pages 자동 실행의 시작·run 번호·결과 및 공개 파일 갱신은 **미확인**이다. 공개 브라우저 검수는 부모에게 인계하며 이 환경에서는 배포 성공을 주장하지 않는다. 별도의 배포 재실행/설정 변경은 보내지 않았다. 로컬 빌드·회귀·실제23장 픽셀 검수는 통과했고 남은 차단은 배포 읽기 확인뿐이다.
