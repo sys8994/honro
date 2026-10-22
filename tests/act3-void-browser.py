@@ -10,7 +10,7 @@ from browser_support import ROOT, launch
 from story_browser_server import story_base_url
 
 REVIEW = os.environ.get('HONRO_VOID_REVIEW', 'final')
-OUT = ROOT / 'game/docs/act3-void-dialogue-pacing/evidence' / REVIEW
+OUT = ROOT / os.environ.get('HONRO_VOID_OUT', 'game/docs/act3-void-dialogue-pacing/evidence') / REVIEW
 OUT.mkdir(parents=True, exist_ok=True)
 BASE = story_base_url()
 SETUP = r'''async () => {

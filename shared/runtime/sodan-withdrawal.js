@@ -16,6 +16,9 @@ function tick(app){const e=app.engine,b=e.b;if(!ready(b)||['won','lost'].include
  if(!scout)return;s.phase='withdrawing';s.scout=scout.id;s.party=[...e.heroesAlive().map(u=>u.name),sodan.name];s.elapsed=0;app.cancelInput();save(app);
 }
 function complete(b){return !!memory(b)&&memory(b).phase==='safe';}
+// Presentation only: the completed chapter's ordinary world-map conversation.
+// Derive this from the live dialogue so finish/skip/reload never leave a flag behind.
+function worldOutroDialogue(app){const b=app?.engine?.b,d=app?.dialogue;return !!(active(b)&&b.phase==='won'&&memory(b)?.worldOutro===2&&app.screen==='battle'&&d?.after==='outcome'&&d.lines?.[d.index]?.[2]?.camera?.id==='10:safe-exit');}
 function outro(b,lines){if(!active(b)||b.honroNarrativeRevision!==1||b.phase!=='won')return lines;
  // In-flight campaigns own a frozen narrative snapshot. Project only the five
  // approved old phrases into the safe outro; keep its cursor, metadata and all
@@ -54,5 +57,5 @@ function frame(app,dt){const b=app.engine?.b,s=b&&active(b)&&memory(b);if(!s||s.
  // remaining enemies and their HP are preserved in the terminal snapshot.
  s.phase='safe';node.remove();app.checkMission(app.engine);prepareWorldOutro(app);save(app);app.outcome();return true;
 }
-G.HonroSodanWithdrawal={active,ready,exit,tick,frame,complete,outro,prepareWorldOutro};
+G.HonroSodanWithdrawal={active,ready,exit,tick,frame,complete,outro,prepareWorldOutro,worldOutroDialogue};
 })(globalThis);

@@ -188,6 +188,7 @@
         }
         render(e, dt = 0, selected = '', power = .6, charging = false, effectDt = dt, paused = false) {
             const { w, h, d } = this.size(), c = this.ctx, b = e.b;
+            const quietOutro=G.HonroSodanWithdrawal?.worldOutroDialogue(this.storyFrame?.app)||false;
             this.battle=b;
             this.settleHitFeedback?.(e,paused||this.storyFrozen);
             const resized=this._cameraWidth!==undefined&&(this._cameraWidth!==w||this._cameraHeight!==h);
@@ -261,7 +262,7 @@
                 this._landmarkLayer(c,visibleLandmarks,'front');
                 this.terrainReadability?.(c,b,view);
             }
-            this.objectDamage?.(c,b,w,h);
+            if(!quietOutro)this.objectDamage?.(c,b,w,h);
             // Animated water lives outside the world raster cache; its collision and
             // conduction geometry remain in the canonical static map.
             this.liveWater?.(c,b);
@@ -270,7 +271,7 @@
             // Grade scenery before actors, targeting guides and labels so deeper
             // nights retain the same readable combat colors in every entry point.
             if(this.environmentTone){c.save();c.setTransform(d,0,0,d,0,0);this.environmentTone(c,w,h,b);c.restore();}
-            for (const a of b.honroMarkers || []) {
+            for (const a of quietOutro?[]:b.honroMarkers || []) {
                 if (a.collected||a.type==='sector'||a.type?.startsWith('act2')||G.HonroAct3?.active(b)&&(a.type?.startsWith('act3')||a.action==='act3'||a.type==='exit'))
                     continue;
                 if(G.HonroAct1StoryArt?.marker(this,a))continue;
@@ -291,6 +292,7 @@
                     glow(c, a.x, a.y - 65, 50, '#b7c498', .3);
                 }
             }
+            if(!quietOutro){
             for (const f of b.fields || []) {
                 if (f.dead)
                     continue;
@@ -309,12 +311,13 @@
             this.eaterReleaseFx=(this.eaterReleaseFx||[]).filter(f=>this.time-f.start<.7);
             for(const f of this.eaterReleaseFx){if(f.text==='rupture')this.eaterRupture(c,f);const p=Math.max(0,(this.time-f.start)/.7),r=Math.min(260,f.size||160);c.save();c.globalAlpha=(1-p)*.6;c.strokeStyle='#b3bfa9';c.lineWidth=(3-2*p)/this.scale;c.beginPath();c.ellipse(f.x,f.y,r*p,r*p*.62,0,0,Math.PI*2);c.stroke();for(let i=0;i<9;i++){const a=i*2.399,rr=r*(.15+.8*p);c.beginPath();c.moveTo(f.x+Math.cos(a)*rr*.6,f.y+Math.sin(a)*rr*.55);c.quadraticCurveTo(f.x+Math.cos(a+.15)*rr,f.y+Math.sin(a+.15)*rr*.6,f.x+Math.cos(a)*rr,f.y+Math.sin(a)*rr*.62);c.stroke();}c.restore();}
             G.HONRO_CORE.drawStakes(c,e,this.time,this.scale,selected);
+            }
             G.HonroAct1StoryArt?.draw(this,e);
             G.HonroAct23StoryArt?.draw(this,e);
             G.HonroNarrativeArt?.draw(this,e);
-            if(b.honroStage===10&&b.honroState?.sodanCoop)this.finaleRitual(c,b);
+            if(!quietOutro&&b.honroStage===10&&b.honroState?.sodanCoop)this.finaleRitual(c,b);
             // Persisted residual charms are real battle objects, not impact FX.
-            for (const trap of b.occultTraps || []) {
+            for (const trap of quietOutro?[]:b.occultTraps || []) {
                 if(trap.expires<b.round)continue;
                 c.save();c.translate(trap.x,trap.y);
                 const size=Math.max(1,.65/this.scale);c.scale(size,size);
@@ -324,33 +327,37 @@
                 c.scale(1/size,1/size);c.font=`${12/this.scale}px serif`;c.textAlign='center';c.fillStyle='#dfcaef';
                 c.fillText(`잔부 ${trap.expires-b.round+1}턴`,0,-30*size);c.restore();
             }
-            for (const z of b.zones || []) {
+            for (const z of quietOutro?[]:b.zones || []) {
                 if (z.dead)
                     continue;
                 this.field(c, z.x, z.y, z.radius || z.r || 80, z.kind || 'flame');
             }
-            if (!this.storyFrozen && u && b.phase === 'aim' && !u.summoned && selected && e.canAct?.()) {
+            if (!quietOutro && !this.storyFrozen && u && b.phase === 'aim' && !u.summoned && selected && e.canAct?.()) {
                 try {
                     const repeat=u.cls==='archer'&&((u.ranks?.AP01||0)>0);
                     if(this.arcFx){this.arcFx.time=this.time;this.arcFx.scale=this.scale;this.arcFx.predictionGuide(c,e,u,selected,power,charging,repeat);}
                 } catch { }
             }
-            if(!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);
+            if(!quietOutro&&!this.storyFrozen&&b.phase==='flight')G.HONRO_CORE.drawTurnGuide(c,e,this.scale,this.turnTarget);
             const visibleUnits=[];
             for (const v of b.units || []) {
                 if (v.dead || v.eaterCapturedBy || v.x < this.x - w / (2*this.scale) - Math.max(180,v.h*2) || v.x > this.x + w / (2*this.scale) + Math.max(180,v.h*2) || v.y < this.y-h/(2*this.scale)-Math.max(180,v.h*2) || v.y-v.h*2 > this.y+h/(2*this.scale)+180)
                     continue;
                 visibleUnits.push(v);
-                this.unit(c, v, !this.skillPreview && v.id === b.active, charging && v.id === b.active ? power : 0);
-                if(!G.HonroAct2||G.HonroAct2.visible(b,v))G.HonroCombatStatus.draw(c,b,v,this.time,this.scale,!this.skillPreview&&v.id===b.active);
+                // Keep the same world bodies, without combat bars/arrows, hit
+                // flashes or the bound character's quest label over their faces.
+                if(quietOutro)this.unitBody(c,G.HonroNarrativeRevision?.bodyBound(b,v)?{...v,side:2}:v,0);
+                else this.unit(c, v, !this.skillPreview && v.id === b.active, charging && v.id === b.active ? power : 0);
+                if(!quietOutro&&(!G.HonroAct2||G.HonroAct2.visible(b,v)))G.HonroCombatStatus.draw(c,b,v,this.time,this.scale,!this.skillPreview&&v.id===b.active);
             }
             G.HonroAct1StoryArt?.cartFront(this,e);
-            if(!this.skillPreview){this.occludedUnitSilhouettes(c,b,visibleUnits,charging?power:0);this.tacticalUnitMarkers(c,b,visibleUnits);}
-            G.HonroStoryFraming?.highlight(this,e);
+            if(!quietOutro&&!this.skillPreview){this.occludedUnitSilhouettes(c,b,visibleUnits,charging?power:0);this.tacticalUnitMarkers(c,b,visibleUnits);}
+            if(!quietOutro){G.HonroStoryFraming?.highlight(this,e);
             this.terrainHealth(c,b,w,h);
-            G.HONRO_CORE.drawCombatPassives(c,e,this.time);
+            G.HONRO_CORE.drawCombatPassives(c,e,this.time);}
             this.reviewSummary=reviewing?Object.entries(b.reviewDamage||{}).filter(([id,damage])=>damage>0&&e.unit(id)&&(!G.HonroAct2||G.HonroAct2.visible(b,e.unit(id)))).map(([id,damage])=>({attacker:u?.name||'',target:e.unit(id),damage:Math.round(damage)})):[];
             if(this.arcFx)this.arcFx.time=this.time;
+            if(!quietOutro){
             for (const q of b.projectiles || []) if (!q.dead) {
                 if(this.partyVisual?.projectile?.(c,q,e))continue;
                 if(this.arcFx){ if(q.body)this.arcFx.bodyTrail(c,q); else this.arcFx.projectile(c,q); }
@@ -360,9 +367,10 @@
                 for (const fx of this.effects) { fx.life += effectDt; this.effect(c, fx); }
                 this.effects = this.effects.filter(x => x.life < (x.name === 'text' ? 1.6 : .9));
             }
+            }
             c.restore();
-            this.chargeFx(e,power,charging);
-            G.HonroObjectives?.draw(this,e);
+            if(!quietOutro){this.chargeFx(e,power,charging);
+            G.HonroObjectives?.draw(this,e);}
         }
         weatherParticles(c,b,w,h,dt){
             // L5 screen particles share the actual gameplay wind vector.

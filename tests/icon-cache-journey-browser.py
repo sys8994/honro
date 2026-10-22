@@ -7,7 +7,7 @@ from threading import Thread
 from functools import partial
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch
-OUT=ROOT/'game/docs/icon-cache-journey-navigation/evidence';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/os.environ.get('HONRO_ICON_OUT','game/docs/icon-cache-journey-navigation/evidence');OUT.mkdir(parents=True,exist_ok=True)
 @contextmanager
 def server(root):
  class Quiet(SimpleHTTPRequestHandler):
@@ -21,7 +21,7 @@ WATCH="""()=>{window.identity=[...document.querySelectorAll('#combat-skills>butt
 rows=[]
 with sync_playwright() as pw:
  b=launch(pw)
- for label,root in [('baseline',Path('/tmp/honro-icon-baseline')),('fixed',ROOT)]:
+ for label,root in [('baseline',Path(os.environ.get('HONRO_ICON_BASELINE','/tmp/honro-icon-baseline'))),('fixed',ROOT)]:
   with server(root) as base:
    p=b.new_page(viewport={'width':390,'height':844},is_mobile=True,has_touch=True);p.add_init_script(INIT);errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
    p.goto(base+'/HONRO.html');p.wait_for_function('window.HonroApp');p.wait_for_timeout(200)

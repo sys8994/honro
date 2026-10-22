@@ -11,6 +11,16 @@ KEY='honro-first-act-profile-1'
 CHECKPOINT=Path('game/docs/stage-review/act-endings/evidence/normal-21-escape-save.json')
 errors=[];rows=[]
 COMBAT="""()=>{const b=HonroApp.engine.b;return JSON.stringify(Object.fromEntries(['units','round','side','time','projectiles','items','teamEnds'].map(k=>[k,b[k]])))}"""
+PRESENTATION="""()=>{const a=HonroApp,b=a.engine.b,s=a.scene,calls={},undo=[],bodies=[];
+const watch=(o,k)=>{if(!o?.[k])return;const f=o[k];calls[k]=0;o[k]=function(...xs){calls[k]++;return f.apply(this,xs)};undo.push(()=>o[k]=f)};
+for(const k of ['finaleRitual','activeMarker','tacticalUnitMarkers','terrainHealth','chargeFx','projectile'])watch(s,k);
+for(const k of ['projectile','bodyTrail','predictionGuide','worldFx'])watch(s.arcFx,k);
+watch(HonroObjectives,'draw');watch(HonroCombatStatus,'draw');
+const body=s.unitBody;s.unitBody=function(c,u,...xs){bodies.push(u.id);return body.call(this,c,u,...xs)};
+const before=JSON.stringify(b);try{s.render(a.engine,0,a.selected,a.power,false,0,true);}finally{s.unitBody=body;undo.reverse().forEach(f=>f());}
+const variants=[{screen:'rest'},{dialogue:null},{dialogue:{...a.dialogue,after:'entry'}},{dialogue:{...a.dialogue,lines:[['안내','다른 장면',{camera:{id:'other'}}]],index:0}}].map(v=>!HonroSodanWithdrawal.worldOutroDialogue({...a,...v}));
+for(const delta of [{honroStage:9},{honroStage:20},{honroStage:27},{honroCustom:true},{phase:'aim'},{honroState:{...b.honroState,sodanWithdrawal:{phase:'safe',worldOutro:1}}}])variants.push(!HonroSodanWithdrawal.worldOutroDialogue({...a,engine:{b:{...b,...delta}}}));
+return {quiet:HonroSodanWithdrawal.worldOutroDialogue(a),unchanged:before===JSON.stringify(b),calls,bodies,variants,hud:[...document.querySelectorAll('.battle-head,.minimap-dock,.allied-roster,.battle-bottom')].map(n=>getComputedStyle(n).visibility),controls:[...document.querySelectorAll('[data-action^="dialogue-"]')].map(n=>({action:n.dataset.action,visible:getComputedStyle(n).visibility}))};}"""
 def shot(page,name):
     page.screenshot(path=str(OUT/(name+'.jpg')),type='jpeg',quality=88)
 def ready(page):
@@ -34,6 +44,7 @@ with sync_playwright() as p:
             page.keyboard.press('Tab')
         assert page.evaluate('HonroApp.engine.active.cls')=='knight'
         start=page.evaluate('JSON.parse(JSON.stringify(HonroApp.engine.b))')
+        assert not page.evaluate('HonroSodanWithdrawal.worldOutroDialogue(HonroApp)')
         page.keyboard.down('d')
         try:page.wait_for_function('HonroApp.engine.b.honroState.sodanWithdrawal.phase!=="escape"',timeout=20000)
         finally:page.keyboard.up('d')
@@ -44,6 +55,12 @@ with sync_playwright() as p:
         assert page.evaluate('HonroApp.engine.b.phase==="won"&&HonroApp.engine.b.honroState.sodanWithdrawal.worldOutro===2')
         assert '이제 손을 놔도 돼요?' in page.locator('#story-line').inner_text()
         assert page.evaluate('HonroApp.dialogue.lines.length')==16
+        presentation=page.evaluate(PRESENTATION)
+        assert presentation['quiet'] and presentation['unchanged'] and all(presentation['variants']),presentation
+        assert not any(presentation['calls'].values()),presentation
+        assert all(v=='hidden' for v in presentation['hud']),presentation
+        assert all(v['visible']=='visible' for v in presentation['controls']),presentation
+        assert len(set(presentation['bodies']))>=4,presentation
         before=page.evaluate(COMBAT);page.wait_for_timeout(900);assert before==page.evaluate(COMBAT),'combat/time/enemies freeze during dialogue'
         result=page.evaluate('''()=>{const a=HonroApp,b=a.engine.b,r=a.scene.storyFrameReport,party=b.units.filter(u=>u.hp>0&&!u.dead&&(u.side===0&&!u.summoned||u.id==='boss'));return{phase:b.phase,round:b.round,party:party.map(u=>({id:u.id,x:u.x,y:u.y,ground:HonroWorld.top(b,u.x,u.y,b.honroMapAnchors.exit.support)})),enemies:b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp})),frame:r,lines:a.dialogue.lines.map(l=>l.slice(0,2))}}''')
         assert len(result['party'])==4
@@ -64,16 +81,21 @@ with sync_playwright() as p:
         page.reload();ready(page);page.evaluate('HonroApp.continue()')
         page.wait_for_function('!!HonroApp.dialogue');assert page.evaluate('HonroApp.dialogue.index')==1
         assert page.locator('#sodan-safe-backdrop').count()==0
+        page.evaluate('while(HonroApp.dialogue.index<8)HonroStory.next(HonroApp)')
+        page.wait_for_timeout(700);shot(page,f'map-outro-middle-{width}x{height}')
+        page.locator('[data-action="dialogue-prev"]').click();assert page.evaluate('HonroApp.dialogue.index')==7
+        page.locator('[data-action="dialogue-next"]').click();assert page.evaluate('HonroApp.dialogue.index')==8
         page.evaluate('while(HonroApp.dialogue.index<HonroApp.dialogue.lines.length-1)HonroStory.next(HonroApp)')
         page.wait_for_timeout(700);shot(page,f'map-outro-last-{width}x{height}')
         assert before==page.evaluate(COMBAT),'advancing/reloading dialogue never ticks combat'
         if width==390:page.locator('[data-action="dialogue-next"]').click()
         else:page.locator('[data-action="dialogue-skip"]').click()
         page.wait_for_selector('#act-ending')
+        assert page.locator('.world-outro-dialogue').count()==0
         assert page.evaluate('HonroApp.profile.cleared[10].visits')==1
         settled=page.evaluate('JSON.stringify(HonroApp.profile)')
         page.evaluate('HonroApp.outcome();HonroApp.outcome()');assert settled==page.evaluate('JSON.stringify(HonroApp.profile)')
-        rows.append({'viewport':[width,height],'input':'actual checkpoint + keyboard d to supported exit','startRound':start['round'],'dialogueResume':True,'freeze':True,'completion':'next' if width==390 else 'skip',**result})
+        rows.append({'viewport':[width,height],'input':'actual checkpoint + keyboard d to supported exit','startRound':start['round'],'dialogueResume':True,'freeze':True,'presentation':presentation,'completion':'next' if width==390 else 'skip',**result})
     assert not errors,errors
     browser.close()
 source={f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ['shared/runtime/main.js','shared/runtime/sodan-withdrawal.js','shared/runtime/story-framing.js','game/src/act-endings.css']}

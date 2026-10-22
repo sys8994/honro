@@ -73,3 +73,6 @@
 .evidence-list{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 24px}
 .evidence-list button{min-height:44px;text-align:left}
 .story-history.evidence-reader{padding:0;border:0;background:none;overflow:visible}
+
+/* Only chapter 10's completed world outro; dialogue controls stay visible. */
+.honro .battle.world-outro-dialogue :is(.battle-head,.minimap-dock,.allied-roster,.battle-bottom,.banter){visibility:hidden;pointer-events:none}
