@@ -1,0 +1,35 @@
+{
+  "executionSHA": "67dd496a5981c1dee47d0cb4d01573191ba68bb3",
+  "rows": [
+    {
+      "case": "fresh entry mobile current objective",
+      "text": "주민 주변의 적 1명을 처치하세요",
+      "steps": [
+        {
+          "id": "resident",
+          "kind": "rescue",
+          "label": "하부 피난처 주민에게 붙은 혼 분리"
+        },
+        {
+          "id": "trace",
+          "kind": "pacing-event",
+          "afterPacing": "resident",
+          "label": "구조한 자리에서 북쪽 단서 기록"
+        }
+      ]
+    },
+    {
+      "case": "round20 old resident dialogue1/2 Continue",
+      "cursorAndTextPreserved": true,
+      "visibleNextSkipRealTouch": true,
+      "noAdvanceWhileDialogue": true,
+      "completionRound": 20,
+      "traceOnce": true,
+      "rewardOnce": true,
+      "limits": "Prepared old quest/progress fixture; not the unseen actual user save."
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "scope": "Built UI: current rescue objective and round20 old resident dialogue save.\nCompatibility profiles are explicit state fixtures, not normal-play turn proof.\n"
+}

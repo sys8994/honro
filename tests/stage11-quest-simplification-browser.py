@@ -41,8 +41,8 @@ with sync_playwright() as pw:
     assert p.evaluate('HonroApp.engine.b.phase')=='aim';assert p.evaluate('HonroApp.dialogue.index')==0
     p.wait_for_function('HonroAuthoredFarArt.ready(11)',timeout=90000);p.evaluate('HonroApp.scene.render(HonroApp.engine,0,HonroApp.selected,.6,false,0)')
     shot(p,'round20-resident-dialogue-1of2-390x844')
-    p.keyboard.press('Enter');p.wait_for_function('HonroApp.dialogue?.index===1')
-    p.wait_for_timeout(180);p.keyboard.press('Enter');p.wait_for_function('!HonroApp.dialogue')
+    button=p.locator('[data-action="dialogue-next"]');box=button.bounding_box();assert box and box['height']>=40 and box['y']+box['height']<=844;p.touchscreen.tap(box['x']+box['width']/2,box['y']+box['height']/2);p.wait_for_function('HonroApp.dialogue?.index===1')
+    p.wait_for_timeout(180);button=p.locator('[data-action="dialogue-skip"]');box=button.bounding_box();assert box and box['height']>=40 and box['y']+box['height']<=844;p.touchscreen.tap(box['x']+box['width']/2,box['y']+box['height']/2);p.wait_for_function('!HonroApp.dialogue')
     p.evaluate('HonroAct2.tick(HonroApp,0)');assert p.evaluate('HonroApp.engine.b.phase')=='won';assert p.evaluate('HonroApp.engine.b.round')==20
     assert p.evaluate('HonroAct2.memory(HonroApp.engine.b).checkpoints.filter(c=>c.id==="trace").length')==1
     p.evaluate('HonroApp.outcome()')
@@ -53,7 +53,7 @@ with sync_playwright() as pw:
         else:p.evaluate('HonroApp.outcome()')
     assert p.evaluate('!!HonroApp.profile.cleared[11]')
     paid=p.evaluate('JSON.stringify(HonroApp.engine.b.heroes)');p.evaluate('HonroProgression.complete(HonroApp.engine.b)');assert p.evaluate('JSON.stringify(HonroApp.engine.b.heroes)')==paid
-    p.wait_for_timeout(250);shot(p,'round20-natural-result-390x844');rows.append({'case':'round20 old resident dialogue1/2 Continue','cursorAndTextPreserved':True,'noAdvanceWhileDialogue':True,'completionRound':20,'traceOnce':True,'rewardOnce':True,'limits':'Prepared old quest/progress fixture; not the unseen actual user save.'});ctx.close();browser.close()
+    p.wait_for_timeout(250);shot(p,'round20-natural-result-390x844');rows.append({'case':'round20 old resident dialogue1/2 Continue','cursorAndTextPreserved':True,'visibleNextSkipRealTouch':True,'noAdvanceWhileDialogue':True,'completionRound':20,'traceOnce':True,'rewardOnce':True,'limits':'Prepared old quest/progress fixture; not the unseen actual user save.'});ctx.close();browser.close()
 assert not errors and not http,(errors,http)
 (out/'summary.json').write_text(json.dumps({'executionSHA':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'rows':rows,'errors':errors,'httpFailures':http,'scope':__doc__},ensure_ascii=False,indent=2)+'\n')
 print('PASS real mobile rescue objective and round20 resident dialogue Continue/natural completion/reward once')

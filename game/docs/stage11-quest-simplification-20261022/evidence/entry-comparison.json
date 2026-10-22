@@ -1,0 +1,2142 @@
+{
+  "sameInitialActorsStatsResources": true,
+  "comparison": [
+    {
+      "label": "before",
+      "difficulty": "normal",
+      "round": 1,
+      "units": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 720,
+          "y": 6500,
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 176,
+          "maxFocus": 176,
+          "maxMove": 1590,
+          "walkSpeed": 360,
+          "attack": 4.19625,
+          "ranks": {
+            "A01": 1,
+            "AP04": 1,
+            "AP02": 2,
+            "AP01": 2,
+            "AP03": 1,
+            "A14": 1,
+            "A02": 4,
+            "A11": 1,
+            "A09": 4,
+            "A05": 4
+          },
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 540,
+          "y": 6500,
+          "hp": 820,
+          "maxHp": 820,
+          "focus": 263,
+          "maxFocus": 263,
+          "maxMove": 1630,
+          "walkSpeed": 337,
+          "attack": 4.1776,
+          "ranks": {
+            "M01": 1,
+            "M07": 1,
+            "M10": 4,
+            "M03": 3,
+            "M11": 3,
+            "MP01": 3,
+            "MP02": 2,
+            "MP04": 2,
+            "MP03": 1
+          },
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 880,
+          "y": 6500,
+          "hp": 1525,
+          "maxHp": 1525,
+          "focus": 200,
+          "maxFocus": 200,
+          "maxMove": 1823,
+          "walkSpeed": 355,
+          "attack": 4.0657000000000005,
+          "ranks": {
+            "S00": 1,
+            "S03": 4,
+            "S05": 3,
+            "S01": 1,
+            "S09": 3,
+            "SP01": 3,
+            "SP02": 3,
+            "SP04": 2
+          },
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 615,
+          "y": 6500,
+          "hp": 942,
+          "maxHp": 942,
+          "focus": 283,
+          "maxFocus": 283,
+          "maxMove": 1662,
+          "walkSpeed": 351,
+          "attack": 4.345000000000001,
+          "ranks": {
+            "O01": 1,
+            "O06": 1,
+            "O07": 1,
+            "O08": 3,
+            "O02": 4,
+            "O11": 3,
+            "OP01": 3,
+            "OP02": 2,
+            "OP03": 2,
+            "OP04": 1
+          },
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        },
+        {
+          "id": "resident-4",
+          "cls": "knight",
+          "side": 2,
+          "x": 9745,
+          "y": 8834.42857142857,
+          "hp": 950,
+          "maxHp": 950,
+          "focus": 100,
+          "maxFocus": 100,
+          "maxMove": 900,
+          "walkSpeed": 260,
+          "attack": 1.75,
+          "ranks": {},
+          "loadout": []
+        },
+        {
+          "id": "resident-spirit-4",
+          "cls": "occultist",
+          "side": 1,
+          "x": 9955,
+          "y": 8684,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0504888423003067,
+          "ranks": {
+            "H2RESONANCE": 4
+          },
+          "loadout": [
+            "H2RESONANCE"
+          ]
+        },
+        {
+          "id": "rv11-entry-root-pack-0",
+          "cls": "knight",
+          "side": 1,
+          "x": 1710,
+          "y": 6368.8,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-entry-root-pack-2",
+          "cls": "knight",
+          "side": 1,
+          "x": 1898,
+          "y": 6313.05,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9575380508881578,
+          "ranks": {
+            "HBM03": 4
+          },
+          "loadout": [
+            "HBM03"
+          ]
+        },
+        {
+          "id": "rv11-entry-root-pack-3",
+          "cls": "archer",
+          "side": 1,
+          "x": 1840,
+          "y": 6149,
+          "hp": 495,
+          "maxHp": 495,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0211806774429475,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-west-knot-ward-0",
+          "cls": "knight",
+          "side": 1,
+          "x": 3380,
+          "y": 6178.5,
+          "hp": 1234,
+          "maxHp": 1234,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0830035067337536,
+          "ranks": {
+            "HBM02": 4
+          },
+          "loadout": [
+            "HBM02"
+          ]
+        },
+        {
+          "id": "rv11-west-knot-ward-1",
+          "cls": "knight",
+          "side": 1,
+          "x": 3484,
+          "y": 6202.8,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-west-knot-ward-3",
+          "cls": "occultist",
+          "side": 1,
+          "x": 3660,
+          "y": 6250.571428571428,
+          "hp": 916,
+          "maxHp": 916,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.08218552559117,
+          "ranks": {
+            "HSH01": 4,
+            "HSH02": 4
+          },
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ]
+        },
+        {
+          "id": "rv11-west-knot-ward-4",
+          "cls": "knight",
+          "side": 1,
+          "x": 3768,
+          "y": 6279.885714285714,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9575380508881578,
+          "ranks": {
+            "HBM03": 4
+          },
+          "loadout": [
+            "HBM03"
+          ]
+        },
+        {
+          "id": "rv11-west-knot-ward-5",
+          "cls": "knight",
+          "side": 1,
+          "x": 3870,
+          "y": 6307.571428571428,
+          "hp": 1976,
+          "maxHp": 1976,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.103716593587075,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "cls": "archer",
+          "side": 1,
+          "x": 3159.148748315592,
+          "y": 5604.3,
+          "hp": 495,
+          "maxHp": 495,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0211806774429475,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-west-canopy-watch-1",
+          "cls": "mage",
+          "side": 1,
+          "x": 3360,
+          "y": 5588.775,
+          "hp": 434,
+          "maxHp": 434,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.116995099322502,
+          "ranks": {
+            "HBT01": 4,
+            "HBT02": 4
+          },
+          "loadout": [
+            "HBT01",
+            "HBT02"
+          ]
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "cls": "knight",
+          "side": 1,
+          "x": 3760,
+          "y": 5600.666666666667,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "cls": "knight",
+          "side": 1,
+          "x": 3845,
+          "y": 5521.333333333333,
+          "hp": 1976,
+          "maxHp": 1976,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.103716593587075,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "cls": "archer",
+          "side": 1,
+          "x": 7750,
+          "y": 6074.5,
+          "hp": 767,
+          "maxHp": 767,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.1743577790593895,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "cls": "mage",
+          "side": 1,
+          "x": 7840,
+          "y": 6212.142857142857,
+          "hp": 434,
+          "maxHp": 434,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.116995099322502,
+          "ranks": {
+            "HBT01": 4,
+            "HBT02": 4
+          },
+          "loadout": [
+            "HBT01",
+            "HBT02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "cls": "occultist",
+          "side": 1,
+          "x": 7920,
+          "y": 6431.428571428572,
+          "hp": 637,
+          "maxHp": 637,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0797065225894347,
+          "ranks": {
+            "HLN01": 4,
+            "HLN02": 4
+          },
+          "loadout": [
+            "HLN01",
+            "HLN02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "cls": "knight",
+          "side": 1,
+          "x": 7780,
+          "y": 6485,
+          "hp": 1275,
+          "maxHp": 1275,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9597535596409348,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "cls": "archer",
+          "side": 1,
+          "x": 6480,
+          "y": 6396,
+          "hp": 495,
+          "maxHp": 495,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0211806774429475,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "cls": "mage",
+          "side": 1,
+          "x": 6580,
+          "y": 6256,
+          "hp": 434,
+          "maxHp": 434,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.116995099322502,
+          "ranks": {
+            "HBT01": 4,
+            "HBT02": 4
+          },
+          "loadout": [
+            "HBT01",
+            "HBT02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "cls": "occultist",
+          "side": 1,
+          "x": 6670,
+          "y": 6434,
+          "hp": 637,
+          "maxHp": 637,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0797065225894347,
+          "ranks": {
+            "HLN01": 4,
+            "HLN02": 4
+          },
+          "loadout": [
+            "HLN01",
+            "HLN02"
+          ]
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "cls": "knight",
+          "side": 1,
+          "x": 6850,
+          "y": 6760,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "cls": "knight",
+          "side": 1,
+          "x": 6955,
+          "y": 6774.714285714285,
+          "hp": 1234,
+          "maxHp": 1234,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0830035067337536,
+          "ranks": {
+            "HBM02": 4
+          },
+          "loadout": [
+            "HBM02"
+          ]
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "cls": "knight",
+          "side": 1,
+          "x": 7160,
+          "y": 6616,
+          "hp": 1976,
+          "maxHp": 1976,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.103716593587075,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "cls": "occultist",
+          "side": 1,
+          "x": 7238,
+          "y": 6607.409090909091,
+          "hp": 916,
+          "maxHp": 916,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.08218552559117,
+          "ranks": {
+            "HSH01": 4,
+            "HSH02": 4
+          },
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ]
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "cls": "knight",
+          "side": 1,
+          "x": 7820,
+          "y": 6795.777777777777,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "cls": "archer",
+          "side": 1,
+          "x": 9597.361923697294,
+          "y": 8726.262827517112,
+          "hp": 495,
+          "maxHp": 495,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0211806774429475,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "cls": "knight",
+          "side": 1,
+          "x": 9300,
+          "y": 8847.142857142857,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "cls": "knight",
+          "side": 1,
+          "x": 9020,
+          "y": 8836.5,
+          "hp": 1234,
+          "maxHp": 1234,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0830035067337536,
+          "ranks": {
+            "HBM02": 4
+          },
+          "loadout": [
+            "HBM02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "cls": "mage",
+          "side": 1,
+          "x": 8870.483263405205,
+          "y": 8794.349339695891,
+          "hp": 434,
+          "maxHp": 434,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.116995099322502,
+          "ranks": {
+            "HBT01": 4,
+            "HBT02": 4
+          },
+          "loadout": [
+            "HBT01",
+            "HBT02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "cls": "archer",
+          "side": 1,
+          "x": 8910,
+          "y": 8570.4,
+          "hp": 767,
+          "maxHp": 767,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.1743577790593895,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "cls": "occultist",
+          "side": 1,
+          "x": 10420,
+          "y": 8726,
+          "hp": 916,
+          "maxHp": 916,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.08218552559117,
+          "ranks": {
+            "HSH01": 4,
+            "HSH02": 4
+          },
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "cls": "knight",
+          "side": 1,
+          "x": 10504,
+          "y": 8709.2,
+          "hp": 1976,
+          "maxHp": 1976,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.103716593587075,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "cls": "occultist",
+          "side": 1,
+          "x": 10570,
+          "y": 8256.5,
+          "hp": 637,
+          "maxHp": 637,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0797065225894347,
+          "ranks": {
+            "HLN01": 4,
+            "HLN02": 4
+          },
+          "loadout": [
+            "HLN01",
+            "HLN02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "cls": "knight",
+          "side": 1,
+          "x": 11230,
+          "y": 5015.714285714285,
+          "hp": 1976,
+          "maxHp": 1976,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.103716593587075,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "cls": "occultist",
+          "side": 1,
+          "x": 11320,
+          "y": 5054.285714285715,
+          "hp": 916,
+          "maxHp": 916,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.08218552559117,
+          "ranks": {
+            "HSH01": 4,
+            "HSH02": 4
+          },
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "cls": "knight",
+          "side": 1,
+          "x": 11404,
+          "y": 5090.285714285715,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "cls": "knight",
+          "side": 1,
+          "x": 11500,
+          "y": 5131.428571428572,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9417421797684815,
+          "ranks": {
+            "HBM02": 4
+          },
+          "loadout": [
+            "HBM02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "cls": "archer",
+          "side": 1,
+          "x": 11780,
+          "y": 4977.428571428572,
+          "hp": 767,
+          "maxHp": 767,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.1743577790593895,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "cls": "knight",
+          "side": 1,
+          "x": 11390,
+          "y": 4902.751322751323,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "cls": "archer",
+          "side": 1,
+          "x": 11254.354473553325,
+          "y": 4797.439070182335,
+          "hp": 495,
+          "maxHp": 495,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0211806774429475,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "cls": "mage",
+          "side": 1,
+          "x": 11462,
+          "y": 4784,
+          "hp": 434,
+          "maxHp": 434,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.116995099322502,
+          "ranks": {
+            "HBT01": 4,
+            "HBT02": 4
+          },
+          "loadout": [
+            "HBT01",
+            "HBT02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "cls": "knight",
+          "side": 1,
+          "x": 11608,
+          "y": 5177.714285714285,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "cls": "archer",
+          "side": 1,
+          "x": 11690,
+          "y": 4814,
+          "hp": 767,
+          "maxHp": 767,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.1743577790593895,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        }
+      ],
+      "items": {
+        "heal": 3,
+        "focus": 3,
+        "cleanse": 2,
+        "ward": 2
+      }
+    },
+    {
+      "label": "after",
+      "difficulty": "normal",
+      "round": 1,
+      "units": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 720,
+          "y": 6500,
+          "hp": 747,
+          "maxHp": 747,
+          "focus": 176,
+          "maxFocus": 176,
+          "maxMove": 1590,
+          "walkSpeed": 360,
+          "attack": 4.19625,
+          "ranks": {
+            "A01": 1,
+            "AP04": 1,
+            "AP02": 2,
+            "AP01": 2,
+            "AP03": 1,
+            "A14": 1,
+            "A02": 4,
+            "A11": 1,
+            "A09": 4,
+            "A05": 4
+          },
+          "loadout": [
+            "A01",
+            "A02",
+            "A09",
+            "A05"
+          ]
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 540,
+          "y": 6500,
+          "hp": 820,
+          "maxHp": 820,
+          "focus": 263,
+          "maxFocus": 263,
+          "maxMove": 1630,
+          "walkSpeed": 337,
+          "attack": 4.1776,
+          "ranks": {
+            "M01": 1,
+            "M07": 1,
+            "M10": 4,
+            "M03": 3,
+            "M11": 3,
+            "MP01": 3,
+            "MP02": 2,
+            "MP04": 2,
+            "MP03": 1
+          },
+          "loadout": [
+            "M01",
+            "M10",
+            "M03",
+            "M11"
+          ]
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 880,
+          "y": 6500,
+          "hp": 1525,
+          "maxHp": 1525,
+          "focus": 200,
+          "maxFocus": 200,
+          "maxMove": 1823,
+          "walkSpeed": 355,
+          "attack": 4.0657000000000005,
+          "ranks": {
+            "S00": 1,
+            "S03": 4,
+            "S05": 3,
+            "S01": 1,
+            "S09": 3,
+            "SP01": 3,
+            "SP02": 3,
+            "SP04": 2
+          },
+          "loadout": [
+            "S00",
+            "S03",
+            "S05",
+            "S09"
+          ]
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 615,
+          "y": 6500,
+          "hp": 942,
+          "maxHp": 942,
+          "focus": 283,
+          "maxFocus": 283,
+          "maxMove": 1662,
+          "walkSpeed": 351,
+          "attack": 4.345000000000001,
+          "ranks": {
+            "O01": 1,
+            "O06": 1,
+            "O07": 1,
+            "O08": 3,
+            "O02": 4,
+            "O11": 3,
+            "OP01": 3,
+            "OP02": 2,
+            "OP03": 2,
+            "OP04": 1
+          },
+          "loadout": [
+            "O01",
+            "O02",
+            "O08",
+            "O11"
+          ]
+        },
+        {
+          "id": "resident-4",
+          "cls": "knight",
+          "side": 2,
+          "x": 9745,
+          "y": 8834.42857142857,
+          "hp": 950,
+          "maxHp": 950,
+          "focus": 100,
+          "maxFocus": 100,
+          "maxMove": 900,
+          "walkSpeed": 260,
+          "attack": 1.75,
+          "ranks": {},
+          "loadout": []
+        },
+        {
+          "id": "resident-spirit-4",
+          "cls": "occultist",
+          "side": 1,
+          "x": 9955,
+          "y": 8684,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0504888423003067,
+          "ranks": {
+            "H2RESONANCE": 4
+          },
+          "loadout": [
+            "H2RESONANCE"
+          ]
+        },
+        {
+          "id": "rv11-entry-root-pack-0",
+          "cls": "knight",
+          "side": 1,
+          "x": 1710,
+          "y": 6368.8,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-entry-root-pack-2",
+          "cls": "knight",
+          "side": 1,
+          "x": 1898,
+          "y": 6313.05,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9575380508881578,
+          "ranks": {
+            "HBM03": 4
+          },
+          "loadout": [
+            "HBM03"
+          ]
+        },
+        {
+          "id": "rv11-entry-root-pack-3",
+          "cls": "archer",
+          "side": 1,
+          "x": 1840,
+          "y": 6149,
+          "hp": 495,
+          "maxHp": 495,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0211806774429475,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-west-knot-ward-0",
+          "cls": "knight",
+          "side": 1,
+          "x": 3380,
+          "y": 6178.5,
+          "hp": 1234,
+          "maxHp": 1234,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0830035067337536,
+          "ranks": {
+            "HBM02": 4
+          },
+          "loadout": [
+            "HBM02"
+          ]
+        },
+        {
+          "id": "rv11-west-knot-ward-1",
+          "cls": "knight",
+          "side": 1,
+          "x": 3484,
+          "y": 6202.8,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-west-knot-ward-3",
+          "cls": "occultist",
+          "side": 1,
+          "x": 3660,
+          "y": 6250.571428571428,
+          "hp": 916,
+          "maxHp": 916,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.08218552559117,
+          "ranks": {
+            "HSH01": 4,
+            "HSH02": 4
+          },
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ]
+        },
+        {
+          "id": "rv11-west-knot-ward-4",
+          "cls": "knight",
+          "side": 1,
+          "x": 3768,
+          "y": 6279.885714285714,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9575380508881578,
+          "ranks": {
+            "HBM03": 4
+          },
+          "loadout": [
+            "HBM03"
+          ]
+        },
+        {
+          "id": "rv11-west-knot-ward-5",
+          "cls": "knight",
+          "side": 1,
+          "x": 3870,
+          "y": 6307.571428571428,
+          "hp": 1976,
+          "maxHp": 1976,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.103716593587075,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-west-canopy-watch-0",
+          "cls": "archer",
+          "side": 1,
+          "x": 3159.148748315592,
+          "y": 5604.3,
+          "hp": 495,
+          "maxHp": 495,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0211806774429475,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-west-canopy-watch-1",
+          "cls": "mage",
+          "side": 1,
+          "x": 3360,
+          "y": 5588.775,
+          "hp": 434,
+          "maxHp": 434,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.116995099322502,
+          "ranks": {
+            "HBT01": 4,
+            "HBT02": 4
+          },
+          "loadout": [
+            "HBT01",
+            "HBT02"
+          ]
+        },
+        {
+          "id": "rv11-west-canopy-watch-3",
+          "cls": "knight",
+          "side": 1,
+          "x": 3760,
+          "y": 5600.666666666667,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-west-canopy-watch-4",
+          "cls": "knight",
+          "side": 1,
+          "x": 3845,
+          "y": 5521.333333333333,
+          "hp": 1976,
+          "maxHp": 1976,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.103716593587075,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-0",
+          "cls": "archer",
+          "side": 1,
+          "x": 7750,
+          "y": 6074.5,
+          "hp": 767,
+          "maxHp": 767,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.1743577790593895,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-1",
+          "cls": "mage",
+          "side": 1,
+          "x": 7840,
+          "y": 6212.142857142857,
+          "hp": 434,
+          "maxHp": 434,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.116995099322502,
+          "ranks": {
+            "HBT01": 4,
+            "HBT02": 4
+          },
+          "loadout": [
+            "HBT01",
+            "HBT02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-2",
+          "cls": "occultist",
+          "side": 1,
+          "x": 7920,
+          "y": 6431.428571428572,
+          "hp": 637,
+          "maxHp": 637,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0797065225894347,
+          "ranks": {
+            "HLN01": 4,
+            "HLN02": 4
+          },
+          "loadout": [
+            "HLN01",
+            "HLN02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-3",
+          "cls": "knight",
+          "side": 1,
+          "x": 7780,
+          "y": 6485,
+          "hp": 1275,
+          "maxHp": 1275,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9597535596409348,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-4",
+          "cls": "archer",
+          "side": 1,
+          "x": 6480,
+          "y": 6396,
+          "hp": 495,
+          "maxHp": 495,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0211806774429475,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-5",
+          "cls": "mage",
+          "side": 1,
+          "x": 6580,
+          "y": 6256,
+          "hp": 434,
+          "maxHp": 434,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.116995099322502,
+          "ranks": {
+            "HBT01": 4,
+            "HBT02": 4
+          },
+          "loadout": [
+            "HBT01",
+            "HBT02"
+          ]
+        },
+        {
+          "id": "rv11-saddle-crossfire-6",
+          "cls": "occultist",
+          "side": 1,
+          "x": 6670,
+          "y": 6434,
+          "hp": 637,
+          "maxHp": 637,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0797065225894347,
+          "ranks": {
+            "HLN01": 4,
+            "HLN02": 4
+          },
+          "loadout": [
+            "HLN01",
+            "HLN02"
+          ]
+        },
+        {
+          "id": "rv11-ritual-court-guard-0",
+          "cls": "knight",
+          "side": 1,
+          "x": 6850,
+          "y": 6760,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-ritual-court-guard-1",
+          "cls": "knight",
+          "side": 1,
+          "x": 6955,
+          "y": 6774.714285714285,
+          "hp": 1234,
+          "maxHp": 1234,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0830035067337536,
+          "ranks": {
+            "HBM02": 4
+          },
+          "loadout": [
+            "HBM02"
+          ]
+        },
+        {
+          "id": "rv11-ritual-court-guard-3",
+          "cls": "knight",
+          "side": 1,
+          "x": 7160,
+          "y": 6616,
+          "hp": 1976,
+          "maxHp": 1976,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.103716593587075,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-ritual-court-guard-5",
+          "cls": "occultist",
+          "side": 1,
+          "x": 7238,
+          "y": 6607.409090909091,
+          "hp": 916,
+          "maxHp": 916,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.08218552559117,
+          "ranks": {
+            "HSH01": 4,
+            "HSH02": 4
+          },
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ]
+        },
+        {
+          "id": "rv11-ritual-court-guard-6",
+          "cls": "knight",
+          "side": 1,
+          "x": 7820,
+          "y": 6795.777777777777,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-refuge-two-levels-0",
+          "cls": "archer",
+          "side": 1,
+          "x": 9597.361923697294,
+          "y": 8726.262827517112,
+          "hp": 495,
+          "maxHp": 495,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0211806774429475,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-two-levels-1",
+          "cls": "knight",
+          "side": 1,
+          "x": 9300,
+          "y": 8847.142857142857,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-refuge-two-levels-2",
+          "cls": "knight",
+          "side": 1,
+          "x": 9020,
+          "y": 8836.5,
+          "hp": 1234,
+          "maxHp": 1234,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0830035067337536,
+          "ranks": {
+            "HBM02": 4
+          },
+          "loadout": [
+            "HBM02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-two-levels-4",
+          "cls": "mage",
+          "side": 1,
+          "x": 8870.483263405205,
+          "y": 8794.349339695891,
+          "hp": 434,
+          "maxHp": 434,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.116995099322502,
+          "ranks": {
+            "HBT01": 4,
+            "HBT02": 4
+          },
+          "loadout": [
+            "HBT01",
+            "HBT02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-two-levels-5",
+          "cls": "archer",
+          "side": 1,
+          "x": 8910,
+          "y": 8570.4,
+          "hp": 767,
+          "maxHp": 767,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.1743577790593895,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-east-guard-0",
+          "cls": "occultist",
+          "side": 1,
+          "x": 10420,
+          "y": 8726,
+          "hp": 916,
+          "maxHp": 916,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.08218552559117,
+          "ranks": {
+            "HSH01": 4,
+            "HSH02": 4
+          },
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-east-guard-1",
+          "cls": "knight",
+          "side": 1,
+          "x": 10504,
+          "y": 8709.2,
+          "hp": 1976,
+          "maxHp": 1976,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.103716593587075,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-refuge-east-guard-2",
+          "cls": "occultist",
+          "side": 1,
+          "x": 10570,
+          "y": 8256.5,
+          "hp": 637,
+          "maxHp": 637,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0797065225894347,
+          "ranks": {
+            "HLN01": 4,
+            "HLN02": 4
+          },
+          "loadout": [
+            "HLN01",
+            "HLN02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-0",
+          "cls": "knight",
+          "side": 1,
+          "x": 11230,
+          "y": 5015.714285714285,
+          "hp": 1976,
+          "maxHp": 1976,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.103716593587075,
+          "ranks": {
+            "HWD01": 4,
+            "HWD02": 4
+          },
+          "loadout": [
+            "HWD01",
+            "HWD02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-1",
+          "cls": "occultist",
+          "side": 1,
+          "x": 11320,
+          "y": 5054.285714285715,
+          "hp": 916,
+          "maxHp": 916,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.08218552559117,
+          "ranks": {
+            "HSH01": 4,
+            "HSH02": 4
+          },
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-2",
+          "cls": "knight",
+          "side": 1,
+          "x": 11404,
+          "y": 5090.285714285715,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-3",
+          "cls": "knight",
+          "side": 1,
+          "x": 11500,
+          "y": 5131.428571428572,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9417421797684815,
+          "ranks": {
+            "HBM02": 4
+          },
+          "loadout": [
+            "HBM02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-4",
+          "cls": "archer",
+          "side": 1,
+          "x": 11780,
+          "y": 4977.428571428572,
+          "hp": 767,
+          "maxHp": 767,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.1743577790593895,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-5",
+          "cls": "knight",
+          "side": 1,
+          "x": 11390,
+          "y": 4902.751322751323,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-6",
+          "cls": "archer",
+          "side": 1,
+          "x": 11254.354473553325,
+          "y": 4797.439070182335,
+          "hp": 495,
+          "maxHp": 495,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.0211806774429475,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-7",
+          "cls": "mage",
+          "side": 1,
+          "x": 11462,
+          "y": 4784,
+          "hp": 434,
+          "maxHp": 434,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.116995099322502,
+          "ranks": {
+            "HBT01": 4,
+            "HBT02": 4
+          },
+          "loadout": [
+            "HBT01",
+            "HBT02"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-8",
+          "cls": "knight",
+          "side": 1,
+          "x": 11608,
+          "y": 5177.714285714285,
+          "hp": 796,
+          "maxHp": 796,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 0.9305722031290244,
+          "ranks": {
+            "HBM01": 4
+          },
+          "loadout": [
+            "HBM01"
+          ]
+        },
+        {
+          "id": "rv11-east-stone-overwatch-9",
+          "cls": "archer",
+          "side": 1,
+          "x": 11690,
+          "y": 4814,
+          "hp": 767,
+          "maxHp": 767,
+          "focus": 138,
+          "maxFocus": 138,
+          "maxMove": 550,
+          "walkSpeed": 290,
+          "attack": 1.1743577790593895,
+          "ranks": {
+            "HCW01": 4,
+            "HCW02": 4
+          },
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ]
+        }
+      ],
+      "items": {
+        "heal": 3,
+        "focus": 3,
+        "cleanse": 2,
+        "ward": 2
+      }
+    }
+  ],
+  "scope": "Full untouched canonical roster and legal camp training at entry level12; no combat setup flags or resource corrections."
+}
