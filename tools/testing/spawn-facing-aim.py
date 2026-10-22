@@ -20,11 +20,12 @@ with sync_playwright() as pw:
  profile=json.loads((ROOT/'tests/fixtures/render-update-profile-20261022.json').read_text());profile['cleared']['11']=True
  page.add_init_script('localStorage.clear();localStorage.setItem("honro-first-act-profile-1",'+json.dumps(json.dumps(profile))+');let s=899412;Math.random=()=>((s=Math.imul(s,1664525)+1013904223>>>0)/4294967296);')
  page.goto(f'http://127.0.0.1:{server.server_port}/HONRO.html');page.wait_for_function('document.documentElement.dataset.honroReady')
+ page.evaluate("""()=>{window.facingEvents=[];const before=new WeakMap(),state=()=>{const u=HonroApp.engine?.active;return u?{angle:u.angle,facing:u.facing,x:u.x,y:u.y,budget:u.moveLeft}:null;};document.addEventListener('pointermove',e=>{if(HonroApp.stickPointer?.id===e.pointerId)before.set(e,state());},true);document.addEventListener('pointermove',e=>{const a=before.get(e),b=state();if(a&&b&&a.facing!==b.facing)facingEvents.push({before:a,after:b,trusted:e.isTrusted});});}""")
  def ready():
   page.wait_for_function('HonroApp.engine?.b');page.evaluate('()=>{const a=HonroApp;while(a.dialogue)HonroStory.finish(a);}')
   page.wait_for_function('()=>{const a=HonroApp,n=document.getElementById("turn-banner");return a.canInput()&&!a.turnNotice&&(!n||n.hidden);}',timeout=30000);page.wait_for_timeout(350)
  def snap(tag):
-  r=page.evaluate('''()=>{const a=HonroApp,u=a.engine.active;return {stage:a.stageId,cls:u.cls,id:u.id,x:u.x,y:u.y,angle:u.angle,facing:u.facing,display:a.displayAngle(u),moveLeft:u.moveLeft,phase:a.engine.b.phase,intent:a.stick.intent,axes:{x:a.stick.x,y:a.stick.y},heroes:a.engine.b.units.filter(u=>u.side===0).map(u=>({id:u.id,cls:u.cls,facing:u.facing,angle:u.angle}))};}''');r['tag']=tag;rows.append(r);return r
+  r=page.evaluate('''()=>{const a=HonroApp,u=a.engine.active;return {stage:a.stageId,cls:u.cls,id:u.id,x:u.x,y:u.y,angle:u.angle,facing:u.facing,display:a.displayAngle(u),moveLeft:u.moveLeft,phase:a.engine.b.phase,intent:a.stick.intent,axes:{x:a.stick.x,y:a.stick.y},heroes:a.engine.b.units.filter(u=>u.side===0).map(u=>({id:u.id,cls:u.cls,facing:u.facing,angle:u.angle}))};}''');r['tag']=tag;rows.append(r);(OUT/'partial.json').write_text(json.dumps(rows,ensure_ascii=False,indent=2));return r
  def shot(name):
   page.evaluate('()=>{const a=HonroApp,u=a.engine.active;Object.assign(a.scene,{manual:true,x:u.x,y:u.y-200,scale:.94,storyTween:null,goalFocus:null,focusUntil:0,speakerUntil:0});a.updateHUD(true);}')
   page.wait_for_timeout(70);page.screenshot(path=str(OUT/(name+'.jpg')),type='jpeg',quality=88)
@@ -46,7 +47,10 @@ with sync_playwright() as pw:
    page.evaluate('(id)=>HonroApp.selectHero(id)',uid);page.wait_for_timeout(100);selected=snap(f'select-{stage}-{uid}');assert selected['id']==uid and coherent(selected)
    for direction,key in [(-1,'KeyA'),(1,'KeyD')]:
     before=snap('walk-before');page.keyboard.down(key);page.wait_for_timeout(110);page.keyboard.up(key);after=snap(f'walk-{stage}-{uid}-{direction}');assert after['facing']==direction and coherent(after) and (after['x']-before['x'])*direction>0,(before,after)
-  if stage==1:continue
+  if stage==1:
+   for facing in [-1,1]:
+    page.evaluate('''({ids,f})=>{const a=HonroApp;for(const id of ids){a.selectHero(id);a.engine.face(f);}a.selectHero(ids[1]);}''',{'ids':ids,'f':facing});shot('after-stage1-allfour-'+('left' if facing<0 else 'right'))
+   continue
   # Trusted touch follows the owning pointer from vertical lock -> turn -> lock.
   cdp=context.new_cdp_session(page)
   for uid in ids:
@@ -56,23 +60,28 @@ with sync_playwright() as pw:
     def touch(kind,dx=0,dy=0):
      cdp.send('Input.dispatchTouchEvent',{'type':kind,'touchPoints':[] if kind=='touchEnd' else [{'id':1,'x':x+dx*r,'y':y-dy*r,'radiusX':2,'radiusY':2,'force':1}]});page.wait_for_timeout(40)
     touch('touchStart');touch('touchMove',0,sy);page.wait_for_timeout(100);locked=snap('vertical-lock');assert locked['intent']=='aimOnly' and locked['axes']['x']==0
-    old=locked['display'];direction=-locked['facing'];touch('touchMove',direction*.8,0);turned=snap('locked-turn');assert turned['facing']==direction and coherent(turned) and abs(turned['display']-old)<3
+    direction=-locked['facing'];touch('touchMove',direction*.8,0);turned=snap('locked-turn');assert turned['facing']==direction and coherent(turned),(locked,turned)
     touch('touchMove',0,sy);page.wait_for_timeout(100);again=snap('vertical-relock');assert again['intent']=='aimOnly' and again['axes']['x']==0 and coherent(again);touch('touchEnd')
+  events=page.evaluate('facingEvents');assert len(events)>=8
+  for event in events:
+   before=event['before'];after=event['after'];assert event['trusted'] and abs(after['angle']-(180-before['angle']))<1e-8 and all(before[k]==after[k] for k in ['x','y','budget']),event
+  rows.append({'tag':'trusted-facing-events','events':events})
   # Real charge/release; restore through production save/Continue between shots.
   for uid in ids:
    for facing in [-1,1]:
-    page.evaluate('''({id,f})=>{const a=HonroApp;a.selectHero(id);a.engine.face(f);a.profile.honroBattle=structuredClone(a.engine.b);a.persist();}''',{'id':uid,'f':facing})
-    assert page.evaluate('HonroApp.beginCharge()');page.wait_for_timeout(500);shot(f'after-{uid}-charge-'+('left' if facing<0 else 'right'))
+    page.evaluate('''({id,f})=>{const a=HonroApp;a.selectHero(id);a.engine.face(f);window.facingCheckpoint=structuredClone(a.engine.b);a.profile.honroBattle=structuredClone(facingCheckpoint);a.persist();}''',{'id':uid,'f':facing})
+    assert page.evaluate('HonroApp.beginCharge()'),snap('charge-rejected');page.wait_for_timeout(500);shot(f'after-{uid}-charge-'+('left' if facing<0 else 'right'))
     result=page.evaluate('''()=>{const a=HonroApp,e=a.engine,u=e.active,skill=HONRO_CORE.SKILLS[a.selected],before=structuredClone(u);a.releaseCharge();const power=u.lastPower,v=e.velocity(before,skill,before.angle,power),o=e.projectileOrigin(before,skill,before.angle),prediction=e.predict(before,skill,before.angle,power),p=e.b.projectiles.find(p=>p.owner===u.id);return {cls:u.cls,facing:u.facing,angle:u.angle,phase:e.b.phase,power,skill:skill.id,expected:v,origin:o,firstPoint:prediction.points?.[0],projectile:p?{x:p.x,y:p.y,vx:p.vx,vy:p.vy}:null,melee:u.meleeAction};}''');rows.append({'tag':'actual-release',**result});assert (1 if math.cos(math.radians(result['angle']))>=0 else -1)==facing
     q=result['projectile']
     if q:
      assert abs(q['vx']-result['expected']['vx'])<1e-5 and abs(q['vy']-result['expected']['vy'])<1e-5 and abs(q['x']-result['origin']['x'])<1e-5 and q['vx']*facing>0,result
      assert (result['firstPoint']['x']-result['origin']['x'])*facing>=0,result
     else:assert result['cls']=='knight' and result['melee'],result
-    page.evaluate('HonroApp.stopBattle();HonroApp.continue()');ready();saved=snap('continue-after-shot');assert saved['facing']==facing and saved['angle']==result['angle'] and saved['phase']=='aim',saved
+    page.evaluate('HonroApp.stopBattle();HonroApp.profile.honroBattle=structuredClone(facingCheckpoint);HonroApp.persist();HonroApp.continue()');ready();saved=snap('continue-after-shot');assert saved['facing']==facing and saved['angle']==result['angle'] and saved['phase']=='aim',saved
   # Explicit legacy mismatch is a deliberate save fixture, never auto-repaired.
   exact=page.evaluate('''()=>{const a=HonroApp;Object.assign(a.engine.active,{facing:-1,angle:44});a.profile.honroBattle=structuredClone(a.engine.b);const saved=a.engine.b.units.map(u=>[u.id,u.angle,u.facing]);a.persist();a.stopBattle();a.continue();return {saved,loaded:a.engine.b.units.map(u=>[u.id,u.angle,u.facing])};}''');assert exact['saved']==exact['loaded'];rows.append({'tag':'explicit-legacy-continue',**exact})
   page.evaluate('HonroApp.retry()');ready();retried=snap('retry-fresh');assert coherent(retried),retried;shot('after-stage12-retry')
+  pure=page.evaluate('''()=>{const a=HonroApp,b=JSON.stringify(a.engine.b);a.scene.render(a.engine,0,a.selected,a.power,false,0);return b===JSON.stringify(a.engine.b);}''');assert pure;rows.append({'tag':'render-purity','passed':pure})
  result={'passed':not errors,'baseline':BASELINE,'sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=BUILD,text=True).strip(),'trackedTreeDirty':bool(subprocess.check_output(['git','status','--porcelain','--untracked-files=no'],cwd=BUILD,text=True).strip()),'manifestSha256':hashlib.sha256((BUILD/'web/manifest.json').read_bytes()).hexdigest(),'browser':browser.version,'viewport':[720,1560],'rows':rows,'errors':errors,'limits':['Stage1 extra three heroes are an explicit fresh factory fixture; normal campaign1 still has only Seol-o.','Production natural App rAF, trusted keyboard/touch and actual Engine/App release, fresh entry/Continue/retry; prepared QA progress. Not normal campaign completion or physical mobile device QA.']}
  (OUT/('before.json' if BASELINE else 'browser.json')).write_text(json.dumps(result,ensure_ascii=False,indent=2));print(json.dumps({'passed':result['passed'],'rows':len(rows),'errors':errors}));assert not errors
  browser.close()
