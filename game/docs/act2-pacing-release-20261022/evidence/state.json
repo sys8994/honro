@@ -1,0 +1,51 @@
+[
+  {
+    "id": 14,
+    "initialEnemies": 43,
+    "holdRounds": 4,
+    "waveBudget": 6,
+    "migration": "physical state and ledger preserved; idempotent"
+  },
+  {
+    "id": 17,
+    "initialEnemies": 50,
+    "holdRounds": 3,
+    "waveBudget": 6,
+    "migration": "physical state and ledger preserved; idempotent"
+  },
+  {
+    "id": 18,
+    "initialEnemies": 56,
+    "holdRounds": 4,
+    "waveBudget": 8,
+    "migration": "physical state and ledger preserved; idempotent"
+  },
+  {
+    "id": 14,
+    "finalEvent": "Distant survivors accepted; nearby threat blocks; E cannot bypass"
+  },
+  {
+    "id": 18,
+    "finalEvent": "Distant survivors accepted; nearby threat blocks; E cannot bypass"
+  },
+  {
+    "id": 11,
+    "edge": "Full west sweep plus pending pursuit does not revive retired clearance or stall confirmation"
+  },
+  {
+    "id": 14,
+    "app": "Continue/export/repeated Continue/outcome; first-clear top-up exactly once"
+  },
+  {
+    "id": 17,
+    "app": "Continue/export/repeated Continue/outcome; first-clear top-up exactly once"
+  },
+  {
+    "id": 18,
+    "app": "Continue/export/repeated Continue/outcome; first-clear top-up exactly once"
+  },
+  {
+    "id": 11,
+    "app": "Old objective snapshot with current-map stamp fixture; prepared final E pose, retained trace/optional survivors, outcome and exactly-once first-clear top-up"
+  }
+]

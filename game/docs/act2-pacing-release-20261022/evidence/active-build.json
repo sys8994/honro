@@ -1,0 +1,44 @@
+{
+  "source": "25a71082",
+  "lastExecutionSHA": "2e154a206f3e4cb36310d798d67780114df287e8",
+  "playtest": "web/entries/game.84a2fe1cd63ebbef.html?embedded=1",
+  "manifestSHA256": "b6900f7e702a2419243a5994c58204a9bd9f5d30ab6414c35f9f9ba64f74ab6c",
+  "rows": [
+    {
+      "id": 11,
+      "file": "web/data/chapter-11.cd7e7bfce360efa0.json",
+      "steps": true,
+      "actors": true,
+      "pacingRevision": 1
+    },
+    {
+      "id": 14,
+      "file": "web/data/chapter-14.e226353006df3409.json",
+      "steps": true,
+      "actors": true,
+      "pacingRevision": 1
+    },
+    {
+      "id": 17,
+      "file": "web/data/chapter-17.343309e1b889c5e7.json",
+      "steps": true,
+      "actors": true,
+      "pacingRevision": 1
+    },
+    {
+      "id": 18,
+      "file": "web/data/chapter-18.3b52f583cb209fd7.json",
+      "steps": true,
+      "actors": true,
+      "pacingRevision": 1
+    }
+  ],
+  "latestMasterDebugEndingSourcesPreserved": {
+    "shared/runtime/main.js": "6f9aa353c3c98e323b4929f4362de44dd9bff413315e8098ec3082ce2a92907f",
+    "shared/runtime/act-endings.js": "5bed8881949f5bf902c8b29ccf7e4516b22638fed5da8210b007b1bd03f65e7b",
+    "shared/runtime/act-endings-content.js": "437856e628d8c34503a8df234466ccc43666bd279945135de34338adb0493d13",
+    "shared/runtime/rest-journey.js": "749087737b95977d5133f46d25d8d2592eec3c0ea615c923dd82dd4382a16d90",
+    "game/src/act-endings.css": "9f0fb63251dea0e645ed7a9edcdf9c97938f93431b3398c279569402dc12b580"
+  },
+  "allReferencedCurrentFilesPresent": true
+}

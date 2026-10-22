@@ -1,0 +1,1799 @@
+[
+  {
+    "id": 14,
+    "baseline": false,
+    "scope": "Prepared final segment; earlier done flags and party poses set once; every original enemy retained. Actual normal level/resources, ordinary Engine inputs; not fresh-stage completion or human time.",
+    "phase": "won",
+    "round": 6,
+    "stop": null,
+    "initialEnemies": 43,
+    "remainingEnemies": 41,
+    "heroes": [
+      {
+        "cls": "archer",
+        "level": 13,
+        "hp": 700,
+        "maxHp": 725,
+        "focus": 168
+      },
+      {
+        "cls": "mage",
+        "level": 13,
+        "hp": 624,
+        "maxHp": 774,
+        "focus": 224
+      },
+      {
+        "cls": "knight",
+        "level": 13,
+        "hp": 1129,
+        "maxHp": 1245,
+        "focus": 171
+      },
+      {
+        "cls": "occultist",
+        "level": 13,
+        "hp": 892,
+        "maxHp": 892,
+        "focus": 258
+      }
+    ],
+    "holds": {
+      "hold-refuge": {
+        "progress": 4,
+        "spawned": 6,
+        "lastRound": 5,
+        "enteredRound": 1,
+        "continuous": true,
+        "contributionGuards": [
+          "p-archer",
+          "p-mage",
+          "p-occultist"
+        ],
+        "guarded": true,
+        "contested": false,
+        "waveRound": 2
+      }
+    },
+    "actions": [
+      {
+        "op": "fire",
+        "round": 1,
+        "hero": "archer",
+        "target": "v14-g4",
+        "skill": "A01"
+      },
+      {
+        "op": "wait",
+        "round": 1,
+        "hero": "archer",
+        "reason": "defense/position"
+      },
+      {
+        "op": "fire",
+        "round": 1,
+        "hero": "mage",
+        "target": "v14-g4",
+        "skill": "M03"
+      },
+      {
+        "op": "move",
+        "round": 1,
+        "hero": "knight",
+        "from": {
+          "x": 4200,
+          "y": 8150
+        },
+        "to": {
+          "x": 4764,
+          "y": 8150
+        }
+      },
+      {
+        "op": "fire",
+        "round": 1,
+        "hero": "knight",
+        "target": "v14-h1",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 1,
+        "hero": "occultist",
+        "target": "v14-g3",
+        "skill": "O02"
+      },
+      {
+        "op": "wait",
+        "round": 2,
+        "hero": "archer",
+        "reason": "defense/position"
+      },
+      {
+        "op": "fire",
+        "round": 2,
+        "hero": "mage",
+        "target": "v14-g1",
+        "skill": "M03"
+      },
+      {
+        "op": "move",
+        "round": 2,
+        "hero": "knight",
+        "from": {
+          "x": 4751.596731942382,
+          "y": 8150
+        },
+        "to": {
+          "x": 4763.596731942382,
+          "y": 8150
+        }
+      },
+      {
+        "op": "fire",
+        "round": 2,
+        "hero": "knight",
+        "target": "v14-h1",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 2,
+        "hero": "occultist",
+        "target": "v14-g3",
+        "skill": "O02"
+      },
+      {
+        "op": "wait",
+        "round": 3,
+        "hero": "archer",
+        "reason": "defense/position"
+      },
+      {
+        "op": "fire",
+        "round": 3,
+        "hero": "mage",
+        "target": "v14-g1",
+        "skill": "M03"
+      },
+      {
+        "op": "fire",
+        "round": 3,
+        "hero": "knight",
+        "target": "v14-h1",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 3,
+        "hero": "occultist",
+        "target": "v14-g1",
+        "skill": "O02"
+      },
+      {
+        "op": "fire",
+        "round": 4,
+        "hero": "archer",
+        "target": "v14-h4",
+        "skill": "A01"
+      },
+      {
+        "op": "wait",
+        "round": 4,
+        "hero": "archer",
+        "reason": "defense/position"
+      },
+      {
+        "op": "fire",
+        "round": 4,
+        "hero": "mage",
+        "target": "v14-g1",
+        "skill": "M03"
+      },
+      {
+        "op": "move",
+        "round": 4,
+        "hero": "knight",
+        "from": {
+          "x": 4759.893777958606,
+          "y": 8150
+        },
+        "to": {
+          "x": 4969.893777958606,
+          "y": 8150
+        }
+      },
+      {
+        "op": "fire",
+        "round": 4,
+        "hero": "knight",
+        "target": "event-14",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 4,
+        "hero": "occultist",
+        "target": "v14-g1",
+        "skill": "O02"
+      },
+      {
+        "op": "fire",
+        "round": 5,
+        "hero": "archer",
+        "target": "v14-h4",
+        "skill": "A01"
+      },
+      {
+        "op": "wait",
+        "round": 5,
+        "hero": "archer",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "wait",
+        "round": 5,
+        "hero": "mage",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "move",
+        "round": 5,
+        "hero": "knight",
+        "from": {
+          "x": 4972.259758932775,
+          "y": 8150
+        },
+        "to": {
+          "x": 5050.259758932775,
+          "y": 8150
+        }
+      },
+      {
+        "op": "fire",
+        "round": 5,
+        "hero": "knight",
+        "target": "event-14",
+        "skill": "S03"
+      },
+      {
+        "op": "wait",
+        "round": 5,
+        "hero": "occultist",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "fire",
+        "round": 6,
+        "hero": "archer",
+        "target": "v14-h4",
+        "skill": "A01"
+      },
+      {
+        "op": "wait",
+        "round": 6,
+        "hero": "archer",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "wait",
+        "round": 6,
+        "hero": "mage",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "move",
+        "round": 6,
+        "hero": "knight",
+        "from": {
+          "x": 5050.259758932775,
+          "y": 8150
+        },
+        "to": {
+          "x": 5161.220128809567,
+          "y": 8121.838740747599
+        }
+      },
+      {
+        "op": "fire",
+        "round": 6,
+        "hero": "knight",
+        "target": "event-13",
+        "skill": "S03"
+      }
+    ],
+    "rounds": [
+      {
+        "round": 1,
+        "goal": "hold-refuge",
+        "hold": {},
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 725,
+            "x": 3860,
+            "y": 8150
+          },
+          {
+            "cls": "mage",
+            "hp": 774,
+            "x": 3420,
+            "y": 8310
+          },
+          {
+            "cls": "knight",
+            "hp": 1245,
+            "x": 4200,
+            "y": 8150
+          },
+          {
+            "cls": "occultist",
+            "hp": 892,
+            "x": 3540,
+            "y": 8310
+          }
+        ],
+        "enemies": 43,
+        "local": null,
+        "boss": null
+      },
+      {
+        "round": 2,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 1,
+            "spawned": 3,
+            "lastRound": 2,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 1
+          }
+        },
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 725,
+            "x": 3860,
+            "y": 8150
+          },
+          {
+            "cls": "mage",
+            "hp": 774,
+            "x": 3420,
+            "y": 8310
+          },
+          {
+            "cls": "knight",
+            "hp": 1196,
+            "x": 4751.596731942382,
+            "y": 8150
+          },
+          {
+            "cls": "occultist",
+            "hp": 892,
+            "x": 3540,
+            "y": 8310
+          }
+        ],
+        "enemies": 45,
+        "local": null,
+        "boss": null
+      },
+      {
+        "round": 3,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 2,
+            "spawned": 6,
+            "lastRound": 3,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 2
+          }
+        },
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 725,
+            "x": 3860,
+            "y": 8150
+          },
+          {
+            "cls": "mage",
+            "hp": 774,
+            "x": 3420,
+            "y": 8310
+          },
+          {
+            "cls": "knight",
+            "hp": 1196,
+            "x": 4763.596731942382,
+            "y": 8150
+          },
+          {
+            "cls": "occultist",
+            "hp": 892,
+            "x": 3540,
+            "y": 8310
+          }
+        ],
+        "enemies": 47,
+        "local": null,
+        "boss": null
+      },
+      {
+        "round": 4,
+        "goal": "hold-refuge",
+        "hold": {
+          "hold-refuge": {
+            "progress": 3,
+            "spawned": 6,
+            "lastRound": 4,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 2
+          }
+        },
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 725,
+            "x": 3860,
+            "y": 8150
+          },
+          {
+            "cls": "mage",
+            "hp": 699,
+            "x": 3420,
+            "y": 8310
+          },
+          {
+            "cls": "knight",
+            "hp": 1174,
+            "x": 4759.893777958606,
+            "y": 8150
+          },
+          {
+            "cls": "occultist",
+            "hp": 892,
+            "x": 3540,
+            "y": 8310
+          }
+        ],
+        "enemies": 46,
+        "local": null,
+        "boss": null
+      },
+      {
+        "round": 5,
+        "goal": "clear-village",
+        "hold": {
+          "hold-refuge": {
+            "progress": 4,
+            "spawned": 6,
+            "lastRound": 5,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 2
+          }
+        },
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 700,
+            "x": 3853.3493796849207,
+            "y": 8150
+          },
+          {
+            "cls": "mage",
+            "hp": 624,
+            "x": 3420,
+            "y": 8310
+          },
+          {
+            "cls": "knight",
+            "hp": 1129,
+            "x": 4972.259758932775,
+            "y": 8150
+          },
+          {
+            "cls": "occultist",
+            "hp": 892,
+            "x": 3540,
+            "y": 8310
+          }
+        ],
+        "enemies": 45,
+        "local": null,
+        "boss": null
+      },
+      {
+        "round": 6,
+        "goal": "clear-village",
+        "hold": {
+          "hold-refuge": {
+            "progress": 4,
+            "spawned": 6,
+            "lastRound": 5,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-archer",
+              "p-mage",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 2
+          }
+        },
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 700,
+            "x": 3853.3493796849207,
+            "y": 8150
+          },
+          {
+            "cls": "mage",
+            "hp": 624,
+            "x": 3420,
+            "y": 8310
+          },
+          {
+            "cls": "knight",
+            "hp": 1129,
+            "x": 5050.259758932775,
+            "y": 8150
+          },
+          {
+            "cls": "occultist",
+            "hp": 892,
+            "x": 3540,
+            "y": 8310
+          }
+        ],
+        "enemies": 44,
+        "local": null,
+        "boss": null
+      }
+    ],
+    "births": [
+      {
+        "id": "event-3",
+        "source": "hold-refuge-0",
+        "round": 1
+      },
+      {
+        "id": "event-4",
+        "source": "hold-refuge-0",
+        "round": 1
+      },
+      {
+        "id": "event-5",
+        "source": "hold-refuge-0",
+        "round": 1
+      },
+      {
+        "id": "event-13",
+        "source": "hold-refuge-3",
+        "round": 2
+      },
+      {
+        "id": "event-14",
+        "source": "hold-refuge-3",
+        "round": 2
+      },
+      {
+        "id": "event-15",
+        "source": "hold-refuge-3",
+        "round": 2
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "baseline": false,
+    "scope": "Prepared final segment; earlier done flags and party poses set once; every original enemy retained. Actual normal level/resources, ordinary Engine inputs; not fresh-stage completion or human time.",
+    "phase": "won",
+    "round": 4,
+    "stop": null,
+    "initialEnemies": 50,
+    "remainingEnemies": 60,
+    "heroes": [
+      {
+        "cls": "archer",
+        "level": 15,
+        "hp": 785,
+        "maxHp": 785,
+        "focus": 180
+      },
+      {
+        "cls": "mage",
+        "level": 15,
+        "hp": 838,
+        "maxHp": 838,
+        "focus": 240
+      },
+      {
+        "cls": "knight",
+        "level": 15,
+        "hp": 1272,
+        "maxHp": 1346,
+        "focus": 202
+      },
+      {
+        "cls": "occultist",
+        "level": 15,
+        "hp": 964,
+        "maxHp": 964,
+        "focus": 253
+      }
+    ],
+    "holds": {
+      "hold-hoist": {
+        "progress": 3,
+        "spawned": 6,
+        "lastRound": 4,
+        "enteredRound": 1,
+        "continuous": true,
+        "contributionGuards": [
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "guarded": true,
+        "contested": false,
+        "waveRound": 3
+      }
+    },
+    "actions": [
+      {
+        "op": "fire",
+        "round": 1,
+        "hero": "archer",
+        "target": "ws-gallery-cart",
+        "skill": "A02"
+      },
+      {
+        "op": "wait",
+        "round": 1,
+        "hero": "archer",
+        "reason": "defense/position"
+      },
+      {
+        "op": "fire",
+        "round": 1,
+        "hero": "mage",
+        "target": "a2-enemy-18",
+        "skill": "M03"
+      },
+      {
+        "op": "move",
+        "round": 1,
+        "hero": "knight",
+        "from": {
+          "x": 8580,
+          "y": 4580
+        },
+        "to": {
+          "x": 7896.909709775478,
+          "y": 4532.945136707903
+        }
+      },
+      {
+        "op": "fire",
+        "round": 1,
+        "hero": "knight",
+        "target": "a2-enemy-18",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 1,
+        "hero": "occultist",
+        "target": "ws-notes-front",
+        "skill": "O02"
+      },
+      {
+        "op": "fire",
+        "round": 2,
+        "hero": "archer",
+        "target": "ws-gallery-cart",
+        "skill": "A02"
+      },
+      {
+        "op": "wait",
+        "round": 2,
+        "hero": "archer",
+        "reason": "defense/position"
+      },
+      {
+        "op": "wait",
+        "round": 2,
+        "hero": "mage",
+        "reason": "defense/position"
+      },
+      {
+        "op": "move",
+        "round": 2,
+        "hero": "knight",
+        "from": {
+          "x": 7885.02679276919,
+          "y": 4539.0479681580455
+        },
+        "to": {
+          "x": 7931.6536661593955,
+          "y": 4515.101327009495
+        }
+      },
+      {
+        "op": "fire",
+        "round": 2,
+        "hero": "knight",
+        "target": "event-7",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 2,
+        "hero": "occultist",
+        "target": "a2-enemy-18",
+        "skill": "O02"
+      },
+      {
+        "op": "fire",
+        "round": 3,
+        "hero": "archer",
+        "target": "event-8",
+        "skill": "A01"
+      },
+      {
+        "op": "wait",
+        "round": 3,
+        "hero": "archer",
+        "reason": "defense/position"
+      },
+      {
+        "op": "wait",
+        "round": 3,
+        "hero": "mage",
+        "reason": "defense/position"
+      },
+      {
+        "op": "fire",
+        "round": 3,
+        "hero": "knight",
+        "target": "event-7",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 3,
+        "hero": "occultist",
+        "target": "a2-enemy-18",
+        "skill": "O02"
+      }
+    ],
+    "rounds": [
+      {
+        "round": 1,
+        "goal": "hold-hoist",
+        "hold": {},
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 785,
+            "x": 8300,
+            "y": 5792
+          },
+          {
+            "cls": "mage",
+            "hp": 838,
+            "x": 8440,
+            "y": 5207
+          },
+          {
+            "cls": "knight",
+            "hp": 1346,
+            "x": 8580,
+            "y": 4580
+          },
+          {
+            "cls": "occultist",
+            "hp": 964,
+            "x": 8720,
+            "y": 4580
+          }
+        ],
+        "enemies": 50,
+        "local": null,
+        "boss": null
+      },
+      {
+        "round": 2,
+        "goal": "hold-hoist",
+        "hold": {
+          "hold-hoist": {
+            "progress": 1,
+            "spawned": 3,
+            "lastRound": 2,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-mage",
+              "p-knight",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 1
+          }
+        },
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 785,
+            "x": 8300,
+            "y": 5792
+          },
+          {
+            "cls": "mage",
+            "hp": 838,
+            "x": 8440,
+            "y": 5207
+          },
+          {
+            "cls": "knight",
+            "hp": 1313,
+            "x": 7885.02679276919,
+            "y": 4539.0479681580455
+          },
+          {
+            "cls": "occultist",
+            "hp": 964,
+            "x": 8720,
+            "y": 4580
+          }
+        ],
+        "enemies": 59,
+        "local": null,
+        "boss": null
+      },
+      {
+        "round": 3,
+        "goal": "hold-hoist",
+        "hold": {
+          "hold-hoist": {
+            "progress": 2,
+            "spawned": 3,
+            "lastRound": 3,
+            "enteredRound": 1,
+            "continuous": true,
+            "contributionGuards": [
+              "p-mage",
+              "p-knight",
+              "p-occultist"
+            ],
+            "guarded": true,
+            "contested": false,
+            "waveRound": 1
+          }
+        },
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 785,
+            "x": 8300,
+            "y": 5792
+          },
+          {
+            "cls": "mage",
+            "hp": 838,
+            "x": 8440,
+            "y": 5207
+          },
+          {
+            "cls": "knight",
+            "hp": 1300,
+            "x": 7935.027549244548,
+            "y": 4513.368567301565
+          },
+          {
+            "cls": "occultist",
+            "hp": 964,
+            "x": 8720,
+            "y": 4580
+          }
+        ],
+        "enemies": 58,
+        "local": null,
+        "boss": null
+      }
+    ],
+    "births": [
+      {
+        "id": "event-3",
+        "source": "worksite-brace-answer",
+        "round": 1
+      },
+      {
+        "id": "event-4",
+        "source": "worksite-brace-answer",
+        "round": 1
+      },
+      {
+        "id": "event-5",
+        "source": "worksite-brace-answer",
+        "round": 1
+      },
+      {
+        "id": "event-6",
+        "source": "hold-hoist-0",
+        "round": 1
+      },
+      {
+        "id": "event-7",
+        "source": "hold-hoist-0",
+        "round": 1
+      },
+      {
+        "id": "event-8",
+        "source": "hold-hoist-0",
+        "round": 1
+      },
+      {
+        "id": "event-10",
+        "source": "worksite-axle-answer",
+        "round": 1
+      },
+      {
+        "id": "event-11",
+        "source": "worksite-axle-answer",
+        "round": 1
+      },
+      {
+        "id": "event-12",
+        "source": "worksite-axle-answer",
+        "round": 1
+      },
+      {
+        "id": "event-28",
+        "source": "hold-hoist-3",
+        "round": 3
+      },
+      {
+        "id": "event-29",
+        "source": "hold-hoist-3",
+        "round": 3
+      },
+      {
+        "id": "event-30",
+        "source": "hold-hoist-3",
+        "round": 3
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "baseline": false,
+    "scope": "Prepared final segment; earlier done flags and party poses set once; every original enemy retained. Actual normal level/resources, ordinary Engine inputs; not fresh-stage completion or human time.",
+    "phase": "won",
+    "round": 8,
+    "stop": null,
+    "initialEnemies": 56,
+    "remainingEnemies": 57,
+    "heroes": [
+      {
+        "cls": "archer",
+        "level": 16,
+        "hp": 785,
+        "maxHp": 815,
+        "focus": 186
+      },
+      {
+        "cls": "mage",
+        "level": 16,
+        "hp": 870,
+        "maxHp": 870,
+        "focus": 224
+      },
+      {
+        "cls": "knight",
+        "level": 16,
+        "hp": 1213,
+        "maxHp": 1397,
+        "focus": 193
+      },
+      {
+        "cls": "occultist",
+        "level": 16,
+        "hp": 875,
+        "maxHp": 1000,
+        "focus": 287
+      }
+    ],
+    "holds": {},
+    "actions": [
+      {
+        "op": "fire",
+        "round": 1,
+        "hero": "archer",
+        "target": "sb-g-bat-high",
+        "skill": "A01"
+      },
+      {
+        "op": "wait",
+        "round": 1,
+        "hero": "archer",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "wait",
+        "round": 1,
+        "hero": "mage",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "move",
+        "round": 1,
+        "hero": "knight",
+        "from": {
+          "x": 11320,
+          "y": 6180
+        },
+        "to": {
+          "x": 11382.5,
+          "y": 6180
+        }
+      },
+      {
+        "op": "fire",
+        "round": 1,
+        "hero": "knight",
+        "target": "act2-keeper",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 1,
+        "hero": "occultist",
+        "target": "act2-keeper",
+        "skill": "O01"
+      },
+      {
+        "op": "wait",
+        "round": 2,
+        "hero": "archer",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "wait",
+        "round": 2,
+        "hero": "mage",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "fire",
+        "round": 2,
+        "hero": "knight",
+        "target": "act2-keeper",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 2,
+        "hero": "occultist",
+        "target": "sb-g-tool",
+        "skill": "O02"
+      },
+      {
+        "op": "fire",
+        "round": 3,
+        "hero": "archer",
+        "target": "act2-keeper",
+        "skill": "A01"
+      },
+      {
+        "op": "wait",
+        "round": 3,
+        "hero": "archer",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "wait",
+        "round": 3,
+        "hero": "mage",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "move",
+        "round": 3,
+        "hero": "knight",
+        "from": {
+          "x": 11404.266840186734,
+          "y": 6180
+        },
+        "to": {
+          "x": 11244.891840186734,
+          "y": 6180
+        }
+      },
+      {
+        "op": "fire",
+        "round": 3,
+        "hero": "knight",
+        "target": "act2-keeper",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 3,
+        "hero": "occultist",
+        "target": "act2-keeper",
+        "skill": "O06"
+      },
+      {
+        "op": "fire",
+        "round": 4,
+        "hero": "archer",
+        "target": "act2-keeper",
+        "skill": "A01"
+      },
+      {
+        "op": "wait",
+        "round": 4,
+        "hero": "archer",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "wait",
+        "round": 4,
+        "hero": "mage",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "fire",
+        "round": 4,
+        "hero": "knight",
+        "target": "act2-keeper",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 4,
+        "hero": "occultist",
+        "target": "act2-keeper",
+        "skill": "O06"
+      },
+      {
+        "op": "fire",
+        "round": 5,
+        "hero": "archer",
+        "target": "act2-keeper",
+        "skill": "A01"
+      },
+      {
+        "op": "wait",
+        "round": 5,
+        "hero": "archer",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "wait",
+        "round": 5,
+        "hero": "mage",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "move",
+        "round": 5,
+        "hero": "knight",
+        "from": {
+          "x": 11239.943394397114,
+          "y": 6180
+        },
+        "to": {
+          "x": 11243.068394397114,
+          "y": 6180
+        }
+      },
+      {
+        "op": "fire",
+        "round": 5,
+        "hero": "knight",
+        "target": "sb-g-bat-side",
+        "skill": "S03"
+      },
+      {
+        "op": "wait",
+        "round": 5,
+        "hero": "occultist",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "wait",
+        "round": 6,
+        "hero": "archer",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "fire",
+        "round": 6,
+        "hero": "mage",
+        "target": "event-17",
+        "skill": "M02"
+      },
+      {
+        "op": "move",
+        "round": 6,
+        "hero": "knight",
+        "from": {
+          "x": 11243.068394397114,
+          "y": 6180
+        },
+        "to": {
+          "x": 11861.818394397114,
+          "y": 6180
+        }
+      },
+      {
+        "op": "fire",
+        "round": 6,
+        "hero": "knight",
+        "target": "event-17",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 6,
+        "hero": "occultist",
+        "target": "event-19",
+        "skill": "O02"
+      },
+      {
+        "op": "wait",
+        "round": 7,
+        "hero": "archer",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "fire",
+        "round": 7,
+        "hero": "mage",
+        "target": "event-19",
+        "skill": "M06"
+      },
+      {
+        "op": "move",
+        "round": 7,
+        "hero": "knight",
+        "from": {
+          "x": 11861.818394397114,
+          "y": 6180
+        },
+        "to": {
+          "x": 11971.193394397114,
+          "y": 6180
+        }
+      },
+      {
+        "op": "fire",
+        "round": 7,
+        "hero": "knight",
+        "target": "event-18",
+        "skill": "S03"
+      },
+      {
+        "op": "fire",
+        "round": 7,
+        "hero": "occultist",
+        "target": "event-20",
+        "skill": "O02"
+      },
+      {
+        "op": "wait",
+        "round": 8,
+        "hero": "archer",
+        "reason": "no viable shot"
+      },
+      {
+        "op": "fire",
+        "round": 8,
+        "hero": "mage",
+        "target": "event-20",
+        "skill": "M03"
+      },
+      {
+        "op": "move",
+        "round": 8,
+        "hero": "knight",
+        "from": {
+          "x": 11971.193394397114,
+          "y": 6180
+        },
+        "to": {
+          "x": 12171.166784484825,
+          "y": 6181.128895172524
+        }
+      },
+      {
+        "op": "fire",
+        "round": 8,
+        "hero": "knight",
+        "target": "event-20",
+        "skill": "S03"
+      },
+      {
+        "op": "wait",
+        "round": 8,
+        "hero": "occultist",
+        "reason": "no viable shot"
+      }
+    ],
+    "rounds": [
+      {
+        "round": 1,
+        "goal": "keeper",
+        "hold": {},
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 815,
+            "x": 10980,
+            "y": 5920
+          },
+          {
+            "cls": "mage",
+            "hp": 870,
+            "x": 11160,
+            "y": 6180
+          },
+          {
+            "cls": "knight",
+            "hp": 1397,
+            "x": 11320,
+            "y": 6180
+          },
+          {
+            "cls": "occultist",
+            "hp": 1000,
+            "x": 10600,
+            "y": 6035
+          }
+        ],
+        "enemies": 55,
+        "local": [
+          {
+            "id": "sb-g-bat-side",
+            "hp": 485
+          },
+          {
+            "id": "act2-keeper",
+            "hp": 3748
+          }
+        ],
+        "boss": {
+          "hp": 3748,
+          "maxHp": 3748
+        }
+      },
+      {
+        "round": 2,
+        "goal": "keeper",
+        "hold": {},
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 785,
+            "x": 10914.345420935382,
+            "y": 6168.59796486017
+          },
+          {
+            "cls": "mage",
+            "hp": 870,
+            "x": 11160,
+            "y": 6180
+          },
+          {
+            "cls": "knight",
+            "hp": 1322,
+            "x": 11392.476673390722,
+            "y": 6180
+          },
+          {
+            "cls": "occultist",
+            "hp": 1000,
+            "x": 10600,
+            "y": 6035
+          }
+        ],
+        "enemies": 58,
+        "local": [
+          {
+            "id": "sb-g-bat-side",
+            "hp": 485
+          },
+          {
+            "id": "act2-keeper",
+            "hp": 3139
+          }
+        ],
+        "boss": {
+          "hp": 3139,
+          "maxHp": 3748
+        }
+      },
+      {
+        "round": 3,
+        "goal": "keeper",
+        "hold": {},
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 785,
+            "x": 10911.00948313217,
+            "y": 6167.115325836519
+          },
+          {
+            "cls": "mage",
+            "hp": 870,
+            "x": 11160,
+            "y": 6180
+          },
+          {
+            "cls": "knight",
+            "hp": 1295,
+            "x": 11404.266840186734,
+            "y": 6180
+          },
+          {
+            "cls": "occultist",
+            "hp": 971,
+            "x": 10613.697020685076,
+            "y": 6034.143936207182
+          }
+        ],
+        "enemies": 58,
+        "local": [
+          {
+            "id": "sb-g-bat-side",
+            "hp": 485
+          },
+          {
+            "id": "act2-keeper",
+            "hp": 2530
+          }
+        ],
+        "boss": {
+          "hp": 2530,
+          "maxHp": 3748
+        }
+      },
+      {
+        "round": 4,
+        "goal": "keeper",
+        "hold": {},
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 785,
+            "x": 10911.00948313217,
+            "y": 6167.115325836519
+          },
+          {
+            "cls": "mage",
+            "hp": 870,
+            "x": 11160,
+            "y": 6180
+          },
+          {
+            "cls": "knight",
+            "hp": 1295,
+            "x": 11244.891840186734,
+            "y": 6180
+          },
+          {
+            "cls": "occultist",
+            "hp": 932,
+            "x": 10626.58542353535,
+            "y": 6033.338411029041
+          }
+        ],
+        "enemies": 62,
+        "local": [
+          {
+            "id": "sb-g-bat-side",
+            "hp": 485
+          },
+          {
+            "id": "act2-keeper",
+            "hp": 1315
+          },
+          {
+            "id": "event-17",
+            "hp": 893
+          },
+          {
+            "id": "event-18",
+            "hp": 1384
+          }
+        ],
+        "boss": {
+          "hp": 1315,
+          "maxHp": 3748
+        }
+      },
+      {
+        "round": 5,
+        "goal": "keeper",
+        "hold": {},
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 785,
+            "x": 10911.00948313217,
+            "y": 6167.115325836519
+          },
+          {
+            "cls": "mage",
+            "hp": 870,
+            "x": 11160,
+            "y": 6180
+          },
+          {
+            "cls": "knight",
+            "hp": 1280,
+            "x": 11239.943394397114,
+            "y": 6180
+          },
+          {
+            "cls": "occultist",
+            "hp": 913,
+            "x": 10629.47993449673,
+            "y": 6033.157504093954
+          }
+        ],
+        "enemies": 62,
+        "local": [
+          {
+            "id": "sb-g-bat-side",
+            "hp": 485
+          },
+          {
+            "id": "act2-keeper",
+            "hp": 77
+          },
+          {
+            "id": "event-17",
+            "hp": 893
+          },
+          {
+            "id": "event-18",
+            "hp": 1384
+          }
+        ],
+        "boss": {
+          "hp": 77,
+          "maxHp": 3748
+        }
+      },
+      {
+        "round": 6,
+        "goal": "clear-bell",
+        "hold": {},
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 785,
+            "x": 10911.00948313217,
+            "y": 6167.115325836519
+          },
+          {
+            "cls": "mage",
+            "hp": 870,
+            "x": 11160,
+            "y": 6180
+          },
+          {
+            "cls": "knight",
+            "hp": 1280,
+            "x": 11243.068394397114,
+            "y": 6180
+          },
+          {
+            "cls": "occultist",
+            "hp": 913,
+            "x": 10632.281387134877,
+            "y": 6032.98241330407
+          }
+        ],
+        "enemies": 60,
+        "local": [
+          {
+            "id": "event-17",
+            "hp": 893
+          },
+          {
+            "id": "event-18",
+            "hp": 1384
+          },
+          {
+            "id": "event-19",
+            "hp": 893
+          },
+          {
+            "id": "event-20",
+            "hp": 1384
+          }
+        ],
+        "boss": {
+          "hp": 1,
+          "maxHp": 3748,
+          "subdued": true
+        }
+      },
+      {
+        "round": 7,
+        "goal": "clear-bell",
+        "hold": {},
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 785,
+            "x": 10950.080662357102,
+            "y": 6180
+          },
+          {
+            "cls": "mage",
+            "hp": 870,
+            "x": 11160,
+            "y": 6180
+          },
+          {
+            "cls": "knight",
+            "hp": 1213,
+            "x": 11861.818394397114,
+            "y": 6180
+          },
+          {
+            "cls": "occultist",
+            "hp": 913,
+            "x": 10632.281387134877,
+            "y": 6032.98241330407
+          }
+        ],
+        "enemies": 59,
+        "local": [
+          {
+            "id": "event-18",
+            "hp": 680
+          },
+          {
+            "id": "event-19",
+            "hp": 718
+          },
+          {
+            "id": "event-20",
+            "hp": 1272
+          }
+        ],
+        "boss": {
+          "hp": 1,
+          "maxHp": 3748,
+          "subdued": true
+        }
+      },
+      {
+        "round": 8,
+        "goal": "clear-bell",
+        "hold": {},
+        "heroes": [
+          {
+            "cls": "archer",
+            "hp": 785,
+            "x": 10950.080662357102,
+            "y": 6180
+          },
+          {
+            "cls": "mage",
+            "hp": 870,
+            "x": 11160,
+            "y": 6180
+          },
+          {
+            "cls": "knight",
+            "hp": 1213,
+            "x": 11971.193394397114,
+            "y": 6180
+          },
+          {
+            "cls": "occultist",
+            "hp": 875,
+            "x": 10643.325377356603,
+            "y": 6032.292163915212
+          }
+        ],
+        "enemies": 57,
+        "local": [
+          {
+            "id": "event-20",
+            "hp": 1029
+          }
+        ],
+        "boss": {
+          "hp": 1,
+          "maxHp": 3748,
+          "subdued": true
+        }
+      }
+    ],
+    "births": [
+      {
+        "id": "event-3",
+        "source": "bell-descent-answer",
+        "round": 1
+      },
+      {
+        "id": "event-4",
+        "source": "bell-descent-answer",
+        "round": 1
+      },
+      {
+        "id": "event-5",
+        "source": "bell-descent-answer",
+        "round": 1
+      },
+      {
+        "id": "event-17",
+        "source": "keeper-retaliation",
+        "round": 3
+      },
+      {
+        "id": "event-18",
+        "source": "keeper-retaliation",
+        "round": 3
+      },
+      {
+        "id": "event-19",
+        "source": "keeper-retaliation",
+        "round": 3
+      },
+      {
+        "id": "event-20",
+        "source": "keeper-retaliation",
+        "round": 3
+      }
+    ]
+  }
+]

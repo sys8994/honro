@@ -1,0 +1,114 @@
+{
+  "sha": "b3e1b126297b60e3d9beaf3a8e808103d0632635",
+  "scope": "Normal-level real browser Scene; camera fixtures. Final-only mode renders saved actual native segment wins for14/17/18; other views are prepared camera/progression fixtures, not full-stage input completions.",
+  "rows": [
+    {
+      "stage": 11,
+      "label": "focus1-overview",
+      "file": "11-focus1-overview.jpg",
+      "camera": [
+        8000,
+        7250,
+        0.115
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "state": {
+        "phase": "aim",
+        "current": "knot-west",
+        "holds": {},
+        "pacingRevision": 1
+      }
+    },
+    {
+      "stage": 14,
+      "label": "focus1-overview",
+      "file": "14-focus1-overview.jpg",
+      "camera": [
+        3800,
+        4900,
+        0.105
+      ],
+      "viewport": [
+        1200,
+        1000
+      ],
+      "state": {
+        "phase": "aim",
+        "current": "clear-upper",
+        "holds": {},
+        "pacingRevision": 1
+      }
+    },
+    {
+      "stage": 17,
+      "label": "focus1-overview",
+      "file": "17-focus1-overview.jpg",
+      "camera": [
+        5800,
+        4000,
+        0.14
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "state": {
+        "phase": "aim",
+        "current": "clear-works",
+        "holds": {},
+        "pacingRevision": 1
+      }
+    },
+    {
+      "stage": 18,
+      "label": "focus1-overview",
+      "file": "18-focus1-overview.jpg",
+      "camera": [
+        7250,
+        4800,
+        0.18
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "state": {
+        "phase": "aim",
+        "current": "clear-wards",
+        "holds": {},
+        "pacingRevision": 1
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "stage": 11,
+      "startX": 720,
+      "endX": 840,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    },
+    {
+      "stage": 14,
+      "startX": 790,
+      "endX": 911.6666666666652,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    },
+    {
+      "stage": 17,
+      "startX": 320,
+      "endX": 445,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    },
+    {
+      "stage": 18,
+      "startX": 740,
+      "endX": 866.6666666666652,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    }
+  ],
+  "errors": [],
+  "httpFailures": []
+}

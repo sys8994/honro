@@ -1,0 +1,36 @@
+{
+  "sha": "2e154a206f3e4cb36310d798d67780114df287e8",
+  "scope": "Normal-level real browser Scene; camera fixtures. Final-only mode renders saved actual native segment wins for14/17/18; other views are prepared camera/progression fixtures, not full-stage input completions.",
+  "rows": [
+    {
+      "stage": 18,
+      "label": "focus3-mobile-keeper",
+      "file": "18-focus3-mobile-keeper.jpg",
+      "camera": [
+        11200,
+        6050,
+        0.3
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "state": {
+        "phase": "aim",
+        "current": "keeper",
+        "holds": {},
+        "pacingRevision": 1
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "stage": 18,
+      "startX": 740,
+      "endX": 866.6666666666652,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    }
+  ],
+  "errors": [],
+  "httpFailures": []
+}

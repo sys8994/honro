@@ -1,0 +1,26 @@
+{
+  "executionSHA": "b3e1b126297b60e3d9beaf3a8e808103d0632635",
+  "scope": "Focused built-browser save boundary: old11 Continue/export/import vs fresh retry.\nThe historical snapshot receives the current map stamp explicitly; this is not\nan unstamped legacy save migration or a combat playthrough.\n",
+  "rows": [
+    {
+      "case": "current-map-stamped old11 Continue",
+      "actors": 77,
+      "actorSHA256": "c7c0b34ff4b66ae46dc2d27751bd0c81fed7f479b926cc9d45f550857c2c6ba0",
+      "oldTraceX": 15040,
+      "savedActorsHPPositionsTerrainExact": true,
+      "comparedWith": "9cb849a5eceb2529a4204232fdf55a09e543d079",
+      "limit": "Historical actor/stat migrations already occur in master; equality is against master Continue, not raw historical HP/poses."
+    },
+    {
+      "case": "real browser download/file-input/repeated Continue",
+      "snapshotExact": true
+    },
+    {
+      "case": "production retry",
+      "newTraceX": 11900,
+      "initialEnemies": 43
+    }
+  ],
+  "errors": [],
+  "httpFailures": []
+}

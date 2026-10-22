@@ -1,0 +1,132 @@
+{
+  "sha": "b3e1b126297b60e3d9beaf3a8e808103d0632635",
+  "scope": "Normal-level real browser Scene; camera fixtures. Final-only mode renders saved actual native segment wins for14/17/18; other views are prepared camera/progression fixtures, not full-stage input completions.",
+  "rows": [
+    {
+      "stage": 11,
+      "label": "focus3-mobile-trace",
+      "file": "11-focus3-mobile-trace.jpg",
+      "camera": [
+        11900,
+        7850,
+        0.36
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "state": {
+        "phase": "aim",
+        "current": "trace",
+        "holds": {},
+        "pacingRevision": 1
+      }
+    },
+    {
+      "stage": 14,
+      "label": "focus3-mobile-refuge",
+      "file": "14-focus3-mobile-refuge.jpg",
+      "camera": [
+        4300,
+        8170,
+        0.3
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "state": {
+        "phase": "aim",
+        "current": "hold-refuge",
+        "holds": {
+          "hold-refuge": {
+            "progress": 3,
+            "spawned": 3,
+            "lastRound": 1,
+            "enteredRound": 1,
+            "guarded": true,
+            "contested": false
+          }
+        },
+        "pacingRevision": 1
+      }
+    },
+    {
+      "stage": 17,
+      "label": "focus3-mobile",
+      "file": "17-focus3-mobile.jpg",
+      "camera": [
+        8660,
+        4500,
+        0.4
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "state": {
+        "phase": "aim",
+        "current": "hold-hoist",
+        "holds": {
+          "hold-hoist": {
+            "progress": 2,
+            "spawned": 3,
+            "lastRound": 1,
+            "enteredRound": 1,
+            "guarded": true,
+            "contested": false
+          }
+        },
+        "pacingRevision": 1
+      }
+    },
+    {
+      "stage": 18,
+      "label": "focus3-mobile-keeper",
+      "file": "18-focus3-mobile-keeper.jpg",
+      "camera": [
+        11200,
+        6050,
+        0.3
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "state": {
+        "phase": "aim",
+        "current": "keeper",
+        "holds": {},
+        "pacingRevision": 1
+      }
+    }
+  ],
+  "keyboard": [
+    {
+      "stage": 11,
+      "startX": 720,
+      "endX": 840,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    },
+    {
+      "stage": 14,
+      "startX": 790,
+      "endX": 911.6666666666652,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    },
+    {
+      "stage": 17,
+      "startX": 320,
+      "endX": 445,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    },
+    {
+      "stage": 18,
+      "startX": 740,
+      "endX": 866.6666666666652,
+      "input": "real keyboard ArrowRight; production App.frame 20 frames"
+    }
+  ],
+  "errors": [],
+  "httpFailures": []
+}
