@@ -51,7 +51,14 @@ function lowerPool(z,amount){
  const surface=[[bottom[0][0],level],[bottom.at(-1)[0],level]];
  return{...z,surface,bottom,points:[...surface,...bottom.slice().reverse()]};
 }
-const steps=b=>b.honroAct2Steps||(revision2(b)?(G.HonroObjectiveRevision?.storedSteps(b,2)||H.stages[b.honroStage-1].steps):G.HonroAct2Content.legacySteps[b.honroStage-11]);
+const storedSteps=b=>b.honroAct2Steps||(revision2(b)?(G.HonroObjectiveRevision?.storedSteps(b,2)||H.stages[b.honroStage-1].steps):G.HonroAct2Content.legacySteps[b.honroStage-11]);
+// Retire generic clearance interlocks without rewriting a live snapshot or
+// claiming the player killed anyone. Stage18's explicit redesign has a separate owner.
+const safetyClear=(b,s)=>active(b)&&b.honroStage!==18&&['clear','pacing-secure'].includes(s?.kind);
+const steps=b=>storedSteps(b).filter(s=>!safetyClear(b,s));
+const retiredSafety=(b,id)=>storedSteps(b).some(s=>s.id===id&&safetyClear(b,s));
+function prerequisite(b,id){if(memory(b).done[id])return true;const list=storedSteps(b),at=list.findIndex(s=>s.id===id);if(at<0||!safetyClear(b,list[at]))return false;const prior=list.slice(0,at).findLast(s=>!s.optional&&!safetyClear(b,s));return !prior||satisfied(b,prior);}
+
 const memory=b=>(b.honroState.act2??={version:1,done:{},events:{},rescued:[],checkpoints:[]});
 const marker=(b,id)=>b.honroMarkers.find(m=>m.id===id);
 const timedHoist=(b,s)=>b.honroStage===17&&!b.honroCustom&&b.honroEvidenceRevision===1&&s.id==='hold-hoist';
@@ -64,7 +71,7 @@ function satisfied(b,s){const a=memory(b);if(a.done[s.id])return true;const paci
  return false;
 }
 function current(b){return steps(b).find(s=>!s.optional&&!satisfied(b,s));}
-function readySteps(b){const s=current(b);return steps(b).filter(q=>!satisfied(b,q)&&(q.optional||q.id===s?.id||s?.parallelGroup&&q.parallelGroup===s.parallelGroup)&&(q.requiresDone||[]).every(id=>!!memory(b).done[id]));}
+function readySteps(b){const s=current(b);return steps(b).filter(q=>!satisfied(b,q)&&(q.optional||q.id===s?.id||s?.parallelGroup&&q.parallelGroup===s.parallelGroup)&&(q.requiresDone||[]).every(id=>prerequisite(b,id)));}
 function enemiesFor(b,s){return b.units.filter(u=>u.side===1&&!u.honroObjectiveTarget&&u.summonKind!=='eater'&&!u.dead&&u.hp>0&&!u.honroSubdued&&(s.defeatIds?s.defeatIds.includes(u.id):s.cohorts==='all'||s.cohorts===u.honroCohort));}
 function visible(b,u){if(!u?.honroSpirit||!u.spiritHidden||u.manifested||u.revealSpiritToParty)return true;const viewer=b.units.find(v=>v.id===b.active);return viewer?.side===0?!!viewer.spiritSight:!!b.units.find(v=>v.id===memory(b).viewerId)?.spiritSight;}
 function scaleEncounter(u,hp,attack){const ratio=u.maxHp>0?u.hp/u.maxHp:1;
@@ -267,5 +274,5 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||app.
  app.checkMission(e);
 }
 function entry(app,options={}){return [...(options.interlude===false?[]:app.stage.narration).map(text=>['서술',text,{kind:'narration',art:'road'}]),...G.HonroRouteBranches?.entryLines(app.engine?.b)||[],...app.stage.story,G.HonroAct2Content.guide(app.stage.guide)];}
-G.HonroAct2={active,configureEnemy,recruit,memory,current,readySteps,satisfied,subdue,state,eligibility,interactionThreats,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter,wave};
+G.HonroAct2={active,configureEnemy,recruit,memory,current,readySteps,retiredSafety,prerequisite,satisfied,subdue,state,eligibility,interactionThreats,use,attach,tick,failure,entry,expose,steps,enemiesFor,visible,revision2,tuneEncounter,wave};
 })(globalThis);

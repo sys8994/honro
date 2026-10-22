@@ -12,7 +12,7 @@ const pending=b=>(b.honroEvents||[]).filter(ev=>owned(ev)&&!b.honroState.flags['
 function blockedClear(b){
  // The pacing contract confirms the local knot event; optional pursuit entry
  // may not reintroduce the retired west-cohort clearance gate.
- if(!active(b)||G.HonroAct2Pacing?.active(b))return null;
+ if(!active(b)||G.HonroAct2Pacing?.active(b)||!A.steps(b).some(s=>s.kind==='clear'))return null;
  const waiting=pending(b),foes=live(b);
  if(done(b,'knot-west')&&!done(b,'clear-west')&&!foes.some(u=>u.honroCohort==='west')&&waiting.some(ev=>(ev.action.actions||[]).some(a=>a.honroCohort==='west')))return'clear-west';
  if(!G.HonroStage11TraceExit?.active(b)&&done(b,'resident')&&!done(b,'clear-road')&&!foes.length&&waiting.length)return'clear-road';
@@ -200,7 +200,7 @@ A.state=function(b){
  // This guard covers a blocked entry or an unusually fast saved-state resume:
  // the existing all-enemies objective must never silently miss queued bodies.
   // The separately approved trace-exit revision makes that final cleanup optional.
- if(blocked||!G.HonroStage11TraceExit?.active(b)&&(result.complete||done(b,'clear-road'))&&(waiting.length||foes.length)){
+ if(blocked||A.steps(b).some(s=>s.id==='clear-road')&&!G.HonroStage11TraceExit?.active(b)&&(result.complete||done(b,'clear-road'))&&(waiting.length||foes.length)){
   const hero=b.units.find(u=>u.id===b.active)||b.units.find(u=>u.side===0);
   const target=foes.slice().sort((a,c)=>Math.hypot(a.x-(hero?.x||0),a.y-(hero?.y||0))-Math.hypot(c.x-(hero?.x||0),c.y-(hero?.y||0)))[0];
   const relevant=blocked==='clear-west'?waiting.filter(ev=>(ev.action.actions||[]).some(a=>a.honroCohort==='west')):waiting;
@@ -220,20 +220,14 @@ function holdInstruction(b,s){
  if(!h.guarded)return prefix+'동행 1명을 표시된 원에 두세요';
  const side=h.spawned<3?'서쪽':'동쪽';return prefix+side+' 진입로 주변을 비워 주세요';
 }
-// Make the existing local guard prerequisite visible before the player walks
-// up to a knot. A zero count keeps the standard class-specific/E instruction.
-function knotInstruction(b,s){
- if(!composed(b)||!A.revision2(b)||s?.kind!=='interact'||!['knot-west','knot-east'].includes(s.id))return null;
- const m=b.honroMarkers.find(m=>m.id===s.id);if(!m)return null;
- const count=A.interactionThreats(b,m).length;
- return count?(s.id==='knot-west'?'서쪽':'동쪽')+' 혼매듭 주변의 들림 '+count+'명을 먼저 제압하세요':null;
-}
+// Nearby combat never becomes a knot interaction prerequisite.
+function knotInstruction(){return null;}
 // The body to weaken is the marker's linked spirit, never the protected
 // resident. Once the spirit is ready/gone, return the cue to the living resident.
 // This only reads positions/HP; visibility, damage and the rescue gate stay put.
 function rescueTarget(b,s){
  if(!composed(b)||s?.id!=='resident'||s.kind!=='rescue')return null;
- const m=b.honroMarkers.find(m=>m.id===s.id);if(!m||A.interactionThreats(b,m).length)return null;
+ const m=b.honroMarkers.find(m=>m.id===s.id);if(!m)return null;
  const spirit=b.units.find(u=>u.id===m.spiritId),sodan=b.units.some(u=>u.side===0&&u.cls==='occultist'&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall);
  const weaken=spirit&&!spirit.dead&&spirit.hp>0&&(spirit.hp>spirit.maxHp*.4||!sodan&&!spirit.honroSubdued);
  const target=weaken?spirit:b.units.find(u=>u.id===m.target);
@@ -247,10 +241,6 @@ function rescueInstruction(b,s){
  const m=b.honroMarkers.find(m=>m.id===s.id),heroes=b.units.filter(u=>u.side===0&&!u.dead&&u.hp>0&&!u.summoned&&!u.enthrall);
  const u=heroes.find(u=>u.id===b.active)||heroes[0];if(!m||!u)return null;
  const result=A.eligibility({engine:{b,active:u}},m),spirit=b.units.find(v=>v.id===m.spiritId),sodan=heroes.find(v=>v.cls==='occultist');
- if(!result.ok&&result.reason==='주변 들림을 먼저 제압하세요'){
-  const count=A.interactionThreats(b,m).length;
-  return '주민 주변의 적 '+count+'명을 처치하세요';
- }
  if(!result.ok&&result.reason==='붙은 혼을 먼저 약화시키세요 · 체력 40% 이하')return sodan?'붙은 혼의 체력을 40% 이하로 낮추세요':'주민에게 붙은 혼을 제압하세요';
  if(!result.ok&&result.reason==='소단으로 분리하거나 곁의 혼을 먼저 제압')return sodan?'소단으로 주민에게 다가가 혼을 분리하세요':'주민에게 붙은 혼을 제압하세요';
  if(result.ok)return spirit&&!spirit.dead&&!spirit.honroSubdued?'소단으로 주민에게 다가가 혼을 분리하세요':'동행으로 주민에게 다가가 구조하세요';
