@@ -1,5 +1,5 @@
 /** Stage11 authored material data. No terrain, actor, objective or shared asset edits. */
-import {authorStage11Fractures} from './stage11-fracture-fields.mjs';
+import {authorStage11Fractures,authorStage11JoinedBeds} from './stage11-fracture-fields.mjs';
 import {compileSVG} from './build-act2-art.mjs';
 import {readFileSync,writeFileSync} from 'node:fs';
 import {pathToFileURL} from 'node:url';
@@ -86,7 +86,8 @@ export function applyStage11VectorFinish(project){
    const side=i%2?-.12:.13;
    add([[u+d*.3,.51],[u+d*.3+side*.42,.54],[u+d*.3+side,.49],[u+d*.3+side,.50],[u+d*.3+side*.42,.558],[u+d*.3-thick,.527]],'#304d54');
   });
-  materials.push({terrainId:t.id,faces:[...faces.map(f=>({...f,depthShade:true})),...authorStage11Fractures(t,top)]});
+  const joined=['rv-ritual-buttress','rv-north-trace'].includes(t.id);
+  materials.push({terrainId:t.id,faces:joined?authorStage11JoinedBeds(t,at):[...faces.map(f=>({...f,depthShade:true})),...authorStage11Fractures(t,top)]});
  }
  // Roots continue from the actual wood endpoint across the adjoining stone.
  // The live rock clip constrains the small contact fan entirely inside rock.

@@ -1,6 +1,6 @@
 # 11장 벡터 지형 미술 · 2026-10-22
 
-> **현재 상태: 부모 미술 미통과.** `69992d5b` 첫 후보는 부모가 직접 검토 후 중앙/동쪽의 중간 규모 파단면과 뿌리 접합 부족으로 반려했다. 아래 첫 후보의 검사/종합/성능 기록은 미술 합격이 아니다. 현행 `materialRevision:3` 두 번째 후보는 화면 선공개와 부모 방향 검토 단계이며 master/Pages에 반영하지 않는다.
+> **현재 상태: 부모 미술 미통과.** `69992d5b` 첫 후보는 부모가 직접 검토 후 중앙/동쪽의 중간 규모 파단면과 뿌리 접합 부족으로 반려했다. 아래 첫 후보의 검사/종합/성능 기록은 미술 합격이 아니다. 두 번째 후보 역시 부모가 독립 블록처럼 뜨는 파단면을 지적해 최종 통과하지 않았다. 현행 `materialRevision:3` 세 번째 후보는 중앙·동쪽 면 결합 보완이며 부모 최종 미술 판단 전 master/Pages에 반영하지 않는다.
 
 ## 짧은 미술 설계 카드
 
@@ -107,3 +107,21 @@
 | 피난처 보존 | [첫 후보](evidence/final-refuge.jpg) | [candidate2-refuge.jpg](evidence/candidate2-refuge.jpg) |
 
 빌드와 새 후보 불변 검사/정적 재사용 확인은 통과했다. [candidate2-preservation.json](evidence/candidate2-preservation.json), [candidate2-material-cache.json](evidence/candidate2-material-cache.json): 실제31개 지형, 저작재질9개, 최대 준비 경로89, rendering purity/cache/옛 전투·다른 장 opt-out. Chromium 네 화면 pageerror0/HTTP실패0. 새 후보의 별도 종합/추가 성능 채택 판정은 부모가 두 번째 사진을 검토한 뒤 진행한다. 이전54경로/성능 표본을89경로 후보에 그대로 적용하지 않는다.
+
+
+## 세 번째 후보 · 중앙/동쪽 일체형 파단면 보완
+
+복구 기준은 기존 원격 최신 `e18d51e17b32c4e84788461d9b65aee4de930dbf`(두 번째 구현 `dccf61c0`)다. 새 브랜치는 `fix/stage11-vector-art-refinement-20261022`이며 이전 SHA에서 중복 구현하지 않았다. AGENTS·환경 스킬·SOP·공통 에셋 지침·이 문서를 읽고 첫 후보 집중/최종8장과 두 번째 후보4장을 이 환경의 이미지 뷰어로 직접 열었다.
+
+부모의 두 번째 후보 반려 이유는 밝은 윗면/짙은 아랫면이 붙여놓은 블록처럼 뜬다는 점이다. 중앙 `rv-ritual-buttress`와 동쪽 `rv-north-trace`만 별도 조각군 대신 **인접 면이 꺾인 경계를 공유하는 연속 암대**로 저작했다. 전체 깊이에 같은 기반암 명암이 이어지고, 선택한 경계 일부에만 짧은 틈과 좁은 모서리광을 둔다. 동쪽은 거대한 전체 polygon 폭을 등분하지 않고 흔적 주변의 실제 표시 크기에 맞춰 유한한 면 좌표를 저작했다. 다른7개 암체 재질·기존 피난처/후벽 Library·뿌리 끼움부/목재 단면·콜라이더·배우·목표·전투·전역 renderer/main/UI는 변경하지 않는다. 재질 opt-in과 정적 prepare/tile 재사용도 기존 경로 그대로다.
+
+로컬 첫 시안에서 분리 조각을 너무 넓게 합친 경계가 사각 패치처럼 드러나 기각했다. 다음 시안의 동쪽 면도 모바일에 비해 지나치게 커서 표시 구간의 공통 경계 위치를 다시 정했다. 아래 최종 선공개4장을 직접 열었다. 중앙은 개별 암편 밑의 검은 뚜껑이 없어지고 이웃 면의 접합으로 이어진다. 동쪽은 통행 경사와 같은 기울기의 중간 면이 한 암체 안에서 이어지고 목표 표시는 유지된다. 여전히 넓고 절제된 면 구성이며 자연스러움/유기적 결합의 최종 미술 채택은 부모가 판단한다. 다른 암체에 남은 두 번째 후보 조형까지 이번에 전면 개편했다고 주장하지 않는다.
+
+| 같은 카메라 | 두 번째 후보 | 세 번째 후보 |
+|---|---|---|
+| 전체 | [candidate2](evidence/candidate2-overview.jpg) | [candidate3](evidence/candidate3-overview.jpg) |
+| 중앙 | [candidate2](evidence/candidate2-central.jpg) | [candidate3](evidence/candidate3-central.jpg) |
+| 동쪽 세로 모바일 | [candidate2](evidence/candidate2-mobile-trace.jpg) | [candidate3](evidence/candidate3-mobile-trace.jpg) |
+| 피난처/뿌리 접촉 보존 | [candidate2](evidence/candidate2-refuge.jpg) | [candidate3](evidence/candidate3-refuge.jpg) |
+
+선공개는 생산 Chromium의 같은 camera/viewport/상태 fixture이며 실제 전투 완주나 실기기 터치 증거가 아니다. 촬영 당시 미커밋 소스와 `sourceHashes`를 [candidate3-preview.json](evidence/candidate3-preview.json)에 기록했다. JPG 각1MB 미만. 별도 최종 종합/새 성능 채택 결과는 아래 후속 기록에 구분해 남긴다. 첫 후보의3회/성능/기존45≠43 실패를 이번 통과로 재사용하지 않는다.

@@ -1,0 +1,254 @@
+{
+  "label": "candidate3",
+  "sha": "e18d51e17b32c4e84788461d9b65aee4de930dbf",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M tools/environment/stage11-fracture-fields.mjs\n M tools/environment/stage11-vector-finish.mjs\n D web/data/campaign-library.d633329b7ff5cac1.json\n D web/data/campaign.5c5dd188cc370859.json\n D web/data/campaign.989ff5edc2086ad3.json\n D web/data/campaign.e0f6f09e4b1e5e10.json\n D web/data/chapter-11-assets.a094392e90a8085f.json\n D web/data/chapter-11.cac68d5650e11fbd.json\n D web/data/chapter-11.dd2244d90d53db38.json\n D web/data/chapter-11.fc023ef6b3a05645.json\n D web/entries/game.03301ce14e18e338.js\n D web/entries/game.0737d469b2350005.html\n D web/entries/game.1525587f1337c25b.html\n D web/entries/game.51b96bf9b8ce00de.js\n D web/entries/game.9b07c53d150d452c.js\n D web/entries/game.ac18260fb617fdf0.html\n D web/entries/workshop.3c34e5ebd2b36b25.js\n D web/entries/workshop.5f1c82076248a2bf.js\n D web/entries/workshop.60b554189fc6a04e.js\n M web/manifest.json\n D web/runtime/campaign.b40aef7cb90ade2b.js\n D web/runtime/campaign.cf7563ca2ee0a98c.js\n D web/runtime/campaign.e2a99e9a1510f562.js\n D web/runtime/ordered-common-13.5738d3e87e27a059.js\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-central.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-mobile-trace.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-overview.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-preview.json\n?? game/docs/stage11-vector-art-20261022/evidence/candidate3-refuge.jpg\n?? web/data/campaign.47f4e4e5ace20084.json\n?? web/data/campaign.5eb2f4790e14dee6.json\n?? web/data/campaign.cb2484cd0285446a.json\n?? web/data/chapter-11.0c240407383c98a1.json\n?? web/data/chapter-11.a72c5ab1dbaddd03.json\n?? web/data/chapter-11.e6043aa0e7134fbc.json\n?? web/entries/game.1f970fafd66c7b15.js\n?? web/entries/game.24e412cbf360c1f0.html\n?? web/entries/game.74fb082276ff973b.html\n?? web/entries/game.860cf599839f075a.js\n?? web/entries/game.c77617d281abbe4b.js\n?? web/entries/game.f3cbeac3be412c94.html\n?? web/entries/workshop.1c8496ac28cb7bcf.js\n?? web/entries/workshop.9270a920aff6fb81.js\n?? web/entries/workshop.dd561d33ae168aa6.js\n?? web/runtime/campaign.476e28128c3ca490.js\n?? web/runtime/campaign.aa1773dee8af8794.js\n?? web/runtime/campaign.f784ee66629320c0.js\n",
+  "materialSha256": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+  "scope": "Production Chromium Scene and HUD; frozen normal entry-level battle/camera/progression fixtures, not full combat completion or real mobile hardware. 40 synchronous warm render samples/view; no concurrent load.",
+  "rows": [
+    {
+      "file": "candidate3-overview.jpg",
+      "group": "focus1",
+      "camera": [
+        8000,
+        7250,
+        0.115
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 105.59999999997672,
+      "medianMs": 2.8999999999068677,
+      "p95Ms": 3.900000000023283,
+      "cacheBefore": {
+        "worldBuilds": 2,
+        "worldBuildMs": 49.39999999990687,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 25,
+        "bgHits": 7,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 14,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 2,
+        "worldBuildMs": 49.39999999990687,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 65,
+        "bgHits": 47,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 94,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate3-central.jpg",
+      "group": "focus2",
+      "camera": [
+        7290,
+        7080,
+        0.43
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 45.5,
+      "medianMs": 0.7999999999301508,
+      "p95Ms": 1.099999999976717,
+      "cacheBefore": {
+        "worldBuilds": 3,
+        "worldBuildMs": 57.499999999883585,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 81,
+        "bgHits": 55,
+        "domainCanvasAllocations": 26,
+        "domainTileBuilds": 26,
+        "screenBuilds": 6,
+        "screenHits": 110,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 3,
+        "worldBuildMs": 57.499999999883585,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 121,
+        "bgHits": 95,
+        "domainCanvasAllocations": 26,
+        "domainTileBuilds": 26,
+        "screenBuilds": 6,
+        "screenHits": 190,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "tileCount": 8,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate3-refuge.jpg",
+      "group": "focus2",
+      "camera": [
+        10350,
+        8470,
+        0.5
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 62.90000000002328,
+      "medianMs": 0.8000000000465661,
+      "p95Ms": 1.400000000023283,
+      "cacheBefore": {
+        "worldBuilds": 4,
+        "worldBuildMs": 68.50000000011642,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 141,
+        "bgHits": 103,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 206,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 4,
+        "worldBuildMs": 68.50000000011642,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 181,
+        "bgHits": 143,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 286,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate3-mobile-trace.jpg",
+      "group": "focus3",
+      "camera": [
+        11900,
+        7850,
+        0.36
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "limits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 30.70000000006985,
+      "medianMs": 0.2000000000698492,
+      "p95Ms": 0.5,
+      "cacheBefore": {
+        "worldBuilds": 6,
+        "worldBuildMs": 81.10000000009313,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 194,
+        "bgHits": 150,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 300,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 6,
+        "worldBuildMs": 81.10000000009313,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 234,
+        "bgHits": 190,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 380,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "shared/data/campaign.json": "5d4f7b87cea780b8e01801553f4d2a5367302e2d5d719aefb10e3311bc1d534d",
+    "tools/environment/stage11-fracture-fields.mjs": "17c7a42033fee6fadbc1cadf4ed4fc4444fa05c15d793a5b65e7d01f55698ebb",
+    "tools/environment/stage11-vector-finish.mjs": "fc279e63b329d3c513438639ff8fe0663504474db86373aadfabecd8b8ed84ae",
+    "shared/runtime/stage11-landscape-art.js": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+    "web/manifest.json": "4e33561c18a04cf5e041e2313bc940401fe350a061176a41e9157dd9a6ca28d4"
+  }
+}

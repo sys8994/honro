@@ -62,3 +62,63 @@ export function authorStage11Fractures(terrain,top){
  }
  return faces;
 }
+
+// Continuous bed mesh for the two reviewed masses. Every neighbouring plane
+// consumes the exact same boundary, including its unequal angular shoulders.
+// Only selected seam fragments are dark: there are no per-stone lower caps.
+export function authorStage11JoinedBeds(terrain,at){
+ const north=terrain.id==='rv-north-trace';
+ const rows=north?[
+  [[0,0],[.04,0],[.08,0],[.13,0],[.25,0],[.5,0],[1,0]],
+  [[0,.09],[.025,.13],[.085,.08],[.15,.14],[.3,.18],[.48,.27],[1,.2]],
+  [[0,.23],[.055,.19],[.105,.28],[.14,.22],[.27,.38],[.53,.45],[1,.54]],
+  [[0,.49],[.04,.42],[.09,.47],[.17,.39],[.29,.65],[.49,.71],[1,.79]],
+  [[0,1.12],[.04,1.12],[.10,1.12],[.17,1.12],[.29,1.12],[.49,1.12],[1,1.12]]
+ ]:[
+  [[0,0],[.10,0],[.28,0],[.47,0],[.66,0],[.9,0],[1,0]],
+  [[0,.26],[.14,.18],[.31,.32],[.52,.21],[.62,.35],[.86,.25],[1,.39]],
+  [[0,.49],[.11,.57],[.36,.43],[.45,.59],[.73,.47],[.91,.56],[1,.5]],
+  [[0,.84],[.19,.73],[.29,.82],[.56,.70],[.68,.89],[.88,.77],[1,.86]],
+  [[0,1.12],[.13,1.12],[.34,1.12],[.49,1.12],[.71,1.12],[.92,1.12],[1,1.12]]
+ ];
+ // A finite list of offset shoulders, not random jitter or repeated chip shapes.
+ const shoulders=[[-.026,.028],[.021,-.042],[-.034,-.018],[.018,.046],[.034,-.025],[-.016,.052],[.028,.016],[-.025,-.035]];
+ const edge=(r,c,vertical=false)=>{
+  const a=rows[r][c],b=vertical?rows[r+1][c]:rows[r][c+1];
+  if((vertical&&(c===0||c===6))||(!vertical&&(r===0||r===4)))return[a,b];
+  const [shoulderX,dv]=shoulders[(r*3+c+(vertical?4:0))%shoulders.length],du=shoulderX*(north?.22:1);
+  return[a,[a[0]+(b[0]-a[0])*.42+du,a[1]+(b[1]-a[1])*.42+dv],[a[0]+(b[0]-a[0])*.68+du,a[1]+(b[1]-a[1])*.68+dv],b];
+ };
+ const tones=north?[
+  '#879788','#718b81','#819487','#738b81','#809285','#6d867e',
+  '#69857e','#7b9083','#5b7879','#7a8e81','#637f7b','#71897f',
+  '#728a80','#5f7b79','#718a80','#59767a','#6a847d','#5e7b7a',
+  '#59767a','#657f7d','#537176','#627d79','#516e75','#5a767a'
+ ]:[
+  '#87978a','#738c81','#829587','#6d867d','#809285','#6e867d',
+  '#718a80','#607c79','#7d9285','#68837b','#5c7979','#748b80',
+  '#5b7879','#738a80','#607d7a','#748b7f','#567478','#69837c',
+  '#627d7a','#526f74','#68837d','#577579','#637d79','#4f6d74'
+ ];
+ const faces=[];
+ for(let r=0;r<4;r++)for(let c=0;c<6;c++){
+  const ring=[...edge(r,c),...edge(r,c+1,true).slice(1),...edge(r+1,c).reverse().slice(1),...edge(r,c,true).reverse().slice(1)];
+  faces.push({points:ring.map(p=>at(...p)),fill:tones[r*6+c],depthShade:true});
+ }
+ const seam=(ps,width,color)=>{
+  const pts=ps.map(p=>at(...p)),left=[],right=[];
+  pts.forEach(([x,y],i)=>{const a=pts[Math.max(0,i-1)],b=pts[Math.min(pts.length-1,i+1)],d=Math.hypot(b[0]-a[0],b[1]-a[1])||1,w=i===0||i===pts.length-1?width*.2:width;left.push([x-(b[1]-a[1])/d*w,y+(b[0]-a[0])/d*w]);right.push([x+(b[1]-a[1])/d*w,y-(b[0]-a[0])/d*w]);});
+  faces.push({points:[...left,...right.reverse()],fill:color,depthShade:true});
+ };
+ // Broken joins coincide with the mesh. A few pale edges catch the same light.
+ seam(edge(0,north?2:1,true).slice(1),12,'#34525a');
+ seam(edge(1,4,true).slice(0,3),15,'#34525a');
+ seam(edge(2,2,true).slice(1),11,'#38575c');
+ seam(edge(1,1).slice(0,3),9,'#3c5a5e');
+ seam(edge(2,3).slice(1),7,'#416064');
+ seam(edge(3,4).slice(0,3),9,'#38575d');
+ seam(edge(1,0).slice(1),16,'#abb39a66');
+ seam(edge(2,2).slice(0,3),14,'#a5af9260');
+ seam(edge(3,5).slice(1),6,'#a0ac9250');
+ return faces;
+}
