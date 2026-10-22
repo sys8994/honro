@@ -822,8 +822,8 @@
             const paint=()=>scene.render(e,dt,this.selected,this.power,this.charging,effectDt,paused);
             if(!stablePause){scene._pausedBattleFrame=null;return paint();}
             if(!scene._pauseContextListener){scene._pauseContextListener=true;for(const name of ['contextlost','contextrestored'])canvas.addEventListener(name,()=>{scene._pausedBattleFrame=null;});}
-            const key=()=>{const r=canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect(),mini=$('minimap')?.getBoundingClientRect();return [r.width,r.height,canvas.width,canvas.height,devicePixelRatio,innerWidth,innerHeight,hud?.top,mini?.left,mini?.top,mini?.bottom,scene.x,scene.y,scene.scale,scene.manual,scene.time,scene.walkTime,scene.hoverUnitId,scene.inspectUnitId,JSON.stringify(scene.missionTargets),
-                e.b.sceneVersion,scene._worldCacheKey(e.b,r.width),G.HonroVisualStyle?.key(),scene.viewOptions?.debugTerrainOutline,this.selected,this.power,this.charging].join('|');};
+            const key=()=>{const r=canvas.getBoundingClientRect(),hud=document.querySelector('.honro-compact-hud')?.getBoundingClientRect(),mini=$('minimap')?.getBoundingClientRect();return [r.left,r.top,r.width,r.height,canvas.width,canvas.height,devicePixelRatio,innerWidth,innerHeight,hud?.top,mini?.left,mini?.top,mini?.bottom,scene.x,scene.y,scene.scale,scene.manual,scene.time,scene.walkTime,scene.hoverUnitId,scene.inspectUnitId,JSON.stringify(scene.missionTargets),
+                e.b.active,e.b.phase,e.b.sceneVersion,scene._worldCacheKey(e.b,r.width),G.HonroVisualStyle?.key(),scene.viewOptions?.debugTerrainOutline,this.selected,this.power,this.charging].join('|');};
             const signature=key(),old=scene._pausedBattleFrame;
             if(old?.engine===e&&old.battle===e.b&&old.modal===this.modal.firstElementChild&&old.key===signature&&old.stable)return;
             paint();
