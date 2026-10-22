@@ -1,0 +1,220 @@
+{
+  "source": "9cb849a5eceb2529a4204232fdf55a09e543d079",
+  "scope": "Production browser pixels; prepared camera/escort-state fixtures, real keyboard movement.",
+  "finalOnly": false,
+  "inputs": [
+    {
+      "stage": 8,
+      "scope": "Real keyboard ArrowRight, production App.frame20;23 party/NPC ramp poses and prior escort goals prepared once",
+      "start": {
+        "heroX": 770,
+        "moveLeft": 1352,
+        "npcX": null
+      },
+      "end": {
+        "heroX": 883.0566829427198,
+        "moveLeft": 1238.666666666667,
+        "npcX": null
+      }
+    },
+    {
+      "stage": 22,
+      "scope": "Real keyboard ArrowRight, production App.frame20;23 party/NPC ramp poses and prior escort goals prepared once",
+      "start": {
+        "heroX": 850,
+        "moveLeft": 1640,
+        "npcX": null
+      },
+      "end": {
+        "heroX": 976.6666666666652,
+        "moveLeft": 1513.3333333333394,
+        "npcX": null
+      }
+    },
+    {
+      "stage": 23,
+      "scope": "Real keyboard ArrowRight, production App.frame20;23 party/NPC ramp poses and prior escort goals prepared once",
+      "start": {
+        "heroX": 3220,
+        "moveLeft": 1640,
+        "npcX": 2643.8758511609994
+      },
+      "end": {
+        "heroX": 3333.294110859988,
+        "moveLeft": 1513.3333333333348,
+        "npcX": 2721.3928743809884
+      }
+    }
+  ],
+  "rows": [
+    {
+      "stage": 8,
+      "file": "8-focus1-overview.jpg",
+      "label": "focus1-overview",
+      "camera": [
+        4700,
+        3850,
+        0.13
+      ],
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 8,
+      "file": "8-focus2-east-binding.jpg",
+      "label": "focus2-east-binding",
+      "camera": [
+        7900,
+        2900,
+        0.48
+      ],
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 8,
+      "file": "8-focus3-mobile-court.jpg",
+      "label": "focus3-mobile-court",
+      "camera": [
+        5950,
+        4200,
+        0.38
+      ],
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "stage": 8,
+      "file": "8-final-central-bier.jpg",
+      "label": "final-central-bier",
+      "camera": [
+        5950,
+        4090,
+        0.36
+      ],
+      "viewport": [
+        1200,
+        700
+      ]
+    },
+    {
+      "stage": 22,
+      "file": "22-focus1-overview.jpg",
+      "label": "focus1-overview",
+      "camera": [
+        2100,
+        3250,
+        0.13
+      ],
+      "viewport": [
+        1200,
+        1000
+      ]
+    },
+    {
+      "stage": 22,
+      "file": "22-focus2-report-court.jpg",
+      "label": "focus2-report-court",
+      "camera": [
+        1500,
+        3600,
+        0.5
+      ],
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 22,
+      "file": "22-focus3-mobile-register.jpg",
+      "label": "focus3-mobile-register",
+      "camera": [
+        1300,
+        1870,
+        0.42
+      ],
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "stage": 22,
+      "file": "22-final-comparison.jpg",
+      "label": "final-comparison",
+      "camera": [
+        2475,
+        1200,
+        0.38
+      ],
+      "viewport": [
+        1200,
+        700
+      ]
+    },
+    {
+      "stage": 23,
+      "file": "23-focus1-overview.jpg",
+      "label": "focus1-overview",
+      "camera": [
+        4800,
+        4300,
+        0.135
+      ],
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 23,
+      "file": "23-focus2-ramp-follow.jpg",
+      "label": "focus2-ramp-follow",
+      "camera": [
+        2950,
+        4820,
+        0.5
+      ],
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "stage": 23,
+      "file": "23-focus3-mobile-bridge.jpg",
+      "label": "focus3-mobile-bridge",
+      "camera": [
+        5530,
+        4250,
+        0.38
+      ],
+      "viewport": [
+        390,
+        844
+      ]
+    },
+    {
+      "stage": 23,
+      "file": "23-final-ramp-progress.jpg",
+      "label": "final-ramp-progress",
+      "camera": [
+        3150,
+        4880,
+        0.42
+      ],
+      "viewport": [
+        1200,
+        700
+      ]
+    }
+  ],
+  "errors": []
+}

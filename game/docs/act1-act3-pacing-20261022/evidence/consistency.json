@@ -1,0 +1,62 @@
+{
+  "base": "9cb849a5eceb2529a4204232fdf55a09e543d079",
+  "sources": {
+    "shared/data/campaign.json": {
+      "blob": "c6543f45ad5a412f0365114dc2f5172e99ca96db",
+      "unchanged": true
+    },
+    "tools/map-forge/stage8-bier.mjs": {
+      "blob": "581701bde7cbe2eac9b7822989b89cd682ed3f6a",
+      "unchanged": true
+    },
+    "tools/map-forge/stage22-vertical-geometry.mjs": {
+      "blob": "2a0ae49a9cafcbf3e52dd00e122a65631294e02a",
+      "unchanged": true
+    },
+    "tools/map-forge/apply-stage22-vertical.mjs": {
+      "blob": "b797ea84b1222447e27145da8e2cd7e5e589791f",
+      "unchanged": true
+    },
+    "tools/map-forge/stage23-loading-yard.mjs": {
+      "blob": "e03e9204166997eeb3c206988668f16dd644bd50",
+      "unchanged": true
+    },
+    "tools/map-forge/stage23-density-roster.mjs": {
+      "blob": "5984b512eb5b5be1eeaa5f480100bb7333419d6e",
+      "unchanged": true
+    }
+  },
+  "all30FinalProjectUnchanged": true,
+  "projectHash": "2c7643ef077d5b4c22cc2c28862c9597bda1ae883c7b77f774c7a7f0e9642fd5",
+  "primaryContourMatchesGenerator": true,
+  "chapters": [
+    {
+      "id": 8,
+      "path": "web/data/chapter-08.814a72039afe41bb.json",
+      "sha256": "7bde78f4e0e78d30777f2c54f13d40f204e34b395adbd704b5be85889bab5589",
+      "authoredMatches": true,
+      "finalRuntimeTerrainUnitsEventsEncountersDesignMatch": true
+    },
+    {
+      "id": 22,
+      "path": "web/data/chapter-22.3bd6cbf004bf21eb.json",
+      "sha256": "32128fae154872b33debce4cafc1603ec4d380db40bdb2861148ab31c2cdd44f",
+      "authoredMatches": true,
+      "finalRuntimeTerrainUnitsEventsEncountersDesignMatch": true
+    },
+    {
+      "id": 23,
+      "path": "web/data/chapter-23.b166d1cd7766b513.json",
+      "sha256": "435db6d9a8684761fe38e25617ebac92647df3b314314b85490e37b5af3f09dd",
+      "authoredMatches": true,
+      "finalRuntimeTerrainUnitsEventsEncountersDesignMatch": true
+    }
+  ],
+  "activeReferencesPresent": true,
+  "playtest": "web/entries/game.71983cbe88856f07.html?embedded=1",
+  "runtimeSourcesSHA": {
+    "shared/runtime/act3-objectives.js": "986455456636123c36193917629a98a50b4e63454ad497ea21b8489419d9fc5e",
+    "shared/runtime/stage23-escort.js": "61c011623aaedb0b9c648e7221ef547cddf2945fcc09aecd0b94ade3231cffdd"
+  },
+  "note": "Authored chapters match deployed data exactly. Final runtime applies existing narrative/evidence metadata migrations; its entire project still equals original final-runtime baseline. Terrain/units/events/encounters/design match raw chapters."
+}
