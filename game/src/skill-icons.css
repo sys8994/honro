@@ -24,3 +24,9 @@
  .honro #app .honro-compact-hud .skill-button>.skill-art{width:32px;height:32px}
  .honro #app .honro-compact-hud .skill-button>.skill-name{bottom:1px;line-height:9px!important}
 }
+/* Keep supplied silhouettes readable when resources/cooldowns block a slot.
+   Cost, dashed frame and subdued text carry availability; art stays intact. */
+.honro #app .arcfall-hud .skill-button.unaffordable{opacity:1!important;border-style:dashed!important;background:#102028!important}
+.honro #app .arcfall-hud .skill-button.unaffordable>.skill-art{opacity:.85}
+.honro #app .arcfall-hud .skill-button.unaffordable>.skill-name{opacity:.65}
+.honro #app .arcfall-hud .skill-button.unaffordable>.mana-cost{color:#dfb09c!important}
