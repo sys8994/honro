@@ -1,0 +1,21 @@
+PASS Older profiles without the preference default to visible
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /label for="minimap-setting"/. Input:
+
+'<section class="dialog settings-dialog" role="dialog" aria-modal="true" aria-labelledby="menu-title"><div class="menu-fixed"><button class="fullscreen-setting" data-action="fullscreen"><span>전체화면</span><b data-fullscreen-label>켜기</b></button><p class="menu-status" data-fullscreen-status role="status"></p><header class="menu-header"><h2 id="menu-title">설정</h2><button class="menu-close" data-action="close" aria-label="닫기">×</button></header></div><div class="menu-body"><button class="menu-row" data-action="settings-page" data-id="sound"><span>소리<small>효과음 · 배경음악</small></span><b aria-hidden="true">›</b></button><button class="menu-row" data-action="settings-page" data-id="screen"><span>화면<small>방향 · 미니맵</small></span><b aria-hidden="true">›</b></button><button class="menu-row" data-action="settings-page" data-id="play"><span>플레이<small>난이도 · 행동 속도 · 안내</small></span><b aria-hidden="true">›</b></button><button class="menu-row" data-action="settings-page" data-id="records"><span>기록·관리<small>기록 파일 · 새 여정 · 검수 모드</small></span><b aria-hidden="true">›</b></button><p class="menu-note">설정은 바로 반영하고 저장합니다.</p></div></section>'
+
+    at file:///tmp/honro-icon-base/tests/ui-buttons.mjs:11:119
+    at check (file:///tmp/honro-icon-base/tests/ui-buttons.mjs:7:25)
+    at file:///tmp/honro-icon-base/tests/ui-buttons.mjs:11:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '<section class="dialog settings-dialog" role="dialog" aria-modal="true" aria-labelledby="menu-title"><div class="menu-fixed"><button class="fullscreen-setting" data-action="fullscreen"><span>전체화면</span><b data-fullscreen-label>켜기</b></button><p class="menu-status" data-fullscreen-status role="status"></p><header class="menu-header"><h2 id="menu-title">설정</h2><button class="menu-close" data-action="close" aria-label="닫기">×</button></header></div><div class="menu-body"><button class="menu-row" data-action="settings-page" data-id="sound"><span>소리<small>효과음 · 배경음악</small></span><b aria-hidden="true">›</b></button><button class="menu-row" data-action="settings-page" data-id="screen"><span>화면<small>방향 · 미니맵</small></span><b aria-hidden="true">›</b></button><button class="menu-row" data-action="settings-page" data-id="play"><span>플레이<small>난이도 · 행동 속도 · 안내</small></span><b aria-hidden="true">›</b></button><button class="menu-row" data-action="settings-page" data-id="records"><span>기록·관리<small>기록 파일 · 새 여정 · 검수 모드</small></span><b aria-hidden="true">›</b></button><p class="menu-note">설정은 바로 반영하고 저장합니다.</p></div></section>',
+  expected: /label for="minimap-setting"/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

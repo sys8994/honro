@@ -1,0 +1,339 @@
+PASS 96 head-safety/non-shrinking comparisons and 4 non-party identities
+[
+  {
+    "cls": "archer",
+    "role": "camp-phone",
+    "beforeBox": [
+      27,
+      34
+    ],
+    "afterBox": [
+      44,
+      54
+    ],
+    "headHeightBefore": 10.290014839547947,
+    "headHeightAfter": 19.787002219657058,
+    "headScale": 1.9229323308270687,
+    "head": {
+      "left": 13.200740685620373,
+      "right": 30.799259314379633,
+      "top": 2.514285714285714,
+      "bottom": 22.30128793394277
+    },
+    "ink": {
+      "left": 0,
+      "top": 3,
+      "right": 44,
+      "bottom": 53,
+      "count": 1345
+    }
+  },
+  {
+    "cls": "archer",
+    "role": "story-phone",
+    "beforeBox": [
+      96,
+      126
+    ],
+    "afterBox": [
+      112,
+      132
+    ],
+    "headHeightBefore": 33.537826143711825,
+    "headHeightAfter": 46.114510947603755,
+    "headScale": 1.3749999999999998,
+    "head": {
+      "left": 35.49292492722037,
+      "right": 76.50707507277963,
+      "top": 5.953786285698497,
+      "bottom": 52.06829723330225
+    },
+    "ink": {
+      "left": 0,
+      "top": 6,
+      "right": 112,
+      "bottom": 123,
+      "count": 7274
+    }
+  },
+  {
+    "cls": "archer",
+    "role": "hud-phone",
+    "beforeBox": [
+      27,
+      34
+    ],
+    "afterBox": [
+      27,
+      34
+    ],
+    "headHeightBefore": 10.798163720513276,
+    "headHeightAfter": 12.726407242033506,
+    "headScale": 1.1785714285714288,
+    "head": {
+      "left": 7.984335253816286,
+      "right": 19.015664746183713,
+      "top": 1.6430903710531566,
+      "bottom": 14.369497613086663
+    },
+    "ink": {
+      "left": 0,
+      "top": 2,
+      "right": 27,
+      "bottom": 34,
+      "count": 548
+    }
+  },
+  {
+    "cls": "mage",
+    "role": "camp-phone",
+    "beforeBox": [
+      27,
+      34
+    ],
+    "afterBox": [
+      44,
+      54
+    ],
+    "headHeightBefore": 11.023654940223203,
+    "headHeightAfter": 21.145410997764145,
+    "headScale": 1.9181851311953348,
+    "head": {
+      "left": 14.098838209982796,
+      "right": 29.901161790017206,
+      "top": 2.650222403857013,
+      "bottom": 23.795633401621156
+    },
+    "ink": {
+      "left": 0,
+      "top": 3,
+      "right": 43,
+      "bottom": 53,
+      "count": 1216
+    }
+  },
+  {
+    "cls": "mage",
+    "role": "story-phone",
+    "beforeBox": [
+      96,
+      126
+    ],
+    "afterBox": [
+      112,
+      132
+    ],
+    "headHeightBefore": 35.92894943480154,
+    "headHeightAfter": 49.40230547285212,
+    "headScale": 1.3750000000000002,
+    "head": {
+      "left": 37.54041042843151,
+      "right": 74.4595895715685,
+      "top": 5.934505698467654,
+      "bottom": 55.33681117131977
+    },
+    "ink": {
+      "left": 0,
+      "top": 6,
+      "right": 105,
+      "bottom": 123,
+      "count": 6725
+    }
+  },
+  {
+    "cls": "mage",
+    "role": "hud-phone",
+    "beforeBox": [
+      27,
+      34
+    ],
+    "afterBox": [
+      27,
+      34
+    ],
+    "headHeightBefore": 11.568032961962619,
+    "headHeightAfter": 13.633753133741656,
+    "headScale": 1.1785714285714284,
+    "head": {
+      "left": 8.535035124825328,
+      "right": 18.464964875174672,
+      "top": 1.6377694297719174,
+      "bottom": 15.271522563513575
+    },
+    "ink": {
+      "left": 0,
+      "top": 1,
+      "right": 27,
+      "bottom": 34,
+      "count": 494
+    }
+  },
+  {
+    "cls": "knight",
+    "role": "camp-phone",
+    "beforeBox": [
+      27,
+      34
+    ],
+    "afterBox": [
+      44,
+      54
+    ],
+    "headHeightBefore": 15.359442416083104,
+    "headHeightAfter": 29.45718988626511,
+    "headScale": 1.9178554200261881,
+    "head": {
+      "left": 5.161892568315321,
+      "right": 38.83810743168468,
+      "top": 2.6385167331986517,
+      "bottom": 32.09570661946376
+    },
+    "ink": {
+      "left": 0,
+      "top": 2,
+      "right": 43,
+      "bottom": 53,
+      "count": 1234
+    }
+  },
+  {
+    "cls": "knight",
+    "role": "story-phone",
+    "beforeBox": [
+      96,
+      126
+    ],
+    "afterBox": [
+      112,
+      132
+    ],
+    "headHeightBefore": 50.06040491167826,
+    "headHeightAfter": 68.83305675355763,
+    "headScale": 1.3750000000000004,
+    "head": {
+      "left": 16.654142199488494,
+      "right": 95.34585780051148,
+      "top": 5.866666666666668,
+      "bottom": 74.6997234202243
+    },
+    "ink": {
+      "left": 0,
+      "top": 6,
+      "right": 105,
+      "bottom": 123,
+      "count": 6688
+    }
+  },
+  {
+    "cls": "knight",
+    "role": "hud-phone",
+    "beforeBox": [
+      27,
+      34
+    ],
+    "afterBox": [
+      27,
+      34
+    ],
+    "headHeightBefore": 16.11793339959338,
+    "headHeightAfter": 18.99613579237792,
+    "headScale": 1.178571428571429,
+    "head": {
+      "left": 2.917381074168801,
+      "right": 24.082618925831195,
+      "top": 1.6190476190476195,
+      "bottom": 20.61518341142554
+    },
+    "ink": {
+      "left": 0,
+      "top": 1,
+      "right": 27,
+      "bottom": 34,
+      "count": 504
+    }
+  },
+  {
+    "cls": "occultist",
+    "role": "camp-phone",
+    "beforeBox": [
+      27,
+      34
+    ],
+    "afterBox": [
+      44,
+      54
+    ],
+    "headHeightBefore": 11.260081285979762,
+    "headHeightAfter": 21.59947219538168,
+    "headScale": 1.9182341269841257,
+    "head": {
+      "left": 10.829269937311315,
+      "right": 33.17073006268868,
+      "top": 2.6184489825631836,
+      "bottom": 24.217921177944863
+    },
+    "ink": {
+      "left": 0,
+      "top": 2,
+      "right": 44,
+      "bottom": 53,
+      "count": 1255
+    }
+  },
+  {
+    "cls": "occultist",
+    "role": "story-phone",
+    "beforeBox": [
+      96,
+      126
+    ],
+    "afterBox": [
+      112,
+      132
+    ],
+    "headHeightBefore": 36.69952419134144,
+    "headHeightAfter": 50.46184576309447,
+    "headScale": 1.3749999999999998,
+    "head": {
+      "left": 29.902341113451534,
+      "right": 82.09765888654846,
+      "top": 5.866666666666667,
+      "bottom": 56.32851242976114
+    },
+    "ink": {
+      "left": 2,
+      "top": 6,
+      "right": 108,
+      "bottom": 123,
+      "count": 6744
+    }
+  },
+  {
+    "cls": "occultist",
+    "role": "hud-phone",
+    "beforeBox": [
+      27,
+      34
+    ],
+    "afterBox": [
+      27,
+      34
+    ],
+    "headHeightBefore": 11.816134682818268,
+    "headHeightAfter": 13.926158733321525,
+    "headScale": 1.1785714285714282,
+    "head": {
+      "left": 6.480669521733387,
+      "right": 20.519330478266614,
+      "top": 1.6190476190476188,
+      "bottom": 15.545206352369144
+    },
+    "ink": {
+      "left": 0,
+      "top": 1,
+      "right": 27,
+      "bottom": 34,
+      "count": 515
+    }
+  }
+]

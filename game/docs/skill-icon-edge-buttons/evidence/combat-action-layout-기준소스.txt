@@ -1,0 +1,221 @@
+PASS arc secondary=38px/fire=68px, gold-face ratio=1.61, radius=58px, bounds=109.02x117.23
+PASS arc secondary=34px/fire=62px, gold-face ratio=1.68, radius=53px, bounds=99.19x106.40
+PASS arc secondary=35px/fire=66px, gold-face ratio=1.73, radius=55.5px, bounds=104.11x110.81
+PASS arc secondary=31px/fire=56px, gold-face ratio=1.70, radius=48.5px, bounds=90.35x97.50
+PASS separate geometry and primary/secondary hierarchy contracts; shared jump/drop style and unchanged bindings
+PASS 320px HUD: joystick=68px, safe-side=16px, skill-side gap=14.40px, no XP row
+PASS 333px HUD: joystick=68px, safe-side=16px, skill-side gap=20.90px, no XP row
+PASS 360px HUD: joystick=68px, safe-side=16px, skill-side gap=34.40px, no XP row
+PASS 390px HUD: joystick=72px, safe-side=20px, skill-side gap=34.40px, no XP row
+PASS 400px HUD: joystick=72px, safe-side=20px, skill-side gap=39.40px, no XP row
+PASS all battlefield/context reservations match the reduced HUD rows
+PASS portrait status remains reachable in the compact40px party row
+PASS explicit portrait roster placement and unclipped text line height
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /font-size:|--action-size:|--fire-size:|--joystick-size:/. Input:
+
+' keep type and action sizes; reclaim only six pixels.\n' +
+  '   Move the real joystick hit box with its ring/knob, but counter-offset the wind\n' +
+  '   gauge so its screen position stays fixed and its gap grows from2px to6px. */\n' +
+  '@media(orientation:portrait) and (max-width:560px){\n' +
+  ' .honro #app .battle{--hud-roster-height:36px;--hud-vitals-height:18px;--joystick-lift:4px}\n' +
+  ' .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{height:var(--hud-roster-height)!important;min-height:var(--hud-roster-height)!important}\n' +
+  ' .honro #app .honro-compact-hud .ally-chip canvas.portrait{height:30px!important}\n' +
+  ' .honro #app .honro-compact-hud .meter{height:16px!important}\n' +
+  ' .honro #app .honro-compact-hud #joystick{top:calc(0px - var(--joystick-lift))!important}\n' +
+  ' .honro #app .honro-compact-hud .joystick .wind-gauge{top:calc(100% + 2px + var(--joystick-lift))!important}\n' +
+  '}\n' +
+  '\n' +
+  '/* Detail owns vertical scrolling; legacy panel clipping must not trap wheel input. */\n' +
+  '.honro #modal .dialog.talent-dialog,.honro #modal .dialog.ultimate-dialog{height:auto!important;max-height:92dvh!important;overflow-x:hidden!important;overflow-y:auto!important;touch-action:pan-y}\n' +
+  '.honro #modal .talent-detail,.honro #modal .skill-modal-grid,.honro #modal .skill-modal-summary,.honro #modal .skill-modal-stats,.honro #modal .effect-compare{height:auto;max-height:none;overflow:visible}\n' +
+  '.honro .skill-detail-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;margin:12px 0}\n' +
+  '.honro .talent-heading{padding-right:28px}\n' +
+  '.honro .skill-detail-actions button{min-height:38px;white-space:normal}\n' +
+  '\n' +
+  '/* The title and its actions share one sticky surface above the real preview. */\n' +
+  '.honro #modal .skill-detail-controls,.honro #overlay .skill-detail-controls{position:sticky;top:-1px;z-index:4;background:#20271f;padding:10px 0 8px;border-bottom:1px solid #6a71574d}\n' +
+  '.honro .skill-detail-controls .talent-heading{margin:0;padding-right:34px}\n' +
+  '.honro .skill-detail-controls .skill-detail-actions{margin:10px 0 0;gap:6px}\n' +
+  '.honro .skill-detail-controls .skill-detail-actions button{min-height:42px;padding:8px 12px;font-size:12px}\n' +
+  '.honro #modal .dialog.equip-dialog{width:min(800px,96vw);max-height:92dvh;overflow:auto;background:#20271f}\n' +
+  '.honro .equip-dialog h2{font-size:21px;margin:0 0 16px;padding-right:24px}\n' +
+  '.honro .loadout-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}\n' +
+  '.honro .loadout-compare-card{border:1px solid #69735580;border-radius:5px;background:#2b3226;padding:13px;min-width:0}\n' +
+  '.honro .loadout-compare-card>small{font-size:11px;color:#afb99e}\n' +
+  '.honro .compare-skill-name{display:flex;align-items:center;gap:8px;margin:9px 0}\n' +
+  '.honro .loadout-compare-card p{font-size:12px;line-height:1.7;margin:8px 0;color:#c4cbb7;word-break:keep-all;overflow-wrap:anywhere}\n' +
+  '.honro .loadout-compare-card>span{font-size:11px;color:#cfc493}\n' +
+  '.honro .equip-swap-note{font-size:12px;color:#d8c793}\n' +
+  '.honro .equip-swap-note:empty{display:none}\n' +
+  '.honro .equip-dialog .swap-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}\n' +
+  '.honro .swap-choice{min-width:0;border:2px solid transparent;border-radius:6px}\n' +
+  '.honro .swap-choice.selected{border-color:#d1bf82}\n' +
+  '.honro .swap-choice .slot-card{width:100%;height:100%;padding:10px;min-height:110px;box-shadow:none}\n' +
+  '.honro .swap-choice .rank-track{display:none}\n' +
+  '.honro .equip-dialog .equip-library{display:block;margin-top:20px}\n' +
+  '.honro .equip-dialog .equip-option{width:100%;min-width:0;gap:10px;margin:0;border:1px solid transparent;border-bottom-color:#5b664b66;border-radius:0;padding:12px 8px;background:none;text-align:left}\n' +
+  '.honro .equip-dialog .equip-option.selected{border:1px solid #c5b47a;background:#39402d}\n' +
+  '.honro .equip-dialog .equip-option>span{min-width:0;flex:1}\n' +
+  '.honro .equip-dialog .equip-option small{white-space:normal;word-break:keep-all;line-height:1.6;margin-top:4px;color:#b7c0aa}\n' +
+  '.honro .equip-dialog .equip-option em{flex:none;font-size:10px}\n' +
+  '.honro .equip-comparison>.btn{margin:0 8px 8px 0;min-height:42px}\n' +
+  '@media(max-width:620px){\n' +
+  ' .honro .loadout-compare{grid-template-columns:1fr;gap:8px}\n' +
+  ' .honro .loadout-compare-card{padding:10px}\n' +
+  ' .honro .equip-dialog .swap-cards{gap:4px}\n' +
+  ' .honro .swap-choice .slot-card{padding:7px 4px;min-height:104px}\n' +
+  ' .honro .swap-choice .slot-main{flex-direction:column;align-items:flex-start;gap:5px}\n' +
+  ' .honro .swap-choice .slot-info strong{font-size:11px}\n' +
+  ' .honro .swap-choice .slot-info small{display:none}\n' +
+  ' .honro .skill-detail-controls .skill-detail-actions button{font-size:11px;padding:8px}\n' +
+  '}\n' +
+  '@media(orientation:landscape) and (max-height:540px){\n' +
+  ' .honro #modal .dialog.talent-dialog,.honro #modal .dialog.ultimate-dialog{padding:14px 18px}\n' +
+  ' .honro .skill-detail-controls{padding-top:4px!important}\n' +
+  ' .honro .skill-detail-controls .talent-heading h2{font-size:20px}\n' +
+  ' .honro .skill-detail-controls .skill-detail-actions{margin-top:6px}\n' +
+  '}\n' +
+  '/* Keep the icon compact; only the explanatory text takes the available row width. */\n' +
+  '.honro .equip-dialog .equip-option>.skill-stamp{flex:0 0 36px;width:36px;min-width:36px;height:36px}\n' +
+  '\n' +
+  '/* A single clipped dialog owns a fixed header and one independent scroll body. */\n' +
+  '.honro #modal .dialog.talent-dialog,.honro #modal .dialog.ultimate-dialog,.honro #overlay .dialog.talent-dialog,.honro #overlay .dialog.ultimate-dialog{display:flex;flex-direction:column;padding:0!important;height:min(860px,calc(100dvh - 24px - var(--skill-safe-top,0px) - var(--skill-safe-bottom,0px)))!important;max-height:calc(100dvh - 24px - var(--skill-safe-top,0px) - var(--skill-safe-bottom,0px))!important;max-width:calc(100vw - 16px - var(--skill-safe-left,0px) - var(--skill-safe-right,0px));overflow:hidden!important;border:1px solid #64796f;border-radius:14px;background:#192d33}\n' +
+  '.honro .dialog .skill-modal-frame{display:flex;flex-direction:column;flex:1;min-height:0;width:100%;height:100%!important;overflow:hidden!important}\n' +
+  '.honro .dialog .skill-detail-controls{position:static!important;flex:none;z-index:1;padding:10px 14px!important;background:#20343a;border-bottom:1px solid #64796f66}\n' +
+  '.honro .skill-modal-title{display:flex;align-items:flex-start;gap:8px}\n' +
+  '.honro .skill-modal-title .talent-heading{flex:1;min-width:0;padding:0!important;gap:10px;margin:0!important}\n' +
+  '.honro .skill-modal-title h2{margin:0;font-size:21px;line-height:1.3;overflow-wrap:anywhere;word-break:keep-all;padding:0!important}\n' +
+  '.honro .skill-modal-title .close{position:static;order:2;flex:0 0 44px;width:44px;height:44px;min-height:44px;margin:0;transform:none;border-radius:7px}\n' +
+  '.honro .skill-detail-controls .rank-banner{display:flex;align-items:center;gap:10px;background:none;border:0;border-radius:0;margin:6px 0;padding:0;font-size:11px;min-width:0}\n' +
+  '.honro .skill-detail-controls .rank-banner>strong{font-size:17px;white-space:nowrap}\n' +
+  '.honro .skill-detail-controls .rank-banner>.rank-track{flex:1;max-width:200px}\n' +
+  '.honro .skill-detail-controls .rank-banner>span:last-child{margin-left:auto;font-size:11px;white-space:nowrap}\n' +
+  '.honro .skill-detail-controls .skill-detail-actions{margin:6px 0 0;gap:6px;flex-wrap:wrap!important}\n' +
+  '.honro .skill-detail-controls .skill-detail-actions button{min-height:44px;padding:7px 9px;font-size:12px;flex:1 0 auto}\n' +
+  '.honro .dialog .skill-modal-body{flex:1;min-height:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;padding:14px;scrollbar-gutter:stable;outline-offset:-3px}\n' +
+  '.honro .skill-modal-body .skill-modal-grid{height:auto!important;max-height:none;overflow:visible}\n' +
+  '.honro .skill-basic-note{display:block;font-size:11px;color:#b8c8bd;margin-top:4px}\n' +
+  '@media(max-width:540px){\n' +
+  ' .honro .dialog .skill-detail-controls{padding:8px 10px!important}\n' +
+  ' .honro .skill-modal-title h2{font-size:18px}\n' +
+  ' .honro .skill-modal-title .talent-heading>.skill-stamp{width:34px;height:38px;flex-shrink:0}\n' +
+  ' .honro .skill-detail-controls .ability-type{font-size:10px}\n' +
+  ' .honro .skill-detail-controls .skill-detail-actions button{font-size:11px;padding:6px}\n' +
+  ' .honro .dialog .skill-modal-body{padding:12px 10px}\n' +
+  '}\n' +
+  '\n' +
+  '.honro .passive-detail .skill-modal-preview{display:block}\n' +
+  '.honro .preview-observation{font-size:11px;line-height:1.6;color:#d0dbc6;border-top:1px solid #7e92764d;margin:8px 0 0;padding:8px 10px;min-height:36px}\n' +
+  '\n' +
+  '.honro #modal,.honro #overlay{--skill-safe-top:env(safe-area-inset-top,0px);--skill-safe-bottom:env(safe-area-inset-bottom,0px);--skill-safe-left:env(safe-area-inset-left,0px);--skill-safe-right:env(safe-area-inset-right,0px)}\n' +
+  '.honro #modal:has(.skill-modal-frame),.honro #overlay:has(.skill-modal-frame){box-sizing:border-box;padding:max(12px,var(--skill-safe-top)) max(8px,var(--skill-safe-right)) max(12px,var(--skill-safe-bottom)) max(8px,var(--skill-safe-left))}\n'
+
+    at file:///tmp/honro-icon-base/tests/combat-action-layout.mjs:96:8 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: ' keep type and action sizes; reclaim only six pixels.\n' +
+    '   Move the real joystick hit box with its ring/knob, but counter-offset the wind\n' +
+    '   gauge so its screen position stays fixed and its gap grows from2px to6px. */\n' +
+    '@media(orientation:portrait) and (max-width:560px){\n' +
+    ' .honro #app .battle{--hud-roster-height:36px;--hud-vitals-height:18px;--joystick-lift:4px}\n' +
+    ' .honro #app .honro-compact-hud .ally-chip,.honro #app .honro-compact-hud .ally-chip.player-chip{height:var(--hud-roster-height)!important;min-height:var(--hud-roster-height)!important}\n' +
+    ' .honro #app .honro-compact-hud .ally-chip canvas.portrait{height:30px!important}\n' +
+    ' .honro #app .honro-compact-hud .meter{height:16px!important}\n' +
+    ' .honro #app .honro-compact-hud #joystick{top:calc(0px - var(--joystick-lift))!important}\n' +
+    ' .honro #app .honro-compact-hud .joystick .wind-gauge{top:calc(100% + 2px + var(--joystick-lift))!important}\n' +
+    '}\n' +
+    '\n' +
+    '/* Detail owns vertical scrolling; legacy panel clipping must not trap wheel input. */\n' +
+    '.honro #modal .dialog.talent-dialog,.honro #modal .dialog.ultimate-dialog{height:auto!important;max-height:92dvh!important;overflow-x:hidden!important;overflow-y:auto!important;touch-action:pan-y}\n' +
+    '.honro #modal .talent-detail,.honro #modal .skill-modal-grid,.honro #modal .skill-modal-summary,.honro #modal .skill-modal-stats,.honro #modal .effect-compare{height:auto;max-height:none;overflow:visible}\n' +
+    '.honro .skill-detail-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-start;margin:12px 0}\n' +
+    '.honro .talent-heading{padding-right:28px}\n' +
+    '.honro .skill-detail-actions button{min-height:38px;white-space:normal}\n' +
+    '\n' +
+    '/* The title and its actions share one sticky surface above the real preview. */\n' +
+    '.honro #modal .skill-detail-controls,.honro #overlay .skill-detail-controls{position:sticky;top:-1px;z-index:4;background:#20271f;padding:10px 0 8px;border-bottom:1px solid #6a71574d}\n' +
+    '.honro .skill-detail-controls .talent-heading{margin:0;padding-right:34px}\n' +
+    '.honro .skill-detail-controls .skill-detail-actions{margin:10px 0 0;gap:6px}\n' +
+    '.honro .skill-detail-controls .skill-detail-actions button{min-height:42px;padding:8px 12px;font-size:12px}\n' +
+    '.honro #modal .dialog.equip-dialog{width:min(800px,96vw);max-height:92dvh;overflow:auto;background:#20271f}\n' +
+    '.honro .equip-dialog h2{font-size:21px;margin:0 0 16px;padding-right:24px}\n' +
+    '.honro .loadout-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}\n' +
+    '.honro .loadout-compare-card{border:1px solid #69735580;border-radius:5px;background:#2b3226;padding:13px;min-width:0}\n' +
+    '.honro .loadout-compare-card>small{font-size:11px;color:#afb99e}\n' +
+    '.honro .compare-skill-name{display:flex;align-items:center;gap:8px;margin:9px 0}\n' +
+    '.honro .loadout-compare-card p{font-size:12px;line-height:1.7;margin:8px 0;color:#c4cbb7;word-break:keep-all;overflow-wrap:anywhere}\n' +
+    '.honro .loadout-compare-card>span{font-size:11px;color:#cfc493}\n' +
+    '.honro .equip-swap-note{font-size:12px;color:#d8c793}\n' +
+    '.honro .equip-swap-note:empty{display:none}\n' +
+    '.honro .equip-dialog .swap-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}\n' +
+    '.honro .swap-choice{min-width:0;border:2px solid transparent;border-radius:6px}\n' +
+    '.honro .swap-choice.selected{border-color:#d1bf82}\n' +
+    '.honro .swap-choice .slot-card{width:100%;height:100%;padding:10px;min-height:110px;box-shadow:none}\n' +
+    '.honro .swap-choice .rank-track{display:none}\n' +
+    '.honro .equip-dialog .equip-library{display:block;margin-top:20px}\n' +
+    '.honro .equip-dialog .equip-option{width:100%;min-width:0;gap:10px;margin:0;border:1px solid transparent;border-bottom-color:#5b664b66;border-radius:0;padding:12px 8px;background:none;text-align:left}\n' +
+    '.honro .equip-dialog .equip-option.selected{border:1px solid #c5b47a;background:#39402d}\n' +
+    '.honro .equip-dialog .equip-option>span{min-width:0;flex:1}\n' +
+    '.honro .equip-dialog .equip-option small{white-space:normal;word-break:keep-all;line-height:1.6;margin-top:4px;color:#b7c0aa}\n' +
+    '.honro .equip-dialog .equip-option em{flex:none;font-size:10px}\n' +
+    '.honro .equip-comparison>.btn{margin:0 8px 8px 0;min-height:42px}\n' +
+    '@media(max-width:620px){\n' +
+    ' .honro .loadout-compare{grid-template-columns:1fr;gap:8px}\n' +
+    ' .honro .loadout-compare-card{padding:10px}\n' +
+    ' .honro .equip-dialog .swap-cards{gap:4px}\n' +
+    ' .honro .swap-choice .slot-card{padding:7px 4px;min-height:104px}\n' +
+    ' .honro .swap-choice .slot-main{flex-direction:column;align-items:flex-start;gap:5px}\n' +
+    ' .honro .swap-choice .slot-info strong{font-size:11px}\n' +
+    ' .honro .swap-choice .slot-info small{display:none}\n' +
+    ' .honro .skill-detail-controls .skill-detail-actions button{font-size:11px;padding:8px}\n' +
+    '}\n' +
+    '@media(orientation:landscape) and (max-height:540px){\n' +
+    ' .honro #modal .dialog.talent-dialog,.honro #modal .dialog.ultimate-dialog{padding:14px 18px}\n' +
+    ' .honro .skill-detail-controls{padding-top:4px!important}\n' +
+    ' .honro .skill-detail-controls .talent-heading h2{font-size:20px}\n' +
+    ' .honro .skill-detail-controls .skill-detail-actions{margin-top:6px}\n' +
+    '}\n' +
+    '/* Keep the icon compact; only the explanatory text takes the available row width. */\n' +
+    '.honro .equip-dialog .equip-option>.skill-stamp{flex:0 0 36px;width:36px;min-width:36px;height:36px}\n' +
+    '\n' +
+    '/* A single clipped dialog owns a fixed header and one independent scroll body. */\n' +
+    '.honro #modal .dialog.talent-dialog,.honro #modal .dialog.ultimate-dialog,.honro #overlay .dialog.talent-dialog,.honro #overlay .dialog.ultimate-dialog{display:flex;flex-direction:column;padding:0!important;height:min(860px,calc(100dvh - 24px - var(--skill-safe-top,0px) - var(--skill-safe-bottom,0px)))!important;max-height:calc(100dvh - 24px - var(--skill-safe-top,0px) - var(--skill-safe-bottom,0px))!important;max-width:calc(100vw - 16px - var(--skill-safe-left,0px) - var(--skill-safe-right,0px));overflow:hidden!important;border:1px solid #64796f;border-radius:14px;background:#192d33}\n' +
+    '.honro .dialog .skill-modal-frame{display:flex;flex-direction:column;flex:1;min-height:0;width:100%;height:100%!important;overflow:hidden!important}\n' +
+    '.honro .dialog .skill-detail-controls{position:static!important;flex:none;z-index:1;padding:10px 14px!important;background:#20343a;border-bottom:1px solid #64796f66}\n' +
+    '.honro .skill-modal-title{display:flex;align-items:flex-start;gap:8px}\n' +
+    '.honro .skill-modal-title .talent-heading{flex:1;min-width:0;padding:0!important;gap:10px;margin:0!important}\n' +
+    '.honro .skill-modal-title h2{margin:0;font-size:21px;line-height:1.3;overflow-wrap:anywhere;word-break:keep-all;padding:0!important}\n' +
+    '.honro .skill-modal-title .close{position:static;order:2;flex:0 0 44px;width:44px;height:44px;min-height:44px;margin:0;transform:none;border-radius:7px}\n' +
+    '.honro .skill-detail-controls .rank-banner{display:flex;align-items:center;gap:10px;background:none;border:0;border-radius:0;margin:6px 0;padding:0;font-size:11px;min-width:0}\n' +
+    '.honro .skill-detail-controls .rank-banner>strong{font-size:17px;white-space:nowrap}\n' +
+    '.honro .skill-detail-controls .rank-banner>.rank-track{flex:1;max-width:200px}\n' +
+    '.honro .skill-detail-controls .rank-banner>span:last-child{margin-left:auto;font-size:11px;white-space:nowrap}\n' +
+    '.honro .skill-detail-controls .skill-detail-actions{margin:6px 0 0;gap:6px;flex-wrap:wrap!important}\n' +
+    '.honro .skill-detail-controls .skill-detail-actions button{min-height:44px;padding:7px 9px;font-size:12px;flex:1 0 auto}\n' +
+    '.honro .dialog .skill-modal-body{flex:1;min-height:0;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;padding:14px;scrollbar-gutter:stable;outline-offset:-3px}\n' +
+    '.honro .skill-modal-body .skill-modal-grid{height:auto!important;max-height:none;overflow:visible}\n' +
+    '.honro .skill-basic-note{display:block;font-size:11px;color:#b8c8bd;margin-top:4px}\n' +
+    '@media(max-width:540px){\n' +
+    ' .honro .dialog .skill-detail-controls{padding:8px 10px!important}\n' +
+    ' .honro .skill-modal-title h2{font-size:18px}\n' +
+    ' .honro .skill-modal-title .talent-heading>.skill-stamp{width:34px;height:38px;flex-shrink:0}\n' +
+    ' .honro .skill-detail-controls .ability-type{font-size:10px}\n' +
+    ' .honro .skill-detail-controls .skill-detail-actions button{font-size:11px;padding:6px}\n' +
+    ' .honro .dialog .skill-modal-body{padding:12px 10px}\n' +
+    '}\n' +
+    '\n' +
+    '.honro .passive-detail .skill-modal-preview{display:block}\n' +
+    '.honro .preview-observation{font-size:11px;line-height:1.6;color:#d0dbc6;border-top:1px solid #7e92764d;margin:8px 0 0;padding:8px 10px;min-height:36px}\n' +
+    '\n' +
+    '.honro #modal,.honro #overlay{--skill-safe-top:env(safe-area-inset-top,0px);--skill-safe-bottom:env(safe-area-inset-bottom,0px);--skill-safe-left:env(safe-area-inset-left,0px);--skill-safe-right:env(safe-area-inset-right,0px)}\n' +
+    '.honro #modal:has(.skill-modal-frame),.honro #overlay:has(.skill-modal-frame){box-sizing:border-box;padding:max(12px,var(--skill-safe-top)) max(8px,var(--skill-safe-right)) max(12px,var(--skill-safe-bottom)) max(8px,var(--skill-safe-left))}\n',
+  expected: /font-size:|--action-size:|--fire-size:|--joystick-size:/,
+  operator: 'doesNotMatch',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

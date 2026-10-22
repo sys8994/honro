@@ -1,0 +1,1638 @@
+{
+  "검수": "responsive",
+  "소스_SHA": "e3c1dcf2a0a07e21227ac9a1c3f47da0e20778ba",
+  "아이콘_CSS_SHA256": "81fe00df097f45528f3eac056a5f31887113e1e0f4dcf6f1e4f531d3d553a085",
+  "브라우저": "Chromium 154.0.8037.57",
+  "범위": "실제 로컬 프로덕션 빌드. 준비한 프로필과 허공터 사용. 캠페인 완주/실기기 검수가 아님.",
+  "결과": [
+    {
+      "검사": "390 기존 조작/전장 위치와 크기 동일",
+      "통과": true,
+      "측정": {
+        "변경후": {
+          "#joystick": [
+            20,
+            732.796875,
+            72,
+            72
+          ],
+          "#fire": [
+            308,
+            751.5,
+            62,
+            62
+          ],
+          "#jump": [
+            295.5,
+            719.609375,
+            34,
+            34
+          ],
+          "#drop": [
+            276.09375,
+            792,
+            34,
+            34
+          ],
+          "[data-action=defend]": [
+            270.8125,
+            751.78125,
+            34,
+            34
+          ],
+          "#battle-bottom": [
+            0,
+            647.609375,
+            390,
+            196.390625
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            390,
+            647.609375
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            126.40625,
+            724.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            184.40625,
+            724.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            126.40625,
+            775.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            184.40625,
+            775.796875,
+            52,
+            45
+          ]
+        },
+        "기준": {
+          "#joystick": [
+            20,
+            732.796875,
+            72,
+            72
+          ],
+          "#fire": [
+            308,
+            751.5,
+            62,
+            62
+          ],
+          "#jump": [
+            295.5,
+            719.609375,
+            34,
+            34
+          ],
+          "#drop": [
+            276.09375,
+            792,
+            34,
+            34
+          ],
+          "[data-action=defend]": [
+            270.8125,
+            751.78125,
+            34,
+            34
+          ],
+          "#battle-bottom": [
+            0,
+            647.609375,
+            390,
+            196.390625
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            390,
+            647.609375
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            126.40625,
+            724.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            184.40625,
+            724.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            126.40625,
+            775.796875,
+            52,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            184.40625,
+            775.796875,
+            52,
+            45
+          ]
+        }
+      }
+    },
+    {
+      "검사": "390 이미지 가장자리",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            52,
+            45
+          ],
+          "art": [
+            50,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "390 버튼 터치 영역",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 스킬 터치",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 조이스틱/발사와 스킬 비중첩",
+      "통과": true,
+      "측정": {
+        "#joystick": [
+          20,
+          732.796875,
+          72,
+          72
+        ],
+        "#fire": [
+          308,
+          751.5,
+          62,
+          62
+        ],
+        "#jump": [
+          295.5,
+          719.609375,
+          34,
+          34
+        ],
+        "#drop": [
+          276.09375,
+          792,
+          34,
+          34
+        ],
+        "[data-action=defend]": [
+          270.8125,
+          751.78125,
+          34,
+          34
+        ],
+        "#battle-bottom": [
+          0,
+          647.609375,
+          390,
+          196.390625
+        ],
+        "#battlecanvas": [
+          0,
+          0,
+          390,
+          647.609375
+        ],
+        "#combat-skills .skill-button:nth-child(1)": [
+          126.40625,
+          724.796875,
+          52,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(2)": [
+          184.40625,
+          724.796875,
+          52,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(3)": [
+          126.40625,
+          775.796875,
+          52,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(4)": [
+          184.40625,
+          775.796875,
+          52,
+          45
+        ]
+      }
+    },
+    {
+      "검사": "390 실제 터치 조이스틱 잡기",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 조이스틱 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 발사 버튼 충전 입력",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 발사 버튼 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "390 상세 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "390 상세 닫기 조작 및 화면 내부",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 기존 조작/전장 위치와 크기 동일",
+      "통과": true,
+      "측정": {
+        "변경후": {
+          "#joystick": [
+            20,
+            295.25,
+            72,
+            72
+          ],
+          "#fire": [
+            768,
+            312,
+            56,
+            56
+          ],
+          "#jump": [
+            756.25,
+            282.5,
+            31,
+            31
+          ],
+          "#drop": [
+            738.5,
+            348.75,
+            31,
+            31
+          ],
+          "[data-action=defend]": [
+            733.65625,
+            311.9375,
+            31,
+            31
+          ],
+          "#battle-bottom": [
+            0,
+            232.5,
+            844,
+            157.5
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            844,
+            232.5
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            306.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            360.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            414.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            468.828125,
+            306.25,
+            50,
+            50
+          ]
+        },
+        "기준": {
+          "#joystick": [
+            20,
+            295.25,
+            72,
+            72
+          ],
+          "#fire": [
+            768,
+            312,
+            56,
+            56
+          ],
+          "#jump": [
+            756.25,
+            282.5,
+            31,
+            31
+          ],
+          "#drop": [
+            738.5,
+            348.75,
+            31,
+            31
+          ],
+          "[data-action=defend]": [
+            733.65625,
+            311.9375,
+            31,
+            31
+          ],
+          "#battle-bottom": [
+            0,
+            232.5,
+            844,
+            157.5
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            844,
+            232.5
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            306.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            360.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            414.828125,
+            306.25,
+            50,
+            50
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            468.828125,
+            306.25,
+            50,
+            50
+          ]
+        }
+      }
+    },
+    {
+      "검사": "844 이미지 가장자리",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            50,
+            50
+          ],
+          "art": [
+            48,
+            48
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            50,
+            50
+          ],
+          "art": [
+            48,
+            48
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            50,
+            50
+          ],
+          "art": [
+            48,
+            48
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            50,
+            50
+          ],
+          "art": [
+            48,
+            48
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "844 버튼 터치 영역",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 스킬 터치",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 조이스틱/발사와 스킬 비중첩",
+      "통과": true,
+      "측정": {
+        "#joystick": [
+          20,
+          295.25,
+          72,
+          72
+        ],
+        "#fire": [
+          768,
+          312,
+          56,
+          56
+        ],
+        "#jump": [
+          756.25,
+          282.5,
+          31,
+          31
+        ],
+        "#drop": [
+          738.5,
+          348.75,
+          31,
+          31
+        ],
+        "[data-action=defend]": [
+          733.65625,
+          311.9375,
+          31,
+          31
+        ],
+        "#battle-bottom": [
+          0,
+          232.5,
+          844,
+          157.5
+        ],
+        "#battlecanvas": [
+          0,
+          0,
+          844,
+          232.5
+        ],
+        "#combat-skills .skill-button:nth-child(1)": [
+          306.828125,
+          306.25,
+          50,
+          50
+        ],
+        "#combat-skills .skill-button:nth-child(2)": [
+          360.828125,
+          306.25,
+          50,
+          50
+        ],
+        "#combat-skills .skill-button:nth-child(3)": [
+          414.828125,
+          306.25,
+          50,
+          50
+        ],
+        "#combat-skills .skill-button:nth-child(4)": [
+          468.828125,
+          306.25,
+          50,
+          50
+        ]
+      }
+    },
+    {
+      "검사": "844 실제 터치 조이스틱 잡기",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 조이스틱 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 발사 버튼 충전 입력",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 발사 버튼 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "844 상세 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "844 상세 닫기 조작 및 화면 내부",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 기존 조작/전장 위치와 크기 동일",
+      "통과": true,
+      "측정": {
+        "변경후": {
+          "#joystick": [
+            16,
+            690.796875,
+            68,
+            68
+          ],
+          "#fire": [
+            282,
+            707.5,
+            62,
+            62
+          ],
+          "#jump": [
+            269.5,
+            675.609375,
+            34,
+            34
+          ],
+          "#drop": [
+            250.09375,
+            748,
+            34,
+            34
+          ],
+          "[data-action=defend]": [
+            244.8125,
+            707.78125,
+            34,
+            34
+          ],
+          "#battle-bottom": [
+            0,
+            603.609375,
+            360,
+            196.390625
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            360,
+            603.609375
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            118.40625,
+            681.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            166.40625,
+            681.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            118.40625,
+            730.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            166.40625,
+            730.796875,
+            44,
+            45
+          ]
+        },
+        "기준": {
+          "#joystick": [
+            16,
+            690.796875,
+            68,
+            68
+          ],
+          "#fire": [
+            282,
+            707.5,
+            62,
+            62
+          ],
+          "#jump": [
+            269.5,
+            675.609375,
+            34,
+            34
+          ],
+          "#drop": [
+            250.09375,
+            748,
+            34,
+            34
+          ],
+          "[data-action=defend]": [
+            244.8125,
+            707.78125,
+            34,
+            34
+          ],
+          "#battle-bottom": [
+            0,
+            603.609375,
+            360,
+            196.390625
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            360,
+            603.609375
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            118.40625,
+            681.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            166.40625,
+            681.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            118.40625,
+            730.796875,
+            44,
+            45
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            166.40625,
+            730.796875,
+            44,
+            45
+          ]
+        }
+      }
+    },
+    {
+      "검사": "360 이미지 가장자리",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            44,
+            45
+          ],
+          "art": [
+            42,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            44,
+            45
+          ],
+          "art": [
+            42,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            44,
+            45
+          ],
+          "art": [
+            42,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            44,
+            45
+          ],
+          "art": [
+            42,
+            43
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "360 버튼 터치 영역",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 스킬 터치",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 조이스틱/발사와 스킬 비중첩",
+      "통과": true,
+      "측정": {
+        "#joystick": [
+          16,
+          690.796875,
+          68,
+          68
+        ],
+        "#fire": [
+          282,
+          707.5,
+          62,
+          62
+        ],
+        "#jump": [
+          269.5,
+          675.609375,
+          34,
+          34
+        ],
+        "#drop": [
+          250.09375,
+          748,
+          34,
+          34
+        ],
+        "[data-action=defend]": [
+          244.8125,
+          707.78125,
+          34,
+          34
+        ],
+        "#battle-bottom": [
+          0,
+          603.609375,
+          360,
+          196.390625
+        ],
+        "#battlecanvas": [
+          0,
+          0,
+          360,
+          603.609375
+        ],
+        "#combat-skills .skill-button:nth-child(1)": [
+          118.40625,
+          681.796875,
+          44,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(2)": [
+          166.40625,
+          681.796875,
+          44,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(3)": [
+          118.40625,
+          730.796875,
+          44,
+          45
+        ],
+        "#combat-skills .skill-button:nth-child(4)": [
+          166.40625,
+          730.796875,
+          44,
+          45
+        ]
+      }
+    },
+    {
+      "검사": "360 실제 터치 조이스틱 잡기",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 조이스틱 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 발사 버튼 충전 입력",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 발사 버튼 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "360 상세 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "360 상세 닫기 조작 및 화면 내부",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 기존 조작/전장 위치와 크기 동일",
+      "통과": true,
+      "측정": {
+        "변경후": {
+          "#joystick": [
+            20,
+            796.59375,
+            72,
+            72
+          ],
+          "#fire": [
+            1194,
+            809.75,
+            66,
+            66
+          ],
+          "#jump": [
+            1181.75,
+            777.1875,
+            35,
+            35
+          ],
+          "#drop": [
+            1161.4375,
+            853,
+            35,
+            35
+          ],
+          "[data-action=defend]": [
+            1155.90625,
+            810.875,
+            35,
+            35
+          ],
+          "#battle-bottom": [
+            0,
+            769.1875,
+            1280,
+            130.8125
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            1280,
+            769.1875
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            726.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            795.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            864.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            933.953125,
+            805.59375,
+            62,
+            54
+          ]
+        },
+        "기준": {
+          "#joystick": [
+            20,
+            796.59375,
+            72,
+            72
+          ],
+          "#fire": [
+            1194,
+            809.75,
+            66,
+            66
+          ],
+          "#jump": [
+            1181.75,
+            777.1875,
+            35,
+            35
+          ],
+          "#drop": [
+            1161.4375,
+            853,
+            35,
+            35
+          ],
+          "[data-action=defend]": [
+            1155.90625,
+            810.875,
+            35,
+            35
+          ],
+          "#battle-bottom": [
+            0,
+            769.1875,
+            1280,
+            130.8125
+          ],
+          "#battlecanvas": [
+            0,
+            0,
+            1280,
+            769.1875
+          ],
+          "#combat-skills .skill-button:nth-child(1)": [
+            726.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(2)": [
+            795.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(3)": [
+            864.953125,
+            805.59375,
+            62,
+            54
+          ],
+          "#combat-skills .skill-button:nth-child(4)": [
+            933.953125,
+            805.59375,
+            62,
+            54
+          ]
+        }
+      }
+    },
+    {
+      "검사": "1280 이미지 가장자리",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A01",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            62,
+            54
+          ],
+          "art": [
+            60,
+            52
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(240, 198, 109)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            62,
+            54
+          ],
+          "art": [
+            60,
+            52
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A02",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            62,
+            54
+          ],
+          "art": [
+            60,
+            52
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        },
+        {
+          "id": "A08",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            62,
+            54
+          ],
+          "art": [
+            60,
+            52
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "1280 버튼 터치 영역",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 스킬 터치",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 조이스틱/발사와 스킬 비중첩",
+      "통과": true,
+      "측정": {
+        "#joystick": [
+          20,
+          796.59375,
+          72,
+          72
+        ],
+        "#fire": [
+          1194,
+          809.75,
+          66,
+          66
+        ],
+        "#jump": [
+          1181.75,
+          777.1875,
+          35,
+          35
+        ],
+        "#drop": [
+          1161.4375,
+          853,
+          35,
+          35
+        ],
+        "[data-action=defend]": [
+          1155.90625,
+          810.875,
+          35,
+          35
+        ],
+        "#battle-bottom": [
+          0,
+          769.1875,
+          1280,
+          130.8125
+        ],
+        "#battlecanvas": [
+          0,
+          0,
+          1280,
+          769.1875
+        ],
+        "#combat-skills .skill-button:nth-child(1)": [
+          726.953125,
+          805.59375,
+          62,
+          54
+        ],
+        "#combat-skills .skill-button:nth-child(2)": [
+          795.953125,
+          805.59375,
+          62,
+          54
+        ],
+        "#combat-skills .skill-button:nth-child(3)": [
+          864.953125,
+          805.59375,
+          62,
+          54
+        ],
+        "#combat-skills .skill-button:nth-child(4)": [
+          933.953125,
+          805.59375,
+          62,
+          54
+        ]
+      }
+    },
+    {
+      "검사": "1280 실제 터치 조이스틱 잡기",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 조이스틱 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 발사 버튼 충전 입력",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 발사 버튼 해제",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "1280 상세 프레임",
+      "통과": true,
+      "측정": [
+        {
+          "id": "A14",
+          "radius": "0px",
+          "border": "rgb(197, 164, 92)",
+          "padding": "0px",
+          "margin": "0px",
+          "frame": [
+            42,
+            42
+          ],
+          "art": [
+            40,
+            40
+          ],
+          "gap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageState": "ready",
+          "imageGap": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "imageRadius": "0px"
+        }
+      ]
+    },
+    {
+      "검사": "1280 상세 닫기 조작 및 화면 내부",
+      "통과": true,
+      "측정": null
+    },
+    {
+      "검사": "실행 중 자바스크립트 오류 없음",
+      "통과": true,
+      "측정": []
+    }
+  ]
+}

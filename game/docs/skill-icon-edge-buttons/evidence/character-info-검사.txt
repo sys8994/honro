@@ -1,0 +1,24 @@
+PASS Map character tap keeps character/remembered-skill selection and opens a nonmodal card
+PASS The former generous map selection edge also opens character information
+PASS Live battle XP is authoritative, including zero, updates, level thresholds and maximum
+PASS Acted and fallen companions are inspectable without becoming the active unit
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'p0' !== 'mage-test'
+
+    at file:///workspace/honro/tests/character-info.mjs:79:20
+    at check (file:///workspace/honro/tests/character-info.mjs:31:25)
+    at file:///workspace/honro/tests/character-info.mjs:75:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'p0',
+  expected: 'mage-test',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

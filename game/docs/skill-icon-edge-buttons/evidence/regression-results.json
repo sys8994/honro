@@ -1,0 +1,52 @@
+[
+  {
+    "명령": "node tests/camp-skill-ux.mjs",
+    "종료_코드": 0
+  },
+  {
+    "명령": "node tests/combat-action-layout.mjs",
+    "종료_코드": 1,
+    "기준소스_종료_코드": 1,
+    "기준소스_SHA": "0a9acf40396452e2f424cd9731f8f91f3478da03"
+  },
+  {
+    "명령": "node tests/passive-status-layout.mjs",
+    "종료_코드": 1,
+    "기준소스_종료_코드": 1,
+    "기준소스_SHA": "0a9acf40396452e2f424cd9731f8f91f3478da03"
+  },
+  {
+    "명령": "node tests/training-layout.mjs",
+    "종료_코드": 0
+  },
+  {
+    "명령": "node tests/portrait-framing.mjs",
+    "종료_코드": 0
+  },
+  {
+    "명령": "node tests/character-info.mjs",
+    "종료_코드": 1,
+    "기준소스_종료_코드": 1,
+    "기준소스_SHA": "0a9acf40396452e2f424cd9731f8f91f3478da03"
+  },
+  {
+    "명령": "node tests/camp-stat-formatting.mjs",
+    "종료_코드": 1,
+    "기준소스_종료_코드": 1,
+    "기준소스_SHA": "0a9acf40396452e2f424cd9731f8f91f3478da03"
+  },
+  {
+    "명령": "node tests/ui-buttons.mjs",
+    "종료_코드": 1,
+    "기준소스_종료_코드": 1,
+    "기준소스_SHA": "0a9acf40396452e2f424cd9731f8f91f3478da03"
+  },
+  {
+    "명령": "node tests/web-split.mjs",
+    "종료_코드": 0
+  },
+  {
+    "명령": "npm --prefix game run typecheck",
+    "종료_코드": 0
+  }
+]

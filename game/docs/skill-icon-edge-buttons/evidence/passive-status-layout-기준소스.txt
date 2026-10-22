@@ -1,0 +1,26 @@
+PASS all four companion selections clear or replace the previous passive state without mutating combat
+PASS Jucheon zero, intermediate, full and overflow states keep a live bounded accessible meter
+PASS sword-chain icons preserve each linked family and the ready harmony label
+PASS action restrictions do not erase live passive progress or own gameplay state
+PASS one live passive host belongs to the existing clickable status button, never a resource overlay
+PASS portrait passive content fits the unchanged 36px status control without reserving another HUD row
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /@media\(max-width:620px\)/. Input:
+
+'\n'
+
+    at file:///tmp/honro-icon-base/tests/passive-status-layout.mjs:50:9
+    at check (file:///tmp/honro-icon-base/tests/passive-status-layout.mjs:8:25)
+    at file:///tmp/honro-icon-base/tests/passive-status-layout.mjs:47:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '\n',
+  expected: /@media\(max-width:620px\)/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

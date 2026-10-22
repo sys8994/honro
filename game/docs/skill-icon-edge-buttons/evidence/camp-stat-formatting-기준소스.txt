@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+'15.32' !== '15.12'
+
+    at file:///tmp/honro-icon-base/tests/camp-stat-formatting.mjs:11:32 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '15.32',
+  expected: '15.12',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
