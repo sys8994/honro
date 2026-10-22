@@ -134,6 +134,6 @@ export class AudioEngine {
     }
     pause(){for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.dialogueVoice=null;this.pending=[];}
     setTheme(_n:number){}
-    update(state?:MusicState,paused=false,battleSession?:string,firstBattleTrack?:number){this.paused=paused;if(paused)this.pause();this.music.setPaused(paused);if(state)this.music.select(state,battleSession,firstBattleTrack);this.music.tick();}
+    update(state?:MusicState,paused=false,battleSession?:string,firstBattleTrack?:number,battleAct?:number){this.paused=paused;if(paused)this.pause();this.music.setPaused(paused);if(state)this.music.select(state,battleSession,firstBattleTrack,battleAct);this.music.tick();}
     dispose(){this.disposed=true;this.pause();this.music.dispose();void this.context?.close();}
 }

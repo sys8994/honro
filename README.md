@@ -36,7 +36,7 @@ ES 모듈과 JSON을 불러오므로 로컬에서도 HTTP를 사용합니다. �
 - 기본 주소 `https://<사용자>.github.io/<저장소>/`는 `index.html`을 통해 게임으로 이동합니다. 쿼리와 `#` 뒤의 진입 옵션도 유지합니다.
 - 게임 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO.html`
 - 편집기 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO_WORKSHOP.html`
-- 배포 필수 파일은 `index.html`, `HONRO.html`, `web/` 전체와 `assets/bgm/`의 MP3 5개입니다. 편집기도 공개하려면 `HONRO_WORKSHOP.html`을 함께 포함합니다. `npm run build`가 두 HTML과 콘텐츠 해시 자산을 함께 최신화합니다. Playtest는 `web/entries/game.<hash>.html?embedded=1`을 직접 열며 기존 공개 주소와 저장키는 유지합니다.
+- 배포 필수 파일은 `index.html`, `HONRO.html`, `web/` 전체와 `assets/bgm/`의 MP3 7개입니다. 편집기도 공개하려면 `HONRO_WORKSHOP.html`을 함께 포함합니다. `npm run build`가 두 HTML과 콘텐츠 해시 자산을 함께 최신화합니다. Playtest는 `web/entries/game.<hash>.html?embedded=1`을 직접 열며 기존 공개 주소와 저장키는 유지합니다.
 
 Pages는 파일명의 대소문자를 구분합니다. [GitHub 공식 안내](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)를 참고합니다.
 
@@ -117,3 +117,15 @@ npm.cmd run build
 `npm run review-job -- help`로 현재 소스 또는 승인된 전체 막 실행을 재개 가능한 검수 작업으로 시작할 수 있습니다. 기존 구현/빌드/회귀를 실제 실행하고 정확한 HTML·외부 자산 해시와 연결된 브라우저 관찰을 반입합니다. 미해결 중요한 선택, 정상 플레이, 최종 미술 검수는 별도 대기하며 자동 승인·공개 배포하지 않습니다. CLI·증거 형식·검수 보고서·재개 절차는 [의도 파이프라인](game/docs/INTENT_PIPELINE.md#실행재개-가능한-검수-작업)을 참고합니다.
 
 지형·적 편성·증원은 [변경 구간의 교전 확인](game/docs/ENCOUNTER_ACCEPTANCE.md)에 따라 해당 구간의 실제 역할·이동·퀘스트를 짧게 확인합니다. `encounter:review`는 선택형 기록 도구이며 manifest·별도 검수자는 필수가 아닙니다. 알려진 관련 결함과 미확인 범위를 보고하고, 도구의 형식 통과를 미관·재미의 자동 승인으로 표시하지 않습니다.
+
+## BGM 첨부 정리 (2026-10-22)
+
+[현행 7곡 목록·제목·막별 매핑과 최종 검사 근거](assets/bgm/README.md). `main.mp3`는 **혼로**, 1·3막의 `battle-1`–`battle-3`은 **장막 너머의 음 → 하늘의 그림자 → 산 자와 남은 자**, 2막의 `battle-4`–`battle-6`은 **불길의 춤 → 암막 → 불완전한 의식**을 순환합니다. 9·10장은 battle 3으로 시작합니다. 우하단 `배경음 - 곡명` 형식과 9px 글씨를 유지하며 버튼 겹침을 피하도록 줄 높이·하단 여백만 조정했습니다.
+
+첨부 원본 2곡의 전송 오류는 `9de282ea`에서 해결됐고 7곡 모두 해시·전체 MP3 decode·길이를 확인했습니다. 현행 메타데이터는 `shared/data/bgm.json`의 파일명/역할/제목/막/hash이며 개인 Library ID는 제거했습니다. 원본 파일 바이트와 Git 이력은 보존합니다.
+
+공통 Game/Workshop 및 캐릭터 도감의 내장 런타임을 최신 소스에서 재생성했습니다. 오디오 대역 30개·제목·타입 검사, 1/9/10/11/20/21/30장 실제 Chromium 곡 선택·순환·재시도·off/on·휴식터/타이틀·Workshop 재생/Stop·초기 main만 요청·실패곡 회복, 9/10장 우선곡의 저장/Continue, 4개 화면 크기 제목 배치와 web-split를 확인했습니다. 전체 7곡 청취나 정상 전투 완주 검증은 아닙니다.
+
+브랜치는 부모 최종 검토 대기이며 master/Pages는 직접 변경하지 않습니다. 부모가 통합한 최신 실루엣 master `28b26db6`은 이 단독 BGM 검사 기준에 섞지 않았습니다. 최종 통합은 최신 master를 보존하고 통합 소스에서 생성물을 재빌드해야 합니다.
+
+최종 검사 소스/생성물: `e539f9dbbdd3a28d1b7bb53c48e6f128fb9f3701`. 최종 `web/manifest.json` SHA256은 `7c9bc60d19a9cc6d666f79f28713beba3625fcbb56b5c13598e90742136278bb`이며 브라우저 기록도 같은 값을 확인합니다. 상세 실행 명령·로컬 증거 경로·한계는 위 BGM README에 있습니다.

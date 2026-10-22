@@ -43,11 +43,14 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   const code=(name,code)=>parts.push({name,code});
   const file=async source=>code(source,await read(source));
   const data=(name,value)=>parts.push({name,global:name,data:value,code:'globalThis.'+name+'='+JSON.stringify(value)+';'});
-  const bgm=(await readdir(path.join(root,'assets/bgm'))).filter(f=>/^[0-9]{2}.*\.mp3$/i.test(f)).sort();
-  if(bgm.length!==5||bgm.some((f,i)=>!f.startsWith(String(i+1).padStart(2,'0'))))throw Error('BGM prefixes 01 through 05 required');
+  const bgmMetadata=JSON.parse(await read('shared/data/bgm.json'));
+  const bgm=(await readdir(path.join(root,'assets/bgm'))).filter(f=>/\.mp3$/i.test(f)).sort();
+  const expectedBgm=['main.mp3',...Array.from({length:6},(_,i)=>`battle-${i+1}.mp3`)];
+  if(bgm.length!==7||JSON.stringify(bgmMetadata.map(t=>t.file))!==JSON.stringify(expectedBgm)||bgmMetadata.some(t=>!bgm.includes(t.file)))throw Error('BGM requires exactly main.mp3 and battle-1.mp3 through battle-6.mp3');
   await file('shared/runtime/fullscreen-input.js');
   await file('shared/runtime/title-markup.js');
-  data('HONRO_BGM_TRACKS',bgm.map(f=>'assets/bgm/'+f));
+  data('HONRO_BGM_TRACKS',bgmMetadata.map(t=>'assets/bgm/'+t.file));
+  data('HONRO_BGM_METADATA',bgmMetadata.map(({id,file,title})=>({id,file,title})));
   const skillImages=await validateSkillIcons({allowPending:true});
   if(skillImages.errors.length)throw Error(skillImages.errors.join('\n'));
   data('HONRO_SKILL_ICON_MANIFEST',{...skillImages.source,complete:skillImages.complete,icons:Object.fromEntries(Object.entries(skillImages.source.icons).map(([id,item])=>[id,{...item,url:item.status==='ready'?item.file:null}]))});

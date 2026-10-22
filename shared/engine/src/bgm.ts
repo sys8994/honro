@@ -1,6 +1,6 @@
 export type MusicState='main'|'battle'|'boss'|'silent';
-// Track 05 now participates in every ordinary battle playlist.
-const BATTLE_TRACK_COUNT=4;
+// Track indices: main=0, battle 1–6=1–6. Act 1 and 3 share their list.
+const BATTLE_PLAYLISTS={1:[1,2,3],2:[4,5,6]};
 
 /** Streaming BGM channel owned by AudioEngine. Never decodes an MP3 into an AudioBuffer. */
 export class BgmPlayer {
@@ -19,6 +19,8 @@ export class BgmPlayer {
     private fadeMs=25;
     private preloadFailed=false;
     private battleSession:string|undefined; private battleSelected=false;
+    private battleAct:1|2=1;
+    private get battleTracks(){return BATTLE_PLAYLISTS[this.battleAct];}
     constructor(public tracks:string[]=(globalThis as any).HONRO_BGM_TRACKS||[],
       private makeAudio:()=>HTMLAudioElement=()=>new Audio()){}
     configure(enabled:boolean,volume:number){
@@ -36,38 +38,45 @@ export class BgmPlayer {
         }
     }
     unlock(){if(this.preloadFailed){this.failed.delete(0);this.silence();this.preloadFailed=false;}this.gestureUnlocked=true;this.unlocked=true;this.requested=false;this.select(this.state);this.applyPause();}
-    select(state:MusicState,battleSession?:string,firstBattleTrack?:number){
+    select(state:MusicState,battleSession?:string,firstBattleTrack?:number,battleAct?:number){
+        // Legacy callers cannot escape the active act through the former boss slot.
+        if(state==='boss')state='battle';
+        const nextAct=battleAct===undefined?this.battleAct:battleAct===2?2:1;
         // Different playlists start at their first song and zero seconds.
         // Repeated updates, pauses and unlocks in the same playlist never seek.
-        const playlistChanged=state!==this.state;
+        const playlistChanged=state!==this.state||state==='battle'&&nextAct!==this.battleAct;
+        this.battleAct=nextAct;
+        const playlist=this.battleTracks;
         if(playlistChanged){this.restartRequested=true;if(state==='battle')this.battleIndex=0;}
         // Direct encounter changes within one playlist keep the existing order.
-        const freshEncounter=(state==='battle'||state==='boss')&&battleSession!==undefined&&battleSession!==this.battleSession;
+        const freshEncounter=state==='battle'&&battleSession!==undefined&&battleSession!==this.battleSession;
         if(freshEncounter){
-            if(!playlistChanged&&this.battleSelected)this.battleIndex=(this.battleIndex+1)%BATTLE_TRACK_COUNT;
+            if(!playlistChanged&&this.battleSelected)this.battleIndex=(this.battleIndex+1)%playlist.length;
             this.battleSession=battleSession;this.battleSelected=false;
             this.restartRequested=true;
         }
         // An authored opening is consumed only at a playlist/session boundary.
         // Repeated frames, unlock and pause must preserve the current stream/seek.
-        if(state==='battle'&&(playlistChanged||freshEncounter)&&firstBattleTrack!==undefined&&firstBattleTrack>=1&&firstBattleTrack<=BATTLE_TRACK_COUNT)this.battleIndex=firstBattleTrack-1;
+        if(state==='battle'&&(playlistChanged||freshEncounter)&&firstBattleTrack!==undefined&&playlist.includes(firstBattleTrack))this.battleIndex=playlist.indexOf(firstBattleTrack);
         this.state=state;
         if(state==='battle')this.battleSelected=true;
-        if(state==='battle')for(let n=0;n<BATTLE_TRACK_COUNT&&this.failed.has(1+this.battleIndex);n++)this.battleIndex=(this.battleIndex+1)%BATTLE_TRACK_COUNT;
-        const track=state==='main'?0:state==='boss'?4:state==='battle'?1+this.battleIndex:-1;
+        if(state==='battle')for(let n=0;n<playlist.length&&this.failed.has(playlist[this.battleIndex]);n++)this.battleIndex=(this.battleIndex+1)%playlist.length;
+        const track=state==='main'?0:state==='battle'?playlist[this.battleIndex]:-1;
         if(track<0){this.silence();return;}
         const prepareTitle=state==='main'&&this.enabled&&this.volume>0&&!this.paused&&(typeof document==='undefined'||!document.hidden);
         if(!this.current&&(!this.enabled||this.volume<=0))return;
-        if((!this.unlocked&&!prepareTitle)||!this.tracks[track]||this.failed.has(track))return;
+        // An unavailable act must never leave a previous act's stream audible.
+        if(!this.tracks[track]||this.failed.has(track)){this.silence();return;}
+        if(!this.unlocked&&!prepareTitle)return;
         if(track===this.track&&this.current){if(this.restartRequested)this.current.currentTime=0;this.restartRequested=false;this.tryStartup();this.applyPause();return;}
         if(this.outgoing){this.outgoing.pause();this.outgoing.removeAttribute('src');this.outgoing.load();this.outgoing=null;}
         if(this.current)this.outgoing=this.current;
         this.restartRequested=false;this.track=track;const audio=this.current=this.makeAudio();audio.preload=prepareTitle?'auto':'metadata';audio.src=this.tracks[track];
         this.firstPlay=true;this.startupFade=false;
         audio.loop=state!=='battle';audio.volume=0;this.requested=false;this.transitionStart=performance.now();
-        audio.addEventListener('ended',()=>{if(audio!==this.current||this.state!=='battle')return;this.battleIndex=(this.battleIndex+1)%BATTLE_TRACK_COUNT;this.select('battle');});
+        audio.addEventListener('ended',()=>{if(audio!==this.current||this.state!=='battle')return;this.battleIndex=(this.battleIndex+1)%this.battleTracks.length;this.select('battle');});
         audio.addEventListener('error',()=>{if(audio!==this.current)return;this.errors.push(`BGM ${track+1}: ${audio.error?.code||'media error'}`);this.failed.add(track);this.preloadFailed=track===0&&!this.gestureUnlocked;this.requested=false;
-            if(this.state==='battle'&&[1,2,3,4].some(i=>!this.failed.has(i))){this.battleIndex=(this.battleIndex+1)%BATTLE_TRACK_COUNT;this.select('battle');}});
+            if(this.state==='battle'){this.battleIndex=(this.battleIndex+1)%this.battleTracks.length;this.select('battle');}});
         this.tryStartup();this.applyPause();
     }
     setPaused(paused:boolean){if(this.paused===paused)return;this.paused=paused;this.applyPause();}
@@ -99,6 +108,6 @@ export class BgmPlayer {
     }
     silence(){for(const a of [this.current,this.outgoing])if(a){a.pause();a.removeAttribute('src');a.load();}this.current=null;this.outgoing=null;this.track=-1;this.requested=false;}
     dispose(){this.silence();this.unlocked=false;}
-    status(){return{state:this.state,track:this.track<0?null:this.track+1,battleIndex:this.battleIndex,unlocked:this.unlocked,paused:this.paused,starts:this.starts,
+    status(){return{state:this.state,track:this.track<0?null:this.track+1,battleIndex:this.battleIndex,battleAct:this.battleAct,unlocked:this.unlocked,paused:this.paused,starts:this.starts,
         playing:[this.current,this.outgoing].filter(a=>a&&!a.paused).length,currentTime:this.current?.currentTime||0,errors:[...this.errors]};}
 }

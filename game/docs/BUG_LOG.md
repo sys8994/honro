@@ -4375,3 +4375,17 @@ HUD의 32~36px 내부 타일과 공통 스탬프의 둥근 이중 프레임을 �
 - 현재 body draw에서 실제 리그 행렬·경로 hull/stroke/AA 및8방향 팽창 여백으로 교집합이 없음을 증명한 경우에만 후속 mask 합성을 생략한다. 현재384 해상도/격자·동적 pose·후보ID·선택/hover/inspect는 보존한다. unknown geometry/보스/몬스터는 기존 합성. 새 unit bitmap/프레임 감속·main/UI·예측·지형캐시·게임 규칙 변경 없음.
 - runtime/build `2d92eca6`. 이전 함수와 같은 실제 Scene RGBA/pose/state 대조 및 wrapper 없는 CDP 자연 App240frame×3회 A/B: idle p95 10.70/9.64/13.83→6.93/5.79/5.03ms, 최대충전12.04/11.58/10.88→6.08/6.25/5.08ms, pan9.84/10.09/9.63→4.77/5.68/4.94ms. rAF p95 양쪽16.7–16.8ms, 일부 max 지연은 악화되어 FPS/최악 지연/원래 점증 렉 해결 주장은 하지 않는다. 실기기 미검사.
 - 원자료·실제 조건·품질 경계·JPG·SHA·재현은 [실루엣 비용 기록](occlusion-render-cost-20261022/README.md). master/Pages는 부모 최종 검토 전 변경하지 않는다.
+## 막별 BGM 목록·첨부 제목 정리 — 2026-10-22 (통합 대기)
+
+- 원인: 4곡 공통 순환·옛 boss 슬롯·5곡 빌드 및 제목/청취 경로가 새 7곡 배치와 맞지 않았다.
+- 변경: main/battle 1–6의 명시 JSON, 1·3막 [1,2,3]/2막 [4,5,6], 막 경계 초기화·목록 내 실패 회복, 9·10장 동일 blob battle 3 우선, legacy boss 정규화. 기존 스트리밍/제스처/설정/크로스페이드·저장과 미술을 보존했다.
+- 확인: 기존 5개 첨부 hash 일치/전체 FFmpeg decode·ffprobe, 오디오 대역 30개·7곡 제목·타입 검사 통과. 실제 App 함수의 1/9/10/11/20/21/30 연결 포함.
+- 별도 Chromium 확인: 청취 페이지의 기존 5곡 짧은 실제 재생/currentTime·제목·동시 1곡·입력 전 MP3 요청 0개. 새 Game/Workshop 검수는 아니다.
+- 차단: 새 battle 5/6 바이트 전송 실패와 내부 목적지 1회 재시도 실패. 자산 검사/build는 누락으로 실패했으며 생성물 재빌드와 변경된 Game/Workshop 브라우저 검수는 대기다. 상세 현행 상태는 assets/bgm/README.md. master/Pages는 미변경.
+
+### BGM 첨부 전송 복구·최종 검수 — 2026-10-22
+
+- 초기 차단은 부모의 원본 바이트 커밋 `9de282ea`로 해결됐다. 7개 hash·전체 MP3 decode/메타데이터 검증을 완료하고 `68118dac`에서 개인 Library ID를 제거했다. 원본 파일 바이트는 변경하지 않았다.
+- 최종 소스/생성물 `e539f9db`: 공통 build와 캐릭터 도감 내장 런타임 재생성, 오디오 대역 30·제목/타입·실제 Game/Workshop의 두 화면 크기 MP3 재생/막 목록/재시도/off-on/초기 main만 요청/Stop, 9·10장 우선곡 저장·Continue 19전환 및 web-split 통과.
+- 새 접두어를 포함한 곡명 라벨이 safe-area 모바일/가로 HUD의 내려가기 버튼과 약 3px 겹치는 것을 실제 브라우저에서 확인했다. 라벨의 9px 크기·우하단 형식을 보존하며 line-height와 최소 하단 여백만 조정했다. 최종 4개 화면 크기×7제목 배치 fixture와 직접 화면에서 겹침 0을 확인했다.
+- 최종 manifest SHA256 `7c9bc60d19a9cc6d666f79f28713beba3625fcbb56b5c13598e90742136278bb`; 원격 검토용 현재 계약·검사 범위는 `assets/bgm/README.md`. `_local/reports/bgm-acts/`에 실행 증거가 있다. 전곡 전체 청취·캠페인 정상 완주·실기기 검수는 아니다. master/Pages와 실루엣 변경은 부모가 담당한다.
