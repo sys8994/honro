@@ -257,7 +257,7 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||app.
   if(!revision2(b)&&b.honroStage===18&&!a.silenced&&b.round>=3&&!a.events['bell-first'])wave(app,'bell-first','echo',2);
   if(revision2(b)){
    const plan=G.HonroAct2Plan.forStage(b.honroStage),boss=e.unit('act2-keeper'),convoy=e.unit('objective');
-   if(plan.bossWave&&boss&&boss.hp<=boss.maxHp*.6&&!a.events['keeper-retaliation'])wave(app,'keeper-retaliation',plan.bossWave.kind,plan.bossWave.count,'wave',plan.bossWave.eliteEvery);
+   if(!G.HonroStage18Short?.active(b)&&plan.bossWave&&boss&&boss.hp<=boss.maxHp*.6&&!a.events['keeper-retaliation'])wave(app,'keeper-retaliation',plan.bossWave.kind,plan.bossWave.count,'wave',plan.bossWave.eliteEvery);
    if(plan.progressWave&&a.escort&&convoy?.x>=4400&&!a.events['convoy-ambush'])wave(app,'convoy-ambush',plan.progressWave.kind,plan.progressWave.count,'hold-convoy',plan.progressWave.eliteEvery);
   }
   for(const u of b.units.filter(u=>u.honroEcho&&!u.dead&&!u.manifested)){

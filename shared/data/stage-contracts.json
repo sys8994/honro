@@ -1076,26 +1076,20 @@
     "theme": "temple",
     "steps": [
       {
-        "id": "clear-wards",
-        "label": "억제진 진입 수비대 제압",
-        "kind": "clear",
-        "cohorts": "west"
-      },
-      {
         "id": "silence",
-        "label": "공명 억제진 가동",
+        "label": "억제진 가동",
         "kind": "interact",
         "requiredClass": "mage"
       },
       {
         "id": "hold-silence",
-        "label": "공명 역류를 견디며 억제진 유지",
+        "label": "억제진 유지",
         "kind": "hold",
-        "rounds": 4,
+        "rounds": 2,
         "wave": {
-          "kind": "bellCluster",
-          "count": 8,
-          "eliteEvery": 4
+          "kind": "picks",
+          "count": 2,
+          "eliteEvery": 99
         },
         "requiredClass": "mage",
         "radius": 680,
@@ -1104,36 +1098,26 @@
       },
       {
         "id": "upper-chain",
-        "label": "장력 고정구 해제",
+        "label": "고정구 해제",
         "kind": "destroy",
         "parallelGroup": "bell-stabilize"
       },
       {
         "id": "bell-descent",
-        "label": "빈 쓸림면을 확인하고 대종 내려앉히기",
+        "label": "종 하강",
         "kind": "bell-descent"
       },
       {
         "id": "leak",
-        "label": "종에서 새는 혼 분리",
+        "label": "새는 혼 수습",
         "kind": "interact",
         "requiredClass": "occultist"
       },
       {
         "id": "keeper",
-        "label": "종지기 전투 제압",
+        "label": "종지기 제압",
         "kind": "defeat",
         "target": "act2-keeper"
-      },
-      {
-        "id": "clear-bell",
-        "label": "동쪽 퇴로 곁의 위협 제압",
-        "kind": "pacing-secure",
-        "cohorts": "all",
-        "afterPacing": "keeper",
-        "sitePacing": "clear-bell",
-        "radiusPacing": 720,
-        "heightPacing": 500
       }
     ],
     "summary": "공명·고정구·누출혼을 차례로 처리하고 종지기를 제압했다. 묵종을 보존한 채 안의 혼을 수습한다.",
