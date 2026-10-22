@@ -6,14 +6,14 @@ const rank=(d,id)=>S[id].basic||S[id].ultimate?1:d.ranks[id]||1;
 const branch=id=>C.TALENT_MAP[id]?.branch??-1;
 const skills=(cls,b)=>Object.values(S).filter(s=>s.cls===cls&&!s.enemyOnly&&(C.TALENT_MAP[s.id]||s.basic||s.id===C.ultimateSkill(cls))&&branch(s.id)===b).sort((a,b)=>(C.TALENT_MAP[a.id]?.row??0)-(C.TALENT_MAP[b.id]?.row??0));
 const button=(action,value,html,attrs='')=>`<button type="button" data-training-action="${action}" data-value="${value}" ${attrs}>${html}</button>`;
-function toolbar(app){const s=S[app.trainingSkill];return `<nav class="training-tools" aria-label="허공터 수련 설정">${button('open','',`<img src="${G.HonroUI.portraits()[app.trainingClass]}" alt=""><span><small>${H.hero[app.trainingClass].name} · 허공터</small><strong>${s.name} <em>경지 ${rank({ranks:app.trainingRanks},s.id)}</em></strong></span>${stamp(s.id,24)}<span class="training-edit">기예 고르기</span>`,'class="training-current" aria-label="캐릭터와 기예, 경지 선택"')}<button class="icon" data-action="training-reset" aria-label="같은 설정으로 다시 수련">${G.HonroFA.icon('rotateRight','',18)}</button></nav>`;}
+function toolbar(app){const s=S[app.trainingSkill];return `<nav class="training-tools" aria-label="허공터 수련 설정">${button('open','',`${G.HonroPortraits.markup(app.trainingClass,'bust','training-current')}<span><small>${H.hero[app.trainingClass].name} · 허공터</small><strong>${s.name} <em>경지 ${rank({ranks:app.trainingRanks},s.id)}</em></strong></span>${stamp(s.id,24)}<span class="training-edit">기예 고르기</span>`,'class="training-current" aria-label="캐릭터와 기예, 경지 선택"')}<button class="icon" data-action="training-reset" aria-label="같은 설정으로 다시 수련">${G.HonroFA.icon('rotateRight','',18)}</button></nav>`;}
 function open(app){const id=app.trainingSkill;app.trainingDraft={cls:app.trainingClass,id,branch:branch(id),ranks:{...app.trainingRanks},passives:{...app.trainingPassives},active:id};render(app);}
 function render(app,focus){
- const d=app.trainingDraft,s=S[d.id],r=rank(d,s.id),br=C.BRANCHES[d.cls][d.branch],available=skills(d.cls,d.branch),passives=Object.keys(d.passives).filter(id=>d.passives[id]&&S[id].cls===d.cls),portraits=G.HonroUI.portraits();
+ const d=app.trainingDraft,s=S[d.id],r=rank(d,s.id),br=C.BRANCHES[d.cls][d.branch],available=skills(d.cls,d.branch),passives=Object.keys(d.passives).filter(id=>d.passives[id]&&S[id].cls===d.cls);
  const scroll=app.modal.querySelector('.training-body')?.scrollTop||0;
  const html=`
  <header class="training-heading"><div><small>허공터 · 자유 수련</small><h2 id="training-title">누구의 기예를 펼칠까요</h2><p>동행과 기예를 고르고, 원하는 경지에서 익혀 보세요.</p></div>${button('close','',G.HonroFA.icon('xmark','',20),'class="icon" aria-label="수련 설정 닫기"')}</header>
- <div class="training-body"><nav class="training-heroes" aria-label="수련할 동행">${heroes.map(cls=>button('hero',cls,`<img src="${portraits[cls]}" alt="${H.hero[cls].name} 초상"><span><strong>${H.hero[cls].name}</strong><small>${H.hero[cls].job}</small></span>`,`aria-pressed="${cls===d.cls}"`)).join('')}</nav>
+ <div class="training-body"><nav class="training-heroes" aria-label="수련할 동행">${heroes.map(cls=>button('hero',cls,`${G.HonroPortraits.markup(cls,'bust','training-card-'+cls)}<span><strong>${H.hero[cls].name}</strong><small>${H.hero[cls].job}</small></span>`,`aria-pressed="${cls===d.cls}"`)).join('')}</nav>
  <nav class="training-branches" aria-label="기예 계통">${[{name:'기본 · 비기',color:'#c5caba'},...C.BRANCHES[d.cls]].map((b,i)=>button('branch',i-1,esc(b.name),`aria-pressed="${d.branch===i-1}" style="--branch:${b.color}"`)).join('')}</nav>
  <div class="training-content"><section class="training-library" aria-label="${esc(br?.name||'기본 기예')}"><div class="training-section-head"><h3>${esc(br?.name||'기본 기예')}</h3><span>${esc(br?.tag||'동행의 첫걸음')} · ${available.length}개</span></div><div class="training-cards">${available.map(sk=>button('skill',sk.id,`<span class="training-card-top"><i>${stamp(sk.id,31)}</i><small>${sk.passive?'상시 기예':sk.capstone?'계통 비기':sk.basic?'기본 공격':sk.ultimate?'비기':'사용 기예'}</small><em>${sk.passive&&d.passives[sk.id]?'적용 중':`경지 ${rank(d,sk.id)}`}</em></span><strong>${esc(sk.name)}</strong><span class="training-card-desc">${esc(sk.desc)}</span>`,`class="training-card" aria-pressed="${d.id===sk.id}"`)).join('')}</div></section>
   <aside class="training-detail" aria-label="선택한 기예"><div class="training-detail-name"><i>${stamp(s.id,42)}</i><div><small>${esc(br?.name||'기본 기예')}</small><h3>${esc(s.name)}</h3></div></div><p class="skill-desc">${esc(s.desc)}</p><p class="skill-mechanics">${esc(C.skillPlayNotes(s.id))}</p>${s.passive?'':C.existenceAttackView(s)}
@@ -49,7 +49,7 @@ function act(app,action,value){
   if(b.side===0||!b.units.some(v=>v.id===b.active))b.active=u.id;
   b.sceneVersion++;
   app.selected=d.active;app.selectedByUnit[u.id]=d.active;app.charging=false;app.scene.previewKey='';
-  app.close();document.querySelector('.training-tools').outerHTML=toolbar(app);app.updateHUD(true);return;
+  app.close();document.querySelector('.training-tools').outerHTML=toolbar(app);app.drawPortraits();app.updateHUD(true);return;
  }
  if(action==='hero'){d.cls=value;d.id=d.active=C.baseSkill(value);d.branch=branch(d.id);}
  if(action==='branch'){d.branch=+value;d.id=skills(d.cls,d.branch)[0].id;if(!S[d.id].passive)d.active=d.id;}

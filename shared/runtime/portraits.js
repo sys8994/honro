@@ -3,6 +3,12 @@
 // use Scene.unit / HonroPartyVisual and are never cropped by this UI helper.
 const cache=new Map(),images=new Map(),views=new WeakMap(),surfaces=new WeakMap();
 const counts={requests:0,decodes:0,paints:0,fallbackPaints:0,vectorBuilds:0};
+// Purpose, not screen ID, owns approved-image framing across every consumer.
+const framing=Object.freeze({bust:.88,icon:1});
+function markup(cls,purpose='bust',slot=cls){
+ if(!['archer','mage','knight','occultist'].includes(cls))return '';
+ return `<span data-portrait-host="${cls}" data-portrait-framing="${purpose}" data-portrait-slot="${slot}" style="display:contents"></span>`;
+}
 function alphaBounds(data,width,height,limitY=height){
  let left=width,top=height,right=0,bottom=0;
  for(let y=0,end=Math.min(height,Math.ceil(limitY));y<end;y++)for(let x=0,at=(y*width)*4+3;x<width;x++,at+=4)if(data[at]>24){if(x<left)left=x;if(x>=right)right=x+1;if(y<top)top=y;bottom=y+1;}
@@ -81,13 +87,10 @@ function approved(actor,cls,options={}){
  return asset?.src?{...asset,id:manifest.id,expression}:null;
 }
 function state(canvas,value){if(canvas.dataset.portraitState!==value)canvas.dataset.portraitState=value;const busy=value==='loading'?'true':'false';if(canvas.getAttribute('aria-busy')!==busy)canvas.setAttribute('aria-busy',busy);}
-function imageCrop(asset,canvas){
+function imageCrop(asset,canvas,purpose){
  const crop=cropFor(asset.bust,asset.head,canvas.width,canvas.height);
- // mount owns this retained dialogue slot. Give its approved bust 12% more
- // breathing room without changing HUD, NPC/failure crops, or the UI layout.
- if(canvas.id==='story-portrait-canvas'){
-  const center=crop.x+crop.width/2;crop.width/=.88;crop.height/=.88;crop.x=center-crop.width/2;
- }
+ const scale=framing[purpose];
+ const center=crop.x+crop.width/2;crop.width/=scale;crop.height/=scale;crop.x=center-crop.width/2;
  if(crop.width<=asset.width)crop.x=Math.max(0,Math.min(asset.width-crop.width,crop.x));
  else crop.x=(asset.width-crop.width)/2; // keep the whole wide gat inside the frame
  if(crop.height<=asset.height)crop.y=Math.max(0,Math.min(asset.height-crop.height,crop.y));
@@ -96,8 +99,8 @@ function imageCrop(asset,canvas){
 function paint(canvas,view){
  if(views.get(canvas)!==view)return;
  if(view.entry.state==='ready'){
-  const c=canvas.getContext('2d'),crop=imageCrop(view.asset,canvas);c.save();c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.clearRect(0,0,canvas.width,canvas.height);c.drawImage(view.entry.image,crop.x,crop.y,crop.width,crop.height,0,0,canvas.width,canvas.height);c.restore();
-  view.info={source:'approved',state:'ready',identity:view.asset.id,expression:view.asset.expression,crop,head:view.asset.head,bounds:view.asset.bust};state(canvas,'ready');counts.paints++;
+  const c=canvas.getContext('2d'),crop=imageCrop(view.asset,canvas,view.purpose);c.save();c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.clearRect(0,0,canvas.width,canvas.height);c.drawImage(view.entry.image,crop.x,crop.y,crop.width,crop.height,0,0,canvas.width,canvas.height);c.restore();
+  view.info={source:'approved',state:'ready',identity:view.asset.id,expression:view.asset.expression,framing:view.purpose,crop,head:view.asset.head,bounds:view.asset.bust};state(canvas,'ready');counts.paints++;
  }else if(view.entry.state==='error'){view.fallbackKey=fallbackKey(canvas,view.actor,view.cls);view.info={...drawVector(canvas,view.actor,view.cls),source:'vector',state:'error'};state(canvas,'error');counts.fallbackPaints++;}
  view.actor=null;
 }
@@ -115,18 +118,20 @@ function request(asset){
 function draw(canvas,actor,cls=actor?.cls,options={}){
  if(!canvas||!cls)return null;const asset=approved(actor,cls,options),old=views.get(canvas);
  if(!asset||typeof Image==='undefined'){old?.entry.waiters.delete(canvas);views.delete(canvas);return drawVector(canvas,actor,cls);}
- const key=[asset.src,canvas.width,canvas.height].join('|');if(old?.key===key){if(old.entry.state==='error'){if(old.fallbackKey!==fallbackKey(canvas,actor,cls)){old.actor=actor;paint(canvas,old);}}else{if(old.info.state==='loading')old.actor=actor;if(old.info.state==='loading'&&old.entry.state==='ready')paint(canvas,old);}return old.info;}
- old?.entry.waiters.delete(canvas);const entry=request(asset),view={key,entry,asset,actor,cls,info:{source:'approved',state:entry.state,identity:asset.id,expression:asset.expression,crop:imageCrop(asset,canvas),head:asset.head,bounds:asset.bust}};views.set(canvas,view);
+ const purpose=Object.prototype.hasOwnProperty.call(framing,options.framing)?options.framing:'bust';
+ const key=[asset.src,canvas.width,canvas.height,purpose].join('|');if(old?.key===key){if(old.entry.state==='error'){if(old.fallbackKey!==fallbackKey(canvas,actor,cls)){old.actor=actor;paint(canvas,old);}}else{if(old.info.state==='loading')old.actor=actor;if(old.info.state==='loading'&&old.entry.state==='ready')paint(canvas,old);}return old.info;}
+ old?.entry.waiters.delete(canvas);const entry=request(asset),view={key,entry,asset,actor,cls,purpose,info:{source:'approved',state:entry.state,identity:asset.id,expression:asset.expression,framing:purpose,crop:imageCrop(asset,canvas,purpose),head:asset.head,bounds:asset.bust}};views.set(canvas,view);
  if(entry.state==='loading'){
   canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);state(canvas,'loading');
   for(const [node]of entry.waiters)if(!node.isConnected)entry.waiters.delete(node);entry.waiters.set(canvas,view);
  }else paint(canvas,view);return view.info;
 }
 function mount(host,actor,cls,options={}){
- const owner=host.closest('#dialogue-root,#hero-switches')||host.parentElement||host;let pool=surfaces.get(owner);if(!pool)surfaces.set(owner,pool=new Map());
- const slot=options.surface==='dialogue'?'dialogue':options.identity||cls;let canvas=pool.get(slot);
- if(!canvas){canvas=document.createElement('canvas');canvas.width=options.surface==='dialogue'?400:88;canvas.height=options.surface==='dialogue'?440:108;canvas.className=options.surface==='dialogue'?'':'portrait';if(options.surface==='dialogue')canvas.id='story-portrait-canvas';pool.set(slot,canvas);}
+ const owner=host.closest('#dialogue-root,#hero-switches,#modal,#app')||host.parentElement||host;let pool=surfaces.get(owner);if(!pool)surfaces.set(owner,pool=new Map());
+ const slot=options.surface==='dialogue'?'dialogue':options.slot||options.identity||cls;let canvas=pool.get(slot);
+ if(!canvas){const bust=options.framing!=='icon';canvas=document.createElement('canvas');canvas.width=options.surface==='dialogue'?400:bust?160:88;canvas.height=options.surface==='dialogue'?440:bust?192:108;canvas.className=bust?'':'portrait';if(options.surface==='dialogue')canvas.id='story-portrait-canvas';pool.set(slot,canvas);}
+ const purpose=options.framing||'bust';if(canvas.dataset.portraitFraming!==purpose)canvas.dataset.portraitFraming=purpose;
  if(canvas.parentNode!==host)host.appendChild(canvas);return draw(canvas,actor,cls,options);
 }
-G.HonroPortraits=Object.freeze({draw,mount,cropFor,storyActor,approved,stats:()=>({...counts,imageEntries:images.size,pending:[...images.values()].filter(v=>v.state==='loading').length,errors:[...images.values()].filter(v=>v.state==='error').length,vectorEntries:cache.size,waiters:[...images.values()].reduce((n,v)=>n+v.waiters.size,0)})});
+G.HonroPortraits=Object.freeze({draw,mount,markup,framing,cropFor,storyActor,approved,stats:()=>({...counts,imageEntries:images.size,pending:[...images.values()].filter(v=>v.state==='loading').length,errors:[...images.values()].filter(v=>v.state==='error').length,vectorEntries:cache.size,waiters:[...images.values()].reduce((n,v)=>n+v.waiters.size,0)})});
 })(globalThis);
