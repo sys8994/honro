@@ -8,7 +8,17 @@ const cast={
 };
 // Existing civilian/escort bodies already represent these people in the scene.
 const speakers={13:{'석공':'resident-1'},14:{'주민':'resident-2','중층 주민':'resident-2','길찬':'resident-1'},16:{'승려':'resident-1','노승':'objective'},19:{'동생을 잃은 형':'mourner-brother','언니를 잃은 동생':'mourner-sister'},20:{'주민':'objective','길찬':'convoy-gilchan','석공':'convoy-mason'}};
-function speaker(app,who){const b=app.engine?.b;if(b?.honroStaging?.cinematic!==2||b.honroCustom)return null;const fresh14=b.honroStage===14&&b.honroNarrativeRevision===1,id=fresh14&&who==='중층 주민'?(b.honroMarkers?.find(m=>m.id==='family-mid')?.target||'resident-3'):fresh14&&who==='주민'?'objective':speakers[b.honroStage]?.[who],u=b.units.find(u=>u.id===id)||b.honroConvoyActors?.find(u=>u.id===id);return u&&!u.dead&&u.hp>0?u:null;}
+function speaker(app,who){
+ const b=app.engine?.b;if(!b||b.honroCustom)return null;
+ // This generic caption belongs to the rescue marker's authored civilian,
+ // whose world name is different. Never substitute a class or another NPC.
+ if(b.honroStage===11&&who==='주민'){
+  const id=b.honroMarkers?.find(m=>m.id==='resident')?.target,u=b.units.find(u=>u.id===id&&u.honroCivilian);
+  return u&&!u.dead&&u.hp>0?u:null;
+ }
+ if(b.honroStaging?.cinematic!==2)return null;
+ const fresh14=b.honroStage===14&&b.honroNarrativeRevision===1,id=fresh14&&who==='중층 주민'?(b.honroMarkers?.find(m=>m.id==='family-mid')?.target||'resident-3'):fresh14&&who==='주민'?'objective':speakers[b.honroStage]?.[who],u=b.units.find(u=>u.id===id)||b.honroConvoyActors?.find(u=>u.id===id);return u&&!u.dead&&u.hp>0?u:null;
+}
 const face=(actor,at,pose='point',camera=false)=>({type:'look',actor,at,pose,camera,scale:camera? .8:undefined,duration:650});
 const shot=at=>({type:'look',at,duration:650,scale:.8});
 const pose=(actor,kind,at)=>face(actor,at||{actor:'archer'},kind);
@@ -63,8 +73,8 @@ const rules=[
  rule(10,'cooperation','담허','진 안으로 들어왔어',[shot({anchor:'receiverWest',dy:-45})]),
  rule(10,'outcome','소단','같이 가고',[pose('boss','listen',{actor:'archer'})]),
  // Second act: different characters inspect, ward, and protect as they speak.
- rule(11,'entry','소단','이 줄을 묶은 손',[pose('occultist','hold-bell',{marker:'knot-west'})]),
- rule(11,'entry','휘겸','길을 비우겠소',[step('knight',22),face('knight',{marker:'knot-west'},'guard')]),
+ rule(11,'entry','소단','저 아래에 사람이',[face('occultist',{marker:'resident'})]),
+ rule(11,'entry','휘겸','내가 앞을 막겠소',[step('knight',22),face('knight',{marker:'resident'},'guard')]),
  rule(12,'entry','설오','갈라진 바위',[face('archer',{marker:'sign'},'point')]),
  rule(12,'entry','담허','길이 우리를',[pose('mage','inspect',{marker:'sign'})]),
  rule(12,'sign','휘겸','위쪽 작업굴',[{type:'look',at:{markers:['route-upper-exit','route-lower-exit']},scale:.8,duration:650},face('knight',{marker:'route-upper-exit'},'point')]),

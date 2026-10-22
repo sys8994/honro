@@ -8,7 +8,11 @@ const campaign=b=>b?.honroStage===11&&!b.honroCustom&&b.mode==='campaign'&&b.hon
 const active=b=>campaign(b)&&b.honroStage11QuestRevision===1;
 const supported=list=>Array.isArray(list)&&known.some(ids=>ids.join(',')===list.map(s=>s.id).join(','));
 const steps=()=>[{id:'resident',kind:'rescue',label:'하부 피난처 주민에게 붙은 혼 분리'},{id:'trace',kind:'pacing-event',afterPacing:'resident',label:'구조한 자리에서 북쪽 단서 기록'}];
-function content(original){if(!original)return original;const st=clone(original);st.steps=steps();st.goal='하부 피난처 주민을 구하고 북쪽 단서 기록';st.guide='하부 피난처의 주민에게 전진하세요. 주민 바로 곁의 적만 막고 붙은 혼의 체력을 40% 이하로 낮춘 뒤 소단으로 다가가 분리하세요. 혼을 제압했다면 다른 동행도 구조할 수 있습니다. 북쪽 단서는 구조한 자리에서 함께 기록합니다. 매듭·의식터 방어·능선 수색과 먼 적은 완료 조건이 아닙니다.';if(st.act2Plan)st.act2Plan.sequence=steps();return st;}
+function content(original){if(!original)return original;const st=clone(original);st.steps=steps();st.goal='하부 피난처 주민을 구하고 북쪽 단서 기록';st.guide='하부 피난처의 주민에게 전진하세요. 주민 바로 곁의 적만 막고 붙은 혼의 체력을 40% 이하로 낮춘 뒤 소단으로 다가가 분리하세요. 혼을 제압했다면 다른 동행도 구조할 수 있습니다. 북쪽 단서는 구조한 자리에서 함께 기록합니다. 매듭·의식터 방어·능선 수색과 먼 적은 완료 조건이 아닙니다.';const approved=G.HONRO_STAGE11_QUEST_STORY;
+ st.narration=[approved.arrival];
+ const lines=(rows,key)=>rows.map(([who,text])=>[who,text,{storyId:approved.sceneKeys[key],storyTitle:st.name}]);
+ st.story=lines(approved.entry,'entry');st.outro=lines(approved.outro,'outro');st.summary=st.storySummary=approved.summary;
+ if(st.act2Plan)st.act2Plan.sequence=steps();return st;}
 const retiredResponse=(b,ev)=>active(b)&&ev?.honroStage11Response===1&&retired.has(ev.honroRavineTrigger?.objectiveDone);
 function apply(b){b.honroAct2Steps=steps();for(const key of ['honroNarrativeContent','honroVerticalStage14Content'])if(b[key])b[key]=content(b[key]);b.honroStage11QuestRevision=1;
  for(const m of b.honroMarkers||[])if(retired.has(m.id)||m.id==='trace')delete m.action;

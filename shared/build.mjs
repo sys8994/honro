@@ -63,6 +63,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   data('HONRO_SPLIT_V1',JSON.parse(await read('shared/data/split-campaign-v1.json')));
   data('HONRO_OPEN_STRUCTURES',JSON.parse(await read('shared/data/open-structures.json')));
   data('HONRO_WATERWORKS_V2',JSON.parse(await read('shared/data/waterworks-v2-content.json')));
+  data('HONRO_STAGE11_QUEST_STORY',JSON.parse(await read('shared/data/stage11-quest-story-20261022.json')));
   for(const name of modelFiles)await file(`shared/runtime/${name}.js`);
   await file('shared/runtime/camera.js');
   for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands'])await file(`shared/map/${name}.js`);

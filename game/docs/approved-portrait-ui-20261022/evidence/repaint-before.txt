@@ -1,0 +1,21 @@
+ready {'drawImage': 0, 'clearRect': 0}
+abort {'drawImage': 120, 'clearRect': 120}
+timeout {'drawImage': 120, 'clearRect': 120}
+Exception in callback Connection.dispatch.<locals>._done_callback(<Task cancell..._page.py:294>>) at /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py:539
+handle: <Handle Connection.dispatch.<locals>._done_callback(<Task cancell..._page.py:294>>) at /opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py:539>
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 540, in _done_callback
+    exc = future.exception()
+          ^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_page.py", line 308, in _on_route
+    handled = await route_handler.handle(route)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 442, in handle
+    return await self._handle_internal(route)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/playwright/_impl/_helper.py", line 484, in _handle_internal
+    return await handled_future
+           ^^^^^^^^^^^^^^^^^^^^
+asyncio.exceptions.CancelledError

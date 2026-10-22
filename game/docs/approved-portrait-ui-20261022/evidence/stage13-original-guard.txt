@@ -1,0 +1,368 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: shared/runtime/main.js unchanged
++ actual - expected
+... Skipped lines
+
+  '(function (G) {\n' +
+    "    'use strict';\n" +
+    `    const C = G.HONRO_CORE, H = G.HONRO_CONTENT, $ = id => document.getElementById(id), clone = x => JSON.parse(JSON.stringify(x)), clamp = (v, a, b) => Math.max(a, Math.min(b, v)), esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));\n` +
+    "    const KEY = 'honro-first-act-profile-1', ROSTER = ['archer', 'mage', 'knight', 'occultist'], BASE = C.STAGES.map(clone);\n" +
+    '    const S = C.SKILLS, FA = G.HonroFA;\n' +
+...
+    '            for (let i = 0; i < 6; i++)\n' +
++   '              '... 104008 more characters
+-   '              '... 103779 more characters
+
+    at file:///workspace/honro-portraits/tests/stage13-vector-art.mjs:25:255 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '(function (G) {\n' +
+    "    'use strict';\n" +
+    `    const C = G.HONRO_CORE, H = G.HONRO_CONTENT, $ = id => document.getElementById(id), clone = x => JSON.parse(JSON.stringify(x)), clamp = (v, a, b) => Math.max(a, Math.min(b, v)), esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));\n` +
+    "    const KEY = 'honro-first-act-profile-1', ROSTER = ['archer', 'mage', 'knight', 'occultist'], BASE = C.STAGES.map(clone);\n" +
+    '    const S = C.SKILLS, FA = G.HonroFA;\n' +
+    '    // Display values own their DOM writes; unchanged values keep existing nodes.\n' +
+    '    const setText=(node,value)=>{if(node.textContent!==String(value))node.textContent=value;};\n' +
+    "    const setStyle=(node,name,value,priority='')=>{value=String(value);if(node.style.getPropertyValue(name)!==value||node.style.getPropertyPriority(name)!==priority)node.style.setProperty(name,value,priority);};\n" +
+    "    const fa=(name,size=18,cls='')=>FA?.icon?.(name,cls,size)||'';\n" +
+    '    // Use the original ARCFALL skill icons, the final 0.6.4+ behavior.\n' +
+    '    for (const cls of ROSTER) {\n' +
+    '        Object.assign(C.CLASSES[cls], { name: H.hero[cls].job, person: H.hero[cls].name, color: H.hero[cls].color, desc: H.hero[cls].line });\n' +
+    '        if (C.BRANCHES?.[cls])\n' +
+    '            C.BRANCHES[cls].forEach((b, i) => b.name = H.hero[cls].branch[i]);\n' +
+    '    }\n' +
+    '    for (const [id, s] of Object.entries(S)) {\n' +
+    '        s.name = H.skillNames[id] || s.name;\n' +
+    "        s.desc = (s.desc || '').replace(/마법사/g, '도사').replace(/검사/g, '무사').replace(/심령술사/g, '영매').replace(/용병/g, '동행').replace(/스킬/g, '기예').replace(/레벨/g, '경지');\n" +
+    '    }\n' +
+    '    for (const t of C.TALENTS || [])\n' +
+    '        if (S[t.id]) {\n' +
+    '            t.name = S[t.id].name;\n' +
+    '            t.desc = S[t.id].desc;\n' +
+    '        }\n' +
+    '    for (const st of H.stages) {\n' +
+    '        const b = BASE[(st.id - 1) % BASE.length] || BASE[0];\n' +
+    "        C.STAGES[st.id - 1] = { ...b, id: st.id, name: st.name, subtitle: st.goal, region: 0, local: st.id - 1, objective: (st.objective === 'escort'||st.objective==='overwatch') ? 'escort' : st.objective === 'defend' ? 'banner' : st.objective === 'boss' ? 'boss' : 'clear', boss: st.objective === 'boss', intro: '', outro: st.outro.map(x => x[1]).join(' ') };\n" +
+    '    }\n' +
+    '    C.STAGES.length = H.stages.length;\n' +
+    '    function fresh() { const p = C.defaults(); for (const c of ROSTER)\n' +
+    "        C.sanitizeLoadout(p, c); p.saved = null; p.cleared = {}; p.party = ['archer']; p.recruited = ['archer']; p.lastStage = 1; p.mapNode = 1; p.schema = 4; p.game = 'honro'; p.seen = {}; p.record = []; p.honroFlags = {}; p.settings = { ...p.settings, orientation: 'auto', music: true, musicVolume: .65, speed: 1.5, playerSpeed: 1.5, sound: true, volume: .55, minimapVisible: true, debugTerrainOutline: false }; return p; }\n" +
+    '    function migrateGrowth(p,revision){\n' +
+    '        for(const roster of [p.heroes,p.saved?.heroes,p.honroBattle?.heroes])if(roster)for(const cls of ROSTER){const hero=roster[cls];if(!hero)continue;if(!Number.isInteger(hero.statTraining))hero.statTraining=Object.values(hero.statRanks||{}).reduce((sum,n)=>sum+(Number.isInteger(n)&&n>0?n:0),0);delete hero.statRanks;}\n' +
+    '        if(revision>=13)return;\n' +
+    '        const convert=revision<=10?C.migrateLegacyXp9:C.migrateXp12;\n' +
+    '        const oldBattleXp=new Map([p.saved,p.honroBattle].filter(Boolean).map(b=>[b,Math.max(...ROSTER.map(cls=>Number.isFinite(b.heroes?.[cls]?.xp)?b.heroes[cls].xp:0))]));\n' +
+    '        for(const roster of [p.heroes,p.saved?.heroes,p.honroBattle?.heroes])if(roster)for(const cls of ROSTER){const hero=roster[cls];if(hero&&Number.isFinite(hero.xp))hero.xp=convert(hero.xp);}\n' +
+    '        for(const battle of [p.saved,p.honroBattle])if(battle){\n' +
+    '            if(battle.startXP)for(const cls of ROSTER)if(Number.isFinite(battle.startXP[cls]))battle.startXP[cls]=convert(battle.startXP[cls]);\n' +
+    '            if(battle.honroGrowth?.limit){\n' +
+    '                const newHero=Math.max(...ROSTER.map(cls=>Number.isFinite(battle.heroes?.[cls]?.xp)?battle.heroes[cls].xp:0));\n' +
+    '                const shift=Math.max(0,newHero-(oldBattleXp.get(battle)||0));battle.honroGrowth.limit.start+=shift;battle.honroGrowth.limit.end+=shift;\n' +
+    '            }\n' +
+    '        }\n' +
+    '        p.revision=13;\n' +
+    '    }\n' +
+    '    function load() { if(G.HONRO_EMBEDDED)return fresh(); try {\n' +
+    "        let x = JSON.parse(localStorage.getItem(KEY) || 'null');\n" +
+    "        if (x && x.game === 'honro' && [1,2,3,4].includes(x.schema) && x.heroes && Array.isArray(x.recruited) && x.recruited.includes('archer')) {\n" +
+    '            const p = fresh();\n' +
+    '            Object.assign(p, x);\n' +
+    '            p.schema = 4;\n' +
+    '            p.settings = { ...fresh().settings, ...x.settings };\n' +
+    '            C.migrateSkills(p);\n' +
+    '            migrateGrowth(p,x.revision||12);\n' +
+    '            G.HonroCampaignMapRevision.discard(p);\n' +
+    '            G.HonroProgression.repairRecruits(p);\n' +
+    '            G.HonroProgression.reconcileCampAllocations(p);\n' +
+    '            return p;\n' +
+    '        }\n' +
+    '    }\n' +
+    '    catch { } return fresh(); }\n' +
+    '    // Debug clones every campaign-owned value so\n' +
+    '    // story, growth, allocations and a suspended battle use normal semantics.\n' +
+    '    // This clone is session-only; only the normal profile is ever exported/saved.\n' +
+    '    function debugProfile(normal) { return clone(normal); }\n' +
+    '    function save(p) { if(G.HONRO_EMBEDDED)return false; try {\n' +
+    '        localStorage.setItem(KEY, JSON.stringify(p));\n' +
+    '        return true;\n' +
+    '    }\n' +
+    '    catch {\n' +
+    '        return false;\n' +
+    '    } }\n' +
+    "    function terrain(id, x, y, w, h, mat = 'rock', extra = {}) { return { id, x, y, w, h, mat, hp: mat === 'wood' ? 330 : 99999, maxHp: mat === 'wood' ? 330 : 99999, route: true, ...extra }; }\n" +
+    "    function makeLegacyWorld(st, p, training = false, cls = 'archer', skill) {\n" +
+    "        const b = C.createBattle(1, clone(p), 'practice', { party: [cls], distance: 900 });\n" +
+    '        b.stage = st.id;\n' +
+    '        b.stageId = st.id;\n' +
+    '        b.honroStage = st.id;\n' +
+    "        b.mode = training ? 'practice' : 'campaign';\n" +
+    '        b.width = training ? 2400 : st.w;\n' +
+    '        b.height = training ? 1380 : st.h;\n' +
+    "        b.vertical = !training && st.theme === 'tree';\n" +
+    '        b.terrain = [];\n' +
+    '        b.units = [];\n' +
+    '        b.projectiles = [];\n' +
+    '        b.fields = [];\n' +
+    '        b.drafts = [];\n' +
+    '        b.waters = [];\n' +
+    '        b.zones = [];\n' +
+    '        b.decor = [];\n' +
+    '        b.events = [];\n' +
+    '        b.queue = [];\n' +
+    '        b.round = 1;\n' +
+    '        b.side = 0;\n' +
+    "        b.phase = 'aim';\n" +
+    '        b.turnAge = 0;\n' +
+    '        b.resolveAge = 0;\n' +
+    '        b.reviewLeft = 0;\n' +
+    '        b.reviewDamage = {};\n' +
+    '        b.heroes = clone(p.heroes);\n' +
+    '        b.startXP = Object.fromEntries(ROSTER.map(c => [c, b.heroes[c].xp]));\n' +
+    '        b.wind = training ? 7 : ({ forest: 8, temple: -7, gate: 10, river: -12, valley: 23, bridge: 16, tree: 8, shrine: -15 }[st.theme] || 6);\n' +
+    '        b.enemyLimit = st.id === 1 ? 2 : 3;\n' +
+    '        b.sceneVersion = (b.sceneVersion || 0) + 10;\n' +
+    '        b.heroDamage = 0;\n' +
+    '        b.damageDone = 0;\n' +
+    '        b.shots = 0;\n' +
+    '        b.kills = 0;\n' +
+    "        b.winnerReason = '';\n" +
+    "        b.session = 'honro-' + Date.now();\n" +
+    '        b.lastShots = {};\n' +
+    '        b.honroState = { flags: {}, collected: [], hold: 0, lastRound: 1, rescued: false };\n' +
+    '        b.honroMarkers = [];\n' +
+    '        const add = (...args) => b.terrain.push(terrain(...args));\n' +
+    '        if (training) {\n' +
+    "            add('trainingfloor', 0, 1010, b.width, 400);\n" +
+    "            add('trainingstep', 1360, 850, 240, 23, 'wood', { oneWay: true });\n" +
+    '        }\n' +
+    '        else if (st.id === 1) {\n' +
+    "            add('ground', 0, 1080, st.w, 500);\n" +
+    "            add('lowrise', 820, 1020, 460, 35, 'wood', { oneWay: true });\n" +
+    "            add('ramp', 1440, 1080, 410, 230, 'rock', { slope: -100 });\n" +
+    "            add('far-bank', 1850, 980, 600, 570);\n" +
+    '        }\n' +
+    '        else if (st.id === 2) {\n' +
+    "            add('low', 0, 1190, st.w, 350);\n" +
+    "            add('left', 0, 1010, 780, 330);\n" +
+    "            add('steps1', 640, 1110, 330, 200);\n" +
+    "            add('middle', 1080, 990, 630, 360);\n" +
+    "            add('stair', 1580, 1090, 270, 220);\n" +
+    "            add('templeyard', 1860, 890, 990, 590);\n" +
+    "            add('roofwalk', 1930, 685, 310, 21, 'wood', { oneWay: true });\n" +
+    '        }\n' +
+    '        else if (st.id === 3) {\n' +
+    "            add('floor', 0, 1120, st.w, 400);\n" +
+    "            add('gatewalk', 900, 900, 360, 26, 'wood', { oneWay: true });\n" +
+    "            add('stair1', 610, 1020, 300, 20, 'wood', { oneWay: true });\n" +
+    "            add('eastledge', 1720, 1010, 360, 25, 'wood', { oneWay: true });\n" +
+    "            add('ruinwall', 2210, 930, 100, 190, 'stone', { hp: 470, maxHp: 470 });\n" +
+    '        }\n' +
+    '        else if (st.id === 4) {\n' +
+    "            add('mudfloor', 0, 1240, st.w, 500);\n" +
+    "            add('nearbank', 0, 1050, 680, 500);\n" +
+    "            add('reedland', 870, 1090, 510, 460);\n" +
+    "            add('midpier', 1570, 960, 430, 26, 'wood', { oneWay: true });\n" +
+    "            add('bridge1', 630, 1100, 270, 24, 'wood', { oneWay: true });\n" +
+    "            add('bridge2', 1350, 1080, 300, 24, 'wood', { oneWay: true });\n" +
+    "            add('farbank', 2220, 1080, 880, 500);\n" +
+    "            add('ramp3', 1940, 1170, 290, 180, 'rock', { slope: -90 });\n" +
+    '        }\n' +
+    '        else if (st.id === 5) {\n' +
+    "            add('valleyfloor', 0, 1540, st.w, 500);\n" +
+    "            add('west', 0, 1030, 850, 820);\n" +
+    "            add('westslant', 850, 1030, 700, 820, 'rock', { slope: 460 });\n" +
+    "            add('eastslope', 2140, 1490, 700, 390, 'rock', { slope: -460 });\n" +
+    "            add('east', 2840, 1030, 900, 820);\n" +
+    "            add('lowaltar', 1690, 1320, 290, 20, 'wood', { oneWay: true });\n" +
+    '            for (let i = 0; i < 4; i++)\n' +
+    "                add('weststair' + i, 980 + i * 150, 1200 + i * 87, 200, 18, 'wood', { oneWay: true });\n" +
+    '            for (let i = 0; i < 4; i++)\n' +
+    "                add('eaststair' + i, 2170 + i * 155, 1400 - i * 100, 220, 18, 'wood', { oneWay: true });\n" +
+    '        }\n' +
+    '        else if (st.id === 6) {\n' +
+    "            add('ravine', 0, 1470, st.w, 500);\n" +
+    "            add('west', 0, 1010, 760, 730);\n" +
+    "            add('east', 2610, 1010, 760, 730);\n" +
+    '            for (let i = 0; i < 8; i++)\n' +
+    "                add('plank' + i, 735 + i * 239, 1020 + Math.sin(i / 7 * Math.PI) * 100, 250, 25, 'wood', { hp: 420, maxHp: 420 });\n" +
+    '            for (let i = 0; i < 6; i++)\n' +
+    '              '... 104008 more characters,
+  expected: '(function (G) {\n' +
+    "    'use strict';\n" +
+    `    const C = G.HONRO_CORE, H = G.HONRO_CONTENT, $ = id => document.getElementById(id), clone = x => JSON.parse(JSON.stringify(x)), clamp = (v, a, b) => Math.max(a, Math.min(b, v)), esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));\n` +
+    "    const KEY = 'honro-first-act-profile-1', ROSTER = ['archer', 'mage', 'knight', 'occultist'], BASE = C.STAGES.map(clone);\n" +
+    '    const S = C.SKILLS, FA = G.HonroFA;\n' +
+    '    // Display values own their DOM writes; unchanged values keep existing nodes.\n' +
+    '    const setText=(node,value)=>{if(node.textContent!==String(value))node.textContent=value;};\n' +
+    "    const setStyle=(node,name,value,priority='')=>{value=String(value);if(node.style.getPropertyValue(name)!==value||node.style.getPropertyPriority(name)!==priority)node.style.setProperty(name,value,priority);};\n" +
+    "    const fa=(name,size=18,cls='')=>FA?.icon?.(name,cls,size)||'';\n" +
+    '    // Use the original ARCFALL skill icons, the final 0.6.4+ behavior.\n' +
+    '    for (const cls of ROSTER) {\n' +
+    '        Object.assign(C.CLASSES[cls], { name: H.hero[cls].job, person: H.hero[cls].name, color: H.hero[cls].color, desc: H.hero[cls].line });\n' +
+    '        if (C.BRANCHES?.[cls])\n' +
+    '            C.BRANCHES[cls].forEach((b, i) => b.name = H.hero[cls].branch[i]);\n' +
+    '    }\n' +
+    '    for (const [id, s] of Object.entries(S)) {\n' +
+    '        s.name = H.skillNames[id] || s.name;\n' +
+    "        s.desc = (s.desc || '').replace(/마법사/g, '도사').replace(/검사/g, '무사').replace(/심령술사/g, '영매').replace(/용병/g, '동행').replace(/스킬/g, '기예').replace(/레벨/g, '경지');\n" +
+    '    }\n' +
+    '    for (const t of C.TALENTS || [])\n' +
+    '        if (S[t.id]) {\n' +
+    '            t.name = S[t.id].name;\n' +
+    '            t.desc = S[t.id].desc;\n' +
+    '        }\n' +
+    '    for (const st of H.stages) {\n' +
+    '        const b = BASE[(st.id - 1) % BASE.length] || BASE[0];\n' +
+    "        C.STAGES[st.id - 1] = { ...b, id: st.id, name: st.name, subtitle: st.goal, region: 0, local: st.id - 1, objective: (st.objective === 'escort'||st.objective==='overwatch') ? 'escort' : st.objective === 'defend' ? 'banner' : st.objective === 'boss' ? 'boss' : 'clear', boss: st.objective === 'boss', intro: '', outro: st.outro.map(x => x[1]).join(' ') };\n" +
+    '    }\n' +
+    '    C.STAGES.length = H.stages.length;\n' +
+    '    function fresh() { const p = C.defaults(); for (const c of ROSTER)\n' +
+    "        C.sanitizeLoadout(p, c); p.saved = null; p.cleared = {}; p.party = ['archer']; p.recruited = ['archer']; p.lastStage = 1; p.mapNode = 1; p.schema = 4; p.game = 'honro'; p.seen = {}; p.record = []; p.honroFlags = {}; p.settings = { ...p.settings, orientation: 'auto', music: true, musicVolume: .65, speed: 1.5, playerSpeed: 1.5, sound: true, volume: .55, minimapVisible: true, debugTerrainOutline: false }; return p; }\n" +
+    '    function migrateGrowth(p,revision){\n' +
+    '        for(const roster of [p.heroes,p.saved?.heroes,p.honroBattle?.heroes])if(roster)for(const cls of ROSTER){const hero=roster[cls];if(!hero)continue;if(!Number.isInteger(hero.statTraining))hero.statTraining=Object.values(hero.statRanks||{}).reduce((sum,n)=>sum+(Number.isInteger(n)&&n>0?n:0),0);delete hero.statRanks;}\n' +
+    '        if(revision>=13)return;\n' +
+    '        const convert=revision<=10?C.migrateLegacyXp9:C.migrateXp12;\n' +
+    '        const oldBattleXp=new Map([p.saved,p.honroBattle].filter(Boolean).map(b=>[b,Math.max(...ROSTER.map(cls=>Number.isFinite(b.heroes?.[cls]?.xp)?b.heroes[cls].xp:0))]));\n' +
+    '        for(const roster of [p.heroes,p.saved?.heroes,p.honroBattle?.heroes])if(roster)for(const cls of ROSTER){const hero=roster[cls];if(hero&&Number.isFinite(hero.xp))hero.xp=convert(hero.xp);}\n' +
+    '        for(const battle of [p.saved,p.honroBattle])if(battle){\n' +
+    '            if(battle.startXP)for(const cls of ROSTER)if(Number.isFinite(battle.startXP[cls]))battle.startXP[cls]=convert(battle.startXP[cls]);\n' +
+    '            if(battle.honroGrowth?.limit){\n' +
+    '                const newHero=Math.max(...ROSTER.map(cls=>Number.isFinite(battle.heroes?.[cls]?.xp)?battle.heroes[cls].xp:0));\n' +
+    '                const shift=Math.max(0,newHero-(oldBattleXp.get(battle)||0));battle.honroGrowth.limit.start+=shift;battle.honroGrowth.limit.end+=shift;\n' +
+    '            }\n' +
+    '        }\n' +
+    '        p.revision=13;\n' +
+    '    }\n' +
+    '    function load() { if(G.HONRO_EMBEDDED)return fresh(); try {\n' +
+    "        let x = JSON.parse(localStorage.getItem(KEY) || 'null');\n" +
+    "        if (x && x.game === 'honro' && [1,2,3,4].includes(x.schema) && x.heroes && Array.isArray(x.recruited) && x.recruited.includes('archer')) {\n" +
+    '            const p = fresh();\n' +
+    '            Object.assign(p, x);\n' +
+    '            p.schema = 4;\n' +
+    '            p.settings = { ...fresh().settings, ...x.settings };\n' +
+    '            C.migrateSkills(p);\n' +
+    '            migrateGrowth(p,x.revision||12);\n' +
+    '            G.HonroCampaignMapRevision.discard(p);\n' +
+    '            G.HonroProgression.repairRecruits(p);\n' +
+    '            G.HonroProgression.reconcileCampAllocations(p);\n' +
+    '            return p;\n' +
+    '        }\n' +
+    '    }\n' +
+    '    catch { } return fresh(); }\n' +
+    '    // Debug clones every campaign-owned value so\n' +
+    '    // story, growth, allocations and a suspended battle use normal semantics.\n' +
+    '    // This clone is session-only; only the normal profile is ever exported/saved.\n' +
+    '    function debugProfile(normal) { return clone(normal); }\n' +
+    '    function save(p) { if(G.HONRO_EMBEDDED)return false; try {\n' +
+    '        localStorage.setItem(KEY, JSON.stringify(p));\n' +
+    '        return true;\n' +
+    '    }\n' +
+    '    catch {\n' +
+    '        return false;\n' +
+    '    } }\n' +
+    "    function terrain(id, x, y, w, h, mat = 'rock', extra = {}) { return { id, x, y, w, h, mat, hp: mat === 'wood' ? 330 : 99999, maxHp: mat === 'wood' ? 330 : 99999, route: true, ...extra }; }\n" +
+    "    function makeLegacyWorld(st, p, training = false, cls = 'archer', skill) {\n" +
+    "        const b = C.createBattle(1, clone(p), 'practice', { party: [cls], distance: 900 });\n" +
+    '        b.stage = st.id;\n' +
+    '        b.stageId = st.id;\n' +
+    '        b.honroStage = st.id;\n' +
+    "        b.mode = training ? 'practice' : 'campaign';\n" +
+    '        b.width = training ? 2400 : st.w;\n' +
+    '        b.height = training ? 1380 : st.h;\n' +
+    "        b.vertical = !training && st.theme === 'tree';\n" +
+    '        b.terrain = [];\n' +
+    '        b.units = [];\n' +
+    '        b.projectiles = [];\n' +
+    '        b.fields = [];\n' +
+    '        b.drafts = [];\n' +
+    '        b.waters = [];\n' +
+    '        b.zones = [];\n' +
+    '        b.decor = [];\n' +
+    '        b.events = [];\n' +
+    '        b.queue = [];\n' +
+    '        b.round = 1;\n' +
+    '        b.side = 0;\n' +
+    "        b.phase = 'aim';\n" +
+    '        b.turnAge = 0;\n' +
+    '        b.resolveAge = 0;\n' +
+    '        b.reviewLeft = 0;\n' +
+    '        b.reviewDamage = {};\n' +
+    '        b.heroes = clone(p.heroes);\n' +
+    '        b.startXP = Object.fromEntries(ROSTER.map(c => [c, b.heroes[c].xp]));\n' +
+    '        b.wind = training ? 7 : ({ forest: 8, temple: -7, gate: 10, river: -12, valley: 23, bridge: 16, tree: 8, shrine: -15 }[st.theme] || 6);\n' +
+    '        b.enemyLimit = st.id === 1 ? 2 : 3;\n' +
+    '        b.sceneVersion = (b.sceneVersion || 0) + 10;\n' +
+    '        b.heroDamage = 0;\n' +
+    '        b.damageDone = 0;\n' +
+    '        b.shots = 0;\n' +
+    '        b.kills = 0;\n' +
+    "        b.winnerReason = '';\n" +
+    "        b.session = 'honro-' + Date.now();\n" +
+    '        b.lastShots = {};\n' +
+    '        b.honroState = { flags: {}, collected: [], hold: 0, lastRound: 1, rescued: false };\n' +
+    '        b.honroMarkers = [];\n' +
+    '        const add = (...args) => b.terrain.push(terrain(...args));\n' +
+    '        if (training) {\n' +
+    "            add('trainingfloor', 0, 1010, b.width, 400);\n" +
+    "            add('trainingstep', 1360, 850, 240, 23, 'wood', { oneWay: true });\n" +
+    '        }\n' +
+    '        else if (st.id === 1) {\n' +
+    "            add('ground', 0, 1080, st.w, 500);\n" +
+    "            add('lowrise', 820, 1020, 460, 35, 'wood', { oneWay: true });\n" +
+    "            add('ramp', 1440, 1080, 410, 230, 'rock', { slope: -100 });\n" +
+    "            add('far-bank', 1850, 980, 600, 570);\n" +
+    '        }\n' +
+    '        else if (st.id === 2) {\n' +
+    "            add('low', 0, 1190, st.w, 350);\n" +
+    "            add('left', 0, 1010, 780, 330);\n" +
+    "            add('steps1', 640, 1110, 330, 200);\n" +
+    "            add('middle', 1080, 990, 630, 360);\n" +
+    "            add('stair', 1580, 1090, 270, 220);\n" +
+    "            add('templeyard', 1860, 890, 990, 590);\n" +
+    "            add('roofwalk', 1930, 685, 310, 21, 'wood', { oneWay: true });\n" +
+    '        }\n' +
+    '        else if (st.id === 3) {\n' +
+    "            add('floor', 0, 1120, st.w, 400);\n" +
+    "            add('gatewalk', 900, 900, 360, 26, 'wood', { oneWay: true });\n" +
+    "            add('stair1', 610, 1020, 300, 20, 'wood', { oneWay: true });\n" +
+    "            add('eastledge', 1720, 1010, 360, 25, 'wood', { oneWay: true });\n" +
+    "            add('ruinwall', 2210, 930, 100, 190, 'stone', { hp: 470, maxHp: 470 });\n" +
+    '        }\n' +
+    '        else if (st.id === 4) {\n' +
+    "            add('mudfloor', 0, 1240, st.w, 500);\n" +
+    "            add('nearbank', 0, 1050, 680, 500);\n" +
+    "            add('reedland', 870, 1090, 510, 460);\n" +
+    "            add('midpier', 1570, 960, 430, 26, 'wood', { oneWay: true });\n" +
+    "            add('bridge1', 630, 1100, 270, 24, 'wood', { oneWay: true });\n" +
+    "            add('bridge2', 1350, 1080, 300, 24, 'wood', { oneWay: true });\n" +
+    "            add('farbank', 2220, 1080, 880, 500);\n" +
+    "            add('ramp3', 1940, 1170, 290, 180, 'rock', { slope: -90 });\n" +
+    '        }\n' +
+    '        else if (st.id === 5) {\n' +
+    "            add('valleyfloor', 0, 1540, st.w, 500);\n" +
+    "            add('west', 0, 1030, 850, 820);\n" +
+    "            add('westslant', 850, 1030, 700, 820, 'rock', { slope: 460 });\n" +
+    "            add('eastslope', 2140, 1490, 700, 390, 'rock', { slope: -460 });\n" +
+    "            add('east', 2840, 1030, 900, 820);\n" +
+    "            add('lowaltar', 1690, 1320, 290, 20, 'wood', { oneWay: true });\n" +
+    '            for (let i = 0; i < 4; i++)\n' +
+    "                add('weststair' + i, 980 + i * 150, 1200 + i * 87, 200, 18, 'wood', { oneWay: true });\n" +
+    '            for (let i = 0; i < 4; i++)\n' +
+    "                add('eaststair' + i, 2170 + i * 155, 1400 - i * 100, 220, 18, 'wood', { oneWay: true });\n" +
+    '        }\n' +
+    '        else if (st.id === 6) {\n' +
+    "            add('ravine', 0, 1470, st.w, 500);\n" +
+    "            add('west', 0, 1010, 760, 730);\n" +
+    "            add('east', 2610, 1010, 760, 730);\n" +
+    '            for (let i = 0; i < 8; i++)\n' +
+    "                add('plank' + i, 735 + i * 239, 1020 + Math.sin(i / 7 * Math.PI) * 100, 250, 25, 'wood', { hp: 420, maxHp: 420 });\n" +
+    '            for (let i = 0; i < 6; i++)\n' +
+    '              '... 103779 more characters,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

@@ -1,0 +1,18 @@
+PASS title does not request approved portraits
+PASS cold load is nonblocking and uses no vector flash
+PASS ready invalidates visible HUD portraits once while pause remains intact
+PASS exact identities, absent actors and NPC/class collisions
+PASS desktop 설오 complete head/gat safe bounds
+PASS desktop 담허 complete head/gat safe bounds
+PASS desktop 휘겸 complete head/gat safe bounds
+PASS desktop 소단 complete head/gat safe bounds
+PASS desktop dialogue keeps one canvas across character/line changes
+PASS mobile 설오 complete head/gat safe bounds
+PASS mobile 담허 complete head/gat safe bounds
+PASS mobile 휘겸 complete head/gat safe bounds
+PASS mobile 소단 complete head/gat safe bounds
+PASS mobile dialogue keeps one canvas across character/line changes
+PASS warm line/button/HUD repetitions never request or decode again
+PASS actual prejoin Sodan boss resolves without revealing name or recruiting
+PASS failed image preserves game and vector fallback without repeat requests
+PASS no main browser exceptions

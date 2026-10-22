@@ -1,0 +1,23 @@
+{
+  "base": "e99913e337cf06f1c0bdf5dfdcdda7cf78dcdb3e",
+  "testedRuntime": "30221dc38e7ddb1e42926aa611e34ad3b1f99bc8",
+  "unchangedPaths": [
+    "art/portraits/approved-v1",
+    "shared/data",
+    "shared/map",
+    "shared/engine/src",
+    "shared/assets/rebuild-game-adapter.mjs",
+    "shared/runtime/renderer.js",
+    "shared/runtime/rest-journey.js",
+    "shared/runtime/content.js",
+    "shared/build.mjs",
+    "game/src"
+  ],
+  "masterSha256": {
+    "art/portraits/approved-v1/seoro.png": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9",
+    "art/portraits/approved-v1/damheo.png": "8b923c1aaa18e6e1bfd329987f1621c918fa943c2490ff8adbb48aab802e8d1a",
+    "art/portraits/approved-v1/hwigyeom.png": "ecffdbfd43b4e8e6f5e5d59b0290ac470cd28e2618c13fcb5174a17256364f06",
+    "art/portraits/approved-v1/sodan.png": "0268f8f89b5ac19608baf38e048b02cc50309a2e191ca14556cc6a8fdc49abb4"
+  },
+  "operation": "Encoding only; alpha/visible channels exact; approved masters untouched"
+}

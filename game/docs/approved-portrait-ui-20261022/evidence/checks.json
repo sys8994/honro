@@ -1,0 +1,548 @@
+{
+  "sourceHead": "637255dd1a29de413d52d21ff1baf4312570ed37",
+  "manifestSha256": "bb8d7f30130aded063218af46faf1044a29fba05b20d50ac488272859ad90bc0",
+  "checks": [
+    {
+      "name": "title does not request approved portraits",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "cold load is nonblocking and uses no vector flash",
+      "passed": true,
+      "detail": {
+        "stats": {
+          "requests": 4,
+          "decodes": 0,
+          "paints": 0,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 4,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 4
+        },
+        "states": [
+          "loading",
+          "loading",
+          "loading",
+          "loading"
+        ],
+        "mounted": true,
+        "paused": true
+      }
+    },
+    {
+      "name": "ready invalidates visible HUD portraits once while pause remains intact",
+      "passed": true,
+      "detail": {
+        "stats": {
+          "requests": 4,
+          "decodes": 4,
+          "paints": 4,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0
+        },
+        "states": [
+          "ready",
+          "ready",
+          "ready",
+          "ready"
+        ],
+        "same": true,
+        "paused": true
+      }
+    },
+    {
+      "name": "exact identities, absent actors and NPC/class collisions",
+      "passed": true,
+      "detail": [
+        [
+          "설오",
+          "seoro",
+          "seoro",
+          null
+        ],
+        [
+          "담허",
+          "damheo",
+          "damheo",
+          null
+        ],
+        [
+          "휘겸",
+          "hwigyeom",
+          "hwigyeom",
+          null
+        ],
+        [
+          "소단",
+          "sodan",
+          "sodan",
+          null
+        ],
+        [
+          "병사",
+          null
+        ],
+        [
+          "연실",
+          null
+        ],
+        [
+          "문탁",
+          null
+        ],
+        [
+          "소단",
+          null
+        ],
+        [
+          "설오",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "desktop 설오 complete head/gat safe bounds",
+      "passed": true,
+      "detail": {
+        "identity": "seoro",
+        "expression": "base",
+        "head": {
+          "left": 265,
+          "top": 8,
+          "right": 725,
+          "bottom": 615,
+          "width": 460,
+          "height": 607
+        },
+        "crop": {
+          "x": 198.87272727272727,
+          "y": 0,
+          "width": 592.2545454545455,
+          "height": 651.48
+        },
+        "safe": true
+      }
+    },
+    {
+      "name": "desktop 담허 complete head/gat safe bounds",
+      "passed": true,
+      "detail": {
+        "identity": "damheo",
+        "expression": "base",
+        "head": {
+          "left": 295,
+          "top": 4,
+          "right": 705,
+          "bottom": 535,
+          "width": 410,
+          "height": 531
+        },
+        "crop": {
+          "x": 237.2545454545455,
+          "y": 0,
+          "width": 525.490909090909,
+          "height": 578.04
+        },
+        "safe": true
+      }
+    },
+    {
+      "name": "desktop 휘겸 complete head/gat safe bounds",
+      "passed": true,
+      "detail": {
+        "identity": "hwigyeom",
+        "expression": "base",
+        "head": {
+          "left": 130,
+          "top": 0,
+          "right": 1010,
+          "bottom": 670,
+          "width": 880,
+          "height": 670
+        },
+        "crop": {
+          "x": 97.20000000000005,
+          "y": 0,
+          "width": 926.8,
+          "height": 1019.48
+        },
+        "safe": true
+      }
+    },
+    {
+      "name": "desktop 소단 complete head/gat safe bounds",
+      "passed": true,
+      "detail": {
+        "identity": "sodan",
+        "expression": "base",
+        "head": {
+          "left": 205,
+          "top": 4,
+          "right": 785,
+          "bottom": 615,
+          "width": 580,
+          "height": 611
+        },
+        "crop": {
+          "x": 182.27999999999997,
+          "y": 0,
+          "width": 625.44,
+          "height": 687.984
+        },
+        "safe": true
+      }
+    },
+    {
+      "name": "desktop dialogue keeps one canvas across character/line changes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "mobile 설오 complete head/gat safe bounds",
+      "passed": true,
+      "detail": {
+        "identity": "seoro",
+        "expression": "base",
+        "head": {
+          "left": 265,
+          "top": 8,
+          "right": 725,
+          "bottom": 615,
+          "width": 460,
+          "height": 607
+        },
+        "crop": {
+          "x": 198.87272727272727,
+          "y": 0,
+          "width": 592.2545454545455,
+          "height": 651.48
+        },
+        "safe": true
+      }
+    },
+    {
+      "name": "mobile 담허 complete head/gat safe bounds",
+      "passed": true,
+      "detail": {
+        "identity": "damheo",
+        "expression": "base",
+        "head": {
+          "left": 295,
+          "top": 4,
+          "right": 705,
+          "bottom": 535,
+          "width": 410,
+          "height": 531
+        },
+        "crop": {
+          "x": 237.2545454545455,
+          "y": 0,
+          "width": 525.490909090909,
+          "height": 578.04
+        },
+        "safe": true
+      }
+    },
+    {
+      "name": "mobile 휘겸 complete head/gat safe bounds",
+      "passed": true,
+      "detail": {
+        "identity": "hwigyeom",
+        "expression": "base",
+        "head": {
+          "left": 130,
+          "top": 0,
+          "right": 1010,
+          "bottom": 670,
+          "width": 880,
+          "height": 670
+        },
+        "crop": {
+          "x": 97.20000000000005,
+          "y": 0,
+          "width": 926.8,
+          "height": 1019.48
+        },
+        "safe": true
+      }
+    },
+    {
+      "name": "mobile 소단 complete head/gat safe bounds",
+      "passed": true,
+      "detail": {
+        "identity": "sodan",
+        "expression": "base",
+        "head": {
+          "left": 205,
+          "top": 4,
+          "right": 785,
+          "bottom": 615,
+          "width": 580,
+          "height": 611
+        },
+        "crop": {
+          "x": 182.27999999999997,
+          "y": 0,
+          "width": 625.44,
+          "height": 687.984
+        },
+        "safe": true
+      }
+    },
+    {
+      "name": "mobile dialogue keeps one canvas across character/line changes",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "warm line/button/HUD repetitions never request or decode again",
+      "passed": true,
+      "detail": {
+        "before": {
+          "requests": 4,
+          "decodes": 4,
+          "paints": 4,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0
+        },
+        "after": {
+          "requests": 4,
+          "decodes": 4,
+          "paints": 13,
+          "fallbackPaints": 0,
+          "vectorBuilds": 0,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 0,
+          "vectorEntries": 0,
+          "waiters": 0
+        },
+        "sameHUD": true
+      }
+    },
+    {
+      "name": "actual prejoin Sodan boss resolves without revealing name or recruiting",
+      "passed": true,
+      "detail": {
+        "identity": "sodan",
+        "boss": "소단",
+        "notRecruited": true,
+        "preserved": true,
+        "label": "아직 이름을 밝히지 않은 여인"
+      }
+    },
+    {
+      "name": "failed image preserves game and vector fallback without repeat requests",
+      "passed": true,
+      "detail": {
+        "before": {
+          "requests": 4,
+          "decodes": 3,
+          "paints": 3,
+          "fallbackPaints": 2,
+          "vectorBuilds": 2,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 1,
+          "vectorEntries": 1,
+          "waiters": 0
+        },
+        "after": {
+          "requests": 4,
+          "decodes": 3,
+          "paints": 3,
+          "fallbackPaints": 2,
+          "vectorBuilds": 2,
+          "imageEntries": 4,
+          "pending": 0,
+          "errors": 1,
+          "vectorEntries": 1,
+          "waiters": 0
+        },
+        "gameRunning": true
+      }
+    },
+    {
+      "name": "no main browser exceptions",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "safeBounds": [
+    {
+      "view": "desktop",
+      "identity": "seoro",
+      "expression": "base",
+      "head": {
+        "left": 265,
+        "top": 8,
+        "right": 725,
+        "bottom": 615,
+        "width": 460,
+        "height": 607
+      },
+      "crop": {
+        "x": 198.87272727272727,
+        "y": 0,
+        "width": 592.2545454545455,
+        "height": 651.48
+      },
+      "safe": true
+    },
+    {
+      "view": "desktop",
+      "identity": "damheo",
+      "expression": "base",
+      "head": {
+        "left": 295,
+        "top": 4,
+        "right": 705,
+        "bottom": 535,
+        "width": 410,
+        "height": 531
+      },
+      "crop": {
+        "x": 237.2545454545455,
+        "y": 0,
+        "width": 525.490909090909,
+        "height": 578.04
+      },
+      "safe": true
+    },
+    {
+      "view": "desktop",
+      "identity": "hwigyeom",
+      "expression": "base",
+      "head": {
+        "left": 130,
+        "top": 0,
+        "right": 1010,
+        "bottom": 670,
+        "width": 880,
+        "height": 670
+      },
+      "crop": {
+        "x": 97.20000000000005,
+        "y": 0,
+        "width": 926.8,
+        "height": 1019.48
+      },
+      "safe": true
+    },
+    {
+      "view": "desktop",
+      "identity": "sodan",
+      "expression": "base",
+      "head": {
+        "left": 205,
+        "top": 4,
+        "right": 785,
+        "bottom": 615,
+        "width": 580,
+        "height": 611
+      },
+      "crop": {
+        "x": 182.27999999999997,
+        "y": 0,
+        "width": 625.44,
+        "height": 687.984
+      },
+      "safe": true
+    },
+    {
+      "view": "mobile",
+      "identity": "seoro",
+      "expression": "base",
+      "head": {
+        "left": 265,
+        "top": 8,
+        "right": 725,
+        "bottom": 615,
+        "width": 460,
+        "height": 607
+      },
+      "crop": {
+        "x": 198.87272727272727,
+        "y": 0,
+        "width": 592.2545454545455,
+        "height": 651.48
+      },
+      "safe": true
+    },
+    {
+      "view": "mobile",
+      "identity": "damheo",
+      "expression": "base",
+      "head": {
+        "left": 295,
+        "top": 4,
+        "right": 705,
+        "bottom": 535,
+        "width": 410,
+        "height": 531
+      },
+      "crop": {
+        "x": 237.2545454545455,
+        "y": 0,
+        "width": 525.490909090909,
+        "height": 578.04
+      },
+      "safe": true
+    },
+    {
+      "view": "mobile",
+      "identity": "hwigyeom",
+      "expression": "base",
+      "head": {
+        "left": 130,
+        "top": 0,
+        "right": 1010,
+        "bottom": 670,
+        "width": 880,
+        "height": 670
+      },
+      "crop": {
+        "x": 97.20000000000005,
+        "y": 0,
+        "width": 926.8,
+        "height": 1019.48
+      },
+      "safe": true
+    },
+    {
+      "view": "mobile",
+      "identity": "sodan",
+      "expression": "base",
+      "head": {
+        "left": 205,
+        "top": 4,
+        "right": 785,
+        "bottom": 615,
+        "width": 580,
+        "height": 611
+      },
+      "crop": {
+        "x": 182.27999999999997,
+        "y": 0,
+        "width": 625.44,
+        "height": 687.984
+      },
+      "safe": true
+    }
+  ],
+  "errors": []
+}

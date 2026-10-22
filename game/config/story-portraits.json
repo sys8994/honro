@@ -2,22 +2,146 @@
   "설오": {
     "class": "archer",
     "image": null,
-    "kind": "character"
+    "kind": "character",
+    "approvedPortrait": {
+      "id": "seoro",
+      "defaultExpression": "base",
+      "expressions": {
+        "base": {
+          "file": "shared/assets/portraits/approved-v1/seoro.webp",
+          "source": "art/portraits/runtime-derivatives-v1/seoro-base-clean.png",
+          "sourceSha256": "f2c1dea750c048babd7ac8b28d6013a39038b140954fac9876718d1241e86206",
+          "width": 1024,
+          "height": 1536,
+          "head": {
+            "left": 265,
+            "top": 8,
+            "right": 725,
+            "bottom": 615,
+            "width": 460,
+            "height": 607
+          },
+          "bust": {
+            "left": 55,
+            "top": 8,
+            "right": 1010,
+            "bottom": 1120,
+            "width": 955,
+            "height": 1112
+          },
+          "identityMaster": "art/portraits/approved-v1/seoro.png",
+          "identityMasterSha256": "d05ce83f8487515f127abb441dbae4a4616c66181ffbea15498060a237a090a9"
+        }
+      }
+    }
   },
   "담허": {
     "class": "mage",
     "image": null,
-    "kind": "character"
+    "kind": "character",
+    "approvedPortrait": {
+      "id": "damheo",
+      "defaultExpression": "base",
+      "expressions": {
+        "base": {
+          "file": "shared/assets/portraits/approved-v1/damheo.webp",
+          "source": "art/portraits/approved-v1/damheo.png",
+          "sourceSha256": "8b923c1aaa18e6e1bfd329987f1621c918fa943c2490ff8adbb48aab802e8d1a",
+          "width": 1024,
+          "height": 1536,
+          "head": {
+            "left": 295,
+            "top": 4,
+            "right": 705,
+            "bottom": 535,
+            "width": 410,
+            "height": 531
+          },
+          "bust": {
+            "left": 10,
+            "top": 4,
+            "right": 1015,
+            "bottom": 1180,
+            "width": 1005,
+            "height": 1176
+          },
+          "identityMaster": "art/portraits/approved-v1/damheo.png",
+          "identityMasterSha256": "8b923c1aaa18e6e1bfd329987f1621c918fa943c2490ff8adbb48aab802e8d1a"
+        }
+      }
+    }
   },
   "휘겸": {
     "class": "knight",
     "image": null,
-    "kind": "character"
+    "kind": "character",
+    "approvedPortrait": {
+      "id": "hwigyeom",
+      "defaultExpression": "base",
+      "expressions": {
+        "base": {
+          "file": "shared/assets/portraits/approved-v1/hwigyeom.webp",
+          "source": "art/portraits/approved-v1/hwigyeom.png",
+          "sourceSha256": "ecffdbfd43b4e8e6f5e5d59b0290ac470cd28e2618c13fcb5174a17256364f06",
+          "width": 1024,
+          "height": 1536,
+          "head": {
+            "left": 130,
+            "top": 0,
+            "right": 1010,
+            "bottom": 670,
+            "width": 880,
+            "height": 670
+          },
+          "bust": {
+            "left": 0,
+            "top": 0,
+            "right": 1024,
+            "bottom": 1170,
+            "width": 1024,
+            "height": 1170
+          },
+          "identityMaster": "art/portraits/approved-v1/hwigyeom.png",
+          "identityMasterSha256": "ecffdbfd43b4e8e6f5e5d59b0290ac470cd28e2618c13fcb5174a17256364f06"
+        }
+      }
+    }
   },
   "소단": {
     "class": "occultist",
     "image": null,
-    "kind": "character"
+    "kind": "character",
+    "approvedPortrait": {
+      "id": "sodan",
+      "defaultExpression": "base",
+      "expressions": {
+        "base": {
+          "file": "shared/assets/portraits/approved-v1/sodan.webp",
+          "source": "art/portraits/approved-v1/sodan.png",
+          "sourceSha256": "0268f8f89b5ac19608baf38e048b02cc50309a2e191ca14556cc6a8fdc49abb4",
+          "width": 1024,
+          "height": 1536,
+          "head": {
+            "left": 205,
+            "top": 4,
+            "right": 785,
+            "bottom": 615,
+            "width": 580,
+            "height": 611
+          },
+          "bust": {
+            "left": 10,
+            "top": 4,
+            "right": 1018,
+            "bottom": 1140,
+            "width": 1008,
+            "height": 1136
+          },
+          "identityMaster": "art/portraits/approved-v1/sodan.png",
+          "identityMasterSha256": "0268f8f89b5ac19608baf38e048b02cc50309a2e191ca14556cc6a8fdc49abb4"
+        }
+      }
+    }
   },
   "문탁": {
     "class": "knight",
