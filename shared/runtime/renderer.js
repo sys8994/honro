@@ -252,10 +252,6 @@
             // views rasterize it once per sceneVersion. Painted maps also keep
             // close inspection in high-resolution, bounded world tiles.
             if(this.scale<=1.05||G.HonroPaintedPresentation?.forBattle(b)?.cachedWorld){this._drawStaticWorldCached(c,b,w,h);}else{
-                // Close vector views keep native screen resolution. Once the
-                // exact camera settles, reuse the same static pixels as other
-                // zoom levels instead of repainting all paths every frame.
-                const paint=c=>{
                 const view=G.HonroBounds.viewport(this,w,h),visibleLandmarks=(G.HonroTerrainDomain?.materialLandmarks(b)||b.honroLandmarks||[]).filter(l=>this._landmarkVisible(l,view));
                 this._landmarkLayer(c,visibleLandmarks,'back');
                 this._landmarkLayer(c,visibleLandmarks,'structural-back');
@@ -265,8 +261,6 @@
                 this._landmarkLayer(c,visibleLandmarks,'prop');
                 this._landmarkLayer(c,visibleLandmarks,'front');
                 this.terrainReadability?.(c,b,view);
-                };
-                if(!this._screenRaster(c,this._worldCacheKey(b,w)+':direct',w,h,paint,'_screenWorldCache'))paint(c);
             }
             if(!quietOutro)this.objectDamage?.(c,b,w,h);
             // Animated water lives outside the world raster cache; its collision and
