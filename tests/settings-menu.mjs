@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {appHarness,plain} from './app-regression-helpers.mjs';
+const h=await appHarness(),{click,finish,g}=h;let app=h.load(h.profileThrough(4));app.launch(5);finish(app);app.engine.active.hp-=17;app.engine.b.round=7;
+const engine=app.engine,before=plain(engine.b);
+click('pause');assert.equal(app.modalKind,'pause-dialog');const pause=app.modal.innerHTML;assert(pause.indexOf('data-action="fullscreen"')<pause.indexOf('계속하기'));assert(!pause.includes('data-action="battle-help"'));
+click('settings');assert.equal(app.settingsEntry,'pause');assert.equal((app.modal.innerHTML.match(/data-action="settings-page"/g)||[]).length,4);assert(!app.modal.innerHTML.includes('data-setting='));
+for(const page of ['sound','screen','play','records','debug']){click('settings-page',{id:page});assert.equal(app.modalKind,'settings-dialog');assert(app.modal.innerHTML.includes('data-action="fullscreen"'));assert.strictEqual(app.engine,engine);assert.deepEqual(plain(engine.b),before);}
+click('settings-back');assert.equal(app.settingsPage,'records');click('settings-back');assert.equal(app.settingsPage,'root');click('close');assert.equal(app.modalKind,'pause-dialog');assert(app.modal.classList.contains('open'));
+click('settings');click('settings-page',{id:'records'});const profile=plain(app.profile);click('newgame');assert.equal(app.modalKind,'menu-confirm');click('menu-cancel');assert.equal(app.settingsPage,'records');assert.deepEqual(plain(app.profile),profile);
+click('import');click('menu-cancel');assert.deepEqual(plain(app.profile),profile);await h.import({game:'other'});assert.deepEqual(plain(app.profile),profile);assert.strictEqual(app.engine,engine);assert(app.modal.classList.contains('open'));
+click('close');click('retry-menu');assert.equal(app.modalKind,'pause-retry');click('retry-confirm',{id:'battle'});click('menu-cancel');assert.equal(app.modalKind,'pause-retry');assert.deepEqual(plain(engine.b),before);click('close');assert.equal(app.modalKind,'pause-dialog');click('close');assert(!app.modal.classList.contains('open'));
+click('settings');click('settings-page',{id:'records'});click('settings-page',{id:'debug'});app.setDebugMode(true);assert.equal(app.screen,'rest');assert(app.debugMode);assert.notStrictEqual(app.profile,app.normalProfile);app.settings('records');assert(!app.modal.innerHTML.includes('data-action="import"'));assert(!app.modal.innerHTML.includes('data-action="newgame"'));app.export();assert.deepEqual(await h.exported(),plain(app.normalProfile));
+g.document.documentElement={};app.settings('screen');await app.fullscreen();assert.match(app.lastNotice,/制限|제한/);assert(!g.document.fullscreenElement);
+console.log('PASS settings hierarchy, pause ownership, confirmations, invalid import, retry cancel, debug isolation/export, unsupported fullscreen (VM doubles)');

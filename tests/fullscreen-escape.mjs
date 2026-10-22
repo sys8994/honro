@@ -57,11 +57,11 @@ for(const boundary of ['timeout','pointer','other key']){
     for(const screen of ['title','rest','battle']){
         app.screen=screen;app.dialogue=null;app.close();
         for(const modal of [false,true]){
-            if(modal)app.open('<button>Settings or journey content</button>','settings-dialog');
+            if(modal)app.settings();
             const before=app.modal.classList.contains('open');
             h.g.document.fullscreenElement={};send('keydown');assert.equal(app.modal.classList.contains('open'),before,screen+' first Escape preserves modal');
             h.g.document.fullscreenElement=null;send('keyup');send('keydown');
-            assert.equal(app.modal.classList.contains('open'),modal?false:screen==='battle',screen+' next Escape follows existing App routing');
+            assert.equal(app.modal.classList.contains('open'),screen==='battle',screen+' next Escape follows existing App routing');
             send('keyup');app.close();
         }
     }

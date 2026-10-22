@@ -121,7 +121,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(app){
     await file('game/vendor/ui/fa.js');
     await file('shared/runtime/skill-images.js');
-    for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','music-titles','audio','story','act-endings-content','act-endings','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main']){
+    for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','music-titles','audio','story','act-endings-content','act-endings','interactions','unit-info','training','skill-preview','journey-art','rest-journey','menu-ui','main']){
       await file(`shared/runtime/${name}.js`);
       // Metadata only: native/full consumers retain the same scripts and order.
       if(name==='training'||name==='skill-preview')parts.at(-1).optional=name;
