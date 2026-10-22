@@ -1,0 +1,98 @@
+[
+  {
+    "command": "node tests/cheonroe-rich-effects.mjs",
+    "exitCode": 0,
+    "seconds": 3.26,
+    "log": "cheonroe-rich-effects.mjs.log"
+  },
+  {
+    "command": "node tests/cheonroe-visual-spacing.mjs",
+    "exitCode": 0,
+    "seconds": 2.46,
+    "log": "cheonroe-visual-spacing.mjs.log"
+  },
+  {
+    "command": "node tests/cheonroe-target-lightning.mjs",
+    "exitCode": 0,
+    "seconds": 5.71,
+    "log": "cheonroe-target-lightning.mjs.log"
+  },
+  {
+    "command": "node tests/damheo-damage-balance.mjs",
+    "exitCode": 0,
+    "seconds": 5.91,
+    "log": "damheo-damage-balance.mjs.log"
+  },
+  {
+    "command": "node tests/projectile-platforms.mjs",
+    "exitCode": 0,
+    "seconds": 9.98,
+    "log": "projectile-platforms.mjs.log"
+  },
+  {
+    "command": "node tests/rest-hub-journey-flow.mjs",
+    "exitCode": 0,
+    "seconds": 54.08,
+    "log": "rest-hub-journey-flow.mjs.log"
+  },
+  {
+    "command": "node tests/journey-stage-departure.mjs",
+    "exitCode": 0,
+    "seconds": 54.79,
+    "log": "journey-stage-departure.mjs.log"
+  },
+  {
+    "command": "node tests/rest-journey.mjs",
+    "exitCode": 0,
+    "seconds": 50.92,
+    "log": "rest-journey.mjs.log"
+  },
+  {
+    "command": "node tests/camp-persistence.mjs",
+    "exitCode": 0,
+    "seconds": 8.69,
+    "log": "camp-persistence.mjs.log"
+  },
+  {
+    "command": "node tests/camp-reward-budget.mjs",
+    "exitCode": 0,
+    "seconds": 10.72,
+    "log": "camp-reward-budget.mjs.log"
+  },
+  {
+    "command": "node tests/rest-scene-controls.mjs",
+    "exitCode": 0,
+    "seconds": 6.17,
+    "log": "rest-scene-controls.mjs.log"
+  },
+  {
+    "command": "node tests/rest-idle.mjs",
+    "exitCode": 0,
+    "seconds": 10.22,
+    "log": "rest-idle.mjs.log"
+  },
+  {
+    "command": "node tests/journey-art.mjs",
+    "exitCode": 0,
+    "seconds": 0.12,
+    "log": "journey-art.mjs.log"
+  },
+  {
+    "command": "node tests/journey-atlas-proof.mjs",
+    "exitCode": 0,
+    "seconds": 7.12,
+    "log": "journey-atlas-proof.mjs.log"
+  },
+  {
+    "command": "node tests/journey-layout.mjs",
+    "exitCode": 0,
+    "seconds": 9.31,
+    "log": "journey-layout.mjs.log"
+  },
+  {
+    "command": "node tests/web-split.mjs",
+    "exitCode": 0,
+    "seconds": 11.01,
+    "log": "web-split.mjs.log"
+  }
+]

@@ -1,0 +1,634 @@
+{
+  "status": "passed",
+  "candidateSourceCommit": "457822b7c416ab706e057c2ba68a66b970789c9f",
+  "browser": "154.0.8037.57",
+  "rows": [
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "scope": "approved controlled arena",
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 580.3651882105264,
+          "hp": 580
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 1,
+      "headAgreement": true,
+      "offscreen": 0
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "scope": "approved controlled arena",
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0
+    },
+    {
+      "viewport": [
+        1280,
+        900
+      ],
+      "scope": "approved controlled arena",
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "scope": "public UI input flow on fixture progress",
+      "flow": "rest → journal → rest → battle → confirmation/cancel/confirm",
+      "actGate": true,
+      "newBattleRound": 1
+    },
+    {
+      "viewport": [
+        1280,
+        900
+      ],
+      "scope": "public UI input flow on fixture progress",
+      "flow": "rest → journal → rest → battle → confirmation/cancel/confirm",
+      "actGate": true,
+      "newBattleRound": 1
+    }
+  ],
+  "pageErrors": [],
+  "screenshots": [
+    {
+      "path": "game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-1-controlled-arena.jpg",
+      "bytes": 38007,
+      "sha256": "4ef65ea7bb56811e6c2ceb5fc5517589abdd4f7df9dd1c5eac6af9e5c177e533"
+    },
+    {
+      "path": "game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-10-controlled-arena.jpg",
+      "bytes": 76183,
+      "sha256": "514cfdcf137ca96d02e5af21f0d9a50bb5edcc475278616953f2cb231df0cad9"
+    },
+    {
+      "path": "game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-1280x900-10-controlled-arena.jpg",
+      "bytes": 141174,
+      "sha256": "bb36b13445a53bb3f1be51631bace215933624cef10e9ee710cf32ed4970f8bf"
+    },
+    {
+      "path": "game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-flow-rest.jpg",
+      "bytes": 30319,
+      "sha256": "39c1c0d3499302cc50f250dada6d407254f593d2345941f54383e8fb98cffe6f"
+    },
+    {
+      "path": "game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-flow-journal.jpg",
+      "bytes": 30600,
+      "sha256": "d5a7f1afe5948b01970c08eff1a91d1716ec5beb637bb7abefa095aacfb7963d"
+    },
+    {
+      "path": "game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-flow-battle.jpg",
+      "bytes": 32738,
+      "sha256": "e1160486092aacf1c37c7aef1a1e8d32b52a5dd765d6df94e1ac948b27809bab"
+    },
+    {
+      "path": "game/docs/cheonroe-rich-effects-restoration/integration-evidence/final-390x844-flow-confirmation.jpg",
+      "bytes": 19260,
+      "sha256": "0ea1d17bed957e5669e70d48e7e73a531a9026a5a3704212892ef1a48b366118"
+    }
+  ],
+  "limits": [
+    "Actual desktop Chromium at mobile and desktop viewports; no physical device.",
+    "VFX uses the original controlled-arena harness, no module override.",
+    "Navigation uses fixture progress and actual clicks, not normal stage completion."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "status": "same inherited failure",
+  "baseline": "62c03a0ae79ecaa4ddc30eb91720f20d6cebcf4e",
+  "candidateSourceCommit": "457822b7c416ab706e057c2ba68a66b970789c9f",
+  "assertion": "Practice entry keeps the persisted campaign",
+  "location": "tests/campaign-transition-regressions.mjs:19",
+  "comparison": "Assertion diff and stack preamble identical after normalizing checkout root and session timestamp. Large object dumps truncate at different tail positions.",
+  "reason": "suspended() clicks rest but does not confirm the new hub-return modal; old saved round1 is compared with newly persisted round7 on practice entry."
+}

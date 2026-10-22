@@ -4243,3 +4243,8 @@ M05는 착탄 0.35초 뒤 기존 천장 차폐 중심과 범위 피해 스냅샷
 ## 2026-10-22 — 천뢰호 원본 낙뢰 미술 복원 후보
 
 통합 후 `75c86629`·`0e02735a`에서 추가한 M05 전용 단순화와 근접 간격 축소를 제거했다. 원본 `be798268`/첫 대상별 구현 `b1e4efc4`의 동일한 굴곡·6가지·4중 광휘·접점 발광·9갈래 방전·0.9초 수명을 복원하며 줄기 size3.5(원본5의70%), 대상별 머리 스냅샷·0.35초 지연·기존 중앙 차폐/범위·피해128.8/LM05 94를 보존한다. 다른 낙뢰의 기본 렌더는 원본과 같고 84개 아이콘은 수정하지 않는다. 실제 그리기 명령/폭 대조, 기존 대상별 역학, 타입/빌드와 실제 Chromium 360×800·390×844·1280×900의 1/3/10 대상 및 밀집 진단을 확인했다. 구체적 수치·실제 JPG·검사/성능 한계는 [복원 보고서](cheonroe-rich-effects-restoration/README.md)에 남긴다. 부모 미술 검수 전 master 병합/Pages 발행은 하지 않는다.
+
+
+## 2026-10-22 — 천뢰호 복원·최신 휴식터 통합 후보
+
+승인 복원 a0189968을 최신 master62c03a0a와 병합하고 생성물을 합친 소스에서 재빌드했다. 실행 후보457822b7, master runtime/data/assets/map/config/CSS619파일·84아이콘·엔딩 보존, rich draw/대상역학·휴식터/출발·실제 Chromium/엔딩 Continue 검사를 통과했다. 옛 campaign-transition-regressions 첫 practice-save assertion은 동일 master에서도 재현되어 실패로 남긴다. 최종8JPG·명령/한계는 [통합 보고서](cheonroe-rich-effects-restoration/INTEGRATION.md)에 있다. 부모 최종 후보 signoff·master fast-forward/Pages는 대기하며 이번 작업에서 배포하지 않았다.
