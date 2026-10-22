@@ -14,6 +14,9 @@ S.event=function(ev){
 // serialized simulation. Projectiles, zones, pending attacks and warning FX stay.
 S.settleHitFeedback=function(e,paused){
  this.settledHits??=new Map();
+ // Expired summons can leave b.units before their hurt timer finishes. The
+ // presentation map must not keep their removed unit objects alive.
+ if(this.settledHits.size)for(const[id,hit]of this.settledHits)if(!e.b.units.includes(hit.unit))this.settledHits.delete(id);
  for(const u of e.b.units||[]){
   const old=this.settledHits.get(u.id);
   if(!(u.hurt>0)||old&&(old.unit!==u||u.hurt>old.hurt||u.hp<old.hp))this.settledHits.delete(u.id);
