@@ -1,0 +1,5 @@
+PASS battle rest confirmation cancel preserves pause and exact battle/save
+PASS battle rest confirmation close preserves pause and exact battle/save
+PASS battle rest confirmation dismiss preserves pause and exact battle/save
+PASS rest confirmation returns only to its own origin
+PASS journey confirmation returns only to its own origin

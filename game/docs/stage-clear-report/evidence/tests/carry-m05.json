@@ -1,0 +1,12 @@
+[
+  {
+    "command": "node tests/stage-clear-report-carry.mjs",
+    "exitCode": 0,
+    "passes": 2
+  },
+  {
+    "command": "node tests/cheonroe-target-lightning.mjs",
+    "exitCode": 0,
+    "passes": 1
+  }
+]

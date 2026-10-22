@@ -1,0 +1,61 @@
+{
+  "runtimeCommit": "4699102a27217a0372770b5866b7e181db9fdeba",
+  "phase0Checkpoint": "0a9acf40396452e2f424cd9731f8f91f3478da03",
+  "packageSha256": "1521fdf91f93a57c48e020d74f030c3ca88991e0b808797c06eff6beab5cc9b9",
+  "passed": {
+    "reportDataScenarios": 30,
+    "carriedSourceScenarios": 2,
+    "reportAppChecks": 12,
+    "reportBrowserChecks": 50,
+    "phase0BrowserChecks": 39,
+    "otherCommands": [
+      "npm --prefix game run typecheck",
+      "npm run build",
+      "node tests/web-split.mjs",
+      "node tests/contribution-xp-engine.mjs",
+      "node tests/contribution-xp-app.mjs",
+      "node tests/contribution-xp-healing-boundaries.mjs",
+      "node tests/stake-crossing-runtime.mjs",
+      "node tests/cheonroe-target-lightning.mjs",
+      "node tests/stage-report-phase0.mjs",
+      "node tests/settings-menu.mjs",
+      "node tests/fullscreen-escape.mjs",
+      "node tests/modal-keyboard.mjs",
+      "node tests/rest-hub-journey-flow.mjs",
+      "node tests/journey-stage-departure.mjs",
+      "node tests/camp-persistence.mjs"
+    ]
+  },
+  "failedPreExisting": [
+    {
+      "command": "node tests/stake-crossing-xp.mjs",
+      "failure": "Shared XP:0 !==47",
+      "baseline": "f37530094b3f83d33991162243b7a2722c8fd8f9"
+    },
+    {
+      "command": "node tests/act3-split-v2.mjs",
+      "failure": "old story title assertion after five passed cases",
+      "baseline": "f37530094b3f83d33991162243b7a2722c8fd8f9"
+    },
+    {
+      "command": "node tests/custom-map-return-profile.mjs",
+      "failure": "17/18 groups pass; confirmed new journey expects honroBattle:null and upgradeNotice:false",
+      "baseline": "11b445dcba55613b5844d045596458ca4d06c7ec"
+    }
+  ],
+  "unrun": [
+    "full npm run verify",
+    "full test:rest-journey aggregate (predecessor old-outro assertion remains documented)",
+    "normal30-stage fullplay",
+    "physical devices/iOS/Android fullscreen",
+    "performance benchmark or long-session load/quota test",
+    "master merge and live Pages verification"
+  ],
+  "notes": [
+    "All source and screenshot hashes are in manifest.json.",
+    "Browser victories, XP/time and unlock states are explicit fixtures, not normal-play clears.",
+    "Original PHASE0_READY, phase0 JPGs and phase0 manifest remain byte-identical to the checkpoint.",
+    "Map data, terrain, all source assets/84 skill icons and balance config are byte-identical to final predecessor.",
+    "Text logs have trailing whitespace normalized."
+  ]
+}

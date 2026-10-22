@@ -1,0 +1,32 @@
+[
+  {
+    "command": "node tests/contribution-xp-engine.mjs",
+    "exitCode": 0,
+    "passes": 20
+  },
+  {
+    "command": "node tests/contribution-xp-app.mjs",
+    "exitCode": 0,
+    "passes": 1
+  },
+  {
+    "command": "node tests/contribution-xp-healing-boundaries.mjs",
+    "exitCode": 0,
+    "passes": 5
+  },
+  {
+    "command": "node tests/stake-crossing-runtime.mjs",
+    "exitCode": 0,
+    "passes": 9
+  },
+  {
+    "command": "node tests/stake-crossing-xp.mjs",
+    "exitCode": 1,
+    "passes": 0
+  },
+  {
+    "command": "node tests/act3-split-v2.mjs",
+    "exitCode": 1,
+    "passes": 5
+  }
+]

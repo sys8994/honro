@@ -1,0 +1,12 @@
+{
+ "sourceSha":"f37530094b3f83d33991162243b7a2722c8fd8f9",
+ "scope":"Read-only pre-instrumentation master baseline while waiting for final predecessor marker; no runtime changes",
+ "passed":["npm --prefix game run typecheck","node tests/web-split.mjs","node tests/contribution-xp-engine.mjs (20 scenarios)","node tests/rest-hub-journey-flow.mjs","node tests/journey-stage-departure.mjs","node tests/camp-persistence.mjs (11 cases)"],
+ "failed":[
+  {"command":"node tests/fullscreen-escape.mjs","assertion":"title next Escape follows existing App routing", "actual":true,"expected":false,"location":"tests/fullscreen-escape.mjs:64"},
+  {"command":"node tests/modal-keyboard.mjs","assertion":"assert(prevented)","location":"tests/modal-keyboard.mjs:2"},
+  {"command":"node tests/stake-crossing-xp.mjs","assertion":"Shared XP receives only the newly earned difference","actual":0,"expected":47,"location":"tests/stake-crossing-xp.mjs:20"},
+  {"command":"node tests/act3-split-v2.mjs","assertion":"Legacy title equality after five passing roster/carry/Continue cases","actual":"지운 이름과 남은 명령","expected":"왕실의 선택","location":"tests/act3-split-v2.mjs:18"}
+ ],
+ "setup":"npm ci required --cache /tmp/honro-npm-cache because default /home/agent/.npm is outside writable roots; successful installs did not modify tracked files"
+}

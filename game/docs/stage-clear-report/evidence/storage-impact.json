@@ -1,0 +1,14 @@
+{
+  "scope": "Serialized size sample, not a performance benchmark",
+  "stage": 25,
+  "units": 17,
+  "currentReportBytes": 2372,
+  "battleWithReportBytes": 855378,
+  "battleWithoutReportFieldsBytes": 850604,
+  "reportOverheadIncludingCheckpointBytes": 4774,
+  "completedReportBytes": 1035,
+  "campaignLatestSlots": 30,
+  "isolatedLatestSlots": 6,
+  "perHitStorageWrites": 0,
+  "storageContract": "Current battle aggregates piggyback normal autosave; completed latest records use existing profile export/import; no hit log or separate localStorage key."
+}

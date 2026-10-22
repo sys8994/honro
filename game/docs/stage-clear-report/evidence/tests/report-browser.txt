@@ -1,0 +1,50 @@
+PASS focus1 360: four summary cells, four actual participants, actual XP level-up
+PASS focus1 360: fixed Next and close fit
+PASS focus2 360: dedicated responsive panel and true participant rows
+PASS focus2 360: native skill expansion
+PASS focus3 360: Escape restores exact summary and immutable rewards
+PASS focus3 360: X returns without Next
+PASS 360: summary scroll never runs beneath X
+PASS focus1 390: four summary cells, four actual participants, actual XP level-up
+PASS focus1 390: fixed Next and close fit
+PASS focus2 390: dedicated responsive panel and true participant rows
+PASS focus2 390: native skill expansion
+PASS focus3 390: Escape restores exact summary and immutable rewards
+PASS focus3 390: X returns without Next
+PASS 390: summary scroll never runs beneath X
+PASS focus1 844: four summary cells, four actual participants, actual XP level-up
+PASS focus1 844: fixed Next and close fit
+PASS focus2 844: dedicated responsive panel and true participant rows
+PASS focus2 844: native skill expansion
+PASS focus3 844: Escape restores exact summary and immutable rewards
+PASS focus3 844: X returns without Next
+PASS 844: summary scroll never runs beneath X
+PASS focus1 1280: four summary cells, four actual participants, actual XP level-up
+PASS focus1 1280: fixed Next and close fit
+PASS focus2 1280: dedicated responsive panel and true participant rows
+PASS focus2 1280: native skill expansion
+PASS focus3 1280: Escape restores exact summary and immutable rewards
+PASS focus3 1280: X returns without Next
+PASS 1280: summary scroll never runs beneath X
+PASS Next double click preserves one clear and does not skip a stage
+PASS journal retains travel CTA alongside report access
+PASS journal report close returns to journal without reward changes
+PASS ending 10: report exists before presentation without result buttons
+PASS ending 10: pending reload retains exact report
+PASS ending 10: pending file import retains exact report
+PASS ending 10: unobtrusive rest access and existing camp/departure
+PASS ending 10: report close stays in rest
+PASS ending 10: seen reload never repays or reopens ending
+PASS ending 20: report exists before presentation without result buttons
+PASS ending 20: pending reload retains exact report
+PASS ending 20: pending file import retains exact report
+PASS ending 20: unobtrusive rest access and existing camp/departure
+PASS ending 20: report close stays in rest
+PASS ending 20: seen reload never repays or reopens ending
+PASS ending 30: report exists before presentation without result buttons
+PASS ending 30: pending reload retains exact report
+PASS ending 30: pending file import retains exact report
+PASS ending 30: unobtrusive rest access and existing camp/departure
+PASS ending 30: report close stays in rest
+PASS ending 30: seen reload never repays or reopens ending
+PASS no browser page errors

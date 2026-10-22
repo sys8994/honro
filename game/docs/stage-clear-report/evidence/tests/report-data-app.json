@@ -1,0 +1,12 @@
+[
+  {
+    "command": "node tests/stage-clear-report-data.mjs",
+    "exitCode": 0,
+    "passes": 30
+  },
+  {
+    "command": "node tests/stage-clear-report-app.mjs",
+    "exitCode": 0,
+    "passes": 12
+  }
+]

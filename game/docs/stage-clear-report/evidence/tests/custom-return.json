@@ -1,0 +1,11 @@
+{
+  "command": "node tests/custom-map-return-profile.mjs",
+  "candidateExitCode": 1,
+  "baselineCandidate": "11b445dcba55613b5844d045596458ca4d06c7ec",
+  "baselineExitCode": 1,
+  "passedGroups": 17,
+  "failedGroups": 1,
+  "failure": "Confirmed new journey deep equality: honroBattle:null and upgradeNotice:false missing; same on baseline",
+  "candidateLog": "custom-return.txt",
+  "baselineLog": "custom-return-baseline.txt"
+}

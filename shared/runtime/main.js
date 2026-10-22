@@ -335,9 +335,9 @@
 
         sig(id){return C.icon('skill:'+id,'',28);}
 
-        open(html, kind = '') { this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this);this.modalKind=kind;this.cancelInput(); if(!this.modal.classList.contains('open')){const active=document.activeElement;this.modalReturnFocus=active?.matches?.('button,input,select,textarea,a[href],[tabindex]')?active:this.root?.querySelector('button');} const close=`<button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>`;this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"${html.includes('class="menu-fixed"')?' aria-labelledby="menu-title"':''}>${html.includes('class="skill-modal-title"')?html.replace('<div class="skill-modal-title">','<div class="skill-modal-title">'+close):html.includes('class="menu-fixed"')?html:close+html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); this.modal.querySelector('[data-action="close"]')?.focus({preventScroll:true}); }
+        open(html, kind = '') { this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this);this.modalKind=kind;this.cancelInput(); if(!this.modal.classList.contains('open')){const active=document.activeElement;this.modalReturnFocus=active?.matches?.('button,input,select,textarea,a[href],[tabindex]')?active:this.root?.querySelector('button');} const close=`<button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>`;this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"${kind==='clear-report'?' aria-labelledby="clear-report-title"':html.includes('class="menu-fixed"')?' aria-labelledby="menu-title"':''}>${html.includes('class="skill-modal-title"')?html.replace('<div class="skill-modal-title">','<div class="skill-modal-title">'+close):html.includes('class="menu-fixed"')||html.includes('class="report-shell"')?html:close+html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); this.modal.querySelector('[data-action="close"]')?.focus({preventScroll:true}); }
         close() { this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this);this.modalKind='';this.pendingJourneyLaunch=null;const wasOpen=this.modal.classList.contains('open'),previous=this.modalReturnFocus;this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now();this.modalReturnFocus=null;if(wasOpen)(previous?.isConnected?previous:this.root?.querySelector('[data-action="pause"],button'))?.focus?.({preventScroll:true}); if(this.engine)this.updateAudio(); }
-        dismissModal(){if(this.modalKind==='journey-confirm'&&this.pendingJourneyLaunch){const returnMenu=this.pendingJourneyLaunch.returnMenu;this.pendingJourneyLaunch=null;if(returnMenu==='pause')this.pause();else this.close();return;}if(['settings-dialog','settings-help','pause-retry','menu-confirm'].includes(this.modalKind)){G.HonroMenuUI.back(this);return;}if(this.modalKind==='result')this.resultContinue();else if(this.equipReturn){const context=this.equipReturn;this.equipReturn=null;this.restoreTalent(context);}else this.close();}
+        dismissModal(){if(this.modalKind==='clear-report'){G.HonroClearReportUI.close(this);return;}if(this.modalKind==='journey-confirm'&&this.pendingJourneyLaunch){const returnMenu=this.pendingJourneyLaunch.returnMenu;this.pendingJourneyLaunch=null;if(returnMenu==='pause')this.pause();else this.close();return;}if(['settings-dialog','settings-help','pause-retry','menu-confirm'].includes(this.modalKind)){G.HonroMenuUI.back(this);return;}if(this.modalKind==='result')this.resultContinue();else if(this.equipReturn){const context=this.equipReturn;this.equipReturn=null;this.restoreTalent(context);}else this.close();}
         resultContinue(){if(this.resultDismissed||!this.modal.classList.contains('open'))return;if(G.HonroCampaignEntry?.defer(this,G.HonroCampaignEntry.next(this),()=>this.resultContinue()))return;this.resultDismissed=true;this.close();if(this.customMap)this.showRest();else G.HonroRestJourney.resultContinue(this);}
         talentContext(id){const dialog=this.modal.querySelector('.skill-modal-body')||this.modal.querySelector('.dialog');return {id,scroll:dialog?.scrollTop||0,armory:$('armory')?.scrollTop||0,canvas:$('previewcanvas'),preview:this.preview,action:document.activeElement?.dataset?.action};}
         restoreTalent(context){this.talent(context.id,context);const dialog=this.modal.querySelector('.skill-modal-body')||this.modal.querySelector('.dialog');if(dialog)dialog.scrollTop=context.scroll;if($('armory'))$('armory').scrollTop=context.armory;if(context.action)this.modal.querySelector(`[data-action="${context.action}"]`)?.focus({preventScroll:true});}
@@ -474,7 +474,7 @@
             const battle=G.HonroMaps.createBattle(map,project,this.profile);
             if(options.from==='selected'&&options.unitId){const u=battle.units.find(u=>u.id===options.unitId);if(u?.side===0)battle.active=u.id;else if(u)options={...options,from:'camera',camera:{x:u.x,y:u.y}};}
             if(options.from==='camera'&&options.camera){const u=battle.units.find(u=>u.id===battle.active),x=clamp(options.camera.x,30,battle.width-30),y=G.HonroMapEngine.surfaceY(battle.terrain,x,options.camera.y)?.y??options.camera.y;Object.assign(u,{x,y,spawnX:x,spawnY:y});}
-            G.HonroStageRules.sanitizeStageBattle(battle);this.mount(battle);
+            G.HonroStageRules.sanitizeStageBattle(battle);this.mount(battle,{freshReport:true,reportScope:'custom'});
             if(options.story!==false&&map.metadata.campaign)G.HonroRestJourney?G.HonroRestJourney.startEntry(this,map.name):G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:map.name,after:'entry'});
             return this.engine;
         }
@@ -524,7 +524,7 @@
             // 0.6.8 settles the campaign spawn once at creation and again at mount.
             // Preserve both passes: stage 5 contains overlapping terrain supports.
             if(!training)G.HonroStageRules.sanitizeStageBattle(battle);
-            this.mount(battle);
+            if(!training)delete this.profile.honroReportNotice;this.mount(battle,{freshReport:true,reportScope:training?'practice':this.debugMode?'debug':'campaign'});
             if(!training&&battle.honroSplit?.mode==='replay')this.notify('분할 재플레이 · 지난 분기 기록 없이 현재 성장과 입장 준비값으로 시작합니다.');
             if (!training) {
                 this.profile.lastStage = st.id;
@@ -536,7 +536,7 @@
     if(G.HonroRestJourney)G.HonroRestJourney.startEntry(this,st.name);else G.HonroStory.start(this,G.HonroObjectives.entry(this),{title:st.name,after:'entry'});
             }
         }
-        mount(b) { G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
+        mount(b,{freshReport=false,reportScope}={}) { G.HonroAct3Void?.recover(b); this.stage=G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage; G.HonroStageRules.sanitizeStageBattle(b); G.HonroEncounters.configure(b);G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);G.HonroClearReport.begin(b,{fresh:freshReport,scope:reportScope||G.HonroClearReport.scopeOf(this)});b.honroActiveLimit??=H.stages[(b.honroStage||1)-1].active;b.enemyLimit=b.honroActiveLimit;this.screen = 'battle'; this.contacts.clear(); this.acc = 0; this.engine = new C.Engine(b, ev => { this.scene?.event(ev); if (ev.type === 'sound')
             this.audio?.play(ev.name); if (ev.type === 'save')
             this.dirty = true; }, false); const e = this.engine; G.HonroAllies.attach(this,e); G.HonroEncounters.attach(this,e); G.HonroAct2.attach(this,e); G.HonroAct3.attach(this,e); G.HonroSplitCampaign.attach(this,e); G.HonroStakeCrossing.attach(this,e); if (!this.training) {
             e.checkEnd = () => this.checkMission(e);
@@ -637,12 +637,13 @@
         outcome(afterStory=false) {
             // Guard before outro: completed saves must never reopen or resave.
             if(this.done||!this.engine)return;
+            if(this.engine.b.phase==='won')G.HonroClearReport.finish(this);
             if(!afterStory&&this.engine?.b.phase==='won'&&!this.dialogue){G.HonroSodanWithdrawal.safeBackdrop(this);G.HonroActEndings?.preload(this,this.stage.id);this.cancelInput();if(G.HonroStory.start(this,G.HonroSodanWithdrawal.outro(this.engine.b,(G.HonroObjectiveRevision?.contentFor(this.engine.b,this.stage)||this.stage).outro),{title:this.stage.name,after:'outcome'}))return;}
             if (this.done || !this.engine)
                 return;
             this.done = true;this.resultDismissed=false;
             this.cancelInput();
-            const b = this.engine.b, won = b.phase === 'won', st = G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage;
+            const b = this.engine.b, won = b.phase === 'won', st = G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage;this.resultJoined=[];
             if(won)G.HonroProgression.complete(b);
             if(won&&!b.honroJourneyReplay){const handoff=G.HonroRouteBranches?.handoff(b);if(handoff)this.profile.honroRouteHandoff=handoff;}
             G.HonroProgression.syncRoster(this.profile,b);
@@ -655,14 +656,14 @@
                 if (first) {
                     this.profile.record.push({ place: st.name, text: st.outro.filter(x=>G.HonroStory.allowed(this,x[0])).map(x => x.slice(0,2).join(' · ')).join('\n') });
                 }
-                this.recruit(st);
+                const previousRecruits=new Set(this.profile.recruited);this.recruit(st);this.resultJoined=this.profile.recruited.filter(cls=>!previousRecruits.has(cls)).map(cls=>({cls,level:C.levelOf(this.profile.heroes[cls])}));
                 this.profile.honroFlags['cleared-' + st.id] = true;
             }
             G.HonroSplitCampaign.outcome(this,won);
             G.HonroRestJourney?.recordOutcome(this,won);
             this.persist();
             if(won&&G.HonroActEndings?.show(this)){this.audio?.play('win');return;}
-            this.open(`<div class="result-title">${won ? '길이 열렸다' : '길에서 물러났다'}</div><p>${won ? esc(b.winnerReason || st.storySummary || '길을 확보했다.') : esc(b.winnerReason || '얻은 경험은 남는다.')}</p><div class="result-team">${this.profile.recruited.map(c => `<div><strong>${H.hero[c].name}</strong><small>경지 ${C.levelOf(this.profile.heroes[c])}</small></div>`).join('')}</div>${won && st.id === 10 ? '<p>첫째 막 끝 · 북쪽 산길에서 둘째 막이 이어집니다.</p>' : won && st.id===20 ? '<p>둘째 막 끝 · 다음 목적지는 저문골·무명사 기록을 찾을 읍성 문서고입니다. 셋째 막으로 이어집니다.</p>' : won && st.id===30 ? '<p>셋째 막 끝 · 끊긴 옛 운송로와 장례길을 따라 무명사로 향합니다. 넷째 막은 준비 중입니다.</p>' : !won && st.act>=2 ? '<p>이 장을 다시 시작할 수 있습니다. 획득한 경험은 유지됩니다.</p>' : ''}<div class="actions"><button data-action="retry">다시 걷기</button>${won&&b.honroJourneyReplay&&G.HonroRouteBranches?.handoff(b)?'<button data-action="route-continue">선택한 길로 다음 장</button>':''}<button class="primary" data-action="result-continue">${G.HonroRestJourney?.resultLabel(this)||'다음 쉼터로'}</button></div>`, 'result');
+            this.open(`<header class="result-fixed"><div class="result-title">${won ? '길이 열렸다' : '길에서 물러났다'}</div></header><div class="result-body"><p>${won ? esc(b.winnerReason || st.storySummary || '길을 확보했다.') : esc(b.winnerReason || '얻은 경험은 남는다.')}</p>${won?G.HonroClearReportUI.summary(b.honroReport?.final,this.resultJoined):`<div class="result-team">${this.profile.recruited.map(c => `<div><strong>${H.hero[c].name}</strong><small>경지 ${C.levelOf(this.profile.heroes[c])}</small></div>`).join('')}</div>`}${won && st.id === 10 ? '<p>첫째 막 끝 · 북쪽 산길에서 둘째 막이 이어집니다.</p>' : won && st.id===20 ? '<p>둘째 막 끝 · 다음 목적지는 저문골·무명사 기록을 찾을 읍성 문서고입니다. 셋째 막으로 이어집니다.</p>' : won && st.id===30 ? '<p>셋째 막 끝 · 끊긴 옛 운송로와 장례길을 따라 무명사로 향합니다. 넷째 막은 준비 중입니다.</p>' : !won && st.act>=2 ? '<p>이 장을 다시 시작할 수 있습니다. 획득한 경험은 유지됩니다.</p>' : ''}</div><div class="actions result-actions"><button data-action="retry">다시 걷기</button>${won?'<button data-action="clear-report">상세 보고서</button>':''}${won&&b.honroJourneyReplay&&G.HonroRouteBranches?.handoff(b)?'<button data-action="route-continue">선택한 길로 다음 장</button>':''}<button class="primary" data-action="result-continue">${G.HonroRestJourney?.resultLabel(this)||'다음 쉼터로'}</button></div>`, 'result');
             this.audio?.play(won ? 'win' : 'lose');
         }
         battleHelp(fromSettings=false) {
@@ -672,7 +673,7 @@
             if(fromSettings)G.HonroMenuUI.shell(this,'목표·조작 안내',html.replace('<h2>목표·조작 안내</h2>','').replace(/<div class="actions">[\s\S]*$/, ''),{back:'settings-back',kind:'settings-help'});else this.open(html,'battle-help-dialog');
         }
         pause() { if(G.HonroAct3Void?.pause(this))return; this.cancelInput(); G.HonroMenuUI.pause(this); }
-        defend() { if(!this.canInput()||this.engine.active.platformDrop&&this.engine.active.platformDrop.phase!=='land') return; this.cancelInput(); if(this.engine.active.retreat){this.engine.finishAction(true);this.updateHUD(true);return;} const u=this.engine.active,hpBefore=u.hp,shieldBefore=u.shield; u.shield=Math.max(u.shield,Math.round(u.maxHp*.12));u.shieldUntil=this.engine.b.teamEnds[1]+1;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.04));G.HonroProgression.recordHeal(this.engine.b,u,u.id,u.hp-hpBefore);G.HonroProgression.shieldAdded(this.engine.b,u,u.id,shieldBefore);u.focus=Math.min(u.maxFocus,u.focus+Math.max(u.regen,Math.round(u.maxFocus*.12)));this.engine.fx('ring',u.x,u.y-u.h*.5,'#b8c999',60);this.engine.fx('text',u.x,u.y-u.h-16,'#d8d0a8',14,'방어');this.engine.message(`${u.name} · 숨을 고르며 방어`);this.engine.finishAction();this.updateHUD(true); }
+        defend() { if(!this.canInput()||this.engine.active.platformDrop&&this.engine.active.platformDrop.phase!=='land') return; this.cancelInput(); if(this.engine.active.retreat){this.engine.finishAction(true);this.updateHUD(true);return;} const u=this.engine.active,hpBefore=u.hp,shieldBefore=u.shield; u.shield=Math.max(u.shield,Math.round(u.maxHp*.12));u.shieldUntil=this.engine.b.teamEnds[1]+1;u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*.04));G.HonroClearReport.heal(this.engine.b,u,u.id,u.hp-hpBefore,'action:defend');G.HonroProgression.recordHeal(this.engine.b,u,u.id,u.hp-hpBefore);G.HonroProgression.shieldAdded(this.engine.b,u,u.id,shieldBefore);u.focus=Math.min(u.maxFocus,u.focus+Math.max(u.regen,Math.round(u.maxFocus*.12)));this.engine.fx('ring',u.x,u.y-u.h*.5,'#b8c999',60);this.engine.fx('text',u.x,u.y-u.h-16,'#d8d0a8',14,'방어');this.engine.message(`${u.name} · 숨을 고르며 방어`);this.engine.finishAction();this.updateHUD(true); }
         displayAngle(u) { return u.facing >= 0 ? u.angle : 180 - u.angle; }
         adjustAngle(u, v) { if (u.facing >= 0)
             u.angle = clamp(u.angle + v, C.AIM_MIN || -85, 90);
@@ -916,7 +917,7 @@
             document.addEventListener('fullscreenchange',()=>this.refreshFullscreen());
             document.addEventListener('input',e=>{const k=e.target.dataset?.setting;if(k==='volume'||k==='musicVolume'){const output=this.modal.querySelector(`[data-volume-for="${k}"]`);if(output)output.textContent=Math.round(Number(e.target.value)*100)+'%';}});
             window.addEventListener('resize',()=>{if(this.screen==='rest')G.HonroRestJourney?.layoutRest();if(this.screen==='journey')document.querySelector('.journey-map-scroll')?._journeyResize?.();});
-            document.addEventListener('visibilitychange',()=>{if(document.hidden)this.cancelInput();this.updateAudio();});
+            document.addEventListener('visibilitychange',()=>{this.reportClock=null;if(document.hidden)this.cancelInput();this.updateAudio();});
             window.addEventListener('pagehide',()=>this.cancelInput());
             // Game text is UI, not a document. Cancel selection, dragging and long-press menus throughout the app.
             for(const type of ['selectstart','dragstart','contextmenu'])document.addEventListener(type,e=>{if(e.target?.closest?.('#app,#modal'))e.preventDefault();},{capture:true,passive:false});
@@ -1014,6 +1015,9 @@
                     break;
                 case 'cancel-journey-launch':
                     {const returnMenu=this.pendingJourneyLaunch?.returnMenu;this.pendingJourneyLaunch=null;if(returnMenu==='pause')this.pause();else this.close();}
+                    break;
+                case 'clear-report':
+                    G.HonroClearReportUI.open(this,id);
                     break;
                 case 'result-continue':
                     this.resultContinue();
@@ -1294,7 +1298,7 @@
             this.updateAudio();
             try {
                 const dt = Math.min(.06, Math.max(0, (now - this.prev) / 1000));
-                this.prev = now;
+                this.prev = now;G.HonroClearReport.time(this,now);
                 this.validateStick();
                 if(G.HonroAct3Void?.blocked(this)){this.acc=0;G.HonroAct3Void.frame(this,dt);requestAnimationFrame(t=>this.frame(t));return;}
                 if(G.HonroSodanWithdrawal.frame(this,dt)){requestAnimationFrame(t=>this.frame(t));return;}

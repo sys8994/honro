@@ -1,9 +1,9 @@
 """Actual Chromium fixtures for confirmed menu review gaps, not normal fullplay."""
-import json,sys
+import json,sys,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import launch,serve_game,ROOT
-OUT=ROOT/'game/docs/stage-clear-report/evidence/phase0';OUT.mkdir(parents=True,exist_ok=True)
+OUT=Path(os.environ.get('HONRO_PHASE0_OUT',str(ROOT/'game/docs/stage-clear-report/evidence/phase0')));OUT.mkdir(parents=True,exist_ok=True)
 checks=[]
 def check(name,ok):
  assert ok,name
