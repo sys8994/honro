@@ -1,169 +1,88 @@
-"""Real MP3 and keyboard regression for encounter boundaries, ESC and result screens.
-
-Victory/defeat states are constructed to exercise navigation; this is not a combat clear.
-Each page uses an isolated browser context and never touches the user's save.
-"""
+"""Real browser MP3/label checks. Debug launches and synthetic ended are not full plays/listening."""
 import json
+from urllib.parse import urlsplit, unquote
 from playwright.sync_api import sync_playwright
-from browser_support import ROOT, launch
+from browser_support import ROOT, launch, serve_game
 
-checks = []
-errors = []
+CATALOG = json.loads((ROOT/'shared/data/bgm.json').read_text())
+OUT = ROOT/'_local/reports/bgm-acts'
+OUT.mkdir(parents=True, exist_ok=True)
 
+def run():
+    rows = []
+    with serve_game() as base, sync_playwright() as p:
+        browser = launch(p)
+        for width, height in [(1280, 800), (390, 844)]:
+            context = browser.new_context(viewport={'width': width, 'height': height}, is_mobile=width<700, has_touch=width<700)
+            page = context.new_page(); errors = []; requests = []
+            page.on('pageerror', lambda e: errors.append(str(e)))
+            page.on('request', lambda r: requests.append(unquote(urlsplit(r.url).path).split('/')[-1]) if '.mp3' in r.url else None)
+            page.goto(base+'/HONRO.html'); page.wait_for_function('document.documentElement.dataset.honroReady')
+            assert page.evaluate('HONRO_BGM_TRACKS.length') == 7, 'Build the seven-track source first'
+            page.wait_for_timeout(400)
+            assert set(requests) <= {'main.mp3'}, requests
+            initial = list(requests)
+            page.get_by_role('button', name='설정', exact=True).click()
+            def playing(index):
+                item = CATALOG[index]
+                page.wait_for_function('''arg=>{const m=HonroApp.audio.music,l=document.getElementById('bgm-now-playing');
+                  return m.track===arg.index && m.current?.currentTime>.08 && !m.current.paused && !m.outgoing
+                    && !l.hidden && l.textContent==='배경음 - '+arg.title;}''', arg={'index':index,'title':item['title']})
+                assert page.evaluate('HonroApp.audio.music.status().playing') == 1
+                assert unquote(urlsplit(page.evaluate('HonroApp.audio.music.current.currentSrc')).path).endswith('/'+item['file'])
+            playing(0); page.locator('#modal button.close').click()
+            page.evaluate('HonroApp.debugMode=true')
+            mappings = []
+            for stage, index in [(1,1),(9,3),(10,3),(11,4),(20,5),(21,1),(30,2)]:
+                page.evaluate('(s)=>HonroApp.launch(s)', stage); playing(index)
+                assert page.evaluate('HonroApp.audio.music.current.currentTime') < 2
+                mappings.append({'stage':stage,'file':CATALOG[index]['file']})
+            for stage, sequence in [(1,[1,2,3,1]),(11,[4,5,6,4])]:
+                page.evaluate('HonroApp.showTitle()'); playing(0)
+                page.evaluate('(s)=>HonroApp.launch(s)', stage); playing(sequence[0])
+                for index in sequence[1:]:
+                    page.evaluate("HonroApp.audio.music.current.dispatchEvent(new Event('ended'))")
+                    playing(index); assert not page.evaluate('HonroApp.audio.music.current.loop')
+            # Retry uses the actual pause menu action and advances within act 2.
+            page.evaluate('if(HonroApp.dialogue)HonroStory.finish(HonroApp);HonroApp.turnNotice=null;HonroApp.pause();window.kept=HonroApp.audio.music.current')
+            before = page.evaluate('kept.currentTime'); page.wait_for_timeout(200)
+            assert page.evaluate('kept.currentTime') > before
+            page.locator('[data-action="retry"]').click(); playing(5)
+            page.evaluate('if(HonroApp.dialogue)HonroStory.finish(HonroApp);HonroApp.turnNotice=null;HonroApp.settings();window.kept=HonroApp.audio.music.current')
+            page.locator('#setting-music').uncheck(); page.wait_for_function('HonroApp.audio.music.current.paused&&document.getElementById("bgm-now-playing").hidden')
+            page.locator('#setting-music').check(); playing(5); assert page.evaluate('HonroApp.audio.music.current===kept')
+            page.evaluate('HonroApp.profile.settings.musicVolume=0;HonroApp.audio.configure(HonroApp.profile.settings)')
+            page.wait_for_function('HonroApp.audio.music.current.paused&&document.getElementById("bgm-now-playing").hidden')
+            page.evaluate('HonroApp.profile.settings.musicVolume=.4;HonroApp.audio.configure(HonroApp.profile.settings)'); playing(5)
+            page.locator('#modal button.close').click()
+            page.evaluate('HonroApp.showRest()'); playing(0)
+            page.evaluate('window.kept=HonroApp.audio.music.current;HonroApp.showTitle()'); playing(0)
+            assert page.evaluate('HonroApp.audio.music.current===kept')
+            page.screenshot(path=str(OUT/f'title-{width}.png'))
+            assert not errors and not page.evaluate('HonroApp.audio.music.errors')
+            rows.append({'width':width,'initialMp3Requests':initial,'mappings':mappings,'cycles':[[1,2,3,1],[4,5,6,4]],'retryMuteVolumeRestTitle':True,'errors':errors})
+            context.close()
+        context=browser.new_context(); page=context.new_page()
+        page.route('**/battle-6.mp3',lambda route:route.abort())
+        page.goto(base+'/HONRO.html'); page.wait_for_function('document.documentElement.dataset.honroReady')
+        page.get_by_role('button',name='설정',exact=True).click()
+        page.evaluate('HonroApp.close();HonroApp.debugMode=true;HonroApp.launch(11)')
+        for track in [4,5]:
+            page.wait_for_function('n=>HonroApp.audio.music.track===n&&HonroApp.audio.music.current.currentTime>.08',arg=track)
+            page.evaluate("HonroApp.audio.music.current.dispatchEvent(new Event('ended'))")
+        page.wait_for_function('HonroApp.audio.music.errors.length>0&&HonroApp.audio.music.track===4&&HonroApp.audio.music.current.currentTime>.08')
+        rows.append({'failedBattle6ReturnsToBattle4':True});context.close()
+        editor=browser.new_page();editor.goto(base+'/HONRO_WORKSHOP.html');editor.wait_for_function('window.HonroWorkshopAPI')
+        editor.click('[data-tab="play"]');editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
+        play=editor.frames[1];play.evaluate('if(HonroApp.dialogue)HonroStory.finish(HonroApp);HonroApp.turnNotice=null')
+        play.locator('#battlecanvas').click(position={'x':300,'y':200})
+        play.wait_for_function('HonroApp.audio.music.track===1&&HonroApp.audio.music.current.currentTime>.08')
+        play.wait_for_function('document.getElementById("bgm-now-playing").textContent==="배경음 - 장막 너머의 음"')
+        editor.evaluate('window.oldAudio=HonroWorkshopAPI.getPlayApp().audio');editor.click('#stopPlay')
+        assert editor.evaluate('oldAudio.music.current===null&&oldAudio.music.outgoing===null')
+        rows.append({'workshopPlaybackLabelAndDispose':True});browser.close()
+    (OUT/'browser.json').write_text(json.dumps({'note':'Debug stage entry, real short MP3 playback; ended accelerated; no full listening/combat clear.','checks':rows},ensure_ascii=False,indent=2))
+    print(json.dumps(rows,ensure_ascii=False))
 
-def check(name, ok, detail=None):
-    assert ok, (name, detail)
-    checks.append({'name': name, 'detail': detail})
-    print('PASS', name, detail or '', flush=True)
-
-
-def skip_story(page):
-    for _ in range(12):
-        skip = page.locator('[data-action="dialogue-skip"]')
-        if not skip.count():
-            return
-        skip.click()
-        page.wait_for_timeout(50)
-    raise AssertionError('Story did not finish')
-
-
-def song(page, name, track):
-    page.wait_for_function('''track => {
-        const m=HonroApp.audio.music;
-        return m.status().track===track && m.current?.currentTime>.08 && !m.current.paused && !m.outgoing;
-    }''', arg=track)
-    actual = page.evaluate('''() => {const m=HonroApp.audio.music;return {
-        ...m.status(),source:decodeURIComponent(m.current.currentSrc.split('/').pop()),
-        label:document.getElementById('bgm-now-playing').textContent};}''')
-    check(name, actual['playing'] == 1 and actual['source'].startswith(f'{track:02} ')
-          and not actual['errors'], actual)
-
-
-def esc_resume(page, keyboard, prefix, track):
-    skip_story(page)
-    page.evaluate('window.keptMusic=HonroApp.audio.music.current;window.keptIndex=HonroApp.audio.music.battleIndex')
-    for turn in range(3):
-        keyboard.press('Escape')
-        page.wait_for_function("document.querySelector('.pause-dialog') && !HonroApp.audio.music.paused")
-        before = page.evaluate('keptMusic.currentTime')
-        page.wait_for_timeout(120)
-        check(prefix+f' ESC menu {turn+1} keeps the same song playing', page.evaluate('''before => {
-            const m=HonroApp.audio.music;return m.current===keptMusic&&m.battleIndex===keptIndex
-                &&m.status().playing===1&&keptMusic.currentTime>before+.05;
-        }''', before))
-        if turn == 0:
-            page.click('[data-action="settings"]')
-            page.locator('[data-setting="music"]').uncheck()
-            page.locator('[data-setting="music"]').check()
-            check(prefix+' battle settings retain the playing song', page.evaluate(
-                'HonroApp.audio.music.current===keptMusic&&HonroApp.audio.music.status().playing===1'))
-        keyboard.press('Escape')
-        song(page, prefix+f' ESC resume {turn+1}', track)
-        check(prefix+f' ESC resume {turn+1} retains stream', page.evaluate('HonroApp.audio.music.current===keptMusic'))
-
-
-def result_screen(page, keyboard, prefix, track, phase):
-    skip_story(page)
-    page.evaluate('''phase => {const a=HonroApp;window.resultMusic=a.audio.music.current;
-        a.engine.b.phase=phase;a.outcome();}''', phase)
-    song(page, prefix+' outro stays on battle theme', track)
-    skip_story(page)
-    page.wait_for_selector('.result')
-    song(page, prefix+' result stays on battle theme', track)
-    keyboard.press('Escape')
-    song(page, prefix+' ESC closing result stays on battle theme', track)
-    check(prefix+' result and ESC never replace the stream', page.evaluate('HonroApp.audio.music.current===resultMusic'))
-
-
-def retry(page, keyboard, prefix, track):
-    skip_story(page)
-    keyboard.press('Escape')
-    page.evaluate('''() => {const m=HonroApp.audio.music;window.musicSelections=[];
-        window.selectMusic=m.select;m.select=function(...args){musicSelections.push(args[0]);return selectMusic.apply(this,args);};}''')
-    page.click('[data-action="retry"]')
-    song(page, prefix+' retry starts next battle song', track)
-    check(prefix+' retry never selects main even during mounting', page.evaluate('!musicSelections.includes("main")'))
-    page.evaluate('() => {HonroApp.audio.music.select=selectMusic;}')
-    skip_story(page)
-
-
-with sync_playwright() as p:
-    browser = launch(p)
-    page = browser.new_page(viewport={'width': 1365, 'height': 768})
-    page.on('pageerror', lambda e: errors.append(str(e)))
-    page.goto((ROOT/'HONRO.html').as_uri())
-    page.wait_for_function('window.HonroApp')
-    page.click('.title-actions [data-action="rest"]')
-    skip_story(page)
-    page.click('[data-action="journey-enter"][data-id="1"]')
-    song(page, 'game first battle', 2)
-    esc_resume(page, page.keyboard, 'game', 2)
-    # Leave an unfinished battle and continue the very same saved encounter.
-    page.evaluate('HonroApp.audio.music.current.currentTime=20;window.savedSongTime=HonroApp.audio.music.current.currentTime')
-    page.keyboard.press('Escape')
-    page.click('.pause-menu [data-action="map"]')
-    song(page, 'game map uses main theme', 1)
-    page.evaluate('HonroApp.showTitle()')
-    page.click('[data-action="continue"]')
-    song(page, 'game saved encounter keeps its song', 2)
-    check('game saved encounter restarts the normal playlist from zero', page.evaluate('HonroApp.audio.music.current.currentTime<.9&&savedSongTime>=20'))
-    result_screen(page, page.keyboard, 'game victory', 2, 'won')
-    page.keyboard.press('Escape')
-    page.click('.pause-menu [data-action="map"]')
-    song(page, 'game actual battlefield exit uses main theme', 1)
-    skip_story(page)
-    page.click('.journey-screen [data-action="rest"]')
-    skip_story(page)
-    if page.locator('[data-action="journey-enter"][data-id="2"]').count():
-        page.click('[data-action="journey-enter"][data-id="2"]')
-    song(page, 'game main to stage 2 restarts normal playlist at 02', 2)
-    check('game new stage starts its battle track at the beginning', page.evaluate('HonroApp.audio.music.current.currentTime<.9'))
-    retry(page, page.keyboard, 'game', 3)
-    result_screen(page, page.keyboard, 'game defeat', 3, 'lost')
-    retry(page, page.keyboard, 'game next song', 4)
-    # Track 05 belongs to the act finale, not an arbitrary elite or boss flag.
-    page.evaluate('''() => {const u=HonroApp.engine.b.units.find(u=>u.side===1);
-        u.boss=true;u.awake=true;window.testBossId=u.id;}''')
-    song(page, 'game earlier-stage boss keeps normal battle music', 4)
-    page.evaluate('''() => {const a=HonroApp;a.engine.b.honroStage=10;a.stageId=10;a.updateAudio();}''')
-    song(page, 'game boss appears', 5)
-    check('game normal to boss starts 05 from zero', page.evaluate('HonroApp.audio.music.current.currentTime<.9'))
-    page.evaluate('HonroApp.audio.music.current.currentTime=20')
-    page.evaluate('''() => {const a=HonroApp,u=a.engine.unit(testBossId);u.dead=true;u.hp=0;}''')
-    esc_resume(page, page.keyboard, 'game boss', 5)
-    page.keyboard.press('Escape')
-    page.click('.pause-menu [data-action="map"]')
-    song(page, 'game boss exit', 1)
-    check('game boss to main restarts 01 from zero', page.evaluate('HonroApp.audio.music.current.currentTime<.9'))
-    page.evaluate('HonroApp.showTitle()')
-    page.click('[data-action="continue"]')
-    song(page, 'game saved boss encounter preserves boss theme after boss death', 5)
-    check('game main to saved boss restarts 05 from zero', page.evaluate('HonroApp.audio.music.current.currentTime<.9'))
-    page.close()
-
-    editor = browser.new_page(viewport={'width': 1365, 'height': 768})
-    editor.on('pageerror', lambda e: errors.append(str(e)))
-    editor.goto((ROOT/'HONRO_WORKSHOP.html').as_uri())
-    editor.wait_for_function('window.HonroWorkshopAPI')
-    editor.click('[data-tab="play"]')
-    editor.wait_for_function('HonroWorkshopAPI.getPlayApp()?.engine')
-    play = editor.frames[1]
-    skip_story(play)
-    play.locator('#battlecanvas').click(position={'x': 300, 'y': 200})
-    song(play, 'Workshop first battle', 2)
-    esc_resume(play, editor.keyboard, 'Workshop', 2)
-    retry(play, editor.keyboard, 'Workshop', 3)
-    result_screen(play, editor.keyboard, 'Workshop victory', 3, 'won')
-    retry(play, editor.keyboard, 'Workshop after victory', 4)
-    result_screen(play, editor.keyboard, 'Workshop defeat', 4, 'lost')
-    retry(play, editor.keyboard, 'Workshop wrap', 2)
-    editor.evaluate('window.oldPlayAudio=HonroWorkshopAPI.getPlayApp().audio')
-    editor.click('#stopPlay')
-    check('Workshop Stop releases both music streams', editor.evaluate(
-        'oldPlayAudio.music.current===null&&oldPlayAudio.music.outgoing===null'))
-    browser.close()
-
-check('No uncaught transition browser errors', not errors, errors)
-(ROOT/'_local/reports/bgm-transitions.json').write_text(json.dumps({
-    'note': 'Victory/defeat were constructed to check navigation, not manual combat clears.',
-    'checks': checks, 'errors': errors}, ensure_ascii=False, indent=2)+'\n', encoding='utf-8', newline='\n')
+if __name__=='__main__':
+    run()

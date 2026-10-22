@@ -36,7 +36,7 @@ ES 모듈과 JSON을 불러오므로 로컬에서도 HTTP를 사용합니다. �
 - 기본 주소 `https://<사용자>.github.io/<저장소>/`는 `index.html`을 통해 게임으로 이동합니다. 쿼리와 `#` 뒤의 진입 옵션도 유지합니다.
 - 게임 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO.html`
 - 편집기 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO_WORKSHOP.html`
-- 배포 필수 파일은 `index.html`, `HONRO.html`, `web/` 전체와 `assets/bgm/`의 MP3 5개입니다. 편집기도 공개하려면 `HONRO_WORKSHOP.html`을 함께 포함합니다. `npm run build`가 두 HTML과 콘텐츠 해시 자산을 함께 최신화합니다. Playtest는 `web/entries/game.<hash>.html?embedded=1`을 직접 열며 기존 공개 주소와 저장키는 유지합니다.
+- 배포 필수 파일은 `index.html`, `HONRO.html`, `web/` 전체와 `assets/bgm/`의 MP3 7개입니다. 편집기도 공개하려면 `HONRO_WORKSHOP.html`을 함께 포함합니다. `npm run build`가 두 HTML과 콘텐츠 해시 자산을 함께 최신화합니다. Playtest는 `web/entries/game.<hash>.html?embedded=1`을 직접 열며 기존 공개 주소와 저장키는 유지합니다.
 
 Pages는 파일명의 대소문자를 구분합니다. [GitHub 공식 안내](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)를 참고합니다.
 
@@ -117,3 +117,13 @@ npm.cmd run build
 `npm run review-job -- help`로 현재 소스 또는 승인된 전체 막 실행을 재개 가능한 검수 작업으로 시작할 수 있습니다. 기존 구현/빌드/회귀를 실제 실행하고 정확한 HTML·외부 자산 해시와 연결된 브라우저 관찰을 반입합니다. 미해결 중요한 선택, 정상 플레이, 최종 미술 검수는 별도 대기하며 자동 승인·공개 배포하지 않습니다. CLI·증거 형식·검수 보고서·재개 절차는 [의도 파이프라인](game/docs/INTENT_PIPELINE.md#실행재개-가능한-검수-작업)을 참고합니다.
 
 지형·적 편성·증원은 [변경 구간의 교전 확인](game/docs/ENCOUNTER_ACCEPTANCE.md)에 따라 해당 구간의 실제 역할·이동·퀘스트를 짧게 확인합니다. `encounter:review`는 선택형 기록 도구이며 manifest·별도 검수자는 필수가 아닙니다. 알려진 관련 결함과 미확인 범위를 보고하고, 도구의 형식 통과를 미관·재미의 자동 승인으로 표시하지 않습니다.
+
+## BGM 첨부 정리 (2026-10-22, 통합 대기)
+
+현재 규칙은 [BGM 목록](assets/bgm/README.md)에 있습니다. 파일은 `main.mp3`, `battle-1.mp3`–`battle-6.mp3`이며 표시 제목과 첨부 ID·Git blob은 `shared/data/bgm.json`에서 관리합니다. 메인은 **혼로**, 1·3막은 **장막 너머의 음 → 하늘의 그림자 → 산 자와 남은 자**, 2막은 **불길의 춤 → 암막 → 불완전한 의식**을 순환합니다. 9·10장은 battle 3으로 시작합니다. 우하단 `배경음 - 곡명` 형식을 유지합니다.
+
+이 브랜치는 **미완료·master 통합 금지** 상태입니다. 새 첨부 battle 5/6의 준비 요청은 성공했으나 로컬 바이트 전송과 내부 목적지 1회 재시도가 실패했습니다. 현재 5개 기존 blob만 첨부 해시 일치·전체 MP3 decode·길이 확인을 완료했습니다. 원본 바이트와 Git 이력은 보존했습니다. 7곡 메타데이터/제목, App의 1/9/10/11/20/21/30장 연결과 순환·재시도·off/on·420ms crossfade는 소스/오디오 대역 검사로 확인합니다. 청취 페이지에서는 기존 5곡의 짧은 실제 Chromium 재생·제목·입력 전 MP3 요청 0개를 확인했습니다. 변경된 Game/Workshop 검수와 전체 7곡 청취를 수행한 것은 아닙니다.
+
+재개 시 `node tests/bgm-assets.mjs`, `node tests/audio.mjs`, `node tests/music-titles.mjs`, `npm --prefix game run typecheck`, `npm run build`, `python tests/bgm-transitions.py`, `node tests/web-split.mjs`를 사용합니다. `bgm-assets`와 build는 누락된 battle 5/6을 현재 실패로 보고합니다. 변경된 게임의 브라우저 화면·오디오, 초기 네트워크와 Workshop 재생은 빌드 후 확인해야 합니다. master/Pages는 변경하지 않았습니다.
+
+생성물의 이전 파일 참조도 아직 남아 있습니다. 누락 첨부 확보 후 `npm run build`로 Game/Workshop·web를, `node tools/character-catalog/build.mjs`로 오디오를 생성하지 않는 캐릭터 도감의 내장 런타임 참조를 갱신해야 합니다. 미술 원본은 수정하지 않습니다.

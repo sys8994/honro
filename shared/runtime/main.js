@@ -919,7 +919,8 @@
             // outro/result screens and ESC. Combat phase is not a navigation state.
             const b=this.engine?.b,inBattle=(this.endingGallery?.debug?.screen||this.screen)==='battle'&&!!b;
             const session=inBattle?(this.training?(this.trainingMusicSession||b.session):b.session):undefined;
-            this.audio?.update(inBattle?'battle':'main',document.hidden||!!G.HonroAct3Void?.blocked(this),session,inBattle&&(b.honroStage===9||b.honroStage===10)?4:undefined);
+            const stage=Number(b?.honroStage||this.stageId),act=stage>=11&&stage<=20?2:1;
+            this.audio?.update(inBattle?'battle':'main',document.hidden||!!G.HonroAct3Void?.blocked(this),session,inBattle&&(stage===9||stage===10)?3:undefined,act);
             this.updateMusicLabel();
         }
         updateMusicLabel(){

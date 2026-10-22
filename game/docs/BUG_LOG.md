@@ -4367,3 +4367,11 @@ HUD의 32~36px 내부 타일과 공통 스탬프의 둥근 이중 프레임을 �
 ### 2026-10-22 · 소환 만료 뒤 표시 참조 정리 통합
 
 실제 소환 피격→pause/resume→만료/prune 뒤 settledHits가 제거된 객체를 유지하던 조건부 참조 정리3줄(b8487309)을 최신 master 기반 아키텍처에 선택 통합했다. 실제 lifecycle/Canvas와 pause·HUD·저장 경계는 통합 기록에 남긴다. 원래 점증 렉 원인/FPS 개선으로 표현하지 않는다. `render-update-architecture-20261022/INTEGRATION.md`.
+
+## 막별 BGM 목록·첨부 제목 정리 — 2026-10-22 (통합 대기)
+
+- 원인: 4곡 공통 순환·옛 boss 슬롯·5곡 빌드 및 제목/청취 경로가 새 7곡 배치와 맞지 않았다.
+- 변경: main/battle 1–6의 명시 JSON, 1·3막 [1,2,3]/2막 [4,5,6], 막 경계 초기화·목록 내 실패 회복, 9·10장 동일 blob battle 3 우선, legacy boss 정규화. 기존 스트리밍/제스처/설정/크로스페이드·저장과 미술을 보존했다.
+- 확인: 기존 5개 첨부 hash 일치/전체 FFmpeg decode·ffprobe, 오디오 대역 30개·7곡 제목·타입 검사 통과. 실제 App 함수의 1/9/10/11/20/21/30 연결 포함.
+- 별도 Chromium 확인: 청취 페이지의 기존 5곡 짧은 실제 재생/currentTime·제목·동시 1곡·입력 전 MP3 요청 0개. 새 Game/Workshop 검수는 아니다.
+- 차단: 새 battle 5/6 바이트 전송 실패와 내부 목적지 1회 재시도 실패. 자산 검사/build는 누락으로 실패했으며 생성물 재빌드와 변경된 Game/Workshop 브라우저 검수는 대기다. 상세 현행 상태는 assets/bgm/README.md. master/Pages는 미변경.
