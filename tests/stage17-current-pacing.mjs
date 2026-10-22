@@ -42,7 +42,7 @@ let nativePhysicsMs=resume?.nativePhysicsMs||0,attackPlanningMs=resume?.attackPl
 let frames=resume?.frames||0,storyFrames=resume?.storyFrames||0,planningMs=resume?.planningMs||0,inputCount=resume?.inputCount||0,lastRound=0,stopReason=null,known=new Set(b.units.map(u=>u.id));
 const started=performance.now(),segmentStart={frames,storyFrames,nativePhysicsMs,attackPlanningMs};
 const record=row=>actions.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,goal:g.HonroAct2.current(b)?.id,missionGoal:g.HonroAct2.current(b)?.id,...plain(row)});
-const event=app.event.bind(app);app.event=text=>{notices.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,text});return event(text);};
+const event=app.event.bind(app);app.event=(text,...options)=>{notices.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,text,options:plain(options)});return event(text,...options);};
 const hurt=e.hurt.bind(e);e.hurt=function(u,...args){const before=u.hp,out=hurt(u,...args);if(u.hp<before)damage.push({round:b.round,frame:frames,target:u.id,side:u.side,owner:args[1],amount:before-u.hp,remaining:u.hp,dead:u.dead,source:args[5],skill:args[6]});return out;};
 for(const name of ['move','jump','fire','wait','select']){const fn=e[name].bind(e);e[name]=(...args)=>{inputCount++;return fn(...args);};}
 liveAudit=auditVertical14Engine(b,e,()=>({round:b.round,frame:frames,goal:g.HonroAct2.current(b)?.id}));
