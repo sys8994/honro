@@ -1,0 +1,501 @@
+{
+  "round": 10,
+  "phase": "won",
+  "initialSeed": 19388,
+  "initialEnemies": 11,
+  "actionCounts": {
+    "E": 2,
+    "move": 28,
+    "defend": 20,
+    "fire": 13,
+    "forward-before-shot": 2,
+    "jump": 1,
+    "nav-replan": 1,
+    "fire-anchor": 1,
+    "continue": 2,
+    "E-lamp": 1,
+    "detour-prefix": 3,
+    "drop": 4,
+    "land": 4
+  },
+  "acceptedPlayerActions": 37,
+  "deaths": [],
+  "births": [
+    {
+      "round": 1,
+      "frame": 289,
+      "turn": 2,
+      "id": "event-1",
+      "source": "hold-silence-0",
+      "x": 3915,
+      "y": 5534.814814814815
+    },
+    {
+      "round": 1,
+      "frame": 289,
+      "turn": 2,
+      "id": "event-2",
+      "source": "hold-silence-0",
+      "x": 4025,
+      "y": 5551.111111111111
+    }
+  ],
+  "allocation": {
+    "archer": {
+      "xp": 57076,
+      "level": 15,
+      "earned": 31,
+      "spent": 30,
+      "left": 1,
+      "statTraining": 6,
+      "loadout": [
+        "A01",
+        "A14",
+        "A11",
+        "A05"
+      ],
+      "ranks": {
+        "A01": 1,
+        "A14": 8,
+        "A11": 8,
+        "A05": 8
+      }
+    },
+    "mage": {
+      "xp": 25941,
+      "level": 11,
+      "earned": 23,
+      "spent": 23,
+      "left": 0,
+      "statTraining": 6,
+      "loadout": [
+        "M01",
+        "M04",
+        "M11",
+        "M03"
+      ],
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 5,
+        "M03": 5,
+        "M11": 5
+      }
+    },
+    "knight": {
+      "xp": 46638,
+      "level": 14,
+      "earned": 29,
+      "spent": 29,
+      "left": 0,
+      "statTraining": 6,
+      "loadout": [
+        "S00",
+        "S03",
+        "S01",
+        "S09"
+      ],
+      "ranks": {
+        "S00": 1,
+        "S03": 8,
+        "S01": 8,
+        "S09": 7
+      }
+    },
+    "occultist": {
+      "xp": 54346,
+      "level": 15,
+      "earned": 31,
+      "spent": 31,
+      "left": 0,
+      "statTraining": 6,
+      "loadout": [
+        "O01",
+        "O04",
+        "O08",
+        "O06"
+      ],
+      "ranks": {
+        "O01": 1,
+        "O02": 1,
+        "O03": 1,
+        "O04": 8,
+        "O06": 7,
+        "O07": 1,
+        "O08": 7
+      }
+    }
+  },
+  "initialHeroes": [
+    {
+      "cls": "archer",
+      "level": 15,
+      "hp": 856,
+      "maxHp": 856,
+      "ranks": {
+        "A01": 1,
+        "A14": 8,
+        "A11": 8,
+        "A05": 8
+      },
+      "loadout": [
+        "A01",
+        "A14",
+        "A11",
+        "A05"
+      ],
+      "focus": 199
+    },
+    {
+      "cls": "mage",
+      "level": 11,
+      "hp": 785,
+      "maxHp": 785,
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 5,
+        "M03": 5,
+        "M11": 5
+      },
+      "loadout": [
+        "M01",
+        "M04",
+        "M11",
+        "M03"
+      ],
+      "focus": 236
+    },
+    {
+      "cls": "knight",
+      "level": 14,
+      "hp": 1438,
+      "maxHp": 1438,
+      "ranks": {
+        "S00": 1,
+        "S03": 8,
+        "S01": 8,
+        "S09": 7
+      },
+      "loadout": [
+        "S00",
+        "S03",
+        "S01",
+        "S09"
+      ],
+      "focus": 215
+    },
+    {
+      "cls": "occultist",
+      "level": 15,
+      "hp": 1080,
+      "maxHp": 1080,
+      "ranks": {
+        "O01": 1,
+        "O02": 1,
+        "O03": 1,
+        "O04": 8,
+        "O06": 7,
+        "O07": 1,
+        "O08": 7
+      },
+      "loadout": [
+        "O01",
+        "O04",
+        "O08",
+        "O06"
+      ],
+      "focus": 323
+    }
+  ],
+  "planningCandidateLimit": {
+    "perTargetCall": 24,
+    "perSkill": 12,
+    "bestShotFallback": false
+  },
+  "stage19Entry": {
+    "arrived": true,
+    "arrivalScreen": "battle",
+    "rewardOnce": true,
+    "actualGrowthExact": true,
+    "stage": 19,
+    "round": 1,
+    "scope": "Ordinary completed18 result/entry only. No19 movement, combat, ritual or tick.",
+    "wholeBattleContinueExact": true
+  },
+  "usedSkills": {
+    "S00": {
+      "actions": 2,
+      "totalCost": 16,
+      "costs": [
+        8
+      ],
+      "hpDamage": 480
+    },
+    "O04": {
+      "actions": 3,
+      "totalCost": 117,
+      "costs": [
+        39
+      ],
+      "hpDamage": 660
+    },
+    "A01": {
+      "actions": 4,
+      "totalCost": 0,
+      "costs": [
+        0
+      ],
+      "hpDamage": 552
+    },
+    "S09": {
+      "actions": 3,
+      "totalCost": 45,
+      "costs": [
+        15
+      ],
+      "hpDamage": 641
+    },
+    "O01": {
+      "actions": 2,
+      "totalCost": 0,
+      "costs": [
+        0
+      ],
+      "hpDamage": 160
+    }
+  },
+  "damageTaken": 150,
+  "limits": [
+    "Prior-clear ledger is a first-clear/recruit reward fixture, not a Stages1–17 playthrough.",
+    "Native production App/Engine; DOM/render/storage and pause clock are test doubles.",
+    "A route graph and projectile simulations choose inputs; this is not browser UI, touch, human time, fun or balance approval.",
+    "Actual C.train paid equipped ranks after stat6, lowest legal rank/slot order; one supported progress-first variant, no policy search.",
+    "No consumables; no test-side actor pose/HP/focus/movement budget/objective writes after entry. Simulation and planning wall time are reported separately."
+  ],
+  "freshCombatCheckout": "1a087612f8a73c93d43a8c0ee61ef85f6d9c2b95",
+  "combatSource": {
+    "mode": "current-earned-bounded-search-and-detour",
+    "rosterMode": "canonical",
+    "canonicalProjectSha256": "e02c1a9038f9557f3cd4f3b4c150d7a839e0cf192cfd2dc8736ecc30d14a45e5",
+    "pairedBaseline": null,
+    "sourceHash": "e02c1a9038f9557f3cd4f3b4c150d7a839e0cf192cfd2dc8736ecc30d14a45e5",
+    "runtimeSha256": "dffe928ae1763ec5197ab656225bde9203c2067a4e8fb7b9510b7fce59e581d1",
+    "gameplayProjectSha256": "71a6253117c2c416c669877da7a48e63c0aa042f68184f39ee3912c143ae1400",
+    "gameplayRuntimeSha256": "6acb9ff8a84b22b2cad5706b778615bed9eb1f384f9d5a60094014b986418713",
+    "stageSha256": "58b53e3ffb901ad5cce71c0ef367e2d60a5aa5de93942c92387a3b4bdb39a466",
+    "controllerSha256": "83a8f9f8a79b8c8f000f4ee2fc5b79c66126a1e3421a3c991690c35680ab94e3",
+    "helperSha256": "7402d16ae1cd080ed841d51a1953653d29efbbea5e3839cfadcf80f17931ad22",
+    "checkoutCommit": "1a087612f8a73c93d43a8c0ee61ef85f6d9c2b95",
+    "productionCommit": null
+  },
+  "settlementCheckout": "2814d26009bc74b74466630bcc6d045cdd20b860",
+  "checkpoints": [
+    {
+      "id": "silence",
+      "round": 1
+    },
+    {
+      "id": "upper-chain",
+      "round": 2
+    },
+    {
+      "id": "hold-silence",
+      "round": 3
+    },
+    {
+      "id": "bell-descent",
+      "round": 3
+    },
+    {
+      "id": "leak",
+      "round": 8
+    },
+    {
+      "id": "keeper",
+      "round": 10
+    }
+  ],
+  "preRewardHeroes": [
+    {
+      "id": "p-archer",
+      "hp": 826,
+      "maxHp": 856,
+      "focus": 199,
+      "maxFocus": 199,
+      "moveLeft": 1330.4002958150375,
+      "x": 7726.629859811837,
+      "y": 7529.471915888344,
+      "dead": false
+    },
+    {
+      "id": "p-mage",
+      "hp": 785,
+      "maxHp": 785,
+      "focus": 236,
+      "maxFocus": 236,
+      "moveLeft": 1591,
+      "x": 7258.645634726019,
+      "y": 7306.371948375052,
+      "dead": false
+    },
+    {
+      "id": "p-knight",
+      "hp": 1384,
+      "maxHp": 1438,
+      "focus": 215,
+      "maxFocus": 215,
+      "moveLeft": 1905,
+      "x": 7463.93547948333,
+      "y": 7470.05495688395,
+      "dead": false
+    },
+    {
+      "id": "p-occultist",
+      "hp": 1052,
+      "maxHp": 1080,
+      "focus": 323,
+      "maxFocus": 323,
+      "moveLeft": 1803,
+      "x": 7367.810601938888,
+      "y": 7404.2439879452095,
+      "dead": false
+    }
+  ],
+  "keeper": {
+    "hp": 1,
+    "maxHp": 880,
+    "side": 2,
+    "dead": false,
+    "honroSubdued": true
+  },
+  "livingDistantEnemies": [
+    "sb-b-spirit-high",
+    "sb-c-bat-front",
+    "sb-d-lamp",
+    "sb-g-front",
+    "sb-g-bat-high"
+  ],
+  "externalActorWrites": [],
+  "firstFailedTrial": {
+    "checkoutCommit": "3a09f30cca781374a6853836675eae4be541b64e",
+    "phase": "lost",
+    "round": 3,
+    "deaths": [
+      {
+        "round": 3,
+        "frame": 3146,
+        "turn": 18,
+        "target": "p-mage",
+        "side": 0,
+        "sideAfter": 0,
+        "owner": "p-occultist",
+        "amount": 726,
+        "remaining": 0,
+        "dead": true,
+        "source": "normal",
+        "skill": "O04",
+        "shot": 12,
+        "projectileId": 14,
+        "direct": true,
+        "origin": {
+          "x": 3001.2134090085274,
+          "y": 5417.681598719148,
+          "t": 0.16576736072029627,
+          "n": {
+            "x": -1,
+            "y": 0
+          },
+          "unit": {
+            "id": "p-mage",
+            "name": "담허",
+            "role": "mage",
+            "cls": "mage",
+            "side": 0,
+            "x": 3029.2134090085274,
+            "y": 5461.718435824031,
+            "vx": 0,
+            "vy": 0,
+            "hp": 0,
+            "maxHp": 785,
+            "r": 22,
+            "h": 92,
+            "focus": 236,
+            "maxFocus": 236,
+            "regen": 20,
+            "level": 11,
+            "attack": 3.976,
+            "armor": 0.17,
+            "shield": 0,
+            "bound": 0,
+            "mark": 0,
+            "breaks": 0,
+            "acted": true,
+            "moveLeft": 1591,
+            "maxMove": 1591,
+            "walkSpeed": 332,
+            "angle": -4.778395390977987,
+            "lastPower": 0.5192884333362484,
+            "loadout": [
+              "M01",
+              "M04",
+              "M11",
+              "M03"
+            ],
+            "tune": 0.5,
+            "facing": 1,
+            "hurt": 0.7,
+            "anim": 0,
+            "airborne": false,
+            "fixed": false,
+            "spawnX": 2830,
+            "spawnY": 5464.473684210527,
+            "intent": "",
+            "dead": true,
+            "ranks": {
+              "M01": 1,
+              "M06": 1,
+              "M02": 1,
+              "M04": 5,
+              "M03": 5,
+              "M11": 5
+            },
+            "group": 0,
+            "awake": true,
+            "lastAct": 0,
+            "aggroUntil": 0,
+            "xpBudget": 0,
+            "xpGranted": 0,
+            "killRewarded": false,
+            "damageBy": {},
+            "honroAlly": false,
+            "honroCivilian": false,
+            "critChance": 0.065,
+            "critMultiplier": 1.705,
+            "cooldowns": {},
+            "honroEncounterSupport": "sb-suppression-court",
+            "moving": 0,
+            "walkPhase": 7.853479315079387,
+            "eaterSwallow": 0,
+            "landing": 0,
+            "impactCooldown": 0,
+            "salheunFlash": 0,
+            "honroShieldSources": {},
+            "jumping": false,
+            "jucheon": 0,
+            "jucheonReady": false
+          }
+        }
+      }
+    ],
+    "stopReason": null
+  },
+  "settlementHarnessCorrection": "Fresh combat won R10; first outcome call was outside the test guard production boundary, so settlement was resumed from the actual terminal save with no extra combat.",
+  "scope": "One fixed fresh policy after the latest user interaction rule; v4 sparse required-target/objective receipt entry, not a 1–17 playthrough or a human average/optimal time. Initial failed R3 prior-rule trial is retained. No item use or actor/resource/goal injection after entry.",
+  "initialCombatEnemies": 10,
+  "initialObjectiveTargetActors": 1,
+  "initialEnemiesIncludesObjectiveTarget": true,
+  "oldFailedTrialEvidence": "tests/fixtures/stage18-short-20261022/first-failed-r3.json.gz"
+}
