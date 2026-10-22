@@ -2,7 +2,7 @@
 
 필수 실제 행동을 **하부 피난처 주민에게 붙은 혼 분리 1회**로 줄였다. 구조한 뒤 기존 북쪽 단서 대사를 자동 기록한다. 서쪽/중앙 매듭 두 곳, 4라운드 의식터 방어, 별도 흔적 조사 E, 먼 잔적 소탕을 요구하지 않는다. 기존 진행 저장도 이 조건으로 이어진다.
 
-브랜치 `fix/stage11-quest-simplification-20261022`. 최초 기준 master는 `c5b51319ef887943726434d84db596f07254bbd3`이며 최신 NPC 버튼·BASE4·13장 공개 자료의 master `e974bfe7a1138b55c5b4648e8a38e192ad0a69f6`도 통합했다. **최종 코드·생성물·정상 턴/브라우저 실행 SHA는 `67dd496a5981c1dee47d0cb4d01573191ba68bb3`**다. 후속 커밋은 테스트·문서·증거만 보존한다. master/Pages는 부모의 최종 검수·단독 반영 대상이다.
+브랜치 `fix/stage11-quest-simplification-20261022`. 최초 기준 master는 `c5b51319ef887943726434d84db596f07254bbd3`이며 최신 NPC 버튼·BASE4·13장 공개 자료의 master `e974bfe7a1138b55c5b4648e8a38e192ad0a69f6`도 통합했다. **퀘스트 런타임·정상 턴/브라우저 실행 SHA는 `67dd496a5981c1dee47d0cb4d01573191ba68bb3`**다. 마지막으로 부모 보존 hotfix master `a23dffb5afab998646817ffd3ee9732d99ce3172`도 통합했다. **최종 통합·생성물 SHA는 `67630c981361d44f991b280f912fdb1fe5134628`**다. 퀘스트·엔진·데이터·UI는67dd와 동일하며 [최종 게임플레이 런타임 바이트 동일성](evidence/runtime-identity.json)을 확인했다. 부모의 기존 보존 정책만 상속했고 긴 플레이 검사는 반복하지 않았다. 후속 커밋은 테스트·문서·증거만 보존한다. master/Pages는 부모의 최종 검수·단독 반영 대상이다.
 
 ## 무엇이 필수였고 무엇을 없앴나
 
@@ -47,7 +47,7 @@
 - `node tests/stage11-quest-simplification.mjs`: 원본/재생성 author, 다른29장/30장 제외, 전체 물리·자원 보존, 각 중간 단계·20턴 대화 양쪽 cursor·export/Continue, 자연 완료·trace/보상1회, 지원 제외, 정본 원고·실제 주민 몸짓/카메라 통과. [기록](evidence/state.json), [로그](evidence/state.log).
 - `python tests/stage11-quest-simplification-browser.py`: Chromium390×844 실제 새 목표, 옛20턴 주민 대화1/2 Continue, 화면 안의 다음/넘기기 **실제 터치**, 같은20턴 완료·보상1회 통과. pageerror/HTTP 실패0. [기록](evidence/browser.json).
 - `node tests/web-split.mjs`: 생성357파일 해시/바이트·데이터 재조립·Game/embedded 기본 진입·embedded 저장 보호·Workshop iframe 연결 통과. [로그](evidence/web-split.log).
-- 최신 master의 main/NPC 대화/초상화 설정·presentation CSS·portraits·기존 web-build는 바이트 동일하다. master 공개 자산 **454개를 모두 같은 경로·바이트로 보존**했고 삭제는0개다. 오래된 공개 파일4개는 이번 빌드 후 다시 보존했으며 새 세대 보존 정책을 별도로 만들지 않았다. [소스·공개 파일 보존](evidence/preservation.json).
+- 최신 master의 main/NPC 대화/초상화 설정·presentation CSS·portraits·기존 web-build는 바이트 동일하다. master 공개 자산 **460개를 모두 같은 경로·바이트로 보존**했고 삭제는0개다. a23의 부모 보존 정책을 그대로 상속했다. 정책 목록 밖에 있던 master의 이전 파일4개도 명시적으로 보존했고 새 세대 보존 정책을 별도로 만들지 않았다. 실제 다음 발행 SHA 등록·Pages 배포는 부모 담당이다. [소스·공개 파일 보존](evidence/preservation.json).
 
 직접 열어 확인한 JPG: [현재 주민 목표·다음 행동](evidence/fresh-rescue-objective-390x844.jpg), [20턴 주민 대화1/2와 보이는 조작 버튼](evidence/round20-resident-dialogue-1of2-390x844.jpg), [같은20턴 정상 완료](evidence/round20-natural-result-390x844.jpg). 전부1MB 미만이며 [크기/해시](evidence/screenshots.json)를 보존했다. 20턴 화면의 부분 기록/XP 표시는 호환성 fixture의 실제 결과이며 실제 사용자의 완료 보고서로 주장하지 않는다.
 
@@ -55,6 +55,6 @@
 
 ## 커밋·원격 상태
 
-초기 코드 `ce18bd73`, 안정 master 세대 보존 빌드 `27d12992`, 검사 `6fd8b8f3`는 비강제 push 완료다. 이후 로컬 `a5e9aa91` push에서 **`fatal: could not read Username for 'https://github.com': No such device or address`**가 발생했다. 대상은 `origin/fix/stage11-quest-simplification-20261022`이며 해당 쓰기는 실패했다. 로컬 a5e9aa91와 최종 e974 통합/확정 원고 `67dd496a` 및 후속 문서 커밋은 보존했으며, 재인증 없이 다른 쓰기 경로로 우회하지 않았다. 명시적 승인 거절이나 결과 불명 쓰기는 아니다. 원격 최종 확인은 부모에게 인계한다.
+초기 코드 `ce18bd73`, 안정 master 세대 보존 빌드 `27d12992`, 검사 `6fd8b8f3`는 비강제 push 완료다. 이후 로컬 `a5e9aa91` push에서 **`fatal: could not read Username for 'https://github.com': No such device or address`**가 발생했다. 대상은 `origin/fix/stage11-quest-simplification-20261022`이며 해당 쓰기는 실패했다. 로컬 a5e9aa91와 e974 통합/확정 원고 `67dd496a`, a23 상속/최종 생성물 `67630c98` 및 후속 문서 커밋은 보존했으며, 재인증 없이 다른 쓰기 경로로 우회하지 않았다. 명시적 승인 거절이나 결과 불명 쓰기는 아니다. 원격 최종 확인은 부모에게 인계한다.
 
 남은 배포 차단은 **GitHub push 인증 복구**다. 런타임 진행 차단은 발견하지 않았다. 재현 입력·실제 JPG·최종 코드/생성물은 로컬 커밋과 Git bundle로 함께 인계한다. master 직접 변경·Pages 배포는 수행하지 않았다.

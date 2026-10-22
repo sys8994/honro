@@ -1,5 +1,5 @@
 {
-  "master": "e974bfe7a1138b55c5b4648e8a38e192ad0a69f6",
+  "master": "a23dffb5afab998646817ffd3ee9732d99ce3172",
   "preservedSources": [
     {
       "file": "shared/runtime/main.js",
@@ -28,14 +28,14 @@
     },
     {
       "file": "shared/web-build.mjs",
-      "sha256": "00c9d07eeddd4fcf59f2610f6bb3ff8810fcf35a3636a0e3ebec2e01ade61f06",
+      "sha256": "c2510dfa38027f4af78cd9d82b04b69d08e237770a7eeac62c6f5cb7f68619a2",
       "latestMasterExact": true
     }
   ],
-  "masterPublishedFilesRetainedByteExact": 454,
+  "masterPublishedFilesRetainedByteExact": 460,
   "deletedMasterPublicFiles": [],
   "newRetentionPolicy": false,
-  "manifestSHA256": "7f428356e2c91fd3567c57dbdec2cfd37de22646822158afcc243b05c9fb3d84",
+  "manifestSHA256": "7d2062fedff979a92363d62255067e6871474e22414543cf666a9506cb3b1bfc",
   "playtest": "web/entries/game.1470fe39f56a4782.html?embedded=1",
   "approvedScript": {
     "revision": 1,
@@ -77,5 +77,8 @@
     ],
     "arrival": "일행은 연목의 동쪽 외문을 지났다. 아래 피난처에는 아직 혼에게 붙잡힌 사람이 남아 있었다.",
     "summary": "산길에 붙잡힌 주민을 구했다. 혼과 발자국이 북쪽 산으로 이어진다는 단서를 확인하고 그쪽으로 향했다."
-  }
+  },
+  "npcMaster": "e974bfe7a1138b55c5b4648e8a38e192ad0a69f6",
+  "inheritedParentRetentionHotfix": "a23dffb5afab998646817ffd3ee9732d99ce3172",
+  "finalBuildCommit": "67630c981361d44f991b280f912fdb1fe5134628"
 }
