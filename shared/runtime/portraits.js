@@ -81,7 +81,18 @@ function approved(actor,cls,options={}){
  return asset?.src?{...asset,id:manifest.id,expression}:null;
 }
 function state(canvas,value){if(canvas.dataset.portraitState!==value)canvas.dataset.portraitState=value;const busy=value==='loading'?'true':'false';if(canvas.getAttribute('aria-busy')!==busy)canvas.setAttribute('aria-busy',busy);}
-function imageCrop(asset,canvas){const crop=cropFor(asset.bust,asset.head,canvas.width,canvas.height);if(crop.width<=asset.width)crop.x=Math.max(0,Math.min(asset.width-crop.width,crop.x));if(crop.height<=asset.height)crop.y=Math.max(0,Math.min(asset.height-crop.height,crop.y));return crop;}
+function imageCrop(asset,canvas){
+ const crop=cropFor(asset.bust,asset.head,canvas.width,canvas.height);
+ // mount owns this retained dialogue slot. Give its approved bust 12% more
+ // breathing room without changing HUD, NPC/failure crops, or the UI layout.
+ if(canvas.id==='story-portrait-canvas'){
+  const center=crop.x+crop.width/2;crop.width/=.88;crop.height/=.88;crop.x=center-crop.width/2;
+ }
+ if(crop.width<=asset.width)crop.x=Math.max(0,Math.min(asset.width-crop.width,crop.x));
+ else crop.x=(asset.width-crop.width)/2; // keep the whole wide gat inside the frame
+ if(crop.height<=asset.height)crop.y=Math.max(0,Math.min(asset.height-crop.height,crop.y));
+ return crop;
+}
 function paint(canvas,view){
  if(views.get(canvas)!==view)return;
  if(view.entry.state==='ready'){

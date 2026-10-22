@@ -4514,3 +4514,7 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 ## 2026-10-22 — 18장 묵종 바닥·천장 미술 후보
 
 793a 기준 거대 청동 종/내부단면·65지형/27경로·기계/고유 암반 앞면을 보존하고 act2-floor/cave-roof의 낮은 대비 공유 파단만 저작했다.17장 단면 계산을 저작 helper로 재사용하며15–17 승인 전체 JSON 바이트와 교정17 anchor를 보존했다. 근접 종 아래 두 면/실제 모바일 기본 입구의 큰 면을 선택 교정했고, 미술/생성물f420f2ff03689363b4a4aebc1b35714c2a6f1026·최종 QA/검사/전 캡처af25a4ea34075bffbde4c026b903d5b34662d439의 clean 동일 소스로3집중+종합을 직접 열었다. 전체 비미술/생성chapter18 exact·build/type·반복Path2D0·3종 상태/원본 배우 exact·브라우저Scene JSON순수성·선택3경로6기대/공개11그래프479파일/934 chapter13 bytes 보호 통과. 초기 캡처 메타데이터 원본-engine 혼동을 QA 도구에서 교정하고 final2의0/100/200을 assert했다. 상태는 기존 shift의 강제 렌더이며 정상 전투/안전 하강·저장 완료가 아니다. ms/FPS 미측정·부모 미술 판단 대기, master/Pages 변경·별도 기계적 후보 병합 없음. [전후·최종 사진·검수·한계](stage-review/stage18-floor-finish-20261022/README.md).
+
+## 대사 BASE4 초상 상반신 여백 — 2026-10-22
+
+승인 이미지가 대사창에서 얼굴 위주로 보인다는 요청에 맞춰 portraits.js imageCrop의 기존 retained dialogue canvas만 표시 크기를88%로 조정했다(crop 폭/높이÷0.88). 상단 고정과 머리 안전영역을 유지하고 넓은 휘겸 갓은 원본 전체 폭을 가운데 넣는다. 원본/배포 이미지·HUD·NPC/error 벡터 crop·대사/CSS·게임플레이·18장은 변경하지 않는다.390×844/844×390 네 명 전후 픽셀·상반신/얼굴·같은 창/본문/버튼 영역, 긴 대사·주민/text-only 터치를 확인했다. HUD/주민 vector 동일 픽셀,4request/4decode 재사용, ready/abort/8초timeout 후120회 추가paint0을 확인했다. 실기기/성능 향상 검사가 아니며 master/Pages는 부모 담당이다. 사진·정확한 실행 조건은 dialogue-portrait-zoomout-20261022 보고서에 보존한다.
