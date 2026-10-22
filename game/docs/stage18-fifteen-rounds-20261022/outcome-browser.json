@@ -1,0 +1,1029 @@
+{
+  "checkedCommit": "2814d26009bc74b74466630bcc6d045cdd20b860",
+  "input": "_local/reports/stage18-short-20261022/fresh-final/terminal-checkpoint.json",
+  "inputSha256": "02da5835496772aa24f67e5292b946be88e040ef81cf4bc7751fc3dde05cf153",
+  "wholeBattleContinueExact": true,
+  "renderPure": true,
+  "lifecycle": {
+    "ordinaryOutroDisplayed": true,
+    "dialogue": [
+      {
+        "title": "묵종",
+        "index": 0,
+        "line": [
+          "종지기",
+          "왜 처음 울었는지도 모르면서! 종을 비우면 무엇으로 막을 것이냐.",
+          {
+            "rowId": "18.beats.keeper:386318ec09",
+            "evidenceGoal": "keeper",
+            "storyId": "act2-v1:act2-18-keeper",
+            "storyTitle": "묵종",
+            "delivery": "dialogue",
+            "waitForClear": false,
+            "afterAction": 65,
+            "waitActor": "p-archer",
+            "waitRound": 10,
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "종지기"
+                },
+                {
+                  "actor": "p-archer"
+                },
+                {
+                  "actor": "p-knight"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "act2-keeper"
+                },
+                {
+                  "actor": "p-archer"
+                },
+                {
+                  "actor": "p-knight"
+                },
+                {
+                  "actor": "p-occultist"
+                }
+              ],
+              "id": "18.beats.keeper:386318ec09",
+              "speakerPolicy": "world"
+            }
+          }
+        ]
+      },
+      {
+        "title": "묵종",
+        "index": 1,
+        "line": [
+          "설오",
+          "그건 더 찾겠습니다. 당신에게 사람을 또 맡기지는 않겠습니다.",
+          {
+            "rowId": "18.beats.keeper:86a4c8312d",
+            "evidenceGoal": "keeper",
+            "storyId": "act2-v1:act2-18-keeper",
+            "storyTitle": "묵종",
+            "delivery": "dialogue",
+            "waitForClear": false,
+            "afterAction": 65,
+            "waitActor": "p-archer",
+            "waitRound": 10,
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "설오"
+                },
+                {
+                  "actor": "act2-keeper"
+                },
+                {
+                  "actor": "p-knight"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "act2-keeper"
+                },
+                {
+                  "actor": "p-archer"
+                },
+                {
+                  "actor": "p-knight"
+                },
+                {
+                  "actor": "p-occultist"
+                }
+              ],
+              "id": "18.beats.keeper:86a4c8312d",
+              "speakerPolicy": "world"
+            }
+          }
+        ]
+      },
+      {
+        "title": "묵종",
+        "index": 2,
+        "line": [
+          "휘겸",
+          "사슬 놓으시오. 손은 앞으로.",
+          {
+            "rowId": "18.beats.keeper:49ba953239",
+            "evidenceGoal": "keeper",
+            "storyId": "act2-v1:act2-18-keeper",
+            "storyTitle": "묵종",
+            "delivery": "dialogue",
+            "waitForClear": false,
+            "afterAction": 65,
+            "waitActor": "p-archer",
+            "waitRound": 10,
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "휘겸"
+                },
+                {
+                  "actor": "p-occultist"
+                },
+                {
+                  "actor": "p-archer"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "act2-keeper"
+                },
+                {
+                  "actor": "p-archer"
+                },
+                {
+                  "actor": "p-knight"
+                },
+                {
+                  "actor": "p-occultist"
+                }
+              ],
+              "id": "18.beats.keeper:49ba953239",
+              "speakerPolicy": "world"
+            }
+          }
+        ]
+      },
+      {
+        "title": "묵종",
+        "index": 3,
+        "line": [
+          "서술",
+          "휘겸이 종지기를 묶었다. 낮아진 울림 사이로 종 안의 소리가 들렸다.",
+          {
+            "storyId": "act1-v6:outcome-18",
+            "storyTitle": "묵종",
+            "rowId": "18.outro:b196accb21",
+            "kind": "narration",
+            "camera": {
+              "intent": "situation",
+              "targets": [
+                {
+                  "actor": "act2-keeper"
+                },
+                {
+                  "actor": "p-archer"
+                },
+                {
+                  "actor": "p-knight"
+                },
+                {
+                  "actor": "p-occultist"
+                }
+              ],
+              "padding": 65,
+              "maxScale": 0.8,
+              "id": "18.outro:b196accb21",
+              "speakerPolicy": "none"
+            }
+          }
+        ]
+      },
+      {
+        "title": "묵종",
+        "index": 4,
+        "line": [
+          "소단",
+          "이제 꺼낼 수 있어요. 가족들… 이름을 아는 분들을 불러줘요.",
+          {
+            "storyId": "act1-v6:outcome-18",
+            "storyTitle": "묵종",
+            "rowId": "18.outro:e8c4944c23",
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "소단"
+                },
+                {
+                  "actor": "p-knight"
+                },
+                {
+                  "actor": "p-archer"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "act2-keeper"
+                },
+                {
+                  "actor": "p-archer"
+                },
+                {
+                  "actor": "p-knight"
+                },
+                {
+                  "actor": "p-occultist"
+                }
+              ],
+              "id": "18.outro:e8c4944c23",
+              "speakerPolicy": "world"
+            }
+          }
+        ]
+      },
+      {
+        "title": "묵종",
+        "index": 5,
+        "line": [
+          "휘겸",
+          "마을에 알리겠소. 이 통로로 데려오리다.",
+          {
+            "storyId": "act1-v6:outcome-18",
+            "storyTitle": "묵종",
+            "rowId": "18.outro:228b3a13e9",
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "휘겸"
+                },
+                {
+                  "actor": "p-occultist"
+                },
+                {
+                  "actor": "p-archer"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "act2-keeper"
+                },
+                {
+                  "actor": "p-archer"
+                },
+                {
+                  "actor": "p-knight"
+                },
+                {
+                  "actor": "p-occultist"
+                }
+              ],
+              "id": "18.outro:228b3a13e9",
+              "speakerPolicy": "world"
+            }
+          }
+        ]
+      },
+      {
+        "title": "종 안의 사람들",
+        "index": 0,
+        "line": [
+          "서술",
+          "열린 통로로 가족들이 들어왔다. 한 남자는 동생의 망치를, 한 여인은 언니의 밥그릇을 가져왔다.",
+          {
+            "storyId": "act1-v6:entry-19",
+            "storyTitle": "종 안의 사람들",
+            "optional": false,
+            "kind": "narration",
+            "presentation": "inline",
+            "rowId": "arrival.19:511bad7dcc",
+            "arrivalCamera": {
+              "id": "arrival.19:511bad7dcc",
+              "intent": "situation",
+              "targets": [
+                {
+                  "anchor": "bell"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.8
+            },
+            "camera": {
+              "id": "arrival.19:511bad7dcc",
+              "intent": "situation",
+              "targets": [
+                {
+                  "anchor": "bell"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.8,
+              "speakerPolicy": "none"
+            },
+            "stagingScene": "direction-v2:entry-19"
+          }
+        ]
+      },
+      {
+        "title": "종 안의 사람들",
+        "index": 0,
+        "line": [
+          "서술",
+          "열린 통로로 가족들이 들어왔다. 한 남자는 동생의 망치를, 한 여인은 언니의 밥그릇을 가져왔다.",
+          {
+            "storyId": "act1-v6:entry-19",
+            "storyTitle": "종 안의 사람들",
+            "optional": false,
+            "kind": "narration",
+            "presentation": "inline",
+            "rowId": "arrival.19:511bad7dcc",
+            "arrivalCamera": {
+              "id": "arrival.19:511bad7dcc",
+              "intent": "situation",
+              "targets": [
+                {
+                  "anchor": "bell"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.8
+            },
+            "camera": {
+              "id": "arrival.19:511bad7dcc",
+              "intent": "situation",
+              "targets": [
+                {
+                  "anchor": "bell"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.8,
+              "speakerPolicy": "none"
+            },
+            "stagingScene": "direction-v2:entry-19"
+          }
+        ]
+      },
+      {
+        "title": "종 안의 사람들",
+        "index": 0,
+        "line": [
+          "서술",
+          "열린 통로로 가족들이 들어왔다. 한 남자는 동생의 망치를, 한 여인은 언니의 밥그릇을 가져왔다.",
+          {
+            "storyId": "act1-v6:entry-19",
+            "storyTitle": "종 안의 사람들",
+            "optional": false,
+            "kind": "narration",
+            "presentation": "inline",
+            "rowId": "arrival.19:511bad7dcc",
+            "arrivalCamera": {
+              "id": "arrival.19:511bad7dcc",
+              "intent": "situation",
+              "targets": [
+                {
+                  "anchor": "bell"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.8
+            },
+            "camera": {
+              "id": "arrival.19:511bad7dcc",
+              "intent": "situation",
+              "targets": [
+                {
+                  "anchor": "bell"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.8,
+              "speakerPolicy": "none"
+            },
+            "stagingScene": "direction-v2:entry-19"
+          }
+        ]
+      },
+      {
+        "title": "종 안의 사람들",
+        "index": 0,
+        "line": [
+          "서술",
+          "열린 통로로 가족들이 들어왔다. 한 남자는 동생의 망치를, 한 여인은 언니의 밥그릇을 가져왔다.",
+          {
+            "storyId": "act1-v6:entry-19",
+            "storyTitle": "종 안의 사람들",
+            "optional": false,
+            "kind": "narration",
+            "presentation": "inline",
+            "rowId": "arrival.19:511bad7dcc",
+            "arrivalCamera": {
+              "id": "arrival.19:511bad7dcc",
+              "intent": "situation",
+              "targets": [
+                {
+                  "anchor": "bell"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.8
+            },
+            "camera": {
+              "id": "arrival.19:511bad7dcc",
+              "intent": "situation",
+              "targets": [
+                {
+                  "anchor": "bell"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.8,
+              "speakerPolicy": "none"
+            },
+            "stagingScene": "direction-v2:entry-19"
+          }
+        ]
+      },
+      {
+        "title": "종 안의 사람들",
+        "index": 0,
+        "line": [
+          "서술",
+          "열린 통로로 가족들이 들어왔다. 한 남자는 동생의 망치를, 한 여인은 언니의 밥그릇을 가져왔다.",
+          {
+            "storyId": "act1-v6:entry-19",
+            "storyTitle": "종 안의 사람들",
+            "optional": false,
+            "kind": "narration",
+            "presentation": "inline",
+            "rowId": "arrival.19:511bad7dcc",
+            "arrivalCamera": {
+              "id": "arrival.19:511bad7dcc",
+              "intent": "situation",
+              "targets": [
+                {
+                  "anchor": "bell"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.8
+            },
+            "camera": {
+              "id": "arrival.19:511bad7dcc",
+              "intent": "situation",
+              "targets": [
+                {
+                  "anchor": "bell"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.8,
+              "speakerPolicy": "none"
+            },
+            "stagingScene": "direction-v2:entry-19"
+          }
+        ]
+      },
+      {
+        "title": "종 안의 사람들",
+        "index": 1,
+        "line": [
+          "담허",
+          "임시 그릇을 놓았네. 혼을 나눠 받으면 여기서 천도진으로 보내겠어.",
+          {
+            "storyId": "act1-v6:entry-19",
+            "storyTitle": "종 안의 사람들",
+            "rowId": "19.story:7ff466e163",
+            "entryCamera": {
+              "id": "19.story:7ff466e163",
+              "intent": "object-introduction",
+              "targets": [
+                {
+                  "marker": "route"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.85
+            },
+            "camera": {
+              "id": "19.story:7ff466e163",
+              "intent": "object-introduction",
+              "targets": [
+                {
+                  "marker": "route"
+                }
+              ],
+              "padding": 80,
+              "maxScale": 0.85,
+              "speakerPolicy": "context-portrait"
+            },
+            "stagingScene": "direction-v2:entry-19"
+          }
+        ]
+      },
+      {
+        "title": "종 안의 사람들",
+        "index": 2,
+        "line": [
+          "동생을 잃은 형",
+          "동생 망치를 가져왔어요. 이걸 찾을 것 같아서….",
+          {
+            "storyId": "act1-v6:entry-19",
+            "storyTitle": "종 안의 사람들",
+            "rowId": "19.story:9a21114da5",
+            "direction": [
+              {
+                "type": "move",
+                "actor": "mourner-brother",
+                "towards": {
+                  "marker": "separate-1"
+                },
+                "distance": 48,
+                "duration": 950,
+                "focus": false
+              },
+              {
+                "type": "look",
+                "at": {
+                  "between": [
+                    "mourner-brother",
+                    "occultist"
+                  ]
+                },
+                "duration": 650,
+                "scale": 0.8
+              }
+            ],
+            "stagingScene": "direction-v2:entry-19",
+            "camera": {
+              "intent": "object-introduction",
+              "targets": [
+                {
+                  "actor": "mourner-brother"
+                },
+                {
+                  "actor": "occultist"
+                }
+              ],
+              "padding": 65,
+              "maxScale": 0.8,
+              "id": "19.story:9a21114da5",
+              "speakerPolicy": "context-portrait"
+            }
+          }
+        ]
+      },
+      {
+        "title": "종 안의 사람들",
+        "index": 3,
+        "line": [
+          "소단",
+          "이름을 불러주세요. 제가 찾아볼게요.",
+          {
+            "storyId": "act1-v6:entry-19",
+            "storyTitle": "종 안의 사람들",
+            "rowId": "19.story:5dd549995b",
+            "direction": [
+              {
+                "type": "look",
+                "actor": "occultist",
+                "at": {
+                  "marker": "separate-1"
+                },
+                "pose": "hold-bell",
+                "camera": false,
+                "duration": 650
+              }
+            ],
+            "stagingScene": "direction-v2:entry-19",
+            "camera": {
+              "intent": "conversation",
+              "targets": [
+                {
+                  "speaker": "소단"
+                },
+                {
+                  "actor": "mourner-brother"
+                },
+                {
+                  "actor": "p-mage"
+                }
+              ],
+              "padding": 40,
+              "maxScale": 1.05,
+              "participants": [
+                {
+                  "actor": "p-mage"
+                },
+                {
+                  "actor": "mourner-brother"
+                },
+                {
+                  "actor": "p-occultist"
+                }
+              ],
+              "id": "19.story:5dd549995b",
+              "speakerPolicy": "world"
+            }
+          }
+        ]
+      },
+      {
+        "title": "종 안의 사람들",
+        "index": 4,
+        "line": [
+          "안내",
+          "담허 · 임시 천도진 열기",
+          {
+            "kind": "guide",
+            "focus": "interact",
+            "storyId": "act1-v6:entry-19",
+            "storyTitle": "종 안의 사람들",
+            "stagingScene": "direction-v2:entry-19",
+            "camera": {
+              "intent": "objective",
+              "targets": [
+                {
+                  "objective": "interact"
+                }
+              ],
+              "padding": 100,
+              "maxScale": 0.75,
+              "id": "19:entry:4",
+              "speakerPolicy": "none"
+            }
+          }
+        ]
+      }
+    ],
+    "settlement": {
+      "clear": {
+        "visits": 1,
+        "rounds": 10
+      },
+      "heroes": {
+        "archer": {
+          "xp": 61116,
+          "level": 15,
+          "ranks": {
+            "A01": 1,
+            "A14": 8,
+            "A11": 8,
+            "A05": 8
+          },
+          "statTraining": 6
+        },
+        "mage": {
+          "xp": 27223,
+          "level": 11,
+          "ranks": {
+            "M01": 1,
+            "M06": 1,
+            "M02": 1,
+            "M04": 5,
+            "M03": 5,
+            "M11": 5
+          },
+          "statTraining": 6
+        },
+        "knight": {
+          "xp": 54380,
+          "level": 15,
+          "ranks": {
+            "S00": 1,
+            "S03": 8,
+            "S01": 8,
+            "S09": 7
+          },
+          "statTraining": 6
+        },
+        "occultist": {
+          "xp": 60543,
+          "level": 15,
+          "ranks": {
+            "O01": 1,
+            "O02": 1,
+            "O03": 1,
+            "O04": 8,
+            "O06": 7,
+            "O07": 1,
+            "O08": 7
+          },
+          "statTraining": 6
+        }
+      },
+      "report": {
+        "version": 1,
+        "gameVersion": "honro-report-20261022-v1",
+        "attempt": "honro-map-stage-18-1792709940301-1792709941203-1",
+        "stage": 18,
+        "scope": "campaign",
+        "partial": false,
+        "startedRound": 1,
+        "rounds": 10,
+        "seconds": 0,
+        "retries": 0,
+        "order": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "heroes": {
+          "archer": {
+            "damage": 432,
+            "received": 30,
+            "kills": 1,
+            "healing": 0,
+            "shield": 0,
+            "shieldReceived": 0,
+            "uses": 4,
+            "skills": {
+              "A01": {
+                "damage": 432,
+                "received": 0,
+                "kills": 1,
+                "healing": 0,
+                "shield": 0,
+                "shieldReceived": 0,
+                "uses": 4,
+                "usesKnown": true
+              }
+            }
+          },
+          "mage": {
+            "damage": 0,
+            "received": 0,
+            "kills": 0,
+            "healing": 0,
+            "shield": 0,
+            "shieldReceived": 0,
+            "uses": 0,
+            "skills": {}
+          },
+          "knight": {
+            "damage": 1121,
+            "received": 54,
+            "kills": 2,
+            "healing": 0,
+            "shield": 0,
+            "shieldReceived": 0,
+            "uses": 5,
+            "skills": {
+              "S00": {
+                "damage": 480,
+                "received": 0,
+                "kills": 1,
+                "healing": 0,
+                "shield": 0,
+                "shieldReceived": 0,
+                "uses": 2,
+                "usesKnown": true
+              },
+              "S09": {
+                "damage": 641,
+                "received": 0,
+                "kills": 1,
+                "healing": 0,
+                "shield": 0,
+                "shieldReceived": 0,
+                "uses": 3,
+                "usesKnown": true
+              }
+            }
+          },
+          "occultist": {
+            "damage": 820,
+            "received": 66,
+            "kills": 3,
+            "healing": 38,
+            "shield": 36,
+            "shieldReceived": 0,
+            "uses": 5,
+            "skills": {
+              "O04": {
+                "damage": 660,
+                "received": 0,
+                "kills": 3,
+                "healing": 0,
+                "shield": 36,
+                "shieldReceived": 0,
+                "uses": 3,
+                "usesKnown": true
+              },
+              "action:defend": {
+                "damage": 0,
+                "received": 0,
+                "kills": 0,
+                "healing": 38,
+                "shield": 0,
+                "shieldReceived": 0,
+                "uses": 0,
+                "usesKnown": true
+              },
+              "O01": {
+                "damage": 160,
+                "received": 0,
+                "kills": 0,
+                "healing": 0,
+                "shield": 0,
+                "shieldReceived": 0,
+                "uses": 2,
+                "usesKnown": true
+              }
+            }
+          }
+        },
+        "xp": {
+          "archer": {
+            "before": 57076,
+            "last": 61116,
+            "combat": 528,
+            "settlement": 3512,
+            "reunion": 0
+          },
+          "mage": {
+            "before": 25941,
+            "last": 27223,
+            "combat": 144,
+            "settlement": 1138,
+            "reunion": 0
+          },
+          "knight": {
+            "before": 46638,
+            "last": 54380,
+            "combat": 752,
+            "settlement": 6990,
+            "reunion": 0
+          },
+          "occultist": {
+            "before": 54346,
+            "last": 60543,
+            "combat": 1456,
+            "settlement": 4741,
+            "reunion": 0
+          }
+        },
+        "counts": {
+          "kills": 6,
+          "knockouts": 0
+        },
+        "other": {
+          "objects": {
+            "damage": 120,
+            "received": 0,
+            "kills": 0,
+            "healing": 0,
+            "shield": 0,
+            "shieldReceived": 0,
+            "uses": 0
+          },
+          "enemy": {
+            "damage": 0,
+            "received": 150,
+            "kills": 0,
+            "healing": 0,
+            "shield": 0,
+            "shieldReceived": 0,
+            "uses": 0
+          }
+        },
+        "missing": [],
+        "totals": {
+          "damage": 2373,
+          "received": 150,
+          "kills": 6,
+          "healing": 38,
+          "shield": 36,
+          "shieldReceived": 0,
+          "uses": 14
+        },
+        "deferred": false,
+        "reunionStages": null,
+        "completedAt": "2026-10-22T23:00:46.082Z",
+        "difficulty": "normal"
+      },
+      "keeper": {
+        "hp": 1,
+        "side": 2,
+        "subdued": true,
+        "dead": false
+      },
+      "localThreats": [],
+      "livingDistantEnemies": [
+        "sb-b-spirit-high",
+        "sb-c-bat-front",
+        "sb-d-lamp",
+        "sb-g-front",
+        "sb-g-bat-high"
+      ]
+    },
+    "nextView": {
+      "stage": 19,
+      "round": 1,
+      "phase": "aim",
+      "goal": "route",
+      "heroes": [
+        {
+          "cls": "archer",
+          "hp": 856,
+          "maxHp": 856,
+          "focus": 199,
+          "maxFocus": 199,
+          "level": 15
+        },
+        {
+          "cls": "mage",
+          "hp": 785,
+          "maxHp": 785,
+          "focus": 236,
+          "maxFocus": 236,
+          "level": 11
+        },
+        {
+          "cls": "knight",
+          "hp": 1494,
+          "maxHp": 1494,
+          "focus": 223,
+          "maxFocus": 223,
+          "level": 15
+        },
+        {
+          "cls": "occultist",
+          "hp": 1080,
+          "maxHp": 1080,
+          "focus": 323,
+          "maxFocus": 323,
+          "level": 15
+        }
+      ]
+    },
+    "rewardOnce": true,
+    "nextStage": 19,
+    "nextStageArrived": true,
+    "growthExact": true,
+    "nextStageExportContinueWholeBattleExact": true,
+    "scope": "Actual stage18 terminal save restored; no new combat replay."
+  },
+  "scope": "View an actual native normal-input checkpoint in final published-source UI.\nNo combat replay or art change. Freeze frame scheduling, production Continue,\nthen render at a declared inspection camera without editing gameplay state.\n",
+  "view": {
+    "round": 10,
+    "phase": "won",
+    "goal": null,
+    "done": {
+      "silence": true,
+      "upper-chain": true,
+      "hold-silence": true,
+      "bell-descent": true,
+      "leak": true,
+      "keeper": true
+    },
+    "camera": [
+      7900,
+      7360.930232558139,
+      0.4
+    ],
+    "heroes": [
+      {
+        "id": "p-archer",
+        "x": 7726.629859811837,
+        "y": 7529.471915888344,
+        "hp": 826,
+        "focus": 199,
+        "moveLeft": 1330.4002958150375,
+        "dead": false
+      },
+      {
+        "id": "p-mage",
+        "x": 7258.645634726019,
+        "y": 7306.371948375052,
+        "hp": 785,
+        "focus": 236,
+        "moveLeft": 1591,
+        "dead": false
+      },
+      {
+        "id": "p-knight",
+        "x": 7463.93547948333,
+        "y": 7470.05495688395,
+        "hp": 1384,
+        "focus": 215,
+        "moveLeft": 1905,
+        "dead": false
+      },
+      {
+        "id": "p-occultist",
+        "x": 7367.810601938888,
+        "y": 7404.2439879452095,
+        "hp": 1052,
+        "focus": 323,
+        "moveLeft": 1803,
+        "dead": false
+      }
+    ],
+    "enemies": 5
+  },
+  "errors": [],
+  "httpFailures": []
+}

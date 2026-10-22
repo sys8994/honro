@@ -65,7 +65,7 @@ function warnWave(app,source){const b=app.engine.b,m=memory(b);if(m.warnings[sou
 }
 function prepareWaves(app){const b=app.engine.b,a=A.memory(b),hold=A.steps(b).find(s=>s.id==='hold-silence'),h=a.holds?.['hold-silence'];
  if(done(b,'silence')&&!done(b,'hold-silence')&&(h?.spawned||0)<(hold?.wave?.count||0)&&h?.waveRound!==b.round)warnWave(app,'hold-silence-'+(h?.spawned||0));
- const boss=app.engine.unit('act2-keeper');if(boss&&boss.hp<=boss.maxHp*.6&&!a.events['keeper-retaliation'])warnWave(app,'keeper-retaliation');
+ const boss=app.engine.unit('act2-keeper');if(!G.HonroStage18Short?.active(b)&&boss&&boss.hp<=boss.maxHp*.6&&!a.events['keeper-retaliation'])warnWave(app,'keeper-retaliation');
 }
 const execute=W.execute;
 W.execute=function(app,action){const b=app.engine?.b,source=action?.source;

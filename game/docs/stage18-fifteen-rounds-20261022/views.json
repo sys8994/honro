@@ -1,0 +1,139 @@
+{
+  "entry": "web/entries/game.21a0aab6aada752c.js",
+  "checkedCommit": "a94ef3b8fc131b8c04779f4785cfbf15cc51a570",
+  "rows": [
+    {
+      "name": "lowering-warning",
+      "viewport": [
+        1180,
+        757
+      ],
+      "wholeBattleContinueExact": true,
+      "entryOnlyEmptyWarningBucket": false,
+      "renderPure": true,
+      "view": {
+        "round": 3,
+        "phase": "aim",
+        "goal": "bell-descent",
+        "summary": "종 하강 · 각 동행이 경고 뒤 한 번 움직이거나 행동을 마치면 안전을 확인합니다.",
+        "guide": "담허로 억제진을 켜고, 다른 동행으로 고정구를 해제하세요. 종이 내려오면 소단으로 아래의 혼을 수습하고 종지기를 제압하세요.",
+        "heroes": [
+          {
+            "id": "p-archer",
+            "hp": 856,
+            "x": 3076.4929083512634,
+            "y": 5464.4995828441915
+          },
+          {
+            "id": "p-mage",
+            "hp": 785,
+            "x": 3036.5484761606713,
+            "y": 5462.149910362393
+          },
+          {
+            "id": "p-knight",
+            "hp": 1438,
+            "x": 2962,
+            "y": 5461
+          },
+          {
+            "id": "p-occultist",
+            "hp": 1059,
+            "x": 3285.926484422103,
+            "y": 5476.8192049660065
+          }
+        ],
+        "descent": "warning"
+      }
+    },
+    {
+      "name": "mobile-leak",
+      "viewport": [
+        390,
+        844
+      ],
+      "wholeBattleContinueExact": true,
+      "entryOnlyEmptyWarningBucket": false,
+      "renderPure": true,
+      "view": {
+        "round": 8,
+        "phase": "aim",
+        "goal": "keeper",
+        "summary": "5/6 · 종지기 제압",
+        "guide": "담허로 억제진을 켜고, 다른 동행으로 고정구를 해제하세요. 종이 내려오면 소단으로 아래의 혼을 수습하고 종지기를 제압하세요.",
+        "heroes": [
+          {
+            "id": "p-archer",
+            "hp": 856,
+            "x": 4744.776383502987,
+            "y": 7261.414792110124
+          },
+          {
+            "id": "p-mage",
+            "hp": 785,
+            "x": 4322.559464433375,
+            "y": 7386.017737596736
+          },
+          {
+            "id": "p-knight",
+            "hp": 1438,
+            "x": 5482.576702677558,
+            "y": 7420.858900892519
+          },
+          {
+            "id": "p-occultist",
+            "hp": 1080,
+            "x": 6756.019418704786,
+            "y": 7189.1400830421735
+          }
+        ],
+        "descent": "settled"
+      }
+    },
+    {
+      "name": "entry",
+      "viewport": [
+        1180,
+        757
+      ],
+      "wholeBattleContinueExact": false,
+      "entryOnlyEmptyWarningBucket": true,
+      "renderPure": true,
+      "view": {
+        "round": 1,
+        "phase": "aim",
+        "goal": "silence",
+        "summary": "0/6 · 억제진 가동",
+        "guide": "담허로 억제진을 켜고, 다른 동행으로 고정구를 해제하세요. 종이 내려오면 소단으로 아래의 혼을 수습하고 종지기를 제압하세요.",
+        "heroes": [
+          {
+            "id": "p-archer",
+            "hp": 856,
+            "x": 2720,
+            "y": 5467.368421052632
+          },
+          {
+            "id": "p-mage",
+            "hp": 785,
+            "x": 2830,
+            "y": 5464.473684210527
+          },
+          {
+            "id": "p-knight",
+            "hp": 1438,
+            "x": 2962,
+            "y": 5461
+          },
+          {
+            "id": "p-occultist",
+            "hp": 1080,
+            "x": 2610,
+            "y": 5470.263157894737
+          }
+        ],
+        "descent": "suspended"
+      }
+    }
+  ],
+  "scope": "Actual entry/R3/R8 checkpoints; frozen presentation inspection. No second combat run."
+}

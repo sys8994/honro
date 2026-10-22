@@ -14,8 +14,8 @@ function blockedClear(b){
  // may not reintroduce the retired west-cohort clearance gate.
  if(!active(b)||G.HonroAct2Pacing?.active(b)||!A.steps(b).some(s=>s.kind==='clear'))return null;
  const waiting=pending(b),foes=live(b);
- if(done(b,'knot-west')&&!done(b,'clear-west')&&!foes.some(u=>u.honroCohort==='west')&&waiting.some(ev=>(ev.action.actions||[]).some(a=>a.honroCohort==='west')))return'clear-west';
- if(!G.HonroStage11TraceExit?.active(b)&&done(b,'resident')&&!done(b,'clear-road')&&!foes.length&&waiting.length)return'clear-road';
+ if(A.steps(b).some(s=>s.id==='clear-west')&&done(b,'knot-west')&&!done(b,'clear-west')&&!foes.some(u=>u.honroCohort==='west')&&waiting.some(ev=>(ev.action.actions||[]).some(a=>a.honroCohort==='west')))return'clear-west';
+ if(A.steps(b).some(s=>s.id==='clear-road')&&!G.HonroStage11TraceExit?.active(b)&&done(b,'resident')&&!done(b,'clear-road')&&!foes.length&&waiting.length)return'clear-road';
  return null;
 }
 function ready(b,ev){
@@ -178,7 +178,7 @@ A.tick=function(app,dt){
  if(composed(b))prepareEchoWarning(app);
  return result;
 };
-const current=A.current,eligibility=A.eligibility,use=A.use;
+const current=A.current;
 A.current=function(b){
  const id=blockedClear(b),s=id?A.steps(b).find(s=>s.id===id):current(b);
  if(!active(b)||!s||s.kind!=='clear')return s;
@@ -187,8 +187,6 @@ A.current=function(b){
  // without rewriting saved objective text or another chapter's guidance.
  return{...s,label};
 };
-A.eligibility=function(app,m){const id=blockedClear(app.engine?.b);return id?{ok:false,reason:id==='clear-west'?'예고된 서쪽 추격대를 먼저 제압하세요':'예고된 들림의 진입을 기다린 뒤 제압하세요'}:eligibility(app,m);};
-A.use=function(app,m){return blockedClear(app.engine?.b)?false:use(app,m);};
 const state=A.state;
 A.state=function(b){
  const result=state(b);if(!active(b))return result;

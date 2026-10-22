@@ -53,8 +53,8 @@ function lowerPool(z,amount){
 }
 const storedSteps=b=>b.honroAct2Steps||(revision2(b)?(G.HonroObjectiveRevision?.storedSteps(b,2)||H.stages[b.honroStage-1].steps):G.HonroAct2Content.legacySteps[b.honroStage-11]);
 // Retire generic clearance interlocks without rewriting a live snapshot or
-// claiming the player killed anyone. Stage18's explicit redesign has a separate owner.
-const safetyClear=(b,s)=>active(b)&&b.honroStage!==18&&['clear','pacing-secure'].includes(s?.kind);
+// claiming kills. Independent combat, defense, escort and arrival goals stay.
+const safetyClear=(b,s)=>{if(!active(b)||s?.optional||s?.target||!['clear','pacing-secure'].includes(s?.kind))return false;const list=storedSteps(b),at=list.findIndex(q=>q.id===s.id);if(at<0)return false;const next=list.slice(at+1).find(q=>!q.optional&&!['clear','pacing-secure'].includes(q.kind));return !!next&&['interact','rescue','evidence'].includes(next.kind);};
 const steps=b=>storedSteps(b).filter(s=>!safetyClear(b,s));
 const retiredSafety=(b,id)=>storedSteps(b).some(s=>s.id===id&&safetyClear(b,s));
 function prerequisite(b,id){if(memory(b).done[id])return true;const list=storedSteps(b),at=list.findIndex(s=>s.id===id);if(at<0||!safetyClear(b,list[at]))return false;const prior=list.slice(0,at).findLast(s=>!s.optional&&!safetyClear(b,s));return !prior||satisfied(b,prior);}
@@ -114,6 +114,7 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
  if(!s)return{ok:false,reason:current(b)?'먼저 '+current(b).label:'목표 완료'};
  if(['evidence','clear','hold','defeat','destroy','reach','escort','route','pacing-event','pacing-secure'].includes(s.kind))return{ok:false,reason:s.label};
  if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:H.hero[s.requiredClass].name+' 필요'};
+ if(s.kind==='rescue'){const resident=b.units.find(v=>v.id===m.target);if(!resident||resident.dead||resident.hp<=0)return{ok:false,reason:'구조할 주민이 없음'};}
  if(revision2(b)){
   const spirit=b.units.find(v=>v.id===m.spiritId);
   if(s.kind==='rescue'&&spirit&&!spirit.dead&&spirit.hp>spirit.maxHp*.4)return{ok:false,reason:'붙은 혼을 먼저 약화시키세요 · 체력 40% 이하'};
@@ -146,7 +147,7 @@ function use(app,m){const e=app.engine,b=e.b,a=memory(b),s=readySteps(b).find(q=
  else{
   if(!s||s.id!==m.id)return false;
   if(s.kind==='rescue'){
-   const spirit=e.unit(m.spiritId),resident=e.unit(m.target);if(!resident||resident.dead)return false;
+   const spirit=e.unit(m.spiritId),resident=e.unit(m.target);if(!resident||resident.dead||resident.hp<=0)return false;
    G.HonroObjectiveContributions?.approach(b,s.id,e.heroesAlive(),resident,220,!interactionThreats(b,m).length);
    // Extraction attacks the possessing spirit, never the person's HP.
    if(spirit&&!spirit.dead){G.HonroProgression.defeat(e,spirit,e.active);spirit.hp=0;spirit.dead=true;spirit.honroReleased=true;}
@@ -262,7 +263,7 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||app.
   if(!revision2(b)&&b.honroStage===18&&!a.silenced&&b.round>=3&&!a.events['bell-first'])wave(app,'bell-first','echo',2);
   if(revision2(b)){
    const plan=G.HonroAct2Plan.forStage(b.honroStage),boss=e.unit('act2-keeper'),convoy=e.unit('objective');
-   if(plan.bossWave&&boss&&boss.hp<=boss.maxHp*.6&&!a.events['keeper-retaliation'])wave(app,'keeper-retaliation',plan.bossWave.kind,plan.bossWave.count,'wave',plan.bossWave.eliteEvery);
+   if(!G.HonroStage18Short?.active(b)&&plan.bossWave&&boss&&boss.hp<=boss.maxHp*.6&&!a.events['keeper-retaliation'])wave(app,'keeper-retaliation',plan.bossWave.kind,plan.bossWave.count,'wave',plan.bossWave.eliteEvery);
    if(plan.progressWave&&a.escort&&convoy?.x>=4400&&!a.events['convoy-ambush'])wave(app,'convoy-ambush',plan.progressWave.kind,plan.progressWave.count,'hold-convoy',plan.progressWave.eliteEvery);
   }
   for(const u of b.units.filter(u=>u.honroEcho&&!u.dead&&!u.manifested)){
