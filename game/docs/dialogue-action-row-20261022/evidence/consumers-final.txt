@@ -1,0 +1,13 @@
+PASS cold training cards use approved loading policy without vector flash
+PASS mobile 4 training cards share bust framing
+PASS mobile current hero uses approved bust
+PASS landscape 4 training cards share bust framing
+PASS landscape current hero uses approved bust
+PASS 12 training open/close cycles retain nodes and raster/decode cache
+PASS mobile camp tabs/stat summary use approved busts
+PASS landscape camp tabs/stat summary use approved busts
+PASS dialogue bust and small HUD icon purposes are explicit
+PASS all surfaces reuse the same 4 image request/decode entries
+PASS no browser exceptions
+PASS failed training asset keeps bounded fallback across12 openings
+DONE after 12
