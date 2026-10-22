@@ -1,0 +1,8 @@
+PASS rejects missing ID
+PASS rejects hidden ID
+PASS rejects duplicate target
+PASS rejects wrong hash
+PASS rejects unknown state
+PASS rejects pending checksum
+PASS rejects review pending
+PASS final 84 IDs, effects/names/flags/colors unchanged, 84 supplied unique decoded images and strict completion gates

@@ -108,7 +108,7 @@ export function icon(name:string,cls='',size=24){
  const id=name.startsWith('skill:')?name.slice(6):'',spec=id?skillPath(id):{path:MAP_PATHS[name]||P[name]||P.rune,extra:''};
  const svg=`<svg class="icon ${cls}" width="${size}" height="${size}" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="${spec.path}"/>${spec.extra}</svg>`;
  if(!id||!SKILLS[id]||SKILLS[id].enemyOnly)return svg;
- const item=(globalThis as any).HONRO_SKILL_ICON_MANIFEST?.icons?.[id],state=item?.status==='ready'&&item.url?'available':'pending';
- return `<span class="skill-art" data-skill-icon="${id}" data-image-state="${state}" style="--art-size:${size}px" aria-hidden="true">${svg}<img alt="" width="${size}" height="${size}" decoding="async"><span class="skill-art-pending" title="기예 이미지 공급 대기"></span></span>`;
+ const ready=(globalThis as any).HonroSkillImages?.readyURL(id)||'',item=(globalThis as any).HONRO_SKILL_ICON_MANIFEST?.icons?.[id],state=ready?'ready':item?.status==='ready'&&item.url?'available':'pending';
+ return `<span class="skill-art" data-skill-icon="${id}" data-image-state="${state}" style="--art-size:${size}px" aria-hidden="true">${svg}<img ${ready?`src="${ready}"`:""} alt="" width="${size}" height="${size}" decoding="async"><span class="skill-art-pending" title="기예 이미지 공급 대기"></span></span>`;
 }
 export const crest = `<svg viewBox="0 0 120 120" fill="none" aria-hidden="true"><circle cx="60" cy="60" r="42" stroke="currentColor" stroke-width=".8"/><circle cx="60" cy="60" r="34" stroke="currentColor" stroke-width=".5" stroke-dasharray="1 8"/><path d="M60 8 68 47 108 60 68 69 60 111 51 69 11 60 51 47Z" fill="currentColor" fill-opacity=".09" stroke="currentColor"/><path d="m60 36 5 19 19 5-19 5-5 19-5-19-19-5 19-5Z" fill="currentColor"/><path d="m28 91 14-20M88 28 76 44" stroke="currentColor" stroke-width="2"/></svg>`;

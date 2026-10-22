@@ -1,6 +1,9 @@
 ## 2026-10-22 — P0 조이스틱 수직 조준 섹터 이탈 시 이동 허용
 
 최초 수직 의도 `aimOnly`가 이동축도 손을 뗄 때까지 0으로 고정하던 원인을 수정했다. 최초 의도는 유지하고 현재 상/하 ±20° 안에서만 이동을 억제한다. 범위 밖에서는 즉시 기존 deadzone 이동을 허용하고 재진입하면 억제한다. 수평 시작은 이후 수직 진입에도 잠금을 새로 얻지 않는다. 기존 방향·조준·소유권·취소/reset·물리 규칙은 보존하고 기존 라벨/조작 안내만 동작에 맞췄다. 초기 120건/전환 380건, 실제 Chromium touch→PointerEvent 371판정(상하/좌우 19/20/21° 및 drag 이탈/진입), 충전 126건/S13 14건, typecheck/build/web-split 통과. [최종 실행 SHA·JPG·한계·통합 충돌](joystick-aim-sector-release/README.md). 실기기/Safari/Pages는 미검증이며 master/배포는 부모 담당이다.
+## 2026-10-22 — 스킬 아이콘 반복 DOM 교체/벡터 깜빡임
+
+HUD 선택·기력·턴 갱신의 innerHTML 교체와 새 아이콘 loading 초기화가 원인이다. 스킬 ID 버튼 재사용/변경 속성 갱신, 모닥불 키 기반 조정, 동기 ready 마크업·보이는 아이콘 우선 및 제한된 idle decode 큐로 고쳤다. 실제 Chromium 기준/수정 비교, 네트워크와 DOM identity·SVG 관측·실패 복구·원본 보존·한계는 [아이콘 체크포인트](icon-cache-journey-navigation/ICON_READY.md)에 기록한다. 저장/밸런스·입력 기능·원본 이미지는 변경하지 않았다.
 
 ## 2026-10-22 — 휴식터 중심 이동·막별 여정첩 후보
 
