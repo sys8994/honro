@@ -1,0 +1,8211 @@
+{
+  "status": "passed",
+  "browser": "154.0.8037.57",
+  "base": "d33402627e0c632593a388ec19e0b5370cc68439",
+  "scope": "Actual Chromium production App/Engine/Scene. Controlled arena, deterministic stepping. Historical visual module replay only: original-rich uses original shape/glow at size5 with current target snapshot, current-reduced uses base art/skillVisuals at size3.5, restored-rich loads unmodified built candidate. No image compositing.",
+  "headJointTransformChecks": 112,
+  "rows": [
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 580.3651882105264,
+          "hp": 580
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 1,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-360x800-1-matched.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "matched",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 900,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 1100,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 875.04,
+          "y": -170,
+          "x2": 875.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1075.04,
+          "y": -170,
+          "x2": 1075.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 477.33204847616645,
+          "hp": 477
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 580.3651882105264,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 477.33204847616645,
+          "hp": 477
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 3,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-360x800-3-matched.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "matched",
+      "spacing": 100,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 875.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 1075.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-360x800-10-gameplay-scale.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "gameplay-scale",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 804.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 842.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 880.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 918.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 956.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 994.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 1032.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 1070.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1108.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1146.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 964,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 972,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 980,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 988,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 996,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1004,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1012,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1020,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1028,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1036,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 939.04,
+          "y": -170,
+          "x2": 939.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 947.04,
+          "y": -170,
+          "x2": 947.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 955.04,
+          "y": -170,
+          "x2": 955.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 963.04,
+          "y": -170,
+          "x2": 963.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 971.04,
+          "y": -170,
+          "x2": 971.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 979.04,
+          "y": -170,
+          "x2": 979.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 987.04,
+          "y": -170,
+          "x2": 987.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 995.04,
+          "y": -170,
+          "x2": 995.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1003.04,
+          "y": -170,
+          "x2": 1003.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1011.04,
+          "y": -170,
+          "x2": 1011.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 557.7983435179266,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 557.7983435179266,
+          "hp": 558
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-360x800-10-dense-diagnostic.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "dense-diagnostic",
+      "spacing": 8,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 939.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 947.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 955.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 963.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 971.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 979.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 987.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 995.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1003.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1011.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 580.3651882105264,
+          "hp": 580
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 1,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-390x844-1-matched.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "matched",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 900,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 1100,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 875.04,
+          "y": -170,
+          "x2": 875.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1075.04,
+          "y": -170,
+          "x2": 1075.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 477.33204847616645,
+          "hp": 477
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 580.3651882105264,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 477.33204847616645,
+          "hp": 477
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 3,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-390x844-3-matched.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "matched",
+      "spacing": 100,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 875.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 1075.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-390x844-10-gameplay-scale.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "gameplay-scale",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 804.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 842.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 880.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 918.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 956.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 994.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 1032.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 1070.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1108.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1146.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 964,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 972,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 980,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 988,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 996,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1004,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1012,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1020,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1028,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1036,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 939.04,
+          "y": -170,
+          "x2": 939.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 947.04,
+          "y": -170,
+          "x2": 947.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 955.04,
+          "y": -170,
+          "x2": 955.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 963.04,
+          "y": -170,
+          "x2": 963.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 971.04,
+          "y": -170,
+          "x2": 971.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 979.04,
+          "y": -170,
+          "x2": 979.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 987.04,
+          "y": -170,
+          "x2": 987.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 995.04,
+          "y": -170,
+          "x2": 995.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1003.04,
+          "y": -170,
+          "x2": 1003.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1011.04,
+          "y": -170,
+          "x2": 1011.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 557.7983435179266,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 557.7983435179266,
+          "hp": 558
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-390x844-10-dense-diagnostic.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "dense-diagnostic",
+      "spacing": 8,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 939.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 947.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 955.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 963.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 971.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 979.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 987.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 995.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1003.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1011.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 580.3651882105264,
+          "hp": 580
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 1,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-1280x900-1-matched.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "matched",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 900,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 1100,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 875.04,
+          "y": -170,
+          "x2": 875.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1075.04,
+          "y": -170,
+          "x2": 1075.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 477.33204847616645,
+          "hp": 477
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 580.3651882105264,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 477.33204847616645,
+          "hp": 477
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 3,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-1280x900-3-matched.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "matched",
+      "spacing": 100,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 875.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 1075.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-1280x900-10-gameplay-scale.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "gameplay-scale",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 804.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 842.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 880.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 918.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 956.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 994.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 1032.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 1070.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1108.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1146.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 964,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 972,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 980,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 988,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 996,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1004,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1012,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1020,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1028,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1036,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 939.04,
+          "y": -170,
+          "x2": 939.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 947.04,
+          "y": -170,
+          "x2": 947.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 955.04,
+          "y": -170,
+          "x2": 955.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 963.04,
+          "y": -170,
+          "x2": 963.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 971.04,
+          "y": -170,
+          "x2": 971.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 979.04,
+          "y": -170,
+          "x2": 979.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 987.04,
+          "y": -170,
+          "x2": 987.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 995.04,
+          "y": -170,
+          "x2": 995.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1003.04,
+          "y": -170,
+          "x2": 1003.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1011.04,
+          "y": -170,
+          "x2": 1011.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 557.7983435179266,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 557.7983435179266,
+          "hp": 558
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "original-rich",
+      "file": "original-rich-1280x900-10-dense-diagnostic.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "dense-diagnostic",
+      "spacing": 8,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 939.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 947.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 955.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 963.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 971.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 979.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 987.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 995.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1003.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1011.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 580.3651882105264,
+          "hp": 580
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 1,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-360x800-1-matched.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "matched",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 900,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 1100,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 875.04,
+          "y": -170,
+          "x2": 875.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1075.04,
+          "y": -170,
+          "x2": 1075.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 477.33204847616645,
+          "hp": 477
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 580.3651882105264,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 477.33204847616645,
+          "hp": 477
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 3,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-360x800-3-matched.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "matched",
+      "spacing": 100,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 875.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 1075.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-360x800-10-gameplay-scale.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "gameplay-scale",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 804.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 842.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 880.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 918.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 956.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 994.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 1032.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 1070.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1108.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1146.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 964,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 972,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 980,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 988,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 996,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1004,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1012,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1020,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1028,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1036,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 939.04,
+          "y": -170,
+          "x2": 939.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 947.04,
+          "y": -170,
+          "x2": 947.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 955.04,
+          "y": -170,
+          "x2": 955.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 963.04,
+          "y": -170,
+          "x2": 963.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 971.04,
+          "y": -170,
+          "x2": 971.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 979.04,
+          "y": -170,
+          "x2": 979.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 987.04,
+          "y": -170,
+          "x2": 987.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 995.04,
+          "y": -170,
+          "x2": 995.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1003.04,
+          "y": -170,
+          "x2": 1003.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1011.04,
+          "y": -170,
+          "x2": 1011.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 557.7983435179266,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 557.7983435179266,
+          "hp": 558
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-360x800-10-dense-diagnostic.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "dense-diagnostic",
+      "spacing": 8,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 939.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 947.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 955.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 963.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 971.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 979.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 987.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 995.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1003.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1011.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 580.3651882105264,
+          "hp": 580
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 1,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-390x844-1-matched.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "matched",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 900,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 1100,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 875.04,
+          "y": -170,
+          "x2": 875.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1075.04,
+          "y": -170,
+          "x2": 1075.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 477.33204847616645,
+          "hp": 477
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 580.3651882105264,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 477.33204847616645,
+          "hp": 477
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 3,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-390x844-3-matched.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "matched",
+      "spacing": 100,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 875.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 1075.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-390x844-10-gameplay-scale.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "gameplay-scale",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 804.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 842.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 880.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 918.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 956.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 994.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 1032.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 1070.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1108.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1146.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 964,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 972,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 980,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 988,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 996,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1004,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1012,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1020,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1028,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1036,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 939.04,
+          "y": -170,
+          "x2": 939.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 947.04,
+          "y": -170,
+          "x2": 947.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 955.04,
+          "y": -170,
+          "x2": 955.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 963.04,
+          "y": -170,
+          "x2": 963.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 971.04,
+          "y": -170,
+          "x2": 971.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 979.04,
+          "y": -170,
+          "x2": 979.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 987.04,
+          "y": -170,
+          "x2": 987.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 995.04,
+          "y": -170,
+          "x2": 995.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1003.04,
+          "y": -170,
+          "x2": 1003.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1011.04,
+          "y": -170,
+          "x2": 1011.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 557.7983435179266,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 557.7983435179266,
+          "hp": 558
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-390x844-10-dense-diagnostic.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "dense-diagnostic",
+      "spacing": 8,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 939.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 947.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 955.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 963.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 971.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 979.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 987.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 995.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1003.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1011.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 580.3651882105264,
+          "hp": 580
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 1,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-1280x900-1-matched.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "matched",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 900,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 1100,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 875.04,
+          "y": -170,
+          "x2": 875.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1075.04,
+          "y": -170,
+          "x2": 1075.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 477.33204847616645,
+          "hp": 477
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 580.3651882105264,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 477.33204847616645,
+          "hp": 477
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 3,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-1280x900-3-matched.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "matched",
+      "spacing": 100,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 875.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 1075.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-1280x900-10-gameplay-scale.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "gameplay-scale",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 804.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 842.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 880.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 918.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 956.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 994.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 1032.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 1070.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1108.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1146.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 964,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 972,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 980,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 988,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 996,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1004,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1012,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1020,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1028,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1036,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 939.04,
+          "y": -170,
+          "x2": 939.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 947.04,
+          "y": -170,
+          "x2": 947.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 955.04,
+          "y": -170,
+          "x2": 955.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 963.04,
+          "y": -170,
+          "x2": 963.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 971.04,
+          "y": -170,
+          "x2": 971.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 979.04,
+          "y": -170,
+          "x2": 979.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 987.04,
+          "y": -170,
+          "x2": 987.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 995.04,
+          "y": -170,
+          "x2": 995.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1003.04,
+          "y": -170,
+          "x2": 1003.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1011.04,
+          "y": -170,
+          "x2": 1011.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5,
+          "text": "cheonroe"
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 557.7983435179266,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 557.7983435179266,
+          "hp": 558
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "current-reduced",
+      "file": "current-reduced-1280x900-10-dense-diagnostic.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "dense-diagnostic",
+      "spacing": 8,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 939.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 947.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 955.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 963.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 971.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 979.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 987.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 995.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1003.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1011.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 580.3651882105264,
+          "hp": 580
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 1,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-360x800-1-matched.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "matched",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 900,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 1100,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 875.04,
+          "y": -170,
+          "x2": 875.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1075.04,
+          "y": -170,
+          "x2": 1075.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 477.33204847616645,
+          "hp": 477
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 580.3651882105264,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 477.33204847616645,
+          "hp": 477
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 3,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-360x800-3-matched.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "matched",
+      "spacing": 100,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 875.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 1075.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-360x800-10-gameplay-scale.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "gameplay-scale",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 804.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 842.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 880.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 918.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 956.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 994.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 1032.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 1070.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1108.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1146.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 964,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 972,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 980,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 988,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 996,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1004,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1012,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1020,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1028,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1036,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 939.04,
+          "y": -170,
+          "x2": 939.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 947.04,
+          "y": -170,
+          "x2": 947.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 955.04,
+          "y": -170,
+          "x2": 955.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 963.04,
+          "y": -170,
+          "x2": 963.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 971.04,
+          "y": -170,
+          "x2": 971.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 979.04,
+          "y": -170,
+          "x2": 979.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 987.04,
+          "y": -170,
+          "x2": 987.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 995.04,
+          "y": -170,
+          "x2": 995.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1003.04,
+          "y": -170,
+          "x2": 1003.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1011.04,
+          "y": -170,
+          "x2": 1011.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 557.7983435179266,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 557.7983435179266,
+          "hp": 558
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 360,
+        "h": 603.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-360x800-10-dense-diagnostic.jpg",
+      "width": 360,
+      "height": 800,
+      "kind": "dense-diagnostic",
+      "spacing": 8,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 939.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 947.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 955.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 963.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 971.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 979.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 987.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 995.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1003.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1011.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 580.3651882105264,
+          "hp": 580
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 1,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-390x844-1-matched.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "matched",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 900,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 1100,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 875.04,
+          "y": -170,
+          "x2": 875.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1075.04,
+          "y": -170,
+          "x2": 1075.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 477.33204847616645,
+          "hp": 477
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 580.3651882105264,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 477.33204847616645,
+          "hp": 477
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 3,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-390x844-3-matched.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "matched",
+      "spacing": 100,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 875.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 1075.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-390x844-10-gameplay-scale.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "gameplay-scale",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 804.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 842.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 880.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 918.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 956.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 994.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 1032.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 1070.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1108.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1146.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 964,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 972,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 980,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 988,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 996,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1004,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1012,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1020,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1028,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1036,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 939.04,
+          "y": -170,
+          "x2": 939.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 947.04,
+          "y": -170,
+          "x2": 947.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 955.04,
+          "y": -170,
+          "x2": 955.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 963.04,
+          "y": -170,
+          "x2": 963.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 971.04,
+          "y": -170,
+          "x2": 971.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 979.04,
+          "y": -170,
+          "x2": 979.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 987.04,
+          "y": -170,
+          "x2": 987.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 995.04,
+          "y": -170,
+          "x2": 995.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1003.04,
+          "y": -170,
+          "x2": 1003.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1011.04,
+          "y": -170,
+          "x2": 1011.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 557.7983435179266,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 557.7983435179266,
+          "hp": 558
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-390x844-10-dense-diagnostic.jpg",
+      "width": 390,
+      "height": 844,
+      "kind": "dense-diagnostic",
+      "spacing": 8,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 939.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 947.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 955.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 963.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 971.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 979.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 987.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 995.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1003.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1011.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 580.3651882105264,
+          "hp": 580
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 1,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-1280x900-1-matched.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "matched",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 900,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 1000,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 1100,
+          "y": 1000,
+          "h": 80,
+          "hp": 1923,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 875.04,
+          "y": -170,
+          "x2": 875.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 975.04,
+          "y": -170,
+          "x2": 975.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1075.04,
+          "y": -170,
+          "x2": 1075.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 477.33204847616645,
+          "hp": 477
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 580.3651882105264,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 477.33204847616645,
+          "hp": 477
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 3,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-1280x900-3-matched.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "matched",
+      "spacing": 100,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 875.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 975.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 1075.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-1280x900-10-gameplay-scale.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "gameplay-scale",
+      "spacing": 38,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 804.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 842.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 880.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 918.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 956.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 994.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 1032.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 1070.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1108.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1146.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 964,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 972,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 980,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 988,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 996,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1004,
+          "y": 1000,
+          "h": 80,
+          "hp": 1820,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1012,
+          "y": 1000,
+          "h": 80,
+          "hp": 1823,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1020,
+          "y": 1000,
+          "h": 80,
+          "hp": 1828,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1028,
+          "y": 1000,
+          "h": 80,
+          "hp": 1834,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1036,
+          "y": 1000,
+          "h": 80,
+          "hp": 1842,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 939.04,
+          "y": -170,
+          "x2": 939.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 947.04,
+          "y": -170,
+          "x2": 947.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 955.04,
+          "y": -170,
+          "x2": 955.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 963.04,
+          "y": -170,
+          "x2": 963.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 971.04,
+          "y": -170,
+          "x2": 971.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 979.04,
+          "y": -170,
+          "x2": 979.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 987.04,
+          "y": -170,
+          "x2": 987.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 995.04,
+          "y": -170,
+          "x2": 995.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1003.04,
+          "y": -170,
+          "x2": 1003.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1011.04,
+          "y": -170,
+          "x2": 1011.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 557.7983435179266,
+          "hp": 558
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 580.0209950444514,
+          "hp": 580
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 577.3526112247034,
+          "hp": 577
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 572.4029512682246,
+          "hp": 572
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 565.7188695066956,
+          "hp": 566
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 557.7983435179266,
+          "hp": 558
+        }
+      ],
+      "scale": 1,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 1280,
+        "h": 769.1875
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "file": "restored-rich-1280x900-10-dense-diagnostic.jpg",
+      "width": 1280,
+      "height": 900,
+      "kind": "dense-diagnostic",
+      "spacing": 8,
+      "headSnapshot": [
+        {
+          "id": "lightning-target-0",
+          "head": {
+            "x": 939.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-1",
+          "head": {
+            "x": 947.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-2",
+          "head": {
+            "x": 955.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-3",
+          "head": {
+            "x": 963.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-4",
+          "head": {
+            "x": 971.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-5",
+          "head": {
+            "x": 979.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-6",
+          "head": {
+            "x": 987.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-7",
+          "head": {
+            "x": 995.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-8",
+          "head": {
+            "x": 1003.04,
+            "y": 946.88
+          }
+        },
+        {
+          "id": "lightning-target-9",
+          "head": {
+            "x": 1011.04,
+            "y": 946.88
+          }
+        }
+      ]
+    },
+    {
+      "aim": {
+        "angle": 57,
+        "power": 0.5250000000000001,
+        "prediction": {
+          "x": 1000.1983570255264,
+          "y": 914
+        }
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2027,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1975,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1926,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1881,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1849,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1849,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1880,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1925,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1975,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2026,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 373.2418596033398,
+          "hp": 373
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 424.65096489405505,
+          "hp": 425
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 474.16029755421187,
+          "hp": 474
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 519.131265533949,
+          "hp": 519
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 551.0686215996342,
+          "hp": 551
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 551.2694302088507,
+          "hp": 551
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 519.5562453662214,
+          "hp": 520
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 474.66055463344594,
+          "hp": 475
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 425.18012177785255,
+          "hp": 425
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 373.7844549343083,
+          "hp": 374
+        }
+      ],
+      "scale": 0.75,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 0,
+      "variant": "restored-rich",
+      "kind": "natural-flight",
+      "file": "restored-rich-natural-390x844-strike.jpg"
+    },
+    {
+      "aim": {
+        "angle": 0,
+        "power": 0.5
+      },
+      "targets": [
+        {
+          "id": "lightning-target-0",
+          "x": 829,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-1",
+          "x": 867,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-2",
+          "x": 905,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-3",
+          "x": 943,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-4",
+          "x": 981,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-5",
+          "x": 1019,
+          "y": 1000,
+          "h": 80,
+          "hp": 1827,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-6",
+          "x": 1057,
+          "y": 1000,
+          "h": 80,
+          "hp": 1866,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-7",
+          "x": 1095,
+          "y": 1000,
+          "h": 80,
+          "hp": 1916,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-8",
+          "x": 1133,
+          "y": 1000,
+          "h": 80,
+          "hp": 1968,
+          "dead": false
+        },
+        {
+          "id": "lightning-target-9",
+          "x": 1171,
+          "y": 1000,
+          "h": 80,
+          "hp": 2021,
+          "dead": false
+        }
+      ],
+      "bolts": [
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 804.04,
+          "y": -170,
+          "x2": 804.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 842.04,
+          "y": -170,
+          "x2": 842.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 880.04,
+          "y": -170,
+          "x2": 880.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 918.04,
+          "y": -170,
+          "x2": 918.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 956.04,
+          "y": -170,
+          "x2": 956.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 994.04,
+          "y": -170,
+          "x2": 994.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1032.04,
+          "y": -170,
+          "x2": 1032.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1070.04,
+          "y": -170,
+          "x2": 1070.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1108.04,
+          "y": -170,
+          "x2": 1108.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        },
+        {
+          "type": "fx",
+          "name": "lightningBolt",
+          "x": 1146.04,
+          "y": -170,
+          "x2": 1146.04,
+          "y2": 946.88,
+          "color": "#a8cfff",
+          "size": 3.5
+        }
+      ],
+      "hits": [
+        {
+          "id": "lightning-target-0",
+          "raw": 379.2201764036274,
+          "hp": 379
+        },
+        {
+          "id": "lightning-target-1",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-2",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-3",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-4",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-5",
+          "raw": 573.127841185231,
+          "hp": 573
+        },
+        {
+          "id": "lightning-target-6",
+          "raw": 533.5349427835375,
+          "hp": 534
+        },
+        {
+          "id": "lightning-target-7",
+          "raw": 484.0807236686808,
+          "hp": 484
+        },
+        {
+          "id": "lightning-target-8",
+          "raw": 432.11913190707867,
+          "hp": 432
+        },
+        {
+          "id": "lightning-target-9",
+          "raw": 379.2201764036274,
+          "hp": 379
+        }
+      ],
+      "scale": 1.4,
+      "camera": {
+        "x": 1000,
+        "y": 760,
+        "w": 390,
+        "h": 647.609375
+      },
+      "liveRays": 10,
+      "headAgreement": true,
+      "offscreen": 3,
+      "kind": "offscreen",
+      "variant": "restored-rich"
+    }
+  ],
+  "renderTiming": [
+    {
+      "variant": "current-reduced",
+      "width": 360,
+      "height": 800,
+      "samples": 60,
+      "medianMs": 21.20000000001164,
+      "p95Ms": 68.5,
+      "maxMs": 72.5
+    },
+    {
+      "variant": "current-reduced",
+      "width": 390,
+      "height": 844,
+      "samples": 60,
+      "medianMs": 28.70000000001164,
+      "p95Ms": 99.40000000002328,
+      "maxMs": 105.59999999997672
+    },
+    {
+      "variant": "current-reduced",
+      "width": 1280,
+      "height": 900,
+      "samples": 60,
+      "medianMs": 23,
+      "p95Ms": 31.899999999965075,
+      "maxMs": 38
+    },
+    {
+      "variant": "restored-rich",
+      "width": 360,
+      "height": 800,
+      "samples": 60,
+      "medianMs": 24.600000000034925,
+      "p95Ms": 94.40000000002328,
+      "maxMs": 102.79999999998836
+    },
+    {
+      "variant": "restored-rich",
+      "width": 390,
+      "height": 844,
+      "samples": 60,
+      "medianMs": 21.399999999965075,
+      "p95Ms": 94.5,
+      "maxMs": 107.10000000003492
+    },
+    {
+      "variant": "restored-rich",
+      "width": 1280,
+      "height": 900,
+      "samples": 60,
+      "medianMs": 16.699999999953434,
+      "p95Ms": 23.70000000001164,
+      "maxMs": 29
+    }
+  ],
+  "pageErrors": []
+}

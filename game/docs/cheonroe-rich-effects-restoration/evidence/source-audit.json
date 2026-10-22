@@ -1,0 +1,25 @@
+{
+  "original": "be79826869c70ae68950eb8be8a4bd7d187600dc",
+  "first": "b1e4efc41d91107a037ba23977532f546c57f948",
+  "laterVisualReductions": [
+    "75c86629547710d86b31520c8adeac738f9b03cb",
+    "0e02735a8dc38a814f1aa07883d32bac93f82036"
+  ],
+  "files": {
+    "shared/engine/src/art.ts": {
+      "candidateSha256": "cdcec63962c75893a56b7eb985ae7460f185c85115242193f207f4adc3b6ce73",
+      "equalsFirstPerTarget": true,
+      "equalsOriginal": false
+    },
+    "shared/engine/src/skillMechanics.ts": {
+      "candidateSha256": "f72290d7d188b2c5da23cd516ddbfcbf2e096722682852aeaa611188f9c306b9",
+      "equalsFirstPerTarget": true,
+      "equalsOriginal": false
+    },
+    "shared/engine/src/skillVisuals.ts": {
+      "candidateSha256": "43ac814f7bdb9692cf1950b643b9fea0c6cb4ad604daeb62f6b3ab1b82e264e2",
+      "equalsFirstPerTarget": true,
+      "equalsOriginal": true
+    }
+  }
+}

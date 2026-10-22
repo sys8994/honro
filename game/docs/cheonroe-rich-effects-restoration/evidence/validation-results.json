@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "base": "d33402627e0c632593a388ec19e0b5370cc68439",
+  "runtimeCandidate": "4fc6fea87cf336d2db67aabf9c1e228ffe2764e7",
+  "checks": [
+    {
+      "command": "node tests/cheonroe-rich-effects.mjs",
+      "status": "passed",
+      "scope": "21 draw-command comparisons to be798268/b1e4efc4; 9 path cases; 70% widths; default M04 unchanged"
+    },
+    {
+      "command": "node tests/cheonroe-visual-spacing.mjs",
+      "status": "passed",
+      "scope": "Existing integration entry retained; rejected three-fork/gap-cap assertions updated to original six-fork/broad shape/long reach/15 phase-gap independence cases"
+    },
+    {
+      "command": "node tests/cheonroe-target-lightning.mjs",
+      "status": "passed",
+      "scope": "SP1/4/8,0/1/4/10,delay,strict range,snapshot/death/recast/save,ceiling/oneWay,420"
+    },
+    {
+      "command": "npm --prefix game run typecheck",
+      "status": "passed",
+      "scope": "TypeScript strict"
+    },
+    {
+      "command": "npm run build",
+      "status": "passed",
+      "scope": "Game/Workshop/Playtest,342 generated files"
+    },
+    {
+      "command": "node tests/damheo-damage-balance.mjs",
+      "status": "passed",
+      "scope": "16 mage skills SP1/8, real HP and launch/storage/NPC isolation"
+    },
+    {
+      "command": "node tests/quest-hostile-targets.mjs",
+      "status": "passed",
+      "scope": "target registration/protection contract only, not all-stage play"
+    },
+    {
+      "command": "node tests/projectile-platforms.mjs",
+      "status": "passed",
+      "scope": "6 focused projectile/platform groups"
+    },
+    {
+      "command": "node tests/web-split.mjs",
+      "status": "passed",
+      "scope": "342 hashes/bytes; data reconstruction and native/embedded title/storage"
+    },
+    {
+      "command": "node tests/cheonroe-rich-reference-cores.mjs && python -X utf8 tests/cheonroe-rich-effects-browser.py",
+      "status": "passed",
+      "scope": "Chromium154.0.8037.57,40 JPGs,36 matched scenes,112 head transforms,natural flight,offscreen,420 rays+expiry,no page errors"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed",
+      "scope": "whitespace"
+    }
+  ],
+  "preparationCorrections": [
+    "npm default cache /home/agent/.npm unavailable; npm ci --cache /tmp/cheonroe-npm-cache succeeded; no lockfile changes",
+    "Initial new test compared floating-point112*1.15 with strict equality; corrected to numeric ratio tolerance",
+    "Initial new browser historical route callback received request as second argument; corrected callback signature before final successful captures"
+  ],
+  "knownPriorFailureNotRerun": {
+    "command": "node tests/quest-targets-app-resume.mjs",
+    "priorFailure": "ReferenceError: window is not defined",
+    "evidence": "game/docs/skill-icons-v1/integration/README.md; prior baseline be798268 also failed",
+    "status": "not run / not repaired"
+  },
+  "notRun": [
+    "whole npm run verify",
+    "30-stage traversal",
+    "physical devices",
+    "Safari/high-DPR coverage",
+    "GitHub Pages release"
+  ]
+}
