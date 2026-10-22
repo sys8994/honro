@@ -1,0 +1,223 @@
+{
+  "executionSHA": "b38b9a51fcf4731bbeafd00ea0d44103ad412efa",
+  "sourceHashes": {
+    "shared/runtime/main.js": "6f9aa353c3c98e323b4929f4362de44dd9bff413315e8098ec3082ce2a92907f",
+    "shared/runtime/act-endings.js": "5bed8881949f5bf902c8b29ccf7e4516b22638fed5da8210b007b1bd03f65e7b",
+    "shared/runtime/rest-journey.js": "749087737b95977d5133f46d25d8d2592eec3c0ea615c923dd82dd4382a16d90",
+    "game/src/act-endings.css": "9f0fb63251dea0e645ed7a9edcdf9c97938f93431b3398c279569402dc12b580"
+  },
+  "rows": [
+    {
+      "mode": "unlock",
+      "clearedThrough": 0,
+      "available": []
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 9,
+      "available": []
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 10,
+      "available": [
+        10
+      ]
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 19,
+      "available": [
+        10
+      ]
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 20,
+      "available": [
+        10,
+        20
+      ]
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 29,
+      "available": [
+        10,
+        20
+      ]
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 30,
+      "available": [
+        10,
+        20,
+        30
+      ]
+    },
+    {
+      "mode": "gallery",
+      "stage": 10,
+      "viewport": [
+        390,
+        844
+      ],
+      "view": {
+        "act": 1,
+        "selection": 10,
+        "layer": "surface",
+        "zoom": 1.18,
+        "left": 827,
+        "top": 43
+      },
+      "byteExactProfile": "501767b7b15a39f05ac52ad33de97081fdba358355505bd899cd6a880714e63b",
+      "byteExactStorage": "501767b7b15a39f05ac52ad33de97081fdba358355505bd899cd6a880714e63b",
+      "savedBattle": true,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    },
+    {
+      "mode": "gallery",
+      "stage": 20,
+      "viewport": [
+        390,
+        844
+      ],
+      "view": {
+        "act": 2,
+        "selection": 20,
+        "layer": "underground",
+        "zoom": 1.18,
+        "left": 0,
+        "top": 43
+      },
+      "byteExactProfile": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "byteExactStorage": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "savedBattle": false,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    },
+    {
+      "mode": "gallery",
+      "stage": 30,
+      "viewport": [
+        390,
+        844
+      ],
+      "view": {
+        "act": 3,
+        "selection": "end",
+        "layer": "city",
+        "zoom": 1.18,
+        "left": 604,
+        "top": 269
+      },
+      "byteExactProfile": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "byteExactStorage": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "savedBattle": false,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    },
+    {
+      "mode": "gallery",
+      "stage": 10,
+      "viewport": [
+        844,
+        390
+      ],
+      "view": {
+        "act": 1,
+        "selection": 10,
+        "layer": "surface",
+        "zoom": 1.18,
+        "left": 129,
+        "top": 2
+      },
+      "byteExactProfile": "501767b7b15a39f05ac52ad33de97081fdba358355505bd899cd6a880714e63b",
+      "byteExactStorage": "501767b7b15a39f05ac52ad33de97081fdba358355505bd899cd6a880714e63b",
+      "savedBattle": true,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    },
+    {
+      "mode": "gallery",
+      "stage": 20,
+      "viewport": [
+        844,
+        390
+      ],
+      "view": {
+        "act": 2,
+        "selection": 20,
+        "layer": "underground",
+        "zoom": 1.18,
+        "left": 39,
+        "top": 102
+      },
+      "byteExactProfile": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "byteExactStorage": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "savedBattle": false,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    },
+    {
+      "mode": "gallery",
+      "stage": 30,
+      "viewport": [
+        844,
+        390
+      ],
+      "view": {
+        "act": 3,
+        "selection": "end",
+        "layer": "city",
+        "zoom": 1.18,
+        "left": 129,
+        "top": 764
+      },
+      "byteExactProfile": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "byteExactStorage": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "savedBattle": false,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "limits": [
+    "Stage10/20/30 lifecycle uses terminal battle fixtures, not combat victories.",
+    "Gallery tests use coherent unlock fixtures; no actual 30-stage full run.",
+    "Chromium emulation only."
+  ]
+}

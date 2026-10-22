@@ -1,0 +1,136 @@
+{
+  "executionSHA": "f8cc1a823a328c46f103156e0c1ac79b6efff90d",
+  "review": "entry",
+  "rows": [
+    {
+      "stage": 10,
+      "viewport": [
+        390,
+        844
+      ],
+      "act1UnclearedDebug": true,
+      "tenPins": true,
+      "profileNormalStorageSHA256": "3ee4a8cddc7f2a383a3788d6d889b860664e022645721c935d1e70f085f50a46",
+      "view": {
+        "act": 1,
+        "selection": 10,
+        "layer": "surface",
+        "zoom": 0.42142857142857143,
+        "left": 59,
+        "top": 0
+      },
+      "exactDOM": true,
+      "openRecordsRetained": true
+    },
+    {
+      "stage": 20,
+      "viewport": [
+        390,
+        844
+      ],
+      "act1UnclearedDebug": true,
+      "tenPins": true,
+      "profileNormalStorageSHA256": "3ee4a8cddc7f2a383a3788d6d889b860664e022645721c935d1e70f085f50a46",
+      "view": {
+        "act": 2,
+        "selection": 20,
+        "layer": "surface",
+        "zoom": 0.6767647058823528,
+        "left": 0,
+        "top": 0
+      },
+      "exactDOM": true,
+      "openRecordsRetained": true
+    },
+    {
+      "stage": 30,
+      "viewport": [
+        390,
+        844
+      ],
+      "act1UnclearedDebug": true,
+      "tenPins": true,
+      "profileNormalStorageSHA256": "3ee4a8cddc7f2a383a3788d6d889b860664e022645721c935d1e70f085f50a46",
+      "view": {
+        "act": 3,
+        "selection": 30,
+        "layer": "city",
+        "zoom": 0.5002173913043478,
+        "left": 59,
+        "top": 0
+      },
+      "exactDOM": true,
+      "openRecordsRetained": true
+    },
+    {
+      "stage": 10,
+      "viewport": [
+        844,
+        390
+      ],
+      "act1UnclearedDebug": true,
+      "tenPins": true,
+      "profileNormalStorageSHA256": "3ee4a8cddc7f2a383a3788d6d889b860664e022645721c935d1e70f085f50a46",
+      "view": {
+        "act": 1,
+        "selection": 10,
+        "layer": "surface",
+        "zoom": 0.5271521739130434,
+        "left": 0,
+        "top": 0
+      },
+      "exactDOM": true,
+      "openRecordsRetained": true
+    },
+    {
+      "stage": 20,
+      "viewport": [
+        844,
+        390
+      ],
+      "act1UnclearedDebug": true,
+      "tenPins": true,
+      "profileNormalStorageSHA256": "3ee4a8cddc7f2a383a3788d6d889b860664e022645721c935d1e70f085f50a46",
+      "view": {
+        "act": 2,
+        "selection": 20,
+        "layer": "surface",
+        "zoom": 0.25538704581358607,
+        "left": 0,
+        "top": 0
+      },
+      "exactDOM": true,
+      "openRecordsRetained": true
+    },
+    {
+      "stage": 30,
+      "viewport": [
+        844,
+        390
+      ],
+      "act1UnclearedDebug": true,
+      "tenPins": true,
+      "profileNormalStorageSHA256": "3ee4a8cddc7f2a383a3788d6d889b860664e022645721c935d1e70f085f50a46",
+      "view": {
+        "act": 3,
+        "selection": 30,
+        "layer": "city",
+        "zoom": 0.35143478260869565,
+        "left": 0,
+        "top": 32
+      },
+      "exactDOM": true,
+      "openRecordsRetained": true
+    }
+  ],
+  "sourceHashes": {
+    "shared/runtime/act-endings.js": "5bed8881949f5bf902c8b29ccf7e4516b22638fed5da8210b007b1bd03f65e7b",
+    "shared/runtime/main.js": "6f9aa353c3c98e323b4929f4362de44dd9bff413315e8098ec3082ce2a92907f",
+    "shared/runtime/rest-journey.js": "749087737b95977d5133f46d25d8d2592eec3c0ea615c923dd82dd4382a16d90"
+  },
+  "errors": [],
+  "httpFailures": [],
+  "limits": [
+    "Chromium touch/viewport emulation, no physical mobile or combat playthrough."
+  ]
+}

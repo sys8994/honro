@@ -1,0 +1,90 @@
+{
+  "executionSHA": "b38b9a51fcf4731bbeafd00ea0d44103ad412efa",
+  "sourceHashes": {
+    "shared/runtime/act-endings.js": "5bed8881949f5bf902c8b29ccf7e4516b22638fed5da8210b007b1bd03f65e7b",
+    "shared/runtime/main.js": "6f9aa353c3c98e323b4929f4362de44dd9bff413315e8098ec3082ce2a92907f",
+    "shared/runtime/menu-ui.js": "fe239f3fa7dc540a046399717dafa479c0050347359e865e90a7d154e87dc4c9",
+    "game/src/act-endings.css": "9f0fb63251dea0e645ed7a9edcdf9c97938f93431b3398c279569402dc12b580"
+  },
+  "review": "entry",
+  "rows": [
+    {
+      "review": "entry",
+      "stage": 10,
+      "viewport": [
+        390,
+        844
+      ],
+      "uncleared": true,
+      "byteExactStateSHA256": "fc5082df9dce35aba7e1f1fa9cdcc78e06eba005daad540f4a4fec8a5a208541",
+      "retainedDOMEngineScene": true,
+      "restoredSettingsScroll": 0
+    },
+    {
+      "review": "entry",
+      "stage": 20,
+      "viewport": [
+        390,
+        844
+      ],
+      "uncleared": true,
+      "byteExactStateSHA256": "fc5082df9dce35aba7e1f1fa9cdcc78e06eba005daad540f4a4fec8a5a208541",
+      "retainedDOMEngineScene": true,
+      "restoredSettingsScroll": 0
+    },
+    {
+      "review": "entry",
+      "stage": 30,
+      "viewport": [
+        390,
+        844
+      ],
+      "uncleared": true,
+      "byteExactStateSHA256": "fc5082df9dce35aba7e1f1fa9cdcc78e06eba005daad540f4a4fec8a5a208541",
+      "retainedDOMEngineScene": true,
+      "restoredSettingsScroll": 0
+    },
+    {
+      "review": "entry",
+      "stage": 10,
+      "viewport": [
+        844,
+        390
+      ],
+      "uncleared": true,
+      "byteExactStateSHA256": "fc5082df9dce35aba7e1f1fa9cdcc78e06eba005daad540f4a4fec8a5a208541",
+      "retainedDOMEngineScene": true,
+      "restoredSettingsScroll": 26
+    },
+    {
+      "review": "entry",
+      "stage": 20,
+      "viewport": [
+        844,
+        390
+      ],
+      "uncleared": true,
+      "byteExactStateSHA256": "fc5082df9dce35aba7e1f1fa9cdcc78e06eba005daad540f4a4fec8a5a208541",
+      "retainedDOMEngineScene": true,
+      "restoredSettingsScroll": 26
+    },
+    {
+      "review": "entry",
+      "stage": 30,
+      "viewport": [
+        844,
+        390
+      ],
+      "uncleared": true,
+      "byteExactStateSHA256": "fc5082df9dce35aba7e1f1fa9cdcc78e06eba005daad540f4a4fec8a5a208541",
+      "retainedDOMEngineScene": true,
+      "restoredSettingsScroll": 26
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "limits": [
+    "Chromium touch/viewport emulation, not physical mobile devices.",
+    "Uncleared and live combat use explicit fixtures, no combat playthrough."
+  ]
+}
