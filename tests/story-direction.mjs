@@ -5,18 +5,20 @@ const h=await appHarness(),{g,load,profileThrough,finish,click,reload}=h,S=g.Hon
 function tick(a,frames=1){for(let i=0;i<frames;i++)g.HonroStory.tick(a,now+=50);}
 function fresh(id){const a=load(profileThrough(id-1));a.launch(id);return a;}
 function next(a){g.HonroStory.next(a);}
-function to(a,who,text){for(let i=0;i<30&&a.dialogue;i++){const l=a.dialogue.lines[a.dialogue.index];if(l?.[0]===who&&l[1].includes(text))return;next(a);}throw Error('missing line '+who+text);}
+function toRow(a,id){for(let i=0;i<30&&a.dialogue;i++){if(a.dialogue.lines[a.dialogue.index]?.[2]?.rowId===id)return;next(a);}throw Error('missing authored row '+id);}
 function check(name,fn){fn();checks.push(name);console.log('PASS',name);}
 const resources=b=>plain({round:b.round,phase:b.phase,active:b.active,teamEnds:b.teamEnds,projectiles:b.projectiles,terrain:b.terrain,units:[...b.units,...Object.values(b.honroStaging.hidden)].map(u=>({id:u.id,hp:u.hp,energy:u.energy,moveLeft:u.moveLeft,acted:u.acted,fixed:u.fixed,loadout:u.loadout,ranks:u.ranks})).sort((a,b)=>a.id.localeCompare(b.id))});
-check('Every authored direction resolves a real line in the currently compiled campaign script',()=>{
- for(const r of g.HonroStoryDirection.rules){const st=g.HONRO_CONTENT.stages[r.stage-1];let lines=r.when==='entry'?st.story:r.when==='outcome'?st.outro:st.beats?.[r.when];
-  if(r.when==='event-1-witness')lines=g.HonroStoryContent.events[1].witness.lines;
-  if(r.when==='sodan-first-receiver')lines=S.describe(S.ID).steps.at(-1).lines;
-  if(r.when==='event-3-transfer')lines=g.HonroStoryContent.events[3].transfer.lines;
-  if(r.when==='ritual-5')lines=g.HonroStoryContent.interaction({stage:{id:5},engine:{b:{honroNarrativeRevision:1,honroState:{}}}},{action:'ritual'});
-  if(r.when==='cooperation-defense')lines=g.HonroStoryContent.cooperationDefense();
-  if(r.when==='cooperation')lines=g.HonroStoryContent.cooperation();if(r.when==='finale-midpoint')lines=g.HonroStoryContent.finaleMidpoint();
-  assert(lines?.some(l=>l[0]===r.who&&l[1].includes(r.text)),`${r.stage}/${r.when}/${r.who}/${r.text}`);
+check('Current choreography is carried by persistent row IDs and authored action metadata',()=>{
+ let directed=0;const data=g.HonroNarrativeCatalogue.data;
+ function visit(value){
+  if(Array.isArray(value)&&typeof value[0]==='string'&&typeof value[1]==='string'&&value[2]?.direction){
+   const meta=value[2];assert.equal(typeof meta.rowId,'string');assert(meta.rowId.length>5);
+   for(const action of meta.direction){assert(['look','move'].includes(action.type));assert(action.duration>0);assert(action.actor||action.at);if(action.type==='move'){assert(action.to||action.towards);if(action.towards)assert(action.distance>0);}directed++;}
+  }else if(value&&typeof value==='object')Object.values(value).forEach(visit);
+ }
+ visit(data);assert(directed>=90,'Current catalogue must retain authored directions');
+ for(const [id,row,actor]of [[4,'4.story:fb997c7b72','archer'],[11,'11.story:add0dc3ef3','knight'],[15,'15.beats.groove:6fe593174c','knight']]){
+  const st=data.stages[id],lines=[...st.story,...Object.values(st.beats||{}).flat()];const found=lines.find(l=>l[2]?.rowId===row);assert(found,'Stable semantic row '+row);assert(found[2].direction.some(a=>a.actor===actor));
  }
 });
 check('All 30 campaign entries have authored actions without advancing combat, resources or objectives',()=>{
@@ -25,19 +27,19 @@ check('All 30 campaign entries have authored actions without advancing combat, r
  }
 });
 check('Woodcutter stays hidden until his event reaches the actor boundary; first meetings reveal the same actor once',()=>{
- const a=fresh(1);finish(a);const b=a.engine.b,u=b.honroStaging.hidden['npc-woodcutter'];assert(u);assert(!b.units.includes(u));
- a.actorBoundary=null;g.HonroStory.queue(a,g.HonroStoryContent.eventLines(a,{id:'witness'}));assert(!a.dialogue);a.actorBoundary=b.active;b.honroState.actorTurnSerial=(b.honroState.actorTurnSerial||0)+1;assert(g.HonroStory.drain(a));assert(!b.units.includes(u));tick(a,50);assert(b.units.includes(u));assert.equal(u.x,3178);finish(a);assert.equal(b.units.filter(v=>v.id===u.id).length,1);
+ const a=fresh(1);finish(a);const b=a.engine.b,u=b.honroStaging.hidden['npc-woodcutter'];assert(u);const entranceX=u.x+g.HonroStoryDirection.cast[1].dx;assert(!b.units.includes(u));
+ a.actorBoundary=null;g.HonroStory.queue(a,g.HonroStoryContent.eventLines(a,{id:'witness'}));assert(!a.dialogue);a.actorBoundary=b.active;b.honroState.actorTurnSerial=(b.honroState.actorTurnSerial||0)+1;assert(g.HonroStory.drain(a));assert(!b.units.includes(u));tick(a,50);assert(b.units.includes(u));assert.equal(u.x,entranceX);finish(a);assert.equal(b.units.filter(v=>v.id===u.id).length,1);
  const knight=fresh(3);assert(knight.engine.b.honroStaging.hidden['npc-hwigyeom']);tick(knight,50);assert(knight.engine.b.units.some(u=>u.id==='npc-hwigyeom'&&u.x===1376));finish(knight);
- const gate=fresh(4);assert(gate.engine.b.honroStaging.hidden['npc-chunrye']);to(gate,'춘례','붕대');assert(gate.engine.b.units.some(u=>u.id==='npc-chunrye'));tick(gate,25);const resident=gate.engine.unit('npc-chunrye');assert.equal(resident.x,812);finish(gate);
+ const gate=fresh(4);assert(gate.engine.b.honroStaging.hidden['npc-chunrye']);toRow(gate,'4.story:85293f79ec');assert(gate.engine.b.units.some(u=>u.id==='npc-chunrye'));tick(gate,25);const resident=gate.engine.unit('npc-chunrye');assert.equal(resident.x,812);finish(gate);
 });
 check('Dialogue and walking overlap; page rendering/history cannot restart movement; mid-cue reload keeps its origin',()=>{
- let a=fresh(11);to(a,'휘겸','길을 비우겠소');const u=a.engine.heroesAlive().find(u=>u.cls==='knight'),x=u.x;tick(a,5);assert(u.x>x&&u.x<x+22);assert.equal(u.honroScenePose.kind,'move');const index=a.dialogue.index;
+ let a=fresh(11);toRow(a,'11.story:add0dc3ef3');const u=a.engine.heroesAlive().find(u=>u.cls==='knight'),x=u.x;tick(a,5);assert(u.x>x&&u.x<x+22);assert.equal(u.honroScenePose.kind,'move');const index=a.dialogue.index;
  const before=plain(a.dialogue.staging.cue);g.HonroStory.draw(a);assert.deepEqual(plain(a.dialogue.staging.cue),before);
  const heldX=u.x;a.storyHistoryOpen=true;tick(a,20);assert.equal(u.x,heldX);assert.deepEqual(plain(a.dialogue.staging.cue),before);a.storyHistoryOpen=false;
  g.HonroStory.save(a);const d=plain(a.dialogue),p={x:u.x,y:u.y};a=reload();click('continue');assert.deepEqual(plain(a.dialogue),d);assert.equal(a.dialogue.index,index);assert.equal(a.engine.unit(u.id).x,p.x);tick(a,30);assert.equal(a.engine.unit(u.id).x,x+22);next(a);assert(!a.engine.unit(u.id).honroScenePose);finish(a);
 });
 check('A slower supported walk finishes before that actor starts the next gesture; save retains its actual cue start',()=>{
- let a=fresh(11);to(a,'휘겸','길을 비우겠소');const u=a.engine.heroesAlive().find(u=>u.cls==='knight'),x=u.x,walk=a.engine.walk;
+ let a=fresh(11);toRow(a,'11.story:add0dc3ef3');const u=a.engine.heroesAlive().find(u=>u.cls==='knight'),x=u.x,walk=a.engine.walk;
  // Explicit timing fixture uses the same collision/support walk at slower dt.
  a.engine.walk=function(unit,dir,dt,support){return walk.call(this,unit,dir,dt*.6,support);};
  tick(a,20);assert(u.x>x&&u.x<x+22);assert.equal(u.honroScenePose.kind,'move');assert.equal(a.dialogue.staging.cue.started[1],undefined);
@@ -47,7 +49,7 @@ check('A slower supported walk finishes before that actor starts the next gestur
 check('Unread events merged before an outcome keep their own choreography and line indices',()=>{
  const a=fresh(15);finish(a);const lines=g.HonroAct2Content.scene('act2-15-groove',a.stage.name,a.stage.beats.groove);
  a.engine.b.honroState.storyQueue=plain(lines);g.HonroStory.start(a,a.stage.outro,{after:'outcome',title:a.stage.name});
- const index=a.dialogue.lines.findIndex(l=>l[0]==='휘겸'&&l[1].includes('큰 고정 자리'));assert(index>=0);assert.equal(a.dialogue.lines[index][2].storyId,lines[index][2].storyId);
+ const index=a.dialogue.lines.findIndex(l=>l[2]?.rowId==='15.beats.groove:6fe593174c');assert(index>=0);assert.equal(a.dialogue.lines[index][2].storyId,lines[index][2].storyId);
  assert(a.dialogue.staging.cues[index].some(s=>s.actor==='knight'&&s.pose==='inspect'));finish(a);
 });
 check('Skip at different points yields the same entrances, positions, resources, journal and unlocked input',()=>{

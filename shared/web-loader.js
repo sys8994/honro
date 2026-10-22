@@ -1,3 +1,4 @@
+/* JSON_POOL_DECODER */
 const root=new URL('../../',import.meta.url),requests=new Map(),assetURLs=new Map();
 let lastYield=performance.now();
 export async function yieldIfNeeded(){if(performance.now()-lastYield<12)return;if(globalThis.scheduler?.yield)await scheduler.yield();else await new Promise(resolve=>setTimeout(resolve,0));lastYield=performance.now();}
@@ -25,7 +26,7 @@ function hydrate(value,refs,{svgSources=true}={}){const pending=[];
  else {const visit=node=>{if(!node||typeof node!=='object')return node;if(node.$honroAsset)return asset(node);for(const key in node){const child=node[key];if(child&&typeof child==='object')node[key]=visit(child);}return node;};value=visit(value);}
  return pending.length?Promise.all(pending).then(()=>value):value;
 }
-export async function loadData(file,refs,options){return hydrate(await request(file),refs,options);}
+export async function loadData(file,refs,options){const value=await request(file);return hydrate(options?.jsonPool?unpackJson(value):value,refs,options);}
 // Fetch only known required JSON while earlier scripts execute. Registration and
 // SVG hydration still happen at the original ordered import boundary.
 export function prefetchData(files){for(const file of files)void request(file).catch(()=>{});}

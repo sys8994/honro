@@ -1,3 +1,4 @@
+import {packJson,unpackJson} from './json-pool.mjs';
 import {readFile,mkdir,unlink} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
@@ -80,7 +81,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     if(value&&typeof value==='object')return Object.fromEntries(await Promise.all(Object.entries(value).map(async([k,v])=>[k,await externalize(v,`${name}-${k}`)])));
     return value;
   }
-  const loader=await emit('runtime','load-data','js',await read('shared/web-loader.js'));
+  const loader=await emit('runtime','load-data','js',(await read('shared/web-loader.js')).replace('/* JSON_POOL_DECODER */',unpackJson.toString()));
   // All runtime modules live in the same directory, including content-hashed data loaders.
   const loaderImport=`import {loadData,loadProject} from ${quote('./'+path.posix.basename(loader))};\n`;
   const moduleData=new Map();
@@ -101,6 +102,15 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   }
   for(let i=0;i<entries.length;i++){
     const entry=entries[i],target=i<appStart?common:gameOnly;let file;
+    if(entry.global==='HONRO_NARRATIVE_CATALOGUE'){
+      const group=entries.slice(i,i+3);
+      assert.deepEqual(group.map(e=>e.global),['HONRO_NARRATIVE_CATALOGUE','HONRO_NARRATIVE_COMPAT','HONRO_STAGE_CONTRACTS']);
+      await flushScripts(target);
+      const value=await externalize(Object.fromEntries(group.map(e=>[e.global,e.data])),'narrative-data');
+      const packet=await json('narrative-data',packJson(value));
+      file=await emit('runtime','narrative-data','js',loaderImport+`Object.assign(globalThis,await loadData(${quote(packet)},${quote(assetPaths(value))},{jsonPool:true}));\n`);
+      moduleData.set(file,[packet]);target.push(file);i+=2;continue;
+    }
     if(entry.global==='HONRO_JOURNEY_MAPS'){
       for(const act of entry.data.acts)act.url={$honroAsset:await emit('graphics',`journey-map-act${act.act}`,'webp',await readFile(path.join(root,act.asset)))};
     }

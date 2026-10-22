@@ -11,6 +11,10 @@ for(const legacy of [false,true]){
  app.profile.honroBattle=plain(b);h.storage.set(KEY,JSON.stringify(app.profile));const resumed=h.reload();resumed.continue();
  assert.equal(resumed.dialogue.index,before.story.index);assert.deepEqual(plain(resumed.dialogue.lines),before.story.lines);
  assert.deepEqual(plain(resumed.engine.b.units),before.units);assert.deepEqual(plain(resumed.engine.b.honroMarkers),before.markers);
+ const file=plain(app.profile);file.honroBattle=plain(b);
+ const imported=h.load(h.profileThrough(0));await h.import(file);imported.continue();
+ assert.equal(imported.dialogue.index,before.story.index,'import cursor');assert.deepEqual(plain(imported.dialogue.lines),before.story.lines,'import verbatim rows');
+ assert.deepEqual(plain(imported.engine.b.units),before.units,'import HP/MP/cooldown');assert.deepEqual(plain(imported.engine.b.honroMarkers),before.markers,'import quest markers');
  assert.equal(g.HonroStoryContent.version,7,'seen prologue ID must stay v7');
 }
-console.log('PASS current and legacy stored dialogue cursor/text/HP/MP/cooldown/quest markers survive Continue; prologue seen key stays v7');
+console.log('PASS current and legacy stored dialogue cursor/text/HP/MP/cooldown/quest markers survive Continue/import; prologue seen key stays v7');
