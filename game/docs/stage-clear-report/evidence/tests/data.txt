@@ -27,3 +27,4 @@ PASS persistent and delayed zones keep original cast skill without changing comb
 PASS projectile origin survives later capture/release without arbitrary hero attribution
 PASS timing explicitly ignores background and loading gaps at any playback speed
 PASS legacy in-flight provenance stays unresolved until a real new cast
+PASS DOT provenance cannot change the original generic-curse damage vector

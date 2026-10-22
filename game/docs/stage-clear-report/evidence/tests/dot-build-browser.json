@@ -1,0 +1,22 @@
+[
+  {
+    "command": "npm --prefix game run typecheck",
+    "exitCode": 0,
+    "passes": 0
+  },
+  {
+    "command": "npm run build",
+    "exitCode": 0,
+    "passes": 0
+  },
+  {
+    "command": "node tests/web-split.mjs",
+    "exitCode": 0,
+    "passes": 0
+  },
+  {
+    "command": "python tests/stage-clear-report-browser.py",
+    "exitCode": 0,
+    "passes": 50
+  }
+]

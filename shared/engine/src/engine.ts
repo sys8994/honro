@@ -1255,7 +1255,7 @@ export class Engine {
             if(u.earthbind&&u.earthbind.until<this.b.round)delete u.earthbind;
             if(u.dead||u.eaterCapturedBy)continue;
             if(u.earthbind){const caster=this.unit(u.earthbind.owner);if(caster&&this.attackAllows(u,caster.id,u.earthbind)){u.slowed={factor:.24,expires:this.b.round};this.hurt(u,u.earthbind.damage,caster.id,false,undefined,undefined,'normal','O10',{skill:(u as any).honroEarthSkill,honroReportSource:(u as any).honroEarthReport});}}
-            if(!(u.curseTurns||0))continue;const owner=u.curseOwner?this.unit(u.curseOwner):undefined;if((u.curseDamage||0)>0&&owner&&this.attackAllows(u,(u as any).honroDotOwner||owner.id,{autonomous:u.curseAutonomous})){this.hurt(u,u.curseDamage!,(u as any).honroDotOwner||owner.id,false,undefined,undefined,'normal',(u as any).honroDotSkill,{honroReportSource:(u as any).honroDotReport});this.fx('text',u.x,u.y-u.h-24,'#c388d2',13,'저주');}
+            if(!(u.curseTurns||0))continue;const owner=u.curseOwner?this.unit(u.curseOwner):undefined;if((u.curseDamage||0)>0&&owner&&this.attackAllows(u,(u as any).honroDotOwner||owner.id,{autonomous:u.curseAutonomous})){this.hurt(u,u.curseDamage!,(u as any).honroDotOwner||owner.id,false,undefined,undefined,'normal',undefined,{skill:(u as any).honroDotSkill,honroReportSource:(u as any).honroDotReport});this.fx('text',u.x,u.y-u.h-24,'#c388d2',13,'저주');}
             u.curseTurns!--;if((u.curseTurns||0)<=0){u.curseTurns=0;u.curseDamage=0;u.curseAttack=0;u.curseArmor=0;u.betrayalUntil=0;u.curseOwner=undefined;}
         }
     }
