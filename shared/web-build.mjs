@@ -162,7 +162,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     }else if(entry.global){
       file=await dataModule(entry.name,{[entry.global]:entry.data});
     }else if(vectorGlobals.has(entry.name)){
-      const context={HONRO_ACT_ENDINGS:JSON.parse(await read('shared/data/narrative-current.json')).actEndings};
+      const context={};vm.runInNewContext(entry.code,context);
       // HONRO_ARCHER is an alias of the already loaded party asset, not a duplicate JSON.
       delete context.HONRO_ARCHER;
       file=await dataModule(entry.name,context);

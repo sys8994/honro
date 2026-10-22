@@ -11,4 +11,7 @@ for(const st of chapters)H.stages.push(st);
 H.acts=[{id:1,name:'연목의 매듭',first:1,last:10},{id:2,name:'울리지 않는 종',first:11,last:20}];
 H.nextAct={id:3,name:'지워진 기록',place:'읍성 문서고',requires:[20],available:false};
 G.HonroAct2Content={chapters,roster,guide,scene,legacySteps:G.HONRO_NARRATIVE_COMPAT.act2.legacySteps};
+// Runtime wave/retaliation queries retain the existing API; prose assembly is gone.
+const plans=chapters.map(st=>st.act2Plan);
+G.HonroAct2Plan={revision:2,stages:plans,forStage:id=>plans[id-11]};
 })(globalThis);

@@ -4416,3 +4416,9 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 ## 2026-10-22 — 서사 원고 선택 경계 통합
 
 현재 30장 최종 원고를 단일 catalogue로 추출하고 저장/동결 호환 선택을 한 resolver로 모았다. 중첩 contentFor wrapper와 act2 plan/drama 중복 조립을 제거하며 목표·전투·증거·pacing 판정과 V0/split-v1/waterworks-v2 및 저장 큐를 보존한다. 문구 교체 전 구조 동등성 30장/구 선택 40건과 대표 Continue를 확인했다. [연결 보고서](story/voice-v2-editorial/INTEGRATION_REPORT.md)에 단계와 한계를 남긴다.
+
+### 2026-10-22 서사 통합의 실행 경계 보완
+- 대사 조립 파일을 없앤 뒤에도 전투가 쓰는 `HonroAct2Plan.forStage`는 최종 stage 기계 데이터에서 제공한다. 기존 증원/난도 조회 API와 수치를 유지한다.
+- 웹 빌드의 막 엔딩 데이터 추출과 파티/몬스터/배우 에셋 추출을 분리했다. 실제 Chromium 진입에서 발견한 파티 데이터 누락을 수정했다.
+- 구 revision 저장에서 아직 열지 않은 staged scene은 동결 정의를 선택한다. 이미 저장된 staging steps/cursor는 그대로 읽는다.
+- `narrative-integration-boundaries.mjs`, 분할 빌드 동등성, 실제 Chromium 대표 장면 진입 통과. master/Pages 배포는 부모 최종 통합 담당이다.

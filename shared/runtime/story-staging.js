@@ -36,8 +36,9 @@ function prepareFresh(b){
 }
 function reveal(b,id){const s=state(b);let u=actor(b,id);if(u)return u;u=s.hidden[id];if(!alive(u))return null;G.HONRO_CORE.migrateEnemySkills(u);b.units.push(u);delete s.hidden[id];return u;}
 function matchesSplit(b,d){return !d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit);}
+function definition(b,id){return (!b?.honroNarrativeRevision&&id===ID?G.HONRO_NARRATIVE_V0?.firstReceiverScene:null)||(!G.HonroNarrativeCatalogue.active(b)?G.HONRO_NARRATIVE_COMPAT.staging?.find(d=>d.id===id):null)||registry.get(id);}
 function request(app,id,context={}){
- const b=app.engine?.b,d=registry.get(id);if(!b||!d||d.stage&&d.stage!==b.honroStage||!matchesSplit(b,d)||!G.HonroStory)return false;
+ const b=app.engine?.b,d=definition(b,id);if(!b||!d||d.stage&&d.stage!==b.honroStage||!matchesSplit(b,d)||!G.HonroStory)return false;
  const s=state(b);if(s.once[id])return false;s.once[id]='queued';
  G.HonroStory.queue(app,[['서술',d.title,{storyId:id,storyTitle:d.title,stagingRequest:{id,context:clone(context)}}]]);return true;
 }
@@ -46,7 +47,7 @@ function opening(app,lines,options){
  const b=app.engine?.b;if(options.staging)return{lines,options};let r=lines[0]?.[2]?.stagingRequest;
  if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.freshOnly||b.honroStaging.outcomeScenes?.includes(d.id))&&(!d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit))&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
  if(!r)return{lines,options};
- const def=(!b?.honroNarrativeRevision&&r.id===ID?G.HONRO_NARRATIVE_V0?.firstReceiverScene:null)||registry.get(r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||!matchesSplit(b,def)||state(b).once[r.id]==='done')return{lines:[],options};
+ const def=definition(b,r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||!matchesSplit(b,def)||state(b).once[r.id]==='done')return{lines:[],options};
  state(b).once[r.id]='running';
  const staging={id:def.id,steps:clone(def.steps),context:clone(r.context||{}),cursor:0,elapsed:0,applied:{},results:{},position:def.position||'before',waitForDialogue:def.position==='after',complete:def.position==='after'};
  const dialogue=def.steps.filter(s=>s.type==='dialogue').flatMap(s=>s.lines||lines).map(([who,text,meta={}])=>[who,text,{storyId:def.id,storyTitle:def.title,...meta,stagingScene:def.id}]);
