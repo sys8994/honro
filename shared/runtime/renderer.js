@@ -432,11 +432,17 @@
                 const [body,cover,edge]=this._occlusionLayers,[bc,cc,ec]=this._occlusionLayers.map(cv=>cv.getContext('2d'));
                 for(const ctx of [bc,cc,ec]){ctx.setTransform(1,0,0,1,0,0);ctx.globalCompositeOperation='source-over';ctx.clearRect(0,0,size,size);}
                 for(const ctx of [bc,cc])ctx.setTransform(rs,0,0,rs,-left*rs,-top*rs);
-                this.unitBody(bc,u,u.id===b.active?charge:0);
-                for(const v of covers)this.unitBody(cc,v);
+                // Bounds come from the exact pose/path draw on this mask grid,
+                // including weapons, cloth, constrained paths and stroke/AA room.
+                // Other body renderers leave them unknown and retain all work.
+                const redraw=(ctx,v,power=0)=>{const request={bounds:null};ctx._honroOcclusionBounds=request;try{this.unitBody(ctx,v,power);}finally{delete ctx._honroOcclusionBounds;}return request.bounds;};
+                const bodyBounds=redraw(bc,u,u.id===b.active?charge:0);
+                let coverBounds=null,knownCovers=true;
+                for(const v of covers){const box=redraw(cc,v);if(!box){knownCovers=false;continue;}coverBounds=coverBounds?[Math.min(coverBounds[0],box[0]),Math.min(coverBounds[1],box[1]),Math.max(coverBounds[2],box[2]),Math.max(coverBounds[3],box[3])]:box;}
+                const r=1.6*rs/this.scale,pad=r+2;
+                if(bodyBounds&&knownCovers&&coverBounds&&(bodyBounds[2]+pad<coverBounds[0]||coverBounds[2]+pad<bodyBounds[0]||bodyBounds[3]+pad<coverBounds[1]||coverBounds[3]+pad<bodyBounds[1])){this._occludedUnitIds.push(u.id);continue;}
                 bc.setTransform(1,0,0,1,0,0);cc.setTransform(1,0,0,1,0,0);
                 bc.globalCompositeOperation='source-in';bc.fillStyle=u.id===b.active?'#f4d793':u.side===1?'#edb7a3':'#bee1cc';bc.fillRect(0,0,size,size);bc.globalCompositeOperation='source-over';
-                const r=1.6*rs/this.scale;
                 for(let j=0;j<8;j++)ec.drawImage(body,Math.cos(j*Math.PI/4)*r,Math.sin(j*Math.PI/4)*r);
                 ec.globalCompositeOperation='destination-out';ec.drawImage(body,0,0);
                 ec.globalCompositeOperation='destination-in';ec.drawImage(cover,0,0);ec.globalCompositeOperation='source-over';

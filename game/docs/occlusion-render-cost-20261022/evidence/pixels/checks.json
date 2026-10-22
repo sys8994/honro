@@ -1,0 +1,834 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "name": "normal-idle",
+      "frames": 6,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        78,
+        0
+      ],
+      "rgbaSha256": [
+        "e1d27d083ceff986abeb6237a1a13d0ccfc1bf1d83548b19c0af4f040da86f91",
+        "e1d27d083ceff986abeb6237a1a13d0ccfc1bf1d83548b19c0af4f040da86f91"
+      ]
+    },
+    {
+      "name": "normal-charge",
+      "frames": 18,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        234,
+        0
+      ],
+      "rgbaSha256": [
+        "917c7684b87390e8e232355c77d3a5fd1a29b7763087d1cccb243e7ee13e66d8",
+        "917c7684b87390e8e232355c77d3a5fd1a29b7763087d1cccb243e7ee13e66d8"
+      ]
+    },
+    {
+      "name": "party-overlap",
+      "frames": 6,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        78,
+        78
+      ],
+      "rgbaSha256": [
+        "b1cb3f24755aa5088a2f0a84f6b4b2d4bd8d60adeae50c82c53286e7afcd1943",
+        "b1cb3f24755aa5088a2f0a84f6b4b2d4bd8d60adeae50c82c53286e7afcd1943"
+      ]
+    },
+    {
+      "name": "charge-bow-reversed",
+      "frames": 18,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        234,
+        234
+      ],
+      "rgbaSha256": [
+        "41590b87cd393f1577d44d3c100976f6d23ab2c4f77cbd46872aa4eda9261059",
+        "41590b87cd393f1577d44d3c100976f6d23ab2c4f77cbd46872aa4eda9261059"
+      ]
+    },
+    {
+      "name": "charge-release-bow",
+      "frames": 18,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        234,
+        234
+      ],
+      "rgbaSha256": [
+        "292e9435542ca8715cd603a98832f4cb11d19ccd6399f006cbef89669af2708b",
+        "292e9435542ca8715cd603a98832f4cb11d19ccd6399f006cbef89669af2708b"
+      ]
+    },
+    {
+      "name": "charge-staff-hover-inspect",
+      "frames": 18,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        234,
+        234
+      ],
+      "rgbaSha256": [
+        "7c46299e2acf9cd254fea65b2ad3eaf02c9e480a49310763af82432c956ddd47",
+        "7c46299e2acf9cd254fea65b2ad3eaf02c9e480a49310763af82432c956ddd47"
+      ]
+    },
+    {
+      "name": "charge-sword-cloth",
+      "frames": 18,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        234,
+        234
+      ],
+      "rgbaSha256": [
+        "0d3e4f614de176b9a481395affaf4f6e179c6ef905b5679af8bbc1709ad45fed",
+        "0d3e4f614de176b9a481395affaf4f6e179c6ef905b5679af8bbc1709ad45fed"
+      ]
+    },
+    {
+      "name": "charge-talisman",
+      "frames": 18,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        234,
+        234
+      ],
+      "rgbaSha256": [
+        "0893f143bcd15697e7cb5b8cd48e771d5ce46100ba677456c8799b13094aca14",
+        "0893f143bcd15697e7cb5b8cd48e771d5ce46100ba677456c8799b13094aca14"
+      ]
+    },
+    {
+      "name": "move-airborne-hit",
+      "frames": 6,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        78,
+        78
+      ],
+      "rgbaSha256": [
+        "c896000927343b07fb30631cb9ea7cd92e32514cd90fe96f0b2c91e0be19c6e6",
+        "c896000927343b07fb30631cb9ea7cd92e32514cd90fe96f0b2c91e0be19c6e6"
+      ]
+    },
+    {
+      "name": "min-zoom-outline-margin",
+      "frames": 6,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        78,
+        78
+      ],
+      "rgbaSha256": [
+        "3e4c7b373508d309db3a104142a170de0fd2e9237f11f303a78fa6bf85e9b98d",
+        "3e4c7b373508d309db3a104142a170de0fd2e9237f11f303a78fa6bf85e9b98d"
+      ]
+    },
+    {
+      "name": "edge-of-viewport",
+      "frames": 6,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        78,
+        78
+      ],
+      "rgbaSha256": [
+        "3358f3368965b54748f43563a0d1f840959819b1f19ff51875e6bdc8915e121e",
+        "3358f3368965b54748f43563a0d1f840959819b1f19ff51875e6bdc8915e121e"
+      ]
+    },
+    {
+      "name": "large-boss-fallback",
+      "frames": 6,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        78,
+        78
+      ],
+      "rgbaSha256": [
+        "f2c4760bc84d4cc26855a8f2c768a341da6bbce64e325d35420255a919b4552c",
+        "f2c4760bc84d4cc26855a8f2c768a341da6bbce64e325d35420255a919b4552c"
+      ]
+    },
+    {
+      "name": "winged-fallback",
+      "frames": 6,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        78,
+        78
+      ],
+      "rgbaSha256": [
+        "5687eee535511483d9e90c417fb5476862cf4962f9d3de0ab266cc9a7c32a704",
+        "5687eee535511483d9e90c417fb5476862cf4962f9d3de0ab266cc9a7c32a704"
+      ]
+    },
+    {
+      "name": "portrait-dpr2",
+      "frames": 18,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        234,
+        234
+      ],
+      "rgbaSha256": [
+        "18ec14d00c8c12b9c1dfd8cd311c89674a7e8f117f0820ceea32a7f8c126181d",
+        "18ec14d00c8c12b9c1dfd8cd311c89674a7e8f117f0820ceea32a7f8c126181d"
+      ]
+    },
+    {
+      "name": "landscape-rotation",
+      "frames": 18,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        234,
+        234
+      ],
+      "rgbaSha256": [
+        "12f097d64deb191dfc7fd6bc948eb266907c2040995876498f076b13fe9a4197",
+        "12f097d64deb191dfc7fd6bc948eb266907c2040995876498f076b13fe9a4197"
+      ]
+    },
+    {
+      "name": "preview-boundary",
+      "frames": 6,
+      "exact": true,
+      "changedPixelsAcrossFrames": 0,
+      "maxChannel": 0,
+      "samePose": true,
+      "sameIds": true,
+      "battlePure": true,
+      "copies": [
+        0,
+        0
+      ],
+      "rgbaSha256": [
+        "60d2cc8dd712e9c0afba90b198743e0d5a5c7db81401ffeba342040bbe51f3a3",
+        "60d2cc8dd712e9c0afba90b198743e0d5a5c7db81401ffeba342040bbe51f3a3"
+      ]
+    }
+  ],
+  "hullChecks": [
+    {
+      "cls": "archer",
+      "facing": -1,
+      "kind": "idle",
+      "box": [
+        157.19390654856198,
+        173.18400857624414,
+        222.40232964911957,
+        302
+      ],
+      "count": 4032,
+      "outside": 0
+    },
+    {
+      "cls": "archer",
+      "facing": -1,
+      "kind": "move",
+      "box": [
+        148.75246545054947,
+        177.9918534941999,
+        223.37779230208642,
+        301.99999999999994
+      ],
+      "count": 4074,
+      "outside": 0
+    },
+    {
+      "cls": "archer",
+      "facing": -1,
+      "kind": "charge",
+      "box": [
+        155.3476992135557,
+        147.62633934646803,
+        242.30043850252366,
+        302
+      ],
+      "count": 3969,
+      "outside": 0
+    },
+    {
+      "cls": "archer",
+      "facing": -1,
+      "kind": "airborne",
+      "box": [
+        125.18151152309292,
+        176.00829874399426,
+        227.81390130287988,
+        290.3075565262151
+      ],
+      "count": 4343,
+      "outside": 0
+    },
+    {
+      "cls": "archer",
+      "facing": -1,
+      "kind": "hit",
+      "box": [
+        155.3476992135557,
+        149.22362479167762,
+        245.666255267741,
+        302
+      ],
+      "count": 3927,
+      "outside": 0
+    },
+    {
+      "cls": "archer",
+      "facing": 1,
+      "kind": "idle",
+      "box": [
+        161.59767035088043,
+        173.18400857624414,
+        226.80609345143802,
+        302
+      ],
+      "count": 4033,
+      "outside": 0
+    },
+    {
+      "cls": "archer",
+      "facing": 1,
+      "kind": "move",
+      "box": [
+        160.62220769791358,
+        177.9918534941999,
+        235.24753454945053,
+        301.99999999999994
+      ],
+      "count": 4074,
+      "outside": 0
+    },
+    {
+      "cls": "archer",
+      "facing": 1,
+      "kind": "charge",
+      "box": [
+        166.85590228450286,
+        140.7681188624852,
+        257.68896841275784,
+        302
+      ],
+      "count": 4212,
+      "outside": 0
+    },
+    {
+      "cls": "archer",
+      "facing": 1,
+      "kind": "airborne",
+      "box": [
+        156.18609869712012,
+        176.00829874399426,
+        258.8184884769071,
+        290.3075565262151
+      ],
+      "count": 4348,
+      "outside": 0
+    },
+    {
+      "cls": "archer",
+      "facing": 1,
+      "kind": "hit",
+      "box": [
+        166.85590228450286,
+        136.12981677435573,
+        256.1928075870853,
+        302
+      ],
+      "count": 4126,
+      "outside": 0
+    },
+    {
+      "cls": "mage",
+      "facing": -1,
+      "kind": "idle",
+      "box": [
+        155.42402933041018,
+        181.16343766870503,
+        225.2489763857569,
+        302.35768385904134
+      ],
+      "count": 4350,
+      "outside": 0
+    },
+    {
+      "cls": "mage",
+      "facing": -1,
+      "kind": "move",
+      "box": [
+        154.1497693686189,
+        184.76285396114767,
+        232.46314980465684,
+        303.32929435817084
+      ],
+      "count": 4544,
+      "outside": 0
+    },
+    {
+      "cls": "mage",
+      "facing": -1,
+      "kind": "charge",
+      "box": [
+        139.75013125696438,
+        178.494983004439,
+        224.71662060475728,
+        302
+      ],
+      "count": 4285,
+      "outside": 0
+    },
+    {
+      "cls": "mage",
+      "facing": -1,
+      "kind": "airborne",
+      "box": [
+        130.71823767250402,
+        171.7346293833212,
+        233.29344384472944,
+        303.8340525200422
+      ],
+      "count": 4608,
+      "outside": 0
+    },
+    {
+      "cls": "mage",
+      "facing": -1,
+      "kind": "hit",
+      "box": [
+        109.886682285091,
+        184.3488671757529,
+        221.40958775323165,
+        302.7263802055868
+      ],
+      "count": 4577,
+      "outside": 0
+    },
+    {
+      "cls": "mage",
+      "facing": 1,
+      "kind": "idle",
+      "box": [
+        158.7510236142431,
+        181.16343766870503,
+        228.57597066958982,
+        302.35768385904134
+      ],
+      "count": 4347,
+      "outside": 0
+    },
+    {
+      "cls": "mage",
+      "facing": 1,
+      "kind": "move",
+      "box": [
+        151.53685019534316,
+        184.76285396114767,
+        229.8502306313811,
+        303.32929435817084
+      ],
+      "count": 4544,
+      "outside": 0
+    },
+    {
+      "cls": "mage",
+      "facing": 1,
+      "kind": "charge",
+      "box": [
+        159.28337939524272,
+        178.494983004439,
+        244.24986874303565,
+        302
+      ],
+      "count": 4285,
+      "outside": 0
+    },
+    {
+      "cls": "mage",
+      "facing": 1,
+      "kind": "airborne",
+      "box": [
+        150.70655615527056,
+        171.7346293833212,
+        253.28176232749595,
+        303.8340525200422
+      ],
+      "count": 4605,
+      "outside": 0
+    },
+    {
+      "cls": "mage",
+      "facing": 1,
+      "kind": "hit",
+      "box": [
+        162.59041224676835,
+        184.3488671757529,
+        274.113317714909,
+        302.7263802055868
+      ],
+      "count": 4578,
+      "outside": 0
+    },
+    {
+      "cls": "knight",
+      "facing": -1,
+      "kind": "idle",
+      "box": [
+        114.61966252854631,
+        160.53107988718892,
+        224.83587559147105,
+        302
+      ],
+      "count": 4922,
+      "outside": 0
+    },
+    {
+      "cls": "knight",
+      "facing": -1,
+      "kind": "move",
+      "box": [
+        131.4157828743958,
+        164.13677909231947,
+        231.47559525991898,
+        302
+      ],
+      "count": 5043,
+      "outside": 0
+    },
+    {
+      "cls": "knight",
+      "facing": -1,
+      "kind": "charge",
+      "box": [
+        150.47212679361718,
+        150.9648180225949,
+        226.61448867774996,
+        302.00000000000006
+      ],
+      "count": 4658,
+      "outside": 0
+    },
+    {
+      "cls": "knight",
+      "facing": -1,
+      "kind": "airborne",
+      "box": [
+        135.8074051717663,
+        166.56233688851324,
+        232.19949567699,
+        291.8476287457024
+      ],
+      "count": 4924,
+      "outside": 0
+    },
+    {
+      "cls": "knight",
+      "facing": -1,
+      "kind": "hit",
+      "box": [
+        111.07689814155576,
+        170.2854842678096,
+        220.37728324718262,
+        303.28742648485564
+      ],
+      "count": 4882,
+      "outside": 0
+    },
+    {
+      "cls": "knight",
+      "facing": 1,
+      "kind": "idle",
+      "box": [
+        159.16412440852895,
+        160.53107988718892,
+        269.3803374714537,
+        302
+      ],
+      "count": 4916,
+      "outside": 0
+    },
+    {
+      "cls": "knight",
+      "facing": 1,
+      "kind": "move",
+      "box": [
+        152.52440474008102,
+        164.13677909231947,
+        252.5842171256042,
+        302
+      ],
+      "count": 5042,
+      "outside": 0
+    },
+    {
+      "cls": "knight",
+      "facing": 1,
+      "kind": "charge",
+      "box": [
+        157.38551132225004,
+        150.9648180225949,
+        233.52787320638282,
+        302.00000000000006
+      ],
+      "count": 4654,
+      "outside": 0
+    },
+    {
+      "cls": "knight",
+      "facing": 1,
+      "kind": "airborne",
+      "box": [
+        151.80050432301,
+        166.56233688851324,
+        248.19259482823367,
+        291.8476287457024
+      ],
+      "count": 4926,
+      "outside": 0
+    },
+    {
+      "cls": "knight",
+      "facing": 1,
+      "kind": "hit",
+      "box": [
+        163.62271675281738,
+        170.2854842678096,
+        272.9231018584442,
+        303.28742648485564
+      ],
+      "count": 4881,
+      "outside": 0
+    },
+    {
+      "cls": "occultist",
+      "facing": -1,
+      "kind": "idle",
+      "box": [
+        161.5006405339472,
+        179.23753228730527,
+        221.26670230298555,
+        302
+      ],
+      "count": 3661,
+      "outside": 0
+    },
+    {
+      "cls": "occultist",
+      "facing": -1,
+      "kind": "move",
+      "box": [
+        159.25998724052766,
+        181.57856823903572,
+        225.33620027094983,
+        302
+      ],
+      "count": 3750,
+      "outside": 0
+    },
+    {
+      "cls": "occultist",
+      "facing": -1,
+      "kind": "charge",
+      "box": [
+        161.99632216979467,
+        179.85729703450713,
+        222.58764466740223,
+        302
+      ],
+      "count": 3377,
+      "outside": 0
+    },
+    {
+      "cls": "occultist",
+      "facing": -1,
+      "kind": "airborne",
+      "box": [
+        155.45934184342752,
+        181.54905245612156,
+        240.34597133905208,
+        300.1363621154893
+      ],
+      "count": 3884,
+      "outside": 0
+    },
+    {
+      "cls": "occultist",
+      "facing": -1,
+      "kind": "hit",
+      "box": [
+        156.60326039219015,
+        180.1078508297605,
+        224.03903972340666,
+        302
+      ],
+      "count": 3389,
+      "outside": 0
+    },
+    {
+      "cls": "occultist",
+      "facing": 1,
+      "kind": "idle",
+      "box": [
+        162.7332976970145,
+        179.23753228730527,
+        222.49935946605282,
+        302
+      ],
+      "count": 3663,
+      "outside": 0
+    },
+    {
+      "cls": "occultist",
+      "facing": 1,
+      "kind": "move",
+      "box": [
+        158.66379972905017,
+        181.57856823903572,
+        224.74001275947234,
+        302
+      ],
+      "count": 3750,
+      "outside": 0
+    },
+    {
+      "cls": "occultist",
+      "facing": 1,
+      "kind": "charge",
+      "box": [
+        161.4123553325978,
+        179.85729703450713,
+        222.00367783020533,
+        302
+      ],
+      "count": 3378,
+      "outside": 0
+    },
+    {
+      "cls": "occultist",
+      "facing": 1,
+      "kind": "airborne",
+      "box": [
+        143.65402866094792,
+        181.54905245612156,
+        228.54065815657248,
+        300.1363621154893
+      ],
+      "count": 3884,
+      "outside": 0
+    },
+    {
+      "cls": "occultist",
+      "facing": 1,
+      "kind": "hit",
+      "box": [
+        159.96096027659337,
+        180.1078508297605,
+        227.39673960780988,
+        302
+      ],
+      "count": 3388,
+      "outside": 0
+    }
+  ],
+  "unsupportedGeometryFallback": true,
+  "limits": [
+    "Separate readback/fixed render fixtures, not performance samples or normal gameplay completion.",
+    "Actual production Scene/render chain with baseline occlusion method substituted for exact same-state comparison.",
+    "Body/pose/sample resolution unchanged; desktop/portrait/landscape/DPR emulation is not physical-device validation."
+  ],
+  "errors": [],
+  "browser": "154.0.8037.57",
+  "sourceFiles": {
+    "shared/runtime/renderer.js": "0fc0aa62a304d1274b40d56515ddb4363da21b53c33552d8adb876f06e24569d",
+    "shared/runtime/party-rig.js": "1ccaf5044a1580218f69cae6754e969b173fc18056f1786de229916f5ba6212a",
+    "shared/assets/rebuild-game-adapter.mjs": "3ca9f379d12c0b0d6156431eb285d154f7077e29594f39cf6802444cf81e15c7"
+  },
+  "trackedTreeDirty": false,
+  "sourceCommit": "03119da093abb686e68eac75ca66ca52a52473f9",
+  "baselineCommit": "1c397248f42f365593be3a154c06d6d1ee5b2ac5",
+  "rendererSha256": "0fc0aa62a304d1274b40d56515ddb4363da21b53c33552d8adb876f06e24569d",
+  "manifestSha256": "36647770088653b0b2f5f32d8d8cb3259a9a31fee04db8f8bcd73c5ee34459c1",
+  "checkerSha256": "1559a964a3e641d06ee09560f6817c74c32933184fe33d6734fb4234160f3837"
+}
