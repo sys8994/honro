@@ -3,6 +3,8 @@
  * DOM, render, wall-clock and storage are test doubles; not browser or human QA.
  * After entry only normal input APIs mutate gameplay, with no consumables. */
 import assert from 'node:assert/strict';
+import {gunzipSync} from 'node:zlib';
+import {stage17ProgressPoint} from './stage17-progress-policy-helper.mjs';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
@@ -13,13 +15,14 @@ import {navigator} from './stage17-worksite-fullplay-helper.mjs';
 import {analyzeWaits} from './stage16-temple-fullplay-helper.mjs';
 import {current16Entry} from './stage16-current-entry-helper.mjs';
 import {auditVertical14Engine} from './stage14-vertical-fullplay-helper.mjs';
+const progressFirst=process.env.HONRO_STAGE17_PROGRESS_FIRST==='1';
 const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex');
 const h=await appHarness(),{g,C}=h;vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
 const out=process.env.HONRO_FULLPLAY_OUT||'_local/reports/stage17-current-pacing-20261022/fullplay';await mkdir(out,{recursive:true});
 const resumePath=process.env.HONRO_FULLPLAY_CONTINUE,resume=resumePath?JSON.parse(await readFile(resumePath,'utf8')):null;
 const sourceHash=hash(g.HONRO_PROJECT),loadedParts=await runtimeParts({vector:false,render:false}),runtimeSha256=hash(loadedParts.join('\n')),stageSource=g.HONRO_PROJECT.stages[16];
 const gameplayProjectSha256=hash({terrain:stageSource.terrains,units:stageSource.units,markers:stageSource.markers,anchors:stageSource.anchors,initialState:stageSource.initialState,events:stageSource.events,objectives:stageSource.objectives,materials:stageSource.materials,content:g.HONRO_CONTENT.stages[16]}),gameplayRuntimeSha256=hash([...loadedParts.filter(s=>!s.startsWith('globalThis.HONRO_PROJECT=')),...await Promise.all(['main','story','interactions','rest-journey','training'].map(f=>readFile(`shared/runtime/${f}.js`,'utf8')))].join('\n'));
-const provenance={sourceHash,runtimeSha256,gameplayProjectSha256,gameplayRuntimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),helperSha256:hash(await readFile(new URL('./stage17-worksite-fullplay-helper.mjs',import.meta.url),'utf8')),checkoutCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),entryHelperSha256:hash(await readFile(new URL('./stage16-current-entry-helper.mjs',import.meta.url),'utf8')),productionCommit:process.env.HONRO_FULLPLAY_PRODUCTION_COMMIT||null};
+const provenance={inputPolicy:progressFirst?'supported-progress-before-available-shot-v1':'shoot-first',sourceHash,runtimeSha256,gameplayProjectSha256,gameplayRuntimeSha256,controllerSha256:hash(await readFile(new URL(import.meta.url),'utf8')),helperSha256:hash(await readFile(new URL('./stage17-worksite-fullplay-helper.mjs',import.meta.url),'utf8')),checkoutCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),entryHelperSha256:hash(await readFile(new URL('./stage16-current-entry-helper.mjs',import.meta.url),'utf8')),productionCommit:process.env.HONRO_FULLPLAY_PRODUCTION_COMMIT||null};
 if(process.env.HONRO_FULLPLAY_PROVENANCE_ONLY==='1'){await writeFile(`${out}/provenance.json`,JSON.stringify(provenance,null,2));console.log(JSON.stringify(provenance));process.exit(0);}
 let virtualMs=resume?.virtualMs||0;g.performance={now:()=>virtualMs};
 const fixture=current16Entry(g,{stageId:17}),readiness=fixture.readiness;await writeFile(`${out}/readiness-ledger.json`,JSON.stringify(readiness,null,2));await writeFile(`${out}/camp-training.json`,JSON.stringify({training:fixture.training,allocation:fixture.allocation},null,2));
@@ -36,7 +39,7 @@ if(resume){
 }else app.launch(17);
 let e=app.engine,b=e.b,liveAudit;assert.equal(b.honroStage,17);assert.equal(b.difficulty,'normal');
 if(!resume){assert.deepEqual(plain(e.alive(1).map(u=>u.id)),plain(g.HONRO_PROJECT.stages[16].units.filter(u=>u.team==='enemy').map(u=>u.id)),'Every authored opponent enters unchanged');assert.equal(b.honroActiveLimit,3);}
-const initial=resume?.initial||plain({battle:b,profile:app.profile});assert(initial.battle.units.filter(u=>u.side===0).every(u=>u.level===readiness.level));
+const initial=resume?.initial||plain({battle:b,profile:app.profile});if(progressFirst){assert(!resume,'One fresh policy comparison');const baseline=JSON.parse(gunzipSync(await readFile('tests/fixtures/stage17-final-r29-20261022.json.gz')));assert.equal(sourceHash,baseline.sourceHash,'Comparison uses exact original game including routes');assert.equal(runtimeSha256,baseline.runtimeSha256);for(const key of ['units','terrain','seed','rng','heroes','items','honroActiveLimit'])assert.deepEqual(plain(initial.battle[key]),plain(baseline.initial.battle[key]),'Exact baseline entry '+key);}assert(initial.battle.units.filter(u=>u.side===0).every(u=>u.level===readiness.level));
 const actions=resume?.actions||[],rounds=resume?.rounds||[],damage=resume?.damage||[],births=resume?.births||[],notices=resume?.notices||[],dialogs=resume?.dialogs||[],continues=[...(resume?.continues||[]),...(resume?[{path:resumePath,round:b.round,method:'production App Continue; exact actors/terrain/items/turn/objectives/waves/progression asserted',statePreserved:true,previousProvenance:resume.provenance,priorFrames:resume.frames,priorPurePlanningCounterAvailable:Number.isFinite(resume.attackPlanningMs)}]:[])];
 let nativePhysicsMs=resume?.nativePhysicsMs||0,attackPlanningMs=resume?.attackPlanningMs||0;
 let frames=resume?.frames||0,storyFrames=resume?.storyFrames||0,planningMs=resume?.planningMs||0,inputCount=resume?.inputCount||0,lastRound=0,stopReason=null,known=new Set(b.units.map(u=>u.id));
@@ -50,15 +53,15 @@ const terminal=()=>['won','lost'].includes(b.phase);
 function stories(){if(app.dialogue){const d=app.dialogue;dialogs.push({round:b.round,frame:frames,title:d.title,index:d.index,line:plain(d.lines[d.index])});liveAudit.production(()=>g.HonroStory.next(app));storyFrames++;virtualMs+=1000/60;return true;}if(['aim','enemy','ally','summon'].includes(b.phase))liveAudit.production(()=>g.HonroStory.turn(app));if(g.HonroStory.turnPaused(app)){storyFrames++;virtualMs+=1000/60;return true;}return false;}
 function tick(){const t0=performance.now();virtualMs+=C.STEP*1000;liveAudit.guard();liveAudit.production(()=>{e.tick(C.STEP);if(!app.dialogue)app.missionTick(C.STEP);});frames++;for(const u of b.units)if(!known.has(u.id)){known.add(u.id);births.push({round:b.round,frame:frames,turn:b.honroState.actorTurnSerial,id:u.id,source:u.honroSpawnSource,x:u.x,y:u.y});}nativePhysicsMs+=performance.now()-t0;}
 const ready=()=>app.canInput();const nav=navigator(g,b,e,{tick,ready,record}),dist=(a,z)=>Math.hypot(a.x-z.x,a.y-z.y),fraction=u=>u.hp/u.maxHp;
-function attack(u,target){const begin=performance.now();try{return attackPlan(u,target);}finally{attackPlanningMs+=performance.now()-begin;}}
-function attackPlan(u,target){
+function attack(u,target,preview=false){const begin=performance.now();try{return attackPlan(u,target,preview);}finally{attackPlanningMs+=performance.now()-begin;}}
+function attackPlan(u,target,preview=false){
  const spirit=target.honroSpirit&&!target.manifested;
  const skills=u.loadout.map(id=>C.SKILLS[id]).filter(s=>s.damage>0&&!s.passive&&e.cooldownLeft(u,s.id)<=0&&e.manaCost(s,u)<=u.focus).sort((a,z)=>(spirit?Number(z.id==='O08')-Number(a.id==='O08'):0)||Number(z.id==='A06'&&fraction(u)<.8)-Number(a.id==='A06'&&fraction(u)<.8)||z.damage-a.damage);
  for(const s of skills){
-  if(s.martial&&s.branch==='sword'){let angle=Math.atan2(u.y-u.h*.58-(target.y-target.h*.5),target.x-u.x)*180/Math.PI;if(angle< -90)angle+=360;for(const power of[1,.7,.2])if(C.meleeContains(e,u,target,C.meleeRange(u,s,power),-angle*Math.PI/180,C.meleeSpan(u,s,power))&&e.fire(s.id,angle,power)){record({op:'fire',hero:u.cls,skill:s.id,target:target.id,hpBefore:target.hp,angle,power});return true;}continue;}
+  if(s.martial&&s.branch==='sword'){let angle=Math.atan2(u.y-u.h*.58-(target.y-target.h*.5),target.x-u.x)*180/Math.PI;if(angle< -90)angle+=360;for(const power of[1,.7,.2])if(C.meleeContains(e,u,target,C.meleeRange(u,s,power),-angle*Math.PI/180,C.meleeSpan(u,s,power))&&(preview||e.fire(s.id,angle,power))){if(!preview)record({op:'fire',hero:u.cls,skill:s.id,target:target.id,hpBefore:target.hp,angle,power});return true;}continue;}
   let best=null;for(const aim of e.shotSeeds(u,s,target)){const v=C.shotViable(e,u,s,target,aim.angle,aim.power);if((v.ok||target.hp<=2&&v.enemyDamage>0)&&v.risk<1&&v.miss<Math.max(85,s.radius+target.r+55)&&(!best||v.net>best.net))best={...aim,net:v.net};}
   if(!best&&s===skills[0]){const aim=e.bestShot(u,s,target),v=C.shotViable(e,u,s,target,aim.angle,aim.power);if((v.ok||target.hp<=2&&v.enemyDamage>0)&&v.risk<1&&v.miss<Math.max(85,s.radius+target.r+55))best=aim;}
-  if(best&&e.fire(s.id,best.angle,best.power)){record({op:'fire',hero:u.cls,skill:s.id,target:target.id,hpBefore:target.hp,angle:best.angle,power:best.power});return true;}
+  if(best&&(preview||e.fire(s.id,best.angle,best.power))){if(!preview)record({op:'fire',hero:u.cls,skill:s.id,target:target.id,hpBefore:target.hp,angle:best.angle,power:best.power});return true;}
  }
  return false;
 }
@@ -94,10 +97,11 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
  const required=goal?.kind==='clear'?g.HonroAct2.enemiesFor(b,goal):goal?.kind==='defeat'?[e.unit(goal.target)].filter(v=>v&&!v.dead&&v.hp>0&&!v.honroSubdued):goal?.kind==='hold'?e.alive(1).filter(v=>dist(v,m)<goal.contestRadius):m?g.HonroAct2.interactionThreats(b,m):[],ids=new Set(required.map(v=>v.id));if(spirit&&!spirit.dead&&spirit.hp>spirit.maxHp*.4)ids.add(spirit.id);
  let foes=e.alive(1).filter(v=>g.HonroAct2.visible(b,v)&&(ids.has(v.id)||dist(v,u)<650)&&!(v.id===spirit?.id&&v.hp<=v.maxHp*.4&&e.heroesAlive().some(h=>h.cls==='occultist')));
  foes.sort((a,z)=>Number(ids.has(z.id))-Number(ids.has(a.id))||dist(a,u)-dist(z,u));
- let fired=false;for(const target of foes.filter(v=>dist(v,u)<1500).slice(0,2))if(attack(u,target)){fired=true;break;}if(fired){planningMs+=performance.now()-t0;continue;}
  let point=m,enemy=false;const currentFoes=foes.filter(v=>ids.has(v.id));
  const healStake=(b.stakes||[]).filter(s=>s.skill==='M10'&&s.expires>b.round&&s.usedRounds?.[u.id]!==b.round&&dist(s,u)<1600).sort((a,z)=>dist(a,u)-dist(z,u))[0];
  if(fraction(u)<.75&&healStake)point=healStake;else if(currentFoes.length){point=currentFoes[0];enemy=true;}else if(goal?.kind==='hold')point=m;else if(!point&&foes.length){point=foes[0];enemy=true;}
+ let forward=null;if(progressFirst){const before=JSON.stringify({rng:b.rng,units:b.units,state:b.honroState,phase:b.phase});const available=foes.filter(v=>dist(v,u)<1500).slice(0,2).some(target=>attack(u,target,true));assert.equal(JSON.stringify({rng:b.rng,units:b.units,state:b.honroState,phase:b.phase}),before,'Read-only shot proposal');if(available)forward=stage17ProgressPoint(g,b,e,nav,u,point,enemy,goal);if(forward){record({op:'forward-before-shot',hero:u.cls,toward:point.id,mandatoryIds:[...ids],proposal:forward});point=forward;enemy=false;}}
+ let fired=false;if(!forward){for(const target of foes.filter(v=>dist(v,u)<1500).slice(0,2))if(attack(u,target)){fired=true;break;}if(fired){planningMs+=performance.now()-t0;continue;}}
  if(point)nav.advance(u,point,enemy);if(!ready()){planningMs+=performance.now()-t0;continue;}
  if(interact()){record({op:'E',hero:u.cls,target:m.id});nav.clear(u.id);planningMs+=performance.now()-t0;continue;}
  if(heal(u)){planningMs+=performance.now()-t0;continue;}

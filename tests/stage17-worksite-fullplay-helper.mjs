@@ -39,7 +39,7 @@ export function navigator(g,b,e,{tick,ready,record}){
   for(let i=0;i<300&&ready()&&!e.grounded(u);i++){if(state.air&&Math.abs(u.x-state.air.x)>3)e.move(Math.sign(state.air.x-u.x)*(state.air.speed||.35),C.STEP);tick();}
   if(distance(start,u)>1)record({op:'move',hero:u.cls,from:start,to:{x:u.x,y:u.y},support:surface(u),goal:{id:point.id,x:point.x,y:point.y}});
  }
- return{advance,clear:id=>nav.delete(id),surface,nodes:nodes.length};
+ return{advance,clear:id=>nav.delete(id),surface,nodes:nodes.length,inspectRoute:(u,p,enemy=false)=>route(u,p,enemy)};
 }
 
 /** Post-run trace analysis only. A turn may include locomotion before defend. */
