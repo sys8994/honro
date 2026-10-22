@@ -30,7 +30,7 @@
 <path d="M307-3550Q358-3567 420-3553M310-3498Q363-3513 422-3501" fill="none" stroke="#7a805e" stroke-width="11"/>
 </g>
 <g id="unbroken-round-bronze-body">
-<path id="complete-cast-body" d="M-860-3370Q-781-3690-330-3850Q75-3920 320-3820Q677-3670 790-3350L1020-2100Q1180-1010 1340-450L1540-200L1620 0H-1550L-1490-180Q-1260-950-1130-2080Z" fill="url(#bronze)" stroke="#192c2c" stroke-width="14"/>
+<path id="complete-cast-body" d="M-860-3370Q-781-3690-330-3850Q75-3920 320-3820Q677-3670 790-3350L1020-2100Q1180-1010 1340-450L1540-200L1620 0Q200 60-1550 0L-1490-180Q-1260-950-1130-2080Z" fill="url(#bronze)" stroke="#192c2c" stroke-width="14"/>
 <path id="round-shoulder-moon-plane" d="M-860-3370Q-781-3690-330-3850Q75-3920 320-3820Q677-3670 790-3350Q146-3190-860-3370Z" fill="url(#aged-crown)"/>
 <path id="broad-front-bronze-volume" d="M-859-3336Q-383-3175 693-3340L943-1915L1205-512Q228-210-1213-516L-1063-2133Z" fill="url(#bronze)"/>
 <path id="broad-soft-patina" d="M-850-3310Q-360-3180 790-3340L1260-600Q350-365-1240-510L-1060-2200Z" fill="url(#thin-patina)"/>
@@ -67,22 +67,17 @@
 <path id="receding-inner-cast-wall" d="M-1406-184Q-874-627 35-652Q922-691 1340-584L1380-475Q901-601 36-553Q-827-532-1351-139Z" fill="url(#inner-wall)"/>
 <path d="M-1351-139Q-827-532 36-553Q901-601 1380-475" fill="none" stroke="url(#receding-inner-highlight)" stroke-width="9"/>
 </g>
-<g id="cast-sound-window-frame">
-<path id="continuous-throat-shadow" d="M1303-610H660Q620-610 620-590V-360Q620-320 670-320H935" fill="none" stroke="#1b2429" stroke-width="9" stroke-linejoin="round" opacity="0.15"/>
-<path id="one-heavy-inner-bronze-ledge" d="M935-333Q1150-326 1444-320L1469-276Q1157-286 957-298Z" fill="#50604b"/>
-<path id="receding-ledge-underside" d="M957-298Q1157-286 1469-276L1440-245Q1191-263 984-279Z" fill="#273e34"/>
-</g>
 <g id="single-east-cast-bearing-ear">
-<path d="M1310-440H1990V-320H1350Z" fill="#465f49" stroke="#203b31" stroke-width="13"/>
-<path d="M1350-431H1981V-414H1358Z" fill="#7a7d58"/>
-<path d="M1469-387H1950V-334H1492Z" fill="#2b493b"/>
-<path d="M1950-418V-336" fill="none" stroke="#718365" stroke-width="11"/>
+<path d="M1310-440H1990V-320H1350Z" fill="url(#bell-lip)" stroke="#263b33" stroke-width="13"/>
+<path d="M1350-431H1981V-414H1358Z" fill="#9a9071"/>
+<path d="M1469-387H1950V-334H1492Z" fill="#414e3f"/>
+<path d="M1950-418V-336" fill="none" stroke="#7e8061" stroke-width="11"/>
 </g>
 <g id="one-continuous-heavy-mouth">
-<path id="continuous-cast-mouth-front" d="M-1480-262Q-1390-180-1220-137Q-788-38 35-44Q956-55 1444-320L1540-200L1620 0H-1550Z" fill="url(#bell-lip)" stroke="#1c302d" stroke-width="12"/>
-<path id="mouth-front-curved-bevel" d="M-1480-262Q-1390-180-1220-137Q-788-38 35-44Q956-55 1444-320L1466-275Q966-10 37-2Q-820 7-1250-99Q-1392-138-1502-206Z" fill="#858168"/>
+<path id="continuous-cast-mouth-front" d="M-1480-262Q-1390-180-1220-137Q-788-38 35-44Q956-55 1444-320Q1505-352 1530-234Q1578-100 1620 0Q200 60-1550 0Z" fill="url(#bell-lip)" stroke="#1c302d" stroke-width="12"/>
+<path id="mouth-front-curved-bevel" d="M-1480-262Q-1390-180-1220-137Q-788-38 35-44Q956-55 1444-320Q1480-330 1495-258Q966-10 37-2Q-820 7-1250-99Q-1392-138-1502-206Z" fill="#858168"/>
 <path d="M-1497-189Q-1099-21 33-15Q1096-31 1509-202" fill="none" stroke="#a29a7d" stroke-width="9"/>
-<path id="cast-front-lip-weight" d="M-1480-262Q-1390-180-1220-137Q-788-38 35-44Q956-55 1444-320L1540-200L1620 0H-1550Z" fill="url(#lip-weight)"/>
-<path id="heavy-lip-contact-shadow" d="M-1539-29Q-1020-11 35-10Q1120-11 1607-29L1620 0H-1550Z" fill="#253d35"/>
+<path id="cast-front-lip-weight" d="M-1480-262Q-1390-180-1220-137Q-788-38 35-44Q956-55 1444-320Q1505-352 1530-234Q1578-100 1620 0Q200 60-1550 0Z" fill="url(#lip-weight)"/>
+<path id="heavy-lip-contact-shadow" d="M-1539-29Q-1020-11 35-10Q1120-11 1607-29L1620 0Q200 60-1550 0Z" fill="#253d35"/>
 </g>
 </svg>

@@ -5,7 +5,7 @@ const S=G.HonroScene.prototype,C=G.HONRO_CORE,cache=new WeakMap();
 const active=b=>[18,19].includes(b?.honroStage)&&b.honroBellRevision===1;
 const lowering=b=>active(b)&&b.honroState?.bellDescent?.status==='lowering';
 const shellIds=new Set(['sb-bell-crown','sb-bell-west-wall','sb-bell-east-wall','sb-bell-east-lip','sb-bell-east-yoke']);
-const interiorStoneIds=new Set(['sb-inner-upper-turn','sb-inner-sound-stone']);
+const interiorStoneIds=new Set(['sb-inner-upper-turn','sb-inner-sound-stone','sb-east-gallery-sill']);
 const omitReadability=(group,b)=>active(b)&&(shellIds.has(group.id)||interiorStoneIds.has(group.id));
 function prepare(t,b){let q=cache.get(t);if(q?.vertices===t.vertices&&q.version===b.sceneVersion)return q;
  const shape=new Path2D(),ps=C.poly(t);ps.forEach((p,i)=>i?shape.lineTo(p.x,p.y):shape.moveTo(p.x,p.y));shape.closePath();
@@ -37,21 +37,36 @@ const terrain=S.terrain;S.terrain=function(c,t){const b=this.battle;if(active(b)
 // The 0.9-second safe descent reuses the still cavern tiles. Only this one
 // retained SVG is drawn live, with the position already moved by the runtime.
 const bellPaintCache=new WeakMap();
-function bellPaint(asset,b){const pilot=b?.honroStage===18&&G.HonroPaintedPilots?.active(b);let rows=bellPaintCache.get(asset);if(!rows){rows=new Map();bellPaintCache.set(asset,rows);}if(rows.has(!!pilot))return rows.get(!!pilot);const spec=asset.params?.soundWindow;if(!spec)return null;const box=asset.bounds,clip=new Path2D(`M${box.x-20} ${box.y-20}h${box.w+40}v${box.h+40}h${-box.w-40}Z ${spec.interiorReveal}`);let paint=asset;
- if(pilot){paint={...asset,vector:{...asset.vector,gradients:JSON.parse(JSON.stringify(asset.vector.gradients))}};const colors={bronze:['#3c382d','#8f7855','#767057','#485447','#31453d','#182c2b'],'bell-lip':['#b6a075','#897550','#4e5645','#203936'],'aged-crown':['#9e875c','#77694c','#425846','#223c35']};for(const [id,values]of Object.entries(colors))paint.vector.gradients[id].stops.forEach((s,i)=>s.color=values[i]);}
- const overlays={...paint,vector:{...paint.vector,root:{...paint.vector.root,children:paint.vector.root.children.filter(node=>spec.overlays.includes(node.id))}}},q={clip,overlays,paint};rows.set(!!pilot,q);return q;}
+function bellPaint(asset,b){
+ const pilot=b?.honroStage===18&&G.HonroPaintedPilots?.active(b),library=G.HONRO_PROJECT?.library,campaign=b?.honroMapOrigin==='campaign';
+ let rows=bellPaintCache.get(asset);
+ if(!rows||rows.library!==library||rows.count!==library?.length||rows.campaign!==campaign||rows.vector!==asset.vector||rows.sourceVector!==rows.source.vector){
+  rows=new Map();const current=campaign&&asset.id==='stage18:bell-hollow-body'&&asset.params?.continuousShell&&library?.find(a=>a.id===asset.id&&a.params?.continuousShell);
+  rows.source=current||asset;rows.sourceVector=rows.source.vector;rows.vector=asset.vector;rows.library=library;rows.count=library?.length;rows.campaign=campaign;bellPaintCache.set(asset,rows);
+ }
+ if(rows.has(!!pilot))return rows.get(!!pilot);
+ if(!asset.params?.soundWindow)return null;
+ let paint=rows.source;
+ if(pilot){paint={...paint,vector:{...paint.vector,gradients:JSON.parse(JSON.stringify(paint.vector.gradients))}};const colors={bronze:['#3c382d','#8f7855','#767057','#485447','#31453d','#182c2b'],'bell-lip':['#b6a075','#897550','#4e5645','#203936'],'aged-crown':['#9e875c','#77694c','#425846','#223c35']};for(const [id,values]of Object.entries(colors))paint.vector.gradients[id].stops.forEach((s,i)=>s.color=values[i]);}
+ const q={paint};rows.set(!!pilot,q);return q;}
 function drawBell(c,body,b){const q=bellPaint(body.asset,b);if(!q)return G.HonroVectorArt.draw(c,body.asset,body);
- // The cast side aperture is transparent to the actual gallery and actors.
- // Its physical outer opening is authored in soundWindow.shellOpening; the
- // leftward reveal is the already-empty bell interior viewed through it.
- c.save();c.translate(body.x||0,body.y||0);c.rotate(body.rotation||0);c.scale(body.scale??1,body.scale??1);c.clip(q.clip,'evenodd');G.HonroVectorArt.draw(c,q.paint,{x:0,y:0,scale:1,rotation:0});c.restore();G.HonroVectorArt.draw(c,q.overlays,body);return true;
+ // The dark elliptical cavity is the opening. Paint its continuous casting
+ // once, then the actual fixed gallery in front, rather than punching a
+ // rectangular background window through the mouth and redrawing loose caps.
+ return G.HonroVectorArt.draw(c,q.paint,body);
 }
 const landmarks=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){const b=this.battle;if(!active(b))return landmarks.call(this,c,list,layer);const body=list.find(l=>l.id==='sb-bell-body');const result=landmarks.call(this,c,list.filter(l=>l.id!=='sb-bell-body'),layer);if(body&&!lowering(b)&&(body.layer||'back')===layer)drawBell(c,body,b);return result;};
 function movingBody(c,b){if(!lowering(b))return false;const body=b.honroLandmarks?.find(l=>l.id==='sb-bell-body');if(!body?.asset)return false;return drawBell(c,body,b);}
-// These two fixed stones stand in the open mouth, in front of its dark
-// underside. Paint their actual polygons once, after the bell and before
-// actors. They are omitted from the cached terrain/readability passes above.
-function interiorStones(c,b,scene){if(!active(b))return false;for(const t of b.terrain||[]){if(!interiorStoneIds.has(t.id))continue;if(G.HonroPaintedPilots?.terrain(c,t,b,true))continue;if(rock(c,t,b))continue;let q=stoneProxies.get(t);if(!q||q.source!==t.vertices||q.version!==b.sceneVersion){q={source:t.vertices,version:b.sceneVersion,view:{...t,optional:false}};stoneProxies.set(t,q);}G.HonroAct2SpatialArt.terrain(c,q.view,b);}
+// Fixed stone gallery and its descending ramp share one quiet material. The
+// two narrow rear ties explain the suspended ramp; they never draw a walking
+// plane or replace collision. Their anchors/feet come from the actual solids.
+const galleryCache=new WeakMap();
+function prepareGallery(b){let q=galleryCache.get(b);if(q?.terrain===b.terrain&&q.version===b.sceneVersion&&q.sources.every(([t,v])=>t.vertices===v))return q;
+ const ts=(b.terrain||[]).filter(t=>interiorStoneIds.has(t.id)),shape=new Path2D(),ties=new Path2D(),sill=ts.find(t=>t.id==='sb-east-gallery-sill'),ramp=ts.find(t=>t.id==='sb-inner-upper-turn');for(const t of ts)shape.addPath(prepare(t,b).shape);
+ if(sill&&ramp){const ps=C.poly(ramp),a=ps[0],z=ps[1],top=sill.y+sill.h;for(const ratio of [.86,.97]){const x=a.x+(z.x-a.x)*ratio,y=a.y+(z.y-a.y)*ratio;if(x>=sill.x&&x<=sill.x+sill.w&&y>top){ties.moveTo(x,top);ties.lineTo(x,y);}}}
+ q={terrain:b.terrain,version:b.sceneVersion,sources:ts.map(t=>[t,t.vertices]),shape,ties};galleryCache.set(b,q);return q;
+}
+function interiorStones(c,b,scene){if(!active(b))return false;const q=prepareGallery(b);c.save();c.strokeStyle='#263a37';c.lineWidth=14;c.stroke(q.ties);c.strokeStyle='#8a8a6c';c.lineWidth=6;c.stroke(q.ties);c.fillStyle='#53645d';c.fill(q.shape);c.restore();
  if(G.HonroPaintedPresentation?.forBattle(b)?.naturalEdges)return true;
  const style=G.HonroTerrainReadability.STYLE,unit=1/Math.max(.05,scene.scale||1);c.save();c.lineJoin='round';c.lineCap='butt';for(const group of G.HonroTerrainReadability.prepare(b).groups){if(!interiorStoneIds.has(group.id))continue;c.strokeStyle=style.edgeInk;c.lineWidth=style.edgePixels*unit;c.stroke(group.edge);c.lineWidth=style.topInkPixels*unit;c.stroke(group.top);c.strokeStyle=style.topLight;c.lineWidth=style.topLightPixels*unit;c.stroke(group.top);}c.restore();return true;
 }
@@ -73,5 +88,5 @@ function descentGuide(c,b,scene){if(!active(b)||b.honroStage!==18)return false;c
  c.restore();return true;
 }
 const water=S.liveWater;S.liveWater=function(c,b){const result=water?.call(this,c,b);movingBody(c,b);interiorStones(c,b,this);descentGuide(c,b,this);return result;};
-G.HonroStage18BellArt={active,lowering,prepare,shell,rock,omitReadability,bellPaint,drawBell,movingBody,interiorStones,sweepArt,descentGuide};
+G.HonroStage18BellArt={active,lowering,prepare,shell,rock,omitReadability,bellPaint,drawBell,movingBody,prepareGallery,interiorStones,sweepArt,descentGuide};
 })(globalThis);

@@ -10,4 +10,4 @@ export function refineStage18BellArt(project){
  const before=structuredClone(current.params),after=structuredClone(art.params);delete before.nodeCount;delete after.nodeCount;assert.deepEqual(before,after,'Sound aperture and descent contracts unchanged');
  current.vector=art.vector;current.params.nodeCount=art.params.nodeCount;return project;
 }
-if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const file=process.argv[2]||'shared/data/campaign.json',p=JSON.parse(await readFile(file,'utf8'));refineStage18BellArt(p);await writeFile(file,JSON.stringify(p,null,2)+'\n');console.log('Updated one hollow-bell vector; all stages and other assets preserved.');}
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const file=process.argv[2]||'shared/data/campaign.json',raw=await readFile(file,'utf8'),p=JSON.parse(raw);refineStage18BellArt(p);await writeFile(file,JSON.stringify(p,null,raw.startsWith('{\n  "')?2:undefined)+'\n');console.log('Updated one hollow-bell vector; all stages and other assets preserved.');}
