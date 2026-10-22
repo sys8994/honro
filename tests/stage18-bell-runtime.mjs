@@ -11,7 +11,7 @@ function fixture(){const q=battlefield(g,18);q.b.honroBellRevision=1;q.b.honroAc
  g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);A.attach(q.app,q.e);
  q.e.settleBusy=()=>false;return q;
 }
-function qualify(q,{hold=true,anchor=true}={}){const a=A.memory(q.b);a.done['clear-wards']=a.done.silence=true;a.silenced=true;a.holds={'hold-silence':{progress:hold?4:0,spawned:8,lastRound:q.b.round,guarded:true,continuous:true}};q.b.terrain.find(t=>t.id==='upper-chain').broken=anchor;}
+function qualify(q,{hold=true,anchor=true}={}){const a=A.memory(q.b);a.done['clear-wards']=a.done.silence=true;a.silenced=true;a.holds={'hold-silence':{progress:hold?4:0,spawned:8,lastRound:q.b.round,guarded:true,continuous:true}};const target=g.HonroQuestTargets.records(q.b).find(t=>t.id==='upper-chain');target.broken=anchor;g.HonroQuestTargets.sync(q.b,target);}
 function boundary(q,id){q.app.actorBoundary=id;q.b.honroState.actorTurnSerial=(q.b.honroState.actorTurnSerial||0)+1;S.transition(q.app);q.app.actorBoundary=null;}
 function allOpportunities(q){for(const u of q.e.heroesAlive().filter(u=>!u.summoned&&!u.enthrall))boundary(q,u.id);}
 function resume(q){const b=plain(q.b),e=new C.Engine(b,()=>{},true),app={...q.app,engine:e};g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);A.attach(app,e);e.settleBusy=()=>false;return{...q,b,e,app};}

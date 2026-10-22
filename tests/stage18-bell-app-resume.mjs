@@ -11,7 +11,7 @@ const compact=b=>plain({stakes:b.stakes,projectiles:b.projectiles,units:b.units,
 for(const status of ['warning','waiting']){
  let app=h.load(h.profileThrough(17));app.launch(18);h.finish(app);now+=1000;
  const b=app.engine.b,a=A.memory(b),e=app.engine;
- a.done['clear-wards']=a.done.silence=true;a.silenced=true;a.holds={'hold-silence':{progress:4,spawned:8,lastRound:b.round,guarded:true,continuous:true}};b.terrain.find(t=>t.id==='upper-chain').broken=true;
+ a.done['clear-wards']=a.done.silence=true;a.silenced=true;a.holds={'hold-silence':{progress:4,spawned:8,lastRound:b.round,guarded:true,continuous:true}};const target=g.HonroQuestTargets.records(b).find(t=>t.id==='upper-chain');target.broken=true;g.HonroQuestTargets.sync(b,target);
  if(status==='waiting'){
   const t=b.terrain.find(t=>t.id==='sb-bell-crown');(b.stakes??=[]).push({id:'skip-test-stake',skill:'M09',x:t.x+t.w/2,y:t.y+t.h/2,active:true,expires:b.round+6});assert(S.occupants(b).some(u=>u.id==='skip-test-stake'));
  }
@@ -54,7 +54,7 @@ for(const status of ['warning','waiting']){
 }
 {
  let app=h.load(h.profileThrough(17));app.launch(18);h.finish(app);now+=1000;
- const b=app.engine.b,a=A.memory(b);a.done['clear-wards']=a.done.silence=true;a.silenced=true;a.holds={'hold-silence':{progress:4,spawned:8,lastRound:b.round,guarded:true,continuous:true}};b.terrain.find(t=>t.id==='upper-chain').broken=true;
+ const b=app.engine.b,a=A.memory(b);a.done['clear-wards']=a.done.silence=true;a.silenced=true;a.holds={'hold-silence':{progress:4,spawned:8,lastRound:b.round,guarded:true,continuous:true}};const target=g.HonroQuestTargets.records(b).find(t=>t.id==='upper-chain');target.broken=true;g.HonroQuestTargets.sync(b,target);
  assert.equal(S.occupants(b).length,0,'Authored initial actors are outside actual swept shell');S.transition(app);
  for(const u of app.engine.heroesAlive()){app.actorBoundary=u.id;b.honroState.actorTurnSerial=(b.honroState.actorTurnSerial||0)+1;S.transition(app);app.actorBoundary=null;}
  assert.equal(S.memory(b).status,'lowering');app.engine.tick(.32);const before=compact(b);assert(before.descent.offset>0&&before.descent.offset<200);app.export();const exported=await h.exported();await h.import(exported);app.continue();assert.deepEqual(compact(app.engine.b),before,'Actual bell geometry/art and turn resume mid descent');
