@@ -4408,3 +4408,7 @@ HUD의 32~36px 내부 타일과 공통 스탬프의 둥근 이중 프레임을 �
 - 최종 소스/생성물 `e539f9db`: 공통 build와 캐릭터 도감 내장 런타임 재생성, 오디오 대역 30·제목/타입·실제 Game/Workshop의 두 화면 크기 MP3 재생/막 목록/재시도/off-on/초기 main만 요청/Stop, 9·10장 우선곡 저장·Continue 19전환 및 web-split 통과.
 - 새 접두어를 포함한 곡명 라벨이 safe-area 모바일/가로 HUD의 내려가기 버튼과 약 3px 겹치는 것을 실제 브라우저에서 확인했다. 라벨의 9px 크기·우하단 형식을 보존하며 line-height와 최소 하단 여백만 조정했다. 최종 4개 화면 크기×7제목 배치 fixture와 직접 화면에서 겹침 0을 확인했다.
 - 최종 manifest SHA256 `7c9bc60d19a9cc6d666f79f28713beba3625fcbb56b5c13598e90742136278bb`; 원격 검토용 현재 계약·검사 범위는 `assets/bgm/README.md`. `_local/reports/bgm-acts/`에 실행 증거가 있다. 전곡 전체 청취·캠페인 정상 완주·실기기 검수는 아니다. master/Pages와 실루엣 변경은 부모가 담당한다.
+
+## BGM·승인 11장·최신 master 통합 — 2026-10-22
+
+master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별도 통합 브랜치에서 결합했다. 최종 코드/생성물551da47f. BGM30/7개hash·decode, 11장 게임 규칙/재질 prepare 불변, 실제 대표 재생과 Workshop Stop, 승인 재질PNG6개 일치·세 warm cache 경계, 통합 build/도감/web-split을 확인했다. 추가 미술·초상화 시안은 미적용. 기존 상세 계측/자동자료는 역사 커밋과 _local로 구분하고 이번 성능 계측으로 재사용하지 않았다. 사진5장은 Library의 업로드 전 네트워크 실패로 검토 브랜치 파일 전달을 사용했다. AGENTS에는 기존/연관 Codex 세션 재사용 지침만 추가했다. 정확한 SHA·빌드·사진 blob ID·한계는 [최종 통합 기록](bgm-stage11-release-20261022/README.md). master/Pages는 부모 확인 전 미변경.
