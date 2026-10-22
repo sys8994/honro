@@ -1,0 +1,212 @@
+{
+  "checkedCommit": "82f96ceaa7348bb8d650b8356be4eb09a743f80d",
+  "rows": [
+    {
+      "file": "_local/reports/stage18-r29-followup-20261022/continued/checkpoint.json",
+      "round": 45,
+      "phase": "aim",
+      "goal": "clear-bell",
+      "descent": {
+        "version": 1,
+        "status": "settled",
+        "offset": 200,
+        "count": 1,
+        "warnings": {
+          "hold-silence-0": {
+            "serial": 99,
+            "round": 12,
+            "offered": {
+              "p-knight": {
+                "round": 12,
+                "serial": 100
+              }
+            },
+            "opportunity": {
+              "id": "p-knight",
+              "round": 12,
+              "serial": 101
+            }
+          },
+          "hold-silence-3": {
+            "serial": 107,
+            "round": 13,
+            "offered": {
+              "p-archer": {
+                "round": 13,
+                "serial": 107
+              },
+              "p-mage": {
+                "round": 13,
+                "serial": 107
+              }
+            },
+            "opportunity": {
+              "id": "p-mage",
+              "round": 13,
+              "serial": 108
+            }
+          },
+          "hold-silence-6": {
+            "serial": 116,
+            "round": 14,
+            "offered": {
+              "p-archer": {
+                "round": 14,
+                "serial": 116
+              },
+              "p-mage": {
+                "round": 14,
+                "serial": 116
+              }
+            },
+            "opportunity": {
+              "id": "p-mage",
+              "round": 14,
+              "serial": 117
+            }
+          },
+          "keeper-retaliation": {
+            "serial": 307,
+            "round": 35,
+            "offered": {
+              "p-occultist": {
+                "round": 35,
+                "serial": 308
+              }
+            },
+            "opportunity": {
+              "id": "p-occultist",
+              "round": 35,
+              "serial": 309
+            }
+          }
+        },
+        "entries": {
+          "hold-silence-0": {
+            "side": "west",
+            "x": 3970,
+            "y": 5542.962962962963,
+            "round": 12,
+            "serial": 101
+          },
+          "hold-silence-3": {
+            "side": "lower-west",
+            "x": 5950,
+            "y": 7512.222222222223,
+            "round": 13,
+            "serial": 108
+          },
+          "hold-silence-6": {
+            "side": "west",
+            "x": 3970,
+            "y": 5542.962962962963,
+            "round": 14,
+            "serial": 117
+          },
+          "keeper-retaliation": {
+            "side": "east",
+            "x": 12600,
+            "y": 6204,
+            "round": 35,
+            "serial": 309
+          }
+        },
+        "opportunities": {
+          "p-archer": 135,
+          "p-mage": 136,
+          "p-knight": 137,
+          "p-occultist": 138
+        },
+        "alert": {
+          "entry-roof": true,
+          "entry-front": true,
+          "entry-rear": true,
+          "court-west": true,
+          "court-east": true,
+          "court-overwatch": true,
+          "west-rise": true,
+          "court-spirits": true,
+          "west-crown": true,
+          "lower-front": true,
+          "lower-flank": true,
+          "maintenance-watch": true,
+          "basin-west": true,
+          "basin-east": true,
+          "keeper-front": true,
+          "keeper-high": true,
+          "keeper-flank": true,
+          "keeper-body": true
+        },
+        "warnedSerial": 134,
+        "warnedRound": 16,
+        "warnedHeroes": [
+          "p-archer",
+          "p-mage",
+          "p-knight",
+          "p-occultist"
+        ],
+        "reason": "",
+        "blockers": [],
+        "elapsed": 0.9,
+        "duration": 0.9,
+        "startOffset": 0,
+        "completedSerial": 138,
+        "completedRound": 16
+      },
+      "hold": {
+        "progress": 4,
+        "spawned": 8,
+        "lastRound": 16,
+        "enteredRound": 12,
+        "continuous": true,
+        "contributionGuards": [
+          "p-mage"
+        ],
+        "guarded": true,
+        "contested": false,
+        "waveRound": 14
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "x": 11864.966438891985,
+          "y": 6180,
+          "hp": 168,
+          "grounded": true,
+          "validBody": true,
+          "support": "act2-floor"
+        },
+        {
+          "id": "p-mage",
+          "x": 11637.29365440607,
+          "y": 6180,
+          "hp": 514,
+          "grounded": true,
+          "validBody": true,
+          "support": "act2-floor"
+        },
+        {
+          "id": "p-knight",
+          "x": 11864.991488594913,
+          "y": 6180,
+          "hp": 1327,
+          "grounded": true,
+          "validBody": true,
+          "support": "act2-floor"
+        },
+        {
+          "id": "p-occultist",
+          "x": 11750.222185531104,
+          "y": 6180,
+          "hp": 483,
+          "grounded": true,
+          "validBody": true,
+          "support": "act2-floor"
+        }
+      ],
+      "questTargetSynced": true,
+      "wholeBattleContinueAndExportExact": true
+    }
+  ],
+  "scope": "Read-only actual native snapshots through production App Continue/export. No new combat execution or synthetic goal flags."
+}

@@ -1,0 +1,69 @@
+{
+  "checkedCommit": "82f96ceaa7348bb8d650b8356be4eb09a743f80d",
+  "input": "_local/reports/stage18-r29-followup-20261022/continued/checkpoint.json",
+  "inputSha256": "174cbc5e5dfef4a69d34a62e71dafdaeee0ab7a2d3208e9e42ddf78f0fef5263",
+  "wholeBattleContinueExact": true,
+  "renderPure": true,
+  "lifecycle": null,
+  "scope": "View an actual native normal-input checkpoint in final published-source UI.\nNo combat replay or art change. Freeze frame scheduling, production Continue,\nthen render at a declared inspection camera without editing gameplay state.\n",
+  "view": {
+    "round": 45,
+    "phase": "aim",
+    "goal": "clear-bell",
+    "done": {
+      "clear-wards": true,
+      "silence": true,
+      "hold-silence": true,
+      "upper-chain": true,
+      "bell-descent": true,
+      "leak": true,
+      "keeper": true
+    },
+    "camera": [
+      11860,
+      6080,
+      0.4
+    ],
+    "heroes": [
+      {
+        "id": "p-archer",
+        "x": 11864.966438891985,
+        "y": 6180,
+        "hp": 168,
+        "focus": 192,
+        "moveLeft": 1686,
+        "dead": false
+      },
+      {
+        "id": "p-mage",
+        "x": 11637.29365440607,
+        "y": 6180,
+        "hp": 514,
+        "focus": 243,
+        "moveLeft": 1707,
+        "dead": false
+      },
+      {
+        "id": "p-knight",
+        "x": 11864.991488594913,
+        "y": 6180,
+        "hp": 1327,
+        "focus": 215,
+        "moveLeft": 1905,
+        "dead": false
+      },
+      {
+        "id": "p-occultist",
+        "x": 11750.222185531104,
+        "y": 6180,
+        "hp": 483,
+        "focus": 312,
+        "moveLeft": 1764,
+        "dead": false
+      }
+    ],
+    "enemies": 41
+  },
+  "errors": [],
+  "httpFailures": []
+}

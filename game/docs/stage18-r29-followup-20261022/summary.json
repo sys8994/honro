@@ -1,0 +1,69 @@
+{
+  "gameSource": "793a9a953d6f82038d44dc44b51ea5a01ce996c4",
+  "resumeTestSource": "5d1c460a1d06f5ff8fc1216bb96051d2f6c0c396",
+  "resumeFrom": "Actual start-R29 checkpoint; growth/loadout/HP/MP/positions/actions/RNG whole state asserted exact. Earlier R1–28 policy differs.",
+  "oneResume": true,
+  "externalLimitSeconds": 360,
+  "exitCode": 1,
+  "stop": "Requested observation cap at start-R45; not game failure or completion. No later input run.",
+  "wallSeconds": 159.76307609500003,
+  "phase": "aim",
+  "round": 45,
+  "newCompletedGoal": {
+    "keeper": 39
+  },
+  "remainingLocalThreats": [
+    {
+      "id": "event-198",
+      "hp": 117,
+      "maxHp": 893,
+      "x": 12162.699663293868,
+      "y": 6180.677315375673,
+      "honroSpawnSource": "keeper-retaliation"
+    },
+    {
+      "id": "event-199",
+      "hp": 1384,
+      "maxHp": 1384,
+      "x": 12354.749719411557,
+      "y": 6190.919985035283,
+      "honroSpawnSource": "keeper-retaliation"
+    }
+  ],
+  "aliveHeroes": 4,
+  "heroHP": {
+    "archer": 168,
+    "mage": 514,
+    "knight": 1327,
+    "occultist": 483
+  },
+  "spawns": {
+    "hold": 8,
+    "bellDescentAnswer": 3,
+    "keeperRetaliation": 4,
+    "total": 15
+  },
+  "combatCounts": {
+    "initial": 55,
+    "dead": 28,
+    "subdued": 1,
+    "livingHostile": 41
+  },
+  "planning": {
+    "calls": 238,
+    "candidates": 1652,
+    "maxCandidates": 24,
+    "maxPerSkill": 12
+  },
+  "actualDetourFallbackSelections": 0,
+  "externalLiveWrites": 0,
+  "engineRecoveriesSince29": 0,
+  "continuedAndBrowserWholeBattleExact": true,
+  "notRun": [
+    "Normal clear-bell completion",
+    "Normal outro/single settlement/19 entry/Continue",
+    "Further strategy or input execution",
+    "Game/build/master/Pages changes"
+  ],
+  "oldSummaryCorrection": "Prior R29 raw data had hold8 + bell-descent-answer3 =11 births and20 combat deaths; earlier short8/17 summary corrected."
+}

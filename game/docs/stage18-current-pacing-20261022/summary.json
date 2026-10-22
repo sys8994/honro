@@ -23,9 +23,13 @@
   "keeperHP": "3398 / 3748, not subdued",
   "combatEnemies": {
     "initial": 55,
-    "spawned": 8,
-    "defeated": 17,
-    "remaining": 46
+    "spawned": 11,
+    "defeated": 20,
+    "remaining": 46,
+    "spawnSources": {
+      "hold": 8,
+      "bellDescentAnswer": 3
+    }
   },
   "realContinues": "Warning, after leak, actual post-descent R22 and stop R29 whole-battle Continue/re-export exact; R22/R29 browser exact, errors0.",
   "smallReproduction": "At actual R29, ordinary defend advances to mage in78 ticks. Fresh navigator finds mage/knight routes but progress-first proposal rejects them; first required detour increases Euclidean distance. Historical rejection cache and busy function not reconstructed.",
@@ -37,5 +41,6 @@
     "New policy/fullplay rerun",
     "Build/type/global verify/full30/next chapter/master/Pages"
   ],
-  "raw": "stop-summary.raw.json.gz and tests/fixtures/stage18-current-*.json.gz"
+  "raw": "stop-summary.raw.json.gz and tests/fixtures/stage18-current-*.json.gz",
+  "correction": "R29 underlying checkpoint/raw births were unchanged; short summary had omitted three authored descent responses."
 }
