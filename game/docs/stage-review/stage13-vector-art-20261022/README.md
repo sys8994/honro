@@ -25,7 +25,7 @@ SOP 단계1·3~6의 지형/배치/편성/목표/대사는 변경하지 않는다
 
 ## 첫 후보 (미술 판단 대기)
 
-`tools/environment/stage13-vector-finish.mjs`는 기존 공통 terrainPlanes 경로에13장 정적 모암62면(바닥39/천장19/기존 작업 참4)과 비충돌 Library opt-in4종만 저작한다. 기존 Library 원본/다른29장/전역 실행 코드는 그대로다. 층을 잇는 큰 명암, 선택적 파단면, 좁은 접합과 작업장 줄/목재 접합·기초를 보완했다. 지형 개편 완료를 뜻하지 않는다.
+`tools/environment/stage13-vector-finish.mjs`는 기존 공통 terrainPlanes 경로에13장 정적 모암45면(바닥27/천장14/기존 작업 참4)과 비충돌 Library opt-in4종만 저작한다. 기존 Library 원본/다른29장/전역 실행 코드는 그대로다. 층을 잇는 큰 명암, 선택적 파단면, 좁은 접합과 작업장 줄/목재 접합·기초를 보완했다. 지형 개편 완료를 뜻하지 않는다.
 
 전달 사진은 실제 생산 Chromium의 고정 카메라 신규 전투 표본이다.1440×900, 전체4100/3450/.17, 입구1760/3200/.5, 석문4820/3800/.45. 합법 장 진입 성장 예산/기본 동행, 시작 구조 목표와 배우 좌표는 그대로다. 시간10/정지 포즈이며 일반 전투 완주·실기기·성능 표본은 아니다. 각 JPG1MB 미만.
 
@@ -36,3 +36,13 @@ SOP 단계1·3~6의 지형/배치/편성/목표/대사는 변경하지 않는다
 `node tests/stage13-vector-art.mjs` 통과: master934fcabd 대비 보호된13장 데이터/다른29장/공통 원본 동일, 저작 재현·멱등, 비충돌 변형4종, 재질 draw의 battle 불변/Canvas 상태 보존/정적 Path2D 재사용/sceneVersion 무효화 확인. 기능 숫자를 미술 합격으로 쓰지 않는다. 집중3회와 별도 최종, 구조 접근/문 통과는 이 시점 미완료다. 자동 보고/기타 사진은 `_local/reports/stage13-vector-art/`에 둔다.
 
 전달 차단: Library helper의 `hosted apps tools/list request failed: network`로 업로드 준비 전 실패했다. 저장 성공/미확정 업로드가 아니며 재전송하지 않았다. 같은 JPG3장은 위 검토 브랜치 경로로 전달한다.
+
+## 생산 연결 교정 후보2
+
+첫 후보 `cb725fff`의 빌드에서는 기존 `applyCavernTransitionLayers`가 전이용 면17개를 다시 추가하고 장면 재저작이 장식 참조 일부를 되돌렸다. 따라서 후보1의 큰 독립 절리/옛 도구 사진은 최종 근거에서 제외한다. `shared/build.mjs`의 기존 저작 체인 끝에서 `stoneFinish.revision===1`인13장에만 같은 opt-in 저작을 재적용한다. 전역 renderer/main을 변경하지 않으며 공통 geometry/route 저작은 그대로 실행한다. 실제 생산 자료의45면/전용 장식 참조를 검사에 추가했다.
+
+교정 후 직접 연 같은 카메라 사진: [전체](review/candidate2-overview.jpg), [석공 접근](review/candidate2-entry.jpg), [석문·회랑](review/candidate2-gate.jpg). 후보1의 붙은 블록/짙은 절리는 제거됐고 연결된 모암면과 짧은 접합이 보인다. 여전히 부모의 실제 픽셀 판단 전이다.
+
+공통 연결 영향 경계: `HONRO_STAGE13_BASELINE=/workspace/honro-stage13-baseline node tests/stage13-vector-art.mjs`로 master934fcabd 원본 작업트리의 실제 runtimeParts와 대조했다. 빌드 후 보호13장/다른29장/기존 Library가 동일하고11장 중앙7290/7080/.43·피난처10350/8470/.8의 비어 있지 않은 재질 PNG가 각각 일치했다. 이는 짧은 연결 보존 검사이며 전체11장 재검수/새 성능 주장이 아니다.
+
+`node tests/stage13-vector-art-play.mjs`는 실제 Engine walk/integrate·HonroInteractions eligibility/use로 원래 소단 spawn에서 구조 접근→석공 구조→빗장 개방→x6581 하부 통과를 확인했다. 위치 보정 없이 이동했고 주민HP가 보존됐다. 전투는 초기 fixture에서 격리하고 붙은 혼은40%로 준비했으며 이동 예산을 재충전했다. 정상 턴 예산/전투 완주·승리를 뜻하지 않는다. 출구 목표가 남은 실제 문 개방 snapshot도 별도로 화면 확인했다.

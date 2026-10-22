@@ -14,10 +14,14 @@ with sync_playwright() as pw:
  p.evaluate('''async()=>{await HonroCampaignLoader.ensureStage(13);const a=HonroApp;a.frame=()=>{};a.profile=HONRO_CORE.defaults();a.profile.recruited=['archer','mage','knight','occultist'];for(const cls of a.profile.recruited)a.profile.heroes[cls].xp=HonroProgression.budget(13).start;a.profile.settings.music=false;a.profile.settings.sound=false;a.stageId=13;a.stage=HONRO_CONTENT.stages[12];a.dialogue=null;a.mount(HonroMaps.createBattle(HONRO_PROJECT.stages[12],HONRO_PROJECT,a.profile));while(a.dialogue)HonroStory.finish(a);a.close();a.updateHUD(true);}''')
  p.wait_for_function('HonroAuthoredFarArt.ready(13)',timeout=90000)
  p.evaluate('''()=>{const a=HonroApp;Object.getPrototypeOf(a).frame.call(a,a.prev+16.667);while(a.dialogue)HonroStory.finish(a);HonroStory.tick(a,performance.now()+3000);while(a.dialogue)HonroStory.finish(a);a.dialogue=null;}''')
+ if group=='opened':
+  fixture=json.loads((ROOT/'_local/reports/stage13-vector-art/opened-battle.json').read_text())
+  p.evaluate('''b=>{const a=HonroApp;a.mount(b);while(a.dialogue)HonroStory.finish(a);HonroStory.tick(a,performance.now()+3000);a.dialogue=null;a.close();a.updateHUD(true);}''',fixture)
  rows=[]
  for name,x,y,z,w,h,focus in views:
   if group=='preview' and name not in ['overview','entry','gate']:continue
-  if group not in ['preview','all'] and group!=focus:continue
+  if group=='opened' and name not in ['gate','inner','mobile-gate']:continue
+  if group not in ['preview','all','opened'] and group!=focus:continue
   p.set_viewport_size({'width':w,'height':h});p.wait_for_timeout(100)
   p.evaluate('HonroApp.scene.render(HonroApp.engine,0,"",.6,false,0)')
   row=p.evaluate('''v=>{const a=HonroApp,s=a.scene,b=a.engine.b;Object.assign(s,{manual:true,x:v.x,y:v.y,scale:v.z,time:10,storyTween:null,goalFocus:null,cinematic:null,editorView:v.name==='overview',skillPreview:v.name==='overview'});for(let i=0;i<3;i++)s.render(a.engine,0,'',.6,false,0);return{camera:[s.x,s.y,s.scale],viewport:[v.w,v.h],limits:HonroBounds.zoomLimits(v.w),phase:b.phase,objective:HonroAct2.current(b)?.id,far:HonroAuthoredFarArt.frames(s,v.w,v.h,b).map(x=>({key:x.key,alpha:x.alpha})),actors:b.units.filter(u=>u.side===0||u.id==='resident-1').map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp})),cache:s.renderCacheStats()};}''',dict(name=name,x=x,y=y,z=z,w=w,h=h))

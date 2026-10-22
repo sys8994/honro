@@ -22,11 +22,28 @@ let allocations=0;const Path2D=new Proxy(NativePath,{construct(t,args){allocatio
 const g=vm.createContext({console,performance,structuredClone,Path2D,DOMMatrix,document:{createElement:()=>createCanvas(64,64)},navigator:{userAgent:'native-stage13-art'},matchMedia:()=>({matches:true})});g.window=g;
 for(const source of await runtimeParts({vector:true,render:true}))vm.runInContext(source,g);
 const project=g.HONRO_PROJECT,stage=project.stages[12],b=g.HonroMaps.createBattle(stage,project),art=g.HonroAct2SpatialArt,ts=g.HonroTerrainDomain.render(b),cv=createCanvas(1440,900),c=cv.getContext('2d');c.setTransform(.1,0,0,.1,0,0);
+assert.equal(stage.design.space.terrainPlanes.length,stage.design.stoneFinish.planeCount,'Production author must retain only current finish');
+assert(!stage.design.space.terrainPlanes.some(p=>p.transitionLayer),'Legacy caps must not cover current finish');
+for(const v of variants)assert(stage.elements.some(e=>e.assetId===v.id),'Production scenery must retain '+v.id);
+let baselineComparison=null;
+if(process.env.HONRO_STAGE13_BASELINE){
+ const {runtimeParts:baselineParts}=await import(process.env.HONRO_STAGE13_BASELINE+'/shared/build.mjs');
+ const old=vm.createContext({console,performance,structuredClone,Path2D,DOMMatrix,document:{createElement:()=>createCanvas(64,64)},navigator:{userAgent:'native-stage13-art'},matchMedia:()=>({matches:true})});old.window=old;
+ for(const source of await baselineParts({vector:true,render:true}))vm.runInContext(source,old);
+ const op=old.HONRO_PROJECT;
+ for(let i=0;i<30;i++)assert.equal(hash(i===12?protectedStage(project.stages[i]):project.stages[i]),hash(i===12?protectedStage(op.stages[i]):op.stages[i]),'Effective production protected stage '+(i+1));
+ assert.equal(hash(project.library.filter(a=>!reverse.has(a.id))),hash(op.library),'Effective original Library');
+ const pixels=[];
+ for(const view of [{x:7290,y:7080,z:.43},{x:10350,y:8470,z:.8}]){
+  const draws=[old,g].map(ctx=>{const b=ctx.HonroMaps.createBattle(ctx.HONRO_PROJECT.stages[10],ctx.HONRO_PROJECT),canvas=createCanvas(1440,900),c=canvas.getContext('2d');c.translate(720,450);c.scale(view.z,view.z);c.translate(-view.x,-view.y);for(const t of ctx.HonroTerrainDomain.render(b))if(!t.broken)ctx.HonroAct2SpatialArt.terrain(c,t,b);return createHash('sha256').update(canvas.toBuffer('image/png')).digest('hex');});assert.notEqual(draws[0],createHash('sha256').update(createCanvas(1440,900).toBuffer('image/png')).digest('hex'),'Nonempty material view');assert.equal(draws[0],draws[1],'Stage11 material pixels');pixels.push({view,sha256:draws[0]});
+ }
+ baselineComparison={effectiveOther29AndProtected13Equal:true,effectiveOldLibraryEqual:true,stage11MaterialPixels:pixels};
+}
 const original=JSON.stringify(b),prepared=[],counts=[];
 for(const t of ts){if(!['act2-floor','cave-roof','tactical-entry-shoulder','tactical-inner-gallery'].includes(t.id))continue;const q=art.prepareTerrain(t,b);assert.equal(q,art.prepareTerrain(t,b));prepared.push([t,q]);counts.push({id:t.id,authoredPlanes:q.authoredPlanes.length});assert(q.authoredPlanes.length>0);art.terrain(c,t,b);}
 allocations=0;for(let i=0;i<3;i++)for(const[t,q]of prepared){assert.equal(q,art.prepareTerrain(t,b));art.terrain(c,t,b);}assert.equal(allocations,0,'No Path2D creation on cached material draws');const warmAllocations=allocations;
 assert.equal(JSON.stringify(b),original,'Material rendering mutates battle');assert.equal(c.globalAlpha,1);const m=c.getTransform();assert([m.a,m.b,m.c,m.d,m.e,m.f].every((v,i)=>Math.abs(v-[.1,0,0,.1,0,0][i])<1e-7));
 const[t,q]=prepared[0];assert.notEqual(q,art.prepareTerrain(t,{...b,sceneVersion:b.sceneVersion+1}));
 for(const v of variants){const asset=project.library.find(a=>a.id===v.id);assert.deepEqual(Array.from(g.HonroVectorArt.validate(asset.vector)),[],v.id);}
-const report={pass:true,base,stage13ProtectedBefore:hash(protectedStage(before.stages[12])),stage13ProtectedAfter:hash(protectedStage(after.stages[12])),terrainBefore:hash(before.stages[12].terrains),terrainAfter:hash(after.stages[12].terrains),unitsBefore:hash(before.stages[12].units),unitsAfter:hash(after.stages[12].units),other29Equal:true,oldLibraryEqual:true,newNonCollidingVariants:variants,purity:true,staticPathReuse:true,cachedDrawPathAllocations:warmAllocations,sceneVersionInvalidation:true,prepared:counts};
+const report={pass:true,base,stage13ProtectedBefore:hash(protectedStage(before.stages[12])),stage13ProtectedAfter:hash(protectedStage(after.stages[12])),terrainBefore:hash(before.stages[12].terrains),terrainAfter:hash(after.stages[12].terrains),unitsBefore:hash(before.stages[12].units),unitsAfter:hash(after.stages[12].units),other29Equal:true,oldLibraryEqual:true,newNonCollidingVariants:variants,purity:true,staticPathReuse:true,cachedDrawPathAllocations:warmAllocations,sceneVersionInvalidation:true,prepared:counts,baselineComparison};
 await mkdir('_local/reports/stage13-vector-art',{recursive:true});await writeFile('_local/reports/stage13-vector-art/preservation.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
