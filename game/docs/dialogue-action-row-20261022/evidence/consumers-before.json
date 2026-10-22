@@ -1,0 +1,104 @@
+{
+  "head": "e8bd1d6d75796a1a69f10386490362e55c799c7d",
+  "manifestSha256": "08d80eae04dad587d7464609bf96b7cf8fd558c1a9f3bbc854960cc94eeb0257",
+  "geometry": [
+    {
+      "view": "mobile",
+      "cards": [
+        {
+          "cls": "archer",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "IMG",
+          "state": null,
+          "framing": null
+        },
+        {
+          "cls": "mage",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "IMG",
+          "state": null,
+          "framing": null
+        },
+        {
+          "cls": "knight",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "IMG",
+          "state": null,
+          "framing": null
+        },
+        {
+          "cls": "occultist",
+          "box": [
+            64,
+            76
+          ],
+          "kind": "IMG",
+          "state": null,
+          "framing": null
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "cards": [
+        {
+          "cls": "archer",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "IMG",
+          "state": null,
+          "framing": null
+        },
+        {
+          "cls": "mage",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "IMG",
+          "state": null,
+          "framing": null
+        },
+        {
+          "cls": "knight",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "IMG",
+          "state": null,
+          "framing": null
+        },
+        {
+          "cls": "occultist",
+          "box": [
+            88,
+            64
+          ],
+          "kind": "IMG",
+          "state": null,
+          "framing": null
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "no browser exceptions",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "errors": []
+}

@@ -52,12 +52,12 @@
 #banter{pointer-events:none;max-width:min(640px,calc(100vw - 32px));white-space:normal;overflow-wrap:anywhere;line-height:1.6;padding:12px 16px}#banter[hidden]{display:none}
 @media(max-width:430px){.story-scene{grid-template-columns:84px minmax(0,1fr);gap:10px;padding:12px}.story-portrait{height:100px}.story-actions button{padding:6px 8px}.story-history{padding:16px}.story-record{padding:10px}.story-location{flex-wrap:wrap}}
 /* All compact identities use the same safe bust, without a second CSS crop. */
-.honro .camp-v5 .hero-tab img,.honro .camp-v5 .summary-identity>img,.honro .training-heroes img,.honro .training-current img{object-fit:contain;object-position:center top;flex-shrink:0}
+.honro .camp-v5 .hero-tab :is(img,canvas),.honro .camp-v5 .summary-identity :is(img,canvas),.honro .training-heroes :is(img,canvas),.honro .training-current :is(img,canvas){object-fit:contain;object-position:center top;flex-shrink:0}
 
 /* Busts should occupy the cards, rather than remain tiny legacy HUD stamps. */
-.honro .camp-v5 .hero-tab img{width:56px;height:68px}
-.honro .camp-v5 .summary-identity>img{width:78px;height:94px}
-@media(max-width:620px){.honro .camp-v5 .hero-tab img{width:44px;height:54px}.honro .camp-v5 .hero-tab{gap:9px}}
+.honro .camp-v5 .hero-tab :is(img,canvas){width:56px;height:68px}
+.honro .camp-v5 .summary-identity :is(img,canvas){width:78px;height:94px}
+@media(max-width:620px){.honro .camp-v5 .hero-tab :is(img,canvas){width:44px;height:54px}.honro .camp-v5 .hero-tab{gap:9px}}
 
 /* Keep the three reading controls together even beside a narrow portrait. */
 .story-actions>button,.narration-actions>button{white-space:nowrap;flex-shrink:0}
@@ -67,9 +67,12 @@
 /* No empty portrait column for narration or an unillustrated named speaker. */
 .story-overlay .story-scene.text-only-scene{grid-template-columns:minmax(0,1fr);gap:0}.narration-inline .story-copy h2{font-size:clamp(17px,2vw,22px);color:#c9b889}.narration-inline .story-copy p{min-height:0}.narration-inline .story-scene{width:min(920px,100%)}
 
-/* Long lines scroll behind a retained, reachable reading-control row. */
-.story-scene .story-actions,.story-guide .story-actions{position:sticky;bottom:0;z-index:1;background:#0d2024;flex-shrink:0}
-.story-guide .story-actions{top:0}
+/* Only the copy scrolls; the transparent control row stays clear. */
+.story-scene .story-actions,.story-guide .story-actions{position:sticky;bottom:0;z-index:1;flex-shrink:0}
+.story-scene .story-actions{background:none}
+.story-guide .story-actions{top:0;background:#0d2024}
+.story-scene{overflow:hidden}
+.story-scene #story-line{max-height:var(--story-copy-limit,none);overflow:auto;overscroll-behavior:contain}
 
 /* The optional reader also lives inside the pause journal dialog. Keep paper ink
    independent of the dark journal's generic paragraph colour. */

@@ -5,8 +5,11 @@ const C=G.HONRO_CORE,H=G.HONRO_CONTENT;
 G.HonroFA.data.xmark={icon:[384,512,[], 'f00d', 'M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z']};
 const translations=[[/용병/g,'동행'],[/스킬트리/g,'수련'],[/스킬/g,'기예'],[/궁극기/g,'비기'],[/패시브/g,'상시 기예'],[/액티브/g,'사용 기예'],[/마법사/g,'도사'],[/심령술사/g,'영매'],[/검사/g,'무사'],[/Lv\./g,'경지 '],[/MP 회복/g,'기력 회복'],[/\bHP\b/g,'체력'],[/\bMP\b/g,'기력'],[/\bSP\b/g,'수련점'],[/출전 기술/g,'갖춘 기예'],[/기술/g,'기예'],[/추천 분배/g,'고르게 익히기'],[/초기화/g,'돌려받기']];
 const actionMap={'camp-branch':'branch','talent-plus':'rank-plus','talent-minus':'rank-minus','auto-train':'autotrain','choose-slot':'slot','ultimate-detail':'talent','equip-prompt':'equip'};
-let portraitCache;
-function portraits(){if(portraitCache)return portraitCache;portraitCache={};for(const cls of C.CLASS_IDS){const cv=document.createElement('canvas');cv.width=160;cv.height=192;G.HonroPortraits.draw(cv,null,cls);portraitCache[cls]=cv.toDataURL('image/png');}return portraitCache;}
+// Legacy campView accepts image URLs. Its detached template gets transparent
+// markers only; localize replaces them with the shared retained canvas hosts.
+const marker='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR4nGNgYGBgAAAABQABpfZFQAAAAABJRU5ErkJggg==#honro-';
+const portraitCache=Object.freeze(Object.fromEntries(C.CLASS_IDS.map(cls=>[cls,marker+cls])));
+function portraits(){return portraitCache;}
 function localize(html,profile){const box=document.createElement('div');box.innerHTML=html;const walk=document.createTreeWalker(box,NodeFilter.SHOW_TEXT);while(walk.nextNode()){let n=walk.currentNode;for(const [a,b]of translations)n.nodeValue=n.nodeValue.replace(a,b);}
  for(const n of box.querySelectorAll('[aria-label],[title]')){for(const a of ['aria-label','title']){if(n.hasAttribute(a)){let v=n.getAttribute(a);for(const [x,y]of translations)v=v.replace(x,y);n.setAttribute(a,v);}}}
  for(const el of box.querySelectorAll('[data-action]')){if(actionMap[el.dataset.action])el.dataset.action=actionMap[el.dataset.action];if(el.dataset.talent)el.dataset.skill=el.dataset.talent;if(el.dataset.branch)el.dataset.id=el.dataset.branch;}
@@ -14,6 +17,7 @@ function localize(html,profile){const box=document.createElement('div');box.inne
  for(const el of box.querySelectorAll('.micro-label,.section-caption h3>span,.section-caption>small,.ultimate-core p,.no-passives,.passive-caption>span'))el.remove();
  for(const tab of box.querySelectorAll('.hero-tab')){const cls=tab.dataset.class;const name=tab.querySelector('strong'),small=tab.querySelector('small');if(!profile.recruited.includes(cls)){tab.disabled=true;tab.setAttribute('aria-label','아직 만나지 못한 동행');name.textContent='미합류';small.textContent='';tab.querySelector('img')?.remove();tab.querySelector('.point-dot')?.remove();}}
  const nav=box.querySelector('.hero-tabs');if(nav)for(const c of ['archer','mage','knight','occultist']){const el=nav.querySelector(`[data-class=${c}]`);if(el)nav.appendChild(el);}
+ for(const image of box.querySelectorAll('img')){const src=image.getAttribute('src')||'';if(!src.startsWith(marker))continue;const cls=src.slice(marker.length);image.outerHTML=G.HonroPortraits.markup(cls,'bust',image.closest('.hero-tab')?'camp-tab-'+cls:'camp-summary');}
  return box.innerHTML;
 }
 function camp(profile,cls,header,branch){

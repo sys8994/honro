@@ -1,0 +1,3069 @@
+{
+  "phase": "after",
+  "head": "2d8d269ab2fdd58ee11d5187c9051b37ae33caf0",
+  "manifestSha256": "598b6693e9622c363a8acdcf18f4ffdb326fbe8800bcc80e5fcbaabb836c5081",
+  "rows": [
+    {
+      "view": "mobile",
+      "who": "담허",
+      "long": false,
+      "at": 0,
+      "scene": {
+        "x": 12,
+        "y": 582,
+        "w": 366,
+        "h": 250,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 122,
+        "y": 675,
+        "w": 243,
+        "h": 74,
+        "right": 365,
+        "bottom": 749
+      },
+      "actions": {
+        "x": 28,
+        "y": 759,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 819
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          248,
+          248,
+          0
+        ],
+        "line": [
+          74,
+          74,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 819
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "설오",
+      "long": false,
+      "at": 0,
+      "scene": {
+        "x": 12,
+        "y": 577.25,
+        "w": 366,
+        "h": 254.75,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 122,
+        "y": 670.25,
+        "w": 243,
+        "h": 78.75,
+        "right": 365,
+        "bottom": 749
+      },
+      "actions": {
+        "x": 28,
+        "y": 759,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 819
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          253,
+          253,
+          0
+        ],
+        "line": [
+          79,
+          79,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 819
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "휘겸",
+      "long": false,
+      "at": 0,
+      "scene": {
+        "x": 12,
+        "y": 582,
+        "w": 366,
+        "h": 250,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 122,
+        "y": 675,
+        "w": 243,
+        "h": 74,
+        "right": 365,
+        "bottom": 749
+      },
+      "actions": {
+        "x": 28,
+        "y": 759,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 819
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          248,
+          248,
+          0
+        ],
+        "line": [
+          74,
+          74,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 819
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "소단",
+      "long": false,
+      "at": 0,
+      "scene": {
+        "x": 12,
+        "y": 582,
+        "w": 366,
+        "h": 250,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 122,
+        "y": 675,
+        "w": 243,
+        "h": 74,
+        "right": 365,
+        "bottom": 749
+      },
+      "actions": {
+        "x": 28,
+        "y": 759,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 819
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          248,
+          248,
+          0
+        ],
+        "line": [
+          74,
+          74,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 819
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "담허",
+      "long": true,
+      "at": 0,
+      "scene": {
+        "x": 12,
+        "y": 12,
+        "w": 366,
+        "h": 820,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 122,
+        "y": 105,
+        "w": 243,
+        "h": 644,
+        "right": 365,
+        "bottom": 749
+      },
+      "actions": {
+        "x": 28,
+        "y": 759,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 819
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          818,
+          818,
+          0
+        ],
+        "line": [
+          735,
+          644,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 819
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "담허",
+      "long": true,
+      "at": 0.5,
+      "scene": {
+        "x": 12,
+        "y": 12,
+        "w": 366,
+        "h": 820,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 122,
+        "y": 105,
+        "w": 243,
+        "h": 644,
+        "right": 365,
+        "bottom": 749
+      },
+      "actions": {
+        "x": 28,
+        "y": 759,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 819
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          818,
+          818,
+          0
+        ],
+        "line": [
+          735,
+          644,
+          46
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 819
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "담허",
+      "long": true,
+      "at": 1,
+      "scene": {
+        "x": 12,
+        "y": 12,
+        "w": 366,
+        "h": 820,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 122,
+        "y": 105,
+        "w": 243,
+        "h": 644,
+        "right": 365,
+        "bottom": 749
+      },
+      "actions": {
+        "x": 28,
+        "y": 759,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 819
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          818,
+          818,
+          0
+        ],
+        "line": [
+          735,
+          644,
+          91
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 819
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "문탁",
+      "long": true,
+      "at": 0,
+      "scene": {
+        "x": 12,
+        "y": 12,
+        "w": 366,
+        "h": 820,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 122,
+        "y": 105,
+        "w": 243,
+        "h": 644,
+        "right": 365,
+        "bottom": 749
+      },
+      "actions": {
+        "x": 28,
+        "y": 759,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 819
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          818,
+          818,
+          0
+        ],
+        "line": [
+          735,
+          644,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 819
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "문탁",
+      "long": true,
+      "at": 0.5,
+      "scene": {
+        "x": 12,
+        "y": 12,
+        "w": 366,
+        "h": 820,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 122,
+        "y": 105,
+        "w": 243,
+        "h": 644,
+        "right": 365,
+        "bottom": 749
+      },
+      "actions": {
+        "x": 28,
+        "y": 759,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 819
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          818,
+          818,
+          0
+        ],
+        "line": [
+          735,
+          644,
+          46
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 819
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "문탁",
+      "long": true,
+      "at": 1,
+      "scene": {
+        "x": 12,
+        "y": 12,
+        "w": 366,
+        "h": 820,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 122,
+        "y": 105,
+        "w": 243,
+        "h": 644,
+        "right": 365,
+        "bottom": 749
+      },
+      "actions": {
+        "x": 28,
+        "y": 759,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 819
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          818,
+          818,
+          0
+        ],
+        "line": [
+          735,
+          644,
+          91
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 819
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "새 주민",
+      "long": true,
+      "at": 0,
+      "scene": {
+        "x": 12,
+        "y": 157,
+        "w": 366,
+        "h": 675,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 28,
+        "y": 232,
+        "w": 337,
+        "h": 525,
+        "right": 365,
+        "bottom": 757
+      },
+      "actions": {
+        "x": 28,
+        "y": 757,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 817
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          673,
+          673,
+          0
+        ],
+        "line": [
+          525,
+          525,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 773,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 817
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "새 주민",
+      "long": true,
+      "at": 0.5,
+      "scene": {
+        "x": 12,
+        "y": 157,
+        "w": 366,
+        "h": 675,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 28,
+        "y": 232,
+        "w": 337,
+        "h": 525,
+        "right": 365,
+        "bottom": 757
+      },
+      "actions": {
+        "x": 28,
+        "y": 757,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 817
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          673,
+          673,
+          0
+        ],
+        "line": [
+          525,
+          525,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 773,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 817
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "새 주민",
+      "long": true,
+      "at": 1,
+      "scene": {
+        "x": 12,
+        "y": 157,
+        "w": 366,
+        "h": 675,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 28,
+        "y": 232,
+        "w": 337,
+        "h": 525,
+        "right": 365,
+        "bottom": 757
+      },
+      "actions": {
+        "x": 28,
+        "y": 757,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 817
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          673,
+          673,
+          0
+        ],
+        "line": [
+          525,
+          525,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 773,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 817
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "서술",
+      "long": true,
+      "at": 0,
+      "scene": {
+        "x": 12,
+        "y": 161,
+        "w": 366,
+        "h": 671,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 28,
+        "y": 232,
+        "w": 337,
+        "h": 525,
+        "right": 365,
+        "bottom": 757
+      },
+      "actions": {
+        "x": 28,
+        "y": 757,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 817
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          669,
+          669,
+          0
+        ],
+        "line": [
+          525,
+          525,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 773,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 817
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "서술",
+      "long": true,
+      "at": 0.5,
+      "scene": {
+        "x": 12,
+        "y": 161,
+        "w": 366,
+        "h": 671,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 28,
+        "y": 232,
+        "w": 337,
+        "h": 525,
+        "right": 365,
+        "bottom": 757
+      },
+      "actions": {
+        "x": 28,
+        "y": 757,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 817
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          669,
+          669,
+          0
+        ],
+        "line": [
+          525,
+          525,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 773,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 817
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "mobile",
+      "who": "서술",
+      "long": true,
+      "at": 1,
+      "scene": {
+        "x": 12,
+        "y": 161,
+        "w": 366,
+        "h": 671,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 28,
+        "y": 232,
+        "w": 337,
+        "h": 525,
+        "right": 365,
+        "bottom": 757
+      },
+      "actions": {
+        "x": 28,
+        "y": 757,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 817
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          669,
+          669,
+          0
+        ],
+        "line": [
+          525,
+          525,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 773,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 817
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 773,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 817
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "담허",
+      "long": false,
+      "at": 0,
+      "scene": {
+        "x": 25,
+        "y": 190,
+        "w": 794,
+        "h": 190,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 265,
+        "w": 593,
+        "h": 44,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          188,
+          188,
+          0
+        ],
+        "line": [
+          44,
+          44,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "설오",
+      "long": false,
+      "at": 0,
+      "scene": {
+        "x": 25,
+        "y": 190,
+        "w": 794,
+        "h": 190,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 265,
+        "w": 593,
+        "h": 44,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          188,
+          188,
+          0
+        ],
+        "line": [
+          44,
+          44,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "휘겸",
+      "long": false,
+      "at": 0,
+      "scene": {
+        "x": 25,
+        "y": 190,
+        "w": 794,
+        "h": 190,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 265,
+        "w": 593,
+        "h": 44,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          188,
+          188,
+          0
+        ],
+        "line": [
+          44,
+          44,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "소단",
+      "long": false,
+      "at": 0,
+      "scene": {
+        "x": 25,
+        "y": 190,
+        "w": 794,
+        "h": 190,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 265,
+        "w": 593,
+        "h": 44,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          188,
+          188,
+          0
+        ],
+        "line": [
+          44,
+          44,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "담허",
+      "long": true,
+      "at": 0,
+      "scene": {
+        "x": 25,
+        "y": 14,
+        "w": 794,
+        "h": 366,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 89,
+        "w": 593,
+        "h": 220,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          364,
+          364,
+          0
+        ],
+        "line": [
+          246,
+          220,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "담허",
+      "long": true,
+      "at": 0.5,
+      "scene": {
+        "x": 25,
+        "y": 14,
+        "w": 794,
+        "h": 366,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 89,
+        "w": 593,
+        "h": 220,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          364,
+          364,
+          0
+        ],
+        "line": [
+          246,
+          220,
+          13
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "담허",
+      "long": true,
+      "at": 1,
+      "scene": {
+        "x": 25,
+        "y": 14,
+        "w": 794,
+        "h": 366,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 89,
+        "w": 593,
+        "h": 220,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          364,
+          364,
+          0
+        ],
+        "line": [
+          246,
+          220,
+          26
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "문탁",
+      "long": true,
+      "at": 0,
+      "scene": {
+        "x": 25,
+        "y": 14,
+        "w": 794,
+        "h": 366,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 89,
+        "w": 593,
+        "h": 220,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          364,
+          364,
+          0
+        ],
+        "line": [
+          246,
+          220,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "문탁",
+      "long": true,
+      "at": 0.5,
+      "scene": {
+        "x": 25,
+        "y": 14,
+        "w": 794,
+        "h": 366,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 89,
+        "w": 593,
+        "h": 220,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          364,
+          364,
+          0
+        ],
+        "line": [
+          246,
+          220,
+          13
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "문탁",
+      "long": true,
+      "at": 1,
+      "scene": {
+        "x": 25,
+        "y": 14,
+        "w": 794,
+        "h": 366,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 89,
+        "w": 593,
+        "h": 220,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          364,
+          364,
+          0
+        ],
+        "line": [
+          246,
+          220,
+          26
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "새 주민",
+      "long": true,
+      "at": 0,
+      "scene": {
+        "x": 25,
+        "y": 32.484375,
+        "w": 794,
+        "h": 347.515625,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 47,
+        "y": 107.484375,
+        "w": 753,
+        "h": 201.515625,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 47,
+        "y": 309,
+        "w": 753,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          346,
+          346,
+          0
+        ],
+        "line": [
+          202,
+          202,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 110.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "새 주민",
+      "long": true,
+      "at": 0.5,
+      "scene": {
+        "x": 25,
+        "y": 32.484375,
+        "w": 794,
+        "h": 347.515625,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 47,
+        "y": 107.484375,
+        "w": 753,
+        "h": 201.515625,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 47,
+        "y": 309,
+        "w": 753,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          346,
+          346,
+          0
+        ],
+        "line": [
+          202,
+          202,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 110.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "새 주민",
+      "long": true,
+      "at": 1,
+      "scene": {
+        "x": 25,
+        "y": 32.484375,
+        "w": 794,
+        "h": 347.515625,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 47,
+        "y": 107.484375,
+        "w": 753,
+        "h": 201.515625,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 47,
+        "y": 309,
+        "w": 753,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          346,
+          346,
+          0
+        ],
+        "line": [
+          202,
+          202,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 110.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "서술",
+      "long": true,
+      "at": 0,
+      "scene": {
+        "x": 25,
+        "y": 33.484375,
+        "w": 794,
+        "h": 346.515625,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 47,
+        "y": 107.484375,
+        "w": 753,
+        "h": 201.515625,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 47,
+        "y": 309,
+        "w": 753,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          345,
+          345,
+          0
+        ],
+        "line": [
+          202,
+          202,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 110.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "서술",
+      "long": true,
+      "at": 0.5,
+      "scene": {
+        "x": 25,
+        "y": 33.484375,
+        "w": 794,
+        "h": 346.515625,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 47,
+        "y": 107.484375,
+        "w": 753,
+        "h": 201.515625,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 47,
+        "y": 309,
+        "w": 753,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          345,
+          345,
+          0
+        ],
+        "line": [
+          202,
+          202,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 110.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "서술",
+      "long": true,
+      "at": 1,
+      "scene": {
+        "x": 25,
+        "y": 33.484375,
+        "w": 794,
+        "h": 346.515625,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 47,
+        "y": 107.484375,
+        "w": 753,
+        "h": 201.515625,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 47,
+        "y": 309,
+        "w": 753,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          345,
+          345,
+          0
+        ],
+        "line": [
+          202,
+          202,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 110.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    }
+  ],
+  "guideBackground": "rgb(13, 32, 36)",
+  "liveResizeRetainsPanel": [
+    {
+      "scene": {
+        "x": 25,
+        "y": 14,
+        "w": 794,
+        "h": 366,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 89,
+        "w": 593,
+        "h": 220,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          364,
+          364,
+          0
+        ],
+        "line": [
+          246,
+          220,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "scene": {
+        "x": 12,
+        "y": 436,
+        "w": 366,
+        "h": 396,
+        "right": 378,
+        "bottom": 832
+      },
+      "line": {
+        "x": 122,
+        "y": 529,
+        "w": 243,
+        "h": 220,
+        "right": 365,
+        "bottom": 749
+      },
+      "actions": {
+        "x": 28,
+        "y": 759,
+        "w": 337,
+        "h": 60,
+        "right": 365,
+        "bottom": 819
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          394,
+          394,
+          0
+        ],
+        "line": [
+          735,
+          220,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 237.1875,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775,
+            "w": 74.546875,
+            "h": 44,
+            "right": 318.734375,
+            "bottom": 819
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775,
+            "w": 39.265625,
+            "h": 44,
+            "right": 365,
+            "bottom": 819
+          },
+          "visible": true
+        }
+      ]
+    },
+    {
+      "scene": {
+        "x": 25,
+        "y": 14,
+        "w": 794,
+        "h": 366,
+        "right": 819,
+        "bottom": 380
+      },
+      "line": {
+        "x": 207,
+        "y": 89,
+        "w": 593,
+        "h": 220,
+        "right": 800,
+        "bottom": 309
+      },
+      "actions": {
+        "x": 207,
+        "y": 309,
+        "w": 593,
+        "h": 54,
+        "right": 800,
+        "bottom": 363
+      },
+      "bg": "rgba(0, 0, 0, 0)",
+      "lineOverflow": "auto",
+      "scroll": {
+        "scene": [
+          364,
+          364,
+          0
+        ],
+        "line": [
+          246,
+          220,
+          0
+        ]
+      },
+      "visibleTextRowOverlap": [],
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 270.125,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "w": 104.828125,
+            "h": 44,
+            "right": 724.875,
+            "bottom": 363
+          },
+          "visible": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "w": 63.125,
+            "h": 44,
+            "right": 800,
+            "bottom": 363
+          },
+          "visible": true
+        }
+      ]
+    }
+  ],
+  "imageCounters": {
+    "before": {
+      "requests": 4,
+      "decodes": 4,
+      "paints": 4,
+      "fallbackPaints": 0,
+      "vectorBuilds": 0,
+      "imageEntries": 4,
+      "pending": 0,
+      "errors": 0,
+      "vectorEntries": 0,
+      "waiters": 0
+    },
+    "after": {
+      "requests": 4,
+      "decodes": 4,
+      "paints": 29,
+      "fallbackPaints": 0,
+      "vectorBuilds": 1,
+      "imageEntries": 4,
+      "pending": 0,
+      "errors": 0,
+      "vectorEntries": 1,
+      "waiters": 0
+    }
+  },
+  "errors": [],
+  "shortRectsPreserved": [
+    [
+      "mobile",
+      "담허"
+    ],
+    [
+      "mobile",
+      "설오"
+    ],
+    [
+      "mobile",
+      "휘겸"
+    ],
+    [
+      "mobile",
+      "소단"
+    ],
+    [
+      "landscape",
+      "담허"
+    ],
+    [
+      "landscape",
+      "설오"
+    ],
+    [
+      "landscape",
+      "휘겸"
+    ],
+    [
+      "landscape",
+      "소단"
+    ]
+  ]
+}
