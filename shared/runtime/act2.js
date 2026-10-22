@@ -109,7 +109,7 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
  if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:H.hero[s.requiredClass].name+' 필요'};
  if(revision2(b)){
   const threats=interactionThreats(b,m);
-  if(threats.length)return{ok:false,reason:'주변 들림을 먼저 제압하세요'};
+  if(threats.length&&!G.HonroStage18Short?.freeInteraction(b,m))return{ok:false,reason:'주변 들림을 먼저 제압하세요'};
   const spirit=b.units.find(v=>v.id===m.spiritId);
   if(s.kind==='rescue'&&spirit&&!spirit.dead&&spirit.hp>spirit.maxHp*.4)return{ok:false,reason:'붙은 혼을 먼저 약화시키세요 · 체력 40% 이하'};
  }
