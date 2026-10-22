@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "date": "2026-10-22",
+  "note": "Parent-created expression and pose variants. These are archival art assets, not automatic runtime scene assignments. Approved base originals remain immutable.",
+  "variants": [
+    {
+      "character": "seoro",
+      "variant": "wary",
+      "name": "설오_경계",
+      "sourceMasterSha": "06d88387f50e64ae00976871c9b1656846737437",
+      "styleReferenceSha": "06d88387f50e64ae00976871c9b1656846737437",
+      "imageSha": "73a6407745e386a3631cb4200d25d6bc21b8eceb",
+      "libraryFileId": "libfile_066c9226e880819198b2174b0a09a38f",
+      "prompt": "Fresh independent HONRO game portrait variant. Reference 1 locks the SAME person's exact facial identity, age, costume and colors. Reference2 if supplied is ONLY Seoro7 rendering style, not face. Match the approved medium-detail 2D painted illustration across face, hands, hair and clothes: broad/mid tonal planes, restrained line edges, grouped hair locks, selected natural folds. Preserve facial proportions, ethnicity, age, scars/beard, hairstyle and every outfit/accessory. Do not beautify/de-age. Vertical1024x1536 upper body, same head size/position and 3-quarter direction. Genuine transparent background, clean silhouette; NO halo/vignette/fog/backdrop. No text. No photo pores, noise, microtexture, repeated fabric grain, hatching, glossy idol face, enlarged anime eyes or flat cel clothing. Change only expression to wary concern: brows subtly inward, lips slightly parted as if checking an injured companion, natural tension not pout. Keep pose and bow as master.",
+      "generation": "independent call from approved master; no variant chaining",
+      "review": {
+        "identityAndCostume": "parent visually reviewed",
+        "styleAndDetail": "parent visually reviewed against approved Seoro7",
+        "handsAndSilhouette": "parent visually reviewed",
+        "runtime": "not connected; base4 integration first"
+      },
+      "runtimeEnabled": false
+    },
+    {
+      "character": "damheo",
+      "variant": "worried",
+      "name": "담허_걱정",
+      "sourceMasterSha": "e1614527e28176db54df48d3da345bf340126bbd",
+      "styleReferenceSha": "06d88387f50e64ae00976871c9b1656846737437",
+      "imageSha": "b664f430b2a33f11826077312ec8fd7490a91d40",
+      "libraryFileId": "libfile_f6854d3fcd88819193a97af660dff73a",
+      "prompt": "Fresh independent HONRO game portrait variant. Reference 1 locks the SAME person's exact facial identity, age, costume and colors. Reference2 if supplied is ONLY Seoro7 rendering style, not face. Match the approved medium-detail 2D painted illustration across face, hands, hair and clothes: broad/mid tonal planes, restrained line edges, grouped hair locks, selected natural folds. Preserve facial proportions, ethnicity, age, scars/beard, hairstyle and every outfit/accessory. Do not beautify/de-age. Vertical1024x1536 upper body, same head size/position and 3-quarter direction. Genuine transparent background, clean silhouette; NO halo/vignette/fog/backdrop. No text. No photo pores, noise, microtexture, repeated fabric grain, hatching, glossy idol face, enlarged anime eyes or flat cel clothing. Change only expression to tired concern while examining a troubling sign, brow knit and gaze slightly downward, mouth mid-question. Preserve mature grey-haired face and beard, charcoal grey-olive robe, ivory layers, gourd and Ystaff.",
+      "generation": "independent call from approved master; no variant chaining",
+      "review": {
+        "identityAndCostume": "parent visually reviewed",
+        "styleAndDetail": "parent visually reviewed against approved Seoro7",
+        "handsAndSilhouette": "parent visually reviewed",
+        "runtime": "not connected; base4 integration first"
+      },
+      "runtimeEnabled": false
+    },
+    {
+      "character": "hwigyeom",
+      "variant": "angry",
+      "name": "휘겸_분노",
+      "sourceMasterSha": "e32546b3c38944b52516422f2188803f34b6dfd5",
+      "styleReferenceSha": "06d88387f50e64ae00976871c9b1656846737437",
+      "imageSha": "ddbd63be90cc64adb103a8d149c2b9c8b46c0f46",
+      "libraryFileId": "libfile_e87cfa53e9548191958a9e5f49c7b0cf",
+      "prompt": "Fresh independent HONRO game portrait variant. Reference 1 locks the SAME person's exact facial identity, age, costume and colors. Reference2 if supplied is ONLY Seoro7 rendering style, not face. Match the approved medium-detail 2D painted illustration across face, hands, hair and clothes: broad/mid tonal planes, restrained line edges, grouped hair locks, selected natural folds. Preserve facial proportions, ethnicity, age, scars/beard, hairstyle and every outfit/accessory. Do not beautify/de-age. Vertical1024x1536 upper body, same head size/position and 3-quarter direction. Genuine transparent background, clean silhouette; NO halo/vignette/fog/backdrop. No text. No photo pores, noise, microtexture, repeated fabric grain, hatching, glossy idol face, enlarged anime eyes or flat cel clothing. Change only expression to controlled anger and suspicion: lowered brows, tight jaw and focused eyes, not shouting. Black gat and slate blue-grey coat, diagonal brown strap, red WAIST sash stay.",
+      "generation": "independent call from approved master; no variant chaining",
+      "review": {
+        "identityAndCostume": "parent visually reviewed",
+        "styleAndDetail": "parent visually reviewed against approved Seoro7",
+        "handsAndSilhouette": "parent visually reviewed",
+        "runtime": "not connected; base4 integration first"
+      },
+      "runtimeEnabled": false
+    },
+    {
+      "character": "sodan",
+      "variant": "anxious",
+      "name": "소단_불안",
+      "sourceMasterSha": "b68f33089695872c2ee1931ff86b7371b54e5573",
+      "styleReferenceSha": "06d88387f50e64ae00976871c9b1656846737437",
+      "imageSha": "0526c17e3d2fa84db718be35eb8647c847d7bf90",
+      "libraryFileId": "libfile_395515aa8b1c81919619c89410db2ac3",
+      "prompt": "Fresh independent HONRO game portrait variant. Reference 1 locks the SAME person's exact facial identity, age, costume and colors. Reference2 if supplied is ONLY Seoro7 rendering style, not face. Match the approved medium-detail 2D painted illustration across face, hands, hair and clothes: broad/mid tonal planes, restrained line edges, grouped hair locks, selected natural folds. Preserve facial proportions, ethnicity, age, scars/beard, hairstyle and every outfit/accessory. Do not beautify/de-age. Vertical1024x1536 upper body, same head size/position and 3-quarter direction. Genuine transparent background, clean silhouette; NO halo/vignette/fog/backdrop. No text. No photo pores, noise, microtexture, repeated fabric grain, hatching, glossy idol face, enlarged anime eyes or flat cel clothing. Change only expression to defensive anxiety: brows slightly raised/inward, lips parted in restrained tension, shoulder slight tension. Not crying/not cute. Preserve ivory outer shoulders/sleeves, lavender ONLY inner crossings/cuffs, red sash/ribbon and bell.",
+      "generation": "independent call from approved master; no variant chaining",
+      "review": {
+        "identityAndCostume": "parent visually reviewed",
+        "styleAndDetail": "parent visually reviewed against approved Seoro7",
+        "handsAndSilhouette": "parent visually reviewed",
+        "runtime": "not connected; base4 integration first"
+      },
+      "runtimeEnabled": false
+    },
+    {
+      "character": "seoro",
+      "variant": "warning",
+      "name": "설오_경고",
+      "sourceMasterSha": "06d88387f50e64ae00976871c9b1656846737437",
+      "styleReferenceSha": "06d88387f50e64ae00976871c9b1656846737437",
+      "imageSha": "a4bc9383da916a90a7b65b0f2b7633aea55e4642",
+      "libraryFileId": "libfile_fd9132ffb87c819184bc23e8398c0ee1",
+      "prompt": "Create a fresh independent action-pose portrait for HONRO. Ref1 is exact approved identity/costume; ref2 if provided is ONLY Seoro7 medium-detail 2D painterly game style. SAME face anatomy, age, ethnicity, hairstyle, scars/beard, clothes construction/colors/accessories. Not beautified. Match natural painted face/hand/fabric detail, grouped hair and selected folds, coherent mid-sized light/shadow planes. Portrait1024x1536, upper body to waist, head similar size/position and original 3-quarter orientation, clear whole hair/hat, hands anatomically correct. Restrained dramatic action, not combat splash art. Transparent background, no environment/extra characters/text/frame; no added aura or particles. No photographic pores/noise, fabric weave, repeating microtexture, anime simplification, oversized eyes, glossy idol faces. He has raised the same bow slightly across lower torso without drawing the bowstring, shoulders angled protectively forward, urgently warning someone ahead, brows firm, mouth speaking. Both hands remain plausibly attached, no arrow drawn and no new props. Keep cheek scar, muted grey-green robe and brown straps.",
+      "generation": "independent call from approved master; no variant chaining",
+      "review": {
+        "identityAndCostume": "parent visually reviewed",
+        "styleAndDetail": "parent visually reviewed against approved Seoro7",
+        "handsAndSilhouette": "parent visually reviewed",
+        "runtime": "not connected; base4 integration first"
+      },
+      "runtimeEnabled": false
+    },
+    {
+      "character": "damheo",
+      "variant": "ritual",
+      "name": "담허_진유지",
+      "sourceMasterSha": "e1614527e28176db54df48d3da345bf340126bbd",
+      "styleReferenceSha": "06d88387f50e64ae00976871c9b1656846737437",
+      "imageSha": "700ef8dfdfaad613ac26615a6a8ccfc99e7e9aff",
+      "libraryFileId": "libfile_9bcb5295ec8881919bd2aa3d50f4a15c",
+      "prompt": "Create a fresh independent action-pose portrait for HONRO. Ref1 is exact approved identity/costume; ref2 if provided is ONLY Seoro7 medium-detail 2D painterly game style. SAME face anatomy, age, ethnicity, hairstyle, scars/beard, clothes construction/colors/accessories. Not beautified. Match natural painted face/hand/fabric detail, grouped hair and selected folds, coherent mid-sized light/shadow planes. Portrait1024x1536, upper body to waist, head similar size/position and original 3-quarter orientation, clear whole hair/hat, hands anatomically correct. Restrained dramatic action, not combat splash art. Transparent background, no environment/extra characters/text/frame; no added aura or particles. No photographic pores/noise, fabric weave, repeating microtexture, anime simplification, oversized eyes, glossy idol faces. He braces the Ystaff in one hand while extending the other open palm at chest level as though maintaining an invisible ritual. Gourd hangs at his waist. Face shows effort and breath, brow knit, mouth slightly open, not supernatural aura. Same charcoal grey-olive robe and ivory sleeves, old Korean face, grey hair/beard. Anatomically clean five fingers.",
+      "generation": "independent call from approved master; no variant chaining",
+      "review": {
+        "identityAndCostume": "parent visually reviewed",
+        "styleAndDetail": "parent visually reviewed against approved Seoro7",
+        "handsAndSilhouette": "parent visually reviewed",
+        "runtime": "not connected; base4 integration first"
+      },
+      "runtimeEnabled": false
+    },
+    {
+      "character": "hwigyeom",
+      "variant": "guard",
+      "name": "휘겸_엄호",
+      "sourceMasterSha": "e32546b3c38944b52516422f2188803f34b6dfd5",
+      "styleReferenceSha": "06d88387f50e64ae00976871c9b1656846737437",
+      "imageSha": "f74a9512ea01f5b3464978f7240178857587b40e",
+      "libraryFileId": "libfile_c336c18476d88191b86366b8c4257683",
+      "prompt": "Create a fresh independent action-pose portrait for HONRO. Ref1 is exact approved identity/costume; ref2 if provided is ONLY Seoro7 medium-detail 2D painterly game style. SAME face anatomy, age, ethnicity, hairstyle, scars/beard, clothes construction/colors/accessories. Not beautified. Match natural painted face/hand/fabric detail, grouped hair and selected folds, coherent mid-sized light/shadow planes. Portrait1024x1536, upper body to waist, head similar size/position and original 3-quarter orientation, clear whole hair/hat, hands anatomically correct. Restrained dramatic action, not combat splash art. Transparent background, no environment/extra characters/text/frame; no added aura or particles. No photographic pores/noise, fabric weave, repeating microtexture, anime simplification, oversized eyes, glossy idol faces. He stands protectively with torso slightly turned forward, one hand resting firmly on the existing sheathed sword hilt at waist, the other forearm slightly raised to signal stay behind. Controlled stern face, mouth speaking a short command. Entire black gat visible, slate-blue-grey robe, brown diagonal strap and RED WAIST sash. Sword stays sheathed, no extra weapons.",
+      "generation": "independent call from approved master; no variant chaining",
+      "review": {
+        "identityAndCostume": "parent visually reviewed",
+        "styleAndDetail": "parent visually reviewed against approved Seoro7",
+        "handsAndSilhouette": "parent visually reviewed",
+        "runtime": "not connected; base4 integration first"
+      },
+      "runtimeEnabled": false
+    },
+    {
+      "character": "sodan",
+      "variant": "stop",
+      "name": "소단_제지",
+      "sourceMasterSha": "b68f33089695872c2ee1931ff86b7371b54e5573",
+      "styleReferenceSha": "06d88387f50e64ae00976871c9b1656846737437",
+      "imageSha": "980a156b76839d3ab2b00ba66bebb891909bda8f",
+      "libraryFileId": "libfile_d98268ab1a5c8191ba7806af6c67f26d",
+      "prompt": "Create a fresh independent action-pose portrait for HONRO. Ref1 is exact approved identity/costume; ref2 if provided is ONLY Seoro7 medium-detail 2D painterly game style. SAME face anatomy, age, ethnicity, hairstyle, scars/beard, clothes construction/colors/accessories. Not beautified. Match natural painted face/hand/fabric detail, grouped hair and selected folds, coherent mid-sized light/shadow planes. Portrait1024x1536, upper body to waist, head similar size/position and original 3-quarter orientation, clear whole hair/hat, hands anatomically correct. Restrained dramatic action, not combat splash art. Transparent background, no environment/extra characters/text/frame; no added aura or particles. No photographic pores/noise, fabric weave, repeating microtexture, anime simplification, oversized eyes, glossy idol faces. She draws the same plain brass bell close to her chest with one hand and extends the other open palm toward viewer-right to say stop, tense defensive expression, brows worried but resolute, mouth speaking. Preserve her natural adult Korean face, smaller realistic eyes, ivory OUTER sleeves/shoulders and lavender ONLY lining/cuffs, red flat sash and hair ribbon. No magical glow, no extra jewelry, clean five fingers.",
+      "generation": "independent call from approved master; no variant chaining",
+      "review": {
+        "identityAndCostume": "parent visually reviewed",
+        "styleAndDetail": "parent visually reviewed against approved Seoro7",
+        "handsAndSilhouette": "parent visually reviewed",
+        "runtime": "not connected; base4 integration first"
+      },
+      "runtimeEnabled": false
+    }
+  ]
+}
