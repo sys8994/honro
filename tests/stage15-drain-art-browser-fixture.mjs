@@ -12,7 +12,7 @@ p.settings.debugMode=false;p.settings.music=false;p.settings.sound=false;
 const {b}=battlefield(g,15,{profile:p}),original=plain(b.units),m=b.honroMarkers.find(m=>m.id==='sluice'),u=b.units.find(u=>u.side===0);
 Object.assign(u,{x:m.x,y:m.y,vx:0,vy:0,jumping:false,airborne:false});b.active=u.id;b.side=0;b.phase='aim';
 const threats=g.HonroAct2.interactionThreats(b,m);for(const v of threats)v.honroSubdued=true;
-assert.deepEqual(threats.map(v=>v.id).sort(),['a2-enemy-5','a2-enemy-6','a2-enemy-8']);
+assert.deepEqual(plain(threats.map(v=>v.id).sort()),['a2-enemy-5','a2-enemy-6','a2-enemy-8']);
 for(const id of ['a2-enemy-15','a2-enemy-17'])assert.deepEqual(plain(b.units.find(v=>v.id===id)),original.find(v=>v.id===id));
 assert(b.terrain.find(t=>t.id==='fc15-drained-ledge').broken);assert(!g.HonroAct2.memory(b).done.sluice);
 p.honroBattle=plain(b);
