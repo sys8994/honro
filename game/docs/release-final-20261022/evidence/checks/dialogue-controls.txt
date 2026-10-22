@@ -1,0 +1,6 @@
+PASS First page is a no-op; back/next preserves the bundle and settles every cue only once
+PASS Continue from an earlier page keeps the frontier; later cue movements cannot replay
+PASS Message sound plays once per visible page transition, never on redraw or blocked previous
+PASS Last page reread and skip complete one rest event, with identical persistent rewards
+PASS Calm arrival sample is 240 ms with a distinct short attack and safe peak
+PASS Mute/zero volume and locked context never enqueue stale dialogue

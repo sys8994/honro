@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/workspace/honro/tests/stage10-safe-exit-crowd-browser.py", line 26, in <module>
+    assert all(state[k]==before[k] for k in before)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

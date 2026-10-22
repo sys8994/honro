@@ -1,0 +1,12 @@
+{
+  "passed": 7,
+  "failed": 1
+}
+{
+  name: 'bier-knot-0: 2520,3750.4',
+  passed: false,
+  stack: 'AssertionError [ERR_ASSERTION]: bier-knot-0: 2520,3750.4\n' +
+    '    at file:///tmp/honro-release-baseline/game/tests/regressions.mjs:13:120\n' +
+    '    at check (file:///tmp/honro-release-baseline/game/tests/regressions.mjs:6:38)\n' +
+    '    at file:///tmp/honro-release-baseline/game/tests/regressions.mjs:13:5'
+}

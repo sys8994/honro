@@ -1,0 +1,429 @@
+{
+  "executionSHA": "cd066c0d39783e988b473659ecba2d7fb54d3d1b",
+  "results": [
+    {
+      "name": "void-runtime",
+      "command": [
+        "node",
+        "tests/act3-void-runtime.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 7.8,
+      "log": "void-runtime.txt"
+    },
+    {
+      "name": "report-data",
+      "command": [
+        "node",
+        "tests/stage-clear-report-data.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 36.24,
+      "log": "report-data.txt"
+    },
+    {
+      "name": "report-app",
+      "command": [
+        "node",
+        "tests/stage-clear-report-app.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 6.77,
+      "log": "report-app.txt"
+    },
+    {
+      "name": "report-carry",
+      "command": [
+        "node",
+        "tests/stage-clear-report-carry.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 4.06,
+      "log": "report-carry.txt"
+    },
+    {
+      "name": "report-recovery",
+      "command": [
+        "node",
+        "tests/feedback-report-recovery.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 5.84,
+      "log": "report-recovery.txt"
+    },
+    {
+      "name": "withdrawal",
+      "command": [
+        "node",
+        "tests/sodan-withdrawal.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 4.11,
+      "log": "withdrawal.txt"
+    },
+    {
+      "name": "dialogue-controls",
+      "command": [
+        "node",
+        "tests/dialogue-controls-audio.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 15.94,
+      "log": "dialogue-controls.txt"
+    },
+    {
+      "name": "anomaly",
+      "command": [
+        "node",
+        "tests/story-anomaly-environment.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 0.8,
+      "log": "anomaly.txt"
+    },
+    {
+      "name": "bell",
+      "command": [
+        "node",
+        "tests/bell-anomaly.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 34.31,
+      "log": "bell.txt"
+    },
+    {
+      "name": "joystick",
+      "command": [
+        "node",
+        "tests/joystick-intent.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 2.24,
+      "log": "joystick.txt"
+    },
+    {
+      "name": "charge-input",
+      "command": [
+        "node",
+        "tests/charge-input.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 6.1,
+      "log": "charge-input.txt"
+    },
+    {
+      "name": "camp",
+      "command": [
+        "npm",
+        "run",
+        "test:camp-persistence"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 13.84,
+      "log": "camp.txt"
+    },
+    {
+      "name": "camp-skill",
+      "command": [
+        "node",
+        "tests/camp-skill-ux.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 4.96,
+      "log": "camp-skill.txt"
+    },
+    {
+      "name": "rest-journey",
+      "command": [
+        "node",
+        "tests/rest-journey.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 34.33,
+      "log": "rest-journey.txt"
+    },
+    {
+      "name": "skill-images",
+      "command": [
+        "node",
+        "tests/skill-image-icons.mjs"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 15.1,
+      "log": "skill-images.txt"
+    },
+    {
+      "name": "regressions",
+      "command": [
+        "node",
+        "game/tests/regressions.mjs"
+      ],
+      "env": {},
+      "exit": 1,
+      "seconds": 8.02,
+      "log": "regressions.txt"
+    },
+    {
+      "name": "dialogue-existing",
+      "command": [
+        "node",
+        "tests/dialogue-speaker-presentation.mjs"
+      ],
+      "env": {},
+      "exit": 1,
+      "seconds": 5.72,
+      "log": "dialogue-existing.txt"
+    },
+    {
+      "name": "story-existing",
+      "command": [
+        "node",
+        "tests/story-canon-v1.mjs"
+      ],
+      "env": {},
+      "exit": 1,
+      "seconds": 4.57,
+      "log": "story-existing.txt"
+    },
+    {
+      "name": "split-existing",
+      "command": [
+        "node",
+        "tests/act3-split-campaign.mjs"
+      ],
+      "env": {},
+      "exit": 1,
+      "seconds": 7.14,
+      "log": "split-existing.txt"
+    },
+    {
+      "name": "focus1-void-input",
+      "command": [
+        "python",
+        "tests/act3-void-browser.py"
+      ],
+      "env": {
+        "HONRO_VOID_REVIEW": "input",
+        "HONRO_VOID_OUT": "game/docs/release-final-20261022/evidence/focus1-void"
+      },
+      "exit": 0,
+      "seconds": 13.07,
+      "log": "focus1-void-input.txt"
+    },
+    {
+      "name": "focus1-void-layout",
+      "command": [
+        "python",
+        "tests/act3-void-browser.py"
+      ],
+      "env": {
+        "HONRO_VOID_REVIEW": "layout",
+        "HONRO_VOID_OUT": "game/docs/release-final-20261022/evidence/focus1-void"
+      },
+      "exit": 0,
+      "seconds": 23.08,
+      "log": "focus1-void-layout.txt"
+    },
+    {
+      "name": "focus1-void-state",
+      "command": [
+        "python",
+        "tests/act3-void-browser.py"
+      ],
+      "env": {
+        "HONRO_VOID_REVIEW": "state",
+        "HONRO_VOID_OUT": "game/docs/release-final-20261022/evidence/focus1-void"
+      },
+      "exit": 0,
+      "seconds": 20.75,
+      "log": "focus1-void-state.txt"
+    },
+    {
+      "name": "focus1-void-report",
+      "command": [
+        "python",
+        "tests/release-final-void-report-browser.py"
+      ],
+      "env": {
+        "HONRO_RELEASE_VOID_OUT": "game/docs/release-final-20261022/evidence/focus1-void/report-time"
+      },
+      "exit": 0,
+      "seconds": 8.43,
+      "log": "focus1-void-report.txt"
+    },
+    {
+      "name": "focus2-map",
+      "command": [
+        "python",
+        "tests/stage10-world-outro-browser.py",
+        "--out",
+        "game/docs/release-final-20261022/evidence/focus2-map"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 32.8,
+      "log": "focus2-map.txt"
+    },
+    {
+      "name": "focus2-crowd",
+      "command": [
+        "python",
+        "tests/stage10-safe-exit-crowd-browser.py",
+        "--out",
+        "game/docs/release-final-20261022/evidence/focus2-crowd"
+      ],
+      "env": {},
+      "exit": 1,
+      "seconds": 3.8,
+      "log": "focus2-crowd.txt"
+    },
+    {
+      "name": "focus3-endings",
+      "command": [
+        "python",
+        "tests/act-ending-replay-browser.py",
+        "--out",
+        "game/docs/release-final-20261022/evidence/focus3-endings"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 107.18,
+      "log": "focus3-endings.txt"
+    },
+    {
+      "name": "focus3-report-map",
+      "command": [
+        "python",
+        "tests/feedback-integration-browser.py"
+      ],
+      "env": {
+        "HONRO_INTEGRATION_OUT": "game/docs/release-final-20261022/evidence/focus3-report-map"
+      },
+      "exit": 0,
+      "seconds": 18.49,
+      "log": "focus3-report-map.txt"
+    },
+    {
+      "name": "focus3-journey",
+      "command": [
+        "python",
+        "tests/journey-navigation-browser.py"
+      ],
+      "env": {
+        "HONRO_JOURNEY_NAV_OUT": "game/docs/release-final-20261022/evidence/focus3-journey",
+        "JOURNEY_REVIEW": "release-final"
+      },
+      "exit": 0,
+      "seconds": 7.67,
+      "log": "focus3-journey.txt"
+    },
+    {
+      "name": "icon",
+      "command": [
+        "python",
+        "tests/icon-cache-journey-browser.py"
+      ],
+      "env": {
+        "HONRO_ICON_OUT": "game/docs/release-final-20261022/evidence/icon",
+        "HONRO_ICON_BASELINE": "/tmp/honro-release-baseline"
+      },
+      "exit": 0,
+      "seconds": 12.28,
+      "log": "icon.txt"
+    },
+    {
+      "name": "joystick-browser",
+      "command": [
+        "python",
+        "tests/joystick-intent-browser.py"
+      ],
+      "env": {
+        "HONRO_JOYSTICK_OUT": "game/docs/release-final-20261022/evidence/joystick"
+      },
+      "exit": 0,
+      "seconds": 34.49,
+      "log": "joystick-browser.txt"
+    },
+    {
+      "name": "holistic-void",
+      "command": [
+        "python",
+        "tests/act3-void-browser.py"
+      ],
+      "env": {
+        "HONRO_VOID_REVIEW": "final",
+        "HONRO_VOID_OUT": "game/docs/release-final-20261022/evidence/holistic-void"
+      },
+      "exit": 0,
+      "seconds": 70.22,
+      "log": "holistic-void.txt"
+    },
+    {
+      "name": "holistic-void-report",
+      "command": [
+        "python",
+        "tests/release-final-void-report-browser.py"
+      ],
+      "env": {
+        "HONRO_RELEASE_VOID_OUT": "game/docs/release-final-20261022/evidence/holistic-void/report-time"
+      },
+      "exit": 0,
+      "seconds": 9.59,
+      "log": "holistic-void-report.txt"
+    },
+    {
+      "name": "holistic-map",
+      "command": [
+        "python",
+        "tests/stage10-world-outro-browser.py",
+        "--out",
+        "game/docs/release-final-20261022/evidence/holistic-map"
+      ],
+      "env": {},
+      "exit": 0,
+      "seconds": 36.21,
+      "log": "holistic-map.txt"
+    },
+    {
+      "name": "holistic-crowd",
+      "command": [
+        "python",
+        "tests/stage10-safe-exit-crowd-browser.py",
+        "--out",
+        "game/docs/release-final-20261022/evidence/holistic-crowd"
+      ],
+      "env": {},
+      "exit": 1,
+      "seconds": 3.63,
+      "log": "holistic-crowd.txt"
+    },
+    {
+      "name": "holistic-report-map",
+      "command": [
+        "python",
+        "tests/feedback-integration-browser.py"
+      ],
+      "env": {
+        "HONRO_INTEGRATION_OUT": "game/docs/release-final-20261022/evidence/holistic-report-map"
+      },
+      "exit": 0,
+      "seconds": 18.38,
+      "log": "holistic-report-map.txt"
+    }
+  ]
+}

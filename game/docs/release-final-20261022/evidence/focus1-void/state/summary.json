@@ -1,0 +1,167 @@
+{
+  "status": "passed",
+  "review": "state",
+  "sourceBase": "cd066c0d39783e988b473659ecba2d7fb54d3d1b",
+  "sourceDirty": "",
+  "checks": [
+    {
+      "name": "actual reload during FALLING restores READY and safe pose",
+      "detail": {
+        "phase": "READY",
+        "recovered": true,
+        "overlay": false,
+        "grounded": true,
+        "witness": false
+      }
+    },
+    {
+      "name": "actual reload during DARKENING restores READY and safe pose",
+      "detail": {
+        "phase": "READY",
+        "recovered": true,
+        "overlay": false,
+        "grounded": true,
+        "witness": false
+      }
+    },
+    {
+      "name": "actual reload during VOID restores READY and safe pose",
+      "detail": {
+        "phase": "READY",
+        "recovered": true,
+        "overlay": false,
+        "grounded": true,
+        "witness": false
+      }
+    },
+    {
+      "name": "actual reload during RETURNING restores READY and safe pose",
+      "detail": {
+        "phase": "READY",
+        "recovered": true,
+        "overlay": false,
+        "grounded": true,
+        "witness": false
+      }
+    },
+    {
+      "name": "visible skip during FALLING, 100 repeated skips, completion and aftermath reload",
+      "detail": {
+        "units": true,
+        "active": true,
+        "round": true,
+        "ends": true,
+        "items": true,
+        "camera": true,
+        "stream": true,
+        "musicPaused": false,
+        "voidPaused": false,
+        "musicTime": 0.15246,
+        "musicBeforeTime": 0.001238,
+        "musicEnabled": true,
+        "overlay": false,
+        "inert": false,
+        "witness": true,
+        "saved": "RESOLVED",
+        "savedDialogue": "act3-void-v1-return",
+        "lines": [
+          [
+            "담허",
+            "발을 헛디뎠나? 다친 데는 없나?"
+          ],
+          [
+            "설오",
+            "누군가 말했습니다. 저보다 먼저, 답을 구하러 온 이가 있었다고."
+          ],
+          [
+            "담허",
+            "……나는 아무 소리도 못 들었네. 우선 이곳부터 벗어나세."
+          ]
+        ]
+      }
+    },
+    {
+      "name": "visible skip during DARKENING, 100 repeated skips, completion and aftermath reload",
+      "detail": {
+        "units": true,
+        "active": true,
+        "round": true,
+        "ends": true,
+        "items": true,
+        "camera": true,
+        "stream": true,
+        "musicPaused": false,
+        "voidPaused": false,
+        "musicTime": 0.106536,
+        "musicBeforeTime": 0.006019,
+        "musicEnabled": true,
+        "overlay": false,
+        "inert": false,
+        "witness": true,
+        "saved": "RESOLVED",
+        "savedDialogue": "act3-void-v1-return",
+        "lines": [
+          [
+            "담허",
+            "발을 헛디뎠나? 다친 데는 없나?"
+          ],
+          [
+            "설오",
+            "누군가 말했습니다. 저보다 먼저, 답을 구하러 온 이가 있었다고."
+          ],
+          [
+            "담허",
+            "……나는 아무 소리도 못 들었네. 우선 이곳부터 벗어나세."
+          ]
+        ]
+      }
+    },
+    {
+      "name": "visible skip during VOID, 100 repeated skips, completion and aftermath reload",
+      "detail": {
+        "units": true,
+        "active": true,
+        "round": true,
+        "ends": true,
+        "items": true,
+        "camera": true,
+        "stream": true,
+        "musicPaused": false,
+        "voidPaused": false,
+        "musicTime": 0.100617,
+        "musicBeforeTime": 0.000149,
+        "musicEnabled": true,
+        "overlay": false,
+        "inert": false,
+        "witness": true,
+        "saved": "RESOLVED",
+        "savedDialogue": "act3-void-v1-return",
+        "lines": [
+          [
+            "담허",
+            "발을 헛디뎠나? 다친 데는 없나?"
+          ],
+          [
+            "설오",
+            "누군가 말했습니다. 저보다 먼저, 답을 구하러 온 이가 있었다고."
+          ],
+          [
+            "담허",
+            "……나는 아무 소리도 못 들었네. 우선 이곳부터 벗어나세."
+          ]
+        ]
+      }
+    },
+    {
+      "name": "hidden-document production frame freeze (controlled document.hidden, no OS lifecycle claim)",
+      "detail": null
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Controlled late-stage safe poses; no normal full chapter/combat completion.",
+    "Chromium desktop and mobile emulation, no physical mobile device.",
+    "document.hidden override is a controlled visibility fixture.",
+    "No 30-chapter playthrough or performance benchmark."
+  ]
+}

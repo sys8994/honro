@@ -1,0 +1,26 @@
+[
+  {
+    "name": "focus2-crowd-corrected",
+    "executionSHA": "e55542781df1fd6c049972cdf9ceb2f4cdeee87d",
+    "command": [
+      "python",
+      "tests/stage10-safe-exit-crowd-browser.py",
+      "--out",
+      "game/docs/release-final-20261022/evidence/focus2-crowd-corrected"
+    ],
+    "exit": 0,
+    "seconds": 18.72543885799996
+  },
+  {
+    "name": "holistic-crowd-corrected",
+    "executionSHA": "e55542781df1fd6c049972cdf9ceb2f4cdeee87d",
+    "command": [
+      "python",
+      "tests/stage10-safe-exit-crowd-browser.py",
+      "--out",
+      "game/docs/release-final-20261022/evidence/holistic-crowd-corrected"
+    ],
+    "exit": 0,
+    "seconds": 18.445153735000076
+  }
+]

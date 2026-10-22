@@ -1,0 +1,5 @@
+PASS mount 100 → recovered150; recovery separate from actual rewards and frozen XP consistent
+PASS Continue 100 → recovered150; recovery separate from actual rewards and frozen XP consistent
+PASS new launch starts fresh report after initialization recovery at150, zero new rewards
+PASS actual simultaneous M10: hero10 + summon5, overheal excluded, totals and separate UI consistent
+PASS victory → outro → result calls report finish and XP settlement exactly once

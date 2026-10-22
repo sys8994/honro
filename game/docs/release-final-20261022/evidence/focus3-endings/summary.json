@@ -1,0 +1,473 @@
+{
+  "executionSHA": "cd066c0d39783e988b473659ecba2d7fb54d3d1b",
+  "sourceHashes": {
+    "shared/runtime/main.js": "6a68ea4f1c2fab3d85b72babc44a5caa3e6f061a81540b22f5a32058cfd6051e",
+    "shared/runtime/act-endings.js": "ae472dbde7660442d62bfad9ec745b0535b2d46779bbea8228d1dea308c884ab",
+    "shared/runtime/rest-journey.js": "749087737b95977d5133f46d25d8d2592eec3c0ea615c923dd82dd4382a16d90",
+    "game/src/act-endings.css": "ac660e830fcc3f9b77abd12246c6382d24f5c010a3ebaf69482f28a2dacc76c7"
+  },
+  "rows": [
+    {
+      "mode": "completion",
+      "stage": 10,
+      "repeat": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "52d05389af54d7ba62bf30d4f0a69439f9a3691abe10cc7ddb2a5f3d3aad98d2",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "mode": "completion",
+      "stage": 10,
+      "repeat": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "e7d13388aba20d26361f1af75f46f9eea04e89db179defc64b10a19657a399e5",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "mode": "completion",
+      "stage": 20,
+      "repeat": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "e70975baf4a21c57786b4b45fe9bb62cc0a9c8b3c642167c201119d33d0d612d",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "mode": "completion",
+      "stage": 20,
+      "repeat": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "791992449704b5ffa12239bb515af242d30414f2b275f1e467e3a712e48dbc1c",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "mode": "completion",
+      "stage": 30,
+      "repeat": false,
+      "viewport": [
+        390,
+        844
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "3c73d74a117da710e446900157fe63c3757f7dd57ce86e4935b35e3f742d0b1a",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "mode": "completion",
+      "stage": 30,
+      "repeat": true,
+      "viewport": [
+        390,
+        844
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "a631af552ee4f5b0faea79c7991477d5e17c5064b65b1453c163c64cfae30c07",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "mode": "completion",
+      "stage": 10,
+      "repeat": false,
+      "viewport": [
+        844,
+        390
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "07013794f9ab5947d1c769912305db60972240f692dc830325352308d886e093",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "mode": "completion",
+      "stage": 10,
+      "repeat": true,
+      "viewport": [
+        844,
+        390
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "d274ee8bce4d85ecd94ed1aee823a445eb37ab82ea785d252c6b9bc6660234a4",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "mode": "completion",
+      "stage": 20,
+      "repeat": false,
+      "viewport": [
+        844,
+        390
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "9edec80b2ad2fcebfef0b9eb3d3eed2a1e8b5a1f021e5016797ec2fb878798c7",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "mode": "completion",
+      "stage": 20,
+      "repeat": true,
+      "viewport": [
+        844,
+        390
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "1aa1973d746b91bb81c27297220c115ca57da3cd26afa2a5d563ed8f46b12c39",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "mode": "completion",
+      "stage": 30,
+      "repeat": false,
+      "viewport": [
+        844,
+        390
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "b3fb4c563dc8cf13a6c2fbf8cc05721ec1053eb713d0912b3d5d33332fb5fcd6",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "mode": "completion",
+      "stage": 30,
+      "repeat": true,
+      "viewport": [
+        844,
+        390
+      ],
+      "counts": {
+        "complete": 1,
+        "syncRoster": 1,
+        "recruit": 1,
+        "outcome": 1,
+        "recordOutcome": 1
+      },
+      "cut2Reload": true,
+      "presentationImmutable": "795baeb4071bdcc10ae03bed6c9b77bc053bb4e417608cefdbbf8655e0a06a3a",
+      "tapSingleCut": true,
+      "restSettledReload": true
+    },
+    {
+      "exclusions": {
+        "debugMode": true,
+        "training": true,
+        "customMap": true,
+        "customBattle": true,
+        "embedded": true,
+        "noProfileWrite": true
+      }
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 0,
+      "available": []
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 9,
+      "available": []
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 10,
+      "available": [
+        10
+      ]
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 19,
+      "available": [
+        10
+      ]
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 20,
+      "available": [
+        10,
+        20
+      ]
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 29,
+      "available": [
+        10,
+        20
+      ]
+    },
+    {
+      "mode": "unlock",
+      "clearedThrough": 30,
+      "available": [
+        10,
+        20,
+        30
+      ]
+    },
+    {
+      "mode": "gallery",
+      "stage": 10,
+      "viewport": [
+        390,
+        844
+      ],
+      "view": {
+        "act": 1,
+        "selection": 10,
+        "layer": "surface",
+        "zoom": 1.18,
+        "left": 827,
+        "top": 43
+      },
+      "byteExactProfile": "501767b7b15a39f05ac52ad33de97081fdba358355505bd899cd6a880714e63b",
+      "byteExactStorage": "501767b7b15a39f05ac52ad33de97081fdba358355505bd899cd6a880714e63b",
+      "savedBattle": true,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    },
+    {
+      "mode": "gallery",
+      "stage": 20,
+      "viewport": [
+        390,
+        844
+      ],
+      "view": {
+        "act": 2,
+        "selection": 20,
+        "layer": "underground",
+        "zoom": 1.18,
+        "left": 0,
+        "top": 43
+      },
+      "byteExactProfile": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "byteExactStorage": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "savedBattle": false,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    },
+    {
+      "mode": "gallery",
+      "stage": 30,
+      "viewport": [
+        390,
+        844
+      ],
+      "view": {
+        "act": 3,
+        "selection": "end",
+        "layer": "city",
+        "zoom": 1.18,
+        "left": 604,
+        "top": 269
+      },
+      "byteExactProfile": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "byteExactStorage": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "savedBattle": false,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    },
+    {
+      "mode": "gallery",
+      "stage": 10,
+      "viewport": [
+        844,
+        390
+      ],
+      "view": {
+        "act": 1,
+        "selection": 10,
+        "layer": "surface",
+        "zoom": 1.18,
+        "left": 129,
+        "top": 2
+      },
+      "byteExactProfile": "501767b7b15a39f05ac52ad33de97081fdba358355505bd899cd6a880714e63b",
+      "byteExactStorage": "501767b7b15a39f05ac52ad33de97081fdba358355505bd899cd6a880714e63b",
+      "savedBattle": true,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    },
+    {
+      "mode": "gallery",
+      "stage": 20,
+      "viewport": [
+        844,
+        390
+      ],
+      "view": {
+        "act": 2,
+        "selection": 20,
+        "layer": "underground",
+        "zoom": 1.18,
+        "left": 39,
+        "top": 102
+      },
+      "byteExactProfile": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "byteExactStorage": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "savedBattle": false,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    },
+    {
+      "mode": "gallery",
+      "stage": 30,
+      "viewport": [
+        844,
+        390
+      ],
+      "view": {
+        "act": 3,
+        "selection": "end",
+        "layer": "city",
+        "zoom": 1.18,
+        "left": 129,
+        "top": 764
+      },
+      "byteExactProfile": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "byteExactStorage": "b1ec8847d99238c8fa943f4587f9b4545655ad6fbf9fbb0fbb5113d25230bb43",
+      "savedBattle": false,
+      "returnMethods": [
+        "complete",
+        "Escape",
+        "close",
+        "browser Back"
+      ],
+      "reload": "discard temporary viewer; unchanged normal save"
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "limits": [
+    "Stage10/20/30 lifecycle uses terminal battle fixtures, not combat victories.",
+    "Gallery tests use coherent unlock fixtures; no actual 30-stage full run.",
+    "Chromium emulation only."
+  ]
+}

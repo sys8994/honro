@@ -1,0 +1,20 @@
+{
+  "runtimeSHA": "cd066c0d39783e988b473659ecba2d7fb54d3d1b",
+  "finalExecutedSHA": "e55542781df1fd6c049972cdf9ceb2f4cdeee87d",
+  "buildTypecheckWebSplit": "passed",
+  "initialCommands": 35,
+  "unresolvedChecks": [
+    "regressions",
+    "dialogue-existing",
+    "story-existing",
+    "split-existing"
+  ],
+  "baselineComparison": "checks/failure-comparison.json",
+  "fixtureFailuresResolvedBy": {
+    "focus2-crowd": "checks/focus2-crowd-corrected.txt",
+    "holistic-crowd": "checks/holistic-crowd-corrected.txt"
+  },
+  "runtimeChangedAfterFocusAndHolistic": false,
+  "readmeRelativeLinksExist": true,
+  "masterAndPagesWritten": false
+}

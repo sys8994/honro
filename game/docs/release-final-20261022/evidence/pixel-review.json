@@ -1,0 +1,500 @@
+{
+  "method": "Actual Chromium JPEG files opened directly with view_image; no compositing or image editing. Viewports are CSS px; void suite uses device scale factor 2.",
+  "runtimeSHA": "cd066c0d39783e988b473659ecba2d7fb54d3d1b",
+  "crowdFixtureSHA": "e55542781df1fd6c049972cdf9ceb2f4cdeee87d",
+  "directlyOpenedCount": 54,
+  "directlyOpened": [
+    {
+      "path": "focus1-void/input/mobile-immediate-line.jpg",
+      "bytes": 10248,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "dc9201bb24779719702f7a34e7f7156994868cc18881fe4f674d946d7266b8d9"
+    },
+    {
+      "path": "focus1-void/input/mobile-return.jpg",
+      "bytes": 26957,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "d671c730c0eb2005839c398e23a1afe7c078075d45b36550fe55b025780ade0d"
+    },
+    {
+      "path": "focus1-void/layout/360x800-cut4.jpg",
+      "bytes": 33812,
+      "dimensions": [
+        720,
+        1600
+      ],
+      "sha256": "913b37a9d7ba58e1c2357a074aed6428f5781a51e09dbe4564c51e18d98a046d"
+    },
+    {
+      "path": "focus1-void/layout/390x844-cut3.jpg",
+      "bytes": 27353,
+      "dimensions": [
+        780,
+        1688
+      ],
+      "sha256": "48863a3f243ff2241febab8514dde605825adc050e79494f23258de9766a0ae7"
+    },
+    {
+      "path": "focus1-void/layout/844x390-cut4.jpg",
+      "bytes": 31479,
+      "dimensions": [
+        1688,
+        780
+      ],
+      "sha256": "1931ee0689722a61cbe449c469e24da240448bc27c23ba8e8fd832c46e8ed0d9"
+    },
+    {
+      "path": "focus2-map/map-outro-first-390x844.jpg",
+      "bytes": 30028,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "54b4edf17dcbcfa982e08ef59ff4ed2fd0f00cbb13d8e28045cc794e6763ce07"
+    },
+    {
+      "path": "focus2-map/map-outro-middle-360x800.jpg",
+      "bytes": 30454,
+      "dimensions": [
+        360,
+        800
+      ],
+      "sha256": "3d08eb42bd033807d9f25d6658d7fbc3969ed4debe71cea1023a572cbd6df416"
+    },
+    {
+      "path": "focus2-map/map-outro-last-844x390.jpg",
+      "bytes": 36074,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "2f04c482bdf8cb54bfbd3202a97c3f6c187fd70a8e981216a5acec258b3d4252"
+    },
+    {
+      "path": "focus3-report-map/focus1-summary-390x844.jpg",
+      "bytes": 42085,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "b751c7788555cd224a72cb181ba3a3ae4d2506ca143a2f4819e43811f866fca4"
+    },
+    {
+      "path": "focus3-report-map/focus1-detail-360x800.jpg",
+      "bytes": 31635,
+      "dimensions": [
+        360,
+        800
+      ],
+      "sha256": "7a5f007fcce10118693a1d03fd796466dd321f031e7cae04bf6fe034933ff665"
+    },
+    {
+      "path": "focus3-report-map/focus2-record-menu-844x390.jpg",
+      "bytes": 68918,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "c10ef01b597747effa12c87413eac26a892dac5f40b15649e0315ceca18264e1"
+    },
+    {
+      "path": "focus3-report-map/focus2-map-zoom-390x844.jpg",
+      "bytes": 81296,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "cbd6d8289eda9aab666854cc654cbb0407e527fcc02a7f83fdd585e3286a930d"
+    },
+    {
+      "path": "focus3-endings/act1-copy3-repeat-390x844.jpg",
+      "bytes": 110110,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "f62e4cdbf22fe6a3e6623c0a98137b2cff5d9b1f68b78581f11cea97c353614f"
+    },
+    {
+      "path": "focus3-endings/act2-copy3-first-844x390.jpg",
+      "bytes": 116562,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "a4329b610275ab8c66efea7215037066572d02d76f0d94e0469010326bd6df79"
+    },
+    {
+      "path": "focus3-endings/act3-copy3-repeat-390x844.jpg",
+      "bytes": 119499,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "07debfb6e642cb45d8ac40a918b3730962285541af61be9913e13d05b2287f69"
+    },
+    {
+      "path": "focus3-endings/act3-title-repeat-844x390.jpg",
+      "bytes": 30716,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "3e73ba2ab7b924c7875e5ff0bbfe3236a71afa9972b9e955ca20911bc92b1df8"
+    },
+    {
+      "path": "icon/icon-fixed.jpg",
+      "bytes": 32595,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "f676632e954c50a701fb6be7ad76099418dbd8cdc061ca60cca6e72561330a0c"
+    },
+    {
+      "path": "joystick/02-outside-horizontal-movement.jpg",
+      "bytes": 23462,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "76235ef0d6d493ad0c60fd8d120d22494609ea6407c6a22c31dfa47d0c1cacb3"
+    },
+    {
+      "path": "joystick/03-reentered-aim-only.jpg",
+      "bytes": 23382,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "33456271ba2f5ec64155293465999ff1a19c8ea0ff3c5a694e8ddbe262d56119"
+    },
+    {
+      "path": "holistic-void/final/390x844-cut1.jpg",
+      "bytes": 25682,
+      "dimensions": [
+        780,
+        1688
+      ],
+      "sha256": "4b52316d65e09b4a60edf88ce5fc637ff31dabbcba16c795ed37ba855d3c196b"
+    },
+    {
+      "path": "holistic-void/final/390x844-cut2.jpg",
+      "bytes": 27066,
+      "dimensions": [
+        780,
+        1688
+      ],
+      "sha256": "ceca022d289be7a0d54f7a9f798c5eefff2f3dd68bdb8cec921b0dfa7601023f"
+    },
+    {
+      "path": "holistic-void/final/390x844-cut3.jpg",
+      "bytes": 27341,
+      "dimensions": [
+        780,
+        1688
+      ],
+      "sha256": "7fc44cfab6907cd848ed52ac930dd12abcbd258853bacca3566a1e55177f620a"
+    },
+    {
+      "path": "holistic-void/final/390x844-cut4.jpg",
+      "bytes": 34927,
+      "dimensions": [
+        780,
+        1688
+      ],
+      "sha256": "54cb479803cb63de5662cfa51973a3391dcb8e2f463b372527970c63106c1659"
+    },
+    {
+      "path": "holistic-void/final/390x844-cut5.jpg",
+      "bytes": 27913,
+      "dimensions": [
+        780,
+        1688
+      ],
+      "sha256": "42677c26f99e7d94d53f241fa1b34f772fbbcdd67ab8b7ee4cacfa80233ea161"
+    },
+    {
+      "path": "holistic-void/final/360x800-cut1.jpg",
+      "bytes": 24520,
+      "dimensions": [
+        720,
+        1600
+      ],
+      "sha256": "9b9d798940f3698b93205ae95f52941e82856282b3fa1b9e41c81940c3a157ac"
+    },
+    {
+      "path": "holistic-void/final/360x800-cut2.jpg",
+      "bytes": 25700,
+      "dimensions": [
+        720,
+        1600
+      ],
+      "sha256": "68e3814ecb23c4a6e82997e7f5ae1a5001fb71be0ada3b264fe3850ec49c20bc"
+    },
+    {
+      "path": "holistic-void/final/360x800-cut3.jpg",
+      "bytes": 26079,
+      "dimensions": [
+        720,
+        1600
+      ],
+      "sha256": "c6dc8eddca655b1065dec4bdc19601c881140c4b99348d76f252033cd5297f7f"
+    },
+    {
+      "path": "holistic-void/final/360x800-cut4.jpg",
+      "bytes": 33812,
+      "dimensions": [
+        720,
+        1600
+      ],
+      "sha256": "913b37a9d7ba58e1c2357a074aed6428f5781a51e09dbe4564c51e18d98a046d"
+    },
+    {
+      "path": "holistic-void/final/360x800-cut5.jpg",
+      "bytes": 26750,
+      "dimensions": [
+        720,
+        1600
+      ],
+      "sha256": "9bd32136ae6e968f2c1a299a55b782920cf806b01dfdfb29f83407538b1b23e6"
+    },
+    {
+      "path": "holistic-void/final/844x390-cut1.jpg",
+      "bytes": 22153,
+      "dimensions": [
+        1688,
+        780
+      ],
+      "sha256": "0099087d714e2d8d07f2841e4d63079af84f9ce4fbd56294c06f3bd38587ae2f"
+    },
+    {
+      "path": "holistic-void/final/844x390-cut2.jpg",
+      "bytes": 23467,
+      "dimensions": [
+        1688,
+        780
+      ],
+      "sha256": "7e93c7f669b57115d66dd101f36f64c97b6e6627a80ff3b8e74aaf228ffee80e"
+    },
+    {
+      "path": "holistic-void/final/844x390-cut3.jpg",
+      "bytes": 23782,
+      "dimensions": [
+        1688,
+        780
+      ],
+      "sha256": "55a8dd8ae0d869c2bbf4522ed612c8269291c434821c68f37d6710502d4bf9d8"
+    },
+    {
+      "path": "holistic-void/final/844x390-cut4.jpg",
+      "bytes": 31373,
+      "dimensions": [
+        1688,
+        780
+      ],
+      "sha256": "8015e65eac1e198b5184176bf75d7189343fc6867f1f7bde689d26b343fbac03"
+    },
+    {
+      "path": "holistic-void/final/844x390-cut5.jpg",
+      "bytes": 24278,
+      "dimensions": [
+        1688,
+        780
+      ],
+      "sha256": "b5740573a8075086514794cb4936fd3c653256f401ec0beb3c344b9dbad6145c"
+    },
+    {
+      "path": "holistic-map/map-outro-first-390x844.jpg",
+      "bytes": 30014,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "c1dce4c4d281b3219bf24d9ca38834f30d4da7fa2638c9764c26582e76c8c41f"
+    },
+    {
+      "path": "holistic-map/map-outro-middle-390x844.jpg",
+      "bytes": 32388,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "2275756ed74856cb9263f2a3d83de1498f543b9d9c4c283ed9f40161dda35022"
+    },
+    {
+      "path": "holistic-map/map-outro-last-390x844.jpg",
+      "bytes": 30199,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "e53ab415e808f23678088a520877c12f6e6da81dfbe1be4739254f649a5a89de"
+    },
+    {
+      "path": "holistic-map/map-outro-first-360x800.jpg",
+      "bytes": 28314,
+      "dimensions": [
+        360,
+        800
+      ],
+      "sha256": "9ffb1123c08e8b82220930bb637e40ea797dd75eed231897d4ca10a61b219d1c"
+    },
+    {
+      "path": "holistic-map/map-outro-middle-360x800.jpg",
+      "bytes": 30454,
+      "dimensions": [
+        360,
+        800
+      ],
+      "sha256": "3d08eb42bd033807d9f25d6658d7fbc3969ed4debe71cea1023a572cbd6df416"
+    },
+    {
+      "path": "holistic-map/map-outro-last-360x800.jpg",
+      "bytes": 28898,
+      "dimensions": [
+        360,
+        800
+      ],
+      "sha256": "e2ecfb32a8d7b6af6852abc7e129bb44af68ee436888263267a88b5d354c2d8f"
+    },
+    {
+      "path": "holistic-map/map-outro-first-844x390.jpg",
+      "bytes": 35052,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "ac9d5c4ec0b6fc01fc664f363fc95d331c27271a03f2b5f78ae58872df4fc5c6"
+    },
+    {
+      "path": "holistic-map/map-outro-middle-844x390.jpg",
+      "bytes": 36801,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "2610cc48b9982b8177bc6410b7b8cab6225ff4472a8f60158d5f30933603df64"
+    },
+    {
+      "path": "holistic-map/map-outro-last-844x390.jpg",
+      "bytes": 36074,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "2f04c482bdf8cb54bfbd3202a97c3f6c187fd70a8e981216a5acec258b3d4252"
+    },
+    {
+      "path": "holistic-report-map/focus2-record-menu-390x844.jpg",
+      "bytes": 88998,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "6452c567431101425a02845fee1a746648d314f34f912f94162c97dbf4f2f3e7"
+    },
+    {
+      "path": "holistic-report-map/holistic-summary-bottom-844x390.jpg",
+      "bytes": 28106,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "6d6c025e7f0c797ade2a728de92931c8f4fc04a2c2e68fb2fa7b6d099d53f162"
+    },
+    {
+      "path": "holistic-crowd-corrected/crowded-safe-map-390x844.jpg",
+      "bytes": 26109,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "9a3613f0e70311d8fa98270dfbaafabe430b98a263b9fd047df2231c95dc0040"
+    },
+    {
+      "path": "holistic-crowd-corrected/crowded-safe-map-360x800.jpg",
+      "bytes": 24524,
+      "dimensions": [
+        360,
+        800
+      ],
+      "sha256": "b77b26933a87fd85907801359856be7ee5fa89f22d6955ae095246c3fc21ffa8"
+    },
+    {
+      "path": "holistic-crowd-corrected/crowded-safe-map-844x390.jpg",
+      "bytes": 30749,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "35ec5741a3238f49904f16b93b31425242c3a80b0db5f422c49a4f4d612be400"
+    },
+    {
+      "path": "holistic-crowd-corrected/crowded-safe-resume-844x390.jpg",
+      "bytes": 32718,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "66fe67d88a6bcd5028eba3aedc165e9840b685f24259bab79347e17a7f5f0824"
+    },
+    {
+      "path": "holistic-report-map/focus3-gallery-act1-390x844.jpg",
+      "bytes": 92645,
+      "dimensions": [
+        390,
+        844
+      ],
+      "sha256": "4779c9c85ffe7c133bdf24cc7cc92131e9516a636b3cd013cc554fb0eb502559"
+    },
+    {
+      "path": "holistic-report-map/focus3-gallery-act2-844x390.jpg",
+      "bytes": 98408,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "b4a34e7300e6492fdc838e06aa9c91ad67ac1c75eea2e73dcf53e5a7d170ce80"
+    },
+    {
+      "path": "holistic-report-map/focus3-gallery-act3-360x800.jpg",
+      "bytes": 91284,
+      "dimensions": [
+        360,
+        800
+      ],
+      "sha256": "61a2d42f5c98d79c836327d672e1213d1d63fe22325bf3087cc8ff0077cead58"
+    },
+    {
+      "path": "holistic-report-map/holistic-journal-return-360x800.jpg",
+      "bytes": 74750,
+      "dimensions": [
+        360,
+        800
+      ],
+      "sha256": "6b64575caad37bcfa92f4afc336425a82c86633fbe517c35aed6e76318e3e997"
+    },
+    {
+      "path": "holistic-report-map/holistic-journal-return-844x390.jpg",
+      "bytes": 63731,
+      "dimensions": [
+        844,
+        390
+      ],
+      "sha256": "806ea268f9e43d8ff1996521fd4d23adfd120dbdf606fe38acd193449627f6ee"
+    }
+  ],
+  "judgments": {
+    "focus1": "1.4s entry/instant five-cut copy; character and text separated at portrait and landscape, accessible skip/pause, original world/HUD return.",
+    "focus2": "First/middle/last real-map dialogue: four grounded bodies and terrain visible; no target labels/rings/arrows/projectile trails/HUD cover faces or copy. Crowded exit remains on existing extension, not a separate flat stage.",
+    "focus3": "Report XP/level progress and fixed next action readable; compact records menu offers both actions without expanding footer; curved routes and number-relative labels remain visible. Ending/gallery artwork and return buttons readable.",
+    "holistic": "All 15 void cuts across 390x844/360x800/844x390, all 9 map conversation views, crowded map/resume, report/records/gallery/journal return were opened after separate combined runs."
+  }
+}

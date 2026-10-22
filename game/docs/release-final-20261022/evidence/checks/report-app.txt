@@ -1,0 +1,12 @@
+PASS Continue/export/import retain one attempt and observed aggregates
+PASS real export/import of attempt aggregate
+PASS old in-progress save reports partial rather than historical zeros
+PASS detail close restores exact summary without outcome/XP/progression mutation
+PASS victory freezes before outro and resumed outro never settles twice
+PASS actual segment retry restores path metrics but retains paid XP and time
+PASS fresh battle and replay create new attempt; only latest completed per stage
+PASS completed journal supplements its travel CTA; old clears state missing report
+PASS individual HP events do not write localStorage; normal stop/autosave persists
+PASS production App report lifecycle (DOM/storage doubles, no fullplay claim)
+PASS pre-instrumentation checkpoint preserves observed XP/time on retry as partial
+PASS main keeps new recruit level context separate from actual reward XP

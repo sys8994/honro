@@ -1,0 +1,22 @@
+[
+  {
+    "check": "regressions",
+    "baselineSHA": "b48423b360b2d6d6b1147c16811685f215a33513",
+    "sameOutputAfterOnlyTreePathNormalization": true
+  },
+  {
+    "check": "dialogue-existing",
+    "baselineSHA": "b48423b360b2d6d6b1147c16811685f215a33513",
+    "sameOutputAfterOnlyTreePathNormalization": true
+  },
+  {
+    "check": "story-existing",
+    "baselineSHA": "b48423b360b2d6d6b1147c16811685f215a33513",
+    "sameOutputAfterOnlyTreePathNormalization": true
+  },
+  {
+    "check": "split-existing",
+    "baselineSHA": "b48423b360b2d6d6b1147c16811685f215a33513",
+    "sameOutputAfterOnlyTreePathNormalization": true
+  }
+]

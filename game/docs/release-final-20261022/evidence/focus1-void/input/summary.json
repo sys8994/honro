@@ -1,0 +1,93 @@
+{
+  "status": "passed",
+  "review": "input",
+  "sourceBase": "cd066c0d39783e988b473659ecba2d7fb54d3d1b",
+  "sourceDirty": "",
+  "checks": [
+    {
+      "name": "desktop real taps/compatibility click, double input, key repeats, Enter/Space, pause/settings/focus cycle and safe skip",
+      "detail": {
+        "entryObservedMs": 1225.5,
+        "return": {
+          "units": true,
+          "active": true,
+          "round": true,
+          "ends": true,
+          "items": true,
+          "camera": true,
+          "stream": true,
+          "musicPaused": true,
+          "voidPaused": false,
+          "musicTime": 0.014085,
+          "musicBeforeTime": 0.005615,
+          "musicEnabled": false,
+          "overlay": false,
+          "inert": false,
+          "witness": true,
+          "saved": "RESOLVED",
+          "savedDialogue": "act3-void-v1-return",
+          "lines": [
+            [
+              "담허",
+              "발을 헛디뎠나? 다친 데는 없나?"
+            ],
+            [
+              "설오",
+              "누군가 말했습니다. 저보다 먼저, 답을 구하러 온 이가 있었다고."
+            ],
+            [
+              "담허",
+              "……나는 아무 소리도 못 들었네. 우선 이곳부터 벗어나세."
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "name": "mobile real taps/compatibility click, double input, key repeats, Enter/Space, pause/settings/focus cycle and safe skip",
+      "detail": {
+        "entryObservedMs": 1248.4000000000233,
+        "return": {
+          "units": true,
+          "active": true,
+          "round": true,
+          "ends": true,
+          "items": true,
+          "camera": true,
+          "stream": true,
+          "musicPaused": true,
+          "voidPaused": false,
+          "musicTime": 0.041473,
+          "musicBeforeTime": 0.007056,
+          "musicEnabled": false,
+          "overlay": false,
+          "inert": false,
+          "witness": true,
+          "saved": "RESOLVED",
+          "savedDialogue": "act3-void-v1-return",
+          "lines": [
+            [
+              "담허",
+              "발을 헛디뎠나? 다친 데는 없나?"
+            ],
+            [
+              "설오",
+              "누군가 말했습니다. 저보다 먼저, 답을 구하러 온 이가 있었다고."
+            ],
+            [
+              "담허",
+              "……나는 아무 소리도 못 들었네. 우선 이곳부터 벗어나세."
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Controlled late-stage safe poses; no normal full chapter/combat completion.",
+    "Chromium desktop and mobile emulation, no physical mobile device.",
+    "document.hidden override is a controlled visibility fixture.",
+    "No 30-chapter playthrough or performance benchmark."
+  ]
+}

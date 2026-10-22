@@ -1,0 +1,236 @@
+{
+  "before": {
+    "mage": {
+      "xp": 13289,
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 1,
+        "M03": 1,
+        "M11": 1,
+        "M07": 1,
+        "M10": 1,
+        "M08": 1,
+        "M09": 1
+      },
+      "statTraining": 6,
+      "kills": 4,
+      "damage": 5389,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "archer": {
+      "xp": 14615,
+      "ranks": {
+        "A01": 1,
+        "A14": 1,
+        "A02": 1,
+        "A05": 1,
+        "A04": 1,
+        "A07": 1,
+        "A03": 1,
+        "A11": 1
+      },
+      "statTraining": 6,
+      "kills": 8,
+      "damage": 5542,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "knight": {
+      "xp": 17514,
+      "ranks": {
+        "S00": 1,
+        "S01": 1,
+        "S06": 1,
+        "S04": 1,
+        "S09": 1
+      },
+      "statTraining": 6,
+      "kills": 14,
+      "damage": 10777,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "occultist": {
+      "xp": 0,
+      "ranks": {
+        "O01": 1,
+        "O06": 1
+      },
+      "statTraining": 0,
+      "kills": 0,
+      "damage": 0,
+      "skillRevision": 1,
+      "martialRevision": 1,
+      "occultRevision": 1
+    }
+  },
+  "after": {
+    "mage": {
+      "xp": 15802,
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 1,
+        "M03": 1,
+        "M11": 1,
+        "M07": 1,
+        "M10": 1,
+        "M08": 1,
+        "M09": 1
+      },
+      "statTraining": 6,
+      "kills": 4,
+      "damage": 5389,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "archer": {
+      "xp": 17998,
+      "ranks": {
+        "A01": 1,
+        "A14": 1,
+        "A02": 1,
+        "A05": 1,
+        "A04": 1,
+        "A07": 1,
+        "A03": 1,
+        "A11": 1
+      },
+      "statTraining": 6,
+      "kills": 8,
+      "damage": 5542,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "knight": {
+      "xp": 21623,
+      "ranks": {
+        "S00": 1,
+        "S01": 1,
+        "S06": 1,
+        "S04": 1,
+        "S09": 1
+      },
+      "statTraining": 6,
+      "kills": 14,
+      "damage": 10777,
+      "skillRevision": 1,
+      "martialRevision": 1
+    },
+    "occultist": {
+      "xp": 0,
+      "ranks": {
+        "O01": 1,
+        "O06": 1
+      },
+      "statTraining": 0,
+      "kills": 0,
+      "damage": 0,
+      "skillRevision": 1,
+      "martialRevision": 1,
+      "occultRevision": 1
+    }
+  },
+  "report": {
+    "version": 1,
+    "gameVersion": "honro-report-20261022-v1",
+    "attempt": "honro-map-stage-10-1792600817817-1792649992612-1",
+    "stage": 10,
+    "scope": "campaign",
+    "partial": true,
+    "startedRound": 21,
+    "rounds": 21,
+    "seconds": 0,
+    "retries": 0,
+    "order": [
+      "archer",
+      "mage",
+      "knight"
+    ],
+    "heroes": {
+      "archer": {
+        "damage": 0,
+        "received": 0,
+        "kills": 0,
+        "healing": 0,
+        "shield": 0,
+        "shieldReceived": 0,
+        "uses": 0,
+        "skills": {}
+      },
+      "mage": {
+        "damage": 0,
+        "received": 0,
+        "kills": 0,
+        "healing": 0,
+        "shield": 0,
+        "shieldReceived": 0,
+        "uses": 0,
+        "skills": {}
+      },
+      "knight": {
+        "damage": 0,
+        "received": 0,
+        "kills": 0,
+        "healing": 0,
+        "shield": 0,
+        "shieldReceived": 0,
+        "uses": 0,
+        "skills": {}
+      }
+    },
+    "xp": {
+      "archer": {
+        "before": 14615,
+        "last": 17998,
+        "combat": 0,
+        "settlement": 3383,
+        "reunion": 0
+      },
+      "mage": {
+        "before": 13289,
+        "last": 15802,
+        "combat": 0,
+        "settlement": 2513,
+        "reunion": 0
+      },
+      "knight": {
+        "before": 17514,
+        "last": 21623,
+        "combat": 0,
+        "settlement": 4109,
+        "reunion": 0
+      },
+      "occultist": {
+        "before": 0,
+        "last": 0,
+        "combat": 0,
+        "settlement": 0,
+        "reunion": 0
+      }
+    },
+    "counts": {
+      "kills": 0,
+      "knockouts": 0
+    },
+    "other": {},
+    "missing": [],
+    "totals": {
+      "damage": 0,
+      "received": 0,
+      "kills": 0,
+      "healing": 0,
+      "shield": 0,
+      "shieldReceived": 0,
+      "uses": 0
+    },
+    "deferred": false,
+    "reunionStages": null,
+    "completedAt": "2026-10-22T06:19:52.840Z",
+    "difficulty": "normal"
+  }
+}

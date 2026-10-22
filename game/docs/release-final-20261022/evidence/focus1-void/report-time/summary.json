@@ -1,0 +1,69 @@
+{
+  "executionSHA": "cd066c0d39783e988b473659ecba2d7fb54d3d1b",
+  "browser": "154.0.8037.57",
+  "rows": [
+    {
+      "state": "FALLING",
+      "secondsBefore": 0,
+      "secondsAfter": 0,
+      "active": false,
+      "blocked": true,
+      "dialogue": false,
+      "quiet": false,
+      "target": "FALLING"
+    },
+    {
+      "state": "DARKENING",
+      "secondsBefore": 0,
+      "secondsAfter": 0,
+      "active": false,
+      "blocked": true,
+      "dialogue": false,
+      "quiet": false,
+      "target": "DARKENING"
+    },
+    {
+      "state": "VOID",
+      "secondsBefore": 0,
+      "secondsAfter": 0,
+      "active": false,
+      "blocked": true,
+      "dialogue": false,
+      "quiet": false,
+      "target": "VOID"
+    },
+    {
+      "state": "RETURNING",
+      "secondsBefore": 0,
+      "secondsAfter": 0,
+      "active": false,
+      "blocked": true,
+      "dialogue": false,
+      "quiet": false,
+      "target": "RETURNING"
+    },
+    {
+      "state": "RESOLVED",
+      "secondsBefore": 0,
+      "secondsAfter": 0,
+      "active": false,
+      "blocked": false,
+      "dialogue": true,
+      "quiet": false,
+      "target": "RETURN_DIALOGUE"
+    }
+  ],
+  "ordinaryBattleControlSeconds": 1,
+  "errors": [],
+  "sourceHashes": {
+    "shared/runtime/act3-void.js": "296ca04d81a3f10e868d9e57cbf94040f8e21b63c9ccde8ac7be99edd0dd9356",
+    "shared/runtime/clear-report.js": "111a48ebb64191961eb90798daa09a417b981b19ef6a328a8cd55a214ce2a94f",
+    "shared/runtime/main.js": "6a68ea4f1c2fab3d85b72babc44a5caa3e6f061a81540b22f5a32058cfd6051e",
+    "shared/runtime/sodan-withdrawal.js": "ee911eb674ebc43b028998e2d883c2d0d2c9af98630708e1664fbccadff613ee",
+    "web/manifest.json": "770348aefff3a6ac27111d82d2c46fb1a2e17a7effe4b1aa3677ba26ea60fb2b"
+  },
+  "limits": [
+    "Explicit deep-gallery pose, not normal stage27 completion.",
+    "Synthetic collector timestamps plus real frame observation; Chromium, not physical mobile."
+  ]
+}

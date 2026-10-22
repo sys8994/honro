@@ -1,0 +1,1356 @@
+{
+  "status": "passed",
+  "review": "layout",
+  "sourceBase": "cd066c0d39783e988b473659ecba2d7fb54d3d1b",
+  "sourceDirty": "",
+  "checks": [
+    {
+      "name": "all five cuts: real alpha-pixel actor versus text bounds at four viewports, plus long-cut rotation",
+      "detail": [
+        {
+          "line": 0,
+          "text": "여긴…… 누구십니까?",
+          "align": "near",
+          "actor": {
+            "left": 142.5,
+            "top": 343.5,
+            "right": 217.5,
+            "bottom": 503.5,
+            "count": 26872
+          },
+          "textBox": {
+            "left": 24,
+            "top": 635.953125,
+            "right": 336,
+            "bottom": 664,
+            "width": 312,
+            "height": 28.046875
+          },
+          "glyphs": [
+            {
+              "left": 95.421875,
+              "top": 636.953125,
+              "right": 264.5625,
+              "bottom": 661.953125,
+              "width": 169.140625,
+              "height": 25
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 142.30769230769232,
+            "top": 343.6640625,
+            "right": 217.6923076923077,
+            "bottom": 503.6640625,
+            "width": 75.38461538461539,
+            "height": 160
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 241.171875,
+              "top": 16,
+              "right": 342,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            360,
+            800
+          ]
+        },
+        {
+          "line": 1,
+          "text": "또 답을 들으러 왔느냐.",
+          "align": "far",
+          "actor": {
+            "left": 142.5,
+            "top": 343.5,
+            "right": 217.5,
+            "bottom": 503.5,
+            "count": 26872
+          },
+          "textBox": {
+            "left": 24,
+            "top": 152,
+            "right": 336,
+            "bottom": 181.6875,
+            "width": 312,
+            "height": 29.6875
+          },
+          "glyphs": [
+            {
+              "left": 85.71875,
+              "top": 153,
+              "right": 274.28125,
+              "bottom": 179,
+              "width": 188.5625,
+              "height": 26
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 142.30769230769232,
+            "top": 343.6640625,
+            "right": 217.6923076923077,
+            "bottom": 503.6640625,
+            "width": 75.38461538461539,
+            "height": 160
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 241.171875,
+              "top": 16,
+              "right": 342,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            360,
+            800
+          ]
+        },
+        {
+          "line": 2,
+          "text": "저는 사람을 찾고 있습니다.",
+          "align": "near",
+          "actor": {
+            "left": 142.5,
+            "top": 343.5,
+            "right": 217.5,
+            "bottom": 503.5,
+            "count": 26872
+          },
+          "textBox": {
+            "left": 24,
+            "top": 635.953125,
+            "right": 336,
+            "bottom": 664,
+            "width": 312,
+            "height": 28.046875
+          },
+          "glyphs": [
+            {
+              "left": 73.859375,
+              "top": 636.953125,
+              "right": 286.140625,
+              "bottom": 661.953125,
+              "width": 212.28125,
+              "height": 25
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 142.30769230769232,
+            "top": 343.6640625,
+            "right": 217.6923076923077,
+            "bottom": 503.6640625,
+            "width": 75.38461538461539,
+            "height": 160
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 241.171875,
+              "top": 16,
+              "right": 342,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            360,
+            800
+          ]
+        },
+        {
+          "line": 3,
+          "text": "그자는 달랐다. 죽은 이의 말이 아니라, 죽음 너머의 답을 원했다.",
+          "align": "far",
+          "actor": {
+            "left": 142.5,
+            "top": 343.5,
+            "right": 217.5,
+            "bottom": 503.5,
+            "count": 26872
+          },
+          "textBox": {
+            "left": 24,
+            "top": 152,
+            "right": 336,
+            "bottom": 211.375,
+            "width": 312,
+            "height": 59.375
+          },
+          "glyphs": [
+            {
+              "left": 55.40625,
+              "top": 153,
+              "right": 304.59375,
+              "bottom": 179,
+              "width": 249.1875,
+              "height": 26
+            },
+            {
+              "left": 43.015625,
+              "top": 182.6875,
+              "right": 316.984375,
+              "bottom": 208.6875,
+              "width": 273.96875,
+              "height": 26
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 142.30769230769232,
+            "top": 343.6640625,
+            "right": 217.6923076923077,
+            "bottom": 503.6640625,
+            "width": 75.38461538461539,
+            "height": 160
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 241.171875,
+              "top": 16,
+              "right": 342,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            360,
+            800
+          ]
+        },
+        {
+          "line": 4,
+          "text": "너는 아직 돌아갈 길이 있다.",
+          "align": "far",
+          "actor": {
+            "left": 142.5,
+            "top": 343.5,
+            "right": 217.5,
+            "bottom": 503.5,
+            "count": 26872
+          },
+          "textBox": {
+            "left": 24,
+            "top": 152,
+            "right": 336,
+            "bottom": 181.6875,
+            "width": 312,
+            "height": 29.6875
+          },
+          "glyphs": [
+            {
+              "left": 64.453125,
+              "top": 153,
+              "right": 295.53125,
+              "bottom": 179,
+              "width": 231.078125,
+              "height": 26
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 142.30769230769232,
+            "top": 343.6640625,
+            "right": 217.6923076923077,
+            "bottom": 503.6640625,
+            "width": 75.38461538461539,
+            "height": 160
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 241.171875,
+              "top": 16,
+              "right": 342,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            360,
+            800
+          ]
+        },
+        {
+          "line": 0,
+          "text": "여긴…… 누구십니까?",
+          "align": "near",
+          "actor": {
+            "left": 155,
+            "top": 361.5,
+            "right": 235,
+            "bottom": 530.5,
+            "count": 29774
+          },
+          "textBox": {
+            "left": 24,
+            "top": 672.484375,
+            "right": 366,
+            "bottom": 700.53125,
+            "width": 342,
+            "height": 28.046875
+          },
+          "glyphs": [
+            {
+              "left": 110.421875,
+              "top": 673.484375,
+              "right": 279.5625,
+              "bottom": 698.484375,
+              "width": 169.140625,
+              "height": 25
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 154.82884615384614,
+            "top": 361.709375,
+            "right": 235.17115384615386,
+            "bottom": 530.5093750000001,
+            "width": 80.3423076923077,
+            "height": 168.8
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 271.171875,
+              "top": 16,
+              "right": 372,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            390,
+            844
+          ]
+        },
+        {
+          "line": 1,
+          "text": "또 답을 들으러 왔느냐.",
+          "align": "far",
+          "actor": {
+            "left": 155,
+            "top": 361.5,
+            "right": 235,
+            "bottom": 530.5,
+            "count": 29774
+          },
+          "textBox": {
+            "left": 24,
+            "top": 160.359375,
+            "right": 366,
+            "bottom": 190.046875,
+            "width": 342,
+            "height": 29.6875
+          },
+          "glyphs": [
+            {
+              "left": 100.71875,
+              "top": 161.359375,
+              "right": 289.28125,
+              "bottom": 187.359375,
+              "width": 188.5625,
+              "height": 26
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 154.82884615384614,
+            "top": 361.709375,
+            "right": 235.17115384615386,
+            "bottom": 530.5093750000001,
+            "width": 80.3423076923077,
+            "height": 168.8
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 271.171875,
+              "top": 16,
+              "right": 372,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            390,
+            844
+          ]
+        },
+        {
+          "line": 2,
+          "text": "저는 사람을 찾고 있습니다.",
+          "align": "near",
+          "actor": {
+            "left": 155,
+            "top": 361.5,
+            "right": 235,
+            "bottom": 530.5,
+            "count": 29774
+          },
+          "textBox": {
+            "left": 24,
+            "top": 672.484375,
+            "right": 366,
+            "bottom": 700.53125,
+            "width": 342,
+            "height": 28.046875
+          },
+          "glyphs": [
+            {
+              "left": 88.859375,
+              "top": 673.484375,
+              "right": 301.140625,
+              "bottom": 698.484375,
+              "width": 212.28125,
+              "height": 25
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 154.82884615384614,
+            "top": 361.709375,
+            "right": 235.17115384615386,
+            "bottom": 530.5093750000001,
+            "width": 80.3423076923077,
+            "height": 168.8
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 271.171875,
+              "top": 16,
+              "right": 372,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            390,
+            844
+          ]
+        },
+        {
+          "line": 3,
+          "text": "그자는 달랐다. 죽은 이의 말이 아니라, 죽음 너머의 답을 원했다.",
+          "align": "far",
+          "actor": {
+            "left": 155,
+            "top": 361.5,
+            "right": 235,
+            "bottom": 530.5,
+            "count": 29774
+          },
+          "textBox": {
+            "left": 24,
+            "top": 160.359375,
+            "right": 366,
+            "bottom": 219.734375,
+            "width": 342,
+            "height": 59.375
+          },
+          "glyphs": [
+            {
+              "left": 36.75,
+              "top": 161.359375,
+              "right": 353.234375,
+              "bottom": 187.359375,
+              "width": 316.484375,
+              "height": 26
+            },
+            {
+              "left": 91.65625,
+              "top": 191.046875,
+              "right": 298.328125,
+              "bottom": 217.046875,
+              "width": 206.671875,
+              "height": 26
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 154.82884615384614,
+            "top": 361.709375,
+            "right": 235.17115384615386,
+            "bottom": 530.5093750000001,
+            "width": 80.3423076923077,
+            "height": 168.8
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 271.171875,
+              "top": 16,
+              "right": 372,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            390,
+            844
+          ]
+        },
+        {
+          "line": 4,
+          "text": "너는 아직 돌아갈 길이 있다.",
+          "align": "far",
+          "actor": {
+            "left": 155,
+            "top": 361.5,
+            "right": 235,
+            "bottom": 530.5,
+            "count": 29774
+          },
+          "textBox": {
+            "left": 24,
+            "top": 160.359375,
+            "right": 366,
+            "bottom": 190.046875,
+            "width": 342,
+            "height": 29.6875
+          },
+          "glyphs": [
+            {
+              "left": 79.453125,
+              "top": 161.359375,
+              "right": 310.53125,
+              "bottom": 187.359375,
+              "width": 231.078125,
+              "height": 26
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 154.82884615384614,
+            "top": 361.709375,
+            "right": 235.17115384615386,
+            "bottom": 530.5093750000001,
+            "width": 80.3423076923077,
+            "height": 168.8
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 271.171875,
+              "top": 16,
+              "right": 372,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            390,
+            844
+          ]
+        },
+        {
+          "line": 0,
+          "text": "여긴…… 누구십니까?",
+          "align": "near",
+          "actor": {
+            "left": 403.5,
+            "top": 164,
+            "right": 441,
+            "bottom": 242,
+            "count": 6429
+          },
+          "textBox": {
+            "left": 62,
+            "top": 305.953125,
+            "right": 782,
+            "bottom": 334,
+            "width": 720,
+            "height": 28.046875
+          },
+          "glyphs": [
+            {
+              "left": 337.421875,
+              "top": 306.953125,
+              "right": 506.5625,
+              "bottom": 331.953125,
+              "width": 169.140625,
+              "height": 25
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 403.25,
+            "top": 163.8203125,
+            "right": 440.75,
+            "bottom": 241.8203125,
+            "width": 37.5,
+            "height": 78
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 725.171875,
+              "top": 16,
+              "right": 826,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            844,
+            390
+          ]
+        },
+        {
+          "line": 1,
+          "text": "또 답을 들으러 왔느냐.",
+          "align": "far",
+          "actor": {
+            "left": 403.5,
+            "top": 164,
+            "right": 441,
+            "bottom": 242,
+            "count": 6429
+          },
+          "textBox": {
+            "left": 62,
+            "top": 70,
+            "right": 782,
+            "bottom": 99.6875,
+            "width": 720,
+            "height": 29.6875
+          },
+          "glyphs": [
+            {
+              "left": 327.71875,
+              "top": 71,
+              "right": 516.28125,
+              "bottom": 97,
+              "width": 188.5625,
+              "height": 26
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 403.25,
+            "top": 163.8203125,
+            "right": 440.75,
+            "bottom": 241.8203125,
+            "width": 37.5,
+            "height": 78
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 725.171875,
+              "top": 16,
+              "right": 826,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            844,
+            390
+          ]
+        },
+        {
+          "line": 2,
+          "text": "저는 사람을 찾고 있습니다.",
+          "align": "near",
+          "actor": {
+            "left": 403.5,
+            "top": 164,
+            "right": 441,
+            "bottom": 242,
+            "count": 6429
+          },
+          "textBox": {
+            "left": 62,
+            "top": 305.953125,
+            "right": 782,
+            "bottom": 334,
+            "width": 720,
+            "height": 28.046875
+          },
+          "glyphs": [
+            {
+              "left": 315.859375,
+              "top": 306.953125,
+              "right": 528.140625,
+              "bottom": 331.953125,
+              "width": 212.28125,
+              "height": 25
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 403.25,
+            "top": 163.8203125,
+            "right": 440.75,
+            "bottom": 241.8203125,
+            "width": 37.5,
+            "height": 78
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 725.171875,
+              "top": 16,
+              "right": 826,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            844,
+            390
+          ]
+        },
+        {
+          "line": 3,
+          "text": "그자는 달랐다. 죽은 이의 말이 아니라, 죽음 너머의 답을 원했다.",
+          "align": "far",
+          "actor": {
+            "left": 403.5,
+            "top": 164,
+            "right": 441,
+            "bottom": 242,
+            "count": 6429
+          },
+          "textBox": {
+            "left": 62,
+            "top": 70,
+            "right": 782,
+            "bottom": 99.6875,
+            "width": 720,
+            "height": 29.6875
+          },
+          "glyphs": [
+            {
+              "left": 157.28125,
+              "top": 71,
+              "right": 686.71875,
+              "bottom": 97,
+              "width": 529.4375,
+              "height": 26
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 403.25,
+            "top": 163.8203125,
+            "right": 440.75,
+            "bottom": 241.8203125,
+            "width": 37.5,
+            "height": 78
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 725.171875,
+              "top": 16,
+              "right": 826,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            844,
+            390
+          ]
+        },
+        {
+          "line": 4,
+          "text": "너는 아직 돌아갈 길이 있다.",
+          "align": "far",
+          "actor": {
+            "left": 403.5,
+            "top": 164,
+            "right": 441,
+            "bottom": 242,
+            "count": 6429
+          },
+          "textBox": {
+            "left": 62,
+            "top": 70,
+            "right": 782,
+            "bottom": 99.6875,
+            "width": 720,
+            "height": 29.6875
+          },
+          "glyphs": [
+            {
+              "left": 306.453125,
+              "top": 71,
+              "right": 537.53125,
+              "bottom": 97,
+              "width": 231.078125,
+              "height": 26
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 403.25,
+            "top": 163.8203125,
+            "right": 440.75,
+            "bottom": 241.8203125,
+            "width": 37.5,
+            "height": 78
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 725.171875,
+              "top": 16,
+              "right": 826,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            844,
+            390
+          ]
+        },
+        {
+          "line": 0,
+          "text": "여긴…… 누구십니까?",
+          "align": "near",
+          "actor": {
+            "left": 677.5,
+            "top": 371.5,
+            "right": 762.5,
+            "bottom": 551.5,
+            "count": 33961
+          },
+          "textBox": {
+            "left": 360,
+            "top": 712.359375,
+            "right": 1080,
+            "bottom": 747,
+            "width": 720,
+            "height": 34.640625
+          },
+          "glyphs": [
+            {
+              "left": 615.53125,
+              "top": 714.359375,
+              "right": 824.46875,
+              "bottom": 744.359375,
+              "width": 208.9375,
+              "height": 30
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 677.5961538461538,
+            "top": 371.4765625,
+            "right": 762.4038461538461,
+            "bottom": 551.4765625,
+            "width": 84.8076923076923,
+            "height": 180
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 1321.171875,
+              "top": 16,
+              "right": 1422,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            1440,
+            900
+          ]
+        },
+        {
+          "line": 1,
+          "text": "또 답을 들으러 왔느냐.",
+          "align": "far",
+          "actor": {
+            "left": 677.5,
+            "top": 371.5,
+            "right": 762.5,
+            "bottom": 551.5,
+            "count": 33961
+          },
+          "textBox": {
+            "left": 360,
+            "top": 171,
+            "right": 1080,
+            "bottom": 210.59375,
+            "width": 720,
+            "height": 39.59375
+          },
+          "glyphs": [
+            {
+              "left": 594.296875,
+              "top": 173,
+              "right": 845.703125,
+              "bottom": 208,
+              "width": 251.40625,
+              "height": 35
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 677.5961538461538,
+            "top": 371.4765625,
+            "right": 762.4038461538461,
+            "bottom": 551.4765625,
+            "width": 84.8076923076923,
+            "height": 180
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 1321.171875,
+              "top": 16,
+              "right": 1422,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            1440,
+            900
+          ]
+        },
+        {
+          "line": 2,
+          "text": "저는 사람을 찾고 있습니다.",
+          "align": "near",
+          "actor": {
+            "left": 677.5,
+            "top": 371.5,
+            "right": 762.5,
+            "bottom": 551.5,
+            "count": 33961
+          },
+          "textBox": {
+            "left": 360,
+            "top": 712.359375,
+            "right": 1080,
+            "bottom": 747,
+            "width": 720,
+            "height": 34.640625
+          },
+          "glyphs": [
+            {
+              "left": 588.875,
+              "top": 714.359375,
+              "right": 851.109375,
+              "bottom": 744.359375,
+              "width": 262.234375,
+              "height": 30
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 677.5961538461538,
+            "top": 371.4765625,
+            "right": 762.4038461538461,
+            "bottom": 551.4765625,
+            "width": 84.8076923076923,
+            "height": 180
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 1321.171875,
+              "top": 16,
+              "right": 1422,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            1440,
+            900
+          ]
+        },
+        {
+          "line": 3,
+          "text": "그자는 달랐다. 죽은 이의 말이 아니라, 죽음 너머의 답을 원했다.",
+          "align": "far",
+          "actor": {
+            "left": 677.5,
+            "top": 371.5,
+            "right": 762.5,
+            "bottom": 551.5,
+            "count": 33961
+          },
+          "textBox": {
+            "left": 360,
+            "top": 171,
+            "right": 1080,
+            "bottom": 210.59375,
+            "width": 720,
+            "height": 39.59375
+          },
+          "glyphs": [
+            {
+              "left": 367.03125,
+              "top": 173,
+              "right": 1072.953125,
+              "bottom": 208,
+              "width": 705.921875,
+              "height": 35
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 677.5961538461538,
+            "top": 371.4765625,
+            "right": 762.4038461538461,
+            "bottom": 551.4765625,
+            "width": 84.8076923076923,
+            "height": 180
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 1321.171875,
+              "top": 16,
+              "right": 1422,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            1440,
+            900
+          ]
+        },
+        {
+          "line": 4,
+          "text": "너는 아직 돌아갈 길이 있다.",
+          "align": "far",
+          "actor": {
+            "left": 677.5,
+            "top": 371.5,
+            "right": 762.5,
+            "bottom": 551.5,
+            "count": 33961
+          },
+          "textBox": {
+            "left": 360,
+            "top": 171,
+            "right": 1080,
+            "bottom": 210.59375,
+            "width": 720,
+            "height": 39.59375
+          },
+          "glyphs": [
+            {
+              "left": 565.953125,
+              "top": 173,
+              "right": 874.046875,
+              "bottom": 208,
+              "width": 308.09375,
+              "height": 35
+            }
+          ],
+          "textBoxOverlap": 0,
+          "glyphOverlap": 0,
+          "reservedActor": {
+            "left": 677.5961538461538,
+            "top": 371.4765625,
+            "right": 762.4038461538461,
+            "bottom": 551.4765625,
+            "width": 84.8076923076923,
+            "height": 180
+          },
+          "buttons": [
+            {
+              "text": "잠시 멈춤",
+              "left": 18,
+              "top": 16,
+              "right": 106.265625,
+              "bottom": 60,
+              "width": 88.265625,
+              "height": 44,
+              "visible": true
+            },
+            {
+              "text": "장면 넘기기",
+              "left": 1321.171875,
+              "top": 16,
+              "right": 1422,
+              "bottom": 60,
+              "width": 100.828125,
+              "height": 44,
+              "visible": true
+            }
+          ],
+          "viewport": [
+            1440,
+            900
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Controlled late-stage safe poses; no normal full chapter/combat completion.",
+    "Chromium desktop and mobile emulation, no physical mobile device.",
+    "document.hidden override is a controlled visibility fixture.",
+    "No 30-chapter playthrough or performance benchmark."
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "command": "node game/tests/regressions.mjs",
+    "exit": 1,
+    "log": "regressions.mjs.txt"
+  },
+  {
+    "command": "node tests/dialogue-speaker-presentation.mjs",
+    "exit": 1,
+    "log": "dialogue-speaker-presentation.mjs.txt"
+  },
+  {
+    "command": "node tests/story-canon-v1.mjs",
+    "exit": 1,
+    "log": "story-canon-v1.mjs.txt"
+  },
+  {
+    "command": "node tests/act3-split-campaign.mjs",
+    "exit": 1,
+    "log": "act3-split-campaign.mjs.txt"
+  }
+]

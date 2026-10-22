@@ -1,0 +1,230 @@
+{
+  "executionSHA": "e55542781df1fd6c049972cdf9ceb2f4cdeee87d",
+  "sourceHash": "ee911eb674ebc43b028998e2d883c2d0d2c9af98630708e1664fbccadff613ee",
+  "rows": [
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "minimumClearance": 1254.0265106021682,
+      "points": [
+        {
+          "x": 5900,
+          "y": 2710.3713432565337,
+          "ground": 2710.3713432565337
+        },
+        {
+          "x": 6010,
+          "y": 2698.6482747508862,
+          "ground": 2698.6482747508862
+        },
+        {
+          "x": 6120,
+          "y": 2711.0846369382557,
+          "ground": 2711.0846369382557
+        },
+        {
+          "x": 6230,
+          "y": 2723.520999125625,
+          "ground": 2723.520999125625
+        }
+      ],
+      "frame": {
+        "id": "10:safe-exit",
+        "intent": "conversation",
+        "targets": [
+          {
+            "nearbyAllies": "boss"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 5878,
+            "y": 2576.8668187699063,
+            "w": 374,
+            "h": 156.65418035571884
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 112,
+          "w": 362,
+          "h": 507.5
+        },
+        "boundary": {
+          "overscanX": true,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 6065,
+          "y": 2601.417867281099,
+          "scale": 0.78
+        },
+        "targetCamera": {
+          "x": 6065,
+          "y": 2601.417867281099,
+          "scale": 0.78
+        },
+        "reducedMotion": false
+      },
+      "enemyUnitsByteExact": true,
+      "postSettlementHeroesItemsByteExact": true,
+      "settlementChangesOnlyXp": true,
+      "settlementXpMatchesFrozenReport": true,
+      "reloadUnitsByteExact": true
+    },
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "minimumClearance": 1254.0265106021682,
+      "points": [
+        {
+          "x": 5900,
+          "y": 2710.3713432565337,
+          "ground": 2710.3713432565337
+        },
+        {
+          "x": 6010,
+          "y": 2698.6482747508862,
+          "ground": 2698.6482747508862
+        },
+        {
+          "x": 6120,
+          "y": 2711.0846369382557,
+          "ground": 2711.0846369382557
+        },
+        {
+          "x": 6230,
+          "y": 2723.520999125625,
+          "ground": 2723.520999125625
+        }
+      ],
+      "frame": {
+        "id": "10:safe-exit",
+        "intent": "conversation",
+        "targets": [
+          {
+            "nearbyAllies": "boss"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 5878,
+            "y": 2576.8668187699063,
+            "w": 374,
+            "h": 156.65418035571884
+          }
+        ],
+        "rect": {
+          "x": 14,
+          "y": 112,
+          "w": 332,
+          "h": 463.5
+        },
+        "boundary": {
+          "overscanX": true,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 6065,
+          "y": 2597.8349575170428,
+          "scale": 0.7312775330396476
+        },
+        "targetCamera": {
+          "x": 6065,
+          "y": 2597.8349575170428,
+          "scale": 0.7312775330396476
+        },
+        "reducedMotion": false
+      },
+      "enemyUnitsByteExact": true,
+      "postSettlementHeroesItemsByteExact": true,
+      "settlementChangesOnlyXp": true,
+      "settlementXpMatchesFrozenReport": true,
+      "reloadUnitsByteExact": true
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "minimumClearance": 1254.0265106021682,
+      "points": [
+        {
+          "x": 5900,
+          "y": 2710.3713432565337,
+          "ground": 2710.3713432565337
+        },
+        {
+          "x": 6010,
+          "y": 2698.6482747508862,
+          "ground": 2698.6482747508862
+        },
+        {
+          "x": 6120,
+          "y": 2711.0846369382557,
+          "ground": 2711.0846369382557
+        },
+        {
+          "x": 6230,
+          "y": 2723.520999125625,
+          "ground": 2723.520999125625
+        }
+      ],
+      "frame": {
+        "id": "10:safe-exit",
+        "intent": "conversation",
+        "targets": [
+          {
+            "nearbyAllies": "boss"
+          }
+        ],
+        "missing": [],
+        "fallback": null,
+        "boxes": [
+          {
+            "x": 5878,
+            "y": 2576.8668187699063,
+            "w": 374,
+            "h": 156.65418035571884
+          }
+        ],
+        "rect": {
+          "x": 30,
+          "y": 122,
+          "w": 784,
+          "h": 80.5
+        },
+        "boundary": {
+          "overscanX": false,
+          "overscanY": false
+        },
+        "camera": {
+          "x": 5320,
+          "y": 2519.9629487444977,
+          "scale": 0.340158791528631
+        },
+        "targetCamera": {
+          "x": 5320,
+          "y": 2519.9629487444977,
+          "scale": 0.340158791528631
+        },
+        "reducedMotion": false
+      },
+      "enemyUnitsByteExact": true,
+      "postSettlementHeroesItemsByteExact": true,
+      "settlementChangesOnlyXp": true,
+      "settlementXpMatchesFrozenReport": true,
+      "reloadUnitsByteExact": true
+    }
+  ],
+  "errors": [],
+  "scope": "adversarial terminal fixture with one enemy at gate; immutable checks start after approved outcome XP settlement, not normal combat"
+}
