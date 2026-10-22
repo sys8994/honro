@@ -1,0 +1,44 @@
+{
+  "approvedSource": "9b69f1f2",
+  "reviewedReportCommit": "72a8788f",
+  "note": "Approved fixed Canvas material PNG data URL hashes; browser/platform specific, not FPS or a gameplay clear.",
+  "rendererSha256": "824cac5edfd7283fd987c0c6c16283d2cc81c4e7d7fd7c4970be30ac81b5c6b8",
+  "views": [
+    {
+      "view": {
+        "name": "west",
+        "x": 3200,
+        "y": 6650,
+        "z": 0.18
+      },
+      "hashes": {
+        "0.18": "0ad805ae4a7eb63a38c6b53e58f17676bfda2298bac8a2830e698bd72f8a221b",
+        "1.65": "214cba1ec4e1f5b1316ebafd75d07b7835d2dbf8bb0fc0c5ced33de5e47a07cc"
+      }
+    },
+    {
+      "view": {
+        "name": "central",
+        "x": 7290,
+        "y": 7080,
+        "z": 0.43
+      },
+      "hashes": {
+        "0.43": "9fddff4480169ce62032db2d35141a9265f2cf195351e9725e31b3b855645ab2",
+        "1.65": "5d71d56c71b6a7d795ac6d262f830411305803710126cae71c3061727d789e10"
+      }
+    },
+    {
+      "view": {
+        "name": "refuge",
+        "x": 10350,
+        "y": 8470,
+        "z": 0.5
+      },
+      "hashes": {
+        "0.5": "20c975940972c98cbbc8571210b8ae15baaaedd7066f5120766b8dc719b10933",
+        "1.65": "f020fab6387ed54453f9d65fc33a49ee22f9958a791e31603922717d604999ce"
+      }
+    }
+  ]
+}

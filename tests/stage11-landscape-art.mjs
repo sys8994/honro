@@ -17,13 +17,14 @@ assert.equal(art.active({...b,honroStage11LandscapeRevision:1}),true);
 const legacy={...b,honroStage11LandscapeRevision:undefined},cv=canvas(1400,900),c=cv.getContext('2d');
 assert.equal(art.terrain(c,b.terrain[0],legacy),false);
 b.honroStage11LandscapeRevision=1;
-const original=JSON.stringify(b),ts=g.HonroTerrainDomain.render(b);let drawn=0,maxPreparedPaths=0;
+const original=JSON.stringify(b),ts=g.HonroTerrainDomain.render(b);let drawn=0,maxPreparedPaths=0,authoredSurfaces=0;
 c.setTransform(.06,0,0,.06,10,20);
 const transform=()=>{const m=c.getTransform();return[m.a,m.b,m.c,m.d,m.e,m.f];},beforeTransform=transform();
 for(const t of ts){
  if(!t.honroRavine)continue;
  const a=art.prepare(t,b);assert.equal(a,art.prepare(t,b),'prepare cache must reuse paths');
- maxPreparedPaths=Math.max(maxPreparedPaths,a.plates.length+a.bands.length+a.grooves.length+a.moss.length+2);
+ maxPreparedPaths=Math.max(maxPreparedPaths,(a.authored?.length||a.plates.length)+a.bands.length+a.grooves.length+a.moss.length+(a.bark?.length||0)+(a.fibres?.length||0)+2);
+ if(b.honroMap.ravineArt?.materials?.some(m=>m.terrainId===t.id)){assert(a.authored?.length>0,'authored material prepared');assert.equal(a.authored,art.prepare(t,b).authored,'authored path cache reused');authoredSurfaces++;}
  assert.equal(art.terrain(c,t,b),true);drawn++;
  assert.deepEqual(transform(),beforeTransform,'material pass leaked its Canvas transform');
  assert.equal(c.globalAlpha,1,'material pass leaked alpha');
@@ -33,4 +34,4 @@ assert.ok(drawn>=30);assert.ok(maxPreparedPaths<150,'unbounded material path cou
 assert.equal(JSON.stringify(b),original,'rendering changed the live battle');
 const t=ts.find(t=>t.honroRavine),old=art.prepare(t,b),next={...b,sceneVersion:(b.sceneVersion||0)+1};assert.notEqual(art.prepare(t,next),old,'scene invalidation must reprepare live geometry');
 for(const a of p.library.filter(a=>a.id.startsWith('stage11:')&&a.vector))assert.deepEqual(Array.from(g.HonroVectorArt.validate(a.vector)),[],a.id);
-console.log(JSON.stringify({pass:true,drawn,maxPreparedPaths,purity:true,cache:true,oldBattleOptOut:true,otherStagesOptOut:true}));
+console.log(JSON.stringify({pass:true,drawn,maxPreparedPaths,authoredSurfaces,purity:true,cache:true,oldBattleOptOut:true,otherStagesOptOut:true}));
