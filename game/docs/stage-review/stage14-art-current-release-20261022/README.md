@@ -7,3 +7,9 @@
 검사 범위: 시각 필드 제외 최신 전체 campaign/17경로/충돌·배우·목표·대사·타29장 exact, 승인 shape2 재질·후벽 exact, 멱등성·정적 캐시·공통 build/typecheck, 기존 rescue-gates/retained-boundaries와 새 첫 목표/구 clear-middle Continue/대사 cursor. 기존 rescue-gates의 Library=옛1f 비교는 승인 후벽 한 자산의 의도된 변경만 허용하도록 좁혀 유지하고, 나머지 계약/predicate/저장 검사는 보존한다. 정상R22→15장과 전체30장 재실행은 하지 않는다.
 
 통합 생성물의 실제 기본/상층 휠/중층 팬·모바일 기본·양 끝 팬을 직접 보고 새 구조 목표와 승인 미술이 함께 보이는 선택 사진만 추가한다. 옛 목표의 승인 사진은 기존 미술 기록으로만 가져온다.
+
+## 시각 필드 재적용 보존점
+
+승인 helper/opt-in 연결과 미술 검사·캡처·선택 사진·기록만 a70efcdd에서 가져왔다. `campaign.json`/manifest/generated는 가져오지 않고 현재6cb campaign에 helper를 실행했다. 빌드 전 전체 프로젝트를 시각 필드만 원복 정규화해6cb와 deep exact, 승인 shape2의 terrainPlanes/기존 rear Library 전체와 deep exact를 확인했다. 기존 rescue-gates의 Library 전체 비교는 승인 rear 한 개만 기대값에 넣도록 수정했고, 원래 gate/저장/predicate/현행 guide 검사는 보존했다. 통합 보존 검사에는 승인 저작 두 파일의 byte exact와6cb runtime/현재 catalogue·서사 guide 보존, 구934 chapter13 두 파일의 hash·길이 보호를 명시했다.
+
+현재 보호 공개7그래프/고유 immutable446개. 구934 필수 두 파일: `web/data/chapter-13-assets.1387b6a1f088fc74.json`(24,657B), `web/data/chapter-13.516170b245a8b075.json`(57,580B). 등록 시 원본 Git hash/길이 및 현재 존재를 확인했다. 이후 build가 같은 공개 bytes를 보존하는지도 관련 검사에서 다시 확인한다.

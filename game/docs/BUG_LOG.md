@@ -4492,3 +4492,8 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 ## 2026-10-22 — 최신 master와 부모 서사 최종 통합
 
 5bac 확정 catalogue를 byte-identical로 유지하며 최신 master63cc의 초상/NPC/모바일·11장 단순화·방향/13장 경계·7일 발행 보호를 통합했다. 11장의 별도 원고 재생성을 catalogue 메타데이터 참조로 줄였고 마지막 quest author/진행 대화 cursor를 유지한다. 검사한 코드+생성물be3cb71c. 실제 UI는 도착1+구조4+기존 기술 안내1이며 구형 도착3행이 사라졌다. 30current/40legacy·20턴 저장·934retry A/B·10safe/27void·identity/build/web/pool/발행 보호 통과. 성공 확인한63cc만 발행 이력7번째로 등록했고 master 원본467 immutable 삭제0이다. 초기72요청/4,417,039B로 AA76 대비+14,095B, 최초 기준 대비+5.54%가 남는다. master/Pages는 미변경. [정확한 SHA·사진·검사·한계](story/narrative-final-current-release-20261022/README.md).
+
+
+## 2026-10-22 — 승인 14장 shape2와 최신 구조 목표 통합 중
+
+기준6cbda400의 은퇴 gate·3주민 순서·저장 이행·현재 catalogue/guide를 유지하며 승인a70efcdd의 저작 helper/opt-in 및 미술 자료만 통합했다. 옛 campaign/manifest/generated 전체를 가져오지 않고 현재 campaign의 시각 필드와 후벽 한 자산만 재적용했다. 빌드 전 시각 외 전체 프로젝트6cb exact/승인 재질·후벽 exact 통과. 실제 성공6cb/Pages39824368686/2026-10-22T17:40:00Z를 먼저 등록해 공개7그래프446파일과934 chapter13 두 리소스를 보호한다. 후속 build·저장/캐시 검사와 새 구조 목표의 실제 UI를 확인한 뒤 인계하며 master/Pages는 부모 담당이다. [통합 기록](stage-review/stage14-art-current-release-20261022/README.md).

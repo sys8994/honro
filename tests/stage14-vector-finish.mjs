@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import vm from 'node:vm';
+import {createCanvas,Path2D as NativePath,DOMMatrix} from '@napi-rs/canvas';
+import {runtimeParts} from '../shared/build.mjs';
+import {applyStage14VectorFinish} from '../tools/environment/stage14-vector-finish.mjs';
+const base='6cbda400009206180d28c61e5fc14a0b6246809a',before=JSON.parse(execFileSync('git',['show',base+':shared/data/campaign.json'],{maxBuffer:40e6})),after=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
+const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex');
+const normalized=structuredClone(after),s=normalized.stages[13],old=before.stages[13],rearId='stage14:vertical-cavern-depth';
+delete s.design.vertical14Finish;s.design.space.terrainPlanes=old.design.space.terrainPlanes;s.design.vertical14Art.terrainPlaneIds=old.design.vertical14Art.terrainPlaneIds;
+const rear=normalized.library.find(a=>a.id===rearId),oldRear=before.library.find(a=>a.id===rearId);rear.vector=oldRear.vector;rear.params=oldRear.params;
+assert.equal(hash(normalized),hash(before),'Only Stage14 material/rear vector and their visual metadata change');
+const approvedSha='a70efcdd818ebf87ca1eb4826d901cb3771cd1c3',approved=JSON.parse(execFileSync('git',['show',approvedSha+':shared/data/campaign.json'],{maxBuffer:40e6}));
+assert.deepEqual(after.stages[13].design.space.terrainPlanes,approved.stages[13].design.space.terrainPlanes,'Approved shape2 planes exact');assert.deepEqual(after.stages[13].design.vertical14Finish,approved.stages[13].design.vertical14Finish,'Approved shape metadata exact');assert.deepEqual(after.library.find(a=>a.id===rearId),approved.library.find(a=>a.id===rearId),'Approved shape2 rear exact');
+for(const f of ['tools/environment/stage14-vector-finish.mjs','tools/environment/stage14-vertical-art.mjs'])assert.equal(await readFile(f,'utf8'),execFileSync('git',['show',approvedSha+':'+f],{maxBuffer:8e6}).toString(),'Approved author bytes '+f);
+assert.deepEqual(execFileSync('git',['diff','--name-only',base,'--','shared','game/src','game/config'],{encoding:'utf8'}).trim().split('\n'),['shared/data/campaign.json'],'All other runtime/game/narrative source unchanged');
+const previousArt=JSON.parse(execFileSync('git',['show','a6d47a5271012d5657d33fe8637b3f55385812f3:shared/data/campaign.json'],{maxBuffer:40e6}));
+assert.deepEqual(after.stages[13].design.space.terrainPlanes.filter(p=>p.terrainId!=='v14-upper-hamlet'),previousArt.stages[13].design.space.terrainPlanes.filter(p=>p.terrainId!=='v14-upper-hamlet'),'Other Stage14 materials/contact/bridge remain at previous candidate');
+assert.deepEqual(after.stages[13].design.space.routes,old.design.space.routes);assert.equal(old.design.space.routes.length,17);
+assert.equal(hash(JSON.parse(JSON.stringify(applyStage14VectorFinish(structuredClone(before))))),hash(after),'Reproducible source');
+assert.equal(hash(JSON.parse(JSON.stringify(applyStage14VectorFinish(structuredClone(after))))),hash(after),'Idempotent source');
+for(const f of ['shared/runtime/renderer.js','shared/runtime/main.js','shared/map/bounds.js','shared/runtime/act2.js','shared/runtime/act2-spatial-art.js','shared/runtime/stage14-vertical.js','shared/runtime/act2-pacing.js','shared/runtime/stage14-rescue-gates.js','shared/data/narrative-current.json','game/docs/story/HONRO_NARRATIVE_VOICE_GUIDE_v2.0.md'])assert.equal(await readFile(f,'utf8'),execFileSync('git',['show',base+':'+f],{maxBuffer:8e6}).toString(),f+' preserved');
+let allocations=0;const Path2D=new Proxy(NativePath,{construct(t,args){allocations++;return Reflect.construct(t,args);}}),g=vm.createContext({console,performance,structuredClone,Path2D,DOMMatrix,document:{createElement:()=>createCanvas(64,64)},navigator:{userAgent:'stage14-material-check'},matchMedia:()=>({matches:true})});g.window=g;
+for(const source of await runtimeParts({vector:true,render:true}))vm.runInContext(source,g);
+const p=g.HONRO_PROJECT,st=p.stages[13],b=g.HonroMaps.createBattle(st,p),art=g.HonroAct2SpatialArt,terrains=g.HonroTerrainDomain.render(b),cv=createCanvas(1440,900),c=cv.getContext('2d'),rows=[];
+assert.equal(st.design.space.terrainPlanes.length,after.stages[13].design.space.terrainPlanes.length,'Production planes');
+const original=JSON.stringify(b),prepared=[];c.setTransform(.06,0,0,.06,0,0);
+for(const t of terrains){if(t.id==='gate-bridge')continue;const q=art.prepareTerrain(t,b);assert(q.authoredPlanes.length>0,t.id);assert.equal(q,art.prepareTerrain(t,b));art.terrain(c,t,b);prepared.push([t,q]);rows.push({id:t.id,planes:q.authoredPlanes.length});}
+const asset=p.library.find(a=>a.id===rearId);assert.deepEqual(Array.from(g.HonroVectorArt.validate(asset.vector)),[]);const vector=g.HonroVectorArt.prepare(asset.vector);g.HonroVectorArt.draw(c,asset.vector);
+allocations=0;for(let i=0;i<3;i++){for(const[t,q]of prepared){assert.equal(q,art.prepareTerrain(t,b));art.terrain(c,t,b);}assert.equal(vector,g.HonroVectorArt.prepare(asset.vector));g.HonroVectorArt.draw(c,asset.vector);}assert.equal(allocations,0,'No new paths during reused material/SVG draws');const warmPaths=allocations;
+assert.equal(JSON.stringify(b),original,'Render purity');assert.equal(c.globalAlpha,1);assert(Math.abs(c.getTransform().a-.06)<1e-7);
+const[t,q]=prepared[0];assert.notEqual(q,art.prepareTerrain(t,{...b,sceneVersion:(b.sceneVersion||0)+1}));
+const manifest=JSON.parse(await readFile('web/manifest.json','utf8')),publishedFiles=new Map();
+const builtAssets=JSON.parse(await readFile(manifest.files.find(f=>f.path.includes('chapter-14-assets.')).path,'utf8')),builtStage=JSON.parse(await readFile(manifest.files.find(f=>/chapter-14\.[a-f0-9]+\.json$/.test(f.path)).path,'utf8'));
+assert.deepEqual(builtAssets.find(a=>a.id===rearId),after.library.find(a=>a.id===rearId),'Built rear matches canonical');assert.deepEqual(builtStage.design.space.terrainPlanes,after.stages[13].design.space.terrainPlanes,'Built planes match canonical');
+assert(manifest.publishedGenerations.some(g=>g.sourceSha===base&&g.publishedAt==='2026-10-22T17:40:00Z'));
+for(const gen of manifest.publishedGenerations)for(const f of gen.files)publishedFiles.set(f.path,f);
+for(const f of publishedFiles.values()){const bytes=await readFile(f.path);assert.equal(bytes.length,f.bytes,f.path);assert.equal(createHash('sha256').update(bytes).digest('hex'),f.sha256,f.path);}
+const old934=JSON.parse(execFileSync('git',['show','934fcabd74767d662aee3830585ba807234934cc:web/manifest.json'],{maxBuffer:16e6})),old13=old934.files.filter(f=>/chapter-13(?:-assets)?\./.test(f.path));assert.equal(old13.length,2);for(const f of old13){assert.deepEqual(publishedFiles.get(f.path),f,'934 chapter13 remains protected');const bytes=await readFile(f.path);assert.equal(bytes.length,f.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),f.sha256);}
+const report={pass:true,base,approvedSha,approvedShape2Exact:true,currentRuntimeAndNarrativeExact:true,old934Chapter13:old13.map(f=>f.path),protectedProjectHash:hash(normalized),routes17Preserved:true,geometryActorsObjectivesPacingNarrativeUnchanged:true,other29AndOtherLibraryEqual:true,otherStage14MaterialsUnchangedSinceA6:true,renderPure:true,builtArtEqualsCanonical:true,staticPathReuse:true,cachedDrawNewPaths:warmPaths,sceneVersionInvalidation:true,prepared:rows,publishedGraphs:manifest.publishedGenerations.length,protectedPublishedFiles:publishedFiles.size,scope:'Data equality, current production preparation/draw and published-file integrity. Not campaign completion, art approval or dynamic FPS.'};
+await mkdir('_local/reports/stage14-art-current-release',{recursive:true});await writeFile('_local/reports/stage14-art-current-release/preservation.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
