@@ -1,0 +1,9 @@
+PASS Temporary M09 uses an existing slot without changing permanent ranks or training
+PASS Learned M09 rank remains the projectile rank in its prepared slot
+PASS Insufficient MP cannot cast or acquire a free refill
+PASS Only actual M09 use by both people opens the next crossing
+PASS Expired pair with one isolated actor restores starting HP, MP, positions, items and movement
+PASS Death of either named actor retries backward, not forward
+PASS Wrong landing and non-gate bypass cannot advance objectives
+PASS Mid-crossing serialized battle includes both provenance and its rollback checkpoint
+PASS No dedicated fifth field card remains; objective guidance ends after the final crossing

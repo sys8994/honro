@@ -2,7 +2,7 @@
 // This scene owns no combat clock. Only a temporary Seolo pose is animated;
 // the saved return pose is restored before a battle can simulate again.
 const KEY='act3-void-v1',REVISION=1,TRANSIENT=new Set(['FALLING','DARKENING','VOID','RETURNING']);
-const TIMING=Object.freeze({fall:2.8,fade:1.8,quiet:.4,total:5});
+const TIMING=Object.freeze({fall:.8,fade:.6,total:1.4});
 const clamp=x=>Math.max(0,Math.min(1,x));
 const clone=x=>structuredClone(x),state=b=>b?.honroAct3Void;
 const enabled=b=>!!b&&!b.honroCustom&&b.honroStage===27&&state(b)?.revision===REVISION;
@@ -10,16 +10,15 @@ const blocked=app=>enabled(app?.engine?.b||app)&&TRANSIENT.has(state(app?.engine
 const hero=b=>b?.units?.find(u=>u.side===0&&!u.summoned&&!u.enthrall&&u.cls==='archer');
 const inZone=(u,z)=>!!u&&!!z&&u.x>=z.left&&u.x<=z.right&&Math.abs(u.y-z.y)<125;
 const sceneLines=[
- {text:'담허 어른? 들리십니까?',wait:1.5,align:'near'},
- {text:'',wait:1.7,align:'far'},
- {text:'여긴 어디입니까? 방금 걷던 길이 보이지 않습니다.',wait:2.5,align:'near'},
- {text:'……돌아가라.',wait:1.5,align:'far'},
- {text:'거기 누가 있습니까?',wait:1.5,align:'near'},
- {text:'',wait:2.2,align:'far'},
- {text:'담허 어른에게 돌아가려면 어디로 가야 합니까?',wait:2.5,align:'near'},
- {text:'돌아가라.',wait:1.5,align:'far'}
+ {text:'여긴…… 누구십니까?',align:'near'},
+ {text:'또 답을 들으러 왔느냐.',align:'far'},
+ {text:'저는 사람을 찾고 있습니다.',align:'near'},
+ {text:'그자는 달랐다. 죽은 이의 말이 아니라, 죽음 너머의 답을 원했다.',align:'far'},
+ {text:'너는 아직 돌아갈 길이 있다.',align:'far'}
 ];
-const returnLines=[['담허','발을 헛디뎠나? 어디 다친 데는 없나?'],['설오','아닙니다. 그런데…… 아래가 없었습니다.'],['담허','아래가 없었다고?'],['설오','그렇게밖에 설명을 못 하겠습니다. 먼저 발 디딜 곳부터 확인하겠습니다.']];
+const returnLines=[['담허','발을 헛디뎠나? 다친 데는 없나?'],['설오','누군가 말했습니다. 저보다 먼저, 답을 구하러 온 이가 있었다고.'],['담허','……나는 아무 소리도 못 들었네. 우선 이곳부터 벗어나세.']];
+// Only duplicate gestures are guarded. Every line is complete on first paint.
+const INPUT_GUARD=120,now=()=>G.performance?.now?.()??Date.now();
 function initializeFresh(b){if(b?.honroStage===27&&!b.honroCustom&&b.honroSplit?.version===2&&(b.honroMap?.act3?.waterworksRevision||0)>=3)b.honroAct3Void??={revision:REVISION,state:'READY'};}
 function restorePose(b){const s=state(b),u=hero(b);if(s?.return?.unit&&u){for(const k of Object.keys(u))delete u[k];Object.assign(u,clone(s.return.unit));}if(s?.return?.active)b.active=s.return.active;}
 function recover(b){if(!blocked(b))return false;restorePose(b);const s=state(b);if(s.return?.camera)s.recoveredCamera=clone(s.return.camera);delete s.return;delete s.fallProgress;s.state='READY';s.recovered=true;return true;}
@@ -32,16 +31,20 @@ function eligible(app){if(!safe(app)||state(app.engine.b).recovered)return false
  return inZone(hero(b),z);
 }
 function begin(app,reason='approach'){if(!safe(app))return false;const b=app.engine.b,s=state(b),u=hero(b);s.return={unit:clone(u),active:b.active,camera:cameraSnapshot(app.scene)};s.state='FALLING';s.fallProgress=0;s.reason=reason;delete s.recovered;
- app.cancelInput?.();app.acc=0;app.honroVoidSession={elapsed:0,line:0,lineAge:0,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
+ app.cancelInput?.();app.acc=0;app.honroVoidSession={elapsed:0,line:0,lastInputAt:-Infinity,returning:0,focus:G.document?.activeElement,rootInert:app.root?.inert,rootAria:app.root?.getAttribute?.('aria-hidden'),hudOpacity:G.document?.body?.style?.getPropertyValue?.('--void-hud-opacity')||''};
  save(app);mountOverlay(app);app.updateAudio?.();return true;
 }
 function mountOverlay(app){if(!G.document?.createElement)return;const session=app.honroVoidSession,host=G.document.createElement('section');host.className='honro-void-scene';host.setAttribute('role','dialog');host.setAttribute('aria-modal','true');host.setAttribute('aria-label','설오가 떨어진 검은 공간');host.setAttribute('aria-describedby','honro-void-instructions');host.tabIndex=-1;
- host.innerHTML='<canvas class="honro-void-actor" aria-hidden="true"></canvas><p class="honro-void-text" role="status" aria-live="polite" aria-atomic="true"></p><span id="honro-void-instructions" class="honro-void-sr">화면을 누르거나 Enter, Space로 이어갑니다. Escape 또는 화면을 길게 누르면 멈춤 메뉴가 열립니다. Tab으로 장면 넘기기와 멈춤 버튼을 찾을 수 있습니다.</span><button type="button" class="honro-void-surface" aria-label="다음 문장"></button><button type="button" class="honro-void-access honro-void-pause">잠시 멈춤</button><button type="button" class="honro-void-access honro-void-skip">장면 넘기기</button>';
+ host.innerHTML='<canvas class="honro-void-actor" aria-hidden="true"></canvas><p class="honro-void-text" role="status" aria-live="polite" aria-atomic="true"></p><span id="honro-void-instructions" class="honro-void-sr">화면을 누르거나 Enter, Space로 이어갑니다. Escape 또는 잠시 멈춤 버튼으로 멈춤 메뉴를 엽니다.</span><span class="honro-void-hint" aria-hidden="true">화면 누르기 · Enter / Space</span><button type="button" class="honro-void-surface" aria-label="다음 문장"></button><button type="button" class="honro-void-access honro-void-pause">잠시 멈춤</button><button type="button" class="honro-void-access honro-void-skip">장면 넘기기</button>';
  session.host=host;session.canvas=host.querySelector('canvas');session.text=host.querySelector('.honro-void-text');
  const surface=host.querySelector('.honro-void-surface');
- surface.onclick=ev=>{ev.preventDefault();if(session.suppressClick){session.suppressClick=false;return;}advance(app);};
- surface.onpointerdown=()=>{session.pressAge=0;session.pressing=true;};surface.onpointerup=surface.onpointercancel=()=>{session.pressing=false;};
- host.querySelector('.honro-void-pause').onclick=()=>pause(app);host.querySelector('.honro-void-skip').onclick=()=>skip(app);
+ // Click is the sole pointer activation path: a touch's compatibility click
+ // cannot advance a second time. The same short guard handles double taps.
+ surface.onclick=ev=>{ev.preventDefault();ev.stopPropagation();advance(app);};
+ for(const [selector,action]of [['.honro-void-pause',pause],['.honro-void-skip',skip]])host.querySelector(selector).onclick=ev=>{ev.preventDefault();ev.stopPropagation();action(app);};
+ // Reserve both speakers' longest line at the current font/viewport, even
+ // while another line is displayed. The actor never shifts between cuts.
+ for(const align of ['far','near']){const measure=G.document.createElement('p');measure.className='honro-void-text honro-void-measure';measure.dataset.align=align;measure.setAttribute('aria-hidden','true');measure.textContent=sceneLines.filter(l=>l.align===align).sort((a,b)=>b.text.length-a.text.length)[0].text;host.appendChild(measure);session[align+'Measure']=measure;}
  if(app.root){app.root.inert=true;app.root.setAttribute?.('aria-hidden','true');}G.document.body.classList.add('honro-void-active');G.document.body.appendChild(host);host.focus?.({preventScroll:true});
  paint(app);
 }
@@ -59,11 +62,11 @@ function finish(app){if(!blocked(app))return false;const b=app.engine.b,s=state(
  if(G.HonroStory?.start)G.HonroStory.start(app,lines,{title:'검은 집하장'});else app.sayLines?.(lines);return true;
 }
 function abort(app){if(!blocked(app)){cleanup(app);return false;}restore(app);const s=state(app.engine.b);delete s.return;delete s.fallProgress;s.state='READY';s.recovered=true;cleanup(app);app.updateAudio?.();save(app);return true;}
-function advance(app){const session=app.honroVoidSession,s=state(app.engine?.b);if(!blocked(app)||!session||app.modal?.classList.contains('open')||s.state!=='VOID'||session.lineAge<sceneLines[session.line].wait)return false;
- session.lineAge=0;if(session.line<sceneLines.length-1)session.line++;else{s.state='RETURNING';session.returning=0;}paint(app);return true;
+function advance(app){const session=app.honroVoidSession,s=state(app.engine?.b);if(!blocked(app)||!session||app.modal?.classList.contains('open')||s.state!=='VOID'||now()-session.lastInputAt<INPUT_GUARD)return false;
+ session.lastInputAt=now();if(session.line<sceneLines.length-1)session.line++;else{s.state='RETURNING';session.returning=0;}paint(app);return true;
 }
-function skip(app){if(!blocked(app)||!app.honroVoidSession)return false;app.close?.();state(app.engine.b).state='RETURNING';app.honroVoidSession.returning=0;paint(app);return true;}
-function pause(app){if(!blocked(app))return false;const session=app.honroVoidSession;if(session)session.pressing=false;const body='<div class="pause-menu"><button class="primary" data-action="close">돌아가기</button><button data-action="void-skip">장면 넘기기</button><button data-action="settings">설정</button><button data-action="void-leave">입구 화면으로 · 이 장면은 다시 걷기</button></div>';if(G.HonroMenuUI)G.HonroMenuUI.shell(app,'잠시 머무르기',body,{kind:'pause-dialog'});else app.open?.(body,'pause-dialog');return true;}
+function skip(app){if(!blocked(app)||!app.honroVoidSession||state(app.engine.b).state==='RETURNING')return false;app.close?.();state(app.engine.b).state='RETURNING';app.honroVoidSession.returning=0;paint(app);return true;}
+function pause(app){if(!blocked(app))return false;const body='<div class="pause-menu"><button class="primary" data-action="close">돌아가기</button><button data-action="void-skip">장면 넘기기</button><button data-action="settings">설정</button><button data-action="void-leave">입구 화면으로 · 이 장면은 다시 걷기</button></div>';if(G.HonroMenuUI)G.HonroMenuUI.shell(app,'잠시 머무르기',body,{kind:'pause-dialog'});else app.open?.(body,'pause-dialog');return true;}
 function key(app,ev){if(!blocked(app)||app.modal?.classList.contains('open'))return false;if(ev.ctrlKey||ev.metaKey||ev.altKey)return false;
  if(ev.code==='Escape'){ev.preventDefault();if(!ev.repeat)pause(app);return true;}
  if(ev.code==='Tab'){const host=app.honroVoidSession?.host,buttons=host?[...host.querySelectorAll('button')]:[],i=buttons.indexOf(G.document.activeElement);if(buttons.length&&(i<0||ev.shiftKey&&i===0||!ev.shiftKey&&i===buttons.length-1)){ev.preventDefault();buttons[ev.shiftKey?buttons.length-1:0].focus();}return true;}
@@ -72,12 +75,26 @@ function key(app,ev){if(!blocked(app)||app.modal?.classList.contains('open'))ret
  // remain available and the normal modal keeps its keyboard/focus behavior.
  if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','KeyA','KeyD','KeyE','KeyF','ControlLeft','ControlRight'].includes(ev.code))ev.preventDefault();return true;
 }
+// Rasterize the existing rig once. Measure all nontransparent pixels rather
+// than relying on collision height (which excludes hair, bow and clothing).
+function actorImage(app,session){if(session.actorImage)return session.actorImage;
+ const image=G.document.createElement('canvas');image.width=image.height=768;const c=image.getContext('2d');if(!c?.getImageData)return null;
+ const actor=state(app.engine.b).return.unit;c.save();c.translate(384,600);c.scale(2,2);c.translate(-actor.x,-actor.y);app.scene.unitBody(c,actor,0);c.restore();
+ const pixels=c.getImageData(0,0,768,768).data;let left=768,top=768,right=0,bottom=0;
+ for(let y=0;y<768;y++)for(let x=0;x<768;x++)if(pixels[(y*768+x)*4+3]){left=Math.min(left,x);right=Math.max(right,x+1);top=Math.min(top,y);bottom=Math.max(bottom,y+1);}
+ if(right<=left||bottom<=top)return null;return session.actorImage={image,left,top,width:right-left,height:bottom-top};
+}
 function paint(app){const session=app.honroVoidSession,b=app.engine?.b,s=state(b);if(!session||!session.host)return;session.host.dataset.phase=s.state;
  const falling=['FALLING','DARKENING'].includes(s.state),dark=falling?clamp((session.elapsed-TIMING.fall)/TIMING.fade):1,text=s.state==='VOID'?sceneLines[session.line].text:'';
  if(session.text.textContent!==text)session.text.textContent=text;session.text.dataset.align=sceneLines[session.line].align;
  session.host.style.setProperty('--void-dark',String(dark));G.document?.body?.style?.setProperty?.('--void-hud-opacity',String(1-dark));if(dark>=1)G.document?.body?.classList.add('honro-void-dark');
  const cv=session.canvas,c=cv?.getContext?.('2d');if(!c?.setTransform)return;const w=G.innerWidth||800,h=G.innerHeight||600,dpr=Math.min(2,G.devicePixelRatio||1);if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);}c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);
- if(dark>0&&s.state!=='RETURNING'&&app.scene?.unitBody){const actor=hero(b),scale=app.scene.scale,rect=app.scene.canvas?.getBoundingClientRect?.()||{left:0,top:0,width:w,height:h};c.save();c.globalAlpha=dark;c.translate(rect.left+rect.width*.5,rect.top+rect.height*.5+48*scale);c.scale(scale,scale);c.translate(-actor.x,-actor.y);app.scene.unitBody(c,actor,0);c.restore();}
+ if(dark>0&&s.state!=='RETURNING'&&app.scene?.unitBody){const sprite=actorImage(app,session);if(!sprite)return;
+  const far=session.farMeasure.getBoundingClientRect(),near=session.nearMeasure.getBoundingClientRect(),top=far.bottom+28,bottom=near.top-28;
+  const scale=Math.min(Math.min(180,h*.20)/sprite.height,Math.max(0,bottom-top)/sprite.height,w*.5/sprite.width),width=sprite.width*scale,height=sprite.height*scale,left=(w-width)/2,y=top+(bottom-top-height)/2;
+  session.actorBounds={left,top:y,right:left+width,bottom:y+height,width,height};
+  c.save();c.globalAlpha=dark;c.drawImage(sprite.image,sprite.left,sprite.top,sprite.width,sprite.height,left,y,width,height);c.restore();
+ }
 }
 function drawFall(app){const scene=app.scene;if(!scene?.render)return;
  // Reuse the ordinary world painter with its existing presentation switches.
@@ -88,11 +105,10 @@ function drawFall(app){const scene=app.scene;if(!scene?.render)return;
 }
 function frame(app,dt){if(!blocked(app))return;const session=app.honroVoidSession;if(!session){recover(app.engine.b);restoreRecoveredCamera(app);app.updateAudio?.();return;}if(G.document?.hidden||app.modal?.classList.contains('open'))return;
  const s=state(app.engine.b);dt=Math.min(.06,Math.max(0,dt));session.elapsed+=dt;
- if(session.pressing){session.pressAge+=dt;if(session.pressAge>=.6){session.suppressClick=true;pause(app);return;}}
  if(['FALLING','DARKENING'].includes(s.state)){s.fallProgress=clamp(session.elapsed/(TIMING.fall+TIMING.fade));const u=hero(app.engine.b),original=s.return.unit,t=s.fallProgress;u.x=original.x+75*t*t;u.y=original.y+900*t*t;u.vx=0;u.vy=0;u.airborne=true;u.jumping=true;
   if(app.scene){app.scene.x=u.x;app.scene.y=u.y-48;app.scene.scale=s.return.camera.scale+(.95-s.return.camera.scale)*clamp(session.elapsed/TIMING.fall);app.scene.manual=true;drawFall(app);}
-  if(session.elapsed>=TIMING.total){s.state='VOID';session.lineAge=0;}else if(session.elapsed>=TIMING.fall)s.state='DARKENING';
- }else if(s.state==='VOID'){session.lineAge+=dt;}else if(s.state==='RETURNING'){session.returning+=dt;if(session.returning>=.35){finish(app);return;}}
+  if(session.elapsed>=TIMING.total){s.state='VOID';}else if(session.elapsed>=TIMING.fall)s.state='DARKENING';
+ }else if(s.state==='RETURNING'){session.returning+=dt;if(session.returning>=.35){finish(app);return;}}
  paint(app);
 }
 function beforeManifest(app,m){if(!enabled(app.engine?.b)||m?.id!=='family-manifest'||state(app.engine.b).state==='RESOLVED')return false;

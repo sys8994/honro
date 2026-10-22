@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: new depot budget unchanged
+
+15 !== 10
+
+    at file:///tmp/honro-void-baseline/tests/split-v1-population-cap.mjs:10:86 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 15,
+  expected: 10,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

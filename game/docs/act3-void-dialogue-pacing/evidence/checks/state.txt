@@ -1,0 +1,8 @@
+PASS actual reload during FALLING restores READY and safe pose
+PASS actual reload during DARKENING restores READY and safe pose
+PASS actual reload during VOID restores READY and safe pose
+PASS actual reload during RETURNING restores READY and safe pose
+PASS visible skip during FALLING, 100 repeated skips, completion and aftermath reload
+PASS visible skip during DARKENING, 100 repeated skips, completion and aftermath reload
+PASS visible skip during VOID, 100 repeated skips, completion and aftermath reload
+PASS hidden-document production frame freeze (controlled document.hidden, no OS lifecycle claim)

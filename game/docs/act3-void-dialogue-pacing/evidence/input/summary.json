@@ -1,0 +1,93 @@
+{
+  "status": "passed",
+  "review": "input",
+  "sourceBase": "a52518157ef1143c83d1693fea556c3882c62ca8",
+  "sourceDirty": " HONRO.html                                         |   2 +-\n HONRO_WORKSHOP.html                                |   2 +-\n game/docs/act3-void-dialogue-pacing/README.md      |  48 +++++++-\n index.html                                         |   2 +-\n web/entries/game.0fb03bfff4d42691.js               |   1 -\n web/entries/game.247a78baaca3a7b1.html             | 113 ------------------\n web/entries/game.467ae7aa7711a4f5.js               |   1 -\n web/entries/game.5a284406285eb221.html             | 113 ------------------\n web/entries/game.8becc0d28bc797cb.html             | 113 ------------------\n web/entries/game.c38163be691aa93a.js               |   1 -\n web/entries/workshop.b49a3e40a5b07d32.js           |   1 -\n web/entries/workshop.cbd026584df72c03.js           |   1 -\n web/entries/workshop.fd432ebf9d8dde92.js           |   1 -\n web/manifest.json                                  | 126 ++++++++++-----------\n web/runtime/ordered-common-2.0de47a8b4271bca4.js   |   1 -\n web/runtime/ordered-common-8.77be70c2a33c4119.js   |   1 -\n web/runtime/ordered-game-17.f29aeb728c38f5be.js    |   1 -\n web/styles/game-src-act3-void.bc0568cbc4ae56e4.css |  15 ---\n .../game-src-skill-icons.81fe00df097f4552.css      |  47 --------\n 19 files changed, 107 insertions(+), 483 deletions(-)\n",
+  "checks": [
+    {
+      "name": "desktop real taps/compatibility click, double input, key repeats, Enter/Space, pause/settings/focus cycle and safe skip",
+      "detail": {
+        "entryObservedMs": 1204.3000000000466,
+        "return": {
+          "units": true,
+          "active": true,
+          "round": true,
+          "ends": true,
+          "items": true,
+          "camera": true,
+          "stream": true,
+          "musicPaused": true,
+          "voidPaused": false,
+          "musicTime": 0.041465,
+          "musicBeforeTime": 0.020035,
+          "musicEnabled": false,
+          "overlay": false,
+          "inert": false,
+          "witness": true,
+          "saved": "RESOLVED",
+          "savedDialogue": "act3-void-v1-return",
+          "lines": [
+            [
+              "담허",
+              "발을 헛디뎠나? 다친 데는 없나?"
+            ],
+            [
+              "설오",
+              "누군가 말했습니다. 저보다 먼저, 답을 구하러 온 이가 있었다고."
+            ],
+            [
+              "담허",
+              "……나는 아무 소리도 못 들었네. 우선 이곳부터 벗어나세."
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "name": "mobile real taps/compatibility click, double input, key repeats, Enter/Space, pause/settings/focus cycle and safe skip",
+      "detail": {
+        "entryObservedMs": 1381,
+        "return": {
+          "units": true,
+          "active": true,
+          "round": true,
+          "ends": true,
+          "items": true,
+          "camera": true,
+          "stream": true,
+          "musicPaused": true,
+          "voidPaused": false,
+          "musicTime": 0.03843,
+          "musicBeforeTime": 0.014683,
+          "musicEnabled": false,
+          "overlay": false,
+          "inert": false,
+          "witness": true,
+          "saved": "RESOLVED",
+          "savedDialogue": "act3-void-v1-return",
+          "lines": [
+            [
+              "담허",
+              "발을 헛디뎠나? 다친 데는 없나?"
+            ],
+            [
+              "설오",
+              "누군가 말했습니다. 저보다 먼저, 답을 구하러 온 이가 있었다고."
+            ],
+            [
+              "담허",
+              "……나는 아무 소리도 못 들었네. 우선 이곳부터 벗어나세."
+            ]
+          ]
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Controlled late-stage safe poses; no normal full chapter/combat completion.",
+    "Chromium desktop and mobile emulation, no physical mobile device.",
+    "document.hidden override is a controlled visibility fixture.",
+    "No 30-chapter playthrough or performance benchmark."
+  ]
+}

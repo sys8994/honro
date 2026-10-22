@@ -1,0 +1,22 @@
+PASS First real stake branch, then empty slot, then first equipped slot
+PASS Manual M09 keeps its slot and rank, without replacement narration
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(app.modal.innerHTML.includes('data-action="stake-retry"'))
+
+    at file:///tmp/honro-void-baseline/tests/stake-preparation.mjs:17:465
+    at check (file:///tmp/honro-void-baseline/tests/stake-preparation.mjs:8:25)
+    at file:///tmp/honro-void-baseline/tests/stake-preparation.mjs:17:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

@@ -7,6 +7,7 @@ import {appHarness,plain,report,KEY} from './app-regression-helpers.mjs';
 const h=await appHarness(),{g}=h;
 if(!g.HonroAct3Void)vm.runInContext(await readFile('shared/runtime/act3-void.js','utf8'),g);
 const V=g.HonroAct3Void,A=g.HonroAct3,P=g.HonroStakeCrossing,checks=[];
+let wallTime=0;g.performance={now:()=>wallTime};
 const check=(name,fn)=>{fn();checks.push(name);console.log('PASS',name);};
 function fixture({old=false,lead='archer'}={}){
  const app=h.load(h.profileThrough(26));app.launch(27);h.finish(app);app.turnNotice=null;app.done=false;app.modal.classList.remove('open');
@@ -17,7 +18,7 @@ function fixture({old=false,lead='archer'}={}){
  place(a,x-40);place(m,x+40);b.active=lead==='mage'?m.id:a.id;b.side=0;b.phase='aim';b.projectiles=[];b.volley=undefined;app.scene.x=1234;app.scene.y=3456;app.scene.scale=.7;app.scene.manual=true;
  return {app,e,b,a,m,landing,place};
 }
-function step(app,seconds){for(let n=0;n<Math.ceil(seconds/.05);n++)V.frame(app,.05);}
+function step(app,seconds){for(let n=0;n<Math.ceil(seconds/.05);n++){wallTime+=50;V.frame(app,.05);}}
 function resolve(f){const camera=f.b.honroAct3Void.return.camera,expected=Object.fromEntries(['x','y','scale','manual'].map(k=>[k,camera[k]]));assert(V.skip(f.app));step(f.app,.4);assert.equal(f.b.honroAct3Void.state,'RESOLVED');assert.deepEqual(plain(f.app.storyCamera),plain(expected));assert.equal(f.app.dialogue?.lines[0][0],'담허');assert.equal(f.app.dialogue?.lines[0][2].storyId,V.KEY+'-return');h.finish(f.app);}
 check('New deep gallery approach triggers with either companion leading and before physics can apply a fall',()=>{
  for(const lead of ['archer','mage']){const f=fixture({lead});assert(V.eligible(f.app));const origin={x:f.a.x,y:f.a.y},mage=plain(f.m);f.e.tick(1/120);assert.equal(f.b.honroAct3Void.state,'FALLING');step(f.app,.3);assert(f.a.y>origin.y);assert(f.a.x>origin.x);assert.deepEqual(plain(f.m),mage);assert.equal(f.b.active,lead==='mage'?f.m.id:f.a.id);assert.equal(f.a.hp,f.b.honroAct3Void.return.unit.hp);resolve(f);assert.equal(f.a.x,origin.x);assert.equal(f.a.y,origin.y);}
@@ -54,20 +55,43 @@ check('FALLING paints without aim, active markers or objective arrows and restor
  scene.render=function(e,dt,selected,power,charging,effectDt,paused){draws++;assert.equal(selected,'');assert.equal(this.skillPreview,true);assert.equal(this.missionTargets.length,0);assert.equal(this.goalFocus,null);assert.equal(this.storyTween,null);assert.equal(paused,true);};
  V.begin(f.app);V.frame(f.app,.05);assert.equal(draws,1);assert.equal(scene.missionTargets,targets);assert.equal(scene.goalFocus,focus);assert.equal(scene.storyTween,tween);assert(!Object.hasOwn(scene,'skillPreview'));V.abort(f.app);
 });
-check('Readable fall tracks Seolo for 2.8 seconds, darkens for 1.8, then holds black; hidden tabs freeze the scene',()=>{
- const f=fixture();V.begin(f.app);step(f.app,2);assert.equal(f.b.honroAct3Void.state,'FALLING');assert.equal(f.app.scene.x,f.a.x);assert.equal(f.app.scene.y,f.a.y-48);assert(f.a.y-f.b.honroAct3Void.return.unit.y>150);
- step(f.app,1);assert.equal(f.b.honroAct3Void.state,'DARKENING');const elapsed=f.app.honroVoidSession.elapsed,pose=plain(f.a);g.document.hidden=true;step(f.app,10);g.document.hidden=false;assert.equal(f.app.honroVoidSession.elapsed,elapsed);assert.deepEqual(plain(f.a),pose);
- step(f.app,1.7);assert.equal(f.b.honroAct3Void.state,'DARKENING');step(f.app,.4);assert.equal(f.b.honroAct3Void.state,'VOID');resolve(f);
+check('Entry lasts 1.4 seconds; hidden tabs freeze every transition',()=>{
+ const f=fixture();V.begin(f.app);step(f.app,.5);assert.equal(f.b.honroAct3Void.state,'FALLING');assert.equal(f.app.scene.x,f.a.x);assert.equal(f.app.scene.y,f.a.y-48);
+ step(f.app,.4);assert.equal(f.b.honroAct3Void.state,'DARKENING');const elapsed=f.app.honroVoidSession.elapsed,pose=plain(f.a);g.document.hidden=true;step(f.app,10);g.document.hidden=false;assert.equal(f.app.honroVoidSession.elapsed,elapsed);assert.deepEqual(plain(f.a),pose);
+ step(f.app,.55);assert.equal(f.b.honroAct3Void.state,'VOID');assert.equal(V.TIMING.total,1.4);resolve(f);
 });
-check('Rapid input cannot skip the silences; keyboard/pause/skip/return are idempotent',()=>{
- const f=fixture();V.begin(f.app);for(let n=0;n<100;n++)V.advance(f.app);assert.equal(f.b.honroAct3Void.state,'FALLING');step(f.app,V.TIMING.total+.1);for(let n=0;n<100;n++)V.advance(f.app);assert.equal(f.app.honroVoidSession.line,0);
- step(f.app,V.sceneLines[0].wait+.1);assert(V.advance(f.app));assert.equal(f.app.honroVoidSession.line,1);assert(!V.advance(f.app));const age=f.app.honroVoidSession.lineAge;V.pause(f.app);step(f.app,2);assert.equal(f.app.honroVoidSession.lineAge,age);f.app.close();
+check('Immediate full lines accept deliberate input with only a 120ms duplicate guard; repeats and pause consume no cuts',()=>{
+ const f=fixture();V.begin(f.app);for(let n=0;n<100;n++)V.advance(f.app);assert.equal(f.b.honroAct3Void.state,'FALLING');step(f.app,V.TIMING.total+.05);
+ assert(V.advance(f.app));for(let n=0;n<100;n++)assert(!V.advance(f.app));assert.equal(f.app.honroVoidSession.line,1);
+ const event={code:'Space',repeat:true,preventDefault(){}};step(f.app,.15);V.key(f.app,event);assert.equal(f.app.honroVoidSession.line,1);
+ V.key(f.app,{...event,repeat:false});assert.equal(f.app.honroVoidSession.line,2);
+ const age=f.app.honroVoidSession.elapsed;V.pause(f.app);step(f.app,2);assert.equal(f.app.honroVoidSession.elapsed,age);f.app.close();
  resolve(f);assert(!V.finish(f.app));assert(!V.abort(f.app));assert(!V.begin(f.app));assert(!V.skip(f.app));assert(!V.eligible(f.app));
 });
-check('All authored nameless text can be read normally before a quiet return',()=>{
- const f=fixture();V.begin(f.app);step(f.app,V.TIMING.total+.1);for(let i=0;i<V.sceneLines.length;i++){step(f.app,V.sceneLines[i].wait+.1);assert.equal(f.app.honroVoidSession.line,i);assert(V.advance(f.app));}
+check('Duplicate guard uses real event time even when render frames stall',()=>{
+ const f=fixture();V.begin(f.app);step(f.app,1.45);assert(V.advance(f.app));assert(!V.advance(f.app));
+ wallTime+=121;assert(V.advance(f.app));assert.equal(f.app.honroVoidSession.line,2);resolve(f);
+});
+check('Exact approved five-cut script, no blanks or forced waits, and exact three-line aftermath',()=>{
+ assert.deepEqual(plain(V.sceneLines),[
+  {text:'여긴…… 누구십니까?',align:'near'},
+  {text:'또 답을 들으러 왔느냐.',align:'far'},
+  {text:'저는 사람을 찾고 있습니다.',align:'near'},
+  {text:'그자는 달랐다. 죽은 이의 말이 아니라, 죽음 너머의 답을 원했다.',align:'far'},
+  {text:'너는 아직 돌아갈 길이 있다.',align:'far'}
+ ]);
+ assert.deepEqual(plain(V.returnLines),[['담허','발을 헛디뎠나? 다친 데는 없나?'],['설오','누군가 말했습니다. 저보다 먼저, 답을 구하러 온 이가 있었다고.'],['담허','……나는 아무 소리도 못 들었네. 우선 이곳부터 벗어나세.']]);
+ const f=fixture();V.begin(f.app);step(f.app,V.TIMING.total+.05);for(let i=0;i<V.sceneLines.length;i++){assert.equal(f.app.honroVoidSession.line,i);assert(V.advance(f.app));step(f.app,.15);}
  assert.equal(f.b.honroAct3Void.state,'RETURNING');step(f.app,.4);assert.equal(f.b.honroAct3Void.state,'RESOLVED');
  const text=V.sceneLines.map(l=>l.text).join(' ');for(const forbidden of ['대도사','저문골','묵종','무명사','70년','80년','선택'])assert(!text.includes(forbidden));
+});
+check('Skipping from every transition or cut finishes once without resetting the return timer or bypassing the manifest',()=>{
+ for(const phase of ['FALLING','DARKENING','VOID','RETURNING']){const f=fixture(),before=plain(f.a),memory=plain(A.memory(f.b));let starts=0;const start=g.HonroStory.start;g.HonroStory.start=(...args)=>{starts++;return start(...args);};
+  try{V.begin(f.app);if(phase==='DARKENING')step(f.app,.85);if(['VOID','RETURNING'].includes(phase))step(f.app,1.45);if(phase==='RETURNING')V.skip(f.app);
+   assert.equal(f.b.honroAct3Void.state,phase);if(phase!=='RETURNING')assert(V.skip(f.app));step(f.app,.15);const time=f.app.honroVoidSession.returning;for(let i=0;i<50;i++)assert(!V.skip(f.app));assert.equal(f.app.honroVoidSession.returning,time);step(f.app,.25);
+   assert.equal(starts,1);assert.equal(f.b.honroAct3Void.state,'RESOLVED');assert.deepEqual(plain(f.a),before);assert.deepEqual(plain(A.memory(f.b)),memory);assert(!V.finish(f.app));assert.equal(starts,1);h.finish(f.app);
+  }finally{g.HonroStory.start=start;}
+ }
 });
 check('Transient save/reload always restores the pre-fall pose and READY without reopening black on Continue',()=>{
  for(const phase of ['FALLING','DARKENING','VOID','RETURNING']){const f=fixture(),before=plain(f.a),camera=plain({x:f.app.scene.x,y:f.app.scene.y,scale:f.app.scene.scale,manual:f.app.scene.manual});V.begin(f.app);if(phase==='DARKENING')step(f.app,V.TIMING.fall+.1);else if(phase!=='FALLING')step(f.app,V.TIMING.total+.1);if(phase==='RETURNING')V.skip(f.app);assert.equal(f.b.honroAct3Void.state,phase);

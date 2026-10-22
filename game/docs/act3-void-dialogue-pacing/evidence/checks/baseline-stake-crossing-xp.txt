@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Shared XP receives only the newly earned difference
+
+0 !== 47
+
+    at file:///tmp/honro-void-baseline/tests/stake-crossing-xp.mjs:20:75 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 0,
+  expected: 47,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
