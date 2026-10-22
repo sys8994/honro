@@ -24,7 +24,7 @@ G.HonroProgression.initialize=function(b,profile){if(!active(b))return initializ
  // mount must not retune enemies, reset xpGranted or rebuild that ledger.
  if(b.honroGrowth)return;
  for(const u of b.units)if(u.side===1)A.tuneEncounter(u,14);
- const out=initialize(b,profile);if(b.honroGrowth){const reserve=12+4*.6;b.honroGrowth.weight+=reserve;b.honroGrowth.vertical14WaveWeight=reserve;b.honroGrowth.vertical14Revision=1;for(const u of b.units)if(u.side===1)G.HonroProgression.enemyXP(b,u);}return out;
+ const out=initialize(b,profile);if(b.honroGrowth){const wave=A.steps(b).find(s=>s.id==='hold-refuge')?.wave?.count||12,reserve=wave+Math.ceil(wave/3)*.6;b.honroGrowth.weight+=reserve;b.honroGrowth.vertical14WaveWeight=reserve;b.honroGrowth.vertical14Revision=1;for(const u of b.units)if(u.side===1)G.HonroProgression.enemyXP(b,u);}return out;
 };
 const cap=E.populationCap;
 E.populationCap=function(b){return active(b)&&b.honroVerticalStage14PopulationCap===55?55:cap(b);};
@@ -43,17 +43,17 @@ G.HonroObjectiveGuide.enhance=function(b,st,result){let out=enhance(b,st,result)
  const counted=q=>{const s=clears.get(q.id);return s?{...q,text:s.label+(q.done?' · 제압 완료':' · 남은 대상 '+A.enemiesFor(b,s).length+'명')}:q;};
  out={...out,visibleChecklist:(out.visibleChecklist||[]).map(counted),checklist:(out.checklist||[]).map(counted)};
  const current=A.current(b)?.id;
- if(current==='clear-village'){
+ if(current==='clear-village'&&clears.has(current)){
   // Protection is still live after the timed hold. This changes only the
   // current instruction, never NPC vulnerability or the original clear goal.
-  const instruction='피난민을 지키며 남은 들림을 제압하세요';
+  const instruction=clears.get(current)?.label||'피난 다리 곁의 위협을 제압하세요';
   return{...out,currentInstruction:instruction,summary:instruction,visibleChecklist:(out.visibleChecklist||[]).map(q=>q.id===current?{...q,text:instruction+' · 남은 대상 '+A.enemiesFor(b,clears.get(current)).length+'명'}:q),checklist:(out.checklist||[]).map(q=>q.id===current?{...q,text:instruction+' · 남은 대상 '+A.enemiesFor(b,clears.get(current)).length+'명'}:q)};
  }
  if(current!=='hold-refuge')return out;
- const h=b.honroState?.act2?.holds?.['hold-refuge']||{},m=b.honroState?.vertical14||{},progress=Math.min(6,h.progress||0),spawned=h.spawned||0;
+ const h=b.honroState?.act2?.holds?.['hold-refuge']||{},m=b.honroState?.vertical14||{},step=A.steps(b).find(s=>s.id==='hold-refuge'),rounds=step.rounds,count=step.wave.count,progress=Math.min(rounds,h.progress||0),spawned=h.spawned||0;
  const blocked=Object.entries(m.warnings||{}).find(([id,w])=>!m.entries?.[id]&&!w.cancelled&&w.status==='blocked'),side={west:'서쪽',east:'동쪽',inner:'다리 안쪽'}[blocked?.[1]?.side]||'도구';
- const instruction=h.guarded===false?'표시된 원으로 돌아오세요':h.contested?'다리 안의 들림을 제압하세요':blocked&&progress>=6?side+' 진입로를 비워 주세요':progress>=6&&spawned<12?'다가오는 들림을 막아 주세요':'피난민을 지키세요 · '+progress+'/6턴';
- const detail='피난민 보호 · '+progress+'/6턴 · 굴에서 나온 들림 '+spawned+'/12'+(blocked?' · '+side+' 진입 대기':'');
+ const instruction=h.guarded===false?'표시된 원으로 돌아오세요':h.contested?'다리 안의 들림을 제압하세요':blocked&&progress>=rounds?side+' 진입로를 비워 주세요':progress>=rounds&&spawned<count?'다가오는 들림을 막아 주세요':'피난민을 지키세요 · '+progress+'/'+rounds+'턴';
+ const detail='피난민 보호 · '+progress+'/'+rounds+'턴 · 굴에서 나온 들림 '+spawned+'/'+count+(blocked?' · '+side+' 진입 대기':'');
  return{...out,currentInstruction:instruction,summary:detail,visibleChecklist:(out.visibleChecklist||[]).map(q=>q.id==='hold-refuge'?{...q,text:detail}:q),checklist:(out.checklist||[]).map(q=>q.id==='hold-refuge'?{...q,text:detail}:q)};
 };
 
@@ -92,7 +92,7 @@ function acceptOpportunity(app){const e=app.engine,b=e.b,action=e.honroVerticalS
 function prepareWaves(app){const b=app.engine.b;if(!active(b))return;if(ended(app)){cancel(app);return;}
  acceptOpportunity(app);if(paused(app))return;
  const step=A.current(b),h=A.memory(b).holds?.['hold-refuge'],spawned=h?.spawned||0,m=memory(b);
- if(step?.id==='hold-refuge'&&spawned<12){const point=b.honroMarkers.find(p=>p.id==='hold-refuge');
+ if(step?.id==='hold-refuge'&&spawned<(step.wave?.count||0)){const point=b.honroMarkers.find(p=>p.id==='hold-refuge');
   if(point&&app.engine.heroesAlive().some(u=>Math.hypot(u.x-point.x,u.y-point.y)<step.radius)){
    const source='hold-refuge-'+spawned,at=b.honroVerticalStage14Spec?.entries?.[source];
    if(sources.includes(source)&&at&&!m.warnings[source]&&!m.entries[source]){m.warnings[source]={serial:serial(b),round:b.round,side:at.side,status:'warned',offered:{}};app.event(at.warning||'피난 다리 진입로에서 도구 부딪치는 소리가 들린다. 다음 행동 동안 대비하세요.');app.dirty=true;}

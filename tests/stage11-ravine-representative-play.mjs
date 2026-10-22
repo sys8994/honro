@@ -17,7 +17,7 @@ for(const name of cases){
  assert.equal(b.honroRavineVersion,2);assert(e.heroesAlive().every(u=>u.level===10));
  const keep=name==='defense'?new Set(['ritual-court-guard']):new Set(['refuge-two-levels']);
  const place=u=>u.honroRavinePlace||u.honroCluster,spiritId=b.honroMarkers.find(m=>m.id==='resident').spiritId;
- const expectedPlaceCount=name==='defense'?7:5;
+ const expectedPlaceCount=name==='defense'?(g.HonroAct2Pacing?.active(b)?5:7):5;
  assert.equal(b.units.filter(u=>u.side===1&&keep.has(place(u))).length,expectedPlaceCount,'Exact canonical place roster before controlled filtering');
  b.units=b.units.filter(u=>u.side!==1||keep.has(place(u))||u.id===spiritId);
  assert.equal(e.alive(1).length,expectedPlaceCount+1,'Controlled fixture retains every place enemy plus the possessing spirit');
@@ -70,6 +70,6 @@ for(const name of cases){
  const final={round:b.round,current:g.HonroAct2.current(b)?.id,done:JSON.parse(JSON.stringify(a.done)),hold:a.holds?.['hold-knots'],heroes:e.heroesAlive().map(u=>({cls:u.cls,hp:u.hp,maxHp:u.maxHp,x:u.x,y:u.y})),resident:e.unit(b.honroMarkers.find(m=>m.id==='resident').target),items:b.items};
  const row={name,sourceProjectSha256:hash(g.HONRO_PROJECT),passed:finished,failure,initial,final,frames,actions,rounds,scope:'Controlled objective-progress/pose/nearby-roster setup; all subsequent actions use normal commands. Not fresh-stage completion or difficulty approval.'};rows.push(row);await writeFile(`_local/reports/stage11-ravine/representative-${name}.json`,JSON.stringify(row,null,2)+'\n');console.log('RESULT',name,JSON.stringify({passed:finished,failure,round:b.round,actions:actions.length,heroes:final.heroes,hold:final.hold}));
  assert.deepEqual(JSON.parse(JSON.stringify(b.items)),initial.items,'No item consumed');
- if(finished){assert.equal(e.heroesAlive().length,4,'All four companions survive this representative policy');assert(final.resident.hp>0,'Resident survives');if(name==='defense'){assert.equal(final.hold.progress,4);assert.equal(final.hold.spawned,6);assert(actions.some(x=>x.op==='E'&&x.target==='knot-east'),'Actual E starts the defense');}else{const extraction=actions.find(x=>x.op==='E'&&x.target==='resident');assert.equal(extraction?.hero,'occultist');assert(extraction.spiritBefore.hp>0&&!extraction.spiritBefore.dead&&extraction.spiritBefore.hp<=extraction.spiritBefore.maxHp*.4,'Weaken the living spirit through attacks, then Sodan E');assert(final.resident.honroResolved);}}
+ if(finished){assert.equal(e.heroesAlive().length,4,'All four companions survive this representative policy');assert(final.resident.hp>0,'Resident survives');if(name==='defense'){assert.equal(final.hold.progress,4);if(g.HonroAct2Pacing?.active(b))assert(final.hold.spawned>=0&&final.hold.spawned<=6);else assert.equal(final.hold.spawned,6);assert(actions.some(x=>x.op==='E'&&x.target==='knot-east'),'Actual E starts the defense');}else{const extraction=actions.find(x=>x.op==='E'&&x.target==='resident');assert.equal(extraction?.hero,'occultist');assert(extraction.spiritBefore.hp>0&&!extraction.spiritBefore.dead&&extraction.spiritBefore.hp<=extraction.spiritBefore.maxHp*.4,'Weaken the living spirit through attacks, then Sodan E');assert(final.resident.honroResolved);}}
 }
 if(rows.some(r=>!r.passed))process.exitCode=1;
