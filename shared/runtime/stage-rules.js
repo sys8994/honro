@@ -23,7 +23,7 @@
     addForegroundDecor(b);
     G.HonroLayouts.upgrade(b);
     G.HonroQuestTargets?.migrate(b);
-    if(b.honroGeometryReady){repairEmbeddedSave(b);return b;}
+    if(b.honroGeometryReady){const drain=G.HonroStage15Drain?.repairSaved(b);repairEmbeddedSave(b,new Set(drain?.affected||[]));return b;}
     for(const u of b.units || []){
       if(!u || u.dead || u.honroObjectiveTarget || typeof u.x !== 'number' || typeof u.y !== 'number') continue;
       const flying=!!G.HonroWorld.archetypes[u.honroType]?.flying;
@@ -37,9 +37,9 @@
   }
   // Repair actual solid penetration on load, including saves made after an older
   // repair. Valid supported, jumping and falling bodies keep exact state.
-  function repairEmbeddedSave(b){
+  function repairEmbeddedSave(b,handled=new Set()){
     for(const u of b.units||[]){
-      if(u.dead||u.hp<=0||u.fixed||u.carriedBy!==undefined||u.airborne&&b.projectiles.some(p=>p.body&&p.owner===u.id))continue;
+      if(handled.has(u.id)||u.dead||u.hp<=0||u.fixed||u.carriedBy!==undefined||u.airborne&&b.projectiles.some(p=>p.body&&p.owner===u.id))continue;
       const inside=b.terrain.some(t=>!t.broken&&!t.oneWay&&G.HONRO_CORE.terrainRectIntersects(t,u.x-u.r*.55,u.y-u.h+6,u.r*1.1,Math.max(3,u.h-13),.15));
       // The rendering-width rectangle can overlap a legitimate uphill support.
       // Keep that pose only if exact foot contact and physical body clearance
