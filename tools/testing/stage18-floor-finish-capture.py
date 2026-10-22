@@ -46,7 +46,7 @@ with sync_playwright() as pw:
    drag(cx,310,max(25,min(w-25,cx+dx)),310)
  def fixed(name,x,y,z,w=1440,h=900):
   p.set_viewport_size({'width':w,'height':h});p.wait_for_timeout(100)
-  p.evaluate("""v=>{const a=HonroApp,s=a.scene;Object.assign(s,{manual:true,x:v.x,y:v.y,scale:v.z,editorView:v.name==='overview',skillPreview:v.name==='overview',goalFocus:null,cinematic:null,storyTween:null});s.render(a.engine,0,'',.6,false,0)}""",dict(name=name,x=x,y=y,z=z));snap(name,'Fixed production camera; no gameplay actions')
+  p.evaluate("""v=>{const a=HonroApp,s=a.scene;Object.assign(s,{manual:true,x:v.x,y:v.y,scale:v.z,editorView:v.name==='overview',skillPreview:v.name==='overview',goalFocus:null,cinematic:null,storyTween:null});s.render(window.__stage18FixtureEngine||a.engine,0,'',.6,false,0)}""",dict(name=name,x=x,y=y,z=z));snap(name,'Fixed production camera; no gameplay actions')
  if group in ['ui','camera','mobile','final']:
   snap('entry-default','Actual fresh UI entry/default follow')
   p.mouse.move(min(610,p.viewport_size['width']/2),310);p.mouse.wheel(0,757);p.wait_for_timeout(120);p.mouse.wheel(0,757);p.wait_for_timeout(240);snap('minimum-entry','Actual UI wheel two pages')
@@ -63,5 +63,12 @@ with sync_playwright() as pw:
   if group=='final' and name not in ['overview','bell','under-bell']:continue
   if group not in ['ui','final'] and group!=focus:continue
   fixed(name,x,y,z)
- sources=['tools/environment/authored-rock-planes.mjs','shared/data/campaign.json','tools/environment/stage18-floor-finish.mjs','shared/runtime/act2-spatial-art.js','shared/runtime/renderer.js','shared/map/bounds.js','web/manifest.json']
+ if group=='detail':
+  p.evaluate('HonroApp.frame=()=>{}');p.wait_for_timeout(80);original=p.evaluate('JSON.stringify(HonroApp.engine.b)')
+  p.evaluate((ROOT/'tools/testing/stage18-bell-render-fixture.js').read_text())
+  for phase in ['suspended','lowering','settled']:
+   scope=p.evaluate("""phase=>{const a=HonroApp,q=HonroStage18BellRenderFixture(a.engine.b,phase);window.__stage18FixtureEngine=new HONRO_CORE.Engine(q.battle,()=>{},false);return q.scope;}""",phase)
+   fixed('state-'+phase,7350,6900,.3);rows[-1]['mode']=scope
+   assert p.evaluate('JSON.stringify(HonroApp.engine.b)')==original
+ sources=['tools/testing/stage18-bell-render-fixture.js','tools/environment/authored-rock-planes.mjs','shared/data/campaign.json','tools/environment/stage18-floor-finish.mjs','shared/runtime/act2-spatial-art.js','shared/runtime/renderer.js','shared/map/bounds.js','web/manifest.json']
  report={'sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'workingTree':subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True),'scope':'Fresh isolated debug UI; actual wheel/drag and explicitly separate fixed cameras. No combat completion/FPS claim.','rows':rows,'sourceHashes':{f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest()for f in sources if(ROOT/f).exists()},'errors':errors,'httpFailures':http};(out/'capture.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');b.close();assert not errors,errors;assert not http,http

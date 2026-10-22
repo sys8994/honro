@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import vm from 'node:vm';
+import {createCanvas,Path2D as NativePath,DOMMatrix} from '@napi-rs/canvas';
+import {runtimeParts} from '../shared/build.mjs';
+import {STAGE18_FLOOR_IDS,applyStage18FloorFinish} from '../tools/environment/stage18-floor-finish.mjs';
+const base='793a9a953d6f82038d44dc44b51ea5a01ce996c4',before=JSON.parse(execFileSync('git',['show',base+':shared/data/campaign.json'],{maxBuffer:40e6})),after=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
+const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex');
+const normalized=structuredClone(after),s=normalized.stages[17],old=before.stages[17];delete s.design.stage18FloorFinish;s.design.space.terrainPlanes=old.design.space.terrainPlanes;assert.deepEqual(normalized,before,'Only Stage18 floor/roof planes and visual metadata may change');
+const kept=after.stages[17].design.space.terrainPlanes.filter(p=>!p.stage18FloorFinish);assert.deepEqual(kept,old.design.space.terrainPlanes.filter(p=>!STAGE18_FLOOR_IDS.includes(p.terrainId)),'All original temple/route planes exact');assert.equal(after.stages[17].terrains.length,65);assert.equal(after.stages[17].design.space.routes.length,27);
+assert.deepEqual(JSON.parse(JSON.stringify(applyStage18FloorFinish(structuredClone(before)))),after,'Reproducible author');assert.deepEqual(JSON.parse(JSON.stringify(applyStage18FloorFinish(structuredClone(after)))),after,'Idempotent author');
+assert.deepEqual(execFileSync('git',['diff','--name-only',base,'--','shared','game/src','game/config'],{encoding:'utf8'}).trim().split('\n'),['shared/data/campaign.json'],'All nonvisual shared/game inputs byte exact to793a');
+for(const id of ['act2-floor','cave-roof']){const t=old.terrains.find(t=>t.id===id),p=after.stages[17].design.space.terrainPlanes.find(p=>p.id==='v18-floor-'+id+'-mother');assert(p);for(const axis of ['x','y']){const k=axis==='x'?0:1;for(const fn of [Math.min,Math.max])assert(Math.abs(fn(...p.points.map(p=>p[k]))-fn(...t.points.map(p=>p[axis])))<.01,'Whole solid visual coverage '+id+'/'+axis);}}
+let allocations=0;const Path2D=new Proxy(NativePath,{construct(t,args){allocations++;return Reflect.construct(t,args);}}),g=vm.createContext({console,performance,structuredClone,Path2D,DOMMatrix,document:{createElement:()=>createCanvas(64,64)},navigator:{userAgent:'stage18-floor-check'},matchMedia:()=>({matches:true})});g.window=g;
+for(const source of await runtimeParts({vector:true,render:true}))vm.runInContext(source,g);
+const p=g.HONRO_PROJECT,st=p.stages[17],b=g.HonroMaps.createBattle(st,p),art=g.HonroAct2SpatialArt,terrains=g.HonroTerrainDomain.render(b),cv=createCanvas(1440,900),c=cv.getContext('2d'),rows=[];
+assert.equal(st.design.space.terrainPlanes.length,after.stages[17].design.space.terrainPlanes.length,'Production planes');
+const original=JSON.stringify(b),prepared=[];c.setTransform(.06,0,0,.06,0,0);
+for(const t of terrains){if(!STAGE18_FLOOR_IDS.includes(t.id))continue;const q=art.prepareTerrain(t,b);assert(q.authoredPlanes.length>0,t.id);assert.equal(q,art.prepareTerrain(t,b));art.terrain(c,t,b);prepared.push([t,q]);rows.push({id:t.id,planes:q.authoredPlanes.length});}
+allocations=0;for(let i=0;i<3;i++)for(const[t,q]of prepared){assert.equal(q,art.prepareTerrain(t,b));art.terrain(c,t,b);}assert.equal(allocations,0,'No new paths during cached material draws');const warmPaths=allocations;
+assert.equal(JSON.stringify(b),original,'Render purity');assert.equal(c.globalAlpha,1);assert(Math.abs(c.getTransform().a-.06)<1e-7);
+const[t,q]=prepared[0];assert.notEqual(q,art.prepareTerrain(t,{...b,sceneVersion:(b.sceneVersion||0)+1}));
+vm.runInContext(await readFile('tools/testing/stage18-bell-render-fixture.js','utf8'),g);
+const phaseRows=[],oldCompiledStage=structuredClone(st);oldCompiledStage.design.space.terrainPlanes=old.design.space.terrainPlanes;delete oldCompiledStage.design.stage18FloorFinish;
+const oldBattle=g.HonroMaps.createBattle(oldCompiledStage,p);oldBattle.session=b.session;
+const strip=b=>{const v=JSON.parse(JSON.stringify(b));v.honroMap.space.terrainPlanes=[];delete v.honroMap.stage18FloorFinish;return v;};
+for(const phase of ['suspended','lowering','settled']){
+ const beforeSource=JSON.stringify(b),q=g.HonroStage18BellRenderFixture(b,phase),oldQ=g.HonroStage18BellRenderFixture(oldBattle,phase),state=q.battle;
+ assert.equal(JSON.stringify(b),beforeSource,'Source battle unchanged');assert.deepEqual(JSON.parse(JSON.stringify(state.units)),JSON.parse(JSON.stringify(b.units)),'Original actors exact');assert.deepEqual(strip(state),strip(oldQ.battle),'Whole bell phase state exact to793a');
+ const snapshot=JSON.stringify(state),records=g.HonroTerrainDomain.render(state).filter(t=>STAGE18_FLOOR_IDS.includes(t.id));for(const t of records)art.terrain(c,t,state);allocations=0;for(let i=0;i<3;i++)for(const t of records)art.terrain(c,t,state);assert.equal(allocations,0,'Phase paths reused');assert.equal(JSON.stringify(state),snapshot,'Phase render pure');assert.equal(c.globalAlpha,1);
+ phaseRows.push({phase,offset:g.HonroStage18Bell.memory(state).offset,status:g.HonroStage18Bell.memory(state).status,sceneVersion:state.sceneVersion,cachedDrawNewPaths:allocations,actorsExact:true,baseStateExact:true,renderPure:true});
+}
+const manifest=JSON.parse(await readFile('web/manifest.json','utf8')),publishedFiles=new Map();
+const builtStage=JSON.parse(await readFile(manifest.files.find(f=>/chapter-18\.[a-f0-9]+\.json$/.test(f.path)).path,'utf8'));assert.deepEqual(builtStage.design.space.terrainPlanes,after.stages[17].design.space.terrainPlanes,'Current build has authored planes');assert.deepEqual(builtStage.design.space.routes,before.stages[17].design.space.routes,'All27 built routes exact');const built17=JSON.parse(await readFile(manifest.files.find(f=>/chapter-17\.[a-f0-9]+\.json$/.test(f.path)).path,'utf8'));assert.deepEqual(built17.design.space.routes,before.stages[16].design.space.routes,'Corrected Stage17 anchors remain exact in generated chapter');
+const baseManifest=JSON.parse(execFileSync('git',['show',base+':web/manifest.json'],{maxBuffer:20e6})),baseChapterFile=baseManifest.files.find(f=>/chapter-18\.[a-f0-9]+\.json$/.test(f.path)),baseChapter=JSON.parse(execFileSync('git',['show',base+':'+baseChapterFile.path],{maxBuffer:20e6})),normalizedChapter=structuredClone(builtStage);normalizedChapter.design.space.terrainPlanes=baseChapter.design.space.terrainPlanes;delete normalizedChapter.design.stage18FloorFinish;assert.deepEqual(normalizedChapter,baseChapter,'Whole generated chapter18 nonvisual exact');
+assert(manifest.publishedGenerations.some(g=>g.sourceSha===base&&g.publishedAt==='2026-10-22T21:38:56Z'));
+for(const gen of manifest.publishedGenerations)for(const f of gen.files)publishedFiles.set(f.path,f);
+for(const f of publishedFiles.values()){const bytes=await readFile(f.path);assert.equal(bytes.length,f.bytes,f.path);assert.equal(createHash('sha256').update(bytes).digest('hex'),f.sha256,f.path);}
+const old934=JSON.parse(execFileSync('git',['show','934fcabd74767d662aee3830585ba807234934cc:web/manifest.json'],{maxBuffer:16e6})),old13=old934.files.filter(f=>/chapter-13(?:-assets)?\./.test(f.path));assert.equal(old13.length,2);for(const f of old13){assert.deepEqual(publishedFiles.get(f.path),f,'934 chapter13 remains protected');const bytes=await readFile(f.path);assert.equal(bytes.length,f.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),f.sha256);}
+const report={pass:true,base,checkedCommit:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),protectedProjectHash:hash(normalized),wholeNonArtProjectAndOther29AndLibraryExact:true,sixtyFiveTerrainsTwentySevenRoutesActorsGoalsNarrativeCameraUnchanged:true,correctedStage17AnchorsExact:true,everyExistingFiniteRockPlatformBellPlaneExact:true,reproducible:true,idempotent:true,renderPure:true,bellPhaseRows:phaseRows,builtArtEqualsCanonical:true,builtChapterNonvisualExact:true,staticPathReuse:true,cachedDrawNewPaths:warmPaths,sceneVersionInvalidation:true,prepared:rows,publishedGraphs:manifest.publishedGenerations.length,protectedPublishedFiles:publishedFiles.size,old934Chapter13:old13.map(f=>f.path),scope:'Visual/data/static reuse checks only. No art approval, normal combat completion or dynamic FPS claim.'};
+await mkdir('_local/reports/stage18-floor-finish',{recursive:true});await writeFile('_local/reports/stage18-floor-finish/preservation.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
