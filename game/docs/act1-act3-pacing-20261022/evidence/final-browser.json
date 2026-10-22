@@ -1,0 +1,94 @@
+{
+  "source": "677ffe8d4afa0d1e37d3cd3de51ded146e2a9302",
+  "scope": "Production browser pixels; prepared camera/escort-state fixtures, real keyboard movement.",
+  "finalOnly": true,
+  "inputs": [
+    {
+      "stage": 8,
+      "scope": "Real keyboard ArrowRight, production App.frame20;23 party/NPC ramp poses and prior escort goals prepared once",
+      "start": {
+        "heroX": 770,
+        "moveLeft": 1352,
+        "npcX": null
+      },
+      "end": {
+        "heroX": 883.0566829427198,
+        "moveLeft": 1238.666666666667,
+        "npcX": null
+      }
+    },
+    {
+      "stage": 22,
+      "scope": "Real keyboard ArrowRight, production App.frame20;23 party/NPC ramp poses and prior escort goals prepared once",
+      "start": {
+        "heroX": 850,
+        "moveLeft": 1640,
+        "npcX": null
+      },
+      "end": {
+        "heroX": 976.6666666666652,
+        "moveLeft": 1513.3333333333394,
+        "npcX": null
+      }
+    },
+    {
+      "stage": 23,
+      "scope": "Real keyboard ArrowRight, production App.frame20;23 party/NPC ramp poses and prior escort goals prepared once",
+      "start": {
+        "heroX": 3220,
+        "moveLeft": 1640,
+        "npcX": 2643.8758511609994
+      },
+      "end": {
+        "heroX": 3333.294110859988,
+        "moveLeft": 1513.3333333333348,
+        "npcX": 2721.3928743809884
+      }
+    }
+  ],
+  "rows": [
+    {
+      "stage": 8,
+      "file": "8-final-central-bier.jpg",
+      "label": "final-central-bier",
+      "camera": [
+        5950,
+        4090,
+        0.36
+      ],
+      "viewport": [
+        1200,
+        700
+      ]
+    },
+    {
+      "stage": 22,
+      "file": "22-final-comparison.jpg",
+      "label": "final-comparison",
+      "camera": [
+        2475,
+        1200,
+        0.38
+      ],
+      "viewport": [
+        1200,
+        700
+      ]
+    },
+    {
+      "stage": 23,
+      "file": "23-final-ramp-progress.jpg",
+      "label": "final-ramp-progress",
+      "camera": [
+        3150,
+        4880,
+        0.42
+      ],
+      "viewport": [
+        1200,
+        700
+      ]
+    }
+  ],
+  "errors": []
+}
