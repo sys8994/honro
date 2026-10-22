@@ -1,0 +1,89 @@
+{
+  "passed": true,
+  "baseline": true,
+  "sourceCommit": "c5b51319ef887943726434d84db596f07254bbd3",
+  "trackedTreeDirty": false,
+  "manifestSha256": "0551e2e07d42a020baf851a0f4bf70bcba5722e66e63dd2073f11a5370b0c6ee",
+  "browser": "154.0.8037.57",
+  "viewport": [
+    720,
+    1560
+  ],
+  "rows": [
+    {
+      "stage": 1,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 268,
+      "y": 1520.3516392030963,
+      "angle": 44,
+      "facing": 1,
+      "display": 44,
+      "moveLeft": 1442,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": 1,
+          "angle": 44
+        }
+      ],
+      "tag": "entry-1"
+    },
+    {
+      "stage": 12,
+      "cls": "archer",
+      "id": "p-archer",
+      "x": 10100,
+      "y": 2380,
+      "angle": 44,
+      "facing": -1,
+      "display": 136,
+      "moveLeft": 1442,
+      "phase": "aim",
+      "intent": null,
+      "axes": {
+        "x": 0,
+        "y": 0
+      },
+      "heroes": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "facing": -1,
+          "angle": 44
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "facing": -1,
+          "angle": 44
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "facing": -1,
+          "angle": 44
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "facing": -1,
+          "angle": 44
+        }
+      ],
+      "tag": "entry-12"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Stage1 extra three heroes are an explicit fresh factory fixture; normal campaign1 still has only Seol-o.",
+    "Production natural App rAF, trusted keyboard/touch and actual Engine/App release, fresh entry/Continue/retry; prepared QA progress. Not normal campaign completion or physical mobile device QA."
+  ]
+}

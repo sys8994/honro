@@ -4440,3 +4440,9 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 11장 주민 화자와 실제 `동굴 주민` 이름이 달라 scene actor가 누락됐다. 해당 장의 `resident` 마커가 명시한 살아 있는 시민만 연결한다. 클래스/첫 시민 추측·주인공 대체·원고/퀘스트 변경은 없다. 초상 없는 모바일 창에도 적용되던 2열 본문 배치가 implicit column을 만들어 버튼 행 너비0/다음 x=-11…28이 되는 것을 실제 DOM으로 재현했다. 초상이 있는 창에만 2열 규칙을 적용하고, 긴 본문에서는 기존 창 안에서 버튼 행을 sticky로 유지한다. 실제 구조 함수/queue로 신고된 주민 1/2·18턴·북쪽 흔적 목표를 fixture로 열어 벡터 동일 픽셀·4화면 터치 위치·열린 대사 저장/재개를 확인했다. 정상18턴 전투 완주나 실기기 재현이 아니다. 집중 입력 검수/사진/최종 실행 SHA는 별도 UI 보고서에 보존한다. 첨부 Library 원본 전송은 proxy403으로 미열람이며 우회하지 않았다.
 
 긴 안내문 추가 경계: 넓은 화면에서 안내 버튼은 본문 옆 열이므로 스크롤 끝에서도 위 경계를 함께 고정한다. 본문 아래/옆 배치의 tail 접근 검사를 구분했다. 안내는 원래 확인 버튼만 제공하며 대화 넘기기를 임의 추가하지 않는다.
+
+## 2026-10-22 · 신규 배치 facing과 월드 조준각 일치
+
+-12장 fresh record의 facing:-1이 makeUnit의 기본 angle44를 남겨 몸은 왼쪽/활·예측·실탄은 오른쪽/HUD136°인 불일치를 만들었다. `HonroUnits.create`만 수정해 facing-only 새 배치가 같은 pitch의 반대 월드각136을 받는다.1장 우측 기본44는 그대로다. 명시 angle/pair/template와 진행 중 save는 보존하며 강제 우측 reset·Continue migration은 없다.
+- 네 동행1/12장 생성·좌우/explicit 저장·NPC/적 native 검사, 기존 aim-readout/20° joystick 검사, 실제 Chromium 키보드/터치·선택/양방향 발사·Continue/retry 및 렌더 battle 순수성이 통과했다.1장의 추가3인은 실제 지형/fresh factory QA fixture이며 정상 roster 변경이 아니다.6개 ranged 탄/2개 원래 meleeAction을 구분했다.
+- 리그/무기/초상화/Engine·조작·기존 empty-occlusion/캐시는 byte-identical. [원인·정확한 SHA·원자료·양방향 JPG·한계](spawn-facing-aim-20261022/README.md). 실기기 미검사. master/Pages는 부모 최종 검토 후 별도 배포.

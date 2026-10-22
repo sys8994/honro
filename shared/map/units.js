@@ -30,6 +30,8 @@ function create(record,b,profile,st){
  if(side===0&&H.hero[u.cls]){
   u.loadout=[...profile.loadouts[u.cls]];u.tune=profile.tuning[u.cls]??.5;C.applyHero(u,b.heroes[u.cls],true);u.h=92;u.acted=false;u.cooldowns={};
  }else if(side===1&&u.combatBaseHp!==undefined){const d=C.DIFFICULTIES[b.difficulty]||C.DIFFICULTIES.normal;u.honroDifficulty=b.difficulty;u.hp=u.maxHp=Math.round(u.combatBaseHp*d.hp);u.attack=u.combatBaseAttack*d.damage;u.xpGranted=0;}
+ const initialFacing=u.facing;
+ if(record.angle!==undefined)u.angle=record.angle;
  if(record.facing!==undefined)u.facing=record.facing;
  if(record.label)u.name=record.label;
  if(record.encounterGroup!==undefined)u.honroCluster=record.encounterGroup;
@@ -38,7 +40,14 @@ function create(record,b,profile,st){
  if(record.miniboss!==undefined)u.honroMidboss=record.miniboss;
  if(record.levelOverride!==undefined){u.level=record.levelOverride;if(side===0){const h=clone(b.heroes[u.cls]);h.xp=C.xpAtLevel(u.level);C.applyHero(u,h,true);}}
  if(record.rank!==undefined)for(const id of u.loadout)u.ranks[id]=record.rank;
- Object.assign(u,clone(record.stageOverrides||{}));C.migrateAirborneBalance(u);return u;
+ Object.assign(u,clone(record.stageOverrides||{}));
+ // Authored facing-only spawns inherit the same muzzle elevation on either
+ // side. Explicit angles/templates stay authoritative; saved battles never
+ // pass through this fresh-unit factory during Continue.
+ const explicitAngle=record.angle!==undefined||record.stageOverrides?.angle!==undefined;
+ if(!explicitAngle&&u.facing!==initialFacing&&Number.isFinite(u.angle))u.angle=180-u.angle;
+ if(explicitAngle&&record.facing===undefined&&record.stageOverrides?.facing===undefined&&Number.isFinite(u.angle))u.facing=Math.cos(u.angle*Math.PI/180)>=0?1:-1;
+ C.migrateAirborneBalance(u);return u;
 }
 function record(kind,id,x,y,team){const d=catalog().find(d=>d.kind===kind);if(!d)throw Error('Unknown unit '+kind);return{id,kind,team:team||d.team,x,y,facing:1};}
 G.HonroUnits={catalog,has,kindOf,create,record,teams};
