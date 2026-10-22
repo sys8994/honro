@@ -17,7 +17,7 @@ export function traverse(g,b,e,u,route,{jump=true}={}){
    // A deliberate, ordinary jump across overlapping branch/ramp joins. This
    // models a real input sequence rather than waiting to fall and correcting it.
    u.moveLeft=u.maxMove;const launched=e.jump(u);if(launched)jumps++;
-   let air=0;for(;launched&&air<180;air++){u.moveLeft=u.maxMove;if(Math.abs(u.x-p.jumpTo.x)>3)e.walk(u,Math.sign(p.jumpTo.x-u.x)*(p.jumpTo.speed||.35),1/60);e.integrateBody(u,1/60);ticks++;if(air>30&&e.grounded(u))break;}
+   let air=0;for(;launched&&air<180;air++){u.moveLeft=u.maxMove;if(air/60>=(p.jumpTo.steerDelaySeconds||0)&&Math.abs(u.x-p.jumpTo.x)>3)e.walk(u,Math.sign(p.jumpTo.x-u.x)*(p.jumpTo.speed||.35),1/60);e.integrateBody(u,1/60);ticks++;if(air>30&&e.grounded(u))break;}
    const landing=e.surface(u.x,u.y-5,u.y+5)?.t?.id;
    if(!launched||air>=180||p.jumpTo.support&&landing!==p.jumpTo.support)failed={reason:'planned jump did not land on intended support',goal:p.jumpTo,x:u.x,y:u.y,landing};
   }
