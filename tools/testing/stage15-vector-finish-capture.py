@@ -34,7 +34,7 @@ with sync_playwright() as pw:
  rows=[]
  def snap(name,mode):
   p.wait_for_timeout(180)
-  row=p.evaluate("""()=>{const a=HonroApp,s=a.scene,b=a.engine.b,r=s.canvas.getBoundingClientRect();return{camera:[s.x,s.y,s.scale],viewport:HonroBounds.viewport(s,r.width,r.height),goal:HonroAct2.current(b)?.id,objectiveText:document.querySelector('#objective-text')?.textContent,phase:b.phase,round:b.round,drain:HonroAct2.memory(b).drainRevealed||false,ledge:b.terrain.find(t=>t.id==='fc15-drained-ledge')?.broken,cache:s.renderCacheStats(),heroes:b.units.filter(u=>u.side===0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp}))}}""")
+  row=p.evaluate("""()=>{const a=HonroApp,s=a.scene,b=(window.__stage15FixtureEngine||a.engine).b,r=s.canvas.getBoundingClientRect();return{camera:[s.x,s.y,s.scale],viewport:HonroBounds.viewport(s,r.width,r.height),goal:HonroAct2.current(b)?.id,objectiveText:document.querySelector('#objective-text')?.textContent,phase:b.phase,round:b.round,drain:HonroAct2.memory(b).drainRevealed||false,ledge:b.terrain.find(t=>t.id==='fc15-drained-ledge')?.broken,cache:s.renderCacheStats(),heroes:b.units.filter(u=>u.side===0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp}))}}""")
   path=out/(name+'.jpg');p.screenshot(path=str(path),type='jpeg',quality=86);assert path.stat().st_size<1_000_000;rows.append({'file':name+'.jpg','mode':mode,**row});print(json.dumps(rows[-1],ensure_ascii=False),flush=True)
  def drag(x0,y0,x1,y1):
   p.mouse.move(x0,y0);p.mouse.down();p.mouse.move(x1,y1,steps=18);p.mouse.up();p.wait_for_timeout(160)
@@ -46,7 +46,7 @@ with sync_playwright() as pw:
    drag(cx,310,max(25,min(w-25,cx+dx)),310)
  def fixed(name,x,y,z,w=1440,h=900):
   p.set_viewport_size({'width':w,'height':h});p.wait_for_timeout(100)
-  p.evaluate("""v=>{const a=HonroApp,s=a.scene;Object.assign(s,{manual:true,x:v.x,y:v.y,scale:v.z,editorView:v.name==='overview',skillPreview:v.name==='overview',goalFocus:null,cinematic:null,storyTween:null});s.render(a.engine,0,'',.6,false,0)}""",dict(name=name,x=x,y=y,z=z));snap(name,'Fixed production camera; no gameplay actions')
+  p.evaluate("""v=>{const a=HonroApp,s=a.scene;Object.assign(s,{manual:true,x:v.x,y:v.y,scale:v.z,editorView:v.name==='overview',skillPreview:v.name==='overview',goalFocus:null,cinematic:null,storyTween:null});s.render(window.__stage15FixtureEngine||a.engine,0,'',.6,false,0)}""",dict(name=name,x=x,y=y,z=z));snap(name,'Fixed production camera; no gameplay actions')
  if group in ['ui','camera','mobile','final']:
   snap('entry-default','Actual fresh UI entry/default follow')
   p.mouse.move(min(610,p.viewport_size['width']/2),310);p.mouse.wheel(0,757);p.wait_for_timeout(120);p.mouse.wheel(0,757);p.wait_for_timeout(240);snap('minimum-entry','Actual UI wheel two pages')
@@ -63,5 +63,13 @@ with sync_playwright() as pw:
   if group=='final' and name not in ['overview','water']:continue
   if group not in ['ui','final'] and group!=focus:continue
   fixed(name,x,y,z)
- sources=['shared/data/campaign.json','tools/environment/stage15-vector-finish.mjs','shared/runtime/act2-spatial-art.js','shared/runtime/renderer.js','shared/map/bounds.js','web/manifest.json']
+ if group=='detail':
+  fixed('water-before',5680,4420,.65)
+  p.evaluate('HonroApp.frame=()=>{}');p.wait_for_timeout(80);original=p.evaluate('JSON.stringify(HonroApp.engine.b)')
+  p.evaluate((ROOT/'tools/testing/stage15-drain-render-fixture.js').read_text())
+  fixture_scope=p.evaluate("""()=>{const a=HonroApp,q=HonroStage15DrainRenderFixture(a.engine.b,a.stage);window.__stage15FixtureEngine=new HONRO_CORE.Engine(q.battle,()=>{},false);return q.scope;}""")
+  fixed('water-after-fixture',5680,4420,.65)
+  assert p.evaluate('JSON.stringify(HonroApp.engine.b)')==original
+  rows[-1]['mode']=fixture_scope
+ sources=['tools/testing/stage15-drain-render-fixture.js','shared/data/campaign.json','tools/environment/stage15-vector-finish.mjs','shared/runtime/act2-spatial-art.js','shared/runtime/renderer.js','shared/map/bounds.js','web/manifest.json']
  report={'sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'workingTree':subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True),'scope':'Fresh isolated debug UI; actual wheel/drag and explicitly separate fixed cameras. No combat completion/FPS claim.','rows':rows,'sourceHashes':{f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest()for f in sources if(ROOT/f).exists()},'errors':errors,'httpFailures':http};(out/'capture.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');b.close();assert not errors,errors;assert not http,http

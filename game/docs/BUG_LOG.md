@@ -4499,3 +4499,8 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 기준6cbda400의 은퇴 gate·3주민 순서·저장 이행·현재 catalogue/guide를 유지하며 승인a70efcdd의 저작 helper/opt-in 및 미술 자료만 통합했다. 옛 campaign/manifest/generated 전체를 가져오지 않고 현재 campaign의 시각 필드와 후벽 한 자산만 재적용했다. 빌드 전 시각 외 전체 프로젝트6cb exact/승인 재질·후벽 exact 통과. 실제 성공6cb/Pages39824368686/2026-10-22T17:40:00Z를 먼저 등록해 공개7그래프446파일과934 chapter13 두 리소스를 보호한다. 후속 build·저장/캐시 검사와 새 구조 목표의 실제 UI를 확인한 뒤 인계하며 master/Pages는 부모 담당이다. [통합 기록](stage-review/stage14-art-current-release-20261022/README.md).
 
 14장 승인 미술 통합 완료: 코드/생성물/검사a8b2d10798770b381391b9cdbbaee6e5eb1f92dc, entry80058be2c7d5a3e3.6cb 전체 campaign을 허용 시각 필드 외 exact·승인 shape2 exact로 보존했고 runtime/current catalogue/guide는 byte exact다. build/typecheck·기존8prefix Continue/대사cursor·retained predicate/terminal-save·정적 캐시/새Path2D0·공개7그래프446파일/934 chapter13 두 bytes 보호 통과. 통합 실제 UI6구도에 새 `상층 주민 구조`와 승인 미술이 함께 보임을 직접 열었고 R20 구 clear-middle→`중층 주민 구조`·저장대사2쪽도 확인했다. 정상R22/30장 재실행·새 미술/게임플레이/원고 수정 없이 최종 문서와 선택 사진만 인계한다. master/Pages는 부모 담당. [통합 최종 SHA·새 목표 사진·검사 범위](stage-review/stage14-art-current-release-20261022/README.md).
+
+
+## 2026-10-22 — 15장 바닥·천장 정적 재질 보완 중
+
+d55의 act2-floor/cave-roof 빈 단색 면·소수 큰 스탬프를 전체 solid 안의 공유 파단/일부 짧은 절리·돌턱으로 저작한다. 기존 비대칭 서/동 아치·발판/물가 면/12충돌·A/B·수문상태·배우·적·목표·원고·Library·타29장은 유지한다. 집중1의 실제 화면에서 일반거리 입구 면이 커 보여 기존 면의 내부 경계를 추가 수정했다. build·시각 외 전체 d55 exact·정적 캐시/재현·멱등·렌더순수성·공개8그래프454파일/934chapter13 두 bytes 보존 통과. 배수 후는 정상 조작과 구분한 clone 시각 fixture이며 관련 모바일/팬·최종 종합은 이어서 확인한다. master/Pages는 미변경. [설계·전후·검사·남은 범위](stage-review/stage15-vector-finish-20261022/README.md).

@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
+import vm from 'node:vm';
+import {createCanvas,Path2D as NativePath,DOMMatrix} from '@napi-rs/canvas';
+import {runtimeParts} from '../shared/build.mjs';
+import {applyStage15VectorFinish} from '../tools/environment/stage15-vector-finish.mjs';
+const base='d55b6c6876a79ce041bf7473ba43b50a10389543',before=JSON.parse(execFileSync('git',['show',base+':shared/data/campaign.json'],{maxBuffer:40e6})),after=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
+const hash=v=>createHash('sha256').update(typeof v==='string'?v:JSON.stringify(v)).digest('hex');
+const normalized=structuredClone(after),s=normalized.stages[14],old=before.stages[14];delete s.design.stage15VectorFinish;s.design.space.terrainPlanes=old.design.space.terrainPlanes;assert.deepEqual(normalized,before,'Only Stage15 visual planes/author metadata may change');
+const kept=after.stages[14].design.space.terrainPlanes.filter(p=>!p.stage15VectorFinish);assert.deepEqual(kept,old.design.space.terrainPlanes.filter(p=>p.terrainId!=='cave-roof'),'All original arch/wet contact planes exact');assert.equal(after.stages[14].terrains.length,12);
+assert.deepEqual(JSON.parse(JSON.stringify(applyStage15VectorFinish(structuredClone(before)))),after,'Reproducible author');assert.deepEqual(JSON.parse(JSON.stringify(applyStage15VectorFinish(structuredClone(after)))),after,'Idempotent author');
+assert.deepEqual(execFileSync('git',['diff','--name-only',base,'--','shared','game/src','game/config'],{encoding:'utf8'}).trim().split('\n'),['shared/data/campaign.json'],'Runtime/images/narrative/water/camera/game inputs unchanged');
+for(const id of ['act2-floor','cave-roof']){const t=old.terrains.find(t=>t.id===id),p=after.stages[14].design.space.terrainPlanes.find(p=>p.id==='v15-finish-'+id+'-mother-rock');assert(p);for(const axis of ['x','y']){const k=axis==='x'?0:1;for(const fn of [Math.min,Math.max])assert(Math.abs(fn(...p.points.map(p=>p[k]))-fn(...t.points.map(p=>p[axis])))<.01,'Whole solid visual coverage '+id+'/'+axis);}}
+let allocations=0;const Path2D=new Proxy(NativePath,{construct(t,args){allocations++;return Reflect.construct(t,args);}}),g=vm.createContext({console,performance,structuredClone,Path2D,DOMMatrix,document:{createElement:()=>createCanvas(64,64)},navigator:{userAgent:'stage15-material-check'},matchMedia:()=>({matches:true})});g.window=g;
+for(const source of await runtimeParts({vector:true,render:true}))vm.runInContext(source,g);
+const p=g.HONRO_PROJECT,st=p.stages[14],b=g.HonroMaps.createBattle(st,p),art=g.HonroAct2SpatialArt,terrains=g.HonroTerrainDomain.render(b),cv=createCanvas(1440,900),c=cv.getContext('2d'),rows=[];
+assert.equal(st.design.space.terrainPlanes.length,after.stages[14].design.space.terrainPlanes.length,'Production planes');
+const original=JSON.stringify(b),prepared=[];c.setTransform(.06,0,0,.06,0,0);
+for(const t of terrains){if(!['act2-floor','cave-roof'].includes(t.id))continue;const q=art.prepareTerrain(t,b);assert(q.authoredPlanes.length>0,t.id);assert.equal(q,art.prepareTerrain(t,b));art.terrain(c,t,b);prepared.push([t,q]);rows.push({id:t.id,planes:q.authoredPlanes.length});}
+allocations=0;for(let i=0;i<3;i++)for(const[t,q]of prepared){assert.equal(q,art.prepareTerrain(t,b));art.terrain(c,t,b);}assert.equal(allocations,0,'No new paths during cached material draws');const warmPaths=allocations;
+assert.equal(JSON.stringify(b),original,'Render purity');assert.equal(c.globalAlpha,1);assert(Math.abs(c.getTransform().a-.06)<1e-7);
+const[t,q]=prepared[0];assert.notEqual(q,art.prepareTerrain(t,{...b,sceneVersion:(b.sceneVersion||0)+1}));
+vm.runInContext(await readFile('tools/testing/stage15-drain-render-fixture.js','utf8'),g);const sourceState=JSON.stringify(b),fixture=g.HonroStage15DrainRenderFixture(b,st),drained=fixture.battle;assert.equal(JSON.stringify(b),sourceState,'Visual fixture cannot mutate source battle');assert.deepEqual(JSON.parse(JSON.stringify(drained.units)),JSON.parse(JSON.stringify(b.units)),'Fixture actors retain exact poses/HP');assert(drained.terrain.find(t=>t.id==='fc15-drained-ledge').broken===false);assert(b.terrain.find(t=>t.id==='fc15-drained-ledge').broken===true);
+const drainBefore=JSON.stringify(drained),drainPrepared=g.HonroTerrainDomain.render(drained).filter(t=>['act2-floor','cave-roof'].includes(t.id));for(const t of drainPrepared)art.terrain(c,t,drained);allocations=0;for(let i=0;i<3;i++)for(const t of drainPrepared)art.terrain(c,t,drained);assert.equal(allocations,0,'Reused drained render state paths');assert.equal(JSON.stringify(drained),drainBefore,'Drained render purity');
+const manifest=JSON.parse(await readFile('web/manifest.json','utf8')),publishedFiles=new Map();
+const builtStage=JSON.parse(await readFile(manifest.files.find(f=>/chapter-15\.[a-f0-9]+\.json$/.test(f.path)).path,'utf8'));assert.deepEqual(builtStage.design.space.terrainPlanes,after.stages[14].design.space.terrainPlanes,'Current build has authored planes');
+assert(manifest.publishedGenerations.some(g=>g.sourceSha===base&&g.publishedAt==='2026-10-22T18:08:34Z'));
+for(const gen of manifest.publishedGenerations)for(const f of gen.files)publishedFiles.set(f.path,f);
+for(const f of publishedFiles.values()){const bytes=await readFile(f.path);assert.equal(bytes.length,f.bytes,f.path);assert.equal(createHash('sha256').update(bytes).digest('hex'),f.sha256,f.path);}
+const old934=JSON.parse(execFileSync('git',['show','934fcabd74767d662aee3830585ba807234934cc:web/manifest.json'],{maxBuffer:16e6})),old13=old934.files.filter(f=>/chapter-13(?:-assets)?\./.test(f.path));assert.equal(old13.length,2);for(const f of old13){assert.deepEqual(publishedFiles.get(f.path),f,'934 chapter13 remains protected');const bytes=await readFile(f.path);assert.equal(bytes.length,f.bytes);assert.equal(createHash('sha256').update(bytes).digest('hex'),f.sha256);}
+const report={pass:true,base,protectedProjectHash:hash(normalized),wholeGameplayAndOther29AndLibraryExact:true,twelveTerrainsRoutesActorsGoalsWaterNarrativeCameraUnchanged:true,originalArchAndWetPlanesExact:true,wholeSolidVisualCoverage:true,reproducible:true,idempotent:true,renderPure:true,drainVisualFixtureSourceAndActorsExact:true,drainedRenderReuseAndPurity:true,builtArtEqualsCanonical:true,staticPathReuse:true,cachedDrawNewPaths:warmPaths,sceneVersionInvalidation:true,prepared:rows,publishedGraphs:manifest.publishedGenerations.length,protectedPublishedFiles:publishedFiles.size,old934Chapter13:old13.map(f=>f.path),scope:'Visual/data/static reuse checks only. No art approval, full campaign, completion or dynamic FPS claim.'};
+await mkdir('_local/reports/stage15-vector-finish',{recursive:true});await writeFile('_local/reports/stage15-vector-finish/preservation.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
