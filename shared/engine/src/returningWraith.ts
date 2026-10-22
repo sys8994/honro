@@ -1,16 +1,30 @@
 import type {Engine} from './engine';
-import type {Projectile,Vec} from './types';
+import type {Battle,Projectile,Vec} from './types';
 import {segRect} from './math';
 export function initializeReturningWraith(p:Projectile){
  p.wraithVersion=1;p.wraithState='outbound';p.wraithPath=[{x:p.x,y:p.y}];p.wraithMarked=[];p.wraithCursor=0;p.wraithPause=0;p.fuseAt=undefined;
 }
-function append(p:Projectile,point:Vec,force=false){const path=p.wraithPath!,last=path[path.length-1];if(force||Math.hypot(point.x-last.x,point.y-last.y)>=20)path.push({...point});}
+/** O05 alone may spend a long time falling from a high platform. Bounds are
+ * world bounds, never camera/upper-sky bounds; malformed/zero-gravity shots
+ * still have a finite observation budget. Shared with outbound prediction. */
+export const WRAITH_OUTBOUND_SECONDS=60;
+export function returningWraithOutboundEnded(b:Pick<Battle,'width'|'height'>,p:Pick<Projectile,'x'|'y'|'age'>){
+ return ![p.x,p.y,p.age].every(Number.isFinite)||p.age>=WRAITH_OUTBOUND_SECONDS||p.x< -170||p.x>b.width+170||p.y>b.height+110;
+}
+function append(p:Projectile,point:Vec,force=false){const path=p.wraithPath!,last=path[path.length-1];if(!force&&Math.hypot(point.x-last.x,point.y-last.y)<20)return;
+ // Keep launch/contact endpoints and a bounded, progressively coarser sample
+ // of the same traversed curve. A full history buffer never deletes a shot.
+ if(path.length>=255){const compact=path.filter((_,i)=>i===0||i===path.length-1||i%2===0);path.splice(0,path.length,...compact);}
+ path.push({x:point.x,y:point.y});
+}
+function returnDeadline(p:Projectile){const path=p.wraithPath!;let distance=0;for(let i=1;i<path.length;i++)distance+=Math.hypot(path[i].x-path[i-1].x,path[i].y-path[i-1].y);return p.age+.32+distance/1100+1;}
+
 function trail(p:Projectile){p.trail.push({x:p.x,y:p.y});if(p.trail.length>32)p.trail.shift();}
 /** A versioned, per-shot bounded path. Old in-flight saves retain their old motion. */
 export function stepReturningWraith(e:Engine,p:Projectile,dt:number){
  if(p.wraithVersion!==1)return false;
  const path=p.wraithPath!,owner=e.unit(p.owner);
- if(!owner||p.age>10){e.remove(p);return true;}
+ if(!owner||![p.x,p.y,p.vx,p.vy,p.age].every(Number.isFinite)||p.age>120||(p.wraithState!=='outbound'&&p.maxAge!==undefined&&p.age>p.maxAge)){e.remove(p);return true;}
  if(p.wraithState==='manifest'){
   p.wraithPause=(p.wraithPause||0)+dt;if(p.wraithPause>=.32){p.wraithState='return';p.wraithCursor=path.length-2;p.hit=[];p.autonomous=true;}return true;
  }
@@ -20,8 +34,8 @@ export function stepReturningWraith(e:Engine,p:Projectile,dt:number){
    const at={x:a.x+(end.x-a.x)*h.t,y:a.y+(end.y-a.y)*h.t};e.hurt(u,p.damage*.28,p.owner,true,{...p,autonomous:true},at);p.hit.push(u.id);p.wraithMarked!.push(u.id);e.fx('rune',at.x,at.y,p.color,20);
   }
   Object.assign(p,{x:end.x,y:end.y,vx:motion.vx,vy:motion.vy});append(p,end);trail(p);
-  if(hit){p.x+=hit.n.x*(p.radius+2);p.y+=hit.n.y*(p.radius+2);append(p,p,true);p.wraithState='manifest';p.wraithPause=0;p.vx=p.vy=0;e.fx('rune',p.x,p.y,p.color,58);e.emit('sound',{name:'spiritSummon'});}
-  else if(p.age>=3.4||path.length>=255||p.x<0||p.x>e.b.width||p.y< -700||p.y>e.b.height+60)e.remove(p);
+  if(hit){p.x+=hit.n.x*(p.radius+2);p.y+=hit.n.y*(p.radius+2);append(p,p,true);p.wraithState='manifest';p.wraithPause=0;p.vx=p.vy=0;e.fx('rune',p.x,p.y,p.color,58);e.emit('sound',{name:'spiritSummon'});p.maxAge=returnDeadline(p);}
+  else if(returningWraithOutboundEnded(e.b,p))e.remove(p);
   return true;
  }
  let remaining=1100*dt;

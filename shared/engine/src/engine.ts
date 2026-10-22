@@ -1,5 +1,5 @@
 import {beastKind,beastLaneClear,beastReach,startBeastCast,tickBeasts} from './beastMelee';
-import {initializeReturningWraith,stepReturningWraith} from './returningWraith';
+import {initializeReturningWraith,stepReturningWraith,returningWraithOutboundEnded,WRAITH_OUTBOUND_SECONDS} from './returningWraith';
 import {captureEater,releaseEater,migrateEaters,eaterTuning} from './eaterMechanics';
 import {waterfallSheet,insideWater,advanceWaterfall,ensureWaterfallBody} from './waterfallPhysics';
 import {HERO_ARMOR_CAP,passiveTuning} from './passiveBalance';
@@ -311,13 +311,13 @@ export class Engine {
         let x = origin.x, y = origin.y, vx = v.vx, vy = v.vy, apex = false, bounce = 0, pierce = 0, meteor = false, closest = 99999;
         const points: Vec[] = [], ignored: string[] = SOUL_SKILLS.has(skill.id)?this.actors(u.side).map(v=>v.id):[], skips: string[] = [];
         let ap: Vec | undefined;
-        const dt = collect ? STEP : 1 / 80, r = body ? u.r : ARROWS.has(skill.mode) ? 3 : 6;
+        const dt = collect||skill.id==='O05' ? STEP : 1 / 80, r = body ? u.r : ARROWS.has(skill.mode) ? 3 : 6;
         let age=0;
-        for (let i = 0; i < Math.ceil((skill.mode.startsWith('honro')?6:12.2) / dt); i++) {
+        for (let i = 0; i < Math.ceil((skill.id==='O05'?WRAITH_OUTBOUND_SECONDS:skill.mode.startsWith('honro')?6:12.2) / dt); i++) {
             age+=dt;
             // Match live pre-motion triggers, including reverseGhost's timed airburst.
             const fuse=(skill.fuse??0)*(skill.mode==='phaseWraith'?(.55+power*1.05):1);
-            if((skill.id==='O05'&&age>=3.4)||(fuse>0&&age>=fuse)||(skill.mode==='reverseGhost'&&(y<-420||age>2.55))){if(collect)points.push({x,y});return {points,x,y,closest,apex:ap};}
+            if((fuse>0&&age>=fuse)||(skill.mode==='reverseGhost'&&(y<-420||age>2.55))){if(collect)points.push({x,y});return {points,x,y,closest,apex:ap};}
             if(skill.mode==='homing'&&i*dt>.12&&!this.inWaterfall({x,y})){const v=this.steer(x,y,vx,vy,u,dt,ignored);vx=v.vx;vy=v.vy;}
             const gravity=skill.gravity??1;
             const motion = this.advanceProjectile({ x, y, vx,vy,wind: meteor ? 0 : skill.wind, gravityScale:gravity,drag:dragFor(skill,meteor?'meteor':skill.mode),skill:skill.id,mode:skill.mode },dt);
@@ -386,7 +386,7 @@ export class Engine {
                 points.push({ x, y });
             // Use the live projectile's removal bounds, including phase-through shots
             // which can leave the map without ever finding a terrain contact.
-            if (y > this.b.height + 110 || x < -170 || x > this.b.width + 170 || y < -1700 || age > (skill.mode.startsWith('honro')?6:12)) {
+            if (skill.id==='O05'?returningWraithOutboundEnded(this.b,{x,y,age}):(y > this.b.height + 110 || x < -170 || x > this.b.width + 170 || y < -1700 || age > (skill.mode.startsWith('honro')?6:12))) {
                 if(collect&&i%3!==0)points.push({x,y});
                 break;
             }
