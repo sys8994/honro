@@ -23,3 +23,9 @@ Library `libfile_979eb1e9bc4c8191afca6b4db53ddcdf`/stage17-before-center.png의 
 `authored-rock-planes.mjs`로 반올림/색 명도·solid 단면·정적 면 기록만 추출했다. stage15/16 고유 mesh/좌표·팔레트/후면 자산은 그대로 두었다. `tests/authored-rock-planes-preservation.mjs`에서 두 author 각각6544 전체 campaign을 바이트까지 재현하고 반복 멱등이며 현재 두 승인 장을 exact 보존하는 것을 확인했다. runtime/common renderer는 바꾸지 않았고 이 문서 단계에서는 campaign도 쓰지 않았다.
 
 공유 처리 검사 첫 실행에서 SVG compile의 빈 gradient 사전은 null prototype, JSON 입력은 일반 object인 메모리 표현 차이로 strict 비교가 실패했다. 승인 전체 JSON 바이트 비교는 이미 같았다. 검사 대상을 실제 저장 JSON으로 직렬화한 뒤 재비교하도록 교정하며 자산/런타임/저장 바이트는 바꾸지 않았다.
+
+## 첫 저작·집중1 발견
+
+원래 인양기·가교·암반 실루엣은 유지했고, 실제 전체/인양기/서쪽을 직접 열었다. 빈 면은 나뉘었지만 첫 후보의 동일 x 경계가 여러 층을 관통해 격자/세로 기둥으로 읽히는 문제가 남아 미술 통과로 쓰지 않는다. 다음 교정은 층별 접합의 x를 엇갈리고 일부 공유 층리/절리를 꺾는 것이며 작은 스탬프를 추가하지 않는다.
+
+첫 관련 불변/재현·멱등/finite 점의 실제 solid 내부·반복 Path2D0는 통과했다. repair 상태 비교는 raw canonical을 현재 evidence/대사 초기화가 끝난 battle과 직접 비교한 잘못된 입력 및 독립 입장의 timestamp session 차이를 드러냈다. 두 쪽에 같은 현재 초기화를 적용하고 같은 session을 명시해 시각 필드만 비교 제외하도록 QA를 고쳤다. 원본/게임/원고는 수정하지 않는다. 강제 repair fixture는 정상 전투가 아니다.
