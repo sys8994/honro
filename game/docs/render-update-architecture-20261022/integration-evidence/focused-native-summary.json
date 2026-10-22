@@ -1,5 +1,5 @@
 {
-  "sourceHead": "6e968e6ca5b21ffcd4ce82d5988083243e59d83c",
+  "sourceHead": "9560c5f6e4bbee333eaff7a704bf0b8383fc16fe",
   "syntax": [
     "main.js",
     "combat-status.js",
@@ -15,5 +15,6 @@
       "command": "node tests/stage23-road-lead-resume.mjs",
       "outcome": "PASS full-roster ramp input, exact Continue, split input equivalence, existing arrival reward exactly once"
     }
-  ]
+  ],
+  "equivalentRuntimeBuildHead": "6e968e6ca5b21ffcd4ce82d5988083243e59d83c"
 }

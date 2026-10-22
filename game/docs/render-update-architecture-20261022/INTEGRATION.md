@@ -24,3 +24,5 @@
 [통합 browser 결과](integration-evidence/browser-summary.json), [source 보존](integration-evidence/preservation.json), [실제 참조/Canvas 검사](integration-evidence/settled-browser.json), [pause 경계](integration-evidence/paused-boundaries.json), [HUD·저장·픽셀](integration-evidence/hud-save-pixels.json), [짧은 pause raw](integration-evidence/short-pause.json), [최종 pause JPG](integration-evidence/final-paused-desktop.jpg). 원래 사용자 점증 렉 미해결 및 정상 전투의 남은 큰 실루엣/궤적 비용은 이전 결론 그대로다.
 
 원격 master/Pages는 변경하지 않았다. 권한 거부·우회·결과 불명 작업 없음.
+
+검사 추적: native/syntax 및 build 호출 당시 source HEAD는9560c5f6이며 런타임 소스는 d0db99ad와 동일하다. 새 generated 산출물을6e968e6c에 커밋한 뒤 browser/짧은 pause를 clean HEAD6e968e6c에서 실행했다. 원본 로그는 Git ignore와 구분해 `.txt`로 보존했다(기존 warm 대기 실패 로그도 내용 그대로 복원). 문서/해시 보존 정리이며 실행 소스는 추가 변경하지 않았다.
