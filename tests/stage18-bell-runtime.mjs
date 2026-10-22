@@ -11,12 +11,12 @@ function fixture(){const q=battlefield(g,18);q.b.honroBellRevision=1;q.b.honroAc
  g.HonroAllies.attach(q.app,q.e);g.HonroEncounters.attach(q.app,q.e);A.attach(q.app,q.e);
  q.e.settleBusy=()=>false;return q;
 }
-function qualify(q,{hold=true,anchor=true}={}){const a=A.memory(q.b);a.done['clear-wards']=a.done.silence=true;a.silenced=true;a.holds={'hold-silence':{progress:hold?4:0,spawned:8,lastRound:q.b.round,guarded:true,continuous:true}};const target=g.HonroQuestTargets.records(q.b).find(t=>t.id==='upper-chain');target.broken=anchor;g.HonroQuestTargets.sync(q.b,target);}
+function qualify(q,{hold=true,anchor=true}={}){const a=A.memory(q.b);a.done['clear-wards']=a.done.silence=true;a.silenced=true;a.holds={'hold-silence':{progress:hold?2:0,spawned:0,lastRound:q.b.round,guarded:true,continuous:true}};const target=g.HonroQuestTargets.records(q.b).find(t=>t.id==='upper-chain');target.broken=anchor;g.HonroQuestTargets.sync(q.b,target);}
 function boundary(q,id){q.app.actorBoundary=id;q.b.honroState.actorTurnSerial=(q.b.honroState.actorTurnSerial||0)+1;S.transition(q.app);q.app.actorBoundary=null;}
 function allOpportunities(q){for(const u of q.e.heroesAlive().filter(u=>!u.summoned&&!u.enthrall))boundary(q,u.id);}
 function resume(q){const b=plain(q.b),e=new C.Engine(b,()=>{},true),app={...q.app,engine:e};g.HonroAllies.attach(app,e);g.HonroEncounters.attach(app,e);A.attach(app,e);e.settleBusy=()=>false;return{...q,b,e,app};}
 check('fresh steps remove lower E and fixture class; old snapshot remains ordered',()=>{
- assert.deepEqual(plain(S.steps.map(s=>s.id)),['clear-wards','silence','hold-silence','upper-chain','bell-descent','leak','keeper','clear-bell']);assert(!S.steps.find(s=>s.id==='upper-chain').requiredClass);assert.equal(S.steps.find(s=>s.id==='hold-silence').parallelGroup,'bell-stabilize');
+ assert.deepEqual(plain(S.steps.map(s=>s.id)),['silence','hold-silence','upper-chain','bell-descent','leak','keeper']);assert(!S.steps.find(s=>s.id==='upper-chain').requiredClass);assert.equal(S.steps.find(s=>s.id==='hold-silence').parallelGroup,'bell-stabilize');
  const old=g.HonroMaps.createBattle(original,{...g.HONRO_PROJECT,stages:[original]},C.defaults(),{origin:'campaign'});assert(!S.active(old));assert.deepEqual(plain(A.steps(old)),original.initialState.honroAct2Steps);assert.equal(g.HonroObjectiveRevision.contentFor(old,g.HONRO_CONTENT.stages[17]).guide,S.legacy.guide);
 });
 check('anchor-first and hold-first both require the second condition',()=>{

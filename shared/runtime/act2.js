@@ -109,7 +109,7 @@ function eligibility(app,m){const b=app.engine.b,s=readySteps(b).find(q=>q.id===
  if(s.requiredClass&&u.cls!==s.requiredClass)return{ok:false,reason:H.hero[s.requiredClass].name+' 필요'};
  if(revision2(b)){
   const threats=interactionThreats(b,m);
-  if(threats.length)return{ok:false,reason:'주변 들림을 먼저 제압하세요'};
+  if(threats.length&&!G.HonroStage18Short?.freeInteraction(b,m))return{ok:false,reason:'주변 들림을 먼저 제압하세요'};
   const spirit=b.units.find(v=>v.id===m.spiritId);
   if(s.kind==='rescue'&&spirit&&!spirit.dead&&spirit.hp>spirit.maxHp*.4)return{ok:false,reason:'붙은 혼을 먼저 약화시키세요 · 체력 40% 이하'};
  }
@@ -257,7 +257,7 @@ function tick(app,dt){const e=app.engine,b=e.b;if(!active(b)||app.dialogue||app.
   if(!revision2(b)&&b.honroStage===18&&!a.silenced&&b.round>=3&&!a.events['bell-first'])wave(app,'bell-first','echo',2);
   if(revision2(b)){
    const plan=G.HonroAct2Plan.forStage(b.honroStage),boss=e.unit('act2-keeper'),convoy=e.unit('objective');
-   if(plan.bossWave&&boss&&boss.hp<=boss.maxHp*.6&&!a.events['keeper-retaliation'])wave(app,'keeper-retaliation',plan.bossWave.kind,plan.bossWave.count,'wave',plan.bossWave.eliteEvery);
+   if(!G.HonroStage18Short?.active(b)&&plan.bossWave&&boss&&boss.hp<=boss.maxHp*.6&&!a.events['keeper-retaliation'])wave(app,'keeper-retaliation',plan.bossWave.kind,plan.bossWave.count,'wave',plan.bossWave.eliteEvery);
    if(plan.progressWave&&a.escort&&convoy?.x>=4400&&!a.events['convoy-ambush'])wave(app,'convoy-ambush',plan.progressWave.kind,plan.progressWave.count,'hold-convoy',plan.progressWave.eliteEvery);
   }
   for(const u of b.units.filter(u=>u.honroEcho&&!u.dead&&!u.manifested)){
