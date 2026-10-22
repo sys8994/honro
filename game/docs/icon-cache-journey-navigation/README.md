@@ -89,6 +89,6 @@ HONRO_ENDING_OUT=game/docs/icon-cache-journey-navigation/evidence/endings python
 
 ## 최신 master와 통합 필요성
 
-최종 확인한 origin/master는 **c0e323ff3df9c5f4120e48d470c8ca80c679c57e**로, 병행 조이스틱 수정이 먼저 반영됐다. `feat/stage-clear-report`는 **66b7cef9cd712b04a2f6acd9fcb23aa9adfe24d6**이며 이 기능을 변경하지 않았다. 조이스틱/통계/경험치 보고서 구현은 이 브랜치에서 손대지 않았다.
+최종 확인한 origin/master는 **b48423b360b2d6d6b1147c16811685f215a33513**다. 부모가 **8f4cfa68**에서 이 작업의 A 아이콘 체크포인트와 먼저 반영된 조이스틱 수정을 통합하고, b48423b3에 통합 체크포인트를 기록했다. 따라서 A는 이미 master 이력에 있으며 이 브랜치의 추가 B 여정첩 변경을 부모가 이어서 통합하면 된다. `feat/stage-clear-report`는 **66b7cef9cd712b04a2f6acd9fcb23aa9adfe24d6**이며 이 기능을 변경하지 않았다. 조이스틱/통계/경험치 보고서 구현은 이 브랜치에서 손대지 않았다.
 
-[통합 미리보기](evidence/integration-preview.json)는 `git merge-tree --write-tree`만 실행했고 실제 merge는 하지 않았다. `shared/runtime/main.js` 소스는 자동 조정 가능하지만, 동시에 재생성한 HTML/웹 해시·manifest와 BUG_LOG의 추가 문단이 충돌한다. **부모는 양쪽 소스를 보존해 통합하고 BUG_LOG 문단을 함께 유지한 뒤 생성물을 다시 빌드**해야 한다. 이후 아이콘·여정첩·조이스틱 집중 검사를 통합본에서 확인하고 기존 Pages에 배포한다. 생성물을 한쪽 것으로 통째로 덮거나 강제 push하면 안 된다. 차단/승인 대기/결과 불명 쓰기는 없으며, master 통합/배포만 위임 범위에 따라 부모 작업으로 남았다.
+[통합 미리보기](evidence/integration-preview.json)는 `git merge-tree --write-tree`만 실행했고 실제 merge는 하지 않았다. A가 들어간 최신 master와의 미리보기에서 런타임 소스 충돌은 없었지만, 동시에 재생성한 HTML/웹 해시·manifest와 BUG_LOG의 추가 문단이 충돌한다. **부모는 양쪽 소스를 보존해 통합하고 BUG_LOG 문단을 함께 유지한 뒤 생성물을 다시 빌드**해야 한다. 이후 아이콘·여정첩·조이스틱 집중 검사를 통합본에서 확인하고 기존 Pages에 배포한다. 생성물을 한쪽 것으로 통째로 덮거나 강제 push하면 안 된다. 차단/승인 대기/결과 불명 쓰기는 없으며, master 통합/배포만 위임 범위에 따라 부모 작업으로 남았다.

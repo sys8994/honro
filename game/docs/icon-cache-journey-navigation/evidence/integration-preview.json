@@ -1,7 +1,7 @@
 {
   "branchRuntime": "47abd35422157fbd1cfb2a72fd1775db38013dbc",
   "base": "275144983f93d0de66bbe6f44ede88a82ca36b56",
-  "latestMaster": "c0e323ff3df9c5f4120e48d470c8ca80c679c57e",
+  "latestMaster": "b48423b360b2d6d6b1147c16811685f215a33513",
   "parallelRefs": [
     "66b7cef9cd712b04a2f6acd9fcb23aa9adfe24d6\trefs/heads/feat/stage-clear-report",
     "c0e323ff3df9c5f4120e48d470c8ca80c679c57e\trefs/heads/fix/joystick-aim-sector-release"
@@ -15,15 +15,39 @@
     "game/docs/BUG_LOG.md",
     "index.html",
     "web/entries/game.04706bb58b3747bc.js",
+    "web/entries/game.1ef731fcf6917e9c.html",
     "web/entries/game.247a78baaca3a7b1.html",
     "web/entries/game.371145d173ddcda3.html",
-    "web/entries/game.3e90ccbf66bca73c.js",
+    "web/entries/game.3cd833669edcbace.html",
+    "web/entries/game.467ae7aa7711a4f5.js",
+    "web/entries/game.46d32bf4af8a5075.html",
+    "web/entries/game.4a19417cadf4aac2.html",
+    "web/entries/game.593778e884b44ee8.js",
+    "web/entries/game.8910192fa71f6afe.js",
+    "web/entries/game.8becc0d28bc797cb.html",
+    "web/entries/game.96b77381df2b2581.html",
+    "web/entries/game.acd5f3c74880c035.html",
     "web/entries/game.c38163be691aa93a.js",
-    "web/entries/game.d51b5d5f79bfbc1b.html",
+    "web/entries/game.e463d73799abc6cd.js",
+    "web/entries/game.e6c6c383d34a0f8c.js",
+    "web/entries/game.ebad284bd8856554.js",
+    "web/entries/game.ecadcd5b67951f9b.js",
+    "web/entries/workshop.1565587b92c56dd6.js",
     "web/entries/workshop.1b5cc7c2eafefcbd.js",
-    "web/entries/workshop.a2d3c80b236845b0.js",
+    "web/entries/workshop.434a1ea676b48fc6.js",
+    "web/entries/workshop.6761a77275785697.js",
+    "web/entries/workshop.88f3a2d2b4fe753a.js",
+    "web/entries/workshop.9d10ac385796ba00.js",
+    "web/entries/workshop.ba69b4eb429478d1.js",
     "web/entries/workshop.cbd026584df72c03.js",
-    "web/manifest.json"
+    "web/entries/workshop.fd432ebf9d8dde92.js",
+    "web/manifest.json",
+    "web/runtime/ordered-game-14.d79f9d8e10b154b0.js",
+    "web/runtime/ordered-game-17.8e568638394a1380.js",
+    "web/runtime/ordered-game-17.f29aeb728c38f5be.js"
   ],
-  "resolution": "Combine BUG_LOG entries. Rebuild generated HTML/web assets after preserving both source changes; rerun focused icon/journey/joystick checks. Parent handles merge/deployment."
+  "resolution": "Combine BUG_LOG entries. Rebuild generated HTML/web assets after preserving both source changes; rerun focused icon/journey/joystick checks. Parent handles merge/deployment.",
+  "branchHeadAtPreview": "239ee397f992bb04bcd79c2181186d87c5bb485d",
+  "iconCheckpointAlreadyIntegratedIntoMaster": true,
+  "iconIntegrationCommit": "8f4cfa68"
 }
