@@ -22,7 +22,9 @@ const provenance={sourceHash,runtimeSha256,gameplayProjectSha256,gameplayRuntime
 if(process.env.HONRO_FULLPLAY_PROVENANCE_ONLY==='1'){await writeFile(`${out}/provenance.json`,JSON.stringify(provenance,null,2));console.log(JSON.stringify(provenance));process.exit(0);}
 let virtualMs=resume?.virtualMs||0;g.performance={now:()=>virtualMs};
 const fixture=current16Entry(g),readiness=fixture.readiness;await writeFile(`${out}/readiness-ledger.json`,JSON.stringify(readiness,null,2));await writeFile(`${out}/camp-training.json`,JSON.stringify({training:fixture.training,allocation:fixture.allocation},null,2));
-const p=resume?.profile||plain(fixture.profile);
+// Keep the production App save envelope; core defaults alone lack its revision
+// and would correctly be rejected by load() before any battle could start.
+const p=resume?.profile||{...plain(g.AppRegression.fresh()),...plain(fixture.profile),revision:g.AppRegression.fresh().revision};
 let app=h.load(p);
 if(resume){
  assert.equal(resume.sourceHash,sourceHash,'Saved battle is exact production project');
