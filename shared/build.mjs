@@ -63,4 +63,88 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   data('HONRO_SPLIT_V1',JSON.parse(await read('shared/data/split-campaign-v1.json')));
   data('HONRO_OPEN_STRUCTURES',JSON.parse(await read('shared/data/open-structures.json')));
   data('HONRO_WATERWORKS_V2',JSON.parse(await read('shared/data/waterworks-v2-content.json')));
-export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1','HonroAct2Pacing','HonroStage11Quest'];
+  data('HONRO_NARRATIVE_CATALOGUE',JSON.parse(await read('shared/data/narrative-current.json')));
+  data('HONRO_NARRATIVE_COMPAT',JSON.parse(await read('shared/data/narrative-compat-v1.json')));
+  data('HONRO_STAGE_CONTRACTS',JSON.parse(await read('shared/data/stage-contracts.json')));
+  for(const name of modelFiles)await file(`shared/runtime/${name}.js`);
+  await file('shared/runtime/camera.js');
+  for(const name of ['bounds','environment','geometry','terrain-domain','stage7-reentry','platform-passages','open-structures','projectile-targets','visual-style','vector-art','space-layout','schema','units','compiler','commands'])await file(`shared/map/${name}.js`);
+  let project=applyCavernTransitionLayers(applyCavernPlaceLayers(await applyAct1SceneComposition(await applyAct2SceneComposition(await applyAct2VectorArt(JSON.parse(await read('shared/data/campaign.json'))))),{existingOnly:true}),{existingOnly:true});
+  project=await applyGeologyArt(project);
+  project=applyCommonCartArt(project);
+  project=await authorAct23QuestRedesign(project);
+  applyOpenStructures(project);
+  project=applyCityTacticalRoutes(project);
+  project=applyStage9And13Tactical(project);
+  project=applyTacticalCityResponses(project);
+  project=applyTacticalWaveWarnings(project);
+  project=applyStoryAnomalyEnvironment(project);
+  project=applyStage28RecordCourt(project);
+  project=applyPlaceEncounters(project);
+  project=applyStage1Positioning(project);
+  project=applyStage2Positioning(project);
+  project=applyStage3Positioning(project);
+  project=applyStage4Positioning(project);
+  project=applyStage6Positioning(project);
+  project=applyStage7Positioning(project);
+  project=applyStage10Positioning(project);
+  // Preserve the opted-in Stage13 finish after legacy transition/scenery authors.
+  // Their terrain/routes remain canonical; this final pass changes art only.
+  if(project.stages.some(s=>s.metadata?.stageId===13&&s.design?.stoneFinish?.revision===1))project=applyStage13VectorFinish(project);
+  parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
+  if(vector){
+    await buildParty();
+    await file('shared/runtime/party-rig.js');
+    await file('shared/assets/party/party.runtime.js');
+    code('shared/assets/rebuild-game-adapter.mjs',(await read('shared/assets/rebuild-game-adapter.mjs')).replace(/^export /gm,'')+
+      '\nglobalThis.resolveRebuildCharacter=resolveRebuildCharacter;globalThis.HonroArcherVisual=HonroArcherVisual;globalThis.HonroPartyVisual=HonroPartyVisual;');
+  }
+  if(render){
+    await buildMonsters();
+    await buildActors();
+    const act1Backdrops={};
+    for(const [key,file] of [['mountains','act1-far.svg'],['gorge','act1-gorge.svg'],['dawn','act2-dawn.svg'],['act3','act3-far.svg']]){
+      const svg=Buffer.from((await readFile(path.join(root,'shared/assets/environment',file),'utf8')).replace(/\bstroke="[^"]*"/g,'stroke="none"'));
+      act1Backdrops[key]='data:image/svg+xml;base64,'+svg.toString('base64');
+    }
+    data('HONRO_ACT1_FAR_DATA',act1Backdrops);
+    const act2Backdrops={};
+    for(const [key,file] of [['clouded','act2-clouded-granite.svg'],['dawn','act2-dawn.svg'],['stage11-ravine','stage11-ravine-far.svg'],['stage11-ravine-readable','stage11-ravine-far-readable.svg']])act2Backdrops[key]='data:image/svg+xml;base64,'+Buffer.from((await readFile(path.join(root,'shared/assets/environment',file),'utf8')).replace(/\bstroke="[^"]*"/g,'stroke="none"')).toString('base64');
+    data('HONRO_ACT2_FAR_DATA',act2Backdrops);
+    data('HONRO_REST_BACKDROPS',await restBackdropData());
+    const painted21=JSON.parse(await read('shared/assets/environment/stage21/painted.json'));
+    for(const [key,file] of Object.entries(painted21.images)){
+      const ext=path.extname(file).slice(1),mime=ext==='jpg'?'jpeg':ext;
+      painted21.images[key]='data:image/'+mime+';base64,'+(await readFile(path.join(root,'shared/assets/environment/stage21',file))).toString('base64');
+    }
+    data('HONRO_STAGE21_PAINTED',painted21);
+    const pilots=JSON.parse(await read('shared/assets/environment/painted-pilots/manifest.json'));
+    for(const [key,file] of Object.entries(pilots.images))pilots.images[key]='data:image/webp;base64,'+(await readFile(path.join(root,'shared/assets/environment/painted-pilots',file))).toString('base64');
+    data('HONRO_PAINTED_PILOTS',pilots);
+    const far=JSON.parse(await read('shared/assets/environment/campaign-far/manifest.json'));
+    for(const [key,file] of Object.entries(far.images))far.images[key]='data:image/webp;base64,'+(await readFile(path.join(root,'shared/assets/environment/campaign-far',file))).toString('base64');
+    data('HONRO_AUTHORED_FAR',far);
+    await file('shared/assets/monsters/monsters.runtime.js');
+    await file('shared/assets/actors/actors.runtime.js');
+    for(const name of ['renderer','art-dark','terrain-skirt','environment-art','map-art-polish','monster-vector','actor-vector','elements','environment-renderer','cave-enclosure','act2-spatial-art','stage11-landscape-art','act2-art','act3-art','act1-spatial-art','terrain-readability','geology-art','geology-rear-support','stage2-layered-road-art','stage18-bell-art','stage30-ferry-art','stage12-quarry-art','stage23-escort-art','stage8-bier-art','object-damage','combat-feedback','story-act1-art','stage5-waterfall-art','stage5-positioning-art','story-act23-art','narrative-art','quest-target-art','story-anomaly-art','visual-hierarchy'])await file(`shared/runtime/${name}.js`);
+  }
+  if(render)await file('shared/runtime/authored-far-art.js');
+  if(app){
+    data('HONRO_JOURNEY_MAPS',JSON.parse(await read('shared/assets/journey-maps/v1/manifest.json')));
+    await file('game/vendor/ui/fa.js');
+    await file('shared/runtime/skill-images.js');
+    for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','music-titles','audio','story','act-endings-content','act-endings','interactions','unit-info','training','skill-preview','journey-art','journey-images','rest-journey','menu-ui','clear-report-ui','main']){
+      await file(`shared/runtime/${name}.js`);
+      // Metadata only: native/full consumers retain the same scripts and order.
+      if(name==='training'||name==='skill-preview')parts.at(-1).optional=name;
+    }
+  }else await file('shared/runtime/stage-rules.js');
+  return parts;
+}
+
+// Keep the same authoring order for native consumers and the external web loader.
+export const projectAuthors=['HonroAct1Roster','HonroObjectiveRevision','HonroNarrativeRevision','HonroStage2Airborne','HonroBellAnomaly','HonroStoryCanonV1','HonroEvidenceQuests','HonroAct2Pacing','HonroNarrativeCatalogue','HonroStage11Quest'];
+export const authorProjectExpression=value=>projectAuthors.reduce((value,name)=>`${name}.author(${value})`,value);
+export async function runtimeParts(options={}) {
+  return (await runtimeEntries(options)).map(entry=>entry.code);
+}
