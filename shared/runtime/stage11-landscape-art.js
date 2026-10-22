@@ -47,6 +47,10 @@ function prepare(t,b){
  const bottom=x=>{const ys=[];for(let i=0;i<ps.length;i++){const a=ps[i],z=ps[(i+1)%ps.length];if(x>=Math.min(a.x,z.x)&&x<=Math.max(a.x,z.x)&&Math.abs(a.x-z.x)>.01)ys.push(a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x));}return Math.max(at(x)+10,...ys);};
  const rim=new Path2D();for(const[a,z]of edges)if(walkRim(t,b,a,z)){rim.moveTo(a.x,a.y);rim.lineTo(z.x,z.y);}
  q={vertices:t.vertices,version:b.sceneVersion,shape,rim,wood,edges,plates:[],grooves:[],moss:[],bands:[],top:at,bottom};
+ // Stage-authored material instances use the existing collider clip and static
+ // tile cache. Old saved battles retain the legacy material below.
+ const authored=b.honroMap?.ravineArt?.materialRevision>=2?b.honroMap.ravineArt.materials?.find(m=>m.terrainId===t.id):null;
+ if(authored)q.authored=authored.faces.map(f=>({path:f.d?path(f.d):P(f.points),fill:f.fill,depthShade:f.depthShade}));
  if(wood){
   const start=Math.min(...edges.flat().map(v=>v.x)),end=Math.max(...edges.flat().map(v=>v.x)),width=end-start;
   const sampleCount=Math.max(8,Math.min(42,Math.ceil(width/70))),xs=Array.from({length:sampleCount},(_,i)=>start+(end-start)*i/(sampleCount-1));
@@ -65,6 +69,23 @@ function prepare(t,b){
    const xx=Math.min(end-20,x+ww*.61),y=at(xx),dep=bottom(xx)-y;
    const crack=path(`M${xx-ww*.18} ${y+dep*.38}Q${xx-ww*.03} ${y+dep*.51} ${xx+ww*.11} ${at(Math.min(end,xx+ww*.11))+dep*.35}M${xx} ${y+dep*.48}q${ww*.02} ${dep*.17} ${ww*.12} ${dep*.20}`);
    q.grooves.push(crack);
+  }
+  // Long fibres follow the complete changing cross-section, so a tapered
+  // root reads as bent timber rather than a flat triangular wedge.
+  if(b.honroMap?.ravineArt?.materialRevision>=2){
+   q.fibres=[];q.bark=[];
+   for(const [i,f]of [.23,.52,.77].entries()){const points=xs.slice(1,-1),up=points.map((x,j)=>[x,at(x)+(bottom(x)-at(x))*(f+.09*Math.sin(j*.38+i))]),down=points.slice().reverse().map((x,j)=>[x,at(x)+(bottom(x)-at(x))*(f+.055+.09*Math.sin((points.length-1-j)*.38+i))]);q.bark.push({path:smooth([...up,...down]),fill:i===1?'#b8a07040':'#302c2590'});}
+   for(const f of [.19,.33,.61,.86])q.fibres.push(smooth(xs.map((x,i)=>[x,at(x)+(bottom(x)-at(x))*(f+.025*Math.sin(i*.7+f*8))]),false));
+  }
+  if(b.honroMap?.ravineArt?.materialRevision>=3){
+   q.seats=[];q.breaks=[];
+   const seats={'rv-west-climbing-trunk':[0,1],'rv-west-main-root':[0,1],'rv-saddle-fallen-trunk':[0,1],'rv-root-east-descent':[0,1],'rv-east-rising-root':[1],'rv-east-canopy-access':[0],'rv-east-cliff-return':[0]};
+   for(const endSeat of seats[t.id]||[]){const reach=Math.min(180,width*.15),site=endSeat?end:start,dir=endSeat?-1:1,points=[0,.22,.49,.78,1].map(u=>site+reach*u*dir),up=points.map(x=>[x,at(x)+(bottom(x)-at(x))*.11]),down=points.slice().reverse().map((x,i)=>[x,at(x)+(bottom(x)-at(x))*(.91-i*.035)]);q.seats.push({path:P([...up,...down]),fill:'#22393e9c'});const x=site+reach*.24*dir,xx=site+reach*.45*dir;q.seats.push({path:P([[x,at(x)+8],[xx,at(xx)+(bottom(xx)-at(xx))*.13],[xx,at(xx)+(bottom(xx)-at(xx))*.37],[x,at(x)+(bottom(x)-at(x))*.5]]),fill:'#647d74'});}
+   if(['rv-saddle-broken-arm','rv-saddle-canopy-crossing','rv-saddle-canopy-landing'].includes(t.id)){
+    const x=end-Math.min(110,width*.13),xx=end-5,y=at(x),d=bottom(x)-y;
+    q.breaks.push({path:P([[x,y+3],[x+18,y+d*.22],[x-8,y+d*.38],[x+21,y+d*.57],[x+8,y+d*.83],[x+32,y+d*.96],[xx,at(xx)+2],[xx,at(xx)+9],[x+10,y+d*.93],[x-7,y+d*.68],[x+3,y+d*.45],[x-14,y+d*.19]]),fill:'#c0a374'});
+    q.breaks.push({path:P([[x+18,y+d*.22],[x+38,y+d*.37],[x+20,y+d*.55],[x+42,y+d*.71],[xx,at(xx)+8],[x+32,y+d*.96],[x+8,y+d*.83],[x+21,y+d*.57],[x-8,y+d*.38]]),fill:'#5b4936'});
+   }
   }
   // Broken side arm alone exposes a torn cambium end. Other connections are
   // continuous wood, never modular beam caps or identical ellipse tokens.
@@ -96,8 +117,11 @@ function terrain(c,t,b){
  if(q.wood){
   c.fillStyle=grad(c,t.x,t.y,t.x+t.w*.24,t.y+t.h,[[0,'#8d6f49'],[.35,'#66513b'],[1,'#282f29']]);c.fill(q.shape);
   for(const band of q.bands){c.fillStyle=band.fill;c.fill(band.path);}
+  for(const f of q.bark||[]){c.fillStyle=f.fill;c.fill(f.path);}
   for(const p of q.plates){c.fillStyle=p.light?'#b0a07028':'#29261f40';c.fill(p.face);}
   c.lineCap='round';c.lineJoin='round';c.strokeStyle='#34271979';c.lineWidth=6;for(const p of q.grooves)c.stroke(p);
+  if(q.fibres){c.lineWidth=3.5;c.strokeStyle='#c0a67880';for(const p of q.fibres)c.stroke(p);}
+  for(const p of [...q.seats||[],...q.breaks||[]]){c.fillStyle=p.fill;c.fill(p.path);}
   if(q.cut){c.strokeStyle='#b79963';c.lineWidth=7;c.stroke(q.cut);}
   c.strokeStyle='#b6a077';c.lineWidth=4;c.stroke(q.rim);
  }else{
@@ -105,7 +129,13 @@ function terrain(c,t,b){
   // cliff. The rounded exposed faces belong to this mass, never to empty air.
   c.fillStyle=grad(c,t.x,t.y,t.x+t.w*.1,t.y+Math.min(t.h,2800),q.connected?[[0,'#96a394'],[.3,'#71877e'],[.72,'#49696b'],[1,'#314e57']]:[[0,'#929982'],[.28,'#6f7560'],[.75,'#525b48'],[1,'#414b3b']]);c.fill(q.shape);
   c.fillStyle=grad(c,t.x,t.y,t.x+t.w,t.y+t.h*.23,[[0,'#b9aa7324'],[.38,'#7c775512'],[.72,'#24322c20'],[1,'#182c2b65']]);c.fill(q.shape);
-  for(const p of q.plates)rockBlock(c,p);
+  if(q.authored){
+   for(const f of q.authored)if(f.depthShade){c.fillStyle=f.fill;c.fill(f.path);}
+   // One shared depth wash per mass replaces a gradient per authored face.
+   // Paths remain prepared once, inside the unchanged static world cache.
+   c.fillStyle=grad(c,t.x,t.y,t.x+t.w*.12,t.y+Math.min(t.h,3400),[[0,'#1d354300'],[.55,'#1d35433d'],[1,'#1d354399']]);c.fill(q.shape);
+   for(const f of q.authored)if(!f.depthShade){c.fillStyle=f.fill;c.fill(f.path);}
+  }else for(const p of q.plates)rockBlock(c,p);
   c.strokeStyle='#18292360';c.lineWidth=10;c.stroke(q.shape);
   c.fillStyle='#495d3e';for(const p of q.moss)c.fill(p);
   c.strokeStyle='#b1bba1';c.lineWidth=5;c.stroke(q.rim);

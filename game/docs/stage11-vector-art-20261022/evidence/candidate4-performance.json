@@ -1,0 +1,322 @@
+{
+  "beforeSha": "8e5571afeba46680144be35df276a4d79301876a",
+  "afterSha": "8d31b09654c0e58eec722093561fffc008d891c5",
+  "method": "Sequential isolated production Chromium: candidate3 first, candidate4 second. 8 warmup, 40 synchronous Scene.render samples per view. Seven affected views. Camera first draw after viewport stabilization is not full page startup or combat FPS.",
+  "sameCameraViewportPhaseGoal": true,
+  "sameBytesAndTiles": true,
+  "warmCacheRebuilds": 0,
+  "beforeErrors": [],
+  "afterErrors": [],
+  "beforeHTTPFailures": [],
+  "afterHTTPFailures": [],
+  "previewAndFinalSourceHashesEqual": true,
+  "rows": [
+    {
+      "view": "overview.jpg",
+      "camera": [
+        8000,
+        7250,
+        0.115
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "medianMs": [
+        2.300000000046566,
+        2.4000000001396984
+      ],
+      "p95Ms": [
+        3,
+        3.1000000000931323
+      ],
+      "firstDrawMs": [
+        102.5999999998603,
+        98.89999999990687
+      ],
+      "tileCount": 12,
+      "worldBytes": 12780288,
+      "warmRebuilds": 0
+    },
+    {
+      "view": "west.jpg",
+      "camera": [
+        3200,
+        6650,
+        0.18
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "medianMs": [
+        6.099999999860302,
+        6.900000000139698
+      ],
+      "p95Ms": [
+        7,
+        7.800000000046566
+      ],
+      "firstDrawMs": [
+        66.19999999995343,
+        74.60000000009313
+      ],
+      "tileCount": 12,
+      "worldBytes": 12780288,
+      "warmRebuilds": 0
+    },
+    {
+      "view": "central.jpg",
+      "camera": [
+        7290,
+        7080,
+        0.43
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "medianMs": [
+        0.9000000001396984,
+        1.1999999999534339
+      ],
+      "p95Ms": [
+        1.6000000000931323,
+        1.6999999999534339
+      ],
+      "firstDrawMs": [
+        45.800000000046566,
+        78.39999999990687
+      ],
+      "tileCount": 8,
+      "worldBytes": 8520192,
+      "warmRebuilds": 0
+    },
+    {
+      "view": "refuge.jpg",
+      "camera": [
+        10350,
+        8470,
+        0.5
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "medianMs": [
+        0.6999999999534339,
+        0.8000000000465661
+      ],
+      "p95Ms": [
+        0.8999999999068677,
+        1.0999999998603016
+      ],
+      "firstDrawMs": [
+        56.699999999953434,
+        72.4000000001397
+      ],
+      "tileCount": 12,
+      "worldBytes": 12780288,
+      "warmRebuilds": 0
+    },
+    {
+      "view": "mobile-trace.jpg",
+      "camera": [
+        11900,
+        7850,
+        0.36
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "medianMs": [
+        0.20000000018626451,
+        0.19999999995343387
+      ],
+      "p95Ms": [
+        0.39999999990686774,
+        0.30000000004656613
+      ],
+      "firstDrawMs": [
+        30.199999999953434,
+        31.899999999906868
+      ],
+      "tileCount": 6,
+      "worldBytes": 6390144,
+      "warmRebuilds": 0
+    },
+    {
+      "view": "max-refuge.jpg",
+      "camera": [
+        10050,
+        8680,
+        1.65
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "medianMs": [
+        0.9000000001396984,
+        1
+      ],
+      "p95Ms": [
+        1.1999999999534339,
+        1.8000000000465661
+      ],
+      "firstDrawMs": [
+        4.899999999906868,
+        4.699999999953434
+      ],
+      "tileCount": 6,
+      "worldBytes": 6390144,
+      "warmRebuilds": 0
+    },
+    {
+      "view": "min-mobile.jpg",
+      "camera": [
+        9000,
+        7800,
+        0.12411764705882353
+      ],
+      "viewport": [
+        844,
+        390
+      ],
+      "medianMs": [
+        1,
+        0.9000000001396984
+      ],
+      "p95Ms": [
+        1.4000000001396984,
+        1.5
+      ],
+      "firstDrawMs": [
+        58.799999999813735,
+        61.800000000046566
+      ],
+      "tileCount": 6,
+      "worldBytes": 6390144,
+      "warmRebuilds": 0
+    }
+  ],
+  "reverseOrderCheck": {
+    "reason": "Initial central camera first draw increased 45.8 to 78.4ms; verify in opposite order rather than hide it.",
+    "method": "candidate4 first, then candidate3, same seven-camera fixture and 8+40 draws, isolated; all data/purity/cache checks and first sample remain separately preserved.",
+    "sameCameraViewportPhaseGoal": true,
+    "sameBytes": true,
+    "warmCacheRebuilds": 0,
+    "beforeErrors": [],
+    "afterErrors": [],
+    "beforeHTTPFailures": [],
+    "afterHTTPFailures": [],
+    "rows": [
+      {
+        "view": "overview.jpg",
+        "medianMs": [
+          2.8999999999068677,
+          3.199999999953434
+        ],
+        "p95Ms": [
+          6.2999999998137355,
+          5.300000000046566
+        ],
+        "firstDrawMs": [
+          117.60000000009313,
+          120.60000000009313
+        ]
+      },
+      {
+        "view": "west.jpg",
+        "medianMs": [
+          7.199999999953434,
+          9.300000000046566
+        ],
+        "p95Ms": [
+          8.100000000093132,
+          17.800000000046566
+        ],
+        "firstDrawMs": [
+          75.69999999995343,
+          93.30000000004657
+        ]
+      },
+      {
+        "view": "central.jpg",
+        "medianMs": [
+          1.1000000000931323,
+          1.1000000000931323
+        ],
+        "p95Ms": [
+          1.5999999998603016,
+          1.9000000001396984
+        ],
+        "firstDrawMs": [
+          51.700000000186265,
+          58.800000000046566
+        ]
+      },
+      {
+        "view": "refuge.jpg",
+        "medianMs": [
+          0.8000000000465661,
+          0.8999999999068677
+        ],
+        "p95Ms": [
+          1.3000000000465661,
+          4.300000000046566
+        ],
+        "firstDrawMs": [
+          66.9000000001397,
+          92.69999999995343
+        ]
+      },
+      {
+        "view": "mobile-trace.jpg",
+        "medianMs": [
+          0.30000000004656613,
+          0.30000000004656613
+        ],
+        "p95Ms": [
+          0.4000000001396984,
+          0.5
+        ],
+        "firstDrawMs": [
+          36.39999999990687,
+          47.699999999953434
+        ]
+      },
+      {
+        "view": "max-refuge.jpg",
+        "medianMs": [
+          1.1999999999534339,
+          1.3000000000465661
+        ],
+        "p95Ms": [
+          2,
+          3
+        ],
+        "firstDrawMs": [
+          5.2000000001862645,
+          4.7999999998137355
+        ]
+      },
+      {
+        "view": "min-mobile.jpg",
+        "medianMs": [
+          1,
+          1.3000000000465661
+        ],
+        "p95Ms": [
+          2.0999999998603016,
+          3.1000000000931323
+        ],
+        "firstDrawMs": [
+          76.29999999981374,
+          84.30000000004657
+        ]
+      }
+    ]
+  }
+}

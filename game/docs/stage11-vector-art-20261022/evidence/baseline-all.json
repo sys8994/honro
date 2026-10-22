@@ -1,0 +1,601 @@
+{
+  "label": "baseline",
+  "sha": "a091c6bd5e64eff748f5028fb6d0080faea3da87",
+  "workingTree": " M tests/stage11-landscape-art.mjs\n",
+  "materialSha256": "c3dcbaa9c909e55ebe80f0ae86d8c142d1876cfbe06d31ed118fd02e09968bc6",
+  "scope": "Production Chromium Scene and HUD; frozen normal entry-level battle/camera/progression fixtures, not full combat completion or real mobile hardware. 40 synchronous warm render samples/view; no concurrent load.",
+  "rows": [
+    {
+      "file": "baseline-overview.jpg",
+      "group": "focus1",
+      "camera": [
+        8000,
+        7250,
+        0.115
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 86.89999999990687,
+      "medianMs": 2.300000000046566,
+      "p95Ms": 3,
+      "cacheBefore": {
+        "worldBuilds": 2,
+        "worldBuildMs": 47.8000000002794,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 25,
+        "bgHits": 7,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 14,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 2,
+        "worldBuildMs": 47.8000000002794,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 65,
+        "bgHits": 47,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 94,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "baseline-west.jpg",
+      "group": "focus1",
+      "camera": [
+        3200,
+        6650,
+        0.18
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 61,
+      "medianMs": 6.199999999953434,
+      "p95Ms": 6.899999999906868,
+      "cacheBefore": {
+        "worldBuilds": 3,
+        "worldBuildMs": 59.299999999580905,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 85,
+        "bgHits": 55,
+        "domainCanvasAllocations": 30,
+        "domainTileBuilds": 30,
+        "screenBuilds": 6,
+        "screenHits": 110,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.21022410381342863,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 3,
+        "worldBuildMs": 59.299999999580905,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 125,
+        "bgHits": 95,
+        "domainCanvasAllocations": 30,
+        "domainTileBuilds": 30,
+        "screenBuilds": 6,
+        "screenHits": 190,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.21022410381342863,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "baseline-central.jpg",
+      "group": "focus2",
+      "camera": [
+        7290,
+        7080,
+        0.43
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 42.299999999813735,
+      "medianMs": 1.1000000000931323,
+      "p95Ms": 2.3999999999068677,
+      "cacheBefore": {
+        "worldBuilds": 4,
+        "worldBuildMs": 67.49999999906868,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 141,
+        "bgHits": 103,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 206,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 4,
+        "worldBuildMs": 67.49999999906868,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 181,
+        "bgHits": 143,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 286,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "tileCount": 8,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "baseline-refuge.jpg",
+      "group": "focus2",
+      "camera": [
+        10350,
+        8470,
+        0.5
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 51.200000000186265,
+      "medianMs": 0.6999999999534339,
+      "p95Ms": 1.2000000001862645,
+      "cacheBefore": {
+        "worldBuilds": 5,
+        "worldBuildMs": 78.69999999878928,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 201,
+        "bgHits": 151,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 302,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 5,
+        "worldBuildMs": 78.69999999878928,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 241,
+        "bgHits": 191,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 382,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "baseline-mobile-trace.jpg",
+      "group": "focus3",
+      "camera": [
+        11900,
+        7850,
+        0.36
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "limits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 31.899999999906868,
+      "medianMs": 0.30000000004656613,
+      "p95Ms": 1.1000000000931323,
+      "cacheBefore": {
+        "worldBuilds": 7,
+        "worldBuildMs": 93.59999999869615,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 254,
+        "bgHits": 198,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 12,
+        "screenHits": 396,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 7,
+        "worldBuildMs": 93.59999999869615,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 294,
+        "bgHits": 238,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 12,
+        "screenHits": 476,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "baseline-max-refuge.jpg",
+      "group": "focus3",
+      "camera": [
+        10050,
+        8680,
+        1.65
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 3.8999999999068677,
+      "medianMs": 1.1999999999534339,
+      "p95Ms": 1.6000000000931323,
+      "cacheBefore": {
+        "worldBuilds": 7,
+        "worldBuildMs": 93.59999999869615,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 294,
+        "bgHits": 245,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 13,
+        "screenHits": 483,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 7,
+        "worldBuildMs": 93.59999999869615,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 294,
+        "bgHits": 285,
+        "domainCanvasAllocations": 62,
+        "domainTileBuilds": 62,
+        "screenBuilds": 13,
+        "screenHits": 523,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "baseline-min-mobile.jpg",
+      "group": "focus3",
+      "camera": [
+        9000,
+        7800,
+        0.12411764705882353
+      ],
+      "viewport": [
+        844,
+        390
+      ],
+      "limits": {
+        "min": 0.12411764705882353,
+        "max": 1.65,
+        "tactical": 0.12411764705882353,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 53.60000000009313,
+      "medianMs": 0.9000000001396984,
+      "p95Ms": 1.8000000000465661,
+      "cacheBefore": {
+        "worldBuilds": 9,
+        "worldBuildMs": 105.49999999883585,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 307,
+        "bgHits": 292,
+        "domainCanvasAllocations": 70,
+        "domainTileBuilds": 70,
+        "screenBuilds": 15,
+        "screenHits": 537,
+        "screenWorldBytes": 786608,
+        "screenBackgroundBytes": 786608,
+        "worldBytes": 6390144,
+        "worldScale": 0.14865088937534013,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 9,
+        "worldBuildMs": 105.49999999883585,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 347,
+        "bgHits": 332,
+        "domainCanvasAllocations": 70,
+        "domainTileBuilds": 70,
+        "screenBuilds": 15,
+        "screenHits": 617,
+        "screenWorldBytes": 786608,
+        "screenBackgroundBytes": 786608,
+        "worldBytes": 6390144,
+        "worldScale": 0.14865088937534013,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "baseline-final-lower-route.jpg",
+      "group": "final",
+      "camera": [
+        11300,
+        8100,
+        0.22
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 15.300000000046566,
+      "medianMs": 0.8000000000465661,
+      "p95Ms": 1.4000000001396984,
+      "cacheBefore": {
+        "worldBuilds": 10,
+        "worldBuildMs": 122.09999999892898,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 372,
+        "bgHits": 339,
+        "domainCanvasAllocations": 87,
+        "domainTileBuilds": 87,
+        "screenBuilds": 17,
+        "screenHits": 631,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 18105408,
+        "worldScale": 0.25,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 10,
+        "worldBuildMs": 122.09999999892898,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 412,
+        "bgHits": 379,
+        "domainCanvasAllocations": 87,
+        "domainTileBuilds": 87,
+        "screenBuilds": 17,
+        "screenHits": 711,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 18105408,
+        "worldScale": 0.25,
+        "backgroundBytes": 0
+      },
+      "tileCount": 17,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "baseline-final-start.jpg",
+      "group": "final",
+      "camera": [
+        1450,
+        6370,
+        0.45
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 55.300000000046566,
+      "medianMs": 6.199999999953434,
+      "p95Ms": 7,
+      "cacheBefore": {
+        "worldBuilds": 11,
+        "worldBuildMs": 133.39999999827705,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 432,
+        "bgHits": 387,
+        "domainCanvasAllocations": 99,
+        "domainTileBuilds": 99,
+        "screenBuilds": 19,
+        "screenHits": 727,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 11,
+        "worldBuildMs": 133.39999999827705,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 472,
+        "bgHits": 427,
+        "domainCanvasAllocations": 99,
+        "domainTileBuilds": 99,
+        "screenBuilds": 19,
+        "screenHits": 807,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "baseline-final-east.jpg",
+      "group": "final",
+      "camera": [
+        14600,
+        6100,
+        0.28
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 48.60000000009313,
+      "medianMs": 0.20000000018626451,
+      "p95Ms": 0.5,
+      "cacheBefore": {
+        "worldBuilds": 12,
+        "worldBuildMs": 143.09999999799766,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 492,
+        "bgHits": 435,
+        "domainCanvasAllocations": 111,
+        "domainTileBuilds": 111,
+        "screenBuilds": 21,
+        "screenHits": 823,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.29730177875068026,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 12,
+        "worldBuildMs": 143.09999999799766,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 532,
+        "bgHits": 475,
+        "domainCanvasAllocations": 111,
+        "domainTileBuilds": 111,
+        "screenBuilds": 21,
+        "screenHits": 903,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.29730177875068026,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "trace"
+    }
+  ],
+  "errors": [],
+  "httpFailures": []
+}

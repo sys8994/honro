@@ -1,0 +1,278 @@
+{
+  "scope": "Sequential isolated Chromium runs after all native checks finished. 40 synchronous Scene.render samples/view after 8 warmups. Not real-device FPS or a sustained moving-combat benchmark. First draw includes tile changes and path preparation.",
+  "baselineSha": "a091c6bd5e64eff748f5028fb6d0080faea3da87",
+  "sourceSha": "69992d5b015f4ee32239c83eb1e69cb4adacb875",
+  "materialSha256": "b7b028d2fe6e3e4b691b938d29373735f69039797e9620d3137ce28114c80453",
+  "rows": [
+    {
+      "view": "overview.jpg",
+      "camera": [
+        8000,
+        7250,
+        0.115
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "baseline": {
+        "coldMs": 86.89999999990687,
+        "medianMs": 2.300000000046566,
+        "p95Ms": 3,
+        "tileCount": 12
+      },
+      "final": {
+        "coldMs": 98.29999999981374,
+        "medianMs": 2.5999999998603016,
+        "p95Ms": 4,
+        "tileCount": 12
+      },
+      "baselineWorldBytes": 12780288,
+      "finalWorldBytes": 12780288,
+      "warmWorldRebuilds": 0
+    },
+    {
+      "view": "west.jpg",
+      "camera": [
+        3200,
+        6650,
+        0.18
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "baseline": {
+        "coldMs": 61,
+        "medianMs": 6.199999999953434,
+        "p95Ms": 6.899999999906868,
+        "tileCount": 12
+      },
+      "final": {
+        "coldMs": 77.80000000004657,
+        "medianMs": 7.2000000001862645,
+        "p95Ms": 9.800000000046566,
+        "tileCount": 12
+      },
+      "baselineWorldBytes": 12780288,
+      "finalWorldBytes": 12780288,
+      "warmWorldRebuilds": 0
+    },
+    {
+      "view": "central.jpg",
+      "camera": [
+        7290,
+        7080,
+        0.43
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "baseline": {
+        "coldMs": 42.299999999813735,
+        "medianMs": 1.1000000000931323,
+        "p95Ms": 2.3999999999068677,
+        "tileCount": 8
+      },
+      "final": {
+        "coldMs": 45.800000000046566,
+        "medianMs": 0.9000000001396984,
+        "p95Ms": 1.6999999999534339,
+        "tileCount": 8
+      },
+      "baselineWorldBytes": 8520192,
+      "finalWorldBytes": 8520192,
+      "warmWorldRebuilds": 0
+    },
+    {
+      "view": "refuge.jpg",
+      "camera": [
+        10350,
+        8470,
+        0.5
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "baseline": {
+        "coldMs": 51.200000000186265,
+        "medianMs": 0.6999999999534339,
+        "p95Ms": 1.2000000001862645,
+        "tileCount": 12
+      },
+      "final": {
+        "coldMs": 56.5,
+        "medianMs": 0.6999999999534339,
+        "p95Ms": 1.3999999999068677,
+        "tileCount": 12
+      },
+      "baselineWorldBytes": 12780288,
+      "finalWorldBytes": 12780288,
+      "warmWorldRebuilds": 0
+    },
+    {
+      "view": "mobile-trace.jpg",
+      "camera": [
+        11900,
+        7850,
+        0.36
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "baseline": {
+        "coldMs": 31.899999999906868,
+        "medianMs": 0.30000000004656613,
+        "p95Ms": 1.1000000000931323,
+        "tileCount": 6
+      },
+      "final": {
+        "coldMs": 33.0999999998603,
+        "medianMs": 0.19999999995343387,
+        "p95Ms": 0.5,
+        "tileCount": 6
+      },
+      "baselineWorldBytes": 6390144,
+      "finalWorldBytes": 6390144,
+      "warmWorldRebuilds": 0
+    },
+    {
+      "view": "max-refuge.jpg",
+      "camera": [
+        10050,
+        8680,
+        1.65
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "baseline": {
+        "coldMs": 3.8999999999068677,
+        "medianMs": 1.1999999999534339,
+        "p95Ms": 1.6000000000931323,
+        "tileCount": 6
+      },
+      "final": {
+        "coldMs": 5.099999999860302,
+        "medianMs": 1,
+        "p95Ms": 1.5,
+        "tileCount": 6
+      },
+      "baselineWorldBytes": 6390144,
+      "finalWorldBytes": 6390144,
+      "warmWorldRebuilds": 0
+    },
+    {
+      "view": "min-mobile.jpg",
+      "camera": [
+        9000,
+        7800,
+        0.12411764705882353
+      ],
+      "viewport": [
+        844,
+        390
+      ],
+      "baseline": {
+        "coldMs": 53.60000000009313,
+        "medianMs": 0.9000000001396984,
+        "p95Ms": 1.8000000000465661,
+        "tileCount": 6
+      },
+      "final": {
+        "coldMs": 57.39999999990687,
+        "medianMs": 0.9000000001396984,
+        "p95Ms": 1.8000000000465661,
+        "tileCount": 6
+      },
+      "baselineWorldBytes": 6390144,
+      "finalWorldBytes": 6390144,
+      "warmWorldRebuilds": 0
+    },
+    {
+      "view": "final-lower-route.jpg",
+      "camera": [
+        11300,
+        8100,
+        0.22
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "baseline": {
+        "coldMs": 15.300000000046566,
+        "medianMs": 0.8000000000465661,
+        "p95Ms": 1.4000000001396984,
+        "tileCount": 17
+      },
+      "final": {
+        "coldMs": 17.9000000001397,
+        "medianMs": 0.8000000000465661,
+        "p95Ms": 1.3999999999068677,
+        "tileCount": 17
+      },
+      "baselineWorldBytes": 18105408,
+      "finalWorldBytes": 18105408,
+      "warmWorldRebuilds": 0
+    },
+    {
+      "view": "final-start.jpg",
+      "camera": [
+        1450,
+        6370,
+        0.45
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "baseline": {
+        "coldMs": 55.300000000046566,
+        "medianMs": 6.199999999953434,
+        "p95Ms": 7,
+        "tileCount": 12
+      },
+      "final": {
+        "coldMs": 85,
+        "medianMs": 5.699999999953434,
+        "p95Ms": 6.600000000093132,
+        "tileCount": 12
+      },
+      "baselineWorldBytes": 12780288,
+      "finalWorldBytes": 12780288,
+      "warmWorldRebuilds": 0
+    },
+    {
+      "view": "final-east.jpg",
+      "camera": [
+        14600,
+        6100,
+        0.28
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "baseline": {
+        "coldMs": 48.60000000009313,
+        "medianMs": 0.20000000018626451,
+        "p95Ms": 0.5,
+        "tileCount": 12
+      },
+      "final": {
+        "coldMs": 52.0999999998603,
+        "medianMs": 0.19999999995343387,
+        "p95Ms": 0.39999999990686774,
+        "tileCount": 12
+      },
+      "baselineWorldBytes": 12780288,
+      "finalWorldBytes": 12780288,
+      "warmWorldRebuilds": 0
+    }
+  ]
+}

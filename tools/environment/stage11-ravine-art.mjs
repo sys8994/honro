@@ -1,3 +1,4 @@
+import {applyStage11VectorFinish} from './stage11-vector-finish.mjs';
 import {compileSVG} from './build-act2-art.mjs';
 import {readFileSync} from 'node:fs';
 
@@ -305,5 +306,5 @@ export function applyStage11RavineArt(project){
  const ritual=spec.objectiveSites?.hold||st.anchors.ritual;if(ritual){const x=6850,y=supportAt(st,'rv-ritual-buttress',x);add(project,st,ritualClearing(),'ritual-clearing',x,y??ritual.y);}
  const refuge=spec.objectiveSites?.resident||st.anchors.resident;if(refuge){let y=refuge.y;const x=refuge.x+210,surface=st.terrains.find(t=>t.id===refuge.surfaceId);for(const k of surface?.properties?.honroWalkEdges||[]){const a=surface.points[k],z=surface.points[k+1];if(x>=a.x&&x<=z.x){y=a.y+(z.y-a.y)*(x-a.x)/(z.x-a.x);break;}}add(project,st,refugeBundle(),'refuge-bundle',x,y,{scale:.58});}
  st.design.ravineArt={...spec,revision:2,landscapeRevision:1,backdropVariant:'stage11-ravine-readable',backdropAssetId:backdrop.id,artAssetIds:st.elements.filter(e=>e.id.startsWith('s11-art-')).map(e=>e.assetId),nativeVectorOnly:true};
- return project;
+ return applyStage11VectorFinish(project);
 }

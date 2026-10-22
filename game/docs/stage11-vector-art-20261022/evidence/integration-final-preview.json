@@ -1,0 +1,254 @@
+{
+  "label": "integration-final",
+  "sha": "1c397248f42f365593be3a154c06d6d1ee5b2ac5",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\nUU game/docs/BUG_LOG.md\nA  game/docs/stage11-vector-art-20261022/README.md\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-all.json\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-final-east.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-final-lower-route.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-final-start.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-min-mobile.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-tactics.txt\nA  game/docs/stage11-vector-art-20261022/evidence/baseline-west.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-all.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-final-east.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-final-lower-route.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-final-start.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-min-mobile.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-cost-west.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-material-cache.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-preservation.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-preview.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate2-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-min-mobile.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-refinement.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-reverse-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-reverse-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-reverse-min-mobile.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-reverse-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-reverse-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-reverse-refinement.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-reverse-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-reverse-west.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-cost-west.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-delta.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-final-all.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-final-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-final-final-east.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-final-final-lower-route.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-final-final-start.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-final-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-final-min-mobile.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-final-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-final-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-final-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-final-west.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-focus-focus3.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-focus-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-focus-min-mobile.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-focus-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-material-cache.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-performance.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-preservation.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-preview.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate3-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-cost-reverse-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-cost-reverse-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-cost-reverse-min-mobile.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-cost-reverse-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-cost-reverse-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-cost-reverse-refinement.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-cost-reverse-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-cost-reverse-west.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-delta.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-final-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-final-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-final-min-mobile.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-final-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-final-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-final-refinement.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-final-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-final-west.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-focus-focus3.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-focus-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-focus-min-mobile.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-focus-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-material-cache.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-performance.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-preservation.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-preview.json\nA  game/docs/stage11-vector-art-20261022/evidence/candidate4-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/final-all.json\nA  game/docs/stage11-vector-art-20261022/evidence/final-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/final-final-east.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/final-final-lower-route.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/final-final-start.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/final-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/final-min-mobile.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/final-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/final-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/final-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/final-west.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/focus1-final-focus1.json\nA  game/docs/stage11-vector-art-20261022/evidence/focus1-final-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/focus1-final-west.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/focus2-final-central.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/focus2-final-focus2.json\nA  game/docs/stage11-vector-art-20261022/evidence/focus2-final-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/focus3-final-focus3.json\nA  game/docs/stage11-vector-art-20261022/evidence/focus3-final-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/focus3-final-min-mobile.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/focus3-final-mobile-trace.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/keyboard.json\nA  game/docs/stage11-vector-art-20261022/evidence/material-cache.json\nA  game/docs/stage11-vector-art-20261022/evidence/pacing-state.txt\nA  game/docs/stage11-vector-art-20261022/evidence/performance.json\nA  game/docs/stage11-vector-art-20261022/evidence/preservation.json\nA  game/docs/stage11-vector-art-20261022/evidence/review1-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/review1b-overview.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/review2-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/review3-max-refuge.jpg\nA  game/docs/stage11-vector-art-20261022/evidence/traversal-summary.json\nA  game/docs/stage11-vector-art-20261022/evidence/web-split.json\n M index.html\nM  shared/data/campaign.json\nM  shared/runtime/stage11-landscape-art.js\nM  tests/stage11-landscape-art.mjs\nA  tests/stage11-vector-finish.mjs\nA  tools/environment/stage11-fracture-fields.mjs\nM  tools/environment/stage11-ravine-art.mjs\nA  tools/environment/stage11-vector-finish.mjs\nA  tools/testing/stage11-vector-art-capture.py\n D web/entries/game.bc685df7954c7e81.js\n D web/entries/game.e68d060cea148fea.html\n D web/entries/workshop.c8537cf635f2a9af.js\n M web/manifest.json\n D web/runtime/ordered-game-18.77084a0e5244440f.js\n?? game/docs/stage11-vector-art-20261022/evidence/integration-final-central.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/integration-final-mobile-trace.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/integration-final-overview.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/integration-final-refuge.jpg\n?? web/data/campaign-library.ee2bce48c2350059.json\n?? web/data/campaign.6da826ade87d9708.json\n?? web/data/chapter-11-assets.42cba6ef8d12d168.json\n?? web/data/chapter-11.5059f1715a8f71ea.json\n?? web/entries/game.00bada9049331619.html\n?? web/entries/game.3ffc7f9d177d36aa.js\n?? web/entries/workshop.3659a850cc3a43f4.js\n?? web/runtime/campaign.a98a16a6cb6c88b9.js\n?? web/runtime/ordered-common-13.842e7e3af1e68e2e.js\n",
+  "materialSha256": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+  "scope": "Production Chromium Scene and HUD; frozen normal entry-level battle/camera/progression fixtures, not full combat completion or real mobile hardware. 40 synchronous warm render samples/view; no concurrent load.",
+  "rows": [
+    {
+      "file": "integration-final-overview.jpg",
+      "group": "focus1",
+      "camera": [
+        8000,
+        7250,
+        0.115
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 104.90000000037253,
+      "medianMs": 2.8999999999068677,
+      "p95Ms": 3.900000000372529,
+      "cacheBefore": {
+        "worldBuilds": 2,
+        "worldBuildMs": 60.59999999962747,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 25,
+        "bgHits": 7,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 14,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 2,
+        "worldBuildMs": 60.59999999962747,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 65,
+        "bgHits": 47,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 94,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "integration-final-central.jpg",
+      "group": "focus2",
+      "camera": [
+        7290,
+        7080,
+        0.43
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 49.40000000037253,
+      "medianMs": 0.7999999998137355,
+      "p95Ms": 2,
+      "cacheBefore": {
+        "worldBuilds": 3,
+        "worldBuildMs": 69.59999999916181,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 81,
+        "bgHits": 55,
+        "domainCanvasAllocations": 26,
+        "domainTileBuilds": 26,
+        "screenBuilds": 6,
+        "screenHits": 110,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 3,
+        "worldBuildMs": 69.59999999916181,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 121,
+        "bgHits": 95,
+        "domainCanvasAllocations": 26,
+        "domainTileBuilds": 26,
+        "screenBuilds": 6,
+        "screenHits": 190,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "tileCount": 8,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "integration-final-refuge.jpg",
+      "group": "focus2",
+      "camera": [
+        10350,
+        8470,
+        0.5
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 59.700000000186265,
+      "medianMs": 0.8000000002793968,
+      "p95Ms": 1.3999999999068677,
+      "cacheBefore": {
+        "worldBuilds": 4,
+        "worldBuildMs": 81.09999999776483,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 141,
+        "bgHits": 103,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 206,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 4,
+        "worldBuildMs": 81.09999999776483,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 181,
+        "bgHits": 143,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 286,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "integration-final-mobile-trace.jpg",
+      "group": "focus3",
+      "camera": [
+        11900,
+        7850,
+        0.36
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "limits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 42.8000000002794,
+      "medianMs": 0.2999999998137355,
+      "p95Ms": 0.6999999997206032,
+      "cacheBefore": {
+        "worldBuilds": 6,
+        "worldBuildMs": 96.0999999968335,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 194,
+        "bgHits": 150,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 300,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 6,
+        "worldBuildMs": 96.0999999968335,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 234,
+        "bgHits": 190,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 380,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "shared/data/campaign.json": "abb1d132de3cfac3a972d4efac55ca83445c1aa28b09592382f2bc4d7cb03f4e",
+    "tools/environment/stage11-fracture-fields.mjs": "3ebe2b70f11a47c92207781a3f57a971195bb871dc9d39d3a1590538b42a4325",
+    "tools/environment/stage11-vector-finish.mjs": "fc279e63b329d3c513438639ff8fe0663504474db86373aadfabecd8b8ed84ae",
+    "shared/runtime/stage11-landscape-art.js": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+    "web/manifest.json": "dcd936d6868d64da1893e23369dff53572fc6edf322864e27787503f9b79639c"
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "label": "candidate2",
+  "sha": "1c7a392d4c5134d0bbd9b6a44ccd072b9c654027",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M shared/runtime/stage11-landscape-art.js\n M tests/stage11-vector-finish.mjs\n M tools/environment/stage11-vector-finish.mjs\n M tools/testing/stage11-vector-art-capture.py\n D web/data/campaign-library.af5294fcf116456b.json\n D web/data/campaign.540f28caad2b9909.json\n D web/data/chapter-11-assets.643991302b70aaa0.json\n D web/entries/game.6a3e35bc5d243cb1.js\n D web/entries/game.a2b08d9dec3e22ff.html\n D web/entries/game.bd37e5aeed5ab506.html\n D web/entries/game.e0920184d357a113.js\n D web/entries/workshop.a8ef237a5727043f.js\n D web/entries/workshop.f372928d86cb4f29.js\n M web/manifest.json\n D web/runtime/campaign.157872f5dc3fc250.js\n D web/runtime/ordered-common-13.c5da3777d6924bfb.js\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-central.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-mobile-trace.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-overview.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-preview.json\n?? game/docs/stage11-vector-art-20261022/evidence/candidate2-refuge.jpg\n?? tools/environment/stage11-fracture-fields.mjs\n?? web/data/campaign-library.ee2bce48c2350059.json\n?? web/data/campaign.989ff5edc2086ad3.json\n?? web/data/campaign.e0f6f09e4b1e5e10.json\n?? web/data/chapter-11-assets.42cba6ef8d12d168.json\n?? web/data/chapter-11.cac68d5650e11fbd.json\n?? web/data/chapter-11.fc023ef6b3a05645.json\n?? web/entries/game.03301ce14e18e338.js\n?? web/entries/game.0737d469b2350005.html\n?? web/entries/game.51b96bf9b8ce00de.js\n?? web/entries/game.ac18260fb617fdf0.html\n?? web/entries/workshop.5f1c82076248a2bf.js\n?? web/entries/workshop.60b554189fc6a04e.js\n?? web/runtime/campaign.cf7563ca2ee0a98c.js\n?? web/runtime/campaign.e2a99e9a1510f562.js\n?? web/runtime/ordered-common-13.f2a0939724651afc.js\n",
+  "materialSha256": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+  "scope": "Production Chromium Scene and HUD; frozen normal entry-level battle/camera/progression fixtures, not full combat completion or real mobile hardware. 40 synchronous warm render samples/view; no concurrent load.",
+  "rows": [
+    {
+      "file": "candidate2-overview.jpg",
+      "group": "focus1",
+      "camera": [
+        8000,
+        7250,
+        0.115
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 110.30000000004657,
+      "medianMs": 2.699999999953434,
+      "p95Ms": 3.800000000046566,
+      "cacheBefore": {
+        "worldBuilds": 2,
+        "worldBuildMs": 53.40000000037253,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 25,
+        "bgHits": 7,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 14,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 2,
+        "worldBuildMs": 53.40000000037253,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 65,
+        "bgHits": 47,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 94,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate2-central.jpg",
+      "group": "focus2",
+      "camera": [
+        7290,
+        7080,
+        0.43
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 61,
+      "medianMs": 0.8999999999068677,
+      "p95Ms": 1.3000000000465661,
+      "cacheBefore": {
+        "worldBuilds": 3,
+        "worldBuildMs": 62.200000000651926,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 81,
+        "bgHits": 55,
+        "domainCanvasAllocations": 26,
+        "domainTileBuilds": 26,
+        "screenBuilds": 6,
+        "screenHits": 110,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 3,
+        "worldBuildMs": 62.200000000651926,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 121,
+        "bgHits": 95,
+        "domainCanvasAllocations": 26,
+        "domainTileBuilds": 26,
+        "screenBuilds": 6,
+        "screenHits": 190,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 8520192,
+        "worldScale": 0.5,
+        "backgroundBytes": 0
+      },
+      "tileCount": 8,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate2-refuge.jpg",
+      "group": "focus2",
+      "camera": [
+        10350,
+        8470,
+        0.5
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 61.10000000009313,
+      "medianMs": 0.8999999999068677,
+      "p95Ms": 1.5,
+      "cacheBefore": {
+        "worldBuilds": 4,
+        "worldBuildMs": 73.80000000074506,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 141,
+        "bgHits": 103,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 206,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 4,
+        "worldBuildMs": 73.80000000074506,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 181,
+        "bgHits": 143,
+        "domainCanvasAllocations": 38,
+        "domainTileBuilds": 38,
+        "screenBuilds": 8,
+        "screenHits": 286,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.5946035575013605,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "candidate2-mobile-trace.jpg",
+      "group": "focus3",
+      "camera": [
+        11900,
+        7850,
+        0.36
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "limits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 35.60000000009313,
+      "medianMs": 0.20000000018626451,
+      "p95Ms": 0.4000000001396984,
+      "cacheBefore": {
+        "worldBuilds": 6,
+        "worldBuildMs": 88.30000000074506,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 194,
+        "bgHits": 150,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 300,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 6,
+        "worldBuildMs": 88.30000000074506,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 234,
+        "bgHits": 190,
+        "domainCanvasAllocations": 50,
+        "domainTileBuilds": 50,
+        "screenBuilds": 10,
+        "screenHits": 380,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    }
+  ],
+  "errors": [],
+  "httpFailures": []
+}

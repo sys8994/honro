@@ -1,0 +1,160 @@
+// Mesoscale stone assemblies. These are filled internal planes (no outer rim,
+// silhouette or collision), authored in the existing stage material data.
+// Three unequal fracture grammars are composed at named geological locations;
+// there is no grid, per-frame generation, random seed or repeated boulder body.
+const FIELDS={
+ cleft:[
+  ['recess',[[18,101],[300,27],[486,98],[574,21],[931,72],[1000,244],[907,416],[956,615],[733,730],[488,614],[255,756],[18,589],[95,361]]],
+  ['light',[[34,104],[288,50],[424,109],[398,264],[250,326],[79,272]]],
+  ['side',[[424,109],[474,153],[446,307],[291,398],[250,326],[398,264]]],
+  ['mid',[[535,58],[899,98],[972,240],[873,354],[620,291],[477,149]]],
+  ['edge',[[535,58],[899,98],[875,119],[555,86],[491,151],[477,149]]],
+  ['side',[[620,291],[873,354],[907,416],[762,486],[534,389],[477,223]]],
+  ['mid',[[100,363],[267,345],[400,461],[320,608],[169,679],[38,553]]],
+  ['light',[[534,423],[745,500],[894,449],[928,603],[722,697],[514,585],[438,512]]],
+  ['side',[[38,553],[169,679],[320,608],[363,658],[225,733],[82,668]]],
+  ['edge',[[103,364],[267,345],[328,398],[264,373],[124,392]]],
+  ['recess',[[411,135],[423,116],[413,249],[440,282],[397,352],[384,343],[417,279],[393,251]]],
+  ['edge',[[511,430],[533,423],[547,487],[521,552],[530,579],[516,582],[504,550],[531,485]]]
+ ],
+ step:[
+  ['recess',[[0,147],[239,48],[495,99],[741,3],[972,154],[914,403],[997,545],[833,715],[553,658],[340,752],[66,596]]],
+  ['mid',[[17,158],[248,72],[469,121],[396,248],[188,309],[24,262]]],
+  ['light',[[493,128],[744,39],[936,172],[873,294],[653,269],[465,327],[408,255]]],
+  ['side',[[24,262],[188,309],[396,248],[408,284],[265,385],[89,392]]],
+  ['edge',[[493,128],[744,39],[878,129],[743,69],[511,152],[477,215]]],
+  ['mid',[[95,423],[279,401],[447,328],[616,394],[534,551],[329,600],[168,564]]],
+  ['side',[[616,394],[653,269],[873,294],[886,382],[797,443],[855,517],[739,572],[534,551]]],
+  ['light',[[353,629],[554,580],[737,599],[829,557],[947,570],[813,672],[556,634],[397,714]]],
+  ['recess',[[287,409],[316,402],[345,466],[320,518],[329,572],[315,576],[304,519],[327,467]]],
+  ['edge',[[95,423],[279,401],[332,377],[301,415],[118,447]]],
+  ['edge',[[556,580],[737,599],[829,557],[847,562],[738,618],[564,600]]]
+ ],
+ splay:[
+  ['recess',[[41,95],[371,17],[640,63],[836,6],[1000,257],[897,446],[966,578],[718,744],[460,643],[209,752],[0,544],[75,351]]],
+  ['light',[[58,104],[358,46],[523,117],[430,272],[222,293],[78,239]]],
+  ['side',[[430,272],[523,117],[570,217],[496,364],[276,383],[222,293]]],
+  ['mid',[[607,104],[823,42],[960,256],[868,389],[695,298],[548,217]]],
+  ['edge',[[608,104],[823,42],[873,116],[817,76],[636,128],[558,224],[548,217]]],
+  ['light',[[95,389],[268,402],[467,381],[543,470],[409,571],[194,630],[40,540]]],
+  ['side',[[543,470],[583,312],[695,298],[868,389],[837,447],[672,443],[595,537],[409,571]]],
+  ['mid',[[521,601],[678,500],[843,484],[919,576],[713,695],[566,659],[446,693]]],
+  ['recess',[[357,55],[376,60],[398,142],[367,228],[386,269],[371,275],[350,230],[380,142]]],
+  ['edge',[[95,389],[268,402],[378,389],[345,417],[264,423],[117,414]]],
+  ['edge',[[675,500],[841,484],[887,538],[835,513],[690,527],[606,572]]]
+ ]
+};
+export const STAGE11_FRACTURE_SITES={
+ 'act2-floor':[[-200,820,70,420,'step'],[650,650,270,480,'cleft'],[3500,1100,80,650,'splay'],[13000,1000,120,530,'cleft']],
+ 'rv-west-shoulder':[[1570,930,90,610,'cleft'],[2920,1050,240,730,'step'],[2350,800,920,590,'splay']],
+ 'rv-west-stone-arch':[[4510,440,70,300,'step']],
+ 'rv-west-rock-crown':[[4650,880,75,560,'splay'],[5530,790,300,500,'step']],
+ 'rv-ritual-buttress':[[5680,980,90,680,'cleft'],[6870,970,190,660,'splay'],[7950,1110,110,730,'step'],[6540,1060,790,610,'step']],
+ 'rv-lower-west-shelf':[[4160,1030,85,610,'step'],[5350,1160,410,680,'cleft']],
+ 'rv-lower-refuge-rock':[[7060,1130,150,650,'splay'],[8330,920,370,650,'step'],[9640,1010,65,600,'cleft'],[10230,880,980,710,'splay']],
+ 'rv-east-tower':[[9740,870,120,660,'step'],[10750,970,280,610,'cleft']],
+ 'rv-north-trace':[[11120,1510,55,850,'splay'],[12200,1140,650,910,'cleft'],[13820,1100,110,690,'step'],[15030,1080,800,830,'splay']]
+};
+export function authorStage11Fractures(terrain,top){
+ const colors={light:'#879b8b',mid:'#708b81',side:'#5b7474',recess:'#2c4852',edge:'#b4b69b70'},faces=[];
+ for(const[x,span,inset,depth,key]of STAGE11_FRACTURE_SITES[terrain.id]||[]){
+  for(const[role,points]of FIELDS[key]){if(role==='recess'&&points.length>10)continue;faces.push({points:points.map(([u,v])=>{const xx=x+span*u/1000;return[Math.round(xx*100)/100,Math.round((top(xx)+inset+depth*v/750)*100)/100];}),fill:colors[role],depthShade:true});}
+ }
+ return faces;
+}
+
+// Continuous bed mesh for the two reviewed masses. Every neighbouring plane
+// consumes the exact same boundary, including its unequal angular shoulders.
+// Only selected seam fragments are dark: there are no per-stone lower caps.
+export function authorStage11JoinedBeds(terrain,at){
+ const north=terrain.id==='rv-north-trace';
+ const rows=north?[
+  [[0,0],[.04,0],[.08,0],[.13,0],[.25,0],[.5,0],[1,0]],
+  [[0,.09],[.025,.13],[.085,.08],[.15,.14],[.3,.18],[.48,.27],[1,.2]],
+  [[0,.23],[.055,.19],[.105,.28],[.14,.22],[.27,.38],[.53,.45],[1,.54]],
+  [[0,.49],[.04,.42],[.09,.47],[.17,.39],[.29,.65],[.49,.71],[1,.79]],
+  [[0,1.12],[.04,1.12],[.10,1.12],[.17,1.12],[.29,1.12],[.49,1.12],[1,1.12]]
+ ]:[
+  [[0,0],[.10,0],[.28,0],[.47,0],[.66,0],[.9,0],[1,0]],
+  [[0,.26],[.14,.18],[.31,.32],[.52,.21],[.62,.35],[.86,.25],[1,.39]],
+  [[0,.49],[.11,.57],[.36,.43],[.45,.59],[.73,.47],[.91,.56],[1,.5]],
+  [[0,.84],[.19,.73],[.29,.82],[.56,.70],[.68,.89],[.88,.77],[1,.86]],
+  [[0,1.12],[.13,1.12],[.34,1.12],[.49,1.12],[.71,1.12],[.92,1.12],[1,1.12]]
+ ];
+ // A finite list of offset shoulders, not random jitter or repeated chip shapes.
+ const shoulders=[[-.026,.028],[.021,-.042],[-.034,-.018],[.018,.046],[.034,-.025],[-.016,.052],[.028,.016],[-.025,-.035]];
+ const edge=(r,c,vertical=false)=>{
+  const a=rows[r][c],b=vertical?rows[r+1][c]:rows[r][c+1];
+  if((vertical&&(c===0||c===6))||(!vertical&&(r===0||r===4)))return[a,b];
+  const [shoulderX,dv]=shoulders[(r*3+c+(vertical?4:0))%shoulders.length],du=shoulderX*(north?.22:1);
+  return[a,[a[0]+(b[0]-a[0])*.42+du,a[1]+(b[1]-a[1])*.42+dv],[a[0]+(b[0]-a[0])*.68+du,a[1]+(b[1]-a[1])*.68+dv],b];
+ };
+ const tones=north?[
+  '#879788','#718b81','#819487','#738b81','#809285','#6d867e',
+  '#69857e','#7b9083','#5b7879','#7a8e81','#637f7b','#71897f',
+  '#728a80','#5f7b79','#718a80','#59767a','#6a847d','#5e7b7a',
+  '#59767a','#657f7d','#537176','#627d79','#516e75','#5a767a'
+ ]:[
+  '#87978a','#738c81','#829587','#6d867d','#809285','#6e867d',
+  '#718a80','#607c79','#7d9285','#68837b','#5c7979','#748b80',
+  '#5b7879','#738a80','#607d7a','#748b7f','#567478','#69837c',
+  '#627d7a','#526f74','#68837d','#577579','#637d79','#4f6d74'
+ ];
+ // Split selected parent planes only. Boundary endpoints stay on the original
+ // shared edges; the interior joins are common to both children. Other parent
+ // planes stay broad, preserving the large shadow/light masses and rest areas.
+ const splits=north?{
+  '0,2':{top:[.48],bottom:[.64],bend:[-.05],ink:0},
+  '1,1':{top:[.62],bottom:[.41],bend:[.07],ink:0},
+  '1,2':{top:[.38],bottom:[.57],bend:[-.07]},
+  '2,1':{top:[.44],bottom:[.61],bend:[.05],ink:0}
+ }:{
+  '0,2':{top:[.43],bottom:[.59],bend:[-.07]},
+  '0,4':{top:[.58],bottom:[.43],bend:[.06]},
+  '1,1':{top:[.46],bottom:[.63],bend:[-.05],ink:0},
+  '1,2':{top:[.59],bottom:[.39],bend:[.07]},
+  '1,3':{top:[.42],bottom:[.62],bend:[-.06],ink:0},
+  '2,2':{top:[.38],bottom:[.57],bend:[.08],ink:0},
+  '2,3':{top:[.33,.72],bottom:[.25,.66],bend:[-.035,.04],ink:1},
+  '2,4':{top:[.62],bottom:[.46],bend:[-.065]}
+ };
+ const faces=[],localJoins=[];
+ const mix=(a,b,u)=>a.map((x,i)=>x+(b[i]-x)*u);
+ const splitPath=(ps,f)=>{
+  if(f<=0)return[[ps[0]],ps];if(f>=1)return[ps,[ps.at(-1)]];
+  const lengths=ps.slice(1).map((p,i)=>Math.hypot(p[0]-ps[i][0],p[1]-ps[i][1])),target=lengths.reduce((a,b)=>a+b,0)*f;
+  let sum=0;for(let i=0;i<lengths.length;i++){if(sum+lengths[i]>=target){const p=mix(ps[i],ps[i+1],(target-sum)/lengths[i]);return[[...ps.slice(0,i+1),p],[p,...ps.slice(i+1)]];}sum+=lengths[i];}
+ };
+ const segment=(ps,a,b)=>splitPath(splitPath(ps,b)[0],a/b)[1];
+ const tint=(hex,d)=>'#'+[1,3,5].map(i=>Math.max(0,Math.min(255,parseInt(hex.slice(i,i+2),16)+d)).toString(16).padStart(2,'0')).join('');
+ const seamWorld=(pts,width,color)=>{
+  const left=[],right=[];
+  pts.forEach(([x,y],i)=>{const a=pts[Math.max(0,i-1)],b=pts[Math.min(pts.length-1,i+1)],d=Math.hypot(b[0]-a[0],b[1]-a[1])||1,w=i===0||i===pts.length-1?width*.2:width;left.push([x-(b[1]-a[1])/d*w,y+(b[0]-a[0])/d*w]);right.push([x+(b[1]-a[1])/d*w,y-(b[0]-a[0])/d*w]);});
+  faces.push({points:[...left,...right.reverse()],fill:color,depthShade:true});
+ };
+ const seam=(ps,width,color)=>seamWorld(ps.map(p=>at(...p)),width,color);
+ for(let r=0;r<4;r++)for(let c=0;c<6;c++){
+  const top=edge(r,c).map(p=>at(...p)),bottom=edge(r+1,c).map(p=>at(...p)),left=edge(r,c,true).map(p=>at(...p)),right=edge(r,c+1,true).map(p=>at(...p)),spec=splits[r+','+c],tone=tones[r*6+c];
+  if(!spec){faces.push({points:[...top,...right.slice(1),...bottom.slice().reverse().slice(1),...left.slice().reverse().slice(1)],fill:tone,depthShade:true});continue;}
+  const ts=[0,...spec.top,1],bs=[0,...spec.bottom,1],joins=[left];
+  spec.top.forEach((t,i)=>{
+   const a=splitPath(top,t)[0].at(-1),b=splitPath(bottom,spec.bottom[i])[0].at(-1),span=Math.hypot(top.at(-1)[0]-top[0][0],top.at(-1)[1]-top[0][1]),dx=span*spec.bend[i];
+   const shoulder=mix(a,b,.43),heel=mix(a,b,.65);shoulder[0]+=dx;heel[0]+=dx;
+   const join=[a,shoulder,heel,b];joins.push(join);if(spec.ink===i)localJoins.push(join);
+  });joins.push(right);
+  for(let i=0;i<ts.length-1;i++)faces.push({points:[...segment(top,ts[i],ts[i+1]),...joins[i+1].slice(1),...segment(bottom,bs[i],bs[i+1]).reverse().slice(1),...joins[i].slice().reverse().slice(1)],fill:tint(tone,[6,-6,2][i]),depthShade:true});
+ }
+ // Limited fragments of the new shared joins, with off-centre shallow edge light.
+ for(const join of localJoins){seamWorld(segment(join,.24,.72),north?8:9,'#3c5a5c');seamWorld(segment(join,.11,.34).map(([x,y])=>[x-8,y-3]),north?5:6,'#a6af9466');}
+ // Broken joins coincide with the mesh. A few pale edges catch the same light.
+ seam(edge(0,north?2:1,true).slice(1),12,'#34525a');
+ seam(edge(1,4,true).slice(0,3),15,'#34525a');
+ seam(edge(2,2,true).slice(1),11,'#38575c');
+ seam(edge(1,1).slice(0,3),9,'#3c5a5e');
+ seam(edge(2,3).slice(1),7,'#416064');
+ seam(edge(3,4).slice(0,3),9,'#38575d');
+ seam(edge(1,0).slice(1),16,'#abb39a66');
+ seam(edge(2,2).slice(0,3),14,'#a5af9260');
+ seam(edge(3,5).slice(1),6,'#a0ac9250');
+ return faces;
+}

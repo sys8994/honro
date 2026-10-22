@@ -1,0 +1,129 @@
+{
+  "label": "focus1-final",
+  "sha": "4ecb9b5d1db3907818018c32dce1ee5274a57d5f",
+  "workingTree": " M HONRO.html\n M HONRO_WORKSHOP.html\n M index.html\n M shared/data/campaign.json\n M shared/runtime/stage11-landscape-art.js\n M tools/environment/stage11-ravine-art.mjs\n M tools/testing/stage11-vector-art-capture.py\n D web/data/campaign-library.c42a969cd6b82385.json\n D web/data/campaign.a858b9f650e6db38.json\n D web/data/campaign.ba46396db8cce7c9.json\n D web/data/chapter-11-assets.a5c67f71fd833974.json\n D web/data/chapter-11.c657b3485588931e.json\n D web/data/chapter-11.cd7e7bfce360efa0.json\n D web/data/chapter-14.60f918f29d59ece5.json\n D web/data/chapter-17.1300a7c4091815ff.json\n D web/data/chapter-18.a68f5be5a431b8e2.json\n D web/entries/game.095cff161dc7d48f.js\n D web/entries/game.709586d408ff33dd.html\n D web/entries/game.84a2fe1cd63ebbef.html\n D web/entries/game.a7942f00556bb362.js\n D web/entries/game.ade2cf3abe877e22.js\n D web/entries/game.d2527d6f40cad9d5.html\n D web/entries/workshop.3618f7ceb014c2ee.js\n D web/entries/workshop.9542d3135a1b48f2.js\n D web/entries/workshop.b2edc7bf1c18fbdd.js\n M web/manifest.json\n D web/runtime/campaign.502553a4d471283c.js\n D web/runtime/campaign.d7b32b6ddd583264.js\n D web/runtime/ordered-common-13.f1b51463c8290abc.js\n D web/runtime/ordered-common-5.e6d73151848f780f.js\n D web/runtime/ordered-common-6.9bf2af6f14e5365e.js\n D web/runtime/ordered-common-6.e4ff69a98965a1b5.js\n D web/runtime/ordered-common-7.46741ec8c942e890.js\n D web/runtime/ordered-common-8.3291f4bbfa9037c3.js\n D web/runtime/ordered-common-9.9235bea0441e4fde.js\n?? game/docs/stage11-vector-art-20261022/evidence/\n?? tests/stage11-vector-finish.mjs\n?? tools/environment/stage11-vector-finish.mjs\n?? web/data/campaign-library.af5294fcf116456b.json\n?? web/data/campaign.540f28caad2b9909.json\n?? web/data/campaign.8793bd12449e1595.json\n?? web/data/chapter-11-assets.643991302b70aaa0.json\n?? web/data/chapter-11.5dfa6b8651064bbb.json\n?? web/data/chapter-11.dd2244d90d53db38.json\n?? web/entries/game.160e4ed6bf2c61d2.js\n?? web/entries/game.6a3e35bc5d243cb1.js\n?? web/entries/game.a2b08d9dec3e22ff.html\n?? web/entries/game.bd37e5aeed5ab506.html\n?? web/entries/game.cf5e0376a37ef002.html\n?? web/entries/game.e0920184d357a113.js\n?? web/entries/workshop.0e9fad8b1935fb3b.js\n?? web/entries/workshop.a8ef237a5727043f.js\n?? web/entries/workshop.f372928d86cb4f29.js\n?? web/runtime/campaign.157872f5dc3fc250.js\n?? web/runtime/campaign.1c023eeb7af413b6.js\n?? web/runtime/ordered-common-13.5738d3e87e27a059.js\n?? web/runtime/ordered-common-13.723bdba72acc74c2.js\n?? web/runtime/ordered-common-13.c5da3777d6924bfb.js\n",
+  "materialSha256": "b7b028d2fe6e3e4b691b938d29373735f69039797e9620d3137ce28114c80453",
+  "scope": "Production Chromium Scene and HUD; frozen normal entry-level battle/camera/progression fixtures, not full combat completion or real mobile hardware. 40 synchronous warm render samples/view; no concurrent load.",
+  "rows": [
+    {
+      "file": "focus1-final-overview.jpg",
+      "group": "focus1",
+      "camera": [
+        8000,
+        7250,
+        0.115
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 100.19999999995343,
+      "medianMs": 2.5,
+      "p95Ms": 4.199999999953434,
+      "cacheBefore": {
+        "worldBuilds": 2,
+        "worldBuildMs": 54.90000000002328,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 25,
+        "bgHits": 7,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 14,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 2,
+        "worldBuildMs": 54.90000000002328,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 65,
+        "bgHits": 47,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 4,
+        "screenHits": 94,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.125,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    },
+    {
+      "file": "focus1-final-west.jpg",
+      "group": "focus1",
+      "camera": [
+        3200,
+        6650,
+        0.18
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 81.90000000002328,
+      "medianMs": 9.5,
+      "p95Ms": 11.29999999993015,
+      "cacheBefore": {
+        "worldBuilds": 3,
+        "worldBuildMs": 68.19999999995343,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 85,
+        "bgHits": 55,
+        "domainCanvasAllocations": 30,
+        "domainTileBuilds": 30,
+        "screenBuilds": 6,
+        "screenHits": 110,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.21022410381342863,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 3,
+        "worldBuildMs": 68.19999999995343,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 125,
+        "bgHits": 95,
+        "domainCanvasAllocations": 30,
+        "domainTileBuilds": 30,
+        "screenBuilds": 6,
+        "screenHits": 190,
+        "screenWorldBytes": 4429440,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 12780288,
+        "worldScale": 0.21022410381342863,
+        "backgroundBytes": 0
+      },
+      "tileCount": 12,
+      "phase": "aim",
+      "current": "knot-west"
+    }
+  ],
+  "errors": [],
+  "httpFailures": []
+}

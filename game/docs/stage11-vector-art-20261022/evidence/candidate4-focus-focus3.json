@@ -1,0 +1,195 @@
+{
+  "label": "candidate4-focus",
+  "sha": "8d31b09654c0e58eec722093561fffc008d891c5",
+  "workingTree": " M tools/testing/stage11-vector-art-capture.py\n?? game/docs/stage11-vector-art-20261022/evidence/candidate4-focus-max-refuge.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate4-focus-min-mobile.jpg\n?? game/docs/stage11-vector-art-20261022/evidence/candidate4-focus-mobile-trace.jpg\n",
+  "materialSha256": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+  "scope": "Production Chromium Scene and HUD; frozen normal entry-level battle/camera/progression fixtures, not full combat completion or real mobile hardware. 40 synchronous warm render samples/view; no concurrent load.",
+  "rows": [
+    {
+      "file": "candidate4-focus-mobile-trace.jpg",
+      "group": "focus3",
+      "camera": [
+        11900,
+        7850,
+        0.36
+      ],
+      "viewport": [
+        390,
+        844
+      ],
+      "limits": {
+        "min": 0.057352941176470586,
+        "max": 1.65,
+        "tactical": 0.057352941176470586,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 37.800000000046566,
+      "medianMs": 0.2999999998137355,
+      "p95Ms": 0.39999999990686774,
+      "cacheBefore": {
+        "worldBuilds": 3,
+        "worldBuildMs": 35.49999999953434,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 13,
+        "bgHits": 7,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 2,
+        "screenHits": 14,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 3,
+        "worldBuildMs": 35.49999999953434,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 53,
+        "bgHits": 47,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 2,
+        "screenHits": 94,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 1010880,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "candidate4-focus-max-refuge.jpg",
+      "group": "focus3",
+      "camera": [
+        10050,
+        8680,
+        1.65
+      ],
+      "viewport": [
+        1440,
+        900
+      ],
+      "limits": {
+        "min": 0.21176470588235294,
+        "max": 1.65,
+        "tactical": 0.21176470588235294,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 7.100000000093132,
+      "medianMs": 1.1999999999534339,
+      "p95Ms": 1.8000000000465661,
+      "cacheBefore": {
+        "worldBuilds": 3,
+        "worldBuildMs": 35.49999999953434,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 53,
+        "bgHits": 54,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 3,
+        "screenHits": 101,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 3,
+        "worldBuildMs": 35.49999999953434,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 53,
+        "bgHits": 94,
+        "domainCanvasAllocations": 18,
+        "domainTileBuilds": 18,
+        "screenBuilds": 3,
+        "screenHits": 141,
+        "screenWorldBytes": 1010880,
+        "screenBackgroundBytes": 4429440,
+        "worldBytes": 6390144,
+        "worldScale": 0.42044820762685725,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    },
+    {
+      "file": "candidate4-focus-min-mobile.jpg",
+      "group": "focus3",
+      "camera": [
+        9000,
+        7800,
+        0.12411764705882353
+      ],
+      "viewport": [
+        844,
+        390
+      ],
+      "limits": {
+        "min": 0.12411764705882353,
+        "max": 1.65,
+        "tactical": 0.12411764705882353,
+        "readability": 0.056818181818181816
+      },
+      "coldMs": 74.39999999990687,
+      "medianMs": 1.3000000000465661,
+      "p95Ms": 3.3999999999068677,
+      "cacheBefore": {
+        "worldBuilds": 5,
+        "worldBuildMs": 60.19999999948777,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 66,
+        "bgHits": 101,
+        "domainCanvasAllocations": 26,
+        "domainTileBuilds": 26,
+        "screenBuilds": 5,
+        "screenHits": 155,
+        "screenWorldBytes": 786608,
+        "screenBackgroundBytes": 786608,
+        "worldBytes": 6390144,
+        "worldScale": 0.14865088937534013,
+        "backgroundBytes": 0
+      },
+      "cacheAfter": {
+        "worldBuilds": 5,
+        "worldBuildMs": 60.19999999948777,
+        "bgBuilds": 0,
+        "bgBuildMs": 0,
+        "worldHits": 106,
+        "bgHits": 141,
+        "domainCanvasAllocations": 26,
+        "domainTileBuilds": 26,
+        "screenBuilds": 5,
+        "screenHits": 235,
+        "screenWorldBytes": 786608,
+        "screenBackgroundBytes": 786608,
+        "worldBytes": 6390144,
+        "worldScale": 0.14865088937534013,
+        "backgroundBytes": 0
+      },
+      "tileCount": 6,
+      "phase": "aim",
+      "current": "trace"
+    }
+  ],
+  "errors": [],
+  "httpFailures": [],
+  "sourceHashes": {
+    "shared/data/campaign.json": "abb1d132de3cfac3a972d4efac55ca83445c1aa28b09592382f2bc4d7cb03f4e",
+    "tools/environment/stage11-fracture-fields.mjs": "3ebe2b70f11a47c92207781a3f57a971195bb871dc9d39d3a1590538b42a4325",
+    "tools/environment/stage11-vector-finish.mjs": "fc279e63b329d3c513438639ff8fe0663504474db86373aadfabecd8b8ed84ae",
+    "shared/runtime/stage11-landscape-art.js": "3d05112acb5f98a607d6edc19c088a928e3276079e51507d407272fe3f356985",
+    "web/manifest.json": "8846d415a164598fa88067cc08557827fddf304a1f596ba5dfb46af6555f237c"
+  }
+}
