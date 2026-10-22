@@ -43,9 +43,6 @@ function eligibility(app,m){const b=app.engine?.b,u=app.engine?.active,next=b&&c
  const point=interactionTarget(b,m);if(!point)return{ok:false,reason:'보호할 주민을 찾을 수 없음'};
  if(!sameFloor(u,point))return{ok:false,reason:Math.abs(u.y-point.y)>150?'같은 층으로 이동':'더 가까이 이동'};
  if(app.canInput&&!app.canInput())return{ok:false,reason:'현재 행동이 끝난 뒤'};
- // Only the immediate working space must be clear. Distant fiends and other
- // storeys never turn a retrieval objective into an extermination objective.
- if(b.units.some(v=>v.side===1&&!v.honroObjectiveTarget&&v.summonKind!=='eater'&&!v.eaterCapturedBy&&alive(v)&&sameFloor(v,point,220)))return{ok:false,reason:'작업 지점 가까운 악귀부터 처치'};
  return{ok:true,reason:s.label};
 }
 function openGate(b,id){if(!id)return;const t=G.HonroQuestTargets.records(b).find(t=>t.id===id);if(t&&!t.broken){t.hp=0;t.broken=true;b.sceneVersion++;}}

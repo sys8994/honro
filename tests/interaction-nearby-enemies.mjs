@@ -1,0 +1,11 @@
+import assert from'node:assert/strict';import vm from'node:vm';import{readFile,mkdir,writeFile}from'node:fs/promises';import{appHarness,plain}from'./app-regression-helpers.mjs';import{gateFixture}from'./interaction-nearby-fixtures.mjs';
+const h=await appHarness(),{g}=h;
+vm.runInContext(await readFile('shared/runtime/interactions.js','utf8'),g);
+const {app,b,m,hero,profile}=gateFixture(h),barrier=g.HonroQuestTargets.records(b).find(t=>t.id==='gate-gate');
+const threats=g.HonroAct2.interactionThreats(b,m);assert(threats.length>0);assert(threats.every(u=>u.x>barrier.x+barrier.w));assert(!barrier.broken);
+await mkdir('_local/reports/interaction-enemy-gates',{recursive:true});await writeFile('_local/reports/interaction-enemy-gates/gate-r4-save.json',JSON.stringify(profile));
+assert(!/작업 지점.*(제압|처치)/.test(g.HonroObjectives.state(b,app.stage).blockReason||''));
+const snapshot=JSON.stringify(b);assert(g.HonroInteractions.eligibility(app,m).ok,g.HonroInteractions.eligibility(app,m).reason);assert.equal(JSON.stringify(b),snapshot,'Checking availability never edits an old save');
+const enemies=plain(b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead}))),growth=JSON.stringify(b.heroes);
+const key={code:'KeyE',repeat:false,preventDefault(){}};assert(g.HonroInteractions.key(app,key));assert(m.collected&&barrier.broken);assert(g.HonroAct2.memory(b).done.gate);assert.equal(g.HonroAct2.current(b).id,'exit');assert.deepEqual(plain(b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead}))),enemies);assert.equal(JSON.stringify(b.heroes),growth);assert(!g.HonroInteractions.use(app,m));assert.equal(g.HonroAct2.memory(b).checkpoints.filter(c=>c.id==='gate').length,1);
+console.log('PASS R4 gate: living carts beyond closed collision; real E opens once, next objective, enemies/resources untouched');
