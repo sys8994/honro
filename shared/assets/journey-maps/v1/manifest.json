@@ -1,0 +1,347 @@
+{
+  "version": 1,
+  "status": "parent-art-ready",
+  "sourceMaster": "f37530094b3f83d33991162243b7a2722c8fd8f9",
+  "acts": [
+    {
+      "act": 1,
+      "title": "연목의 매듭",
+      "asset": "shared/assets/journey-maps/v1/act1.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 371256,
+      "sha256": "31fefd98a807ce78ad7e9529bc7c944876cf3d1892ef6f9fd9049bc4321428c0",
+      "stages": [
+        {
+          "stageId": "stage-1",
+          "stageNumber": 1,
+          "title": "연목 고갯길",
+          "mapLabel": "고갯길",
+          "x": 165,
+          "y": 795,
+          "labelOffsetX": -105,
+          "labelOffsetY": 43
+        },
+        {
+          "stageId": "stage-2",
+          "stageNumber": 2,
+          "title": "상여 위의 높은 길",
+          "mapLabel": "상여길",
+          "x": 350,
+          "y": 678,
+          "labelOffsetX": -120,
+          "labelOffsetY": -53
+        },
+        {
+          "stageId": "stage-3",
+          "stageNumber": 3,
+          "title": "나루의 남은 장부",
+          "mapLabel": "연목 나루",
+          "x": 565,
+          "y": 823,
+          "labelOffsetX": 45,
+          "labelOffsetY": 0
+        },
+        {
+          "stageId": "stage-4",
+          "stageNumber": 4,
+          "title": "문 밖에 남은 사람들",
+          "mapLabel": "북문",
+          "x": 862,
+          "y": 393,
+          "labelOffsetX": 35,
+          "labelOffsetY": 15
+        },
+        {
+          "stageId": "stage-5",
+          "stageNumber": 5,
+          "title": "폭포 틈의 한 발",
+          "mapLabel": "폭포 절벽",
+          "x": 565,
+          "y": 250,
+          "labelOffsetX": 45,
+          "labelOffsetY": -22
+        },
+        {
+          "stageId": "stage-6",
+          "stageNumber": 6,
+          "title": "끊어진 나무다리",
+          "mapLabel": "나무다리",
+          "x": 717,
+          "y": 452,
+          "labelOffsetX": -195,
+          "labelOffsetY": -50
+        },
+        {
+          "stageId": "stage-7",
+          "stageNumber": 7,
+          "title": "살아 있는 사람을 꺼내는 법",
+          "mapLabel": "북문 안쪽",
+          "x": 1070,
+          "y": 360,
+          "labelOffsetX": -65,
+          "labelOffsetY": -65
+        },
+        {
+          "stageId": "stage-8",
+          "stageNumber": 8,
+          "title": "돌아오는 빈 상여",
+          "mapLabel": "상여 창고",
+          "x": 1380,
+          "y": 478,
+          "labelOffsetX": -60,
+          "labelOffsetY": 46
+        },
+        {
+          "stageId": "stage-9",
+          "stageNumber": 9,
+          "title": "바람 없는 마당",
+          "mapLabel": "아랫마당",
+          "x": 1290,
+          "y": 229,
+          "labelOffsetX": -170,
+          "labelOffsetY": -18
+        },
+        {
+          "stageId": "stage-10",
+          "stageNumber": 10,
+          "title": "소단 — 놓지 못한 밤",
+          "mapLabel": "윗마당",
+          "x": 1395,
+          "y": 140,
+          "labelOffsetX": -185,
+          "labelOffsetY": -46
+        }
+      ]
+    },
+    {
+      "act": 2,
+      "title": "울리지 않는 종",
+      "asset": "shared/assets/journey-maps/v1/act2.webp",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 184932,
+      "sha256": "d8017c9b386ec0dc82c8e0b2fcb64106f840f99499f7a88f6d7a62ab156c60f4",
+      "stages": [
+        {
+          "stageId": "stage-11",
+          "stageNumber": 11,
+          "title": "매듭을 거둔 아침",
+          "mapLabel": "동쪽 외문",
+          "x": 105,
+          "y": 87,
+          "labelOffsetX": 45,
+          "labelOffsetY": -15
+        },
+        {
+          "stageId": "stage-12",
+          "stageNumber": 12,
+          "title": "돌아오는 산길",
+          "mapLabel": "채석장",
+          "x": 715,
+          "y": 151,
+          "labelOffsetX": -70,
+          "labelOffsetY": 42
+        },
+        {
+          "stageId": "stage-13",
+          "stageNumber": 13,
+          "title": "숨은 석문",
+          "mapLabel": "석문",
+          "x": 907,
+          "y": 461,
+          "labelOffsetX": -150,
+          "labelOffsetY": -18
+        },
+        {
+          "stageId": "stage-14",
+          "stageNumber": 14,
+          "title": "해가 닿지 않는 마을",
+          "mapLabel": "지하 마을",
+          "x": 481,
+          "y": 398,
+          "labelOffsetX": -65,
+          "labelOffsetY": -65
+        },
+        {
+          "stageId": "stage-15",
+          "stageNumber": 15,
+          "title": "물 아래의 길",
+          "mapLabel": "침수 작업굴",
+          "x": 218,
+          "y": 635,
+          "labelOffsetX": 45,
+          "labelOffsetY": -20
+        },
+        {
+          "stageId": "stage-16",
+          "stageNumber": 16,
+          "title": "잠운사",
+          "mapLabel": "잠운사",
+          "x": 641,
+          "y": 747,
+          "labelOffsetX": -55,
+          "labelOffsetY": 42
+        },
+        {
+          "stageId": "stage-17",
+          "stageNumber": 17,
+          "title": "두드리는 벽",
+          "mapLabel": "인양로",
+          "x": 885,
+          "y": 928,
+          "labelOffsetX": -80,
+          "labelOffsetY": 42
+        },
+        {
+          "stageId": "stage-18",
+          "stageNumber": 18,
+          "title": "묵종",
+          "mapLabel": "묵종",
+          "x": 455,
+          "y": 1118,
+          "labelOffsetX": -155,
+          "labelOffsetY": -18
+        },
+        {
+          "stageId": "stage-19",
+          "stageNumber": 19,
+          "title": "종 안의 사람들",
+          "mapLabel": "종 앞 천도진",
+          "x": 693,
+          "y": 1330,
+          "labelOffsetX": 35,
+          "labelOffsetY": 13
+        },
+        {
+          "stageId": "stage-20",
+          "stageNumber": 20,
+          "title": "다시 하늘 아래",
+          "mapLabel": "하늘로 난 출구",
+          "x": 91,
+          "y": 269,
+          "labelOffsetX": 45,
+          "labelOffsetY": -20
+        }
+      ]
+    },
+    {
+      "act": 3,
+      "title": "지워진 기록",
+      "asset": "shared/assets/journey-maps/v1/act3.webp",
+      "width": 1254,
+      "height": 1254,
+      "bytes": 419334,
+      "sha256": "6beb660e6f37bacc5ba0dd5e20ac6b779e62c55af1d821d538f2224c134f2950",
+      "stages": [
+        {
+          "stageId": "stage-21",
+          "stageNumber": 21,
+          "title": "성문 아래",
+          "mapLabel": "입성 나루",
+          "x": 148,
+          "y": 810,
+          "labelOffsetX": -82,
+          "labelOffsetY": -65
+        },
+        {
+          "stageId": "stage-22",
+          "stageNumber": 22,
+          "title": "옛 장부",
+          "mapLabel": "문서고",
+          "x": 346,
+          "y": 445,
+          "labelOffsetX": -70,
+          "labelOffsetY": -65
+        },
+        {
+          "stageId": "stage-23",
+          "stageNumber": 23,
+          "title": "사라진 짐",
+          "mapLabel": "지상 하역장",
+          "x": 438,
+          "y": 889,
+          "labelOffsetX": -80,
+          "labelOffsetY": 40
+        },
+        {
+          "stageId": "stage-24",
+          "stageNumber": 24,
+          "title": "휘겸의 문장",
+          "mapLabel": "폐쇄 저택",
+          "x": 620,
+          "y": 223,
+          "labelOffsetX": -80,
+          "labelOffsetY": -65
+        },
+        {
+          "stageId": "stage-25",
+          "stageNumber": 25,
+          "title": "물 아래 묶인 이름",
+          "mapLabel": "수로 집하장",
+          "x": 731,
+          "y": 600,
+          "labelOffsetX": -170,
+          "labelOffsetY": -45
+        },
+        {
+          "stageId": "stage-26",
+          "stageNumber": 26,
+          "title": "지상에 남은 증언",
+          "mapLabel": "묘역 · 공방",
+          "x": 1010,
+          "y": 292,
+          "labelOffsetX": -45,
+          "labelOffsetY": -66
+        },
+        {
+          "stageId": "stage-27",
+          "stageNumber": 27,
+          "title": "검은 집하장",
+          "mapLabel": "깊은 집하장",
+          "x": 820,
+          "y": 782,
+          "labelOffsetX": -165,
+          "labelOffsetY": -45
+        },
+        {
+          "stageId": "stage-28",
+          "stageNumber": 28,
+          "title": "지운 이름과 남은 명령",
+          "mapLabel": "관아 뒤뜰",
+          "x": 1004,
+          "y": 490,
+          "labelOffsetX": -25,
+          "labelOffsetY": -65
+        },
+        {
+          "stageId": "stage-29",
+          "stageNumber": 29,
+          "title": "현묵의 글",
+          "mapLabel": "밤의 수문",
+          "x": 1128,
+          "y": 811,
+          "labelOffsetX": -180,
+          "labelOffsetY": -15
+        },
+        {
+          "stageId": "stage-30",
+          "stageNumber": 30,
+          "title": "남겨진 길",
+          "mapLabel": "출성 나루",
+          "x": 965,
+          "y": 1090,
+          "labelOffsetX": -60,
+          "labelOffsetY": 42
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Anchors are proposed UI positions in native image pixels, not collision terrain coordinates.",
+    "Act2 is one combined surface/cave image, not two legacy layers.",
+    "Act2 stages18/19 share one bell.",
+    "Act3 spatial investigations are24→25→27→28 and24→26→28; canonical campaign order remains25→26→27.",
+    "Runtime canonical act/unlock/hasRest logic is authoritative; do not replace it with art."
+  ]
+}
