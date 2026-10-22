@@ -1,0 +1,2238 @@
+{
+  "gameSourceCommit": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+  "testCodeCommit": "0882e37777588e84999662dab9e23d21c3795000",
+  "executionNote": "Checks were executed on fixed d55 game with these test files in the working tree, then committed without changing game code. Earlier assertion/after-action adapter diagnostics are retained separately.",
+  "source": {
+    "dimensions": [
+      8000,
+      6000
+    ],
+    "steps": [
+      {
+        "id": "sluice",
+        "label": "수문을 열어 낮은 길 드러내기",
+        "kind": "interact",
+        "optional": true
+      },
+      {
+        "id": "groove",
+        "label": "작업굴 바닥 홈 조사",
+        "kind": "interact"
+      },
+      {
+        "id": "route-exit",
+        "kind": "route",
+        "label": "흔적 확인 후 배수한 아랫길 또는 고지로 통과"
+      }
+    ],
+    "routeSpec": {
+      "revision": 1,
+      "toStage": 16,
+      "common": [
+        "groove"
+      ],
+      "routes": [
+        {
+          "id": "A",
+          "markerId": "route-lower-exit",
+          "requiresDone": [
+            "sluice"
+          ],
+          "requiresTerrainActive": [
+            "fc15-drained-ledge"
+          ]
+        },
+        {
+          "id": "B",
+          "markerId": "route-upper-exit",
+          "requiresDone": []
+        }
+      ]
+    },
+    "markers": [
+      {
+        "id": "sluice",
+        "type": "act2",
+        "x": 2350,
+        "y": 3800,
+        "label": "수문을 열어 낮은 길 드러내기",
+        "action": "act2"
+      },
+      {
+        "id": "wave-hold-sluice",
+        "type": "act2-wave",
+        "x": 3230,
+        "y": 4092.285714285714
+      },
+      {
+        "id": "groove",
+        "type": "act2",
+        "action": "act2",
+        "x": 6240,
+        "y": 4395,
+        "label": "마른 발판의 옛 흔적과 새 작업 흔적"
+      },
+      {
+        "id": "wave",
+        "type": "act2-wave",
+        "x": 7350,
+        "y": 4085
+      },
+      {
+        "id": "route-lower-exit",
+        "type": "act2",
+        "action": "act2",
+        "x": 7530,
+        "y": 4031,
+        "label": "배수한 아랫길 출구"
+      },
+      {
+        "id": "route-upper-exit",
+        "type": "act2",
+        "action": "act2",
+        "x": 7350,
+        "y": 3502.631578947369,
+        "label": "고지 출구"
+      },
+      {
+        "id": "route-exit",
+        "type": "act2",
+        "action": "act2",
+        "x": 6240,
+        "y": 4395,
+        "label": "배수한 아랫길 또는 고지로 통과"
+      }
+    ],
+    "routes": {
+      "revision": 1,
+      "toStage": 16,
+      "common": [
+        "groove"
+      ],
+      "routes": [
+        {
+          "id": "A",
+          "markerId": "route-lower-exit",
+          "requiresDone": [
+            "sluice"
+          ],
+          "requiresTerrainActive": [
+            "fc15-drained-ledge"
+          ]
+        },
+        {
+          "id": "B",
+          "markerId": "route-upper-exit",
+          "requiresDone": []
+        }
+      ],
+      "traversal": {
+        "A": [
+          {
+            "x": 320,
+            "y": 3638.4444444444443
+          },
+          {
+            "x": 2350,
+            "y": 3800
+          },
+          {
+            "x": 4300,
+            "y": 4410
+          },
+          {
+            "x": 5300,
+            "y": 4535
+          },
+          {
+            "x": 5480,
+            "y": 4600
+          },
+          {
+            "x": 5890,
+            "y": 4600
+          },
+          {
+            "x": 6100,
+            "y": 4480
+          },
+          {
+            "x": 6240,
+            "y": 4395
+          },
+          {
+            "x": 6360,
+            "y": 4527.735849056604
+          },
+          {
+            "x": 6700,
+            "y": 4470
+          },
+          {
+            "x": 7530,
+            "y": 4031
+          }
+        ],
+        "B": [
+          {
+            "x": 320,
+            "y": 3638.4444444444443
+          },
+          {
+            "x": 2600,
+            "y": 3873.3333333333335,
+            "jumpTo": {
+              "x": 2790,
+              "y": 3748.3333333333335,
+              "support": "dry-shoulder",
+              "speed": 0.65
+            }
+          },
+          {
+            "x": 2950,
+            "y": 3748.3333333333335
+          },
+          {
+            "x": 3200,
+            "y": 3593.3333333333335
+          },
+          {
+            "x": 4200,
+            "y": 2991.731778368601
+          },
+          {
+            "x": 4300,
+            "y": 3015
+          },
+          {
+            "x": 4460,
+            "y": 3155
+          },
+          {
+            "x": 4660,
+            "y": 3325
+          },
+          {
+            "x": 4880,
+            "y": 3590
+          },
+          {
+            "x": 5110,
+            "y": 3930
+          },
+          {
+            "x": 5330,
+            "y": 4270
+          },
+          {
+            "x": 5500,
+            "y": 4280
+          },
+          {
+            "x": 5780,
+            "y": 4290
+          },
+          {
+            "x": 5970,
+            "y": 4380
+          },
+          {
+            "x": 6100,
+            "y": 4409
+          },
+          {
+            "x": 6240,
+            "y": 4395,
+            "jumpTo": {
+              "x": 6320,
+              "y": 4250,
+              "support": "fc15-east-arch",
+              "speed": 0.45
+            }
+          },
+          {
+            "x": 6700,
+            "y": 4035.403722762418
+          },
+          {
+            "x": 7350,
+            "y": 3502.631578947369
+          }
+        ]
+      }
+    },
+    "goal": "옛 흔적을 확인하고 배수한 낮은 길 또는 고지로 통과",
+    "guide": "마른 관찰점에서 옛 고정 자리와 새 작업 흔적을 확인하세요. 수문을 열어 낮은 길로 가거나 수문을 건드리지 않고 고지로 통과하세요.",
+    "legacyDesignDescription": "수차 제압·수문 방어·높은 공동의 고정구 사격으로 침수 작업굴을 돌파",
+    "legacyPlanRounds": [
+      33,
+      53
+    ],
+    "legacyExpectedMinutes": [
+      50,
+      77
+    ],
+    "waveCount": 0
+  },
+  "geometry15": {
+    "source": "shared/data/campaign.json",
+    "sha256": "0c1fc4ec915142493b7dbae2d0d7f32fd4847a108e74f1e9fba2d1bb462e82f0",
+    "scope": "Isolated real collision/movement with movement replenishment, no enemy combat or browser claim. Entry tests keep every NPC/enemy through compiler and sanitizer.",
+    "entries": [],
+    "rows": [
+      {
+        "id": 15,
+        "route": "A",
+        "cls": "archer",
+        "passed": true,
+        "failed": null,
+        "ticks": 1319,
+        "jumps": 1,
+        "drops": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 320,
+              "y": 3638.4444444444443
+            },
+            "x": 320,
+            "y": 3638.4444444444443,
+            "ticks": 1,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 2350,
+              "y": 3800
+            },
+            "x": 2333.307252927926,
+            "y": 3800,
+            "ticks": 329,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 4300,
+              "y": 4410
+            },
+            "x": 4278.939466062156,
+            "y": 4404.032848717611,
+            "ticks": 332,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 5300,
+              "y": 4535
+            },
+            "x": 5279.687411974679,
+            "y": 4533.445926913444,
+            "ticks": 165,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 5480,
+              "y": 4600
+            },
+            "x": 5470.436240701993,
+            "y": 4596.546420253498,
+            "ticks": 99,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 5890,
+              "y": 4600
+            },
+            "x": 5870.665112988785,
+            "y": 4600,
+            "ticks": 66,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6100,
+              "y": 4480
+            },
+            "x": 6082.025092629701,
+            "y": 4490.271375640171,
+            "ticks": 40,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6240,
+              "y": 4395
+            },
+            "x": 6219.407929700521,
+            "y": 4407.502328396113,
+            "ticks": 27,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6360,
+              "y": 4527.735849056604
+            },
+            "x": 6351.911600889966,
+            "y": 4529.10935079227,
+            "ticks": 62,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 6700,
+              "y": 4470
+            },
+            "x": 6680.211826915336,
+            "y": 4473.36025580683,
+            "ticks": 55,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 7530,
+              "y": 4031
+            },
+            "x": 7509.337796113207,
+            "y": 4037.1986611660377,
+            "ticks": 154,
+            "support": "act2-floor"
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "id": 15,
+        "route": "B",
+        "cls": "archer",
+        "passed": true,
+        "failed": null,
+        "ticks": 1556,
+        "jumps": 5,
+        "drops": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 320,
+              "y": 3638.4444444444443
+            },
+            "x": 320,
+            "y": 3638.4444444444443,
+            "ticks": 1,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 2600,
+              "y": 3873.3333333333335
+            },
+            "x": 2789.0557753149114,
+            "y": 3748.3333333333335,
+            "ticks": 371,
+            "support": "dry-shoulder",
+            "jumpTo": {
+              "x": 2790,
+              "y": 3748.3333333333335,
+              "support": "dry-shoulder",
+              "speed": 0.65
+            }
+          },
+          {
+            "goal": {
+              "x": 2950,
+              "y": 3748.3333333333335
+            },
+            "x": 2930.8891086482413,
+            "y": 3748.3333333333335,
+            "ticks": 24,
+            "support": "dry-shoulder"
+          },
+          {
+            "goal": {
+              "x": 3200,
+              "y": 3593.3333333333335
+            },
+            "x": 3179.5626536742143,
+            "y": 3612.4081899040666,
+            "ticks": 50,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4200,
+              "y": 2991.731778368601
+            },
+            "x": 4179.0410231643145,
+            "y": 2992.206208087967,
+            "ticks": 205,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4300,
+              "y": 3015
+            },
+            "x": 4281.712292291239,
+            "y": 3010.4280730728096,
+            "ticks": 18,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4460,
+              "y": 3155
+            },
+            "x": 4451.715404251069,
+            "y": 3135.4692279641326,
+            "ticks": 57,
+            "support": "fc15-crown-return"
+          },
+          {
+            "goal": {
+              "x": 4660,
+              "y": 3325
+            },
+            "x": 4654.826718187072,
+            "y": 3320.6027104590116,
+            "ticks": 73,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 4880,
+              "y": 3590
+            },
+            "x": 4860.830144160398,
+            "y": 3566.909037284116,
+            "ticks": 53,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5110,
+              "y": 3930
+            },
+            "x": 5102.822069913462,
+            "y": 3919.3891468285956,
+            "ticks": 92,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5330,
+              "y": 4270
+            },
+            "x": 5324.822069913473,
+            "y": 4237.586145557927,
+            "ticks": 86,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5500,
+              "y": 4280
+            },
+            "x": 5491.322069913481,
+            "y": 4278.401433931431,
+            "ticks": 31,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 5780,
+              "y": 4290
+            },
+            "x": 5762.342138486835,
+            "y": 4289.369362088815,
+            "ticks": 45,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 5970,
+              "y": 4380
+            },
+            "x": 5948.021851487568,
+            "y": 4369.589298073059,
+            "ticks": 34,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 6100,
+              "y": 4409
+            },
+            "x": 6078.022944841633,
+            "y": 4407.005736210408,
+            "ticks": 23,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 6240,
+              "y": 4395
+            },
+            "x": 6318.745044794133,
+            "y": 4251.254955205867,
+            "ticks": 24,
+            "support": "fc15-east-arch",
+            "jumpTo": {
+              "x": 6320,
+              "y": 4250,
+              "support": "fc15-east-arch",
+              "speed": 0.45
+            }
+          },
+          {
+            "goal": {
+              "x": 6700,
+              "y": 4035.403722762418
+            },
+            "x": 6681.888146778034,
+            "y": 4048.2802174142494,
+            "ticks": 72,
+            "support": "fc15-east-arch"
+          },
+          {
+            "goal": {
+              "x": 7350,
+              "y": 3502.631578947369
+            },
+            "x": 7343.146138042749,
+            "y": 3502.9923085240657,
+            "ticks": 189,
+            "support": "fc15-east-arch"
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "id": 15,
+        "route": "A",
+        "cls": "mage",
+        "passed": true,
+        "failed": null,
+        "ticks": 1397,
+        "jumps": 1,
+        "drops": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 320,
+              "y": 3638.4444444444443
+            },
+            "x": 320,
+            "y": 3638.4444444444443,
+            "ticks": 1,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 2350,
+              "y": 3800
+            },
+            "x": 2329.016402613038,
+            "y": 3800,
+            "ticks": 350,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 4300,
+              "y": 4410
+            },
+            "x": 4280.699103041249,
+            "y": 4404.531412528354,
+            "ticks": 355,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 5300,
+              "y": 4535
+            },
+            "x": 5282.225901213978,
+            "y": 4533.994789451671,
+            "ticks": 176,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 5480,
+              "y": 4600
+            },
+            "x": 5472.684036984373,
+            "y": 4597.358124466579,
+            "ticks": 99,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 5890,
+              "y": 4600
+            },
+            "x": 5871.271644056765,
+            "y": 4600,
+            "ticks": 70,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6100,
+              "y": 4480
+            },
+            "x": 6079.789561695585,
+            "y": 4491.548821888237,
+            "ticks": 42,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6240,
+              "y": 4395
+            },
+            "x": 6218.5213652653365,
+            "y": 4408.040599660331,
+            "ticks": 29,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6360,
+              "y": 4527.735849056604
+            },
+            "x": 6353.870439305699,
+            "y": 4528.77671785375,
+            "ticks": 63,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 6700,
+              "y": 4470
+            },
+            "x": 6678.867945339494,
+            "y": 4473.588462112161,
+            "ticks": 58,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 7530,
+              "y": 4031
+            },
+            "x": 7513.01062327354,
+            "y": 4036.096813017938,
+            "ticks": 165,
+            "support": "act2-floor"
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "id": 15,
+        "route": "B",
+        "cls": "mage",
+        "passed": true,
+        "failed": null,
+        "ticks": 1618,
+        "jumps": 5,
+        "drops": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 320,
+              "y": 3638.4444444444443
+            },
+            "x": 320,
+            "y": 3638.4444444444443,
+            "ticks": 1,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 2600,
+              "y": 3873.3333333333335
+            },
+            "x": 2789.9387115536315,
+            "y": 3748.3333333333335,
+            "ticks": 396,
+            "support": "dry-shoulder",
+            "jumpTo": {
+              "x": 2790,
+              "y": 3748.3333333333335,
+              "support": "dry-shoulder",
+              "speed": 0.65
+            }
+          },
+          {
+            "goal": {
+              "x": 2950,
+              "y": 3748.3333333333335
+            },
+            "x": 2928.7387115536308,
+            "y": 3748.3333333333335,
+            "ticks": 25,
+            "support": "dry-shoulder"
+          },
+          {
+            "goal": {
+              "x": 3200,
+              "y": 3593.3333333333335
+            },
+            "x": 3181.2818191861775,
+            "y": 3610.8036354262345,
+            "ticks": 54,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4200,
+              "y": 2991.731778368601
+            },
+            "x": 4178.912472794152,
+            "y": 2992.219739705879,
+            "ticks": 216,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4300,
+              "y": 3015
+            },
+            "x": 4280.890083790389,
+            "y": 3010.2225209475973,
+            "ticks": 19,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4460,
+              "y": 3155
+            },
+            "x": 4451.395455394003,
+            "y": 3135.514934943714,
+            "ticks": 57,
+            "support": "fc15-crown-return"
+          },
+          {
+            "goal": {
+              "x": 4660,
+              "y": 3325
+            },
+            "x": 4653.420187701649,
+            "y": 3319.407159546402,
+            "ticks": 73,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 4880,
+              "y": 3590
+            },
+            "x": 4858.632709285201,
+            "y": 3564.2621270935374,
+            "ticks": 56,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5110,
+              "y": 3930
+            },
+            "x": 5101.015221044107,
+            "y": 3916.718152847811,
+            "ticks": 93,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5330,
+              "y": 4270
+            },
+            "x": 5320.78188771079,
+            "y": 4231.801339222267,
+            "ticks": 85,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5500,
+              "y": 4280
+            },
+            "x": 5494.281887710803,
+            "y": 4278.946663525674,
+            "ticks": 34,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 5780,
+              "y": 4290
+            },
+            "x": 5760.053215162518,
+            "y": 4289.287614827233,
+            "ticks": 47,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 5970,
+              "y": 4380
+            },
+            "x": 5950.423558577658,
+            "y": 4370.726948799943,
+            "ticks": 37,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 6100,
+              "y": 4409
+            },
+            "x": 6078.030246441164,
+            "y": 4407.007561610291,
+            "ticks": 24,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 6240,
+              "y": 4395
+            },
+            "x": 6317.881386032055,
+            "y": 4252.118613967945,
+            "ticks": 26,
+            "support": "fc15-east-arch",
+            "jumpTo": {
+              "x": 6320,
+              "y": 4250,
+              "support": "fc15-east-arch",
+              "speed": 0.45
+            }
+          },
+          {
+            "goal": {
+              "x": 6700,
+              "y": 4035.403722762418
+            },
+            "x": 6682.272383470088,
+            "y": 4048.1129937985675,
+            "ticks": 77,
+            "support": "fc15-east-arch"
+          },
+          {
+            "goal": {
+              "x": 7350,
+              "y": 3502.631578947369
+            },
+            "x": 7343.079471376088,
+            "y": 3502.9958172959955,
+            "ticks": 190,
+            "support": "fc15-east-arch"
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "id": 15,
+        "route": "A",
+        "cls": "knight",
+        "passed": true,
+        "failed": null,
+        "ticks": 1336,
+        "jumps": 1,
+        "drops": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 320,
+              "y": 3638.4444444444443
+            },
+            "x": 320,
+            "y": 3638.4444444444443,
+            "ticks": 1,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 2350,
+              "y": 3800
+            },
+            "x": 2330.299225083539,
+            "y": 3800,
+            "ticks": 333,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 4300,
+              "y": 4410
+            },
+            "x": 4278.906599232606,
+            "y": 4404.023536449238,
+            "ticks": 337,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 5300,
+              "y": 4535
+            },
+            "x": 5278.145672512549,
+            "y": 4533.112577840551,
+            "ticks": 167,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 5480,
+              "y": 4600
+            },
+            "x": 5470.22647102691,
+            "y": 4596.470670093051,
+            "ticks": 100,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 5890,
+              "y": 4600
+            },
+            "x": 5871.108751846851,
+            "y": 4600,
+            "ticks": 67,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6100,
+              "y": 4480
+            },
+            "x": 6079.588488813885,
+            "y": 4491.66372067778,
+            "ticks": 40,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6240,
+              "y": 4395
+            },
+            "x": 6220.314758443694,
+            "y": 4406.951753802043,
+            "ticks": 28,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6360,
+              "y": 4527.735849056604
+            },
+            "x": 6351.114999469748,
+            "y": 4529.244622731552,
+            "ticks": 62,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 6700,
+              "y": 4470
+            },
+            "x": 6680.976212555808,
+            "y": 4473.230454471655,
+            "ticks": 56,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 7530,
+              "y": 4031
+            },
+            "x": 7509.485423174122,
+            "y": 4037.1543730477633,
+            "ticks": 156,
+            "support": "act2-floor"
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "id": 15,
+        "route": "B",
+        "cls": "knight",
+        "passed": true,
+        "failed": null,
+        "ticks": 1569,
+        "jumps": 5,
+        "drops": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 320,
+              "y": 3638.4444444444443
+            },
+            "x": 320,
+            "y": 3638.4444444444443,
+            "ticks": 1,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 2600,
+              "y": 3873.3333333333335
+            },
+            "x": 2789.9264836544976,
+            "y": 3748.3333333333335,
+            "ticks": 376,
+            "support": "dry-shoulder",
+            "jumpTo": {
+              "x": 2790,
+              "y": 3748.3333333333335,
+              "support": "dry-shoulder",
+              "speed": 0.65
+            }
+          },
+          {
+            "goal": {
+              "x": 2950,
+              "y": 3748.3333333333335
+            },
+            "x": 2929.8431503211677,
+            "y": 3748.3333333333335,
+            "ticks": 24,
+            "support": "dry-shoulder"
+          },
+          {
+            "goal": {
+              "x": 3200,
+              "y": 3593.3333333333335
+            },
+            "x": 3180.309298191539,
+            "y": 3611.7113216878975,
+            "ticks": 51,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4200,
+              "y": 2991.731778368601
+            },
+            "x": 4181.414332528814,
+            "y": 2992.0040322323202,
+            "ticks": 209,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4300,
+              "y": 3015
+            },
+            "x": 4282.626619615344,
+            "y": 3010.6566549038357,
+            "ticks": 18,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4460,
+              "y": 3155
+            },
+            "x": 4450.432521587954,
+            "y": 3135.6524969160064,
+            "ticks": 57,
+            "support": "fc15-crown-return"
+          },
+          {
+            "goal": {
+              "x": 4660,
+              "y": 3325
+            },
+            "x": 4650.780811000551,
+            "y": 3317.163689350468,
+            "ticks": 72,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 4880,
+              "y": 3590
+            },
+            "x": 4858.238883830492,
+            "y": 3563.787746432184,
+            "ticks": 54,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5110,
+              "y": 3930
+            },
+            "x": 5101.4320030813815,
+            "y": 3917.3342654246508,
+            "ticks": 93,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5330,
+              "y": 4270
+            },
+            "x": 5320.432003081371,
+            "y": 4231.300368048326,
+            "ticks": 85,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5500,
+              "y": 4280
+            },
+            "x": 5490.765336414695,
+            "y": 4278.2988777606015,
+            "ticks": 34,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 5780,
+              "y": 4290
+            },
+            "x": 5758.112068049849,
+            "y": 4289.218288144638,
+            "ticks": 45,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 5970,
+              "y": 4380
+            },
+            "x": 5952.859791623653,
+            "y": 4371.880953926993,
+            "ticks": 36,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 6100,
+              "y": 4409
+            },
+            "x": 6081.437771554783,
+            "y": 4407.859442888695,
+            "ticks": 23,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 6240,
+              "y": 4395
+            },
+            "x": 6318.990344280078,
+            "y": 4251.009655719922,
+            "ticks": 24,
+            "support": "fc15-east-arch",
+            "jumpTo": {
+              "x": 6320,
+              "y": 4250,
+              "support": "fc15-east-arch",
+              "speed": 0.45
+            }
+          },
+          {
+            "goal": {
+              "x": 6700,
+              "y": 4035.403722762418
+            },
+            "x": 6682.30444882068,
+            "y": 4048.0990386402627,
+            "ticks": 73,
+            "support": "fc15-east-arch"
+          },
+          {
+            "goal": {
+              "x": 7350,
+              "y": 3502.631578947369
+            },
+            "x": 7342.312804709394,
+            "y": 3503.0361681731897,
+            "ticks": 186,
+            "support": "fc15-east-arch"
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "id": 15,
+        "route": "A",
+        "cls": "occultist",
+        "passed": true,
+        "failed": null,
+        "ticks": 1348,
+        "jumps": 1,
+        "drops": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 320,
+              "y": 3638.4444444444443
+            },
+            "x": 320,
+            "y": 3638.4444444444443,
+            "ticks": 1,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 2350,
+              "y": 3800
+            },
+            "x": 2332.230879867594,
+            "y": 3800,
+            "ticks": 337,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 4300,
+              "y": 4410
+            },
+            "x": 4282.161985734002,
+            "y": 4404.945895957967,
+            "ticks": 341,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 5300,
+              "y": 4535
+            },
+            "x": 5282.423870932368,
+            "y": 4534.037593715107,
+            "ticks": 169,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 5480,
+              "y": 4600
+            },
+            "x": 5472.578411384913,
+            "y": 4597.319981888996,
+            "ticks": 99,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 5890,
+              "y": 4600
+            },
+            "x": 5869.209342571931,
+            "y": 4600,
+            "ticks": 67,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6100,
+              "y": 4480
+            },
+            "x": 6081.3374738227585,
+            "y": 4490.664300672709,
+            "ticks": 41,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6240,
+              "y": 4395
+            },
+            "x": 6220.521537757981,
+            "y": 4406.826209218369,
+            "ticks": 28,
+            "support": "fc15-drained-ledge"
+          },
+          {
+            "goal": {
+              "x": 6360,
+              "y": 4527.735849056604
+            },
+            "x": 6355.7687233905235,
+            "y": 4528.454367726138,
+            "ticks": 62,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 6700,
+              "y": 4470
+            },
+            "x": 6682.015019072891,
+            "y": 4473.054053364981,
+            "ticks": 56,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 7530,
+              "y": 4031
+            },
+            "x": 7512.12296789027,
+            "y": 4036.363109632919,
+            "ticks": 158,
+            "support": "act2-floor"
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "id": 15,
+        "route": "B",
+        "cls": "occultist",
+        "passed": true,
+        "failed": null,
+        "ticks": 1577,
+        "jumps": 5,
+        "drops": 0,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 320,
+              "y": 3638.4444444444443
+            },
+            "x": 320,
+            "y": 3638.4444444444443,
+            "ticks": 1,
+            "support": "act2-floor"
+          },
+          {
+            "goal": {
+              "x": 2600,
+              "y": 3873.3333333333335
+            },
+            "x": 2790.4611290176827,
+            "y": 3748.3333333333335,
+            "ticks": 380,
+            "support": "dry-shoulder",
+            "jumpTo": {
+              "x": 2790,
+              "y": 3748.3333333333335,
+              "support": "dry-shoulder",
+              "speed": 0.65
+            }
+          },
+          {
+            "goal": {
+              "x": 2950,
+              "y": 3748.3333333333335
+            },
+            "x": 2928.844462351021,
+            "y": 3748.3333333333335,
+            "ticks": 24,
+            "support": "dry-shoulder"
+          },
+          {
+            "goal": {
+              "x": 3200,
+              "y": 3593.3333333333335
+            },
+            "x": 3181.640789949654,
+            "y": 3610.4685960469897,
+            "ticks": 52,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4200,
+              "y": 2991.731778368601
+            },
+            "x": 4183.250206454674,
+            "y": 2991.890556706565,
+            "ticks": 209,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4300,
+              "y": 3015
+            },
+            "x": 4283.340734198035,
+            "y": 3010.8351835495087,
+            "ticks": 18,
+            "support": "fc15-west-arch"
+          },
+          {
+            "goal": {
+              "x": 4460,
+              "y": 3155
+            },
+            "x": 4455.404026545179,
+            "y": 3134.942281922117,
+            "ticks": 57,
+            "support": "fc15-crown-return"
+          },
+          {
+            "goal": {
+              "x": 4660,
+              "y": 3325
+            },
+            "x": 4653.602789383343,
+            "y": 3319.562370975842,
+            "ticks": 72,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 4880,
+              "y": 3590
+            },
+            "x": 4859.530859283906,
+            "y": 3565.3439895919773,
+            "ticks": 54,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5110,
+              "y": 3930
+            },
+            "x": 5100.654648216999,
+            "y": 3916.1851321468675,
+            "ticks": 92,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5330,
+              "y": 4270
+            },
+            "x": 5323.2713148836565,
+            "y": 4235.36574631069,
+            "ticks": 86,
+            "support": "fc15-safe-crown-descent"
+          },
+          {
+            "goal": {
+              "x": 5500,
+              "y": 4280
+            },
+            "x": 5491.737981550316,
+            "y": 4278.478049232953,
+            "ticks": 32,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 5780,
+              "y": 4290
+            },
+            "x": 5762.181816806478,
+            "y": 4289.363636314517,
+            "ticks": 46,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 5970,
+              "y": 4380
+            },
+            "x": 5948.782485578406,
+            "y": 4369.949598431876,
+            "ticks": 35,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 6100,
+              "y": 4409
+            },
+            "x": 6081.475022438309,
+            "y": 4407.868755609577,
+            "ticks": 24,
+            "support": "fc15-dry-basin-rim"
+          },
+          {
+            "goal": {
+              "x": 6240,
+              "y": 4395
+            },
+            "x": 6319.13032736164,
+            "y": 4250.86967263836,
+            "ticks": 24,
+            "support": "fc15-east-arch",
+            "jumpTo": {
+              "x": 6320,
+              "y": 4250,
+              "support": "fc15-east-arch",
+              "speed": 0.45
+            }
+          },
+          {
+            "goal": {
+              "x": 6700,
+              "y": 4035.403722762418
+            },
+            "x": 6678.1303948690265,
+            "y": 4049.9156282796193,
+            "ticks": 73,
+            "support": "fc15-east-arch"
+          },
+          {
+            "goal": {
+              "x": 7350,
+              "y": 3502.631578947369
+            },
+            "x": 7345.929471376063,
+            "y": 3502.8458172959968,
+            "ticks": 190,
+            "support": "fc15-east-arch"
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      }
+    ]
+  },
+  "optional15": {
+    "mode": "Isolated baseline jump/landing and ordinary shot fixtures; no geometry or movement-stat changes; not normal-combat completion.",
+    "rows": [
+      {
+        "stage": 15,
+        "route": "dry-shoulder",
+        "hero": "archer",
+        "passed": true,
+        "accessibleWithDifferentTakeoff": false,
+        "declaredEntry": {
+          "x": 2620,
+          "y": 3880.6666666666665,
+          "surfaceId": "floor-main"
+        },
+        "shelf": {
+          "terrainId": "dry-shoulder",
+          "x": 2720,
+          "width": 360,
+          "y": 3748.3333333333335,
+          "leftFloorRise": 158,
+          "rightFloorRise": 306.23809523809496
+        },
+        "attempts": 1,
+        "declaredAttempt": {
+          "passed": true,
+          "takeoff": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "landing": {
+            "x": 2749.5000000000064,
+            "y": 3748.3333333333335,
+            "surfaceId": "dry-shoulder"
+          },
+          "apex": 3667.051585371376,
+          "requiredRise": 132.33333333333303,
+          "exit": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "hpBefore": 755,
+          "hpAfter": 755,
+          "jumpRank": 0,
+          "ticks": 367,
+          "waits": 0
+        },
+        "result": {
+          "passed": true,
+          "takeoff": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "landing": {
+            "x": 2749.5000000000064,
+            "y": 3748.3333333333335,
+            "surfaceId": "dry-shoulder"
+          },
+          "apex": 3667.051585371376,
+          "requiredRise": 132.33333333333303,
+          "exit": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "hpBefore": 755,
+          "hpAfter": 755,
+          "jumpRank": 0,
+          "ticks": 367,
+          "waits": 0
+        }
+      },
+      {
+        "stage": 15,
+        "route": "dry-shoulder",
+        "hero": "mage",
+        "passed": true,
+        "accessibleWithDifferentTakeoff": false,
+        "declaredEntry": {
+          "x": 2620,
+          "y": 3880.6666666666665,
+          "surfaceId": "floor-main"
+        },
+        "shelf": {
+          "terrainId": "dry-shoulder",
+          "x": 2720,
+          "width": 360,
+          "y": 3748.3333333333335,
+          "leftFloorRise": 158,
+          "rightFloorRise": 306.23809523809496
+        },
+        "attempts": 1,
+        "declaredAttempt": {
+          "passed": true,
+          "takeoff": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "landing": {
+            "x": 2750.1250000000095,
+            "y": 3748.3333333333335,
+            "surfaceId": "dry-shoulder"
+          },
+          "apex": 3667.051585371376,
+          "requiredRise": 132.33333333333303,
+          "exit": {
+            "x": 2622.891666666667,
+            "y": 3881.7269444444446
+          },
+          "hpBefore": 806,
+          "hpAfter": 806,
+          "jumpRank": 0,
+          "ticks": 377,
+          "waits": 0
+        },
+        "result": {
+          "passed": true,
+          "takeoff": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "landing": {
+            "x": 2750.1250000000095,
+            "y": 3748.3333333333335,
+            "surfaceId": "dry-shoulder"
+          },
+          "apex": 3667.051585371376,
+          "requiredRise": 132.33333333333303,
+          "exit": {
+            "x": 2622.891666666667,
+            "y": 3881.7269444444446
+          },
+          "hpBefore": 806,
+          "hpAfter": 806,
+          "jumpRank": 0,
+          "ticks": 377,
+          "waits": 0
+        }
+      },
+      {
+        "stage": 15,
+        "route": "dry-shoulder",
+        "hero": "knight",
+        "passed": true,
+        "accessibleWithDifferentTakeoff": false,
+        "declaredEntry": {
+          "x": 2620,
+          "y": 3880.6666666666665,
+          "surfaceId": "floor-main"
+        },
+        "shelf": {
+          "terrainId": "dry-shoulder",
+          "x": 2720,
+          "width": 360,
+          "y": 3748.3333333333335,
+          "leftFloorRise": 158,
+          "rightFloorRise": 306.23809523809496
+        },
+        "attempts": 1,
+        "declaredAttempt": {
+          "passed": true,
+          "takeoff": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "landing": {
+            "x": 2750.79166666666,
+            "y": 3748.3333333333335,
+            "surfaceId": "dry-shoulder"
+          },
+          "apex": 3667.051585371376,
+          "requiredRise": 132.33333333333303,
+          "exit": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "hpBefore": 1234,
+          "hpAfter": 1234,
+          "jumpRank": 0,
+          "ticks": 370,
+          "waits": 0
+        },
+        "result": {
+          "passed": true,
+          "takeoff": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "landing": {
+            "x": 2750.79166666666,
+            "y": 3748.3333333333335,
+            "surfaceId": "dry-shoulder"
+          },
+          "apex": 3667.051585371376,
+          "requiredRise": 132.33333333333303,
+          "exit": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "hpBefore": 1234,
+          "hpAfter": 1234,
+          "jumpRank": 0,
+          "ticks": 370,
+          "waits": 0
+        }
+      },
+      {
+        "stage": 15,
+        "route": "dry-shoulder",
+        "hero": "occultist",
+        "passed": true,
+        "accessibleWithDifferentTakeoff": false,
+        "declaredEntry": {
+          "x": 2620,
+          "y": 3880.6666666666665,
+          "surfaceId": "floor-main"
+        },
+        "shelf": {
+          "terrainId": "dry-shoulder",
+          "x": 2720,
+          "width": 360,
+          "y": 3748.3333333333335,
+          "leftFloorRise": 158,
+          "rightFloorRise": 306.23809523809496
+        },
+        "attempts": 1,
+        "declaredAttempt": {
+          "passed": true,
+          "takeoff": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "landing": {
+            "x": 2749.358333333328,
+            "y": 3748.3333333333335,
+            "surfaceId": "dry-shoulder"
+          },
+          "apex": 3667.051585371376,
+          "requiredRise": 132.33333333333303,
+          "exit": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "hpBefore": 928,
+          "hpAfter": 928,
+          "jumpRank": 0,
+          "ticks": 371,
+          "waits": 0
+        },
+        "result": {
+          "passed": true,
+          "takeoff": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "landing": {
+            "x": 2749.358333333328,
+            "y": 3748.3333333333335,
+            "surfaceId": "dry-shoulder"
+          },
+          "apex": 3667.051585371376,
+          "requiredRise": 132.33333333333303,
+          "exit": {
+            "x": 2620,
+            "y": 3880.6666666666665
+          },
+          "hpBefore": 928,
+          "hpAfter": 928,
+          "jumpRank": 0,
+          "ticks": 371,
+          "waits": 0
+        }
+      }
+    ],
+    "shots": []
+  },
+  "contracts": {
+    "base": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+    "checkedCommit": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+    "runtimeSourceSha256": "541a5de814beef1a0571eea4c1e9dc96c30488ce89f1cdeb0f4b320007da06e3",
+    "rows": [
+      {
+        "case": "current-source",
+        "dimensions": [
+          8000,
+          6000
+        ],
+        "enemies": 22,
+        "party": 4,
+        "entryPlan": 14.4,
+        "entryXP": 48393,
+        "steps": [
+          {
+            "id": "sluice",
+            "label": "수문을 열어 낮은 길 드러내기",
+            "kind": "interact",
+            "optional": true
+          },
+          {
+            "id": "groove",
+            "label": "마른 발판에서 옛 흔적과 새 작업 흔적 확인",
+            "kind": "interact"
+          },
+          {
+            "id": "route-exit",
+            "kind": "route",
+            "label": "흔적 확인 후 배수한 아랫길 또는 고지로 통과"
+          }
+        ],
+        "routeSpec": {
+          "revision": 1,
+          "toStage": 16,
+          "common": [
+            "groove"
+          ],
+          "routes": [
+            {
+              "id": "A",
+              "markerId": "route-lower-exit",
+              "requiresDone": [
+                "sluice"
+              ],
+              "requiresTerrainActive": [
+                "fc15-drained-ledge"
+              ]
+            },
+            {
+              "id": "B",
+              "markerId": "route-upper-exit",
+              "requiresDone": []
+            }
+          ]
+        },
+        "goal": "옛 흔적을 확인하고 배수한 낮은 길 또는 고지로 통과"
+      },
+      {
+        "case": "local interaction threat fixture",
+        "marker": "sluice",
+        "mandatoryThreatIds": [
+          "a2-enemy-5",
+          "a2-enemy-6",
+          "a2-enemy-8"
+        ],
+        "radius": 360
+      },
+      {
+        "case": "local interaction threat fixture",
+        "marker": "groove",
+        "mandatoryThreatIds": [
+          "a2-enemy-15",
+          "a2-enemy-18"
+        ],
+        "radius": 360
+      },
+      {
+        "case": "route qualification fixture",
+        "route": "A",
+        "grooveRequired": true,
+        "optionalSluiceRequired": true,
+        "repeatCommitExact": true
+      },
+      {
+        "case": "route qualification fixture",
+        "route": "B",
+        "grooveRequired": true,
+        "optionalSluiceRequired": false,
+        "repeatCommitExact": true
+      },
+      {
+        "case": "A sluice pending dialogue/review",
+        "wholeBattleContinueExact": true,
+        "round": 1,
+        "route": null
+      },
+      {
+        "case": "A actual sluice E after staged arrival",
+        "waterDrop": 120,
+        "collisionAndWorldSupportActivated": true,
+        "duplicateERefused": true,
+        "enemiesPreparedSubdued": 22
+      },
+      {
+        "case": "A drainage activated",
+        "wholeBattleContinueExact": false,
+        "positions": [
+          {
+            "id": "a2-enemy-15",
+            "before": {
+              "x": 6210,
+              "y": 4553.207547169811,
+              "hp": 1434
+            },
+            "after": {
+              "x": 6178,
+              "y": 4432.642857142857,
+              "hp": 1434
+            }
+          },
+          {
+            "id": "a2-enemy-17",
+            "before": {
+              "x": 5890,
+              "y": 4749.411764705882,
+              "hp": 925
+            },
+            "after": {
+              "x": 5858,
+              "y": 4771.058823529412,
+              "hp": 925
+            }
+          }
+        ],
+        "reason": "Recorded source save/contact difference; not hidden or repaired"
+      },
+      {
+        "case": "A groove dialogue",
+        "wholeBattleContinueExact": true,
+        "round": 1,
+        "route": null
+      },
+      {
+        "case": "prepared A final arrival/outcome/16 entry",
+        "grooveRecordedViaRealE": true,
+        "routeRecordedAutomatically": true,
+        "rewardOnce": true,
+        "entryVariant": "A",
+        "entryHeroes": [
+          {
+            "cls": "archer",
+            "x": 570,
+            "y": 5480,
+            "hp": 785,
+            "focus": 180
+          },
+          {
+            "cls": "mage",
+            "x": 460,
+            "y": 5480,
+            "hp": 806,
+            "focus": 224
+          },
+          {
+            "cls": "knight",
+            "x": 680,
+            "y": 5480,
+            "hp": 1234,
+            "focus": 195
+          },
+          {
+            "cls": "occultist",
+            "x": 350,
+            "y": 5480,
+            "hp": 928,
+            "focus": 268
+          }
+        ],
+        "normalPlayCompletion": false
+      },
+      {
+        "case": "A actual16 entry",
+        "wholeBattleContinueExact": true,
+        "round": 1,
+        "route": null
+      },
+      {
+        "case": "B groove dialogue",
+        "wholeBattleContinueExact": true,
+        "round": 1,
+        "route": null
+      },
+      {
+        "case": "prepared B final arrival/outcome/16 entry",
+        "grooveRecordedViaRealE": true,
+        "routeRecordedAutomatically": true,
+        "rewardOnce": true,
+        "entryVariant": "B",
+        "entryHeroes": [
+          {
+            "cls": "archer",
+            "x": 2650,
+            "y": 5029.183673469388,
+            "hp": 785,
+            "focus": 180
+          },
+          {
+            "cls": "mage",
+            "x": 2750,
+            "y": 5021.0204081632655,
+            "hp": 806,
+            "focus": 224
+          },
+          {
+            "cls": "knight",
+            "x": 2850,
+            "y": 5012.857142857143,
+            "hp": 1234,
+            "focus": 195
+          },
+          {
+            "cls": "occultist",
+            "x": 3380,
+            "y": 4890.649350649351,
+            "hp": 928,
+            "focus": 268
+          }
+        ],
+        "normalPlayCompletion": false
+      },
+      {
+        "case": "B actual16 entry",
+        "wholeBattleContinueExact": true,
+        "round": 1,
+        "route": null
+      },
+      {
+        "case": "all-party-dead fixture",
+        "genericFailure": true,
+        "stageSpecificProtectedNPCs": 0
+      }
+    ],
+    "scope": "Prepared predicate/arrival/subdued-enemy fixtures. Actual interaction/drain/production App save/outcome/entry checks; NOT normal-resource combat or whole-stage clear-time evidence."
+  },
+  "drainContactFailure": {
+    "checkedCommit": "d55b6c6876a79ce041bf7473ba43b50a10389543",
+    "scope": "Original full living roster; supplied completed sluice/pending reveal facts, production reveal/sanitizer and20 ordinary Engine ticks. NOT normal combat completion.",
+    "passed": false,
+    "beforeBroken": true,
+    "guardWithBroken": [],
+    "guardWithActiveClone": [
+      "a2-enemy-15",
+      "a2-enemy-17"
+    ],
+    "activated": true,
+    "newInvalid": [
+      {
+        "id": "a2-enemy-15",
+        "x": 6210,
+        "y": 4553.207547169811,
+        "hp": 1434,
+        "valid": false,
+        "subdued": false
+      },
+      {
+        "id": "a2-enemy-17",
+        "x": 5890,
+        "y": 4749.411764705882,
+        "hp": 925,
+        "valid": false,
+        "subdued": false
+      }
+    ],
+    "sanitizerMoves": [
+      {
+        "id": "a2-enemy-15",
+        "before": {
+          "x": 6210,
+          "y": 4553.207547169811,
+          "hp": 1434
+        },
+        "after": {
+          "x": 6178,
+          "y": 4432.642857142857,
+          "hp": 1434
+        }
+      },
+      {
+        "id": "a2-enemy-17",
+        "before": {
+          "x": 5890,
+          "y": 4749.411764705882,
+          "hp": 925
+        },
+        "after": {
+          "x": 5858,
+          "y": 4771.058823529412,
+          "hp": 925
+        }
+      }
+    ],
+    "stillInvalidAfter20Ticks": [
+      {
+        "id": "a2-enemy-15",
+        "x": 6210,
+        "y": 4553.207547169811,
+        "hp": 1434,
+        "valid": false,
+        "subdued": false
+      },
+      {
+        "id": "a2-enemy-17",
+        "x": 5890,
+        "y": 4749.411764705882,
+        "hp": 925,
+        "valid": false,
+        "subdued": false
+      }
+    ],
+    "after20TickPositionChanges": []
+  },
+  "statuses": {
+    "normalResourceFullPlay": "NOT RUN",
+    "geometryAB4Classes": "PASS isolated/replenished-movement fixture only",
+    "optionalJump4Classes": "PASS isolated finite normal commands after one-time staging",
+    "currentConditionsAndEntry16": "PASS prepared predicate/arrival/defeat fixtures only",
+    "postDrainWholeBattleContinue": "FAIL two original enemy positions recovered, HP preserved",
+    "unscopedReviewedAudit": "BLOCKED before15 by unrelated historical stage5 lake hash",
+    "originalOptional15": "BLOCKED by unconditional stage11 historical projection; scoped15 adapter then PASS"
+  },
+  "testFileSha256": {
+    "tests/act2-optional-routes.mjs": "3b7cd55f141511cfb5cf0dccfb78719d74d5114d976749dd87cc584c44ba8bf2",
+    "tests/act23-route-geometry.mjs": "5ba1fe48df344262324c19f8d9d20be941f8ee8d7762d699172079c752a404ac",
+    "tests/stage15-current-routes.mjs": "274036b4fd7d4f363e12adfafbdfeeee8e076389b562e07ae377cfa80599fa60",
+    "tests/stage15-drain-contact.mjs": "b4ea524a3d30130aa8d26f95e3d710b007c2d2252b2e6b6000ec2e086f685eff"
+  },
+  "rawLocalSha256": {
+    "drain-contact.log": "ab2fb7561bccf6a479ed955bedc239d0da372b54c55900d2668653399db253bc",
+    "geometry15.log": "216a8a3cdc92031f4354e2d452dbda07ddfcdf82234f493f9483e0e0a6daf755",
+    "optional15-scoped.log": "e88958ed7a3ce9b6c7698d6ff07555bd29cebc5531c23839f40f30029f9dc30f",
+    "adapter-story.log": "8dc1f950b28ef06bb46863f474427e3a53c612e6f97f7263832c25d482bdff33",
+    "contracts.log": "918267911c83ca07cdf795c5985f823291caafc27b817485b17c4df66a8a78e3",
+    "drain-probe.json": "20cdf3981a9677b33cf7f5f940670ff320cea723bac028cdb8e12e82abfdfbaa",
+    "optional-original.log": "6b806bcd6ac4c6df076a9d55d64546670708c7e3a1c4f6bd3f5b49af9b64c20b",
+    "reviewed-original.log": "8f7ed7ebaccb9ba008b8813e4f03d261acbcd7ffb8733eed0914844fd7d1da34",
+    "save-difference-A-drainage-activated.json": "efb834fc4430176dd828d5076f11513cd1c065e77c1d7625c217aadb2dea7e4a",
+    "contracts.json": "458157b48040f2337aaed1bb147eae875792db23931e03fd5bda9d34f3cb754c",
+    "first-save-assertion.log": "cfbe5f725f9d1e8e045ee5bcdf21c667ec05e7e4f87e8526c7e248efa300e5da"
+  },
+  "limits": [
+    "No normal combat playthrough, current completion rounds, human time, A/B combat balance, browser/Pages or art approval.",
+    "A/B geometry uses existing isolated traversal with removed other actors and direct movement replenishment; not normal move-budget evidence.",
+    "Optional dry-shoulder uses ordinary move/jump/wait/tick after staged start/removal of other actors, with no post-start position/HP/movement writes.",
+    "Interaction/save/outcome/16-entry positive cases supply arrivals and subdued enemies before mounting, so they are boundary fixtures, not clear-time evidence.",
+    "Drain defect is additionally reproduced on the original full living/unsubdued roster with only sluice-complete/pending facts supplied. No game fix or data edits."
+  ],
+  "reachabilityLimit": "Sluice does not require defeating these two distant actors; state is not excluded by game contracts. No normal-combat approach/E run reproduced the simultaneous state. Real E was tested with staged safe arrivals/subdued enemies; original living-roster cross-check supplies sluice/pending facts."
+}
