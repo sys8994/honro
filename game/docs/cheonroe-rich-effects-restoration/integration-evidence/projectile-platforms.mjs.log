@@ -1,0 +1,7 @@
+PASS Swept top-only entry handles slabs, side/corner, slopes, overlap and first of multiple layers
+PASS Actual upward flight clears the slab, reaches apex and matches arrow, qi, stake and summon guides
+PASS Reflected waves share guide/live top contacts and still reflect from solid sides and ceilings
+PASS Ground installations keep the actual first valid top when an ignored slab is close overhead
+PASS Spread, emitted fragments and split arrows use the same rule; authored phasing remains
+PASS Muzzle, homing acquisition, saved flight and body/generic checks remain independently consistent
+PASS 6 projectile-platform behaviour groups
