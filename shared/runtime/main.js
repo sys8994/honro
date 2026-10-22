@@ -3,6 +3,9 @@
     const C = G.HONRO_CORE, H = G.HONRO_CONTENT, $ = id => document.getElementById(id), clone = x => JSON.parse(JSON.stringify(x)), clamp = (v, a, b) => Math.max(a, Math.min(b, v)), esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     const KEY = 'honro-first-act-profile-1', ROSTER = ['archer', 'mage', 'knight', 'occultist'], BASE = C.STAGES.map(clone);
     const S = C.SKILLS, FA = G.HonroFA;
+    // Display values own their DOM writes; unchanged values keep existing nodes.
+    const setText=(node,value)=>{if(node.textContent!==String(value))node.textContent=value;};
+    const setStyle=(node,name,value,priority='')=>{value=String(value);if(node.style.getPropertyValue(name)!==value||node.style.getPropertyPriority(name)!==priority)node.style.setProperty(name,value,priority);};
     const fa=(name,size=18,cls='')=>FA?.icon?.(name,cls,size)||'';
     // Use the original ARCFALL skill icons, the final 0.6.4+ behavior.
     for (const cls of ROSTER) {
@@ -804,10 +807,9 @@
         updateChargeDisplay(){
             const e=this.engine,u=(e?.active?.side===0&&!e.active.summoned?e.active:null)||e?.b.units.find(v=>v.side===0&&!v.summoned&&!v.dead),button=$('fire');if(!u||!button)return;
             const previous=this.engine.b.lastShots?.[u.id]?.power||0,power=this.charging?this.power:0;
-            button.style.setProperty('--charge',power*100);button.style.setProperty('--previous',previous*100);button.style.setProperty('--charge-color',H.hero[u.cls]?.color||'#c8b17c');
-            button.dataset.character=u.id;button.dataset.previous=previous;button.classList.toggle('charging',this.charging);
-            const label=button.querySelector('.fire-label');if(label)label.textContent=this.engine.iceGourdReady()?'폭발':this.charging?Math.round(power*100)+'%':'발사';
-            if(!button.disabled)button.title=previous?'이전 발사 '+Math.round(previous*100)+'%':'누른 채 충전, 손을 떼어 발사';
+            setStyle(button,'--charge',power*100);setStyle(button,'--previous',previous*100);setStyle(button,'--charge-color',H.hero[u.cls]?.color||'#c8b17c');
+            if(button.dataset.character!==u.id)button.dataset.character=u.id;if(button.dataset.previous!==String(previous))button.dataset.previous=previous;button.classList.toggle('charging',this.charging);
+            const label=button.querySelector('.fire-label');if(label)setText(label,this.engine.iceGourdReady()?'폭발':this.charging?Math.round(power*100)+'%':'발사');
         }
         updateSkillButtons(u,ids){
             const root=$('combat-skills'),e=this.engine,unused=new Set(root.children);
@@ -844,17 +846,17 @@
                 this.drawPortraits();}
             }
             this.updateSkillButtons(u,combatSkills);
-            $('hp-fill').style.width=(Math.max(0,u.hp)/u.maxHp*100)+'%';$('hp-label').textContent=Math.round(Math.max(0,u.hp))+' / '+u.maxHp;
-            $('mp-fill').style.width=(u.focus/u.maxFocus*100)+'%';$('mp-label').textContent=Math.round(u.focus)+' / '+u.maxFocus;
-            $('move-fill').style.width=(u.maxMove>0?clamp(u.moveLeft/u.maxMove*100,0,100):0)+'%';$('move-label').textContent=Math.round(Math.max(0,u.moveLeft))+' / '+Math.round(u.maxMove);
+            setStyle($('hp-fill'),'width',(Math.max(0,u.hp)/u.maxHp*100)+'%');setText($('hp-label'),Math.round(Math.max(0,u.hp))+' / '+u.maxHp);
+            setStyle($('mp-fill'),'width',(u.focus/u.maxFocus*100)+'%');setText($('mp-label'),Math.round(u.focus)+' / '+u.maxFocus);
+            setStyle($('move-fill'),'width',(u.maxMove>0?clamp(u.moveLeft/u.maxMove*100,0,100):0)+'%');setText($('move-label'),Math.round(Math.max(0,u.moveLeft))+' / '+Math.round(u.maxMove));
             const allies=b.units.filter(v=>v.honroAlly&&!v.dead),alSig=allies.map(v=>v.id+':'+Math.round(v.hp)+':'+Math.round(v.maxHp)).join('|');
             if(this.allySig!==alSig){this.allySig=alSig;$('allied-roster').innerHTML=allies.map(v=>`<span class="allied-chip" title="${v.name} · 동맹"><i></i><span>${v.name}</span><b style="--ally-hp:${Math.max(0,v.hp)/v.maxHp*100}%"></b><small>${Math.round(Math.max(0,v.hp))}</small></span>`).join('');}
-            $('read-aim').textContent=`${Math.round(this.displayAngle(u))}° · ${Math.round(this.power*100)}%`;
-            const turnLabel=G.HonroStory.turnLabel(b);$('turn-text').textContent=b.round+'턴'+(turnLabel?' · '+turnLabel:'');
+            setText($('read-aim'),`${Math.round(this.displayAngle(u))}° · ${Math.round(this.power*100)}%`);
+            const turnLabel=G.HonroStory.turnLabel(b);setText($('turn-text'),b.round+'턴'+(turnLabel?' · '+turnLabel:''));
             const wind=Math.max(-30,Math.min(30,b.wind)),fraction=Math.abs(wind)/30*50;
-            $('wind-left').style.width=(wind<0?fraction:0)+'%';$('wind-right').style.width=(wind>0?fraction:0)+'%';$('wind-value').textContent=`바람 ${Math.abs(Math.round(b.wind))}`;$('joystick').querySelector('.wind-gauge').setAttribute('aria-valuenow',String(b.wind));
+            setStyle($('wind-left'),'width',(wind<0?fraction:0)+'%');setStyle($('wind-right'),'width',(wind>0?fraction:0)+'%');setText($('wind-value'),`바람 ${Math.abs(Math.round(b.wind))}`);$('joystick').querySelector('.wind-gauge').setAttribute('aria-valuenow',String(b.wind));
             const steering=e.iceGourdReady()||b.phase==='flight'&&b.projectiles.some(p=>p.skill==='A09'&&!p.turned&&!p.followup||p.owner===u.id&&p.mode==='warriorDive'&&!p.dived);
-            $('fire').disabled=!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||u.focus<e.manaCost(sk,u,0)||cd>0);$('fire').style.setProperty('--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
+            $('fire').disabled=!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||u.focus<e.manaCost(sk,u,0)||cd>0);setStyle($('fire'),'--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
             this.updateChargeDisplay();
             $('jump').disabled=u.meleeFollow==='ready'||!this.canInput()||!e.grounded(e.active)||e.active.moveLeft<e.jumpCost(e.active);$('joystick').style.opacity=this.canInput()?1:.4;const defend=document.querySelector('[data-action=defend]');if(defend)defend.disabled=!this.canInput()||!!u.platformDrop&&u.platformDrop.phase!=='land';const drop=$('drop');if(drop)drop.disabled=!this.canInput()||!e.canDrop(u);
             G.HonroObjectives.refresh(this);
@@ -865,14 +867,14 @@
             if(!this.minimapVisible)return;
             const mc=$('minimap'),ratio=b.width/b.height,mobile=innerWidth<620,maxW=mobile?118:152,maxH=innerHeight<550?86:(mobile?108:132);let cssW,cssH;
             if(ratio>=1){cssW=maxW;cssH=maxW/ratio;}else{cssH=maxH;cssW=maxH*ratio;}
-            mc.style.setProperty('width',Math.round(cssW)+'px','important');mc.style.setProperty('height',Math.round(cssH)+'px','important');mc.style.aspectRatio=String(b.width)+' / '+String(b.height);const mw=mc.clientWidth||cssW,mh=mc.clientHeight||cssH,dpr=2;
+            setStyle(mc,'width',Math.round(cssW)+'px','important');setStyle(mc,'height',Math.round(cssH)+'px','important');setStyle(mc,'aspect-ratio',String(b.width)+' / '+String(b.height));const mw=mc.clientWidth||cssW,mh=mc.clientHeight||cssH,dpr=2;
             if(mc.width!==Math.round(mw*dpr)||mc.height!==Math.round(mh*dpr)){mc.width=Math.round(mw*dpr);mc.height=Math.round(mh*dpr);}
             const ctx=mc.getContext('2d'),cave=!!b.honroCaveEnvelope;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,mw,mh);ctx.fillStyle=cave?'#08090b':'#091b25d8';ctx.fillRect(0,0,mw,mh);
             const sx=mw/b.width,sy=mh/b.height;ctx.fillStyle=cave?'#4a4b50':'#435e58';
             for(const t of b.terrain){if(t.broken||t.mat==='barrel'||t.mat==='support')continue;const pts=t.vertices?.length?t.vertices:[{x:t.x,y:t.y},{x:t.x+t.w,y:t.y+(t.slope||0)},{x:t.x+t.w,y:t.y+t.h},{x:t.x,y:t.y+t.h}];ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p.x*sx,p.y*sy):ctx.moveTo(p.x*sx,p.y*sy));ctx.closePath();ctx.fill();}
             for(const v of b.units)if(!v.dead&&!v.eaterCapturedBy&&(!G.HonroAct2||G.HonroAct2.visible(b,v))){const side=this.engine.allegiance(v),player=side===0&&!v.summoned&&!v.enthrall&&!v.honroAlly&&v.side===0,ally=side===0||side===2,col=G.HonroNarrativeRevision?.bodyBound(b,v)?'#dac08d':player?'#66cf8a':ally?'#e2bd5d':'#e15d57',rad=v.boss?3.8:v.elite?3.1:player?2.5:1.7;ctx.save();if(v.elite||v.boss){ctx.shadowColor=col;ctx.shadowBlur=v.boss?8:5;}ctx.fillStyle=col;ctx.beginPath();ctx.arc(v.x*sx,(v.y-v.h*.45)*sy,rad,0,Math.PI*2);ctx.fill();ctx.restore();}
             G.HonroObjectives.minimap(this,ctx,sx,sy);
-            if(this.scene){const cv=$('battlecanvas'),viewW=cv.getBoundingClientRect().width/this.scene.scale,viewH=cv.getBoundingClientRect().height/this.scene.scale,x=(this.scene.x-viewW/2)*sx,y=(this.scene.y-viewH/2)*sy,w=viewW*sx,h=viewH*sy;ctx.strokeStyle='#ead39acc';ctx.lineWidth=1;ctx.strokeRect(x,y,Math.max(5,w),Math.max(5,h));}
+            if(this.scene){const rect=$('battlecanvas').getBoundingClientRect(),viewW=rect.width/this.scene.scale,viewH=rect.height/this.scene.scale,x=(this.scene.x-viewW/2)*sx,y=(this.scene.y-viewH/2)*sy,w=viewW*sx,h=viewH*sy;ctx.strokeStyle='#ead39acc';ctx.lineWidth=1;ctx.strokeRect(x,y,Math.max(5,w),Math.max(5,h));}
         }
         refreshFullscreen() { const label=this.modal.querySelector('[data-fullscreen-label]');if(label)label.textContent=document.fullscreenElement?'나가기':'켜기'; }
         async fullscreen() { const status=this.modal.querySelector('[data-fullscreen-status]');try {
@@ -1359,12 +1361,11 @@
                     this.scene.viewOptions??={};this.scene.viewOptions.debugTerrainOutline=!!this.debugMode&&this.profile.settings.debugTerrainOutline===true;
                     this.scene.render(e,this.dialogue||this.modal.classList.contains('open')?0:dt,this.selected,this.power,this.charging,frozen?0:this.charging?dt:simulated,!!frozen||!!this.done);
                     G.HonroUnitInfo.tick(this);
-                    this.updateChargeDisplay();
                     this.uiAge += dt;
                     if (this.uiAge > .11) {
                         this.updateHUD();
                         this.uiAge = 0;
-                    }
+                    }else this.updateChargeDisplay();
                     if (this.dirty && !this.pendingJourneyLaunch && !this.training && !this.done && now - (this.lastSave || 0) > 1200) {
                         this.lastSave = now;
                         this.dirty = false;

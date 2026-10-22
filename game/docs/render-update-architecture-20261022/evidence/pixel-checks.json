@@ -1,0 +1,173 @@
+{
+  "builds": {
+    "before": {
+      "manifestSha256": "bb1a2cb0ca7ee61b1918097fc7e0fd7f397fd7932581ebbb8f2d957a369a0ed5",
+      "errors": [],
+      "keyedSkillNodesKept": true,
+      "pauseCycles": {
+        "counts": [
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251
+        ],
+        "previewCleared": true,
+        "preserved": true
+      },
+      "saveContinuePreserved": true,
+      "explosionLabel": true,
+      "hintOwnership": {
+        "first": "\ub204\ub978 \ucc44 \ucda9\uc804, \uc190\uc744 \ub5bc\uc5b4 \ubc1c\uc0ac",
+        "second": "\uc774\uc804 \ubc1c\uc0ac 67%"
+      },
+      "previewCycles": {
+        "counts": [
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958
+        ],
+        "cleared": true
+      }
+    },
+    "after": {
+      "manifestSha256": "58e36164ed01939692f6b963acff05176a7c8fe0830543d355a8671a5ea2180a",
+      "errors": [],
+      "keyedSkillNodesKept": true,
+      "pauseCycles": {
+        "counts": [
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251,
+          251
+        ],
+        "previewCleared": true,
+        "preserved": true
+      },
+      "saveContinuePreserved": true,
+      "explosionLabel": true,
+      "hintOwnership": {
+        "first": "\uc774\uc804 \ubc1c\uc0ac 67%",
+        "second": "\uc774\uc804 \ubc1c\uc0ac 67%"
+      },
+      "previewCycles": {
+        "counts": [
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958,
+          958
+        ],
+        "cleared": true
+      }
+    }
+  },
+  "pixels": [
+    {
+      "view": "desktop-idle",
+      "exact": false,
+      "maxChannel": 3,
+      "bbox": [
+        78,
+        706,
+        1241,
+        775
+      ],
+      "changedPixels": 19
+    },
+    {
+      "view": "desktop-charge",
+      "exact": false,
+      "maxChannel": 3,
+      "bbox": [
+        78,
+        706,
+        209,
+        726
+      ],
+      "changedPixels": 5
+    },
+    {
+      "view": "desktop-pause",
+      "exact": true,
+      "maxChannel": 0,
+      "bbox": null,
+      "changedPixels": 0
+    },
+    {
+      "view": "mobile-idle",
+      "exact": true,
+      "maxChannel": 0,
+      "bbox": null,
+      "changedPixels": 0
+    },
+    {
+      "view": "mobile-mage",
+      "exact": true,
+      "maxChannel": 0,
+      "bbox": null,
+      "changedPixels": 0
+    },
+    {
+      "view": "landscape-mage",
+      "exact": true,
+      "maxChannel": 0,
+      "bbox": null,
+      "changedPixels": 0
+    },
+    {
+      "view": "mobile-preview",
+      "exact": true,
+      "maxChannel": 0,
+      "bbox": null,
+      "changedPixels": 0
+    }
+  ]
+}

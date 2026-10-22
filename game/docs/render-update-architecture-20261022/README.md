@@ -30,3 +30,26 @@
 `MODE=count`는 함수 owner stack, inclusive 호출 시간, DOM/text/style/이미지/레이아웃/canvas 및 rAF/listener 호출을 계측한다. 같은 값 쓰기와 MutationObserver의 실제 노드 변경도 구분한다. `MODE=measure`는 함수/DOM wrapper 없이 App.frame 경과시간, rAF, longtask와 DOM mutation만 기록한다. DOM observer 자체의 비용이 있으므로 이 역시 사용자 FPS 측정과 다르다. frame 안에 Scene/HUD/Preview 비용이 포함되고 HUD 안에 status/skill 등이 포함되어 **합산하지 않는다**. 대표 상태의 비용 비교용이며 전30장 감사나 장시간 누적 재현을 대체하지 않는다.
 
 결과와 채택/폐기 경계는 계측 완료 후 이 문서 아래에 기록한다.
+
+## 채택 1 · 표시값별 DOM diff와 tooltip 단일 소유권
+
+`main.js`의 text/style 표시값 비교, 충전 dataset 비교, HUD가 실행되는 프레임의 중복 충전 호출 제거를 적용했다. 즉시 명령의 updateHUD 호출과 연속 충전값 갱신은 유지한다. `combat-status.js`가 발사 tooltip의 이전 발사값/disabled 이유를 함께 소유한다. 인물 칩과 목표 텍스트도 실제 변화 때만 쓴다. HUD 전체를 하나의 signature로 차단하지 않는다. 미니맵은 static 캐시를 추가하지 않았으며, 같은 sizing 값 쓰기와 중복 rect 읽기 하나만 제거했다.
+
+120개 생산 frame의 계측 결과(호스트 부하에 따라 경과시간/HUD 횟수는 다르므로 같은 값 쓰기 감소와 프레임 개선을 혼동하지 않는다):
+
+| 상태 | Text node 교체 전→후 | 충전 함수 호출 전→후 | DOM 수 전/후 |
+|---|---:|---:|---:|
+| idle |396→0|143→120|251 고정|
+| 충전 |468→90|149→120|251 고정|
+| 발사 |449→7|147→120|251 고정|
+| 카메라 이동 |432→0|146→120|251 고정|
+| 기본 pause |564→0|157→120|266 고정|
+| preview/rest/journey/zoom |0→0|해당 없음|각997/602/119/119 고정|
+
+idle 이전 충전 표시의 style.setProperty429회·textContent143회·title143회가 모두 같은 값이었다. 이후 같은 경로의 쓰기는0회다. 충전의90회는 실제 퍼센트/조준 표시 변화이며 연속 게이지는 유지한다. 기존 스킬 이미지·모달·여정첩 idle에는 재생성/재디코드가 관측되지 않았다.
+
+별도 픽셀/경계 검사: UI 갱신120회 동안 기존4개 스킬 button identity 유지. pause20회 개폐 뒤 DOM251 유지, 전투 유닛/투사체/지형/턴·성장/장착/완료/아이템 불변. 실제 persist→stopBattle→Continue가 같은 상태 복원. preview12회 개폐 뒤 노드 수 일정 및 preview/request 참조 해제. 폭발 label은 별도 presentation query 경계 fixture로 확인했으며 실제 폭발 전투 재현으로 표현하지 않는다. 이전 발사67% fixture는 기존 tooltip이 HUD 뒤 일반 안내→charge 호출 뒤67%로 바뀌었고, 수정 후 두 지점 모두67%로 유지됐다.
+
+실제 Chromium screenshot RGB 비교7장 중 pause/mobile idle/mobile mage/landscape mage/mobile preview5장 정확 일치. desktop idle19픽셀, desktop charge5픽셀에만 최대3/255 차이가 있었다(각1,024,000픽셀). 원본 엄격 exact assertion은 이 두 장에서 실패했고, 차이 이미지와 실제 최종 화면을 따로 검사했다. 이 두 장을 정확 일치로 기록하지 않는다. AA 가장자리 잔차로 제한된 검사 기준은32pixel·3/255이며 그래픽/해상도 변경은 없다. [전체 경계 결과](evidence/pixel-checks.json), [desktop](evidence/final-desktop-idle.jpg), [mobile preview](evidence/final-mobile-preview.jpg).
+
+현재까지 이 변경으로 체감 FPS가 개선됐다는 결론은 없다. 큰 비용인 Scene.render의 정지 상태 재그리기는 다음 별도 경계로 검토한다.

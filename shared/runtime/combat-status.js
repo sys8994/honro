@@ -115,10 +115,11 @@ function refresh(app,u){
  }
  for(const chip of document.querySelectorAll('#hero-switches [data-id]')){
   const v=app.engine.unit(chip.dataset.id);if(!v)continue;const state=effects(b,v),tag=v.dead?'전투불능':v.stunnedRound===b.round&&v.acted||v.stun>0?'기절':v.bound>0?'결박':v.curseTurns>0?'저주':v.acted?'완료':'';
-  chip.title=`${v.name} · ${state.join(' / ')|| (v.acted?'행동 완료':'행동 가능')}`;chip.classList.toggle('status-impaired',['기절','결박','저주'].includes(tag));
-  const small=chip.querySelector('small');if(small)small.textContent=tag||`${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%`;
+  const title=`${v.name} · ${state.join(' / ')|| (v.acted?'행동 완료':'행동 가능')}`;if(chip.title!==title)chip.title=title;chip.classList.toggle('status-impaired',['기절','결박','저주'].includes(tag));
+  const small=chip.querySelector('small');const text=tag||`${Math.round(Math.max(0,v.hp)/v.maxHp*100)}%`;if(small&&small.textContent!==text)small.textContent=text;
  }
- const fire=document.getElementById('fire');if(fire){fire.title=fire.disabled?why:'누른 채 충전, 손을 떼어 발사';fire.setAttribute('aria-describedby','combat-action-reason');}
+ // This HUD refresh owns the action hint; the per-frame charge label cannot overwrite a blocked-action reason.
+ const fire=document.getElementById('fire');if(fire){const previous=b.lastShots?.[u.id]?.power||0,title=fire.disabled?why:previous?'이전 발사 '+Math.round(previous*100)+'%':'누른 채 충전, 손을 떼어 발사';if(fire.title!==title)fire.title=title;if(fire.getAttribute('aria-describedby')!=='combat-action-reason')fire.setAttribute('aria-describedby','combat-action-reason');}
 }
 function passivePresentation(u){
  const C=G.HONRO_CORE,r=u.ranks?.MP05||0,chain=u.swordChain||[];

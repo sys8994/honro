@@ -1,0 +1,1495 @@
+{
+  "sourceCommit": "bb36f5f7e3bae45278570b2b07d0ea7a1a27b788",
+  "htmlSha256": "5b4c748f945e7dbb8ba1aa7ecbc9da1b7cfff206d5f023b6c268177e51568445",
+  "manifestSha256": "58e36164ed01939692f6b963acff05176a7c8fe0830543d355a8671a5ea2180a",
+  "browser": "154.0.8037.57",
+  "viewport": [
+    1280,
+    800
+  ],
+  "seed": 899411,
+  "rows": [
+    {
+      "state": "idle",
+      "counters": true,
+      "frame": {
+        "n": 120,
+        "p50": 11,
+        "p95": 16.899999999441206,
+        "max": 25.09999999962747,
+        "total": 1406.5
+      },
+      "raf": {
+        "n": 119,
+        "p50": 16.699999999999818,
+        "p95": 33.40000000000009,
+        "max": 33.40000000000009,
+        "total": 2533.2000000000003
+      },
+      "longtasks": [],
+      "methods": {
+        "App.updateAudio": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.7000000001862645,
+          "total": 2.5999999986961484
+        },
+        "Journey.frame": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.10000000055879354
+        },
+        "Engine.tick": {
+          "n": 308,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 1,
+          "total": 31.199999992735684
+        },
+        "Scene.background": {
+          "n": 120,
+          "p50": 0.09999999962747097,
+          "p95": 0.20000000018626451,
+          "max": 6.7000000001862645,
+          "total": 16.89999999757856
+        },
+        "Scene.render": {
+          "n": 120,
+          "p50": 10,
+          "p95": 15.299999999813735,
+          "max": 22.699999999254942,
+          "total": 1262.3000000044703
+        },
+        "App.updateSkillButtons": {
+          "n": 22,
+          "p50": 0.09999999962747097,
+          "p95": 0.10000000055879354,
+          "max": 0.20000000018626451,
+          "total": 1.2000000001862645
+        },
+        "App.updateChargeDisplay": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.6000000005587935,
+          "total": 3.2000000029802322
+        },
+        "Objectives.refresh": {
+          "n": 22,
+          "p50": 0.09999999962747097,
+          "p95": 0.20000000018626451,
+          "max": 0.2999999998137355,
+          "total": 2.300000000745058
+        },
+        "Interactions.refresh": {
+          "n": 22,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.20000000018626451,
+          "total": 0.20000000018626451
+        },
+        "Status.refresh": {
+          "n": 22,
+          "p50": 0,
+          "p95": 0.20000000018626451,
+          "max": 0.20000000018626451,
+          "total": 1.300000000745058
+        },
+        "Status.passives": {
+          "n": 22,
+          "p50": 0,
+          "p95": 0,
+          "max": 0,
+          "total": 0
+        },
+        "App.updateHUD": {
+          "n": 22,
+          "p50": 0.7999999998137355,
+          "p95": 1.599999999627471,
+          "max": 2.7000000001862645,
+          "total": 20.300000000745058
+        },
+        "App.persist": {
+          "n": 1,
+          "p50": 4.900000000372529,
+          "p95": 4.900000000372529,
+          "max": 4.900000000372529,
+          "total": 4.900000000372529
+        }
+      },
+      "ops": {
+        "Scene.render:rect": {
+          "count": 600,
+          "same": 0
+        },
+        "Scene.background:canvas.drawImage": {
+          "count": 121,
+          "same": 0
+        },
+        "Scene.render:canvas.fill": {
+          "count": 4440,
+          "same": 0
+        },
+        "Scene.render:canvas.drawImage": {
+          "count": 2016,
+          "same": 0
+        },
+        "Scene.render:clientWidth": {
+          "count": 1920,
+          "same": 0
+        },
+        "Scene.render:clientHeight": {
+          "count": 480,
+          "same": 0
+        },
+        "App.updateHUD:attribute": {
+          "count": 22,
+          "same": 22
+        },
+        "App.updateHUD:clientWidth": {
+          "count": 22,
+          "same": 0
+        },
+        "App.updateHUD:clientHeight": {
+          "count": 22,
+          "same": 0
+        },
+        "App.updateHUD:canvas.fill": {
+          "count": 1716,
+          "same": 0
+        },
+        "App.updateHUD:rect": {
+          "count": 22,
+          "same": 0
+        },
+        "App.frame:rAF": {
+          "count": 120,
+          "same": 0
+        },
+        "external:decode": {
+          "count": 42,
+          "same": 0
+        },
+        "external:image.src": {
+          "count": 39,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 186,
+        "childList": 0,
+        "added": 0,
+        "removed": 0
+      },
+      "initial": {
+        "dom": 251,
+        "heap": 20050735,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "final": {
+        "dom": 251,
+        "heap": 27188777,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "fireTitle": "\ub204\ub978 \ucc44 \ucda9\uc804, \uc190\uc744 \ub5bc\uc5b4 \ubc1c\uc0ac",
+      "errors": []
+    },
+    {
+      "state": "charge",
+      "counters": true,
+      "frame": {
+        "n": 120,
+        "p50": 18.200000000186265,
+        "p95": 33.299999999813735,
+        "max": 46.10000000055879,
+        "total": 2242.9999999962747
+      },
+      "raf": {
+        "n": 119,
+        "p50": 33.19999999999982,
+        "p95": 50.09999999999991,
+        "max": 66.70000000000027,
+        "total": 3249.9
+      },
+      "longtasks": [
+        {
+          "at": 2608,
+          "ms": 61
+        },
+        {
+          "at": 3616.100000000559,
+          "ms": 58
+        },
+        {
+          "at": 3945.9000000003725,
+          "ms": 53
+        }
+      ],
+      "methods": {
+        "App.updateAudio": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 0.10000000055879354,
+          "total": 0.599999999627471
+        },
+        "Journey.frame": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0,
+          "max": 0,
+          "total": 0
+        },
+        "Engine.tick": {
+          "n": 391,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 2.3999999994412065,
+          "total": 45.70000000298023
+        },
+        "Scene.background": {
+          "n": 120,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 5,
+          "total": 13.400000001303852
+        },
+        "Scene.render": {
+          "n": 120,
+          "p50": 16.200000000186265,
+          "p95": 29.600000000558794,
+          "max": 44.90000000037253,
+          "total": 2032.0000000009313
+        },
+        "App.updateChargeDisplay": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.20000000018626451,
+          "max": 0.7999999998137355,
+          "total": 8.199999999254942
+        },
+        "App.updateSkillButtons": {
+          "n": 26,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.10000000055879354,
+          "total": 0.9000000031664968
+        },
+        "Objectives.refresh": {
+          "n": 26,
+          "p50": 0.09999999962747097,
+          "p95": 0.20000000018626451,
+          "max": 0.30000000074505806,
+          "total": 2.2999999970197678
+        },
+        "Interactions.refresh": {
+          "n": 26,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.40000000037252903,
+          "total": 0.7999999998137355
+        },
+        "Status.refresh": {
+          "n": 26,
+          "p50": 0.09999999962747097,
+          "p95": 0.20000000018626451,
+          "max": 0.599999999627471,
+          "total": 2.2999999970197678
+        },
+        "Status.passives": {
+          "n": 26,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.09999999962747097,
+          "total": 0.09999999962747097
+        },
+        "App.updateHUD": {
+          "n": 26,
+          "p50": 1.7999999998137355,
+          "p95": 3.599999999627471,
+          "max": 4.2000000001862645,
+          "total": 49.00000000372529
+        },
+        "App.persist": {
+          "n": 1,
+          "p50": 4.2000000001862645,
+          "p95": 4.2000000001862645,
+          "max": 4.2000000001862645,
+          "total": 4.2000000001862645
+        }
+      },
+      "ops": {
+        "Scene.render:rect": {
+          "count": 720,
+          "same": 0
+        },
+        "Scene.background:canvas.drawImage": {
+          "count": 121,
+          "same": 0
+        },
+        "Scene.render:canvas.fill": {
+          "count": 4560,
+          "same": 0
+        },
+        "Scene.render:canvas.drawImage": {
+          "count": 1891,
+          "same": 0
+        },
+        "Scene.render:clientWidth": {
+          "count": 1920,
+          "same": 0
+        },
+        "Scene.render:clientHeight": {
+          "count": 480,
+          "same": 0
+        },
+        "App.updateChargeDisplay:style.setProperty": {
+          "count": 76,
+          "same": 0
+        },
+        "App.updateChargeDisplay:textContent": {
+          "count": 70,
+          "same": 0
+        },
+        "App.frame:rAF": {
+          "count": 120,
+          "same": 0
+        },
+        "external:image.src": {
+          "count": 31,
+          "same": 0
+        },
+        "App.updateHUD:textContent": {
+          "count": 20,
+          "same": 0
+        },
+        "App.updateHUD:attribute": {
+          "count": 26,
+          "same": 26
+        },
+        "App.updateHUD:style.setProperty": {
+          "count": 20,
+          "same": 0
+        },
+        "App.updateHUD:clientWidth": {
+          "count": 26,
+          "same": 0
+        },
+        "App.updateHUD:clientHeight": {
+          "count": 26,
+          "same": 0
+        },
+        "App.updateHUD:canvas.fill": {
+          "count": 2028,
+          "same": 0
+        },
+        "App.updateHUD:rect": {
+          "count": 26,
+          "same": 0
+        },
+        "external:decode": {
+          "count": 31,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 294,
+        "childList": 90,
+        "added": 90,
+        "removed": 90
+      },
+      "initial": {
+        "dom": 251,
+        "heap": 25995613,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "final": {
+        "dom": 251,
+        "heap": 33445229,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "fireTitle": "\ub204\ub978 \ucc44 \ucda9\uc804, \uc190\uc744 \ub5bc\uc5b4 \ubc1c\uc0ac",
+      "errors": []
+    },
+    {
+      "state": "fire",
+      "counters": true,
+      "frame": {
+        "n": 120,
+        "p50": 14.599999999627471,
+        "p95": 27.699999999254942,
+        "max": 40.299999999813735,
+        "total": 1891.100000004284
+      },
+      "raf": {
+        "n": 119,
+        "p50": 33.30000000000018,
+        "p95": 49.90000000000009,
+        "max": 66.69999999999982,
+        "total": 3416.4999999999995
+      },
+      "longtasks": [
+        {
+          "at": 5866.299999999814,
+          "ms": 64
+        },
+        {
+          "at": 6120.699999999255,
+          "ms": 53
+        }
+      ],
+      "methods": {
+        "App.updateAudio": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 0.10000000055879354,
+          "total": 0.900000000372529
+        },
+        "Journey.frame": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.20000000018626451
+        },
+        "Engine.tick": {
+          "n": 415,
+          "p50": 0.19999999925494194,
+          "p95": 0.6000000005587935,
+          "max": 2.3999999994412065,
+          "total": 93.79999999608845
+        },
+        "Scene.background": {
+          "n": 120,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 1.199999999254942,
+          "total": 12.000000000931323
+        },
+        "Scene.render": {
+          "n": 120,
+          "p50": 12.200000000186265,
+          "p95": 20.40000000037253,
+          "max": 37.30000000074506,
+          "total": 1581.800000003539
+        },
+        "App.updateSkillButtons": {
+          "n": 28,
+          "p50": 0,
+          "p95": 0.19999999925494194,
+          "max": 0.2999999998137355,
+          "total": 1.6999999955296516
+        },
+        "App.updateChargeDisplay": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.20000000018626451,
+          "total": 2.5
+        },
+        "Objectives.refresh": {
+          "n": 28,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 0.8999999994412065,
+          "total": 3.0999999986961484
+        },
+        "Interactions.refresh": {
+          "n": 28,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.20000000018626451,
+          "total": 0.6999999992549419
+        },
+        "Status.refresh": {
+          "n": 28,
+          "p50": 0.10000000055879354,
+          "p95": 0.900000000372529,
+          "max": 1.400000000372529,
+          "total": 5.7000000001862645
+        },
+        "Status.passives": {
+          "n": 28,
+          "p50": 0,
+          "p95": 0.20000000018626451,
+          "max": 0.2999999998137355,
+          "total": 0.7000000001862645
+        },
+        "App.updateHUD": {
+          "n": 28,
+          "p50": 1,
+          "p95": 4.7999999998137355,
+          "max": 6.5,
+          "total": 44
+        },
+        "App.persist": {
+          "n": 2,
+          "p50": 6.5,
+          "p95": 6.5,
+          "max": 6.5,
+          "total": 12.699999999254942
+        }
+      },
+      "ops": {
+        "Scene.render:rect": {
+          "count": 706,
+          "same": 0
+        },
+        "Scene.background:canvas.drawImage": {
+          "count": 120,
+          "same": 0
+        },
+        "Scene.render:canvas.fill": {
+          "count": 5878,
+          "same": 0
+        },
+        "Scene.render:canvas.drawImage": {
+          "count": 2202,
+          "same": 0
+        },
+        "Scene.render:clientWidth": {
+          "count": 1862,
+          "same": 0
+        },
+        "Scene.render:clientHeight": {
+          "count": 480,
+          "same": 0
+        },
+        "App.updateHUD:textContent": {
+          "count": 2,
+          "same": 0
+        },
+        "App.updateHUD:attribute": {
+          "count": 28,
+          "same": 28
+        },
+        "App.updateHUD:style.setProperty": {
+          "count": 2,
+          "same": 0
+        },
+        "Status.refresh:innerHTML": {
+          "count": 4,
+          "same": 0
+        },
+        "Status.refresh:title": {
+          "count": 9,
+          "same": 0
+        },
+        "Status.passives:innerHTML": {
+          "count": 4,
+          "same": 4
+        },
+        "App.updateHUD:clientWidth": {
+          "count": 32,
+          "same": 0
+        },
+        "App.updateHUD:clientHeight": {
+          "count": 32,
+          "same": 0
+        },
+        "App.updateHUD:canvas.fill": {
+          "count": 2184,
+          "same": 0
+        },
+        "App.updateHUD:rect": {
+          "count": 28,
+          "same": 0
+        },
+        "App.frame:rAF": {
+          "count": 120,
+          "same": 0
+        },
+        "external:decode": {
+          "count": 33,
+          "same": 0
+        },
+        "external:image.src": {
+          "count": 29,
+          "same": 0
+        },
+        "App.updateHUD:innerHTML": {
+          "count": 1,
+          "same": 0
+        },
+        "App.updateHUD:canvas.drawImage": {
+          "count": 4,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 313,
+        "childList": 7,
+        "added": 18,
+        "removed": 18
+      },
+      "initial": {
+        "dom": 251,
+        "heap": 33491514,
+        "round": 1,
+        "phase": "flight",
+        "units": 48,
+        "projectiles": 1,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "final": {
+        "dom": 251,
+        "heap": 33894069,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 15,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "fireTitle": "\ud6c4\ud1f4 \u00b7 \uc774\ub3d9/\uc810\ud504\ub9cc \uac00\ub2a5 \u00b7 \ub300\uae30\ub85c \uc885\ub8cc",
+      "errors": []
+    },
+    {
+      "state": "pan",
+      "counters": true,
+      "frame": {
+        "n": 120,
+        "p50": 11.5,
+        "p95": 17.799999999813735,
+        "max": 24.899999999441206,
+        "total": 1449.1999999983236
+      },
+      "raf": {
+        "n": 119,
+        "p50": 16.700000000000728,
+        "p95": 33.40000000000009,
+        "max": 83.30000000000018,
+        "total": 2899.8999999999996
+      },
+      "longtasks": [
+        {
+          "at": 3831.4000000003725,
+          "ms": 84
+        }
+      ],
+      "methods": {
+        "App.updateAudio": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 0.20000000018626451,
+          "total": 1.3999999994412065
+        },
+        "Journey.frame": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.2999999998137355
+        },
+        "Engine.tick": {
+          "n": 349,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 2.2000000001862645,
+          "total": 46.59999999497086
+        },
+        "Scene.background": {
+          "n": 120,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 5.2000000001862645,
+          "total": 15.900000003166497
+        },
+        "Scene.render": {
+          "n": 120,
+          "p50": 9.799999999813735,
+          "p95": 14.300000000745058,
+          "max": 23.40000000037253,
+          "total": 1249.0999999959022
+        },
+        "App.updateChargeDisplay": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.20000000018626451,
+          "max": 0.7000000001862645,
+          "total": 4.200000001117587
+        },
+        "App.updateSkillButtons": {
+          "n": 24,
+          "p50": 0,
+          "p95": 0.20000000018626451,
+          "max": 0.20000000018626451,
+          "total": 1.3999999985098839
+        },
+        "Objectives.refresh": {
+          "n": 24,
+          "p50": 0.09999999962747097,
+          "p95": 0.20000000018626451,
+          "max": 0.7999999998137355,
+          "total": 2.499999998137355
+        },
+        "Interactions.refresh": {
+          "n": 24,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.10000000055879354,
+          "total": 0.599999999627471
+        },
+        "Status.refresh": {
+          "n": 24,
+          "p50": 0.09999999962747097,
+          "p95": 0.10000000055879354,
+          "max": 0.20000000018626451,
+          "total": 1.5
+        },
+        "Status.passives": {
+          "n": 24,
+          "p50": 0,
+          "p95": 0,
+          "max": 0,
+          "total": 0
+        },
+        "App.updateHUD": {
+          "n": 24,
+          "p50": 0.900000000372529,
+          "p95": 2.099999999627471,
+          "max": 3.2000000001862645,
+          "total": 24.90000000130385
+        },
+        "App.persist": {
+          "n": 1,
+          "p50": 4.1000000005587935,
+          "p95": 4.1000000005587935,
+          "max": 4.1000000005587935,
+          "total": 4.1000000005587935
+        }
+      },
+      "ops": {
+        "Scene.render:rect": {
+          "count": 600,
+          "same": 0
+        },
+        "Scene.background:canvas.drawImage": {
+          "count": 121,
+          "same": 0
+        },
+        "Scene.render:canvas.fill": {
+          "count": 4480,
+          "same": 0
+        },
+        "Scene.render:canvas.drawImage": {
+          "count": 2281,
+          "same": 0
+        },
+        "Scene.render:clientWidth": {
+          "count": 2000,
+          "same": 0
+        },
+        "Scene.render:clientHeight": {
+          "count": 480,
+          "same": 0
+        },
+        "App.frame:rAF": {
+          "count": 120,
+          "same": 0
+        },
+        "external:decode": {
+          "count": 39,
+          "same": 0
+        },
+        "external:image.src": {
+          "count": 36,
+          "same": 0
+        },
+        "App.updateHUD:attribute": {
+          "count": 24,
+          "same": 24
+        },
+        "App.updateHUD:clientWidth": {
+          "count": 24,
+          "same": 0
+        },
+        "App.updateHUD:clientHeight": {
+          "count": 24,
+          "same": 0
+        },
+        "App.updateHUD:canvas.fill": {
+          "count": 1872,
+          "same": 0
+        },
+        "App.updateHUD:rect": {
+          "count": 24,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 192,
+        "childList": 0,
+        "added": 0,
+        "removed": 0
+      },
+      "initial": {
+        "dom": 251,
+        "heap": 20301099,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "final": {
+        "dom": 251,
+        "heap": 26591493,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 0,
+        "settled": 0
+      },
+      "fireTitle": "\ub204\ub978 \ucc44 \ucda9\uc804, \uc190\uc744 \ub5bc\uc5b4 \ubc1c\uc0ac",
+      "errors": []
+    },
+    {
+      "state": "pause",
+      "counters": true,
+      "frame": {
+        "n": 120,
+        "p50": 11.400000000372529,
+        "p95": 20.90000000037253,
+        "max": 29.299999999813735,
+        "total": 1474.800000000745
+      },
+      "raf": {
+        "n": 119,
+        "p50": 33.30000000000018,
+        "p95": 50,
+        "max": 50.100000000000364,
+        "total": 4083.2000000000003
+      },
+      "longtasks": [],
+      "methods": {
+        "App.updateAudio": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.10000000055879354,
+          "total": 1.0000000018626451
+        },
+        "Journey.frame": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.20000000018626451
+        },
+        "Scene.background": {
+          "n": 120,
+          "p50": 0.09999999962747097,
+          "p95": 0.30000000074505806,
+          "max": 2.5,
+          "total": 14.29999999795109
+        },
+        "Scene.render": {
+          "n": 120,
+          "p50": 10.700000000186265,
+          "p95": 20,
+          "max": 29,
+          "total": 1412.4999999990687
+        },
+        "App.updateChargeDisplay": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.20000000018626451,
+          "total": 2.4000000040978193
+        },
+        "App.persist": {
+          "n": 1,
+          "p50": 4.400000000372529,
+          "p95": 4.400000000372529,
+          "max": 4.400000000372529,
+          "total": 4.400000000372529
+        },
+        "App.updateSkillButtons": {
+          "n": 31,
+          "p50": 0.09999999962747097,
+          "p95": 0.20000000018626451,
+          "max": 0.8000000007450581,
+          "total": 2.799999998882413
+        },
+        "Objectives.refresh": {
+          "n": 31,
+          "p50": 0.09999999962747097,
+          "p95": 0.2999999998137355,
+          "max": 0.900000000372529,
+          "total": 4.699999996460974
+        },
+        "Interactions.refresh": {
+          "n": 31,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 0.10000000055879354,
+          "total": 0.2999999998137355
+        },
+        "Status.refresh": {
+          "n": 31,
+          "p50": 0.09999999962747097,
+          "p95": 0.20000000018626451,
+          "max": 0.40000000037252903,
+          "total": 2.7000000029802322
+        },
+        "Status.passives": {
+          "n": 31,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 0.10000000055879354,
+          "total": 0.2999999998137355
+        },
+        "App.updateHUD": {
+          "n": 31,
+          "p50": 0.900000000372529,
+          "p95": 2.199999999254942,
+          "max": 2.3999999994412065,
+          "total": 35.39999999944121
+        }
+      },
+      "ops": {
+        "Scene.render:rect": {
+          "count": 600,
+          "same": 0
+        },
+        "Scene.background:canvas.drawImage": {
+          "count": 120,
+          "same": 0
+        },
+        "Scene.render:canvas.fill": {
+          "count": 4440,
+          "same": 0
+        },
+        "Scene.render:canvas.drawImage": {
+          "count": 1680,
+          "same": 0
+        },
+        "Scene.render:clientWidth": {
+          "count": 1920,
+          "same": 0
+        },
+        "Scene.render:clientHeight": {
+          "count": 480,
+          "same": 0
+        },
+        "App.frame:rAF": {
+          "count": 120,
+          "same": 0
+        },
+        "external:image.src": {
+          "count": 30,
+          "same": 0
+        },
+        "external:decode": {
+          "count": 30,
+          "same": 0
+        },
+        "App.updateHUD:attribute": {
+          "count": 31,
+          "same": 31
+        },
+        "Status.refresh:title": {
+          "count": 1,
+          "same": 0
+        },
+        "App.updateHUD:clientWidth": {
+          "count": 31,
+          "same": 0
+        },
+        "App.updateHUD:clientHeight": {
+          "count": 31,
+          "same": 0
+        },
+        "App.updateHUD:canvas.fill": {
+          "count": 2418,
+          "same": 0
+        },
+        "App.updateHUD:rect": {
+          "count": 31,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 308,
+        "childList": 0,
+        "added": 0,
+        "removed": 0
+      },
+      "initial": {
+        "dom": 266,
+        "heap": 22185600,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "final": {
+        "dom": 266,
+        "heap": 16537513,
+        "round": 1,
+        "phase": "aim",
+        "units": 48,
+        "projectiles": 0,
+        "fx": 0,
+        "particles": null,
+        "tiles": 12,
+        "screenBytes": 3425280,
+        "settled": 0
+      },
+      "fireTitle": "\uc774\ub3d9\u00b7\ubc1c\uc0ac \uac00\ub2a5",
+      "errors": []
+    },
+    {
+      "state": "preview",
+      "counters": true,
+      "frame": {
+        "n": 120,
+        "p50": 2.5,
+        "p95": 9.100000000558794,
+        "max": 18.100000000558794,
+        "total": 376.59999999962747
+      },
+      "raf": {
+        "n": 119,
+        "p50": 49.899999999999636,
+        "p95": 100,
+        "max": 199.89999999999964,
+        "total": 6049.799999999999
+      },
+      "longtasks": [],
+      "methods": {
+        "App.updateAudio": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 0.20000000018626451,
+          "total": 2.099999997764826
+        },
+        "Journey.frame": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0,
+          "max": 0,
+          "total": 0
+        },
+        "Preview.tick": {
+          "n": 120,
+          "p50": 2.300000000745058,
+          "p95": 9.100000000558794,
+          "max": 17.899999999441206,
+          "total": 364.5999999977648
+        }
+      },
+      "ops": {
+        "Preview.tick:rect": {
+          "count": 315,
+          "same": 0
+        },
+        "Preview.tick:canvas.drawImage": {
+          "count": 274,
+          "same": 0
+        },
+        "Preview.tick:canvas.fill": {
+          "count": 5683,
+          "same": 0
+        },
+        "Preview.tick:clientWidth": {
+          "count": 1048,
+          "same": 0
+        },
+        "Preview.tick:clientHeight": {
+          "count": 120,
+          "same": 0
+        },
+        "App.frame:rAF": {
+          "count": 120,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 0,
+        "childList": 0,
+        "added": 0,
+        "removed": 0
+      },
+      "initial": {
+        "dom": 997,
+        "heap": 21973235,
+        "round": null,
+        "phase": null,
+        "units": null,
+        "projectiles": null,
+        "fx": null,
+        "particles": null,
+        "tiles": null,
+        "screenBytes": 0,
+        "settled": null
+      },
+      "final": {
+        "dom": 997,
+        "heap": 18983179,
+        "round": null,
+        "phase": null,
+        "units": null,
+        "projectiles": null,
+        "fx": null,
+        "particles": null,
+        "tiles": null,
+        "screenBytes": 0,
+        "settled": null
+      },
+      "fireTitle": null,
+      "errors": []
+    },
+    {
+      "state": "rest",
+      "counters": true,
+      "frame": {
+        "n": 120,
+        "p50": 0.10000000055879354,
+        "p95": 2.400000000372529,
+        "max": 12.600000000558794,
+        "total": 103.40000000689179
+      },
+      "raf": {
+        "n": 119,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999727,
+        "max": 50,
+        "total": 2033.2000000000003
+      },
+      "longtasks": [],
+      "methods": {
+        "App.updateAudio": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 0.20000000018626451,
+          "total": 1.6999999983236194
+        },
+        "Journey.frame": {
+          "n": 120,
+          "p50": 0,
+          "p95": 2.2000000001862645,
+          "max": 12.600000000558794,
+          "total": 96.5000000083819
+        }
+      },
+      "ops": {
+        "App.frame:rAF": {
+          "count": 120,
+          "same": 0
+        },
+        "external:decode": {
+          "count": 36,
+          "same": 0
+        },
+        "external:image.src": {
+          "count": 32,
+          "same": 0
+        },
+        "Journey.frame:clientWidth": {
+          "count": 392,
+          "same": 0
+        },
+        "Journey.frame:canvas.fill": {
+          "count": 12593,
+          "same": 0
+        },
+        "Journey.frame:attribute": {
+          "count": 833,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 833,
+        "childList": 0,
+        "added": 0,
+        "removed": 0
+      },
+      "initial": {
+        "dom": 602,
+        "heap": 24151856,
+        "round": null,
+        "phase": null,
+        "units": null,
+        "projectiles": null,
+        "fx": null,
+        "particles": null,
+        "tiles": null,
+        "screenBytes": 0,
+        "settled": null
+      },
+      "final": {
+        "dom": 602,
+        "heap": 24137061,
+        "round": null,
+        "phase": null,
+        "units": null,
+        "projectiles": null,
+        "fx": null,
+        "particles": null,
+        "tiles": null,
+        "screenBytes": 0,
+        "settled": null
+      },
+      "fireTitle": null,
+      "errors": []
+    },
+    {
+      "state": "journey",
+      "counters": true,
+      "frame": {
+        "n": 120,
+        "p50": 0.09999999962747097,
+        "p95": 0.10000000055879354,
+        "max": 1.099999999627471,
+        "total": 7.90000000782311
+      },
+      "raf": {
+        "n": 119,
+        "p50": 16.699999999999818,
+        "p95": 16.799999999999272,
+        "max": 16.800000000000182,
+        "total": 1983.2000000000003
+      },
+      "longtasks": [],
+      "methods": {
+        "App.updateAudio": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.10000000055879354,
+          "max": 1.099999999627471,
+          "total": 2.7000000001862645
+        },
+        "Journey.frame": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.30000000074505806
+        }
+      },
+      "ops": {
+        "App.frame:rAF": {
+          "count": 120,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 0,
+        "childList": 0,
+        "added": 0,
+        "removed": 0
+      },
+      "initial": {
+        "dom": 119,
+        "heap": 23011459,
+        "round": null,
+        "phase": null,
+        "units": null,
+        "projectiles": null,
+        "fx": null,
+        "particles": null,
+        "tiles": null,
+        "screenBytes": 0,
+        "settled": null
+      },
+      "final": {
+        "dom": 119,
+        "heap": 26661187,
+        "round": null,
+        "phase": null,
+        "units": null,
+        "projectiles": null,
+        "fx": null,
+        "particles": null,
+        "tiles": null,
+        "screenBytes": 0,
+        "settled": null
+      },
+      "fireTitle": null,
+      "errors": []
+    },
+    {
+      "state": "journey-zoom",
+      "counters": true,
+      "frame": {
+        "n": 120,
+        "p50": 0.09999999962747097,
+        "p95": 0.19999999925494194,
+        "max": 1.7999999998137355,
+        "total": 8.99999999627471
+      },
+      "raf": {
+        "n": 119,
+        "p50": 16.699999999999818,
+        "p95": 16.800000000000182,
+        "max": 16.800000000000182,
+        "total": 1983.2999999999997
+      },
+      "longtasks": [],
+      "methods": {
+        "App.updateAudio": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0.09999999962747097,
+          "max": 1,
+          "total": 2.1999999983236194
+        },
+        "Journey.frame": {
+          "n": 120,
+          "p50": 0,
+          "p95": 0,
+          "max": 0.10000000055879354,
+          "total": 0.10000000055879354
+        },
+        "Journey.zoomBook": {
+          "n": 6,
+          "p50": 1.5,
+          "p95": 8.099999999627471,
+          "max": 8.099999999627471,
+          "total": 16.200000001117587
+        }
+      },
+      "ops": {
+        "App.frame:rAF": {
+          "count": 120,
+          "same": 0
+        },
+        "external:rect": {
+          "count": 18,
+          "same": 0
+        },
+        "Journey.zoomBook:rect": {
+          "count": 36,
+          "same": 0
+        },
+        "Journey.zoomBook:clientWidth": {
+          "count": 24,
+          "same": 0
+        },
+        "Journey.zoomBook:clientHeight": {
+          "count": 24,
+          "same": 0
+        },
+        "Journey.zoomBook:style.setProperty": {
+          "count": 12,
+          "same": 6
+        },
+        "Journey.zoomBook:offsetWidth": {
+          "count": 12,
+          "same": 0
+        },
+        "Journey.zoomBook:offsetHeight": {
+          "count": 12,
+          "same": 0
+        },
+        "external:rAF": {
+          "count": 6,
+          "same": 0
+        },
+        "external:offsetWidth": {
+          "count": 6,
+          "same": 0
+        },
+        "external:offsetHeight": {
+          "count": 6,
+          "same": 0
+        }
+      },
+      "mutations": {
+        "attributes": 18,
+        "childList": 0,
+        "added": 0,
+        "removed": 0
+      },
+      "initial": {
+        "dom": 119,
+        "heap": 22763010,
+        "round": null,
+        "phase": null,
+        "units": null,
+        "projectiles": null,
+        "fx": null,
+        "particles": null,
+        "tiles": null,
+        "screenBytes": 0,
+        "settled": null
+      },
+      "final": {
+        "dom": 119,
+        "heap": 21944636,
+        "round": null,
+        "phase": null,
+        "units": null,
+        "projectiles": null,
+        "fx": null,
+        "particles": null,
+        "tiles": null,
+        "screenBytes": 0,
+        "settled": null
+      },
+      "fireTitle": null,
+      "errors": []
+    }
+  ]
+}
