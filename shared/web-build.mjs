@@ -38,7 +38,9 @@ export function planWebAssetRetention(previous,currentFiles){
   const unchanged=last.length===current.size&&last.every(file=>current.has(file.path));
   const generations=previous?.previousGenerations||(older.length?[older]:[]);
   const previousGenerations=(unchanged||!last.length?generations:[last,...generations]).slice(0,2).map(files=>files.filter(file=>safe(file)&&!current.has(file.path)));
-  const previousFiles=[...new Map(previousGenerations.flat().map(file=>[file.path,file])).values()];
+  // Published client graphs are separate from intermediate build generations.
+  const published=(previous?.publishedGenerations||[]).slice(0,2).flatMap(g=>g.files||[]);
+  const previousFiles=[...new Map([...previousGenerations.flat(),...published].filter(file=>safe(file)&&!current.has(file.path)).map(file=>[file.path,file])).values()];
   const retained=new Set(previousFiles.map(file=>file.path));
   const obsoleteFiles=[...new Map([...last,...older,...generations.flat()].filter(file=>safe(file)&&!current.has(file.path)&&!retained.has(file.path)).map(file=>[file.path,file])).values()];
   return {previousFiles,previousGenerations,obsoleteFiles};
@@ -193,7 +195,11 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   }
   const stageArt={};for(let n=1;n<=10;n++)stageArt[n]={$honroAsset:await emit('graphics',`stage-${String(n).padStart(2,'0')}`,'jpg',await readFile(path.join(root,'assets/rc11',`stage-${String(n).padStart(2,'0')}.jpg`)))};
   const portraits=JSON.parse(await read('game/config/story-portraits.json'));
-  for(const entry of Object.values(portraits))if(entry.image)entry.src={$honroAsset:await emit('graphics','portrait-'+path.parse(entry.image).name,path.extname(entry.image).slice(1),await readFile(path.resolve(root,entry.image)))};
+  for(const entry of Object.values(portraits)){
+    if(entry.image)entry.src={$honroAsset:await emit('graphics','portrait-'+path.parse(entry.image).name,path.extname(entry.image).slice(1),await readFile(path.resolve(root,entry.image)))};
+    // URLs are metadata only: portrait pixels are requested by visible UI, never title preload.
+    for(const [expression,asset]of Object.entries(entry.approvedPortrait?.expressions||{}))if(asset.file)asset.src={$honroAsset:await emit('graphics',`portrait-${entry.approvedPortrait.id}-${expression}`,'webp',await readFile(path.resolve(root,asset.file)))};
+  }
   const titleData=await dataModule('game-art',{HONRO_TITLE_ART:art,HONRO_STAGE_INTRO_ART:stageArt,HONRO_STORY_PORTRAITS:portraits});
   const titleMarkup=common.find(file=>file.includes('shared-runtime-title-markup.'));
   assert(titleMarkup,'Shared first-paint title template required');
@@ -238,7 +244,7 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   await writeGenerated(path.join(root,'workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
   const currentFiles=[...files.values()].sort((a,b)=>a.path.localeCompare(b.path));
   const {previousFiles,previousGenerations,obsoleteFiles}=planWebAssetRetention(previous,currentFiles);
-  const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations};
+  const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations,publishedGenerations:previous?.publishedGenerations?.slice(0,2)};
   await writeGenerated(path.join(root,'web/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
   for(const file of obsoleteFiles)try{await unlink(path.join(root,file.path));}catch(e){if(e.code!=='ENOENT')throw e;}
   await mkdir(path.join(root,'_local/reports/web-split'),{recursive:true});

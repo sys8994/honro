@@ -1,0 +1,82 @@
+{
+  "sha": "67dd496a5981c1dee47d0cb4d01573191ba68bb3",
+  "rows": [
+    {
+      "scope": "source/author",
+      "otherChapters": 29,
+      "stage30Unchanged": true,
+      "artTerrainActorsAndStatsUnchanged": true,
+      "finalSteps": [
+        "resident",
+        "trace (automatic)"
+      ]
+    },
+    {
+      "prefix": 0,
+      "round": 20,
+      "current": "resident",
+      "physicalAndEarnedFactsPreserved": true,
+      "exportContinueStable": true
+    },
+    {
+      "prefix": 1,
+      "round": 20,
+      "current": "resident",
+      "physicalAndEarnedFactsPreserved": true,
+      "exportContinueStable": true
+    },
+    {
+      "prefix": 2,
+      "round": 20,
+      "current": "resident",
+      "physicalAndEarnedFactsPreserved": true,
+      "exportContinueStable": true
+    },
+    {
+      "prefix": 3,
+      "round": 20,
+      "current": "resident",
+      "physicalAndEarnedFactsPreserved": true,
+      "exportContinueStable": true
+    },
+    {
+      "prefix": 4,
+      "round": 20,
+      "current": "resident",
+      "physicalAndEarnedFactsPreserved": true,
+      "exportContinueStable": true
+    },
+    {
+      "prefix": 5,
+      "round": 20,
+      "current": null,
+      "physicalAndEarnedFactsPreserved": true,
+      "exportContinueStable": true
+    },
+    {
+      "prefix": 6,
+      "round": 20,
+      "current": null,
+      "physicalAndEarnedFactsPreserved": true,
+      "exportContinueStable": true
+    },
+    {
+      "case": "round20 resident dialogue page1/2 then natural completion",
+      "cursorAndLinesExact": true,
+      "traceCheckpointOnce": true,
+      "rewardOnce": true
+    },
+    {
+      "case": "round20 resident dialogue page2/2 then natural completion",
+      "cursorAndLinesExact": true,
+      "traceCheckpointOnce": true,
+      "rewardOnce": true
+    },
+    {
+      "stage30": "Quest migration is a byte-exact no-op"
+    }
+  ],
+  "limits": [
+    "Round20/mid-stage flags are explicit compatibility fixtures, not completion-turn evidence."
+  ]
+}

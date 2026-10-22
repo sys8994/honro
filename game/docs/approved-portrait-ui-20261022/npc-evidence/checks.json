@@ -1,0 +1,7772 @@
+{
+  "sourceHead": "eaee271225a5808bb5ddf78126fdb8ce8e1d4a7e",
+  "manifestSha256": "0823b029c38ed39878c6adff6de85f0ba335c5cad46824ae5d59c425715fa203",
+  "checks": [
+    {
+      "name": "production Stage11 rescue queues the exact reported two-line speech",
+      "passed": true,
+      "detail": {
+        "eligible": {
+          "ok": true,
+          "reason": "주민에게 붙은 혼 분리"
+        },
+        "used": true,
+        "round": 18,
+        "lines": [
+          [
+            "주민",
+            "아내가 부르는 줄 알았소. 아내는 삼 년 전에 죽었는데… 그걸 알면서도 발이 멎질 않았어요.",
+            {
+              "evidenceGoal": "resident",
+              "storyId": "act2-v1:act2-11-resident",
+              "storyTitle": "매듭을 거둔 아침",
+              "delivery": "dialogue",
+              "waitForClear": false,
+              "afterAction": 0,
+              "camera": {
+                "intent": "conversation",
+                "targets": [
+                  {
+                    "speaker": "주민"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "padding": 40,
+                "maxScale": 1.05,
+                "participants": [
+                  {
+                    "actor": "resident-4"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "id": "11:act2-v1:act2-11-resident:0",
+                "speakerPolicy": "world"
+              }
+            }
+          ],
+          [
+            "소단",
+            "북쪽 산에서 온 혼이 아내분의 목소리로 부른 거예요. 이제 몸에서 떼어냈으니 혼자 돌아가실 수 있어요.",
+            {
+              "evidenceGoal": "resident",
+              "storyId": "act2-v1:act2-11-resident",
+              "storyTitle": "매듭을 거둔 아침",
+              "delivery": "dialogue",
+              "waitForClear": false,
+              "afterAction": 0,
+              "camera": {
+                "intent": "conversation",
+                "targets": [
+                  {
+                    "speaker": "소단"
+                  },
+                  {
+                    "actor": "resident-4"
+                  }
+                ],
+                "padding": 40,
+                "maxScale": 1.05,
+                "participants": [
+                  {
+                    "actor": "resident-4"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "id": "11:act2-v1:act2-11-resident:1",
+                "speakerPolicy": "world"
+              }
+            }
+          ]
+        ],
+        "index": 0,
+        "target": "resident-4",
+        "actor": {
+          "id": "resident-4",
+          "name": "동굴 주민",
+          "cls": "knight"
+        },
+        "resolved": true,
+        "next": "trace",
+        "kind": "civilian",
+        "approved": null
+      }
+    },
+    {
+      "name": "generic caption binds exact marker civilian and never a protagonist",
+      "passed": true,
+      "detail": {
+        "id": "resident-4",
+        "name": "동굴 주민",
+        "cls": "knight"
+      }
+    },
+    {
+      "name": "resident dialogue uses identical production actor vector pixels",
+      "passed": true,
+      "detail": {
+        "source": "vector",
+        "same": true
+      }
+    },
+    {
+      "name": "390x844 actual rescue controls inside and touchable",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 577.25,
+          "width": 366,
+          "height": 254.75,
+          "top": 577.25,
+          "right": 378,
+          "bottom": 832,
+          "left": 12
+        },
+        "grid": "84px 243px",
+        "scroll": [
+          361,
+          361,
+          253,
+          253,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 775,
+              "width": 39.265625,
+              "height": 44,
+              "top": 775,
+              "right": 237.1875,
+              "bottom": 819,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 775,
+              "width": 74.546875,
+              "height": 44,
+              "top": 775,
+              "right": 318.734375,
+              "bottom": 819,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 775,
+              "width": 39.265625,
+              "height": 44,
+              "top": 775,
+              "right": 365,
+              "bottom": 819,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 actual rescue controls inside and touchable",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 1224.40625,
+          "width": 676.8125,
+          "height": 314,
+          "top": 1224.40625,
+          "right": 698.40625,
+          "bottom": 1538.40625,
+          "left": 21.59375
+        },
+        "grid": "240px 355.812px",
+        "scroll": [
+          672,
+          672,
+          312,
+          312,
+          0
+        ],
+        "actionsWidth": 355.8125,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 317.59375,
+              "y": 1467.40625,
+              "width": 63.125,
+              "height": 44,
+              "top": 1467.40625,
+              "right": 380.71875,
+              "bottom": 1511.40625,
+              "left": 317.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1467.40625,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1467.40625,
+              "right": 598.28125,
+              "bottom": 1511.40625,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1467.40625,
+              "width": 63.125,
+              "height": 44,
+              "top": 1467.40625,
+              "right": 673.40625,
+              "bottom": 1511.40625,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 actual rescue controls inside and touchable",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 513.25,
+          "width": 336,
+          "height": 254.75,
+          "top": 513.25,
+          "right": 348,
+          "bottom": 768,
+          "left": 12
+        },
+        "grid": "84px 213px",
+        "scroll": [
+          331,
+          331,
+          253,
+          253,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 711,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711,
+              "right": 207.1875,
+              "bottom": 755,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 711,
+              "width": 74.546875,
+              "height": 44,
+              "top": 711,
+              "right": 288.734375,
+              "bottom": 755,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 711,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711,
+              "right": 335,
+              "bottom": 755,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape actual rescue controls inside and touchable",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 190,
+          "width": 794,
+          "height": 190,
+          "top": 190,
+          "right": 819,
+          "bottom": 380,
+          "left": 25
+        },
+        "grid": "140px 593px",
+        "scroll": [
+          789,
+          789,
+          188,
+          188,
+          0
+        ],
+        "actionsWidth": 593,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 207,
+              "y": 319,
+              "width": 63.125,
+              "height": 44,
+              "top": 319,
+              "right": 270.125,
+              "bottom": 363,
+              "left": 207
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 319,
+              "width": 104.828125,
+              "height": 44,
+              "top": 319,
+              "right": 724.875,
+              "bottom": 363,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 319,
+              "width": 63.125,
+              "height": 44,
+              "top": 319,
+              "right": 800,
+              "bottom": 363,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "stored open rescue speech restores same lines and actor",
+      "passed": true,
+      "detail": {
+        "lines": [
+          [
+            "주민",
+            "아내가 부르는 줄 알았소. 아내는 삼 년 전에 죽었는데… 그걸 알면서도 발이 멎질 않았어요.",
+            {
+              "evidenceGoal": "resident",
+              "storyId": "act2-v1:act2-11-resident",
+              "storyTitle": "매듭을 거둔 아침",
+              "delivery": "dialogue",
+              "waitForClear": false,
+              "afterAction": 0,
+              "camera": {
+                "intent": "conversation",
+                "targets": [
+                  {
+                    "speaker": "주민"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "padding": 40,
+                "maxScale": 1.05,
+                "participants": [
+                  {
+                    "actor": "resident-4"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "id": "11:act2-v1:act2-11-resident:0",
+                "speakerPolicy": "world"
+              }
+            }
+          ],
+          [
+            "소단",
+            "북쪽 산에서 온 혼이 아내분의 목소리로 부른 거예요. 이제 몸에서 떼어냈으니 혼자 돌아가실 수 있어요.",
+            {
+              "evidenceGoal": "resident",
+              "storyId": "act2-v1:act2-11-resident",
+              "storyTitle": "매듭을 거둔 아침",
+              "delivery": "dialogue",
+              "waitForClear": false,
+              "afterAction": 0,
+              "camera": {
+                "intent": "conversation",
+                "targets": [
+                  {
+                    "speaker": "소단"
+                  },
+                  {
+                    "actor": "resident-4"
+                  }
+                ],
+                "padding": 40,
+                "maxScale": 1.05,
+                "participants": [
+                  {
+                    "actor": "resident-4"
+                  },
+                  {
+                    "actor": "p-occultist"
+                  }
+                ],
+                "id": "11:act2-v1:act2-11-resident:1",
+                "speakerPolicy": "world"
+              }
+            }
+          ]
+        ],
+        "index": 0
+      }
+    },
+    {
+      "name": "390x844 주민 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 580.5218505859375,
+          "width": 366,
+          "height": 254.75,
+          "top": 580.5218505859375,
+          "right": 378,
+          "bottom": 835.2718505859375,
+          "left": 12
+        },
+        "grid": "84px 243px",
+        "scroll": [
+          361,
+          361,
+          253,
+          253,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 778.2718505859375,
+              "width": 39.265625,
+              "height": 44,
+              "top": 778.2718505859375,
+              "right": 237.1875,
+              "bottom": 822.2718505859375,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 778.2718505859375,
+              "width": 74.546875,
+              "height": 44,
+              "top": 778.2718505859375,
+              "right": 318.734375,
+              "bottom": 822.2718505859375,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 778.2718505859375,
+              "width": 39.265625,
+              "height": 44,
+              "top": 778.2718505859375,
+              "right": 365,
+              "bottom": 822.2718505859375,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 주민 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 13.250611305236816,
+          "width": 366,
+          "height": 820,
+          "top": 13.250611305236816,
+          "right": 378,
+          "bottom": 833.2506113052368,
+          "left": 12
+        },
+        "grid": "84px 243px",
+        "scroll": [
+          361,
+          361,
+          2484,
+          818,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 776.2506103515625,
+              "width": 39.265625,
+              "height": 44,
+              "top": 776.2506103515625,
+              "right": 237.1875,
+              "bottom": 820.2506103515625,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 776.2506103515625,
+              "width": 74.546875,
+              "height": 44,
+              "top": 776.2506103515625,
+              "right": 318.734375,
+              "bottom": 820.2506103515625,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 776.2506103515625,
+              "width": 39.265625,
+              "height": 44,
+              "top": 776.2506103515625,
+              "right": 365,
+              "bottom": 820.2506103515625,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 주민 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 1666,
+        "tail": 749.7479248046875,
+        "actions": 759.7478637695312,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "390x844 문탁 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 578.4974975585938,
+          "width": 366,
+          "height": 254.75,
+          "top": 578.4974975585938,
+          "right": 378,
+          "bottom": 833.2474975585938,
+          "left": 12
+        },
+        "grid": "84px 243px",
+        "scroll": [
+          361,
+          361,
+          253,
+          253,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 776.2474975585938,
+              "width": 39.265625,
+              "height": 44,
+              "top": 776.2474975585938,
+              "right": 237.1875,
+              "bottom": 820.2474975585938,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 776.2474975585938,
+              "width": 74.546875,
+              "height": 44,
+              "top": 776.2474975585938,
+              "right": 318.734375,
+              "bottom": 820.2474975585938,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 776.2474975585938,
+              "width": 39.265625,
+              "height": 44,
+              "top": 776.2474975585938,
+              "right": 365,
+              "bottom": 820.2474975585938,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 문탁 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 14.521994590759277,
+          "width": 366,
+          "height": 820,
+          "top": 14.521994590759277,
+          "right": 378,
+          "bottom": 834.5219945907593,
+          "left": 12
+        },
+        "grid": "84px 243px",
+        "scroll": [
+          361,
+          361,
+          2484,
+          818,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 777.52197265625,
+              "width": 39.265625,
+              "height": 44,
+              "top": 777.52197265625,
+              "right": 237.1875,
+              "bottom": 821.52197265625,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 777.52197265625,
+              "width": 74.546875,
+              "height": 44,
+              "top": 777.52197265625,
+              "right": 318.734375,
+              "bottom": 821.52197265625,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 777.52197265625,
+              "width": 39.265625,
+              "height": 44,
+              "top": 777.52197265625,
+              "right": 365,
+              "bottom": 821.52197265625,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 문탁 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 1666,
+        "tail": 751.52197265625,
+        "actions": 761.52197265625,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "390x844 새 주민 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 608.7478637695312,
+          "width": 366,
+          "height": 224,
+          "top": 608.7478637695312,
+          "right": 378,
+          "bottom": 832.7478637695312,
+          "left": 12
+        },
+        "grid": "337px",
+        "scroll": [
+          361,
+          361,
+          222,
+          222,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 773.7478637695312,
+              "width": 39.265625,
+              "height": 44,
+              "top": 773.7478637695312,
+              "right": 237.1875,
+              "bottom": 817.7478637695312,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 773.7478637695312,
+              "width": 74.546875,
+              "height": 44,
+              "top": 773.7478637695312,
+              "right": 318.734375,
+              "bottom": 817.7478637695312,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 773.7478637695312,
+              "width": 39.265625,
+              "height": 44,
+              "top": 773.7478637695312,
+              "right": 365,
+              "bottom": 817.7478637695312,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 새 주민 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 14.523197174072266,
+          "width": 366,
+          "height": 820,
+          "top": 14.523197174072266,
+          "right": 378,
+          "bottom": 834.5231971740723,
+          "left": 12
+        },
+        "grid": "337px",
+        "scroll": [
+          361,
+          361,
+          1986,
+          818,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 777.523193359375,
+              "width": 39.265625,
+              "height": 44,
+              "top": 777.523193359375,
+              "right": 237.1875,
+              "bottom": 821.523193359375,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 777.523193359375,
+              "width": 74.546875,
+              "height": 44,
+              "top": 777.523193359375,
+              "right": 318.734375,
+              "bottom": 821.523193359375,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 777.523193359375,
+              "width": 39.265625,
+              "height": 44,
+              "top": 777.523193359375,
+              "right": 365,
+              "bottom": 821.523193359375,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 새 주민 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 1168,
+        "tail": 756.5,
+        "actions": 756.5,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "390x844 서술 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 633.5955810546875,
+          "width": 366,
+          "height": 198.5,
+          "top": 633.5955810546875,
+          "right": 378,
+          "bottom": 832.0955810546875,
+          "left": 12
+        },
+        "grid": "337px",
+        "scroll": [
+          361,
+          361,
+          197,
+          197,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 773.0955810546875,
+              "width": 39.265625,
+              "height": 44,
+              "top": 773.0955810546875,
+              "right": 237.1875,
+              "bottom": 817.0955810546875,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 773.0955810546875,
+              "width": 74.546875,
+              "height": 44,
+              "top": 773.0955810546875,
+              "right": 318.734375,
+              "bottom": 817.0955810546875,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 773.0955810546875,
+              "width": 39.265625,
+              "height": 44,
+              "top": 773.0955810546875,
+              "right": 365,
+              "bottom": 817.0955810546875,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 서술 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 12.357189178466797,
+          "width": 366,
+          "height": 820,
+          "top": 12.357189178466797,
+          "right": 378,
+          "bottom": 832.3571891784668,
+          "left": 12
+        },
+        "grid": "337px",
+        "scroll": [
+          361,
+          361,
+          1982,
+          818,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 775.357177734375,
+              "width": 39.265625,
+              "height": 44,
+              "top": 775.357177734375,
+              "right": 237.1875,
+              "bottom": 819.357177734375,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 775.357177734375,
+              "width": 74.546875,
+              "height": 44,
+              "top": 775.357177734375,
+              "right": 318.734375,
+              "bottom": 819.357177734375,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 775.357177734375,
+              "width": 39.265625,
+              "height": 44,
+              "top": 775.357177734375,
+              "right": 365,
+              "bottom": 819.357177734375,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 서술 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 1164,
+        "tail": 756.5,
+        "actions": 756.5,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "390x844 기록 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 633.5968627929688,
+          "width": 366,
+          "height": 198.5,
+          "top": 633.5968627929688,
+          "right": 378,
+          "bottom": 832.0968627929688,
+          "left": 12
+        },
+        "grid": "337px",
+        "scroll": [
+          361,
+          361,
+          197,
+          197,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 773.0968627929688,
+              "width": 39.265625,
+              "height": 44,
+              "top": 773.0968627929688,
+              "right": 237.1875,
+              "bottom": 817.0968627929688,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 773.0968627929688,
+              "width": 74.546875,
+              "height": 44,
+              "top": 773.0968627929688,
+              "right": 318.734375,
+              "bottom": 817.0968627929688,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 773.0968627929688,
+              "width": 39.265625,
+              "height": 44,
+              "top": 773.0968627929688,
+              "right": 365,
+              "bottom": 817.0968627929688,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 기록 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 12.747986793518066,
+          "width": 366,
+          "height": 820,
+          "top": 12.747986793518066,
+          "right": 378,
+          "bottom": 832.7479867935181,
+          "left": 12
+        },
+        "grid": "337px",
+        "scroll": [
+          361,
+          361,
+          1982,
+          818,
+          0
+        ],
+        "actionsWidth": 337,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 197.921875,
+              "y": 775.7479858398438,
+              "width": 39.265625,
+              "height": 44,
+              "top": 775.7479858398438,
+              "right": 237.1875,
+              "bottom": 819.7479858398438,
+              "left": 197.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 244.1875,
+              "y": 775.7479858398438,
+              "width": 74.546875,
+              "height": 44,
+              "top": 775.7479858398438,
+              "right": 318.734375,
+              "bottom": 819.7479858398438,
+              "left": 244.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 325.734375,
+              "y": 775.7479858398438,
+              "width": 39.265625,
+              "height": 44,
+              "top": 775.7479858398438,
+              "right": 365,
+              "bottom": 819.7479858398438,
+              "left": 325.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 기록 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 1164,
+        "tail": 757.248046875,
+        "actions": 757.2479858398438,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "390x844 안내 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 10,
+          "y": 107,
+          "width": 370,
+          "height": 156,
+          "top": 107,
+          "right": 380,
+          "bottom": 263,
+          "left": 10
+        },
+        "grid": "333px 0px",
+        "scroll": [
+          365,
+          365,
+          154,
+          154,
+          0
+        ],
+        "actionsWidth": 341,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 256.625,
+              "y": 214,
+              "width": 51.1875,
+              "height": 38,
+              "top": 214,
+              "right": 307.8125,
+              "bottom": 252,
+              "left": 256.625
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 315.8125,
+              "y": 214,
+              "width": 51.1875,
+              "height": 38,
+              "top": 214,
+              "right": 367,
+              "bottom": 252,
+              "left": 315.8125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 안내 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 10,
+          "y": 107,
+          "width": 370,
+          "height": 286.953125,
+          "top": 107,
+          "right": 380,
+          "bottom": 393.953125,
+          "left": 10
+        },
+        "grid": "333px 0px",
+        "scroll": [
+          365,
+          365,
+          1351,
+          285,
+          0
+        ],
+        "actionsWidth": 341,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 256.625,
+              "y": 344.953125,
+              "width": 51.1875,
+              "height": 38,
+              "top": 344.953125,
+              "right": 307.8125,
+              "bottom": 382.953125,
+              "left": 256.625
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 315.8125,
+              "y": 344.953125,
+              "width": 51.1875,
+              "height": 38,
+              "top": 344.953125,
+              "right": 367,
+              "bottom": 382.953125,
+              "left": 315.8125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "390x844 안내 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 1066,
+        "tail": 337,
+        "actions": 344.953125,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "720x1560 주민 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 1224.5023193359375,
+          "width": 676.8125,
+          "height": 314,
+          "top": 1224.5023193359375,
+          "right": 698.40625,
+          "bottom": 1538.5023193359375,
+          "left": 21.59375
+        },
+        "grid": "240px 355.812px",
+        "scroll": [
+          672,
+          672,
+          312,
+          312,
+          0
+        ],
+        "actionsWidth": 355.8125,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 317.59375,
+              "y": 1467.5023193359375,
+              "width": 63.125,
+              "height": 44,
+              "top": 1467.5023193359375,
+              "right": 380.71875,
+              "bottom": 1511.5023193359375,
+              "left": 317.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1467.5023193359375,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1467.5023193359375,
+              "right": 598.28125,
+              "bottom": 1511.5023193359375,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1467.5023193359375,
+              "width": 63.125,
+              "height": 44,
+              "top": 1467.5023193359375,
+              "right": 673.40625,
+              "bottom": 1511.5023193359375,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 주민 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 9.32537841796875,
+          "width": 676.8125,
+          "height": 1536,
+          "top": 9.32537841796875,
+          "right": 698.40625,
+          "bottom": 1545.3253784179688,
+          "left": 21.59375
+        },
+        "grid": "240px 355.812px",
+        "scroll": [
+          672,
+          672,
+          2267,
+          1534,
+          0
+        ],
+        "actionsWidth": 355.8125,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 317.59375,
+              "y": 1476.325439453125,
+              "width": 63.125,
+              "height": 44,
+              "top": 1476.325439453125,
+              "right": 380.71875,
+              "bottom": 1520.325439453125,
+              "left": 317.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1476.325439453125,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1476.325439453125,
+              "right": 598.28125,
+              "bottom": 1520.325439453125,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1476.325439453125,
+              "width": 63.125,
+              "height": 44,
+              "top": 1476.325439453125,
+              "right": 673.40625,
+              "bottom": 1520.325439453125,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 주민 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 733,
+        "tail": 1446.812255859375,
+        "actions": 1446.812255859375,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "720x1560 문탁 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 1226.2520751953125,
+          "width": 676.8125,
+          "height": 314,
+          "top": 1226.2520751953125,
+          "right": 698.40625,
+          "bottom": 1540.2520751953125,
+          "left": 21.59375
+        },
+        "grid": "240px 355.812px",
+        "scroll": [
+          672,
+          672,
+          312,
+          312,
+          0
+        ],
+        "actionsWidth": 355.8125,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 317.59375,
+              "y": 1469.2520751953125,
+              "width": 63.125,
+              "height": 44,
+              "top": 1469.2520751953125,
+              "right": 380.71875,
+              "bottom": 1513.2520751953125,
+              "left": 317.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1469.2520751953125,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1469.2520751953125,
+              "right": 598.28125,
+              "bottom": 1513.2520751953125,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1469.2520751953125,
+              "width": 63.125,
+              "height": 44,
+              "top": 1469.2520751953125,
+              "right": 673.40625,
+              "bottom": 1513.2520751953125,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 문탁 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 6.499185562133789,
+          "width": 676.8125,
+          "height": 1536,
+          "top": 6.499185562133789,
+          "right": 698.40625,
+          "bottom": 1542.4991855621338,
+          "left": 21.59375
+        },
+        "grid": "240px 355.812px",
+        "scroll": [
+          672,
+          672,
+          2267,
+          1534,
+          0
+        ],
+        "actionsWidth": 355.8125,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 317.59375,
+              "y": 1473.4991455078125,
+              "width": 63.125,
+              "height": 44,
+              "top": 1473.4991455078125,
+              "right": 380.71875,
+              "bottom": 1517.4991455078125,
+              "left": 317.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1473.4991455078125,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1473.4991455078125,
+              "right": 598.28125,
+              "bottom": 1517.4991455078125,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1473.4991455078125,
+              "width": 63.125,
+              "height": 44,
+              "top": 1473.4991455078125,
+              "right": 673.40625,
+              "bottom": 1517.4991455078125,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 문탁 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 733,
+        "tail": 1449.0617065429688,
+        "actions": 1449.0616455078125,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "720x1560 새 주민 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 1269.2496337890625,
+          "width": 676.8125,
+          "height": 271,
+          "top": 1269.2496337890625,
+          "right": 698.40625,
+          "bottom": 1540.2496337890625,
+          "left": 21.59375
+        },
+        "grid": "623.812px",
+        "scroll": [
+          672,
+          672,
+          269,
+          269,
+          0
+        ],
+        "actionsWidth": 623.8125,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 49.59375,
+              "y": 1469.2496337890625,
+              "width": 63.125,
+              "height": 44,
+              "top": 1469.2496337890625,
+              "right": 112.71875,
+              "bottom": 1513.2496337890625,
+              "left": 49.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1469.2496337890625,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1469.2496337890625,
+              "right": 598.28125,
+              "bottom": 1513.2496337890625,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1469.2496337890625,
+              "width": 63.125,
+              "height": 44,
+              "top": 1469.2496337890625,
+              "right": 673.40625,
+              "bottom": 1513.2496337890625,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 새 주민 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 220.11680603027344,
+          "width": 676.8125,
+          "height": 1321.5625,
+          "top": 220.11680603027344,
+          "right": 698.40625,
+          "bottom": 1541.6793060302734,
+          "left": 21.59375
+        },
+        "grid": "623.812px",
+        "scroll": [
+          672,
+          672,
+          1320,
+          1320,
+          0
+        ],
+        "actionsWidth": 623.8125,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 49.59375,
+              "y": 1470.6793212890625,
+              "width": 63.125,
+              "height": 44,
+              "top": 1470.6793212890625,
+              "right": 112.71875,
+              "bottom": 1514.6793212890625,
+              "left": 49.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1470.6793212890625,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1470.6793212890625,
+              "right": 598.28125,
+              "bottom": 1514.6793212890625,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1470.6793212890625,
+              "width": 63.125,
+              "height": 44,
+              "top": 1470.6793212890625,
+              "right": 673.40625,
+              "bottom": 1514.6793212890625,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 새 주민 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 0,
+        "tail": 1446.1522827148438,
+        "actions": 1446.15234375,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "720x1560 서술 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 1293.575927734375,
+          "width": 676.8125,
+          "height": 245.1875,
+          "top": 1293.575927734375,
+          "right": 698.40625,
+          "bottom": 1538.763427734375,
+          "left": 21.59375
+        },
+        "grid": "623.812px",
+        "scroll": [
+          672,
+          672,
+          243,
+          243,
+          0
+        ],
+        "actionsWidth": 623.8125,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 49.59375,
+              "y": 1467.763427734375,
+              "width": 63.125,
+              "height": 44,
+              "top": 1467.763427734375,
+              "right": 112.71875,
+              "bottom": 1511.763427734375,
+              "left": 49.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1467.763427734375,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1467.763427734375,
+              "right": 598.28125,
+              "bottom": 1511.763427734375,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1467.763427734375,
+              "width": 63.125,
+              "height": 44,
+              "top": 1467.763427734375,
+              "right": 673.40625,
+              "bottom": 1511.763427734375,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 서술 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 231.93882751464844,
+          "width": 676.8125,
+          "height": 1310.5625,
+          "top": 231.93882751464844,
+          "right": 698.40625,
+          "bottom": 1542.5013275146484,
+          "left": 21.59375
+        },
+        "grid": "623.812px",
+        "scroll": [
+          672,
+          672,
+          1309,
+          1309,
+          0
+        ],
+        "actionsWidth": 623.8125,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 49.59375,
+              "y": 1471.5013427734375,
+              "width": 63.125,
+              "height": 44,
+              "top": 1471.5013427734375,
+              "right": 112.71875,
+              "bottom": 1515.5013427734375,
+              "left": 49.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1471.5013427734375,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1471.5013427734375,
+              "right": 598.28125,
+              "bottom": 1515.5013427734375,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1471.5013427734375,
+              "width": 63.125,
+              "height": 44,
+              "top": 1471.5013427734375,
+              "right": 673.40625,
+              "bottom": 1515.5013427734375,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 서술 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 0,
+        "tail": 1446.1531372070312,
+        "actions": 1446.1531982421875,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "720x1560 기록 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 1293.9671630859375,
+          "width": 676.8125,
+          "height": 245.1875,
+          "top": 1293.9671630859375,
+          "right": 698.40625,
+          "bottom": 1539.1546630859375,
+          "left": 21.59375
+        },
+        "grid": "623.812px",
+        "scroll": [
+          672,
+          672,
+          243,
+          243,
+          0
+        ],
+        "actionsWidth": 623.8125,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 49.59375,
+              "y": 1468.1546630859375,
+              "width": 63.125,
+              "height": 44,
+              "top": 1468.1546630859375,
+              "right": 112.71875,
+              "bottom": 1512.1546630859375,
+              "left": 49.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1468.1546630859375,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1468.1546630859375,
+              "right": 598.28125,
+              "bottom": 1512.1546630859375,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1468.1546630859375,
+              "width": 63.125,
+              "height": 44,
+              "top": 1468.1546630859375,
+              "right": 673.40625,
+              "bottom": 1512.1546630859375,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 기록 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 21.59375,
+          "y": 231.94036865234375,
+          "width": 676.8125,
+          "height": 1310.5625,
+          "top": 231.94036865234375,
+          "right": 698.40625,
+          "bottom": 1542.5028686523438,
+          "left": 21.59375
+        },
+        "grid": "623.812px",
+        "scroll": [
+          672,
+          672,
+          1309,
+          1309,
+          0
+        ],
+        "actionsWidth": 623.8125,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 49.59375,
+              "y": 1471.5029296875,
+              "width": 63.125,
+              "height": 44,
+              "top": 1471.5029296875,
+              "right": 112.71875,
+              "bottom": 1515.5029296875,
+              "left": 49.59375
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 493.453125,
+              "y": 1471.5029296875,
+              "width": 104.828125,
+              "height": 44,
+              "top": 1471.5029296875,
+              "right": 598.28125,
+              "bottom": 1515.5029296875,
+              "left": 493.453125
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 610.28125,
+              "y": 1471.5029296875,
+              "width": 63.125,
+              "height": 44,
+              "top": 1471.5029296875,
+              "right": 673.40625,
+              "bottom": 1515.5029296875,
+              "left": 610.28125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 기록 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 0,
+        "tail": 1445.5016479492188,
+        "actions": 1445.501708984375,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "720x1560 안내 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 18,
+          "y": 134,
+          "width": 684,
+          "height": 124,
+          "top": 134,
+          "right": 702,
+          "bottom": 258,
+          "left": 18
+        },
+        "grid": "510.75px 114.25px",
+        "scroll": [
+          679,
+          679,
+          122,
+          122,
+          0
+        ],
+        "actionsWidth": 114.25,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 568.75,
+              "y": 175,
+              "width": 53.125,
+              "height": 42,
+              "top": 175,
+              "right": 621.875,
+              "bottom": 217,
+              "left": 568.75
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 629.875,
+              "y": 175,
+              "width": 53.125,
+              "height": 42,
+              "top": 175,
+              "right": 683,
+              "bottom": 217,
+              "left": 629.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 안내 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 18,
+          "y": 134,
+          "width": 684,
+          "height": 530.390625,
+          "top": 134,
+          "right": 702,
+          "bottom": 664.390625,
+          "left": 18
+        },
+        "grid": "510.75px 114.25px",
+        "scroll": [
+          679,
+          679,
+          1130,
+          528,
+          0
+        ],
+        "actionsWidth": 114.25,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 568.75,
+              "y": 609.390625,
+              "width": 53.125,
+              "height": 42,
+              "top": 609.390625,
+              "right": 621.875,
+              "bottom": 651.390625,
+              "left": 568.75
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 629.875,
+              "y": 609.390625,
+              "width": 53.125,
+              "height": 42,
+              "top": 609.390625,
+              "right": 683,
+              "bottom": 651.390625,
+              "left": 629.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "720x1560 안내 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 602,
+        "tail": 651,
+        "actions": 147,
+        "beside": true,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "360x780 주민 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 513.25,
+          "width": 336,
+          "height": 254.75,
+          "top": 513.25,
+          "right": 348,
+          "bottom": 768,
+          "left": 12
+        },
+        "grid": "84px 213px",
+        "scroll": [
+          331,
+          331,
+          253,
+          253,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 711,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711,
+              "right": 207.1875,
+              "bottom": 755,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 711,
+              "width": 74.546875,
+              "height": 44,
+              "top": 711,
+              "right": 288.734375,
+              "bottom": 755,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 711,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711,
+              "right": 335,
+              "bottom": 755,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 주민 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 12.357069969177246,
+          "width": 336,
+          "height": 756,
+          "top": 12.357069969177246,
+          "right": 348,
+          "bottom": 768.3570699691772,
+          "left": 12
+        },
+        "grid": "84px 213px",
+        "scroll": [
+          331,
+          331,
+          2930,
+          754,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 711.3570556640625,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711.3570556640625,
+              "right": 207.1875,
+              "bottom": 755.3570556640625,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 711.3570556640625,
+              "width": 74.546875,
+              "height": 44,
+              "top": 711.3570556640625,
+              "right": 288.734375,
+              "bottom": 755.3570556640625,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 711.3570556640625,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711.3570556640625,
+              "right": 335,
+              "bottom": 755.3570556640625,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 주민 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 2176,
+        "tail": 685.25,
+        "actions": 695,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "360x780 문탁 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 513.6068115234375,
+          "width": 336,
+          "height": 254.75,
+          "top": 513.6068115234375,
+          "right": 348,
+          "bottom": 768.3568115234375,
+          "left": 12
+        },
+        "grid": "84px 213px",
+        "scroll": [
+          331,
+          331,
+          253,
+          253,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 711.3568115234375,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711.3568115234375,
+              "right": 207.1875,
+              "bottom": 755.3568115234375,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 711.3568115234375,
+              "width": 74.546875,
+              "height": 44,
+              "top": 711.3568115234375,
+              "right": 288.734375,
+              "bottom": 755.3568115234375,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 711.3568115234375,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711.3568115234375,
+              "right": 335,
+              "bottom": 755.3568115234375,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 문탁 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 12.355168342590332,
+          "width": 336,
+          "height": 756,
+          "top": 12.355168342590332,
+          "right": 348,
+          "bottom": 768.3551683425903,
+          "left": 12
+        },
+        "grid": "84px 213px",
+        "scroll": [
+          331,
+          331,
+          2930,
+          754,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 711.3551635742188,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711.3551635742188,
+              "right": 207.1875,
+              "bottom": 755.3551635742188,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 711.3551635742188,
+              "width": 74.546875,
+              "height": 44,
+              "top": 711.3551635742188,
+              "right": 288.734375,
+              "bottom": 755.3551635742188,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 711.3551635742188,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711.3551635742188,
+              "right": 335,
+              "bottom": 755.3551635742188,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 문탁 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 2176,
+        "tail": 685.25,
+        "actions": 695,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "360x780 새 주민 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 544.096923828125,
+          "width": 336,
+          "height": 224,
+          "top": 544.096923828125,
+          "right": 348,
+          "bottom": 768.096923828125,
+          "left": 12
+        },
+        "grid": "307px",
+        "scroll": [
+          331,
+          331,
+          222,
+          222,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 709.096923828125,
+              "width": 39.265625,
+              "height": 44,
+              "top": 709.096923828125,
+              "right": 207.1875,
+              "bottom": 753.096923828125,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 709.096923828125,
+              "width": 74.546875,
+              "height": 44,
+              "top": 709.096923828125,
+              "right": 288.734375,
+              "bottom": 753.096923828125,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 709.096923828125,
+              "width": 39.265625,
+              "height": 44,
+              "top": 709.096923828125,
+              "right": 335,
+              "bottom": 753.096923828125,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 새 주민 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 13.250214576721191,
+          "width": 336,
+          "height": 756,
+          "top": 13.250214576721191,
+          "right": 348,
+          "bottom": 769.2502145767212,
+          "left": 12
+        },
+        "grid": "307px",
+        "scroll": [
+          331,
+          331,
+          1986,
+          754,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 712.250244140625,
+              "width": 39.265625,
+              "height": 44,
+              "top": 712.250244140625,
+              "right": 207.1875,
+              "bottom": 756.250244140625,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 712.250244140625,
+              "width": 74.546875,
+              "height": 44,
+              "top": 712.250244140625,
+              "right": 288.734375,
+              "bottom": 756.250244140625,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 712.250244140625,
+              "width": 39.265625,
+              "height": 44,
+              "top": 712.250244140625,
+              "right": 335,
+              "bottom": 756.250244140625,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 새 주민 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 1232,
+        "tail": 692.596435546875,
+        "actions": 692.596435546875,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "360x780 서술 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 569.5955200195312,
+          "width": 336,
+          "height": 198.5,
+          "top": 569.5955200195312,
+          "right": 348,
+          "bottom": 768.0955200195312,
+          "left": 12
+        },
+        "grid": "307px",
+        "scroll": [
+          331,
+          331,
+          197,
+          197,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 709.0955200195312,
+              "width": 39.265625,
+              "height": 44,
+              "top": 709.0955200195312,
+              "right": 207.1875,
+              "bottom": 753.0955200195312,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 709.0955200195312,
+              "width": 74.546875,
+              "height": 44,
+              "top": 709.0955200195312,
+              "right": 288.734375,
+              "bottom": 753.0955200195312,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 709.0955200195312,
+              "width": 39.265625,
+              "height": 44,
+              "top": 709.0955200195312,
+              "right": 335,
+              "bottom": 753.0955200195312,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 서술 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 12.355998992919922,
+          "width": 336,
+          "height": 756,
+          "top": 12.355998992919922,
+          "right": 348,
+          "bottom": 768.3559989929199,
+          "left": 12
+        },
+        "grid": "307px",
+        "scroll": [
+          331,
+          331,
+          1982,
+          754,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 711.3560180664062,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711.3560180664062,
+              "right": 207.1875,
+              "bottom": 755.3560180664062,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 711.3560180664062,
+              "width": 74.546875,
+              "height": 44,
+              "top": 711.3560180664062,
+              "right": 288.734375,
+              "bottom": 755.3560180664062,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 711.3560180664062,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711.3560180664062,
+              "right": 335,
+              "bottom": 755.3560180664062,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 서술 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 1228,
+        "tail": 692.5,
+        "actions": 692.5,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "360x780 기록 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 569.5,
+          "width": 336,
+          "height": 198.5,
+          "top": 569.5,
+          "right": 348,
+          "bottom": 768,
+          "left": 12
+        },
+        "grid": "307px",
+        "scroll": [
+          331,
+          331,
+          197,
+          197,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 709,
+              "width": 39.265625,
+              "height": 44,
+              "top": 709,
+              "right": 207.1875,
+              "bottom": 753,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 709,
+              "width": 74.546875,
+              "height": 44,
+              "top": 709,
+              "right": 288.734375,
+              "bottom": 753,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 709,
+              "width": 39.265625,
+              "height": 44,
+              "top": 709,
+              "right": 335,
+              "bottom": 753,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 기록 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 12,
+          "y": 12,
+          "width": 336,
+          "height": 756,
+          "top": 12,
+          "right": 348,
+          "bottom": 768,
+          "left": 12
+        },
+        "grid": "307px",
+        "scroll": [
+          331,
+          331,
+          1982,
+          754,
+          0
+        ],
+        "actionsWidth": 307,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 167.921875,
+              "y": 711,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711,
+              "right": 207.1875,
+              "bottom": 755,
+              "left": 167.921875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 214.1875,
+              "y": 711,
+              "width": 74.546875,
+              "height": 44,
+              "top": 711,
+              "right": 288.734375,
+              "bottom": 755,
+              "left": 214.1875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 295.734375,
+              "y": 711,
+              "width": 39.265625,
+              "height": 44,
+              "top": 711,
+              "right": 335,
+              "bottom": 755,
+              "left": 295.734375
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 기록 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 1228,
+        "tail": 692.5,
+        "actions": 692.5,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "360x780 안내 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 10,
+          "y": 107,
+          "width": 340,
+          "height": 156,
+          "top": 107,
+          "right": 350,
+          "bottom": 263,
+          "left": 10
+        },
+        "grid": "303px 0px",
+        "scroll": [
+          335,
+          335,
+          154,
+          154,
+          0
+        ],
+        "actionsWidth": 311,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 226.625,
+              "y": 214,
+              "width": 51.1875,
+              "height": 38,
+              "top": 214,
+              "right": 277.8125,
+              "bottom": 252,
+              "left": 226.625
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 285.8125,
+              "y": 214,
+              "width": 51.1875,
+              "height": 38,
+              "top": 214,
+              "right": 337,
+              "bottom": 252,
+              "left": 285.8125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 안내 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 10,
+          "y": 107,
+          "width": 340,
+          "height": 265.1875,
+          "top": 107,
+          "right": 350,
+          "bottom": 372.1875,
+          "left": 10
+        },
+        "grid": "303px 0px",
+        "scroll": [
+          335,
+          335,
+          1582,
+          263,
+          0
+        ],
+        "actionsWidth": 311,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 226.625,
+              "y": 323.1875,
+              "width": 51.1875,
+              "height": 38,
+              "top": 323.1875,
+              "right": 277.8125,
+              "bottom": 361.1875,
+              "left": 226.625
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 285.8125,
+              "y": 323.1875,
+              "width": 51.1875,
+              "height": 38,
+              "top": 323.1875,
+              "right": 337,
+              "bottom": 361.1875,
+              "left": 285.8125
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "360x780 안내 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 1319,
+        "tail": 315,
+        "actions": 323,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "landscape 주민 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 190,
+          "width": 794,
+          "height": 190,
+          "top": 190,
+          "right": 819,
+          "bottom": 380,
+          "left": 25
+        },
+        "grid": "140px 593px",
+        "scroll": [
+          789,
+          789,
+          188,
+          188,
+          0
+        ],
+        "actionsWidth": 593,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 207,
+              "y": 319,
+              "width": 63.125,
+              "height": 44,
+              "top": 319,
+              "right": 270.125,
+              "bottom": 363,
+              "left": 207
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 319,
+              "width": 104.828125,
+              "height": 44,
+              "top": 319,
+              "right": 724.875,
+              "bottom": 363,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 319,
+              "width": 63.125,
+              "height": 44,
+              "top": 319,
+              "right": 800,
+              "bottom": 363,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 주민 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 14.749067306518555,
+          "width": 794,
+          "height": 366,
+          "top": 14.749067306518555,
+          "right": 819,
+          "bottom": 380.74906730651855,
+          "left": 25
+        },
+        "grid": "140px 593px",
+        "scroll": [
+          789,
+          789,
+          928,
+          364,
+          0
+        ],
+        "actionsWidth": 593,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 207,
+              "y": 321.7490539550781,
+              "width": 63.125,
+              "height": 44,
+              "top": 321.7490539550781,
+              "right": 270.125,
+              "bottom": 365.7490539550781,
+              "left": 207
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 321.7490539550781,
+              "width": 104.828125,
+              "height": 44,
+              "top": 321.7490539550781,
+              "right": 724.875,
+              "bottom": 365.7490539550781,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 321.7490539550781,
+              "width": 63.125,
+              "height": 44,
+              "top": 321.7490539550781,
+              "right": 800,
+              "bottom": 365.7490539550781,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 주민 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 564,
+        "tail": 308.767822265625,
+        "actions": 308.767822265625,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "landscape 문탁 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 190,
+          "width": 794,
+          "height": 190,
+          "top": 190,
+          "right": 819,
+          "bottom": 380,
+          "left": 25
+        },
+        "grid": "140px 593px",
+        "scroll": [
+          789,
+          789,
+          188,
+          188,
+          0
+        ],
+        "actionsWidth": 593,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 207,
+              "y": 319,
+              "width": 63.125,
+              "height": 44,
+              "top": 319,
+              "right": 270.125,
+              "bottom": 363,
+              "left": 207
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 319,
+              "width": 104.828125,
+              "height": 44,
+              "top": 319,
+              "right": 724.875,
+              "bottom": 363,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 319,
+              "width": 63.125,
+              "height": 44,
+              "top": 319,
+              "right": 800,
+              "bottom": 363,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 문탁 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 14.355801582336426,
+          "width": 794,
+          "height": 366,
+          "top": 14.355801582336426,
+          "right": 819,
+          "bottom": 380.3558015823364,
+          "left": 25
+        },
+        "grid": "140px 593px",
+        "scroll": [
+          789,
+          789,
+          928,
+          364,
+          0
+        ],
+        "actionsWidth": 593,
+        "portrait": true,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 207,
+              "y": 321.3558044433594,
+              "width": 63.125,
+              "height": 44,
+              "top": 321.3558044433594,
+              "right": 270.125,
+              "bottom": 365.3558044433594,
+              "left": 207
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 321.3558044433594,
+              "width": 104.828125,
+              "height": 44,
+              "top": 321.3558044433594,
+              "right": 724.875,
+              "bottom": 365.3558044433594,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 321.3558044433594,
+              "width": 63.125,
+              "height": 44,
+              "top": 321.3558044433594,
+              "right": 800,
+              "bottom": 365.3558044433594,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 문탁 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 564,
+        "tail": 309.0276794433594,
+        "actions": 309.0276794433594,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "landscape 새 주민 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 190,
+          "width": 794,
+          "height": 190,
+          "top": 190,
+          "right": 819,
+          "bottom": 380,
+          "left": 25
+        },
+        "grid": "753px",
+        "scroll": [
+          789,
+          789,
+          188,
+          188,
+          0
+        ],
+        "actionsWidth": 753,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 47,
+              "y": 319,
+              "width": 63.125,
+              "height": 44,
+              "top": 319,
+              "right": 110.125,
+              "bottom": 363,
+              "left": 47
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 319,
+              "width": 104.828125,
+              "height": 44,
+              "top": 319,
+              "right": 724.875,
+              "bottom": 363,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 319,
+              "width": 63.125,
+              "height": 44,
+              "top": 319,
+              "right": 800,
+              "bottom": 363,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 새 주민 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 14.357069969177246,
+          "width": 794,
+          "height": 366,
+          "top": 14.357069969177246,
+          "right": 819,
+          "bottom": 380.35706996917725,
+          "left": 25
+        },
+        "grid": "753px",
+        "scroll": [
+          789,
+          789,
+          749,
+          364,
+          0
+        ],
+        "actionsWidth": 753,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 47,
+              "y": 321.3570556640625,
+              "width": 63.125,
+              "height": 44,
+              "top": 321.3570556640625,
+              "right": 110.125,
+              "bottom": 365.3570556640625,
+              "left": 47
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 321.3570556640625,
+              "width": 104.828125,
+              "height": 44,
+              "top": 321.3570556640625,
+              "right": 724.875,
+              "bottom": 365.3570556640625,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 321.3570556640625,
+              "width": 63.125,
+              "height": 44,
+              "top": 321.3570556640625,
+              "right": 800,
+              "bottom": 365.3570556640625,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 새 주민 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 385,
+        "tail": 308.64215087890625,
+        "actions": 308.64215087890625,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "landscape 서술 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 215.13067626953125,
+          "width": 794,
+          "height": 167.390625,
+          "top": 215.13067626953125,
+          "right": 819,
+          "bottom": 382.52130126953125,
+          "left": 25
+        },
+        "grid": "753px",
+        "scroll": [
+          789,
+          789,
+          165,
+          165,
+          0
+        ],
+        "actionsWidth": 753,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 47,
+              "y": 321.52130126953125,
+              "width": 63.125,
+              "height": 44,
+              "top": 321.52130126953125,
+              "right": 110.125,
+              "bottom": 365.52130126953125,
+              "left": 47
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 321.52130126953125,
+              "width": 104.828125,
+              "height": 44,
+              "top": 321.52130126953125,
+              "right": 724.875,
+              "bottom": 365.52130126953125,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 321.52130126953125,
+              "width": 63.125,
+              "height": 44,
+              "top": 321.52130126953125,
+              "right": 800,
+              "bottom": 365.52130126953125,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 서술 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 15.24869441986084,
+          "width": 794,
+          "height": 366,
+          "top": 15.24869441986084,
+          "right": 819,
+          "bottom": 381.24869441986084,
+          "left": 25
+        },
+        "grid": "753px",
+        "scroll": [
+          789,
+          789,
+          748,
+          364,
+          0
+        ],
+        "actionsWidth": 753,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 47,
+              "y": 322.2486877441406,
+              "width": 63.125,
+              "height": 44,
+              "top": 322.2486877441406,
+              "right": 110.125,
+              "bottom": 366.2486877441406,
+              "left": 47
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 322.2486877441406,
+              "width": 104.828125,
+              "height": 44,
+              "top": 322.2486877441406,
+              "right": 724.875,
+              "bottom": 366.2486877441406,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 322.2486877441406,
+              "width": 63.125,
+              "height": 44,
+              "top": 322.2486877441406,
+              "right": 800,
+              "bottom": 366.2486877441406,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 서술 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 384,
+        "tail": 308.642822265625,
+        "actions": 308.642822265625,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "landscape 기록 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 212.9652099609375,
+          "width": 794,
+          "height": 167.390625,
+          "top": 212.9652099609375,
+          "right": 819,
+          "bottom": 380.3558349609375,
+          "left": 25
+        },
+        "grid": "753px",
+        "scroll": [
+          789,
+          789,
+          165,
+          165,
+          0
+        ],
+        "actionsWidth": 753,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 47,
+              "y": 319.3558349609375,
+              "width": 63.125,
+              "height": 44,
+              "top": 319.3558349609375,
+              "right": 110.125,
+              "bottom": 363.3558349609375,
+              "left": 47
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 319.3558349609375,
+              "width": 104.828125,
+              "height": 44,
+              "top": 319.3558349609375,
+              "right": 724.875,
+              "bottom": 363.3558349609375,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 319.3558349609375,
+              "width": 63.125,
+              "height": 44,
+              "top": 319.3558349609375,
+              "right": 800,
+              "bottom": 363.3558349609375,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 기록 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 25,
+          "y": 18.972049713134766,
+          "width": 794,
+          "height": 366,
+          "top": 18.972049713134766,
+          "right": 819,
+          "bottom": 384.97204971313477,
+          "left": 25
+        },
+        "grid": "753px",
+        "scroll": [
+          789,
+          789,
+          748,
+          364,
+          0
+        ],
+        "actionsWidth": 753,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 47,
+              "y": 325.9720458984375,
+              "width": 63.125,
+              "height": 44,
+              "top": 325.9720458984375,
+              "right": 110.125,
+              "bottom": 369.9720458984375,
+              "left": 47
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-skip",
+            "disabled": false,
+            "rect": {
+              "x": 620.046875,
+              "y": 325.9720458984375,
+              "width": 104.828125,
+              "height": 44,
+              "top": 325.9720458984375,
+              "right": 724.875,
+              "bottom": 369.9720458984375,
+              "left": 620.046875
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 736.875,
+              "y": 325.9720458984375,
+              "width": 63.125,
+              "height": 44,
+              "top": 325.9720458984375,
+              "right": 800,
+              "bottom": 369.9720458984375,
+              "left": 736.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 기록 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 384,
+        "tail": 308.546875,
+        "actions": 308.546875,
+        "beside": false,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "landscape 안내 1 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 18,
+          "y": 120,
+          "width": 808,
+          "height": 100,
+          "top": 120,
+          "right": 826,
+          "bottom": 220,
+          "left": 18
+        },
+        "grid": "634.75px 114.25px",
+        "scroll": [
+          803,
+          803,
+          98,
+          98,
+          0
+        ],
+        "actionsWidth": 114.25,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 692.75,
+              "y": 149,
+              "width": 53.125,
+              "height": 42,
+              "top": 149,
+              "right": 745.875,
+              "bottom": 191,
+              "left": 692.75
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 753.875,
+              "y": 149,
+              "width": 53.125,
+              "height": 42,
+              "top": 149,
+              "right": 807,
+              "bottom": 191,
+              "left": 753.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 안내 35 controls",
+      "passed": true,
+      "detail": {
+        "panel": {
+          "x": 18,
+          "y": 120,
+          "width": 808,
+          "height": 132.59375,
+          "top": 120,
+          "right": 826,
+          "bottom": 252.59375,
+          "left": 18
+        },
+        "grid": "634.75px 114.25px",
+        "scroll": [
+          803,
+          803,
+          914,
+          131,
+          0
+        ],
+        "actionsWidth": 114.25,
+        "portrait": false,
+        "buttons": [
+          {
+            "action": "dialogue-prev",
+            "disabled": true,
+            "rect": {
+              "x": 692.75,
+              "y": 197.59375,
+              "width": 53.125,
+              "height": 42,
+              "top": 197.59375,
+              "right": 745.875,
+              "bottom": 239.59375,
+              "left": 692.75
+            },
+            "inside": true,
+            "hit": true
+          },
+          {
+            "action": "dialogue-next",
+            "disabled": false,
+            "rect": {
+              "x": 753.875,
+              "y": 197.59375,
+              "width": 53.125,
+              "height": 42,
+              "top": 197.59375,
+              "right": 807,
+              "bottom": 239.59375,
+              "left": 753.875
+            },
+            "inside": true,
+            "hit": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "landscape 안내 scroll tail and controls",
+      "passed": true,
+      "detail": {
+        "scrolled": 783,
+        "tail": 240,
+        "actions": 133,
+        "beside": true,
+        "tailVisible": true
+      }
+    },
+    {
+      "name": "touch next/back/skip across all representative layouts",
+      "passed": true,
+      "detail": {
+        "cases": 48
+      }
+    },
+    {
+      "name": "no browser exceptions",
+      "passed": true,
+      "detail": []
+    }
+  ],
+  "rows": [
+    {
+      "view": "390x844",
+      "who": "주민",
+      "length": 1,
+      "panel": {
+        "x": 12,
+        "y": 580.5218505859375,
+        "width": 366,
+        "height": 254.75,
+        "top": 580.5218505859375,
+        "right": 378,
+        "bottom": 835.2718505859375,
+        "left": 12
+      },
+      "grid": "84px 243px",
+      "scroll": [
+        361,
+        361,
+        253,
+        253,
+        0
+      ],
+      "actionsWidth": 337,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 778.2718505859375,
+            "width": 39.265625,
+            "height": 44,
+            "top": 778.2718505859375,
+            "right": 237.1875,
+            "bottom": 822.2718505859375,
+            "left": 197.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 778.2718505859375,
+            "width": 74.546875,
+            "height": 44,
+            "top": 778.2718505859375,
+            "right": 318.734375,
+            "bottom": 822.2718505859375,
+            "left": 244.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 778.2718505859375,
+            "width": 39.265625,
+            "height": 44,
+            "top": 778.2718505859375,
+            "right": 365,
+            "bottom": 822.2718505859375,
+            "left": 325.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "390x844",
+      "who": "주민",
+      "length": 35,
+      "panel": {
+        "x": 12,
+        "y": 13.250611305236816,
+        "width": 366,
+        "height": 820,
+        "top": 13.250611305236816,
+        "right": 378,
+        "bottom": 833.2506113052368,
+        "left": 12
+      },
+      "grid": "84px 243px",
+      "scroll": [
+        361,
+        361,
+        2484,
+        818,
+        0
+      ],
+      "actionsWidth": 337,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 776.2506103515625,
+            "width": 39.265625,
+            "height": 44,
+            "top": 776.2506103515625,
+            "right": 237.1875,
+            "bottom": 820.2506103515625,
+            "left": 197.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 776.2506103515625,
+            "width": 74.546875,
+            "height": 44,
+            "top": 776.2506103515625,
+            "right": 318.734375,
+            "bottom": 820.2506103515625,
+            "left": 244.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 776.2506103515625,
+            "width": 39.265625,
+            "height": 44,
+            "top": 776.2506103515625,
+            "right": 365,
+            "bottom": 820.2506103515625,
+            "left": 325.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "390x844",
+      "who": "문탁",
+      "length": 1,
+      "panel": {
+        "x": 12,
+        "y": 578.4974975585938,
+        "width": 366,
+        "height": 254.75,
+        "top": 578.4974975585938,
+        "right": 378,
+        "bottom": 833.2474975585938,
+        "left": 12
+      },
+      "grid": "84px 243px",
+      "scroll": [
+        361,
+        361,
+        253,
+        253,
+        0
+      ],
+      "actionsWidth": 337,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 776.2474975585938,
+            "width": 39.265625,
+            "height": 44,
+            "top": 776.2474975585938,
+            "right": 237.1875,
+            "bottom": 820.2474975585938,
+            "left": 197.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 776.2474975585938,
+            "width": 74.546875,
+            "height": 44,
+            "top": 776.2474975585938,
+            "right": 318.734375,
+            "bottom": 820.2474975585938,
+            "left": 244.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 776.2474975585938,
+            "width": 39.265625,
+            "height": 44,
+            "top": 776.2474975585938,
+            "right": 365,
+            "bottom": 820.2474975585938,
+            "left": 325.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "390x844",
+      "who": "문탁",
+      "length": 35,
+      "panel": {
+        "x": 12,
+        "y": 14.521994590759277,
+        "width": 366,
+        "height": 820,
+        "top": 14.521994590759277,
+        "right": 378,
+        "bottom": 834.5219945907593,
+        "left": 12
+      },
+      "grid": "84px 243px",
+      "scroll": [
+        361,
+        361,
+        2484,
+        818,
+        0
+      ],
+      "actionsWidth": 337,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 777.52197265625,
+            "width": 39.265625,
+            "height": 44,
+            "top": 777.52197265625,
+            "right": 237.1875,
+            "bottom": 821.52197265625,
+            "left": 197.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 777.52197265625,
+            "width": 74.546875,
+            "height": 44,
+            "top": 777.52197265625,
+            "right": 318.734375,
+            "bottom": 821.52197265625,
+            "left": 244.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 777.52197265625,
+            "width": 39.265625,
+            "height": 44,
+            "top": 777.52197265625,
+            "right": 365,
+            "bottom": 821.52197265625,
+            "left": 325.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "390x844",
+      "who": "새 주민",
+      "length": 1,
+      "panel": {
+        "x": 12,
+        "y": 608.7478637695312,
+        "width": 366,
+        "height": 224,
+        "top": 608.7478637695312,
+        "right": 378,
+        "bottom": 832.7478637695312,
+        "left": 12
+      },
+      "grid": "337px",
+      "scroll": [
+        361,
+        361,
+        222,
+        222,
+        0
+      ],
+      "actionsWidth": 337,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 773.7478637695312,
+            "width": 39.265625,
+            "height": 44,
+            "top": 773.7478637695312,
+            "right": 237.1875,
+            "bottom": 817.7478637695312,
+            "left": 197.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 773.7478637695312,
+            "width": 74.546875,
+            "height": 44,
+            "top": 773.7478637695312,
+            "right": 318.734375,
+            "bottom": 817.7478637695312,
+            "left": 244.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 773.7478637695312,
+            "width": 39.265625,
+            "height": 44,
+            "top": 773.7478637695312,
+            "right": 365,
+            "bottom": 817.7478637695312,
+            "left": 325.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "390x844",
+      "who": "새 주민",
+      "length": 35,
+      "panel": {
+        "x": 12,
+        "y": 14.523197174072266,
+        "width": 366,
+        "height": 820,
+        "top": 14.523197174072266,
+        "right": 378,
+        "bottom": 834.5231971740723,
+        "left": 12
+      },
+      "grid": "337px",
+      "scroll": [
+        361,
+        361,
+        1986,
+        818,
+        0
+      ],
+      "actionsWidth": 337,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 777.523193359375,
+            "width": 39.265625,
+            "height": 44,
+            "top": 777.523193359375,
+            "right": 237.1875,
+            "bottom": 821.523193359375,
+            "left": 197.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 777.523193359375,
+            "width": 74.546875,
+            "height": 44,
+            "top": 777.523193359375,
+            "right": 318.734375,
+            "bottom": 821.523193359375,
+            "left": 244.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 777.523193359375,
+            "width": 39.265625,
+            "height": 44,
+            "top": 777.523193359375,
+            "right": 365,
+            "bottom": 821.523193359375,
+            "left": 325.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "390x844",
+      "who": "서술",
+      "length": 1,
+      "panel": {
+        "x": 12,
+        "y": 633.5955810546875,
+        "width": 366,
+        "height": 198.5,
+        "top": 633.5955810546875,
+        "right": 378,
+        "bottom": 832.0955810546875,
+        "left": 12
+      },
+      "grid": "337px",
+      "scroll": [
+        361,
+        361,
+        197,
+        197,
+        0
+      ],
+      "actionsWidth": 337,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 773.0955810546875,
+            "width": 39.265625,
+            "height": 44,
+            "top": 773.0955810546875,
+            "right": 237.1875,
+            "bottom": 817.0955810546875,
+            "left": 197.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 773.0955810546875,
+            "width": 74.546875,
+            "height": 44,
+            "top": 773.0955810546875,
+            "right": 318.734375,
+            "bottom": 817.0955810546875,
+            "left": 244.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 773.0955810546875,
+            "width": 39.265625,
+            "height": 44,
+            "top": 773.0955810546875,
+            "right": 365,
+            "bottom": 817.0955810546875,
+            "left": 325.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "390x844",
+      "who": "서술",
+      "length": 35,
+      "panel": {
+        "x": 12,
+        "y": 12.357189178466797,
+        "width": 366,
+        "height": 820,
+        "top": 12.357189178466797,
+        "right": 378,
+        "bottom": 832.3571891784668,
+        "left": 12
+      },
+      "grid": "337px",
+      "scroll": [
+        361,
+        361,
+        1982,
+        818,
+        0
+      ],
+      "actionsWidth": 337,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775.357177734375,
+            "width": 39.265625,
+            "height": 44,
+            "top": 775.357177734375,
+            "right": 237.1875,
+            "bottom": 819.357177734375,
+            "left": 197.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775.357177734375,
+            "width": 74.546875,
+            "height": 44,
+            "top": 775.357177734375,
+            "right": 318.734375,
+            "bottom": 819.357177734375,
+            "left": 244.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775.357177734375,
+            "width": 39.265625,
+            "height": 44,
+            "top": 775.357177734375,
+            "right": 365,
+            "bottom": 819.357177734375,
+            "left": 325.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "390x844",
+      "who": "기록",
+      "length": 1,
+      "panel": {
+        "x": 12,
+        "y": 633.5968627929688,
+        "width": 366,
+        "height": 198.5,
+        "top": 633.5968627929688,
+        "right": 378,
+        "bottom": 832.0968627929688,
+        "left": 12
+      },
+      "grid": "337px",
+      "scroll": [
+        361,
+        361,
+        197,
+        197,
+        0
+      ],
+      "actionsWidth": 337,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 773.0968627929688,
+            "width": 39.265625,
+            "height": 44,
+            "top": 773.0968627929688,
+            "right": 237.1875,
+            "bottom": 817.0968627929688,
+            "left": 197.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 773.0968627929688,
+            "width": 74.546875,
+            "height": 44,
+            "top": 773.0968627929688,
+            "right": 318.734375,
+            "bottom": 817.0968627929688,
+            "left": 244.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 773.0968627929688,
+            "width": 39.265625,
+            "height": 44,
+            "top": 773.0968627929688,
+            "right": 365,
+            "bottom": 817.0968627929688,
+            "left": 325.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "390x844",
+      "who": "기록",
+      "length": 35,
+      "panel": {
+        "x": 12,
+        "y": 12.747986793518066,
+        "width": 366,
+        "height": 820,
+        "top": 12.747986793518066,
+        "right": 378,
+        "bottom": 832.7479867935181,
+        "left": 12
+      },
+      "grid": "337px",
+      "scroll": [
+        361,
+        361,
+        1982,
+        818,
+        0
+      ],
+      "actionsWidth": 337,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 197.921875,
+            "y": 775.7479858398438,
+            "width": 39.265625,
+            "height": 44,
+            "top": 775.7479858398438,
+            "right": 237.1875,
+            "bottom": 819.7479858398438,
+            "left": 197.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 244.1875,
+            "y": 775.7479858398438,
+            "width": 74.546875,
+            "height": 44,
+            "top": 775.7479858398438,
+            "right": 318.734375,
+            "bottom": 819.7479858398438,
+            "left": 244.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 325.734375,
+            "y": 775.7479858398438,
+            "width": 39.265625,
+            "height": 44,
+            "top": 775.7479858398438,
+            "right": 365,
+            "bottom": 819.7479858398438,
+            "left": 325.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "390x844",
+      "who": "안내",
+      "length": 1,
+      "panel": {
+        "x": 10,
+        "y": 107,
+        "width": 370,
+        "height": 156,
+        "top": 107,
+        "right": 380,
+        "bottom": 263,
+        "left": 10
+      },
+      "grid": "333px 0px",
+      "scroll": [
+        365,
+        365,
+        154,
+        154,
+        0
+      ],
+      "actionsWidth": 341,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 256.625,
+            "y": 214,
+            "width": 51.1875,
+            "height": 38,
+            "top": 214,
+            "right": 307.8125,
+            "bottom": 252,
+            "left": 256.625
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 315.8125,
+            "y": 214,
+            "width": 51.1875,
+            "height": 38,
+            "top": 214,
+            "right": 367,
+            "bottom": 252,
+            "left": 315.8125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "390x844",
+      "who": "안내",
+      "length": 35,
+      "panel": {
+        "x": 10,
+        "y": 107,
+        "width": 370,
+        "height": 286.953125,
+        "top": 107,
+        "right": 380,
+        "bottom": 393.953125,
+        "left": 10
+      },
+      "grid": "333px 0px",
+      "scroll": [
+        365,
+        365,
+        1351,
+        285,
+        0
+      ],
+      "actionsWidth": 341,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 256.625,
+            "y": 344.953125,
+            "width": 51.1875,
+            "height": 38,
+            "top": 344.953125,
+            "right": 307.8125,
+            "bottom": 382.953125,
+            "left": 256.625
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 315.8125,
+            "y": 344.953125,
+            "width": 51.1875,
+            "height": 38,
+            "top": 344.953125,
+            "right": 367,
+            "bottom": 382.953125,
+            "left": 315.8125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "주민",
+      "length": 1,
+      "panel": {
+        "x": 21.59375,
+        "y": 1224.5023193359375,
+        "width": 676.8125,
+        "height": 314,
+        "top": 1224.5023193359375,
+        "right": 698.40625,
+        "bottom": 1538.5023193359375,
+        "left": 21.59375
+      },
+      "grid": "240px 355.812px",
+      "scroll": [
+        672,
+        672,
+        312,
+        312,
+        0
+      ],
+      "actionsWidth": 355.8125,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 317.59375,
+            "y": 1467.5023193359375,
+            "width": 63.125,
+            "height": 44,
+            "top": 1467.5023193359375,
+            "right": 380.71875,
+            "bottom": 1511.5023193359375,
+            "left": 317.59375
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 493.453125,
+            "y": 1467.5023193359375,
+            "width": 104.828125,
+            "height": 44,
+            "top": 1467.5023193359375,
+            "right": 598.28125,
+            "bottom": 1511.5023193359375,
+            "left": 493.453125
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 610.28125,
+            "y": 1467.5023193359375,
+            "width": 63.125,
+            "height": 44,
+            "top": 1467.5023193359375,
+            "right": 673.40625,
+            "bottom": 1511.5023193359375,
+            "left": 610.28125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "주민",
+      "length": 35,
+      "panel": {
+        "x": 21.59375,
+        "y": 9.32537841796875,
+        "width": 676.8125,
+        "height": 1536,
+        "top": 9.32537841796875,
+        "right": 698.40625,
+        "bottom": 1545.3253784179688,
+        "left": 21.59375
+      },
+      "grid": "240px 355.812px",
+      "scroll": [
+        672,
+        672,
+        2267,
+        1534,
+        0
+      ],
+      "actionsWidth": 355.8125,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 317.59375,
+            "y": 1476.325439453125,
+            "width": 63.125,
+            "height": 44,
+            "top": 1476.325439453125,
+            "right": 380.71875,
+            "bottom": 1520.325439453125,
+            "left": 317.59375
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 493.453125,
+            "y": 1476.325439453125,
+            "width": 104.828125,
+            "height": 44,
+            "top": 1476.325439453125,
+            "right": 598.28125,
+            "bottom": 1520.325439453125,
+            "left": 493.453125
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 610.28125,
+            "y": 1476.325439453125,
+            "width": 63.125,
+            "height": 44,
+            "top": 1476.325439453125,
+            "right": 673.40625,
+            "bottom": 1520.325439453125,
+            "left": 610.28125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "문탁",
+      "length": 1,
+      "panel": {
+        "x": 21.59375,
+        "y": 1226.2520751953125,
+        "width": 676.8125,
+        "height": 314,
+        "top": 1226.2520751953125,
+        "right": 698.40625,
+        "bottom": 1540.2520751953125,
+        "left": 21.59375
+      },
+      "grid": "240px 355.812px",
+      "scroll": [
+        672,
+        672,
+        312,
+        312,
+        0
+      ],
+      "actionsWidth": 355.8125,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 317.59375,
+            "y": 1469.2520751953125,
+            "width": 63.125,
+            "height": 44,
+            "top": 1469.2520751953125,
+            "right": 380.71875,
+            "bottom": 1513.2520751953125,
+            "left": 317.59375
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 493.453125,
+            "y": 1469.2520751953125,
+            "width": 104.828125,
+            "height": 44,
+            "top": 1469.2520751953125,
+            "right": 598.28125,
+            "bottom": 1513.2520751953125,
+            "left": 493.453125
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 610.28125,
+            "y": 1469.2520751953125,
+            "width": 63.125,
+            "height": 44,
+            "top": 1469.2520751953125,
+            "right": 673.40625,
+            "bottom": 1513.2520751953125,
+            "left": 610.28125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "문탁",
+      "length": 35,
+      "panel": {
+        "x": 21.59375,
+        "y": 6.499185562133789,
+        "width": 676.8125,
+        "height": 1536,
+        "top": 6.499185562133789,
+        "right": 698.40625,
+        "bottom": 1542.4991855621338,
+        "left": 21.59375
+      },
+      "grid": "240px 355.812px",
+      "scroll": [
+        672,
+        672,
+        2267,
+        1534,
+        0
+      ],
+      "actionsWidth": 355.8125,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 317.59375,
+            "y": 1473.4991455078125,
+            "width": 63.125,
+            "height": 44,
+            "top": 1473.4991455078125,
+            "right": 380.71875,
+            "bottom": 1517.4991455078125,
+            "left": 317.59375
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 493.453125,
+            "y": 1473.4991455078125,
+            "width": 104.828125,
+            "height": 44,
+            "top": 1473.4991455078125,
+            "right": 598.28125,
+            "bottom": 1517.4991455078125,
+            "left": 493.453125
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 610.28125,
+            "y": 1473.4991455078125,
+            "width": 63.125,
+            "height": 44,
+            "top": 1473.4991455078125,
+            "right": 673.40625,
+            "bottom": 1517.4991455078125,
+            "left": 610.28125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "새 주민",
+      "length": 1,
+      "panel": {
+        "x": 21.59375,
+        "y": 1269.2496337890625,
+        "width": 676.8125,
+        "height": 271,
+        "top": 1269.2496337890625,
+        "right": 698.40625,
+        "bottom": 1540.2496337890625,
+        "left": 21.59375
+      },
+      "grid": "623.812px",
+      "scroll": [
+        672,
+        672,
+        269,
+        269,
+        0
+      ],
+      "actionsWidth": 623.8125,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 49.59375,
+            "y": 1469.2496337890625,
+            "width": 63.125,
+            "height": 44,
+            "top": 1469.2496337890625,
+            "right": 112.71875,
+            "bottom": 1513.2496337890625,
+            "left": 49.59375
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 493.453125,
+            "y": 1469.2496337890625,
+            "width": 104.828125,
+            "height": 44,
+            "top": 1469.2496337890625,
+            "right": 598.28125,
+            "bottom": 1513.2496337890625,
+            "left": 493.453125
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 610.28125,
+            "y": 1469.2496337890625,
+            "width": 63.125,
+            "height": 44,
+            "top": 1469.2496337890625,
+            "right": 673.40625,
+            "bottom": 1513.2496337890625,
+            "left": 610.28125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "새 주민",
+      "length": 35,
+      "panel": {
+        "x": 21.59375,
+        "y": 220.11680603027344,
+        "width": 676.8125,
+        "height": 1321.5625,
+        "top": 220.11680603027344,
+        "right": 698.40625,
+        "bottom": 1541.6793060302734,
+        "left": 21.59375
+      },
+      "grid": "623.812px",
+      "scroll": [
+        672,
+        672,
+        1320,
+        1320,
+        0
+      ],
+      "actionsWidth": 623.8125,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 49.59375,
+            "y": 1470.6793212890625,
+            "width": 63.125,
+            "height": 44,
+            "top": 1470.6793212890625,
+            "right": 112.71875,
+            "bottom": 1514.6793212890625,
+            "left": 49.59375
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 493.453125,
+            "y": 1470.6793212890625,
+            "width": 104.828125,
+            "height": 44,
+            "top": 1470.6793212890625,
+            "right": 598.28125,
+            "bottom": 1514.6793212890625,
+            "left": 493.453125
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 610.28125,
+            "y": 1470.6793212890625,
+            "width": 63.125,
+            "height": 44,
+            "top": 1470.6793212890625,
+            "right": 673.40625,
+            "bottom": 1514.6793212890625,
+            "left": 610.28125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "서술",
+      "length": 1,
+      "panel": {
+        "x": 21.59375,
+        "y": 1293.575927734375,
+        "width": 676.8125,
+        "height": 245.1875,
+        "top": 1293.575927734375,
+        "right": 698.40625,
+        "bottom": 1538.763427734375,
+        "left": 21.59375
+      },
+      "grid": "623.812px",
+      "scroll": [
+        672,
+        672,
+        243,
+        243,
+        0
+      ],
+      "actionsWidth": 623.8125,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 49.59375,
+            "y": 1467.763427734375,
+            "width": 63.125,
+            "height": 44,
+            "top": 1467.763427734375,
+            "right": 112.71875,
+            "bottom": 1511.763427734375,
+            "left": 49.59375
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 493.453125,
+            "y": 1467.763427734375,
+            "width": 104.828125,
+            "height": 44,
+            "top": 1467.763427734375,
+            "right": 598.28125,
+            "bottom": 1511.763427734375,
+            "left": 493.453125
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 610.28125,
+            "y": 1467.763427734375,
+            "width": 63.125,
+            "height": 44,
+            "top": 1467.763427734375,
+            "right": 673.40625,
+            "bottom": 1511.763427734375,
+            "left": 610.28125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "서술",
+      "length": 35,
+      "panel": {
+        "x": 21.59375,
+        "y": 231.93882751464844,
+        "width": 676.8125,
+        "height": 1310.5625,
+        "top": 231.93882751464844,
+        "right": 698.40625,
+        "bottom": 1542.5013275146484,
+        "left": 21.59375
+      },
+      "grid": "623.812px",
+      "scroll": [
+        672,
+        672,
+        1309,
+        1309,
+        0
+      ],
+      "actionsWidth": 623.8125,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 49.59375,
+            "y": 1471.5013427734375,
+            "width": 63.125,
+            "height": 44,
+            "top": 1471.5013427734375,
+            "right": 112.71875,
+            "bottom": 1515.5013427734375,
+            "left": 49.59375
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 493.453125,
+            "y": 1471.5013427734375,
+            "width": 104.828125,
+            "height": 44,
+            "top": 1471.5013427734375,
+            "right": 598.28125,
+            "bottom": 1515.5013427734375,
+            "left": 493.453125
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 610.28125,
+            "y": 1471.5013427734375,
+            "width": 63.125,
+            "height": 44,
+            "top": 1471.5013427734375,
+            "right": 673.40625,
+            "bottom": 1515.5013427734375,
+            "left": 610.28125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "기록",
+      "length": 1,
+      "panel": {
+        "x": 21.59375,
+        "y": 1293.9671630859375,
+        "width": 676.8125,
+        "height": 245.1875,
+        "top": 1293.9671630859375,
+        "right": 698.40625,
+        "bottom": 1539.1546630859375,
+        "left": 21.59375
+      },
+      "grid": "623.812px",
+      "scroll": [
+        672,
+        672,
+        243,
+        243,
+        0
+      ],
+      "actionsWidth": 623.8125,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 49.59375,
+            "y": 1468.1546630859375,
+            "width": 63.125,
+            "height": 44,
+            "top": 1468.1546630859375,
+            "right": 112.71875,
+            "bottom": 1512.1546630859375,
+            "left": 49.59375
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 493.453125,
+            "y": 1468.1546630859375,
+            "width": 104.828125,
+            "height": 44,
+            "top": 1468.1546630859375,
+            "right": 598.28125,
+            "bottom": 1512.1546630859375,
+            "left": 493.453125
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 610.28125,
+            "y": 1468.1546630859375,
+            "width": 63.125,
+            "height": 44,
+            "top": 1468.1546630859375,
+            "right": 673.40625,
+            "bottom": 1512.1546630859375,
+            "left": 610.28125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "기록",
+      "length": 35,
+      "panel": {
+        "x": 21.59375,
+        "y": 231.94036865234375,
+        "width": 676.8125,
+        "height": 1310.5625,
+        "top": 231.94036865234375,
+        "right": 698.40625,
+        "bottom": 1542.5028686523438,
+        "left": 21.59375
+      },
+      "grid": "623.812px",
+      "scroll": [
+        672,
+        672,
+        1309,
+        1309,
+        0
+      ],
+      "actionsWidth": 623.8125,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 49.59375,
+            "y": 1471.5029296875,
+            "width": 63.125,
+            "height": 44,
+            "top": 1471.5029296875,
+            "right": 112.71875,
+            "bottom": 1515.5029296875,
+            "left": 49.59375
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 493.453125,
+            "y": 1471.5029296875,
+            "width": 104.828125,
+            "height": 44,
+            "top": 1471.5029296875,
+            "right": 598.28125,
+            "bottom": 1515.5029296875,
+            "left": 493.453125
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 610.28125,
+            "y": 1471.5029296875,
+            "width": 63.125,
+            "height": 44,
+            "top": 1471.5029296875,
+            "right": 673.40625,
+            "bottom": 1515.5029296875,
+            "left": 610.28125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "안내",
+      "length": 1,
+      "panel": {
+        "x": 18,
+        "y": 134,
+        "width": 684,
+        "height": 124,
+        "top": 134,
+        "right": 702,
+        "bottom": 258,
+        "left": 18
+      },
+      "grid": "510.75px 114.25px",
+      "scroll": [
+        679,
+        679,
+        122,
+        122,
+        0
+      ],
+      "actionsWidth": 114.25,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 568.75,
+            "y": 175,
+            "width": 53.125,
+            "height": 42,
+            "top": 175,
+            "right": 621.875,
+            "bottom": 217,
+            "left": 568.75
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 629.875,
+            "y": 175,
+            "width": 53.125,
+            "height": 42,
+            "top": 175,
+            "right": 683,
+            "bottom": 217,
+            "left": 629.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "720x1560",
+      "who": "안내",
+      "length": 35,
+      "panel": {
+        "x": 18,
+        "y": 134,
+        "width": 684,
+        "height": 530.390625,
+        "top": 134,
+        "right": 702,
+        "bottom": 664.390625,
+        "left": 18
+      },
+      "grid": "510.75px 114.25px",
+      "scroll": [
+        679,
+        679,
+        1130,
+        528,
+        0
+      ],
+      "actionsWidth": 114.25,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 568.75,
+            "y": 609.390625,
+            "width": 53.125,
+            "height": 42,
+            "top": 609.390625,
+            "right": 621.875,
+            "bottom": 651.390625,
+            "left": 568.75
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 629.875,
+            "y": 609.390625,
+            "width": 53.125,
+            "height": 42,
+            "top": 609.390625,
+            "right": 683,
+            "bottom": 651.390625,
+            "left": 629.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "주민",
+      "length": 1,
+      "panel": {
+        "x": 12,
+        "y": 513.25,
+        "width": 336,
+        "height": 254.75,
+        "top": 513.25,
+        "right": 348,
+        "bottom": 768,
+        "left": 12
+      },
+      "grid": "84px 213px",
+      "scroll": [
+        331,
+        331,
+        253,
+        253,
+        0
+      ],
+      "actionsWidth": 307,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 167.921875,
+            "y": 711,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711,
+            "right": 207.1875,
+            "bottom": 755,
+            "left": 167.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 214.1875,
+            "y": 711,
+            "width": 74.546875,
+            "height": 44,
+            "top": 711,
+            "right": 288.734375,
+            "bottom": 755,
+            "left": 214.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 295.734375,
+            "y": 711,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711,
+            "right": 335,
+            "bottom": 755,
+            "left": 295.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "주민",
+      "length": 35,
+      "panel": {
+        "x": 12,
+        "y": 12.357069969177246,
+        "width": 336,
+        "height": 756,
+        "top": 12.357069969177246,
+        "right": 348,
+        "bottom": 768.3570699691772,
+        "left": 12
+      },
+      "grid": "84px 213px",
+      "scroll": [
+        331,
+        331,
+        2930,
+        754,
+        0
+      ],
+      "actionsWidth": 307,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 167.921875,
+            "y": 711.3570556640625,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711.3570556640625,
+            "right": 207.1875,
+            "bottom": 755.3570556640625,
+            "left": 167.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 214.1875,
+            "y": 711.3570556640625,
+            "width": 74.546875,
+            "height": 44,
+            "top": 711.3570556640625,
+            "right": 288.734375,
+            "bottom": 755.3570556640625,
+            "left": 214.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 295.734375,
+            "y": 711.3570556640625,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711.3570556640625,
+            "right": 335,
+            "bottom": 755.3570556640625,
+            "left": 295.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "문탁",
+      "length": 1,
+      "panel": {
+        "x": 12,
+        "y": 513.6068115234375,
+        "width": 336,
+        "height": 254.75,
+        "top": 513.6068115234375,
+        "right": 348,
+        "bottom": 768.3568115234375,
+        "left": 12
+      },
+      "grid": "84px 213px",
+      "scroll": [
+        331,
+        331,
+        253,
+        253,
+        0
+      ],
+      "actionsWidth": 307,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 167.921875,
+            "y": 711.3568115234375,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711.3568115234375,
+            "right": 207.1875,
+            "bottom": 755.3568115234375,
+            "left": 167.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 214.1875,
+            "y": 711.3568115234375,
+            "width": 74.546875,
+            "height": 44,
+            "top": 711.3568115234375,
+            "right": 288.734375,
+            "bottom": 755.3568115234375,
+            "left": 214.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 295.734375,
+            "y": 711.3568115234375,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711.3568115234375,
+            "right": 335,
+            "bottom": 755.3568115234375,
+            "left": 295.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "문탁",
+      "length": 35,
+      "panel": {
+        "x": 12,
+        "y": 12.355168342590332,
+        "width": 336,
+        "height": 756,
+        "top": 12.355168342590332,
+        "right": 348,
+        "bottom": 768.3551683425903,
+        "left": 12
+      },
+      "grid": "84px 213px",
+      "scroll": [
+        331,
+        331,
+        2930,
+        754,
+        0
+      ],
+      "actionsWidth": 307,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 167.921875,
+            "y": 711.3551635742188,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711.3551635742188,
+            "right": 207.1875,
+            "bottom": 755.3551635742188,
+            "left": 167.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 214.1875,
+            "y": 711.3551635742188,
+            "width": 74.546875,
+            "height": 44,
+            "top": 711.3551635742188,
+            "right": 288.734375,
+            "bottom": 755.3551635742188,
+            "left": 214.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 295.734375,
+            "y": 711.3551635742188,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711.3551635742188,
+            "right": 335,
+            "bottom": 755.3551635742188,
+            "left": 295.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "새 주민",
+      "length": 1,
+      "panel": {
+        "x": 12,
+        "y": 544.096923828125,
+        "width": 336,
+        "height": 224,
+        "top": 544.096923828125,
+        "right": 348,
+        "bottom": 768.096923828125,
+        "left": 12
+      },
+      "grid": "307px",
+      "scroll": [
+        331,
+        331,
+        222,
+        222,
+        0
+      ],
+      "actionsWidth": 307,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 167.921875,
+            "y": 709.096923828125,
+            "width": 39.265625,
+            "height": 44,
+            "top": 709.096923828125,
+            "right": 207.1875,
+            "bottom": 753.096923828125,
+            "left": 167.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 214.1875,
+            "y": 709.096923828125,
+            "width": 74.546875,
+            "height": 44,
+            "top": 709.096923828125,
+            "right": 288.734375,
+            "bottom": 753.096923828125,
+            "left": 214.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 295.734375,
+            "y": 709.096923828125,
+            "width": 39.265625,
+            "height": 44,
+            "top": 709.096923828125,
+            "right": 335,
+            "bottom": 753.096923828125,
+            "left": 295.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "새 주민",
+      "length": 35,
+      "panel": {
+        "x": 12,
+        "y": 13.250214576721191,
+        "width": 336,
+        "height": 756,
+        "top": 13.250214576721191,
+        "right": 348,
+        "bottom": 769.2502145767212,
+        "left": 12
+      },
+      "grid": "307px",
+      "scroll": [
+        331,
+        331,
+        1986,
+        754,
+        0
+      ],
+      "actionsWidth": 307,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 167.921875,
+            "y": 712.250244140625,
+            "width": 39.265625,
+            "height": 44,
+            "top": 712.250244140625,
+            "right": 207.1875,
+            "bottom": 756.250244140625,
+            "left": 167.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 214.1875,
+            "y": 712.250244140625,
+            "width": 74.546875,
+            "height": 44,
+            "top": 712.250244140625,
+            "right": 288.734375,
+            "bottom": 756.250244140625,
+            "left": 214.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 295.734375,
+            "y": 712.250244140625,
+            "width": 39.265625,
+            "height": 44,
+            "top": 712.250244140625,
+            "right": 335,
+            "bottom": 756.250244140625,
+            "left": 295.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "서술",
+      "length": 1,
+      "panel": {
+        "x": 12,
+        "y": 569.5955200195312,
+        "width": 336,
+        "height": 198.5,
+        "top": 569.5955200195312,
+        "right": 348,
+        "bottom": 768.0955200195312,
+        "left": 12
+      },
+      "grid": "307px",
+      "scroll": [
+        331,
+        331,
+        197,
+        197,
+        0
+      ],
+      "actionsWidth": 307,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 167.921875,
+            "y": 709.0955200195312,
+            "width": 39.265625,
+            "height": 44,
+            "top": 709.0955200195312,
+            "right": 207.1875,
+            "bottom": 753.0955200195312,
+            "left": 167.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 214.1875,
+            "y": 709.0955200195312,
+            "width": 74.546875,
+            "height": 44,
+            "top": 709.0955200195312,
+            "right": 288.734375,
+            "bottom": 753.0955200195312,
+            "left": 214.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 295.734375,
+            "y": 709.0955200195312,
+            "width": 39.265625,
+            "height": 44,
+            "top": 709.0955200195312,
+            "right": 335,
+            "bottom": 753.0955200195312,
+            "left": 295.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "서술",
+      "length": 35,
+      "panel": {
+        "x": 12,
+        "y": 12.355998992919922,
+        "width": 336,
+        "height": 756,
+        "top": 12.355998992919922,
+        "right": 348,
+        "bottom": 768.3559989929199,
+        "left": 12
+      },
+      "grid": "307px",
+      "scroll": [
+        331,
+        331,
+        1982,
+        754,
+        0
+      ],
+      "actionsWidth": 307,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 167.921875,
+            "y": 711.3560180664062,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711.3560180664062,
+            "right": 207.1875,
+            "bottom": 755.3560180664062,
+            "left": 167.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 214.1875,
+            "y": 711.3560180664062,
+            "width": 74.546875,
+            "height": 44,
+            "top": 711.3560180664062,
+            "right": 288.734375,
+            "bottom": 755.3560180664062,
+            "left": 214.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 295.734375,
+            "y": 711.3560180664062,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711.3560180664062,
+            "right": 335,
+            "bottom": 755.3560180664062,
+            "left": 295.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "기록",
+      "length": 1,
+      "panel": {
+        "x": 12,
+        "y": 569.5,
+        "width": 336,
+        "height": 198.5,
+        "top": 569.5,
+        "right": 348,
+        "bottom": 768,
+        "left": 12
+      },
+      "grid": "307px",
+      "scroll": [
+        331,
+        331,
+        197,
+        197,
+        0
+      ],
+      "actionsWidth": 307,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 167.921875,
+            "y": 709,
+            "width": 39.265625,
+            "height": 44,
+            "top": 709,
+            "right": 207.1875,
+            "bottom": 753,
+            "left": 167.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 214.1875,
+            "y": 709,
+            "width": 74.546875,
+            "height": 44,
+            "top": 709,
+            "right": 288.734375,
+            "bottom": 753,
+            "left": 214.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 295.734375,
+            "y": 709,
+            "width": 39.265625,
+            "height": 44,
+            "top": 709,
+            "right": 335,
+            "bottom": 753,
+            "left": 295.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "기록",
+      "length": 35,
+      "panel": {
+        "x": 12,
+        "y": 12,
+        "width": 336,
+        "height": 756,
+        "top": 12,
+        "right": 348,
+        "bottom": 768,
+        "left": 12
+      },
+      "grid": "307px",
+      "scroll": [
+        331,
+        331,
+        1982,
+        754,
+        0
+      ],
+      "actionsWidth": 307,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 167.921875,
+            "y": 711,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711,
+            "right": 207.1875,
+            "bottom": 755,
+            "left": 167.921875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 214.1875,
+            "y": 711,
+            "width": 74.546875,
+            "height": 44,
+            "top": 711,
+            "right": 288.734375,
+            "bottom": 755,
+            "left": 214.1875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 295.734375,
+            "y": 711,
+            "width": 39.265625,
+            "height": 44,
+            "top": 711,
+            "right": 335,
+            "bottom": 755,
+            "left": 295.734375
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "안내",
+      "length": 1,
+      "panel": {
+        "x": 10,
+        "y": 107,
+        "width": 340,
+        "height": 156,
+        "top": 107,
+        "right": 350,
+        "bottom": 263,
+        "left": 10
+      },
+      "grid": "303px 0px",
+      "scroll": [
+        335,
+        335,
+        154,
+        154,
+        0
+      ],
+      "actionsWidth": 311,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 226.625,
+            "y": 214,
+            "width": 51.1875,
+            "height": 38,
+            "top": 214,
+            "right": 277.8125,
+            "bottom": 252,
+            "left": 226.625
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 285.8125,
+            "y": 214,
+            "width": 51.1875,
+            "height": 38,
+            "top": 214,
+            "right": 337,
+            "bottom": 252,
+            "left": 285.8125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "360x780",
+      "who": "안내",
+      "length": 35,
+      "panel": {
+        "x": 10,
+        "y": 107,
+        "width": 340,
+        "height": 265.1875,
+        "top": 107,
+        "right": 350,
+        "bottom": 372.1875,
+        "left": 10
+      },
+      "grid": "303px 0px",
+      "scroll": [
+        335,
+        335,
+        1582,
+        263,
+        0
+      ],
+      "actionsWidth": 311,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 226.625,
+            "y": 323.1875,
+            "width": 51.1875,
+            "height": 38,
+            "top": 323.1875,
+            "right": 277.8125,
+            "bottom": 361.1875,
+            "left": 226.625
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 285.8125,
+            "y": 323.1875,
+            "width": 51.1875,
+            "height": 38,
+            "top": 323.1875,
+            "right": 337,
+            "bottom": 361.1875,
+            "left": 285.8125
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "주민",
+      "length": 1,
+      "panel": {
+        "x": 25,
+        "y": 190,
+        "width": 794,
+        "height": 190,
+        "top": 190,
+        "right": 819,
+        "bottom": 380,
+        "left": 25
+      },
+      "grid": "140px 593px",
+      "scroll": [
+        789,
+        789,
+        188,
+        188,
+        0
+      ],
+      "actionsWidth": 593,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "width": 63.125,
+            "height": 44,
+            "top": 319,
+            "right": 270.125,
+            "bottom": 363,
+            "left": 207
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "width": 104.828125,
+            "height": 44,
+            "top": 319,
+            "right": 724.875,
+            "bottom": 363,
+            "left": 620.046875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "width": 63.125,
+            "height": 44,
+            "top": 319,
+            "right": 800,
+            "bottom": 363,
+            "left": 736.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "주민",
+      "length": 35,
+      "panel": {
+        "x": 25,
+        "y": 14.749067306518555,
+        "width": 794,
+        "height": 366,
+        "top": 14.749067306518555,
+        "right": 819,
+        "bottom": 380.74906730651855,
+        "left": 25
+      },
+      "grid": "140px 593px",
+      "scroll": [
+        789,
+        789,
+        928,
+        364,
+        0
+      ],
+      "actionsWidth": 593,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 321.7490539550781,
+            "width": 63.125,
+            "height": 44,
+            "top": 321.7490539550781,
+            "right": 270.125,
+            "bottom": 365.7490539550781,
+            "left": 207
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 321.7490539550781,
+            "width": 104.828125,
+            "height": 44,
+            "top": 321.7490539550781,
+            "right": 724.875,
+            "bottom": 365.7490539550781,
+            "left": 620.046875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 321.7490539550781,
+            "width": 63.125,
+            "height": 44,
+            "top": 321.7490539550781,
+            "right": 800,
+            "bottom": 365.7490539550781,
+            "left": 736.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "문탁",
+      "length": 1,
+      "panel": {
+        "x": 25,
+        "y": 190,
+        "width": 794,
+        "height": 190,
+        "top": 190,
+        "right": 819,
+        "bottom": 380,
+        "left": 25
+      },
+      "grid": "140px 593px",
+      "scroll": [
+        789,
+        789,
+        188,
+        188,
+        0
+      ],
+      "actionsWidth": 593,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 319,
+            "width": 63.125,
+            "height": 44,
+            "top": 319,
+            "right": 270.125,
+            "bottom": 363,
+            "left": 207
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "width": 104.828125,
+            "height": 44,
+            "top": 319,
+            "right": 724.875,
+            "bottom": 363,
+            "left": 620.046875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "width": 63.125,
+            "height": 44,
+            "top": 319,
+            "right": 800,
+            "bottom": 363,
+            "left": 736.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "문탁",
+      "length": 35,
+      "panel": {
+        "x": 25,
+        "y": 14.355801582336426,
+        "width": 794,
+        "height": 366,
+        "top": 14.355801582336426,
+        "right": 819,
+        "bottom": 380.3558015823364,
+        "left": 25
+      },
+      "grid": "140px 593px",
+      "scroll": [
+        789,
+        789,
+        928,
+        364,
+        0
+      ],
+      "actionsWidth": 593,
+      "portrait": true,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 207,
+            "y": 321.3558044433594,
+            "width": 63.125,
+            "height": 44,
+            "top": 321.3558044433594,
+            "right": 270.125,
+            "bottom": 365.3558044433594,
+            "left": 207
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 321.3558044433594,
+            "width": 104.828125,
+            "height": 44,
+            "top": 321.3558044433594,
+            "right": 724.875,
+            "bottom": 365.3558044433594,
+            "left": 620.046875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 321.3558044433594,
+            "width": 63.125,
+            "height": 44,
+            "top": 321.3558044433594,
+            "right": 800,
+            "bottom": 365.3558044433594,
+            "left": 736.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "새 주민",
+      "length": 1,
+      "panel": {
+        "x": 25,
+        "y": 190,
+        "width": 794,
+        "height": 190,
+        "top": 190,
+        "right": 819,
+        "bottom": 380,
+        "left": 25
+      },
+      "grid": "753px",
+      "scroll": [
+        789,
+        789,
+        188,
+        188,
+        0
+      ],
+      "actionsWidth": 753,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 319,
+            "width": 63.125,
+            "height": 44,
+            "top": 319,
+            "right": 110.125,
+            "bottom": 363,
+            "left": 47
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319,
+            "width": 104.828125,
+            "height": 44,
+            "top": 319,
+            "right": 724.875,
+            "bottom": 363,
+            "left": 620.046875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319,
+            "width": 63.125,
+            "height": 44,
+            "top": 319,
+            "right": 800,
+            "bottom": 363,
+            "left": 736.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "새 주민",
+      "length": 35,
+      "panel": {
+        "x": 25,
+        "y": 14.357069969177246,
+        "width": 794,
+        "height": 366,
+        "top": 14.357069969177246,
+        "right": 819,
+        "bottom": 380.35706996917725,
+        "left": 25
+      },
+      "grid": "753px",
+      "scroll": [
+        789,
+        789,
+        749,
+        364,
+        0
+      ],
+      "actionsWidth": 753,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 321.3570556640625,
+            "width": 63.125,
+            "height": 44,
+            "top": 321.3570556640625,
+            "right": 110.125,
+            "bottom": 365.3570556640625,
+            "left": 47
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 321.3570556640625,
+            "width": 104.828125,
+            "height": 44,
+            "top": 321.3570556640625,
+            "right": 724.875,
+            "bottom": 365.3570556640625,
+            "left": 620.046875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 321.3570556640625,
+            "width": 63.125,
+            "height": 44,
+            "top": 321.3570556640625,
+            "right": 800,
+            "bottom": 365.3570556640625,
+            "left": 736.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "서술",
+      "length": 1,
+      "panel": {
+        "x": 25,
+        "y": 215.13067626953125,
+        "width": 794,
+        "height": 167.390625,
+        "top": 215.13067626953125,
+        "right": 819,
+        "bottom": 382.52130126953125,
+        "left": 25
+      },
+      "grid": "753px",
+      "scroll": [
+        789,
+        789,
+        165,
+        165,
+        0
+      ],
+      "actionsWidth": 753,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 321.52130126953125,
+            "width": 63.125,
+            "height": 44,
+            "top": 321.52130126953125,
+            "right": 110.125,
+            "bottom": 365.52130126953125,
+            "left": 47
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 321.52130126953125,
+            "width": 104.828125,
+            "height": 44,
+            "top": 321.52130126953125,
+            "right": 724.875,
+            "bottom": 365.52130126953125,
+            "left": 620.046875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 321.52130126953125,
+            "width": 63.125,
+            "height": 44,
+            "top": 321.52130126953125,
+            "right": 800,
+            "bottom": 365.52130126953125,
+            "left": 736.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "서술",
+      "length": 35,
+      "panel": {
+        "x": 25,
+        "y": 15.24869441986084,
+        "width": 794,
+        "height": 366,
+        "top": 15.24869441986084,
+        "right": 819,
+        "bottom": 381.24869441986084,
+        "left": 25
+      },
+      "grid": "753px",
+      "scroll": [
+        789,
+        789,
+        748,
+        364,
+        0
+      ],
+      "actionsWidth": 753,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 322.2486877441406,
+            "width": 63.125,
+            "height": 44,
+            "top": 322.2486877441406,
+            "right": 110.125,
+            "bottom": 366.2486877441406,
+            "left": 47
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 322.2486877441406,
+            "width": 104.828125,
+            "height": 44,
+            "top": 322.2486877441406,
+            "right": 724.875,
+            "bottom": 366.2486877441406,
+            "left": 620.046875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 322.2486877441406,
+            "width": 63.125,
+            "height": 44,
+            "top": 322.2486877441406,
+            "right": 800,
+            "bottom": 366.2486877441406,
+            "left": 736.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "기록",
+      "length": 1,
+      "panel": {
+        "x": 25,
+        "y": 212.9652099609375,
+        "width": 794,
+        "height": 167.390625,
+        "top": 212.9652099609375,
+        "right": 819,
+        "bottom": 380.3558349609375,
+        "left": 25
+      },
+      "grid": "753px",
+      "scroll": [
+        789,
+        789,
+        165,
+        165,
+        0
+      ],
+      "actionsWidth": 753,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 319.3558349609375,
+            "width": 63.125,
+            "height": 44,
+            "top": 319.3558349609375,
+            "right": 110.125,
+            "bottom": 363.3558349609375,
+            "left": 47
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 319.3558349609375,
+            "width": 104.828125,
+            "height": 44,
+            "top": 319.3558349609375,
+            "right": 724.875,
+            "bottom": 363.3558349609375,
+            "left": 620.046875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 319.3558349609375,
+            "width": 63.125,
+            "height": 44,
+            "top": 319.3558349609375,
+            "right": 800,
+            "bottom": 363.3558349609375,
+            "left": 736.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "기록",
+      "length": 35,
+      "panel": {
+        "x": 25,
+        "y": 18.972049713134766,
+        "width": 794,
+        "height": 366,
+        "top": 18.972049713134766,
+        "right": 819,
+        "bottom": 384.97204971313477,
+        "left": 25
+      },
+      "grid": "753px",
+      "scroll": [
+        789,
+        789,
+        748,
+        364,
+        0
+      ],
+      "actionsWidth": 753,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 47,
+            "y": 325.9720458984375,
+            "width": 63.125,
+            "height": 44,
+            "top": 325.9720458984375,
+            "right": 110.125,
+            "bottom": 369.9720458984375,
+            "left": 47
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-skip",
+          "disabled": false,
+          "rect": {
+            "x": 620.046875,
+            "y": 325.9720458984375,
+            "width": 104.828125,
+            "height": 44,
+            "top": 325.9720458984375,
+            "right": 724.875,
+            "bottom": 369.9720458984375,
+            "left": 620.046875
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 736.875,
+            "y": 325.9720458984375,
+            "width": 63.125,
+            "height": 44,
+            "top": 325.9720458984375,
+            "right": 800,
+            "bottom": 369.9720458984375,
+            "left": 736.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "안내",
+      "length": 1,
+      "panel": {
+        "x": 18,
+        "y": 120,
+        "width": 808,
+        "height": 100,
+        "top": 120,
+        "right": 826,
+        "bottom": 220,
+        "left": 18
+      },
+      "grid": "634.75px 114.25px",
+      "scroll": [
+        803,
+        803,
+        98,
+        98,
+        0
+      ],
+      "actionsWidth": 114.25,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 692.75,
+            "y": 149,
+            "width": 53.125,
+            "height": 42,
+            "top": 149,
+            "right": 745.875,
+            "bottom": 191,
+            "left": 692.75
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 753.875,
+            "y": 149,
+            "width": 53.125,
+            "height": 42,
+            "top": 149,
+            "right": 807,
+            "bottom": 191,
+            "left": 753.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    },
+    {
+      "view": "landscape",
+      "who": "안내",
+      "length": 35,
+      "panel": {
+        "x": 18,
+        "y": 120,
+        "width": 808,
+        "height": 132.59375,
+        "top": 120,
+        "right": 826,
+        "bottom": 252.59375,
+        "left": 18
+      },
+      "grid": "634.75px 114.25px",
+      "scroll": [
+        803,
+        803,
+        914,
+        131,
+        0
+      ],
+      "actionsWidth": 114.25,
+      "portrait": false,
+      "buttons": [
+        {
+          "action": "dialogue-prev",
+          "disabled": true,
+          "rect": {
+            "x": 692.75,
+            "y": 197.59375,
+            "width": 53.125,
+            "height": 42,
+            "top": 197.59375,
+            "right": 745.875,
+            "bottom": 239.59375,
+            "left": 692.75
+          },
+          "inside": true,
+          "hit": true
+        },
+        {
+          "action": "dialogue-next",
+          "disabled": false,
+          "rect": {
+            "x": 753.875,
+            "y": 197.59375,
+            "width": 53.125,
+            "height": 42,
+            "top": 197.59375,
+            "right": 807,
+            "bottom": 239.59375,
+            "left": 753.875
+          },
+          "inside": true,
+          "hit": true
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

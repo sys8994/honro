@@ -1,0 +1,35 @@
+{
+  "sourceHead": "637255dd1a29de413d52d21ff1baf4312570ed37",
+  "manifestSha256": "bb8d7f30130aded063218af46faf1044a29fba05b20d50ac488272859ad90bc0",
+  "checks": [
+    {
+      "name": "old Seoro completion does not repaint current Damheo",
+      "passed": true
+    },
+    {
+      "name": "detached pending canvas paints ready asset exactly on remount",
+      "passed": true
+    },
+    {
+      "name": "stalled image reaches bounded vector fallback without blocking app",
+      "passed": true,
+      "stats": {
+        "requests": 4,
+        "decodes": 3,
+        "paints": 2,
+        "fallbackPaints": 1,
+        "vectorBuilds": 1,
+        "imageEntries": 4,
+        "pending": 0,
+        "errors": 1,
+        "vectorEntries": 1,
+        "waiters": 0
+      }
+    },
+    {
+      "name": "late completion after timeout never overwrites fallback/retries",
+      "passed": true
+    }
+  ],
+  "errors": []
+}

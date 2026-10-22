@@ -1,0 +1,33 @@
+{
+  "runtimeCommit": "eaee271225a5808bb5ddf78126fdb8ce8e1d4a7e",
+  "master": "c5b51319ef887943726434d84db596f07254bbd3",
+  "masterIsAncestor": true,
+  "unchangedFromBase4Handoff": [
+    "shared/data",
+    "shared/build.mjs",
+    "shared/map",
+    "shared/engine/src",
+    "shared/runtime/main.js",
+    "shared/runtime/story.js",
+    "shared/runtime/portraits.js",
+    "shared/runtime/act2.js",
+    "shared/runtime/act2-content.js",
+    "shared/runtime/act2-pacing.js",
+    "shared/runtime/act2-drama.js",
+    "shared/runtime/renderer.js",
+    "assets/bgm",
+    "art/portraits/approved-v1",
+    "game/config/story-portraits.json"
+  ],
+  "unchangedApprovedMastersFrom": "e99913e337cf06f1c0bdf5dfdcdda7cf78dcdb3e",
+  "currentMasterFilesPreserved": 351,
+  "allRuntimeAndBuildFilesMatchCommit": true,
+  "sha256": {
+    "game/src/presentation.css": "4b8d0b5fe5ffdc8d2aa8b3cadb0175d72dece8b6b937177b3938044c31682b86",
+    "shared/runtime/story-direction.js": "982e266f56d96a59bdc3e727c1314bc6a9b2ba0e8f9a99f71fc8d2ba510d1087",
+    "HONRO.html": "4928fbae081194a198acd8a1641c23669d009773e8582a10823fd090e73fcbc5",
+    "HONRO_WORKSHOP.html": "9252a002c90318ca5f3046a15e05e2f2b2fc98a420ede2afcb06dd8d40e5f4fe",
+    "web/manifest.json": "0823b029c38ed39878c6adff6de85f0ba335c5cad46824ae5d59c425715fa203"
+  },
+  "note": "Source/asset preservation, not physical audio playback or normal campaign completion"
+}

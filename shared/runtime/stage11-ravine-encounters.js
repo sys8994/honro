@@ -19,6 +19,7 @@ function blockedClear(b){
  return null;
 }
 function ready(b,ev){
+ if(G.HonroStage11Quest?.retiredResponse(b,ev))return false;
  const t=ev.honroRavineTrigger||{};
  if(t.objectiveDone&&!done(b,t.objectiveDone))return false;
  if(t.region&&!b.units.some(u=>u.side===0&&!u.dead&&u.hp>0&&G.HonroAuthored.inside(u,t.region))&&!done(b,t.fallbackDone))return false;
@@ -140,7 +141,7 @@ A.attach=function(app,e){const out=attach(app,e),b=e.b;if(!composed(b)||e.honroR
   if(alert)mem.alert[cell]=true;else for(const u of units)u.awake=false;
  }};e.refreshActivation();return out;
 };
-function prepareEchoWarning(app){const b=app.engine.b;if(!composed(b)||!done(b,'knot-east')||done(b,'hold-knots'))return;
+function prepareEchoWarning(app){const b=app.engine.b;if(G.HonroStage11Quest?.active(b)||!composed(b)||!done(b,'knot-east')||done(b,'hold-knots'))return;
  const count=b.honroState.act2?.holds?.['hold-knots']?.spawned||0;if(count>=6)return;const n=count<3?0:1,mem=composition(b);if(mem.echoWarnings[n])return;
  mem.echoWarnings[n]={serial:b.honroState.actorTurnSerial||0,round:b.round};
  const exact=G.HonroEncounterDensity?.active(b)&&Array.isArray(b.honroStage11DefenseEntries?.[n]?.members);
