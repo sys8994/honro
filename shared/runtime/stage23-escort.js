@@ -129,11 +129,26 @@ function installActivation(e){const b=e.b;if(!b.honroEscortYardActivation||e.hon
  e.refreshActivation=function(){refresh();update(true);};e.combatEnemies=function(){update(false);return combat().filter(u=>!u.honroEscortYardActivationCell||!b.honroEscortYardActivation[u.honroEscortYardActivationCell]||e.honroEscortYardEligibleCells?.has(u.honroEscortYardActivationCell));};
  if(Object.hasOwn(memory(b),'alert'))update(false);else e.refreshActivation();
 }
+// A continuous sloping carrier road is one route even when its endpoints
+// differ by more than the generic same-storey tolerance. Read the saved
+// authored contour and actual foot supports; high warehouse routes do not lead
+// the carrier. Locomotion/collisions still own every step, including blockers.
+const ROAD_SUPPORTS=new Set(['sy-ground','sy-stone-bridge']);
+function canLead(e,u,npc){const b=e.b;if(!active(b))return null;
+ if(A.sameFloor(u,npc,950))return true;
+ if(!e.grounded(u)||!e.grounded(npc))return false;
+ const road=b.honroMap?.act3?.primaryContour;if(!Array.isArray(road)||road.length<2)return false;
+ if(![u,npc].every(v=>ROAD_SUPPORTS.has(e.contactSurface(v.x,v.y-4,v.y+5)?.t.id)))return false;
+ const at=x=>{for(let i=1;i<road.length;i++){const a=road[i-1],z=road[i];if(!Array.isArray(a)||!Array.isArray(z)||z[0]<=a[0])return null;if(x>=a[0]&&x<=z[0])return{x,y:a[1]+(z[1]-a[1])*(x-a[0])/(z[0]-a[0])};}return null;};
+ const from=at(Math.min(npc.x,u.x)),to=at(Math.max(npc.x,u.x));if(!from||!to||Math.abs(at(npc.x).y-npc.y)>4||Math.abs(at(u.x).y-u.y)>4)return false;
+ let previous=from,distance=0;for(const [x,y]of road){if(x<=from.x||x>=to.x)continue;distance+=Math.hypot(x-previous.x,y-previous.y);if(distance>950)return false;previous={x,y};}
+ return distance+Math.hypot(to.x-previous.x,to.y-previous.y)<=950;
+}
 const attach=A.attach;A.attach=function(app,e){const out=attach(app,e);if(!active(e.b)||e.honroEscortYardAttached)return out;e.honroEscortYardAttached=true;memory(e.b);installScene();installActivation(e);
  const can=e.canAct.bind(e);e.canAct=function(){if(memory(e.b).status==='sliding')return false;const ok=can();if(ok)offer(app);return ok;};
  const finish=e.finishAction.bind(e);e.finishAction=function(...args){const u=e.active,m=memory(e.b),previous=e.honroEscortYardAction;e.honroEscortYardAction=hero(u)&&!u.acted?{id:u.id,cargo:!!m.offered[u.id],waves:Object.entries(m.warnings).filter(([,w])=>w.offered?.[u.id]).map(([source])=>source)}:null;try{return finish(...args);}finally{e.honroEscortYardAction=previous;}};return out;
 };
 const tick=A.tick;A.tick=function(app,dt){if(!active(app.engine?.b))return tick(app,dt);if(cleanup(app))return tick(app,dt);installScene();prepareWaves(app);offer(app);acceptOpportunity(app);const out=tick(app,dt);transition(app);return out;};
 const state=A.state;A.state=function(b){const out=state(b);if(!active(b))return out;const m=b.honroState?.escortYard;if(m?.reason&&!['stored','cancelled'].includes(m.status))out.summary+=' · '+m.reason;return out;};
-G.HonroStage23Escort={active,memory,sources,entryFor,safeBoundary,safeMotion,swept,occupants,transition,prepareWaves,commit,skip,cleanup,installScene,syncScene,carrierInTrigger,cellApproached,installActivation,SCENE};
+G.HonroStage23Escort={active,memory,sources,entryFor,safeBoundary,safeMotion,swept,occupants,transition,prepareWaves,commit,skip,cleanup,installScene,syncScene,carrierInTrigger,cellApproached,installActivation,canLead,SCENE};
 })(globalThis);

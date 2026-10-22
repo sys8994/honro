@@ -90,7 +90,7 @@ function holdTick(app,s,m){const b=app.engine.b,a=memory(b),end=b.teamEnds?.[1]|
 function escortTick(app,s,m,dt){const e=app.engine,b=e.b,a=memory(b),npc=e.unit(s.target),escort=a.escorts[s.target];if(!escort?.started||!alive(npc))return;
  const route=(b.honroMarkers||[]).filter(q=>q.id.startsWith('route:'+s.id+':')).sort((a,b)=>Number(a.id.split(':').at(-1))-Number(b.id.split(':').at(-1)));
  escort.waypoints??={};let index=escort.waypoints[s.id]||0;while(route[index]&&sameFloor(npc,route[index],90))index++;escort.waypoints[s.id]=index;
- const goal=route[index]||m,dir=Math.sign(goal.x-npc.x),leaders=heroes(b).filter(u=>sameFloor(u,npc,950)&&(u.x-npc.x)*dir>65),lead=leaders.length>0;
+ const goal=route[index]||m,dir=Math.sign(goal.x-npc.x),leaders=heroes(b).filter(u=>(G.HonroStage23Escort?.canLead?.(e,u,npc)??sameFloor(u,npc,950))&&(u.x-npc.x)*dir>65),lead=leaders.length>0;
  if(dt>0&&dir&&lead&&!app.dialogue){const before={x:npc.x,y:npc.y};npc.fixed=false;npc.moveLeft=900;e.walk(npc,dir,Math.min(dt,.05));G.HonroObjectiveContributions?.escort(b,s.id,npc,m,[leaders.slice().sort((u,v)=>Math.hypot(u.x-before.x,u.y-before.y)-Math.hypot(v.x-before.x,v.y-before.y))[0]],before);}
  if(sameFloor(npc,m,170)&&heroes(b).some(u=>sameFloor(u,npc,540))){G.HonroObjectiveContributions?.finishEscort(b,s.id);completeStep(app,s);}
 }

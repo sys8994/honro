@@ -1,0 +1,801 @@
+{
+  "scope": "Integrated e7fbff64+stage23 worktree. Legacy predicate VM control vs actual current predicate, original finite input segments, not fullplay.",
+  "before": {
+    "legacyControl": true,
+    "source": "e7fbff647c387f092f51215e9d867d664906d9bd",
+    "scope": "Controlled probes; normal levels, finite hero move budget, Engine.move/tick and production mission ticks. Geometry runs exclude other actors; not full combat or human-time claims.",
+    "rows": [
+      {
+        "stage": 23,
+        "kind": "downhill",
+        "phase": "integrated-before",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 2640,
+            "y": 4720,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 2980,
+            "y": 4890,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": false,
+          "euclidean": 380.13155617496426
+        },
+        "end": {
+          "npc": {
+            "x": 2640,
+            "y": 4720,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 3234.911749434973,
+            "y": 5017.455874717487,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1355.0000000000032
+          }
+        },
+        "npcMoved": 0,
+        "walkCalls": 0,
+        "walksBlocked": 0,
+        "heroMoveCost": 284.9999999999968,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "uphill",
+        "phase": "integrated-before",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 4520,
+            "y": 4833.333333333333,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5000,
+            "y": 4513.333333333333,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": false,
+          "euclidean": 576.8882040742383
+        },
+        "end": {
+          "npc": {
+            "x": 4520,
+            "y": 4833.333333333333,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5258.821351617984,
+            "y": 4396.471459352806,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1354.9999999999854
+          }
+        },
+        "npcMoved": 0,
+        "walkCalls": 0,
+        "walksBlocked": 0,
+        "heroMoveCost": 285.00000000001455,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "too-far",
+        "phase": "integrated-before",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 8700,
+            "y": 4170,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 9680,
+            "y": 4170,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": false,
+          "euclidean": 980
+        },
+        "end": {
+          "npc": {
+            "x": 8700,
+            "y": 4170,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 9680,
+            "y": 4170,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 0,
+        "walkCalls": 0,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "other-floor",
+        "phase": "integrated-before",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 3500,
+            "y": 5100,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 3800,
+            "y": 3650,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": false,
+          "euclidean": 1480.7092894960845
+        },
+        "end": {
+          "npc": {
+            "x": 3500,
+            "y": 5100,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 3800,
+            "y": 3650,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 0,
+        "walkCalls": 0,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "nearby-upper",
+        "phase": "integrated-before",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 4900,
+            "y": 4580,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5100,
+            "y": 3744.8275862068967,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": false,
+          "euclidean": 858.785747879527
+        },
+        "end": {
+          "npc": {
+            "x": 4900,
+            "y": 4580,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5100,
+            "y": 3744.8275862068967,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 0,
+        "walkCalls": 0,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "body-threat",
+        "phase": "integrated-before",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 2280,
+            "y": 4700,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 2550,
+            "y": 4700,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": true,
+          "euclidean": 270
+        },
+        "end": {
+          "npc": {
+            "x": 2485.833333333319,
+            "y": 4700,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 2550,
+            "y": 4700,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 205.83333333331893,
+        "walkCalls": 95,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "bridge-west",
+        "phase": "integrated-before",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 5160,
+            "y": 4436,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5510,
+            "y": 4350,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": true,
+          "euclidean": 360.41087663942665
+        },
+        "end": {
+          "npc": {
+            "x": 5446.7712466266075,
+            "y": 4350,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5510,
+            "y": 4350,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 286.77124662660754,
+        "walkCalls": 140,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "bridge-east",
+        "phase": "integrated-before",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 5910,
+            "y": 4350,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 6250,
+            "y": 4485,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": true,
+          "euclidean": 365.82099447680696
+        },
+        "end": {
+          "npc": {
+            "x": 6186.320965664792,
+            "y": 4456.344434549156,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 6250,
+            "y": 4485,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 276.3209656647923,
+        "walkCalls": 138,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      }
+    ]
+  },
+  "after": {
+    "legacyControl": false,
+    "source": "e7fbff647c387f092f51215e9d867d664906d9bd",
+    "scope": "Controlled probes; normal levels, finite hero move budget, Engine.move/tick and production mission ticks. Geometry runs exclude other actors; not full combat or human-time claims.",
+    "rows": [
+      {
+        "stage": 23,
+        "kind": "downhill",
+        "phase": "integrated-after",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 2640,
+            "y": 4720,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 2980,
+            "y": 4890,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": false,
+          "euclidean": 380.13155617496426
+        },
+        "end": {
+          "npc": {
+            "x": 2988.82660448995,
+            "y": 4894.413302244975,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 3234.911749434973,
+            "y": 5017.455874717487,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1355.0000000000032
+          }
+        },
+        "npcMoved": 348.8266044899501,
+        "walkCalls": 180,
+        "walksBlocked": 0,
+        "heroMoveCost": 284.9999999999968,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "uphill",
+        "phase": "integrated-after",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 4520,
+            "y": 4833.333333333333,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5000,
+            "y": 4513.333333333333,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": false,
+          "euclidean": 576.8882040742383
+        },
+        "end": {
+          "npc": {
+            "x": 4844.499614791821,
+            "y": 4617.000256805452,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5258.821351617984,
+            "y": 4396.471459352806,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1354.9999999999854
+          }
+        },
+        "npcMoved": 324.49961479182093,
+        "walkCalls": 180,
+        "walksBlocked": 0,
+        "heroMoveCost": 285.00000000001455,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "too-far",
+        "phase": "integrated-after",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 8700,
+            "y": 4170,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 9680,
+            "y": 4170,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": false,
+          "euclidean": 980
+        },
+        "end": {
+          "npc": {
+            "x": 8700,
+            "y": 4170,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 9680,
+            "y": 4170,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 0,
+        "walkCalls": 0,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "other-floor",
+        "phase": "integrated-after",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 3500,
+            "y": 5100,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 3800,
+            "y": 3650,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": false,
+          "euclidean": 1480.7092894960845
+        },
+        "end": {
+          "npc": {
+            "x": 3500,
+            "y": 5100,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 3800,
+            "y": 3650,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 0,
+        "walkCalls": 0,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "nearby-upper",
+        "phase": "integrated-after",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 4900,
+            "y": 4580,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5100,
+            "y": 3744.8275862068967,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": false,
+          "euclidean": 858.785747879527
+        },
+        "end": {
+          "npc": {
+            "x": 4900,
+            "y": 4580,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5100,
+            "y": 3744.8275862068967,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 0,
+        "walkCalls": 0,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "body-threat",
+        "phase": "integrated-after",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 2280,
+            "y": 4700,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 2550,
+            "y": 4700,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": true,
+          "euclidean": 270
+        },
+        "end": {
+          "npc": {
+            "x": 2485.833333333319,
+            "y": 4700,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 2550,
+            "y": 4700,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 205.83333333331893,
+        "walkCalls": 95,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "bridge-west",
+        "phase": "integrated-after",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 5160,
+            "y": 4436,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5510,
+            "y": 4350,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": true,
+          "euclidean": 360.41087663942665
+        },
+        "end": {
+          "npc": {
+            "x": 5446.7712466266075,
+            "y": 4350,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 5510,
+            "y": 4350,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 286.77124662660754,
+        "walkCalls": 140,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      },
+      {
+        "stage": 23,
+        "kind": "bridge-east",
+        "phase": "integrated-after",
+        "level": 16,
+        "start": {
+          "npc": {
+            "x": 5910,
+            "y": 4350,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 6250,
+            "y": 4485,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          },
+          "sameFloor": true,
+          "euclidean": 365.82099447680696
+        },
+        "end": {
+          "npc": {
+            "x": 6186.320965664792,
+            "y": 4456.344434549156,
+            "hp": 1450
+          },
+          "hero": {
+            "x": 6250,
+            "y": 4485,
+            "hp": 815,
+            "focus": 186,
+            "moveLeft": 1640
+          }
+        },
+        "npcMoved": 276.3209656647923,
+        "walkCalls": 138,
+        "walksBlocked": 0,
+        "heroMoveCost": 0,
+        "recoveries": 0
+      }
+    ]
+  },
+  "resume": {
+    "passed": true,
+    "initialEnemies": 40,
+    "initialNPC": {
+      "id": "act3-carrier",
+      "name": "기록 운반인",
+      "role": "knight",
+      "cls": "knight",
+      "side": 2,
+      "x": 2640,
+      "y": 4720,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1450,
+      "maxHp": 1450,
+      "r": 50,
+      "h": 110,
+      "focus": 100,
+      "maxFocus": 100,
+      "regen": 14,
+      "level": 1,
+      "attack": 1.75,
+      "armor": 0.15,
+      "shield": 0,
+      "bound": 0,
+      "mark": 0,
+      "breaks": 0,
+      "acted": false,
+      "moveLeft": 900,
+      "maxMove": 900,
+      "walkSpeed": 260,
+      "angle": 44,
+      "lastPower": 0.55,
+      "loadout": [],
+      "tune": 0.5,
+      "facing": 1,
+      "hurt": 0,
+      "anim": 0,
+      "airborne": false,
+      "fixed": false,
+      "spawnX": 2280,
+      "spawnY": 4700,
+      "intent": "",
+      "dead": false,
+      "ranks": {},
+      "group": 0,
+      "awake": true,
+      "lastAct": 0,
+      "aggroUntil": 0,
+      "xpBudget": 0,
+      "xpGranted": 0,
+      "killRewarded": false,
+      "damageBy": {},
+      "honroType": "civilian",
+      "honroCivilian": true,
+      "honroAlly": false,
+      "honroProtected": true,
+      "jumping": false
+    },
+    "finalNPC": {
+      "id": "act3-carrier",
+      "name": "기록 운반인",
+      "role": "knight",
+      "cls": "knight",
+      "side": 2,
+      "x": 2872.5510696599667,
+      "y": 4836.275534829983,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1450,
+      "maxHp": 1450,
+      "r": 50,
+      "h": 110,
+      "focus": 100,
+      "maxFocus": 100,
+      "regen": 14,
+      "level": 1,
+      "attack": 1.75,
+      "armor": 0.15,
+      "shield": 0,
+      "bound": 0,
+      "mark": 0,
+      "breaks": 0,
+      "acted": false,
+      "moveLeft": 897.8333333333335,
+      "maxMove": 900,
+      "walkSpeed": 260,
+      "angle": 44,
+      "lastPower": 0.55,
+      "loadout": [],
+      "tune": 0.5,
+      "facing": 1,
+      "hurt": 0,
+      "anim": 0,
+      "airborne": false,
+      "fixed": false,
+      "spawnX": 2280,
+      "spawnY": 4700,
+      "intent": "",
+      "dead": false,
+      "ranks": {},
+      "group": 0,
+      "awake": true,
+      "lastAct": 0,
+      "aggroUntil": 0,
+      "xpBudget": 0,
+      "xpGranted": 0,
+      "killRewarded": false,
+      "damageBy": {},
+      "honroType": "civilian",
+      "honroCivilian": true,
+      "honroAlly": false,
+      "honroProtected": true,
+      "jumping": false,
+      "eaterSwallow": 0,
+      "moving": 0.12,
+      "landing": 0,
+      "impactCooldown": 0,
+      "salheunFlash": 0,
+      "walkPhase": 9.879999999999503
+    },
+    "pureLeadPredicate": true,
+    "exactContinue": true,
+    "splitInputEquivalent": true,
+    "itemsPreserved": true,
+    "rewardOnce": true,
+    "scope": "Prepared ramp poses/prior escort goals, full original roster/events, actual move/tick; terminal arrival/reward is a separate fixture. Not fresh-stage or human-time evidence."
+  }
+}
