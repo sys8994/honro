@@ -26,5 +26,12 @@
     "ui/village-snapshot-390x844.jpg": 32351,
     "ui/void-long-line-390x844.jpg": 15071,
     "ui/witness-letter-1280x900.jpg": 51581
+  },
+  "stage10SafeOutroFollowup": {
+    "runtimeSourceCommit": "ccc0a9959b04ac62c93187de16637dc316537f9a",
+    "checks": "stage10-safe-outro/checks.json",
+    "image": "stage10-safe-outro/stage10-safe-outro-390x844.jpg",
+    "bytes": 19983,
+    "implementationChanged": false
   }
 }

@@ -1,0 +1,778 @@
+{
+  "sourceCommit": "ccc0a9959b04ac62c93187de16637dc316537f9a",
+  "sourceHashes": {
+    "shared/data/narrative-current.json": "2a6e97153c37b3f6e6be5e10417b8344ec3899d280ec390d5082e80464bed2bd",
+    "shared/runtime/sodan-withdrawal.js": "69517f097ea8249f050d8cb2ceab54b27ee8adb0f4af906718a8a0c5986b0b3c",
+    "shared/runtime/story-framing.js": "c0e6f4846ce83d00fb63e3b58680c8884192ed0ac491ef1c0fff23728e3300c7",
+    "shared/runtime/story.js": "57ebb0d45f0f8fcad2254d3aa3a6666b52178821fb94211724ed1940704dbed1",
+    "shared/runtime/main.js": "7a43d1fb427d0366c9eff2d9f36c5e4c16f99a1f18b0bf083bf3bb6ed89213e8"
+  },
+  "input": "Controlled late-objective fixture; normal channeler conversion, six hold rounds marked complete, living party/Sodan, grounded scout arrival. No direct outro injection.",
+  "before": {
+    "round": 14,
+    "phase": "aim",
+    "goal": {
+      "id": "sodan-safe-exit",
+      "kind": "exit",
+      "x": 4860,
+      "y": 2904.814814814815,
+      "label": "동쪽 안전 출구 · 한 명이 도착하면 함께 철수"
+    },
+    "party": [
+      {
+        "id": "p-archer",
+        "name": "설오",
+        "hp": 815,
+        "focus": 186,
+        "cooldowns": {}
+      },
+      {
+        "id": "p-mage",
+        "name": "담허",
+        "hp": 870,
+        "focus": 240,
+        "cooldowns": {}
+      },
+      {
+        "id": "p-knight",
+        "name": "휘겸",
+        "hp": 1330,
+        "focus": 209,
+        "cooldowns": {}
+      },
+      {
+        "id": "boss",
+        "name": "소단",
+        "hp": 656,
+        "focus": 239,
+        "cooldowns": null
+      }
+    ],
+    "enemies": 24
+  },
+  "outro": {
+    "unavailableFiltered": [
+      {
+        "index": 0,
+        "who": "소단",
+        "text": "이제… 놔도 돼요?",
+        "rowId": "10.outro:cb061ba7fa",
+        "allowed": false
+      },
+      {
+        "index": 2,
+        "who": "소단",
+        "text": "안 펴져요. 힘을 빼는데도….",
+        "rowId": "10.outro:350871b4ff",
+        "allowed": false
+      },
+      {
+        "index": 5,
+        "who": "소단",
+        "text": "팔… 제가 줄로 친 데죠?",
+        "rowId": "10.outro:e7930b32c8",
+        "allowed": false
+      },
+      {
+        "index": 7,
+        "who": "소단",
+        "text": "…미안해요. 그런데 아직도 밖에서 오는 건 하나도 모르겠어요. 얼마나 더 오는지도.",
+        "rowId": "10.outro:00a57d25cd",
+        "allowed": false
+      },
+      {
+        "index": 13,
+        "who": "소단",
+        "text": "나도 갈게요. 남은 매듭부터 거두고요. 혼이 오는 쪽은 내가 들을 수 있어요.",
+        "rowId": "10.outro:1a39ff4a77",
+        "allowed": false
+      }
+    ],
+    "phase": "won",
+    "round": 14,
+    "withdrawal": {
+      "phase": "safe",
+      "elapsed": 1.1,
+      "scout": "p-archer",
+      "party": [
+        "설오",
+        "담허",
+        "휘겸",
+        "소단"
+      ],
+      "worldOutro": 2
+    },
+    "quiet": true,
+    "camera": {
+      "id": "10:safe-exit",
+      "intent": "conversation",
+      "targets": [
+        {
+          "nearbyAllies": "boss"
+        }
+      ],
+      "missing": [],
+      "fallback": null,
+      "boxes": [
+        {
+          "x": 5878,
+          "y": 2576.8668187699063,
+          "w": 374,
+          "h": 156.65418035571884
+        }
+      ],
+      "rect": {
+        "x": 14,
+        "y": 112,
+        "w": 362,
+        "h": 521.609375
+      },
+      "boundary": {
+        "overscanX": true,
+        "overscanY": false
+      },
+      "camera": {
+        "x": 6065,
+        "y": 2592.373396127253,
+        "scale": 0.78
+      },
+      "targetCamera": {
+        "x": 6065,
+        "y": 2592.373396127253,
+        "scale": 0.78
+      },
+      "reducedMotion": false
+    },
+    "canvas": {
+      "x": 0,
+      "y": 0,
+      "width": 390,
+      "height": 647.609375,
+      "top": 0,
+      "right": 390,
+      "bottom": 647.609375,
+      "left": 0
+    },
+    "panel": {
+      "x": 8,
+      "y": 658.25,
+      "width": 374,
+      "height": 177.75,
+      "top": 658.25,
+      "right": 382,
+      "bottom": 836,
+      "left": 8
+    },
+    "blackBackdrop": false,
+    "raw": [
+      [
+        "소단",
+        "이제… 놔도 돼요?"
+      ],
+      [
+        "담허",
+        "그래. 혼은 양옆 진으로 들어갔네. 손가락부터 천천히 펴 보게."
+      ],
+      [
+        "소단",
+        "안 펴져요. 힘을 빼는데도…."
+      ],
+      [
+        "설오",
+        "서두르지 마십시오. 여기 앉으세요."
+      ],
+      [
+        "휘겸",
+        "뒤따르는 기척은 없소. 내가 보고 있겠소."
+      ],
+      [
+        "소단",
+        "팔… 제가 줄로 친 데죠?"
+      ],
+      [
+        "설오",
+        "움직일 만합니다. 다음에는 치기 전에 말부터 해주십시오."
+      ],
+      [
+        "소단",
+        "…미안해요. 그런데 아직도 밖에서 오는 건 하나도 모르겠어요. 얼마나 더 오는지도."
+      ],
+      [
+        "담허",
+        "새로 온 혼은 망에 있던 것과 따로 봐야겠네. 어디로 들어왔나?"
+      ],
+      [
+        "휘겸",
+        "동쪽 외문이오. 짐승 발에 산길 진흙이 묻어 있었소."
+      ],
+      [
+        "설오",
+        "산에서 내려온 겁니까?"
+      ],
+      [
+        "담허",
+        "그 길로 온 건 맞겠지. 어디서 시작됐는지는 따라가 봐야겠네."
+      ],
+      [
+        "설오",
+        "홍만의 장부도 북문 뒤부터 비어 있습니다. 저도 그 너머를 찾아야 합니다."
+      ],
+      [
+        "소단",
+        "나도 갈게요. 남은 매듭부터 거두고요. 혼이 오는 쪽은 내가 들을 수 있어요."
+      ],
+      [
+        "설오",
+        "그럼 날이 밝으면 같이 갑시다."
+      ],
+      [
+        "서술",
+        "소단은 방울을 무릎에 놓고 굳은 손가락을 하나씩 폈다."
+      ]
+    ],
+    "effective": [
+      [
+        "소단",
+        "이제… 놔도 돼요?"
+      ],
+      [
+        "담허",
+        "그래. 혼은 양옆 진으로 들어갔네. 손가락부터 천천히 펴 보게."
+      ],
+      [
+        "소단",
+        "안 펴져요. 힘을 빼는데도…."
+      ],
+      [
+        "설오",
+        "서두르지 마십시오. 여기 앉으세요."
+      ],
+      [
+        "휘겸",
+        "뒤따르는 기척은 없소. 내가 보고 있겠소."
+      ],
+      [
+        "소단",
+        "팔… 제가 줄로 친 데죠?"
+      ],
+      [
+        "설오",
+        "움직일 만합니다. 다음에는 치기 전에 말부터 해주십시오."
+      ],
+      [
+        "소단",
+        "…미안해요. 그런데 아직도 밖에서 오는 건 하나도 모르겠어요. 얼마나 더 오는지도."
+      ],
+      [
+        "담허",
+        "새로 온 혼은 망에 있던 것과 따로 봐야겠네. 어디로 들어왔나?"
+      ],
+      [
+        "휘겸",
+        "동쪽 외문이오. 짐승 발에 산길 진흙이 묻어 있었소."
+      ],
+      [
+        "설오",
+        "산에서 내려온 겁니까?"
+      ],
+      [
+        "담허",
+        "그 길로 온 건 맞겠지. 어디서 시작됐는지는 따라가 봐야겠네."
+      ],
+      [
+        "설오",
+        "홍만의 장부도 북문 뒤부터 비어 있습니다. 저도 그 너머를 찾아야 합니다."
+      ],
+      [
+        "소단",
+        "나도 갈게요. 남은 매듭부터 거두고요. 혼이 오는 쪽은 내가 들을 수 있어요."
+      ],
+      [
+        "설오",
+        "그럼 날이 밝으면 같이 갑시다."
+      ],
+      [
+        "서술",
+        "소단은 방울을 무릎에 놓고 굳은 손가락을 하나씩 폈다."
+      ]
+    ],
+    "filtered": [],
+    "party": [
+      {
+        "id": "p-archer",
+        "name": "설오",
+        "x": 5900,
+        "y": 2710.3713432565337,
+        "hp": 815,
+        "focus": 186,
+        "cooldowns": {},
+        "ground": 2710.3713432565337,
+        "nearestEnemy": 1596.5804500027139
+      },
+      {
+        "id": "p-mage",
+        "name": "담허",
+        "x": 6010,
+        "y": 2698.6482747508862,
+        "hp": 870,
+        "focus": 240,
+        "cooldowns": {},
+        "ground": 2698.6482747508862,
+        "nearestEnemy": 1707.19118255045
+      },
+      {
+        "id": "p-knight",
+        "name": "휘겸",
+        "x": 6120,
+        "y": 2711.0846369382557,
+        "hp": 1330,
+        "focus": 209,
+        "cooldowns": {},
+        "ground": 2711.0846369382557,
+        "nearestEnemy": 1815.7265933936471
+      },
+      {
+        "id": "boss",
+        "name": "소단",
+        "x": 6230,
+        "y": 2723.520999125625,
+        "hp": 656,
+        "focus": 239,
+        "cooldowns": null,
+        "ground": 2723.520999125625,
+        "nearestEnemy": 1924.5086947958184
+      }
+    ],
+    "enemyCount": 24,
+    "report": {
+      "version": 1,
+      "gameVersion": "honro-report-20261022-v1",
+      "attempt": "honro-map-stage-10-1792678195283-1792678195340-1",
+      "stage": 10,
+      "scope": "campaign",
+      "partial": false,
+      "startedRound": 1,
+      "rounds": 14,
+      "seconds": 1.4498999999999993,
+      "retries": 0,
+      "order": [
+        "archer",
+        "mage",
+        "knight"
+      ],
+      "heroes": {
+        "archer": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 0,
+          "skills": {}
+        },
+        "mage": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 0,
+          "skills": {}
+        },
+        "knight": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 0,
+          "skills": {}
+        }
+      },
+      "xp": {
+        "archer": {
+          "before": 64909,
+          "last": 64909,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        },
+        "mage": {
+          "before": 64909,
+          "last": 64909,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        },
+        "knight": {
+          "before": 64909,
+          "last": 64909,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        },
+        "occultist": {
+          "before": 0,
+          "last": 0,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        }
+      },
+      "counts": {
+        "kills": 0,
+        "knockouts": 0
+      },
+      "other": {},
+      "missing": [],
+      "totals": {
+        "damage": 0,
+        "received": 0,
+        "kills": 0,
+        "healing": 0,
+        "shield": 0,
+        "shieldReceived": 0,
+        "uses": 0
+      },
+      "deferred": false,
+      "reunionStages": null,
+      "completedAt": "2026-10-22T14:09:56.736Z",
+      "difficulty": "normal"
+    },
+    "trace": [
+      {
+        "name": "exit-arrival",
+        "phase": "aim",
+        "withdrawal": "withdrawing",
+        "worldOutro": null
+      },
+      {
+        "name": "checkMission",
+        "phase": "won",
+        "withdrawal": "safe",
+        "worldOutro": null,
+        "index": null,
+        "count": null
+      },
+      {
+        "name": "prepareWorldOutro",
+        "phase": "won",
+        "withdrawal": "safe",
+        "worldOutro": 2,
+        "index": null,
+        "count": null
+      },
+      {
+        "name": "outcome",
+        "phase": "won",
+        "withdrawal": "safe",
+        "worldOutro": 2,
+        "index": 0,
+        "count": 16
+      }
+    ],
+    "hud": [
+      "hidden",
+      "hidden",
+      "hidden",
+      "hidden"
+    ]
+  },
+  "shown": [
+    [
+      "소단",
+      "이제… 놔도 돼요?"
+    ],
+    [
+      "담허",
+      "그래. 혼은 양옆 진으로 들어갔네. 손가락부터 천천히 펴 보게."
+    ],
+    [
+      "소단",
+      "안 펴져요. 힘을 빼는데도…."
+    ],
+    [
+      "설오",
+      "서두르지 마십시오. 여기 앉으세요."
+    ],
+    [
+      "휘겸",
+      "뒤따르는 기척은 없소. 내가 보고 있겠소."
+    ],
+    [
+      "소단",
+      "팔… 제가 줄로 친 데죠?"
+    ],
+    [
+      "설오",
+      "움직일 만합니다. 다음에는 치기 전에 말부터 해주십시오."
+    ],
+    [
+      "소단",
+      "…미안해요. 그런데 아직도 밖에서 오는 건 하나도 모르겠어요. 얼마나 더 오는지도."
+    ],
+    [
+      "담허",
+      "새로 온 혼은 망에 있던 것과 따로 봐야겠네. 어디로 들어왔나?"
+    ],
+    [
+      "휘겸",
+      "동쪽 외문이오. 짐승 발에 산길 진흙이 묻어 있었소."
+    ],
+    [
+      "설오",
+      "산에서 내려온 겁니까?"
+    ],
+    [
+      "담허",
+      "그 길로 온 건 맞겠지. 어디서 시작됐는지는 따라가 봐야겠네."
+    ],
+    [
+      "설오",
+      "홍만의 장부도 북문 뒤부터 비어 있습니다. 저도 그 너머를 찾아야 합니다."
+    ],
+    [
+      "소단",
+      "나도 갈게요. 남은 매듭부터 거두고요. 혼이 오는 쪽은 내가 들을 수 있어요."
+    ],
+    [
+      "설오",
+      "그럼 날이 밝으면 같이 갑시다."
+    ],
+    [
+      "길 위의 기록",
+      "소단은 방울을 무릎에 놓고 굳은 손가락을 하나씩 폈다."
+    ]
+  ],
+  "Continue": {
+    "cursor": 15,
+    "phase": "won",
+    "worldOutro": 2,
+    "all16Preserved": true,
+    "frozenCombat": true
+  },
+  "ending": {
+    "screen": "act-ending",
+    "pending": {
+      "stage": 10,
+      "index": 0
+    },
+    "visits": 1,
+    "report": {
+      "version": 1,
+      "gameVersion": "honro-report-20261022-v1",
+      "attempt": "honro-map-stage-10-1792678195283-1792678195340-1",
+      "stage": 10,
+      "scope": "campaign",
+      "partial": false,
+      "startedRound": 1,
+      "rounds": 14,
+      "seconds": 1.4498999999999993,
+      "retries": 0,
+      "order": [
+        "archer",
+        "mage",
+        "knight"
+      ],
+      "heroes": {
+        "archer": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 0,
+          "skills": {}
+        },
+        "mage": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 0,
+          "skills": {}
+        },
+        "knight": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 0,
+          "skills": {}
+        }
+      },
+      "xp": {
+        "archer": {
+          "before": 64909,
+          "last": 64909,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        },
+        "mage": {
+          "before": 64909,
+          "last": 64909,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        },
+        "knight": {
+          "before": 64909,
+          "last": 64909,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        },
+        "occultist": {
+          "before": 0,
+          "last": 0,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        }
+      },
+      "counts": {
+        "kills": 0,
+        "knockouts": 0
+      },
+      "other": {},
+      "missing": [],
+      "totals": {
+        "damage": 0,
+        "received": 0,
+        "kills": 0,
+        "healing": 0,
+        "shield": 0,
+        "shieldReceived": 0,
+        "uses": 0
+      },
+      "deferred": false,
+      "reunionStages": null,
+      "completedAt": "2026-10-22T14:09:56.736Z",
+      "difficulty": "normal"
+    }
+  },
+  "final": {
+    "screen": "rest",
+    "ending": null,
+    "visits": 1,
+    "seen": true,
+    "battle": null,
+    "reportNotice": {
+      "stage": 10,
+      "attempt": "honro-map-stage-10-1792678195283-1792678195340-1"
+    },
+    "report": {
+      "version": 1,
+      "gameVersion": "honro-report-20261022-v1",
+      "attempt": "honro-map-stage-10-1792678195283-1792678195340-1",
+      "stage": 10,
+      "scope": "campaign",
+      "partial": false,
+      "startedRound": 1,
+      "rounds": 14,
+      "seconds": 1.4498999999999993,
+      "retries": 0,
+      "order": [
+        "archer",
+        "mage",
+        "knight"
+      ],
+      "heroes": {
+        "archer": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 0,
+          "skills": {}
+        },
+        "mage": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 0,
+          "skills": {}
+        },
+        "knight": {
+          "damage": 0,
+          "received": 0,
+          "kills": 0,
+          "healing": 0,
+          "shield": 0,
+          "shieldReceived": 0,
+          "uses": 0,
+          "skills": {}
+        }
+      },
+      "xp": {
+        "archer": {
+          "before": 64909,
+          "last": 64909,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        },
+        "mage": {
+          "before": 64909,
+          "last": 64909,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        },
+        "knight": {
+          "before": 64909,
+          "last": 64909,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        },
+        "occultist": {
+          "before": 0,
+          "last": 0,
+          "combat": 0,
+          "settlement": 0,
+          "reunion": 0
+        }
+      },
+      "counts": {
+        "kills": 0,
+        "knockouts": 0
+      },
+      "other": {},
+      "missing": [],
+      "totals": {
+        "damage": 0,
+        "received": 0,
+        "kills": 0,
+        "healing": 0,
+        "shield": 0,
+        "shieldReceived": 0,
+        "uses": 0
+      },
+      "deferred": false,
+      "reunionStages": null,
+      "completedAt": "2026-10-22T14:09:56.736Z",
+      "difficulty": "normal"
+    },
+    "reportUIOpened": true
+  },
+  "errors": [],
+  "limits": [
+    "Six hold rounds were fixture-completed, not replayed in combat.",
+    "Native Chromium 390x844; no physical mobile testing."
+  ]
+}

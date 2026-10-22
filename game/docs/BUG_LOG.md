@@ -4427,3 +4427,7 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 - 부모가 작성한 일곱 확정 JSON을 단일 current catalogue에 적용했다. 공급 문장을 창작/윤색하지 않고 의미 ID로 연출·이름 공개·목격 조건을 연결한다.
 - 13장 구조 후 문답, 신규/저장/legacy 경계, 구조 화자/주민 선택, 쉼터 중복 도입과 완료 후 조건 요약을 정리했다. 목표·HP·보상·분할·Workshop 원고는 유지한다.
 - 30장 데이터/6개 경로/대표 Continue, 27장 입력·복귀 회귀, build/typecheck/분할 웹 비교 통과. Chromium 2개 화면 크기에서 대표 18항목과 JPG 7장을 확인했다. 전 장 정상 플레이·실물 모바일·Pages 검수는 아니다. [소스/근거/통합 주의](story/voice-v2-editorial/INTEGRATION_REPORT.md).
+
+### 2026-10-22 10장 실제 worldOutro 경계 보완 검수
+- 기존 문구 배치 JPG와 별개로, 여섯 방어 라운드 완료 fixture에서 정상 supported exit→withdrawal→won→worldOutro=2→outcome 경로를 검사했다. 런타임 수정은 없다.
+- 살아 있는 소단+동행 3명의 실제 동쪽 지면/안전 카메라, 원고 16줄 무누락, 마지막 줄 Continue, UI skip→막 엔딩→쉼터→상세 보고서, 1회 정산을 확인했다. 이전 fixture의 11줄은 소단 사망 처리에 따른 소단 발언 5줄 필터였다. [측정·실제 JPG·한계](story/voice-v2-editorial/INTEGRATION_REPORT.md#6-부모-검수-보완--10장-실제-안전-퇴장-경로).

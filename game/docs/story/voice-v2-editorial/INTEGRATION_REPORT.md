@@ -43,7 +43,7 @@ JPG 7장을 직접 열어 대사 읽힘·패널 잘림·무명 장면의 여백�
 
 - [2장 이름 공개 · 모바일](evidence/ui/name-reveal-390x844.jpg)
 - [9장 소단 · 모바일](evidence/ui/sodan-refusal-390x844.jpg)
-- [10장 퇴장 · 데스크톱](evidence/ui/sodan-aftermath-1280x900.jpg)
+- [10장 문구 배치 fixture · 데스크톱 (실제 철수 검증 아님)](evidence/ui/sodan-aftermath-1280x900.jpg)
 - [12장 기록 · 모바일](evidence/ui/quarry-snapshot-390x844.jpg)
 - [14장 중층 주민 · 모바일](evidence/ui/village-snapshot-390x844.jpg)
 - [27장 무명 조우 · 모바일](evidence/ui/void-long-line-390x844.jpg)
@@ -58,3 +58,18 @@ JPG 7장을 직접 열어 대사 읽힘·패널 잘림·무명 장면의 여백�
 공유 art/portrait 에셋은 수정하지 않았다. 병행 13장 art 작업과 직접 에셋 충돌은 없다. 부모 통합 시 주의할 파일은 `shared/build.mjs`/`shared/web-build.mjs`의 공통 로딩 순서, `content.js`의 인물 소개, `main.js`의 완료 요약 한 지점, `rest-journey.js`의 도입 선택, `story-staging.js`의 구 저장 정의 선택이다. 이 파일에 다른 변경이 있다면 기능 단위로 합친다. 생성 HTML/web은 부모의 최종 소스로 다시 빌드하며 이 브랜치에는 생성물을 커밋하지 않는다.
 
 브랜치 커밋과 원격 push만 수행했다. master 병합·Pages 배포는 하지 않았다. 기술 차단은 없으며 부모 최종 검수/통합이 남아 있다.
+
+
+## 6. 부모 검수 보완 · 10장 실제 안전 퇴장 경로
+
+부모가 기존 10장 JPG가 시작 위치의 제어된 대사 배치 fixture임을 지적해, `tests/narrative-safe-outro-browser.py`로 해당 전환만 추가 확인했다. 런타임 결함은 발견하지 않았고 구현·원고는 바꾸지 않았다. 검사 runtime source는 `ccc0a9959b04ac62c93187de16637dc316537f9a`이며 [측정 JSON](evidence/stage10-safe-outro/checks.json)에 원천별 SHA-256과 전환 trace를 남겼다. [실행 결과](evidence/stage10-safe-outro/run.txt).
+
+- 현재 10장 맵을 신규 진입한 뒤 정상 `HonroMission.finale`로 살아 있는 소단을 동맹 의식자로 전환했다. 그 뒤 여섯 방어 라운드 완료 상태(`sodanCoop=true`, `coopHold=6`)만 fixture로 설정했다. 앞선 여섯 라운드 전투를 플레이했다고 주장하지 않는다.
+- 한 동행을 실제 supported exit에 도착시켜 `HonroSodanWithdrawal.tick`의 `escape → withdrawing`을 거쳤다. 이후 실제 frame이 `safe → checkMission(won) → prepareWorldOutro → outcome`을 호출했다. 퇴장 대사를 직접 `sayLines`/`Story.start`로 넣지 않았다.
+- 최종 `phase=won`, `worldOutro=2`, 14턴, `10:safe-exit` 카메라를 확인했다. 살아 있는 소단과 동행 3명이 실제 동쪽 확장 지형의 x=5900/6010/6120/6230에 섰고, 각 y와 실제 world terrain surfaceY의 차이는 0이었다. 남은 적을 제거하지 않았고 가장 가까운 적까지 1596px 이상이었다. HP/MP(focus)/쿨다운은 퇴장 전후 같았다. Play Bounds용 `World.top`의 바깥 좌표 fallback 대신 실제 전체 world terrain 표면을 측정했다.
+- HUD가 숨겨진 실제 worldOutro에서 전장 canvas와 네 배우가 카메라 safe rect 안에 보였다. 검은 별도 stage/backdrop은 없었다. [실제 안전 퇴장 JPG · 390×844](evidence/stage10-safe-outro/stage10-safe-outro-390x844.jpg)를 직접 열어 확인했다. JPG는 1MB 미만이다.
+- 부모 원고 16줄과 실제 effective dialogue 16줄이 모두 일치했고, 살아 있는 일행에서는 **제외된 줄이 없었다**. UI에서 16줄을 실제 순서대로 넘겨 읽고, 마지막 줄(index 15)을 저장한 뒤 reload/Continue로 같은 cursor·16줄·동행 위치·terminal combat을 복원했다. 마지막 서술도 안전 퇴장 카메라를 유지했다.
+- 이전 `8/11` JPG의 11줄은 일반 배치 fixture가 적 편 소단까지 사망 처리한 결과였다. 현재 `Story.allowed`에 소단 부재만 재현하면 원고 index **0, 2, 5, 7, 13**(1부터 세면 1, 3, 6, 8, 14)의 소단 발언 5줄만 제외된다. 이 조건도 별도로 측정하고 즉시 원상 복구했으며 실제 전환 중 소단은 살아 있었다. 원고 누락이나 배열 절단이 아니다.
+- 재개 후 UI의 대화 넘기기로 막 엔딩에 진입했다. 반복 outcome에도 방문 수/정산이 늘지 않았으며, 엔딩을 정상 넘긴 뒤 쉼터에서 실제 10장 보고서 버튼을 눌러 상세 보고서까지 열었다. 완료 방문 수 1, 엔딩 seen, battle=null, 동일한 immutable report/attempt가 보존됐다.
+
+추가 검사는 Chromium 390×844 한 화면과 제어된 후반 목표 상태에 한정한다. 전체 정상 전투·다른 화면비·실물 모바일·Pages 검수로 확대하지 않는다. 기존 일반 10장 문구 JPG는 실제 철수 근거로 쓰지 않으며, 위 전환 근거로 보완한다. master/Pages는 여전히 부모 담당이다.
