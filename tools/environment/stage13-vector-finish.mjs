@@ -15,28 +15,80 @@ export function applyStage13VectorFinish(project){
  const add=(terrainId,id,fill,points)=>planes.push({terrainId,stage13Finish:true,id,fill,points:points.map(p=>p.map(round))});
  const onFloor=(id,fill,ps)=>add(floor.id,id,fill,ps.map(([x,d])=>[x,grade(floor,x)+d]));
  const onRoof=(id,fill,ps)=>add(roof.id,id,fill,ps.map(([x,d])=>[x,grade(roof,x,true)-d]));
+ // Authored stepped shared edges. Both neighbours traverse the same vertices,
+ // so a broken ledge is part of the mother rock rather than a closed sticker.
+ const sharedFace=(keys,nodes,edges)=>keys.flatMap((key,i)=>{const next=keys[(i+1)%keys.length],forward=edges[key+'>'+next],back=edges[next+'>'+key];return[nodes[key],...(forward||back?.slice().reverse()||[])];});
  // Replace the old generic isolated block wash inside each unchanged solid.
  // The shared painter still supplies the real walking lip/rim after these fills.
  add(floor.id,'mother-rock-base','#4b626d',floor.points.map(p=>[p.x,p.y]));
  add(roof.id,'vault-base','#344d5b',roof.points.map(p=>[p.x,p.y]));
- // Four long oblique beds form one mother-rock exposure. Their lower edges
- // are far below the normal camera; no detached stone body or tiled boulder.
- onFloor('bed-west','#5d7076',[[-450,26],[1650,26],[2100,380],[1600,1150],[-450,4200]]);
- onFloor('bed-mason','#526a73',[[1650,26],[3780,26],[4400,600],[3560,1700],[1600,1150],[2100,380]]);
- onFloor('bed-threshold','#455e6b',[[3780,26],[5870,26],[6400,950],[5500,4200],[3560,1700],[4400,600]]);
+ // The west exposure shares its broken bedding down through the whole front,
+ // including the overscan visible in overview. No huge diagonal triangular bed
+ // remains under a thin decorated surface. Junctions and returns are authored
+ // unequally, with different terminations rather than a repeated normalized mesh.
+ onFloor('bed-threshold','#455e6b',[[3270,520],[5870,26],[6400,950],[5500,4200],[3650,1640]]);
  onFloor('bed-inner','#4e6671',[[5870,26],[9100,26],[9100,4200],[5500,4200],[6400,950]]);
- onFloor('deep-bed','#344e5e',[[-450,4200],[1600,1150],[3560,1700],[5500,4200],[9100,4200],[9100,6500],[-450,6500]]);
- // Unequal interlocking cleavages follow the descent and the mason's workface.
- // Shared node names are the shared boundary, not independent capped stones.
- const nodes={A:[780,55],B:[1250,40],C:[1580,220],D:[1940,65],E:[2240,75],F:[2510,220],G:[2880,65],H:[3310,200],K:[900,350],L:[1340,390],M:[1700,500],N:[2110,430],O:[2470,580],P:[2820,430],Q:[3240,650],R:[1760,40],S:[2720,45],T:[3430,50]};
- const cut=(id,color,keys)=>onFloor(id,color,keys.map(k=>nodes[k]));
- cut('entry-left-cleavage','#687d80',['A','B','C','L','K']);
- cut('entry-long-shoulder','#5c737b',['B','R','D','C']);
- cut('entry-fold','#61777d',['C','D','E','N','M','L']);
- cut('mason-front','#708387',['E','S','G','F','N']);
- cut('mason-lower-return','#5b747c',['F','G','P','O','N']);
- cut('mason-east-face','#5f7880',['G','T','H','Q','P']);
- cut('lower-shared-bed','#4d6975',['N','O','Q','P']);
+ const westNodes={
+  a:[-500,40],b:[350,45],c:[900,45],d:[1450,40],e:[2070,65],f:[2720,45],g:[3310,45],
+  h:[-500,420],i:[210,310],j:[720,390],k:[1110,290],l:[1550,410],m:[2100,320],n:[2540,470],o:[2940,330],p:[3400,240],
+  q:[-500,900],r:[80,770],s:[620,690],t:[1000,870],u:[1480,720],v:[1890,950],w:[2350,820],x:[2880,780],y:[3270,520],
+  A:[-400,1450],B:[330,1300],C:[850,1420],D:[1320,1210],E:[1800,1500],F:[2260,1300],G:[2760,1460],H:[3210,1270],I:[3650,1640],
+  J:[-500,2250],K:[100,1900],L:[700,2200],M:[1200,1910],N:[1710,2200],O:[2190,1980],P:[2730,2180],Q:[3270,2010],R:[3800,2230],
+  S:[-450,3200],T:[430,3020],U:[1130,2900],V:[1780,2950],W:[2400,2800],X:[3060,2870],Y:[3900,3000],
+  entryTurn:[1120,550],entrySeat:[1380,580],entryDeep:[990,1130],masonTurn:[1800,580],masonSeat:[2270,530],entryLower:[1450,1030],masonLower:[2070,1100]};
+ const westEdges={
+  'b>i':[[300,160],[330,225]],'d>l':[[1500,160],[1465,240]],
+  'j>k':[[840,404],[1000,346]],'l>m':[[1630,434],[1760,426],[1890,464],[1980,370]],
+  'n>o':[[2710,492],[2790,430]],'i>r':[[170,440],[225,495]],
+  't>u':[[1140,910],[1250,816]],'m>v':[[2100,540],[2015,580],[2050,713],[1940,758]],
+  'w>x':[[2510,840],[2600,785]],'v>E':[[1930,1120],[1835,1230]],
+  'B>C':[[510,1352],[675,1324]],'D>E':[[1440,1260],[1540,1240],[1640,1425]],
+  'F>G':[[2470,1366],[2560,1360]],'G>H':[[2900,1490],[3030,1350]],
+  'B>K':[[280,1545],[340,1630],[190,1750]],'M>N':[[1350,2000],[1470,1960],[1550,2115]],
+  'O>P':[[2380,2030],[2470,2000],[2610,2140]],'Q>R':[[3430,2000],[3520,2110]],
+  'K>T':[[220,2250],[180,2450],[370,2590]],'N>V':[[1620,2370],[1770,2460]],
+  'k>entryTurn':[[1080,390],[1160,420],[1135,490]],'entryTurn>t':[[1150,650],[1060,690]],
+  'entryTurn>entrySeat':[[1240,600],[1300,570]],'l>entrySeat':[[1480,450],[1470,500]],
+  't>entryDeep':[[1070,960],[1020,1025]],'entryDeep>C':[[1010,1215],[915,1260]],
+  'm>masonTurn':[[2020,450],[1910,460]],'masonTurn>v':[[1770,710],[1860,790]],
+  'm>masonSeat':[[2160,400],[2240,414]],'masonSeat>w':[[2250,655],[2330,700]],
+  'u>entryLower':[[1550,850],[1450,890]],'entryLower>D':[[1470,1110],[1380,1140]],
+  'v>masonLower':[[1940,1020],[2015,1025]],'masonLower>F':[[2130,1200],[2220,1215]]};
+ const westFace=(id,fill,keys)=>onFloor('west-bed-'+id,fill,sharedFace(keys,westNodes,westEdges));
+ for(const [id,fill,keys]of [
+  ['outer-shoulder','#5c7379',['a','b','i','h']],['entry-seat','#697e80',['b','c','k','j','i']],
+  ['entry-fold','#60787c',['c','d','l','k']],['mason-shoulder','#6d8081',['d','e','m','l']],
+  ['mason-cleave','#60787f',['e','f','o','n','m']],['mason-return','#59727b',['f','g','p','o']],
+  ['outer-return','#4f6974',['h','i','r','q']],['entry-inset','#57727a',['i','j','s','r']],
+  ['entry-ledge','#6a8082',['j','k','entryTurn','t','s']],['entry-ledge-seat','#60797e',['k','l','entrySeat','entryTurn']],['entry-ledge-return','#526f79',['l','u','t','entryTurn','entrySeat']],
+  ['mason-inset','#536d76',['l','m','v','masonTurn']],['mason-inset-return','#607880',['v','u','l','masonTurn']],
+  ['mason-ledge','#667e81',['m','n','w','masonSeat']],['mason-ledge-return','#58737c',['w','v','m','masonSeat']],['east-return','#5b757e',['n','o','p','y','x','w']],
+  ['outer-bed','#465f6c',['q','r','B','A']],['outer-shoulder-return','#5b747b',['r','s','C','B']],
+  ['entry-deep-fold','#506c76',['s','t','entryDeep','C']],['entry-deep-fold-return','#5a757d',['t','D','C','entryDeep']],
+  ['entry-step','#637b7f',['t','u','entryLower','D']],['entry-step-return','#566f79',['u','v','E','D','entryLower']],
+  ['mason-undercut','#455f6c',['v','w','F','masonLower']],['mason-undercut-return','#516e78',['F','E','v','masonLower']],['mason-backstep','#58727b',['w','x','G','F']],
+  ['gate-return','#4b6773',['x','y','H','G']],['gate-deep-seat','#536e78',['y','p','I','H']],
+  ['outer-shadow','#3c5766',['A','B','K','J']],['outer-step','#526e77',['B','C','L','K']],
+  ['entry-shadow','#435f6c',['C','D','M','L']],['entry-deep-seat','#526d77',['D','E','N','M']],
+  ['central-shadow','#3e5a69',['E','F','O','N']],['central-ledge','#526e78',['F','G','P','O']],
+  ['east-shadow','#425e6c',['G','H','Q','P']],['gate-deep-return','#4c6773',['H','I','R','Q']],
+  ['outer-low','#3b5665',['J','K','T','S']],['entry-low-step','#496570',['K','L','M','U','T']],
+  ['entry-low-shadow','#3a5666',['M','N','V','U']],['mason-low-step','#4a6773',['N','O','W','V']],
+  ['central-low','#3d5969',['O','P','Q','X','W']],['east-low-step','#466370',['Q','R','Y','X']]
+ ])westFace(id,fill,keys);
+ // Several finite cavities belong to the bed junctions. Each terminates into
+ // the neighbouring face and has its own depth; they are not a rim on every face.
+ onFloor('west-entry-recess','#2d4856',[[720,390],[840,404],[1000,346],[1110,290],[1085,342],[1020,388],[810,472],[751,447]]);
+ onFloor('west-entry-lip','#88978e',[[720,390],[840,404],[1000,346],[1110,290],[1090,314],[1004,365],[841,425],[743,408]]);
+ onFloor('west-mason-recess','#2a4656',[[1550,410],[1630,434],[1760,426],[1890,464],[1840,521],[1650,507],[1585,470]]);
+ onFloor('west-central-split','#294452',[[1890,950],[1930,948],[1975,1080],[2070,1130],[2125,1290],[2090,1260],[2022,1158],[1930,1120]]);
+ onFloor('west-deep-pocket','#2b4858',[[330,1300],[510,1352],[675,1324],[850,1420],[786,1493],[643,1430],[470,1454],[370,1380]]);
+ onFloor('west-deep-seat','#6f8586',[[330,1300],[510,1352],[675,1324],[850,1420],[815,1434],[670,1353],[511,1376],[365,1328]]);
+ onFloor('west-mason-low-pocket','#2b4858',[[2260,1300],[2470,1366],[2560,1360],[2760,1460],[2700,1550],[2550,1443],[2390,1446],[2280,1365]]);
+ onFloor('west-east-joint','#2b4857',[[2880,780],[2910,789],[2860,962],[2940,1055],[2960,1190],[2916,1151],[2893,1066],[2817,978]]);
+ onFloor('west-entry-inner-pocket','#314e5b',[[1150,650],[1060,690],[1040,790],[1000,870],[1050,845],[1090,737],[1178,699]]);
+ onFloor('west-mason-inner-pocket','#304c59',[[2100,320],[2020,450],[1910,460],[1800,580],[1840,574],[1950,502],[2050,492],[2120,375]]);
+ onFloor('west-mason-inner-seat','#81918c',[[2100,320],[2020,450],[1910,460],[1800,580],[1825,570],[1920,477],[2030,469],[2100,351]]);
  // The threshold bed is stepped, not a full-width repeated horizontal stripe.
  onFloor('threshold-seat','#6d8083',[[3440,35],[3740,32],[3970,140],[4330,105],[4530,225],[4210,360],[3820,325],[3600,190]]);
  onFloor('threshold-foundation','#526e78',[[3970,140],[4330,105],[4710,35],[4970,70],[4830,410],[4530,490],[4210,360],[4530,225]]);
@@ -45,14 +97,6 @@ export function applyStage13VectorFinish(project){
  onFloor('gallery-deep','#405d6d',[[5050,440],[5320,390],[5570,470],[5800,430],[6100,750],[5710,1080],[5180,970]]);
  onFloor('inner-turn','#607b80',[[6210,70],[6480,45],[6700,220],[6560,460],[6270,510],[6070,270]]);
  onFloor('inner-level-bed','#546f78',[[6700,220],[6980,55],[7420,55],[7710,210],[7370,470],[6950,520],[6560,460]]);
- const fissure=(fn,id,ps,fill='#2f4a57')=>fn(id,fill,ps);
- fissure(onFloor,'entry-short-cleft',[[1580,220],[1597,218],[1530,310],[1550,365],[1535,375],[1510,309]]);
- fissure(onFloor,'mason-joint',[[2240,75],[2254,77],[2210,220],[2118,428],[2102,430],[2190,215]]);
- fissure(onFloor,'threshold-joint',[[4330,105],[4346,111],[4535,220],[4470,292],[4453,295],[4517,227]]);
- fissure(onFloor,'gallery-short-joint',[[5480,190],[5496,192],[5425,285],[5330,388],[5316,390],[5407,277]]);
- onFloor('entry-edge-light','#a2aaa36a',[[1250,40],[1265,43],[1580,218],[1577,230],[1430,142]]);
- onFloor('mason-edge-light','#9ca99b5b',[[2110,430],[2240,400],[2470,580],[2454,582],[2240,415]]);
- onFloor('threshold-edge-light','#a6aaa35b',[[3740,32],[3970,140],[3960,151],[3741,47]]);
  // The gate forecourt is a stepped exposure, not four pale full-screen facets.
  // Unequal shared junctions describe bedding interrupted by substantial breaks.
  const gateNodes={a:[3310,45],b:[3780,35],c:[4210,35],d:[4780,35],e:[5110,45],f:[5680,45],g:[6050,50],h:[6500,65],
@@ -76,36 +120,76 @@ export function applyStage13VectorFinish(project){
  onFloor('gate-seat-pocket','#2f4957',[[4330,180],[4362,194],[4520,290],[4625,313],[4670,430],[4613,390],[4585,338],[4480,316],[4350,237]]);
  onFloor('gate-gallery-pocket','#2a4655',[[5300,550],[5400,526],[5545,537],[5690,460],[5705,495],[5565,587],[5420,574],[5340,599]]);
  onFloor('gate-gallery-ledge','#778782',[[5300,550],[5400,526],[5545,537],[5690,460],[5705,473],[5550,555],[5400,542],[5320,567]]);
- // The old doorway ceiling stays the only silhouette. Broad reverse-dipping
- // planes link its nose to the darker inner vault; joints are finite fragments.
- add(roof.id,'vault-west','#405864',[[3820,-800],[4900,-1000],[5560,900],[5300,2200],[4760,3100],[4200,2600]]);
- add(roof.id,'vault-central','#4c626b',[[4900,-1000],[6400,-1500],[7200,0],[6500,1500],[5800,2900],[5300,2200],[5560,900]]);
- add(roof.id,'vault-east','#374f5d',[[6400,-1500],[9300,-2100],[9300,3600],[6800,2700],[5800,2900],[6500,1500],[7200,0]]);
- onRoof('nose-front','#637880',[[3960,80],[4260,45],[4450,170],[4430,470],[4150,620],[4050,330]]);
- onRoof('nose-seat','#526c77',[[4260,45],[4540,50],[4830,260],[4670,540],[4430,470],[4450,170]]);
- onRoof('lintel-mother-rock','#6a7d82',[[4540,50],[4840,38],[5100,180],[5000,430],[4830,260]]);
- onRoof('vault-west-bed','#58727c',[[4840,38],[5270,55],[5390,280],[5200,490],[5000,430],[5100,180]]);
- onRoof('vault-inner-bed','#4c6875',[[5270,55],[5660,40],[5820,230],[5660,440],[5390,280]]);
- onRoof('vault-shoulder','#5a737e',[[5660,40],[6000,55],[6200,330],[5980,520],[5820,230]]);
- onRoof('vault-recess','#3e5c6c',[[6000,55],[6380,45],[6740,150],[6560,480],[6200,330]]);
- onRoof('nose-joint','#243f4f',[[4430,470],[4445,470],[4470,330],[4458,165],[4445,170],[4451,330]]);
- onRoof('vault-joint','#304d5c',[[5100,180],[5114,180],[5180,310],[5209,486],[5194,490],[5164,315]]);
- onRoof('vault-edge-light','#9da99f5b',[[4540,50],[4549,64],[4830,270],[4830,260],[4700,151]]);
+ // The unchanged ceiling silhouette is filled by connected courses below;
+ // the former three enormous triangular vault layers are no longer authored.
  // Offset vault courses continue into the mother rock above the lintel.
  // Shared irregular edges replace the enormous triangular front planes locally.
  const vaultNodes={a:[4120,35],b:[4540,40],c:[4950,35],d:[5500,40],e:[5860,50],f:[6380,45],g:[6780,75],
   h:[4220,350],i:[4650,300],j:[5070,520],k:[5660,330],l:[6030,420],m:[6590,290],n:[6870,400],
   o:[4150,830],p:[4630,990],q:[5260,810],r:[5660,1040],s:[6250,940],t:[6680,850],
   u:[4280,1460],v:[4860,1570],w:[5400,1440],x:[5940,1540],y:[6510,1500],z:[7040,1450]};
- const vaultFace=(id,fill,keys)=>onRoof('vault-course-'+id,fill,keys.map(k=>vaultNodes[k]));
+ Object.assign(vaultNodes,{
+  aa:[7140,45],ab:[7630,60],ac:[8120,60],ad:[8650,50],ae:[9300,50],
+  ba:[7250,410],bb:[7820,520],bc:[8350,390],bd:[8940,480],be:[9400,400],
+  ca:[7140,970],cb:[7700,1040],cc:[8270,890],cd:[8860,1120],ce:[9500,1000],
+  da:[7480,1520],db:[8000,1630],dc:[8600,1440],dd:[9220,1650],
+  qa:[4200,2200],qb:[4800,2360],qc:[5360,2100],qd:[5920,2260],qe:[6470,2140],qf:[7030,2400],qg:[7590,2200],qh:[8220,2340],qi:[8800,2200],qj:[9360,2350],
+  ra:[4280,3100],rb:[4890,3250],rc:[5500,3040],rd:[6100,3260],re:[6710,3180],rf:[7300,3270],rg:[7940,3150],rh:[8580,3330],ri:[9250,3120],
+  seamTurn:[5450,650],throatTurn:[5970,710],eastTurn:[6440,600],turnSeat:[6660,1250],eastSeat:[6200,1200],throatSeat:[5510,1260],crownSeat:[6240,1780],outerSeat:[7220,1230]});
+ const vaultEdges={
+  'u>v':[[4410,1530],[4580,1490]],'v>w':[[4930,1550],[5140,1710],[5260,1750]],
+  'x>y':[[6100,1580],[6230,1510]],'z>da':[[7160,1545],[7300,1455]],
+  'cb>cc':[[7790,1060],[7950,1000],[8090,1010]],'ba>ca':[[7330,610],[7210,720]],
+  'bc>cc':[[8290,530],[8370,635],[8250,750]],'db>dc':[[8180,1640],[8310,1510],[8460,1550]],
+  'qb>qc':[[4970,2390],[5100,2280]],'qd>qe':[[6030,2300],[6170,2230],[6310,2250]],
+  'qf>qg':[[7180,2440],[7310,2280],[7430,2310]],'qh>qi':[[8380,2380],[8500,2240]],
+  'v>qb':[[4840,1800],[4890,1900],[4770,2100]],'y>qe':[[6550,1740],[6545,1850],[6440,1980]],
+  'da>qg':[[7540,1750],[7470,1890],[7580,2010]],'qh>rh':[[8250,2550],[8400,2620],[8320,2820]],
+  'ra>rb':[[4430,3140],[4560,3060],[4700,3190]],'rc>rd':[[5660,3140],[5820,3090]],
+  're>rf':[[6890,3210],[7030,3160],[7160,3260]],'rg>rh':[[8120,3280],[8280,3220]],
+  'k>seamTurn':[[5630,490],[5490,520],[5500,580]],'seamTurn>q':[[5410,720],[5330,720]],
+  'l>throatTurn':[[6090,500],[6050,590],[5960,610]],'throatTurn>r':[[5850,800],[5800,915]],
+  'm>eastTurn':[[6540,430],[6440,465]],'eastTurn>s':[[6360,735],[6400,800],[6290,850]],
+  'r>throatSeat':[[5680,1125],[5580,1140]],'throatSeat>w':[[5480,1340],[5420,1370]],
+  's>eastSeat':[[6320,1040],[6270,1120]],'eastSeat>x':[[6130,1325],[6060,1330],[6010,1450]],
+  'y>turnSeat':[[6600,1420],[6580,1340]],'turnSeat>t':[[6730,1070],[6660,1000]],
+  'ca>outerSeat':[[7250,1050],[7180,1100]],'outerSeat>z':[[7150,1345],[7070,1360]],
+  'y>crownSeat':[[6410,1560],[6450,1665],[6320,1690]],'crownSeat>qd':[[6150,1930],[6040,1930],[6020,2100]]};
+ const vaultFace=(id,fill,keys)=>onRoof('vault-course-'+id,fill,sharedFace(keys,vaultNodes,vaultEdges));
  for(const [id,fill,keys]of [
   ['nose','#5e737b',['a','b','i','h']],['lintel','#61767c',['b','c','j','i']],['east-seat','#526b76',['c','d','k','j']],['throat','#5b727c',['d','e','l','k']],['recess','#486371',['e','f','m','l']],['turn','#526b77',['f','g','n','m']],
-  ['west-upper','#405a68',['h','i','p','o']],['lintel-upper','#4a6470',['i','j','q','p']],['seam-upper','#425e6c',['j','k','r','q']],['throat-upper','#4c6672',['k','l','s','r']],['east-upper','#405d6c',['l','m','t','s']],
-  ['west-high','#4c626d',['o','p','v','u']],['central-high','#405b69',['p','q','w','v']],['throat-high','#4a626e',['q','r','x','w']],['east-high','#3d5969',['r','s','y','x']],['turn-high','#465f6d',['s','t','z','y']]
+  ['west-upper','#405a68',['h','i','p','o']],['lintel-upper','#4a6470',['i','j','q','p']],
+  ['seam-upper','#425e6c',['j','k','seamTurn','q']],['seam-upper-return','#4e6975',['k','r','q','seamTurn']],
+  ['throat-upper','#4c6672',['k','l','throatTurn','r']],['throat-upper-return','#59737b',['l','s','r','throatTurn']],
+  ['east-upper','#405d6c',['l','m','eastTurn','s']],['east-upper-return','#4b6875',['m','t','s','eastTurn']],
+  ['west-high','#4c626d',['o','p','v','u']],['central-high','#405b69',['p','q','w','v']],
+  ['throat-high','#4a626e',['q','r','throatSeat','w']],['throat-high-return','#56717b',['r','x','w','throatSeat']],
+  ['east-high','#3d5969',['r','s','eastSeat','x']],['east-high-return','#4b6875',['s','y','x','eastSeat']],
+  ['turn-high','#465f6d',['s','t','turnSeat','y']],['turn-high-return','#536e79',['t','z','y','turnSeat']],
+  ['outer-nose','#5c737d',['g','aa','ba','n']],['outer-seat','#526d79',['aa','ab','bb','ba']],['outer-return','#5d757d',['ab','ac','bc','bb']],['far-nose','#496675',['ac','ad','bd','bc']],['far-seat','#526c78',['ad','ae','be','bd']],
+  ['outer-inset','#3d5a69',['n','ba','ca','t']],['outer-fold','#4a6673',['ba','bb','cb','ca']],['outer-shoulder','#536d78',['bb','bc','cc','cb']],['far-inset','#3e5b6c',['bc','bd','cd','cc']],['far-return','#486572',['bd','be','ce','cd']],
+  ['outer-high','#46616e',['t','ca','outerSeat','z']],['outer-high-return','#526d77',['ca','da','z','outerSeat']],['outer-high-step','#516b75',['ca','cb','db','da']],['far-high','#3b5869',['cb','cc','dc','db']],['far-high-step','#48636f',['cc','cd','ce','dd','dc']],
+  ['west-crown','#3a5665',['u','v','qb','qa']],['crown-shoulder','#4c6570',['v','w','qc','qb']],['crown-step','#425d6b',['w','x','qd','qc']],
+  ['central-crown','#526a73',['x','y','crownSeat','qd']],['central-crown-step','#425e6e',['y','qe','qd','crownSeat']],['central-crown-return','#3b5969',['y','z','qf','qe']],
+  ['outer-crown','#4b6571',['z','da','qg','qf']],['outer-crown-inset','#3d5a6b',['da','db','qh','qg']],['far-crown','#4c6672',['db','dc','qi','qh']],['far-crown-return','#3d5869',['dc','dd','qj','qi']],
+  ['west-upper-cut','#4b626e',['qa','qb','rb','ra']],['upper-inset','#3c5767',['qb','qc','rc','rb']],['upper-step','#4a6470',['qc','qd','rd','rc']],['upper-central','#3d5869',['qd','qe','re','rd']],
+  ['upper-fold','#4b6470',['qe','qf','rf','re']],['upper-outer','#405c6c',['qf','qg','rg','rf']],['upper-return','#4d6672',['qg','qh','rh','rg']],['upper-far','#3c5869',['qh','qi','qj','ri','rh']]
  ])vaultFace(id,fill,keys);
  onRoof('vault-lintel-cavity','#233d4b',[[4540,40],[4650,300],[4800,340],[5100,430],[5060,355],[4840,284],[4680,245]]);
  onRoof('vault-east-cavity','#284554',[[5440,40],[5570,330],[5770,386],[6030,420],[5970,350],[5750,321],[5610,285]]);
  onRoof('vault-seated-edge','#82918d',[[4540,40],[4565,60],[4675,277],[4840,313],[4800,340],[4650,300]]);
+ // Finite recesses connect high courses to the same lower vault; no isolated
+ // suspended blocks, repeated rim stamps or tiny crack/particle texture.
+ onRoof('vault-crown-pocket','#243f50',[[4860,1570],[4930,1550],[5140,1710],[5260,1750],[5290,1820],[5100,1800],[4920,1630]]);
+ onRoof('vault-crown-ledge','#748b89',[[4860,1570],[4930,1550],[5140,1710],[5260,1750],[5250,1780],[5117,1743],[4900,1599]]);
+ onRoof('vault-crown-split','#233e4e',[[6470,2140],[6510,2152],[6500,1990],[6600,1870],[6570,1720],[6550,1740],[6545,1850],[6440,1980]]);
+ onRoof('vault-outer-pocket','#294757',[[7700,1040],[7790,1060],[7950,1000],[8090,1010],[8270,890],[8240,955],[8090,1090],[7890,1120],[7790,1135]]);
+ onRoof('vault-outer-seat','#7b908d',[[7700,1040],[7790,1060],[7950,1000],[8090,1010],[8270,890],[8250,918],[8095,1042],[7955,1031],[7795,1093]]);
+ onRoof('vault-upper-pocket','#284555',[[5920,2260],[6030,2300],[6170,2230],[6310,2250],[6470,2140],[6430,2200],[6300,2330],[6150,2304],[6030,2355]]);
+ onRoof('vault-far-joint','#233f50',[[8220,2340],[8250,2340],[8290,2175],[8410,2040],[8390,1860],[8350,1885],[8360,2015],[8220,2150]]);
+ onRoof('vault-throat-inner-pocket','#294757',[[6250,940],[6320,1040],[6270,1120],[6200,1200],[6205,1250],[6310,1155],[6380,1100],[6360,1030]]);
+ onRoof('vault-throat-inner-seat','#738c89',[[6250,940],[6320,1040],[6270,1120],[6200,1200],[6210,1215],[6300,1135],[6340,1050]]);
+ onRoof('vault-turn-inner-pocket','#2a4859',[[6510,1500],[6600,1420],[6580,1340],[6660,1250],[6680,1260],[6630,1360],[6660,1460],[6550,1540]]);
  // Small existing solid ledges retain their live thickness and paths.
  for(const id of ['tactical-entry-shoulder','tactical-inner-gallery']){
   const t=stage.terrains.find(t=>t.id===id),top=t.points.slice(0,t.properties.honroWalkEdges.length+1),last=top.at(-1),first=top[0],mid=top[2];

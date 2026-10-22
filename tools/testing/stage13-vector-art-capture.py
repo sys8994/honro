@@ -7,6 +7,7 @@ from story_browser_server import story_base_url
 label=sys.argv[1];group=sys.argv[2] if len(sys.argv)>2 else 'preview'
 out=ROOT/'_local/reports/stage13-vector-art'/label;out.mkdir(parents=True,exist_ok=True)
 views=[('overview',4100,3450,.17,1440,900,'whole'),('entry',1760,3200,.5,1440,900,'detail'),('gate',4820,3800,.45,1440,900,'detail'),('inner',5800,4220,.5,1440,900,'detail'),('mason',2670,3380,.85,1440,900,'detail'),('mobile-gate',4440,3820,.55,390,844,'camera'),('mobile-mason',2450,3340,.5,390,844,'camera'),('max-gate',4450,3850,1.65,1440,900,'camera')]
+views += [('west-middle',1750,4070,.3,1440,900,'mass-middle'),('vault-middle',6350,2500,.3,1440,900,'mass-middle'),('west-near',1700,3950,.6,1440,900,'mass-near'),('vault-near',6500,2400,.55,1440,900,'mass-near'),('west-mobile',2100,3700,.45,390,844,'mass-near')]
 with sync_playwright() as pw:
  b=pw.chromium.launch(executable_path=shutil.which('chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage']);p=b.new_page(viewport={'width':1440,'height':900});errors=[];http=[]
  p.on('pageerror',lambda e:errors.append(str(e)));p.on('response',lambda r:http.append({'url':r.url,'status':r.status})if r.status>=400 else None)
@@ -22,7 +23,8 @@ with sync_playwright() as pw:
   if group=='preview' and name not in ['overview','entry','gate']:continue
   if group=='opened' and name not in ['gate','inner','mobile-gate']:continue
   if group=='final' and name not in ['overview','gate','mobile-mason']:continue
-  if group not in ['preview','all','opened','final'] and group!=focus:continue
+  if group=='mass-final' and name not in ['overview','gate','west-mobile']:continue
+  if group not in ['preview','all','opened','final','mass-final'] and group!=focus:continue
   p.set_viewport_size({'width':w,'height':h});p.wait_for_timeout(100)
   p.evaluate('HonroApp.scene.render(HonroApp.engine,0,"",.6,false,0)')
   row=p.evaluate('''v=>{const a=HonroApp,s=a.scene,b=a.engine.b;Object.assign(s,{manual:true,x:v.x,y:v.y,scale:v.z,time:10,storyTween:null,goalFocus:null,cinematic:null,editorView:v.name==='overview',skillPreview:v.name==='overview'});for(let i=0;i<3;i++)s.render(a.engine,0,'',.6,false,0);return{camera:[s.x,s.y,s.scale],viewport:[v.w,v.h],limits:HonroBounds.zoomLimits(v.w),phase:b.phase,objective:HonroAct2.current(b)?.id,far:HonroAuthoredFarArt.frames(s,v.w,v.h,b).map(x=>({key:x.key,alpha:x.alpha})),actors:b.units.filter(u=>u.side===0||u.id==='resident-1').map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp})),cache:s.renderCacheStats()};}''',dict(name=name,x=x,y=y,z=z,w=w,h=h))

@@ -8,6 +8,11 @@ import {runtimeParts} from '../shared/build.mjs';
 import {applyStage13VectorFinish} from '../tools/environment/stage13-vector-finish.mjs';
 const base='934fcabd74767d662aee3830585ba807234934cc',before=JSON.parse(execFileSync('git',['show',base+':shared/data/campaign.json'],{maxBuffer:40*1024*1024})),after=JSON.parse(await readFile('shared/data/campaign.json','utf8'));
 const hash=v=>createHash('sha256').update(JSON.stringify(v)).digest('hex');
+const shape3=JSON.parse(execFileSync('git',['show','c32a272407a2678003c2df4cab8e85cdd38a4bdf:shared/data/campaign.json'],{maxBuffer:40*1024*1024}));
+const outsideMasses=structuredClone(after);
+outsideMasses.stages[12].design.space.terrainPlanes=shape3.stages[12].design.space.terrainPlanes;
+outsideMasses.stages[12].design.stoneFinish.planeCount=shape3.stages[12].design.stoneFinish.planeCount;
+assert.equal(hash(outsideMasses),hash(shape3),'Shape3 door, Library, placements and all gameplay remain exactly unchanged');
 const variants=after.stages[12].design.stoneFinish.variants,reverse=new Map(variants.map(v=>[v.id,v.baseId]));
 const protectedStage=s=>{s=structuredClone(s);delete s.design.stoneFinish;delete s.design.space.terrainPlanes;s.elements=s.elements.filter(e=>!e.stage13Finish);s.design.space.scenery=s.design.space.scenery.filter(e=>!e.stage13Finish);for(const e of [...s.elements,...s.design.space.scenery])if(reverse.has(e.assetId))e.assetId=reverse.get(e.assetId);return s;};
 for(let i=0;i<before.stages.length;i++)assert.deepEqual(i===12?protectedStage(after.stages[i]):after.stages[i],i===12?protectedStage(before.stages[i]):before.stages[i],'Protected chapter '+(i+1));
@@ -45,5 +50,5 @@ allocations=0;for(let i=0;i<3;i++)for(const[t,q]of prepared){assert.equal(q,art.
 assert.equal(JSON.stringify(b),original,'Material rendering mutates battle');assert.equal(c.globalAlpha,1);const m=c.getTransform();assert([m.a,m.b,m.c,m.d,m.e,m.f].every((v,i)=>Math.abs(v-[.1,0,0,.1,0,0][i])<1e-7));
 const[t,q]=prepared[0];assert.notEqual(q,art.prepareTerrain(t,{...b,sceneVersion:b.sceneVersion+1}));
 for(const v of variants){const asset=project.library.find(a=>a.id===v.id);assert.deepEqual(Array.from(g.HonroVectorArt.validate(asset.vector)),[],v.id);}
-const report={pass:true,base,stage13ProtectedBefore:hash(protectedStage(before.stages[12])),stage13ProtectedAfter:hash(protectedStage(after.stages[12])),terrainBefore:hash(before.stages[12].terrains),terrainAfter:hash(after.stages[12].terrains),unitsBefore:hash(before.stages[12].units),unitsAfter:hash(after.stages[12].units),other29Equal:true,oldLibraryEqual:true,newNonCollidingVariants:variants,purity:true,staticPathReuse:true,cachedDrawPathAllocations:warmAllocations,sceneVersionInvalidation:true,prepared:counts,baselineComparison};
+const report={pass:true,base,shape3OnlyTerrainArtChanged:true,shape3LibraryAndPlacementsEqual:true,stage13ProtectedBefore:hash(protectedStage(before.stages[12])),stage13ProtectedAfter:hash(protectedStage(after.stages[12])),terrainBefore:hash(before.stages[12].terrains),terrainAfter:hash(after.stages[12].terrains),unitsBefore:hash(before.stages[12].units),unitsAfter:hash(after.stages[12].units),other29Equal:true,oldLibraryEqual:true,newNonCollidingVariants:variants,purity:true,staticPathReuse:true,cachedDrawPathAllocations:warmAllocations,sceneVersionInvalidation:true,prepared:counts,baselineComparison};
 await mkdir('_local/reports/stage13-vector-art',{recursive:true});await writeFile('_local/reports/stage13-vector-art/preservation.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report));
