@@ -21,4 +21,37 @@ with sync_playwright() as pw:
  info=p.evaluate('''()=>{const a=HonroApp,b=a.engine.b,goal=HonroAct2.current(b),m=b.honroMarkers.find(m=>m.id===goal?.id),s=a.scene;a.close();a.updateHUD(true);Object.assign(s,{manual:true,x:m?.x||(b.honroStage===17?8530:5650),y:(m?.y||(b.honroStage===17?4580:4250))-100,scale:.4,goalFocus:null,cinematic:null,storyTween:null});s.render(a.engine,0,'',.6,false,0);return{round:b.round,phase:b.phase,goal:goal?.id,done:HonroAct2.memory(b).done,camera:[s.x,s.y,s.scale],heroes:b.units.filter(u=>u.side===0).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,focus:u.focus,moveLeft:u.moveLeft,dead:u.dead})),enemies:b.units.filter(u=>u.side===1&&!u.dead&&u.hp>0).length}}''')
  p.screenshot(path=str(out/'actual-stop.jpg'),type='jpeg',quality=85);assert(out/'actual-stop.jpg').stat().st_size<1_000_000
  assert json.loads(p.evaluate('JSON.stringify(HonroApp.engine.b)'))==actual,'Inspection render changed gameplay'
- result={'checkedCommit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'input':str(path.relative_to(ROOT)),'inputSha256':hashlib.sha256(path.read_bytes()).hexdigest(),'wholeBattleContinueExact':True,'renderPure':True,'scope':__doc__,'view':info,'errors':errors,'httpFailures':http};(out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');assert not errors,errors;assert not http,http;browser.close();print('PASS actual normal-input checkpoint browser Continue whole battle exact, render pure; errors0')
+ lifecycle=None
+ if len(sys.argv)>3 and sys.argv[3]=='outcome':
+  assert actual['phase']=='won'
+  p.evaluate('HonroApp.outcome()')
+  assert p.evaluate('!!HonroApp.dialogue'),'Ordinary outro must display'
+  p.screenshot(path=str(out/'actual-outro.jpg'),type='jpeg',quality=85)
+  dialogue=[]
+  def finish_story():
+   for _ in range(50):
+    if not p.evaluate('!!HonroApp.dialogue'):return
+    dialogue.append(p.evaluate('({title:HonroApp.dialogue.title,index:HonroApp.dialogue.index,line:HonroApp.dialogue.lines[HonroApp.dialogue.index]})'))
+    p.locator('[data-action=dialogue-next]').click()
+    p.wait_for_timeout(30)
+   assert not p.evaluate('!!HonroApp.dialogue')
+  finish_story()
+  assert p.evaluate('HonroApp.done&&HonroApp.profile.cleared[17].visits===1')
+  earned=p.evaluate('JSON.stringify(HonroApp.profile.heroes)')
+  p.evaluate('HonroApp.outcome()')
+  assert p.evaluate('HonroApp.profile.cleared[17].visits===1')
+  assert p.evaluate('JSON.stringify(HonroApp.profile.heroes)')==earned
+  p.locator('[data-action=result-continue]').click();p.wait_for_timeout(350);finish_story()
+  p.wait_for_function('HonroApp.screen==="rest"||HonroApp.engine?.b.honroStage===18')
+  if p.evaluate('HonroApp.screen==="rest"'):
+   p.locator('[data-action=journey-enter][data-id="18"]').click()
+  p.wait_for_function('HonroApp.engine?.b.honroStage===18',timeout=90000);finish_story()
+  assert p.evaluate('JSON.stringify(HonroApp.engine.b.heroes)')==earned
+  next_battle=p.evaluate('JSON.stringify(HonroApp.engine.b)')
+  with p.expect_download() as download_info:p.evaluate('HonroApp.export()')
+  exported=json.loads(Path(download_info.value.path()).read_text())
+  p.evaluate('v=>{const a=HonroApp;a.profile=v;a.normalProfile=v;a.continue();}',exported)
+  p.wait_for_function('HonroApp.engine?.b.honroStage===18')
+  assert p.evaluate('JSON.stringify(HonroApp.engine.b)')==next_battle
+  lifecycle={'ordinaryOutroDisplayed':True,'dialogue':dialogue,'rewardOnce':True,'stage18Arrived':True,'growthExact':True,'stage18ExportContinueWholeBattleExact':True,'scope':'Actual saved R17 ending restored; no new combat replay.'}
+ result={'checkedCommit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'input':str(path.relative_to(ROOT)),'inputSha256':hashlib.sha256(path.read_bytes()).hexdigest(),'wholeBattleContinueExact':True,'renderPure':True,'lifecycle':lifecycle,'scope':__doc__,'view':info,'errors':errors,'httpFailures':http};(out/'result.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');assert not errors,errors;assert not http,http;browser.close();print('PASS actual normal-input checkpoint browser Continue whole battle exact, render pure; errors0')
