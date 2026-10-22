@@ -1,0 +1,5188 @@
+{
+  "gameSourceForPolicyComparison": "6544b7da6783703b7c6d65ecc88f38023bb44322",
+  "policyComparisonCommit": "dc5c6994a43e5d83178571b4952b6ad0953d1533",
+  "routeSourceAndCheckCommit": "5be0be1106aedb977847651c338b681a12d07eca",
+  "onlyOnePolicyVariant": true,
+  "sameInitialParameters": [
+    "units",
+    "terrain",
+    "seed",
+    "rng",
+    "heroes",
+    "items",
+    "honroActiveLimit"
+  ],
+  "sameInitialParametersExact": true,
+  "sameGameProjectAndRuntimeExact": true,
+  "baseline": {
+    "round": 29,
+    "phase": "won",
+    "steps": {
+      "clear-works": true,
+      "brace": true,
+      "hoist": true,
+      "repair": true,
+      "hold-hoist": true,
+      "clear-lift": true,
+      "notes": true
+    },
+    "heroes": [
+      {
+        "cls": "archer",
+        "hp": 0,
+        "maxHp": 790,
+        "dead": true,
+        "x": 1371.176517142541,
+        "y": 4327.388242742806
+      },
+      {
+        "cls": "mage",
+        "hp": 829,
+        "maxHp": 855,
+        "dead": false,
+        "x": 7086.056219707742,
+        "y": 4710.025554412609
+      },
+      {
+        "cls": "knight",
+        "hp": 1267.0400000000002,
+        "maxHp": 1382,
+        "dead": false,
+        "x": 8543.77227378927,
+        "y": 4580
+      },
+      {
+        "cls": "occultist",
+        "hp": 972,
+        "maxHp": 999,
+        "dead": false,
+        "x": 7322.495204942242,
+        "y": 4761.667732235058
+      }
+    ],
+    "hold": {
+      "progress": 3,
+      "spawned": 0,
+      "lastRound": 29,
+      "enteredRound": 26,
+      "continuous": true,
+      "contributionGuards": [
+        "p-knight"
+      ],
+      "guarded": true,
+      "contested": false
+    },
+    "initialEnemies": 50,
+    "deaths": 25,
+    "actualBirths": 6,
+    "actionCounts": {
+      "move": 16,
+      "fire": 70,
+      "heal-stake": 5,
+      "E": 2,
+      "defend": 9,
+      "jump": 6,
+      "land": 9
+    },
+    "movementCost": 21853.88163490171,
+    "movementByHero": {
+      "archer": 1053.3537304518834,
+      "mage": 7154.618509930655,
+      "knight": 6447.7685649075975,
+      "occultist": 7198.140829611574
+    },
+    "shootingByGoal": {
+      "clear-works": {
+        "shots": 24,
+        "fixedGoalTargetShots": 24,
+        "otherTargetShots": 0
+      },
+      "hoist": {
+        "shots": 32,
+        "fixedGoalTargetShots": 6,
+        "otherTargetShots": 26
+      },
+      "repair": {
+        "shots": 10,
+        "fixedGoalTargetShots": 0,
+        "otherTargetShots": 10
+      },
+      "hold-hoist": {
+        "shots": 4,
+        "fixedGoalTargetShots": 0,
+        "otherTargetShots": 4
+      }
+    },
+    "targets": {
+      "a2-enemy-0": 3,
+      "a2-enemy-1": 4,
+      "a2-enemy-2": 2,
+      "ws-west-screen": 3,
+      "ws-brace-cart": 3,
+      "a2-enemy-3": 4,
+      "ws-brace-captain": 5,
+      "a2-enemy-4": 2,
+      "a2-enemy-6": 2,
+      "event-56": 3,
+      "a2-enemy-5": 2,
+      "ws-west-cart-screen": 3,
+      "event-58": 2,
+      "ws-brace-bat": 2,
+      "act2-hoist": 6,
+      "event-57": 4,
+      "ws-upper-lantern": 3,
+      "ws-upper-bat": 1,
+      "ws-core-brace": 3,
+      "a2-enemy-10": 1,
+      "ws-core-foreman": 4,
+      "a2-enemy-11": 2,
+      "ws-core-screen": 2,
+      "a2-enemy-16": 3,
+      "a2-enemy-15": 1
+    },
+    "nextStage": {
+      "id": 18,
+      "arrived": true,
+      "rewardOnce": true,
+      "wholeBattleContinueExact": true
+    },
+    "wholeBattleStopContinueExact": true,
+    "externalWrites": [],
+    "recoveries": []
+  },
+  "variant": {
+    "round": 17,
+    "phase": "won",
+    "steps": {
+      "clear-works": true,
+      "brace": true,
+      "hoist": true,
+      "repair": true,
+      "hold-hoist": true,
+      "clear-lift": true,
+      "notes": true
+    },
+    "heroes": [
+      {
+        "cls": "archer",
+        "hp": 347,
+        "maxHp": 790,
+        "dead": false,
+        "x": 8523.053241598955,
+        "y": 4580
+      },
+      {
+        "cls": "mage",
+        "hp": 0,
+        "maxHp": 855,
+        "dead": true,
+        "x": 1838.5970657216965,
+        "y": 4393.85970657217
+      },
+      {
+        "cls": "knight",
+        "hp": 758.5200000000001,
+        "maxHp": 1382,
+        "dead": false,
+        "x": 5050.378714340656,
+        "y": 4782.067969117908
+      },
+      {
+        "cls": "occultist",
+        "hp": 821,
+        "maxHp": 999,
+        "dead": false,
+        "x": 8546.33968012884,
+        "y": 4580
+      }
+    ],
+    "hold": {
+      "progress": 3,
+      "spawned": 3,
+      "lastRound": 17,
+      "enteredRound": 14,
+      "continuous": true,
+      "contributionGuards": [
+        "p-archer",
+        "p-occultist"
+      ],
+      "guarded": true,
+      "contested": false,
+      "waveRound": 15
+    },
+    "initialEnemies": 50,
+    "deaths": 13,
+    "actualBirths": 9,
+    "actionCounts": {
+      "move": 38,
+      "fire": 40,
+      "forward-before-shot": 29,
+      "heal-stake": 1,
+      "defend": 8,
+      "E": 2,
+      "jump": 5,
+      "land": 5
+    },
+    "movementCost": 30125.492794826438,
+    "movementByHero": {
+      "archer": 8674.74566199522,
+      "mage": 1430.2824527051673,
+      "knight": 11373.782461661833,
+      "occultist": 8646.682218464217
+    },
+    "shootingByGoal": {
+      "clear-works": {
+        "shots": 20,
+        "fixedGoalTargetShots": 20,
+        "otherTargetShots": 0
+      },
+      "hoist": {
+        "shots": 11,
+        "fixedGoalTargetShots": 6,
+        "otherTargetShots": 5
+      },
+      "repair": {
+        "shots": 5,
+        "fixedGoalTargetShots": 0,
+        "otherTargetShots": 5
+      },
+      "hold-hoist": {
+        "shots": 4,
+        "fixedGoalTargetShots": 0,
+        "otherTargetShots": 4
+      }
+    },
+    "targets": {
+      "a2-enemy-0": 3,
+      "a2-enemy-1": 2,
+      "a2-enemy-2": 2,
+      "ws-west-screen": 4,
+      "ws-brace-cart": 1,
+      "a2-enemy-3": 4,
+      "ws-brace-captain": 4,
+      "a2-enemy-4": 1,
+      "a2-enemy-6": 2,
+      "ws-west-cart-screen": 1,
+      "act2-hoist": 6,
+      "ws-brace-bat": 1,
+      "ws-core-foreman": 1,
+      "ws-core-front": 1,
+      "a2-enemy-17": 1,
+      "ws-core-cart": 1,
+      "event-38": 3,
+      "event-81": 2
+    },
+    "nextStage": {
+      "id": 18,
+      "arrived": true,
+      "rewardOnce": true,
+      "wholeBattleContinueExact": true
+    },
+    "wholeBattleStopContinueExact": true,
+    "externalWrites": [],
+    "recoveries": []
+  },
+  "baselineCheckpoints": [
+    {
+      "id": "clear-works",
+      "round": 9
+    },
+    {
+      "id": "brace",
+      "round": 9
+    },
+    {
+      "id": "hoist",
+      "round": 21
+    },
+    {
+      "id": "repair",
+      "round": 26
+    },
+    {
+      "id": "hold-hoist",
+      "round": 29
+    },
+    {
+      "id": "clear-lift",
+      "round": 29
+    },
+    {
+      "id": "notes",
+      "round": 29
+    }
+  ],
+  "variantCheckpoints": [
+    {
+      "id": "clear-works",
+      "round": 7
+    },
+    {
+      "id": "brace",
+      "round": 7
+    },
+    {
+      "id": "hoist",
+      "round": 12
+    },
+    {
+      "id": "repair",
+      "round": 14
+    },
+    {
+      "id": "hold-hoist",
+      "round": 17
+    },
+    {
+      "id": "clear-lift",
+      "round": 17
+    },
+    {
+      "id": "notes",
+      "round": 17
+    }
+  ],
+  "variantActions": [
+    {
+      "round": 1,
+      "frame": 397,
+      "goal": {
+        "id": "a2-enemy-0",
+        "x": 1945,
+        "y": 4404.5
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 320,
+        "y": 4300
+      },
+      "to": {
+        "x": 1371.176517142541,
+        "y": 4327.388242742806
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 1,
+      "frame": 397,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "a2-enemy-0",
+      "hpBefore": 843,
+      "angle": 10,
+      "power": 0.37
+    },
+    {
+      "round": 1,
+      "frame": 1091,
+      "turn": 1,
+      "goal": {
+        "id": "a2-enemy-0",
+        "x": 1945,
+        "y": 4404.5
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "mage",
+      "from": {
+        "x": 430,
+        "y": 4300
+      },
+      "to": {
+        "x": 1531.7331021931905,
+        "y": 4353.077296350911
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 1,
+      "frame": 1091,
+      "turn": 1,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "mage",
+      "skill": "M11",
+      "target": "a2-enemy-0",
+      "hpBefore": 451,
+      "angle": -1.844427351854603,
+      "power": 0.6723828097723703
+    },
+    {
+      "round": 1,
+      "frame": 1258,
+      "turn": 2,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "knight",
+      "toward": "a2-enemy-0",
+      "mandatoryIds": [
+        "a2-enemy-0",
+        "a2-enemy-1",
+        "ws-west-screen",
+        "a2-enemy-2",
+        "a2-enemy-3",
+        "ws-brace-cart",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 1783.3333333333333,
+        "y": 4388.333333333333,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-a2-enemy-0",
+        "progress": 1246.4078609704877,
+        "pathLength": 1320.1085195562273
+      }
+    },
+    {
+      "round": 1,
+      "frame": 1732,
+      "turn": 2,
+      "goal": {
+        "id": "forward-a2-enemy-0",
+        "x": 1783.3333333333333,
+        "y": 4388.333333333333
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 540,
+        "y": 4300
+      },
+      "to": {
+        "x": 1770.3567063117134,
+        "y": 4387.035670631171
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 1,
+      "frame": 1732,
+      "turn": 2,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "a2-enemy-0",
+      "hpBefore": 44,
+      "angle": -10.009546628956544,
+      "power": 1
+    },
+    {
+      "round": 1,
+      "frame": 1854,
+      "turn": 3,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "occultist",
+      "toward": "a2-enemy-1",
+      "mandatoryIds": [
+        "a2-enemy-1",
+        "ws-west-screen",
+        "a2-enemy-2",
+        "a2-enemy-3",
+        "ws-brace-cart",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 1625,
+        "y": 4368,
+        "surfaceId": "act2-floor",
+        "id": "forward-a2-enemy-1",
+        "progress": 977.1268956818154,
+        "pathLength": 980.4056226398536
+      }
+    },
+    {
+      "round": 1,
+      "frame": 2241,
+      "turn": 3,
+      "goal": {
+        "id": "forward-a2-enemy-1",
+        "x": 1625,
+        "y": 4368
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 650,
+        "y": 4300
+      },
+      "to": {
+        "x": 1611.62034245607,
+        "y": 4365.859254792971
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 1,
+      "frame": 2241,
+      "turn": 3,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "a2-enemy-1",
+      "hpBefore": 256,
+      "angle": -8.215063890785794,
+      "power": 0.6709216313149596
+    },
+    {
+      "round": 2,
+      "frame": 3166,
+      "turn": 9,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "archer",
+      "toward": "a2-enemy-1",
+      "mandatoryIds": [
+        "a2-enemy-1",
+        "ws-west-screen",
+        "a2-enemy-2",
+        "a2-enemy-3",
+        "ws-brace-cart",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 1465,
+        "y": 4342.4,
+        "surfaceId": "act2-floor",
+        "id": "forward-a2-enemy-1",
+        "progress": 94.96948654489404,
+        "pathLength": 95.01683425295133
+      }
+    },
+    {
+      "round": 2,
+      "frame": 3198,
+      "turn": 9,
+      "goal": {
+        "id": "forward-a2-enemy-1",
+        "x": 1465,
+        "y": 4342.4
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 1371.176517142541,
+        "y": 4327.388242742806
+      },
+      "to": {
+        "x": 1451.669385987619,
+        "y": 4340.267101758019
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 2,
+      "frame": 3198,
+      "turn": 9,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "a2-enemy-1",
+      "hpBefore": 256,
+      "angle": 26,
+      "power": 0.28500000000000003
+    },
+    {
+      "round": 2,
+      "frame": 3476,
+      "turn": 10,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "mage",
+      "toward": "a2-enemy-2",
+      "mandatoryIds": [
+        "ws-west-screen",
+        "a2-enemy-2",
+        "a2-enemy-3",
+        "ws-brace-cart",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 1866.6666666666667,
+        "y": 4396.666666666667,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-a2-enemy-2",
+        "progress": 336.4518420943971,
+        "pathLength": 337.90503036036733
+      }
+    },
+    {
+      "round": 2,
+      "frame": 3608,
+      "turn": 10,
+      "goal": {
+        "id": "forward-a2-enemy-2",
+        "x": 1866.6666666666667,
+        "y": 4396.666666666667
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "mage",
+      "from": {
+        "x": 1531.7331021931905,
+        "y": 4353.077296350911
+      },
+      "to": {
+        "x": 1853.159006599868,
+        "y": 4395.315900659987
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 2,
+      "frame": 3608,
+      "turn": 10,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "mage",
+      "skill": "M11",
+      "target": "a2-enemy-2",
+      "hpBefore": 843,
+      "angle": 4.932537979735235,
+      "power": 0.6705831312753946
+    },
+    {
+      "round": 2,
+      "frame": 3779,
+      "turn": 11,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "knight",
+      "toward": "a2-enemy-2",
+      "mandatoryIds": [
+        "ws-west-screen",
+        "a2-enemy-2",
+        "a2-enemy-3",
+        "ws-brace-cart",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 2200,
+        "y": 4430,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-a2-enemy-2",
+        "progress": 442.0171630702571,
+        "pathLength": 448.5588948080469
+      }
+    },
+    {
+      "round": 2,
+      "frame": 3957,
+      "turn": 11,
+      "goal": {
+        "id": "forward-a2-enemy-2",
+        "x": 2200,
+        "y": 4430
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 1753.667217666503,
+        "y": 4385.366721766651
+      },
+      "to": {
+        "x": 2186.060628672251,
+        "y": 4428.606062867225
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 2,
+      "frame": 3957,
+      "turn": 11,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "a2-enemy-2",
+      "hpBefore": 436,
+      "angle": 7.773250252435048,
+      "power": 1
+    },
+    {
+      "round": 2,
+      "frame": 4079,
+      "turn": 12,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "occultist",
+      "toward": "ws-west-screen",
+      "mandatoryIds": [
+        "ws-west-screen",
+        "a2-enemy-3",
+        "ws-brace-cart",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 1783.3333333333333,
+        "y": 4388.333333333333,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-ws-west-screen",
+        "progress": 171.97801239475848,
+        "pathLength": 173.25273182438127
+      }
+    },
+    {
+      "round": 2,
+      "frame": 4142,
+      "turn": 12,
+      "goal": {
+        "id": "forward-ws-west-screen",
+        "x": 1783.3333333333333,
+        "y": 4388.333333333333
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 1611.62034245607,
+        "y": 4365.859254792971
+      },
+      "to": {
+        "x": 1770.0501853678086,
+        "y": 4387.005018536781
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 2,
+      "frame": 4142,
+      "turn": 12,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "ws-west-screen",
+      "hpBefore": 256,
+      "angle": -0.87007289699467,
+      "power": 0.695562664144211
+    },
+    {
+      "round": 3,
+      "frame": 5030,
+      "turn": 18,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "archer",
+      "toward": "ws-brace-cart",
+      "mandatoryIds": [
+        "ws-west-screen",
+        "a2-enemy-3",
+        "ws-brace-cart",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 1545,
+        "y": 4355.2,
+        "surfaceId": "act2-floor",
+        "id": "forward-ws-brace-cart",
+        "progress": 94.44857090399717,
+        "pathLength": 94.51769655378507
+      }
+    },
+    {
+      "round": 3,
+      "frame": 5061,
+      "turn": 18,
+      "goal": {
+        "id": "forward-ws-brace-cart",
+        "x": 1545,
+        "y": 4355.2
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 1451.669385987619,
+        "y": 4340.267101758019
+      },
+      "to": {
+        "x": 1531.1110419933027,
+        "y": 4352.977766718928
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 3,
+      "frame": 5061,
+      "turn": 18,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "ws-west-screen",
+      "hpBefore": 256,
+      "angle": 5.865374526057858,
+      "power": 0.5536275661376834
+    },
+    {
+      "round": 3,
+      "frame": 5285,
+      "turn": 19,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "heal-stake",
+      "hero": "mage",
+      "target": "p-mage",
+      "angle": 85,
+      "power": 0.8,
+      "d": 6.000756771921031
+    },
+    {
+      "round": 3,
+      "frame": 5786,
+      "turn": 20,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "knight",
+      "toward": 17,
+      "mandatoryIds": [
+        "ws-west-screen",
+        "a2-enemy-3",
+        "ws-brace-cart",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 1950,
+        "y": 4405,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-17",
+        "progress": 249.9710724205701,
+        "pathLength": 251.24689052802225
+      }
+    },
+    {
+      "round": 3,
+      "frame": 5879,
+      "turn": 20,
+      "goal": {
+        "id": "forward-17",
+        "x": 1950,
+        "y": 4405
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 2198.840783904887,
+        "y": 4429.884078390489
+      },
+      "to": {
+        "x": 1963.9125032963059,
+        "y": 4406.391250329631
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 3,
+      "frame": 5879,
+      "turn": 20,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "ws-brace-cart",
+      "hpBefore": 429,
+      "angle": -11.635800156710165,
+      "power": 1
+    },
+    {
+      "round": 3,
+      "frame": 6001,
+      "turn": 21,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "ws-west-screen",
+      "hpBefore": 256,
+      "angle": -0.8658820521644376,
+      "power": 0.7016718477845807
+    },
+    {
+      "round": 4,
+      "frame": 6616,
+      "turn": 26,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "archer",
+      "toward": "ws-west-screen",
+      "mandatoryIds": [
+        "ws-west-screen",
+        "a2-enemy-3",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 1866.6666666666667,
+        "y": 4396.666666666667,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-ws-west-screen",
+        "progress": 334.2627049487145,
+        "pathLength": 338.5350026136666
+      }
+    },
+    {
+      "round": 4,
+      "frame": 6741,
+      "turn": 26,
+      "goal": {
+        "id": "forward-ws-west-screen",
+        "x": 1866.6666666666667,
+        "y": 4396.666666666667
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 1531.1110419933027,
+        "y": 4352.977766718928
+      },
+      "to": {
+        "x": 1853.0495801179497,
+        "y": 4395.304958011795
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 4,
+      "frame": 6741,
+      "turn": 26,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "ws-west-screen",
+      "hpBefore": 256,
+      "angle": 26,
+      "power": 0.37
+    },
+    {
+      "round": 4,
+      "frame": 6997,
+      "turn": 27,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "a2-enemy-3",
+      "hpBefore": 1307,
+      "angle": 18.092371320507734,
+      "power": 0.7968433553294001
+    },
+    {
+      "round": 4,
+      "frame": 7192,
+      "turn": 28,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "occultist",
+      "toward": "a2-enemy-3",
+      "mandatoryIds": [
+        "a2-enemy-3",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 2116.6666666666665,
+        "y": 4421.666666666667,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-a2-enemy-3",
+        "progress": 337.35784106761776,
+        "pathLength": 338.3458125777365
+      }
+    },
+    {
+      "round": 4,
+      "frame": 7321,
+      "turn": 28,
+      "goal": {
+        "id": "forward-a2-enemy-3",
+        "x": 2116.6666666666665,
+        "y": 4421.666666666667
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 1770.0501853678086,
+        "y": 4387.005018536781
+      },
+      "to": {
+        "x": 2102.8818335164715,
+        "y": 4420.288183351648
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 4,
+      "frame": 7321,
+      "turn": 28,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "a2-enemy-3",
+      "hpBefore": 894,
+      "angle": 18,
+      "power": 0.28500000000000003
+    },
+    {
+      "round": 5,
+      "frame": 8066,
+      "turn": 33,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "archer",
+      "toward": "a2-enemy-3",
+      "mandatoryIds": [
+        "a2-enemy-3",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 1950,
+        "y": 4405,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-a2-enemy-3",
+        "progress": 109.09338934884238,
+        "pathLength": 111.8915661578788
+      }
+    },
+    {
+      "round": 5,
+      "frame": 8116,
+      "turn": 33,
+      "goal": {
+        "id": "forward-a2-enemy-3",
+        "x": 1950,
+        "y": 4405
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 1838.6637304020692,
+        "y": 4393.866373040207
+      },
+      "to": {
+        "x": 1936.8759740699422,
+        "y": 4403.687597406994
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 5,
+      "frame": 8116,
+      "turn": 33,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "ws-brace-captain",
+      "hpBefore": 1307,
+      "angle": 19.37981858594284,
+      "power": 0.5767548163980336
+    },
+    {
+      "round": 5,
+      "frame": 8340,
+      "turn": 34,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "knight",
+      "toward": 17,
+      "mandatoryIds": [
+        "a2-enemy-3",
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 1860,
+        "y": 4396,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-17",
+        "progress": 593.6212504060528,
+        "pathLength": 608.7226478715943
+      }
+    },
+    {
+      "round": 5,
+      "frame": 8584,
+      "turn": 34,
+      "goal": {
+        "id": "forward-17",
+        "x": 1860,
+        "y": 4396
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 2453.781577044281,
+        "y": 4346.944211149144
+      },
+      "to": {
+        "x": 1873.1570263853014,
+        "y": 4397.31570263853
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 5,
+      "frame": 8584,
+      "turn": 34,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "a2-enemy-3",
+      "hpBefore": 500,
+      "angle": 17.873531306248097,
+      "power": 0.8270558647070659
+    },
+    {
+      "round": 5,
+      "frame": 8794,
+      "turn": 35,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "a2-enemy-3",
+      "hpBefore": 87,
+      "angle": 13.337305617921645,
+      "power": 0.47950940364748423
+    },
+    {
+      "round": 6,
+      "frame": 9289,
+      "turn": 39,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "archer",
+      "toward": "ws-brace-captain",
+      "mandatoryIds": [
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 2033.3333333333333,
+        "y": 4413.333333333333,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-ws-brace-captain",
+        "progress": 92.80612176490183,
+        "pathLength": 93.79883913046153
+      }
+    },
+    {
+      "round": 6,
+      "frame": 9325,
+      "turn": 39,
+      "goal": {
+        "id": "forward-ws-brace-captain",
+        "x": 2033.3333333333333,
+        "y": 4413.333333333333
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 1936.8759740699422,
+        "y": 4403.687597406994
+      },
+      "to": {
+        "x": 2020.2580176153929,
+        "y": 4412.02580176154
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 6,
+      "frame": 9325,
+      "turn": 39,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "defend",
+      "hero": "archer"
+    },
+    {
+      "round": 6,
+      "frame": 9403,
+      "turn": 40,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "knight",
+      "toward": 17,
+      "mandatoryIds": [
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 1860,
+        "y": 4396,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-17",
+        "progress": 580.729768116771,
+        "pathLength": 594.2217864704936
+      }
+    },
+    {
+      "round": 6,
+      "frame": 9643,
+      "turn": 40,
+      "goal": {
+        "id": "forward-17",
+        "x": 1860,
+        "y": 4396
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 2441.1283209647895,
+        "y": 4351.085276775159
+      },
+      "to": {
+        "x": 1873.7902168958537,
+        "y": 4397.379021689585
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 6,
+      "frame": 9643,
+      "turn": 40,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "ws-brace-captain",
+      "hpBefore": 867,
+      "angle": 24.996931301678558,
+      "power": 0.8637348575446342
+    },
+    {
+      "round": 6,
+      "frame": 9923,
+      "turn": 41,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "forward-before-shot",
+      "hero": "occultist",
+      "toward": "ws-brace-captain",
+      "mandatoryIds": [
+        "ws-brace-captain"
+      ],
+      "proposal": {
+        "x": 2278.5714285714284,
+        "y": 4404.285714285715,
+        "surfaceId": "ws-west-work-buttress",
+        "id": "forward-ws-brace-captain",
+        "progress": 173.25930820262204,
+        "pathLength": 183.17096361823886
+      }
+    },
+    {
+      "round": 6,
+      "frame": 9994,
+      "turn": 41,
+      "goal": {
+        "id": "forward-ws-brace-captain",
+        "x": 2278.5714285714284,
+        "y": 4404.285714285715
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 2102.8818335164715,
+        "y": 4420.288183351648
+      },
+      "to": {
+        "x": 2265.3188221626824,
+        "y": 4408.622930928576
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 6,
+      "frame": 9994,
+      "turn": 41,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "ws-brace-captain",
+      "hpBefore": 454,
+      "angle": 10,
+      "power": 0.625
+    },
+    {
+      "round": 7,
+      "frame": 10400,
+      "turn": 45,
+      "goal": {
+        "id": "ws-brace-captain",
+        "x": 2680,
+        "y": 4272.909090909091
+      },
+      "missionGoal": "clear-works",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 2020.2580176153929,
+        "y": 4412.02580176154
+      },
+      "to": {
+        "x": 2103.337404015486,
+        "y": 4420.333740401548
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 7,
+      "frame": 10400,
+      "turn": 45,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "defend",
+      "hero": "archer"
+    },
+    {
+      "round": 7,
+      "frame": 10478,
+      "turn": 46,
+      "goal": "clear-works",
+      "missionGoal": "clear-works",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "ws-brace-captain",
+      "hpBefore": 432,
+      "angle": 26.03972908620669,
+      "power": 1
+    },
+    {
+      "round": 7,
+      "frame": 10926,
+      "turn": 47,
+      "goal": {
+        "id": "brace",
+        "x": 3040,
+        "y": 4275.777777777777
+      },
+      "missionGoal": "brace",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 2265.3188221626824,
+        "y": 4408.622930928576
+      },
+      "to": {
+        "x": 3026.729703890269,
+        "y": 4274.598195901357
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 7,
+      "frame": 10926,
+      "turn": 47,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "E",
+      "hero": "occultist",
+      "target": "brace"
+    },
+    {
+      "round": 8,
+      "frame": 12661,
+      "turn": 53,
+      "goal": {
+        "id": "act2-hoist",
+        "x": 6140,
+        "y": 4718
+      },
+      "missionGoal": "hoist",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 2103.337404015486,
+        "y": 4420.333740401548
+      },
+      "to": {
+        "x": 3616.4581198774736,
+        "y": 4589.874871926484
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 8,
+      "frame": 12661,
+      "turn": 53,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "defend",
+      "hero": "archer"
+    },
+    {
+      "round": 8,
+      "frame": 12739,
+      "turn": 54,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "a2-enemy-4",
+      "hpBefore": 843,
+      "angle": 54.13997297097046,
+      "power": 0.8927561743745974
+    },
+    {
+      "round": 8,
+      "frame": 13073,
+      "turn": 55,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "forward-before-shot",
+      "hero": "occultist",
+      "toward": "act2-hoist",
+      "mandatoryIds": [
+        "act2-hoist"
+      ],
+      "proposal": {
+        "x": 4089.679588122927,
+        "y": 4796.559862707642,
+        "surfaceId": "ws-west-machine-plinth",
+        "id": "forward-act2-hoist",
+        "progress": 1125.8565928576418,
+        "pathLength": 1268.0281074413183
+      }
+    },
+    {
+      "round": 8,
+      "frame": 13574,
+      "turn": 55,
+      "goal": {
+        "id": "forward-act2-hoist",
+        "x": 4089.679588122927,
+        "y": 4796.559862707642
+      },
+      "missionGoal": "hoist",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 2993.8194941142006,
+        "y": 4271.672843921262
+      },
+      "to": {
+        "x": 4076.112992288224,
+        "y": 4792.037664096075
+      },
+      "support": "ws-west-machine-plinth"
+    },
+    {
+      "round": 8,
+      "frame": 13574,
+      "turn": 55,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "a2-enemy-6",
+      "hpBefore": 821,
+      "angle": 149.67003463012827,
+      "power": 0.7892064710095298
+    },
+    {
+      "round": 9,
+      "frame": 14550,
+      "turn": 61,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "forward-before-shot",
+      "hero": "archer",
+      "toward": "act2-hoist",
+      "mandatoryIds": [
+        "act2-hoist"
+      ],
+      "proposal": {
+        "x": 4402,
+        "y": 4782,
+        "surfaceId": "ws-west-machine-plinth",
+        "id": "forward-act2-hoist",
+        "progress": 787.614400900701,
+        "pathLength": 850.3879418652847
+      }
+    },
+    {
+      "round": 9,
+      "frame": 14877,
+      "turn": 61,
+      "goal": {
+        "id": "forward-act2-hoist",
+        "x": 4402,
+        "y": 4782
+      },
+      "missionGoal": "hoist",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 3616.4581198774736,
+        "y": 4589.874871926484
+      },
+      "to": {
+        "x": 4388.8192139075445,
+        "y": 4787.896667462414
+      },
+      "support": "ws-west-machine-plinth"
+    },
+    {
+      "round": 9,
+      "frame": 14877,
+      "turn": 61,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "ws-west-cart-screen",
+      "hpBefore": 750,
+      "angle": 151.43205466476056,
+      "power": 0.8497422576044525
+    },
+    {
+      "round": 9,
+      "frame": 15114,
+      "turn": 62,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S03",
+      "target": "a2-enemy-6",
+      "hpBefore": 491,
+      "angle": -7.6300756489018156,
+      "power": 1
+    },
+    {
+      "round": 9,
+      "frame": 15236,
+      "turn": 63,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "forward-before-shot",
+      "hero": "occultist",
+      "toward": "act2-hoist",
+      "mandatoryIds": [
+        "act2-hoist"
+      ],
+      "proposal": {
+        "x": 5160,
+        "y": 4793.918918918919,
+        "surfaceId": "ws-hoist-west-lip",
+        "id": "forward-act2-hoist",
+        "progress": 1089.1698729865388,
+        "pathLength": 1153.9364815566
+      }
+    },
+    {
+      "round": 9,
+      "frame": 15693,
+      "turn": 63,
+      "goal": {
+        "id": "forward-act2-hoist",
+        "x": 5160,
+        "y": 4793.918918918919
+      },
+      "missionGoal": "hoist",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 4069.1351475153638,
+        "y": 4789.711715838454
+      },
+      "to": {
+        "x": 5146.971207749669,
+        "y": 4792.510400837802
+      },
+      "support": "ws-hoist-west-lip"
+    },
+    {
+      "round": 9,
+      "frame": 15693,
+      "turn": 63,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "act2-hoist",
+      "hpBefore": 2024,
+      "angle": 8.222090667968386,
+      "power": 0.7495154096925852
+    },
+    {
+      "round": 10,
+      "frame": 16763,
+      "turn": 69,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "forward-before-shot",
+      "hero": "archer",
+      "toward": "act2-hoist",
+      "mandatoryIds": [
+        "act2-hoist"
+      ],
+      "proposal": {
+        "x": 5440,
+        "y": 4820,
+        "surfaceId": "ws-hoist-service-bridge",
+        "id": "forward-act2-hoist",
+        "progress": 1035.1726953043049,
+        "pathLength": 1154.6715749634152
+      }
+    },
+    {
+      "round": 10,
+      "frame": 17063,
+      "turn": 69,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "jump",
+      "hero": "archer",
+      "from": {
+        "x": 5146.6863895805855,
+        "y": 4792.4796096843875
+      },
+      "to": {
+        "kind": "jump",
+        "x": 5330,
+        "support": "ws-hoist-service-bridge",
+        "speed": 1
+      }
+    },
+    {
+      "round": 10,
+      "frame": 17229,
+      "turn": 69,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "land",
+      "hero": "archer",
+      "x": 5329.186389580604,
+      "y": 4820,
+      "support": "ws-hoist-service-bridge",
+      "expected": "ws-hoist-service-bridge"
+    },
+    {
+      "round": 10,
+      "frame": 17270,
+      "turn": 69,
+      "goal": {
+        "id": "forward-act2-hoist",
+        "x": 5440,
+        "y": 4820
+      },
+      "missionGoal": "hoist",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 4398.666041473605,
+        "y": 4783.491507761808
+      },
+      "to": {
+        "x": 5426.215556247284,
+        "y": 4820
+      },
+      "support": "ws-hoist-service-bridge"
+    },
+    {
+      "round": 10,
+      "frame": 17270,
+      "turn": 69,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "act2-hoist",
+      "hpBefore": 1645,
+      "angle": 20.17985974364599,
+      "power": 0.5630347877407632
+    },
+    {
+      "round": 10,
+      "frame": 17498,
+      "turn": 70,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "ws-brace-bat",
+      "hpBefore": 459,
+      "angle": 114.28087512194014,
+      "power": 0.733624848686462
+    },
+    {
+      "round": 10,
+      "frame": 17875,
+      "turn": 71,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "forward-before-shot",
+      "hero": "occultist",
+      "toward": "act2-hoist",
+      "mandatoryIds": [
+        "act2-hoist"
+      ],
+      "proposal": {
+        "x": 5710,
+        "y": 4820,
+        "surfaceId": "ws-hoist-service-bridge",
+        "id": "forward-act2-hoist",
+        "progress": 550.0895015691731,
+        "pathLength": 626.9890193889073
+      }
+    },
+    {
+      "round": 10,
+      "frame": 17875,
+      "turn": 71,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "jump",
+      "hero": "occultist",
+      "from": {
+        "x": 5150.811922286721,
+        "y": 4792.925613220186
+      },
+      "to": {
+        "kind": "jump",
+        "x": 5330,
+        "support": "ws-hoist-service-bridge",
+        "speed": 1
+      }
+    },
+    {
+      "round": 10,
+      "frame": 18041,
+      "turn": 71,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "land",
+      "hero": "occultist",
+      "x": 5328.811922286695,
+      "y": 4820,
+      "support": "ws-hoist-service-bridge",
+      "expected": "ws-hoist-service-bridge"
+    },
+    {
+      "round": 10,
+      "frame": 18193,
+      "turn": 71,
+      "goal": {
+        "id": "forward-act2-hoist",
+        "x": 5710,
+        "y": 4820
+      },
+      "missionGoal": "hoist",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 5150.811922286721,
+        "y": 4792.925613220186
+      },
+      "to": {
+        "x": 5696.826922286633,
+        "y": 4820
+      },
+      "support": "ws-hoist-service-bridge"
+    },
+    {
+      "round": 10,
+      "frame": 18193,
+      "turn": 71,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "act2-hoist",
+      "hpBefore": 1244,
+      "angle": 19.970101542163267,
+      "power": 0.3102863596083766
+    },
+    {
+      "round": 11,
+      "frame": 19300,
+      "turn": 77,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "act2-hoist",
+      "hpBefore": 865,
+      "angle": 19.60461989392059,
+      "power": 0.5950510280362433
+    },
+    {
+      "round": 11,
+      "frame": 19861,
+      "turn": 78,
+      "goal": {
+        "id": 17,
+        "x": 1839.099262318895,
+        "y": 4387.880000859217
+      },
+      "missionGoal": "hoist",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 2676.1369458542713,
+        "y": 4274.173363174966
+      },
+      "to": {
+        "x": 1873.4162139951625,
+        "y": 4397.341621399516
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 11,
+      "frame": 19861,
+      "turn": 78,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "defend",
+      "hero": "knight"
+    },
+    {
+      "round": 11,
+      "frame": 19939,
+      "turn": 79,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "act2-hoist",
+      "hpBefore": 512,
+      "angle": 18.965556763992232,
+      "power": 0.7209221170973876
+    },
+    {
+      "round": 12,
+      "frame": 21097,
+      "turn": 85,
+      "goal": "hoist",
+      "missionGoal": "hoist",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "act2-hoist",
+      "hpBefore": 133,
+      "angle": 20.007328417960256,
+      "power": 0.5725673469932623
+    },
+    {
+      "round": 12,
+      "frame": 22065,
+      "turn": 86,
+      "goal": {
+        "id": "repair",
+        "x": 8660,
+        "y": 4580
+      },
+      "missionGoal": "repair",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 1860.6644931050675,
+        "y": 4396.066449310507
+      },
+      "to": {
+        "x": 3593.194307833542,
+        "y": 4575.916584700125
+      },
+      "support": "ws-west-work-buttress"
+    },
+    {
+      "round": 12,
+      "frame": 22065,
+      "turn": 86,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "defend",
+      "hero": "knight"
+    },
+    {
+      "round": 12,
+      "frame": 22143,
+      "turn": 87,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "forward-before-shot",
+      "hero": "occultist",
+      "toward": "repair",
+      "mandatoryIds": [],
+      "proposal": {
+        "x": 6888,
+        "y": 4620,
+        "surfaceId": "ws-east-hoist-buttress",
+        "id": "forward-repair",
+        "progress": 1213.4113121372739,
+        "pathLength": 1252.3685051655643
+      }
+    },
+    {
+      "round": 12,
+      "frame": 22642,
+      "turn": 87,
+      "goal": {
+        "id": "forward-repair",
+        "x": 6888,
+        "y": 4620
+      },
+      "missionGoal": "repair",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 5683.79836131978,
+        "y": 4820
+      },
+      "to": {
+        "x": 6874.607656837147,
+        "y": 4613.912571289612
+      },
+      "support": "ws-east-hoist-buttress"
+    },
+    {
+      "round": 12,
+      "frame": 22642,
+      "turn": 87,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O02",
+      "target": "ws-core-foreman",
+      "hpBefore": 1307,
+      "angle": 188.8889922712615,
+      "power": 0.7340987556913594
+    },
+    {
+      "round": 13,
+      "frame": 23453,
+      "turn": 93,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "forward-before-shot",
+      "hero": "archer",
+      "toward": "repair",
+      "mandatoryIds": [],
+      "proposal": {
+        "x": 6633.333333333333,
+        "y": 4603.333333333333,
+        "surfaceId": "ws-east-hoist-buttress",
+        "id": "forward-repair",
+        "progress": 1214.7813927902807,
+        "pathLength": 1231.2104245450632
+      }
+    },
+    {
+      "round": 13,
+      "frame": 23931,
+      "turn": 93,
+      "goal": {
+        "id": "forward-repair",
+        "x": 6633.333333333333,
+        "y": 4603.333333333333
+      },
+      "missionGoal": "repair",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 5427.314383505925,
+        "y": 4820
+      },
+      "to": {
+        "x": 6620.254486783461,
+        "y": 4605.164371850316
+      },
+      "support": "ws-east-hoist-buttress"
+    },
+    {
+      "round": 13,
+      "frame": 23931,
+      "turn": 93,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "ws-core-front",
+      "hpBefore": 821,
+      "angle": 179.80543879506683,
+      "power": 0.7548455440176346
+    },
+    {
+      "round": 13,
+      "frame": 24840,
+      "turn": 94,
+      "goal": {
+        "id": "repair",
+        "x": 8660,
+        "y": 4580
+      },
+      "missionGoal": "repair",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 3593.194307833542,
+        "y": 4575.916584700125
+      },
+      "to": {
+        "x": 5146.304130670537,
+        "y": 4792.438284396815
+      },
+      "support": "ws-hoist-west-lip"
+    },
+    {
+      "round": 13,
+      "frame": 24840,
+      "turn": 94,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "defend",
+      "hero": "knight"
+    },
+    {
+      "round": 13,
+      "frame": 24918,
+      "turn": 95,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "forward-before-shot",
+      "hero": "occultist",
+      "toward": "repair",
+      "mandatoryIds": [],
+      "proposal": {
+        "x": 8030,
+        "y": 4488.108108108108,
+        "surfaceId": "ws-east-crossing",
+        "id": "forward-repair",
+        "progress": 1154.9146727821224,
+        "pathLength": 1271.9305798661774
+      }
+    },
+    {
+      "round": 13,
+      "frame": 25411,
+      "turn": 95,
+      "goal": {
+        "id": "forward-repair",
+        "x": 8030,
+        "y": 4488.108108108108
+      },
+      "missionGoal": "repair",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 6868.691010766245,
+        "y": 4611.22318671193
+      },
+      "to": {
+        "x": 8016.708083835702,
+        "y": 4484.515698333974
+      },
+      "support": "ws-east-crossing"
+    },
+    {
+      "round": 13,
+      "frame": 25411,
+      "turn": 95,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O08",
+      "target": "a2-enemy-17",
+      "hpBefore": 843,
+      "angle": 146,
+      "power": 0.7950000000000002
+    },
+    {
+      "round": 14,
+      "frame": 26119,
+      "turn": 101,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "forward-before-shot",
+      "hero": "archer",
+      "toward": "repair",
+      "mandatoryIds": [],
+      "proposal": {
+        "x": 7730,
+        "y": 4618.666666666667,
+        "surfaceId": "ws-east-crossing",
+        "id": "forward-repair",
+        "progress": 1092.4014504644424,
+        "pathLength": 1171.5271188293502
+      }
+    },
+    {
+      "round": 14,
+      "frame": 26555,
+      "turn": 101,
+      "goal": {
+        "id": "forward-repair",
+        "x": 7730,
+        "y": 4618.666666666667
+      },
+      "missionGoal": "repair",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 6636.923892670686,
+        "y": 4602.830655026104
+      },
+      "to": {
+        "x": 7716.220275722366,
+        "y": 4625.743660863575
+      },
+      "support": "ws-east-crossing"
+    },
+    {
+      "round": 14,
+      "frame": 26555,
+      "turn": 101,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A02",
+      "target": "ws-core-cart",
+      "hpBefore": 859,
+      "angle": 170.87918027859808,
+      "power": 0.8154683845738228
+    },
+    {
+      "round": 14,
+      "frame": 26803,
+      "turn": 102,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "forward-before-shot",
+      "hero": "knight",
+      "toward": "repair",
+      "mandatoryIds": [],
+      "proposal": {
+        "x": 6220,
+        "y": 4684,
+        "surfaceId": "ws-east-hoist-buttress",
+        "id": "forward-repair",
+        "progress": 1077.8966398785474,
+        "pathLength": 1178.4657115196273
+      }
+    },
+    {
+      "round": 14,
+      "frame": 26803,
+      "turn": 102,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "jump",
+      "hero": "knight",
+      "from": {
+        "x": 5146.304130670537,
+        "y": 4792.438284396815
+      },
+      "to": {
+        "kind": "jump",
+        "x": 5330,
+        "support": "ws-hoist-service-bridge",
+        "speed": 1
+      }
+    },
+    {
+      "round": 14,
+      "frame": 26969,
+      "turn": 102,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "land",
+      "hero": "knight",
+      "x": 5329.304130670537,
+      "y": 4820,
+      "support": "ws-hoist-service-bridge",
+      "expected": "ws-hoist-service-bridge"
+    },
+    {
+      "round": 14,
+      "frame": 27297,
+      "turn": 102,
+      "goal": {
+        "id": "forward-repair",
+        "x": 6220,
+        "y": 4684
+      },
+      "missionGoal": "repair",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 5146.304130670537,
+        "y": 4792.438284396815
+      },
+      "to": {
+        "x": 6206.931879777324,
+        "y": 4689.553951094637
+      },
+      "support": "ws-east-hoist-buttress"
+    },
+    {
+      "round": 14,
+      "frame": 27297,
+      "turn": 102,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "event-38",
+      "hpBefore": 843,
+      "angle": 162.29517794643584,
+      "power": 0.9518996628279204
+    },
+    {
+      "round": 14,
+      "frame": 27603,
+      "turn": 103,
+      "goal": "repair",
+      "missionGoal": "repair",
+      "op": "forward-before-shot",
+      "hero": "occultist",
+      "toward": "repair",
+      "mandatoryIds": [],
+      "proposal": {
+        "x": 8660,
+        "y": 4580,
+        "surfaceId": "ws-axle-footing",
+        "id": "forward-repair",
+        "progress": 650.3397122020017,
+        "pathLength": 655.407505527567
+      }
+    },
+    {
+      "round": 14,
+      "frame": 27865,
+      "turn": 103,
+      "goal": {
+        "id": "forward-repair",
+        "x": 8660,
+        "y": 4580
+      },
+      "missionGoal": "repair",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 8016.708083835702,
+        "y": 4484.515698333974
+      },
+      "to": {
+        "x": 8646.315534351434,
+        "y": 4580
+      },
+      "support": "act2-floor"
+    },
+    {
+      "round": 14,
+      "frame": 27865,
+      "turn": 103,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "E",
+      "hero": "occultist",
+      "target": "repair"
+    },
+    {
+      "round": 15,
+      "frame": 28743,
+      "turn": 109,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "forward-before-shot",
+      "hero": "archer",
+      "toward": "hold-hoist",
+      "mandatoryIds": [],
+      "proposal": {
+        "x": 8530,
+        "y": 4580,
+        "surfaceId": "ws-axle-footing",
+        "id": "forward-hold-hoist",
+        "progress": 826.2002028562166,
+        "pathLength": 868.7252004403708
+      }
+    },
+    {
+      "round": 15,
+      "frame": 29089,
+      "turn": 109,
+      "goal": {
+        "id": "forward-hold-hoist",
+        "x": 8530,
+        "y": 4580
+      },
+      "missionGoal": "hold-hoist",
+      "op": "move",
+      "hero": "archer",
+      "from": {
+        "x": 7705.394212826278,
+        "y": 4631.30371291885
+      },
+      "to": {
+        "x": 8516.176388394686,
+        "y": 4580
+      },
+      "support": "ws-axle-footing"
+    },
+    {
+      "round": 15,
+      "frame": 29089,
+      "turn": 109,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "defend",
+      "hero": "archer"
+    },
+    {
+      "round": 15,
+      "frame": 29167,
+      "turn": 110,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "forward-before-shot",
+      "hero": "knight",
+      "toward": "hold-hoist",
+      "mandatoryIds": [],
+      "proposal": {
+        "x": 6300,
+        "y": 4650,
+        "surfaceId": "ws-east-hoist-buttress",
+        "id": "forward-hold-hoist",
+        "progress": 1275.745257425408,
+        "pathLength": 1372.3145003828897
+      }
+    },
+    {
+      "round": 15,
+      "frame": 29215,
+      "turn": 110,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "jump",
+      "hero": "knight",
+      "from": {
+        "x": 5146.811987830718,
+        "y": 4792.4931878735915
+      },
+      "to": {
+        "kind": "jump",
+        "x": 5330,
+        "support": "ws-hoist-service-bridge",
+        "speed": 1
+      }
+    },
+    {
+      "round": 15,
+      "frame": 29381,
+      "turn": 110,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "land",
+      "hero": "knight",
+      "x": 5329.811987830718,
+      "y": 4820,
+      "support": "ws-hoist-service-bridge",
+      "expected": "ws-hoist-service-bridge"
+    },
+    {
+      "round": 15,
+      "frame": 29743,
+      "turn": 110,
+      "goal": {
+        "id": "forward-hold-hoist",
+        "x": 6300,
+        "y": 4650
+      },
+      "missionGoal": "hold-hoist",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 5028.849321637049,
+        "y": 4779.740467204006
+      },
+      "to": {
+        "x": 6286.872675756706,
+        "y": 4655.5791128034
+      },
+      "support": "ws-east-hoist-buttress"
+    },
+    {
+      "round": 15,
+      "frame": 29743,
+      "turn": 110,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "event-38",
+      "hpBefore": 430,
+      "angle": 109.52933514475572,
+      "power": 0.9863130628739527
+    },
+    {
+      "round": 15,
+      "frame": 30508,
+      "turn": 111,
+      "goal": {
+        "id": "hold-hoist",
+        "x": 8530,
+        "y": 4580
+      },
+      "missionGoal": "hold-hoist",
+      "op": "move",
+      "hero": "occultist",
+      "from": {
+        "x": 8646.315534351434,
+        "y": 4580
+      },
+      "to": {
+        "x": 8543.075534351414,
+        "y": 4580
+      },
+      "support": "ws-axle-footing"
+    },
+    {
+      "round": 15,
+      "frame": 30508,
+      "turn": 111,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "defend",
+      "hero": "occultist"
+    },
+    {
+      "round": 16,
+      "frame": 31812,
+      "turn": 117,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "fire",
+      "hero": "archer",
+      "skill": "A01",
+      "target": "event-81",
+      "hpBefore": 1307,
+      "angle": 168.968379764731,
+      "power": 0.7265254819454051
+    },
+    {
+      "round": 16,
+      "frame": 31975,
+      "turn": 118,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "forward-before-shot",
+      "hero": "knight",
+      "toward": "hold-hoist",
+      "mandatoryIds": [],
+      "proposal": {
+        "x": 6300,
+        "y": 4650,
+        "surfaceId": "ws-east-hoist-buttress",
+        "id": "forward-hold-hoist",
+        "progress": 1271.9866680667833,
+        "pathLength": 1372.3145003828897
+      }
+    },
+    {
+      "round": 16,
+      "frame": 32021,
+      "turn": 118,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "jump",
+      "hero": "knight",
+      "from": {
+        "x": 5146.573569455918,
+        "y": 4792.467412914153
+      },
+      "to": {
+        "kind": "jump",
+        "x": 5330,
+        "support": "ws-hoist-service-bridge",
+        "speed": 1
+      }
+    },
+    {
+      "round": 16,
+      "frame": 32187,
+      "turn": 118,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "land",
+      "hero": "knight",
+      "x": 5329.573569455918,
+      "y": 4820,
+      "support": "ws-hoist-service-bridge",
+      "expected": "ws-hoist-service-bridge"
+    },
+    {
+      "round": 16,
+      "frame": 32549,
+      "turn": 118,
+      "goal": {
+        "id": "forward-hold-hoist",
+        "x": 6300,
+        "y": 4650
+      },
+      "missionGoal": "hold-hoist",
+      "op": "move",
+      "hero": "knight",
+      "from": {
+        "x": 5032.63744180489,
+        "y": 4780.149993708636
+      },
+      "to": {
+        "x": 6286.717909917525,
+        "y": 4655.644888285052
+      },
+      "support": "ws-east-hoist-buttress"
+    },
+    {
+      "round": 16,
+      "frame": 32549,
+      "turn": 118,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "fire",
+      "hero": "knight",
+      "skill": "S01",
+      "target": "event-38",
+      "hpBefore": 17,
+      "angle": 161.62402930518397,
+      "power": 0.9319599807706892
+    },
+    {
+      "round": 16,
+      "frame": 32870,
+      "turn": 119,
+      "goal": "hold-hoist",
+      "missionGoal": "hold-hoist",
+      "op": "fire",
+      "hero": "occultist",
+      "skill": "O04",
+      "target": "event-81",
+      "hpBefore": 1122,
+      "angle": 173.50945349720294,
+      "power": 0.7047665105133876
+    }
+  ],
+  "variantOutcomeDialogue": [
+    [
+      "서술",
+      "인양축이 돌아가는 동안 작업장 방어 · 완료",
+      {
+        "kind": "narration",
+        "presentation": "inline",
+        "eventSource": "objective:hold-hoist",
+        "storyId": "event:17:objective:hold-hoist:2",
+        "storyTitle": "두드리는 벽",
+        "delivery": "dialogue",
+        "waitForClear": false,
+        "afterAction": 126,
+        "waitActor": "p-archer",
+        "waitRound": 17,
+        "stagingScene": "direction-v2:outcome-17",
+        "camera": {
+          "intent": "situation",
+          "targets": [
+            {
+              "marker": "hold-hoist"
+            }
+          ],
+          "padding": 75,
+          "maxScale": 0.85,
+          "id": "17:event:17:objective:hold-hoist:2:0",
+          "speakerPolicy": "none"
+        }
+      }
+    ],
+    [
+      "서술",
+      "복구한 인양축 보호 완료 · 완료",
+      {
+        "kind": "narration",
+        "presentation": "inline",
+        "eventSource": "objective:clear-lift",
+        "storyId": "event:17:objective:clear-lift:3",
+        "storyTitle": "두드리는 벽",
+        "delivery": "dialogue",
+        "waitForClear": false,
+        "afterAction": 126,
+        "waitActor": "p-archer",
+        "waitRound": 17,
+        "stagingScene": "direction-v2:outcome-17",
+        "camera": {
+          "intent": "situation",
+          "targets": [
+            {
+              "marker": "clear-lift"
+            }
+          ],
+          "padding": 75,
+          "maxScale": 0.85,
+          "id": "17:event:17:objective:hold-hoist:2:1",
+          "speakerPolicy": "none"
+        }
+      }
+    ],
+    [
+      "기록",
+      "산 사람의 혼을 청동에 붙일 것\n문 잠금 · 인양축 제거\n사흘째, 두드림 멎음",
+      {
+        "kind": "document",
+        "documentTitle": "종지기 작업일지",
+        "documentId": "keeper-work-log",
+        "rowId": "17.beats.notes:33ac3d5179",
+        "evidenceGoal": "notes",
+        "storyId": "act2-v1:act2-17-notes",
+        "storyTitle": "두드리는 벽",
+        "delivery": "dialogue",
+        "waitForClear": false,
+        "afterAction": 126,
+        "waitActor": "p-archer",
+        "waitRound": 17,
+        "stagingScene": "direction-v2:outcome-17",
+        "camera": {
+          "intent": "situation",
+          "targets": [
+            {
+              "actor": "p-occultist"
+            },
+            {
+              "actor": "p-archer"
+            }
+          ],
+          "padding": 65,
+          "maxScale": 0.8,
+          "id": "17.beats.notes:33ac3d5179",
+          "speakerPolicy": "none"
+        }
+      }
+    ],
+    [
+      "소단",
+      "죽을 때까지 기다린 거예요? 사흘이나 듣고 있었으면서….",
+      {
+        "rowId": "17.beats.notes:b1dd3c42ac",
+        "direction": [
+          {
+            "type": "look",
+            "actor": "occultist",
+            "at": {
+              "actor": "archer"
+            },
+            "pose": "lower-bow",
+            "camera": false,
+            "duration": 650
+          },
+          {
+            "type": "look",
+            "at": {
+              "actor": "occultist"
+            },
+            "duration": 650,
+            "scale": 0.8
+          }
+        ],
+        "evidenceGoal": "notes",
+        "storyId": "act2-v1:act2-17-notes",
+        "storyTitle": "두드리는 벽",
+        "delivery": "dialogue",
+        "waitForClear": false,
+        "afterAction": 126,
+        "waitActor": "p-archer",
+        "waitRound": 17,
+        "stagingScene": "direction-v2:outcome-17",
+        "camera": {
+          "intent": "object-introduction",
+          "targets": [
+            {
+              "actor": "occultist"
+            }
+          ],
+          "padding": 65,
+          "maxScale": 0.8,
+          "id": "17.beats.notes:b1dd3c42ac",
+          "speakerPolicy": "context-portrait"
+        }
+      }
+    ],
+    [
+      "설오",
+      "종지기는 저 안에 있겠죠. 갑시다.",
+      {
+        "storyId": "act1-v6:outcome-17",
+        "storyTitle": "두드리는 벽",
+        "rowId": "17.outro:eddb8fcbd1",
+        "stagingScene": "direction-v2:outcome-17",
+        "camera": {
+          "intent": "conversation",
+          "targets": [
+            {
+              "speaker": "설오"
+            },
+            {
+              "actor": "p-occultist"
+            }
+          ],
+          "padding": 40,
+          "maxScale": 1.05,
+          "participants": [
+            {
+              "actor": "p-occultist"
+            },
+            {
+              "actor": "p-archer"
+            }
+          ],
+          "id": "17.outro:eddb8fcbd1",
+          "speakerPolicy": "world"
+        }
+      }
+    ]
+  ],
+  "candidateInputs": {
+    "checkedCommit": "dc5c6994a43e5d83178571b4952b6ad0953d1533",
+    "scope": "24 predetermined short normal move/jump cases, legal level13/stat6 entry. Isolated one-actor starts only; no live refills/correction or combat/fullplay claim.",
+    "rows": [
+      {
+        "delay": 18,
+        "speed": 0.6,
+        "cls": "archer",
+        "passed": true,
+        "x": 7914.52916666667,
+        "y": 3883.11080246914,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.47083333333012,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 7987.225000000001,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7965.3250000000035,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7943.425000000006,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7923.6541666666735,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7914.52916666667,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.52916666667,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.52916666667,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 18,
+        "speed": 0.6,
+        "cls": "mage",
+        "passed": true,
+        "x": 7914.357500000005,
+        "y": 3882.8946296296353,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 105,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.64249999999538,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 7988.03,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7967.509999999999,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7946.989999999999,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7926.469999999998,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7917.920000000003,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.357500000005,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.357500000005,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 18,
+        "speed": 0.6,
+        "cls": "knight",
+        "passed": true,
+        "x": 7914.9499999999925,
+        "y": 3883.6407407407314,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.05000000000746,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 7987.399999999999,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7965.7999999999965,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7944.199999999994,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7924.6999999999925,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7915.6999999999925,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.9499999999925,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.9499999999925,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 18,
+        "speed": 0.6,
+        "cls": "occultist",
+        "passed": true,
+        "x": 7914.856666666676,
+        "y": 3883.5232098765546,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.14333333332434,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 7987.540000000002,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7966.180000000005,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7944.820000000008,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7924.498333333344,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7915.598333333342,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.856666666676,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.856666666676,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 18,
+        "speed": 1,
+        "cls": "archer",
+        "passed": true,
+        "x": 7914.833333333321,
+        "y": 3883.4938271604783,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.1666666666788,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 7978.708333333331,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7942.208333333328,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7921.677083333324,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7914.833333333321,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7914.833333333321,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.833333333321,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.833333333321,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 18,
+        "speed": 1,
+        "cls": "mage",
+        "passed": true,
+        "x": 7914.499999999996,
+        "y": 3883.0740740740694,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.50000000000364,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 7980.049999999997,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7945.849999999993,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7922.337499999992,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7914.499999999996,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7914.499999999996,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.499999999996,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.499999999996,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 18,
+        "speed": 1,
+        "cls": "knight",
+        "passed": true,
+        "x": 7914.5,
+        "y": 3883.074074074074,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.5,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 7979,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7943,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7920.5,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7914.5,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7914.5,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.5,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.5,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 18,
+        "speed": 1,
+        "cls": "occultist",
+        "passed": true,
+        "x": 7914.708333333342,
+        "y": 3883.3364197530973,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.29166666665787,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 7979.233333333336,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7943.633333333341,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7921.383333333343,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7914.708333333342,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7914.708333333342,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.708333333342,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.708333333342,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 26,
+        "speed": 0.6,
+        "cls": "archer",
+        "passed": true,
+        "x": 7914.52916666667,
+        "y": 3883.11080246914,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.47083333333012,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7979.925000000002,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7958.025000000004,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7936.125000000006,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7920.612500000006,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.52916666667,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.52916666667,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 26,
+        "speed": 0.6,
+        "cls": "mage",
+        "passed": true,
+        "x": 7914.357500000005,
+        "y": 3882.8946296296353,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 105,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.64249999999538,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7981.19,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7960.669999999999,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7940.149999999999,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7923.62,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7915.070000000004,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.357500000005,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 26,
+        "speed": 0.6,
+        "cls": "knight",
+        "passed": true,
+        "x": 7914.9499999999925,
+        "y": 3883.6407407407314,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.05000000000746,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7980.199999999998,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7958.599999999996,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7936.999999999994,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7921.6999999999925,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.9499999999925,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.9499999999925,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 26,
+        "speed": 0.6,
+        "cls": "occultist",
+        "passed": true,
+        "x": 7914.856666666676,
+        "y": 3883.5232098765546,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.14333333332434,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7980.420000000003,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7959.060000000006,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7937.700000000009,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7921.531666666677,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.856666666676,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.856666666676,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 26,
+        "speed": 1,
+        "cls": "archer",
+        "passed": true,
+        "x": 7914.833333333321,
+        "y": 3883.4938271604783,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.1666666666788,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7966.541666666663,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7930.04166666666,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7918.635416666656,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7914.833333333321,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.833333333321,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.833333333321,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 26,
+        "speed": 1,
+        "cls": "mage",
+        "passed": true,
+        "x": 7914.499999999996,
+        "y": 3883.0740740740694,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.50000000000364,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7968.649999999996,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7934.449999999992,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7919.487499999994,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7914.499999999996,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.499999999996,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.499999999996,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 26,
+        "speed": 1,
+        "cls": "knight",
+        "passed": true,
+        "x": 7914.5,
+        "y": 3883.074074074074,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.5,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7967,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7931,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7917.5,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7914.5,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.5,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.5,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 26,
+        "speed": 1,
+        "cls": "occultist",
+        "passed": true,
+        "x": 7914.708333333342,
+        "y": 3883.3364197530973,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.29166666665787,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7967.366666666671,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7931.766666666676,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7918.416666666676,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7914.708333333342,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.708333333342,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.708333333342,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 34,
+        "speed": 0.6,
+        "cls": "archer",
+        "passed": true,
+        "x": 7914.52916666667,
+        "y": 3883.11080246914,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.47083333333012,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7994.525000000001,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7972.625000000003,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7950.725000000005,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7928.825000000007,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7917.570833333338,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.52916666667,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 34,
+        "speed": 0.6,
+        "cls": "mage",
+        "passed": true,
+        "x": 7914.357500000005,
+        "y": 3882.8946296296353,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 105,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.64249999999538,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7994.87,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7974.349999999999,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7953.829999999999,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7933.309999999999,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7920.770000000001,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.357500000005,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 34,
+        "speed": 0.6,
+        "cls": "knight",
+        "passed": true,
+        "x": 7914.9499999999925,
+        "y": 3883.6407407407314,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.05000000000746,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7994.599999999999,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7972.999999999997,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7951.399999999995,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7929.799999999993,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7918.6999999999925,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.9499999999925,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 34,
+        "speed": 0.6,
+        "cls": "occultist",
+        "passed": true,
+        "x": 7914.856666666676,
+        "y": 3883.5232098765546,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.14333333332434,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7994.660000000001,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7973.300000000004,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7951.940000000007,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7930.58000000001,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7918.56500000001,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.856666666676,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 34,
+        "speed": 1,
+        "cls": "archer",
+        "passed": true,
+        "x": 7914.833333333321,
+        "y": 3883.4938271604783,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.1666666666788,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7990.874999999999,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7954.374999999995,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7924.718749999992,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7915.593749999988,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.833333333321,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.833333333321,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 34,
+        "speed": 1,
+        "cls": "mage",
+        "passed": true,
+        "x": 7914.499999999996,
+        "y": 3883.0740740740694,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.50000000000364,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7991.449999999999,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7957.2499999999945,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7925.187499999991,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7916.637499999995,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.499999999996,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.499999999996,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 34,
+        "speed": 1,
+        "cls": "knight",
+        "passed": true,
+        "x": 7914.5,
+        "y": 3883.074074074074,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.5,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7991,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7955,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7923.5,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7914.5,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.5,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.5,
+            "y": 3868.5077325109123
+          }
+        ]
+      },
+      {
+        "delay": 34,
+        "speed": 1,
+        "cls": "occultist",
+        "passed": true,
+        "x": 7914.708333333342,
+        "y": 3883.3364197530973,
+        "support": "ws-east-upper-rock",
+        "valid": true,
+        "ticks": 106,
+        "rise": 213.61508129529057,
+        "moveSpent": 160.29166666665787,
+        "samples": [
+          {
+            "tick": 0,
+            "x": 8000,
+            "y": 4064.5701319444443
+          },
+          {
+            "tick": 12,
+            "x": 8000,
+            "y": 4004.878817037606
+          },
+          {
+            "tick": 24,
+            "x": 8000,
+            "y": 3955.270105435877
+          },
+          {
+            "tick": 36,
+            "x": 7991.100000000001,
+            "y": 3915.7288836276566
+          },
+          {
+            "tick": 48,
+            "x": 7955.500000000006,
+            "y": 3886.240060756026
+          },
+          {
+            "tick": 60,
+            "x": 7924.35000000001,
+            "y": 3866.7885685847996
+          },
+          {
+            "tick": 72,
+            "x": 7915.450000000009,
+            "y": 3857.359361464612
+          },
+          {
+            "tick": 84,
+            "x": 7914.708333333342,
+            "y": 3857.9374162990634
+          },
+          {
+            "tick": 96,
+            "x": 7914.708333333342,
+            "y": 3868.5077325109123
+          }
+        ]
+      }
+    ]
+  },
+  "routePreservationAndFiniteReturn": {
+    "checkedCommit": "5be0be1106aedb977847651c338b681a12d07eca",
+    "onlyOneAnchorChanged": true,
+    "fortyOneTerrainsSevenRoutesActorsGoalsStoryArtExact": true,
+    "originalRecipeRouteExact": true,
+    "idempotent": true,
+    "rows": [
+      {
+        "cls": "archer",
+        "landed": {
+          "x": 7914.52916666667,
+          "y": 3883.11080246914,
+          "moveLeft": 1486.5291666666699
+        },
+        "partialReturn": {
+          "x": 7047.352537653826,
+          "y": 3599.792624909514
+        },
+        "moveSpent": 1214.712499999909,
+        "remaining": 432.28750000009114,
+        "airTicks": 106,
+        "walkTicks": 355,
+        "resourceRefills": 0,
+        "poseCorrections": 0
+      },
+      {
+        "cls": "mage",
+        "landed": {
+          "x": 7914.357500000005,
+          "y": 3882.8946296296353,
+          "moveLeft": 1507.3575000000046
+        },
+        "partialReturn": {
+          "x": 7047.874544784193,
+          "y": 3599.4855618916513
+        },
+        "moveSpent": 1214.0024999999637,
+        "remaining": 453.9975000000364,
+        "airTicks": 105,
+        "walkTicks": 378,
+        "resourceRefills": 0,
+        "poseCorrections": 0
+      },
+      {
+        "cls": "knight",
+        "landed": {
+          "x": 7914.9499999999925,
+          "y": 3883.6407407407314,
+          "moveLeft": 1703.9499999999925
+        },
+        "partialReturn": {
+          "x": 7047.454569815535,
+          "y": 3599.7326059908614
+        },
+        "moveSpent": 1214.850000000039,
+        "remaining": 649.149999999961,
+        "airTicks": 106,
+        "walkTicks": 360,
+        "resourceRefills": 0,
+        "poseCorrections": 0
+      },
+      {
+        "cls": "occultist",
+        "landed": {
+          "x": 7914.856666666676,
+          "y": 3883.5232098765546,
+          "moveLeft": 1563.8566666666757
+        },
+        "partialReturn": {
+          "x": 7047.9659134137055,
+          "y": 3599.431815638997
+        },
+        "moveSpent": 1214.2000000000799,
+        "remaining": 509.79999999992003,
+        "airTicks": 106,
+        "walkTicks": 363,
+        "resourceRefills": 0,
+        "poseCorrections": 0
+      }
+    ],
+    "scope": "Finite normal Engine move/jump after isolated valid start; no refills/pose corrections. Full routes are separate isolated traversal fixtures, not combat."
+  },
+  "allRoutes": {
+    "total": 36,
+    "passed": 36,
+    "rows": [
+      {
+        "route": "main",
+        "cls": "archer",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1702,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "main",
+        "cls": "mage",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1808,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "main",
+        "cls": "knight",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1724,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "main",
+        "cls": "occultist",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1741,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "upper-hoist-route",
+        "cls": "archer",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1389,
+        "jumps": 6,
+        "damage": 1,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "upper-hoist-route",
+        "cls": "mage",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1442,
+        "jumps": 6,
+        "damage": 1,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "upper-hoist-route",
+        "cls": "knight",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1401,
+        "jumps": 6,
+        "damage": 1,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "upper-hoist-route",
+        "cls": "occultist",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1410,
+        "jumps": 6,
+        "damage": 1,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "lower-service-route",
+        "cls": "archer",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1441,
+        "jumps": 9,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "lower-service-route",
+        "cls": "mage",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1472,
+        "jumps": 9,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "lower-service-route",
+        "cls": "knight",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1448,
+        "jumps": 9,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "lower-service-route",
+        "cls": "occultist",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 1451,
+        "jumps": 9,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "service-middle-link",
+        "cls": "archer",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 416,
+        "jumps": 7,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "service-middle-link",
+        "cls": "mage",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 419,
+        "jumps": 7,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "service-middle-link",
+        "cls": "knight",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 416,
+        "jumps": 7,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "service-middle-link",
+        "cls": "occultist",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 417,
+        "jumps": 7,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "east-upper-return",
+        "cls": "archer",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 432,
+        "jumps": 4,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "east-upper-return",
+        "cls": "mage",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 445,
+        "jumps": 4,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "east-upper-return",
+        "cls": "knight",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 434,
+        "jumps": 4,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "east-upper-return",
+        "cls": "occultist",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 437,
+        "jumps": 4,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "service-tool-pocket",
+        "cls": "archer",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 153,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "service-tool-pocket",
+        "cls": "mage",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 155,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "service-tool-pocket",
+        "cls": "knight",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 153,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "service-tool-pocket",
+        "cls": "occultist",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 153,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "east-fire-pocket",
+        "cls": "archer",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 210,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "east-fire-pocket",
+        "cls": "mage",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 219,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "east-fire-pocket",
+        "cls": "knight",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 212,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "east-fire-pocket",
+        "cls": "occultist",
+        "supplemental": false,
+        "passed": true,
+        "failed": null,
+        "ticks": 212,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "main-return",
+        "cls": "archer",
+        "supplemental": true,
+        "passed": true,
+        "failed": null,
+        "ticks": 1697,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "main-return",
+        "cls": "mage",
+        "supplemental": true,
+        "passed": true,
+        "failed": null,
+        "ticks": 1803,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "main-return",
+        "cls": "knight",
+        "supplemental": true,
+        "passed": true,
+        "failed": null,
+        "ticks": 1718,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "main-return",
+        "cls": "occultist",
+        "supplemental": true,
+        "passed": true,
+        "failed": null,
+        "ticks": 1737,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "notes-deck-access",
+        "cls": "archer",
+        "supplemental": true,
+        "passed": true,
+        "failed": null,
+        "ticks": 150,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "notes-deck-access",
+        "cls": "mage",
+        "supplemental": true,
+        "passed": true,
+        "failed": null,
+        "ticks": 156,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "notes-deck-access",
+        "cls": "knight",
+        "supplemental": true,
+        "passed": true,
+        "failed": null,
+        "ticks": 151,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "route": "notes-deck-access",
+        "cls": "occultist",
+        "supplemental": true,
+        "passed": true,
+        "failed": null,
+        "ticks": 153,
+        "jumps": 1,
+        "damage": 0,
+        "mode": "isolated ordinary walking and default jumps"
+      }
+    ]
+  },
+  "historicalFailureStillReproduced": {
+    "checkedCommit": "5be0be1106aedb977847651c338b681a12d07eca",
+    "originalDeclarationSource": "6544b7da6783703b7c6d65ecc88f38023bb44322",
+    "scope": "Reproduced original failed declared vertical jump on isolated copies at legal entry stats. Not proof every possible maneuver is impossible, not normal combat.",
+    "rows": [
+      {
+        "cls": "archer",
+        "start": {
+          "x": 8000,
+          "y": 4255,
+          "surfaceId": "ws-east-high-step",
+          "jumpTo": {
+            "x": 8000,
+            "support": "ws-east-upper-step-3"
+          }
+        },
+        "target": {
+          "x": 7900,
+          "y": 4070,
+          "surfaceId": "ws-east-upper-step-3",
+          "jumpTo": {
+            "x": 7900,
+            "support": "ws-east-upper-rock"
+          }
+        },
+        "literalTargetStartValid": false,
+        "expectedY": 3864.814814814815,
+        "requiredRise": 205.18518518518522,
+        "actualMaximumRise": 42.17360885953576,
+        "jumpObservations": [
+          {
+            "x": 8000,
+            "y": 4255,
+            "minFeet": 4044.1203625151475
+          },
+          {
+            "x": 7920.916666666671,
+            "y": 4070,
+            "minFeet": 4027.8263911404642
+          }
+        ],
+        "landing": "ws-east-upper-step-3",
+        "finalContactValid": true,
+        "passed": false,
+        "failed": {
+          "reason": "planned jump did not land on intended support",
+          "goal": {
+            "x": 7900,
+            "support": "ws-east-upper-rock"
+          },
+          "x": 7905.589335719851,
+          "y": 4070,
+          "landing": "ws-east-upper-step-3"
+        },
+        "ticks": 123,
+        "jumps": 2,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 8000,
+              "y": 4255
+            },
+            "x": 8000,
+            "y": 4070,
+            "ticks": 1,
+            "support": "ws-east-upper-step-3",
+            "jumpTo": {
+              "x": 8000,
+              "support": "ws-east-upper-step-3"
+            }
+          },
+          {
+            "goal": {
+              "x": 7900,
+              "y": 4070
+            },
+            "x": 7905.589335719851,
+            "y": 4070,
+            "ticks": 14,
+            "support": "ws-east-upper-step-3",
+            "jumpTo": {
+              "x": 7900,
+              "support": "ws-east-upper-rock"
+            }
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "cls": "mage",
+        "start": {
+          "x": 8000,
+          "y": 4255,
+          "surfaceId": "ws-east-high-step",
+          "jumpTo": {
+            "x": 8000,
+            "support": "ws-east-upper-step-3"
+          }
+        },
+        "target": {
+          "x": 7900,
+          "y": 4070,
+          "surfaceId": "ws-east-upper-step-3",
+          "jumpTo": {
+            "x": 7900,
+            "support": "ws-east-upper-rock"
+          }
+        },
+        "literalTargetStartValid": false,
+        "expectedY": 3864.814814814815,
+        "requiredRise": 205.18518518518522,
+        "actualMaximumRise": 41.386108859530395,
+        "jumpObservations": [
+          {
+            "x": 8000,
+            "y": 4255,
+            "minFeet": 4044.1203625151475
+          },
+          {
+            "x": 7920.200000000003,
+            "y": 4070,
+            "minFeet": 4028.6138911404696
+          }
+        ],
+        "landing": "ws-east-upper-step-3",
+        "finalContactValid": true,
+        "passed": false,
+        "failed": {
+          "reason": "planned jump did not land on intended support",
+          "goal": {
+            "x": 7900,
+            "support": "ws-east-upper-rock"
+          },
+          "x": 7905.946002386517,
+          "y": 4070,
+          "landing": "ws-east-upper-step-3"
+        },
+        "ticks": 124,
+        "jumps": 2,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 8000,
+              "y": 4255
+            },
+            "x": 8000,
+            "y": 4070,
+            "ticks": 1,
+            "support": "ws-east-upper-step-3",
+            "jumpTo": {
+              "x": 8000,
+              "support": "ws-east-upper-step-3"
+            }
+          },
+          {
+            "goal": {
+              "x": 7900,
+              "y": 4070
+            },
+            "x": 7905.946002386517,
+            "y": 4070,
+            "ticks": 15,
+            "support": "ws-east-upper-step-3",
+            "jumpTo": {
+              "x": 7900,
+              "support": "ws-east-upper-rock"
+            }
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "cls": "knight",
+        "start": {
+          "x": 8000,
+          "y": 4255,
+          "surfaceId": "ws-east-high-step",
+          "jumpTo": {
+            "x": 8000,
+            "support": "ws-east-upper-step-3"
+          }
+        },
+        "target": {
+          "x": 7900,
+          "y": 4070,
+          "surfaceId": "ws-east-upper-step-3",
+          "jumpTo": {
+            "x": 7900,
+            "support": "ws-east-upper-rock"
+          }
+        },
+        "literalTargetStartValid": false,
+        "expectedY": 3864.814814814815,
+        "requiredRise": 205.18518518518522,
+        "actualMaximumRise": 30.57435915782662,
+        "jumpObservations": [
+          {
+            "x": 8000,
+            "y": 4255,
+            "minFeet": 4044.1203625151475
+          },
+          {
+            "x": 7916,
+            "y": 4070,
+            "minFeet": 4039.4256408421734
+          }
+        ],
+        "landing": "ws-east-upper-step-3",
+        "finalContactValid": true,
+        "passed": false,
+        "failed": {
+          "reason": "planned jump did not land on intended support",
+          "goal": {
+            "x": 7900,
+            "support": "ws-east-upper-rock"
+          },
+          "x": 7905.15474531184,
+          "y": 4070,
+          "landing": "ws-east-upper-step-3"
+        },
+        "ticks": 121,
+        "jumps": 2,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 8000,
+              "y": 4255
+            },
+            "x": 8000,
+            "y": 4070,
+            "ticks": 1,
+            "support": "ws-east-upper-step-3",
+            "jumpTo": {
+              "x": 8000,
+              "support": "ws-east-upper-step-3"
+            }
+          },
+          {
+            "goal": {
+              "x": 7900,
+              "y": 4070
+            },
+            "x": 7905.15474531184,
+            "y": 4070,
+            "ticks": 15,
+            "support": "ws-east-upper-step-3",
+            "jumpTo": {
+              "x": 7900,
+              "support": "ws-east-upper-rock"
+            }
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      },
+      {
+        "cls": "occultist",
+        "start": {
+          "x": 8000,
+          "y": 4255,
+          "surfaceId": "ws-east-high-step",
+          "jumpTo": {
+            "x": 8000,
+            "support": "ws-east-upper-step-3"
+          }
+        },
+        "target": {
+          "x": 7900,
+          "y": 4070,
+          "surfaceId": "ws-east-upper-step-3",
+          "jumpTo": {
+            "x": 7900,
+            "support": "ws-east-upper-rock"
+          }
+        },
+        "literalTargetStartValid": false,
+        "expectedY": 3864.814814814815,
+        "requiredRise": 205.18518518518522,
+        "actualMaximumRise": 34.96394249115929,
+        "jumpObservations": [
+          {
+            "x": 8000,
+            "y": 4255,
+            "minFeet": 4044.1203625151475
+          },
+          {
+            "x": 7916.9333333333325,
+            "y": 4070,
+            "minFeet": 4035.0360575088407
+          }
+        ],
+        "landing": "ws-east-upper-step-3",
+        "finalContactValid": true,
+        "passed": false,
+        "failed": {
+          "reason": "planned jump did not land on intended support",
+          "goal": {
+            "x": 7900,
+            "support": "ws-east-upper-rock"
+          },
+          "x": 7906.228078645174,
+          "y": 4070,
+          "landing": "ws-east-upper-step-3"
+        },
+        "ticks": 122,
+        "jumps": 2,
+        "damage": 0,
+        "samples": [
+          {
+            "goal": {
+              "x": 8000,
+              "y": 4255
+            },
+            "x": 8000,
+            "y": 4070,
+            "ticks": 1,
+            "support": "ws-east-upper-step-3",
+            "jumpTo": {
+              "x": 8000,
+              "support": "ws-east-upper-step-3"
+            }
+          },
+          {
+            "goal": {
+              "x": 7900,
+              "y": 4070
+            },
+            "x": 7906.228078645174,
+            "y": 4070,
+            "ticks": 15,
+            "support": "ws-east-upper-step-3",
+            "jumpTo": {
+              "x": 7900,
+              "support": "ws-east-upper-rock"
+            }
+          }
+        ],
+        "mode": "isolated ordinary walking and default jumps"
+      }
+    ]
+  },
+  "buildLog": "\n> build\n> node workshop/build.mjs\n\n{\"gameBytes\":17415,\"workshopBytes\":3947,\"files\":354,\"playtest\":\"web/entries/game.0915d82da4f67f01.html?embedded=1\"}\nBuilt Game, Workshop and the direct Playtest document with shared external modules\nnpm notice\nnpm notice New major version of npm available! 11.9.0 -> 12.2.1\nnpm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1\nnpm notice To update run: npm install -g npm@12.2.1\nnpm notice\n",
+  "retention": {
+    "sourceCommit": "5be0be1106aedb977847651c338b681a12d07eca",
+    "entry": "web/entries/game.fab95d09fc60c423.js",
+    "publishedGraphs": 10,
+    "publishedFiles": 473,
+    "allFilesChecked": 493,
+    "allHashesAndLengthsMatch": true,
+    "old934Chapter13": [
+      "web/data/chapter-13-assets.1387b6a1f088fc74.json",
+      "web/data/chapter-13.516170b245a8b075.json"
+    ],
+    "builtCorrectedLink": {
+      "x": 8000,
+      "y": 4070,
+      "surfaceId": "ws-east-upper-step-3",
+      "jumpTo": {
+        "x": 7915,
+        "support": "ws-east-upper-rock",
+        "speed": 0.6,
+        "steerDelaySeconds": 0.15
+      }
+    }
+  },
+  "browserAtBuiltCandidate": {
+    "checkedCommit": "62937f43f4d58eaba25969b9d929fc2efd072710",
+    "input": "_local/reports/stage17-route-and-policy-20261022/progress-first/checkpoint.json",
+    "inputSha256": "8a0b484fadd847b06a009079ea93a4a30fe0a568fec1705d9ab2317fece3d96b",
+    "wholeBattleContinueExact": true,
+    "renderPure": true,
+    "scope": "View an actual native normal-input checkpoint in final published-source UI.\nNo combat replay or art change. Freeze frame scheduling, production Continue,\nthen render at a declared inspection camera without editing gameplay state.\n",
+    "view": {
+      "round": 17,
+      "phase": "won",
+      "goal": null,
+      "done": {
+        "clear-works": true,
+        "brace": true,
+        "hoist": true,
+        "repair": true,
+        "hold-hoist": true,
+        "clear-lift": true,
+        "notes": true
+      },
+      "camera": [
+        8530,
+        4480,
+        0.4
+      ],
+      "heroes": [
+        {
+          "id": "p-archer",
+          "x": 8523.053241598955,
+          "y": 4580,
+          "hp": 347,
+          "focus": 186,
+          "moveLeft": 1647,
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "x": 1838.5970657216965,
+          "y": 4393.85970657217,
+          "hp": 0,
+          "focus": 255,
+          "moveLeft": 1668,
+          "dead": true
+        },
+        {
+          "id": "p-knight",
+          "x": 5050.378714340656,
+          "y": 4782.067969117908,
+          "hp": 758.5200000000001,
+          "focus": 208,
+          "moveLeft": 1864,
+          "dead": false
+        },
+        {
+          "id": "p-occultist",
+          "x": 8546.33968012884,
+          "y": 4580,
+          "hp": 821,
+          "focus": 244.13,
+          "moveLeft": 1724,
+          "dead": false
+        }
+      ],
+      "enemies": 46
+    },
+    "errors": [],
+    "httpFailures": []
+  },
+  "actualPolicySave": {
+    "path": "tests/fixtures/stage17-progress-first-r17-20261022.json.gz",
+    "sha256": "4990fe693dfb50cf305f56c30b74d3c75c354a1c73f70aac66ad0241bf344f75"
+  },
+  "limits": [
+    "One automatic input-policy comparison, not human average or optimal strategy.",
+    "Safe support proposal checks body contact/separation, not zero combat risk; mage dies in variant.",
+    "Policy comparison ran before route declaration correction; no new final-route fullplay claim.",
+    "All-route traversal is isolated/refilled geometry. Positive one-jump partial-return cases have no live refills or corrections.",
+    "Existing save snapshots retain their original route payload; production Continue tested exact."
+  ],
+  "generatedCommit": "62937f43f4d58eaba25969b9d929fc2efd072710",
+  "savedCheckpointCommit": "fa4f37c70fe52f85d0a6c6bda815224e3ca3d530"
+}
