@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import vm from 'node:vm';
 import {readFile} from 'node:fs/promises';
-const g=vm.createContext({});
+const g=vm.createContext({HONRO_NARRATIVE_COMPAT:JSON.parse(await readFile('shared/data/narrative-compat-v1.json','utf8'))});
 vm.runInContext(await readFile('shared/runtime/story-direction.js','utf8'),g);
 const u={id:'resident-from-current-map',name:'동굴 주민',cls:'knight',honroCivilian:true,hp:3},other={id:'resident-4',name:'다른 주민',hp:4,honroCivilian:true};
 const b={honroStage:11,honroMarkers:[{id:'resident',target:u.id}],units:[other,u]},app={engine:{b}},speaker=who=>g.HonroStoryDirection.speaker(app,who);
