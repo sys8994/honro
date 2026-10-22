@@ -107,10 +107,16 @@
             if(c.globalAlpha!==1||c.globalCompositeOperation!=='source-over')return false;
             const m=c.getTransform(),pw=c.canvas.width,ph=c.canvas.height,signature=[key,w,h,pw,ph,m.a,m.b,m.c,m.d,m.e,m.f].join(':');
             let q=this[slot];
-            if(q?.key===signature&&q.canvas){c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(q.canvas,0,0);c.restore();this._cacheStats.screenHits=(this._cacheStats.screenHits||0)+1;this._cacheStats[world?'worldHits':'bgHits']++;return true;}
-            if(q?.key!==signature){if(q?.canvas){q.canvas.width=1;q.canvas.height=1;}this[slot]={key:signature};return false;}
+            if(q?.key===signature&&q.canvas&&q.ready){c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(q.canvas,0,0);c.restore();this._cacheStats.screenHits=(this._cacheStats.screenHits||0)+1;this._cacheStats[world?'worldHits':'bgHits']++;return true;}
+            if(q?.key!==signature){
+                // Reuse the two bounded screen surfaces when the camera settles
+                // again. A new key invalidates pixels, not a same-size buffer.
+                const cv=q?.canvas;if(cv&&(cv.width!==pw||cv.height!==ph||pw*ph>6000000)){cv.width=1;cv.height=1;q=null;}
+                this[slot]={key:signature,canvas:q?.canvas,bytes:q?.bytes||0,ready:false};return false;
+            }
             if(pw*ph>6000000||pw<1||ph<1)return false;
-            const cv=this._makeLayerCanvas(pw,ph),cc=cv.getContext('2d');cc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);paint(G.HonroVisualStyle?.contextLike(c,cc)||cc);q.canvas=cv;q.bytes=pw*ph*4;
+            const cv=q.canvas||this._makeLayerCanvas(pw,ph),cc=cv.getContext('2d');if(!q.canvas)this._cacheStats.screenCanvasAllocations=(this._cacheStats.screenCanvasAllocations||0)+1;
+            cc.setTransform(1,0,0,1,0,0);cc.clearRect(0,0,pw,ph);cc.save();cc.setTransform(m.a,m.b,m.c,m.d,m.e,m.f);paint(G.HonroVisualStyle?.contextLike(c,cc)||cc);cc.restore();q.canvas=cv;q.bytes=pw*ph*4;q.ready=true;
             this._cacheStats.screenBuilds=(this._cacheStats.screenBuilds||0)+1;
             c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0);c.restore();return true;
         }
@@ -252,6 +258,10 @@
             // views rasterize it once per sceneVersion. Painted maps also keep
             // close inspection in high-resolution, bounded world tiles.
             if(this.scale<=1.05||G.HonroPaintedPresentation?.forBattle(b)?.cachedWorld){this._drawStaticWorldCached(c,b,w,h);}else{
+                // Close vector views keep native screen resolution. Once the
+                // exact camera settles, reuse the same static pixels as other
+                // zoom levels instead of repainting all paths every frame.
+                const paint=c=>{
                 const view=G.HonroBounds.viewport(this,w,h),visibleLandmarks=(G.HonroTerrainDomain?.materialLandmarks(b)||b.honroLandmarks||[]).filter(l=>this._landmarkVisible(l,view));
                 this._landmarkLayer(c,visibleLandmarks,'back');
                 this._landmarkLayer(c,visibleLandmarks,'structural-back');
@@ -261,6 +271,8 @@
                 this._landmarkLayer(c,visibleLandmarks,'prop');
                 this._landmarkLayer(c,visibleLandmarks,'front');
                 this.terrainReadability?.(c,b,view);
+                };
+                if(!this._screenRaster(c,this._worldCacheKey(b,w)+':direct',w,h,paint,'_screenWorldCache'))paint(c);
             }
             if(!quietOutro)this.objectDamage?.(c,b,w,h);
             // Animated water lives outside the world raster cache; its collision and
