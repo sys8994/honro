@@ -6,6 +6,7 @@ async ({baseline})=>{
   {name:'normal-idle'}, {name:'normal-charge',charge:true},
   {name:'party-overlap',units:fixture('archer','occultist',18)},
   {name:'charge-bow-reversed',units:fixture('archer','mage',-32),charge:true,facing:-1,angle:145},
+  {name:'charge-release-bow',units:fixture('archer','mage',28),charge:true,release:true},
   {name:'charge-staff-hover-inspect',units:fixture('mage','knight',20),charge:true,hover:true,inspect:true},
   {name:'charge-sword-cloth',units:fixture('knight','occultist',-24),charge:true},
   {name:'charge-talisman',units:fixture('occultist','mage',24),charge:true,selected:'O06'},
@@ -36,16 +37,18 @@ async ({baseline})=>{
    const s=scenes[j],fn=j?candidate:base;Object.assign(s,{manual:true,x:spec.edge?u.x-w/(2*scale)+8:u.x,y:u.y-110,scale,time:2,skillPreview:!!spec.preview,hoverUnitId:spec.hover?v.id:null,inspectUnitId:spec.inspect?u.id:null});
    s.occludedUnitSilhouettes=function(...args){const proto=CanvasRenderingContext2D.prototype,original=proto.drawImage;proto.drawImage=function(...args){copies[j]++;return original.apply(this,args);};try{return fn.apply(this,args);}finally{proto.drawImage=original;}};
   }
-  for(let frame=0;frame<6;frame++){
+  const frames=spec.charge?18:6;
+  for(let frame=0;frame<frames;frame++){
    for(let j=0;j<2;j++){
     const e=engines[j],s=scenes[j];if(spec.motion){const u=e.b.units[0];u.walkPhase=(u.walkPhase||0)+.8;u.vy+=40;u.anim=Math.max(0,u.anim-.08);}
-    const saved=JSON.stringify(e.b);s.render(e,1/30,spec.selected||({mage:'M01',knight:'S01',occultist:'O01'})[u.cls]||'A01',.3+frame*.1,!!spec.charge,1/30);pure&&=saved===JSON.stringify(e.b);
+    if(spec.release&&frame===14)e.b.units[0].anim=.95;
+    const saved=JSON.stringify(e.b);s.render(e,1/30,spec.selected||({mage:'M01',knight:'S01',occultist:'O01'})[u.cls]||'A01',Math.min(1,.3+frame*.1),!!spec.charge&&!(spec.release&&frame>=14),1/30);pure&&=saved===JSON.stringify(e.b);
    }
    samePose&&=state(scenes[0])===state(scenes[1]);sameIds&&=JSON.stringify(scenes[0]._occludedUnitIds)===JSON.stringify(scenes[1]._occludedUnitIds);
    const left=pixels(canvases[0]),right=pixels(canvases[1]);for(let i=0;i<left.length;i+=4){let diff=false;for(let k=0;k<4;k++){const d=Math.abs(left[i+k]-right[i+k]);maxDiff=Math.max(maxDiff,d);diff||=d!==0;}if(diff)changed++;}
-   if(frame===5)hashes=[await digest(left),await digest(right)];
+   if(frame===frames-1)hashes=[await digest(left),await digest(right)];
   }
-  cases.push({name:spec.name,frames:6,exact:changed===0,changedPixelsAcrossFrames:changed,maxChannel:maxDiff,samePose,sameIds,battlePure:pure,copies,rgbaSha256:hashes,image:canvases[1].toDataURL('image/png')});
+  cases.push({name:spec.name,frames,exact:changed===0,changedPixelsAcrossFrames:changed,maxChannel:maxDiff,samePose,sameIds,battlePure:pure,copies,rgbaSha256:hashes,image:canvases[1].toDataURL('image/png')});
   for(const c of canvases){c.width=c.height=1;c.remove();}
  }
  Object.defineProperty(window,'devicePixelRatio',{configurable:true,value:1});
@@ -55,6 +58,7 @@ async ({baseline})=>{
  for(const cls of ['archer','mage','knight','occultist'])for(const facing of [-1,1])for(const kind of ['idle','move','charge','airborne','hit']){
   const u=hero(cls);Object.assign(u,{x:0,y:0,facing,moving:kind==='move'?1:0,airborne:kind==='airborne',vy:kind==='airborne'?100:0,hurt:kind==='hit'?.6:0,anim:kind==='hit'?.8:0});
   const c=cv(384,384),s=new HonroScene(c),e=new HONRO_CORE.Engine({...structuredClone(battle),units:[u],active:u.id},()=>{});c.width=c.height=384;const ctx=c.getContext('2d');s.actorEngine=e;s.battle=e.b;s.partyVisual=new HonroPartyVisual(HONRO_PARTY,HonroVectorRig,s.archerVisual);s.time=2;s.archerVisual.update(e,2,.033,'A01');s.partyVisual.update(e,2,.033,'O06');
+  if(kind==='charge')s.partyVisual.visuals[resolveRebuildCharacter(u)].state(u).chargeAt=1.5;if(kind==='move'||kind==='hit'){u.walkPhase=30;s.time=2.18;s.archerVisual.update(e,2.18,.033,'A01');s.partyVisual.update(e,2.18,.033,'O06');}
   ctx.setTransform(1.2,0,0,1.2,192,300);ctx._honroOcclusionBounds={};s.unitBody(ctx,u,kind==='charge'?.8:0);const box=ctx._honroOcclusionBounds.bounds;delete ctx._honroOcclusionBounds;
   const data=pixels(c);let outside=0,count=0;for(let y=0;y<384;y++)for(let x=0;x<384;x++)if(data[(y*384+x)*4+3]){count++;if(!box||x<box[0]||x+1>box[2]||y<box[1]||y+1>box[3])outside++;}
   hullChecks.push({cls,facing,kind,box,count,outside});c.width=c.height=1;c.remove();

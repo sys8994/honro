@@ -4367,3 +4367,11 @@ HUD의 32~36px 내부 타일과 공통 스탬프의 둥근 이중 프레임을 �
 ### 2026-10-22 · 소환 만료 뒤 표시 참조 정리 통합
 
 실제 소환 피격→pause/resume→만료/prune 뒤 settledHits가 제거된 객체를 유지하던 조건부 참조 정리3줄(b8487309)을 최신 master 기반 아키텍처에 선택 통합했다. 실제 lifecycle/Canvas와 pause·HUD·저장 경계는 통합 기록에 남긴다. 원래 점증 렉 원인/FPS 개선으로 표현하지 않는다. `render-update-architecture-20261022/INTEGRATION.md`.
+
+
+## 2026-10-22 · 정상 전투의 빈 실루엣 합성 생략
+
+- 기준 `1c397248`, 별도 `fix/occlusion-render-cost-20261022`. 실제11장 정상 banner 종료·84 icon warm idle120frame에서 느슨한 covers 후보120개가 모두 최종 투명 마스크였다. 명시적 readback/GPU 동기화나 무컬링으로 오진하지 않았고, readback 진단은 성능 실행과 분리했다.
+- 현재 body draw에서 실제 리그 행렬·경로 hull/stroke/AA 및8방향 팽창 여백으로 교집합이 없음을 증명한 경우에만 후속 mask 합성을 생략한다. 현재384 해상도/격자·동적 pose·후보ID·선택/hover/inspect는 보존한다. unknown geometry/보스/몬스터는 기존 합성. 새 unit bitmap/프레임 감속·main/UI·예측·지형캐시·게임 규칙 변경 없음.
+- runtime/build `2d92eca6`. 이전 함수와 같은 실제 Scene RGBA/pose/state 대조 및 wrapper 없는 CDP 자연 App240frame×3회 A/B: idle p95 10.70/9.64/13.83→6.93/5.79/5.03ms, 최대충전12.04/11.58/10.88→6.08/6.25/5.08ms, pan9.84/10.09/9.63→4.77/5.68/4.94ms. rAF p95 양쪽16.7–16.8ms, 일부 max 지연은 악화되어 FPS/최악 지연/원래 점증 렉 해결 주장은 하지 않는다. 실기기 미검사.
+- 원자료·실제 조건·품질 경계·JPG·SHA·재현은 [실루엣 비용 기록](occlusion-render-cost-20261022/README.md). master/Pages는 부모 최종 검토 전 변경하지 않는다.
