@@ -637,14 +637,15 @@
         outcome(afterStory=false) {
             // Guard before outro: completed saves must never reopen or resave.
             if(this.done||!this.engine)return;
-            if(this.engine.b.phase==='won')G.HonroClearReport.finish(this);
+            if(this.engine.b.phase==='won'&&!this.engine.b.honroReport?.final)G.HonroClearReport.finish(this);
             if(!afterStory&&this.engine?.b.phase==='won'&&!this.dialogue){G.HonroSodanWithdrawal.safeBackdrop(this);G.HonroActEndings?.preload(this,this.stage.id);this.cancelInput();if(G.HonroStory.start(this,G.HonroSodanWithdrawal.outro(this.engine.b,(G.HonroObjectiveRevision?.contentFor(this.engine.b,this.stage)||this.stage).outro),{title:this.stage.name,after:'outcome'}))return;}
             if (this.done || !this.engine)
                 return;
             this.done = true;this.resultDismissed=false;
             this.cancelInput();
             const b = this.engine.b, won = b.phase === 'won', st = G.HonroObjectiveRevision?.contentFor(b,this.stage)||this.stage;this.resultJoined=[];
-            if(won)G.HonroProgression.complete(b);
+            // The immutable report settled XP before the outro; presentation never settles again.
+            if(won&&!b.honroReport?.final)G.HonroProgression.complete(b);
             if(won&&!b.honroJourneyReplay){const handoff=G.HonroRouteBranches?.handoff(b);if(handoff)this.profile.honroRouteHandoff=handoff;}
             G.HonroProgression.syncRoster(this.profile,b);
             delete this.profile.honroCampPending;

@@ -43,3 +43,12 @@ for(const mode of ['mount','Continue']){
  assert.match(g.HonroClearReportUI.detail(b.honroReport.final),/소환체<\/strong> · 피해 0 · 받은 피해 0 · 처치 0 · 회복 5/);
  console.log('PASS actual simultaneous M10: hero10 + summon5, overheal excluded, totals and separate UI consistent');
 }
+
+{
+ const a=h.load(h.profileThrough(4));a.launch(5);h.finish(a);
+ const originalFinish=R.finish,originalComplete=g.HonroProgression.complete,calls={finish:0,complete:0};
+ R.finish=(...args)=>{calls.finish++;return originalFinish(...args);};g.HonroProgression.complete=(...args)=>{calls.complete++;return originalComplete(...args);};
+ try{a.engine.b.phase='won';a.outcome();h.finish(a);a.outcome(true);assert.deepEqual(calls,{finish:1,complete:1});}
+ finally{R.finish=originalFinish;g.HonroProgression.complete=originalComplete;}
+ console.log('PASS victory → outro → result calls report finish and XP settlement exactly once');
+}
