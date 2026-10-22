@@ -1,0 +1,19 @@
+PASS 20 source narration snapshots, authored speech/narration roles, recruitment/layer boundaries and authored urgent links
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(finish5.some(([who,line])=>who==='휘겸'&&/방금 저 줄도 당겨졌소/.test(line)))
+
+    at file:///tmp/honro-baseline-check/tests/journey-content.mjs:14:1 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}
+
+Node.js v24.19.0

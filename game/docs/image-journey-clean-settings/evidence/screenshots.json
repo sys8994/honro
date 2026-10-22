@@ -1,0 +1,267 @@
+{
+  "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+  "kind": "actual local Chromium JPG captures; no composites or repainting",
+  "count": 37,
+  "largestBytes": 236131,
+  "shots": [
+    {
+      "file": "act1-fixture-1280x900.jpg",
+      "bytes": 199524,
+      "sha256": "f29422f56055d49a860b6b48c0474c309e0d104c94c1c5553c97ba319cb5aa1f",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act1-fixture-360x800.jpg",
+      "bytes": 71987,
+      "sha256": "fd07e2c0f597662c5766ea1dbbfb2357c06bce1440aceb88b65afa01a19a14c8",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act1-fixture-390x844.jpg",
+      "bytes": 75697,
+      "sha256": "f418510dae7c2da22a38229ae55a0e5a9ca9ab561f94a2fc2a19c2ef8a56490e",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act1-fixture-844x390.jpg",
+      "bytes": 64181,
+      "sha256": "b9866d363f6c9d0c57698dfab67fede2f245200552b2c369f08f3219b30a30e5",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act1-fixture-overview-1280x900.jpg",
+      "bytes": 236131,
+      "sha256": "946ff6b49ca461dc7433349edf8965505987ad5c203c92d5b7e0fbfca77168a6",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act2-decode-failure-fixture-390x844.jpg",
+      "bytes": 25240,
+      "sha256": "9e59304169f154e2aa1c67b763ed87b5c1484bad57db67cb2324432d6821e0fe",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal; deliberately aborted image request"
+    },
+    {
+      "file": "act2-fixture-1280x900.jpg",
+      "bytes": 119304,
+      "sha256": "23c86ecaf22053a1847accae64e97a3439262832bc8a35fa811ad76fb47a7a71",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act2-fixture-360x800.jpg",
+      "bytes": 45407,
+      "sha256": "bd4f3138f95ca720373c32021f05793604702464ffd70ea9657d25e3cfa8578c",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act2-fixture-390x844.jpg",
+      "bytes": 48055,
+      "sha256": "cbf4747f687bffca55e1bf52115389c72eea12a6ed8c7340a93b6d1d68a1d021",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act2-fixture-844x390.jpg",
+      "bytes": 38446,
+      "sha256": "1fa26d966071926985d7aab21e18f4e2bdede3ee1a3355b8a3bb3e4af4f9ce33",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act2-fixture-overview-1280x900.jpg",
+      "bytes": 94516,
+      "sha256": "3e1f9ce95e3740187675f12fe4283530050e174a5d556d9c27e04bf5728afce0",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act3-fixture-1280x900.jpg",
+      "bytes": 137091,
+      "sha256": "3dedf470ae82831887efdb1e50cd8e2364154db56d42d65b08615d262f48bb5d",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act3-fixture-360x800.jpg",
+      "bytes": 70262,
+      "sha256": "e20103b17e301701948a598152ce1772dbbf20915c94d848396a3d08074e1e7b",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act3-fixture-390x844.jpg",
+      "bytes": 74522,
+      "sha256": "a262ab0525ddbe7c58e69aa39160984395b065d68c700e1f248c65234488f77c",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act3-fixture-844x390.jpg",
+      "bytes": 68181,
+      "sha256": "b8e536742a86143deedca5caa28a64481decc70aac6cfbda7b481f701754ba4a",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "act3-fixture-overview-1280x900.jpg",
+      "bytes": 204748,
+      "sha256": "8520be84ba73761b3ac55c2d22c4137bec48cba57f059d8264d8de7dae277ebe",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "fresh-act1-gate-390x844.jpg",
+      "bytes": 35393,
+      "sha256": "b1e440a1d9d882d5d1e9609a178fc21dd1969a87839e7abb43af85131f0d27de",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh progress; prologue skipped for journal gate QA; no unlocked-progress fixture"
+    },
+    {
+      "file": "fullscreen-rejected-fixture.jpg",
+      "bytes": 24564,
+      "sha256": "ab9c582c2a894301c915f12862a8f1247795b658698036d6b0f131a7c88019e3",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh stage1 launched for menu QA; entry dialogue skipped; no combat-clear claim; deliberately rejected fullscreen API fixture"
+    },
+    {
+      "file": "fullscreen-success-chromium.jpg",
+      "bytes": 23501,
+      "sha256": "7ddeb2b11a3bde7274d91af7689cb231be42afee69490d798b54bcc93a0d9cbc",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh stage1 launched for menu QA; entry dialogue skipped; no combat-clear claim; native Chromium fullscreen request succeeded"
+    },
+    {
+      "file": "import-confirm-390x844.jpg",
+      "bytes": 21441,
+      "sha256": "1a502fee913096c6b37e56ebf9acde2138e63b2256d9298a4007422995659c83",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh stage1 launched for menu QA; entry dialogue skipped; no combat-clear claim"
+    },
+    {
+      "file": "import-invalid-fixture-390x844.jpg",
+      "bytes": 28128,
+      "sha256": "e30fbdbe007bbee0cfcd82f353fdab92241646b3f2cd9ea1fff5f5a6eec0fb22",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh stage1 launched for menu QA; entry dialogue skipped; no combat-clear claim; deliberately invalid JSON file"
+    },
+    {
+      "file": "new-journey-confirm-390x844.jpg",
+      "bytes": 18366,
+      "sha256": "e3237913b4efc38f8afdb773e10d0827cf5c2518e123d2b9a22b23d830f2411c",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh stage1 launched for menu QA; entry dialogue skipped; no combat-clear claim"
+    },
+    {
+      "file": "pause-390x844.jpg",
+      "bytes": 20099,
+      "sha256": "bdb8d4cac52fcc2524dc95cd0a53bf1562651e81a04357c9dd8a88f033d6b590",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh stage1 launched for menu QA; entry dialogue skipped; no combat-clear claim"
+    },
+    {
+      "file": "retry-choice-390x844.jpg",
+      "bytes": 17374,
+      "sha256": "3bf9b63af26d77f806e1759e0e71834e89cd2a812c2fe853ec60da819adb202b",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh stage1 launched for menu QA; entry dialogue skipped; no combat-clear claim"
+    },
+    {
+      "file": "retry-confirm-390x844.jpg",
+      "bytes": 19576,
+      "sha256": "fe31955c245f8c2240c52efb6310dd01ca8ca3849aa5792c779a4e9ab4fd1995",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh stage1 launched for menu QA; entry dialogue skipped; no combat-clear claim"
+    },
+    {
+      "file": "rotation-act2-bell-fixture-844x390.jpg",
+      "bytes": 40935,
+      "sha256": "f85b77bed4d35d6bdd59d58f67da6c89ea1bcd5d7c8c2666f9ac0c197d912928",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "explicit unlocked-progress fixture (cleared1–29); actual Chromium journal"
+    },
+    {
+      "file": "settings-debug-390x844.jpg",
+      "bytes": 27102,
+      "sha256": "2b31faa25c8a6f94cc77f8e7e8f7709eb94fa3209f5d8d0fac7993af59c10253",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh title settings; real saved/default values, no unlocked-progress fixture"
+    },
+    {
+      "file": "settings-help-390x844.jpg",
+      "bytes": 52761,
+      "sha256": "0ee28044229f09390c743dcce83c5875fd4ec6de8793a19c8f66ad10b564cc0b",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh stage1 launched for menu QA; entry dialogue skipped; no combat-clear claim"
+    },
+    {
+      "file": "settings-play-390x844.jpg",
+      "bytes": 19909,
+      "sha256": "e4320d8daf31eefa18c8d1c66c2aed85df9f9254641a2f36f66f5fdb833c9271",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh title settings; real saved/default values, no unlocked-progress fixture"
+    },
+    {
+      "file": "settings-records-390x844.jpg",
+      "bytes": 23598,
+      "sha256": "15b6a68be18bc992819a4dceb71cd89f25695403dc329fc6c1411591d7d2fbd1",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh title settings; real saved/default values, no unlocked-progress fixture"
+    },
+    {
+      "file": "settings-root-1280x900.jpg",
+      "bytes": 40376,
+      "sha256": "5cb7bc7b0e2d81b9d4b62ef52242f6085e667bf6a018b3d7027cf32ea7381013",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh title settings; real saved/default values, no unlocked-progress fixture"
+    },
+    {
+      "file": "settings-root-360x800.jpg",
+      "bytes": 20285,
+      "sha256": "5553c57e7861947935396fa29b05c477427bceb86dceb3dc5ffb369846ef1908",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh title settings; real saved/default values, no unlocked-progress fixture"
+    },
+    {
+      "file": "settings-root-390x844.jpg",
+      "bytes": 22047,
+      "sha256": "13b1cbe52419512d3c8f4f796ed5ce11dd6c1c42a62017e3ffe5dde8d93b49d0",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh title settings; real saved/default values, no unlocked-progress fixture"
+    },
+    {
+      "file": "settings-root-844x390.jpg",
+      "bytes": 17913,
+      "sha256": "27025ec9177b33fd83b2cf06e52efec952fd219757508ca9f94c4bc0793bf217",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh title settings; real saved/default values, no unlocked-progress fixture"
+    },
+    {
+      "file": "settings-screen-390x844.jpg",
+      "bytes": 18994,
+      "sha256": "eb4ad006020af9c71b36c495a7ff919f093c4bf030c504fcd3763a33d9ef081a",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh title settings; real saved/default values, no unlocked-progress fixture"
+    },
+    {
+      "file": "settings-sound-390x844.jpg",
+      "bytes": 19580,
+      "sha256": "ae7eece1a81881534cd5d581fa02cf8054f220c45f973f1961403a01e55e6b44",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh title settings; real saved/default values, no unlocked-progress fixture"
+    },
+    {
+      "file": "sound-saved-value-390x844.jpg",
+      "bytes": 20390,
+      "sha256": "cd07c940e0e52299c070e9b5da8967a96b0d5eea15a71f2d0add6af653a6a76b",
+      "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+      "source": "fresh stage1 launched for menu QA; entry dialogue skipped; no combat-clear claim"
+    }
+  ]
+}

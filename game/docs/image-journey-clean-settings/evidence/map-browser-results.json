@@ -73,36 +73,37 @@
   ],
   "errors": [],
   "requests": [
-    "http://127.0.0.1:36713/web/graphics/journey-map-act1.31fefd98a807ce78.webp",
-    "http://127.0.0.1:36713/web/graphics/journey-map-act2.d8017c9b386ec0dc.webp",
-    "http://127.0.0.1:36713/web/graphics/journey-map-act3.6beb660e6f37bacc.webp",
-    "http://127.0.0.1:36713/web/graphics/journey-map-act2.d8017c9b386ec0dc.webp"
+    "http://127.0.0.1:33323/web/graphics/journey-map-act1.31fefd98a807ce78.webp",
+    "http://127.0.0.1:33323/web/graphics/journey-map-act2.d8017c9b386ec0dc.webp",
+    "http://127.0.0.1:33323/web/graphics/journey-map-act3.6beb660e6f37bacc.webp",
+    "http://127.0.0.1:33323/web/graphics/journey-map-act2.d8017c9b386ec0dc.webp"
   ],
   "resources": [
     {
-      "name": "http://127.0.0.1:36713/web/graphics/journey-map-act1.31fefd98a807ce78.webp",
+      "name": "http://127.0.0.1:33323/web/graphics/journey-map-act1.31fefd98a807ce78.webp",
       "transfer": 371556,
       "encoded": 371256,
       "decoded": 371256
     },
     {
-      "name": "http://127.0.0.1:36713/web/graphics/journey-map-act2.d8017c9b386ec0dc.webp",
+      "name": "http://127.0.0.1:33323/web/graphics/journey-map-act2.d8017c9b386ec0dc.webp",
       "transfer": 185232,
       "encoded": 184932,
       "decoded": 184932
     },
     {
-      "name": "http://127.0.0.1:36713/web/graphics/journey-map-act3.6beb660e6f37bacc.webp",
+      "name": "http://127.0.0.1:33323/web/graphics/journey-map-act3.6beb660e6f37bacc.webp",
       "transfer": 419634,
       "encoded": 419334,
       "decoded": 419334
     },
     {
-      "name": "http://127.0.0.1:36713/web/graphics/journey-map-act2.d8017c9b386ec0dc.webp",
+      "name": "http://127.0.0.1:33323/web/graphics/journey-map-act2.d8017c9b386ec0dc.webp",
       "transfer": 0,
       "encoded": 184932,
       "decoded": 184932
     }
   ],
-  "scope": "unlocked-progress fixtures, actual desktop Chromium, not real-phone or full-campaign proof"
+  "scope": "unlocked-progress fixtures, actual desktop Chromium, not real-phone or full-campaign proof",
+  "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e"
 }

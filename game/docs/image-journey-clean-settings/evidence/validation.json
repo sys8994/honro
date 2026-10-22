@@ -1,0 +1,145 @@
+{
+  "runtimeCandidate": "20e1dea29014e02d4e9624a139d1b3a1ce29be3e",
+  "completedAt": "2026-10-22T04:42:34.349966+00:00",
+  "checks": [
+    {
+      "command": "npm run build",
+      "result": "passed",
+      "log": "tests/build.txt"
+    },
+    {
+      "command": "npm --prefix game run typecheck",
+      "result": "passed",
+      "log": "tests/typecheck.txt"
+    },
+    {
+      "command": "node tests/web-split.mjs",
+      "result": "passed",
+      "log": "tests/web-split.txt"
+    },
+    {
+      "command": "node tests/settings-menu.mjs",
+      "result": "passed",
+      "log": "tests/settings-menu.txt"
+    },
+    {
+      "command": "node tests/fullscreen-escape.mjs",
+      "result": "passed",
+      "log": "tests/fullscreen.txt"
+    },
+    {
+      "command": "node tests/modal-keyboard.mjs",
+      "result": "passed",
+      "log": "tests/modal-keyboard.txt"
+    },
+    {
+      "command": "node tests/battle-help.mjs",
+      "result": "passed",
+      "log": "tests/battle-help.txt"
+    },
+    {
+      "command": "node tests/charge-input.mjs",
+      "result": "passed",
+      "log": "tests/charge-input.txt"
+    },
+    {
+      "command": "node tests/debug-campaign-parity.mjs",
+      "result": "passed",
+      "log": "tests/debug-parity.txt"
+    },
+    {
+      "command": "node tests/rest-hub-journey-flow.mjs",
+      "result": "passed",
+      "log": "tests/rest-hub.txt"
+    },
+    {
+      "command": "node tests/journey-stage-departure.mjs",
+      "result": "passed",
+      "log": "tests/departure.txt"
+    },
+    {
+      "command": "node tests/rest-journey.mjs",
+      "result": "passed",
+      "log": "tests/rest-journey.txt"
+    },
+    {
+      "command": "node tests/journey-layout.mjs",
+      "result": "passed",
+      "log": "tests/native-layout.txt"
+    },
+    {
+      "command": "node tests/journey-atlas-proof.mjs",
+      "result": "passed",
+      "log": "tests/atlas-markup.txt"
+    },
+    {
+      "command": "node tests/journey-art.mjs",
+      "result": "passed",
+      "log": "tests/retained-art.txt"
+    },
+    {
+      "command": "node tests/cheonroe-distinct-bolts.mjs",
+      "result": "passed",
+      "log": "tests/m05.txt"
+    },
+    {
+      "command": "python tests/image-journey-browser.py",
+      "result": "passed",
+      "log": "tests/map-browser.txt"
+    },
+    {
+      "command": "python tests/settings-menu-browser.py",
+      "result": "passed",
+      "log": "tests/settings-browser.txt"
+    },
+    {
+      "command": "python tests/debug-mode-browser.py",
+      "result": "passed",
+      "log": "tests/debug-browser.txt"
+    },
+    {
+      "command": "python tests/journey-layout-browser.py",
+      "result": "passed",
+      "log": "tests/layout-browser.txt"
+    },
+    {
+      "command": "python tests/journey-gestures-browser.py",
+      "result": "passed",
+      "log": "tests/gestures-browser.txt"
+    },
+    {
+      "command": "HONRO_JOURNEY_OUT=_local/reports/image-journey-hub python tests/rest-hub-journey-browser.py",
+      "result": "passed",
+      "log": "tests/hub-browser.txt"
+    },
+    {
+      "command": "HONRO_ENDING_OUT=_local/reports/image-journey-endings python tests/rest-hub-act-endings-browser.py",
+      "result": "passed",
+      "log": "tests/endings-browser.txt"
+    },
+    {
+      "command": "node tests/journey-content.mjs",
+      "result": "failed at pre-existing stage5 outro assertion, line14",
+      "baselineReproduced": true,
+      "log": "tests/journey-content-candidate-failure.txt",
+      "baselineLog": "tests/journey-content-baseline-failure.txt"
+    }
+  ],
+  "finalCandidateReruns": [
+    "build",
+    "settings-menu",
+    "fullscreen",
+    "web-split",
+    "map-browser",
+    "settings-browser",
+    "debug-browser"
+  ],
+  "scopeNote": "Other listed checks cover unchanged map/travel/input/engine paths before the last import/fullscreen feedback-only commit. They were not blindly repeated.",
+  "unrun": [
+    "Full npm run verify",
+    "Normal-play full30-stage traversal",
+    "Real phone/iOS/Android device checks",
+    "Live Pages verification (release explicitly deferred)",
+    "Physical OS orientation lock/fullscreen behavior"
+  ]
+}

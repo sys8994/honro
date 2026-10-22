@@ -1,0 +1,42 @@
+PASS game: accessible zoom/fit/recenter controls present
+PASS game surface: plain wheel zooms at the cursor
+PASS game surface: both zoom bounds
+PASS game cutaway: plain wheel zooms at the cursor
+PASS game cutaway: both zoom bounds
+PASS game city: plain wheel zooms at the cursor
+PASS game city: both zoom bounds
+PASS game: dragging a pin pans without selecting it
+PASS game: next click selects normally
+PASS game: keyboard selection remains usable
+PASS game: wheel outside the map leaves its zoom unchanged
+PASS game: saved battle and progression unchanged
+PASS embedded: accessible zoom/fit/recenter controls present
+PASS embedded surface: plain wheel zooms at the cursor
+PASS embedded surface: both zoom bounds
+PASS embedded cutaway: plain wheel zooms at the cursor
+PASS embedded cutaway: both zoom bounds
+PASS embedded city: plain wheel zooms at the cursor
+PASS embedded city: both zoom bounds
+PASS embedded: dragging a pin pans without selecting it
+PASS embedded: next click selects normally
+PASS embedded: keyboard selection remains usable
+PASS embedded: wheel outside the map leaves its zoom unchanged
+PASS embedded: saved battle and progression unchanged
+PASS touch-390x844: spread pinch expands at its midpoint
+PASS touch-390x844: closing pinch reaches the lower bound
+PASS touch-390x844: moving the pinch center also pans at the zoom limit
+PASS touch-390x844: one remaining finger continues panning
+PASS touch-390x844: pinch does not choose a place and releases its cursor
+PASS touch-390x844: next ordinary tap selects its pin
+PASS touch-390x844: cancellation leaves no dragging state or save changes
+PASS touch-390x844: page itself stays at its original scale
+PASS touch-844x390: spread pinch expands at its midpoint
+PASS touch-844x390: closing pinch reaches the lower bound
+PASS touch-844x390: moving the pinch center also pans at the zoom limit
+PASS touch-844x390: one remaining finger continues panning
+PASS touch-844x390: pinch does not choose a place and releases its cursor
+PASS touch-844x390: next ordinary tap selects its pin
+PASS touch-844x390: cancellation leaves no dragging state or save changes
+PASS touch-844x390: page itself stays at its original scale
+PASS No uncaught browser errors
+JOURNEY GESTURES PASS 41

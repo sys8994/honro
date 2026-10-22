@@ -1,0 +1,8 @@
+PASS Enabling debug stops battle and isolates the normal snapshot, including suspended combat
+PASS All acts have ten unlocked canonical controls; selection alone never navigates or changes saves
+PASS Travel requires approval before replacing a saved battle; cancel preserves both owners
+PASS Camp keeps selectable levels, all hero talents, safe loadouts, independent refunds, and normal-profile protection
+PASS Explicit departures and retry preserve stage teams, difficulty and chosen skills
+PASS Debug export always uses the protected normal save; import is blocked
+PASS Reload restores the protected profile; disabling debug restores ordinary locks and recruitment
+PASS Embedded playtest cannot turn on debug mode or expose debug controls

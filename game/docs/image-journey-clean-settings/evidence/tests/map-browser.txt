@@ -1,0 +1,70 @@
+PASS title has no map request
+PASS intro/rest/camp do not request maps
+PASS fresh progress only loads Act1 and emits no secret locked labels
+PASS direct attempt cannot load locked Act2
+PASS 360x800 Act1: exactly ten canonical destinations; no layer toggle
+PASS 360x800 Act1: native aspect and selected hit area
+PASS 360x800 Act1: circles align with native anchors
+PASS 360x800 Act1: selection stays in journal and does not mutate save
+PASS 360x800 Act1: wheel zoom
+PASS 360x800 Act2: exactly ten canonical destinations; no layer toggle
+PASS 360x800 Act2: native aspect and selected hit area
+PASS 360x800 Act2: circles align with native anchors
+PASS 360x800 Act2: selection stays in journal and does not mutate save
+PASS 360x800 Act2: wheel zoom
+PASS 360x800 Act3: exactly ten canonical destinations; no layer toggle
+PASS 360x800 Act3: native aspect and selected hit area
+PASS 360x800 Act3: circles align with native anchors
+PASS 360x800 Act3: selection stays in journal and does not mutate save
+PASS 360x800 Act3: wheel zoom
+PASS 390x844 Act1: exactly ten canonical destinations; no layer toggle
+PASS 390x844 Act1: native aspect and selected hit area
+PASS 390x844 Act1: circles align with native anchors
+PASS 390x844 Act1: selection stays in journal and does not mutate save
+PASS 390x844 Act1: wheel zoom
+PASS 390x844 Act2: exactly ten canonical destinations; no layer toggle
+PASS 390x844 Act2: native aspect and selected hit area
+PASS 390x844 Act2: circles align with native anchors
+PASS 390x844 Act2: selection stays in journal and does not mutate save
+PASS 390x844 Act2: wheel zoom
+PASS 390x844 Act3: exactly ten canonical destinations; no layer toggle
+PASS 390x844 Act3: native aspect and selected hit area
+PASS 390x844 Act3: circles align with native anchors
+PASS 390x844 Act3: selection stays in journal and does not mutate save
+PASS 390x844 Act3: wheel zoom
+PASS 844x390 Act1: exactly ten canonical destinations; no layer toggle
+PASS 844x390 Act1: native aspect and selected hit area
+PASS 844x390 Act1: circles align with native anchors
+PASS 844x390 Act1: selection stays in journal and does not mutate save
+PASS 844x390 Act1: wheel zoom
+PASS 844x390 Act2: exactly ten canonical destinations; no layer toggle
+PASS 844x390 Act2: native aspect and selected hit area
+PASS 844x390 Act2: circles align with native anchors
+PASS 844x390 Act2: selection stays in journal and does not mutate save
+PASS 844x390 Act2: wheel zoom
+PASS 844x390 Act3: exactly ten canonical destinations; no layer toggle
+PASS 844x390 Act3: native aspect and selected hit area
+PASS 844x390 Act3: circles align with native anchors
+PASS 844x390 Act3: selection stays in journal and does not mutate save
+PASS 844x390 Act3: wheel zoom
+PASS 1280x900 Act1: exactly ten canonical destinations; no layer toggle
+PASS 1280x900 Act1: native aspect and selected hit area
+PASS 1280x900 Act1: circles align with native anchors
+PASS 1280x900 Act1: selection stays in journal and does not mutate save
+PASS 1280x900 Act1: wheel zoom
+PASS 1280x900 Act2: exactly ten canonical destinations; no layer toggle
+PASS 1280x900 Act2: native aspect and selected hit area
+PASS 1280x900 Act2: circles align with native anchors
+PASS 1280x900 Act2: selection stays in journal and does not mutate save
+PASS 1280x900 Act2: wheel zoom
+PASS 1280x900 Act3: exactly ten canonical destinations; no layer toggle
+PASS 1280x900 Act3: native aspect and selected hit area
+PASS 1280x900 Act3: circles align with native anchors
+PASS 1280x900 Act3: selection stays in journal and does not mutate save
+PASS 1280x900 Act3: wheel zoom
+PASS pinch handler changes zoom
+PASS rotation keeps CTA and recenter visible
+PASS bounded decoded cache retains at most two images
+PASS decode failure retains clickable landmarks and a retry
+PASS failed map can retry successfully
+PASS no runtime page errors

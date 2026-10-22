@@ -1,0 +1,14 @@
+PASS Pause exposes one rest-hub action; cancel changes neither live battle nor serialized save
+PASS Confirmed hub return discards combat in memory/autosave/reload and preserves earned permanent progress
+PASS Act unlock follows canonical act endpoints and invalid actions never expose a locked atlas
+PASS Act 2 unifies surface 11/12 and underground 13–20 without act-1 pins
+PASS Spot selection is inert; explicit CTA branches to authored rest or a fresh direct stage
+PASS Legacy suspended snapshot stays exact until approval, including same-stage explicit restart
+PASS Explicit split return uses a hub and same-stage entry creates a new battle with the original checkpoint
+PASS Finished journey CTA returns to the terminal riverside rest, including after replay-camp selection
+PASS Stale approval and repeated approvals cannot discard a different session
+PASS Intro Continue still restores exact old battle, while explicit hub and camp stage entry restart
+PASS Debug selection is inert, launches only a temporary new fight, and never overwrites normal storage
+PASS Practice return protects its suspended campaign until the explicit stage-entry approval
+PASS New journey drops an old camp destination and shows only the first act
+PASS Replay win cannot duplicate XP, first-clear reward or act ending; normal direct links persist
