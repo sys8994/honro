@@ -204,3 +204,60 @@
 [candidate4-preview.json](evidence/candidate4-preview.json)에 미커밋 sourceHashes/camera/viewport/상태를 기록했다. 네 장의 camera/viewport/phase/current 목표는 세 번째 후보와 정확히 같고 JPG 각1MB 미만이다. 새 사진은 생산 Game의 고정 fixture이며 정상 전투 완주나 실기기 터치 검사가 아니다.
 
 빌드, `stage11-vector-finish.mjs`의 master대비 gameplay/다른29장 불변과 저작기 재현/멱등, `stage11-landscape-art.mjs`의 렌더 순수성·prepare 캐시/옛 전투/다른 장 opt-out을 확인했다. [보존](evidence/candidate4-preservation.json), [캐시](evidence/candidate4-material-cache.json), [세 번째 후보 대비 범위](evidence/candidate4-delta.json). 네 번째 후보의 집중/별도 종합과 비용은 후속 절에서 실제 수행 범위만 갱신한다. 기존의 무관한 전술45≠43 실패나 다른 장 검사를 재실행/수리하지 않는다.
+
+
+### 네 번째 후보의 변경 범위 집중3회와 별도 종합
+
+미술 최종 소스는 `8d31b096`이다. 선공개와 커밋 후 촬영의 campaign/저작기/재질 renderer/생성 manifest sourceHashes가 모두 같으며, 그 뒤 미술 소스는 바꾸지 않았다. 아래는 검사 수행 기록이고 부모 미술 합격은 아니다.
+
+1. **전체/큰 면과 깊이:** `candidate4-overview.jpg`를 직접 열었다. 중앙은 큰 명암 묶음을 유지하면서 그 안의 중간 접합이 더 보이고, 다른 암체의 강한 아랫면 톤을 완화했다. 전폭 균일 타일이나 새 독립 외곽은 없다. 다른 암체와 중앙의 조형 차이가 최종적으로 충분히 줄었는지는 부모 실제 픽셀 판단 대상이다.
+2. **일반 거리의 중간 파단/접합:** `candidate4-central.jpg`와 `candidate4-refuge.jpg`를 직접 열었다. 새 경계는 부모 면 안에서 이웃 면과 공유하고, 소수의 틈/광만 강조된다. 인물과 비교할 때 이전 큰 면 안에 더 작은 분할이 읽히지만,100~220px/10~16개를 단순 계수해 미술 합격으로 처리하지 않는다. 뿌리의 암벽 입구·피난처 차양/자리/물건·주민 노출은 보존된다.
+3. **모바일·최소/최대:** 별도 촬영한 `candidate4-focus-mobile-trace.jpg`(390×844), `candidate4-focus-min-mobile.jpg`(844×390, 실제 min), `candidate4-focus-max-refuge.jpg`(1440×900, 실제 max1.65)를 직접 열었다. 흔적 아래 경사 내부의 추가 중간 접합, 목표 라벨/통행선·주민 가림을 확인했다. 새 가림/발판 외곽은 보지 못했다. 축소에서 약한 세부 톤은 사라지고 기존 가로 모바일 HUD의 넓은 점유는 그대로다. [focus camera/limits/상태](evidence/candidate4-focus-focus3.json).
+
+**별도 종합:** 집중 화면 검토 뒤 새 Chromium 세션의 최종7장(전체·서쪽·중앙·피난처·동쪽 세로 모바일·최대·가로 최소)을 전부 직접 열었다. 다른7개 암체의 톤 변화 영향은 overview/서쪽, 새 분할 영향은 중앙/모바일, 피난처·접촉·가림은 피난처/최대/최소에서 재확인했다. 새 흰 타일 이음·독립 발판 외곽·목표/주민의 새 가림은 관찰하지 못했다. 여전히 넓고 저대비인 일부 면이 남고, 모든 장식의 자연주의적 완성을 선언하지 않는다. 이번에 바뀌지 않은 시작/동쪽 바깥 능선의 종합 사진을 반복 촬영하거나 무관한 전투/다른 장 검사를 추가하지 않았다.
+
+| 영향받은 화면 | 최종 종합 |
+|---|---|
+| 전체 | [overview](evidence/candidate4-final-overview.jpg) |
+| 서쪽 톤 | [west](evidence/candidate4-final-west.jpg) |
+| 중앙 | [central](evidence/candidate4-final-central.jpg) |
+| 피난처/접합 | [refuge](evidence/candidate4-final-refuge.jpg) |
+| 동쪽 모바일 | [mobile-trace](evidence/candidate4-final-mobile-trace.jpg) |
+| 최대 | [max-refuge](evidence/candidate4-final-max-refuge.jpg) |
+| 가로 최소 | [min-mobile](evidence/candidate4-final-min-mobile.jpg) |
+
+[final camera/상태/sourceHashes 원자료](evidence/candidate4-final-refinement.json). 네 번째 후보 JPG 최대133,593 bytes이며 모두1MB 미만이다. 정지한 생산 Game의 카메라/진행 fixture이며 전체 정상 전투·실기기 터치 검사가 아니다.
+
+빌드와 기존 두 국소 검사 외에 생성 자산 연결의 `node tests/web-split.mjs`도 통과했다. 분할 전 부모24개 면과 분할 후 자식 면의 총 유향 면적이 중앙/동쪽에서 각각 동일한지도 확인해 [delta](evidence/candidate4-delta.json)에 남겼다. 다른7개는 점/경로/개수 변화 없이 side fill만 달라진다. 최대 준비 경로는85로 세 번째 후보와 같고, 렌더 순수성/prepare 재사용/sceneVersion 무효화는 통과했다. 이전45≠43 실패는 미실행/미수리 상태를 유지한다.
+
+### 네 번째 후보의 비용 표본 · 성능 채택 보류
+
+같은 환경에서 보존된 세 번째 후보 `8e5571af`의 HTML/web을 `/tmp`에 읽기 전용 추출해 먼저 단독 실행한 뒤, 네 번째 후보 `8d31b096`을 실행했다. 변경 영향이 있는 같은7개 camera/viewport/phase/current 목표를 사용했고 다른 검사/빌드와 겹치지 않았다. 화면당 warmup8회+동기 `Scene.render`40회다. 첫 draw는 viewport 안정화 후 해당 카메라 첫 draw이며 페이지 전체 시작시간/장기 전투 FPS가 아니다.
+
+[세 번째 후보](evidence/candidate3-cost-refinement.json), [네 번째 후보](evidence/candidate4-final-refinement.json), [전체 전후 대조와 역순 추가 표본](evidence/candidate4-performance.json).
+
+| 화면 | 중앙값 ms 세 번째→네 번째 | p95 ms 세 번째→네 번째 | 첫 draw ms 세 번째→네 번째 |
+|---|---:|---:|---:|
+| overview.jpg | 2.3→2.4 | 3.0→3.1 | 102.6→98.9 |
+| west.jpg | 6.1→6.9 | 7.0→7.8 | 66.2→74.6 |
+| central.jpg | 0.9→1.2 | 1.6→1.7 | 45.8→78.4 |
+| refuge.jpg | 0.7→0.8 | 0.9→1.1 | 56.7→72.4 |
+| mobile-trace.jpg | 0.2→0.2 | 0.4→0.3 | 30.2→31.9 |
+| max-refuge.jpg | 0.9→1.0 | 1.2→1.8 | 4.9→4.7 |
+| min-mobile.jpg | 1.0→0.9 | 1.4→1.5 | 58.8→61.8 |
+
+첫 표본의 중앙 첫 draw45.8→78.4ms 증가를 그냥 채택하지 않고, 네 번째를 먼저 실행한 후 세 번째를 실행하는 역순 비교를 한 번 추가했다. [네 번째 역순 원자료](evidence/candidate4-cost-reverse-refinement.json), [세 번째 역순 원자료](evidence/candidate3-cost-reverse-refinement.json). 다음 표도 모두 **세 번째→네 번째** 순서로 표시한다.
+
+| 역순 실행 재확인 화면 | 중앙값 ms 세 번째→네 번째 | p95 ms 세 번째→네 번째 | 첫 draw ms 세 번째→네 번째 |
+|---|---:|---:|---:|
+| overview.jpg | 2.9→3.2 | 6.3→5.3 | 117.6→120.6 |
+| west.jpg | 7.2→9.3 | 8.1→17.8 | 75.7→93.3 |
+| central.jpg | 1.1→1.1 | 1.6→1.9 | 51.7→58.8 |
+| refuge.jpg | 0.8→0.9 | 1.3→4.3 | 66.9→92.7 |
+| mobile-trace.jpg | 0.3→0.3 | 0.4→0.5 | 36.4→47.7 |
+| max-refuge.jpg | 1.2→1.3 | 2.0→3.0 | 5.2→4.8 |
+| min-mobile.jpg | 1.0→1.3 | 2.1→3.1 | 76.3→84.3 |
+
+두 표본 모두7쌍의 캐시 world/screen/background bytes와 tile 수가 같고 warm world/tile/canvas/screen 재빌드0, pageerror0/HTTP실패0이다. 역순에서 중앙 첫 draw는51.7→58.8ms로 차이가 줄었으나, 피난처66.9→92.7ms와 서쪽 p958.1→17.8ms가 관찰됐다. 캐시가 재생성되지 않는 warm 구간에도 표본 간 변화가 커 이 짧은 벽시계 측정만으로 비용 증가의 원인을 확정하지 않는다. **무저하/성능 통과를 선언하지 않으며 성능 채택은 보류한다.** 특히 중앙/피난처의 첫 준비 비용과 서쪽 tail은 부모가 이 원자료와 함께 검토해야 한다. 이 문제를 숨기려고 전역 renderer나 다른 작업의 캐시 정책을 수정하지 않았다.
+
+원본master→첫 후보의 시작55.3→85.0ms 증가 한계도 그대로 유효한 역사 기록이다. 이번 표본은 세 번째→네 번째 후보 비교이므로 그것을 해결한 증거가 아니다. 정상 장기 전투·실기기 성능·Pages 검증은 미실행이다. 원래 브랜치/master/Pages는 변경하지 않고 부모의 실제 미술 판단 및 성능 채택을 기다린다. 접근 거부나 결과 불명 쓰기는 없다.

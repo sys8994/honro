@@ -23,7 +23,8 @@ with sync_playwright() as pw:
  rows=[]
  for name,x,y,z,w,h,g in views:
   if group=='preview' and name not in ['overview','central','mobile-trace','refuge']:continue
-  if group not in ['all','preview'] and group!=g:continue
+  if group=='refinement' and name not in ['overview','west','central','refuge','mobile-trace','max-refuge','min-mobile']:continue
+  if group not in ['all','preview','refinement'] and group!=g:continue
   p.set_viewport_size({'width':w,'height':h})
   p.wait_for_timeout(150)
   p.evaluate('HonroApp.scene.render(HonroApp.engine,0,"",.6,false,0)')
