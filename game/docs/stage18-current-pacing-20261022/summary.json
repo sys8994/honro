@@ -1,0 +1,41 @@
+{
+  "gameSource": "793a9a953d6f82038d44dc44b51ea5a01ce996c4",
+  "completed": false,
+  "lastPreservedState": "R29 start / aim / keeper; main trace actions through R28",
+  "stageRounds": {
+    "clear-wards": 12,
+    "silence": 12,
+    "hold-silence": 16,
+    "upper-chain": 16,
+    "bell-descent": 16,
+    "leak": 22,
+    "keeper": null,
+    "clear-bell": null
+  },
+  "stop": "Resumed process above six-minute observation budget: R29 checkpoint unchanged for about three minutes, process7m42s/CPU103%; verified PID terminated(SIGTERM, exit143). Exact busy function not profiled. R35 not reached.",
+  "aliveHeroes": 4,
+  "heroHP": {
+    "archer": 768,
+    "mage": 801,
+    "knight": 1179,
+    "occultist": 599
+  },
+  "keeperHP": "3398 / 3748, not subdued",
+  "combatEnemies": {
+    "initial": 55,
+    "spawned": 8,
+    "defeated": 17,
+    "remaining": 46
+  },
+  "realContinues": "Warning, after leak, actual post-descent R22 and stop R29 whole-battle Continue/re-export exact; R22/R29 browser exact, errors0.",
+  "smallReproduction": "At actual R29, ordinary defend advances to mage in78 ticks. Fresh navigator finds mage/knight routes but progress-first proposal rejects them; first required detour increases Euclidean distance. Historical rejection cache and busy function not reconstructed.",
+  "nextMinimumAction": "If parent requests: bounded R29 call profiling/external timeout; adapt movement proposal to accept necessary initial detour. Consider local suppression-access gate separately; no gameplay change justified as completed work.",
+  "notRun": [
+    "Normal keeper/clear-bell completion",
+    "Normal outro/single settlement/19 entry and Continue",
+    "Fresh v4 average growth",
+    "New policy/fullplay rerun",
+    "Build/type/global verify/full30/next chapter/master/Pages"
+  ],
+  "raw": "stop-summary.raw.json.gz and tests/fixtures/stage18-current-*.json.gz"
+}

@@ -31,11 +31,11 @@ for(const cls of ['archer','mage','knight','occultist']){
  let app=h.load(h.profileThrough(17));app.launch(18);h.finish(app);now+=1000;
  let e=app.engine,b=e.b;const id=e.heroesAlive().find(u=>u.cls===cls).id;
  // The only location/prerequisite edits in this test precede the write guard.
- b.units=b.units.filter(u=>u.side===0);const initial=e.unit(id);
+ b.units=b.units.filter(u=>u.side===0||u.honroObjectiveTarget);const initial=e.unit(id);
  Object.assign(initial,{x:8300,y:6290,vx:0,vy:0});
  const a=A.memory(b);for(const key of ['clear-wards','silence','hold-silence','upper-chain'])a.done[key]=true;
  a.silenced=true;a.holds={'hold-silence':{progress:4,spawned:8,lastRound:b.round,guarded:true,continuous:true}};
- b.terrain.find(t=>t.id==='upper-chain').broken=true;
+ const target=g.HonroQuestTargets.records(b).find(t=>t.id==='upper-chain');target.broken=true;g.HonroQuestTargets.sync(b,target);
  assert(C.validTerrainContactPose(b.terrain,initial),'Canonical lip has full body clearance');
  assert.equal(e.contactSurface(initial.x,initial.y-1,initial.y+1)?.t.id,'sb-bell-east-lip');
  assert(S.swept(b,{x:initial.x-initial.r,y:initial.y-initial.h,w:initial.r*2,h:initial.h}),'Actual body, without warning padding, intersects the true polygon sweep');

@@ -1,0 +1,279 @@
+{
+  "sourceGame": "793a9a953d6f82038d44dc44b51ea5a01ce996c4",
+  "initialRunTestCommit": "fa4dca9f82fa8c254ddc22d50fd67b634b3ba7ac",
+  "checkpointProvenance": {
+    "mode": "current-earned-progress-first",
+    "rosterMode": "canonical",
+    "canonicalProjectSha256": "2c201cf706a15381e97ae16009cca4373802a1e86d1caf3b3b91eb7b2b6ab5a6",
+    "pairedBaseline": null,
+    "sourceHash": "2c201cf706a15381e97ae16009cca4373802a1e86d1caf3b3b91eb7b2b6ab5a6",
+    "runtimeSha256": "54615541bf976377c87bec13fe8df69995aebf2daa3dfd793faf6f9bc1aeccc0",
+    "gameplayProjectSha256": "d5a003dbc8459e4141abd7f2dbf4e845a9bae9860854a85efafefdb37eac98e4",
+    "gameplayRuntimeSha256": "aa4c6ce7c0ceeccfbf286bdfd893c0717cf33d05c4cee383ad965b8fb8d43051",
+    "stageSha256": "4622e8165ae70973ffa3f112e56e9cfce43ee322b0122a50aa7e6573fe791725",
+    "controllerSha256": "62e83aa028a458397d69aa06a45cc0c91ef156c87a33646319e793179bd12f34",
+    "helperSha256": "d4c8da9c9e7ff2c20ce7e40f95d1fd180cf6058dca64c2019a4283c0ff9a9f14",
+    "checkoutCommit": "33ae1fe16a87af18c68c2a9e5957c401a4e89d64",
+    "productionCommit": "793a9a953d6f82038d44dc44b51ea5a01ce996c4"
+  },
+  "completed": false,
+  "lastPreservedRound": 29,
+  "phase": "aim",
+  "completedHeroRoundsThrough": 28,
+  "stop": {
+    "at": "2026-10-22T22:01:04.577316+00:00",
+    "pid": 6962,
+    "lastSavedRound": 29,
+    "lastSavedPhase": "aim",
+    "reason": "Last R29 checkpoint unchanged since21:57:41Z; process elapsed7m42s, CPU103percent, above six-minute observation budget. Bounded controller diagnosis interrupted without another battle run. R35 not reached.",
+    "signal": "SIGTERM",
+    "scope": "Final evidence stops at saved start-R29, not unpreserved in-memory partial actions."
+  },
+  "checkpoints": [
+    {
+      "id": "clear-wards",
+      "round": 12
+    },
+    {
+      "id": "silence",
+      "round": 12
+    },
+    {
+      "id": "hold-silence",
+      "round": 16
+    },
+    {
+      "id": "upper-chain",
+      "round": 16
+    },
+    {
+      "id": "bell-descent",
+      "round": 16
+    },
+    {
+      "id": "leak",
+      "round": 22
+    }
+  ],
+  "initialCombatEnemies": 55,
+  "remainingCombatEnemies": 46,
+  "defeatedCombatEnemies": 20,
+  "heroes": [
+    {
+      "id": "p-archer",
+      "cls": "archer",
+      "hp": 768,
+      "maxHp": 823,
+      "focus": 192,
+      "maxFocus": 192,
+      "x": 8726.497366738167,
+      "y": 7477.2994733476335,
+      "dead": false
+    },
+    {
+      "id": "p-mage",
+      "cls": "mage",
+      "hp": 801,
+      "maxHp": 891,
+      "focus": 264,
+      "maxFocus": 264,
+      "x": 4603.621460749081,
+      "y": 5950,
+      "dead": false
+    },
+    {
+      "id": "p-knight",
+      "cls": "knight",
+      "hp": 1179,
+      "maxHp": 1438,
+      "focus": 215,
+      "maxFocus": 215,
+      "x": 4602.718035324539,
+      "y": 6305.183352008117,
+      "dead": false
+    },
+    {
+      "id": "p-occultist",
+      "cls": "occultist",
+      "hp": 599,
+      "maxHp": 1039,
+      "focus": 312,
+      "maxFocus": 312,
+      "x": 11367.04750386019,
+      "y": 6180,
+      "dead": false
+    }
+  ],
+  "keeper": {
+    "hp": 3398,
+    "maxHp": 3748,
+    "dead": false,
+    "honroSubdued": null,
+    "side": 1,
+    "x": 11299.965830374518,
+    "y": 6180
+  },
+  "actualBirths": [
+    {
+      "round": 12,
+      "frame": 19966,
+      "turn": 101,
+      "id": "event-69",
+      "source": "hold-silence-0",
+      "x": 3924,
+      "y": 5467.517918351075
+    },
+    {
+      "round": 12,
+      "frame": 19966,
+      "turn": 101,
+      "id": "event-70",
+      "source": "hold-silence-0",
+      "x": 4034,
+      "y": 5398.814214647371
+    },
+    {
+      "round": 12,
+      "frame": 19966,
+      "turn": 101,
+      "id": "event-71",
+      "source": "hold-silence-0",
+      "x": 4135.425625842204,
+      "y": 5187.259259259259
+    },
+    {
+      "round": 13,
+      "frame": 20651,
+      "turn": 108,
+      "id": "event-74",
+      "source": "hold-silence-3",
+      "x": 5993.219307637806,
+      "y": 7275.705850184817
+    },
+    {
+      "round": 13,
+      "frame": 20651,
+      "turn": 108,
+      "id": "event-75",
+      "source": "hold-silence-3",
+      "x": 5894.574374157796,
+      "y": 7374.222222222223
+    },
+    {
+      "round": 13,
+      "frame": 20651,
+      "turn": 108,
+      "id": "event-76",
+      "source": "hold-silence-3",
+      "x": 6124,
+      "y": 7243.666666666667
+    },
+    {
+      "round": 14,
+      "frame": 23063,
+      "turn": 117,
+      "id": "event-83",
+      "source": "hold-silence-6",
+      "x": 3915,
+      "y": 5194.814814814815
+    },
+    {
+      "round": 14,
+      "frame": 23063,
+      "turn": 117,
+      "id": "event-84",
+      "source": "hold-silence-6",
+      "x": 4153,
+      "y": 5381.111111111111
+    },
+    {
+      "round": 17,
+      "frame": 28126,
+      "turn": 144,
+      "id": "event-96",
+      "source": "bell-descent-answer",
+      "x": 9750,
+      "y": 6885
+    },
+    {
+      "round": 17,
+      "frame": 28126,
+      "turn": 144,
+      "id": "event-97",
+      "source": "bell-descent-answer",
+      "x": 9880,
+      "y": 6531.914893617021
+    },
+    {
+      "round": 17,
+      "frame": 28126,
+      "turn": 144,
+      "id": "event-98",
+      "source": "bell-descent-answer",
+      "x": 9785,
+      "y": 6621.86170212766
+    }
+  ],
+  "itemsExact": true,
+  "sp": {
+    "archer": {
+      "xp": 45103,
+      "ranks": {
+        "A01": 1,
+        "A14": 8,
+        "A11": 8,
+        "A05": 7
+      },
+      "statTraining": 6
+    },
+    "mage": {
+      "xp": 45103,
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 7,
+        "M03": 7,
+        "M11": 7
+      },
+      "statTraining": 6
+    },
+    "knight": {
+      "xp": 45103,
+      "ranks": {
+        "S00": 1,
+        "S03": 8,
+        "S01": 8,
+        "S09": 7
+      },
+      "statTraining": 6
+    },
+    "occultist": {
+      "xp": 45103,
+      "ranks": {
+        "O01": 1,
+        "O02": 1,
+        "O03": 1,
+        "O04": 7,
+        "O06": 6,
+        "O07": 1,
+        "O08": 7
+      },
+      "statTraining": 6
+    }
+  },
+  "auditScope": "Retained live log is resumed R12 through saved start-R29. Initial segment had same live guard but did not serialize its log before adapter failure.",
+  "scope": "Derived only from actual preserved checkpoint; not a completed native fullplay result or unpreserved in-memory R29 actions. No outcome/reward/Stage19 execution.",
+  "liveAuditSuffix": {
+    "externalWrites": [],
+    "recoveries": [],
+    "movementRows": 14516,
+    "movementBudgetSpent": {
+      "archer": 17612.495320084243,
+      "mage": 1490.7280012057179,
+      "knight": 2230.820335408602,
+      "occultist": 16047.08329993167
+    },
+    "fullLog": "tests/fixtures/stage18-current-stop-r29-20261022.json.gz → liveAuditLog"
+  }
+}

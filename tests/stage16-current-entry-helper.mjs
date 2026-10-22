@@ -19,3 +19,5 @@ export function current16Entry(g,{stageId=16}={}){
  }
  return{profile:p,readiness:{...readiness,scope:`Stage${stageId} historical v3 first-clear/recruit reward-ledger fixture through${stageId-1}, calculated with current production reward APIs. Reachable legacy continuation case, not current v4 average allocation or prior chapters played.`},training,allocation};
 }
+
+export {ledger16 as historicalClearLedger};
