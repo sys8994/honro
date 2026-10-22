@@ -1,0 +1,187 @@
+{
+  "status": "Completed before urgent stop; preserved only. No additional execution after instruction.",
+  "gameExecutionBase": "793a9a953d6f82038d44dc44b51ea5a01ce996c4",
+  "nativeTestCheckout": "3d7c88084a3dbf5e00e7fe5d264d286c39c9db05",
+  "resume": "One actual R45 continuation using the same limited policy, full battle/RNG exact. Earlier policies changed at R29; not a fresh fixed-policy clear.",
+  "phase": "won",
+  "round": 54,
+  "checkpoints": [
+    {
+      "id": "clear-wards",
+      "round": 12
+    },
+    {
+      "id": "silence",
+      "round": 12
+    },
+    {
+      "id": "hold-silence",
+      "round": 16
+    },
+    {
+      "id": "upper-chain",
+      "round": 16
+    },
+    {
+      "id": "bell-descent",
+      "round": 16
+    },
+    {
+      "id": "leak",
+      "round": 22
+    },
+    {
+      "id": "keeper",
+      "round": 39
+    },
+    {
+      "id": "clear-bell",
+      "round": 54
+    }
+  ],
+  "heroes": [
+    {
+      "id": "p-archer",
+      "cls": "archer",
+      "hp": 194,
+      "maxHp": 823,
+      "focus": 192,
+      "maxFocus": 192,
+      "moveLeft": 1686,
+      "maxMove": 1686,
+      "x": 11846.520964706384,
+      "y": 6180,
+      "dead": false,
+      "acted": true
+    },
+    {
+      "id": "p-mage",
+      "cls": "mage",
+      "hp": 661,
+      "maxHp": 891,
+      "focus": 264,
+      "maxFocus": 264,
+      "moveLeft": 1707,
+      "maxMove": 1707,
+      "x": 11846.63408205053,
+      "y": 6180,
+      "dead": false,
+      "acted": true
+    },
+    {
+      "id": "p-knight",
+      "cls": "knight",
+      "hp": 1438,
+      "maxHp": 1438,
+      "focus": 215,
+      "maxFocus": 215,
+      "moveLeft": 1905,
+      "maxMove": 1905,
+      "x": 11846.522283518423,
+      "y": 6180,
+      "dead": false,
+      "acted": true
+    },
+    {
+      "id": "p-occultist",
+      "cls": "occultist",
+      "hp": 227,
+      "maxHp": 1039,
+      "focus": 312,
+      "maxFocus": 312,
+      "moveLeft": 1764,
+      "maxMove": 1764,
+      "x": 11807.65216810031,
+      "y": 6180,
+      "dead": false,
+      "acted": false
+    }
+  ],
+  "boss": {
+    "hp": 1,
+    "dead": false,
+    "side": 2,
+    "honroSubdued": true
+  },
+  "spawns": {
+    "sources": {
+      "hold-silence-0": 3,
+      "hold-silence-3": 3,
+      "hold-silence-6": 2,
+      "bell-descent-answer": 3,
+      "keeper-retaliation": 4
+    },
+    "total": 15
+  },
+  "remainingCombatEnemies": 38,
+  "combatDeaths": 31,
+  "stage19": {
+    "arrived": true,
+    "arrivalScreen": "battle",
+    "rewardOnce": true,
+    "actualGrowthExact": true,
+    "stage": 19,
+    "round": 1,
+    "scope": "Ordinary completed18 result/entry only. No19 movement, combat, ritual or tick.",
+    "wholeBattleContinueExact": true
+  },
+  "settlementCleared": {
+    "visits": 1,
+    "rounds": 54
+  },
+  "earnedHeroes": {
+    "mage": {
+      "xp": 52943,
+      "ranks": {
+        "M01": 1,
+        "M06": 1,
+        "M02": 1,
+        "M04": 7,
+        "M03": 7,
+        "M11": 7
+      },
+      "statTraining": 6
+    },
+    "archer": {
+      "xp": 48799,
+      "ranks": {
+        "A01": 1,
+        "A14": 8,
+        "A11": 8,
+        "A05": 7
+      },
+      "statTraining": 6
+    },
+    "knight": {
+      "xp": 49903,
+      "ranks": {
+        "S00": 1,
+        "S03": 8,
+        "S01": 8,
+        "S09": 7
+      },
+      "statTraining": 6
+    },
+    "occultist": {
+      "xp": 47974,
+      "ranks": {
+        "O01": 1,
+        "O02": 1,
+        "O03": 1,
+        "O04": 7,
+        "O06": 6,
+        "O07": 1,
+        "O08": 7
+      },
+      "statTraining": 6
+    }
+  },
+  "limits": [
+    "No further run after urgent priority change.",
+    "Actual browser result flow/screenshots not run.",
+    "Latest public dd878 integration not performed.",
+    "No19 battle inputs.",
+    "No game/quest/map/balance/narrative/master/Pages changes.",
+    "54 is the old game example, not the requested <=15-round redesign."
+  ]
+}
