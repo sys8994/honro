@@ -6,7 +6,7 @@ const g=await act1Runtime(),C=g.HONRO_CORE,A=g.HonroAct2,rows=[],ids=process.arg
 for(const id of ids.length?ids:[14,17,18]){
  const p=C.defaults();p.recruited=g.HonroStageRules.stageParty(id);for(const cls of p.recruited){p.heroes[cls].xp=g.HonroProgression.xpAt(g.HonroProgression.plan(id).entryLevel);C.autoTrain(p.heroes[cls],cls);C.sanitizeLoadout(p,cls);}
  const q=fixture(g,id,{profile:p}),{e,b,app}=q;const baseline=!!process.env.HONRO_PACING_BASELINE;if(baseline){const old=JSON.parse(await readFile('tests/fixtures/act2-pacing-before.json','utf8'));b.honroAct2Steps=old.stages[id].steps;b.honroAct2PacingRevision=0;}const a=A.memory(b),goal=id===14?'hold-refuge':id===17?'hold-hoist':'keeper';for(const s of A.steps(b)){if(s.id===goal)break;a.done[s.id]=true;}
- if(id===18){a.silenced=true;g.HonroStage18Bell.memory(b).status='settled';g.HonroStage18Bell.shift(b,b.honroBellDescent.distance);}
+ if(id===18){a.silenced=true;const chain=g.HonroQuestTargets.records(b).find(t=>t.id==='upper-chain');assert(chain);Object.assign(chain,{hp:0,broken:true});g.HonroQuestTargets.migrate(b);g.HonroStage18Bell.memory(b).status='settled';g.HonroStage18Bell.shift(b,b.honroBellDescent.distance);}
  const surface=id===14?'v14-refuge-ground':'act2-floor',positions=id===14?[3860,3420,4200,3540]:id===17?[8300,8440,8580,8720]:[10810,10950,11090,11230];
  const used=[];for(const[i,u]of e.heroesAlive().entries()){
   let pose={x:positions[i],y:C.topAt(b.terrain.find(t=>t.id===surface),positions[i])};

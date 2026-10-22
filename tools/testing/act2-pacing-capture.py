@@ -23,7 +23,7 @@ with sync_playwright() as pw:
   if review=='focus3':
    # Explicit UI state fixtures, not extra completed input segments. The changed
    # objective and timed-hold HUD must be visible at the affected location.
-   p.evaluate('''id=>{const a=HonroApp,b=a.engine.b,A=HonroAct2,m=A.memory(b),goal={11:'trace',14:'hold-refuge',17:'hold-hoist',18:'keeper'}[id];for(const s of A.steps(b)){if(s.id===goal)break;m.done[s.id]=true;}if(id===14||id===17){const s=A.steps(b).find(s=>s.id===goal);m.holds[goal]={progress:s.rounds-1,spawned:3,lastRound:b.round,enteredRound:1,guarded:true,contested:false};}if(id===18){HonroStage18Bell.shift(b,b.honroBellDescent.distance);HonroStage18Bell.memory(b).status='settled';}a.updateHUD(true);}''',id)
+   p.evaluate('''id=>{const a=HonroApp,b=a.engine.b,A=HonroAct2,m=A.memory(b),goal={11:'trace',14:'hold-refuge',17:'hold-hoist',18:'keeper'}[id];for(const s of A.steps(b)){if(s.id===goal)break;m.done[s.id]=true;}if(id===14||id===17){const s=A.steps(b).find(s=>s.id===goal);m.holds[goal]={progress:s.rounds-1,spawned:3,lastRound:b.round,enteredRound:1,guarded:true,contested:false};}if(id===18){const chain=HonroQuestTargets.records(b).find(t=>t.id==='upper-chain');Object.assign(chain,{hp:0,broken:true});HonroQuestTargets.migrate(b);HonroStage18Bell.shift(b,b.honroBellDescent.distance);HonroStage18Bell.memory(b).status='settled';}a.updateHUD(true);}''',id)
    if id==14:views=[('focus3-mobile-refuge',4300,8170,.3,390,844)]
    if id==18:views=[('focus3-mobile-keeper',11200,6050,.3,390,844)]
   for label,x,y,z,w,h in views:
