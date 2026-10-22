@@ -1,0 +1,59 @@
+[
+  {
+    "name": "low-drop",
+    "angle": -25,
+    "power": 0.3,
+    "start": 3000,
+    "age": 3.408333333333324,
+    "x": 3711.6473441777184,
+    "y": 3545.8168588123185,
+    "floor": 6200,
+    "contact": false,
+    "state": "outbound",
+    "pathLength": 43,
+    "prediction": {
+      "x": 3710.0044190935737,
+      "y": 3543.786328819542,
+      "terrain": null
+    },
+    "mpAfter": 925
+  },
+  {
+    "name": "high-arc",
+    "angle": 80,
+    "power": 0.7,
+    "start": 3000,
+    "age": 3.408333333333324,
+    "x": 3308.8918473829563,
+    "y": 1462.157534025549,
+    "floor": 6200,
+    "contact": false,
+    "state": "outbound",
+    "pathLength": 69,
+    "prediction": {
+      "x": 3308.1573520099346,
+      "y": 1465.0586428368943,
+      "terrain": null
+    },
+    "mpAfter": 925
+  },
+  {
+    "name": "sky-return",
+    "angle": 90,
+    "power": 1,
+    "start": 800,
+    "age": 2.0749999999999953,
+    "x": 3000,
+    "y": -704.4337378340591,
+    "floor": 6200,
+    "contact": false,
+    "state": "outbound",
+    "pathLength": 63,
+    "prediction": {
+      "x": 3000,
+      "y": -1505.3048304397666,
+      "terrain": null
+    },
+    "mpAfter": 925
+  }
+]
