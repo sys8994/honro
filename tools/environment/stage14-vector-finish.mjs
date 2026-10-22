@@ -20,7 +20,7 @@ export function applyStage14VectorFinish(project){
  const planes=[],byId=new Map(stage.terrains.map(t=>[t.id,t])),beds=new Map();
  const add=(terrainId,id,points,fill)=>planes.push({terrainId,id:'v14-finish-'+id,stage14VectorFinish:true,points:points.map(p=>p.map(N)),fill});
  const base=t=>add(t.id,t.id+'-mother-rock',t.points.map(p=>[p.x,p.y]),t.id==='v14-refuge-ground'?'#334f60':'#425e6d');
- function ribbons(id,knots,cutRows,colors,{fraction=false,accents=[]}={}){
+ function ribbons(id,knots,cutRows,colors,{fraction=false,accents=[],relief=[]}={}){
   const t=byId.get(id),xs=[...new Set(t.points.map(p=>p.x))].sort((a,b)=>a-b),left=xs[0],right=xs.at(-1);
   const lines=knots.map(kn=>[...new Set([...xs,...kn.map(p=>p[0])])].sort((a,b)=>a-b).map(x=>{const[a,b]=section(t,x),d=interpolate(kn,x);return[x,a+(fraction?(b-a)*d:d)];}));
   base(t);beds.set(id,lines);
@@ -29,7 +29,14 @@ export function applyStage14VectorFinish(project){
    const boundary=c=>{const a=[c.a,interpolate(upper,c.a)],b=[c.b,interpolate(lower,c.b)],dy=b[1]-a[1];return[a,...(c.bend?.length?[ [c.bend[0],a[1]+dy*.36],[c.bend[1]??c.bend[0],a[1]+dy*.69] ]:[]),b];};
    for(let i=1;i<cuts.length;i++){
     const a=cuts[i-1],b=cuts[i],ps=[...span(upper,a.a,b.a),...boundary(b).slice(1),...span(lower,a.b,b.b).reverse().slice(1),...boundary(a).reverse().slice(1)];
-    add(id,id+'-bed-'+row+'-'+i,ps,shade(colors[row],accents[row]?.[i-1]||0));
+    const tone=shade(colors[row],accents[row]?.[i-1]||0),cut=relief.find(q=>q.row===row&&q.column===i);
+    if(!cut){add(id,id+'-bed-'+row+'-'+i,ps,tone);continue;}
+    // Replace a selected existing face with two interlocking faces. Both use
+    // the same authored broken contact and the original neighbour perimeter.
+    const contact=cut.line.map(([f,q])=>{const x=(a.a+(b.a-a.a)*f)*(1-q)+(a.b+(b.b-a.b)*f)*q;return[x,interpolate(upper,x)*(1-q)+interpolate(lower,x)*q];}),head=contact[0][0],foot=contact.at(-1)[0];
+    add(id,id+'-cut-left-'+row+'-'+i,[...span(upper,a.a,head),...contact.slice(1),...span(lower,a.b,foot).reverse().slice(1),...boundary(a).reverse().slice(1)],shade(tone,cut.light));
+    add(id,id+'-cut-right-'+row+'-'+i,[...span(upper,head,b.a),...boundary(b).slice(1),...span(lower,foot,b.b).reverse().slice(1),...contact.slice().reverse().slice(1)],shade(tone,cut.dark));
+    if(cut.joint){const seam=contact.slice(1,4),width=cut.joint;add(id,id+'-short-joint-'+row+'-'+i,[...seam,...seam.map(([x,y],j)=>[x+[0,width,width*.27][j],y+[0,7,3][j]]).reverse()],'#2b4655');}
    }
   }
  }
@@ -37,10 +44,10 @@ export function applyStage14VectorFinish(project){
  // entire underbody share the same unequal, stepped geological packages.
  ribbons('v14-upper-hamlet',[
   [[-6000,24],[4100,24]],
-  [[-6000,360],[-4400,440],[-2900,340],[-1550,480],[-700,410],[0,450],[580,350],[1040,470],[1580,380],[2130,450],[2670,310],[3180,390],[3700,270],[4100,160]],
-  [[-6000,880],[-4300,1010],[-2550,860],[-1100,1050],[0,920],[500,1080],[1100,900],[1700,1140],[2290,890],[2900,1080],[3500,900],[4100,700]],
-  [[-6000,1600],[-4500,1770],[-2900,1510],[-1400,1780],[-200,1610],[450,1760],[1080,1530],[1680,1810],[2300,1520],[2920,1700],[3500,1500],[4100,1450]],
-  [[-6000,2410],[-4100,2640],[-2500,2320],[-900,2680],[0,2440],[620,2620],[1260,2360],[1840,2700],[2460,2350],[3100,2490],[4100,2300]],
+  [[-6000,360],[-4400,440],[-2900,340],[-2420,430],[-2300,470],[-2190,320],[-1940,330],[-1550,480],[-700,410],[0,450],[200,460],[260,310],[460,300],[580,350],[1040,470],[1290,500],[1380,390],[1580,380],[2130,450],[2670,310],[2780,290],[2830,410],[3020,390],[3180,390],[3700,270],[4100,160]],
+  [[-6000,880],[-4300,1010],[-2550,860],[-2310,900],[-2180,1120],[-1930,1140],[-1820,950],[-1550,980],[-1100,1050],[0,920],[500,1080],[1100,900],[1230,930],[1300,1070],[1510,1100],[1700,1140],[1870,1110],[1930,880],[2120,900],[2290,890],[2900,1080],[3100,1060],[3180,850],[3340,870],[3500,900],[4100,700]],
+  [[-6000,1600],[-4500,1770],[-2900,1510],[-2670,1530],[-2540,1770],[-2220,1810],[-2120,1620],[-1840,1660],[-1740,1870],[-1400,1780],[-200,1610],[450,1760],[620,1750],[700,1540],[860,1530],[1080,1530],[1680,1810],[1890,1800],[1990,1570],[2160,1540],[2300,1520],[2920,1700],[3070,1710],[3170,1550],[3350,1570],[3500,1500],[4100,1450]],
+  [[-6000,2410],[-4100,2640],[-2500,2320],[-2290,2360],[-2150,2530],[-1840,2540],[-1690,2320],[-1430,2360],[-1320,2640],[-900,2680],[-750,2650],[-630,2400],[-370,2380],[-280,2510],[0,2440],[190,2440],[260,2560],[450,2530],[620,2620],[1260,2360],[1840,2700],[2460,2350],[3100,2490],[4100,2300]],
   [[-6000,3550],[4100,3550]]
  ],[
   [[-4300,-4520],[-2600,-2850],[-1100,-1350],[400,240,360,280],[1010,900],[1530,1430,1480,1510],[2130,2260],[2690,2550,2670,2590],[3220,3110],[3710,3790]],
@@ -48,7 +55,28 @@ export function applyStage14VectorFinish(project){
   [[-4200,-4490],[-2600,-2800],[-1000,-1260],[220,30],[760,890],[1350,1190,1320,1240],[1940,2090],[2500,2400,2490,2430],[3150,3300]],
   [[-4600,-4200],[-2850,-2500],[-1250,-900],[100,300],[820,650,790,700],[1400,1560],[2100,1950,2070,1990],[2700,2810],[3350,3500]],
   [[-4300,-4600],[-2700,-2900],[-1100,-1400],[0,180],[720,900],[1430,1270,1380,1300],[2150,2340],[2850,2730],[3550,3750]]
- ],['#60787d','#58727b','#4f6b77','#435f6e','#385666'],{accents:[[0,3,-2,2,-4,7,0,-3,4,-2,0],[1,-3,2,-2,4,0,-4,3,0,-2,1],[-2,2,0,4,-2,3,0,-3,2,0],[-1,2,-2,1,3,-2,1,0,-3,0],[0,-2,2,0,-2,1,0,-2,1,0]]});
+ ],['#60787d','#58727b','#4f6b77','#435f6e','#385666'],{relief:[
+  {row:0,column:3,line:[[.56,0],[.39,.24],[.52,.41],[.36,.7],[.62,1]],light:4,dark:-5},
+  {row:1,column:3,line:[[.41,0],[.55,.25],[.43,.47],[.64,.73],[.51,1]],light:6,dark:-8,joint:19},
+  {row:2,column:4,line:[[.63,0],[.47,.21],[.59,.4],[.38,.69],[.48,1]],light:-7,dark:6},
+  {row:3,column:3,line:[[.46,0],[.62,.27],[.51,.43],[.69,.7],[.56,1]],light:7,dark:-8,joint:25},
+  {row:3,column:4,line:[[.67,0],[.53,.2],[.62,.48],[.42,.71],[.5,1]],light:5,dark:-9},
+  {row:4,column:3,line:[[.37,0],[.51,.25],[.4,.5],[.59,.76],[.48,1]],light:5,dark:-6},
+  {row:4,column:4,line:[[.62,0],[.48,.29],[.6,.46],[.37,.69],[.53,1]],light:6,dark:-8,joint:22},
+  {row:4,column:5,line:[[.34,0],[.51,.22],[.41,.49],[.61,.73],[.46,1]],light:-4,dark:6},
+  {row:0,column:4,line:[[.65,0],[.55,.25],[.60,.4],[.38,.7],[.50,1]],light:5,dark:-5},
+  {row:0,column:6,line:[[.3,0],[.44,.2],[.32,.48],[.58,.7],[.7,1]],light:9,dark:-8,joint:18},
+  {row:0,column:8,line:[[.66,0],[.52,.24],[.61,.43],[.37,.73],[.42,1]],light:4,dark:-7},
+  {row:1,column:4,line:[[.35,0],[.52,.21],[.42,.44],[.61,.68],[.55,1]],light:7,dark:-8,joint:21},
+  {row:1,column:6,line:[[.58,0],[.47,.27],[.61,.49],[.49,.71],[.72,1]],light:-5,dark:7},
+  {row:1,column:8,line:[[.33,0],[.48,.19],[.38,.46],[.57,.7],[.61,1]],light:8,dark:-9,joint:16},
+  {row:1,column:10,line:[[.7,0],[.55,.26],[.66,.44],[.46,.78],[.53,1]],light:-4,dark:5},
+  {row:2,column:3,line:[[.42,0],[.62,.2],[.53,.47],[.69,.64],[.58,1]],light:4,dark:-7},
+  {row:2,column:5,line:[[.68,0],[.52,.24],[.61,.39],[.35,.74],[.41,1]],light:7,dark:-9,joint:24},
+  {row:2,column:7,line:[[.32,0],[.53,.28],[.42,.46],[.65,.7],[.57,1]],light:-6,dark:7},
+  {row:3,column:6,line:[[.62,0],[.44,.23],[.58,.42],[.37,.72],[.49,1]],light:6,dark:-7,joint:19},
+  {row:3,column:8,line:[[.31,0],[.48,.2],[.39,.52],[.61,.76],[.52,1]],light:-4,dark:6}
+ ],accents:[[0,3,-2,2,-4,7,0,-3,4,-2,0],[1,-3,2,-2,4,0,-4,3,0,-2,1],[-2,2,0,4,-2,3,0,-3,2,0],[-1,2,-2,1,3,-2,1,0,-3,0],[0,-2,2,0,-2,1,0,-2,1,0]]});
  // Finite inhabited shelves and unequal descending roads. Each section has
  // its own authored breaks; no boulder outlines or repeated wedge stamps.
  const finite=[
@@ -84,47 +112,63 @@ export function applyStage14VectorFinish(project){
  ],['#5b7680','#4f6d79','#435f6f','#3c596a','#355364','#304e60'],{accents:[[0,3,-2,1,4,-2,0,5,-2,1,0,3,-2,1],[1,-2,0,3,-1,2,0,-2,3,0,2,-1],[0,2,-1,0,3,-2,1,0,-2,1],[0,-2,1,0,2,-1,0,1],[0,1,-1,0,2,-1],[0,-1,0,1,-1,0]]});
  // A few interrupted bed contacts, not caps around every polygon. They taper
  // into the shared geological boundary and cannot alter the walking outline.
- function ledge(id,row,l,r,depth,light=false){const line=beds.get(id)[row],top=span(line,l,r),shadow=top.map(([x,y])=>[x,y+depth*Math.sin(Math.PI*(x-l)/(r-l))]);add(id,id+'-recess-'+row+'-'+l,[...top,...shadow.reverse()],'#294858');if(light){const end=l+(r-l)*.72,lip=span(line,l,end);add(id,id+'-seat-'+row+'-'+l,[...lip,...lip.map(([x,y])=>[x,y-9]).reverse()],'#88978f');}}
- ledge('v14-upper-hamlet',1,470,1020,52,true);ledge('v14-upper-hamlet',2,1470,2080,75);ledge('v14-upper-hamlet',3,230,850,68,true);ledge('v14-upper-hamlet',3,2150,2710,70);
+ function ledge(id,row,l,r,depth,light=false,profile=null){const line=beds.get(id)[row],top=span(line,l,r),surface=profile?[...new Set([...top.map(p=>p[0]),...profile.map(p=>l+(r-l)*p[0])])].sort((a,b)=>a-b).map(x=>[x,interpolate(line,x)]):top,shadow=surface.map(([x,y])=>[x,y+depth*(profile?interpolate(profile,(x-l)/(r-l)):Math.sin(Math.PI*(x-l)/(r-l)))]);add(id,id+'-recess-'+row+'-'+l,[...surface,...shadow.reverse()],'#294858');if(light){const end=l+(r-l)*.72,lip=span(line,l,end);add(id,id+'-seat-'+row+'-'+l,[...lip,...lip.map(([x,y])=>[x,y-9]).reverse()],'#88978f');}}
+ ledge('v14-upper-hamlet',2,-2360,-1820,53,false,[[0,0],[.17,.27],[.29,.82],[.67,.65],[.88,.12],[1,0]]);
+ ledge('v14-upper-hamlet',3,-2350,-1830,61,true,[[0,0],[.2,.4],[.44,.9],[.76,.58],[.84,.13],[1,0]]);
+ ledge('v14-upper-hamlet',4,-830,-250,62,false,[[0,0],[.12,.2],[.31,.84],[.61,.75],[.82,.3],[1,0]]);
+ ledge('v14-upper-hamlet',1,120,640,45,true,[[0,0],[.15,.2],[.21,.72],[.7,.85],[.78,.28],[1,0]]);
+ ledge('v14-upper-hamlet',1,1190,1600,49,false,[[0,0],[.28,.38],[.36,1],[.68,.68],[.86,.15],[1,0]]);
+ ledge('v14-upper-hamlet',1,2690,3050,38,true,[[0,0],[.24,.6],[.64,.78],[.72,.2],[1,0]]);
+ ledge('v14-upper-hamlet',2,1780,2200,67,false,[[0,0],[.15,.17],[.3,.92],[.67,.73],[.8,.25],[1,0]]);
+ ledge('v14-upper-hamlet',2,3000,3440,58,true,[[0,0],[.12,.15],[.38,.6],[.51,.91],[.86,.48],[1,0]]);
+ ledge('v14-upper-hamlet',3,420,910,64,false,[[0,0],[.2,.25],[.39,1],[.7,.8],[.9,.27],[1,0]]);
+ ledge('v14-upper-hamlet',3,1710,2190,51,true,[[0,0],[.18,.5],[.61,.73],[.8,.21],[1,0]]);
  ledge('v14-market',1,4510,4870,34,true);ledge('v14-family-yard',2,3770,4240,55,true);ledge('v14-family-yard',1,4470,4830,43);
  ledge(ground.id,1,940,1570,55);ledge(ground.id,2,4000,4580,72,true);ledge(ground.id,3,5220,5850,77);
  space.terrainPlanes=[...planes,...contacts];
- // Low-value connected folds in the existing rear SVG, below foreground tone.
- // Keep its original silhouette, supports and atmosphere; the group has no rim,
- // black passage holes or collision. Existing SVG preparation caches it once.
+ // Replace the enclosing oval vault with staggered, overlapping rear piers.
+ // The central inhabited mother rock, exact lower contacts and old atmosphere
+ // stay in this same cached Library SVG. These have no walk rims/collision.
  const rear=project.library.find(a=>a.id==='stage14:vertical-cavern-depth');
  let source=rear.vector.source.replace(/<g id="v14-finish-rear-strata">[\s\S]*?<\/g>/g,'');
- // Actual minimum-zoom outer pans expose the old SVG's x=-700/8050
- // vertical card ends. Author those existing rear silhouettes as rock returns;
- // no camera clamp, added collider, image mask or per-frame edge work.
- const pathD=(id,fn)=>{const re=new RegExp('(<path id="'+id+'" d=")([^"]+)(")');source=source.replace(re,(_,a,d,z)=>a+fn(d)+z);};
- const westReturn='L-500 8460L-590 7910L-350 7360L-490 6760L-280 6180L-430 5600L-220 4970L-390 4360L-170 3740L-340 3120L-150 2510L-330 1920L-470 1320';
- const eastReturn='L7860 3860L7940 4440L7730 5050L7890 5630L7600 6210L7730 6840L7460 7380L7580 7900L7460 8410L7800 8810';
- pathD('continuous-deep-cavern-vault',()=> 'M-700 800Q1850 200 3830 840Q6380 580 8050 3220'+eastReturn+'L-500 9030'+westReturn+'Z');
- pathD('west-cavern-shoulder',d=>d.slice(0,d.indexOf('L420 '))+`L420 ${section(ground,420)[0]}L-500 ${section(ground,420)[0]+350}`+westReturn+'Z');
- pathD('east-high-asymmetric-rock',()=>`M5450 2900Q6160 2530 6880 3050L7940 4650L7730 5050L7890 5630L7600 6210L7730 6840L7460 7380L7580 7900L7460 8410L7800 8858L7460 ${section(ground,7460)[0]}L6880 ${section(ground,6880)[0]}Q7180 7360 6510 6340Q6200 5800 6430 5070Q6150 3470 5450 2900Z`);
- pathD('east-deep-return-recess',()=>`M7230 3640L7860 4940L7770 5490L7500 6120L7630 6710L7370 7300L7470 7870L7280 8410L7950 ${section(ground,7460)[0]+160}L7460 ${section(ground,7460)[0]}Q7730 7210 7410 6500Q7170 5380 7230 3640Z`);
- const rearLines=[[[1800,1150],[2600,1270],[3450,1080],[4300,1430],[5200,1620],[6100,2390],[7050,3400]],[[1800,2350],[2600,2500],[3450,2200],[4300,2560],[5200,2300],[6100,2930],[7050,3650]],[[1700,3500],[2580,3300],[3460,3670],[4320,3390],[5250,3620],[6200,3580],[7210,4020]],[[1850,4540],[2750,4750],[3500,4430],[4430,4690],[5330,4460],[6240,4760],[7230,4500]],[[2040,5700],[2850,5420],[3720,5850],[4510,5540],[5430,5830],[6270,5500],[7270,5890]],[[2280,6830],[3000,7110],[3850,6790],[4700,7180],[5550,6830],[6400,7120],[7280,6860]],[[2500,8300],[3300,8190],[4120,8340],[4930,8170],[5710,8330],[6500,8210],[7300,8320]]];
- // Entry follow sees the west upper vault at normal .82, not only the
- // central village. Its folds use offset shared contacts, not a giant lit stamp.
- const entryLines=[
-  [[-520,1000],[60,890],[540,950],[980,820],[1450,960],[1910,850],[2370,1080],[2850,1020],[3350,1270],[3830,1440]],
-  [[-400,1450],[140,1290],[470,1360],[1060,1200],[1370,1430],[2000,1300],[2290,1500],[2940,1500],[3250,1780],[3830,1940]],
-  [[-330,2520],[10,2380],[610,2570],[910,2440],[1560,2680],[1820,2470],[2500,2770],[2780,2910],[3450,3050],[3830,3300]]
- ];let entryBody='';
- for(let r=0;r<2;r++)for(let i=1;i<entryLines[r].length;i++){
-  const a=entryLines[r][i-1],b=entryLines[r][i],c=entryLines[r+1][i],d=entryLines[r+1][i-1];
-  entryBody+=svgPoly('v14-rear-entry-'+r+'-'+i,[a,b,c,d],shade(r?'#203743':'#263b46',[0,3,-2,1,-3,2,0,-2,1][i-1]));
- }
- const rearTones=['#243944','#263d48','#2a404b','#253d49','#2b414c','#263e49'];let rearBody=entryBody;
- for(let row=0;row<rearLines.length-1;row++)for(let i=1;i<rearLines[row].length;i++){
-  const edge=j=>{const a=rearLines[row][j],b=rearLines[row+1][j];return[a,...((j+row)%3===0?[[a[0]-100,a[1]+(b[1]-a[1])*.4],[b[0]+80,a[1]+(b[1]-a[1])*.7]]:[]),b];};
-  const a=rearLines[row][i-1],b=rearLines[row][i],d=rearLines[row+1][i-1];
-  rearBody+=svgPoly('v14-rear-bed-'+row+'-'+i,[a,b,...edge(i).slice(1),d,...edge(i-1).reverse().slice(1)],shade(rearTones[row],i===3?3:i===5?-2:0));
- }
- source=source.replace('<g id="middle-depth-soft-recession"','<g id="v14-finish-rear-strata">'+rearBody+'</g><g id="middle-depth-soft-recession"');rear.vector=compileSVG(source);rear.params={...rear.params,vectorFinishRevision:1,nodeCount:1+(function count(n){return(n.children||[]).reduce((s,c)=>s+1+count(c),0);})(rear.vector.root)};
+ const retired=new Set(['continuous-deep-cavern-vault','broad-oblique-vault-plane-above-homes','open-middle-hollow-with-irregular-shoulders','sloping-cavern-ceiling-east-plane','west-dwelling-cove-broad-sidewall','lower-valley-fold-behind-houses','west-cavern-shoulder','west-large-lit-face','west-one-deep-cleft','east-high-asymmetric-rock','east-broad-rock-plane','east-deep-return-recess']);
+ source=source.replace(/<path\b[^>]*id="([^"]+)"[^>]*\/>/g,(path,id)=>retired.has(id)?'':path).replace(/<linearGradient id="(?:v14-cave-depth|v14-rear-vault-wash)"[\s\S]*?<\/linearGradient>/g,'');
+ let rearBody='';
+ function pier(id,tone,outline,inner,faces){const v=[...outline,...inner];rearBody+=svgPoly(id+'-mass',outline,tone);for(const[label,color,indices]of faces)rearBody+=svgPoly(id+'-'+label,indices.map(i=>v[i]),color);}
+ // Far west pillar: the outer boundary is interrupted at unequal heights.
+ pier('west-far','#142b38',[
+  [-650,1000],[-260,620],[430,710],[990,1260],[870,2080],[1320,2650],[1190,3460],[1450,4190],[1200,4890],[1540,5650],[1430,6500],[1770,7250],[1560,8170],[960,8780],[80,9000],[-430,8500],[-290,7640],[-500,6890],[-300,6060],[-560,5250],[-340,4350],[-570,3480],[-350,2610],[-640,1800]
+ ],[[120,1850],[700,3100],[450,4550],[970,6020],[720,7560],[400,8600]],[
+  ['crown','#223946',[0,1,2,3,4,24,23]],['upper-return','#1b313f',[24,4,5,6,25]],['mid-face','#263d47',[25,6,7,8,26]],['lower-return','#1c3341',[26,8,9,10,27,28,17,18,19,20,21,25]],['foot-face','#29404a',[27,10,11,12,13,29,28]]
+ ]);
+ // A separate ceiling shoulder ends before the eastern pillars: no circular
+ // top band joins the two sides in the whole-village view.
+ pier('upper-shoulder','#1c303d',[
+  [900,940],[1540,450],[2230,590],[2840,360],[3590,730],[3970,1290],[4460,1910],[4330,2580],[4770,3110],[4500,3940],[3850,4330],[3410,3760],[3190,2820],[2620,2370],[2290,1680],[1550,1760]
+ ],[[1990,1010],[3050,1330],[3670,2210],[3980,3170],[3440,3470]],[
+  ['west-cut','#2b414b',[0,1,2,16,15]],['crown-cut','#273d48',[2,3,4,5,17,16]],['descending-face','#233945',[16,17,18,13,14,15]],['east-return','#1e3441',[17,5,6,7,18]],['lower-face','#304550',[18,7,8,9,19]],['inner-return','#243b46',[13,18,19,9,10,11,12]]
+ ]);
+ // Deeper eastern pier starts lower than the upper shoulder and is partly
+ // covered by a nearer column; offsets, not a stretched ellipse, carry depth.
+ pier('east-far','#132b38',[
+  [5860,2200],[6300,1620],[6890,1900],[7160,2770],[7600,3260],[7470,4140],[7800,4780],[7530,5590],[7710,6200],[7340,6980],[6880,7190],[6500,6580],[6620,5690],[6200,5130],[6380,4330],[5990,3670],[6130,2910]
+ ],[[6630,2850],[6970,3920],[6940,5210],[7170,6150]],[
+  ['upper-cut','#203743',[0,1,2,3,17,16]],['outer-face','#263d48',[17,3,4,5,18]],['return','#192f3d',[17,18,19,13,14,15,16]],['mid-face','#263e49',[18,5,6,7,19]],['lower-cut','#1e3542',[19,7,8,9,20]],['foot','#29404a',[19,20,9,10,11,12,13]]
+ ]);
+ pier('west-near','#1b3340',[
+  [1320,3510],[1940,3250],[2450,3800],[2350,4520],[2760,5070],[2570,5850],[2910,6430],[2720,7190],[2920,7730],[2500,8350],[1530,8650],[1350,7860],[1370,7130],[1270,6360],[1000,5610],[1050,4830],[950,4270]
+ ],[[1840,4230],[2010,5520],[2160,6780],[2100,7900]],[
+  ['upper-face','#2b424c',[0,1,2,3,17,16]],['inner-return','#243b47',[17,3,4,5,18]],['mid-face','#304650',[18,5,6,7,19]],['lower-face','#273f4a',[19,7,8,9,20]],['west-return','#1e3643',[17,18,19,20,9,10,11,12,13,14,15,16]]
+ ]);
+ pier('east-near','#233b46',[
+  [5510,4180],[6120,3900],[6520,4550],[6400,5270],[6880,5830],[6740,6490],[7110,7040],[6980,7700],[7460,section(ground,7460)[0]],[6880,section(ground,6880)[0]],[6220,8270],[6410,7560],[5990,7010],[6180,6380],[5750,5840],[5910,5150],[5390,4660]
+ ],[[5980,4640],[6150,5760],[6470,6950],[6550,7880]],[
+  ['crown','#304752',[0,1,2,3,17,16]],['outer-face','#29414c',[17,3,4,5,18]],['inner-return','#203845',[17,18,19,20,10,11,12,13,14,15,16]],['mid-face','#334a54',[18,5,6,7,19]],['foot-face','#2a424d',[19,7,8,9,10,20]]
+ ]);
+ source=source.replace('<path id="central-inhabited-mother-rock"','<g id="v14-finish-rear-strata">'+rearBody+'</g><path id="central-inhabited-mother-rock"');
+ rear.vector=compileSVG(source);rear.params={...rear.params,vectorFinishRevision:1,rearComposition:'five offset rock piers; central inhabited contacts retained; no enclosing oval',broadRockMasses:5,nodeCount:1+(function count(n){return(n.children||[]).reduce((s,c)=>s+1+count(c),0);})(rear.vector.root)};
  stage.design.vertical14Art.terrainPlaneIds=space.terrainPlanes.map(p=>p.id);
- stage.design.vertical14Finish={revision:1,source:'tools/environment/stage14-vector-finish.mjs',scope:'Visual only; live terrain, 17 routes, actors, quests, pacing and narrative unchanged',planeCount:space.terrainPlanes.length,rearAssetId:rear.id};
+ stage.design.vertical14Finish={revision:1,shapeRevision:2,source:'tools/environment/stage14-vector-finish.mjs',scope:'Visual only; live terrain, 17 routes, actors, quests, pacing and narrative unchanged',planeCount:space.terrainPlanes.length,rearAssetId:rear.id};
  return project;
 }
 if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){const file='shared/data/campaign.json',p=JSON.parse(readFileSync(file,'utf8'));applyStage14VectorFinish(p);writeFileSync(file,JSON.stringify(p)+'\n');console.log('Authored Stage14 whole-body bedding and subordinate rear folds only.');}

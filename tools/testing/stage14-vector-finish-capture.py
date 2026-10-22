@@ -40,6 +40,9 @@ with sync_playwright() as pw:
   p.mouse.move(x0,y0);p.mouse.down();p.mouse.move(x1,y1,steps=18);p.mouse.up();p.wait_for_timeout(120)
  if group in ['ui','final','camera']:
   snap('entry-default','Actual UI entry and automatic default follow')
+  if group=='camera':
+   p.set_viewport_size({'width':390,'height':844});p.wait_for_timeout(300);snap('mobile-default','Actual UI default follow after mobile viewport resize; no fixed camera')
+   p.set_viewport_size({'width':1180,'height':757});p.wait_for_timeout(300)
   p.mouse.move(610,320);p.mouse.wheel(0,757);p.wait_for_timeout(120);p.mouse.wheel(0,757);p.wait_for_timeout(200);snap('upper-out','Actual wheel to normal minimum zoom')
   if group in ['ui','final']:
    drag(600,550,600,110);snap('middle-pan','Actual camera drag into middle village')
