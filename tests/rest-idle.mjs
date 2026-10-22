@@ -28,8 +28,8 @@ check('Existing App rAF drives asynchronous party idle and retained art at cappe
  for(const old of first){const now=actors.findLast(v=>v.id===old.id);assert(now.time>old.time);assert.equal(now.animation,'idle');assert.equal(now.height,102);assert.equal(now.facing,old.facing);}
  assert(art.every(v=>Object.keys(v.attrs).length));
 });
-check('Animation never ticks or rewrites a suspended battle or profile',()=>{
- app=load(profileThrough(10));app.launch(11);finish(app);app.engine.active.hp-=11;app.engine.active.focus-=3;click('rest');finish(app);
+check('Animation never resurrects a discarded battle or rewrites permanent progress',()=>{
+ app=load(profileThrough(10));app.launch(11);finish(app);app.engine.active.hp-=11;app.engine.active.focus-=3;click('rest');click('confirm-journey-launch');finish(app);
  const before=plain(app.profile),snapshot=plain(app.profile.honroBattle),html=app.root.innerHTML;
  for(let i=0;i<240;i++)app.frame(app.prev+1000/60);
  assert.equal(app.engine,null);assert.deepEqual(plain(app.profile),before);assert.deepEqual(plain(app.profile.honroBattle),snapshot);assert.equal(app.root.innerHTML,html);

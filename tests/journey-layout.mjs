@@ -5,12 +5,12 @@ import {menuRuntime,menuProfile} from '../tools/environment/atlas-proof.mjs';
 const g=await menuRuntime(),A=g.HonroJourneyArt,f=A.bookFrame;
 assert.deepEqual(JSON.parse(JSON.stringify(f)),{x:-180,y:-105,width:2160,height:1260});
 for(const layer of ['surface','underground','city']){
- const p=menuProfile(g,30),saved=JSON.stringify(p),a={profile:p,journeyLayer:layer,journeySelection:layer==='surface'?12:layer==='underground'?18:30,debugMode:true,top:()=>''};
+ const p=menuProfile(g,30),saved=JSON.stringify(p),a={profile:p,journeyAct:layer==='surface'?2:layer==='underground'?2:3,journeyLayer:layer,journeySelection:layer==='surface'?12:layer==='underground'?18:30,debugMode:true,top:()=>''};
  const html=g.HonroRestJourney.bookMarkup(a),svg=A.bookAtlas(layer);
  assert.equal(svg,A.bookAtlas(layer));assert.match(svg,/viewBox="-180 -105 2160 1260"/);assert.match(svg,/expanded-atlas-landscape/);assert.doesNotMatch(svg,/<(?:image|script|foreignObject)\b/);
  assert.match(html,/<section class="journey-map-viewport"[^>]*><div class="journey-map-scroll">/);
  assert.match(html,/<\/div><\/div><div class="journey-map-legend">/);
- for(const v of g.HonroJourneyContent.places.filter(v=>v.layer===layer)){
+ for(const v of g.HonroJourneyContent.places.filter(v=>v.layer===layer&&g.HonroRestJourney.actOf(v.stageId)===a.journeyAct)){
   assert(html.includes(`data-id="${v.stageId}" style="left:${(v.map[0]-f.x)/f.width*100}%;top:${(v.map[1]-f.y)/f.height*100}%`));
  }
  assert.equal(JSON.stringify(p),saved);

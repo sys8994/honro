@@ -3,11 +3,11 @@ import {menuRuntime,atlasMarkup,menuProfile} from '../tools/environment/atlas-pr
 const g=await menuRuntime(),p=menuProfile(g,18),before=JSON.stringify(p);
 for(const layer of ['surface','underground','city']){
  const selection=layer==='surface'?11:layer==='city'?21:18;
- const html=atlasMarkup(g,{profile:p,next:18,layer,selection}),visible=g.HonroJourneyContent.places.filter(v=>v.layer===layer&&g.HONRO_CONTENT.stages[v.stageId-1].requires.every(id=>p.cleared[id]));
+ const html=atlasMarkup(g,{profile:p,next:18,layer,selection}),visible=g.HonroJourneyContent.places.filter(v=>v.layer===layer&&g.HonroRestJourney.actOf(v.stageId)===g.HonroRestJourney.actOf(selection)&&g.HonroRestJourney.actOpen(p,g.HonroRestJourney.actOf(selection))&&g.HONRO_CONTENT.stages[v.stageId-1].requires.every(id=>p.cleared[id]));
  assert.equal((html.match(/class="journey-route /g)||[]).length,Math.max(0,visible.length-1));
  assert.equal((html.match(/class="journey-pin /g)||[]).length,visible.length);
  if(visible.length)assert.match(html,/journey-region/);else assert.doesNotMatch(html,/journey-region/);
- assert.match(html,/data-action="journey-layer"/);assert.doesNotMatch(html,/data-action="journey-zoom"|journey-map-controls/);assert.doesNotMatch(html,/journey-pin unreached/);
+ assert.match(html,/data-action="journey-act"/);assert.doesNotMatch(html,/data-action="journey-zoom"|journey-map-controls/);assert.doesNotMatch(html,/journey-pin unreached/);
  if(layer==='underground')assert.match(html,/aria-current="location"/);else assert.doesNotMatch(html,/aria-current="location"/);
 }
 const afterAct2=menuProfile(g,21);assert.equal(g.HonroJourneyContent.next(afterAct2).stageId,21);

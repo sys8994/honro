@@ -108,3 +108,46 @@
 /* Only shown after leaving the central camp; never changes a save or route. */
 .honro #app .rest-center{position:absolute;right:12px;bottom:calc(max(18px,env(safe-area-inset-bottom)) + 58px);z-index:3;min-height:44px;padding:8px 12px;background:#14262ae6;color:#ded8c4;border:1px solid #9aab9859;border-radius:4px;font-size:11px;touch-action:manipulation}
 .honro #app .rest-center[hidden]{display:none}
+
+/* Six act slots remain in the viewport; only the map surface scrolls. */
+.honro #app .journey-screen{overflow:hidden}
+.honro #app .journey-heading{flex:none;display:flex;align-items:center;gap:18px;padding:12px 20px}
+.honro #app .journey-heading h1{font-size:21px;margin:0;white-space:nowrap}
+.honro #app .journey-heading .journey-acts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));flex:1;max-width:660px;margin-left:auto;border:1px solid #a1a48a50}
+.honro #app .journey-acts button{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:3px;min-width:0;width:100%;min-height:48px;padding:5px 2px;line-height:1.2;touch-action:manipulation}
+.journey-acts small{font-size:9px;white-space:nowrap;letter-spacing:0}
+.honro #app .journey-acts button:disabled{opacity:.75}
+.honro #app .journey-layers{display:flex;flex:none;justify-content:center;gap:8px;padding:4px 12px;background:#102023}
+.honro #app .journey-layers button{font-size:11px;min-height:36px;padding:5px 16px;background:transparent;border-color:#9ca78c45}
+.honro #app .journey-layers button[aria-pressed=true]{background:#a99b722e;color:#ebdebb;border-color:#b7aa78}
+.honro #app .journey-map-viewport{min-height:0}
+.honro #app .journey-detail{flex:none;padding:12px 20px;gap:12px;min-height:96px;box-sizing:border-box;padding-bottom:max(12px,env(safe-area-inset-bottom))}
+.journey-detail>div{flex:1;min-width:0}
+.honro #app .journey-detail h2{font-size:18px;line-height:1.4;margin:3px 0}
+.honro #app .journey-detail>button{min-width:144px;max-width:100%;touch-action:manipulation}
+.honro #app .journey-detail>.journey-back{min-width:0;background:transparent;border-color:#9aab9859;font-size:11px;padding:10px 12px}
+.honro #app .journey-detail button:focus-visible,.honro #app .journey-acts button:focus-visible{outline:2px solid #f3d89b;outline-offset:-3px}
+.honro .journey-confirm{max-width:420px}
+.honro .journey-confirm p{line-height:1.7;word-break:keep-all}
+@media(max-width:700px){
+ .honro #app .journey-heading{flex-wrap:wrap;gap:8px;padding:10px 12px}
+ .honro #app .journey-heading h1{font-size:18px}
+ .honro #app .journey-heading .journey-acts{flex-basis:100%;margin:0}
+ .honro #app .journey-detail{display:grid;grid-template-columns:1fr 1fr;padding:10px 12px;gap:8px;min-height:0;padding-bottom:max(10px,env(safe-area-inset-bottom))}
+ .honro #app .journey-detail>div{grid-column:1/-1;width:auto}
+ .honro #app .journey-detail p{font-size:10px}
+ .honro #app .journey-detail>button{width:100%;min-width:0;padding:9px 6px;min-height:44px}
+ .honro #app .journey-detail>.journey-back{font-size:10px}
+}
+@media(max-height:460px) and (min-width:701px){
+ .honro #app .journey-heading{padding:6px 16px;gap:12px}
+ .honro #app .journey-heading h1{font-size:18px}
+ .honro #app .journey-acts button{min-height:44px}
+ .honro #app .journey-detail{min-height:80px;padding:6px 16px;gap:10px}
+ .honro #app .journey-detail h2{font-size:16px}
+ .honro #app .journey-detail p{font-size:10px}
+}
+/* A paused battle's turn announcement must never cover the decision text. */
+body:has(#modal.open .journey-confirm) #turn-banner,body:has(#modal.open .pause-dialog) #turn-banner{visibility:hidden}
+/* Keep the new hub action visible in a short landscape pause menu. */
+@media(max-height:460px) and (min-width:701px){.honro .pause-menu{grid-template-columns:repeat(2,minmax(0,1fr))}}

@@ -21,20 +21,17 @@ def check(name, ok, detail=None):
 
 
 def setup(host):
-    host.evaluate('''()=>{
-      const a=HonroApp;a.frame=()=>{};a.profile=HONRO_TOOLS.fresh();
+    host.evaluate('''async()=>{
+      await globalThis.HonroCampaignLoader?.ensureStage(21);
+      const a=HonroApp;a.stopBattle();a.frame=()=>{};a.profile=HONRO_TOOLS.fresh();a.debugMode=false;
       a.profile.settings.music=false;a.profile.settings.sound=false;a.updateAudio();
       a.profile.recruited=['archer','mage','knight','occultist'];
       for(let i=1;i<=20;i++)a.profile.cleared[i]={visits:1,rounds:8};
-      a.launchMap(HONRO_PROJECT,'stage-21');
-      for(let i=0;a.dialogue&&i<80;i++)HonroStory.finish(a);
+      a.launch(21);for(let i=0;a.dialogue&&i<80;i++)HonroStory.finish(a);
       a.engine.active.hp-=11;a.engine.b.round=4;
-      const suspended=structuredClone(a.engine.b);
-      // First leave the custom-map session through its real profile boundary.
-      HonroRestJourney.showBook(a,21,'city');
-      a.engine=null;a.profile.honroBattle=suspended;
-      for(let i=1;i<=20;i++)a.profile.cleared[i]={visits:1,rounds:8};
-      HonroRestJourney.showBook(a,21,'city');
+      // A preexisting suspended campaign is an inert setup fixture. Navigation
+      // is tested below without approving its replacement or resuming it.
+      a.stopBattle();a.screen='title';HonroRestJourney.showBook(a,21,'city');
       window.journeySaved=JSON.stringify(a.profile);
     }''')
 
@@ -56,8 +53,9 @@ def anchor(host, x, y):
 def desktop(host, owner, label):
     setup(host)
     check(label + ': all zoom and reset buttons removed', host.locator('.journey-map-controls,[data-action=journey-zoom]').count() == 0)
-    for layer in ['surface', 'underground', 'city']:
-        host.locator(f'[data-action=journey-layer][data-layer={layer}]').click()
+    for act,layer in [(2,'surface'),(2,'underground'),(3,'city')]:
+        host.locator(f'[data-action=journey-act][data-id="{act}"]').click()
+        if act==2:host.locator(f'[data-action=journey-layer][data-layer={layer}]').click()
         # Start in the middle of the map, away from scroll limits.
         host.locator('.journey-map-scroll').evaluate('(v)=>{v.scrollLeft=0;v.scrollTop=100;}')
         box = host.locator('.journey-map-scroll').bounding_box()
@@ -76,7 +74,7 @@ def desktop(host, owner, label):
         check(f'{label} {layer}: both zoom bounds', abs(high-1.35) < 1e-9 and abs(low-.85) < 1e-9, [low, high])
         # Restore enough scale for the next layer's anchor check.
         owner.mouse.wheel(0, -115); host.wait_for_timeout(70)
-    host.locator('[data-action=journey-layer][data-layer=surface]').click()
+    host.locator('[data-action=journey-act][data-id="1"]').click()
     host.evaluate("HonroRestJourney.selectBook(HonroApp,3)")
     pin = host.locator('[data-action=journey-select][data-id="2"]')
     pin.scroll_into_view_if_needed()
