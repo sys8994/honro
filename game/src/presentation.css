@@ -69,6 +69,7 @@
 
 /* Long lines scroll behind a retained, reachable reading-control row. */
 .story-scene .story-actions,.story-guide .story-actions{position:sticky;bottom:0;z-index:1;background:#0d2024;flex-shrink:0}
+.story-guide .story-actions{top:0}
 
 /* The optional reader also lives inside the pause journal dialog. Keep paper ink
    independent of the dark journal's generic paragraph colour. */
