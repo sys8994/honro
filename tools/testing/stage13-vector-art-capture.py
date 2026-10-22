@@ -21,12 +21,15 @@ with sync_playwright() as pw:
  for name,x,y,z,w,h,focus in views:
   if group=='preview' and name not in ['overview','entry','gate']:continue
   if group=='opened' and name not in ['gate','inner','mobile-gate']:continue
-  if group not in ['preview','all','opened'] and group!=focus:continue
+  if group=='final' and name not in ['overview','gate','mobile-mason']:continue
+  if group not in ['preview','all','opened','final'] and group!=focus:continue
   p.set_viewport_size({'width':w,'height':h});p.wait_for_timeout(100)
   p.evaluate('HonroApp.scene.render(HonroApp.engine,0,"",.6,false,0)')
   row=p.evaluate('''v=>{const a=HonroApp,s=a.scene,b=a.engine.b;Object.assign(s,{manual:true,x:v.x,y:v.y,scale:v.z,time:10,storyTween:null,goalFocus:null,cinematic:null,editorView:v.name==='overview',skillPreview:v.name==='overview'});for(let i=0;i<3;i++)s.render(a.engine,0,'',.6,false,0);return{camera:[s.x,s.y,s.scale],viewport:[v.w,v.h],limits:HonroBounds.zoomLimits(v.w),phase:b.phase,objective:HonroAct2.current(b)?.id,far:HonroAuthoredFarArt.frames(s,v.w,v.h,b).map(x=>({key:x.key,alpha:x.alpha})),actors:b.units.filter(u=>u.side===0||u.id==='resident-1').map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp})),cache:s.renderCacheStats()};}''',dict(name=name,x=x,y=y,z=z,w=w,h=h))
   file=name+'.jpg';p.screenshot(path=str(out/file),type='jpeg',quality=86);assert(out/file).stat().st_size<1_000_000;rows.append({'file':file,'focus':focus,**row});print(str(out/file),flush=True)
  sources=['shared/data/campaign.json','shared/runtime/act2-spatial-art.js','shared/runtime/authored-far-art.js','web/manifest.json'];author=ROOT/'tools/environment/stage13-vector-finish.mjs'
  if author.exists():sources.append(str(author.relative_to(ROOT)))
- report={'sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'workingTree':subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True),'scope':'Production Scene with fixed new-stage legal-entry-level battle and camera fixtures. Actors/goal unchanged; not normal route completion, GPU timing or mobile device test.','rows':rows,'sourceHashes':{f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest()for f in sources},'errors':errors,'httpFailures':http}
+ production=p.evaluate('''()=>{const b=HonroApp.engine.b,ps=b.honroMap.space.terrainPlanes,counts={};for(const p of ps)counts[p.terrainId]=(counts[p.terrainId]||0)+1;return{counts,legacyTransitionPlanes:ps.filter(p=>p.transitionLayer).length,variants:b.honroMap.space.scenery?.map(e=>e.assetId).filter(id=>id?.startsWith('stage13:'))||[]};}''')
+ assert sum(production['counts'].values())==45 and production['legacyTransitionPlanes']==0 and len(set(production['variants']))==4
+ report={'sha':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'workingTree':subprocess.check_output(['git','status','--porcelain'],cwd=ROOT,text=True),'scope':'Production Scene with fixed new-stage legal-entry-level battle and camera fixtures; opened group instead mounts the isolated actual-interaction snapshot from stage13-vector-art-play.mjs. Not normal combat completion, GPU timing or mobile device test.','production':production,'rows':rows,'sourceHashes':{f:hashlib.sha256((ROOT/f).read_bytes()).hexdigest()for f in sources},'errors':errors,'httpFailures':http}
  (out/'capture.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');b.close();assert not errors;assert not http
