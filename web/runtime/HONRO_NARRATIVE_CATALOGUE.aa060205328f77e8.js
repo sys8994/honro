@@ -1,1 +1,0 @@
-import{loadData,loadProject}from"./load-data.6f01d18416c3198e.js";globalThis.HONRO_NARRATIVE_CATALOGUE=await loadData("web/data/HONRO_NARRATIVE_CATALOGUE.f7be0b2cac94d70c.json",[],{svgSources:false});

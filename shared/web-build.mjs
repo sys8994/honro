@@ -102,14 +102,14 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
   }
   for(let i=0;i<entries.length;i++){
     const entry=entries[i],target=i<appStart?common:gameOnly;let file;
-    if(entry.global==='HONRO_NARRATIVE_CATALOGUE'){
-      const group=entries.slice(i,i+3);
-      assert.deepEqual(group.map(e=>e.global),['HONRO_NARRATIVE_CATALOGUE','HONRO_NARRATIVE_COMPAT','HONRO_STAGE_CONTRACTS']);
+    if(entry.global==='HONRO_WATERWORKS_V2'){
+      const group=entries.slice(i,i+4);
+      assert.deepEqual(group.map(e=>e.global),['HONRO_WATERWORKS_V2','HONRO_NARRATIVE_CATALOGUE','HONRO_NARRATIVE_COMPAT','HONRO_STAGE_CONTRACTS']);
       await flushScripts(target);
       const value=await externalize(Object.fromEntries(group.map(e=>[e.global,e.data])),'narrative-data');
       const packet=await json('narrative-data',packJson(value));
       file=await emit('runtime','narrative-data','js',loaderImport+`Object.assign(globalThis,await loadData(${quote(packet)},${quote(assetPaths(value))},{jsonPool:true}));\n`);
-      moduleData.set(file,[packet]);target.push(file);i+=2;continue;
+      moduleData.set(file,[packet]);target.push(file);i+=3;continue;
     }
     if(entry.global==='HONRO_JOURNEY_MAPS'){
       for(const act of entry.data.acts)act.url={$honroAsset:await emit('graphics',`journey-map-act${act.act}`,'webp',await readFile(path.join(root,act.asset)))};
