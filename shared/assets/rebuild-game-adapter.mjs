@@ -266,7 +266,7 @@ export class HonroPoseVisual{
     s.wasAirborne=airborne;s.lastTargets=structuredClone(sample.targets);sample.poses.root.x=0;sample.poses.root.y=0;
     return {sample,state:s};
   }
-  draw(ctx,u,charge=0){const {sample,state}=this.pose(u,charge),result=this.renderer.draw(ctx,{height:102,facing:(u.facing||1)*(state.meleeSkill==='S05'&&state.meleeIndex>=2?-1:1),sample});state.draws++;return result;}
+  draw(ctx,u,charge=0){const {sample,state}=this.pose(u,charge),request=ctx._honroOcclusionBounds,result=this.renderer.draw(ctx,{height:102,facing:(u.facing||1)*(state.meleeSkill==='S05'&&state.meleeIndex>=2?-1:1),sample,bounds:!!request});if(request)request.bounds=result.bounds;state.draws++;return result;}
 }
 export class HonroArcherVisual extends HonroPoseVisual{}
 export class HonroPartyVisual{

@@ -80,21 +80,42 @@ function createCanvasRenderer(asset) {
   const cache = new Map(asset.paths.map(p=>[p.id,new Path2D(p.d)]));
   const sorted = [...asset.rig.parts].sort((a,b)=>a.z-b.z || a.id.localeCompare(b.id));
   const groups = new Map(sorted.map(p=>[p.id,asset.paths.filter(s=>s.part===p.id)]));
+  // A curve stays inside its control hull. Support only the absolute commands
+  // used by these assets; future/unknown geometry must keep the full mask path.
+  const hull=d=>{
+    const tokens=d.match(/[a-zA-Z]|[-+]?(?:\d*\.)?\d+(?:[eE][-+]?\d+)?/g)||[];
+    if(d.replace(/[MLQCZ]|[-+]?(?:\d*\.)?\d+(?:[eE][-+]?\d+)?|[\s,]/g,''))return null;
+    const box=[Infinity,Infinity,-Infinity,-Infinity];let i=0;
+    while(i<tokens.length){const cmd=tokens[i++],arity={M:2,L:2,Q:4,C:6,Z:0}[cmd];if(arity===undefined)return null;
+      let n=0;while(i<tokens.length&&!/^[a-zA-Z]$/.test(tokens[i])){if(!arity||i+1>=tokens.length)return null;const x=Number(tokens[i++]),y=Number(tokens[i++]);if(!Number.isFinite(x)||!Number.isFinite(y))return null;box[0]=Math.min(box[0],x);box[1]=Math.min(box[1],y);box[2]=Math.max(box[2],x);box[3]=Math.max(box[3],y);n+=2;}
+      if(arity&&(!n||n%arity))return null;
+    }
+    return Number.isFinite(box[0])?box:null;
+  };
+  let hulls;
   return {
     pathCount: cache.size,
-    draw(context,{x=0,y=0,height=asset.canvas.visualHeight,facing=1,animation='idle',time=0,normalized=false,silhouette=false,debug=false,detail,sample:providedSample=null}={}) {
+    draw(context,{x=0,y=0,height=asset.canvas.visualHeight,facing=1,animation='idle',time=0,normalized=false,silhouette=false,debug=false,detail,sample:providedSample=null,bounds=false}={}) {
       const sample = providedSample || sampleAnimation(asset,animation,time,normalized), matrices = rigMatrices(asset,sample.poses);
       const m=context.getTransform(),ratio=context.canvas.clientWidth?context.canvas.width/context.canvas.clientWidth:1,pixels=height*Math.hypot(m.c,m.d)/ratio,lod=detail??(pixels>=160?2:pixels>=80?1:0);
       context.save(); context.translate(x,y); const scale=height/asset.canvas.visualHeight;
       context.scale(scale*(facing<0?-1:1),scale); context.translate(-asset.canvas.anchor[0],-asset.canvas.anchor[1]);
+      let box=null,known=!debug,root;
+      if(bounds){hulls??=new Map(asset.paths.map(p=>[p.id,hull(p.d)]));const m=context.getTransform();root=[m.a,m.b,m.c,m.d,m.e,m.f];}
+      const include=(p,m,dynamic)=>{if(!bounds||!known||!p.fill&&!p.stroke)return;const b=dynamic?hull(dynamic):hulls.get(p.id);if(!b){known=false;return;}
+        const pad=p.stroke?(p.strokeWidth||1)/2:0,pts=[[b[0]-pad,b[1]-pad],[b[2]+pad,b[1]-pad],[b[0]-pad,b[3]+pad],[b[2]+pad,b[3]+pad]].map(p=>point(m,p));
+        const next=[Math.min(...pts.map(p=>p[0]))-2,Math.min(...pts.map(p=>p[1]))-2,Math.max(...pts.map(p=>p[0]))+2,Math.max(...pts.map(p=>p[1]))+2];
+        box=box?[Math.min(box[0],next[0]),Math.min(box[1],next[1]),Math.max(box[2],next[2]),Math.max(box[3],next[3])]:next;
+      };
       const renderPath = (p,path) => { if(p.fill){context.fillStyle=silhouette?'#080A0B':asset.palette[p.fill];context.fill(path);} if(p.stroke){context.strokeStyle=silhouette?'#080A0B':asset.palette[p.stroke];context.lineWidth=p.strokeWidth||1;context.lineCap='round';context.lineJoin='round';context.stroke(path);} };
       const constraint=constrainedPaths(asset,matrices,sample.controls),pending=[...constraint.paths].sort((a,b)=>(a.z??100)-(b.z??100)),flex=bowTension(asset,matrices,sample.controls);
-      const paintConstraint=p=>{if(p.opacity>0){context.save();context.globalAlpha*=p.opacity;renderPath(p,new Path2D(p.d));context.restore();}};
+      const paintConstraint=p=>{if(p.opacity>0){if(bounds)include(p,root,p.d);context.save();context.globalAlpha*=p.opacity;renderPath(p,new Path2D(p.d));context.restore();}};
       for(const part of [...sorted].sort((a,b)=>partDepth(asset,a,sample)-partDepth(asset,b,sample))){while(pending.length&&(pending[0].z??100)<partDepth(asset,part,sample))paintConstraint(pending.shift()); context.save();context.transform(...matrices[part.id]);context.globalAlpha*=sample.poses[part.id].opacity;
-        for(const p of groups.get(part.id))if((p.detail||0)<=lod)renderPath(p,asset.constraints?.bowFlex&&['bow_body','bow_laminate'].includes(p.id)?new Path2D(flexPath(asset,p.d,flex)):cache.get(p.id));context.restore(); }
+        const transform=bounds?multiply(root,matrices[part.id]):null;
+        for(const p of groups.get(part.id))if((p.detail||0)<=lod){const d=asset.constraints?.bowFlex&&['bow_body','bow_laminate'].includes(p.id)?flexPath(asset,p.d,flex):null;if(bounds&&context.globalAlpha>0)include(p,transform,d);renderPath(p,d?new Path2D(d):cache.get(p.id));}context.restore(); }
       for(const p of pending)paintConstraint(p);
       if(debug){context.strokeStyle='#62C9C7';context.lineWidth=1;for(const part of sorted){const [px,py]=point(matrices[part.id],part.pivot);context.beginPath();context.arc(px,py,2.5,0,Math.PI*2);context.stroke();}}
-      context.restore();return {sample,matrices,constraint};
+      context.restore();return {sample,matrices,constraint,bounds:bounds&&known&&box?.every(Number.isFinite)?box:null};
     }
   };
 }

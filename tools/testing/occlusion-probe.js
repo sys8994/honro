@@ -3,6 +3,7 @@
 async ({mode,frames,source})=>{
  const a=HonroApp,s=a.scene,original=s.occludedUnitSilhouettes,rows=[],totals=[],phase={};
  const stat=v=>{const n=[...v].sort((a,b)=>a-b);return {n:n.length,p50:n[Math.floor(n.length*.5)]||0,p95:n[Math.floor(n.length*.95)]||0,total:n.reduce((a,b)=>a+b,0),max:n.at(-1)||0};};
+ if(source.includes('_honroOcclusionBounds'))throw Error('phase/alpha probes require the unchanged baseline source; set BUILD_ROOT to the baseline worktree');
  let last;
  window.occlusionMark=name=>{const now=performance.now();if(name)(phase[name]??=[]).push(now-last);last=now;};
  window.occlusionAlpha=(c,u,covers,left,top,rs,body,edge)=>{
