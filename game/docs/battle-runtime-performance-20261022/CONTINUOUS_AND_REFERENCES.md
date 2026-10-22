@@ -64,3 +64,7 @@ python tools/testing/settled-hit-summon-browser.py
 ## 다음 범위
 
 사용자 최신 요청에 따라 전반적인 갱신 아키텍처 검토는 `fix/render-update-architecture-20261022`, 최신 master e7fbff64 기반의 별도 작업으로 이어간다. 여기의 연속/경계 결과를 덮어쓰거나 원래 렉 해결로 바꾸지 않는다.
+
+## 후속 계측 도구 주의점
+
+새 아키텍처 검토에서 `turnNotice=null`만 직접 지정하고 배너 DOM을 정상 종료시키지 않으면 시작 배너가 남을 수 있음을 실제 화면에서 확인했다. 이전 고정 저장/화면 비교 도구도 notice 직접 clearing을 사용하므로 그 rAF 결과를 일반 플레이의 대표 FPS로 확대 해석하지 않는다. 폐기한 raster 후보의 미입증/롤백 결론은 유지한다. 이 문서의 연속 전투 도구는 `turnNotice`를 직접 지우지 않고 실제 App.frame/Story lifecycle 및 대화 버튼을 사용했으며, 해당 연속 표본과 고정 화면 계측을 구분한다. 후속 아키텍처 최종 계측은 생산 루프의 배너 종료를 기다린다.
