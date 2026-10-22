@@ -101,7 +101,7 @@ for(let turn=0;turn<actionLimit&&!terminal();turn++){
  if(interact()){record({op:'E',hero:u.cls,target:m.id});nav.clear(u.id);planningMs+=performance.now()-t0;continue;}
  if(heal(u)){planningMs+=performance.now()-t0;continue;}
  for(const target of foes.filter(v=>!v.dead&&dist(v,u)<1700).slice(0,4))if(attack(u,target)){fired=true;break;}
- if(!fired){record({op:'defend',hero:u.cls});app.defend();}planningMs+=performance.now()-t0;
+ if(!fired){record({op:'defend',hero:u.cls});liveAudit.production(()=>app.defend());}planningMs+=performance.now()-t0;
 }
 if(!terminal()&&!stopReason)stopReason='controller action limit';
 const checkpoint=await save();const preserved=plain(b);const continued=h.load(checkpoint.profile);continued.continue();assert.deepEqual(plain(continued.engine.b),preserved,'Actual export/Continue whole-battle exact at stop');
