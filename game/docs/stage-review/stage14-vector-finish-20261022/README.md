@@ -2,6 +2,9 @@
 
 기준 master `1f1b267c2d23bc5975af5841c560e4413291330b`, 작업 브랜치 `art/stage14-vector-finish-20261022`. 같은 지형 미술 세션을 재사용한다. 이전 소스 `a6d47a5271012d5657d33fe8637b3f55385812f3`는 부모의 실제 픽셀 검수에서 보류됐다. 현재는 그 후보의 상·중층 중간 형태와 후벽 구성만 추가 교정한다. 아래 이전 내부 검수 기록은 부모 최종 승인 근거가 아니다. master/Pages는 변경하지 않았다. 아래 첫 구현/교정 중 기록은 중간 상태 이력이다.
 
+**최신 교정 후보:** 소스·검사 `2e3557530def8cd468da1dfdc1e71d1960dd2e1e`. [upper](review/stage14-shape2-upper.jpg) · [middle](review/stage14-shape2-middle.jpg) · [overview](review/stage14-shape2-overview.jpg) · [실제 모바일 기본뷰](review/stage14-shape2-mobile-default.jpg). 부모 최종 미술 판단 대기, master/Pages 미변경. 최신 교정 결과는 문서 마지막의 shape2 항목이다.
+
+
 ## 설계·보존 카드
 
 - 장소:2막4장 「해가 닿지 않는 마을」. 상층 집터→장터/두 회귀길→가족 집터→하층 피난 다리/강변으로 연결된 수직 마을. 단단한 모암 층리와 집 기단·발판의 지지를 드러내며 기존 지질/길의 실루엣은 보존한다.
@@ -90,3 +93,25 @@
 중간 실제 upper/middle/overview를 열어 후벽 C자 인상 감소와 오른쪽 파단 형태 개선을 확인했으나, 중층 왼쪽 면이 여전히 띠로 남아 있어 그 부분을 후속 수정했다. 같은 카메라 절차의 최종 소스 사진을 별도로 다시 확인해 인계한다. 자동 중간 자료는 `_local/reports/stage14-vector-finish/shape2-*/`에만 둔다.
 
 기준은 계속1f1b267이다. 부모가 master에 반영한6cbda400 페이싱/저장 호환 후보는 이 브랜치에 병합하지 않았다. 현재 보존 검사는1f1b267 계약이며, 최신 master 통합/공개 그래프 갱신은 부모의 미술 판단 뒤 별도다.
+
+### shape2 최종 소스·픽셀 확인
+
+소스·관련 검사 SHA `2e3557530def8cd468da1dfdc1e71d1960dd2e1e`를 커밋·푸시한 뒤, 변경 없는 clean 작업 트리에서 `shape2-final-ui`4장/`shape2-final-camera`8장/`shape2-final-near`4장을 촬영했다. 브라우저 오류·HTTP 실패0. 자동 사진과 capture.json의 sourceHashes/카메라 기록은 `_local/reports/stage14-vector-finish/`에만 둔다.
+
+최종 upper/middle/overview는 이전 a6d47a52 사진과 좌우 비교용 화면으로 만들어 **세 구도를 각각 직접 열었다**(`shape2-final-compare-{upper,middle,overview}.jpg`). 이어 모바일 기본뷰·좌/우 끝 팬·상층 앞면 근접을 직접 열고, 마지막에 최종 overview 원본 전체를 다시 열었다. 이번 수정에 영향받은 화면만 재확인했으며, 같은 사진의 반복 열람을 서로 다른 집중 검수 회차로 세지 않는다.
+
+| 대상 | 실제 좋아진 부분 | 남겨 둔 부분·판단 한계 |
+| --- | --- | --- |
+| 상·중층 앞면 | 오른쪽 경사뿐 아니라 실제 중층 UI 왼쪽의 넓은 면도 맞물린 중간 파단면으로 읽힌다. 일부 층 경계가 짧게 돌아나오고 접합·절제된 돌턱이 연결된다.13장 완성 west/vault 중거리와 최종 상층 앞면 근접을 직접 비교했다. | 큰 주층리와 넓은 명암 덩어리는 남겼다. 플레이 구간에서 먼 왼쪽 확장부·이번 범위 밖 강변에는 이전의 큰 층과 여백이 유지된다. 면 개수로 밀도/미술 합격을 판단하지 않는다. |
+| 후벽 전체 | 이전의 둥근 상부와 양옆을 잇는 외곽이 없어지고, 높이가 다른 천장 어깨/암주가 어두운 명도로 겹쳐 보인다. 원래 이미지 원경이 사이로 보이면서 깊이가 갈린다. | 중앙 집터/절벽 하부의 기존 접합 모암에는 넓은 저대비 면이 남아 있다. 배경용 큰 덩어리이며 전경처럼 전부 촘촘히 세분하지 않았다. 부모의 종합 미술 판단은 남는다. |
+| 모바일·끝 팬 |390×844에서 실제 UI 기본 follow의 배율 .271016949를 사용했다. 아군4명·예측 탄도·목표 라벨·HUD와 보행선이 읽힌다. 실제 최소 줌 .173529의 x−320/7920 양 끝에서도 전경 재질 시작점의 수직선이 없고 새 후벽은 불규칙 외곽으로 끝난다. | 고정 모바일 .4/.45 검수뷰와 실제 자동 기본뷰를 구분한다. 실기기·모든 전투 순간·동적 FPS 검사는 아니다. |
+
+전달 JPG7장 모두38,058~91,612B로1MB 미만이다. 이전 후보 사진을 덮지 않고 다음 선택 사진만 추가했다.
+
+- [교정 상층](review/stage14-shape2-upper.jpg), [교정 중층](review/stage14-shape2-middle.jpg), [교정 전체](review/stage14-shape2-overview.jpg)
+- [상층 앞면 근접](review/stage14-shape2-upper-near.jpg), [실제 모바일 기본뷰](review/stage14-shape2-mobile-default.jpg)
+- [교정 좌측 끝](review/stage14-shape2-left-pan.jpg), [교정 우측 끝](review/stage14-shape2-right-pan.jpg)
+
+`npm run build`와 `node tests/stage14-vector-finish.mjs` 통과(`/tmp/stage14-shape2-{build,check}.log`, `_local/.../preservation.json`). 이전 후보 대비 상층 외의14장 재질/집 접촉/목교 plane 전체가 같은 것도 추가 확인했다. 기준1f1b267의 전체 게임플레이/17경로/충돌/배우/NPC/목표/대사·타29장·다른 Library 및 전역 렌더 bytes 동등을 계속 유지한다. 현재 생성물의 후벽/재질과 canonical 데이터 동등, 저작 재현·멱등성, 정적 prepare 재사용/반복 draw 새Path2D0/렌더 battle 순수성/Canvas 상태/sceneVersion 무효화가 통과했다. 이것은 draw 비용0·성능 개선이나 미술 최종 승인 근거가 아니다.
+
+기존 기준 브랜치의 공개6그래프/437고유파일 hash·길이도 보존했다. 부모의 최신6cbda400 페이싱과 그 공개 발행 그래프는 작업 중 병합하지 않았다. **통합 시 최신 master의 게임플레이와 발행 이력을 보존하고, 이 저작 helper가 만드는 시각 필드·기존 후벽 자산만 적용해야 한다.** 이 브랜치의 과거1f1b267 게임 데이터/manifest 전체로 최신 master를 대체하는 인계가 아니다. 이후 공통 build·최신 발행 보호 확인은 부모 통합 작업이다. 이번 라운드에서 무관한 전역 verify/다른 장 플레이/새 renderer·이미지·원고·집·적·퀘스트 개편은 하지 않았다.
