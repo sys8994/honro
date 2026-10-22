@@ -57,16 +57,39 @@ function drawBell(c,body,b){const q=bellPaint(body.asset,b);if(!q)return G.Honro
 }
 const landmarks=S._landmarkLayer;S._landmarkLayer=function(c,list,layer){const b=this.battle;if(!active(b))return landmarks.call(this,c,list,layer);const body=list.find(l=>l.id==='sb-bell-body');const result=landmarks.call(this,c,list.filter(l=>l.id!=='sb-bell-body'),layer);if(body&&!lowering(b)&&(body.layer||'back')===layer)drawBell(c,body,b);return result;};
 function movingBody(c,b){if(!lowering(b))return false;const body=b.honroLandmarks?.find(l=>l.id==='sb-bell-body');if(!body?.asset)return false;return drawBell(c,body,b);}
-// Fixed stone gallery and its descending ramp share one quiet material. The
-// two narrow rear ties explain the suspended ramp; they never draw a walking
-// plane or replace collision. Their anchors/feet come from the actual solids.
+// A fixed timber-clad work ramp hangs from the stone gallery. The boxed lower
+// bearing is the real solid, not a loose sheet. Rear framing has no walking
+// edge; every deck/cap/course is clipped to the original playable polygons.
 const galleryCache=new WeakMap();
 function prepareGallery(b){let q=galleryCache.get(b);if(q?.terrain===b.terrain&&q.version===b.sceneVersion&&q.sources.every(([t,v])=>t.vertices===v))return q;
- const ts=(b.terrain||[]).filter(t=>interiorStoneIds.has(t.id)),shape=new Path2D(),ties=new Path2D(),sill=ts.find(t=>t.id==='sb-east-gallery-sill'),ramp=ts.find(t=>t.id==='sb-inner-upper-turn');for(const t of ts)shape.addPath(prepare(t,b).shape);
- if(sill&&ramp){const ps=C.poly(ramp),a=ps[0],z=ps[1],top=sill.y+sill.h;for(const ratio of [.86,.97]){const x=a.x+(z.x-a.x)*ratio,y=a.y+(z.y-a.y)*ratio;if(x>=sill.x&&x<=sill.x+sill.w&&y>top){ties.moveTo(x,top);ties.lineTo(x,y);}}}
- q={terrain:b.terrain,version:b.sceneVersion,sources:ts.map(t=>[t,t.vertices]),shape,ties};galleryCache.set(b,q);return q;
+ const ts=(b.terrain||[]).filter(t=>interiorStoneIds.has(t.id)),sill=ts.find(t=>t.id==='sb-east-gallery-sill'),ramp=ts.find(t=>t.id==='sb-inner-upper-turn'),crib=ts.find(t=>t.id==='sb-inner-sound-stone'),rear=[],surfaces=[];
+ const path=ps=>{const p=new Path2D();ps.forEach((v,i)=>i?p.lineTo(v.x,v.y):p.moveTo(v.x,v.y));p.closePath();return p;},rect=(x,y,w,h)=>path([{x,y},{x:x+w,y},{x:x+w,y:y+h},{x,y:y+h}]);
+ const beam=(a,z,w)=>{const length=Math.hypot(z.x-a.x,z.y-a.y),nx=-(z.y-a.y)/length*w/2,ny=(z.x-a.x)/length*w/2;
+  rear.push({path:path([{x:a.x+nx,y:a.y+ny},{x:z.x+nx,y:z.y+ny},{x:z.x-nx,y:z.y-ny},{x:a.x-nx,y:a.y-ny}]),fill:'#40392f'});
+  rear.push({path:path([{x:a.x+nx*.5,y:a.y+ny*.5},{x:z.x+nx*.5,y:z.y+ny*.5},{x:z.x-nx*.8,y:z.y-ny*.8},{x:a.x-nx*.8,y:a.y-ny*.8}]),fill:'#776246'});
+ };
+ if(sill){const clip=prepare(sill,b).shape;surfaces.push({clip,parts:[{path:clip,fill:'#53645d'}]});}
+ if(sill&&ramp){const ps=C.poly(ramp),foot=ps[2],top=sill.y+sill.h;
+  beam({x:foot.x-10,y:top-18},{x:foot.x-10,y:foot.y-8},42);
+  beam({x:foot.x+175,y:top-10},{x:foot.x-10,y:foot.y-28},38);
+  surfaces[0].parts.push({path:rect(foot.x-65,sill.y+14,290,sill.h-14),fill:'#63513c'},{path:rect(foot.x-65,sill.y+14,290,10),fill:'#998060'},{path:rect(foot.x-30,sill.y+28,40,sill.h-28),fill:'#353930'});
+ }
+ if(crib){const clip=prepare(crib,b).shape,x=crib.x,y=crib.y,w=crib.w,h=crib.h;
+  surfaces.push({clip,parts:[{path:clip,fill:'#755e43'},
+   {path:rect(x,y+h*.38,w,h*.32),fill:'#675039'},{path:rect(x,y+h*.7,w,h*.3),fill:'#56432f'},
+   {path:rect(x+w*.69,y,w*.31,h),fill:'#3d342b'},
+   {path:rect(x,y+h*.38-5,w,9),fill:'#302c26'},{path:rect(x,y+h*.7-5,w,9),fill:'#302c26'},
+   {path:rect(x+8,y,w*.10,h),fill:'#8e7755'}]});
+ }
+ if(ramp){const ps=C.poly(ramp),a=ps[0],z=ps[1],lowerA=ps[3],lowerZ=ps[2],clip=prepare(ramp,b).shape;
+  surfaces.push({clip,parts:[{path:clip,fill:'#796246'},
+   {path:path([a,z,{x:z.x,y:z.y+15},{x:a.x,y:a.y+15}]),fill:'#b39a6d'},
+   {path:path([lowerA,lowerZ,{x:lowerZ.x,y:lowerZ.y-18},{x:lowerA.x,y:lowerA.y-18}]),fill:'#352e27'},
+   {path:rect(a.x+(z.x-a.x)*.77,a.y,15,ramp.h),fill:'#4b4233'}]});
+ }
+ q={terrain:b.terrain,version:b.sceneVersion,sources:ts.map(t=>[t,t.vertices]),rear,surfaces};galleryCache.set(b,q);return q;
 }
-function interiorStones(c,b,scene){if(!active(b))return false;const q=prepareGallery(b);c.save();c.strokeStyle='#263a37';c.lineWidth=14;c.stroke(q.ties);c.strokeStyle='#8a8a6c';c.lineWidth=6;c.stroke(q.ties);c.fillStyle='#53645d';c.fill(q.shape);c.restore();
+function interiorStones(c,b,scene){if(!active(b))return false;const q=prepareGallery(b);c.save();for(const p of q.rear){c.fillStyle=p.fill;c.fill(p.path);}for(const surface of q.surfaces){c.save();c.clip(surface.clip);for(const p of surface.parts){c.fillStyle=p.fill;c.fill(p.path);}c.restore();}c.restore();
  if(G.HonroPaintedPresentation?.forBattle(b)?.naturalEdges)return true;
  const style=G.HonroTerrainReadability.STYLE,unit=1/Math.max(.05,scene.scale||1);c.save();c.lineJoin='round';c.lineCap='butt';for(const group of G.HonroTerrainReadability.prepare(b).groups){if(!interiorStoneIds.has(group.id))continue;c.strokeStyle=style.edgeInk;c.lineWidth=style.edgePixels*unit;c.stroke(group.edge);c.lineWidth=style.topInkPixels*unit;c.stroke(group.top);c.strokeStyle=style.topLight;c.lineWidth=style.topLightPixels*unit;c.stroke(group.top);}c.restore();return true;
 }
