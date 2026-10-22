@@ -22,11 +22,14 @@ function interaction(app,m){const b=app.engine.b;if(b.honroCustom)return m.lines
   const key=hs.receivers===1?'interaction.receiver.first':id===10?'interaction.receiver.second.stage10':'interaction.receiver.second';
   return scene('receiver-'+id+'-'+m.id,m.label,C.rows(key),{delivery:'dialogue'});
  }
- if(m.action==='rescue'){const first=!hs.flags['story:sodan-known'];hs.flags['story:sodan-known']=true;const rows=C.rows('interaction.rescue.'+m.label);if(!rows.length)return V.interaction(app,m);rows[0][0]=app.engine.active?.name||'설오';if(!first)rows.splice(2);return scene('rescue-'+m.target,m.label+'의 증언',rows,{delivery:'dialogue'});}
+ if(m.action==='rescue'){const first=!hs.flags['story:sodan-known'];hs.flags['story:sodan-known']=true;const meta=D.rescueMetadata[m.label];if(!meta)return V.interaction(app,m);const who=app.engine.active?.name||'설오',rows=[[who,D.values['interaction.rescue.activeActor'][who],{...meta[0]}],[m.label,D.values['interaction.rescue.testimony'][m.label],{...meta[1]}]];if(first)rows.push(...C.rows('interaction.rescue.firstDisclosure').map(([speaker,text,meta])=>[speaker==='구조한 주민'?m.label:speaker,text,meta]));return scene('rescue-'+m.target,m.label+'의 증언',rows,{delivery:'dialogue'});}
  return null;
 }
 const cooperation=b=>b&&!C.active(b)?V.cooperation():C.rows('10.cooperation'),cooperationDefense=b=>b&&!C.active(b)?V.cooperationDefense():C.rows('10.cooperationDefense'),finaleMidpoint=b=>b&&!C.active(b)?V.finaleMidpoint():C.rows('10.finaleMidpoint');
-function resolveDeferred(app,entry){return V.resolveDeferred(app,entry);}
-function beforeOutcome(app,lines){return V.beforeOutcome(app,lines);}
+function resolveDeferred(app,entry){const b=app.engine.b;if(!C.active(b))return (b.honroNarrativeRevision===1?V:G.HonroStoryContentV0).resolveDeferred(app,entry);const id=entry.lines?.[0]?.[2]?.storyId||'',hs=b.honroState;
+ if(id.includes('entry-follow-7-')&&(hs.rescuedCount||0)>=3||id.includes('entry-follow-9-')&&(hs.receivers||0)>=2||id.includes('entry-follow-10-')&&hs.sodanCoop)return[];
+ const seals=G.HonroQuestTargets.records(b).some(t=>t.honroSeal&&!t.broken);return (entry.lines||[]).filter(r=>r[2]?.onlyWhile!=='sealsIntact'||seals);
+}
+function beforeOutcome(app,lines){return C.active(app.engine?.b)?lines:V.beforeOutcome(app,lines);}
 G.HonroStoryContent={version,introductions,mapScenes,outros,summaries,events,ledgerPages,scene,eventLines,interaction,resolveDeferred,beforeOutcome,cooperation,cooperationDefense,finaleMidpoint};
 })(globalThis);

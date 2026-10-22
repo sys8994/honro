@@ -25,9 +25,10 @@ function legacy(b,st){const id=b?.honroStage||st?.id,base=compat.raw[id-1]||st;
 }
 function resolve(b,st){if(b?.honroCustom)return st;const out=active(b)?witnessed(b,sign(b,b.honroNarrativeContent||fresh(b,st))):legacy(b,st);return b?.honroStage===2&&b.honroStage2LayeredRevision===1?{...out,guide:b.honroMap?.stage2LayeredRoad?.guide||out.guide}:out;}
 function fresh(b,st){if(!active(b))return legacy(b,st);const base=b.honroQuarryContent||b.honroVerticalStage14Content||b.honroNarrativeContent||st;return stage(base,b.honroStage);}
+function summary(b,st){const value=st?.storySummary||'',extra=data.conditionalSummaries;if(!active(b)||!extra)return value;const flag=b.honroStage===27&&b.honroVoidWitness?'27.requiresVoidWitness':b.honroStage===18&&b.honroBellWitness?'18.requiresBellWitness':null;return flag&&extra[flag]?value+' '+extra[flag]:value;}
 function author(project){return {...project,stages:project.stages.map(original=>{const id=original.metadata?.stageId;if(!original.metadata?.campaign)return original;const st={...original,initialState:{...original.initialState,honroNarrativeCatalogueRevision:1}};
  for(const key of ['honroNarrativeContent','honroQuarryContent','honroVerticalStage14Content'])if(st.initialState[key])st.initialState[key]=stage(st.initialState[key],id);
  if(st.initialState.honroEntryVariants&&data.routes[id]){st.initialState.honroEntryVariants=clone(st.initialState.honroEntryVariants);for(const [choice,v]of Object.entries(st.initialState.honroEntryVariants.variants))if(data.routes[id].variants[choice])v.lines=clone(data.routes[id].variants[choice].lines);}
  return st;})};}
-G.HonroNarrativeCatalogue={version:1,data,active,stage,rows,resolve,legacy,fresh,witnessed,author};
+G.HonroNarrativeCatalogue={version:1,data,active,stage,rows,resolve,legacy,fresh,witnessed,summary,author};
 })(globalThis);
