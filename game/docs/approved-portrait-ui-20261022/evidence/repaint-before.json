@@ -1,0 +1,118 @@
+{
+  "head": "e6c3d4af8a8ab05f8d00b3772d99b3743c6b07ff",
+  "manifestSha256": "c1e69e94cfe1eb161e6a957e3ee1145e7326be0d192f218640b5e4bd67588e1a",
+  "expectedOldRepaint": true,
+  "rows": [
+    {
+      "before": {
+        "requests": 1,
+        "decodes": 1,
+        "paints": 1,
+        "vectorBuilds": 0,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0
+      },
+      "after": {
+        "requests": 1,
+        "decodes": 1,
+        "paints": 1,
+        "vectorBuilds": 0,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 0,
+        "vectorEntries": 0,
+        "waiters": 0
+      },
+      "identical120": {
+        "drawImage": 0,
+        "clearRect": 0
+      },
+      "resizeOnce": {
+        "drawImage": 1,
+        "clearRect": 1
+      },
+      "afterResize120": {
+        "drawImage": 0,
+        "clearRect": 0
+      },
+      "mode": "ready"
+    },
+    {
+      "before": {
+        "requests": 1,
+        "decodes": 0,
+        "paints": 0,
+        "vectorBuilds": 1,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 1,
+        "vectorEntries": 1,
+        "waiters": 0
+      },
+      "after": {
+        "requests": 1,
+        "decodes": 0,
+        "paints": 0,
+        "vectorBuilds": 1,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 1,
+        "vectorEntries": 1,
+        "waiters": 0
+      },
+      "identical120": {
+        "drawImage": 120,
+        "clearRect": 120
+      },
+      "resizeOnce": {
+        "drawImage": 1,
+        "clearRect": 1
+      },
+      "afterResize120": {
+        "drawImage": 120,
+        "clearRect": 120
+      },
+      "mode": "abort"
+    },
+    {
+      "before": {
+        "requests": 1,
+        "decodes": 0,
+        "paints": 0,
+        "vectorBuilds": 1,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 1,
+        "vectorEntries": 1,
+        "waiters": 0
+      },
+      "after": {
+        "requests": 1,
+        "decodes": 0,
+        "paints": 0,
+        "vectorBuilds": 1,
+        "imageEntries": 1,
+        "pending": 0,
+        "errors": 1,
+        "vectorEntries": 1,
+        "waiters": 0
+      },
+      "identical120": {
+        "drawImage": 120,
+        "clearRect": 120
+      },
+      "resizeOnce": {
+        "drawImage": 1,
+        "clearRect": 1
+      },
+      "afterResize120": {
+        "drawImage": 120,
+        "clearRect": 120
+      },
+      "mode": "timeout"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "sourceHead": "30221dc38e7ddb1e42926aa611e34ad3b1f99bc8",
-  "manifestSha256": "c1e69e94cfe1eb161e6a957e3ee1145e7326be0d192f218640b5e4bd67588e1a",
+  "sourceHead": "637255dd1a29de413d52d21ff1baf4312570ed37",
+  "manifestSha256": "bb8d7f30130aded063218af46faf1044a29fba05b20d50ac488272859ad90bc0",
   "checks": [
     {
       "name": "old Seoro completion does not repaint current Damheo",
@@ -17,6 +17,7 @@
         "requests": 4,
         "decodes": 3,
         "paints": 2,
+        "fallbackPaints": 1,
         "vectorBuilds": 1,
         "imageEntries": 4,
         "pending": 0,

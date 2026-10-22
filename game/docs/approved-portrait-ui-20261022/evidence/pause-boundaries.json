@@ -1,15 +1,15 @@
 {
-  "manifestSha256": "c1e69e94cfe1eb161e6a957e3ee1145e7326be0d192f218640b5e4bd67588e1a",
+  "manifestSha256": "bb8d7f30130aded063218af46faf1044a29fba05b20d50ac488272859ad90bc0",
   "checks": [
     {
       "name": "retained vs normal render exact pixels",
       "details": {
         "skipped": 0,
         "identical": true,
-        "before": "440f69237a936eda90614c9c60d37c4bd00ea5d7d45f3ae1b9a0541d9787bc56",
+        "before": "6e06bdc8855c8217fcd8dd9903ecb7a9e7411a6fe007f6d74479f40d970a9e6b",
         "after": [
-          "440f69237a936eda90614c9c60d37c4bd00ea5d7d45f3ae1b9a0541d9787bc56",
-          "440f69237a936eda90614c9c60d37c4bd00ea5d7d45f3ae1b9a0541d9787bc56"
+          "6e06bdc8855c8217fcd8dd9903ecb7a9e7411a6fe007f6d74479f40d970a9e6b",
+          "6e06bdc8855c8217fcd8dd9903ecb7a9e7411a6fe007f6d74479f40d970a9e6b"
         ],
         "statePreserved": true,
         "sameCanvas": true,
@@ -24,43 +24,43 @@
             390,
             844
           ],
-          "paints": 4,
+          "paints": 3,
           "identical": true,
           "max": 0,
           "changedChannels": 0,
           "camera": [
-            885.4640704504793,
+            879.3155767982083,
             6316,
             0.28640625
           ],
           "afterCamera": [
-            885.4640704504793,
+            879.3155767982083,
             6316,
             0.28640625
           ],
           "cache": {
             "worldBuilds": 2,
-            "worldBuildMs": 79.59999999776483,
+            "worldBuildMs": 69.69999999925494,
             "bgBuilds": 0,
             "bgBuildMs": 0,
-            "worldHits": 321,
+            "worldHits": 206,
+            "bgHits": 4,
+            "domainCanvasAllocations": 18,
+            "domainTileBuilds": 18,
+            "screenBuilds": 6,
+            "screenHits": 8
+          },
+          "afterCache": {
+            "worldBuilds": 2,
+            "worldBuildMs": 69.69999999925494,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 207,
             "bgHits": 5,
             "domainCanvasAllocations": 18,
             "domainTileBuilds": 18,
             "screenBuilds": 6,
             "screenHits": 10
-          },
-          "afterCache": {
-            "worldBuilds": 2,
-            "worldBuildMs": 79.59999999776483,
-            "bgBuilds": 0,
-            "bgBuildMs": 0,
-            "worldHits": 322,
-            "bgHits": 6,
-            "domainCanvasAllocations": 18,
-            "domainTileBuilds": 18,
-            "screenBuilds": 6,
-            "screenHits": 12
           },
           "pixels": [
             390,
@@ -77,38 +77,38 @@
           "max": 0,
           "changedChannels": 0,
           "camera": [
-            885.4640704504793,
+            879.3155767982083,
             6394.968236361803,
             0.6198125
           ],
           "afterCamera": [
-            885.4640704504793,
+            879.3155767982083,
             6394.968236361803,
             0.6198125
           ],
           "cache": {
             "worldBuilds": 3,
-            "worldBuildMs": 83.50000000372529,
+            "worldBuildMs": 77.79999999701977,
             "bgBuilds": 0,
             "bgBuildMs": 0,
-            "worldHits": 327,
+            "worldHits": 212,
+            "bgHits": 7,
+            "domainCanvasAllocations": 21,
+            "domainTileBuilds": 21,
+            "screenBuilds": 8,
+            "screenHits": 14
+          },
+          "afterCache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 77.79999999701977,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 213,
             "bgHits": 8,
             "domainCanvasAllocations": 21,
             "domainTileBuilds": 21,
             "screenBuilds": 8,
             "screenHits": 16
-          },
-          "afterCache": {
-            "worldBuilds": 3,
-            "worldBuildMs": 83.50000000372529,
-            "bgBuilds": 0,
-            "bgBuildMs": 0,
-            "worldHits": 328,
-            "bgHits": 9,
-            "domainCanvasAllocations": 21,
-            "domainTileBuilds": 21,
-            "screenBuilds": 8,
-            "screenHits": 18
           },
           "pixels": [
             844,
@@ -125,38 +125,38 @@
           "max": 0,
           "changedChannels": 0,
           "camera": [
-            885.4640704504793,
+            879.3155767982083,
             6316,
             0.9400000000000001
           ],
           "afterCamera": [
-            885.4640704504793,
+            879.3155767982083,
             6316,
             0.9400000000000001
           ],
           "cache": {
             "worldBuilds": 3,
-            "worldBuildMs": 87.50000000745058,
+            "worldBuildMs": 88.8999999947846,
             "bgBuilds": 0,
             "bgBuildMs": 0,
-            "worldHits": 337,
+            "worldHits": 222,
+            "bgHits": 8,
+            "domainCanvasAllocations": 24,
+            "domainTileBuilds": 24,
+            "screenBuilds": 10,
+            "screenHits": 16
+          },
+          "afterCache": {
+            "worldBuilds": 3,
+            "worldBuildMs": 88.8999999947846,
+            "bgBuilds": 0,
+            "bgBuildMs": 0,
+            "worldHits": 223,
             "bgHits": 9,
             "domainCanvasAllocations": 24,
             "domainTileBuilds": 24,
             "screenBuilds": 10,
             "screenHits": 18
-          },
-          "afterCache": {
-            "worldBuilds": 3,
-            "worldBuildMs": 87.50000000745058,
-            "bgBuilds": 0,
-            "bgBuildMs": 0,
-            "worldHits": 338,
-            "bgHits": 10,
-            "domainCanvasAllocations": 24,
-            "domainTileBuilds": 24,
-            "screenBuilds": 10,
-            "screenHits": 20
           },
           "pixels": [
             1280,
@@ -200,7 +200,11 @@
         "paints": 8,
         "hit": true,
         "hidden": true,
-        "timedFocus": true
+        "focusStarted": true,
+        "deadlinePreserved": true,
+        "timedFocus": true,
+        "elapsed": 443,
+        "duration": 720
       }
     },
     {
@@ -245,7 +249,7 @@
       "details": {
         "live": true,
         "began": true,
-        "power": 0.2630006403409722,
+        "power": 0.24809075273799872,
         "phase": "flight",
         "lastShot": true,
         "paints": 31
