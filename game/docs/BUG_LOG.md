@@ -4412,3 +4412,7 @@ HUD의 32~36px 내부 타일과 공통 스탬프의 둥근 이중 프레임을 �
 ## BGM·승인 11장·최신 master 통합 — 2026-10-22
 
 master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별도 통합 브랜치에서 결합했다. 최종 코드/생성물551da47f. BGM30/7개hash·decode, 11장 게임 규칙/재질 prepare 불변, 실제 대표 재생과 Workshop Stop, 승인 재질PNG6개 일치·세 warm cache 경계, 통합 build/도감/web-split을 확인했다. 추가 미술·초상화 시안은 미적용. 기존 상세 계측/자동자료는 역사 커밋과 _local로 구분하고 이번 성능 계측으로 재사용하지 않았다. 사진5장은 Library의 업로드 전 네트워크 실패로 검토 브랜치 파일 전달을 사용했다. AGENTS에는 기존/연관 Codex 세션 재사용 지침만 추가했다. 정확한 SHA·빌드·사진 blob ID·한계는 [최종 통합 기록](bgm-stage11-release-20261022/README.md). master/Pages는 부모 확인 전 미변경.
+
+## 13장 벡터 모암·석공 작업장 첫 후보 — 2026-10-22
+
+최신934fcabd의 구조→빗장→출구와 v6 지형/사격·선택길을 그대로 두고 기존 공통 terrainPlanes에 연결된 모암층·파단·문틀 접합을 저작했다. 공통 Library 원본을 보존한 비충돌 전용 변형4종으로 목재 줄/접합·집과 문틀 기초를 보완했다. 보호 데이터/다른29장/공통 런타임 동일, 정적 Path2D 재사용·순수성 검사가 통과했다. 첫 생산 카메라3장을 직접 확인/선택 보존했으며 부모 미술 판단·나머지 집중/최종과 짧은 접근/문 통과는 대기다. Library helper는 업로드 준비 전 hosted tools/list network 오류로 중단됐고 외부 저장 성공이 아니다. 검토 브랜치 JPG로 전달한다. master/Pages 미변경. [설계·후보](stage-review/stage13-vector-art-20261022/README.md).
