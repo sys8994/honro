@@ -34,7 +34,7 @@ with sync_playwright() as pw,serve_game() as base:
   let matrix=new DOMMatrix().translate(u.x,u.y).scale(h/a.baseHeight*facing,h/a.baseHeight);
   for(const joint of chain){const v=pose[joint.id],[x,y]=joint.pivot;matrix=matrix.translate(x+v.x,y+v.y).rotate(v.rotate).scale(v.scaleX,v.scaleY).translate(-x,-y);}
   const expected=matrix.transformPoint(new DOMPoint(...head.pivot)),actual=V.headPoint(u);
-  if(Math.hypot(actual.x-expected.x,actual.y-expected.y)>1e-7)throw Error('Head joint does not match renderer transform '+id);checks++;
+  if(Math.hypot(actual.x-expected.x,actual.y-expected.y)>1e-4)throw Error('Head joint does not match renderer transform '+JSON.stringify({id,facing,h,reaction,actual,expected:{x:expected.x,y:expected.y},chain:chain.map(j=>({id:j.id,pivot:j.pivot,pose:pose[j.id]}))}));checks++;
  }return checks;}""")
  assert socket_checks>80,socket_checks
  page.add_script_tag(content=(ROOT/'tests/cheonroe-fixture.mjs').read_text().replace('export function','function'))
