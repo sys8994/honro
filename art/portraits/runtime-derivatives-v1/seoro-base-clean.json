@@ -1,0 +1,13 @@
+{
+  "sourceMaster": "art/portraits/approved-v1/seoro.png",
+  "sourceMasterSha": "06d88387f50e64ae00976871c9b1656846737437",
+  "purpose": "Remove original semi-opaque black corners revealed by actual UI composite. Keep original approved identity master immutable.",
+  "method": "Parent image tool edit, not Codex or hand-written masking. Not pixel-identical to original.",
+  "prompt": "BACKGROUND REMOVAL ONLY. This is the already-approved Seoro game character portrait. Preserve the entire character EXACTLY: same pixels/appearance of face, hair, scar, expression, anatomy, pose, bow, quiver, clothing, colors and painted detail. Do NOT redraw, beautify, sharpen, add texture, relight or change expression. Remove ALL non-character background including the black semi-opaque outer corners, black/brown vignette patches and cloudy brown/grey halo behind the head and shoulders. Make those regions genuinely alpha=0 transparent. Preserve every hair silhouette, fine edge, arrow feather and bowstring; natural antialiasing only immediately at character contour. Output the identical 1024x1536 composition as clean transparent PNG. No new backdrop, no fog/halo/frame, no residual semiopaque rectangular edge. Only background mask correction; character untouched.",
+  "libraryFileId": "libfile_27fe0bec3b5081918706483b7d6e680d",
+  "review": {
+    "identity": "Parent visually compared original and derivative; same anatomy, scar, expression, clothing and pose.",
+    "alpha": "Tested outer corners and above head: alpha0. Original corners alpha155/180.",
+    "runtime": "pending actual UI composite verification"
+  }
+}
