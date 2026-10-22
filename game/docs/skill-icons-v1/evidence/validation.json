@@ -1,0 +1,84 @@
+{
+  "baseMaster": "be798268",
+  "branch": "feat/all-skill-image-icons",
+  "checks": [
+    {
+      "command": "npm --prefix game run typecheck",
+      "status": "passed"
+    },
+    {
+      "command": "npm run build",
+      "status": "passed",
+      "files": 258
+    },
+    {
+      "command": "node tests/skill-image-icons.mjs",
+      "status": "passed",
+      "scope": "141 final definitions name/effect/flags/color unchanged; 84 IDs; missing/hidden/duplicate/ready-missing/unknown-state/pending-checksum rejection"
+    },
+    {
+      "command": "node tests/camp-skill-ux.mjs",
+      "status": "passed",
+      "scope": "existing equip/unequip/refund/preview/scroll/save guards"
+    },
+    {
+      "command": "node tests/web-split.mjs",
+      "status": "passed",
+      "files": 258,
+      "scope": "generated hashes/bytes; Game and embedded title; embedded persist; direct Workshop iframe"
+    },
+    {
+      "command": "python tests/skill-image-icons-browser.py",
+      "status": "passed",
+      "checks": 57,
+      "browser": "Chromium 154.0.8037.57",
+      "screens": [
+        [
+          360,
+          800
+        ],
+        [
+          390,
+          844
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          1280,
+          900
+        ]
+      ]
+    },
+    {
+      "command": "node tools/skill-icons/manifest.mjs --allow-pending",
+      "status": "passed-as-pending",
+      "complete": false,
+      "ready": 0,
+      "pending": 84
+    },
+    {
+      "command": "node tools/skill-icons/manifest.mjs",
+      "status": "expected-failure",
+      "exitCode": 1,
+      "complete": false,
+      "reason": "84 parent images and art approval pending"
+    },
+    {
+      "command": "python tests/skill-image-disabled-browser.py",
+      "status": "passed",
+      "checks": 2,
+      "scope": "long title locked controls and zero SP/refund with DOM rank/SP"
+    }
+  ],
+  "notPerformed": [
+    "image generation/editing",
+    "skill icon SOP authorship",
+    "final artwork review",
+    "physical mobile/Safari",
+    "master merge",
+    "Pages deployment"
+  ],
+  "buildRetention": "Unrelated older generated asset deletions restored to keep this branch focused; current/retained graph hashes verified."
+}

@@ -1,3 +1,4 @@
+import {validateSkillIcons} from '../tools/skill-icons/manifest.mjs';
 import {applyCommonCartArt} from '../tools/environment/common-cart-art.mjs';
 import {applyGeologyArt} from '../tools/environment/build-geology-art.mjs';
 import {applyStage10Positioning} from '../tools/map-forge/stage10-positioning.mjs';
@@ -47,6 +48,9 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   await file('shared/runtime/fullscreen-input.js');
   await file('shared/runtime/title-markup.js');
   data('HONRO_BGM_TRACKS',bgm.map(f=>'assets/bgm/'+f));
+  const skillImages=await validateSkillIcons({allowPending:true});
+  if(skillImages.errors.length)throw Error(skillImages.errors.join('\n'));
+  data('HONRO_SKILL_ICON_MANIFEST',{...skillImages.source,complete:skillImages.complete,icons:Object.fromEntries(Object.entries(skillImages.source.icons).map(([id,item])=>[id,{...item,url:item.status==='ready'?item.file:null}]))});
   code('engine/core',await buildCore());
   code('shared/environment-vector-kit',await vectorKitRuntime());
   data('HONRO_BALANCE',JSON.parse(await read('game/config/balance.json')));
@@ -116,6 +120,7 @@ export async function runtimeEntries({vector=true,render=true,app=false}={}) {
   if(render)await file('shared/runtime/authored-far-art.js');
   if(app){
     await file('game/vendor/ui/fa.js');
+    await file('shared/runtime/skill-images.js');
     for(const name of ['campaign-entry','portraits','ui-bridge','stage-rules','music-titles','audio','story','act-endings-content','act-endings','interactions','unit-info','training','skill-preview','journey-art','rest-journey','main']){
       await file(`shared/runtime/${name}.js`);
       // Metadata only: native/full consumers retain the same scripts and order.
