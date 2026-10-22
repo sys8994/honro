@@ -4418,3 +4418,15 @@ master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별�
 승인 PNG 원본을 유지한 lossless WebP·명시 head/bust 안전영역을 story portrait 설정에 연결한다. 정확한 주인공 identity만 승인 이미지를 쓰고 같은 클래스 NPC/적/소환은 기존 vector fallback을 유지한다. HUD·대화 canvas를 보존하고 asset당 request/decode1회, 준비 완료 때 현재 연결된 portrait만1회 그린다. 제목 preload/표정 추정/월드 배우·전투 변경은 없다. 원본의 반투명 검정/갈색 배경 잔류는 그대로이며 미술 보정하지 않았다. 실제 화면·검사·충돌 경계는 `approved-portrait-ui-20261022/README.md`.
 
 후속 초상화 보완: 이전 error 동일-key 경로는 sourceFor 캐시가 있어도 매번 drawVector로 target canvas를 clear/draw했다. 동일120회 호출에서 abort/timeout 각각120회 실제 paint를 재현했다. 기존 vector source identity와 유효 raster ratio를 공유해 정착된 폴백을 유지하고 크기/표시 원본이 달라질 때만1회 다시 그린다. 별도 actual clearRect/drawImage 계측으로 source build/request/decode와 구분한다. 부모가 승인한 seoro-base-clean PNG/metadata만 선택 반영하며 approved PNG는 그대로다. clean 파생본과 identity master의 SHA를 분리하고 인코딩 입력 대 WebP만 lossless 비교한다. 미술 생성/수정은 하지 않는다.
+
+## 13장 벡터 모암·석공 작업장 첫 후보 — 2026-10-22
+
+최신934fcabd의 구조→빗장→출구와 v6 지형/사격·선택길을 그대로 두고 기존 공통 terrainPlanes에 연결된 모암층·파단·문틀 접합을 저작했다. 공통 Library 원본을 보존한 비충돌 전용 변형4종으로 목재 줄/접합·집과 문틀 기초를 보완했다. 보호 데이터/다른29장/공통 런타임 동일, 정적 Path2D 재사용·순수성 검사가 통과했다. 첫 생산 카메라3장을 직접 확인/선택 보존했으며 부모 미술 판단·나머지 집중/최종과 짧은 접근/문 통과는 대기다. Library helper는 업로드 준비 전 hosted tools/list network 오류로 중단됐고 외부 저장 성공이 아니다. 검토 브랜치 JPG로 전달한다. master/Pages 미변경. [설계·후보](stage-review/stage13-vector-art-20261022/README.md).
+
+13장 생산 연결 교정: 첫 후보 빌드에서 옛 transition17면과 장면 참조가 재저작되는 것을 실제 픽셀/생산 데이터로 발견했다. 공통 빌드 저작 체인 마지막에13장 stoneFinish opt-in만 재적용해 최종45면/4변형을 유지한다.934fcabd 원본의 실제 runtimeParts와 비교한 보호13장/다른29장/공통 Library가 동일하고11장 중앙·피난처의 비어 있지 않은 재질 PNG2장 hash가 일치했다. 구조 접근→실제 상호작용 구조→문 개방→하부 통과는 이동 예산 재충전/전투 격리 fixture에서 확인했으며 정상 전투 완주를 뜻하지 않는다. 후보1 사진은 최종 근거에서 제외하고 후보2를 전달한다.
+
+13장 교정 후보2 최종 기록: 미술/실행 소스15f64b18 고정 후 전체 깊이·일반 재질/접합·모바일/최대확대/문 상태의 집중3회와 별도 최종 종합 화면을 직접 열어 확인했다. 생산45면/옛 transition0/변형4종, 브라우저 오류0, 공통 build·web-split 통과. 선택 JPG만 review에 남겼고 원자료는_local이다. 큰 모암 여백/중간형태의 최종 미술 승인과 master/Pages는 부모 대기이며 정상 전투 완주·실기기·새 성능 성과를 주장하지 않는다.
+
+13장 shape3 집중 보정: 부모가147b4c19의 거대한 평면/삼각 천장/붙인 사각 문틀을 미술 미승인했다. 석문 주변만 경사를 따르는 엇갈린 중간 층·서로 다른 포켓/파단/낮은 돌턱으로 묶고, 문설주/상인방의 두꺼운 석재와 접촉 그림자를 천장에 이었다. 기존12장 잔석 에셋2묶음을 비충돌 후면에 재사용했다. 공통 build·관련 재질 순수성/정적재사용·보호 데이터 대조 통과, 지정된 같은3화면(전체/석문/모바일 석공)을 직접 열어 부모 관찰과 대조했다. 공유 실행/서사 모듈 불변이며11장/전체 플레이 검사를 반복하지 않았다. 미술 종합 판단·master/Pages는 부모 대기. [사진·한계](stage-review/stage13-vector-art-20261022/README.md#부모-지적에-대한-집중-형태-보정-shape3).
+
+13장 shape4 두 암체 교정: c32a2724에서 부모가 유지 지시한 문틀/Library/장식은 그대로 두고 왼쪽 전경의 큰 삼각 단색 바탕과 상부·오른쪽 천장의 빈 면을 교체했다. 비대칭 공유 층리/중간 되접힘/일부 깊은 틈과 짧은 돌턱을 같은 모암 안에 연결했다. 첫 픽셀의 사다리꼴 반복 및 근경 뾰족한 분할을 수정한 최종 소스로 집중3회(전체/두 중간/두 근경·세로)와 별도 전체·석문·모바일을 직접 열었다. 공통 build·shape3 대비 terrainPlanes/planeCount 외 캠페인 전체 동일·렌더 순수성/prepare 재사용/cached draw 새Path2D0 통과. 면90→161 증가의 초기 준비/직접 draw 비용을 미계측 상태로 명시하며 캐시 hit를 비용0으로 해석하지 않는다. 공유 실행/서사/충돌/actor/목표 불변,11장/전체 전투를 반복하지 않았다. 부모 종합 판단 대기, master/Pages/14장 미착수. [최종 사진·검수 범위](stage-review/stage13-vector-art-20261022/README.md#shape4--왼쪽-전경상부-천장-교정).
