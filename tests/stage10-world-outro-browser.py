@@ -78,4 +78,4 @@ with sync_playwright() as p:
     browser.close()
 source={f:hashlib.sha256(Path(f).read_bytes()).hexdigest() for f in ['shared/runtime/main.js','shared/runtime/sodan-withdrawal.js','shared/runtime/story-framing.js','game/src/act-endings.css']}
 (OUT/'summary.json').write_text(json.dumps({'executionSHA':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'sourceHashes':source,'rows':rows,'errors':errors,'limits':['Existing genuine normal-play checkpoint; earlier six-turn combat is not rerun.','Chromium touch/keyboard emulation; physical phones and Safari not tested.']},ensure_ascii=False,indent=2)+'\n')
-print('PASS actual map / grounded party / frozen combat / 16 lines / next / skip / reload / outcome guard at 390x844 and 844x390')
+print('PASS actual map / grounded party / frozen combat / 16 lines / next / skip / reload / outcome guard at 390x844, 360x800 and 844x390')

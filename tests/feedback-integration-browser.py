@@ -1,9 +1,9 @@
 """Combined production Chromium contracts; unlocked/terminal/growth states are explicit fixtures."""
-import ast,json,hashlib,subprocess
+import ast,json,hashlib,subprocess,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import ROOT,launch,serve_game
-OUT=ROOT/'game/docs/feedback-integration-20261022/evidence/final-combined';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/os.environ.get('HONRO_INTEGRATION_OUT','game/docs/feedback-integration-20261022/evidence/final-combined');OUT.mkdir(parents=True,exist_ok=True)
 KEY='honro-first-act-profile-1';checks=[];errors=[]
 report_ast=ast.parse((ROOT/'tests/stage-clear-report-browser.py').read_text())
 SETUP=next(ast.literal_eval(n.value) for n in report_ast.body if isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='SETUP' for t in n.targets))
@@ -20,6 +20,7 @@ with sync_playwright() as pw,serve_game() as base:
   shot(p,f'focus1-summary-{w}x{h}')
   p.locator('[data-action=clear-report]').click();p.locator('.report-hero details summary').first.click();shot(p,f'focus1-detail-{w}x{h}');p.locator('.report-close').click()
   check(f'{w} summary detail close restores frozen rewards',p.evaluate('(r)=>JSON.stringify(HonroApp.engine.b.honroReport.final)===JSON.stringify(r)',r))
+  p.locator('.result-body').evaluate('e=>e.scrollTop=e.scrollHeight');shot(p,f'holistic-summary-bottom-{w}x{h}');check(f'{w} final primary action stays visible after growth scroll',p.locator('[data-action=result-continue]').is_visible())
   # Supply an explicitly labeled historical-report fixture for each completed act.
   for stage in [10,20,30]:
    p.evaluate('''stage=>{const a=HonroApp;a.stopBattle();a.engine=null;a.close();a.profile.honroActEnding=null;for(let i=1;i<=stage;i++)a.profile.cleared[i]={visits:1,rounds:7};const report=structuredClone(a.profile.honroClearReports[16]);report.stage=stage;a.profile.honroClearReports[stage]=report;a.showMap();HonroRestJourney.showBook(a,stage,null,Math.ceil(stage/10));HonroRestJourney.selectBook(a,stage);a.persist();}''',stage)
@@ -41,7 +42,7 @@ with sync_playwright() as pw,serve_game() as base:
    else:shot(p,f'focus2-map-act{stage//10}-{w}x{h}')
    before=p.evaluate('JSON.stringify(HonroApp.profile)');storage=p.evaluate(f'localStorage.getItem("{KEY}")')
    view=p.evaluate('''()=>{const a=HonroApp,v=document.querySelector('.journey-map-scroll');window.integratedMap=v;window.presentationCalls={finish:0,complete:0};if(!window.restoreReportFinish){window.restoreReportFinish=HonroClearReport.finish;window.restoreGrowthComplete=HonroProgression.complete;}HonroClearReport.finish=(...args)=>{presentationCalls.finish++;return restoreReportFinish(...args)};HonroProgression.complete=(...args)=>{presentationCalls.complete++;return restoreGrowthComplete(...args)};return{act:a.journeyAct,selection:a.journeySelection,zoom:a.journeyZoom,left:v.scrollLeft,top:v.scrollTop}}''')
-   p.locator('.journey-records>summary').click();replay.click();p.wait_for_selector('#act-ending[data-mode=gallery]');p.wait_for_function('document.querySelector("#act-ending img").complete&&!document.querySelector("#act-ending img").hidden');shot(p,f'focus3-gallery-act{stage//10}-{w}x{h}')
+   p.locator('.journey-records>summary').click();replay.click();p.wait_for_selector('#act-ending[data-mode=gallery]');p.wait_for_function('document.querySelector("#act-ending img").complete&&document.querySelector("#act-ending img").naturalWidth>0&&!document.querySelector("#act-ending img").hidden');p.wait_for_timeout(220);shot(p,f'focus3-gallery-act{stage//10}-{w}x{h}')
    if stage==10:p.keyboard.press('Escape')
    elif stage==20:p.locator('[data-ending-return]').click()
    else:p.evaluate('for(let n=0;n<5;n++){HonroApp.endingInputAfter=0;HonroActEndings.next(HonroApp)}')
