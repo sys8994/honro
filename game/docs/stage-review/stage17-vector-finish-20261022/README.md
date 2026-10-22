@@ -24,7 +24,7 @@ Library `libfile_979eb1e9bc4c8191afca6b4db53ddcdf`/stage17-before-center.png의 
 
 공유 처리 첫 검사에서는 SVG compile의 null-prototype gradient 사전과 JSON 일반 object의 strict 메모리 비교가 실패했다. 승인 JSON 바이트는 이미 같았고 검사도 실제 직렬화 경계에 맞춰 교정했다. repair 비교 첫 입력도 raw canonical과 현재 evidence/대사 초기화가 끝난 battle을 섞어 실패했다. 같은 런타임 초기화/session을 적용하고 허용 시각 필드만 제외해 다시 비교했다. 이 QA 교정을 게임/원고/저장 수정으로 기록하지 않는다.
 
-##3회 집중·별도 종합
+## 3회 집중·별도 종합
 
 | 회차 | 직접 본 문제·교정 | 최종 확인·남은 특징 |
 | --- | --- | --- |
