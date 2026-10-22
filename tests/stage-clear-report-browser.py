@@ -1,9 +1,9 @@
 """Actual Chromium report UI fixtures. Terminal victories are not normal fullplay."""
-import json
+import json,os
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from browser_support import launch,serve_game,ROOT
-OUT=ROOT/'game/docs/stage-clear-report/evidence/report';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/os.environ.get('HONRO_REPORT_OUT','game/docs/stage-clear-report/evidence/report');OUT.mkdir(parents=True,exist_ok=True)
 checks=[]
 def check(name,ok,data=None):
  assert ok,(name,data)
