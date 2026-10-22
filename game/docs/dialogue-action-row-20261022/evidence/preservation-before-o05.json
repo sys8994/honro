@@ -1,0 +1,32 @@
+{
+  "runtimeAndBuildCommit": "2d8d269ab2fdd58ee11d5187c9051b37ae33caf0",
+  "lastMetadataOnlyCommit": "5890c0964f0a3beff143e19a29948ea7b4747f55",
+  "integratedMaster": "a0b6b514d91c361f2c394cf56b7f67d30900cd1e",
+  "unchangedSourcePaths": [
+    "shared/data",
+    "shared/build.mjs",
+    "shared/map",
+    "shared/engine/src",
+    "shared/runtime/act2.js",
+    "shared/runtime/stage18-bell.js",
+    "shared/runtime/stage18-short-quest.js",
+    "tools/map-forge",
+    "art",
+    "shared/assets/portraits",
+    "game/config/story-portraits.json",
+    "shared/runtime/renderer.js",
+    "shared/runtime/rest-journey.js",
+    "assets/bgm"
+  ],
+  "mainOutsideThreePortraitMembersIdentical": true,
+  "trainingGameplayActIdenticalExceptMountCall": true,
+  "originalCurrentFilesPreservedEach": 354,
+  "old934Chapter13ExplicitResourcesMatch989Restoration": true,
+  "publishedDistinctGraphs": 14,
+  "publishedEntryHashesChecked": 4957,
+  "attestedHistoryFacts": 16,
+  "rawExecutedManifestSha256": "598b6693e9622c363a8acdcf18f4ffdb326fbe8800bcc80e5fcbaabb836c5081",
+  "finalManifestSha256": "9351e75e78f98406805e3e928a2539944c5fe32e18b59d20d388e3b4f9c05507",
+  "metadataChangeLeavesActiveFileGraphIdentical": true,
+  "noTrackedDeletionsFromMaster": true
+}

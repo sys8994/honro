@@ -1,6 +1,8 @@
 # 투명 대사 버튼 행 · 승인 초상화 소비 경로
 
-실행·통합 빌드 **`2d8d269ab2fdd58ee11d5187c9051b37ae33caf0`**, 최신 master **`a0b6b514d91c361f2c394cf56b7f67d30900cd1e`** 병합. 이후 `5890c0964f0a3beff143e19a29948ea7b4747f55`은 부모가 확인한 a0 Pages 성공의 보호 metadata만 추가했다. 활성 file graph/HTML/실행 코드는 그대로다. raw 실행 manifest SHA `598b6693e9622c363a8acdcf18f4ffdb326fbe8800bcc80e5fcbaabb836c5081` → 최종 metadata manifest SHA `9351e75e78f98406805e3e928a2539944c5fe32e18b59d20d388e3b4f9c05507`. [보존·정확한 실행](evidence/preservation.json).
+최종 통합·빌드 **`40ff1f22a200139974607a58a43d821e94ceae5b`**, 최신 master **`3b698d80e54aa2b2a840ba2107f1710ea95f4084`**의 O05 경계를 보존했다. UI32위치/소비12항목/120회 전체 검수는2d8d269a이며, UI 관련7파일은 최종 소스와 byte-identical하다. 최종40ff1f22에서 별도 UI smoke12항목·Game/embedded/Workshop 연결을 확인했다. 최종 manifest SHA `cc0c4933cceb488ee8129bd04c64ecdb64d2cf7f77766aaa3b76d3f4aa14f598`. [정확한 실행/보존](evidence/preservation.json) · [최종 smoke](evidence/final-smoke.json) · [최종 build](evidence/final-build.txt).
+
+5890c096의 a0 발행 metadata만 갱신했을 때 활성 graph가 같았던 기록은 [O05 통합 전 증거](evidence/preservation-before-o05.json)에 남겼다. 이후 O05 병합/build가 engine/preview 자원을 갱신한 사실과 구분한다.3b 후보는 성공 발행으로 등록하지 않았다.
 
 ## 대사 버튼 행
 
@@ -8,7 +10,7 @@
 
 본문 높이 한도를 현재 창·본문 시작점·버튼 높이·padding/gap으로 정한다. 대사 생성 때1회와 ResizeObserver에서만 갱신하고 교체/분리 때 observer를 정리한다. 본문 자체만 스크롤하며 버튼 행은 투명·고정, 창은 커지지 않는다. 순수 CSS grid 시도는 auto track이 max-height 밖으로 남아 폐기했다. 프레임 루프에는 추가하지 않았다.
 
-최종32위치(390×844/844×390, 기본4인·긴 담허/문탁/서술/text-only, 스크롤0/50/100%)에서 겹침0·활성 버튼 rect/hit-test/이전·넘기기·다음 touch 통과. 열린 대사의3회 회전/resize도 같은 panel을 유지했다. 짧은4인 창·본문·버튼 rect는424c와 유지(1.1px 허용오차). guide의 background는 기존 rgb(13,32,36)다. DOMRange의 글자 rect를 실제 본문 clip과 교차해 검사하며, 숨겨진 조각을 그대로 겹침으로 세던 초기 probe 오류는 보정했다.
+전체 UI 검수32위치(390×844/844×390, 기본4인·긴 담허/문탁/서술/text-only, 스크롤0/50/100%)에서 겹침0·활성 버튼 rect/hit-test/이전·넘기기·다음 touch 통과. 열린 대사의3회 회전/resize도 같은 panel을 유지했다. 짧은4인 창·본문·버튼 rect는424c와 유지(1.1px 허용오차). guide의 background는 기존 rgb(13,32,36)다. DOMRange의 글자 rect를 실제 본문 clip과 교차해 검사하며, 숨겨진 조각을 그대로 겹침으로 세던 초기 probe 오류는 보정했다.
 
 [짧은 대사 전후](evidence/mobile-row-short.jpg) · [투명 CSS만 적용했을 때/최종 긴 대사](evidence/mobile-row-long.jpg) · [가로 긴 대사](evidence/landscape-row-long.jpg) · [text-only 중간](evidence/text-only-middle.jpg). 원래 사용자 첨부를 열었다고 주장하지 않는다. 생산13장 UI/기존 문구의 fixture다.
 
@@ -32,12 +34,12 @@ camp adapter는 detached template의1px 투명 marker를 공통 host로 바꾼 �
 
 ## 검사와 보존
 
-최종 소비 경로12항목 통과: cold4카드 loading/벡터 flash0, 모바일/가로 카드·현재 인물·모닥불5개 초상, 같은 크기,12회 개폐 같은 canvas/추가 paints·request·decode0, 모든 경로4request/4decode/4entries 공유. 강제 Hwigyeom 요청 실패도12개폐 후 vector build/fallback paint/request/decode 증가0이다. [실패 시 정상 fallback](evidence/training-error-fallback.jpg).
+전체 소비 경로12항목 통과: cold4카드 loading/벡터 flash0, 모바일/가로 카드·현재 인물·모닥불5개 초상, 같은 크기,12회 개폐 같은 canvas/추가 paints·request·decode0, 모든 경로4request/4decode/4entries 공유. 강제 Hwigyeom 요청 실패도12개폐 후 vector build/fallback paint/request/decode 증가0이다. [실패 시 정상 fallback](evidence/training-error-fallback.jpg).
 
 별도 ready/abort/8초timeout 정착 후 같은 draw120회의 target clearRect/drawImage0, resize 때1회 통과. common Game/Workshop/직접 Playtest build·syntax·native NPC identity·web-split·retention 검사 통과. 처음 probe가 toolbar의 기예 icon img를 옛 인물 img로 셌던 부분을 구분했다. 새 승인 초상4개와 기예 icon은 별개이며 icon 자체를 교체하지 않았다.
 
 [행32위치/resize](evidence/row-final.json) · [소비12항목](evidence/consumers-final.json) · [120회/timeout](evidence/repaint-final.json) · [build](evidence/build.txt) · [web-split](evidence/web-split.txt) · [retention](evidence/retention-test.txt) · [native identity](evidence/identity.txt).
 
-18장 퀘스트·종·원고·맵·공통 builder는 최신 a0와 동일하고 새 종 후보를 가져오지 않았다. main은 portrait/drawPortraits/showCamp 외 원문 동일, training의 gameplay act는 mount 호출 외 동일하다. dd878/424c/a0 각각의 공개 current354파일과 구934의13장 자원을 byte-identical로 보존하고, 최종14개 distinct 성공 그래프4957개 entry hash를 검증했다(16개 실제 발행 이력은 동일 그래프 dedup 포함). dd878 Pages39864363155/22:24:21Z,424c Pages39867259534/22:48:07Z,a0 Pages39870152371/23:15:02Z는 모두 부모가 확인한 성공 사실로 등록했다. 후보 UI 빌드를 발행으로 등록하지 않았다.
+18장 퀘스트·종·원고·맵·공통 builder와 O05 engine/preview는 최신3b와 동일하다. 진행 중O05를22초에 초기화하지 않는 최신 경계도 그대로이며 새 종 후보를 가져오지 않았다. main은 portrait/drawPortraits/showCamp 외 원문 동일, training의 gameplay act는 mount 호출 외 동일하다. dd878/424c/a0 각각의 공개 current354파일 및3b 후보의 current354파일과 구934의13장 자원을 byte-identical로 보존하고, 최종14개 distinct 성공 그래프4957개 entry hash를 검증했다(16개 실제 발행 이력은 동일 그래프 dedup 포함). dd878 Pages39864363155/22:24:21Z,424c Pages39867259534/22:48:07Z,a0 Pages39870152371/23:15:02Z는 모두 부모가 확인한 성공 사실로 등록했다. 후보 UI 빌드를 발행으로 등록하지 않았다.
 
-병합 충돌은 generated HTML/manifest와 같은 발행 사실의 fixture였다. 최신 master 생성물을 기준으로 공통 rebuild하고, canonical 발행 이력을 유지했다. master/Pages는 부모 담당이다. Chromium headless touch/viewport 모사·음악off이며 실기기/Safari·18장 재완주·전체 캠페인·FPS 개선 검사가 아니다. 코드/이미지/환경의 남은 차단은 없다.
+병합 충돌은 generated HTML/manifest와 같은 발행 사실의 fixture였다. 최신 master 생성물을 기준으로 공통 rebuild하고, canonical 발행 이력을 유지했다. O05 병합의 BUG_LOG 양쪽 내용도 보존했다. O05의22초 시연/낙하 검사는 부모3b 결과를 다시 실행하지 않았고 소스/생성물 경계와 이번 UI만 확인했다. master/Pages는 부모 담당이다. Chromium headless touch/viewport 모사·음악off이며 실기기/Safari·18장 재완주·전체 캠페인·FPS 개선 검사가 아니다. 코드/이미지/환경의 남은 차단은 없다.
