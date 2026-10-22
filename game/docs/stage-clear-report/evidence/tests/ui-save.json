@@ -2,43 +2,36 @@
   {
     "command": "node tests/stage-report-phase0.mjs",
     "exitCode": 0,
-    "seconds": 9.26,
     "passes": 5
   },
   {
     "command": "node tests/settings-menu.mjs",
     "exitCode": 0,
-    "seconds": 8.36,
     "passes": 1
   },
   {
     "command": "node tests/fullscreen-escape.mjs",
     "exitCode": 0,
-    "seconds": 6.99,
     "passes": 1
   },
   {
     "command": "node tests/modal-keyboard.mjs",
     "exitCode": 0,
-    "seconds": 6.58,
     "passes": 1
   },
   {
     "command": "node tests/rest-hub-journey-flow.mjs",
     "exitCode": 0,
-    "seconds": 30.64,
     "passes": 14
   },
   {
     "command": "node tests/journey-stage-departure.mjs",
     "exitCode": 0,
-    "seconds": 43.52,
     "passes": 6
   },
   {
     "command": "node tests/camp-persistence.mjs",
     "exitCode": 0,
-    "seconds": 7.69,
     "passes": 8
   }
 ]

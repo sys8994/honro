@@ -2,25 +2,21 @@
   {
     "command": "node tests/stage-clear-report-data.mjs",
     "exitCode": 0,
-    "seconds": 39.11,
-    "passes": 29
+    "passes": 30
   },
   {
     "command": "node tests/stage-clear-report-app.mjs",
     "exitCode": 0,
-    "seconds": 5.34,
     "passes": 12
   },
   {
     "command": "node tests/contribution-xp-engine.mjs",
     "exitCode": 0,
-    "seconds": 29.66,
     "passes": 20
   },
   {
     "command": "node tests/contribution-xp-app.mjs",
     "exitCode": 0,
-    "seconds": 6.16,
     "passes": 1
   }
 ]
