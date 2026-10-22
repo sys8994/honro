@@ -23,7 +23,7 @@ master/Pages는 변경하지 않았다. 미술 후보4c2dbe53은 가져오지 �
 
 현재 campaign의 해당 anchor/jump 안내 한 개와 원본 `stage17-worksite.mjs` recipe만 연결해 교정했다. 지형41개·다른 경로/anchor·7경로 개수·배우·적·목표·기계·스토리·미술을 포함해 **이 한 anchor를 원복하면 전체 프로젝트가6544와 deep-equal**다. 재저작 recipe의 해당 경로 재현·helper 멱등성도 확인했다.
 
-- 기존 traversal 전체 **36/36 PASS**: 선언7×4클래스+보조 main-return/notes-deck-access2×4, 피해0. 적 제거/초기점/이동도 충전의 고립 기하 검사이며 전투 완주나 한 턴 예산으로 주장하지 않는다.
+- 기존 traversal 전체 **36/36 PASS**: 선언7×4클래스+보조 main-return/notes-deck-access2×4. 원자료상 upper-hoist-route 네 체형은 피해1이고 다른32건은0이다(통합 보고 시 기존 피해0 요약 오류 정정). 적 제거/초기점/이동도 충전의 고립 기하 검사이며 전투 완주나 한 턴 예산으로 주장하지 않는다.
 - 별도4클래스는 정상 Engine move/jump와 **기존 유한 예산만**으로 교정 점프 후 바위 위7040±8까지 복귀했다. 실행 중 좌표 보정/HP·MP·이동도 재충전0, HP/MP/행동권 exact, 이동 예산 약1214 사용·432–649 잔여다.
 - 원래 선언은6544의 입력을 고정한 negative probe에서 여전히4/4 실패로 재현한다. 기존 실패 증거를 지우거나 새 선언 성공과 혼동하지 않는다.
 
