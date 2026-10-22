@@ -27,3 +27,5 @@
 매달림/하강100/안착200 상태는 기존18 traversal의 production shift fixture를 재사용했다. 배우/원래 입력은 exact이며 source 상태는 변경하지 않는다. 하강 안전조건/점유·자연 진행·저장 완료를 통과했다고 하지 않는다. 각 상태의 전체 비미술 데이터는793a의 같은 초기화/session과 같고 반복 draw 신규Path2D0/렌더순수성도 통과했다. 타입·전체 프로젝트/생성 chapter18 비미술 exact·17교정anchor·승인15–17 author 출력/멱등·공개11그래프479파일/934 chapter13 두 bytes 보존을 확인했다.
 
 기존18 route 도구로 entry-under-bell/under-bell-keeper의 initial·settled 및 settled-inner-east-shortcut의 settled 통과/initial 실제 차단을 archer1체형만 확인해6케이스 모두 기대대로 무피해였다. 적 제거·시작점 배치/이동력 충전의 격리 경로 검사이며 정상 전투/27경로 전체 완주가 아니다. 새 경로 실패는 관측하지 않았다. 첫 저작의 row guard가 저장 전 경계 교차를 검출해 바로잡았고, 새 QA에 남은17전용 release-helper import도18전용 strict 시각 정규화로 고쳤다. 원래17 검사는 바꾸지 않았다.
+
+최종 증거 대조에서 화면의 종은 올바른0/100/200 변위였으나 capture metadata가원본 engine을 읽어 전부0으로 남는 QA 오류를 발견했다. 실제 fixture engine을 읽고 phase별 offset/status를 assert하도록 캡처 도구만 수정했다. 기존8357 캡처를 최종 상태 메타데이터 근거로 쓰지 않고 새 clean SHA에서 다시 촬영한다. 게임/미술/생성물 변경은 없다.
