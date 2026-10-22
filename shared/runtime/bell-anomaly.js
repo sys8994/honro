@@ -10,7 +10,8 @@ const depth=p=>1-((p.x-REGION.x)/REGION.rx)**2-((p.y-REGION.y)/REGION.ry)**2;
 const bodies=new Set(['leap','slam','spin','dash','quake','guard','lift','recall','charge','vault','cataclysmCharge']);
 function force(b,p){if(!active(b)||p.body||bodies.has(p.mode)||C.SKILLS[p.skill]?.martial||/^stake/.test(p.mode||''))return null;const t=Math.max(0,depth(p));return t?{x:150*t*t,y:-170*t*t}:null;}
 function author(project){const s=project.stages?.find(s=>s.metadata?.stageId===18);if(s?.initialState?.honroBellRevision===1)s.initialState.honroBellAnomalyRevision=1;return project;}
-const lines=[['설오','맞았어야 할 자리에 닿지 않았습니다.'],['휘겸','종에 부딪힌 것도 아니오.'],['담허','바람에 쓸린 궤적이 아니야. 떨어지는 자리부터 어긋났네.'],['소단','저쪽으로 옮겨 간 혼도 보이지 않아요.'],['설오','그럼 어디로 간 겁니까?'],['담허','……지금은 모르겠네. 우선 저 종부터 안전하게 내려야 해.']];
+
+const lines=G.HonroNarrativeCatalogue.rows('bellAnomaly.lines').map(r=>r.slice(0,2));
 // Cast-time state only: no map/terrain copy, no change to in-progress objectives.
 // All actors are included because arrow-turn passives prune per-target history.
 const savedKeys=['units','active','side','phase','controlMode','round','teamEnds','queue','turnAge','resolveAge','nextId','shot','shotDamage','shots','hits','kills','items','events','rng','lastShots','reviewDamage','reviewFocus','reviewLeft','cast','volley','fields','projectiles','zones','stakes','honroGrowth'];
@@ -33,7 +34,9 @@ function complete(app,seen=true){const e=app.engine,b=e.b,m=memory(b),snapshot=m
  const at=m.point;delete m.snapshot;delete m.projectile;delete m.elapsed;delete m.point;m.status=seen?'RESOLVED':'READY';m.count=seen?1:0;app.dirty=true;app.acc=0;
  if(seen){m.at=at;m.round=b.round;m.actor=b.active;app.cancelInput?.();
   if(app.profile&&!app.training){(app.profile.honroStoryEvents??={})['act2-bell-anomaly-v1']=true;b.honroBellWitness=true;app.persist?.();}
-  const script=lines.map(([who,text])=>[who,text.replace('우선 저 종부터 안전하게 내려야 해.',b.honroState?.bellDescent?.status==='settled'?'우선 남은 혼부터 살펴야 해.':'우선 저 종부터 안전하게 내려야 해.'),{storyId:'bell-anomaly-18',source:'bell-anomaly',storyTitle:'묵종 곁의 빈자리'}]);
+  const current=G.HonroNarrativeCatalogue.active(b),lines=current?G.HonroNarrativeCatalogue.rows('bellAnomaly.lines'):clone(G.HONRO_NARRATIVE_COMPAT.extras['bellAnomaly.lines']);
+  const settled=b.honroState?.bellDescent?.status==='settled';if(settled)lines.at(-1)[1]=(current?G.HonroNarrativeCatalogue.data.values:G.HONRO_NARRATIVE_COMPAT.values)['bellAnomaly.settledLastLine'];
+  const script=lines.map(([who,text,meta={}])=>[who,text,{...meta,storyId:'bell-anomaly-18',source:'bell-anomaly',storyTitle:'묵종 곁의 빈자리'}]);
   if(G.HonroStory?.start&&app.root)G.HonroStory.start(app,script,{title:'묵종 곁의 빈자리',bellAnomaly:true});else app.sayLines?.(script);
  }
  e.emit('change');e.emit('save');return true;

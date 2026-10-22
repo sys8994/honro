@@ -21,14 +21,14 @@ function finale(app){const e=app.engine,b=e.b,hs=b.honroState,sodan=e.unit('boss
   channeler(b,sodan,position,.8);e.fx('ring',sodan.x,sodan.y-12,'#deb56e',80);
   b.queue=(b.queue||[]).filter(id=>id!==sodan.id);
   const beforeCoop=l=>l[2]?.storyId?.includes('entry-follow-10-');hs.deferredStory=(hs.deferredStory||[]).filter(q=>!q.lines.some(beforeCoop));hs.storyQueue=(hs.storyQueue||[]).filter(l=>!beforeCoop(l));
-  if(G.HonroNarrativeRevision?.active(b)){hs.sodanBinding.phase='protecting';app.sayLines(G.HonroStoryContent.cooperationDefense?.()||[]);}else app.sayLines(G.HONRO_NARRATIVE_V0?.cooperation||G.HonroStoryContent.cooperation());
+  if(G.HonroNarrativeRevision?.active(b)){hs.sodanBinding.phase='protecting';app.sayLines(G.HonroStoryContent.cooperationDefense?.(b)||[]);}else app.sayLines(G.HONRO_NARRATIVE_V0?.cooperation||G.HonroStoryContent.cooperation(b));
  }
  // Old saves retain earned progress, but need six full enemy turns in total.
  if(hs.finaleRevision!==2){const position=ritualPosition(b,sodan);if(position)channeler(b,sodan,position,Math.min(1,sodan.hp/sodan.maxHp));}
  hs.finaleLastEnemyEnd??=b.teamEnds[1];hs.finaleWave??=hs.coopHold||0;hs.finaleDefenseTurns??=hs.coopHold||0;hs.finaleAnchor??={x:sodan.x,y:sodan.y};
  Object.assign(sodan,{...hs.finaleAnchor,side:2,honroAlly:true,allyRole:'channeler',fixed:true,vx:0,vy:0});delete sodan.moveTarget;delete sodan.aiMove;b.enemyLimit=b.honroActiveLimit=6;
  if(!app.actorBoundary)return;
- if(b.teamEnds[1]>hs.finaleLastEnemyEnd){const delta=b.teamEnds[1]-hs.finaleLastEnemyEnd,previous=hs.coopHold||0;hs.finaleLastEnemyEnd=b.teamEnds[1];hs.finaleDefenseTurns+=delta;hs.coopHold=Math.min(FINALE_TURNS,hs.finaleDefenseTurns);if(previous<3&&hs.coopHold>=3)app.sayLines(G.HonroNarrativeRevision?.active(b)?G.HonroStoryContent.finaleMidpoint():G.HONRO_NARRATIVE_V0?.finaleMidpoint||G.HonroStoryContent.finaleMidpoint());}
+ if(b.teamEnds[1]>hs.finaleLastEnemyEnd){const delta=b.teamEnds[1]-hs.finaleLastEnemyEnd,previous=hs.coopHold||0;hs.finaleLastEnemyEnd=b.teamEnds[1];hs.finaleDefenseTurns+=delta;hs.coopHold=Math.min(FINALE_TURNS,hs.finaleDefenseTurns);if(previous<3&&hs.coopHold>=3)app.sayLines(G.HonroNarrativeRevision?.active(b)?G.HonroStoryContent.finaleMidpoint(b):G.HONRO_NARRATIVE_V0?.finaleMidpoint||G.HonroStoryContent.finaleMidpoint(b));}
  // An unusually early conversion must not leave empty rounds until the campaign pacing floor.
  if(hs.finaleDefenseTurns<FINALE_TURNS&&hs.finaleWave<hs.finaleDefenseTurns&&rush(app,hs.finaleDefenseTurns))hs.finaleWave=hs.finaleDefenseTurns;
 }

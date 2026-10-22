@@ -10,17 +10,7 @@ function author(project){return {...project,stages:project.stages.map(original=>
   st.terrains.push({id:bindingId,name:'바깥 주박',type:'solid',points:[{x,y},{x:x+96,y},{x:x+96,y:y+126},{x,y:y+126}],baseMaterial:'wood',oneWay:false,breakable:true,layer:'terrain',detail:{spacing:18,roughness:0,seed:1,optimizeEpsilon:0},properties:{device:'ward',honroBinding:true,hp:800,maxHp:800}});
  }return st;
 })};}
-const contentFor=G.HonroObjectiveRevision.contentFor;
-G.HonroObjectiveRevision.contentFor=function(b,st){if(active(b)&&b.honroNarrativeContent){const snapshot=b.honroNarrativeContent,sign=b.honroStage===12&&b.honroState?.quarry?.signLines;return sign?{...snapshot,beats:{...snapshot.beats,sign:clone(sign)}}:snapshot;}
- const result=contentFor(b,st);
- // Existing bespoke chapter snapshots and earlier objective/split revisions
- // remain their own authority. Only the old unsnapshotted current story needs
- // the frozen pre-redesign payload. Act 1 has no objective text revision;
- // its unsnapshotted clone also needs V0 rather than current story text.
- if(b&&!b.honroCustom&&!active(b)&&(result===st||b.honroStage<=10&&result===G.HonroObjectiveRevision.legacy?.[b.honroStage-1]))return G.HONRO_NARRATIVE_V0?.content?.[b.honroStage-1]||result;
- return result;
-};
-function prepareFresh(b){if(!active(b))return;const st=G.HONRO_CONTENT.stages[b.honroStage-1];b.honroNarrativeContent=clone(contentFor(b,st));
+function prepareFresh(b){if(!active(b))return;const st=G.HONRO_CONTENT.stages[b.honroStage-1];b.honroNarrativeContent=clone(G.HonroNarrativeCatalogue.fresh(b,st));
  if(b.honroStage===20){b.honroConvoyActors=b.units.filter(u=>u.honroConvoyMember);b.units=b.units.filter(u=>!u.honroConvoyMember);updateConvoy(b);}
  if(b.honroStage===2){const u=b.units.find(u=>u.id==='objective');if(u)u.name='장례 상여';}
  if(b.honroStage===10){const boss=b.units.find(u=>u.id==='boss');if(!boss)return;boss.fixed=true;
@@ -56,10 +46,9 @@ function finishStory(app,d){const b=app.engine?.b;if(!active(b))return;for(const
 }
 function bindingReady(b){return active(b)&&b.honroStage===10&&!!G.HonroQuestTargets.records(b).find(t=>t.id===bindingId)?.broken;}
 function beforeCooperation(app){const b=app.engine.b;if(!active(b))return null;const state=b.honroState.sodanBinding;if(!bindingReady(b)||!state)return false;
- if(state.phase==='bound'){state.phase='offering';app.sayLines(G.HonroStoryContent.cooperation());app.dirty=true;return false;}
+ if(state.phase==='bound'){state.phase='offering';app.sayLines(G.HonroStoryContent.cooperation(b));app.dirty=true;return false;}
  return state.phase==='accepted';
 }
-for(const name of ['interaction','eventLines','resolveDeferred']){const current=G.HonroStoryContent[name];G.HonroStoryContent[name]=function(app,...args){const b=app.engine?.b;return b&&!b.honroCustom&&!active(b)?G.HonroStoryContentV0[name](app,...args):current(app,...args);};}
 function bodyBound(b,u){return active(b)&&b.honroStage===10&&u?.id==='boss'&&!b.honroState?.sodanCoop;}
 function attach(app,e){if(!active(e.b)||e.b.honroStage!==10||e.honroBindingAttached)return;e.honroBindingAttached=true;const hurt=e.hurt.bind(e),damage=e.damageTerrain.bind(e);
  e.hurt=function(u,amount,...args){if(u.id==='boss'&&!e.b.honroState.sodanCoop){if(amount>0)e.fx('text',u.x,u.y-u.h-28,'#d8c995',15,'바깥 붉은 주박을 겨누세요');return;}return hurt(u,amount,...args);};

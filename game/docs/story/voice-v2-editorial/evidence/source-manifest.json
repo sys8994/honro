@@ -1,0 +1,37 @@
+{
+  "sourceCommit": "ce9028d10b00d467474ea353f778b1599ca21c4c",
+  "baselineMaster": "934fcabd74767d662aee3830585ba807234934cc",
+  "editorialHandoff": "3e02bb8295fe05b5ec418bee77b3c6641d29ab6d",
+  "parityCommit": "f4182439",
+  "runtimeBoundaryCorrection": "1f03da01",
+  "checks": "See INTEGRATION_REPORT.md; controlled fixtures, not complete campaign play.",
+  "sha256": {
+    "game/docs/story/voice-v2-editorial/drafts/act1-scenes.json": "6025dba11576201e4babb3f3efbc09a10d5679c0f89f34e23734d663c452a3f4",
+    "game/docs/story/voice-v2-editorial/drafts/act2-scenes.json": "88e3c0faff90f555c9289332b63d888e80068357f0d7279f2ecf8f0c47d8836c",
+    "game/docs/story/voice-v2-editorial/drafts/act3-scenes.json": "c7741b24a704a8d2a8d4ee18b60e06b5f82424a15d1b28369c76ded6230bdf84",
+    "game/docs/story/voice-v2-editorial/drafts/arrivals-endings.json": "558238ed9cdc8244402c796c59ff273848bda6b188554e218902a736e997560a",
+    "game/docs/story/voice-v2-editorial/drafts/rest-dialogue.json": "ba51156431250f767583c9183a92e879a2d23acd75521b48ec425d01c5ca8a1e",
+    "game/docs/story/voice-v2-editorial/drafts/summaries.json": "8b84b1a505b5cc1fdb7a07771d9663caa0401258baacc80127283c3d2f42c292",
+    "game/docs/story/voice-v2-editorial/drafts/supplement-scenes.json": "39adc566cb9a77bf6332d33983662857fa8a5d3d9556d50a5e7494af4007e306",
+    "shared/data/narrative-current.json": "2a6e97153c37b3f6e6be5e10417b8344ec3899d280ec390d5082e80464bed2bd",
+    "shared/data/narrative-compat-v1.json": "b7e92af0228ecb0a66b54d76d49eb2c11649aa17ec39b8269016926753dc1b03",
+    "shared/data/stage-contracts.json": "b9310bcb28f1bfef0ecf44d28f32a7dd63bd5333c186ffcd5427068b0d07caf9",
+    "web/manifest.json": "35ff2fb01a123c646f892bb5782c7d0df0374afa21fb7b14fd6de10d843dee15"
+  },
+  "images": {
+    "ui/name-reveal-390x844.jpg": 28786,
+    "ui/quarry-snapshot-390x844.jpg": 33248,
+    "ui/sodan-aftermath-1280x900.jpg": 58260,
+    "ui/sodan-refusal-390x844.jpg": 31911,
+    "ui/village-snapshot-390x844.jpg": 32351,
+    "ui/void-long-line-390x844.jpg": 15071,
+    "ui/witness-letter-1280x900.jpg": 51581
+  },
+  "stage10SafeOutroFollowup": {
+    "runtimeSourceCommit": "ccc0a9959b04ac62c93187de16637dc316537f9a",
+    "checks": "stage10-safe-outro/checks.json",
+    "image": "stage10-safe-outro/stage10-safe-outro-390x844.jpg",
+    "bytes": 19983,
+    "implementationChanged": false
+  }
+}

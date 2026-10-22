@@ -3,7 +3,7 @@
 // idempotent projection. Existing serialized battles retain their own terrain,
 // markers, ordered steps, progress and reward ledger.
 const H=G.HONRO_CONTENT,clone=x=>JSON.parse(JSON.stringify(x)),REVISION=2;
-const legacy=H.stages.map(clone);
+const legacy=G.HONRO_NARRATIVE_COMPAT.objectiveLegacy;
 const removed={12:['rock-pin','clear-approach','hold-road','clear-quarry','exit'],13:['door-pin','clear-entry','hold-gate','clear-depth'],15:['shaft-pin','clear-water','hold-sluice','clear-gallery','exit'],16:['clear-court','hold-hall','clear-temple'],19:['hold-first','hold-second','hold-last','clear-souls'],17:['collapse-pin'],20:['exit-pin'],21:['wagon-lock'],23:['cargo-lock'],24:['courtyard-latch'],25:['rear-latch'],28:['outer-chain'],29:['sluice-chain','flight-hold','sluice-exit'],30:['route-pin']};
 const gates={20:['gate-exit'],23:['cargo-gate'],24:['courtyard-door'],25:['rear-door'],28:['outer-door'],29:['sluice-door'],30:['route-door']};
 const guides={
@@ -24,56 +24,12 @@ const guides={
 30:'세 기록을 대조한 뒤 나루의 표시 범위를 적 턴 3회 지키세요. 마지막으로 살아 있는 모든 동행을 같은 층의 옛길 입구에 모으면 완료됩니다.'
 };
 const goals={12:'길표의 진을 풀고 높은 작업굴 또는 열린 내리막으로 이탈',13:'석공을 구조하고 석문 빗장을 열어 마을 입구에 도착',15:'옛 흔적을 확인하고 배수한 낮은 길 또는 고지로 통과',17:'인양틀을 복구하고 방어해 종지기의 작업 기록 확보',20:'생존자 행렬을 중간 쉼터와 바깥 산길까지 호송',21:'주민 구조와 길목 방어 후 성문 안 출구에 도착',22:'사건 보고와 호적을 확보·대조하고 관창 출구에 도착',23:'운송 기록을 확보하고 살아 있는 짐꾼과 하역장 통과',24:'문장과 토지문서를 조사하고 기록실로 이어지는 출구에 도착',25:'조사 기록함을 지키고 문서를 확보해 뒷길로 이탈',26:'주민과 작업 장부를 지키고 수량 대조 후 출구에 도착',27:'두 불길을 막고 조사 청원서와 운반자를 지켜 탈출',28:'승인문과 은폐 기록을 대조하고 퇴로 방어 후 이탈',29:'현묵의 글을 확보하고 높은 수문길 또는 점검다리로 이탈',30:'세 기록을 대조하고 나루 방어 후 동행 전원 집결'};
-function replaceLine(lines,find,text){for(const row of lines||[])if(row[1].includes(find))row[1]=text;}
-for(const st of H.stages){
- if(st.hiddenWaterworks)continue;
- if(st.steps)st.steps=st.steps.filter(s=>!(removed[st.id]||[]).includes(s.id));
- if(goals[st.id])st.goal=goals[st.id];if(guides[st.id])st.guide=guides[st.id];
- if(st.id===22){const at=st.steps.findIndex(s=>s.id==='upper-latch');st.steps[at]={id:'upper-register',label:'상층 저문골 호적 확보',kind:'interact'};st.steps.find(s=>s.id==='ledger-case').label='중층 저문골 사건 보고 확보';st.steps.find(s=>s.id==='ledger-case').opens='upper-door';st.steps.find(s=>s.id==='archive-seal').label='하층 서고 봉인 열기';st.steps.find(s=>s.id==='compare-ledgers').label='상층에서 사건 보고와 호적 대조';}
- if(st.id===27){const water=st.steps.find(s=>s.id==='water-release');Object.assign(water,{kind:'interact',label:'수문을 열어 불길 막기',parallelGroup:'fire-control'});Object.assign(st.steps.find(s=>s.id==='fire-screen'),{parallelGroup:'fire-control',label:'차단막을 세워 불길 막기'});st.steps.splice(2,0,{id:'party-reunion',label:'두 조사팀이 중앙 뜰에 모이기',kind:'reach',allHeroes:true,radius:440,splitOnly:true});}
- if(st.act2Plan&&removed[st.id])st.act2Plan.sequence=st.act2Plan.sequence.filter(s=>!removed[st.id].includes(typeof s==='string'?s:s.id));
-}
-replaceLine(H.stages[11].story,'저 바위를 받친','낙석이 아래 홈을 메웠소. 길표에 다가가려면 먼저 작업장을 비워야 하오.');
-replaceLine(H.stages[14].story,'활로 끊을','천장 아래 오래된 인양구가 보입니다. 마른 관찰점에서 남은 흔적을 살펴보겠습니다.');
-replaceLine(H.stages[16].beats?.brace,'끊으시오','버팀목이 천장을 받쳤소. 돌의 무게가 이쪽으로 쏠리지 않게 지키며 안쪽 인양틀의 축을 복원합시다.');
-replaceLine(H.stages[19].story,'출구까지 돌이','무너진 출구를 주민들이 치우고 있소. 매복부터 걷어 내고 사람들을 부릅시다.');
-replaceLine(H.stages[20].story,'저 고리부터','수레 밑에 사람이 있습니다. 곁의 위협부터 치우고 꺼내겠습니다.');
-replaceLine(H.stages[21].story,'위층 걸쇠','위층 서가에도 장부가 남아 있습니다. 같은 해의 호적을 찾아오겠습니다.');
-replaceLine(H.stages[26].story,'수문 고정구','수문 쪽으로 가겠습니다. 물길을 열면 저쪽 불길을 막을 수 있습니다.');
-// The split party must hear every established fact from people actually there.
-// These are readings of existing records, not new expertise or later revelations.
-if(!H.stages[23].hiddenWaterworks){
-H.stages[23].outro=G.HonroAct3Content.scene('act3-r2-outro-24',H.stages[23].name,[
- ['휘겸','사당 뒤 기록실은 담허 도사와 살피겠소. 가문의 문장이 있으면 내가 열 수 있을 것이오.'],
- ['설오','소단과 성 밖 공방의 기록을 찾겠습니다. 관아 바깥 길에서 다시 만나겠습니다.'],
- ['소단','운송 묶음의 수량과 날짜는 적어 둘게요. 서로 찾은 걸 나중에 맞춰 봐요.']
-]);
-H.stages[24].beats['investigation-record']=[
- ['휘겸','조직적인 저항은 없었다. 대도사가 현장에서 주민 전원을 죽였다고… 선조가 증언을 모았소.'],
- ['담허','그 뒤 무명사에서 대종을 주조하고 있었다는 기록도 있네.'],
- ['휘겸','저문골에서 가져간 것들과 그 종이 이어져 있었소.']
-];
-H.stages[25].story[1]=['소단','종이는 넓게 펴 주세요. 마르는 동안 이쪽을 지킬게요.',{storyId:'act3-r2-entry-26',storyTitle:H.stages[25].name}];
-H.stages[25].beats['casting-tally']=[
- ['설오','운송 묶음의 금속량과 이 장부의 주조량이 거의 같습니다. 유골과 재도 장례 때와는 다르게 처리했다고 적혀 있습니다.'],
- ['소단','종 곁에 오래된 혼들이 겹쳐 있었어요. 사람의 흔적까지 쓴 걸까요?'],
- ['소단','어떻게 썼는지는 이 조각에 없네요. 남은 기록을 더 찾아야겠어요.']
-];
-H.stages[26].beats['party-reunion']=[
- ['휘겸','대도사가 저문골 주민 전원을 죽였다는 선조의 조사 기록을 찾았소. 참사 뒤 무명사에서 대종을 만든 기록도 있소.'],
- ['설오','공방의 주조량이 저문골에서 거둔 금속량과 거의 맞았습니다. 유골과 재도 장례 때와는 다르게 처리했다고 합니다.'],
- ['담허','어떤 공정으로 썼는지는 아직 모르네. 이제 함께 움직이며 남은 기록부터 지키세.']
-];
-}
 let registeredStaging=null;
 function registerScenes(){const staging=G.HonroStoryStaging;if(!staging||registeredStaging===staging)return;for(const version of [1,2]){const stage=version===1?27:28,content=version===1?G.HONRO_SPLIT_V1?.content.find(s=>s.id===27):H.stages[27];staging.register({id:'act3-party-reunion-v'+version,stage,requireSplit:version,title:'다시 모인 기록',steps:[{type:'look',at:{marker:'party-reunion'},duration:450,caption:'두 조사팀이 서로 가져온 기록을 펼친다.'},{type:'dialogue',lines:content?.beats?.['party-reunion']||[]}]});}registeredStaging=staging;}
 function stageScene(app,s){if(s.id!=='party-reunion'||!G.HonroStoryStaging)return false;registerScenes();const id='act3-party-reunion-v'+(app.engine.b.honroSplit?.version===1?1:2);if(app.engine.b.honroStaging?.once?.[id])return true;return G.HonroStoryStaging.request(app,id);}
-// Stale focus cues must never point at a deleted device.
-for(const id of [12,15,20,21,22,23,27])for(const row of H.stages[id-1].story||[])if(row[2]?.focus==='seal')row[2].focus='interact';
-if(!H.stages[26].hiddenWaterworks)for(const row of H.stages[26].story){if(row[0]==='휘겸')row[2]={...row[2],focus:'fire-screen'};if(row[0]==='설오')row[2]={...row[2],focus:'water-release'};}
 function active(b){return !b?.honroCustom&&b?.honroObjectiveRevision>=REVISION;}
 const historicalWaterworks=b=>[25,27].includes(b?.honroStage)&&b.honroWaterworksRevision>0&&b.honroWaterworksRevision<3?G.HONRO_WATERWORKS_V2?.content.find(q=>q.id===b.honroStage):null;
-function contentFor(b,st){if(b?.honroSplit?.version===1||b&&!b.honroWaterworksRevision){const old=G.HONRO_SPLIT_V1?.content.find(q=>q.id===b.honroStage);if(old)return old;}const waterworks=historicalWaterworks(b);if(waterworks)return waterworks;return active(b)?st:legacy[(b?.honroStage||st.id)-1]||st;}
+function contentFor(b,st){return G.HonroNarrativeCatalogue.resolve(b,st);}
 function storedSteps(b,act){return contentFor(b,H.stages[b.honroStage-1]).steps||[];}
 function author(project,options={}){
  const p={...project,stages:project.stages.map(original=>{

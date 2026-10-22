@@ -1,0 +1,418 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "label": "name-reveal-390x844",
+      "text": "홍만이에요. 연목 나루에서 배를 모셨어요.",
+      "kind": "character",
+      "viewport": [
+        390,
+        844
+      ],
+      "line": {
+        "left": 122,
+        "right": 365,
+        "top": 675.0967407226562,
+        "bottom": 749.0967407226562,
+        "scroll": 74,
+        "client": 74
+      },
+      "panel": {
+        "left": 12,
+        "right": 378,
+        "top": 582.0967407226562,
+        "bottom": 832.0967407226562
+      }
+    },
+    {
+      "label": "sodan-refusal-390x844",
+      "text": "폭포에서 줄 풀었죠? 그 뒤로 여기 줄까지 당겼어요. 이번에도 괜찮을 줄 어떻게 알아요?",
+      "kind": "character",
+      "viewport": [
+        390,
+        844
+      ],
+      "line": {
+        "left": 122,
+        "right": 365,
+        "top": 677.170166015625,
+        "bottom": 755.920166015625,
+        "scroll": 79,
+        "client": 79
+      },
+      "panel": {
+        "left": 12,
+        "right": 378,
+        "top": 584.170166015625,
+        "bottom": 838.920166015625
+      }
+    },
+    {
+      "label": "six-turn-defense-390x844",
+      "text": "소단을 보호하세요. 여섯 번의 적 턴이 지나면 의식이 끝납니다.",
+      "kind": null,
+      "viewport": [
+        390,
+        844
+      ],
+      "line": {
+        "left": 26,
+        "right": 359,
+        "top": 167,
+        "bottom": 209,
+        "scroll": 42,
+        "client": 42
+      },
+      "panel": {
+        "left": 10,
+        "right": 380,
+        "top": 110,
+        "bottom": 266
+      }
+    },
+    {
+      "label": "sodan-aftermath-390x844",
+      "text": "그 길로 온 건 맞겠지. 어디서 시작됐는지는 따라가 봐야겠네.",
+      "kind": "character",
+      "viewport": [
+        390,
+        844
+      ],
+      "line": {
+        "left": 122,
+        "right": 365,
+        "top": 675.0964965820312,
+        "bottom": 749.0964965820312,
+        "scroll": 74,
+        "client": 74
+      },
+      "panel": {
+        "left": 12,
+        "right": 378,
+        "top": 582.0964965820312,
+        "bottom": 832.0964965820312
+      }
+    },
+    {
+      "label": "quarry-snapshot-390x844",
+      "text": "담허의 설명을 따라 겹친 획 하나를 풀었다. 내리막이 드러나고, 낮은 종소리와 함께 수레가 움직였다.",
+      "kind": "narration",
+      "viewport": [
+        390,
+        844
+      ],
+      "line": {
+        "left": 28,
+        "right": 365,
+        "top": 686.25,
+        "bottom": 765,
+        "scroll": 79,
+        "client": 79
+      },
+      "panel": {
+        "left": 12,
+        "right": 378,
+        "top": 615.25,
+        "bottom": 840
+      }
+    },
+    {
+      "label": "village-snapshot-390x844",
+      "text": "외법사예요. 몇 해 전 종이 혼자 울기 시작해서 다들 그 사람을 찾았지요. 할머니는 절보다 종이 먼저였다는데, 더는 몰라요.",
+      "kind": "character",
+      "viewport": [
+        390,
+        844
+      ],
+      "line": {
+        "left": 122,
+        "right": 365,
+        "top": 644.74755859375,
+        "bottom": 749.74755859375,
+        "scroll": 105,
+        "client": 105
+      },
+      "panel": {
+        "left": 12,
+        "right": 378,
+        "top": 551.74755859375,
+        "bottom": 832.74755859375
+      }
+    },
+    {
+      "label": "split-reunion-390x844",
+      "text": "이분들 살림의 금속량이 종 주조량이랑 거의 같아요. 유골도 따로 처리했고요. 방법은 못 찾았어요.",
+      "kind": "character",
+      "viewport": [
+        390,
+        844
+      ],
+      "line": {
+        "left": 122,
+        "right": 365,
+        "top": 670.9960327148438,
+        "bottom": 749.7460327148438,
+        "scroll": 79,
+        "client": 79
+      },
+      "panel": {
+        "left": 12,
+        "right": 378,
+        "top": 577.9960327148438,
+        "bottom": 832.7460327148438
+      }
+    },
+    {
+      "label": "witness-letter-390x844",
+      "text": "저 아래서도 누군가 답을 구하러 왔다고 했습니다. 이 글의 대도사를 말한 걸까요?",
+      "kind": "character",
+      "viewport": [
+        390,
+        844
+      ],
+      "line": {
+        "left": 122,
+        "right": 365,
+        "top": 670.9973754882812,
+        "bottom": 749.7473754882812,
+        "scroll": 79,
+        "client": 79
+      },
+      "panel": {
+        "left": 12,
+        "right": 378,
+        "top": 577.9973754882812,
+        "bottom": 832.7473754882812
+      }
+    },
+    {
+      "label": "void-long-line-390x844",
+      "text": "죽은 이의 말로는 부족하다던 자. 죽음 너머에서 답을 듣고 싶다 했지.",
+      "align": "far",
+      "textBox": {
+        "left": 24,
+        "right": 366,
+        "top": 160.359375,
+        "bottom": 219.734375
+      },
+      "actor": {
+        "left": 153.81932367149759,
+        "top": 361.709375,
+        "right": 236.18067632850244,
+        "bottom": 530.5093750000001,
+        "width": 82.36135265700484,
+        "height": 168.8
+      },
+      "overlap": 0
+    },
+    {
+      "label": "name-reveal-1280x900",
+      "text": "홍만이에요. 연목 나루에서 배를 모셨어요.",
+      "kind": "character",
+      "viewport": [
+        1280,
+        900
+      ],
+      "line": {
+        "left": 376,
+        "right": 1175,
+        "top": 651.9660034179688,
+        "bottom": 725.9660034179688,
+        "scroll": 74,
+        "client": 74
+      },
+      "panel": {
+        "left": 80,
+        "right": 1200,
+        "top": 547.9660034179688,
+        "bottom": 861.9660034179688
+      }
+    },
+    {
+      "label": "sodan-refusal-1280x900",
+      "text": "폭포에서 줄 풀었죠? 그 뒤로 여기 줄까지 당겼어요. 이번에도 괜찮을 줄 어떻게 알아요?",
+      "kind": "character",
+      "viewport": [
+        1280,
+        900
+      ],
+      "line": {
+        "left": 376,
+        "right": 1175,
+        "top": 652.8599243164062,
+        "bottom": 726.8599243164062,
+        "scroll": 74,
+        "client": 74
+      },
+      "panel": {
+        "left": 80,
+        "right": 1200,
+        "top": 548.8599243164062,
+        "bottom": 862.8599243164062
+      }
+    },
+    {
+      "label": "six-turn-defense-1280x900",
+      "text": "소단을 보호하세요. 여섯 번의 적 턴이 지나면 의식이 끝납니다.",
+      "kind": null,
+      "viewport": [
+        1280,
+        900
+      ],
+      "line": {
+        "left": 222,
+        "right": 928.75,
+        "top": 202,
+        "bottom": 226,
+        "scroll": 24,
+        "client": 24
+      },
+      "panel": {
+        "left": 200,
+        "right": 1080,
+        "top": 139,
+        "bottom": 239
+      }
+    },
+    {
+      "label": "sodan-aftermath-1280x900",
+      "text": "그 길로 온 건 맞겠지. 어디서 시작됐는지는 따라가 봐야겠네.",
+      "kind": "character",
+      "viewport": [
+        1280,
+        900
+      ],
+      "line": {
+        "left": 376,
+        "right": 1175,
+        "top": 658.529052734375,
+        "bottom": 732.529052734375,
+        "scroll": 74,
+        "client": 74
+      },
+      "panel": {
+        "left": 80,
+        "right": 1200,
+        "top": 554.529052734375,
+        "bottom": 868.529052734375
+      }
+    },
+    {
+      "label": "quarry-snapshot-1280x900",
+      "text": "담허의 설명을 따라 겹친 획 하나를 풀었다. 내리막이 드러나고, 낮은 종소리와 함께 수레가 움직였다.",
+      "kind": "narration",
+      "viewport": [
+        1280,
+        900
+      ],
+      "line": {
+        "left": 208,
+        "right": 1075,
+        "top": 743.46875,
+        "bottom": 776.609375,
+        "scroll": 33,
+        "client": 33
+      },
+      "panel": {
+        "left": 180,
+        "right": 1100,
+        "top": 644.46875,
+        "bottom": 869.609375
+      }
+    },
+    {
+      "label": "village-snapshot-1280x900",
+      "text": "외법사예요. 몇 해 전 종이 혼자 울기 시작해서 다들 그 사람을 찾았지요. 할머니는 절보다 종이 먼저였다는데, 더는 몰라요.",
+      "kind": "character",
+      "viewport": [
+        1280,
+        900
+      ],
+      "line": {
+        "left": 376,
+        "right": 1175,
+        "top": 659.609375,
+        "bottom": 733.609375,
+        "scroll": 74,
+        "client": 74
+      },
+      "panel": {
+        "left": 80,
+        "right": 1200,
+        "top": 555.609375,
+        "bottom": 869.609375
+      }
+    },
+    {
+      "label": "split-reunion-1280x900",
+      "text": "이분들 살림의 금속량이 종 주조량이랑 거의 같아요. 유골도 따로 처리했고요. 방법은 못 찾았어요.",
+      "kind": "character",
+      "viewport": [
+        1280,
+        900
+      ],
+      "line": {
+        "left": 376,
+        "right": 1175,
+        "top": 656.5834350585938,
+        "bottom": 730.5834350585938,
+        "scroll": 74,
+        "client": 74
+      },
+      "panel": {
+        "left": 80,
+        "right": 1200,
+        "top": 552.5834350585938,
+        "bottom": 866.5834350585938
+      }
+    },
+    {
+      "label": "witness-letter-1280x900",
+      "text": "저 아래서도 누군가 답을 구하러 왔다고 했습니다. 이 글의 대도사를 말한 걸까요?",
+      "kind": "character",
+      "viewport": [
+        1280,
+        900
+      ],
+      "line": {
+        "left": 376,
+        "right": 1175,
+        "top": 655.6986694335938,
+        "bottom": 729.6986694335938,
+        "scroll": 74,
+        "client": 74
+      },
+      "panel": {
+        "left": 80,
+        "right": 1200,
+        "top": 551.6986694335938,
+        "bottom": 865.6986694335938
+      }
+    },
+    {
+      "label": "void-long-line-1280x900",
+      "text": "죽은 이의 말로는 부족하다던 자. 죽음 너머에서 답을 듣고 싶다 했지.",
+      "align": "far",
+      "textBox": {
+        "left": 280,
+        "right": 1000,
+        "top": 171,
+        "bottom": 250.1875
+      },
+      "actor": {
+        "left": 596.0869565217391,
+        "top": 391.2734375,
+        "right": 683.9130434782609,
+        "bottom": 571.2734375,
+        "width": 87.82608695652173,
+        "height": 180
+      },
+      "overlap": 0
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Native Chromium with controlled stage/scene fixtures.",
+    "No complete campaign combat, physical mobile or performance review."
+  ]
+}

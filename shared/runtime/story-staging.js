@@ -36,8 +36,9 @@ function prepareFresh(b){
 }
 function reveal(b,id){const s=state(b);let u=actor(b,id);if(u)return u;u=s.hidden[id];if(!alive(u))return null;G.HONRO_CORE.migrateEnemySkills(u);b.units.push(u);delete s.hidden[id];return u;}
 function matchesSplit(b,d){return !d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit);}
+function definition(b,id){return (!b?.honroNarrativeRevision&&id===ID?G.HONRO_NARRATIVE_V0?.firstReceiverScene:null)||(!G.HonroNarrativeCatalogue.active(b)?G.HONRO_NARRATIVE_COMPAT.staging?.find(d=>d.id===id):null)||registry.get(id);}
 function request(app,id,context={}){
- const b=app.engine?.b,d=registry.get(id);if(!b||!d||d.stage&&d.stage!==b.honroStage||!matchesSplit(b,d)||!G.HonroStory)return false;
+ const b=app.engine?.b,d=definition(b,id);if(!b||!d||d.stage&&d.stage!==b.honroStage||!matchesSplit(b,d)||!G.HonroStory)return false;
  const s=state(b);if(s.once[id])return false;s.once[id]='queued';
  G.HonroStory.queue(app,[['서술',d.title,{storyId:id,storyTitle:d.title,stagingRequest:{id,context:clone(context)}}]]);return true;
 }
@@ -46,7 +47,7 @@ function opening(app,lines,options){
  const b=app.engine?.b;if(options.staging)return{lines,options};let r=lines[0]?.[2]?.stagingRequest;
  if(!r&&options.after==='outcome'&&options.index===undefined&&b?.honroStaging?.version===1){const d=[...registry.values()].find(d=>d.on==='outcome'&&d.stage===b.honroStage&&(!d.freshOnly||b.honroStaging.outcomeScenes?.includes(d.id))&&(!d.requireSplit||b.honroSplit?.version===(d.requireSplit===true?1:d.requireSplit))&&!state(b).once[d.id]);if(d)r={id:d.id,context:{}};}
  if(!r)return{lines,options};
- const def=(!b?.honroNarrativeRevision&&r.id===ID?G.HONRO_NARRATIVE_V0?.firstReceiverScene:null)||registry.get(r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||!matchesSplit(b,def)||state(b).once[r.id]==='done')return{lines:[],options};
+ const def=definition(b,r.id);if(!def||!b||def.stage&&def.stage!==b.honroStage||!matchesSplit(b,def)||state(b).once[r.id]==='done')return{lines:[],options};
  state(b).once[r.id]='running';
  const staging={id:def.id,steps:clone(def.steps),context:clone(r.context||{}),cursor:0,elapsed:0,applied:{},results:{},position:def.position||'before',waitForDialogue:def.position==='after',complete:def.position==='after'};
  const dialogue=def.steps.filter(s=>s.type==='dialogue').flatMap(s=>s.lines||lines).map(([who,text,meta={}])=>[who,text,{storyId:def.id,storyTitle:def.title,...meta,stagingScene:def.id}]);
@@ -188,14 +189,7 @@ register({id:ID,stage:9,title:'한쪽 줄이 느슨해질 때',steps:[
  {type:'look',at:{anchor:'sodan'},duration:550,caption:'방울 소리가 난 사당 문간으로 시선이 향한다.'},
  {type:'move',actor:'npc-sodan',reveal:true,to:{anchor:'sodan',dx:-76},duration:950,caption:'붉은 실에 손이 감긴 소단이 매듭을 붙든 채 문턱으로 나온다.'},
  {type:'look',actor:'npc-sodan',at:{marker:'$trigger'},pose:'hold-bell',duration:450,caption:'방울 소리가 멎는다. 소단은 줄을 놓지 않은 채 아래를 살핀다.'},
- {type:'dialogue',lines:[
-  ['소단','한쪽이… 덜 당겨요. 방금 뭘 한 거예요?'],
-  ['설오','담허 어른이 당신의 줄에 붙잡힌 원혼을 저 진으로 나눠 받았습니다. 덕수 씨 일행도 무사히 구했습니다.'],
-  ['소단','덕수 아저씨가 걸어서 나갔어요?'],
-  ['설오','예. 당신도 도우러 왔습니다.'],
-  ['소단','빈자리에 진을 놓는 건 괜찮아요. 가운데 줄은 건드리지 마요.'],
-  ['담허','알겠네. 자네가 놓으라고 할 때까지 끊지 않겠어.']
- ]}
+ {type:'dialogue',lines:G.HonroNarrativeCatalogue.rows('9.sodan-first-receiver')}
 ]});
 // Stage 10 owns the upper-yard tree. On stage 9, show the same Sodan body
 // retreating along the supported approach toward its real exit, never imply

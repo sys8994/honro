@@ -4412,3 +4412,22 @@ HUD의 32~36px 내부 타일과 공통 스탬프의 둥근 이중 프레임을 �
 ## BGM·승인 11장·최신 master 통합 — 2026-10-22
 
 master28 실루엣 소스와 BGM adadf16f, 승인11장72a8788f/9b69f1f2를 별도 통합 브랜치에서 결합했다. 최종 코드/생성물551da47f. BGM30/7개hash·decode, 11장 게임 규칙/재질 prepare 불변, 실제 대표 재생과 Workshop Stop, 승인 재질PNG6개 일치·세 warm cache 경계, 통합 build/도감/web-split을 확인했다. 추가 미술·초상화 시안은 미적용. 기존 상세 계측/자동자료는 역사 커밋과 _local로 구분하고 이번 성능 계측으로 재사용하지 않았다. 사진5장은 Library의 업로드 전 네트워크 실패로 검토 브랜치 파일 전달을 사용했다. AGENTS에는 기존/연관 Codex 세션 재사용 지침만 추가했다. 정확한 SHA·빌드·사진 blob ID·한계는 [최종 통합 기록](bgm-stage11-release-20261022/README.md). master/Pages는 부모 확인 전 미변경.
+
+## 2026-10-22 — 서사 원고 선택 경계 통합
+
+현재 30장 최종 원고를 단일 catalogue로 추출하고 저장/동결 호환 선택을 한 resolver로 모았다. 중첩 contentFor wrapper와 act2 plan/drama 중복 조립을 제거하며 목표·전투·증거·pacing 판정과 V0/split-v1/waterworks-v2 및 저장 큐를 보존한다. 문구 교체 전 구조 동등성 30장/구 선택 40건과 대표 Continue를 확인했다. [연결 보고서](story/voice-v2-editorial/INTEGRATION_REPORT.md)에 단계와 한계를 남긴다.
+
+### 2026-10-22 서사 통합의 실행 경계 보완
+- 대사 조립 파일을 없앤 뒤에도 전투가 쓰는 `HonroAct2Plan.forStage`는 최종 stage 기계 데이터에서 제공한다. 기존 증원/난도 조회 API와 수치를 유지한다.
+- 웹 빌드의 막 엔딩 데이터 추출과 파티/몬스터/배우 에셋 추출을 분리했다. 실제 Chromium 진입에서 발견한 파티 데이터 누락을 수정했다.
+- 구 revision 저장에서 아직 열지 않은 staged scene은 동결 정의를 선택한다. 이미 저장된 staging steps/cursor는 그대로 읽는다.
+- `narrative-integration-boundaries.mjs`, 분할 빌드 동등성, 실제 Chromium 대표 장면 진입 통과. master/Pages 배포는 부모 최종 통합 담당이다.
+
+### 2026-10-22 확정 서사 원고 v2 연결
+- 부모가 작성한 일곱 확정 JSON을 단일 current catalogue에 적용했다. 공급 문장을 창작/윤색하지 않고 의미 ID로 연출·이름 공개·목격 조건을 연결한다.
+- 13장 구조 후 문답, 신규/저장/legacy 경계, 구조 화자/주민 선택, 쉼터 중복 도입과 완료 후 조건 요약을 정리했다. 목표·HP·보상·분할·Workshop 원고는 유지한다.
+- 30장 데이터/6개 경로/대표 Continue, 27장 입력·복귀 회귀, build/typecheck/분할 웹 비교 통과. Chromium 2개 화면 크기에서 대표 18항목과 JPG 7장을 확인했다. 전 장 정상 플레이·실물 모바일·Pages 검수는 아니다. [소스/근거/통합 주의](story/voice-v2-editorial/INTEGRATION_REPORT.md).
+
+### 2026-10-22 10장 실제 worldOutro 경계 보완 검수
+- 기존 문구 배치 JPG와 별개로, 여섯 방어 라운드 완료 fixture에서 정상 supported exit→withdrawal→won→worldOutro=2→outcome 경로를 검사했다. 런타임 수정은 없다.
+- 살아 있는 소단+동행 3명의 실제 동쪽 지면/안전 카메라, 원고 16줄 무누락, 마지막 줄 Continue, UI skip→막 엔딩→쉼터→상세 보고서, 1회 정산을 확인했다. 이전 fixture의 11줄은 소단 사망 처리에 따른 소단 발언 5줄 필터였다. [측정·실제 JPG·한계](story/voice-v2-editorial/INTEGRATION_REPORT.md#6-부모-검수-보완--10장-실제-안전-퇴장-경로).

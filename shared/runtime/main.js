@@ -603,7 +603,7 @@
             if (win) {
                 b.phase = 'won';this.cancelInput();b.projectiles=[];b.volley=undefined;for(const u of b.units)delete u.meleeAction;
                 C.cleanupPassiveHistory(e);
-                b.winnerReason = st.storySummary || '길을 확보했다.';
+                b.winnerReason = G.HonroNarrativeCatalogue.summary(b,st) || '길을 확보했다.';
                 this.dirty = true;
                 return true;
             }
