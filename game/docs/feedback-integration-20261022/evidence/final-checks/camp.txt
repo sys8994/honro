@@ -1,0 +1,9 @@
+PASS train survives continue/stop/reload without modifying old battle
+PASS refund survives continue/stop/reload without modifying old battle
+PASS reset survives continue/stop/reload without modifying old battle
+PASS auto survives continue/stop/reload without modifying old battle
+PASS stat invest survives continue/stop/reload without modifying old battle
+PASS stat refund survives continue/stop/reload without modifying old battle
+PASS equip survives continue/stop/reload without modifying old battle
+PASS 11 camp persistence cases
+PASS camp skill UX: confirmed slot and skill paths, duplicate swap, refund/preview/scroll context, explicit unequip/save/combat, basic and ultimate guards, real ranked row costs

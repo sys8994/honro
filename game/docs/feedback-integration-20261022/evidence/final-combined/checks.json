@@ -1,0 +1,813 @@
+{
+  "executionSha": "9078f7562a76da7305b7476f9ba9792a0711b1a2",
+  "browser": "154.0.8037.57",
+  "checks": [
+    {
+      "name": "390 main XP matches final retained growth",
+      "data": null
+    },
+    {
+      "name": "390 summary detail close restores frozen rewards",
+      "data": null
+    },
+    {
+      "name": "390 final primary action stays visible after growth scroll",
+      "data": null
+    },
+    {
+      "name": "390 act1 compact footer offers report and ending",
+      "data": null
+    },
+    {
+      "name": "390 act1 map area and footer fit",
+      "data": {
+        "head": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 52
+        },
+        "foot": {
+          "x": 0,
+          "y": 780,
+          "w": 390,
+          "h": 64
+        },
+        "map": {
+          "x": 0,
+          "y": 52,
+          "w": 390,
+          "h": 728
+        },
+        "screen": {
+          "w": 390,
+          "h": 844
+        }
+      }
+    },
+    {
+      "name": "390 act1 curved progress routes",
+      "data": null
+    },
+    {
+      "name": "390 record actions visible and touch accessible",
+      "data": [
+        {
+          "w": 114.59375,
+          "h": 44
+        },
+        {
+          "w": 114.59375,
+          "h": 44
+        }
+      ]
+    },
+    {
+      "name": "390 Escape closes records and restores summary focus",
+      "data": null
+    },
+    {
+      "name": "390 historical report closes to same journal",
+      "data": null
+    },
+    {
+      "name": "390 act1 gallery never settles and preserves full profile/save",
+      "data": {
+        "act": 1,
+        "selection": 10,
+        "zoom": 1.35,
+        "left": 1084,
+        "top": 0,
+        "same": true,
+        "calls": {
+          "finish": 0,
+          "complete": 0
+        }
+      }
+    },
+    {
+      "name": "390 act1 original selected view and DOM restored",
+      "data": {
+        "before": {
+          "act": 1,
+          "selection": 10,
+          "zoom": 1.35,
+          "left": 1084,
+          "top": 0
+        },
+        "after": {
+          "act": 1,
+          "selection": 10,
+          "zoom": 1.35,
+          "left": 1084,
+          "top": 0,
+          "same": true,
+          "calls": {
+            "finish": 0,
+            "complete": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "390 act2 compact footer offers report and ending",
+      "data": null
+    },
+    {
+      "name": "390 act2 map area and footer fit",
+      "data": {
+        "head": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 52
+        },
+        "foot": {
+          "x": 0,
+          "y": 780,
+          "w": 390,
+          "h": 64
+        },
+        "map": {
+          "x": 0,
+          "y": 52,
+          "w": 390,
+          "h": 728
+        },
+        "screen": {
+          "w": 390,
+          "h": 844
+        }
+      }
+    },
+    {
+      "name": "390 act2 curved progress routes",
+      "data": null
+    },
+    {
+      "name": "390 historical report closes to same journal",
+      "data": null
+    },
+    {
+      "name": "390 act2 gallery never settles and preserves full profile/save",
+      "data": {
+        "act": 2,
+        "selection": 20,
+        "zoom": 1.35,
+        "left": 0,
+        "top": 0,
+        "same": true,
+        "calls": {
+          "finish": 0,
+          "complete": 0
+        }
+      }
+    },
+    {
+      "name": "390 act2 original selected view and DOM restored",
+      "data": {
+        "before": {
+          "act": 2,
+          "selection": 20,
+          "zoom": 1.35,
+          "left": 0,
+          "top": 0
+        },
+        "after": {
+          "act": 2,
+          "selection": 20,
+          "zoom": 1.35,
+          "left": 0,
+          "top": 0,
+          "same": true,
+          "calls": {
+            "finish": 0,
+            "complete": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "390 act3 compact footer offers report and ending",
+      "data": null
+    },
+    {
+      "name": "390 act3 map area and footer fit",
+      "data": {
+        "head": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 52
+        },
+        "foot": {
+          "x": 0,
+          "y": 780,
+          "w": 390,
+          "h": 64
+        },
+        "map": {
+          "x": 0,
+          "y": 52,
+          "w": 390,
+          "h": 728
+        },
+        "screen": {
+          "w": 390,
+          "h": 844
+        }
+      }
+    },
+    {
+      "name": "390 act3 curved progress routes",
+      "data": null
+    },
+    {
+      "name": "390 historical report closes to same journal",
+      "data": null
+    },
+    {
+      "name": "390 act3 gallery never settles and preserves full profile/save",
+      "data": {
+        "act": 3,
+        "selection": "end",
+        "zoom": 1.35,
+        "left": 761,
+        "top": 514,
+        "same": true,
+        "calls": {
+          "finish": 0,
+          "complete": 0
+        }
+      }
+    },
+    {
+      "name": "390 act3 original selected view and DOM restored",
+      "data": {
+        "before": {
+          "act": 3,
+          "selection": "end",
+          "zoom": 1.35,
+          "left": 761,
+          "top": 514
+        },
+        "after": {
+          "act": 3,
+          "selection": "end",
+          "zoom": 1.35,
+          "left": 761,
+          "top": 514,
+          "same": true,
+          "calls": {
+            "finish": 0,
+            "complete": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "360 main XP matches final retained growth",
+      "data": null
+    },
+    {
+      "name": "360 summary detail close restores frozen rewards",
+      "data": null
+    },
+    {
+      "name": "360 final primary action stays visible after growth scroll",
+      "data": null
+    },
+    {
+      "name": "360 act1 compact footer offers report and ending",
+      "data": null
+    },
+    {
+      "name": "360 act1 map area and footer fit",
+      "data": {
+        "head": {
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 52
+        },
+        "foot": {
+          "x": 0,
+          "y": 736,
+          "w": 360,
+          "h": 64
+        },
+        "map": {
+          "x": 0,
+          "y": 52,
+          "w": 360,
+          "h": 684
+        },
+        "screen": {
+          "w": 360,
+          "h": 800
+        }
+      }
+    },
+    {
+      "name": "360 act1 curved progress routes",
+      "data": null
+    },
+    {
+      "name": "360 record actions visible and touch accessible",
+      "data": [
+        {
+          "w": 114.59375,
+          "h": 44
+        },
+        {
+          "w": 114.59375,
+          "h": 44
+        }
+      ]
+    },
+    {
+      "name": "360 Escape closes records and restores summary focus",
+      "data": null
+    },
+    {
+      "name": "360 historical report closes to same journal",
+      "data": null
+    },
+    {
+      "name": "360 act1 gallery never settles and preserves full profile/save",
+      "data": {
+        "act": 1,
+        "selection": 10,
+        "zoom": 1.35,
+        "left": 1025,
+        "top": 0,
+        "same": true,
+        "calls": {
+          "finish": 0,
+          "complete": 0
+        }
+      }
+    },
+    {
+      "name": "360 act1 original selected view and DOM restored",
+      "data": {
+        "before": {
+          "act": 1,
+          "selection": 10,
+          "zoom": 1.35,
+          "left": 1025,
+          "top": 0
+        },
+        "after": {
+          "act": 1,
+          "selection": 10,
+          "zoom": 1.35,
+          "left": 1025,
+          "top": 0,
+          "same": true,
+          "calls": {
+            "finish": 0,
+            "complete": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "360 act2 compact footer offers report and ending",
+      "data": null
+    },
+    {
+      "name": "360 act2 map area and footer fit",
+      "data": {
+        "head": {
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 52
+        },
+        "foot": {
+          "x": 0,
+          "y": 736,
+          "w": 360,
+          "h": 64
+        },
+        "map": {
+          "x": 0,
+          "y": 52,
+          "w": 360,
+          "h": 684
+        },
+        "screen": {
+          "w": 360,
+          "h": 800
+        }
+      }
+    },
+    {
+      "name": "360 act2 curved progress routes",
+      "data": null
+    },
+    {
+      "name": "360 historical report closes to same journal",
+      "data": null
+    },
+    {
+      "name": "360 act2 gallery never settles and preserves full profile/save",
+      "data": {
+        "act": 2,
+        "selection": 20,
+        "zoom": 1.35,
+        "left": 0,
+        "top": 0,
+        "same": true,
+        "calls": {
+          "finish": 0,
+          "complete": 0
+        }
+      }
+    },
+    {
+      "name": "360 act2 original selected view and DOM restored",
+      "data": {
+        "before": {
+          "act": 2,
+          "selection": 20,
+          "zoom": 1.35,
+          "left": 0,
+          "top": 0
+        },
+        "after": {
+          "act": 2,
+          "selection": 20,
+          "zoom": 1.35,
+          "left": 0,
+          "top": 0,
+          "same": true,
+          "calls": {
+            "finish": 0,
+            "complete": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "360 act3 compact footer offers report and ending",
+      "data": null
+    },
+    {
+      "name": "360 act3 map area and footer fit",
+      "data": {
+        "head": {
+          "x": 0,
+          "y": 0,
+          "w": 360,
+          "h": 52
+        },
+        "foot": {
+          "x": 0,
+          "y": 736,
+          "w": 360,
+          "h": 64
+        },
+        "map": {
+          "x": 0,
+          "y": 52,
+          "w": 360,
+          "h": 684
+        },
+        "screen": {
+          "w": 360,
+          "h": 800
+        }
+      }
+    },
+    {
+      "name": "360 act3 curved progress routes",
+      "data": null
+    },
+    {
+      "name": "360 historical report closes to same journal",
+      "data": null
+    },
+    {
+      "name": "360 act3 gallery never settles and preserves full profile/save",
+      "data": {
+        "act": 3,
+        "selection": "end",
+        "zoom": 1.35,
+        "left": 776,
+        "top": 558,
+        "same": true,
+        "calls": {
+          "finish": 0,
+          "complete": 0
+        }
+      }
+    },
+    {
+      "name": "360 act3 original selected view and DOM restored",
+      "data": {
+        "before": {
+          "act": 3,
+          "selection": "end",
+          "zoom": 1.35,
+          "left": 776,
+          "top": 558
+        },
+        "after": {
+          "act": 3,
+          "selection": "end",
+          "zoom": 1.35,
+          "left": 776,
+          "top": 558,
+          "same": true,
+          "calls": {
+            "finish": 0,
+            "complete": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "844 main XP matches final retained growth",
+      "data": null
+    },
+    {
+      "name": "844 summary detail close restores frozen rewards",
+      "data": null
+    },
+    {
+      "name": "844 final primary action stays visible after growth scroll",
+      "data": null
+    },
+    {
+      "name": "844 act1 compact footer offers report and ending",
+      "data": null
+    },
+    {
+      "name": "844 act1 map area and footer fit",
+      "data": {
+        "head": {
+          "x": 0,
+          "y": 0,
+          "w": 844,
+          "h": 52
+        },
+        "foot": {
+          "x": 0,
+          "y": 326,
+          "w": 844,
+          "h": 64
+        },
+        "map": {
+          "x": 0,
+          "y": 52,
+          "w": 844,
+          "h": 274
+        },
+        "screen": {
+          "w": 844,
+          "h": 390
+        }
+      }
+    },
+    {
+      "name": "844 act1 curved progress routes",
+      "data": null
+    },
+    {
+      "name": "844 record actions visible and touch accessible",
+      "data": [
+        {
+          "w": 114.59375,
+          "h": 44
+        },
+        {
+          "w": 114.59375,
+          "h": 44
+        }
+      ]
+    },
+    {
+      "name": "844 Escape closes records and restores summary focus",
+      "data": null
+    },
+    {
+      "name": "844 historical report closes to same journal",
+      "data": null
+    },
+    {
+      "name": "844 act1 gallery never settles and preserves full profile/save",
+      "data": {
+        "act": 1,
+        "selection": 10,
+        "zoom": 1.35,
+        "left": 398,
+        "top": 0,
+        "same": true,
+        "calls": {
+          "finish": 0,
+          "complete": 0
+        }
+      }
+    },
+    {
+      "name": "844 act1 original selected view and DOM restored",
+      "data": {
+        "before": {
+          "act": 1,
+          "selection": 10,
+          "zoom": 1.35,
+          "left": 398,
+          "top": 0
+        },
+        "after": {
+          "act": 1,
+          "selection": 10,
+          "zoom": 1.35,
+          "left": 398,
+          "top": 0,
+          "same": true,
+          "calls": {
+            "finish": 0,
+            "complete": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "844 act2 compact footer offers report and ending",
+      "data": null
+    },
+    {
+      "name": "844 act2 map area and footer fit",
+      "data": {
+        "head": {
+          "x": 0,
+          "y": 0,
+          "w": 844,
+          "h": 52
+        },
+        "foot": {
+          "x": 0,
+          "y": 326,
+          "w": 844,
+          "h": 64
+        },
+        "map": {
+          "x": 0,
+          "y": 52,
+          "w": 844,
+          "h": 274
+        },
+        "screen": {
+          "w": 844,
+          "h": 390
+        }
+      }
+    },
+    {
+      "name": "844 act2 curved progress routes",
+      "data": null
+    },
+    {
+      "name": "844 historical report closes to same journal",
+      "data": null
+    },
+    {
+      "name": "844 act2 gallery never settles and preserves full profile/save",
+      "data": {
+        "act": 2,
+        "selection": 20,
+        "zoom": 1.35,
+        "left": 0,
+        "top": 162,
+        "same": true,
+        "calls": {
+          "finish": 0,
+          "complete": 0
+        }
+      }
+    },
+    {
+      "name": "844 act2 original selected view and DOM restored",
+      "data": {
+        "before": {
+          "act": 2,
+          "selection": 20,
+          "zoom": 1.35,
+          "left": 0,
+          "top": 162
+        },
+        "after": {
+          "act": 2,
+          "selection": 20,
+          "zoom": 1.35,
+          "left": 0,
+          "top": 162,
+          "same": true,
+          "calls": {
+            "finish": 0,
+            "complete": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "844 act3 compact footer offers report and ending",
+      "data": null
+    },
+    {
+      "name": "844 act3 map area and footer fit",
+      "data": {
+        "head": {
+          "x": 0,
+          "y": 0,
+          "w": 844,
+          "h": 52
+        },
+        "foot": {
+          "x": 0,
+          "y": 326,
+          "w": 844,
+          "h": 64
+        },
+        "map": {
+          "x": 0,
+          "y": 52,
+          "w": 844,
+          "h": 274
+        },
+        "screen": {
+          "w": 844,
+          "h": 390
+        }
+      }
+    },
+    {
+      "name": "844 act3 curved progress routes",
+      "data": null
+    },
+    {
+      "name": "844 historical report closes to same journal",
+      "data": null
+    },
+    {
+      "name": "844 act3 gallery never settles and preserves full profile/save",
+      "data": {
+        "act": 3,
+        "selection": "end",
+        "zoom": 1.35,
+        "left": 398,
+        "top": 943,
+        "same": true,
+        "calls": {
+          "finish": 0,
+          "complete": 0
+        }
+      }
+    },
+    {
+      "name": "844 act3 original selected view and DOM restored",
+      "data": {
+        "before": {
+          "act": 3,
+          "selection": "end",
+          "zoom": 1.35,
+          "left": 398,
+          "top": 943
+        },
+        "after": {
+          "act": 3,
+          "selection": "end",
+          "zoom": 1.35,
+          "left": 398,
+          "top": 943,
+          "same": true,
+          "calls": {
+            "finish": 0,
+            "complete": 0
+          }
+        }
+      }
+    },
+    {
+      "name": "no Chromium page exceptions",
+      "data": []
+    }
+  ],
+  "sourceHashes": {
+    "shared/runtime/main.js": "6a68ea4f1c2fab3d85b72babc44a5caa3e6f061a81540b22f5a32058cfd6051e",
+    "shared/runtime/rest-journey.js": "749087737b95977d5133f46d25d8d2592eec3c0ea615c923dd82dd4382a16d90",
+    "shared/runtime/clear-report.js": "111a48ebb64191961eb90798daa09a417b981b19ef6a328a8cd55a214ce2a94f",
+    "shared/runtime/clear-report-ui.js": "f42c6b0983f72688bb0941f2ae77485adfc431bd6c0b276c7568b3e3b1f14ae0",
+    "shared/runtime/act-endings.js": "ae472dbde7660442d62bfad9ec745b0535b2d46779bbea8228d1dea308c884ab",
+    "shared/runtime/sodan-withdrawal.js": "8a2a4b078301ba9268826f9dcd8f20f38e3fc8bf1b0066c35207eeacb753ccec",
+    "game/src/journey.css": "8ccd760c39b6bf58051384de8e9263e70d09363bb3c2cb462bd5af09055e1e2e",
+    "web/manifest.json": "0341bc2d14949ad76a3653532e86b6e14471baf3f8fe0a8e5bcd0de2484ccda7"
+  },
+  "limits": [
+    "Terminal victory and completed-act report records are fixtures, not fullplay.",
+    "Chromium viewport/touch emulation, not physical mobile."
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "runtimeSha": "6fb1e3aed0caddef59436ae4c89877b663650172",
+  "finalFixtureExecutionSha": "9078f7562a76da7305b7476f9ba9792a0711b1a2",
+  "reviews": [
+    {
+      "review": "집중 1 · 보고서/XP/상세",
+      "note": "캐릭터별 실제 XP와 전후 경지·경지 상승, 상세 표와 고정 닫기/스크롤 영역 확인. 가로 XP는 본문 스크롤로 접근한다.",
+      "directlyOpened": [
+        {
+          "path": "evidence/final-combined/focus1-summary-360x800.jpg",
+          "sha256": "8f95d5ae88f7b3e8d566696e8803671a6858ae76bafb394ffed8d19719facfc8"
+        },
+        {
+          "path": "evidence/final-combined/focus1-summary-390x844.jpg",
+          "sha256": "b751c7788555cd224a72cb181ba3a3ae4d2506ca143a2f4819e43811f866fca4"
+        },
+        {
+          "path": "evidence/final-combined/focus1-summary-844x390.jpg",
+          "sha256": "ea0bfbc8826c100fea90a816f63137aa796ae155259f92e618001090832f0f43"
+        },
+        {
+          "path": "evidence/final-combined/focus1-detail-360x800.jpg",
+          "sha256": "7a5f007fcce10118693a1d03fd796466dd321f031e7cae04bf6fe034933ff665"
+        },
+        {
+          "path": "evidence/final-combined/focus1-detail-390x844.jpg",
+          "sha256": "c743651b77163faf8811854437d0d2966786690a221971eff9d0ed16e340af15"
+        }
+      ]
+    },
+    {
+      "review": "집중 2 · 지도/번호/축약 UI",
+      "note": "곡선 경로·번호에 가까운 라벨·작은 헤더/푸터와 44px 기록 메뉴 확인. 지도 맞춤의 남는 여백은 원본 그림의 종횡비를 보존한 결과다.",
+      "directlyOpened": [
+        {
+          "path": "evidence/final-combined/focus2-map-fit-390x844.jpg",
+          "sha256": "d7a1b034c4fd12e6e278eca41d32fdc530e9a03370cc2b9c8943e8eefdd56d0f"
+        },
+        {
+          "path": "evidence/final-combined/focus2-map-zoom-360x800.jpg",
+          "sha256": "d251bd9c78788e886f48508b4a6531fe242dcb0aa7f8d9cfbc93fda86ac26074"
+        },
+        {
+          "path": "evidence/final-combined/focus2-record-menu-844x390.jpg",
+          "sha256": "c10ef01b597747effa12c87413eac26a892dac5f40b15649e0315ceca18264e1"
+        }
+      ]
+    },
+    {
+      "review": "집중 3 · 실제 맵 대사/엔딩/조작",
+      "note": "실제 맵·네 인물·대화 1/16과 16/16, 디코딩 완료 엔딩 그림과 복귀 버튼, 사각 HUD 아이콘과 조준 섹터 라벨 확인. 엔딩의 첫 자동 캡처에서 빈 img.complete를 준비 완료로 오인한 검사 타이밍을 교정해 naturalWidth와 문구 페이드를 기다린 뒤 다시 확인했다.",
+      "directlyOpened": [
+        {
+          "path": "evidence/final-map-outro/map-outro-first-360x800.jpg",
+          "sha256": "6bef86072d8b2f026f17f75b97757eb075c01ed50b811cbbd5cae2c856324db7"
+        },
+        {
+          "path": "evidence/final-map-outro/map-outro-first-844x390.jpg",
+          "sha256": "a05ab7a2459ee8c94af1e47b9c6eb122f5d7a3a1a265dca22bf0f8a5ba600c21"
+        },
+        {
+          "path": "evidence/final-map-outro/map-outro-last-390x844.jpg",
+          "sha256": "e0264bc5e7fcf4779aa920caf404f5b423b544dbd57757bf36303515180262e6"
+        },
+        {
+          "path": "evidence/final-combined/focus3-gallery-act3-390x844.jpg",
+          "sha256": "266a4596e19df34ed30384c078ce110e103b5fb51602407a5f9cc94ce537dd64"
+        },
+        {
+          "path": "evidence/final-combined/focus3-gallery-act2-844x390.jpg",
+          "sha256": "b4a34e7300e6492fdc838e06aa9c91ad67ac1c75eea2e73dcf53e5a7d170ce80"
+        },
+        {
+          "path": "evidence/final-icon/hud-390x844.jpg",
+          "sha256": "c258379ad7ef1f53bb5cac40bda720e48132055f89330c3b07a852785ddcf658"
+        },
+        {
+          "path": "evidence/final-joystick/02-outside-horizontal-movement.jpg",
+          "sha256": "1acbb9979bf690f78d20f99102d31d6ae1dabd9d6d2d6c1bd0a176311a7852bf"
+        },
+        {
+          "path": "evidence/final-joystick/03-reentered-aim-only.jpg",
+          "sha256": "1fbc2a77c33a816a661fe40fe5846cfde08b66890b90228bba949209a4440212"
+        }
+      ]
+    },
+    {
+      "review": "별도 전체 · 최종 소스 새 브라우저 재실행",
+      "note": "같은 최종 런타임을 새 브라우저로 다시 실행하고 70개 통합 판정 후 대표 원본을 열었다. 가로 보고서 하단/고정 Next, 30장 end 선택·지도 복귀, 엔딩 그림과 두 보조 동작의 공존 확인.",
+      "directlyOpened": [
+        {
+          "path": "evidence/holistic/holistic-summary-bottom-844x390.jpg",
+          "sha256": "6d6c025e7f0c797ade2a728de92931c8f4fc04a2c2e68fb2fa7b6d099d53f162"
+        },
+        {
+          "path": "evidence/holistic/holistic-journal-return-360x800.jpg",
+          "sha256": "6b64575caad37bcfa92f4afc336425a82c86633fbe517c35aed6e76318e3e997"
+        },
+        {
+          "path": "evidence/holistic/focus3-gallery-act1-844x390.jpg",
+          "sha256": "8bcf9e0ad117c62a1991ef39792298df05630d9cdf148d95fc648f1617c4eecd"
+        },
+        {
+          "path": "evidence/holistic/focus2-record-menu-390x844.jpg",
+          "sha256": "6452c567431101425a02845fee1a746648d314f34f912f94162c97dbf4f2f3e7"
+        }
+      ]
+    }
+  ],
+  "method": "Actual Chromium JPEG screenshots opened through view_image; no composites or generated images.",
+  "release": "Parent owns final public pixels and master/Pages publishing."
+}
