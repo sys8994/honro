@@ -33,7 +33,7 @@ with sync_playwright() as pw,serve_game() as url:
  check('Next double click preserves one clear and does not skip a stage',p.evaluate('HonroApp.profile.cleared[16].visits===1&&!HonroApp.profile.cleared[17]'))
  p.evaluate('HonroApp.showRest()');p.evaluate(FINISH);p.evaluate('HonroApp.showMap();HonroRestJourney.showBook(HonroApp,16,null,2);HonroRestJourney.selectBook(HonroApp,16)')
  check('journal retains travel CTA alongside report access',p.locator('[data-action=journey-travel]').count()==1 and p.locator('[data-action=clear-report][data-id="16"]').count()==1)
- old=p.evaluate('JSON.stringify(HonroApp.profile.honroClearReports[16])');p.locator('[data-action=clear-report][data-id="16"]').click();p.locator('.report-close').click();check('journal report close returns to journal without reward changes',p.evaluate('HonroApp.screen==="journey"&&!HonroApp.modal.classList.contains("open")') and p.evaluate('JSON.stringify(HonroApp.profile.honroClearReports[16])')==old);shot(p,'holistic-journal-report-access')
+ old=p.evaluate('JSON.stringify(HonroApp.profile.honroClearReports[16])');p.locator('.journey-records>summary').click();p.locator('[data-action=clear-report][data-id="16"]').click();p.locator('.report-close').click();check('journal report close returns to journal without reward changes',p.evaluate('HonroApp.screen==="journey"&&!HonroApp.modal.classList.contains("open")') and p.evaluate('JSON.stringify(HonroApp.profile.honroClearReports[16])')==old);shot(p,'holistic-journal-report-access')
  # All three existing endings remain four cuts -> title -> rest, including pending reload.
  p.set_viewport_size({'width':390,'height':844})
  for stage in [10,20,30]:

@@ -69,7 +69,7 @@ with sync_playwright() as p, serve_game() as base:
         assert page.evaluate('HonroApp.screen==="journey"&&HonroApp.engine===null&&HonroApp.journeySelection===5')
         assert page.evaluate('JSON.stringify(HonroApp.profile)')==snapshot
         assert page.evaluate('(k)=>localStorage.getItem(k)',KEY)==saved
-        assert page.locator('[data-action="journey-travel"]').inner_text()=='휴식터로 진입'
+        assert page.locator('[data-action="journey-travel"]').inner_text()=='휴식터로'
         shot(page,f'{w}x{h}-act1-cta')
         # Drag begins on a pin; the release click must not move or alter saves.
         box=pin.bounding_box();page.mouse.move(box['x']+box['width']/2,box['y']+15);page.mouse.down();page.mouse.move(box['x']+box['width']/2+70,box['y']+65,steps=8);page.mouse.up()
@@ -92,7 +92,7 @@ with sync_playwright() as p, serve_game() as base:
         page.locator('[data-action="journey-select"][data-id="12"]').scroll_into_view_if_needed();page.locator('[data-action="journey-select"][data-id="12"]').click()
         shot(page,f'{w}x{h}-act2-surface')
         pin=page.locator('[data-action="journey-select"][data-id="19"]');pin.scroll_into_view_if_needed();pin.click()
-        assert page.locator('[data-action="journey-travel"]').inner_text()=='스테이지 진입'
+        assert page.locator('[data-action="journey-travel"]').inner_text()=='진입'
         assert inside(page,'.journey-detail')
         shot(page,f'{w}x{h}-act2-direct')
         # Real viewport rotation keeps the selected pin/CTA and bounded UI.

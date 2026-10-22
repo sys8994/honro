@@ -1,0 +1,50 @@
+{
+  "checks": [
+    {
+      "viewport": [
+        360,
+        800
+      ],
+      "flow": "pause/cancel/confirm/reload/hub/book/select/CTA/new battle",
+      "act2": "11–12 surface and 13–20 underground",
+      "rotation": true,
+      "doubleClick": true,
+      "savePreservedBeforeApproval": true
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "flow": "pause/cancel/confirm/reload/hub/book/select/CTA/new battle",
+      "act2": "11–12 surface and 13–20 underground",
+      "rotation": true,
+      "doubleClick": true,
+      "savePreservedBeforeApproval": true
+    },
+    {
+      "viewport": [
+        844,
+        390
+      ],
+      "flow": "pause/cancel/confirm/reload/hub/book/select/CTA/new battle",
+      "act2": "11–12 surface and 13–20 underground",
+      "rotation": true,
+      "doubleClick": true,
+      "savePreservedBeforeApproval": true
+    },
+    {
+      "viewport": [
+        1280,
+        900
+      ],
+      "flow": "pause/cancel/confirm/reload/hub/book/select/CTA/new battle",
+      "act2": "11–12 surface and 13–20 underground",
+      "rotation": true,
+      "doubleClick": true,
+      "savePreservedBeforeApproval": true
+    }
+  ],
+  "errors": [],
+  "scope": "Real Chromium inputs on fixture campaign profiles; no normal combat completion or parent pixel approval claimed."
+}

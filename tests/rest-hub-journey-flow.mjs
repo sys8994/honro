@@ -31,7 +31,7 @@ check('Act 2 unifies surface 11/12 and underground 13–20 without act-1 pins',(
 });
 check('Spot selection is inert; explicit CTA branches to authored rest or a fresh direct stage',()=>{
  for(const id of [1,2,9,10,18,19,24,25,26,27,28,29]){
-  app=load(profileThrough(30));app.showRest();finish(app);book(id);const before=plain(app.profile),save=h.storage.get(KEY);click('journey-select',{id:String(id)});assert.equal(app.screen,'journey');assert.equal(app.engine,null);assert.deepEqual(plain(app.profile),before);assert.equal(h.storage.get(KEY),save);assert.match(app.root.innerHTML,new RegExp(`data-action="journey-travel" data-id="${id}">${R.hasRest(id)?'휴식터로 진입':'스테이지 진입'}`));
+  app=load(profileThrough(30));app.showRest();finish(app);book(id);const before=plain(app.profile),save=h.storage.get(KEY);click('journey-select',{id:String(id)});assert.equal(app.screen,'journey');assert.equal(app.engine,null);assert.deepEqual(plain(app.profile),before);assert.equal(h.storage.get(KEY),save);assert.match(app.root.innerHTML,new RegExp(`data-action="journey-travel" data-id="${id}">${R.hasRest(id)?'휴식터로':'진입'}`));
   click('journey-travel',{id:String(id)});if(R.hasRest(id)){assert.equal(app.screen,'rest');assert.equal(R.restNext(app).stageId,id);assert.match(app.root.innerHTML,/스테이지 진입/);click('journey-enter',{id:String(id)});}finish(app);assert.equal(app.engine.b.honroStage,id);assert.equal(app.engine.b.honroJourneyReplay,true);assert.equal(app.engine.b.round,1);
  }
 });

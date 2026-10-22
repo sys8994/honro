@@ -930,7 +930,7 @@
             document.addEventListener('pointerup', e => {if(e.pointerType!=='mouse')wakeAudio();}, {capture:true});
             document.addEventListener('touchend', wakeAudio, {capture:true,passive:true});
             document.addEventListener('click', wakeAudio, {capture:true});
-            document.addEventListener('keydown', e => { if(this.modal.querySelector('.training-dialog'))return; if(G.HonroAct3Void?.key(this,e))return; void this.audio?.wake?.(true); if(this.dialogue){G.HonroStory.key(this,e);return;} if(this.screen==='title'&&!this.modal.classList.contains('open')&&(e.code==='ArrowDown'||e.code==='ArrowUp')){const buttons=[...this.root.querySelectorAll('.title-actions button:not([disabled])')],index=buttons.indexOf(document.activeElement);if(buttons.length){e.preventDefault();const next=index<0?(e.code==='ArrowDown'?0:buttons.length-1):(index+(e.code==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next].focus({preventScroll:true});}return;} if (this.screen !== 'battle'&&!this.modal.classList.contains('open'))
+            document.addEventListener('keydown', e => { const records=this.screen==='journey'&&this.root.querySelector('.journey-records[open]');if(e.code==='Escape'&&records&&!this.modal.classList.contains('open')){e.preventDefault();records.open=false;records.querySelector('summary')?.focus();return;} if(this.modal.querySelector('.training-dialog'))return; if(G.HonroAct3Void?.key(this,e))return; void this.audio?.wake?.(true); if(this.dialogue){G.HonroStory.key(this,e);return;} if(this.screen==='title'&&!this.modal.classList.contains('open')&&(e.code==='ArrowDown'||e.code==='ArrowUp')){const buttons=[...this.root.querySelectorAll('.title-actions button:not([disabled])')],index=buttons.indexOf(document.activeElement);if(buttons.length){e.preventDefault();const next=index<0?(e.code==='ArrowDown'?0:buttons.length-1):(index+(e.code==='ArrowDown'?1:-1)+buttons.length)%buttons.length;buttons[next].focus({preventScroll:true});}return;} if (this.screen !== 'battle'&&!this.modal.classList.contains('open'))
                 return; if (e.code === 'Escape') {
                 e.preventDefault();
                 if(this.scene?.inspectUnitId){G.HonroUnitInfo.close(this);return;}
@@ -1018,6 +1018,7 @@
                     {const returnMenu=this.pendingJourneyLaunch?.returnMenu;this.pendingJourneyLaunch=null;if(returnMenu==='pause')this.pause();else this.close();}
                     break;
                 case 'clear-report':
+                    this.root.querySelector('.journey-records')?.removeAttribute('open');
                     G.HonroClearReportUI.open(this,id);
                     break;
                 case 'result-continue':

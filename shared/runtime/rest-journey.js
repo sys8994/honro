@@ -102,31 +102,90 @@ function status(profile,place){if((active(profile)||data().next(profile))&&curre
 function unlocked(profile,place,debug=false){return debug||!!profile.cleared[place.stageId]||H.stages[place.stageId-1].requires.every(id=>!!profile.cleared[id]);}
 const mapDefinition=act=>G.HonroJourneyImages.definition(act);
 const mapAnchor=(act,id)=>mapDefinition(act)?.stages.find(s=>s.stageNumber===Number(id));
+// Progression routes in native painting pixels; never emitted for a locked endpoint.
+const progressRoutes={
+ "1": [
+  "M165 795 C205 775 245 732 280 714 S330 694 350 678",
+  "M350 678 C350 711 394 716 424 741 S440 801 493 807 S539 819 565 823",
+  "M565 823 C499 813 462 800 435 761 S386 723 403 685 C425 645 471 614 531 596 S579 548 599 506 C622 468 666 457 717 452 S806 428 862 393",
+  "M862 393 C831 416 811 431 778 439 S734 448 717 452 C683 451 652 450 624 428 S603 350 588 308 S571 272 565 250",
+  "M565 250 C571 289 596 334 603 376 S610 435 639 448 S692 447 717 452",
+  "M717 452 C755 443 804 415 862 393 S919 389 957 383 S1023 364 1070 360",
+  "M1070 360 C1121 370 1165 394 1176 422 S1268 475 1310 482 S1357 480 1380 478",
+  "M1380 478 C1327 480 1238 455 1202 436 S1200 384 1217 353 C1237 323 1256 307 1265 277 S1279 242 1290 229",
+  "M1290 229 C1301 212 1334 207 1354 190 S1374 154 1395 140"
+ ],
+ "2": [
+  "M105 87 C192 111 270 133 356 142 S493 126 548 145 S649 173 715 151",
+  "M715 151 C790 159 900 167 951 178 C953 208 911 227 860 235 S815 285 809 329 S795 382 806 417 S862 458 907 461",
+  "M907 461 C949 484 959 506 919 507 S824 496 797 458 S777 414 754 410 C686 407 644 391 592 379 S522 381 481 398",
+  "M481 398 C451 433 416 447 364 448 S323 431 307 409 S276 381 248 367 C215 349 158 336 130 314 C107 357 113 417 101 470 S111 571 158 594 S200 621 218 635",
+  "M218 635 C263 604 297 613 332 631 S399 651 430 665 S472 693 487 731 C528 749 586 750 641 747",
+  "M641 747 C692 754 725 776 746 802 S801 830 816 864 S855 913 885 928",
+  "M885 928 C838 915 810 896 773 887 S680 872 624 861 S509 841 452 827 C368 808 276 792 224 824 S184 875 172 915 C164 956 109 972 87 1015 S82 1090 139 1137 C194 1161 254 1172 302 1162 S405 1129 455 1118",
+  "M455 1118 C485 1139 550 1173 573 1222 S620 1310 693 1330",
+  "M693 1330 C745 1336 793 1295 811 1251 S816 1162 842 1113 C862 1078 909 1062 953 1042 S937 971 885 928 C841 912 816 896 773 887 S680 872 624 861 S509 841 452 827 C368 808 276 792 224 824 S123 858 74 843 C45 786 55 697 86 653 S104 543 103 480 S117 366 91 269"
+ ],
+ "3": [
+  "M148 810 C185 760 214 690 266 637 S318 536 346 445",
+  "M346 445 C385 480 437 499 454 538 S435 632 431 698 S431 828 438 889",
+  "M438 889 C480 867 505 811 496 753 S459 668 466 610 C473 540 485 473 520 421 S551 322 582 289 S606 246 620 223",
+  "M620 223 C674 222 735 236 779 260 S797 319 774 349 C755 389 706 415 680 454 S622 494 620 532 C650 553 703 582 731 600",
+  "M731 600 C690 578 649 556 620 532 C630 496 678 480 700 442 S746 389 774 349 C807 317 841 301 878 310 S954 315 1010 292",
+  "M1010 292 C949 321 912 325 874 311 S802 321 774 349 C755 388 715 416 697 448 S643 495 620 532 C652 556 698 573 731 600 S843 632 874 668 C897 710 862 750 820 782",
+  "M820 782 C863 754 900 715 874 668 S898 621 932 594 C961 560 975 527 1004 490",
+  "M1004 490 C1051 510 1096 539 1108 580 S1105 669 1107 713 S1123 774 1128 811",
+  "M1128 811 C1124 849 1085 854 1086 884 S1135 921 1142 948 C1103 973 1081 1004 1048 1029 S1001 1076 965 1090"
+ ]
+};
+function routeMarkup(act,def,visible,profile,current){const ids=new Set(visible.map(v=>v.stageId));return `<svg class="journey-progress" viewBox="0 0 ${def.width} ${def.height}" aria-hidden="true">${(progressRoutes[act]||[]).map((d,i)=>{const from=(act-1)*10+i+1,to=from+1;if(!ids.has(from)||!ids.has(to))return '';const state=profile.cleared[to]?'complete':to===current?'current':'next';return `<path class="progress-underlay" d="${d}" vector-effect="non-scaling-stroke"/><path data-from="${from}" data-to="${to}" class="progress-${state}" d="${d}" vector-effect="non-scaling-stroke"/>`;}).join('')}</svg>`;}
+function bookRecords(app,id){
+ const actions=(G.HonroClearReportUI?.journal(app,id)||'')+(G.HonroActEndings?.replayButton?.(app,id)||'');
+ return actions?`<details class="journey-records"><summary aria-label="선택한 길목의 보고서와 막 엔딩 기록">기록</summary><div class="journey-record-menu">${actions}</div></details>`:'';
+}
 function bookMarkup(app){
  const p=app.profile,d=data(),act=app.journeyAct||actOf(currentId(p)),def=mapDefinition(act),finished=!active(p)&&!d.next(p),allowed=actOpen(p,act,app.debugMode),places=allowed?actPlaces(act):[],visible=places.filter(v=>unlocked(p,v,app.debugMode)),endSelected=app.journeySelection==='end'&&finished&&act===actOf(d.ending.stageId);
  const selected=endSelected?d.ending:visible.find(v=>v.stageId===app.journeySelection)||null,current=currentId(p);
- const pins=visible.map(v=>{const anchor=mapAnchor(act,v.stageId);if(!anchor)return '';const passed=!!p.cleared[v.stageId],here=v.stageId===current,picked=endSelected?v.stageId===d.ending.stageId:selected?.stageId===v.stageId;return `<button class="journey-pin ${passed?'passed':''} ${here?'current':''} ${picked?'selected':''}" data-action="journey-select" data-id="${v.stageId}" style="left:${anchor.x/def.width*100}%;top:${anchor.y/def.height*100}%;--label-x:${anchor.labelOffsetX};--label-y:${anchor.labelOffsetY}" aria-label="${v.stageId}장 ${esc(anchor.mapLabel)} · ${status(p,v)}" aria-pressed="${picked}" ${here?'aria-current="location"':''}><i>${v.stageId}</i><span>${passed?'✓ ':''}${esc(anchor.mapLabel)}</span>${here?'<b>현 위치</b>':''}</button>`;}).join('');
+ const pins=visible.map(v=>{const anchor=mapAnchor(act,v.stageId);if(!anchor)return '';const passed=!!p.cleared[v.stageId],here=v.stageId===current,picked=endSelected?v.stageId===d.ending.stageId:selected?.stageId===v.stageId;return `<button class="journey-pin ${passed?'passed':''} ${here?'current':''} ${picked?'selected':''}" data-action="journey-select" data-id="${v.stageId}" style="left:${anchor.x/def.width*100}%;top:${anchor.y/def.height*100}%;--label-side:${anchor.labelOffsetX<0?-1:1}" aria-label="${v.stageId}장 ${esc(anchor.mapLabel)} · ${status(p,v)}" aria-pressed="${picked}" ${here?'aria-current="location"':''}><i>${v.stageId}</i><span>${passed?'✓ ':''}${esc(anchor.mapLabel)}</span></button>`;}).join('');
  // Fog reveals only already-authorized places; no locked names, disabled pins,
  // or interactions are emitted. Art never grants progression permissions.
  const fog=allowed&&visible.length<places.length?`<svg class="journey-fog" viewBox="0 0 ${def.width} ${def.height}" aria-hidden="true"><defs><radialGradient id="journey-reveal"><stop offset=".3" stop-color="black"/><stop offset="1" stop-color="black" stop-opacity="0"/></radialGradient><mask id="journey-fog-mask"><rect width="100%" height="100%" fill="white"/>${visible.map(v=>{const a=mapAnchor(act,v.stageId);return `<ellipse cx="${a.x}" cy="${a.y}" rx="280" ry="240" fill="url(#journey-reveal)"/>`;}).join('')}</mask></defs><rect width="100%" height="100%" fill="#081416" opacity=".92" mask="url(#journey-fog-mask)"/></svg>`:'';
- const investigations=act===3?`<svg class="journey-investigations" viewBox="0 0 ${def.width} ${def.height}" aria-hidden="true">${[[24,26,28],[24,25,27,28]].map((ids,i)=>{const pairs=ids.slice(1).map((id,n)=>[ids[n],id]).filter(pair=>pair.every(id=>visible.some(v=>v.stageId===id)));return pairs.map(pair=>`<path d="M${pair.map(id=>{const a=mapAnchor(act,id);return a.x+' '+a.y;}).join(' L')}" class="investigation-${i}"/>`).join('');}).join('')}</svg>`:'';
- const details=!selected?'<div><p>길목을 선택해 이동할 곳을 확인하세요.</p></div>':`<div><span>${esc(selected.region)} · ${endSelected?'현 위치 · '+esc(d.ending.actEnd||'막 끝'):status(p,selected)}</span><h2>${esc(selected.place)}</h2><p>${esc(selected.event)}</p></div><button class="primary" data-action="journey-travel" data-id="${endSelected?'end':selected.stageId}">${endSelected||hasRest(selected.stageId)?'휴식터로 진입':'스테이지 진입'}</button>`;
- const tabs=Array.from({length:6},(_,i)=>{const n=i+1,implemented=H.stages.some(s=>(s.act||1)===n),open=actOpen(p,n,app.debugMode);return `<button data-action="journey-act" data-id="${n}" aria-pressed="${act===n}" aria-label="${n}막${!implemented?' · 준비 중':!open?' · 잠김':''}" ${open?'':'disabled'}><span>${n}막</span>${!implemented?'<small>준비 중</small>':!open?'<small>잠김</small>':''}</button>`;}).join('');
- return `<main class="screen journey-screen journey-image-screen journey-act-${act}"><header class="journey-heading"><h1>여정첩</h1><nav class="journey-acts" aria-label="막 선택">${tabs}</nav></header><section class="journey-map-viewport" aria-label="${act}막 지리와 지나온 길">${allowed&&def?`<div class="journey-map-scroll" tabindex="0" aria-label="지도 이동: 방향 키 또는 드래그. 확대 버튼 또는 휠 사용"><div class="journey-map" style="--journey-zoom:${app.journeyZoom||1};aspect-ratio:${def.width}/${def.height}"><div class="journey-image-host" aria-hidden="true"></div>${investigations}${fog}${pins}</div></div><p class="journey-image-status" role="status">지도를 불러오는 중입니다. 길목은 선택할 수 있습니다.</p><div class="journey-map-tools" aria-label="지도 확대와 위치"><button data-action="journey-fit" aria-label="지도 맞춤">맞춤</button><button data-action="journey-zoom" data-id="out" aria-label="지도 축소">−</button><button data-action="journey-center" aria-label="선택한 길목으로">◎</button><button data-action="journey-zoom" data-id="in" aria-label="지도 확대">+</button></div><div class="journey-map-legend"><span>◎ 현 위치 · ✓ 지난 길</span><span>${act===3?'점선: 지상 / 지하 조사 관계 · 진행은 장 순서대로':act===2?'지상 11·12 / 지하 13–20 · 18·19는 같은 종':'드래그 · 휠 / 두 손가락 확대'}</span></div>`:'<p>이전 막을 완료하면 지도가 열립니다.</p>'}</section><section class="journey-detail" aria-live="polite">${details}${!endSelected&&selected?G.HonroClearReportUI?.journal(app,selected.stageId)||'':''}<button class="journey-back" data-action="rest">휴식터로 돌아가기</button></section></main>`;
+ const routes=allowed&&def?routeMarkup(act,def,visible,p,current):'';
+ const details=!selected?'<div><p>길목을 선택하세요.</p></div>':`<div><h2>${esc(selected.place)}</h2><p>${endSelected?'막 끝 · 휴식':status(p,selected)}</p></div>${bookRecords(app,selected.stageId)}<button class="primary" data-action="journey-travel" data-id="${endSelected?'end':selected.stageId}">${endSelected||hasRest(selected.stageId)?'휴식터로':'진입'}</button>`;
+ const tabs=Array.from({length:6},(_,i)=>{const n=i+1,implemented=H.stages.some(s=>(s.act||1)===n),open=actOpen(p,n,app.debugMode);return `<button data-action="journey-act" data-id="${n}" aria-pressed="${act===n}" aria-label="${n}막${!implemented?' · 준비 중':!open?' · 잠김':''}" ${open?'':'disabled'}><span>${n}막</span></button>`;}).join('');
+ return `<main class="screen journey-screen journey-image-screen journey-act-${act}"><header class="journey-heading" aria-label="여정첩"><button class="journey-exit" data-action="rest" aria-label="휴식터로 돌아가기" title="휴식터로 돌아가기">‹</button><nav class="journey-acts" aria-label="막 선택">${tabs}</nav><button class="journey-fit" data-action="journey-fit" aria-label="지도 맞춤" aria-describedby="journey-help" title="지도 맞춤 · 키보드: + / − 확대, 0 맞춤, 방향 키 이동">⛶</button><span id="journey-help" class="journey-sr-help">드래그·방향 키로 이동, 휠·두 손가락·더하기/빼기 키로 확대와 축소, 0 키로 지도 맞춤.</span></header><section class="journey-map-viewport" aria-label="${act}막 지리와 지나온 길">${allowed&&def?`<div class="journey-map-scroll" tabindex="0" aria-label="여정 지도" aria-describedby="journey-help"><div class="journey-map" style="--journey-zoom:${app.journeyZoom||1};aspect-ratio:${def.width}/${def.height}"><div class="journey-image-host" aria-hidden="true"></div>${fog}${routes}${pins}</div></div><p class="journey-image-status" role="status">지도를 불러오는 중입니다. 길목은 선택할 수 있습니다.</p>`:'<p>이전 막을 완료하면 지도가 열립니다.</p>'}</section><section class="journey-detail" aria-live="polite">${details}</section></main>`;
 }
-function layoutBook(app){const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map'),def=mapDefinition(app.journeyAct);if(!viewport||!map||!def)return;const base=Math.max(viewport.clientWidth||360,(viewport.clientHeight||400)*def.width/def.height,app.journeyAct===2?680:920);map.dataset.baseWidth=String(base);app.journeyZoom=Math.max((app.journeyAct===2?460:600)/base,Math.min(1.8,app.journeyZoom||1));map.style.setProperty('--map-base-width',base+'px');map.style.setProperty('--journey-zoom',String(app.journeyZoom));map.style.setProperty('--map-factor',String(base*app.journeyZoom/def.width));}
-function revealBook(app){const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map'),id=app.journeySelection==='end'?data().ending.stageId:app.journeySelection,anchor=mapAnchor(app.journeyAct,id),def=mapDefinition(app.journeyAct);if(!viewport||!map||!anchor)return;viewport.scrollLeft=Math.max(0,map.offsetLeft+anchor.x/def.width*map.clientWidth-viewport.clientWidth/2);viewport.scrollTop=Math.max(0,map.offsetTop+anchor.y/def.height*map.clientHeight-viewport.clientHeight/2);}
+function layoutLabels(){
+ const viewport=document.querySelector('.journey-map-scroll');if(!viewport?.getBoundingClientRect)return;const vr=viewport.getBoundingClientRect(),pins=[...viewport.querySelectorAll('.journey-pin')],placed=[];
+ const overlap=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
+ const anchors=pins.map(pin=>{const r=pin.getBoundingClientRect();return {pin,x:r.left+r.width/2,y:r.top+r.height/2};});
+ anchors.sort((a,b)=>Number(b.pin.classList.contains('selected'))-Number(a.pin.classList.contains('selected')));
+ for(const a of anchors){const label=a.pin.querySelector('span'),w=label.offsetWidth,h=label.offsetHeight,left=[-24-w,-h/2],right=[24,-h/2],side=Number(a.pin.style.getPropertyValue('--label-side'));
+  const candidates=[...(side<0?[left,right]:[right,left]),[-w/2,-26-h],[-w/2,26],[24,22],[-24-w,22],[24,-22-h],[-24-w,-22-h]];
+  const visible=a.x>=vr.left&&a.x<=vr.right&&a.y>=vr.top&&a.y<=vr.bottom;
+  let best=null;for(const [dx,dy] of candidates){const rect={left:a.x+dx,top:a.y+dy,right:a.x+dx+w,bottom:a.y+dy+h};let score=0;
+   if(visible)score+=100*(Math.max(0,vr.left+3-rect.left)+Math.max(0,rect.right-vr.right+3)+Math.max(0,vr.top+3-rect.top)+Math.max(0,rect.bottom-vr.bottom+3));
+   for(const b of anchors)score+=overlap(rect,{left:b.x-20,right:b.x+20,top:b.y-20,bottom:b.y+20})*10;
+   for(const b of placed)score+=overlap(rect,b)*4;
+   if(!best||score<best.score)best={dx,dy,rect,score};
+  }
+  label.style.transform=`translate(${best.dx}px,${best.dy}px)`;placed.push(best.rect);
+ }
+}
+function layoutBook(app){const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map'),def=mapDefinition(app.journeyAct);if(!viewport||!map||!def)return;const base=Math.max(viewport.clientWidth||360,(viewport.clientHeight||400)*def.width/def.height,app.journeyAct===2?680:920);map.dataset.baseWidth=String(base);const minimum=Math.min(viewport.clientWidth/base,viewport.clientHeight*def.width/def.height/base);app.journeyZoom=Math.max(minimum,Math.min(1.8,app.journeyZoom||1));map.style.setProperty('--map-base-width',base+'px');map.style.setProperty('--journey-zoom',String(app.journeyZoom));layoutLabels();}
+function revealBook(app){const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map'),id=app.journeySelection==='end'?data().ending.stageId:app.journeySelection,anchor=mapAnchor(app.journeyAct,id),def=mapDefinition(app.journeyAct);if(!viewport||!map||!anchor)return;viewport.scrollLeft=Math.max(0,map.offsetLeft+anchor.x/def.width*map.clientWidth-viewport.clientWidth/2);viewport.scrollTop=Math.max(0,map.offsetTop+anchor.y/def.height*map.clientHeight-viewport.clientHeight/2);layoutLabels();}
 function zoomBook(app,zoom,clientX,clientY,fromX=clientX,fromY=clientY){
  if(app.screen!=='journey'||!Number.isFinite(zoom))return;
  const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map');if(!viewport||!map)return;
  const rect=map.getBoundingClientRect(),fx=(fromX-rect.left)/map.clientWidth,fy=(fromY-rect.top)/map.clientHeight;
  app.journeyZoom=zoom;layoutBook(app);const nextRect=map.getBoundingClientRect();
- viewport.scrollLeft+=nextRect.left+fx*map.clientWidth-clientX;viewport.scrollTop+=nextRect.top+fy*map.clientHeight-clientY;
+ viewport.scrollLeft+=nextRect.left+fx*map.clientWidth-clientX;viewport.scrollTop+=nextRect.top+fy*map.clientHeight-clientY;layoutLabels();
 }
 function fitBook(app){const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map'),def=mapDefinition(app.journeyAct);if(!viewport||!map||!def)return;const base=Number(map.dataset.baseWidth);zoomBook(app,Math.min(viewport.clientWidth/base,viewport.clientHeight*def.width/def.height/base),0,0);revealBook(app);}
 function mountBook(app){
  const viewport=document.querySelector('.journey-map-scroll');if(!viewport||typeof viewport.addEventListener!=='function')return;
- layoutBook(app);G.HonroJourneyImages.mount(app);viewport._journeyResize=()=>{viewport._journeyCancel?.();layoutBook(app);revealBook(app);};
+ layoutBook(app);G.HonroJourneyImages.mount(app);let labelFrame=0;viewport.addEventListener('scroll',()=>{if(!labelFrame)labelFrame=requestAnimationFrame(()=>{labelFrame=0;if(viewport.isConnected)layoutLabels();});});viewport._journeyResize=()=>{viewport._journeyCancel?.();layoutBook(app);revealBook(app);};
+ viewport.addEventListener('keydown',e=>{if(e.ctrlKey||e.altKey||e.metaKey)return;const r=viewport.getBoundingClientRect();if(['+','=','-','0'].includes(e.key)){e.preventDefault();e.stopPropagation();if(e.key==='0')fitBook(app);else zoomBook(app,(app.journeyZoom||1)*(e.key==='-'?.85:1.18),r.left+r.width/2,r.top+r.height/2);}});
  const contacts=new Map();let moved=false,pinchZoom=1;viewport._journeyCancel=()=>{if(contacts.size)moved=true;contacts.clear();viewport.classList.remove('dragging');};
  const pinch=()=>{const [a,b]=contacts.values();return b?{x:(a.x+b.x)/2,y:(a.y+b.y)/2,gap:Math.hypot(a.x-b.x,a.y-b.y)}:null;};
  viewport.addEventListener('pointerdown',e=>{
